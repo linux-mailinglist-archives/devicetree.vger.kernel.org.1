@@ -1,231 +1,156 @@
-Return-Path: <devicetree+bounces-312811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312816-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lbvoCFFKMmrXyAUAu9opvQ
-	(envelope-from <devicetree+bounces-312811-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:18:41 +0200
+	id EWOTFAdMMmpDyQUAu9opvQ
+	(envelope-from <devicetree+bounces-312816-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:25:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3666971EF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:18:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6CBB6972C0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:25:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=k25bb8I7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312811-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312811-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312816-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312816-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 970063013718
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:18:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F13B63039813
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 091B43B19C4;
-	Wed, 17 Jun 2026 07:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 908733BBFB1;
+	Wed, 17 Jun 2026 07:25:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC83D3624D4;
-	Wed, 17 Jun 2026 07:18:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E3243BB673
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 07:25:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781680718; cv=none; b=urfozanv8BDzdTtVjd07DMfIAr6qDEHlsA0XytYmrij7zDD35fC4y17UG+A10hWel/LUxfJNcOTnzQFTICQBzA29nAcLco/AHWYkFFuvWj+0TMoPtuakONtG+ZYMj4RPwHXJ1nJHJstttxUuB92FIjBYpI2pIB8Zae92CHsF19Q=
+	t=1781681154; cv=none; b=Bx8qVtFuA+3Iu9MujHA3zrulv23dhoaoMQLR36dgcD5i8SY+wVGM7JxyhdEmIYF5GxJKhFGzmhjUzZFwN0h++5WUf2W0hZzA4cTzVEkw2yO0ObjgKx6BKvQIa9zct+VFBXXxBbNXV8awf0wQe+JoNG8oMJ8hws9stNyGoDAkV+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781680718; c=relaxed/simple;
-	bh=i0IoNqa50ql8ZMFV1yrts2avdiIk+b8IdsXlvAq38P0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ohaPiua/qJQbodEFbxwhSSQa/kbWTwL59GjmAhD2BEUQLCJHtm6gWY/t+p0f/iwaYBBJfLKlrc0aowqSy+Qqof6DECLFQGDFXEsItwKeqafdMVx1eoZRBdWCgV3J2umkHT03PnxgGqjUtxPtGnbafU1eDSdf7TWWB7zzMJH+70E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k25bb8I7; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DE751F000E9;
-	Wed, 17 Jun 2026 07:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781680717;
-	bh=PCUJ8TvYxnZt3VGWlj5X1tmebfyir5JpZtVJpxf6nDg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=k25bb8I7c6hTLrY1kIzGxirmsyqVcOe2oSoDTFUEtSxPWPrlFp7OBpwdteAfGOkWd
-	 ynpzyw/WzekWiL52nxvMxrRPI2zH/Q/deHjsl1ioDMm55xtvAKcuFuFvBWG4U+DZC0
-	 qag6NVE55TaktRtg68IGxRVmD/QHH5h/l18vh1DbO1DZCbYhrrItsgD6HuvUBrWDaX
-	 UBK+Vw3TFHwGiJ923h0bExsag8AhuSIsnLvx2zajRGzO+UBNpAhlQ7xBQF3stXZelc
-	 LBAdEf2l1DCKjt2uyX4MfIReEb82tpLxmxXm1J9Ms0/02OPPwjCsfjb8SzU2ywV1Yt
-	 /eYgzznlP1Uag==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 2/2] Input: isa1200 - new driver for Imagis ISA1200
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Svyatoslav Ryhel" <clamor95@gmail.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, linux-input@vger.kernel.org, conor+dt@kernel.org, dmitry.torokhov@gmail.com
-In-Reply-To: <20260617070528.35006-3-clamor95@gmail.com>
-References: <20260617070528.35006-1-clamor95@gmail.com>
- <20260617070528.35006-3-clamor95@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 17 Jun 2026 07:18:36 +0000
-Message-Id: <20260617071837.3DE751F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781681154; c=relaxed/simple;
+	bh=5ly7+TzlKvMHDJG+KCFDA2OkEcHM6CaYu71eIzXrHMc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=e1ajdBvMSb+XGIqnAfl7R8hYnzNKjrSnyShdco3kq0M9i71Bxw69wIlTKBB3DdqsPjh+tBI1PywuN/XC6c6YumsAB09yLKFMiXuQ4Kpfb4T1fd1g2YzOVpOc6Qu6ag6a7p8srAPTuZthO+SIpmX2hbnZB8DgmikAxOhdHCbrx4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.47
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-7e6e2d54d3dso3116971a34.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 00:25:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781681152; x=1782285952;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ztFXz/owcY4eIy+dbZPgHvU1FccqokXXCpyEUGPoPhk=;
+        b=NUATtyTqiZUmiQhXSKDLTn8bne1cIQu2pfys+VTuMdry6QxZyKMLxOUnmJRUTAa7dr
+         N9RfUBcgnHeRSl9G/503Qc2e8WVQlh6O+ACdkIOavqydv4P69UGh8376Su303mry0ReE
+         8Y80GrD3Xl+Ug7Q0nYryDtbz6bdnzY693AcK7pyJTJEbiFVlCarejSZXiasMCKXOj+W6
+         I3HpB/aeVuVlO4XEi9ljn/JOVHcmGozdWZRmBYQlhK7+WjAzgiS4CGF2HnzmNrcQ97Tz
+         6+VsIDO3Rm4uycNdqMOL4qKrQ1dXiAniOfJ8oKqBYOEFjPmvM1DijbeDKV5Nbyb05bRn
+         nCWw==
+X-Forwarded-Encrypted: i=1; AFNElJ+/ff+6s1ReaVEptsL6BSfCIEK6Aob6iaaJTIVlyr40qQGqlxi+MQzUj8Ot0emxTsj6MbVjPWiIdNqv@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnoyJuEbxP2j9G5UNRvDed0l179UTIWpWr84TB/8JVAiwt/7Fq
+	9/nyuJueR4qobmlk3Y61C7ZVTfFkyWc7lQcYuutkoWedWD9b7aZUinqMwrmfbPLK
+X-Gm-Gg: Acq92OFmsl8A31XdBekK2Fobmc9NwBGuQUYgCRhueC+VsnjA2ZP8ICi6mqI6iJX4xjq
+	th3NjKfkPinu5RsZ7p3iyFr8TRvMsu9dhU/yNhp8AlhzguPwtPAeXWYqX5VPUfFkwJX4vUwrhPl
+	Gm2HYmTg8BeA7ASGnQJLFf3X9lSnbZH1foLlfkpSJX4WWn6ghFvFsUtvCdrjzioPxJKIkhepA0S
+	qCYOMF6yQW/+ovF1YobSGOAtNVawedWbCvFQGYf2CVWS38aDCoh8kwfOMwHh34MxZGp8kNy4HDt
+	la7nMfW9FhMWKfoH0WWEjckiO6KnObnwwfafW17CvqUjHRT6be7DCxoIX4og+D1D/iQFmIWz965
+	rgT3Df44maRPF1PomzjFOo215cqJtC8nwkpaSOU38Bug096AZRVgNg98ggpFclSiy3pqZgtH2Tk
+	gQ0aV0jT9mqx+YoaMQ7o0mYZ7l0AFnDayJHNKMmOrSwdClt+0k0A==
+X-Received: by 2002:a05:6830:7008:b0:7e6:e385:4c15 with SMTP id 46e09a7af769-7e90b3dfefdmr2772719a34.20.1781681152357;
+        Wed, 17 Jun 2026 00:25:52 -0700 (PDT)
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com. [209.85.210.54])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e79f5bb5fcsm9162176a34.9.2026.06.17.00.25.52
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jun 2026 00:25:52 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-7e6e2d54d3dso3116968a34.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 00:25:52 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8eEM4kC2AS028YDYeloXvoX/d+eVvkGgkT4nIp+etDGzWWjv6l6nDQwAETSRKNDtk7uLgmkx1sppgq@vger.kernel.org
+X-Received: by 2002:a05:6102:3354:b0:607:4fde:1921 with SMTP id
+ ada2fe7eead31-7246d33724bmr1269131137.24.1781680803055; Wed, 17 Jun 2026
+ 00:20:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260615154805.1619693-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260615154805.1619693-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 17 Jun 2026 09:19:52 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU_=9SQA8Vvt_MH+_dj+XjOozZr0ywYvqj_1rz9RdcFfg@mail.gmail.com>
+X-Gm-Features: AVVi8CeCaocSZWOROZlkzUCWU99bSigpuNR2Z6uNxB9VqjP7r73Epe3QI4x_0y8
+Message-ID: <CAMuHMdU_=9SQA8Vvt_MH+_dj+XjOozZr0ywYvqj_1rz9RdcFfg@mail.gmail.com>
+Subject: Re: [PATCH 03/12] rtc: rzn1: Fix malformed MODULE_AUTHOR string
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-rtc@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:clamor95@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-input@vger.kernel.org,m:conor+dt@kernel.org,m:dmitry.torokhov@gmail.com,m:conor@kernel.org,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-312811-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:miquel.raynal@bootlin.com,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:wsa+renesas@sang-engineering.com,m:linux-rtc@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312816-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,glider.be,gmail.com,sang-engineering.com,vger.kernel.org,bp.renesas.com,renesas.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,glider.be:email,linux-m68k.org:from_mime,linux-m68k.org:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8A3666971EF
+X-Rspamd-Queue-Id: A6CBB6972C0
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [Critical] The `ff-memless` timer and input device can outlive the devres=
--managed driver state upon device unbind, leading to a Use-After-Free (UAF).
-- [High] The worker `isa1200_play_work` silently drops force feedback event=
-s if it fails to acquire `input->mutex`, potentially leaving the vibrator s=
-tuck.
-- [Medium] Concurrent access to `isa->level` across different locking conte=
-xts causes a data race that can schedule work after the device is closed.
---
+On Mon, 15 Jun 2026 at 17:48, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Fix a malformed MODULE_AUTHOR macro in the rtc-rzn1 driver where a missing
+> closing angle bracket on the second author entry creates an invalid format.
+> Correct it to the standard "Name <email>" format.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-commit 2ea8a9b82f2921004386e7307e4e382941aa5611
-Author: Linus Walleij <linusw@kernel.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Input: isa1200 - new driver for Imagis ISA1200
+Gr{oetje,eeting}s,
 
-The ISA1200 is a haptic feedback unit from Imagis Technology using two
-motors for haptic feedback in mobile phones. Used in many mobile devices
-c. 2012 including Samsung Galxy S Advance GT-I9070 (Janice), Samsung Beam
-GT-I8350 (Gavini), LG Optimus 4X P880 and LG Optimus Vu P895.
+                        Geert
 
-> diff --git a/drivers/input/misc/isa1200.c b/drivers/input/misc/isa1200.c
-> new file mode 100644
-> index 0000000000000..f8c4da4a0e088
-> --- /dev/null
-> +++ b/drivers/input/misc/isa1200.c
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-[ ... ]
-
-> +static void isa1200_play_work(struct work_struct *work)
-> +{
-> +	struct isa1200 *isa =3D container_of(work, struct isa1200, play_work);
-> +	struct input_dev *input =3D isa->input;
-> +
-> +	scoped_guard(mutex_try, &input->mutex) {
-
-[Severity: High]
-Can this cause force feedback events to be silently dropped?
-
-The worker uses scoped_guard(mutex_try, &input->mutex) to acquire the lock.
-However, input->mutex is frequently held by the input core for normal
-operations like input_open_device, input_close_device, and ioctls
-(e.g., EVIOCGABS).
-
-If this worker runs concurrently with any of these operations, the mutex_try
-will fail and the worker will exit without updating the hardware. Because
-isa->level was already updated locklessly in isa1200_vibrator_play_effect(),
-future identical effect updates will be skipped, which could leave the
-vibrator stuck in its current state.
-
-> +		if (!isa->suspended) {
-> +			if (isa->level)
-> +				isa1200_start(isa);
-> +			else
-> +				isa1200_stop(isa);
-> +		}
-> +	}
-> +}
-
-[ ... ]
-
-> +static void isa1200_vibrator_close(struct input_dev *input)
-> +{
-> +	struct isa1200 *isa =3D input_get_drvdata(input);
-> +
-> +	cancel_work_sync(&isa->play_work);
-> +	isa1200_stop(isa);
-> +	isa->level =3D 0;
-
-[Severity: Medium]
-Does this concurrent modification of isa->level create a data race that
-can restart the vibrator after the device is closed?
-
-The state variable isa->level is updated in isa1200_vibrator_play_effect()
-under the input core's event_lock (timer context). Concurrently, it is reset
-to 0 here in isa1200_vibrator_close() under input->mutex, without acquiring
-event_lock.
-
-Because the ff-memless timer is not explicitly stopped during close, the
-timer can fire concurrently with or immediately after close. If it fires
-after cancel_work_sync(&isa->play_work) completes, it can overwrite
-isa->level to a non-zero value and re-schedule isa->play_work. This could
-re-enable the motor indefinitely.
-
-> +}
-
-[ ... ]
-
-> +static int isa1200_probe(struct i2c_client *client)
-> +{
-> +	struct isa1200 *isa;
-> +	struct device *dev =3D &client->dev;
-> +	int err;
-> +
-> +	isa =3D devm_kzalloc(dev, sizeof(*isa), GFP_KERNEL);
-
-[Severity: Critical]
-Is there a use-after-free risk here during device unbind?
-
-The private isa structure is allocated with devm_kzalloc(), meaning it is
-freed immediately when the device unbinds. However, the input device itself
-is managed by devm_input_allocate_device(), which keeps the memory alive
-as long as userspace holds an open file descriptor.
-
-Because the ff-memless timer (ml_effect_timer) is tied to the input_dev
-lifecycle, the timer can continue to fire even after unbind if an effect
-was playing. When it fires, isa1200_vibrator_play_effect() retrieves the
-freed isa structure via input_get_drvdata() and accesses corrupted memory
-to schedule the workqueue.
-
-Additionally, there doesn't appear to be a devm action added to explicitly
-cancel isa->play_work on unbind.
-
-> +	if (!isa)
-> +		return -ENOMEM;
-> +
-> +	isa->input =3D devm_input_allocate_device(dev);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260617070528.3500=
-6-1-clamor95@gmail.com?part=3D2
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
