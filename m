@@ -1,179 +1,238 @@
-Return-Path: <devicetree+bounces-312893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312878-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jukwBJtxMmo70AUAu9opvQ
-	(envelope-from <devicetree+bounces-312893-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:06:19 +0200
+	id 5xAKB9BwMmoU0AUAu9opvQ
+	(envelope-from <devicetree+bounces-312878-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:02:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E42C69840D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:06:18 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A81E169838D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:02:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=realtek.com header.s=dkim header.b=Z8INmZOW;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312893-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-312893-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=realtek.com;
+	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=DMt4DMYo;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312878-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312878-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E077A305D8B3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 10:05:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E8EDA319DC9A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:55:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 894BE3DBD41;
-	Wed, 17 Jun 2026 10:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AE7B3CF1F2;
+	Wed, 17 Jun 2026 09:55:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E9673D6CC1;
-	Wed, 17 Jun 2026 10:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F355E3D1A82
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 09:55:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781690740; cv=none; b=j69BFkzAP2fNg+2vcxGlFW/aAafvayXPp39QlJ8lVaV3JB+Gdg5mlYHaL2Po6LpOfSfrpwoiqJwmWwmr14yfdoqqx3lcCAmBY/Lw9ZusaknEb4eJkAZfUDDFhNuartK5LywikOHUhBRgBT1YxJvHLWQAAr4tag8kR7odC46TnyQ=
+	t=1781690110; cv=none; b=pPo2wrhRG/XFkRasjqw/I5yM2/ttB8+wrWlxMEahqX9SQI+fngRfgh08rA9x4cql0+ByLHP5PEgpThBfIINZ4w73WxT6WVt59qil2cS1HA5H3+kjIvJiudvl04AWUzyNIfQUSZfizPl5CJOQmpUOurBl4YVCOrIrJreSfs5s3gw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781690740; c=relaxed/simple;
-	bh=moujiGOu9PAJ3ZlhRbXA7SWL1BST4vazsX9fofw7HTI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=MtNuSLuuIDLjzu4TrDRg7Zu0A/VIhPD3Yd8flBUggX+Vocwr2ktdr3u7KMt4wuBeDE4rzr1o4Aq6Fw68GNMMFniyevCFAxLHOpyj9ezvT7yDj9fbcDJJXyyOQt+bZj3v0T4XYbdkMsyS0SRfKq5wGII7+56V4GVdbx4nVgHJahk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=Z8INmZOW; arc=none smtp.client-ip=211.75.126.72
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 65H9sREk92672371, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1781690067; bh=moujiGOu9PAJ3ZlhRbXA7SWL1BST4vazsX9fofw7HTI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:MIME-Version;
-	b=Z8INmZOWK5z00I2KVZAR9ytDHODlboHrX57M3opOQjVa4KUmNXll1kjvNmuj2qeJ6
-	 ZYzulV0QFjZa/i9o5Y5exjKiVHbOoGnDmQRvaexKEZZuQAsXMyoPwVakiNC/BAH+8R
-	 KHZOhjQBpOJjmMN6oyPdeB4lC0DnJ9dV4pwhqj70Zsnph9V6Q8bmW9myl/M7R7n6Vb
-	 wi/JnDuNzvzCPlPKRrYnGLP6Cvl7wDlyWAC48R6p39ldmITbooIhiiLtK/+UmtNawC
-	 4sdVjBjCS47qYNlrLsUXnLvISeUoarVJZrGFX8yGmDNgdonr1dwwc/nkGsgd8pVuhQ
-	 EGoqfnUBdzWPg==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.29/5.94) with ESMTPS id 65H9sREk92672371
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 17 Jun 2026 17:54:27 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 17 Jun 2026 17:54:27 +0800
-Received: from RTKEXHMBS06.realtek.com.tw ([::1]) by
- RTKEXHMBS06.realtek.com.tw ([fe80::e6fd:5a3f:8946:92c4%10]) with mapi id
- 15.02.2562.017; Wed, 17 Jun 2026 17:54:27 +0800
-From: =?big5?B?WXUtQ2h1biBMaW4gW6pMr6enZ10=?= <eleanor.lin@realtek.com>
-To: Michael Walle <mwalle@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@intel.com>
-CC: "linusw@kernel.org" <linusw@kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "afaerber@suse.com"
-	<afaerber@suse.com>, "wbg@kernel.org" <wbg@kernel.org>,
-	"mathieu.dubois-briand@bootlin.com" <mathieu.dubois-briand@bootlin.com>,
-	"lars@metafoo.de" <lars@metafoo.de>, "Michael.Hennerich@analog.com"
-	<Michael.Hennerich@analog.com>, "jic23@kernel.org" <jic23@kernel.org>,
-	"nuno.sa@analog.com" <nuno.sa@analog.com>, "andy@kernel.org"
-	<andy@kernel.org>, "dlechner@baylibre.com" <dlechner@baylibre.com>,
-	=?big5?B?VFlfQ2hhbmdbsWmkbLZoXQ==?= <tychang@realtek.com>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-	"linux-realtek-soc@lists.infradead.org"
-	<linux-realtek-soc@lists.infradead.org>, "linux-iio@vger.kernel.org"
-	<linux-iio@vger.kernel.org>, =?big5?B?Q1lfSHVhbmdbtsDgsq7LXQ==?=
-	<cy.huang@realtek.com>, =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?=
-	<stanley_chang@realtek.com>, =?big5?B?SmFtZXMgVGFpIFvAuafTrnBd?=
-	<james.tai@realtek.com>
-Subject: RE: [PATCH v3 2/7] gpio: regmap: add gpio_regmap_get_gpiochip()
- accessor
-Thread-Topic: [PATCH v3 2/7] gpio: regmap: add gpio_regmap_get_gpiochip()
- accessor
-Thread-Index: AQHc4cATn1PDC9J2iUegNlC3h35mQ7YJuQgAgBT/RkCADN+cAIAIv5wAgAAIjACADkT7EP//fG0AgACZdFA=
-Date: Wed, 17 Jun 2026 09:54:27 +0000
-Message-ID: <61c053a5a8e6461f9e6fcd40b6b5064d@realtek.com>
-References: <20260512033317.1602537-1-eleanor.lin@realtek.com>
- <20260512033317.1602537-3-eleanor.lin@realtek.com>
- <agMM9soiqpG-TRSb@ashevche-desk.local>
- <adff3a2d21a64d3ea3b408d62157ee1e@realtek.com>
- <ah92oEavMu4QRn8y@ashevche-desk.local>
- <CAMRc=MdA24z-tB_D8CTw68Di8e4OVQJ1QH4+rDskFzq=xjJ5BQ@mail.gmail.com>
- <DJ3QVMZ6XLW9.1M9W541O92QWJ@kernel.org>
- <39de4d4ada5446e7a33e48c43f410439@realtek.com>
- <DJB6XO07EC8Q.1X9P752MLFB4N@kernel.org>
-In-Reply-To: <DJB6XO07EC8Q.1X9P752MLFB4N@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1781690110; c=relaxed/simple;
+	bh=SC4tsNutoMUwm1yl7w+6p6RvLCfnnsLfoLw00LCPf0Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Os0HC2IaR6g4/oYx41zB1CPKCUvHpRrCYp0cWs3kiYYBacKsUIGgtnrEsIO2uaA/9yao2k04GOwooaVJd9hfjnGLPMly8VSxijSZ7uRYPU7kzP/F42I28uCUBTxUlNh9qqFFM3yOgLpSXXlXq7+jCAeliPtBfA8N42+3ossfNrU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=DMt4DMYo; arc=none smtp.client-ip=194.117.254.33
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=mjyH
+	St8LiNiWgI+8x8dI7OwW7pjC0pYK62XYoLKg6Mk=; b=DMt4DMYoY4uKMT3AdlLQ
+	meeGaOmxcALKZ/3myKZvybxV1fYQCVy7urdtOT9EXyhw0HY7uFVnwF1xkNIkixOC
+	pzw+jmyuqOYQs2gpOxWbph/hMZqoD1/vniz30M4kWIJLQ3WuoMKrYHJU6RlxeYi6
+	2grra99lP3GHr3G9m9FdliMvR9xc+d7yLEJiJ3W17Qb0HuQEIxFWpiTKryT+i3pV
+	qjDNjXrbykYTueIHXkZI+3cIYU5Bhh/SAPxBExU77g2txNMY0/JYk/4bYWaLnicI
+	vfy2tM+Tl5atVig0NdoSpbdEWvLIwRHry/PbQUEVq4f5Q7YPwEGUiv7fSC66KX0t
+	0w==
+Received: (qmail 111291 invoked from network); 17 Jun 2026 11:55:05 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Jun 2026 11:55:05 +0200
+X-UD-Smtp-Session: l3s3148p1@4r7XDXBUOt0ujnvI
+Date: Wed, 17 Jun 2026 11:55:05 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-rtc@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 02/12] rtc: rzn1: Handle EPROBE_DEFER for optional pps
+ interrupt
+Message-ID: <ajJu-f7VB7XSTPcu@shikoro>
+References: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260615154805.1619693-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cvd1DULyLHD8uUwc"
+Content-Disposition: inline
+In-Reply-To: <20260615154805.1619693-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.56 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
-	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-312893-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FORGED_RECIPIENTS(0.00)[m:mwalle@kernel.org,m:brgl@kernel.org,m:andriy.shevchenko@intel.com,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:afaerber@suse.com,m:wbg@kernel.org,m:mathieu.dubois-briand@bootlin.com,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:dlechner@baylibre.com,m:tychang@realtek.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:linux-iio@vger.kernel.org,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:james.tai@realtek.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[sang-engineering.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:miquel.raynal@bootlin.com,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:linux-rtc@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:stable@vger.kernel.org,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312878-lists,devicetree=lfdr.de,renesas];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,glider.be,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,realtek.com:dkim,realtek.com:mid,realtek.com:from_mime]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,vger.kernel.org:from_smtp,sang-engineering.com:dkim,sang-engineering.com:from_mime,shikoro:mid,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9E42C69840D
+X-Rspamd-Queue-Id: A81E169838D
 
-SGkgTWljaGFlbCwNCg0KPiBIaSwNCj4NCj4gT24gV2VkIEp1biAxNywgMjAyNiBhdCAxMDozNiBB
-TSBDRVNULCBZdS1DaHVuIExpbiBbqkyvp6dnXSB3cm90ZToNCj4+Pj4+PiBXaXRob3V0IGFuIGFj
-Y2Vzc29yIGxpa2UgZ3Bpb19yZWdtYXBfZ2V0X2dwaW9jaGlwKCksIHdlIGNhbm5vdCANCj4+Pj4+
-PiByZXRyaWV2ZSB0aGUgZ3Bpb19jaGlwIGluc3RhbnRpYXRlZCBpbnNpZGUgZ3Bpby1yZWdtYXAu
-YyB0byANCj4+Pj4+PiBmdWxmaWxsIHRoZXNlIHJlcXVpcmVtZW50cyBpbiBvdXINCj4+Pj4+PiBt
-YXAoKSBmdW5jdGlvbi4NCj4+Pg0KPj4+IFdoeSBpcyBncGlvY2hpcF9pcnFfcmVxcmVzKCkgY2Fs
-bGVkIGluIHRoZSBmaXJzdCBwbGFjZT8gSXNuJ3QgdGhhdCANCj4+PiBvbmx5IGNhbGxlZCBpZiB0
-aGUgaXJxIGhhbmRsaW5nIGlzIHNldCB1cCB2aWEgZ2MtPmlycS5jaGlwIGFuZCBub3QgDQo+Pj4g
-dmlhDQo+Pj4gZ3Bpb2NoaXBfaXJxY2hpcF9hZGRfZG9tYWluKCkgbGlrZSBpbiBncGlvLXJlZ21h
-cD8NCj4+Pg0KPj4NCj4+IFRoZSBwYW5pYyB3YXMgY2F1c2VkIGJ5IG15IGRyaXZlciBpbmNsdWRp
-bmcgDQo+PiAnR1BJT0NISVBfSVJRX1JFU09VUkNFX0hFTFBFUlMnLCB3aGljaCBmb3JjZWQgdGhl
-IGNhbGwgdG8gJ2dwaW9jaGlwX2lycV9yZXFyZXMoKScgYW5kIGNyYXNoZWQuDQo+DQo+IEJ1dCB3
-aHkgZGlkIHlvdSB1c2UgaXQgaWYgeW91ciBpcnEgZG9tYWluIGlzbid0IG1hbmFnZWQgYnkgdGhl
-IGdwaW9saWIsIGJ1dCByYXRoZXIgeW91ciBvd24gPmlycSBkb21haW4/IEJlZm9yZSBnb2luZyB3
-aXRoIG9wdGlvbiAjMyBJJ2QgZG91YmxlIGNoZWNrIGlmIHRoYXQgaXMgY29ycmVjdCBpbiB5b3Vy
-IGRyaXZlci4NCj4NCj4gLW1pY2hhZWwNCg0KRG8geW91IG1lYW4gdGhhdCBhIGN1c3RvbSBJUlEg
-ZG9tYWluIHNob3VsZG4ndCBiZSBtaXhlZCB3aXRoIGdwaW9saWIgZmVhdHVyZXMgbGlrZQ0KJ0dQ
-SU9DSElQX0lSUV9SRVNPVVJDRV9IRUxQRVJTJz8NCg0KQWRkaXRpb25hbCBpbmZvcm1hdGlvbjog
-b3VyIEdQSU8gY29udHJvbGxlciByZWNlaXZlcyAzIHNlcGFyYXRlIGludGVycnVwdCBsaW5lcy4N
-CkJlY2F1c2UgdGhlIHN0YW5kYXJkICdyZWdtYXBfaXJxX2NoaXAnIG1lY2hhbmlzbSBpbiAnZ3Bp
-by1yZWdtYXAnIGRvZXMgbm90IHN1cHBvcnQNCnRoaXMgbXVsdGktbGluZSBoYXJkd2FyZSBkZXNp
-Z24sIHdlIGFyZSBmb3JjZWQgdG8gY3JlYXRlIG91ciBvd24gSVJRIGRvbWFpbiBhbmQgcGFzcw0K
-aXQgdmlhICdjb25maWctPmlycV9kb21haW4nLiANCg0KR2l2ZW4gdGhpcyBjb25zdHJhaW50ICh0
-aGF0IHdlIG11c3QgdXNlIG91ciBvd24gSVJRIGRvbWFpbiksIGFyZSB5b3Ugc3VnZ2VzdGluZw0K
-dGhhdCB3ZSBzaG91bGQgaW1wbGVtZW50IG91ciBvd24gJ2lycV9yZXF1ZXN0X3Jlc291cmNlcycg
-YW5kDQonaXJxX3JlbGVhc2VfcmVzb3VyY2VzJyBjYWxsYmFja3MgaW5zdGVhZCBvZiByZWx5aW5n
-IG9uDQonR1BJT0NISVBfSVJRX1JFU09VUkNFX0hFTFBFUlMnPw0KDQpCdXQgaWYgdGhhdCBpcyB0
-aGUgY2FzZSwgd2Ugd291bGQgbXVjaCBwcmVmZXIgdG8gbGV0IHRoZSBjb3JlIGdwaW9saWIgaGFu
-ZGxlDQp0aGVzZSByZXNvdXJjZSBhbmQgc3RhdGUgbWFuYWdlbWVudCB0YXNrcyBmb3IgdXMgKmFz
-IHByb3Bvc2VkIGluIG9wdGlvbiAzKSwgcmF0aGVyIA0KdGhhbiBkdXBsaWNhdGluZyB0aGUgZWZm
-b3J0IGluIG91ciBkcml2ZXIuDQoNCkJlc3QgUmVnYXJkcywNCll1LUNodW4NCg==
+
+--cvd1DULyLHD8uUwc
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+Sashiko found issues with your patch. I curated the list and agree. I
+think, in probe(), 'rate' should be initialized to 32768 and 'sync_time'
+should be calculated unconditionally.
+
+Thank you and happy hacking,
+
+   Wolfram
+
+> Thank you for your contribution! Sashiko AI review found 1 potential issu=
+e(s) to consider:
+> - [High] If the optional 'xtal' clock is not present, `rtc->sync_time` re=
+mains 0, causing `readl_poll_timeout` to use a 0 timeout (infinite wait) an=
+d `usleep_range` to use a 0 delay.
+> --
+>=20
+> commit 5d75a1049c228d2049afaf29833f1b2f212837d4
+> Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Subject: rtc: rzn1: Handle EPROBE_DEFER for optional pps interrupt
+>=20
+> This commit checks for -EPROBE_DEFER from platform_get_irq_byname_optiona=
+l()
+> and handles the deferred probe request properly. It intercepts this speci=
+fic
+> error condition, assigns it to the return value, and jumps to the
+> dis_runtime_pm label to avoid ignoring a valid probe deferral.
+>=20
+> Fixes: eea7791e00f33 ("rtc: rzn1: implement one-second accuracy for alarm=
+s")
+> Cc: stable@vger.kernel.org
+>=20
+> > diff --git a/drivers/rtc/rtc-rzn1.c b/drivers/rtc/rtc-rzn1.c
+> > index c4ed437354574..f81d691c8b9a2 100644
+> > --- a/drivers/rtc/rtc-rzn1.c
+> > +++ b/drivers/rtc/rtc-rzn1.c
+> > @@ -465,6 +465,10 @@ static int rzn1_rtc_probe(struct platform_device *=
+pdev)
+> >  	}
+> > =20
+> >  	irq =3D platform_get_irq_byname_optional(pdev, "pps");
+> > +	if (irq =3D=3D -EPROBE_DEFER) {
+> > +		ret =3D irq;
+> > +		goto dis_runtime_pm;
+> > +	}
+> >  	if (irq >=3D 0)
+> >  		ret =3D devm_request_irq(&pdev->dev, irq, rzn1_rtc_1s_irq, 0, "RZN1 =
+RTC 1s", rtc);
+>=20
+> [Severity: High]
+> If the optional xtal clock is not present, does rtc->sync_time remain 0,
+> causing readl_poll_timeout() to use a 0 timeout (infinite wait) and
+> usleep_range() to use a 0 delay?
+>=20
+> devm_clk_get_optional() returns NULL if the clock is absent in the device
+> tree, skipping the calculation:
+>=20
+> drivers/rtc/rtc-rzn1.c:rzn1_rtc_probe() {
+>     ...
+>     xtal =3D devm_clk_get_optional(dev, "xtal");
+>     if (IS_ERR(xtal)) {
+>         ...
+>     } else if (xtal) {
+>         rate =3D clk_get_rate(xtal);
+>         ...
+>         rtc->sync_time =3D DIV_ROUND_UP(2 * NSEC_PER_MSEC, rate);
+>     }
+>     ...
+>     ret =3D readl_poll_timeout(rtc->base + RZN1_RTC_CTL0, val,
+>                              !(val & RZN1_RTC_CTL0_CEST), rtc->sync_time,
+>                              rtc->sync_time * 2);
+>     ...
+> }
+>=20
+> In include/linux/iopoll.h, a timeout_us of 0 skips the timeout check
+> entirely, which could lead to a tight infinite loop and a kernel hard loc=
+kup
+> if the hardware fails to clear the CEST bit.
+>=20
+> Additionally, rtc->sync_time being 0 causes usleep_range(0, 100) in
+> rzn1_rtc_set_time(), which may return almost immediately and violate the
+> hardware's explicit 2-clock-cycle delay requirement (previously hardcoded=
+ to
+> 61us).
+>=20
+> This regression was introduced by the commit 'rtc: rzn1: Dynamically
+> calculate synchronization delay based on clock rate' later in this series.
+>=20
+> --=20
+> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615154805.16=
+19693-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D2
+
+--cvd1DULyLHD8uUwc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmoybvUACgkQFA3kzBSg
+KbbVeA/9GmiKuqd4qxBXuPO3UIOWcONUqvvsN27JpOh82PNaun4p6M3attm45Vx4
+oCaUZXQFSPebOgG98Wxp7ZpYjxEzyVvhegq9r3/SMotwxx12df7MI+bgKjkra6Cr
+iUT44q5CJCIo36tJaVnL0B//7jlNq5MVuL5PySMEXlZ7Sg5J1njQx0ELXyyigweT
+sIx06ah6kCunuCuHxqn/fZ+/z8l5qaJx0sZWpzsFmCPszfyL+pWYEZmwNoEANvkH
+QKFvBGCYTBrq1aJZ8jUEuRk+qekZa7Slv0aEiu7qZa5GuwcQmeZWV2nIxaP5/Ryo
+52P627C/r7IAsTMMjcRpwERN/HgwtTSv17dHCZa7Srzpl8xpogXJJ40YEdgJ1eBd
+NNRvUxq/88Hj5e0zeDrthETJty1qwJjtGG5KGwf9KGxsPJxDWnToCxmI6c5q0lFp
+rQ5za6b6oVdGZl6b4HfSg9cwrlfJTlCyPHeRVRI1uu0wXXODWbaDPlVMKsmO5JJ0
+kkdIbYm5HZ7ZXlpIqoI4pL4U1M1IKvdX10hRF6THKwkaz3bgek8Ou/7R7uTCUtHv
+zLzE120CHjnLG0VkjPNc0017TceMvH593BHKxT3gGXH0avA5FuYTFYYoeoyrtcr8
+5vr5vlFsfMNZlzOZBfXD19UsfkIN1vYtSnv0+bEXckz8QLguq6w=
+=JJIr
+-----END PGP SIGNATURE-----
+
+--cvd1DULyLHD8uUwc--
 
