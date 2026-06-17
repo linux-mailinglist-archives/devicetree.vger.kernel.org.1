@@ -1,198 +1,174 @@
-Return-Path: <devicetree+bounces-312768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312770-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MSP8CPo3MmrLwwUAu9opvQ
-	(envelope-from <devicetree+bounces-312768-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 08:00:26 +0200
+	id 3UGgJ844Mmr/wwUAu9opvQ
+	(envelope-from <devicetree+bounces-312770-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 08:03:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB0A3696B72
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 08:00:25 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FB6E696BB5
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 08:03:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=mnWLM3gZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312768-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312768-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=OEmr6oxG;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312770-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312770-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9FE793048F0C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 06:00:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 457FD3037EE0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 06:03:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4769F35F5EA;
-	Wed, 17 Jun 2026 06:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8960D3B1009;
+	Wed, 17 Jun 2026 06:03:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6F393AEF2A
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 06:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64FB1317148;
+	Wed, 17 Jun 2026 06:03:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781676020; cv=none; b=GZZ15b6KGy679r0SXLh37/OKBq9N/SJQV6w4Iajcaah+3BRW7/PwfMKJhWC/wHe1p+1XFDvKzKftO5fAMO5ox1yzNUyq2jKTv8xwHxoZcw/11YGq9nxOa8p6VN1tJZjAPLffwVZYwa2mJ1O6loLHVn9QNBN4kdDhezZMcUmxDs4=
+	t=1781676187; cv=none; b=n77L/HK5JURM7FusvPhRBOxINxL/B1x+1xP4XY7iEAF8IEShjGbm8Tj88aogLBWLa7YumD6aT+qJ83PwUdIg2Mv2BuNRCn3hWrHqpcpYZcz+ZeQmO70KRXfeN6q2B0u2hQT1lodP8LEjeZfgnYrs4wLGMVGmmh9MVUhT0ZWq8Kk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781676020; c=relaxed/simple;
-	bh=EPp3+y8U+wDZQ2t1aRvjrkpD6kQKVPXuQaessSYJEI8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yz+C/6t52xDCiCGYM5GQnBECKCfCZ1T0zrgUH+SwoHxHJTTfMZk9SnSeHgTmKeMDG0lD72nCMwHKeHb8HtKEXI5UQ7mogUsSvbKDivcLHSGJOHtSUmXIkZ2rHjSKni3zjZy5R6P2sSbb5WrK6Ce964qjpv82DMrEFULh49gjc60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mnWLM3gZ; arc=none smtp.client-ip=209.85.208.173
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-39676ff4674so45965081fa.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 23:00:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781676017; x=1782280817; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Cs8qvTgnQoJy3gVauu2STPsPcaY4YlG12CSyBpLnw6c=;
-        b=mnWLM3gZtYgSJyNKkcRBKGJie8Kedc24tj2wZrcL9WedQl4NSDo621lrdduCydgdUf
-         bLWA+jLhBU6esj3Afwuo52GS/FbjkgoYyAQNe/T7BsPXHlPTQN29+IhSeZgK0Xf/Z1Oh
-         VAjN+61NVecQPz5Dllkhm1+CQSTVpT9sqXmyMJ9dBR2HKJHdAsDNHV0OCzjoKsnxZpXf
-         GRDS7kMi5yH7QB8bm7zoeXzEVYHfGyt8FT0sfnKrCKcRJ3qSJxFJQX48rGiJZzSesV8K
-         nJ3hWN2O9bE0UidR6v6FREPK+suDtH/S05lQ/al7/54i9woLhbAF8otArLhSK9mzsuXO
-         BuGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781676017; x=1782280817;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Cs8qvTgnQoJy3gVauu2STPsPcaY4YlG12CSyBpLnw6c=;
-        b=RjeJI+7RAFyQMIf0h3YxicWsnp1Jl0nxjPlmHq93RVBeB2vnONwzk8JVu3AYktw84q
-         LvjCFwaX8u1P0J6eXqiUP3vcHzHk7jG/TrfZM+FauvMtGTT4SeaMlGd2uYFKoQoZHeF8
-         43hziTCnljiaYlsPh1N13tH1lCW6Hyhw0Kqb7Z6SkCmcphuxHBYkrxBJufI7LWfCVFKT
-         n1IUe/vVAyYp8/DpWmRo+OZIxo4mOOS7y8BSKfX5IFJCbOAPMg7gW1++vdS3ERJexa2f
-         wujxaVDooHdxzHIRfxPwFy8FZLYPGiprXpiWDZ11gYOOFUn8a1mMKzWrkx4VwEqfbIW8
-         L9rg==
-X-Forwarded-Encrypted: i=1; AFNElJ8kZdHuEsR6he4lbeHorDyDBVj0DXQZrTg1oxG4CEscq39qlUMUXJZSiexRfp7Dj5QcJ9i04tZVFCti@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0MrhcmZ15EMZSjkEsYa+9W/P3n+IDCvkVlhxbKfhk9DCHBvpE
-	jxq93A/7N3km1CjL+WrYuUXc50arfxso5axGOjieSZKqrtRrU8OvKsj2
-X-Gm-Gg: Acq92OHfhtpnGU10LnSnpBjXVPkN/ZoDQUH9y7AIpizsastqmlgyL3++Xypeu9B/Saa
-	3oPAt9AwUSaQumA+fNJLQXvGVO+1M+FolzcGFeLLlxJd4yXwL6nYECdRuBPEvrYFfSr1gv4tYjw
-	614TB+V46Ur5EgqIXE8ONwS0zOrOlYSuPTGnPdoLloUs73Q52C2OyCd6VB9tpwgnlhkR0O5lRQr
-	m+fTt5jvlI5Z+DC024P9x/lDjrEUa6pJ6MwETYuKJa12PyQRJxRXcpZRdFQ7TTYAVHddSlL2fNB
-	WX/qFtFaObVI9YQ1qwM2+L9quFp2X9ogKkVJdGnucXr0kMv4cK8hw/HJT4cZGHVlaDMLxvQxwgi
-	8wW1JCKsrL8WIo9cPl5NPWMGk9ZeJlkUroA5+DoV+jBgX4EUHM5cQG0mipJQtJcdA/Va8mm+G+w
-	lJddEl+gBEZslikxYUwTUzT0aN1b02vc6Q1YnNRF3G+BjTGjcYkkRg/m2kXswn+n9GDxOwAA==
-X-Received: by 2002:a05:651c:2124:b0:38b:e464:f047 with SMTP id 38308e7fff4ca-39969ad94b1mr4694531fa.12.1781676015350;
-        Tue, 16 Jun 2026 23:00:15 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3995c04d8b2sm12250531fa.2.2026.06.16.23.00.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jun 2026 23:00:13 -0700 (PDT)
-Message-ID: <f3562874-1c82-4ba3-b37d-dbb50bb54977@gmail.com>
-Date: Wed, 17 Jun 2026 09:00:12 +0300
+	s=arc-20240116; t=1781676187; c=relaxed/simple;
+	bh=k4Je7gBSERMamWU1GgAynav5HbHuPvN2n+14RP4eS0Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XX8bpCwRJPuAwIaOCKOJq6t6aYHVM1xGF6cOdKO9cMwVJapIkBmM8/qTxRnWnkd9NTB/Pcue0knTM/GkbVHKzfCwg6cic3O8LHvNydsM9WMPazYRPHudmEozcwUhXYUEzLVZh/YG/5caHyl24l86v8UGCQK0NgD3SZZ7uTdFN/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OEmr6oxG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 01D18C2BCB0;
+	Wed, 17 Jun 2026 06:03:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781676187;
+	bh=k4Je7gBSERMamWU1GgAynav5HbHuPvN2n+14RP4eS0Q=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=OEmr6oxG1F+ob053yog7L2H6Kl/+lfoGaEDTejBDzyTstrvI1O1jGgAO1zOwJ1duu
+	 TgXFutzeVMNzrenrUIJzBGCLyuZGmx4FQ1y0EDRSSdO1icEg2yZQWLMqr4b5fpiOgh
+	 3en2980RBX0a8X+v1coYxDQMhUB58Rc31C53+a7ganlEmFBPDqSOdQUobI9CFgz5my
+	 AwE174DIyX3dwbxs6JZCN8NTy0xoam7lIxkiKOYJdYex9USZCYnP1uab4u04OLo/2h
+	 xh+wJDJoXZThwIlF+MW+aBw1xb+Cnh6e1luxljcFI/0oDaGsCPKqykRuLRxO1PJxaY
+	 ibkzpHREtgIhg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D8580CD98EE;
+	Wed, 17 Jun 2026 06:03:06 +0000 (UTC)
+From: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>
+Subject: [PATCH v2 0/2] clk: ultrarisc: add DP1000 clock support
+Date: Wed, 17 Jun 2026 14:02:53 +0800
+Message-Id: <20260617-ultrarisc-clock-v2-0-9cb16083e15e@ultrarisc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] hwmon: adm1275: Support module auto-loading
-To: Guenter Roeck <linux@roeck-us.net>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Matti Vaittinen <matti.vaittinen@linux.dev>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, Wensheng Wang <wenswang@yeah.net>,
- Ashish Yadav <ashish.yadav@infineon.com>,
- Kim Seer Paller <kimseer.paller@analog.com>,
- Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
- Chris Packham <chris.packham@alliedtelesis.co.nz>,
- Yuxi Wang <Yuxi.Wang@monolithicpower.com>,
- Charles Hsu <hsu.yungteng@gmail.com>, ChiShih Tsai <tomtsai764@gmail.com>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <cover.1781591132.git.mazziesaccount@gmail.com>
- <634e76680ed93e58ebeb35db080138b791cb6c27.1781591132.git.mazziesaccount@gmail.com>
- <f080e20e-6ec7-4744-9794-0a92d03f48d8@roeck-us.net>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <f080e20e-6ec7-4744-9794-0a92d03f48d8@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI04MmoC/2WNyw6CMBBFf4XM2pq2CAZX/Idh0Q6DjCI1bSEaw
+ r/LI3Hj8iTnnjtBIM8U4JJM4GnkwK5fQB8SwNb0NxJcLwxa6lxmWouhi954Diiwc/gQRtmzMVn
+ R5NLCsnp5avi9Fa/VzmGwd8K4Zlaj5RCd/2yXo1q9vZ4r9VcflZBC10VK1p4QVVr+jCO6J1TzP
+ H8Bsb5SasQAAAA=
+X-Change-ID: 20260522-ultrarisc-clock-a1b7aa59f60b
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Jia Wang <wangjia@ultrarisc.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781676184; l=2055;
+ i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
+ bh=k4Je7gBSERMamWU1GgAynav5HbHuPvN2n+14RP4eS0Q=;
+ b=Cl9KmxJ0tjSzJfWFSwgvTlUUAVUGUOPRZW1be1d0yHbmpQowZXpn96mH71aUGlWKNy+z+y/v4
+ /LcqAmri7TkARU9x/ug37CGFKhiy19LOCqBnjRpOeoc5eijMZdtBXJS
+X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
+ pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
+X-Endpoint-Received: by B4 Relay for wangjia@ultrarisc.com/20260515 with
+ auth_id=779
+X-Original-From: Jia Wang <wangjia@ultrarisc.com>
+Reply-To: wangjia@ultrarisc.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-312768-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312770-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:matti.vaittinen@fi.rohmeurope.com,m:matti.vaittinen@linux.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:wenswang@yeah.net,m:ashish.yadav@infineon.com,m:kimseer.paller@analog.com,m:cedricjustine.encarnacion@analog.com,m:chris.packham@alliedtelesis.co.nz,m:Yuxi.Wang@monolithicpower.com,m:hsu.yungteng@gmail.com,m:tomtsai764@gmail.com,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:hsuyungteng@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[mazziesaccount@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,lwn.net,linuxfoundation.org,yeah.net,infineon.com,analog.com,alliedtelesis.co.nz,monolithicpower.com,gmail.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:wangjia@ultrarisc.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[wangjia@ultrarisc.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mazziesaccount@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,msgid.link:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BB0A3696B72
+X-Rspamd-Queue-Id: 0FB6E696BB5
 
-On 16/06/2026 17:04, Guenter Roeck wrote:
-> On 6/15/26 23:47, Matti Vaittinen wrote:
->> From: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> Populating the spi_device_id -table is not enough to make the
->> driver module automatically load when device-tree node for the bd12780
->> is parsed at boot.
->>
->> Adding the of_device_id tables causes the driver module to be
->> automatically load at boot. Testing has been done with rather old Debian
->> system.
->>
->> When inspecting the generated module-aliases with the insmod, following
->> entries seem to be the difference:
->>
->> alias:          of:N*T*Crohm,bd12780C*
->> alias:          of:N*T*Crohm,bd12780
->>
->> I suspect these are required for the module loading to work.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> ---
->>
->> I did not add of_device_ids for other supported ICs as I can't verify it
->> doesn't cause side-effects. Please let me know if you think those IDs
->> should be added as well. I would be glad if I got more educated opinion
->> on adding the of-IDs :) (I can squash this to 3/7 and 6/7 in next
->> revision, and add own patch for adding of-IDs for other ICs if
->> required).
->>
-> 
-> I don't know what those side effects might be. I am much more concerned
-> about side effects of having some of the devices in adm1275_of_match
-> and some in adm1275_id. So, yes, please add a patch to provide
-> adm1275_of_match for all chips supported by the driver.
-It's nice to have an opinion on this as I was really unsure what is the 
-right way forward. Thanks for all the help this far. I'll do that in v2.
+This series adds the devicetree binding and the clock driver for the
+UltraRISC DP1000 SoC.
 
-Yours,
-	-- Matti
+The clock tree is driven by a SYSPLL and provides fixed-factor clocks for
+the subsystem and PCIe, divider-based root clocks for GMAC and the UART,
+I2C, and SPI blocks, and per-instance gate clocks for UART0-3, I2C0-3,
+and SPI0-1.
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+Testing:
+- dt_binding_check and dtbs_check on ultrarisc,dp1000-clk
+- Kernel build for RISC-V and boot-tested on DP1000
+- Modules build test for CLK_ULTRARISC_DP1000
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
+---
+Changes in v2:
+- Drop the redundant clock-names property from the clock binding.
+- Move DP1000_CLK_NUM from the dt-bindings header into the driver.
+- Clarify the divider load-bit handling in the common clock core.
+- Validate that all advertised clock IDs are populated before registering
+  the onecell clock provider.
+- Rework divider composite clock registration so the driver builds
+  correctly as a module.
+- Link to v1: https://patch.msgid.link/20260611-ultrarisc-clock-v1-0-2d93ebb4cc13@ultrarisc.com
+
+---
+Jia Wang (2):
+      dt-bindings: clock: ultrarisc: Add DP1000 Clock Controller
+      clk: ultrarisc: add DP1000 clock driver
+
+ .../bindings/clock/ultrarisc,dp1000-clk.yaml       |  60 +++
+ MAINTAINERS                                        |   8 +
+ drivers/clk/Kconfig                                |   1 +
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/ultrarisc/Kconfig                      |  18 +
+ drivers/clk/ultrarisc/Makefile                     |   4 +
+ drivers/clk/ultrarisc/clk-dp1000.c                 | 153 +++++++
+ drivers/clk/ultrarisc/clk-ultrarisc.c              | 459 +++++++++++++++++++++
+ drivers/clk/ultrarisc/clk-ultrarisc.h              |  73 ++++
+ include/dt-bindings/clock/ultrarisc,dp1000-clk.h   |  27 ++
+ 10 files changed, 804 insertions(+)
+---
+base-commit: b1cbabe84ca1381a004fb91ee1791a1a53bce44e
+change-id: 20260522-ultrarisc-clock-a1b7aa59f60b
+
+Best regards,
+--  
+Jia Wang <wangjia@ultrarisc.com>
+
+
 
