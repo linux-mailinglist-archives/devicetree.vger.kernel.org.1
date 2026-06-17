@@ -1,86 +1,85 @@
-Return-Path: <devicetree+bounces-312820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312822-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hyQWBgtOMmqhyQUAu9opvQ
-	(envelope-from <devicetree+bounces-312820-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:34:35 +0200
+	id JQoDDWVOMmqvyQUAu9opvQ
+	(envelope-from <devicetree+bounces-312822-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:36:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C9AB697376
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:34:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86D98697399
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:36:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=bOLu0r4G;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312820-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312820-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linaro.org header.s=google header.b=t8l5phXv;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312822-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312822-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5CE993013EC8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:34:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 57F07300FEF0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:36:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 234B73C0621;
-	Wed, 17 Jun 2026 07:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E326C3BCD0A;
+	Wed, 17 Jun 2026 07:36:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 807C83C062F
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 07:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A3962EEE74
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 07:35:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781681670; cv=none; b=qRxHLQSzH3NaFWoSmDXgBg+FiVmtYEOdMmQ7O2DmRu1yg/vEumad5aO4JKlRqV6VhzycpL5/Bh5dvlxFcBJvPMc85cFX+6qVq0mqhAGZTtiLuyhJblARKvEBf1GJixMyluwtFi/XGof8Fn5N2R6OrTXxavlRbmRuACK+K5fwRMk=
+	t=1781681760; cv=none; b=OlqfMR+qZUMdQFJiDuOW6hny/7rnItdh7IJp1klTXjvkkCbmGXFbN8MCEmz7MFBE7MxMOWrjKYTPM/t5uUjF3Ff1xYKFj0jsDOKEEBoFSrW5wk//m0WF9einhUZ/mVCsZXTqeId5QNt/RdKlrhQUsAC5TtE3rY+sdY18WJhyJkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781681670; c=relaxed/simple;
-	bh=Gi0XiZ8YuxbcG9V+HtV+HlNj+B5fo8qkkv3muwP4M/o=;
+	s=arc-20240116; t=1781681760; c=relaxed/simple;
+	bh=xfKAXK1C8BRrF4On4Jlu4EWr+ZiJPw/Uy2ZjPVwX8Vs=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=PTsRHfroFLjEkJMGRdJ0rsIz/fWhh7X4uHs5Ss40wAa8yVGIAJhu6nkZqIZLgFRzQSzF4Q1lO8NuT5hbuRKHagCPGNplunWzLc+UbePkkmnQZodaKBhX4F3G1FoLyd/YPF3smLg9zlFn/ymg8tCUQ92GdTfkbFHyKJ2v9OBFhRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bOLu0r4G; arc=none smtp.client-ip=209.85.128.46
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-490afc47455so24482225e9.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 00:34:27 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=N+VGP8ClTlo/VBT9jV0lyDYKLp2kNmaKINZbjnUU5ZWcElK9kkSVz9ues9PGf+Jytk3RWrOD6BDvmR88h7ReM0R0zwOysmwPQMRRE5T3h/L3U9GOLJCOdA7S+V/EXtsnt+MveGpMekh8UDal24O587Ghd/LHU2SRzuHB7KA393k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t8l5phXv; arc=none smtp.client-ip=209.85.128.41
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-491b390f9e9so45932325e9.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 00:35:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1781681666; x=1782286466; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1781681753; x=1782286553; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3Uim5pbWVyeQp4JbMjOlnv43bbNh3AaD6WsvZpd9kZ8=;
-        b=bOLu0r4GEoeAXK4H7yFPPwWYXKnFSuDrMZpJyvhuROKf3+tHxmGzoeTAfydAQMLyU5
-         n/ocCTwlaN/mArhdtYrCmacYMKJKK3JKTgblhdi6pBBNTAbEFz3cD+CqEjCGcuonHhBK
-         KuIhU+GGh5Hp2av8v+zzq8a2zhBKUjBFrCywj6dcNY/OaGzKxRF38RE8+TTUJDHoEOfS
-         XqCGI3vGzasP/9SzQkPYrLumktt7OLbP/LHzHN0nFBmYdQGrLD82M1FiYGtc1hCHaCRl
-         5Bnu38MOqZaGZfqpkSkMQarI4iMgqlSVEDY7lfuvv/W/PhGp5lBBZy0GspPNBQnvggX7
-         kzCQ==
+        bh=kiyyh81BRUnw3RVblLaAaVPI8hb9C+UfMQnBnCoh3L4=;
+        b=t8l5phXv1FERCnwIRWsqvSPkFd81xHci7QRnTR1gPgnb2rDbIeRt/tI9D6uCjWXsN1
+         HZGUsYvOSRtpKNbVKMFS2RifBQjFrFrrfLXR29gFpNAmfkJpBF8P2v/oYut0CJ7zDqhv
+         hL3rG57n7jRU+YQpM1Lon9mvk9Z01w99Ra2WMYs2IZZzwcQM1NefYiqvChoJuWHW+ara
+         DmyH3AGL5tyvmX61ILTQxqs+YsVShKShdN2E4qJS+9yynMUjHRE6djlqw4VrVlEjAJ1u
+         H9QV/MNe0NPHkdAN9KHqNT3eaCeiqA6/FejYPIwitiHZfvlJDWYTQleLn64WS/HUiDwM
+         Dd+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781681666; x=1782286466;
+        d=1e100.net; s=20251104; t=1781681753; x=1782286553;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3Uim5pbWVyeQp4JbMjOlnv43bbNh3AaD6WsvZpd9kZ8=;
-        b=HFBTiak6f+5MeuBnKmR4nCNYnN/uldl8TK8UNpWLwlhhYWKXCgwLB86mGeiX/FjJX7
-         a8m/WLk59Zb0aw4jfAY0b3liuWYX99f8TF/kFfHmyLWqJrvx1V1+062+22D+eva5SZvc
-         g0EYzy17hTHEM8j6cMHtaCYA7uY9dhkGrDs9na0nW8AQWfLPH79IKMYwiMvsfweCruIU
-         FWazBuD29fEZ4O+LcVSQ4Nk5o1UbX8au7CHqmTRsbZMh2gph9c6wqBMh1XITDi3PuxN8
-         6QIrYQk864ghdBNWZmt75TvOnYFLl4i00Rqk83pEkReFi1JSFnx4I5hUpLMpooXFBtyd
-         NYHQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8bbZsOFmxXrjJxNO3hPCw2D5HUrCLYa7ibPVYUhirKS1AUonMKfNJdKT8bfroY0AkQohSmH1TnPho4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNWBLmkwvQWKmZkhikt3uoY7Tbwb74eXGaJUvmipstjcGqo5ot
-	wFc9yf3I8zD3BeuMEcuLDb4yutn8izG1IosNjPDZS4nEO6RB8vLWbph6BJ6Ht39t2+3cToHTLFC
-	73d6V
-X-Gm-Gg: Acq92OHSf2q4lQij+YkS1um1LjsyNzstxvdWwShEHgj46MxiYzpM9swyDhfNgJ9WfYa
-	2pV2OtEjefR5YFgodIHVTcTT8OjmhJTBysWkLNpVG2alFX0DxDdAYOMsEPmH8WvSThbF2Y3N/DD
-	ny/WMmQzKgyLzh9aiNxAoauncYgGewzSphdAMxPDTfACFSma5GMu78agKnmZq1LK9yalTzcFITJ
-	5IOPIM8GdcQy2FsiFrJuzNgzPGJXOxl+D0S6a98G6SQe0uLt6uDgf2yBvs42V619mvy4X+QliJE
-	jgVitSY2anQbq8j+plxX9UVFbdZQjXAv9SZfF1OEjTH1ZCjE88I80RyrNfK9jUEzlMuLlJd9saa
-	tfNWlzlVayt6megi0d0bPTmfy/VTmIt8+qXxJCPoPoxxkCsFcxgWwBxqmz2b+6kcGY5KInuPk0c
-	4yMnAF0ZXBW3RRIQWqa1nXLQ==
-X-Received: by 2002:a05:600c:a305:b0:492:2c87:3d4b with SMTP id 5b1f17b1804b1-492333af19dmr33307215e9.12.1781681665133;
-        Wed, 17 Jun 2026 00:34:25 -0700 (PDT)
+        bh=kiyyh81BRUnw3RVblLaAaVPI8hb9C+UfMQnBnCoh3L4=;
+        b=iZiD4xFovOIg43+ZBw2wmHe47IRjDQXpLnTP4zIN0gjnWwJV8gmOQzPFmLKWkP6lL3
+         MWLVa26WGBhU3kACxSTEDuxq9FcKVJghHxVxZWLpssDV2OcWyT12oANewKYO/foEy3Ze
+         B0iq/E/eizm8bU/s+guPf1d9wUiUwYmsZhhv/gx1x3D0P/F8bY3ttSnBH6V+WxfeOtF4
+         ldBjeadBOVCi/0JQgbw0iLKzY9SIqMOJCXBTeW+lSarS/b1K5+rJrIpZ9dhYDfOzqWKj
+         /umjJlEn/pYXy/IC9UWzdG/RiSoVnuS8c3ZE5a3/9KsxCqWPMmP636u3FGcWx+2Z/FYM
+         V90g==
+X-Forwarded-Encrypted: i=1; AFNElJ/wkewT1n2lEG3oEtyD5zVASXd+N6B5iVVmMkprzSlnzYQeqXnzsG2inD9KuOtJkemlqlQZA3ueXDPc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRkLnwxJBd+SRUKzEKx02L5KpX+NG0eIdMWvoZuBO0QNYaPBv+
+	n/vwyA5RqfSIUY9hQdPj558A1eh9RygNqkiPC0VvdxYHexZKNTRuQYHvOSCuQHpll6I=
+X-Gm-Gg: Acq92OF8ItuL/vwmB9RCP2Q6azFeXSwyKJTxBQMenBXC37U//3YLpRHLf6c7J3GBGCQ
+	Hgwj+pwoSFxD7TkAFhzyodnKJabmo25f6uzixXiX15Ceff10ZcUQnmVgbS+UKmrJWugj1m0gRFp
+	v/ImDO6+rx7ZNqsuE4bs03+JQ7J76fMlhctGUZvUQi7VuCkQWkSDUfmHA87e0Hp2kfbzrgMRxWJ
+	Hiaa9m4MogEKH9jkbovHexmmWVFjV/PijLgSxriKw3Lov97PXZujCYslUlnxP7zdY1Lux6u22qr
+	Kx3K+U+OoztTLtqXBvSvg1rmvQektXld4zwXoNL+gmyUWxU3wtHvWdxTjUSmgAlL9glxDLP2Nsh
+	X4vePB4k7V4lrOAj7CxRDDCf2tsqxZvDXgzSjOOP+HmrnCKo1+sjYJpZ+7SqZMyxyb/266fawjT
+	5RFiFTWgnEL5qNhb2O75S2EA==
+X-Received: by 2002:a05:600c:a104:b0:490:958f:2a5e with SMTP id 5b1f17b1804b1-492333ab197mr38532605e9.13.1781681753234;
+        Wed, 17 Jun 2026 00:35:53 -0700 (PDT)
 Received: from [10.12.4.106] ([212.133.41.97])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4922fa97a07sm242913335e9.14.2026.06.17.00.34.23
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-462a9784497sm3087858f8f.34.2026.06.17.00.35.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jun 2026 00:34:24 -0700 (PDT)
-Message-ID: <6726e289-02c8-4267-b8cb-3b4ba2ebae1a@linaro.org>
-Date: Wed, 17 Jun 2026 09:34:22 +0200
+        Wed, 17 Jun 2026 00:35:52 -0700 (PDT)
+Message-ID: <69550878-fd99-4da2-88ad-8d537d9e305a@linaro.org>
+Date: Wed, 17 Jun 2026 09:35:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,8 +89,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 4/4] Revert "dt-bindings: display: panel: panel-simple:
- Add lg,sw49410 compatible"
+Subject: Re: [PATCH v3 0/4] Add DRM driver for LG LH609QH1 Panel with
+ SiliconWorks SW49410 DDIC
 To: Maxime Ripard <mripard@kernel.org>,
  Paul Sajna <sajattack@postmarketos.org>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -104,8 +103,7 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  devicetree@vger.kernel.org, David Heidelberg <david@ixit.cz>,
  phone-devel@vger.kernel.org, Amir Dahan <system64fumo@tuta.io>
 References: <20260614-judyln-panel-v3-0-07f4134441bd@postmarketos.org>
- <20260614-judyln-panel-v3-4-07f4134441bd@postmarketos.org>
- <20260615-amigurumi-kagu-of-prestige-ecae6c@houat>
+ <20260615-celadon-pug-of-teaching-f1eb0a@houat>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -132,7 +130,7 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260615-amigurumi-kagu-of-prestige-ecae6c@houat>
+In-Reply-To: <20260615-celadon-pug-of-teaching-f1eb0a@houat>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
@@ -141,14 +139,14 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,kernel.org,ravnborg.org,vger.kernel.org,lists.freedesktop.org,ixit.cz,tuta.io];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312820-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,linaro.org:dkim,linaro.org:replyto,linaro.org:mid,linaro.org:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
+	TAGGED_FROM(0.00)[bounces-312822-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imgur.com:url,linaro.org:dkim,linaro.org:replyto,linaro.org:mid,linaro.org:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp];
 	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	TO_DN_SOME(0.00)[];
@@ -157,7 +155,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	HAS_ORG_HEADER(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -173,26 +171,31 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	REPLYTO_EQ_FROM(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7C9AB697376
+X-Rspamd-Queue-Id: 86D98697399
 
-On 6/15/26 11:17, Maxime Ripard wrote:
-> On Sun, Jun 14, 2026 at 05:08:01PM -0700, Paul Sajna wrote:
->> This reverts commit a74c2e55ab66519ffa2069ac9ae83cd937bff4c4.
->>
->> It isn't actually panel-simple-compatible, and we knew as much by the
->> time this merged, but I guess maintainers needed something to prevent
->> the dt-bindings error going off while I was working on these patches.
+On 6/15/26 11:19, Maxime Ripard wrote:
+> Hi,
 > 
-> I had a look at the patch and discussion that commit was from, and I
-> didn't see anyone bringing up that it wasn't actually panel-simple
-> compatible.
+> On Sun, Jun 14, 2026 at 05:07:57PM -0700, Paul Sajna wrote:
+>> This patch series adds a drm panel driver for the LG SW49410 panel found
+>> in the LG G7 ThinQ (codename judyln).
+>>
+>> The basic driver skeleton was generated by
+>> https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator from the vendor
+>> device-tree.
+>>
+>> There seems to still be some power supply issues, the bottom-left
+>> corner of the screen is dark, and the rest of the screen develops
+>> shadow-y burn-in-like patterns when resumed after being left off for a
+>> while. https://i.imgur.com/oJZSHzE.jpeg
+> 
+> If it's not reliable, why should we merge it, especially if it can lead
+> to ABI-breaking changes like it happened already.
 
-I wonder why rob applied this one, I clearly requested a v3...
+If the patchset is not ready to be merged but you need comments to go forward, please append RFC to your patches.
 
 Neil
 
-> 
-> If you knew as much back then, why wasn't this brought up?
 > 
 > Maxime
 
