@@ -1,121 +1,148 @@
-Return-Path: <devicetree+bounces-312904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312906-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id w8unNPZ0MmoW0QUAu9opvQ
-	(envelope-from <devicetree+bounces-312904-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:20:38 +0200
+	id a8UkJ3d2Mmps0QUAu9opvQ
+	(envelope-from <devicetree+bounces-312906-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:27:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 791326986C1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:20:38 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6AD9698773
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:27:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nngpRcHq;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312904-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312904-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=B+HTW2Pg;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312906-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312906-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6F44030322F5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 10:20:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E4A94313F727
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 10:21:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B61D3F44FF;
-	Wed, 17 Jun 2026 10:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29EEF3F54DF;
+	Wed, 17 Jun 2026 10:20:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7783EFFAF;
-	Wed, 17 Jun 2026 10:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 925C93F4125;
+	Wed, 17 Jun 2026 10:20:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781691626; cv=none; b=kWB91REpjZMz/JA4v6T3v4KaQOb+5Z0fIjn2/tzy/DTjCdHUHnFjws9BnR26jL4YJAulhnPcp1l98Saz3MyzQTaUvXsasRm554tZXC8b+U7chwh2i8psrol0odTi9M2UF5bTpe3kHPro277gth8Qxym77c4uHq1yzaJM04K9Kdk=
+	t=1781691641; cv=none; b=QDZZsT5oBUr+BpGU8MXVWsZkuRACLNrIB7pQZB0WdxDRdudXzn1zxrf/N7cuFdMetJkkHcPdXJpbwIKRmkDrs0WKG40YePnFr9Vk1vuSqEs9u7SA3RDVHwLZoUVK/VN7EcDTl95Kt/owBM8APGOHovbxazbpIgNXvpCVLmcEo58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781691626; c=relaxed/simple;
-	bh=LemMe3KggFiCwPPl9bGmfkEUoHEUWpJ7AOoGFXW6Xbo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nFw38jjPlHupeIcQAUJEH6fCitXNBNR0n1TCYQbjMRuxCGXMc9KWDOzWl4ttfkCyLxluh+JeLBv2P8fEQRW/MOc9UT4o8Kwp3eGl/RuJoyxPBzZVjK4xNPtdpgH+JOV7nMs0EBH0FR1zU+DH8HyZllEQ3+ZaVjVBQ4KcGIKbpEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nngpRcHq; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 073691F000E9;
-	Wed, 17 Jun 2026 10:20:16 +0000 (UTC)
+	s=arc-20240116; t=1781691641; c=relaxed/simple;
+	bh=xiAyrh+SXE0b4N4ueT5n6rqHhH4Di07Kz2gzOVjxjY8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=jOrth7g9pDQKkIj/znmRoeeCntzrxwxxUN1hkItrotQP+Anjow5INIcDZqeC7e1NLYjcQYT+RX/iIeqRJyN7mB/ClGDtXR0BH2L6yPHZAcKujtWj6824HWKxn7EfLqwfSnGNCvW1QUJoc6I8mKfC/ntLkjBIDXu1dJu6+JoBaus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B+HTW2Pg; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF22E1F000E9;
+	Wed, 17 Jun 2026 10:20:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781691617;
-	bh=mGDpQKiaGmdMQBKgXybhSkmu2YNTiVFD1n1EPaO+ol0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=nngpRcHqLTi0JBr234u9hEGzndNN1zkYDSWphGDzDeiBEyXscpEG3E02lAUNeKgLr
-	 bP1/yubOPljYWqR+GDt7wHMLqr0kuTYXCU85r2UncLrQigEttDWrbj91/PKDZkqcOp
-	 Zz2hTNleWc3ZJCNLsMwsfvkDXOvGuVeTQnNj+jzTigQ7+3uXR2bzVSHExxFwQkJ1YZ
-	 l2qWmqEOCWBP1CPk3MS22aYCRqTjOZfFmXsfMgGt0Kw9IrDDe66Wk2hRZdyNDjCgbB
-	 3gzrKgwCuKBANm8nFxQVd8FsZyYKOP9Mr+Ot0EfDPX2i+7Rvk7uHvEWVe/ZL/kllUw
-	 1RHDFK3QZxvnQ==
-Date: Wed, 17 Jun 2026 12:20:13 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alim Akhtar <alim.akhtar@samsung.com>
-Cc: peter.griffin@linaro.org, robh@kernel.org, conor+dt@kernel.org, 
-	linusw@kernel.org, linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, hajun.sung@samsung.com
-Subject: Re: [PATCH v2 2/5] dt-binding: pinctrl: samsung: Add
- exynos8855-pinctrl compatible
-Message-ID: <20260617-favorite-bobcat-of-ecstasy-02f62f@quoll>
-References: <20260615085252.1964423-1-alim.akhtar@samsung.com>
- <CGME20260615083419epcas5p48c6b192d1abcbd5411f0958aa9b83237@epcas5p4.samsung.com>
- <20260615085252.1964423-3-alim.akhtar@samsung.com>
+	s=k20260515; t=1781691632;
+	bh=INquSL7Y5cnzXtGbEvtaW4heAKduQ2IN62ykEM5bhk8=;
+	h=From:Date:Subject:To:Cc;
+	b=B+HTW2Pge8/lJvlk7E9WTYbwCYWI2JJqw4cJmJVF5FoFEggpvqBNKMLnQiGC/L5P5
+	 UMagBEwUOPJoNMGUhvZckN2BwE58/ULmGwkqjepIfVygrGRXUVjgR5wlk0Oxn7ZISM
+	 7dgDuFeDLbYroF0im1kXutw0PdvROyI2382M8YXmBl5HHVHgoNWb6EVuw96ctGHa4a
+	 GRSco6cHnYLQvltnvT4yoUIrA/x2xcz0mWAe70nbIERN4zOGf+gQbqZKe4r8VNU9ow
+	 TybYPzg8wJ/vF+XOofpVc3wO3e0VaaY6PokQFtFEv/pYwWJEisidCWUkbtKX8Msgam
+	 1pjWf9iZdyK7A==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Date: Wed, 17 Jun 2026 12:20:26 +0200
+Subject: [PATCH] arm64: dts: qcom: monaco-arduino-monza: Remove duplicate
+ includes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260615085252.1964423-3-alim.akhtar@samsung.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260617-topic-monza_includes-v1-1-fcef9ce489fb@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQqDMBBG4avIrBtILGrxKqUUm/zqFJtIRkupe
+ HejLr/FewsJIkOozhaK+LJw8AnmkpHtG99BsUumXOelLk2lpjCyVZ/g/82TvR1mB1EorqhQ6Ft
+ rHKV0jGj5d2zvj9Myv96w0/6idd0AFB8LDHgAAAA=
+X-Change-ID: 20260617-topic-monza_includes-e53e7e508f1d
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781691629; l=1015;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=i8NJ8IM+F7Wb1x0re+SxCLIPUqjfFjEdgSh2OAy0/z0=;
+ b=SMzbX2BrnYbbh7pxaMrm1s0PGR4oUpcn32NtI7Xi0fS8bV50Zk0C8sbCMx/AJ+OHth46wsoIV
+ vtqQSq1hiykCUUKpIAjXaSSJt9mrghNNPUnq8dBtaFsMpUYx7F2ZOvH
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.66 / 15.00];
+X-Spamd-Result: default: False [-5.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:alim.akhtar@samsung.com,m:peter.griffin@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:hajun.sung@samsung.com,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-312904-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[konradybcio@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-312906-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[konradybcio@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,quoll:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 791326986C1
+X-Rspamd-Queue-Id: E6AD9698773
 
-On Mon, Jun 15, 2026 at 02:22:49PM +0530, Alim Akhtar wrote:
-> Document pin controller support on Exynos8855 SoC.
-> 
-> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
-> ---
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-No wakeup-eint?
+monaco-arduino-monza.dts includes monaco-monza-som.dtsi, which aleady
+includes monaco.dtsi and monaco-pmics.dtsi. Remove the duplicates.
+The resulting DTB file is identical.
 
->  Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts b/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
+index 379b796f261f..f475e2078451 100644
+--- a/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
++++ b/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
+@@ -9,8 +9,6 @@
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
+ 
+-#include "monaco.dtsi"
+-#include "monaco-pmics.dtsi"
+ #include "monaco-monza-som.dtsi"
+ 
+ / {
+
+---
+base-commit: 8d6dbbbe3ba62de0a63e962ee004afb848c8e3ac
+change-id: 20260617-topic-monza_includes-e53e7e508f1d
 
 Best regards,
-Krzysztof
+--  
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 
