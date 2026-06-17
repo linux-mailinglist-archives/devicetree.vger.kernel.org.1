@@ -1,168 +1,342 @@
-Return-Path: <devicetree+bounces-313178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313179-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Yts+EpYOM2rL8wUAu9opvQ
-	(envelope-from <devicetree+bounces-313178-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 23:16:06 +0200
+	id SEKmCOIOM2rX8wUAu9opvQ
+	(envelope-from <devicetree+bounces-313179-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 23:17:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3437069C7F7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 23:16:05 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71D4469C803
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 23:17:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=m+CEQ3N7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313178-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-313178-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Lnlzttj3;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313179-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313179-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5BAF0300B537
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 21:16:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 93DB7304890D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 21:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BFB9388E45;
-	Wed, 17 Jun 2026 21:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 073CF3F8EB3;
+	Wed, 17 Jun 2026 21:17:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61D6418871F;
-	Wed, 17 Jun 2026 21:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC62C18871F;
+	Wed, 17 Jun 2026 21:17:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781730961; cv=none; b=AQi0DOtnvEADhsUHd1BhVNf/89RXAWCSOFd3VDA64rkRF4lbCUJ2p18N3IlyjyspHOVdDKiBHsSUvNlQ4u3xpq8U2+LAfdMLGdWXAfFK8bn6XPnOnb18KWX5bvLdB8AmyOSfZJL0KNVcREczFBbbvYw8Xs3tFrwV3xoPl6mky/c=
+	t=1781731022; cv=none; b=Oh7qu8zh9rW6XK/YYH4xbcJltFm2ZlbWWI+FkvPMQGAtqNkQXjEfk9HglZlQ5bjeZWRnbjiSIF0LRLqWtjZDB/uvbD0urG0ZenZX4nlD0ctgtw8U9pcwb48saEMd0bGWn6UnU4YzYJQiBACBx5nr8cPcmlDfyEZui6ESJVJEhQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781730961; c=relaxed/simple;
-	bh=2DQnI8VkSK2INwYpF6SZ3hNw75WvItQc4mGHC0anI6k=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=mZwkcDwedFvV1AJu5PcIODOe/kiNKqaPtni+EEaXyUT1nl9g6/MbYybZxJiYSJ1b62UP7fWRDSWuwYZp6KLOGgO7fWGKF4husFBLiQl75xUd3eM9e+uQvmdk7KqcoDfC2+Q+TaUg8SOrRJA8jRy/jhStxQOQMNfchbchqZAKL2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+CEQ3N7; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C15D01F000E9;
-	Wed, 17 Jun 2026 21:15:59 +0000 (UTC)
+	s=arc-20240116; t=1781731022; c=relaxed/simple;
+	bh=/d07SA45uZuKBpFfl+4sDt18F+YlFuaUFTvcxvrvo9o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jm51wGVE6oRtlywzs7whRvhlHNJYCymnTE32UFjxJyRSp+gBE1UgJHyYjngaG+7qDfZzWbDuYRd9Om2Op0zhd2bbBV3AkY91df1qxo5nRqjNoL9quVRyhbT/tZ9tjfqlYvkNy/cQNkLm4cmf4HFpu6xQGKlfYTez3PZTY9MWcDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lnlzttj3; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97EF61F000E9;
+	Wed, 17 Jun 2026 21:16:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781730960;
-	bh=iWTQ/zT0dJYJ8fm6ptf+v5jMyy5kp4RRE6dQB4qOtgA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=m+CEQ3N7Aab/rObEqUYAX8b8iUlkhxuHCNCqsV2EtlYuSIOf2jJis1pDqSjWoj48B
-	 BKKirS7ao2qKcJ3otoJvPcYmLDRlB/qcHbarbTOWQjRTkZz4bKczZtTaK0IUrLP/l5
-	 rmBcK0uKwB3XiN+2UiD+N99mwGnfqmiXef+T0SVDuubsOuPqHpq0BZVnlEV+aYsC8U
-	 tCufXtbmsyRwpzF+BAF7z20+3l1mI9ENWIJSZdA+rsa+x6h2Q6VFtDr6sJuuqu6C8S
-	 4Oms35JBfikY0StLpEhiyD0iJR4dOrrtBWlt1/8pUDMRpJuT1oXxwCpuyZq46dinwi
-	 8quVbk5OdCJdQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 09/10] dt-bindings: input: microchip,cap11xx: Add
- CAP1114 support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jun Yan" <jerrysteve1101@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, linux-input@vger.kernel.org, dmitry.torokhov@gmail.com
-In-Reply-To: <20260617150318.753148-10-jerrysteve1101@gmail.com>
-References: <20260617150318.753148-1-jerrysteve1101@gmail.com>
- <20260617150318.753148-10-jerrysteve1101@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 17 Jun 2026 21:15:59 +0000
-Message-Id: <20260617211559.C15D01F000E9@smtp.kernel.org>
+	s=k20260515; t=1781731021;
+	bh=BHrH6/ZA5cIwsCgwUogyPBPXGIZVjjCg3LMVpnJlpoI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Lnlzttj3uxD310HbGXNCK5ywfPvGOTJIcg/S8/Ts8xFqLuaQpadKTA0WS3Uj5LNZa
+	 OkFlurnjvSb4I9s2nNeyoSjJlgmCVU1lu0XtysIsa9Q2Us6n6NwOG6srFq2EG/2l69
+	 3PmB4W+KwdbBOqwTNKXOAIYe4n7lbsV+f+v+HmxfF9thCh3JS2BZIMeEqZPj1rCys4
+	 wHRHRcIsgqG1BdVDR76eDtCzvZZr6KyuqiLgjbebf8x1C5BCEt9+LR9utcwzOgSwvR
+	 zuKj4ksvGZ//dj2WjeAVRxreG0D2J71O9JF4zFEC3PYWyRRJFRAM0RIoib/DMWDEd3
+	 FkhSAbdfCC0Nw==
+Date: Wed, 17 Jun 2026 22:16:56 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jic23@kernel.org, nuno.sa@analog.com, Michael.Hennerich@analog.com,
+	dlechner@baylibre.com, andy@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, pop.ioan-daniel@analog.com
+Subject: Re: [PATCH v3 1/5] dt-bindings: iio: adc: Add ltc2378
+Message-ID: <20260617-oat-handclasp-ddd3135c5b84@spud>
+References: <cover.1781661028.git.marcelo.schmitt@analog.com>
+ <f9e88abdbd23df8039282497a81d3c8698a10665.1781661028.git.marcelo.schmitt@analog.com>
+ <20260617-bok-gains-9a1af41cf0de@spud>
+ <ajLV-O60lCdlIbXR@debian-BULLSEYE-live-builder-AMD64>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="CGtTqchTHqysmLPN"
+Content-Disposition: inline
+In-Reply-To: <ajLV-O60lCdlIbXR@debian-BULLSEYE-live-builder-AMD64>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-6.76 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jerrysteve1101@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:linux-input@vger.kernel.org,m:dmitry.torokhov@gmail.com,m:conor@kernel.org,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-313178-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:marcelo.schmitt1@gmail.com,m:marcelo.schmitt@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pop.ioan-daniel@analog.com,m:marceloschmitt1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-313179-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,spud:mid,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3437069C7F7
+X-Rspamd-Queue-Id: 71D4469C803
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Schema Validation Regression (Incomplete Constraints Update)
---
 
-commit 74e08f50d786114a66be01956a59aeb6b7083fbc
-Author: Jun Yan <jerrysteve1101@gmail.com>
+--CGtTqchTHqysmLPN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-dt-bindings: input: cap11xx: Add CAP1114 support
+On Wed, Jun 17, 2026 at 02:14:32PM -0300, Marcelo Schmitt wrote:
+> On 06/17, Conor Dooley wrote:
+> > On Tue, Jun 16, 2026 at 11:03:11PM -0300, Marcelo Schmitt wrote:
+> > > Document how to describe LTC2378-20 and similar ADCs in device tree.
+> > >=20
+> > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > > ---
+> > > Change log v2 -> v3:
+> > > - Re-added device tree fallback compatibles for LTC2378 chips, now wi=
+th options
+> > >   to provide a single compatible string or a pair of single compatibl=
+e string
+> > >   plus a fallback string to a slower sample rate spec in case a drive=
+r for the
+> > >   specific part is not found.
+> > >=20
+> > >  .../bindings/iio/adc/adi,ltc2378.yaml         | 160 ++++++++++++++++=
+++
+> > >  MAINTAINERS                                   |   7 +
+> > >  2 files changed, 167 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ltc=
+2378.yaml
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.ya=
+ml b/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
+> > > new file mode 100644
+> > > index 000000000000..7d30a2cade8f
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
+> > > @@ -0,0 +1,160 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/adc/adi,ltc2378.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Analog Devices LTC2378 and similar Analog to Digital Converte=
+rs
+> > > +
+> > > +maintainers:
+> > > +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > > +
+> > > +description: |
+> > > +  Analog Devices LTC2378 series of ADCs.
+> > > +  Specifications can be found at:
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/233818fa.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/236416fa.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/236418f.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/236716fa.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/236718f.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/236816f.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/236818f.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/236918fa.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/237016fa.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/237616fa.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/237618fa.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/237620fb.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/237716fa.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/237718fa.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/237720fb.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/237816fa.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/237818fa.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/237820fb.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/237918fb.pdf
+> > > +    https://www.analog.com/media/en/technical-documentation/data-she=
+ets/238016fb.pdf
+> > > +
+> > > +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      # Single compatible string match.
+> > > +      - enum:
+> > > +          - adi,ltc2338-18
+> > > +          - adi,ltc2364-16
+> > > +          - adi,ltc2364-18
+> > > +          - adi,ltc2367-16
+> > > +          - adi,ltc2367-18
+> > > +          - adi,ltc2368-16
+> > > +          - adi,ltc2368-18
+> > > +          - adi,ltc2369-18
+> > > +          - adi,ltc2370-16
+> > > +          - adi,ltc2376-16
+> > > +          - adi,ltc2376-18
+> > > +          - adi,ltc2376-20
+> > > +          - adi,ltc2377-16
+> > > +          - adi,ltc2377-18
+> > > +          - adi,ltc2377-20
+> > > +          - adi,ltc2378-16
+> > > +          - adi,ltc2378-18
+> > > +          - adi,ltc2378-20
+> > > +          - adi,ltc2379-18
+> > > +          - adi,ltc2380-16
+> > > +
+> > > +      # Low sample rate fallback for 16-bit unipolar sensors.
+> > > +      - items:
+> > > +          - enum:
+> > > +              - adi,ltc2370-16 # 2 MSPS
+> > > +              - adi,ltc2368-16 # 1 MSPS
+> > > +              - adi,ltc2367-16 # 500 kSPS
+> > > +          - const: adi,ltc2364-16 # fallback (250 kSPS)
+> >=20
+> > Your driver still matches on ltc2370-16, which makes me question the
+> > value of these fallbacks. That said, the chip info struct contains no
+> > information about sampling rate.
+> The info about sample rate is added in patch 4.
 
-CAP1114 is a 14-channel capacitive touch sensor with 11 LED outputs
-and hardware reset support. Add the compatible string for CAP1114, add
-its datasheet URL, update the maximum of LED channel reg, and add
-constraint for linux,keycodes.
+Ah, I missed that.
 
-> diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.ya=
-ml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-> index b97e5b2735f1..2a37ac252c37 100644
-> --- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-> +++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> > What actually is the impact of the sample rate on the programming model?
+> If the user tries to set a sample rate beyond the maximum supported, soft=
+ware
+> can throw an error to indicate that.
 
-[ ... ]
+I think you have misunderstood this. I was asking how the driver
+interacts with the hardware. Do all devices come out of reset with the
+minimum sampling rate? Or a per-device default rate? Do the faster
+devices support all slower rates? If they do, do the registers have the
+same meaning and the same value sets 2370-16 device to 1 MSPS as
+2368-16.
 
-> @@ -140,7 +144,7 @@ properties:
->        The number of entries must correspond to the number of channels.
-> =20
->  patternProperties:
-> -  "^led@[0-7]$":
-> +  "^led@[0-9a]$":
+> > Is there actually a benefit to matching on ltc2370-16, or can you just
+> > match on the fallback?
+> The benefit is telling software that it is safe to go up to 2 MSPS. It is=
+ also
+> okay to match on the fallback, but software may restrain operation to a s=
+lower
+> sample rate.
 
-[Severity: Medium]
-Does this global regex update also require an update to the disablement blo=
-ck
-for hardware variants without LEDs?
+My whole review here is shit cos I didn't see patch 4, so the use of
+fallbacks seems appropriate (provided your answers to my programming
+model questions are sane!).
 
-The allOf block that disables LEDs for specific variants (like CAP1106,
-CAP1203, etc.) still uses "^led@[0-7]$": false.
+>=20
+> With the code being proposed in this patch set, there is no benefit in ma=
+tching
+> the ltc2364-16 fallback if there is a faster ltc2370-16 device connected =
+because
+> device driver supports that. Though, other operating systems and/or platf=
+orms
+> might not support all device variants and so the fallback might be useful.
+>=20
+> > +static const struct ltc2378_chip_info ltc2370_16_chip_info =3D {
+> > +	.name =3D "ltc2370-16",
+> > +	.resolution =3D 16,
+> In a later patch ...
+> +	.max_sample_rate_hz =3D 2 * HZ_PER_MHZ,
+> +	.tconv_ns =3D 322,
+> > +	.bipolar =3D false,
+> > +};
+> >=20
+> > +static const struct ltc2378_chip_info ltc2368_16_chip_info =3D {
+> > +	.name =3D "ltc2368-16",
+> > +	.resolution =3D 16,
+> +	.max_sample_rate_hz =3D HZ_PER_MHZ,
+> +	.tconv_ns =3D 527
+> > +	.bipolar =3D false,
+> > +};
+> >=20
+> > +static const struct ltc2378_chip_info ltc2367_16_chip_info =3D {
+> > +	.name =3D "ltc2367-16",
+> > +	.resolution =3D 16,
+> +	.max_sample_rate_hz =3D 500 * HZ_PER_KHZ,
+> +	.tconv_ns =3D 1500,
+> > +	.bipolar =3D false,
+> > +};
+> >=20
+> > +static const struct ltc2378_chip_info ltc2364_16_chip_info =3D {
+> > +	.name =3D "ltc2364-16",
+> > +	.resolution =3D 16,
+> +	.max_sample_rate_hz =3D 250 * HZ_PER_KHZ,
+> +	.tconv_ns =3D 3000,
+> > +	.bipolar =3D false,
+> > +};
+> >=20
+> ...
+> > > +      # Low sample rate fallback for 20-bit bipolar sensors.
+> > > +      - items:
+> > > +          - enum:
+> > > +              - adi,ltc2378-20 # 1 MSPS
+> > > +              - adi,ltc2377-20 # 500 kSPS
+> > > +          - const: adi,ltc2376-20 # fallback (250 kSPS)
+> >=20
+> > I didn't check these, but I assume they are the same.
+>=20
+> Yes, except for small variations on input (unipolar/bipolar) and precisio=
+n bits,
+> these devices are pretty much equal.
 
-Because of this new global regex, wouldn't nodes like led@8, led@9,
-and led@a now bypass the false constraint and be silently permitted on
-devices that are supposed to have zero LEDs?
+What I meant here was that 2378-20, 2377-20 and 2376-20 would follow the
+same pattern of having identical match data (pre patch 4).
 
->      type: object
->      description: CAP11xx LEDs
->      $ref: /schemas/leds/common.yaml#
-> @@ -149,7 +153,7 @@ patternProperties:
->        reg:
->          description: LED channel number
->          minimum: 0
-> -        maximum: 7
-> +        maximum: 10
-> =20
->        label: true
+--CGtTqchTHqysmLPN
+Content-Type: application/pgp-signature; name=signature.asc
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260617150318.7531=
-48-1-jerrysteve1101@gmail.com?part=3D9
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCajMOyAAKCRB4tDGHoIJi
+0hgQAP9Y84Pna4CxPnkeKmnsdjnkUBp/SO+Ps+QPOFmrY0S/NwEA7Xatww56qmWl
+DUktptMH00MxlhrnrITLdobkfERDowA=
+=iIiH
+-----END PGP SIGNATURE-----
+
+--CGtTqchTHqysmLPN--
 
