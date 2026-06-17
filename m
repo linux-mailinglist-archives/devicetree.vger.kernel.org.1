@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-313067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313069-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uHrIJPK4Mmr64QUAu9opvQ
-	(envelope-from <devicetree+bounces-313067-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:10:42 +0200
+	id GPxpFyK5MmoJ4gUAu9opvQ
+	(envelope-from <devicetree+bounces-313069-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:11:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F46F69AD17
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:10:41 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5845469AD31
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:11:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=WaZVtjUR;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313067-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313067-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="RpvZiZE/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313069-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-313069-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 771CE3035E9F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 15:10:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1193A303D1C7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 15:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5814480948;
-	Wed, 17 Jun 2026 15:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1964492530;
+	Wed, 17 Jun 2026 15:04:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f45.google.com (mail-yx1-f45.google.com [74.125.224.45])
+Received: from mail-yx1-f48.google.com (mail-yx1-f48.google.com [74.125.224.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49AB6480963
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 15:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82CD649252B
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 15:04:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781708654; cv=none; b=ZXR4pdM1Wn8ADiG0zRf/RHJnrGpQ8Oc/NhdIjoCMfFztes7jCb+GWV5ZFBI7/cF4/MeJnvIO0POKMS7pu/sdcCS0AAhr9XU2f/fJcHN++RZbAEP9vFeK1fuEQFC6ktJA82oIWi0XPAlzRMRQ4Lj5+0GrvPxBa45uk2p8f6hd3eM=
+	t=1781708661; cv=none; b=ISQvmLG/hNYidPb8LqVNPu9wzFYLT9ulccJocpNk8JNrLYIsE/rzBXMzWtwxdUwh/jOhiDAToXCtxDmjQQfICwf6PdwbTYbr8ECpsBIfWQeM1h0ExCBIc4k0dOS8Gtffskorud62EYt4MJD82Y/k7e1FjwjTIrtNdbli0Iwac0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781708654; c=relaxed/simple;
-	bh=m4CmA91diHfu5RQdzmJWrSyYddAprpH+MrakQ4+IiR0=;
+	s=arc-20240116; t=1781708661; c=relaxed/simple;
+	bh=IJZYeU8nAGhKDiOr/eCSlIvhpsaaTQLsJcvcGm3GJ9o=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Er1U3gN2T3bJoZ3dTbqXrKL+R4SxjfF+fCAi3H0o1R1/t6I2CqdJTCD36JMrIhKZJXBK/oSRCoLo/EqOrYhVgK/+vjli2Hw/97Q82YQ3k9ympFUPlQlSyZQ36ACjaz5TBdpsFhQJzSGBHi4IjWylSSuJAqVR2htKokPtQ+WcVSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WaZVtjUR; arc=none smtp.client-ip=74.125.224.45
-Received: by mail-yx1-f45.google.com with SMTP id 956f58d0204a3-662ddac3174so393939d50.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 08:04:13 -0700 (PDT)
+	 MIME-Version; b=Ll5TBM0AFu3Kvfig4drCroi3FdZ+NSe1jfy6p0gDhY+41AAM5trvKv2Io1znDtvQ1gAQUslqbu8P7dilEOasbZYze3CfuPpdZ+AfidRyeFlZSiSxA02ZJfTaBPEuu9/XPHqjH5mllAgoyFFDlMGpvc1uWDbn0v+Hg0v7jo/cmW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RpvZiZE/; arc=none smtp.client-ip=74.125.224.48
+Received: by mail-yx1-f48.google.com with SMTP id 956f58d0204a3-66058b880e9so5951170d50.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 08:04:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781708652; x=1782313452; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1781708659; x=1782313459; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9nfUJI5PgMZL2Vorhas9Kozi5Xqa/3mRVb5pBY1dDbk=;
-        b=WaZVtjUREQyWwclxqhi8w/QL9rHyHmdDmJLDF00vO5KpcPik/YjTVVxdNzUe/LnpTp
-         cvNhXl+v05dFfm3+KNfPojBQkkrrNb8gfzkgtGZYR+5srfAIpRbjEHFho0TVfctDoZtp
-         CBNizzvqFJdhBOWXdtcib92ClHpgT2XvpkIqHVtuP1mF9biHnLE115vUmamJq+VW6CDe
-         Z4mIThFFli3nGfafTYJbJFoeeyui0J4Af+QMALoSEdR7iRV8QbEfHLhTqzhCjdzJ9jhD
-         reLVDOx5OolW1cnj4n6Ou24V1czQsWw32X7fUnbp5pZIj/yv28zrluZONMXWXr9kqOql
-         bY2Q==
+        bh=YCNmDDZkyDCvREs0izKIJJ9NBdHLWOor2XurOTFM618=;
+        b=RpvZiZE/BngorazpIaOurds8ENQAhwk9Le1/QrZQAiiBf2Mw4z/prgdGJyTJJUrgA1
+         LIXJvpNEcM86MO3mXuXHqY28pG1Dwir5Q7fMAUef+lsr3AglSLcf0LiDoXSsY5/J6p62
+         2tkLFkRDQaPNo1Vycaxpf82GAiX9VAfZPLbx23SagJ81HuFRSi49aiEIvJOAPJ2WrwgT
+         Vdu3uFS3pMc7g1+Z/p6jUoHxMrxVR9V4j+PiSuHMvAdfi3V3uZmdYGxScW8VeTjWrYAF
+         EcpC3GalfOeqDr86KsQ9322UunJW/wQnyl7Bl4x1dsoKa90DGYRgi5nPo4FrCWjE6ywQ
+         G/Yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781708652; x=1782313452;
+        d=1e100.net; s=20251104; t=1781708659; x=1782313459;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=9nfUJI5PgMZL2Vorhas9Kozi5Xqa/3mRVb5pBY1dDbk=;
-        b=H07edo5bfUx6O/X5PmJHxCTmU72eH7i2fu4YE4NrvLVeqAU7qKGF0Pzuwj5/wTX3aX
-         rqJ/PzsMAuytM47wRLEp8nxDQ7i8Ws/LUWioMZeXLaSHtLX1H+GZtUPd+gqpdDmm6XQ2
-         VUD0iQywkxfSjiY8SBAGNzMQ9GoaiienjY3rkqCbE9Dv2DzHeLHmSk8gcYrZLW+CRoDd
-         Lff3wJ5cjc3G9OF9WbyNQjzp1xLm5BDTOwjtK7ga9EZLtPIcwMwtnmsKE1jH2FmyzaRQ
-         gVmIZaOvpnYMOTz/p0Sc3XaJiVxR3Vmkm4GZ4lw85wATqO6kcUahlRHbPlxFeP36EZnu
-         07Fw==
-X-Forwarded-Encrypted: i=1; AFNElJ8EA1Geq0un+9zS7Tiih7hnxvKBKklsW2wZwun1seym06zKl4rFrCwHjconSaeOQ4PE48cIhcqh+K3p@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8EIWgSq/vx0zbW5js/MWl2PlNiX/SxYFN7zDfvLxhaAIaMDO1
-	/XSkqoO8ex4FSUuol/psRulm54tDi8Owt3gs1Qgb02L9KKn0YXaPFzteS0mImiYL
-X-Gm-Gg: AfdE7cnOdQHpbcvps++n0mjHb1SFiZ+8tfPx3QomIpNdQm8iMqY7ba+f2oob88v02gq
-	FKa6TXyZYK48y8UgSSkKWG4U4qbOfXDlIYZUNi2UkhdvtzpHLgfm8MOZrQUbA+XLn1u5YVnmLbp
-	FvMr1EoDKctjqtZ1I1mCnF/gLFIm25KPHHEod2XO552gD2zxVcMQxh/gcvGUwVoyJ86Cm6qAwLS
-	ruxCSR03GmF8aUG23flGUgKLh+Esz2Dsft7EqH7SWUUKx3ejUkK5K9D8aFGK5N0BFSku/7OHINp
-	CNUpgH+ohRv7eMe32IFBWYXr+yWMMPqVKgo4afNIEfaUT5aupbyqASdkzAXn8GlEHo/DxWEbA/H
-	WlP8y/WRTe0ZlwIX5bp/DMo645UE/knGOfB1SpJ9jVLDRLkNySidQaWofJJizB9RDXwvjWOEX6B
-	Xlq1dBZb+zQQ==
-X-Received: by 2002:a05:690e:1343:b0:660:109:b90f with SMTP id 956f58d0204a3-662cbcb84bcmr3775703d50.56.1781708651979;
-        Wed, 17 Jun 2026 08:04:11 -0700 (PDT)
+        bh=YCNmDDZkyDCvREs0izKIJJ9NBdHLWOor2XurOTFM618=;
+        b=S+tn6TFtZnXeCXSqrxRikk3yb4cNM1KDN1Hz0J82VSnksOUFI57pUF34B9EwLEPqmm
+         DfptQprknoeI6Ux274lfr+mni1D3JszUJwu6XCkgvMkw0rrWTQMjJq3IYL19iVx9IxDU
+         MycYK8TYt67Ht90YHo289sICsisCaFaU4nJtLjtaWN6yB2EbV9Wf+DDiXqLI5iKbrM8C
+         F8rC5OsEFxd2/ufZUHeeLhuNBwv/2yVgxLISHlrnGzDVsmtp6/N28kYc3/aFwUPOsGET
+         X3NXnbrpVclZ3gMjzhVKb6q4jKG13zGDo8QZT98uuWYPeJNo03Ig8b+3mlK+5g20g1tr
+         d7HQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8Z5iWAd0GWmAUNPUOrNcuvEcxdiUPaup+aPQGSRuuK78WWYc4ZwYzEpen+fNIqXDMVhHbtKh+u7C9p@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/zzrSsp62Bl2YLw+9hWbu71VX6ceOgqjmDTl6MlSBV3grhmFH
+	aTdnchwcK7jIiRst/550kKG+Zta3HlJdtwnZ/J4mjrx93/MBvd5GW74q
+X-Gm-Gg: AfdE7cmpZJXGOsD9EHFEX5WFbFA2PafdRk4/7RqqP505X2PiDymtOR1eN3tr0w+6JHb
+	+8VOgNzb4wxGAK4U3L62SrRshE/nhtsWInSsDUhIDhZLzcIoq+GFO6IB3jiZHXKfJI3DW5buAA6
+	5F2hSl1h7abpCFymyWyyHOHwfCWL3LqvxaVDMS6+dUNFYrXXO9CgIGHsGtmbpx3iRSS+rF66dId
+	VZZ6tSZ0Ukr9qqukLgxcJv7+V3C4Mm5nQXNKUX4qbCD9vLQ4CygPuzGKW9+piwGgrjNT+jucmBE
+	g17bWD/Rjy3EtbPBRCJZNDWuA8qetfgEvOHyAYy+K6pfbIAglHmMYYo8skPPOa1cjQl8VQjeDsu
+	Joc39uJ6lkcDAEzzimLkjk7E902UIlgRKDjWe8sDSG248BwktwvKRig+blYXFVCWUEpW0u6krCf
+	aSkcf7JM2lqQ==
+X-Received: by 2002:a05:690e:d57:b0:660:78f9:7e7f with SMTP id 956f58d0204a3-662cb87eeb4mr3643165d50.3.1781708659378;
+        Wed, 17 Jun 2026 08:04:19 -0700 (PDT)
 Received: from arch.localdomain ([2409:8a28:a52:c491::1002])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-662b976e47csm4387677d50.20.2026.06.17.08.04.08
+        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-662b976e47csm4387677d50.20.2026.06.17.08.04.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jun 2026 08:04:11 -0700 (PDT)
+        Wed, 17 Jun 2026 08:04:18 -0700 (PDT)
 From: Jun Yan <jerrysteve1101@gmail.com>
 To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh@kernel.org>,
@@ -85,9 +85,9 @@ Cc: Jun Yan <jerrysteve1101@gmail.com>,
 	linux-input@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 07/10] Input: cap11xx - refactor code for better CAP1114 support.
-Date: Wed, 17 Jun 2026 23:02:46 +0800
-Message-ID: <20260617150318.753148-8-jerrysteve1101@gmail.com>
+Subject: [PATCH v4 08/10] Input: cap11xx - guard unsupported DT properties before parsing
+Date: Wed, 17 Jun 2026 23:02:47 +0800
+Message-ID: <20260617150318.753148-9-jerrysteve1101@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260617150318.753148-1-jerrysteve1101@gmail.com>
 References: <20260617150318.753148-1-jerrysteve1101@gmail.com>
@@ -105,13 +105,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-313067-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313069-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:dmitry.torokhov@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jerrysteve1101@gmail.com,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmitrytorokhov@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
@@ -119,7 +119,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -133,209 +133,99 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[zonque.org:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2F46F69AD17
+X-Rspamd-Queue-Id: 5845469AD31
 
-Extend cap11xx_hw_model structure to support CAP1114 with
-different register offsets and hardware characteristics:
+Check of_property_present() before parsing microchip,calib-sensitivity
+and microchip,signal-guard, so that models which do not support these
+properties (e.g. CAP1114) skip the parsing entirely.
 
-- led_output_control_reg_base: different address on CAP1114
-- sensor_input_reg_base: different address on CAP1114
-- num_sensor_thresholds: separate value from num_channels for CAP1114
-- has_repeat_en: repeat enable support, disabled by default on CAP1114
-
-Include linux/bits.h, update the register operations related to LEDs.
+This prevents a potential buffer overflow in calib_sensitivities[8] and
+signal_guard_inputs_mask when a model with more than 8 channels
+(CAP1114 has 14) would otherwise call of_property_read_u32_array()
+with num_channels as the element count.
 
 Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
 ---
- drivers/input/keyboard/cap11xx.c | 73 +++++++++++++++++++++++---------
- 1 file changed, 53 insertions(+), 20 deletions(-)
+ drivers/input/keyboard/cap11xx.c | 52 +++++++++++++++++---------------
+ 1 file changed, 27 insertions(+), 25 deletions(-)
 
 diff --git a/drivers/input/keyboard/cap11xx.c b/drivers/input/keyboard/cap11xx.c
-index 1db4a9090705..0f19ee036e78 100644
+index 0f19ee036e78..275eb79a7193 100644
 --- a/drivers/input/keyboard/cap11xx.c
 +++ b/drivers/input/keyboard/cap11xx.c
-@@ -5,6 +5,7 @@
-  * (c) 2014 Daniel Mack <linux@zonque.org>
-  */
- 
-+#include <linux/bits.h>
- #include <linux/delay.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-@@ -36,7 +37,6 @@
- #define CAP11XX_REG_LED_DUTY_CYCLE_4	0x93
- 
- #define CAP11XX_REG_LED_DUTY_MAX_MASK	(0xf0)
--#define CAP11XX_REG_LED_DUTY_MAX_MASK_SHIFT	(4)
- #define CAP11XX_REG_LED_DUTY_MAX_VALUE	(15)
- 
- #define CAP11XX_REG_PRODUCT_ID		0xfd
-@@ -77,10 +77,14 @@ struct cap11xx_priv {
- 
- struct cap11xx_hw_model {
- 	u8 product_id;
-+	u8 led_output_control_reg_base;
-+	u8 sensor_input_reg_base;
- 	unsigned int num_channels;
- 	unsigned int num_leds;
-+	unsigned int num_sensor_thresholds;
- 	bool has_gain;
- 	bool has_irq_config;
-+	bool has_repeat_en;
- 	bool has_sensitivity_control;
- 	bool has_signal_guard;
- };
-@@ -211,8 +215,8 @@ static int cap11xx_init_keys(struct cap11xx_priv *priv)
+@@ -231,10 +231,13 @@ static int cap11xx_init_keys(struct cap11xx_priv *priv)
+ 		}
  	}
  
- 	if (!of_property_read_u32_array(node, "microchip,input-threshold",
--					priv->thresholds, priv->model->num_channels)) {
--		for (i = 0; i < priv->model->num_channels; i++) {
-+					priv->thresholds, priv->model->num_sensor_thresholds)) {
-+		for (i = 0; i < priv->model->num_sensor_thresholds; i++) {
- 			if (priv->thresholds[i] > 127) {
- 				dev_err(dev, "Invalid input-threshold value %u\n",
- 					priv->thresholds[i]);
-@@ -286,10 +290,12 @@ static int cap11xx_init_keys(struct cap11xx_priv *priv)
- 	of_property_read_u32_array(node, "linux,keycodes",
- 				   priv->keycodes, priv->model->num_channels);
+-	if (!of_property_read_u32_array(node, "microchip,calib-sensitivity",
+-					priv->calib_sensitivities,
+-					priv->model->num_channels)) {
+-		if (priv->model->has_sensitivity_control) {
++	if (of_property_present(node, "microchip,calib-sensitivity")) {
++		if (!priv->model->has_sensitivity_control) {
++			dev_warn(dev,
++				 "This model doesn't support 'calib-sensitivity'\n");
++		} else if (!of_property_read_u32_array(node, "microchip,calib-sensitivity",
++						       priv->calib_sensitivities,
++						       priv->model->num_channels)) {
+ 			for (i = 0; i < priv->model->num_channels; i++) {
+ 				if (!is_power_of_2(priv->calib_sensitivities[i]) ||
+ 				    priv->calib_sensitivities[i] > 4) {
+@@ -254,32 +257,31 @@ static int cap11xx_init_keys(struct cap11xx_priv *priv)
+ 				if (error)
+ 					return error;
+ 			}
+-		} else {
+-			dev_warn(dev,
+-				 "This model doesn't support 'calib-sensitivity'\n");
+ 		}
+ 	}
  
--	/* Disable autorepeat. The Linux input system has its own handling. */
--	error = regmap_write(priv->regmap, CAP11XX_REG_REPEAT_RATE, 0);
--	if (error)
--		return error;
-+	if (priv->model->has_repeat_en) {
-+		/* Disable autorepeat. The Linux input system has its own handling. */
-+		error = regmap_write(priv->regmap, CAP11XX_REG_REPEAT_RATE, 0);
-+		if (error)
-+			return error;
-+	}
- 
- 	return 0;
- }
-@@ -308,7 +314,7 @@ static irqreturn_t cap11xx_thread_func(int irq_num, void *data)
- 	if (ret < 0)
- 		goto out;
- 
--	ret = regmap_read(priv->regmap, CAP11XX_REG_SENSOR_INPUT, &status);
-+	ret = regmap_read(priv->regmap, priv->model->sensor_input_reg_base, &status);
- 	if (ret < 0)
- 		goto out;
- 
-@@ -362,7 +368,7 @@ static int cap11xx_led_set(struct led_classdev *cdev,
- 	 * 0 (OFF) and 1 (ON).
- 	 */
- 	return regmap_update_bits(priv->regmap,
--				  CAP11XX_REG_LED_OUTPUT_CONTROL,
-+				  priv->model->led_output_control_reg_base,
- 				  BIT(led->reg),
- 				  value ? BIT(led->reg) : 0);
- }
-@@ -374,6 +380,7 @@ static int cap11xx_init_leds(struct device *dev,
- 	struct cap11xx_led *led;
- 	int cnt = of_get_child_count(node);
- 	int error;
-+	u32 duty_val;
- 
- 	if (!num_leds || !cnt)
- 		return 0;
-@@ -387,15 +394,18 @@ static int cap11xx_init_leds(struct device *dev,
- 
- 	priv->leds = led;
- 
-+	/* Set all LEDs to off */
- 	error = regmap_update_bits(priv->regmap,
--				CAP11XX_REG_LED_OUTPUT_CONTROL, 0xff, 0);
-+				   priv->model->led_output_control_reg_base,
-+				   GENMASK(min(num_leds, 8) - 1, 0), 0);
- 	if (error)
- 		return error;
- 
-+	duty_val = FIELD_PREP(CAP11XX_REG_LED_DUTY_MAX_MASK,
-+			      CAP11XX_REG_LED_DUTY_MAX_VALUE);
+-	for (i = 0; i < priv->model->num_channels; i++) {
+-		if (!of_property_read_u32_index(node, "microchip,signal-guard",
+-						i, &u32_val)) {
+-			if (u32_val > 1)
+-				return -EINVAL;
+-			if (u32_val)
+-				priv->signal_guard_inputs_mask |= 0x01 << i;
+-		}
+-	}
+-
+-	if (priv->signal_guard_inputs_mask) {
+-		if (priv->model->has_signal_guard) {
+-			error = regmap_write(priv->regmap,
+-					     CAP11XX_REG_SIGNAL_GUARD_ENABLE,
+-					     priv->signal_guard_inputs_mask);
+-			if (error)
+-				return error;
+-		} else {
++	if (of_property_present(node, "microchip,signal-guard")) {
++		if (!priv->model->has_signal_guard) {
+ 			dev_warn(dev,
+ 				 "This model doesn't support 'signal-guard'\n");
++		} else {
++			for (i = 0; i < priv->model->num_channels; i++) {
++				if (!of_property_read_u32_index(node, "microchip,signal-guard",
++								i, &u32_val)) {
++					if (u32_val > 1)
++						return -EINVAL;
++					if (u32_val)
++						priv->signal_guard_inputs_mask |= 0x01 << i;
++				}
++			}
 +
- 	error = regmap_update_bits(priv->regmap, CAP11XX_REG_LED_DUTY_CYCLE_4,
--				CAP11XX_REG_LED_DUTY_MAX_MASK,
--				CAP11XX_REG_LED_DUTY_MAX_VALUE <<
--				CAP11XX_REG_LED_DUTY_MAX_MASK_SHIFT);
-+				   CAP11XX_REG_LED_DUTY_MAX_MASK, duty_val);
- 	if (error)
- 		return error;
++			if (priv->signal_guard_inputs_mask) {
++				error = regmap_write(priv->regmap,
++						     CAP11XX_REG_SIGNAL_GUARD_ENABLE,
++						     priv->signal_guard_inputs_mask);
++				if (error)
++					return error;
++			}
+ 		}
+ 	}
  
-@@ -561,41 +571,64 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- }
- 
- static const struct cap11xx_hw_model cap1106_model = {
--	.product_id = 0x55, .num_channels = 6, .num_leds = 0,
-+	.product_id = 0x55,
-+	.num_channels = 6, .num_leds = 0, .num_sensor_thresholds = 6,
-+	.sensor_input_reg_base = CAP11XX_REG_SENSOR_INPUT,
- 	.has_gain = true,
- 	.has_irq_config = true,
-+	.has_repeat_en = true,
- };
- 
- static const struct cap11xx_hw_model cap1126_model = {
--	.product_id = 0x53, .num_channels = 6, .num_leds = 2,
-+	.product_id = 0x53,
-+	.num_channels = 6, .num_leds = 2, .num_sensor_thresholds = 6,
-+	.led_output_control_reg_base = CAP11XX_REG_LED_OUTPUT_CONTROL,
-+	.sensor_input_reg_base = CAP11XX_REG_SENSOR_INPUT,
- 	.has_gain = true,
- 	.has_irq_config = true,
-+	.has_repeat_en = true,
- };
- 
- static const struct cap11xx_hw_model cap1188_model = {
--	.product_id = 0x50, .num_channels = 8, .num_leds = 8,
-+	.product_id = 0x50,
-+	.num_channels = 8, .num_leds = 8, .num_sensor_thresholds = 8,
-+	.led_output_control_reg_base = CAP11XX_REG_LED_OUTPUT_CONTROL,
-+	.sensor_input_reg_base = CAP11XX_REG_SENSOR_INPUT,
- 	.has_gain = true,
- 	.has_irq_config = true,
-+	.has_repeat_en = true,
- };
- 
- static const struct cap11xx_hw_model cap1203_model = {
--	.product_id = 0x6d, .num_channels = 3, .num_leds = 0,
-+	.product_id = 0x6d,
-+	.num_channels = 3, .num_leds = 0, .num_sensor_thresholds = 3,
-+	.sensor_input_reg_base = CAP11XX_REG_SENSOR_INPUT,
-+	.has_repeat_en = true,
- };
- 
- static const struct cap11xx_hw_model cap1206_model = {
--	.product_id = 0x67, .num_channels = 6, .num_leds = 0,
-+	.product_id = 0x67,
-+	.num_channels = 6, .num_leds = 0, .num_sensor_thresholds = 6,
-+	.sensor_input_reg_base = CAP11XX_REG_SENSOR_INPUT,
-+	.has_repeat_en = true,
- };
- 
- static const struct cap11xx_hw_model cap1293_model = {
--	.product_id = 0x6f, .num_channels = 3, .num_leds = 0,
-+	.product_id = 0x6f,
-+	.num_channels = 3, .num_leds = 0, .num_sensor_thresholds = 3,
-+	.sensor_input_reg_base = CAP11XX_REG_SENSOR_INPUT,
- 	.has_gain = true,
-+	.has_repeat_en = true,
- 	.has_sensitivity_control = true,
- 	.has_signal_guard = true,
- };
- 
- static const struct cap11xx_hw_model cap1298_model = {
--	.product_id = 0x71, .num_channels = 8, .num_leds = 0,
-+	.product_id = 0x71,
-+	.num_channels = 8, .num_leds = 0, .num_sensor_thresholds = 8,
-+	.sensor_input_reg_base = CAP11XX_REG_SENSOR_INPUT,
- 	.has_gain = true,
-+	.has_repeat_en = true,
- 	.has_sensitivity_control = true,
- 	.has_signal_guard = true,
- };
 -- 
 2.54.0
 
