@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-312765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312766-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wZiCBig3MmqOwwUAu9opvQ
-	(envelope-from <devicetree+bounces-312765-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:56:56 +0200
+	id pqfeLnA3MmqjwwUAu9opvQ
+	(envelope-from <devicetree+bounces-312766-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:58:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACD04696B13
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:56:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B07D696B2E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:58:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=gZDQfNqS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312765-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-312765-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=CehtRShK;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312766-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312766-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 353E3300B5B4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 05:56:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CD0E3301CCF3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 05:58:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C2A53AFD06;
-	Wed, 17 Jun 2026 05:56:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66DC53AFD1E;
+	Wed, 17 Jun 2026 05:58:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3BE6311C1B
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 05:56:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC09D46B5
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 05:58:03 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781675809; cv=none; b=iKa4bnpmm7/kmcJnn1f41I9jMaxOxsld7ar1IdwrShPv5p5kNjPSxSgIwNc2F1VwX5vCWxl/vPvMDsWspBguFKNzpCP8rR/yFKJ5N70D+nQv3EnprLZfD6mcpl9/s5zGaHMyJoMTzU3hk7tPELyQMZtHzeboCJ2Zx78aWvpgeGE=
+	t=1781675885; cv=none; b=duqHKQ32uJTYnSMGeXj9nJUyNs/yC7/O2dERTqF9xdVVkyCFCROy6BFCFVnGoktMoL1SxTOrbcxIRkh1Z7vI6Gpy0mTC4ISvppYxl7R61xlYiII5PH4JDypoQSYCMocK3AE3H8f//JTEz1pvahUcLRf0rL/n+VvB+iq8WbH0sKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781675809; c=relaxed/simple;
-	bh=U4jb1XEnfVj/10uymo5MpBUZyQ6pA2zJ8zU684ftx+c=;
+	s=arc-20240116; t=1781675885; c=relaxed/simple;
+	bh=ifP1Jm9pQSvr4BBArcOmxENG+EW9+nj1rdJ9cv+TplY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dhqQVG55BD8InPhCD4QGd82lBei7NZPHsiz4HehEVQHj5uRFdjup4J4cMvVnmdU3Vr38zwGVk8ia9IdedJJiYS7R6Qf7A+PehoFfZ1nWTHRdeFirDOk32pxeE/pLrBxFXluX/54G5kuYkfnPq3BKwJP9dl/21tkRb3SBFgxF7IQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gZDQfNqS; arc=none smtp.client-ip=209.85.167.53
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5aa5ce4904eso5486196e87.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 22:56:47 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=s7eM73yeK2rELBNKjGWAU2cANy4DVcZizZtS8OFpZfVGYdDI15RzTO6yf0Qb5xu61oaLHYdvWlrI7rD71t54jlknY/Y5GB0EoUGeGnWawnjyh79U3/yftmxgR6pN0I9r6Ncfy33SzXgQP5KSrs2jYH32AdSsbbDTlcM45kOkZF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CehtRShK; arc=none smtp.client-ip=209.85.167.43
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5aa61e3d3f3so4543481e87.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 22:58:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781675806; x=1782280606; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1781675882; x=1782280682; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fZAGUj+0EAl5ib1P7hbkGJIeLUQqhxo3UG278FtSsv8=;
-        b=gZDQfNqSiBnlo6rLr7XiUn3jOb6HpRoCzbGZXX2HgXlljePUCKSjZR5i0r3wikIwiI
-         7/oRNgOVW0feLEk+ylHc84xF611pPUHgRrPh5dV5QgAy1neHms0UbPORq+o6v+D/or8B
-         crWimb3Gd7c8bbCYgj+nfcZe1/2Cm5OBMtYeX3SPNlnAlFF8bT4Y5/PBgc2iQyCxjupA
-         IDDGJjlkcgEqY9xN2/YsPEMHpXuCbHuKD4eZvR/X92aHT6CZtnTdPrz/bSpx1t1rWBV9
-         IcbsfqnUNtI5bxayqE0+Twm59pIKEEauRSsV6cHpVso4qBJMYZfBoOpNO81d+ZsyiXdh
-         tlHw==
+        bh=lVtSo+MU4Z53OtbGrnPGc6UwBuGxvobCSSEYgeFvA3c=;
+        b=CehtRShK2t1SxqRDb131sNl0Uu2ULwdKTO3KRBErhU7LcHaSMQcVan4XsU8Abt6ACI
+         iD8Pzn1RJHwLa3jflFdg9oeHbirC7FP7jkEP3Pi0QPHbOBbKJg2NFCrHiYal+5qLx+08
+         i2RqGKTbTJdUxjPZqGEANV7PDD3YCCjq4HKrKsPeWTPHXxOAaYv+ttBUx+6uyeULroem
+         InoNfMJdgNUcI5jbfDG82tptFfb79jXcLrykfyo4pG2lR67kCApKeGjvihok+rIVSfbd
+         HrV2RlgZPzNw6EEl7joeX19ZEpyj4KjEUB3zr8lTzd58JKYJCOdbIqYUwxjiUWJNU0L/
+         kIKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781675806; x=1782280606;
+        d=1e100.net; s=20251104; t=1781675882; x=1782280682;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fZAGUj+0EAl5ib1P7hbkGJIeLUQqhxo3UG278FtSsv8=;
-        b=VBuKLndtRc7bSm+7rt6LFp/HwYNuObwBjYMHEAUOrmwpmfVvhEwkgV7ODapAk8R6Og
-         /0dzf62hbO3R9yCoHzDLoamS1AzmYbH8T2EHGfMUAV6LnffUU6LTE0Mgs2Kmn6CqzAZ8
-         RcWamSuloZACEfc2fGuS+bCiNTb7gc/Bd6WD46AlJUkksOYshyVc9MFxqKQU1KaD7Kih
-         fDbM4mjuw//PQI3B958AMk/hkkG2nLVdfrQ5QdeRANNhY6D6Im1VBo8DzGLQQaM3TbW9
-         ho72Nv+zDdU5hKPg9rwZ7F7WPHXRDv/ZOabfWiuoYNjAJWWGGFuLJ3DD3QdrJYKxXILZ
-         z7hw==
-X-Forwarded-Encrypted: i=1; AFNElJ/3RXxeamw1Rd1oaTP9mlvcZZHyFk70kHK5VDNy0Cv9y7gMSQ8jfDYXKusNu2t6kr2hHVDzXYCenh77@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWPjpgCUVp9N9RoWJ98mACIDwObedm+WZDKxwnT7Dj8XAt4Ilb
-	gpW1U+mplJkFzYU7ha/0AqCgyFQiX74ifm6Zqk2B99e+NOSh/YaIQ/z8
-X-Gm-Gg: Acq92OG7NnENmMnza98vZeSyijA7wtoYlUHV1JdVWFt0ZQU7g6On8YU6uvRU7flAGrs
-	PgxgvQnqksOUmVfanp0Y+01a/1gIsAmXHdAA7q2aBZErVWA2qWKB7PF0fAG/THzrqkkS/4KONg6
-	3ew4x8RjnyrmoXfzkMXQauh5xm4fIykk7zsWjKJ4NhIelRYZ0DCun22CpU/EEyTUGDEBs+9wqF2
-	vWbUpCjUEAOe8+cBnmmfb2X5TPJ/Xo6Zprw5mcZWCpdvrAwA77d+bjiVA+yrCpUMvalhFmImvw8
-	dCH3KqHuEYrnXr44Mby/cTcuUF/FsCZobHv6qkl5BKn8tSdSbqDkZaf8YcC7XND4HzjOcnnfJrd
-	KiBfIDBxbw5SLjHuWNDj5ksP9U4Fx0w9mKfqBDIB1FLinrn3E1Nyps6wmQQBAs1QdD8gXB1A1hJ
-	nzfGUi1vdoAeKXuJjna6LGLTKjBZF4C+slEDvqBzCiPdLeGswARy4+OFxF/0pl+6d5+Uh4rw==
-X-Received: by 2002:a05:6512:3d87:b0:5ad:3035:c2be with SMTP id 2adb3069b0e04-5ad470250fdmr678739e87.51.1781675805782;
-        Tue, 16 Jun 2026 22:56:45 -0700 (PDT)
+        bh=lVtSo+MU4Z53OtbGrnPGc6UwBuGxvobCSSEYgeFvA3c=;
+        b=QTjv1kxgyPnT/lasTA6Qh8VMHD5FJEjYa0p7sHKxPd2ZNEXBAauTo5joG+k/qK9Rri
+         eDBCeWIHcd9uNgStBPfvgGZHEuTmG5GYHLm6l7KLF5yKTWBPzb/WVV7BX1h6kszEJpL0
+         hF1h3DalHupWTRzpVCsWANkKqzJdJpCt9elg67BmCQIzTqJq0+5gElytXCnW/ifULDim
+         duYupxD541FUUDxqkWFtatJwEPDd5iOEDHwROIp6uMnZUOMZran7vL5/9VI3tV6rF0An
+         htO8A9yP8rg1bPHOslK6v4bdkDZg3yNucgP/qGlgtWrMNm2l3WfW0wcnCV0O3VcS2HyF
+         fBeA==
+X-Forwarded-Encrypted: i=1; AFNElJ/Xe+wLzISBs9Bz4cIMuFeHTgnfA9mS1XtZ/VvKOX+hEzkDw710VigDPskKVBsRhuUgkmjlyeNlRyWG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0b+TqTTLO8Zxiw3WScH9oQXgryedA+QV1iOXACsVCRIBzMNqh
+	6AS4kfLBXMifUVuJduKvPYRJDwn1CZ+qZbIBpvYCq7iVfYCtidzIvMnIG6Cfg8w5
+X-Gm-Gg: Acq92OG6ZCiYaHo0Vt1balm4GsCk2zlDy6WnhsKB+T0T+pYCdscBevvAt9RaWA7rJsy
+	Gf17f9/UrRuiYFoYJPJKgu7cIBrZhUvkt/Kuuj5NS8TaXTvvhLG4qRyM7svMfH4q+Iow7eVrSCm
+	mMvM3lQ4XFLRSoUscauyjGUZz3Nry0k2S03jYe7k/WtZDt138f4tPuAgInufLdDpE7lDt7gqEuk
+	dJRhujK+eOXIQcO+UtgBBSRMQR1HfEXI+iop6v3OKCcdKtVKeZaoLethkg59Jx0MEJS0TID5923
+	zR4h4O9sz+xQMST6od7/H9uB2QoKSsq7b1KAGcvOS95UNrsFjFxdEOnoXLvE5pSco4WF0OnFIpF
+	TszAk2eJdNYO+DLjC+K3xUAvY2ejBqBfocArbskqP0nytKKjf8LcLXaQrnkNXNKz1jweG2vDI4G
+	NdDeGoR1OW5iMjUtzciNzWZPrV004U5rfgUIv+FNr122eEakbJZJKUWum+01dDPi2CLlEu2A==
+X-Received: by 2002:ac2:547b:0:b0:5aa:517b:65bb with SMTP id 2adb3069b0e04-5ad47ffe467mr313621e87.37.1781675882037;
+        Tue, 16 Jun 2026 22:58:02 -0700 (PDT)
 Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5ad2e162222sm4195880e87.17.2026.06.16.22.56.44
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3995c19ad3asm12697871fa.31.2026.06.16.22.57.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jun 2026 22:56:45 -0700 (PDT)
-Message-ID: <7e430392-1b27-4c3d-bfc7-1311b9838156@gmail.com>
-Date: Wed, 17 Jun 2026 08:56:44 +0300
+        Tue, 16 Jun 2026 22:58:00 -0700 (PDT)
+Message-ID: <a7f0ca96-d6bb-4106-ac47-b9f646fa26cf@gmail.com>
+Date: Wed, 17 Jun 2026 08:57:58 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,10 +103,10 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
 References: <cover.1781591132.git.mazziesaccount@gmail.com>
  <8ca875d21f2d9a4d53a87b47a5e6efab48266178.1781591132.git.mazziesaccount@gmail.com>
- <e1673147-a51f-460c-ad09-21f54d3d6803@roeck-us.net>
+ <d66b9de3-db06-4f83-9c2a-b45e341bfc9c@roeck-us.net>
 Content-Language: en-US, en-AU, en-GB, en-BW
 From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <e1673147-a51f-460c-ad09-21f54d3d6803@roeck-us.net>
+In-Reply-To: <d66b9de3-db06-4f83-9c2a-b45e341bfc9c@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
@@ -115,11 +115,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-312765-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312766-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:matti.vaittinen@fi.rohmeurope.com,m:matti.vaittinen@linux.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:wenswang@yeah.net,m:ashish.yadav@infineon.com,m:kimseer.paller@analog.com,m:cedricjustine.encarnacion@analog.com,m:chris.packham@alliedtelesis.co.nz,m:Yuxi.Wang@monolithicpower.com,m:hsu.yungteng@gmail.com,m:tomtsai764@gmail.com,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:hsuyungteng@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[mazziesaccount@gmail.com,devicetree@vger.kernel.org];
@@ -139,15 +139,15 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ACD04696B13
+X-Rspamd-Queue-Id: 1B07D696B2E
 
-On 16/06/2026 17:08, Guenter Roeck wrote:
+On 16/06/2026 17:15, Guenter Roeck wrote:
 > On 6/15/26 23:44, Matti Vaittinen wrote:
 >> From: Matti Vaittinen <mazziesaccount@gmail.com>
 >>
@@ -167,32 +167,21 @@ On 16/06/2026 17:08, Guenter Roeck wrote:
 >> Assisted-by: GitHub Copilot:claude-sonnet-4.6
 >>
 >> ---
->> Originally this patch was AI-generated. I did pretty much re-write the
->> probe changes by hand, and also fixed some of the coefficient math
->> afterwards :/ But yeah, this one was AI "assisted". :)
->>
->>   drivers/hwmon/pmbus/Kconfig   |  4 +--
->>   drivers/hwmon/pmbus/adm1275.c | 53 +++++++++++++++++++++++++++++------
->>   2 files changed, 47 insertions(+), 10 deletions(-)
 
 // snip
 
->> @@ -655,12 +681,23 @@ static int adm1275_probe(struct i2c_client *client)
->>           break;
->>       case adm1272:
->>       case adm1273:
->> +    case bd12790:
+>> -/* The BD12780 data sheets mark TSFILT bit as reserved. */
+>> -#define BD12780_PMON_DEFCONFIG        (ADM1278_VOUT_EN | 
+>> ADM1278_TEMP1_EN)
+>> +/* The BD127x0 data sheets mark TSFILT bit as reserved. */
+>> +#define BD127X0_PMON_DEFCONFIG        (ADM1278_VOUT_EN | 
+>> ADM1278_TEMP1_EN)
 > 
-> Please don't overload the existing case statements.
-> Just add separate case statements for the new chips.
-> 
+> Please don't use such placeholders. Just use BD12780_PMON_DEFCONFIG
+> for both chips, similar to how the defines for all other chips
+> are handled.
 
-Hmm. Ok, although, here, same as with the BD12780, I would like the code 
-to clearly show that the BD12790 is very very similar to another IC 
-(adm1272). When we have own case for it, this information gets kind of 
-lost as these cases are a tad too long to easily spot the differences. 
-If there are any ideas how to ease spotting this while having own cases 
-- I am keen to hear.
+Ok, thanks.
 
 Yours,
 	-- Matti
