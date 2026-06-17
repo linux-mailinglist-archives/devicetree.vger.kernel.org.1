@@ -1,376 +1,357 @@
-Return-Path: <devicetree+bounces-313080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313082-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iXU1Ciu/Mmo65AUAu9opvQ
-	(envelope-from <devicetree+bounces-313080-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:37:15 +0200
+	id ByRwKc/AMmpt5AUAu9opvQ
+	(envelope-from <devicetree+bounces-313082-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:44:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E4B969B0E1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:37:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F1469B184
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:44:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("body hash did not verify") header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=UQtzHAMO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313080-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-313080-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=nxp.com (policy=none);
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="NXrOJvx/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313082-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313082-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1045D3010F08
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 15:28:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B762730841F8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 15:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F4248B395;
-	Wed, 17 Jun 2026 15:28:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D2248AE3D;
+	Wed, 17 Jun 2026 15:29:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011050.outbound.protection.outlook.com [52.101.70.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEA3948B39F
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 15:28:25 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781710114; cv=fail; b=XxRIkWwED+PwFcFRtsFpYojhWffx4EH0v5LU0tDXWPy9CnRJbcmwEvWw4Ah2KaXqyqsJaa7u1goY6BBK1iQ2faCB5fANN8o8RYmEyej5dXV1JX4KRsqP+G/9OVRpGhGiICyU/dGYrQYKB89ksoV2HPJfu6Hax0DUTk1PJkgFHu0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781710114; c=relaxed/simple;
-	bh=Onvy3w98THPQaa4MTf5GodAd1wsCVy/rFY2ZSCn4M9Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=cLpwgZXrvEppIwc1w7NnMgTxD0mqlxL8AHiXRivnI5W09F5GRlE2POhOLz8Zz0r2JUc3Dm2njo6L1gh7OwB6cXS9buOFR6hjyqsINJST+UIvgeX3Y0+BgTU9wMbevRZ6comOgNkgk2pYCjzxrFLqk8Wa1Yz1n89hmnahBH9CbTo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=fail (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=UQtzHAMO reason="signature verification failed"; arc=fail smtp.client-ip=52.101.70.50
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pPaIw8HzJj6grg3dZoyecQPGDOSWEY7PFxOUwz9RsqGr4aDKzGF+bRrnfM0FpXX/j2TDPR/66Ngl2ez2Bb44QljmR8ZuAQ40ngqmQ12BW5Rei8ggLpJc5B/bxcmVQLEZTKyG3xH/i6vM9UIc1YDpJBSTSQ+2XGuySLIpVo83dwUVHn9wFiLed4Z/p6YkKZHpoqoWRPkEbsekNOvVi0F4Mv0Of9tr5sV6kEJdKRdV+4BgvXCOAN8ZxcJI+G/vcz5QEe0WqvJ2cMrGaZmVrznh1WDwL5CZp35L90eg+7TXUmN69aspkVpklQHa10Lt47IKGiyoK6F0Gu0aMy5po9XAQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bI2edrsASfwwaCCmDFAvAA09SEz83RRNFSPGhlB+H0k=;
- b=DawAJpEzP6aiGKZsBc9yVwG186B8arKrY9znK60dglee/2ZJn8AdcT4cX0e5bjLUt/y15ZT87+RgU5ReCYpjk43C9jp61A9s8xFZMkCN9JTbVMd4ykmNNuHLy3KhIFpRuytF3zbv4dmRw4Ifqu+UjqjFPU1eEe4tRD9veBrCMLQnj8bENDg403qdUsIl7eBm5RVo/I2sPEQz0nO1qNHnSpTRpMit6WBjc6yG5yvFLm5W4Gmdk2rMYBFUULh5KYOy0wLw60sn/7dwvIId88W5y7bmSksBRN8otyEYe2XOCzB9AuyvqJxabpJ2DtkPrJ9U/NsuLnYiHR4uM9UNQsDNrQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bI2edrsASfwwaCCmDFAvAA09SEz83RRNFSPGhlB+H0k=;
- b=UQtzHAMO/zth3oloDmd70V4CUakx2h8w1oPvFXa97mFzsaUY8DtNLXv1ZdeyWcQ8EY/3YWtiXkHQc0rMQa2Jd59zC+WVRBPMiiGqC5jBWpvs9nXfCpOrRT5rW+2UsZpSr4ZBzpwm7E3mHvgAdhf+2g/XxmSMEydsNQiWv0TV6UINZIwVuE3lTs270lxY/Z1PZWYx6CZiVmb4vgX9S0FhSw2r5/Ppl+2i1ATeYVddkodKgnYHJjvmYkcgZa9Ooey/fOMmqTqn7vtg+RmJe521H5UAJLucpU8Ri14EJ01QDRyhT5YX8tpSyyjLfxYN0+fYXYQ2nU+nCcpqK994x8ZYLA==
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by AM0PR04MB7171.eurprd04.prod.outlook.com (2603:10a6:208:19c::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Wed, 17 Jun
- 2026 15:28:21 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0113.015; Wed, 17 Jun 2026
- 15:28:20 +0000
-Date: Wed, 17 Jun 2026 11:28:13 -0400
-From: Frank Li <Frank.li@oss.nxp.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: Lakshay Piplani <lakshay.piplani@nxp.com>, devicetree@vger.kernel.org,
-	robh@kernel.org, linux-i3c@lists.infradead.org, Frank.Li@kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH v12 6/7] i3c: hub: p3h2x4x: Add support for NXP P3H2x4x
- I3C hub functionality
-Message-ID: <ajK9DceV1NICNuus@lizhi-Precision-Tower-5810>
-References: <20260617110355.1591844-1-lakshay.piplani@nxp.com>
- <20260617110355.1591844-7-lakshay.piplani@nxp.com>
- <20260617111846.EAB851F000E9@smtp.kernel.org>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260617111846.EAB851F000E9@smtp.kernel.org>
-X-ClientProxiedBy: SN7PR04CA0231.namprd04.prod.outlook.com
- (2603:10b6:806:127::26) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84E847DFB3
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 15:29:51 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781710199; cv=none; b=E9AiNawWO0ihKmtXzBw1Ryvkv5D1yK9yTI3ZkBcjoLs7ULn55oBhKqmHlNgr5MPMysyg4ns+d4er5b80VEv624hxF33hZRC5Ja02THkvmAWwkCHiWwZZ5/QCJDDPBKUjAX6Vqs7NyWdhxzMKh2v81llUsaxL4Xk64e7J5ZyDvek=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781710199; c=relaxed/simple;
+	bh=0cjHTkDEf6h6LbRCweZdAbvNoN3gjnBVU5vCNl3E9To=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=V+4i9oMXhsWsZCCJqgoKaNTohquT8WBg4Rki3Jvg0f6TaX/p9tOL+vaWHN8eT+xJ+XhTBLNf/9gtr53hpE/a9olqw8QTcKaYnY/emx5hP7xsE+i8gYKbPT6dzev+Uat1Ierm3xXDdXqBQczM1gbg0jhoSpdWTPLm7GcdoJmgZIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NXrOJvx/; arc=none smtp.client-ip=209.85.210.170
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-8422871b42dso3746804b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 08:29:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781710191; x=1782314991; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=T67q/8pDuLgsLM/EtWC++0s2y9IRennHDzBfWjmX57o=;
+        b=NXrOJvx/z8cpXGl4pjLwZS03kRim9gJlw0mfIolUO1UhYlGVYWAh3q+umMqdJWMNXU
+         JEkkZ2j7OA0WxJiHS0GnAA4sj7a04Ore67vD+kfbAipBb9R54N0uyXcc3MaDAnqCJemw
+         s0QzDlb6e1A32bxk95yEMh1ktauuUwnMSScLNmDIp+dXzYRz4C+5orQ4zWfunQElHfbU
+         lnE3G1dxfCgH1Y/bXE3ALG3mXSR48l0SG3VjdxPonucniMgb5ugBX30Y5ufhllkTpg8A
+         w1vzjvhmv3+QFtmKDVo8CaH/7ZXc+IcWAIPh0tBPBjsM8nN0u5Di3Qk5Y9yhTW2mG6S5
+         oBTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781710191; x=1782314991;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=T67q/8pDuLgsLM/EtWC++0s2y9IRennHDzBfWjmX57o=;
+        b=fG8TDUVb5UiRSkUsEbqw2gXNCJ3p0dYl/PmPQHbk2eteONM3l6LhqODrbkzsBpK7Uc
+         PqlXF0SL4MB2mvjNVhXGCWpRAdnw+anqkutJ0gf5sRnlt3O5THsri4DHA9vXBGDXXhbk
+         0rsJYKvsjFNfCuwFwdhgZB/jnZ3QPvctXD5IAs8jvz9xBZHJRbLI7UARoRGuONC6lOC5
+         XqYLn2ftdcbSvhIm8VyYtASDVlLmtieDV4+Zpdwx8qr2fAWl9HCm6zFLQ+ozCo0C9PXk
+         ssio9AdPvBwcU7d1YYRF/kOtn57PYHo1cWTFNi1Rvhbs6ZnRc5zCci+LVtCeVtwO8MtA
+         M01w==
+X-Gm-Message-State: AOJu0Yy14RMd69bUvb74NCpXlL69Luraz1rHBbM+4MxDqRGXVMGkeLYZ
+	iUyBk9w5yaiKX9qmuG7Kj44/ao+MSdXflM3xDHBIReikJAwY0K2F7CA/qik/6kfT
+X-Gm-Gg: AfdE7cnBeF5CWP3kghexRQn7RB6b6JrEITbNruJ6sLfUW+nlE7s6qC0A76LZ0B3JHvV
+	BPdoKhvI2SPFvDpS+BqQwnrQLzJlXg8Fq+jLPWkgvTo4+aXigWd2VMzStSqZcFc5jAkyoDNwPL+
+	0crLOL3EaulXeWFWMVg+xEJTbSAz885kPaSTGWpCG5SMAEQFDbZ4iYVS4ZmqsnLLJ2z+ELn9hIz
+	w2RBLkTwz+3w9z9Ob4rqinBacNZsnvA/7dvFGZ5j9x3Y0pw1b8N+/9x+Syvlp0/ZzWU9ZxgZTsp
+	93mJZZd8zVnpfetZEc6qRBCDyA+gac7SUaxDAj0HVjNdeMFJZyMERbiw8Ck9dT+vpZGJ41pK0eN
+	565lS3sACMjQ19zgkFIUjjgzfHCkrvMWByqqMiGcjz3f+tRWfCh+ZmP8mQSTUXzlsInK8Trdrac
+	j0FZAfFtA87gOe7TTZ+i/w+3NQscI=
+X-Received: by 2002:a05:6a00:400b:b0:842:4982:81c with SMTP id d2e1a72fcca58-84524495b3fmr4358799b3a.20.1781710190624;
+        Wed, 17 Jun 2026 08:29:50 -0700 (PDT)
+Received: from vbox ([117.215.38.226])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8434b040718sm17088708b3a.51.2026.06.17.08.29.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Jun 2026 08:29:50 -0700 (PDT)
+From: Tejas Mutalikdesai <tejasmutalikdesai@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	sstabellini@kernel.org,
+	Tejas <tejasmutalikdesai@gmail.com>
+Subject: [PATCH v3] dt-bindings: arm: xen: Convert to DT schema
+Date: Wed, 17 Jun 2026 20:58:30 +0530
+Message-ID: <20260617152830.51382-1-tejasmutalikdesai@gmail.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|AM0PR04MB7171:EE_
-X-MS-Office365-Filtering-Correlation-Id: e6938f9e-15b3-4fb0-6c4a-08decc850fe0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|366016|19092799006|23010399003|1800799024|18002099003|22082099003|11063799006|4143699003|3023799007|56012099006|6133799003;
-X-Microsoft-Antispam-Message-Info:
-	LoLBNKqUkPDGD6DWpOxlljvG3glxNDJ/LjrrPr81Xaqzmz7PVPbq11alXuczMhSYHN+irs0s0grj+gpwaGAsCc8zjFlmDPPaYFScGdDobdJd+8NbyIBgyfsb32jSc5QYGqWXRu804ICtK9X0AvMkhA+/jNGHTS0J687GECP+ZL29ih1Aa0FaRKLElfipMNQbHYmEqjoLhcJagfGerDxg0RMcir4t7xTOdpj2dx31FGpyr9yEpF+6VRffIkCjturxLN6yZR1D3zvxEF26flxtksu7Ia9X1xEwQasGCwXeWdk7yM3dehz/Q2kGQbc7CNbPDOjBaa9Pe4lwdWJQMi6mcQO/GsDlBJCjKeNW9PNArPbfy1um/Hq+AboZ2/rVqIK7cKb0SF+IxOT+rqHz9CwVCjNzbHkEvygIs6GdopDzyJRgPfLFyi6yR7dxNfCFadQwmm0DF5sXGpIq8QNVprwHcI/Xwd0CMLu2LJ5OAzITRyv4/2qJm/UbwIdR/5EedD1YVK5GWTEw/qY64F4gLA7JKsXpgCQ4/PJKoQ4S02x559V5xOlJQLc36mTO2+W0+YWsOPdKcQ9+S1i8lmo+kZ789sz1+i0Rnrdk6B5K8SltIk3jAS5fcE/jOjal+JvX4Todwb/FtkeTOMQOC9sYScg9/g==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(19092799006)(23010399003)(1800799024)(18002099003)(22082099003)(11063799006)(4143699003)(3023799007)(56012099006)(6133799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?iso-8859-1?Q?zDNgyPT9D2duIBghvIbAAQl4AVo6ND8nSm9XIlloIuccSfS5CS5dfueBht?=
- =?iso-8859-1?Q?YRaImfMfhs2ODDAd69HhRgFbrcwTH4VwwsjZmas0klqsTKZPDVHk5n/Xim?=
- =?iso-8859-1?Q?9unnWcvl53nBGhc+7mpC5LhWVXcHInN9ggQnvkF5qUZonjPuTeNd8XU3IW?=
- =?iso-8859-1?Q?1BfClExwC3dmAoy90ov+nX+psXdkSlaVLhB8bS7WSwx69ER1p69tVMCrE3?=
- =?iso-8859-1?Q?h/nXZkTxgyXLD5VHxh5y17QuJLs1a6kVSfoZaFKL3yb949wCQxVYuOr+sd?=
- =?iso-8859-1?Q?vRJPEQ2J3IKTd73+McZ+9L4RmLhEQf1VqQskVpsoQNpQjR3BpPgs8vszR8?=
- =?iso-8859-1?Q?WSi9GaIGXXZwe3pmBIupAM6AMjGIlOF9noRKUviccHesxttt6epflS8sUV?=
- =?iso-8859-1?Q?70YbYsNK/xndJG9Z/C/iU51R7Ep2MAnT2npDyCz17ydMMmo8VUjTRL9IcC?=
- =?iso-8859-1?Q?OvTUnBalWk4R/yhBV58hCFDG5bYQx2RVx1a7Qh7dpe6iH4EU1mzarVQCiM?=
- =?iso-8859-1?Q?gdAiAeRlykKsrtjtsjz/C3c1Kgx3fIaGHB3v6g/bMHCZC3XmqpLz4EURci?=
- =?iso-8859-1?Q?f/oFjHs61kuctYjy7lR8awfJ4QRLy4LAbz0L+OGoE/eBJthHokVvToZXCJ?=
- =?iso-8859-1?Q?OCkaBiuw9/zyseaNa8DQjwyf5r3QQLbC3dglJdUiHikwvjgWIxBwF5QKzy?=
- =?iso-8859-1?Q?FJJ77+npHoGrdqBogglPIQtH0X6xsrsqmF4PBOillYDXQg4QHIiCb46gUW?=
- =?iso-8859-1?Q?/+Zm3wuAs51lxkDxwvA/mc/MTfW9wMZVrwvQXJlOQ5GEzJU3XMki1qo+5z?=
- =?iso-8859-1?Q?WvH+a2P2LpqPVMb1NN5u7YdE+QVfIPIwBZxetKeanYsHzqKplyhumY9Nzv?=
- =?iso-8859-1?Q?kY6idw1jfd7yoZovQ95G2zNsrQnbG4Fvc1vuy93GqIaPq8qowozDY4THDu?=
- =?iso-8859-1?Q?6y3sVS/I7w7bYm5pnxjS9miQo8qGkGIUkgsUsgWM3i4yf7aQFKDbAJXlDJ?=
- =?iso-8859-1?Q?2sO2Ba4q1fTqtFA5K1OPPAmXxZgOnrMhZ1FuQHsUwqtwtpjkrVzsv8qc8h?=
- =?iso-8859-1?Q?aXJhhUpggqWqjVVhXM76lE/ERsLB6w818fnsFy+1iN1LxKyWZ12XECORHv?=
- =?iso-8859-1?Q?LaF6HM4qbdWGwzqQJGqiQmn46w+KrC0WZbGr8dgO0+f1kk/OyPnqOMUFIN?=
- =?iso-8859-1?Q?Kpoe1qadDzDlRoYAHhUzyKxpBoO7ltB7/LIfn7LnTppA1Q2BiCMxOfIi3f?=
- =?iso-8859-1?Q?GgbwZbzzHWqCo/qoH0wpEH7CHHH0XvcJi9PtPiN9fXRS9FX1RI7z+5p5vC?=
- =?iso-8859-1?Q?5KdYOwUdwjeTU3Hk+NruVAhifIxMh6qnpGGp6KweDr3EemG5jCuqgtFLdi?=
- =?iso-8859-1?Q?vKvjbXOlv98tuee+xsHfz/h3M5f8Czj/LwrHcAE3edlskk4JeNUs1jhqtg?=
- =?iso-8859-1?Q?oB2rgGFSWkHDQ50ECNNsl00CCdXpilkKmtSgvjLL0inDPT0j4oQCioRUX1?=
- =?iso-8859-1?Q?JvqjpI/PSEyiXA1P+JKDm9/iHd0EC3lDQHM0jQtC3fhy0FhFA1F7FZ8A3n?=
- =?iso-8859-1?Q?I5LqBQ3vCNS8vcx4MXTW6scqoqA6FfJykng9k7GRGzTWgJJm74ju5svTHM?=
- =?iso-8859-1?Q?WhKho/pFXAoqJPdi/SPbkuxJxZCTuIBTLOv1Qn3VHowV7+PHpnAA1vmLxJ?=
- =?iso-8859-1?Q?j1pp6rzzw+t421SeyfhW/d1qe8fjZ6j3vMzDtgCpX5HTtKpS80P1B9r0x2?=
- =?iso-8859-1?Q?+EmSN8zzN+iwrzllsKL6OLd5gRAE1VOK27R5h9Mtt5sRNV3nk5YLKaImq4?=
- =?iso-8859-1?Q?FwRl5l/pf7zR6pJzqVTVRiQZD2BzYD+pIBkVC6CflBolUq+d/lza?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6938f9e-15b3-4fb0-6c4a-08decc850fe0
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 15:28:20.5672
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4uJ0aZPotzqgaJoBJuAuL6n8Fa0BfQuyZ29DHxZ64uFOtHT0e3idNdu92EaCUF6ll1T0FNy7EDTPEAj0m+rQZ55/m5CiHYr4/ZAhz8AnAPv6A4dLPDtYxdBiUn4Ixpbn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7171
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.64 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_DKIM_REJECT(1.00)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-313080-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:lakshay.piplani@nxp.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:linux-i3c@lists.infradead.org,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-313082-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[tejasmutalikdesai@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sstabellini@kernel.org,m:tejasmutalikdesai@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:-];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tejasmutalikdesai@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url,nxp.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,devicetree.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,xen.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1E4B969B0E1
+X-Rspamd-Queue-Id: 00F1469B184
 
-On Wed, Jun 17, 2026 at 11:18:46AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 5 potential issue(s) to consider:
-> - [High] The SMBus transaction wait logic uses a fixed sleep instead of polling the hardware completion flag, leading to premature reads of incomplete transactions and data corruption.
-> - [High] Overwriting the parent device's `of_node` pointer iteratively causes a memory leak of the original parent node, a double-free of the target port nodes, and state corruption.
-> - [Medium] Potential `of_node` reference leak in `p3h2x4x_get_target_port_dt_conf()` if multiple child nodes specify the same target port index.
-> - [Medium] The hub's protected registers remain permanently unlocked if the hardware configuration or bus registration fails during probe.
-> - [Low] Comment describes a read followed by a write, but the code implements a write followed by a read.
-> --
->
-> commit 1c982ecf71c6fb3b765caf255191a821a5e37cb5
-> Author: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
->
-> i3c: hub: p3h2x4x: Add support for NXP P3H2x4x I3C hub functionality
->
-> Add I3C hub functionality for the NXP P3H2x4x family of multiport hubs.
-> These devices support downstream target ports that can be configured
-> as I3C, I2C, or SMBus.
->
-> > diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_common.c b/drivers/i3c/hub/p3h2840_i3c_hub_common.c
-> > new file mode 100644
-> > index 0000000000000..05e19bff20d5c
-> > --- /dev/null
-> > +++ b/drivers/i3c/hub/p3h2840_i3c_hub_common.c
-> [ ... ]
-> > +static void p3h2x4x_get_target_port_dt_conf(struct device *dev,
-> > +					    const struct device_node *node)
-> > +{
-> > +	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(dev);
-> > +	u64 tp_port;
-> > +
-> > +	for_each_available_child_of_node_scoped(node, dev_node) {
-> > +		if (of_property_read_reg(dev_node, 0, &tp_port, NULL))
-> > +			continue;
-> > +
-> > +		if (tp_port < P3H2X4X_TP_MAX_COUNT) {
-> > +			p3h2x4x_i3c_hub->tp_bus[tp_port].of_node = of_node_get(dev_node);
->
-> [Severity: Medium]
-> Could this leak the of_node reference if a malformed device tree specifies
-> multiple child nodes with the same target port index?
->
-> If multiple child nodes specify the same reg value, the pointer is
-> overwritten with a new of_node_get() result, which abandons the previous
-> reference.
->
-> > +			p3h2x4x_i3c_hub->tp_bus[tp_port].tp_mask = P3H2X4X_SET_BIT(tp_port);
-> > +			p3h2x4x_i3c_hub->tp_bus[tp_port].p3h2x4x_i3c_hub = p3h2x4x_i3c_hub;
-> > +			p3h2x4x_i3c_hub->tp_bus[tp_port].tp_port = tp_port;
-> > +		}
-> > +	}
-> > +}
-> [ ... ]
-> > +static int p3h2x4x_i3c_hub_probe(struct platform_device *pdev)
-> > +{
-> [ ... ]
-> > +	/* Unlock access to protected registers */
-> > +	ret = regmap_write(p3h2x4x_i3c_hub->regmap, P3H2X4X_DEV_REG_PROTECTION_CODE,
-> > +			   P3H2X4X_REGISTERS_UNLOCK_CODE);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "Failed to unlock HUB's protected registers\n");
-> > +
-> > +	ret = p3h2x4x_configure_hw(dev);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "Failed to configure the HUB\n");
->
-> [Severity: Medium]
-> Are the hub's protected registers left permanently unlocked if probe fails
-> during p3h2x4x_configure_hw() or bus registration?
->
-> The driver unlocks the hardware registers at the start of probe and locks
-> them at the very end. However, if any initialization step fails and returns
-> an error, the function exits immediately without locking the registers again.
->
-> Could this be mitigated by using a devm_add_action_or_reset() callback or
-> explicit error handling labels to ensure the registers are safely relocked?
+From: Tejas <tejasmutalikdesai@gmail.com>
 
-It is not big problem if device can support P3H2X4X_REGISTERS_UNLOCK_CODE
-twice without LOCK. The driver should recover from failure state.
+Convert the Xen ARM device tree binding documentation from the legacy
+plain-text format (Documentation/devicetree/bindings/arm/xen.txt) to
+the DT schema format, as required by the modern DT binding process.
 
->
-> > +
-> > +	/* Register virtual I3C master controllers for I3C target ports */
-> > +	if (p3h2x4x->i3cdev) {
-> [ ... ]
-> > diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-> > new file mode 100644
-> > index 0000000000000..8adb235b992c0
-> > --- /dev/null
-> > +++ b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-> [ ... ]
-> > +int p3h2x4x_tp_i3c_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_hub)
-> > +{
-> [ ... ]
-> > +	for (tp = 0; tp < P3H2X4X_TP_MAX_COUNT; tp++) {
-> > +		if (!p3h2x4x_hub->tp_bus[tp].of_node ||
-> > +		    p3h2x4x_hub->hub_config.tp_config[tp].mode != P3H2X4X_TP_MODE_I3C)
-> > +			continue;
-> > +
-> > +		/* Assign DT node for this TP */
-> > +		p3h2x4x_hub->dev->of_node = p3h2x4x_hub->tp_bus[tp].of_node;
->
-> [Severity: High]
-> Does overwriting the parent device's of_node pointer iteratively cause a
-> memory leak of the original parent node and a double-free of the target port
-> nodes?
+Signed-off-by: Tejas Mutalikdesai <tejasmutalikdesai@gmail.com>
+---
+Changes since v2:
+- Replace 'YAML schema' with 'DT schema' in the commit description
+- Drop unnecessary '|' block scalars from description fields that do
+  not need to preserve literal formatting
+- Fix unit_address_vs_reg warning: replace $nodename const with a
+  pattern requiring a unit address; update example to hypervisor@b0000000
+  and drop the root node, GIC, and interrupt-parent
+- Update Documentation reference in arch/arm/xen/enlighten.c from
+  xen.txt to xen.yaml
 
-Look like AI is correct.
+ Documentation/devicetree/bindings/arm/xen.txt |  62 ----------
+ .../devicetree/bindings/arm/xen.yaml          | 109 ++++++++++++++++++
+ arch/arm/xen/enlighten.c                      |   2 +-
+ 3 files changed, 110 insertions(+), 63 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/xen.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/xen.yaml
 
->
-> The loop over target ports directly mutates the shared pdev->dev.of_node
-> pointer which was populated in probe using device_set_of_node_from_dev().
-> This leaks the reference to the original parent node, and leaves
-> dev->of_node pointing to the last target port node.
->
-> When the driver is unbound, the driver core will drop a reference on
-> dev->of_node, but p3h2x4x_put_target_port_of_nodes() also drops a reference
-> on the same node, which can cause a use-after-free or double-free refcount
-> underflow. Mutating dev->of_node also creates a race with sysfs/uevent.
->
-> Should the driver assign the node to controller->dev.of_node directly
-> instead of mutating the parent's pointer?
->
-> > +
-> > +		struct i3c_hub_controller *hub_controller =
-> > +				&p3h2x4x_hub->tp_bus[tp].hub_controller;
-> [ ... ]
-> > diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-> > new file mode 100644
-> > index 0000000000000..cf664425af071
-> > --- /dev/null
-> > +++ b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-> [ ... ]
-> > +static int p3h2x4x_read_smbus_transaction_status(struct p3h2x4x_i3c_hub_dev *hub,
-> > +						 u8 target_port_status,
-> > +						 u8 data_length)
-> > +{
-> > +	u32 status_read;
-> > +	u8 status;
-> > +	int ret;
-> > +
-> > +	fsleep(P3H2X4X_SMBUS_400kHz_TRANSFER_TIMEOUT(data_length));
-> > +
-> > +	ret = regmap_read(hub->regmap, target_port_status, &status_read);
->
-> [Severity: High]
-> Does using a hardcoded sleep based on bytes transferred instead of polling a
-> hardware completion status bit lead to premature reads of incomplete
-> transactions?
->
-> If the downstream device performs clock stretching or is slow to respond,
-> the transfer will take longer than the hardcoded timeout. The driver then
-> reads target_port_status and shifts to check the status bits.
->
-> Since an ongoing transaction leaves the status bits at 0
-> (P3H2X4X_SMBUS_CNTRL_STATUS_TXN_OK), the driver will incorrectly assume the
-> transaction has finished successfully. It will then proceed to read stale or
-> uninitialized memory buffers and return garbage data.
->
-> Could this be updated to use a polling loop checking the finish flag?
+diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
+deleted file mode 100644
+index f925290d4641..000000000000
+--- a/Documentation/devicetree/bindings/arm/xen.txt
++++ /dev/null
+@@ -1,62 +0,0 @@
+-* Xen hypervisor device tree bindings
+-
+-Xen ARM virtual platforms shall have a top-level "hypervisor" node with
+-the following properties:
+-
+-- compatible:
+-	compatible = "xen,xen-<version>", "xen,xen";
+-  where <version> is the version of the Xen ABI of the platform.
+-
+-- reg: specifies the base physical address and size of the regions in memory
+-  where the special resources should be mapped to, using an HYPERVISOR_memory_op
+-  hypercall.
+-  Region 0 is reserved for mapping grant table, it must be always present.
+-  The memory region is large enough to map the whole grant table (it is larger
+-  or equal to gnttab_max_grant_frames()).
+-  Regions 1...N are extended regions (unused address space) for mapping foreign
+-  GFNs and grants, they might be absent if there is nothing to expose.
+-
+-- interrupts: the interrupt used by Xen to inject event notifications.
+-  A GIC node is also required.
+-
+-To support UEFI on Xen ARM virtual platforms, Xen populates the FDT "uefi" node
+-under /hypervisor with following parameters:
+-
+-________________________________________________________________________________
+-Name                      | Size   | Description
+-================================================================================
+-xen,uefi-system-table     | 64-bit | Guest physical address of the UEFI System
+-			  |	   | Table.
+---------------------------------------------------------------------------------
+-xen,uefi-mmap-start       | 64-bit | Guest physical address of the UEFI memory
+-			  |	   | map.
+---------------------------------------------------------------------------------
+-xen,uefi-mmap-size        | 32-bit | Size in bytes of the UEFI memory map
+-                          |        | pointed to in previous entry.
+---------------------------------------------------------------------------------
+-xen,uefi-mmap-desc-size   | 32-bit | Size in bytes of each entry in the UEFI
+-                          |        | memory map.
+---------------------------------------------------------------------------------
+-xen,uefi-mmap-desc-ver    | 32-bit | Version of the mmap descriptor format.
+---------------------------------------------------------------------------------
+-
+-Example (assuming #address-cells = <2> and #size-cells = <2>):
+-
+-hypervisor {
+-	compatible = "xen,xen-4.3", "xen,xen";
+-	reg = <0 0xb0000000 0 0x20000>;
+-	interrupts = <1 15 0xf08>;
+-	uefi {
+-		xen,uefi-system-table = <0xXXXXXXXX>;
+-		xen,uefi-mmap-start = <0xXXXXXXXX>;
+-		xen,uefi-mmap-size = <0xXXXXXXXX>;
+-		xen,uefi-mmap-desc-size = <0xXXXXXXXX>;
+-		xen,uefi-mmap-desc-ver = <0xXXXXXXXX>;
+-        };
+-};
+-
+-The format and meaning of the "xen,uefi-*" parameters are similar to those in
+-Documentation/arch/arm/uefi.rst, which are provided by the regular UEFI stub. However
+-they differ because they are provided by the Xen hypervisor, together with a set
+-of UEFI runtime services implemented via hypercalls, see
+-http://xenbits.xen.org/docs/unstable/hypercall/x86_64/include,public,platform.h.html.
+diff --git a/Documentation/devicetree/bindings/arm/xen.yaml b/Documentation/devicetree/bindings/arm/xen.yaml
+new file mode 100644
+index 000000000000..a22e950566c2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/xen.yaml
+@@ -0,0 +1,109 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/xen.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xen hypervisor
++
++maintainers:
++  - Stefano Stabellini <sstabellini@kernel.org>
++
++description:
++  Xen ARM virtual platforms shall have a top-level "hypervisor" node with
++  the properties defined below.
++
++properties:
++  $nodename:
++    pattern: "^hypervisor@[0-9a-f]+$"
++
++  compatible:
++    description:
++      Specifies the Xen hypervisor. The version of the Xen ABI is encoded
++      in the first item as "xen,xen-<version>", followed by the generic
++      "xen,xen" string.
++    items:
++      - pattern: "^xen,xen-[0-9]+\\.[0-9]+$"
++      - const: xen,xen
++
++  reg:
++    description: |
++      Base physical address and size of the regions in memory where special
++      resources should be mapped to, using a HYPERVISOR_memory_op hypercall.
++
++      Region 0 is reserved for mapping the grant table and must always be
++      present. The memory region must be large enough to map the whole grant
++      table (it is larger or equal to gnttab_max_grant_frames()).
++
++      Regions 1...N are extended regions (unused address space) for mapping
++      foreign GFNs and grants. They might be absent if there is nothing to
++      expose.
++    minItems: 1
++
++  interrupts:
++    description:
++      The interrupt used by Xen to inject event notifications.
++      A GIC node is also required.
++    maxItems: 1
++
++  uefi:
++    type: object
++    description:
++      Node populated by Xen to support UEFI on Xen ARM virtual platforms.
++      The format and meaning of the "xen,uefi-*" parameters are similar to
++      those in Documentation/arch/arm/uefi.rst, but are provided by the Xen
++      hypervisor together with a set of UEFI runtime services implemented via
++      hypercalls.
++    properties:
++      xen,uefi-system-table:
++        description: Guest physical address of the UEFI System Table.
++        $ref: /schemas/types.yaml#/definitions/uint64
++
++      xen,uefi-mmap-start:
++        description: Guest physical address of the UEFI memory map.
++        $ref: /schemas/types.yaml#/definitions/uint64
++
++      xen,uefi-mmap-size:
++        description: Size in bytes of the UEFI memory map pointed to by xen,uefi-mmap-start.
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      xen,uefi-mmap-desc-size:
++        description: Size in bytes of each entry in the UEFI memory map.
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      xen,uefi-mmap-desc-ver:
++        description: Version of the mmap descriptor format.
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++    required:
++      - xen,uefi-system-table
++      - xen,uefi-mmap-start
++      - xen,uefi-mmap-size
++      - xen,uefi-mmap-desc-size
++      - xen,uefi-mmap-desc-ver
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    hypervisor@b0000000 {
++        compatible = "xen,xen-4.3", "xen,xen";
++        reg = <0xb0000000 0x20000>;
++        interrupts = <1 15 0xf08>;
++
++        uefi {
++            xen,uefi-system-table = /bits/ 64 <0x1301415>;
++            xen,uefi-mmap-start = /bits/ 64 <0x7591400>;
++            xen,uefi-mmap-size = <0x1800>;
++            xen,uefi-mmap-desc-size = <0x30>;
++            xen,uefi-mmap-desc-ver = <1>;
++        };
++    };
++...
+diff --git a/arch/arm/xen/enlighten.c b/arch/arm/xen/enlighten.c
+index 25a0ce3b4584..0b7b7e3417e3 100644
+--- a/arch/arm/xen/enlighten.c
++++ b/arch/arm/xen/enlighten.c
+@@ -251,7 +251,7 @@ static int __init fdt_find_hyper_node(unsigned long node, const char *uname,
+ }
+ 
+ /*
+- * see Documentation/devicetree/bindings/arm/xen.txt for the
++ * see Documentation/devicetree/bindings/arm/xen.yaml for the
+  * documentation of the Xen Device Tree format.
+  */
+ void __init xen_early_init(void)
+-- 
+2.54.0
 
-Yes, it should use read_poll_timeout here.
-
->
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	status = (u8)status_read;
-> [ ... ]
-> > +static s32 p3h2x4x_tp_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
-> > +{
-> [ ... ]
-> > +		rw = (msgs[msg_count].flags & I2C_M_RD) ? 1 : 0;
-> > +		if (!rw) {
-> > +			/* If a read message is immediately followed by a write message to
-> > +			 * the same address,  consider combining them into a single transaction.
-> > +			 */
->
-> [Severity: Low]
-> This isn't a bug, but the comment describes a read followed by a write while
-> the code implements a write followed by a read.
->
-> The actual code block checks !rw for the first message and flags & I2C_M_RD
-> for the second message, which accurately handles a write message immediately
-> followed by a read message.
-
-small issue, easy to fix it.
-
-Frank
-
->
-> > +			if (msg_count + 1 < num &&
-> > +			    msgs[msg_count].addr == msgs[msg_count + 1].addr &&
-> > +			    (msgs[msg_count + 1].flags & I2C_M_RD)) {
-> > +				if (msgs[msg_count].len + msgs[msg_count + 1].len >
-> > +				    P3H2X4X_SMBUS_PAYLOAD_SIZE)
-> > +					return -EINVAL;
->
-> --
-> Sashiko AI review · https://sashiko.dev/#/patchset/20260617110355.1591844-1-lakshay.piplani@nxp.com?part=6
 
