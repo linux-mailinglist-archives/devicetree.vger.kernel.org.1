@@ -1,178 +1,206 @@
-Return-Path: <devicetree+bounces-312722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312723-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iyuQBeIBMmqotgUAu9opvQ
-	(envelope-from <devicetree+bounces-312722-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 04:09:38 +0200
+	id yiLnD+wCMmrQtgUAu9opvQ
+	(envelope-from <devicetree+bounces-312723-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 04:14:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521026960FC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 04:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF64696115
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 04:14:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=cKyiJGg9;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312722-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312722-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gaOkdEHK;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312723-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312723-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 06B1130158B4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 02:09:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 106B830CB850
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 02:14:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A64E12F5498;
-	Wed, 17 Jun 2026 02:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 870282F49FD;
+	Wed, 17 Jun 2026 02:14:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F33A1EEA31
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 02:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8481EEA31
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 02:14:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781662175; cv=none; b=F3cG23Qr45rd43Bb2T8JxUd1f7vgd54Fb0Cpd0hWYwfACEFRQxNR6YMgRS3GdQyZCAbk+rNDHCFNL4N+5hK0FDxrXWhXJKA3BKYu9ctd2RfrcjXeaWbP4skDRiKkZ5LCiOFZmNefU58/om9BXfpMPaLb7QY2ioR0znodCQuDeKY=
+	t=1781662441; cv=none; b=mTnCxnK7gv/W6NdjuF437Pl2mdZgx6wWtrOX/XmfvHwFBcJIlUvJ0HD4UpCwva0mt7V3tTx3Epf589SqbzuVLu2/MAT8Gw+T0lOjEAaSZ20Pzkztj7LbBmOSnGpDsWFlIj65V0jY52nOssWxvi8S6K5wKqdqBaA8Wu+UlJzNLDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781662175; c=relaxed/simple;
-	bh=j6fa7wxuUI6ROWGGgOqGoPbRsU6ZtyWphBnp0BvsqR0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ab926kIrFjLLf4UDfiq7aWIaTfU6+FC4Ns5lTaXu8uN5vVVDThXShoetQ8uh7YxuPbZr9apujx2VHFaks1+UvXwALbapE1MMMasIY0fn3FwLTIleCGLyFOn/rt7RoimpscXYfCxmFHONsdmpH2fZV22LRBIAeh+4k2bjaAdsvHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cKyiJGg9; arc=none smtp.client-ip=209.85.214.177
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2bf237e1433so63770115ad.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 19:09:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781662174; x=1782266974; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j6fa7wxuUI6ROWGGgOqGoPbRsU6ZtyWphBnp0BvsqR0=;
-        b=cKyiJGg9Z4G+ZaJ0aQsnXMk/+h8wMBKFkdiwZeEx9yQNcYosUXOpOHC9tOV6hkZfL+
-         roR5OrQAlebZZlHPSst9H+9dLh99irdWuQsZKmc0jjGHUBDp23gKM0tCpWBVYlxccPaG
-         ItZa8KfhxL3KSQ85GDZ6wwyg45FYgiZ+9HjOLke+wc8p1lO5A+5wOS932wQx3iixCAA1
-         ub2lsOzQb4kqqMBrgZdqNR+N6QR8cPRzke3fJr9riMaG/trxhDuBK90JwRB9rq7TVbsK
-         uAwm6mimyZl9GvLm8RVyG44sweha0heof54JT2j2xhIVLU8GJTXy1oHrwuRlAtKCt6qL
-         zeVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781662174; x=1782266974;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=j6fa7wxuUI6ROWGGgOqGoPbRsU6ZtyWphBnp0BvsqR0=;
-        b=YYgMyyeaaidDyXAXKk62fQ0Uoez3rgQo1BmwQShCF53dx4xb2DtDb+C7F6uJ8D6Mgp
-         YmSmwoo3MfFtf8pZ/WsA1PYIWXV2PTeNY8IM+x2eiksOiODX9iBJouCf4MjA4wF6K85p
-         tqKrQG0ieT7+Lyswz5PK3jt96wXTU13AEI9yqVgzNK+E22ldIDUuW1GWMF0+Z6b6ZwEk
-         c4UtJxzcEHXn1H9kPntiUcHek6gkydnZHEQAqnAlKXddje9VSuUjz65EMDl/MQmGfwTx
-         ChoTWJ7IBt80W68JXf+kRcWcCxhjJfqeoFnBgmOcjYWbWFtz3mH4m4+FJLpjDKBX7rIu
-         mrjg==
-X-Forwarded-Encrypted: i=1; AFNElJ9rX6k+GuDGb5bXDLKGkOihIM5gdI5iCUqr+ZcGYYNuCrtWt5yAuzetlbyGms5SwTLnxFL+xooqCYEB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbFwbb1y2xJhZSy6T5z4P1phC/FN1SLLI8aE+VXZt6MjhIxb4N
-	6PA4VCk+SRubUf8dY8YdQiqrY3omraEtmV7n6vuLLDMZQYEk4XPjhmcJ
-X-Gm-Gg: AfdE7cmVSaWQiHamnxDywHx1VjIPvGKPXR+sL0zjg4ePdA7vufGAFxsxua/xJbvjf9a
-	tu/KLAuFJ9nNCqZyXOCdPpQIZtpNHQRzBnj+m1k4Rm3ouEtyLXXDh2PmlG4jsTDKegIYXS/lTju
-	zjWfc7/rnvioJwxcNyY9qKxnEBg6N+oAjLkZ/nJuVEqXPt4sCmnRLT8qh5zYBv/El2miSZYRfdm
-	AJM8ooAKtrXI03yAA7Eb592yVCpPD14IFdoLEvsVWuP/Xv109mLIkEykCq6i/GW6/5/BZFSNAFT
-	ZsDLtxMaR6wVULDSKdnJT8pN0MX9KA7Utw6tyKxhxmRJb2wEnwed77tdfQsK/iB4IYRjhVHaR9t
-	8ItgHfyDf7FbD4dw9QX8RabQqpoCvOM5CCBF6JRQ0SyxCvWOXwXtN4VJ6bafnPtpRzRKLZ+VeP8
-	BNIG0GdE7Svaz4yBf40EpbqYfLm3+/nlqAhN6VaVSBkGbMn8L73+qZbX0kKfyEnWlgzYvYv1id/
-	fee/mY0E+WWGOlTwHGejOtr
-X-Received: by 2002:a17:902:f785:b0:2c2:33a4:aaa2 with SMTP id d9443c01a7336-2c6bc25d4d0mr16653095ad.35.1781662173785;
-        Tue, 16 Jun 2026 19:09:33 -0700 (PDT)
-Received: from lcwang-Precision-3630-Tower.. (211-23-39-77.hinet-ip.hinet.net. [211.23.39.77])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c433369c8asm148322735ad.73.2026.06.16.19.09.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Jun 2026 19:09:32 -0700 (PDT)
-From: LiangCheng Wang <zaq14760@gmail.com>
-To: Devarsh Thakkar <devarsht@ti.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Wig Cheng <onlywig@gmail.com>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	LiangCheng Wang <zaq14760@gmail.com>
-Subject: Re: [PATCH v3 2/2] drm/tiny: add support for PIXPAPER 4.26 monochrome e-ink panel
-Date: Wed, 17 Jun 2026 10:09:26 +0800
-Message-Id: <20260617020926.114947-1-zaq14760@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <423c3dca-9589-488d-8462-c3d51f05ee4a@ti.com>
-References: <20260529-bar-v3-0-5c2ac1c751ee@gmail.com> <20260529-bar-v3-2-5c2ac1c751ee@gmail.com> <2bfb73e6-dca3-4d93-af04-3c644929dd19@ti.com> <20260616083921.4066690-1-zaq14760@gmail.com> <423c3dca-9589-488d-8462-c3d51f05ee4a@ti.com>
+	s=arc-20240116; t=1781662441; c=relaxed/simple;
+	bh=PO3yO3dBl1wyUK8KnQT58LVt3ZIF8l3V6DHpYK5Ljpc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=GV34ueYtxMryWA1ox+/tUQ11h1GGhJ+tziedWbgkU9blno6QFHDEX/kRJf6eTwekHDXJ2nPcaSUKp8qH0yzf8uwB1gDqR8tgQNze/nqt84UmUzlXkqzyf/TzLP7CYCquR2sWVAXAHGNYuIPyXySvKUKHe6pep1FPTz1yc4Uy4uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gaOkdEHK; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4C761F000E9;
+	Wed, 17 Jun 2026 02:13:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781662440;
+	bh=7ytRLuSkbANWs2LUDqMG5NaADvUNZVlSd10vJgNDeYA=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=gaOkdEHKYlLEpyHCsZoBouqhRgWQdImBFdzBNpCeT6nMawq7as69nGQs33dw6DA6s
+	 8IGAfYePj00rsdnxvRl9gVCYhbgQWmMSdND3vstwWLOFmO2e/5yXSyPuhmBzHdRXKG
+	 HtegD0OHCgj9wqqwQhAZc3ZrwD//6LzEOu/l3jsKsdBWDPUlij1gY2sPFFRkgL6nTV
+	 8RVeC9FclUK6mCfSs4qG+Zh2S5vSxITXTvQp5goAllLKuGxNAH7SSTeFWcFIhDqP/O
+	 yWebtxWtIKs5HEvnS2HwF1/O+2Uy+Yi2ovqvMvSal43ldQpKiXZKxRZ9nwV7q+1Iw3
+	 lPAfwi6zw/WyQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [RFC PATCH v3 3/5] iio: buffer: Extend DMAengine buffer
+ interfaces to take extra sysfs attributes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Marcelo Schmitt" <marcelo.schmitt@analog.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <a09f2cac2d26fe385f1f7790b0db64b7d9953ac6.1781661028.git.marcelo.schmitt@analog.com>
+References: <cover.1781661028.git.marcelo.schmitt@analog.com>
+ <a09f2cac2d26fe385f1f7790b0db64b7d9953ac6.1781661028.git.marcelo.schmitt@analog.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 17 Jun 2026 02:13:59 +0000
+Message-Id: <20260617021359.C4C761F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-312722-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[ti.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
-	FORGED_SENDER(0.00)[zaq14760@gmail.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:devarsht@ti.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:onlywig@gmail.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:tomi.valkeinen@ideasonboard.com,m:zaq14760@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-312723-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:marcelo.schmitt@analog.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,ideasonboard.com,gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zaq14760@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	ALIAS_RESOLVED(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 521026960FC
+X-Rspamd-Queue-Id: 7EF64696115
 
-Hi Devarsh,
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-Thanks, that sounds great -- let's converge on panel-ssd16xx.c.
+New issues:
+- [Critical] Unconditional assignment of `buffer->attrs` overwrites the def=
+ault DMAengine buffer attributes, removing `length_align_bytes` from sysfs =
+and breaking the userspace ABI.
 
-> Yes, I will be adding SSD1677 controller support in V2 of my series,
-> hopefully that should help and after that it's just a matter of adding
-> panel entry for your pixpaper panel. I can share you my branch with
-> ssd1677 support once I have it ready.
+Pre-existing issues:
+- [High] The ad4691 driver manually overwrites the IIO buffer's `attrs` fie=
+ld after setup, clobbering the generic DMAengine buffer attributes.
+--
 
-That would be very helpful, please do share the branch once it's ready. I
-have the PIXPAPER 4.26 hardware here, so I can validate the SSD1677 support
-and the panel on real hardware and report back any quirks.
+commit e15805cbfeb85d6ab2a3f8819279738d4402da62
+Author: Marcelo Schmitt <marcelo.schmitt@analog.com>
 
-> additionally I can quickly add boilerplate pixpaper 4.26 panel entries on
-> top of my V2 series referring from your patch so that it switches to using
-> standard ssd16xx commands and ssd1677 quirks wherever necessary and you can
-> then validate and modify.
+iio: buffer: Extend DMAengine buffer interfaces to take extra sysfs attribu=
+tes
 
-Thanks for offering. If it's alright with you, I'd like to take the
-pixpaper-426m panel entry through review myself on top of your series, using
-your boilerplate as a starting point, since I can carry the validation on
-real hardware. I'll credit your help with Co-developed-by/Suggested-by as
-appropriate. Happy to arrange it whichever way is easiest for you.
+This patch extends the IIO DMAengine buffer setup interfaces to accept an
+additional parameter for extra sysfs attributes. It updates all existing
+callers to pass NULL for this new parameter.
 
-I'll also follow up with the 0xF7/0xFF test result so we can capture the
-correct SSD1677 update-sequence quirk.
+> diff --git a/drivers/iio/adc/ad4691.c b/drivers/iio/adc/ad4691.c
+> --- a/drivers/iio/adc/ad4691.c
+> +++ b/drivers/iio/adc/ad4691.c
+> @@ -1980,7 +1980,8 @@ static int ad4691_setup_offload(struct iio_dev *ind=
+io_dev,
+>  		indio_dev->setup_ops =3D &ad4691_cnv_burst_offload_buffer_setup_ops;
+> =20
+>  	ret =3D devm_iio_dmaengine_buffer_setup_with_handle(dev, indio_dev, rx_=
+dma,
+> -							  IIO_BUFFER_DIRECTION_IN);
+> +							  IIO_BUFFER_DIRECTION_IN,
+> +							  NULL);
 
-Regards,
-LiangCheng
+[Severity: High]
+This is a pre-existing issue, but does manually assigning the buffer attrib=
+utes
+further down in this function clobber the generic DMAengine buffer attribut=
+es?
+
+Following this setup call in ad4691_setup_offload(), the driver manually
+assigns:
+
+indio_dev->buffer->attrs =3D ad4691_buffer_attrs;
+
+Could this overwrite the default DMAengine buffer attributes like
+length_align_bytes? Since the new API allows injecting custom attributes,
+should this driver be updated to pass ad4691_buffer_attrs into
+devm_iio_dmaengine_buffer_setup_with_handle() rather than passing NULL and
+manually overwriting it afterwards?
+
+>  	if (ret)
+>  		return ret;
+> =20
+
+[ ... ]
+
+> diff --git a/drivers/iio/buffer/industrialio-buffer-dmaengine.c b/drivers=
+/iio/buffer/industrialio-buffer-dmaengine.c
+> --- a/drivers/iio/buffer/industrialio-buffer-dmaengine.c
+> +++ b/drivers/iio/buffer/industrialio-buffer-dmaengine.c
+> @@ -289,7 +289,8 @@ EXPORT_SYMBOL_NS_GPL(iio_dmaengine_buffer_teardown, "=
+IIO_DMAENGINE_BUFFER");
+>  static struct iio_buffer
+>  *__iio_dmaengine_buffer_setup_ext(struct iio_dev *indio_dev,
+>  				  struct dma_chan *chan,
+> -				  enum iio_buffer_direction dir)
+> +				  enum iio_buffer_direction dir,
+> +				  const struct iio_dev_attr **buffer_attrs)
+>  {
+>  	struct iio_buffer *buffer;
+>  	int ret;
+> @@ -301,6 +302,7 @@ static struct iio_buffer
+>  	indio_dev->modes |=3D INDIO_BUFFER_HARDWARE;
+> =20
+>  	buffer->direction =3D dir;
+> +	buffer->attrs =3D buffer_attrs;
+
+[Severity: Critical]
+Does unconditionally overwriting buffer->attrs here remove the default
+DMAengine buffer attributes?
+
+Since iio_dmaengine_buffer_alloc() sets up the default attributes array
+(which exposes length_align_bytes to userspace), and all current callers
+updated in this patch pass NULL for buffer_attrs, it appears this will
+silently delete length_align_bytes from sysfs for all IIO DMAengine buffers.
+
+Could this break the userspace ABI, as applications might rely on
+length_align_bytes to determine the required memory alignment for DMA
+buffers?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1781661028.gi=
+t.marcelo.schmitt@analog.com?part=3D3
 
