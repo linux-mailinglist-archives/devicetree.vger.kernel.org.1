@@ -1,177 +1,181 @@
-Return-Path: <devicetree+bounces-313008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313009-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1nUwIVydMmpP2wUAu9opvQ
-	(envelope-from <devicetree+bounces-313008-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 15:13:00 +0200
+	id UW3HBOydMmpf2wUAu9opvQ
+	(envelope-from <devicetree+bounces-313009-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 15:15:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE1A6699FE7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 15:12:59 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16A1469A022
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 15:15:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OGOL5MM2;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313008-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313008-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=jRLSFxXc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313009-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313009-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7422D307CD53
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 13:12:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 49E1630011B1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 13:15:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 877933FE37A;
-	Wed, 17 Jun 2026 13:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBDF3C76BD;
+	Wed, 17 Jun 2026 13:15:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71E9B3F54C9
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 13:12:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30567EEA8;
+	Wed, 17 Jun 2026 13:15:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781701969; cv=none; b=e4MkJ0sTJJdlZFISd6LTuvejgB8ppyDi1vcWzaARHi1OU16lsFlEaIlRK9m0THv41gB/PKWf2Mi4c38P+4H30lQvjI6+XtNNAnp8F4upKxrqH1fACLfV8YfbeN0g4FNWopKpjIolCbmiiakss/sXS6MinKYUN6Kw1kxD9C+w4NE=
+	t=1781702119; cv=none; b=HhxH6iH0s0vCQw9oc/AxvBgHAwXc1Ao6W1fs4rQhwki8VfHoXLbB+PpCXrCG5a1DQA+YE39zBuiV+iNCm4wWuyaz/4kYJIQx4nRThyJ2HjFOdghYeEjmOmTn8RTY8ib/Ur3CheW2aBOCuA+phTMumaktwWuyHEf9456+NZ4L5K4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781701969; c=relaxed/simple;
-	bh=lbJmgASzPefpd1S6Y07gEkBt+a0EAuk07RGPla3kedc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=OvI75XvK2EYt6aPTurrDDVGL8oTuqKAN8mQhm3Pzqpih7CjxUCpe4CC827//WjOZQ+GHLD4wx78x7iRl559N4PchhgdQOu1OcAu1K2v3EViOEL0jTkhJ4b/fc0WyePksuyZlkOsiaFUsbdqAd+qlBQfGpTS/eFK4OCS6uONshSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OGOL5MM2; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E61DC1F00A3A;
-	Wed, 17 Jun 2026 13:12:47 +0000 (UTC)
+	s=arc-20240116; t=1781702119; c=relaxed/simple;
+	bh=aIlDLMkkNHtsDElYOHx+iCX+qfTNktD94VrGYo6P2ds=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=JWpyvT9ic5fjxSBoQkDf4V8fXgrngSFMpHPMrChIOQBqDAii0bkiZkOLFKzoAD0KYOYjoEGQJkYoayD2lViTc/aGOfMElYEwOJ+cgA1TN167if/KawwNiyrrHE6v9J1PBpYQ7wdZlrS9px2GIDHk+3NdjfqV4ORvMYMnWDIh5AE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jRLSFxXc; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B6901F000E9;
+	Wed, 17 Jun 2026 13:15:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781701968;
-	bh=wHH6bkItYBS73vWI5v2ujYNM1oen/6or+UClc0qcjEg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=OGOL5MM2BK+x8W+BzBhCBSGl+OB6TI/RwgokyOgpkWz3xMj8/KtlQulBnY5bg9JrU
-	 rxV4c9uaZvJM6ubyKfefzD3iFWgXUOGMPBvAY36YFmoxYzn7YdTjtk2/5GkwEmMo8P
-	 Y6XiXHIZN3siFfQA2GxvmNZJQDXDDaXTQgYhVcYKiLtOHkweBxzaWP/BZoUvV15y2v
-	 cKVTdyhnYp8o10GMa0tY0LUFBNieEV8khw1HMo/664vgFrTEsR04INevotVpzrTrID
-	 i6Q9JlxAzZAM55RLWliFKQFyqZvrHQ3tvIDXq6ZVBQ8wdK13epqvDUFIyETTaGwe8E
-	 xzOw+tqgZHklQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/5] arm64: dts: qcom: sm8550-qrd: add SPMI ADC
- channels and thermal nodes
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Neil Armstrong" <neil.armstrong@linaro.org>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260617-topic-sm8x50-adc5-gen3-v4-2-4af9251731f1@linaro.org>
-References: <20260617-topic-sm8x50-adc5-gen3-v4-0-4af9251731f1@linaro.org>
- <20260617-topic-sm8x50-adc5-gen3-v4-2-4af9251731f1@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 17 Jun 2026 13:12:47 +0000
-Message-Id: <20260617131247.E61DC1F00A3A@smtp.kernel.org>
+	s=k20260515; t=1781702117;
+	bh=RecN5ZtDRcqCxYcd/2RjkSxa7a1qN8tkR8fOcVntLnw=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date;
+	b=jRLSFxXcuguZjn8k9T/6YsLlp/PLbF+S//JuN8QuD5ZsNDQ1qAo9EvcABxcZgjxdM
+	 yOVi1Jmtquis6KE2gafyzTflGkN8B1qrZnfGgYCFyPV59sc+tPNx47TsJmVNDOFc5E
+	 uRFaoMJtSpf/ExA3v4QoD2/jcz70Rhb55v3XgHg/kYlTV7IJPrhwy1UqIvLS4aCi2R
+	 G9v4SQKLQSB48wNn2cyw03ceQ9xy/vVu/joOZ9X2DHtTes4g+5JfpG+EgwMRDyJMaT
+	 L0x9QSEqQ2W2tc3KmTN0zfIWd5h5yNqBGjyxkVMCU0n/8vTDEXzUHN9upwVpkMdkBv
+	 /3QSKWsqk3M+w==
+From: Mattijs Korpershoek <mkorpershoek@kernel.org>
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>, Andi Shyti
+ <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Konrad
+ Dybcio <konradybcio@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>, Viken Dadhaniya
+ <viken.dadhaniya@oss.qualcomm.com>
+Cc: Mattijs Korpershoek <mkorpershoek@kernel.org>, Praveen Talari
+ <praveen.talari@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, bjorn.andersson@oss.qualcomm.com,
+ konrad.dybcio@oss.qualcomm.com, aniket.randive@oss.qualcomm.com,
+ chandana.chiluveru@oss.qualcomm.com, prasad.sodagudi@oss.qualcomm.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Nikunj Kela
+ <quic_nkela@quicinc.com>
+Subject: Re: [PATCH v7 0/6] Enable I2C on SA8255p Qualcomm platforms
+In-Reply-To: <20260617-enable-i2c-on-sa8255p-v7-0-ad736dbeab57@oss.qualcomm.com>
+References: <20260617-enable-i2c-on-sa8255p-v7-0-ad736dbeab57@oss.qualcomm.com>
+Date: Wed, 17 Jun 2026 15:15:15 +0200
+Message-ID: <874ij1gvfg.fsf@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-4.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-313009-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313008-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:praveen.talari@oss.qualcomm.com,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:konradybcio@kernel.org,m:andersson@kernel.org,m:mukesh.savaliya@oss.qualcomm.com,m:viken.dadhaniya@oss.qualcomm.com,m:mkorpershoek@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:bjorn.andersson@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:aniket.randive@oss.qualcomm.com,m:chandana.chiluveru@oss.qualcomm.com,m:prasad.sodagudi@oss.qualcomm.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:quic_nkela@quicinc.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[mkorpershoek@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[mkorpershoek@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EE1A6699FE7
+X-Rspamd-Queue-Id: 16A1469A022
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The patch references missing function-like macros (e.g., `ADC5_GEN3=
-_AMUX1_THM_100K_PU(1)`) and depends on a non-existent header `qcom-adc5-gen=
-3.h`, leading to a dtc syntax error.
---
+On Wed, Jun 17, 2026 at 10:20, Praveen Talari <praveen.talari@oss.qualcomm.com> wrote:
 
-commit ffba2e8b8d47299d82f0442684ecd38fc3ef60a5
-Author: Neil Armstrong <neil.armstrong@linaro.org>
+> The Qualcomm automotive SA8255p SoC relies on firmware to configure
+> platform resources, including clocks, interconnects and TLMM.
+> The driver requests resources operations over SCMI using power
+> and performance protocols.
+>
+> The SCMI power protocol enables or disables resources like clocks,
+> interconnect paths, and TLMM (GPIOs) using runtime PM framework APIs,
+> such as resume/suspend, to control power states(on/off).
+>
+> The SCMI performance protocol manages I2C frequency, with each
+> frequency rate represented by a performance level. The driver uses
+> geni_se_set_perf_opp() API to request the desired frequency rate..
+>
+> As part of geni_se_set_perf_opp(), the OPP for the requested frequency
+> is obtained using dev_pm_opp_find_freq_floor() and the performance
+> level is set using dev_pm_opp_set_opp().
+>
+> Tested-by: Mattijs Korpershoek <mkorpershoek@kernel.org>
+> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
 
-arm64: dts: qcom: sm8550-qrd: add SPMI ADC channels and thermal nodes
+I've retested this on top of linux-next-20260616 and it still works fine
+for me on the Ride SX (SA8775P) board:
 
-This commit adds the SPMI ADC channels on the PMK8550 SPMI5 ADC3 for the
-other PMICs on the system. It also adds thermal nodes sorted by the
-sensor channel to maintain coherency.
+/ # uname  -a
+Linux (none) 7.1.0-next-20260616+ #2 SMP PREEMPT_RT Wed Jun 17 14:58:42 CEST 2026 aarch64 aarch64 aarch64 GNU/Linux
+/ # i2cdetect -l
+i2c-11  i2c             Geni-I2C                                I2C adapter
+i2c-18  i2c             Geni-I2C                                I2C adapter
+/ # i2cdetect -F 11
+Functionalities implemented by bus #11
+I2C                              yes
+SMBus quick command              no
+SMBus send byte                  yes
+SMBus receive byte               yes
+SMBus write byte                 yes
+SMBus read byte                  yes
+SMBus write word                 yes
+SMBus read word                  yes
+SMBus process call               yes
+SMBus block write                yes
+SMBus block read                 no
+SMBus block process call         no
+SMBus PEC                        yes
+I2C block write                  yes
+I2C block read                   yes
+/ # i2cdetect -F 18
+Functionalities implemented by bus #18
+I2C                              yes
+SMBus quick command              no
+SMBus send byte                  yes
+SMBus receive byte               yes
+SMBus write byte                 yes
+SMBus read byte                  yes
+SMBus write word                 yes
+SMBus read word                  yes
+SMBus process call               yes
+SMBus block write                yes
+SMBus block read                 no
+SMBus block process call         no
+SMBus PEC                        yes
+I2C block write                  yes
+I2C block read                   yes
 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dt=
-s/qcom/sm8550-qrd.dts
-> index 2fb2e0be5e4c6..9356b40a18507 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> @@ -205,6 +205,92 @@ platform {
->  		};
->  	};
-> =20
-> +	thermal-zones {
-> +		skin-thermal {
-> +			thermal-sensors =3D <&pmk8550_vadc ADC5_GEN3_AMUX1_THM_100K_PU(1)>;
-
-[Severity: Low]
-Will this compile correctly?
-
-It appears that ADC5_GEN3_AMUX1_THM_100K_PU and similar macros are being
-invoked as function-like macros taking an argument. If the intended header
-is missing, the preprocessor might fall back to definitions that do not take
-arguments, expanding this to invalid syntax like 0x44(1) and causing a dtc
-syntax error.
-
-[ ... ]
-
-> +&pmk8550_vadc {
-> +	/* PM8550 Channel nodes */
-> +	channel@100 {
-> +		reg =3D <ADC5_GEN3_REF_GND(1)>;
-> +		label =3D "pm8550_offset_ref";
-> +		qcom,pre-scaling =3D <1 1>;
-> +	};
-> +
-> +	channel@101 {
-> +		reg =3D <ADC5_GEN3_1P25VREF(1)>;
-> +		label =3D "pm8550_vref_1p25";
-> +		qcom,pre-scaling =3D <1 1>;
-> +	};
-> +
-> +	channel@103 {
-> +		reg =3D <ADC5_GEN3_DIE_TEMP(1)>;
-
-[Severity: Low]
-Are we certain this macro expansion is valid?
-
-Similar to the thermal-sensors property above, using ADC5_GEN3_DIE_TEMP(1)
-as a parameterized macro could lead to a syntax error if the available
-definitions do not accept arguments.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260617-topic-sm8x=
-50-adc5-gen3-v4-0-4af9251731f1@linaro.org?part=3D2
+Regards,
+Mattijs
 
