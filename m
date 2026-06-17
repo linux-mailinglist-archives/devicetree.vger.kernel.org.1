@@ -1,217 +1,150 @@
-Return-Path: <devicetree+bounces-312773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312778-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id K4KMFAk5MmoPxAUAu9opvQ
-	(envelope-from <devicetree+bounces-312773-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 08:04:57 +0200
+	id 2wSoDOU5MmpMxAUAu9opvQ
+	(envelope-from <devicetree+bounces-312778-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 08:08:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49867696BD6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 08:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E058696C2E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 08:08:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312773-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312773-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=K51FwIbI;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312778-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312778-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5062A303E6E9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 06:04:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 72F1D303E6E9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 06:08:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F6493B14DE;
-	Wed, 17 Jun 2026 06:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE1373B19D2;
+	Wed, 17 Jun 2026 06:08:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023142.outbound.protection.outlook.com [52.101.127.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 414343AFD1C;
-	Wed, 17 Jun 2026 06:04:52 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781676294; cv=fail; b=WR+N2/XwPmyBEO8DI0gus20dkVgkOGN1/G01Jtg8RaVPkxxy10ur89XPLnWGiMXa0huXFAje1r7NqO1OLu2uk4zwjVTCpk5fjDj8ZwvP7z2vrDnPs1CXiCZvon2pio0mrsPaZXpDoe27ugnygVAGCNBsm3u85JYVQTz+QdntTIg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781676294; c=relaxed/simple;
-	bh=XY8OmKS5RMP/eLdALeKP5k5qw3m1MHBv99xOUrCTuRI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tBmejxlk+2+DCIqcPYH1lCWg9ySUj2q88oyCh6os1mVBsLnWokrruZxOQkCMd+1cPQWOkKibQTeewZ3mFuSPQ/hfGGqC0pWE3QsbkJn8VHcwWmoZm9+UPrvF9DWtPBOkXtZVs6RAdtXbRLb1OtONN9SYu9zTt4DeGOX79XH9ZsU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.142
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=l8xuOfXoTAnGiGV11cNT5HdR/Qo9WLUoLz/WGzHa0s+vGGjMS6dGWlsTU7MebwCVwKsyAAf6HSeUHQdT8vOD7NZVz6fCxRa8FN/AEEDJdvPRpHKNH+q833E+t0xCj1FrjdTU34sqsDcLhTGhLfQn5QYoJXkqsIWMDMyfUUohLm0446Cz+EDuCBWRY9rLxiAT7tA7ELln6/euuA39mXkkv4h/Ke55WRMQFSGrSb101C7yWP8MHECFHo6yUI9/LQAed51dEawFuCq7429JBhBSgH2Fk5ceOhYVSItfTJF8gB0Ns1uqKYQJvjeqckpo3uU/1nu+z3sIwhdAKU18zxy5hQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2acalGdjXOFuxzk/aAGrwUTAkAlinpXJgrCw5xAZqA8=;
- b=klZ7gAOjC/A8bRhW59u4m9Y5MrqbRdCKWjLfxcpyW6GgOdXesVBQ9zWu2bvUwzkW03Vh+S0Zz0ijpGbgrCEJ1BX3AVcg89x/6X1mxZSJ7usQuO6XPR1gejCOdzlBccpXjarObClTij6FJeX1WJGhnVEFUdeuIucQUNamk/RImZvRuDsdzQrChA2hxI+nvTTCw3To67Fwy5S3YFmppVChdOEiBbJHKVkjAAo9XqpmCqcWjvk1iBU7foDggD3ncCuXv7vJpZUnWhZeg/SzBH5Mg5LACxtoyxVX4mkYjXrNj4rpiiAWNdAY2vTvxgnyllChUvdwEm/mkOWdOMOdsQz0Ww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=baylibre.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SI2PR02CA0050.apcprd02.prod.outlook.com (2603:1096:4:196::11)
- by PS1PPF6469DE8C6.apcprd06.prod.outlook.com (2603:1096:308::253) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.16; Wed, 17 Jun
- 2026 06:04:50 +0000
-Received: from OSA0EPF000000C9.apcprd02.prod.outlook.com
- (2603:1096:4:196:cafe::a) by SI2PR02CA0050.outlook.office365.com
- (2603:1096:4:196::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.18 via Frontend Transport; Wed,
- 17 Jun 2026 06:04:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000C9.mail.protection.outlook.com (10.167.240.55) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.8 via Frontend Transport; Wed, 17 Jun 2026 06:04:49 +0000
-Received: from cix (unknown [172.18.64.61])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id AE91D41D4011;
-	Wed, 17 Jun 2026 14:04:48 +0800 (CST)
-From: joakim.zhang@cixtech.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	bmasney@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	gary.yang@cixtech.com
-Cc: cix-kernel-upstream@cixtech.com,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Joakim Zhang <joakim.zhang@cixtech.com>
-Subject: [PATCH v4 5/5] arm64: dts: cix: sky1: add audss system control
-Date: Wed, 17 Jun 2026 14:04:37 +0800
-Message-ID: <20260617060437.1474816-6-joakim.zhang@cixtech.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260617060437.1474816-1-joakim.zhang@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F703B19AA
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 06:08:33 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781676514; cv=none; b=eU4FhCXioy6lA8iRhYV7+jluQ4d7uLt9Jrir7W3euZhF+wPToQEelBdCUNNQyNQrRjoBdc1ObnysUHzQeIi5rNeQa6bCmI56dqMdR81wFalFAGFH60YgMBqgpGVeby2ruvRf2EnGhw3bzw4uTMBZOZnSt15+aJ5RkF1IaNJV3RY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781676514; c=relaxed/simple;
+	bh=9ehBrF5wTPuxo15wCUGBvfWY5SgLjfW0WLdNQSzHpH0=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Md8sQRHnL8lfOXv/k7Zot5MqJ6j6/Ip1undJyVNyUs97lypTBQpRM3REf4cAgD3yQHtWUQTCqc52OMjpHRJu8z5QTaDF4Kj35RDzTSpxY4Gn0G19b0iMLqsP0ax/0142+rQZc/6wKQdWlgSGrXHW8xeYxYqeLV7hpTsPCa7N1zI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K51FwIbI; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D4DA1F000E9;
+	Wed, 17 Jun 2026 06:08:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781676513;
+	bh=773lQpUtu5fd0VnAigd+mpmrajONj1D137g5eZ7wPBg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=K51FwIbIggYUac1wg0rK3LKXc0IqMoFENQWxkJwh8Bdf1adx7LgotLFCcFAwUqdLP
+	 McO6YGKCXRlD0Do+3EeZOOH2WhMHvtJBOt4qO3uSHgd+wKvu44jhRkgKy53CTui7Ia
+	 bKrtHpq0WKQ1DniQqumwl1vlDHr4KGnvWue7iS7d+WxFC/D3me5O6XtfWmCsIECqAB
+	 AUsLthEET0us8OLZlhE/igGSnEXzX25wTA+5jMRoYoS8iy8vkSrFcl/+QwjDWYjATB
+	 ISMtYmKabrfy74tshFuZuMVKucjDZLQ5TEWiromIorkDS8nkcTXC1jaybk/Su9L+5T
+	 L4EDEIaHShEkQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 3/5] dt-bindings: clock: cix,sky1-audss-clock: add
+ audss clock controller
+Reply-To: sashiko-reviews@lists.linux.dev
+To: joakim.zhang@cixtech.com
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260617060437.1474816-4-joakim.zhang@cixtech.com>
 References: <20260617060437.1474816-1-joakim.zhang@cixtech.com>
+ <20260617060437.1474816-4-joakim.zhang@cixtech.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 17 Jun 2026 06:08:32 +0000
+Message-Id: <20260617060833.2D4DA1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000C9:EE_|PS1PPF6469DE8C6:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 4d941dbb-9f29-467b-301c-08decc365758
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|23010399003|7416014|82310400026|376014|36860700016|22082099003|18002099003|56012099006;
-X-Microsoft-Antispam-Message-Info:
-	W1M8FTtpVvduu8p1024NIMSglIc+BMJe+Fa6OkmlmtMNDf4Va3IbOdKSpa7JcnrANkIofrGMmaYWjG5yjmvZefTXN16AB+R1WK51B6aEI+Nv+trZUW/Tt2WdBSTMU8BhtJHRW8PcGiwSMsg/1sxjNJFfVpC/8o042MT8aIg8KTFGEhcV4uVg2qSfO/OGyV8kKK2tXXQ6f5/oNijyLTjftf4e9y0EMNWc+CvxHx4iGvw53sDgo9Z2xFyd+vK6l9M3oLewwH8+xBt9hx+iBw4SH2wqBmknXVlQyp/r/DguWScAqFKnur/jsgHZSxy4AUsTRoKGePjvvnAzdHivcz3dE4eN/0DpaOfUAQcF5Zve3NmoQw0nM/BuXph52OIXdARxmDer3+4PTzTFq78TwT5vI7MMt6qpHo6SaMbRHKtOYI/Vy2kipg0cGxmH2RjBk36dd/UK8hZh3e6Tk7pgS3RU4Yg0V95TFnkq7V9k6ywO9M9IH+7fLEBFA8nu8JZbk/N+HF64yzQvxBHxLhQ8k7+GL+h5dTwdAiNnWIdEQNBV/ecLh2A3Ti/HguFFh5i4zu0Adx9rlRrC+45ICKiSUMxpxg7ElTUH7Sz7s7N8kA2CunTEVXZMwxyOvuI5/SiSCVmjHFiRfppcaarHzRCOqj08R9WXBBZp8MMzt9yi1yOHFQp7DRKf2x0X9qW3FY26OPuDCe19RzSFEKj7ZuKqjvOXpwxxybQCtjkG0ULP9OLqulI=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(23010399003)(7416014)(82310400026)(376014)(36860700016)(22082099003)(18002099003)(56012099006);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	cBP88uG9Jnq78eh7qWefYh09QWsDn1LTlpFMgZCRMvY4NYn7YLACnUUz0tPFjh96Z8fNUyh44z13PQLxTqh4ig22B8uBmisYY61Dkhpmeb7VZ7j2221VW4iAK24NoopJFJRuM1WdT4012nwJIzZuZlZD3wFMg3r6k9YuJUAmGiWb6tyHCvce37GVPSmpi2jY56cIuK62G5fleZOdHzpzU+Deg+aqX89uesbHYBV2aqNGphJrar8khbfDihgAfiaUvNRvUc3ZM40LgYeXwNwSghaBFHuwowEL/9J2kuy92VOx3zHGeH74pX+vG3Pk5s9DbOk4gbE7t4ic2VYuNRNk2O0RGZ0aOaMEQ1KAxJyZFB03PkiXwyoiM49UzzpX1v2FmJiJv49Oe9v61F/T0yED202Ajoyl9q/kn3VbOG2Xu/nQU9Q4/0JpK4mGHA6y7WrQ
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 06:04:49.6788
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d941dbb-9f29-467b-301c-08decc365758
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	OSA0EPF000000C9.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PS1PPF6469DE8C6
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.54 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-312773-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[cixtech.com];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:gary.yang@cixtech.com,m:cix-kernel-upstream@cixtech.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:joakim.zhang@cixtech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,cixtech.com:email,cixtech.com:mid,cixtech.com:from_mime];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-312778-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:joakim.zhang@cixtech.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,vger.kernel.org:from_smtp,cixtech.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 49867696BD6
+X-Rspamd-Queue-Id: 8E058696C2E
 
-From: Joakim Zhang <joakim.zhang@cixtech.com>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Typo in the clocks property description: 'delicated' instead of 'de=
+dicated'.
+--
 
-Add audss system control device node, which would provides
-clocks and resets for devices in audss domain.
+commit 0bf88f97ab11d2c8010b886d37df1eed62b3d256
+Author: Joakim Zhang <joakim.zhang@cixtech.com>
 
-Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
----
- arch/arm64/boot/dts/cix/sky1.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+dt-bindings: clock: cix,sky1-audss-clock: add audss clock controller
 
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-index bb5cfb1f2113..3091789fc176 100644
---- a/arch/arm64/boot/dts/cix/sky1.dtsi
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -6,6 +6,10 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/cix,sky1.h>
-+#include <dt-bindings/clock/cix,sky1-audss-clock.h>
-+#include <dt-bindings/reset/cix,sky1-system-control.h>
-+#include <dt-bindings/reset/cix,sky1-s5-system-control.h>
-+#include <dt-bindings/reset/cix,sky1-audss-system-control.h>
- #include "sky1-power.h"
- 
- / {
-@@ -488,6 +492,26 @@ mbox_pm2ap: mailbox@65a0080 {
- 			cix,mbox-dir = "rx";
- 		};
- 
-+		audss_cru: system-controller@7110000 {
-+			compatible = "cix,sky1-audss-system-control", "syscon";
-+			reg = <0x0 0x07110000 0x0 0x10000>;
-+			power-domains = <&smc_devpd SKY1_PD_AUDIO>;
-+			resets = <&s5_syscon SKY1_AUDIO_HIFI5_NOC_RESET_N>;
-+			#reset-cells = <1>;
-+			status = "okay";
-+
-+			audss_clk: clock-controller {
-+				compatible = "cix,sky1-audss-clock";
-+				clocks = <&scmi_clk CLK_TREE_AUDIO_CLK0>,
-+					 <&scmi_clk CLK_TREE_AUDIO_CLK2>,
-+					 <&scmi_clk CLK_TREE_AUDIO_CLK4>,
-+					 <&scmi_clk CLK_TREE_AUDIO_CLK5>;
-+				clock-names = "x8k", "x11k", "sys", "48m";
-+				#clock-cells = <1>;
-+				status = "okay";
-+			};
-+		};
-+
- 		mbox_sfh2ap: mailbox@8090000 {
- 			compatible = "cix,sky1-mbox";
- 			reg = <0x0 0x08090000 0x0 0x10000>;
--- 
-2.50.1
+This commit adds a devicetree binding for the Cix Sky1 audio subsystem
+(AUDSS) clock controller. It acts as a child of the system control
+syscon, routing 4 reference clocks to internal consumers.
 
+> diff --git a/Documentation/devicetree/bindings/clock/cix,sky1-audss-clock=
+.yaml b/Documentation/devicetree/bindings/clock/cix,sky1-audss-clock.yaml
+> new file mode 100644
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/cix,sky1-audss-clock.yaml
+[ ... ]
+> +  clocks:
+> +    items:
+> +      - description: I2S parent clock for sampling rates multiple of 8kH=
+z.
+> +      - description: I2S parent clock for sampling rates multiple of 11.=
+025kHz.
+> +      - description: clock feeding most devices in audss (NOC, DSP, SRAM=
+, HDA, DMAC, I2S, and Mailbox).
+> +      - description: clock feeding for HDA, Timer and Watchdog, which is=
+ a delicated 48MHz clock.
+
+[Severity: Low]
+This isn't a bug, but there is a typo here where delicated is used instead =
+of
+dedicated.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260617060437.1474=
+816-1-joakim.zhang@cixtech.com?part=3D3
 
