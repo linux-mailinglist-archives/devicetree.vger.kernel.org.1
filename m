@@ -1,124 +1,166 @@
-Return-Path: <devicetree+bounces-313170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313171-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wZC0NakIM2re8gUAu9opvQ
-	(envelope-from <devicetree+bounces-313170-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 22:50:49 +0200
+	id vM0ONcAIM2rg8gUAu9opvQ
+	(envelope-from <devicetree+bounces-313171-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 22:51:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F4969C6C6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 22:50:49 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF9AA69C6CF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 22:51:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GPt2pit1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313170-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313170-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TmqAEqmT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313171-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-313171-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1A98B3044F0D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 20:50:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EF6AA300B503
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 20:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A15638F24C;
-	Wed, 17 Jun 2026 20:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E716038F957;
+	Wed, 17 Jun 2026 20:51:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EDBD27FD4B;
-	Wed, 17 Jun 2026 20:50:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DECAB27FD4B
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 20:51:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781729447; cv=none; b=XOec1TPWB4OK4t3+VnqhAN0WN2gC+w86wg3Z5M5nOWRDCSZrXoxNczD0OY8SG+THOrZ4TivRc2zdpLGu8xi6ai6L8bXaR4rsbGsyAJIMv7dU8bYh+cIDnoCsmUYXuMg9/+AOdGaV9bZ8HtxCbOdhAozYgvhAG/XO5kIuwmh8Biw=
+	t=1781729467; cv=none; b=Y48QN58/0sSXqVyk180oe2AU97ojHjz+NLksU2uAtyZ0pzXw1Txop2W3hCRJKplKODa/4A1YUPNgwb+gUscGgrYUMNvSylBR77jTrelILFNsUfHqq7EB/VtHs1U9/i5IFOeT/6It2QBokPfRb309CDeykNQY7NtaZM8upPrAYA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781729447; c=relaxed/simple;
-	bh=ml2dFj6xAwZLHtCTfPSBLMYP13F6AajOQChidvgyUh8=;
+	s=arc-20240116; t=1781729467; c=relaxed/simple;
+	bh=im5pnGMUlDh9++5Hp+P92pTcOxkNUh6iU/UK+eLX1HQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Somwvny5eC25WfsCxI72FLtye2wLw4owGj/IKODbcjDM+GWKCLe9A4sSXn24nwEwpooBuc57qvWr0Ml0hsUUZOQPWmVVxi13glwbhaVsuMbQBrADM0Aa7C4xk42HNLEsmi4psBHy1r33mYTzThWHcp8KEyt50Vij/c78siDWWp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GPt2pit1; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91DBC1F000E9;
-	Wed, 17 Jun 2026 20:50:45 +0000 (UTC)
+	 Message-Id; b=fRKR5Zi6EAyeaxF/mbDoL+HlPQMPngFqm9AWftps1sqPoslu0DKClGbw7B6m5ScSKcIl13jy64Y77rMri/rurPBwvTW1MjYYvdT6z7x9+RNSgsPu1fWvP1EwgDI7qJQx6c6yMTP8ihqiJXOBWd02RiVEDKiwKslxJy+yblTAH7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TmqAEqmT; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59B2A1F000E9;
+	Wed, 17 Jun 2026 20:51:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781729445;
-	bh=ml2dFj6xAwZLHtCTfPSBLMYP13F6AajOQChidvgyUh8=;
+	s=k20260515; t=1781729466;
+	bh=rytpHzgF484wf81fAB85AI+s/DoNZAU6/J3f4UL8XK8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=GPt2pit1rKCAq6opLG2BszQHvb+jL0uVmAPXkgaL7dBwNlVZ9Kb80Jy9C+MXUcAUb
-	 3qj0Rp1H2LodUgdFHHxTmdOSmO+9egDoIxSTtlGfwHTQxjg//jyt7T982X1WhR03Fv
-	 WsRx/t15nPGoZT3Qa1khwf+J12XFyGts9L+oTXA9amZW+gkizVGpVi+CbX8TUUuB7k
-	 uBqDTRnmNmWV6OrzdNZeDpJh+VwGc8xB34R5AwoCw77sp9sZMLsQ9g45HZ6/NaY2i8
-	 xQQk5J4OeXMUsVevPSvlWRGrQ3mgOUBZozt5NqbkZq41Mlf3o3E/sUKdcNcHJaiPmy
-	 vrXJy/gD8JAPA==
+	b=TmqAEqmTX7Uq8Da321l49OQz4ELoF/fHx8J2ZY55AgvqBk1R/uo3MsSUETOyiDf6V
+	 9imZHoIhLfN1UZX4BIthHR/y+ognYp3a1ezovcatlEbH+/AXROwZKhG6djvnwNIWKl
+	 omq3/2Grg/V8spEa+h6cnVm4Oe8iIdgPKX0NLqHnorgXLnzZKuDo72rnqlUZC4Hzvz
+	 134Hquqsoml8IJfo8wJFYTq+3QNZc8A47Lq9gEE5GiK4zG7SaY1MczlDb6PEeZIGdR
+	 1MkTCe8pdAgz2h2H8nkEpD7ql+uIy7LZCiGiizl3ZqfW4Iw7zYPvO/XXk1CFWnUkAC
+	 34sr2Vqnal3dQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 4/4] arm64: tegra: Reorder reg and reg-names to match
- bindings
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: xen: Convert to DT schema
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Thierry Reding" <thierry.reding@kernel.org>
-Cc: conor+dt@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260617-tegra264-pcie-v7-4-eae7ae964629@nvidia.com>
-References: <20260617-tegra264-pcie-v7-0-eae7ae964629@nvidia.com>
- <20260617-tegra264-pcie-v7-4-eae7ae964629@nvidia.com>
+To: "Tejas Mutalikdesai" <tejasmutalikdesai@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260617185518.43500-1-tejasmutalikdesai@gmail.com>
+References: <20260617185518.43500-1-tejasmutalikdesai@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 17 Jun 2026 20:50:45 +0000
-Message-Id: <20260617205045.91DBC1F000E9@smtp.kernel.org>
+Date: Wed, 17 Jun 2026 20:51:06 +0000
+Message-Id: <20260617205106.59B2A1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-313170-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-313171-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,vger.kernel.org:from_smtp];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:thierry.reding@kernel.org,m:conor+dt@kernel.org,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:tejasmutalikdesai@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 61F4969C6C6
+X-Rspamd-Queue-Id: BF9AA69C6CF
 
-> From: Thierry Reding <treding@nvidia.com>
->=20
-> The ECAM region cannot be the first entry in the "reg" property, because
-> in that case the unit-address wouldn't match the first entry. The order
-> of the nodes can also not be changed to match the ECAM entry because the
-> ECAM region is global and outside of any of the control busses.
->=20
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Critical] The `$nodename` pattern requires a unit address, which breaks =
+Linux's hardcoded Xen node detection.
+--
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+commit e4969fb4c5852849c9ecbfff9b63719a0d10dc05
+Author: Tejas Mutalikdesai <tejasmutalikdesai@gmail.com>
+
+dt-bindings: arm: xen: Convert to DT schema
+
+Convert the Xen ARM device tree binding documentation from the legacy
+plain-text format to the DT schema format.
+
+> diff --git a/Documentation/devicetree/bindings/arm/xen.yaml b/Documentati=
+on/devicetree/bindings/arm/xen.yaml
+> new file mode 100644
+> index 0000000000000..a22e950566c23
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/xen.yaml
+> @@ -0,0 +1,109 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+
+[ ... ]
+
+> +description:
+> +  Xen ARM virtual platforms shall have a top-level "hypervisor" node with
+> +  the properties defined below.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^hypervisor@[0-9a-f]+$"
+
+[Severity: Critical]
+Does enforcing a unit address here break existing kernel expectations?
+
+The Linux kernel seems to strictly expect the node to be named exactly
+"hypervisor" without a unit address.
+
+In arch/arm/xen/enlighten.c:fdt_find_hyper_node(), the code uses:
+
+    if (depth !=3D 1 || strcmp(uname, "hypervisor") !=3D 0)
+
+And in drivers/firmware/efi/fdtparams.c:dt_params[], the path is hardcoded:
+
+    .path =3D "/hypervisor/uefi",
+
+If a hypervisor or devicetree generator updates its output to comply with t=
+his
+new schema and adds a unit address (e.g., hypervisor@b0000000), won't the
+kernel silently fail to detect Xen and its UEFI runtime services?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260617-tegra264-p=
-cie-v7-0-eae7ae964629@nvidia.com?part=3D4
-
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260617185518.4350=
+0-1-tejasmutalikdesai@gmail.com?part=3D1
 
