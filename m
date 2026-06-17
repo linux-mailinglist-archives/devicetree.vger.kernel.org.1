@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-312727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312731-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QwZuGSAFMmpPtwUAu9opvQ
-	(envelope-from <devicetree+bounces-312727-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 04:23:28 +0200
+	id kH1iF+gEMmpCtwUAu9opvQ
+	(envelope-from <devicetree+bounces-312731-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 04:22:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 210176961D4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 04:23:28 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A02A86961B2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 04:22:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=UCHnYjTU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312727-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312727-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b="g/Ny7Wij";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312731-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312731-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1BDC63043C18
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 02:21:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9A92F3019831
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 02:21:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 831802F4A14;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B163009F6;
 	Wed, 17 Jun 2026 02:21:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E95E3B1B4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65E972EC081;
 	Wed, 17 Jun 2026 02:21:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781662872; cv=none; b=Pkd0svvTeGBNfBHqCfQ8nmSr1gqSmW8/pqWxVDaICM6ABZcWCh1t6K+QpQVGosN6YY5tewcptQPncx/QGSkOZaM7GuwvHAefvpt0QAZU5QmjmS1WE1TfndiEmLJdYTtlmcpCFoONeyWCFVlt6A92dRu5s54tUon3JlK9XxGeS6g=
+	t=1781662872; cv=none; b=VF8/LD62ufxIvaHxaoOtFl8aXh1dWYIyI0ONi5dXfxh4T+MrNTfvj7DzmlH8hFePxcKgJrpkybo3E3uEjgB1QBEbf/RfYXbLBfgJLfEfEAdmrVT1MXynFeNWLnzAXx+CO2KnHrhmpwQJ/VXCuZL2y6CiRIltuiI65rzAqjF2zqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1781662872; c=relaxed/simple;
-	bh=glvYwgFlMorddfw4uLmdJXSdkoYcHUq+2F+K+ayE2Dk=;
+	bh=O8e39Y8zZ8di3UFxOjhE2ft5kuA5vKiMtzFy1esWqMg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Gxb3vri5IwBYvuzU6QPBUVnPB4gXcrl54NM5H8CuUtK1W0KN9/bSh5jytVol6B0NU0Djvu0d439Ind9k+J7Ws1sZadtd8VIZ8BE8zw9t1uMK9nlwfDUKqmIt90zJPf3WGrG3hfHXE3JPUY6UugrzMhE5r+RumSH9+4bVfvSnvvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UCHnYjTU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2CB44C4AF14;
+	 In-Reply-To:To:Cc; b=b5l80Q8HG4olZb1eMMqh59o0ymvdZpbP/ZG328Aanl+JO4VneYyaO3JPj516MpYs8qoUdqaQ7FBahP1T91e848PaiUZ/x2b9Y8afaA1cjvAHUQ46idbOGkWsuENg79vyHxkaqNav7FP4Ztwz4L2JqA5CXdY6TkI3NIcHLiv8ob4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g/Ny7Wij; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2CA84C4AF13;
 	Wed, 17 Jun 2026 02:21:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1781662872;
-	bh=glvYwgFlMorddfw4uLmdJXSdkoYcHUq+2F+K+ayE2Dk=;
+	bh=O8e39Y8zZ8di3UFxOjhE2ft5kuA5vKiMtzFy1esWqMg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=UCHnYjTUvpvtyKwb3kT1p5x3vdGe7Wef6jBRM0uWmwB/bhR7NWw4MaNrkP08uvdqx
-	 B4LOBuxU65GgP1+RtdZ4Nf2sZ9RwZl/UmfjrF+QoGsQ8JV8G8d8AwW/kB5FNubUJf8
-	 VInND4fo7perSV6nCsoSb+BHawdgzHlM6PMWMZYUrHnHRocKuWReHU2d57sXKKZXvj
-	 kiW4GIOqqGlpwoPq+wWy5PBWPRodGuEIdrwbak6y4/M02qXPoMzusn+lyld72GKE5/
-	 tvVyFiLs0F3lIV20N8euHhAJAB1Js7LsaE1hD69FJkzx5gIxETgsCVI77VHKynMygv
-	 nwr4uw8MSl0zg==
+	b=g/Ny7Wij0FghiETR6iRHsZtl8WvGjGYL2yQIxJgyBaXCvix6EuEigEsB40N4gHU7K
+	 om/8KVTiZ9ACKeU1pRxo249Y4UtiI/4N+RVO2+VEtpsMYF6Or0Z9jBrVigDR8rrL07
+	 oam6uOuqFhXH+Jqe05DKBkgK+X56hyR7oNaee8FEeJow5IegXLKrswFzJiEtrLUL24
+	 O9/TeAfbsxMLkT4rQuhtHguQnI7AQAbfJ5kzCpvyRib8+qCQeHAjsjfXOsUFYzRv1j
+	 6G/703QifGB5NnbUdvIFJoTcRd8Ju5MFKF2HAOQrX+uEtzn9v+dXwDmzcz85HnoZLD
+	 5Jf+EJ6+lwC/A==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1791CCD98F2;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2720ECD98F1;
 	Wed, 17 Jun 2026 02:21:12 +0000 (UTC)
 From: Zakariya Hadrami via B4 Relay <devnull+zkh1.proton.me@kernel.org>
-Date: Wed, 17 Jun 2026 11:20:12 +0900
-Subject: [PATCH 3/5] ARM: dts: mediatek: Add basic support for Amazon ford
- board
+Date: Wed, 17 Jun 2026 11:20:13 +0900
+Subject: [PATCH 4/5] dt-bindings: arm: mediatek: Add MT8127 Amazon ford
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,7 +60,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260617-mt8127-amazon-ford-basic-v1-3-d02ad15ac359@proton.me>
+Message-Id: <20260617-mt8127-amazon-ford-basic-v1-4-d02ad15ac359@proton.me>
 References: <20260617-mt8127-amazon-ford-basic-v1-0-d02ad15ac359@proton.me>
 In-Reply-To: <20260617-mt8127-amazon-ford-basic-v1-0-d02ad15ac359@proton.me>
 To: Matthias Brugger <matthias.bgg@gmail.com>, 
@@ -74,11 +73,11 @@ Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
  linux-watchdog@vger.kernel.org, Zakariya Hadrami <zkh1@proton.me>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1781662870; l=1963;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781662870; l=814;
  i=zkh1@proton.me; s=20260616; h=from:subject:message-id;
- bh=ER3ARswagh7xs80gDU1m6FCsuRFGAreidBmq7cULkdo=;
- b=+QdkQGlmeYDRoihE7kbdnK5j5pskDYSpNmqPESbCOZFyNKw/dd4fiNwgD29rBrUV0pJQfSKsL
- 3H8qExH4PQ7AjhPY1ZILHmrbn8Dwrgkg7aChlJX9XA93WtOxqOWx+MH
+ bh=CteuquPMK3ekAPrSrikG9MTiPrJ2S6hY2cdfoA37n5Y=;
+ b=QvALVdl1TyvRHk4IbG6e8/iH3V6MqHh3AVd8EW+tQXxk/ZkC7U92/MSbTx1juqnWNb4PxHErv
+ mxOxymgs/kyDPvoRRdhunQYznwxiVCPOYX2uHPy6LmUWEZoNykVaRJ6
 X-Developer-Key: i=zkh1@proton.me; a=ed25519;
  pk=9DiJwhINAERP95fbFofXSP77GEnvfO/rMIRRRFDhaoc=
 X-Endpoint-Received: by B4 Relay for zkh1@proton.me/20260616 with
@@ -92,12 +91,12 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312727-lists,devicetree=lfdr.de,zkh1.proton.me];
+	TAGGED_FROM(0.00)[bounces-312731-lists,devicetree=lfdr.de,zkh1.proton.me];
 	FORGED_RECIPIENTS(0.00)[m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sean.wang@mediatek.com,m:wim@linux-watchdog.org,m:linux@roeck-us.net,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-watchdog@vger.kernel.org,m:zkh1@proton.me,m:matthiasbgg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com,collabora.com,kernel.org,mediatek.com,linux-watchdog.org,roeck-us.net];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -107,7 +106,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	HAS_REPLYTO(0.00)[zkh1@proton.me];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -116,89 +115,38 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,proton.me:replyto,proton.me:email,proton.me:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,proton.me:replyto,proton.me:email,proton.me:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 210176961D4
+X-Rspamd-Queue-Id: A02A86961B2
 
 From: Zakariya Hadrami <zkh1@proton.me>
 
-This tablet uses a MediaTek MT8127 system-on-chip with 1GB of RAM.
-It can currently boot into initramfs with a working UART and
-Simple Framebuffer using already initialized panel by the bootloader.
+Add entry for the MT8127 based Amazon ford tablet.
 
 Signed-off-by: Zakariya Hadrami <zkh1@proton.me>
 ---
- arch/arm/boot/dts/mediatek/Makefile               |  1 +
- arch/arm/boot/dts/mediatek/mt8127-amazon-ford.dts | 46 +++++++++++++++++++++++
- 2 files changed, 47 insertions(+)
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/mediatek/Makefile b/arch/arm/boot/dts/mediatek/Makefile
-index 37c4cded0eae..a610bc75c7d9 100644
---- a/arch/arm/boot/dts/mediatek/Makefile
-+++ b/arch/arm/boot/dts/mediatek/Makefile
-@@ -14,5 +14,6 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
- 	mt7623n-rfb-emmc.dtb \
- 	mt7623n-bananapi-bpi-r2.dtb \
- 	mt7629-rfb.dtb \
-+	mt8127-amazon-ford.dtb \
- 	mt8127-moose.dtb \
- 	mt8135-evbp1.dtb
-diff --git a/arch/arm/boot/dts/mediatek/mt8127-amazon-ford.dts b/arch/arm/boot/dts/mediatek/mt8127-amazon-ford.dts
-new file mode 100644
-index 000000000000..21bdab0e43f8
---- /dev/null
-+++ b/arch/arm/boot/dts/mediatek/mt8127-amazon-ford.dts
-@@ -0,0 +1,46 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/dts-v1/;
-+#include "mt8127.dtsi"
-+
-+/ {
-+	model = "MediaTek MT8127 Amazon Ford";
-+	compatible = "amazon,ford", "mediatek,mt8127";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:921600n8";
-+
-+		framebuffer0: framebuffer@b7a00000 {
-+			compatible = "simple-framebuffer";
-+			memory-region = <&framebuffer_reserved>;
-+			width = <1024>;
-+			height = <600>;
-+			stride = <(1024 * 2)>;
-+			format = "r5g6b5";
-+		};
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0 0x80000000 0 0x40000000>;
-+	};
-+
-+	reserved-memory {
-+		framebuffer_reserved: framebuffer@b7a00000 {
-+			reg = <0 0xb7a00000 0 0x1000000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 382d0eb4d0af..5ddc79689df9 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -124,6 +124,10 @@ properties:
+           - enum:
+               - mediatek,mt8127-moose
+           - const: mediatek,mt8127
++      - items:
++          - enum:
++              - amazon,ford
++          - const: mediatek,mt8127
+       - items:
+           - enum:
+               - mediatek,mt8135-evbp1
 
 -- 
 2.54.0
