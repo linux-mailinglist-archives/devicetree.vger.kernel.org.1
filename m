@@ -1,86 +1,58 @@
-Return-Path: <devicetree+bounces-312998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313001-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YZU0EjaZMmpe2gUAu9opvQ
-	(envelope-from <devicetree+bounces-312998-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 14:55:18 +0200
+	id +JfsGAyaMmqe2gUAu9opvQ
+	(envelope-from <devicetree+bounces-313001-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 14:58:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C75F699E1B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 14:55:17 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42DB0699EA4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 14:58:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=mSGZM1uX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312998-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312998-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linaro.org;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=uFVnfYIw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313001-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313001-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8221C30C9F40
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:54:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AE7AD300A4B1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:58:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9ED3FAE0A;
-	Wed, 17 Jun 2026 12:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36743F0ABC;
+	Wed, 17 Jun 2026 12:58:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D8FDEEA8
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 12:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AAAE3FF1AD;
+	Wed, 17 Jun 2026 12:58:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781700841; cv=none; b=BpuC7Ah3n0hsVvT+ihRQ/rkbtOmqEFwd+KyNk8+h6cvRapsDI4z6ecTuZVHaP+6EYGQxQ5rDY7oPpll9MKbfo4FiG8RxmvCa/9GaJQFf6MIpAwUNQKdvs3ni7y5Mg6EhOj1zee3wjR33L2RZOHnd7vEc43ZiAV8icWzvqXCrWMk=
+	t=1781701116; cv=none; b=kwDEGV6WxqGwlTsF7MLKD3RJ8ah+wAQyEACkuxq5kNCmO17vC05ZU/J5vjMbJkWU+O4+BBbEmDSW3lU8nNDDNEN6UGw6pCGOvLirLQtL/KskAmcB/m1R8Ldtwl6Es5G+wABv9xsWIpcvt8s74LZcAyUIjlUrLYMekSyRLJ5TbJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781700841; c=relaxed/simple;
-	bh=co3zJ1YkSnTpdHKF+bz6CkAeVpcSuD9MWZee6XOEQSc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=niVYv1GP/qedALHXSa19fTnNXk7wqJT98GBDlb20gzLNigIgozUE1TfqwaHUI8dGGDRdlEbuLDknAEUftx0fUFTO5uxTeMPnBuJ/zh27hYJISC6Uxt66KgFvVoJhRPEmL0cikwOL8mQ+s128HZeTqBhXXnbOm5gZkAQuu4YnxCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mSGZM1uX; arc=none smtp.client-ip=209.85.128.47
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-490c0c92cffso38195985e9.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 05:53:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1781700838; x=1782305638; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DEP4f57V0XIAN3mPY8YqCX+FrVX90yL/cJOfjBY3eLU=;
-        b=mSGZM1uXlaf9XE00CLzsHQSob50hWueLF0pLW1CeGb/SbcnYf4b7ruaITEMgLa/wfH
-         nE9vZvl4JygXOwA9l7xOGzUuTJAb9lYK6/wHjL4qNCMEg9UAxWDWc/mtSpkVjeosYuRc
-         ykkBWZP3vTMRzAy3if+mhfqegMa7q/wzkz7/ygIGpSghJsfsONqLCJn6KSOAHVoVTJ9m
-         riNHh1ZOtu3A+7UEpUklo9athWnjDSUSQkG0pyzqpFYTYOpxKvt2YOoxtp+6MmJsHBe8
-         dfJYxOPPBJYL96YvDdYJOMYOVjHHOr5S1e2Y3B2LtubIiEyhFFrDLWQkjK8BGCbdJSB8
-         PegQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781700838; x=1782305638;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=DEP4f57V0XIAN3mPY8YqCX+FrVX90yL/cJOfjBY3eLU=;
-        b=b158KnH3YDJ5Dm0UlCor9dmY7qGEfYu/0MahlPte3ZDhcEIYiFO7bMqdiFyqBwO5tJ
-         AoSHUkybf5V2IJ0spB/ko+yYH0CS8h2uAbB1wtmJwh11QvxhBuHvGyRVg1RIwLMI0pHc
-         BV6VvrFrJ69GpudfnYhTztXTLKhwiTmaxY1laQFAr9NBngoUL5BPAkgQrKFQC3dsPb4e
-         eubcznQ8KmNHnzlMCjaKi0A73JfcO4d3Eh/bYPUm4gsGpb5OGt2efsy67uXT1X2kbmSS
-         epAHPlrX8FYr1ChTapNFdjKHwoQHzPNiUW52OLcikcYmkBJfQ61JR9T907OjuEPQXZgj
-         vgBA==
-X-Forwarded-Encrypted: i=1; AFNElJ8UtwGYbJdgpb1XKtbTDBgpk5resNe+zeo8GFrkD2X6MqTDErurEc3ANaSYcunPKtK+JpAP17KpajOm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzEQTxmtYgg/gQuGdioq/TBZ3+If//3VNhgb3L4JUafb6KeECig
-	pr/1EqzfEdxRKsgQyw1SBKHH6/yh5bntGw5zvypu4AlaACtyujJkbsoeY0EpdqX4u6vzI9pzKB/
-	gejRW
-X-Gm-Gg: Acq92OGk+qG+vA21vdFFWk4UrWxlmgXd2+0iLQIQHjokyagC67PpDFqdS+gJ5TcTsMG
-	hwkZ+YbuOgiVTX3e89Ym0kuQXnA1QZOxble3N+nNnT5pvBJcM2MVCEJ9oepi5hSN2ZlxjiHkKqE
-	Hib2tVtNNdHl6m4KICFRDrMBJdsM9FmE7Sb5/rfAzVoUIbllZa0AUy2/44E9K/PZNZpy8QmJUmC
-	IBf6JZLAhKbIDydiJrPI/Izi9+IB32tt9XdKrA4USZj7705cXrcFBZ3X+GMrmKUeLpzvjMaWWbm
-	qCsisCsu/wqQolm2anBQdjHVciEVxPTvwVbn4cAxmjwgzW+ebAzes9nPXxBMoE8RT6Ed2svrYO5
-	WcCAMyGgdlKd2vk4Zr5TVTpaoOzQ0TScX7EUUCPbY/A82GK1Qnmyxyy3CROawbBln+8pdn8qre4
-	+xEwzuPPgHKEd7SUTzpDTVa+/8yCfU/xPTUUEaYTkU8xds
-X-Received: by 2002:a05:600c:2947:b0:490:6237:5200 with SMTP id 5b1f17b1804b1-492333f5dbamr40385605e9.10.1781700837751;
-        Wed, 17 Jun 2026 05:53:57 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-462236047c8sm9130562f8f.10.2026.06.17.05.53.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jun 2026 05:53:57 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 17 Jun 2026 14:53:49 +0200
-Subject: [PATCH v4 5/5] arm64: dts: qcom: sm8650-hdk: add SPMI ADC channels
- and thermal nodes
+	s=arc-20240116; t=1781701116; c=relaxed/simple;
+	bh=iK2ZWTSF7L93Etn4Phm9syUtj0nmrXOQvs6fpSsNjdo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oUdZXG8lUc4B6tLmxPyRyyK1pZ14skoLq5ZF70GxAQgxGi0iNZjEZYaO74kCZkC4IubDieW9x01OxIwveK2kcOy7DGnMSxYRYHz4ZuboqkwDd4PGOXFFBTFp2D6cwEcJwOLH+FDb1Kau0Uf5lUM8ETYoN6w0eGIk1tWaqTKf3cg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uFVnfYIw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DEAA3C2BCB0;
+	Wed, 17 Jun 2026 12:58:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781701116;
+	bh=iK2ZWTSF7L93Etn4Phm9syUtj0nmrXOQvs6fpSsNjdo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=uFVnfYIw44Rju20GmDv1agE2BQdk0vOcHXQnRiklAoydXPbuMS0bVKDvnT2o1+qpG
+	 GxvB9qiojRisB0rTz6u5bpW0buwedz6XNYmGPCooWYEd02T6BU0MgqMC1XsrUYjtmf
+	 O6Jegj346CF6Qm3CVvtn/tOcJQ0bS5PLUWIk7K/NNN60eguudEUYGs5aV00cZIUmAQ
+	 rC+BUWpWq+YRGHvXnC81lEnI516lXi7Pewh1Md44UKvErmRkMd8RlfJGJf26fNylYN
+	 PdnlFR7DkRWdyD4VHr6nCAYmwBTJOz6p3+72yDLIkAZ5+qz1Yzx1UxoZuUqll9F6vE
+	 jIEbQ67r9538g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AEC79CD98E2;
+	Wed, 17 Jun 2026 12:58:35 +0000 (UTC)
+From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
+Subject: [PATCH v4 0/3] describe RTL8125 PCIe NICs on Rockchip boards (and
+ add DT binding)
+Date: Wed, 17 Jun 2026 14:58:27 +0200
+Message-Id: <20260617-rk3588-dts-rtl-eth-describe-dt-alias-v4-0-2bd38922d129@pardini.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,396 +61,161 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260617-topic-sm8x50-adc5-gen3-v4-5-4af9251731f1@linaro.org>
-References: <20260617-topic-sm8x50-adc5-gen3-v4-0-4af9251731f1@linaro.org>
-In-Reply-To: <20260617-topic-sm8x50-adc5-gen3-v4-0-4af9251731f1@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7153;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=co3zJ1YkSnTpdHKF+bz6CkAeVpcSuD9MWZee6XOEQSc=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBqMpjcfEwz+3bq23HGrknx6+//uwN47parhOyUTHFv
- LpgyW9aJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCajKY3AAKCRB33NvayMhJ0ZLSEA
- DDc9BRqCZ6F6G/LdNeWscm0ml57UXKlbeSl0ElfwkwvnIOKM1EtswzLfFq8MNV3uGuO0jsxbbLXCkV
- 6p8jthK+x/x58V28CRbUdlLvwPgGSqSDKbeRs1X7PN5zXRuZ9sEKQVQFIYiXD34sWpL3Z/b7BQmi5K
- kWJ6yCIgD65uJSuJM8wXvVubyIz+Dwy+SekT1vRNo6M3p5RwelBNwJZT3V4sJBFR/H2B6W3D66wgSI
- QJPBWhHLHDJjwgwDHt0gSpGjLqTDCAHLI/dQ/7Q4rWMx8Pl9A0bpYozAw9DBSmW3xKaXcUDKX+T5BV
- 1kVsG/+bUeEgBHk/8EA3z0OiyFJPMOpRnF9IAkhHjSkSxfPR+PE9W0y716346W5L6dAavYhCIaNZNp
- l/sAphV84i5BwmILKwkqt9LVo0eU3OJrj/qwsXBViXkmi3xVERKi/7JsRW58e1Ig3jejgP7ng57w+X
- 0qg8qlUEHVRJWm2JISWd1gNoNG5p9U1ByHyHF9BX4cGj+dHaDPD+nJARLyR3vE3TLvLrw2Zd1IN4Bb
- qGZ8/c0fzTpL2V3DwM9N8JKRapQBB3lE67H5nP2gnZS9DamfNkxejXbF3533ItNXcoCsx/1BYxeBc7
- irAH/aOuNH9Q/N7/UVVqVcnpSfDpiwhXRllpJ5Jx400hIuuqg+017fKAu5Ug==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/43OTU7DMBAF4KtUXjPIv7HTFfdALCb2hAxUaWWbC
+ FTl7jhFCASbLN/o6XtzFYUyUxHHw1VkWrjweW7B3h1EnHB+JuDUstBSd9JpC/nVuBAg1QK5noD
+ qBIlKzDxQOwKeGAtERUkFP/jopGjUJdPI77eZx6evXN6GF4p1s7fGxKWe88ftj0Vtve9Jt29yU
+ aAAuzEmdJ3B6B8umBPPfD9TFdvoon+z/U5WgwTbeym1Dcqa8T9rftgG72RNYwOG4Pxg+oR/2HV
+ dPwFlosSemgEAAA==
+X-Change-ID: 20260524-rk3588-dts-rtl-eth-describe-dt-alias-c1ed187b7c50
+To: Heiner Kallweit <hkallweit1@gmail.com>, nic_swsd@realtek.com, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, Ricardo Pardini <ricardo@pardini.net>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3702;
+ i=ricardo@pardini.net; h=from:subject:message-id;
+ bh=iK2ZWTSF7L93Etn4Phm9syUtj0nmrXOQvs6fpSsNjdo=;
+ b=owEBiQF2/pANAwAIATteP+Oex+3pAcsmYgBqMpn4fSKiL6WLMJiO4lZ7wl5/feW3yruuYoEgB
+ W04aHyAtzaJAU8EAAEIADkWIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCajKZ+BsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMiwwLDMACgkQO14/457H7emxXwf/e94Y0R4VyLNLAv8lziyAVCXu4rrDeRG
+ WPGnCHi0bhGdF/Yd1WZZoEHaNBvOA6eHWv8S3mRRHu42gd/nb9JWavMEVrRls1/loicvt5Xx7c2
+ 5bEfo7vMHQ3+IcP6haGXT487ZV31xbthuA3kqGdCNCT5Wr4YFXVoFKPOKnmhgHLb7R0u74OpAqe
+ s9fW4Kt9/ffhqWcthbG9OX3XrKxrsJAmbAhpHqsyBK3+EwUaucMFZo5dVQuKjUaCn1zMwWMtKfQ
+ a4GpYWcg/a2lky/qb0AVe8C2pAfI4x7bRO5dW6HWJSdVyBGoyHCg/gt7PSmHA/QZFHHMP1GIRm4
+ 80pmFQzWo6A==
+X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
+ fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
+X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
+ auth_id=588
+X-Original-From: Ricardo Pardini <ricardo@pardini.net>
+Reply-To: ricardo@pardini.net
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-312998-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:neil.armstrong@linaro.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-313001-lists,devicetree=lfdr.de,ricardo.pardini.net];
+	FORGED_RECIPIENTS(0.00)[m:hkallweit1@gmail.com,m:nic_swsd@realtek.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:sebastian.reichel@collabora.com,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:ricardo@pardini.net,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,realtek.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,sntech.de];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[ricardo@pardini.net];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9C75F699E1B
+X-Rspamd-Queue-Id: 42DB0699EA4
 
-Add the SPMI ADC channels on the PMK8550 SPMI5 ADC3 for the
-other PMICS on the system.
+Several Rockchip rk35xx boards carry on-board Realtek RTL8125 2.5GbE
+NICs whose PCI function nodes are not described in the DT. Describing
+them allows for stable ethernetN aliases (matching the GMAC alias
+convention on these boards) and lets U-Boot's fdt_fixup_ethernet()
+inject mac-address properties from its ethaddr/ethNaddr env, so MACs
+stay stable across boots and U-Boot and kernel MAC match.
 
-The thermal nodes are sorted by the sensor channel to be
-coherent with the system thermal nodes ordering.
+Patch 1 adds a DT binding for Realtek RTL8125 family PCIe Ethernet
+controllers.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Patch 2 describes the on-board RTL8125 function nodes on the
+FriendlyElec NanoPC-T6 (and variants).
+
+Patch 3 describes the on-board RTL8125 function nodes on the Radxa
+ROCK 5B / 5B+ / 5T family done based on lspci output provided by
+helpful Armbian folks.
+
 ---
- arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 277 ++++++++++++++++++++++++++++++++
- 1 file changed, 277 insertions(+)
+Changes in v4:
+- binding: simplify the binding YAML ref Sashiko's and Krzysztof's
+  reviews
+- binding: describe only the RTL8125 + rename to match ref Heiner's
+  review.
+- dt: fix the bus-range according to Sashiko's review.
+- Link to v3: https://patch.msgid.link/20260605-rk3588-dts-rtl-eth-describe-dt-alias-v3-0-8a8857b39daf@pardini.net
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-index eabc828c05b4..05af2913055e 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-@@ -220,6 +220,92 @@ platform {
- 		};
- 	};
- 
-+	thermal-zones {
-+		skin-thermal {
-+			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX1_THM_100K_PU(1)>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		cam-flash-thermal {
-+			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX2_THM_100K_PU(1)>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		wlan-thermal {
-+			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX3_THM_100K_PU(1)>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		pa-thermal {
-+			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX4_THM_100K_PU(1)>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		rear-tof-thermal {
-+			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX5_THM_100K_PU(1)>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		usb-thermal {
-+			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX4_THM_100K_PU(7)>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		wls-thermal {
-+			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX6_THM_100K_PU(7)>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+	};
-+
- 	vph_pwr: regulator-vph-pwr {
- 		compatible = "regulator-fixed";
- 
-@@ -1041,27 +1127,218 @@ led@3 {
- 	};
- };
- 
-+&pm8550_temp_alarm {
-+	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(1)>;
-+	io-channel-names = "thermal";
-+};
-+
- &pm8550b_eusb2_repeater {
- 	vdd18-supply = <&vreg_l15b_1p8>;
- 	vdd3-supply = <&vreg_l5b_3p1>;
- };
- 
-+&pm8550b_temp_alarm {
-+	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(7)>;
-+	io-channel-names = "thermal";
-+};
-+
- &pm8550vs_c {
- 	status = "okay";
- };
- 
-+&pm8550vs_c_temp_alarm {
-+	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(2)>;
-+	io-channel-names = "thermal";
-+};
-+
- &pm8550vs_d {
- 	status = "okay";
- };
- 
-+&pm8550vs_d_temp_alarm {
-+	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(3)>;
-+	io-channel-names = "thermal";
-+};
-+
- &pm8550vs_e {
- 	status = "okay";
- };
- 
-+&pm8550vs_e_temp_alarm {
-+	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(4)>;
-+	io-channel-names = "thermal";
-+};
-+
- &pm8550vs_g {
- 	status = "okay";
- };
- 
-+&pm8550vs_g_temp_alarm {
-+	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(6)>;
-+	io-channel-names = "thermal";
-+};
-+
-+&pm8550ve_temp_alarm {
-+	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(PMK8550VE_SID)>;
-+	io-channel-names = "thermal";
-+};
-+
-+&pmk8550_vadc {
-+	/* PM8550 Channel nodes */
-+	channel@100 {
-+		reg = <ADC5_GEN3_REF_GND(1)>;
-+		label = "pm8550_offset_ref";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	channel@101 {
-+		reg = <ADC5_GEN3_1P25VREF(1)>;
-+		label = "pm8550_vref_1p25";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	channel@103 {
-+		reg = <ADC5_GEN3_DIE_TEMP(1)>;
-+		label = "pm8550_die_temp";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	channel@144 {
-+		reg = <ADC5_GEN3_AMUX1_THM_100K_PU(1)>;
-+		label = "pm8550_msm_therm";
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+		qcom,pre-scaling = <1 1>;
-+		qcom,adc-tm;
-+	};
-+
-+	channel@145 {
-+		reg = <ADC5_GEN3_AMUX2_THM_100K_PU(1)>;
-+		label = "pm8550_cam_flash_therm";
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+		qcom,pre-scaling = <1 1>;
-+		qcom,adc-tm;
-+	};
-+
-+	channel@146 {
-+		reg = <ADC5_GEN3_AMUX3_THM_100K_PU(1)>;
-+		label = "pm8550_wlan_therm";
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+		qcom,pre-scaling = <1 1>;
-+		qcom,adc-tm;
-+	};
-+
-+	channel@147 {
-+		reg = <ADC5_GEN3_AMUX4_THM_100K_PU(1)>;
-+		label = "pm8550_pa_therm_1";
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+		qcom,pre-scaling = <1 1>;
-+		qcom,adc-tm;
-+	};
-+
-+	channel@148 {
-+		reg = <ADC5_GEN3_AMUX5_THM_100K_PU(1)>;
-+		label = "pm8550_rear_tof_therm";
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+		qcom,pre-scaling = <1 1>;
-+		qcom,adc-tm;
-+	};
-+
-+	channel@18e {
-+		reg = <ADC5_GEN3_VPH_PWR(1)>;
-+		label = "pm8550_vph_pwr";
-+		qcom,pre-scaling = <1 3>;
-+	};
-+
-+	/* PM8550VS_C Channel nodes */
-+	channel@203 {
-+		reg = <ADC5_GEN3_DIE_TEMP(2)>;
-+		label = "pm8550vs_c_die_temp";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	/* PM8550VS_D Channel nodes */
-+	channel@303 {
-+		reg = <ADC5_GEN3_DIE_TEMP(3)>;
-+		label = "pm8550vs_d_die_temp";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	/* PM8550VS_E Channel nodes */
-+	channel@403 {
-+		reg = <ADC5_GEN3_DIE_TEMP(4)>;
-+		label = "pm8550vs_e_die_temp";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	/* PM8550VE Channel nodes */
-+	channel@503 {
-+		reg = <ADC5_GEN3_DIE_TEMP(PMK8550VE_SID)>;
-+		label = "pm8550ve_die_temp";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	/* PM8550VS_G Channel nodes */
-+	channel@603 {
-+		reg = <ADC5_GEN3_DIE_TEMP(6)>;
-+		label = "pm8550vs_g_die_temp";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	/* PM8550B Channel nodes */
-+	channel@700 {
-+		reg = <ADC5_GEN3_REF_GND(7)>;
-+		label = "pm8550b_offset_ref";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	channel@701 {
-+		reg = <ADC5_GEN3_1P25VREF(7)>;
-+		label = "pm8550b_vref_1p25";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	channel@703 {
-+		reg = <ADC5_GEN3_DIE_TEMP(7)>;
-+		label = "pm8550b_die_temp";
-+		qcom,pre-scaling = <1 1>;
-+	};
-+
-+	channel@747 {
-+		reg = <ADC5_GEN3_AMUX4_THM_100K_PU(7)>;
-+		label = "pm8550b_usb_therm";
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+		qcom,pre-scaling = <1 1>;
-+		qcom,adc-tm;
-+	};
-+
-+	channel@749 {
-+		reg = <ADC5_GEN3_AMUX6_THM_100K_PU(7)>;
-+		label = "pm8550b_wls_therm";
-+		qcom,ratiometric;
-+		/* use the default settle time */
-+		qcom,pre-scaling = <1 1>;
-+		qcom,adc-tm;
-+	};
-+
-+	channel@78e {
-+		reg = <ADC5_GEN3_VPH_PWR(7)>;
-+		label = "pm8550b_vph_pwr";
-+		qcom,pre-scaling = <1 3>;
-+	};
-+
-+	channel@78f {
-+		reg = <ADC5_GEN3_VBAT_SNS_QBG(7)>;
-+		label = "pm8550b_vbat_sns_qbg";
-+		qcom,pre-scaling = <1 6>;
-+	};
-+};
-+
- &pon_pwrkey {
- 	status = "okay";
- };
+Changes in v3:
+- new patch: add a DT binding for Realtek r8169 family PCIe Ethernet
+  controllers, per Sebastian Reichel's review (the "pciVVVV,DDDD" OF
+  spelling still needs a binding when used in a board DT).
+- new patch for Rock5 series, and include a brief rationale in each.
+- retitle the series, since it now covers a few boards and a binding
+  rather than just DeviceTree changes for the NanoPC-T6.
+- drop the v2 "rename vcc3v3_pcie2x1l0 regulator" patch from this
+  series; it will be sent separately as it is not relevant to this.
+- Link to v2: https://patch.msgid.link/20260529-rk3588-dts-rtl-eth-describe-dt-alias-v2-0-49700248143f@pardini.net
 
--- 
-2.34.1
+Changes in v2:
+- fix: pcie2x1l0, not pcie2x1l1; indirectly caught by Sashiko's review [1]
+- while-at-it: rename regulator vcc3v3_pcie2x1l0 to l1
+- Link to v1: https://patch.msgid.link/20260525-rk3588-dts-rtl-eth-describe-dt-alias-v1-1-a6fcda563ac7@pardini.net
+
+[1] https://sashiko.dev/#/patchset/20260525-rk3588-dts-rtl-eth-describe-dt-alias-v1-1-a6fcda563ac7%40pardini.net
+
+To: Heiner Kallweit <hkallweit1@gmail.com>
+To: nic_swsd@realtek.com
+To: Andrew Lunn <andrew+netdev@lunn.ch>
+To: "David S. Miller" <davem@davemloft.net>
+To: Eric Dumazet <edumazet@google.com>
+To: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: netdev@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-rockchip@lists.infradead.org
+Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
+
+---
+Ricardo Pardini (3):
+      dt-bindings: net: add Realtek RTL8125 PCIe Ethernet
+      arm64: dts: rockchip: describe PCIe RTL8125 Ethernet on NanoPC-T6
+      arm64: dts: rockchip: describe PCIe RTL8125 Ethernet on Radxa ROCK 5 family
+
+ .../devicetree/bindings/net/realtek,rtl8125.yaml   | 43 ++++++++++++++++++++++
+ MAINTAINERS                                        |  1 +
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 30 +++++++++++++++
+ .../boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi   | 15 ++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts    | 18 +++++++++
+ 5 files changed, 107 insertions(+)
+---
+base-commit: 8cd9520d35a6c38db6567e97dd93b1f11f185dc6
+change-id: 20260524-rk3588-dts-rtl-eth-describe-dt-alias-c1ed187b7c50
+
+Best regards,
+--  
+Ricardo Pardini <ricardo@pardini.net>
+
 
 
