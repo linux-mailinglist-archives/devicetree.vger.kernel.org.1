@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-312815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312817-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DVRmDAVMMmpCyQUAu9opvQ
-	(envelope-from <devicetree+bounces-312815-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:25:57 +0200
+	id cTnwE21MMmpVyQUAu9opvQ
+	(envelope-from <devicetree+bounces-312817-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:27:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89C1E6972BC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:25:56 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA0D56972D3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:27:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=U3Io4uDH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312815-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312815-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="H9/LhKoa";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312817-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312817-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B4B323031AE0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:25:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A24C7300F15F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622113BBA0A;
-	Wed, 17 Jun 2026 07:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D83A3BC669;
+	Wed, 17 Jun 2026 07:27:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A44D3ACF15
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 07:25:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4D13BCD33
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 07:27:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781681154; cv=none; b=g+iMRXJ/YCfqRnE9cZDapTeK2peV8l9Yr7P3sBXskUQY7zUV36IXIdQ+qCqvfNucnrHg8UQnylDSOeO/GhgpnyH66lTCLRaw6lmU12cZ1EIcX5n10rSldRGty0risUqMGBGRHu4tQLCj/UDESVyI/ZoTqXvVZTmNobJ9shO+vi4=
+	t=1781681257; cv=none; b=Wt4X/qSzxG02SjHBgEoQJuyYYcGF9RB9DMnRRgoOF+B3Vu+KoIVenBu7lMvYZPGZtB6ctl5dIGGZyUufegpDKaUR6cHoZ4DvaG26VE3nNF+TI31ptvToB3uncgSn9oOGP/8LnW+QQhQYGCKlAlItPWwc1W6SgRMOXy62xpGzZzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781681154; c=relaxed/simple;
-	bh=2Iu0WlXsaDvmiw7Ekhg51U1eDMqMPQ2gcGV2jruqSgM=;
+	s=arc-20240116; t=1781681257; c=relaxed/simple;
+	bh=FYPdOsxL9IPMUciz7Da1pXiS3wC2YQAxV8OpNTTlsvU=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=QH3XvZtAMrkSeOgKUQlM5sTWrbqRdew5dz2jq8sc4daMOlVc2JJln4PhfC3z5VPy1Hxhc0/SvkFOroVyTEy3nXbu5A9284H8AO1ri71e3P51qQZTF99Z3NugWHb/94iqTjDfZqa1v/mnMlTc7kFNE6tnnyMVLe3XFdu1YCh4Bdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U3Io4uDH; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0A441F000E9;
-	Wed, 17 Jun 2026 07:25:52 +0000 (UTC)
+	 Message-Id; b=pNQlfuYS1ssoA4RURxwIjIaBB7kVAcjeWPGY2wf9HzKk9JPQzxWYKaMYXOZLJuUyQDZecr6OQmhVOiNPTRLXiq4Quznvl0JdmoTaB1bxe7cQd6hixqRlPT1D8DnKj4YUO1kKnu78TLXYylEuZtqqFVvZJ/6043OSBI8LPrLYmW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H9/LhKoa; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BFB61F00A3A;
+	Wed, 17 Jun 2026 07:27:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781681153;
-	bh=u4AWRUVG9ZHOsZdi46VB05kCt+swzak17AoYKf+KujI=;
+	s=k20260515; t=1781681255;
+	bh=RFFMRNrDpr63REMYhT+UeN5XZg5St62F9FzMJ11+wag=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=U3Io4uDHwQPa0fnlsuSoJ+1v99WLTFe69IBNUtutOrRz0HXb5qxkYubK2zgvaB3pd
-	 WrTLMJZlSKDULdQK4eO6WDMISDw2GEEM01O87xaBuRF90hqrupg9ohMvxrP0FgpyF8
-	 4346He/rSj11NtcbcW8623eCX86PhRg/AhdRVIZ67qbXKc21ILZjJQ6Jt2u425URXB
-	 uh8HrBjGTQzknGDV40KAxoHY54d41TyP7+dHQw2fucFCivKp57OPgTM67giGFyE4OE
-	 z2PcVvVYpEFokM2xK4fZeIJxl3triFwP01UgAJqmylZ9KyjoQI/UGuRET1Nf0koncG
-	 2kxWPq7JTHojQ==
+	b=H9/LhKoamHwEu1prbA9qSzOmp7JY7GHRT7Qw9I6MaNWfxBPdAUMXFMZIzVgbsciRL
+	 S9Zytq8/wTUnWAFlRXT0kTQYu85pPWoEW/NYm2rysKRHsQrICKuFo4F5agzJns2aRE
+	 zvFdBg3mHT+h4Q4rvVC3nffqUzTA5AhwSwtSQHEFIaddS5aBU/NyHKslUMxM4ykQn/
+	 xKVLcjFBVcxmF4xFpoTKEOW0xW5cDkASdK35ulPRnCm++7VFUJxviPz9PY8MUqKCpt
+	 xonYau9Nia+7B0bXvYQ9w9x5JSjDenvPd38Lp/neB0peSqm9xc0+hEeCtlap7iDSiM
+	 XxX50OpANPU8w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 3/4] arm64: dts: amlogic: meson-axg: Disable pcie_phy
- node by default
+Subject: Re: [PATCH v2 4/4] arm64: dts: amlogic: meson-axg-s400: Enable
+ pcie_phy
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Jun Yan" <jerrysteve1101@gmail.com>
-Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260617071604.635627-4-jerrysteve1101@gmail.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
+In-Reply-To: <20260617071604.635627-5-jerrysteve1101@gmail.com>
 References: <20260617071604.635627-1-jerrysteve1101@gmail.com>
- <20260617071604.635627-4-jerrysteve1101@gmail.com>
+ <20260617071604.635627-5-jerrysteve1101@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 17 Jun 2026 07:25:52 +0000
-Message-Id: <20260617072552.C0A441F000E9@smtp.kernel.org>
+Date: Wed, 17 Jun 2026 07:27:34 +0000
+Message-Id: <20260617072734.9BFB61F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,22 +72,22 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312815-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312817-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:jerrysteve1101@gmail.com,m:linux-amlogic@lists.infradead.org,m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jerrysteve1101@gmail.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:linux-amlogic@lists.infradead.org,m:neil.armstrong@linaro.org,m:conor@kernel.org,s:lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
@@ -100,69 +100,68 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 89C1E6972BC
+X-Rspamd-Queue-Id: AA0D56972D3
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
 
 Pre-existing issues:
-- [High] The S400 board fails to enable the underlying `mipi_pcie_analog_dp=
-hy` required by `pcie_phy`, leaving PCIe broken and the deferred probe warn=
-ing unresolved on this board.
+- [High] Incomplete feature enablement causing permanent probe deferral for=
+ PCIe functionality.
 --
 
-commit 8447bc6097444b6a9914b09671ffb788547cd0fd
+commit 202349024b583dc874155ce812fb658ddbab6228
 Author: Jun Yan <jerrysteve1101@gmail.com>
 
-arm64: dts: amlogic: meson-axg: Disable pcie_phy node by default
-   =20
-This commit disables the pcie_phy node by default in the meson-axg base
-devicetree to suppress a deferred probe warning on boards that do not use i=
-t.
+arm64: dts: amlogic: meson-axg-s400: Enable pcie_phy
 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot=
-/dts/amlogic/meson-axg.dtsi
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-[ ... ]
-> @@ -328,6 +328,7 @@ pcie_phy: phy@ff644000 {
->  			phys =3D <&mipi_pcie_analog_dphy>;
->  			phy-names =3D "analog";
->  			#phy-cells =3D <0>;
-> +			status =3D "disabled";
->  		};
+This commit enables the pcie_phy node for the Amlogic meson-axg s400 board
+device tree to support PCIe functionality.
+
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/=
+boot/dts/amlogic/meson-axg-s400.dts
+> index 285c6ac1dd613..7ba249cc3d569 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> @@ -448,6 +448,10 @@ &pcieB {
+>  	status =3D "okay";
+>  };
+> =20
+> +&pcie_phy {
+> +	status =3D "okay";
+> +};
 
 [Severity: High]
-This isn't a bug introduced by this patch, but does the S400 board fail to
-enable the underlying mipi_pcie_analog_dphy required by pcie_phy?
+This is a pre-existing issue, but does this incomplete enablement cause a
+permanent probe deferral?
 
-Looking at arch/arm64/boot/dts/amlogic/meson-axg-s400.dts, the pcie_phy is
-enabled:
+The amlogic,axg-pcie-phy driver unconditionally calls devm_phy_get(dev,
+"analog") during probe. This maps to the mipi_pcie_analog_dphy node in
+meson-axg.dtsi, which is set to disabled by default:
 
-&pcie_phy {
-	status =3D "okay";
-};
-
-However, the analog PHY it depends on (mipi_pcie_analog_dphy) is disabled by
-default in arch/arm64/boot/dts/amlogic/meson-axg.dtsi:
-
+arch/arm64/boot/dts/amlogic/meson-axg.dtsi:
 mipi_pcie_analog_dphy: phy {
 	compatible =3D "amlogic,axg-mipi-pcie-analog-phy";
 	#phy-cells =3D <0>;
 	status =3D "disabled";
 };
 
-Since mipi_pcie_analog_dphy is never set to "okay" in the s400 board file,
-won't pcie_phy continue to indefinitely defer its probe waiting for the
-analog PHY, leaving PCIe broken on the S400 board?
+Since mipi_pcie_analog_dphy is not also overridden to "okay" here in
+meson-axg-s400.dts, won't devm_phy_get() permanently return -EPROBE_DEFER,
+preventing pcie_phy and the dependent pcieA/pcieB nodes from initializing?
+
+> +
+>  &pwm_ab {
+>  	status =3D "okay";
+>  	pinctrl-0 =3D <&pwm_a_x20_pins>;
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260617071604.6356=
-27-1-jerrysteve1101@gmail.com?part=3D3
+27-1-jerrysteve1101@gmail.com?part=3D4
 
