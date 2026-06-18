@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-313314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313315-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fg7zCmOwM2pcFAYAu9opvQ
-	(envelope-from <devicetree+bounces-313314-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:46:27 +0200
+	id ykbiGUexM2qJFAYAu9opvQ
+	(envelope-from <devicetree+bounces-313315-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:50:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E8B269E90B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:46:26 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5047F69E97F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:50:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Ns59mnqf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313314-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313314-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=e+k0qbVQ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313315-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313315-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1CD9530F3B18
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 08:40:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 95CCE30436B9
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 08:42:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22B23DA5DB;
-	Thu, 18 Jun 2026 08:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1863B3C13;
+	Thu, 18 Jun 2026 08:41:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD1013D967A
-	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 08:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCFE73B2FE3
+	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 08:41:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781771991; cv=none; b=psrRxRit3g8ABSx0gUHWRSDHdlSz7WHOCRjC9oPo4+XCpjXinLQunVQZgxL407Y97MXAROyQz19VPZq9Qttr1kAFMRZpCJtfZTBynibBhNaVYCVGkWxoQx0u6NdvNvdjtarvLGOFCHvYldLiZ3r7lvbzyUvUeCzOgPZdPkPbp1g=
+	t=1781772067; cv=none; b=hbQKXPOg5q0G2ghBI+y9GMmwJv1mqC1zW8nXjoDedWL3rSfOZ37UnyqoAoMcwFDoQ+Hiwxmd9Cx5k/alozSMlxq4ts0FiS5JfIaa0YDShjbSOrLo2q1mZ0Cp6jXxHS8Dy144iZHX1aH6hracKPVtnKykAn6oSBaSReRg9Z6UntA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781771991; c=relaxed/simple;
-	bh=8r2z3TsisrCeqJAdsCsjAlFcLZcV2E1O6rAacLocUrs=;
+	s=arc-20240116; t=1781772067; c=relaxed/simple;
+	bh=zJoqCrg1Az91XO7omD57wW62btsUBb2otnD4bDhDidY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Ca29vgZsPo+9cxg14l8MFW81lcC35RyGCIep/IvsEF23EGH/cq1bcDE1IMbLYEj+bHqOUlngVgMgL6/hoU2StmzeGKZ5aleVOFIWydcusUJzr+y+DSt4GhSHNAtD7agwGuPpbv6xgZabT6hCY5xpPyF+Ti3HgbBgQB9n93zOI+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ns59mnqf; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BA871F000E9;
-	Thu, 18 Jun 2026 08:39:50 +0000 (UTC)
+	 Message-Id; b=qyMGxyPUTcy9w15cCGL9E4jwJX7dj6iGxhEzB4l8vsjgDnmdmDG8Rjif1sE9xBRV8BEAJAZoajvQpbYS4yg1mGmo5MpZKEf4PkQ1ibYnUNjVIXU/iOgvi9VI11gOCNs7RKdpsyKS4iOVF7LTgbER+JsoQe0rn2RvG891Z/iNJhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e+k0qbVQ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 419321F000E9;
+	Thu, 18 Jun 2026 08:41:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781771990;
-	bh=kk0PSBhGLuUBUpJhIES7NmTiLcPvE8lDA70TYeq68sw=;
+	s=k20260515; t=1781772066;
+	bh=3gj/5HpR9+jAQLnxLoskEKtco0fVgNSFt3gVi3EShQQ=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Ns59mnqfwuc1m5fbyiBFEOSj3QvOgEl3kxYi+sHQgDQYkj6LdOppAc3vYXktcDhCI
-	 N8euwb/6L8kLr3e8UCs47GfJ2nHPCvToNpcec7iIIT99YlandPGxk8DhwUI4lHZ/aM
-	 /IDpoUgvuGQZnZ53Nv/bSmowMhASBVHXO48224CN4sCKTB6D+D2rZmo8/mZU8arfre
-	 AXTic6QWVX4J8USfqq3v65mNmKgK4veLAQK/BQdCE1RXQfMGMLU405xLmvwzIhAeQ8
-	 q3lPUVuwLHFxrlGph+MEob5o0Yl4qbZoudbzY4sDmQ+hXx/wSypQbuMMapMfvjfj63
-	 SU8xlXNoqt4IQ==
+	b=e+k0qbVQNdJJLxlWWCJifNWvgnBxqu/Po8u9eA7YcatE1xqeklwCKaAa8ghFpTlSR
+	 ggY9OrrcD+mYhQznZpdXVi067LchbhQIhDk+3QZslj8kVl4G4iOGzUEH5d/AIIqBpR
+	 Fj2B9MESy0u/YdZNBIKoXo1abO83vsLLQEdobIDa0/+bzgiFalwikeX/nRogXoVa/r
+	 OMgabtsnw/o9vm+xP32L7qmlDdetGffHXFDOzM7iXX7f3tfFmWVguROBpuDlcUtp8c
+	 GvSgpY69WJx40psrBaqstn4a1vYo3kCjJ1dHiNhufIiewkN70HUlJatb5SUm5CP30G
+	 C/3k0BB2q1fpQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 6/7] ASoC: codecs: ES8389: Add private members about
- HPF
+Subject: Re: [PATCH v2 7/7] ASoC: codecs: ES8389: Add INPUTL MUX and INPUTR
+ MUX
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Zhang Yi" <zhangyi@everest-semi.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260618082842.2778-7-zhangyi@everest-semi.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260618082842.2778-8-zhangyi@everest-semi.com>
 References: <20260618082842.2778-1-zhangyi@everest-semi.com>
- <20260618082842.2778-7-zhangyi@everest-semi.com>
+ <20260618082842.2778-8-zhangyi@everest-semi.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 18 Jun 2026 08:39:49 +0000
-Message-Id: <20260618083950.2BA871F000E9@smtp.kernel.org>
+Date: Thu, 18 Jun 2026 08:41:05 +0000
+Message-Id: <20260618084106.419321F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,17 +72,17 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313314-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313315-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -99,153 +99,69 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url,everest-semi.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid,vger.kernel.org:from_smtp,everest-semi.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7E8B269E90B
+X-Rspamd-Queue-Id: 5047F69E97F
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] The fallback logic for a missing `everest,hpf-frq` DT property is =
-broken, causing an integer overflow and an impossible `u8` to `U32_MAX` com=
-parison.
-- [High] The ADC High-Pass Filter parameters `hpfl` and `hpfr` are used wit=
-hout being initialized during probe, leading to incorrect hardware configur=
-ation.
-- [High] Playback stream operations silently corrupt the ADC (capture) High=
--Pass Filter state due to missing stream direction checks.
-- [Medium] The newly introduced device tree property `everest,hpf-frq` cont=
-ains a typo ('frq' instead of 'freq').
+
+Pre-existing issues:
+- [High] Logic error in get_coeff incorrectly treats 0 as a wildcard for dm=
+ic_sel and dvdd_vol, shadowing specific coefficient configurations.
 --
 
-commit 5aa70910dd654fd778ac694838a2c5d06ae7cd64
+commit 6402e3af14ba28c3424e8a95b28fe5d44fa00f37
 Author: Zhang Yi <zhangyi@everest-semi.com>
 
-ASoC: codecs: ES8389: Add private members about HPF
+ASoC: codecs: ES8389: Add INPUTL MUX and INPUTR MUX
 
-This commit adds HPF (High-Pass Filter) related private members to the
-ES8389 codec. It includes a helper function to match the set HPF frequency
-and accesses the HPF frequency set by the user from the Device Tree.
+This commit adds INPUTL MUX and INPUTR MUX to the DAPM routing paths for
+the ES8389 codec.
 
 > diff --git a/sound/soc/codecs/es8389.c b/sound/soc/codecs/es8389.c
-> index 09257687bb84c..bcec9d9200dbe 100644
+> index bcec9d9200dbe..294951d49432c 100644
 > --- a/sound/soc/codecs/es8389.c
 > +++ b/sound/soc/codecs/es8389.c
+
 [ ... ]
-> @@ -504,6 +507,48 @@ static inline int get_coeff(u8 vddd, u8 dmic, int mc=
-lk, int rate)
-[ ... ]
-> +static bool find_best_hpf_freq(u32 target_hz, u8 *hpf1, u8 *hpf2)
-> +{
-> +	int best_row =3D -1, best_col =3D -1;
-> +	u32 min_diff =3D U32_MAX;
-> +	u32 f, diff;
-> +	int i, j;
-> +
-> +	if ((*hpf1 =3D=3D ES8389_HPF_INVALID) | (*hpf2 =3D=3D ES8389_HPF_INVALI=
-D))
 
 [Severity: High]
-Does this code correctly evaluate the fallback condition?
+This isn't a bug introduced by this patch, but looking at get_coeff() in
+sound/soc/codecs/es8389.c, is there a logic error with how dmic_sel and
+dvdd_vol are checked?
 
-hpf1 and hpf2 are pointers to u8. Dereferencing them yields a maximum value=
- of
-255, so comparing them against ES8389_HPF_INVALID (which is U32_MAX) will
-always evaluate to false. This prevents the fallback path from ever executi=
-ng.
+sound/soc/codecs/es8389.c:get_coeff() {
+	...
+	for (i =3D 0; i < ARRAY_SIZE(coeff_div); i++) {
+		if (coeff_div[i].rate =3D=3D rate && coeff_div[i].mclk =3D=3D mclk) {
+			vddd_det =3D ~(coeff_div[i].dvdd_vol ^ vddd) & 0x01;
+			dmic_det =3D ~(coeff_div[i].dmic_sel ^ dmic) & 0x01;
+			vddd_det |=3D ~(coeff_div[i].dvdd_vol % 2) & 0x01;
+			dmic_det |=3D ~(coeff_div[i].dmic_sel % 2) & 0x01;
 
-> +		return false;
-> +
-> +	for (i =3D 0; i < 10; i++) {
-> +		for (j =3D i; j < 10; j++) {
-> +			f =3D hpf_table[i][j];
-[ ... ]
-> @@ -663,6 +710,14 @@ static int es8389_pcm_hw_params(struct snd_pcm_subst=
-ream *substream,
->  		return -EINVAL;
->  	}
-> =20
-> +	freq =3D (es8389->target_freq * 48000) / params_rate(params);
+			if (vddd_det && dmic_det)
+				return i;
+		}
+	}
+	...
+}
 
-[Severity: High]
-If the Device Tree property is missing, target_freq is set to U32_MAX.
-Could this cause an integer overflow here, resulting in a garbage freq valu=
-e?
+Because ~(0 % 2) & 0x01 evaluates to 1, doesn't this calculation cause 0 to
+act as a wildcard, evaluating to true regardless of the dmic or vddd
+parameters?
 
-Additionally, since the High-Pass Filter is an ADC (Capture) specific featu=
-re,
-does this code safely avoid overwriting the ADC configuration during playba=
-ck
-stream operations?
-
-If es8389_pcm_hw_params() is called for a playback stream, it appears it
-will unconditionally recalculate the capture stream's filter configuration
-using the playback rate. Could this update logic be restricted by checking
-the stream direction?
-
-> +	hpf =3D find_best_hpf_freq(freq, &es8389->hpfl, &es8389->hpfr);
-> +	if (!hpf) {
-> +		dev_dbg(component->dev, "Can't find best freq. Use the default setting=
-");
-> +		es8389->hpfl =3D ES8389_HPF_DEFAULT;
-> +		es8389->hpfr =3D ES8389_HPF_DEFAULT;
-> +	}
-> +
->  	return 0;
->  }
-> =20
-> @@ -743,8 +798,8 @@ static int es8389_mute(struct snd_soc_dai *dai, int m=
-ute, int direction)
->  			regmap_update_bits(es8389->regmap, ES8389_DAC_FORMAT_MUTE,
->  						0x03, 0x00);
->  		} else {
-> -			regmap_update_bits(es8389->regmap, ES8389_ADC_HPF1, 0x0f, 0x0a);
-> -			regmap_update_bits(es8389->regmap, ES8389_ADC_HPF2, 0x0f, 0x0a);
-> +			regmap_update_bits(es8389->regmap, ES8389_ADC_HPF1, 0x0f, es8389->hpf=
-l);
-> +			regmap_update_bits(es8389->regmap, ES8389_ADC_HPF2, 0x0f, es8389->hpf=
-r);
-
-[Severity: High]
-Are hpfl and hpfr properly initialized before they are used here?
-
-Since they are dynamically allocated and zero-initialized, if es8389_mute()
-is called prior to es8389_pcm_hw_params() (for instance during stream start=
-up
-or idle states), this will write uninitialized 0x00 values to the hardware
-registers instead of the previously hardcoded 0x0A default.=20
-
-Should they be explicitly initialized in es8389_probe()?
-
->  			regmap_update_bits(es8389->regmap, ES8389_ADC_FORMAT_MUTE,
->  						0x03, 0x00);
->  		}
-> @@ -906,6 +961,12 @@ static int es8389_probe(struct snd_soc_component *co=
-mponent)
->  		es8389->mclk_src =3D ES8389_MCLK_SOURCE;
->  	}
-> =20
-> +	ret =3D device_property_read_u32(component->dev, "everest,hpf-frq", &es=
-8389->target_freq);
-
-[Severity: Medium]
-This isn't a bug, but there's a typo in the newly introduced device tree
-property name ("frq" instead of "freq"). Since Device Tree bindings become
-permanent ABI, could this be corrected before it becomes baked into the ker=
-nel?
-
-> +	if (ret !=3D 0) {
-> +		dev_dbg(component->dev, "hpf-freq return %d\n", ret);
-> +		es8389->target_freq =3D ES8389_HPF_INVALID;
-> +	}
-> +
->  	for (i =3D 0; i < ARRAY_SIZE(es8389_core_supplies); i++)
->  		es8389->core_supply[i].supply =3D es8389_core_supplies[i];
+If entries with dmic_sel =3D 0 appear before dmic_sel =3D 1 in the coeff_div
+table, could get_coeff() prematurely return the wildcard match?  This appea=
+rs
+to make the correct clock coefficient entries for dmic =3D 1 dead code,
+potentially resulting in incorrect clock configurations.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618082842.2778=
--1-zhangyi@everest-semi.com?part=3D6
+-1-zhangyi@everest-semi.com?part=3D7
 
