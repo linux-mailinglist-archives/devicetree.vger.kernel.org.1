@@ -1,248 +1,182 @@
-Return-Path: <devicetree+bounces-313400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313402-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gALNM+jJM2pDGQYAu9opvQ
-	(envelope-from <devicetree+bounces-313400-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:35:20 +0200
+	id FUHcFAvLM2p+GQYAu9opvQ
+	(envelope-from <devicetree+bounces-313402-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:40:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C48F469F5ED
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:35:19 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C01C269F6B3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:40:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313400-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-313400-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=tEu4gm7q;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313402-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313402-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 27177300C3A2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:35:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CDE7A312A25B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:38:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 329C03783BB;
-	Thu, 18 Jun 2026 10:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E56733EE1D8;
+	Thu, 18 Jun 2026 10:37:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6202310763;
-	Thu, 18 Jun 2026 10:35:01 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781778904; cv=none; b=P6boZ48MQrRKc+6+FvBOT6DM45QytWFHV77OuWoO1MauVCK3u5Wm+yfWfux7GMvLRAgZxWEDY3oX/CXJ1d/vNhAfU4TGkdhDszXKo+k7d0PDXLhPcFB24sGJFrPpuy54UHWuOBscO+/clCLNyx2qPEdjK4YVP1jGmx8deiO+8s0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781778904; c=relaxed/simple;
-	bh=+WeL8V5C5u7QDbMGQ8sIWRqSvp4ab77YmrKWhftWL4M=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=e+NFVOSDef/gotcFEa6/iBkGjvq0G7hcLbyT1OXPBt990nF1Ypm8rpaZ8qGV9sZDPZ6UezGyiODg470SZFgnCoWKcuiMKfUUdFeZUD0n8VRef6JA/KWGz2RsOVfmKy7cBdLg3ThKe/h+OM872jtoueurNklnpWXMfkiGjBbCCbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Received: from edelgard.fodlan.icenowy.me (unknown [112.94.100.206])
-	by APP-01 (Coremail) with SMTP id qwCowAB3HNXSyTNq954yAg--.9056S2;
-	Thu, 18 Jun 2026 18:34:59 +0800 (CST)
-Message-ID: <cd1910faf5b7b20d9154798b05449fe30cb1cba1.camel@iscas.ac.cn>
-Subject: Re: [PATCH 0/6] arm64: dts: qcom: sc8280xp: set GPI DMA channels
- according to DSDT
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Pengyu Luo
-	 <mitltlatltl@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio	
- <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Thu, 18 Jun 2026 18:34:58 +0800
-In-Reply-To: <ab5c5f53-4119-4bbe-88ac-e2933bf6f8d8@oss.qualcomm.com>
-References: <20260602081451.3808833-1-zhengxingda@iscas.ac.cn>
-	 <178040480680.1778078.1165164069560552075.b4-review@b4>
-	 <bc4644a6c1e30a99f1ed5d967c64ba7f5da77fbc.camel@iscas.ac.cn>
-	 <178073773007.397244.9871455646149843167.b4-reply@b4>
-	 <7ecda3d0f91b0d96bcec44ddf485ed5146788220.camel@iscas.ac.cn>
-	 <178073918523.417326.15121723011916371966.b4-reply@b4>
-	 <1c33b1dd7d187b17b21b17339a4f1990e59d2f77.camel@iscas.ac.cn>
-	 <CAH2e8h7y9PivdMh-h78VSqMf8i2vSR2fvVaO0P1eYBT8qgEdUA@mail.gmail.com>
-	 <bd5ad1b53eb009377d0ee492b0e007e45d36f6a1.camel@iscas.ac.cn>
-	 <12a8cc4f-3c45-471b-8a0c-f7473cefa190@oss.qualcomm.com>
-	 <926a0fe9224d73e0f5e3f58f3769c6247b1cabd4.camel@iscas.ac.cn>
-	 <7ac67f89-c6b4-4e0c-8eec-1e5c757777ce@oss.qualcomm.com>
-	 <ab5c5f53-4119-4bbe-88ac-e2933bf6f8d8@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B72E23EEAC2
+	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 10:37:48 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781779072; cv=pass; b=EBAW2b5f/NIT06FH7ozqbv7Ms9nlHXQfxfV6alGTU+z+5KgqW+OPli8itM2ZxqyekwbwOdvnFaEb5ow8gIxsP4znMhk1IMO/2/ZhF5FBlewpnGuH2uX+dBA18ri41g/dPm8dD/ssvSyPfcu0FoN/Xu5Fqj1WWcusiVAbH+ii75Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781779072; c=relaxed/simple;
+	bh=TuPYQkya6tmZ/l8MKVs8GX5qhrHA3EFBkCVctB9px04=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eucCE7o1/DUKbBHBno9fhweOuVr6I4DoK1s1BrB+Swp3KGM8lE0d+55JI+debNwgc+XSXdnhyQ/x8G5UcmZ3wuaciF6n/EQwCFXMPwg6VuiF3qh6Quaz0KIpEq4FJiC04EQfnmO1wNSfhsq/mBn4i6drLOa7ttnCq2q75jIWrS0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=tEu4gm7q; arc=pass smtp.client-ip=209.85.221.46
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-4629d80fa08so792283f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 03:37:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781779067; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UVzq9BzTYAPMVcTYYIpOiT3/ruC/Dzu7zcZVxwHqyqH6FnTSyWym1JRy9smMoKT3Ii
+         Une8UieAFZrFnS8T67TFjGaHUhTn0MnQOdJF3n21+9xAiziagp13EFflnWjvu+PNm8/h
+         5VzfjZ8Z+yACLgMr2ZYLyYCurjdjtq/+htfCSAUUeg4MIxiirzTRuwFf9/pc59RD49Us
+         qxGbITOQgKwJzysX/Lcb6f/5vQpaAB/pEeTjgyeqnMC9Nd8BDnvH+61/mtFIpvusvXnb
+         6e/fgsmSteRyuqC2tBB9ew2y2rqcBQyWOTQ51LsSe8GZzOfts2NJJnxpKLNOm5sKcEeT
+         jiEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=TuPYQkya6tmZ/l8MKVs8GX5qhrHA3EFBkCVctB9px04=;
+        fh=xxgltwc2taPKDeZ06YWY5saBrs0F0RrTKJ0celAiUPg=;
+        b=T8kNfSBAhbdeCEc47RIt/yyrfTgTm2xUu9oYYglcK6COUOLoIXxaQvYpuPdSU6y4UU
+         2W+m++jqWeoPCIxF/y3V5vtQXfxihcT803NEIPb0GwTC5tGS73JThKzgf3HKX7Dye0TV
+         Th+0eFLTB9kcsC3jWuggy4fFnAQQKjKXy+ZitiFC7DKMSP4CgRWwUBtIGlLWv1Ud7v5d
+         tjRX/il0N8hsIvsVHhEYdZ529HrShN7nHiBqIBNjm7kWr/GsteP5pbOaLF2zWe0ric7B
+         EApr0zRUvn0lDLrG18J/bwYpnO0a8HeOfh6xWYEvCKat5wV/77OBbqsAWyZiFANqRaUv
+         fm1g==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781779067; x=1782383867; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TuPYQkya6tmZ/l8MKVs8GX5qhrHA3EFBkCVctB9px04=;
+        b=tEu4gm7qVnEnUNpLwGXRBpmUObM+sYQh5LQv3qZjptgI+HsyTJ/Gl3AMmCn+50hPiw
+         vZgTbMsKMfMFRgWqNlhGbn0hr5tNItEoRdJfN/JvJb0GyKUXHgq6z+8it0wkDI8nqBA6
+         lJhuzIQQCzvmCBcOqIOI8c9DZs3PnA4xXUxkFKls5JV26Q+ygzgylG4hEnzyRGYWvDJY
+         tnNiYS6V5GtaxIE7TtJVKck12IH2xch5zleHsXBmIkzPXHQFARmZAWUK+rDX8bsqpIHY
+         wloagToibDodLWsD0vOtPsZZde9+3ou2oWjS3l1OQq8hD6HPYs+w30TIPEpsN7hynYbT
+         38ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781779067; x=1782383867;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=TuPYQkya6tmZ/l8MKVs8GX5qhrHA3EFBkCVctB9px04=;
+        b=mLGX+s/aJkqw2jj1up79tP/i2iPEMY0nc8mRX2fC+5h7TNPIkXZS/9EWX3tJfg8jbI
+         C2hbkdht5mbP6LDWlg3acZ9jqVTzGPU7YKjKN0KEq1Yem7WDSDRnygJFVysh26I6lpdL
+         KvkAjqOWVxn+N//jmDFY/lTtcmyMD8IjmxS/lS+whLOnp/bRbx53OXtxzrEiquV4tEuo
+         uUayezHjFM4kQDLoEwyLpCEsHd5/D3rAXM0oBBuZWSvi0KqRbxP6nbEQeai7qn8BW/tf
+         e5hCDS2xLPU7WzkdrbZoGu4L3YJCmfhGVfUVXJxQfELjCEeOxMEoihyM36kfFTMy5xNe
+         0uOA==
+X-Forwarded-Encrypted: i=1; AFNElJ8OKxDxxHGxJfBrzDGZ820Db0w6U5X7ekd3WcSJIM+OkSbnUr8OkLdsm/5Ky4iBoEfN00BNi7E5YjBq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1Pr27H93xmZpnG1Abc8aWW3w4gq3103C9Ikeq41WIyrOSislO
+	PzrVEiar20tStRx2cFZzNYToTBc9opksskYGZE6wuxq3mbzv6rw90EAzoVMxptk26BWlGEPCmnL
+	GSKjGR+cvV7PiXbuDPzQkBHG9vUgN11M=
+X-Gm-Gg: AfdE7cmYu+JlrQAZmJWEb5kS1DAsr4IVRPdwrnSKuMAztIIFWhs/lCAIY6hz8B3DsM4
+	bPxnSKjWgQ/cVSZPvr7iktiygsgtHzVt+n0RP+0pVVfnF0F3ffm+WRuIJqBOc/kmThzbPZQFVVX
+	sG43s1vVThoIY/RfcYD+jwyhsn2bu0ykBh0wGJYdumk8omTueCuWkdtbRk3beuzQFfzzxA2rHuX
+	9uVSaPx7z4rWQql93IRjX5jHnYKLwlHJGjZdIOIKNLYrcN93fB1sR8HukpSRVc6xGzqQ63yqQ/5
+	oQyWowZ3128/wQVdI06gBq9h9YKbCJYC+9aegpGGcaWKrsFt3roop8EIiKWIOACagAqlRf6Jju2
+	Z11+Tw+Mym8FrWCI=
+X-Received: by 2002:adf:f691:0:b0:460:3234:293d with SMTP id
+ ffacd0b85a97d-4623955c292mr9564839f8f.40.1781779066727; Thu, 18 Jun 2026
+ 03:37:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-CM-TRANSID:qwCowAB3HNXSyTNq954yAg--.9056S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxJF4kJF45Cr18Ar1kGw1UGFg_yoW5KFW3pF
-	yUJFWUKF4UJr15Gr1xtr1UXF47tr12yr1DXrn8Jr18Jw1qvr15Jr4UJrn09F1UXr18Cw42
-	yr45Jry7Xry8Aw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_KF4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I
-	8E87Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8Jw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
-	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
-	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
-	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
-	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-	IFyTuYvjxU2UDGUUUUU
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+References: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260615154805.1619693-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <ajJwqDt2jUfhSD1x@shikoro> <CA+V-a8uo9sr3m9F_MQYbHVD5wa3LT3n6MWrVpiNiPDumnVHMYQ@mail.gmail.com>
+ <ajPJHKut92mAoo-B@shikoro>
+In-Reply-To: <ajPJHKut92mAoo-B@shikoro>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 18 Jun 2026 11:37:20 +0100
+X-Gm-Features: AVVi8Cd18WA81bqmRQKOqLppbTyxhBpMr_k_9brs1kLBCen_Zb_vX_vTX4BhCAQ
+Message-ID: <CA+V-a8v1DPFvu0_M_XV+efkJL9UaqnmuuRE2o7w9pyh8geCJ_A@mail.gmail.com>
+Subject: Re: [PATCH 05/12] rtc: rzn1: Add system suspend/resume support and
+ wakeup capability
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
+	TAGGED_FROM(0.00)[bounces-313402-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:wsa+renesas@sang-engineering.com,m:miquel.raynal@bootlin.com,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:linux-rtc@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:wsa@sang-engineering.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:mitltlatltl@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-313400-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,glider.be,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,iscas.ac.cn:email,iscas.ac.cn:mid,iscas.ac.cn:from_mime,pastebin.com:url]
+	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,sang-engineering.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C48F469F5ED
+X-Rspamd-Queue-Id: C01C269F6B3
 
-=E5=9C=A8 2026-06-18=E5=9B=9B=E7=9A=84 11:05 +0200=EF=BC=8CKonrad Dybcio=E5=
-=86=99=E9=81=93=EF=BC=9A
-> On 6/18/26 11:04 AM, Konrad Dybcio wrote:
-> > On 6/9/26 5:54 PM, Icenowy Zheng wrote:
-> > > =E5=9C=A8 2026-06-09=E4=BA=8C=E7=9A=84 14:23 +0200=EF=BC=8CKonrad Dyb=
-cio=E5=86=99=E9=81=93=EF=BC=9A
-> > > > On 6/7/26 10:49 AM, Icenowy Zheng wrote:
-> > > > > =E5=9C=A8 2026-06-06=E5=85=AD=E7=9A=84 21:51 +0800=EF=BC=8CPengyu=
- Luo=E5=86=99=E9=81=93=EF=BC=9A
-> > > > > > On Sat, Jun 6, 2026 at 9:21=E2=80=AFPM Icenowy Zheng
-> > > > > > <zhengxingda@iscas.ac.cn> wrote:
-> > > > > > >=20
-> > > > > > > =E5=9C=A8 2026-06-06=E5=85=AD=E7=9A=84 17:46 +0800=EF=BC=8CPe=
-ngyu Luo=E5=86=99=E9=81=93=EF=BC=9A
-> > > > > > > > On 2026-06-06 17:28:35+08:00, Icenowy Zheng wrote:
-> > > > > > > > > =E5=9C=A8 2026-06-06=E5=85=AD=E7=9A=84 17:22 +0800=EF=BC=
-=8CPengyu Luo=E5=86=99=E9=81=93=EF=BC=9A
-> > > > > > > > >=20
-> > > > > > > > > > On 2026-06-02 21:21:27+08:00, Icenowy Zheng wrote:
-> > > > > > > > > >=20
-> > > > > > > > > > The magnetic keyboard (USB HID) can't be connected
-> > > > > > > > > > somehow,
-> > > > > > > > > > others
-> > > > > > > > > > are
-> > > > > > > > > > fine, such as the spi touchscreen (not upstream
-> > > > > > > > > > yet),
-> > > > > > > > > > which
-> > > > > > > > > > utilizes
-> > > > > > > > > > DMA definitely. My config is here
-> > > > > > > > > > https://pastebin.com/SdjuyJYk
-> > > > > > > > >=20
-> > > > > > > > > Is this a defconfig?
-> > > > > > > > >=20
-> > > > > > > >=20
-> > > > > > > > Yes.
-> > > > > > > >=20
-> > > > > > > > > BTW it seems that CONFIG_ASYNC_TX_DMA needs to be
-> > > > > > > > > selected
-> > > > > > > > > too
-> > > > > > > > > for
-> > > > > > > > > exhibiting the problem (because there should be
-> > > > > > > > > "public"
-> > > > > > > > > GPI
-> > > > > > > > > DMA
-> > > > > > > > > consumers to trigger the stuck/reset).
-> > > > > > > > >=20
-> > > > > > > >=20
-> > > > > > > > Is this still necessary? I checked the fedora
-> > > > > > > > discussion and
-> > > > > > > > your
-> > > > > > > > GPI
-> > > > > > > > DMA fix. And GPI DMA is only for the QUP-supported
-> > > > > > > > peripherals as
-> > > > > > > > the
-> > > > > > > > binding mentioned,
-> > > > > > > > devicetree/bindings/dma/qcom,gpi.yaml
-> > > > > > >=20
-> > > > > > > The devicetree without this fix seems to be still
-> > > > > > > incorrect,
-> > > > > > > because
-> > > > > > > with the device tree fix even if the GPI DMA driver
-> > > > > > > misbehaves
-> > > > > > > the
-> > > > > > > system won't be stuck (although it will iterate all GPI
-> > > > > > > channels
-> > > > > > > and
-> > > > > > > then fail to function at all).
-> > > > > > >=20
-> > > > > >=20
-> > > > > > Back to the start. You said some GPI interfaces aren't
-> > > > > > available
-> > > > > > to
-> > > > > > HLOS, your mask is 0xb(0b1011), so I use 0x4(0b100) did a
-> > > > > > quick
-> > > > > > test,
-> > > > > > and spi6 consumed it, no stuck or reset. Could you give me
-> > > > > > a
-> > > > > > unavailable channel?
-> > > > >=20
-> > > > > I think channel 0b10000 of gpi_dma2 could be an example?
-> > > > >=20
-> > > > > It seems that 4 channels are tried on gpi_dma2 before hang on
-> > > > > my
-> > > > > gaokun3, but as gaokun3 has no known serial access, it's
-> > > > > possible
-> > > > > that
-> > > > > 0b100000 or 0b1000 is problematic.
-> > > > >=20
-> > > > > (The reason gpi_dma2 is checked first is because it's the GPI
-> > > > > DMA
-> > > > > controller with the smallest address)
-> > > > >=20
-> > > > > BTW I just took the values from Windows DSDT, which is quite
-> > > > > conservative.
-> > > >=20
-> > > > So, with DMA_PRIVATE set, is this series made redundant?
-> > >=20
-> > > I assume technically the trustzone is still protecting some
-> > > channels,
-> > > although the system stuck issue is fixed.
-> > >=20
-> > > This series should still be relevant, although not so emergent.
-> >=20
-> > So now we're down to the case of the TZ reserving some of the GPI
-> > channels (presumably for locked down/TZ-driven QUPs) crashing the
-> > device on access, is that right?
->=20
-> i.e. now, is requesting these channels through (wrongfully) enabling
-> the devices in DT the only remaining concern?
+Hi Wolfram,
 
-Yes, I think so; although I think few devices will use GPI on these
-devices (usually only one or two SPI controllers according to the
-DSDTs).
+On Thu, Jun 18, 2026 at 11:31=E2=80=AFAM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+>
+>
+> > For running s2idle cases with rtcwake > 60sec this feature would be
+> > helpful. What do you think?
+>
+> I think maintaining such a fragile feature is cumbersome. People might
+> have different expectations and the maintainers have to handle the delta
+> then. So, if we cannot to support to a large degree some feature, I
+> think we should just skip it. Until some user really wants (and tests
+> and accepts) a half-baked solution.
+>
+Ok, I will drop this patch from the series in v2.
 
-Thanks,
-Icenowy
-
->=20
-> Konrad
-
+Cheers,
+Prabhakar
 
