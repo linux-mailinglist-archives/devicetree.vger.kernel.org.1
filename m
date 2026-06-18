@@ -1,148 +1,213 @@
-Return-Path: <devicetree+bounces-313545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313546-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NwS6E0QONGpvMgYAu9opvQ
-	(envelope-from <devicetree+bounces-313545-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 17:27:00 +0200
+	id mb/LBUwPNGpTMwYAu9opvQ
+	(envelope-from <devicetree+bounces-313546-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 17:31:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB2BC6A13B1
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 17:26:59 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC856A1417
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 17:31:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BCYWCXA4;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313545-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313545-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=oj4KxGg8;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313546-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313546-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 441DB31033A3
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 15:22:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7A9E130243C0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 15:31:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC303FBEB8;
-	Thu, 18 Jun 2026 15:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AB17322C78;
+	Thu, 18 Jun 2026 15:31:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF803FA5D4;
-	Thu, 18 Jun 2026 15:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2BCA31E832
+	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 15:31:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781796152; cv=none; b=DH+N2cphkdt1SXCwI07jWVn05LBcE/B9CwE7qbpwqlrgqRZx8AugndTg8e6Gz6ZQgEwrBkgNDqNt+UtBswzB4dx+MOMMzvGWKT890vq3TEQCfUFV6iTkIhnXJhxMShYVP1WnwuJ5ExcyOWNBCvVO3NReWXzKBK+NrkmD3w4rdmk=
+	t=1781796663; cv=none; b=HLE8PIgimQY9AWmYQkloBggV4Mfy24c2suSX/1f1ZKA2BC0QgywZ5p7jNCiuku7XTHvHCMeLJ4kPjAvdymYEu6o9yqRm41DMeMTrhBLmtyANNdwyIgwVQLlZ+6Bnp/40JlX/jAZ/XExsoN6yw8yrjJzaomOvDwLcbuMEhfaQoBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781796152; c=relaxed/simple;
-	bh=jSdlNlpM8SAob/fGvaYLbUYW1FfKn1bUWerBX6EGHS0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ebmCTkb2dzesfOMgXMBGFkEIfNYySrhopvmxK+MXMs9h/kPCdcy95eRfbesYTt9WmK9hzK0gJC8YgKY+ZmEljlFjQ0QYn0k7xriuJPI+N0oUNQ21aq4dAjSHCj5K/f0Mboa0EJsGTrf0CydDXLUyZOsmOsyciPT1W9KeaIp3sOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BCYWCXA4; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EDDD1F000E9;
-	Thu, 18 Jun 2026 15:22:29 +0000 (UTC)
+	s=arc-20240116; t=1781796663; c=relaxed/simple;
+	bh=8xC/jaj0eNGIB+Ze8C2A1T4OMRw4qVLIYVGp9J3auYc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=P7Sj6TgCrRkZM9u0mMOBGDk7gwRM7mtUimw6dR+35Zi//M2FOP59FNDZ2M8hwbkLASnHcadQxZ4z2GiaKJytPZdqRdUD+f9cWHsW49XJiKBPk8/+fdhA5SmMBcaQizz75H6xXS8Li1L95zZcTC2eElmE5v/wOVHu/UeBCPbSJUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oj4KxGg8; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D76E1F000E9;
+	Thu, 18 Jun 2026 15:31:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781796151;
-	bh=jSdlNlpM8SAob/fGvaYLbUYW1FfKn1bUWerBX6EGHS0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=BCYWCXA4WBW0a7fOg9IHEBtPOvt4tAiLJQCBJu5A247pvIg6g8zrZqkpCgituH9WU
-	 U4HyXCKQQTCFCbXwePxJLY/YoR84Hz1VyBcO6Hk7Bq++HcYYC+MsXNf+uG2H2QgtzE
-	 tHSYz/hhqbOK8hUycbYK33jM+q6y+Wm5rOLu6OO4yCV+N47cnFbZGP6bimMYALa8Fh
-	 hSrClZbjnhoe6Pkf45gaevjI8voZq2AYTApVrTAuclx+rRW9F35F39tHXUn/6IQ24l
-	 uXWfsd9CyNt2Qa2iDR2RjeK+j8HdGzOaPEAdzdvFV3E5kpiXLuL8SceqVB8ujO/v7k
-	 f9MyiavN9TkdQ==
-Date: Thu, 18 Jun 2026 16:22:26 +0100
-From: Mark Brown <broonie@kernel.org>
-To: david@ixit.cz
-Cc: David Rhodes <david.rhodes@cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, patches@opensource.cirrus.com,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH RFC] dt-bindings: sound: Convert cirrus,cs35l36 to DT
- schema
-Message-ID: <6d0187ac-5b52-43d7-b874-9739a62860aa@sirena.org.uk>
-References: <20260618-dt-cirrus-cs35l36-v1-1-1a43515666ad@ixit.cz>
+	s=k20260515; t=1781796662;
+	bh=/loCxJA9RKmjFK/eYnIH9YltXzyng79iaXz9sPi6hvY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=oj4KxGg8+2/kiFCBB+2TBZXM/NS8jUJGsDEGZuAF2bzxpwv1kOeFlmAoeIkGGSWJ7
+	 0WD5UX0Zjgi/+rXFBNC7TMW9m/jgCRu7M/AMzFFK2BEgO0V8PQM28gBYTBoMLPlc0V
+	 DrrZUQ7+HWM+Lvks96lz0QYG0M78R1hLGT73egCBfIOpPGbV9p4LdBR7UytGtvnfd/
+	 7ZMEjl7f5I27XpEH5IXzNVsQBbSW4MkXZBXECmuScLHFe95VZuM9r4uOoeCDhCW/tO
+	 tvQnPpBDUSGze4DImIQsn3Y3j2jQGGSW86AClLEGwBCJrkW2jJJbGI9D1fvLdXKjBP
+	 EztshCmg4haug==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/2] software node: Fix
+ software_node_get_reference_args() with index -1
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Alban Bedel" <alban.bedel@lht.dlh.de>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260618152035.1600436-2-alban.bedel@lht.dlh.de>
+References: <20260618152035.1600436-1-alban.bedel@lht.dlh.de>
+ <20260618152035.1600436-2-alban.bedel@lht.dlh.de>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 18 Jun 2026 15:31:02 +0000
+Message-Id: <20260618153102.5D76E1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="QufLE/0Kc9+EiCqz"
-Content-Disposition: inline
-In-Reply-To: <20260618-dt-cirrus-cs35l36-v1-1-1a43515666ad@ixit.cz>
-X-Cookie: This unit... must... survive.
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.76 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-313545-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS(0.00)[m:david@ixit.cz,m:david.rhodes@cirrus.com,m:rf@opensource.cirrus.com,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:patches@opensource.cirrus.com,m:bhelgaas@google.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phone-devel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-313546-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:alban.bedel@lht.dlh.de,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[cirrus.com,opensource.cirrus.com,gmail.com,kernel.org,google.com,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ixit.cz:email,sirena.org.uk:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AB2BC6A13B1
+X-Rspamd-Queue-Id: 0EC856A1417
 
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
---QufLE/0Kc9+EiCqz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Pre-existing issues:
+- [High] Use-after-free vulnerability in software node reference resolution.
+- [High] Data race and linked list corruption in software node children man=
+agement.
+--
 
-On Thu, Jun 18, 2026 at 04:33:28PM +0200, David Heidelberg via B4 Relay wro=
-te:
-> From: David Heidelberg <david@ixit.cz>
->=20
-> Convert CS35L36 Speaker Amplifier.
+commit 3b564802f7102505002d84b52abe9e6a26646a5d
+Author: Alban Bedel <alban.bedel@lht.dlh.de>
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+software node: Fix software_node_get_reference_args() with index -1
 
---QufLE/0Kc9+EiCqz
-Content-Type: application/pgp-signature; name="signature.asc"
+This patch corrects an out-of-bounds access check in
+software_node_get_reference_args() by ensuring the bounds check correctly
+handles UINT_MAX as an index.
 
------BEGIN PGP SIGNATURE-----
+Closes: https://lore.kernel.org/linux-devicetree/20260611103904.7CB131F0089=
+3@smtp.kernel.org/
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmo0DTEACgkQJNaLcl1U
-h9DTvwf/ZDqT6lHklGiiZ/2ew8XLNomY7zRAa0SvFY7yLpFRhNuHbhhFE8O6/nVg
-ayPBn+RsMYmy6brd9UIzOMI0p7h+KU9u4VbCsy5dY3IErlqkSzk/sYiJDRNDJeN6
-QQ+93JnormAA/cFEscwNsB2zM94v51AnC8hpTGdPD6uixRi5lWP4/8v387HgkOcp
-64x1dRAghOwQ1pGQsEVQYTGieF5ex/w68MQUabzgzavHOPR2Lgefi4b3LfUjkAre
-eicUeTAd3V7EYaTtaZXwBLi0JsZM9RObcazADuKPcvMDVIdlcZdATYg3DQIi0cJe
-B5Vn5Y2KRtF6HczMRhMfRvaeflUdPw==
-=SS80
------END PGP SIGNATURE-----
+> diff --git a/drivers/base/swnode.c b/drivers/base/swnode.c
+> index a19f8f722bc8e..e76f7c36f19e6 100644
+> --- a/drivers/base/swnode.c
+> +++ b/drivers/base/swnode.c
+> @@ -529,7 +529,7 @@ software_node_get_reference_args(const struct fwnode_=
+handle *fwnode,
+>  	if (prop->is_inline)
+>  		return -EINVAL;
+> =20
+> -	if ((index + 1) * sizeof(*ref) > prop->length)
+> +	if (index >=3D prop->length / sizeof(*ref))
+>  		return -ENOENT;
+> =20
+>  	ref_array =3D prop->pointer;
 
---QufLE/0Kc9+EiCqz--
+[Severity: High]
+This isn't a bug introduced by this patch, but it looks like there's a
+pre-existing use-after-free risk later in this function.
+
+When we resolve the reference here:
+
+	if (ref->swnode)
+		refnode =3D software_node_fwnode(ref->swnode);
+	...
+	args->fwnode =3D fwnode_handle_get(refnode);
+
+software_node_fwnode() calls software_node_to_swnode(), which drops the
+swnode_kset->list_lock and returns the swnode pointer without elevating its
+reference count via kobject_get():
+
+drivers/base/swnode.c:software_node_to_swnode() {
+    ...
+    list_for_each_entry(k, &swnode_kset->list, entry) {
+        swnode =3D kobj_to_swnode(k);
+        if (swnode->node =3D=3D node)
+            break;
+        swnode =3D NULL;
+    }
+    spin_unlock(&swnode_kset->list_lock);
+    return swnode;
+}
+
+Since the pointer is unreferenced, could it be concurrently unregistered
+and freed (e.g., by software_node_unregister()) before we call
+fwnode_handle_get() on it?
+
+[Severity: High]
+This is also a pre-existing issue, but I noticed a potential data race and
+linked list corruption in the software node children management in
+drivers/base/swnode.c.
+
+In swnode_register(), child nodes are added to the parent's list without
+a lock:
+
+drivers/base/swnode.c:swnode_register() {
+    ...
+    if (parent)
+        list_add_tail(&swnode->entry, &parent->children);
+    ...
+}
+
+And in software_node_release(), they are removed without synchronization:
+
+drivers/base/swnode.c:software_node_release() {
+    ...
+    if (swnode->parent) {
+        ida_free(&swnode->parent->child_ids, swnode->id);
+        list_del(&swnode->entry);
+    }
+    ...
+}
+
+If multiple child nodes are concurrently registered or unregistered under t=
+he
+same parent (e.g., dynamically by drivers calling
+fwnode_create_software_node()), could this corrupt the doubly linked list a=
+nd
+crash the kernel?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618152035.1600=
+436-1-alban.bedel@lht.dlh.de?part=3D2
 
