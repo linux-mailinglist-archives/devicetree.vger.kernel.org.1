@@ -1,157 +1,220 @@
-Return-Path: <devicetree+bounces-313397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313398-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Ivu5E9jJM2o8GQYAu9opvQ
-	(envelope-from <devicetree+bounces-313397-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:35:04 +0200
+	id iKALAiXKM2pIGQYAu9opvQ
+	(envelope-from <devicetree+bounces-313398-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:36:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E837469F5CE
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:35:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57F2169F5FA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:36:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=bHr48bgJ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313397-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313397-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OGITPyEh;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313398-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313398-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C9FE0305816A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:32:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6BBA30789AC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244CE3E9F7D;
-	Thu, 18 Jun 2026 10:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B923E024B;
+	Thu, 18 Jun 2026 10:32:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE403E024B
-	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 10:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63B6935838A
+	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 10:32:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781778728; cv=none; b=XQ1elmHvRLcamVpZzBD1x1gQY/MTKlLKXsKEco4tDFcH3M6/pRLHWI66dKQmSes+vGaoyKb+m/jKH/Zx8rYxdbv/LtPKc47XFraEEpMr+6YJme9Fo3tRhCa5d323xaUKcvHRQW4Eu/NH2zLeRQaQc70qfQZmYkA+dcMaN4+s7P0=
+	t=1781778748; cv=none; b=lg3QHrhMdx4oudNBZ2CGvOhqwa0Gurm4mgasf69kq6k7VTC3QM60wgExQHE4dm9fixoK3DV04V507VDIJ4k2YbflIa3W9ce1X3Cp5+cvdBQTaiHp9aP/GVjKSpitABUo0MJTghsY5kG5A5rctb10zd38fkdiWNJZ7RxSWXn0Ovo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781778728; c=relaxed/simple;
-	bh=ICJbwuQFqJH3MjkBX87SVGN26zF29YTm5geT48J+HII=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qDE9Rb0NZAkk+9JXCQ2nPFrgdWZ4rKw3Wg36PiNl1x+U13iKxVORBuD5YwlrDkQIGk5h5MoMJUUzS/WRrPbLl58t8KgPATRAS5SbZSaN722sRzYRugtzEoDIzF49mwwEvXRg2MJtSWwHcUlbhS3gxdca6AwrqUdAl8kGxHXI6Io=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=bHr48bgJ; arc=none smtp.client-ip=194.117.254.33
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=ICJb
-	wuQFqJH3MjkBX87SVGN26zF29YTm5geT48J+HII=; b=bHr48bgJgAUMg08cQOIS
-	euizn3I1bzIyaHb+5zQZvAN5PkcErCNwqM2VEIpfgrtBQymQjj3qKHwfmcppJ1/3
-	699QurZnKh/r4KveKEFda1Spg92XW9APRgM7RxygkJ82evKL0mt8F0CZplspFnnR
-	969/+Omw0K/7rcqVlJ1OwGtzGUimcpCbS2qvJvsBAi56kl+3vvv3E1etE/2nm+8s
-	Pt3VG6OuZCUm8rWKrkwy84Rhe9+NQL0LFLlC9dls97bfSYhnP7tW/1AAVTu7j+I8
-	81rHVAmrUt1uQcGwDmeTm/EfL+yjtdR6L702bLlcXcKCaHcfQ2tTM9/CuMH9os4v
-	Ig==
-Received: (qmail 525476 invoked from network); 18 Jun 2026 12:31:56 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 18 Jun 2026 12:31:56 +0200
-X-UD-Smtp-Session: l3s3148p1@np93r4RUhrEujnsq
-Date: Thu, 18 Jun 2026 12:31:56 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-rtc@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 05/12] rtc: rzn1: Add system suspend/resume support and
- wakeup capability
-Message-ID: <ajPJHKut92mAoo-B@shikoro>
-References: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260615154805.1619693-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <ajJwqDt2jUfhSD1x@shikoro>
- <CA+V-a8uo9sr3m9F_MQYbHVD5wa3LT3n6MWrVpiNiPDumnVHMYQ@mail.gmail.com>
+	s=arc-20240116; t=1781778748; c=relaxed/simple;
+	bh=GEAZFzgykOTJ3oLUJPK29eLxfh3CbSvczbxZG7sj5PE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=KK87tlGx51VjY7LI2aOulLtT/pLO/dbX7RuyOWIj8bYipsDZG7icuyRzUIbS00NhS+FaMYVhU6cUTod5GmE5DXRKNKNqD7hYpoKTRRE+kyw3Fv816hS//o3zkXzicO4OEr70MSUG5yO+5oXT27kl/y2rG/RVbJLe7NEJaorBUQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OGITPyEh; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C82581F000E9;
+	Thu, 18 Jun 2026 10:32:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781778747;
+	bh=W6rEgeEeqygUkmFeq2ogoXjlREWW/dmk0kBslBFvzwo=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=OGITPyEhqNbuKau+J7QXnvr3U/OdTvv3VjgT1NONzmxhGhuHRxjLAi0yQJPK3Pcdj
+	 JwNjpUZfuP6rjEcrcTo11Qa4/Ip5iZ24hF1P+yoVsqBnET9Bp7psBoucPb87foxBxq
+	 qp9+AHyapZl1BtNc04Pu/720GiYfufv75UN9NzIZTWyjvne62NJSNi1k3s0j6gpjOr
+	 bw/KmjdkIM2OccibwkhCWP8Gig1UcbP7IG45Xe05jMpRUS4Y6DNgIdQ7D6plIw1z3y
+	 vvDNap82vKeMT0X8sSyzFMMjw0JEcxDcbR9x4gm8ZwkC6N4wllgdeUVdEcjXdiyx/V
+	 SkSUGO4/MLnBw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/2] drm/panel: add Ilitek ILI7807S panel driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Arpit Saini" <arpit.saini@oss.qualcomm.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, conor+dt@kernel.org
+In-Reply-To: <20260618-ili7807s-v2-2-b3f0c109b102@oss.qualcomm.com>
+References: <20260618-ili7807s-v2-0-b3f0c109b102@oss.qualcomm.com>
+ <20260618-ili7807s-v2-2-b3f0c109b102@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 18 Jun 2026 10:32:26 +0000
+Message-Id: <20260618103226.C82581F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="DD9Lvj8eqqR3LfjR"
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8uo9sr3m9F_MQYbHVD5wa3LT3n6MWrVpiNiPDumnVHMYQ@mail.gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[sang-engineering.com];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:miquel.raynal@bootlin.com,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:linux-rtc@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-313398-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:arpit.saini@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-313397-lists,devicetree=lfdr.de,renesas];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,glider.be,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:dkim,sang-engineering.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E837469F5CE
+X-Rspamd-Queue-Id: 57F2169F5FA
 
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+s) to consider:
+- [High] Inverted manipulation of MIPI_DSI_MODE_LPM in backlight update_sta=
+tus callback permanently corrupts DSI mode flags.
+- [High] Concurrent read-modify-write operations on dsi->mode_flags can cau=
+se state corruption.
+- [Medium] Backlight update_status callback sends DCS commands without chec=
+king if the panel is powered on.
+- [Medium] Incorrect devm registration order causes the DSI device to be de=
+tached while the DRM panel and backlight sysfs are still active.
+- [Medium] Missing NULL check for the return value of of_device_get_match_d=
+ata() leads to a potential NULL pointer dereference.
+--
 
---DD9Lvj8eqqR3LfjR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+commit 97a4deef0ca55e71f3420d40260130de4242cae3
+Author: Arpit Saini <arpit.saini@oss.qualcomm.com>
 
+drm/panel: add Ilitek ILI7807S panel driver
 
-> For running s2idle cases with rtcwake > 60sec this feature would be
-> helpful. What do you think?
+This commit adds a DRM panel driver for the DLC DLC0697 1080x1920@60Hz
+MIPI DSI panel based on the Ilitek ILI7807S display controller.
 
-I think maintaining such a fragile feature is cumbersome. People might
-have different expectations and the maintainers have to handle the delta
-then. So, if we cannot to support to a large degree some feature, I
-think we should just skip it. Until some user really wants (and tests
-and accepts) a half-baked solution.
+> diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili7807s.c b/drivers/gpu/=
+drm/panel/panel-ilitek-ili7807s.c
+> new file mode 100644
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-ilitek-ili7807s.c
 
+[ ... ]
 
---DD9Lvj8eqqR3LfjR
-Content-Type: application/pgp-signature; name="signature.asc"
+> +static int ili7807s_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi =3D bl_get_data(bl);
+> +	u16 brightness =3D backlight_get_brightness(bl);
+> +	int ret;
+> +
 
------BEGIN PGP SIGNATURE-----
+[Severity: Medium]
+Is it safe to send DCS commands here without checking if the panel is
+currently powered on? If userspace writes to the sysfs brightness control
+while the regulators are disabled and the panel is off, will this attempt
+to send commands and cause DSI bus timeouts?
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmozyRgACgkQFA3kzBSg
-KbaTXw/+Pet5isbeIJs7zEbYzaNpdqUKe6KH89BvH9pPeHMN9/t1eqDKoZFwDDyy
-/3KUhPtltC23NdIVq9mY/LomqK+ObwCfIex9IG+REvShrZx4wdmqZPFEhtXMrT4d
-E0YjwICgx/joHt5vW8GDBy/lgb4Nl7hMQxpJy49plaSUMKPNj2ZnpwzLawXum3Ld
-xm87E96WnVKPOs5n5ceaOXAWkgidXy9tiyMtpehU5QFrCjQ8SMCPov9hn1ksDt6L
-UdGa9W+INSUC62H0Wjr1naHnQCSyuAwkhvclSUf8p8/CWx7a+pAIeRaR2vHWJCTv
-9vXv1KgSw4LpM/mrU4dJ4Cv1kqsARLzFPN8QDtTwQoLQ94F+vYPGZlRh47hNecnb
-z4feFEibOktHLwzOV+2+N7mmr5rE83YU8Y7Y5SLOKmnTB40BuvZsIWko6ZrQuSko
-Wjn4edQN++sCmHDSwjxi5fJiH37Uk1BbEvXTxIlNz6gfucGtij5Wu+PEuQ0+oRB+
-aATyLT7W0w0g4mxeMr/HhSco1Z8LadhdyTBEHHnWHJ0U9O1izFxtGprmgzFXnpCF
-khhXjixmCHiYq7WuS5JJMBmSeD5ZnvGbjQhAygfCniUALj98crZKmgOJFjeabZin
-9K5Un+Emo5iwGUFfzmktI/JvLnWnLF5jkwGsRjOzoHKrAolw5EQ=
-=kcqa
------END PGP SIGNATURE-----
+> +	dsi->mode_flags &=3D ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret =3D mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
+> +
+> +	dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
 
---DD9Lvj8eqqR3LfjR--
+[Severity: High]
+Does this sequence invert the intended mode flags? The default panel mode
+flags do not include MIPI_DSI_MODE_LPM. Clearing it beforehand and setting =
+it
+afterward will permanently force the DSI host into Low Power Mode after the
+first backlight update, which might break subsequent video transmissions.
+
+[Severity: High]
+Can concurrent calls to ili7807s_on(), ili7807s_off(), and this backlight
+update callback cause a data race? These functions all modify dsi->mode_fla=
+gs
+using non-atomic bitwise operations, which might clobber each other's chang=
+es
+if a backlight update is triggered from userspace simultaneously with a DRM
+DPMS event.
+
+[ ... ]
+
+> +static int ili7807s_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev =3D &dsi->dev;
+> +	const struct panel_desc *desc;
+> +	struct ili7807s *ctx;
+> +	int ret;
+> +
+> +	ctx =3D devm_drm_panel_alloc(dev, struct ili7807s, panel,
+> +				   &ili7807s_panel_funcs,
+> +				   DRM_MODE_CONNECTOR_DSI);
+> +	if (IS_ERR(ctx))
+> +		return PTR_ERR(ctx);
+> +
+> +	desc =3D of_device_get_match_data(dev);
+> +	ctx->desc =3D desc;
+
+[Severity: Medium]
+Can of_device_get_match_data() return NULL if the driver is bound manually
+via sysfs without an associated device tree node? If so, will dereferencing
+desc->lanes later in this function cause a NULL pointer dereference?
+
+[ ... ]
+
+> +	ret =3D devm_drm_panel_add(dev, &ctx->panel);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to add panel\n");
+> +
+> +	ret =3D devm_mipi_dsi_attach(dev, dsi);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to attach dsi\n");
+> +
+> +	return 0;
+> +}
+
+[Severity: Medium]
+Does this devres registration order cause a teardown issue? Since devres
+cleans up in reverse order of allocation, devm_mipi_dsi_detach() will run
+before the DRM panel and backlight interfaces are removed. Could this leave
+the sysfs interfaces exposed to userspace while the underlying DSI device is
+already detached?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618-ili7807s-v=
+2-0-b3f0c109b102@oss.qualcomm.com?part=3D2
 
