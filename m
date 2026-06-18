@@ -1,333 +1,216 @@
-Return-Path: <devicetree+bounces-313345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313351-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZA9qOjS8M2pyFgYAu9opvQ
-	(envelope-from <devicetree+bounces-313345-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 11:36:52 +0200
+	id PgzSBSO9M2qhFgYAu9opvQ
+	(envelope-from <devicetree+bounces-313351-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 11:40:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F87F69EEB5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 11:36:52 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B9F69EF31
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 11:40:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RTbnFqwK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313345-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313345-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313351-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-313351-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EB7303028666
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 09:34:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 85FC1302F4DF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 09:40:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 371F83DB97A;
-	Thu, 18 Jun 2026 09:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004B13DFC94;
+	Thu, 18 Jun 2026 09:39:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101013DCD92;
-	Thu, 18 Jun 2026 09:34:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94E74395ADD;
+	Thu, 18 Jun 2026 09:39:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781775281; cv=none; b=iCA0k0J84Tv11wPl+QhqHI8atT+tvLbFFbd5mLRULTOXnBJyI1UFns958QbF8OkpTLL8Jma9SZU/tpmJrkb7OGa6BBR+ymNaiyJyBcr/6A/hNx1AXzpGU1Q2EDeyTahej/7Sj0rOBcb0SqBC11LvhUUEGfzDrESS2NQ+RMl2Yq4=
+	t=1781775594; cv=none; b=F8I/XnoK0cXD4DCXUGJs5YV8l+KYj9S+UArgJrtfa37hKGX/gPuvEP2FCpXXcKDsZcIfBmUpbXVFh3UL+AqTyFrJus/emjyjdf+Q11JfGL5J8RLmSSZZW3Kv6iAqQKcXcBqJXRpY3PmnjJHOL4bskBwF3Z+E+rQe7O/vcW7dkvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781775281; c=relaxed/simple;
-	bh=HH8NIKNt0Jrpzp+bTOCoGGIgkopyrLxtDN0lMgoUxFY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=VYSKI81pnLliw+3gIRpApymiftsFLGxPmro7iGuNsN1JqXP3BB1/aL9G69A6/1oFElBXM8FYFvV9sK0S442hv7TVbsTBqptPGrSLKlOtbejK8S6D30gfU/CI+jHC4HWXJnJEq7DCW8HtqZ5LRLVbBbOT37V/Jh7OCGVyVhmuEVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RTbnFqwK; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12B9B1F000E9;
-	Thu, 18 Jun 2026 09:34:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781775278;
-	bh=ebAZryT7OVF/z5evMq33O3XtSb+ClTJZ9XcaL97HuEQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=RTbnFqwKltRrh+4qGobFLQT//qw0Odb1F9wk9o/5NlOQt24RFbkPtsdNYfDuWxN87
-	 xvGvUjmyFzqkJNYUj4m0B79JNHsFy0YpjeDLq5hTa3dPDWiVT8NDi5eKdqABiEOC2P
-	 Ybq2XrIvld2z/Xm4VwwSL28XhZpCO8/6ip8CowYa9zmcQ2zQMnVeFI8Ca1FgC7yYKG
-	 ldEa38f6SrArGPAcd7d6ym4isryi/2IouK0v5xy+a0KMRYhGAnfVV2EWdhvYgsATDW
-	 VzD0mxQMZx77ZTFQALecDU9lCIPvdDDMU7E9UqN1B4FuHwzBYoojUh1d4CGf4ESmzy
-	 EiUlCw0g8RZjA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 3/3] PCI: imx6: Add root port reset to support link
- recovery
-Reply-To: sashiko-reviews@lists.linux.dev
-To: hongxing.zhu@oss.nxp.com
-Cc: robh@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org, linux-pci@vger.kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org
-In-Reply-To: <20260618092100.3669556-4-hongxing.zhu@oss.nxp.com>
-References: <20260618092100.3669556-1-hongxing.zhu@oss.nxp.com>
- <20260618092100.3669556-4-hongxing.zhu@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
+	s=arc-20240116; t=1781775594; c=relaxed/simple;
+	bh=EccJG8dHIt6cB6jMRTYe4XeLWdRrrB4MeC3puflb1e0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=TeJA6frbzZNUaycW2iBA4bVPE5oWW/iu9Z3L32JOy92Ot9SXiHBIfqjkqwZSdo9MNpcyYJuNKthzdCgAvMu/5q9Z1zw1WJ+XWqcmezpIkjzlyKOejP9Sv+cc+FLaq/dlRsiFQdHP+mCW6l0PX1hXrucW8/OgOS9NpvlRQWm7spk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.200.13
+Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
+	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 5DFB1200F09;
+	Thu, 18 Jun 2026 11:39:46 +0200 (CEST)
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1wa9Du-003Prb-0w;
+	Thu, 18 Jun 2026 11:39:46 +0200
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1wa9Du-00000000532-0eH7;
+	Thu, 18 Jun 2026 11:39:46 +0200
+Message-ID: <7c79f233c863654b0266de4b5ec5a8c72bb17715.camel@pengutronix.de>
+Subject: Re: [PATCH 2/9] drm/rockchip: vop2: Reset AXI and DCLK to improve
+ robustness
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Sandy Huang	
+ <hjc@rock-chips.com>, Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,  Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann	 <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andrzej Hajda	 <andrzej.hajda@intel.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>,  Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman	
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli
+	 <luca.ceresoli@bootlin.com>
+Cc: kernel@collabora.com, Andy Yan <andyshrk@163.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Date: Thu, 18 Jun 2026 11:39:45 +0200
+In-Reply-To: <20260617-dw-hdmi-qp-yuv-v1-2-a665cfd06d7d@collabora.com>
+References: <20260617-dw-hdmi-qp-yuv-v1-0-a665cfd06d7d@collabora.com>
+	 <20260617-dw-hdmi-qp-yuv-v1-2-a665cfd06d7d@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 18 Jun 2026 09:34:37 +0000
-Message-Id: <20260618093438.12B9B1F000E9@smtp.kernel.org>
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-313345-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	TAGGED_FROM(0.00)[bounces-313351-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:hongxing.zhu@oss.nxp.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:linux-pci@vger.kernel.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[collabora.com,rock-chips.com,sntech.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,bootlin.com];
+	FORGED_SENDER(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FORGED_RECIPIENTS(0.00)[m:cristian.ciocaltea@collabora.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:kernel@collabora.com,m:andyshrk@163.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[collabora.com,163.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url,i.mx:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,pengutronix.de:mid,pengutronix.de:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5F87F69EEB5
+X-Rspamd-Queue-Id: C3B9F69EF31
 
-Thank you for your contribution! Sashiko AI review found 7 potential issue(=
-s) to consider:
-- [High] Using read-modify-write operations on a mixed RW/W1C register unin=
-tentionally clears pending hardware interrupts.
-- [High] The ISR unconditionally clears the link down status bit even if th=
-e interrupt is disabled, dropping shared link recovery events.
-- [High] Unsafe, lockless iteration over the PCI bus devices list without h=
-olding pci_bus_sem.
-- [High] The threaded interrupt handler is not synchronized during system s=
-hutdown, leading to a race condition with controller power-off.
-- [High] Accessing shared LUT GPR registers without acquiring imx_pcie->loc=
-k causes a data race.
-- [Medium] The `imx_pcie_reset_root_port` function silently ignores failure=
-s to recover the PCIe link.
-- [Low] The patch references undeclared functions and undefined struct memb=
-ers, causing build failures.
---
-
-commit 1a657928e9eb6aa6da8f1cc80545e5be5d066898
-Author: Richard Zhu <hongxing.zhu@nxp.com>
-
-PCI: imx6: Add root port reset to support link recovery
-
-The PCIe link can go down due to various unexpected circumstances. Add
-root port reset support to enable link recovery for the i.MX PCIe
-controller when the optional "intr" interrupt is present.
-
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controll=
-er/dwc/pci-imx6.c
-> index 98e1db751132a..b38eb61983e15 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-
-[ ... ]
-
-> @@ -1442,6 +1450,13 @@ static int imx_pcie_host_init(struct dw_pcie_rp *p=
-p)
+On Mi, 2026-06-17 at 21:51 +0300, Cristian Ciocaltea wrote:
+> Assert the AXI reset in the CRTC disable path, and the VP DCLK reset in
+> the enable path.
+>=20
+> These resets are intended to leave the hardware in a clean state for the
+> next use, helping recover from exceptions such as IOMMU page faults, as
+> well as to prevent random display output glitches, such as a blank
+> image, observed when switching modes that also change the color format,
+> e.g. from RGB to YUV420 and vice versa.
+>=20
+> For now this seems to affect only the RK3588, hence the resets are
+> optional and will be provided in the device tree for this SoC only.
+>=20
+> Co-developed-by: Andy Yan <andy.yan@rock-chips.com>
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 35 ++++++++++++++++++++++=
+++++++
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  4 ++++
+>  2 files changed, 39 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/d=
+rm/rockchip/rockchip_drm_vop2.c
+> index 4cce3e336f5b..2833fb49ad81 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/regmap.h>
+> +#include <linux/reset.h>
+>  #include <linux/swab.h>
 > =20
->  	imx_setup_phy_mpll(imx_pcie);
+>  #include <drm/drm.h>
+> @@ -860,6 +861,26 @@ static int vop2_core_clks_prepare_enable(struct vop2=
+ *vop2)
+>  	return ret;
+>  }
 > =20
-> +	/*
-> +	 * Callback invoked by PCI core when link down is detected and
-> +	 * recovery is needed.
-> +	 */
-> +	if (pp->bridge)
-> +		pp->bridge->reset_root_port =3D imx_pcie_reset_root_port;
+> +static void vop2_clk_reset(struct vop2 *vop2, struct reset_control *rstc=
+)
 
-[Severity: Low]
-Is reset_root_port defined in struct pci_host_bridge? Looking at
-include/linux/pci.h, this member does not appear to exist in the standard
-kernel. Does this patch depend on a prerequisite patch that adds it?
+The _clk part of the function name is misleading ...
 
-[ ... ]
-
-> @@ -1774,6 +1795,86 @@ static const struct dev_pm_ops imx_pcie_pm_ops =3D=
- {
->  				  imx_pcie_resume_noirq)
->  };
-> =20
-> +static irqreturn_t imx_pcie_lnk_irq_isr(int irq, void *priv)
-> +{
-> +	struct imx_pcie *imx_pcie =3D priv;
-> +	struct dw_pcie *pci =3D imx_pcie->pci;
-> +	struct device *dev =3D pci->dev;
-> +	u32 val;
-> +
-> +	regmap_read(imx_pcie->iomuxc_gpr, IMX95_LINK_INT_CTRL_STS, &val);
-> +	if (val & IMX95_LINK_DOWN_INT_STS) {
-> +		dev_dbg(dev, "PCIe link down detected, initiating recovery\n");
-> +		/* Clear link down interrupt status by writing 1b'1 to it */
-> +		regmap_set_bits(imx_pcie->iomuxc_gpr, IMX95_LINK_INT_CTRL_STS,
-> +				IMX95_LINK_DOWN_INT_STS);
-> +		if (!(val & IMX95_LINK_DOWN_INT_EN))
-> +			return IRQ_NONE;
-
-[Severity: High]
-If this interrupt is shared and masked during thread execution, could this
-unconditionally clear a new link down event?
-
-Since the status is cleared before checking IMX95_LINK_DOWN_INT_EN, if a new
-event triggers concurrently with the threaded handler, it appears the event
-will be cleared and then discarded when the ISR returns IRQ_NONE.
-
-> +		regmap_clear_bits(imx_pcie->iomuxc_gpr, IMX95_LINK_INT_CTRL_STS,
-> +				  IMX95_LINK_DOWN_INT_EN);
-> +
-> +		return IRQ_WAKE_THREAD;
-> +	}
-> +
-> +	regmap_read(imx_pcie->iomuxc_gpr, IMX95_PE0_INT_STS, &val);
-> +	if (unlikely(val))
-> +		regmap_write(imx_pcie->iomuxc_gpr, IMX95_PE0_INT_STS, val);
-> +
-> +	return IRQ_NONE;
-> +}
-> +
-> +static irqreturn_t imx_pcie_lnk_irq_thread(int irq, void *priv)
-> +{
-> +	struct imx_pcie *imx_pcie =3D priv;
-> +	struct dw_pcie *pci =3D imx_pcie->pci;
-> +	struct dw_pcie_rp *pp =3D &pci->pp;
-> +	struct pci_dev *port;
-> +
-> +	for_each_pci_bridge(port, pp->bridge->bus)
-> +		if (pci_pcie_type(port) =3D=3D PCI_EXP_TYPE_ROOT_PORT)
-> +			pci_host_handle_link_down(port);
-
-[Severity: High]
-Is it safe to iterate over the PCI bus devices list asynchronously here wit=
-hout
-holding the pci_bus_sem semaphore?
-
-If concurrent PCI enumeration, hotplug device removal, or SR-IOV VF
-modifications occur, could this result in list pointer corruption or a
-use-after-free?
-
-[Severity: Low]
-Also, is pci_host_handle_link_down() declared in the standard kernel header=
-s?
-I am unable to find it in include/linux/pci.h, which might cause a build
-failure without a prerequisite patch.
-
-> +
-> +	regmap_set_bits(imx_pcie->iomuxc_gpr, IMX95_LINK_INT_CTRL_STS,
-> +			IMX95_LINK_DOWN_INT_EN);
-
-[Severity: High]
-Can regmap_set_bits() unintentionally clear pending hardware interrupts her=
-e?
-
-Since regmap_set_bits() performs a read-modify-write, and the
-IMX95_LINK_DOWN_INT_STS (BIT 11) is a write-1-to-clear bit, could it
-accidentally write back a 1 for a newly arrived link down event and
-permanently lose that event?
-
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int imx_pcie_reset_root_port(struct pci_host_bridge *bridge,
-> +				    struct pci_dev *pdev)
-> +{
-> +	struct pci_bus *bus =3D bridge->bus;
-> +	struct dw_pcie_rp *pp =3D bus->sysdata;
-> +	struct dw_pcie *pci =3D to_dw_pcie_from_pp(pp);
-> +	struct imx_pcie *imx_pcie =3D to_imx_pcie(pci);
-> +	int ret;
-> +
-> +	imx_pcie_msi_save_restore(imx_pcie, true);
-> +	if (imx_check_flag(imx_pcie, IMX_PCIE_FLAG_HAS_LUT))
-> +		imx_pcie_lut_save(imx_pcie);
-
-[Severity: High]
-Does imx_pcie_lut_save() need to acquire the imx_pcie->lock?
-
-Since imx_pcie_reset_root_port() runs asynchronously in the recovery thread,
-could this cause a data race on the shared IMX95_PE0_LUT_ACSCTRL index
-register if another device probe concurrently calls imx_pcie_add_lut()?
-
-> +	imx_pcie_stop_link(pci);
-> +	imx_pcie_host_exit(pp);
-> +
-> +	ret =3D imx_pcie_host_init(pp);
-> +	if (ret) {
-> +		dev_err(pci->dev, "Failed to re-init PCIe\n");
-> +		return ret;
-> +	}
-> +	ret =3D dw_pcie_setup_rc(pp);
-> +	if (ret)
-> +		return ret;
-> +
-> +	imx_pcie_start_link(pci);
-> +	dw_pcie_wait_for_link(pci);
-
-[Severity: Medium]
-Should the return value of dw_pcie_wait_for_link() be checked and propagate=
-d?
-
-If the link fails to come up (for example, returning -ETIMEDOUT because the
-endpoint was unplugged), dropping the error allows the function to
-unconditionally return 0. Could this leave the system in an inconsistent
-state?
-
-> +
-> +	if (imx_check_flag(imx_pcie, IMX_PCIE_FLAG_HAS_LUT))
-> +		imx_pcie_lut_restore(imx_pcie);
-
-[Severity: High]
-Similar to the save function above, does imx_pcie_lut_restore() need to
-acquire imx_pcie->lock to prevent data races on the shared LUT index regist=
-er
-during restoration?
-
-[ ... ]
-
-> @@ -1973,15 +2074,46 @@ static int imx_pcie_probe(struct platform_device =
-*pdev)
-
-[ ... ]
-
->  static void imx_pcie_shutdown(struct platform_device *pdev)
+[...]
+> @@ -938,6 +959,8 @@ static void vop2_disable(struct vop2 *vop2)
 >  {
->  	struct imx_pcie *imx_pcie =3D platform_get_drvdata(pdev);
+>  	rockchip_drm_dma_detach_device(vop2->drm, vop2->dev);
 > =20
-> +	if (imx_pcie->lnk_intr > 0)
-> +		regmap_clear_bits(imx_pcie->iomuxc_gpr, IMX95_LINK_INT_CTRL_STS,
-> +				  IMX95_LINK_DOWN_INT_EN);
->  	/* bring down link, so bootloader gets clean state in case of reboot */
->  	imx_pcie_assert_core_reset(imx_pcie);
+> +	vop2_clk_reset(vop2, vop2->axi_rst);
 
-[Severity: High]
-Can a concurrent threaded interrupt handler run during this shutdown proces=
-s?
+... because this function is also called with the AXI reset control.
 
-Since disable_irq() is not called, if a link down event triggers just before
-shutdown, could the thread access PCIe configuration space right as
-pci_pwrctrl_power_off_devices() powers off the hardware, potentially causin=
-g a
-synchronous external abort?
+> +
+>  	pm_runtime_put_sync(vop2->dev);
+> =20
+>  	regcache_drop_region(vop2->map, 0, vop2_regmap_config.max_register);
+> @@ -1948,6 +1971,8 @@ static void vop2_crtc_atomic_enable(struct drm_crtc=
+ *crtc,
+> =20
+>  	vop2_crtc_atomic_try_set_gamma(vop2, vp, crtc, crtc_state);
+> =20
+> +	vop2_clk_reset(vop2, vp->dclk_rst);
+> +
+>  	drm_crtc_vblank_on(crtc);
+> =20
+>  	vop2_unlock(vop2);
+> @@ -2531,6 +2556,11 @@ static int vop2_create_crtcs(struct vop2 *vop2)
+>  			return dev_err_probe(drm->dev, PTR_ERR(vp->dclk),
+>  					     "failed to get %s\n", dclk_name);
+> =20
+> +		vp->dclk_rst =3D devm_reset_control_get_optional(vop2->dev, dclk_name)=
+;
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618092100.3669=
-556-1-hongxing.zhu@oss.nxp.com?part=3D3
+Please use devm_reset_control_get_optional_exclusive() directly.
+
+> +		if (IS_ERR(vp->dclk_rst))
+> +			return dev_err_probe(drm->dev, PTR_ERR(vp->dclk_rst),
+> +					     "failed to get %s reset\n", dclk_name);
+> +
+>  		np =3D of_graph_get_remote_node(dev->of_node, i, -1);
+>  		if (!np) {
+>  			drm_dbg(vop2->drm, "%s: No remote for vp%d\n", __func__, i);
+> @@ -2890,6 +2920,11 @@ static int vop2_bind(struct device *dev, struct de=
+vice *master, void *data)
+>  		return dev_err_probe(drm->dev, PTR_ERR(vop2->pll_hdmiphy1),
+>  				     "failed to get pll_hdmiphy1\n");
+> =20
+> +	vop2->axi_rst =3D devm_reset_control_get_optional(vop2->dev, "axi");
+
+Same as above, devm_reset_control_get_optional_exclusive().
+
+regards
+Philipp
 
