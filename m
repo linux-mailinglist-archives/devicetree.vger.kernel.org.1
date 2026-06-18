@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-313296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jlCTLSWmM2q4EgYAu9opvQ
-	(envelope-from <devicetree+bounces-313296-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:02:45 +0200
+	id gLCvF6WmM2rbEgYAu9opvQ
+	(envelope-from <devicetree+bounces-313298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:04:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ABE569E4F7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:02:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A878369E539
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:04:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="FAJ1mOR/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313296-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-313296-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cpLStstG;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313298-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313298-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B7F973013852
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 08:02:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 66F713009536
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 08:04:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4569C3C5DBA;
-	Thu, 18 Jun 2026 08:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DAA33603D7;
+	Thu, 18 Jun 2026 08:04:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 793123D9670
-	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 08:02:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F372F2DEA6B
+	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 08:04:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781769743; cv=none; b=E7rMxWirVe6t09FJvgCulIXpvvYPfGXZnCN4JxU87Ga8cIC/RoGo6bXbofxlOPSM01qIOVE77mvD54dC+t5yThnVT5P2dpI4cqGh3Zfwx5if7T/01pVGAKm6/oQPHS9KSBgxi+Aecd2U/R0axohRWj1L4buyETVOdxLVfIOpby0=
+	t=1781769890; cv=none; b=ASwaJs17F50BLybultoOvIzX/HQ0h1SSPzJLJOfQ+c+zmTdE61F2/sCAfOJkDR0LVdp31GvXiJraw69fkOjnYDofNh2/RdeBh+2iYCTB35MIpuBNGOXuSc+T06stMvY9CqIDxcEKIb7RsvP59z2tmalWQ6PPlqhhpgEkORPwxx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781769743; c=relaxed/simple;
-	bh=MqyKelc+I+JSSuo/yFM4Dzl5MOLVuNu/0AORiiYbzr0=;
+	s=arc-20240116; t=1781769890; c=relaxed/simple;
+	bh=XsoRzHMMCwgmn2Vz6Z+o3WjTmLgdAztCy1In87F+wOY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=u5/os17jZhrsydg5NG8jibjLtgJbIrH3ALUOLFiSemlqMGYcV3o+t+CvSToh409zMaRnwErI65Yz4/fm1B/fdXMfpPvzQt32+GeaxTC7zwn0ZE41axKEDpvlbmYNqTARXKj9qD9cQD6XA2E7z3B03QrgT8cMM4RWXm38NxcUXI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FAJ1mOR/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06EE41F000E9;
-	Thu, 18 Jun 2026 08:02:20 +0000 (UTC)
+	 Message-Id; b=V/aIBvZMgwf90sRyNeRkdW+rUNlTmwWewdHlC0HKGYAyslTDqEdrjYueE2exB3l8FbzoGkY7y4tDvq5e1OdE/C3xQz5FmReZV/AdJ2eDVGmy3pg1o4+K8dfz96AC5BVnJTavEL9soThLo9bIuTgopYZ/JjNt60VLzs1K3Dbfl/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cpLStstG; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12DD31F000E9;
+	Thu, 18 Jun 2026 08:04:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781769741;
-	bh=29D/vAB0fc6kid4f71TlY6oecsm8iUd/WDGEzZQIMU0=;
+	s=k20260515; t=1781769889;
+	bh=QTOIZoG/3/M06Y2yHO6boY2B+RmkCZiPE5ksPTBqqzY=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=FAJ1mOR/XKMp03jaZppkM1vLj5ETVAcHdPdsrONjXCINfaaN/MYaYWTbEozJa4odN
-	 vcO33+7ev8qmt7HbJHF2De5L5nlGRSz1Dqey1SpLnfhebURbkGkGCgws8pFHt6NQAO
-	 zIxz+epZrvixgyAJdhMcxnHiVak7nKRweydNl5oukZyMoULUIy0USzvO+cUwXeWKpZ
-	 NDzInJySN0+dXTQyzfG5pSYU8r2Axl/XSp7b8cfE3vERLoSugZDjKzZpkMPu4nr8rI
-	 iisHpVWQWThWyot45dvLd+rn81cmySfKz9I4XIcdmPwbDy31se8NUKffejHbODdzQ0
-	 C4ny/yPbMA7DA==
+	b=cpLStstGTdqqE65kvscxqkmrV31iaettgPt/jXFxUFDnOj4lE/etCit2wEYa/eB8f
+	 0Onfg6wM69gRA6FbWRClJSPLMFhpf041annrgIyRLYOjcPCXb4O/CQvuOtUxZ38FS3
+	 t/lO4S+CnEtShG2EklaXzwX71n4OT2wj7pnkyCBkfzknWrr+MSKc3EULFDXpc+/leN
+	 faFyWLqszCClW7rSaRu3G6Cx+8awQS//yDmhUnYd15Xi+ikUndRp7FWJ2lhbvsmYz9
+	 qP63x6PjSEwhHF5qH1qElYXTWCFORJiGei0YyISvdxAA8W5zjwHF0vdf3GdSDrVR9X
+	 1gj27RXQXbbKg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 04/16] spi: spi-mem: teach spi_mem_adjust_op_freq()
- about post-config ops
+Subject: Re: [PATCH v4 09/16] spi: cadence-quadspi: skip DDR PHY tuning for
+ 2-byte-address ops (i2383)
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Santhosh Kumar K" <s-k6@ti.com>
 Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260618073725.84733-5-s-k6@ti.com>
+In-Reply-To: <20260618073725.84733-10-s-k6@ti.com>
 References: <20260618073725.84733-1-s-k6@ti.com>
- <20260618073725.84733-5-s-k6@ti.com>
+ <20260618073725.84733-10-s-k6@ti.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 18 Jun 2026 08:02:20 +0000
-Message-Id: <20260618080221.06EE41F000E9@smtp.kernel.org>
+Date: Thu, 18 Jun 2026 08:04:48 +0000
+Message-Id: <20260618080449.12DD31F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,13 +72,13 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313296-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313298-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -99,92 +99,79 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,lists.linux.dev:replyto,ti.com:email,sashiko.dev:url,smtp.kernel.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ti.com:url,ti.com:email,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5ABE569E4F7
+X-Rspamd-Queue-Id: A878369E539
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Overloading `op->max_freq` as a magic exact-match token to identif=
-y post-configuration operations breaks frequency limit semantics, preventin=
-g valid operations from running at tuned speeds or erroneously allowing unt=
-uned operations to bypass safe limits.
+- [Medium] Unchecked dereference of `cqspi->ddata` in `cqspi_mem_op_execute=
+_tuning()` leads to a potential kernel oops.
 --
 
-commit c232673d530121d1e383d41f1db73523ed370bfb
+commit 40592f2a22efbd29a6272035f538dcdb01d9f776
 Author: Santhosh Kumar K <s-k6@ti.com>
 
-spi: spi-mem: teach spi_mem_adjust_op_freq() about post-config ops
+spi: cadence-quadspi: skip DDR PHY tuning for 2-byte-address ops (i2383)
 
-This commit extends spi_mem_adjust_op_freq() to allow post-configuration
-operations to run at higher speeds. It bypasses the max_speed_hz cap if the
-operation's max_freq exactly matches the post_config_max_speed_hz value.
+This commit introduces a CQSPI_NO_2BYTE_ADDR_PHY_DDR quirk to skip DDR PHY
+tuning for 2-byte column addresses. This is done to address erratum i2383 on
+AM654, which locks the address phase in PHY DDR mode for such operations.
 
-> diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
-> index f64eda9bbd9f0..b0b111642a358 100644
-> --- a/drivers/spi/spi-mem.c
-> +++ b/drivers/spi/spi-mem.c
+[0] https://www.ti.com/lit/er/sprz544c/sprz544c.pdf
+
+> diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadence-=
+quadspi.c
+> index 05e1b7a2f3433..c94bb8ad5d1dd 100644
+> --- a/drivers/spi/spi-cadence-quadspi.c
+> +++ b/drivers/spi/spi-cadence-quadspi.c
+
 [ ... ]
-> @@ -584,9 +584,18 @@ EXPORT_SYMBOL_GPL(spi_mem_adjust_op_size);
->   * Some chips have per-op frequency limitations and must adapt the maxim=
-um
->   * speed. This function allows SPI mem drivers to set @op->max_freq to t=
-he
->   * maximum supported value.
-> + *
-> + * When @mem->spi->post_config_max_speed_hz is set, ops with @op->max_fr=
-eq
-> + * equal to that value are treated as post-configuration ops (e.g. PHY-t=
-uned)
-> + * and are allowed to run at the full post-config rate. All other ops are
-> + * capped to @mem->spi->max_speed_hz, the always-reachable base rate.
->   */
->  void spi_mem_adjust_op_freq(struct spi_mem *mem, struct spi_mem_op *op)
->  {
-> +	if (mem->spi->post_config_max_speed_hz &&
-> +	    op->max_freq =3D=3D mem->spi->post_config_max_speed_hz)
-> +		return;
 
-[Severity: High]
-Does this overload op->max_freq as a magic exact-match token to identify
-post-configuration operations?
+> @@ -3864,7 +3879,7 @@ static const struct cqspi_driver_platdata k2g_qspi =
+=3D {
+> =20
+>  static const struct cqspi_driver_platdata am654_ospi =3D {
+>  	.hwcaps_mask =3D CQSPI_SUPPORTS_OCTAL | CQSPI_SUPPORTS_QUAD,
+> -	.quirks =3D CQSPI_NEEDS_WR_DELAY,
+> +	.quirks =3D CQSPI_NEEDS_WR_DELAY | CQSPI_NO_2BYTE_ADDR_PHY_DDR,
+>  	.execute_tuning =3D cqspi_am654_ospi_execute_tuning,
+>  };
+> =20
 
-If an untuned operation (e.g., a write or alternate read variant defined in=
- a
-flash driver with a static hardware limit of 104MHz) happens to exactly mat=
-ch
-the configured post_config_max_speed_hz, won't it incorrectly bypass the sa=
-fe
-max_speed_hz cap?
+[Severity: Medium]
+Looking at the tuning execution path that uses these callbacks, is there a
+potential NULL pointer dereference in cqspi_mem_op_execute_tuning()?
 
-Furthermore, controller drivers like Cadence QuadSPI appear to rely on this
-exact same equality check to decide whether to route the incoming operation
-through the hardware PHY:
+drivers/spi/spi-cadence-quadspi.c:cqspi_mem_op_execute_tuning() {
+...
+	struct cqspi_st *cqspi =3D
+		spi_controller_get_devdata(mem->spi->controller);
 
-drivers/spi/spi-cadence-quadspi.c:cqspi_use_tuned_phy() {
-    ...
-    return f_pdata->use_tuned_phy &&
-           op->max_freq =3D=3D post_config_max_speed_hz;
+	if (!cqspi->ddata->execute_tuning)
+		return -EOPNOTSUPP;
+
+	return cqspi->ddata->execute_tuning(mem, read_op, write_op);
 }
 
-Could this cause uncalibrated operations to be erroneously executed via the
-PHY at high speeds, leading to potential data corruption or hardware lockup=
-s?
+The cqspi->ddata pointer is initialized via of_device_get_match_data(), whi=
+ch
+can return NULL if the driver is bound via sysfs to a device node without a
+matching compatible string.
 
-Would it be safer to use an explicit boolean flag (e.g., op->is_tuned) rath=
-er
-than hijacking the frequency limit field?
+Other uses of ddata in the driver (like in cqspi_probe or cqspi_setup_flash)
+include a NULL check before dereferencing it, proving that ddata =3D=3D NUL=
+L is a
+supported and handled state.
 
-> +
->  	if (!op->max_freq || op->max_freq > mem->spi->max_speed_hz)
->  		op->max_freq =3D mem->spi->max_speed_hz;
->  }
+Should this tuning wrapper also include a defensive check for ddata =3D=3D =
+NULL?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618073725.8473=
-3-1-s-k6@ti.com?part=3D4
+3-1-s-k6@ti.com?part=3D9
 
