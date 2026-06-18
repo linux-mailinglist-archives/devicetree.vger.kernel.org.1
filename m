@@ -1,296 +1,223 @@
-Return-Path: <devicetree+bounces-313295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313297-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DrTVLgimM2qwEgYAu9opvQ
-	(envelope-from <devicetree+bounces-313295-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:02:16 +0200
+	id DdJ2FDmmM2rEEgYAu9opvQ
+	(envelope-from <devicetree+bounces-313297-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:03:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF88569E4DA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06F6E69E50D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:03:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NdLMHLMx;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313295-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313295-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=e964duZn;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=BibPVavU;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313297-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313297-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E7A0F300860A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 08:02:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 96FC83021FC2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 08:02:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379583D7D6B;
-	Thu, 18 Jun 2026 08:02:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DF8C3D88FA;
+	Thu, 18 Jun 2026 08:02:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFEA831F9AB
-	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 08:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC1B3D9030
+	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 08:02:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781769731; cv=none; b=h5Cw+Lwq+nrqmMb/bHpv9usNL6Qx0wgu+EjXEeqrD0SyjbU+63tFIkcmAtMwgFMh2S9Is9cSEHpnmbHL3H2eWuXzcCzGOKjS8dciXgi8DKAVirNtMr+pVWzFMysB/2ElyDEdJ6hG2N4r0LzL4ILFIbwSODkczKBZQShsDxWjTNA=
+	t=1781769745; cv=none; b=oBmdu4fc7Scmgkb21zyNHmJPxFOZ+gXBjYADaAynXTogulnHk9K23kPrhTpCwLD5FhtdXjOHVxfVEmbmksnQg62uV0KAI7crmjMcHjOpT/XsS4SfhmW7bIZgvqdk5CS2RB67WOYgE+vAo44KrnsTS1TCVOTYlbyeJLiB6sCSh3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781769731; c=relaxed/simple;
-	bh=xC9u81+Zovq36igvcJmANd0c4hcUrkGagdcNZPPcaBE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=C8GdLqdjGwIipgsREwaWtTtxBrZH7gCItsqtKHtZiCGt3AIiAhXK+HxtuwGMN7ToM4bGHN+fUSwJ6fn3MJDIYLC0+isHAk+B4BGwi88BICdRUdwsOUXh+K523bCG+iNSffnIZ8GK2wERF5o1onqtL7a0YqlBS6tsTz/WmZfJ5Ec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NdLMHLMx; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5701E1F000E9;
-	Thu, 18 Jun 2026 08:02:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781769729;
-	bh=k7z67xJB1ZK6BlxA9YWvUL0R7ht0RIUe1VQHnqjRi0U=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=NdLMHLMxnOG0lBMCSEcmMjvtzl50+asPYdwVv328hjHKKypa7Czk9nSZRSRe2X5dF
-	 VdVTD8YlQ2DfMa84jGKebWJCvbd5XX1EDXQazmNHckBE2A9zDv1pIdxA4jIbqXSRT1
-	 2ZpzcHKtaTvaR8nWvA3hEJLZSdbhvZc6bgQDRvSuZVS8tyaOw/G+7KpTVDURol1vW/
-	 1PcSp5AXJasVwEXqd3Wz8Ipeh+//T1KAjgpKHYC7evnk8Dm/W9AaHh1OUmpqq996oA
-	 XYZSuPBpUrLmZ0F97jhRAbxFU7NmQpvzYe30+hlijBH+xG7NI6f5mCjtWMqg4/A6Ui
-	 UW2RpLz7jrQHg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 14/16] mtd: spinand: negotiate optimal PHY operating
- point before dirmap creation
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Santhosh Kumar K" <s-k6@ti.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260618073725.84733-15-s-k6@ti.com>
-References: <20260618073725.84733-1-s-k6@ti.com>
- <20260618073725.84733-15-s-k6@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 18 Jun 2026 08:02:09 +0000
-Message-Id: <20260618080209.5701E1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781769745; c=relaxed/simple;
+	bh=ukAnbDogb87UP61Mar8GPMtMi/rqIRE+bHT4t5jxtuM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ORWlKeuSt4cPtXHwTKyZJIr7I6+2JJAnXCIWwyny3L7PXA0Xlo0AikTq3nquw1JUzx43RerPax/nkYTh11hR0aRnd6qGsRTHOWPL2veSuT7/m0BSeyTw6aUhFUbQ29s/IKXoSx87SL8I7arWuU9IyS+oi2cxucSdxvbKE1D4H90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e964duZn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BibPVavU; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65I4gQS63068021
+	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 08:02:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/N9uSRcFNdrxYby1iNTjX5385eR4TpZ5CgLI5Syc4ac=; b=e964duZnoQXUCwZi
+	9qRLhXpCMsY9515ihE4qoLJPHYNCIBL6gWQnwJnthcXs/QfSjPuSjONklX2WsbJA
+	l4pRoBTwlFZnvDX6ezYYco1GK32uTHXQgDagT+b96CnwgRVkeq2hsxEqO6z8u4y1
+	P3MV3TlmcrzAl49uD/ARy7Cdo1VVs+i6VOLpsAvV0tTz/9NsYYkgy2R/kSCQ5VZg
+	/P21ILcWJrd4O+/8rJxn88++eoQbPqnEkZIPLKwisKBCCwbW+Z4OKuJ+Ip4wQTuM
+	I3ofbRvRMJO6XqAMlMeY6hCJzfl0cziaPfJTVq9yyFHowAa8EIr1TbRI79tW3J6V
+	MzHnow==
+Received: from mail-vs1-f72.google.com (mail-vs1-f72.google.com [209.85.217.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ev199jbj0-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 08:02:22 +0000 (GMT)
+Received: by mail-vs1-f72.google.com with SMTP id ada2fe7eead31-6c6d4a825d5so54441137.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 01:02:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1781769741; x=1782374541; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/N9uSRcFNdrxYby1iNTjX5385eR4TpZ5CgLI5Syc4ac=;
+        b=BibPVavUDd/MAPcIkrfAomwN8aQm3GlvnUAVJG+uFbjFUTK8+DcbPlpRwfuCC2Ujqk
+         DYg4+pjUQ21WSt/+FbxwgND15ypmK8Hn79qMpvE0XVlT+f6/RbLg7D6ERLylGhH0MUYV
+         M477LzdMbLAi+HVeVJSrACvJnm29ws8jQeQ4J8pcyP35VBn9pmrGVrT5i1j7+Pv7rTNc
+         tcAFEfASLFv5msH1VxadLHBh12/TNnOMjFLjLiHBdw91rhSowL7CKBulG3cV7KyRruXt
+         ICIWwABahtg3tDoXZrZo/bJ8NftCi3JZNuJLlDewlnkP1KdJOZehLQ6nEmek+M4uR0dE
+         mKrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781769741; x=1782374541;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/N9uSRcFNdrxYby1iNTjX5385eR4TpZ5CgLI5Syc4ac=;
+        b=nECbWMedOi+QMh8VznXZENp1xOUySVbveJ+c5XQ1+6ol2CORfx04xTTcp00STzmRKc
+         qfF0HxD6HBT4ZfztFCgZj9ravj7+nXznou+YvVo9IXl+MCegUXKoqbd3eEkZh+khDWhR
+         jOh/K/Mv7afMCF9V8MqI9Pkum7yjByStJBTAq/aH+e07Gi/O0V2WVyM98l+QX7um4Pcl
+         HROo3OobeoGlCABJ6GMxk5lwyAXvwWHhzHQ93tUVIYTMvot+2ym+wLkglVIdb07VcF4w
+         l5/1X9qiEDFHiTH5ubf4X5A2JBjmbgiN8XY1KLJ0C0FCyzRYlROm6Cu/SvUDSy427SKt
+         3h3g==
+X-Forwarded-Encrypted: i=1; AFNElJ+4tnLmqQbWD+PFJwRRBA9y4zptaNcJPSGM6jU01L1rYejnIMBdLo2pPIMC62g96TrolqW30iRHVUUM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgExO8fEoro3ZwpCqVjLOdrl38cHnfUMP/6zAzfLbPVzqJAbGB
+	p4IVbGrdItrW+3bcrT+P78eU0EQwUa7a75FGQ/igbRGjfvYFaFrRczZAWmjT08k9FSnrTJ1tPSL
+	bYbcIY5gVKKyd7a1rBp6ubhXNtvb+prJjFw6+iM9KSiHcmptQv0Zgabn/rm+97gGV
+X-Gm-Gg: AfdE7ckhnXZ1vISTXeTCwGfGGZhnpqgU77euM7+FkUi39cp8rdAMc/H5wkJU/WVUNXt
+	pb2bd3WHjtmk03aE4YxVPrJqx8sMGQMEY4xXd9BntL3cBXdnF4X6hkOm1tWPeAWYO0vYW+Xs/CA
+	oHcJo8kiiwGRweBvDRtMsrvPtom9iz53eWZAw6QHE1+0o97L2VOyDoBT4eRwZxvuaqUD8zz5hFb
+	6v5A4A3/HnWGZXfjrulyraKFHPEDWzwF92YoC8oVDpivMZ8ZVbylN5HW5fx5VXMdwXrkNU98uNR
+	nKIK1aYyF3lFfukMmNhFxU+QrsQhIptRxA02CexO3yVPgK3llssv/8dWnga6vyNI2A4vQinjQw6
+	SxXxDIIOUyodonoxS8wjKYOEzN0bA6kNa2s0=
+X-Received: by 2002:a05:6102:548c:b0:632:8717:e553 with SMTP id ada2fe7eead31-727d775fca4mr560346137.7.1781769741077;
+        Thu, 18 Jun 2026 01:02:21 -0700 (PDT)
+X-Received: by 2002:a05:6102:548c:b0:632:8717:e553 with SMTP id ada2fe7eead31-727d775fca4mr560331137.7.1781769740637;
+        Thu, 18 Jun 2026 01:02:20 -0700 (PDT)
+Received: from [192.168.120.170] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bfdb5223309sm907759866b.28.2026.06.18.01.02.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Jun 2026 01:02:19 -0700 (PDT)
+Message-ID: <2978f55b-0b5c-4720-98ba-e14ef46b1169@oss.qualcomm.com>
+Date: Thu, 18 Jun 2026 10:02:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/8] irqchip/qcom-pdc: Differentiate between direct SPI
+ and GPIO as SPI
+To: Maulik Shah <maulik.shah@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+        Linus Walleij <linusw@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Sneh Mankad <sneh.mankad@oss.qualcomm.com>
+References: <20260616-hamoa_pdc_v3-v3-0-4d8e1504ea75@oss.qualcomm.com>
+ <20260616-hamoa_pdc_v3-v3-4-4d8e1504ea75@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260616-hamoa_pdc_v3-v3-4-4d8e1504ea75@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: M1lbHcPaOl9IJUPrdYnOb6GoGiaJnE5X
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE4MDA3MSBTYWx0ZWRfX9qgEHOuyaABe
+ c2JdqxB9PhS62VVv2tvp9OP8l6FC5Ufpn9EV+BIcjHewlGKYd4zWpan/Oo1ub2PisoJIHKDhpKw
+ T+Pl5Jt8Uuej1BSgkiZHt20Ej9s+e6a4JaSpei0ss2U5mAY4u3zCrZ4PReW0fXDmH1fDxAEgsdc
+ MU6WBmQnqqPyqg+40wZMJ5B+c4n6LkBP83x3YyuRYIW6/QmRet1KZBdDk39mRxSVkwgJisiBZVn
+ ozJqEsyu3gwEia/z2dmQhOUsbBPxbUeDKDQJSsnneGbZJbyvC8oYyeD0BRuszY69Zzqe4A5qUca
+ rGRhnWNkNhaj/f53Rn0KVLsVQynzdyr7KOTZC7AXSh12/6cf9nHyrHZhrersDoY+HL4IkGmy8Ns
+ n+Q9KjS42i9cIvzfU8vpel6HJfSiTCkntHKeflIewRtSzb0vmRvIQVOgovK99HImvbMWjWedoWZ
+ UXJriJcixZEqjXK80kA==
+X-Proofpoint-GUID: M1lbHcPaOl9IJUPrdYnOb6GoGiaJnE5X
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE4MDA3MSBTYWx0ZWRfX21UW4quDxmti
+ QMn4pJG9QWARN/KRWp6BQAx8c9MxHAfuGWxQ95wFBmXL/hSK5MXH4irddlB7IuzdpTOuUdeM77f
+ DKIO5uHvxVzs5QNThPuXnPZniQl9u9I=
+X-Authority-Analysis: v=2.4 cv=U42iy+ru c=1 sm=1 tr=0 ts=6a33a60e cx=c_pps
+ a=DUEm7b3gzWu7BqY5nP7+9g==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=EUspDBNiAAAA:8 a=NCwGtS5HQ1RdJiNybOgA:9 a=QEXdDO2ut3YA:10
+ a=-aSRE8QhW-JAV6biHavz:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-17_02,2026-06-17_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 impostorscore=0 spamscore=0 adultscore=0 bulkscore=0
+ clxscore=1015 phishscore=0 lowpriorityscore=0 malwarescore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2606180071
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313295-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:s-k6@ti.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-313297-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:maulik.shah@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tglx@kernel.org,m:linusw@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:sneh.mankad@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp,ti.com:email,sashiko.dev:url]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BF88569E4DA
+X-Rspamd-Queue-Id: 06F6E69E50D
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [Critical] Fallback to SSDR during PHY tuning does not invalidate ODTR te=
-mplates, causing a mode mismatch and persistent flash failure upon system r=
-esume.
-- [High] Fallback PHY tuning downgrades only the primary read operation, le=
-aving write, update, and continuous read operations at their original unval=
-idated high-speed variants.
-- [High] Missing reset of `max_freq` on PHY tuning error paths and across t=
-uning loops violates the zero-frequency invariant, leading to operations at=
- unvalidated frequencies.
---
+On 6/16/26 11:25 AM, Maulik Shah wrote:
+> Before commit 4dc70713dc24 ("irqchip/qcom-pdc: Kill non-wakeup irqdomain")
+> there are separate domains for direct SPIs and GPIO used as SPIs. Separate
+> domains can be useful in case irqchip want to differentiate both of them.
+> Since commit unified both the domains there is no way to differentiate.
+> 
+> In preparation to add the second level interrupt controller support where
+> GPIO interrupts get latched at PDC (but not direct SPIs) there is a need to
+> differentiate between SPIs and GPIOs as SPIs. Reverting above commit do not
+> seem a good option either which leads to waste of resources.
+> 
+> PDC HW have the IRQ_PARAM register telling number of direct SPIs and number
+> of GPIOs as SPIs. Further PDC allocates direct SPIs at the beginning and
+> all GPIOs as SPIs are allocated at the end. This information can be used in
+> driver to differentiate them.
+> 
+> Add the support to read this register and keep this information in
+> struct pdc_desc. Later change utilizes same.
+> 
+> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+> ---
 
-commit 0f63572c37a35621b6ca824014ba943d4c511e93
-Author: Santhosh Kumar K <s-k6@ti.com>
-mtd: spinand: negotiate optimal PHY operating point before dirmap creation
+[...]
 
-This commit moves dirmap creation to spinand_probe() and introduces PHY
-tuning negotiation before dirmaps are created. It iterates through DTR
-and SDR variants in descending performance order to find the best PHY
-operating point, and falls back to non-PHY modes on complete failure.
+> +	irq_param = pdc_reg_read(pdc->regs->irq_param_reg, 0);
+> +	pdc->num_spis = FIELD_GET(GENMASK(7, 0), irq_param);
+> +	pdc->num_gpios = FIELD_GET(GENMASK(15, 8), irq_param);
 
-> diff --git a/drivers/mtd/nand/spi/core.c b/drivers/mtd/nand/spi/core.c
-> index b678d05342979..5dcfaabaf2cc5 100644
-> --- a/drivers/mtd/nand/spi/core.c
-> +++ b/drivers/mtd/nand/spi/core.c
-> @@ -1294,9 +1300,11 @@ static int spinand_create_dirmap(struct spinand_de=
-vice *spinand,
->  	/* Read descriptor */
->  	info.primary_op_tmpl =3D *spinand->op_templates->read_cache;
->  	info.primary_op_tmpl.data.ecc =3D enable_ecc;
-> +	info.primary_op_tmpl.max_freq =3D spinand->max_read_op.max_freq;
->  	if (secondary_op) {
->  		info.secondary_op_tmpl =3D *spinand->op_templates->cont_read_cache;
->  		info.secondary_op_tmpl.data.ecc =3D enable_ecc;
-> +		info.secondary_op_tmpl.max_freq =3D spinand->max_read_op.max_freq;
+num_gpios is not used in this series, please either drop it or
+use it to limit the index in the following patches
 
-[Severity: High]
-When the fallback tuning negotiates a slower read variant, the read_cache
-is updated but the cont_read_cache, update_cache, and write_cache are not
-downgraded.
-
-Does this result in the uncalibrated high-speed cont_read_cache and
-update_cache variants being embedded into the dirmaps using the max_freq
-of the downgraded read variant?
-
-Could this lead to I/O failures or data corruption when the controller
-executes these uncalibrated high-speed variants?
-
->  	}
->  	desc =3D spinand_create_rdesc(spinand, &info);
-
-[ ... ]
-
-> +static bool spinand_try_phy_ranked(struct spinand_device *spinand,
-> +				   struct spi_mem *mem, bool odtr,
-> +				   u32 *tried_mask)
-> +{
-> +	const struct spinand_op_variants *variants =3D spinand->phy_read_varian=
-ts;
-> +	const struct spi_mem_op *best;
-> +	int ret;
-> +
-> +	if (!variants)
-> +		return false;
-> +
-> +	while ((best =3D spinand_op_find_best(spinand, variants, odtr,
-> +					    *tried_mask))) {
-> +		*tried_mask |=3D BIT(best - variants->ops);
-> +		spinand->max_read_op =3D *best;
-> +		spinand->max_read_op.max_freq =3D 0;
-> +		ret =3D spi_mem_execute_tuning(mem, &spinand->max_read_op,
-> +					     &spinand->max_write_op);
-
-[Severity: High]
-The loop zeroes out spinand->max_read_op.max_freq before each iteration,
-but it does not reset spinand->max_write_op.max_freq.
-
-If spi_mem_execute_tuning() mutates max_write_op.max_freq before failing,
-does this leaked non-zero frequency propagate to subsequent iterations?
-
-> +		if (ret && ret !=3D -EOPNOTSUPP)
-> +			dev_warn(&mem->spi->dev, "%s PHY tuning failed: %d\n",
-> +				 odtr ? "ODTR" : "SSDR", ret);
-> +		if (!ret && spinand->max_read_op.max_freq) {
-> +			if (odtr)
-> +				spinand->odtr_op_templates.read_cache =3D best;
-> +			else
-> +				spinand->ssdr_op_templates.read_cache =3D best;
-> +			return true;
-> +		}
-> +	}
-> +	return false;
-> +}
-
-[ ... ]
-
-> +static void spinand_configure_phy(struct spinand_device *spinand,
-> +				  struct spi_mem *mem)
-> +{
-> +	u32 tried_mask;
-> +	int ret;
-> +
-> +	spinand_reset_max_ops(spinand, spinand->op_templates);
-> +
-> +	ret =3D spi_mem_execute_tuning(mem, &spinand->max_read_op,
-> +				     &spinand->max_write_op);
-> +	if (ret && ret !=3D -EOPNOTSUPP)
-> +		dev_warn(&mem->spi->dev, "Failed to execute PHY tuning: %d\n",
-> +			 ret);
-> +
-> +	/*
-> +	 * Any non-zero return or a set max_freq means we are done (error,
-> +	 * unsupported, or success). Fallback only for the op-specific "skip"
-> +	 * signal: ret =3D=3D 0 with max_freq still 0.
-> +	 */
-> +	if (ret || spinand->max_read_op.max_freq)
-> +		return;
-
-[Severity: High]
-If the initial tuning call fails and returns early here, does it leave the
-potentially mutated max_write_op.max_freq without resetting it?
-
-Could this leaked frequency be embedded into dirmap descriptors and cause
-operations to run at unvalidated frequencies?
-
-> +
-> +	if (!mem->spi->post_config_max_speed_hz || spinand->bus_iface =3D=3D SS=
-DR ||
-> +	    !spinand->phy_read_variants)
-> +		return;
-
-[ ... ]
-
-> +	/*
-> +	 * Pass 2: switch to SSDR and try all SSDR variants in performance
-> +	 * order.
-> +	 *
-> +	 * Only enter if we actually have SSDR support and a reconfigure
-> +	 * callback. The hardware is still in ODTR mode here so no
-> +	 * configure_chip call is needed to undo; just set up the ODTR non-PHY
-> +	 * fallback and return.
-> +	 */
-> +	if (!spinand->ssdr_op_templates.read_cache ||
-> +	    !spinand->ssdr_op_templates.write_cache ||
-> +	    !spinand->configure_chip)
-> +		goto use_odtr_non_phy;
-> +
-> +	if (spinand->configure_chip(spinand, SSDR))
-> +		goto use_odtr_non_phy;
-> +
-> +	spinand->op_templates =3D &spinand->ssdr_op_templates;
-> +	spinand->bus_iface =3D SSDR;
-> +	spinand->max_write_op =3D *spinand->ssdr_op_templates.write_cache;
-> +	spinand->max_write_op.max_freq =3D 0;
-
-[Severity: Critical]
-When dynamically falling back to SSDR mode, spinand->odtr_op_templates is
-not cleared.
-
-When the system resumes from suspend, spinand_configure_chip() uses the
-uncleared ODTR templates to determine the mode:
-
-    if (spinand->odtr_op_templates.read_cache &&
-        spinand->odtr_op_templates.write_cache &&
-        spinand->odtr_op_templates.update_cache)
-        odtr =3D true;
-
-Will this cause the flash chip to be incorrectly reconfigured back to ODTR
-mode upon resume, while the statically created dirmaps still contain SSDR
-commands?
-
-Can this command desynchronization cause I/O failures after the device
-resumes?
-
-> +
-> +	/*
-> +	 * Only ODTR variants were candidates in Pass 1; SSDR bit positions
-> +	 * are clear
-> +	 */
-> +	if (spinand_try_phy_ranked(spinand, mem, false, &tried_mask))
-> +		return;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618073725.8473=
-3-1-s-k6@ti.com?part=3D14
+Konrad
 
