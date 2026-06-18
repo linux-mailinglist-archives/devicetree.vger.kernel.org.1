@@ -1,216 +1,181 @@
-Return-Path: <devicetree+bounces-313514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313515-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FS5FGXf1M2oyJwYAu9opvQ
-	(envelope-from <devicetree+bounces-313514-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 15:41:11 +0200
+	id 2qkQIOn0M2oDJwYAu9opvQ
+	(envelope-from <devicetree+bounces-313515-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 15:38:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB09E6A0A6D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 15:41:10 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7216A0A09
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 15:38:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GAlnwxtT;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313514-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313514-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=S0295Cte;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313515-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313515-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8992E300180F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 13:35:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 474CA3014967
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 13:37:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E78AF23AB87;
-	Thu, 18 Jun 2026 13:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C303368A5;
+	Thu, 18 Jun 2026 13:37:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEB6329C33F
-	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 13:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CBBD280A56;
+	Thu, 18 Jun 2026 13:37:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781789716; cv=none; b=hq7aQj2/2IijGapVsCLNoBM1ORxpy1sLWTbVJ8nXoAD+ofdTYIqVBSNFn1tS9960oH90udGUFEIoTz6SI+ypwftjrcxUzf2XcCUt/Jny/UuHoTYChqyR+1kx2L5Xlm3cdV5nV8yAf3AXaZc/jnEGMVxdFAMOk2IVBmudeWh+0Mw=
+	t=1781789851; cv=none; b=pjL7Wj5dc9VgEEAPxnZVJ1VqsZlDUr8jgOjqYc/DGhQFRjWQj7gDo7ivm7fY0u6FwcyKyI3Mm5uHCTGGo2cyR8rIrL9qHVxZ8WHlG8aJ/v2ySH3KOon92RiVNwc02fQyxWhrU9LFZ73hJob5zK7jjrUBYXni3t0DfCgciRrZFcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781789716; c=relaxed/simple;
-	bh=fia+iCKMMfe/vyadxPd/YbStuGrlayLj1lA+ynMVFJg=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=LK1jDJ3NtZbSIjcXD6u5+VTDml/5i7n6M+Copp4VMJrGpenKtuY0NogRft+6boAHIl1RpwIgENtYOvzTUIGpDZWfQuU2Gy+yOGP2rHGw5OS4TWmuhi0RFBiYFdRI5XnlEXIkjyoRfQ0T0qHLWzdN+Yoq+T+iwwvbXOTNwf71hQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GAlnwxtT; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFA301F000E9;
-	Thu, 18 Jun 2026 13:35:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781789715;
-	bh=d+Z60DBXVVMexigg5hsoGVTtX5XylJgOsEIOCXTJhWM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=GAlnwxtTlkKLTyouLNvYaxI8WGAtv9jU9Dwt0EozifQuV2XzGR/z8I2JZ5d0xrKp7
-	 YgrjlQ0d2Y2AXdB2K7nurzA5aWLvmaVvbbuPfgG1t+oq959GxN5ogFjfmAJMo+wOZi
-	 f4H5s9CYbvztiYIU+/VE9+lXmuPtZaPw7L/BEjFYPrBqOrYGdrbuXXi5F6p5un5KmY
-	 Xs28E2PZ+afVagkhlAy+Pr2tqYBeKDuqnD0jg9Nqo8GRrB9KAsi5rYIfoMFPKWjkno
-	 JgOqRBkUqhnfvxDDmYH7pvR4w2Z/WUa8vUbklvaWcsfjwoWTxSYj/xN3TeGT9SIRpv
-	 tAIUozikVSkvg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 08/16] dt-bindings: iio: frequency: add ad9910
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Rodrigo Alencar via B4 Relay" <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260618-ad9910-iio-driver-v6-8-79125ffbe430@analog.com>
-References: <20260618-ad9910-iio-driver-v6-0-79125ffbe430@analog.com>
- <20260618-ad9910-iio-driver-v6-8-79125ffbe430@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 18 Jun 2026 13:35:14 +0000
-Message-Id: <20260618133514.DFA301F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781789851; c=relaxed/simple;
+	bh=m50LHDfLbb5Qwx25ciboTF+H3SvHjec/c6kYVPwGNjc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RncTR2QNdyd341BmvrqiX9iU/clOXqQ5UndL+Ww6NM+/tErgtaC/KzF2THn594VXS6xAbFD9T3gFsKinwdJEo0/wc1mo9hkwXsQe/suBYEwXq23/0esLoJR9G+dByq4QIbkG6OQ6JL3wgbCto0e4PrhjZuIGlNOYD44OimnXH+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=S0295Cte; arc=none smtp.client-ip=198.175.65.17
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1781789850; x=1813325850;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=m50LHDfLbb5Qwx25ciboTF+H3SvHjec/c6kYVPwGNjc=;
+  b=S0295CteOB4KvRVckMNZpctkL0uJUYhFHqdyYhWwdAMLYrMhlUk3GXIr
+   NIMGAneOnWRQS7DJr85ZXKMqO0lIGdtMD3d44ce+MyZ9ct6Znu+Y4wDLq
+   b2v/kEjUguoQ9u73Q+bOCvwlBUHXCyu2Bvk0TMfZ++tzhTcaTil4dGcUg
+   geMxc53jgPPJdo9ZfKcHsvo0maPL3GaX6103wUQ3mhCoqms1KknsBESnk
+   EmB+nR3hpEZHi25pcIUSrPiL9h8h0VWflPg2Ru/W9UDQtR3GuNKmVw3ZS
+   H9bIiV+2AkGs5bXE8bMYnZvbxCUUtN7xjoP9lFU9990p9OnmPAHALT388
+   A==;
+X-CSE-ConnectionGUID: +Qc9gg9MQM6kqc+HWwrXDw==
+X-CSE-MsgGUID: ZxElzJTFSjKTxTNwK2ngUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="82625811"
+X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; 
+   d="scan'208";a="82625811"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2026 06:37:17 -0700
+X-CSE-ConnectionGUID: 91XW35L1SDafMlxqJNyfQQ==
+X-CSE-MsgGUID: lMZgLzi/SKiAm9A4DbwPDw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; 
+   d="scan'208";a="248452594"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.107])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2026 06:36:16 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id A1A40120A2F;
+	Thu, 18 Jun 2026 16:36:14 +0300 (EEST)
+Date: Thu, 18 Jun 2026 16:36:14 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil+cisco@kernel.org>,
+	Hans de Goede <johannes.goede@oss.qualcomm.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] media: i2c: os02g10: implement crop handling with
+ set_selection
+Message-ID: <ajP0TtXuQhx40pbU@kekkonen.localdomain>
+References: <20260424092554.26130-1-elgin.perumbilly@siliconsignals.io>
+ <20260424092554.26130-4-elgin.perumbilly@siliconsignals.io>
+ <ajPay8NJ233yuCLJ@kekkonen.localdomain>
+ <20260618130253.GF3345533@killaraus.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260618130253.GF3345533@killaraus.ideasonboard.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313514-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:devnull+rodrigo.alencar.analog.com@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-313515-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:laurent.pinchart@ideasonboard.com,m:elgin.perumbilly@siliconsignals.io,m:tarang.raval@siliconsignals.io,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hverkuil+cisco@kernel.org,m:johannes.goede@oss.qualcomm.com,m:vladimir.zapolskiy@linaro.org,m:mehdi.djait@linux.intel.com,m:sylvain.petinot@foss.st.com,m:benjamin.mugnier@foss.st.com,m:bryan.odonoghue@linaro.org,m:heimir.sverrisson@gmail.com,m:hardevsinh.palaniya@siliconsignals.io,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:hverkuil@kernel.org,m:heimirsverrisson@gmail.com,s:lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[siliconsignals.io,kernel.org,oss.qualcomm.com,linaro.org,linux.intel.com,foss.st.com,gmail.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,analog.com:email,vger.kernel.org:from_smtp]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:from_mime,siliconsignals.io:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,intel.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CB09E6A0A6D
+X-Rspamd-Queue-Id: CE7216A0A09
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] The `#clock-cells` property is missing from the `required` list an=
-d the `examples` section, violating Device Tree subsystem guidelines.
-- [Medium] The commit message claims to include 'DAC current' configuration=
-s, but no such property exists in the schema.
-- [Low] The `reset-gpios` property is missing the `maxItems: 1` constraint.
---
+Hi Laurent,
 
-commit 14de29fc570f7c4ee9b2e39250151ecb7c9edb56
-Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
+On Thu, Jun 18, 2026 at 04:02:53PM +0300, Laurent Pinchart wrote:
+> On Thu, Jun 18, 2026 at 02:47:23PM +0300, Sakari Ailus wrote:
+> > Hi Elgin,
+> > 
+> > On Fri, Apr 24, 2026 at 02:55:47PM +0530, Elgin Perumbilly wrote:
+> > > From: Tarang Raval <tarang.raval@siliconsignals.io>
+> > > 
+> > > Add crop support to os02g10 by implementing .set_selection() and
+> > > storing the crop rectangle in subdev state.
+> > > 
+> > > Initialize the default crop to the active area, make set_fmt() use the
+> > > current crop, and update the output format when the crop size changes.
+> > > Also program the sensor window from the active crop/format state instead
+> > > of using the fixed supported_modes entry.
+> > > 
+> > > This allows userspace to configure the sensor crop window explicitly.
+> > 
+> > Please wait for the Common Raw Sensor Model patches to be merged before
+> > adding this -- we don't have an established way to configure cropping
+> > before that. Some drivers might do something but it's all a bit haphazard.
+> 
+> Does it mean we should wait for the raw sensor model to merge this
+> driver ?
 
-dt-bindings: iio: frequency: add ad9910
+I only suggested this for the 3rd patch.
 
-DT-bindings for AD9910, a 1 GSPS DDS with 14-bit DAC. It includes
-configurations for clocks, DAC current, reset and basic GPIO control.
+> 
+> Many existing drivers configure analog crop the same way, through the
+> crop selection rectangle on the source pad. Is there harm in doing so
+> already ? I wouldn't enable binning and skipping yet, that I agree with.
 
-> DT-bindings for AD9910, a 1 GSPS DDS with 14-bit DAC. It includes
-> configurations for clocks, DAC current, reset and basic GPIO control.
+Which ones?
 
-[Severity: Medium]
-The commit message states the binding includes configurations for
-"DAC current". Does the schema actually define this property?
+-- 
+Regards,
 
-Looking at the schema, there is adi,charge-pump-current-microamp for the
-PLL charge pump, but no property appears to configure the DAC current.
-
-Could the commit message be updated to match the schema, or is the DAC curr=
-ent
-property missing from the YAML?
-
-> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,ad9910.y=
-aml b/Documentation/devicetree/bindings/iio/frequency/adi,ad9910.yaml
-> new file mode 100644
-> index 0000000000000..a78fe33ba21f9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,ad9910.yaml
-
-[ ... ]
-
-> +  avdd18-supply:
-> +    description: 1.8V Analog Core supply.
-> +
-> +  reset-gpios:
-> +    description:
-> +      GPIOs controlling the Main Device reset.
-
-[Severity: Low]
-Should reset-gpios have a maxItems: 1 constraint?
-
-Unlike io-reset-gpios and powerdown-gpios below, this property lacks a
-maxItems constraint. In dt-schema, properties ending in -gpios allow an
-array of GPIOs unless explicitly constrained.
-
-This omission allows invalid device tree configurations with multiple reset
-GPIOs to pass schema validation.
-
-> +  io-reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      GPIO controlling the I/O_RESET pin.
-
-[ ... ]
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - dvdd-io33-supply
-> +  - avdd33-supply
-> +  - dvdd18-supply
-> +  - avdd18-supply
-
-[Severity: High]
-Should #clock-cells be included in this required list?
-
-According to the Device Tree Bindings subsystem guidelines, when hardware
-defines provider capabilities (acting as a clock provider as indicated by
-the #clock-cells: const: 1 property defined earlier in this schema), the
-corresponding standard properties must be explicitly included in the
-required list.
-
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    spi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +        dds@0 {
-> +            compatible =3D "adi,ad9910";
-> +            reg =3D <0>;
-
-[Severity: High]
-Does this example need the #clock-cells property?
-
-The example device tree node is missing the #clock-cells property.
-
-Subsystem guidelines dictate that the examples section must demonstrate
-all required properties to pass dt_binding_check validation.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618-ad9910-iio=
--driver-v6-0-79125ffbe430@analog.com?part=3D8
+Sakari Ailus
 
