@@ -1,176 +1,218 @@
-Return-Path: <devicetree+bounces-313250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313251-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6N7XKv2XM2rFDwYAu9opvQ
-	(envelope-from <devicetree+bounces-313250-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 09:02:21 +0200
+	id oj8NH6iZM2o2EAYAu9opvQ
+	(envelope-from <devicetree+bounces-313251-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 09:09:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAE4D69DF6D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 09:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C754969DFB1
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 09:09:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LfxxRjyq;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313250-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313250-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=gL+UqVuu;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313251-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313251-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A32763007AFF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 07:02:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AE91D3008A56
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 07:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC283264F4;
-	Thu, 18 Jun 2026 07:02:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26BE8306779;
+	Thu, 18 Jun 2026 07:09:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA18D78F39
-	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 07:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8FFE27874F;
+	Thu, 18 Jun 2026 07:09:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781766136; cv=none; b=qG+vJ+OEAIj/S2xwpMqiqUyJsg2vt+eG1O0nkXhWEyCD1vBu4a/UoWV64PGoQJbEIXyGwem7oQCmlKpa2tssr5nQ9KyZZ56yQFol5d3d8ORf5pYLVEwqOMclXT+9ggLoD1s0D5IRkGGZUsOVJWXD6AI8mEH4V84AjGYQVMseWHQ=
+	t=1781766560; cv=none; b=DP1HRutk2C6rYB7K0rSWy8BH5Gp0mGR388gmYRUut+uisQ+py0io/Wuy+srLsSMCVeOHgIU8aOTO5nOulNA8wjjkZI2oTaHTia6JqAsvf841pFq5QOjizkAwpw8hIndGMX/I1uVbgk36dNaxPS5c0HcEZn7nw+5/UrXECP3R3uw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781766136; c=relaxed/simple;
-	bh=0uNoHyQHrBN0wXhxZRX3dpMZxwKvAZaQ7HF/rprWYDA=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=R63hCAWq1K83IZjNSIrxYAQvSoavZ/BZfoJ9MN+tYRhdkDlXWC9k5sjxgcBgpicLJWaYJDDX6VD2JR1MbUwcQLla2MJO8Gcq73I3ONUlPcbDOCXXyRodbTPhSuYDPc4Kyrp2qsjHo/Gb5uKEEiwDcSbBWzAo+WVXEJXOShty5Jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfxxRjyq; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 268ED1F000E9;
-	Thu, 18 Jun 2026 07:02:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781766135;
-	bh=7xmWHp4Pgy5j0CM+yUj+irtlW//CXYGC4sSqsE2hs+g=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=LfxxRjyqwCKy+siewzx0OXKnUYigucAs1xW0LzsFdygAODevwE74nXQR18yondm8B
-	 avdioGAdEcNJKGQWd8egCHs07iE0ec6rDGwnmEDMKrGGhjARUBaEF6J+6YonGJTBml
-	 EMjaq1ezPE//aExNHcXRy0zpqOCO2G9rg+wtKpr1/mCwzD3Ah7eQ+h+IXFmb0kYxis
-	 s5piBylZP0fWBD5cqyVY+OpFfcVuO8vFBj4CaRPMKYYUkhp8+OY8ZTTeN8j4UlMv//
-	 6sDgGmczNzO/dUFwtN5aeuV8p7La9H8njWqGE45gWN7bh3t7kitzwGDyEN5Vo95CkF
-	 X7oq8xrMCybQQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/3] riscv: track effective hardware PTE A/D updating
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Yunhui Cui" <cuiyunhui@bytedance.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260618064406.14508-3-cuiyunhui@bytedance.com>
-References: <20260618064406.14508-1-cuiyunhui@bytedance.com>
- <20260618064406.14508-3-cuiyunhui@bytedance.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 18 Jun 2026 07:02:14 +0000
-Message-Id: <20260618070215.268ED1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781766560; c=relaxed/simple;
+	bh=OYQevREwyP+F8RbnYpLnGihgHVkWXOVGf9P8HVkWqus=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nv5VmrWM+7QLawmP0WecwHAAwsPmBbXL4354NcKjKDFHQ+jvFxJ66iobnvIFzJFyFHWkuFVt466ST6PHImS7NbcdBm4NfPZhkHaC00TEWJ2wjY5JTxPlNqi6+VizBfs41yXe/NmhwkhvjpY4QC5FDOB7SLkXTKGO1ywzeh+Z1VY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gL+UqVuu; arc=none smtp.client-ip=198.175.65.14
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1781766558; x=1813302558;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OYQevREwyP+F8RbnYpLnGihgHVkWXOVGf9P8HVkWqus=;
+  b=gL+UqVuuQI3NE7kQM97/3+HexP2bBpvzZ967P+LPrKjp7/cTGO30bS+9
+   lu5OC0egUMw0TihIxkH/Yyo2kNaLOrsd+SyRUIAhLm9mc04YUAteHHFyr
+   /kpzVMlnHRqwyv4uZf3MuiE238UD8g65Vro0gZAyW9Ty7xjBXMeqkB5lP
+   GEQHN1JToZAvGWLr2ct0x/fTtvUx2TQ60z6pq842eXPGnyC05ZXsdQFFl
+   uKsLnaGr/5j73IR+8/QbfKBalnwDs5d0dXCs8K8zh/297YnI9wtzi0oyT
+   MesE21yzCyVrFg468VN9scQcrWLJTgoin48RXtDd7SkU1q0VV+pVUmY2Y
+   Q==;
+X-CSE-ConnectionGUID: AFX5752JR7SCXgd+HpmVHg==
+X-CSE-MsgGUID: 8HrFrkIrSpugHko15mrAWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="86506874"
+X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; 
+   d="scan'208";a="86506874"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2026 00:09:18 -0700
+X-CSE-ConnectionGUID: GHlmvmwIQX+HElh1E3DqJA==
+X-CSE-MsgGUID: 6/39qH7KQxeYvbFRWPlwvQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; 
+   d="scan'208";a="243927010"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.10])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2026 00:09:14 -0700
+Date: Thu, 18 Jun 2026 10:09:12 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Salih Erim <salih.erim@amd.com>
+Cc: jic23@kernel.org, andy@kernel.org, dlechner@baylibre.com,
+	nuno.sa@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, conall.ogriofa@amd.com, michal.simek@amd.com,
+	linux@roeck-us.net, erimsalih@gmail.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 4/5] iio: adc: versal-sysmon: add threshold event
+ support
+Message-ID: <ajOZmLSyaZuoPcbI@ashevche-desk.local>
+References: <20260617180147.3370346-1-salih.erim@amd.com>
+ <20260617180147.3370346-5-salih.erim@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260617180147.3370346-5-salih.erim@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313250-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313251-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:salih.erim@amd.com,m:jic23@kernel.org,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:cuiyunhui@bytedance.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url,bytedance.com:email]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,ashevche-desk.local:mid,intel.com:dkim,intel.com:email,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EAE4D69DF6D
+X-Rspamd-Queue-Id: C754969DFB1
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] A hotplugged CPU lacking the Svadu extension is incorrectly allowe=
-d to come online when hardware PTE A/D updating is globally enabled but FWF=
-T is not required, leading to silent data corruption.
---
+On Wed, Jun 17, 2026 at 07:01:46PM +0100, Salih Erim wrote:
+> Add threshold event support for temperature and supply voltage
+> channels.
+> 
+> Temperature events:
+>   - Rising threshold with configurable value on the device
+>     temperature channel (current max across all satellites)
+>   - Per-channel hysteresis as a millicelsius value
+>   - Event direction is IIO_EV_DIR_RISING (hysteresis mode)
+> 
+> Supply voltage events:
+>   - Rising/falling threshold per supply channel
+>   - Per-channel alarm enable via alarm configuration registers
+> 
+> The hardware supports both window and hysteresis alarm modes for
+> temperature. This driver uses hysteresis mode, where the upper
+> threshold triggers the alarm and the lower threshold clears it
+> (re-arm point). The hardware has a single ISR bit per temperature
+> channel with no indication of which threshold was crossed, so
+> hysteresis mode is the natural fit. The lower threshold register
+> is computed internally as (upper - hysteresis).
+> 
+> Hysteresis is stored in the driver as a millicelsius value,
+> initialized from the hardware registers at probe. Writing the
+> rising threshold or hysteresis recomputes the lower register.
+> ALARM_CONFIG is hard-coded to hysteresis mode during init.
+> 
+> The hardware also provides a separate over-temperature (OT)
+> threshold, but it is not exposed through IIO as it serves as a
+> hardware safety mechanism for platform shutdown. OT will be
+> exposed through the thermal framework in a follow-up series.
+> 
+> The interrupt handler masks active threshold interrupts (which are
+> level-sensitive) and schedules a delayed worker to poll for condition
+> clear before unmasking. When no hardware IRQ is available, event
+> specs are not attached and interrupt init is skipped, since the
+> I2C regmap backend cannot be called from atomic context.
+> 
+> When disabling a supply channel alarm, the group interrupt remains
+> active if any other channel in the same alarm group still has an
+> alarm enabled.
+> 
+> A devm cleanup action masks all interrupts on driver unbind to
+> prevent unhandled interrupt storms after the IRQ handler is freed.
 
-commit e238566a69f2ecd235872518a759dd75d54f71af
-Author: Yunhui Cui <cuiyunhui@bytedance.com>
+A couple of nit-picks below, otherwise
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
-riscv: track effective hardware PTE A/D updating
+...
 
-This commit tracks the runtime state of hardware PTE A/D updating using a
-static key. It attempts to enable FWFT for all online harts, falling back
-to software A/D if that fails, and ensures hotplugged CPUs match the global
-state before coming online.
+>  #include <linux/cleanup.h>
+>  #include <linux/device.h>
+>  #include <linux/err.h>
+> +#include <linux/interrupt.h>
 
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
-e.c
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
++ limits.h // U16_MAX, et cetera
 
-[ ... ]
+> +#include <linux/minmax.h>
+>  #include <linux/module.h>
+>  #include <linux/overflow.h>
+>  #include <linux/property.h>
 
-> +int riscv_enable_hw_pte_ad_updating(void)
-> +{
-> +	unsigned int cpu;
-> +	int ret;
-> +
-> +	if (!riscv_has_hw_pte_ad_updating() ||
-> +	    !riscv_hw_pte_ad_updating_requires_fwft)
-> +		return 0;
+...
 
-[Severity: High]
-Does this code allow a hotplugged CPU to come online without the Svadu
-extension when hardware A/D updating is globally enabled?
+> -static int sysmon_parse_fw(struct iio_dev *indio_dev, struct device *dev)
+> +static int sysmon_parse_fw(struct iio_dev *indio_dev, struct device *dev, int irq)
+>  {
+>  	unsigned int num_chan, num_static, idx, temp_chan_idx, volt_chan_idx;
+> -	unsigned int num_supply, num_temp;
+>  	struct iio_chan_spec *sysmon_channels;
+> +	unsigned int num_supply, num_temp;
 
-If the boot CPUs have Svadu but lack Svade, the flag
-riscv_hw_pte_ad_updating_requires_fwft is set to false and the global
-static key riscv_hw_pte_ad_updating is enabled.
+Stray change, and I would expect to see all num_* on one line, and
+all *_idx on another.
 
-When a new CPU is later hotplugged, it calls this function via
-smp_callin(). Since riscv_hw_pte_ad_updating_requires_fwft is false, it
-returns 0 and bypasses any capability checks for the local CPU.
+	unsigned int num_chan, num_static, num_supply, num_temp;
+	unsigned int idx, temp_chan_idx, volt_chan_idx;
+	struct iio_chan_spec *sysmon_channels;
 
-If the hotplugged CPU does not actually support Svadu (e.g., in an
-asymmetric SoC or due to firmware misconfiguration), it successfully
-comes online. Because the kernel globally assumes hardware A/D updating
-is active, it skips software A/D fault handling.
+TL;DR:
+in this patch the above should not be modified as the previous one should
+provide already a nice structure.
 
-Could this lead to the hotplugged CPU silently failing to update
-accessed/dirty bits, causing data corruption when dirty data is dropped
-during reclaim?
+>  	const char *label;
+>  	u32 reg;
+>  	int ret;
 
-> +
-> +	cpu =3D smp_processor_id();
-> +	ret =3D riscv_enable_local_hw_pte_ad_updating();
-> +	if (ret)
-> +		pr_err("CPU%u failed to enable hardware PTE A/D updating: %d\n",
-> +		       cpu, ret);
-> +
-> +	return ret;
-> +}
+-- 
+With Best Regards,
+Andy Shevchenko
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618064406.1450=
-8-1-cuiyunhui@bytedance.com?part=3D2
+
 
