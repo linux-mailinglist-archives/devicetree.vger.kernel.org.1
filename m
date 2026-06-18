@@ -1,133 +1,230 @@
-Return-Path: <devicetree+bounces-313368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313369-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QLZaHZXDM2q5FwYAu9opvQ
-	(envelope-from <devicetree+bounces-313368-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:08:21 +0200
+	id n/bkIL3DM2rBFwYAu9opvQ
+	(envelope-from <devicetree+bounces-313369-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:09:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0DA869F1C2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:08:20 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BE3B69F1DF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 12:09:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313368-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313368-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=Y9AivHeS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313369-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-313369-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E79F03044285
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:07:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8A0673014252
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 10:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BADC03AB29C;
-	Thu, 18 Jun 2026 10:07:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F2C3BFE40;
+	Thu, 18 Jun 2026 10:08:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012032.outbound.protection.outlook.com [52.101.66.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01DD51F30BB;
-	Thu, 18 Jun 2026 10:07:36 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781777258; cv=none; b=WHKEI1gzRUpiOH+tfeurGE+RykBvpH7PzIUX/KKy03w/704gTaaJylZw0z6iMRDGmB/x9bUmFogSde9Z8gCH+Bv1V3kYvExW2fbZ+np7rGn8BD3PFmikpDxmZDwMrzYcfi/BYGZOc9ktAb3bVukY63sHTJ76w9Zx0AqukELrguQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781777258; c=relaxed/simple;
-	bh=cco+RFdkzD9BWRwgoYoN/A4dN8BWg8n/rXsKjM10FzE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=eHSS0spGpPdZ9YlkfGhUQGNLucmrDZnbXo5IYPz6Q3qaQojeyxbaTOc4J+CBT4C2L8ESj9P6mq5IG3ydXFUUPsRccUwCSWC4TiPCt3CU4VZkZ8L7fJ/hTGB+pCG9QOPLyEIOvLxuEFTrCatGuPD+FThrLkAqbaA6HHd7UXSk5IU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.200.13
-Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
-	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 1EA6F20098D;
-	Thu, 18 Jun 2026 12:07:35 +0200 (CEST)
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1wa9ep-003PyD-07;
-	Thu, 18 Jun 2026 12:07:35 +0200
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1wa9eo-0000000060M-3qHW;
-	Thu, 18 Jun 2026 12:07:34 +0200
-Message-ID: <56178c185c25cbdfdabe6df6c6028f909fbc32df.camel@pengutronix.de>
-Subject: Re: [PATCH v8 08/10] clk: realtek: Add RTD1625-CRT clock controller
- driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Yu-Chun Lin <eleanor.lin@realtek.com>, mturquette@baylibre.com, 
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- 	cylee12@realtek.com, afaerber@suse.com, jyanchou@realtek.com
-Cc: bmasney@redhat.com, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 
-	linux-realtek-soc@lists.infradead.org, james.tai@realtek.com, 
-	cy.huang@realtek.com, stanley_chang@realtek.com
-Date: Thu, 18 Jun 2026 12:07:34 +0200
-In-Reply-To: <20260610080824.255063-9-eleanor.lin@realtek.com>
-References: <20260610080824.255063-1-eleanor.lin@realtek.com>
-	 <20260610080824.255063-9-eleanor.lin@realtek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F0A02D73A0;
+	Thu, 18 Jun 2026 10:08:55 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781777337; cv=fail; b=dhf2nsJTQIYy5YjuUdyM3qxEIthdlJz2vDspnzJwRiO4EUW227wl7rxVPR83cEW8xP0YVOR/8uXpU66W3H9WM1f3rRF64VKjqvBmnILjhtOOfXoNBwLInjbhx1CoqaoJa/hEZW6A6L2SZv1qUscuDLv5Tg3gWX8g66s9WEwDkA8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781777337; c=relaxed/simple;
+	bh=tUwwonqofHfKZnpl1wAORJ3tQIykfy776qrOGpSnLCY=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=j91PGFSVlcxNiEqS1YmNTPyXgPhdPn6xWUSmj7d0gkzc1PDDd/+gwZcCaE+/uGHitpXh1t+2NGgDRBdpiWJwz+PVz2cPReHgisMI34gWv7nYguQzXUzwQKc6NVkWRaZIIxwR9Yz2dPQhn1MxEakPfJwtL2OSoicWHPh7McyU/z0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=Y9AivHeS; arc=fail smtp.client-ip=52.101.66.32
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FoYDQ9r3zTHyo8IjbBPKJVw5X1w0Jx6IJ1Z/xJBIhCu8HCRvBdaPP3feG7dlPmL6uT+kSNe7fFqPHOBIzXw6TK0meN9kuBcQVg8y+5FL4gdWQGBqAiY1xRjjKBYu1PuMGFaLf+ZfOL+kJ9a4xWfQnznWOqe4X8Mm8FcSZLfK436QbJn7wR2f2ezCbppCGwnQbVT4lRQDIyu+vdPPeVcj6+P4kTUp1jB6WOhjkBRFzGnhZjkXyDNlkTop3YHoq4jBJ9rnr6ZXRGfAm43in1jzoEpX1XUoRwDY/5Q3gFyBlJygZikgSQlc4YT5pH6kuQkbPyxvUEab4fQumcCnoGUv2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fQgh72Tn8plXrugW1KYz69wIYcxA8/NvYhF/VKOg9EI=;
+ b=f8cXC1npaOqoTfc5/zZPb1AlfVQhrtpEcajcAHnIVXlWEeZNBl5MxG06btx41Dx51sNWUeYciR0f1ErEjhbG1sbuDg0SNBcBHN4i/h1xHwuiIDZMHicbLO3yoBVQKsYxUeflXiCo6IaUPNoOSTfyvpKSvtr058Sp2+ygIibKyIlvFTDOnq8m7KtO1G/PAgqT3Vg8+8AKEqpgEcx5ipM92Y7zMs93hZz4D1Ds3xRvENZMsbgsVNT4cS6rzeHwHkV3zPJJL8EWsrVQR4ho1ADB0RTmw9VNiK4M1jhWzBxMQ6irQcMr+KCZ8pi6lelFA2tqhZnGrOt2tuqU9h9gym3LqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fQgh72Tn8plXrugW1KYz69wIYcxA8/NvYhF/VKOg9EI=;
+ b=Y9AivHeS5Zw2aa7SzStVNa7u6pvGa0xzfGA3KDMrVqZTcWqqoBDUOtgGbRPsEKnugPtGtbcqwR2I4LEtbv8ddNOHlcsGW509bmdtKMZVgY93ONtmHYqS4IFUUJyGUjtPq7Tx3YRlANc7Ucngu1mJx+ex1lhzGndngC9Z7w2F7kDQdXJqrxDa5j9szz+TsDDcWiuBJ7GcZQ8LEQC+ddkor+CNkC1M0OSFxareOVLIx0rdBTh5BuaI9rRgDKJWIcHZ3UZSGJPV5xwqoBBj+UYi0KOE7znt/f8l9+BWgfEjasipC5V0yH9QZryr42Y9TBfPAITj4IofbzW3r6ThllwKeQ==
+Received: from VI2PR04MB11276.eurprd04.prod.outlook.com (2603:10a6:800:296::7)
+ by VI1PR04MB9905.eurprd04.prod.outlook.com (2603:10a6:800:1df::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Thu, 18 Jun
+ 2026 10:08:51 +0000
+Received: from VI2PR04MB11276.eurprd04.prod.outlook.com
+ ([fe80::60d7:a8e5:eb88:9be]) by VI2PR04MB11276.eurprd04.prod.outlook.com
+ ([fe80::60d7:a8e5:eb88:9be%5]) with mapi id 15.21.0113.015; Thu, 18 Jun 2026
+ 10:08:51 +0000
+From: "Sherry Sun (OSS)" <sherry.sun@oss.nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	amitkumar.karwar@nxp.com,
+	neeraj.sanjaykale@nxp.com,
+	marcel@holtmann.org,
+	luiz.dentz@gmail.com,
+	hongxing.zhu@nxp.com,
+	l.stach@pengutronix.de,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	bhelgaas@google.com,
+	brgl@kernel.org
+Cc: imx@lists.linux.dev,
+	linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	sherry.sun@nxp.com
+Subject: [PATCH 0/8] Add PCIe M.2 Key E connector support for NXP i.MX boards
+Date: Thu, 18 Jun 2026 18:10:39 +0800
+Message-ID: <20260618101047.4185497-1-sherry.sun@oss.nxp.com>
+X-Mailer: git-send-email 2.50.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MA5PR01CA0246.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:223::13) To VI2PR04MB11276.eurprd04.prod.outlook.com
+ (2603:10a6:800:296::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI2PR04MB11276:EE_|VI1PR04MB9905:EE_
+X-MS-Office365-Filtering-Correlation-Id: c5c20aef-1540-42a6-24b8-08decd21983c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|366016|19092799006|23010399003|1800799024|921020|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info:
+	qdk2ksUCKuTKQ73b3W2FJ3LQqzhXtan24aZeyjtk8ayaeEK1tVIrEyf2ph9Bw97ztPoH/DR4FJk6fYA9pV/0vx6VZ1nRvutqKIN/XO5R3fmIQKDL70zzX9Cvz2s7sh1YiXrT9k3wdU6aYSj3veRvcGHkb76TPAcD5K1WoqQjjR1FUoDhlnMl2ZtgtESFX+iSZuQjylFFGGVRdGRer8QM4BjV+6CmYQji5jMVSApKALnHn/iAI7uxvH3pFwQrGqnNhz8MhQK3qpQBBzF2YviihtD4to0toX604tcII1nA4orrsSb9rrzO3w0KoHjPxesvP7o/737gPHyN4s8xKg4hcCH5qu113nzZXJ6dn8Sjcd0PedUxQDzBIcqETpzFAxUvzxNPL6cCYlqABlLyj00AKDkpz71hKpNqVBxl0nZFiN4wmR+P2tuF/zkAYL+Lv2KOqJzKLnEk0saqTNgQYdAbM2MQ0mw5LRvAp3+/+Dj5Wg2LZcVInDxh0oBnZkyRg1jLfmd7PnskJN9l8Asreuwyny/gscAzhgi34ZW34Oxdfn4J9hIVGaV7FsttFvJTJGFPo9UE5CnmEFjX6zuWaQ7lmNSrCrMPQnlCs2k9kmYhGcf1oI41eMrvb7FOn+pSftKf7IpU7lTMR9vunsMvOWy8/zowqQv7A8GErwcC3TYJhu5wP9Y9M2ZWP+dpXnnvK/KWj/8jUJBSWcVWhRxKCxt4ljpmQ8ALBro490wlx+F0GHw=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI2PR04MB11276.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(19092799006)(23010399003)(1800799024)(921020)(18002099003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ee/EnfOp+H5OVShYMhxhIWZefkh0nG0adm+oCeDb+C+kZibFodVxAuRMUDeT?=
+ =?us-ascii?Q?FRjb/WuKAH14LeFDgzTR+ASgmVqL1xWzfTvBh2HeCb0+51PATn/Tp/ix2JTn?=
+ =?us-ascii?Q?3uC/ZbTwX4t5Y/JIqJn7BzfFDVPgaC1TxEAZsIg+BrNTAChRns/1k+kDhAYD?=
+ =?us-ascii?Q?p0B6czGWnxWY5xvQd1zHS+nzp6P1ORwdild6WXUZs0JtcI9zojtW8nINtWwE?=
+ =?us-ascii?Q?Tf087lGQ+dIepCahil1qcffls4wrJyBKEDfQtQp31IKG9t34QGnboG2ajL23?=
+ =?us-ascii?Q?eOkR8sX8AbNP4rUzzx+PyuRvPLl4S8lVjHzCFbQAXmDChIyN0M90tTBm539d?=
+ =?us-ascii?Q?WXuDXdtytxU6ysSDm9BIX/rKMS/cmCCpTNh/4X5sVCFCT/5yWMItaa6REe1Y?=
+ =?us-ascii?Q?AT4uKkd2nCHu0kbxGUBRFlKKOD9aSs0ZFQdw6UKLDPeLU3q5iWW/+6THzxHv?=
+ =?us-ascii?Q?ry/jUId+M7XdYGgeQ1Ym96CAbDk2UBOMESvvvvle4dXSILaElq2VR4e5NEt1?=
+ =?us-ascii?Q?r8cpP5h0UTgMGR58G1ic/CJTCwBZ7b/tQYIUTn8LMP1mFfIWQEt7OG4HHTPO?=
+ =?us-ascii?Q?eCGeivqH6e3jtE1p5lwRcJL4J0iDtjqantNW6AE1B7gIIu2u0F5fcrTJ7R5h?=
+ =?us-ascii?Q?ZlrZbGOCsNUqHRjunJ6JJqLx0tfh88kH4VrKWlgKuXrhhdRP2Ir+meBT7wom?=
+ =?us-ascii?Q?ilqhyuM91Tbcz0Pvulqy12iNmhE0cjy90z1JBMLlJi1IDcjDOWvcfLxV8dmm?=
+ =?us-ascii?Q?hWQO+YjGAP4QDo4I4y4QwqvZQtP6rS4Sg4/60rSWJHHPdIC6rcUW83uPeXNo?=
+ =?us-ascii?Q?pqMac6HX/lpTwD1aq4MmKsUWUmaGe+6Z2x2FsveS0qNajlc2oNvF7Fam0jjW?=
+ =?us-ascii?Q?dkZSbOIQuHmNuhTvkTABRb+Ez3TpKQpMp+N4wlYvwDVHNMuuzy7FyWzchG0E?=
+ =?us-ascii?Q?qpjLi0sUwif3fUBGjbCC2gBiyWDbkXWSAwTV0+0gthwS30xWB3Lf83rEXzxw?=
+ =?us-ascii?Q?3QFvuINk1WmmpqTO4ZVGHMUwdAZ6QhERmIe8Ij3Osw3h1LNUbpqPWrpWsDbh?=
+ =?us-ascii?Q?7izfMGkgX+OjSOoEj1Ix4jaN9XwCQ7toq5jLAv9A6eYdXtitkAWsTbs5TXnN?=
+ =?us-ascii?Q?+pL8G+FN2QU2EdHnVISuVH+1kQLOj/RpF75HyMcatDD9uCx3hXSLSYsay2e5?=
+ =?us-ascii?Q?Hp0ZoUO6WNMk9d9UHw1tMXCcQyQPejONUl2qY7gwgWx7wnk2OdY+/gMhWTzJ?=
+ =?us-ascii?Q?tM5HDeJyCA+FJlbY2EtL0Qjbow1sStb8hgPoYXiUTL9F2sRCMxG56yl/7G/k?=
+ =?us-ascii?Q?L4vEMEsrlAbjP1lwj3yD6YntlpyfgoM0qfbFeCisN15REKBay7ilFPjjfZ7c?=
+ =?us-ascii?Q?lIXJ0fYK4eMBMOQ1G0GKlvE71uO8sjNBnQuw3zM1zqKcwGphPKsDM/tA0Xj6?=
+ =?us-ascii?Q?ysNgJ9rZP3t1DZ9fjTnrCilMnNXaLMysGGB/vKpASwbYoJ/ccVqANJGPh0Qy?=
+ =?us-ascii?Q?MuDMmF1nBTJuveNxF5XJN7h0rgLru3Qu4G4FuidYBA1PyPkKPc4m1FSBodW3?=
+ =?us-ascii?Q?QbEXeuUEjTXJJ5jzYPhbW/37VbIejm1eTYEmOTJAp4TYQ+dLD8StIHDiQapD?=
+ =?us-ascii?Q?OSF5nqRZJI0tf8SWctLjng6fXBcOqjRyuwB0g4QIXLWu4rjUSZsAl7xHkxhJ?=
+ =?us-ascii?Q?UtifqP7Vo6mZCw4FzqMvc+1uBv7lToZ3Nqe4HpnKmxWJf4eevCmXVt0UMtln?=
+ =?us-ascii?Q?VCycRRN3YRhw6INcgIaPzemB0udjEei6vJfjo7C8KFnzTNcDhJ/S?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c5c20aef-1540-42a6-24b8-08decd21983c
+X-MS-Exchange-CrossTenant-AuthSource: VI2PR04MB11276.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2026 10:08:51.1191
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6CBt2k9wMniqOqMcPBnjN4WWh6oTnJ7Ed8u/jRq8UgHOAnR/jNyVDgpmrx1ggzoNFIHLJH+Lndq75e9sQi3+cEhRo2Z37VoTu7TICrD+qAxE6/jzWGKx1EaDpC65adHF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB9905
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [3.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313368-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_RECIPIENTS(0.00)[m:eleanor.lin@realtek.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:cylee12@realtek.com,m:afaerber@suse.com,m:jyanchou@realtek.com,m:bmasney@redhat.com,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:james.tai@realtek.com,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_FROM(0.00)[bounces-313369-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,holtmann.org,google.com];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:amitkumar.karwar@nxp.com,m:neeraj.sanjaykale@nxp.com,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:hongxing.zhu@nxp.com,m:l.stach@pengutronix.de,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:bhelgaas@google.com,m:brgl@kernel.org,m:imx@lists.linux.dev,m:linux-pci@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:linux-pm@vger.kernel.org,m:sherry.sun@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sherry.sun@oss.nxp.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@oss.nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:email,pengutronix.de:mid,pengutronix.de:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[i.mx:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,NXP1.onmicrosoft.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D0DA869F1C2
+X-Rspamd-Queue-Id: 1BE3B69F1DF
 
-On Mi, 2026-06-10 at 16:08 +0800, Yu-Chun Lin wrote:
-> From: Cheng-Yu Lee <cylee12@realtek.com>
->=20
-> Add support for the CRT (Clock, Reset, and Test) domain clock controller
-> on the Realtek RTD1625 SoC. This driver provides essential clock sources
-> (including PLLs), gating, and multiplexing functionalities for the
-> platform's peripherals.
->=20
-> Since the reset controller shares the same register space with the CRT
-> clock controller, it is instantiated as an auxiliary device by the core
-> clock driver. This patch also includes the corresponding auxiliary reset
-> driver to handle the CRT domain resets.
->=20
-> Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
-> Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-> Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+From: Sherry Sun <sherry.sun@nxp.com>
 
-Please split this into two independent patches, one for clk and one for
-reset. Same goes for the next patch.
+This series adds support for NXP Wi-Fi/BT combo chips (88W9098, AW693)
+inserted into PCIe M.2 Key E connectors on several i.MX EVK/MEK boards.
 
-regards
-Philipp
+For M.2 cards that rely on PCIe L2 link state and wake-up mechanisms, the
+card must remain powered during suspend. Patch 1 uses the existing
+dw_pcie_rp::skip_pwrctrl_off flag to skip power-off during suspend and skip
+power-on during the init path.
+
+Alsp the btnxpuart driver is extended to obtain a pwrseq descriptor via the
+OF graph on the UART controller device in patch 2.
+
+Sherry Sun (8):
+  PCI: imx6: Add skip_pwrctrl_off flag support
+  power: sequencing: pcie-m2: Add PCI ID for NXP 88W9098 and AW693
+    Bluetooth
+  Bluetooth: btnxpuart: Add M.2 Bluetooth device support using pwrseq
+  arm64: dts: imx8mq-evk: Describe the PCIe M.2 Key E connector
+  arm64: dts: imx95-19x19-evk: Describe the PCIe M.2 Key E connector
+  arm64: dts: imx8dxl-evk: Describe the PCIe M.2 Key E connector
+  arm64: dts: imx8qm-mek: Describe the PCIe M.2 Key E connector
+  arm64: dts: imx8qxp-mek: Describe the PCIe M.2 Key E connector
+
+ arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 56 +++++++++++++-----
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts  | 44 ++++++++++++--
+ arch/arm64/boot/dts/freescale/imx8qm-mek.dts  | 58 ++++++++++++++-----
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 54 ++++++++++++-----
+ .../boot/dts/freescale/imx95-19x19-evk.dts    | 55 +++++++++++++-----
+ drivers/bluetooth/btnxpuart.c                 | 33 ++++++++++-
+ drivers/pci/controller/dwc/pci-imx6.c         | 36 +++++++-----
+ drivers/power/sequencing/pwrseq-pcie-m2.c     |  4 ++
+ 8 files changed, 264 insertions(+), 76 deletions(-)
+
+-- 
+2.50.1
+
 
