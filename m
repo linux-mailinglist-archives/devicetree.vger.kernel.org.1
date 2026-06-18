@@ -1,197 +1,572 @@
-Return-Path: <devicetree+bounces-313531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313534-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8vnjEtD6M2pmKAYAu9opvQ
-	(envelope-from <devicetree+bounces-313531-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 16:04:00 +0200
+	id Qxw0F8IBNGqIKwYAu9opvQ
+	(envelope-from <devicetree+bounces-313534-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 16:33:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ED696A0C8E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 16:03:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABBB96A0F21
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 16:33:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=y76c6z5E;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313531-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313531-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linaro.org;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=ko7ZYNgc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313534-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313534-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 71DD5303AF9C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 14:02:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7AA8B3044122
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 14:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6D693FD955;
-	Thu, 18 Jun 2026 14:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C777130566E;
+	Thu, 18 Jun 2026 14:33:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B88C3FD140
-	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 14:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2F3B2222D0;
+	Thu, 18 Jun 2026 14:33:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781791368; cv=none; b=pfCu9tYjkx2gO39cTkOMi2LktkOaGMNYIOOjILNu3Xct50nDqNc6U4ex61851Gd8TGZAbz/rKdqWIHw53crgmM8sZnAfQX/mi6+XcrRImCyzzETI1BoBRtWkxX6NTiWomzChaqzq8g3dHvAIf8GVrVpm469rhY9c4Y52tEvPXbg=
+	t=1781793215; cv=none; b=CS/brvkQAJF3OzpCZlNGZbBKbHmj1vp7NyZStESkMN91wrjJC0iTby0UCr5vc0DP2KvCWz5cOzlOmzguzxeB45yWVwNL0smgY8jCsgWzf27JVaw4QYVngiylF89wQ2faLnFjVmXZtSBSZENv78loQ2Z/bzHpK/1DxEzXziKLw34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781791368; c=relaxed/simple;
-	bh=Zm88aDHqan80xJtYX/bGH6MO8Kts60eFfVrY3vZn1jA=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Cb0hoyqpBO9z7kV6vJzQZ20C70tI9PSAk044XVElDqHqpzwjpzClvvsSsgKVt3IV1aBV2+sIKKr/9go2+WMyo/ASyvN92CmLmGU8QtcSATadbVw2o/ErbNoir1O+p1cNbq53RFpcyx39pQse0ImNcvDc5KnzWr9tJKLQeeDfVk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y76c6z5E; arc=none smtp.client-ip=209.85.128.45
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-490c1915793so7910385e9.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 07:02:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1781791364; x=1782396164; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:from:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SxK0imfm+1QkrAHskYa5t0rNBEyGWHeSjGaPl9WwcgU=;
-        b=y76c6z5EQ+4zLVHOi5hcfL5bqG3Qemmo2WiZi/qdM2rggCZacayPIkwyOF2jBbZQQb
-         uIN11HO5cUz7SbXmErXCPjr0m/30BjSgmseQEyWabzeHu/+qYNj1MWjsg+5PzT6qbpJD
-         dZfbty/X87ttman0vv5C8Bw8HFPRmOOzne3QqbVFVwX4g6jiP7team126JWFNbmen7Aa
-         irRX5MUmRdWAv0ojcKEWj7/cNtptax0/6Qz/VLbNMi1CZiPkrPzw7T5fvvUZ2apyvNU8
-         lb3Wf6ACovUu2myx0G+gCD0xCBE0uOAFk4oI753B4A+RfWyXNUQ684A4bmOMqF1+7nIZ
-         Yjdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781791364; x=1782396164;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:from:subject:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SxK0imfm+1QkrAHskYa5t0rNBEyGWHeSjGaPl9WwcgU=;
-        b=b9tK9G1DsFQpLA0nUUvn6AMrSz06waotvY8uehuRgRu0jxR1aJnfLRfJhQpuZBnkzI
-         XD+hPa67w+PLASE9aodiykG9syP8iVvABQHHQhUKm/Abfvk520XH0t9z/ghJKIllBH9q
-         sE3rirgutybwUzJG5BPBZsgMQ8kKFDV3qBYcO03/DBP9FOHZ4pvox2RtF5X/xmwR2Tz/
-         FBvhVKNy1ZJPTEJoX61V6BJF+3IrWWCEVBB7ALvURrq2Zx6143vfpHC+LcxmmAiyqrNj
-         5Lv+f40mKEDkm9V+pv2tYh5nMJbD8F62uyWPftbh3i15VKuyiXJ2zHPF3GcB43AlIdtM
-         RTgA==
-X-Forwarded-Encrypted: i=1; AFNElJ8RHjpcrJyN5w/hJNiIeC1+/4yDQ4KyZC5n/NwC2crC9uAmQJnixgIh7Cln9zWIgHS5FdEHhqAixbV3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRL3V5bjc6e/Mogy+9y4+cIG4nGGTziY/Wx4tRSMMHtavnPBxo
-	dhnkLFk6v2hlxYQgTKI5g0r8YLhvgQS3ISqn0AHwiLCo5qoWY3dDaMVsgweAI43VrsrQQQ/pxN+
-	UchC7hi4=
-X-Gm-Gg: AfdE7cmK14R3wUXtheyAkzprYf3TvMAcWzeKJnzOVURiCEsbUQbJrjCUyfn4F0gb4bu
-	c1OPuwcb8bY7tORYittO/MUavd7Xo9UTXwnnfGUtz4Umj0f7gSzkONJrO/oanKt8NiNP2fFc+qD
-	Ba1u2byKstYs/+/22cBmqMNNmuhf8qcx8PWiW2e/LRfZqD5x354jysiqaok6Sj3hq+Y3S78DDxd
-	LShPemWcGjZOaJW/HL/CJjUg3fnwTsCmcWhyyBV0rgoOA+m6SHE3L7s02jJT6o2rsYXfR553ft8
-	2j4RsiBUsHw4BgIP46+0XvpqDtCVyeapojniEw4vKRQK+OAeSgmx6tTfvY5kwq+On9EFSHsd05C
-	e+JOEUsqm9MCvFrcOyZmVmVruEozVzxoa+g1hjMZfNmgpSK0gEsFvzAT5b6bzv5OPUd4U1bJphh
-	ZfXaL4j7uKBnYZyDgckNE7tEd8BQP+Hm5EuCRb6f5WFtmlrVF6h44gocyb7F11qhTSo/z07Oc2h
-	ib8
-X-Received: by 2002:a05:600c:6b69:b0:490:a1dc:e542 with SMTP id 5b1f17b1804b1-49234100c1fmr92175145e9.6.1781791363260;
-        Thu, 18 Jun 2026 07:02:43 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:6e1b:5a5:b2b5:b2c0? ([2a01:e0a:106d:1080:6e1b:5a5:b2b5:b2c0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49230a58becsm240825675e9.7.2026.06.18.07.02.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jun 2026 07:02:42 -0700 (PDT)
-Message-ID: <45034b95-bbdf-4dd4-bcb8-5bbc74d86120@linaro.org>
-Date: Thu, 18 Jun 2026 16:02:40 +0200
+	s=arc-20240116; t=1781793215; c=relaxed/simple;
+	bh=kpFp/5QIN5fInWcdaxHciAgsvqqY0uzNzxON96M+ozA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=jveYBzNuYxeXUBdeIpDFGtGgIrkCPyXkJ+1XTYZcrIjFZbmKjp1s+EOMsLrf4I7tY47eYsn2bo3424eYboefLXTI2wjjeMRJ+zN3Why1G9wbfI9FUMQr9wdQD8mTr0qaHs7Ze6MWvoW9cnLwKugyRvQgsucwPWO4X/9log5mQMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ko7ZYNgc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1FC0EC2BCB0;
+	Thu, 18 Jun 2026 14:33:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781793215;
+	bh=kpFp/5QIN5fInWcdaxHciAgsvqqY0uzNzxON96M+ozA=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=ko7ZYNgcSktM3S0zpd4MWjSAD5gxuARd7KcxVigow6eue1YdR4UYvKcohGdGDco1A
+	 s+S+giOrPY72KqFNDVQHxbZlf7P53dXHZKmQmFV0RTVvDWTNpYC0CG8e+ZZPZuxf+R
+	 N2ygK0s5LdYOljvsoMhavYVtDwm+FaJEYBzRLqaOeBSVgEopZBLu8xUXpnQn4aABGo
+	 1SfFSDOTyWLX2dxEpDX3P7gwZpoH6yxhhXwUWVPUxNrrzKO4/TYcERjxPuMqLnBPZa
+	 nPhDUKvJwE6NTZMYHR2VHOT5WiqfbU6udoZX0xG2rUhRzkPg2Lj/mhlCVMppMUCXUB
+	 RlsMvhjRwSy4Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EE3ACCD98F6;
+	Thu, 18 Jun 2026 14:33:34 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Date: Thu, 18 Jun 2026 16:33:28 +0200
+Subject: [PATCH RFC] dt-bindings: sound: Convert cirrus,cs35l36 to DT
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v8 0/6] arm64: dts: qcom: Support AYN QCS8550
- Devices
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Aaron Kling <webgeek1234@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Xilin Wu <wuxilin123@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Teguh Sobirin <teguh@sobir.in>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20260503-ayn-qcs8550-v8-0-d733f5e57446@gmail.com>
- <178179131851.245596.10889069443600186081.b4-ty@b4>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <178179131851.245596.10889069443600186081.b4-ty@b4>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260618-dt-cirrus-cs35l36-v1-1-1a43515666ad@ixit.cz>
+X-B4-Tracking: v=1; b=H4sIALcBNGoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDM0ML3ZQS3eTMoqLSYt3kYmPTHGMzXUvLZBMzs7QkQ+O0FCWgvoKi1LT
+ MCrCZ0UpBbs5KsbW1APrRZxNoAAAA
+X-Change-ID: 20260618-dt-cirrus-cs35l36-99c466fb13fd
+To: David Rhodes <david.rhodes@cirrus.com>, 
+ Richard Fitzgerald <rf@opensource.cirrus.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, patches@opensource.cirrus.com, 
+ Bjorn Helgaas <bhelgaas@google.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=14156; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=g23zOnCMQPaNqnE58HL52klKPYJXZPiR6z567szNqJM=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBqNAG9dPZMDGKaT5u1kZEGxxTXMntUtokuCqaXW
+ lj5fTqroDGJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCajQBvQAKCRBgAj/E00kg
+ ciBMD/0eaLmO5Eq6JKW/NNoodMaqDdqHF6I+ZPVQQJV10/D3Oa+4xsYASxfJzaDyZrMhNRTxfwi
+ OKVEyPF6CpXeXpNIOKOEpRUju4L9sIpJWViYXyWO9CF0ixxWbCeMcCYvZa8kQJ3nsF0TWz6hQgJ
+ TTLXFJzBkyTgUrxlrA1GVn2Tki5Iuj2rpAVK81KuZDMEiAv7/R0yY5U3wDZTQUctqUK9hCnYKDh
+ gLXEuSlza3FK0cFaPXbTV8e8DCts1l6O+ZdCnsgoxY/0wNDCfN7OCzHiW2pR4KxT2QePDucQZsL
+ G0tdFrCR+1mBvuSVKA//bfRhCcwOPR0rAfFDH50pRhrcOG1tdKQOWgGpOBPtjg3QdApx7NSjQZd
+ 2poTx08bYpmn2wlrzKdm1VkdXSZs6JT5LybrIg//J+Zr1aX/jQGsvILUsQ5B0S6MBAt8MrhPjug
+ pB4VR5G8QIJiRSeXkNDiaM20aNamzRed+mMfdXo3nU+pKYKJSZ0I9ljUYhrzemn8stm7DJ8ZVBk
+ 0uv0YdSVP3EvzJ3jj3yku592wi7PtE5TXFaQZkWit6FxOPiFFTngntwLQ5LHUUxyLTOqEXUzFyg
+ Dez39tfsNZgb7UCdg8hxl9xHxsOg3KLtnaCpXzX+qozrv5v+0VR4Yv4LON8ou3y4m5zU4+spH4V
+ q7KOiFcX2qTR4Yw==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,oss.qualcomm.com,sobir.in];
-	TAGGED_FROM(0.00)[bounces-313531-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:webgeek1234@gmail.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:wuxilin123@gmail.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:teguh@sobir.in,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-313534-lists,devicetree=lfdr.de,david.ixit.cz];
+	FORGED_RECIPIENTS(0.00)[m:david.rhodes@cirrus.com,m:rf@opensource.cirrus.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:patches@opensource.cirrus.com,m:bhelgaas@google.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phone-devel@vger.kernel.org,m:david@ixit.cz,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[cirrus.com,opensource.cirrus.com,gmail.com,kernel.org,google.com];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[david@ixit.cz];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,linaro.org:dkim,linaro.org:mid,linaro.org:from_mime,gitlab.freedesktop.org:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ixit.cz:replyto,ixit.cz:email,ixit.cz:mid,cirrus.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0ED696A0C8E
+X-Rspamd-Queue-Id: ABBB96A0F21
 
-On 6/18/26 16:01, Neil Armstrong wrote:
-> Hi,
-> 
-> On Sun, 03 May 2026 16:48:42 -0500, Aaron Kling wrote:
->> This specifically includes:
->> * Odin 2 Mini
->> * Odin 2 Portal
->> * Thor
->>
->> The original Odin 2 dts is not currently included as it has not yet
->> been verified.
->>
->> [...]
-> 
-> Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
-> 
-> [1/6] dt-bindings: vendor-prefixes: Add AYN Technologies
->        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/fc917a533da47a5d0fd2f3df9052ee6dc5e6adad
-> 
+From: David Heidelberg <david@ixit.cz>
 
-Applied it for the panel bindings,
+Convert CS35L36 Speaker Amplifier.
 
-Thanks
-Neil
+Changes:
+ - maintainers email to the generic Cirrus email
+ - Both the codec and downstream worked just fine without
+   VP-supply provided. Align with datasheet for similar models.
+ - add dai-common.yaml to cover for '#sound-dai-cells',
+   'sound-name-prefix'
+
+Co-developed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Relevant for Pixel 3 / 3XL / 4.
+---
+ .../devicetree/bindings/sound/cirrus,cs35l36.yaml  | 224 +++++++++++++++++++++
+ .../devicetree/bindings/sound/cs35l36.txt          | 168 ----------------
+ 2 files changed, 224 insertions(+), 168 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l36.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l36.yaml
+new file mode 100644
+index 0000000000000..af0acaaefb68e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l36.yaml
+@@ -0,0 +1,224 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/cirrus,cs35l36.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cirrus Logic CS35L36 Speaker Amplifier
++
++maintainers:
++  - patches@opensource.cirrus.com
++  - Bjorn Helgaas <bhelgaas@google.com>
++
++description: |
++  CS35L36 is a boosted mono Class D amplifier
++
++allOf:
++  - $ref: /schemas/sound/dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - cirrus,cs35l36
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  VA-supply:
++    description: Voltage regulator of analog internal section
++
++  VP-supply:
++    description: Voltage regulator of boost converter
++
++  reset-gpios:
++    maxItems: 1
++
++  cirrus,boost-ctl-millivolt:
++    description: Boost converter output voltage in millivolts (step 50)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 2550
++    maximum: 12000
++
++  cirrus,boost-peak-milliamp:
++    description: Boost-converter peak current limit in mA (step 50)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 4500
++    minimum: 1600
++    maximum: 4500
++
++  cirrus,boost-ind-nanohenry:
++    description: Initial inductor estimation reference value in nanohenry (1000=1μH, 1200=1.2μH)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 1000
++
++  cirrus,multi-amp-mode:
++    description: Hi-Z ASP port when more than one amplifier in system.
++    type: boolean
++
++  cirrus,boost-ctl-select:
++    description: Boost converter control source selection
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0x01
++    enum:
++      - 0x00 # Control Port
++      - 0x01 # Class
++      - 0x10 # Sync
++
++  cirrus,amp-pcm-inv:
++    description: Invert incoming PCM data when true.
++    type: boolean
++
++  cirrus,imon-pol-inv:
++    description: Invert polarity of outbound IMON feedback when true.
++    type: boolean
++
++  cirrus,vmon-pol-inv:
++    description: Invert polarity of outbound VMON feedback when true.
++    type: boolean
++
++  cirrus,dcm-mode-enable:
++    description: Enable boost converter automatic Discontinuous Conduction Mode.
++    type: boolean
++
++  cirrus,weak-fet-disable:
++    description: Reduce output driver strength in Weak-FET Drive Mode when true.
++    type: boolean
++
++  cirrus,classh-wk-fet-delay:
++    description: Weak-FET entry delay in ms
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 100
++    enum:
++      - 0 # 0
++      - 1 # 5
++      - 2 # 10
++      - 3 # 50
++      - 4 # 100
++      - 5 # 200
++      - 6 # 500
++      - 7 # 1000
++
++  cirrus,classh-weak-fet-thld-millivolt:
++    description: Weak-FET drive threshold in mV
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700]
++
++  cirrus,temp-warn-threshold:
++    description: Overtemperature warning threshold
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 2
++    enum:
++      - 0 # 105°C
++      - 1 # 115°C
++      - 2 # 125°C
++      - 3 # 135°C
++
++  cirrus,irq-drive-select:
++    description: Interrupt output driver type
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 1
++    enum:
++      - 0 # open-drain
++      - 1 # push-pull
++
++  cirrus,irq-gpio-select:
++    description: Programmable IRQ pin selection
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # PDM_DATA/SWIRE_SD/INT
++      - 1 # GPIO
++
++  cirrus,vpbr-config:
++    description: Brownout prevention configuration sub-node
++    type: object
++    additionalProperties: false
++
++    properties:
++      cirrus,vpbr-en:
++        description: VBST brownout prevention enable
++        $ref: /schemas/types.yaml#/definitions/uint32
++        default: 0
++        enum:
++          - 0 # disabled
++          - 1 # enabled
++
++      cirrus,vpbr-thld:
++        description: Initial VPBR threshold voltage
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      cirrus,vpbr-atk-rate:
++        description: Attenuation attack step rate
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      cirrus,vpbr-atk-vol:
++        description: VP brownout prevention step size
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      cirrus,vpbr-max-attn:
++        description: Maximum attenuation during VP brownout prevention
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      cirrus,vpbr-wait:
++        description: Delay between brownout clearance and attenuation release
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      cirrus,vpbr-rel-rate:
++        description: Attenuation release step rate
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++      cirrus,vpbr-mute-en:
++        description: Mute audio if maximum attenuation reached
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - VA-supply
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@40 {
++            compatible = "cirrus,cs35l36";
++            reg = <0x40>;
++            VA-supply = <&dummy_vreg>;
++            VP-supply = <&dummy_vreg>;
++            reset-gpios = <&gpio0 54 GPIO_ACTIVE_HIGH>;
++            interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
++
++            cirrus,boost-ind-nanohenry = <1000>;
++            cirrus,boost-ctl-millivolt = <10000>;
++            cirrus,boost-peak-milliamp = <4500>;
++            cirrus,boost-ctl-select = <0x00>;
++            cirrus,weak-fet-delay = <4>;
++            cirrus,weak-fet-thld = <0x01>;
++            cirrus,temp-warn-threshold = <1>;
++            cirrus,multi-amp-mode;
++            cirrus,irq-drive-select = <1>;
++            cirrus,irq-gpio-select = <0x01>;
++
++            cirrus,vpbr-config {
++                cirrus,vpbr-en = <0>;
++                cirrus,vpbr-thld = <0x05>;
++                cirrus,vpbr-atk-rate = <0x02>;
++                cirrus,vpbr-atk-vol = <0x01>;
++                cirrus,vpbr-max-attn = <0x09>;
++                cirrus,vpbr-wait = <0x01>;
++                cirrus,vpbr-rel-rate = <0x05>;
++                cirrus,vpbr-mute-en = <0x00>;
++            };
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/sound/cs35l36.txt b/Documentation/devicetree/bindings/sound/cs35l36.txt
+deleted file mode 100644
+index d34117b8558e5..0000000000000
+--- a/Documentation/devicetree/bindings/sound/cs35l36.txt
++++ /dev/null
+@@ -1,168 +0,0 @@
+-CS35L36 Speaker Amplifier
+-
+-Required properties:
+-
+-  - compatible : "cirrus,cs35l36"
+-
+-  - reg : the I2C address of the device for I2C
+-
+-  - VA-supply, VP-supply : power supplies for the device,
+-  as covered in
+-  Documentation/devicetree/bindings/regulator/regulator.txt.
+-
+-  - cirrus,boost-ctl-millivolt : Boost Voltage Value.  Configures the boost
+-  converter's output voltage in mV. The range is from 2550mV to 12000mV with
+-  increments of 50mV.
+-  (Default) VP
+-
+-  - cirrus,boost-peak-milliamp : Boost-converter peak current limit in mA.
+-  Configures the peak current by monitoring the current through the boost FET.
+-  Range starts at 1600mA and goes to a maximum of 4500mA with increments of
+-  50mA.
+-  (Default) 4.50 Amps
+-
+-  - cirrus,boost-ind-nanohenry : Inductor estimation LBST reference value.
+-  Seeds the digital boost converter's inductor estimation block with the initial
+-  inductance value to reference.
+-
+-  1000 = 1uH (Default)
+-  1200 = 1.2uH
+-
+-Optional properties:
+-  - cirrus,multi-amp-mode : Boolean to determine if there are more than
+-  one amplifier in the system. If more than one it is best to Hi-Z the ASP
+-  port to prevent bus contention on the output signal
+-
+-  - cirrus,boost-ctl-select : Boost converter control source selection.
+-  Selects the source of the BST_CTL target VBST voltage for the boost
+-  converter to generate.
+-  0x00 - Control Port Value
+-  0x01 - Class H Tracking (Default)
+-  0x10 - MultiDevice Sync Value
+-
+-  - cirrus,amp-pcm-inv : Boolean to determine Amplifier will invert incoming
+-  PCM data
+-
+-  - cirrus,imon-pol-inv : Boolean to determine Amplifier will invert the
+-  polarity of outbound IMON feedback data
+-
+-  - cirrus,vmon-pol-inv : Boolean to determine Amplifier will invert the
+-  polarity of outbound VMON feedback data
+-
+-  - cirrus,dcm-mode-enable : Boost converter automatic DCM Mode enable.
+-  This enables the digital boost converter to operate in a low power
+-  (Discontinuous Conduction) mode during low loading conditions.
+-
+-  - cirrus,weak-fet-disable : Boolean : The strength of the output drivers is
+-  reduced when operating in a Weak-FET Drive Mode and must not be used to drive
+-  a large load.
+-
+-  - cirrus,classh-wk-fet-delay :  Weak-FET entry delay. Controls the delay
+-  (in ms) before the Class H algorithm switches to the weak-FET voltage
+-  (after the audio falls and remains below the value specified in WKFET_AMP_THLD).
+-
+-  0 = 0ms
+-  1 = 5ms
+-  2 = 10ms
+-  3 = 50ms
+-  4 = 100ms (Default)
+-  5 = 200ms
+-  6 = 500ms
+-  7 = 1000ms
+-
+-  - cirrus,classh-weak-fet-thld-millivolt : Weak-FET amplifier drive threshold.
+-  Configures the signal threshold at which the PWM output stage enters
+-  weak-FET operation. The range is 50mV to 700mV in 50mV increments.
+-
+-  - cirrus,temp-warn-threshold :  Amplifier overtemperature warning threshold.
+-  Configures the threshold at which the overtemperature warning condition occurs.
+-  When the threshold is met, the overtemperature warning attenuation is applied
+-  and the TEMP_WARN_EINT interrupt status bit is set.
+-  If TEMP_WARN_MASK = 0, INTb is asserted.
+-
+-  0 = 105C
+-  1 = 115C
+-  2 = 125C (Default)
+-  3 = 135C
+-
+-  - cirrus,irq-drive-select : Selects the driver type of the selected interrupt
+-  output.
+-
+-  0 = Open-drain
+-  1 = Push-pull (Default)
+-
+-  - cirrus,irq-gpio-select : Selects the pin to serve as the programmable
+-  interrupt output.
+-
+-  0 = PDM_DATA / SWIRE_SD / INT (Default)
+-  1 = GPIO
+-
+-Optional properties for the "cirrus,vpbr-config" Sub-node
+-
+-  - cirrus,vpbr-en : VBST brownout prevention enable. Configures whether the
+-  VBST brownout prevention algorithm is enabled or disabled.
+-
+-  0 = VBST brownout prevention disabled (default)
+-  1 = VBST brownout prevention enabled
+-
+-  See Section 7.31.1 VPBR Config for configuration options & further details
+-
+-  - cirrus,vpbr-thld : Initial VPBR threshold. Configures the VP brownout
+-  threshold voltage
+-
+-  - cirrus,cirrus,vpbr-atk-rate : Attenuation attack step rate. Configures the
+-  amount delay between consecutive volume attenuation steps when a brownout
+-  condition is present and the VP brownout condition is in an attacking state.
+-
+-  - cirrus,vpbr-atk-vol : VP brownout prevention step size. Configures the VP
+-  brownout prevention attacking attenuation step size when operating in either
+-  digital volume or analog gain modes.
+-
+-  - cirrus,vpbr-max-attn : Maximum attenuation that the VP brownout prevention
+-  can apply to the audio signal.
+-
+-  - cirrus,vpbr-wait : Configures the delay time between a brownout condition
+-  no longer being present and the VP brownout prevention entering an attenuation
+-  release state.
+-
+-  - cirrus,vpbr-rel-rate : Attenuation release step rate. Configures the delay
+-  between consecutive volume attenuation release steps when a brownout condition
+-  is not longer present and the VP brownout is in an attenuation release state.
+-
+-  - cirrus,vpbr-mute-en : During the attack state, if the vpbr-max-attn value
+-  is reached, the error condition still remains, and this bit is set, the audio
+-  is muted.
+-
+-Example:
+-
+-cs35l36: cs35l36@40 {
+-	compatible = "cirrus,cs35l36";
+-	reg = <0x40>;
+-	VA-supply = <&dummy_vreg>;
+-	VP-supply = <&dummy_vreg>;
+-	reset-gpios = <&gpio0 54 0>;
+-	interrupt-parent = <&gpio8>;
+-	interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+-
+-	cirrus,boost-ind-nanohenry = <1000>;
+-	cirrus,boost-ctl-millivolt = <10000>;
+-	cirrus,boost-peak-milliamp = <4500>;
+-	cirrus,boost-ctl-select = <0x00>;
+-	cirrus,weak-fet-delay = <0x04>;
+-	cirrus,weak-fet-thld = <0x01>;
+-	cirrus,temp-warn-threshold = <0x01>;
+-	cirrus,multi-amp-mode;
+-	cirrus,irq-drive-select = <0x01>;
+-	cirrus,irq-gpio-select = <0x01>;
+-
+-	cirrus,vpbr-config {
+-		cirrus,vpbr-en = <0x00>;
+-		cirrus,vpbr-thld = <0x05>;
+-		cirrus,vpbr-atk-rate = <0x02>;
+-		cirrus,vpbr-atk-vol = <0x01>;
+-		cirrus,vpbr-max-attn = <0x09>;
+-		cirrus,vpbr-wait = <0x01>;
+-		cirrus,vpbr-rel-rate = <0x05>;
+-		cirrus,vpbr-mute-en = <0x00>;
+-	};
+-};
+
+---
+base-commit: 8cd9520d35a6c38db6567e97dd93b1f11f185dc6
+change-id: 20260618-dt-cirrus-cs35l36-99c466fb13fd
+
+Best regards,
+-- 
+David Heidelberg <david@ixit.cz>
+
+
 
