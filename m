@@ -1,139 +1,148 @@
-Return-Path: <devicetree+bounces-313544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313545-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SYutFvENNGoiMgYAu9opvQ
-	(envelope-from <devicetree+bounces-313544-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 17:25:37 +0200
+	id NwS6E0QONGpvMgYAu9opvQ
+	(envelope-from <devicetree+bounces-313545-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 17:27:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28446A1393
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 17:25:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB2BC6A13B1
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 17:26:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=lht.dlh.de (policy=quarantine);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313544-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313544-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BCYWCXA4;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313545-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313545-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C050F30B44CD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 15:21:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 441DB31033A3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 15:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97AC43FC5C1;
-	Thu, 18 Jun 2026 15:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC303FBEB8;
+	Thu, 18 Jun 2026 15:22:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp6-g21.free.fr (smtp6-g21.free.fr [212.27.42.6])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F9993FF1A4;
-	Thu, 18 Jun 2026 15:21:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF803FA5D4;
+	Thu, 18 Jun 2026 15:22:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781796112; cv=none; b=GtZD1JUJ9QurzBa2rXeMyITgqxWnXgu/gI7kXEpp96LMT6Vgt7n/TdjoWlc5YZmsPbtO56dmsOd1X7gLisGlst9W2TUizAQ724zUyVa27U7fKcvcpE0wWkkitfvtlpkm6K5HcMow3TBy+5SOe+jqxmy7WbP6PYf9q3FpyUIf6Vc=
+	t=1781796152; cv=none; b=DH+N2cphkdt1SXCwI07jWVn05LBcE/B9CwE7qbpwqlrgqRZx8AugndTg8e6Gz6ZQgEwrBkgNDqNt+UtBswzB4dx+MOMMzvGWKT890vq3TEQCfUFV6iTkIhnXJhxMShYVP1WnwuJ5ExcyOWNBCvVO3NReWXzKBK+NrkmD3w4rdmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781796112; c=relaxed/simple;
-	bh=WVGHvfjDofZzATB4GUy0LRJazQGsFUTWfwfcE0BiNAs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ay/vKPk3uHDXDv/Nkff6mE9pcFzVzrWxZ6pWdT8dtXdZPXvI9OSmIYiy45JBVX/5Jxkr24ekUawyle0MEqWjfHKE6Kym8JJyPqYZdJ8+GJ57nwVjgHMj/Txeu6KNpyoqQ1V21WWbeFFQPdFvSxlfIRz5AMiXS/pNgowk4IwxSC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=lht.dlh.de; spf=pass smtp.mailfrom=free.fr; arc=none smtp.client-ip=212.27.42.6
-Received: from albans-vm.. (unknown [94.134.109.237])
-	(Authenticated sender: albeu@free.fr)
-	by smtp6-g21.free.fr (Postfix) with ESMTPSA id 77929780368;
-	Thu, 18 Jun 2026 17:21:32 +0200 (CEST)
-From: Alban Bedel <alban.bedel@lht.dlh.de>
-To: driver-core@lists.linux.dev,
-	devicetree@vger.kernel.org
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Zijun Hu <zijun.hu@oss.qualcomm.com>,
-	linux-kernel@vger.kernel.org,
-	Alban Bedel <alban.bedel@lht.dlh.de>,
-	Sashiko <sashiko-bot@kernel.org>
-Subject: [PATCH v2 2/2] software node: Fix software_node_get_reference_args() with index -1
-Date: Thu, 18 Jun 2026 17:20:35 +0200
-Message-Id: <20260618152035.1600436-2-alban.bedel@lht.dlh.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20260618152035.1600436-1-alban.bedel@lht.dlh.de>
-References: <20260618152035.1600436-1-alban.bedel@lht.dlh.de>
+	s=arc-20240116; t=1781796152; c=relaxed/simple;
+	bh=jSdlNlpM8SAob/fGvaYLbUYW1FfKn1bUWerBX6EGHS0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ebmCTkb2dzesfOMgXMBGFkEIfNYySrhopvmxK+MXMs9h/kPCdcy95eRfbesYTt9WmK9hzK0gJC8YgKY+ZmEljlFjQ0QYn0k7xriuJPI+N0oUNQ21aq4dAjSHCj5K/f0Mboa0EJsGTrf0CydDXLUyZOsmOsyciPT1W9KeaIp3sOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BCYWCXA4; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EDDD1F000E9;
+	Thu, 18 Jun 2026 15:22:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781796151;
+	bh=jSdlNlpM8SAob/fGvaYLbUYW1FfKn1bUWerBX6EGHS0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=BCYWCXA4WBW0a7fOg9IHEBtPOvt4tAiLJQCBJu5A247pvIg6g8zrZqkpCgituH9WU
+	 U4HyXCKQQTCFCbXwePxJLY/YoR84Hz1VyBcO6Hk7Bq++HcYYC+MsXNf+uG2H2QgtzE
+	 tHSYz/hhqbOK8hUycbYK33jM+q6y+Wm5rOLu6OO4yCV+N47cnFbZGP6bimMYALa8Fh
+	 hSrClZbjnhoe6Pkf45gaevjI8voZq2AYTApVrTAuclx+rRW9F35F39tHXUn/6IQ24l
+	 uXWfsd9CyNt2Qa2iDR2RjeK+j8HdGzOaPEAdzdvFV3E5kpiXLuL8SceqVB8ujO/v7k
+	 f9MyiavN9TkdQ==
+Date: Thu, 18 Jun 2026 16:22:26 +0100
+From: Mark Brown <broonie@kernel.org>
+To: david@ixit.cz
+Cc: David Rhodes <david.rhodes@cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, patches@opensource.cirrus.com,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH RFC] dt-bindings: sound: Convert cirrus,cs35l36 to DT
+ schema
+Message-ID: <6d0187ac-5b52-43d7-b874-9739a62860aa@sirena.org.uk>
+References: <20260618-dt-cirrus-cs35l36-v1-1-1a43515666ad@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="QufLE/0Kc9+EiCqz"
+Content-Disposition: inline
+In-Reply-To: <20260618-dt-cirrus-cs35l36-v1-1-1a43515666ad@ixit.cz>
+X-Cookie: This unit... must... survive.
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[lht.dlh.de : SPF not aligned (relaxed), No valid DKIM,quarantine];
+X-Spamd-Result: default: False [-5.76 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313544-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[linux.intel.com,gmail.com,linuxfoundation.org,kernel.org,oss.qualcomm.com,vger.kernel.org,lht.dlh.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:driver-core@lists.linux.dev,m:devicetree@vger.kernel.org,m:andriy.shevchenko@linux.intel.com,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:gregkh@linuxfoundation.org,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:zijun.hu@oss.qualcomm.com,m:linux-kernel@vger.kernel.org,m:alban.bedel@lht.dlh.de,m:sashiko-bot@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[alban.bedel@lht.dlh.de,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alban.bedel@lht.dlh.de,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-313545-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_RECIPIENTS(0.00)[m:david@ixit.cz,m:david.rhodes@cirrus.com,m:rf@opensource.cirrus.com,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:patches@opensource.cirrus.com,m:bhelgaas@google.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phone-devel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[cirrus.com,opensource.cirrus.com,gmail.com,kernel.org,google.com,vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,dlh.de:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ixit.cz:email,sirena.org.uk:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C28446A1393
+X-Rspamd-Queue-Id: AB2BC6A13B1
 
-The bounds check for the index passed to
-software_node_get_reference_args() was failing when passed UINT_MAX,
-this in turn would lead to an out of bound access in the property
-array. Fix the bound check to also cover the UINT_MAX case.
 
-Fixes: 31e4e12e0e960 ("software node: Correct a OOB check in software_node_get_reference_args()")
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://lore.kernel.org/linux-devicetree/20260611103904.7CB131F00893@smtp.kernel.org/
-Signed-off-by: Alban Bedel <alban.bedel@lht.dlh.de>
---
-v2: No changes. Only submit this patch along with the patch that
-    triggered the Sashiko report, to hopefully avoid another useless
-    report.
----
- drivers/base/swnode.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--QufLE/0Kc9+EiCqz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/base/swnode.c b/drivers/base/swnode.c
-index 869228a65cb36..2bc76f01eb77d 100644
---- a/drivers/base/swnode.c
-+++ b/drivers/base/swnode.c
-@@ -537,7 +537,7 @@ software_node_get_reference_args(const struct fwnode_handle *fwnode,
- 	if (prop->is_inline)
- 		return -EINVAL;
- 
--	if ((index + 1) * sizeof(*ref) > prop->length)
-+	if (index >= prop->length / sizeof(*ref))
- 		return -ENOENT;
- 
- 	ref_array = prop->pointer;
--- 
-2.39.5
+On Thu, Jun 18, 2026 at 04:33:28PM +0200, David Heidelberg via B4 Relay wro=
+te:
+> From: David Heidelberg <david@ixit.cz>
+>=20
+> Convert CS35L36 Speaker Amplifier.
 
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--QufLE/0Kc9+EiCqz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmo0DTEACgkQJNaLcl1U
+h9DTvwf/ZDqT6lHklGiiZ/2ew8XLNomY7zRAa0SvFY7yLpFRhNuHbhhFE8O6/nVg
+ayPBn+RsMYmy6brd9UIzOMI0p7h+KU9u4VbCsy5dY3IErlqkSzk/sYiJDRNDJeN6
+QQ+93JnormAA/cFEscwNsB2zM94v51AnC8hpTGdPD6uixRi5lWP4/8v387HgkOcp
+64x1dRAghOwQ1pGQsEVQYTGieF5ex/w68MQUabzgzavHOPR2Lgefi4b3LfUjkAre
+eicUeTAd3V7EYaTtaZXwBLi0JsZM9RObcazADuKPcvMDVIdlcZdATYg3DQIi0cJe
+B5Vn5Y2KRtF6HczMRhMfRvaeflUdPw==
+=SS80
+-----END PGP SIGNATURE-----
+
+--QufLE/0Kc9+EiCqz--
 
