@@ -1,166 +1,387 @@
-Return-Path: <devicetree+bounces-313563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313564-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uyMJEDQiNGqbPQYAu9opvQ
-	(envelope-from <devicetree+bounces-313563-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 18:52:04 +0200
+	id 1EIaCyglNGoGPwYAu9opvQ
+	(envelope-from <devicetree+bounces-313564-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 19:04:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97F956A1AF6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 18:52:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75EE36A1BEE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 19:04:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cRz3Arfn;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313563-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313563-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=chromium.org header.s=google header.b=Y+mULUnx;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313564-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313564-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=chromium.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 558A530347EF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 16:52:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 35AC530E878E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 17:00:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9CF42FDC53;
-	Thu, 18 Jun 2026 16:51:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6768C34404F;
+	Thu, 18 Jun 2026 17:00:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3672227BB9;
-	Thu, 18 Jun 2026 16:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB3A2FDC3C
+	for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 17:00:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781801518; cv=none; b=HphKrrVBr/EkcIW6JpH6mMqI1TJM9HrDiAfG9CJ6ktW8o+ijp80t5hKsSpLpkkmWNnT92diYnkQL6l6FN2IbIqhtycDgBIvFI9ZCFgg8IuDWeCvFvAt8qdCHVUqvAWsKDNJQWmta/K6lACcn2PLoQKqZbLb2bIabQjMInPha04s=
+	t=1781802041; cv=none; b=M9ueRchKQX6aTU4LrxkwP/T9R8a4J/bFFpBkCgUQWGMu1309+m8yfaWfQAMMYCDHVoTwxD5cDc7lAUFPIJUDtt6xndUcrll2mpMz6wFEsSOET7zQhAl7Zr2t9n/oatt6vbqAuEXKpyVO0wNFmTlHdR9qs54Yyg0RpzNqxvMViuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781801518; c=relaxed/simple;
-	bh=7jO5PWoE2N5ydihCITbr3HpSBs4kiBOQ62fm0mBEeq4=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=rJKVDoYzjmNAzinTzjP5Oq4RdHCxNrKnryYg5OqC/Ou8nSHSieWY1nGdcS7Vqano0NqdIZV61YjWV12o6pj7vdKYQNrNSB1OtBpG/OU2Uvmg1MMCrO/yFmwpmIyqX7lzzEsEvUld902CTbjcUbSAd2vl0Fyaq8b/gkQxCM4BjyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cRz3Arfn; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CECA1F000E9;
-	Thu, 18 Jun 2026 16:51:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781801517;
-	bh=+C7UJ5EIB57xL4KV5//HXNlxtQfTiI3AQWlDNB9xG9M=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject;
-	b=cRz3Arfn81Xxb0sb5xjVuc9aHEbbew8OcSDJxv/ZQWPs6orcRzAeN2C+dIx2RArvC
-	 NxqS0oBMA4GI7gesRaqxmeuVANuET6TQ1GMQSsm6gGujTjolJMi5hiFQM6cZ7GS1zj
-	 cUb9z5VIgT5bC3c7Kc8XYT9PRIYm9uhF2cawTytA+LLC9GYJMt5jc5nYKDsJLzcOn2
-	 +LoJNrvv+dVlmX/MzxNlEQamZooeOeMlq7/aa4uWYOedDUylJvasepXktDtifWt+Hw
-	 obOgwDjHstjkEzlU9nqPrTDH/uR1biK3+vvZJuMxyQcCyqGt+XWe6fJ43wKvDdcqvL
-	 zXdtW9BTCB+XQ==
-Date: Thu, 18 Jun 2026 11:51:56 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1781802041; c=relaxed/simple;
+	bh=/mutgZL9lgn7/Kt30wwqo3XImwb5c0U6/NKTa9jeqqU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Jokv4iz+7dAOxmEJkzbh0yj4pLhT23ubgloHnLe0MO0+9LxmRXehc17IFPZwi442Oy8Cxr9MHhExPtDPth7qwg7ElzOCJOQyLbR8RvLpu1ANwsymSybBbX8MQCacZ9Ps8FW2XtfbAvp1jljYbf7qXg7rvjG9iyTQvXEbDd9ciys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Y+mULUnx; arc=none smtp.client-ip=209.85.221.176
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-59ecd51117dso979287e0c.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 10:00:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1781802039; x=1782406839; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZcqBl9MGo5keDsaGunZf7Kbn8uQHXFUIROLGD7+Cdxs=;
+        b=Y+mULUnxzaCXQpwtpntDnlem3giltkHwA4Q3s9skYRmhQ7yDwOjMBP+Aqk64dheDrO
+         1tVMBhf2QS/ThrlxKr1+ofMbP8eMlQI1la6CtbgJwiavqPZ/VNeEAdpQg7qhHjd26Y60
+         hor/H5UjIaXDrmxwiRMkTKE9bvmofGCqSAOVM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781802039; x=1782406839;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ZcqBl9MGo5keDsaGunZf7Kbn8uQHXFUIROLGD7+Cdxs=;
+        b=OeEA1+l13MkOgfcYOXcyW7pmC1tzcFt08QH54WNxkk58GRNTcGZreM6gtVUj1V6Zfe
+         X7wfR8c43YUbkvIqDoduRFrZ/7vK96lboB+z3+NsGNYEE2esZTiYib3JsZ1AcnmMQRge
+         KegqhEOvv+68GFYyuG5nJuIs09XbJ+yAupUeGVzfZkw2H6U+C1Mv5u7B6GGSFq1WRt/v
+         tbsNO5okOdWzAjGj8fNZMKV8pUwW0w3MqduwYecOXpRyjGO5a1UlnjSL9J+7F9tLNNA9
+         TOKyLjeL/YB8N0kOz1IYf1DmRdaWUkCl2rnWfDuiLdq7+svMpU7vLdGW+qEKNL5dR2yQ
+         f4fw==
+X-Forwarded-Encrypted: i=1; AFNElJ+B9qLJh0l5usFT+nK28+8LCynIFoPt1QHJf2O53vAaouRiR7NUNybOdgbSlf2SNziUEWBzcsI1V32I@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzypOv2DnmGBF7CfAtTyiWnDToXQQA0v3JAysQJ1SbtpgeyIDr
+	k8luAbqTY4wDtiYnCXo8heKH7d0H1Anktp17L3A1d3cCpbbei16V7z+4vf7XJdIph3sN0uPShvm
+	coF0=
+X-Gm-Gg: AfdE7ck41Ioz+D+IM0n4RLnV8tSWwccb4ylCcT4NfXiL2jd/+w9uZtxz6IqMxBjk43m
+	o8XajLPfumA9/DQsZSMGz6XhyJMu4MPJP6h60wiMQHLljh1SQSu0Tg0f2+2ju+ynEVNUfm1LkZR
+	ygMleH22z6hcv0cfcsvyoMPsJqobbdHNoSnrSpPQPznzS47eslGAQegKWk6Ch1h/5vd0wHvUuyx
+	ygbJa76ZGKDy/4KLO8dp060dikqUBG+xp0gpxVnq8nb/JTQK//RLPkhuR/8C4TEz3mVdcK0Lqm+
+	ejZp4M4UZDJCs/EGMqWQ+jfuErAkx1cE67mu1tHeqz3mzWmWodW/GamUOWgv08eqPn00o1H1nel
+	vPdrfl5qRBvfkvJfiqCaODTNef94MCfcHfCKihmg+njbeoxyVTm9CYNMW6sbcd44tRMHnQRpQJF
+	4EXjaUTIjW5EhexLoJOysaam0mb5XQrGpKViaxoqbV5B9hcvqz9P+amEk=
+X-Received: by 2002:a05:6122:e20e:b0:575:f155:8cd4 with SMTP id 71dfb90a1353d-5bbd27276famr2102730e0c.0.1781802033160;
+        Thu, 18 Jun 2026 10:00:33 -0700 (PDT)
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com. [209.85.221.177])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5bbea3b46f6sm72052e0c.14.2026.06.18.10.00.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Jun 2026 10:00:31 -0700 (PDT)
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-5bbe617d624so267602e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Jun 2026 10:00:31 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8k7MHwl+KcrIf6neBh3BSooXfHEDB02PhhG6xg9y/ekh2d08eJyUEhN3+espT+dUTKxKKeXcAXxUMU@vger.kernel.org
+X-Received: by 2002:a05:6122:630c:10b0:5a2:497:328e with SMTP id
+ 71dfb90a1353d-5bbd2b3cf4bmr1469561e0c.6.1781802030784; Thu, 18 Jun 2026
+ 10:00:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, dri-devel@lists.freedesktop.org, 
- linux-pm@vger.kernel.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- David Airlie <airlied@gmail.com>, linux-arm-kernel@lists.infradead.org, 
- Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
- devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>, 
- dmaengine@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>, 
- Mark Brown <broonie@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
- Vinod Koul <vkoul@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Linus Walleij <linusw@kernel.org>
-In-Reply-To: <20260618-ux500-power-domains-v7-1-v1-1-eb5e50b1a588@kernel.org>
-References: <20260618-ux500-power-domains-v7-1-v1-0-eb5e50b1a588@kernel.org>
- <20260618-ux500-power-domains-v7-1-v1-1-eb5e50b1a588@kernel.org>
-Message-Id: <178180151626.1898523.11669770093439143903.robh@kernel.org>
-Subject: Re: [PATCH 01/11] dt-bindings: power: Convert Ux500 PM domains to
- schema
+References: <20260605-topic-sm8650-ayaneo-pocket-s2-r63419-v7-0-b84b6da84293@linaro.org>
+ <20260605-topic-sm8650-ayaneo-pocket-s2-r63419-v7-2-b84b6da84293@linaro.org>
+In-Reply-To: <20260605-topic-sm8650-ayaneo-pocket-s2-r63419-v7-2-b84b6da84293@linaro.org>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 18 Jun 2026 10:00:19 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W5FgXGznH1+SA74WOfAUXaAggaJi=ds8udqZ69K3i=Ow@mail.gmail.com>
+X-Gm-Features: AVVi8Ce_ut-32lQvTeJIIrgccY3EJcV-YqwYkYCDQTO3z8hfvNAAO1n3hS3X_Xs
+Message-ID: <CAD=FV=W5FgXGznH1+SA74WOfAUXaAggaJi=ds8udqZ69K3i=Ow@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] drm: panel: add support for the Renesas R63419
+ based dual-DSI video mode Display Panels
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jessica Zhang <jesszhan0024@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, KancyJoe <kancy2333@outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313563-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-313564-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-pm@vger.kernel.org,m:maarten.lankhorst@linux.intel.com,m:airlied@gmail.com,m:linux-arm-kernel@lists.infradead.org,m:ulfh@kernel.org,m:Frank.Li@kernel.org,m:devicetree@vger.kernel.org,m:mripard@kernel.org,m:dmaengine@vger.kernel.org,m:tzimmermann@suse.de,m:broonie@kernel.org,m:simona@ffwll.ch,m:vkoul@kernel.org,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:linusw@kernel.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:jesszhan0024@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:kancy2333@outlook.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[dianders@chromium.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,glider.be,lists.freedesktop.org,vger.kernel.org,oss.qualcomm.com,outlook.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,lists.freedesktop.org,vger.kernel.org,linux.intel.com,gmail.com,lists.infradead.org,suse.de,ffwll.ch];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dianders@chromium.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,chromium.org:dkim,chromium.org:from_mime,outlook.com:email,vger.kernel.org:from_smtp,mail.gmail.com:mid,linaro.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 97F956A1AF6
+X-Rspamd-Queue-Id: 75EE36A1BEE
+
+Hi,
+
+On Fri, Jun 5, 2026 at 7:51=E2=80=AFAM Neil Armstrong <neil.armstrong@linar=
+o.org> wrote:
+>
+> From: KancyJoe <kancy2333@outlook.com>
+>
+> Implement support for the Renesas 63419 based dual-DSI video mode
+> Display Panels found in the Ayaneo gaming handled devices.
+>
+> Signed-off-by: KancyJoe <kancy2333@outlook.com>
+
+I notice "Kancy Joe" has a space in the source files, but not in the
+signoff. I guess Signed-off-by isn't necessarily required to be real
+names these days, but still seems odd...
 
 
-On Thu, 18 Jun 2026 07:00:47 +0200, Linus Walleij wrote:
-> Convert the legacy Ux500 power domain text binding to YAML.
-> 
-> Move it under bindings/power.
-> 
-> Reference the generic power-domain schema.
-> 
-> Update MAINTAINERS for the new path.
-> 
-> Assisted-by: Codex:gpt-5-5
-> Signed-off-by: Linus Walleij <linusw@kernel.org>
-> ---
->  .../devicetree/bindings/arm/ux500/power_domain.txt | 35 ----------------
->  .../power/stericsson,ux500-pm-domains.yaml         | 46 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  3 files changed, 47 insertions(+), 35 deletions(-)
-> 
+> +/*
+> + * Helper to switch between DSI links, so we share a single dsi_ctx
+> + * for both links, so in case of an error all writes & sleep for
+> + * both links are ignored.
+> + */
+> +static inline void dsi_link_switch(struct renesas_r63419_panel *ctx,
+> +                                  struct mipi_dsi_multi_context *dsi_ctx=
+,
+> +                                  unsigned int link)
+> +{
+> +       dsi_ctx->dsi =3D ctx->dsi[link];
+> +}
+> +
+> +static int renesas_r63419_on(struct renesas_r63419_panel *ctx)
+> +{
+> +       struct mipi_dsi_multi_context dsi_ctx =3D { 0 };
+> +
+> +       /* Panel registers are loaded from DDIC Non Volatile Memory */
+> +
+> +       dsi_link_switch(ctx, &dsi_ctx, 0);
+> +       mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> +       dsi_link_switch(ctx, &dsi_ctx, 1);
+> +       mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Instead of dsi_link_switch(), can't you use the mipi_dsi_dual()
+function? I think it would be:
 
-yamllint warnings/errors:
+mipi_dsi_dual(mipi_dsi_dcs_exit_sleep_mode_multi, dsi_ctx,
+ctx->dsi[0], ctx->dsi[1]);
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/power/stericsson,ux500-pm-domains.example.dts:25.28-28.11: Warning (unit_address_vs_reg): /example-0/sdi0_per1@80126000: node has a unit name, but no reg or ranges property
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/stericsson,ux500-pm-domains.example.dtb: sdi0_per1@80126000 (arm,pl18x): $nodename:0: 'sdi0_per1@80126000' does not match '^mmc(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/mmc/arm,pl18x.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/stericsson,ux500-pm-domains.example.dtb: sdi0_per1@80126000 (arm,pl18x): 'oneOf' conditional failed, one must be fixed:
-	'interrupts' is a required property
-	'interrupts-extended' is a required property
-	from schema $id: http://devicetree.org/schemas/mmc/arm,pl18x.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/stericsson,ux500-pm-domains.example.dtb: sdi0_per1@80126000 (arm,pl18x): 'reg' is a required property
-	from schema $id: http://devicetree.org/schemas/mmc/arm,pl18x.yaml
 
-doc reference errors (make refcheckdocs):
+> +static int renesas_r63419_disable(struct drm_panel *panel)
+> +{
+> +       struct renesas_r63419_panel *ctx =3D to_renesas_r63419_panel(pane=
+l);
+> +       struct mipi_dsi_multi_context dsi_ctx =3D { 0 };
+> +
+> +       dsi_link_switch(ctx, &dsi_ctx, 0);
+> +       mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
+> +       dsi_link_switch(ctx, &dsi_ctx, 1);
+> +       mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
+> +       mipi_dsi_msleep(&dsi_ctx, 50);
+> +
+> +       dsi_link_switch(ctx, &dsi_ctx, 0);
+> +       mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
+> +       dsi_link_switch(ctx, &dsi_ctx, 1);
+> +       mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
+> +       mipi_dsi_msleep(&dsi_ctx, 120);
+> +
+> +       return dsi_ctx.accum_err;
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260618-ux500-power-domains-v7-1-v1-1-eb5e50b1a588@kernel.org
+I'm not sure we've been terribly consistent, but should the above be
+"return 0"? I'm not actually sure there's any benefit to a panel's
+disable() function returning an error to begin with.
+drm_panel_disable() doesn't return an error, so all this does is skip
+setting "panel->enabled" to false and make it harder for the system to
+recover.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> +static int renesas_r63419_prepare(struct drm_panel *panel)
+> +{
+> +       struct renesas_r63419_panel *ctx =3D to_renesas_r63419_panel(pane=
+l);
+> +       int ret;
+> +
+> +       ret =3D regulator_bulk_enable(ARRAY_SIZE(renesas_r63419_vdd_suppl=
+ies),
+> +                                   ctx->vdd_supplies);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       usleep_range(1000, 2000);
+> +
+> +       ret =3D regulator_bulk_enable(ARRAY_SIZE(renesas_r63419_vcc_suppl=
+ies),
+> +                                   ctx->vcc_supplies);
+> +       if (ret < 0) {
+> +               regulator_bulk_disable(ARRAY_SIZE(renesas_r63419_vdd_supp=
+lies),
+> +                                      ctx->vdd_supplies);
+> +               return ret;
+> +       }
+> +
+> +       usleep_range(1000, 2000);
+> +
+> +       gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +
+> +       usleep_range(3000, 4000);
+> +
+> +       ret =3D renesas_r63419_on(ctx);
+> +       if (ret < 0) {
+> +               dev_err(panel->dev, "Failed to initialize panel: %d\n", r=
+et);
+> +
+> +               /* Power off sequence from the r63419 datasheet */
+> +               regulator_bulk_disable(ARRAY_SIZE(renesas_r63419_vcc_supp=
+lies),
+> +                                      ctx->vcc_supplies);
+> +               regulator_bulk_disable(ARRAY_SIZE(renesas_r63419_vdd_supp=
+lies),
+> +                                      ctx->vdd_supplies);
+> +
+> +               gpiod_set_value_cansleep(ctx->reset_gpio, 1);
 
-pip3 install dtschema --upgrade
+To make de-init opposite to init, shouldn't the reset come before you
+turn the regulators off? Depending on the design of the panel, I'd
+imagine this could prevent back-powering some logic?
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+I'd also expect vdd supplies to be turned off first?
 
+
+> +static int renesas_r63419_unprepare(struct drm_panel *panel)
+> +{
+> +       struct renesas_r63419_panel *ctx =3D to_renesas_r63419_panel(pane=
+l);
+> +
+> +       /* Power off sequence from the r63419 datasheet */
+> +       regulator_bulk_disable(ARRAY_SIZE(renesas_r63419_vcc_supplies), c=
+tx->vcc_supplies);
+> +       regulator_bulk_disable(ARRAY_SIZE(renesas_r63419_vdd_supplies), c=
+tx->vdd_supplies);
+> +
+> +       gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+
+Similar: shouldn't the reset come before the regulators to make
+power-off the opposite of init.
+
+
+> +static int renesas_r63419_get_modes(struct drm_panel *panel,
+> +                                   struct drm_connector *connector)
+> +{
+> +       struct renesas_r63419_panel *ctx =3D to_renesas_r63419_panel(pane=
+l);
+> +       const struct drm_display_mode *mode =3D ctx->desc->mode;
+> +
+> +       drm_connector_set_panel_orientation(connector, ctx->orientation);
+
+IIRC, the above was a workaround that caused a warning splat. Is your
+panel used on a system that actually needs it? Could your DRM driver
+be fixed rather than persisting this hack? For context, see commit
+47bef230225b ("drm/panel: panel-edp: Implement .get_orientation
+callback")
+
+
+> +static int renesas_r63419_probe(struct mipi_dsi_device *dsi)
+> +{
+> +       struct mipi_dsi_device_info info =3D { };
+> +       struct device *dev =3D &dsi->dev;
+> +       struct renesas_r63419_panel *ctx;
+> +       struct device_node *dsi1_node;
+> +       struct mipi_dsi_host *dsi1_host;
+> +       int ret, i;
+> +
+> +       ctx =3D devm_drm_panel_alloc(dev, struct renesas_r63419_panel, pa=
+nel,
+> +                                  &renesas_r63419_panel_funcs, DRM_MODE_=
+CONNECTOR_DSI);
+> +       if (IS_ERR(ctx))
+> +               return PTR_ERR(ctx);
+> +
+> +       ctx->desc =3D of_device_get_match_data(dev);
+> +       if (!ctx->desc)
+> +               return dev_err_probe(dev, -ENODEV,
+> +                                    "Failed to get panel description\n")=
+;
+> +
+> +       ret =3D devm_regulator_bulk_get_const(&dsi->dev,
+> +                                           ARRAY_SIZE(renesas_r63419_vdd=
+_supplies),
+> +                                           renesas_r63419_vdd_supplies, =
+&ctx->vdd_supplies);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       ret =3D devm_regulator_bulk_get_const(&dsi->dev,
+> +                                           ARRAY_SIZE(renesas_r63419_vcc=
+_supplies),
+> +                                           renesas_r63419_vcc_supplies, =
+&ctx->vcc_supplies);
+> +       if (ret < 0)
+> +               return ret;
+
+It seems like both sets of supplies are always enabled / disabled
+together with no delay between them. Do you truly need two lists, or
+can this be combined to one list of regulators. That would simplify a
+bunch of logic.
+
+
+> +       ctx->reset_gpio =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +       if (IS_ERR(ctx->reset_gpio))
+> +               return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
+> +                                    "Failed to get reset gpio\n");
+> +
+> +       /* Get second DSI host */
+> +       dsi1_node =3D of_graph_get_remote_node(dsi->dev.of_node, 1, -1);
+> +       if (!dsi1_node)
+> +               return dev_err_probe(dev, -ENODEV,
+> +                                    "Failed to get remote node for secon=
+d DSI\n");
+> +
+> +       dsi1_host =3D of_find_mipi_dsi_host_by_node(dsi1_node);
+> +       of_node_put(dsi1_node);
+> +       if (!dsi1_host)
+> +               return dev_err_probe(dev, -EPROBE_DEFER,
+> +                                    "Failed to find second DSI host\n");
+> +
+> +       /* Copy current DSI info, do not provide OF node since no driver =
+needs to be attached */
+> +       strscpy(info.type, dsi->name, sizeof(info.type));
+
+Can't you use the two-argument form of strscpy()?
+
+FWIW, I also notice that the Sashiko AI bot had some comments. Did you
+already look all of those over and decide they don't need fixing? I
+have a vague recollection that there's no need to worry about someone
+calling disable() and then enable() without going through the
+unprepare() / prepare(). If my memory is correct, I guess that would
+be nice to document... I didn't analyze some of the other claims that
+the AI bot had.
+
+
+-Doug
 
