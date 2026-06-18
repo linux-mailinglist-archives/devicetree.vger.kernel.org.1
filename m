@@ -1,120 +1,163 @@
-Return-Path: <devicetree+bounces-313645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313646-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tH2PONhrNGoNXwYAu9opvQ
-	(envelope-from <devicetree+bounces-313645-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 00:06:16 +0200
+	id 7lWQD8ZtNGrTXwYAu9opvQ
+	(envelope-from <devicetree+bounces-313646-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 00:14:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 341336A2E24
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 00:06:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C44496A2EA7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 00:14:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=lg484fft;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313645-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-313645-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=I8L3CRmu;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313646-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-313646-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6557A3008081
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 22:06:13 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 073E83003D29
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 22:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C4F30DD2F;
-	Thu, 18 Jun 2026 22:06:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 942D1341057;
+	Thu, 18 Jun 2026 22:14:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C10140D59E;
-	Thu, 18 Jun 2026 22:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885B215A85A;
+	Thu, 18 Jun 2026 22:14:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781820372; cv=none; b=FmB+P/PePd7en4mNNL1YcEKgwEzzV7kHgn8p24EiGCBhMTUO9dD1qAo//0ps6p1ZNIWydTLG0Nxvjuk/wMm+wX+veG6fNfF6gBMfwfqVwwfCgZQ26WhonH/Y6iqSIiLEX0dhsDQbCvJ6nmSro8qr+0PcZYGVgHb3+WSP4+Xv/0o=
+	t=1781820866; cv=none; b=evAJYF8wJfQ0p9FEnFwmur7Ii4HuuWwLUIlQSj4tPfYvM6LPArNNs/53G6BoDeaGY0ClqyUCBzwiARLV7/NsELOESBfHjQcdqtNdpis2yfI5CqYzvwc/JZG1nhNzDf+gqfsZSMv2ngF9KQyNPSW7O//LpPvM9oSN2+yHZ7erTRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781820372; c=relaxed/simple;
-	bh=S+unlq7k3YvuMOhvSJrd4abYTtkkonRGAbMOXY6lyeo=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=l/LMB9W6SuqdX7Igyy2XK8Fs6YpHlPVM2twk5yv88EEJvN2mMsxFvEDFzKKUDcha/zVHzyMHCRMzjctC8KR/XSIp94cTwdXb1tbpgwIRvHDufBwFO3Gg09PPQNhVru/19aEUFsEWQyRkUcRM78eoymIO0Te4rKux0E2KBWMvDb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lg484fft; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE45F1F00A3D;
-	Thu, 18 Jun 2026 22:06:10 +0000 (UTC)
+	s=arc-20240116; t=1781820866; c=relaxed/simple;
+	bh=FSeD4FLEzQXxH6NdAi3KJUJf4e/24qr9YHL4I3rCRk0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MbqTJ5XLJiZO6kRL++hU0/4IVstsBvB7+cRAfNt81GF4oemHAeY16qdnIJ/LLBu2HmBzNWhJq6lSaI4Xd+w9JcwF/y8vYaWbjhjBK4YzoEbQgg1SQrU39lcFHW3BOx0bnEOqOfGJm51T+cDaP5X/gYXUh2NcJp29ZCryZezlZUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I8L3CRmu; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDEEA1F000E9;
+	Thu, 18 Jun 2026 22:14:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781820371;
-	bh=S+unlq7k3YvuMOhvSJrd4abYTtkkonRGAbMOXY6lyeo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=lg484fftJJLHCWviMlsl0+Kuwk4Ezu4LMiGItCwFD0AOQ60MauNzsYEZB01S3canH
-	 KlOfPhrGV787MqylgpaOw67noiOMnNFBcZeUgxUlTSWrCi4/TpTOAJujq+3sX+hahq
-	 U6/Qb8V6TrkcsX+PCIuPNDDT5aNsH5AhOG7B26owSgagJNYDTG+iSnXhgdZslIvhnX
-	 anVCxWapBLaTGHWTnZsOTQQPk3ZHdwAFHE3jZhrX3hoHeB8ulx4Wl7pAppgVvZ/Hq+
-	 Nv9o8JgzK4gau1bWkYZmPr7rzz+Cl6i3FC0P2G5wHM/2oRjimrlebQUIl5lgVycdKd
-	 BsadtGj2Pq0nQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: qcom: Document the Hawi PCIe
- Controller
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Matthew Leung" <matthew.leung@oss.qualcomm.com>
-Cc: conor+dt@kernel.org, linux-pci@vger.kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260618-hawi-pcie-v3-1-f31880bfb3ec@oss.qualcomm.com>
-References: <20260618-hawi-pcie-v3-0-f31880bfb3ec@oss.qualcomm.com>
- <20260618-hawi-pcie-v3-1-f31880bfb3ec@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 18 Jun 2026 22:06:10 +0000
-Message-Id: <20260618220610.BE45F1F00A3D@smtp.kernel.org>
+	s=k20260515; t=1781820865;
+	bh=RJN9fmk/nbRMzWrPea76BTBFaLMq88wd92t9s7CSLxE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=I8L3CRmuUmqLdVzTXIXP7IKyew2bqbUwmgHy0PlnETUmenge9CtJ+I4DoHPO0R0bN
+	 fKnaca7iQ2QppZpwwhLSURqUqKVFvVhBH1O/RXUBzm6EDjXoxXe5SSuvx+a9ETcAss
+	 zPN6+93JJBkhsuC6c+CYeFdvPOHaQjTP2iKqJqqJqMr+hgtXwCnLffCYQ4GRFfynw1
+	 4kW70g0diDha89Cp5HGaUTt5GVZlMqaz3uolhPyxggV9ooV5vOr6WHDkgMZaImCTeP
+	 9jXyq59aO7mCawK62/LLlzHxAZDMEc76jm/n3vCylrrnAqAazkKrcj/jjF4cTOE1pP
+	 SZC2Ir0/tZmcg==
+Message-ID: <39e90d95-0bae-4eb8-96d4-6e39aae432b2@kernel.org>
+Date: Thu, 18 Jun 2026 23:14:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] dt-bindings: sound: qcom,q6apm-dai: add optional
+ qcom,vmid
+To: Ajay Kumar Nandam <ajay.nandam@oss.qualcomm.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mohammad.rafi.shaik@oss.qualcomm.com
+References: <20260609064038.492641-1-ajay.nandam@oss.qualcomm.com>
+ <20260609064038.492641-2-ajay.nandam@oss.qualcomm.com>
+Content-Language: en-US
+From: Srinivas Kandagatla <srini@kernel.org>
+In-Reply-To: <20260609064038.492641-2-ajay.nandam@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-313645-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313646-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email,smtp.kernel.org:mid];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:matthew.leung@oss.qualcomm.com,m:conor+dt@kernel.org,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ajay.nandam@oss.qualcomm.com,m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:mohammad.rafi.shaik@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com,perex.cz,suse.com];
+	FORGED_SENDER(0.00)[srini@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[srini@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 341336A2E24
+X-Rspamd-Queue-Id: C44496A2EA7
 
-> Add a dedicated schema for the PCIe controllers found on the Hawi
-> platform.
->=20
-> Signed-off-by: Matthew Leung <matthew.leung@oss.qualcomm.com>
 
-Sashiko has reviewed this patch and found no issues. It looks great!
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618-hawi-pcie-=
-v3-0-f31880bfb3ec@oss.qualcomm.com?part=3D1
+On 6/9/26 7:40 AM, Ajay Kumar Nandam wrote:
+> Add an optional qcom,vmid property for q6apm-dais nodes to describe
+> additional VMIDs that should be granted access to PCM DMA buffers.
+> 
+> The property is optional and bounded, and driver-side validation will
+> reject invalid values such as including HLOS in the list or VMIDs that
+> exceed 31, matching current SCM source-permission mask handling.
+
+This is totally sounding like non-human text and not really adding any
+value other than word count to the commit log.
+
+It would be simple and clean to describe  why this property is needed
+and which platforms would be benifit from this.
+
+> 
+> Signed-off-by: Ajay Kumar Nandam <ajay.nandam@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/sound/qcom,q6apm-dai.yaml      | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml b/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+> index 9e5b30d9c6e6..b767625985a7 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+> @@ -20,6 +20,16 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>  
+> +  qcom,vmid:
+> +    description: Optional list of destination VMIDs to share PCM DMA buffers with.
+> +      HLOS retains RW access as source owner and must not be listed.
+Description is not clear and accurate, this property is mandatory on
+some platforms where we have mDSP providing audio services.
+
+Pl remove HLOS and expand VMID.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    items:
+> +      minimum: 1
+> +      maximum: 31
+Why is the max value 31, do you have predefined list of VMIDs ?
+> +    minItems: 1
+> +    maxItems: 8
+> +
+>  required:
+>    - compatible
+>    - iommus
 
 
