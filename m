@@ -1,673 +1,413 @@
-Return-Path: <devicetree+bounces-313356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313359-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id r9xAIUq/M2rbFgYAu9opvQ
-	(envelope-from <devicetree+bounces-313356-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 11:50:02 +0200
+	id 2bEwNE7BM2oyFwYAu9opvQ
+	(envelope-from <devicetree+bounces-313359-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 11:58:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F8C569EFCB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 11:50:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F87B69F0AF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 11:58:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=CzFUZtO6;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313356-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313356-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kZgGUy0K;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313359-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313359-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 075AE302D91D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 09:49:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8003B3021704
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jun 2026 09:51:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F061D3E6DD2;
-	Thu, 18 Jun 2026 09:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A76A3DEACC;
+	Thu, 18 Jun 2026 09:51:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 646303E92B4;
-	Thu, 18 Jun 2026 09:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC463BCD27;
+	Thu, 18 Jun 2026 09:51:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781776156; cv=none; b=G6+pctpybBH6uxP2AFSJqVjCunHKWiR5gth+7RWa3GNbtiTz5M6X+Zg2lo08Vihw/k9GeU+85hKIdEXeEe0NJXzPIU56VqIt4vDJhv93jTv5txIQbIgbygyf3Jm0a09Hdu6tAydSjtASm9OLDp1QPteYlKi8eMXx9l6kFQvZnPI=
+	t=1781776264; cv=none; b=cYgXlDh49tn4dZnCC+afdjYgoCPFYftovrKmE/Yrnag9FW85cR480Te9+3HQpGn/Rb3UKsIFMyvzt+v+g//6MC5l5NpScFTufTQFutDi99n9HTvNAHhMcCyh1akgBs0+oyQ4ATg0IyVoricQspI7DgqOq3gJp3U2OVVX/Nr26I0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781776156; c=relaxed/simple;
-	bh=0RWEVaIbZOzZnnqSVtnxveDV4NPftCNbCg3O3EZkSAs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=r1pIBP5ZbqDXooWjM7CKnEgFqWrKX3ciK37N5dHaW5F7YP2cE/061uKnHpvaHUwFHsvnxVd+J0UTgRsX1eisxYBQ9L4luYRMtiQdEh0Ysx2T+tSOrXD6w3bffo8M/nbdAn1fWGWc5NZyI/bhL+qYimtHfggOF1LmZmTGJTxn4pc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CzFUZtO6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id ECFDEC2BCB0;
-	Thu, 18 Jun 2026 09:49:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1781776156;
-	bh=0RWEVaIbZOzZnnqSVtnxveDV4NPftCNbCg3O3EZkSAs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=CzFUZtO6mPNSQvAEM6G76uG9lGnnfbC2XUn5G2kwQtr9M8oICXoE7ubeGlQHscWZf
-	 DWHQGM1lHAuYvlddC9hMp6EfSFI0O+qP7aQwDr98eLcdZYKm8KyBwifnt5+s+3ep9v
-	 qld/DI/2kTtDiBiDRQ9u+cMJIDGvSuoaNhlcS/Gvo5MnJc7LB1fP9W0SkVBAl3ZXY4
-	 /WVTbZTl0PiqZLLdkjYrpFwvjHhw03DZcV+uiMDSzwtzxFHexHhakeJIdyEQ5SJDKE
-	 0wugMw7DMd+EN9L0fPJ9pKkm4enoY98PWfWTiecFeeKA+d8DXM1cOWWV6kztqmDN/r
-	 b8uqSEk2IUI4w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA0A1CD98F7;
-	Thu, 18 Jun 2026 09:49:15 +0000 (UTC)
-From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
-Date: Thu, 18 Jun 2026 17:49:12 +0800
-Subject: [PATCH v4 2/2] clk: amlogic: Add A9 AO clock controller driver
+	s=arc-20240116; t=1781776264; c=relaxed/simple;
+	bh=hcHgPb498P8dG0Sn5AiKY9+iU4DmVIzjP9mh+8ZIjXI=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=eUH8ieqpLv4jZ30hVyDdFuo9GO25fal4nfBOGRU0QAycWKOvzOj2ks7Afabat7LjDLTnnDvd/4C8rqOvRZOd55J8iN3X9oPpLjNyukHKbuoOekw/bKjInyRnrn1YTivD+Fz2YSmtoazST8UeuK/GMkG6RkPgGcH+fmBd5Fkd6vQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kZgGUy0K; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D5BB1F000E9;
+	Thu, 18 Jun 2026 09:51:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781776262;
+	bh=Px7uBQSwaCKD4AtRlrlKDSY5TFnMd9l5KwkZ0WqeCfg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=kZgGUy0KyTKQOA08P7zjHpbjQE2jf36GqkmJRdo0DlDT2VUFfUefO+mEcIlBLIwCn
+	 /zlcXspa33jgI35QU6GRbJnZH0DtM+4LaAEizBBrKx4ALjNua14AA2cJBBqO+OrmCN
+	 x10iciJKjCJKbsI4/rO12XiUsH0bPQ0W30QVeQBgXtvXOQp6bGktuCU2uIQFzlKfB8
+	 NvEtjzphk6T3NTYiOQnpx/cRDfKz+Du3qQ5JOHeZo222UTcNA6ugpyq/r40jCkHX+Z
+	 O+Xty9hU66avSmgIAppts5lxbeme2bcDv/9GdLI0sHbCcCy9PhY/pL7ACGo8SP7NKw
+	 2vQTJ75dhIKxw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v10 4/4] media: nxp: Add i.MX95 CSI pixel formatter v4l2
+ driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: guoniu.zhou@oss.nxp.com
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, robh@kernel.org, Frank.Li@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260618-csi_formatter-v10-4-f23830312ba5@oss.nxp.com>
+References: <20260618-csi_formatter-v10-0-f23830312ba5@oss.nxp.com>
+ <20260618-csi_formatter-v10-4-f23830312ba5@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 18 Jun 2026 09:51:01 +0000
+Message-Id: <20260618095102.3D5BB1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260618-a9_aoclk-v4-2-569d0425e50c@amlogic.com>
-References: <20260618-a9_aoclk-v4-0-569d0425e50c@amlogic.com>
-In-Reply-To: <20260618-a9_aoclk-v4-0-569d0425e50c@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1781776153; l=16855;
- i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
- bh=8IzDVI4H0mFX3sbIz0bOCYoadn+kfowXDMruktUu24E=;
- b=YLpaiyBN/aw5LrSJ3/gAl1VlU+79OI/kesDrEdSfD4kcJfDQxtGZPPOfV7LkDr2jcBao2j2fj
- DP/xH4qQqi7A2/nd3ibWPmgfcxgeAOygYRNOPAUN6GXYEYOEYsrvkhu
-X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
- pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
-X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
- auth_id=735
-X-Original-From: Jian Hu <jian.hu@amlogic.com>
-Reply-To: jian.hu@amlogic.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,kernel.org,amlogic.com,googlemail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:jbrunet@baylibre.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:xianwei.zhao@amlogic.com,m:khilman@baylibre.com,m:martin.blumenstingl@googlemail.com,m:linux-amlogic@lists.infradead.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:jian.hu@amlogic.com,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313356-lists,devicetree=lfdr.de,jian.hu.amlogic.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[jian.hu@amlogic.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-313359-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid];
+	FORGED_RECIPIENTS(0.00)[m:guoniu.zhou@oss.nxp.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,amlogic.com:replyto,amlogic.com:email,amlogic.com:mid]
+	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1F8C569EFCB
+X-Rspamd-Queue-Id: 2F87B69F0AF
 
-From: Jian Hu <jian.hu@amlogic.com>
+Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+s) to consider:
+- [Critical] SINK and SOURCE stream masks are conflated, leading to a guara=
+nteed NULL pointer dereference.
+- [Critical] Missing NULL pointer checks for `v4l2_subdev_state_get_format(=
+)` allow unprivileged userspace to trigger kernel crashes.
+- [High] Direct register writes to `CSI_VC_PIXEL_DATA_TYPE` corrupt hardwar=
+e state for multiplexed streams sharing the same Virtual Channel.
+- [High] The driver incorrectly bounds logical stream iteration to the hard=
+ware Virtual Channel count, leading to silent stream configuration failures=
+ and out-of-bounds array access potential.
+- [High] Missing `.unbind` callback in the async notifier operations leaves=
+ a dangling pointer to the remote subdevice, resulting in a Use-After-Free.
+- [Medium] The driver breaks UAPI by returning `-EINVAL` when setting a for=
+mat on an unrouted pad, breaking standard userspace pipeline configuration =
+flows.
+- [Medium] Mixing `goto`-based error handling with scope-based cleanup help=
+ers (`__free()` and `guard()`).
+--
 
-Add the Always-on clock controller driver for the Amlogic A9 SoC family.
+commit 91d3a7fba60671cec5f0a95a21622c4761779af5
+Author: Guoniu Zhou <guoniu.zhou@nxp.com>
+Date:   Thu Jun 18 09:41:38 2026 +0000
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
----
- drivers/clk/meson/Kconfig    |  13 ++
- drivers/clk/meson/Makefile   |   1 +
- drivers/clk/meson/a9-aoclk.c | 488 +++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 502 insertions(+)
+    media: nxp: Add i.MX95 CSI pixel formatter v4l2 driver
 
-diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-index cf8cf3f9e4ee..b71299898197 100644
---- a/drivers/clk/meson/Kconfig
-+++ b/drivers/clk/meson/Kconfig
-@@ -132,6 +132,19 @@ config COMMON_CLK_A1_PERIPHERALS
- 	  device, A1 SoC Family. Say Y if you want A1 Peripherals clock
- 	  controller to work.
- 
-+config COMMON_CLK_A9_AO
-+	tristate "Amlogic A9 SoC AO clock controller support"
-+	depends on ARM64 || COMPILE_TEST
-+	default ARCH_MESON
-+	select COMMON_CLK_MESON_REGMAP
-+	select COMMON_CLK_MESON_CLKC_UTILS
-+	select COMMON_CLK_MESON_DUALDIV
-+	imply COMMON_CLK_SCMI
-+	help
-+	  Support for the AO clock controller on Amlogic A311Y3 based
-+	  device, AKA A9.
-+	  Say Y if you want A9 AO clock controller to work.
-+
- config COMMON_CLK_C3_PLL
- 	tristate "Amlogic C3 PLL clock controller"
- 	depends on ARM64
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index c6719694a242..f89d027c282c 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -19,6 +19,7 @@ obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
- obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
- obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
- obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
-+obj-$(CONFIG_COMMON_CLK_A9_AO) += a9-aoclk.o
- obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
- obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
- obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
-diff --git a/drivers/clk/meson/a9-aoclk.c b/drivers/clk/meson/a9-aoclk.c
-new file mode 100644
-index 000000000000..88aa8cf3f5d0
---- /dev/null
-+++ b/drivers/clk/meson/a9-aoclk.c
-@@ -0,0 +1,488 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-+/*
-+ * Copyright (C) 2026 Amlogic, Inc. All rights reserved
-+ */
-+
-+#include <dt-bindings/clock/amlogic,a9-aoclkc.h>
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+#include "clk-regmap.h"
-+#include "clk-dualdiv.h"
-+#include "meson-clkc-utils.h"
-+
-+#define AO_OSCIN_CTRL			0x00
-+#define AO_SYS_CLK0			0x04
-+#define AO_PWM_CLK_A_CTRL		0x1c
-+#define AO_PWM_CLK_B_CTRL		0x20
-+#define AO_PWM_CLK_C_CTRL		0x24
-+#define AO_PWM_CLK_D_CTRL		0x28
-+#define AO_PWM_CLK_E_CTRL		0x2c
-+#define AO_PWM_CLK_F_CTRL		0x30
-+#define AO_PWM_CLK_G_CTRL		0x34
-+#define AO_CEC_CTRL0			0x38
-+#define AO_CEC_CTRL1			0x3c
-+#define AO_RTC_BY_OSCIN_CTRL0		0x50
-+#define AO_RTC_BY_OSCIN_CTRL1		0x54
-+
-+#define A9_COMP_SEL(_name, _reg, _shift, _mask, _pdata) \
-+	MESON_COMP_SEL(a9_ao_, _name, _reg, _shift, _mask, _pdata, NULL, 0, 0)
-+
-+#define A9_COMP_DIV(_name, _reg, _shift, _width) \
-+	MESON_COMP_DIV(a9_ao_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
-+
-+#define A9_COMP_GATE(_name, _reg, _bit) \
-+	MESON_COMP_GATE(a9_ao_, _name, _reg, _bit, CLK_SET_RATE_PARENT)
-+
-+static struct clk_regmap a9_ao_xtal_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_OSCIN_CTRL,
-+		.bit_idx = 3,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "ao_xtal_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_xtal = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_OSCIN_CTRL,
-+		.mask = 0x1,
-+		.shift = 0,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_xtal",
-+		.ops = &clk_regmap_mux_ops,
-+		/* ext_32k is from external PAD, do not automatically reparent */
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .hw = &a9_ao_xtal_in.hw },
-+			{ .fw_name = "ext_32k", },
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_NO_REPARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_sys = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_OSCIN_CTRL,
-+		.mask = 0x1,
-+		.shift = 1,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_sys",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .hw = &a9_ao_xtal.hw },
-+			{ .fw_name = "sys", },
-+		},
-+		.num_parents = 2,
-+	},
-+};
-+
-+static const struct clk_parent_data a9_ao_pclk_parents = { .hw = &a9_ao_sys.hw };
-+
-+#define A9_AO_PCLK(_name, _bit, _flags)		       \
-+	MESON_PCLK(a9_ao_sys_##_name, AO_SYS_CLK0, _bit, \
-+		   &a9_ao_pclk_parents, _flags)
-+
-+/*
-+ * A9 integrates a low-power microprocessor (Always-on CPU: AOCPU). Some AO sys
-+ * clocks control the AOCPU modules. Mark the AOCPU-related clocks with
-+ * CLK_IS_CRITICAL to avoid them being disabled and impacting AOCPU functionality.
-+ * AOCPU-related clocks list:
-+ * - clktree
-+ * - rst_ctrl
-+ * - pad
-+ * - irq
-+ * - pwrctrl
-+ * - aocpu
-+ * - sram
-+ */
-+static A9_AO_PCLK(i3c,		0,	0);
-+static A9_AO_PCLK(rtc_reg,	1,	0);
-+static A9_AO_PCLK(clktree,	2,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(rst_ctrl,	3,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(pad,		4,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(rtc_dig,	5,	0);
-+static A9_AO_PCLK(irq,		6,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(pwrctrl,	7,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(pwm_a,	8,	0);
-+static A9_AO_PCLK(pwm_b,	9,	0);
-+static A9_AO_PCLK(pwm_c,	10,	0);
-+static A9_AO_PCLK(pwm_d,	11,	0);
-+static A9_AO_PCLK(pwm_e,	12,	0);
-+static A9_AO_PCLK(pwm_f,	13,	0);
-+static A9_AO_PCLK(pwm_g,	14,	0);
-+static A9_AO_PCLK(i2c_a,	15,	0);
-+static A9_AO_PCLK(i2c_b,	16,	0);
-+static A9_AO_PCLK(i2c_c,	17,	0);
-+static A9_AO_PCLK(i2c_d,	18,	0);
-+static A9_AO_PCLK(sed,		19,	0);
-+static A9_AO_PCLK(ir_ctrl,	20,	0);
-+static A9_AO_PCLK(uart_b,	21,	0);
-+static A9_AO_PCLK(uart_c,	22,	0);
-+static A9_AO_PCLK(uart_d,	23,	0);
-+static A9_AO_PCLK(uart_e,	24,	0);
-+static A9_AO_PCLK(spisg_0,	25,	0);
-+static A9_AO_PCLK(rtc_secure,	26,	0);
-+static A9_AO_PCLK(cec,		27,	0);
-+static A9_AO_PCLK(aocpu,	28,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(sram,		29,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(spisg_1,	30,	0);
-+static A9_AO_PCLK(spisg_2,	31,	0);
-+
-+static const struct clk_parent_data a9_ao_pwm_parents[] = {
-+	{ .hw = &a9_ao_xtal.hw },
-+	{ .fw_name = "fdiv5", },
-+	{ .fw_name = "fdiv4", },
-+	{ .fw_name = "fdiv3", }
-+};
-+
-+static A9_COMP_SEL(pwm_a, AO_PWM_CLK_A_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(pwm_a, AO_PWM_CLK_A_CTRL, 0, 8);
-+static A9_COMP_GATE(pwm_a, AO_PWM_CLK_A_CTRL, 8);
-+
-+static A9_COMP_SEL(pwm_b, AO_PWM_CLK_B_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(pwm_b, AO_PWM_CLK_B_CTRL, 0, 8);
-+static A9_COMP_GATE(pwm_b, AO_PWM_CLK_B_CTRL, 8);
-+
-+static A9_COMP_SEL(pwm_c, AO_PWM_CLK_C_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(pwm_c, AO_PWM_CLK_C_CTRL, 0, 8);
-+static A9_COMP_GATE(pwm_c, AO_PWM_CLK_C_CTRL, 8);
-+
-+static A9_COMP_SEL(pwm_d, AO_PWM_CLK_D_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(pwm_d, AO_PWM_CLK_D_CTRL, 0, 8);
-+static A9_COMP_GATE(pwm_d, AO_PWM_CLK_D_CTRL, 8);
-+
-+static A9_COMP_SEL(pwm_e, AO_PWM_CLK_E_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(pwm_e, AO_PWM_CLK_E_CTRL, 0, 8);
-+static A9_COMP_GATE(pwm_e, AO_PWM_CLK_E_CTRL, 8);
-+
-+static A9_COMP_SEL(pwm_f, AO_PWM_CLK_F_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(pwm_f, AO_PWM_CLK_F_CTRL, 0, 8);
-+static A9_COMP_GATE(pwm_f, AO_PWM_CLK_F_CTRL, 8);
-+
-+static A9_COMP_SEL(pwm_g, AO_PWM_CLK_G_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(pwm_g, AO_PWM_CLK_G_CTRL, 0, 8);
-+static A9_COMP_GATE(pwm_g, AO_PWM_CLK_G_CTRL, 8);
-+
-+static struct clk_regmap a9_ao_rtc_dualdiv_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_RTC_BY_OSCIN_CTRL0,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "ao_rtc_duandiv_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_xtal.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static const struct meson_clk_dualdiv_param a9_ao_dualdiv_table[] = {
-+	{ 733, 732, 8, 11, 1 },
-+	{ /* sentinel */ }
-+};
-+
-+static struct clk_regmap a9_ao_rtc_dualdiv_div = {
-+	.data = &(struct meson_clk_dualdiv_data){
-+		.n1 = {
-+			.reg_off = AO_RTC_BY_OSCIN_CTRL0,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.n2 = {
-+			.reg_off = AO_RTC_BY_OSCIN_CTRL0,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.m1 = {
-+			.reg_off = AO_RTC_BY_OSCIN_CTRL1,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.m2 = {
-+			.reg_off = AO_RTC_BY_OSCIN_CTRL1,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.dual = {
-+			.reg_off = AO_RTC_BY_OSCIN_CTRL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.table = a9_ao_dualdiv_table,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "a9_ao_rtc_dualdiv_div",
-+		.ops = &meson_clk_dualdiv_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_rtc_dualdiv_in.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_rtc_dualdiv_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_RTC_BY_OSCIN_CTRL1,
-+		.mask = 0x1,
-+		.shift = 24,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_rtc_dualdiv_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_rtc_dualdiv_div.hw,
-+			&a9_ao_rtc_dualdiv_in.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_rtc_dualdiv = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_RTC_BY_OSCIN_CTRL0,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "ao_rtc_dualdiv",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_rtc_dualdiv_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_rtc = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_RTC_BY_OSCIN_CTRL1,
-+		.mask = 0x1,
-+		.shift = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_rtc",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_xtal.hw,
-+			&a9_ao_rtc_dualdiv.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_cec_dualdiv_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_CEC_CTRL0,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "ao_cec_dualdiv_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_xtal.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_cec_dualdiv_div = {
-+	.data = &(struct meson_clk_dualdiv_data){
-+		.n1 = {
-+			.reg_off = AO_CEC_CTRL0,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.n2 = {
-+			.reg_off = AO_CEC_CTRL0,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.m1 = {
-+			.reg_off = AO_CEC_CTRL1,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.m2 = {
-+			.reg_off = AO_CEC_CTRL1,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.dual = {
-+			.reg_off = AO_CEC_CTRL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.table = a9_ao_dualdiv_table,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_cec_dualdiv_div",
-+		.ops = &meson_clk_dualdiv_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_cec_dualdiv_in.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_cec_dualdiv_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_CEC_CTRL1,
-+		.mask = 0x1,
-+		.shift = 24,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_cec_dualdiv_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_cec_dualdiv_div.hw,
-+			&a9_ao_cec_dualdiv_in.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_cec_dualdiv = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_CEC_CTRL0,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_cec_dualdiv",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_cec_dualdiv_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_cec = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_CEC_CTRL1,
-+		.mask = 0x1,
-+		.shift = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_cec",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_cec_dualdiv.hw,
-+			&a9_ao_rtc.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_hw *a9_ao_hw_clks[] = {
-+	[CLKID_AO_XTAL_IN]		= &a9_ao_xtal_in.hw,
-+	[CLKID_AO_XTAL]			= &a9_ao_xtal.hw,
-+	[CLKID_AO_SYS]			= &a9_ao_sys.hw,
-+	[CLKID_AO_SYS_I3C]		= &a9_ao_sys_i3c.hw,
-+	[CLKID_AO_SYS_RTC_REG]		= &a9_ao_sys_rtc_reg.hw,
-+	[CLKID_AO_SYS_CLKTREE]		= &a9_ao_sys_clktree.hw,
-+	[CLKID_AO_SYS_RST_CTRL]		= &a9_ao_sys_rst_ctrl.hw,
-+	[CLKID_AO_SYS_PAD]		= &a9_ao_sys_pad.hw,
-+	[CLKID_AO_SYS_RTC_DIG]		= &a9_ao_sys_rtc_dig.hw,
-+	[CLKID_AO_SYS_IRQ]		= &a9_ao_sys_irq.hw,
-+	[CLKID_AO_SYS_PWRCTRL]		= &a9_ao_sys_pwrctrl.hw,
-+	[CLKID_AO_SYS_PWM_A]		= &a9_ao_sys_pwm_a.hw,
-+	[CLKID_AO_SYS_PWM_B]		= &a9_ao_sys_pwm_b.hw,
-+	[CLKID_AO_SYS_PWM_C]		= &a9_ao_sys_pwm_c.hw,
-+	[CLKID_AO_SYS_PWM_D]		= &a9_ao_sys_pwm_d.hw,
-+	[CLKID_AO_SYS_PWM_E]		= &a9_ao_sys_pwm_e.hw,
-+	[CLKID_AO_SYS_PWM_F]		= &a9_ao_sys_pwm_f.hw,
-+	[CLKID_AO_SYS_PWM_G]		= &a9_ao_sys_pwm_g.hw,
-+	[CLKID_AO_SYS_I2C_A]		= &a9_ao_sys_i2c_a.hw,
-+	[CLKID_AO_SYS_I2C_B]		= &a9_ao_sys_i2c_b.hw,
-+	[CLKID_AO_SYS_I2C_C]		= &a9_ao_sys_i2c_c.hw,
-+	[CLKID_AO_SYS_I2C_D]		= &a9_ao_sys_i2c_d.hw,
-+	[CLKID_AO_SYS_SED]		= &a9_ao_sys_sed.hw,
-+	[CLKID_AO_SYS_IR_CTRL]		= &a9_ao_sys_ir_ctrl.hw,
-+	[CLKID_AO_SYS_UART_B]		= &a9_ao_sys_uart_b.hw,
-+	[CLKID_AO_SYS_UART_C]		= &a9_ao_sys_uart_c.hw,
-+	[CLKID_AO_SYS_UART_D]		= &a9_ao_sys_uart_d.hw,
-+	[CLKID_AO_SYS_UART_E]		= &a9_ao_sys_uart_e.hw,
-+	[CLKID_AO_SYS_SPISG_0]		= &a9_ao_sys_spisg_0.hw,
-+	[CLKID_AO_SYS_RTC_SECURE]	= &a9_ao_sys_rtc_secure.hw,
-+	[CLKID_AO_SYS_CEC]		= &a9_ao_sys_cec.hw,
-+	[CLKID_AO_SYS_AOCPU]		= &a9_ao_sys_aocpu.hw,
-+	[CLKID_AO_SYS_SRAM]		= &a9_ao_sys_sram.hw,
-+	[CLKID_AO_SYS_SPISG_1]		= &a9_ao_sys_spisg_1.hw,
-+	[CLKID_AO_SYS_SPISG_2]		= &a9_ao_sys_spisg_2.hw,
-+	[CLKID_AO_PWM_A_SEL]		= &a9_ao_pwm_a_sel.hw,
-+	[CLKID_AO_PWM_A_DIV]		= &a9_ao_pwm_a_div.hw,
-+	[CLKID_AO_PWM_A]		= &a9_ao_pwm_a.hw,
-+	[CLKID_AO_PWM_B_SEL]		= &a9_ao_pwm_b_sel.hw,
-+	[CLKID_AO_PWM_B_DIV]		= &a9_ao_pwm_b_div.hw,
-+	[CLKID_AO_PWM_B]		= &a9_ao_pwm_b.hw,
-+	[CLKID_AO_PWM_C_SEL]		= &a9_ao_pwm_c_sel.hw,
-+	[CLKID_AO_PWM_C_DIV]		= &a9_ao_pwm_c_div.hw,
-+	[CLKID_AO_PWM_C]		= &a9_ao_pwm_c.hw,
-+	[CLKID_AO_PWM_D_SEL]		= &a9_ao_pwm_d_sel.hw,
-+	[CLKID_AO_PWM_D_DIV]		= &a9_ao_pwm_d_div.hw,
-+	[CLKID_AO_PWM_D]		= &a9_ao_pwm_d.hw,
-+	[CLKID_AO_PWM_E_SEL]		= &a9_ao_pwm_e_sel.hw,
-+	[CLKID_AO_PWM_E_DIV]		= &a9_ao_pwm_e_div.hw,
-+	[CLKID_AO_PWM_E]		= &a9_ao_pwm_e.hw,
-+	[CLKID_AO_PWM_F_SEL]		= &a9_ao_pwm_f_sel.hw,
-+	[CLKID_AO_PWM_F_DIV]		= &a9_ao_pwm_f_div.hw,
-+	[CLKID_AO_PWM_F]		= &a9_ao_pwm_f.hw,
-+	[CLKID_AO_PWM_G_SEL]		= &a9_ao_pwm_g_sel.hw,
-+	[CLKID_AO_PWM_G_DIV]		= &a9_ao_pwm_g_div.hw,
-+	[CLKID_AO_PWM_G]		= &a9_ao_pwm_g.hw,
-+	[CLKID_AO_RTC_DUALDIV_IN]	= &a9_ao_rtc_dualdiv_in.hw,
-+	[CLKID_AO_RTC_DUALDIV_DIV]	= &a9_ao_rtc_dualdiv_div.hw,
-+	[CLKID_AO_RTC_DUALDIV_SEL]	= &a9_ao_rtc_dualdiv_sel.hw,
-+	[CLKID_AO_RTC_DUALDIV]		= &a9_ao_rtc_dualdiv.hw,
-+	[CLKID_AO_RTC]			= &a9_ao_rtc.hw,
-+	[CLKID_AO_CEC_DUALDIV_IN]	= &a9_ao_cec_dualdiv_in.hw,
-+	[CLKID_AO_CEC_DUALDIV_DIV]	= &a9_ao_cec_dualdiv_div.hw,
-+	[CLKID_AO_CEC_DUALDIV_SEL]	= &a9_ao_cec_dualdiv_sel.hw,
-+	[CLKID_AO_CEC_DUALDIV]		= &a9_ao_cec_dualdiv.hw,
-+	[CLKID_AO_CEC]			= &a9_ao_cec.hw,
-+};
-+
-+static const struct meson_clkc_data a9_ao_clkc_data = {
-+	.hw_clks = {
-+		.hws = a9_ao_hw_clks,
-+		.num = ARRAY_SIZE(a9_ao_hw_clks),
-+	},
-+};
-+
-+static const struct of_device_id a9_ao_clkc_match_table[] = {
-+	{
-+		.compatible	= "amlogic,a9-aoclkc",
-+		.data		= &a9_ao_clkc_data,
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, a9_ao_clkc_match_table);
-+
-+static struct platform_driver a9_ao_clkc_driver = {
-+	.probe		= meson_clkc_mmio_probe,
-+	.driver		= {
-+		.name	= "a9-aoclkc",
-+		.of_match_table = a9_ao_clkc_match_table,
-+	},
-+};
-+module_platform_driver(a9_ao_clkc_driver);
-+
-+MODULE_DESCRIPTION("Amlogic A9 Always-ON Clock Controller driver");
-+MODULE_AUTHOR("Jian Hu <jian.hu@amlogic.com>");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("CLK_MESON");
+This commit introduces the V4L2 driver for the i.MX95 CSI pixel formatter
+module. It provides support for data formatting, unpacking pixels from the
+CSI-2 interface to match Pixel Link requirements.
 
--- 
-2.47.1
+> diff --git a/drivers/media/platform/nxp/imx95-csi-formatter.c b/drivers/m=
+edia/platform/nxp/imx95-csi-formatter.c
+> new file mode 100644
+> index 0000000000000..cfe448fedd37e
+> --- /dev/null
+> +++ b/drivers/media/platform/nxp/imx95-csi-formatter.c
+> @@ -0,0 +1,775 @@
+[ ... ]
+> +struct csi_formatter {
+> +	struct device *dev;
+[ ... ]
+> +	/* Protects enabled_streams */
+> +	struct mutex lock;
+> +	u64 enabled_streams;
+> +
+> +	u8 stream_to_vc[CSI_FORMATTER_VC_NUM];
 
+[Severity: High]
+Does this array statically bound logical streams to the hardware Virtual Ch=
+annel
+limit?
 
+The CSI_FORMATTER_VC_NUM constant is 8, representing the number of hardware=
+ VCs.
+However, this array is later indexed by a logical V4L2 stream ID, which can
+validly be up to 63. If the loop limit in csi_formatter_start_stream() were
+corrected to 64 to resolve the stream ID limitation without changing this a=
+rray
+size, it would cause out-of-bounds writes.
+
+[ ... ]
+> +static int csi_formatter_subdev_enum_mbus_code(struct v4l2_subdev *sd,
+> +					       struct v4l2_subdev_state *sd_state,
+> +					       struct v4l2_subdev_mbus_code_enum *code)
+> +{
+> +	if (code->pad =3D=3D CSI_FORMATTER_PAD_SOURCE) {
+> +		struct v4l2_mbus_framefmt *fmt;
+> +
+> +		if (code->index > 0)
+> +			return -EINVAL;
+> +
+> +		fmt =3D v4l2_subdev_state_get_format(sd_state, code->pad,
+> +						   code->stream);
+> +		code->code =3D fmt->code;
+
+[Severity: Critical]
+Is it possible for v4l2_subdev_state_get_format() to return NULL here?
+
+The V4L2 core does not pre-validate that the logical stream ID provided by
+userspace exists in the active routing state. If an invalid stream ID is
+requested, the format pointer will be NULL. Reading fmt->code on this NULL
+pointer will cause a kernel oops, potentially enabling a local denial of se=
+rvice.
+
+[ ... ]
+> +static int csi_formatter_subdev_set_fmt(struct v4l2_subdev *sd,
+> +					struct v4l2_subdev_state *sd_state,
+> +					struct v4l2_subdev_format *sdformat)
+> +{
+> +	struct csi_formatter_pix_format const *format;
+> +	struct v4l2_mbus_framefmt *fmt;
+[ ... ]
+> +	v4l_bound_align_image(&sdformat->format.width, 1, 0xffff, 2,
+> +			      &sdformat->format.height, 1, 0xffff, 0, 0);
+> +
+> +	fmt =3D v4l2_subdev_state_get_format(sd_state, sdformat->pad,
+> +					   sdformat->stream);
+> +	*fmt =3D sdformat->format;
+
+[Severity: Critical]
+Could this result in a NULL pointer dereference?
+
+Similar to csi_formatter_subdev_enum_mbus_code(), if userspace provides an
+invalid stream ID, v4l2_subdev_state_get_format() returns NULL. Writing
+directly to *fmt will cause a kernel oops.
+
+> +
+> +	/* Set default code if user set an invalid value */
+> +	fmt->code =3D format->code;
+> +
+> +	/* Propagate the format from sink stream to source stream */
+> +	fmt =3D v4l2_subdev_state_get_opposite_stream_format(sd_state, sdformat=
+->pad,
+> +							   sdformat->stream);
+> +	if (!fmt)
+> +		return -EINVAL;
+
+[Severity: Medium]
+Should the driver reject setting formats on unrouted pads?
+
+Standard V4L2 subdevice behavior requires drivers to accept the format on t=
+he
+unrouted pad and simply skip propagation if no route exists. Returning -EIN=
+VAL
+here enforces a strict requirement that userspace must establish routing be=
+fore
+setting formats, which breaks standard pipeline configuration flows like th=
+ose
+used by media-ctl.
+
+[ ... ]
+> +static void csi_formatter_stop_stream(struct csi_formatter *formatter,
+> +				      u64 stream_mask)
+> +{
+> +	unsigned int i;
+> +	u8 vc;
+> +
+> +	for (i =3D 0; i < CSI_FORMATTER_VC_NUM; ++i) {
+> +		if (!(stream_mask & BIT(i)))
+> +			continue;
+> +
+> +		/* Use the VC that was configured in start_stream */
+> +		vc =3D formatter->stream_to_vc[i];
+> +		if (vc >=3D CSI_FORMATTER_VC_NUM)
+> +			continue;
+> +
+> +		csi_formatter_write(formatter, CSI_VC_PIXEL_DATA_TYPE(vc), 0);
+
+[Severity: High]
+Does writing 0 abruptly terminate all multiplexed streams on this Virtual
+Channel?
+
+The MIPI CSI-2 specification allows multiple streams with different Data Ty=
+pes
+to be multiplexed onto a single VC. The register acts as a bitmask of enabl=
+ed
+Data Types. Directly writing 0 here tears down all streams on the VC instead
+of just the target stream, breaking hardware multiplexing.
+
+[ ... ]
+> +static int csi_formatter_start_stream(struct csi_formatter *formatter,
+> +				      struct v4l2_subdev_state *state,
+> +				      u64 stream_mask)
+> +{
+[ ... ]
+> +	for (i =3D 0; i < CSI_FORMATTER_VC_NUM; ++i) {
+> +		if (!(stream_mask & BIT(i)))
+> +			continue;
+> +
+> +		fmt =3D v4l2_subdev_state_get_format(state,
+> +						   CSI_FORMATTER_PAD_SINK, i);
+> +
+> +		pix_fmt =3D csi_formatter_find_format(fmt->code);
+
+[Severity: Critical]
+Will this return NULL if the source stream ID differs from the sink stream =
+ID?
+
+In csi_formatter_subdev_enable_streams(), the streams_mask parameter repres=
+ents
+the bitmask of streams on the source pad, and it is passed verbatim to this
+function.=20
+
+This loop iterates over the source stream bitmask, so i is a source stream =
+ID.
+Calling v4l2_subdev_state_get_format() with CSI_FORMATTER_PAD_SINK but pass=
+ing
+a source stream ID will return a NULL format pointer if that stream ID does=
+ not
+exist on the sink pad (e.g., sink stream 1 routed to source stream 0). The =
+code
+then unconditionally dereferences fmt->code, causing a kernel panic.
+
+Should the driver translate and iterate over the sink_streams mask instead?
+
+[ ... ]
+> +		/* Store the stream to VC mapping for stop_stream */
+> +		formatter->stream_to_vc[i] =3D vc;
+> +
+> +		csi_formatter_write(formatter, CSI_VC_PIXEL_DATA_TYPE(vc), val);
+
+[Severity: High]
+Does this direct register write clear previously enabled Data Types on the
+shared Virtual Channel?
+
+Because this uses a direct register write instead of updating bits, it will
+unconditionally clear all other active Data Types previously configured for
+this VC, breaking hardware multiplexing.
+
+[ ... ]
+> +static int csi_formatter_subdev_enable_streams(struct v4l2_subdev *sd,
+> +					       struct v4l2_subdev_state *state,
+> +					       u32 pad, u64 streams_mask)
+> +{
+> +	struct csi_formatter *formatter =3D sd_to_formatter(sd);
+> +	struct device *dev =3D formatter->dev;
+> +	u64 sink_streams;
+> +	int ret;
+> +
+> +	sink_streams =3D v4l2_subdev_state_xlate_streams(state,
+> +						       CSI_FORMATTER_PAD_SOURCE,
+> +						       CSI_FORMATTER_PAD_SINK,
+> +						       &streams_mask);
+> +	if (!sink_streams || !streams_mask)
+> +		return -EINVAL;
+> +
+> +	guard(mutex)(&formatter->lock);
+
+[Severity: Medium]
+Is it safe to mix guard(mutex) block scoping with goto labels for runtime
+power management rollback?
+
+The kernel's subsystem guidelines for cleanup functions state that the usag=
+e of
+goto and cleanup helpers must never be mixed within the same function due t=
+o the
+risk of confusing ownership semantics and ordering bugs.
+
+[ ... ]
+> +	ret =3D csi_formatter_start_stream(formatter, state, streams_mask);
+
+[Severity: Critical]
+Is the wrong stream mask passed to csi_formatter_start_stream() here?
+
+The variable streams_mask represents the bitmask of streams on the source p=
+ad.
+However, csi_formatter_start_stream() uses this mask to query formats on the
+sink pad.
+
+Should sink_streams be passed to csi_formatter_start_stream() instead to av=
+oid
+querying invalid stream IDs on the sink pad?
+
+[ ... ]
+> +static const struct v4l2_async_notifier_operations formatter_notify_ops =
+=3D {
+> +	.bound =3D csi_formatter_notify_bound,
+> +};
+
+[Severity: High]
+Is an .unbind callback needed to clean up the stale remote subdevice pointe=
+r?
+
+The driver caches a pointer to the bound source subdevice in
+formatter->csi_sd during the .bound callback. However, this operations
+structure does not provide an .unbind callback to set this pointer to NULL
+when the remote subdevice is unbound and removed.=20
+
+If the source driver module is unloaded, the pointer becomes dangling. A
+subsequent streaming operation would dereference the freed memory in
+v4l2_subdev_enable_streams() and cause a kernel oops.
+
+> +
+> +static int csi_formatter_async_register(struct csi_formatter *formatter)
+> +{
+> +	struct device *dev =3D formatter->dev;
+> +	struct v4l2_async_connection *asc;
+> +	int ret;
+> +
+> +	struct fwnode_handle *ep __free(fwnode_handle) =3D
+> +		fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0,
+> +						FWNODE_GRAPH_ENDPOINT_NEXT);
+> +	if (!ep)
+> +		return -ENOTCONN;
+> +
+> +	v4l2_async_subdev_nf_init(&formatter->notifier, &formatter->sd);
+> +
+> +	asc =3D v4l2_async_nf_add_fwnode_remote(&formatter->notifier, ep,
+> +					      struct v4l2_async_connection);
+> +	if (IS_ERR(asc)) {
+> +		ret =3D PTR_ERR(asc);
+> +		goto err_cleanup_notifier;
+
+[Severity: Medium]
+Does this mix __free(fwnode_handle) with goto-based error tracking?
+
+Using __free() alongside goto-based unwinding in the same function violates
+cleanup function guidelines, which can lead to double-frees or resource lea=
+ks.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618-csi_format=
+ter-v10-0-f23830312ba5@oss.nxp.com?part=3D4
 
