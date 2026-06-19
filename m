@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-313810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313812-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Atc7F55ONWq7sAYAu9opvQ
-	(envelope-from <devicetree+bounces-313810-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:13:50 +0200
+	id Zf0JMwRONWpesAYAu9opvQ
+	(envelope-from <devicetree+bounces-313812-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:11:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A6376A6538
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:13:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63FA56A64D6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:11:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XIxTGGCf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313810-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-313810-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UmJK9fG6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313812-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-313812-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DDD6A300BE8B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 14:11:13 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CEA57300DED5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 14:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9B7273D8F;
-	Fri, 19 Jun 2026 14:11:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4387637B00E;
+	Fri, 19 Jun 2026 14:11:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C85F372EF1
-	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 14:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01B433121C
+	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 14:11:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781878271; cv=none; b=FgmF7x89MRx13EHlrWlxY3yl9UlxGB3r/Ms4U5Iw+ez/355Znv8i4va1r3i6ml56yczzA02+Mgu+8ysRlwctbulWDOSTV7F4onVw5KLbXgWZjJM9yiZeO7RAATRqRQ4nirtJLSIQoK4SeT6bBtsZUqg7YEvfG2J1hwigu/525Ns=
+	t=1781878274; cv=none; b=E3zjdInqT7LbBAm8uk+YfMddBqyEBsV7vf+/fQwX4ryIcJoKqgJOHhd3BPGYYdy2fy+wsynBG2oUSgeEFTKdfHPadVrJZ4CYC7n4p+JqDbki3A0dQrCbpf9ODQhGecMHzoO6uCee//2D4gxjQS2kR+U5sEvxgOky43vdDaNzN3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781878271; c=relaxed/simple;
-	bh=KHAkjGEa7B8RwMoBqLNhKHe4WnIOJ0AqNNv4cjxEeMo=;
+	s=arc-20240116; t=1781878274; c=relaxed/simple;
+	bh=2b9m8KQGH79yuFSh8Nd5jwo0hwxfZJsZQ010o22P1Ug=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ZerbWPcZcAQ0jeN+8xXASIYtg91O8MUekCJefVrlwvkqV2liaryqBTnBWA7R+uLXifwNMNPjGaNe6//I+Dv4QfoHdGFcLfXMqQN60aC0IvavFDwgRZr1KWplh/Sa489wh58d2UgGqj5SEOOz8mGMXcquc16q/1DdxsKgMSjB414=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XIxTGGCf; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AA631F000E9;
-	Fri, 19 Jun 2026 14:11:08 +0000 (UTC)
+	 Message-Id; b=BnDRR1mEda1UgHVwySUfm0hUrCzJtvv9PAgfMzarYbQ4V4QNmR+RzyTm6d0o74bjKxOMb3wzbduV1c0xdy8lJ+hxm+30kH/4+cV27FtOR7fxziaM7diIOT9Pp5FqAdstjFUzarZRsuYjRMZZ8uPoCEX4l83WAiEhN3zXIW3M8Cc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UmJK9fG6; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A9351F00A3D;
+	Fri, 19 Jun 2026 14:11:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781878270;
-	bh=oJMhjGGLS67mEVytagF04OJoCp1RkhCpKwOWuyFKZQg=;
+	s=k20260515; t=1781878271;
+	bh=bxa6cPAOAPBMpl2FK5XauHH0DSV4VMCLAY8WIAPNCQE=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=XIxTGGCfzWqhjhqs9XZG0QMPssIIoPVqFEPGZaZDdJlPuoC40gwyjtsxGQEHnDfPw
-	 XTUKpMiw5bbTPiD+FpSjYvGGBE2AaehmX/RCHCP0FWM2jJ+zwuWohbnNe6iMG1rQ5h
-	 B/dbR2Ua5A4Ct7zpiYQsNQME8mTCqbLtgd0faA/15AaDDbSYYZdzaZ1oK2bnwtkwuS
-	 EhV6f4kXR9ey0YMQSYAnv4MCoFe0wmTkGTzTiBB/FbKN6KCGYdv0PLsG7Wfurewx4A
-	 t7f28nhQO++BglETKT5Zg7JewyX795DEmH6+v8XNhyyLTycYKHOmY0Yp+CyuBloIA9
-	 k8k1U+r/P1S6Q==
+	b=UmJK9fG66FBu0ujsfqxAc60I7CHu2qjQTuzLKHJGdLmt7JCjp2ojgQyCLF6yvm1uN
+	 JF45jjXjczd7NI2FSDQD7kbEtx8bfZgfTEYNEiaGNYLgDzxddMYB6L8ArEExsg8lA/
+	 9OfZ6sfYac5a5tmHVAyqBX05IURvAX3gxhF3JyP029kX1DAf1VqJ6lQmzKq/uexUER
+	 XlvNRGNEPXmT9UQ2CWQ35uKlISLQZhSkAftXgtYU+Q/nP8CRdvRdJ7pZ2wzYplUuL5
+	 ZJzIMTUcOVIDlXDxSsOvmsin9vhGfv8jqpyTCHra0+AcYmzdKG92yOy+Fbn6aO5V3j
+	 qSOm7vmMp1lfQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [RFC PATCH net-next v8 08/12] of: property: fw_devlink: Add
- support for "pcs-handle"
+Subject: Re: [RFC PATCH net-next v8 02/12] net: phylink: introduce internal
+ phylink PCS handling
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Christian Marangi" <ansuelsmth@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260618125752.1223-9-ansuelsmth@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260618125752.1223-3-ansuelsmth@gmail.com>
 References: <20260618125752.1223-1-ansuelsmth@gmail.com>
- <20260618125752.1223-9-ansuelsmth@gmail.com>
+ <20260618125752.1223-3-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 19 Jun 2026 14:11:08 +0000
-Message-Id: <20260619141109.0AA631F000E9@smtp.kernel.org>
+Date: Fri, 19 Jun 2026 14:11:10 +0000
+Message-Id: <20260619141111.2A9351F00A3D@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,17 +72,17 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313810-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313812-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
@@ -99,65 +99,304 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5A6376A6538
+X-Rspamd-Queue-Id: 63FA56A64D6
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
 s) to consider:
-- [Medium] fwnode_property_get_reference_args() usage in newly added pcs.c =
-causes -EINVAL on existing DTs due to lacking a cell count fallback.
+- [High] Missing `list_del(&pcs->list)` in the error path of `phylink_creat=
+e()` leaves dangling pointers to freed memory.
+- [High] `phylink_validate_mac_and_pcs()` fails to return an error when a r=
+equired PCS is not found.
+- [High] `phy_interface_or()` mishandles the 'empty means all' semantic for=
+ `pcs->supported_interfaces`.
+- [High] Race condition causing a Use-After-Free in `phylink_pcs_change()` =
+during `phylink_destroy()`.
+- [Medium] `phylink_fill_available_pcs()` reverses the priority order of th=
+e provided PCS array.
 --
 
-commit 91acc7e182a01f5abd0ae44dd757caf24a80257a
+commit b5576005f95ddfaef269adf2938d4dda4a006f6b
 Author: Christian Marangi <ansuelsmth@gmail.com>
 
-of: property: fw_devlink: Add support for "pcs-handle"
+net: phylink: introduce internal phylink PCS handling
 
-Add support for parsing PCS binding so that fw_devlink can
-enforce the dependency with Ethernet port.
+This commit introduces an internal linked list implementation for handling
+PCS devices within phylink, providing an alternative to the .mac_select_pcs
+callback. It allows MAC drivers to provide an array of available PCS devices
+which are automatically mapped and selected based on the interface mode.
 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 136946f8b746f..e6584a2f705d2 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1392,6 +1392,7 @@ DEFINE_SIMPLE_PROP(access_controllers, "access-cont=
-rollers", "#access-controller
->  DEFINE_SIMPLE_PROP(pses, "pses", "#pse-cells")
->  DEFINE_SIMPLE_PROP(power_supplies, "power-supplies", NULL)
->  DEFINE_SIMPLE_PROP(mmc_pwrseq, "mmc-pwrseq", NULL)
-> +DEFINE_SIMPLE_PROP(pcs_handle, "pcs-handle", "#pcs-cells")
+> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
+> index 4d59c0dd78dbf..c38bcd43b8c8b 100644
+> --- a/drivers/net/phy/phylink.c
+> +++ b/drivers/net/phy/phylink.c
+
+[ ... ]
+
+> @@ -518,12 +523,29 @@ static void phylink_validate_mask_caps(unsigned lon=
+g *supported,
+>  	linkmode_and(state->advertising, state->advertising, mask);
+>  }
+> =20
+> +static int phylink_validate_pcs_interface(struct phylink_pcs *pcs,
+> +					  phy_interface_t interface)
+> +{
+> +	/* If PCS define an empty supported_interfaces value, assume
+> +	 * all interface are supported.
+> +	 */
+> +	if (phy_interface_empty(pcs->supported_interfaces))
+> +		return 0;
+> +
+> +	/* Ensure that this PCS supports the interface mode */
+> +	if (!test_bit(interface, pcs->supported_interfaces))
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+>  static int phylink_validate_mac_and_pcs(struct phylink *pl,
+>  					unsigned long *supported,
+>  					struct phylink_link_state *state)
+>  {
+> -	struct phylink_pcs *pcs =3D NULL;
+>  	unsigned long capabilities;
+> +	struct phylink_pcs *pcs;
+> +	bool pcs_found =3D false;
+>  	int ret;
+> =20
+>  	/* Get the PCS for this interface mode */
+> @@ -531,9 +553,24 @@ static int phylink_validate_mac_and_pcs(struct phyli=
+nk *pl,
+>  		pcs =3D pl->mac_ops->mac_select_pcs(pl->config, state->interface);
+>  		if (IS_ERR(pcs))
+>  			return PTR_ERR(pcs);
+> +
+> +		pcs_found =3D !!pcs;
+> +	/*
+> +	 * Find a PCS in available PCS list for the requested interface.
+> +	 *
+> +	 * Skip searching if the MAC doesn't require a dedicated PCS for
+> +	 * the requested interface.
+> +	 */
+> +	} else if (test_bit(state->interface, pl->config->pcs_interfaces)) {
+> +		list_for_each_entry(pcs, &pl->pcs_list, list) {
+> +			if (!phylink_validate_pcs_interface(pcs, state->interface)) {
+> +				pcs_found =3D true;
+> +				break;
+> +			}
+> +		}
+>  	}
+> =20
+> -	if (pcs) {
+> +	if (pcs_found) {
+
+[Severity: High]
+Does this code incorrectly fall through and return success when a required =
+PCS
+is not found?
+
+If test_bit(state->interface, pl->config->pcs_interfaces) requires a dedica=
+ted
+PCS, but none in pl->pcs_list matches, pcs_found remains false. The function
+then skips the pcs_found validation block, proceeds to validate MAC
+capabilities, and successfully returns 0.
+
+Could this falsely advertise the interface as supported, leading to failures
+later in phylink_major_config() where the missing PCS causes an abort? Shou=
+ld
+there be an explicit error return when a required PCS is not found?
+
+[ ... ]
+
+> @@ -1834,6 +1906,44 @@ int phylink_set_fixed_link(struct phylink *pl,
+>  }
+>  EXPORT_SYMBOL_GPL(phylink_set_fixed_link);
+> =20
+> +static int phylink_fill_available_pcs(struct phylink *pl,
+> +				      struct phylink_config *config)
+> +{
+> +	struct phylink_pcs **pcss;
+> +	int i, ret;
+> +
+> +	if (!config->num_possible_pcs)
+> +		return 0;
+> +
+> +	if (!config->fill_available_pcs) {
+> +		dev_err(config->dev,
+> +			"phylink: error: num_possible_pcs defined but no fill_available_pcs\n=
+");
+> +		return -EINVAL;
+> +	}
+> +
+> +	pcss =3D kzalloc_objs(*pcss, config->num_possible_pcs);
+> +	if (!pcss)
+> +		return -ENOMEM;
+> +
+> +	ret =3D config->fill_available_pcs(config, pcss, config->num_possible_p=
+cs);
+> +	if (ret < 0)
+> +		goto out;
+> +
+> +	for (i =3D 0; i < config->num_possible_pcs; i++) {
+> +		struct phylink_pcs *pcs =3D pcss[i];
+> +
+> +		if (!pcs)
+> +			continue;
+> +
+> +		list_add(&pcs->list, &pl->pcs_list);
+> +	}
 
 [Severity: Medium]
-While this fw_devlink integration correctly falls back to 0 cells (via
-parse_prop_cells()) when #pcs-cells is missing, the newly added API in
-drivers/net/pcs/pcs.c does not.
+Does this loop reverse the intended priority order of the provided PCS arra=
+y?
 
-In drivers/net/pcs/pcs.c:fwnode_parse_pcsspec(), the fallback cell count is
-hardcoded to -1:
+The function iterates sequentially through the pcss array and uses list_add=
+()
+to insert each PCS at the head of the list. When evaluating the list from h=
+ead
+to tail later (e.g., in phylink_validate_mac_and_pcs()), the MAC driver's
+lowest-priority PCS (last in the array) will be checked before higher-prior=
+ity
+ones.
 
-	ret =3D fwnode_property_get_reference_args(fwnode, "pcs-handle",
-						 "#pcs-cells",
-						 -1, index, out_args);
+Should this use list_add_tail() instead to preserve the array order?
 
-Similarly, in drivers/net/pcs/pcs.c:fwnode_phylink_pcs_count():
+[ ... ]
 
-		ret =3D fwnode_property_get_reference_args(fwnode, "pcs-handle",
-							 "#pcs-cells",
-							 -1, index, &out_args);
+> @@ -1872,10 +1993,26 @@ struct phylink *phylink_create(struct phylink_con=
+fig *config,
+>  	mutex_init(&pl->phydev_mutex);
+>  	mutex_init(&pl->state_mutex);
+>  	INIT_WORK(&pl->resolve, phylink_resolve);
+> +	INIT_LIST_HEAD(&pl->pcs_list);
+> +
+> +	/* Fill the PCS list with available PCS from phylink config */
+> +	ret =3D phylink_fill_available_pcs(pl, config);
+> +	if (ret < 0)
+> +		goto free_pl;
+> +
+> +	/* Link available PCS to phylink */
+> +	list_for_each_entry(pcs, &pl->pcs_list, list)
+> +		pcs->phylink =3D pl;
+> =20
+>  	phy_interface_copy(pl->supported_interfaces,
+>  			   config->supported_interfaces);
+> =20
+> +	/* Update supported interfaces */
+> +	list_for_each_entry(pcs, &pl->pcs_list, list)
+> +		phy_interface_or(pl->supported_interfaces,
+> +				 pl->supported_interfaces,
+> +				 pcs->supported_interfaces);
 
-Passing -1 as the fallback cell count causes parsing to fail with -EINVAL on
-existing devicetrees where the pcs-handle property points to a node without
-#pcs-cells.
+[Severity: High]
+Does this loop mishandle the empty means all semantic for supported
+interfaces?
 
-Could this create a regression for the pcs-handle binding, causing existing
-MAC drivers that migrate to this new API to fail discovery of their PCS?
+The subsystem defines that an empty pcs->supported_interfaces mask means the
+PCS supports all interfaces (as handled in phylink_validate_pcs_interface()=
+).
+However, OR-ing an empty bitmask into pl->supported_interfaces contributes
+no interfaces at all.
+
+Could this silently drop capabilities for generic PCSs that leave their
+supported_interfaces empty?
+
+[ ... ]
+
+> @@ -1917,28 +2053,29 @@ struct phylink *phylink_create(struct phylink_con=
+fig *config,
+>  	phylink_validate(pl, pl->supported, &pl->link_config);
+> =20
+>  	ret =3D phylink_parse_mode(pl, fwnode);
+> -	if (ret < 0) {
+> -		kfree(pl);
+> -		return ERR_PTR(ret);
+> -	}
+> +	if (ret < 0)
+> +		goto unlink_pcs_list;
+> =20
+>  	if (pl->cfg_link_an_mode =3D=3D MLO_AN_FIXED) {
+>  		ret =3D phylink_parse_fixedlink(pl, fwnode);
+> -		if (ret < 0) {
+> -			kfree(pl);
+> -			return ERR_PTR(ret);
+> -		}
+> +		if (ret < 0)
+> +			goto unlink_pcs_list;
+>  	}
+> =20
+>  	pl->req_link_an_mode =3D pl->cfg_link_an_mode;
+> =20
+>  	ret =3D phylink_register_sfp(pl, fwnode);
+> -	if (ret < 0) {
+> -		kfree(pl);
+> -		return ERR_PTR(ret);
+> -	}
+> +	if (ret < 0)
+> +		goto unlink_pcs_list;
+> =20
+>  	return pl;
+> +
+> +unlink_pcs_list:
+> +	list_for_each_entry(pcs, &pl->pcs_list, list)
+> +		pcs->phylink =3D NULL;
+> +free_pl:
+> +	kfree(pl);
+> +	return ERR_PTR(ret);
+>  }
+
+[Severity: High]
+Does this error path leave dangling pointers to freed memory?
+
+The loop clears pcs->phylink but fails to call list_del(&pcs->list) before
+freeing pl. Because the phylink_pcs structures are long-lived and owned by =
+the
+MAC driver or provider, their list nodes are left pointing to the freed
+pl->pcs_list memory.
+
+If a driver retries initialization and provides the same PCS objects, could
+this list corruption lead to a use-after-free crash during the list_add()
+step?
+
+[ ... ]
+
+> @@ -2413,8 +2560,15 @@ void phylink_pcs_change(struct phylink_pcs *pcs, b=
+ool up)
+>  {
+>  	struct phylink *pl =3D pcs->phylink;
+> =20
+> -	if (pl)
+> -		phylink_link_changed(pl, up, "pcs");
+> +	/*
+> +	 * Ignore PCS link state change if the PCS is not
+> +	 * attached to a phylink instance or the phylink
+> +	 * instance is not currently using this PCS.
+> +	 */
+> +	if (!pl || READ_ONCE(pl->pcs) !=3D pcs)
+> +		return;
+> +
+> +	phylink_link_changed(pl, up, "pcs");
+>  }
+
+[Severity: High]
+Is there a race condition here during phylink_destroy() that can cause a
+use-after-free?
+
+If an external PCS driver triggers an interrupt and calls phylink_pcs_chang=
+e()
+concurrently with phylink_destroy(), pl might be read as non-NULL before
+phylink_destroy() unlinks the PCS and frees pl.
+
+Without proper synchronization (like RCU or a lock), could the interrupt
+handler be preempted, and subsequently dereference pl via READ_ONCE(pl->pcs)
+after it has been freed?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618125752.1223=
--1-ansuelsmth@gmail.com?part=3D8
+-1-ansuelsmth@gmail.com?part=3D2
 
