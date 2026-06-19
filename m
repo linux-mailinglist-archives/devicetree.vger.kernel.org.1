@@ -1,214 +1,179 @@
-Return-Path: <devicetree+bounces-313826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313829-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VJ0zEf9RNWqaswYAu9opvQ
-	(envelope-from <devicetree+bounces-313826-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:28:15 +0200
+	id AAULKVpSNWrgswYAu9opvQ
+	(envelope-from <devicetree+bounces-313829-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:29:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98FCC6A6696
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:28:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D4B06A66B8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:29:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=CMhxd+f3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313826-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313826-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=baylibre.com header.s=google header.b="bDH130/O";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313829-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313829-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 39340308B9BC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 14:26:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 997C73037172
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 14:28:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1311839732C;
-	Fri, 19 Jun 2026 14:26:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3747D398911;
+	Fri, 19 Jun 2026 14:28:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com [74.125.82.174])
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FBE0397B1C
-	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 14:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C97266576
+	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 14:28:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781879203; cv=none; b=rMvJ5IXxj+MloP32xQBkpRYm9gKhlGdh60v6GO6x3ucGqyWdHJWKorkJ9o/sSgA7GSbfA5+7+4O0autKtzcQtflFItTvU6wOUdWvuvf2mcFH35t5ra0JaB8mIR9cNuyJmbvqKwDg2YVhRnbUfMuH4oRy4AYhRQaOvLzTPFbXFK4=
+	t=1781879325; cv=none; b=A9FzeSAsCJHrMIUxkQRtrqrLhetWLBsjQl78drNUcCbvjvJcUIwE04vS5qzBDfJuCuDVhVv3IcUGJPtikfBUjtpmxy/NHYlcphc4wLmv+DWU9KU18F8+icONq+dpaEW26MdGUJcLNrlH4V9Otpo8PZeO4nrG2s4xO3GKxn8czbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781879203; c=relaxed/simple;
-	bh=qcaWSGPvUy2u54fK8ZwK+zHysS4I1DayUEvb7c8WnWA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KvN7RfiLugEeh46+jd2SeD3Qj2zey37WH/bo0ndpXnbeUpffSpzUYoi+KSbVUFt8s41fpmTvTwSO7Kxvwnk9GqJ89K87CifBf3QJb2U03CfTXk3Q55ipRJj4CTaB1wzX8wSLPYJEJ57M+K6CmJjLMC3sKnT5YkL74GpAy65+mrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CMhxd+f3; arc=none smtp.client-ip=74.125.82.174
-Received: by mail-dy1-f174.google.com with SMTP id 5a478bee46e88-30c001b21feso1573564eec.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 07:26:40 -0700 (PDT)
+	s=arc-20240116; t=1781879325; c=relaxed/simple;
+	bh=BYZvNYrhCRRVi7+9/Vp1XV84hbYw0obk8I3Nq/z0MdA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pDjNVdCuDukGZAaoSw7bcO4SuSE4i4yU1Kj7cym7OcIO+rJ29Vmx7GvV32Zs97Dp0jwPnnz5+Owid13WGABh0c8HLfiBnDPrY38yGqavbKETyRlZBBBN80Yp4f68jEJOqm0D6zbKS3u9psxdpuMKq8J5EueQb49o66M7FRptN2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=bDH130/O; arc=none smtp.client-ip=209.85.161.42
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-6a0e4f0342aso192570eaf.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 07:28:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781879199; x=1782483999; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q+NOFvW+oVtBVeLrjfLCqJyDxKh0T7V/dXs1RZ3OhYY=;
-        b=CMhxd+f3T0sWeh9EFmuzHt8LoaghepR4KFKr2Ncf/DNX5y8U/5g38b4OT/7wE+5Cd3
-         QI+dmyU1jbkSn6O88YOitKwit3n5+0Bd6EJ6R11L2kQIaozFeJolTlJSF9rpY3cJjljR
-         sA4SkXUOhbgdyY1616RXyuQGnFWwyL1E+enN7Sht+SFIpAusfH62L/wx9vSb1WUFUcDS
-         +NKca1BJ7ltroUSjJ00JEDgNC3RBz0EopG27HcPYihe7sdIjYdRppw+gkS3RySSfFy0C
-         AYO5JUZwi5coDqm72KEB3nJ7u2FHFWnsbztvDDi0U31ndj8cXu5NC3WphOnYDwtTP3hh
-         NFuQ==
+        d=baylibre.com; s=google; t=1781879322; x=1782484122; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gAirWMVH8yFynNlBYDyfsHiH9Wt1aHuKQoVM4l8pDRo=;
+        b=bDH130/OOtVS/8nqrbTaAIg6pXo2FYsspJ+cya7o+JKeQzfBjQQ2GKS3izm0Y/vQX/
+         M9jmYc31Hvq7O59WwwcMcNgNNq4eWwMGL2oAKJlz1plDMCmLgbvXdbbY+wHf80z+yoNh
+         xpA2qU4IhlAnGZVFI0hFJlSOAF2ATYsWa+aNojcMIDi42DgE99WQBAvBotir9esF6RHF
+         MwbOK760DWXjkr/qHbUua29zn03O70WqVSWhbvfAlz+bo8Rknjy//wgD38TNvAjYmary
+         +cJnus+ZV5EokUQavuiugxyXi9i5zcTxrlnScawreJngCqewknJSkKglX6nJm89LK5Tu
+         WCBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781879199; x=1782483999;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q+NOFvW+oVtBVeLrjfLCqJyDxKh0T7V/dXs1RZ3OhYY=;
-        b=MKTssalOiVPZ6r5mV1qFbeoYP0P8jnPnpxj7E+jRr1QspcwnqoImhw6rWobhWL9t0Q
-         9RuYyXrE4aBL2BSa7BtfEwHj+BvtLQe/EFFVIu4Qhl3rCoPEPV7Ifdc922ofmZUMzYZN
-         f9NoTHYFOM8cs/UHL+enMQ8J1VvSkSQwsqdg9Qfz+l0jUensZPYwlCO0QbEzDnnginzD
-         edBVQBDu3yGNkgiFLYAnGhdH4XgrkuD91o11O7js33ks9plXZinLKE19xdfw4cObR4+Y
-         QRDsFUGIR+YDOxINb/7SB8E3JUxcjP5UHKC3H++wABCrhjpDk4COuHuH+uRQEfE0CafK
-         xTAA==
-X-Forwarded-Encrypted: i=1; AFNElJ9FYIsLN1AWE5guC2+nnF1tXWLmsSa0CDwTy2TmvR/V+UFJO5g/QcnB5P9mPA5Zp4Ew1yA9lFPpRSe1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwH4o0+Kvw4enOSjs8PyeNaH1hUUMqwUP4sAv+OMW/RnouhFv8U
-	j/bTP5DwtPj4iT3xcx6tfgc6KsYK4356tCDBwK+bY0FSCOVEOLicvfkD
-X-Gm-Gg: AfdE7cmLPIZJE9L4A9RQhZ1Y6JhORrw/HKL7pghZsVMtKwQ3XVRnQuQLTJC19B0w7X7
-	8tewQpKCmvHpXWD0SLRXQbq7ftvGwaEXWf0hMEbM8tGl31gAnGUjb3oE3zCQ3Rq43vwWn0RH0+c
-	EKVNUbZfhlUQvFBg4ZFv5vsYebv2b9LUzIw5jKxser5YTLPKeIslNSYkZ622+mBk3Xe/XvaVxFW
-	jU9OjWmcBUOV6/P3nVvxE4U8cPmo0Q30xeLHC88GAJUFaBOjt6iBFOoHp5xHeVkaueOF2g7wM7K
-	BfuJ1D41foLfU4Np9VZdIeUeoVU2llWJPWJTfj72pquSvscwXSzilsecR1+5eAFeWoTAtfY1ssQ
-	1cSSn1+oyYpWJkeXlhRX75CF+ecHzul1KHCjOSHKKrPf1fFDUlb+2ph6ReFw2008az6R4NTctIB
-	JEH0uQL+zg6Ek0kt6vfQ+LAw==
-X-Received: by 2002:a05:7300:6c9f:b0:2ea:c085:44b1 with SMTP id 5a478bee46e88-30c071533c3mr2469687eec.19.1781879199101;
-        Fri, 19 Jun 2026 07:26:39 -0700 (PDT)
-Received: from localhost ([2804:30c:1f0a:b600:e457:1a16:4082:3e0a])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-30c1ba1f137sm1470eec.1.2026.06.19.07.26.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jun 2026 07:26:38 -0700 (PDT)
-Date: Fri, 19 Jun 2026 11:27:16 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	jic23@kernel.org, nuno.sa@analog.com, Michael.Hennerich@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, pop.ioan-daniel@analog.com
-Subject: Re: [PATCH v3 5/5] iio: adc: ltc2378: Enable triggered buffer data
- capture
-Message-ID: <ajVRxCPejqxlo_Z4@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1781661028.git.marcelo.schmitt@analog.com>
- <22248e8ba646fbe8edfc87e2b9be527632d5b48c.1781661028.git.marcelo.schmitt@analog.com>
- <4f7f50ad-c305-4947-b4e9-3666a4f31031@baylibre.com>
+        d=1e100.net; s=20251104; t=1781879322; x=1782484122;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gAirWMVH8yFynNlBYDyfsHiH9Wt1aHuKQoVM4l8pDRo=;
+        b=JOHIIiHv7Xcoln0Fd8lWqZsKdAuLBvwBf9vF7JtRSCW+fdOUBfzl3nAcrPKM3Sw3A4
+         okdd7fQfPsKOnMwXFtMlaceJNnPc73j8MAlz3F6lpvLw8NVfcgfs9r6b7sG0QsUArJ02
+         mFoVy2Ix85ykt48ucGSS6lAzU1jmCSGuKOMcuq+O9L76tJk6Dd80fsnAHaUXjY6qdo1Y
+         mDFjvNfaRZ2YHczxW39g8zmPPZgeb11V6tuCXtl0Zwa3OkdUO6mA+hwdR05l8qYbRkGp
+         J2dWvovMfn2LAo49dsVTwcZIZyW2JGlSKCt9p85waBx+V8hg5bRZ16QKF0TTWj4H+/en
+         X82g==
+X-Forwarded-Encrypted: i=1; AFNElJ+w8PeImyZfIW9QriuQiQNv0iNlYcHjldF7JhuZRXmNcKDYbgzLJtUS+L68iM/h+Y1lPnqzUGXB/S3P@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuSO4FNgiRyRPYVvksE5aD8yorDOyv7nNhPYx+4gIqc+z3Nt88
+	5YbvDW/WSVVoS/WvDN9VOzNZMdVibv+lU7WbnBFovFVSTOVwGdwTD/g5o+78QzgHMyY=
+X-Gm-Gg: AfdE7clH5fakLUfmrn+zN2YWioOSq3pE9Gk41KXO+fc7kn7gLzP3/21JYhAXlX/0JTA
+	FT+orpp8DV8PYj0Vnwq0rD/4d2gqtMQtsEPIgaKlwv7weQmYQH09zsWJfw6bTXjxrh4PWu3/r/0
+	Wqnb/K5PkyDGU/sLiC0cynj68F7d7cDRTjF+p9+d/yF64ASLOGW5Dj58JzLWv1tWlInEwZYhL5m
+	Dv/Ln8uz5kKtB/g86M/TwtL6fEWTuxlqa+TdKziqfi9CkWueorm90G1ED50QR3CDaPMtcjxN8LA
+	NXv6cdd58tsJNAy3PhYurseFDY6RU+gG19LdVdf11Vx9Qe5Cvsri5OL/Z/HLba9xKpYhQZ9aw2H
+	5iSjPV7udUQbi1da7cPG5Hjm/zI1MfcKyn960ccH+EsJ28b6SMjRjfK8sindjxa6n7acuM4ZSWD
+	6kaB2DMtDqGhcwnRDkal6eBoFZM/DmWLwXTNcPPwWU5rq6ZF+o+JwzQ3zV6A==
+X-Received: by 2002:a05:6820:134a:b0:696:1a85:586b with SMTP id 006d021491bc7-6a0d8cd4635mr2866882eaf.35.1781879321803;
+        Fri, 19 Jun 2026 07:28:41 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:dd8:d93b:3cde:c07? ([2600:8803:e7e4:500:dd8:d93b:3cde:c07])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4470a42d901sm2533106fac.17.2026.06.19.07.28.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Jun 2026 07:28:41 -0700 (PDT)
+Message-ID: <0831356f-76ff-4eed-befa-7a35ffce921d@baylibre.com>
+Date: Fri, 19 Jun 2026 09:28:40 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4f7f50ad-c305-4947-b4e9-3666a4f31031@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 3/3] dt-bindings: iio: adc: Add burn-out current
+ properties
+To: Kurt Borja <kuurtb@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260618-new-channel-props-v1-0-963c1b5cf40a@gmail.com>
+ <20260618-new-channel-props-v1-3-963c1b5cf40a@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260618-new-channel-props-v1-3-963c1b5cf40a@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:dlechner@baylibre.com,m:marcelo.schmitt@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pop.ioan-daniel@analog.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-313826-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-313829-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:kuurtb@gmail.com,m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[baylibre.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,analog.com:email,vger.kernel.org:from_smtp,debian-BULLSEYE-live-builder-AMD64:mid]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,baylibre.com:dkim,baylibre.com:mid,baylibre.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 98FCC6A6696
+X-Rspamd-Queue-Id: 0D4B06A66B8
 
-On 06/17, David Lechner wrote:
-> On 6/16/26 9:04 PM, Marcelo Schmitt wrote:
-> > Enable users to run triggered data captures with LTC2378 and similar ADCs.
-> > 
-> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > ---
-...
-> > @@ -27,6 +27,21 @@ int ltc2378_lib_buffer_setup(struct iio_dev *indio_dev, struct ltc2378_state *st
-> >  		return dev_err_probe(dev, ret, "error on SPI offload setup\n");
-> >  
-> >  	return 0;
-> > +
-> > +trigger_buf_setup:
-> > +	ret = __ltc2378_set_triggered_buf_ops(st);
-> > +	if (ret == -EOPNOTSUPP)
-> > +		return 0; /* Let device setup complete without buffer support */
-> > +
-> > +	if (!ret)
-> > +		ret = st->ops->buffer_setup(indio_dev, st);
-> > +
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "error on buffer setup\n");
+On 6/18/26 7:33 PM, Kurt Borja wrote:
+> Some ADCs incorporate burn-out current sources that provide current to
+> the channel's input pins for open-circuit or short-circuit detection.
 > 
-> This is repeating the code above. Seems like it would be better without
-> the goto.
-Ack
+> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/iio/adc/adc.yaml | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adc.yaml b/Documentation/devicetree/bindings/iio/adc/adc.yaml
+> index 106b1e317411d5..6b63aac9ac04dd 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adc.yaml
+> @@ -106,6 +106,20 @@ properties:
+>        This array describes the current configuration of the excitation current
+>        sources or the single matched current for all sources.
+>  
+> +  burn-out-current-microamp:
+> +    description:
+> +      Burn-out current sources provide current to the channel's input pins for
+> +      open-circuit or short-circuit detection.
+> +
+> +  burn-out-current-polarity:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      Burn-out current sources provide current to the channel's input pins for
+> +      open-circuit or short-circuit detection.
+> +    enum:
+> +      - pull-up
+> +      - pull-down
+> +
+>  anyOf:
+>    - oneOf:
+>        - required:
+> 
 
-> 
-> > +
-> > +	st->chans[st->num_iio_chans++] = IIO_CHAN_SOFT_TIMESTAMP(1);
-> 
-> Adding a channel here seems messy. I still think static const channel
-> data would be better. But at least would be better if this was moved
-> to the same function as the other channel setup.
-> 
-Agree, will think of a better place to init the timestamp channel while
-switching to static const channel.
-
-> > +
-> > +	return 0;
-> >  }
-...
-> > +static irqreturn_t ltc2378_trigger_handler(int irq, void *p)
-> > +{
-> > +	struct iio_poll_func *pf = p;
-> > +	struct iio_dev *indio_dev = pf->indio_dev;
-> > +	struct ltc2378_state *st = iio_priv(indio_dev);
-> > +	int ret;
-> > +
-> > +	ret = ltc2378_convert_and_acquire(st);
-> > +	if (ret < 0)
-> > +		goto err_out;
-> 
-> As mentioned elsewhere, SPI xfer size may be 2 or 4 bytes, but
-> we are always pushing 4 bytes, so this only works on little-endian
-> architecture.
-> 
-> I think best would be to have storagesize = 16 when appropriate to
-> avoid having to manually handle this.
-> 
-Okay, it will probably be easier to do that with static const channels.
-Am checking out other sashiko comments as well.
-
-> > +
-> > +	iio_push_to_buffers_with_ts(indio_dev, &st->scan, sizeof(st->scan),
-> > +				    pf->timestamp);
-> > +
-> > +err_out:
-> > +	iio_trigger_notify_done(indio_dev->trig);
-> > +	return IRQ_HANDLED;
-> > +}
-> > +
-> 
-Thanks,
-Marcelo
+This doesn't really work with chips that just have and enable bit to
+enable or disable the feature.
 
