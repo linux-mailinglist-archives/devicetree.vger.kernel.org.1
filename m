@@ -1,216 +1,144 @@
-Return-Path: <devicetree+bounces-313921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313923-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0RzPJQ9yNWpSwgYAu9opvQ
-	(envelope-from <devicetree+bounces-313921-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 18:45:03 +0200
+	id j+qwNoFyNWqOwgYAu9opvQ
+	(envelope-from <devicetree+bounces-313923-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 18:46:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 963596A71B7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 18:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0035C6A720B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 18:46:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=JlNdfxJK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313921-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313921-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SKUHuK7I;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313923-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313923-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9F04C3016C24
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:44:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1C8EF3021864
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF183BFE42;
-	Fri, 19 Jun 2026 16:44:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7330F3B4E8F;
+	Fri, 19 Jun 2026 16:46:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D88972F2910
-	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 16:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AB7C3B14C9;
+	Fri, 19 Jun 2026 16:46:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781887497; cv=none; b=fc1QHG97coq4G4Xfe81quDMbE9wcDirVXg6ASa0C2bQHsg7iBJ2VPDpmfkIE8r9K6n8TEGCMYpdrQZj1E8PYSefjoZeOZNv9bs+5RZJNAOjcpIHW7j2bQcpfij+Ul/GpYNu1ED98YaOaMHJKYAsF20JS+CQ/JT+ouzqam+Z0POk=
+	t=1781887601; cv=none; b=PNYOLMgpIbmRK5AjJUFv+xMhcW8eoRmHTlsprQm8qdaPewQwwVx76gZ2eQs0HA/l++69u0OP2kH1bAZumMaZmkPYmQHfhvCD/6Q67LkL2fRrRWsj3EyN+JFkXaj/+ouZTZ+nEVy9t27LxbrnpgLqfrWUX3UuZQdbqR/X3XJmfY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781887497; c=relaxed/simple;
-	bh=53nrFR+5P147jRMcGHp6GiQfoQU1K9VkWGdViL91Arg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=UUOEy9/bEBCtFOV9Y9YT89QLuRKG9YvHxVS7FUX7uEaUUMWFi6emPNqDJ4ZyeaVlODU7eNPxTYOGnvomxgwSx/4hXF0Ru0m+GXRSN12W17UpCCKEqUqWER7M+HOdMOSGFbae1DqbAC7GkFBhhOIccFjthz6XVJCi8XLtNcWWOP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JlNdfxJK; arc=none smtp.client-ip=209.85.221.180
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-59cd803792aso1452493e0c.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 09:44:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781887495; x=1782492295; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lL55HpULYFYjPZKBpHgRb83VpApz0ytowSZF8pFlahE=;
-        b=JlNdfxJK+kgquLHHhr1PrZExom24RvvjqdpKpF3M1gt1oUnspm3rTF17EkzTE2oOw+
-         3w95wiwiHKwjlwUqf3UruE5fdF8rgxv0HGgFDu4xEan/qHtKf1ScnLPaAD3PK0DuWjUw
-         i8ljcKxAPcm4mBSfNj18+W1WPtY7A10KnzC14Gs+zLsjEDcwU0CoKN2uoP3mHDd5hlaY
-         Jiy1oQusq2KzfYHOs5k6486L2F5K/I1SVWaOq5fPCrl2WLRsxY/JdoW2qEJKVu1dbudi
-         MI4sxuy7Kjh6gnCldLXB17C7OK7CpkzZG5M8M7vw6UpACVAoZoYOW4ONYUNqsldudD/I
-         JL5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781887495; x=1782492295;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lL55HpULYFYjPZKBpHgRb83VpApz0ytowSZF8pFlahE=;
-        b=g+/D3YbRszaMgV7nGpZR73gSli6tAArLhMJ4piQzGvlLwuqYfk1gCKMGn2P3wIpNDi
-         dFE7xvxMgm8pVPJC/nXCRyucg8TpSvVDIpr2i0c8o1l+UHhiM/LIYtLwt4ey/l+ZpXVc
-         HkahpMsrqGi+RyQxtSpVlR49p3M9192thkknPWizJjU2XXf9mtCl8xPJS3U/ZPDjphiH
-         iznvd5Ky6bjgHydtcTeduXBHJXr3azGmgcqXcLpZVulOz1DzTWrR4FY3W04/goQmDjIF
-         pdbu4DfEpPkhPPrn0/VcKOr0Z5RrTNuuF5N18ffhYv1+dKhzp5WEo0Gr1coznSZLipUu
-         /q8Q==
-X-Forwarded-Encrypted: i=1; AFNElJ9E/thixBRTetU1dwjxfnlxSR6zN89mN/EV6gAgDqc/4s9WQ9EoFnYWfY92J4yAJSIbw5nCLQccC5o+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7zR2xdJ3YM1QJUdqAsF1SOqsHdFS/VobiL+UH/vL44dXhzadm
-	7C/0n8vScAE4y4iQASQGCLL5N0phyi5V4pYmIp4XYzrktTLvIe1Q9XKI
-X-Gm-Gg: AfdE7ckpr4tmn5WXnILdA92XuxQqOmzvV2s8C26kwn36EJ2EoPqAtxCzREbqADi/IK/
-	s5zGMtTRRPIfcyW6PpAoexIw1j7/mQ+mCJQr+6NJXovSTxMZGVsgp7EUZ6Q+E7ljhR9cFdtBIIa
-	QCugYP0J3P5Z3C8rLHKAgaNQLDfDxYzC3xEgvwp/s5mryEVHAehuE8O/ppvGkW9eeD1ew1LL2up
-	eDrFxD6sZNc71LFr3XY+EUfkWt0sKkwJUOc9DUr1StUAcYdBiwA72bTB2xIFLyzgp2YqDsdR4/F
-	VNegFwBF2osSikh0F1y6dkWBwJYRDNgH1x5ikCeMGoszqqCYbaDEfKbG4m7Izf40NlGlBUPHJD7
-	A1CCkXmSYHZBOwzwZoyqq7Kpe/wgCL1YG1ZFPe+Ld8fo7hBcsr3hT6y+NH/2VtXNYWhONhZ53ZT
-	cLeTA=
-X-Received: by 2002:a05:6122:341c:b0:5bb:dc6a:249d with SMTP id 71dfb90a1353d-5bbee6efcbbmr1938741e0c.11.1781887494797;
-        Fri, 19 Jun 2026 09:44:54 -0700 (PDT)
-Received: from localhost ([2800:bf0:82:11a2:7ac4:1f2:947b:2b6])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5bbfbab451bsm119607e0c.18.2026.06.19.09.44.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Jun 2026 09:44:54 -0700 (PDT)
+	s=arc-20240116; t=1781887601; c=relaxed/simple;
+	bh=W+ryORRTmj+ILuSp3QvcLjpV9WPLF5j4G8We2apjGeA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sM/p93p4Qe88OlQ/Ne5kF0Yy3heairm4e1Abe+8gbol4JR6wrIEXM2Llf1vRzFIZcUvrRnLrGG9365PD2HD9ELEqKsSqhd9mSIYR23lR6mTRFlX3QwyD4j1e8hl6DFeOcNRl4K4vqHG36T0DIISXYa/9KxJcgbVataUOu4y07co=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SKUHuK7I; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B8AC1F000E9;
+	Fri, 19 Jun 2026 16:46:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781887600;
+	bh=c5JRDdmtgCFvN6wGQfLZcw3GVOJePJ67hBap933kVOY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=SKUHuK7IfuvVPpbdswcNr/zHJA3JX+wzizv6Xk0rwpcUSkO0FCqLevy7gBo6PK4k0
+	 BLpnD17OqvnuWXDaIGKRvPOdifz3tqo8p9xCpfqQFe4vB+hfOBn4ek4QZYdb2eApjh
+	 fS8QGtZeAACAqLP9opBVeQmp3pqHoO1OyBNEc0X932EeNG9p/sKuvv1eYVF3MOaVkp
+	 cmVzCKyaDXaQC8PftMEsR/fyDVhYUyijS2CzWSbiXMYoQkb7unS/d8eI6veyeMMuSj
+	 41Xq/N0DOhMfcciXOeos7arNikbbgP9/vOcZ2L4s0EOYgXsXtCM7slzU+4N3fgFTT2
+	 piJP5iO2Wz03g==
+Date: Fri, 19 Jun 2026 09:45:06 -0700
+From: Eric Biggers <ebiggers@kernel.org>
+To: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Frank Li <Frank.Li@kernel.org>, Andy Gross <agross@kernel.org>,
+	Harshal Dev <harshal.dev@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dmaengine@vger.kernel.org
+Subject: Re: [PATCH 0/5] Shikra: Add DT support for ice, rng and qce
+Message-ID: <20260619164506.GA3223@sol>
+References: <20260521-shikra_crypto_changse-v1-0-0154cc9cc0de@oss.qualcomm.com>
+ <53b1fa61-9692-42fd-a295-98bbeacbcd9a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 19 Jun 2026 11:44:47 -0500
-Message-Id: <DJD6EB7J90AR.20Z61X02BHAZT@gmail.com>
-To: "David Lechner" <dlechner@baylibre.com>, "Kurt Borja"
- <kuurtb@gmail.com>, "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>
-Cc: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy Shevchenko"
- <andy@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH RFC 2/3] dt-bindings: iio: adc: Add excitation current
- sources properties
-From: "Kurt Borja" <kuurtb@gmail.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260618-new-channel-props-v1-0-963c1b5cf40a@gmail.com>
- <20260618-new-channel-props-v1-2-963c1b5cf40a@gmail.com>
- <073b0a89-65af-4a21-837d-851d35e3e294@baylibre.com>
-In-Reply-To: <073b0a89-65af-4a21-837d-851d35e3e294@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <53b1fa61-9692-42fd-a295-98bbeacbcd9a@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313921-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[kuurtb@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:dlechner@baylibre.com,m:kuurtb@gmail.com,m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:kuldeep.singh@oss.qualcomm.com,m:herbert@gondor.apana.org.au,m:davem@davemloft.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:vkoul@kernel.org,m:thara.gopinath@gmail.com,m:konradybcio@kernel.org,m:Frank.Li@kernel.org,m:agross@kernel.org,m:harshal.dev@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:tharagopinath@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[baylibre.com,gmail.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-313923-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[ebiggers@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuurtb@gmail.com,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[ebiggers@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gondor.apana.org.au,davemloft.net,kernel.org,gmail.com,oss.qualcomm.com,vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sol:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 963596A71B7
+X-Rspamd-Queue-Id: 0035C6A720B
 
-On Fri Jun 19, 2026 at 9:27 AM -05, David Lechner wrote:
-> On 6/18/26 7:33 PM, Kurt Borja wrote:
->> Some ADCs incorporate current sources that provide excitation current to
->> resistive temperature devices (RTDs), thermistors diodes and other
->> resistive sensors that require constant current biasing.
->>=20
->> The maxItems constraint of 16 is arbitrary but should be big enough for
->> most devices.
->
-> I wouldn't put an arbitrary limit here. The bindings that include it
-> can extend it to add a limit that makes sense instead.
+On Fri, Jun 19, 2026 at 02:13:28PM +0530, Kuldeep Singh wrote:
+> On 21-05-2026 18:47, Kuldeep Singh wrote:
+> > This patchseries attempt to enable sdhc-ice, rng and qce on shikra
+> > platform similar to other platforms.
+> > 
+> > Previously, the 3 dt-bindigs/DT changes were sent as individual series
+> > and with feedback received, clubbed them together as all belong to same
+> > crypto subsystem.
+> > 
+> > Here's link to old patchsets.
+> > QCE: https://lore.kernel.org/lkml/20260515-shikra_qcrypto-v1-0-80f07b345c29@oss.qualcomm.com/
+> 
+> Hi Eric,
+> 
+> As selftests issues for QCE are now fixed[1], so shikra series should be
+> good to proceed? as your concerns[2] are now addressed.
+> I am waiting for merge window to end and will send next rev post that.
+> 
+> [1]
+> https://lore.kernel.org/linux-arm-msm/20260617-qce-fix-self-tests-v3-0-ecc2b4dedcfd@oss.qualcomm.com/
+> [2] https://lore.kernel.org/lkml/20260522024912.GC5937@quark/
 
-I agree.
+If you think that then it sounds like you need to read what I actually
+said.  The fixes are appreciated but don't change the big picture.
 
-This was partly a misunderstanding. I thought -microamp properties fall
-back to uint32 not uint32-array but it's the other way around right?
-
->
->>=20
->> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
->> ---
->>  Documentation/devicetree/bindings/iio/adc/adc.yaml | 23 +++++++++++++++=
-+++++++
->>  1 file changed, 23 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/iio/adc/adc.yaml b/Docume=
-ntation/devicetree/bindings/iio/adc/adc.yaml
->> index c74c2084fdb68c..106b1e317411d5 100644
->> --- a/Documentation/devicetree/bindings/iio/adc/adc.yaml
->> +++ b/Documentation/devicetree/bindings/iio/adc/adc.yaml
->> @@ -83,6 +83,29 @@ properties:
->>        This array describes either a single reference source or a positi=
-ve and
->>        negative reference sources.
->> =20
->> +  excitation-channels:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    maxItems: 16
->> +    minItems: 1
->> +    description:
->> +      Excitation current sources provide current to resistive temperatu=
-re
->> +      devices (RTDs), thermistors diodes and other resistive sensors th=
-at
->> +      require constant current biasing.
->> +
->> +      This array describes the mux configuration of the excitation curr=
-ent
->> +      sources.
->> +
->> +  excitation-current-microamp:
->> +    maxItems: 16
->> +    minItems: 1
->> +    description:
->> +      Excitation current sources provide current to resistive temperatu=
-re
->> +      devices (RTDs), thermistors diodes and other resistive sensors th=
-at
->> +      require constant current biasing.
->> +
->> +      This array describes the current configuration of the excitation =
-current
->> +      sources or the single matched current for all sources.
->> +
->>  anyOf:
->>    - oneOf:
->>        - required:
->>=20
-
---=20
-Thanks,
- ~ Kurt
+- Eric
 
