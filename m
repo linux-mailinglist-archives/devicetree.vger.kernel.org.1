@@ -1,228 +1,449 @@
-Return-Path: <devicetree+bounces-313902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313899-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id aMU4M01nNWqVvQYAu9opvQ
-	(envelope-from <devicetree+bounces-313902-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:59:09 +0200
+	id b/U0CilnNWp7vQYAu9opvQ
+	(envelope-from <devicetree+bounces-313899-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:58:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD8D6A6E5E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:59:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4B686A6E35
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:58:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b="HXQS/s45";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313902-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313902-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=PkNA05hw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313899-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313899-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 131583089CBC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 15:55:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B50F7303EEB1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 15:55:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0BB63BD643;
-	Fri, 19 Jun 2026 15:54:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2DB3BBFA3;
+	Fri, 19 Jun 2026 15:53:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013061.outbound.protection.outlook.com [40.107.159.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7D0B3B42FF;
-	Fri, 19 Jun 2026 15:54:03 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781884450; cv=fail; b=cPtgaTtp5gFRiu5kBhtRDxVT6qXRP1FD67NxYB+GwJ0yb3oSaTk4XrCqwUVXwDp7z9WlBZQd8q14PK0yuHlreXS9BUXM5aBQXGEEUMUYnUWWV7kaecwdAAYOKk8z3zS8lpDicRoCK+f2AdwnBEQGLlQm6uPrlxSkSpHx0324DZA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781884450; c=relaxed/simple;
-	bh=LKJDaEpoQaw7uVnfADEpF8WeZOiBUebtla/iiC4Smu8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=h8N31k0YIp+Aac/n6Jbyz25sUQC0h/8WTSo2W1VXVkBgUfJMJRp093zF26LWyVNgoW1zSKrIfnPMPfJb5/SWnHwN6nmabceEDzG6HHl68HBsBWFhpw/zVRcl3mqYuSfT8weg4ZOjtOUMsykpOly0mp06/nb9JS9UMN8iDTc4ky4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=HXQS/s45; arc=fail smtp.client-ip=40.107.159.61
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Sr+OeNdJLOoVJyhwSgls//vSxJMKF/erJSK6uCGKl2tbACqfj3Qk7daO+BpLgdKYuXVQgvCNt/miEw+o1LAE6+9I80I9HcPjAYzWgydxF08Us3IzuJbUr95CCWGELEFjtsOUcniuUsr7HzHwSf1fdRciTfhW6vTywIXqO5Z4T5GiZuHxSEKBI7YP1AUtC6x+BtXlnmnOY2BSyo9CwhEUquOrFn//MR3QujwutJmJqyRUQ7rHTVcxDSf4meJX590BPqHX6F8gKt21P/S1dfrfMYKZ6BUBTSnNfiqbaVFSw/3BS4TOPKPdUG9WZPJmXZslUIvpvbVrlgK8QolXXc2EBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AgF9AashnHuzUk/JMxMjTbCL+cw5W+tJK5pwXckFz00=;
- b=O5p33OOWOw4XcK7VGnH0NBNyOiQwxic5AuUOXyxkj/4MLfSUVbDQENSQphVH1qs04Lbq0nKQSat58eiXBTx8Nc+XrLBV0xIjsqJWW4VU+mu4f+LCaFXqh5LGq0KcsjNqE8TEf6krTmCGeihr5NzPcuz/GZHIqI3odFB9BxaMVsZPwpF13jsfZqjfxubhRyU3vmgoTsqnNdlmicJbhkmT+JjLY0u8ZCXeTP8/gZAeBAEFKCh4tcZi0rFNjqEoSkH7aBOdTXFaVZNMAm1a867TnE98T5X3uWfjcbSDzmGNg9M/hO5k66fH1tYQnmro0dBt4cYBxNRrCvT1wOFfYgHYpA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AgF9AashnHuzUk/JMxMjTbCL+cw5W+tJK5pwXckFz00=;
- b=HXQS/s45zUaVfZdvA5V8vt9t9VGZabJPdGOo4HNaAd9AMMwUMqC3S/g5OlWPuNFr+7NjBuihpEVMGpfdM4h3ya+CtnufQKMO8LRwqzjomXketBobylq9EVZBpgKWdR8GIEjKWYV6eCXGMKXFYArnhm2VLnWvMOuPR37QctWCZAqt3lT+hVo0kkKVDUS04/3iRgT2TE0DwlCGzNHDz432XLmLCfG5x6jqGZDs5m7uewZKcup7Cr9INIMEt/XFnI4yjTHaMMGZuhPzHqwIK3OQ6nPwo/FW86zrPdrc30nM10ndZFMEEHj+5ACvDcbcAIH8M8pJPWNOAxNrDM+FvE5tGQ==
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by PA4PR04MB9223.eurprd04.prod.outlook.com (2603:10a6:102:2a2::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.13; Fri, 19 Jun
- 2026 15:54:00 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0113.015; Fri, 19 Jun 2026
- 15:54:00 +0000
-Date: Fri, 19 Jun 2026 10:53:50 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Yuanshen Cao <alex.caoys@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>, dmaengine@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/5] dt-bindings: dma: sun50i-a64-dma: Update device tree
- bindings documentation for A733
-Message-ID: <ajVmDiWqk_5MXTdL@SMW015318>
-References: <20260619-sun60i-a733-dma-v1-0-da4b649fc72a@gmail.com>
- <20260619-sun60i-a733-dma-v1-5-da4b649fc72a@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260619-sun60i-a733-dma-v1-5-da4b649fc72a@gmail.com>
-X-ClientProxiedBy: SA9PR10CA0024.namprd10.prod.outlook.com
- (2603:10b6:806:a7::29) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D09A13BBA1E
+	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 15:53:12 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781884399; cv=none; b=B51gMX4PzFBgNKuCO1mtbyQxUMPQv8LtuJtym+9L7KU9W3NSodOdObq8Z7Azeg+cEkVfvaC2iOjfUl0eHAm1PyJ/IHPnyx3I3nzNfDq1o2yDg6daz3KSrpZ3vRcnBcEJpAj5BYt7qviR1AFc2ofjfThbwNfVzbqdKQoRDCd6YGo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781884399; c=relaxed/simple;
+	bh=bb+cUcj7HQuwpnFQDNO7rItSBV5fu/hsjtqa7E0WUUs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dP0eG7M9LlZrj5VF+dFFPPSDFwScU0qk2JZ8Xci6jhFhiSsNI8rkw9vbtFquj0ZQOUx4araM6Q6HKY0iI4ZRUWgeP4WNciQDTVMRDBLNI1VUjFFdo5lESyxm/zdCXjUuGOzk3NBrfsl3pdbeNt0dXX3Ns83OVuVCGCs/qMP6enE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PkNA05hw; arc=none smtp.client-ip=209.85.128.54
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-490cf322ed0so17167585e9.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 08:53:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781884391; x=1782489191; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/0CgMpW9yG1iq8S4CDVlww4fITpPQ7sSOHilePzQBMw=;
+        b=PkNA05hwFi9CALCM3FvA9MUdfRVKK2tJt106PYn541LqUwzE+zi2L9lnGEYp0SKLjv
+         La3O8/Z659vMkSNhu2a95t8hnKS/vuClhY8W6Usd+Asky0viJ9R3cr0wZE5dOW08u4wF
+         dIpNwIWzJlDz3WdABf4qWAnjPz493g+5kh/WN1BnNPl1viY1mxAFjWxNWLRNEn7baUx4
+         Fx6m3CqWgS3SCJw/+kuuWpnjH03COBtJVUt2KgMpHh7zBdyRTCV9ubvLlyAk0PZTySGF
+         vNqy2vlh4BSOMWW6z+88uZWOb8gf2skuxOcj27vws3UQyJnqAhNtaDZw28wy4U+eVcwW
+         CPEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781884391; x=1782489191;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/0CgMpW9yG1iq8S4CDVlww4fITpPQ7sSOHilePzQBMw=;
+        b=HkHFcft5+mBuuvgNnUggEzlJj5/HOjwYXbBlEaQtk0ZoIs4VVQd2lDJRt1j1IsLKgD
+         xAE7d6M6LLTYCpymzGb64iwHY8v7sD2AVhXoeKPx3nka9p5KC7NbOhJFRhx/ydr1dS85
+         XVtbg4lMkXdW8PTWlOvzzX2W9TxUiZrtR3lmr5HdX8E4DD089U61N848lCY+jwrH3ze3
+         cOLJhoeDotSfMttwvNVHvTODPInwL9vp4pY8lZhLQr2RYdthpVWjh9PY1Tdr3wpXzQLv
+         rl26MQ2yQxMUkoEzQwdyw4qlfLZyGMOFDbvx/XjbjyXkXgBqmu5G9IyWa59ULLjZtyJx
+         AVmw==
+X-Forwarded-Encrypted: i=1; AFNElJ/0nsk+auOjCu4+TVUa5JHRQTS/7AYHKQv9/K2lqySTad1wgfd8exuDLOKNC05zXQQ3MgFdY7DPBPSO@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwICoeIr2Rl3aKiWGXcqJ7TcOfsirs5eC9su9kyHY8vmyQvlwq
+	t1iJSirYGNv7xDznO7CPmCwRYDOXJNJQ9Nlu7ULf0BqfohDtV7mChnha
+X-Gm-Gg: AfdE7cnatgB4K9SXTfg8i2dx7qaloQMcBUNRQa2DbZJQuCFs55qhZzqfBdmou7vhxuz
+	Ivj2xwLwNWkcJMjv12XCJNcAvrgIoGvpieUkYla1CLOEGXcIbfR7ktq/6JKo9vwB26Mf0PpxSqs
+	9JyNtormFs+0R7GQWOifelAdaUsg+K+hKu64AGHI8F6R9ov45khbsoLEVv0W/NuvB1eUWSEVNMd
+	pLtlezqvgGQPBz3tHFll1TW5OekO9P1sAb2wuAGwXoANKwfpcLyuR77MUx5O8FRvi4nugdL/+Wb
+	o/WuZbGbzszWORODPHslRzXt4stNApYVpUCtZl04oO0Lj039O430ExndXKsejdDmDjqg/HJI273
+	Anm5ZRJ6GNYstH1lV61K6+0gzk1mvDFtDXhy+fGKUrtR5XdShJqqTmDjYGPJ9POtc4JthvPCRtp
+	XS2n5kCBn6NYcoXKo=
+X-Received: by 2002:a05:600c:8b42:b0:490:b724:5085 with SMTP id 5b1f17b1804b1-4923f5944eemr88749815e9.33.1781884390726;
+        Fri, 19 Jun 2026 08:53:10 -0700 (PDT)
+Received: from nsa ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49246403653sm24433175e9.13.2026.06.19.08.53.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jun 2026 08:53:10 -0700 (PDT)
+Date: Fri, 19 Jun 2026 16:54:11 +0100
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Janani Sunil <jan.sun97@gmail.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, 
+	Janani Sunil <janani.sunil@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
+	Shuah Khan <skhan@linuxfoundation.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: Add AD5529R
+Message-ID: <ajVlD-j0nIGrRVow@nsa>
+References: <20260519-ad5529r-driver-v3-0-267c0731aa68@analog.com>
+ <20260519-ad5529r-driver-v3-1-267c0731aa68@analog.com>
+ <25mh6grzh7zh3b4uytcqnusyv5zjuf6ia4if3ce3oqzqz56ehi@le72iqv7ye3d>
+ <603473ac-30e6-45e5-8a3b-c9902715cc9e@gmail.com>
+ <20260614204455.408c4d40@jic23-huawei>
+ <076d7d2d-81a0-49c2-af94-bd65ead66c09@gmail.com>
+ <20260619-obstinate-polo-a230bef97fda@spud>
+ <20260619-bunch-diocese-dd7805cc17ff@spud>
+ <ajU73_TkKrSbqD4f@nsa>
+ <20260619-concierge-doozy-9c161533c369@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|PA4PR04MB9223:EE_
-X-MS-Office365-Filtering-Correlation-Id: 02507baf-e201-46f2-9f7c-08dece1afa56
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|23010399003|366016|1800799024|376014|7416014|19092799006|56012099006|11063799006|18002099003|22082099003|4143699003;
-X-Microsoft-Antispam-Message-Info:
-	kQJgjsWDRZIm4++wFcbmcMt604MtRMjE17M7T17xUKcv/KK/lhaFzukCkMjKoC5NZVfLk1TOfKQZQUQW74zVEiKsTj3EYUH3RT0feNdpvbLsAFQc+PRQDh7Gv3eBbJDMgds1enEt29a9dqRabhIFW+4S/rkAWS/jzAhGoqn3JVgNUiATZ+y2doeqrQwOAKmTVDMJPorZQPhjpKwjOdHzwsqani5CwW3EYT/B94f2gTJZTTEu6taqGVw+7ZirAvJAd3ScXjS61GmzHrWQmwU5QcBldZw4Vol8kz5+ylMuXF4a9JRT1/vnf7qbqHWKBR+QbVE5O7IVIviLCwIJauzvuIqXKz7nozXkpM3MDgSsqbBTV0/zn7mgc01NlWAOkI/pIiyde7GMpAgsUN2cuVYrh3swrUrudFbgDSBQo5DXVFjO2dVQTxDXzWAt4YcauyaTzltsoaDBk45fr92eOBOT9x706BMO9Jqb0L/6oErW8biZikLa6lLNeouYDEp3Z2pcTPoB5kCI3dJ0IerAY4rOO0KOg6MTrpxQEG8PVr8Z37C3rFKPUqeZ7AScTXTKue1MFMvZzdgOggNcNE0L44vB5cfEOJDnAMqzoKrKSoljxAao08gZZe1aezkNuWHlO+2UuymZsIL6lkBqpMZhqQ57ghHFHLdUsGbdIsBkDHmrtI4=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(7416014)(19092799006)(56012099006)(11063799006)(18002099003)(22082099003)(4143699003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ZrpIGPvUFMH2v6S/cw8RMtYNrm8cdGNOgAYf4QQfCFEFOImnCJlEtzEdjS57?=
- =?us-ascii?Q?Xg42xZcvnTeE0LhRbV0qyrweYaDcTPtKVz8Rwj4MCXMIKp5BT6/5aVwzxpbo?=
- =?us-ascii?Q?sQJHszwz+8RkSr1rsrlNgzFI75VOlb9g6WVTT5bXF13JjWKBDMdFufUzHspj?=
- =?us-ascii?Q?c1f+5QpqhSSirX0EBMvpMt6QlvS3LS8bUgYhRfX8yXC3gxSVkDNTIKRO04He?=
- =?us-ascii?Q?jxLY2XV77QXQfq5L6ZBvOako5nQYOd8eUgMyaRUHLoSZk1CmZhM0tI/X43y8?=
- =?us-ascii?Q?jDa9V93qrAgAyU1zaD38N6Rm0xkYmTCE2RYSR2Sx43i/IXkuf2bOAp61Irue?=
- =?us-ascii?Q?UJl835loM9Wyp5KrzxBcak+aCX0mEuVBZ1/fSsfHEgtjVDUVqRiH1MJITsEC?=
- =?us-ascii?Q?4sxq/GIvAv8act+LxTNq6Xkve5tvCxqBd3n/TwtZSrJEQzN+fmTU8ltwEypb?=
- =?us-ascii?Q?uLsoAsjMaV3x98E5Vob/zqEeDfZ8gE8gcAgu9OG/1Ku1fKr9gBtub081z9CO?=
- =?us-ascii?Q?Iz1QQ1TjFFoZEwtnUXPIWjDnW6cdh4P9BM7N06E7vSi4arhKmDT7AN+jdgix?=
- =?us-ascii?Q?ByX1n93cG2imeck0FSeA0ztHJL1ratdO4escU7RNS+wflq3oD7TnLtlgGdfo?=
- =?us-ascii?Q?MLUnw2L6ORXVFSGHiqo3YnYgNwQiI7mzo3IltTwlVgzw5si+zjLSHGO7PCc1?=
- =?us-ascii?Q?YYDwriskfj+2QLKb7PDDMx/dkpijCzawcKFOvZbPK8eepywTcGF58LuIezFA?=
- =?us-ascii?Q?F9BBAbQB+48xXxEOahA9JNpFqSRW/GWGyBtpSqLbNCmFJysG7RAUjdNIEcN7?=
- =?us-ascii?Q?B1zmAF2bXR63gF5/FLCxpz4rP6HrMQTRFi6KzHYwMeaBkt0Mhb2GOSbQzSiK?=
- =?us-ascii?Q?FdG3yt/2G3iJZRcHBEsddqVltavxjZEAsk2m6whXQZCu1mN4TmJlWORy29Fy?=
- =?us-ascii?Q?O0stMcFxFRzVUjR/QfxnunRRUbyuhgOIanTzEjhE+UHR519WssKVthPiMd1H?=
- =?us-ascii?Q?pXzzvcBhSCSRtcoKC0ZpoHPxMsLkj4y/u8qGJTnksCRb6iGEILYvqClaJ4cf?=
- =?us-ascii?Q?sgz4vgAy/gWgyJ8DFVQaWF8nkaPG2djUa17f3465rviQwAk+85l+8241v4Vv?=
- =?us-ascii?Q?6og/5o57rnZlEPJH5oTcs9MQSr7DYmp0PEM6xFE5Ou2HgtSI37l6LO3sESFh?=
- =?us-ascii?Q?1tfMOOoWW9k98RYrJTMVa6Jp7KBg/v984iziQXnVBD+FOVj7LmA9qPQUBYrz?=
- =?us-ascii?Q?GaivjSF+58sL4JdPD+y4YLRGUkMs0LM6nb89Lfm3Q7uBDyvymHAkkAMtSZrV?=
- =?us-ascii?Q?yRkAXClyxZGNPWgxMMoMPEkn5c5xtHy2M3fvSXwH3Q2QZ2JOt+6527lgD2cR?=
- =?us-ascii?Q?YnuRjMsklp160c+T5xnwh1LVMZR76SLF7IuEBv4f0a2l5oS2VyyUo4cBadpq?=
- =?us-ascii?Q?SSK4/KzVkVoKHfJejFmH2BJwVfZ40SdS+pyztkJFyxtMuI/zzjReLvBLZ41N?=
- =?us-ascii?Q?psxf67Ripx7Pzr+TeGIwk8zU+1qNzNiFP/em/sYdmKSVyZCmYBz2YJp9WTxJ?=
- =?us-ascii?Q?xpDW8U0ZfxomkDzmzubHLVANEUAs21KY3YTq+H77LdNJaPMUilKEhLrNNM9A?=
- =?us-ascii?Q?qOBEtTdfWfj+7V1NeDBvK5uEuTeKK+fh65KgtQ1DxTalxz469UP/9z2alSUo?=
- =?us-ascii?Q?Fj/HkjMEDSVM9Mw/SWX1ef7Rm9HniV5EPMOZtd/+K7184qT4sbK95yHVUSNS?=
- =?us-ascii?Q?euxyEJEiqN7eEddQYRM14adqg00Sc9VMey+pQ5jOYGFSxD/hruYD?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02507baf-e201-46f2-9f7c-08dece1afa56
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 15:54:00.0162
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Wh98tBuo+MRV9Hl96mrzdrV9a2cOf8ZCwSM7yMHzeOgld5gm4Iv0EKlIIZ7+1hZ9lxrRoqYfkf4CfhWr4el9uGpX6zl5BygRO25oDyU5uDn9FI9a48Bl0vG7kbd7bFjS
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9223
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260619-concierge-doozy-9c161533c369@spud>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alex.caoys@gmail.com,m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mripard@kernel.org,m:dmaengine@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:alexcaoys@gmail.com,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-313902-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313899-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	FORGED_SENDER(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:jan.sun97@gmail.com,m:jic23@kernel.org,m:455.rodrigo.alencar@gmail.com,m:janani.sunil@analog.com,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:broonie@kernel.org,m:jansun97@gmail.com,m:455rodrigoalencar@gmail.com,m:krzk@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,analog.com,metafoo.de,baylibre.com,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.nxp.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,NXP1.onmicrosoft.com:dkim]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nsa:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3CD8D6A6E5E
+X-Rspamd-Queue-Id: B4B686A6E35
 
-On Fri, Jun 19, 2026 at 04:53:34AM +0000, Yuanshen Cao wrote:
+On Fri, Jun 19, 2026 at 03:12:07PM +0100, Conor Dooley wrote:
+> On Fri, Jun 19, 2026 at 02:01:08PM +0100, Nuno Sá wrote:
+> > On Fri, Jun 19, 2026 at 12:40:54PM +0100, Conor Dooley wrote:
+> > > On Fri, Jun 19, 2026 at 12:36:55PM +0100, Conor Dooley wrote:
+> > > > On Fri, Jun 19, 2026 at 12:33:11PM +0200, Janani Sunil wrote:
+> > > > > 
+> > > > > On 6/14/26 21:44, Jonathan Cameron wrote:
+> > > > > > On Tue, 9 Jun 2026 16:47:23 +0200
+> > > > > > Janani Sunil <jan.sun97@gmail.com> wrote:
+> > > > > > 
+> > > > > > > On 5/26/26 15:11, Rodrigo Alencar wrote:
+> > > > > > > > On 26/05/19 05:42PM, Janani Sunil wrote:
+> > > > > > > > > Devicetree bindings for AD5529R 16 channel 12/16 bit high voltage,
+> > > > > > > > > buffered voltage output digital-to-analog converter (DAC) with an
+> > > > > > > > > integrated precision reference.
+> > > > > > > > ...
+> > > > > > > > Probably others may comment on that, but...
+> > > > > > > > 
+> > > > > > > > This parent node may support device addressing for multi-device support through
+> > > > > > > > those ID pins. I suppose that each device may have its own power supplies or
+> > > > > > > > other resources like the toggle pins or reset and enable.
+> > > > > > > > 
+> > > > > > > > That way I suppose that an example would look like...
+> > > > > > > > > +
+> > > > > > > > > +patternProperties:
+> > > > > > > > > +  "^channel@([0-9]|1[0-5])$":
+> > > > > > > > > +    type: object
+> > > > > > > > > +    description: Child nodes for individual channel configuration
+> > > > > > > > > +
+> > > > > > > > > +    properties:
+> > > > > > > > > +      reg:
+> > > > > > > > > +        description: Channel number.
+> > > > > > > > > +        minimum: 0
+> > > > > > > > > +        maximum: 15
+> > > > > > > > > +
+> > > > > > > > > +      adi,output-range-microvolt:
+> > > > > > > > > +        description: |
+> > > > > > > > > +          Output voltage range for this channel as [min, max] in microvolts.
+> > > > > > > > > +          If not specified, defaults to 0V to 5V range.
+> > > > > > > > > +        oneOf:
+> > > > > > > > > +          - items:
+> > > > > > > > > +              - const: 0
+> > > > > > > > > +              - enum: [5000000, 10000000, 20000000, 40000000]
+> > > > > > > > > +          - items:
+> > > > > > > > > +              - const: -5000000
+> > > > > > > > > +              - const: 5000000
+> > > > > > > > > +          - items:
+> > > > > > > > > +              - const: -10000000
+> > > > > > > > > +              - const: 10000000
+> > > > > > > > > +          - items:
+> > > > > > > > > +              - const: -15000000
+> > > > > > > > > +              - const: 15000000
+> > > > > > > > > +          - items:
+> > > > > > > > > +              - const: -20000000
+> > > > > > > > > +              - const: 20000000
+> > > > > > > > > +
+> > > > > > > > > +    required:
+> > > > > > > > > +      - reg
+> > > > > > > > > +
+> > > > > > > > > +    additionalProperties: false
+> > > > > > > > > +
+> > > > > > > > > +required:
+> > > > > > > > > +  - compatible
+> > > > > > > > > +  - reg
+> > > > > > > > > +  - vdd-supply
+> > > > > > > > > +  - avdd-supply
+> > > > > > > > > +  - hvdd-supply
+> > > > > > > > > +
+> > > > > > > > > +dependencies:
+> > > > > > > > > +  spi-cpha: [ spi-cpol ]
+> > > > > > > > > +  spi-cpol: [ spi-cpha ]
+> > > > > > > > > +
+> > > > > > > > > +allOf:
+> > > > > > > > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > > > > > > > > +
+> > > > > > > > > +unevaluatedProperties: false
+> > > > > > > > > +
+> > > > > > > > > +examples:
+> > > > > > > > > +  - |
+> > > > > > > > > +    #include <dt-bindings/gpio/gpio.h>
+> > > > > > > > > +
+> > > > > > > > > +    spi {
+> > > > > > > > > +        #address-cells = <1>;
+> > > > > > > > > +        #size-cells = <0>;
+> > > > > > > > > +
+> > > > > > > > > +        dac@0 {
+> > > > > > > > > +            compatible = "adi,ad5529r-16";
+> > > > > > > > > +            reg = <0>;
+> > > > > > > > > +            spi-max-frequency = <25000000>;
+> > > > > > > > > +
+> > > > > > > > > +            vdd-supply = <&vdd_regulator>;
+> > > > > > > > > +            avdd-supply = <&avdd_regulator>;
+> > > > > > > > > +            hvdd-supply = <&hvdd_regulator>;
+> > > > > > > > > +            hvss-supply = <&hvss_regulator>;
+> > > > > > > > > +
+> > > > > > > > > +            reset-gpios = <&gpio0 87 GPIO_ACTIVE_LOW>;
+> > > > > > > > > +
+> > > > > > > > > +            #address-cells = <1>;
+> > > > > > > > > +            #size-cells = <0>;
+> > > > > > > > > +
+> > > > > > > > > +            channel@0 {
+> > > > > > > > > +                reg = <0>;
+> > > > > > > > > +                adi,output-range-microvolt = <0 5000000>;
+> > > > > > > > > +            };
+> > > > > > > > > +
+> > > > > > > > > +            channel@1 {
+> > > > > > > > > +                reg = <1>;
+> > > > > > > > > +                adi,output-range-microvolt = <(-10000000) 10000000>;
+> > > > > > > > > +            };
+> > > > > > > > > +
+> > > > > > > > > +            channel@2 {
+> > > > > > > > > +                reg = <2>;
+> > > > > > > > > +                adi,output-range-microvolt = <0 40000000>;
+> > > > > > > > > +            };
+> > > > > > > > > +        };
+> > > > > > > > > +    };
+> > > > > > > > ...
+> > > > > > > > 
+> > > > > > > > 	spi {
+> > > > > > > > 		#address-cells = <1>;
+> > > > > > > > 		#size-cells = <0>;
+> > > > > > > > 
+> > > > > > > > 		multi-dac@0 {
+> > > > > > > > 			compatible = "adi,ad5529r-16";
+> > > > > > > > 			reg = <0>;
+> > > > > > > > 			spi-max-frequency = <25000000>;
+> > > > > > > > 
+> > > > > > > > 			#address-cells = <1>;
+> > > > > > > > 			#size-cells = <0>;
+> > > > > > > > 
+> > > > > > > > 			dac@0 {
+> > > > > > > > 				reg = <0>;
+> > > > > > > > 				vdd-supply = <&vdd_regulator>;
+> > > > > > > > 				avdd-supply = <&avdd_regulator>;
+> > > > > > > > 				hvdd-supply = <&hvdd_regulator>;
+> > > > > > > > 				hvss-supply = <&hvss_regulator>;
+> > > > > > > > 
+> > > > > > > > 				reset-gpios = <&gpio0 87 GPIO_ACTIVE_LOW>;
+> > > > > > > > 
+> > > > > > > > 				#address-cells = <1>;
+> > > > > > > > 				#size-cells = <0>;
+> > > > > > > > 
+> > > > > > > > 				channel@0 {
+> > > > > > > > 					reg = <0>;
+> > > > > > > > 					adi,output-range-microvolt = <0 5000000>;
+> > > > > > > > 				};
+> > > > > > > > 
+> > > > > > > > 				channel@1 {
+> > > > > > > > 					reg = <1>;
+> > > > > > > > 					adi,output-range-microvolt = <(-10000000) 10000000>;
+> > > > > > > > 				};
+> > > > > > > > 
+> > > > > > > > 				channel@2 {
+> > > > > > > > 					reg = <2>;
+> > > > > > > > 					adi,output-range-microvolt = <0 40000000>;
+> > > > > > > > 				};
+> > > > > > > > 			}
+> > > > > > > > 
+> > > > > > > > 			dac@1 {
+> > > > > > > > 				reg = <1>;
+> > > > > > > > 				vdd-supply = <&vdd_regulator>;
+> > > > > > > > 				avdd-supply = <&avdd_regulator>;
+> > > > > > > > 				hvdd-supply = <&hvdd_regulator>;
+> > > > > > > > 				hvss-supply = <&hvss_regulator>;
+> > > > > > > > 
+> > > > > > > > 				reset-gpios = <&gpio0 88 GPIO_ACTIVE_LOW>;
+> > > > > > > > 
+> > > > > > > > 				#address-cells = <1>;
+> > > > > > > > 				#size-cells = <0>;
+> > > > > > > > 
+> > > > > > > > 				channel@0 {
+> > > > > > > > 					reg = <0>;
+> > > > > > > > 					adi,output-range-microvolt = <0 5000000>;
+> > > > > > > > 				};
+> > > > > > > > 
+> > > > > > > > 				channel@1 {
+> > > > > > > > 					reg = <1>;
+> > > > > > > > 					adi,output-range-microvolt = <(-10000000) 10000000>;
+> > > > > > > > 				};
+> > > > > > > > 			}
+> > > > > > > > 		};
+> > > > > > > > 	};
+> > > > > > > > 
+> > > > > > > > then you might need something like:
+> > > > > > > > 
+> > > > > > > > 	patternProperties:
+> > > > > > > > 		"^dac@[0-3]$":
+> > > > > > > > 
+> > > > > > > > and put most of the things under this node pattern.
+> > > > > > > > 
+> > > > > > > > So the main driver that you're putting together might need to handle up to four instances.
+> > > > > > > > Even if your current driver cannot handle this, the dt-bindings might need cover that.
+> > > > > > > > 
+> > > > > > > > Need to double check if each dac node needs a separate compatible, so you would maybe populate
+> > > > > > > > a platform data to be shared with the child nodes, which would be a separate driver.
+> > > > > > > > (not sure if it would make sense to mix and match ad5529r-16 and ad5529r-12).
+> > > > > > > Hi Rodrigo,
+> > > > > > > 
+> > > > > > > Thank you for looking at this.
+> > > > > > > 
+> > > > > > > For now, I would prefer to keep the binding scoped to a single AD5529R device instance. The current
+> > > > > > > hardware/use case we have only needs one device node and the driver is written around that model as well.
+> > > > > > > While the device addressing pins could allow multi-device topology, we do not have an actual platform using
+> > > > > > > that configuration at the moment, so I would prefer not to introduce an extra parent/child binding structure
+> > > > > > > speculatively without a validating use case.
+> > > > > > Interesting feature - kind of similar to address control on a typical i2c bus device, or
+> > > > > > looking at it another way a kind of distributed SPI mux.
+> > > > > > 
+> > > > > > Challenge of a binding is we need to anticipate the future.  So I think we do need something
+> > > > > > like Rodrigo is suggesting even if we only (for now) support a single instance in the driver.
+> > > > > > That would leave the path open to supporting the addressing at a later date.
+> > > > > > An alternative might be to look at it like a chained device setup. In those we pretend there
+> > > > > > is just one device with a lot of channels etc.  The snag is that here things are more loosely
+> > > > > > coupled whereas for those devices it tends to be you have to read / write the same register
+> > > > > > in all devices in the chain as one big SPI message.
+> > > > > > 
+> > > > > > +CC Mark Brown as he may know of some precedence for this feature. For his reference..
+> > > > > > - Each of these device has 2 ID pins.  The SPI transfers have to contain the 2 bit
+> > > > > > value that matches that or they are ignored.  Thus a single bus + 1 chip select can
+> > > > > > be used to talk to 4 devices.  Question is what that looks like in device tree + I guess
+> > > > > > longer term how to support it cleanly in SPI.
+> > > > 
+> > > > I'd swear I have seen this before, from some Microchip devices. Let me
+> > > > see if I can find what I am thinking of...
+> > > 
+> > > 
+> > > microchip,mcp3911 and microchip,mcp3564 both seem to do this with
+> > > slightly different properties.
+> > > 
+> > >   microchip,device-addr:
+> > >     description: Device address when multiple MCP3911 chips are present on the same SPI bus.
+> > >     $ref: /schemas/types.yaml#/definitions/uint32
+> > >     enum: [0, 1, 2, 3]
+> > >     default: 0
+> > > 
+> > > and
+> > > 
+> > > 
+> > >   microchip,hw-device-address:
+> > >     $ref: /schemas/types.yaml#/definitions/uint32
+> > >     minimum: 0
+> > >     maximum: 3
+> > >     description:
+> > >       The address is set on a per-device basis by fuses in the factory,
+> > >       configured on request. If not requested, the fuses are set for 0x1.
+> > >       The device address is part of the device markings to avoid
+> > >       potential confusion. This address is coded on two bits, so four possible
+> > >       addresses are available when multiple devices are present on the same
+> > >       SPI bus with only one Chip Select line for all devices.
+> > >       Each device communication starts by a CS falling edge, followed by the
+> > >       clocking of the device address (BITS[7:6] - top two bits of COMMAND BYTE
+> > >       which is first one on the wire).
+> > > 
+> > > This sounds exactly like the sort of feature that you're dealing with
+> > > here?
+> > > 
+> > 
+> > The core idea yes but for this chip, things are a bit more annoying (but
+> > Janani can correct me if I'm wrong). Here, each device can, in theory,
+> > have it's own supplies, pins and at the very least, channels with maybe
+> > different scales. That is why Janani is proposing dac nodes. Given I
+> > honestly don't like much of that "adi,ad5529r-bus" compatible I wondered
+> > about solving this at the spi level.
+> > 
+> > Ah and to make it more annoying, we can also mix 12 and 16 bits variants
+> > together in the same bus.
+> 
+> I'm definitely missing something, because that property for the
+> microchip devices is not impacted what else is on the bus. AFAICT, you
+> could have an mcp3911 and an mcp3564 on the same bus even though both
+> are completely different devices with different drivers. They have
+> individual device nodes and their own supplies etc etc. These aren't
+> per-channel properties on an adc or dac, they're per child device on a
+> spi bus.
 
-Subject needn't talk about binding twice
+Maybe I'm the one missing something :). IIRC, spi would not allow two
+devices on the same CS right? Because for this chip we would need
+something like:
 
-dma: sun50i-a64-dma: Add a733 support
+spi {
+	dac@0 {
+		reg = <0>;
+		adi,pin-id = <0>;
+	};
 
->
-> To complete the support for the A733 DMA controller, added
-> `allwinner,sun60i-a733-dma` to the list of compatible strings for
-> `allwinner,sun50i-a64-dma` dt-binding documentations..
+	dac@1 {
+		reg = <0>; // which seems already problematic?
+		adi,pin-id <1>;
+	};
 
-Add allwinner,sun60i-a733-dma compatible string.  And list some differene
-here to show why need it.
+	...
 
-Frank
+	//up to 4
+};
 
->
-> Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
-> ---
->  Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml b/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml
-> index c3e14eb6cfff..1cc3304b7414 100644
-> --- a/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml
-> @@ -25,6 +25,7 @@ properties:
->            - allwinner,sun50i-a64-dma
->            - allwinner,sun50i-a100-dma
->            - allwinner,sun50i-h6-dma
-> +          - allwinner,sun60i-a733-dma
->        - items:
->            - const: allwinner,sun8i-r40-dma
->            - const: allwinner,sun50i-a64-dma
-> @@ -70,6 +71,7 @@ if:
->            - allwinner,sun20i-d1-dma
->            - allwinner,sun50i-a100-dma
->            - allwinner,sun50i-h6-dma
-> +          - allwinner,sun60i-a733-dma
->
->  then:
->    properties:
->
-> --
-> 2.54.0
->
+- Nuno Sá
+
 
