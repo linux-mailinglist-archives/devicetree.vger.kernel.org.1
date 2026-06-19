@@ -1,207 +1,273 @@
-Return-Path: <devicetree+bounces-313718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313720-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id vsxUGlkRNWpTmgYAu9opvQ
-	(envelope-from <devicetree+bounces-313718-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 11:52:25 +0200
+	id V/8qOOQTNWrQmgYAu9opvQ
+	(envelope-from <devicetree+bounces-313720-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:03:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF9FB6A50D1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 11:52:24 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 612346A519A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:03:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gOl0Gre+;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313718-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313718-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=byMfTutO;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313720-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313720-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 410753016291
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 09:52:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AEBF93005991
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 10:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2588C369D70;
-	Fri, 19 Jun 2026 09:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5032436921E;
+	Fri, 19 Jun 2026 10:03:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012028.outbound.protection.outlook.com [52.101.66.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 962E8368D69;
-	Fri, 19 Jun 2026 09:51:49 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781862715; cv=none; b=ZPO3VzA07R8tNM84Hsp0uWayat0Zax1AOCf20Yn98Rp64ROzZRegMps1T2nCD9f/+Ls8k1wjV5pIf3Yn4jj7LX0y5AUFUP+jvEamX5dVP67U6thqngBj3qLT1Wa1CNsdnVs+ELKL0TJ2/NlezzYvH0u2N5xWx6FG5+YlxVauaSE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781862715; c=relaxed/simple;
-	bh=K9V0+es7J6611wdIvhhIxplw2vGBmrbyZnyaR9KHXTo=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=pahA4D7yDxTfXKv0cbnF9wD//m4OqBb+ijVRz5AN/XZRrOr9cfXke2ARxMjvZ2ZbA35fmijY6LAO0J7IXeGRhk0Kzh14i7Esc4b+B+Ldu1LqFazyAFNXFV4AkViVe9YLS1dwKXwPGkgLvmZsHcULZIOVMUUlEjMhADHffzDKizI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gOl0Gre+; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB1021F00A3E;
-	Fri, 19 Jun 2026 09:51:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781862709;
-	bh=zqS10yjZsSeXUxoZWR076xkJuUUKKUnmT/ArAgwFojE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=gOl0Gre+0WXOffW1XR++LvcMLJSldHwLyqDt/g+W1lZZEP5BfTY9mGp8DuMY5P129
-	 WDWC4vlENOIM0QQfcsvZdxqVglrsr6FLwENsMyWBmUk7KvrfDCw7v19M2sutZwfkGh
-	 78O3fIvGKoaO5vAGVucA8ItfT2N7puoc/NUtVSVrF5nQEZCxqhAZf5GOxDslzzA+XN
-	 rYmEiqETA3OdxQo22n1MBQ1xmolWlK9SD7Bvx3s0jk0kpp5qXR30MpTuo0TAj8RSof
-	 t5KHXgjCy7IeX2qpiEkg1YhrNbIUsb1DxeAbpvIJi+HouFE4/rCMl/3V2CT9rlo0XY
-	 M4l2d0AEtyWVA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/5] firmware: stratix10-svc: add async HWMON read
- commands
-Reply-To: sashiko-reviews@lists.linux.dev
-To: tze.yee.ng@altera.com
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, linux-hwmon@vger.kernel.org
-In-Reply-To: <69a0f1b93e1dc5b5b8993f8649704c6be60dc1a3.1781861409.git.tze.yee.ng@altera.com>
-References: <cover.1781861409.git.tze.yee.ng@altera.com>
- <69a0f1b93e1dc5b5b8993f8649704c6be60dc1a3.1781861409.git.tze.yee.ng@altera.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 19 Jun 2026 09:51:47 +0000
-Message-Id: <20260619095148.AB1021F00A3E@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7D1368D78;
+	Fri, 19 Jun 2026 10:03:09 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781863394; cv=fail; b=C+qWUb46t/+m6iGLk2vUQNKemL7bXhmcpkIt+BHdJTb2cK40SssjwfaXTXj3biakfIzOxE3lyolgwWreyQVg0H1RcI9xkePdcJ4TW0ImNfst80OMNK1Q6qplhVlU9CCTk/71rcmbwUg1jZGBzmNO53N41wY+/VErdPVwRUpOxfs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781863394; c=relaxed/simple;
+	bh=LxmJGqHFsiBrZY4CJk8+nWq/9aUgx9LqldPA51CS4QA=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=P0vV6FR1WR+4z3Wv05EtG1oR1KwVsjT749MgRXQoYMD/6wO+whWhROUVFDOfUjJcF/siVkMDiuqEeupWItwdL3jIeVpn9aUamvFWPOK5o6ZjYpngU9d7eePka6tQPXzezX0tQW+OX/qQXv6+dMZVzhzGWQTEQlFLWfSmUzMvdgM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=byMfTutO; arc=fail smtp.client-ip=52.101.66.28
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UCUiyBEwOUPhqfV/xbaMFZjv6SrifjVSYzHTfdw5HELLNLtuQdSnPK4DqjrwS98U9W1fwasQouZE0JFYhUUwukfhzkxmHuIhrt0PMa2lF8FYn8qxE4xOq7o/88zfMSqBIVRz1meLS0fqvREh1/mTrLvyj4z8t/nfSVqFBFmZ7xSfgQFy41PaLfY0vvehg8SXIZvTQo7S7kctI8NKvibTgOwQM98Wz6nnV25Lly59uswJfU3mZrQvvrkT60VuNAa1Rt+gewmuM9nnKEDS4/Y+4h5HcdIQR4o+gO+ol2p+vnKtF7vg/ufIHGBAWDK/cKsFeP4grIcjYBQPIikhUmKfjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SSw6rKGniFy9wPos/HV/11m/TzrMg7gR8rK/gPG4SP0=;
+ b=PuSXVZH1AqTPDgSt4Ve5xDKDhICv2z3SKawnTaQ71FvDi9jm1yJ5EbCtNiwebCebMhRFbZ+stdWyU49DErJhSOV+X+Mt+jmW8hKUtFNL0PiMAFPpBgQ7gZdN+Os5kIngZT/0p0LcqLzXHxgaM7Au8JknP9F7riDs8nxx8NzLG+pUJYg6myMUIgwXq0ePAWsuHIciKFd/+aZVUqj1EjemDCB5dBijYJ9bNX2UNORw8h+ttaPR+aejRn9qUgponOZouY6Db/WkwEIjqoPD/T8BQhx2sShjPN6YBInRMHvq9qtYW45CSFnAcIEZmkw6JAru3VeoYTRfanAEBzY1iSwVjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SSw6rKGniFy9wPos/HV/11m/TzrMg7gR8rK/gPG4SP0=;
+ b=byMfTutOq0+8M/CI5rYk744pMpAq2F3mTID4hatPB18M1bTFv1HYD202JQERdt1XPfBzKcWvBEYgZd7wOxTUdCT9rIFYwjJ4CojqQMCFNipG1kMRZlehMtcvf+kbJvrGTF544+oWWgOPzdY02JpNsTzXdtq0NN7JLivHuztIyC6IBliKO+VQNLDtXeoPc68UUQvBdL6A2aOC8WS2e83TfsFxSySh5Eaw1n+6vJ7CyGUPAd480dOsTHaUdLbFPauRdEDqE2IVWilg5IcXI3RIDB1WLxOlTSraA2Q1HkQdqsAy5U7WZMbY1WIcEBtlsGP2GeXJ7ny/jlWRkPIFUvEy5Q==
+Received: from VI1PR04MB9738.eurprd04.prod.outlook.com (2603:10a6:800:1dc::10)
+ by GV4PR04MB11425.eurprd04.prod.outlook.com (2603:10a6:150:299::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Fri, 19 Jun
+ 2026 10:03:05 +0000
+Received: from VI1PR04MB9738.eurprd04.prod.outlook.com
+ ([fe80::33e2:39d5:e3f4:580c]) by VI1PR04MB9738.eurprd04.prod.outlook.com
+ ([fe80::33e2:39d5:e3f4:580c%6]) with mapi id 15.21.0139.011; Fri, 19 Jun 2026
+ 10:03:05 +0000
+From: robby.cai@oss.nxp.com
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com,
+	sebastian.krzyszkowiak@puri.sm,
+	slongerbeam@gmail.com,
+	sakari.ailus@linux.intel.com,
+	mchehab@kernel.org,
+	p.zabel@pengutronix.de,
+	kieran.bingham@ideasonboard.com
+Cc: kernel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/2] imx8mq-evk and ov5640: Add overlay-based camera support with shared reset handling
+Date: Fri, 19 Jun 2026 18:05:30 +0800
+Message-Id: <20260619100532.3779934-1-robby.cai@oss.nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MA5PR01CA0099.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d1::11) To VI1PR04MB9738.eurprd04.prod.outlook.com
+ (2603:10a6:800:1dc::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB9738:EE_|GV4PR04MB11425:EE_
+X-MS-Office365-Filtering-Correlation-Id: 39224acb-2b0d-4aea-b16d-08decde9f48b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|7416014|376014|366016|23010399003|1800799024|921020|6133799003|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info:
+	bLDwp4/7/zhk3BTO3jSmdnXA20TF1abIRugHeq1Xxyx3zxT33JhWXxcp82j1D0h4FkH0OVHP0ZRvwzSCkfd8I0Wdqfnt3pSc94cUKzg6Cx172NilDYdr12+11cAVS8l8mHs0sJSFI0FSDedY82XsfrjrZV0geGoj1Jq+7psaXwpOkbbxjKwk61hKvQKkaW9Lln3isL9oUH4No2aWSya4aeD6k8FogVrwP/pzZGzg2BnyO9l65dUKdyoCJv3gSAPWdwBXEE6DLoO+brwnHeuZzsxsGvCtJyTkyxhN3Q5uxbbXEGJeE2x0NEvohjU9o5pnUFJq//aDGiY12JX0a3pzvSrf5bcGdXVsDTGpz7/njOR9gcyL8lWMoVtk6ezdfDpTiNk5cqaor8J/1EsmamjpZGik5qO877a96NkkTf5sgldl+0wWeOuqiJY7tm6E52vlo/MDfR1AF9Fssydcg0LpxNRyxwmPbZeODMeFqgonIiTrCAxf2SBrk0frmXg7kxSrpxKUP4mrlZ1EoPY4p1KybaSvblCk668l7uCiuyrHLmRqqD3ASA+nk5ZdDBXE8ThU0A/ety/N+T8Cj3/1jIu237F/FH+enJ9jSVDcS0vTYSMO/HlPP5IJH6A8Xzt22QyphC3Ncpnwzfgh5FiVtGewzM2hyTdvzCxcvOedM9c3C/h/O7vnY1FVJjAEJoGOpWRwcLo5DDJCQfST2qiS9uDJ6A==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB9738.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(376014)(366016)(23010399003)(1800799024)(921020)(6133799003)(18002099003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?66SSvpoHcGhLio1XMcqzyzhtmWgbB9ASZuOh5n21Iw01xI4z1S9OjGmM67Gk?=
+ =?us-ascii?Q?D/FfF75aNUC6kKIhlgZ+k5e8j04ptBxlsE83zflLKLs1zqZ6RSnYG1oW1oyd?=
+ =?us-ascii?Q?6oFopv9yayMBysB+njhFw26okRoJOml35+ZmkLzA9cOUAScRV2PP49iB2L4g?=
+ =?us-ascii?Q?Zd3IzHwVmrfLm2ylM6EWyxqGFFFcNRxZlZzM1zY1ZoeBzeI74/1yLtEtPcBI?=
+ =?us-ascii?Q?oSCx8P1wAKpITUKS0b2syMHaKy8Oh6aRrGhRPheNwNv0aBkfvVSkNgHFiWY8?=
+ =?us-ascii?Q?hBaBJaV88M7bpRgnrG/LlrkXb5ZgO/8DTm5agWoy5PqF5Kml+f2SVFlQRrzm?=
+ =?us-ascii?Q?XRzK5uDtrtGF6hG/coXpuG7xVv0qrPKDMOm0amhvb7HrNePLjhB4uS+MznlP?=
+ =?us-ascii?Q?vIhur9sLcI1UuGp6DUSXQqf2Feqa4KyPTWCo6vBhtoAXB+ho23gHoECDsx5H?=
+ =?us-ascii?Q?J9wSgx77N0adeJ1CHBxkdSpcsgxoqDIkcg6D8Ezzxh7ZsCKdW3kOL7ecQueN?=
+ =?us-ascii?Q?i7etRhqdmgEOJrW/ew5Tx6JWdiFbAyC9hGImgIUAHNwy35Iu6WLsiEe8IfQb?=
+ =?us-ascii?Q?YoSXieHam7otBQVuq6BdrWww2ArLHWgchkfVcrE6e7cGglnPFH39hmJj/eSs?=
+ =?us-ascii?Q?4zLfthaHAh2T+zx3uOInvyYV9FCPveS5Bs57EO1th0C/Tw73l04UwoFAmQpC?=
+ =?us-ascii?Q?x5RwIWnNW34QpsrgwOl4vuI18kPTnQm90fhHkP7GceFNQmveJ8+331/nW5/1?=
+ =?us-ascii?Q?6w+IUUtvPSziu1JBK7/f7yBif0yqsO5moSG0QfJTJ0zS3A4vsA4Lxw7zd8eo?=
+ =?us-ascii?Q?U0MGpqRj0KeEV641LYr7EhjjguIyE2KjlfN3Y2lWYfAi+0e8AmxZR418F7cb?=
+ =?us-ascii?Q?b3z9ewMaT7gGD0Vxwl8SIxKFdhHp5H53nbt06tcxIwjsut6CUZGnBOT3pM1r?=
+ =?us-ascii?Q?Lda2qLSiPjsl00pOPC+Jo9ffwAByFisXhzF+ypOr4vEk1ro6lfiaglULLpWY?=
+ =?us-ascii?Q?/xGRwXQ2ZBGITvOUIO9CeCkoCGRf9+YmBuvnpA7fpWv5z2e/2D4ze2aJDKsa?=
+ =?us-ascii?Q?y/NAzRVEDoLoqJvfmyClJT8KxMpKc/YgO/WKTKZQeDhQ+NFVfQjS1iWjwfMP?=
+ =?us-ascii?Q?3riZFFrN2+YWzWXRvCCYq7jajFXtNYbzFFZyOgeschx+dOC4o1vf8DJtVgAi?=
+ =?us-ascii?Q?Nm4AB5UH50KYRO79cCLtjOtEwhyFdDAAhVPPXpmIIc6vRLfLobn0OOdlzsyp?=
+ =?us-ascii?Q?Oo3u2+bAXIaxDWl+o1X8BS95HPc8A8yAj8TU4aPYRzeJiSgfotrCGR+sRVqs?=
+ =?us-ascii?Q?XZzL1Rgg536qbSA52zdUlaIBnVkLxKJvwTZ4ZCPS68OUFOiB2GfmRmQSqf0H?=
+ =?us-ascii?Q?Ujk/c5+sWTcd0g7DJpk//cUtUr/qgvnmwdeaj8SpUvo4quyVA9NRuLZczQ4D?=
+ =?us-ascii?Q?2pptL4rZe9Fv9f9Ilg+IVzKm5RgxRa22pYI3fyIaqOhX4W8tL50jlRLCx8qg?=
+ =?us-ascii?Q?+KBNiXMMAf+SsyQX7i5HOK0hRUTDm3ccj71eETKGMe8QqXkmYIB0rCH11E4h?=
+ =?us-ascii?Q?LMYC7cbmumf+zPOGCWu7ZUpsFG10ENiw/zQ8buu3dJFHr8Xw4JntjDBi3w7/?=
+ =?us-ascii?Q?92BG4ZqLY+D0SaCgMIddemdejfyJoMJ5bX+zZnGf5BliMY5ZuipS+ErD1QAI?=
+ =?us-ascii?Q?301Y8QcBpoaX4OiZsITqBvxoGlAjlZHeFLH+MzfDRDX7jca9qb0CtimlKPGE?=
+ =?us-ascii?Q?aqXDfn9KGr9F9Alj+lKgoVvkS9ZAWsgVPGLrL+igfqF5fyHiFTds?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39224acb-2b0d-4aea-b16d-08decde9f48b
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB9738.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 10:03:04.9891
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: r/rGiYp97GBA8gGCpR7u4ZwsMaTe6owls1J4LDyLOQ37jEi5ooFeWOkAymOen+LCatVZNvtsnS81opXStNjTmQGJVkGyRRZg/TjehhWHrqWZYqFEp4aMN6feCPQR54TH
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV4PR04MB11425
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+X-Spamd-Result: default: False [3.44 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-313718-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp,altera.com:email,lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
-	FORGED_RECIPIENTS(0.00)[m:tze.yee.ng@altera.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:linux-hwmon@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-313720-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:festevam@gmail.com,m:sebastian.krzyszkowiak@puri.sm,m:slongerbeam@gmail.com,m:sakari.ailus@linux.intel.com,m:mchehab@kernel.org,m:p.zabel@pengutronix.de,m:kieran.bingham@ideasonboard.com,m:kernel@pengutronix.de,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,puri.sm,linux.intel.com,ideasonboard.com];
+	FORGED_SENDER(0.00)[robby.cai@oss.nxp.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[robby.cai@oss.nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,nxp.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DF9FB6A50D1
+X-Rspamd-Queue-Id: 612346A519A
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+From: Robby Cai <robby.cai@nxp.com>
 
-Pre-existing issues:
-- [High] Missing cleanup of async client on driver removal causes memory le=
-ak and breaks subsequent probes.
-- [High] Abandoning async transactions via `stratix10_svc_async_done()` wit=
-hout notifying EL3 firmware causes transaction ID desynchronization.
---
+This series enables OV5640 camera support on the i.MX8MQ EVK using
+device tree overlays, including single- and dual-camera configurations.
 
-commit 6e40e51555b4f357bf75d356699813e67712ecca
-Author: Tze Yee Ng <tze.yee.ng@altera.com>
+The DT overlays describe two OV5640 sensors connected to different
+MIPI CSI-2 interfaces:
 
-firmware: stratix10-svc: add async HWMON read commands
+  - OV5640 (I2C2) -> MIPI CSI1 -> CSI1 bridge
+  - OV5640 (I2C1) -> MIPI CSI2 -> CSI2 bridge
 
-This commit adds asynchronous Stratix 10 service layer support for hardware
-monitor temperature and voltage read commands. It updates the service
-layer functions stratix10_svc_async_send() and
-stratix10_svc_async_prepare_response() to process the new messages.
+On this platform, both sensors share a common reset GPIO line, while
+each has an independent powerdown (PWDN) GPIO. Due to this hardware
+constraint, proper handling of the shared reset line is required when
+both cameras are present.
 
-> diff --git a/drivers/firmware/stratix10-svc.c b/drivers/firmware/stratix1=
-0-svc.c
-> index 39eb78f5905b3..ca2e354fc20fe 100644
-> --- a/drivers/firmware/stratix10-svc.c
-> +++ b/drivers/firmware/stratix10-svc.c
-> @@ -1317,6 +1317,14 @@ int stratix10_svc_async_send(struct stratix10_svc_=
-chan *chan, void *msg,
->  		args.a0 =3D INTEL_SIP_SMC_ASYNC_RSU_NOTIFY;
->  		args.a2 =3D p_msg->arg[0];
->  		break;
-> +	case COMMAND_HWMON_READTEMP:
-> +		args.a0 =3D INTEL_SIP_SMC_ASYNC_HWMON_READTEMP;
-> +		args.a2 =3D p_msg->arg[0];
-> +		break;
-> +	case COMMAND_HWMON_READVOLT:
-> +		args.a0 =3D INTEL_SIP_SMC_ASYNC_HWMON_READVOLT;
-> +		args.a2 =3D p_msg->arg[0];
-> +		break;
->  	default:
+To address this, the OV5640 driver is updated to use the reset controller
+framework, allowing it to correctly support shared reset lines. Legacy
+reset-gpios support is retained as a fallback when no reset controller
+is defined, ensuring compatibility with existing device tree
+descriptions without requiring changes.
 
-[Severity: High]
-This is a pre-existing issue, but does abandoning asynchronous transactions
-via stratix10_svc_async_done() without notifying the EL3 firmware cause a
-transaction ID desynchronization?
+Note:
+1) With commit 8f040b5c5e3a ("leds: class: Use firmware nodes for device lookup"),
+the OV5640 driver reports the following errors:
 
-When an async transaction times out in stratix10_hwmon_async_read() or
-rsu_send_async_msg(), the driver abandons the transaction and frees the ID:
+  [   11.373844] ov5640 0-003c: error -EINVAL: getting privacy LED
+  [   11.376442] ov5640 0-003c: probe with driver ov5640 failed with error -22
+  [   11.906977] ov5640 1-003c: error -EINVAL: getting privacy LED
+  [   11.909793] ov5640 1-003c: probe with driver ov5640 failed with error -22
 
-drivers/firmware/stratix10-svc.c:stratix10_svc_async_done() {
-    ...
-	ida_free(&achan->job_id_pool,
-		 STRATIX10_GET_JOBID(handle->transaction_id));
-	kfree(handle);
-}
+This issue has been reported and discussed in [1] and related threads.
+As a temporary workaround for testing OV5640, the patch can be reverted.
 
-Since there is no SMC cancellation command sent to the firmware, the firmwa=
-re
-might still process the timed-out request. If a new command allocates the
-same recycled transaction ID, polling the firmware could return the delayed
-completion of the original stale transaction.
+Link [1]: https://lore.kernel.org/all/aignTNlK5kCLmQ2A@tom-desktop/
 
-Will this result in desynchronization between the driver and secure firmwar=
-e,
-potentially returning stale hwmon sensor readings or incorrect statuses?
+2) The patch at:
+     https://lore.kernel.org/imx/20260619073115.3778313-1-robby.cai@oss.nxp.com/
+   is also required for OV5640 to function properly on the i.MX8MQ EVK.
 
 
-[Severity: High]
-This is a pre-existing issue, but does the missing cleanup of the async
-client on driver removal cause a memory leak and break subsequent probes?
 
-Looking at stratix10_rsu_remove() in drivers/firmware/stratix10-rsu.c:
 
-drivers/firmware/stratix10-rsu.c:stratix10_rsu_remove() {
-	struct stratix10_rsu_priv *priv =3D platform_get_drvdata(pdev);
+Changes in v4:
+- Switch EVK camera support to DT overlays for CSI1/CSI2/dual configurations (Kieran Bingham)
+- Convert OV5640 driver to use reset controller framework with GPIO fallback (sashiko)
+- Ensure correct handling of reset line (sashiko)
 
-	stratix10_svc_free_channel(priv->chan);
-}
+Link to v3: https://lore.kernel.org/imx/20260529132334.3333294-1-robby.cai@nxp.com/
 
-It calls stratix10_svc_free_channel() but completely omits calling
-stratix10_svc_remove_async_client(). This leaves chan->async_chan
-populated on the shared channel array and leaks the asynchronous channel
-object and its associated IDA pool.
+Changes in v3:
+- Add OV5640 driver changes to use reset control framework for shared reset
+- Drop GPIO hog for reset in DTS
 
-If the module is unloaded and reloaded, will the next call to
-stratix10_svc_add_async_client() inside stratix10_rsu_probe() encounter
-a non-NULL async_chan and immediately return -EALREADY?
+Link to v2: https://lore.kernel.org/imx/20260515111143.2980956-1-robby.cai@nxp.com/
 
-While the new hwmon driver introduced in this patchset appears to handle
-this correctly, it seems the rsu driver remains permanently unable to
-probe after a single removal until the system is rebooted.
+Changes in v2:
+- Address comments on MIPI clock configuration (Frank, Sebastian):
+  drop the first patch and consolidate the correct clock configuration
+  into the second patch
+- Address comments from sashiko:
+  * Use MEDIA_BUS_TYPE_CSI2_DPHY instead of a literal value
+  * Fix a probe-order dependency related to reset handling. Switch to
+    software reset, as the shared hardware reset line prevents
+    independent reset when both cameras are enabled due to a board
+    design limitation
+  * Fix incorrect voltage value in the reg_2v8 node
 
->  		dev_err(ctrl->dev, "Invalid command ,%d\n", p_msg->command);
->  		ret =3D -EINVAL;
-[ ... ]
+Link to v1: https://lore.kernel.org/imx/20260417110200.753678-1-robby.cai@nxp.com/
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1781861409.gi=
-t.tze.yee.ng@altera.com?part=3D3
+
+Signed-off-by: Robby Cai <robby.cai@nxp.com>
+
+Robby Cai (2):
+  arm64: dts: imx8mq-evk: Add OV5640 camera support via overlays
+  media: i2c: ov5640: Add reset controller support with GPIO fallback
+
+ arch/arm64/boot/dts/freescale/Makefile        |  7 ++
+ .../dts/freescale/imx8mq-evk-ov5640-csi1.dtso | 69 ++++++++++++++++
+ .../dts/freescale/imx8mq-evk-ov5640-csi2.dtso | 65 +++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts  | 50 ++++++++++++
+ drivers/media/i2c/ov5640.c                    | 80 ++++++++++++++++---
+ 5 files changed, 261 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-evk-ov5640-csi1.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-evk-ov5640-csi2.dtso
+
+-- 
+2.50.1
+
 
