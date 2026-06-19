@@ -1,179 +1,187 @@
-Return-Path: <devicetree+bounces-313829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313934-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id AAULKVpSNWrgswYAu9opvQ
-	(envelope-from <devicetree+bounces-313829-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:29:46 +0200
+	id 291iJZ93NWqLxAYAu9opvQ
+	(envelope-from <devicetree+bounces-313934-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 19:08:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4B06A66B8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:29:46 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9A086A73A6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 19:08:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b="bDH130/O";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313829-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313829-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=none;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=starfivetech.com (policy=quarantine);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313934-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313934-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 997C73037172
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 14:28:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 12B763028C7B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:08:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3747D398911;
-	Fri, 19 Jun 2026 14:28:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75B0D3B83FE;
+	Fri, 19 Jun 2026 17:08:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2138.outbound.protection.partner.outlook.cn [139.219.17.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C97266576
-	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 14:28:42 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781879325; cv=none; b=A9FzeSAsCJHrMIUxkQRtrqrLhetWLBsjQl78drNUcCbvjvJcUIwE04vS5qzBDfJuCuDVhVv3IcUGJPtikfBUjtpmxy/NHYlcphc4wLmv+DWU9KU18F8+icONq+dpaEW26MdGUJcLNrlH4V9Otpo8PZeO4nrG2s4xO3GKxn8czbM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781879325; c=relaxed/simple;
-	bh=BYZvNYrhCRRVi7+9/Vp1XV84hbYw0obk8I3Nq/z0MdA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pDjNVdCuDukGZAaoSw7bcO4SuSE4i4yU1Kj7cym7OcIO+rJ29Vmx7GvV32Zs97Dp0jwPnnz5+Owid13WGABh0c8HLfiBnDPrY38yGqavbKETyRlZBBBN80Yp4f68jEJOqm0D6zbKS3u9psxdpuMKq8J5EueQb49o66M7FRptN2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=bDH130/O; arc=none smtp.client-ip=209.85.161.42
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-6a0e4f0342aso192570eaf.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 07:28:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1781879322; x=1782484122; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gAirWMVH8yFynNlBYDyfsHiH9Wt1aHuKQoVM4l8pDRo=;
-        b=bDH130/OOtVS/8nqrbTaAIg6pXo2FYsspJ+cya7o+JKeQzfBjQQ2GKS3izm0Y/vQX/
-         M9jmYc31Hvq7O59WwwcMcNgNNq4eWwMGL2oAKJlz1plDMCmLgbvXdbbY+wHf80z+yoNh
-         xpA2qU4IhlAnGZVFI0hFJlSOAF2ATYsWa+aNojcMIDi42DgE99WQBAvBotir9esF6RHF
-         MwbOK760DWXjkr/qHbUua29zn03O70WqVSWhbvfAlz+bo8Rknjy//wgD38TNvAjYmary
-         +cJnus+ZV5EokUQavuiugxyXi9i5zcTxrlnScawreJngCqewknJSkKglX6nJm89LK5Tu
-         WCBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781879322; x=1782484122;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gAirWMVH8yFynNlBYDyfsHiH9Wt1aHuKQoVM4l8pDRo=;
-        b=JOHIIiHv7Xcoln0Fd8lWqZsKdAuLBvwBf9vF7JtRSCW+fdOUBfzl3nAcrPKM3Sw3A4
-         okdd7fQfPsKOnMwXFtMlaceJNnPc73j8MAlz3F6lpvLw8NVfcgfs9r6b7sG0QsUArJ02
-         mFoVy2Ix85ykt48ucGSS6lAzU1jmCSGuKOMcuq+O9L76tJk6Dd80fsnAHaUXjY6qdo1Y
-         mDFjvNfaRZ2YHczxW39g8zmPPZgeb11V6tuCXtl0Zwa3OkdUO6mA+hwdR05l8qYbRkGp
-         J2dWvovMfn2LAo49dsVTwcZIZyW2JGlSKCt9p85waBx+V8hg5bRZ16QKF0TTWj4H+/en
-         X82g==
-X-Forwarded-Encrypted: i=1; AFNElJ+w8PeImyZfIW9QriuQiQNv0iNlYcHjldF7JhuZRXmNcKDYbgzLJtUS+L68iM/h+Y1lPnqzUGXB/S3P@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuSO4FNgiRyRPYVvksE5aD8yorDOyv7nNhPYx+4gIqc+z3Nt88
-	5YbvDW/WSVVoS/WvDN9VOzNZMdVibv+lU7WbnBFovFVSTOVwGdwTD/g5o+78QzgHMyY=
-X-Gm-Gg: AfdE7clH5fakLUfmrn+zN2YWioOSq3pE9Gk41KXO+fc7kn7gLzP3/21JYhAXlX/0JTA
-	FT+orpp8DV8PYj0Vnwq0rD/4d2gqtMQtsEPIgaKlwv7weQmYQH09zsWJfw6bTXjxrh4PWu3/r/0
-	Wqnb/K5PkyDGU/sLiC0cynj68F7d7cDRTjF+p9+d/yF64ASLOGW5Dj58JzLWv1tWlInEwZYhL5m
-	Dv/Ln8uz5kKtB/g86M/TwtL6fEWTuxlqa+TdKziqfi9CkWueorm90G1ED50QR3CDaPMtcjxN8LA
-	NXv6cdd58tsJNAy3PhYurseFDY6RU+gG19LdVdf11Vx9Qe5Cvsri5OL/Z/HLba9xKpYhQZ9aw2H
-	5iSjPV7udUQbi1da7cPG5Hjm/zI1MfcKyn960ccH+EsJ28b6SMjRjfK8sindjxa6n7acuM4ZSWD
-	6kaB2DMtDqGhcwnRDkal6eBoFZM/DmWLwXTNcPPwWU5rq6ZF+o+JwzQ3zV6A==
-X-Received: by 2002:a05:6820:134a:b0:696:1a85:586b with SMTP id 006d021491bc7-6a0d8cd4635mr2866882eaf.35.1781879321803;
-        Fri, 19 Jun 2026 07:28:41 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:dd8:d93b:3cde:c07? ([2600:8803:e7e4:500:dd8:d93b:3cde:c07])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4470a42d901sm2533106fac.17.2026.06.19.07.28.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Jun 2026 07:28:41 -0700 (PDT)
-Message-ID: <0831356f-76ff-4eed-befa-7a35ffce921d@baylibre.com>
-Date: Fri, 19 Jun 2026 09:28:40 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421B03C10AE;
+	Fri, 19 Jun 2026 17:08:37 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781888922; cv=fail; b=C6VbzMGfhHnW/jzE+TG//Ebo3w1Mk5+iH6kHqSu2O5YJnMx9FR8szFS1NKFGDn8R5eCfl4r31jVi32sjEDT58NNi0ybVAsCUWRGzNOZWYHEW5L//P95PI/m7lDoqpx1WSrUV/yYOhYDsQgiFoRu5FGqreVPvUeC52eV/aS8i4V4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781888922; c=relaxed/simple;
+	bh=B3lekm7aqLrENr7WngqQWOOhSTuOtIanXxxl77QxxlM=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=MumC4xHxnzaDOSwtr6yUYBv9hTa/n3occD8srS0hP+ZV2WhUo5JlBxlScxK+erR0OvOkdKVEUGfhc7rlliwlEukb63UJs0Z3D8EPD7eDyzSRuyakHz2gYJ1sL9wcIZM7KSv9NqKotM85ctI7svce5oJzGfjOWbcwmpbBG/3x4Y8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.138
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QXqZPV4+b+fKDdtjBsSd6YiUrE4mdB7CkJ4terQCRLVeCu7FawAfHAEn0eCGjOjS1Ws6NaUTaHe187prqxzvGqyEQpKS/tLgRP+hP5XpvsnkLx9fY3yEfg/q4PUz7vIlVFil1BHYKYE9/0shGEyNWgxYIg7ikXGw1xEl9zeX4cLEX43K0wsI6V0b6fmrUzp7G0xcGmt7MQngLyZo7jDAgiIvYrettsDLa6YFCsn+ZT+PZjS0g/wE3l7VoN+7zHo4dTGCpdr6flib1/ZJgxombU2RJkg+kX1Z3bTcyC2MGNIA6lJ9ei2PW0veoXuJWpAuXiqGc1Yz6iYy7PnvXgPuQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BwkoWUaPBCG3mieKH63tLU8wvWycuE/mcLAwuYAKo+w=;
+ b=JIt7ScGluPwCbep1vDRHIkc0rAEc9LcPn9OuAnram7eopMC9rJFqLmzy7tN/wngiS4Fftx3mC5jYwva9p9Yt62C0fdZOkgBpMAV+HcvUcuEIBpttRIO5DmGkb2lWTr3Z05TO2fAIhTpTUfdJ7z1i0UK+kKCBYiyYrtDm+k1OeWbyAJ5BspApw9m+2MumX4cTLSnyAk2d/EpNm4oQWpZhbQNPe+tkg4mVzK/MHnReprBDZFhnH8l6YA9rSW1LmGc3pkdIbSfw81LRYswfpdJQPEdd2y1BImd69JZkNy2a4PiN5O63S5sW2/sYj1+IafmUbFgkhotAclmekKJfz2Rt7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::6) by ZQ4PR01MB1330.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:16::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.21; Fri, 19 Jun
+ 2026 14:34:53 +0000
+Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e7d4:256c:b066:850d]) by
+ ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%5])
+ with mapi id 15.21.0113.020; Fri, 19 Jun 2026 14:34:53 +0000
+From: Changhuang Liang <changhuang.liang@starfivetech.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Brown <broonie@kernel.org>
+Cc: linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Changhuang Liang <changhuang.liang@starfivetech.com>
+Subject: [PATCH v2 0/2] Add support for StarFive JHB100 SPI
+Date: Fri, 19 Jun 2026 07:34:41 -0700
+Message-Id: <20260619143443.22267-1-changhuang.liang@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ZQ0PR01CA0025.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:2::22) To ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 3/3] dt-bindings: iio: adc: Add burn-out current
- properties
-To: Kurt Borja <kuurtb@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260618-new-channel-props-v1-0-963c1b5cf40a@gmail.com>
- <20260618-new-channel-props-v1-3-963c1b5cf40a@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260618-new-channel-props-v1-3-963c1b5cf40a@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1330:EE_
+X-MS-Office365-Filtering-Correlation-Id: feeade77-5087-4590-9ca1-08dece0fed21
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|23010399003|1800799024|376014|366016|52116014|56012099006|18002099003|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	GRpw+OVOExojwlYzqCxnMGMhFw/PSsgCnREOg+HANBIcpmsA8NqoUVhDRuBXJftgz3PlXWs+otI1kePedJCeWUHJMiHeyyCFl3uSsJiNLzNCpuQQsAmW/+VH1GtOvZ72wetIEu7Wagupsa2KZlqvV5Wbv9n/keSxtS5nLe1BWgk6Uoir7epr4nmpZ/a4kuVeYSCjECRjG9SzJWO91m2XsdUPJmTf18hOyqub/Hrr56sDME3UO+il8x2L4xp3zBONGg5eXnb69xWmS5GDpLzvvU0xVmVwBtTy1HGIyi/mJkPOWFO66L5ff0B2ty2uYOa6EMY7hKMY956BHUons016c9cjSnA0F/zVgeYlK0VrqxinsmT19TQwldVUJJdYTOk7KI1vPGXdhvbpWtb95NTxpzrmjQnJlONGBt04jr6RgTluvUVXDqf8UQ9/vWGka9cociirDf5A5ySvCEFg8mLlJE1Yx0bgugacO+IU49EPDEbLYbgk9WpFE4xDxmffBy6HkRZu8SRXLK9EOuXka/LID6/5ukp+0UAVcD+49aOhmJh9wWgdDJFxQxJDZAIhgMSs
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(52116014)(56012099006)(18002099003)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?v500js/K/YlIPSxDnmSra9Jw+tG5kPim0dAPD3ixDpkBE1chG/vpWWJbT4fv?=
+ =?us-ascii?Q?SjdGTLcRoNfU+8CvDSgNK7O04b8DrGP1YlWDbrseUe1E5hh00pofMPpurvFs?=
+ =?us-ascii?Q?7z2dNumEFcwhe6LAzq0/Lu2VnLZL/VtUFnLAbE9Z1hLMd8a5angFm7LaR7aA?=
+ =?us-ascii?Q?sHTVkzIcad9Wih8gcrf0vpwt7C9Pdh2gdZmRxwl9WtM1SpsHMQb6pQixsWw9?=
+ =?us-ascii?Q?QJ77XZPMsw4AgUPgN4Pvdp3lsNuVx/BXEg4YOlHvcIygkSq/qiox7u4Zx0Er?=
+ =?us-ascii?Q?F1LGW+F5iHCXf3rGgmYYZ3a5dMN8+Zli6Ux81I5nqF7Jm6khi32eS7xY5n/a?=
+ =?us-ascii?Q?AsO8Xq5Zb1wf5isuxco6gkAeZW0V/+R0Q4vNDOSwCkq5ZooxAMeQBDPfwY36?=
+ =?us-ascii?Q?36b/dxFw5UYoKKE2UVFqvti4rFbcK+hLeO+Fp2WQdw4ar2bu1wNd9sz7SQDX?=
+ =?us-ascii?Q?q3iqdptPZnSIiXAaxi8Kf2UvsCq/pkm4rYLNgQivP9412LWFcpdL0huv7s1a?=
+ =?us-ascii?Q?iHxrlIp7fKDJnxiYO831x0Hxa4DG/+5x0NBPFbst95nja05p49wF2uXrF+Fs?=
+ =?us-ascii?Q?HrBGerP2ScsaDFHmtS43NOvt3EmGzqmICyfplDgn/XHFvZKKQ81w3Hto9aE6?=
+ =?us-ascii?Q?BrK1yU9MhmkjGIgkFuBCtc9fCDwmXIX3yF7iVx/Lg6G5IUvcucLpolD3m5qR?=
+ =?us-ascii?Q?x2xPStyrYCZJk4S+hzFVMnW3E9lGlqJNPBBAaq3ad/xUam7UN7UpEIz0eMVb?=
+ =?us-ascii?Q?pqCrs4xM8Uwhk71FOmSuFh0X3t16537yRfWbEdPuJbrQcZyUhA2UQ9/W9hnL?=
+ =?us-ascii?Q?R6RMhWJPTCCzFzOIQDQu0x+dtOx4BcX1AzRQDJ+hdUD2pub9MBSyvIfdyT+Y?=
+ =?us-ascii?Q?TyuM4kNCXkMpEPWNCEb5gCUlnecoFmE+7y9gzuQnSCM/rK07tHPDbQGT9FqF?=
+ =?us-ascii?Q?ZcY9uYk1n+aSA9ctg5VnMnUg6qgkHcet5C9coulJLqY7EdXqYOhiJiGGdeE0?=
+ =?us-ascii?Q?Pio8ls9QHo5DZcdV3Za2zZ1qCGIZPa44FQV/v5xcktzyXHO7BY+cwc3LwnmW?=
+ =?us-ascii?Q?yn+DjySJ21EGDj/CDPV4fknDy1erigoPM/ep6OsbjOxBP/TcYsa1T18TUvj4?=
+ =?us-ascii?Q?1i1EfO9Ci+qMi1XnNTwkFuYN3EJRUgp7eL/EzNPSC4fTOG3Bd0+6405n5C1L?=
+ =?us-ascii?Q?9VtlArgWEL2ntYSIDT/PByNpFT8knRYWtMflVKxaiQBH6d8yzkqDqbaR0O9E?=
+ =?us-ascii?Q?B394wrXwmGQQzz1v8KrMvbxx6DBa7891zJMfFGhBWynUF7K5jHGWeu6v8QE6?=
+ =?us-ascii?Q?DvWSgpfKmGk30y0ozSwvdF91IkFPDuy4bOyal+ki2mRMrnlyG3CyZI/z5ssL?=
+ =?us-ascii?Q?9QEv8lxQDbYdoCpNG6FUoFVcn5H5NhDk9d3gK7mkXE9s0XolKX1tEkojJAqN?=
+ =?us-ascii?Q?BxAv4ShwFaXX59hGJchpFyBTvdR3gBWM/jz56DASiHi2PJRuRVkp2fjkLZBx?=
+ =?us-ascii?Q?b/RH04SYjKefsJUPGwDlTCQFOHZbUcfbi34T7tIWu8Jz8Pk6HlLKZtpg5/SP?=
+ =?us-ascii?Q?9HnLP1snb9IuggBNfXa+A/fkCDzqBIKaAe99bQA+rncUVLfPBwsnCVR04ms7?=
+ =?us-ascii?Q?wUtaDKVU5zdIvQUDKOf50k8uThEEbUYZ4pQo7g8t9VEnEELYsa5IS8rfWxqo?=
+ =?us-ascii?Q?BILWlGjhq1Riec3X6WatJOBnc5z4gn0aH0fhFyjgPPJ+59lmqus2xrRHxY+X?=
+ =?us-ascii?Q?EbSNjLoOYEDCsfPOju323iN4zKsUYjYlBXLnqx/zQi+4/arJKJyN?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: feeade77-5087-4590-9ca1-08dece0fed21
+X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 14:34:53.3049
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: haDKOo+4IsUdzJ6Xbvak0dxEk3buV1rw7jJwbAkx7f4cOB2FGb1fdrbcMSt8SbfSAUfTaLK6SnIHay0+TBJQ0GYdDBThsZLtMECliHD6atcRMGyrroQzYQCQjZaQCgLD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1330
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [3.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313829-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:kuurtb@gmail.com,m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[baylibre.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-313934-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[baylibre.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:broonie@kernel.org,m:linux-spi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:changhuang.liang@starfivetech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,baylibre.com:dkim,baylibre.com:mid,baylibre.com:from_mime]
+	RCPT_COUNT_SEVEN(0.00)[8];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0D4B06A66B8
+X-Rspamd-Queue-Id: B9A086A73A6
 
-On 6/18/26 7:33 PM, Kurt Borja wrote:
-> Some ADCs incorporate burn-out current sources that provide current to
-> the channel's input pins for open-circuit or short-circuit detection.
-> 
-> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
-> ---
->  Documentation/devicetree/bindings/iio/adc/adc.yaml | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adc.yaml b/Documentation/devicetree/bindings/iio/adc/adc.yaml
-> index 106b1e317411d5..6b63aac9ac04dd 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adc.yaml
-> @@ -106,6 +106,20 @@ properties:
->        This array describes the current configuration of the excitation current
->        sources or the single matched current for all sources.
->  
-> +  burn-out-current-microamp:
-> +    description:
-> +      Burn-out current sources provide current to the channel's input pins for
-> +      open-circuit or short-circuit detection.
-> +
-> +  burn-out-current-polarity:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description:
-> +      Burn-out current sources provide current to the channel's input pins for
-> +      open-circuit or short-circuit detection.
-> +    enum:
-> +      - pull-up
-> +      - pull-down
-> +
->  anyOf:
->    - oneOf:
->        - required:
-> 
+The StarFive JHB100 SPI is based on the Synopsys DesignWare SSI version 2.00.
 
-This doesn't really work with chips that just have and enable bit to
-enable or disable the feature.
+changes since v1:
+PATCH 1:
+- Add "starfive,jhb100-spi" and support falling back to
+  "snps,dwc-ssi-2.00a" or "snps,dwc-ssi-1.01a".
+- using subject lines reflecting the style for the
+  spi subsystem.
+
+v1: https://lore.kernel.org/all/20260612125856.8530-1-changhuang.liang@starfivetech.com/
+
+Changhuang Liang (2):
+  spi: dt-bindings: snps,dw-apb-ssi: Add starfive,jhb100-spi
+  spi: dw: Add support for snps,dwc-ssi-2.00a
+
+ Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 6 ++++++
+ drivers/spi/spi-dw-mmio.c                                  | 1 +
+ 2 files changed, 7 insertions(+)
+
+--
+2.25.1
 
