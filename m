@@ -1,225 +1,192 @@
-Return-Path: <devicetree+bounces-313749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313744-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id T7veNp4gNWponQYAu9opvQ
-	(envelope-from <devicetree+bounces-313749-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:57:34 +0200
+	id YC2eKyEfNWognQYAu9opvQ
+	(envelope-from <devicetree+bounces-313744-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:51:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37FC06A5550
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:57:34 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C891D6A54C6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:51:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gWZ4c4VU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313749-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313749-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=sifive.com header.s=google header.b=RpW+JBMY;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313744-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313744-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=sifive.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 11E873011F1B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 10:57:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E31E03006822
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 10:51:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50135367B81;
-	Fri, 19 Jun 2026 10:57:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82906376469;
+	Fri, 19 Jun 2026 10:51:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3011E19D092
-	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 10:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586C537267C
+	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 10:51:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781866652; cv=none; b=l7jCfXtxdXaG41VCZtmWEeYj0s/7++9bDJ4Nwz7bXPc+gm2Awu8kgphpWlA6dyT9tNHBGZJKCdXlbdRHRTvN84e1xzdQwhL8JxksirG6G8sZJSVKa/MxOBhRYbVyHZ6JR20l/mzoXHfhKJyRossXDOY3l0b/IeU6Dwg+QKPWusw=
+	t=1781866268; cv=none; b=cOWVYCk6aaJVwgkd6DQzcSqdZ+ismTMR2AgYS8zqgE3QCH3psT7/p3ZJ8+rGZi387sOakcgFoUHOy9zZe24ey6Qtd+tLHmSUhouU1UlUPx9WTyaMlwjR4sdbAS+L6IMZ4eK1LcO2CCpnsr69mRYyMKS84Sj7Q/gPeSeKgZt6XH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781866652; c=relaxed/simple;
-	bh=qa++woPKzYNeEvJ/48W99TbEdvx7Td6TBZc/QYqF/0s=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=nWSyFZNposPJ5KD9Q25GcNl9nAyjAJajzRuZNVDm1f9FwIPxhkhD+KpKsRf8CkWvv4HweFqb1OFDiitseSOfd5W1Jz9o0HxK8NPvJpL770Mo0iDkoL4j2gF5PxDLDhF2U1y4yu50wgt19Lsa60dyJIMeszymY5nEhxbMH8Fo+TU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gWZ4c4VU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CE121F000E9;
-	Fri, 19 Jun 2026 10:57:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781866650;
-	bh=6bWz2r9c8jz2qGryRs8xH5ugDD189e2j0a8pPFoyCKI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=gWZ4c4VUVWnnBGNKGq+mDuSfROEf6ArASXZ+kbp7oPPyGj6yQUdgce0YUcXru+dGO
-	 GQxsDOYH87elXWWMGHXMTzHs9NqZCLRQKaRPfQsIchX53C+0y+sDux+cMNUxbNXgNv
-	 aSeNdzp6FuXqEE/wT5kBu4egK2wDfCjGjt8bi+eQcdL5XEMXSX7Qv/pIGcCQkeL+Vx
-	 tQ3iGEsaXbk8tjOnidXkeVafaCG5v3gyX7FhdT0VIzoew+3RTJWgs/9wER5arhALmB
-	 zAZ9FD91Q1bQIGSJK0nNBkL97h6+1OmSh5Xebaftb3sJGgE06csmYwmnTIG14lZson
-	 Ie0iRejEmPZYg==
-From: sashiko-bot@kernel.org
-Subject: Re: [RFC PATCH 1/3] dt-bindings: riscv: Add Worlds ISA extensions
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Yu-Chien Peter Lin" <peter.lin@sifive.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260619105834.1277302-2-peter.lin@sifive.com>
-References: <20260619105834.1277302-1-peter.lin@sifive.com>
- <20260619105834.1277302-2-peter.lin@sifive.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 19 Jun 2026 10:57:30 +0000
-Message-Id: <20260619105730.9CE121F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781866268; c=relaxed/simple;
+	bh=EELqn+PHBBQv5Bsn9oSjQF/Cgyke81JR49hsca2eR74=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VNQOxyeFwE6qgpL5rhKlGwIZuIWAXCNQaTVmO68X+B02qEQULBwjHbQw9j3MxePtbj6dnW6UzTag0cFDe67shDemqERyddLoq0BLrWbysD5yffNHO2xAPYV3Wmrf1JyTd+PQk0t7Co3ahn/ogzV5IRkAZwbyoXYPdnGozgD6Lzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=RpW+JBMY; arc=none smtp.client-ip=209.85.210.177
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-8452a597afcso1167309b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 03:51:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1781866267; x=1782471067; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DxFKvuyFF6BTG/rctR0orxCMzNYM7JR4gRpefuX09Jc=;
+        b=RpW+JBMYaK6psFjUSlS2Jnd9GaOiR23D7/Xdg6Og6sP4vF6B05xszDUxsA3Sc9pPKX
+         DItbAIJUrQ5CbcwwoJPfvN/2J3hxrzkN4IZh81qlyfosSd6Brtls/qLeqo1kqu34+XZL
+         HVrzoQbVLxVO/lJ6PANcLQlYLmevcjX0CdjKw2GJjdOoUnEpdyg2VM4Ah+qaSZQWsKZp
+         2+KpHsTJ4db0EtnSMNxZY3mbNWHK/pvZdA9kDBoOd1W3TZ8emvMQbc5FxkXvAVUD3c7L
+         MvtF3f70+Vdpc4pK3zqOqyfik3gvNb5wNrEwXf3IoTPvMLfOWtfXBn6MAcSdKA+ilSXL
+         y3jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781866267; x=1782471067;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DxFKvuyFF6BTG/rctR0orxCMzNYM7JR4gRpefuX09Jc=;
+        b=d/IIxA7wyC5+R/Um0OiaFRZm2HR4bWTwRDxELSy37kKvn0gtAolOmGZJlTTUrqyg7z
+         Z60cOy4vc7bMAXxdvIN8maza/vvFgttLKeRQ9G9z5okkGguZQc3svtABZWvalGO+8FtT
+         WW0uneJPg+5F9rBku+MmeW+FDTj2H3PksOJbELWWQHBsAZsVWmDK2XX0eCBCAKWwK9Fu
+         iXhCwKVXN7bVGf+E3G29KX18oFin/PBi4UQo+NEiRjm8ujDw152cxLeljS5k5duY/skZ
+         Eq12d2uwwnpsdOVcd9dLblStMH54MWJDChaS3EYRTCx+1QpxGQp32rZGYo1skkd3wZsa
+         c3yA==
+X-Gm-Message-State: AOJu0YxoiX9NB7G8NJjm37WuKAFeRsOnXQsodtqqFvi/qTfuUcwbjyVV
+	mva/eaAaMNuz9yqTdkuEbDiw+zKeYKOHpKi6iikEBgW1ZtfWI5lTQP0OAGSa59rdaGsYUGQ+m4o
+	dWOLAZhd58a8WW8QApVIoiyL3gWwjLO21BWHE0N2Z4fHqD5TEQhJHe50q8odPF5vQw9yI46bFI1
+	NGEgU5nUNIB7b8ESz/prcYkikQOdlnS1Nj7HegtKxzwgWYjRihU9yj
+X-Gm-Gg: AfdE7ck1vjH+c9iIPnG+tgD5MZvzkUsJ2+0P4eS8/DUgfihbrXwVqbArGrgpjpD63q5
+	3zxTZSOvUaknrUOYLtNL046SJ3aNDGD/+/K0hdhIqeHi7wfFliqpBq7KAprrXLRTaUOKsg0RJjU
+	Uw1Ez1GPX6Aqb85n8skBLYE54M9FR+4fXRKTonl3ISJN2FGiI2LGqjoDZ5lPcpa27HFpPwmz7Jp
+	Vs+Gs3lZ5UrIJuuR8fV2ASucDdiv+998c+p24gs4NdxGW1JiISR2c10H6zuUWp+PgrWhHQNKDeB
+	qCFwMVZDN9OQ7qyaNB/cFoP67NLqz8C6BVMdtqmAI7yNhpw+PHQWpU9OHqvR0gFBhQNctxzv1SA
+	mKpsDlbVHehk5pGNvQYP+BJ/ZCoLyp+C1p9yeTWCXSW+bpWxt2hLoOhcqocREU+y7/J3yIcAeYn
+	B6YFD4BDn4/eR0GGJoEr46nLfbKFSnghfnGlje
+X-Received: by 2002:a05:6a21:4c85:b0:3b4:701f:a0dc with SMTP id adf61e73a8af0-3bb33952d2bmr3655979637.26.1781866266328;
+        Fri, 19 Jun 2026 03:51:06 -0700 (PDT)
+Received: from hsinchu16.internal.sifive.com ([210.176.154.34])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c8a84c6eb1bsm1993583a12.2.2026.06.19.03.51.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jun 2026 03:51:05 -0700 (PDT)
+From: Yu-Chien Peter Lin <peter.lin@sifive.com>
+To: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	samuel.holland@sifive.com,
+	dlan@kernel.org,
+	guodong@riscstar.com,
+	dfustini@oss.tenstorrent.com,
+	michal.simek@amd.com,
+	junhui.liu@pigmoral.tech,
+	darshan.prajapati@einfochips.com,
+	akpm@linux-foundation.org,
+	zhangchunyan@iscas.ac.cn,
+	luxu.kernel@bytedance.com,
+	pincheng.plct@isrc.iscas.ac.cn,
+	nick.hu@sifive.com,
+	jim.shu@sifive.com,
+	zong.li@sifive.com,
+	greentime.hu@sifive.com,
+	robin.randhawa@sifive.com,
+	scott@riscstar.com,
+	dave.patel@riscstar.com,
+	raymond.mao@riscstar.com,
+	Yu-Chien Peter Lin <peter.lin@sifive.com>
+Subject: [RFC PATCH 0/3] dt-bindings: riscv: Add RISC-V Worlds and SiFive WorldGuard DT bindings
+Date: Fri, 19 Jun 2026 18:58:31 +0800
+Message-ID: <20260619105834.1277302-1-peter.lin@sifive.com>
+X-Mailer: git-send-email 2.48.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
+	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313749-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:peter.lin@sifive.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER(0.00)[peter.lin@sifive.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	TAGGED_FROM(0.00)[bounces-313744-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:samuel.holland@sifive.com,m:dlan@kernel.org,m:guodong@riscstar.com,m:dfustini@oss.tenstorrent.com,m:michal.simek@amd.com,m:junhui.liu@pigmoral.tech,m:darshan.prajapati@einfochips.com,m:akpm@linux-foundation.org,m:zhangchunyan@iscas.ac.cn,m:luxu.kernel@bytedance.com,m:pincheng.plct@isrc.iscas.ac.cn,m:nick.hu@sifive.com,m:jim.shu@sifive.com,m:zong.li@sifive.com,m:greentime.hu@sifive.com,m:robin.randhawa@sifive.com,m:scott@riscstar.com,m:dave.patel@riscstar.com,m:raymond.mao@riscstar.com,m:peter.lin@sifive.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[peter.lin@sifive.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[sifive.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,sifive.com:email,sashiko.dev:url,lists.linux.dev:replyto]
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 37FC06A5550
+X-Rspamd-Queue-Id: C891D6A54C6
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] The descriptions for the newly added RISC-V Worlds ISA extension=
-s use placeholder 'TBD' text instead of a valid specification commit hash.
-- [Low] The newly added multi-letter ISA extensions `smlwid` and `smlwidlis=
-t` are not sorted alphanumerically.
---
+Add device tree bindings for RISC-V Worlds, a standard extension that tags
+every transaction with a World ID for fine-grained isolation. SiFive's
+WorldGuard Checker is a hardware firewall in the system interconnect that
+inspects transaction WIDs and enforces per-World access policies on memory
+and MMIO devices.
 
-commit 16fbfa5650f850f6481cd820aa9d7deb379f7452
-Author: Yu-Chien Peter Lin <peter.lin@sifive.com>
+The three patches add: Worlds ISA extension properties (riscv,nworlds and
+sifive,trustedwid on /cpus), per-hart World ID constraints (riscv,pmwid,
+riscv,pmwidlist, riscv,pmlwidlist on cpu@X nodes), and the wgchecker2
+binding with access-controller specifiers.
 
-dt-bindings: riscv: Add Worlds ISA extensions
+The access-controllers specifier carries range, permission and config fields
+to support three use cases: 
+1. single range device protection
+2. discontiguous range device protection
+3. sub-range memory partitioning.
 
-This commit adds device tree bindings for the RISC-V Worlds ISA extensions.
-These extensions are used to tag transactions with World IDs that hardware
-uses to enforce isolation across execution contexts.
+Link: https://github.com/riscvarchive/security/blob/main/papers/worldguard%20proposal.pdf
 
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
-cumentation/devicetree/bindings/riscv/extensions.yaml
-> index 2b0a8a93bb214..1bc8b1aa67c06 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -193,12 +193,35 @@ properties:
->              ratified at commit d70011dde6c2 ("Update to ratified state")
->              of riscv-j-extension.
-> =20
-> +        - const: smlwid
+Yu-Chien Peter Lin (3):
+  dt-bindings: riscv: Add Worlds ISA extensions
+  dt-bindings: riscv: Add Worlds per-hart properties
+  dt-bindings: sifive: Add WorldGuard Checker
 
-[Severity: Low]
-This isn't a bug, but are these extensions placed in the correct alphabetic=
-al
-order? Multi-letter extensions are typically required to be sorted
-alphanumerically, and "smlwid" appears to be inserted out of order relative
-to other "sm" extensions.
+ .../devicetree/bindings/riscv/cpus.yaml       |  21 ++
+ .../devicetree/bindings/riscv/extensions.yaml |  29 +++
+ .../devicetree/bindings/riscv/worlds.yaml     |  86 +++++++
+ .../bindings/sifive/sifive,wgchecker2.yaml    | 237 ++++++++++++++++++
+ 4 files changed, 373 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/riscv/worlds.yaml
+ create mode 100644 Documentation/devicetree/bindings/sifive/sifive,wgchecker2.yaml
 
-> +          description: |
-> +            The standard Smlwid extension for M-mode control of lower
-> +            privilege World ID via the mlwid CSR as ratified at commit
-> +            TBD ("TBD") of riscv-worlds.
+-- 
+2.43.7
 
-[Severity: Medium]
-Is the "TBD" placeholder intended to be kept in the final binding? Device t=
-ree
-bindings usually require a specific commit hash to reference a frozen or
-ratified specification.
-
-> +
-> +        - const: smlwidlist
-> +          description: |
-> +            The standard Smlwidlist extension for M-mode control of lower
-> +            privilege World IDs via the mlwidlist CSR as ratified at com=
-mit
-> +            TBD ("TBD") of riscv-worlds.
-
-[Severity: Medium]
-Does this also need to be updated with the actual ratification commit hash
-instead of the placeholder?
-
-> +
->          - const: smstateen
->            description: |
->              The standard Smstateen extension for controlling access to C=
-SRs
->              added by other RISC-V extensions in H/S/VS/U/VU modes and as
->              ratified at commit a28bfae (Ratified (#7)) of riscv-state-en=
-able.
-> =20
-> +        - const: smwdeleg
-> +          description: |
-> +            The standard Smwdeleg extension for M-mode delegation of low=
-er
-> +            privilege World ID control to S-mode via the mwiddeleg CSR, =
-as
-> +            ratified at commit TBD ("TBD") of riscv-worlds.
-
-[Severity: Medium]
-Is the exact specification commit hash available to replace the placeholder
-text here?
-
-> +
-> +        - const: smwid
-> +          description: |
-> +            The standard Smwid extension for M-mode World ID control via=
- the
-> +            mwid CSR as ratified at commit TBD ("TBD") of riscv-worlds.
-
-[Severity: Medium]
-Can we include the specific commit hash of riscv-worlds here instead of
-using the temporary text?
-
-[ ... ]
-
-> @@ -262,6 +285,12 @@ properties:
->              ratified in RISC-V Profiles Version 1.0, with commit b1d8066=
-05f87
->              ("Updated to ratified state.")
-> =20
-> +        - const: sswid
-> +          description: |
-> +            The standard Sswid extension for S-mode control of lower
-> +            privilege World IDs via the slwid CSR as ratified at commit
-> +            TBD ("TBD") of riscv-worlds.
-
-[Severity: Medium]
-Is the placeholder expected to be replaced with the actual ratification
-commit before this is merged?
-
-> +
->          - const: supm
->            description: |
->              The standard Supm extension for pointer masking support in u=
-ser
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260619105834.1277=
-302-1-peter.lin@sifive.com?part=3D1
 
