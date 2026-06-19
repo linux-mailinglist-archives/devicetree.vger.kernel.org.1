@@ -1,315 +1,208 @@
-Return-Path: <devicetree+bounces-313792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313794-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PcSwLVg/NWrypwYAu9opvQ
-	(envelope-from <devicetree+bounces-313792-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 15:08:40 +0200
+	id NmhIIVI/NWrupwYAu9opvQ
+	(envelope-from <devicetree+bounces-313794-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 15:08:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11AE16A5FBB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 15:08:40 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5C066A5FB6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 15:08:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="QvE/fYcz";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313792-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313792-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FGYXa+Gw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313794-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313794-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 47724303133E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 13:06:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F002930031DA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 13:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7653955C1;
-	Fri, 19 Jun 2026 13:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06895382395;
+	Fri, 19 Jun 2026 13:08:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B60D13939B0
-	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 13:06:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA89C3749ED
+	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 13:08:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781874397; cv=none; b=NRgPuUDKjio85fiiiodftO+Z+Gy7A+X23HR3HRD6Ulel2oLLtc7ow7HlEvJwGM4sUW2O8qEy77y6dI0kW+bZEa4Gtrs97BfFDFcehlJRm0mD4RSNnIjdhZJgQc25ANjFM4XmDMk/An1eOCrcNgtPBqhTLhxXU5wYvDCFIPreU/c=
+	t=1781874511; cv=none; b=cCLBG7my59TRDOg5Y5Q+O8QDZ2cu8n1aWdA/Ncl7AOmdCKRjo+cw6aBrbOTVS9TW3UmPlzehBOhfX7/9IAt0UPBeRieg4+WDoa9lpDI7iUs+O3A+xKB/EjNh8Q32w4AqRCyvI0nzelv1/8s1se30dEVVYbalsAI0LiYsTbfVKW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781874397; c=relaxed/simple;
-	bh=hPq9GGLB/Xa4IfooWLsXz4nhu5OD3HFtkok0T2+uuA4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SS9toveiQwLSVFPRRXctcLd1FzvXmepqfNRmrauQ65c0YRsWYqyTzYs7VD5tivOIoAUBgXUP5mTE+ZLSW9g1/dGOLuKQ3eHpjtHFoCnG8yG3EUo8vqwwV6/HlqqVQz04g5NDThY/wPw29/C0nav7tpNWh1oIjkbewq7DnyMIQuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QvE/fYcz; arc=none smtp.client-ip=74.125.82.52
-Received: by mail-dl1-f52.google.com with SMTP id a92af1059eb24-1384ebe7a10so4187387c88.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 06:06:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781874392; x=1782479192; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FKWz+v75WavDxx9BcP+T8YEk8allFL24miMeH++hQ+0=;
-        b=QvE/fYczu0OE3VUksxaW9jmXDexJ3B/ZcFDtR/slEuRRWZj+dBvPky3WZfwG/kUEKT
-         /9hS1HQQO4ETAlhBMpAosYfQaQZ5sHZfDRKW17VvperOicg16NDpCzIwdBDlz6P1kGxI
-         Fahs5CLjDUj/mG8MyNRoI5tjlhZXvWB7+zwxbK5YbJyVDny5TfDQB/sUxk2Mz8Jb5cfN
-         TVZxNn9yHMbgb1jMjTUt7F8hN2JTAfOevXkVhEditiyeHZKp5GLK4O4Zv3S7Du2IvzBQ
-         IYt+amwvz8g44hLw4FwA5RQ+9kmPHtBvqfSq/e8YWyQDNHy+ZQx+FMI0oPrUUHSxFnVq
-         jcEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781874392; x=1782479192;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FKWz+v75WavDxx9BcP+T8YEk8allFL24miMeH++hQ+0=;
-        b=nZGlBk+DOcX9eNN3V9qamqblJRs7TfZMbe+UHNtSnB4Hvt3rYcFoh+MvJ8Pr55DbTN
-         XFL1ghmgBjBgE6gLEpWgNy+kNtUaXIY5DxC09CmQ5k9eIkfuteZjjeeSiAAIJIa5FR0C
-         UDNaX5Y511OeXKSbVwFbiiCh/bxo6dsfuVhynG9aZqSFC63H3QAK+DSmwF+5JMFfU69Z
-         MZFauGR+n9Q7UNEpW/FfeF7cRLTqdkHc+bYTysBNGsxoib3yUus/XIwjPjCFgeD1MoqE
-         u93VOTZYjRSyyL4xMJD4uSOSo9GZBmbheY2zw9iz+WuuqfvQLWzNQMN3/PscnQv4a3wH
-         +fhg==
-X-Forwarded-Encrypted: i=1; AFNElJ+vIZCP5u1cVF2gBWgvjukP7PPGPqnmxtrnGyb+3UO3y1qvljzITXGkfRMRczJ1JxM+KsDNNiGc9g2d@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvwRbfOO9MlLOJAmmZQIutu9nphtHAKpG3XRW3MgqDxExqK+2O
-	BOvJqp1lgM6VIsFfYvSlSdtWYbAMQ+HImYxakhD67BVOBjgYGzF8mP61
-X-Gm-Gg: AfdE7cltYRXVHwm3mzWqgP2cMoIu5RzmSY7H0vpZC7VkbZKOtC9pmrZU6/2eeKOQkUl
-	YVFX0fbbMsrdIqhDrizb1CGJAKaN+X+KfUlcb5qCtoqpm4VH7OLf5jFNEBJjaMqKQfUUqneNpUZ
-	Rs11juH8U21/Sygdlw/shJtM3xzv2bzbI0/IMxy9qMp5FSTPxwWUWuRGt3v+tT2UT0XAHPs2ljE
-	cR2PPO23yID9dTeOgVnRba2LCN6FiRY9c9w804zMwzkfQLL/OU9QD/NyhUMAiGvzkZmn+BUb0p4
-	xWu+JPRmlC7YLp11amJA8XS+rRlGDWahxQ1lXCl4wQvfSYy9/GBTOJU1VaQESXO3YTVEnquG/sU
-	7dR87rBF8+UFhOCV9ONxx3/EZgrg8c32Ina3yxEDKSV2BjtaNtpTGURbrMCYa5GrXD+CA+5EwPC
-	fst7tz3rNdvpm8//teQb/jaQ==
-X-Received: by 2002:a05:701b:4586:10b0:128:bae0:e03c with SMTP id a92af1059eb24-139a504feefmr814976c88.30.1781874392336;
-        Fri, 19 Jun 2026 06:06:32 -0700 (PDT)
-Received: from localhost ([2804:30c:1f0a:b600:e457:1a16:4082:3e0a])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-139a34bdc83sm1769503c88.8.2026.06.19.06.06.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jun 2026 06:06:31 -0700 (PDT)
-Date: Fri, 19 Jun 2026 10:07:10 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	jic23@kernel.org, nuno.sa@analog.com, Michael.Hennerich@analog.com,
-	dlechner@baylibre.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, pop.ioan-daniel@analog.com
-Subject: Re: [PATCH v3 1/5] dt-bindings: iio: adc: Add ltc2378
-Message-ID: <ajU-_j1SWYbfjWla@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1781661028.git.marcelo.schmitt@analog.com>
- <f9e88abdbd23df8039282497a81d3c8698a10665.1781661028.git.marcelo.schmitt@analog.com>
- <20260617-bok-gains-9a1af41cf0de@spud>
- <ajLV-O60lCdlIbXR@debian-BULLSEYE-live-builder-AMD64>
- <20260617-oat-handclasp-ddd3135c5b84@spud>
+	s=arc-20240116; t=1781874511; c=relaxed/simple;
+	bh=og5ztn0kKhUGvRnA8OWdug0h+b2aDB5/m6imLVhobmw=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=hSD9XBw+S4IgDun0CxlOzl31rfsAoqh8t2yem/Z+JSnySPJYfuAkiU3K+t0ipA5lCw3kdZYjPydFUNxoI1YUNo2w+/iFKhMxX/Ein3vMc3jkZrTW/K0IVafP/edIgQePctyhyaLxcSNB/I/qHj+B0uhrY6ao+YlkC8zAh0LEB7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FGYXa+Gw; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D5CD1F000E9;
+	Fri, 19 Jun 2026 13:08:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781874510;
+	bh=hDYkYxT9rnFbwmjItIKE5ZJ24Y+lk1lJi64T0sWnw+0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=FGYXa+GwBkW5m7VtjjaNLH028RGoNgD+9ZwgXLFFo1C6SO+ST12HYSFeHUmZ1PQbN
+	 oczpeWgrtUklIsMJTPL8jWeyxOjRi4oCI1JjwQenGG0LkYBhtmZUBNbicTDsQww09F
+	 Ty8Pj5VFFkZLSr9VhNdZOAHxG0RjrD0nVgZWtARL4XCDTrIPLF6pAs25yft62P/Gd0
+	 2jyMSD/XdUB6iIV8SINEgqFdKhIYUidwnf3T9Xiuj5yL0b28pk7N70BQDQf4Pb2kD4
+	 xftn8ocHQlo71VDlqq+FTfKqFZrbWJNFciLbtZR3TOJvKLFR+4PPNAa8728jyuBKib
+	 nkXDpseGhbMMw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5] dt-bindings: misc: convert lis302.txt to YAML
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jad Keskes" <inasj268@gmail.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260619125902.893742-1-inasj268@gmail.com>
+References: <20260619125902.893742-1-inasj268@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 19 Jun 2026 13:08:29 +0000
+Message-Id: <20260619130830.5D5CD1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260617-oat-handclasp-ddd3135c5b84@spud>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:marcelo.schmitt@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pop.ioan-daniel@analog.com,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-313792-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-313794-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:inasj268@gmail.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:url,analog.com:email,devicetree.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,debian-BULLSEYE-live-builder-AMD64:mid,vger.kernel.org:from_smtp]
+	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 11AE16A5FBB
+X-Rspamd-Queue-Id: E5C066A5FB6
 
-On 06/17, Conor Dooley wrote:
-> On Wed, Jun 17, 2026 at 02:14:32PM -0300, Marcelo Schmitt wrote:
-> > On 06/17, Conor Dooley wrote:
-> > > On Tue, Jun 16, 2026 at 11:03:11PM -0300, Marcelo Schmitt wrote:
-> > > > Document how to describe LTC2378-20 and similar ADCs in device tree.
-> > > > 
-> > > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > > > ---
-> > > > Change log v2 -> v3:
-> > > > - Re-added device tree fallback compatibles for LTC2378 chips, now with options
-> > > >   to provide a single compatible string or a pair of single compatible string
-> > > >   plus a fallback string to a slower sample rate spec in case a driver for the
-> > > >   specific part is not found.
-> > > > 
-> > > >  .../bindings/iio/adc/adi,ltc2378.yaml         | 160 ++++++++++++++++++
-> > > >  MAINTAINERS                                   |   7 +
-> > > >  2 files changed, 167 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..7d30a2cade8f
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
-> > > > @@ -0,0 +1,160 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/iio/adc/adi,ltc2378.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Analog Devices LTC2378 and similar Analog to Digital Converters
-> > > > +
-> > > > +maintainers:
-> > > > +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > > > +
-> > > > +description: |
-> > > > +  Analog Devices LTC2378 series of ADCs.
-> > > > +  Specifications can be found at:
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/233818fa.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/236416fa.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/236418f.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/236716fa.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/236718f.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/236816f.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/236818f.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/236918fa.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/237016fa.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/237616fa.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/237618fa.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/237620fb.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/237716fa.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/237718fa.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/237720fb.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/237816fa.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/237818fa.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/237820fb.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/237918fb.pdf
-> > > > +    https://www.analog.com/media/en/technical-documentation/data-sheets/238016fb.pdf
-> > > > +
-> > > > +$ref: /schemas/spi/spi-peripheral-props.yaml#
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    oneOf:
-> > > > +      # Single compatible string match.
-> > > > +      - enum:
-> > > > +          - adi,ltc2338-18
-> > > > +          - adi,ltc2364-16
-> > > > +          - adi,ltc2364-18
-> > > > +          - adi,ltc2367-16
-> > > > +          - adi,ltc2367-18
-> > > > +          - adi,ltc2368-16
-> > > > +          - adi,ltc2368-18
-> > > > +          - adi,ltc2369-18
-> > > > +          - adi,ltc2370-16
-> > > > +          - adi,ltc2376-16
-> > > > +          - adi,ltc2376-18
-> > > > +          - adi,ltc2376-20
-> > > > +          - adi,ltc2377-16
-> > > > +          - adi,ltc2377-18
-> > > > +          - adi,ltc2377-20
-> > > > +          - adi,ltc2378-16
-> > > > +          - adi,ltc2378-18
-> > > > +          - adi,ltc2378-20
-> > > > +          - adi,ltc2379-18
-> > > > +          - adi,ltc2380-16
-> > > > +
-> > > > +      # Low sample rate fallback for 16-bit unipolar sensors.
-> > > > +      - items:
-> > > > +          - enum:
-> > > > +              - adi,ltc2370-16 # 2 MSPS
-> > > > +              - adi,ltc2368-16 # 1 MSPS
-> > > > +              - adi,ltc2367-16 # 500 kSPS
-> > > > +          - const: adi,ltc2364-16 # fallback (250 kSPS)
-> > > 
-...
-> > > What actually is the impact of the sample rate on the programming model?
-> > If the user tries to set a sample rate beyond the maximum supported, software
-> > can throw an error to indicate that.
-> 
-> I think you have misunderstood this. I was asking how the driver
-> interacts with the hardware. Do all devices come out of reset with the
-> minimum sampling rate? Or a per-device default rate? Do the faster
-> devices support all slower rates? If they do, do the registers have the
-> same meaning and the same value sets 2370-16 device to 1 MSPS as
-> 2368-16.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The YAML schema incorrectly forbids the `Vdd-supply` and `Vdd_IO=
+-supply` properties for the SPI variant and contains a redundant `select` b=
+lock.
+--
 
-Ah, the sampling rate is indirectly dictated both by how fast the CNV pin is
-toggled and how fast SPI transfers run. Each rising edge of CNV starts a new
-ADC conversion. Software may take spi-max-frequency as default but it will also
-need to set a pace for CNV, and there is no default for that. The CNV pin may
-also toggled on demand (e.g. single-shot read) and so I'd say all devices
-support all slower sample rates. What software ought to do is orchestrate CNV
-and SPI transfers to meet the timing requirements. No configuration registers
-to be set.
+commit 124e32c58b0e195eb97adbc2880712f6df5eb1b2
+Author: Jad Keskes <inasj268@gmail.com>
 
-> > 
-> > With the code being proposed in this patch set, there is no benefit in matching
-> > the ltc2364-16 fallback if there is a faster ltc2370-16 device connected because
-> > device driver supports that. Though, other operating systems and/or platforms
-> > might not support all device variants and so the fallback might be useful.
-> > 
-> > > +static const struct ltc2378_chip_info ltc2370_16_chip_info = {
-> > > +	.name = "ltc2370-16",
-> > > +	.resolution = 16,
-> > In a later patch ...
-> > +	.max_sample_rate_hz = 2 * HZ_PER_MHZ,
-> > +	.tconv_ns = 322,
-> > > +	.bipolar = false,
-> > > +};
-> > > 
-> > > +static const struct ltc2378_chip_info ltc2368_16_chip_info = {
-> > > +	.name = "ltc2368-16",
-> > > +	.resolution = 16,
-> > +	.max_sample_rate_hz = HZ_PER_MHZ,
-> > +	.tconv_ns = 527
-> > > +	.bipolar = false,
-> > > +};
-> > > 
-> > > +static const struct ltc2378_chip_info ltc2367_16_chip_info = {
-> > > +	.name = "ltc2367-16",
-> > > +	.resolution = 16,
-> > +	.max_sample_rate_hz = 500 * HZ_PER_KHZ,
-> > +	.tconv_ns = 1500,
-> > > +	.bipolar = false,
-> > > +};
-> > > 
-> > > +static const struct ltc2378_chip_info ltc2364_16_chip_info = {
-> > > +	.name = "ltc2364-16",
-> > > +	.resolution = 16,
-> > +	.max_sample_rate_hz = 250 * HZ_PER_KHZ,
-> > +	.tconv_ns = 3000,
-> > > +	.bipolar = false,
-> > > +};
-> > > 
-> > ...
-> > > > +      # Low sample rate fallback for 20-bit bipolar sensors.
-> > > > +      - items:
-> > > > +          - enum:
-> > > > +              - adi,ltc2378-20 # 1 MSPS
-> > > > +              - adi,ltc2377-20 # 500 kSPS
-> > > > +          - const: adi,ltc2376-20 # fallback (250 kSPS)
-> > > 
-> > > I didn't check these, but I assume they are the same.
-> > 
-> > Yes, except for small variations on input (unipolar/bipolar) and precision bits,
-> > these devices are pretty much equal.
-> 
-> What I meant here was that 2378-20, 2377-20 and 2376-20 would follow the
-> same pattern of having identical match data (pre patch 4).
+dt-bindings: misc: convert lis302.txt to YAML
 
-Yes, devices that have same input type and precision bits have the same match
-data configuration (except for name). That's because the initial support patch
-only supports single-shot data read.
+This commit converts the old lis302.txt dt-binding to YAML format,
+supporting the st,lis3lv02d, st,lis302dl-spi, st,lis331dlh, and
+st,lis33de compatibles. It retains old property names as deprecated
+to maintain backward compatibility with existing device trees.
+
+> diff --git a/Documentation/devicetree/bindings/misc/st,lis3lv02d.yaml b/D=
+ocumentation/devicetree/bindings/misc/st,lis3lv02d.yaml
+> new file mode 100644
+> index 0000000000000..c73371b754a1e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/st,lis3lv02d.yaml
+
+[ ... ]
+
+> +description:
+> +  This binding describes the STMicroelectronics accelerometers supported=
+ by
+> +  the misc/lis3lv02d driver. This driver provides input (joystick) and
+> +  hardware monitoring support, in contrast to the IIO st-accel driver wh=
+ich
+> +  also supports some of these devices.
+> +  Refer to Documentation/devicetree/bindings/iio/st,st-sensors.yaml for =
+the
+> +  IIO binding.
+> +
+> +select:
+> +  anyOf:
+> +    - properties:
+> +        compatible:
+> +          contains:
+> +            const: st,lis302dl-spi
+> +    - properties:
+> +        compatible:
+> +          contains:
+> +            const: st,lis331dlh
+> +    - properties:
+> +        compatible:
+> +          contains:
+> +            const: st,lis33de
+> +    - properties:
+> +        compatible:
+> +          contains:
+> +            const: st,lis3lv02d
+> +  required:
+> +    - compatible
+> +
+> +properties:
+
+[Severity: Medium]
+Is this explicit select block necessary? The dt-schema tooling
+automatically selects bindings based on the top-level compatible
+property definition, making this manual select block redundant.
+
+[ ... ]
+
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              const: st,lis302dl-spi
+> +    then:
+> +      required:
+> +        - Vdd-supply
+> +        - Vdd_IO-supply
+> +    else:
+> +      properties:
+> +        Vdd-supply: false
+> +        Vdd_IO-supply: false
+
+[Severity: Medium]
+Does setting these properties to false incorrectly enforce a hardware
+abstraction violation? The physical chip requires power to operate
+regardless of whether it uses the SPI bus or I2C. Device tree bindings
+should describe the hardware, not the current limitations of the driver cod=
+e.
+
+> +      required:
+> +        - spi-max-frequency
+> +        - interrupts
+> +
+> +required:
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260619125902.8937=
+42-1-inasj268@gmail.com?part=3D1
 
