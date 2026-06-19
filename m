@@ -1,155 +1,183 @@
-Return-Path: <devicetree+bounces-313969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313970-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XXZkOXzTNWof5AYAu9opvQ
-	(envelope-from <devicetree+bounces-313969-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 01:40:44 +0200
+	id 0c0TMW/UNWps5AYAu9opvQ
+	(envelope-from <devicetree+bounces-313970-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 01:44:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C5686A80A9
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 01:40:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A7296A80B9
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 01:44:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=xjYjHJe3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313969-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313969-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linux.dev header.s=key1 header.b=uf6Dexpp;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313970-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313970-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=linux.dev;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C01E4303C639
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 23:40:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3DA29304704E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 23:44:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA7136923B;
-	Fri, 19 Jun 2026 23:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05F036A37A;
+	Fri, 19 Jun 2026 23:44:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
+Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD07A361DC3
-	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 23:40:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E0B3644C5
+	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 23:44:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781912441; cv=none; b=ar84hNxr3cLqW5xMtIaRkhDzwBUyptxT53aZUS4d+BtBQRaJaVqajfjSMPGLhKRuWe33v1stOfRbuxk+Nllbhp2Z5dcwujMFZyqONN0wDnQkTKhhP0JybUB188c+CYEehaWoOWxerT6WIFqb3ZfzQGAf4qAxV7hmzlvSzWm3yfA=
+	t=1781912682; cv=none; b=T15AUJlpCIqTd/rozuv+y/Ul21rzDshZPEtclUc3IRxOE2RAB1LX40FwCaX9EqaSBKLzqCT84d4pvxW/0/SnSHX4PDRfrToykh9oUEj6VCapF4ZtLsJ8hpKUvmWYSTXq86IzeVKS7wstBtXtVFsd0q+88isbnhijwoma+N/56uw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781912441; c=relaxed/simple;
-	bh=PbW3fqVzRPhO55V63DAT6NbmDMlHINxLcNP6wxIIMnc=;
+	s=arc-20240116; t=1781912682; c=relaxed/simple;
+	bh=k4sPsofPq50FCBnLPJKP2N/wX51gag3tFnhuVMeuOcQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AInkkPSjwqNvVrFWfRj4L0vWqetGmMU5vdma3+7XPlrrr/95sENt55pn4SH71jSSHA20vBtwkMJ2NGyjgGii7dRFddwjdvPUsS92RdWSplWeKvfSDNa/c37eoPF9IDwyg/IWpgBSNoTzikeHCyPGFYmqLbDkzboXuk9FHQ+dfgM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=xjYjHJe3; arc=none smtp.client-ip=91.218.175.183
-Message-ID: <437b1be4-1c01-4dc1-95b5-033d38ec20cf@linux.dev>
+	 In-Reply-To:Content-Type; b=BJROj1VgNeHY815fjhezGnVeaaLPfNkPvbDdPZIxWfGvbiM9YZujKVVQFUs27MqtuAHBYkzZGfekdwMb+nk33fiQNUlobtKsCmZRJhJm3MkPwW5u6v0b+1YTwe6S31IHmPa11h6ebI0oT+O+7xGFROCAjg7Bz3urhOJtvrtuUl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=uf6Dexpp; arc=none smtp.client-ip=91.218.175.180
+Message-ID: <9eb2dc2a-c70b-4edd-b372-d4ec8753e275@linux.dev>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1781912437;
+	t=1781912678;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=dr93Mt28IFAycdde0QN62JpVudutzw3MoBCesVJIkok=;
-	b=xjYjHJe3hmK2x9giGnzyvyLU8FCuR8eAlEtYVPe8YrKEAJ3ar+xVqs8G/oVYvwDZfFAENB
-	YfcbX2M/CCl+7IR8WADaTr7LQj+NeM8ukjNgebsE8h1a76KaWv+Vuq10G/NfadxW/xlEmv
-	NpzNpHvZFmHKghspU35McHvEydQ8TUs=
-Date: Fri, 19 Jun 2026 16:40:34 -0700
+	bh=fDjN+tRuIyMxcjQBYzfqmoHMzOg92k59uplUcNU5q8U=;
+	b=uf6DexppIoKgZK+YOC8rvA+af2LXZ+X/Qx8imTz0AgeaaUJFqiW0t4I8D1O8lAm7DuXjw3
+	4JN2TDG8U+Dw6tiBdc1L5hUWmfgogwRYD/+sLL5E5gq7u/g4300PLgeYpu7UmuVOiIBf0L
+	rh0qaYMO6pLhRnS2wcpQc/7ij6A/bqE=
+Date: Fri, 19 Jun 2026 16:44:34 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v6 06/21] dt-bindings: riscv: add Smcntrpmf ISA extension
- description
+Subject: Re: [PATCH v6 08/21] RISC-V: Add Ssccfg/Smcdeleg ISA extension
+ definition and parsing
 To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-perf-users@vger.kernel.org
-References: <20260608-counter_delegation-v6-6-285b72ed65a9@meta.com>
- <20260609060915.6C7461F00893@smtp.kernel.org>
+Cc: robh@kernel.org, linux-perf-users@vger.kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20260608-counter_delegation-v6-8-285b72ed65a9@meta.com>
+ <20260609061405.1943F1F00893@smtp.kernel.org>
 Content-Language: en-US
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From: Atish Patra <atish.patra@linux.dev>
-In-Reply-To: <20260609060915.6C7461F00893@smtp.kernel.org>
+In-Reply-To: <20260609061405.1943F1F00893@smtp.kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-313970-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313969-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:robh@kernel.org,m:linux-perf-users@vger.kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[3];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:dkim,linux.dev:mid,linux.dev:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,rivosinc.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2C5686A80A9
+X-Rspamd-Queue-Id: 1A7296A80B9
 
 
-On 6/8/26 11:09 PM, sashiko-bot@kernel.org wrote:
+On 6/8/26 11:14 PM, sashiko-bot@kernel.org wrote:
 > Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
-> - [Low] The `smcntrpmf` extension is inserted in the wrong alphabetical order.
-> - [Low] The description incorrectly refers to `Smcntrpmf` as a 'supervisor-level' extension.
+> - [High] Supervisor extension Ssccfg incorrectly depends on Machine extension Smcdeleg, breaking virtualization.
+> - [Medium] The Smcdeleg extension validation incorrectly checks for the Supervisor-level CSR indirection extension (SSCSRIND) instead of the Machine-level one (SMCSRIND).
 > --
 >
-> commit 9fd028f70a33e1a78db2f635eed4200c33b6b90d
+> commit 53e139b078ec8b41f58b09bfd3d37e7132a15d45
 > Author: Atish Patra <atishp@rivosinc.com>
 >
-> dt-bindings: riscv: add Smcntrpmf ISA extension description
+>      RISC-V: Add Ssccfg/Smcdeleg ISA extension definition and parsing
 >
-> Add the description for the Smcntrpmf ISA extension.
->
->> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
->> index 4be557dc215de..ece3edccee42c 100644
->> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
->> @@ -189,6 +189,12 @@ properties:
->>               mechanism in M-mode as ratified in the 20240326 version of the
->>               privileged ISA specification.
+> This commit adds definitions and parsing logic for the RISC-V Ssccfg
+> and Smcdeleg ISA extensions. It introduces validation functions for
+> both extensions and adds them to the riscv_isa_ext array.
+
++linux-riscv
+
+Sashiko probably has a bug where it did not determine correctly which 
+mailing lists to cc and left linux-riscv.
+
+>> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+>> index 1452521d740a6..1fe647e035157 100644
+>> --- a/arch/riscv/kernel/cpufeature.c
+>> +++ b/arch/riscv/kernel/cpufeature.c
+>> @@ -330,6 +330,27 @@ static const unsigned int riscv_a_exts[] = {
+>>   	RISCV_ISA_EXT_ZKNE,	\
+>>   	RISCV_ISA_EXT_ZKNH
 >>   
->> +        - const: smcntrpmf
-> [Severity: Low]
-> Is this inserted in the correct alphabetical order?
->
-> The multi-letter extensions list in this file explicitly requires entries to be
-> sorted alphanumerically. Alphabetically, smcntrpmf ("c-n") should come before
-> the preceding extension (smcsrind, "c-s").
->
->> +          description: |
->> +            The standard Smcntrpmf supervisor-level extension for the machine mode
-> [Severity: Low]
-> Is "supervisor-level" accurate here?
->
-> In the RISC-V ISA naming convention, the "Sm" prefix denotes a standard
-> machine-level extension, while "Ss" denotes a supervisor-level extension.
->
-> Calling it a "supervisor-level extension for the machine mode" seems
-> contradictory. Could this be a copy-paste error?
->
->> +            to enable privilege mode filtering for cycle and instret counters as
->> +            ratified in the 20240326 version of the privileged ISA specification.
+>> +static int riscv_ext_smcdeleg_validate(const struct riscv_isa_ext_data *data,
+>> +				       const unsigned long *isa_bitmap)
+>> +{
+>> +	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_SSCSRIND) &&
+>                                                          ^^^^^^^^^^^^^^^^^^^^^^
+> [Severity: Medium]
+> Since Smcdeleg is a Machine-mode extension, shouldn't its validation depend on
+> the Machine-level CSR indirect access extension (SMCSRIND) rather than the
+> Supervisor-level extension (SSCSRIND)?
+
+The reason for this dependency is that both Smcdeleg and SSCSRIND are 
+required for using counter
+delegation usage in S-mode.
+
+
+> If the kernel runs in M-mode, or on hardware that implements SMCSRIND but not
+> SSCSRIND, this validation might incorrectly fail.
+Not a valid use.
+>> +	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZIHPM) &&
+>> +	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZICNTR))
+>> +		return 0;
 >> +
->>           - const: smmpm
->>             description: |
->>               The standard Smmpm extension for M-mode pointer masking as
+>> +	return -EPROBE_DEFER;
+>> +}
+>> +
+>> +static int riscv_ext_ssccfg_validate(const struct riscv_isa_ext_data *data,
+>> +				     const unsigned long *isa_bitmap)
+>> +{
+>> +	if (!riscv_ext_smcdeleg_validate(data, isa_bitmap) &&
+>> +	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_SMCDELEG))
+> [Severity: High]
+> Does this break supervisor counter delegation in virtualized environments?
+>
+> Smcdeleg is a Machine-mode extension, and hypervisors typically do not expose
+> M-mode extensions to guest VMs. A guest kernel running in VS-mode won't see
+> Smcdeleg in its ISA string, causing this validation to unconditionally fail
+> and return -EPROBE_DEFER.
+>
+> Should Ssccfg validation only depend on S-mode visible extensions?
 
+No. The spec is not designed that way. Counter delegation is not 
+available in VS-mode.
 
-Fixed in v7.
+Both comments are N/A
 
-
+>> +		return 0;
+>> +
+>> +	return -EPROBE_DEFER;
+>> +}
 
