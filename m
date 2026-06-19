@@ -1,179 +1,133 @@
-Return-Path: <devicetree+bounces-313964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313966-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8ea0NWW8NWo93wYAu9opvQ
-	(envelope-from <devicetree+bounces-313964-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 00:02:13 +0200
+	id sAkMB6fNNWqV4gYAu9opvQ
+	(envelope-from <devicetree+bounces-313966-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 01:15:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EE626A7DEA
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 00:02:13 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B27B6A7FDC
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 01:15:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ibm.com header.s=pp1 header.b=LCIXw9Pz;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313964-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313964-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=ibm.com;
+	dkim=pass header.d=samcday.com header.s=protonmail3 header.b=ayIqT8Ay;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313966-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313966-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E7CD23069C3B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 22:00:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 96B6D30470CC
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 23:15:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29473DE456;
-	Fri, 19 Jun 2026 22:00:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F15C135A387;
+	Fri, 19 Jun 2026 23:15:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from mail-4317.protonmail.ch (mail-4317.protonmail.ch [185.70.43.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76F7D331EB3;
-	Fri, 19 Jun 2026 22:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9360B34D3A9;
+	Fri, 19 Jun 2026 23:15:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781906415; cv=none; b=qDjECY6jGyRcCo1Q+wmRtgZhyTBivxVWe8vpXEaNf0X/EURC/iWF8slX96ZC1MofJA7uly2b4RHiQwLxFPy+KuWpg0ad5O9o1aGPbqXz/2dgG3AmQSQmfrVf09dUbiavNlGdOD3CxdUnDcMGqcgecj9w+yjmJkwhP2Mt/dsRCUA=
+	t=1781910946; cv=none; b=FwgEJysKNjiCgAp9tBj9LxriWAQbv9EWQOk41hNC8yrUlGDFeL8b8Utw2VdQL2CFFDIEqxieJ+T99Rxl1A6Cd0P8GtCTv2Jdu37t2QJ3FxvH/wgjTOzNF58RhqBA284mJYBfljrnHiUDXpn8UpEtGok4cUM7C+rpiQSU8HNwIZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781906415; c=relaxed/simple;
-	bh=nssLUTVnVO04MDF5pkbnkd8EvgLXqZJUat6g7/5Dr9o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LWXrUx357Wzn/wVAGb+IDJwURyXu31OxBOVX+ip3TKWhTIhGiW7/vMPULSPIBclGcDyQTuYKB4MQA9am6GwzZSD5Upr5a02+pnFTkq7wHWU4uadpSq0sYGd/6DZpgJ6v8hQ5C/GIY0TBY5U0NG8Mc/Q0gDBGnxVavgb1hlfFoxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=LCIXw9Pz; arc=none smtp.client-ip=148.163.158.5
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65JLmgph3358207;
-	Fri, 19 Jun 2026 21:59:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=1P6ALL
-	33Rdvx7OHFEo8qsaz3m4CsS4iDLaS8DwZULJg=; b=LCIXw9PzW/CeER7t/ldOnH
-	xVuG//UWP4HNpcwKGuL0qWGa3Th4f1D3Ljd97sAXSTTjv51FE+1KolWHy6DO5M/7
-	VK6lJMiiRrPBp1jSmh2AWKKYgPBa5AYrfas1Zk/NiQ6WG9n9j/BenKKmia1ZF29Q
-	mX+6eBrf0ZK34ctVopk90tiuJqTW3Xbj+VqSWAIc8Jz7D+ncFquag3Ep4pn1pr3P
-	YTl8LGwb+wkNV4Z5vRbTl0JrwkleHH0VI0tEsNLjrrw2EBSlQrN0/j2FVe13efil
-	RNWC0YD6ICT/QhdMqbhNbGrkZAlROPkdBI+pinNFeHp3KIjHhUsrcO2c7LLPqxdg
-	==
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4eueqxfg3j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Jun 2026 21:59:52 +0000 (GMT)
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.18.1.7/8.18.1.7) with ESMTP id 65JLnepn016860;
-	Fri, 19 Jun 2026 21:59:51 GMT
-Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4ev172jrxg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Jun 2026 21:59:51 +0000 (GMT)
-Received: from smtpav04.fra02v.mail.ibm.com (smtpav04.fra02v.mail.ibm.com [10.20.54.103])
-	by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 65JLxn0h57016764
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 19 Jun 2026 21:59:49 GMT
-Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 59D4B20043;
-	Fri, 19 Jun 2026 21:59:49 +0000 (GMT)
-Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id DDBB920040;
-	Fri, 19 Jun 2026 21:59:46 +0000 (GMT)
-Received: from Linuxdev (unknown [9.43.77.5])
-	by smtpav04.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 19 Jun 2026 21:59:46 +0000 (GMT)
-From: Madhavan Srinivasan <maddy@linux.ibm.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-        =?UTF-8?q?J=2E=20Neusch=C3=A4fer?= <j.ne@posteo.net>
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [PATCH v4] powerpc: dts: Build devicetrees of enabled platforms
-Date: Sat, 20 Jun 2026 03:29:28 +0530
-Message-ID: <178190618780.653308.14086216574686034625.b4-ty@linux.ibm.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260315-mpc83xx-dtb-v4-1-243849be4280@posteo.net>
-References: <20260315-mpc83xx-dtb-v4-1-243849be4280@posteo.net>
+	s=arc-20240116; t=1781910946; c=relaxed/simple;
+	bh=bqAw1h8hGh8hYM7UU4X4K+VxIqS9gQmTmc+aLMqi4Os=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NpucS1ehJlwcb/MqNeDm7E4auZUof2BCVPYGNJaMLbL1wOroGurDXDy7NXVdWZ088bEacjWr2DAYxXab50MeKgNhLCv74Uxzc2wLx28CZkFa4+5C9zxnLnAYQOk9/Cce1RmEMpfM/bNp9P3Is9urMEZOR1lj+eOYLlG7BNshdBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=samcday.com; spf=pass smtp.mailfrom=samcday.com; dkim=pass (2048-bit key) header.d=samcday.com header.i=@samcday.com header.b=ayIqT8Ay; arc=none smtp.client-ip=185.70.43.17
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samcday.com;
+	s=protonmail3; t=1781910942; x=1782170142;
+	bh=o5aEs35DeSAlC1MEWga2IiIiYLDF15o+JaC/AsoHC9k=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=ayIqT8Aym3SUpOuiU0XVTJCWDpttKoJ59wvkLVYSHXVrw9SqCr5xjVEYHCkfCV8LC
+	 e/T0CEbPKLcbS+NRG75R4Ize4vQGreSo9S9jtEyfcMpDSzgsrUrZ8kiTNwyFVix4vo
+	 kglyzdKRsvtrAKIPX3+8tHaSntnXh1NWYbaw4BG6gEsSCqIYEcwwCtYsoMVkbB41xb
+	 T5CrZFczDmPvQxoWL6KYSvo2DuAJX5kFRAG+7EINLdDligM4dtJtxS2zMFIFUT9kkn
+	 cj9rKQp4EM/RM9w729gkKleq3Tm+KxeOCZP0LM7h8th71wgwozObc09PGaZWaVGO3X
+	 OBOSVBC4ESkEA==
+Date: Fri, 19 Jun 2026 23:15:36 +0000
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+From: Sam Day <me@samcday.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-oneplus: add panel rails to simplefb
+Message-ID: <pYvHBJyxrxgzDI2_h79hEn-wmgJbJpQ4z6Gy1doFhulVhtsOLeOyn5C-ZtxpPjNyv68za3FmQyxVF1KK7wRPF5SLGRK6gZC9s2QK8jgXhHQ=@samcday.com>
+In-Reply-To: <c4a70b1e-ea48-49d2-afa6-639b73983729@oss.qualcomm.com>
+References: <20260616-sdm845-oneplus-simplefb-regulators-v1-1-1db1804acef6@samcday.com> <c4a70b1e-ea48-49d2-afa6-639b73983729@oss.qualcomm.com>
+Feedback-ID: 25366008:user:proton
+X-Pm-Message-ID: 5db3d3f2e8d6dc1639bb82f41ed40bcd9a7edd8c
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-GUID: YED3CuEAm-Iwmx3_kVZNhhUJMVoIvU8r
-X-Authority-Analysis: v=2.4 cv=Le0MLDfi c=1 sm=1 tr=0 ts=6a35bbd8 cx=c_pps
- a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=RzCfie-kr_QcCd8fBx8p:22 a=VwQbUJbxAAAA:8
- a=N9c1d4F_mCcFyk3_0iEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE5MDIxMCBTYWx0ZWRfXwvvZa1+hNZzo
- Eoo9UwEZWJ7W1HT/ezuRWnoL1H2YJbtwcwo+5o877LeS+/waS0zDXgeageku4ZeokHtwRC+cIP2
- U79ocY4qP/j/AP2/7LZHZgx9FGCMblI=
-X-Proofpoint-ORIG-GUID: T4i0-4syPXiQV7MOYC63z3Ig47lXUosu
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE5MDIxMCBTYWx0ZWRfX4ggJ5TCBzX3L
- iM+fARe44PuhUrVIyvFs42eB/P7TJxlNB/sIeZBSj7Vzzu+z4/dEX7Vuz74UnBBWg1lQStc1eOn
- yhn9MdPlsT2LMj5b/O0Yl72uKiDBSnc/AztQ6hN6IF0UwMtvHUxYUsMAL5Zua6XzhlIuP0TrI9K
- rJ9lGBznD1DRVIiVOiz3D6Rcx2JxdGlt147XbwZdZ7ncr9OVu4oFAuSh/DxS49D9fQPPtCTTRlN
- 6k+a71AH8jAw0ChrpGASNxfIelS0XwUmgJ5KBqhXBtLJ5LUkWUQtymAbF4ANf8xqssBMjB+x9Zi
- +6kQDy51YUA2jPy7bODTNewez2LnOa4O48MpBv3JC2LP9Pg82+lew9JNqa4FLSFrV+gzUzqMGPi
- 1lgKfLvg51SrqqqqTWWC39FChZJJPKglmlksl7eblgOfjO9ejl4aqVZT7KdEdy+xn6SimotRVd0
- ULEmbjZlcsQmPmo+FeA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-19_05,2026-06-18_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 priorityscore=1501 malwarescore=0 spamscore=0 suspectscore=0
- impostorscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606190210
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
+	R_DKIM_ALLOW(-0.20)[samcday.com:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-313964-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,ellerman.id.au,gmail.com,posteo.net];
-	FORGED_SENDER(0.00)[maddy@linux.ibm.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:chleroy@kernel.org,m:j.ne@posteo.net,m:devicetree@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:linux-kernel@vger.kernel.org,m:geert@linux-m68k.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_FROM(0.00)[bounces-313966-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[samcday.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[samcday.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[me@samcday.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maddy@linux.ibm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ibm.com:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[me@samcday.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[11]
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2EE626A7DEA
+X-Rspamd-Queue-Id: 8B27B6A7FDC
 
-On Sun, 15 Mar 2026 22:45:13 +0100, J. Neuschäfer wrote:
-> Follow the same approach as other architectures such as Arm or RISC-V,
-> and build devicetrees based on platforms selected in Kconfig. This makes
-> it unnecessary to use CONFIG_OF_ALL_DTBS on PowerPC in order to build
-> DTB files.
+Hello Konrad,
+
+On Saturday, 20 June 2026 at 1:11 AM, Konrad Dybcio <konrad.dybcio@oss.qual=
+comm.com> wrote:
+
+> On 6/16/26 7:27 AM, Sam Day via B4 Relay wrote:
+> > From: Sam Day <me@samcday.com>
+> >
+> > These regulators are marked regulator-boot-on, but that doesn't
+> > guarantee they'll stay alive as long as the simplefb does. Adding the
+> > explicit supplies ensures that booting with MDSS disabled doesn't
+> > switch the panel off 30 seconds after boot.
+>=20
+> Why would you boot without MDSS if you want the panel to function?
+
+For my particular use-case [1] I'm trying to avoid taking over the display
+hardware entirely, and use simplefb until kexecing into the real kernel. In
+this case the user might halt in a pre-boot menu UI for a while.
+
+I can also imagine this being similarly useful for "recovery kernel" use-ca=
+ses
+where again, it may not be desirable to assume control of MDSS/MDP/DSI bloc=
+ks.
+
+[1]: https://github.com/samcday/pocketboot
+
+Regards,
+-Sam
+
+>=20
+> Konrad
 > 
-> This makes it easier to use other build and test infrastructure such as
-> `make dtbs_check`, and is a first step towards generating FIT images
-> that include all the relevant DTBs with `make image.fit`.
-> 
-> [...]
-
-Applied to powerpc/next.
-
-[1/1] powerpc: dts: Build devicetrees of enabled platforms
-      https://git.kernel.org/powerpc/c/2442f10c6eae63392452ab84a813dbc1f87c724d
-
-cheers
 
