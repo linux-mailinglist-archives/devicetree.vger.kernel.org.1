@@ -1,360 +1,224 @@
-Return-Path: <devicetree+bounces-313722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313724-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1bx4NfcTNWrZmgYAu9opvQ
-	(envelope-from <devicetree+bounces-313722-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:03:35 +0200
+	id i0v0G7AVNWozmwYAu9opvQ
+	(envelope-from <devicetree+bounces-313724-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:10:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BE6C6A51AA
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:03:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF31E6A5225
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:10:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=ZSuff5gI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313722-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313722-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=NObtACIC;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313724-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313724-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E7C793006123
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 10:03:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4EA3301E231
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 10:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600AB36921E;
-	Fri, 19 Jun 2026 10:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45D72370AE5;
+	Fri, 19 Jun 2026 10:10:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013042.outbound.protection.outlook.com [52.101.83.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD51369D4B;
-	Fri, 19 Jun 2026 10:03:24 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781863408; cv=fail; b=RnAqbkB55kXJJWAtT13sj4hKUJW/CSWMY2UnDn8Dj9CgoUhHpcWHL2bPSwQRocGJRMl66hN7k9tLzjYAgzSowXUbD6ZT8jXQp+nC1Fs0a4VqrxoP7B0W9b+FUZSWsM3bQ5KvjINTRgrnKfFgqfCgU47Eflb4qs4kPb/UkjA8lBs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781863408; c=relaxed/simple;
-	bh=5NshE+sfAvoIPXs4kyEmgMjsvyiRBqrgCLP6Nz4CF3o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=EfMPrvm9cChUQo9TVhGf59FF5Bcc5j7F2xoo/wimkSLuuDMnKwW4MAm3Ag6VnuVLNfm1hYrKfzMmzu8BCIyvLXxtoq0JUuGAYZc2TfX5D0BVNtZ9Ch1g4pzaFv6EaMI7xCjmugo3114cnBrYPzfTR0Ff1aiafhfnkvIlFjuGO5c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=ZSuff5gI; arc=fail smtp.client-ip=52.101.83.42
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nBPSEoDNlEbZHaZIL56hS19Z7ZlPCXxBG5pgM18csKms3uK7LMC7KMDp9ljZGo3ra+7TNXo2k/rX183pJPWJhavnX7c/k1efuPDSSYge4iEyRXOZFYFCQ+8HevgGgWP+4xLtoOHeO2PnYrrFj0qMUCpn5Il6mbnRejqEFqqagaFtp+/mNrRRbyru89JIIdlXnfnPU/idKRQOdAOkYtqwyhIE23cTenDTblshi7owdSKY0cm6s/9nhOAjozZPBfb2qBzg8xKVoCMFdwazRQUZUXN7E84EhNDRTpgj1jGcPZUtImLpKg+lyNJMuCsZcoefpztXTg19YGjbBoOtnQaL9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gg/HF0kDsh0FDwMC3ZMXewITu6TpSB9evhKrGvquT7U=;
- b=fceyRS+3LQsGgy13YaSzpQil3luKbfzYtgzON0kRPhMQbhlB0Mm3decKu4BXCAdqf2+olG5Gn0ZdA/5cXcD9+rWl+6ub85D0w8ISh7R9g/17r+frgDepyw+kR/SCIvqfy3OosSiEo6EErvfkOWb/Xsdo06lVBdfTxTM26JWSc46LtLXWg/icLznLXz6PcggOB22Q23Sh2QJqdQVSo7xJ1L4vjR1fZd5XT8tftaBAwhrOgvAAlyrXTxmj03igl8Jhlu5tjuNSyIvb15noY4TNSbwadjfecr0ZUzPs54Yz9U/qlDBeqP2U3T3znVI/XhrUFi6edSyOlp0GM5+VwTSXsg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gg/HF0kDsh0FDwMC3ZMXewITu6TpSB9evhKrGvquT7U=;
- b=ZSuff5gI19wJlzgkeB1R5K9z9AdEWmg0iyW1wPWxYxfrp7FIMT8fAGmw5x9lPoXEKsFlDMk4rhAHnIsvMrSfOqO0LOxMPxWTBgbwkM1Eee/msiArL33U4Qn6g84KIPoay/GkoaTi7aO/1vXI4GyetIjzql8RMEzKFD38szuaEeUVdF3lx6y5SDOlvfdULJp/JAKlLgCSwwjmLZjfTie1D1YgPLhnd0PISH0zOI8DT3CRmKuG4MFl7XpPhcbIzRaF36SNjIkP5pMhrridWSuKIbb5SSPRe1AKIL2FR9fnRBi3KmWyTyVK4TKzJ/eF39uo+dkg02Kz62f4u0w57sAYMw==
-Received: from VI1PR04MB9738.eurprd04.prod.outlook.com (2603:10a6:800:1dc::10)
- by GV4PR04MB11425.eurprd04.prod.outlook.com (2603:10a6:150:299::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Fri, 19 Jun
- 2026 10:03:17 +0000
-Received: from VI1PR04MB9738.eurprd04.prod.outlook.com
- ([fe80::33e2:39d5:e3f4:580c]) by VI1PR04MB9738.eurprd04.prod.outlook.com
- ([fe80::33e2:39d5:e3f4:580c%6]) with mapi id 15.21.0139.011; Fri, 19 Jun 2026
- 10:03:17 +0000
-From: robby.cai@oss.nxp.com
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Frank.Li@nxp.com,
-	s.hauer@pengutronix.de,
-	festevam@gmail.com,
-	sebastian.krzyszkowiak@puri.sm,
-	slongerbeam@gmail.com,
-	sakari.ailus@linux.intel.com,
-	mchehab@kernel.org,
-	p.zabel@pengutronix.de,
-	kieran.bingham@ideasonboard.com
-Cc: kernel@pengutronix.de,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E0B367B72
+	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 10:10:30 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781863837; cv=none; b=b7IZiPGVEL2rmLFpx0naVxvmIzbn8j8qIl4yGwtxdfh/xEeCcVMwzq0A3p3+5VN14JLRpNPM8fSeFHbMvCpmdwX59g1vRykypA7ft43uBpGDKv4ABYAMXEgVTC03TAHF8C9bNc1lzuPHuZ1hlvOPM3K3PDZ/UBgfeZL1lNiIW2A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781863837; c=relaxed/simple;
+	bh=XEj7Qd+j2mrxj3zwZ3sDbNuqdCspD8yz8XPgs8fPcdM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=X/XN+vpZ+ly6x6kED7gV/ipt3kHje2/2HbEsWqh1H45xoPdnYmGf+ImJJk6D6ZOf36lDneCIaK2T62EhfZpcZduU/mVfFCcUw5Rxm665qNa4fY6gawiwEUlwsRE7+mzG+G2OCrs+iwdPSvque3WPbye5cNCuAb66wfnO+hw7MLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NObtACIC; arc=none smtp.client-ip=209.85.128.47
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-490b64c8311so17900665e9.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 03:10:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781863829; x=1782468629; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C7PzdOlm6ppimpgT1Ue/GK7k7tsgiFLY2bjtHZ0QZ2U=;
+        b=NObtACICqd+vkEo990A1QRbAlXwXgWqYRAymU/yULZQ01iULN6pLtYoQU2NWUkpRBS
+         hXmpVw1CbP4SswSphg0rB3UKMPg1l/CZQ+jkqlCofKIdBm5UAuHKdyKfSgZLeBtqZMVo
+         d1vav1fCMOfegguMF5HBZf2heoKp0q4RLagC0K2mbUYuS4inEMWqQ/Q9IET/q1ctzvSJ
+         BNbn29h2DO3p6+EHwh1jALGVqOi1qfIsj0AFL+QjwEMumXCHKLN652z0I6v2vcmgL5JX
+         e6MzJrc33lklFGPy0s+1KNkS+wCsLuhhuaWg1VaB4z8amRyZhpQpirbs8orLHEu7rY0j
+         M/9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781863829; x=1782468629;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C7PzdOlm6ppimpgT1Ue/GK7k7tsgiFLY2bjtHZ0QZ2U=;
+        b=b+YWj1DevUOYPYBiATgIXNVIwbYWNb/ss0P5j0fGB/I03XV+GfMBCu5Oykl5w+eXNA
+         FWMx2i41ivFHEgcDBEgpjiALrXOQYQMtoHjgMvuFoxqGSujKLG0wC+jOvWq+jSj75Iv+
+         4MxnceYPHmq/tR2dAFcpP+B/2ue7bTYMWLziiycszQB5yD3XLHeatXD4hQqL8zwvl7Js
+         5kH3oSFmdxzKdvseyCOz/Spj+gVs+iwhpxv57BqwEtRDP2ADm9uwRymZhwRoDlbGhMDj
+         bqSh+RUhCq7Z87c4NWsF5OQ0Uiu6Y7T09AHrb7kLte/KLZlZo5mzb4dLJNyDJoYmwYkN
+         j7zw==
+X-Forwarded-Encrypted: i=1; AFNElJ/9J9kBPtDOY1aAooXWfBX9h38ZpmJImHXHggSANlkay3RU2KWGDGAyHrSDLLTllaFh0fhMUYZoadJo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0usii9+kVT3eqrsmnB6/omP0Dxqw2hpbrPfDntK/qC5yKCecL
+	kXRTsuCdeFt1ZU+RpkQ7WDlz53pB2x/vv9UgS2F5m+Kc83/FoES/7ke9
+X-Gm-Gg: AfdE7cmeXuhXYqjq1IV85UXvXvGh2fCtZVvYI8vRTSpE3OAkqrqRb/SKJVv8KeyzOlt
+	5kAkFoIelgf+wRo5U6+KHxqvisXz4wFYfqKMG8NUEOKfC8XTSTZ4pqCLYwPIrU5e3wEHWzkSj4u
+	4o6J8HfZnMBykFPA405APxtzbVnbkI1H6zb/o7hVADn1+ofSnGmtbDs6knU3dieWWiIYgQ7HEsi
+	YDJ9fdzHx5YUFn+kvES/gxiJ9pH07kC1obDgpIjFjPdVkFY2bw/8cur6WgmUH7Zoei2gHkyhwD8
+	B4EdaR6B9XaWyEI0OIRTgRI5PsHQlj/teYZFyj+u2ku1vERMoRSDI/PVY/0DUfmhZO7AKBCoP3c
+	nc7Sd2rNnFhb6sH6hdfrsjWKg93JHgO1lKAfaGMrERPu+1D6FoaEP1diUFDKSEpqp2UOOSY2l+n
+	C8zhqsRb4Z4dqHQMC+Vg==
+X-Received: by 2002:a05:600d:6451:20b0:490:a646:9d77 with SMTP id 5b1f17b1804b1-49240dfe0a5mr34801065e9.6.1781863828461;
+        Fri, 19 Jun 2026 03:10:28 -0700 (PDT)
+Received: from biju.lan ([2a00:23c4:a702:d301:435:f63f:6fb:bfa4])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4923fcdd08esm34577555e9.0.2026.06.19.03.10.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jun 2026 03:10:28 -0700 (PDT)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] media: i2c: ov5640: Add reset controller support with GPIO fallback
-Date: Fri, 19 Jun 2026 18:05:32 +0800
-Message-Id: <20260619100532.3779934-3-robby.cai@oss.nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260619100532.3779934-1-robby.cai@oss.nxp.com>
-References: <20260619100532.3779934-1-robby.cai@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MA5PR01CA0205.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b0::14) To VI1PR04MB9738.eurprd04.prod.outlook.com
- (2603:10a6:800:1dc::10)
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v4 0/2] Add support for Renesas RZ/G3L LVDS encoder
+Date: Fri, 19 Jun 2026 11:10:15 +0100
+Message-ID: <20260619101026.323633-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR04MB9738:EE_|GV4PR04MB11425:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40466bda-c988-4aef-1301-08decde9fbe1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|7416014|376014|366016|23010399003|1800799024|921020|6133799003|22082099003|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info:
-	Kpk0jmVfihfSPM1UTu/R5Z5qbvSsZxy99uatt9kIRcBLZwIFhFwbJEBXrk2vjk4BP/dX+BTeX2LORwhBBgvrHL6zi9eIx9mvwiXxt8qPkSSQpbYQRrtsIHLZg8CNkHR5fkg1M3mW7T9qfeRyq8m2duyJ/WnuniNtqSO+ImTy9R9vi8ESlfOQf+v+75mrY+AMtgbOU99+E5lEl14LcFyMDk6tuL/AelBGWMzpyPr5Uc+S0a1Oxg5XBD0aPtGfxBi6AL3IjZuNOhk/MkJAT4Rn5BXJsRE2FJyySSrKIBwo9Qd7S6J9FPROwJ6RMr8u3Zuqk7LiqRpAhXsX1G6pz+gGVwlnoSpgLbPow72RtKOXeocVVeMfp4F5scWa8ktYMmDhGc+1/Rf9UMS9BV7NQtcN6RDdukbVeHtcr+Ib64WqXCSBmEZ2xHXNzzKZDE8XGPtV8ZI/F+JWM0vpYxbnYhMdGc5OJMPU6deM/6BB4pLeW6NZ9sOaFMQqGyVETxaXLmN1Z7xq9Ai7vLspVbGC65cG5MG638w7pGMDMc/8S1bW8BdOJceFrPgYXg6TwfLJnkYKMJyJkEgHXRx53E6qLkrGnR5WkkraPT1MpOZuBS8I7x+ngv/ZoOmZ8lIN/RLhJIRpYf0EPu4C/rLo6+e4ICK5tN9Hwovsm+ntXDoS32efxLn+fjrPTjd1sWEgKAwyRIc7rmOE4vIyg+QgSkuINjuXyw==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB9738.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(376014)(366016)(23010399003)(1800799024)(921020)(6133799003)(22082099003)(18002099003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?L6guaUhKrphig+CfHerD4N+IsK5+2WRMDUZK0HBd5OmbdRQx60ZDxGPOG2WY?=
- =?us-ascii?Q?JglU9cl/hfzKa0fA0HCVv12UYgAWZeDktc2bw5IJt1CScYBF2altx/Ur2/TE?=
- =?us-ascii?Q?9/swAk9cEEtSKLjLgkhlZpM999KHH7i0jTO8VdEIt984KjvcRJmK+BsDkrqe?=
- =?us-ascii?Q?8A8nms3L8jR7cV3EGuWRpy81EQG3QKG+uvQztx2G2rrcQLf3/eF5QtRsi5YN?=
- =?us-ascii?Q?WSWySyN5TVwUfTo/JKaXgpHn6nXbWWcTrqRk+i18y5pr4NVU7n6sXhXjLAnm?=
- =?us-ascii?Q?djUp7eD9CYZUiSytruYkGx1Ts5k68DuwpFZhzhZ0wq9XiSnz5/1TsDV0pZZy?=
- =?us-ascii?Q?3r259GP6FgZhrgEqHsuyDRg9rZ6FsHyasC/aQPQDX35DBQocdsl6dhwLHuqN?=
- =?us-ascii?Q?4Nr23vdCg61VEeyNZYci55PEjxFbp7TuviRtmD++x68miJT8iWl+KcGeF70P?=
- =?us-ascii?Q?7qWNrPh2k7P7UAVbJlw7jN21U1s5o7+9HMjGUyqnKdazkOfVek/XO/5raQ8I?=
- =?us-ascii?Q?mEM/XshFyk0NlFIJ/iqJPyJorrsXqAuIOzHY6JqcOIUezyf323RkVO7EowqG?=
- =?us-ascii?Q?INXX1/WRRyCWet5PovctfIvgnVQurGfxSPzkoXc2KixVAUsSFpiOAEyioWfL?=
- =?us-ascii?Q?CnXF2WPDGvBX0S70UxSLkwi6+bs23pKlspPHPh1GDJa020Q62uHryVUMCq7K?=
- =?us-ascii?Q?3uFgL2o5TYFPiOaeOYfSsb30Jqe6Rrp5fv8JMpV1BBOnGifzywVto+g5s9LQ?=
- =?us-ascii?Q?rIbW1eHJySbqMBlaHevwYI95BGXI+yQKI3mqLC65YJLWRAm2Ms1yZ+Z3+ANx?=
- =?us-ascii?Q?TgNzR+AnYOcm58kn/XbVPNlExBdVxIPG8BST15+ogvqRdMDwFWBWuU2iVp6g?=
- =?us-ascii?Q?GjImSCyUYbbZEJmAPSmuIN9l9PlNb/ZBzcF9nE6X0pWB7uzYBlLOgISQnk+8?=
- =?us-ascii?Q?YC7WrUzGTIK2mTyuAbdW1g6h3JaeIjTvW69zbv+9Nkygy6o3mLaNb2qu8D3d?=
- =?us-ascii?Q?FznjrJZE3JFvpa2i84/W/ajQ91VGZsrWGQei4e9hOP6euNTiwAod4vHZ7Xv2?=
- =?us-ascii?Q?16hM9+Ca8GGXJJcoM/+MXMGEdALJXz4cv6JMAk+KpFslH4limoxMhbBF7CeB?=
- =?us-ascii?Q?a0Iq6DFfcDcx0D9KtYvAzG0j2N5lgn0ECTmEUdzseNVBLRPze/PRi6Ev5oJ1?=
- =?us-ascii?Q?32A07ba2fSBHj6yd3neophP7JtdM9WvWSGaCESbEBhgEg+m17NalrXhPsiQB?=
- =?us-ascii?Q?mlvQyq4m4CwesB0jVgCBvmo06vEU3S+EvbSTt17Z9q/8g6DvwAD49Y8n+AZt?=
- =?us-ascii?Q?HtlWC/VaCnSldw6nmgipyDDF7Z2CeNjNEXItdvmzhhsEWxIs1N1QPfVsv6CM?=
- =?us-ascii?Q?aqXziV95331g4m+Od7CL0exG2lfIJ9t8HSyO4LvcDh79hfItG6vBmhnuS696?=
- =?us-ascii?Q?W8qTkuTnTvWxcCzr9LSrKkwyFIxv4Y6bjztrlByuQnOfWqu/WSk3LC91oesz?=
- =?us-ascii?Q?Cb/UwHqIuZHdM83rQ80/gN2fkudevgroAMPoIfpqmI8SBq2XGU7LkCJCUziH?=
- =?us-ascii?Q?Bkk+Ed7npIkVgMLUj6m8eSzD4lcvA3oxrVq3CNOUhmVRhxNL/f3ljJ3RUkT8?=
- =?us-ascii?Q?mehyDXttPi7wUa9huviZt1+b0b+V8UASyVw59EMy5fd66BkE5pTEpXfTXrLG?=
- =?us-ascii?Q?uL+bmB87FkNG5L+wOCZfIF5yNxEAHdTsGb2jai8A8me/opWPL/GDz5sfOpSE?=
- =?us-ascii?Q?3hSEEzK4ePSxjQJBrAIv0em/ysZdQBDt4XPlqKFrkCcVji2/PedU?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40466bda-c988-4aef-1301-08decde9fbe1
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB9738.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 10:03:17.2483
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pJyh8YGaZn+CVdn6m8g+t2ajI0uBabx2YAqEXlajJoArozRhCqrYzSVF3ZBIs9nMg0uSR/reofMY8Dw678a0KA5ayNsty5juliHIl1JyzEP3jggfLZPGvSg9RICds9UA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV4PR04MB11425
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.44 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313722-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:festevam@gmail.com,m:sebastian.krzyszkowiak@puri.sm,m:slongerbeam@gmail.com,m:sakari.ailus@linux.intel.com,m:mchehab@kernel.org,m:p.zabel@pengutronix.de,m:kieran.bingham@ideasonboard.com,m:kernel@pengutronix.de,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313724-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:p.zabel@pengutronix.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:biju.das.jz@bp.renesas.com,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:tommaso.merciai.xr@bp.renesas.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:biju.das.au@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:jernejskrabec@gmail.com,m:bijudasau@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,puri.sm,linux.intel.com,ideasonboard.com];
-	FORGED_SENDER(0.00)[robby.cai@oss.nxp.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,gmail.com,ffwll.ch,pengutronix.de,linux.intel.com,suse.de,glider.be];
+	FREEMAIL_CC(0.00)[bp.renesas.com,ideasonboard.com,kwiboo.se,gmail.com,bootlin.com,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robby.cai@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	TO_DN_NONE(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,nxp.com:email,vger.kernel.org:from_smtp]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7BE6C6A51AA
+X-Rspamd-Queue-Id: BF31E6A5225
 
-From: Robby Cai <robby.cai@nxp.com>
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Add support for the reset controller framework by acquiring the reset
-line using devm_reset_control_get_optional_shared_deasserted(). This
-allows the driver to handle reset lines provided by a reset controller,
-including shared ones, while avoiding unbalanced deassert counts.
+Add support for the RZ/G3L LVDS encoder driver. It operates in single-link
+mode with 4 lanes (Data) + 1 lane (Clock) and supports pixel clock rates
+from 25 to 87 MHz. The LVDS module cannot be used at the same time as
+MIPI-DSI. However, LVDS and the DSI interface share a peripheral clock and
+the MIPI_DSI_PRESET_N reset signal. Also, the MIPI_DSI_CMN_RSTB and
+MIPI_DSI_ARESET_N reset signals must be asserted before using the LVDS
+module.
 
-Retain support for legacy reset-gpios as a fallback when no reset
-controller is defined. In that case, request the GPIO and keep it in the
-deasserted state as the initial configuration.
+This patch series depend upon [1]
 
-This enables the driver to support both reset-controller-backed reset
-lines and older GPIO-based descriptions while preserving the existing
-power-up sequencing behavior.
+[1]
+ https://lore.kernel.org/all/20260608-drm-no-more-bridge-reset-v2-0-0a91018bf886@kernel.org/
 
-Signed-off-by: Robby Cai <robby.cai@nxp.com>
----
- drivers/media/i2c/ov5640.c | 80 +++++++++++++++++++++++++++++++++-----
- 1 file changed, 70 insertions(+), 10 deletions(-)
+v3->v4:
+ * Reworked bindings, dropping parent node containing simple-mfd and
+   syson.
+ * Dropped the tags
+ * Dropped the header files clk.h and syscon.h
+ * Dropped next_bridge check in attach().
+ * Dropped syscon for getting regmap.
+ * Replaced the below macros to match the hardware manual:
+	LVDS_0_CTL_FMT_SEL_MSK->LVDS_0_CTL_FMT_SEL0_MSK
+	LVDS_0_PHY_CH_IO_EN_MSK->LVDS_0_PHY_CH_IO_EN0_MSK
+	Replaced LVDS_0_PHY_CH_IO_EN->LVDS_0_PHY_CH_IO_EN0
+ * Replaced atomic_reset()->atomic_create_state().
+v2->v3:
+ * Collected tags.
+v2->v2[1]:
+ * Dropped patch#1 as it is accepted.
+ * Replace drm_atomic_state with drm_atomic_commit in
+   rzg3l_lvds_atomic_{en,dis}able().
+ * Drop local variable ret and dev_err() messages in
+   rzg3l_lvds_atomic_enable(); use WARN_ON() instead to
+   capture unexpected failures since atomic_enable should not fail.
+ * Drop local variable next_bridge from rzg3l_lvds_probe().
+[1] https://lore.kernel.org/all/20260524194457.479681-1-biju.das.jz@bp.renesas.com/
+v1->v2:
+ * Collected the tags for binding patches.
+ * Dropped unused function rzg3l_lvds_is_connected() and removed the 
+   corresponding header file rzg3l_lvds.h
+ * Dropped next_bridge from struct rzg3l_lvds instead using bridge's
+   next_bridge.
+ * Replaced pm_runtime_resume_and_get()->pm_runtime_get_sync() as
+   atomic_enable doesn't fail and for each enable there always will be an
+   atomic_disable() call.
+ * Started using DEFINE_RUNTIME_DEV_PM_OPS for PM callback.
+ * Replaced rzg3l_lvds_parse_dt() with devm_drm_of_get_bridge() in probe()
+ * Started using reset_control_bulk_*() in rzg3l_lvds_pm_runtime_{suspend,
+   resume}().
 
-diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
-index 85ecc23b3587..5e6db8aacb11 100644
---- a/drivers/media/i2c/ov5640.c
-+++ b/drivers/media/i2c/ov5640.c
-@@ -17,6 +17,7 @@
- #include <linux/module.h>
- #include <linux/pm_runtime.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/reset.h>
- #include <linux/slab.h>
- #include <linux/types.h>
- #include <media/v4l2-async.h>
-@@ -442,6 +443,7 @@ struct ov5640_dev {
- 	u32 xclk_freq;
- 
- 	struct regulator_bulk_data supplies[OV5640_NUM_SUPPLIES];
-+	struct reset_control *reset;
- 	struct gpio_desc *reset_gpio;
- 	struct gpio_desc *pwdn_gpio;
- 	bool   upside_down;
-@@ -2431,6 +2433,48 @@ static int ov5640_restore_mode(struct ov5640_dev *sensor)
- 	return ov5640_set_framefmt(sensor, &sensor->fmt);
- }
- 
-+static int ov5640_get_reset(struct device *dev, struct ov5640_dev *sensor)
-+{
-+	/* use deasserted version to avoid unbalanced deassert counts */
-+	sensor->reset =
-+	    devm_reset_control_get_optional_shared_deasserted(dev, NULL);
-+	if (IS_ERR(sensor->reset))
-+		return dev_err_probe(dev, PTR_ERR(sensor->reset),
-+				     "Failed to get reset\n");
-+	else if (sensor->reset)
-+		return 0;
-+
-+	/*
-+	 * fallback to legacy reset-gpios
-+	 * GPIOD_OUT_HIGH ensures deasserted state for ACTIVE_LOW reset
-+	 */
-+	sensor->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-+						     GPIOD_OUT_HIGH);
-+	if (IS_ERR(sensor->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(sensor->reset_gpio),
-+				     "Failed to get reset gpio");
-+
-+	return 0;
-+}
-+
-+static int ov5640_reset_assert(struct ov5640_dev *sensor)
-+{
-+	if (sensor->reset)
-+		return reset_control_assert(sensor->reset);
-+
-+	gpiod_set_value_cansleep(sensor->reset_gpio, 1);
-+	return 0;
-+}
-+
-+static int ov5640_reset_deassert(struct ov5640_dev *sensor)
-+{
-+	if (sensor->reset)
-+		return reset_control_deassert(sensor->reset);
-+
-+	gpiod_set_value_cansleep(sensor->reset_gpio, 0);
-+	return 0;
-+}
-+
- static void ov5640_power(struct ov5640_dev *sensor, bool enable)
- {
- 	gpiod_set_value_cansleep(sensor->pwdn_gpio, enable ? 0 : 1);
-@@ -2448,12 +2492,19 @@ static void ov5640_power(struct ov5640_dev *sensor, bool enable)
-  *
-  * In such cases, this gpio should be mapped to pwdn_gpio in the driver, and we
-  * should still toggle the pwdn_gpio below with the appropriate delays, while
-- * the calls to reset_gpio will be ignored.
-+ * reset handling (via reset controller or GPIO) will be ignored.
-  */
--static void ov5640_powerup_sequence(struct ov5640_dev *sensor)
-+static int ov5640_powerup_sequence(struct ov5640_dev *sensor)
- {
-+	int ret;
-+
- 	if (sensor->pwdn_gpio) {
--		gpiod_set_value_cansleep(sensor->reset_gpio, 1);
-+		ret = ov5640_reset_assert(sensor);
-+		if (ret) {
-+			dev_err(&sensor->i2c_client->dev,
-+				"Failed to assert reset: %d\n", ret);
-+			return ret;
-+		}
- 
- 		/* camera power cycle */
- 		ov5640_power(sensor, false);
-@@ -2461,7 +2512,13 @@ static void ov5640_powerup_sequence(struct ov5640_dev *sensor)
- 		ov5640_power(sensor, true);
- 		usleep_range(1000, 2000);	/* t3 */
- 
--		gpiod_set_value_cansleep(sensor->reset_gpio, 0);
-+		ret = ov5640_reset_deassert(sensor);
-+		if (ret) {
-+			dev_err(&sensor->i2c_client->dev,
-+				"Failed to deassert reset: %d\n", ret);
-+			ov5640_power(sensor, false);
-+			return ret;
-+		}
- 	} else {
- 		/* software reset */
- 		ov5640_write_reg(sensor, OV5640_REG_SYS_CTRL0,
-@@ -2475,6 +2532,8 @@ static void ov5640_powerup_sequence(struct ov5640_dev *sensor)
- 	 */
- 	ov5640_write_reg(sensor, OV5640_REG_SYS_CTRL0,
- 			 OV5640_REG_SYS_CTRL0_SW_PWDN);
-+
-+	return 0;
- }
- 
- static int ov5640_set_power_on(struct ov5640_dev *sensor)
-@@ -2497,7 +2556,9 @@ static int ov5640_set_power_on(struct ov5640_dev *sensor)
- 		goto xclk_off;
- 	}
- 
--	ov5640_powerup_sequence(sensor);
-+	ret = ov5640_powerup_sequence(sensor);
-+	if (ret)
-+		goto regulator_off;
- 
- 	ret = ov5640_init_slave_id(sensor);
- 	if (ret)
-@@ -2507,6 +2568,7 @@ static int ov5640_set_power_on(struct ov5640_dev *sensor)
- 
- power_off:
- 	ov5640_power(sensor, false);
-+regulator_off:
- 	regulator_bulk_disable(OV5640_NUM_SUPPLIES, sensor->supplies);
- xclk_off:
- 	clk_disable_unprepare(sensor->xclk);
-@@ -3914,11 +3976,9 @@ static int ov5640_probe(struct i2c_client *client)
- 	if (IS_ERR(sensor->pwdn_gpio))
- 		return PTR_ERR(sensor->pwdn_gpio);
- 
--	/* request optional reset pin */
--	sensor->reset_gpio = devm_gpiod_get_optional(dev, "reset",
--						     GPIOD_OUT_HIGH);
--	if (IS_ERR(sensor->reset_gpio))
--		return PTR_ERR(sensor->reset_gpio);
-+	ret = ov5640_get_reset(dev, sensor);
-+	if (ret)
-+		return ret;
- 
- 	v4l2_i2c_subdev_init(&sensor->sd, client, &ov5640_subdev_ops);
- 	sensor->sd.internal_ops = &ov5640_internal_ops;
+Biju Das (2):
+  dt-bindings: display: bridge: Document Renesas RZ/G3L LVDS encoder
+  drm: renesas: rz-du: Add support for RZ/G3L LVDS encoder
+
+ .../bridge/renesas,r9a08g046-lvds.yaml        | 120 ++++++++
+ drivers/gpu/drm/renesas/rz-du/Kconfig         |  13 +
+ drivers/gpu/drm/renesas/rz-du/Makefile        |   1 +
+ drivers/gpu/drm/renesas/rz-du/rzg3l_lvds.c    | 285 ++++++++++++++++++
+ .../gpu/drm/renesas/rz-du/rzg3l_lvds_regs.h   |  26 ++
+ 5 files changed, 445 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,r9a08g046-lvds.yaml
+ create mode 100644 drivers/gpu/drm/renesas/rz-du/rzg3l_lvds.c
+ create mode 100644 drivers/gpu/drm/renesas/rz-du/rzg3l_lvds_regs.h
+
 -- 
-2.50.1
+2.43.0
 
 
