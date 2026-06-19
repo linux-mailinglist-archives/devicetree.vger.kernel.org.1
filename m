@@ -1,429 +1,167 @@
-Return-Path: <devicetree+bounces-313755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313760-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oJ8bAtAqNWpNnwYAu9opvQ
-	(envelope-from <devicetree+bounces-313755-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 13:41:04 +0200
+	id bN6TEOssNWq+nwYAu9opvQ
+	(envelope-from <devicetree+bounces-313760-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 13:50:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5119F6A5767
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 13:41:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEBC66A5804
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 13:50:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VimNGmB5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313755-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313755-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=abscue.de header.s=dkim header.b=njGbOzo0;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313760-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313760-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1CD26301CCEC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 11:41:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 65E3B3056614
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 11:48:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D47B3803DA;
-	Fri, 19 Jun 2026 11:41:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93A9381B0E;
+	Fri, 19 Jun 2026 11:48:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from srv01.abscue.de (abscue.de [89.58.28.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DFF540D59E;
-	Fri, 19 Jun 2026 11:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE82380FD7;
+	Fri, 19 Jun 2026 11:48:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781869261; cv=none; b=Vc5+ylJodB1wTRYPKd7ZtV631E47aCTUgZB+Oc4cjDKDYBvgU3FFVROnRq31ymYTHv4XrMdRG1E/kjTQzkIzQGioaRYXoBw1lF7WEtLarGWcBc+8lFDvat94AwbBHjxHuM0vTCeYRPJFXgcthtyTRDrSKzvCXTZUJe13AyHVtbQ=
+	t=1781869725; cv=none; b=b0n0YtnBCMOFG/BwORvMMJOEkgzS5YhBVBzQgDruSKbRmfkuJyMBpGantq2rbnvOB52eFDta2rCU41eVIamqKBA7yeRhlxhloAcF4FhBiZU14UdFYuP7lVmR1KwVMAJ8tGnVYZNRFkYvrSTPYtbiB3JcVdvxTZ9HeRoUqHXTiRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781869261; c=relaxed/simple;
-	bh=GZZC6aPg4mMBFKS4CBPmjfbf0ShWzLUKtgWEMGf3MJk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QlScNIv3IWCtWLjCG6yjxs+262rjMiTDCVPAxF9n0IbIC3afs6NyXJZXa85baogHHzD7Cd0cBqP88WwHOFdeLji+KsBmQ9qOVYFUFfaE7pMTLeORJ1hfIJEovDZ+Ape9PWJtCMxJbLrMVMI0JOkvJMhlUfuO8XfUhnp+EpN6FNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VimNGmB5; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 411201F000E9;
-	Fri, 19 Jun 2026 11:40:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781869259;
-	bh=V8NaQIymO2h7yghwF8WFUG91Usq29eTYCD7e6MwtEWg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=VimNGmB5xXzyF+yn9UvjKirZjP0E3XnIqr1fIlgH7BGWinGWZVItmaCKhu76G2vvX
-	 0IprsSNGRA6v9j+2vsnXstnDfUYxtaxAcDj4hoifEcqDA7AyN7sBnqmEeMiA9WjlwV
-	 AizDKf4+g0IOIMqSmrzXb1tWj0tHAhs0K+U/1JKjEMGFPJKs5Z+vReq12U16vy1I2T
-	 20xVC8l0iK6/a/sHMpwPQskIhiIXsG3vwnGn0ihRCsRucgKOwseYJ7JaLEwTM8ycFL
-	 FTpxN5I7O84BUXpkKFdSH1SDvbAaouyPcGG5t/vmH0fx876cATy76DVlih980ISyC6
-	 wlXsPunEnbVvA==
-Date: Fri, 19 Jun 2026 12:40:54 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Janani Sunil <jan.sun97@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
-	Janani Sunil <janani.sunil@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: Add AD5529R
-Message-ID: <20260619-bunch-diocese-dd7805cc17ff@spud>
-References: <20260519-ad5529r-driver-v3-0-267c0731aa68@analog.com>
- <20260519-ad5529r-driver-v3-1-267c0731aa68@analog.com>
- <25mh6grzh7zh3b4uytcqnusyv5zjuf6ia4if3ce3oqzqz56ehi@le72iqv7ye3d>
- <603473ac-30e6-45e5-8a3b-c9902715cc9e@gmail.com>
- <20260614204455.408c4d40@jic23-huawei>
- <076d7d2d-81a0-49c2-af94-bd65ead66c09@gmail.com>
- <20260619-obstinate-polo-a230bef97fda@spud>
+	s=arc-20240116; t=1781869725; c=relaxed/simple;
+	bh=8pE5uci6v2CZNI1o/avZs8P5awOWab1pEnR7W9rgM0o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Y477YwyVvMGPby5AEV9xuNxq78wHy7Ifzdv9lAJdRWFF/KIKMXKoPL00jDpXiojRNBm9/1iAbX1lA7HdwJm6ypygJ39yxxw/P22DUapTJl3KSED8mOcORaRd0tX0QjzNlYMoJbwayolOg1KhoJxQOQQhYI+Q3W1euezIEpMHP48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b=njGbOzo0; arc=none smtp.client-ip=89.58.28.240
+Received: from fluffy-mammal.metal.fwg-cag.de (unknown [IPv6:2001:9e8:cde9:cd00:e6e2:e9fd:5a78:7bbc])
+	by srv01.abscue.de (Postfix) with ESMTPSA id 9411C1C4F5B;
+	Fri, 19 Jun 2026 13:42:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=abscue.de; s=dkim;
+	t=1781869335;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=iG4wH+vYkP28Rnk0p8yUH5GZZ63elhQlRjg0BgIv//s=;
+	b=njGbOzo0EU0Eloxbz/V3kqbc86NQHiOXE+4WGTcrxzcp8JV1fNMqHJZaYBwA5IQ8pYTG/h
+	q3rTdXArGV0WfEXny2xnqy8//+b4Y0JJw7b9QaQTfbyseYae3WJ77fUI2/Yyc6Dzvv4bPW
+	y/y5007lUt8DGilHiTCMq9g0wAaJqVpQoMcTceBTINzVrGSfPYtIDBJxpAbTTBGgHk4uhD
+	I7ZZMiYFQ/X2BxtnmLInKMq41Uz6MfLkkjHqRlfpPo7d4ZZHPwPXddQiTLDEKyh8GAn4Wz
+	AYsXdT7hnDNfJ15kyT/qCJ0nokf9q2tBhakZNHF4tmsLDgam7IE1Ue4VlAJEAw==
+From: =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
+Subject: [PATCH v5 0/3] regulator: Add support for Unisoc SC2730 PMIC
+ regulators
+Date: Fri, 19 Jun 2026 13:41:46 +0200
+Message-Id: <20260619-sc2730-regulators-v5-0-0a24c7ed7a97@abscue.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3jc0JybyJ73uQsPl"
-Content-Disposition: inline
-In-Reply-To: <20260619-obstinate-polo-a230bef97fda@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAPoqNWoC/23NwQrCMAyA4VeRnq00abutnnwP8ZB2mRZEpdWhy
+ N7dbggO2fEPyZe3yJwiZ7FdvUXiPuZ4vZSw65UIJ7ocWca2tECFlUKoZA5YayUTHx9nul9TlqA
+ 91Y2rDJAR5e6WuIvPydwfSp9iLnuv6UUP4/SroVrQepBK6g69D45DB2ZHPocHb1oWo9bjT7DQL
+ AlYBEfWa6o9sHH/gp4LbknQRbC+U6zQqpr1v2BmAsKSYIoAFBrS3nLb4FwYhuED7MGEangBAAA
+ =
+X-Change-ID: 20260216-sc2730-regulators-13ba789641a4
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Zhongfa Wang <zhongfa.wang@unisoc.com>
+X-Mailer: b4 0.14.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[abscue.de:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:orsonzhai@gmail.com,m:baolin.wang@linux.alibaba.com,m:zhang.lyra@gmail.com,m:lee@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:otto.pflueger@abscue.de,m:krzysztof.kozlowski@oss.qualcomm.com,m:zhongfa.wang@unisoc.com,m:krzk@kernel.org,m:conor@kernel.org,m:zhanglyra@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:jan.sun97@gmail.com,m:jic23@kernel.org,m:455.rodrigo.alencar@gmail.com,m:janani.sunil@analog.com,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:broonie@kernel.org,m:jansun97@gmail.com,m:455rodrigoalencar@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linux.alibaba.com];
+	FORGED_SENDER(0.00)[otto.pflueger@abscue.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DMARC_NA(0.00)[abscue.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-313755-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-313760-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,analog.com,metafoo.de,baylibre.com,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[otto.pflueger@abscue.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[abscue.de:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,abscue.de:dkim,abscue.de:email,abscue.de:mid,abscue.de:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5119F6A5767
+X-Rspamd-Queue-Id: AEBC66A5804
 
+Add device tree bindings and a driver for the regulators found in the
+Spreadtrum/Unisoc SC2730 PMIC.
 
---3jc0JybyJ73uQsPl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+---
+Changes in v5:
+- Drop conditional binding patch, will be sent separately
+- Rebase on next-20260618
+- Link to v4: https://lore.kernel.org/r/20260521-sc2730-regulators-v4-0-1ac8a3b5ed82@abscue.de
 
-On Fri, Jun 19, 2026 at 12:36:55PM +0100, Conor Dooley wrote:
-> On Fri, Jun 19, 2026 at 12:33:11PM +0200, Janani Sunil wrote:
-> >=20
-> > On 6/14/26 21:44, Jonathan Cameron wrote:
-> > > On Tue, 9 Jun 2026 16:47:23 +0200
-> > > Janani Sunil <jan.sun97@gmail.com> wrote:
-> > >=20
-> > > > On 5/26/26 15:11, Rodrigo Alencar wrote:
-> > > > > On 26/05/19 05:42PM, Janani Sunil wrote:
-> > > > > > Devicetree bindings for AD5529R 16 channel 12/16 bit high volta=
-ge,
-> > > > > > buffered voltage output digital-to-analog converter (DAC) with =
-an
-> > > > > > integrated precision reference.
-> > > > > ...
-> > > > > Probably others may comment on that, but...
-> > > > >=20
-> > > > > This parent node may support device addressing for multi-device s=
-upport through
-> > > > > those ID pins. I suppose that each device may have its own power =
-supplies or
-> > > > > other resources like the toggle pins or reset and enable.
-> > > > >=20
-> > > > > That way I suppose that an example would look like...
-> > > > > > +
-> > > > > > +patternProperties:
-> > > > > > +  "^channel@([0-9]|1[0-5])$":
-> > > > > > +    type: object
-> > > > > > +    description: Child nodes for individual channel configurat=
-ion
-> > > > > > +
-> > > > > > +    properties:
-> > > > > > +      reg:
-> > > > > > +        description: Channel number.
-> > > > > > +        minimum: 0
-> > > > > > +        maximum: 15
-> > > > > > +
-> > > > > > +      adi,output-range-microvolt:
-> > > > > > +        description: |
-> > > > > > +          Output voltage range for this channel as [min, max] =
-in microvolts.
-> > > > > > +          If not specified, defaults to 0V to 5V range.
-> > > > > > +        oneOf:
-> > > > > > +          - items:
-> > > > > > +              - const: 0
-> > > > > > +              - enum: [5000000, 10000000, 20000000, 40000000]
-> > > > > > +          - items:
-> > > > > > +              - const: -5000000
-> > > > > > +              - const: 5000000
-> > > > > > +          - items:
-> > > > > > +              - const: -10000000
-> > > > > > +              - const: 10000000
-> > > > > > +          - items:
-> > > > > > +              - const: -15000000
-> > > > > > +              - const: 15000000
-> > > > > > +          - items:
-> > > > > > +              - const: -20000000
-> > > > > > +              - const: 20000000
-> > > > > > +
-> > > > > > +    required:
-> > > > > > +      - reg
-> > > > > > +
-> > > > > > +    additionalProperties: false
-> > > > > > +
-> > > > > > +required:
-> > > > > > +  - compatible
-> > > > > > +  - reg
-> > > > > > +  - vdd-supply
-> > > > > > +  - avdd-supply
-> > > > > > +  - hvdd-supply
-> > > > > > +
-> > > > > > +dependencies:
-> > > > > > +  spi-cpha: [ spi-cpol ]
-> > > > > > +  spi-cpol: [ spi-cpha ]
-> > > > > > +
-> > > > > > +allOf:
-> > > > > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > > > > > +
-> > > > > > +unevaluatedProperties: false
-> > > > > > +
-> > > > > > +examples:
-> > > > > > +  - |
-> > > > > > +    #include <dt-bindings/gpio/gpio.h>
-> > > > > > +
-> > > > > > +    spi {
-> > > > > > +        #address-cells =3D <1>;
-> > > > > > +        #size-cells =3D <0>;
-> > > > > > +
-> > > > > > +        dac@0 {
-> > > > > > +            compatible =3D "adi,ad5529r-16";
-> > > > > > +            reg =3D <0>;
-> > > > > > +            spi-max-frequency =3D <25000000>;
-> > > > > > +
-> > > > > > +            vdd-supply =3D <&vdd_regulator>;
-> > > > > > +            avdd-supply =3D <&avdd_regulator>;
-> > > > > > +            hvdd-supply =3D <&hvdd_regulator>;
-> > > > > > +            hvss-supply =3D <&hvss_regulator>;
-> > > > > > +
-> > > > > > +            reset-gpios =3D <&gpio0 87 GPIO_ACTIVE_LOW>;
-> > > > > > +
-> > > > > > +            #address-cells =3D <1>;
-> > > > > > +            #size-cells =3D <0>;
-> > > > > > +
-> > > > > > +            channel@0 {
-> > > > > > +                reg =3D <0>;
-> > > > > > +                adi,output-range-microvolt =3D <0 5000000>;
-> > > > > > +            };
-> > > > > > +
-> > > > > > +            channel@1 {
-> > > > > > +                reg =3D <1>;
-> > > > > > +                adi,output-range-microvolt =3D <(-10000000) 10=
-000000>;
-> > > > > > +            };
-> > > > > > +
-> > > > > > +            channel@2 {
-> > > > > > +                reg =3D <2>;
-> > > > > > +                adi,output-range-microvolt =3D <0 40000000>;
-> > > > > > +            };
-> > > > > > +        };
-> > > > > > +    };
-> > > > > ...
-> > > > >=20
-> > > > > 	spi {
-> > > > > 		#address-cells =3D <1>;
-> > > > > 		#size-cells =3D <0>;
-> > > > >=20
-> > > > > 		multi-dac@0 {
-> > > > > 			compatible =3D "adi,ad5529r-16";
-> > > > > 			reg =3D <0>;
-> > > > > 			spi-max-frequency =3D <25000000>;
-> > > > >=20
-> > > > > 			#address-cells =3D <1>;
-> > > > > 			#size-cells =3D <0>;
-> > > > >=20
-> > > > > 			dac@0 {
-> > > > > 				reg =3D <0>;
-> > > > > 				vdd-supply =3D <&vdd_regulator>;
-> > > > > 				avdd-supply =3D <&avdd_regulator>;
-> > > > > 				hvdd-supply =3D <&hvdd_regulator>;
-> > > > > 				hvss-supply =3D <&hvss_regulator>;
-> > > > >=20
-> > > > > 				reset-gpios =3D <&gpio0 87 GPIO_ACTIVE_LOW>;
-> > > > >=20
-> > > > > 				#address-cells =3D <1>;
-> > > > > 				#size-cells =3D <0>;
-> > > > >=20
-> > > > > 				channel@0 {
-> > > > > 					reg =3D <0>;
-> > > > > 					adi,output-range-microvolt =3D <0 5000000>;
-> > > > > 				};
-> > > > >=20
-> > > > > 				channel@1 {
-> > > > > 					reg =3D <1>;
-> > > > > 					adi,output-range-microvolt =3D <(-10000000) 10000000>;
-> > > > > 				};
-> > > > >=20
-> > > > > 				channel@2 {
-> > > > > 					reg =3D <2>;
-> > > > > 					adi,output-range-microvolt =3D <0 40000000>;
-> > > > > 				};
-> > > > > 			}
-> > > > >=20
-> > > > > 			dac@1 {
-> > > > > 				reg =3D <1>;
-> > > > > 				vdd-supply =3D <&vdd_regulator>;
-> > > > > 				avdd-supply =3D <&avdd_regulator>;
-> > > > > 				hvdd-supply =3D <&hvdd_regulator>;
-> > > > > 				hvss-supply =3D <&hvss_regulator>;
-> > > > >=20
-> > > > > 				reset-gpios =3D <&gpio0 88 GPIO_ACTIVE_LOW>;
-> > > > >=20
-> > > > > 				#address-cells =3D <1>;
-> > > > > 				#size-cells =3D <0>;
-> > > > >=20
-> > > > > 				channel@0 {
-> > > > > 					reg =3D <0>;
-> > > > > 					adi,output-range-microvolt =3D <0 5000000>;
-> > > > > 				};
-> > > > >=20
-> > > > > 				channel@1 {
-> > > > > 					reg =3D <1>;
-> > > > > 					adi,output-range-microvolt =3D <(-10000000) 10000000>;
-> > > > > 				};
-> > > > > 			}
-> > > > > 		};
-> > > > > 	};
-> > > > >=20
-> > > > > then you might need something like:
-> > > > >=20
-> > > > > 	patternProperties:
-> > > > > 		"^dac@[0-3]$":
-> > > > >=20
-> > > > > and put most of the things under this node pattern.
-> > > > >=20
-> > > > > So the main driver that you're putting together might need to han=
-dle up to four instances.
-> > > > > Even if your current driver cannot handle this, the dt-bindings m=
-ight need cover that.
-> > > > >=20
-> > > > > Need to double check if each dac node needs a separate compatible=
-, so you would maybe populate
-> > > > > a platform data to be shared with the child nodes, which would be=
- a separate driver.
-> > > > > (not sure if it would make sense to mix and match ad5529r-16 and =
-ad5529r-12).
-> > > > Hi Rodrigo,
-> > > >=20
-> > > > Thank you for looking at this.
-> > > >=20
-> > > > For now, I would prefer to keep the binding scoped to a single AD55=
-29R device instance. The current
-> > > > hardware/use case we have only needs one device node and the driver=
- is written around that model as well.
-> > > > While the device addressing pins could allow multi-device topology,=
- we do not have an actual platform using
-> > > > that configuration at the moment, so I would prefer not to introduc=
-e an extra parent/child binding structure
-> > > > speculatively without a validating use case.
-> > > Interesting feature - kind of similar to address control on a typical=
- i2c bus device, or
-> > > looking at it another way a kind of distributed SPI mux.
-> > >=20
-> > > Challenge of a binding is we need to anticipate the future.  So I thi=
-nk we do need something
-> > > like Rodrigo is suggesting even if we only (for now) support a single=
- instance in the driver.
-> > > That would leave the path open to supporting the addressing at a late=
-r date.
-> > > An alternative might be to look at it like a chained device setup. In=
- those we pretend there
-> > > is just one device with a lot of channels etc.  The snag is that here=
- things are more loosely
-> > > coupled whereas for those devices it tends to be you have to read / w=
-rite the same register
-> > > in all devices in the chain as one big SPI message.
-> > >=20
-> > > +CC Mark Brown as he may know of some precedence for this feature. Fo=
-r his reference..
-> > > - Each of these device has 2 ID pins.  The SPI transfers have to cont=
-ain the 2 bit
-> > > value that matches that or they are ignored.  Thus a single bus + 1 c=
-hip select can
-> > > be used to talk to 4 devices.  Question is what that looks like in de=
-vice tree + I guess
-> > > longer term how to support it cleanly in SPI.
->=20
-> I'd swear I have seen this before, from some Microchip devices. Let me
-> see if I can find what I am thinking of...
+Changes in v4:
+- Add missing patch for MFD cell registration
+- Use conditional binding for referencing the regulators now that the
+  child node cannot be distinguished by its compatible for validation
+  purposes.
+- Drop requirement for removed compatible property (sorry, should have
+  double-checked this before sending v3)
+- Link to v3: https://lore.kernel.org/r/20260519-sc2730-regulators-v3-0-5bf0e02507e3@abscue.de
 
+Changes in v3:
+- Drop compatible property
+- Drop unused VDDSIM0 and VDDSIM1 IDs
+- Link to v2: https://lore.kernel.org/r/20260518-sc2730-regulators-v2-0-9a5b3a7b1e49@abscue.de
 
-microchip,mcp3911 and microchip,mcp3564 both seem to do this with
-slightly different properties.
+Changes in v2:
+- Use lowercase names without underscores for device tree nodes
+- Use oneOf for binding reference instead of making it conditional
+- Remove some excess line breaks
+- Fix author name in driver and add original Signed-off-by
+- Link to v1: https://lore.kernel.org/r/20260220-sc2730-regulators-v1-0-3f2bbc9ecf14@abscue.de
 
-  microchip,device-addr:
-    description: Device address when multiple MCP3911 chips are present on =
-the same SPI bus.
-    $ref: /schemas/types.yaml#/definitions/uint32
-    enum: [0, 1, 2, 3]
-    default: 0
+---
+Otto Pflüger (3):
+      regulator: dt-bindings: Add Unisoc SC2730 PMIC
+      mfd: sprd-sc27xx: Add SC2730 regulator cell
+      regulator: Add regulator driver for Unisoc SC2730 PMIC
 
-and
+ .../bindings/regulator/sprd,sc2730-regulator.yaml  |  44 +++
+ drivers/mfd/sprd-sc27xx-spi.c                      |   1 +
+ drivers/regulator/Kconfig                          |   7 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/sc2730-regulator.c               | 411 +++++++++++++++++++++
+ 5 files changed, 464 insertions(+)
+---
+base-commit: 598c7067dd8b65b93f3ccada47e9014a13137f1b
+change-id: 20260216-sc2730-regulators-13ba789641a4
 
+Best regards,
+-- 
+Otto Pflüger <otto.pflueger@abscue.de>
 
-  microchip,hw-device-address:
-    $ref: /schemas/types.yaml#/definitions/uint32
-    minimum: 0
-    maximum: 3
-    description:
-      The address is set on a per-device basis by fuses in the factory,
-      configured on request. If not requested, the fuses are set for 0x1.
-      The device address is part of the device markings to avoid
-      potential confusion. This address is coded on two bits, so four possi=
-ble
-      addresses are available when multiple devices are present on the same
-      SPI bus with only one Chip Select line for all devices.
-      Each device communication starts by a CS falling edge, followed by the
-      clocking of the device address (BITS[7:6] - top two bits of COMMAND B=
-YTE
-      which is first one on the wire).
-
-This sounds exactly like the sort of feature that you're dealing with
-here?
-
-
---3jc0JybyJ73uQsPl
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCajUqxgAKCRB4tDGHoIJi
-0qZcAP0T/Wl9uIPL4MddTjXoDbgVyp/v718Z52E1733pHn2RwwD8Df6/fV0qKP16
-CqXIDIlTZZGOhBxuQfUyCMURyv1EXAI=
-=EnyT
------END PGP SIGNATURE-----
-
---3jc0JybyJ73uQsPl--
 
