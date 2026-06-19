@@ -1,454 +1,170 @@
-Return-Path: <devicetree+bounces-313730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313732-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wd5kNocYNWrOmwYAu9opvQ
-	(envelope-from <devicetree+bounces-313730-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:23:03 +0200
+	id qlQ/DMEaNWo0nAYAu9opvQ
+	(envelope-from <devicetree+bounces-313732-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:32:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1A126A5302
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:23:02 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9765F6A53B4
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:32:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=live.com header.s=selector1 header.b=bIN+bDFc;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313730-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313730-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=live.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ZFR7WXAJ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313732-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313732-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 057AF300861F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 10:23:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7E8AD3007654
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 10:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D62FF37268C;
-	Fri, 19 Jun 2026 10:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7F83749E5;
+	Fri, 19 Jun 2026 10:32:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from SY2PR01CU004.outbound.protection.outlook.com (mail-australiaeastazolkn19011024.outbound.protection.outlook.com [52.103.72.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6AC2372B5A
-	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 10:22:52 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781864577; cv=fail; b=AnNKsVWsWUWQvBs+oD75egvRTcZDe8fSU6l6XSxs+buxaWF7L856X76UeBTqxGGYON0QWYvJsH1ePiNHXNChxNhBP6TwJxpFNidPDCyqNI7+X42so0VXnYEsgKYGPSww4kLg2mZFh46GdjCnbDMMc+3QuqdDdNg2JFRpO1qF0Ms=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781864577; c=relaxed/simple;
-	bh=T+ArHVbIgeZFh4T40V/OtE9DUucGoGKqmq9iPrac6F0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LsZZrRiJWxzSBzwHkOg9K/Ubuo2R0+hFEsLr1LdkYF0oz3bulblTf+lcXiq/hpcKY3y//ZUsG7XSYjmKEGfgcRiWQT0cgN0iS+t+A6afQSthPwvj1hoXVWKrdExST5QlXuVh9wPNz+YCKZ35Hy5a0v7l4xOvd8yIPPrqj7QGCtk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=live.com; spf=pass smtp.mailfrom=live.com; dkim=pass (2048-bit key) header.d=live.com header.i=@live.com header.b=bIN+bDFc; arc=fail smtp.client-ip=52.103.72.24
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zMhyltN0sQAcYdjDzVexce6akdXfDxKw2qOt+UjnkwEmcqgsbXc1YvRf0DS83hY/C/nW50Y0cfn0nNz+HQmyMEXpq8b7rXU9kX00eaw7PZsOJlbumBT9THjRaoqQ6ABPb6I6IsbxiwNt9F/yBJUGf1MnsrwXt2z1ncO0cVmm7rZ0DFH68PX4KT/ewroOX9vGvRZoi9/XnJGrW5AI8M1g6aGZiJQhlJ6F661xBLmrto1QYAtdq/Ila6bwVwgtQmrwQvwyTkHant9Dz1yZXkfk2EHMRIOmB9ScRqVS0BrjusP0cb/mmx1FL3QEbshdIfdsmpIO1YPVACcaplIl0DsFJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2puu2DmmZpKwO1H34ew6mLhV1vL5oed3NJF5c1/7V+w=;
- b=nyJ2oFnKugm5B3vwLeJOkXOjfZUL4dJgbs9wzzvrMfkWQMTMvII3N0zYtEobgWL38Z3z9RZlflbDb4KqHsZVmJEVHFuWjOgiusFzYrXuAm7qqqPEN+jYd4KyTbVFJLAdtlW/E1biMdaLcnDHT05VETCydLuX3OiC7z4Vn0O0q4zbm15D+DJNHNpstFXUGUs+7linFl4Xc73XuiylgIGLFxEgysHdVF1cDLzWubzzcPJXq11CKgG/cco8cKdydiuiZosUUpRq7ySWnD9ItGMeqzUXsiXb+fxwXkyokOh3yJiloxUzYWpSu01F16GZNy1kg/lJ0MJRdl2wwM1VILIdOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2puu2DmmZpKwO1H34ew6mLhV1vL5oed3NJF5c1/7V+w=;
- b=bIN+bDFc3wPfc2NjMVjD7NA2BwU1Zcu0KNrJY/C7OISbYWURpwWdALCNAVA8Cacs2p549OP5OeogjQz2L7jNa6vLxZE+ZOlBP6NxlsbJcnvLWxpb8ZUysFKMtUDnQjr3ZEC+zSXChfxJdLLY9HHxtA3MikffiNzmG0EYI/AeILuzenS55miD9e7HgbDZE8/48aZU2N0jhDoqqb3gB6cD949/Uh5dTktxTY0FiPo+uxIjrR5NFGkPCaargbtlBjQeYc9AymEMt4iPruq2pR+/oF9cXpYaf4xtSHZ/2WZ9S94aot9pirSbduBHDvdbuC3HCJNuJO6/8YS6O1IFsoDuIQ==
-Received: from SY3PPF19552C607.AUSP300.PROD.OUTLOOK.COM (2603:10c6:18::488) by
- SY0P300MB1571.AUSP300.PROD.OUTLOOK.COM (2603:10c6:10:2cf::17) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.113.18; Fri, 19 Jun 2026 10:22:46 +0000
-Received: from SY3PPF19552C607.AUSP300.PROD.OUTLOOK.COM
- ([fe80::4853:f60:ab7c:d57a]) by SY3PPF19552C607.AUSP300.PROD.OUTLOOK.COM
- ([fe80::4853:f60:ab7c:d57a%7]) with mapi id 15.21.0139.011; Fri, 19 Jun 2026
- 10:22:46 +0000
-From: Liu Yu <f78fk@live.com>
-To: Michal Simek <michal.simek@amd.com>
-Cc: Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F23373C0B
+	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 10:32:26 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781865148; cv=none; b=UOy7J+OuRfEqjFbsNNK5ckT4Frfhdz7vRRJN2vatfaIdnXHuFy0WAuLQXvCF+wqm81hCpAxkgXNlOI4Y88LwsugKN36p/6L8cT2Ge2UUbVImdS94Y6Yr/eVjabFrrK88Ddzwm5P8/i6BpXYW97C6tV0TNe3icEt6KfXWOHAv34g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781865148; c=relaxed/simple;
+	bh=VEnQVtwZkIU7RBSHiSyT7NGob5OOuJi2SIKdnJrA1CE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=D+NQsrNmhQjOXl706rVus/PuXtbgJZW6Z2DXXqP/Lr6EW4t96NgMAWinLn9S0j0kpykRRvQzqSGgtjEozObHC+gB//D/7iS2TD7rsATq5HRf58Foxqh/B8IGCOAlEkaNNtMLx+cOpfPeeF3DRi2QDupeymd4RAyPCqGRPm09Gwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZFR7WXAJ; arc=none smtp.client-ip=209.85.218.52
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-c07a6520cafso210205966b.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 03:32:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781865145; x=1782469945; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yWdatNxPt/OSZnGzSt5RKlWyXLWzuEupMhedHxPLM4I=;
+        b=ZFR7WXAJpO6xikfbQnyaz4HBl9CSM5PhdFfUa1IhzVoR2UW3hMt8Xgwgzc5BFayI2S
+         cUXt6o0NKBrdSeKOZ1j1mpBDKYI0DTb3WKZ3cJZY/H8VWAjymYAsk2ziN2SXJzZuY6AQ
+         fDsNvhIDBhl8sZounmG3rQ2xjaRC5h5KmZtu/kvcyZGEfewsh3beTUZTw4Q3Drzxoln2
+         xxwJLTSLjpLYOTd9sQt4eKG9FBeWn6bWbISIknWXrmJulbV5oZQsI0H4vq4WIY/70RyH
+         dCYFfY5h3CJ6qvZtxsa7A1RpCc0HIOUkf2mT8io5KIUKYt50XtTXlzHuEvbZVLfaymF/
+         x4Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781865145; x=1782469945;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yWdatNxPt/OSZnGzSt5RKlWyXLWzuEupMhedHxPLM4I=;
+        b=IyCHLUc6nw2vhMc4l33jvNoCHShXm7OJ9NpdetpmCToomR1aBT/bFlV4bAHFSwpgNm
+         SiFVEOMqIL7He2W1VB+OqdYNtCrbl6VIqTm4QGpqGnDUBfq3U/J2nkmLz3OUJ8bA3PbP
+         Oz3LiNfPc0Ky7a4axcdTFhd8Ht4JWYEmNGgRCc40tflweG73/TB9BzJm9YESZeFLDxo+
+         xSipndoXM6ID2mmnyoNiCNBiHwbQ2brC8aj7JgsfGMqUqgSmr4n+vY5t8pZac039LA8X
+         wmCCRcXKrTCBfugQbTH4I1pezcGz78LcT2j3K0F70Sw2BG/DnYTdKcqZZRlRUjNFOTfo
+         Jm9Q==
+X-Forwarded-Encrypted: i=1; AFNElJ/UWB3iuYytYUsE0KZ0eqVwXbl8zT5xrM6Htr6BHQ29agC21eYd7xn5GeLvEwW8Mb0EeMMg6FGhEpHP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIExwhWldpRzeJHYxM2QRFQsDWf2oq9qIcHZY64LmjAeGMB6Xr
+	fVBUkH6Itw2jke/VfzZbYvmxF9tAPLI/oxz7MvIqX+8QAt70uLIlpGUG
+X-Gm-Gg: AfdE7cnljZMCsoYxa4nV07f2ywMtV9mXCegf4K9IJ9e56haHVU2l9q/3vDzmTFP4lJx
+	N2sysBnpEvchOz+cvUjNymPFVXKcYawpgL0+pZ6QMGXfssVOrjbGdyFgNw89ktHGJXnr+lN0fhH
+	xB7baMqLFFLhRx3pXYKm9du3AwhM3n0un+xjKIW4d2lh7PoZ3FBl4C5kQamkW+X4Oqe+A4RfoF6
+	i7sX9DO5uX++1xvrNh7RH+BJEj6hihcm308LhFk5GgBesCXWekK3CThrxop82k32auaEsh33dZA
+	3vbbJalWn5k1YniJBB3xPS4eBjq+R+rrCJa5+8hZmh7ayFdhVIuCzpkI6ZCwsQK2+yrdfpWZ4Ix
+	X7ZYew1vKbaySlUjPyA7aJcWoPAc5USKgAFcMXuOCqL81dcXtrD0WBk5jbVCa5J0wyZsVAgnsww
+	eR7smbdxqNxGzZ+Fpqd/T1eI9Pe9Q9t9U+yg==
+X-Received: by 2002:a17:907:9302:b0:c07:5319:4c32 with SMTP id a640c23a62f3a-c097ae487b4mr145500666b.8.1781865144713;
+        Fri, 19 Jun 2026 03:32:24 -0700 (PDT)
+Received: from xeon ([188.163.112.61])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c0a8490cd59sm76702466b.16.2026.06.19.03.32.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jun 2026 03:32:24 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Liu Yu <f78fk@live.com>
-Subject: [PATCH 2/2] arm: dts: xilinx: Add support for MYIR MYS-7Z020-V2 board
-Date: Fri, 19 Jun 2026 18:22:14 +0800
-Message-ID:
- <SY3PPF19552C607A65588339A2CED9E2AFDC7E22@SY3PPF19552C607.AUSP300.PROD.OUTLOOK.COM>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260619102214.223121-1-f78fk@live.com>
-References: <20260619102214.223121-1-f78fk@live.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY3PR05CA0031.namprd05.prod.outlook.com
- (2603:10b6:a03:39b::6) To SY3PPF19552C607.AUSP300.PROD.OUTLOOK.COM
- (2603:10c6:18::488)
-X-Microsoft-Original-Message-ID: <20260619102214.223121-3-f78fk@live.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] hwmon: emc1403: Convert to use OF bindings and add regulator support
+Date: Fri, 19 Jun 2026 13:31:50 +0300
+Message-ID: <20260619103153.216444-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SY3PPF19552C607:EE_|SY0P300MB1571:EE_
-X-MS-Office365-Filtering-Correlation-Id: c13aa691-d6f0-4e56-4cbd-08decdecb46c
-X-MS-Exchange-SLBlob-MailProps:
-	8U9+OAG/EBKkI8GgeR43xRMrZ/+qH0EFqKpKdBeruX8No2jZPTsX0XpesBIhsEWekIAmzZsnCu/pb4MxtYBHpGHUpkhEamHTR9HJe7TdAWTcaCwAJFsjpU0gmCg0RWmaic0KPNtldeQq/WFHz2RXJhpFFMOsizIS12zf0t7XO7ABK0vBVUejQ2u/vK7mRiAnxzFaTGgGZdPkUPFmnvVLEx9mnGd62EcaqBNL9zbWM3iRpXHZAm/+jlZPCtfGT91rDQz6UeE0N9D8XL1PsFulHn9ggUtm9LUciHPHH1j6W9088hRhzvLSSyzIvUalP76wPiqtJnXQGheC2O6MwV3uYBm381sVi6s1OyTVg4v/DJzUTGcBaWjp7FYXorSPr//BLW+MNubWjY8H5lPeDQg0tULfMF9MAlR5pveHBMKG6CDUNR9DV5+J+IYkEXH6Xp1gnciK0E8yWaaf0weiLyIs4bO/gjUgkMq5AKYFZE7G4Vxu/rCpk6Z0PAem0RDbhZJ+6H1CkloCOgB7shjb6Q0w3bUcwTE2WEFuW1nGDHt6Ya9BOT7sDi4ltAtD500B+zdgWc1bDewOPX9wmPryoRkq3diozIZMyvM5MFT5f8EwFJN9lwGr6niRyq3TTW7YWRCVJockzkEw0Ugik3J+zhNgN1CWH/l+uscwOCVRjVb26Ie/UO95527M9aHd7zmBzHVRrPti8J0uUwFKJ+dkYLyJgnTm4MH2Sxc8LN0s7HzyG+R4STMAryha4hLh6w2mhF5eHlBQFSQN8XpsBYoKW3UxmbSiamoas09PGJ2S2IvjrH2xDjpH0vwm6tpUGHy/nVlWI2YeN/qB3SsZVNsP0IGP9w==
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|25031999004|15080799012|23021999003|19110799012|24021099003|51005399006|41001999006|5072599009|8060799015|25010399006|26104999009|40105399003|3412199025|440099028|10035399007|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?JshrkeYeCW2+OOLr9j8Cm/rMhxmfLYhSSyKVNLY60cTxagcA4nAYv3TLnDQ7?=
- =?us-ascii?Q?RaSVzhhxwbS7GxP+AssdVpWb/D+bFunQmFJsKRVAFltt5y0D2VyjmgezyM8M?=
- =?us-ascii?Q?Q3G47oMlwm2Wg7CWyvfiS0efwk2dogCp045+TquN+qtuilyF+I7nt31kMY/z?=
- =?us-ascii?Q?fp7YRL99tlTSNXAE8mVesR4998Kd2o/I0zkvtMf2Lwxkx6OAJTe4fxKEtwDh?=
- =?us-ascii?Q?brUQ2aqma7lao+DmX2NX2xtkgR4fnC1yXhusXHQcosiQjv0mWOwsJNhDrvRO?=
- =?us-ascii?Q?hr5eskhx5W3Op//r980K25vg/6vdYpUnWNkmKfyKQl9EH0L8DjlyNqgGNuVK?=
- =?us-ascii?Q?5ZcGLeqnYNDdydokxEdgB7Br3hc1NlT0cmQOFpFzjBe6F+RhBJra7qskWeVK?=
- =?us-ascii?Q?NkLmvWDA98O9Iu6P4hIVb+d10cWYuywFupcgN2lI7hzEUZlc//MvIHlB8Ryn?=
- =?us-ascii?Q?+a5xONyCx1mN/a2Joyg5y69t7MeFBN1RoOGsAX+V06X0U9pUIcccRhe+6PO0?=
- =?us-ascii?Q?sw8/XyI5C5kkZtk2sIGSW+qS97dhXfmEM8rC5xJtYSM0jKhf5XhSMleHF833?=
- =?us-ascii?Q?WpTmcQFoiq00Q63onghApqRhWGX2nFje3sgTtcjLDbvrfXE3Q4m7uzcXJLvU?=
- =?us-ascii?Q?b8mDwpvNcCN5pTKndZ/HQgabFGs/pu2upi8D1fxcBJJKH0nZHw/YaovEJ/TL?=
- =?us-ascii?Q?ndSd0VV6wYY+/l5mr7xGGWr+ydsrHmjudqovNhoNtyT0nXWI4VnSmLVfdX5f?=
- =?us-ascii?Q?AnTDaaeC+Vc4GKiPExC0Aht+mJElhyOE+vjqApswnKw4girmCrvsb9bg1sXM?=
- =?us-ascii?Q?+wDYMX6RN+IhgPgGB1Ki0eWaC+6TSwCzFJapFXkSJvmRo/xIIi2Q+TvbazK1?=
- =?us-ascii?Q?HhPFtwW0WlIwvtHRMmbP5Msh/tkaA9QszQTLtgV5ZFO5KxsydCn3eU09zxcU?=
- =?us-ascii?Q?v+gxY+K5zkdmB7FVOMFu5ApLd8PZfXNIYmIkVVQZp5sIwG6fnnZKcnV+uiGG?=
- =?us-ascii?Q?t1ALbmSa3TQEWVHJkf1dCh1uHw=3D=3D?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Od7fAXVmkLzSgRfYKgqyLzxWubY6ZFEK+TBpIivvT233UPPp2VawY+OZJIa3?=
- =?us-ascii?Q?fBfk9J0Ghzt8vAplPsuJmGJ2Yan++3XP+5eSG4noEo8Lq3kdQNJJDHaTX8Tz?=
- =?us-ascii?Q?PqqQbDx9IxKDqyJEGsO04Q5OG1jn3DLbILrSb6PJ/7AAOCEuu5Q211mjgIAM?=
- =?us-ascii?Q?/e0fvq5Xs9j9wbj/+YOkMyrBXlTVs24jLircAp94sVHXvIzzDWOBmjtTSf3J?=
- =?us-ascii?Q?PLrhViarIycexNeQQtJCFJMuNhT+I2ntpfFR6vfc5sBT6tB2QBr0UvYLpn64?=
- =?us-ascii?Q?S09uveI2BbJoBs/JLBbJ5plCO0IjzCiWZ8Y/2Js/wrofwD8UToDqIM1i9Ghu?=
- =?us-ascii?Q?3wHZ+ivnAe0iEUT8dxxK40jaQcC8uacf4gVEhG8ur8zgutsAUmt4c0dne5M8?=
- =?us-ascii?Q?9Sdtz05nj6mXSD25WxYYW7e+AcP5pRWyvuqE/qiWsBpdd14gwfW/Uo16Aha4?=
- =?us-ascii?Q?sraLwTS9Z+wed4FmkqcCz8BLGpviL3XKXq0CsZXbeKjUDNSR1/vS+wG6tMHk?=
- =?us-ascii?Q?MdUQ86aIHH4/bkd04ST2edt4/TPn2dBl01JhgMeZfBd6IbUiHVt8R3QZQ7Cs?=
- =?us-ascii?Q?eUct3xSO2UlueG8ysJ/MxGQzcMrRWXrgYqayBoEfwoUw2qQB9HVboe7AcUob?=
- =?us-ascii?Q?nLxGeEziyjQvRvWrus/Br5LtTc/c3wjMJ/ZvaTewiPFGkJSOr3AhHV7AGCYm?=
- =?us-ascii?Q?uGp+l9gFEeK3j31fYpX72YyJiLY4LrLr9jzALGapd5aSgSfP2pwgwKuP2eOD?=
- =?us-ascii?Q?IGpIHHFXbolp/9Ys1stWuiAw0wfmGunayLxtPZMIQT+Msy8ZW72w+ee0Ggbz?=
- =?us-ascii?Q?ccqYZA3aRlAWHC+SYr2mp9ED+PRnlxnkE5igiCe5B7k6As3F7sRmtTnouCZd?=
- =?us-ascii?Q?U9HkZ5oW9mb64ngiPx3weM0W7mcbWI+jQXswMqhYdaRtvBbr7X2GabKYal0N?=
- =?us-ascii?Q?MqASoA9M5t5tbHESvqHBdolL5GcX8AibDWxlfGw7znuVIXeNOtyXakXQDY/c?=
- =?us-ascii?Q?ooXclurFv15TR3Sl0sQG8fv7Fmzc18cB98o8+k+wYyinR1Ia/pQOsDDsQXnW?=
- =?us-ascii?Q?FqLpWruflHFVaFE3DACKZpnBq+GgoKaxJ10NtqHL3KAhAbotoa3NuiXVa7fQ?=
- =?us-ascii?Q?5RS82NVG6dc3b59YTSr8KZb5/N9YhXThdlrSg/Z6Oa9b9DkR++w3uU5fJ347?=
- =?us-ascii?Q?Hj96xgDuQzSv/+8warMANBspAtRtBj1SRoW2sMsy+DjL0FD0uL2mjMjS52LP?=
- =?us-ascii?Q?8HIlCrRf3oNr4IDIXfFvGtN/r+Nh5K1nv2m1nrBedFoLVr2e3TWp0HSjj4DR?=
- =?us-ascii?Q?j02yvohwbaUhV39B4l52QnE3Zenm/brqzjwnwAOfRc8MIHaR9jbMB7O+VoMI?=
- =?us-ascii?Q?B8LnKiE=3D?=
-X-OriginatorOrg: sct-15-20-9412-4-msonline-outlook-4606f.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: c13aa691-d6f0-4e56-4cbd-08decdecb46c
-X-MS-Exchange-CrossTenant-AuthSource: SY3PPF19552C607.AUSP300.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 10:22:46.5733
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY0P300MB1571
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[live.com,none];
-	R_DKIM_ALLOW(-0.20)[live.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-313732-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[suse.com,roeck-us.net,kernel.org,gmail.com];
+	FORGED_SENDER(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313730-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jdelvare@suse.com,m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:clamor95@gmail.com,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[f78fk@live.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.infradead.org,live.com];
-	FORGED_RECIPIENTS(0.00)[m:michal.simek@amd.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:f78fk@live.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[live.com];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[f78fk@live.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[live.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,live.com:dkim,live.com:email,live.com:from_mime,SY3PPF19552C607.AUSP300.PROD.OUTLOOK.COM:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D1A126A5302
+X-Rspamd-Queue-Id: 9765F6A53B4
 
-Add device tree support for the MYIR MYS-7Z020-V2 board based on
-the Xilinx Zynq-7000 XC7Z020 SoC.
+Document, add OF and regulator support to EMC14XX thermal sensor family.
 
-The board supports:
-- UART serial console
-- MicroSD card interface
-- Gigabit Ethernet
-- QSPI NOR flash
-- GPIO-based user LEDs and push-button
+Schema file was separated from LM90 since according to Guenter Roeck[1]
+these sensors are incompatible with LM90. Proposed schema has basic
+hardware description. All registers Guenter Roeck mentioned may be added
+later on, when/if driver would need to work with them. As for now driver
+successfully works as is.
 
-Link: https://www.myirtech.com/list.asp?id=708
+[1] https://lore.kernel.org/lkml/a0c5c1e8-9a36-4835-a5d9-7bafda79c36f@roeck-us.net/
 
-Signed-off-by: Liu Yu <f78fk@live.com>
 ---
- arch/arm/boot/dts/xilinx/Makefile             |   1 +
- .../arm/boot/dts/xilinx/zynq-mys-7z020-v2.dts | 228 ++++++++++++++++++
- 2 files changed, 229 insertions(+)
- create mode 100644 arch/arm/boot/dts/xilinx/zynq-mys-7z020-v2.dts
+Changes in v2:
+- schema separated into a dedicated file
+- dropped chip id check
+- fixed match data casting
+- adjusted regulator name
+---
 
-diff --git a/arch/arm/boot/dts/xilinx/Makefile b/arch/arm/boot/dts/xilinx/Makefile
-index 9233e539b192..6c59116013f1 100644
---- a/arch/arm/boot/dts/xilinx/Makefile
-+++ b/arch/arm/boot/dts/xilinx/Makefile
-@@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_ZYNQ) += \
- 	zynq-cc108.dtb \
- 	zynq-ebaz4205.dtb \
- 	zynq-microzed.dtb \
-+	zynq-mys-7z020-v2.dtb \
- 	zynq-parallella.dtb \
- 	zynq-zc702.dtb \
- 	zynq-zc706.dtb \
-diff --git a/arch/arm/boot/dts/xilinx/zynq-mys-7z020-v2.dts b/arch/arm/boot/dts/xilinx/zynq-mys-7z020-v2.dts
-new file mode 100644
-index 000000000000..39bd864ca358
---- /dev/null
-+++ b/arch/arm/boot/dts/xilinx/zynq-mys-7z020-v2.dts
-@@ -0,0 +1,228 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2026 Liu Yu <f78fk@live.com>
-+ */
-+/dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include "zynq-7000.dtsi"
-+
-+/ {
-+	model = "MYIR MYS-7Z020-V2 Board";
-+	compatible = "myir,mys-7z020-v2", "xlnx,zynq-7000";
-+
-+	aliases {
-+		ethernet0 = &gem0;
-+		mmc0 = &sdhci0;
-+		serial0 = &uart1;
-+		spi0 = &qspi;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		autorepeat;
-+
-+		key-user {
-+			label = "USR";
-+			gpios = <&gpio0 50 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_PROG1>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		led-blue {
-+			label = "led_blue";
-+			gpios = <&gpio0 115 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-green {
-+			label = "led_green";
-+			gpios = <&gpio0 114 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-red {
-+			label = "led_red";
-+			gpios = <&gpio0 116 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		usr-led1 {
-+			label = "usr_led1";
-+			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		usr-led2 {
-+			label = "usr_led2";
-+			gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x40000000>;
-+	};
-+};
-+
-+&clkc {
-+	ps-clk-frequency = <33333333>;
-+};
-+
-+&gem0 {
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethernet_phy>;
-+
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethernet_phy: ethernet-phy@7 {
-+			reg = <0x7>;
-+		};
-+	};
-+};
-+
-+&gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio0_default>;
-+};
-+
-+&pinctrl0 {
-+	pinctrl_gpio0_default: gpio0-default {
-+		mux {
-+			function = "gpio0";
-+			groups = "gpio0_0_grp", "gpio0_9_grp", "gpio0_50_grp";
-+		};
-+		conf {
-+			groups = "gpio0_0_grp", "gpio0_9_grp", "gpio0_50_grp";
-+			slew-rate = <0>;
-+			io-standard = <1>;
-+		};
-+		conf-pull-up {
-+			pins = "MIO0", "MIO9", "MIO50";
-+			bias-pull-up;
-+		};
-+	};
-+
-+	pinctrl_sdhci0_default: sdhci0-default {
-+		mux {
-+			groups = "sdio0_2_grp";
-+			function = "sdio0";
-+		};
-+		conf {
-+			groups = "sdio0_2_grp";
-+			slew-rate = <0>;
-+			io-standard = <1>;
-+			bias-disable;
-+		};
-+		conf-cd {
-+			pins = "MIO46";
-+			bias-pull-up;
-+			slew-rate = <0>;
-+			io-standard = <1>;
-+		};
-+	};
-+
-+	pinctrl_uart1_default: uart1-default {
-+		mux {
-+			groups = "uart1_10_grp";
-+			function = "uart1";
-+		};
-+		conf {
-+			groups = "uart1_10_grp";
-+			slew-rate = <0>;
-+			io-standard = <1>;
-+		};
-+		conf-rx {
-+			pins = "MIO49";
-+			bias-high-impedance;
-+		};
-+		conf-tx {
-+			pins = "MIO48";
-+			bias-disable;
-+		};
-+	};
-+};
-+
-+&qspi {
-+	num-cs = <1>;
-+
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-tx-bus-width = <1>;
-+		spi-rx-bus-width = <4>;
-+		spi-max-frequency = <50000000>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "qspi-boot";
-+				reg = <0x0 0x80000>;
-+			};
-+
-+			partition@80000 {
-+				label = "qspi-bootenv";
-+				reg = <0x80000 0x20000>;
-+			};
-+
-+			partition@a0000 {
-+				label = "qspi-bitstream";
-+				reg = <0xa0000 0x460000>;
-+			};
-+
-+			partition@500000 {
-+				label = "qspi-kernel";
-+				reg = <0x500000 0x480000>;
-+			};
-+
-+			partition@980000 {
-+				label = "qspi-devicetree";
-+				reg = <0x980000 0x10000>;
-+			};
-+
-+			partition@990000 {
-+				label = "qspi-rootfs";
-+				reg = <0x990000 0x600000>;
-+			};
-+
-+			partition@f90000 {
-+				label = "data";
-+				reg = <0xf90000 0x70000>;
-+			};
-+		};
-+	};
-+};
-+
-+&sdhci0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sdhci0_default>;
-+	disable-wp;
-+
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1_default>;
-+
-+	status = "okay";
-+};
-+
+Jonas Schwöbel (1):
+  hwmon: (emc1403) Convert to use OF bindings
+
+Svyatoslav Ryhel (2):
+  dt-bindings: hwmon: Document SMSC EMC1402/1403/1404/1428
+  hwmon: (emc1403) Add regulator support
+
+ .../bindings/hwmon/smsc,emc1403.yaml          | 191 ++++++++++++++++++
+ drivers/hwmon/emc1403.c                       |  23 ++-
+ 2 files changed, 212 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/smsc,emc1403.yaml
+
 -- 
-2.43.0
+2.53.0
 
 
