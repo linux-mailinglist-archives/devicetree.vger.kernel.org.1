@@ -1,449 +1,184 @@
-Return-Path: <devicetree+bounces-313747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313750-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +W+HEU4fNWotnQYAu9opvQ
-	(envelope-from <devicetree+bounces-313747-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:51:58 +0200
+	id CMmXJRUhNWp2nQYAu9opvQ
+	(envelope-from <devicetree+bounces-313750-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:59:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B153B6A54EA
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7D0F6A557A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 12:59:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sifive.com header.s=google header.b=XBTpA4Z7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313747-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313747-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=sifive.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Xt1zPX4v;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313750-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313750-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 19F1A3027726
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 10:51:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CB4C430062E5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 10:59:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A15463783C7;
-	Fri, 19 Jun 2026 10:51:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1BF374E41;
+	Fri, 19 Jun 2026 10:59:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 023B9378D64
-	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 10:51:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CEE036EAA4
+	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 10:59:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781866285; cv=none; b=sMsOKnodEg5WXhgEgCbRxnAxYgnAJsnhTxgHG0Zss8SfcZ6B0W9/Bm4juZrPf0FNTFBSSdgutrHD7zeUO7HLfbo1K5IHi8aazYWSI22MkZ40m93Enwsu88ioODOhp++/0e3LzwstGa2py4V83IDjUQujwH6ke6RBWK5FaR/Bf2c=
+	t=1781866771; cv=none; b=eZBZCVIGnN/lnG2LdW0tCkMCuH7OG0uPC5bGJESkBUJAFl1lrsJSS4gtZwTIAokcRNWrRK2fqE6wnNlNXOwhVLxyqkPmW/5bWqRIHlYByjDZCYnuvaErG4sheUnWbupegXN8AhoXSWzmBCiTaKUEL1Ej3QLxBsehBlBHyx0afCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781866285; c=relaxed/simple;
-	bh=c3QBvR9etjfUYqIwhRhYKVh0Kjf5tlBELO2oNV54xdw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tm3Gewqg4raiHMA8Oh+yYN0retpWOLOXduCDo6SPS5cqdtPhxFQ73fuSv2fB7hspDASrGt+uKTR2jyuxk+3tOY3LAx/RTVD4RX8TKWgoz5nV6DP/wm5L++2tnYgRlBYMlOkUM8vgL8Yi2CGf14j2bSMqkK2btO50DDmeXXYmpQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=XBTpA4Z7; arc=none smtp.client-ip=209.85.210.182
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-842848fd613so1799412b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 03:51:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1781866282; x=1782471082; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iyCAlXy5U92yJRNxpudE8QDW5HtKMoI60RBC7r6sEOQ=;
-        b=XBTpA4Z7gW4PBnA7royWh082YVCr41zt7Cy+fkUJ45VvyX/T/MmAed1xNP2fVkXPuP
-         qoagpWhv2yArHkiOzZi0RtJ1qXwbCgr4kSbYiEdzyiEQpJqNEctZFyUvvDBmmxugVrmm
-         yaN/crbbD1PGHrgR5rW8ugrV2TwWbOxnx76Oampy+orYgTy1joGGIOX/Ov+JullAifYl
-         DEgeJId+JrEymdNl5znl0mMcsvP0cmtDW1hgRDl8IDKKs1NBEnsbwBWK/QJjIZ9MdPLi
-         g4YY1zEbipmDZiEvjDfdTba0DUTpTLkDuLbMiTsZOcy28eh6OrDx1EA2kbBShNWQa0lt
-         6nFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781866282; x=1782471082;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=iyCAlXy5U92yJRNxpudE8QDW5HtKMoI60RBC7r6sEOQ=;
-        b=Q7+JSyalufTyAJEBafcBKTCVYYbPYnnePiF4V5w3BAyCJzBeoqeR1Xn+9kq5M1zw6S
-         XL6SG5ed5xXAW/3rrLEHrdszk2vbOA9eYrzrbDACVEFzCSc3u8HT8hcGKAXQKJMt+/gj
-         GLJqs2MKWb7NKp+577ML0Q5noUOB+6Zq7ph8YIEORLglsZAZaLQQY7U//hhniyJNWMyl
-         TkqTMlbEICfY8QII1RvASSgIAJmY0+tmYCbadV9vjW8DE709TURJDpr6MPncdUw5mWvG
-         Vs+JFKRsIU5YceYJZlxVuKUsaKAraxU29zBqNzhLoGTfTkm63VlMnCSSDpI0Bp1vgo0t
-         jePw==
-X-Gm-Message-State: AOJu0YyoOcUo3aWlt/OxoxeYaJ87XXRBb5bfY5W/rGF0w5LiouypJug3
-	9cNrcudW5YNhRkfEaz6vIJDM2MrHm+0f2CpeqvTsSk01vp/XX6561Ga/EgZavh8yCVhPaOaSaoJ
-	SEh/dMXeQrgynx1UzrogqFuSYFEzp91f9++8yG15mNrjO2+Cu+4HzSLEZJm0ISbMcc95YI0y5uO
-	zc3c1obK4Xx9yn8niFtPagToazGDP64ybkX1rJcLjfFA9TxyvH6e/C
-X-Gm-Gg: AfdE7ckrKx7zfJ8ijwLJkS5SzkCjusOtigQ75xMW0cuLEkVOLvyoWGEAn9GWn5ZommP
-	bU+395tX81Acos34yDO1CySNKViD7HJSno2mis1ityIiu1BhMPpFxLCygbcvNSm8DXHAo/4dPpU
-	2c3Wa6VEXB/AXwG+V5P2MoECsz47p3VicZEdN25MGUbBqhz/Uq+oFQSPZRD43IdVSHhZmtc6rGA
-	Q5qGfbEboxjWNarKjhp9zX/XvTsDWMvnLCjpVrWl9uTXEkXNIvdIlCBPhwfOG7AAqBkpXasHG9F
-	vCuG6J/qEfBboRmf6yc4vZGqF80ZPvbfIdlt+a61XIhGFpxIoBwqAzFqNyGi+sJUkcKq/fvw6Xe
-	dAMIt+CK9UW7TE4VI6jDzovmwC7mvqL5Gkn8ylWR0fRL+vjq/u+gaKu2w/bGyQManwJorqgk8h8
-	xpRcuihQi8TSVbN9rpZ/cesLZCu3pikxX51D/j
-X-Received: by 2002:a05:6a21:468a:b0:3b9:5efb:cb2a with SMTP id adf61e73a8af0-3bb31adb348mr3976874637.3.1781866282139;
-        Fri, 19 Jun 2026 03:51:22 -0700 (PDT)
-Received: from hsinchu16.internal.sifive.com ([210.176.154.34])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c8a84c6eb1bsm1993583a12.2.2026.06.19.03.51.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jun 2026 03:51:21 -0700 (PDT)
-From: Yu-Chien Peter Lin <peter.lin@sifive.com>
-To: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	samuel.holland@sifive.com,
-	dlan@kernel.org,
-	guodong@riscstar.com,
-	dfustini@oss.tenstorrent.com,
-	michal.simek@amd.com,
-	junhui.liu@pigmoral.tech,
-	darshan.prajapati@einfochips.com,
-	akpm@linux-foundation.org,
-	zhangchunyan@iscas.ac.cn,
-	luxu.kernel@bytedance.com,
-	pincheng.plct@isrc.iscas.ac.cn,
-	nick.hu@sifive.com,
-	jim.shu@sifive.com,
-	zong.li@sifive.com,
-	greentime.hu@sifive.com,
-	robin.randhawa@sifive.com,
-	scott@riscstar.com,
-	dave.patel@riscstar.com,
-	raymond.mao@riscstar.com,
-	Yu-Chien Peter Lin <peter.lin@sifive.com>
-Subject: [RFC PATCH 3/3] dt-bindings: sifive: Add WorldGuard Checker
-Date: Fri, 19 Jun 2026 18:58:34 +0800
-Message-ID: <20260619105834.1277302-4-peter.lin@sifive.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20260619105834.1277302-1-peter.lin@sifive.com>
+	s=arc-20240116; t=1781866771; c=relaxed/simple;
+	bh=upEHbb0uAGC5oHKuMZNTc91v43HnSTMnQ1Q+jvgQh+k=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=MeR/Yas345drm4TcMAkJl8p/Syp0X6hrrZKPk9VQfAoASAD3b2d9mIu5djG2/DgxV2vNemVDrzljdehtz0APXL3hgkHT3SdCbnsNyoe23XQ7cThJayrN/GUhlBTCyeh8Ei+p6bCWGXdcAyk2ThluLHPaEfd1OXKOXmEq3XsHWE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xt1zPX4v; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B2711F000E9;
+	Fri, 19 Jun 2026 10:59:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781866769;
+	bh=dslPb430IX/pHl/4hcyIY4aKfD4eGLG9Ll+BSv8UsdM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Xt1zPX4vTSvhJt4ptOxEUXLV4Jv78dr0bysW0yrKqpmNDMkshVqjV6YGpeiuvuRA2
+	 JqRjetuA0Bl3zFrspvF14P/fMZ0j25MjVI3rKFD1yjo4WoaTOle5qfX83db3QjJ1Gc
+	 xVxZ80KI/sJQ3imzppAf82YhJM5pVE/esX0xK/AIQuTkiMr17GOOOMp/TuYFr3ZVcE
+	 Wzfv0RxiZ9wtoQm95MVnUlKvU7gFeqve++uvIcehfWRe1xg/O616aW/7ImHYBoMFyl
+	 v28gEi6CEQxwzXZ5bKJPrDLTYDLPpAOQe4YVb20i7aof5tcdbXk7d88QTXSTyVCVz5
+	 apslxHqqvCeew==
+From: sashiko-bot@kernel.org
+Subject: Re: [RFC PATCH 2/3] dt-bindings: riscv: Add Worlds per-hart
+ properties
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Yu-Chien Peter Lin" <peter.lin@sifive.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260619105834.1277302-3-peter.lin@sifive.com>
 References: <20260619105834.1277302-1-peter.lin@sifive.com>
+ <20260619105834.1277302-3-peter.lin@sifive.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 19 Jun 2026 10:59:29 +0000
+Message-Id: <20260619105929.6B2711F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
-	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[peter.lin@sifive.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	TAGGED_FROM(0.00)[bounces-313747-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:samuel.holland@sifive.com,m:dlan@kernel.org,m:guodong@riscstar.com,m:dfustini@oss.tenstorrent.com,m:michal.simek@amd.com,m:junhui.liu@pigmoral.tech,m:darshan.prajapati@einfochips.com,m:akpm@linux-foundation.org,m:zhangchunyan@iscas.ac.cn,m:luxu.kernel@bytedance.com,m:pincheng.plct@isrc.iscas.ac.cn,m:nick.hu@sifive.com,m:jim.shu@sifive.com,m:zong.li@sifive.com,m:greentime.hu@sifive.com,m:robin.randhawa@sifive.com,m:scott@riscstar.com,m:dave.patel@riscstar.com,m:raymond.mao@riscstar.com,m:peter.lin@sifive.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-313750-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:peter.lin@sifive.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peter.lin@sifive.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[sifive.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sifive.com:dkim,sifive.com:email,sifive.com:mid,sifive.com:from_mime,devicetree.org:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,sifive.com:email,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B153B6A54EA
+X-Rspamd-Queue-Id: E7D0F6A557A
 
-Add DT binding for SiFive wgChecker2, a hardware firewall enforcing
-WID-based access control in RISC-V Worlds. Provides checker slots to
-program per-WID permissions for downstream resources, with optional
-sub-range partitioning.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Incorrect and unnecessary schema reference: `cpus.yaml` (which v=
+alidates child `/cpus/cpu@*` nodes) improperly includes a `$ref` to `worlds=
+.yaml` (which validates the parent `/cpus` container node). This erroneousl=
+y bleeds parent constraints into the child schema.
+--
 
-Link: https://github.com/riscvarchive/security/blob/main/papers/worldguard%20proposal.pdf
-Signed-off-by: Yu-Chien Peter Lin <peter.lin@sifive.com>
-Reviewed-by: Zong Li <zong.li@sifive.com>
-Reviewed-by: Jim Shu <jim.shu@sifive.com>
----
- .../devicetree/bindings/riscv/worlds.yaml     |   9 +
- .../bindings/sifive/sifive,wgchecker2.yaml    | 237 ++++++++++++++++++
- 2 files changed, 246 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sifive/sifive,wgchecker2.yaml
+commit 2b4a193c4b5716c3f96b6ae87becc46dcf104835
+Author: Yu-Chien Peter Lin <peter.lin@sifive.com>
 
-diff --git a/Documentation/devicetree/bindings/riscv/worlds.yaml b/Documentation/devicetree/bindings/riscv/worlds.yaml
-index cc8b3747591e..c39a06c2dd8d 100644
---- a/Documentation/devicetree/bindings/riscv/worlds.yaml
-+++ b/Documentation/devicetree/bindings/riscv/worlds.yaml
-@@ -34,6 +34,14 @@ properties:
-     minimum: 2
-     maximum: 64
- 
-+  sifive,trustedwid:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 31
-+    description: |
-+      The World ID (WID) designated as the trusted WID for this platform.
-+      Transactions tagged with this WID are authorized to access and configure
-+      WorldGuard blocks, including wgCheckers and wgMarkers.
-+
- additionalProperties: true
- 
- examples:
-@@ -44,6 +52,7 @@ examples:
-         #size-cells = <0>;
-         timebase-frequency = <1000000>;
-         riscv,nworlds = <4>;
-+        sifive,trustedwid = <3>;
- 
-         cpu@0 {
-             device_type = "cpu";
-diff --git a/Documentation/devicetree/bindings/sifive/sifive,wgchecker2.yaml b/Documentation/devicetree/bindings/sifive/sifive,wgchecker2.yaml
-new file mode 100644
-index 000000000000..043c748385ed
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sifive/sifive,wgchecker2.yaml
-@@ -0,0 +1,237 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2026 SiFive, Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sifive/sifive,wgchecker2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SiFive WorldGuard Checker
-+
-+maintainers:
-+  - Yu-Chien Peter Lin <peter.lin@sifive.com>
-+
-+description: |
-+  The RISC-V Worlds ISA extension defines World IDs (WIDs) as architectural
-+  identifiers that tag each system transaction with its originating context.
-+  System integrators assign WIDs to execution contexts such as privilege modes,
-+  trusted execution environments, or other isolation boundaries.
-+
-+  The SiFive WorldGuard Checker is a hardware firewall positioned in the
-+  system interconnect fabric. It inspects every transaction, evaluating the
-+  WID against access control policies encoded in checker slots for each
-+  protected resource. Transactions from unauthorized WIDs are blocked and
-+  reported as bus errors, interrupts, or both.
-+
-+  This enables spatial partitioning of memory regions and memory-mapped devices
-+  across execution contexts. Different address ranges can enforce distinct
-+  policies, allowing isolated workloads to coexist with hardware-enforced
-+  protection.
-+
-+  The wgChecker acts as an access-controller provider as defined in the
-+  access-controllers framework. Protected devices are consumers that declare
-+  their access policy via the access-controllers property. The hardware
-+  supports up to 32 World IDs.
-+
-+  The World ID authorized to configure WorldGuard blocks is specified by the
-+  sifive,trustedwid property in the /cpus node.
-+
-+allOf:
-+  - $ref: /schemas/access-controllers/access-controllers.yaml#
-+
-+properties:
-+  compatible:
-+    const: sifive,wgchecker2
-+
-+  reg:
-+    maxItems: 1
-+    description:
-+      Base address and size of the wgChecker memory-mapped I/O registers.
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Interrupt line asserted when a WID access violation is detected and
-+      interrupt reporting is enabled in the slot configuration (IR or IW
-+      bits set).
-+
-+  '#access-controller-cells':
-+    const: 7
-+    description: |
-+      Specifier for one access-control rule, encoded as seven u32 cells:
-+        <addr-hi addr-lo size-hi size-lo perm-hi perm-lo config>
-+
-+      where:
-+        - addr-hi, addr-lo: 64-bit base address of the protected region.
-+        - size-hi, size-lo: 64-bit size of the protected region in bytes.
-+        - perm-hi: Permission bitmap for WIDs 16..31. Two bits per WID:
-+                     bit 2*(WID-16)   = Read  permission
-+                     bit 2*(WID-16)+1 = Write permission
-+                   Set bits grant access. Use 0x0 for systems with
-+                   riscv,nworlds <= 16.
-+        - perm-lo: Permission bitmap for WIDs 0..15. Two bits per WID:
-+                     bit 2*WID   = Read  permission
-+                     bit 2*WID+1 = Write permission
-+                   Set bits grant access.
-+        - config:  Slot configuration bits:
-+                     Bit 0 (ER): Report read  violations as bus errors
-+                     Bit 1 (EW): Report write violations as bus errors
-+                     Bit 2 (IR): Report read  violations via interrupt
-+                     Bit 3 (IW): Report write violations via interrupt
-+                     Bit 4 (L):  Lock bit - prevents further modification
-+                   Bits 5..31 are reserved and must be zero.
-+
-+      Multiple entries may be listed to apply different policies to
-+      different address ranges, including sub-ranges within a single
-+      physical resource.
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#access-controller-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    // Example 1: Single device protection
-+    // WID 0 and WID 3 have RW access to UART; errors and IRQs reported.
-+
-+    cpus {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        timebase-frequency = <1000000>;
-+        riscv,nworlds = <4>;
-+        sifive,trustedwid = <3>;
-+
-+        cpu@0 {
-+            device_type = "cpu";
-+            reg = <0>;
-+            compatible = "riscv";
-+            riscv,isa = "rv64imac";
-+        };
-+    };
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        uart: uart@1c1000 {
-+            compatible = "ns16550a";
-+            reg = <0x0 0x001c1000 0x0 0x1000>;
-+            reg-names = "control";
-+            interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
-+            // WID 0,3 RW; report errors+IRQs
-+            access-controllers = <&wgchecker0
-+                                  0x0 0x001c1000 0x0 0x00001000
-+                                  0x0 0x000000c3 0x0f>;
-+        };
-+
-+        wgchecker0: wgchecker@1c2000 {
-+            compatible = "sifive,wgchecker2";
-+            reg = <0x0 0x001c2000 0x0 0x1000>;
-+            #access-controller-cells = <7>;
-+            interrupts = <80 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-parent = <&aplic_m>;
-+        };
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    // Example 2: Multi-reg device with separate per-range rules
-+    // m_mode: WID 3 only; s_mode: WID 0,3 RW.
-+
-+    cpus {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        timebase-frequency = <1000000>;
-+        riscv,nworlds = <16>;
-+        sifive,trustedwid = <3>;
-+
-+        cpu@0 {
-+            device_type = "cpu";
-+            reg = <0>;
-+            compatible = "riscv";
-+            riscv,isa = "rv64imac";
-+        };
-+    };
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        device: device@10000 {
-+            compatible = "vendor,soc1-ip";
-+            reg = <0x0 0x00010000 0x0 0x8000>,
-+                  <0x0 0x00a00000 0x0 0x4000>;
-+            reg-names = "m_mode", "s_mode";
-+            // m_mode: WID 3 only; s_mode: WID 0,3 RW
-+            access-controllers = <&wgchecker1
-+                                  0x0 0x00010000 0x0 0x00008000
-+                                  0x0 0x000000c0 0x0f>,
-+                                 <&wgchecker1
-+                                  0x0 0x00a00000 0x0 0x00004000
-+                                  0x0 0x000000c3 0x0f>;
-+        };
-+
-+        wgchecker1: wgchecker@35000 {
-+            compatible = "sifive,wgchecker2";
-+            reg = <0x0 0x00035000 0x0 0x1000>;
-+            #access-controller-cells = <7>;
-+            interrupts = <81 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-parent = <&aplic_m>;
-+        };
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    // Example 3: DRAM partitioning with secure enclave
-+    // Sub-range 1 [0x80000000, 0xC0000000): WID 0,1,3 RW
-+    // Sub-range 2 [0xC0000000, 0xC1000000): WID 1,3 only (secure enclave)
-+    // Sub-range 3 [0xC1000000, 0x100000000): WID 0,1,3 RW
-+
-+    cpus {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        timebase-frequency = <1000000>;
-+        riscv,nworlds = <4>;
-+        sifive,trustedwid = <3>;
-+
-+        cpu@0 {
-+            device_type = "cpu";
-+            reg = <0>;
-+            compatible = "riscv";
-+            riscv,isa = "rv64imac";
-+        };
-+    };
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        ddr: memory@80000000 {
-+            device_type = "memory";
-+            reg = <0x0 0x80000000 0x0 0x80000000>;
-+            access-controllers =
-+                <&wgchecker2
-+                 0x0 0x80000000 0x0 0x40000000
-+                 0x0 0x000000cf 0x0f>,
-+                <&wgchecker2
-+                 0x0 0xc0000000 0x0 0x01000000
-+                 0x0 0x000000cc 0x0f>,
-+                <&wgchecker2
-+                 0x0 0xc1000000 0x0 0x3f000000
-+                 0x0 0x000000cf 0x0f>;
-+        };
-+
-+        wgchecker2: wgchecker@40000000 {
-+            compatible = "sifive,wgchecker2";
-+            reg = <0x0 0x40000000 0x0 0x1000>;
-+            #access-controller-cells = <7>;
-+            interrupts = <82 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-parent = <&aplic_m>;
-+        };
-+    };
--- 
-2.43.7
+dt-bindings: riscv: Add Worlds per-hart properties
 
+This commit adds per-hart device tree properties for the RISC-V Worlds
+architecture, such as riscv,pmwid and riscv,pmwidlist. These platform-defin=
+ed
+values are used by M-mode firmware to configure World ID CSRs and restrict
+usage across privilege levels.
+
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Document=
+ation/devicetree/bindings/riscv/cpus.yaml
+> index 5feeb2203050a..4b5778b6d3e70 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -26,6 +26,7 @@ description: |
+>  allOf:
+>    - $ref: /schemas/cpu.yaml#
+>    - $ref: extensions.yaml
+> +  - $ref: worlds.yaml
+
+[Severity: Medium]
+Does this reference unintentionally bleed the parent container properties i=
+nto
+the child hart nodes?
+
+The schema worlds.yaml is designed to validate the system-wide /cpus node
+via its select: pattern: "^cpus$", while cpus.yaml validates the individual
+/cpus/cpu@* nodes. By referencing worlds.yaml here, properties meant for
+the parent container leak into the child schema. Any future properties added
+to worlds.yaml would implicitly bypass unevaluatedProperties strict
+evaluation on the cpu@* nodes.
+
+>    - if:
+>        not:
+
+[ ... ]
+
+> @@ -120,11 +121,31 @@ properties:
+>        thead systems where the vector register length is not identical on=
+ all harts, or
+>        the vlenb CSR is not available.
+
+[ ... ]
+
+>    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
+>    timebase-frequency: false
+> +  # RISC-V requires 'riscv,nworlds' in /cpus, so disallow it here
+> +  riscv,nworlds: false
+
+[Severity: Medium]
+Is this explicit disallowance a workaround for pulling in the parent schema
+via the reference above?
+
+If the reference to worlds.yaml is removed from the allOf block, this manual
+workaround shouldn't be necessary. Removing the reference would also prevent
+future parent properties from silently sneaking into the child node schemas.
+
+> =20
+>    interrupt-controller:
+>      type: object
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260619105834.1277=
+302-1-peter.lin@sifive.com?part=3D2
 
