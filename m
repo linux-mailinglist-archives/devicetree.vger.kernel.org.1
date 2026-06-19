@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-313897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313898-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id C9TLFDNmNWrpvAYAu9opvQ
-	(envelope-from <devicetree+bounces-313897-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:54:27 +0200
+	id tP/0AyVnNWp6vQYAu9opvQ
+	(envelope-from <devicetree+bounces-313898-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:58:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB8F6A6DCC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:54:26 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BD976A6E2E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:58:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mdrXRznQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313897-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313897-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=l3XhApr1;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313898-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313898-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3EF27303FFC1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 15:51:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9CE3B307EEBA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 15:55:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837E43B7B84;
-	Fri, 19 Jun 2026 15:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 466283BED1F;
+	Fri, 19 Jun 2026 15:52:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF85B3B52F1;
-	Fri, 19 Jun 2026 15:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A683C5DBA;
+	Fri, 19 Jun 2026 15:52:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781884260; cv=none; b=AFJr//7fU6UZESpuaJQ0hVPpi1wzBse2iHgr715YzD1I3OICA3VbDgAIknIwitLtgbhh3d0I02GgqSd8OsofJnjQ8e4VH7gWt8jFfzyVRp1qOpgogocfW5lZLazwHxhcV4UODiBzk7JnrugbnofeKcKBa42+8TL/73UibWBP0F4=
+	t=1781884357; cv=none; b=tVS/QC0ciUmYMVb9O96xOes7br6gLHlvcnKmkypzow7ZZj5j0JSErrhBt0o/S8mpR8uYifU49QelXYtqTecfcA66zKlPJiGBWUyGzuT2BkXYS0E4y60KA/K3l2kMGTHRZbULnYrV7ZlbCp0gyFtaoREoyC3+lq9/TpdIHrICjbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781884260; c=relaxed/simple;
-	bh=TSeu3rE5n8w/czIW09y1C5wFGxSRYEn91h2EK4+x32E=;
+	s=arc-20240116; t=1781884357; c=relaxed/simple;
+	bh=3JiLl2mZrBW5NPQLXyot3s3hPUe2+Gw7u8g2zluv+ck=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Azz/x9+auVrvRg14c7iw+KjBOmGG6/q70lPr6IMMh3pK5lO2riolEjj/EB7b2lJ9dFfd8Tr+bdSFDGrV3vuJzTA/aLpdPht8v6jKXOjQJ83kEqrsBx7sqFT20Y8Osu+MUZib9Fu305HtIiMecMehub7H4VmxwSokpefZBxxDZbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mdrXRznQ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06AA31F000E9;
-	Fri, 19 Jun 2026 15:50:56 +0000 (UTC)
+	 Message-Id; b=e8FlpInn7E8CQRLGASzCD9XshW4fVBY6aDUMhACe1Xig5IkQ0EuQ1cpffbU0n45lWRdVB/pR3UJlBFvzGVfCdq/A+zSCtuoHWNinQzI6xKluXZ2zIO/0eQGMUI11AQTg4MzhJx7ffzW3LD4TjgrLq5cbSrfnOgDgmt8Yd9LN7Hc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l3XhApr1; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8AA01F000E9;
+	Fri, 19 Jun 2026 15:52:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781884257;
-	bh=ZhkMgvcOtDmOyhLbS8PdntIwJ3/SiixsrVqkgLuiaOU=;
+	s=k20260515; t=1781884350;
+	bh=oUsohkrRBMvfwv0K1GYcl1PFGWrY5mgcXHanVHewsQs=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=mdrXRznQvVFCY2axSnVp74H4X6Sv7l8q5+qJMRADf0PZnEMMCZveaMO6GkeOj3ZiO
-	 N1ClsEA9KVEaieDF2l2m2DwnTxjpQPQXOf9FG6rjZF+lEmDUNFErTK37JXWOszM2w6
-	 Mg55TVuYcjy5k7kc0OvHIS2edzRzWURoYatykHKaviDdBzuwXHqz66Hn4LcH07ncS+
-	 MRa20WB1if8W++i2IWc5OSNbHcd1sz/nOMLi/B1KZnkR9+haHt96JSDtT/85oHglie
-	 iGjqr1secXfjLTIb4Ha2hKLcAhWwoXbXbmMrP628KF20zCQsTwfvWO2OY1zslmBZqb
-	 HVPT/JbAhi66Q==
+	b=l3XhApr1aSqQCYkWLQMVSzZa1ugBfC3e7KGJATbRxTJJQqX1WLJYrZ92fEu19PtBt
+	 ToBdLd5uHwXi5GKuGzmPXh/mWgpcOXWe2508bcqRrTKIHKHIehBAkIEXgddSTfo2Hx
+	 QPae8iKhPdZ2W+0gwV+6Bpjen/rHlcigrTkY2mgTlbcfdCG27GbZvaPX9BL+08yzts
+	 a5gZZY+hD1Ce26vnJMmj7Vtxdsfn0dBza+6XiPWMeN3V+EFXIPkcdqzfh4ji0aKjWm
+	 17lS+0thlrjNgtgrY4r1HKXi4E48P8KVy2jOFnwvKkRvJ/7CUpMGp8ACHW+9bp7JLG
+	 16pAhjhGjo56g==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 07/11] ARM: dts: lpc: Remove NOMMU platform support
+Subject: Re: [PATCH 01/11] ARM: dts: vf610m4: Remove NOMMU platform support
 Reply-To: sashiko-reviews@lists.linux.dev
 To: Frank.Li@oss.nxp.com
-Cc: Frank.Li@kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev
-In-Reply-To: <20260619-dts_cleanup_arm_mcore-v1-7-0101795a2662@nxp.com>
+Cc: conor+dt@kernel.org, imx@lists.linux.dev, Frank.Li@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260619-dts_cleanup_arm_mcore-v1-1-0101795a2662@nxp.com>
 References: <20260619-dts_cleanup_arm_mcore-v1-0-0101795a2662@nxp.com>
- <20260619-dts_cleanup_arm_mcore-v1-7-0101795a2662@nxp.com>
+ <20260619-dts_cleanup_arm_mcore-v1-1-0101795a2662@nxp.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 19 Jun 2026 15:50:56 +0000
-Message-Id: <20260619155057.06AA31F000E9@smtp.kernel.org>
+Date: Fri, 19 Jun 2026 15:52:29 +0000
+Message-Id: <20260619155229.B8AA01F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,15 +71,15 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313897-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313898-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,i.mx:url,lists.linux.dev:replyto];
-	FORGED_RECIPIENTS(0.00)[m:Frank.Li@oss.nxp.com,m:Frank.Li@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:email];
+	FORGED_RECIPIENTS(0.00)[m:Frank.Li@oss.nxp.com,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:Frank.Li@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -100,97 +100,42 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCPT_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9EB8F6A6DCC
+X-Rspamd-Queue-Id: 6BD976A6E2E
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Unintended removal of the MMU-capable LPC32xx platform under the f=
-alse premise of removing NOMMU support, along with an inaccurate commit mes=
-sage.
+- [Medium] Incomplete removal of VF610 Cortex-M4 NOMMU platform support lea=
+ves orphaned code and configuration.
 --
 
-commit d19b47e78b74813c8413198ab7ec32784181d8d8
+commit 47df1414ffdd1b53077023f0d62226535c747e2a
 Author: Frank Li <Frank.Li@nxp.com>
-Subject: ARM: dts: lpc: Remove NOMMU platform support
 
-This commit removes the arch/arm/boot/dts/nxp/lpc directory, stating the
-intention is to remove unused NOMMU platform support. It drops the build
-targets for LPC platforms to simplify the codebase.
+ARM: dts: vf610m4: Remove NOMMU platform support
 
->     ARM: dts: lpc: Remove NOMMU platform support
->    =20
->     Commercial users and hardware vendors migrated to Zephyr or other RTOS
->     solutions years ago, leaving the NOMMU platform support effectively
->     unused and unmaintained.
->    =20
->     Remove the obsolete support to reduce maintenance burden and simplify=
- the
->     i.MX platform code.
+This commit removes the device tree files for the obsolete Vybrid M4 NOMMU
+platform to reduce maintenance burden.
 
-[Severity: High]
-Does this commit unintentionally remove the MMU-capable LPC32xx platform?
-While the LPC18xx and LPC43xx series are Cortex-M NOMMU parts, the LPC32xx
-series uses an ARM926EJ-S processor, which features a full MMU and runs a
-standard Linux kernel.
+> Remove the obsolete support to reduce maintenance burden and simplify the
+> code.
 
-This mistake appears to cascade through the rest of the patch series, where
-mach-lpc32xx is also deleted under the same 'NOMMU' premise.
+[Severity: Medium]
+Since the goal is to fully remove the VF610 Cortex-M4 NOMMU platform
+support, does this patch leave behind orphaned configurations and code?
 
-Also, this isn't a bug, but there appears to be a copy-paste error in the
-commit message where it mentions simplifying the "i.MX platform code" inste=
-ad
-of LPC.
+There appear to be several remaining references that might need cleaning up
+to completely simplify the codebase:
 
-> diff --git a/arch/arm/boot/dts/nxp/lpc/Makefile b/arch/arm/boot/dts/nxp/l=
-pc/Makefile
-> deleted file mode 100644
-> index 56b9a0ebb9179..0000000000000
-> --- a/arch/arm/boot/dts/nxp/lpc/Makefile
-> +++ /dev/null
-> @@ -1,9 +0,0 @@
-> -# SPDX-License-Identifier: GPL-2.0
-> -dtb-$(CONFIG_ARCH_LPC18XX) +=3D \
-> -	lpc4337-ciaa.dtb \
-> -	lpc4350-hitex-eval.dtb \
-> -	lpc4357-ea4357-devkit.dtb \
-> -	lpc4357-myd-lpc4357.dtb
-> -dtb-$(CONFIG_ARCH_LPC32XX) +=3D \
-> -	lpc3250-ea3250.dtb \
-> -	lpc3250-phy3250.dtb
-
-[Severity: High]
-Does the removal of these targets improperly disable the LPC32XX platform,
-which relies on an MMU-capable core?
-
-> diff --git a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi b/arch/arm/boot/dts/n=
-xp/lpc/lpc32xx.dtsi
-> deleted file mode 100644
-> index e94df78def18a..0000000000000
-> --- a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-> +++ /dev/null
-> @@ -1,540 +0,0 @@
-[ ... ]
-> -	cpus {
-> -		#address-cells =3D <1>;
-> -		#size-cells =3D <0>;
-> -
-> -		cpu@0 {
-> -			compatible =3D "arm,arm926ej-s";
-> -			device_type =3D "cpu";
-> -			reg =3D <0x0>;
-> -		};
-> -	};
-
-[Severity: High]
-Since this node defines cpu@0 as an ARM926EJ-S, a core that features a full
-MMU, does this contradict the commit's justification for removing this
-platform as 'NOMMU'?
+- The dedicated arch/arm/configs/vf610m4_defconfig file
+- The fsl,vf610m4 compatible string in the vf610_dt_compat array in
+  arch/arm/mach-imx/mach-vf610.c
+- The fsl,vf610m4 binding in Documentation/devicetree/bindings/arm/fsl.yaml
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260619-dts_cleanu=
-p_arm_mcore-v1-0-0101795a2662@nxp.com?part=3D7
+p_arm_mcore-v1-0-0101795a2662@nxp.com?part=3D1
 
