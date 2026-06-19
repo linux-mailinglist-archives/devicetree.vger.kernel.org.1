@@ -1,194 +1,161 @@
-Return-Path: <devicetree+bounces-313922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314537-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wQFPLCZzNWrHwgYAu9opvQ
-	(envelope-from <devicetree+bounces-313922-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 18:49:42 +0200
+	id wsMkNiqCOWpkugcAu9opvQ
+	(envelope-from <devicetree+bounces-314537-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 20:42:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B896A7230
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 18:49:42 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D71DE6B1D4F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 20:42:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=aDg0EokY;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313922-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313922-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Qb9k+WsE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314537-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314537-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BAF443055EB0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 16:46:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F2A30300F273
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 18:42:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D54A93C1083;
-	Fri, 19 Jun 2026 16:46:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE3543469FA;
+	Mon, 22 Jun 2026 18:42:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E293B14C9
-	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 16:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80463446A7;
+	Mon, 22 Jun 2026 18:42:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781887595; cv=none; b=pf46E7Cw5dDF2MhP7+G2j2dHLs17xk0RPk8qvmTj+Hxw9VZH+SQyIEABwf0aKpQYf06rowk1WN7aJqc4J0VRKZyDWOTwkjb+pDuYB/e+WDY3HxIUI/+ukhrN3dUY52Ucsjsd86HQQ5yvq/LIuOUwXvd8/aqmh9TXlSyHPziEb/0=
+	t=1782153764; cv=none; b=cnQ9HhND5KtJW9Czmvrhhu0NgVA7XhrscHBUDZYlCRUttLvqp5XRNi8w3L1lBjy21JOmD+fvhzQEj8h43gWLnEmJkuqhUMCCRlA8pe+gokUjaUBc/gdqfeWvmIWoF/9JIaNf/JE/9R7aFaBGHqIGUWCZPIyGjrGnlfuAmeu65eE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781887595; c=relaxed/simple;
-	bh=ydErqryufbSp4JR5LfordVoaP44V76N2SqyLsji1CLY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=imhz+mJsFAws4KEI6s2vRAT0vrIl22FPTakRv2pS5JtNWWtJHVb9f5Iy0QgWS04F3ZZyidPuUor7dL/GpmKst8jr5FZfhFv4hmmyH7glHgA8DzuYXTkV7/3+NsvJF0v4xvZ9ARIcvYSZxzZVQj/0kSKAQDOfi5QMKEfsWifXAJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aDg0EokY; arc=none smtp.client-ip=209.85.222.41
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-9670c23ca7fso72006241.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 09:46:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781887592; x=1782492392; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tUJL1hpjWL5/WFjB+cS49WeZgfqaRuQjbx9N+bg8FNM=;
-        b=aDg0EokYqtu21dPMMjelf4iuWhGvULAOSHQfjBqW2C1b/XPTqxWfkFgkF8ZpFsgySa
-         zHXwBG0y8P+Z8rkQRwHe2D5xN7luHgPiXlJFqnvNrEM7bJVCOVBFeeg/I9dGRoiLiSY4
-         1SWUSMYORFQ74/8sN6+veX5wMsNPLYZPgLy4VcXO18B1kP6RsJ6btGrTZlv0yXo1BYTs
-         6X7t9aI5AVNl7LwRDuKMCA0k5MVcPfOhB/ABmMBHttACDCehwMgeBzQ8bk1w2TAnjkqd
-         BE7KCYgOLu89h1aSN1o3zL0y2Agqf1bUEgC2Cpo2AC78yrCbuRET6cNtBhWqnvULv6G4
-         IY5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781887592; x=1782492392;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tUJL1hpjWL5/WFjB+cS49WeZgfqaRuQjbx9N+bg8FNM=;
-        b=FVimD08mr4oMZKUwevni/0KHIXGvTEMojEvHKGDyU59GEFyUfSCe2dLmFdf47cHMuO
-         Q5cnbLs3009deSxZu8G3yxnjiLHpsIUd1HA7kthYVYfbymksYJWebKOOUMup0nyWZ6+O
-         StZayGkFkbwrdXPFBR8/gkUAWF86peK5nCOPg5zvxwu5oESYKRzs01gAVGozZOdS4D2C
-         KhP5t/4kOPrKixcGwxmveGCZ2XLDNLsbNgplnFK1QwfrKL2N2bUqXFFLxv0rI0y/ydtC
-         VJtGrBGdFzGFIFCMtXYC8x0CtJck3PijLFtluY2kyWNZzesrOkIX0uIg4ezc0CYFyVF1
-         xtNA==
-X-Forwarded-Encrypted: i=1; AFNElJ8Rn68BHsH5lnvPmlu8dcQkAELaRs++ItHkZZha4Hrskb1GVQvaCLXEHg0CGzpA9JOVJ2hcRp+Hg3xD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzsr0zz1W8pMpnon7nBVOel8QxVNiEeyHJ/x2fzgefvth8N7zv3
-	Gwn1v3O8tAgw3oNrVuBnS/MHBR+o3rlSI6D1BlQBIVoQC+/k4lX+VyLgdFej4A==
-X-Gm-Gg: AfdE7ck8UJnybBApCrU+CaQZYpiJVm4PUFuJlNsm7yWyYd0huYmbOHbr2b1MyH7qbMe
-	m/KQVtzUGlriJXSPJ113+sbPfGwAplKA83HZQtF0ADN7XSGPbNjTh4EH9t/IA/9CTLBzT2gX6xO
-	782xgUgJ1zpRFDZ8N4pv+iVunTpU+OgUwMAunuCG4OnnbfNBET7gSKjrQej8M9sFhTLscXlLXPD
-	AmkHrnt8xTi7vzoC3mIEPmOIwS0l31d7h3OKyEWKaT2xCJN4kSHw8MWDj5RIzVj5gPPZPqW2Paa
-	Ze+6F1jFS9nQolTsTUlc3Zpjr0UCFjVGxr4NQGZNX8RqP8f4vXfA7ZhTJD8efx4Yb6mcoO0vDYq
-	FVo3kNhLf6YPO3+6AQ3TKMOgrb3TVAeDnQcwB1cixYcQXo7LU96sX/svrgvFAw9qL/jAZAaHfl+
-	cI2EU=
-X-Received: by 2002:a05:6102:f9c:b0:639:1e8b:ecd9 with SMTP id ada2fe7eead31-72a03d9e389mr3148036137.20.1781887592125;
-        Fri, 19 Jun 2026 09:46:32 -0700 (PDT)
-Received: from localhost ([2800:bf0:82:11a2:7ac4:1f2:947b:2b6])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-72a342eeca3sm2081276137.3.2026.06.19.09.46.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Jun 2026 09:46:31 -0700 (PDT)
+	s=arc-20240116; t=1782153764; c=relaxed/simple;
+	bh=FrBpkOQL/dgRLybZov+R31Nro41bEC/qUWRU27+F9Aw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=R1H0+44IRiAo+Oer6dYfbfVr8M4Q1R8DfbVigoSrB05SOLr8YeBRm7/XeObDJAgkMYxDh9b6zxL9NrxmmPgMsMpoIrKs5d6DHDIu4gSXhdJT7YglKe2Qz05tzMKzCIW7tmoH8KA3tdYKFfvwIY6Pukh2DWFnvGwDLwa5TBNQ+TM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qb9k+WsE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FAD71F00A3A;
+	Mon, 22 Jun 2026 18:42:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782153763;
+	bh=YOGq7lEHrxGToRoPGSKPTagvDCXwpC5glbVNxk4CpXo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=Qb9k+WsECnuEVeCQEJ9Iwr0KKNZ6AmZkaNAEiFJHj49gLOKc9el0S3rBh0fWRucuI
+	 0G+UypVPsRl4U17TuA/z0hssBarpeazAahdO6wMpNPpoBjKhgKlz42MZn76i28AvTr
+	 I82NP/1l70b58TFWFvEQg+EiPxj6tZRokwbB/YXmVx4/w9eRPHHI/qlzQyNq1Qrr3a
+	 RfM9YnCvP3B3xWiHj+uQnA/2rktp0rf9VbUXcPPuXyviLcspcE4ST0NDbS5RKWpvJm
+	 thxkw5RrF88ha3rb4dyue8msT1em7IEwqYBpeRAugdGaqdI3woRHwJVraBgXZfj2D1
+	 fs253rkaP7Wog==
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc: linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20260619143443.22267-1-changhuang.liang@starfivetech.com>
+References: <20260619143443.22267-1-changhuang.liang@starfivetech.com>
+Subject: Re: [PATCH v2 0/2] Add support for StarFive JHB100 SPI
+Message-Id: <178188866474.108520.10248256723285421476.b4-ty@b4>
+Date: Fri, 19 Jun 2026 18:04:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 19 Jun 2026 11:46:24 -0500
-Message-Id: <DJD6FJQUX2V7.SZWF8VSKBCPX@gmail.com>
-Cc: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy Shevchenko"
- <andy@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH RFC 3/3] dt-bindings: iio: adc: Add burn-out current
- properties
-From: "Kurt Borja" <kuurtb@gmail.com>
-To: "David Lechner" <dlechner@baylibre.com>, "Kurt Borja"
- <kuurtb@gmail.com>, "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260618-new-channel-props-v1-0-963c1b5cf40a@gmail.com>
- <20260618-new-channel-props-v1-3-963c1b5cf40a@gmail.com>
- <0831356f-76ff-4eed-befa-7a35ffce921d@baylibre.com>
-In-Reply-To: <0831356f-76ff-4eed-befa-7a35ffce921d@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1538; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=FrBpkOQL/dgRLybZov+R31Nro41bEC/qUWRU27+F9Aw=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqOYIhxCgYtd5Wg0CnQZJp9+hvGK4leqReS21Bo
+ b4eofrEJMSJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCajmCIQAKCRAk1otyXVSH
+ 0HDOB/0R6YPuKQI7aUkT6JdH6M1GJ+3vkQwg1s5IsZtZwIAH8h0XpVmoNeqwnJ9hkVYSNg2w5Hf
+ 4AtK0VBzjmXK4U+aYNK7xFwlrZJMFR2+Z3u8VggIIQO0Ba2SUbC9AsNYdTG4zn9CbgIGfzB7E1c
+ sfWXA5Zj7ZMCG3xRokvquTjCxQdG2Snd+w4jQplXHblXa61FbS/pMWhk4+OQnxnCPy30tE743NX
+ G5XnOtD2mDiVaXbm8q1LYU+NHNEi5t+RmeYzxzPq4uV/DRC3UGyn9MOn0SXNDTFbSB2jat00KNp
+ jiZHZZmvsBC7fbewWgsa5P7/SycGe+o7Yqeu3ARq4zj3y6Lq
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DATE_IN_PAST(1.00)[73];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313922-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[kuurtb@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-314537-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:changhuang.liang@starfivetech.com,m:linux-spi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dlechner@baylibre.com,m:kuurtb@gmail.com,m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[baylibre.com,gmail.com,kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuurtb@gmail.com,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 13B896A7230
+X-Rspamd-Queue-Id: D71DE6B1D4F
 
-On Fri Jun 19, 2026 at 9:28 AM -05, David Lechner wrote:
-> On 6/18/26 7:33 PM, Kurt Borja wrote:
->> Some ADCs incorporate burn-out current sources that provide current to
->> the channel's input pins for open-circuit or short-circuit detection.
->>=20
->> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
->> ---
->>  Documentation/devicetree/bindings/iio/adc/adc.yaml | 14 ++++++++++++++
->>  1 file changed, 14 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/iio/adc/adc.yaml b/Docume=
-ntation/devicetree/bindings/iio/adc/adc.yaml
->> index 106b1e317411d5..6b63aac9ac04dd 100644
->> --- a/Documentation/devicetree/bindings/iio/adc/adc.yaml
->> +++ b/Documentation/devicetree/bindings/iio/adc/adc.yaml
->> @@ -106,6 +106,20 @@ properties:
->>        This array describes the current configuration of the excitation =
-current
->>        sources or the single matched current for all sources.
->> =20
->> +  burn-out-current-microamp:
->> +    description:
->> +      Burn-out current sources provide current to the channel's input p=
-ins for
->> +      open-circuit or short-circuit detection.
->> +
->> +  burn-out-current-polarity:
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    description:
->> +      Burn-out current sources provide current to the channel's input p=
-ins for
->> +      open-circuit or short-circuit detection.
->> +    enum:
->> +      - pull-up
->> +      - pull-down
->> +
->>  anyOf:
->>    - oneOf:
->>        - required:
->>=20
->
-> This doesn't really work with chips that just have and enable bit to
-> enable or disable the feature.
+On Fri, 19 Jun 2026 07:34:41 -0700, Changhuang Liang wrote:
+> Add support for StarFive JHB100 SPI
+> 
+> The StarFive JHB100 SPI is based on the Synopsys DesignWare SSI version 2.00.
+> 
+> changes since v1:
+> PATCH 1:
+> - Add "starfive,jhb100-spi" and support falling back to
+>   "snps,dwc-ssi-2.00a" or "snps,dwc-ssi-1.01a".
+> - using subject lines reflecting the style for the
+>   spi subsystem.
+> 
+> [...]
 
-Maybe those devices can use burn-out-current-microamp with a const
-value? Is that okay or should another approach be taken?
+Applied to
 
---=20
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.2
+
+Thanks!
+
+[1/2] spi: dt-bindings: snps,dw-apb-ssi: Add starfive,jhb100-spi
+      https://git.kernel.org/broonie/spi/c/07f251e0ed0b
+[2/2] spi: dw: Add support for snps,dwc-ssi-2.00a
+      https://git.kernel.org/broonie/spi/c/914e708e3049
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
 Thanks,
- ~ Kurt
+Mark
+
 
