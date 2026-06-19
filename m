@@ -1,166 +1,179 @@
-Return-Path: <devicetree+bounces-313847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313849-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HGAWKjtgNWrHuQYAu9opvQ
-	(envelope-from <devicetree+bounces-313847-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:28:59 +0200
+	id kmyIC0FgNWrLuQYAu9opvQ
+	(envelope-from <devicetree+bounces-313849-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:29:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 046BA6A6AD4
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:28:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CE0E6A6AD9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 17:29:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=n91EoPl1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313847-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313847-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=collabora.com header.s=mail header.b="ISJkw/2i";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313849-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313849-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 86A573021E84
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 15:28:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EE0833023346
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jun 2026 15:29:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D153ABD9D;
-	Fri, 19 Jun 2026 15:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D3B33B27EE;
+	Fri, 19 Jun 2026 15:29:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CD8396579
-	for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 15:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2053B14CD;
+	Fri, 19 Jun 2026 15:28:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781882937; cv=none; b=nJPoTVimz69ZbDiDuclwVuqjjyRxfmiEkplO91p0p0HuEBOHkYm15/o0iPWmtNqYvfdxYb9h8vKeBzat0/CclbB3AUXu8xA3oArVn8pT282ZSDqvDPiLVBdYs+6Yg8TZVl3NChsc8zH3GO6a7kHbwHo+kGkjlJnBJKBj+4TJV58=
+	t=1781882940; cv=none; b=MccWIm6QIYC6rakWg9RryZoG63pf6R8rVsHXFDaf7ab95uzPi6wuKw/HnJP/72jlG72cKQ2E9utgKwmYWWm/wrmXviaplarfJwmtz7v3iAq3vs2FQVdi/Za1ZMve4Fp1QA0LlAW2llO7uznES7FJttaF3ZnNfFA+aQw6Fl9P/qw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781882937; c=relaxed/simple;
-	bh=GKw68cnmyDXYtkcglFObx6T2nfKn6oeKuFMIYWcNHJ0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=IEFD7uBEhrGSsgB1LVsC6rZqgQGSC7bOguyaDs3SMq6NSidoJ7UJbmHTRxS5gPSWiXoSdVnvsGaW/liRCKyUiOK7WmqzwHPBJ52eNikncMiGDvogEvQQcFA0/xK2qWbiBcr/SE9h6+jekv4Npt5+wSkNrZo5ILeD96i35tBliiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n91EoPl1; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5B721F000E9;
-	Fri, 19 Jun 2026 15:28:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781882935;
-	bh=FmgIDUtYYmvZir76ggvDWCMY7v4oAhr9ErlwbyAUwaE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=n91EoPl1aWR23ieTI/uGO3UP1U9JaKed2nrVjmb6QiEMiACKBzK07u5k8j6/j+jwz
-	 b8m/EXBYYtdXuKU9heTUfCsoFpr3hbsN4apHIDTCfCGX6caISGkaBnkyVz0MVyHj+N
-	 thMCeWGDpcTw8UiQQOzyl3Q5wmyUcYQpzmLs1hsbiNVTwDPSI8LwvhNPwuNPHY266s
-	 WVT1gwXGjI2+f4Gcgby/16vMyanRHvgrlm9Use4blADoCP1/oTXztAjkWS8xUbwPeV
-	 F5359ERGugjsG6OqFbgocHRyIMIp+Rh3vrXHc4mOocCUGx0pvO6nxwQNfQLnhPtff+
-	 vlclucfF1Pvvg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 1/2] spi: dt-bindings: snps,dw-apb-ssi: Add
- starfive,jhb100-spi
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Changhuang Liang" <changhuang.liang@starfivetech.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260619143443.22267-2-changhuang.liang@starfivetech.com>
-References: <20260619143443.22267-1-changhuang.liang@starfivetech.com>
- <20260619143443.22267-2-changhuang.liang@starfivetech.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 19 Jun 2026 15:28:55 +0000
-Message-Id: <20260619152855.A5B721F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781882940; c=relaxed/simple;
+	bh=1p3WFYm3nPwFyjx+ldeJOnj6dqBA+X1XeNTC11p7Zk4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=KqhOOzwzMKQzPjA8GvUiWBBfXRxB1HY1c/va6F8kbmnJ0DV8zYyp45xKFWS2yuMF6M7//en6pK4Yjxs/k6ehUkn8h9NfOw2pu4TJnQDNSDqQBDRh76DYdoXTtDlMdfHZBkydsNovR0uDr8QCsEejB9RxuwPm/vmtmA6YAxA2TNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ISJkw/2i; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1781882938;
+	bh=1p3WFYm3nPwFyjx+ldeJOnj6dqBA+X1XeNTC11p7Zk4=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=ISJkw/2i8/V22cz30IYLktemiVh/lIdt+07YNmPsRT1XFtHRiQziFxfZtyIBOrZ85
+	 mNRtrYgRGBEr1nIdFWUCuaNHDn4ShW88fjWGwW69d2SMaXE7a6npUGt5gy2hBljmKH
+	 36JVAPipcb6LfzyeKNmWtUTYlEUKS+VpkvBKOI+gq1iuJVrXpUpvxEN3XtJLsgno37
+	 YPVYd6cKM/fn6MTnOFECUk49m6UaF5kaIsfq0zQ++/uTiTuaeMRuleMVZeRCcX4FNo
+	 /DfxpVlIbiENLQ6cNddJAX2k8CBDSuMn1pH98P2qx4YT8dFvYxgvxRKsLDO7nWAIqg
+	 K7tcz0EB5KuIA==
+Received: from jupiter.universe (unknown [100.64.1.62])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D5EA417E0EA6;
+	Fri, 19 Jun 2026 17:28:57 +0200 (CEST)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id 8C56348002F; Fri, 19 Jun 2026 17:28:57 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Date: Fri, 19 Jun 2026 17:28:55 +0200
+Subject: [PATCH v6 04/23] phy: rockchip: usbdp: Fix devm_clk_bulk_get_all
+ check
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260619-rockchip-usbdp-cleanup-v6-4-3bb1f54b3f35@collabora.com>
+References: <20260619-rockchip-usbdp-cleanup-v6-0-3bb1f54b3f35@collabora.com>
+In-Reply-To: <20260619-rockchip-usbdp-cleanup-v6-0-3bb1f54b3f35@collabora.com>
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Frank Wang <frank.wang@rock-chips.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Yubing Zhang <yubing.zhang@rock-chips.com>, 
+ Alexey Charkov <alchark@gmail.com>, linux-phy@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, kernel@collabora.com, 
+ devicetree@vger.kernel.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Sashiko <sashiko-bot@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1653;
+ i=sebastian.reichel@collabora.com; h=from:subject:message-id;
+ bh=1p3WFYm3nPwFyjx+ldeJOnj6dqBA+X1XeNTC11p7Zk4=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGo1YDiSkvukIugyLwMSi+X/R9INJ8nFQOwFk
+ 0HPu0jP7EkMiokCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqNWA4AAoJENju1/PI
+ O/qaj3YQAJYQgd4cE0FIT0/9dAfmhFulFhODHLdkQD6bSoLFvyCkuLq7jfiHU+V1W9+7OI0bvTt
+ FCstjRgSakEyEQArlF3hJVHOGlx2puK1wkS5D1YLDRFWRIdYXtfe7b/ucu/yXU2ngG27id4ruQW
+ FxITqsxsqZgmgtIZ3pwJYirjJVwecxKc7ODQlk2rEqcqw584gzu+raCUJ+JZFqr6YeyDeufyk+3
+ g0Qhzc0CQ121ZO13Obwr0IUSlOZRLQDCSKZ5/tV2+QZEGDLEOtBZm9y9ZCXnFS2KcevMmf9B1C2
+ yF2DPQW98lyxwWVPTkUDvpJ/pHy62GdVfGbMMtl/qimxilca6vDI87xqduVuqzGodoqoqvLUS+H
+ 1cT8b4P1aqnoCsa0hjj4jk8nSjB+51gk8vA1Wybv2EQeOuBFJdC1SficO+tr5G75pf7MbX7Udlq
+ sk+s71T/s74z1GCrtWshBgAZC+lHXYfpscyLsZ1FqHO7aH2SlWJEi3mz9inurlVOu79CXzFn4zn
+ DY8Ryg7Ym9iet/7cdSbkyi2xgC27yu44nsdTWzI61PaX23dSZ+r/JMmJ047uENS8OLQZZs6AIjz
+ bvglupTJU4hMi3Ym7WQsfEJ71UVGDXA0m+3oGFSEgQ/RvesJj5WHewN1pH4LRAjsQdhWSxMK5I7
+ Xi5Jfa0ZohEyS5J6XVDApfg==
+X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-313847-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:changhuang.liang@starfivetech.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-313849-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@gmail.com,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:sebastian.reichel@collabora.com,m:sashiko-bot@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[rock-chips.com,kernel.org,gmail.com,lists.infradead.org,vger.kernel.org,collabora.com];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[starfivetech.com:email,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url]
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 046BA6A6AD4
+X-Rspamd-Queue-Id: 7CE0E6A6AD9
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The patch introduces 'snps,dwc-ssi-2.00a' as a fallback compatib=
-le string but does not document it as a standalone generic compatible.
---
+If devm_clk_bulk_get_all() returns -EPROBE_DEFER, it is replaced with
+-ENODEV, permanently failing the driver probe instead of allowing it to
+defer. Avoid masking the error code to fix the issue.
 
-commit a0b5bdaa0ec7a10bb2b844ee5ff0f01be111deee
-Author: Changhuang Liang <changhuang.liang@starfivetech.com>
+This effectively drops returning -ENODEV in case no clocks are being
+described in DT. This special case will now be handled by the follow-up
+check searching for "refclk" and exit with -EINVAL.
 
-spi: dt-bindings: snps,dw-apb-ssi: Add starfive,jhb100-spi
+None of this will be hit in practice, since the driver is only used by
+RK3588 and RK3576 - on these platforms the DT is validated to contain
+the clocks and the clock driver is force probed early. Thus there is
+no need to backport this.
 
-Add a new compatible string "starfive,jhb100-spi" for the StarFive
-JHB100 SPI, it based on the Synopsys DesignWare SSI version 2.00a,
-uses snps,dwc-ssi-2.00a as the primary fallback and snps,dwc-ssi-1.01a
-as the secondary fallback.
+Fixes: 2f70bbddeb45 ("phy: rockchip: add usbdp combo phy driver")
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Closes: https://lore.kernel.org/linux-phy/20260612164107.C7DB21F000E9@smtp.kernel.org/
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+ drivers/phy/rockchip/phy-rockchip-usbdp.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b=
-/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> index 8ebebcebca160..4458316326fc4 100644
-> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> @@ -54,6 +54,12 @@ properties:
->                - sophgo,sg2042-spi
->                - thead,th1520-spi
->            - const: snps,dw-apb-ssi
-> +      - description: Vendor controllers which use snps,dwc-ssi-2.00a as =
-fallback
-> +        items:
-> +          - enum:
-> +              - starfive,jhb100-spi
-> +          - const: snps,dwc-ssi-2.00a
-> +          - const: snps,dwc-ssi-1.01a
+diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
+index 12dfdd470a78..2845a012eafc 100644
+--- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
++++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
+@@ -427,8 +427,8 @@ static int rk_udphy_clk_init(struct rk_udphy *udphy, struct device *dev)
+ 	int i;
+ 
+ 	udphy->num_clks = devm_clk_bulk_get_all(dev, &udphy->clks);
+-	if (udphy->num_clks < 1)
+-		return -ENODEV;
++	if (udphy->num_clks < 0)
++		return udphy->num_clks;
+ 
+ 	/* used for configure phy reference clock frequency */
+ 	for (i = 0; i < udphy->num_clks; i++) {
 
-[Severity: Medium]
-Since snps,dwc-ssi-2.00a is introduced as a fallback here, should it also be
-added as a valid standalone string under the "Generic DW SPI Controller" en=
-um
-list earlier in properties:compatible:oneOf?
+-- 
+2.53.0
 
-If it is omitted from the generic enum list, any future device tree nodes
-that use the generic Synopsys 2.00a IP core without a vendor prefix might
-fail schema validation.
-
-For context, the existing generic list only contains snps,dwc-ssi-1.01a and
-snps,dw-apb-ssi:
-
-  compatible:
-    oneOf:
-      - description: Generic DW SPI Controller
-        enum:
-          - snps,dw-apb-ssi
-          - snps,dwc-ssi-1.01a
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260619143443.2226=
-7-1-changhuang.liang@starfivetech.com?part=3D1
 
