@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-313993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313989-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KAZ6CHk4NmqW8gYAu9opvQ
-	(envelope-from <devicetree+bounces-313993-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 08:51:37 +0200
+	id DnCsDGk4NmqS8gYAu9opvQ
+	(envelope-from <devicetree+bounces-313989-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 08:51:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2898D6A8721
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 08:51:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C0B6A871B
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 08:51:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=aurel32.net header.s=202004.hall header.b=u1RDWcrK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313993-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-313993-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=aurel32.net header.s=202004.hall header.b=N8o7YjXn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313989-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313989-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=aurel32.net;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7F734300FCA7
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 06:51:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EB8E93031CC5
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 06:50:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22DD2374A11;
-	Sat, 20 Jun 2026 06:51:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7624F373C1D;
+	Sat, 20 Jun 2026 06:50:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF846374A03;
-	Sat, 20 Jun 2026 06:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D973603D7;
+	Sat, 20 Jun 2026 06:50:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781938274; cv=none; b=In+S+Mz02fYd/i6HS4EHpG+c0LO0tlFsE8vm1Kj9XJP6X5NDJd39MzqFTclgo6KL0AHMTgvizs2bsLmjF8aOL3UrwETg/SJDKT65u2NFIcILkEoAs91CHZIIvzJSj4IEAQt+z4f+J8yxgneYezpyDpjk9kzj+pkiOEkNyv8SztU=
+	t=1781938259; cv=none; b=UwoEyAIVuP5wTosWSe0GTEG418ymNsiqHQ3o88VWAUYodRAT06qtdSENRDQtuMA9hbwJm/ML988sCksRQvzcWMIIQdqfX43zEpBBfVIVyIR3NpbEp+JwYABThXjVp1+2WEEw1APuTCmY1nr3rfvQK0Sl95wJHQ0x2OsdxDMaQpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781938274; c=relaxed/simple;
-	bh=VGP19Vy4Qqe3oYTM+IzdvTuhxv78jC4hx+lrVfuKK3A=;
+	s=arc-20240116; t=1781938259; c=relaxed/simple;
+	bh=YEL/PgtG9CJxPalkrRDkd4g6pTV9pVtSpKYqOFpW7ZQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bSlKD0tH6N5gfR+fJ+Yp8Ydpha23px2mqNLN0W+sdQAIADnmMRUruFw95kLzvQmLkjOzOJbZ8M3NjuTbMk9gYNOKMdhsitkpeq5S+tw7nTZUUPIWktrO/LBYsy/9j8W1mA02XvLMWBkZud0QvJe+mw07IveNaO07qAKUrYDJ70g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=u1RDWcrK; arc=none smtp.client-ip=195.154.119.183
+	 MIME-Version; b=OQCMOrxv9lDsU0h0uYyycltRpcuHenXdqdJI9mrIhFdEkY4W5qinqtNT4uqMP1DmwJgaQJBfJZYP1L3qbKBIEdkxISX2rqpcPgsn6/pKk6I6IlxLqFejUfRJXuwF6jxGYVAy24346uTYWbvIoZVUNNcssjDn4DwI+A6JWqH5+QY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=N8o7YjXn; arc=none smtp.client-ip=195.154.119.183
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
 	; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:References:
 	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-Type:From:Reply-To:
 	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-	bh=Z782Pfe1Kf4eZ9GkQdSKkYALzPrTWhUboPjR6Ug9LSs=; b=u1RDWcrKi5sq21+gmqeDEGO0+p
-	DhNA1+TQUNlUrprl2nt5tALVv5ykLBhS+fkAzIrxO1Ck7PXx050hDK6ODtxlyQnr8Z9iLLoPJPSq8
-	icrDzDrFCED8gYYfs8u5Q/rq6O9mFPRroYGd7vsnWBZnHYm3z1pLgq+j0bF4Oz2bJQew9kocKXV16
-	zgctLiSmq2NY5ACSjLVAyNpkd6xWhsI4JY98XDNLVRufuJyyyNlBdRfZoT34BUFiuMW5tMrnpflyL
-	jQueh9d4E8CpvctLEsHylSsKvuF9bqb67ejhPlZQTY7bYU9pvANzBBbdzXEtytslWNlKaW58mwCm/
-	0YJA38eA==;
+	bh=tROYkmU4fHW2liLJr2fdOl3XmpMuw693HPJxJNUuxvE=; b=N8o7YjXnWei+quY1zVnWPrbvhf
+	4UGHV6Q3lxVvXw4VYqjSBOiSEY0EiROa7kYJCa6AyZETwD+AzfSVOGC8Uvap5yajVeDzz3Kq3IKnD
+	1F/NIZWEf7CdBnc/nN7Hj7XSYzxP2mAgeaF3UpiXiMqXzcObbcLNND9CF5BJte76odu5FC48Dba15
+	Xc3qEyOriVm8ZIO1amgWwU3eTvSqP4+bIzooC600IT0SwIwLVVPId6yMUMLSBbTz0C1oWm76iiM6l
+	lsKeX5QFVNSwGJlYooAGYfvfPyn+3+qZMMRWn2tJ59WJz0EbJemsYD8U1PIn9tQjLVURT+lmTpZ0r
+	d2odhs4Q==;
 Received: from authenticated user
 	by hall.aurel32.net with esmtpsa  (TLS1.3)  tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <aurelien@aurel32.net>)
-	id 1wap6T-000000006dZ-0qwP;
+	id 1wap6T-000000006dl-26zo;
 	Sat, 20 Jun 2026 08:22:53 +0200
 From: Aurelien Jarno <aurelien@aurel32.net>
 To: linux-kernel@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Yixun Lan <dlan@kernel.org>,
 	Paul Walmsley <pjw@kernel.org>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
 	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>
+	Alexandre Ghiti <alex@ghiti.fr>
 Cc: Aurelien Jarno <aurelien@aurel32.net>,
 	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
 	linux-riscv@lists.infradead.org (open list:RISC-V ARCHITECTURE),
 	spacemit@lists.linux.dev (open list:RISC-V SPACEMIT SoC Support)
-Subject: [PATCH 2/5] riscv: dts: spacemit: enable the i2c2 adapter on K3 Pico-ITX board
-Date: Sat, 20 Jun 2026 08:22:03 +0200
-Message-ID: <20260620062238.3199108-3-aurelien@aurel32.net>
+Subject: [PATCH 3/5] riscv: dts: spacemit: add 24c02 eeprom on K3 Pico-ITX board
+Date: Sat, 20 Jun 2026 08:22:04 +0200
+Message-ID: <20260620062238.3199108-4-aurelien@aurel32.net>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260620062238.3199108-1-aurelien@aurel32.net>
 References: <20260620062238.3199108-1-aurelien@aurel32.net>
@@ -84,13 +84,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[aurel32.net,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[aurel32.net:s=202004.hall];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:dlan@kernel.org,m:aurelien@aurel32.net,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-313993-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:aurelien@aurel32.net,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313989-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
@@ -107,60 +107,66 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,aurel32.net:dkim,aurel32.net:email,aurel32.net:mid,aurel32.net:from_mime,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aurel32.net:dkim,aurel32.net:email,aurel32.net:mid,aurel32.net:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2898D6A8721
+X-Rspamd-Queue-Id: 81C0B6A871B
 
-Define I2C2 pinctrl properties, and enable it on the K3 Pico-ITX board.
-It will be used by the 24c02 eeprom.
+The K3 Pico-ITX board includes a 24c02 eeprom, that stores the product
+name, the part name, the MAC address of the network interfaces and the
+board's serial number. These values are also exposed via an
+onie,tlv-layout nvmem layout.
+
+The eeprom is marked as read-only since its contents are not supposed to
+be modified.
 
 Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
 ---
- arch/riscv/boot/dts/spacemit/k3-pico-itx.dts |  6 ++++++
- arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi | 11 +++++++++++
- 2 files changed, 17 insertions(+)
+ arch/riscv/boot/dts/spacemit/k3-pico-itx.dts | 30 ++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-index 509cebc0c9568..5fe9041ec5702 100644
+index 5fe9041ec5702..0a0c221c99e74 100644
 --- a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
 +++ b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-@@ -43,6 +43,12 @@ reg_aux_vcc5v: regulator-aux-vcc5v {
- 	};
- };
- 
-+&i2c2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c2_1_cfg>;
-+	status = "okay";
-+};
-+
- &i2c8 {
+@@ -47,6 +47,36 @@ &i2c2 {
  	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c8_cfg>;
-diff --git a/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-index 3ee1471f37985..2017aa14fb424 100644
---- a/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-@@ -78,6 +78,17 @@ gmac1-phy-0-pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
-+	i2c2_1_cfg: i2c2-1-cfg {
-+		i2c2-0-pins {
-+			pinmux = <K3_PADCONF(46, 5)>,	/* i2c2 scl */
-+				 <K3_PADCONF(47, 5)>;	/* i2c2 sda */
+ 	pinctrl-0 = <&i2c2_1_cfg>;
+ 	status = "okay";
 +
-+			bias-pull-up= <0>;
-+			drive-strength = <25>;
++	eeprom@50 {
++		compatible = "atmel,24c02";
++		reg = <0x50>;
++		pagesize = <8>;
++		read-only;
++		size = <256>;
++		status = "okay";
++
++		nvmem-layout {
++			compatible = "onie,tlv-layout";
++
++			mac-address {
++				#nvmem-cell-cells = <1>;
++			};
++
++			num-macs {
++			};
++
++			part-number {
++			};
++
++			product-name {
++			};
++
++			serial-number {
++			};
++
 +		};
 +	};
-+
- 	/omit-if-no-ref/
- 	i2c8_cfg: i2c8-cfg {
- 		i2c8-pins {
+ };
+ 
+ &i2c8 {
 -- 
 2.53.0
 
