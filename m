@@ -1,125 +1,146 @@
-Return-Path: <devicetree+bounces-314005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314006-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VSsvA0F+Nmq+AQcAu9opvQ
-	(envelope-from <devicetree+bounces-314005-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 13:49:21 +0200
+	id o7AtJ2WVNmriBQcAu9opvQ
+	(envelope-from <devicetree+bounces-314006-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 15:28:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B00B6A8D0E
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 13:49:20 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 020566A8F06
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 15:28:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=disroot.org header.s=mail header.b=QB6YpFHA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314005-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314005-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=disroot.org;
+	dkim=pass header.d=ideasonboard.com header.s=mail header.b=JPePHGKB;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314006-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314006-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=ideasonboard.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0E93C301F4BE
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 11:49:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DDD55300CFF9
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 13:28:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31AEE35F182;
-	Sat, 20 Jun 2026 11:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 875FB3914E5;
+	Sat, 20 Jun 2026 13:28:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0964E345CC9;
-	Sat, 20 Jun 2026 11:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 817E127874F;
+	Sat, 20 Jun 2026 13:27:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781956158; cv=none; b=qyz7Zl+/LQZLj3MVqNH9oGo609p+PKB0S0WEMOLMkQ+lIlDBqs8ib4w5JdRVAr4fvPzOBaxeSizfGabGxBC5zqiVyHuZ7RBHiLjaKFOsxRjWyA7fc6B8GW96QZEZrvuqw78jhrrKsLLyyrfQCTGnU3SeyKeoPJk8MMKf6ubmmCQ=
+	t=1781962082; cv=none; b=Xtgnqe9pDouWiE3ataceNC18Hw8HrYlX4pYwjYR/xsCM1AuQzjVPPXYESXA9gI57uU7XP5eoNrfszVr/6ZcrJppsc3t+xIQstJ1mRFeK+opa0YPcb6+NlNuqJ0b1ZOn+JdZHJ6DEHCKs5SzvyMqXj2BFhWloF/bbXeAa3w9u8yg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781956158; c=relaxed/simple;
-	bh=DXXU4HtLN2x/Zg/aHJpUs5YpYCcdyHAW+G14zqHmT+c=;
-	h=MIME-Version:Date:From:To:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=WrraH9S2B7YuK7M0JeOZUbtt8+RuRE0UcImsvxo2fAo43cVv22L/aNGkULemMGe8JgqfQwVCHiI5/wKU1Ls1CBZRYetYCcH2e9VofJxN2vbWHxeiumApmpytBIdE0wS+sUhPPUslfEf3pdH9yeDtD0s9BZiXpt8SNw+uelBbRb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=QB6YpFHA; arc=none smtp.client-ip=178.21.23.139
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id AA5092767D;
-	Sat, 20 Jun 2026 13:49:15 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id HXuWGNteZpvQ; Sat, 20 Jun 2026 13:49:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1781956155; bh=DXXU4HtLN2x/Zg/aHJpUs5YpYCcdyHAW+G14zqHmT+c=;
-	h=Date:From:To:Subject:In-Reply-To:References;
-	b=QB6YpFHAp+xwyMiN2MmmfEOcEOQgap3emCKFZXosC3gwuGQQ/HfUEWev4G6ZxQDgi
-	 vHzDQdNFsZcTQtebfAA99s4OkhZ9coelnU+b/QPsv8fsYrfvLY0jCDF6zYBiCbTRRf
-	 1M3mKgT+FZiKIM5lULh3LqABPjh7MkiFHFtW7wWDfzsGvdaI7zXX7FNSNM3HDdbTkz
-	 MhuSSa25FIe4zjEiss5ImYb0Ph09QrZpnqoqv50pLYNYNsU2lDgKeuJ1GlbynlWnuI
-	 enstLmS2sAlb8JA0/fBSpYG2IrnJYijtLqsfDRcawSCzASK3q/LWf3kD6asq4YDg7j
-	 3GFnFltYpF/Ew==
+	s=arc-20240116; t=1781962082; c=relaxed/simple;
+	bh=//RtIbbbO+6Y9IggxZGdSw3W2JDAG48tPtlced6Ieys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ps7UM0/FxG/iBfSbj1GSgk8LG8mREzobUYtYof6Zu4PJ4pRLMpql2q+a03tMZ1sYgCSt6iQxny5qma1MHW8FPJNb6RP+Yyhd/0a7Wes71QQtPf2+4vgp1o6UnVG08MVHRQW/dWUQtRgRUez+LvSDW9+q369JSSQ0wWoF5jUbFNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JPePHGKB; arc=none smtp.client-ip=213.167.242.64
+Received: from killaraus.ideasonboard.com (2001-14ba-70f3-e800--a06.rev.dnainternet.fi [IPv6:2001:14ba:70f3:e800::a06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 56F9A56D;
+	Sat, 20 Jun 2026 15:27:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1781962034;
+	bh=//RtIbbbO+6Y9IggxZGdSw3W2JDAG48tPtlced6Ieys=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JPePHGKBsdJ/lIIINcK6809JnDeJ7nB6JKHdYt0BQK9HNgWiqmu99TF49vtudqT2/
+	 3jT9AgIHt+2dxYqCA0pk5yV+KlPFElWGV0EjiH/iduccWqJjOwwGpjTIXd/sPN5yeo
+	 2QvTvpYctAzvXVLMQNwTpf/3K61GvrJMmaSyZZQE=
+Date: Sat, 20 Jun 2026 16:27:49 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+Cc: sakari.ailus@linux.intel.com, luca.weiss@fairphone.com,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Hans Verkuil <hverkuil+cisco@kernel.org>,
+	Hans de Goede <johannes.goede@oss.qualcomm.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
+	Walter Werner Schneider <contact@schnwalter.eu>,
+	Kate Hsuan <hpa@redhat.com>, Svyatoslav Ryhel <clamor95@gmail.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] media: i2c: add imx576 image sensor driver
+Message-ID: <20260620132749.GE3552167@killaraus.ideasonboard.com>
+References: <20260619125439.55311-1-himanshu.bhavani@siliconsignals.io>
+ <20260619125439.55311-3-himanshu.bhavani@siliconsignals.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 20 Jun 2026 11:49:14 +0000
-From: Rustam Adilov <adilov@disroot.org>
-To: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stanley
- Chang <stanley_chang@realtek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/6] phy: realtek: usb2: support for RTL9607C USB2 PHY
-In-Reply-To: <20260520175728.720877-1-adilov@disroot.org>
-References: <20260520175728.720877-1-adilov@disroot.org>
-Message-ID: <ad45accb8136605d3b28f4ab4992336e@disroot.org>
-X-Sender: adilov@disroot.org
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260619125439.55311-3-himanshu.bhavani@siliconsignals.io>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314005-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:stanley_chang@realtek.com,m:p.zabel@pengutronix.de,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314006-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:himanshu.bhavani@siliconsignals.io,m:sakari.ailus@linux.intel.com,m:luca.weiss@fairphone.com,m:hardevsinh.palaniya@siliconsignals.io,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:hverkuil+cisco@kernel.org,m:johannes.goede@oss.qualcomm.com,m:vladimir.zapolskiy@linaro.org,m:elgin.perumbilly@siliconsignals.io,m:contact@schnwalter.eu,m:hpa@redhat.com,m:clamor95@gmail.com,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:hverkuil@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[linux.intel.com,fairphone.com,siliconsignals.io,kernel.org,oss.qualcomm.com,linaro.org,schnwalter.eu,redhat.com,gmail.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:dkim,disroot.org:mid,disroot.org:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4B00B6A8D0E
+X-Rspamd-Queue-Id: 020566A8F06
 
-Hello,
+On Fri, Jun 19, 2026 at 06:24:32PM +0530, Himanshu Bhavani wrote:
+> Add a v4l2 subdevice driver for the Sony imx576 sensor.
+> 
+> The Sony IMX576 image sensor with an active
+> array size of 5760 x 4312
+> 
+> The following features are supported:
+> - Manual exposure an gain control support
+> - vblank/hblank control support
+> - Supported resolution: 2880 x 2156 30fps (SRGGB10)
 
-Just a gentle reminder as this patch series has been sitting idle
-for month already. I do know there are a couple of reviews sent
-by sashiko AI but they are only about pre-existing issues which
-has nothing to do with this patch series.
+You've been asked in v1 to make this driver dynamically compute
+registers instead of hardcoding modes. Please do so in v3. Nack on v2.
 
-And the issue about "[High] - The driver attempts to access the 
-PHY's memory-mapped registers in `probe()` before the newly introduced
-reset control is deasserted" is not the case because rtl9607_phy_cfg
-contains the [4] = {0xe4, 0x6a} in page0 and thus doesn't trigger
-phy memory reads during probe (in update_dc_driving_level).
+> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+> ---
+>  MAINTAINERS                |    1 +
+>  drivers/media/i2c/Kconfig  |   10 +
+>  drivers/media/i2c/Makefile |    1 +
+>  drivers/media/i2c/imx576.c | 1034 ++++++++++++++++++++++++++++++++++++
+>  4 files changed, 1046 insertions(+)
+>  create mode 100644 drivers/media/i2c/imx576.c
 
-Best,
-Rustam
+[snip]
+
+-- 
+Regards,
+
+Laurent Pinchart
 
