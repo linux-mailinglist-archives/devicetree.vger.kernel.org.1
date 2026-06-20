@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-314017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314018-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bn2MAJXTNmpFFQcAu9opvQ
-	(envelope-from <devicetree+bounces-314017-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 19:53:25 +0200
+	id AVZMKrDTNmpNFQcAu9opvQ
+	(envelope-from <devicetree+bounces-314018-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 19:53:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 983F66A96BE
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 19:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F5BC6A96DA
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 19:53:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=etehtsea.me header.s=sig1 header.b=bW+uo7i5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314017-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314017-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=etehtsea.me header.s=sig1 header.b=lNGYJIZU;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314018-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314018-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E51B33014976
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 17:53:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ABF9530134BC
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 17:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96383438A6;
-	Sat, 20 Jun 2026 17:53:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18E13451CE;
+	Sat, 20 Jun 2026 17:53:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound.st.icloud.com (p-east2-cluster1-host5-snip4-10.eps.apple.com [57.103.76.93])
+Received: from outbound.st.icloud.com (p-east2-cluster6-host3-snip4-4.eps.apple.com [57.103.76.135])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6550533E37A
-	for <devicetree@vger.kernel.org>; Sat, 20 Jun 2026 17:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E612C3757
+	for <devicetree@vger.kernel.org>; Sat, 20 Jun 2026 17:53:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781977989; cv=none; b=I6FibCn1X8zoitspRe3IsrXnhorkXGFTO5MrK4rIdGvyHPxfr9b486YrOL3Xqs4dOwh8paMI2X4QWnE12riJ3Ha2d3eByprrE1C5LNMGIlubLHtM1PT2Pug9FdEPaV1vCrVfoQrgRUUrzW5mkCxrerVnhD2YKcT8Hj/ZHboOj7g=
+	t=1781977998; cv=none; b=IvKXd2wElZdQpge+p3y8fiyug+hKJJypiw44R0AFR8uAE/OpdP0qT0r+61qhKSnB2NPfaNnjDVi2D8h/axphyPNTSrFV3vqGcl9/cXh35PkNkzklC/6I9PG8hDpasQ3E4RO92wpLYO83umA490Lqb/rxogUcfdVWVyLvlyQHx0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781977989; c=relaxed/simple;
-	bh=UyWb6pnTNSl7FtIUcW9vT2lCEhe5v39Zkl1Oa7kB4ow=;
+	s=arc-20240116; t=1781977998; c=relaxed/simple;
+	bh=Spdbueyfuz8uMNAHc3aXLkzTXslDIABc7BDDWY7Qdlk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=l0RyPiHOe4wwF17QmX0U3woGlfapt4EL9pHdHD4d1KjU6vubUJ6JYpU7lzlJifE7RFc6Lzu+xQLUWVBOmX5Xtfgp0h4gJmSweDqE2ebQuVvCacZRahkF/97F2LJHQeRxzLzm9KuCuwVdkuSfGMP4wGS+l3xeaEZAlMjDl8UPj0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=etehtsea.me; spf=pass smtp.mailfrom=etehtsea.me; dkim=pass (2048-bit key) header.d=etehtsea.me header.i=@etehtsea.me header.b=bW+uo7i5; arc=none smtp.client-ip=57.103.76.93
+	 MIME-Version; b=VWb2GR9JmqZBM2RerSmXDOAdcVtSYvlQr5VxC5CZyErerUXUz4Fzcp/jb0PYionpmqnJr1mcbyQSR6+DXDgV5nwIkmnd5wH/YtRhsNI7bmLPq7ypCvpWZaR3MTxZxTWrcb1hO9yokHfdqfbr1e/R4QQox0WGud2yUM/TeETUSaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=etehtsea.me; spf=pass smtp.mailfrom=etehtsea.me; dkim=pass (2048-bit key) header.d=etehtsea.me header.i=@etehtsea.me header.b=lNGYJIZU; arc=none smtp.client-ip=57.103.76.135
 Received: from outbound.st.icloud.com (unknown [127.0.0.2])
-	by p00-icloudmta-asmtp-us-east-1a-60-percent-7 (Postfix) with ESMTPS id 2CAED18000A2;
-	Sat, 20 Jun 2026 17:53:06 +0000 (UTC)
-X-ICL-Out-Info: HUtFAUMHWwJACUgBTUQeDx5WFlZNRAJCTQ5AHVwDWxxBAFYHXxcOVk1UGVoBdw5GFVEMQAhWRV8VGR5XUFIfVxhNC1YMGQZXUEsbDlQXA1ccVkVcGEMJXQVXHB0eQ0VbE1UXRgkZCF0dGQhHHwowA0IOVgNDB0UALRkcV1BSH1cYTQtWDBkGV1BUEVdQC1kCQg9IBV8HWgVFC0kDQwZSB0YKVQFAWgpbHHkdRwhfH0EVWFZeCAlLRglJHQ4OQhhGH1QnVwJaClse
-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=etehtsea.me; s=sig1; t=1781977987; x=1784569987; bh=TGsVl2Kgw+QBA+rKXrQefJZSk37XNV5EiJDh4rNKHe4=; h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme; b=bW+uo7i5aGNOrJYajkGHInjbj3628KP4vVbqxMDolvRkdikgua5lxNIC+AssCXo9YmotMJheGknKFBcObAbfQ+arCLOATPHSDH1yexEvomNDTNnUEubUoSlfbMtUJUxThhqUB0ovmxjUr2efmZiG2RKd61qbG62EvhwjHCs7NbH+uoVYFt7QfOpkxSOtd/kR5hEfujR3Wy3cY1ktgMc+Z5byG+igoyDbTSCzmqR0M5pNoOeWcLdOAvEcCVIPoDhe97g/Xpb56L8ORMYM07z3Sc+Zva/z9O42wEocg9l7TMMdRC7KAGMMA6G5FM3d3ovCYciLtMW2CLpJ2P9mG2PggA==
+	by p00-icloudmta-asmtp-us-east-1a-100-percent-1 (Postfix) with ESMTPS id 9FB4A1800092;
+	Sat, 20 Jun 2026 17:53:14 +0000 (UTC)
+X-ICL-Out-Info: HUtFAUMHWwJACUgBTUQeDx5WFlZNRAJCTQ5AHVwDWxxBAFYHXxcOVk1UGVoBdw5GFVEMQAhWRV8VGR5XUFIfVxhNC1YMGQZXUEsbDlQXA1ccVkVcGEMJXQVXHB0eQ0VbE1UXRgkZCF0dGQhHHwowA0IOVgNDB0UALRkcV1BSH1cYTQtWDBkGV1BUEVdQC1kCQg9IBV8HWgVFC0kDQwZSB0YKVQBAWgpbHHkdRwhfH0EVWFZeCAlLRglJHQ4OQhhGH1QnVwJaClse
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=etehtsea.me; s=sig1; t=1781977996; x=1784569996; bh=qXFGG5ROoxDwgg8Mh3+2KsIvg+hDI0p5sUvKNQ3jUYM=; h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme; b=lNGYJIZUrYYrMrMlB3u+ifFg+tjv6bwbbPIjjhihLsZm2ga3N99ga+glXU8gDlR+LjRPungTz3ac3p8dtFmHIknJ4TDP3ZWWahFJW2YGl8P2woC29pcy/+7m0RIuNXFaudL11xlZCqVFKaSRNalH65hmjTq3R5ryu7RRw0e6PbpxkxG1Md/SGuefJ6DSUjoQ25sTlpJEfPL19QZQ8jSKgIWkH0hF9jfDEM+CnRppMcWRxFnY+gNOG9Q5UJ8/UGd5AOGKkE2hvBU2XB15JAp+pCU8eZlSV7fWIryETqLJLeq/GrE+9SYfLzndx+p4wjYArzKhUWNZc4k19werH11nHg==
 mail-alias-created-date: 1634905887181
 Received: from localhost (unknown [17.42.251.67])
-	by p00-icloudmta-asmtp-us-east-1a-60-percent-7 (Postfix) with ESMTPSA id 678E418002BC;
-	Sat, 20 Jun 2026 17:53:05 +0000 (UTC)
+	by p00-icloudmta-asmtp-us-east-1a-100-percent-1 (Postfix) with ESMTPSA id 699C61800192;
+	Sat, 20 Jun 2026 17:53:13 +0000 (UTC)
 From: Konstantin Shabanov <mail@etehtsea.me>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
@@ -53,9 +53,9 @@ Cc: Konstantin Shabanov <mail@etehtsea.me>,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/4] dt-bindings: vendor-prefixes: Add HONOR
-Date: Sun, 21 Jun 2026 00:51:55 +0700
-Message-ID: <20260620175210.19563-2-mail@etehtsea.me>
+Subject: [PATCH v3 2/4] dt-bindings: arm: qcom: Add HONOR MagicBook Art 14
+Date: Sun, 21 Jun 2026 00:51:56 +0700
+Message-ID: <20260620175210.19563-3-mail@etehtsea.me>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260620175210.19563-1-mail@etehtsea.me>
 References: <20260620175210.19563-1-mail@etehtsea.me>
@@ -66,14 +66,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: QI44P62JVbJ2rAId6x0V1eR9mI7fVp_M
-X-Proofpoint-ORIG-GUID: QI44P62JVbJ2rAId6x0V1eR9mI7fVp_M
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIwMDE4MiBTYWx0ZWRfX8QtlHVnAKH9T
- /7iviqIT7V1561xsjuRW8jwBkWNdGOGv/7gjb5OhFCfF2WIxZNPqxHfCoYkPM48MnnQGu0dlfTC
- uRYKo6Ia6t0EQ828PwpjwZ39oASMk5zIjkZQs0rBNqEfsN30ySCiAzfbqS7M1cqyFJA1xnVL67C
- vTKG2+QZTShUPVQqeHASuJxAcHSqpMVXpkLoQXhpWd+8upkurh5i4YJvq13sBehgMhLXIx0+qG6
- 7RrgZi8i9GYmxGveMpwrUw2lWsZC9SCC+ghhGNxwcLNSRLzxH25xPlAHxmBP27jhkiIr1XrEO99
- Vsw8SYjCR53G9TjMQ/o
+X-Proofpoint-ORIG-GUID: Q4tO6tRd2WIpsXB5vmujMrGgvBJ8h_Dk
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIwMDE4MiBTYWx0ZWRfX5QG6QHGaQRNC
+ vtMDyzE6+7BEePL8p7XDSW0+WmHG32E5wtk+TTAaio0F6mImDTTF+4lVm5U0no/7qyVhaDQpX9y
+ f+MLZVELJF2K3iOk6k7FDBt1qC5F83rOWpmvr95qVtzSUuJayPeRgVGsDc7GuOuMK7LWa09S5Tb
+ 6V0cU105FivtxD9LMZiAUB4oBiMkmyXfVJ2voyvUCWwUzeUWAPgbNq+XzRFirzqSc81G9UfDEmj
+ F5zfe39gR8PPegpqS4I7W1j5rV7bEI9gtpqc0DY6ydzdnacNRJK0ka/eyeF6xmuvXnirurYcE3T
+ OYCF+spLBlZ0n1X8pqU
+X-Proofpoint-GUID: Q4tO6tRd2WIpsXB5vmujMrGgvBJ8h_Dk
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
@@ -89,7 +89,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mail@etehtsea.me,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[mail@etehtsea.me,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-314017-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314018-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	DMARC_NA(0.00)[etehtsea.me];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -109,30 +109,28 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TO_DN_SOME(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,etehtsea.me:dkim,etehtsea.me:email,etehtsea.me:mid,etehtsea.me:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 983F66A96BE
+X-Rspamd-Queue-Id: 0F5BC6A96DA
 
-Add vendor prefix for Honor Device Co., Ltd.
-Link: https://www.honor.com/
+Document the X1E-80-100 variant of the HONOR MagicBook Art 14.
 
 Signed-off-by: Konstantin Shabanov <mail@etehtsea.me>
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 6b9fb6a6bf0b..293cbc26deac 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -733,6 +733,8 @@ patternProperties:
-     description: Honestar Technologies Co., Ltd.
-   "^honeywell,.*":
-     description: Honeywell
-+  "^honor,.*":
-+    description: Honor Device Co., Ltd.
-   "^hoperf,.*":
-     description: Shenzhen Hope Microelectronics Co., Ltd.
-   "^hoperun,.*":
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 50cc18a6ec5e..fd985f8adb0e 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -1160,6 +1160,7 @@ properties:
+               - dell,inspiron-14-plus-7441
+               - dell,latitude-7455
+               - dell,xps13-9345
++              - honor,magicbook-art-14-snapdragon
+               - hp,elitebook-ultra-g1q
+               - hp,omnibook-x14
+               - lenovo,ideacentre-mini-01q8x10
 -- 
 2.54.0
 
