@@ -1,96 +1,76 @@
-Return-Path: <devicetree+bounces-313986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313990-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yp5OJ1UnNmqy8AYAu9opvQ
-	(envelope-from <devicetree+bounces-313986-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 07:38:29 +0200
+	id M8QyMYQ4Nmqd8gYAu9opvQ
+	(envelope-from <devicetree+bounces-313990-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 08:51:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88B556A85E8
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 07:38:28 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E41A6A8729
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 08:51:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=GRPPOs8w;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313986-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313986-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=aurel32.net header.s=202004.hall header.b=zqOgw3wp;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313990-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313990-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=aurel32.net;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 86E163008463
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 05:38:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B7D4430414B6
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jun 2026 06:51:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2497432B106;
-	Sat, 20 Jun 2026 05:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DC2B372670;
+	Sat, 20 Jun 2026 06:51:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05AB640D57A
-	for <devicetree@vger.kernel.org>; Sat, 20 Jun 2026 05:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14B0F374A07;
+	Sat, 20 Jun 2026 06:51:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781933902; cv=none; b=j9sDMOC+4VTkYxPfIaB04e4atwWjeV6Ml3XJJUpWKFvyV5oL8EZFHOknUVR6QzK4y58QG+cEsDDMGzGgTJwD6mYYYl9A17ldBVICPG8ht+t73s2SJNtoMPEybrhRP0GOLKfKoQ2B85vACueoz0sXF8dsiYZFGhulzYl56l5EKiI=
+	t=1781938262; cv=none; b=mHfR+iQM9rgibHfkcgEHwG5xtgDiel3I/AzDxUT1JLUybPk/zb0AL5Np7F/Nl9O76XC1NpNvXrZ+Flo9tnhMReNO6IKCxJSAuroDhfyvrdXkhZTx/U/HKe+TpnxZzoAIloMDhA/mDgw2A0xKIwG5t/ETBHOQBiGlHOEiZNZFbXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781933902; c=relaxed/simple;
-	bh=T/7ep4EgngMi756SBUztuInzLdyJ5R5zqqGXrsQMtkM=;
+	s=arc-20240116; t=1781938262; c=relaxed/simple;
+	bh=Mb+fmPO5XnbgFTrV1fhbckw4ddsvw/0r11sqtNIPgiM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Rmjr23Wn0ECPnsACnKMukjjqIntLlth04d0KfIvg5jfMsMZ34uyHD62+hEKmKkOboComGbSpIUXyvN2FNJeNZJHcT/ufCFsaNdzKqjEwozKbkukTiBedlXWhyk8Mt40PxMKosvcyd9DKOuftgHeiq16hTjmpBQtP7eGEBv9qYJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GRPPOs8w; arc=none smtp.client-ip=209.85.214.177
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2c69921bd15so12500595ad.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jun 2026 22:38:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781933900; x=1782538700; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T/7ep4EgngMi756SBUztuInzLdyJ5R5zqqGXrsQMtkM=;
-        b=GRPPOs8w/bQIgKx6CbJxbIr3ZXrJQqGKD0R+Xeo/TRHqGgkc7WO+PNokurZOxmr6AR
-         5qATIEjVMRMB/R/D4w9Eb4988BTX80Pb9gNguFfRBh5SNK3HNByLYPd3bxAhA8KXTHxc
-         olsE9+AyzWh5vwWTLuXMhn8E33tkCo2YmgZqPfC+Xh/BFtok6jQBREGA04qW0gp2BYYm
-         B91eGVaQQ9FnVNKm/sfM2cGEaBD9ensPVeTKHQH234GDK4Kub8yAqbl9yq9Bs9T7bXyt
-         M03HDR6I7vw2MPA2aKbCYEEKi1wlTDuzNee7S0/gl7/jx6/rbMC6bECD30866Piq5o2C
-         FMNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781933900; x=1782538700;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=T/7ep4EgngMi756SBUztuInzLdyJ5R5zqqGXrsQMtkM=;
-        b=oVG3nbBCofKef3jo0g/63U5+3VWLYpFRbAanTtvjp/hfVKT//i989GMIBQH+zMIFRq
-         CJYqIsyup2C3/Z86x1IfHbgXNpDY/FLZz4Bo8l9C58yfCui4DAPZ/q3PN3QaWpAEJ/bW
-         FyOXN05jSVWvfwRHZc5QeS+IfwfBRapaXvxgFYdzCauwdD3o9oZ48tkHprdVronwCud+
-         AnvV0lgT9W35q5AH0QufOZi9uJaD32jW5Lo5GyYbMZGZR3SzXwh5Dg4uRGI46phG6D7N
-         onvUliMdvJ1NxVutdxY4Mmh84WwKGb28RsgYsfjR+N4HWf+kPCtZ2JBDr3eYVj6FuWBB
-         3XpQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/tvC1Si3lGzYymC4FD2MGg/P4DAZBp8VFxUCJMi62dKN82cZI3aHA25YJGXEPLQzVSrBghwMDQvFeB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQy04dBeayM5k0s3NBbpZ61+wSxZtz6pfvzdGEhnfwN18VTJfN
-	FzJlCk8ULYdjCzg29p74ZTRCyExcHHRjrFr5nCjUJ0D96tbzK1ez0FMq
-X-Gm-Gg: AfdE7cl0DXuF/0RDx09bTcl7lpxufJUEJepok8ffxhVtdFEHrl7EjoaLXzrjpZkC6x/
-	QKA/jgPrAvV1hvHDLSdU7uFrjzwA4xmbEl9XcJMUSg2ZDNlNo4Fgc1dR3NCwGwttiXc94XRd24P
-	9xRG2DIrBojr31aVwZrmlQp38/T8vLI8A0+YXfmib9rhfesvuoEhE6wXaz4ywqzClRgoIRhu+NU
-	AR1I8KUMibQWSNuy8tT/qRflkeELiucAD0NCya33g1N+dzw98L3+xT+ujkBGW7+n5+iPkXXl9if
-	n7Pt/LvA/py/6SEmeipFg6RYUibp6kR5+xX6jSVRM1cureYzMRslk42avycTJwQ/vRtR45+uJUp
-	i9Enbq84aa+5XvMqpUTEraVrWxtbCc4ju4jBLg1bTwPU+QWkfRX2W1YxOA72iBYfamW/HlGMVmH
-	0hOvGcczJko4C0sf+86ps=
-X-Received: by 2002:a17:902:ce09:b0:2c1:ef9:4516 with SMTP id d9443c01a7336-2c71904ee57mr70697045ad.35.1781933900305;
-        Fri, 19 Jun 2026 22:38:20 -0700 (PDT)
-Received: from i386.168.1.127 ([2402:a00:163:2ce9:9c6f:e28:3da8:7980])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c7436f6395sm12161565ad.28.2026.06.19.22.38.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jun 2026 22:38:19 -0700 (PDT)
-From: Hrushiraj Gandhi <hrushirajg23@gmail.com>
-To: heiko@sntech.de
-Cc: krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/2] arm64: dts: rockchip: add Vicharak Axon board support
-Date: Sat, 20 Jun 2026 11:07:59 +0530
-Message-ID: <20260620053759.9841-1-hrushirajg23@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260608060940.52549-1-hrushirajg23@gmail.com>
-References: <20260608060940.52549-1-hrushirajg23@gmail.com>
+	 MIME-Version; b=jxFMgAVGtZX3000phqQYJsbnfVBOeUXMlS9zaS9+Di28XSIYROGkVzrEtehaqxYbRSl7WatVOKNBqIhKGwJTeQDTSshJgj9WlvK8LX9dMdq47OmNKXb+3aQhVuL83qR225U3KS14sC2WClEl4eCYA7Evq3U0eiDzfzMjDA6viZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=zqOgw3wp; arc=none smtp.client-ip=195.154.119.183
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:References:
+	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-Type:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=OviHOFRy1QWUk0+YOqcYp6zydhwgz85x/wivs9esC1A=; b=zqOgw3wpzgIniiz3sQ2AqZ3vSe
+	afx+4G0HRtu9btU5ekCEm7EpZL6Ft1sXyHgfk5+k9ToQBYne2EOUq6JLCa6nZ5iY3iUCWcKQN/u7a
+	7DbgSYIWL+u2q4BI+ql1z2wORq4NxY3UUSl+NI1zjzQ4Thi/G47JbPT+rD8xyX12WVjalTfW5J7nX
+	G5ytOTEgfnv92tVTFjdIxMvkYNp+Q0JJ10cLCapuWpF5/kOkrZTZEAGl6Ttmo56maycuBqLaheI3f
+	l5r+22MgjRvjnuaRUI6A9N7qmOx0qbBTH5DHQMHDDhGrX9uBxDTBTqA1QjPs+uVvFCZp4txHjclHF
+	vaT5+RaQ==;
+Received: from authenticated user
+	by hall.aurel32.net with esmtpsa  (TLS1.3)  tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1wap6S-000000006dW-2NRh;
+	Sat, 20 Jun 2026 08:22:52 +0200
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yixun Lan <dlan@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Guodong Xu <guodong@riscstar.com>
+Cc: Aurelien Jarno <aurelien@aurel32.net>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-riscv@lists.infradead.org (open list:RISC-V SPACEMIT SoC Support),
+	spacemit@lists.linux.dev (open list:RISC-V SPACEMIT SoC Support)
+Subject: [PATCH 1/5] riscv: dts: spacemit: set console baud rate on K3 Pico-ITX board
+Date: Sat, 20 Jun 2026 08:22:02 +0200
+Message-ID: <20260620062238.3199108-2-aurelien@aurel32.net>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260620062238.3199108-1-aurelien@aurel32.net>
+References: <20260620062238.3199108-1-aurelien@aurel32.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,54 +79,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[aurel32.net,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[aurel32.net:s=202004.hall];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:guodong@riscstar.com,m:aurelien@aurel32.net,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313990-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS(0.00)[m:heiko@sntech.de,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[hrushirajg23@gmail.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-313986-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[aurel32.net:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hrushirajg23@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_NONE(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aurel32.net:dkim,aurel32.net:email,aurel32.net:mid,aurel32.net:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 88B556A85E8
+X-Rspamd-Queue-Id: 1E41A6A8729
 
-Hi Heiko,
+Because the default console's baud rate is not set, defconfig kernels do
+not have any serial output on this platform. Set the baud rate to
+115200, matching what is used by U-Boot etc on this platform.
 
-Just a friendly ping on this series.
+Fixes: 7a6131804986 ("riscv: dts: spacemit: add K3 Pico-ITX board support")
+Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+---
+ arch/riscv/boot/dts/spacemit/k3-pico-itx.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The binding patch has received an Acked-by from Krzysztof and the
-requested review comments from previous revisions have been addressed.
+diff --git a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
+index b89c1521e6649..509cebc0c9568 100644
+--- a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
++++ b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
+@@ -18,7 +18,7 @@ aliases {
+ 	};
+ 
+ 	chosen {
+-		stdout-path = "serial0";
++		stdout-path = "serial0:115200n8";
+ 	};
+ 
+ 	memory@100000000 {
+-- 
+2.53.0
 
-Could you please take a look when you have a chance? Any additional
-feedback on either the binding or DTS patch would be greatly appreciated.
-
-Thanks for your time.
-
-Best regards,
-Hrushiraj
 
