@@ -1,98 +1,80 @@
-Return-Path: <devicetree+bounces-314043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314045-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id IX+DIYo0N2ooLAcAu9opvQ
-	(envelope-from <devicetree+bounces-314043-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 02:47:06 +0200
+	id UW6QM5xRN2oFMgcAu9opvQ
+	(envelope-from <devicetree+bounces-314045-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 04:51:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C61276A9F17
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 02:47:05 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 414966AA071
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 04:51:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=k3RBLezp;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314043-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314043-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=TEpLUK3n;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=AXeibP7d;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314045-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314045-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=mailbox.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CADF3301BF4F
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 00:46:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1D8AA300C995
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 02:51:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD1A221721;
-	Sun, 21 Jun 2026 00:46:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B051A3172;
+	Sun, 21 Jun 2026 02:51:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8951522B8DF
-	for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 00:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7976411CA9;
+	Sun, 21 Jun 2026 02:51:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782002796; cv=none; b=hlv9db0aY7x3GaVDgVxwvDv9VTbsCPGnJzqlNpCLOJlSlzTtXGabttvwtrTrb9MB35YyTE7PlkQg2mEcGwtAd1UPegh+GGOqJOWuhUMzoDrgUSj0g/q99x9k+AilmaRXbPyoTEOtnldMe0cDBZYjxCmgM1qxvqRsnaJKAXSZy6Q=
+	t=1782010263; cv=none; b=JBnlF2XOsFTqwi1vaoYvN8IJSrmAq2H8tD72fi7V6Dz00H5a/GIUEk09Yq1ooimPbdjRoxsQ5YTDj5tBiFA2GqUTOioJyOu6hIiiWqeaEPIRc626/2y4lT7Kw+G0aDdRLD3cPJLosp1DhahLiJLwUhTpoizr+Wf1PQgVKQWRPNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782002796; c=relaxed/simple;
-	bh=l7mHdO04LVSS3d8xjKFPHHbnSH0Vip0EhaqadJeukpM=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dzn6jC6cZftnbZFwjvZwJuODf+kwAdIiYcw9+he2XRhVn/Em5PqQcHol0azlYW9wiyUDCRgueWbU1VdXicimy47Bf57Q9GDdIYfSfU7qqWZVdOTMChE9s1MpxC3FvcautB2txzzImFRsTVNas2C9mFMN5viND//1sOv4Jv+vv9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k3RBLezp; arc=none smtp.client-ip=209.85.161.43
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-69de9bc590aso2599339eaf.1
-        for <devicetree@vger.kernel.org>; Sat, 20 Jun 2026 17:46:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782002792; x=1782607592; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IhmKD0rjdssQNbMQQrxwrasxhIABHPuvnpVZkgFEOmk=;
-        b=k3RBLezplPB7zmas29z18bfQ+1bGn+gT3DpYd6NYioe0BXSLknyOgFWLg5G9WEugq5
-         ZUDsVpHNLK+B0JwibWp+Nxl6XSoVx5KzGmrIMZoi/eF5KGfKTBpwpbOGSBOCpN81AcrR
-         AV8rekOvsWJ0u0GBoJPco20EZ4FadZDTbNQjaGf188EbIlVT9CvY3yz3i/cTjN1pnNx2
-         eEeWUttD7C3OtWK7R1VuWhe4uKd8u+VytLHr1kk/PNIJU0M7nfvTpCQiEaXCRJ5T5Wht
-         06RonQhcTJkeAcmbkG080QFjlag0peph+OVKetyzhyqFJr+oS0mEQoTNZuYTAFwGs10S
-         M5IA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782002792; x=1782607592;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=IhmKD0rjdssQNbMQQrxwrasxhIABHPuvnpVZkgFEOmk=;
-        b=OfsoJcz0MHa5zCuVAXB0Ix6slUqbe5173Xuwoyo4CPjuqqp6h48kx5QMmUExdznQOx
-         Ib9PWBVWes8OdNhLKJNDmb98LTifWZypOTjpX+OsdWzEbyriXjlfNlPVsnshmA2BVFyS
-         lrphiKfQv1xMPpafpJsVFecXLihAYcb/6EiiaYZT7hj+QTcNBfpdlAqVCNN1trCVzWKM
-         2GLzCxINsdZBHG7nJ6cBf6SHU44plgmux4TQr2jEjhyZ0t4QtBwKLCDz2l/nzjivzUHv
-         259ht8PPP/+LcQ8UtAFS96KjyHbPFstE8GMihQwkh5bCvKktZ2Hyy4lYFhCetiayQiSK
-         vDvg==
-X-Forwarded-Encrypted: i=1; AFNElJ/o3vcfSAr9dy30pglH8nFuxM+wpqdwVLE1uA+s8js/irue7xr9xI/jK5/V+PwGk/YSjyUV2oNm/ik5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwxioOb8E+A8AjhpqUrZdyBJF1cTR+IA4+lhhR2txVORcBLrOv
-	mYFK+F18BcHYjTAzlFQMi01FkE1B1ADjbAXaz3GltSINRxVfvTiaTX8e
-X-Gm-Gg: AfdE7clAsGPoKhdNMjACDw+S6AzjSWRQUA7YJFVqZ1e3v6mh2lT12UHZCIgg7Bt3UNy
-	Xg2G1GoPXPu6ZCc33OQD19hriZnTuP4IXpdm5KRE/P24YbVeAkDXzJj52eKS6v311xbrk0Fdi/p
-	QMd3dgbroT85kzjgpw9/OE0NSOvuGG6JK/+wUBpwkO6OyrjOksm8Hqo3QdZxBWf1BYwMIsefP2v
-	mw+PidzaPh38mAcFgma/jXPNE2WK6NPFlkXfwLvTBaTaSHm7LGFqc10fngNpan828w3fefkNROq
-	uRSi/nlKD/1Oh8BkXTaX2PSVxPxsVJKR9VcLuFvcrEqYG+Hmx9EkTaV9ocmmjYiSrK+g7bN9sxD
-	p1JSyyokCSAbNBlIJRJ2lu7YJWDzvaFJrng95oDeKMPuj9lIVloL1JHIHzdzvoX56eDiNqcut0d
-	c4PeKnPf8w2ODIeyp3rMYXzCW92SgU+VXN4SKwmIxvLNxZqQ8PWw1ll+OIdQ==
-X-Received: by 2002:a05:6820:1b14:b0:69d:e2fc:361a with SMTP id 006d021491bc7-6a0d90260f2mr7086804eaf.35.1782002792361;
-        Sat, 20 Jun 2026 17:46:32 -0700 (PDT)
-Received: from linuxescape.lan (23-88-128-2.fttp.usinternet.com. [23.88.128.2])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4472ec5fd4csm3080457fac.2.2026.06.20.17.46.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Jun 2026 17:46:31 -0700 (PDT)
-From: Maxwell Doose <m32285159@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1782010263; c=relaxed/simple;
+	bh=I+rRvQ9DvPg4MepXgTXUoaYKsK8CS0g+Ro7TSTvZtLE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=r779U+dIZrGiAmmrh8j0q1adeOqx72FkjFFzlw5yUIAUyHmYckvPd925ceoMsWu33ue/VMuDORjmsXOa0gbWBwXEAcfHOqJMt6+fprmvPSTezhHhwIm9f8EL6w6IGMc6DO2A+dGptjz/h/qV0WJwVoyfGUhbEb8eYYHF8k6xeQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=TEpLUK3n; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=AXeibP7d; arc=none smtp.client-ip=80.241.56.151
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4gjbS325vsz9tQr;
+	Sun, 21 Jun 2026 04:50:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1782010259;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=kSewyVdrq5Z8GYr/rDJoeSXs5aNZIEnD4cWp+G2/tF8=;
+	b=TEpLUK3nfD/QD9EAX4MjZabWcP3GEACdRIm5f9F8DiaxtfAYQBIb0ILayNGLBmto/9CPQq
+	eckqhADRhAkqB67MWbZPnNFL5uNC4+GHm3Y+CYXPhKb9LI2olUXeeOubyWFzDRiW6mPnSb
+	uOG9i/YUha/oW8XShNIbzyLsGYmyeEA9ZpbsEaVEbaJaqD0FByLPFyaXw2SU3yDYIC4Xds
+	qj1/pRE81hnobdpfRnUOUkRdClZBa0WIwSJZcWbiiIxZm5HgGBWPxRLfzNWbiy33o5ES4P
+	Lvni1hL7rujd+RvWf7BhFx5N/dnmv2cwkFqaY8FbaYKE/zm4DwPIYx5E/QfrSw==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1782010257;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=kSewyVdrq5Z8GYr/rDJoeSXs5aNZIEnD4cWp+G2/tF8=;
+	b=AXeibP7dFiyq6WkCd9SOkrtu1OgQFBteCICEsSfJz+00zDHmFdjgBraPKW6x0N007M/DKx
+	JNeWNiSFQXwF1sj0EM9TIeTJFOM027PrDu84iHdsN/7gFm6ghrFti8nQkhRhf5GBdBNU9R
+	NfFxLK8XNq297WFLR4oYxyZ+2xXFNETPe4424yF24y1U3TgELXe83pyiThop5FpgzWnymm
+	fURnb5kyoBtRYzzNDoM/lzIPMyPeBUZ/6SwXUTPQOLwxyiPOB7jBrjjtjWqTEVkKSSoqXx
+	cGTdsomu6RjsZPVpJ3N45SNcPGV10F5sadtoZ/hxK5TsFIvU/uXjUSVOYyXrwQ==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-iio@vger.kernel.org (open list:IIO SUBSYSTEM AND DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 2/2] iio: temperature: Add STS30 temperature sensor driver
-Date: Sat, 20 Jun 2026 19:46:24 -0500
-Message-ID: <20260621004626.66629-3-m32285159@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260621004626.66629-1-m32285159@gmail.com>
-References: <20260621004626.66629-1-m32285159@gmail.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 1/9] arm64: dts: renesas: r8a774a1: Add soc: label to soc node
+Date: Sun, 21 Jun 2026 04:50:21 +0200
+Message-ID: <20260621025052.406507-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,462 +82,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: a9cff52d3331e015f21
+X-MBO-RS-META: gkbhokzjgongtik374dd5xwnmpyrmonp
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314045-lists,devicetree=lfdr.de,renesas];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314043-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:linux-arm-kernel@lists.infradead.org,m:marek.vasut+renesas@mailbox.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:marek.vasut@mailbox.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,sensirion.com:url]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C61276A9F17
+X-Rspamd-Queue-Id: 414966AA071
 
-Add a driver for the Sensirion STS30 family of temperature sensor
-drivers over I2C. The STS30 family of sensors includes the STS30, STS31,
-and STS35, all of which are supported by this driver, since they all
-share the same commands, etc. and only differ in accuracy and tolerance.
+Add soc: label to the /soc {} node to align the DT with r8a77951.dtsi
+which already has that soc: label. The soc: label is useful in U-Boot
+where it is used in U-Boot extras DT fragments.
 
-The driver currently supports single-shot non-clock stretched readings,
-by using a specified delay based on the repeatability/delay specified
-by the user. The repeatability/delay can be changed at any time through
-sysfs.
-
-Additionally add Kconfig and Makefile entries for the driver as well as
-a MAINTAINERS entry.
-
-Signed-off-by: Maxwell Doose <m32285159@gmail.com>
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 ---
-Changes since v1:
-- Squashed parts of the MAINTAINERS commit into this commit.
-- Fixed a mixup between the clock-stretched and non-clock stretched
-  commands.
-- Fixed an issue where the return value of sts30_reset() was ignored.
-- Removed redundant "Author" line at the top.
-- Added comment at the top for the formula used to calculate the
-temperature in Celsius alongside a macro.
-- Added a dedicated macro for the temperature reading size.
-- Separated the generic linux headers from the iio specific headers.
-- Removed kernel.h from includes.
-- Removed unneeded comments.
-- Used named initializers for sts30_id and moved above _probe().
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ arch/arm64/boot/dts/renesas/r8a774a1.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- MAINTAINERS                      |   1 +
- drivers/iio/temperature/Kconfig  |  11 ++
- drivers/iio/temperature/Makefile |   1 +
- drivers/iio/temperature/sts30.c  | 329 +++++++++++++++++++++++++++++++
- 4 files changed, 342 insertions(+)
- create mode 100644 drivers/iio/temperature/sts30.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7f94b8cac3e2..6bb361ac213f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -24491,6 +24491,7 @@ SENSIRION STS30 TEMPERATURE SENSOR DRIVER
- M:	Maxwell Doose <m32285159@gmail.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/iio/temperature/sensirion,sts30.yaml
-+F:	drivers/iio/temperature/sts30.c
+diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+index 36675f5bcdeaf..e66d86db6e6c4 100644
+--- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+@@ -262,7 +262,7 @@ scif_clk: scif {
+ 		clock-frequency = <0>;
+ 	};
  
- SERIAL DEVICE BUS
- M:	Rob Herring <robh@kernel.org>
-diff --git a/drivers/iio/temperature/Kconfig b/drivers/iio/temperature/Kconfig
-index 9328b2250ace..c23a9c40c725 100644
---- a/drivers/iio/temperature/Kconfig
-+++ b/drivers/iio/temperature/Kconfig
-@@ -88,6 +88,17 @@ config MLX90635
- 	  This driver can also be built as a module. If so, the module will
- 	  be called mlx90635.
+-	soc {
++	soc: soc {
+ 		compatible = "simple-bus";
+ 		bootph-all;
  
-+config STS30
-+	tristate "STS30/STS31/STS35 temperature sensor"
-+	depends on I2C
-+	select CRC8
-+	help
-+	  If you say yes here you get support for the Sensirion STS30,
-+	  STS31, and STS35 temperature sensors over I2C.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called sts30.
-+
- config TMP006
- 	tristate "TMP006 infrared thermopile sensor"
- 	depends on I2C
-diff --git a/drivers/iio/temperature/Makefile b/drivers/iio/temperature/Makefile
-index 07d6e65709f7..9c9bf8d1b70e 100644
---- a/drivers/iio/temperature/Makefile
-+++ b/drivers/iio/temperature/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_MCP9600) += mcp9600.o
- obj-$(CONFIG_MLX90614) += mlx90614.o
- obj-$(CONFIG_MLX90632) += mlx90632.o
- obj-$(CONFIG_MLX90632) += mlx90635.o
-+obj-$(CONFIG_STS30) += sts30.o
- obj-$(CONFIG_TMP006) += tmp006.o
- obj-$(CONFIG_TMP007) += tmp007.o
- obj-$(CONFIG_TMP117) += tmp117.o
-diff --git a/drivers/iio/temperature/sts30.c b/drivers/iio/temperature/sts30.c
-new file mode 100644
-index 000000000000..dcfe3435ae5a
---- /dev/null
-+++ b/drivers/iio/temperature/sts30.c
-@@ -0,0 +1,329 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2026 Maxwell Doose
-+ *
-+ * Sensirion STS30 temperature sensor driver
-+ *
-+ * Datasheet: https://sensirion.com/media/documents/1DA31AFD/65D613A8/Datasheet_STS3x_DIS.pdf
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bits.h>
-+#include <linux/cleanup.h>
-+#include <linux/crc8.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/errno.h>
-+#include <linux/export.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/types.h>
-+#include <linux/unaligned.h>
-+
-+#include <linux/iio/iio.h>
-+#include <linux/iio/types.h>
-+
-+/*
-+ * STS30 measurement to Celsius conversion formula:
-+ *
-+ * T = -45 + 175(S[T]/(2^16 - 1)
-+ *
-+ * Where S[T] is the raw sensor output. We use this formula to calculate the offset.
-+ * Using this we can calculate the offset to be -16852.
-+ *
-+ * See section 4.12 in the datasheet for more info.
-+ */
-+#define STS30_TEMP_OFFSET -16852
-+
-+/* Amount of bytes received from the STS30 after a read command */
-+#define STS30_MEAS_SIZE 3
-+
-+/* Size of the temperature measurement data received after a read command */
-+#define STS30_TEMP_MEAS_SIZE 2
-+
-+#define STS30_COMMAND_READ_HIGH_REPEAT 0x2400
-+#define STS30_COMMAND_READ_MED_REPEAT 0x240B
-+#define STS30_COMMAND_READ_LOW_REPEAT 0x2416
-+
-+#define STS30_COMMAND_RESET 0x30A2
-+
-+/*
-+ * sts30 includes a CRC8 checksum at the end of its i2c responses. The polynomial
-+ * is used to generate the CRC8 table and the seed is the starting value.
-+ */
-+#define STS30_CRC8_POLYNOMIAL 0x31
-+#define STS30_CRC8_SEED 0xFF
-+
-+DECLARE_CRC8_TABLE(sts30_crc_table);
-+
-+enum sts30_read_delays {
-+	STS30_REPEAT_LOW = 4500,
-+	STS30_REPEAT_MED = 6000,
-+	STS30_REPEAT_HIGH = 15000
-+};
-+
-+struct sts30_data {
-+	struct i2c_client *client;
-+	struct mutex lock; /* Mutex for serialized communication on the i2c bus */
-+	/*
-+	 * sts30 has three potential repeatability/measurement durations. We need to
-+	 * account for them while reading the i2c bus.
-+	 *
-+	 * See section 2.2 in the datasheet for more info on processing times.
-+	 */
-+	enum sts30_read_delays delay;
-+};
-+
-+static int sts30_verify_crc8(struct sts30_data *data, u8 buf[STS30_MEAS_SIZE])
-+{
-+	int crc;
-+
-+	crc = crc8(sts30_crc_table, buf, STS30_TEMP_MEAS_SIZE, STS30_CRC8_SEED);
-+	if (crc != buf[2]) {
-+		dev_err(&data->client->dev, "Expected CRC8 value of 0x%02x, got 0x%02x\n",
-+			buf[2], crc);
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
-+static int sts30_read(struct sts30_data *data, u16 command, u16 *val)
-+{
-+	u8 buf[STS30_MEAS_SIZE];
-+	u8 tmp[2];
-+	int ret;
-+
-+	put_unaligned_be16(command, tmp);
-+
-+	ret = i2c_master_send(data->client, tmp, sizeof(tmp));
-+	if (ret < 0)
-+		return ret;
-+	if (ret != sizeof(tmp))
-+		return -EIO;
-+
-+	fsleep(data->delay);
-+
-+	ret = i2c_master_recv(data->client, buf, sizeof(buf));
-+	if (ret < 0)
-+		return ret;
-+	if (ret != sizeof(buf))
-+		return -EIO;
-+
-+	*val = get_unaligned_be16(buf);
-+
-+	ret = sts30_verify_crc8(data, buf);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int sts30_write(struct sts30_data *data, u16 command)
-+{
-+	u8 buf[2];
-+	int ret;
-+
-+	put_unaligned_be16(command, buf);
-+
-+	ret = i2c_master_send(data->client, buf, sizeof(buf));
-+	if (ret < 0)
-+		return ret;
-+	if (ret != sizeof(buf))
-+		return -EIO;
-+
-+	return 0;
-+}
-+
-+static int sts30_reset(struct sts30_data *data)
-+{
-+	int ret;
-+
-+	guard(mutex)(&data->lock);
-+
-+	ret = sts30_write(data, STS30_COMMAND_RESET);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Datasheet dictates that the maximum time for a soft reset is 1.5ms.
-+	 *
-+	 * See section 2.2 for more info on timing.
-+	 */
-+	fsleep(1500);
-+
-+	return 0;
-+}
-+
-+static int sts30_read_raw(struct iio_dev *indio_dev,
-+			  struct iio_chan_spec const *chan, int *val, int *val2,
-+			  long mask)
-+{
-+	struct sts30_data *data = iio_priv(indio_dev);
-+	int ret;
-+	u16 tmp;
-+
-+	guard(mutex)(&data->lock);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		switch (data->delay) {
-+		case STS30_REPEAT_LOW:
-+			ret = sts30_read(data, STS30_COMMAND_READ_LOW_REPEAT, &tmp);
-+			break;
-+		case STS30_REPEAT_MED:
-+			ret = sts30_read(data, STS30_COMMAND_READ_MED_REPEAT, &tmp);
-+			break;
-+		case STS30_REPEAT_HIGH:
-+			ret = sts30_read(data, STS30_COMMAND_READ_HIGH_REPEAT, &tmp);
-+			break;
-+		default:
-+			dev_warn(&data->client->dev, "Repeatability state corrupted, got: %d\n",
-+				 data->delay);
-+			return -EINVAL;
-+		}
-+
-+		if (ret)
-+			return ret;
-+
-+		*val = tmp;
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_OFFSET:
-+		*val = STS30_TEMP_OFFSET;
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		*val = 175000;
-+		*val2 = 65535;
-+		return IIO_VAL_FRACTIONAL;
-+	case IIO_CHAN_INFO_INT_TIME:
-+		*val = 0;
-+		*val2 = data->delay;
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int sts30_write_raw(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *chan, int val, int val2,
-+			   long mask)
-+{
-+	struct sts30_data *data = iio_priv(indio_dev);
-+
-+	if (val)
-+		return -EINVAL;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_INT_TIME: {
-+		guard(mutex)(&data->lock);
-+
-+		switch (val2) {
-+		case STS30_REPEAT_LOW:
-+			data->delay = STS30_REPEAT_LOW;
-+			break;
-+		case STS30_REPEAT_MED:
-+			data->delay = STS30_REPEAT_MED;
-+			break;
-+		case STS30_REPEAT_HIGH:
-+			data->delay = STS30_REPEAT_HIGH;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+
-+		return 0;
-+	}
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info sts30_info = {
-+	.read_raw = sts30_read_raw,
-+	.write_raw = sts30_write_raw
-+};
-+
-+static const struct iio_chan_spec sts30_channels[] = {
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_OFFSET) |
-+				      BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_INT_TIME)
-+	},
-+};
-+
-+static int sts30_probe(struct i2c_client *client)
-+{
-+	struct iio_dev *indio_dev;
-+	struct sts30_data *data;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	indio_dev->name = client->name;
-+	indio_dev->info = &sts30_info;
-+	indio_dev->channels = sts30_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(sts30_channels);
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	data = iio_priv(indio_dev);
-+	data->client = client;
-+	data->delay = STS30_REPEAT_HIGH;
-+
-+	ret = devm_mutex_init(&client->dev, &data->lock);
-+	if (ret)
-+		return ret;
-+
-+	i2c_set_clientdata(client, indio_dev);
-+
-+	ret = sts30_reset(data);
-+	if (ret)
-+		return ret;
-+
-+	return devm_iio_device_register(&client->dev, indio_dev);
-+}
-+
-+static const struct i2c_device_id sts30_id[] = {
-+	{ .name = "sts30" },
-+	{ .name = "sts31" },
-+	{ .name = "sts35" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, sts30_id);
-+
-+static const struct of_device_id sts30_of_match[] = {
-+	{ .compatible = "sensirion,sts30" },
-+	{ .compatible = "sensirion,sts31" },
-+	{ .compatible = "sensirion,sts35" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, sts30_of_match);
-+
-+static struct i2c_driver sts30_driver = {
-+	.driver = {
-+		.name = "sts30",
-+		.of_match_table = sts30_of_match,
-+	},
-+	.probe = sts30_probe,
-+	.id_table = sts30_id,
-+};
-+
-+static int __init sts30_init(void)
-+{
-+	crc8_populate_msb(sts30_crc_table, STS30_CRC8_POLYNOMIAL);
-+
-+	return i2c_add_driver(&sts30_driver);
-+}
-+module_init(sts30_init);
-+
-+static void __exit sts30_exit(void)
-+{
-+	i2c_del_driver(&sts30_driver);
-+}
-+module_exit(sts30_exit);
-+
-+MODULE_AUTHOR("Maxwell Doose <m32285159@gmail.com>");
-+MODULE_DESCRIPTION("Sensirion STS30 temperature sensor driver");
-+MODULE_LICENSE("GPL");
 -- 
-2.54.0
+2.53.0
 
 
