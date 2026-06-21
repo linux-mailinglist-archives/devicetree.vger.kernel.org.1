@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-314042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314044-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VgEIB280N2oTLAcAu9opvQ
-	(envelope-from <devicetree+bounces-314042-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 02:46:39 +0200
+	id coQ/AY00N2opLAcAu9opvQ
+	(envelope-from <devicetree+bounces-314044-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 02:47:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D716A9F00
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 02:46:38 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F9C36A9F1A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 02:47:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=rJeOuglU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314042-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314042-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=QQ+PYWpe;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314044-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314044-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E09F23008E05
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 00:46:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EDEBA301CA47
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 00:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9833222FDE6;
-	Sun, 21 Jun 2026 00:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D965D2459E1;
+	Sun, 21 Jun 2026 00:46:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16441F91D6
-	for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 00:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86629221D96
+	for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 00:46:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782002793; cv=none; b=X3fomQentTZ4PlrZqVtGHQPt2czmfr1RJGR9oWAeBYJCxeHAHspVKSv4NLQWyWrwKH9SPeI0GDwnmgtUuMEnE+3uNYxLQl1h9jLY3tTc0iMmGQgizWJ5OIqpkHcZxHfAb5tWlRzzngZengLeutybO7w1AfT6DXeV0gpG9zaYHw0=
+	t=1782002796; cv=none; b=qQtQaUHMyLI3eeHDIH4q3V18QtE43Lta+py2HXP/17FSaY0V9DunAwkWRtJM5SYVy6MpKcYslrZCwOv0baPouwSk9xrCC4lh6rlVS35d5zoF0FAOb20JIk60NnCVA+ONHsd79kHhXvGDx+m59Mwj5h837k4yXMCUX51Bo3bVm7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782002793; c=relaxed/simple;
-	bh=/9dz4QviX5eZ/DcvAaf4DKmZZS/7wY5B4acWBsr3MXA=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=p3nHH0P3YhI8oB0PCwWw+3LrvBBq5k7h2je2z7g0BCjsjdg1C9g+5FHbNXKB2lf/CAwPqrqjXOTph1qNs/dKJ35uwlWPW6TBP2LgySKD3RUGK1CXNAICSyeU/XELGR91dft++ZVa88lG9ucEP6uQgbn9TmuLxhW3HXrgF9tLi28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=rJeOuglU; arc=none smtp.client-ip=209.85.161.51
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-6a0eb19ff49so762844eaf.1
-        for <devicetree@vger.kernel.org>; Sat, 20 Jun 2026 17:46:29 -0700 (PDT)
+	s=arc-20240116; t=1782002796; c=relaxed/simple;
+	bh=5TTxQ3I91yDsizRvGxC6wGurDup/AtF5mbCDjYKei1M=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=KleGFGVQ6lPxiJzmJqoND/LE1WOyRUNWm/RMi8+REMfVAjH795JR+xkksCwcDjT0KHC1I3vJfSDJJvMnLlMFgPcKHr/prYD8olVOL1jXtzRCUp3vtFRLhpnkuD+URKNhQSitUP+33K42FMnshCCiWJsGsk8j8jSxct61Eg/g59Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QQ+PYWpe; arc=none smtp.client-ip=209.85.160.52
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-447134764f7so1402422fac.2
+        for <devicetree@vger.kernel.org>; Sat, 20 Jun 2026 17:46:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782002789; x=1782607589; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TI9LIWoTUwIdAN+9blNOOm/EKtO+7hwNGRKe2i/GtZ8=;
-        b=rJeOuglU18PZillaEbKXCn5B7z6TZf7VF2skBrVYsf88AjI0UEanvto+hY5jwhRJE3
-         6+Xu9WOQtkhha5tR6K3Fz7U4t3LvyAnf7MrtuToixCVNQcL5HN25RDOYHcXr8wYjc01X
-         dtDwwxxeDXdllGZxZ/ADLM9eK/9QBr5vcn4PniwMQ7TWNGvWAImwG+Ry02RNXI1A+UlM
-         bRPbqEG0ulE7YgMXRuV1SWlY1vdGNadFoisfL5T0MRTbSHJrROGJOK8F4SycOEMKYh8v
-         sL0GjfxoE3mkDmMsN3tlXQqA3L1DBCiWlyTQkzyvLf8LW16I9kg00PRKRfItgj8jriMi
-         P/6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782002789; x=1782607589;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20251104; t=1782002790; x=1782607590; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TI9LIWoTUwIdAN+9blNOOm/EKtO+7hwNGRKe2i/GtZ8=;
-        b=HQJDue+IATmBGo3Qi1wpXDRF89ZhRxbiE538vmgTeyPqSDakckY3vKVgE79yIOL4Qy
-         t+D4in9jrmRfUt6ykqVAlB4vsMF2WKhlzycKg6J9V46vyxA7joYHW9slCKQggo+ORo8W
-         L+XECzUpmssWRGaDHybNppWP/yfO2XJQ3vwr2dwajneg/a3Y7FACc5zyBxqxBQxQuPMj
-         shYy6oGuo7swZZBVZdOhBZc4ZV//vqi8FUx0yH9L6hqpfWrRcL+pIT/MEErSU/OXDY79
-         6IC6E1SnpTg8j0J0730rLgS7HdDtDf6Bwh5o3eN+KtWbgg4nwQTDY/fAhpP5xPevAm7I
-         EV5w==
-X-Forwarded-Encrypted: i=1; AFNElJ9XPzOfzZtCY1w5JKm+Yc8m98ueuE641lN3K+RCJGsuZMS9ctJ59za9ZV8Nup/Bu4aVC3wO/ei7+h+h@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWieoo1CUvGYL6w+bX+5xyUA1jBX7mcV0VhlleivdhUNZPyuaG
-	3eFLdJ9mNeodkpOPaJffPLXmJvFo3jDhYu0361Mjqe2i/7r9Na0hpZtt
-X-Gm-Gg: AfdE7ckoFEqGxo2lTRJKDW8Juk8MFxLQFpl0cqwXCfccaro3+LtniOgloA/iqQevZpJ
-	9cScFFq1LptxAKSXmX9q58e4pPDTai/JIFYlOXH94HP4OYreBazg9hno41/Ieh6WOnUiLkAcgOY
-	FxXJjsc1SGVnMDQsiqCEizwMZvj6LeMOJ9RkoCZHfQ7cVS6hTYETlmsTI5AQYBQehS1NB8DCizd
-	iXT5CqN6pqp510iwUFs3xdXAqj3IADShvMygIlHln6PpGS3MnsQ8FoIuetZmOCIrNbGbRgbYf4E
-	ZatQ1pDYoL31Tc/ttiIbwSMPZ538LqJtjSYKaLQrLPOMtAIfWCOhLmJyY+4y61H2dwQPYp6Nyxd
-	qhO3Wfc/w1lBjzSDpKxBMOD3h3MosccRqeoUmXmogTq50adnrtkLMTgt6K7T12NuqkqIWKwdbYF
-	QjsK976zsrq6ewJZvVekvFyG1rqyuhNNxLaApZXSiT+6QOOzVpf2l4SZcaeQ==
-X-Received: by 2002:a05:6820:2d43:b0:69e:219:603f with SMTP id 006d021491bc7-6a0d8999ef5mr7698515eaf.42.1782002788867;
-        Sat, 20 Jun 2026 17:46:28 -0700 (PDT)
+        bh=6UcOBkVQ+LuwHq0/corgNyTz2DMj/Og0DSgHE/NFxEw=;
+        b=QQ+PYWpetG9zk+hisGM4B2Xa3x4V3uLwp9TShUJLa/29KnYerBghnhlDxw6UAUbjHB
+         0D/V/VMjTnue43rnDYXc4nci5HHvtawBUKrNl7hGHXmZ7C3Nt/mgPVjmPJLz9kaeMIRi
+         fcAeynmVeUzkE2HZ4mGnFGIEs6L4hoVZouAE7/LBtWWwnVTS33t+N2Z1kTgTA7Dvi+d9
+         uK9BKF7pIKmdMpBQVKJKE5rO1YYkolSzdJw/GinPfXYtbPKrUY2gx2qgz+1UH5B0Qk1s
+         WXJWG8Zjrz1cU0oyFzmb/XGi63UKTo2RWmJGoXKV8Nn1KDWxDMq9aNU7mpa7JA4mZz+w
+         dNAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782002790; x=1782607590;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6UcOBkVQ+LuwHq0/corgNyTz2DMj/Og0DSgHE/NFxEw=;
+        b=I8zZrRdfqOCu62x8DyJkMFFxZ6hK+COEIh9u6O6C/DOwYhPHSq15cgY/MWbHNwmvxc
+         T2RlSGQHvdw2M8fBWms1G6fwdWSRvxRlg4w5s2BB7lh8Lo2L320S3nLHQNbhCn2yYqeM
+         t19OQuOEnPMhPni7ef6RYGyNqeDnaejg5Q2yhB7tITQY3kHT6C9YeeXaT84cB8wV4bPm
+         kxqYPUVKEszwk8zIlFFFW22qK4LdfxesSR/dIvuI+TBKrFaJYkJr8GOTqp9krRJyBG37
+         NB2A4AnsktjLcl9+mWmo/J38ObjbOmz4I3AgmLM5G9LyWKQVGMCWi9tdiuORa+oNRcvl
+         N2rQ==
+X-Forwarded-Encrypted: i=1; AHgh+Rq+i6+bB9bJ8iuYred8mraL3krOUlDWVOPBT75uIaPM/skH+JtSv9DizGMkibz3vCjcKUmYmneBcSMF@vger.kernel.org
+X-Gm-Message-State: AOJu0YygZt+qmMLeebJiTi1v4q9iEB/HYh+Ovnj4bNvc1X3hl34sTFDk
+	HpzEiWStiIpQJY7yudhdYdwUxLhdLaO+hDBNCPQChyowuokfGifpj05w
+X-Gm-Gg: AfdE7cnRqd9SI+6aU85mTq0qF5cgyD8dE47sUCxw+CwT7brfCSvj83F4U878R+3X2u7
+	/SEtFBh30PQMqT7QckPe6xAEZvLbYhGEYVFC8Q55zFm026yqQ80Ce9HQnRzsL2avDEehXtBA+fV
+	sJoLRYin++6r4+c59W9xc+Ai/qUU3MuIlcLQqvLgzyG5nqq7T4sCiEuBiZj2K9+7+8Hm9WUfVSU
+	Etu1eX8vjSEQ8KVwMWpHoo/W7R8/9uRQWyEOlW7IfxksyyHng19z+eoB9BZOBw1PjvfYEMsrm0Z
+	Mmo7UR0UF/y1pkVifctsU7POXhO3YTBL23qlOGWzFSXAOzvMU/pNhfzv219iGIju57+HrGrQhL4
+	BBQtAtfACcXpG8nkVA7mZtB2NLLuDVAYOChQGbtKPAwZcAtYjReTNr+53tsPLVow9daNXHsWPRT
+	GArXKK89bXzE7EDnTwGHx4cH4TLDk9V1m0Pg0XxeromTWkEhY=
+X-Received: by 2002:a05:6870:e386:b0:430:3ddf:9712 with SMTP id 586e51a60fabf-44707c309dfmr7829163fac.5.1782002790326;
+        Sat, 20 Jun 2026 17:46:30 -0700 (PDT)
 Received: from linuxescape.lan (23-88-128-2.fttp.usinternet.com. [23.88.128.2])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4472ec5fd4csm3080457fac.2.2026.06.20.17.46.27
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4472ec5fd4csm3080457fac.2.2026.06.20.17.46.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Jun 2026 17:46:28 -0700 (PDT)
+        Sat, 20 Jun 2026 17:46:30 -0700 (PDT)
 From: Maxwell Doose <m32285159@gmail.com>
 To: Jonathan Cameron <jic23@kernel.org>,
 	David Lechner <dlechner@baylibre.com>,
@@ -85,10 +87,12 @@ To: Jonathan Cameron <jic23@kernel.org>,
 	linux-iio@vger.kernel.org (open list:IIO SUBSYSTEM AND DRIVERS),
 	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
 	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 0/2] iio: temperature: Add support for the STS30 temperature sensor
-Date: Sat, 20 Jun 2026 19:46:22 -0500
-Message-ID: <20260621004626.66629-1-m32285159@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: iio: temperature: Add STS30 devicetree bindings
+Date: Sat, 20 Jun 2026 19:46:23 -0500
+Message-ID: <20260621004626.66629-2-m32285159@gmail.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260621004626.66629-1-m32285159@gmail.com>
+References: <20260621004626.66629-1-m32285159@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,83 +103,138 @@ Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-314042-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-314044-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_HAS_DN(0.00)[]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sensirion.com:url,devicetree.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 76D716A9F00
+X-Rspamd-Queue-Id: 4F9C36A9F1A
 
-Hi all,
+Add the devicetree bindings for the STS30 family of temperature sensors.
+The STS30 family of sensors includes the STS30, STS31, and STS35.
 
-This patch series adds support for the Sensirion STS30 temperature
-sensor family. This driver currently supports non clock stretched single
-shot measurements.
+All devices in the STS30 family share the same commands, timings, etc.
+The only difference between them is their measurement accuracy and
+tolerance.
 
-Given there were very little issues found with the v1 submission, I've
-decided to make this a regular patch series rather than an RFC patch.
+Additionally add MAINTAINERS entry for the driver.
 
+Signed-off-by: Maxwell Doose <m32285159@gmail.com>
+---
 Changes since v1:
-* whole series:
-- Squashed MAINTAINERS updates into both the dt-bindings commit and the
-  driver commit.
-
-* dt-bindings:
+- Squashed parts of the MAINTAINERS commit into this commit.
 - Added ALERT pin as an interrupt and in the examples.
 
-* driver:
-- Fixed a mixup between the clock-stretched and non-clock stretched
-  commands.
-- Fixed an issue where the return value of sts30_reset() was ignored.
-- Removed redundant "Author" line at the top.
-- Added comment at the top for the formula used to calculate the
-temperature in Celsius alongside a macro.
-- Added a dedicated macro for the temperature reading size.
-- Separated the generic linux headers from the iio specific headers.
-- Removed kernel.h from includes.
-- Removed unneeded comments.
-- Used named initializers for sts30_id and moved above _probe().
-
-Maxwell Doose (2):
-  dt-bindings: iio: temperature: Add STS30 devicetree bindings
-  iio: temperature: Add STS30 temperature sensor driver
-
- .../iio/temperature/sensirion,sts30.yaml      |  55 +++
- MAINTAINERS                                   |   6 +
- drivers/iio/temperature/Kconfig               |  11 +
- drivers/iio/temperature/Makefile              |   1 +
- drivers/iio/temperature/sts30.c               | 329 ++++++++++++++++++
- 5 files changed, 402 insertions(+)
+ .../iio/temperature/sensirion,sts30.yaml      | 55 +++++++++++++++++++
+ MAINTAINERS                                   |  5 ++
+ 2 files changed, 60 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/iio/temperature/sensirion,sts30.yaml
- create mode 100644 drivers/iio/temperature/sts30.c
 
+diff --git a/Documentation/devicetree/bindings/iio/temperature/sensirion,sts30.yaml b/Documentation/devicetree/bindings/iio/temperature/sensirion,sts30.yaml
+new file mode 100644
+index 000000000000..9bb0f04795d4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/temperature/sensirion,sts30.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/temperature/sensirion,sts30.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: STS30, STS31, and STS35 temperature iio sensors
++
++maintainers:
++  - Maxwell Doose <m32285159@gmail.com>
++
++description: |
++  Family of digital temperature sensors from Sensirion with I2C interface.
++  All devices are compatible with each other, their only differences are
++  their levels of accuracy.
++
++  Datasheet available at:
++  https://sensirion.com/media/documents/1DA31AFD/65D613A8/Datasheet_STS3x_DIS.pdf
++
++properties:
++  compatible:
++    enum:
++      - sensirion,sts30
++      - sensirion,sts31
++      - sensirion,sts35
++
++  reg:
++    maxItems: 1
++
++  vdd-supply: true
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        temperature@4a {
++            compatible = "sensirion,sts30";
++            reg = <0x4a>;
++            vdd-supply = <&reg_3v3>;
++            interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d95d3ef77773..7f94b8cac3e2 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -24487,6 +24487,11 @@ F:	drivers/iio/chemical/sps30.c
+ F:	drivers/iio/chemical/sps30_i2c.c
+ F:	drivers/iio/chemical/sps30_serial.c
+ 
++SENSIRION STS30 TEMPERATURE SENSOR DRIVER
++M:	Maxwell Doose <m32285159@gmail.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/iio/temperature/sensirion,sts30.yaml
++
+ SERIAL DEVICE BUS
+ M:	Rob Herring <robh@kernel.org>
+ L:	linux-serial@vger.kernel.org
 -- 
 2.54.0
 
