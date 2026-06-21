@@ -1,263 +1,193 @@
-Return-Path: <devicetree+bounces-314079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314080-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qvGfAQ/cN2ofUwcAu9opvQ
-	(envelope-from <devicetree+bounces-314079-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 14:41:51 +0200
+	id F70hEtnjN2obVQcAu9opvQ
+	(envelope-from <devicetree+bounces-314080-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 15:15:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8BD56AAB86
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 14:41:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 861216AADDD
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 15:15:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=b2ssSgFH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314079-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-314079-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=aurel32.net header.s=202004.hall header.b=YNyrsNRJ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314080-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314080-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=aurel32.net;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EF66730028E8
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 12:41:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 378F1300D857
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 13:15:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8FB3655CA;
-	Sun, 21 Jun 2026 12:41:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6AEF366822;
+	Sun, 21 Jun 2026 13:15:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12987136358;
-	Sun, 21 Jun 2026 12:41:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F4728C84A;
+	Sun, 21 Jun 2026 13:15:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782045704; cv=none; b=s+bSOsFM51oRiBvwFVA9jjgfjewN1INJD9j9MpNE/sxRjSRdQE8tXoG8A3btHp6WOd4DWJCbdnuh8MQ3revuhjzU33L2ZKrCtpH6SfIxOzVDDKa5o63zZ6d6wLGFThfKfv87tAcZCOl8KeLluOHwd7CXnAl0Q/2wMllscxDeKEI=
+	t=1782047702; cv=none; b=KsMOYqPb8wpsl8nGAZkvy/+WMjHm6xMlAw5/ntVLJRhACM8L0cT9yij3ZkGwG8gCRMUA3RnnM6FsclcR1JUUV/9nGUvK7oR51S3HtaR3Tabru9ESoyhn5l48RsE/tMygjvRqO/Jje6F1dDh4Ic2HTDMYlj81GJzn3kZ2EV2QObI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782045704; c=relaxed/simple;
-	bh=Iwvz1oB7F4H0M5UzMHPGtQ+J17Oz/OUR4eYiGvGm4BM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GO278e5MzMsgxrFVJh5Sd+PSxHPzHBDxiQIn8aW910WBYTaq2CxGiatkJ2fwLdpqptWmxfjW7ss+5H0ur9lHoUUjB0YDOW4G9ohYR8Nt7LOkFgO22YsPqAFE62UbA8Hd7K87OG/p+xyKtht3BMWLUDL+QX/J+wRNv1ezgdtyDo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b2ssSgFH; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A0EC1F000E9;
-	Sun, 21 Jun 2026 12:41:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782045702;
-	bh=5arIUg5n+BvsRbfOJFYCG+zJ+abvFikYKOsbm1AbBJg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=b2ssSgFH1RMS2OSr22xd0r66ptuhnHAFBBgDOUrYoj9Ol1FQ/n/PfsKD6/M2aDju1
-	 jeJ+fPQGgehhWagrtbb/m4wjF/1Bcpz9+o7LEdY2Y7pxqqodXTdSNRPzP4EDuC1lRY
-	 ENmd6Zxd5di3URzb0sp7YWKwoBtn7RkAReUVmW833oR3Iuqqq4p0VvlQBnc/IV7+b9
-	 vV7JHsQOxPdj6eFql9oKy0U1sP62zXj84IbLAtYq79XQQiPUGrBnNKDZFkQmO3gnkO
-	 Wx305tjG8cF3U+NtH16zR3qzguqASiBSlBG+KIoUHYqeyhdeh59frCpHpjL0hJn5yl
-	 mOdn2p4oOHM0w==
-Date: Sun, 21 Jun 2026 13:41:31 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: me@herrie.org
-Cc: github.com@herrie.org, linusw@kernel.org, denis.ciocca@st.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- sanjayembeddedse@gmail.com, maudspierings@gocontroll.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: iio: st,st-sensors: add
- st,fullscale-mg
-Message-ID: <20260621134131.2341019c@jic23-huawei>
-In-Reply-To: <6475e269775789d61ade326190b0d234@herrie.org>
-References: <cover.1780652883.git.github.com@herrie.org>
-	<e49aba850b1f48ea00089e7142c00584541001eb.1780652883.git.github.com@herrie.org>
-	<20260614194442.61191f68@jic23-huawei>
-	<6475e269775789d61ade326190b0d234@herrie.org>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1782047702; c=relaxed/simple;
+	bh=Ggyqf4V9QdplCClTk9Hgs7Wmob2TRbKYdHkBOyzeNPY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qsl2MeppW46ATYDUh2iN9Rz8qsKLl7wfioG9LXhIGqZ8dgxhtbWN+9IHRwd2FPZFogkf8IRpOgqCf4/94keDd5Yi18ZmvdKdPmOxyVBkJ6vtPjBFEUodwPwZx4OpkIEdOit5YpDBQRJlpVZpXKzRTDlISeKx72tdS50XAmyvEb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=YNyrsNRJ; arc=none smtp.client-ip=195.154.119.183
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=b+7H29dkhVMGO3TYR7p0AjHCtsPqiNAR3VmqxDlgg4k=; b=YNyrsNRJGh7cNXixVSGLbXkyEk
+	T2/vIARUjYirxMyH2xW4s2iHF1+SyuVXCAhsx17kSaGPIt9VCEuhS7RZHOLUoqMPRRG/APRk6ZMJi
+	sz7ka3/uEhDz1YzflamAKg4DTOUVCnMYeFdxW8PjHiMRzxxm3miJFfNJL0WFLUtt2WLkioGyj7liw
+	BH8K8gporiEqUMXxArI8SON95X2V7JP66KqR6so/4uxrR99r3WPeX+hqwZlrLI+vZRA2Ryvvy+yW0
+	3ZoeEK0h0NrIALxny7BBN8wSUdQFvSfTm4+Y+67MVh8BapQ8XdARoRG1yAGXvGTM3SeE745RLoQ7i
+	KCQQOSLg==;
+Received: from authenticated user
+	by hall.aurel32.net with esmtpsa  (TLS1.3)  tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1wbI0h-00000001gBd-1xzv;
+	Sun, 21 Jun 2026 15:14:51 +0200
+Date: Sun, 21 Jun 2026 15:14:50 +0200
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@kernel.org>
+Cc: Aurelien Jarno <aurelien@aurel32.net>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
+	"open list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>
+Subject: Re: [PATCH 2/5] riscv: dts: spacemit: enable the i2c2 adapter on K3
+ Pico-ITX board
+Message-ID: <ajfjyvSCVBVgr-UO@aurel32.net>
+Mail-Followup-To: linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
+	"open list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>
+References: <20260620062238.3199108-1-aurelien@aurel32.net>
+ <20260620062238.3199108-3-aurelien@aurel32.net>
+ <20260620062948.0A1161F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260620062948.0A1161F000E9@smtp.kernel.org>
+User-Agent: Mutt/2.2.13 (2024-03-09)
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[aurel32.net,none];
+	R_DKIM_ALLOW(-0.20)[aurel32.net:s=202004.hall];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314079-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:me@herrie.org,m:github.com@herrie.org,m:linusw@kernel.org,m:denis.ciocca@st.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:sanjayembeddedse@gmail.com,m:maudspierings@gocontroll.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314080-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:dlan@kernel.org,m:aurelien@aurel32.net,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[herrie.org,kernel.org,st.com,baylibre.com,analog.com,gmail.com,gocontroll.com,vger.kernel.org];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aurel32.net:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[herrie.org:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,aurel32.net:url,aurel32.net:from_mime,aurel32.net:dkim,aurel32.net:email,aurel32.net:mid,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E8BD56AAB86
+X-Rspamd-Queue-Id: 861216AADDD
 
-On Mon, 15 Jun 2026 13:16:52 +0200
-me@herrie.org wrote:
+Both issues reported by Sashiko AI (see below) are valid, I'll submit a=20
+v2 fixing them, but I'll first leave a few more days for humans to also=20
+have a look at the patches.
 
-> On 2026-06-14 20:44, Jonathan Cameron wrote:
-> > On Fri,  5 Jun 2026 12:08:42 +0200
-> > Herman van Hazendonk <github.com@herrie.org> wrote:
-> >   
-> >> Add an optional st,fullscale-mg property that selects the initial
-> >> full-scale range of an ST MEMS sensor at probe time, expressed in
-> >> milligauss for magnetometers (and analogous engineering units for
-> >> other ST sensor families that may grow this property in the future).
-> >> 
-> >> The property is purely additive: if absent, drivers fall back to
-> >> their existing chip default, and if present but unsupported by the
-> >> specific sensor the driver warns and falls back. No existing in-tree
-> >> DTS is affected.
-> >> 
-> >> The motivating case is the LSM303DLH magnetometer on the HP TouchPad
-> >> (apq8060 / tenderloin) where the kernel's chip-default +/-1.3 G range
-> >> saturates the X axis to the chip's 0xF000 overflow sentinel out of
-> >> probe, because the chip is mounted close to surrounding power planes
-> >> and picks up enough DC bias to exceed the smallest range. The driver
-> >> core hardcodes fs_avl[0] as the starting range, so userspace cannot
-> >> recover without racing the driver to write the in_magn_x_scale sysfs
-> >> attribute after probe. st,fullscale-mg lets the device tree declare
-> >> a wider initial range up-front and avoids the race entirely.  
-> > 
-> > I'm trying to understand what you mean here by racing.
-> > 
-> > If we get this overflow condition the chip is wedged until reset, or
-> > userspace simply has to change the range to recover?
-> > 
-> > I'm wondering if a UDEV rule is sufficient in theory to fix this.
-> > 
-> > I'm not necessarily against having the range in DT as it is effectively
-> > hardware dependent but just want to make sure I fully understand the 
-> > issue.
-> > 
-> > Jonathan
-> > 
-> > 
-> >   
-> >> 
-> >> Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
-> >> ---
-> >>  .../devicetree/bindings/iio/st,st-sensors.yaml | 18 
-> >> ++++++++++++++++++
-> >>  1 file changed, 18 insertions(+)
-> >> 
-> >> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml 
-> >> b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> >> index a1a958215cdb..335f38e9f78f 100644
-> >> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> >> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> >> @@ -126,6 +126,24 @@ properties:
-> >>    mount-matrix:
-> >>      description: an optional 3x3 mounting rotation matrix.
-> >> 
-> >> +  st,fullscale-mg:
-> >> +    description: |
-> >> +      Selects the initial sensor full-scale at probe time, expressed 
-> >> in
-> >> +      milligauss for magnetometers (or analogous engineering units 
-> >> for
-> >> +      other sensor families that may grow this property in the 
-> >> future).
-> >> +      The value must match one of the sensor-specific full-scale 
-> >> ranges
-> >> +      supported by the chip; if the chip does not support the 
-> >> requested
-> >> +      range the driver falls back to its built-in default.
-> >> +
-> >> +      This is intended for boards where the magnetometer chip picks 
-> >> up
-> >> +      enough DC bias from nearby PCB structures (power planes, 
-> >> ferrous
-> >> +      shields, etc.) that the kernel's chip-default 
-> >> highest-sensitivity
-> >> +      range saturates one or more axes to the chip's overflow 
-> >> sentinel,
-> >> +      and userspace observes that axis as permanently stuck. 
-> >> Declaring
-> >> +      a wider initial range avoids the saturation at the cost of a
-> >> +      slightly coarser quantisation.
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +
-> >>  allOf:
-> >>    - if:
-> >>        properties:  
-> Hi Jonathan,
-> 
-> "racing" was loose wording on my part. The chip is not wedged. Once 
-> userspace writes a wider range to in_magn_x_scale,
-> the next conversion comes back with sensible data and everything works. 
-> A UDEV rule on add of the IIO device would, in principle, fix
-> the steady-state problem.
-> 
-> What I was clumsily pointing at is the probe-time window: the IIO 
-> consumers in our stack (sensorfw's iio-sensors-adaptor, geomagnetic
-> / orientation services) start polling in_magn_x_raw essentially the 
-> moment the device node appears, and they treat the saturated
-> 0xF000 sentinel as a legitimate sample rather than as overflow. 
+Regards
+Aurelien
 
-Should this perhaps be returning -ERANGE or similar to indicate a failed
-read via the return value rather than reading out something
-that requires device specific userspace to handle?
+On 2026-06-20 06:29, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 2 potential issu=
+e(s) to consider:
+> - [Low] The pinctrl subnode is named `i2c2-0-pins` but belongs to the `i2=
+c2-1-cfg` parent node.
+> - [Low] Missing space before the assignment operator in `bias-pull-up=3D =
+<0>;`.
+> --
+>=20
+> commit 4dc6c92d42831e85b38f3350c15707d0e2b3af18
+> Author: Aurelien Jarno <aurelien@aurel32.net>
+>=20
+> riscv: dts: spacemit: enable the i2c2 adapter on K3 Pico-ITX board
+>=20
+> This commit defines the I2C2 pinctrl properties and enables the adapter
+> on the K3 Pico-ITX board. It will be used by the 24c02 eeprom.
+>=20
+> > diff --git a/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi b/arch/riscv/=
+boot/dts/spacemit/k3-pinctrl.dtsi
+> > index 23899d3f308a0..c9fe9c2e5aeee 100644
+> > --- a/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
+> > +++ b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
+>=20
+> [ ... ]
+>=20
+> > @@ -45,6 +45,17 @@ gmac0-phy-0-pins {
+> >  		};
+> >  	};
+> > =20
+> > +	/omit-if-no-ref/
+> > +	i2c2_1_cfg: i2c2-1-cfg {
+> > +		i2c2-0-pins {
+>=20
+> [Severity: Low]
+> This isn't a bug, but should this subnode be named i2c2-1-pins to match
+> the i2c2-1-cfg parent node? It seems to diverge from the standard naming
+> pattern where the suffix of the parent and child matches.
+>=20
+> > +			pinmux =3D <K3_PADCONF(46, 5)>,	/* i2c2 scl */
+> > +				 <K3_PADCONF(47, 5)>;	/* i2c2 sda */
+> > +
+> > +			bias-pull-up=3D <0>;
+>=20
+> [Severity: Low]
+> This isn't a bug, but there is a missing space before the equals sign
+> here, which diverges from the spacing used in the surrounding code.
+>=20
+> > +			drive-strength =3D <25>;
+> > +		};
+> > +	};
+>=20
+> --=20
+> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260620062238.31=
+99108-1-aurelien@aurel32.net?part=3D2
+>=20
 
-Not that this changes the requirements as obviously it still doesn't work
-when we want a reading!
-
-> Until 
-> the UDEV rule fires and the kernel commits the new range, every
-> read returns the stuck sentinel, so orientation/compass features are 
-> wrong from boot for some non-trivial number of samples (and on
-> slow-boot paths the consumer may have already cached a bogus calibration 
-> baseline by the time UDEV catches up).
-> 
-> So the trade-off as I see it is:
-> 
-> - UDEV rule: works for steady state, fully out-of-tree, but the 
-> per-board configuration ends up split between two places (DTS for
-> "this board has an LSM303DLH at i2c@... in this orientation"; UDEV for 
-> "and by the way it needs a wider range or its raw readings are
-> nonsense"). The wider-range requirement is purely a property of how the 
-> magnetometer is mounted on the board, which is what DT is for.
-
-Fair enough to it being board dependent.
-
-> 
-> - st,fullscale-mg in DT: keeps all hardware-dependent calibration in one 
-> place, available before any IIO consumer can open the device,
-> and harmless on boards that don't need it (absent property existing 
-> chip-default behaviour, no   DTS in tree changes).
-> 
-> I'm happy to drop the wording about "racing" in v2 and replace it with a 
-> more accurate description of the early-consumer issue if that
-> reads better. And of course if you'd rather we ship a UDEV rule 
-> downstream instead of adding a binding, I'll yield, but my read is that
-> this is hardware-dependent enough to belong in DT.
-I'm fine with the DT solution with some of this extra info captured
-in the commit message.
-
-Thanks,
-
-Jonathan
-
-> 
-> Thanks,
-> Herman
-
+--=20
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                     http://aurel32.net
 
