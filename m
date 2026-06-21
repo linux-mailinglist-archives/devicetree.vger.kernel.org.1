@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-314098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314100-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id E099GjACOGonXAcAu9opvQ
-	(envelope-from <devicetree+bounces-314098-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 17:24:32 +0200
+	id sWTUEjYHOGrOXAcAu9opvQ
+	(envelope-from <devicetree+bounces-314100-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 17:45:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC1CC6AB2C1
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 17:24:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB1426AB32C
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 17:45:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=AjsaiBjv;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314098-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-314098-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="c5/t7da5";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314100-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-314100-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 64DFB30028BC
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 15:24:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 33EFE3006108
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 15:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CCB5248F64;
-	Sun, 21 Jun 2026 15:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 276CD2C032E;
+	Sun, 21 Jun 2026 15:45:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38632459FE
-	for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 15:24:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6205E28C2A1
+	for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 15:45:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782055468; cv=none; b=jMUULr6YfW5TFzGSjILw3nFmeMjbYeaSG+XWbNfbBVyHMSesnnw086Hbqg8F2fLUtiqRf8Nytv0pw8qoH18QZkQwEnccAnrEuQn0xwaQBl74yQHRn6CHOfCAqnOTA57xOAuVJC7jzrMDkFGyrNLPriJl8zcvQLu153TwvKhDy7M=
+	t=1782056751; cv=none; b=PZ+Wmm6VQzTX7t3cx5sC4YM83rUJ63YZ+KrdA1uDWGTOXNjZ/934zNaLHhxBv180Lm41wGt0/gp7Cy9mTI5L8ry5IePCJc0NHUDL7THpLmM2VkAmBHeJjx/n2h7ydHEToGPxUaYJuDpGeTgPzVT0kJt6uHXYdKe7vtaur98a9Sg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782055468; c=relaxed/simple;
-	bh=S6iMoD5mIVGD5N0Aczx+kmg62+jsu4Dmf1ROr3bsP+s=;
+	s=arc-20240116; t=1782056751; c=relaxed/simple;
+	bh=/gZfcSYO5I5loQX3u0LwqbrBQyMEw4vh91vd11x3l9U=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sS17bsjE8RU4NufhmQ2BSSLKxwlji57V5XTYoXclYZ2m/HZxETHDQekYHsTlVqTzHuGcMz/t8fhAxE6bCmD4J0jx48MY3tk67bIPa2D+bMmXkEf8vYkvWP6Atkn6Zk2RjCdXKCD+5946Hdyj4GiR0vHkbe6bWrP1B8z3io2sTwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AjsaiBjv; arc=none smtp.client-ip=209.85.215.181
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-c8deb37737dso112347a12.1
-        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 08:24:26 -0700 (PDT)
+	 MIME-Version; b=UUzQNDEtT+jR+l/NYLCuAeYetCIVb5xoisC5nFVIANPmjfj1ohSoj3QVekD53aIqqHpiIbwq1sdSfR+mVaBXfrATKf+HbWOsUiTwiCiHHfBuFi4B7k8heFFAo1U3IqPNt6UdzA6jXCcHdDKkfeLrxmeqGDaHhaCjlnvvZwpFBF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c5/t7da5; arc=none smtp.client-ip=209.85.216.47
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-37cbcf49deaso1702148a91.1
+        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 08:45:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782055466; x=1782660266; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1782056747; x=1782661547; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YvEQ7rH1GQaXLoA200lLxhYP67p8h3i3QuzT03ZUuQQ=;
-        b=AjsaiBjvmO8HN7kRrRmF9ZPjOlyhZZBSIk0dahqp6eOR5LVn8e4TGMTF5FgNYu5yQL
-         5I/+8uHwfIH7VUKMrC3KuHzKOgQ41B9IRQfBtoMmtEe/MnRRCuFpbgUt+xN2jR7tColF
-         +BxBnn0F11J1niX7ACe/DUAVbnSpQutYOspwUCbzxPpSD5r4OXIWfuiob5pkcMPoRWaD
-         tKPDCA/xo4NwWz3N82A1g+MZjukQkN94Nw+RmmuCgqm41WrLKmgCfJYphzun1fOWHX1o
-         ker3CKjihL6XOK7dXQ66WA7HXiVLPXSX20RG0/JOsJyNPzcvLtpNiS6O9dMNuBbTQ057
-         sO2g==
+        bh=tCFISPejpA4KN+GVlYKxBYlhkGQr78rc8f+aUEsLn44=;
+        b=c5/t7da5f0en0JAxFcO9IooIqte0WWSOBO8qTGPrzfPNTTYiCdEBzl6HGYPKEw26mW
+         et+7ieJ49O2BixfJx6xXVFZX5j2wyT3DnN9I2dgxIAh8786dkj0jwYC3SvbA9xmoJfrI
+         RK9D0eBbsD465AbLpPhPKtNdNs1uW/Z/Ibquar6xSOT7CAjQ3iFW32kYIZmRzWqEtzxz
+         9+7EPIZkPgyx0jceb6eeqcfYOHl4SliT29hvSKoFzZ3moI2Wpl7j/Jx8RYX6U42Sd9Uo
+         Rj1KTfES4iqdSferCBnbowXjXzI2XoxjIytjT1GS+Zik7JAOb52IBoqiEWTWZjx2laaS
+         sz1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782055466; x=1782660266;
+        d=1e100.net; s=20251104; t=1782056747; x=1782661547;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=YvEQ7rH1GQaXLoA200lLxhYP67p8h3i3QuzT03ZUuQQ=;
-        b=SxDUd0dBQphzVtpP26wJjvei5ye8ho08z5hFdOjN2+RPbTEooaMI6mVChNv+I3Cj5G
-         3gEPeD2H0yU6lW/jUfXR2Xyj9P2cBGT7TnuoDZ7ftA7xDvd8Ddoq7ixxBVJGJvwgRXeu
-         WFewx+Tcg4cX5sYvcFbDr3+fb3Do3BF3C7lEaCLirpbZMe2lyf2kdm/L8yaKR02E29Dw
-         tz2P722qecFjI+adycMKLV7g/spHGpPI9D/kz50tz+QwtCA3lZDQ2FVAgQLVfglZZ7cD
-         p656PNgfY/d6IFa8ePC6580tXWlRQAlngFxt9sGmPHaPJZZMyKYOKOrbJrK263DUahqH
-         k0UQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/rBprjGOWwq6oe8hMb7CIt4fTaMK/LDPmE3eFcdZyWrBpCYnzIf8uFeTcwp+hsBN1mRaBinBEmrs0z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfdIwm4PYCXGCmun33TypMAPV8XLpTuHhqUbU6DJeOC8n9a8tW
-	oEKv6+85QWHrRaIYfnPS7z1rL9W88+b6b7NvuVkmNb7W/zcJODsFUjnw
-X-Gm-Gg: AfdE7cmje75xZnLbPa3ZAvgD8pgOOXzE9HfAwcETzwRz93Hoh9q2BmwOciVngBZ+tJ6
-	2aDeIo7gND9UAzyvO+dDxkDA9uDRmJvTkOLSU7DfTaIhn74gpSqiyzzhHD/LJWG5D800PBuPuv1
-	huy40qdQjvMbB4xHANw/wzcVju/QIK7nLfC05th9FhhDdlUD6eg0JgsGDyo39oNs6JN1ZSj95T3
-	rIkJ786CGKk+D2DGOCFda6DPz4+LP2sJ7vOPA//4PlDci5KitUVyddxqeHwo70mpHuTolWzm3/M
-	f79G6Hp4xA3QtHbbs+YGhIC3m3JPTTeZek97aYYMenEcIzA5shBdO6DbGPEtnODEHs+/ErECQbZ
-	zPAj+6dSXhu9PktuemYNPUaJn4vYMCkA9L2jqyqD48J88Ox79gHTdXJJygv2Xz+C9tIyy6QWhaW
-	rQEzKaIEK5Wd/AOIU5tGwE6iTf4rXBqKG2jzUtLsxcEQ==
-X-Received: by 2002:a05:6a21:4598:b0:3b4:60e3:a1d5 with SMTP id adf61e73a8af0-3bb3210a569mr13348674637.13.1782055465771;
-        Sun, 21 Jun 2026 08:24:25 -0700 (PDT)
+        bh=tCFISPejpA4KN+GVlYKxBYlhkGQr78rc8f+aUEsLn44=;
+        b=NxCbLktgQ5+xqVrtHf4QtPbQE+uwzyuf0jC4sz8c/BmUuZaosA1du4OB6ZAXOi6MTH
+         afqW3l8hXv6+Euws6k8qhOqbp5zDTS8NGPRTPHbXg/kDjLagQYrGzqi/jHAfU8pqoopt
+         E0/i3y0h6KucpolNmNtTZknVQ/1RFdJPWasg+y/PXtSsAC3+V6Is9hgVC0NOtBHBaBI7
+         VKqCS9X7EA+WIIDLSjfGQowPvIwxMU1mR+/jx7lvus9AzMiiq8Pt3xWNkMfbW2jdrFMv
+         fH8+8DfrJ9nTosXvrI5zbXK/a0clCgmOMHvI82GO/YgPlQ8kAvAa35K8jWEpaTtk+2YE
+         l9hw==
+X-Forwarded-Encrypted: i=1; AHgh+RoZP+TJtu+gv+4pSPVMgznssv3ESmg0iTvJT6Baf03rn2txFIDt2MeC3/ErY/Q5uAe/RCOnfe3aLhjf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWf3GNOi3bjAQVqjisYg1d3JX87PlUQ7gznXjjzgXBsSPK+u0c
+	x/a62cL3aeYCH/9Mqot73ozuhmLZLJd+SIDTbMBZzIBpQzLCaDqwWIqW
+X-Gm-Gg: AfdE7cmy3+m0VuOcOJpAKPBXLkkeMQ5zO8Fa9MzjaWHrfxL9QviULYSFpdxassxgJZ2
+	5CTo/Pb9FEPZTZXtoNsNpIddpT/czI+aw5cI23ajT7EVCzyOZotOJmbc/BWqkkat7Up39gSTqvo
+	4/+OHtQ/ECtaOAaIjpyLym4uNu+ziFqNQnYoxj6Q/YoQBdTFHMTbXYRgsTv/w9yHRJNCQRrLCRu
+	yUYYl6ND1aeDGGtjmDBkN10i6hEay5vD7x2dtqSq5yepHt6nTUcZId6swzyTfW7WsyoaxkvzmI9
+	rRY+lnTTV+Ul3YkOl31TKeyJoqROUSX2leguDpCUIHTMFuX48jkWamKnN59IMlRscOlycn9nyk4
+	2b4KaUWvq0ucEETEjGBWLXcCstkOLapnmkVyoDnEz5bf3M69iH1ra1ZYs/K/lJSX1VO7CZBtQUe
+	FrtoyLrDd55pk25xGP9yJ53wKyRwOoOjN+Va0bWEIwcg==
+X-Received: by 2002:a17:90b:5824:b0:36b:e8b9:46a4 with SMTP id 98e67ed59e1d1-37d15de2859mr10666648a91.14.1782056746751;
+        Sun, 21 Jun 2026 08:45:46 -0700 (PDT)
 Received: from kernel-dev ([49.36.101.14])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c8bc374375csm4846868a12.13.2026.06.21.08.24.21
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-37d15df7424sm7727194a91.14.2026.06.21.08.45.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Jun 2026 08:24:25 -0700 (PDT)
+        Sun, 21 Jun 2026 08:45:45 -0700 (PDT)
 From: Aditya Chari <adi25charis@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -86,9 +86,9 @@ Cc: jacobsfeder@gmail.com,
 	linux-staging@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Aditya Chari <adi25charis@gmail.com>
-Subject: [PATCH v2] dt-bindings: misc: add binding for Xilinx AXI-Stream FIFO
-Date: Sun, 21 Jun 2026 14:49:53 +0530
-Message-ID: <20260621091953.53281-1-adi25charis@gmail.com>
+Subject: [PATCH v3] dt-bindings: misc: add binding for Xilinx AXI-Stream FIFO
+Date: Sun, 21 Jun 2026 15:13:12 +0530
+Message-ID: <20260621094312.53655-1-adi25charis@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260621085209.52651-1-adi25charis@gmail.com>
 References: <20260621085209.52651-1-adi25charis@gmail.com>
@@ -102,41 +102,40 @@ Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-314100-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314098-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gregkh@linuxfoundation.org,m:jacobsfeder@gmail.com,m:devicetree@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:adi25charis@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[adi25charis@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gregkh@linuxfoundation.org,m:jacobsfeder@gmail.com,m:devicetree@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:adi25charis@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[adi25charis@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,checkpatch.pl:url]
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EC1CC6AB2C1
+X-Rspamd-Queue-Id: CB1426AB32C
 
 The axis-fifo driver's compatible strings were undocumented, flagged
 by checkpatch.pl as UNDOCUMENTED_DT_STRING. Add a YAML devicetree
@@ -144,8 +143,22 @@ binding document for drivers/staging/axis-fifo, converted from and
 replacing the existing free-form text binding (axis-fifo.txt), which
 this patch removes.
 
+Constrain xlnx,tx-fifo-depth to a minimum of 4, since the driver
+subtracts 4 from this value in its transmit bounds check and a
+smaller value would underflow that check.
+
 Signed-off-by: Aditya Chari <adi25charis@gmail.com>
 ---
+
+Changes since v2:
+- Added $ref: /schemas/types.yaml#/definitions/string to the three
+  AXI-Stream protocol enum properties (xlnx,axi-str-rxd-protocol,
+  xlnx,axi-str-txd-protocol, xlnx,axi-str-txc-protocol) for explicit
+  type consistency with the rest of the schema.
+- Added minimum: 4 to xlnx,tx-fifo-depth, since the driver subtracts
+  4 from this value in its transmit bounds check
+  (axis_fifo_write()) and a smaller configured value would underflow
+  that unsigned check, bypassing the oversized-packet guard.
 
 Changes since v1:
 - Fixed xlnx,rx/tx-fifo-depth: depth is in 32-bit words, not bytes,
@@ -157,18 +170,19 @@ Changes since v1:
   false does not reject valid device trees generated for real hardware.
 - Removed the now-superseded axis-fifo.txt text binding.
 
- .../bindings/misc/xlnx,axi-fifo-mm-s.yaml     | 221 ++++++++++++++++++
+
+ .../bindings/misc/xlnx,axi-fifo-mm-s.yaml     | 227 ++++++++++++++++++
  drivers/staging/axis-fifo/axis-fifo.txt       |  96 --------
- 2 files changed, 221 insertions(+), 96 deletions(-)
+ 2 files changed, 227 insertions(+), 96 deletions(-)
  create mode 100644 Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
  delete mode 100644 drivers/staging/axis-fifo/axis-fifo.txt
 
 diff --git a/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
 new file mode 100644
-index 000000000..f4606b13c
+index 000000000..53bf52524
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
-@@ -0,0 +1,221 @@
+@@ -0,0 +1,227 @@
 +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
@@ -226,14 +240,17 @@ index 000000000..f4606b13c
 +
 +  xlnx,axi-str-rxd-protocol:
 +    description: AXI-Stream receive data protocol. Ignored by the driver.
++    $ref: /schemas/types.yaml#/definitions/string
 +    enum: [ XIL_AXI_STREAM_ETH_DATA ]
 +
 +  xlnx,axi-str-txd-protocol:
 +    description: AXI-Stream transmit data protocol. Ignored by the driver.
++    $ref: /schemas/types.yaml#/definitions/string
 +    enum: [ XIL_AXI_STREAM_ETH_DATA ]
 +
 +  xlnx,axi-str-txc-protocol:
 +    description: AXI-Stream transmit control protocol. Ignored by the driver.
++    $ref: /schemas/types.yaml#/definitions/string
 +    enum: [ XIL_AXI_STREAM_ETH_CTRL ]
 +
 +  xlnx,axis-tdest-width:
@@ -316,8 +333,11 @@ index 000000000..f4606b13c
 +  xlnx,tx-fifo-depth:
 +    description:
 +      Depth in 32-bit words of the transmit FIFO, as configured in the
-+      IP core.
++      IP core. Must be at least 4; the driver subtracts 4 from this
++      value when bounds-checking transmit writes, and a smaller value
++      underflows that check.
 +    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 4
 +
 +  xlnx,tx-fifo-pe-threshold:
 +    description: TX programmable empty interrupt threshold. Ignored by the driver.
