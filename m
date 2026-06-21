@@ -1,222 +1,269 @@
-Return-Path: <devicetree+bounces-314089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314091-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hBgSJ0LoN2r3VQcAu9opvQ
-	(envelope-from <devicetree+bounces-314089-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 15:33:54 +0200
+	id XEMPLJvqN2p9VgcAu9opvQ
+	(envelope-from <devicetree+bounces-314091-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 15:43:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EECA6AAED5
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 15:33:54 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DE696AAF52
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 15:43:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=FAX3WVq1;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=FcEYgKGc;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314089-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314089-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gy153fBx;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314091-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314091-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8BF223015CB1
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 13:32:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 829E53002337
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jun 2026 13:43:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83764367B83;
-	Sun, 21 Jun 2026 13:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 178D8242910;
+	Sun, 21 Jun 2026 13:43:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AE9925B0A0
-	for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 13:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD89C15B971
+	for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 13:43:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782048776; cv=none; b=a33k9Ed9WiSwGc8kmCPC+n6FH1YJFEyiod3CIuIAfD8qN+bamSLTGWTBWpLfjjOwv7s9x+TAghPEMsMTyQHY5AIj2iloM0zSGCSjJlmu8X/p3YputsrgCEHMvTqAQ+KfhmUTkKrc0xNUbzRgY40jANu8kD524z6hvvXQm/m4Z0U=
+	t=1782049431; cv=none; b=C9yATNknz8agJZz4CAPZvlUeIKQ/BqAPo8n57HR/I2yFJn+b2fhpN6buEr9lu1dSpZMVlo0ZnRVwe6uHqTdBdQ3lwhs+V/9zdJaYoQCQbdXHe9KAXVPB4efSOF/mA3MNqtScg4Cg5hlfmAfRJMmJmMsYXyYtuYjzBxVbTDnCisU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782048776; c=relaxed/simple;
-	bh=ipa76yU2Zw2tR6ryZjmIAUocwMFzX+D5OAP1yIQC2TQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QT0EWhGDazBBEFpR7vR3N8Nztc1N5ER6azXasHFV/Cn0XpQGibe1HMEKsjG0FSkA7t/AkK+4kbDl+BxoDwipvjGxGMu/pDshW+oW+zCjWNj7gJe992k9k2SqTsxnqdv5I+XVACwhbxiZ51YCPdxla0+1QRxhAQRQZnwgx6P/crk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FAX3WVq1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FcEYgKGc; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65LBF57L2164429
-	for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 13:32:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fs6NaHP7AmEMbNJiFexcpcvlroCJD3XXYlYKwSLAvFM=; b=FAX3WVq1SoL6yjNv
-	AQywfDqvT7JbCuHP/KBgkO+iAyKEtH5eNs+FS3a852P/F4jlVaOzn3oJvTuHjdnI
-	614BgeK42S9XWXwt9Q4xxty240TzHc6VbbefLaJms7YWAIUTs2VVjBLZRPfaMlZY
-	G5BJ7tQbqhhpEF5KVmwTtHwIp3a4ps6fCBG+qipT9fAeZSHydApbm5kJQvaCsq3T
-	K3eGUzgdAy7oKH/R5NKfysI1O8LG6/ZbBjDn06uICtemjHR+Yx+H2K/u6W9YeIGM
-	nx7A9hoZ7XQ9dZWP5RhazwwKwARkNEGxjpBvjOZs6lses1cNqUb3BTf4rxTB/cKI
-	4Ot+IQ==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ewg7mkdh3-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 13:32:54 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-37d4f1f836aso730376a91.3
-        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 06:32:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782048773; x=1782653573; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fs6NaHP7AmEMbNJiFexcpcvlroCJD3XXYlYKwSLAvFM=;
-        b=FcEYgKGcXvFBl5ozOfEMTcxrzTrhkLgKAae51tab0ClLKvJvZIxiW7OTLtL6BIacp+
-         cQU91kVWDA/zfO/0XZ8Xq3HAsPdQQGVCgA++mh1fx8wlAIfLLuSBpJ/A1Zph65dNIcso
-         Nmi5wTsNSWHYrNVIuTwAMY/j7PHjUuWxHAqDjPKHiWk9lgib4tJbvuUcFxL62ptvsrPd
-         zhtJpsfmWktCF6AMAmtmVygP/6vXE6S6X9FnPD0fh0eVQdzbcJ6jEbVdNgz8B/WEvUwF
-         R+RUBPDJDY4P7uKXLPUtbhQv7rwieMMbwe+jQZoqaSs1XI4zMkfmpWH0VY43kaiyA2KE
-         Uprw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782048773; x=1782653573;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fs6NaHP7AmEMbNJiFexcpcvlroCJD3XXYlYKwSLAvFM=;
-        b=gMFd7/GAufeBDTVIW4JKkiK63raxgB0dP5NQSubKRtx6OfmTgVtxVqInXYgEXxV6VJ
-         Ht16+mDsaNUnK10x4N6y5Un8YwR000ySbVWQLo4zMfU2iT3sj0hTkVosCjWgvqYGH+bc
-         Qe+KhXaHKzick+t7HSQ4VHn1lyPhKYs3I1htpeokYSCT5oF+iTwZrAz4kGeOiqcqCHyj
-         /a0EQ9SNN365oPEQSr6qtF1ZnbFVV/sAc2kreyNhCcox9lJVYxi35FkWfrzCh5FR+LN1
-         ZkGdS3rV2MNjooGJtP1RliTBgXiJKHqlxJNtJ9NehRBI6IQ3ylIX5Ulk+ATBCEqbwcWQ
-         rQBA==
-X-Forwarded-Encrypted: i=1; AHgh+RqQj+/fmeIAzWTqGfbH421w3Vpboos4HDgqsb+pRrw04yIY+nhm+RclqfXl0IwE03Vy7o91p2bCtAiM@vger.kernel.org
-X-Gm-Message-State: AOJu0YyihfqqsC7Q80UoVqyrtu2EerlgpKxDyv0eNQaE+8Xq6E1W1IiG
-	e0bNUB/mLjwGQiX2G/iYS8jeixuplESeSRAawgU9ey0OdcH49wf/VpeXUj1joEnO/gcwRST+bcr
-	hQlEc36yJwsVhkfz+lFdpWsgcp+uXyvF56DNFKkaYcct6KWzWvm8tiBww9ZUZbgjB
-X-Gm-Gg: AfdE7cm6qWMc8DbD620vCvm7uSHngOLGVjuDvbjx6YAf867tpIsZHxD1/UWyNuo/KlZ
-	LLTvOm2Db8TzGrYDJiU+54uSCJ0uw2y5CC6wzXdTnNpFWBpVJXNzfOG31I4ZHnSRlImAcyn0W+h
-	iV2+kp7kja0gVWNsKqk6suALqt8uc5gTxO/URzYa8MkQTbFG3FEMWgqqfwFqTy4IjGoGE6Nx6ju
-	9stHTieGDrrW75w1rG8N7ZSd/69oE5DaloC3DVLycuhPmCtGuRgeLpycL4oLLRs9IqkdFq5T5eq
-	J8cPaDgiPkknnvPH3cHytkMqOT32dmceRdcoqZDz1V1AkZWHEUY/bOUaNXa/8ohH/jaXaL5rBwM
-	BYZRxoRrZBVHOCXrdgkYsRrn6ucH9n2n3JgX6foBe
-X-Received: by 2002:a17:90b:48:b0:36d:5d1c:c4ad with SMTP id 98e67ed59e1d1-37d160e49f9mr10095815a91.9.1782048773229;
-        Sun, 21 Jun 2026 06:32:53 -0700 (PDT)
-X-Received: by 2002:a17:90b:48:b0:36d:5d1c:c4ad with SMTP id 98e67ed59e1d1-37d160e49f9mr10095791a91.9.1782048772761;
-        Sun, 21 Jun 2026 06:32:52 -0700 (PDT)
-Received: from [192.168.29.32] ([49.43.225.115])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c8bc563c406sm4527649a12.19.2026.06.21.06.32.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Jun 2026 06:32:52 -0700 (PDT)
-Message-ID: <86441f81-05c0-4561-93df-53783e5b9674@oss.qualcomm.com>
-Date: Sun, 21 Jun 2026 19:02:44 +0530
+	s=arc-20240116; t=1782049431; c=relaxed/simple;
+	bh=8ysIgUom6C6o9latYDC+aiw57uHdl4sgAscggbKjr0A=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ZLt1H7pH0PpbESLSWryES3iB/NLLNY1thRMtU4zsV+6KxxrMi5GUCHOL7hc0dC+HKmbvdVt2AQs5FeBdaU+24H4ibNH+FnGAQDfWBuMixvhcf8z00FM/SjEcAcF4ZNxUO7Fi6CHYjRXMk1fVx8K/3p/aWrZP4jDQh+JViY7jPVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gy153fBx; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B2B21F000E9;
+	Sun, 21 Jun 2026 13:43:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782049429;
+	bh=d0rqveRGH2A0Njj4Hz3XOvgIHSf0GCfoxNNh4jOq/zM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=gy153fBxb8vKabUM0TADgB1j44FLmln9B5xpHJ3B3XZf8bXKRav/fmUpn0pTa1v0j
+	 bmRmTBsyZg850kiCCsxTl7x9xUtD7EZX0a9NJR8RJrtKQyPW8BVQOkWxf+4z0egZ+6
+	 ItB1x8jt/a2ln+ubyN8Lt6K7N2TgbF1hCu7rV6ZOoP4nd7y4nWz+jUkQ4P3D1Ql47z
+	 X3dkcoKHvNteXqdMDmVUbdNAlZBVBCCwQ8oxM+Sgc3mHrM2dcBVEV1edeQLURPi8Fq
+	 cUyZ+aspS2tngzeDKIw9mgdnq5OuvLU9xFknXu/V3elscCiPYOY3k644hufZAbuUO2
+	 TXxWRSjwfmdVw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] dt-bindings: misc: add binding for Xilinx AXI-Stream
+ FIFO
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Aditya Chari" <adi25charis@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260621085209.52651-1-adi25charis@gmail.com>
+References: <20260621085209.52651-1-adi25charis@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sun, 21 Jun 2026 13:43:48 +0000
+Message-Id: <20260621134349.1B2B21F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 10/13] clk: qcom: gpucc-qcm2290: Update GDSC *wait_val
- values and flags
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Brian Masney <bmasney@redhat.com>,
-        Ajit Pandey
- <ajit.pandey@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260604-shikra-dispcc-gpucc-v4-0-8204f1029311@oss.qualcomm.com>
- <20260604-shikra-dispcc-gpucc-v4-10-8204f1029311@oss.qualcomm.com>
- <xcujjo7qdgoupayq5zrddl7gii7s2ljhunvav2jjzynykg7za4@ifykyjburvea>
-Content-Language: en-US
-From: Imran Shaik <imran.shaik@oss.qualcomm.com>
-In-Reply-To: <xcujjo7qdgoupayq5zrddl7gii7s2ljhunvav2jjzynykg7za4@ifykyjburvea>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIxMDEzNyBTYWx0ZWRfXzV85nJUJBxMM
- D7wuh3yBJ16tEPprZ6HOEPG+AcgmJTmyZWbvn084TvqZrSASUOp99EIM0EwNDiqPeyZ2sCLOGf5
- Leh7INxDvDMpUCanQFhrC3tY/CUUVZJry57TyaAgyTosLQxjbZMtHkD8vApvPfkGZRKLZAAqrQm
- hvs8plW2tO38zsE03dwXEIV9cqrcD/0BlqcMy/OEY7Q/hE+kXUS2PbpeOhJYl1JI3AdGPzD0gOr
- faVYNUMvrduN/E3gl3WXTml5WTD7+/YapMz64pfJGbop5QThrXUK92X/Q8PhPz7Wl1U/CK0VA94
- QLHzdmKgQwkuIt9b0cn3+Jlooo/myh3jvTo3JFmuFTA+5opzrlDKi1M7nC2x3lhot8dBOnWgszn
- RRFHi7zYpPkmBIpGFzMLICFa/C5XK/FuvA/AP6ozhKl8q7upjKsVlL483up65VaesUToNm2NKdI
- mGfSMR+8pZyH1a6EvBg==
-X-Authority-Analysis: v=2.4 cv=IOMyzAvG c=1 sm=1 tr=0 ts=6a37e806 cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=HwFTmRh04JSsUSWzyQ2edw==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
- a=EUspDBNiAAAA:8 a=r43F9ePfV2yG36ZfAfQA:9 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjIxMDEzNyBTYWx0ZWRfX/QYFQUaGnfqD
- esUC4tLHxa2DA2q0+3ME77OMrcj4QmVSE1EK1h2Y3Zbu6Du5ka9XKmA8aepjCLqnVqKOWYMyKsL
- 8yfsSMJANQv2EqfahmtjUWyiyCaVW/Q=
-X-Proofpoint-ORIG-GUID: vM6ZITH7mxMy2fv3A0kl3hEcj0yxtaH5
-X-Proofpoint-GUID: vM6ZITH7mxMy2fv3A0kl3hEcj0yxtaH5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-21_01,2026-06-18_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 lowpriorityscore=0 bulkscore=0 phishscore=0 suspectscore=0
- impostorscore=0 malwarescore=0 adultscore=0 priorityscore=1501 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606210137
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314089-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[imran.shaik@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:konradybcio@kernel.org,m:loic.poulain@oss.qualcomm.com,m:bmasney@redhat.com,m:ajit.pandey@oss.qualcomm.com,m:taniya.das@oss.qualcomm.com,m:jagadeesh.kona@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314091-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:adi25charis@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[imran.shaik@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3EECA6AAED5
+X-Rspamd-Queue-Id: 3DE696AAF52
 
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+s) to consider:
 
+New issues:
+- [High] The YAML binding incorrectly documents the FIFO depth properties a=
+s being in 'bytes', while the driver and hardware expect them in 'words'.
+- [Medium] The schema omits valid hardware properties while enforcing `addi=
+tionalProperties: false`, falsely restricting the device tree to only the p=
+roperties the current driver implementation reads and causing valid hardwar=
+e device trees to fail schema validation.
+- [Medium] Hardware data width properties are artificially constrained to `=
+const: 32` based on driver support rather than hardware capabilities.
+- [Low] The previous text-based binding document was not removed.
 
-On 06-06-2026 05:01 pm, Dmitry Baryshkov wrote:
-> On Thu, Jun 04, 2026 at 10:56:16AM +0530, Imran Shaik wrote:
->> Update the QCM2290 GPUCC GDSC wait_val fields to match the hardware default
->> values. Incorrect settings can cause the GDSC FSM to stuck, leading to
->> power on/off failures. And update the GPUCC GDSC flags to retain the
->> registers, and poll for the CFG GDSCR as applicable.
-> 
-> Separate commits, explanations, justification, etc. E.g. why are the
-> flags being set only to the one of the GDSCs?
-> 
+Pre-existing issues:
+- [Critical] A pre-existing use-after-free vulnerability occurs if the devi=
+ce is unbound while userspace holds an open file descriptor.
+--
 
-Sure Dmitry, I will split the patches and update the commit text with 
-justification details in the next series.
+commit 1499d3b34c3ed26799e82ed6630ba1f50a8aec04
+Author: Aditya Chari <adi25charis@gmail.com>
 
->>
->> Signed-off-by: Imran Shaik <imran.shaik@oss.qualcomm.com>
->> ---
->>   drivers/clk/qcom/gpucc-qcm2290.c | 10 ++++++++--
->>   1 file changed, 8 insertions(+), 2 deletions(-)
->>
-> 
+dt-bindings: misc: add binding for Xilinx AXI-Stream FIFO
 
+The axis-fifo driver's compatible strings were undocumented, flagged
+by checkpatch.pl as UNDOCUMENTED_DT_STRING. Add a devicetree
+binding document describing the required properties
+for drivers/staging/axis-fifo, derived from the properties
+the driver reads via of_property_read_u32()
+in axis_fifo_parse_dt().
+
+> dt-bindings: misc: add binding for Xilinx AXI-Stream FIFO
+
+[Severity: Low]
+Should the previous text-based binding document be removed in this patch?
+
+It looks like the legacy drivers/staging/axis-fifo/axis-fifo.txt binding
+was left in the tree, leaving two conflicting sources of truth for the
+same hardware compatible string.
+
+> diff --git a/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.ya=
+ml b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
+> new file mode 100644
+> index 0000000000000..8ef0adde32ad8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
+
+[ ... ]
+
+> +  xlnx,axi-str-rxd-tdata-width:
+> +    description:
+> +      Width in bits of the AXI4-Stream receive data interface. Only a
+> +      width of 32 is currently supported by the driver.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    const: 32
+> +
+> +  xlnx,axi-str-txd-tdata-width:
+> +    description:
+> +      Width in bits of the AXI4-Stream transmit data interface. Only a
+> +      width of 32 is currently supported by the driver.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    const: 32
+
+[Severity: Medium]
+Should this schema describe the hardware capabilities rather than the softw=
+are
+limitations?
+
+Over-constraining the schema to const: 32 based on current driver support
+might cause validation errors for device trees that accurately represent
+hardware synthesized with different bus widths.
+
+> +  xlnx,rx-fifo-depth:
+> +    description:
+> +      Depth in bytes of the receive FIFO, as configured in the IP core.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  xlnx,tx-fifo-depth:
+> +    description:
+> +      Depth in bytes of the transmit FIFO, as configured in the IP core.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+[Severity: High]
+Is it correct to document these properties as being in bytes?
+
+Looking at the driver code, it evaluates the depth as word counts when chec=
+king
+for overflow:
+
+drivers/staging/axis-fifo/axis-fifo.c:axis_fifo_write() {
+    ...
+    if (words_to_write > (fifo->tx_fifo_depth - 4)) {
+        ...
+    }
+    ...
+}
+
+If a devicetree author specifies the depth in bytes per the new YAML
+documentation, could the driver load a value four times too large, allowing
+out-of-bounds writes that might trigger a hardware transmit overrun error?
+
+[ ... ]
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - xlnx,axi-str-rxd-tdata-width
+> +  - xlnx,axi-str-txd-tdata-width
+> +  - xlnx,rx-fifo-depth
+> +  - xlnx,tx-fifo-depth
+> +  - xlnx,use-rx-data
+> +  - xlnx,use-tx-data
+> +
+> +additionalProperties: false
+
+[Severity: Medium]
+Does this schema artificially restrict the devicetree by omitting valid
+hardware properties?
+
+The original text binding allowed properties such as xlnx,has-axis-tkeep
+and interrupt-names. Because the schema enforces additionalProperties: fals=
+e,
+will running dt_binding_check on existing, valid device trees generated for
+this IP result in false-positive validation errors?
+
+[Severity: Critical]
+This is a pre-existing issue, but does the driver have a use-after-free
+vulnerability if the device is unbound while a userspace process holds an
+open file descriptor?
+
+In the driver, the axis_fifo structure is allocated with devm_kzalloc() and
+I/O memory mapped with devm_platform_get_and_ioremap_resource():
+
+drivers/staging/axis-fifo/axis-fifo.c:axis_fifo_probe() {
+    ...
+    fifo =3D devm_kzalloc(dev, sizeof(*fifo), GFP_KERNEL);
+    ...
+}
+
+However, axis_fifo_remove() unregisters the character device without tracki=
+ng
+or waiting for active file descriptors to close:
+
+drivers/staging/axis-fifo/axis-fifo.c:axis_fifo_remove() {
+    ...
+    misc_deregister(&fifo->miscdev);
+    ...
+}
+
+If the device is unbound via sysfs while a userspace process keeps the char
+device open, the driver core's devres cleanup automatically frees the fifo
+structure and unmaps base_addr. Would subsequent read(), write(), or poll()
+calls via the active file descriptor then access the freed fifo pointer and
+unmapped I/O memory?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260621085209.5265=
+1-1-adi25charis@gmail.com?part=3D1
 
