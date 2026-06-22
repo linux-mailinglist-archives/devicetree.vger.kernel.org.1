@@ -1,227 +1,501 @@
-Return-Path: <devicetree+bounces-314628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314403-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id y2ZLCtH5OWp6zgcAu9opvQ
-	(envelope-from <devicetree+bounces-314628-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 05:13:21 +0200
+	id R/eQBMshOWo8nQcAu9opvQ
+	(envelope-from <devicetree+bounces-314403-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 13:51:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C7236B3BF2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 05:13:20 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B46096AF38A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 13:51:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=samsung.com header.s=mail20170921 header.b=dNfxF4M3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314628-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314628-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=samsung.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=gT23fl5+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314403-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314403-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A85A730277CC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 03:13:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id ABC373023DA7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 11:51:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA75638D402;
-	Tue, 23 Jun 2026 03:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C79A2DE6E3;
+	Mon, 22 Jun 2026 11:51:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBD6938D3E6;
-	Tue, 23 Jun 2026 03:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A222DB7BE
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 11:51:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782184395; cv=none; b=ppPjLOsdfmP+Vk8us8Ganw6O0FuP1awjXyoMFfCwul+HGdcLFqHZAI7dQLCG3yTmMGA8dOLnNOOiHbGN4QRT8lq2OD9mBqLRSjhXQ4O5mZ8+ApuhjiC/h15eLG9mWa6BfFCubIpc2lzXnTpMJCae8Qk+HO6lGdEFR/M0OzBwXuQ=
+	t=1782129093; cv=none; b=ibudZ1UlwRmi9YruZ1qbsM4A9ujZLGlx8jeL0TlXH3c4/Ez/wfA3l0wzxk+ePcCoymC4OeXRWzUkD810C0wjeorkb0hgT8xAvDkvUa5Z7L1TeT5yYpMh8fM+5NQ3gzES9tXrXc+kkqdYgxfHh2U7tBZzic4LnL/sXRd67Pn703M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782184395; c=relaxed/simple;
-	bh=tatdd/Q7QE0upqPJVjWgLFwHUzQQq+izQdPrwXLkDtk=;
-	h=From:To:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=Z9oS3eMmT4mzR5aLybFEz4wVeD2LPT9udgVHrMxRAp1o0WywAZezKeIe44q45ucCrX8Ta3KZpUTKpcM02trQmcTCKdhEeKdqYEdEZK84gvaIP6xD8CKl494dUQmTaMpREfnXgPF1oodc+IT7In9YbohfvNrwz+evUEe6Mu0/sUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=dNfxF4M3; arc=none smtp.client-ip=203.254.224.34
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20260623031304epoutp04b58205b658a8fc7f7458a882a18eaba2~7l0FFYfm41880418804epoutp04a;
-	Tue, 23 Jun 2026 03:13:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20260623031304epoutp04b58205b658a8fc7f7458a882a18eaba2~7l0FFYfm41880418804epoutp04a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1782184384;
-	bh=tatdd/Q7QE0upqPJVjWgLFwHUzQQq+izQdPrwXLkDtk=;
-	h=From:To:In-Reply-To:Subject:Date:References:From;
-	b=dNfxF4M3fyZDfW3CRh3lyZWqMNYsOP4XtAdUT1p5ZJqUeSRRx63y6bFC8gBFnYGJ/
-	 2PA9S3WitCXE5BiEd84kDRmhjRFpItBmgmC2TWVubBHDJLlGmnyl63bz1zTjkIX2Mn
-	 UkknWAWYwpil1XaCsoKvzcmVN65+WOpAu9nWyWc0=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20260623031303epcas5p378f6b175e3e88956e96fb88e6537bcf9~7l0EthhRN0685906859epcas5p39;
-	Tue, 23 Jun 2026 03:13:03 +0000 (GMT)
-Received: from epcpadp2new (unknown [182.195.40.142]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4gkqrb4vT0z2SSKX; Tue, 23 Jun
-	2026 03:13:03 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20260622114525epcas5p2654a56b123110dea3b2fb97739d9a92b~7ZKI1GCT00255802558epcas5p2L;
-	Mon, 22 Jun 2026 11:45:25 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20260622114503epsmtip205edc6f0281b21bca275e7401267a8a1~7ZJ05N0KR2405124051epsmtip2Y;
-	Mon, 22 Jun 2026 11:45:03 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@oss.qualcomm.com>, "'Bjorn
- Andersson'" <andersson@kernel.org>, "'Konrad Dybcio'"
-	<konradybcio@kernel.org>, "'Rob Herring'" <robh@kernel.org>, "'Krzysztof
- Kozlowski'" <krzk+dt@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
-	"'Peter Griffin'" <peter.griffin@linaro.org>, "'Michael	Turquette'"
-	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Brian
- Masney'" <bmasney@redhat.com>, "'Sylwester Nawrocki'"
-	<s.nawrocki@samsung.com>, "'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Sam
- Protsenko'" <semen.protsenko@linaro.org>, "'Rob Clark'"
-	<robin.clark@oss.qualcomm.com>, "'Dmitry Baryshkov'" <lumag@kernel.org>,
-	"'Abhinav Kumar'" <abhinav.kumar@linux.dev>, "'Jessica Zhang'"
-	<jesszhan0024@gmail.com>, "'Sean Paul'" <sean@poorly.run>, "'Marijn
-	Suijten'" <marijn.suijten@somainline.org>, "'David	Airlie'"
- <airlied@gmail.com>, "'Simona Vetter'" <simona@ffwll.ch>, "'Maarten
-	Lankhorst'" <maarten.lankhorst@linux.intel.com>, "'Maxime Ripard'"
- <mripard@kernel.org>, "'Thomas Zimmermann'" <tzimmermann@suse.de>, "'Inki
-	Dae'" <inki.dae@samsung.com>, "'Seung-Woo Kim'" <sw0312.kim@samsung.com>,
-	"'Kyungmin	Park'" <kyungmin.park@samsung.com>, "'Andi Shyti'"
-	<andi.shyti@kernel.org>, "'Georgi	Djakov'" <djakov@kernel.org>, "'Lee
-	Jones'" <lee@kernel.org>, "'Pavel Machek'" <pavel@kernel.org>, "'Hans
-	Verkuil'" <hverkuil@kernel.org>, "'Mauro Carvalho	Chehab'"
- <mchehab@kernel.org>, "'Ulf Hansson'" <ulfh@kernel.org>, "'Peter Rosin'"
- <peda@lysator.liu.se>, "'Vinod Koul'" <vkoul@kernel.org>, "'Neil Armstrong'"
- <neil.armstrong@linaro.org>, "'Linus Walleij'" <linusw@kernel.org>, "'Geert
-	Uytterhoeven'" <geert+renesas@glider.be>, "'Magnus Damm'"
- <magnus.damm@gmail.com>, "'Sebastian Reichel'" <sre@kernel.org>, "'Javier
-	Martinez Canillas'" <javier@dowhile0.org>, "'Liam Girdwood'"
- <lgirdwood@gmail.com>, "'Mark Brown'" <broonie@kernel.org>, "'Greg
-	Kroah-Hartman'" <gregkh@linuxfoundation.org>, "'Jiri	Slaby'"
- <jirislaby@kernel.org>, "'Srinivas Kandagatla'" <srini@kernel.org>,
-	"'Bartlomiej Zolnierkiewicz'" <bzolnier@gmail.com>, "'Rafael J. Wysocki'"
-	<rafael@kernel.org>, "'Daniel Lezcano'" <daniel.lezcano@kernel.org>, "'Zhang
- Rui'" <rui.zhang@intel.com>, "'Lukasz Luba'" <lukasz.luba@arm.com>,
-	"'Jonathan Marek'" <jonathan@marek.ca>, "'Taniya Das'"
-	<quic_tdas@quicinc.com>, "'Robert Marko'" <robimarko@gmail.com>, "'Christian
- Marangi'" <ansuelsmth@gmail.com>, "'Stephan	Gerhold'" <stephan@gerhold.net>,
-	"'Adam Skladowski'" <a_skl39@protonmail.com>, "'Sireesh Kodali'"
-	<sireeshkodali@protonmail.com>, "'Barnabas Czeman'"
-	<barnabas.czeman@mainlining.org>, "'Imran Shaik'"
-	<quic_imrashai@quicinc.com>, "'Sricharan Ramabadhran'"
-	<quic_srichara@quicinc.com>, "'Anusha Rao'" <quic_anusha@quicinc.com>, "'Luo
- Jie'" <quic_luoj@quicinc.com>, "'Tomasz Figa'" <tomasz.figa@gmail.com>,
-	"'Chanho Park'" <chanho61.park@samsung.com>, "'Sunyeal	Hong'"
-	<sunyeal.hong@samsung.com>, "'Shin Son'" <shin.son@samsung.com>, "'Krishna
- Manikandan'" <quic_mkrishn@quicinc.com>, "'Jacek Anaszewski'"
-	<jacek.anaszewski@gmail.com>, "'Jaehoon Chung'" <jh80.chung@samsung.com>,
-	"'Marek	Szyprowski'" <m.szyprowski@samsung.com>, "'Alina Yu'"
-	<alina_yu@richtek.com>, "'Andy	Gross'" <agross@kernel.org>,
-	=?UTF-8?Q?'Niklas_S=C3=B6derlund'?= <niklas.soderlund@ragnatech.se>,
-	"'Wesley Cheng'" <quic_wcheng@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-clk@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-	<freedreno@lists.freedesktop.org>, <linux-i2c@vger.kernel.org>,
-	<linux-pm@vger.kernel.org>, <linux-leds@vger.kernel.org>,
-	<linux-media@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-	<linux-phy@lists.infradead.org>, <linux-gpio@vger.kernel.org>,
-	<linux-renesas-soc@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-	<linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-	<cpgs@samsung.com>
-In-Reply-To: <20260622101606.485961-4-krzysztof.kozlowski@oss.qualcomm.com>
-Subject: RE: [PATCH 2/2] dt-bindings: Drop incorrect usage of double '::'
-Date: Mon, 22 Jun 2026 17:15:00 +0530
-Message-ID: <373928166.21782184383679.JavaMail.epsvc@epcpadp2new>
+	s=arc-20240116; t=1782129093; c=relaxed/simple;
+	bh=UT0tHAcgykAXLtfb/tjYMlQEDOqgb/A80pjEyh3yfaQ=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E1nLdr0upeQVEzE/YM4GGCJ4TlRs51tSBtHFJyIUcgMgQlvN0ANddApvA2nFod0sJRUwH3R/GttWMPXSBktbTTvUDeW0EnxVaGuRjf9KiNaCGVRNdlv5CiNa9tlqRKkUqZ3g5Qlbar7XoR3AkzummmaQY4AFUfG5TPinpK8L4vA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gT23fl5+; arc=none smtp.client-ip=209.85.218.48
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-c0e12cb1d90so121478666b.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 04:51:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782129090; x=1782733890; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=J5rE3ZdX++DvETFiBVRETrhi5+fAc4+AkI1aCgor8Z8=;
+        b=gT23fl5+X4pmpdZAHgMOiha9L5ukVgEWCuWRnxnIpOxC0UDpr3bKlmhBir2GJaLAMU
+         ZhJNcZeum53QLBfBThCdBH3Kigd8e6X6+/3QgnLAhYi6fL7mHxwlJN7K7VbVg2yItqWL
+         1acPQcYAhW/IM9OLuNLp1p79uxx09CjM/fV+7ZZWdXtM+mcXHM1/+5jXjBrzN+axSx4K
+         rNtQKEUY8VRQL9dKAzCf6JCs++0WMVatr41cz72//xMwHaGrEZLR6BfU5q63Zl76aJXC
+         scf8/ctCBmW5yZgEIiSXQaCBVlkVfW5ugcA33YfUAGS4QEYAAaY4R4XSbe7x07J7Czwq
+         8l/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782129090; x=1782733890;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J5rE3ZdX++DvETFiBVRETrhi5+fAc4+AkI1aCgor8Z8=;
+        b=fvDjZ1GCEYQduWn4h4wbuKxQEOtImf+70t7I9v+G/vdgqcaBVtreH0+NfowjBhB17B
+         W6V22BqMiKr2n9iB42OSxbzebTkcZvK3Ftyu73nM75OQKuW/PWuURCbS6BPxN5vBBTku
+         puaUnFscaszHXNgeIhlzQjhr9RbZf5fApI5PSE+CCG+XW+d3biZ82KYQjps0RMoP3/u/
+         Z8q2DHNgscmxASs98K9hyqfgP9JnagCQgUre99i2BFYqr3kKB6uH0dTHaNiCU/rLOQbt
+         AYsjTuZnK0vh90Zjc0fYsUdorhQDz3a+iPVvf36MarJCuFJJubkV/0jdpOHC+mqcxCGq
+         pJ3A==
+X-Forwarded-Encrypted: i=1; AFNElJ+aojbauVw1uSSXPXbgzL2x0rLFh6axzi9gOIlqsPb3n9YCEjVuqsqnM37rIPRNSyL6eFdtd6D7uQDJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZozKQdvll7JqQksmU8rkZ+IxKNZMoeoAu/OZLyrp4i8id+L5R
+	N2GrUIn8eNEnWZMYi5asvTM4UdibXoFbVH4EktN05NqG2LCVbzO/lddg
+X-Gm-Gg: AfdE7cl8BkYxNZBO3cdtDIYDg3e6PEulYJJlXZuCFjGK4Efbc5+Uqd345Q2iNUtZJc/
+	MI15wk99JHVWpUb/wxBAeKqkBHL20Mgjmv67B9/5pBW/XaD9uN2alkdhdXPQrTL31LFFj75zT3W
+	w0GGoH7ojXE7Ecu/UjmfcpLiXXqL1WUG4R18N3PBSFbAphP1jP1v5O002K7B3wI3LsqefEq1fzz
+	fSxtXYBZ6qzVECvpw5g5tzc9nUQ61WV7nP/rZfRv7/9agpTnkwznxb14umX8acQmWnghFG01w53
+	XJWbWAC52zNZPola0JzzWoi2Ucd8PaMldW+41NH4zHjNGTS+7OITd6JmBEOZHBfxwD8SEpKfpOQ
+	D4RC/MMwXd3RfpoqQL8728MKs/Pll9NAPmNMEImb5MWRNc3+bbTLDdomom2BDSiT5M4QccRurjD
+	v4H5TVAvw07eT22tulFQpVeNadcl04ycx/OD/8NPtRhCoaEY7K+yGF6dR9jRZyCfS3t4/tu47zg
+	06ypcmWmpYMRLSu68hlwyymEfhf
+X-Received: by 2002:a17:907:9453:b0:c09:2c22:16a8 with SMTP id a640c23a62f3a-c098f536a2fmr652042066b.45.1782129089354;
+        Mon, 22 Jun 2026 04:51:29 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.131.netskope-rdns.com. [24.206.116.131])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-69796c10dbasm1910040a12.8.2026.06.22.04.51.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jun 2026 04:51:28 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Mon, 22 Jun 2026 12:51:20 +0100
+To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>, 
+	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor@kernel.org>, 
+	Janani Sunil <jan.sun97@gmail.com>, Janani Sunil <janani.sunil@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
+	Shuah Khan <skhan@linuxfoundation.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: Add AD5529R
+Message-ID: <pifhwgj3cp2vc7ia4m6penh52iekzjljrp75y5b7j57vvtooad@32wfqruiqqjl>
+References: <20260614204455.408c4d40@jic23-huawei>
+ <076d7d2d-81a0-49c2-af94-bd65ead66c09@gmail.com>
+ <20260619-obstinate-polo-a230bef97fda@spud>
+ <20260619-bunch-diocese-dd7805cc17ff@spud>
+ <ajU73_TkKrSbqD4f@nsa>
+ <20260619-concierge-doozy-9c161533c369@spud>
+ <ajVlD-j0nIGrRVow@nsa>
+ <20260621153330.79b6600c@jic23-huawei>
+ <5u4dnsgxwcwie45f24cacyzf3dko4srhyyyhcpom6tsvhqtmpc@y7d7gmex6n7k>
+ <ajkMBh-R_7pYaoAn@nsa>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQI6ZcaYiR7zkv7wowZwd71jplyCqgLGmQzlAevIaT+1ahn2EA==
-Content-Language: en-us
-X-CMS-MailID: 20260622114525epcas5p2654a56b123110dea3b2fb97739d9a92b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-X-CPGSPASS: Y
-X-Hop-Count: 3
-X-CMS-RootMailID: 20260622101634epcas5p1137f33cd1e53341e3d7600eb105cd859
-References: <20260622101606.485961-3-krzysztof.kozlowski@oss.qualcomm.com>
-	<CGME20260622101634epcas5p1137f33cd1e53341e3d7600eb105cd859@epcas5p1.samsung.com>
-	<20260622101606.485961-4-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ajkMBh-R_7pYaoAn@nsa>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[samsung.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314628-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,linaro.org,baylibre.com,redhat.com,samsung.com,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linux.intel.com,suse.de,lysator.liu.se,glider.be,dowhile0.org,linuxfoundation.org,intel.com,arm.com,marek.ca,quicinc.com,gerhold.net,protonmail.com,mainlining.org,richtek.com,ragnatech.se,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-314403-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:noname.nuno@gmail.com,m:455.rodrigo.alencar@gmail.com,m:jic23@kernel.org,m:conor@kernel.org,m:jan.sun97@gmail.com,m:janani.sunil@analog.com,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:broonie@kernel.org,m:nonamenuno@gmail.com,m:455rodrigoalencar@gmail.com,m:jansun97@gmail.com,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:peter.griffin@linaro.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:s.nawrocki@samsung.com,m:cw00.choi@samsung.com,m:semen.protsenko@linaro.org,m:robin.clark@oss.qualcomm.com,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:jesszhan0024@gmail.com,m:sean@poorly.run,m:marijn.suijten@somainline.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:inki.dae@samsung.com,m:sw0312.kim@samsung.com,m:kyungmin.park@samsung.com,m:andi.shyti@kernel.org,m:djakov@kernel.org,m:lee@kernel.org,m:pavel@kernel.org,m:hverkuil@kernel.org,m:mchehab@kernel.org,m:ulfh@kernel.org,m:peda@lysator.liu.se,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:linusw@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:sre@kernel.org,m:javier@dowh
- ile0.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:srini@kernel.org,m:bzolnier@gmail.com,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:jonathan@marek.ca,m:quic_tdas@quicinc.com,m:robimarko@gmail.com,m:ansuelsmth@gmail.com,m:stephan@gerhold.net,m:a_skl39@protonmail.com,m:sireeshkodali@protonmail.com,m:barnabas.czeman@mainlining.org,m:quic_imrashai@quicinc.com,m:quic_srichara@quicinc.com,m:quic_anusha@quicinc.com,m:quic_luoj@quicinc.com,m:tomasz.figa@gmail.com,m:chanho61.park@samsung.com,m:sunyeal.hong@samsung.com,m:shin.son@samsung.com,m:quic_mkrishn@quicinc.com,m:jacek.anaszewski@gmail.com,m:jh80.chung@samsung.com,m:m.szyprowski@samsung.com,m:alina_yu@richtek.com,m:agross@kernel.org,m:niklas.soderlund@ragnatech.se,m:quic_wcheng@quicinc.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-samsu
- ng-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:freedreno@lists.freedesktop.org,m:linux-i2c@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-leds@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-mmc@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-gpio@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-serial@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-usb@vger.kernel.org,m:cpgs@samsung.com,s:lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,vger.kernel.org:from_smtp,baylibre.com:email,fireeye.com:url,samsung.com:dkim,samsung.com:email,samsung.com:from_mime,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[samsung.com:+];
-	RCPT_COUNT_GT_50(0.00)[96];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,analog.com,metafoo.de,baylibre.com,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7C7236B3BF2
+X-Rspamd-Queue-Id: B46096AF38A
 
+On 22/06/26 11:29, Nuno Sá wrote:
+> On Mon, Jun 22, 2026 at 10:24:05AM +0100, Rodrigo Alencar wrote:
+> > On 21/06/26 15:33, Jonathan Cameron wrote:
+> > > On Fri, 19 Jun 2026 16:54:11 +0100
+> > > Nuno Sá <noname.nuno@gmail.com> wrote:
+> > > 
+> > > > On Fri, Jun 19, 2026 at 03:12:07PM +0100, Conor Dooley wrote:
+> > > > > On Fri, Jun 19, 2026 at 02:01:08PM +0100, Nuno Sá wrote:  
+> > > > > > On Fri, Jun 19, 2026 at 12:40:54PM +0100, Conor Dooley wrote:  
+> > > > > > > On Fri, Jun 19, 2026 at 12:36:55PM +0100, Conor Dooley wrote:  
+> > > > > > > > On Fri, Jun 19, 2026 at 12:33:11PM +0200, Janani Sunil wrote:  
+> > > > > > > > > 
+> > > > > > > > > On 6/14/26 21:44, Jonathan Cameron wrote:  
+> > > > > > > > > > On Tue, 9 Jun 2026 16:47:23 +0200
+> > > > > > > > > > Janani Sunil <jan.sun97@gmail.com> wrote:
+> > > > > > > > > >   
+> > > > > > > > > > > On 5/26/26 15:11, Rodrigo Alencar wrote:  
+> > > > > > > > > > > > On 26/05/19 05:42PM, Janani Sunil wrote:  
+> > > > > > > > > > > > > Devicetree bindings for AD5529R 16 channel 12/16 bit high voltage,
+> > > > > > > > > > > > > buffered voltage output digital-to-analog converter (DAC) with an
+> > > > > > > > > > > > > integrated precision reference.  
+> > > > > > > > > > > > ...
+> > > > > > > > > > > > Probably others may comment on that, but...
+> > > > > > > > > > > > 
+> > > > > > > > > > > > This parent node may support device addressing for multi-device support through
+> > > > > > > > > > > > those ID pins. I suppose that each device may have its own power supplies or
+> > > > > > > > > > > > other resources like the toggle pins or reset and enable.
+> > > > > > > > > > > > 
+> > > > > > > > > > > > That way I suppose that an example would look like...  
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +patternProperties:
+> > > > > > > > > > > > > +  "^channel@([0-9]|1[0-5])$":
+> > > > > > > > > > > > > +    type: object
+> > > > > > > > > > > > > +    description: Child nodes for individual channel configuration
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +    properties:
+> > > > > > > > > > > > > +      reg:
+> > > > > > > > > > > > > +        description: Channel number.
+> > > > > > > > > > > > > +        minimum: 0
+> > > > > > > > > > > > > +        maximum: 15
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +      adi,output-range-microvolt:
+> > > > > > > > > > > > > +        description: |
+> > > > > > > > > > > > > +          Output voltage range for this channel as [min, max] in microvolts.
+> > > > > > > > > > > > > +          If not specified, defaults to 0V to 5V range.
+> > > > > > > > > > > > > +        oneOf:
+> > > > > > > > > > > > > +          - items:
+> > > > > > > > > > > > > +              - const: 0
+> > > > > > > > > > > > > +              - enum: [5000000, 10000000, 20000000, 40000000]
+> > > > > > > > > > > > > +          - items:
+> > > > > > > > > > > > > +              - const: -5000000
+> > > > > > > > > > > > > +              - const: 5000000
+> > > > > > > > > > > > > +          - items:
+> > > > > > > > > > > > > +              - const: -10000000
+> > > > > > > > > > > > > +              - const: 10000000
+> > > > > > > > > > > > > +          - items:
+> > > > > > > > > > > > > +              - const: -15000000
+> > > > > > > > > > > > > +              - const: 15000000
+> > > > > > > > > > > > > +          - items:
+> > > > > > > > > > > > > +              - const: -20000000
+> > > > > > > > > > > > > +              - const: 20000000
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +    required:
+> > > > > > > > > > > > > +      - reg
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +    additionalProperties: false
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +required:
+> > > > > > > > > > > > > +  - compatible
+> > > > > > > > > > > > > +  - reg
+> > > > > > > > > > > > > +  - vdd-supply
+> > > > > > > > > > > > > +  - avdd-supply
+> > > > > > > > > > > > > +  - hvdd-supply
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +dependencies:
+> > > > > > > > > > > > > +  spi-cpha: [ spi-cpol ]
+> > > > > > > > > > > > > +  spi-cpol: [ spi-cpha ]
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +allOf:
+> > > > > > > > > > > > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +unevaluatedProperties: false
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +examples:
+> > > > > > > > > > > > > +  - |
+> > > > > > > > > > > > > +    #include <dt-bindings/gpio/gpio.h>
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +    spi {
+> > > > > > > > > > > > > +        #address-cells = <1>;
+> > > > > > > > > > > > > +        #size-cells = <0>;
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +        dac@0 {
+> > > > > > > > > > > > > +            compatible = "adi,ad5529r-16";
+> > > > > > > > > > > > > +            reg = <0>;
+> > > > > > > > > > > > > +            spi-max-frequency = <25000000>;
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +            vdd-supply = <&vdd_regulator>;
+> > > > > > > > > > > > > +            avdd-supply = <&avdd_regulator>;
+> > > > > > > > > > > > > +            hvdd-supply = <&hvdd_regulator>;
+> > > > > > > > > > > > > +            hvss-supply = <&hvss_regulator>;
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +            reset-gpios = <&gpio0 87 GPIO_ACTIVE_LOW>;
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +            #address-cells = <1>;
+> > > > > > > > > > > > > +            #size-cells = <0>;
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +            channel@0 {
+> > > > > > > > > > > > > +                reg = <0>;
+> > > > > > > > > > > > > +                adi,output-range-microvolt = <0 5000000>;
+> > > > > > > > > > > > > +            };
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +            channel@1 {
+> > > > > > > > > > > > > +                reg = <1>;
+> > > > > > > > > > > > > +                adi,output-range-microvolt = <(-10000000) 10000000>;
+> > > > > > > > > > > > > +            };
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +            channel@2 {
+> > > > > > > > > > > > > +                reg = <2>;
+> > > > > > > > > > > > > +                adi,output-range-microvolt = <0 40000000>;
+> > > > > > > > > > > > > +            };
+> > > > > > > > > > > > > +        };
+> > > > > > > > > > > > > +    };  
+> > > > > > > > > > > > ...
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 	spi {
+> > > > > > > > > > > > 		#address-cells = <1>;
+> > > > > > > > > > > > 		#size-cells = <0>;
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 		multi-dac@0 {
+> > > > > > > > > > > > 			compatible = "adi,ad5529r-16";
+> > > > > > > > > > > > 			reg = <0>;
+> > > > > > > > > > > > 			spi-max-frequency = <25000000>;
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 			#address-cells = <1>;
+> > > > > > > > > > > > 			#size-cells = <0>;
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 			dac@0 {
+> > > > > > > > > > > > 				reg = <0>;
+> > > > > > > > > > > > 				vdd-supply = <&vdd_regulator>;
+> > > > > > > > > > > > 				avdd-supply = <&avdd_regulator>;
+> > > > > > > > > > > > 				hvdd-supply = <&hvdd_regulator>;
+> > > > > > > > > > > > 				hvss-supply = <&hvss_regulator>;
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 				reset-gpios = <&gpio0 87 GPIO_ACTIVE_LOW>;
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 				#address-cells = <1>;
+> > > > > > > > > > > > 				#size-cells = <0>;
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 				channel@0 {
+> > > > > > > > > > > > 					reg = <0>;
+> > > > > > > > > > > > 					adi,output-range-microvolt = <0 5000000>;
+> > > > > > > > > > > > 				};
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 				channel@1 {
+> > > > > > > > > > > > 					reg = <1>;
+> > > > > > > > > > > > 					adi,output-range-microvolt = <(-10000000) 10000000>;
+> > > > > > > > > > > > 				};
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 				channel@2 {
+> > > > > > > > > > > > 					reg = <2>;
+> > > > > > > > > > > > 					adi,output-range-microvolt = <0 40000000>;
+> > > > > > > > > > > > 				};
+> > > > > > > > > > > > 			}
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 			dac@1 {
+> > > > > > > > > > > > 				reg = <1>;
+> > > > > > > > > > > > 				vdd-supply = <&vdd_regulator>;
+> > > > > > > > > > > > 				avdd-supply = <&avdd_regulator>;
+> > > > > > > > > > > > 				hvdd-supply = <&hvdd_regulator>;
+> > > > > > > > > > > > 				hvss-supply = <&hvss_regulator>;
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 				reset-gpios = <&gpio0 88 GPIO_ACTIVE_LOW>;
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 				#address-cells = <1>;
+> > > > > > > > > > > > 				#size-cells = <0>;
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 				channel@0 {
+> > > > > > > > > > > > 					reg = <0>;
+> > > > > > > > > > > > 					adi,output-range-microvolt = <0 5000000>;
+> > > > > > > > > > > > 				};
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 				channel@1 {
+> > > > > > > > > > > > 					reg = <1>;
+> > > > > > > > > > > > 					adi,output-range-microvolt = <(-10000000) 10000000>;
+> > > > > > > > > > > > 				};
+> > > > > > > > > > > > 			}
+> > > > > > > > > > > > 		};
+> > > > > > > > > > > > 	};
+> > > > > > > > > > > > 
+> > > > > > > > > > > > then you might need something like:
+> > > > > > > > > > > > 
+> > > > > > > > > > > > 	patternProperties:
+> > > > > > > > > > > > 		"^dac@[0-3]$":
+> > > > > > > > > > > > 
+> > > > > > > > > > > > and put most of the things under this node pattern.
+> > > > > > > > > > > > 
+> > > > > > > > > > > > So the main driver that you're putting together might need to handle up to four instances.
+> > > > > > > > > > > > Even if your current driver cannot handle this, the dt-bindings might need cover that.
+> > > > > > > > > > > > 
+> > > > > > > > > > > > Need to double check if each dac node needs a separate compatible, so you would maybe populate
+> > > > > > > > > > > > a platform data to be shared with the child nodes, which would be a separate driver.
+> > > > > > > > > > > > (not sure if it would make sense to mix and match ad5529r-16 and ad5529r-12).  
+> > > > > > > > > > > Hi Rodrigo,
+> > > > > > > > > > > 
+> > > > > > > > > > > Thank you for looking at this.
+> > > > > > > > > > > 
+> > > > > > > > > > > For now, I would prefer to keep the binding scoped to a single AD5529R device instance. The current
+> > > > > > > > > > > hardware/use case we have only needs one device node and the driver is written around that model as well.
+> > > > > > > > > > > While the device addressing pins could allow multi-device topology, we do not have an actual platform using
+> > > > > > > > > > > that configuration at the moment, so I would prefer not to introduce an extra parent/child binding structure
+> > > > > > > > > > > speculatively without a validating use case.  
+> > > > > > > > > > Interesting feature - kind of similar to address control on a typical i2c bus device, or
+> > > > > > > > > > looking at it another way a kind of distributed SPI mux.
+> > > > > > > > > > 
+> > > > > > > > > > Challenge of a binding is we need to anticipate the future.  So I think we do need something
+> > > > > > > > > > like Rodrigo is suggesting even if we only (for now) support a single instance in the driver.
+> > > > > > > > > > That would leave the path open to supporting the addressing at a later date.
+> > > > > > > > > > An alternative might be to look at it like a chained device setup. In those we pretend there
+> > > > > > > > > > is just one device with a lot of channels etc.  The snag is that here things are more loosely
+> > > > > > > > > > coupled whereas for those devices it tends to be you have to read / write the same register
+> > > > > > > > > > in all devices in the chain as one big SPI message.
+> > > > > > > > > > 
+> > > > > > > > > > +CC Mark Brown as he may know of some precedence for this feature. For his reference..
+> > > > > > > > > > - Each of these device has 2 ID pins.  The SPI transfers have to contain the 2 bit
+> > > > > > > > > > value that matches that or they are ignored.  Thus a single bus + 1 chip select can
+> > > > > > > > > > be used to talk to 4 devices.  Question is what that looks like in device tree + I guess
+> > > > > > > > > > longer term how to support it cleanly in SPI.  
+> > > > > > > > 
+> > > > > > > > I'd swear I have seen this before, from some Microchip devices. Let me
+> > > > > > > > see if I can find what I am thinking of...  
+> > > > > > > 
+> > > > > > > 
+> > > > > > > microchip,mcp3911 and microchip,mcp3564 both seem to do this with
+> > > > > > > slightly different properties.
+> > > > > > > 
+> > > > > > >   microchip,device-addr:
+> > > > > > >     description: Device address when multiple MCP3911 chips are present on the same SPI bus.
+> > > > > > >     $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > > >     enum: [0, 1, 2, 3]
+> > > > > > >     default: 0
+> > > > > > > 
+> > > > > > > and
+> > > > > > > 
+> > > > > > > 
+> > > > > > >   microchip,hw-device-address:
+> > > > > > >     $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > > >     minimum: 0
+> > > > > > >     maximum: 3
+> > > > > > >     description:
+> > > > > > >       The address is set on a per-device basis by fuses in the factory,
+> > > > > > >       configured on request. If not requested, the fuses are set for 0x1.
+> > > > > > >       The device address is part of the device markings to avoid
+> > > > > > >       potential confusion. This address is coded on two bits, so four possible
+> > > > > > >       addresses are available when multiple devices are present on the same
+> > > > > > >       SPI bus with only one Chip Select line for all devices.
+> > > > > > >       Each device communication starts by a CS falling edge, followed by the
+> > > > > > >       clocking of the device address (BITS[7:6] - top two bits of COMMAND BYTE
+> > > > > > >       which is first one on the wire).
+> > > > > > > 
+> > > > > > > This sounds exactly like the sort of feature that you're dealing with
+> > > > > > > here?
+> > > > > > >   
+> > > > > > 
+> > > > > > The core idea yes but for this chip, things are a bit more annoying (but
+> > > > > > Janani can correct me if I'm wrong). Here, each device can, in theory,
+> > > > > > have it's own supplies, pins and at the very least, channels with maybe
+> > > > > > different scales. That is why Janani is proposing dac nodes. Given I
+> > > > > > honestly don't like much of that "adi,ad5529r-bus" compatible I wondered
+> > > > > > about solving this at the spi level.
+> > > > > > 
+> > > > > > Ah and to make it more annoying, we can also mix 12 and 16 bits variants
+> > > > > > together in the same bus.  
+> > > > > 
+> > > > > I'm definitely missing something, because that property for the
+> > > > > microchip devices is not impacted what else is on the bus. AFAICT, you
+> > > > > could have an mcp3911 and an mcp3564 on the same bus even though both
+> > > > > are completely different devices with different drivers. They have
+> > > > > individual device nodes and their own supplies etc etc. These aren't
+> > > > > per-channel properties on an adc or dac, they're per child device on a
+> > > > > spi bus.  
+> > > > 
+> > > > Maybe I'm the one missing something :). IIRC, spi would not allow two
+> > > > devices on the same CS right? Because for this chip we would need
+> > > > something like:
+> > > > 
+> > > > spi {
+> > > > 	dac@0 {
+> > > > 		reg = <0>;
+> > > > 		adi,pin-id = <0>;
+> > > > 	};
+> > > > 
+> > > > 	dac@1 {
+> > > > 		reg = <0>; // which seems already problematic?
+> > > > 		adi,pin-id <1>;
+> > > > 	};
+> > > > 
+> > > > 	...
+> > > > 
+> > > > 	//up to 4
+> > > > };
+> > > Yeah. It's not clear to me how that works for the microchip devices
+> > > (I suspect it doesn't!)
+> > > 
+> > > Just thinking as I type, but could we do something a bit nasty with
+> > > a gpio mux that doesn't actually switch but represents the GPIO being
+> > > shared?  Given this is all tied to the spi bus that should all happen
+> > > under serializing locks. 
+> > > 
+> > > Agreed though that this would be nicer as an SPI thing that let
+> > > us specify that a single CS is share by multiple devices and their
+> > > is some other signal acting to select which one we are talking to.
+> > > 
+> > 
+> > If the device-addressing on the same chip-select is to be handled
+> > by the spi framework, wouldn't we lose device-specific features?
+> > 
+> > I understand that this multi-device feature is there mostly to extend the
+> > channel count from 16 to 32, 48 or 64. I suppose the command:
+> > 
+> > 	"MULTI DEVICE SW LDAC MODE"
+> > 
+> > exists so that software can update channel values accross multiple devices.
+> 
+> Right! You do have a point! I agree the main driver for a feature like
+> this is likely to extend the channel count and effectively "aggregate"
+> devices.
+> 
+> But I would say that even with the spi solution the MULTI DEVICE stuff
+> should be doable (as we still need a sort of adi,pin-id property). 
 
+I don't think we can have something like an IIO buffer shared by multiple
+devices. Synchronizing separate devices would be doable with proper hardware
+support for this (probably involving an FGPA).
+ 
+> But yes, I do feel that the whole feature is for aggregation so seeing
+> one device with 32 channels is the expectation here? Rather than seeing
+> two devices with 16 channels.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Sent: Monday, June 22, 2026 3:46 PM
-> To: Bjorn Andersson <andersson@kernel.org>; Konrad Dybcio
-> <konradybcio@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof
-> Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
-> Peter Griffin <peter.griffin@linaro.org>; Alim Akhtar
-> <alim.akhtar@samsung.com>; Michael Turquette
-> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Brian
-> Masney <bmasney@redhat.com>; Sylwester Nawrocki
-[Snip]
-> soc@vger.kernel.org; linux-serial@vger.kernel.org; linux-
-> sound@vger.kernel.org; linux-usb@vger.kernel.org
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Subject: [PATCH 2/2] dt-bindings: Drop incorrect usage of double '::'
->=20
-> There is no use of double colon '::' in YAML. OTOH, the literal style blo=
-ck, e.g.
-> using '|' treats all characters as content [1] therefore single use of ':=
-' in
-> descriptions is perfectly fine, whenever '|' is used.
->=20
-> Cleanup existing code, so the confusing style won't be re-used in new
-> contributions.
->=20
-> Link: https://protect2.fireeye.com/v1/url?k=3D20b000b4-490b6806-20b18bfb-
-> 905a08a8515a-b42887ea7482314e&q=3D1&e=3D9fffcc8f-6266-432d-a638-
-> 208efe86c9d7&u=3Dhttps%3A%2F%2Fyaml.org%2Fspec%2F1.2.2%2F%23literal-
-> style [1]
-> Signed-off-by: Krzysztof Kozlowski
-> <krzysztof.kozlowski@oss.qualcomm.com>
->=20
-For Samsung IPs related
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+Yes, I think aggregation is the whole point there... so that the IIO driver
+is multi-device-aware.
 
+-- 
+Kind regards,
 
-
+Rodrigo Alencar
 
