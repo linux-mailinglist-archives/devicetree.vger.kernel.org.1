@@ -1,240 +1,481 @@
-Return-Path: <devicetree+bounces-314318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314320-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Y11/FE/3OGrWkgcAu9opvQ
-	(envelope-from <devicetree+bounces-314318-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:50:23 +0200
+	id V7JVH2H3OGrdkgcAu9opvQ
+	(envelope-from <devicetree+bounces-314320-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:50:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E6F06ADE85
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:50:22 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1B216ADE99
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:50:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bexvx1+e;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314318-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314318-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=QUl1qL8g;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314320-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314320-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5DCD93002A3B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:48:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 26C1E3019C9F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:50:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C14035F610;
-	Mon, 22 Jun 2026 08:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865263921F6;
+	Mon, 22 Jun 2026 08:50:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76306156F45
-	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 08:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01E803909AB
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 08:50:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782118108; cv=none; b=ftOtA4M47leOPjV+aDFrd1XQz2XCVfD1wh8T2M+E+TaQxp2AltVOSOQhLwLjbg6SluvxVP5PKK5lvTKQKrwAyULWFxfl1XrLBKHGdHb8hiDRUDPfQmcAOYTbpy86hJ+BQYxXbb2uvmzAfL8mYgXureFEQnvBiTFLEL7rJxvF8bk=
+	t=1782118231; cv=none; b=tZWZlLXN5COIqp0E4QD9xJJankIxdAnSRVIDd+0OYCsmTQaRFBrwX2E+7Wye8ldta1N7mgrFpZdzbbHskSy3yQkaYFexh+G4MNVvTv5qzOgV8om6qRpZGWDrZ8lEQyUMK2zlqAQ4ylIB8hSDbT8GwUqBJ47PR5Z7NpQsbkvYCZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782118108; c=relaxed/simple;
-	bh=n3dAg9ZZRSYsYmE/UJNiFbor0LAzkd7l3NCA2bsCw80=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Cm9CQwdmJlxJ+71IQf7p+dckoSA/HVxT/q0ESwUe+0ARDQ/eU3jYcD3h8m7DMpxNgqzrkIN/eJ7CVM8Atbwjk+tX9mNduHAxxmJ4s6qz3rQ+OrKvkPoaKtvHelSte8a9k3R2cd6wI2iGV6k/GcjWFDsWhsdO9sUwa5lcFaakqwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bexvx1+e; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9742A1F000E9;
-	Mon, 22 Jun 2026 08:48:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782118106;
-	bh=Ip851X7bkgURMoyrElEEM17vIHpXT3xsP2yIrtuWlUM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=bexvx1+ekowZ+J9+FtgudKx+fAndkkYoeBjR1uM8TTO6zXt1t0uAwbwXcKn31dCmL
-	 9iy3LwJ2Zti2f3oX9L9laPtCGwR9I2XXtbEE0m/6m83DK86zt4kMSyX0VCmMX//PdG
-	 rhMoBBQMaSeaWlEfTgGhyjWddQ+uKOVNVYodHKct/zfjIBmID62sZeOiXl3kG/x9ro
-	 m1LMHDdhbzLhF9y3UKm1sCn8G1wpQUrYCyLaEzVcRFrjdj8/aDI9SIry40bOD38z5v
-	 7goqZoxXZOlXTKuj5gdaXXko4nqDLBDHN50/er3ITHyPeat7bHud6xyVMgIZ+2zAGU
-	 ssA0Z6MStxO/Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 4/4] gpu: host1x: Allow limiting usable channel and
- syncpoint ranges
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Mikko Perttunen" <mperttunen@nvidia.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20260622-host1x-nohv-v1-4-65bc682a617f@nvidia.com>
-References: <20260622-host1x-nohv-v1-0-65bc682a617f@nvidia.com>
- <20260622-host1x-nohv-v1-4-65bc682a617f@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 22 Jun 2026 08:48:26 +0000
-Message-Id: <20260622084826.9742A1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782118231; c=relaxed/simple;
+	bh=UbKvqS4nmtJLSX0uHeMY5CnLqR2OV1bZSaX0QMfgNfM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WEphioY2PMPKqAzZjwSz1MQLw/pbWYqcIApVbThNLIJhYaUqsLeVz5aOqUY0xWAep3Rp9Oh6D7PsB2WtXsqgmo10w5Noi5Bmp3Om6prsn6stgj7sM7O0iFf6+BwK4bipAXbawOrgNBDDXyMH47yLfAVDRozjTYWzDVjtC0pMnM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QUl1qL8g; arc=none smtp.client-ip=209.85.214.174
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2c6c57c5bcfso34157755ad.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 01:50:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782118228; x=1782723028; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=wsb3msrVzMFjEIZt2d7WOPQ7wBUcHqp6O0aoLnTn6WY=;
+        b=QUl1qL8gtr0AcVf1IAPmjR4y7REUMp/RCBFJdVX4FczP7gVKyZHNBV95Q0dN8evRaJ
+         msUFknZmP5pzREF+ITp24CmVAYNX+F45+cz8eQtQT5Pmr08pSCC4LuiOGM/An6CVFE6Y
+         cSQShU4vlKf8qLAYt/6VvXOqj7ojUHqJwE9AZqeP2fih6AJUbR5P7IMJADWlLv2tjYSs
+         6hAEMN1mNMMzb+DStrWZk+uJ1k0yTBuCApMmpZ8WBWzHhdDJFbQ6+AdI7Z7HzmJjUbTQ
+         14dnWX0g9JTxfdlGbi3IkkaT4oyNlVB7hx3BZRg3PY8oKo9S/oZTId2FIPZ1zUzu/c+c
+         dMrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782118228; x=1782723028;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wsb3msrVzMFjEIZt2d7WOPQ7wBUcHqp6O0aoLnTn6WY=;
+        b=obPCEaNO/RQ4P/E3ob9BlD3zYeGtEyL1p/GNY7Ff5pmB/lY74JOtqAmfpp7zLO/OTl
+         /oxCpg4exqtlu0JKnlX4pIGvcPCm4mL5InL9uiVczqx4+X9agPlW79H/3ZH19pD7fCm8
+         tsd6ka9I5/bT9tFzQvY1DzkCCNykV7mT1xmWDq8w8xp4AYISx9pN3TBjpfZGkwusGNCS
+         7fV539u1oj3z7PLsWRlHOYzqk5HrW8Rh4xFsC5EVq4OWDSZE/7Tw7kVpjw7tsUk83ma3
+         cqjsSuh3QvIVHn8KU8VsyFuCP1MUOmpedQRBPPlAQ3Jev2+/k3t06aIylSZOPIFX915z
+         6/pw==
+X-Forwarded-Encrypted: i=1; AHgh+RrvGDgm+5t0skIV4T4m+xFtpfUBMPThC3gVyawsH4c90MEkh4xKCxViyLrfmFSemiCFxGbjyM4AcMXY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzg1axqrHTjDkyccc6njGHnjUeVsGeniI/DB+ZhWhK8F2RYTPzc
+	fC1LhDURMC2JRtKcEdYQoOf5uq7QKiTt7EAvTqG8uiBFugoHu5+fo7FrxkkN/Q==
+X-Gm-Gg: AfdE7ckL2cttj8GvaeQtJdYKBOiAKZsgQrHJ+fvzvd2lDmqz8hQxVcEOEiKG8k1iFp8
+	2UftssDOcHxgI2e/E60B6HJKxMWHh5lyLeJnpciH2L/fqCrdxNSbbdUkQs02oQxElaqca24lW+f
+	hkyUGD9UzEod9ZkukdQOKhDN7qtpcYWekmXCU6BVkPCVmQnLFIR747KCJ3N5+QQd6u1OoPaXcP6
+	XL/BzH8dli8MWQ+hfE9YNFB5T49mV9S5MwojoQFuOhEJiNJkYf5pvtJuAceTHwvDrhmEaCOw9g1
+	4IzjXRMz7Nz9DvtcsPnxRycgTYGKxdhW3BPKCPcBja58no/GWPBQZt3yPy/fdvv6VTnIq89fGIk
+	O40rkNBM1ePjDbDH0um2/csCV9E/nvZB8+9MyZy+Tc18gFrCQq1w6aiH7XwtL0Gxn
+X-Received: by 2002:a17:902:f650:b0:2c2:245a:3364 with SMTP id d9443c01a7336-2c718fbc332mr147180715ad.32.1782118228124;
+        Mon, 22 Jun 2026 01:50:28 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c7444a9c7csm65858905ad.73.2026.06.22.01.50.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jun 2026 01:50:27 -0700 (PDT)
+Date: Mon, 22 Jun 2026 16:50:10 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Alex Elder <elder@riscstar.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Jingoo Han <jingoohan1@gmail.com>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Christian Bruel <christian.bruel@foss.st.com>, Vincent Guittot <vincent.guittot@linaro.org>, 
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>, Nam Cao <namcao@linutronix.de>, 
+	Siddharth Vadapalli <s-vadapalli@ti.com>, Randolph Lin <randolph@andestech.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Vidya Sagar <vidyas@nvidia.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v2 5/5] PCI: spacemit-k1: Add Spacemit K3 PCIe host
+ controller support
+Message-ID: <ajjz9RVlgCf1pt9c@inochi.infowork>
+References: <20260517014841.254085-1-inochiama@gmail.com>
+ <20260517014841.254085-6-inochiama@gmail.com>
+ <2dec4fe6-30d8-4949-bdc1-e32508340b87@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2dec4fe6-30d8-4949-bdc1-e32508340b87@riscstar.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-314318-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,vger.kernel.org:from_smtp,nvidia.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mperttunen@nvidia.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-314320-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:elder@riscstar.com,m:inochiama@gmail.com,m:jingoohan1@gmail.com,m:mani@kernel.org,m:bhelgaas@google.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:christian.bruel@foss.st.com,m:vincent.guittot@linaro.org,m:zhangsenchuan@eswincomputing.com,m:namcao@linutronix.de,m:s-vadapalli@ti.com,m:randolph@andestech.com,m:andriy.shevchenko@linux.intel.com,m:vidyas@nvidia.com,m:neil.armstrong@linaro.org,m:gustavo.pimentel@synopsys.com,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:dlan@gentoo.org,m:looong.bin@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:looongbin@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[riscstar.com,gmail.com,kernel.org,google.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,foss.st.com,linaro.org,eswincomputing.com,linutronix.de,ti.com,andestech.com,linux.intel.com,nvidia.com,synopsys.com];
+	RCPT_COUNT_TWELVE(0.00)[32];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gentoo.org,gmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[inochi.infowork:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8E6F06ADE85
+X-Rspamd-Queue-Id: E1B216ADE99
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Unvalidated device tree properties allow out-of-bounds array acces=
-s and memory corruption.
-- [High] Unconditional hardware state reset clobbers interrupt states and w=
-ait bases for unowned syncpoints.
---
+On Tue, Jun 09, 2026 at 11:11:24AM -0500, Alex Elder wrote:
+> On 5/16/26 8:48 PM, Inochi Amaoto wrote:
+> > The PCIe controller on Spacemit K3 is almost a standard Synopsys
+> > DesignWare PCIe IP with extra link and reset control. Unlike
+> > the PCIe controller on K1, this controller supports external MSI
+> > interrupt controller and can use multiple PHYs at the same time.
+> > 
+> > Add driver to support PCIe controller on Spacemit K3 PCIe.
+> 
+> It seems like you're creating a lot of new code for K3.  In
+> some cases it's very similar to K1, and it's not clear why it
+> needs to be different.
+> 
+> I'd much rather see a patch that prepares for K3 support by
+> doing minor refactoring of the existing code to support K1
+> in a way that will make adding K3 support more natural.
+> Then a patch to enable K3 should be simpler (and can focus
+> on what is truly different).
+> 
 
-commit bdd04d3945b8f8760d8be70ce0ab1595927b08f4
-Author: Mikko Perttunen <mperttunen@nvidia.com>
+I can not understand what you see, the init logic of K3 is
+completely different from the K1, so a new function is need.
+For other logic, I have reused all things as I can.
 
-gpu: host1x: Allow limiting usable channel and syncpoint ranges
+> > 
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > ---
+> >   drivers/pci/controller/dwc/Kconfig            |   4 +-
+> >   drivers/pci/controller/dwc/pcie-spacemit-k1.c | 169 ++++++++++++++++++
+> >   2 files changed, 171 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> > index f2fde13107f2..fae971ecd876 100644
+> > --- a/drivers/pci/controller/dwc/Kconfig
+> > +++ b/drivers/pci/controller/dwc/Kconfig
+> > @@ -439,7 +439,7 @@ config PCIE_SOPHGO_DW
+> >   	  Sophgo SoCs.
+> >   config PCIE_SPACEMIT_K1
+> > -	tristate "SpacemiT K1 PCIe controller (host mode)"
+> > +	tristate "SpacemiT K1/K3 PCIe controller (host mode)"
+> >   	depends on ARCH_SPACEMIT || COMPILE_TEST
+> >   	depends on HAS_IOMEM
+> >   	select PCIE_DW_HOST
+> > @@ -447,7 +447,7 @@ config PCIE_SPACEMIT_K1
+> >   	default ARCH_SPACEMIT
+> >   	help
+> >   	  Enables support for the DesignWare based PCIe controller in
+> > -	  the SpacemiT K1 SoC operating in host mode.  Three controllers
+> > +	  the SpacemiT K1/K3 SoC operating in host mode. Three controllers
+> >   	  are available on the K1 SoC; the first of these shares a PHY
+> >   	  with a USB 3.0 host controller (one or the other can be used).
+> > diff --git a/drivers/pci/controller/dwc/pcie-spacemit-k1.c b/drivers/pci/controller/dwc/pcie-spacemit-k1.c
+> > index 7f6f1df31cd8..7854d26220a9 100644
+> > --- a/drivers/pci/controller/dwc/pcie-spacemit-k1.c
+> > +++ b/drivers/pci/controller/dwc/pcie-spacemit-k1.c
+> > @@ -23,6 +23,7 @@
+> >   #define PCI_VENDOR_ID_SPACEMIT		0x201f
+> >   #define PCI_DEVICE_ID_SPACEMIT_K1	0x0001
+> > +#define PCI_DEVICE_ID_SPACEMIT_K3	0x0002
+> >   /* Offsets and field definitions for link management registers */
+> >   #define K1_PHY_AHB_IRQ_EN			0x0000
+> > @@ -32,8 +33,20 @@
+> >   #define SMLH_LINK_UP			BIT(1)
+> >   #define RDLH_LINK_UP			BIT(12)
+> > +#define INTR_STATUS				0x0010
+> > +
+> >   #define INTR_ENABLE				0x0014
+> >   #define MSI_CTRL_INT			BIT(11)
+> > +#define RDLH_LINK_UP_INT		BIT(20)
+> > +
+> > +#define K3_PHY_AHB_IRQSTATUS_INTX		0x0008
+> 
+> Can you add INTX support for K1 as well (perhaps in a separate
+> patch)?
+> 
 
-Allow specifying usable channel, and allocatable syncpoint ranges
-through the device tree. This is necessary when Host1x resources
-are shared between multiple operating systems or independent hardware
-units and Linux has limited access to them.
+I have no knowledge about INTx support, and the vendor refuse
+to provide any information about this. So no support for this.
 
-> diff --git a/drivers/gpu/host1x/channel.c b/drivers/gpu/host1x/channel.c
-> index ca5d0f51cf7da..38fcdda8388ad 100644
-> --- a/drivers/gpu/host1x/channel.c
-> +++ b/drivers/gpu/host1x/channel.c
-> @@ -121,13 +121,13 @@ EXPORT_SYMBOL(host1x_channel_put);
->  static struct host1x_channel *acquire_unused_channel(struct host1x *host)
->  {
->  	struct host1x_channel_list *chlist =3D &host->channel_list;
-> -	unsigned int max_channels =3D host->info->nb_channels;
->  	unsigned int index;
-> =20
->  	mutex_lock(&chlist->lock);
-> =20
-> -	index =3D find_first_zero_bit(chlist->allocated_channels, max_channels);
-> -	if (index >=3D max_channels) {
-> +	index =3D find_next_zero_bit(chlist->allocated_channels,
-> +				   host->channel_end, host->channel_base);
+> > +#define K3_ADDR_INTR_STATUS1			0x0018
+> > +
+> > +#define K3_CACHE_MSTR_AWCACHE_MODE	GENMASK(14, 11)
+> > +#define K3_CACHE_MSTR_AWCACHE_BEHAVIOR	0xf
+> > +
+> > +#define K3_MAX_PHY_NUMBER		6
+> 
+> You used "count" in patch 2 as the field name.
+> 
+> >   /* Some controls require APMU regmap access */
+> >   #define SYSCON_APMU			"spacemit,apmu"
+> > @@ -48,6 +61,9 @@
+> >   #define PCIE_CONTROL_LOGIC			0x0004
+> >   #define PCIE_SOFT_RESET			BIT(0)
+> > +#define PCIE_PERSTN_OE			BIT(24)
+> > +#define PCIE_PERSTN_OUT			BIT(25)
+> > +#define PCIE_IGNORE_PERSTN		BIT(31)
+> >   struct k1_pcie {
+> >   	struct dw_pcie pci;
+> > @@ -262,6 +278,152 @@ static const struct dw_pcie_ops k1_pcie_ops = {
+> >   	.stop_link	= k1_pcie_stop_link,
+> >   };
+> > +static int k3_pcie_enable_phy(struct k1_pcie *pcie)
+> 
+> Can you just make K1's single PHY be a special case of
+> having "N" PHYs?  I.e., just set the phy_count for
+> K1 to be 1, so this loop would work for both K1 and K3?
+> 
 
-[Severity: High]
-Does this code allow out-of-bounds memory accesses if the device tree values
-exceed the hardware limits?
+This is reasonable.
 
-Since chlist->channels and chlist->allocated_channels are allocated based on
-host->info->nb_channels, could a large value in the nvidia,channels device
-tree property cause an out-of-bounds access here when host->channel_end is
-passed to find_next_zero_bit()? Should host->channel_end be validated
-in host1x_get_assigned_resources()?
+> > +{
+> > +	int i, ret;
+> > +
+> > +	for (i = 0; i < pcie->phy_count; i++) {
+> > +		ret = phy_init(pcie->phy[i]);
+> > +		if (ret)
+> > +			goto err_phy;
+> > +	}
+> > +
+> > +	return 0;
+> > +
+> > +err_phy:
+> > +	while (--i >= 0)
+> > +		phy_exit(pcie->phy[i]);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static int k3_pcie_init(struct dw_pcie_rp *pp)
+> > +{
+> > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> > +	struct k1_pcie *k1 = to_k1_pcie(pci);
+> > +	u32 reset_ctrl = k1->pmu_off + PCIE_CLK_RESET_CONTROL;
+> > +	u32 val;
+> > +	int ret;
+> > +
+> > +	regmap_clear_bits(k1->pmu, reset_ctrl, LTSSM_EN);
+> 
+> Should the above be done for K1?  Would it hurt?  Handle
+> both K1 and K3 the same way if possible.
+> 
+> The next two things are identical to k1_pcie_init().  Make
+> the code common if possible, so it's very obvious what
+> really needs to be different between the two.
+> 
 
-[ ... ]
+No, I have diff the code and find only about 40% of logic
+are similar. However, these logic is fragmented, so I decide
+to add a new function, which is easier to maintain.
 
-> diff --git a/drivers/gpu/host1x/dev.c b/drivers/gpu/host1x/dev.c
-> index 545fa2e3f180c..7103f018cb1bf 100644
-> --- a/drivers/gpu/host1x/dev.c
-> +++ b/drivers/gpu/host1x/dev.c
-> @@ -331,6 +331,39 @@ static void host1x_setup_virtualization_tables(struc=
-t host1x *host)
->  	}
->  }
-> =20
-> +static int host1x_get_assigned_resources(struct host1x *host)
-> +{
-> +	struct device_node *np =3D host->dev->of_node;
-> +	u32 vals[2];
-> +	int err;
-> +
-> +	err =3D of_property_read_u32_array(np, "nvidia,channels", vals, 2);
-> +	if (err =3D=3D 0) {
-> +		host->channel_base =3D vals[0];
-> +		host->channel_end =3D vals[0] + vals[1];
-> +	} else if (err =3D=3D -EINVAL) {
-> +		host->channel_base =3D 0;
-> +		host->channel_end =3D host->info->nb_channels;
-> +	} else {
-> +		dev_err(host->dev, "invalid nvidia,channels property: %d\n", err);
-> +		return err;
-> +	}
-> +
-> +	err =3D of_property_read_u32_array(np, "nvidia,syncpoints", vals, 2);
-> +	if (err =3D=3D 0) {
-> +		host->syncpt_base =3D vals[0];
-> +		host->syncpt_end =3D vals[0] + vals[1];
+> > +
+> > +	k1_pcie_toggle_soft_reset(k1);
+> 
+> The "k1" prefix is fine for now, but if this driver gets
+> used for more devices in the future, it might be worth
+> renaming things to emphasize that it's not K1-specific.
+> 
 
-[Severity: High]
-Similarly, could large values for nvidia,syncpoints cause out-of-bounds rea=
-ds
-and writes?
+Currently I have no knowledge on the new device and do not
+think it is a good idea to change the name. Anyway, it is
+possible to change to kx, but I do not think it is clear.
 
-Arrays like host->syncpt are allocated based on host->info->nb_pts.
-If host->syncpt_end exceeds this limit without validation, functions like
-host1x_syncpt_alloc() that iterate up to host->syncpt_end might access
-memory out of bounds.
+> > +	ret = k1_pcie_enable_resources(k1);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	regmap_set_bits(k1->pmu, reset_ctrl, PCIE_AUX_PWR_DET);
+> > +	regmap_clear_bits(k1->pmu, reset_ctrl, APP_HOLD_PHY_RST);
+> > +
+> 
+> You enable the PHY here much earlier than what's done in
+> the K1 code.  Should the K1 PHY be enabled earlier?
+> Also, I don't really think there needs to be separate
+> versions of the code that enables PHYs for K1 and K3.
+> 
 
-[ ... ]
+IIRC this is a specific logic for K3.
 
-> diff --git a/drivers/gpu/host1x/syncpt.c b/drivers/gpu/host1x/syncpt.c
-> index acc7d82e0585e..fe27a386cc0c8 100644
-> --- a/drivers/gpu/host1x/syncpt.c
-> +++ b/drivers/gpu/host1x/syncpt.c
-[ ... ]
-> @@ -138,7 +138,7 @@ void host1x_syncpt_restore(struct host1x *host)
->  	struct host1x_syncpt *sp_base =3D host->syncpt;
->  	unsigned int i;
-> =20
-> -	for (i =3D 0; i < host1x_syncpt_nb_pts(host); i++) {
-> +	for (i =3D host->syncpt_base; i < host->syncpt_end; i++) {
->  		/*
->  		 * Unassign syncpt from channels for purposes of Tegra186
->  		 * syncpoint protection. This prevents any channel from
+> > +	ret = k3_pcie_enable_phy(k1);
+> > +	if (ret) {
+> > +		k1_pcie_disable_resources(k1);
+> > +		return ret;
+> > +	}
+> > +
+> > +	/* K3: Set IGNORE_PERSTN and drive PERSTN_OE high (assert reset) */
+> > +	regmap_set_bits(k1->pmu, k1->pmu_off + PCIE_CONTROL_LOGIC,
+> > +			PCIE_IGNORE_PERSTN | PCIE_PERSTN_OE | PCIE_PERSTN_OUT);
+> > +	usleep_range(1000, 2000);
+> > +	regmap_clear_bits(k1->pmu, k1->pmu_off + PCIE_CONTROL_LOGIC, PCIE_PERSTN_OUT);
+> > +
+> > +	msleep(PCIE_T_PVPERL_MS);
+> > +
+> > +	/*
+> > +	 * Put the controller in root complex mode, and indicate that
+> > +	 * Vaux (3.3v) is present.
+> > +	 */
+> > +	regmap_set_bits(k1->pmu, k1->pmu_off + PCIE_CONTROL_LOGIC,
+> > +			PCIE_PERSTN_OUT | PCIE_PERSTN_OE);
+> > +
+> > +	val = dw_pcie_readl_dbi(pci, GEN3_EQ_CONTROL_OFF);
+> > +	val = u32_replace_bits(val, GEN3_EQ_CONTROL_OFF_PHASE23_EXIT_MODE,
+> > +			       GEN3_EQ_CONTROL_OFF_PSET_REQ_VEC);
+> > +	dw_pcie_writel_dbi(pci, GEN3_EQ_CONTROL_OFF, val);
+> > +
+> 
+> The following block of code (roughly) is done right after
+> enabling resources in the K1 version of this function.
+> 
+> Maybe the order you do it is better, but in that case,
+> change the (existing, and soon, common) code to do it
+> however is best if that's the case.
+> 
+> You should try to factor out the common parts and minimize
+> what's actually different between the two.
+> 
+> I would also expect that the device ID would be stored in the
+> platform data rather than having both init functions hard-code
+> the value here.
+> 
+> I'm going to leave it at that for now.
+> 
+> 					-Alex
 
-[Severity: High]
-Does this clobber the hardware state for unowned syncpoints?
+This first thing you should know is the init logic of K3
+is totally different from K1, I have asked for the vendor
+and they told me it is better to treat them differently,
+even if they are using the same ip. 
 
-Right after this loop, the code in host1x_syncpt_restore() unconditionally
-restores wait bases for syncpoints 0 to nb_bases-1:
+For the request of the device ID setup, I think I can add
+a function for it.
 
-	for (i =3D 0; i < host1x_syncpt_nb_bases(host); i++)
-		host1x_hw_syncpt_restore_wait_base(host, sp_base + i);
-
-Similarly, host1x_intr_disable_all_syncpt_intrs() unconditionally disables =
-and
-clears threshold interrupts for all syncpoints across the entire hardware.
-
-Since this patch restricts Linux to a specific range of syncpoints to allow
-sharing the Host1x device, will overwriting the wait bases and interrupt st=
-ates
-unconditionally break synchronization for other operating systems or hardwa=
-re
-units sharing the device?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260622-host1x-noh=
-v-v1-0-65bc682a617f@nvidia.com?part=3D4
+> 
+> > +	dw_pcie_dbi_ro_wr_en(pci);
+> > +	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, PCI_VENDOR_ID_SPACEMIT);
+> > +	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, PCI_DEVICE_ID_SPACEMIT_K3);
+> > +	dw_pcie_dbi_ro_wr_dis(pci);
+> > +
+> > +	/* Finally, as a workaround, disable ASPM L1 */
+> > +	k1_pcie_disable_aspm_l1(k1);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int k3_pcie_msi_host_init(struct dw_pcie_rp *pp)
+> > +{
+> > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> > +	u32 val;
+> > +
+> > +	dw_pcie_dbi_ro_wr_en(pci);
+> > +
+> > +	val = dw_pcie_readl_dbi(pci, COHERENCY_CONTROL_3_OFF);
+> > +	val |= u32_replace_bits(val, K3_CACHE_MSTR_AWCACHE_BEHAVIOR,
+> > +				K3_CACHE_MSTR_AWCACHE_MODE);
+> > +	dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_3_OFF, val);
+> > +
+> > +	dw_pcie_dbi_ro_wr_dis(pci);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct dw_pcie_host_ops k3_pcie_host_ops = {
+> > +	.init		= k3_pcie_init,
+> > +	.deinit		= k1_pcie_deinit,
+> > +	.msi_init	= k3_pcie_msi_host_init,
+> > +};
+> > +
+> > +static const struct dw_pcie_ops k3_pcie_ops = {
+> > +	.link_up	= k1_pcie_link_up,
+> > +	.start_link	= k1_pcie_start_link,
+> > +	.stop_link	= k1_pcie_stop_link,
+> > +};
+> > +
+> > +static void k3_pcie_clear_irq_status(struct k1_pcie *k1,
+> > +				     u32 *status0, u32 *status1, u32 *status2)
+> > +{
+> > +	*status0 = readl_relaxed(k1->link + K3_PHY_AHB_IRQSTATUS_INTX);
+> > +	*status1 = readl_relaxed(k1->link + INTR_STATUS);
+> > +	*status2 = readl_relaxed(k1->link + K3_ADDR_INTR_STATUS1);
+> > +
+> > +	writel_relaxed(*status0, k1->link + K3_PHY_AHB_IRQSTATUS_INTX);
+> > +	writel_relaxed(*status1, k1->link + INTR_STATUS);
+> > +	writel_relaxed(*status2, k1->link + K3_ADDR_INTR_STATUS1);
+> > +}
+> > +
+> > +static int k3_pcie_parse_port(struct k1_pcie *k1)
+> > +{
+> > +	struct device *dev = k1->pci.dev;
+> > +	u32 status0, status1, status2;
+> > +	int i;
+> > +
+> > +	k1->phy = devm_kmalloc_array(dev, K3_MAX_PHY_NUMBER, sizeof(*k1->phy),
+> > +				     GFP_KERNEL);
+> > +	if (!k1->phy)
+> > +		return -ENOMEM;
+> > +
+> > +	for (i = 0; i < K3_MAX_PHY_NUMBER; i++) {
+> > +		k1->phy[i] = devm_of_phy_get_by_index(dev, dev->of_node, i);
+> > +		if (IS_ERR(k1->phy[i])) {
+> > +			if (PTR_ERR(k1->phy[i]) == -ENODEV)
+> > +				break;
+> > +
+> > +			return PTR_ERR(k1->phy[i]);
+> > +		}
+> > +	}
+> > +
+> > +	k1->phy_count = i;
+> > +	if (k1->phy_count == 0)
+> > +		return -EINVAL;
+> > +
+> > +	k3_pcie_clear_irq_status(k1, &status0, &status1, &status2);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >   static int k1_pcie_parse_port(struct k1_pcie *k1)
+> >   {
+> >   	struct device *dev = k1->pci.dev;
+> > @@ -363,8 +525,15 @@ static const struct k1_pcie_device_data k1_pcie_device_data = {
+> >   	.parse_port	= k1_pcie_parse_port,
+> >   };
+> > +static const struct k1_pcie_device_data k3_pcie_device_data = {
+> > +	.host_ops	= &k3_pcie_host_ops,
+> > +	.ops		= &k3_pcie_ops,
+> > +	.parse_port	= k3_pcie_parse_port,
+> > +};
+> > +
+> >   static const struct of_device_id k1_pcie_of_match_table[] = {
+> >   	{ .compatible = "spacemit,k1-pcie", .data = &k1_pcie_device_data},
+> > +	{ .compatible = "spacemit,k3-pcie", .data = &k3_pcie_device_data},
+> >   	{ }
+> >   };
+> 
 
