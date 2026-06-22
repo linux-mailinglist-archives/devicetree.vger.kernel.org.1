@@ -1,229 +1,145 @@
-Return-Path: <devicetree+bounces-314532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314534-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id boitFTJ6OWp+uAcAu9opvQ
-	(envelope-from <devicetree+bounces-314532-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 20:08:50 +0200
+	id JjOYENp8OWrSuQcAu9opvQ
+	(envelope-from <devicetree+bounces-314534-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 20:20:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA94E6B1AD3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 20:08:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 226B16B1C4E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 20:20:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qq.com header.s=s201512 header.b="f/ADz9UY";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314532-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314532-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=qq.com;
+	dkim=pass header.d=abscue.de header.s=dkim header.b=e03NtHiZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314534-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314534-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CE4E330131FF
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 18:08:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0FF5D302DFBE
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 18:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 926D130EF86;
-	Mon, 22 Jun 2026 18:08:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C764344023;
+	Mon, 22 Jun 2026 18:19:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-210.mail.qq.com (out162-62-57-210.mail.qq.com [162.62.57.210])
+Received: from srv01.abscue.de (abscue.de [89.58.28.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7E92C326D;
-	Mon, 22 Jun 2026 18:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB97E343D9D;
+	Mon, 22 Jun 2026 18:19:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782151713; cv=none; b=TLXKmacAxGMgfrc1A5Rl7kAe0SyebfRnDztjc7J0td+zM7jwP1oddPThZRI75T/yIZB4jD/q3CmxMVf5shtigfM2fbC2Wf4N4pKzrbr2KmUAOWc8KaXwASfXEWqb7T+QOLMqooIZ3v1MIIDUAc0KWzb27OGV2zwqSubm3XAn8hE=
+	t=1782152371; cv=none; b=Af2ifK0r5z/70iOKvynxAB0FOd7cOFC+x8CNXFbuCynkxMFTKs50gC2pHHOm1ubaAwzHj5p6Fm93eYA/fXrjIUOH0KDBxxkKYLCeKPSrQPsDdHtPzcZ+v5/otg1ZFL1Ri5v0tUXIRm6HMGTgAr4Pfto5Jw6MiwVjecbdk9Fo13Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782151713; c=relaxed/simple;
-	bh=vKQuxTTDXr4fBshLDM8MOsda3fpAmCbrfRlW5QsP4vU=;
-	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JL57mbD11jMkdoyGv8aGSpS6fvSrKqrUDTwULeXo9Fc5NCv7tfHx3tM1uCU6Jh7GDzPq7eDPk/oh2+Jrm4wRNwRfX6ZVMnlKD5340QHalg3DBNZhjITvmWQOje+aHRH1RLAai1UJqcNZBTCsT6KpVWQg538wYZZMVE2RWNOieQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=f/ADz9UY; arc=none smtp.client-ip=162.62.57.210
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1782151704; bh=Bj3FnbmsaU1YbPv0N4gfZNYVP3Xk8d42HiKQ/iCcIPQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=f/ADz9UYOiALoHCqpcWTvF3FYhUw3ZGomIiw60v40irse6oJruFaOY0XY48R1ZrJK
-	 snb924xgZwm5a6RbtqcLdZwCDy2XdGUECghTumBdSZB1Shy03bjP5B8F343jr6aUOT
-	 iqUjqtc8u1+1CdLYQQRSIefZa0KoX77KleW8VsT4=
-Received: from 8qyomHQF3vPjMe ([163.125.200.111])
-	by newxmesmtplogicsvrszb43-0.qq.com (NewEsmtp) with SMTP
-	id 21393A5F; Tue, 23 Jun 2026 02:08:19 +0800
-X-QQ-mid: xmsmtpt1782151699thbzb44ph
-Message-ID: <tencent_A1865527015C7AD1B52C56A46AD106234508@qq.com>
-X-QQ-XMAILINFO: M+6QKz8nsrJQ5tzjx6479M1cqoQArySkm8k+p0FiCGIJKPyJaQ3EpRIc+sdjot
-	 8KyembQJudHE4AZHmDehW5GdaSplxszXCbIlOQwL23njcsde1yk6DygrmNpJ4ap3EWMsJBliSh8i
-	 xycwPXSxUzY9loadZ+pVoP8lvN8Yb1x4Y9h9DXg1DxsfRdknLC1sN3abcOY4VT3XxEu9exYprty7
-	 sTahnHP78vzSsDqLQeH0WlrjdqdV8rUaRp0VlFTKLfYA8TL8qKifIIvehyUi+hSL/9Nz//lvQz2/
-	 1HUMJLLBOeuG7jD3l2HavH77BxQNtG5SFg5L+yH4Coyw4A420CLq/6jL4XzWI8XDstdOUUcpcDgr
-	 FrjxrxEJZbWSKIhrdapDNXSsIT9ZeHeZNWlkxrJdpMFfALXa9JizjFSDwETgkhoHeqGwMOKdcKm0
-	 EJx8QL0dQ8/kzymK4AC9gIUcMxq4uIFKz0iIXOln53LZvD4nshOfAfBwbhjn1z09WB6szzrHU1dO
-	 LXPW//gSYFwH3ZqsOYWapNwRXHFlgL+X1b25KWeeOImTKESFnWAVNRw4cYd9r4MzXgMd64Xz8m/R
-	 xNnZd4wXkhbJEI5vaAh+SAZgluyIJd8KnwzwLq27+R9J39FGBkxg0I4CqvcZSk4Ws34ROaEk3oT0
-	 TrNZMqM0gawcMAsJVfe/6oDgTTE6ayKpvWhYIgNkVpa9BMpMDtcErTB82aD9TgLmRlj6O0jXdP17
-	 1xCJ2s0T1xiQZIDnLARnAzbtw+8DljKAMHUaYpsG7VM8P6nadmGGrsAs9oodHLa5pgewjU463y/a
-	 gPOqeonjSQv4Qxo0XDk365k+wBncjHeY0cU1It3Pc7Sxj1mb+Fals1TS7cxtIiE5px4RRWTFNKgt
-	 SdFGWrReND9P8b0X4irBCoKc15B3GqbzAW/ie4aOxhaC9NFT2pC38DaCUfvdk9XzJPPAOnMkKfGo
-	 z63Zy6XCT4eEYN2SkKEucckGCg3EW0el4+jjNyQFNZCqmvu9XIskujfnGASKr4zGq5aLxKUWO5iC
-	 nQag1WJtnd5o3+bKErdXXneXSKxyBL6JkzGIoMJxKHqqIBlKdYePSnYKTJpaaO7LYtdrhvanjZVp
-	 wDqpUe3v4/AT43FcM=
-X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
-From: Xin Xu <xxsemail@qq.com>
-To: konrad.dybcio@oss.qualcomm.com
-Cc: andersson@kernel.org,
-	devicetree@vger.kernel.org,
-	konradybcio@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	xxsemail@qq.com
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8250-xiaomi-elish: Add pm8008 PMIC
-Date: Tue, 23 Jun 2026 02:07:41 +0800
-X-OQ-MSGID: <20260622180819.36760-1-xxsemail@qq.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <f18194c2-01eb-43c0-8e40-5575deac9e84@oss.qualcomm.com>
-References: <f18194c2-01eb-43c0-8e40-5575deac9e84@oss.qualcomm.com>
+	s=arc-20240116; t=1782152371; c=relaxed/simple;
+	bh=nXiCKbsaJaItCTXmWIbSmpRdyGPIk7cEq79I8X3ptU0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r0Szwq95iPTTHQNPuYPjra54qbfOfjE2d0ON49yuqcP83eaIKeqB/D3lZOzdEZvlAAm/4IQGQPpfGQDIG3DbjB5qHE1lZI6pWNZzusPy/0XilnTK/YSIQmWJfSd000Ahm3VKRyn922iNEtvdxosXS5mvGjrdPI8sfVt5XFdc6Vk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b=e03NtHiZ; arc=none smtp.client-ip=89.58.28.240
+Date: Mon, 22 Jun 2026 20:18:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=abscue.de; s=dkim;
+	t=1782152360;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1G95fYnDzydZPfGc8Xl6vyD5f9DfuFmAy9/AoXmk77U=;
+	b=e03NtHiZwithnwJVyfo18qRMJL3d+g3zf4qgiGFguE0/v4uyDOAuQEtEaaBZ3r5mD75DMa
+	1PIFZLGEwUTpi+pmcHCxSCU/1E42q8iFLdWrM3KyTEmIYT+KN4XZ2YsjfNP6rpqzDlQ91R
+	kN/zKPzKo7c9DyWSc7y7cIwNb9++WujiWM99rWK3bkrHTa9glu8jvvdELy7+ryn7p6gzh+
+	21AMGSEKy6Gn0W/tV3fwWE6ED3DCOjFwox5W7Lx3y8MBCS9D8oaonUE3BxOI0ZI/AEJkdf
+	6e/uDf43jHzjuwsp+eLpk1VHhokDb2reLlW80bqt+QzSIQDnFUjbzx67Ky70mQ==
+From: Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v6 1/3] regulator: dt-bindings: Add Unisoc SC2730 PMIC
+Message-ID: <ajl8YparXoIXL0wm@abscue.de>
+References: <20260620-sc2730-regulators-v6-0-bbd2db395231@abscue.de>
+ <20260620-sc2730-regulators-v6-1-bbd2db395231@abscue.de>
+ <20260622-mindful-civet-of-refinement-02d3da@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260622-mindful-civet-of-refinement-02d3da@quoll>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qq.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[abscue.de:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,qq.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314532-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:andersson@kernel.org,m:devicetree@vger.kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:xxsemail@qq.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[xxsemail@qq.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qq.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xxsemail@qq.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:orsonzhai@gmail.com,m:baolin.wang@linux.alibaba.com,m:zhang.lyra@gmail.com,m:lee@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor@kernel.org,m:zhanglyra@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[otto.pflueger@abscue.de,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-314534-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DMARC_NA(0.00)[abscue.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	FREEMAIL_FROM(0.00)[qq.com]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[abscue.de:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[otto.pflueger@abscue.de,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linux.alibaba.com,vger.kernel.org,oss.qualcomm.com];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,abscue.de:dkim,abscue.de:email,abscue.de:mid,abscue.de:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AA94E6B1AD3
+X-Rspamd-Queue-Id: 226B16B1C4E
 
-On Mon, 2026-06-22 at 13:40 +0200, Konrad Dybcio wrote:
-> On 6/19/26 6:07 PM, Xin Xu wrote:
-> > Add the pm8008 PMIC node on i2c15 with seven LDOs,
-> > using GPIO84 as interrupt and GPIO76 as reset.
+On Mon, Jun 22, 2026 at 09:29:20AM +0200, Krzysztof Kozlowski wrote:
+> On Sat, Jun 20, 2026 at 10:54:00AM +0200, Otto Pfl�ger wrote:
+> > Add bindings for the regulators found in the Spreadtrum/Unisoc SC2730
+> > PMIC, used e.g. with the UMS512 and UMS9230 SoCs.
 > > 
-> > Signed-off-by: Xin Xu <xxsemail@qq.com>
+> > Signed-off-by: Otto Pfl�ger <otto.pflueger@abscue.de>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 > > ---
-> >  .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 94
-> > +++++++++++++++++++
-> >  1 file changed, 94 insertions(+)
+> >  .../bindings/regulator/sprd,sc2730-regulator.yaml  | 44 ++++++++++++++++++++++
+> >  1 file changed, 44 insertions(+)
 > > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-
-> > common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-
-> > common.dtsi
-> > index 51b57c697a75..2687a2a8dda4 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-> > @@ -599,6 +599,82 @@ fuel-gauge@55 {
-> >  	};
-> >  };
-> >  
-> > +&i2c15 {
-> > +	clock-frequency = <400000>;
-> > +	status = "okay";
 > 
-> nit: please add an \n before status
-> 
-> > +
-> > +	pm8008: pmic@8 {
-> > +		compatible = "qcom,pm8008";
-> > +		reg = <0x8>;
-> > +
-> > +		interrupt-parent = <&tlmm>;
-> > +		interrupts = <84 IRQ_TYPE_EDGE_RISING>;
-> 
-> interrupts-extended = <&tlmm 84 IRQ_TYPE_EDGE_RISING>;
-> 
-> 
-> > +		reset-gpios = <&tlmm 76 GPIO_ACTIVE_LOW>;
-> > +
-> > +		vdd-l1-l2-supply = <&vreg_s8c_1p35>;
-> > +		vdd-l3-l4-supply = <&vreg_bob>;
-> > +		vdd-l5-supply = <&vreg_bob>;
-> > +		vdd-l6-supply = <&vreg_bob>;
-> > +		vdd-l7-supply = <&vreg_bob>;
-> > +
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pm8008_default>;
-> 
-> property-n
-> property-names
-> 
-> in this order, please
-> 
-> [...]
-> 
-> > +		regulators {
-> > +			vreg_l1p: ldo1 {
-> > +				regulator-name = "vreg_l1p";
-> > +				regulator-min-microvolt =
-> > <1152000>;
-> > +				regulator-max-microvolt =
-> > <1152000>;
-> 
-> Make sure you verified all of the voltage ranges vs downstream,
-> as incorrect values may lead to hw damage
-> 
-> [...]
-> 
-> > +	pm8008_default: pm8008-default-state {
-> > +		int-pins {
-> > +			pins = "gpio84";
-> > +			function = "gpio";
-> > +			bias-disable;
-> > +			drive-strength = <2>;
-> > +			input-enable;
-> > +		};
-> > +
-> > +		reset-pins {
-> > +			pins = "gpio76";
-> > +			function = "gpio";
-> > +			bias-pull-up;
-> > +			drive-strength = <2>;
-> > +			output-high;
-> 
-> Drop output-high, the driver will take care of setting the output
-> state
-> 
-> Konrad
+> Sashiko has good point - where is any user of this binding (through
+> reference)? Without $ref, this won't match thus is a noop for validation.
 
-Thank you for your review!
+For some reason, the patch adding the binding references from v3 of
+this series was merged by Lee Jones. This means that a user exists now:
+Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml includes this
+binding as one of the options.
 
-I will fix the coding style issues (blank line before status,
-interrupts-extended, property order, and dropping output-high)
-in the next version.
+Sashiko even sees that but the inconsistent omission of the compatible
+property confuses it. The point about the lack of validation is correct,
+but I was going to send a separate patch for that since it's more of an
+MFD binding cleanup, whereas this series is mainly for the regulator
+driver. Or should I add it here again?
 
-I have verified all LDO voltages against the downstream device tree:
-https://github.com/MiCode/kernel_devicetree/tree/elish-r-oss/
-The definitions can be found around lines 209–244 in
-qcom/elish-sm8250-camera-board.dtsi
-
-The voltage constraints for ldo1 and ldo2 were incorrect in my
-previous patch; this will be corrected in v2.
+Also, is it generally a rule now that the comatible is left out for MFD
+child nodes, or is there a reason why this is only done for regulators?
+Is this related to the (non-)existence of a reg property in the child?
 
 Best regards,
-Xin Xu
-
+Otto
 
