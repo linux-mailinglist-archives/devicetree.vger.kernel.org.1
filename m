@@ -1,190 +1,266 @@
-Return-Path: <devicetree+bounces-314223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314228-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oahLDnLbOGqajAcAu9opvQ
-	(envelope-from <devicetree+bounces-314223-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:51:30 +0200
+	id f6RgI/vcOGoZjQcAu9opvQ
+	(envelope-from <devicetree+bounces-314228-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:58:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 862EC6AD072
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:51:29 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D8D6AD108
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:58:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cUcvahCn;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314223-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314223-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=Nvidia.com header.s=selector2 header.b="p25/tZ7B";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314228-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314228-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=nvidia.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8DBA83024A4C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 06:50:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CBA53301917B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 06:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFE2635FF6C;
-	Mon, 22 Jun 2026 06:50:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA7D360EF0;
+	Mon, 22 Jun 2026 06:57:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010051.outbound.protection.outlook.com [52.101.201.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC0B019E97B;
-	Mon, 22 Jun 2026 06:50:15 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782111016; cv=none; b=ofsLFa3DjAEN3jzYah04yYIrhG4uynCb4zrVjek0j6GMU5mz+1hx3/p9YgN4m/u8ql735wrhNn4ySOryaUzIpY7PXYzxl7bI8DDsmgbABV/kjf9QdY1x0OG+hugHs4mHo3HBGVNx6CePh76JH7mpS6Llrjh1ZZi7PqY4LVWjME8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782111016; c=relaxed/simple;
-	bh=5H6XifqywxaAVV0/hryS5+1Nj+z6wQMhvhSJ1VE9Pns=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MvYkX05CgdWxMIndfc7AHDntPNU1Rj5s//7TbcEnLZKaQ99tcN6qThqS8SzhZGIJHulljrI8UOPOqefxzWNoyYeiUEcx7dSTMHDYnfK8UmmBBDkrBQK2cxcZ6Shoh3XVY7lCSwWkG2hdreSxCuMskoEahBgF4NJw3/Gcto87YCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cUcvahCn; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 785621F000E9;
-	Mon, 22 Jun 2026 06:50:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782111015;
-	bh=AE2b1Rn9vfLTVVEPttskMNsAr+Hsn4NycpgaiI4qn4s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=cUcvahCnIwwrZZImhiv+n854ZNgVM3ko57w5UawDsEJw9uDSwM9HmPAATwWErihCq
-	 jUjjCdGQm1PXwPIb4qnXJtwCx2oqAq87rDONcpjikE+lySWRd+B04d7QG16qigsmwP
-	 Iue0i8UvcYNi5oL7NaiuN+ss/HrxE4u3kMREz+cStYhgGR22bac4G6Sok7ZF1LIABS
-	 K+oCXUq2eBFyxCw8RlqiBiq+/u8KKWn+kI4UAWiE7k+dk+UC01hS0K0hG0RqIFTL9T
-	 EU9w3TV365xKIdkBTvMps6J3KLXI029V6czi311N2pscDdQ6vDvHz09zyUWU3GUvYk
-	 gSezYnub6rKtA==
-Date: Mon, 22 Jun 2026 08:50:11 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: guoniu.zhou@oss.nxp.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Frank Li <frank.li@nxp.com>, Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, imx@lists.linux.dev, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, Guoniu Zhou <guoniu.zhou@nxp.com>
-Subject: Re: [PATCH v10 3/4] dt-bindings: clock: imx95-blk-ctl: Define
- formatter child node schema
-Message-ID: <20260622-independent-meticulous-skunk-4fb221@quoll>
-References: <20260618-csi_formatter-v10-0-f23830312ba5@oss.nxp.com>
- <20260618-csi_formatter-v10-3-f23830312ba5@oss.nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2356A35677D;
+	Mon, 22 Jun 2026 06:57:57 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782111479; cv=fail; b=XCJSmUq5BNQLR/XR5II92tYsmvUxHVDY41+9vQgJ1EDgqvI3UMngrvRf0BH2JgPeN9acuoY/ZqLpnUKfuEeFqe2K6+lNiEq/pbqGKQ5I+rZBJZ6xo8xF6djNh40BXMP+8N0RWdKAuJAz8blNH5vLsvInK3H+qbmr5Kqv8AXr4cw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782111479; c=relaxed/simple;
+	bh=S69g04vvjBGmY+bjB3QC4CFr3hCJg37SroOTGRd3SIY=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=IsXkwQrMpCxhX7K04QVMNpQSxIIRlNm6PQvMdHyB3C+tVQ9AXG1LcrDHpDZgflNYM1sO503wZbnDnVWCCtE1Hfm7OumXqFfLaQ5YyksEG7q5RFgC0B757P7x9eDBhSgfu5FGhRJgEW8IgcxMk1jw4Ka6+c7ksieDnC+NYkS3Pvw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=p25/tZ7B; arc=fail smtp.client-ip=52.101.201.51
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TqSHPSS8l4JqZKIHRSObgtdaCrsYYGT5G5Pab/gpOnySNgNvLLRadlbnQb8qV8jC94POGEWKyTNRpipVJpW/s5QuONBjU37BitQa7IENg0PZ0vZ0NfHanWUaGSi07ZDngqmRzDYq9KgyQRbloms/DvnyW15DEO1eITS3kBdJp5ZZzFq8eawbmnmJO7CXgEKysYUt43C33coqMTfxtifQIwtWc78WkoJWOyxGlHQbnDcy2orEtrTvBYCck/dqkyzzCTmtlyHxE9N4EpZmZpproIYifDX7bDYYhfQrXt9JYBQ9yon+dMlfC6tk+9kTC71690jTFmozmdtNATbxrxM8kw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0gYY50BNeFE2SYGzOiG7NUjStROGcMU1HL8X4cJj65s=;
+ b=mdE3vvEuuNSubA9nD7PsdXLG4HatiEj7mww0jiHPW1Fn6pL+bw/TniPK+VmqcK1PotWYBxppu5tF81F4GBfvTG4PFH81EGHO007Su/NkCuqYfIz0ThozvAMoNyWxclmg5w80RVZOqvo1w3UCBUNDdEKY9WdZxY4LnlCXtv2M36lC5bjPieU/Qw+qsnZScF6OmOhJUh50mPapG4nJ3gfVHOlBJ7Qs6CUWmiHH1hSA3bqfR49PmUVSrNTKrk+kO7ql/hb+0c+efgzTUiMQUvX53O86bwbPJ3IhCYN2HN6kK/j2o/pLD9GKGsDn4FRZQFxuOmoQEiOAna6wZyIGKIxlfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0gYY50BNeFE2SYGzOiG7NUjStROGcMU1HL8X4cJj65s=;
+ b=p25/tZ7B0QtWxReC22NLKDnGEcQ9K38w+dKEYJjwRmtaRuUOoW2LwTfRa3Z/z9v9zTaxQ9GTwLd3gLJPi3f8X33mGpX/N1XX0G9OJW1Zb2fx9fIBBLftdNKduvJxDZFoDsjuS9QMwhbyjn2oqH7t7nCjnLYqV6aVPNcYzyA+5m4x4CcHiVVgZc7zacUY04tzUjmwUPBKi+UUA12RZ3yJlCj3iHG8zdE+ngyVwPUB/DouBOSmFepCsnaWl+m/jchiTWs++ZR9Q0LOjpGSLw/2w+Li8quMqAmxLk5xdJBUWxmvp6YA+sXF9rGXj54gkvcS1IZrknItqVdGn399gEeDAg==
+Received: from SJ2PR12MB9161.namprd12.prod.outlook.com (2603:10b6:a03:566::20)
+ by MN2PR12MB4286.namprd12.prod.outlook.com (2603:10b6:208:199::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.18; Mon, 22 Jun
+ 2026 06:57:54 +0000
+Received: from SJ2PR12MB9161.namprd12.prod.outlook.com
+ ([fe80::d9d1:8c49:a703:b017]) by SJ2PR12MB9161.namprd12.prod.outlook.com
+ ([fe80::d9d1:8c49:a703:b017%6]) with mapi id 15.21.0139.018; Mon, 22 Jun 2026
+ 06:57:54 +0000
+From: Mikko Perttunen <mperttunen@nvidia.com>
+Subject: [PATCH v2 0/7] Host1x/VIC support on Tegra264
+Date: Mon, 22 Jun 2026 15:52:13 +0900
+Message-Id: <20260622-t264-host1x-v2-0-cdbb730165c4@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/1XMQQ6DIBCF4auYWZfGQQPSlfdoXBgYyywKDRhiY
+ 7x7qV11+b/kfTtkSkwZbs0OiQpnjqGGvDRg/RweJNjVBtlK1XbYiVWqXviYV9yENRo1Ls6R1lA
+ fr0QLb6d2n2p7zmtM7xMv+F1/jkL55xQUrRic6XozaEdKj6Gw4/lq4xOm4zg+K9jP3qcAAAA=
+X-Change-ID: 20260313-t264-host1x-c97171fdde77
+To: Thierry Reding <thierry.reding@kernel.org>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Mikko Perttunen <mperttunen@nvidia.com>, Santosh BS <santoshb@nvidia.com>
+X-Mailer: b4 0.16-dev
+X-ClientProxiedBy: OSTP286CA0008.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:604:223::11) To SJ2PR12MB9161.namprd12.prod.outlook.com
+ (2603:10b6:a03:566::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260618-csi_formatter-v10-3-f23830312ba5@oss.nxp.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB9161:EE_|MN2PR12MB4286:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec22e4e0-db6c-40df-a27a-08ded02b94d0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|10070799003|1800799024|366016|7416014|376014|23010399003|56012099006|11063799006|18002099003|921020;
+X-Microsoft-Antispam-Message-Info:
+	Qmi+MSOk9myJWFpGhKuE3zN2H26nDYYMEZUNi61gXicl3lXpFrqf3p9a8K4/aZ9a9zfg94SGcqyfr/g1rSNC+sqM8mJNjygl/Gitm7wxxvKW37KDwKaj5Kr0GEe9g0jnMSVqZSP9Mz0JTl9c6/vyrTG8HiqKvmhhRUqFLCOka22k4lkPHNsIKWRKnBiUrErV57do/uB6cCgrChtA/8mCpV5U84DDKgZieJcqYacerFg2H3XDSuDFO2elpUOYmLQ5UAE3BWaZlvR4DPrhScfvhcpYjcCf+YN/+DjQEc9i/Cv6cPBkki/qbOZxelvr8KJo8/xrvQQ7nlUbCsW0Bn0DhpKbS6YGl+1SzUiRdNscB50QholqtYQk6wJF2QT6BZudpez0kcZIpa9nF6+kMY5g+iXSeIvikSwiJ0idef2o/CiqtUXAusRVcvmdUoL9AefMwZv01dvgM9f6bVimZNgiC0YMX0j7XC0AbxJp7yqJPf7e07deKR+JJavUM6I01FsT2sqmcnlk6jnpukWsoZZHPQQIdBdKfKmcwfs2wCS17/OoKR5xTUNWNOKROUHzRggnQMo8SUMzc2vKrcUzsuoFo+XPLjiLyqDy2/jyf9VbZbn6JudaEAmrbgB956w2/gzkvdkfZS5LWjFb6P/57GBR4EASW5r2V2tl5QQR+zZA2Sij3UPX7Hsz1cBHF5w5uLBT1yBEI9ILyjPbSAJJ1ZJohA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB9161.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(366016)(7416014)(376014)(23010399003)(56012099006)(11063799006)(18002099003)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?QkQwQmRrd0pMUDNJeDZqNDFRVE9OUnpBRzZOeE9qbW1QMTBWUStMS29NY2ty?=
+ =?utf-8?B?czZxWmFpT0ZDcXJyTnVHbW5CWkVNREsxM1duYngvcU90Si8wNVloK1d3QlMv?=
+ =?utf-8?B?cVpKUXFNazNZNlhMK3I1bHpyUzdqcFdIZ2x0azBjcHBKa1RldkgrT3Z0Y1Nq?=
+ =?utf-8?B?SUovMXNNR3ZDbStZM0NJb3dGTXBFMFplMmMyVFJLdWJrWGY3SUtRLzdqYWI0?=
+ =?utf-8?B?cVl3bTN6dEJWRXRPZE40WS9rUnI1d2JPZG5sTHl1d3ZvSy94ZlBTcjRVTkhC?=
+ =?utf-8?B?eWxzWk9wZkVhcW1hczl5VEVFd2F2Ums5cHVPMWMxZ3FIR082TzZYdm4wUmtD?=
+ =?utf-8?B?T2JVWmRiVnpJRVpPUXZOK2JZSUlXR2VvSDRMWEtOdE5ZK0FzU3B4MDF1Sm5h?=
+ =?utf-8?B?V3FEcXVpdXc4QmUwcHlVS01LWmQyRWY1YUxOSjhTMXF6OGI2ZGFoWjMwRjlU?=
+ =?utf-8?B?RC9FRUpwbmlvQWZNaTlqR2U2RGZ0dDVCTW1wUEp1cFg2dEx5eDRkVVQwUkpK?=
+ =?utf-8?B?YUFKRW1OUkZweUwyajhjbDUzM1lLQ3VXZFM4NjFsc1RCWS9rTkJLRy9neU9w?=
+ =?utf-8?B?MnV6RVNibjJ3S3BZVmxuM1dsNWlVaUFaemFDaUFENjdFTzFjZlgwRGJ1V0lO?=
+ =?utf-8?B?bjNuQlJRWk5uR0xabThEaVZHSUtwVm0vQjRvcjc3blZ5b2J2dHYxU3NSaHBT?=
+ =?utf-8?B?YTB6ekorMG5QVXk2djFRTlN5SmNub2t1Z3pPb2tNV0pLUk1SMDBVeW1pam94?=
+ =?utf-8?B?ZmwzUS9JN2p1NWw0WExwcE5rN2kxYzBIQjYwRWUyRlV5NG5uSzZ4Z2ExTG9P?=
+ =?utf-8?B?OWE4enM1bDBGQTB3MmNtUlA3R1I0dmk0bmRKRHZFNy9JeEVZcVQ1bWEyaENo?=
+ =?utf-8?B?OGZLZ1d6TlVCdDJUK0MzY25ReENUam1Nd2hydDdNVUJnTDJ3TlFmbkJsQ21N?=
+ =?utf-8?B?aUQxVkk4bGdHTTZqRXhvOFBneS8zUEhJbHU2SUFsYU4wY1ZnVEppNjVIRzZw?=
+ =?utf-8?B?YVRKR3FHa2pGSk5FNU1YRXlwK2JMOHREUnNHc3FRTXU1UmVxL04wUTNsbllu?=
+ =?utf-8?B?NlVISmY0dHliaEcySlFOVkc3d0FIdi8wRWlTc1NmNGVEcGRnQXBRUW5LVThp?=
+ =?utf-8?B?cVNvcXVBUUpKdVQ3SVpacjRZSkh5a0Y2Nyt5SmVnSno0Z3hrMXZGMU5jbUFi?=
+ =?utf-8?B?UWdxTVpEV3J6akJXcXNvc25mMWRmSSsvbWFYVVpreldNMkxoY2FxTnRtSm1o?=
+ =?utf-8?B?eXV4NkdqcEpBZXBWa1I3M3ovU1o0ZmxZa0xvVW5KRlp2VWJhNUFzUmQyOUVE?=
+ =?utf-8?B?YjlpWlF4dVluaW9xRkVNbXFZVHlsWXpUL1hsaVFsT1V0am9qSTh2eG82blBT?=
+ =?utf-8?B?NGFNRzIrWWJpWk4vRVhKYVNqQ1IxL2w0NmpZV1lRNGFsVDlnaThmYjVSZGNU?=
+ =?utf-8?B?UXFLbUNNSGNaS2VtSkU5UTdhOXUxRnhYMXgvdnBFdDRsUFJtNXFhNE1mb0VM?=
+ =?utf-8?B?cjQvZElNUnF3SityckZZSWJzaVJ1VEhrSHkrMGg4UmlYeEZFQTFtdGtNUFZR?=
+ =?utf-8?B?VHBud3J3UWJhVVN6T2h3WnQ1RDdDTTY2NlRwZlplQ2JBaDZxR2NYS2FoaVp6?=
+ =?utf-8?B?czYvUXRGNkhka1JCK2pWSmpVNUNjdmxMZG5SbldBaFovSmVYb0UxWkJpckFX?=
+ =?utf-8?B?ejlLQnFhaUVtTnZBMS9TTml3eStZZWdPdXJINFNIRGg2T29NOGlUcXZZSnFx?=
+ =?utf-8?B?TDFiaGtDR2RHbWJwdGl4cWdpSUFIRHN5YnJVS1phako2bVovNmdmSmFHUi8v?=
+ =?utf-8?B?TmxRaGhkOTRYelEwbkpsd0lxd3orS1JpRXk5QTdaVW16QlJ1V1Z5dFBZc0Vx?=
+ =?utf-8?B?YVZtYW9mUzRVSWNuSWd5RWpUWitIY1NXclp1dklYdTlmRTlVc1k4YzROUkgy?=
+ =?utf-8?B?VUpPYXFFaXBXT0pjck52Wm5uQU5XZXVRVngwTVhnd3pKMzZYYXRCNDd1d2Jm?=
+ =?utf-8?B?MmdUZmxtQnpVdWVrc2FuUjlMMGJaYUZLT2ZpSzdSZ09Rc3F4N2o3Z3FvVEFD?=
+ =?utf-8?B?TFVraHFqNk1DaVJpa01idExyNjkrb2Nyc3YwdFoyUDRUMHBWdnFRTThXcWJM?=
+ =?utf-8?B?cjNpT0kwSEI0eDl2dThGWUt0QW9EWm56YXNOZ0JrdUYzc3haUWc4ZVo2Tk8r?=
+ =?utf-8?B?Z2ZreWhia0hscmdHQndRcUZYUjg2RFFSZHJwZEhJbm1jdXZ2bWRGQ290cXBs?=
+ =?utf-8?B?MlV1bFRRY0FrT0wxN0xZUE5MdUtBQ0NFcUpWMXBNOWx4UCtuWkcyYm5xOGdu?=
+ =?utf-8?B?U1dlOUM5NnpCSVVrMERZV0hucDBNeTdXNVQ4aFhIZ0gyT1dLb0RUMXdEOXNG?=
+ =?utf-8?Q?VF7HQuzYoDlZp47XyBEfEu8cIOQw0+KCzVRxeGHL6cP5k?=
+X-MS-Exchange-AntiSpam-MessageData-1: ovVw56V8qQaXbQ==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec22e4e0-db6c-40df-a27a-08ded02b94d0
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB9161.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 06:57:53.4334
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DM6Bwa3tb1datTIaFNWPWbFhM4z1sS/WUgxwx4jjPMWTyoP0i9MuRVdicYiU9ksmIJoKEKI3Xkvr66vk2SyBGQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4286
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-5.66 / 15.00];
+	WHITELIST_DMARC(-7.00)[nvidia.com:D:+];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-314228-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,nvidia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de];
+	FORGED_SENDER(0.00)[mperttunen@nvidia.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_RECIPIENTS(0.00)[m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-tegra@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:mperttunen@nvidia.com,m:santoshb@nvidia.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:guoniu.zhou@oss.nxp.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:laurent.pinchart@ideasonboard.com,m:frank.li@nxp.com,m:abelvesa@kernel.org,m:peng.fan@nxp.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:imx@lists.linux.dev,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-clk@vger.kernel.org,m:guoniu.zhou@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314223-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,ideasonboard.com,nxp.com,baylibre.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
+	FROM_NEQ_ENVFROM(0.00)[mperttunen@nvidia.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,quoll:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,nxp.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,nvidia.com:from_mime,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,msgid.link:url,Nvidia.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 862EC6AD072
+X-Rspamd-Queue-Id: F0D8D6AD108
 
-On Thu, Jun 18, 2026 at 05:41:37PM +0800, guoniu.zhou@oss.nxp.com wrote:
-> From: Guoniu Zhou <guoniu.zhou@nxp.com>
-> 
-> The Camera CSR contains control registers for multiple CSI formatter IPs
-> at different register offsets. Each formatter is an independent hardware
-> block with its own clock input and media pipeline connection.
-> 
-> Define schema to allow formatter child nodes under nxp,imx95-camera-csr,
-> with 'reg' property specifying the formatter's register offset within the
-> CSR address space.
-> 
-> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-> ---
-> Changes in v10:
-> - Use single quotes for regex pattern to be consistent (Krzysztof Kozlowski)
-> - Add formatter subnode binding and camera-csr syscon example
-> - Update commit title and message
-> 
-> Changes in v9:
-> - New patch to address the issue of formatter acting as a child node of syscon
-> ---
->  .../bindings/clock/nxp,imx95-blk-ctl.yaml          | 64 +++++++++++++++++++++-
->  1 file changed, 63 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml b/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml
-> index 534fa219d9f9..b4d0a7670fac 100644
-> --- a/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml
-> +++ b/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml
-> @@ -46,7 +46,27 @@ required:
->    - power-domains
->    - clocks
->  
-> -additionalProperties: false
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nxp,imx95-camera-csr
-> +    then:
-> +      properties:
-> +        '#address-cells':
-> +          const: 1
-> +        '#size-cells':
-> +          const: 1
+Hello everyone,
 
-These should go to top-level. In if:then:else: you only narrow them,
-e.g. you disallow for other variants (": false").
+this series adds support for Host1x and VIC on Tegra264 SoCs.
+The Host1x side is not very interesting, just adding the usual register
+definitions and other information. One thing of note is that multimedia
+engines apart from VIC have moved away from Host1x on this generation.
 
-if:
-then:
-....
-  required:
-   ....
-else:
-  properties:
-    '#address-cells': false
+On the VIC side, there is a bit more of a change, as the VIC Falcon is
+now RISC-V based. Unlike NVDEC, VIC is still "externally booted", so
+the boot sequence is very similar to before.
 
-> +      required:
-> +        - '#address-cells'
-> +        - '#size-cells'
-> +      patternProperties:
-> +        '^formatter@[0-9a-f]+$':
-> +          type: object
-> +          $ref: /schemas/media/fsl,imx95-csi-formatter.yaml#
+host1x uapi-test[1] has been updated for Tegra264. Necessary headers for 
+constructing VIC jobs have been added to open-gpu-doc[2].
 
-This as well should be in top-level and here you only disallow it for
-other variants.
+Patches 1 and 2 add new compatible strings to Host1x and VIC device tree
+bindings.
 
-You can avoid cross-tree dependencies by using compatible style:
-https://elixir.bootlin.com/linux/v7.1-rc6/source/Documentation/devicetree/bindings/display/msm/qcom,sm8750-mdss.yaml#L41
+Patch 3 fixes the context device device tree parsing code to handle
+iommu-map entries with length more than 1.
 
+Patch 4 adds Tegra264 support to the Host1x driver.
 
-Best regards,
-Krzysztof
+Patches 5 and 6 add Tegra264 support to the VIC driver.
+
+Patch 7 adds Host1x and VIC nodes to the Tegra264 device tree.
+
+Thank you,
+Mikko
+
+[1] https://github.com/cyndis/uapi-test
+[2] https://github.com/NVIDIA/open-gpu-doc/blob/master/classes/video/clceb6.h
+    https://github.com/NVIDIA/open-gpu-doc/blob/master/classes/video/vic_ceb6_types.h
+
+---
+Changes in v2:
+- Updated dt-bindings changes to be chip-specific
+- Link to v1: https://patch.msgid.link/20260612-t264-host1x-v1-0-8d934987de67@nvidia.com
+
+---
+Mikko Perttunen (6):
+      dt-bindings: display: tegra: Changes to support Tegra264
+      dt-bindings: display: tegra: Add Tegra264 compatible for VIC
+      gpu: host1x: Correctly parse linear ranges of context devices
+      drm/tegra: falcon: Add support for RISC-V external boot
+      drm/tegra: vic: Add Tegra264 support
+      arm64: tegra: Add Host1x and VIC on Tegra264
+
+Santosh BS (1):
+      gpu: host1x: Add Tegra264 support
+
+ .../display/tegra/nvidia,tegra124-vic.yaml         |   1 +
+ .../display/tegra/nvidia,tegra20-host1x.yaml       |  20 ++-
+ arch/arm64/boot/dts/nvidia/tegra264.dtsi           |  63 +++++++
+ drivers/gpu/drm/tegra/drm.c                        |   1 +
+ drivers/gpu/drm/tegra/falcon.c                     |  66 ++++++--
+ drivers/gpu/drm/tegra/falcon.h                     |  23 +++
+ drivers/gpu/drm/tegra/vic.c                        |  95 ++++++++---
+ drivers/gpu/drm/tegra/vic.h                        |   9 +-
+ drivers/gpu/host1x/Makefile                        |   3 +-
+ drivers/gpu/host1x/context.c                       |  13 +-
+ drivers/gpu/host1x/dev.c                           |  41 +++++
+ drivers/gpu/host1x/hw/cdma_hw.c                    |  12 +-
+ drivers/gpu/host1x/hw/host1x10.c                   |  33 ++++
+ drivers/gpu/host1x/hw/host1x10.h                   |  15 ++
+ drivers/gpu/host1x/hw/host1x10_hardware.h          |  21 +++
+ drivers/gpu/host1x/hw/hw_host1x10_common.h         |   6 +
+ drivers/gpu/host1x/hw/hw_host1x10_hypervisor.h     |  10 ++
+ drivers/gpu/host1x/hw/hw_host1x10_uclass.h         | 181 +++++++++++++++++++++
+ drivers/gpu/host1x/hw/hw_host1x10_vm.h             |  36 ++++
+ 19 files changed, 601 insertions(+), 48 deletions(-)
+---
+base-commit: 4549871118cf616eecdd2d939f78e3b9e1dddc48
+change-id: 20260313-t264-host1x-c97171fdde77
 
 
