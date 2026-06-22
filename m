@@ -1,167 +1,148 @@
-Return-Path: <devicetree+bounces-314372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314373-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CwBuDFIMOWrHlwcAu9opvQ
-	(envelope-from <devicetree+bounces-314372-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:20:02 +0200
+	id dWQ9DXwNOWoemAcAu9opvQ
+	(envelope-from <devicetree+bounces-314373-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:25:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8A5E6AEA3F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:20:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6810D6AEABA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:24:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314372-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-314372-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=d0P3xeOV;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314373-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314373-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 31AF4300BB8B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:20:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2A3173054C24
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:20:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 964E63A4F47;
-	Mon, 22 Jun 2026 10:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4703A5E70;
+	Mon, 22 Jun 2026 10:20:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 686503A453B
-	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 10:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD673A544D
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 10:19:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782123599; cv=none; b=Nh1VdOw/Eiu/Rj9zrpzybrmiMp+ytJoxFEEN+gy8ReMnhXxaW8ohjWTuhzqhj7WJpJ9kOK1s8na84S3J3kZGcq+2BlyHnegWPLEy4pSG0H32RmnHAfXte+p4zGKW5Nyzt+5/wsAxepDi7tSWzEWSbDMK3Kk4uiDKAny8ZQyXW6g=
+	t=1782123601; cv=none; b=n2+o7bpX7/Kb6qY+8Mh44kpMkQUH16Tj4lv4mifaS9No1TbqtJ36PoSmBWfo2s6ACIZBjQ9nqAs8Z9Yfc4ef2q9EAN0mxuh6M7uAnjBFe7J7Wg55Bt9R1ImOpeRPI2OvR3GuHub1eCzD2pdFNfnag5H+TCeRNwNYeTqrUtwrpZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782123599; c=relaxed/simple;
-	bh=6ud969rmgTywtWI+bBtRObW/ffl4TQi6E7dIGUBQTJs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Zv/V/qMAh9sW/Xq0160ijsLSMeGoWgqBtgRYbFtDH1nV9SufFPPpHRqbSUBd2L5juPJJ8O/8m9dy1wKfRtWhWU6aFFUjIejuNmx/HEpCDnUaAcZxItOWzNRejcaVVEYXLwsf6BDi5el2Es4joLGndr2lhb7NeYF3kZvqtucMPyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-5ab03872a64so2250438e0c.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 03:19:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782123597; x=1782728397;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7C/nv0Z5Z7qVZqg+9ueiOKyHAs5rlrI+CCJKFNeXypQ=;
-        b=nRSGL5/sjSBY8ZGgvTGqfcTeBhlGoCFvCUoyaZZ5B3eprprvJ3LVJmlE66oQJCGl9q
-         atlhixqbxH4uizAQrjwtc6wfQVUWnwo31dLmJT55LtO279Hp/otvIM+CscarjFxx6WPi
-         PgkAF+fJ65Rou/bAy36ui2pRI8oV7AmVBMywpG9apFOcbAkZWT11i3bFiuKxz7lfLI22
-         U23tHnziKKTvIAGSuhWj93X6BLWA1efxhSaAaU8ccOQaEYnQFvlbzO6ONYuQXlKqu8ae
-         xJBFxzL95Q3cyVyz2YZ76IEbxYqzGkiUbET8rvg/foe1aD84PXgswymfd19F5wQ1d1sq
-         oTYA==
-X-Forwarded-Encrypted: i=1; AFNElJ8X236GzS7b96qFgQezRzd1ltLDuYYEdb+/KIc878/q/ttCkZJJDubvTvwgTZU/d4hRr+GJ3X/nSDw7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKxD6Rlr/7y/xYhx5n8O1aqv1QcIh+TAwb5HLsV/Ws01o2hdfz
-	nF6wY9AQzZQoY420UB2hyqfL4bMk4dpS68J1fCfwOHgdsbG+mhwIpmUwHk3kqxLW
-X-Gm-Gg: AfdE7cktn839qc9R7Aep9njmyomr2rSMcw+EJ1ZWuAxkxWxZ2FhH6SEqhXMtfC3FmUN
-	MLT0O+hlJeXz633kO5xHI+D/GAJTvL+KT4tlqoygsbWNhSIw99UGldUF2j8LpBShYrcheGBSbga
-	no36/gQL4QQ6hMXmARXuI2hdZ/880VfDpYtdZcdHTQSJBkO0Ze1i+Drf1vePLuMM0OmKWj3rKxv
-	U752rLrcdFOmlSQGqKinqYuauy1Zqn9u4AWNOsZlDUZthr8SIBeOS9oKIqYICMNhm//MQQIgld0
-	qh68p0FBYDL8dTNbm0XZuubLGXP+Rg5vRw0EjJed6tINocZ37sIgvODTtr2Oh93PCiA4jZBJwWy
-	qvdwepdWamtf0DJp6JasM4fgG2DLcVrdJbdHEFxSy+cSph4zevEVkfzHEFhP0L7AusEXdITFGc0
-	YdaOpNQLOmcHMYRPnaui6iuQZYKf8WZq7ptGGJQ5AektS+fh/djw==
-X-Received: by 2002:a05:6122:1d88:b0:56a:ef51:4cae with SMTP id 71dfb90a1353d-5bbeba55954mr6398852e0c.4.1782123597372;
-        Mon, 22 Jun 2026 03:19:57 -0700 (PDT)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5bbfb81ed48sm6170199e0c.5.2026.06.22.03.19.56
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jun 2026 03:19:57 -0700 (PDT)
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-96387efc30aso3260870241.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 03:19:56 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ/Uv0iobjT/DntvX8jIUSEaN6kyttFDUltkBA5ChgwGZMZHWnmxEeHA7StqpWyEjQL1izxqeQN8XFUi@vger.kernel.org
-X-Received: by 2002:a05:6102:508b:b0:728:89af:8edf with SMTP id
- ada2fe7eead31-72a1dc35643mr7908394137.11.1782123596658; Mon, 22 Jun 2026
- 03:19:56 -0700 (PDT)
+	s=arc-20240116; t=1782123601; c=relaxed/simple;
+	bh=cGuoPEgPmIGyT46+4a9UY5nxCwKHlQIJAS86/TXOmk8=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Yadmapree2xtOTQMLLPYJpWSn1BacGPE/Kq1nIZ5TJg7DbydQ8fvwPOVl41okwm6viccCf9K7nyr1LvVX29fDww8TZq7NS+OuZfu4Mz/mAG3j3wy4aF2GfbT3oOQML/+5LmR68xJzWdguEbzm5SJ0CW7/JhYHaKeqF7xzVxqpYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d0P3xeOV; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37DB41F00A3D;
+	Mon, 22 Jun 2026 10:19:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782123599;
+	bh=uB+8/xYtKs/zpkIS0ggeBKEZwfZ03BQcDIPMLSVgWLI=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=d0P3xeOVRrLhAms83k3Yr+cnZZk7fbdt/9E1yzW3v4RNTYnDjGbC3AkOv/ojKKR3I
+	 G6xFhX+4BD5vdXJJUqK/oEzv7coDHGfo7/1WKkCYsCjLTobpIKZckWPQI5eCjAlEg9
+	 zeFxuzKQtT2oNXCx1YUBRX6FicFPInSSTv7xyG+lNY5G8swQxuu/kVEoYQvwISNEJN
+	 cQEf11YWKEIhnhD+fWFkx5wFQdGg6sG6Nm7AI5krAweLbIb16Z3z4EJ5g0mJJMkl1W
+	 wMgP8rKu1+OPe14h1M8Oci3cU14qb3WTRoCe8tFG+fInGw+HLVizCTsiHF5LbOpzVw
+	 FkdYObqda67Kw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: Drop incorrect usage of double '::'
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: neil.armstrong@linaro.org, vkoul@kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org, conor+dt@kernel.org, linux-phy@lists.infradead.org, olteanv@gmail.com, devicetree@vger.kernel.org, wsa+renesas@sang-engineering.com
+In-Reply-To: <20260622101606.485961-4-krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260622101606.485961-3-krzysztof.kozlowski@oss.qualcomm.com>
+ <20260622101606.485961-4-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 22 Jun 2026 10:19:58 +0000
+Message-Id: <20260622101959.37DB41F00A3D@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260619083951.3777556-1-john.madieu.xa@bp.renesas.com> <20260619083951.3777556-2-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20260619083951.3777556-2-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 22 Jun 2026 12:19:45 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVVm8CjeBthANW7BCJ2+4jByCfVamwe-NGPb1YzZQy_bg@mail.gmail.com>
-X-Gm-Features: AVVi8Cc4BYgeZ4BSzBgW-PDiqmIMegzDfp5P72yPB69qZu1to0ntxn4UKgrveb4
-Message-ID: <CAMuHMdVVm8CjeBthANW7BCJ2+4jByCfVamwe-NGPb1YzZQy_bg@mail.gmail.com>
-Subject: Re: [PATCH v6 1/4] arm64: dts: renesas: r9a09g047: Add RZ/G3E Sound support
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	john.madieu@gmail.com, biju.das.jz@bp.renesas.com
-Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com];
-	TAGGED_FROM(0.00)[bounces-314372-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_RECIPIENTS(0.00)[m:john.madieu.xa@bp.renesas.com,m:magnus.damm@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:john.madieu@gmail.com,m:biju.das.jz@bp.renesas.com,m:magnusdamm@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:johnmadieu@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314373-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:neil.armstrong@linaro.org,m:vkoul@kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linux-phy@lists.infradead.org,m:olteanv@gmail.com,m:devicetree@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,lists.freedesktop.org,lists.infradead.org,gmail.com,vger.kernel.org,sang-engineering.com];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,yaml.org:url,smtp.kernel.org:mid,qualcomm.com:email,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B8A5E6AEA3F
+X-Rspamd-Queue-Id: 6810D6AEABA
 
-On Fri, 19 Jun 2026 at 10:40, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
-> Add the snd_rzg3e node for the RZ/G3E SoC with all sub-components:
->
-> - SSI (Serial Sound Interface) units 0-9
-> - SSIU (Serial Sound Interface Unit) units 0-27
-> - SRC (Sample Rate Converter) units 0-9
-> - CTU (Channel Transfer Unit) units 0-7
-> - DVC (Digital Volume Control) units 0-1
-> - MIX (Mixer) units 0-1
->
-> Sub-node names follow the new RZ/G3E sound binding: unprefixed
-> 'ssi', 'ssiu', 'src', 'dvc', 'mix', 'ctu' wrapper nodes instead of
-> the legacy 'rcar_sound,xxx' R-Car prefix.
->
-> Wire up all 5 DMA controllers (dmac0-dmac4) for each audio sub-node
-> with repeated channel names, so that the DMA core can pick the first
-> available controller.
->
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
->
-> Chqnges:
->
-> v6: No changes.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Unintended replacement of BNF notation `::=3D` with `:=3D`.
+--
 
-So same stylistic issues as v5.
-No need to resend just for this (every resend consumes review time on
-my side), I may fix it while applying.
+commit a9fdd0b065eb5b6394a9c33ffba0fd5194e80115
+Author: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Gr{oetje,eeting}s,
+dt-bindings: Drop incorrect usage of double '::'
 
-                        Geert
+This commit cleans up device tree binding schemas by removing the redundant
+double colons at the end of descriptions inside YAML literal style blocks.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Link: https://yaml.org/spec/1.2.2/#literal-style [1]
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> diff --git a/Documentation/devicetree/bindings/mux/mux-consumer.yaml b/Do=
+cumentation/devicetree/bindings/mux/mux-consumer.yaml
+> index 9e2d78a78e409..769243a2bf046 100644
+> --- a/Documentation/devicetree/bindings/mux/mux-consumer.yaml
+> +++ b/Documentation/devicetree/bindings/mux/mux-consumer.yaml
+> @@ -13,8 +13,8 @@ description: |
+>    Mux controller consumers should specify a list of mux controllers that=
+ they
+>    want to use with a property containing a 'mux-ctrl-list':
+> =20
+> -    mux-ctrl-list ::=3D <single-mux-ctrl> [mux-ctrl-list]
+> -    single-mux-ctrl ::=3D <mux-ctrl-phandle> [mux-ctrl-specifier]
+> +    mux-ctrl-list :=3D <single-mux-ctrl> [mux-ctrl-list]
+> +    single-mux-ctrl :=3D <mux-ctrl-phandle> [mux-ctrl-specifier]
+
+[Severity: Low]
+Does this unintentionally change the standard Backus-Naur Form (BNF) ::=3D
+operator to :=3D? It looks like a global search-and-replace for :: might
+have accidentally caught these BNF production rules.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260622101606.4859=
+61-3-krzysztof.kozlowski@oss.qualcomm.com?part=3D2
 
