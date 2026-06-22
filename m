@@ -1,171 +1,129 @@
-Return-Path: <devicetree+bounces-314316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314319-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 79C/IuD1OGptkgcAu9opvQ
-	(envelope-from <devicetree+bounces-314316-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:44:16 +0200
+	id kC8XL1H3OGrXkgcAu9opvQ
+	(envelope-from <devicetree+bounces-314319-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:50:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F156ADD5E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:44:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18E066ADE8A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:50:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HzdsZcBg;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314316-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314316-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=lht.dlh.de (policy=quarantine);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314319-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314319-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E7D0D30038F1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:39:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DD2DB301DCE7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:48:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36158391501;
-	Mon, 22 Jun 2026 08:39:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A75539099C;
+	Mon, 22 Jun 2026 08:48:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FAF81DA60D;
-	Mon, 22 Jun 2026 08:39:38 +0000 (UTC)
+Received: from smtpfb1-g21.free.fr (smtpfb1-g21.free.fr [212.27.42.9])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E373835F610;
+	Mon, 22 Jun 2026 08:48:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782117580; cv=none; b=Yw/ZGfZmCGDLs+nLsd51KEgQbOSba1oY1DutokEwrryNJYOPEck3bidgadX6F045+g+UL/EU5k2WrXhCFKlbxJNupLlRQACJgX2B8x5OArupX+m1DUlDdg58tEkNpN9o6lIEbtxDi9f0U6ha37XRkWuUGFljLW3k034tCBHy+WA=
+	t=1782118116; cv=none; b=mS874MRxMTXumjSaxS3dclebuZuKj6o/7DHq3NRaSa8W28JCdLUM7oQr2f3iHEBNYt8gRwr17HQMl5LM/gqndoeKohgUkezbVg0gnzh13+oXAWzCHBaSNlVMcxZHSsE1J2GN8KhiLazppA8an61m29usyAnLGDP+qDmQnQXs4Ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782117580; c=relaxed/simple;
-	bh=8KVnwnLIZEOXEt+9WXQZ5xooTYl9LkiX4IFdFYuORoc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=u/In1bDybhK9jeTVasevjGQiwlEDJlUikJ1OFkWhRVxJ642NAkfpBgCdgKpAgH/F6nkulsaNnvfSnnh65DS/by+hNSfa+yJjTrNhATqAChKvIor2q8AxgYpQEbHaMn6dj6z3C4+GiIOC+LW6sw6tTL+tuDgfP6JyNLvcVKW21V4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HzdsZcBg; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7418B1F000E9;
-	Mon, 22 Jun 2026 08:39:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782117578;
-	bh=R8FJ6OSfMvgdpSiE1mEZObRvH+o1Z0zmiQSNkmZTBmI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=HzdsZcBgyOlTfQ1xoKGQBHGltU013D4plwPpx3tw1XJaJfH4K/LVjVcMHdTU4TOvY
-	 SuTxEJoLw0UbLadPIRn7Socs7O4uWINwgIfNAMSkuCkxqGhw5mUh6KXM5QBANTh7yw
-	 MLes18ufW1imU43DZnStf2ZnI+dLBaLYea0UOao6j3ISkYwpeRoELZakO4lfSd/GZb
-	 PCwepkBjlabk1BCPK+OFQhquWz6gOylKrcz5udT75av90Es25hHPamyonOlKNJt5Cb
-	 q8IwlEsPuijpi+JnnnBljw8Pxn9qbUwHdp/o9kjGec5x5RvNI2hpN3fztZfMaJ0cbl
-	 kCt30y4/3jj1g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 18/22] RISC-V: perf: Add Qemu virt machine events
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Atish Patra" <atish.patra@linux.dev>
-Cc: robh@kernel.org, linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260622-counter_delegation-v7-18-0ba2fd34614e@meta.com>
-References: <20260622-counter_delegation-v7-0-0ba2fd34614e@meta.com>
- <20260622-counter_delegation-v7-18-0ba2fd34614e@meta.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 22 Jun 2026 08:39:38 +0000
-Message-Id: <20260622083938.7418B1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782118116; c=relaxed/simple;
+	bh=KyxDJAoRFnaLQrYcq/HUf1sgrpDNp/VADW0wgtLXFo8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tKBMxK9leG992XyUbprSWMx0AiUXQ7jqdDGjocZxqQt1O729BVk+HadUi59bKhLzgDdNRSG/CJMGRnZks7Jbxldei+aHv/ESQJ/aHczm4wgU7PCLZYVI6z2E+CODX2gTfeKYVny6uUGyXp3VisgDmZe0H8rJDktlGtMjkaYWPrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=lht.dlh.de; spf=fail smtp.mailfrom=lht.dlh.de; arc=none smtp.client-ip=212.27.42.9
+Received: from smtp1-g21.free.fr (smtp1-g21.free.fr [212.27.42.1])
+	by smtpfb1-g21.free.fr (Postfix) with ESMTP id 57A948348AC;
+	Mon, 22 Jun 2026 10:41:50 +0200 (CEST)
+Received: from OMT-CWNXR4TFW5-LHT (unknown [IPv6:2001:9e8:633a:1900:359f:c35a:9518:62db])
+	(Authenticated sender: albeu@free.fr)
+	by smtp1-g21.free.fr (Postfix) with ESMTPSA id 76D9EB0059B;
+	Mon, 22 Jun 2026 10:41:28 +0200 (CEST)
+Date: Mon, 22 Jun 2026 10:41:08 +0200
+From: Alban Bedel <alban.bedel@lht.dlh.de>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: driver-core@lists.linux.dev, devicetree@vger.kernel.org, Daniel Scally
+ <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>, Saravana
+ Kannan <saravanak@kernel.org>, Zijun Hu <zijun.hu@oss.qualcomm.com>,
+ linux-kernel@vger.kernel.org, Alban Bedel <alban.bedel@lht.dlh.de>
+Subject: Re: [PATCH v2 2/2] software node: Fix
+ software_node_get_reference_args() with index -1
+Message-ID: <20260622104108.715d8295@OMT-CWNXR4TFW5-LHT>
+In-Reply-To: <ajQ6j5roSZ16Yb-M@black.igk.intel.com>
+References: <20260618152035.1600436-1-alban.bedel@lht.dlh.de>
+	<20260618152035.1600436-2-alban.bedel@lht.dlh.de>
+	<ajQ6j5roSZ16Yb-M@black.igk.intel.com>
+Organization: Lufthansa Technik AG
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; aarch64-apple-darwin25.4.0)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[lht.dlh.de : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314316-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,rivosinc.com:email];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:atish.patra@linux.dev,m:robh@kernel.org,m:linux-perf-users@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,gmail.com,linux.intel.com,linuxfoundation.org,kernel.org,oss.qualcomm.com,lht.dlh.de];
+	TAGGED_FROM(0.00)[bounces-314319-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@linux.intel.com,m:driver-core@lists.linux.dev,m:devicetree@vger.kernel.org,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:gregkh@linuxfoundation.org,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:zijun.hu@oss.qualcomm.com,m:linux-kernel@vger.kernel.org,m:alban.bedel@lht.dlh.de,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[alban.bedel@lht.dlh.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alban.bedel@lht.dlh.de,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,lht.dlh.de:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D5F156ADD5E
+X-Rspamd-Queue-Id: 18E066ADE8A
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Using mvendorid=3D0, marchid=3D0, and mimpid=3D0 to uniquely ident=
-ify QEMU virt incorrectly hijacks PMU event mappings for all non-commercial=
- RISC-V cores.
---
+On Thu, 18 Jun 2026 20:35:59 +0200
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 
-commit 6c37953807499d33e32d891aa7fbc5980f5e88bb
-Author: Atish Patra <atishp@rivosinc.com>
-Subject: RISC-V: perf: Add Qemu virt machine events
+> On Thu, Jun 18, 2026 at 05:20:35PM +0200, Alban Bedel wrote:
+> > The bounds check for the index passed to
+> > software_node_get_reference_args() was failing when passed UINT_MAX,
+> > this in turn would lead to an out of bound access in the property
+> > array. Fix the bound check to also cover the UINT_MAX case.  
+> 
+> ...
+> 
+> > -	if ((index + 1) * sizeof(*ref) > prop->length)
+> > +	if (index >= prop->length / sizeof(*ref))  
+> 
+> It trades multiplication for division (which might be not always
+> power-of-two).
 
-This commit adds a set of legacy perf events for the Qemu virt machine to=20
-the vendor table, allowing users to use them when counter delegation is=20
-enabled.
+This code is not really performance relevant and using a non trivial
+expression lead to the currently buggy code. I find that easy to
+understand and obviously correct code is better suited here.
 
-> diff --git a/arch/riscv/include/asm/vendorid_list.h b/arch/riscv/include/=
-asm/vendorid_list.h
-> --- a/arch/riscv/include/asm/vendorid_list.h
-> +++ b/arch/riscv/include/asm/vendorid_list.h
-> @@ -11,4 +11,8 @@
->  #define SIFIVE_VENDOR_ID	0x489
->  #define THEAD_VENDOR_ID		0x5b7
-> =20
-> +#define QEMU_VIRT_VENDOR_ID		0x000
-> +#define QEMU_VIRT_IMPL_ID		0x000
-> +#define QEMU_VIRT_ARCH_ID		0x000
+What alternative would you suggest?
 
-[ ... ]
-
-> diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.c
-> --- a/drivers/perf/riscv_pmu_sbi.c
-> +++ b/drivers/perf/riscv_pmu_sbi.c
-[ ... ]
->  static struct riscv_vendor_pmu_events pmu_vendor_events_table[] =3D {
-> +	RISCV_VENDOR_PMU_EVENTS(QEMU_VIRT_VENDOR_ID, QEMU_VIRT_ARCH_ID, QEMU_VI=
-RT_IMPL_ID,
-> +				qemu_virt_hw_event_map, qemu_virt_cache_event_map,
-> +				qemu_virt_event_group)
->  };
-
-[Severity: High]
-Will this apply QEMU's limited PMU mappings to all non-commercial
-implementations?
-
-The RISC-V privileged specification defines mvendorid=3D0, marchid=3D0, and
-mimpid=3D0 as indicating a non-commercial implementation or that the field
-is unimplemented. Academic cores and FPGA soft-cores (like BOOM or CVA6)
-legitimately return 0 for these IDs.
-
-Registering QEMU's specific legacy PMU event encodings against these generic
-0x000 IDs could incorrectly apply them to actual physical hardware that
-implements counter delegation. This might force compliant open-source cores
-to be restricted to QEMU's limited 5-event map, and write QEMU's raw event
-encodings to physical cores' mhpmeventX CSRs, potentially causing silent
-measurement corruption or illegal instruction traps.
-
-Would it be safer to identify QEMU virt via device tree machine compat
-strings instead, such as checking of_machine_is_compatible("qemu,riscv-virt=
-")?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260622-counter_de=
-legation-v7-0-0ba2fd34614e@meta.com?part=3D18
+Alban
 
