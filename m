@@ -1,141 +1,134 @@
-Return-Path: <devicetree+bounces-314473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314471-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oH+tLIxGOWoEpwcAu9opvQ
-	(envelope-from <devicetree+bounces-314473-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 16:28:28 +0200
+	id Mpo8KsRFOWrTpgcAu9opvQ
+	(envelope-from <devicetree+bounces-314471-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 16:25:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB1A6B0508
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 16:28:28 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE916B04A8
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 16:25:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314473-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314473-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314471-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-314471-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C5C133009CF4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 14:28:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7AD9E3036AD7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 14:23:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D55363C6B;
-	Mon, 22 Jun 2026 14:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E62B43BADA2;
+	Mon, 22 Jun 2026 14:22:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com [209.85.222.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE2B1AC44D
-	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 14:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794573B6340
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 14:22:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782138506; cv=none; b=B67N0csKokPt8unIeDmDE3n81qpj7vxwwsBJ38PoCLGqTmGweZ+dZwCsRDSbMuhEUbFpgPqceUo+lFy0nF47dSCKa1eBrbmijeeDR4vw19Zu2hV5CQyATgerFmIFcBxolHgn2qjdYmsfEnXUdOLx8QnaY+O3BmfFSD/2A8MTqvY=
+	t=1782138167; cv=none; b=Qm+wJYn96bphIjd/G/T+JEt8kuokocLAlpmJ2xBFAGeH++9DAMScTno2VFDkrarkelZYDlUn4UYS8Wjz6eJd57yBUzdCFbOb2cptggyODwhpFVOv7T52fmdtkf4fvTAqCBDt2LmN6FJ0TXXtPnYgGoLIbCTnGmoL9qGX94WKBTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782138506; c=relaxed/simple;
-	bh=LpYby/C3sB5tpZd2Qt85jlNF3iOGWtYp99Y8ihB1gPA=;
+	s=arc-20240116; t=1782138167; c=relaxed/simple;
+	bh=Ro4kldSGCj75UbrLEjM6s2V1KehmmbZXkph4aFioNGo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Rh2h79U4FNGXG6dgUScJNnUXotLlJb7W1CafXk/tcju3YjhcscgrmjrnwDKfiX70QV4oFW+reLgwXJJB3JNpaVAyWk7X4VVYc0GOSjhqVpJ0NKCLs9VfZjGS5qaWKEqtRYQqTAyRyVlI1Z23zKSUem/8rXgXowCs2kvLI7lT5r0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.49
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-8dedb44ed1fso34624326d6.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 07:28:24 -0700 (PDT)
+	 To:Cc:Content-Type; b=A9PttKk/4jDG5iyk94Uw8wPDP8DBJ7VpM3ibVsYe9POGcROIuIz5KKg7BaJYsHm6bF5oaKiiiukmyF/BzYY/gNyOdZNM75lgBKJ4ntf5N1zz0CSiKs/wCemDWSlrAsG2CiBvm0oHL+BMpB9MsmxpqA1RkLoghfRW9AgBCxtctbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.46
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-96730906293so506686241.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 07:22:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782138504; x=1782743304;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=cADZZnn4gjK5Oixge29dOaGqF3MIQ1dd5O+dWVLo+Gk=;
-        b=YYrx2TUdd+smVsoIylKmPJaaSUt5A7OFfhLGwrMqiGRCgxttLKa0wJcLbLrmTuvSpz
-         NaFlLAKV6HkcXVbw/vU+SL6u5B6YRo0Gnx8R9y6HR3KtlC0hG5VaVZqgq0fDE/Xp1xdZ
-         aXAeSIOOc1WOb4tkrJcogYCuDE5l34zYYMZlsDOAcGmRSUsf2fcPaLaxP9929Pe5YUpP
-         XlD1pc14VAOmNEtSfoovsRuo0rObonnfSVBlCiyLfRmCbI1Tg5XQCuY8BOtfkktTyIEO
-         G8f4fSeZsYdq8TOIURPhSyIvAslXGRM9eAPEUtIMT0Ee8MzgzDIm9nhd9ofx4xCZ6APc
-         ZXcg==
-X-Forwarded-Encrypted: i=1; AHgh+RqJEdAeah8iBoWLT5crQHTiC4BIitGHAzn26FRKmDB9/TJDlrE9++RpFgISeofE01BcPjoMftyYYgPI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOoAlY8FJMNMLDfEq+jsqeprZ38U8hKdzZ3noa2PXBdh2Q8yje
-	emB7hrFv4t4XuDkUcT02ArAXpT482WIQyRhYLZvpbVr3r3vJk6xpmlUyqwgPLckjUVw=
-X-Gm-Gg: AfdE7ck55hf+dg825YvgWSUJm5egwHX2I5pghK+3JeheoK7QCY38xaTIUlXhggzpRMy
-	tnTeyF8vX/NeWSl0qNOSn84dDA2wquVOSMoOlBVwmwPZvpP9wgFFQ5iZpI7LIkLVZUmUNgVN0yK
-	X/gqS/GXVdSzQXSCIlnKQKV47wO90AfTPFzgHt7j8oQLNFYLnFFmQSGzKpmb1pcNO6lbKqORc/I
-	LIzRVgQaTp6YOnPhTTd49mtYva4OBqOwGllXyTsbuLOrVGqSvfZUbOFczbTmmZmavwg3anMoANh
-	0212qsdQuVdc64ePogQAbctL0I20Eyqtk7FPkjcktNAItMl/JD5v6CE4IXVFtBwqNuF21gwHjPO
-	Y0Z9Flxs9qJa+WJpQdbk/jyrb55hbixoFmDcQAlWRBQVLA08EqAi12XHLpuczO+JwQSjsi/jDSD
-	GE3LRB+/zCNMY5d/CZyUu9aq0FgL5IQDLlcjtAFYNByoy0Q/Vw9ztHYA==
-X-Received: by 2002:a0c:f7cc:0:b0:8cc:d066:54d with SMTP id 6a1803df08f44-8de40c02d35mr190372316d6.24.1782138503447;
-        Mon, 22 Jun 2026 07:28:23 -0700 (PDT)
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com. [209.85.160.178])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8df7f603b6dsm107942506d6.15.2026.06.22.07.28.23
+        d=1e100.net; s=20251104; t=1782138165; x=1782742965;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2aOq01qBfWokATPNy4wCdepesNQ6uzH++qL84v4Uj4o=;
+        b=giGjnVocE/eJAX7AxJmAKou6s2fg0/7HB9ix0rK+6/5c/xI07xqTIkiLCfTq1Rf9TV
+         6Wetu+8DNMN03sJXPpiAEp1FdeOLn050OAC6/lq2j28EnIefDl7VNJlmw05C/gDkO32l
+         l/JLEjPkU/MHcqj3xroP3v18Jhctiu4HCjWswjY7SkBThJf3mzjQKIGDRyg7Uzx6NqET
+         rl3vkQEGekrzEZviTGy04ldmkBo9Ilk7TY5h6en9qe1OB87seBjWLkQSOhH88y8On1ZL
+         X6NFamSjKLZVW7VjeJFK++CCVncpb2ELOik0vSoqe2wakxTqq8BjM86njtz/EqAN9wyc
+         XWIg==
+X-Forwarded-Encrypted: i=1; AFNElJ8RcVhDjtHeLyVLjygC432FXeU4h8/K/uHoEryG8TM1QIMfSngCc2ZdiP7a7hP3UWpg/al7d9IySF2K@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAsAkZc8l1chOK2aJlxu+L9MC4sIpnqsWP1YTjyNXHCY4zGdjU
+	FwV5l6IHo+i5aBQu4CUnzrvqdbtJVu8xQbherxDxCShyLZZEY7okiULUtKGqQOatxnY=
+X-Gm-Gg: AfdE7cldpPwtiUOeTZBjEJgZerhtw/8Z3V+e4BBkinG50EYQ2cgBQGGH8R2xcc/A+7j
+	85EKH0351H7MAwpUmV7Dz2KBVNB8MVzojRN8VdrUcINEN8y0KDUhej3ZhJhFx7KRHuZ4Tw4yh4z
+	zRNKeGgIZ4KHJ1rkPcR1UkeqLPcPuEQW54MNRxcfrlhv5wekmyAt3I4KpcjrxOJoEVOmaX0iAfD
+	VKyjPSY3f7JxtYlLMRbMnBVsUnQktlJ1rBqNTMotAjo03MmYKYsDiXF8gxbySj8+49lhulJtXb3
+	YrOWro0o1RH+grdwsrHDEB0KlxcxUjzy3zNGfkXkvR3GwjT0tdwUnro+Vg+fH6RNb4qf3iOCiZT
+	VeTrHhrxcwmgm34uzB1X3JGQxbrX+ob49/fveYAcJf8BXB4fb/eGwPqniLSkx8QA10jYCpQARao
+	x44eMSsq1ZkuXayrDOw91PHecj0+O6PSKO3J4oNny3k3ENNgzKnQ==
+X-Received: by 2002:a05:6102:f06:b0:6cc:16d2:30f6 with SMTP id ada2fe7eead31-72a76d4e1eamr7250807137.7.1782138165493;
+        Mon, 22 Jun 2026 07:22:45 -0700 (PDT)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-72ba229c7fdsm5913073137.2.2026.06.22.07.22.44
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jun 2026 07:28:23 -0700 (PDT)
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-519b63eff15so42520251cf.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 07:28:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ/pwLOwZvYNpt0cBJIG/sF4IyFAgzEX0DJX5JjkUDz4vHt2eWWaBMIhEc39OkJTvSyuT/nNSJgQ7NSV@vger.kernel.org
-X-Received: by 2002:a05:6102:2922:b0:631:2cb0:bf8d with SMTP id
- ada2fe7eead31-72a01882303mr8022720137.6.1782138139212; Mon, 22 Jun 2026
- 07:22:19 -0700 (PDT)
+        Mon, 22 Jun 2026 07:22:45 -0700 (PDT)
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-72b0c3c72d6so1863173137.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 07:22:44 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+LfjZ3udX/CDBPC7T0ODVxIVu1V3Ndo8BCOwvzDzPtBKdaciqPv+J+gGLfN8acd0tEkrqGinkzEyKa@vger.kernel.org
+X-Received: by 2002:a05:6102:3ec8:b0:65b:c17:70b4 with SMTP id
+ ada2fe7eead31-72a737b1e13mr8162349137.0.1782138164258; Mon, 22 Jun 2026
+ 07:22:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260429115054.158160-1-herve.codina@bootlin.com> <20260429115054.158160-3-herve.codina@bootlin.com>
-In-Reply-To: <20260429115054.158160-3-herve.codina@bootlin.com>
+References: <20260429115054.158160-1-herve.codina@bootlin.com> <20260429115054.158160-2-herve.codina@bootlin.com>
+In-Reply-To: <20260429115054.158160-2-herve.codina@bootlin.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 22 Jun 2026 16:22:07 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVwMjLFJz0NeSP+BJVYoePw6oRDdj9P2Ra5nC=4yRXd6w@mail.gmail.com>
-X-Gm-Features: AVVi8CeGC9Vn8JWkJO7xDytlZEDscCIDRlTTaudbtw3_YSqPMLV4PY62I2DvSS4
-Message-ID: <CAMuHMdVwMjLFJz0NeSP+BJVYoePw6oRDdj9P2Ra5nC=4yRXd6w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] clocksource/drivers: Add support for the Renesas
- RZ/N1 timers
+Date: Mon, 22 Jun 2026 16:22:32 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWsPgy9=n9GOHgPV8de30b2meCYQzSrc1pjukhgzXTNSQ@mail.gmail.com>
+X-Gm-Features: AVVi8CcgwVfL1IUsAw20nH_KUPK4EgmpmvX_pvnt0Py4OJDVBYzHBOW9UXb430A
+Message-ID: <CAMuHMdWsPgy9=n9GOHgPV8de30b2meCYQzSrc1pjukhgzXTNSQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: timer: Add the Renesas RZ/N1 timer
 To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
 Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
 	Daniel Lezcano <daniel.lezcano@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Pascal Eberhard <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[sang-engineering.com,kernel.org,gmail.com,vger.kernel.org,se.com,bootlin.com];
-	TAGGED_FROM(0.00)[bounces-314473-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314471-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_RECIPIENTS(0.00)[m:herve.codina@bootlin.com,m:wsa+renesas@sang-engineering.com,m:daniel.lezcano@kernel.org,m:tglx@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:linux-renesas-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:pascal.eberhard@se.com,m:miquel.raynal@bootlin.com,m:thomas.petazzoni@bootlin.com,m:wsa@sang-engineering.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:herve.codina@bootlin.com,m:wsa+renesas@sang-engineering.com,m:daniel.lezcano@kernel.org,m:tglx@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:linux-renesas-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:pascal.eberhard@se.com,m:miquel.raynal@bootlin.com,m:thomas.petazzoni@bootlin.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:wsa@sang-engineering.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[sang-engineering.com,kernel.org,glider.be,gmail.com,vger.kernel.org,se.com,bootlin.com,oss.qualcomm.com];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0AB1A6B0508
-
-Hi Herv=C3=A9,
-
-Thanks for your patch!
-
-Just a few generic comments, as I am not a timer expert, and have no
-access to the hardware.
+X-Rspamd-Queue-Id: 6FE916B04A8
 
 On Wed, 29 Apr 2026 at 13:51, Herve Codina (Schneider Electric)
 <herve.codina@bootlin.com> wrote:
@@ -143,302 +136,22 @@ On Wed, 29 Apr 2026 at 13:51, Herve Codina (Schneider Electric)
 > timers available in the Renesas RZ/N1 SoCs family.
 >
 > This controller handles 8 timers:
->   - 6 16-bit timers
->   - 2 32-bit timers
+>  - 6 16-bit timers
+>  - 2 32-bit timers
 >
-> Each timer has its own interrupt, its own prescaler that can be used to
-> device the clock by 25 and all of them can work in either one-shot or
+> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-divide
-
-> periodic mode.
->
-> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
-m>
-> ---
->  drivers/clocksource/Kconfig      |  10 +
->  drivers/clocksource/Makefile     |   1 +
->  drivers/clocksource/timer-rzn1.c | 442 +++++++++++++++++++++++++++++++
->  3 files changed, 453 insertions(+)
->  create mode 100644 drivers/clocksource/timer-rzn1.c
->
-> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> index d1a33a231a44..f8e49a4ac8f6 100644
-> --- a/drivers/clocksource/Kconfig
-> +++ b/drivers/clocksource/Kconfig
-> @@ -152,6 +152,16 @@ config REALTEK_OTTO_TIMER
->           RT8391, RTL8392, RTL8393 and RTL8396 and chips of the RTL930x s=
-eries
->           such as RTL9301, RTL9302 or RTL9303.
->
-> +config RZN1_TIMER
-> +       bool "Renesas RZ/N1 Timer"
-
-So this cannot be a module.
-
-> +       depends on HAS_IOMEM && COMMON_CLK && (ARCH_RZN1 || COMPILE_TEST)
-
-I would split this in two lines, to make it easier to read (and
-maintain, if the same timer ends up in a different SoC series).
-
-> +       help
-> +         Enables support for RZ/N1 SoC timers.
-> +         A timers block in RZ/N1 SoCs is composed of 8 timers
-> +           - 6 16-bit timers
-> +           - 2 32-bit timers
-> +         Two timers blocks are available in RZ/N1 SoCs.
-> +
->  config SUN4I_TIMER
->         bool "Sun4i timer driver" if COMPILE_TEST
->         depends on HAS_IOMEM
-
-> --- /dev/null
-> +++ b/drivers/clocksource/timer-rzn1.c
-
-> +/*
-> + * 8 timers are available. Among those 8 timers, the first 6 timers are =
-16-bit
-> + * timers and the last two ones are 32-bit timers.
-> + */
-> +#define RZN1_TIMER_BASE_INDEX_16BIT_TIMERS 0
-> +#define RZN1_TIMER_NB_16BIT_TIMERS 6
-> +
-> +#define RZN1_TIMER_BASE_INDEX_32BIT_TIMER 6
-> +#define RZN1_TIMER_NB_32BIT_TIMERS 2
-
-Align the number columns?
-
-> +static int rzn1_timer_probe_first(struct platform_device *pdev, struct r=
-zn1_timer *tab_timers,
-> +                                 void __iomem *base, unsigned long clock=
-_rate)
-> +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct rzn1_timer *timer;
-> +       unsigned int i;
-> +       char *name;
-> +       int irq;
-> +       int ret;
-> +
-> +       /*
-> +        * Probe the first instance. In that case, timers are assigned as
-> +        * follow:
-> +        *   - First 16-bit timer: clocksource and sched_clock
-> +        *   - Other 16-bit timers: clock events for all possible CPUs
-> +        *   - 32-bit timers: clock events per CPU
-> +        *
-> +        * First step, perform all operation that could fail without call=
-ing
-> +        * clockevents_config_and_register(), sched_clock_register() nor
-> +        * cpuhp_setup_state(). Those operation don't have unregister nor
-> +        * teardown counterparts and so, once called, we cannot remove th=
-e
-> +        * related resource.
-> +        */
-> +
-> +       /*
-> +        * First step for 16-bit timers except the first one and all 32-b=
-it
-> +        * timers.
-> +        */
-> +       for (i =3D RZN1_TIMER_BASE_INDEX_16BIT_TIMERS + 1; i < RZN1_TIMER=
-_NB_TIMERS; i++) {
-> +               timer =3D &tab_timers[i];
-> +
-> +               rzn1_timer_init(timer, i, base, clock_rate);
-> +
-> +               irq =3D platform_get_irq(pdev, i);
-> +               if (irq < 0)
-> +                       return irq;
-> +
-> +               name =3D devm_kasprintf(dev, GFP_KERNEL, "%s-%u", dev_nam=
-e(dev), i);
-> +               if (!name)
-> +                       return -ENOMEM;
-> +
-> +               rzn1_timer_clkevt_init_ced(timer, name, irq);
-> +
-> +               ret =3D devm_request_irq(dev, timer->ced.irq, rzn1_timer_=
-interrupt,
-> +                                      IRQF_TIMER, timer->ced.name, timer=
-);
-> +               if (ret < 0)
-> +                       return dev_err_probe(dev, irq, "timer%d: Failed t=
-o request IRQ\n", i);
-
-%u
-
-> +
-> +               rzn1_timer_int_enable(timer);
-> +       }
-> +
-> +       /*
-> +        * Second step, almost all operations that can fail have been cal=
-led.
-> +        * Timers are ready to work. Start with the last operation that c=
-an fail,
-> +        * installing and invoking hotplug callbacks
-> +        */
-> +       rzn1_tab_timers =3D tab_timers;
-> +       ret =3D cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
-> +                               "clockevents/rzn1/global_timer:starting",
-> +                               rzn1_local_timer_starting_cpu, NULL);
-> +       if (ret < 0)
-> +               return dev_err_probe(dev, ret, "Setup CPU hotplug state f=
-ailed\n");
-> +
-> +       /*
-> +        * At this point, no more operations can fail. Perform remaining
-> +        * operations. Starting by handling the first 16-bit timer
-> +        */
-> +       timer =3D &tab_timers[RZN1_TIMER_BASE_INDEX_16BIT_TIMERS];
-> +
-> +       rzn1_timer_init(timer, RZN1_TIMER_BASE_INDEX_16BIT_TIMERS, base, =
-clock_rate);
-> +       rzn1_timer_config(timer, GENMASK(timer->width - 1, 0), true);
-> +
-> +       rzn1_sched_clock =3D timer;
-> +
-> +       sched_clock_register(rzn1_sched_read, rzn1_sched_clock->width, rz=
-n1_sched_clock->rate);
-> +
-> +       rzn1_clocksource.mask =3D CLOCKSOURCE_MASK(rzn1_sched_clock->widt=
-h);
-> +       clocksource_register_hz(&rzn1_clocksource, rzn1_sched_clock->rate=
-);
-> +
-> +       /*
-> +        * Register clockevents only for 16-bit timers. 32-bit timers clo=
-ckevents
-> +        * are registered by CPU hotplug startup function set previously =
-by the
-> +        * cpuhp_setup_state() call.
-> +        */
-> +       for (i =3D RZN1_TIMER_BASE_INDEX_16BIT_TIMERS + 1; i < RZN1_TIMER=
-_NB_16BIT_TIMERS; i++) {
-> +               timer =3D &tab_timers[i];
-> +               clockevents_config_and_register(&timer->ced, timer->rate,
-> +                                               1, GENMASK(timer->width -=
- 1, 0));
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int rzn1_timer_probe_other(struct platform_device *pdev, struct r=
-zn1_timer *tab_timers,
-> +                                 void __iomem *base, unsigned long clock=
-_rate)
-> +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct rzn1_timer *timer;
-> +       unsigned int i;
-> +       char *name;
-> +       int irq;
-> +       int ret;
-> +
-> +       /*
-> +        * Probe other instance(s), i.e. not the first one. In that case,
-> +        * all timers are used as clock events and available for all poss=
-ible
-> +        * CPUs
-> +        *
-> +        * First step, perform all operation that could fail without call=
-ing
-> +        * clockevents_config_and_register(). Unregister counterpart does=
- not
-> +        * exist and so, once called, we cannot remove the related resour=
-ce.
-> +        */
-> +       for (i =3D 0; i < RZN1_TIMER_NB_TIMERS; i++) {
-
-Technically "0" is RZN1_TIMER_BASE_INDEX_16BIT_TIMERS.
-
-> +               timer =3D &tab_timers[i];
-> +
-> +               rzn1_timer_init(timer, i, base, clock_rate);
-> +
-> +               irq =3D platform_get_irq(pdev, i);
-> +               if (irq < 0)
-> +                       return irq;
-> +
-> +               name =3D devm_kasprintf(dev, GFP_KERNEL, "%s-%u", dev_nam=
-e(dev), i);
-> +               if (!name)
-> +                       return -ENOMEM;
-> +
-> +               rzn1_timer_clkevt_init_ced(timer, name, irq);
-> +
-> +               ret =3D devm_request_irq(dev, timer->ced.irq, rzn1_timer_=
-interrupt,
-> +                                      IRQF_TIMER, timer->ced.name, timer=
-);
-> +               if (ret < 0)
-> +                       return dev_err_probe(dev, irq, "timer%d: Failed t=
-o request IRQ\n", i);
-
-%u
-
-> +
-> +               rzn1_timer_int_enable(timer);
-> +       }
-
-This loop is identical to the first loop in rzn1_timer_probe_first(),
-except for the lower bound. Perhaps it can be factored out?
-
-> +
-> +       /*
-> +        * Second step, all operation that can fail have been called. We =
-can
-> +        * register our timers
-> +        */
-> +
-> +       for (i =3D 0; i < RZN1_TIMER_NB_TIMERS; i++) {
-
-Technically "0" is RZN1_TIMER_BASE_INDEX_16BIT_TIMERS.
-
-> +               timer =3D &tab_timers[i];
-> +               clockevents_config_and_register(&timer->ced, timer->rate,
-> +                                               1, GENMASK(timer->width -=
- 1, 0));
-> +       }
-> +
-> +       return 0;
-> +}
-
-This loop is identical to the second loop in rzn1_timer_probe_first(),
-except for the lower and upper bound. Perhaps it can be factored out?
-
-Alternatively, you can
-  1. Unify rzn1_timer_probe_{first,other}(), and pass the different
-     bounds as parameters, OR
-  2. Split rzn1_timer_probe_first() in three sub-functions, and call
-     these from rzn1_timer_probe() directly.
-
-> +static struct platform_driver rzn1_timer_driver =3D {
-> +       .driver =3D {
-> +               .name =3D "rzn1_timer",
-> +               .of_match_table =3D rzn1_timer_of_match,
-
-This driver can't be modular, and can't be unbound:
-
-    .suppress_bind_attrs =3D true
-
-> +       },
-> +};
-> +builtin_platform_driver_probe(rzn1_timer_driver, rzn1_timer_probe);
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
 Gr{oetje,eeting}s,
 
                         Geert
 
 --
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
                                 -- Linus Torvalds
 
