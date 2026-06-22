@@ -1,175 +1,205 @@
-Return-Path: <devicetree+bounces-314380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314382-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JKlzG4gQOWrqmAcAu9opvQ
-	(envelope-from <devicetree+bounces-314380-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:38:00 +0200
+	id E0qlOfgQOWr9mAcAu9opvQ
+	(envelope-from <devicetree+bounces-314382-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:39:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D30F06AEC16
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:37:59 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id E049E6AEC47
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:39:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SjA84rh2;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314380-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314380-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=ideasonboard.com header.s=mail header.b=ZS8eNCjt;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314382-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-314382-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=ideasonboard.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D5B1C300CCAD
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:37:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 106BA300728F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:39:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C379637267B;
-	Mon, 22 Jun 2026 10:37:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E7037266D;
+	Mon, 22 Jun 2026 10:39:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E78A3372064;
-	Mon, 22 Jun 2026 10:37:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2404A371D14;
+	Mon, 22 Jun 2026 10:39:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782124675; cv=none; b=Ya0j2f1pmQUi3gzz7KzLg6ZEKqWklfap0szcF/2b4w901NItiNhZSyyaVZZ1OgS9VmbbKqTuAfwE83imqYnv21yGKLTvoYBUuvn/MyP8COKUq2nPUSR9c3Gis/5/nLUgeqvKGffRG0QpnqIcEWr2LcFR2+y8/ocpYvWbJ4I9gR8=
+	t=1782124787; cv=none; b=XESWgxHhDRq6gd2CEcP6MsSKlRaDaVfCJR5PCu8JOVYq7EX5oTrgTuAJUzr2s4OFEJTSZU1QMPdAWWIIPP2pOuiVtt3YyRPdug09Wa6vfjP2GWYVINM+vGndyjhB1iXZHsXFnmXtwbeodiLlTzJYqgriBYBKgWMUasMCbZeK7LY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782124675; c=relaxed/simple;
-	bh=SlXpapcESob2oMAX1fFCfcRVVrRmMpw/0lMMJyMoXZY=;
+	s=arc-20240116; t=1782124787; c=relaxed/simple;
+	bh=+PTHu8uYEliCG2hW2yliLhL6xDa49kA2IvmO9Lhe998=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XUJpNSUGNU0NYtdBPUkQRKYgcRkTTay5W2c6HaUO0c797WhOWAfJt/1e40z2nlFo2Pka1cxOoAG17U0jTgrwSoiPG3MpNI75hW6mQ/QA1CsGgN+EYsLm6BzFMGS5+PHSJQ0qMHzEYE30jIDdI7ihqeiodKvK3IekKTwTIM9V78g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SjA84rh2; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD5B81F000E9;
-	Mon, 22 Jun 2026 10:37:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782124673;
-	bh=4JaDzGEOq8RviwvqFH3apYO55x+BKM/GmrtegVUEYwo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=SjA84rh2vGNpApF7xb/8/QboyqkViBsFqkxGtE93XASJ+6cAjHWGMYiaqrRp/pSwq
-	 nAURq2pW5oZK+5kztm9oQ/j9SKS2UNBEdMeWO9RhLcnT1zJAaz+BD/7G4aqFCvVY4x
-	 QHjPHYeIsBIaY32IwlZUhlFi1+/nLUdPptY22FEUURtZfP4gIY5r57Dig5yPyGWO6W
-	 PSt5y3KkRLPjlfNLCab0Yw1tso96epHP2NtLYknAw8EpAV0q/Tzyg6NBTOlCmVCRNz
-	 ZbyDjiLdaDqPPWkSrczxDGEZC2xL9ZfHm2u9lKJT1zSb47tP99cDSw/BDAWR7yf+Km
-	 VEJxhJdxJ5q7A==
-Date: Mon, 22 Jun 2026 11:37:49 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Zhang Yi <zhangyi@everest-semi.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
-	linux-sound@vger.kernel.org, robh@kernel.org, tiwai@suse.com
-Subject: Re: [PATCH v2 1/7] ASoC: dt-bindings: ES8389: Add members about HPF
- and clock
-Message-ID: <65a1d2ba-0790-4c6f-9c00-39ee8b4db7bf@sirena.org.uk>
-References: <a619312f-55b8-41f4-b288-d7c343f5f9e9@sirena.org.uk>
- <20260622063318.3535-1-zhangyi@everest-semi.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VsljugEhHoLnPm0aYpcPVRTIorsdyxv5ymB+1yoYC+wXbSnGceqDksGSvVLg8km5ZX12t1KAArJgRbZULYgupQZ7FdwSMzvZPoFSVH6nBgaaxAvRYJch1GaMGmDK+XtGjyVLAQB3Yexi8AlvWF6BbpsKhLOQNEDn5aWCVH+F8EA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ZS8eNCjt; arc=none smtp.client-ip=213.167.242.64
+Received: from killaraus.ideasonboard.com (2001-14ba-70f3-e800--a06.rev.dnainternet.fi [IPv6:2001:14ba:70f3:e800::a06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6F886874;
+	Mon, 22 Jun 2026 12:39:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1782124746;
+	bh=+PTHu8uYEliCG2hW2yliLhL6xDa49kA2IvmO9Lhe998=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZS8eNCjtod/txW3HsrSeFcQIPlJJkdazWEnVkM9m0vInO4nPG7UBveOhKFhiKPzat
+	 uE2o64q3hbwjwxtfoNooVvG6KKn8eSp6j16o7cM//dEzQ5NcMXrWcyWGQuQHTMyl7B
+	 dniiMVn5ovZpSBR7CbnBwBKPEf9rROkAVkdiDFMQ=
+Date: Mon, 22 Jun 2026 13:39:42 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Frank Li <Frank.li@oss.nxp.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Michael Riesch <michael.riesch@collabora.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Martin Kepplinger-Novakovic <martink@posteo.de>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Purism Kernel Team <kernel@puri.sm>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 2/8] media: v4l2-fwnode: Add common helper library for
+ 1-to-1 subdev registration
+Message-ID: <20260622103942.GB3872967@killaraus.ideasonboard.com>
+References: <20260617-imx8qxp_pcam-v5-0-7fa6c8e7fba7@nxp.com>
+ <20260617-imx8qxp_pcam-v5-2-7fa6c8e7fba7@nxp.com>
+ <ajMhZP5YHuQdhc5M@kekkonen.localdomain>
+ <ajNwgq96WRrykE5I@SMW015318>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qo2N2fpRNvMdPVCU"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260622063318.3535-1-zhangyi@everest-semi.com>
-X-Cookie: Now I am depressed ...
+In-Reply-To: <ajNwgq96WRrykE5I@SMW015318>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.76 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-314382-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314380-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk+dt@kernel.org,m:linux-sound@vger.kernel.org,m:robh@kernel.org,m:tiwai@suse.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,collabora.com,nxp.com,posteo.de,gmail.com,puri.sm,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:Frank.li@oss.nxp.com,m:sakari.ailus@linux.intel.com,m:mchehab@kernel.org,m:michael.riesch@collabora.com,m:Frank.Li@nxp.com,m:martink@posteo.de,m:rmfrfs@gmail.com,m:kernel@puri.sm,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D30F06AEC16
+X-Rspamd-Queue-Id: E049E6AEC47
 
+Hi Frank,
 
---qo2N2fpRNvMdPVCU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Jun 17, 2026 at 11:13:55PM -0500, Frank Li wrote:
+> On Thu, Jun 18, 2026 at 01:36:20AM +0300, Sakari Ailus wrote:
+> > On Wed, Jun 17, 2026 at 03:50:12PM -0400, Frank.Li@oss.nxp.com wrote:
+> > > From: Frank Li <Frank.Li@nxp.com>
+> > >
+> > > Many V4L2 subdev drivers implement the same registration and media pad
+> > > setup logic for simple pipelines consisting of a single sink pad and a
+> > > single source pad. As a result, the same boilerplate code is duplicated
+> > > across multiple drivers.
+> > >
+> > > Introduce a common helper library for 1-to-1 subdevs to encapsulate the
+> > > registration, media entity initialization, and cleanup paths. Drivers
+> > > can embed a struct v4l2_subdev_1to1 instance and use the provided helper
+> > > APIs instead of open-coding the setup sequence.
+> >
+> > I appreciate your efforts in trying to reduce the amount of code drivers
+> > need simply to get things done but I think there are a few issues with the
+> > approach taken in this patch:
+> >
+> > - The new helpers aren't generic enough, but require two pads; one sink,
+> >   one source.
+> 
+> It can cover many case already, there are many bridge type subdev. after
+> glace of all code, many CSI2RX is type device. It should one kind important
+> type/case, like sensors.
+> 
+> And I plan do 1 TO N replicator driver, which duplicate 1 sink pad to N
+> source pad (with/without register config), plus exist video-mux driver,
+> 
+> It think It can cover more than 80% cases.
+> 
+> > You could provide special helpers for just this case, but
+> >   right now it looks like that if there's something you need that the
+> >   helper assumes you don't, you can't use the helper at all. In other
+> >   words, more modularity would be nice.
+> 
+> We can add it later if need, which easy to replace 1to1 API, like I did
+> for sensor one.
+> 
+> > - The new helper should work with the existing types and not add new types
+> >   (struct v4l2_subdev_1to1).
+> 
+> May be save vep data into v4l2_subdev to avoid parse it every time. and
+> enhence media_entity_pads_init() to avoid refer caller data.
 
-On Mon, Jun 22, 2026 at 02:33:18PM +0800, Zhang Yi wrote:
-> > > +  everest,mclk-src:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > > +    description:
-> > > +      Indicates that SCLK is used as the internal clock.
-> > > +    minimum: 0
-> > > +    maximum: 0x01
-> > > +    default: 0x00
-> >=20
-> > Could this be done by having a clock API property for the MCLK source
-> > and then falling back to using SCLK if that's absent?  That would feel
-> > more natural for DT, and you'll probably want the MCLK property at some
-> > point.  It's also a bit more of a neutral description of the hardware,
-> > future versions might switch dynamically between MCLK or SCLK based on
-> > some criteria or something.
+I agree with Sakari about not introducing a new structure.
 
-> Does the implementation below match what you described?
+We could create a version of media_entity_pads_init() that allocates the
+pads array dynamically (*not* with a devm_* function !), and free it in
+media_entity_cleanup().
 
->=20
-> es8389->mclk =3D devm_clk_get_optional(component->dev, "mclk");
-> 	if (IS_ERR(es8389->mclk))
-> 		es8389->mclk_src =3D ES8389_SCLK_PIN;
+> >
+> > - There should be a way to provide default V4L2 fwnode endpoint
+> >   configuration as well as to validate the obtained configuration.
+> 
+> Do you means remote_bustype_cap_mask information get from a callback?
+> 
+> > I don't have a good proposal to address the above but at least one way I
+> > can think of making error handling easier would be to use devm_() for
+> > teardown in more places we to today. That certainly does have its own
+> > issues though.
+> 
+> I tried it before, media and v4l2's clean up is not revised order of init.
+> Sorry, I can't find original thread. I remember laurnet pinchart said there
+> are order problem.
+> 
+> 1  v4l2_subdev_init()
+> 2. v4l2_async_subdev_nf_init()
+> 3. v4l2_async_nf_register()
+> 4. media_entity_pads_init()
+> 5  v4l2_async_register_subdev()
+> 
+> 
+> v4l2_async_unregister_subdev(sd);
+> v4l2_subdev_cleanup(sd);        // Not sure if it save to move to last step
+> media_entity_cleanup(&sd->entity);
+> v4l2_async_nf_unregister(&csi2->notifier);
+> v4l2_async_nf_cleanup(&csi2->notifier);
 
-Yes.
+The cleanup procedure is really bad, it's a known issue. Fixing that
+involves resuming Sakari's work on life time management in V4L2.
 
-> > > +  everest,hpf-frq:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description:
-> > > +      The frequency of HPF in Hz.
-> > > +    maximum: 1020
-> > > +    default: 16
+-- 
+Regards,
 
-> > Why configure this with a fixed value in the DT - it's the sort of thing
-> > I'd expect to turn up as an ALSA control so the user can vary it at
-> > runtime if they want to?
-
-> I don't want users to be able to change the HPF value at any time,
-> as this would affect the codec's startup.
-> Or I can use SOC_SINGLE_EXT to define HPF-related controls
-> and write the modified values to cache when writing to the hardware is no=
-t permitted.
-
-Some devices have custom controls like that already, you could also
-prevent writes while audio is running.
-
---qo2N2fpRNvMdPVCU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmo5EHwACgkQJNaLcl1U
-h9Ao7gf7By5U0QbeSqltgEe3rmQc/pjTB0u4wp2KBHSYRrwoM6NCiM8V/xI14EqS
-daXlg2i/W4mJMdadyz9Yhb/85pYexqUb9IlIHSiheBOCJ/HMFpTROnVuUgu/LXMV
-00zgMFzgga90YkP7sUW/KxgeMclhhBlkbek4bD+WL0AJE/V73kPlk+BatwQ830aP
-7vn0MRV3XqkXsg2LNUrdS5jtG1QBGznKLKTe1y5+ixDOGJxWioA1h/HLKIjWRTbA
-iQcP8wUY8OL+seDcD4m57FyD3EKA5/zM/x2L5S4AH7dWvZatj5JQoraByQ4z7X8j
-s36VjkEXVY6RHDC5vk6dQzCVYSbgYw==
-=Ddoj
------END PGP SIGNATURE-----
-
---qo2N2fpRNvMdPVCU--
+Laurent Pinchart
 
