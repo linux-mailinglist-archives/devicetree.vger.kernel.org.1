@@ -1,85 +1,104 @@
-Return-Path: <devicetree+bounces-314167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314168-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id INUcEuudOGpbegcAu9opvQ
-	(envelope-from <devicetree+bounces-314167-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 04:28:59 +0200
+	id WAX3GT2eOGpwegcAu9opvQ
+	(envelope-from <devicetree+bounces-314168-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 04:30:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B39846AC14C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 04:28:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C53A66AC16F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 04:30:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=lLAnfDsN;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314167-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314167-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=jcVjcJGa;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=HnUYUM5V;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314168-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314168-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B95033011C6F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 02:28:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2DCC0302C0FE
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 02:29:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8D7312826;
-	Mon, 22 Jun 2026 02:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F0AC313547;
+	Mon, 22 Jun 2026 02:29:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B943126D6
-	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 02:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D364B3128C6
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 02:29:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782095337; cv=none; b=MY9vr8/lUCWBOqo0u9WJkY9HSkWJQYF8JSfLpHZ915HO5w4S66STBLZRPaunzOOd4OxctlTZMAsPWr4L+awL0Fu3RJjg+cy/Rl6ugQVV3x6E/RhFKYrpQHZNLyjWcoJKFgrCjfn9RW8Bbxcf///hjo7wZlrX17g5aUqaY7JYhVk=
+	t=1782095349; cv=none; b=c0EDX/OWZjkfTRhw4WocdlHX5MZW4ANbiNLYCzLiHKep38jmB9pbi2B1YACrillPYLsO29caAq7S6WUOCL8pALnxD5gq/tQHyLdV6wpFr2HHTKFc/8AJ4tjCO/Qz+v//Hu6rW7x74UdZy9edUQBkFyna5gQvgihCjk56buY3fuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782095337; c=relaxed/simple;
-	bh=ticB4gansQ1BtdOSesuRfnDkU6EYtdEdyO6zWWCdzUE=;
+	s=arc-20240116; t=1782095349; c=relaxed/simple;
+	bh=Imnb8guT45fj+jnS+EFxeQAAPmLzZRhca0s8hOhxRRg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dOkfiggStbP6qdwVvUJ+WziWseCEAyvvUQTJLyS9EbOoa8Ex9v2GnUOZh6v7//AxPB220wFSWU2693L/f4g28zM7g/baz7uFweMQuNYaQmpg5WeZ0i6D35ahbnIljW8OK2GEz6bgHfiLdVBct9J1XsWNzPE4/PMawkIIpjCLKt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lLAnfDsN; arc=none smtp.client-ip=209.85.210.176
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-845369f60faso2163193b3a.3
-        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 19:28:55 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=I3axyn+2WWdbyIkcOiVKZ8m8UxmXtRGYhDNbSqPEuJNufSIrtqYX4WealhZvGogHqiaDLRR6VhCo61dqd4XIfNokcVAByViw2fsKbmn8CrGMnOLj7wzVmMmWp6SGXdWaOLs1wlsN/GuO2OHYckKmuK21juB11Zb8R/LFOLcA724=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jcVjcJGa; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HnUYUM5V; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65LDtLno1923270
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 02:29:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	wdCcN1CC/CVMzb2L+hRp7Ek9alBi4Jrp3KJK3rGj+sA=; b=jcVjcJGa12etEl5u
+	pxQU19/zni0jREDkjsnWhG1u9VFEf6Ndr+cC1Lj4Ek61QohYZORtoboTWBoxHgEO
+	4ZGsKEuja/BgP6eL8LOgSGAY4WUesjWiappR3gtihQ0PzJ55a1NBlZABfkYt4FBk
+	2MJEyYNEYa8FH5zk8Oj4lnH+JMp1Tx82MyHY/LSsCkq61pxWofhgF04Kt0TKHw1r
+	xgeSpFUwC/Cx1Cp3LaJEzj9yrSqRlF9GVbz8WuWecRihWlDF+uWPegWi4Pao96+H
+	SJ034RkUS3vma/ENQZMiA+IHgInWcd3Dt6UwDGK2d/BnfSA+LxWdNGVsfq5YoQji
+	LKnRHw==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ewkmec9bu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 02:29:07 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-37cc07f3e36so4441872a91.2
+        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 19:29:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782095335; x=1782700135; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1782095346; x=1782700146; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gu0ES1O9klC+0ewrJmA1SFEVoTTP2kjyfbea71Glr8c=;
-        b=lLAnfDsNbxHGhQkz77sAaWkG9aYQ9PLStUz0x+XXFmWRuLNRsfx140rQoUMUVvj7GL
-         iZ5we5zgHN3P9Xt4K35rvZEVOtPrKnyDUGZbbYFmoa4sX/Q0UBB8XkoQbsYVynCvkOMU
-         pxq6fA3qlNiKC8Cr2d6zzj/nlqwBsY990SZYTvb1E1rsSprLhHDSEBYu5C5VI/ddq2nu
-         2lXD/70j0+ac0RwR6LMUlQH8x6KonPwn7qbE95gcpU2yeFACfTSr3zrFpUsFWZUc4ZMT
-         ZrOEnbrmRHU4qy2BuPo3WkuXXPGy6yf49gP5Nr9SUCanUHfZoBNxFVaRObKhf/kxwrtv
-         hMQA==
+        bh=wdCcN1CC/CVMzb2L+hRp7Ek9alBi4Jrp3KJK3rGj+sA=;
+        b=HnUYUM5V4gbYwCX1WAONHW+sbw2D3wrCjeJs4FoDKkuWyan2TTR8zMR5V04NlicyHk
+         hQzv6gR2K9Zpe5LYOA8dIWQ5xLgg68cx5BP/yPSL7HSFg7REDS4NHgYtbZrkuxATDw8J
+         O/c5hpxflrIBlUeTsOT3eUujL7iAgw7u4TgKqLxXY45N7oQS4GBrlwZRyovcIbRIDsaV
+         4aYPHA/s6H9uOa0HtZ64cTSrygyrCKDIqd5g3gijJurNdeIwRmCtEq+ZgMfdzrTp+Nc9
+         phxxluJEwFsP9ZHmjQEI7Qw7VgIa0cuTyxBLoXhWTml6lHIbdNTZLaJyXbCaLdZCD4uJ
+         vZGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782095335; x=1782700135;
+        d=1e100.net; s=20251104; t=1782095346; x=1782700146;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gu0ES1O9klC+0ewrJmA1SFEVoTTP2kjyfbea71Glr8c=;
-        b=JpQI0g8Q3KZ7qhU9oajoHQuJn1UUVZPlBrvZ4ok+OzBTSHKUGxBd7tPOwnQxs6QfZQ
-         ANr3CIDJZCzKm6Ya0w4+W8a5G3YocZ9MGJL1UcRlfkIQLVQmcDlL3gddG27oPmgkJbcl
-         DRUxe2rgbqmXUPn9eTw3mCwR3M2eoYMcKwUnhgGKF/tHEBT8kVZhNZInOw9XcjjzrZkM
-         wpbwfEm4lTBCn7+5zpebNMWta/1E8TAdal41q/dMF0yUFfmv1OAJZRLlOYx8ZNsWavRd
-         sGL0reN+v9s8t+ZSAXrNBSr4Hklyi9GOVCXiPkttxpHV4TzgXpuZ8ABfrzghmetj8sqi
-         dmVg==
-X-Forwarded-Encrypted: i=1; AFNElJ8suBLYacG4eTU5l1NcQTqZPYHv7wrYwAzsi6maXbYq4Oq7bD21wJHcFerFwa32dDvazWwgGrC2yS3L@vger.kernel.org
-X-Gm-Message-State: AOJu0YwM2ac7Ke6jOyxh/QqAPAWuqk89W4flE5lyL3iKNqq2V/AnD7Hd
-	L7Y1BlP6RPY8l88OcDsf8smvyijRs9qJgKs+LylbmjrDg70In7zNzeu4
-X-Gm-Gg: AfdE7ckC+y/wcywAVzGFha/OKq3b8qE3pPS6KpXrsm8MoIVy2W9qxR+cCvAG1OzGhiZ
-	2GsQpZtX1oI1Btt9glHe0niiTb6BhnyQ3fO5a3JMBUWh+kkoUYkb02Z/y2DmUpcYkNf9yyG12aM
-	qTh6279nas2pLDICo8L6PfzQg6TNAFk+xwZmQNWRjRVo1hsxQD6tXIgs/tKwGX/bXyypppfgvf3
-	kazBp+i0xgw5vMHJOEdAv7hupHg3PmOfWmiVzcJ+ep01Ldcmweq426Sibb598mlR2MAv0v/5Wqm
-	E2SLnXeEKOw1nFkLRXHpmZejUbxuZYytx0CU2VSX5ygZGN8M3iTMYmck2NOB7rT3WQRsoNtstf+
-	DArMT41pTuv9CeG9RcQVysQDuAKDWlJZN21HyLJaUt7hPd4rLfFuQKouRe6d/injtAkAyoLPTSS
-	Halawh5/tyCz/5XHD2np9d81pql8KRNPTLt8SN6WAwCvQS2u0TVlnVMrFMVhrqtsYeRkPsKejrZ
-	nWq
-X-Received: by 2002:a05:6a00:4104:b0:845:33e1:9664 with SMTP id d2e1a72fcca58-845508ff81bmr13600889b3a.40.1782095334770;
-        Sun, 21 Jun 2026 19:28:54 -0700 (PDT)
-Received: from [192.168.0.100] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84564ee3dc2sm5573489b3a.58.2026.06.21.19.28.51
+        bh=wdCcN1CC/CVMzb2L+hRp7Ek9alBi4Jrp3KJK3rGj+sA=;
+        b=DzjCOerdU7mzbMEQju+AuRKKHvO3aEn8pZmSJVsZUoB8cj9Nd315Rm8tmrVOeYnYcf
+         4tMxvRWDkE12mF/dTX/8Pfw5QjebOW6yHl/g9m6LJ0Gij93KOHASFaCTzpSX9vC+UbuG
+         +u17bWkp2EjPdWihGXVbxJvMdm+UFi8wAKMgmaoLJMOyHV1HAgJAfTdPS2teTrkY4EUf
+         N0DMdM5lf9sQo3okORuT5pqlYUcSTt7b/66WIPz13Bdve/ToDvUceTBuKJYFirLdIPey
+         DLsOhIr37DlWbKImXWIzGelvHKruwhpeueIgPe12NgYG8Pl+w+4gpTTMEmYcd5Zijr1+
+         8y0g==
+X-Forwarded-Encrypted: i=1; AHgh+RpHIg7tXjYqCutgbsYDR2smochBVg8CkK4QzmF5ak6bB4yhI2DoFwX9n3AyZU8Xx6LO86LZqwidq7l7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzyiT6kgd0vu/lDuLUV8WPP1kCtJKXmaE5NkM9oIP2HrltlCo1
+	EZW8V0ab/WNieimh51rqwR5Q6SHIqzCwBI6pp9XIWvLu5kVr1S1L0zEdyEEblJErVQAGp5wGEKW
+	AaXw8QxXXO+aL+2DDBndZkCr+ooQo/jCzAI1gNTJb5VtAN9wmN6PSMBRkhEUU0M3k
+X-Gm-Gg: AfdE7cmwz3To/fqCjj28zgkhWKhDtFiDqlHlIvUEzoBgETuOwWi2Ds6LwbAEEy6T9Rk
+	F2Pvc/0tPx01qGcg1wGhdxFNGdrrViMpbGuhMOWRGk4/lJEAIFH3bJ50k8JaKRscZ/w5EHPA8CD
+	9AIsnB9d3VX9VRdudg8uxpmas974hhH+jmvCmbej9fET1DOLdSyCWQDMPM3DZxDNFezzya3VgsP
+	qxeNC9oK+y/MHyag8LVqsmrOREEPlP2Rh9OG9iV4FYCOSkW0mdenQ9s+0JcqmavphP2v3WFE1eA
+	Zqi5EjX1tcyGtpZXPC1RFRZrp+K6+PAI9p1wTA0ooGkeBXLqoBnpjH6zjtSCmRR1hFOfv4/7OA9
+	gCdadMx9iVs3LSHsn8FCOCpaae/n9OpkvKaE=
+X-Received: by 2002:a17:903:1c1:b0:2ba:4e84:966 with SMTP id d9443c01a7336-2c718fcc7a6mr138565925ad.36.1782095346323;
+        Sun, 21 Jun 2026 19:29:06 -0700 (PDT)
+X-Received: by 2002:a17:903:1c1:b0:2ba:4e84:966 with SMTP id d9443c01a7336-2c718fcc7a6mr138565775ad.36.1782095345891;
+        Sun, 21 Jun 2026 19:29:05 -0700 (PDT)
+Received: from [10.239.155.28] ([114.94.8.21])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c7436d3505sm60225495ad.19.2026.06.21.19.29.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Jun 2026 19:28:54 -0700 (PDT)
-Message-ID: <98725dea-9bfd-43bb-8bce-e314f821d081@gmail.com>
-Date: Mon, 22 Jun 2026 10:28:46 +0800
+        Sun, 21 Jun 2026 19:29:05 -0700 (PDT)
+Message-ID: <20fa15e1-316b-44fa-b59d-99cb7fe78bb0@oss.qualcomm.com>
+Date: Mon, 22 Jun 2026 10:28:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,191 +106,142 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] dt-bindings: display: verisilicon, dc: generalize
- for single-output variants
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: ychuang3@nuvoton.com, schung@nuvoton.com, yclu4@nuvoton.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260615065003.76661-1-a0987203069@gmail.com>
- <20260615065003.76661-2-a0987203069@gmail.com>
- <3683c5c617324f5835529617325745ef48fa1943.camel@iscas.ac.cn>
- <6d3e3121-22f2-4c59-9678-df2f57ff4d31@gmail.com>
- <b08277e8a9350f6c68c9774b1b6185b1eb71cd1e.camel@iscas.ac.cn>
+Subject: Re: [PATCH 1/4] dt-bindings: input: Add binding for Qualcomm SPMI
+ PMIC haptics
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org,
+        Dmitry Torokhov
+ <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        David Collins <david.collins@oss.qualcomm.com>,
+        Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>, kernel@oss.qualcomm.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260616-qcom-spmi-haptics-v1-0-d24e422de6b4@oss.qualcomm.com>
+ <20260616-qcom-spmi-haptics-v1-1-d24e422de6b4@oss.qualcomm.com>
+ <20260617-wakeful-gorilla-of-feminism-75287c@quoll>
+ <c7191868-d141-4095-b703-230237721f28@oss.qualcomm.com>
+ <44778bec-68c5-426d-bc05-b4013630b3ee@kernel.org>
 Content-Language: en-US
-From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <b08277e8a9350f6c68c9774b1b6185b1eb71cd1e.camel@iscas.ac.cn>
+From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+In-Reply-To: <44778bec-68c5-426d-bc05-b4013630b3ee@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIyMDAyMyBTYWx0ZWRfX3WGCxaAgi7m6
+ 6gFpnj7VNJ0yEkmnljxhBqDuisF2zJlXH4bV9pRSH0Lk93GmooTz+tr57sU5QJQv8o8AXYhXyBv
+ GWzv4O/J10Eg4G7nNNE76R/jL49L2HmBUFOAItK95ktDsiJmFUbRspgbF0Im+DGMOCJdq77UciJ
+ po7okHjrR2io0HGNh+bXuLknf3b1AIp/A20UrDw9qi7NknsFz2wKxJCGkFtzI4Pr+rE8EqTp+RE
+ i1S8jSFo5whtOwrIDWQhcGRdbmPDRhIMOlaeqqboUFCFTW5MH6key2s5qZ/dqpSZriLO5Xzifsw
+ Ph/zsBrKT7xr+7SHzl7qIHSj+j29ABkO5jREcvsZ3NV/XOgrzRHKj10SuMPbjmg34u7LWXbRcOS
+ fLAWup4l5trJ8WGGJ8rvJimY6NIep5hez6B7lYy6G8FuvKwjQxfLIenFeMstnmJthfO0yDjlYXT
+ f3J73xQrSHgRt8FOBJQ==
+X-Authority-Analysis: v=2.4 cv=MtFiLWae c=1 sm=1 tr=0 ts=6a389df3 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=G-0MMZ6kwLWl7lZkNOoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-GUID: JAr40USrX7axRTLz73KI-0vC9D51WW5J
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjIyMDAyMyBTYWx0ZWRfX0OSgxnlO/Fqg
+ AFUHf4f7NY/Ci6GEW5N/QQ7W9vpak/9GFS/8TF2oAwONTUK2VsdEvQ1Cr7f5gCR9xIgpiCDf35f
+ gGzB4t3KLE+46WaImbWQh7osDTNGROI=
+X-Proofpoint-ORIG-GUID: JAr40USrX7axRTLz73KI-0vC9D51WW5J
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-21_02,2026-06-18_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 clxscore=1015 phishscore=0
+ adultscore=0 spamscore=0 priorityscore=1501 suspectscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606220023
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314167-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314168-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:zhengxingda@iscas.ac.cn,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:yclu4@nuvoton.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[iscas.ac.cn,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,kernel.org,oss.qualcomm.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[fenglin.wu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:linux-arm-msm@vger.kernel.org,m:dmitry.torokhov@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lee@kernel.org,m:sboyd@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:david.collins@oss.qualcomm.com,m:subbaraman.narayanamurthy@oss.qualcomm.com,m:kamal.wadhwa@oss.qualcomm.com,m:kernel@oss.qualcomm.com,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fenglin.wu@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B39846AC14C
+X-Rspamd-Queue-Id: C53A66AC16F
 
 
-On 6/18/2026 6:24 PM, Icenowy Zheng wrote:
-> 在 2026-06-17三的 18:25 +0800，Joey Lu写道：
->> On 6/15/2026 4:19 PM, Icenowy Zheng wrote:
->>> 在 2026-06-15一的 14:49 +0800，Joey Lu写道：
->>>> The existing schema hard-codes the five-clock/three-reset/dual-
->>>> port
->>>> topology of the DC8200 IP block, preventing reuse for single-
->>>> output
->>>> variants such as the Verisilicon DCUltraLite used in the Nuvoton
->>>> MA35D1
->>>> SoC.
->>>>
->>>> Rework the schema so that variant-specific constraints are
->>>> expressed
->>>> via
->>>> allOf/if blocks:
->>>>
->>>> - Add nuvoton,ma35d1-dcu to the SoC-specific compatible enum.
->>>> The
->>>>     generic verisilicon,dc fallback remains the driver-binding
->>>> string.
->>>> - Move clock and reset items descriptions into the per-variant
->>>> allOf/if
->>>>     blocks; keep only minItems/maxItems at the top level so the
->>>> base
->>>> schema
->>>>     accepts all variants.
->>>> - Restore full items lists for clock-names and reset-names at the
->>>> top
->>>>     level with minItems so the names are validated against the
->>>> descriptions.
->>>> - Keep ports in the global required list and keep
->>>> additionalProperties: false.
->>>> - Add an allOf/if block for thead,th1520-dc8200: five-clock
->>>> (core,
->>>> axi,
->>>>     ahb, pix0, pix1), three-reset (core, axi, ahb), required
->>>> resets.
->>>> - Add an allOf/if block for nuvoton,ma35d1-dcu: two-clock (core,
->>>> pix0),
->>>>     one-reset (core), required resets.
->>>>
->>>> Signed-off-by: Joey Lu <a0987203069@gmail.com>
->>>> ---
->>>>    .../bindings/display/verisilicon,dc.yaml      | 80
->>>> +++++++++++++++++--
->>>>    1 file changed, 73 insertions(+), 7 deletions(-)
->>>>
->>>> diff --git
->>>> a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
->>>> b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
->>>> index 9dc35ab973f2..0c41286b8223 100644
->>>> ---
->>>> a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
->>>> +++
->>>> b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
->>>> @@ -17,6 +17,7 @@ properties:
->>>>        items:
->>>>          - enum:
->>>>              - thead,th1520-dc8200
->>>> +          - nuvoton,ma35d1-dcu
->>>>          - const: verisilicon,dc # DC IPs have discoverable
->>>> ID/revision
->>>> registers
->>>>    
->>>>      reg:
->>>> @@ -26,14 +27,12 @@ properties:
->>>>        maxItems: 1
->>>>    
->>>>      clocks:
->>>> -    items:
->>>> -      - description: DC Core clock
->>>> -      - description: DMA AXI bus clock
->>>> -      - description: Configuration AHB bus clock
->>>> -      - description: Pixel clock of output 0
->>>> -      - description: Pixel clock of output 1
->>> Clock descriptions should still be in the global part instead of
->>> the
->>> per-compatible part.
->>>
->>> In the per-compatible part, clock-names should be constraint for
->>> SoCs.
->> I will move the `items:` clock descriptions back into the global
->> `clocks:` property, covering all five possible clocks. In the
->> per-compatible sections I will remove the description items and only
->> constrain `clocks: minItems/maxItems` and `clock-names:
->> minItems/maxItems`; for nuvoton,ma35d1-dcu I will additionally
->> override
->> `clock-names: items:` to the two names actually used (core, pix0).
-> Yes, this should be the correct practice, although I wonder whether the
-> minItems and maxItems properties are needed globally (because these two
-> seem to have default implicit value).
->
-> BTW the MA35D1 manual in fact shows 4 clocks for "DCUltra" in the clock
-> tree, maybe the DT binding needs to be reconsidered?
->
-> Thanks,
-> Icenowy
-I will drop the global `minItems`/`maxItems` on `clocks` and 
-`clock-names` in v5, as they are redundant with the implicit defaults.
-
-Regarding the 4-clock question: the TRM clock tree diagram does show 
-four paths reaching DCUltra (display core mux/gate, AXI ACLK, AHB HCLK, 
-and the pixel clock divider). However, the MA35D1 hardware provides only 
-one software-controllable enable bit (SYSCLK0[26]) that gates the core 
-clock together with the AXI and AHB bus clocks through shared ICG cells; 
-there are no separate register bits for the bus clocks alone. Due to 
-this hardware design constraint, the `clk-ma35d1` driver is 
-intentionally designed to register only three DCU-related CCF nodes: 
-`dcu_mux` (ID 61, an internal routing mux), `dcu_gate` (ID 62, the 
-single gate at SYSCLK0 bit 26), and `dcup_div` (ID 63, the pixel divider 
-from VPLL at CLKDIV0[18:16]), with no independent AXI or AHB gate 
-entries for DCU. Since the DT binding can only reference clock handles 
-that the platform clock driver actually provides, the MA35D1 binding 
-will remain at two clock entries: "core" mapped to `DCU_GATE` and "pix0" 
-mapped to `DCUP_DIV`.
-
-Thanks.
+On 6/19/2026 12:18 PM, Krzysztof Kozlowski wrote:
+> On 17/06/2026 13:02, Fenglin Wu wrote:
+>> On 6/17/2026 6:35 PM, Krzysztof Kozlowski wrote:
+>>> On Tue, Jun 16, 2026 at 03:08:24AM -0700, Fenglin Wu wrote:
+>>>> ....
+>>>> +
+>>>> +  qcom,lra-period-us:
+>>>> +    description:
+>>>> +      LRA actuator initial resonance period in microseconds
+>>>> +      (1,000,000 / resonant_freq_hz).  Used to configure T_LRA-based play
+>>>> +      rates and the auto-resonance zero-crossing window.
+>>> This does not feel like static characteristic. Isn't period depending on
+>>> intensity of vibration you want to have? Why would that be fixed per
+>>> board?
+>> This period is specifically used for playbacks that require
+>> auto-resonance to be enabled, which I referred to as "T_LRA-based" and
+>> "auto-resonance zero-crossing window." It plays a key role in the
+>> "DIRECT_PLAY" mode, which produces a constant vibration effect. To
+>> adjust the vibration intensity during this constant effect, the hardware
+>> does it by scaling the peak voltage of the driver signals, rather than
+>> changing the frequency.
+> But maybe changing frequency runtime still would be useful?
+It could be, but the LRA F0 (resonant frequency) still needs to be the 
+starting point. You can control vibration intensity by driving the LRA 
+slightly off resonance by a given percentage—for example, to reach 50% 
+vibration, you could probably drive it 10% off resonant frequency, and 
+that mapping also depends on the LRA characteristic. Keep in mind that 
+LRA is a spring-mass resonant system, so its output is not linear with 
+driving frequency; it is a High_Q system, and its output actually shows 
+a sharp peak at the resonance point. By contrast, the relationship 
+between driving voltage and its output is much more linear, so scaling 
+vibration intensity by adjusting the driving voltage is easier to 
+control. Qcom haptics HW scales vibration intensity in DIRECT_PLAY mode 
+(for constant vibration effect) by scaling the driving voltage instead. 
+That said, the HW can also change the driving waveform frequency by 
+updating the T-LRA registers, and this property has to be specified as 
+an initial value; otherwise, you won't have a baseline to achieve that.
 
 >
->>>> +    minItems: 2
->>>> +    maxItems: 5
->>>>    
->>>>      clock-names:
->>>> +    minItems: 2
->>>> +    maxItems: 5
->>>>        items:
->>>>          - const: core
->>>>          - const: axi
+> What does the frequency depend on? IOW, how do you choose the value here
+> - based on some motor-part characteristics?
+It's the resonant frequency of the LRA actuator that's mounted on the board.
+
+>
+> Best regards,
+> Krzysztof
 
