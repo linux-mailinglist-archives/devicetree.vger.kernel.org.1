@@ -1,178 +1,267 @@
-Return-Path: <devicetree+bounces-314227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314229-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id T+x7AU/cOGrrjAcAu9opvQ
-	(envelope-from <devicetree+bounces-314227-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:55:11 +0200
+	id PY5XLAXdOGogjQcAu9opvQ
+	(envelope-from <devicetree+bounces-314229-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:58:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B27B6AD0D8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:55:10 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A38A16AD120
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:58:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ikvFlJzf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314227-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314227-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=Nvidia.com header.s=selector2 header.b=ewFKvRlH;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314229-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314229-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=nvidia.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 005E4302170F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 06:55:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AA84D3007AFF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 06:58:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86342360EE2;
-	Mon, 22 Jun 2026 06:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F0E361657;
+	Mon, 22 Jun 2026 06:58:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010051.outbound.protection.outlook.com [52.101.201.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B5032FE0F;
-	Mon, 22 Jun 2026 06:55:06 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782111307; cv=none; b=st1Q6yQcPW8SDQNsliTxoTBMKmJwJVasMwZUHQ0X+bbqE/CcnoOUW2X6Ck+1rXCLR5z7aF1/EjpMSU06E64IevFViBpjDLk0yeaQQ0sUAiOxrGgLL5JrRIkpDG6b4tTocuo7LeZfsqOiFcoW6E1Tm0xumsroWXSYRv7C+xWrQlE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782111307; c=relaxed/simple;
-	bh=D5x1kSmJK5SGdStf4cGnyBRqbu7Z2PCwTSTXsDBTtfs=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DygqwIkGD0wBoLYGshExBCfs/Q/C1O9lMY4odeVV74eVUrBw3bxIq9mestCO8k80afFc4ybghi0+nV74AVbtvx9NjGsJL6E+qSCUbSW1z3vF5QK6OMjMHuJXgy6HvIbrAgNqNamYPolrIDwnxwhPUHhM+u0+cFrTMJrMSYcMnUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ikvFlJzf; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F15EE1F000E9;
-	Mon, 22 Jun 2026 06:55:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782111306;
-	bh=ZG+FlhsVlEBxS0bsxSZ646KiQA9erOt9LJfgN0fiaPY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=ikvFlJzfxPPr76gMlDohagJy/DrSM6dLOR9BUHjD9G0RlR3hEa/g/2fUQcQEwt2PL
-	 jnWQ/jY+QzuqD2tq3Bp5W8di53S5nymamNb6+hFxKbqFMW7zKKwBtRwE/EUmtvk8U/
-	 U0Kyl7gvnK7IxqRugBzijQKJ+Y2fHY4TFHp5aMk2+I8e+hDRz41pHzCHtnLzOsY9Y0
-	 9SkXxa5PR4ui/1mpyc9X7OsOqe/5k5J1i7uD6Ku/+UjW1pAxjQCeGl/Y97F6xtAXbK
-	 L1Ey1C0rtMmfFaAuoRvyhkO3ttBhk3UvLuOj4kimTYHrUK6zVLFxFvyBe1uGdjcOG3
-	 tRbxbrmxL4N/A==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1wbYYh-0000000EoYq-2tzO;
-	Mon, 22 Jun 2026 06:55:03 +0000
-Date: Mon, 22 Jun 2026 07:55:03 +0100
-Message-ID: <8633yfrrnc.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Thomas Gleixner <tglx@kernel.org>,	linux-pci@vger.kernel.org,	Yoshihiro
- Shimoda <yoshihiro.shimoda.uh@renesas.com>,	Krzysztof =?UTF-8?B?V2lsY3p5?=
- =?UTF-8?B?xYRza2k=?= <kwilczynski@kernel.org>,	Bjorn Helgaas
- <bhelgaas@google.com>,	Catalin Marinas <catalin.marinas@arm.com>,	Conor
- Dooley <conor+dt@kernel.org>,	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,	Lorenzo Pieralisi
- <lpieralisi@kernel.org>,	Manivannan Sadhasivam <mani@kernel.org>,	Rob
- Herring <robh@kernel.org>,	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] irqchip/gic-v3: Add Renesas R-Car Gen4 erratum workaround
-In-Reply-To: <d6fce333-4353-4e49-873f-eb3187a631e4@mailbox.org>
-References: <20260618220427.14325-1-marek.vasut+renesas@mailbox.org>
-	<20260618220427.14325-4-marek.vasut+renesas@mailbox.org>
-	<87cxxkma5p.ffs@fw13>
-	<d6fce333-4353-4e49-873f-eb3187a631e4@mailbox.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908E6360EF4;
+	Mon, 22 Jun 2026 06:57:59 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782111480; cv=fail; b=LwgSugkKHbvQcpWtpiuC6PzmOS+KKKQXDZpkI/XS8c3666oHNZnktauCEVutNcEx0Zu9GxQoKkvu4qwoWAC1YohzDYRtzvATwKa8060xgf0+1OvU/QtDeRbuScv5d2V5qgAsBLuuaVOhubNrlqpw7Lyj0Es951jqf3M20D9nonM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782111480; c=relaxed/simple;
+	bh=S69g04vvjBGmY+bjB3QC4CFr3hCJg37SroOTGRd3SIY=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=EMZNviUdm7oYDbZqVEHjc11xd8c5Cvvyfg9q5eDaBFXswKoqm0U6UueOvNwxTTKm7wRoGRjm38IBxKp3KeDC1ar7l9+U+P9D7iBL4sQwghfykGLSqpAWJP1Lvdcg1LcfLQzv29r33R69hFOBrLbyMzpBNjtcV1Gzq35GqLuwmDs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=ewFKvRlH; arc=fail smtp.client-ip=52.101.201.51
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZnfxD/fOgDnHXpOOjHJc3mXZe4XdCfo+eZen2q9vXHQC1YpEMWAhLt2n3JkQPoME59BgHaw0VZly47bra6qcXtUoAGod0dE5aOrISR5PFmozYeg3/fxTVP8P935yBysoPc+Gfaw9m6mBzDnfcQr3GdupX0nsokwYtkk05VoebRQVu62N1xaA6SYUEGaxfkvH81qiZDLSEtaU/Y7kzkwiMCxR4J2ruYm4u25gz4/9eHDsLVFwYvTE8A9UdJf91xQtdFF8PNKlTwCNpfyjSGYSyaqYttztkbksgp5H5FaoSYarjwHXR9lFIajcvOT3V9FKzjIHZl8Y2sPOMzM5kmGAzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0gYY50BNeFE2SYGzOiG7NUjStROGcMU1HL8X4cJj65s=;
+ b=eeA4yxDZs7icyEYQC2sA4V9kwWwIHfV1xiClOvlYBIoO4Z8A5hkkfL+s0L9wkgr2L1eJqmNBvpAGJOafJNumvB74GJQ78tbITyAMMOkP6Yft0Wg3sCNruFfvMMMA57XNZJE71xYgMEtWnLZPsPgs8wnFV5w/8j2FAGZLSn4SWrDtBjZHTStnSkReZAffOiA47kYXm9zEzLaILPI5ntqOEhBAr0bhd/L/5QSNDRv/JPAhvYv15S3Q/b2HqeF8blhNXGg1YDcTirKSiDd/Gga1bjq+O/rOARdmlcSIMm919qk/cJOQ/OhDRDg0VqtpYqZaC2F/4boab4S4xqulU1qLrw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0gYY50BNeFE2SYGzOiG7NUjStROGcMU1HL8X4cJj65s=;
+ b=ewFKvRlHevH8kgW5F/t7445l+ome5w5D5SF2vUXt5AA5kPbOTXCbUWV9RWdnHv1npn4UtWvxY/19iwAsqecXD9z49tOGxHdM6Go6PdyRcl2S30gx8Of/PV5ZFhtR0sHZGDOK6LTnJPsJ3WgA6yqbv1CGVkpxsuFQ9kWx2sGFsyO90c2yHjbaVhufTU+ekHZlniiGSX9BSJiJYm3Ib5rmk7PWq8ggJJXs6vBRfqQV3eSNOpy8lmU+N3GTBTjPEvcmqbYcXobixTCWhLKVGmtOYy5bqUt5MiSdEeUC+NgkLhRCH5SU0pm6mqRxhJWWd6iOOdmPuNbKxKXyj6DDLkEtaA==
+Received: from SJ2PR12MB9161.namprd12.prod.outlook.com (2603:10b6:a03:566::20)
+ by MN2PR12MB4286.namprd12.prod.outlook.com (2603:10b6:208:199::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.18; Mon, 22 Jun
+ 2026 06:57:53 +0000
+Received: from SJ2PR12MB9161.namprd12.prod.outlook.com
+ ([fe80::d9d1:8c49:a703:b017]) by SJ2PR12MB9161.namprd12.prod.outlook.com
+ ([fe80::d9d1:8c49:a703:b017%6]) with mapi id 15.21.0139.018; Mon, 22 Jun 2026
+ 06:57:53 +0000
+From: Mikko Perttunen <mperttunen@nvidia.com>
+Subject: [PATCH v2 0/7] Host1x/VIC support on Tegra264
+Date: Mon, 22 Jun 2026 15:57:37 +0900
+Message-Id: <20260622-t264-host1x-v2-0-ff7364d9ff7b@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/1XMQQ6DIBCF4auYWZfGQQPSlfdoXBgYyywKDRhiY
+ 7x7qV11+b/kfTtkSkwZbs0OiQpnjqGGvDRg/RweJNjVBtlK1XbYiVWqXviYV9yENRo1Ls6R1lA
+ fr0QLb6d2n2p7zmtM7xMv+F1/jkL55xQUrRic6XozaEdKj6Gw4/lq4xOm4zg+K9jP3qcAAAA=
+X-Change-ID: 20260313-t264-host1x-c97171fdde77
+To: Thierry Reding <thierry.reding@kernel.org>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Mikko Perttunen <mperttunen@nvidia.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, Santosh BS <santoshb@nvidia.com>
+X-Mailer: b4 0.16-dev
+X-ClientProxiedBy: OSTP286CA0099.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:604:219::16) To SJ2PR12MB9161.namprd12.prod.outlook.com
+ (2603:10b6:a03:566::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: marek.vasut@mailbox.org, tglx@kernel.org, linux-pci@vger.kernel.org, yoshihiro.shimoda.uh@renesas.com, kwilczynski@kernel.org, bhelgaas@google.com, catalin.marinas@arm.com, conor+dt@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, lpieralisi@kernel.org, mani@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB9161:EE_|MN2PR12MB4286:EE_
+X-MS-Office365-Filtering-Correlation-Id: c8fe38f7-07c6-48a1-6923-08ded02b94c7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|10070799003|1800799024|366016|7416014|376014|23010399003|56012099006|11063799006|18002099003|921020;
+X-Microsoft-Antispam-Message-Info:
+	ozTONDtn4DfrCxkL3kcUs5a1r2UL2ZdhZc4AVF+VC4Bo+9N1zvpX2Jxc8pEk1MESgzGxV6b3N3GUZoWMOlD+cURYhuspTTavC+H+B90+0eJuMck5nAmwVcNKG0YLPoYO42UKvMqy7KnYNs2INAtd8anI721KTJaHRfTRmhaPFVXsXG8ZWaeX9UjudtLIlX2RaDg+FxtDbP+REyRs8/cF/fm/RYOix72qGOIosuh4VuaXWroHnwRJEO8TvKSpkJHoEuo+owDfnXRj0ZvJyp9wNEWa3w4pjI17Rgl9OXPN2jILIlBqQ47jOHmBT0DZgqMzMqDHnjRN9d32Q2/qybw1VB6SX9nkrqitTncCcsxNR5XX+UWUtGft/jvmfj6TrjQT4yLZjK6k9NRBo2IfcCICwSsP1yscHTpCVHHJpfb8As+O0M6MjUfynStO6pSMjXXrsLWjfxRPlF70ThCiZ/4gojt9Luk5J5bulVLE87SQ1RZX2CPJpAutoPhgCTNlnmmZJwJjWJ4A+8JiPXltXnVItGWNYUZiGOnmyYAdjpZDGQdFcvpxxHCcYHc2212GjPdW7J/RoWc9G0lchcFdwEx8XFKzknc48BVdCJJtv785NRI2UFCyCvZLRQRjRmyqRNjzmokb2svl3qhg2DOBcHDgnCjo4isUwuJWGicx0507fRX5Iqv2XV4oZtKdbAEQpYe8bF4Qamv+7TepK0LRW4xG7w==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB9161.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(366016)(7416014)(376014)(23010399003)(56012099006)(11063799006)(18002099003)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bUZjQzMwSTBLN1BuU1JPVzMwQVUxbHR2NElZMHptNkE3dDdJRVlGT2M3am5F?=
+ =?utf-8?B?QitZS2lrdEF0aFVNSzUwTlZ5ZFJuNENESGdvOGpna2Q0Q0dtWmlEK2tZc3h2?=
+ =?utf-8?B?c1RXbENIVTAvSkVxeFB1ekVwVnROSFg5R2kxSm5DT3V1ZzJnbTg0WUxRZVRU?=
+ =?utf-8?B?SVVWME94ZkV6ZGRVK3FMMWFVSHJsSWxhc0I3dUVKSmFVL2NtWSthK3UwSldy?=
+ =?utf-8?B?d0RUeUlna1hVWFZrUXRNOXdTWm5XQ1dJcnVjeW5FTWI5ZFVjSkJ5aU1yOVBO?=
+ =?utf-8?B?SDk5VWNvN1ZQV3YxOHFic0ZtSWNLMkJGcTRsbzJUOHpoQ0hyLzVVTS9nRldF?=
+ =?utf-8?B?S3pwOXdRYTRHMHNoVFFKdUhxMTJ6SGl1TWJOU3BJaW1tWEJ1cDNnR3NCSkFB?=
+ =?utf-8?B?Kzl0cmVpZU9XeG82RkxIVnRyN1ViTTR3YWUzY2Z6SW9Pd3pPSW9LRk9wSFAx?=
+ =?utf-8?B?bmN2WWY5QXI4QU02dTRwVUhBU1RtQk1qZWVZUG0zNStpUWtkYTlHdFFtNHRM?=
+ =?utf-8?B?WVh6d0syVU44VVBHOTAvWUUyUzVaU0Vlc3pCaTArZnFWVkhtTExCUW1jem43?=
+ =?utf-8?B?OFA5NWtiYVZySG1WUUg0MjljdjhLZkE2NW1qRHFkVzA3NC9jc2pIckU5Yisv?=
+ =?utf-8?B?MXMvM0NlY0hpenY3cTVneHpra05CbklFRDNhaEFIK0RlY0FLQi9wKzdLOGRW?=
+ =?utf-8?B?Y1dRWmticUg1cFovQjFQOTVXSWtLRUsvaVA2Q01aV2JkdDdiV0k2SFV2MGRS?=
+ =?utf-8?B?cFdUTmlkS1IxMjkvUFljakpNTEFwRmZJS0JOSnM2TEZKSjAvUlR5ZENjaGFK?=
+ =?utf-8?B?UndlTVd5Ulc2ODRTVDJEZmNjdUQ0VDZuRjdQM1lHNlBRK3RVcHh2dC8xbzNC?=
+ =?utf-8?B?cFBPYWFGc0JnbVY3UFBXWmQrTDFMK2hKQldETXYyaTlUSmxsTThrd3FwTXNt?=
+ =?utf-8?B?MG9NbTBUS2FSZkpzTmw3OFUyWjRNbTVTaHZJNkZneWw1eUNyYzJ0ZTU0cTZF?=
+ =?utf-8?B?U2Y1dGx6d0JHZGszbVcxejRCcGQwUEtrV2dCZDVZTEE3NmNVSzgyejQrVUE2?=
+ =?utf-8?B?RkpaenRSRzhxaTRxRnBQRjY0dVl4eFU3WEFCS1FhOGM3RFZMRWhTbE0rOTB0?=
+ =?utf-8?B?SHRWZ3NBd0ZONDJrV09Ucm9DcFhZQkFLRlovZmZiWk1CNk5rblN1UHpaM0RN?=
+ =?utf-8?B?RmtML0FHQ3dUcExKRnRWSWMySWxiNkNZRHY5K0JXcGN5c0dIR0toWGRtOTVt?=
+ =?utf-8?B?V1pCeGJpRTBtR3FaNWp6MG5SUlVVQUc0Q1N5MVArS2NaSi9GNHRTdnJMbEMy?=
+ =?utf-8?B?Zks5aUt5UWgyMmxiSzlTbWRhNXQ4cW5ISHgrSi9aTkFyQzE2UURleUMzc0ZT?=
+ =?utf-8?B?QWEyeXdLSkczdkg4NTRQUWpTN2pJbldYSVhsYlZuVDNuZThnSjJqS3h0aUVF?=
+ =?utf-8?B?QU56c0MvKy8xVEZkbzRNMUFWMmJYTW1CU0g2VU96MngwTjRib1JPL2lhblMr?=
+ =?utf-8?B?Sjc5N2R1Y2JudFZLbTUxT2c1ekp2MmNibEtNNjVySzFRd0Q5NXF6SGltdlkx?=
+ =?utf-8?B?c2FQZUR2TzlNTjEvaWk5TGxuUWgrWmZnTXJYcDR4R2ZOcWVnS1pqbm5NZm94?=
+ =?utf-8?B?US9laDFCVXo0L2NsSFRjRlRHZzBFaHhoeFhqOHBrY2NpeVR6anNYWlhSZ1FX?=
+ =?utf-8?B?ZWNtUDNvOCsvZVk0cUZTQy90UkNPcm0xeWpHYnBpQWZwemJLZjJsVkN5RXBL?=
+ =?utf-8?B?UWhuaG5wTmJiMjdKOUczempsRHdJU0xacHJJeHFFbFZXeXpza3IyYVhVUUpR?=
+ =?utf-8?B?M2N5bEZ3c0s0OFNYbVFBMzVBc3d6cmZuNjYrbFVGaXpFemRJU1hETEYxcWll?=
+ =?utf-8?B?Qkd5bTJqK1AyVzVpbmIyMFBHSjVUS3ZSUjlQTTVjZVBNUnhpYmsyV0JRNkps?=
+ =?utf-8?B?dGs3OVRkMk5DZTBkcFJoUGw5WFJUQmRzdlVMSjZOcmtBdUhJekFXcVoxdDZU?=
+ =?utf-8?B?MG5tditYQU9PaHUzblVBVFE4OW5YOW1CRmZ5U25PcVdERVZ5QmhhcS9NVmdy?=
+ =?utf-8?B?RFJlTjhxS2ExTnliVU85L1NodWlQUkw4VThjREZQKzd6Wk5jd0hvdzh1NG1Z?=
+ =?utf-8?B?Zkd2eDlValg2b3hqQUp3Q3JQNkthUk44ZVdHR0x1WjV2WUZ0cU1NaTJrQXJT?=
+ =?utf-8?B?dzF4emtGNC90S2hkc3dpMFBoYWdoUkNoMm5sb2RpMTlZQ0xsWnFucUlYMUZR?=
+ =?utf-8?B?L1FibXc1ajRxTjcveW5aOXI0TlJDcnV1Q1c0bm5FeHBwa2JyUm9oQnRvNGJV?=
+ =?utf-8?B?MGorT3dFZ3FQU2JmdVp1UTBUTDBDYmdNKzFxMkgvdGhZbk1zSFVWcUJkSVBH?=
+ =?utf-8?Q?RRkgzesT10NpUvIEn7lPhs9AfDVt/ltNMocLMdGC8AS+2?=
+X-MS-Exchange-AntiSpam-MessageData-1: vKYgMTPBs+LsYA==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c8fe38f7-07c6-48a1-6923-08ded02b94c7
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB9161.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 06:57:53.4057
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UvnbO+Jit8w/TqFBlbm1GXSfwx/zJ+dpQtviZGyUTmHSxSL296J9H1ynUKnfRAw064o6dnuACO1Mq1aQo5NVTw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4286
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-5.66 / 15.00];
+	WHITELIST_DMARC(-7.00)[nvidia.com:D:+];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-314229-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314227-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_TO(0.00)[kernel.org,nvidia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de];
+	FORGED_SENDER(0.00)[mperttunen@nvidia.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-tegra@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:mperttunen@nvidia.com,m:conor.dooley@microchip.com,m:santoshb@nvidia.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:marek.vasut@mailbox.org,m:tglx@kernel.org,m:linux-pci@vger.kernel.org,m:yoshihiro.shimoda.uh@renesas.com,m:kwilczynski@kernel.org,m:bhelgaas@google.com,m:catalin.marinas@arm.com,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:lpieralisi@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[mperttunen@nvidia.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,mailbox.org:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,nvidia.com:from_mime,vger.kernel.org:from_smtp,msgid.link:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,Nvidia.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4B27B6AD0D8
+X-Rspamd-Queue-Id: A38A16AD120
 
-On Sun, 21 Jun 2026 23:46:25 +0100,
-Marek Vasut <marek.vasut@mailbox.org> wrote:
-> 
-> On 6/21/26 12:59 PM, Thomas Gleixner wrote:
-> > On Fri, Jun 19 2026 at 00:02, Marek Vasut wrote:
-> >> Renesas R-Car S4/V4H/V4M GIC600 integration has address width for AXI
-> >> or APB interface configured to 32 bit, it can therefore access only
-> >> the first 4 GiB of physical address space. This information comes from
-> >> R-Car V4H Interface Specification sheet, there is currently no technical
-> >> update number assigned to this limitation. Further input from hardware
-> >> engineer indicates that this limitation also applies to R-Car S4 and V4M.
-> >> Name the limitation GEN4GICITS1, and add a driver quirk to mitigate this
-> >> limitation.
-> >> 
-> >> The quirk is keyed on the combination of the GIC implementation
-> >> and the platform identification in the device tree.
-> >> 
-> >> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> >> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> > 
-> > This SOB chain is broken.
-> 
-> Broken ? I don't understand , could you please elaborate ?
+Hello everyone,
 
-Either Shimoda-san is the sole author of the change and you are
-posting their work, then the first line of the patch should say:
+this series adds support for Host1x and VIC on Tegra264 SoCs.
+The Host1x side is not very interesting, just adding the usual register
+definitions and other information. One thing of note is that multimedia
+engines apart from VIC have moved away from Host1x on this generation.
 
- From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+On the VIC side, there is a bit more of a change, as the VIC Falcon is
+now RISC-V based. Unlike NVDEC, VIC is still "externally booted", so
+the boot sequence is very similar to before.
 
-with your own SoB immediately following their SoB (see [1]).
+host1x uapi-test[1] has been updated for Tegra264. Necessary headers for 
+constructing VIC jobs have been added to open-gpu-doc[2].
 
-Or this has been co-developed, and both of you should be credited as
-authors. then Shimoda-san's SoB should be preceded by their
-Co-developed-by: tag (see [2]).
+Patches 1 and 2 add new compatible strings to Host1x and VIC device tree
+bindings.
 
- Co-developed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
- Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
- Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Patch 3 fixes the context device device tree parsing code to handle
+iommu-map entries with length more than 1.
 
-This shows exactly who did what, who forwarded whose patch, and forms
-the base of the DCO which is documented at [3].
+Patch 4 adds Tegra264 support to the Host1x driver.
 
-Thanks,
+Patches 5 and 6 add Tegra264 support to the VIC driver.
 
-	M.
+Patch 7 adds Host1x and VIC nodes to the Tegra264 device tree.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst#n449
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst#n503
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst#n396
+Thank you,
+Mikko
 
--- 
-Without deviation from the norm, progress is not possible.
+[1] https://github.com/cyndis/uapi-test
+[2] https://github.com/NVIDIA/open-gpu-doc/blob/master/classes/video/clceb6.h
+    https://github.com/NVIDIA/open-gpu-doc/blob/master/classes/video/vic_ceb6_types.h
+
+---
+Changes in v2:
+- Updated dt-bindings changes to be chip-specific
+- Link to v1: https://patch.msgid.link/20260612-t264-host1x-v1-0-8d934987de67@nvidia.com
+
+---
+Mikko Perttunen (6):
+      dt-bindings: display: tegra: Changes to support Tegra264
+      dt-bindings: display: tegra: Add Tegra264 compatible for VIC
+      gpu: host1x: Correctly parse linear ranges of context devices
+      drm/tegra: falcon: Add support for RISC-V external boot
+      drm/tegra: vic: Add Tegra264 support
+      arm64: tegra: Add Host1x and VIC on Tegra264
+
+Santosh BS (1):
+      gpu: host1x: Add Tegra264 support
+
+ .../display/tegra/nvidia,tegra124-vic.yaml         |   1 +
+ .../display/tegra/nvidia,tegra20-host1x.yaml       |  20 ++-
+ arch/arm64/boot/dts/nvidia/tegra264.dtsi           |  63 +++++++
+ drivers/gpu/drm/tegra/drm.c                        |   1 +
+ drivers/gpu/drm/tegra/falcon.c                     |  66 ++++++--
+ drivers/gpu/drm/tegra/falcon.h                     |  23 +++
+ drivers/gpu/drm/tegra/vic.c                        |  95 ++++++++---
+ drivers/gpu/drm/tegra/vic.h                        |   9 +-
+ drivers/gpu/host1x/Makefile                        |   3 +-
+ drivers/gpu/host1x/context.c                       |  13 +-
+ drivers/gpu/host1x/dev.c                           |  41 +++++
+ drivers/gpu/host1x/hw/cdma_hw.c                    |  12 +-
+ drivers/gpu/host1x/hw/host1x10.c                   |  33 ++++
+ drivers/gpu/host1x/hw/host1x10.h                   |  15 ++
+ drivers/gpu/host1x/hw/host1x10_hardware.h          |  21 +++
+ drivers/gpu/host1x/hw/hw_host1x10_common.h         |   6 +
+ drivers/gpu/host1x/hw/hw_host1x10_hypervisor.h     |  10 ++
+ drivers/gpu/host1x/hw/hw_host1x10_uclass.h         | 181 +++++++++++++++++++++
+ drivers/gpu/host1x/hw/hw_host1x10_vm.h             |  36 ++++
+ 19 files changed, 601 insertions(+), 48 deletions(-)
+---
+base-commit: 4549871118cf616eecdd2d939f78e3b9e1dddc48
+change-id: 20260313-t264-host1x-c97171fdde77
+
 
