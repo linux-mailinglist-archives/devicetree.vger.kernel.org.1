@@ -1,71 +1,64 @@
-Return-Path: <devicetree+bounces-314243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314244-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OK9ONgfjOGrFjgcAu9opvQ
-	(envelope-from <devicetree+bounces-314243-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 09:23:51 +0200
+	id Z6DwE1jkOGr8jgcAu9opvQ
+	(envelope-from <devicetree+bounces-314244-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 09:29:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71D2C6AD366
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 09:23:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B4FE6AD3C6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 09:29:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mKmPMHJi;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314243-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-314243-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hRHqSEK7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314244-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314244-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AFE4C30074B5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 07:23:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 43CAC300E26E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 07:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A638B3624AB;
-	Mon, 22 Jun 2026 07:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0FD4364950;
+	Mon, 22 Jun 2026 07:29:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B9F24BBEB;
-	Mon, 22 Jun 2026 07:23:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9522335BDC7;
+	Mon, 22 Jun 2026 07:29:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782113029; cv=none; b=Dj6+PA/dkX/xY7F7lEbxeLR01rRUQ3hrf3SW0EFBS2O0BWKL7v9rVacNWldMjm+DIJ2xXPDoiOdwKU/tXQ3ymKLpyY2e4JXAI56KaGxj4Q+AuJvC4rm776bXbl4VsiuhX9iTKpId1M/I9T4b7RIqOeVae5+k/BcNK+5X90Z6ank=
+	t=1782113365; cv=none; b=O+i9Z6EerKoW8HepvENETTOjBtUGs2n0KNe3bOSK+yB4pT5UHw8Iuf2U6IVwZbss/gqpJwfUirURoUEzyuhpvVIJH6tiobyx42OL2Mx+f5+1YYA8DYJNrOV1pq8D3TcmikMm0ASk1nLLwOQ4TI1v4ayO8l4EVwJw35wxgI8nFzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782113029; c=relaxed/simple;
-	bh=JlH1wjyeR9hst281iHpZ7KMz8PTyXk4RWziiIm/QnvQ=;
+	s=arc-20240116; t=1782113365; c=relaxed/simple;
+	bh=gMun5/pW2BN5KtElQA6aieOPOsLyAsjsTYCd1xDYDuc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XLlybEjmZBpnszCz5ZmbbXqq/sScPSeSDMq/qq+vfS0UC7PKq2qFMpf/OVVK+xbks/OK9wvWnRAS8MdmDrKICaam1S+0PL8gMDkL0+nV+PQA+UGWT3GxV9w8vkpigzTKSCGXwRStGPw+pZz+/MKiKGtN01DWK1ynThVSsCrkAK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mKmPMHJi; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C9A21F000E9;
-	Mon, 22 Jun 2026 07:23:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hPSNCGFpEZgLS5Xtvwpvj1CsQlyrJSH4EwfOOlAnrEywqjLi9hdr9KNHAe8AJYyPdVUzlQ95DRYzbCqwLABpmaKaZtYSs87p7fh7UyKCPuCxKAPB3QlY4bM92viqjC29ar1yP929oQ3F1iUJCQI4XhJi6cvY7nmhdmnGOkI3TKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hRHqSEK7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF1681F000E9;
+	Mon, 22 Jun 2026 07:29:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782113028;
-	bh=it2a5Lhot1D6sJkUxvzSkxITZ69xCpsKj8U00d2pQtQ=;
+	s=k20260515; t=1782113364;
+	bh=wvRWeZiPgMIADH0MW15ulVfcdstHE6I70smWSPph5gY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=mKmPMHJigyGKwHQvkfxGIk5bMlBXb+Wfu6oIr0wD7ulnBDBKafgQdovQuaa0JgT5Y
-	 Ani8ggNCaWkzN2T/5nsjvABt6uto+kYQpakYVpbjrtrrkeDu7uuFGNNMFtaIQkrHd0
-	 9l1Xpr48XFOuuCnRRve20afdEibkWJlShi6XC8KhTHt578TAj6iULqzJ2Uhjua1AbZ
-	 yg3P+909LS1gUZRS0+9ob2R9TFyrWFqYnctLqX4GTnDcPs2rQui3/cNc2zMug1SAFj
-	 YPIwO6jzfT10cNC9BZTv2sCri/WfAIvNicSogTwwBRyVzNMFOYI/o3dmi5ByCXvr4i
-	 eqOALBAX4VpNw==
-Date: Mon, 22 Jun 2026 09:23:45 +0200
+	b=hRHqSEK7Y4tXt9hQiqv/bqDsVUFQ49G1X/5zgOaRkTiLx/Nc3tl9QEkBgQV7ccrxd
+	 PNrT2VjSwsWXYjXqHolaxaR5I4xE5u3GSJeHsxl13X1CKLmrr+SZVBlwocd5SdLhbD
+	 NbXCkkGAmPvnlSH53QACdDbnmJcVJitGw0dis/+PRddOMGIoxfYs+30pHOveuSAxOJ
+	 +rdO7BkIIEzCdpu0ygfxbf/AunHPZ8RHUYOk6uln5aKZ4j4gvpXnYjmCUrfXfqgmk5
+	 NnUgbcWa7TsBw7B4kKIFGLE3qETxn180os1nlY6FOVKpYGJTesXh01+CEqAVNswG+C
+	 fZejEgQ03ilSA==
+Date: Mon, 22 Jun 2026 09:29:20 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-Cc: linux-mediatek@lists.infradead.org, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, 
-	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>, 
-	Julien Massot <julien.massot@collabora.com>, Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
-	Val Packett <val@packett.cool>, Fabien Parent <parent.f@gmail.com>, 
-	Akari Tsuyukusa <akkun11.open@gmail.com>, Chen Zhong <chen.zhong@mediatek.com>, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v9 3/9] regulator: dt-bindings: Add MediaTek MT6392 PMIC
-Message-ID: <20260622-authentic-numbat-of-development-a98d4f@quoll>
-References: <20260621081634.467858-1-l.scorcia@gmail.com>
- <20260621081634.467858-4-l.scorcia@gmail.com>
+To: Otto =?utf-8?Q?Pfl=C3=BCger?= <otto.pflueger@abscue.de>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
+	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v6 1/3] regulator: dt-bindings: Add Unisoc SC2730 PMIC
+Message-ID: <20260622-mindful-civet-of-refinement-02d3da@quoll>
+References: <20260620-sc2730-regulators-v6-0-bbd2db395231@abscue.de>
+ <20260620-sc2730-regulators-v6-1-bbd2db395231@abscue.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,59 +67,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260621081634.467858-4-l.scorcia@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260620-sc2730-regulators-v6-1-bbd2db395231@abscue.de>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:l.scorcia@gmail.com,m:linux-mediatek@lists.infradead.org,m:dmitry.torokhov@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sen.chu@mediatek.com,m:sean.wang@mediatek.com,m:macpaul.lin@mediatek.com,m:lee@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:linusw@kernel.org,m:julien.massot@collabora.com,m:louisalexis.eyraud@collabora.com,m:val@packett.cool,m:parent.f@gmail.com,m:akkun11.open@gmail.com,m:chen.zhong@mediatek.com,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-gpio@vger.kernel.org,m:lscorcia@gmail.com,m:dmitrytorokhov@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,m:parentf@gmail.com,m:akkun11open@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
+	FORGED_RECIPIENTS(0.00)[m:otto.pflueger@abscue.de,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:orsonzhai@gmail.com,m:baolin.wang@linux.alibaba.com,m:zhang.lyra@gmail.com,m:lee@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:zhanglyra@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-314243-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314244-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.infradead.org,gmail.com,kernel.org,mediatek.com,collabora.com,packett.cool,vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linux.alibaba.com,vger.kernel.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,quoll:mid]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,abscue.de:email,quoll:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 71D2C6AD366
+X-Rspamd-Queue-Id: 8B4FE6AD3C6
 
-On Sun, Jun 21, 2026 at 10:13:28AM +0200, Luca Leonardo Scorcia wrote:
-> Add bindings for the regulators found in the MediaTek MT6392 PMIC,
-> usually found in board designs using the MediaTek MT8516/MT8167 SoCs.
-> 
-> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+On Sat, Jun 20, 2026 at 10:54:00AM +0200, Otto Pfl=C3=BCger wrote:
+> Add bindings for the regulators found in the Spreadtrum/Unisoc SC2730
+> PMIC, used e.g. with the UMS512 and UMS9230 SoCs.
+>=20
+> Signed-off-by: Otto Pfl=C3=BCger <otto.pflueger@abscue.de>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 > ---
->  .../regulator/mediatek,mt6392-regulator.yaml  | 112 ++++++++++++++++++
->  .../regulator/mediatek,mt6392-regulator.h     |  23 ++++
->  2 files changed, 135 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6392-regulator.yaml
->  create mode 100644 include/dt-bindings/regulator/mediatek,mt6392-regulator.h
+>  .../bindings/regulator/sprd,sc2730-regulator.yaml  | 44 ++++++++++++++++=
+++++++
+>  1 file changed, 44 insertions(+)
+>=20
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Sashiko has good point - where is any user of this binding (through
+reference)? Without $ref, this won't match thus is a noop for validation.
 
 Best regards,
 Krzysztof
