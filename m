@@ -1,53 +1,54 @@
-Return-Path: <devicetree+bounces-314270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314271-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kRHpOQnuOGrKkAcAu9opvQ
-	(envelope-from <devicetree+bounces-314270-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:10:49 +0200
+	id CXODMPTsOGqRkAcAu9opvQ
+	(envelope-from <devicetree+bounces-314271-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:06:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E5716AD8B8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:10:49 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BED106AD808
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:06:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=Dn+Loc3D;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314270-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314270-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linux.dev header.s=key1 header.b=aNBGBuS0;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314271-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314271-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=linux.dev;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4C2FA302D5CE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:05:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F39AC300B9C8
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15CCE38E8DB;
-	Mon, 22 Jun 2026 08:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B14C38E8D5;
+	Mon, 22 Jun 2026 08:05:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com [95.215.58.178])
+Received: from out-177.mta1.migadu.com (out-177.mta1.migadu.com [95.215.58.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A29D30674E
-	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 08:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFF738E8CC
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 08:05:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782115538; cv=none; b=tvZ42Vhi5f6uzoPxu7zyC+pFWuNzDnQf8DjQhDbcBRA2vhKhUDhvwVBzeILA8ygN22ERtOkH4Y2hhEu6SRya+jpz1P9BiEgGpqUgVALj0EwZtD68tk4mUl+mmcwdg5w/EKe76DyNiRsqd7mwR5rbZjSPjlD7+80iHtRq1oPCB10=
+	t=1782115541; cv=none; b=Wg3yAriuKHKZKB7z2iKeDj1dHylayXo4ABYfrTVRaUpZqnToassdOWsClMkF0eStowtth8kMWtGQsZr7EVHEPa2O9S76oEbeK6ylcHVIW5YtQdQecZmzuHNG36Yd3LB66Ue5xhg1E3K+LcCRPqwX8PPeCbQjeRt7qmm9nUuquTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782115538; c=relaxed/simple;
-	bh=PhrnjQNoHHekVxD7lhFqNH8ZhNIYm6hdQS1My0ZyNtc=;
+	s=arc-20240116; t=1782115541; c=relaxed/simple;
+	bh=qI7ylPGhf6GPYHa6rJhXo0UFdpIqMb7rB+hO27t6rWw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cG6OjOgmHVLBRoOpuUk6Zv/O4Sa8Zki+thEqZ/xyRXulmt3bvmX/oawncHhKvHzGVbyavZH4jpccj5KMZcLY6dz53SdUsF6w5skuFJmdeFanJ92La5WXeeqrEBCb5T8/E6rvmbjZrEq0iEyQklpnnGpnsYTaG7pSC7laJFISdX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Dn+Loc3D; arc=none smtp.client-ip=95.215.58.178
+	 In-Reply-To:To:Cc; b=edLXnByl1luMT/iRsEAt5BU9+UlS15YdOKM+YaorKeaI+lFildXmKjEYuZ6GArV+r13Gjb5Hckv1YD+H8XEbSsZqnTQSp0oCX9DpoAYM2hPFjjr/GyRD9ME6EI8YlgGqtYXw3KohN45j2QROmM8MON0rZJGey2ZRZdhNFBGwri4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=aNBGBuS0; arc=none smtp.client-ip=95.215.58.177
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1782115533;
+	t=1782115538;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=VQXL+H2+WehLdwmI2owi3GLpWwMtdQ4h0ysYeLBCJ7Q=;
-	b=Dn+Loc3DTv57R6tdh3zjIz9KHtrTL3P40Lnn8HoOtNhC5m9V2WqxsIsHeRIW55xF6g7oJb
-	rzNhflLkumzGwkt+cUVo84lQG5SkWNMb1wHqxUOI2A28dnSMyKohAgNmcyXXeU2rji62vh
-	TOZY1HJs/fHPDc8zFYOJKZqY92CkYd8=
+	bh=NUBImEnq8hbrnJQhJKzk1cL/zkOMmDZcmfYv80HVE44=;
+	b=aNBGBuS0hlzNpMXLUH1KWbj9FIspLxwmOTzlI2PUtPWxY/p1oxMHuK3/dpsk1mqeN9st95
+	/r7x1BiqA3raEEeBaX6vCXunZm5TLpKsb2sQEV5Ta5wNdo/x2vKQKsf9KWascBt/94jZt2
+	QcnBKTkZNkKhnrhQIvQPzrSW7eq4m0Q=
 From: Atish Patra <atish.patra@linux.dev>
-Date: Mon, 22 Jun 2026 01:04:20 -0700
-Subject: [PATCH v7 08/22] RISC-V: Add Sscfg extension CSR definition
+Date: Mon, 22 Jun 2026 01:04:21 -0700
+Subject: [PATCH v7 09/22] RISC-V: Add Ssccfg/Smcdeleg ISA extension
+ definition and parsing
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260622-counter_delegation-v7-8-0ba2fd34614e@meta.com>
+Message-Id: <20260622-counter_delegation-v7-9-0ba2fd34614e@meta.com>
 References: <20260622-counter_delegation-v7-0-0ba2fd34614e@meta.com>
 In-Reply-To: <20260622-counter_delegation-v7-0-0ba2fd34614e@meta.com>
 To: Jiri Olsa <jolsa@kernel.org>, James Clark <james.clark@linaro.org>, 
@@ -75,12 +76,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS(0.00)[m:jolsa@kernel.org,m:james.clark@linaro.org,m:mark.rutland@arm.com,m:will@kernel.org,m:acme@kernel.org,m:robh@kernel.org,m:irogers@google.com,m:krzk+dt@kernel.org,m:anup@brainfault.org,m:pjw@kernel.org,m:atish.patra@linux.dev,m:namhyung@kernel.org,m:devicetree@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:conor@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-314270-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314271-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -99,69 +100,90 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:dkim,linux.dev:from_mime,rivosinc.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,meta.com:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rivosinc.com:email,meta.com:mid,linux.dev:dkim,linux.dev:from_mime,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4E5716AD8B8
+X-Rspamd-Queue-Id: BED106AD808
 
-From: Kaiwen Xue <kaiwenx@rivosinc.com>
+From: Atish Patra <atishp@rivosinc.com>
 
-This adds the scountinhibit CSR definition and S-mode accessible hpmevent
-bits defined by smcdeleg/ssccfg. scountinhibit allows S-mode to start/stop
-counters directly from S-mode without invoking SBI calls to M-mode. It is
-also used to figure out the counters delegated to S-mode by the M-mode as
-well.
+Smcdeleg extension allows the M-mode to delegate selected counters
+to S-mode so that it can access those counters and correpsonding
+hpmevent CSRs without M-mode.
 
-Signed-off-by: Kaiwen Xue <kaiwenx@rivosinc.com>
-Reviewed-by: Clément Léger <cleger@rivosinc.com>
+Ssccfg (‘Ss’ for Privileged architecture and Supervisor-level
+extension, ‘ccfg’ for Counter Configuration) provides access to
+delegated counters and new supervisor-level state.
+
+This patch just enables these definitions and enable parsing.
+
+Signed-off-by: Atish Patra <atishp@rivosinc.com>
 ---
- arch/riscv/include/asm/csr.h | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ arch/riscv/include/asm/hwcap.h |  2 ++
+ arch/riscv/kernel/cpufeature.c | 24 ++++++++++++++++++++++++
+ 2 files changed, 26 insertions(+)
 
-diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-index b4551a6cf7cb..26cb78dee2fd 100644
---- a/arch/riscv/include/asm/csr.h
-+++ b/arch/riscv/include/asm/csr.h
-@@ -241,6 +241,31 @@
- #define SMSTATEEN0_HSENVCFG		(_ULL(1) << SMSTATEEN0_HSENVCFG_SHIFT)
- #define SMSTATEEN0_SSTATEEN0_SHIFT	63
- #define SMSTATEEN0_SSTATEEN0		(_ULL(1) << SMSTATEEN0_SSTATEEN0_SHIFT)
-+/* HPMEVENT bits. These are accessible in S-mode via Smcdeleg/Ssccfg */
-+#ifdef CONFIG_64BIT
-+#define HPMEVENT_OF			(BIT_ULL(63))
-+#define HPMEVENT_MINH			(BIT_ULL(62))
-+#define HPMEVENT_SINH			(BIT_ULL(61))
-+#define HPMEVENT_UINH			(BIT_ULL(60))
-+#define HPMEVENT_VSINH			(BIT_ULL(59))
-+#define HPMEVENT_VUINH			(BIT_ULL(58))
-+#else
-+#define HPMEVENTH_OF			(BIT_ULL(31))
-+#define HPMEVENTH_MINH			(BIT_ULL(30))
-+#define HPMEVENTH_SINH			(BIT_ULL(29))
-+#define HPMEVENTH_UINH			(BIT_ULL(28))
-+#define HPMEVENTH_VSINH			(BIT_ULL(27))
-+#define HPMEVENTH_VUINH			(BIT_ULL(26))
-+
-+#define HPMEVENT_OF			(HPMEVENTH_OF << 32)
-+#define HPMEVENT_MINH			(HPMEVENTH_MINH << 32)
-+#define HPMEVENT_SINH			(HPMEVENTH_SINH << 32)
-+#define HPMEVENT_UINH			(HPMEVENTH_UINH << 32)
-+#define HPMEVENT_VSINH			(HPMEVENTH_VSINH << 32)
-+#define HPMEVENT_VUINH			(HPMEVENTH_VUINH << 32)
-+#endif
-+
-+#define SISELECT_SSCCFG_BASE		0x40
+diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+index 51ad55b9677a..089353b250b0 100644
+--- a/arch/riscv/include/asm/hwcap.h
++++ b/arch/riscv/include/asm/hwcap.h
+@@ -115,6 +115,8 @@
+ #define RISCV_ISA_EXT_SSCSRIND		106
+ #define RISCV_ISA_EXT_SMCSRIND		107
+ #define RISCV_ISA_EXT_SMCNTRPMF		108
++#define RISCV_ISA_EXT_SSCCFG		109
++#define RISCV_ISA_EXT_SMCDELEG		110
  
- /* mseccfg bits */
- #define MSECCFG_PMM			ENVCFG_PMM
-@@ -322,6 +347,7 @@
- #define CSR_SCOUNTEREN		0x106
- #define CSR_SENVCFG		0x10a
- #define CSR_SSTATEEN0		0x10c
-+#define CSR_SCOUNTINHIBIT	0x120
- #define CSR_SSCRATCH		0x140
- #define CSR_SEPC		0x141
- #define CSR_SCAUSE		0x142
+ #define RISCV_ISA_EXT_XLINUXENVCFG	127
+ 
+diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+index 1452521d740a..1fe647e03515 100644
+--- a/arch/riscv/kernel/cpufeature.c
++++ b/arch/riscv/kernel/cpufeature.c
+@@ -330,6 +330,27 @@ static const unsigned int riscv_a_exts[] = {
+ 	RISCV_ISA_EXT_ZKNE,	\
+ 	RISCV_ISA_EXT_ZKNH
+ 
++static int riscv_ext_smcdeleg_validate(const struct riscv_isa_ext_data *data,
++				       const unsigned long *isa_bitmap)
++{
++	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_SSCSRIND) &&
++	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZIHPM) &&
++	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZICNTR))
++		return 0;
++
++	return -EPROBE_DEFER;
++}
++
++static int riscv_ext_ssccfg_validate(const struct riscv_isa_ext_data *data,
++				     const unsigned long *isa_bitmap)
++{
++	if (!riscv_ext_smcdeleg_validate(data, isa_bitmap) &&
++	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_SMCDELEG))
++		return 0;
++
++	return -EPROBE_DEFER;
++}
++
+ static const unsigned int riscv_zk_bundled_exts[] = {
+ 	RISCV_ISA_EXT_ZKN,
+ 	RISCV_ISA_EXT_ZKR,
+@@ -576,12 +597,15 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+ 	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zvksg, riscv_zvksg_bundled_exts, riscv_ext_vector_crypto_validate),
+ 	__RISCV_ISA_EXT_DATA_VALIDATE(zvkt, RISCV_ISA_EXT_ZVKT, riscv_ext_vector_crypto_validate),
+ 	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
++	__RISCV_ISA_EXT_DATA_VALIDATE(smcdeleg, RISCV_ISA_EXT_SMCDELEG,
++				      riscv_ext_smcdeleg_validate),
+ 	__RISCV_ISA_EXT_DATA(smcntrpmf, RISCV_ISA_EXT_SMCNTRPMF),
+ 	__RISCV_ISA_EXT_DATA(smcsrind, RISCV_ISA_EXT_SMCSRIND),
+ 	__RISCV_ISA_EXT_DATA(smmpm, RISCV_ISA_EXT_SMMPM),
+ 	__RISCV_ISA_EXT_SUPERSET(smnpm, RISCV_ISA_EXT_SMNPM, riscv_xlinuxenvcfg_exts),
+ 	__RISCV_ISA_EXT_DATA(smstateen, RISCV_ISA_EXT_SMSTATEEN),
+ 	__RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
++	__RISCV_ISA_EXT_DATA_VALIDATE(ssccfg, RISCV_ISA_EXT_SSCCFG, riscv_ext_ssccfg_validate),
+ 	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
+ 	__RISCV_ISA_EXT_DATA(sscsrind, RISCV_ISA_EXT_SSCSRIND),
+ 	__RISCV_ISA_EXT_SUPERSET(ssnpm, RISCV_ISA_EXT_SSNPM, riscv_xlinuxenvcfg_exts),
 
 -- 
 2.53.0-Meta
