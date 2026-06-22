@@ -1,71 +1,64 @@
-Return-Path: <devicetree+bounces-314442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314443-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qQUjEMs3OWoEowcAu9opvQ
-	(envelope-from <devicetree+bounces-314442-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:25:31 +0200
+	id yZ9wBwU4OWoRowcAu9opvQ
+	(envelope-from <devicetree+bounces-314443-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:26:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C543C6AFD51
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:25:30 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E3E66AFD74
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:26:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=IZP4GKUd;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314442-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314442-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=C2xnT+2O;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314443-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-314443-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3E863300F5E2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 13:25:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 38EE03010623
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 13:26:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6A33A380C;
-	Mon, 22 Jun 2026 13:25:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 271D03AA51F;
+	Mon, 22 Jun 2026 13:26:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF47334E761;
-	Mon, 22 Jun 2026 13:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B59136E468;
+	Mon, 22 Jun 2026 13:26:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782134726; cv=none; b=BEJTc+xNx8hwA7o2ythPDvrp1DpNpPuOWYnaGAQbrlbWcEF3LUmLoxQ55DqWWWe+VrtxQLoPGZq2MnTdOkTEDJU6uF4KvCufyEOYo4UbdsJX0VtvtaiehE6sVmlWccphVzjyydR1+yNCuQDw9gqM1Qx0lUtvsS6dl51WSg2r/4s=
+	t=1782134787; cv=none; b=iPry6/hMYQz1Sp+YyPx6EsVHroav86HUq+4ux9PG6HGLqu8Cf++hGslmSeXAkKrc3ZEmB6XZfol8HCkH87r0GKmqzR38kDlZa+r53Hr5QS2GXirMWRdlErKGYdgAwnSFOddn1/NvZI6WL6mDLIOa3h/TPM3KkIfATGTOjFiuF8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782134726; c=relaxed/simple;
-	bh=rI/W0xY8eXvN7jITzVi2dKXVO639DRgHM0p7RL4HKkI=;
+	s=arc-20240116; t=1782134787; c=relaxed/simple;
+	bh=MT2fqqoSEWX/oZYqrPo31IJHqlA0R77vnQdFJYGcz3Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eXKEr7kQSxRGQ4Np76sz5lF5Hs680cemXahSuZu9wj0ktO5eRaWp0A+dLG2jZW+xALbA+jxiF2RZuBVU481nEn9uSz1bekF4Oil+Ng/E9d/dkpcvA3zl9FzKP+8wQUypFz/xOt50RWZeQEAfRzIQ6RMTYjlp5WL4bAwBw1VMsqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IZP4GKUd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB8BB1F000E9;
-	Mon, 22 Jun 2026 13:25:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uzpGF8X4HcC30wvIJOK4zmjGs+ueVaKKRXciVqWi8ILXzky7Zdrxt0jKkCIIdB3LJTPhrwCsBCl97F0pbP798TUw/e509O/MiW3lDKDp/owN6Jbu1ZMDCDbDCj/bRkUKrmy2+qTuHJ9YOFmj3TVYVOs/GI3tiKwliH1Ky46Y6oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C2xnT+2O; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05B4B1F000E9;
+	Mon, 22 Jun 2026 13:26:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782134725;
-	bh=t1/4BohhGo2EUrrvlpDhy0cqXEeTRxTzPlRg0AoQPr4=;
+	s=k20260515; t=1782134785;
+	bh=mNvAJ4vqqGIcu3OfuNyRNoQmCqh+htmYpa/S7+Nmfug=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=IZP4GKUdpXZ+B97QpIjc0FrjAYvpNtY1aUIlYxeckr2egsgSmZSHCnOfOXlBnjTLR
-	 fpH9nKQblmVzdoytoSbVCqKxLV+cL8Q/wzIViiWMjo58VBhDD2fXztw8EJ9i/pqdbu
-	 BHpBW3C9wxTGlqLlaIUHbOlQdNnrfF+ea7eb1i0ThrjY18vkwAb2PnHm/PpPgE3ftM
-	 GR2/5RpG9LVytCklSbxeGe/tOdbnsaU6Je/kw6xnnoB4A29fGuf33CIqKemCcXz2Ed
-	 /90h+rBYCu8V2XZAUScJF2kLzErXsLJ8FdIUIZa/xXZRkXlx+9OqGorlBsVKOKtVN2
-	 DdkJPUfVoewCQ==
-Date: Mon, 22 Jun 2026 15:25:22 +0200
+	b=C2xnT+2OhYyQ3LJDjcK3ORSu0zpDg6bP/Bs+PRVaBjlTtYIdHGG+zumA2PTzqhLmP
+	 ncTKu3QFBvQwwD0pVNbSEzDAiW2Of0ooNvOSB1/t3ptY7qNkyl4sDX15sx/bDWnzk9
+	 exUx68UYqBkIls0Mk3jnJdzzJyeNmqENch7zx0MrjYElFVoRTvDOhUnKZPTP/Tt1wk
+	 CkCwj4nuCUKdCTz4VWGyjbsrwM3fHVns041A4WGrFbm86McYQSn3F14f21pUjBRWc2
+	 wLDoBnbUcx5XRuvGF8zliECIBtgPOP11EILTAiSl/8EmYLkvU533lFiVSlm/7cdZ74
+	 FYVal2fpjWD4g==
+Date: Mon, 22 Jun 2026 15:26:22 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Sandy Huang <hjc@rock-chips.com>, 
-	Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+To: Patrice Chotard <patrice.chotard@foss.st.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, kernel@collabora.com, 
-	Andy Yan <andyshrk@163.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/9] dt-bindings: display: vop2: Add missing reset
- properties
-Message-ID: <20260622-magic-unbreakable-agouti-85cad0@quoll>
-References: <20260617-dw-hdmi-qp-yuv-v1-0-a665cfd06d7d@collabora.com>
- <20260617-dw-hdmi-qp-yuv-v1-1-a665cfd06d7d@collabora.com>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Christophe Kerello <christophe.kerello@foss.st.com>, linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: spi: st,stm32-qspi: Add power-domains
+ property
+Message-ID: <20260622-gabby-fiery-skink-dab9f7@quoll>
+References: <20260618-add_power_domain_for_qpsi-v1-1-4d7e57bcfb9a@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,7 +67,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260617-dw-hdmi-qp-yuv-v1-1-a665cfd06d7d@collabora.com>
+In-Reply-To: <20260618-add_power_domain_for_qpsi-v1-1-4d7e57bcfb9a@foss.st.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -82,14 +75,14 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314442-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:cristian.ciocaltea@collabora.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:kernel@collabora.com,m:andyshrk@163.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314443-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:patrice.chotard@foss.st.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:christophe.kerello@foss.st.com,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -97,33 +90,32 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_TWELVE(0.00)[27];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,bootlin.com,collabora.com,163.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,foss.st.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C543C6AFD51
+X-Rspamd-Queue-Id: 9E3E66AFD74
 
-On Wed, Jun 17, 2026 at 09:51:54PM +0300, Cristian Ciocaltea wrote:
-> Document the VOP2 resets corresponding to the AXI, AHB and DCLK_VP0..2
-> clocks, which are common to all supported SoCs, plus DCLK_VP3 which is
-> provided only on RK3588.
+On Thu, Jun 18, 2026 at 08:46:35AM +0200, Patrice Chotard wrote:
+> STM32 QSPI may be in a power domain. Allow a single 'power-domains'
+> entry for STM32 QSPI.
 > 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
 > ---
->  .../bindings/display/rockchip/rockchip-vop2.yaml   | 42 ++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
+>  Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
