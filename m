@@ -1,63 +1,69 @@
-Return-Path: <devicetree+bounces-314503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314504-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Cu5qE4RlOWphrgcAu9opvQ
-	(envelope-from <devicetree+bounces-314503-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 18:40:36 +0200
+	id PvOjEYNmOWrlrgcAu9opvQ
+	(envelope-from <devicetree+bounces-314504-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 18:44:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9217E6B1307
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 18:40:35 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A51EE6B13AE
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 18:44:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cNvqn2cN;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314503-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314503-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="aRmwA6d/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314504-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314504-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D4DC93017C08
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 16:40:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4D2023035144
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 16:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60DAF2BCF4C;
-	Mon, 22 Jun 2026 16:40:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05BCE33AD8B;
+	Mon, 22 Jun 2026 16:42:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0A232ED5C;
-	Mon, 22 Jun 2026 16:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117FD32ED5C;
+	Mon, 22 Jun 2026 16:42:21 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782146415; cv=none; b=O2ETiQrRFyUdDvEC/XzPFYBGWghRkFkAO9xPdnak48Z0127bqlzpYdks+ZTraVbwQZRyb/86WfhQt2jNkTaXAOfshsZ/JQtFRA7BcMOHkEGghjNxp7bYg7/3BzCrezFbAk1VkCCv084gFthkVE6bIR/kyB4UwS/Ds1lu2V9Pzsg=
+	t=1782146542; cv=none; b=I7Fsn64MkwQyvkBWRaxOWpDkOuWPLru5N2YmK8HOXDL5taeTbzSk78tN0THKSP8PqyxFRAF+jz7yKVQwjd/iHus5ED6BkEYurmQv2GWY9ImbnxCSjz/RrBQh9n8qXh0BQf5hv3/ZzxiiFkgMdpr7cFAarYrk9qGItO3+jQ4DPdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782146415; c=relaxed/simple;
-	bh=MY/8mbWFHP+8yXJF48rWBM8I7VF6Z27gjQ3kJeAP/h8=;
+	s=arc-20240116; t=1782146542; c=relaxed/simple;
+	bh=YoCLaAIn64P8kxNvU0Nmzi5GrvPkhA8S7hulII5ovus=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hcAEc3KsXqPpvOzV92tzVtG+vpeAjmLfEUyBEwpl/GQtCN1Xa8swh8uExrj4vqsFUhPSGytEsjoBfATJuRLBmtsU3Vm3xSjoxoQk/VpA4t4iOQYT3ljwJVTUsXuA2YfIkFSvMlgH42mAB4HNPBnMZBJJBfZvS5nAfAuyISl3lYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cNvqn2cN; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23F231F000E9;
-	Mon, 22 Jun 2026 16:40:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ohCIfshelM7UWiDPvlfvnAfvcr8qCCl1FLje5yZMgwvAiBsBTXzEKad8Up5FIyIprd1MfZ1PJJ8W9QyLlKGUFqU7dn7JilnQOD8ZtyEtBv8qAA6s3KhnwKcrp6uUikUmjUgXffGRceDg/plL4hDRMIpA8RG+H/1RkhWM92jPXqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aRmwA6d/; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37A271F000E9;
+	Mon, 22 Jun 2026 16:42:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782146413;
-	bh=bvrGjOsOyYiO8Clk6NrgCA8nDYfTVLwfisZMYZVp4a0=;
+	s=k20260515; t=1782146541;
+	bh=Tcl+lBB80ygwJN1TYkxKsg3n+rTrZKuwSDTG4/iIRvE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=cNvqn2cN1OGqKHwHNgAnP5XbvIsvUZFjCA0iQ4+0TcsYHMsLI4FNAmWppNU0sBYqf
-	 saSzjwPKiD5FuKEE8lcpfl/YMkifbITpzJRMvxRb+l5CIZetZwOJTuWeYmSYUuRGJu
-	 kk594NMS1QVUIdeX49LZjn+a9zsU2MoxZDvckfRNlVOKIQjWXsS16eh+Oe5kGcJ3ym
-	 7bAtcs1nDJdRm0WvyFifrABX33YK/YykmKE8jpRFmR2Lxnrp1PO0oWvKKL9jeR2UZl
-	 mIAEV2RUvbC9eczCBrAn+/Ia/8zLtixbl7cbO//4KaK5/uhTpn8yy+yVkdbwAQL9CB
-	 H7QgB0fylZ6wg==
-Date: Mon, 22 Jun 2026 17:40:10 +0100
-From: Conor Dooley <conor@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: Yuanshen Cao <alex.caoys@gmail.com>, linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org, Frank.Li@kernel.org, vkoul@kernel.org,
-	robh@kernel.org, dmaengine@vger.kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v2 4/5] dt-bindings: dma: sun50i-a64-dma: Add
- allwinner,sun60i-a733-dma compatible string
-Message-ID: <20260622-sloppily-macaw-6f45bcd465c0@spud>
-References: <20260621-sun60i-a733-dma-v2-0-340f205891cc@gmail.com>
- <20260621-sun60i-a733-dma-v2-4-340f205891cc@gmail.com>
- <20260621215235.13FF01F000E9@smtp.kernel.org>
+	b=aRmwA6d/sm2UEl+wxeU/6dSYKysT+ezYpQsiDNkP0xRC72MmDqAwUHCprCl54tnHQ
+	 48dxLDUJhGD/f7yeI5yLWDcOeGaEctl6136WSyZOsE77jrKKsdNI5Picd83htPVqxb
+	 V3/OS7opDl/HqCE1/fHoiscbQwd0uJVDEoKXyQAD66Dc8/sRnK+exyNtMkPSI1JMtk
+	 TMeXJD5HwqHa9qitx0m+ZAeKuTqxPwsAuPJa7kUMxU3oEb5/nw8iGJ/aQmY4x9HZNc
+	 cL9cql3HqzKRlutgnmuppxdRuSArS9uaisNw65N+oq2sYZcB/0xVXH0jBH6ovQc5Eb
+	 G1Ob96RwpfH2Q==
+Date: Mon, 22 Jun 2026 17:42:16 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ajay Kumar Nandam <ajay.nandam@oss.qualcomm.com>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: shikra: Add MDSP carveout memory
+ and update APM DAIs memory regions
+Message-ID: <d8c8d731-e3da-4d90-a3a8-21e3bc7b04f5@sirena.org.uk>
+References: <20260618113509.2025881-1-ajay.nandam@oss.qualcomm.com>
+ <20260618113509.2025881-3-ajay.nandam@oss.qualcomm.com>
+ <20260622-defiant-warthog-of-authority-d9d1ba@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,125 +71,81 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WW65d7u0/5myjBch"
+	protocol="application/pgp-signature"; boundary="dd2C0YazAE3J90fn"
 Content-Disposition: inline
-In-Reply-To: <20260621215235.13FF01F000E9@smtp.kernel.org>
+In-Reply-To: <20260622-defiant-warthog-of-authority-d9d1ba@quoll>
+X-Cookie: Now I am depressed ...
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-6.76 / 15.00];
+X-Spamd-Result: default: False [-5.76 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[bounces-314503-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:alex.caoys@gmail.com,m:linux-sunxi@lists.linux.dev,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:vkoul@kernel.org,m:robh@kernel.org,m:dmaengine@vger.kernel.org,m:conor+dt@kernel.org,m:alexcaoys@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,lists.linux.dev,vger.kernel.org,kernel.org];
+	TAGGED_FROM(0.00)[bounces-314504-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:ajay.nandam@oss.qualcomm.com,m:srini@kernel.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,gmail.com,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9217E6B1307
+X-Rspamd-Queue-Id: A51EE6B13AE
 
 
---WW65d7u0/5myjBch
-Content-Type: text/plain; charset=iso-8859-1
+--dd2C0YazAE3J90fn
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jun 21, 2026 at 09:52:34PM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issu=
-e(s) to consider:
->=20
-> Pre-existing issues:
-> - [High] The IRQ handler loop skips trailing DMA channels if the total nu=
-mber of physical channels is not an exact multiple of the channels per regi=
-ster.
-> --
->=20
-> commit 1a8550cc9da2ef939f555f682f0d5ea9606e1907
-> Author: Yuanshen Cao <alex.caoys@gmail.com>
->=20
-> dt-bindings: dma: sun50i-a64-dma: Add allwinner,sun60i-a733-dma compatibl=
-e string
->=20
-> Add `allwinner,sun60i-a733-dma` to the list of compatible strings for the
-> `sun50i-a64-dma` dtbinding documentation.
->=20
-> >     While the A733 DMA controller shares many similarities with the sun=
-50i-a64
-> >     DMA controller, it requires a specific configuration due to differe=
-nces in:
-> >     - Interrupt register layout and mapping.
-> >     - Number of channels per interrupt register.
->=20
-> [Severity: High]
-> This isn't a bug introduced by this patch, but could this truncating
-> integer division skip trailing DMA channels if the total number of physic=
-al
-> channels is not an exact multiple of the channels per register?
+On Mon, Jun 22, 2026 at 03:42:15PM +0200, Krzysztof Kozlowski wrote:
+> On Thu, Jun 18, 2026 at 05:05:09PM +0530, Ajay Kumar Nandam wrote:
 
-What has this got to do with the binding?
+> >  						q6apmdai: dais {
+> >  							compatible = "qcom,q6apm-dais";
+> > -							qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
 
->=20
-> In drivers/dma/sun6i-dma.c:sun6i_dma_interrupt(), the loop condition
-> determines which interrupt registers to poll:
->=20
->     for (i =3D 0; i < sdev->num_pchans / sdev->cfg->num_channels_per_reg;=
- i++) {
->=20
-> For a controller with 12 physical channels (e.g., sun8i_h3_dma_cfg sets
-> nr_max_channels =3D 12) and 8 channels per register, 12 / 8 evaluates to =
-1.
->=20
-> Consequently, the loop only iterates once (for i=3D0), checking interrupts
-> for the first 8 channels and completely ignoring the remaining 4 channels.
-> Any DMA transfers on channels 8-11 will never have their completion
-> interrupts handled, leading to system hangs or driver timeouts.
->=20
-> Could this be updated to use DIV_ROUND_UP() to ensure all applicable
-> interrupt registers are processed?
->=20
-> >     - Support for higher (32G) address widths in LLI parameters.
-> >    =20
-> >     Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
->=20
-> --=20
-> Sashiko AI review =B7 https://sashiko.dev/#/patchset/20260621-sun60i-a733=
--dma-v2-0-340f205891cc@gmail.com?part=3D4
+> There is no such line in next-20260619, which means this is some wrong
+> base.
 
---WW65d7u0/5myjBch
-Content-Type: application/pgp-signature; name=signature.asc
+There's a pile of in flight stuff listed in the cover letter as
+dependencies, likely it's one of those.
+
+--dd2C0YazAE3J90fn
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCajllagAKCRB4tDGHoIJi
-0s5UAP9S1slw41rYwFBisf7bL7QUmOBKaElvp2GJ/DahUbQYVQD8CMfMpVRjCikN
-ViWBxm1pLtH925QwNMOycGoJD+dfngg=
-=FlOT
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmo5ZecACgkQJNaLcl1U
+h9Czswf/UMhrbKAiRZGA8hlnA90KkOPXDbYLtPFzrtlvDBa5I/ZY/r6J8Irs6+4e
+hmZFH9EZsNTg0sw4yw2vl2zlm7BFftrkTKO6Qg0zjtewj7ecaEBPdZfx5hY7S4gw
+Gi76hK5JQ0v1CF2B0hRGNSctC8DYaLdN1wO7ZpClkP23k3gMc14MkaveRHOMzX5i
+nafAQTB7DTTO5Z12mV3lvCYb5cCXpaBIC5kkAQ7HgGJasQShYnkt/+0hsmlEINi6
+XZ1FDsgl4O5iHPlnXZm5Mv6yrLgih3Jt9/SkGsXg3aW9Eai6tGvu+3JOF9F6CnCr
+Tq+Cq5n6mpOpFBOoJSyFW8o7BdJK5w==
+=8Rv1
 -----END PGP SIGNATURE-----
 
---WW65d7u0/5myjBch--
+--dd2C0YazAE3J90fn--
 
