@@ -1,148 +1,131 @@
-Return-Path: <devicetree+bounces-314256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314257-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZssjK2npOGr7jwcAu9opvQ
-	(envelope-from <devicetree+bounces-314256-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 09:51:05 +0200
+	id A579Iw7qOGojkAcAu9opvQ
+	(envelope-from <devicetree+bounces-314257-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 09:53:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9AEA6AD691
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 09:51:04 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD3166AD6DF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 09:53:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Z6TDd2rk;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314256-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314256-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=lunn.ch header.s=20171124 header.b=VLKldH54;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314257-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314257-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=lunn.ch;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 83805300694E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 07:48:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CF2C13017274
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 07:53:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D773371887;
-	Mon, 22 Jun 2026 07:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24E2E38331C;
+	Mon, 22 Jun 2026 07:53:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C60336EA80
-	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 07:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9EB382F23;
+	Mon, 22 Jun 2026 07:53:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782114493; cv=none; b=N0tooRpgf0eM3NPVpEY4lQETLF2phAUJpA463MzUwQrXL3AKDtcVOlaR7tpPGamathYLuVfbXPo2i3V6AgESmTblHFf7d+krwxd9JI9v+Wg7f0+1D6GlSLrWwNShP691GOYfRyOXq7DSyN+xmN+kZVMpnXmGeNVHV0LN0AtvIJw=
+	t=1782114802; cv=none; b=qS3CZBV1i2AJUrNdy2SkEAqqvk0XESiPrVY8hnfwQzjvnNjBRh1UYTZw984WE07sd3xwRjMzGrH/pr70apqH2LvqDygGd0TRu5YvcrX9VAnL0efMIymMLQK3nla+AH2MtGCO2nQBERNe9U09Woh/Atbfxx3y3gOlyAXAC0mydBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782114493; c=relaxed/simple;
-	bh=9j3LweGQa5h448klBDmx+S7b07p40rBJhjy4ltbUj4E=;
+	s=arc-20240116; t=1782114802; c=relaxed/simple;
+	bh=UmA0D3P5yXy8cz+l5TjF7yGYD0zR8vUtdjgx4efnqLY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K3Y1MLUz5uh0RWC2OTIhYsC7YZ+vdN7xK5BwL/YgT0Ddw8dDhB8gGSRuhNYd5Nh+qSQfWYRqujQKoaatSBjoRYFiUnh8w1QyupsS27VxDow7Ye+sutaIQ47wuxlFK8OFZMkYFLaIYO99vAt7Mvd2j+0OFKofewckLYwJOpuOAu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z6TDd2rk; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E7691F000E9;
-	Mon, 22 Jun 2026 07:48:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782114491;
-	bh=hrAoLl/SaWHu76o5C5v1ETpbLKs1INlzXt/u6Ro5aOQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Z6TDd2rklmTh0XIgsy6gh493/mQ/hn8yXXB6CyBCTRVTmltJ9+BGEtezVudZgRGK+
-	 LaguKCz5+ymaFUDHPszsXMahNWtB7cpUWxRar5L6J7zTLoQUrlgZMlwUcddzls5UR+
-	 26DZjAJ4dIRiWyDOvCmFm7hZW3aOrif6ATRxAsM7PjqQEe74TY0tIWOl8+PJLNdZM6
-	 hVm0fFFDZduGNvCUns81BPXDnlvhEs+hH1fViiz5O8n6CL0o7C9szX1pWSkqiqkDer
-	 rlznA0Fmlm9EopJjAOolbOD5alUspqjXcgmB9FGeD1jSw9SFgHLF1Hnm3I9Yz6a5O3
-	 kFYlqxhefc2KA==
-Date: Mon, 22 Jun 2026 09:48:08 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tejas Mutalikdesai <tejasmutalikdesai@gmail.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, sstabellini@kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: xen: Convert to DT schema
-Message-ID: <20260622-tall-moth-of-imagination-cf57fe@quoll>
-References: <20260618151147.9438-1-tejasmutalikdesai@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ga4CF2P2OvNBnXCLJr17ecEhfEhs7F/roghFtRmu9PYMR5hr31szlEs9RNIBSsXjXNroKS7xDjjMmdDgq8D/SmWAufcvYS//3QCAVkTYjvL4YuP9uuX+o4cRUw8qOxs+x2v48CbODJuGUyVNrdpHKOltKCJ8cyiDfbdevZlLmio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=VLKldH54; arc=none smtp.client-ip=156.67.10.101
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=F9jNnyNYGY1NcwfEUerNCQvkVxFVg9qCMrtvtRAXFJA=; b=VLKldH5485znscUBJ7jdzHIRV9
+	n3k6ppQ//qWUe8aHhkIJM1rhZmDzzgK0MH7+bOtdKrEThTsyIk6mgKsY9+Kxhcjjfm4bRqSv38eVJ
+	hT7NMgTUR/IE2lzo9XUFveK5Rt4wa8O0LGiGrr7f19UDell2Z/QiLD9fJjGC7F4MPPgA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wbZSe-008nM7-NQ; Mon, 22 Jun 2026 09:52:52 +0200
+Date: Mon, 22 Jun 2026 09:52:52 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?utf-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	devicetree@vger.kernel.org, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, pabeni@redhat.com,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	rmk+kernel@armlinux.org.uk, pjw@kernel.org, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, pritesh.patel@einfochips.com,
+	weishangjuan@eswincomputing.com, horms@kernel.org, lee@kernel.org
+Subject: Re: Re: [PATCH net-next v8 3/6] net: stmmac: eic7700: make RGMII
+ delay properties optional
+Message-ID: <4eb42700-c46e-4d21-8db5-dbd65f83d57f@lunn.ch>
+References: <20260610012727.848-1-lizhi2@eswincomputing.com>
+ <20260610012937.911-1-lizhi2@eswincomputing.com>
+ <eaa645fc-be06-4a15-8c2f-6e82129c4715@bootlin.com>
+ <30229cfe-b395-4d0f-81ef-eb780ac26599@lunn.ch>
+ <512b77d5.993b.19eed207fc9.Coremail.lizhi2@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260618151147.9438-1-tejasmutalikdesai@gmail.com>
+In-Reply-To: <512b77d5.993b.19eed207fc9.Coremail.lizhi2@eswincomputing.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:tejasmutalikdesai@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sstabellini@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314257-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:lizhi2@eswincomputing.com,m:maxime.chevallier@bootlin.com,m:devicetree@vger.kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:pabeni@redhat.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:rmk+kernel@armlinux.org.uk,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:linux-riscv@lists.infradead.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:ningyu@eswincomputing.com,m:linmin@eswincomputing.com,m:pinkesh.vaghela@einfochips.com,m:pritesh.patel@einfochips.com,m:weishangjuan@eswincomputing.com,m:horms@kernel.org,m:lee@kernel.org,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,m:rmk@armlinux.org.uk,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_FIVE(0.00)[6];
+	FREEMAIL_CC(0.00)[bootlin.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com,eswincomputing.com,einfochips.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-314256-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,quoll:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid,lunn.ch:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E9AEA6AD691
+X-Rspamd-Queue-Id: AD3166AD6DF
 
-On Thu, Jun 18, 2026 at 08:41:46PM +0530, Tejas Mutalikdesai wrote:
-> Convert the Xen ARM device tree binding documentation from the legacy
-> plain-text format (Documentation/devicetree/bindings/arm/xen.txt) to
-> the DT schema format, as required by the modern DT binding process.
+> I'm preparing a v9 of the series. The next revision will address the
+> issues reported by Sashiko review, mainly DT binding schema and DTS
+> warnings.
 > 
-> The "hypervisor" node is named without a unit-address. The name is part
-> of the Xen ABI and is matched verbatim by the kernel using strcmp() in
-> arch/arm/xen/enlighten.c and arch/arm64/kernel/acpi.c, so $nodename uses
-> 'const: hypervisor'. The node has a reg but no unit-address, so dtc emits
+> Before I post v9, I'd like to check whether you have any concerns or
+> suggestions regarding the driver changes.
 
-Honestly, this is a violation of DT spec, chapter 2.2.1.1:
+From what i remember, i think the patch was O.K, but i've looked at
+100s of other patches since then. The commit message sounds like the
+basic design is correct.
 
-"The unit-address must match the first address specified in the reg
-property of the node."
-
-I understand that you did not introduce this, but you do introduce DTC
-warning into bindings, which I think we do not allow. dt_binding_check
-must be warning free.
-
-If I understood correctly this broken behavior was introduced in commit
-9b08aaa3199a4dffca73c7cdec813b483b5b2d3b. Without any explanation why a
-correct method of matching/finding by compatible is changed into
-INCORRECT (nodename is not proper ABI) finding by node name and ignoring
-DT Spec.
-
-That commit message is simply terrible. Tells one thing - move some code
-- but does something completely different - introduces ABI for node
-name! ABI which is heavily discouraged and plain wrong.
-
-I don't have enough of words to express the poor quality of that commit.
-
-That said, IMO, the Xen/driver code should be changed to conform to DT
-spec. If Xen is not interested in conforming to DT spec, then we should
-not have in it upstream Linux kernel. This is that simple. Xen does not
-get exceptions.
-
-I also get that task might be something more than you signed up for,
-thus the binding should stay unconverted till someone wants to fixup
-this broken Xen code.
-
-Best regards,
-Krzysztof
-
+     Andrew
 
