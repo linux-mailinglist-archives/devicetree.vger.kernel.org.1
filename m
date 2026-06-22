@@ -1,212 +1,277 @@
-Return-Path: <devicetree+bounces-314163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314167-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id vKHBDDCdOGovegcAu9opvQ
-	(envelope-from <devicetree+bounces-314163-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 04:25:52 +0200
+	id INUcEuudOGpbegcAu9opvQ
+	(envelope-from <devicetree+bounces-314167-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 04:28:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5EA36AC108
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 04:25:51 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B39846AC14C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 04:28:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314163-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314163-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=lLAnfDsN;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314167-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314167-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 95761301E94A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 02:25:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B95033011C6F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 02:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BCA7313E17;
-	Mon, 22 Jun 2026 02:25:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8D7312826;
+	Mon, 22 Jun 2026 02:28:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022079.outbound.protection.outlook.com [40.107.75.79])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED2630F7FB;
-	Mon, 22 Jun 2026 02:25:32 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782095134; cv=fail; b=ECznBhccnwzIkdNJnG8JPUJvQJGeJY3kYhN5wcBvfU8OafAHeemEacHEg7c1VTAJffAo5+NosQMIct2XJjUn1T/tAwWUPTfz6b5/1UbHPDOlk4CFelb4nB0xH3DJwBtoIpRXf7+K+xg5Kunp5xWB6hG7Xk5G5SGs6j6uaC46vwg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782095134; c=relaxed/simple;
-	bh=SovscZJ204cWytRRc+Lb+H7Besfpmg4cAMBXPeIHy5Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nX871K5mMBLpPa/8MBkrWre5Iu3l6nRIetrUzwnf5lWK6mQJBGMeJ4TnP+WvMYoHLJ1jq/tWk5v8mu/E0GqzLi9jdjKiEtn0dDTwtwuzo8wnSomqh/mSQrjRTo+NuYGC9bdE3JsiDk/DHEjX4ZPCSUJcdRcisZEGf+zPS9gSqm8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.79
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dMbaoLQjAyOueyxNV4gr2T+6XqcPr3YWn/JOJVGjNmvTbNet195b+KIAAzxyAkQp49+z6kzMpzHw0gNpf4eJ+UxlaoTXK3qd/OR60NkT7Db9jXAHVM/5bxC0eWVd7kmOnh62sFcc8cTQN4jNwYZ1dje0cgL917BCYGNlA2qLn2b/dGgBQgl1XB6un+f170BOjK91F99VDRMN2zBOKGPMzQFcWBMN81yfvp4g9y+KQyD8u/T3TbeWRpDL0Zwv7GzPxeWFiOnXNxOa+XcFbKXCUKBzvBAeG0ytMwaw13UnY+N+iPuWNTP1OQqWpD9olUT66eW/ocO3MtJ9rPiMBvwcuA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LTm2XL8a1/DmY7Zsk0M53nZ2+aOtYHrrqgUwUPGcdgo=;
- b=ApYaiNbJTisJsh7XAmaIXgTo4XTTj2hIAsPiVOOpoY/9ps9p2KqkBIat5aP0QVcNJ6sRx5bZqzLrshKDEIfbFG1pBi+whNwRmJYMhM2MU02tHgaxkGSV7zUQJR4JAP2PmANWYpuj63/7K6/rNGgkcmJOcioDZliHIQcYMWCorU5TB/Fk9QyRsMXNlyFmAIt8Lwdhyf70Lli8vVsFv55k++/stmUAAhDsh043PwDH/KL4QZ1EF5EwkfhSdRJMArHmDM3nZ6XzmDCGB2ReCmdYn5sNt96luDNh0lUHweiqvuTLfr9FeuldiPXDsVqsLoQ2wyn/HDhyuQJ/cyDcog4Vng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=baylibre.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SI2PR06CA0010.apcprd06.prod.outlook.com (2603:1096:4:186::6) by
- SE3PR06MB9219.apcprd06.prod.outlook.com (2603:1096:101:332::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.12; Mon, 22 Jun
- 2026 02:25:30 +0000
-Received: from OSA0EPF000000C7.apcprd02.prod.outlook.com
- (2603:1096:4:186:cafe::46) by SI2PR06CA0010.outlook.office365.com
- (2603:1096:4:186::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.13 via Frontend Transport; Mon,
- 22 Jun 2026 02:25:30 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000C7.mail.protection.outlook.com (10.167.240.53) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Mon, 22 Jun 2026 02:25:29 +0000
-Received: from cix (unknown [172.18.64.61])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id D2B9540E7F98;
-	Mon, 22 Jun 2026 10:25:27 +0800 (CST)
-From: joakim.zhang@cixtech.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	bmasney@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	gary.yang@cixtech.com
-Cc: cix-kernel-upstream@cixtech.com,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Joakim Zhang <joakim.zhang@cixtech.com>
-Subject: [PATCH v5 4/4] arm64: dts: cix: sky1: add audss cru
-Date: Mon, 22 Jun 2026 10:25:20 +0800
-Message-ID: <20260622022520.3127103-5-joakim.zhang@cixtech.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260622022520.3127103-1-joakim.zhang@cixtech.com>
-References: <20260622022520.3127103-1-joakim.zhang@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B943126D6
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 02:28:55 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782095337; cv=none; b=MY9vr8/lUCWBOqo0u9WJkY9HSkWJQYF8JSfLpHZ915HO5w4S66STBLZRPaunzOOd4OxctlTZMAsPWr4L+awL0Fu3RJjg+cy/Rl6ugQVV3x6E/RhFKYrpQHZNLyjWcoJKFgrCjfn9RW8Bbxcf///hjo7wZlrX17g5aUqaY7JYhVk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782095337; c=relaxed/simple;
+	bh=ticB4gansQ1BtdOSesuRfnDkU6EYtdEdyO6zWWCdzUE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dOkfiggStbP6qdwVvUJ+WziWseCEAyvvUQTJLyS9EbOoa8Ex9v2GnUOZh6v7//AxPB220wFSWU2693L/f4g28zM7g/baz7uFweMQuNYaQmpg5WeZ0i6D35ahbnIljW8OK2GEz6bgHfiLdVBct9J1XsWNzPE4/PMawkIIpjCLKt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lLAnfDsN; arc=none smtp.client-ip=209.85.210.176
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-845369f60faso2163193b3a.3
+        for <devicetree@vger.kernel.org>; Sun, 21 Jun 2026 19:28:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782095335; x=1782700135; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gu0ES1O9klC+0ewrJmA1SFEVoTTP2kjyfbea71Glr8c=;
+        b=lLAnfDsNbxHGhQkz77sAaWkG9aYQ9PLStUz0x+XXFmWRuLNRsfx140rQoUMUVvj7GL
+         iZ5we5zgHN3P9Xt4K35rvZEVOtPrKnyDUGZbbYFmoa4sX/Q0UBB8XkoQbsYVynCvkOMU
+         pxq6fA3qlNiKC8Cr2d6zzj/nlqwBsY990SZYTvb1E1rsSprLhHDSEBYu5C5VI/ddq2nu
+         2lXD/70j0+ac0RwR6LMUlQH8x6KonPwn7qbE95gcpU2yeFACfTSr3zrFpUsFWZUc4ZMT
+         ZrOEnbrmRHU4qy2BuPo3WkuXXPGy6yf49gP5Nr9SUCanUHfZoBNxFVaRObKhf/kxwrtv
+         hMQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782095335; x=1782700135;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gu0ES1O9klC+0ewrJmA1SFEVoTTP2kjyfbea71Glr8c=;
+        b=JpQI0g8Q3KZ7qhU9oajoHQuJn1UUVZPlBrvZ4ok+OzBTSHKUGxBd7tPOwnQxs6QfZQ
+         ANr3CIDJZCzKm6Ya0w4+W8a5G3YocZ9MGJL1UcRlfkIQLVQmcDlL3gddG27oPmgkJbcl
+         DRUxe2rgbqmXUPn9eTw3mCwR3M2eoYMcKwUnhgGKF/tHEBT8kVZhNZInOw9XcjjzrZkM
+         wpbwfEm4lTBCn7+5zpebNMWta/1E8TAdal41q/dMF0yUFfmv1OAJZRLlOYx8ZNsWavRd
+         sGL0reN+v9s8t+ZSAXrNBSr4Hklyi9GOVCXiPkttxpHV4TzgXpuZ8ABfrzghmetj8sqi
+         dmVg==
+X-Forwarded-Encrypted: i=1; AFNElJ8suBLYacG4eTU5l1NcQTqZPYHv7wrYwAzsi6maXbYq4Oq7bD21wJHcFerFwa32dDvazWwgGrC2yS3L@vger.kernel.org
+X-Gm-Message-State: AOJu0YwM2ac7Ke6jOyxh/QqAPAWuqk89W4flE5lyL3iKNqq2V/AnD7Hd
+	L7Y1BlP6RPY8l88OcDsf8smvyijRs9qJgKs+LylbmjrDg70In7zNzeu4
+X-Gm-Gg: AfdE7ckC+y/wcywAVzGFha/OKq3b8qE3pPS6KpXrsm8MoIVy2W9qxR+cCvAG1OzGhiZ
+	2GsQpZtX1oI1Btt9glHe0niiTb6BhnyQ3fO5a3JMBUWh+kkoUYkb02Z/y2DmUpcYkNf9yyG12aM
+	qTh6279nas2pLDICo8L6PfzQg6TNAFk+xwZmQNWRjRVo1hsxQD6tXIgs/tKwGX/bXyypppfgvf3
+	kazBp+i0xgw5vMHJOEdAv7hupHg3PmOfWmiVzcJ+ep01Ldcmweq426Sibb598mlR2MAv0v/5Wqm
+	E2SLnXeEKOw1nFkLRXHpmZejUbxuZYytx0CU2VSX5ygZGN8M3iTMYmck2NOB7rT3WQRsoNtstf+
+	DArMT41pTuv9CeG9RcQVysQDuAKDWlJZN21HyLJaUt7hPd4rLfFuQKouRe6d/injtAkAyoLPTSS
+	Halawh5/tyCz/5XHD2np9d81pql8KRNPTLt8SN6WAwCvQS2u0TVlnVMrFMVhrqtsYeRkPsKejrZ
+	nWq
+X-Received: by 2002:a05:6a00:4104:b0:845:33e1:9664 with SMTP id d2e1a72fcca58-845508ff81bmr13600889b3a.40.1782095334770;
+        Sun, 21 Jun 2026 19:28:54 -0700 (PDT)
+Received: from [192.168.0.100] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84564ee3dc2sm5573489b3a.58.2026.06.21.19.28.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 21 Jun 2026 19:28:54 -0700 (PDT)
+Message-ID: <98725dea-9bfd-43bb-8bce-e314f821d081@gmail.com>
+Date: Mon, 22 Jun 2026 10:28:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/6] dt-bindings: display: verisilicon, dc: generalize
+ for single-output variants
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: ychuang3@nuvoton.com, schung@nuvoton.com, yclu4@nuvoton.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260615065003.76661-1-a0987203069@gmail.com>
+ <20260615065003.76661-2-a0987203069@gmail.com>
+ <3683c5c617324f5835529617325745ef48fa1943.camel@iscas.ac.cn>
+ <6d3e3121-22f2-4c59-9678-df2f57ff4d31@gmail.com>
+ <b08277e8a9350f6c68c9774b1b6185b1eb71cd1e.camel@iscas.ac.cn>
+Content-Language: en-US
+From: Joey Lu <a0987203069@gmail.com>
+In-Reply-To: <b08277e8a9350f6c68c9774b1b6185b1eb71cd1e.camel@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000C7:EE_|SE3PR06MB9219:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 321c13f2-03cf-461a-cc4d-08ded005873b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|82310400026|1800799024|23010399003|36860700016|56012099006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	Lblxy9gWLSnqf1kBGyIcgWjxzoyKud4H8SS4IGoLw2tHZhJbre6Hco1lxLr4DjPQjaZQf/7D3uWsifWvGLWzbeFw1GTw8HsJUFb6jZDxqhQtgmezSnNbzRdrPjHVcIwiPd18NCr6cAKZqYi2AYiwTXjDvcubTeiutoSqSKwUgJULj6lNiFKQ8IS4zEwlqaYpWULJXoZYXs3t9eB05cTP4mP01QWcmeeY+Z9HMQtAcvfkqwhtFvPQKCdvO/PROhkm6CaDdf76c0dACR8ZSZmgIr4B7ZcvZQAT3KsNdgohmcIuTiFVkDdwWAx3SJc9EmQoZwgyyCyyiYtM9Mf/vs6QWHiw1iqh6nmvUiRmYwEB/nJNWnMSHrUWBmOcQZu3m73aNVAoVOYGHkJae9CgFi5jxSqCb3IQvWGnctqvKojGZsgVlojim24r3zFft7zDh4nBDJb/+1tiPJhU5CglXb+w0QiRwMRkskNT7JzTsZFgYp6trSiTBnQJz2OKm7Ig/HJDfDfQdH9DO5II1bvxK7xzajciTcyxxBZDloRvvwsH5n6F1aGJOsK9kXoBz2pSPL7Bxs6VJprmw/uUy+ezzfbymcBgP2CqqLoLIWGE4lrtf7NMfxHtbwggnF7eGxtfDLxk0HfU6v+eQka3TrmvJ3Nw6Ju1nwdWpzgi+r383wIAZQQSK/6NjcBf9MA87l3PayUK+iTEv1KOe2OmGGrQfjc+FQ==
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(1800799024)(23010399003)(36860700016)(56012099006)(18002099003)(22082099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	Q4H3vk3RgC1bHQeHo8NTMmPR9prt+2C3iRIc0zZOeUrMuK7Mx9dp2Fjbx02bvGG3a5jLF6etOtWk5t3lH7wRjqZdk8N+mFis+KXoQmdgMUlDs30eD8xPcEejlndDOVmG0id7vstw4Et9G63VzMn0kjJfk1xPd1sejAwzqbAlQolJ7C3R6jCGHGvzTMO7J9u6NDbltNfGcJu5adl94GdIs90Kf0dT9efnY7VEywi3/lL/OEf6qmdtsqeooQIZiRZnlj/IhI0K9eRrAZfAZDcZhV9sPtN2OB7IBfhCYePB+8WV7YUmgtbbITy6IcggEr8sr86V1aPNqTvaNlkZ2VhMwC61w4WH6yLE5oOOA5u6UCwGUp+4a8EZ4YQSt4EBrkkbMXmQ3G3LlO3Qrgu+rD/gE6guNeur4nfhMtE2Mna4fe76T1R4mNK3XqDTVjDZxPQv
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 02:25:29.3030
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 321c13f2-03cf-461a-cc4d-08ded005873b
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	OSA0EPF000000C7.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE3PR06MB9219
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314163-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-314167-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:zhengxingda@iscas.ac.cn,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:yclu4@nuvoton.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[cixtech.com];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[iscas.ac.cn,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:gary.yang@cixtech.com,m:cix-kernel-upstream@cixtech.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:joakim.zhang@cixtech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B5EA36AC108
+X-Rspamd-Queue-Id: B39846AC14C
 
-From: Joakim Zhang <joakim.zhang@cixtech.com>
 
-Add the AUDSS CRU device node providing clocks and software resets
-for audio subsystem peripherals.
+On 6/18/2026 6:24 PM, Icenowy Zheng wrote:
+> 在 2026-06-17三的 18:25 +0800，Joey Lu写道：
+>> On 6/15/2026 4:19 PM, Icenowy Zheng wrote:
+>>> 在 2026-06-15一的 14:49 +0800，Joey Lu写道：
+>>>> The existing schema hard-codes the five-clock/three-reset/dual-
+>>>> port
+>>>> topology of the DC8200 IP block, preventing reuse for single-
+>>>> output
+>>>> variants such as the Verisilicon DCUltraLite used in the Nuvoton
+>>>> MA35D1
+>>>> SoC.
+>>>>
+>>>> Rework the schema so that variant-specific constraints are
+>>>> expressed
+>>>> via
+>>>> allOf/if blocks:
+>>>>
+>>>> - Add nuvoton,ma35d1-dcu to the SoC-specific compatible enum.
+>>>> The
+>>>>     generic verisilicon,dc fallback remains the driver-binding
+>>>> string.
+>>>> - Move clock and reset items descriptions into the per-variant
+>>>> allOf/if
+>>>>     blocks; keep only minItems/maxItems at the top level so the
+>>>> base
+>>>> schema
+>>>>     accepts all variants.
+>>>> - Restore full items lists for clock-names and reset-names at the
+>>>> top
+>>>>     level with minItems so the names are validated against the
+>>>> descriptions.
+>>>> - Keep ports in the global required list and keep
+>>>> additionalProperties: false.
+>>>> - Add an allOf/if block for thead,th1520-dc8200: five-clock
+>>>> (core,
+>>>> axi,
+>>>>     ahb, pix0, pix1), three-reset (core, axi, ahb), required
+>>>> resets.
+>>>> - Add an allOf/if block for nuvoton,ma35d1-dcu: two-clock (core,
+>>>> pix0),
+>>>>     one-reset (core), required resets.
+>>>>
+>>>> Signed-off-by: Joey Lu <a0987203069@gmail.com>
+>>>> ---
+>>>>    .../bindings/display/verisilicon,dc.yaml      | 80
+>>>> +++++++++++++++++--
+>>>>    1 file changed, 73 insertions(+), 7 deletions(-)
+>>>>
+>>>> diff --git
+>>>> a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+>>>> b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+>>>> index 9dc35ab973f2..0c41286b8223 100644
+>>>> ---
+>>>> a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+>>>> +++
+>>>> b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+>>>> @@ -17,6 +17,7 @@ properties:
+>>>>        items:
+>>>>          - enum:
+>>>>              - thead,th1520-dc8200
+>>>> +          - nuvoton,ma35d1-dcu
+>>>>          - const: verisilicon,dc # DC IPs have discoverable
+>>>> ID/revision
+>>>> registers
+>>>>    
+>>>>      reg:
+>>>> @@ -26,14 +27,12 @@ properties:
+>>>>        maxItems: 1
+>>>>    
+>>>>      clocks:
+>>>> -    items:
+>>>> -      - description: DC Core clock
+>>>> -      - description: DMA AXI bus clock
+>>>> -      - description: Configuration AHB bus clock
+>>>> -      - description: Pixel clock of output 0
+>>>> -      - description: Pixel clock of output 1
+>>> Clock descriptions should still be in the global part instead of
+>>> the
+>>> per-compatible part.
+>>>
+>>> In the per-compatible part, clock-names should be constraint for
+>>> SoCs.
+>> I will move the `items:` clock descriptions back into the global
+>> `clocks:` property, covering all five possible clocks. In the
+>> per-compatible sections I will remove the description items and only
+>> constrain `clocks: minItems/maxItems` and `clock-names:
+>> minItems/maxItems`; for nuvoton,ma35d1-dcu I will additionally
+>> override
+>> `clock-names: items:` to the two names actually used (core, pix0).
+> Yes, this should be the correct practice, although I wonder whether the
+> minItems and maxItems properties are needed globally (because these two
+> seem to have default implicit value).
+>
+> BTW the MA35D1 manual in fact shows 4 clocks for "DCUltra" in the clock
+> tree, maybe the DT binding needs to be reconsidered?
+>
+> Thanks,
+> Icenowy
+I will drop the global `minItems`/`maxItems` on `clocks` and 
+`clock-names` in v5, as they are redundant with the implicit defaults.
 
-Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
----
- arch/arm64/boot/dts/cix/sky1.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+Regarding the 4-clock question: the TRM clock tree diagram does show 
+four paths reaching DCUltra (display core mux/gate, AXI ACLK, AHB HCLK, 
+and the pixel clock divider). However, the MA35D1 hardware provides only 
+one software-controllable enable bit (SYSCLK0[26]) that gates the core 
+clock together with the AXI and AHB bus clocks through shared ICG cells; 
+there are no separate register bits for the bus clocks alone. Due to 
+this hardware design constraint, the `clk-ma35d1` driver is 
+intentionally designed to register only three DCU-related CCF nodes: 
+`dcu_mux` (ID 61, an internal routing mux), `dcu_gate` (ID 62, the 
+single gate at SYSCLK0 bit 26), and `dcup_div` (ID 63, the pixel divider 
+from VPLL at CLKDIV0[18:16]), with no independent AXI or AHB gate 
+entries for DCU. Since the DT binding can only reference clock handles 
+that the platform clock driver actually provides, the MA35D1 binding 
+will remain at two clock entries: "core" mapped to `DCU_GATE` and "pix0" 
+mapped to `DCUP_DIV`.
 
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-index bb5cfb1f2113..f125f92d64aa 100644
---- a/arch/arm64/boot/dts/cix/sky1.dtsi
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -6,6 +6,10 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/cix,sky1.h>
-+#include <dt-bindings/clock/cix,sky1-audss-clock.h>
-+#include <dt-bindings/reset/cix,sky1-system-control.h>
-+#include <dt-bindings/reset/cix,sky1-s5-system-control.h>
-+#include <dt-bindings/reset/cix,sky1-audss-reset.h>
- #include "sky1-power.h"
- 
- / {
-@@ -488,6 +492,21 @@ mbox_pm2ap: mailbox@65a0080 {
- 			cix,mbox-dir = "rx";
- 		};
- 
-+		audss_cru: clock-controller@7110000 {
-+			compatible = "cix,sky1-audss-cru";
-+			reg = <0x0 0x07110000 0x0 0x10000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			clocks = <&scmi_clk CLK_TREE_AUDIO_CLK0>,
-+				 <&scmi_clk CLK_TREE_AUDIO_CLK2>,
-+				 <&scmi_clk CLK_TREE_AUDIO_CLK4>,
-+				 <&scmi_clk CLK_TREE_AUDIO_CLK5>;
-+			clock-names = "x8k", "x11k", "sys", "48m";
-+			power-domains = <&smc_devpd SKY1_PD_AUDIO>;
-+			resets = <&s5_syscon SKY1_AUDIO_HIFI5_NOC_RESET_N>;
-+			status = "okay";
-+		};
-+
- 		mbox_sfh2ap: mailbox@8090000 {
- 			compatible = "cix,sky1-mbox";
- 			reg = <0x0 0x08090000 0x0 0x10000>;
--- 
-2.50.1
+Thanks.
 
+>
+>>>> +    minItems: 2
+>>>> +    maxItems: 5
+>>>>    
+>>>>      clock-names:
+>>>> +    minItems: 2
+>>>> +    maxItems: 5
+>>>>        items:
+>>>>          - const: core
+>>>>          - const: axi
 
