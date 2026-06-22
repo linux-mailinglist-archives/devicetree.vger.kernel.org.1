@@ -1,194 +1,230 @@
-Return-Path: <devicetree+bounces-314496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314497-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LR7zHjleOWrYrAcAu9opvQ
-	(envelope-from <devicetree+bounces-314496-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 18:09:29 +0200
+	id 8UYvKgNhOWpbrQcAu9opvQ
+	(envelope-from <devicetree+bounces-314497-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 18:21:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC70D6B1008
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 18:09:28 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22E876B1179
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 18:21:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kdnnnXkH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314496-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314496-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="nMnNM/G5";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314497-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314497-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4698B303C01F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 16:05:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2EEB63016816
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 16:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A03523CAE9B;
-	Mon, 22 Jun 2026 16:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 370D42E2DF2;
+	Mon, 22 Jun 2026 16:21:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AFB03B813E
-	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 16:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A6BE1A6825;
+	Mon, 22 Jun 2026 16:21:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782144349; cv=none; b=fM6uFjHnzMP3V6JepPHsQ33i/EQ95WL+FwclWQE76riDAe2LHOR1fQC9vW0kewdRlImW7eSfRkNwsr+Zy2/4z6MI6EakunHs8nPhB1uah6K2NzlqF4mkJ1AAQOV3D119whtRG5uXVqzDiktTIXbaOQJB83QumM+uGXbtGFrCNew=
+	t=1782145281; cv=none; b=bsWl65UCmNB0hcpESB6ndwiEKHJmOoTya6rmRxX4oxeWiEfbeIvC2lO9WggeFAYBVgq2Y15qgQcLXKHhK8zpIbd0n+DfyJayt3seTQzLsKbLHCQ7J7y4DC5t5Ncdd0/wLIwjqJr+UHMEE+J/d2unMuILe/mY/XoC5hmJi2d0WNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782144349; c=relaxed/simple;
-	bh=h0bbc5aPnhglEOk7TzHjFHPZdbRW3wAPz7Tvf0BLcsE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=N795DSrWzrgtQ0o1iKPVio46pqDUvnNUcrLrzec4PDOvr4L51VBBcjZtauTHLQNaxFEpoRkuMge/6wDoMZIvH0xS+AVw6tBt/HvyqR1z4IZ+i0rfmlxSS9ckL7eJfxHSjQYZN9gZi8XXackujY88BiPU9LUIk6xB53VMODd1ENI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kdnnnXkH; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04F5B1F000E9;
-	Mon, 22 Jun 2026 16:05:47 +0000 (UTC)
+	s=arc-20240116; t=1782145281; c=relaxed/simple;
+	bh=4uA4wLu5tdzgPopqKKK/if4FaKtVz23tmLcHGXGAQTY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FS//uAjK9W25E/FvsbdQ96cDZz5RZ4hHJU1Z7LOi2fz1ROasKlqgX8V5C8GJ1vftDPBC1EK3ew4TIweoWEBy0XeB8QUzdOm4RHKQmEqpEJWqaln75mmTHF0eTlFWb7XRLESs437p2zZ0qt4/9+kzrkHFbVk9tbOTdBm53ZUd2SE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMnNM/G5; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6899E1F000E9;
+	Mon, 22 Jun 2026 16:21:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782144348;
-	bh=T/AXlZWD30fYRKIW0uRi/rHVonLT11yPuuM0o6V63b4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=kdnnnXkHKSpeXJm80tGyd9x7H4M8RRD1Gm0mhJSwtzbdQjeB9hWSM9la6XW/R34BT
-	 tF6/KU6soW4fVGKIEOhA1H0UnBmi5kAVf2jIwsf3Ba6+SKDHYukmXbSAQjfz/85waS
-	 1OSndeOR24Vhm/Qncc9B7Dt7L28mci7s8W5DvnPF2K37hPoI5OpC0yvpK754yLRKEs
-	 CU5mUkXfyftOicp9WUFOoiMbDIlQyilOnBHkgAeTZzxrBtN1xRxN+fQ9kWUFYsLkWB
-	 MUS6QlAvl7itDHsUktU++Ic2q4XgByI38zTeNkOVSLDG8RHVef9PTK3+hmokQgBsEk
-	 0cVec6WVGY0xg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v18 01/12] dt-bindings: mmc: renesas,sdhi: Document
- RZ/G3L (r9a08g046) SoC
-Reply-To: sashiko-reviews@lists.linux.dev
-To: Biju <biju.das.au@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, wsa+renesas@sang-engineering.com, devicetree@vger.kernel.org
-In-Reply-To: <20260622155610.184271-2-biju.das.jz@bp.renesas.com>
-References: <20260622155610.184271-1-biju.das.jz@bp.renesas.com>
- <20260622155610.184271-2-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 22 Jun 2026 16:05:47 +0000
-Message-Id: <20260622160548.04F5B1F000E9@smtp.kernel.org>
+	s=k20260515; t=1782145279;
+	bh=3foZlofiwSV9u+L9w1Xvf8xDTdk1R+hAr/YPZh3gqE4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=nMnNM/G573MOAY58W87nzysxH1rBHUfiFYPCK9hpYDypaym7JP3X0jZjpaFGPZ3Ov
+	 af2bRs/41rZTVhJsK/LAAys+CN+6RU4wT/qFIwjDzpkxtI9FdII11Lc7EulL65QUbx
+	 Kyvb2VYLL9vQi1Trlor2tcLjiZ6cSmN2B31hdwRd+JEPLVSYN/1FukW9YljZK5pmak
+	 P2OzuVCfoFnLGgVG5huHzT+D6r4Ft4WOWumtajXXfYwON1XOUjH7k5Bi/z5fsjLGc9
+	 AH2v023WmAByIimty4BtQaPgXPQaRdqmWa0KgM2+1hU3rD7glo2ShgQw+rML7rop7C
+	 mEE7WdYvZMO9A==
+Date: Mon, 22 Jun 2026 17:21:10 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jinseob Kim <kimjinseob88@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko
+ <andy@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan
+ <skhan@linuxfoundation.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC v5 2/6] Documentation: iio: add Open Sensor Fusion
+ driver overview
+Message-ID: <20260622172110.087f875a@jic23-huawei>
+In-Reply-To: <20260616072242.3942-3-kimjinseob88@gmail.com>
+References: <20260616072242.3942-1-kimjinseob88@gmail.com>
+ <20260616072242.3942-3-kimjinseob88@gmail.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:biju.das.au@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:devicetree@vger.kernel.org,m:bijudasau@gmail.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-314496-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:kimjinseob88@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid,renesas.com:email];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-314497-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CC70D6B1008
+X-Rspamd-Queue-Id: 22E876B1179
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Relaxing the global `maxItems` for `resets` and `reset-names` fr=
-om 1 to 3 removes the strict constraint for legacy controllers, allowing th=
-em to incorrectly define up to 3 resets.
---
+On Tue, 16 Jun 2026 16:22:38 +0900
+Jinseob Kim <kimjinseob88@gmail.com> wrote:
 
-commit 5bd955e3c9833c72a7847cd9926c293d95e5c927
-Author: Biju Das <biju.das.jz@bp.renesas.com>
+> Document the Linux IIO mapping for Open Sensor Fusion devices, including
+> capability-driven IIO device registration and the initially supported
+> receive path.
+> 
+> Call out that OSF0 is a wire magic value, while protocol_major and
+> protocol_minor carry protocol compatibility inside frames. The Linux
+> compatible remains the generic Open Sensor Fusion host interface.
+> 
+> Signed-off-by: Jinseob Kim <kimjinseob88@gmail.com>
+Just one small thing inline.
+Otherwise this look good to me.
 
-dt-bindings: mmc: renesas,sdhi: Document RZ/G3L (r9a08g046) SoC
+Thanks,
 
-Document the RZ/G3L (r9a08g046) SDHI controller. The RZ/G3L SDHI
-controller is similar to RZ/G2L but has five clocks (core, clkh,
-cd, aclk, aclkm) and three resets (rst, axim, axis), so update the
-clocks/clock-names maximum to 5 and resets/reset-names maximum to 3.
-It has an internal divider for all modes except HS400, and a 2048-bit
-divider compared to 512 on others.
+Jonathan
 
-> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Do=
-cumentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> @@ -116,7 +117,12 @@ properties:
->      maxItems: 1
-> =20
->    resets:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 3
+> ---
+>  Documentation/iio/index.rst              |  1 +
+>  Documentation/iio/open-sensor-fusion.rst | 71 ++++++++++++++++++++++++
+>  2 files changed, 72 insertions(+)
+>  create mode 100644 Documentation/iio/open-sensor-fusion.rst
+> 
+> diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
+> index ba3e609c6..2713ec5e0 100644
+> --- a/Documentation/iio/index.rst
+> +++ b/Documentation/iio/index.rst
+> @@ -38,4 +38,5 @@ Industrial I/O Kernel Drivers
+>     adxl345
+>     bno055
+>     ep93xx_adc
+> +   open-sensor-fusion
+>     opt4060
+> diff --git a/Documentation/iio/open-sensor-fusion.rst b/Documentation/iio/open-sensor-fusion.rst
+> new file mode 100644
+> index 000000000..cf3bbd761
+> --- /dev/null
+> +++ b/Documentation/iio/open-sensor-fusion.rst
+> @@ -0,0 +1,71 @@
+> +.. SPDX-License-Identifier: GPL-2.0-only
 > +
-> +  reset-names:
-> +    minItems: 1
-> +    maxItems: 3
+> +Open Sensor Fusion
+> +==================
+> +
+> +Open Sensor Fusion is a sensor aggregation hub interface. The Linux IIO driver
+> +receives OSF protocol frames from an attached device, discovers supported sensor
+> +streams through capability reports, and registers matching IIO devices for the
+> +sensor classes supported by the driver.
+> +
+> +This document is a driver-facing overview for the Linux IIO mapping. The full
+> +wire protocol, firmware behavior, and hardware model details belong in the Open
+> +Sensor Fusion project documentation.
+> +
+> +Device Model
+> +------------
+> +
+> +An OSF device sends binary frames from the device to the host. The host driver
+> +uses ``CAPABILITY_REPORT`` messages to discover which sensor streams are
+> +available. Device Tree describes the attached OSF sensor aggregation hub; it does
+> +not enumerate the individual sensors discovered at runtime.
+> +
+> +The currently supported Linux subset exposes:
+> +
+> +* accelerometer samples as ``IIO_ACCEL`` X/Y/Z channels,
+> +* gyroscope samples as ``IIO_ANGL_VEL`` X/Y/Z channels,
+> +* magnetometer samples as ``IIO_MAGN`` X/Y/Z channels, and
+> +* temperature samples as ``IIO_TEMP``.
+> +
+> +Protocol Scope
+> +---------------
+> +
+> +The driver supports OSF protocol major version 0 for the initial IIO receive
+> +path. The current wire magic is ``OSF0``; that string is a wire-format detail and
+> +is not the Linux driver identity. Device Tree keeps the generic
+> +``opensensorfusion,osf`` compatible rather than naming a product such as OSF
+> +GREEN or a wire magic value.
 
-[ ... ]
+I'd remove anything that is documented elsewhere (i.e. the dt-binding)
+and instead use a cross reference to it.  That will reduce the chance of this getting
+out of sync.
 
-> @@ -155,60 +161,101 @@ allOf:
-[ ... ]
-> +        else:
-> +          if:
-> +            properties:
-> +              compatible:
-> +                contains:
-> +                  enum:
-> +                    - renesas,rcar-gen2-sdhi
-> +                    - renesas,rcar-gen3-sdhi
-> +                    - renesas,rcar-gen4-sdhi
-> +          then:
-> +            properties:
-> +              clocks:
-> +                minItems: 1
-> +                maxItems: 3
-> +              clock-names:
-> +                minItems: 1
-> +                uniqueItems: true
-> +                items:
-> +                  - const: core
-> +                  - enum: [ clkh, cd ]
-> +                  - const: cd
-> +          else:
-> +            properties:
-> +              clocks:
-> +                minItems: 1
-> +                maxItems: 2
-> +              clock-names:
-> +                minItems: 1
-> +                items:
-> +                  - const: core
-> +                  - const: cd
+> +
+> +Protocol versioning is carried by the ``protocol_major`` and ``protocol_minor``
+> +fields at fixed offsets in the OSF frame header. The driver currently
+> +supports ``protocol_major`` 0. ``protocol_minor`` changes within major version
+> +0 are intended to remain backward-compatible within the fixed header layout.
+> +Incompatible wire-format changes require a new ``protocol_major``. A future
+> +device that cannot expose compatible version discovery through that fixed
+> +header layout would need a different Device Tree compatible.
+> +
+> +The initial Linux driver handles device-to-host frames for:
+> +
+> +* ``SENSOR_SAMPLE`` buffered and direct-mode sample data,
+> +* ``CAPABILITY_REPORT`` based IIO device registration, and
+> +* ``DEVICE_STATUS`` cache updates.
+> +
+> +Vendor-private message types are ignored. Command transport, calibration
+> +control ABI, fusion output ABI, and runtime capability removal are outside the
+> +initial Linux IIO receive path.
+> +
+> +Timestamps
+> +----------
+> +
+> +OSF frames include a device-side ``timestamp_us`` field. Buffered IIO samples use
+> +an IIO timestamp captured on the host when samples are pushed to IIO buffers.
+> +The initial driver does not correlate the device timestamp with the host IIO
+> +clock.
+> +
+> +Compatibility Notes
+> +-------------------
+> +
+> +The project protocol documentation should define the compatibility rules for
+> +reserved fields, optional flags, and trailing extension data. Until those rules
+> +are finalized, the Linux decoder keeps conservative bounds checks around the
+> +currently supported message layouts.
 
-[Severity: Medium]
-Since the top-level resets and reset-names maxItems were increased to 3, do
-the conditional branches for R-Car Gen2/3/4 and the subsequent fallback bra=
-nch
-need to explicitly constrain resets and reset-names back to maxItems: 1?
-
-Without overriding the top-level relaxation here, it appears legacy control=
-lers
-are now permitted to incorrectly define up to 3 resets.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260622155610.1842=
-71-1-biju.das.jz@bp.renesas.com?part=3D1
 
