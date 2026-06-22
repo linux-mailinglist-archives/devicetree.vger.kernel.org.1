@@ -1,150 +1,217 @@
-Return-Path: <devicetree+bounces-314328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314329-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id U0lkNjP7OGqrkwcAu9opvQ
-	(envelope-from <devicetree+bounces-314328-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 11:06:59 +0200
+	id kgAuC6L8OGr+kwcAu9opvQ
+	(envelope-from <devicetree+bounces-314329-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 11:13:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D3A6AE0C7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 11:06:59 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AAF76AE16C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 11:13:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ideasonboard.com header.s=mail header.b=AFin6F0M;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314328-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314328-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=ideasonboard.com;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314329-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314329-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4DFF0302C346
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 09:05:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D5ACC30D57C8
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 09:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BBD39F188;
-	Mon, 22 Jun 2026 09:04:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC7C43624C2;
+	Mon, 22 Jun 2026 09:05:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A468139A067;
-	Mon, 22 Jun 2026 09:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A1A368968;
+	Mon, 22 Jun 2026 09:05:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782119084; cv=none; b=gTWSluhzQmjCLjNANcstIWX52oOu1VKTQJqo4+NZTNZw4YcmeqjEoPA+FDdhYustNi9swOSoUpEYQhtOEg5BrGC7ByNRHN2wCJLx2Vup7LhAjuGP8yYR9hIlg6EWdTTRGASrtrhleE2hXjmgBU42GqUfYbnurAsRYkr64OUipvU=
+	t=1782119148; cv=none; b=oNHJWpZL1CEUdxil5CJ9qGWWWuESy+3uI3zWM/gFCULtdMq/eerFJj+iLROQubAUwHKOp1H2Ky+pixYNphu7//h4P/RFZkM9fqjfqqqgA5j3r4NrP1uqmwa7MtL4X0pAT7X6SihVSmYoAZ4anHuvMwvCzPKlpmZZWshKzlrqwks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782119084; c=relaxed/simple;
-	bh=+l20Gakqj5SaWpf6y3GLgwyC4XvPjzneg+BqMMRN7Fg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gHn052G4nFMB7ZYAzewgiw7I0PEf46jDNCDEaBMVaeaEevnzJkv2Ufd5sKpXHMO6i5Ew6K0G8Oz2VXSYu98Y++axCq6mgsnzQxNUdIyqrxdPHqhtYOxAbhr9avkiOobG2Hyz6iwECknjP4dDsfFJmSOtmljJYGIZLXC0FJmGyhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=AFin6F0M; arc=none smtp.client-ip=213.167.242.64
-Received: from killaraus.ideasonboard.com (2001-14ba-70f3-e800--a06.rev.dnainternet.fi [IPv6:2001:14ba:70f3:e800::a06])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F40EA9CE;
-	Mon, 22 Jun 2026 11:03:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1782119036;
-	bh=+l20Gakqj5SaWpf6y3GLgwyC4XvPjzneg+BqMMRN7Fg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AFin6F0MOeNIqBrLEkhwIwUz3pfXNmbLIEZFdh+8XVt4d4qaVIFXPQSl/UlVwjjEZ
-	 mL9HqYsYRgMfkeRIFZs8/+xi+gUoHuzjNZH/UQ8iB9HkAn5kjxbg5/38nk+jI6f67K
-	 elVMZgVVemUrCTUeBHzaW4ot0NwHly3BxLPAT/U8=
-Date: Mon, 22 Jun 2026 12:04:32 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-Cc: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
-	"luca.weiss@fairphone.com" <luca.weiss@fairphone.com>,
-	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Hans Verkuil <hverkuil+cisco@kernel.org>,
-	Hans de Goede <johannes.goede@oss.qualcomm.com>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
-	Walter Werner Schneider <contact@schnwalter.eu>,
-	Kate Hsuan <hpa@redhat.com>, Svyatoslav Ryhel <clamor95@gmail.com>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] media: i2c: add imx576 image sensor driver
-Message-ID: <20260622090432.GL3552167@killaraus.ideasonboard.com>
-References: <20260619125439.55311-1-himanshu.bhavani@siliconsignals.io>
- <20260619125439.55311-3-himanshu.bhavani@siliconsignals.io>
- <20260620132749.GE3552167@killaraus.ideasonboard.com>
- <PN0P287MB20199A3EF8F3183176AC1E559AEF2@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1782119148; c=relaxed/simple;
+	bh=CRvHUMaPERdvIZaqTgWAAfdNC4myYpz/V1coR8bSrtg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=a+hqIEbN+6AVSwP1zhDqTU4wXsSnPlLipd2sMVBszlwgxlfnx8/RFW1B0zpWz8tmKJfF8tIyObn5NpUi40871ZiTMRhPlsc/SZOMUJZJ/PKJt0aamVPGw6ZC4pxPL32xbrGop99OYkrIW9XEZkMMecThMXd4La4qEWrKYilCIRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.200.13
+Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
+	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 64BAA200669;
+	Mon, 22 Jun 2026 11:05:34 +0200 (CEST)
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1wbab0-0043kt-13;
+	Mon, 22 Jun 2026 11:05:34 +0200
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1wbab0-000000008iF-0wHT;
+	Mon, 22 Jun 2026 11:05:34 +0200
+Message-ID: <7ee62b699c5cabb00cd7706ea42573da81c5bc84.camel@pengutronix.de>
+Subject: Re: [PATCH v4 2/2] media: i2c: ov5640: Add reset controller support
+ with GPIO fallback
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Frank Li <Frank.li@oss.nxp.com>, robby.cai@oss.nxp.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ Frank.Li@nxp.com, 	s.hauer@pengutronix.de, festevam@gmail.com,
+ sebastian.krzyszkowiak@puri.sm, 	slongerbeam@gmail.com,
+ sakari.ailus@linux.intel.com, mchehab@kernel.org, 
+	kieran.bingham@ideasonboard.com, kernel@pengutronix.de, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Mon, 22 Jun 2026 11:05:34 +0200
+In-Reply-To: <ajVPzoWVBi1vsqRQ@SMW015318>
+References: <20260619100532.3779934-1-robby.cai@oss.nxp.com>
+	 <20260619100532.3779934-3-robby.cai@oss.nxp.com>
+	 <ajVPzoWVBi1vsqRQ@SMW015318>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <PN0P287MB20199A3EF8F3183176AC1E559AEF2@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314328-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:himanshu.bhavani@siliconsignals.io,m:sakari.ailus@linux.intel.com,m:luca.weiss@fairphone.com,m:hardevsinh.palaniya@siliconsignals.io,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:hverkuil+cisco@kernel.org,m:johannes.goede@oss.qualcomm.com,m:vladimir.zapolskiy@linaro.org,m:elgin.perumbilly@siliconsignals.io,m:contact@schnwalter.eu,m:hpa@redhat.com,m:clamor95@gmail.com,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:hverkuil@kernel.org,s:lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[linux.intel.com,fairphone.com,siliconsignals.io,kernel.org,oss.qualcomm.com,linaro.org,schnwalter.eu,redhat.com,gmail.com,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314329-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,puri.sm,linux.intel.com,ideasonboard.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_RECIPIENTS(0.00)[m:Frank.li@oss.nxp.com,m:robby.cai@oss.nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:festevam@gmail.com,m:sebastian.krzyszkowiak@puri.sm,m:slongerbeam@gmail.com,m:sakari.ailus@linux.intel.com,m:mchehab@kernel.org,m:kieran.bingham@ideasonboard.com,m:kernel@pengutronix.de,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ideasonboard.com:dkim,ideasonboard.com:from_mime]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	R_DKIM_NA(0.00)[];
+	REDIRECTOR_URL(0.00)[aka.ms];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,pengutronix.de:mid,pengutronix.de:from_mime,aka.ms:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 46D3A6AE0C7
+X-Rspamd-Queue-Id: 6AAF76AE16C
 
-On Mon, Jun 22, 2026 at 06:02:24AM +0000, Himanshu Bhavani wrote:
-> > On Fri, Jun 19, 2026 at 06:24:32PM +0530, Himanshu Bhavani wrote:
-> >> Add a v4l2 subdevice driver for the Sony imx576 sensor.
-> >>
-> >> The Sony IMX576 image sensor with an active
-> >> array size of 5760 x 4312
-> >>
-> >> The following features are supported:
-> >> - Manual exposure an gain control support
-> >> - vblank/hblank control support
-> >> - Supported resolution: 2880 x 2156 30fps (SRGGB10)
-> >
-> >You've been asked in v1 to make this driver dynamically compute
-> >registers instead of hardcoding modes. Please do so in v3. Nack on v2.
-> 
-> As I mentioned earlier, I don't have the full datasheet yet, so I
-> can't implement this now.
+On Fr, 2026-06-19 at 09:18 -0500, Frank Li wrote:
+> On Fri, Jun 19, 2026 at 06:05:32PM +0800, robby.cai@oss.nxp.com wrote:
+> > [You don't often get email from robby.cai@oss.nxp.com. Learn why this i=
+s important at https://aka.ms/LearnAboutSenderIdentification ]
+> >=20
+> > From: Robby Cai <robby.cai@nxp.com>
+> >=20
+> > Add support for the reset controller framework by acquiring the reset
+> > line using devm_reset_control_get_optional_shared_deasserted(). This
+> > allows the driver to handle reset lines provided by a reset controller,
+> > including shared ones, while avoiding unbalanced deassert counts.
+> >=20
+> > Retain support for legacy reset-gpios as a fallback when no reset
+> > controller is defined. In that case, request the GPIO and keep it in th=
+e
+> > deasserted state as the initial configuration.
+> >=20
+> > This enables the driver to support both reset-controller-backed reset
+> > lines and older GPIO-based descriptions while preserving the existing
+> > power-up sequencing behavior.
+> >=20
+> > Signed-off-by: Robby Cai <robby.cai@nxp.com>
+> > ---
+> >  drivers/media/i2c/ov5640.c | 80 +++++++++++++++++++++++++++++++++-----
+> >  1 file changed, 70 insertions(+), 10 deletions(-)
+> >=20
+> > diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
+> > index 85ecc23b3587..5e6db8aacb11 100644
+> > --- a/drivers/media/i2c/ov5640.c
+> > +++ b/drivers/media/i2c/ov5640.c
+> > @@ -17,6 +17,7 @@
+> >  #include <linux/module.h>
+> >  #include <linux/pm_runtime.h>
+> >  #include <linux/regulator/consumer.h>
+> > +#include <linux/reset.h>
+> >  #include <linux/slab.h>
+> >  #include <linux/types.h>
+> >  #include <media/v4l2-async.h>
+> > @@ -442,6 +443,7 @@ struct ov5640_dev {
+> >         u32 xclk_freq;
+> >=20
+> >         struct regulator_bulk_data supplies[OV5640_NUM_SUPPLIES];
+> > +       struct reset_control *reset;
+> >         struct gpio_desc *reset_gpio;
+> >         struct gpio_desc *pwdn_gpio;
+> >         bool   upside_down;
+> > @@ -2431,6 +2433,48 @@ static int ov5640_restore_mode(struct ov5640_dev=
+ *sensor)
+> >         return ov5640_set_framefmt(sensor, &sensor->fmt);
+> >  }
+> >=20
+> > +static int ov5640_get_reset(struct device *dev, struct ov5640_dev *sen=
+sor)
+> > +{
+> > +       /* use deasserted version to avoid unbalanced deassert counts *=
+/
+> > +       sensor->reset =3D
+> > +           devm_reset_control_get_optional_shared_deasserted(dev, NULL=
+);
+> > +       if (IS_ERR(sensor->reset))
+> > +               return dev_err_probe(dev, PTR_ERR(sensor->reset),
+> > +                                    "Failed to get reset\n");
+> > +       else if (sensor->reset)
+> > +               return 0;
+> > +
+> > +       /*
+> > +        * fallback to legacy reset-gpios
+> > +        * GPIOD_OUT_HIGH ensures deasserted state for ACTIVE_LOW reset
+> > +        */
+> > +       sensor->reset_gpio =3D devm_gpiod_get_optional(dev, "reset",
+> > +                                                    GPIOD_OUT_HIGH);
+> > +       if (IS_ERR(sensor->reset_gpio))
+> > +               return dev_err_probe(dev, PTR_ERR(sensor->reset_gpio),
+> > +                                    "Failed to get reset gpio");
+>=20
+> I think needn't fallback here, NO ABI change, just change to use reset-gp=
+io
+> driver.
 
-You have been given a link to the datasheet in a private reply.
+Please keep the gpiod fallback, the reset-gpio driver may not be
+available on all platforms using ov5640.
 
-> Link to discussion:
-> https://lore.kernel.org/linux-media/PN0P287MB2019AFCBDF0E24BFEF8E0E399A0F2@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM/
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int ov5640_reset_assert(struct ov5640_dev *sensor)
+> > +{
+> > +       if (sensor->reset)
+> > +               return reset_control_assert(sensor->reset);
+>=20
+> needn't check sensor->reset, reset_control_assert() is no ops if NULL.
+>=20
+> > +
+> > +       gpiod_set_value_cansleep(sensor->reset_gpio, 1);
+>=20
+> Needn't fallback, directly replace.
 
--- 
-Regards,
+See above.
 
-Laurent Pinchart
+
+regards
+Philipp
 
