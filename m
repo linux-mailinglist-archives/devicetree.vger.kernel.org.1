@@ -1,234 +1,189 @@
-Return-Path: <devicetree+bounces-314303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314304-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mM3VM5DzOGoHkgcAu9opvQ
-	(envelope-from <devicetree+bounces-314303-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:34:24 +0200
+	id 4nDkBsbyOGrRkQcAu9opvQ
+	(envelope-from <devicetree+bounces-314304-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:31:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 263AC6ADC37
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:34:24 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FC2E6ADB8F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:31:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=MKHkJI6g;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314303-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314303-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=LLWMatNQ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314304-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314304-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8749C302F989
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:30:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7E27B30027B7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 08:31:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7C463911C9;
-	Mon, 22 Jun 2026 08:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791E63914E9;
+	Mon, 22 Jun 2026 08:30:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB7F390222;
-	Mon, 22 Jun 2026 08:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D037538F654
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 08:30:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782117044; cv=none; b=u/oAzHoSUcmXjrGTKnP5gnnO3nWq40dnXQYpCH42UDV5r0EXdECCDMeBlQMw48oOQdpgoJGaLzTqC/ZB9gDDSlGuaP4MQXlWb0OIsdMhR4+z7+apKT35rOzDHtxZ4QHyz1RAcXKHu4Z49s3HfhD5u6520TXWhsc4zWhIVZERYYI=
+	t=1782117057; cv=none; b=d5wclf1NbbVLsG9JnHV2TB2zToDQfqQ3X4g94ux0N9n9InPgB9XCAJ3HyrcaG++WJFRc26RepxvheNxt9Ufd5r+x71OSIgyEr4Rw/5CgoJSAT61u+nTCISni6y7mvaeTZwmE/AtZZPKCcnlTBxC79ZKSlITAVnJHqytnKBLW2BI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782117044; c=relaxed/simple;
-	bh=kwNPkfbdgu3m+/KnixphD7uEBZgttVk0+QXeTx/wgTw=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=P0k+dkW+VX7X8zek1CZSrZTScvma9P3RjG0eogdqmNa43GF0zY5P4B1ozKZmJjgrkl3+XmcyAZItO3IpvubPhpLuVgHI0yqaMDvfKzLHgpxGlllt0flTVFtuYAeQZ45TRWDZbkh5SzOYSYIrIlzas/aL06BtNxNlN35h1YH/luk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MKHkJI6g; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3387F1F000E9;
-	Mon, 22 Jun 2026 08:30:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782117041;
-	bh=bQPdY/4hXPyZmCC6sYKpnZAGDDr/NQJXXf6xJJwskzU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=MKHkJI6gXmSAEo4vEulgaQ3N+dqWRq910rn5oq12t83Vp4gO09xPi900NXwbqJ3Bz
-	 R1Jbf5Jm7+PKkVNuaWT0sEhWbmeFQV49+NRVY/8TT2qCbJYUiOv7QwiDLrq8KPWgLj
-	 ixq2luDV4sfB0WDDYq2JKmNr1M9YJpMPs5DA4H/vG67VpMdzMF+5TuN8wR502jUv7N
-	 nbZYwgY2iHeVsl0anlL6loSJrd1gclXfYtqyX7H3y/fRLMPxnXdhgrsAklNXHpltjb
-	 mnX0xlmRLpkRXg21Hx7wyxMrgT1bFrcACGu5dU34Vp3TWAZdIlR8sSEbH/PAJYWL9B
-	 sBF0Aby8ZwaEA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 16/22] RISC-V: perf: Use config2/vendor table for
- event to counter mapping
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Atish Patra" <atish.patra@linux.dev>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, linux-perf-users@vger.kernel.org
-In-Reply-To: <20260622-counter_delegation-v7-16-0ba2fd34614e@meta.com>
-References: <20260622-counter_delegation-v7-0-0ba2fd34614e@meta.com>
- <20260622-counter_delegation-v7-16-0ba2fd34614e@meta.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 22 Jun 2026 08:30:40 +0000
-Message-Id: <20260622083041.3387F1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782117057; c=relaxed/simple;
+	bh=LvJ0Q2kkj/DeAyfiDOPZ8HPXq2hWb/mg+ljAJ2hfyBY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pPINb9437lA/zywu+NXWTiEq71rhJOjCu/cZEI8Fi93EvTfKM7r1JkP6BQIK0YZmu35qFCOKlHsRINE+QolWsif0pggc0aUHbE3RTBVRa18ZgFkEIA1c2rZeSo8v2hNa0cbEXnmrWccqZRc3GkwXQRn5K79FC2xoUcCnTqmP0jI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LLWMatNQ; arc=none smtp.client-ip=209.85.128.48
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-49249072f03so8970995e9.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 01:30:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782117052; x=1782721852; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wQOCUaRpEixwkQO/jMCRS1iA3oZk4GEUUJDXJCaOQNE=;
+        b=LLWMatNQVGpNnfFndOivciD4YQoF+3tfhOHm+27AO0Q5xE2iTDC/JBPU12XqSj3dw8
+         JcJrB6GmKoMPiIVm7Sz1Cd56g/h9T64v7+yFoyXDOOhG7h32WQhIDdbGAF6pHS44cUxH
+         bK7QWXxYwkIqcVAR8UmptWWrczViDXoKYF0MCTu9VnK8TxvigqkWpiwchhw8US9FFrDJ
+         OiFmVS/um7swr8npM5iXE8LjJ/MsBjGaQmjZGClbnXlyTfPUX191s//ss/wb38QWoRvr
+         K3L0A0L7JsMcq+/pth4/vj+I1c9MmBY+dRQZU7bZUjPNTJJ9ArfIhvMYxwk3fB3DCvYq
+         Ybkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782117052; x=1782721852;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wQOCUaRpEixwkQO/jMCRS1iA3oZk4GEUUJDXJCaOQNE=;
+        b=fqiIBVoBD7FtM1ojbgUKDMBGembaf1Xnnw7tdrqIc4FtPqBXM/XgHt3HkQbyPAABw/
+         VmCvVPm1EDJON9nJnipb0r7UeSKzIh2UkyywLO0XB/vgJNv6pJIXSnYo7OZx0KQIqeCN
+         d7ivetOwn9gFZdSMcSAeVqrG+e3HUbYyPyZCn9tr87O/j/bZUheMFrUWCnlgbT9P2ec7
+         ZoLoOSyoUsirOf3XCLusW2UVkz5QMYn/vYPH8ZBvRf8B9reVkJ9/MgAqr9hp1W3Dox/E
+         gZhpjcj2NLYnh1patZs2oI/QOTqzeO8RX0/Zl0CrXbqUrHV0+JJ8g2cMl+0ytkyBdC1w
+         R7bg==
+X-Forwarded-Encrypted: i=1; AFNElJ9lLx0pZPU6fr7EN9J/ZJgi9k+MBVF6p2ZvJi9DwGA/VYcGLjajFtPwD4e92HnfqP3IgOE99l+/qeTl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZGlW+yqaJkwLeqahclUJPvqV/nRb19PIap0nx/78FDqD7mhkB
+	8+CK4op4b9hOy4dMRghDquEp3JnrJ3dM/72h/ABVmweCmK/rA+In99JB
+X-Gm-Gg: AfdE7ck6fqSWl4I+DW8jDmdm3V76plwNu9yLRQqeylZ7weHIx8aydRIH9zVpmI9b/RW
+	LiRwsqxhuBMkYPDa8WTK7Zc79a2n0YkT+A2y6tkbrYcuE9PZOOBFcwT9twxF9kDsqadFDoIFn7c
+	xRFSCT6wwvOUu3Nbk+GHp5pC+JYwd9fAN2A7XMpGeyGRjdkWNbHEXKe8pXHTRNgdnrI8lUlETU3
+	FP8qRvRuPrdbo97Aw3RRJivImHRujIYLeLIfXnYT0ZLYvWJbsm6RNxH3vK5ZFvzEW3QC4DIrMN3
+	rkqdkBq1QPAIWrpzbPiq3KvQ0enCLb1HG/qkGBtpeWmjOsDj+mgQ3bmIImjgwBVXJcOKv9+Fi0Y
+	Derqkph05SkiBo3K7/clQZqEgJ1arVmPSVb6+64dN0n0Rvqp2XGh+n5HwBiubidK7G5Hjeh0eHj
+	NNSa4RpvyqguDFhtw48lxOfXM=
+X-Received: by 2002:a05:600c:468c:b0:492:3c7e:57aa with SMTP id 5b1f17b1804b1-4923eeb494emr220979255e9.0.1782117051481;
+        Mon, 22 Jun 2026 01:30:51 -0700 (PDT)
+Received: from taln60.nuvoton.co.il ([212.199.177.18])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-492494497ffsm200809105e9.11.2026.06.22.01.30.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jun 2026 01:30:51 -0700 (PDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: andrew@codeconstruct.com.au,
+	wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: openbmc@lists.ozlabs.org,
+	linux-watchdog@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	avifishman70@gmail.com,
+	tmaimon77@gmail.com,
+	tali.perry1@gmail.com,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com,
+	corbet@lwn.net,
+	skhan@linuxfoundation.org,
+	joel@jms.id.au
+Subject: [PATCH v2 0/3] watchdog: npcm: Add reset status detection support
+Date: Mon, 22 Jun 2026 11:30:43 +0300
+Message-Id: <20260622083046.3189603-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314303-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[rivosinc.com:email,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:atish.patra@linux.dev,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lists.ozlabs.org,vger.kernel.org,gmail.com,google.com,lwn.net,linuxfoundation.org,jms.id.au];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314304-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:wim@linux-watchdog.org,m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:openbmc@lists.ozlabs.org,m:linux-watchdog@vger.kernel.org,m:linux-doc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tmaimon77@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:joel@jms.id.au,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,ozlabs.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 263AC6ADC37
+X-Rspamd-Queue-Id: 7FC2E6ADB8F
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Generic legacy hardware events (e.g. `cycles`) on the host cannot =
-use fixed counters, contradicting the commit message and breaking standard =
-profiling APIs.
-- [High] Arbitrary events can be forced to silently count CPU cycles or ins=
-tructions by setting `config2`, leading to silent data corruption.
---
+This series documents and implements reset indication reporting for the=0D
+NPCM watchdog driver on NPCM7xx and NPCM8xx systems, and documents the=0D
+optional GCR syscon property used by that support.=0D
+=0D
+Patch 1 updates the watchdog binding to allow the optional=0D
+``nuvoton,sysgcr`` property used for reset-cause reporting.=0D
+Patch 2 adds watchdog documentation that describes the bootstatus=0D
+mapping.=0D
+Patch 3 reads the SoC reset indication bits and maps them into the=0D
+existing watchdog bootstatus flags for NPCM750 and NPCM845, while=0D
+leaving WPCM450 unchanged.=0D
+=0D
+Addressed comments from:=0D
+- Krzysztof Kozlowski: https://patchwork.ozlabs.org/project/openbmc/patch/2=
+0260210133843.1078463-2-tmaimon77@gmail.com/=0D
+- Guenter Roeck: https://patchwork.ozlabs.org/project/openbmc/patch/2026021=
+0133843.1078463-3-tmaimon77@gmail.com/=0D
+=0D
+Changes since version 1:=0D
+- Modify reset detection handle in the watchodg.=0D
+- reword patch 1 to use the GCR syscon-property wording from the=0D
+  applied NPCM reset binding update and drop the optional property from=0D
+  the binding example.=0D
+- reword the patch subjects and commit message bodies to match current=0D
+  kernel dt-bindings, docs, and watchdog style.
 
-commit d9b0aaf40875147c7d5a4d9a313b2c33198f256f
-Author: Atish Patra <atishp@rivosinc.com>
+Tomer Maimon (3):
+  dt-bindings: watchdog: npcm: add GCR syscon property
+  docs: watchdog: npcm: Add reset status description
+  watchdog: npcm: add bootstatus support
 
-RISC-V: perf: Use config2/vendor table for event to counter mapping
-
-This commit allows platform vendors to define custom mappings between
-events and hpmcounters by passing counter restrictions from the json file
-to drivers via the config2 parameter. It also aims to let vendors specify
-if fixed cycle and instruction counters should be used for legacy events.
-
-> diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.c
-> index 4f3a30143db11..1c846cdc96cf4 100644
-> --- a/drivers/perf/riscv_pmu_sbi.c
-> +++ b/drivers/perf/riscv_pmu_sbi.c
-
-[ ... ]
-
-> @@ -1501,24 +1503,85 @@ static int rvpmu_deleg_find_ctrs(void)
->  	return num_hw_ctr;
->  }
-> =20
-> +/*
-> + * The json file must correctly specify counter 0 or counter 2 is availa=
-ble
-> + * in the counter lists for cycle/instret events. Otherwise, the drivers=
- have
-> + * no way to figure out if a fixed counter must be used and pick a progr=
-ammable
-> + * counter if available.
-> + */
->  static int get_deleg_fixed_hw_idx(struct cpu_hw_events *cpuc, struct per=
-f_event *event)
->  {
-> -	return -EINVAL;
-> +	bool guest_events =3D event->attr.config1 & RISCV_PMU_CONFIG1_GUEST_EVE=
-NTS;
-> +	int idx;
-> +
-> +	/* event_base is 0 on the delegation path; match via the original perf =
-attrs. */
-> +	if (guest_events) {
-> +		if (event->attr.type !=3D PERF_TYPE_HARDWARE)
-> +			return -EINVAL;
-> +		if (event->attr.config =3D=3D PERF_COUNT_HW_CPU_CYCLES)
-> +			idx =3D 0; /* CY counter */
-> +		else if (event->attr.config =3D=3D PERF_COUNT_HW_INSTRUCTIONS)
-> +			idx =3D 2; /* IR counter */
-> +		else
-> +			return -EINVAL;
-> +	} else if (event->attr.config2 & RISCV_PMU_CYCLE_FIXED_CTR_MASK) {
-> +		idx =3D 0; /* CY counter */
-> +	} else if (event->attr.config2 & RISCV_PMU_INSTRUCTION_FIXED_CTR_MASK) {
-> +		idx =3D 2; /* IR counter */
-> +	} else {
-
-[Severity: High]
-Here config2 is evaluated without validating that the event is actually a
-cycle/instruction event, or at least a PERF_TYPE_RAW event.
-
-Since counterid_mask exposes config2:0-31 to userspace, what happens if a
-user passes counterid_mask=3D1 for ANY event type, such as PERF_TYPE_HW_CAC=
-HE?
-
-Will the kernel see bit 0 set, map the event to the fixed cycle counter
-(idx 0), and silently return CPU cycle counts instead of rejecting the
-invalid counter constraint?
-
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Take the fixed counter only if delegated and free, else fall back. */
-> +	if (!(cmask & BIT(idx)) || test_bit(idx, cpuc->used_hw_ctrs))
-> +		return -EINVAL;
-> +
-> +	return idx;
->  }
-> =20
->  static int get_deleg_next_hpm_hw_idx(struct cpu_hw_events *cpuc, struct =
-perf_event *event)
->  {
-> -	unsigned long hw_ctr_mask =3D 0;
-> +	u32 hw_ctr_mask =3D 0, temp_mask =3D 0;
-> +	u32 type =3D event->attr.type;
-> +	u64 config =3D event->attr.config;
-> +	int ret;
-> =20
-> -	/*
-> -	 * TODO: Treat every hpmcounter can monitor every event for now.
-> -	 * The event to counter mapping should come from the json file.
-> -	 * The mapping should also tell if sampling is supported or not.
-> -	 */
-> +	/* Select only available hpmcounters */
-> +	hw_ctr_mask =3D cmask & (~0x7) & ~(cpuc->used_hw_ctrs[0]);
-
-[Severity: High]
-For host events, get_deleg_fixed_hw_idx() above allocates fixed counters
-solely based on event->attr.config2. If a standard tool requests
-PERF_TYPE_HARDWARE (like generic cycles) where config2=3D0, won't it fall
-back here?
-
-Then in get_deleg_next_hpm_hw_idx(), the fixed counters are explicitly
-masked out (~0x7). If a vendor correctly maps cycles exclusively to the
-fixed counter in the driver table, the fallback path results in a mask
-of 0, returning -EINVAL.
-
-Does this prevent generic legacy hardware events from using fixed
-counters on the host, contrary to the commit message?
-
-> +
-> +	switch (type) {
-
-[ ... ]
+ .../watchdog/nuvoton,npcm750-wdt.yaml         |   6 +
+ Documentation/watchdog/index.rst              |   1 +
+ Documentation/watchdog/npcm_wdt.rst           |  70 +++++++
+ drivers/watchdog/npcm_wdt.c                   | 197 +++++++++++++++++-
+ 4 files changed, 272 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/watchdog/npcm_wdt.rst
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260622-counter_de=
-legation-v7-0-0ba2fd34614e@meta.com?part=3D16
+2.34.1
+
 
