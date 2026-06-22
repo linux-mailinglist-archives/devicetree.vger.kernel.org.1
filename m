@@ -1,197 +1,144 @@
-Return-Path: <devicetree+bounces-314381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314378-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id amujHc4QOWr1mAcAu9opvQ
-	(envelope-from <devicetree+bounces-314381-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:39:10 +0200
+	id C6CNIPAPOWrBmAcAu9opvQ
+	(envelope-from <devicetree+bounces-314378-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:35:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9607A6AEC2E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:39:09 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7370F6AEBC4
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:35:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314381-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314381-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314378-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314378-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AC5853012CC2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:38:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 660423000B80
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:35:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF1F36A03A;
-	Mon, 22 Jun 2026 10:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC8D367B6F;
+	Mon, 22 Jun 2026 10:35:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF453655DD
-	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 10:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29362270EC3
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 10:35:21 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782124734; cv=none; b=U5KpR7bnioSqyu6vu6TT2a6iTCKfrq192vDp9Sz25+K873FFWXDgiUDwwWN4Afvd3vYC474xExaOjET1voewpsozWaTobM8EZTODDNAG4sU8q1JRhbftzCWOTGYSCbeajm3eRBdIKkY1zNS95kUgMiKxJuw5LNzy13aFmPKLkSM=
+	t=1782124522; cv=none; b=qO8KcRO3jpJVyV8M+2iRe6EQcz5vHmobr81FnsejZ1Igyam4heWM8FdQKzVzc8GNvIgaF2Mx3nqFNIWNEqs3o5oWz695BEyykeH6XxBoPpsDD7NL+cw9nxZNteVq6CT0QwIx0j71R82pWcTO90cTulJbddaU1IAZUmwIo0tISpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782124734; c=relaxed/simple;
-	bh=CTQXMUV+/UBVnNjzgtkJO88wjy6FOPIwK3y5DrpmBBk=;
+	s=arc-20240116; t=1782124522; c=relaxed/simple;
+	bh=oMPdsikacqtzYTFY2QxLAR1WVtrEJqjXLr9DFz6PV3o=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JnAMrKg4o5u/CNSvbuDdqR0IkWGuo2icl8gu6s81ZvbbadXagvRJsJDhkR0wdJLgEt3L0M6kMLVCtpj1nYqzWthG828Limm2Oezs9zIH280+fsoHrbQKP6tJJSP+WwdrR7NHxQB4lXEl6eXvOimfTFDOjpI1pN/TExDiiwLFANY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.215.169
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-c88e3e82d81so1841057a12.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 03:38:52 -0700 (PDT)
+	 To:Cc:Content-Type; b=eD8OF2DrwgKrOkf7clzY+1CSXTj3O0LiQLF4/fWYsfgpVkVcpUJImJ9UdU0ZvkAcnlNms9USNWHriZ3pjugP6Yn5u/qL6qD9Rf9JG0qKXltyPH8gV7w1QXVBksq9JM5NNU7Ly17Cm2hVBt2t5McewoskFfkUOVoWUdyz3miytoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-59e8ededf4dso3065242e0c.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 03:35:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782124732; x=1782729532;
+        d=1e100.net; s=20251104; t=1782124520; x=1782729320;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6sEwup8vrGtzg0eQ+zIA6Kd2oTy+XBY9jxS2BNcFzC0=;
-        b=IJ5e3YNufldR6jrg+OJhM0nN0wim7BVlz1VfbRtYrQxMC6yCp+8JnL4ffIGczTyqHu
-         ogQei1TuRPz08qp/47t6Ty0AKtqMvaEwsBfPMUww145w7jAG7Dkp4dNrQu4n8h2qMI1o
-         CJuIV+yARjDs7uUsXrVI0dM9D84lWjIL3TFX820HoG9TB06aw5DFpdI2xSkvo61+ZKdx
-         ++slcIQRuSMKkTYxC4z7KKPRCsIAHfWNjO6Rt4bUGYsVg85cSVIeb1MJFQrLzuaGrWXG
-         cQdOIgQqIcoolKeFXaZdqkkI9pdqfDnbWb0FadS8Rrwo5KvLiShikCWBMQzbr/aq/nNv
-         aw4Q==
-X-Forwarded-Encrypted: i=1; AFNElJ/+9bYBZmLC4uhh2h3yn2ZHR5ciHpzLhO2hCEwe35NIHqlUixr66tIlkNgcedt2yoURAyVR2vZ6wEdk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9netBDh8CzCF0riDxY4C1kOrHhmgwl4f3u9xs38vz3e2eZwgy
-	2+K3QC12E2pausHuYCtleQBS1z2rbWZvIIL9wQnsihK72PC6r+T9uuLl7N8VN+HC
-X-Gm-Gg: AfdE7ck+tTCGjfz+1mH6ti60pCHKYBgz0XRJ+OTC6WcbufLbc1c1nd70IYOtqQQJf9h
-	CsmnFZ7nRihYjy1iPk7UbLpzN7Vu4a8a5o+3K+T1dhh7Fg6ATPWOZ5nF2vepXBLbbe5ZKliicIR
-	A644YBNVFIpszd/ft/NPYzbEvdZPmK9VCIPzf5ortHCoSfC+QCfxu3NocIC2a8W/hIXPyRWrN6u
-	EXIhpsCjyUDstx2brHbdI1CBNW215Y3/UuWC0N+CoiDIab+LLAnMrO9MSGAkA2hwT931sidP6fA
-	OA06SmCPQsBTuFOX+BFNjs9xGR+hFbOHtuZ++GLfeUT88aacb6s1xufFkjHTl8aHcGRTr6N7V0F
-	Iks5RPhozoGK/35peC4rNXS1VPiOCe+PWGxhp8YbUT3/3ccCLZSdLoPAghKms0msVcaSzGUOndH
-	sKzphn8pbWC4Yb5JPr5qzMNq0WleuMLqkX8hBfBDRClbviHCn0
-X-Received: by 2002:a05:6a20:b7aa:b0:3b4:6af6:faa3 with SMTP id adf61e73a8af0-3bb3354177fmr15160436637.10.1782124732195;
-        Mon, 22 Jun 2026 03:38:52 -0700 (PDT)
-Received: from mail-dl1-f43.google.com (mail-dl1-f43.google.com. [74.125.82.43])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c8bc563c6e1sm6583949a12.15.2026.06.22.03.38.51
+        bh=CbT9MfaCjQT3Ym3J/HtdCmcThbQYXtUBVcRrZ9h8JX8=;
+        b=g5/ffmPY/P5wFCzfZ4m9s+Mv7i6GklUwIe5eEs1YR7aCp2PHjer/6kYORpLTrdrYH3
+         MdI7K8eFIlBBvz65raile1lzRzKNsk26feheytWHjhGTuapk1qUf4OGcMpdwJLV7FOby
+         ZLEjp5XP74+D1HL/8sFmICzs/65Xs0RsRNbXYAJF8Q9Z5K9zVr6zkmlMp+rK00szwViF
+         iIFcZ4uNeFJjNaBpTYzPcgvi3ibnrJ7WabAUpIvANMSR6RSLH9eeShIHb6+QxBdjtCqV
+         dOz8m1cG6aU0nhgI8DI2NqtztE6r5etVi8TVBSfdJHe5/UqeRy2y+LnnpWX2+yQmZYqn
+         YwMg==
+X-Forwarded-Encrypted: i=1; AFNElJ8m9oEVETRuPf8SS8JG+DdfhEQvqbBd9tLOXicuJYV6tAjOrj83pjsm1Weu9powY5kNV9nDfZcTldOy@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUJIiQUSRb+UdvFLiCbDaDIcdiBylNVPET8dD0ak9q/f9/Sg0e
+	9tsSi82E7d+UCdvkJEFAb8CU82Wh/Y41loCEwxHKGhhzRJBtT2cBNV42ER+dVwCd
+X-Gm-Gg: AfdE7cnF+icyGWUN6gbGx+JVgvpaG2P9GAVyA4KDAVR4/dli7FVdUO6cWst1tQ+vGiT
+	ApXRJFlj/K0PTGEt2l6cLA2oDMQgIhNnsDpxKKiHSdDH5ApMYbabDn9dIx6pMT1IiWAl9WRMb0e
+	GGlHUVDBPdCjqT03yHsQZNUV2PZtlYaO9y0d+jsJDkEu/zo98ogCR8/HLawfxxo5YIZG0Trt+BO
+	H20Sh7CQocncgF6eQ3qY6b55ic8aeCyA7T5rN3xkiQwg2kpJSlV49kUPk4FUzVaUZceU9PFICUt
+	nP7a9rPFriAUANfJyUCcMht1EeNXUUpSNZFFlQahZTpPsB2oFO588jOje49nx276eVmjsiFsvYY
+	yVC8uajIY9gUKUmXIqqQqA1pHqwFvXQe+KeBLwvwR8IB2rnTegTeCREp0Thh3CLFhEb0rh7ESmP
+	zEmV7neB3Y8tDuN5Y3ElvjglrYtXn0dL0KrHeMcBj45ZGaVp//+Q==
+X-Received: by 2002:a05:6122:8607:b0:5bb:fb24:5782 with SMTP id 71dfb90a1353d-5bbfb245793mr4042620e0c.14.1782124520074;
+        Mon, 22 Jun 2026 03:35:20 -0700 (PDT)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5bbfbab451bsm6232103e0c.18.2026.06.22.03.35.19
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jun 2026 03:38:51 -0700 (PDT)
-Received: by mail-dl1-f43.google.com with SMTP id a92af1059eb24-13988680a69so9779999c88.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 03:38:51 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+X7MABhMnBBmS32kThX0skIex5Mku/WA3DCVjI7QIfYOdobqq5igzJk6HOmNzBewbRb9tfzB7DUz8f@vger.kernel.org
-X-Received: by 2002:a05:6102:3314:b0:6ef:f6cf:1b32 with SMTP id
- ada2fe7eead31-72a043c9af3mr8022945137.27.1782124344043; Mon, 22 Jun 2026
- 03:32:24 -0700 (PDT)
+        Mon, 22 Jun 2026 03:35:19 -0700 (PDT)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-966c991e6b1so1765215241.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 03:35:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/jSpmUBH0rkTWQm1FmPHZUAKsfuboP9yev8EFBf+JEU5XrpQn4AAVd+iDxiuSwyb3ajCXm6ThhPivP@vger.kernel.org
+X-Received: by 2002:a05:6102:324c:20b0:729:4c16:b4f4 with SMTP id
+ ada2fe7eead31-72a767f94a8mr4675989137.2.1782124519443; Mon, 22 Jun 2026
+ 03:35:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260622101606.485961-3-krzysztof.kozlowski@oss.qualcomm.com> <20260622101606.485961-4-krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20260622101606.485961-4-krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260621025052.406507-1-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260621025052.406507-1-marek.vasut+renesas@mailbox.org>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 22 Jun 2026 12:32:09 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWw4+-YZRx2icp_t3OQt3cb9osjac7gziiyRZcHa3zMbQ@mail.gmail.com>
-X-Gm-Features: AVVi8CeRh5uGKoGdWXUVe0e4sYYTgs7H91cw7cP665l5Rz_E8v79r8eSiiAY4SE
-Message-ID: <CAMuHMdWw4+-YZRx2icp_t3OQt3cb9osjac7gziiyRZcHa3zMbQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: Drop incorrect usage of double '::'
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney@redhat.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, 
-	Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Inki Dae <inki.dae@samsung.com>, 
-	Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	Andi Shyti <andi.shyti@kernel.org>, Georgi Djakov <djakov@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Hans Verkuil <hverkuil@kernel.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Ulf Hansson <ulfh@kernel.org>, Peter Rosin <peda@lysator.liu.se>, 
-	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Linus Walleij <linusw@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Sebastian Reichel <sre@kernel.org>, 
-	Javier Martinez Canillas <javier@dowhile0.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Srinivas Kandagatla <srini@kernel.org>, 
-	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Jonathan Marek <jonathan@marek.ca>, 
-	Taniya Das <quic_tdas@quicinc.com>, Robert Marko <robimarko@gmail.com>, 
-	Christian Marangi <ansuelsmth@gmail.com>, Stephan Gerhold <stephan@gerhold.net>, 
-	Adam Skladowski <a_skl39@protonmail.com>, Sireesh Kodali <sireeshkodali@protonmail.com>, 
-	Barnabas Czeman <barnabas.czeman@mainlining.org>, Imran Shaik <quic_imrashai@quicinc.com>, 
-	Sricharan Ramabadhran <quic_srichara@quicinc.com>, Anusha Rao <quic_anusha@quicinc.com>, 
-	Luo Jie <quic_luoj@quicinc.com>, Tomasz Figa <tomasz.figa@gmail.com>, 
-	Chanho Park <chanho61.park@samsung.com>, Sunyeal Hong <sunyeal.hong@samsung.com>, 
-	Shin Son <shin.son@samsung.com>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>, Jaehoon Chung <jh80.chung@samsung.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Alina Yu <alina_yu@richtek.com>, 
-	Andy Gross <agross@kernel.org>, =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, linux-i2c@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-usb@vger.kernel.org
+Date: Mon, 22 Jun 2026 12:35:08 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUEPR0xWXRwLjBt5sF7i4HxcDLHCQGmc=gGvFmHRDv-Jw@mail.gmail.com>
+X-Gm-Features: AVVi8Cfb4mv2QoVmKeKaT0JRkwbOlUFA4xPaWe_fn-8CnsZR_T46Ke01ntwYiSg
+Message-ID: <CAMuHMdUEPR0xWXRwLjBt5sF7i4HxcDLHCQGmc=gGvFmHRDv-Jw@mail.gmail.com>
+Subject: Re: [PATCH 1/9] arm64: dts: renesas: r8a774a1: Add soc: label to soc node
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314381-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,samsung.com,baylibre.com,redhat.com,oss.qualcomm.com,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linux.intel.com,suse.de,lysator.liu.se,glider.be,dowhile0.org,linuxfoundation.org,intel.com,arm.com,marek.ca,quicinc.com,gerhold.net,protonmail.com,mainlining.org,richtek.com,ragnatech.se,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:peter.griffin@linaro.org,m:alim.akhtar@samsung.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:s.nawrocki@samsung.com,m:cw00.choi@samsung.com,m:semen.protsenko@linaro.org,m:robin.clark@oss.qualcomm.com,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:jesszhan0024@gmail.com,m:sean@poorly.run,m:marijn.suijten@somainline.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:inki.dae@samsung.com,m:sw0312.kim@samsung.com,m:kyungmin.park@samsung.com,m:andi.shyti@kernel.org,m:djakov@kernel.org,m:lee@kernel.org,m:pavel@kernel.org,m:hverkuil@kernel.org,m:mchehab@kernel.org,m:ulfh@kernel.org,m:peda@lysator.liu.se,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:linusw@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:sr
- e@kernel.org,m:javier@dowhile0.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:srini@kernel.org,m:bzolnier@gmail.com,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:jonathan@marek.ca,m:quic_tdas@quicinc.com,m:robimarko@gmail.com,m:ansuelsmth@gmail.com,m:stephan@gerhold.net,m:a_skl39@protonmail.com,m:sireeshkodali@protonmail.com,m:barnabas.czeman@mainlining.org,m:quic_imrashai@quicinc.com,m:quic_srichara@quicinc.com,m:quic_anusha@quicinc.com,m:quic_luoj@quicinc.com,m:tomasz.figa@gmail.com,m:chanho61.park@samsung.com,m:sunyeal.hong@samsung.com,m:shin.son@samsung.com,m:quic_mkrishn@quicinc.com,m:jacek.anaszewski@gmail.com,m:jh80.chung@samsung.com,m:m.szyprowski@samsung.com,m:alina_yu@richtek.com,m:agross@kernel.org,m:niklas.soderlund@ragnatech.se,m:quic_wcheng@quicinc.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.i
- nfradead.org,m:linux-samsung-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:freedreno@lists.freedesktop.org,m:linux-i2c@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-leds@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-mmc@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-gpio@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-serial@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-usb@vger.kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314378-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_RECIPIENTS(0.00)[m:marek.vasut+renesas@mailbox.org,m:linux-arm-kernel@lists.infradead.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:marek.vasut@mailbox.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[96];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
 	R_DKIM_NA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,mail.gmail.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linux-m68k.org:from_mime,linux-m68k.org:email,vger.kernel.org:from_smtp,yaml.org:url]
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9607A6AEC2E
+X-Rspamd-Queue-Id: 7370F6AEBC4
 
-On Mon, 22 Jun 2026 at 12:16, Krzysztof Kozlowski
-<krzysztof.kozlowski@oss.qualcomm.com> wrote:
-> There is no use of double colon '::' in YAML. OTOH, the literal style
-> block, e.g. using '|' treats all characters as content [1] therefore
-> single use of ':' in descriptions is perfectly fine, whenever '|' is
-> used.
->
-> Cleanup existing code, so the confusing style won't be re-used in new
-> contributions.
->
-> Link: https://yaml.org/spec/1.2.2/#literal-style [1]
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->
-> ---
->
-> Intention for this patch is to go via Rob's tree.
+Hi Marek,
 
->  .../bindings/power/renesas,rcar-sysc.yaml     |  2 +-
->  .../bindings/soc/renesas/renesas-soc.yaml     |  4 ++--
+On Sun, 21 Jun 2026 at 04:51, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Add soc: label to the /soc {} node to align the DT with r8a77951.dtsi
+> which already has that soc: label. The soc: label is useful in U-Boot
+> where it is used in U-Boot extras DT fragments.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be> # renesas
+For the whole series:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.3, squashed into a single
+commit. Unfortunately there is no cover letter, so I will have to add
+all nine Link-tags.
 
 Gr{oetje,eeting}s,
 
