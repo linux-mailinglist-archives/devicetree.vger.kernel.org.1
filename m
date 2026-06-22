@@ -1,331 +1,312 @@
-Return-Path: <devicetree+bounces-314369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314371-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id slHoGCwMOWq9lwcAu9opvQ
-	(envelope-from <devicetree+bounces-314369-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:19:24 +0200
+	id PF4PKHEMOWrRlwcAu9opvQ
+	(envelope-from <devicetree+bounces-314371-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:20:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C84246AEA26
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:19:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2B626AEA66
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 12:20:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ideasonboard.com header.s=mail header.b=uTagaKw7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314369-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314369-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=ideasonboard.com;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314371-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314371-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 703AB3014BE7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:16:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AF1123064D46
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 10:17:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E26A3A48E6;
-	Mon, 22 Jun 2026 10:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB603A4F47;
+	Mon, 22 Jun 2026 10:17:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5581B19F40B;
-	Mon, 22 Jun 2026 10:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C3C355057
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 10:17:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782123410; cv=none; b=DR5S6T0Z+4mKU7Igc1vnMiN4/ylZWJZ54zd8G4wo1HW4Zntp1WxQehMHtH2BeE5PLuCExUDJvwfG8WGMNsec8mm5kJFramAKLpWbfwzIi0K3Yj8RXVDbi+iZ1xkIDcw9RymSF8XUduRzx3kiAFZQ2eI7M6UQQAu2cWyMzLt8Ch4=
+	t=1782123425; cv=none; b=PaGYifpA4er6uN5vJrrrkfRx5lFY49UL885mwHA6WaJ3vxs52G/leCjNzPbbYcWmPtfxEBQV6g2ANvxcoOHIdqVNXQWTIG7AFgmfrAetymo8dyy9/903/zfWn+j+kWImx7u+HZZuSSriKzhlo+1aIvq3VM0E5GVmNI9tM/4goXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782123410; c=relaxed/simple;
-	bh=J0BB5GhMc0V1NvM66DvEEh0l/1ueDUxLSg9wbpPlv3g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GjcoJ+k+yUN2WlntoRQe8EqCMEHe/1GxnMgdTBVNc0FothMPB5PNUoNKDX0Wlf/Ru4h66s+nfJlRMVge+ZYGpbLvw0EuRs7xTHxK9KHLdPRd9P3iVrXZe3HyFAN3JHXxyc/SCzICzWi0kWmf/MstrHZ7kmS67rkgtromV8a3Iqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=uTagaKw7; arc=none smtp.client-ip=213.167.242.64
-Received: from ideasonboard.com (mob-109-113-9-173.net.vodafone.it [109.113.9.173])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EBFC2874;
-	Mon, 22 Jun 2026 12:16:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1782123370;
-	bh=J0BB5GhMc0V1NvM66DvEEh0l/1ueDUxLSg9wbpPlv3g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uTagaKw7/8A5rrlK7YZAuvvcUGDw2F6DtrTqodxZubnPCnVSvQr8Oy6v0i455Cyyn
-	 yFobZcecYUYJcvfygOVdCmLSxr5a/QxS5HXDCSfsPXFudRIyodWXq/mU9PAW14Pgsw
-	 s54FF3xuE2oibuJOpBWgioylxLa7BzsRq8nKzcEg=
-Date: Mon, 22 Jun 2026 12:16:44 +0200
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-Cc: Sylvain Petinot <sylvain.petinot@foss.st.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil+cisco@kernel.org>, 
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/5] media: i2c: vd55g1: Add support for vd55g4
-Message-ID: <ajkKkSeDNoijIsub@zed>
-References: <20260428-vd55g4_and_fixes-v1-0-4f745a83b87e@foss.st.com>
- <20260428-vd55g4_and_fixes-v1-4-4f745a83b87e@foss.st.com>
+	s=arc-20240116; t=1782123425; c=relaxed/simple;
+	bh=rF9MBMecl2KEOBvLP7nqkUZMnynYbMz7Qmy4vIKnXFQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=I+FqwP6hXO14CfX3GpcuDgRpKmUdbLC/IzpE785APV7kP/STjUKBXlygDCFqKUcUTrSJ4RCxqWkCXhPy8XxiCCw2Zsc+pIOSt3GhgAAznMZqsZTv+IexGdzSDph3mNjn/00I+sO82Ignd+d4XC9B3Hw1iRszpMk9agAjgtCw0Yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.49
+Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-9670c23ca7fso962707241.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 03:17:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782123422; x=1782728222;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZE6Dqpb/1jL1qyrKK5dTrMmULFcUq6fRF5GQUlTLM54=;
+        b=F6KFagGuFuDJ8f4T11WYWcLt8IkK4f+mfT5I3yVGw8NGOyWhbIc5OzIWIFgHNSvnCc
+         sgcZAbVK5A1cOfCGPjCYBrU3Gjty4F50jIk3c0ZERAOxx3owXpULEl/y91CI7dCVVbEA
+         tnZMTbL69w1LwzKcBjKx/w9k9+xhIhwQ5EF8sGP/wV92rp7RLT2TDSRNL2Cj3pEDDirB
+         p/Uw/sPgQN0s7ijz7TdaLySo3ltC3HJMfKJLLtRSMfFBO/3D5jlOlO5OqoNLK9YhACFU
+         wpYGHAalYO5goW9ixPHEaxiYlDs7WKkTDOS4kBEkipAW8LyXiNNIYuhFCkHQUUbNLqm8
+         JKMg==
+X-Forwarded-Encrypted: i=1; AFNElJ+r1YWUW8BgWldAbK3aJN0ReSpRzlTSPogVi/6W0rQRVB5LNKs784wNf/7cLVF6M6gRdd9kRQAGl6uZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUO6Hq5/DYDs4m5qAp8Fop2ihixkxWgWLFLmfzUOSfmFu4CsiY
+	/WEBozJIeR3qgv4zarkPOfHxE8m44CwMJOVnASeeYiNia9QFhx/Aj5rnQChWiIfm
+X-Gm-Gg: AfdE7cmUf+bLPvNZki6ThJNDroX43l2Oc5jukAHrxBBCc9lno52D5PRygTobSolvmcM
+	au83avuqRRqsGbcHtQmixiBDNUN7XOklw/r2dUUu0IawSSGTsEPZe6Lr7vAJNWdBJ/JIkqiFExn
+	tcZhnZguzVgVXRZjQ54EAsQG+6MjjI/wFGqEhlAz1wSDKdiCbGy32jVfhLCpX031fB+yvHWeyFp
+	vwThu/eKP2PaU8mb6zavG8Yjfo5VvYfFPY85f1j5IwC3H7MWCSLNV1RQe6vLypbo+yXc1MV85JP
+	NXJhNKZpINc7sEUonLmiX5bRjPKd/StitUMqhX1MlLxxslixJnA03vZ20n2nE9cJA03TB5ZJbpC
+	JptF6RVcJyOuvGkPWJ5y2lANsSfXaT0vxsWcIdQpSPCNy/1bNTYNioqXa9Sj4IJOkgdIXDNEnSc
+	zK4KIUaSaHXDXCEvhaMU6ejp11mEnXSLyPFukgK4j4DxTZzYCVkQ==
+X-Received: by 2002:a05:6102:f9c:b0:639:1e8b:ecd9 with SMTP id ada2fe7eead31-72a03d9e389mr7649214137.20.1782123421994;
+        Mon, 22 Jun 2026 03:17:01 -0700 (PDT)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-72ba4f2905csm5755308137.8.2026.06.22.03.17.01
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jun 2026 03:17:01 -0700 (PDT)
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-96358d0a024so3139517241.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 03:17:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+/Le0pckQ4tNv5+zvNdWMSu61MkmUSFaeknKspHGpfQWhNV09DsOMfTsdzlF/iPzuOYJOX8kfAQKgg@vger.kernel.org
+X-Received: by 2002:a05:6102:fa0:b0:6f0:3c5b:ce7a with SMTP id
+ ada2fe7eead31-72a03545558mr8210500137.17.1782123421256; Mon, 22 Jun 2026
+ 03:17:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260428-vd55g4_and_fixes-v1-4-4f745a83b87e@foss.st.com>
+References: <20260610074702.1743334-1-john.madieu.xa@bp.renesas.com> <20260610074702.1743334-2-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20260610074702.1743334-2-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 22 Jun 2026 12:16:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXquncHh8wxEF4TxKhJNyVB3rCqcGLVtipVkC_H0M2TBQ@mail.gmail.com>
+X-Gm-Features: AVVi8CeEHcvE3XW-KNNE60oqtPnFlFK01RuCAZUrkg9U-_-leTNgXIWxLpkdWeo
+Message-ID: <CAMuHMdXquncHh8wxEF4TxKhJNyVB3rCqcGLVtipVkC_H0M2TBQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/4] arm64: dts: renesas: r9a09g047: Add RZ/G3E Sound support
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, john.madieu@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314369-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:benjamin.mugnier@foss.st.com,m:sylvain.petinot@foss.st.com,m:sakari.ailus@linux.intel.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hverkuil+cisco@kernel.org,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:hverkuil@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[jacopo.mondi@ideasonboard.com,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jacopo.mondi@ideasonboard.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com];
+	TAGGED_FROM(0.00)[bounces-314371-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_RECIPIENTS(0.00)[m:john.madieu.xa@bp.renesas.com,m:magnus.damm@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:john.madieu@gmail.com,m:magnusdamm@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:johnmadieu@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C84246AEA26
+X-Rspamd-Queue-Id: F2B626AEA66
 
-Hi Benjamin
+Hi John,
 
-On Tue, Apr 28, 2026 at 10:40:58AM +0200, Benjamin Mugnier wrote:
-> vd55g4 is the same device as vd65g4 but outputs in monochrome instead of
-> RGB. Adapt the driver structure according to this new variant, and add
-> its support.
+On Wed, 10 Jun 2026 at 09:47, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
+> Add the snd_rzg3e node for the RZ/G3E SoC with all sub-components:
 >
-> Signed-off-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+> - SSI (Serial Sound Interface) units 0-9
+> - SSIU (Serial Sound Interface Unit) units 0-27
+> - SRC (Sample Rate Converter) units 0-9
+> - CTU (Channel Transfer Unit) units 0-7
+> - DVC (Digital Volume Control) units 0-1
+> - MIX (Mixer) units 0-1
+>
+> Sub-node names follow the new RZ/G3E sound binding: unprefixed
+> 'ssi', 'ssiu', 'src', 'dvc', 'mix', 'ctu' wrapper nodes instead of
+> the legacy 'rcar_sound,xxx' R-Car prefix.
+>
+> Wire up all 5 DMA controllers (dmac0-dmac4) for each audio sub-node
+> with repeated channel names, so that the DMA core can pick the first
+> available controller.
+>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 > ---
->  drivers/media/i2c/vd55g1.c | 110 ++++++++++++++++++++++++++++++---------------
->  1 file changed, 74 insertions(+), 36 deletions(-)
 >
-> diff --git a/drivers/media/i2c/vd55g1.c b/drivers/media/i2c/vd55g1.c
-> index 2c962fcb41d2..9f62fc0428a1 100644
-> --- a/drivers/media/i2c/vd55g1.c
-> +++ b/drivers/media/i2c/vd55g1.c
-> @@ -29,11 +29,7 @@
+> Changes:
 >
->  /* Register Map */
->  #define VD55G1_REG_MODEL_ID				CCI_REG32_LE(0x0000)
-> -#define VD55G1_MODEL_ID_VD55G1				0x53354731 /* Mono */
-> -#define VD55G1_MODEL_ID_VD65G4				0x53354733 /* RGB */
-> -#define VD55G1_REG_REVISION				CCI_REG16_LE(0x0004)
-> -#define VD55G1_REVISION_CCB				0x2020
-> -#define VD55G1_REVISION_BAYER				0x3030
-> +#define VD55G1_REG_COLOR_VERSION			CCI_REG32_LE(0x0670)
->  #define VD55G1_REG_FWPATCH_REVISION			CCI_REG16_LE(0x0012)
->  #define VD55G1_REG_FWPATCH_START_ADDR			CCI_REG8(0x2000)
->  #define VD55G1_REG_SYSTEM_FSM				CCI_REG8(0x001c)
-> @@ -138,8 +134,39 @@
->  #define VD55G1_MIPI_RATE_MIN				(250 * MEGA)
->  #define VD55G1_MIPI_RATE_MAX				(1200 * MEGA)
+> v5:
+>  - Use hexadecimal CPG module clock numbers, for easier matching with the
+>    documentation.
+>  - Use hexadecimal CPG module reset numbers.
+>  - Lowercase the SSI reg size: 0x1F000 -> 0x1f000.
+>  - Extend the SCU reg region from 0x10000 to 0x20000 to cover the SCU DMAC.
+>  - Drop the per-line clock/reset comments now that the numbers are hex and
+>    the names are self-documenting, and pack clocks/resets two entries per
+>    line so each line lines up with its clock-names/reset-names counterpart.
+
+Thanks for the update!
+
+> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+> @@ -912,6 +912,468 @@ rsci9: serial@12803000 {
+>                         status = "disabled";
+>                 };
 >
-> -#define VD55G1_MODEL_ID_NAME(id) \
-> -	((id) == VD55G1_MODEL_ID_VD55G1 ? "vd55g1" : "vd65g4")
-> +enum vd55g1_model_id {
-> +	VD55G1_MODEL_ID_2 = 0x53354731,
-> +	VD55G1_MODEL_ID_3 = 0x53354733,
-> +};
+> +               snd_rzg3e: sound@13c00000 {
+> +                       compatible = "renesas,r9a09g047-sound";
+> +                       reg = <0 0x13c00000 0 0x10000>, /* SCU */
+> +                             <0 0x13c20000 0 0x10000>, /* ADG */
+> +                             <0 0x13c30000 0 0x1000>,  /* SSIU */
+> +                             <0 0x13c31000 0 0x1f000>, /* SSI */
+> +                             <0 0x13c50000 0 0x10000>; /* Audio DMAC peri peri */
+> +                       reg-names = "scu", "adg", "ssiu", "ssi", "audmapp";
+> +                       clocks = <&cpg CPG_MOD 0xf5>,
+> +                               <&cpg CPG_MOD 0x181>, <&cpg CPG_MOD 0x182>,
+
+Please align the opening braces with the previous line...
+
+> +                               <&cpg CPG_MOD 0x183>, <&cpg CPG_MOD 0x184>,
+> +                               <&cpg CPG_MOD 0x185>, <&cpg CPG_MOD 0x186>,
+> +                               <&cpg CPG_MOD 0x187>, <&cpg CPG_MOD 0x188>,
+> +                               <&cpg CPG_MOD 0x189>, <&cpg CPG_MOD 0x18a>,
+> +                               <&cpg CPG_MOD 0x174>, <&cpg CPG_MOD 0x175>,
+> +                               <&cpg CPG_MOD 0x176>, <&cpg CPG_MOD 0x177>,
+> +                               <&cpg CPG_MOD 0x178>, <&cpg CPG_MOD 0x179>,
+> +                               <&cpg CPG_MOD 0x17a>, <&cpg CPG_MOD 0x17b>,
+> +                               <&cpg CPG_MOD 0x17c>, <&cpg CPG_MOD 0x17d>,
+> +                               <&cpg CPG_MOD 0x172>, <&cpg CPG_MOD 0x173>,
+> +                               <&cpg CPG_MOD 0x172>, <&cpg CPG_MOD 0x173>,
+> +                               <&cpg CPG_MOD 0x170>, <&cpg CPG_MOD 0x171>,
+> +                               <&cpg CPG_MOD 0xfb>, <&cpg CPG_MOD 0xfc>,
+> +                               <&cpg CPG_MOD 0xfd>, <&cpg CPG_MOD 0xfa>,
+> +                               <&cpg CPG_MOD 0x180>,
+> +                               <&cpg CPG_MOD 0xf6>, <&cpg CPG_MOD 0xf7>,
+> +                               <&cpg CPG_MOD 0x17e>,
+> +                               <&cpg CPG_MOD 0x160>, <&cpg CPG_MOD 0x161>,
+> +                               <&cpg CPG_MOD 0x162>, <&cpg CPG_MOD 0x163>,
+> +                               <&cpg CPG_MOD 0x164>, <&cpg CPG_MOD 0x165>,
+> +                               <&cpg CPG_MOD 0x166>, <&cpg CPG_MOD 0x167>,
+> +                               <&cpg CPG_MOD 0x168>, <&cpg CPG_MOD 0x169>,
+> +                               <&cpg CPG_MOD 0xf8>, <&cpg CPG_MOD 0xf9>;
+> +                       clock-names = "ssi-all",
+> +                                      "ssi-0", "ssi-1",
+
+... and the double quotes...
+
+> +                                      "ssi-2", "ssi-3",
+> +                                      "ssi-4", "ssi-5",
+> +                                      "ssi-6", "ssi-7",
+> +                                      "ssi-8", "ssi-9",
+> +                                      "src-0", "src-1",
+> +                                      "src-2", "src-3",
+> +                                      "src-4", "src-5",
+> +                                      "src-6", "src-7",
+> +                                      "src-8", "src-9",
+> +                                      "mix-0", "mix-1",
+> +                                      "ctu-0", "ctu-1",
+> +                                      "dvc-0", "dvc-1",
+> +                                      "audio-clka", "audio-clkb",
+> +                                      "audio-clkc", "audio-clki",
+> +                                      "ssif_supply",
+> +                                      "scu", "scu_x2",
+> +                                      "scu_supply",
+> +                                      "adg-ssi-0", "adg-ssi-1",
+> +                                      "adg-ssi-2", "adg-ssi-3",
+> +                                      "adg-ssi-4", "adg-ssi-5",
+> +                                      "adg-ssi-6", "adg-ssi-7",
+> +                                      "adg-ssi-8", "adg-ssi-9",
+> +                                      "audmapp", "adg";
+> +                       power-domains = <&cpg>;
+> +                       resets = <&cpg 0xe1>,
+> +                                <&cpg 0xe2>, <&cpg 0xe3>,
+> +                                <&cpg 0xe4>, <&cpg 0xe5>,
+> +                                <&cpg 0xe6>, <&cpg 0xe7>,
+> +                                <&cpg 0xe8>, <&cpg 0xe9>,
+> +                                <&cpg 0xea>, <&cpg 0xeb>,
+> +                                <&cpg 0xec>, <&cpg 0xee>,
+> +                                <&cpg 0xed>;
+> +                       reset-names = "ssi-all",
+> +                                      "ssi-0", "ssi-1",
+
+... here too.
+
+> +                                      "ssi-2", "ssi-3",
+> +                                      "ssi-4", "ssi-5",
+> +                                      "ssi-6", "ssi-7",
+> +                                      "ssi-8", "ssi-9",
+> +                                      "scu", "adg",
+> +                                      "audmapp";
+> +                       status = "disabled";
 > +
-> +enum vd55g1_color_version {
-> +	VD55G1_COLOR_VERSION_MONO = 0x0,
-> +	VD55G1_COLOR_VERSION_BAYER = 0x1,
-
-nit: you don't need to initialize the enum members here
-
-> +};
+> +                       ctu {
+> +                               ctu00: ctu-0 { };
+> +                               ctu01: ctu-1 { };
+> +                               ctu02: ctu-2 { };
+> +                               ctu03: ctu-3 { };
+> +                               ctu10: ctu-4 { };
+> +                               ctu11: ctu-5 { };
+> +                               ctu12: ctu-6 { };
+> +                               ctu13: ctu-7 { };
+> +                       };
 > +
-> +struct vd55g1_version {
-> +	char *name;
-> +	enum vd55g1_model_id id;
-> +	enum vd55g1_color_version color;
-> +};
+> +                       dvc {
+> +                               dvc0: dvc-0 {
+> +                                       dmas = <&dmac0 0x1db3>, <&dmac1 0x1db3>,
+> +                                              <&dmac2 0x1db3>, <&dmac3 0x1db3>,
+> +                                              <&dmac4 0x1db3>;
+> +                                       dma-names = "tx", "tx", "tx", "tx", "tx";
+> +                               };
+> +                               dvc1: dvc-1 {
+> +                                       dmas = <&dmac0 0x1db4>, <&dmac1 0x1db4>,
+> +                                              <&dmac2 0x1db4>, <&dmac3 0x1db4>,
+> +                                              <&dmac4 0x1db4>;
+> +                                       dma-names = "tx", "tx", "tx", "tx", "tx";
+> +                               };
+> +                       };
 > +
-> +static const struct vd55g1_version vd55g1_versions[] = {
-> +	{
-> +		.name  = "vd55g1",
-> +		.id    = VD55G1_MODEL_ID_2,
-> +		.color = VD55G1_COLOR_VERSION_MONO,
-> +	},
-> +	{
-> +		.name  = "vd55g4",
-> +		.id    = VD55G1_MODEL_ID_3,
-> +		.color = VD55G1_COLOR_VERSION_MONO,
-> +	},
-> +	{
-> +		.name  = "vd65g4",
-> +		.id    = VD55G1_MODEL_ID_3,
-> +		.color = VD55G1_COLOR_VERSION_BAYER,
-> +	},
-> +};
->
->  static const u8 vd55g1_patch_array[] = {
->  	0x44, 0x03, 0x09, 0x02, 0xe6, 0x01, 0x42, 0x00, 0xea, 0x01, 0x42, 0x00,
-> @@ -535,7 +562,7 @@ struct vd55g1_vblank_limits {
->
->  struct vd55g1 {
->  	struct device *dev;
-> -	unsigned int id;
-> +	const struct vd55g1_version *version;
->  	struct v4l2_subdev sd;
->  	struct media_pad pad;
->  	struct regulator_bulk_data supplies[ARRAY_SIZE(vd55g1_supply_name)];
-> @@ -628,7 +655,7 @@ static u32 vd55g1_get_fmt_code(struct vd55g1 *sensor, u32 code)
->  {
->  	unsigned int i, j;
->
-> -	if (sensor->id == VD55G1_MODEL_ID_VD55G1)
-> +	if (sensor->version->color != VD55G1_COLOR_VERSION_BAYER)
->  		return code;
-
-As pointed out in the previous patch, you seem to have 2 mono formats.
-Is this still ok ?
-
->
->  	for (i = 0; i < ARRAY_SIZE(vd55g1_mbus_formats_bayer); i++) {
-> @@ -1183,8 +1210,8 @@ static int vd55g1_patch(struct vd55g1 *sensor)
->  	u64 patch;
->  	int ret = 0;
->
-> -	/* vd55g1 needs a patch while vd65g4 does not */
-> -	if (sensor->id == VD55G1_MODEL_ID_VD55G1) {
-> +	/* Version 2 needs a patch while version 3 does not */
-> +	if (sensor->version->id == VD55G1_MODEL_ID_2) {
->  		vd55g1_write_array(sensor, VD55G1_REG_FWPATCH_START_ADDR,
->  				   sizeof(vd55g1_patch_array),
->  				   vd55g1_patch_array, &ret);
-
-You might want to consider renaming vd55g1_patch_array ?
-
-> @@ -1256,7 +1283,7 @@ static int vd55g1_enum_mbus_code(struct v4l2_subdev *sd,
->  	struct vd55g1 *sensor = to_vd55g1(sd);
->  	u32 base_code;
->
-> -	if (sensor->id == VD55G1_MODEL_ID_VD55G1) {
-> +	if (sensor->version->color != VD55G1_COLOR_VERSION_BAYER) {
->  		if (code->index >= ARRAY_SIZE(vd55g1_mbus_formats_mono))
->  			return -EINVAL;
->  		base_code = vd55g1_mbus_formats_mono[code->index];
-> @@ -1372,7 +1399,7 @@ static int vd55g1_init_state(struct v4l2_subdev *sd,
->  	if (ret)
->  		return ret;
->
-> -	if (sensor->id == VD55G1_MODEL_ID_VD55G1)
-> +	if (sensor->version->color != VD55G1_COLOR_VERSION_BAYER)
->  		code = vd55g1_mbus_formats_mono[VD55G1_MBUS_CODE_IDX_DEF];
->  	else
->  		code = vd55g1_mbus_formats_bayer[VD55G1_MBUS_CODE_IDX_DEF][0];
-> @@ -1659,38 +1686,48 @@ static int vd55g1_init_ctrls(struct vd55g1 *sensor)
->  	return ret;
->  }
->
-> +static const struct vd55g1_version *
-> +	vd55g1_get_version(enum vd55g1_model_id id,
-> +			   enum vd55g1_color_version color)
-
-Should you indent one tab left ?
-
-> +{
-> +	unsigned int i;
+> +                       mix {
+> +                               mix0: mix-0 { };
+> +                               mix1: mix-1 { };
+> +                       };
 > +
-> +	for (i = 0; i < ARRAY_SIZE(vd55g1_versions); i++) {
+> +                       src {
+> +                               src0: src-0 {
+> +                                       interrupts = <GIC_SPI 902 IRQ_TYPE_LEVEL_HIGH>;
+> +                                       dmas = <&dmac0 0x1d9f>, <&dmac0 0x1da9>,
+> +                                              <&dmac1 0x1d9f>, <&dmac1 0x1da9>,
+> +                                              <&dmac2 0x1d9f>, <&dmac2 0x1da9>,
+> +                                              <&dmac3 0x1d9f>, <&dmac3 0x1da9>,
+> +                                              <&dmac4 0x1d9f>, <&dmac4 0x1da9>;
+> +                                       dma-names = "rx", "tx", "rx", "tx", "rx", "tx", "rx", "tx", "rx", "tx";
 
-You can declare i inside the for loop
+These lines are way too long (checkpatch?).
 
-> +		if (vd55g1_versions[i].id == id &&
-> +		    vd55g1_versions[i].color == color)
-> +			return &vd55g1_versions[i];
-> +	}
-> +
-> +	return NULL;
-> +}
-> +
->  static int vd55g1_detect(struct vd55g1 *sensor)
->  {
-> -	unsigned int dt_id = (uintptr_t)device_get_match_data(sensor->dev);
-> -	u64 rev, id;
-> -	int ret;
-> +	const struct vd55g1_version *dt_version =
-> +		device_get_match_data(sensor->dev);
-> +	const struct vd55g1_version *version;
-> +	u64 color, id;
-> +	int ret = 0;
->
-> -	ret = vd55g1_read(sensor, VD55G1_REG_MODEL_ID, &id, NULL);
-> +	vd55g1_read(sensor, VD55G1_REG_MODEL_ID, &id, &ret);
-> +	vd55g1_read(sensor, VD55G1_REG_COLOR_VERSION, &color, &ret);
->  	if (ret)
->  		return ret;
->
-> -	if (id != VD55G1_MODEL_ID_VD55G1 && id != VD55G1_MODEL_ID_VD65G4) {
-> -		dev_warn(sensor->dev, "Unsupported sensor id 0x%x\n",
-> -			 (u32)id);
-> +	version = vd55g1_get_version(id, color);
-> +	if (!version) {
-> +		dev_warn(sensor->dev, "Unsupported sensor version, expected %s\n",
-> +			 dt_version->name);
->  		return -ENODEV;
->  	}
-> -	if (id != dt_id) {
-> -		dev_err(sensor->dev, "Probed sensor %s and device tree definition (%s) mismatch",
-> -			VD55G1_MODEL_ID_NAME(id), VD55G1_MODEL_ID_NAME(dt_id));
-> +	if (version->id != dt_version->id ||
-> +	    version->color != dt_version->color) {
-> +		dev_err(sensor->dev, "Probed sensor version %s and device tree definition %s mismatch",
-> +			version->name, dt_version->name);
->  		return -ENODEV;
->  	}
-> -	sensor->id = id;
->
-> -	ret = vd55g1_read(sensor, VD55G1_REG_REVISION, &rev, NULL);
-> -	if (ret)
-> -		return ret;
-> -
-> -	if ((id == VD55G1_MODEL_ID_VD55G1 && rev != VD55G1_REVISION_CCB) &&
-> -	    (id == VD55G1_MODEL_ID_VD65G4 && rev != VD55G1_REVISION_BAYER)) {
-> -		dev_err(sensor->dev, "Unsupported sensor revision 0x%x for sensor %s\n",
-> -			(u16)rev, VD55G1_MODEL_ID_NAME(id));
-> -		return -ENODEV;
-> -	}
-> +	sensor->version = version;
->
->  	return 0;
->  }
-> @@ -2048,8 +2085,9 @@ static void vd55g1_remove(struct i2c_client *client)
->  }
->
->  static const struct of_device_id vd55g1_dt_ids[] = {
-> -	{ .compatible = "st,vd55g1", .data = (void *)VD55G1_MODEL_ID_VD55G1 },
-> -	{ .compatible = "st,vd65g4", .data = (void *)VD55G1_MODEL_ID_VD65G4 },
-> +	{ .compatible = "st,vd55g1", .data = (void *)&vd55g1_versions[0] },
-> +	{ .compatible = "st,vd55g4", .data = (void *)&vd55g1_versions[1] },
-> +	{ .compatible = "st,vd65g4", .data = (void *)&vd55g1_versions[2] },
->  	{ /* sentinel */ }
->  };
+[...]
 
-All minors
-Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Gr{oetje,eeting}s,
 
-Thanks
-  j
+                        Geert
 
->  MODULE_DEVICE_TABLE(of, vd55g1_dt_ids);
->
-> --
-> 2.43.0
->
->
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
