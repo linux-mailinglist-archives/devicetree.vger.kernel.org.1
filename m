@@ -1,143 +1,217 @@
-Return-Path: <devicetree+bounces-314461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314432-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oHJjHks/OWrhpAcAu9opvQ
-	(envelope-from <devicetree+bounces-314461-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:57:31 +0200
+	id j1DkMDs0OWrooQcAu9opvQ
+	(envelope-from <devicetree+bounces-314432-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:10:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D761E6B0137
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:57:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C55E6AFAFB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:10:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=xcccWhVR;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314461-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314461-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=mailbox.org;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314432-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314432-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0FADC3021994
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 13:56:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0AC23301589D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 13:07:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0AE13B442F;
-	Mon, 22 Jun 2026 13:56:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E5713B14A7;
+	Mon, 22 Jun 2026 13:07:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EBA4357D0E;
-	Mon, 22 Jun 2026 13:56:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E7A83B14A1
+	for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 13:07:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782136583; cv=none; b=NXDIaGfVfDV2ShgRmCN8SawrEmhD98prIEz/6ZvmdN22iq0oTn7yy99Z+Zqxk9oCEDynepRVTzbyLy4eaaiSL4YCpHbcAWUUJ0qzsNxDztB8yVrVrHwy6aXmEBiELqKo2ey+Z/T/88Gl0dmgS2Rp+R2QCX8a84bvNJgsZyybwks=
+	t=1782133651; cv=none; b=t4+DKJhfJWdvXLBA8zvs7zvPWcT8ZMVC7Ie1sU5GVGi+y8Qt5g/Kf4WK38niBlibdKYcuSex6EmfFLfG8RqI98Y/3PnKx1UuaTIs9OKycnhNl4eP67TpKZ5/gXlV8LWnDzDHJ6zbxrMc/yItamOpXsv+hxfTw4eoN6pltB4yvD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782136583; c=relaxed/simple;
-	bh=VLGNUOJWgetLw2CTOTASzxRBJpVRnxen9R190hFjPas=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NGT38AsmvWG48tBA2xO4AFfcmXX2igHidiEf2nyna5n/Psg7JiN+4cLiyQpAsdoqkkq5K8TsE3abxQnHdu06UoZ8ghrIXlGDFB4kr0CpvSfwTyjzBmtb5SDQLzLH5pNcnY9K8aEy8an6NhZzYn+rbtiD2CKhDLn8K/0nvUDha90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=xcccWhVR; arc=none smtp.client-ip=80.241.56.172
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4gkV9G3Dn8z9tsN;
-	Mon, 22 Jun 2026 15:56:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1782136578;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=V10NUk/gmPuBAXU0YzRkHmie0gZ9BDAPSeyjEgvzMHg=;
-	b=xcccWhVRSqDJHc/6NDRssnzaOOnGncLgvpUTUmdX2/FF2bKqUFl5lyKlsqIoZOeBYGlh5o
-	OVwPiUc/yIjaMqkESFLCFicMXXxgb0S8PmqfchDuCkp9UJS8I33pmRnTqGVNe93MfeFp4W
-	maVbfu0iR049vBzocLiZcujqbZ7XXoZ3Vu8LW0FbGfPODawn2FgAyIYMJ0iXnOm+AAB5GR
-	aRickCq0EjdcikS9ABqqfDm1xVBn8Tspn6/SUiryd9LxztdC0PJDohwXd3VspxDwEBM4XV
-	xalM/P3L6KNuvy9HPQh3cEeSiljnhM38QSVfBf7x5knmYsoJwDiAbu67VIUvSw==
-Message-ID: <8cb1c3cb-3d8f-4e76-99e9-ad78ee149556@mailbox.org>
-Date: Mon, 22 Jun 2026 15:04:45 +0200
+	s=arc-20240116; t=1782133651; c=relaxed/simple;
+	bh=1etyWsaiUeb9zM/M27udCVQPp+0lo8G8Gomb4RFTGHY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gfervDFRaZLJbvblFjA/QWd03c0hVBWum9gu55M9zQUdVFwxSZxXXa/nJdUvsoR2CcAafU/NNx0O5T8GFO3CVBtjNiUkVbtFJg7yzy9zVghBi0mJOPdIqqghP5iRKOfvluizKazByNtLNcDs1D3UdOt4KBuMcjWgaiXbMOZe/rc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.53
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-697ce8cfe65so282711a12.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 06:07:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782133647; x=1782738447;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=JZq4bH2MyvWfP84B8pnnxe0yT9Gu/blfmP5NcpwNQ1A=;
+        b=FGAXGU79HUqZ+CYjQiv+l8fsqQyu5wDFGC/kYN2NpjeOQD4yDK+RO/9k2VYuchITTF
+         dK+qeUSFiOJNvlT+7ynKTBZFRZHrdyIfp+I/3xCiNpJI3/UYF2/BHqRNpCz8n+i3aGBF
+         YL2dBx4JNdoKD/R0/yFtGys3xaWIayg1K2VtCJeU/XtHjJupf6mgu3zBzUz5G3X7UeyO
+         MfMif7MEcFSOZCRmCvV7qG1+oCoF19b252RusPFjg9GDrR4yeB4jaOjphFAOu5G7/5NX
+         FAqGm1fo8UNnlF3WYZcmWHFF2/3vMnJG4ZR1zSLrFcNLOcPCl+W4oi7Mrzm8qFhFmg3v
+         iWfg==
+X-Forwarded-Encrypted: i=1; AFNElJ9b8K7GRonhBnaXYBPulJYxaUQeo/RpMEskjkU7jXIzCbpLM6Wwc3szRon8V/QLPmFWPNNwlsp5Dggk@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYVvr4MKWI5RIgp0/XRzdrIp7aVGBcoUiVLBqfudfEwBRefwyz
+	PNR+L+4swZAlLNLeNieVTD2RriNQTbfDsUvWtAKh4GpxGKqTeuixDiYlczgpiPNq9yI=
+X-Gm-Gg: AfdE7cnwupcXRL1tt3uIGVOFjyOQC8bYnQ3mz5qQ7Um1YgQ29A6iIXQIAURfKzF/EBw
+	kOgK4ZREhIDo0hOXCiFFROH8Wco8snFfYuayzdvcnX/9K0BKw6fu6u5pn+Tq00jhcSoDxcpi35w
+	RiL2m1ZxB7Ad6hgquCVOTNni8Fj+/l1Dp7+xK0vqShnDiWonp8n/0seCGTKWp/1VAYs2OLEdG+x
+	zA9HoZopd3SSYFve4a2Ms2GDPHbdNYQ1NTd2u1RWsMh3kwTGFau5SEh/MQTNrECxB5cowhdzPom
+	B/P+6+pSt76JQIWaZbkEFqjem8OSIAbdZyUnInsBg5OcQkBbmsA3evDFBguMPJu7GJRya4ZwR9m
+	fxrDSzEu+n6GIdUeROfdpgH/68mQnYyIAWH1dGtob8LfIzG9xYReRqQAdr9OISLy/T73VNKOAAq
+	QcfRbNYPoHdc2Jxd7UVgIThdFbGVSHXPxuklXxsK0HTwf+YA0edUdMazEUCIC1
+X-Received: by 2002:a17:907:c0c:b0:bf5:2395:8d5b with SMTP id a640c23a62f3a-c097d1b48bemr797372466b.47.1782133647254;
+        Mon, 22 Jun 2026 06:07:27 -0700 (PDT)
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com. [209.85.208.51])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c0c610e4192sm357326366b.44.2026.06.22.06.07.25
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jun 2026 06:07:26 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-697764213d6so3873724a12.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 06:07:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8WYyip4ErUhRjVCG5EKE49NsUjDG7uQXx8S5aY7K31Qv4fSBUFCRnDSotCFzj0OCNyR/9k70Zo9+kf@vger.kernel.org
+X-Received: by 2002:a05:6402:5386:b0:691:b158:b416 with SMTP id
+ 4fb4d7f45d1cf-696dde5eb11mr6568890a12.6.1782133645683; Mon, 22 Jun 2026
+ 06:07:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/9] arm64: dts: renesas: r8a774a1: Add soc: label to soc
- node
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20260621025052.406507-1-marek.vasut+renesas@mailbox.org>
- <CAMuHMdUEPR0xWXRwLjBt5sF7i4HxcDLHCQGmc=gGvFmHRDv-Jw@mail.gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <CAMuHMdUEPR0xWXRwLjBt5sF7i4HxcDLHCQGmc=gGvFmHRDv-Jw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: dacb6e1149af34e4ecb
-X-MBO-RS-META: t553dx187nxeb4i3g8oa88rprwqknbpr
+References: <20260618181949.3036280-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260618181949.3036280-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260618183334.F10DD1F000E9@smtp.kernel.org>
+In-Reply-To: <20260618183334.F10DD1F000E9@smtp.kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 22 Jun 2026 15:07:11 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUKuzYPm-3XyMUZCM6K+GpQPE=JgDJdQiaPtwyYR7cYWw@mail.gmail.com>
+X-Gm-Features: AVVi8CelaUC9eVEsVaVP0hR5s-RRU3sKR6olPCsBX6FF2PRrYumOZ-b82ZBXojk
+Message-ID: <CAMuHMdUKuzYPm-3XyMUZCM6K+GpQPE=JgDJdQiaPtwyYR7cYWw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/5] clk: renesas: rzv2h-cpg: Use per-SoC PLL reference
+ frequency for calculations
+To: sashiko-reviews@lists.linux.dev
+Cc: Prabhakar <prabhakar.csengg@gmail.com>, conor+dt@kernel.org, 
+	wsa+renesas@sang-engineering.com, robh@kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314461-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314432-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:geert@linux-m68k.org,m:linux-arm-kernel@lists.infradead.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:prabhakar.csengg@gmail.com,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:prabhakarcsengg@gmail.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,sang-engineering.com,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MID_RHS_MATCH_FROM(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,mailbox.org:dkim,mailbox.org:email,mailbox.org:mid,mailbox.org:from_mime,glider.be:email]
+	RCPT_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:from_mime,linux-m68k.org:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,mail.gmail.com:mid,renesas.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D761E6B0137
+X-Rspamd-Queue-Id: 2C55E6AFAFB
 
-On 6/22/26 12:35 PM, Geert Uytterhoeven wrote:
+On Fri, 19 Jun 2026 at 14:11, <sashiko-bot@kernel.org> wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issu=
+e(s) to consider:
+>
+> Pre-existing issues:
+> - [High] Silent 32-bit unsigned integer overflow and zero-extension corru=
+pts PLL calculations when 'p.k' is negative on 32-bit architectures.
+> --
+>
+> commit 68e2983ee9a6e8d870b293872442cdc2bc7b3e74
+> Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> clk: renesas: rzv2h-cpg: Use per-SoC PLL reference frequency for calculat=
+ions
+>
+> Introduce a per-SoC PLL reference input frequency parameter to avoid
+> relying on a hardcoded 24MHz constant during PLL configuration math.
+>
+> > diff --git a/drivers/clk/renesas/rzv2h-cpg.c b/drivers/clk/renesas/rzv2=
+h-cpg.c
+> > index e271c04cee34f..fff89f2bdc0b2 100644
+> > --- a/drivers/clk/renesas/rzv2h-cpg.c
+> > +++ b/drivers/clk/renesas/rzv2h-cpg.c
+>
+> [ ... ]
+>
+> > @@ -335,9 +335,9 @@ bool rzv2h_get_pll_pars(const struct rzv2h_pll_limi=
+ts *limits,
+> >                                       continue;
+> >
+> >                               /* PLL_M component of (output * 65536 * P=
+LL_P) */
+> > -                             output =3D mul_u32_u32(p.m * 65536, RZ_V2=
+H_OSC_CLK_IN_MEGA);
+> > +                             output =3D mul_u32_u32(p.m * 65536, input=
+_fref);
+> >                               /* PLL_K component of (output * 65536 * P=
+LL_P) */
+> > -                             output +=3D p.k * RZ_V2H_OSC_CLK_IN_MEGA;
+> > +                             output +=3D p.k * input_fref;
+> [Severity: High]
+> This is a pre-existing issue, but does this multiplication safely handle
+> negative values of p.k on 32-bit architectures?
+>
+> Since p.k is a signed 16-bit integer (with limits->k.min allowed to be -3=
+2768)
+> and input_fref is a 32-bit unsigned long, C promotion rules on 32-bit bui=
+lds
+> will convert p.k to a 32-bit unsigned integer before the multiplication.
+>
+> If p.k is negative, the resulting 32-bit unsigned modulo value will be
+> zero-extended when added to the 64-bit output variable. This would incorr=
+ectly
+> add over 4 billion to the output frequency rather than subtracting the
+> intended fraction, which could severely break the PLL parameter search.
 
-Hello Geert,
+Good point!
+Although this driver is only used on 64-bit platforms, the code might
+still be used as an example, and copied for use on a 32-bit platform.
 
-> On Sun, 21 Jun 2026 at 04:51, Marek Vasut
-> <marek.vasut+renesas@mailbox.org> wrote:
->> Add soc: label to the /soc {} node to align the DT with r8a77951.dtsi
->> which already has that soc: label. The soc: label is useful in U-Boot
->> where it is used in U-Boot extras DT fragments.
->>
->> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> 
-> For the whole series:
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> i.e. will queue in renesas-devel for v7.3, squashed into a single
-> commit. Unfortunately there is no cover letter, so I will have to add
-> all nine Link-tags.
+> Could p.k be cast to s64 before the multiplication to prevent this unsign=
+ed
+> overflow and ensure proper sign-extension into the 64-bit output?
+>
+> >                               /* Make it in mHz */
+> >                               output *=3D MILLI;
+> >                               output =3D DIV_U64_ROUND_CLOSEST(output, =
+65536 * p.p * divider);
+>
+> --
+> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260618181949.30=
+36280-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D1
 
-Is that why cover letter helps you ?
+Gr{oetje,eeting}s,
 
-If so, I will start generating ones ?
+                        Geert
 
-Thank you for your help !
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
--- 
-Best regards,
-Marek Vasut
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
