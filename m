@@ -1,161 +1,210 @@
-Return-Path: <devicetree+bounces-314451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314455-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Kl5iEr08OWoppAcAu9opvQ
-	(envelope-from <devicetree+bounces-314451-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:46:37 +0200
+	id BcCtNRA/OWrIpAcAu9opvQ
+	(envelope-from <devicetree+bounces-314455-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:56:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4F9D6AFFC2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:46:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 362406B00E9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 15:56:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Ni93tuwk;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314451-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314451-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=altera.com header.s=selector2 header.b=ODbPshhd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314455-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314455-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=altera.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E80833059790
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 13:42:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1469A300875B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jun 2026 13:50:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2A533B3BF3;
-	Mon, 22 Jun 2026 13:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9A33A1A27;
+	Mon, 22 Jun 2026 13:50:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010011.outbound.protection.outlook.com [52.101.61.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91A5345CBF;
-	Mon, 22 Jun 2026 13:42:19 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782135740; cv=none; b=AYkcRYUGo3ndK62EpBGkm/oHKfA8uoZ1hkACGeRDHmMOzv45eAncRVtXvYOslD1hfIkZ1vyNntccLpXbVYUWt+fVP2VBKXPDXAkR/sXPlmmFJUL8t/NiwW7OuveSIEvtsK/xpP7WOaMrdhwP9dCoP5ls7zzQBplj/4YDOUUZHro=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782135740; c=relaxed/simple;
-	bh=wPs2KvIcrzxAfqFySRNk66FlQJWyRYYOYsEFmeCGzDU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZMc6TNBhb1q1UynZxXuF/LX9N1ZlaZBO/zy/cAD9dFOKcpaJnsoZ7aIFt5Yvfry6+hCq8RLDNUr0LneDRJHhKZBzP8B/AtzGtA6UP+GU+oebGDdyUFbjT+SOOKmL6FqBE7JXT4e0jLTyM5Xv1rRDtPVgejPGJKgl8iVcH/zk6a0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ni93tuwk; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A54A1F000E9;
-	Mon, 22 Jun 2026 13:42:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782135739;
-	bh=FC/VBYU4oBVduK0L5ASsa1ThohOhgLydmEOiMbsObKs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Ni93tuwkHsNp9dRWNzSEJk/muSbISp48Wg5v+f81pcpNpSxlHzQt8xlHt0cP3Eafs
-	 pw6LXSApGr9mVEBp9Tg2mIztdRfhGjIJaM+9u+Eo9/bU25laEXmaQZxww52wps6Jfh
-	 pAaWXsVpzFT8LchKv6tLVXOFivRB9KP2nfJyJwWlrI+p4sjc0SztY9rMgfSdM1bZnR
-	 Pf1XuLzmMHu5EP1XrBGPRbtbETwIvF+oadfnWIlTmzjfnn6GyQdWB+YGobXCB99ouY
-	 1pw2MlckbKN8paILOwObzbbcsNScuwqzeHwWX1txDeiZwNWb+OOw9Y3oWibzRGVRvD
-	 q7LensQSBnvdw==
-Date: Mon, 22 Jun 2026 15:42:15 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ajay Kumar Nandam <ajay.nandam@oss.qualcomm.com>
-Cc: Srinivas Kandagatla <srini@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9EA6126C03;
+	Mon, 22 Jun 2026 13:50:11 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782136213; cv=fail; b=HWocAWgyoPJFFNH2TyOnWDeEWP+IcUqUANnsnWapgI97Mkb3b8CgeSQash+TPJXqITs8UdyYKpfUYrAAE9p/I+JnejfBbeQtqjrUlRBIscb3L2i7xFUQoVcDgAeSirI/WElgIJUomYPfqmy6jNDJ5HrZ5nCaZjvVLb0WVn5GVCU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782136213; c=relaxed/simple;
+	bh=PJyEociuhHbkN0gcptjWB7VJM7DWOqlLdxGO15hfgtI=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=OnOiNGVqyPbGdqXOE3z+kchpoeuirm7QMMQQS2hTZUe8pBvZ5MDIk7mAPFKHyKnUaAyStAvDRz15oArlugggoz8BNW/IyMxJziAD9UtwkrcRsyXqEx4qamxf1MhG6Wct639EpBaUkr9rQXMy32hA6BOBJtqCogeymttwasPcVlY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=ODbPshhd; arc=fail smtp.client-ip=52.101.61.11
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=y0QkkpIgC/SUF2UkQ0/Al9bkvuOvVlqfm9EdveRSHOJe6TBXAx5SIGFbF/Yp+b+Q6LYhwktDw3CnYRPW/PqWLyuhIJwEv9lMhnNa2D5JQOKwmSPaM6K4AHFcDKjlUyJUBNLMSXLi7iOzxjCQYO/jitELOYYlv/mzh6oM+jRApZR96+wwiCviFrEZHASh8NzFek7jI9cW5DaUpC9gRCEfwrmdOKD2dSjNCZmSGmE/V15v3VrxTHLh0lq79wsEZYd14iI4bDQdVbYbNttjblYfgmh+f0F5ijKykqsdNDU6RFm3BdLIIbGh/2gHCQPrfV+z66aXa39HSl1l7f4lml7gRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kdxkcAyZpucqny036kSHAsGpx9mfmkl55aUN8aflP1s=;
+ b=BteztV4LAU3tC9NKbYuiCGyYjhYrrX3T5pa/s/Xt1LD6Anja4eR8hi9vNcRXwFLJUexVOzOtKx47q9NHGf/DMpKitC2qRl8a+6o7capt/RzGWpjboCks1awY6l+VdW5yNJxhDld1anXirG42VIzn1VBWjGNUeLrfz4BGj3M5HNaCcF+QzWHR7hQrc5FD6N5/wQmEU5bsM05AE5Ttb7hfx7uv0TaJ6PXMBqFeCkEj/SpmwpoLeSehpwN+mY7/B7QfDGndYSc8GEoPBDythMAcgICuG6hZENGldS7LxsFDbSn4d1spqRQ0Uvytd6FrQw7udGWG1iHgrmXToyT6THTkAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kdxkcAyZpucqny036kSHAsGpx9mfmkl55aUN8aflP1s=;
+ b=ODbPshhdM/TbOVRkMCpyV0XtTcBovqkIEEUv1SmMlaawFNquwdDRi5RcKcJqLkut4t20Z/7wreOaeQR7qjEfDz1Y+xgAqm/n3IJU6gCRVRR3C7uDadlcyok1cTBbVlRARTWnKL9L4XeNN5f/3Rr/CycjcRoIXchGOanKkxEuEqxP1JiFmkves/lhlQlTpPCdfQE8qZ7OmUPa8VukW3bM++s5ITATlXiyagihWoxk6bGLRA1Sj4nOGrhPxTSVJ1rhhFa08vzlD2prsZ9OB5+fJ8ArDZMCBr6IGuizUZCOxQu1sANXqQ+b0UW16td1Bsybx1Ym3FpFU7/xN6r0gzXrvg==
+Received: from DM8PR03MB6230.namprd03.prod.outlook.com (2603:10b6:8:3c::13) by
+ LV1PR03MB989611.namprd03.prod.outlook.com (2603:10b6:408:2cf::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.19; Mon, 22 Jun
+ 2026 13:50:09 +0000
+Received: from DM8PR03MB6230.namprd03.prod.outlook.com
+ ([fe80::abad:9d80:7a13:9542]) by DM8PR03MB6230.namprd03.prod.outlook.com
+ ([fe80::abad:9d80:7a13:9542%3]) with mapi id 15.21.0139.018; Mon, 22 Jun 2026
+ 13:50:09 +0000
+From: Adrian Ng Ho Yin <adrian.ho.yin.ng@altera.com>
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: shikra: Add MDSP carveout memory
- and update APM DAIs memory regions
-Message-ID: <20260622-defiant-warthog-of-authority-d9d1ba@quoll>
-References: <20260618113509.2025881-1-ajay.nandam@oss.qualcomm.com>
- <20260618113509.2025881-3-ajay.nandam@oss.qualcomm.com>
+Cc: Adrian Ng Ho Yin <adrian.ho.yin.ng@altera.com>
+Subject: [PATCH 0/2] Add FPGA configuration and partial reconfiguration support for Agilex5
+Date: Mon, 22 Jun 2026 21:44:44 +0800
+Message-ID: <cover.1782135785.git.adrian.ho.yin.ng@altera.com>
+X-Mailer: git-send-email 2.49.GIT
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR13CA0097.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::12) To DM8PR03MB6230.namprd03.prod.outlook.com
+ (2603:10b6:8:3c::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260618113509.2025881-3-ajay.nandam@oss.qualcomm.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM8PR03MB6230:EE_|LV1PR03MB989611:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca76901b-d59c-4479-2dae-08ded0652c89
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|366016|23010399003|1800799024|18002099003|55112099003|11063799006|56012099006|6133799003;
+X-Microsoft-Antispam-Message-Info:
+	Bqrubz6reKMyIJ6R8Phn9NHF6lL62CxtpsDkdRvFEemq73OhHqJwEW3rIGme/m6TiFFrY1OYtz53F86B+Ljzm/Pm/VMRjiIUEXofPC9pkbffmfY1Y3thmYDEo5abqK/r3jTw//8qUl8Cup9P0IrdP8U0jfeGLtdyLzyDDvGyxAUOpqbcmGDCFNPi2E7dOpLej6aSOJ6GMHZlQUJRjGO0VCO/x9lJQ8Tuqx0Bqz78IScEapCd6KgVc18K6iuzvTKCqBSeumjsKsNvdmxZUwr6rX61sPjMkaCFOU4/biKgqWTKaY52jRwBjmUVDTtKE55v2Gw8Am0Mso+O2mZPBTCD8Rc7IS4tVsqPSMY5EhDRQOFvPBrI0An6VN+eyvPW+Kw3cZfSUNbfBfaXGfYrHgryPSiGl15TjEtyAGCiWwI2qms2BEBfJkywN44nZVW+ONkM2br1DpeOG2NCDbPyplDQWfQNwQsf3Y5Y9JClPzet1ig5iTgshIvrslde3Uhi59BHna+ZfZ9SdQkSilj5C7F2znzYOo686p3Csm50FUYIc63VZxt1WbLR0LHfUcIT6EkDk/TOxFo5pPneXFA9NcsJwMW4vXmUgNAEaEy4oxtA318TocyNXyjg2y8EiyDbaOYyQGOtbXfF+qZBbBx/pudeBcYjTFnoc2osmvMn63DJNb4=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR03MB6230.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(18002099003)(55112099003)(11063799006)(56012099006)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?UjfjazgUvar3tjPZQ+E4aiog917Q8FD5gTn/sf9bjtUe9U8UIyBRLM4jmPTX?=
+ =?us-ascii?Q?CrLyC+OZbei6RDH3ZHAhLeaTRnSTp4AI0R39vWdq7w/r6CHFC84AbrhclseG?=
+ =?us-ascii?Q?Shd62S9SXufX3IcHWZR1vPAFvuPIvp/4Chfa6dshdLDYptmCYLxpYj0gtTMY?=
+ =?us-ascii?Q?ek37/xNE1rQfvZlBBJtjQRX65NvpDbpEXeaxVlk8gBn/xauE3/DV/joLG9fG?=
+ =?us-ascii?Q?fRzIuJOyUmO25nRRKULOkYfC5bR6vsf2YoXHu5ccFeyXadBGLaSn+eX95Xrr?=
+ =?us-ascii?Q?Iku2X95uhrbtn426Q4frp13JNoSP/tYwtxNACJcECZKvzrGxGxoeli/2VoV8?=
+ =?us-ascii?Q?TonoD5MwMy8aEJ5QBpJyHtRpxIFwEybQu/n/vlS5+vzK5PwBa4PSgU1oKrk2?=
+ =?us-ascii?Q?W+HWOjWCsmwn2iciZjb7CGa8l7lSZaNM6T6hg9QjZ45Ky3QmKSm9En+EV6DG?=
+ =?us-ascii?Q?Zj6TBTR3M0LRmLTB4qo9P88tMwYOhazFoEDC0vPNgCGlSjgLzWSZihh7Xc6E?=
+ =?us-ascii?Q?7C87xfF2j3LZxFvBRKP29YHWGUHFVtYdLMQtUEe+ftkbMY8IR5rTuKZaUOtB?=
+ =?us-ascii?Q?wWYxRY+JtkTwuSc4lsZ6YaoYhccd9M22DOLviCfSdOV5ZGNV5Iv0ZAHqbzEl?=
+ =?us-ascii?Q?mpAMMtlB5pdZCAhxJYJ7E2RqJ+R69vcK1FR0YECcqAyVuWO59CXj3csyeZKo?=
+ =?us-ascii?Q?/nHWNPNHXpzs8qwf5NMh4ysGT5GLmymE3RYEF0mDcqeHkLYnBQXSj3x5BaJq?=
+ =?us-ascii?Q?7Hny8VH9Fd9M9u5is+Gxy1DjzmpZsbfEejHe4I3YJruCYQT+JJQUbiPsBeiV?=
+ =?us-ascii?Q?OCimgj7uQYKS5qDhZ1ZYkScyzEYGYN0t61KR4dAMs6GaxuK6JNTLUJtQfiR5?=
+ =?us-ascii?Q?A61cmr7BZmGci9+Lw8xABZA0l65fE8e43ymi7h/MHU9e8TGxc3Kr55/F8u3O?=
+ =?us-ascii?Q?E+s1ZuiZERi+t2KDSKOLiv9OSgff7LJyqCbrJa9PMmhngGOw+gVewoteKWYD?=
+ =?us-ascii?Q?wf8KwgF/6VeR84NpNLI5SrILN0vQycIZj4t6zLPqbdZ9mhhd96XGNq+Emw96?=
+ =?us-ascii?Q?dgwswo2c8cLuAXMi8Ir33zMug8YxEBD2ZUN4e/roXGN3WcM6Zrw4jO2bWUob?=
+ =?us-ascii?Q?I+jioKtrW1Q+kyz/PdQviNrAJZDQrGCzGwMLKIsqjYpaQvOT4p1ja3fFav2U?=
+ =?us-ascii?Q?QEZrg3sqY62wpvfIif3ORkCcfTKN6NkQiiJlbxr+YCIHtBw3eqN4qKKsu/Nx?=
+ =?us-ascii?Q?cFE2nMGdQnqyPt/yIn/4PWJlIe1FGG5sOKNx4RyBzt5TrLCgRof0TVvrGMk1?=
+ =?us-ascii?Q?BUX8DeCweEwNfBqz75UsQZqWf6q5Mbo3w1fP1Vb4vrtCjWQnrnzJwhY3+Smq?=
+ =?us-ascii?Q?gGSbPOl9ZYEjN9n1RnjYuow1pYJJ7pxu2j6HSzpYX3NyBhFwHvAtBF4ug342?=
+ =?us-ascii?Q?31D/8cFbquc5U4mFY6lg3GY8Pv4HkvnT8YPcDTnAWX9CSc3+wPkLqIH9zGJO?=
+ =?us-ascii?Q?GnEpgKyziKm0DA5mrapgz0oCsEeIOFgVRhlc8LNLISGbeoZqkCA+Uw3FgfcN?=
+ =?us-ascii?Q?ReKBahu51ewMXoVKgK69W+xHJgHL+RGkcFAgloDB7Bx9Gp+l8c7YxqYu4TT7?=
+ =?us-ascii?Q?JwuHXO9her1rhspwyqiRi7lkgcHYem6OF9r5rjCQfMmtn4cTKLDFJDiHLxKy?=
+ =?us-ascii?Q?ij6HVaj9jZNYBgSgRd1STP/8vWF64MJlvra5Zn7S2R9Fn0aW+qcr417Q6SFO?=
+ =?us-ascii?Q?Je4V+h472Qx64hkzq1aYRwT4h50IuNY=3D?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca76901b-d59c-4479-2dae-08ded0652c89
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR03MB6230.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 13:50:09.4169
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7QBK+AVvzVull+YU+j3tXHIUWiNWLL8Y9LF49Sp+kCBAMbO5wGHZGmUKCiDwHY4lh8ag02qTG8lEgIP1gIw2pURDPuJsCyGyxxIQXHwOppw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV1PR03MB989611
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[altera.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[altera.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:ajay.nandam@oss.qualcomm.com,m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314451-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-314455-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:dinguyen@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:adrian.ho.yin.ng@altera.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[adrian.ho.yin.ng@altera.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[altera.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[adrian.ho.yin.ng@altera.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email,quoll:mid]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,altera.com:dkim,altera.com:mid,altera.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D4F9D6AFFC2
+X-Rspamd-Queue-Id: 362406B00E9
 
-On Thu, Jun 18, 2026 at 05:05:09PM +0530, Ajay Kumar Nandam wrote:
-> Add a dedicated MDSP carveout memory region for audio usecases on
-> Shikra and mark both existing audio heap and MDSP carveout regions
-> as shared DMA pools.
-> 
-> Update the Q6 APM DAI node to reference multiple memory regions,
-> where index 0 is used for control path buffers and index 1 is used
-> for MDSP data path buffers. This separation ensures proper memory
-> allocation and access for APM communication between APSS and MDSP.
-> 
-> Also add shared-dma-pool compatibility to the existing audio heap
-> region to align with upstream DMA pool usage.
-> 
-> Signed-off-by: Ajay Kumar Nandam <ajay.nandam@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/shikra.dtsi | 14 ++++++++++++--
->  1 file changed, 12 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/shikra.dtsi b/arch/arm64/boot/dts/qcom/shikra.dtsi
-> index 88954ee943ef..d744f7e38ca6 100644
-> --- a/arch/arm64/boot/dts/qcom/shikra.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/shikra.dtsi
-> @@ -365,7 +365,14 @@ smem_mem: smem@86000000 {
->  		};
->  
->  		audio_heap_mem: audio-heap@86200000 {
-> -			reg = <0x0 0x86200000 0x0 0x100000>;
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x0 0x86200000 0x0 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		audio_mdsp_carveout_mem: audio-mdsp-carveout@86240000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x0 0x86240000 0x0 0x100000>;
->  			no-map;
->  		};
->  
-> @@ -1935,7 +1942,10 @@ q6apmbedai: bedais {
->  
->  						q6apmdai: dais {
->  							compatible = "qcom,q6apm-dais";
-> -							qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+This series enables FPGA configuration and partial reconfiguration on Altera Agilex5 SoC.
 
-There is no such line in next-20260619, which means this is some wrong
-base.
+On Agilex5 the DDR base address starts at 0x8000_0000, which is
+outside the addressable range of the SDM. The SMMU is used to remap
+DDR-allocated buffers to an IOVA within the SDM-accessible 0-512MB
+window. Agilex5 REV B introduced a hardware SDM address remapper,
+but it must be bypassed so no additional offset is applied to the
+IOVA, keeping the implementation consistent across all Agilex5
+revisions.
 
-Best regards,
-Krzysztof
+Patch 1 adds the fpga-mgr child node and fpga-region to the Agilex5
+DTSI and enables the SMMU, which is always required on Agilex5 for
+the service layer to operate correctly.
+
+Patch 2 extends the stratix10-svc driver to support the new
+intel,agilex5-svc compatible. It enforces SMMU presence at probe,
+configures a 29-bit DMA mask, and bypasses the SDM address remapper
+via SMC. The driver adds 0x8000_0000 to each IOVA before the SMC
+call so the address passes ATF's is_address_in_ddr_range() check;
+the firmware COMPLETED_WRITE response returns the raw IOVA, so the
+offset is added back before the svc_pa_to_va() lookup. It also
+fixes a pre-existing list corruption bug in
+stratix10_svc_free_memory() and adds a devm cleanup action to
+reclaim leaked buffers on driver unbind.
+
+Adrian Ng Ho Yin (2):
+  arm64: dts: socfpga: agilex5: add FPGA manager and region nodes
+  firmware: stratix10-svc: add support for agilex5
+
+ .../arm64/boot/dts/intel/socfpga_agilex5.dtsi |  12 +-
+ drivers/firmware/stratix10-svc.c              | 258 +++++++++++++++---
+ include/linux/firmware/intel/stratix10-smc.h  |  23 ++
+ 3 files changed, 248 insertions(+), 45 deletions(-)
+
+-- 
+2.49.GIT
 
 
