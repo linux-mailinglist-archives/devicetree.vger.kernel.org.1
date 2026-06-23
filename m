@@ -1,316 +1,243 @@
-Return-Path: <devicetree+bounces-314908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314911-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rlr4NaSvOmo/DwgAu9opvQ
-	(envelope-from <devicetree+bounces-314908-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 18:09:08 +0200
+	id QG4bMUawOmqJDwgAu9opvQ
+	(envelope-from <devicetree+bounces-314911-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 18:11:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 428A56B894A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 18:09:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35C826B898E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 18:11:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmx.net header.s=s31663417 header.b=dv+tVRbH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314908-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314908-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=gmx.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=EXzlyHi1;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314911-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314911-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 36C2B305A974
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:08:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DE4143046C73
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:10:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B3DC30D3EB;
-	Tue, 23 Jun 2026 16:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E99830D414;
+	Tue, 23 Jun 2026 16:10:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58BA83043B2;
-	Tue, 23 Jun 2026 16:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6C930D3EB
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 16:10:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782230914; cv=none; b=KTLoO/dUaLKbJAP1dioOaZ9iAKXdXosUa8xpiROOXvc4keYoXiVBtHcEmx9YXryMP1QkaybCTbMkUpVvcc0KoQVxBgu2ZB2aSmV280vXJ5sQXcIDdYERx7OfJepGPFp570Fl+w5lYmbCjKhoxt4zeVcy2txFnFJa/Go3sUlNOns=
+	t=1782231019; cv=none; b=JBl7RKScD7yofEgYFkxnREN4hQo/D09Tf8RwDNnFOSGPnHbafMOO9wiMnBcgFU69uEZbd4vyQVj1kzvTb888/6pqIU3mfX5BMNsM6Q11IhS2Z/CvwD0Hs69QOpkXD+VTqWZGaau4mfYB442TZS1ii0Io8Gu464iksvKwQxzvx+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782230914; c=relaxed/simple;
-	bh=/d16Sieqk8yeRcOYDHX46mX63dJaYsjHBRnL9CwK+KY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ACPRxrgWh6gNeih0qvdH/URKagNI1zG3fN97/6/yMza0v2NO78TncDlDUJAcIPVkflbGPuT4hdCdIpinjup9JlOFKaLZPdZZp2fZTgSuLPZYsG86dIXx3Hi+LsQobvE0Vp9v1GXBvBC2Hl1Rpw/lAxKe62u7UDxHT8/vRGtcUu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=lukas.metz@gmx.net header.b=dv+tVRbH; arc=none smtp.client-ip=212.227.15.15
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1782230907; x=1782835707; i=lukas.metz@gmx.net;
-	bh=YQaX3VHKdD3WPqIuFdUCd3GK0GLWKKG+sZlaadadLXE=;
-	h=X-UI-Sender-Class:From:Date:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=dv+tVRbHOUoSs8vJLMecQaszXxspcV6SgUS113qoHZpDoZadom6xoGLupGhY1TWr
-	 svwquB2riyD0tMO6QfqV6tuLiOtbGz7Pg8D2erJ1pmNZQmIC48sAgFKhZ7RXZdtCE
-	 Eyq2pjot+HfaU7A6iPuMd4SWbyaN5N3nHllQSNNLoROdWn6QzTzQfB6IBMIg0BmWl
-	 OuJ2JhZjatoZDaWymg8z6T1zYRVGoIW9zJ/3OOXW27tzRdyNEnB70vWrk6yo2etxP
-	 t2Kck1gyEUXM1Gvtfvf3MIMUWGrFfmvPqjidLGoaCuDJaWItqySdhauVpvJxO3XWK
-	 O9sL47u+U1MEkcYGkg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MEUzA-1wM55c3dVq-00641c; Tue, 23
- Jun 2026 18:08:26 +0200
-From: Lukas Metz <lukas.metz@gmx.net>
-Date: Tue, 23 Jun 2026 18:07:28 +0200
-Subject: [PATCH 2/2] dt-bindings: iio: dac: Add DAC8163
+	s=arc-20240116; t=1782231019; c=relaxed/simple;
+	bh=vmkeJhQtJt96i4XbpAtqOBYm0D3OoH3GxeWDRmVKlNk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gommBTvCzixCQQfcrwzBVANQxtfGgMjwItpXsFQT6WzF9SMFpMYMwG5jkSZ6OAbH12wn86Nl75UgyLBM5/hyj/IeXf5DoBMhIeXEigoL7tcN1HWkV9p7+ZbFk80Kwxh1WnKeKBpINVjWvOldTAzCFhAoZKuFhaKafGz+c4OfKOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EXzlyHi1; arc=none smtp.client-ip=209.85.128.54
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-49241dbf9c1so422135e9.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 09:10:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782231017; x=1782835817; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=87UCq5kht4kVk554m6yLxJyrr/TZGMMBzoXy/EG2byU=;
+        b=EXzlyHi1KP1boEdjxJ602Sghexe+GaY39PlGia3jTuoeuv7O0fuYvPkXyeB2Bw3TBu
+         x9AmLL28KwNfMdKS71CJ/mu4M0hTDusVrBFwY1hiKSw5y+UObooLrbvspFPVLyaySWzv
+         wYI9cqpnnm3BevC0s2BwxoPzvM9Q+LWSGyH5Q7Ji1QMOIlXACpLcPd916cCf5YsfTnnp
+         cHFcaswa1h12LO9H63NtDbNz9P2TRWWwO93rY3uOavEoh9eo3h/ZxC2e37UMVi1926IP
+         M0dYOT3suJRKUm6ydB71nZ4XMq/k7Hp2OuU8X3fzxP2fiqBGUPJGnzaBzggMJ8UhfYLz
+         LZMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782231017; x=1782835817;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=87UCq5kht4kVk554m6yLxJyrr/TZGMMBzoXy/EG2byU=;
+        b=m8J6MZzgCTMXuzWQ70yKhm3FNcCxgEYWZ9/ww1aImMarc8Ew6FGoKbs6JJo27d3mWN
+         0CfM/OVVClNQ8EFnsF3F0b4zJ0gNz2OapQzUvhjUyCw8a/FLlOjhWZfUo6QBVCVG7snD
+         5sL8T3aNXW/Hm0ZLJPLEboM5v4wEDFCHnwpjCiWTjdza9sbRBTdFUHgZIKFk6E+lMpzt
+         LX7MfJdI8WEsz9xsJxW4Pk31yjLRmQGz2lXGzJWtFT/OigmZk5v6libYf6GGLaMAY9Fx
+         dEoH4QKnyDlQVrSAL3QM4ws2lXBirL56pNgVfBSLiDFNbhn4uqv4qK/5c0QyLRvv7dqf
+         WH0A==
+X-Forwarded-Encrypted: i=1; AFNElJ/TmCTVyDsw3cY36CxzRxYIwHPd1t1H7yUESdI9X33x/U+b8widwiU+rNQPfZbu1rhAZbFwPmxK3WU8@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywc/YxL1M43r+P4zPHwHf3sThjI/QFSzZZhIegIXuefQL1biE3X
+	k5bDzi9bRtXHbv7i7yWWAMhN0qwBrc/KKeB0MId1fNlFNeuhcQLsbDhQ
+X-Gm-Gg: AfdE7clz+6BIwpb/UNkRIhNMix3AT6s9QwMjZlRWKkMSbbXKjwW20lYqQLxTgGATP7w
+	ndjhUZf2331J3gIRvXB4qlgB0LkeMfk1/w5+ycMbe281ccYKBe9VYP891emcJhlisEK+nHbVsy8
+	D8G5VLrXJW2PFAe3hZx5xQM0IiWcIQKkxYIMoSsqKdoTVcfXRcfql9sdodJ51+47UjmJpL/m/W3
+	J9iZYa/ARKl8x2hgPkzJ1Kqm/VBjsnk0skkFOd9CPFSlTTexXomIFLAT29O9ZT2mBKKcIH0en+B
+	EtoK4yz3qkFG2CiMiZ+t6CXLIVvEaEusiGJ11wUsnW1S2acLYelg2rer8qwCNlil9oNtRnl3HCs
+	d7fKlqeDFYZWiFSh4vDMw941lkT0hW2p4BmLF7yBVhTDsG0w42lgBL+2bi6GtbXDcXrmIM5Rs2x
+	pvWoS241Jxsfn4A8621QZBpnEfvR7S/KCg3fqFhSs0deb1bwNAmzdy11190q5ba8oNC5A/O/+FN
+	djBYBt2
+X-Received: by 2002:a05:600c:c3ce:20b0:490:b294:c652 with SMTP id 5b1f17b1804b1-49240e85c12mr251094265e9.20.1782231016586;
+        Tue, 23 Jun 2026 09:10:16 -0700 (PDT)
+Received: from [10.128.11.131] (195-23-151-163.net.novis.pt. [195.23.151.163])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4923ff8a712sm358628315e9.13.2026.06.23.09.10.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jun 2026 09:10:15 -0700 (PDT)
+Sender: Julian Braha <julian.braha@gmail.com>
+Message-ID: <a4af663b-b559-4ca7-a0da-84f9c57861db@gmail.com>
+Date: Tue, 23 Jun 2026 17:10:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <20260623-dac8163-work-v1-2-5b508158faa0@gmx.net>
-References: <20260623-dac8163-work-v1-0-5b508158faa0@gmx.net>
-In-Reply-To: <20260623-dac8163-work-v1-0-5b508158faa0@gmx.net>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, Lukas Metz <lukas.metz@gmx.net>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782230905; l=2942;
- i=lukas.metz@gmx.net; s=20260616; h=from:subject:message-id;
- bh=I4z3yDFWiBkP4lYrlkuPuIyQvzLuax7/Rw3MLySZ/6k=;
- b=oAq/Mn2ajNEMtoaBZARgUYWJRZlytAKaPyiT0HQ9WTN/U9+wwzG00NmOKsj1//jVjlZwyKLV5
- rgncBX1UQFvC9Stl7UdkqvxG4lfbFndSscTb9sUI88HLPslkduHDdNS
-X-Developer-Key: i=lukas.metz@gmx.net; a=ed25519;
- pk=ljkIqYPVyHd9CYN4/koqGKt7Mym5FTTB+ZzvvlfD4yM=
-X-Provags-ID: V03:K1:/uscYcn37XUDxEaqUG7/S0YtZ46q9bGvWZCZ+SkWHaGACQzqR2j
- 1bSk+VfYqtCxVjhz+jLVSyz/u/qCgH9adcgx8mK+YI5JnU5udDWGdRexNBIUO72cTI/Adlw
- 8uENZA08bI4yWL08rMffRc89bfYII0lpqBsWKpQwQPxmLuE+2rOA9vnHtsb3iLKBzSxNqXh
- c/Q9iQ59xuJ1vLVJcuQVQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:eRrasztFB/c=;RTKBtdkFRvPo0lnMcNpYrgZ45jE
- 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
- bvOnZw==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v14 4/4] crypto: spacc - Add SPAcc Kconfig and Makefile
+To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>,
+ linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, herbert@gondor.apana.org.au, robh@kernel.org
+Cc: krzk@kernel.org, conor+dt@kernel.org, Ruud.Derwig@synopsys.com,
+ rbannerm@synopsys.com, manjunath.hadli@vayavyalabs.com,
+ adityak@vayavyalabs.com, navami.telsang@vayavyalabs.com,
+ bhoomikak@vayavyalabs.com
+References: <20260619144558.1868995-1-pavitrakumarm@vayavyalabs.com>
+ <20260619144558.1868995-5-pavitrakumarm@vayavyalabs.com>
+Content-Language: en-US
+From: Julian Braha <julianbraha@gmail.com>
+In-Reply-To: <20260619144558.1868995-5-pavitrakumarm@vayavyalabs.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmx.net,quarantine];
-	R_DKIM_ALLOW(-0.20)[gmx.net:s=s31663417];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-314911-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314908-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:lukas.metz@gmx.net,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[lukas.metz@gmx.net,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmx.net];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:pavitrakumarm@vayavyalabs.com,m:linux-crypto@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:herbert@gondor.apana.org.au,m:robh@kernel.org,m:krzk@kernel.org,m:conor+dt@kernel.org,m:Ruud.Derwig@synopsys.com,m:rbannerm@synopsys.com,m:manjunath.hadli@vayavyalabs.com,m:adityak@vayavyalabs.com,m:navami.telsang@vayavyalabs.com,m:bhoomikak@vayavyalabs.com,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmx.net];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukas.metz@gmx.net,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmx.net:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 428A56B894A
+X-Rspamd-Queue-Id: 35C826B898E
 
-Add device tree binding for the Texas Instruments DAC8163 family
-including the DAC7562, DAC7563, DAC8162, DAC8163, DAC8562 and DAC8563.
+Hi Pavitrakumar,
 
-Signed-off-by: Lukas Metz <lukas.metz@gmx.net>
-=2D--
- .../devicetree/bindings/iio/dac/ti,dac8163.yaml    | 75 +++++++++++++++++=
-+++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 76 insertions(+)
+On 6/19/26 15:45, Pavitrakumar Managutte wrote:
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac8163.yaml b/D=
-ocumentation/devicetree/bindings/iio/dac/ti,dac8163.yaml
-new file mode 100644
-index 000000000000..bb4bad389323
-=2D-- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/dac/ti,dac8163.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/dac/ti,dac8163.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments DAC8163 family of DACs
-+
-+description:
-+  The DAC756x, DAC816x, and DAC856x devices are low-power, voltage-output=
-,
-+  dual-channel, 12-, 14-, and 16-bit digital-to-analog converters (DACs),
-+  respectively. These devices include a 2.5-V, 4-ppm/=C2=B0C internal
-+  reference, giving a full-scale output voltage range of 2.5 V or 5 V.
-+
-+maintainers:
-+  - Lukas Metz <lukas.metz@gmx.net>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,dac7562
-+      - ti,dac7563
-+      - ti,dac8162
-+      - ti,dac8163
-+      - ti,dac8562
-+      - ti,dac8563
-+
-+  reg:
-+    maxItems: 1
-+
-+  ti,loaddacs-gpios:
-+    description:
-+      Pin needs to be asserted permanently when updating the DAC synchron=
-ously.
-+    maxItems: 1
-+
-+  vref-supply:
-+    description:
-+      Reference voltage for scaling if an external reference is used.
-+
-+  ti,internal-ref:
-+    type: boolean
-+    description:
-+      Flag if the internal reference is used (external otherwise).
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+  - if:
-+      not:
-+        required:
-+          - ti,internal-ref
-+    then:
-+      required:
-+        - vref-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    spi {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        dac@1 {
-+            compatible =3D "ti,dac8163";
-+            reg =3D <0x1>; /* CS1 */
-+            ti,loaddacs-gpios =3D <&gpiog 8 GPIO_ACTIVE_HIGH>;
-+            ti,internal-ref; /* internal reference used*/
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e82cc28e1bc3..5512f5eaab44 100644
-=2D-- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -26398,6 +26398,7 @@ TI DAC8163 DAC DRIVER
- M:	Lukas Metz <lukas.metz@gmx.net>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/dac/ti,dac8163.yaml
- F:	drivers/iio/dac/ti-dac8163.c
-=20
- TI DATA TRANSFORM AND HASHING ENGINE (DTHE) V2 CRYPTO DRIVER
+> diff --git a/drivers/crypto/dwc-spacc/Kconfig b/drivers/crypto/dwc-spacc/Kconfig
+> new file mode 100644
+> index 0000000000000..b253f8dc539c1
+> --- /dev/null
+> +++ b/drivers/crypto/dwc-spacc/Kconfig
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +
+> +config CRYPTO_DEV_SPACC
+> +	tristate "Support for dwc_spacc Security Protocol Accelerator"
+> +	depends on HAS_DMA
+> +	select CRYPTO_ENGINE
+> +	default n
+> +
+> +	help
+> +	  This enables support for SPAcc Hardware Accelerator.
+> +
+> +config CRYPTO_DEV_SPACC_HASH
+> +	bool "Enable HASH functionality"
+> +	depends on CRYPTO_DEV_SPACC
+> +	default y
+> +	select CRYPTO_HASH
+> +	select CRYPTO_SHA1
+> +	select CRYPTO_MD5
+> +	select CRYPTO_SHA256
+> +	select CRYPTO_SHA512
+> +	select CRYPTO_HMAC
+> +	select CRYPTO_SM3
+> +	select CRYPTO_CMAC
+> +	select CRYPTO_XCBC
+> +	select CRYPTO_AES
+> +	select CRYPTO_SM4_GENERIC
+> +
+> +	help
+> +	  Say y to enable Hash functionality of SPAcc.
+> +
+> +config CRYPTO_DEV_SPACC_AUTODETECT
+> +	bool "Enable Autodetect functionality"
+> +	depends on CRYPTO_DEV_SPACC
+> +	default y
+> +	help
+> +	  Say y to enable Autodetect functionality of SPAcc.
+> +
+> +config CRYPTO_DEV_SPACC_DEBUG_TRACE_IO
+> +	bool "Enable Trace MMIO reads/writes stats"
+> +	depends on CRYPTO_DEV_SPACC
+> +	default n
+> +	help
+> +	  Say y to enable Trace MMIO reads/writes stats.
+> +	  To Debug and trace IO register read/write oprations.
+> +
+> +config CRYPTO_DEV_SPACC_DEBUG_TRACE_DDT
+> +	bool "Enable Trace DDT entries stats"
+> +	default n
+> +	depends on CRYPTO_DEV_SPACC
+> +	help
+> +	  Say y to enable Enable DDT entry stats.
+> +	  To Debug and trace DDT opration
+> +
+> +config CRYPTO_DEV_SPACC_SECURE_MODE
+> +	bool "Enable Spacc secure mode stats"
+> +	default n
+> +	depends on CRYPTO_DEV_SPACC
+> +	help
+> +	  Say y to enable SPAcc secure modes stats.
+> +
+> +config CRYPTO_DEV_SPACC_PRIORITY
+> +	int "VSPACC priority value"
+> +	depends on CRYPTO_DEV_SPACC
+> +	range 0 15
+> +	default 1
+> +	help
+> +	  Default arbitration priority weight for this Virtual SPAcc instance.
+> +	  Hardware resets this to 1. Higher values means higher priority.
+> +
+> +config CRYPTO_DEV_SPACC_INTERNAL_COUNTER
+> +	int "SPAcc internal counter value"
+> +	depends on CRYPTO_DEV_SPACC
+> +	range 100000 1048575
+> +	default 100000
+> +	help
+> +	  This value configures a hardware watchdog counter in the SPAcc engine.
+> +	  The counter starts ticking when a completed cryptographic job is
+> +	  sitting in the STATUS FIFO. If the job remains unprocessed for the
+> +	  configured duration, an interrupt is triggered to ensure it is serviced.
+> +
+> +config CRYPTO_DEV_SPACC_CONFIG_DEBUG
+> +	bool "Enable SPAcc debug logs"
+> +	default n
+> +	depends on CRYPTO_DEV_SPACC
+Just a kconfig style thing, it would be a bit cleaner to factor out the
+repeated 'depends on CRYPTO_DEV_SPACC' by wrapping the options
+in:
+`if CRYPTO_DEV_SPACC .. endif`
 
-=2D-=20
-2.43.0
-
+- Julian Braha
 
