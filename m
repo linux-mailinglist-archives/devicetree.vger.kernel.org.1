@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-314761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314765-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XoBULNlmOmqQ8AcAu9opvQ
-	(envelope-from <devicetree+bounces-314761-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 12:58:33 +0200
+	id sn+KCl5mOmpQ8AcAu9opvQ
+	(envelope-from <devicetree+bounces-314765-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 12:56:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C2186B675A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 12:58:33 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B78596B66CE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 12:56:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=bMfzcVMj;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314761-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314761-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=cgVaEIGR;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314765-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314765-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4BEC93057619
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 10:56:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 36D883045965
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 10:56:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386E13D1ABD;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 871133D34AB;
 	Tue, 23 Jun 2026 10:56:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F413D0BE7;
-	Tue, 23 Jun 2026 10:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5333D1CA8;
+	Tue, 23 Jun 2026 10:56:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782212160; cv=none; b=rJlwRqxJ3eXWI2j5Qw6SyQ+BnGgUJN4BrrFBTICvDm7wjtxg58r5t4Rc9FZIv3U8EcS2O8rrBKwlhT4wFDocZDYlT8mY5CfH7h2tuYwKXUY+nv9IWRmdr3MsRMFL00eE9/7RNFqTwVkqb2wnnZyoQji8580Pzv1z4Tu4EBHKtnw=
+	t=1782212160; cv=none; b=I9mfmc4WQmJxj72SDk/NjRms6kS/3CD9BOerbpy8+5JanVfrlenYkWg7g/wx2ixr0mNwaCqSHrMj2HdBv/cJVvWCCBw0R/oypkhh+l04yb6wFPTY4TMcUFCrtfmTKOX3VfjXv3BjqwvNn6LfxIyk5B9kIECJgipdZE+0IDhVdXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1782212160; c=relaxed/simple;
-	bh=x2GL0GsNDsjpB7I7H/5ycLEWa7K7jpFlr1IN4vmfFi0=;
+	bh=hL7Re/t/yiLNcH5PjRNoJluhv+GCRcTVUyTSOP5c3wU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=flQPrqkX/F12Eaq1PzOH3wJCvxxNIWc4n5OhQa8CesQBIgtBHpbhyx9WbMJyUEi1rLnDFlKkR8yMqBP+AoS3ggyA86cNTPmBjlJxWvWgmy6dUJopkfIkVCd4AsV4r1JRejFViIkWe4L9pijLQBfqt/mOx16rDQW36GH2qsqFtuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bMfzcVMj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AA2A9C2BCF5;
+	 In-Reply-To:To:Cc; b=XZULoFpvxjyt1HFRT4EfXT0pzExINyhz1BRHKp1fW8erqLuyh9XLSKdAGMTALT0L9Sle9pofe18+ranWDFU+5nKkCM57TSYB8V/4PO+lSc7IV05nZWEQynUWeyZSuZjJpoXM3NQ30HJh2MJXcGHMK2QyzfE/mSNjuYPAbymU4k4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cgVaEIGR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BAB36C2BCC9;
 	Tue, 23 Jun 2026 10:55:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1782212159;
-	bh=x2GL0GsNDsjpB7I7H/5ycLEWa7K7jpFlr1IN4vmfFi0=;
+	bh=hL7Re/t/yiLNcH5PjRNoJluhv+GCRcTVUyTSOP5c3wU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=bMfzcVMj4NlE5akOO/89LKYpADN60JhaoRk3tvGa+YnAvb4lFnNuH/yG5NR6krUeV
-	 KGvlJ7fJw0EKLgQ2Q0Byc1DOtl9z5HHE0vrJPgbFejVYg6q+R9AJXXo5hkYj/dyeLt
-	 ztynfdrOMoU1nMvFUqSS5aVfxZWazZtNBDg+tX2JtRB4+bLZszqXdctI6OjnAaqF41
-	 +knR9c5Oq5IDFfBN1Pr/pEtAHLYtkrMXzzodlkDkNdE8spHIL3uvO4eXGelGvDFnIq
-	 /ECB5N5ZRSP9E9P+hmltNSgCx6/TTpmqmG6E+7nkNB6JrR5PFRweu+Ys3JkaaRzQk8
-	 m7sR6CgObbmfg==
+	b=cgVaEIGR389C9/RUNrd1oO98tsW4imXXabrJBMTkLe8r1VSSzfhtZ/5qdL4aPJu3L
+	 HMuij6orNI2DTMnmyCB8N14fwvBdyEOI1bRxRmIYKoY0bRBIRTPUKbJIETy6vUXMAU
+	 XLU7DpS5Ci/3F0W3BRPe87GeSnhvUY/hug+41fuvK56m6rIIdSUtkBT2bviN9rbEIH
+	 6yWC4tBvPxKCyihKZ3JbeYsayeLeFJnr0lV0B7uxiCS9OTFX/2scl8K2uWzIUuvqhy
+	 6HJSg8tLSr8sGre5j/1mYqPQn3SEqRizKPfHawWszy5olCRmB0K0Dc4SozelHrczin
+	 f/8iOdP+mnKpg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96928CDB47D;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A6BDBCDB47F;
 	Tue, 23 Jun 2026 10:55:59 +0000 (UTC)
 From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Date: Tue, 23 Jun 2026 11:55:42 +0100
-Subject: [PATCH v4 02/12] dt-bindings: iio: dac: ad5696: rework on power
- supplies
+Date: Tue, 23 Jun 2026 11:55:43 +0100
+Subject: [PATCH v4 03/12] dt-bindings: iio: dac: ad5686: add
+ reset/ldac/gain support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,7 +61,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260623-ad5686-new-features-v4-2-28962a57db0f@analog.com>
+Message-Id: <20260623-ad5686-new-features-v4-3-28962a57db0f@analog.com>
 References: <20260623-ad5686-new-features-v4-0-28962a57db0f@analog.com>
 In-Reply-To: <20260623-ad5686-new-features-v4-0-28962a57db0f@analog.com>
 To: Michael Auchter <michael.auchter@ni.com>, linux@analog.com, 
@@ -76,11 +76,11 @@ Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
  Rodrigo Alencar <rodrigo.alencar@analog.com>, 
  Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782212158; l=2556;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782212158; l=2649;
  i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
- bh=M2ZxcKplq9dYBzPvJ4Kk2806O8GaXfgsF0JAQRB+TJs=;
- b=Tj/qTi1p5DdFHOViHzZH1raVk/h6R+VDZAk2oeiBbIpA2PdTF+ZOQyih1xOkcf0iLY09umcmJ
- X/Ut76t+787CqjfQZjNX6+9xky+lhGpp92hA/Mku9IPoMpIwvW2Cl2f
+ bh=tqSguVcv0F+ri4HoEKx7VIIb7gTICL++YlTges0Sc4s=;
+ b=OBYuG73TFLFunnmvJqy7wCJHlF3zHlxn+91h7/5P4xBJJWim9yT7FpoMgGXyZD9Hl4Y5WwHXg
+ u2oMG8X12PrDJbFkm1T5icju3b+nzXgC9tI8iYolcP4cwqDI1HqRAbq
 X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
  pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
 X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
@@ -93,12 +93,12 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314761-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
+	TAGGED_FROM(0.00)[bounces-314765-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	FORGED_RECIPIENTS(0.00)[m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:rodrigo.alencar@analog.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -120,89 +120,93 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:replyto,analog.com:email,analog.com:mid,vger.kernel.org:from_smtp,microchip.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,analog.com:replyto,analog.com:email,analog.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1C2186B675A
+X-Rspamd-Queue-Id: B78596B66CE
 
 From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-Add supplies for VDD, VLOGIC and VREF input voltage pins. The vcc-supply
-property is deprecated, once it does not really exist as none of the
-devices describe any power input with that name. VCC is also misleading as
-it sounds like the input power supply, but it is being used as an external
-voltage reference, which should be called VREF. Certain devices require
-vref-supply to be available once an internal reference voltage is absent.
-For correct operation vdd and vlogic supplies are required.
+Add GPIO property for RESET, LDAC and GAIN pin. RESET is active-low, LDAC
+is used to load DAC channels with values from input registers and GAIN
+can double the voltage in output channels. The gain-gpios property is
+not available to all supported parts. The adi,range-double property
+indicates that GAIN pin is hardwired to high in case gain-gpios is not
+set, otherwise it sets the initial value for the gain setting.
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
 ---
- .../devicetree/bindings/iio/dac/adi,ad5696.yaml    | 34 ++++++++++++++++++++--
- 1 file changed, 31 insertions(+), 3 deletions(-)
+ .../devicetree/bindings/iio/dac/adi,ad5686.yaml    | 38 ++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
-index cc343cdf6085..e10f8596f9d3 100644
---- a/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
-+++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
-@@ -33,9 +33,22 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  vdd-supply:
-+    description: Input power supply.
-+
-+  vlogic-supply:
-+    description:
-+      Digital power supply. On some tiny package variants for single-channel
-+      devices, this supply is internally connected to vdd; in that case, specify
-+      this property with the same regulator as vdd.
-+
-+  vref-supply:
-+    description:
-+      Reference voltage supply. If not supplied the internal reference is used.
-+
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+index 713f535bb33a..d781baca6a6c 100644
+--- a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+@@ -35,17 +35,53 @@ properties:
    vcc-supply:
--    description: |
--      The regulator supply for DAC reference voltage.
-+    deprecated: true
-+    description: Use vref-supply instead.
+     description: If not supplied the internal reference is used.
  
-   reset-gpios:
-     description: Active-low RESET pin to reset the device.
-@@ -62,8 +75,21 @@ properties:
++  reset-gpios:
++    description: Active-low RESET pin to reset the device.
++    maxItems: 1
++
++  ldac-gpios:
++    description:
++      Active-low LDAC pin used to asynchronously update the DAC channels.
++    maxItems: 1
++
++  gain-gpios:
++    description:
++      GAIN pin that sets a multiplier for the DAC output voltage. When high,
++      the DAC output voltage is multiplied by 2, otherwise it is unchanged.
++    maxItems: 1
++
++  adi,range-double:
++    description:
++      Sets the initial voltage output range from 0 to 2xVREF. On devices that
++      have a GAIN pin and no gain-gpios property is set, this indicates the pin
++      is hardwired high.
++    type: boolean
++
  required:
    - compatible
    - reg
-+  - vdd-supply
-+  - vlogic-supply
  
  allOf:
+   - $ref: /schemas/spi/spi-peripheral-props.yaml#
 +  - if:
 +      properties:
 +        compatible:
 +          contains:
 +            enum:
-+              - adi,ad5693
-+              - adi,ad5694
-+              - adi,ad5696
++              - adi,ad5310r
++              - adi,ad5681r
++              - adi,ad5682r
++              - adi,ad5683
++              - adi,ad5683r
 +    then:
-+      required:
-+        - vref-supply
-   - if:
-       properties:
-         compatible:
-@@ -90,7 +116,9 @@ examples:
-       ad5696: dac@0 {
-         compatible = "adi,ad5696";
-         reg = <0>;
--        vcc-supply = <&dac_vref>;
-+        vdd-supply = <&dac_vdd>;
-+        vlogic-supply = <&dac_vlogic>;
-+        vref-supply = <&dac_vref>;
-         ldac-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
-       };
++      properties:
++        gain-gpios: false
+ 
+ unevaluatedProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/gpio/gpio.h>
+     spi {
+         #address-cells = <1>;
+         #size-cells = <0>;
+@@ -53,6 +89,8 @@ examples:
+             reg = <0>;
+             compatible = "adi,ad5310r";
+             vcc-supply = <&dac_vref0>;
++            reset-gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
++            ldac-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
+         };
      };
+ ...
 
 -- 
 2.43.0
