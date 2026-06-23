@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-314879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314882-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Jl/GNSWeOmouBwgAu9opvQ
-	(envelope-from <devicetree+bounces-314879-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:54:29 +0200
+	id 1w3vDEWeOmo9BwgAu9opvQ
+	(envelope-from <devicetree+bounces-314882-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:55:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 268876B80DF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 903B56B80FA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:55:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=AldcuCTO;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=gvQbqpiy;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314879-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314879-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=kwa28SvQ;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=PaYpvCYY;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314882-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314882-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D5B7730DAB35
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 14:52:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 72E443102FC4
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 14:52:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C8803D4130;
-	Tue, 23 Jun 2026 14:52:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 748AA3D6475;
+	Tue, 23 Jun 2026 14:52:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2923D47C5
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 616D73D1CC1
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782226355; cv=none; b=L2no+ZnurUZ8jUlT0W7bn8SF2UfLr0UabG6Oqi7Do17awCisnNHe2v24fXFTJvHnrJW2LFluZZ49HvaLeMzGhnJmwoBvhhpRVZXfT4VJ8rx8RRdkfHiic5CjYFh1zy1ekdqSI79qZm80xc7GW5tO0Pu8r9tCHj3Lfq3tZvZkTYA=
+	t=1782226360; cv=none; b=rLneGpZSPTFNix09qcnuPl9LYCpb6T+rXDo3y59sm58e3rTw9X3q7TWz9jVWap51tRsWz6oxMn3VCudZhgCmSm2DyinGRiT06Ago5LyGFgYYL18rzOnX/EyH0UaK5cnFDR8RpZZW6kGXFS1BaoURSH2+ie03mgq0qiFRVYoY2m0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782226355; c=relaxed/simple;
-	bh=h7T7xhP7YLAGw7hzAM+n2xON3UAZSlyQMOe106aKDIk=;
+	s=arc-20240116; t=1782226360; c=relaxed/simple;
+	bh=zDre3UYfu+bNvtbqlWeBmCxN1oWAuVcva06ty0WiJv8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Pv9WKwidROZu252FAGqUHpGGmxJuHNRpHY2PEvbKhU80IDIpSlauORk2lGxCWHLIldEtT+pSiwF0+yy8q0dwikq/9sHeCbxW7nlvj3ADdVQOnEXFuu8hDehYp95Ek91e//NbZbsefNxds94FtNM/YPKoFikI/by/k8m8a1iiTD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AldcuCTO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gvQbqpiy; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65NBYghK113419
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:32 GMT
+	 MIME-Version; b=qeuSrsCesZuLWWyZ5DWeI2DxxCr9Crkmw1vaty96zOtwtMLCFj1nXyhSb0CfAimVPHcNRWJZMfPjPVvcWhjlRcFABkR1x8J1SR9S0qPwguTVT8gp0SAYJJBf8+2hwEEJfRKYO14fAoPOTvked+yOHIMTzeI/R9EgRfoovTZc4lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kwa28SvQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PaYpvCYY; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65NBZgUF4052508
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:34 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=PNzW3v/qAEl
-	CEj/K9kV1a7nB67SEvzFBq019ospcWl0=; b=AldcuCTOeBTXq/xBZoxqlo6XkTZ
-	/lJ0hnLBj7GmoYVKTkt0dvNqLDTImW81YFe8fLR5rRFdrXNc2PIx+bQ47uhaAEKF
-	fJm/h5OULBfFVK9VRMKIP7kbDsxbYG5xO2pRVqKmx+4BEyrABJyAJXLtX8feMncv
-	Qx3KAE4AUN/TOLVh2CyRiirhgXYb0kJoJ1MUxeTe1WKm4M6WTpSy0euo6OUkVFbW
-	PNcr1oqEHcVUbYFA2LM5Zy6OgUspE1N1f+AbzE3SJXz2L6CZfiJoO3Ff/sS0Ys4I
-	pI7/bXPEF5wRgKiBNl53POWVFnDqrh9WOMUwLBsXQfXtXdBCBF9RUcyOHfQ==
-Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com [209.85.217.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eymnvt383-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=RJVm2brt1ck
+	UIcHVwLv3uY92h4oMIvtxcJLYHJJ2Evg=; b=kwa28SvQrt3egBJ2d+tL9tOcFn5
+	sIkZ2yhrfYBfbXSV4hdd9WJ7B6C/1ue1mD7MLD5hxaEolvu2Fg+a8GHgBX3kzRwe
+	Hzvq7lNaNWrZjqYeA4LH+HxXrtod0Zl4i4hVlbuRDgTiVVhxy86pc1lhXi2SWmLq
+	sYLfn0tgDIFR3URLK4IGxBpAKLNLBnYPEhePIQ5RjnMCZKAsQbKtJ8OhNrH6gt3y
+	XjIEAbD2ER6nhyE7L1j3O3v6BSrI72Dq1MgPqz9p1Bf+Jt+7X74om9rY+BFueWPg
+	8PJbIsYuuQUQiQJKZatYZ8alYE+Qqm5bzYcc7JdR8mteEzQw+HL5erE61eg==
+Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com [209.85.217.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eyr9ys38y-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:32 +0000 (GMT)
-Received: by mail-vs1-f69.google.com with SMTP id ada2fe7eead31-72901b40dbeso2312704137.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 07:52:32 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:34 +0000 (GMT)
+Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-6c40601e2b2so6787617137.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 07:52:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782226352; x=1782831152; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1782226354; x=1782831154; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PNzW3v/qAElCEj/K9kV1a7nB67SEvzFBq019ospcWl0=;
-        b=gvQbqpiyTUpRgBAeJGPHRlqf32DWW/FW67EjFhgDi4lrhyr8krn41B2rdCMfQ3w6LL
-         KY7TNq2qIvw/ZbuIOSrR+ZWH154JPXK3Url55YFjqehWvDCcHypplDOxyTu51IW8vjAv
-         TDHQ9gVUJeRK4w/EP5tsPSgTr1Ns7PTSfPJcAEfmhk8Ru+JqUlg//jKxsXFD/MLmvCmx
-         OR8n+n6+1rJ/zJjekg4KzOuX1FWo7Q+/yXqDmfRtk2RyqvBLGKmkwXCpwsukfCC/rylo
-         h7kq3zLq5nFN0XjwzElldfEo+mPiuIQqmZRRXL3f/u3thGDSxnzB7jV6nAnKB9cRg3CK
-         PUEA==
+        bh=RJVm2brt1ckUIcHVwLv3uY92h4oMIvtxcJLYHJJ2Evg=;
+        b=PaYpvCYYllwvnLPxaH83pzrNx3mTnqvdkgLMxT+Hi+AGv1jILQVSjeTDjQUtpnw01g
+         nasktD+wcb9HZnIro+YwBTXN29TP+0CLBjIgXjh8yc/AkP6tneh3M3uhEDaLFLszPL8A
+         bH2jR1gEqmWuNTZ35UC7jhcdAjJEq32Ml4CLvjNcRMBN2cyK9EQMzW0bwoiCkLOO8XzN
+         MBDqfEdkBHvHAxzJwlRoGUD8R7pGk7wETFPQh1RWy3aI37o5zIZdPwOYVSpoMl5Socqo
+         NHPWC6mlyQpSqrTvvgiW2+YkHlVXUE65U+Pu2jkbKQS/KW0xdHtUZtC7cf+xugdhJTzk
+         NYVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782226352; x=1782831152;
+        d=1e100.net; s=20251104; t=1782226354; x=1782831154;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=PNzW3v/qAElCEj/K9kV1a7nB67SEvzFBq019ospcWl0=;
-        b=nybJae9jQdHBuFeuy3XRmzlUadJh2uQ4G1u4i6x7KZQuUv2Yc0tct2Wt8FbJE8068e
-         P81X7zdCyMrLXHr5PhUv93Uu9uqqx0olQ3rJQxdsOxJnJMGn088FOpkUA88/wVUrwaI8
-         8gHu5UY6JkFnYrOZ3G4QeIzCHGL0NDUIlsvpdSEk8qrvb14BZ9uk5v7VAZhGchweiwLx
-         KrdqsXwzg24S2zSY78N93PyqXE2A6OnkidzI6QLgwucaZQszrsKAHCfYkSmyoJnCqyph
-         HMAuoHYS5lBGN+bCl3Yf6AUYFjRUj3CchWD5aMiebyiHLuf/nh1uFpBmU98YDxChi2OR
-         ubpg==
-X-Forwarded-Encrypted: i=1; AFNElJ/VqMj8Q4okje5OBthuXDEbtluOuTx+OJFUS1uO2IAzWXLXHRRk/Om+lXi5eHzXQS6B3+iSfHBSLEe0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjkidmWc+5QLYClHItWvnZdDPrYgJlTKfgQObzdwGSCtfIQDyj
-	Fwamiy47TZkTyS9bDXr3ny/COUouxisTWfK0YHq94wLxMx6GFewMDOo34mqHZSGN4EfYwTk1hCH
-	ysj3AKWcA6SoPlPmbV6JyWrocb+visXEGU9daWTKGigsuOtoZfH40qPpk240NztCn
-X-Gm-Gg: AfdE7cljG6C9JJwXRWNwQ+ELMxU58nHMXm0Uoumw8x1gNfDSfU1sb0nPrhnt7hpE4D9
-	IbXQxNxoyMFMk9/srmJnDFMnL0ICheVZjfW3m4tT+99vqEnfGQn/wMOwMssURyUlr6VVMVXURLP
-	fgdWvJXaqrLZrf91IZ4NXPuGZqQBfBlACbMsZL1H+PKdlFFpD4tiA1RA21JIDR+yLEKOH9jr9YT
-	6QyFogRdp+05eo20Bejk9ToCVVEs3FemQ10rnnIsYgghtKmn/MhIpE7dfCnnCUMexHXZAxzB4Ox
-	6CbrGZyBHDS2zRS5FKbvDDyBIf1zMVZ8Iy56AU8Ocb0RaPgtRuxZwXi2h1mFDVJVZadfyGav6wf
-	XW/AZs2bZqRen5u+d6Qtf0ifBB6R+N3aIe1IQI4S6pUGMiPDYZqThRwxZ7msNyGcq5j8n6dKBD4
-	HnLqvbYKYuxXIl1rJVAIqXeCiuZg==
-X-Received: by 2002:a05:6102:54a6:b0:71e:1c56:e78e with SMTP id ada2fe7eead31-72b669d49d3mr7811752137.17.1782226352020;
-        Tue, 23 Jun 2026 07:52:32 -0700 (PDT)
-X-Received: by 2002:a05:6102:54a6:b0:71e:1c56:e78e with SMTP id ada2fe7eead31-72b669d49d3mr7811711137.17.1782226351375;
-        Tue, 23 Jun 2026 07:52:31 -0700 (PDT)
+        bh=RJVm2brt1ckUIcHVwLv3uY92h4oMIvtxcJLYHJJ2Evg=;
+        b=lnHjTK5eKf/6rioINgMJGWcj2EmA4n5+rREEGqghpqqr7CRWcliz+Efza1hJ/Gd99X
+         ywYSDNMxxpTGdsq1oV0hJdQtaG4aFEFebAp/oc2GXNKjZIHTGCtj7BcJLpFNmhjjBaVE
+         0jF+JT9FNkv12G71cy4JzIhY6JsoBO7aXeH1rdKA4pMzR5b9XC5RJRAfwQPklfClSGgo
+         OW87/aONnSbUjKOCpwc6Wq7vwm9z/PiNQyIJIHYpbthjx5zs557RWv5KplXJwdG5BLHZ
+         PPEhg43kRTbs/LWE7Xof7p2lQv55bMIfVMZcKkDcmxgihCXPcrBvGzJhuYc2zkVaTSh2
+         Ss2A==
+X-Forwarded-Encrypted: i=1; AFNElJ++fzZBL2CL7xnTR/O0/3iQD9rcu4D/Z3I0LwVomSLmWKQEjKJ/T9tfSbuZfvwgvPH3DNoDn+MpyMKh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0EyhpK3xSetH0Movif+L/lNJWOIB8rKuaIIIvzjHV/7HnmDUj
+	MXcwaamQWm1+fJMhGwyDxNtVNA9R8RiwTrOxFfaEvKvOJDaPphpejthfMBD93drG+YpZVrwISoz
+	arDNdZrbeGFpD99dMioZCBU1NCFI5404lehoukrHSX6PB2uBansy4sK4AkORb/n31
+X-Gm-Gg: AfdE7cnJNgQshFEj3jza1BFpEOo5mQSeufF9zPX0bSBucFNuLMPSbT/D/0bejatE8wU
+	mEw1nMR87/dsdi6c1x5Ap4Q4C0GVkKGbuQHZZMIgKPCEdKPd5I2aXukFRR0DRUoPEUSn7s2rJ6T
+	8GqpZ4/oixCGyleWujbkLxJeMgL6Sxq4hGPErFEgnlp36/LyXNm/64wux0fjostAR37TKKZOSM0
+	N0CyCpEaGICtNKEmXXF0wuF/To6ZmXB0iSohJqTaf4De2GBy0ykx8pVupQUmbxT93Q0L+9HQ9l9
+	8+z4iUXg/tRGP+xfaJOX48r4eIgXUbE5Q8MXkfZX7+PKSsGfpubq4Eu8dEs+D5VP/d/wvsFIzH2
+	dMOPpg+7zLlmxJ0T4P+f+1PysQgr9sLB1zN5wJxY32lRi8xlDDpMhyq0wjf8vZL2msFQoU8qGdN
+	fJVNxOL1Onc2Mxnl9WPAWj7bePIA==
+X-Received: by 2002:a05:6102:6a81:b0:6c6:432c:84d3 with SMTP id ada2fe7eead31-72fd5ea52b7mr1890216137.12.1782226353677;
+        Tue, 23 Jun 2026 07:52:33 -0700 (PDT)
+X-Received: by 2002:a05:6102:6a81:b0:6c6:432c:84d3 with SMTP id ada2fe7eead31-72fd5ea52b7mr1890185137.12.1782226353222;
+        Tue, 23 Jun 2026 07:52:33 -0700 (PDT)
 Received: from shalem (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c0c60aca46csm534042666b.36.2026.06.23.07.52.29
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c0c60aca46csm534042666b.36.2026.06.23.07.52.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jun 2026 07:52:30 -0700 (PDT)
+        Tue, 23 Jun 2026 07:52:31 -0700 (PDT)
 From: Hans de Goede <johannes.goede@oss.qualcomm.com>
 To: "Rafael J . Wysocki" <rafael@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -107,9 +107,9 @@ Cc: Hans de Goede <johannes.goede@oss.qualcomm.com>,
         Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
         Abel Vesa <abel.vesa@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: [RFC 02/12] arm64: acpi: Cleanup acpi=[on|off|force] handling
-Date: Tue, 23 Jun 2026 16:52:15 +0200
-Message-ID: <20260623145225.143218-3-johannes.goede@oss.qualcomm.com>
+Subject: [RFC 03/12] arm64: acpi: add acpi=hybrid support
+Date: Tue, 23 Jun 2026 16:52:16 +0200
+Message-ID: <20260623145225.143218-4-johannes.goede@oss.qualcomm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
 References: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
@@ -120,33 +120,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=dOWWXuZb c=1 sm=1 tr=0 ts=6a3a9db0 cx=c_pps
- a=5HAIKLe1ejAbszaTRHs9Ug==:117 a=xqWC_Br6kY4A:10 a=FelO9ux0wxsA:10
+X-Authority-Analysis: v=2.4 cv=JYSMa0KV c=1 sm=1 tr=0 ts=6a3a9db2 cx=c_pps
+ a=N1BjEkVkxJi3uNfLdpvX3g==:117 a=xqWC_Br6kY4A:10 a=FelO9ux0wxsA:10
  a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=gowsoOTTUOVcmtlkKump:22 a=EUspDBNiAAAA:8 a=1Ljy8mEZPninxW07_PMA:9
- a=gYDTvv6II1OnSo0itH1n:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfX7j8ZrfJdPafU
- nf93GAChiJ7iRXorOEcFow+XYCBD1OuoMqQCbnFhzKmmXvvufTZuzxtUkovXen8JM5P27vF8mbL
- kWY6AqU/IieK2ss9HR2S/KgF5dQHlJ8=
-X-Proofpoint-ORIG-GUID: Ao-6JUI_ESipPyiIQ6ftTr4_Wpnbi6Cq
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfXxcvZrWlwtvO4
- 8hn+POCmoqRlY/r6JkZ1xQ2eMWhcbw7r80POARDQX6wbDoPwTNACyw3x2pNBsDzPYo13kOv6pkA
- KkMJpyKd+7pLZYbsJ9xpHADPuMXmrGFUA9YhBwwtbOxJTUFPWRynoSbDzyiMp6KdLT/GVlw3DZ/
- VpnLZaGTcDcoihsdrfk2W6mB1diW29U+iwXnrV9Z9WCNzAinzh5K1R8bxwMbZamDFsaqmLFh1ua
- XhBgVKIpp6QjNSsTlDBA509sWf8f5YjCrWzUI9zzGJDWn1Aop6WzToF64SMSU+/Pz9HRhgbbp4s
- de0Q8CbyyJoRePoFaV8tf5k5e1tPKYZ3qIkeVX7D7h8ObIhDw7Pm3ctgM+mGR3SQO19gccWA8rL
- JnR3tLpCo049UzQ4PU/7lliSnhv3fWeUc8IBl7S1kBa9dr7/qjTL9QYkgk8h4kkbD/PlT1iPfQX
- 3HjgkDymny3xvuLztxA==
-X-Proofpoint-GUID: Ao-6JUI_ESipPyiIQ6ftTr4_Wpnbi6Cq
+ a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8 a=ZBzCgZ0olsrJ8aaC5scA:9
+ a=crWF4MFLhNY0qMRaF8an:22
+X-Proofpoint-GUID: j_k7ag8lC_NHj1ZXnSNeKz8r9iJwu8Pa
+X-Proofpoint-ORIG-GUID: j_k7ag8lC_NHj1ZXnSNeKz8r9iJwu8Pa
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfX7bBXXFa/aVgo
+ W3jVXneqA1IIgqEZaiDnAuVB7m2j5e2i36o6xqqXm1LXH5iNKtmhMWHo1Jbnnv65C6wXdHupGhC
+ jjD7J8sdpm/asbxFsSPsP5DV2h8fSuvqoSe/GeL7G28ZaZP9DR4TqXPVbTImrSxrGl5E6cCix+W
+ XYQHUL573zzdjNiK5J6Cht2H3rhzbmEugiYyKnISUpQge4hHBrDoK+QfBnXop02x7wyzzGPXyas
+ nnYcJreH7JPhjHA2Jt8gqYlHypOHNWLi5nfLrBHZ0e8hibsQIi7laRfjSjLU8gLWTpEj0DLDoXo
+ v8OUa14YeI6h9v9WvRkgM2P3VB2Yw0qgK8gNkRXI11kSl8hjXGw8QYA7y8XeDPdsAa6DqBqn6F6
+ gPnqMHi68tnnfL8NBtSryZaGjZkWBPRJiBcCb3TPOHwuLtQuf9rJu25FD5rz3C4kA1dla+jIM/x
+ pZZdZIA1ht7xrAZYf/w==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfX3muHfMZFjOaJ
+ FtfC7MZj1uZME7QszLJZNWD8NkJO6nMCleoOd0EmZW+5eAar4dZSzZUIeSj4MQvS3G5bpMAw3gr
+ DilKyCjPRmu0emlaEs371lY34gkCo1I=
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-23_03,2026-06-23_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
- adultscore=0 bulkscore=0 clxscore=1015 phishscore=0 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2606230122
+ suspectscore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0 adultscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 clxscore=1015 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606230122
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
@@ -158,7 +157,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314879-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314882-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:johannes.goede@oss.qualcomm.com,m:srini@kernel.org,m:krzk+dt@kernel.org,m:lumag@kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-acpi@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -181,89 +180,101 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 268876B80DF
+X-Rspamd-Queue-Id: 903B56B80FA
 
-acpi=[on|off|force] are 3 values of a single "should ACPI be enabled"
-setting. Instead of storing these in 3 separate booleans, introduce a new
-acpi_mode_t enum for this and store these in a single param varialable.
+By default when a non stub DT is given to the kernel when booting, ACPI
+gets fully disabled.
 
-This is a preparation patch for adding acpi=hybrid support to enable the
-new DT-ACPI hybrid mode, which makes the kernel booting in DT mode still
-load and parse the ACPI tables, without taking any further actions.
+Add support for selecting a new APCI-DT hybrid mode where the kernel
+booting in DT mode still loads and parses the ACPI tables, without taking
+any further actions like creating devices.
+
+This will parse ACPI tables and populate /sys/firmware/acpi and
+/sys/bus/acpi/devices, which can be useful to e.g. get an acpidump .
 
 Signed-off-by: Hans de Goede <johannes.goede@oss.qualcomm.com>
 ---
- arch/arm64/kernel/acpi.c | 33 +++++++++++++++++++--------------
- 1 file changed, 19 insertions(+), 14 deletions(-)
+ arch/arm64/include/asm/acpi.h |  2 +-
+ arch/arm64/kernel/acpi.c      | 16 ++++++++++++----
+ 2 files changed, 13 insertions(+), 5 deletions(-)
 
+diff --git a/arch/arm64/include/asm/acpi.h b/arch/arm64/include/asm/acpi.h
+index 3116bb872f47..8f8a0b9e49c3 100644
+--- a/arch/arm64/include/asm/acpi.h
++++ b/arch/arm64/include/asm/acpi.h
+@@ -76,10 +76,10 @@ typedef u64 phys_cpuid_t;
+ #define PHYS_CPUID_INVALID INVALID_HWID
+ 
+ #define acpi_strict 1	/* No out-of-spec workarounds on ARM64 */
+-#define acpi_dt_hybrid 0	/* No DT-ACPI hybrid mode on ARM64 */
+ extern int acpi_disabled;
+ extern int acpi_noirq;
+ extern int acpi_pci_disabled;
++extern int acpi_dt_hybrid;
+ 
+ static inline void disable_acpi(void)
+ {
 diff --git a/arch/arm64/kernel/acpi.c b/arch/arm64/kernel/acpi.c
-index 5891f92c2035..06ab3a9da64b 100644
+index 06ab3a9da64b..9d2c42375afe 100644
 --- a/arch/arm64/kernel/acpi.c
 +++ b/arch/arm64/kernel/acpi.c
-@@ -43,9 +43,14 @@ EXPORT_SYMBOL(acpi_disabled);
+@@ -43,11 +43,14 @@ EXPORT_SYMBOL(acpi_disabled);
  int acpi_pci_disabled = 1;	/* skip ACPI PCI scan and IRQ initialization */
  EXPORT_SYMBOL(acpi_pci_disabled);
  
--static bool param_acpi_off __initdata;
--static bool param_acpi_on __initdata;
--static bool param_acpi_force __initdata;
-+enum acpi_mode_t {
-+	acpi_mode_unset,
-+	acpi_mode_off,
-+	acpi_mode_on,
-+	acpi_mode_force,
-+};
++int acpi_dt_hybrid;		/* disable ACPI-DT hybrid mode */
 +
-+static enum acpi_mode_t param_acpi_mode __initdata;
- static bool param_acpi_nospcr __initdata;
+ enum acpi_mode_t {
+ 	acpi_mode_unset,
+ 	acpi_mode_off,
+ 	acpi_mode_on,
+ 	acpi_mode_force,
++	acpi_mode_hybrid,
+ };
  
- static int __init parse_acpi(char *arg)
-@@ -55,11 +60,11 @@ static int __init parse_acpi(char *arg)
- 
- 	/* "acpi=off" disables both ACPI table parsing and interpreter */
- 	if (strcmp(arg, "off") == 0)
--		param_acpi_off = true;
-+		param_acpi_mode = acpi_mode_off;
- 	else if (strcmp(arg, "on") == 0) /* prefer ACPI over DT */
--		param_acpi_on = true;
-+		param_acpi_mode = acpi_mode_on;
+ static enum acpi_mode_t param_acpi_mode __initdata;
+@@ -65,6 +68,8 @@ static int __init parse_acpi(char *arg)
+ 		param_acpi_mode = acpi_mode_on;
  	else if (strcmp(arg, "force") == 0) /* force ACPI to be enabled */
--		param_acpi_force = true;
-+		param_acpi_mode = acpi_mode_force;
+ 		param_acpi_mode = acpi_mode_force;
++	else if (strcmp(arg, "hybrid") == 0) /* ACPI-DT hybrid mode */
++		param_acpi_mode = acpi_mode_hybrid;
  	else if (strcmp(arg, "nospcr") == 0) /* disable SPCR as default console */
  		param_acpi_nospcr = true;
  	else
-@@ -198,14 +203,14 @@ static int __init acpi_fadt_sanity_check(void)
+@@ -203,7 +208,7 @@ static int __init acpi_fadt_sanity_check(void)
  void __init acpi_boot_table_init(void)
  {
  	/*
--	 * Enable ACPI instead of device tree unless
--	 * - ACPI has been disabled explicitly (acpi=off), or
--	 * - the device tree is not empty (it has more than just a /chosen node,
--	 *   and a /hypervisor node when running on Xen)
--	 *   and ACPI has not been [force] enabled (acpi=on|force)
-+	 * When no ACPI mode (acpi=off|on|force) has been specified,
-+	 * enable ACPI if the device tree is empty (it only has a /chosen
-+	 * node, and a /hypervisor node when running on Xen).
+-	 * When no ACPI mode (acpi=off|on|force) has been specified,
++	 * When no ACPI mode (acpi=off|on|force|hybrid) has been specified,
+ 	 * enable ACPI if the device tree is empty (it only has a /chosen
+ 	 * node, and a /hypervisor node when running on Xen).
  	 */
--	if (param_acpi_off ||
--	    (!param_acpi_on && !param_acpi_force && !dt_is_stub()))
-+	if (!param_acpi_mode)
-+		param_acpi_mode = dt_is_stub() ? acpi_mode_on : acpi_mode_off;
-+
-+	if (param_acpi_mode == acpi_mode_off)
- 		goto done;
- 
- 	/*
-@@ -223,7 +228,7 @@ void __init acpi_boot_table_init(void)
- 	 */
- 	if (acpi_table_init() || acpi_fadt_sanity_check()) {
+@@ -230,6 +235,9 @@ void __init acpi_boot_table_init(void)
  		pr_err("Failed to init ACPI tables\n");
--		if (!param_acpi_force)
-+		if (param_acpi_mode != acpi_mode_force)
+ 		if (param_acpi_mode != acpi_mode_force)
  			disable_acpi();
++	} else if (param_acpi_mode == acpi_mode_hybrid) {
++		acpi_dt_hybrid = 1;
++		disable_acpi();
  	}
  
+ done:
+@@ -257,10 +265,10 @@ void __init acpi_boot_table_init(void)
+ 		 */
+ 		acpi_parse_spcr(earlycon_acpi_spcr_enable,
+ 			!param_acpi_nospcr);
+-
+-		if (IS_ENABLED(CONFIG_ACPI_BGRT))
+-			acpi_table_parse(ACPI_SIG_BGRT, acpi_parse_bgrt);
+ 	}
++
++	if ((!acpi_disabled || acpi_dt_hybrid) && IS_ENABLED(CONFIG_ACPI_BGRT))
++		acpi_table_parse(ACPI_SIG_BGRT, acpi_parse_bgrt);
+ }
+ 
+ static pgprot_t __acpi_get_writethrough_mem_attribute(void)
 -- 
 2.54.0
 
