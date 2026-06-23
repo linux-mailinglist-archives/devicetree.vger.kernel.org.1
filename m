@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-314824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314825-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yTxFJ7N0OmrM9QcAu9opvQ
-	(envelope-from <devicetree+bounces-314824-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:57:39 +0200
+	id 0x6fKyN1Omrx9QcAu9opvQ
+	(envelope-from <devicetree+bounces-314825-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:59:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B9C86B6EAC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:57:39 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 233176B6EF8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:59:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=l6Fen6Vb;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314824-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314824-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LkGjd3Xn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314825-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314825-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AD031300A4AF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 11:57:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D31AD309F9F8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 11:58:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32D013D47C5;
-	Tue, 23 Jun 2026 11:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635463D47C5;
+	Tue, 23 Jun 2026 11:58:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0EA3D47BD
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 11:57:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A4C3D3CEA
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 11:58:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782215857; cv=none; b=Jw7ot4PinV3rAVB1+uAxM+d/ByvkD44HMuWTBPwP1iJUrg1hHvLVHgPeysbUoq5yIqc6Obh7ZzEdPpAZ1EK6sm98GFTIojoAXxY/Rp1QfTwma/Fo4lAE/5vN92L4cGXZW+hmTreW+yJfmZItcdmfAbNFi0KKK8Puf4tntI81NoA=
+	t=1782215910; cv=none; b=Lf27+/CZJG64dlRQjJSQnnCpaZwPyhuWv6gSgBn2ZujY+1+j14OKjXmiax1R0L8V6x6q5Gp6sKOfB8/5UIuVEyJhfgBxvWZ1KdowgwHzaA7jsKvDSPQRP3bmYA1oXP6vR+xfQo81BjgTSYnWqY2Ju4Ady/+QvIcP2AgNtWDxrso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782215857; c=relaxed/simple;
-	bh=V9FCgp1Tm7Bile41Gzm8Z0AXeeQf3cy4HPjDnQkb/qo=;
+	s=arc-20240116; t=1782215910; c=relaxed/simple;
+	bh=5CcXXn6+BwFfAvP4rbr/OYsjn6L0cau2QAjPj8pX+hY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=PTMBz+kUS3LmMAXS99NIyGqHtHNqKFg/O5P5GkvNoJdUZ9zna+KnyZIsDyBbOAIVbVBSZkoh26JeqHoW0DyBPWPfZ3MBTRfh4Lug9ZPIzUCKccGoUN9bdnaF5W23YxeelZK0/ZC+9vqy+1KIr2aDVU31OiLS7fuCKxWrxcTD3Dc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l6Fen6Vb; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BFCA1F000E9;
-	Tue, 23 Jun 2026 11:57:35 +0000 (UTC)
+	 Message-Id; b=aza5FZEJ0ZbI8xCQBw/cTwavMlfQID1FLOyyKM6B4vyRASE+lj1OYTkFzWKrmFnEYlr4DFFv95U5cjX3FdtnoIOrPfVrmN6oTVJCYUAP1dGEw7ty9GG3grFgzsOm/adYFXqeQr5bHiI43LQ5maiff0UASTRE7vVd3vv7WEgEJVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LkGjd3Xn; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23F4E1F000E9;
+	Tue, 23 Jun 2026 11:58:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782215855;
-	bh=B0cjtnySAUjFzUbkZgzEp21wos//cpT73yeJFHik7mk=;
+	s=k20260515; t=1782215909;
+	bh=+OrHBx5KmtZSwiMkXWh3TDGe3EjunhKof10Lh3YKLCQ=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=l6Fen6VbaEK9dZLcZZSmhDp0Ml/LFdeEdkaEAfqPIFKCB5UTY35LAEWQJw7VgGgnF
-	 JAVkcW8sj5fVAi7D+ZtvaLDTiftXX8/GphHCmEaqv8E70KHWi14cS6Ym/ITuut6z5t
-	 6WW6GKbMuRnxlbcOOYXZMbHI5T8wVBYr99fJyL1oiQNpPngZbTPEHLuDSDFXoi6G2h
-	 MkQdAmxLK4N/HprNbFyUjUdiagDgOEU2+qB8x10RgnRIYqMKdXzbBZ5ztQhk0fXRoc
-	 iyv21ZQBo9wRD0kRFJSJAJKso7/x9C4jPv/cAgEJuAf/Ja3s+7+tPT4XOvNzbRuqk0
-	 cfu/52uOtJKZg==
+	b=LkGjd3XnRr1UvRZzg0m1gkIksYIait3mhRVVFKFAk1ASSkKiCJo2bxMYk22OQFt61
+	 58WgpVYfsyDjm7LSin8ijHiHe+Oz8bt9lGKvNkX3+1kPOx4QQLpip4nRair+sHzhMa
+	 SHvd7quKXxGbY216Cub45GnVCM2zZATjVfWEYekPDxMO8GY8xGAkSXKtds8InzDjXs
+	 aEYzJMLPKCQxZuYSI/ML5b//m0jOL3dKQiOjt8lCtBulOmSAjFjBmz8/y7jBwJ3ggC
+	 FKvc+s1kwqtO3ivvX/wK3EnTgeJstLB9nF0QzReTeefGC+zgNXhC8RXtu4d2WW7hJK
+	 R0Lh30QJ1o2PQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 2/2] i3c: master: Add driver for AMD AXI I3C master
- controller
+Subject: Re: [PATCH v2 05/12] nvmem: microchip-otpc: add tag-based packet
+ lookup
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Shubham Patil" <shubhamsanjay.patil@amd.com>
-Cc: linux-i3c@lists.infradead.org, devicetree@vger.kernel.org, Frank.Li@kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260623114417.2578189-3-shubhamsanjay.patil@amd.com>
-References: <20260623114417.2578189-1-shubhamsanjay.patil@amd.com>
- <20260623114417.2578189-3-shubhamsanjay.patil@amd.com>
+To: "Varshini Rajendran" <varshini.rajendran@microchip.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260623105944.128840-6-varshini.rajendran@microchip.com>
+References: <20260623105944.128840-1-varshini.rajendran@microchip.com>
+ <20260623105944.128840-6-varshini.rajendran@microchip.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 23 Jun 2026 11:57:34 +0000
-Message-Id: <20260623115735.2BFCA1F000E9@smtp.kernel.org>
+Date: Tue, 23 Jun 2026 11:58:27 +0000
+Message-Id: <20260623115828.23F4E1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,171 +72,111 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-314824-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url,amd.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314825-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:shubhamsanjay.patil@amd.com,m:linux-i3c@lists.infradead.org,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:varshini.rajendran@microchip.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3B9C86B6EAC
+X-Rspamd-Queue-Id: 233176B6EF8
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] The driver incorrectly calculates `actual_len` for early-terminate=
-d read transfers, over-reporting received bytes and exposing padding data.
-- [Medium] Mixing goto-based error handling with scope-based cleanup (__fre=
-e) in the same function.
-- [Medium] Zero-length I2C/I3C transfers with NULL buffers are incorrectly =
-rejected with -EINVAL.
-- [Medium] Reaching DAA limits (maximum devices or exhausted dynamic addres=
-ses) causes the driver to discard all successfully enumerated devices.
+
+Pre-existing issues:
+- [High] Missing serialization in hardware register accesses during NVMEM r=
+ead leads to data corruption on concurrent access.
 --
 
-commit 31faf134bb0fbc7c1ffe6801a15207207118c870
-Author: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+commit 9261dabb0a9ba8aa6fc617051559e1385e26b1cc
+Author: Varshini Rajendran <varshini.rajendran@microchip.com>
 
-i3c: master: Add driver for AMD AXI I3C master controller
+nvmem: microchip-otpc: add tag-based packet lookup
 
-Add an I3C master driver and maintainers fragment for the AMD I3C bus
-controller.
+Add support for accessing OTP packets by their 4-byte ASCII tag while
+preserving backward compatibility with the existing ID-based lookup. The
+driver resolves offsets matching valid legacy selectors through ID
+lookup, falling back to tag lookup for other values.
 
-> diff --git a/drivers/i3c/master/amd-i3c-master.c b/drivers/i3c/master/amd=
--i3c-master.c
-> new file mode 100644
-> index 0000000000000..34ab1028c3ce8
-> --- /dev/null
-> +++ b/drivers/i3c/master/amd-i3c-master.c
+> diff --git a/drivers/nvmem/microchip-otpc.c b/drivers/nvmem/microchip-otp=
+c.c
+> index df979e8549fdb..cbb4822a97c04 100644
+> --- a/drivers/nvmem/microchip-otpc.c
+> +++ b/drivers/nvmem/microchip-otpc.c
+
 [ ... ]
-> +static void xi3c_master_rd_from_rx_fifo(struct xi3c_master *master,
-> +					struct xi3c_cmd *cmd)
-> +{
-> +	u16 rx_data_available;
-> +	u16 copy_len;
-> +	u16 len;
-> +
-> +	rx_data_available =3D xi3c_rd_fifo_level(master);
-> +	len =3D rx_data_available * XI3C_WORD_LEN;
-> +
-> +	if (!len)
-> +		return;
-> +
-> +	copy_len =3D min_t(u16, len, cmd->rx_len);
-> +	xi3c_readl_fifo(master->membase + XI3C_RD_FIFO_OFFSET,
-> +			(u8 *)cmd->rx_buf, copy_len);
-> +
-> +	cmd->rx_buf =3D (u8 *)cmd->rx_buf + copy_len;
-> +	cmd->rx_len -=3D copy_len;
+
+> @@ -154,12 +232,11 @@ static int mchp_otpc_read(void *priv, unsigned int =
+off, void *val,
+>  	int ret, payload_size;
+> =20
+>  	/*
+> -	 * We reach this point with off being multiple of stride =3D 4 to
+> -	 * be able to cross the subsystem. Inside the driver we use continuous
+> -	 * unsigned integer numbers for packet id, thus divide off by 4
+> -	 * before passing it to mchp_otpc_id_to_packet().
+> +	 * From this point the offset has to be translated into the actual
+> +	 * packet. For this we traverse the table of contents stored in a list
+> +	 * "packet" based on the access type - packet id or tag.
+>  	 */
+> -	packet =3D mchp_otpc_id_to_packet(otpc, off / 4);
+> +	packet =3D mchp_otpc_resolve_packet(otpc, off);
 
 [Severity: High]
-Does this logic correctly account for early-terminated read transfers?
+This is a pre-existing issue, but does mchp_otpc_read() need serialization =
+to
+prevent concurrent hardware register accesses?
 
-If an I3C target terminates a read early with a non-word-aligned byte count,
-the hardware RX FIFO might indicate a word is available, but padding bytes
-are included. This driver reads the full word and decrements rx_len. Later
-in xi3c_master_i3c_xfers(), actual_len is calculated from this modified
-rx_len, which could over-report the received bytes and expose padding data
-to upper layers.
+Since the NVMEM core does not serialize reg_read callbacks, multiple threads
+reading the NVMEM device simultaneously could interleave hardware register
+manipulations.
 
-> +}
-> +
-> +static int xi3c_master_read(struct xi3c_master *master, struct xi3c_cmd =
-*cmd)
-> +{
-> +	unsigned long timeout;
-> +	u32 status_reg;
-> +	int ret;
-> +
-> +	if (!cmd->rx_buf || cmd->rx_len > XI3C_MAXDATA_LENGTH)
-> +		return -EINVAL;
+If mchp_otpc_read() loops over mchp_otpc_prepare_read() concurrently:
 
-[Severity: Medium]
-Will this fail on valid zero-length transfers? Zero-length reads, such as
-standard SMBus Quick commands or i2cdetect scans, typically have rx_len =3D=
- 0
-and a NULL rx_buf. The check here would incorrectly reject them.
+Thread A:
+    writel_relaxed(tmp, otpc->base + MCHP_OTPC_MR); // Sets address
 
-[ ... ]
-> +static int xi3c_master_write(struct xi3c_master *master, struct xi3c_cmd=
- *cmd)
-> +{
-> +	unsigned long timeout;
-> +	u16 cmd_len;
-> +
-> +	if (!cmd->tx_buf || cmd->tx_len > XI3C_MAXDATA_LENGTH)
-> +		return -EINVAL;
+Thread B:
+    writel_relaxed(tmp, otpc->base + MCHP_OTPC_MR); // Overwrites address
 
-[Severity: Medium]
-Similarly, does this incorrectly reject valid zero-length writes with a NULL
-tx_buf?
+Could Thread B overwrite the address Thread A just wrote before Thread A
+sets MCHP_OTPC_CR_READ? Both threads would then poll the same status regist=
+er
+and consume from the same data registers, which could lead to corrupted
+payloads or invalid hardware state.
 
-[ ... ]
-> +static int xi3c_master_do_daa(struct i3c_master_controller *m)
-> +{
-> +	u8 pid_bufs[XI3C_MAX_DEVS][XI3C_DAA_SLAVEINFO_READ_BYTECOUNT] =3D {};
-> +	struct xi3c_master *master =3D to_xi3c_master(m);
-> +	struct xi3c_xfer *xfer __free(kfree) =3D NULL;
-
-[Severity: Medium]
-Is it safe to mix __free() scope-based cleanup with goto-based error handli=
-ng
-in this function?
-
-There are explicit kernel guidelines against combining goto-based error
-handling with __free() scope-based resource management in the same function,
-as it can lead to fragile and confusing execution flow.
-
-[ ... ]
-> +	while (true) {
-> +		struct xi3c_cmd *cmd =3D &xfer->cmds[0];
-> +		u8 daa_byte;
-> +
-> +		if (master->daa.index >=3D XI3C_MAX_DEVS) {
-> +			ret =3D -ENOSPC;
-> +			goto err_daa;
-> +		}
-> +
-> +		addr =3D i3c_master_get_free_addr(m, last_addr + 1);
-> +		if (addr < 0) {
-> +			ret =3D addr;
-> +			goto err_daa;
-> +		}
-
-[Severity: Medium]
-If the bus reaches the maximum device count or runs out of free dynamic
-addresses, jumping to err_daa will abort the enumeration process without
-registering any devices that were successfully enumerated prior to this.
-
-Is it intended to discard the earlier successfully assigned devices instead
-of keeping them?
+>  	if (!packet)
+>  		return -EINVAL;
+>  	offset =3D packet->offset;
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260623114417.2578=
-189-1-shubhamsanjay.patil@amd.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260623105944.1288=
+40-1-varshini.rajendran@microchip.com?part=3D5
 
