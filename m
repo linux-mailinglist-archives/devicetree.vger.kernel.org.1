@@ -1,160 +1,157 @@
-Return-Path: <devicetree+bounces-315010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315011-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qCulOdr0OmoANAgAu9opvQ
-	(envelope-from <devicetree+bounces-315010-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 23:04:26 +0200
+	id XX7tJdD1OmqYNAgAu9opvQ
+	(envelope-from <devicetree+bounces-315011-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 23:08:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A9D16BA2F4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 23:04:26 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96A2F6BA338
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 23:08:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=pKvFbOV+;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315010-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315010-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=OuSaxk9E;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315011-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315011-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 63DC3300EF58
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 21:04:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2030F3010CC8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 21:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F5323AE1A8;
-	Tue, 23 Jun 2026 21:04:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C19E83AE6E9;
+	Tue, 23 Jun 2026 21:08:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09BF3AD530
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 21:04:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1121A3AE1B8
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 21:08:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782248657; cv=none; b=c54HWACZ2hamk/zEF22Zw0iClyxtwIQeYgZf1yBJSkuADkS0pwbFt6YmLYMPa67DB4h+shwrhFgPUimZyHLdgaTDBh+/s7v1tNHiB/XWaozNj6+/z2KiJGL1OaUJY8rIFRwhRcJAfFkbi/1z6lOZ6NOqZq9Z/jwmq4hozhsXcwU=
+	t=1782248904; cv=none; b=adSu0M1UXIOq0E5XHiCJJ7bAZbcILL2vnWFbGx+1pq71S3NC6+DQBQoVhBqS6HWulUHhoz7c6e5fROKVm+XlmKiuuurigbB1PbaAg1cOwcXr75XaJYSkQaOv9C1nosOcAvd4QRhnR/K72scUnGyw5Li0sAcsX50o0pxgybiVifs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782248657; c=relaxed/simple;
-	bh=G2O/RO+LnvNcHuRCY2ZDyqZgos6zxE4R7b3nGKbOZ3s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Iqd60xPD3+IjgemIIPQ2ntrEgQmDrEMSl9tpMFi/YtsbD2PlIHuYwCUJnlkOFQY5nWdFvy3DAylFK9+jhHzerLSXjZXNCUmAkAGmVj9wuIbj644+lz4ukTQ4HYlNOvx+dPmrI/4WWB2F50LF7TB3i+Br1LNPjjKyN47eZ3PoTnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=pKvFbOV+; arc=none smtp.client-ip=209.85.161.52
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-69de16f5e80so209225eaf.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:04:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1782248655; x=1782853455; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yjxxtsMjV//5x1nEFpoBC5beYz3SbCaf566TA7ysPr8=;
-        b=pKvFbOV+J4qEM1LQqOLKRuGrSPe+6kjoGHDBSbSdApV/FPsAGP/nkSRMv9yKCezW9U
-         mKk5EAjVKx+RGaJdfV0WPY0PPXVde/VWD/SdgAg4i7gVK1wSsGLBb0aMZLMEnDKYWlVS
-         FGh5QrZPKg0Ycmzn9QZZVXl0SZyzyDTihPcQhK9Z+e0slWqvmW4qcJCbVCwiFAJuu1R9
-         k819Y6FN/LgIkOqCE4fqlOlBoJbItLPVmNKucrk+17QnRXDv6mjW8E6qVT/cLWhj5lYN
-         ny8O+0V+yQZrljfEpdFMfyoo1NFrUzbndIGLj+uCWE0B53fyZUsPanJI84znOU+uVtv/
-         P6aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782248655; x=1782853455;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yjxxtsMjV//5x1nEFpoBC5beYz3SbCaf566TA7ysPr8=;
-        b=GEKUbStT2533yQYdmm5xvDpiLtYRYkgKXPGl6IvX0y2YO96TNQKQ9Dcz8cIeH6fzZG
-         EUHzk6QLe6Nxybnx1LWr4Bai3bj4wu3DP6S9ijHuJR/RV6Ka7K/PxTBE7VJdHQkWdWen
-         HJv7or8+Y/tE50562fbwNrUftYGLSKxQTi2y3Meb8eZ8Fi0EpCz+2tLSOZb/Sl34Z1eg
-         PR3NV7fPcSazfDzi9M5G4k0jthdIbSaPGo6FSAuhODHs7089eZrM8QGn5OcCnHwaZMqR
-         MuG2eU9sXwGM3dzDSC0+tiBqZwFYsVANkbAGgQtYlvFJbbT2mPLWtutfPQiaEKMWc6pN
-         2HDQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9HN4tfg6UghA3MLps9XqQiQQ6PTJLKoYQBPClcRXJS0hQ3s8ue18NCPMj/qSX80g3QACQfyKyT5bdX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGwoDcw4OjHG18cD5LSVIFm1Ey5FLT43qhBsqHr+ocoB2dNVgP
-	MqcG1p6SFsv/f6jUc7G1hT6shdWYKicqhnoQrJFcEFN8MzZ+sLI+PL6k7tBqGBczFRQ=
-X-Gm-Gg: AfdE7cnnx6xssQIBPNzrngocqprN8o7R8n/dDTBfkfFtY5PH7gaylO3HjbAtdZAvegZ
-	onezbJktLOGeEqxyNJhLWna5onAqBZZa7f7Ebi3gH2VXZRfTQKwnggyUjymRM3478sOMtHIUWiZ
-	Y/zYIBVfH4X+SW4KqFMzGH7RQxRMY5Xn4FpsEwcAYTctXMsZKVLe6UvpG9pppQJFU52sMjQn3dO
-	s1M6wVBHMRMRoPNr5EkX7MIUP9cbKumU/UxVOF8bXn2aEJ92GF+MEwIzpsmWkCkZF8BXP5K3+8f
-	LbKrRa69k2u+8GTYOJy2JYbAIitj3qGs5qH9uPdurb0ZG3oUD7O9QfBdfRHyUi+wv8K/okwy2xT
-	9Ss/eBoUyo7pAYehykg0fkcsCD+ZWSeoaohO7AsX9Bw4J6nwm4avKKFtyE/j16k2piluuBmeoUC
-	OjAf4G3wZjKnjA/i+EZXx1OlwtiUahywT6qzDu9NKmm9hcyMSru7OZzOyss8wDOVU=
-X-Received: by 2002:a05:6820:2001:b0:69b:196a:de67 with SMTP id 006d021491bc7-6a122cece79mr392604eaf.0.1782248654734;
-        Tue, 23 Jun 2026 14:04:14 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:68dc:b788:b3ac:e34e? ([2600:8803:e7e4:500:68dc:b788:b3ac:e34e])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-6a0ea0c378csm7162013eaf.10.2026.06.23.14.04.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jun 2026 14:04:14 -0700 (PDT)
-Message-ID: <0ca506a8-29d1-4514-b4bf-296fbf547513@baylibre.com>
-Date: Tue, 23 Jun 2026 16:04:13 -0500
+	s=arc-20240116; t=1782248904; c=relaxed/simple;
+	bh=bH02PQgUP+LOytn8ULqS+x6+APWJqOhdUw98JalmD0Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bdey9MVgtxiDTHHgG5w5EhtSr4uT4BLJnOv6jnfrvZw+aB0aOBMI6M469sM/SFF2Onwr2bWzebmjgTZQRWdAzxllYTZhM0Lv7SDbYf/KxXnecnptaohSIHypw0y6yKEvHaxoHYyARE3a3gfS03gSQt2W8hojuMh7xctDAWb2q1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=OuSaxk9E; arc=none smtp.client-ip=194.117.254.33
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=bH02
+	PQgUP+LOytn8ULqS+x6+APWJqOhdUw98JalmD0Y=; b=OuSaxk9EwdXEEVLyybMX
+	H4waTPkSIOoUlqt2N68GEQkZmLTo/52h2DaT6ICShipoY+rKEHk+qvVHKfickyY/
+	UqMFYce/yioSQQq7owCmt7Ym68nNxlQse9ze+GoPokr8vas0YiY9URswbdSwmFq/
+	6ADvkO/eydafkhwpNpDK/tpojNbSsgiBX2DSLPQFwn4VSha1KrE8bpmxkAmHMOto
+	VxoKmB/TWnA3guZmzIr4kdBBJX2yO7UGeJG0I1Q6UvUXJt3HzD9MBLJE9g7AzeWV
+	a+CKSd1ldsP/0abua8bJaOaNse6W1t7vBKnccNTNuDQ0kGLUET3YtEFzld+QM5CP
+	wg==
+Received: (qmail 2505875 invoked from network); 23 Jun 2026 23:08:17 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 23 Jun 2026 23:08:17 +0200
+X-UD-Smtp-Session: l3s3148p1@SWdzKPJUqOMujnuj
+Date: Tue, 23 Jun 2026 23:08:17 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-rtc@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 07/12] rtc: rzn1: fix alarm range check truncation on
+ 32-bit systems
+Message-ID: <ajr1wXCI2U23d1sY@shikoro>
+References: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260615154805.1619693-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <ajJ9kNJtrY6DyQ-S@shikoro>
+ <CA+V-a8u2wt6623mYjhipOvJPo4va+bXs3qirQewocFr2QmUFhA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] iio: health: add MAX86150 ECG and PPG biosensor
- driver
-To: Md Shofiqul Islam <shofiqtest@gmail.com>, linux-iio@vger.kernel.org
-Cc: jic23@kernel.org, nuno.sa@analog.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- joshua.crofts1@gmail.com
-References: <20260623140113.12574-1-shofiqtest@gmail.com>
- <20260623155556.13701-1-shofiqtest@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260623155556.13701-1-shofiqtest@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="IQrbvfrJwKbLcqHs"
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8u2wt6623mYjhipOvJPo4va+bXs3qirQewocFr2QmUFhA@mail.gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315010-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:shofiqtest@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:joshua.crofts1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:joshuacrofts1@gmail.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
+	DMARC_NA(0.00)[sang-engineering.com];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:miquel.raynal@bootlin.com,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:linux-rtc@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,vger.kernel.org,gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[baylibre.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315011-lists,devicetree=lfdr.de,renesas];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,glider.be,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:dkim,sang-engineering.com:from_mime,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3A9D16BA2F4
-
-On 6/23/26 10:55 AM, Md Shofiqul Islam wrote:
-> The MAX86150 (Maxim/Analog Devices) combines two PPG optical channels
-> (Red/IR LED) and one ECG biopotential channel in a single I2C device.
-> Data is produced at up to 3200 Hz and buffered in a 32-entry hardware
-> FIFO with a configurable almost-full interrupt.
-> 
-> This series adds:
->   1. DT binding YAML schema for maxim,max86150
->   2. IIO driver with triggered buffer support
->   3. MAINTAINERS entry
-> 
-> Changes in v2 (addressing Sashiko AI review, Joshua Crofts, Krzysztof Kozlowski):
-Please don't send revisions in reply to previous series. It breaks
-many workflows and tools that expect each series to be it's own
-message thread.
-
-Also, when submitting a series for a new driver, please wait at
-least one week to gather feedback before sending the next revision.
+X-Rspamd-Queue-Id: 96A2F6BA338
 
 
+--IQrbvfrJwKbLcqHs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+
+> Can you please share the commands you tried, I'll try and replicate it
+> on my side.
+
+Sorry, can't give you the commands, just from my head: I tried to set an
+alarm more than a week in the future, and the alarm was set to the next
+day. But I was in a hurry, maybe I overlooked something, because that
+handling used to work in the past IIRC. I can return to this topic on
+Friday earliest, sadly. Maybe next week only...
+
+
+--IQrbvfrJwKbLcqHs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmo69b0ACgkQFA3kzBSg
+KbbL/g/9Ffzr85nk4fwKrR+OVge9gQk368nR5HR+bXQ4T16cuZi6EwVQd8v7IeRL
+v2TNInbehi15qf2+T51IRvyBLlkAxEx/GHhDMp3AwVL4HAN4HpEPbjYU3WV/nxO2
+VcZBHdb9PvTMIzTrx8gpbXsVLRgxzNito4xdMEON5AEs3UImWIU8wqAjAGL0Co3T
+6nsfVTPkZyasJa6aqFDTYQtL3UZeio4a11HGUZdmm9RhIIthW0EcXaeMIuTHsrfQ
+6JA8FI6h6iZCxTVSuShdPCLl7+a34cLdudvlttGzRFkWcdNP5ORx8MKax8JuRkJr
+fNTvTMkOeuHbPTHZd7u/djq7iBK4mGVW55vghOZY7xw3rB9YDmSDPYQMCqyDkPbF
+BzLVONEYVvhpQYhOUHedypNJL6fSVTBKkfzlid5npy/EWUjuhzU8A//qkRAfyZBi
+FCw8O0RZafJ5WBpueWSGaeU1KCzIYyvv8jBsG1VVNcpOI/9reppr7Hihk0wCqSH6
+JmRmQqbesU4E63yTC6pZ7wH+fM6qA6bkBCX/eIRL3tApxXz1uRCARp5yG5hC3sBq
+bsiPOg/vQOaTInQLf71E/WgNaHDktBUOCv3uzWl2JZ0vML/TDnunzk9vHcR8kl3J
+sHx6QYjJLdhhL4+AM2Qj0P8pK0UgbWdvUAXeV8qfwc2DO5ecC44=
+=WL+b
+-----END PGP SIGNATURE-----
+
+--IQrbvfrJwKbLcqHs--
 
