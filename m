@@ -1,171 +1,209 @@
-Return-Path: <devicetree+bounces-314704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314652-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yQpwMIFCOmq/4wcAu9opvQ
-	(envelope-from <devicetree+bounces-314704-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 10:23:29 +0200
+	id efJhFQsiOmpF2AcAu9opvQ
+	(envelope-from <devicetree+bounces-314652-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 08:04:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BCF26B53F1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 10:23:29 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE2D16B457C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 08:04:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=samsung.com header.s=mail20170921 header.b=Ta09Kgpr;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314704-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314704-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=samsung.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=aUnsruAv;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314652-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314652-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 05D293090A7B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 08:20:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 338063011793
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 06:04:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34C43CCFC2;
-	Tue, 23 Jun 2026 08:20:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80AA53AA4E1;
+	Tue, 23 Jun 2026 06:04:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F6563CCFAF
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 08:20:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F93F306746;
+	Tue, 23 Jun 2026 06:04:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782202808; cv=none; b=FNyj/rl33dV6LQvHnRvMSvL6PCaOsx7jdXq2C0F3Uv4yAL9SQflSR0IHXlLCaBBpa9C4uautXO9U2udEbRbBDr5I4qkjLAr6loVHZk8oPZ4f23oymUaPot3MpWOSRI6yhIL2aCmLxYM4zbImiDJfNJ0UqRn/U6Vca3Lne30Vr1o=
+	t=1782194695; cv=none; b=FBb0yvkEJQJvIDIYfY5h7Yi77IDs8C79cRskG9rHGGiRqn3rxfFqssDuh1pFN/YsLRC6GKvloUPj6ttpvrlrXhmuDlZ2m1ARv4m/XNlpTKhL/GMqB/JiwwLj/BZQ7uX3uzg1sPtTyhcn5czKpgJAy+1lNoAiGh/IJ0VncmuuXa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782202808; c=relaxed/simple;
-	bh=58iLx84JGmUa71MP9XBPaAnSf2s8MxXrgG0rp1kq590=;
-	h=From:To:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=U0DA4tBsiumXO3UXRl8feL2uBDh3mXnZDILcHYWaWXZLKp32vZs+NoeS75sKOkH0xvQJWiEhgQ9AzqNr6XavDlau5II0Ao8pCoeealfWKmOHWCxJCmNtyDhufT+JNtI7c00EAk1TCnBoIRTciacivgE2Wclx3d6Wmo2O18rJ+58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Ta09Kgpr; arc=none smtp.client-ip=203.254.224.25
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20260623082003epoutp028dd32501d8d1e8636380631dbb183002~7qAHOZnx62660126601epoutp02k
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 08:20:03 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20260623082003epoutp028dd32501d8d1e8636380631dbb183002~7qAHOZnx62660126601epoutp02k
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1782202803;
-	bh=dZ4TskOON2YvURQFFWmRY4P5Y9n+8Cd9tCS6xs+1hiA=;
-	h=From:To:In-Reply-To:Subject:Date:References:From;
-	b=Ta09KgprExBRin2bxzqP9FI1SMCkP693d3x8isKsKLVoiUIFml0FLxgUiA63VVrZl
-	 rEmtY8m4Xh8YWVcy7SHWRKD7EhTWdDjQRk9X1vUIlC4LO9w4Hi1bl9Yle/xjH/O24f
-	 8/TFamVAMvAzBR0YFs9cF97zi46BzrhiGMcGzqMU=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
-	20260623082002epcas5p2fe50239167a06f3f585cddc884be7fa9~7qAGuN5CW3001130011epcas5p2C;
-	Tue, 23 Jun 2026 08:20:02 +0000 (GMT)
-Received: from epcpadp1new (unknown [182.195.40.141]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4gkyfp4tcFz6B9m5; Tue, 23 Jun
-	2026 08:20:02 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20260623060044epcas5p17e4090ee1c1c62fe06e58db8d88a97f1~7oGe2XMKK2254522545epcas5p1J;
-	Tue, 23 Jun 2026 06:00:44 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20260623060041epsmtip1414f32065dfa22c1ef1804df9ea3cc7f~7oGbkWuZY1819318193epsmtip1B;
-	Tue, 23 Jun 2026 06:00:41 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@oss.qualcomm.com>, "'Bjorn
- Andersson'" <andersson@kernel.org>, "'Michael Turquette'"
-	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Brian
- Masney'" <bmasney@redhat.com>, "'Rob Herring'" <robh@kernel.org>,
-	"'Krzysztof Kozlowski'" <krzk+dt@kernel.org>, "'Conor Dooley'"
-	<conor+dt@kernel.org>, "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
-	"'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Peter	Griffin'"
-	<peter.griffin@linaro.org>, "'Barnabas Czeman'"
-	<barnabas.czeman@mainlining.org>, "'Tomasz Figa'" <tomasz.figa@gmail.com>,
-	<linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<cpgs@samsung.com>
-In-Reply-To: <20260623055626.23814-2-krzysztof.kozlowski@oss.qualcomm.com>
-Subject: RE: [PATCH] dt-bindings: clock: Replace bouncing emails
-Date: Tue, 23 Jun 2026 11:30:39 +0530
-Message-ID: <1212772528.01782202802678.JavaMail.epsvc@epcpadp1new>
+	s=arc-20240116; t=1782194695; c=relaxed/simple;
+	bh=fGs6zTIutUW0qECkrDbevTMOjjIx02kPZ3JtVZXIzBo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e6bGRkgzsj2yWSKDZh9regE0oZj/KqVbFJy+chfz+8TLn7M4WNqbfdD5xV+3YJNcM7evxf8FFqIuiA5E5nPTEYUzGvKMbLshHbkgkbuv8vNx3DE4KPp4jngrW8m0dL6Qg4ONueg6cimBze9VA0zywXHWNFNYQIlGzEOvSdud8KA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aUnsruAv; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CC5C1F000E9;
+	Tue, 23 Jun 2026 06:04:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782194694;
+	bh=7P6aWzyQ8qict/dJu3CzxuJcqtMPA0MghThn8dibXEQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=aUnsruAvyoLMArbh/g4mBxzC0FmEOROTkWum6xPDMW4bEqPiEargO13uDS9XyBMiE
+	 QyOFqwK0Xk5aqDvdXzYSFMY4NxMoWqqO+a9CIqwxyeRE0bwcT1zrY1r8UQHtYdg+nW
+	 NrbCMsDLtk1HqmXx8UDAlk7d+dA+hIu2cbNt2X7Rq63oRpO8oieDvg/qU9zlnGc/i3
+	 3wWug6E8m/aHNeef9+H+dWrv7bM1bMCYjF/U1DXFboEAVshR/nD+Mln+dt9/BC8ia3
+	 snAMZAOFStso0+W8K2y+F0LxdWZZROH7cjHw9hM2WaO9vHhXfZQy5FIkuOnXXTGYXE
+	 kqwWrIxMgVfXQ==
+Date: Tue, 23 Jun 2026 08:04:42 +0200
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v4 2/4] PCI: rzg3s-host: Use shared reset controls for
+ power domain resets
+Message-ID: <txpkke2xogecipyetascqajgaxamd3ualcuhsibxf75llzcym5@xgcn7efcbmp4>
+References: <20260602195019.1798126-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260602195019.1798126-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <50a908557bb3ce5f14b67396d1e73e70289a583a.camel@pengutronix.de>
+ <CA+V-a8uGho2RMhreDgieOOZTggUALoF0bGyjdEEDvyL_75sAyw@mail.gmail.com>
+ <fuefvecgjdqbnbvpvam4gmewmpmhofllyq2ootwi6cjqhnyoys@edjzqlh6fjw4>
+ <CA+V-a8sRxoR96TRM2V3cFXS5NPiQUVrUJCWwkh7o10cGYPU9_w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQLjF+4RorsKFMyV2SdeBPjDChM9owMQIOWktCb6JMA=
-Content-Language: en-us
-X-CMS-MailID: 20260623060044epcas5p17e4090ee1c1c62fe06e58db8d88a97f1
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-X-CPGSPASS: Y
-X-Hop-Count: 3
-X-CMS-RootMailID: 20260623055640epcas5p35fd0bc8b355d23ca802ceba85046b836
-References: <CGME20260623055640epcas5p35fd0bc8b355d23ca802ceba85046b836@epcas5p3.samsung.com>
-	<20260623055626.23814-2-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+V-a8sRxoR96TRM2V3cFXS5NPiQUVrUJCWwkh7o10cGYPU9_w@mail.gmail.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[samsung.com:d:+,kernel.org:s:+];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:s.nawrocki@samsung.com,m:cw00.choi@samsung.com,m:peter.griffin@linaro.org,m:barnabas.czeman@mainlining.org,m:tomasz.figa@gmail.com,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:cpgs@samsung.com,m:krzk@kernel.org,m:conor@kernel.org,m:tomaszfiga@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	FORGED_SENDER(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,baylibre.com,redhat.com,samsung.com,linaro.org,mainlining.org,gmail.com,vger.kernel.org,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-314704-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[samsung.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:p.zabel@pengutronix.de,m:claudiu.beznea.uj@bp.renesas.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:robh@kernel.org,m:bhelgaas@google.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:linux-pci@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-314652-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[pengutronix.de,bp.renesas.com,kernel.org,google.com,glider.be,gmail.com,vger.kernel.org,renesas.com];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,renesas.com:email,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1BCF26B53F1
+X-Rspamd-Queue-Id: DE2D16B457C
 
-
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Sent: Tuesday, June 23, 2026 11:26 AM
-> To: Bjorn Andersson <andersson@kernel.org>; Michael Turquette
-> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Brian
-> Masney <bmasney@redhat.com>; Rob Herring <robh@kernel.org>;
-> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
-> <conor+dt@kernel.org>; Sylwester Nawrocki <s.nawrocki@samsung.com>;
-> Chanwoo Choi <cw00.choi@samsung.com>; Peter Griffin
-> <peter.griffin@linaro.org>; Alim Akhtar <alim.akhtar@samsung.com>;
-> Barnabas Czeman <barnabas.czeman@mainlining.org>; Tomasz Figa
-> <tomasz.figa@gmail.com>; linux-arm-msm@vger.kernel.org; linux-
-> clk@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-samsung-soc@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Subject: [PATCH] dt-bindings: clock: Replace bouncing emails
+On Mon, Jun 22, 2026 at 03:53:57PM +0100, Lad, Prabhakar wrote:
+> Hi Manivannan,
 > 
-> Replace permanently bouncing email addresses (550 5.1.1 Recipient address
-> rejected) of Adam Skladowski, Sireesh Kodali and Chanho Park.  There are
-no
-> new messages from them via other email addresses, so drop them
-> permanently.  Add Alim Akhtar to Samsung ExynosAutov9 SoC clocks,
-> because he looks at other Samsung clock hardware and drivers.
+> On Mon, Jun 22, 2026 at 3:30 PM Manivannan Sadhasivam <mani@kernel.org> wrote:
+> >
+> > On Fri, Jun 05, 2026 at 12:54:46PM +0100, Lad, Prabhakar wrote:
+> > > Hi Philipp,
+> > >
+> > > Thank you for the review.
+> > >
+> > > On Wed, Jun 3, 2026 at 9:16 AM Philipp Zabel <p.zabel@pengutronix.de> wrote:
+> > > >
+> > > > On Di, 2026-06-02 at 20:50 +0100, Prabhakar wrote:
+> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > >
+> > > > > Switch to shared reset controls for PCIe power resets to prepare for
+> > > > > RZ/V2H(P) support. On this platform, multiple PCIe controllers share
+> > > > > the same reset line, requiring shared ownership of the reset control.
+> > > > >
+> > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > Reviewed-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> > > > > Tested-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> > > > > ---
+> > > > > v3->v4:
+> > > > > - Added RB/TB tags.
+> > > > >
+> > > > > v2->v3:
+> > > > > - No change.
+> > > > >
+> > > > > v1->v2:
+> > > > > - Updated commit message.
+> > > > > ---
+> > > > >  drivers/pci/controller/pcie-rzg3s-host.c | 6 +++---
+> > > > >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/controller/pcie-rzg3s-host.c
+> > > > > index d86e7516dcc2..a5192e4b58df 100644
+> > > > > --- a/drivers/pci/controller/pcie-rzg3s-host.c
+> > > > > +++ b/drivers/pci/controller/pcie-rzg3s-host.c
+> > > > > @@ -1276,9 +1276,9 @@ static int rzg3s_pcie_resets_prepare_and_get(struct rzg3s_pcie_host *host)
+> > > > >       for (i = 0; i < data->num_cfg_resets; i++)
+> > > > >               host->cfg_resets[i].id = data->cfg_resets[i];
+> > > > >
+> > > > > -     ret = devm_reset_control_bulk_get_exclusive(host->dev,
+> > > > > -                                                 data->num_power_resets,
+> > > > > -                                                 host->power_resets);
+> > > > > +     ret = devm_reset_control_bulk_get_shared(host->dev,
+> > > > > +                                              data->num_power_resets,
+> > > > > +                                              host->power_resets);
+> > > > >       if (ret)
+> > > > >               return ret;
+> > > > >
+> > > >
+> > > > I have a few questions about this.
+> > > >
+> > > > Can you move rzg3s_pcie_resets_prepare_and_get() and
+> > > > rzg3s_pcie_power_resets_deassert() up before setting
+> > > > RZG3S_SYSC_FUNC_ID_MODE and RZG3S_SYSC_FUNC_ID_RST_RSM_B in
+> > > > rzg3s_pcie_probe() without ill effect?
+> > > >
+> > > > Can you move rzg3s_pcie_power_resets_deassert() up before setting
+> > > > RZG3S_SYSC_FUNC_ID_MODE and RZG3S_SYSC_FUNC_ID_RST_RSM_B
+> > > > rzg3s_pcie_resume_noirq()?
+> > > >
+> > > > Those would have the same effect as the reset already being deasserted
+> > > > by the other controller.
+> > > >
+> > > Yes to both. I have reordered the sequences as suggested, and it works
+> > > perfectly without any ill effects.
+> > >
+> >
+> > Are you going to respin the patches incorporating the review comments?
+> >
+> If I have not mistaken, no code changes were requested; it was just
+> that Philipp wanted to ensure the shared reset worked correctly after
+> shuffling the code around.
 > 
-> Signed-off-by: Krzysztof Kozlowski
-> <krzysztof.kozlowski@oss.qualcomm.com>
+
+Ah, I was mistaken.
+
+> I can respin the series if it fails to apply on top of pci/next.
 > 
-Acked-by: Alim Akhtar <alim.akhtar@samsung.com>
 
+Sure. Please respin once v7.2-rc1 is released.
 
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
