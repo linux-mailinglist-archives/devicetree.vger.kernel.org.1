@@ -1,171 +1,228 @@
-Return-Path: <devicetree+bounces-314904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314905-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9+k3FD2tOmrcDQgAu9opvQ
-	(envelope-from <devicetree+bounces-314904-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 17:58:53 +0200
+	id zbYoN2OtOmrzDQgAu9opvQ
+	(envelope-from <devicetree+bounces-314905-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 17:59:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7E156B881E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 17:58:52 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3690A6B8829
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 17:59:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Gjwj0sXu;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314904-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314904-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QsYuTChn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314905-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314905-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D5AE930F2A8C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 15:56:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 90EEB3009165
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 15:56:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA8B309EF4;
-	Tue, 23 Jun 2026 15:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF92830ACE3;
+	Tue, 23 Jun 2026 15:56:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D857C3090C2
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 15:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C35CA3090E8;
+	Tue, 23 Jun 2026 15:56:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782230167; cv=none; b=TrFmxpyQmavAnJOh0RiwAYDub4aurnqMLvlPDkwHmfU2P2Hic0WIXmqLkjtREquq/MqDwCIDEo4wm7ErDJDbbfyvHGLTsmtnYHnnFWpgQwZepaeIm/0NAbzD1DDZ1Gb9TwldPFocZR+CAw6zjN/H+8Pf9e/+V//wvxLtab6vZaQ=
+	t=1782230208; cv=none; b=lBTwLouxgdn9V42C1rmBZkFaH0yMe737UQdFw3DUBCtmU7uF3WsBzeszeWwG4YNT/h4aiEfGp1aKTKupCPGVz0zJP+cb6LxoELvSL2tkcRWg101iy+C7z5COSaRb0H+rtoRVkf6HJZIJBMlZrQeGhgYF7929gsVK4EbXm6gkS0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782230167; c=relaxed/simple;
-	bh=y2KXMCDWXXGemV7yWHnHWQ2qnuKVqyDX5slmjDbcZ/s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=L7tXqsoEDp+BcUtkNz7igZKYcAeCI6ZnmgQwSkI302pa+GliRYDuF28wOjCVVHPs+yINtOOqCK+SZ8dTBMz7/7z3E5prKujRbkekPJ1jWXt/xCACwsqge8rWlERH0XLXVubi/wFV6e7nhCh5As+GHHzb9y+1gBUw6snj6vSWU8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gjwj0sXu; arc=none smtp.client-ip=209.85.208.178
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-396771119c4so53229501fa.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 08:56:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782230164; x=1782834964; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CkFtVL7QRxrKD//LGq3+L1fKIniXMCP2r3Lzcn90r5g=;
-        b=Gjwj0sXuwu7MIMNRV2YD2V1Oh0b6uiBiGEBjkcAzLNcI8YVvGOBIiUkxKrgiwgGOrj
-         XPwPTzz1L6aWCv0VOiqEXAj9V5AK+KS8x1rHSgHXsIw8EZYtmfP7q7Xp1jcZu7zPZ8Kr
-         83CR9R0Y1Mi5mhcCWO6h9toXygT0UKN1ljRDBfXTjSnXUyV6Uv2U4yB64POU+hIXPMvj
-         Dqy7H6LE+Znlcbtt9NnEc5V3d9MpnPglZ4IHVVPMUxVEARnT9N4X3ckuRuWqSfZtNhWF
-         eyBAtOfQLHER/uhlLgjRU/SZaolDgnLxBry89nMsjUDOAEdDf2XazWJHJOFtXYMTpmIa
-         fE4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782230164; x=1782834964;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=CkFtVL7QRxrKD//LGq3+L1fKIniXMCP2r3Lzcn90r5g=;
-        b=pvhmG7navHLq06sAHm//TYbElq4l/lKr4DYpsIuTIBIeFZdIWLrLyuAk3LgNHOyyD7
-         USVF73jOW9MrlgurCYofhNo+FHi7NW9syB9tC97RsnekY/j5i35tF0caEMHl3dtIdNR5
-         DsDao5A9dDVx+g6G89r+48w+0sfPJeCAkwRy+sXrKmka9utDAWj9wB7FB8mXYbsUbhoR
-         N5vscdyybC8CrfN0GSKroWk86POhZ2UsLz8V2IVoLMT2kCLeo+kZyixFPBRZx3uw37O9
-         km3SxC5866X+s295MjtRz6DnQuafm37fkdCHrWWTxU4HD/Wo2liwehcGGittECToG4Z1
-         hyoQ==
-X-Forwarded-Encrypted: i=1; AFNElJ87UhOwmM/IwxS/p4NiAeki21NGm5EhpS9TQkDh9hjoSaLR37c34To9V9U/q0OYnMW752dSjhsARyyK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0g+SmwSZ0D7jWCoOwGPrX6v7viy0YCOIgrRBYWDQP/mqX0zrt
-	sRC/4x2Z9s1B+SHD8X1w+FAVvCN1Zn6MhmAW4jA3saO4qhl+iWtCWWrT
-X-Gm-Gg: AfdE7cmCKfFXVUts0IT/nsY4LyzkKoTa6sGwNzwxNB1WYGcI2YekSvlyx26nkXq+iY0
-	Ug72JmodjpWshadV1qhMXK7R+GWC70eCQfyxskCPyHUsFXc+zydZxf0Z/HlH04dmZIV8u/3ZwHf
-	SXmHUzwgcShC+zpQhybzQmrLrDVsSlp5ZBEYfg313xqgLLO7ah9H2QkJWo1tcsSufBZ9gcFYJ6y
-	8ijjNg2WslEBYK+cbGnjUNyQgpJll2VWdCWQdhhnfvzYn4cJ4O5vHLBv7uiC8yXfUEKG++vA3tL
-	dSEnoCWipF8yaX4b2YC3c4U0ZFPeTJ+88PXf43h62K/+PnOF03U3rIFVaytRJr+c7rmyQOfoH4N
-	LBuR/Y7coaTvMjzJJdPpMgV/j2+I8RdMIWuAt+wLzQpG2tMu6ZeyKCMxZssSkaE09TpjtzOooeG
-	bUdQfYm1Ow2kqA2bBxaO+xzlcdOfgzyUyrIJjMm6qpQqZLIhZjdpx924W+
-X-Received: by 2002:a05:6512:1357:b0:5a8:7426:d2da with SMTP id 2adb3069b0e04-5addb817ae9mr1005200e87.7.1782230163929;
-        Tue, 23 Jun 2026 08:56:03 -0700 (PDT)
-Received: from Shofiq.home (87-92-251-137.rev.dnainternet.fi. [87.92.251.137])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5ad6957a6a2sm908946e87.46.2026.06.23.08.56.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jun 2026 08:56:02 -0700 (PDT)
-From: Md Shofiqul Islam <shofiqtest@gmail.com>
-To: linux-iio@vger.kernel.org
-Cc: jic23@kernel.org,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	joshua.crofts1@gmail.com,
-	Md Shofiqul Islam <shofiqtest@gmail.com>
-Subject: [PATCH v2 3/3] MAINTAINERS: add entry for MAX86150 IIO health driver
-Date: Tue, 23 Jun 2026 18:55:56 +0300
-Message-ID: <20260623155556.13701-4-shofiqtest@gmail.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20260623155556.13701-1-shofiqtest@gmail.com>
-References: <20260623140113.12574-1-shofiqtest@gmail.com>
- <20260623155556.13701-1-shofiqtest@gmail.com>
+	s=arc-20240116; t=1782230208; c=relaxed/simple;
+	bh=MOPMmBvmvgH/fPeu1s8s0Wbs9rYPlq8jdiHdrLvfqdk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nShBpzTi/rgpAQ9KlV6adHiSGAWDmOO4TgxeZ+XUotewN3hi5VX3BAS3Po27DlTMGow/SiYd4Rq7xRxvPtpd9Pbc3G8CjJ5G6qD5Dh+KB4futJwYSbfkOpVkPRQQe+gMgcuX6hHB5xQO88mfNan4hvy0xqPY2u54Xz9UNfY8Qvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QsYuTChn; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 210321F000E9;
+	Tue, 23 Jun 2026 15:56:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782230207;
+	bh=nLEYLjeqn7OPYoPLTEzHxuJ3J+jRv39rXz92UC3ebe0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=QsYuTChn82Ii6KiDakW1WTeR12iY9RX74Ck3wCkkhUKTbwKgxy7+VxrJx0PJmPdqF
+	 FfvuoLWVXeBAdAcc7OzCZIUXhikibBRphzt5JrwBegtP9hl8iymvrWx6+iUxLTtSXI
+	 KnqliXVBVzUVr2Z0+yXhlNSChuBtyBrTroyZtUJpuRNBoq+z87umGQ2REuFLq4IJNk
+	 wufpWj+h+YSHuHjs/nxHZIB9ownHaEoq7xkgJiEWa7gsu990FXm2BMKlCxqJDq4JYN
+	 /CAJBm6xYwsL3NVoNOzAKD6uFaWmTzCdonc9xtA1xrK8c8oNU4PnrU8Mt6PNlJluVR
+	 gN/hzIgaET5Tg==
+Date: Tue, 23 Jun 2026 16:56:35 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rodrigo Alencar via B4 Relay
+ <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, Michael Auchter <michael.auchter@ni.com>,
+ linux@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, Michael
+ Hennerich <Michael.Hennerich@analog.com>, David Lechner
+ <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook
+ <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH v4 11/12] iio: dac: ad5686: add triggered buffer support
+Message-ID: <20260623165635.5997d049@jic23-huawei>
+In-Reply-To: <20260623-ad5686-new-features-v4-11-28962a57db0f@analog.com>
+References: <20260623-ad5686-new-features-v4-0-28962a57db0f@analog.com>
+	<20260623-ad5686-new-features-v4-11-28962a57db0f@analog.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,vger.kernel.org,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314904-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:joshua.crofts1@gmail.com,m:shofiqtest@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:joshuacrofts1@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[shofiqtest@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:devnull+rodrigo.alencar.analog.com@kernel.org,m:rodrigo.alencar@analog.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:devnull@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shofiqtest@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-314905-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,analog.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A7E156B881E
+X-Rspamd-Queue-Id: 3690A6B8829
 
-Add maintainer entry for the new MAX86150 ECG and PPG biosensor driver.
+On Tue, 23 Jun 2026 11:55:51 +0100
+Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
-Signed-off-by: Md Shofiqul Islam <shofiqtest@gmail.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> 
+> Implement trigger handler by leveraging the LDAC gpio to update all DAC
+> channels at once when it is available. Also, the multiple channel writes
+> can be flushed at once with the sync() operation.
+> 
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Hi Rodrigo
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3115538ce829..a441ec44bb27 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15863,6 +15863,13 @@ S:	Supported
- F:	Documentation/devicetree/bindings/power/supply/maxim,max77976.yaml
- F:	drivers/power/supply/max77976_charger.c
- 
-+MAXIM MAX86150 ECG AND PPG BIOSENSOR DRIVER
-+M:	Md Shofiqul Islam <shofiqtest@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/health/maxim,max86150.yaml
-+F:	drivers/iio/health/max86150.c
-+
- MAXIM MUIC CHARGER DRIVERS FOR EXYNOS BASED BOARDS
- M:	Krzysztof Kozlowski <krzk@kernel.org>
- L:	linux-pm@vger.kernel.org
--- 
-2.51.1
+A follow up on the rework you did for this version,
+
+Thanks,
+
+Jonathan
+
+> diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
+> index db175e77b0b7..4dc681eb077d 100644
+> --- a/drivers/iio/dac/ad5686.c
+> +++ b/drivers/iio/dac/ad5686.c
+
+> @@ -467,6 +472,60 @@ const struct ad5686_chip_info ad5679r_chip_info = {
+>  };
+>  EXPORT_SYMBOL_NS_GPL(ad5679r_chip_info, "IIO_AD5686");
+>  
+> +static irqreturn_t ad5686_trigger_handler(int irq, void *p)
+> +{
+> +	struct iio_poll_func *pf = p;
+> +	struct iio_dev *indio_dev = pf->indio_dev;
+> +	struct iio_buffer *buffer = indio_dev->buffer;
+> +	struct ad5686_state *st = iio_priv(indio_dev);
+> +	u16 val[AD5686_MAX_CHANNELS] = { };
+> +	unsigned int scan_count, ch, i;
+> +	bool async_update;
+> +	int ret;
+> +	u8 cmd;
+> +
+> +	ret = iio_pop_from_buffer(buffer, val);
+> +	if (ret) {
+> +		iio_trigger_notify_done(indio_dev->trig);
+
+I think I'd prefer a wrapper to this if we are going to always say
+it is IRQ_HANDLED (which is reasonable here I think)
+Something like the following (unfortunately I only just read the
+previous version thread so didn't head off the approach you have here.
+
+
+static void do_ad5686_trigger_handler(struct iio_dev *indio_dev)
+{
+	struct iio_buffer *buffer = indio_dev->buffer;
+	struct ad5686_state *st = iio_priv(indio_dev);
+	u16 val[AD5686_MAX_CHANNELS] = { };
+	int ret;
+
+	ret = iio_pop_from_buffer(buffer, val);
+	if (ret) {
+		iio_trigger_notify_done(indio_dev->trig);
+
+	guard(mutex)(&st->lock);
+
+	guts of current function
+}
+
+static irqreturn_t ad5686_trigger_handler(int irq, void *p)
+{
+	struct iio_poll_func *pf = p;
+	struct iio_dev *indio_dev = pf->indio_dev;
+
+	do_ad5686_trigger_handler(indio_dev);
+	iio_trigger_notify_done(indio_dev->trig);
+	return IRQ_HANDLED;
+}
+
+
+
+> +		return IRQ_HANDLED;
+> +	}
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	scan_count = bitmap_weight(indio_dev->active_scan_mask,
+> +				   iio_get_masklength(indio_dev));
+> +	async_update = st->ldac_gpio && scan_count > 1;
+> +	if (async_update) {
+> +		/* use LDAC to update all channels simultaneously */
+> +		cmd = AD5686_CMD_WRITE_INPUT_N;
+> +		gpiod_set_value_cansleep(st->ldac_gpio, 0);
+> +	} else {
+> +		cmd = AD5686_CMD_WRITE_INPUT_N_UPDATE_N;
+> +	}
+> +
+> +	i = 0;
+> +	iio_for_each_active_channel(indio_dev, ch) {
+> +		ret = st->ops->write(st, cmd, indio_dev->channels[ch].address, val[i++]);
+> +		if (ret)
+> +			break;
+> +	}
+> +
+> +	/*
+> +	 * If sync() is available, it is called here regardless of write
+> +	 * failure to allow bus implementation to reset. In that case, partial
+> +	 * writes are unlikely as the write operations would just queue up
+> +	 * the transfers.
+> +	 */
+> +	if (st->ops->sync)
+> +		st->ops->sync(st);
+> +
+> +	if (async_update)
+> +		gpiod_set_value_cansleep(st->ldac_gpio, 1);
+> +
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +	return IRQ_HANDLED;
+> +}
 
 
