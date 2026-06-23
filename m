@@ -1,209 +1,171 @@
-Return-Path: <devicetree+bounces-314651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314704-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CerONdggOmrZ1wcAu9opvQ
-	(envelope-from <devicetree+bounces-314651-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 07:59:52 +0200
+	id yQpwMIFCOmq/4wcAu9opvQ
+	(envelope-from <devicetree+bounces-314704-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 10:23:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DF386B4544
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 07:59:52 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BCF26B53F1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 10:23:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AsnRcuOS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314651-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314651-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=samsung.com header.s=mail20170921 header.b=Ta09Kgpr;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314704-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314704-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=samsung.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5611430160DD
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 05:59:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 05D293090A7B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 08:20:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC563AA9CA;
-	Tue, 23 Jun 2026 05:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34C43CCFC2;
+	Tue, 23 Jun 2026 08:20:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F23983A9636;
-	Tue, 23 Jun 2026 05:59:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F6563CCFAF
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 08:20:05 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782194391; cv=none; b=rcEqtDsqPQU3tmaXHwbcJGv3Iqtz+fCUyq/UYb+fOAVuzJvW0PEmYNBnqxNWZyKXFBMuVokrpT3hktB7l9SyOwDseKDBBSE26ijSnaHQ3eRW86HDDswe+mu7rInnF3KqHEJlJGXF22hA/V4HGciKOOii+XMFMA3iOzZ4It02Wx0=
+	t=1782202808; cv=none; b=FNyj/rl33dV6LQvHnRvMSvL6PCaOsx7jdXq2C0F3Uv4yAL9SQflSR0IHXlLCaBBpa9C4uautXO9U2udEbRbBDr5I4qkjLAr6loVHZk8oPZ4f23oymUaPot3MpWOSRI6yhIL2aCmLxYM4zbImiDJfNJ0UqRn/U6Vca3Lne30Vr1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782194391; c=relaxed/simple;
-	bh=71WNkn5w5AYpdrutHmOeGz1dRyc4Ow6qqbGl1jOcaeE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=QSJPKilWosmzJHossLGT6xQteZu8SUtr/dC79TvwRA9Pkb1lc7KPS6gyXCrBWGncPE35o5Dpp+hXdiYbXnNN7gP8P0G4JFnFfN3Eyfl3x9k1m/covZgqOzhImKwBXwjR40g6Nr9TtMgByp+nRkFd1gmXn/1DOWqyXUdLyFxtriU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AsnRcuOS; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B7BF1F000E9;
-	Tue, 23 Jun 2026 05:59:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782194389;
-	bh=wwjN/ccaYU511nF1JEwQ9WtxkYJa1rTgn7bbZfDXPuM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=AsnRcuOSWyeBDcqVEeUEY44Ht3Xt+f13a+tWPP69S8J6WplYJ7hyC9XA1tfoxWEpY
-	 1w9hhnTf63Bvi1VPjhYyeOeQC6eJakkkYkhJCWjnJUyuvgf2Cj6+7FEQfK7vbPxyXe
-	 2FSdOeoyVnI3AqanfiYdAF3u2rmn+UDsPhGvB97o+YWpkToqsBxFtOHkzQkBX+tjzB
-	 fa/yKrth0pTnk8U7v16vuWVWEgahF9XdN98lXml7mKCmrrchwb0Glbg8ANeokMzAVG
-	 7MzIqN7JSCAbvy82HT6rRBd+flqXkKgeFOYs6bWXJK3K55v9+ZL8Ys9KodwMatfwj1
-	 O42SyPjeu5p5w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/3] Documentation/hwmon: Add onsemi's FD5121
- controllers' documentation
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Selvamani Rajagopal via B4 Relay" <devnull+Selvamani.Rajagopal.onsemi.com@kernel.org>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, linux-hwmon@vger.kernel.org
-In-Reply-To: <20260622-support-fd5121-from-onsemi-v1-1-b31767689c65@onsemi.com>
-References: <20260622-support-fd5121-from-onsemi-v1-0-b31767689c65@onsemi.com>
- <20260622-support-fd5121-from-onsemi-v1-1-b31767689c65@onsemi.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 23 Jun 2026 05:59:48 +0000
-Message-Id: <20260623055949.4B7BF1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782202808; c=relaxed/simple;
+	bh=58iLx84JGmUa71MP9XBPaAnSf2s8MxXrgG0rp1kq590=;
+	h=From:To:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=U0DA4tBsiumXO3UXRl8feL2uBDh3mXnZDILcHYWaWXZLKp32vZs+NoeS75sKOkH0xvQJWiEhgQ9AzqNr6XavDlau5II0Ao8pCoeealfWKmOHWCxJCmNtyDhufT+JNtI7c00EAk1TCnBoIRTciacivgE2Wclx3d6Wmo2O18rJ+58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Ta09Kgpr; arc=none smtp.client-ip=203.254.224.25
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20260623082003epoutp028dd32501d8d1e8636380631dbb183002~7qAHOZnx62660126601epoutp02k
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 08:20:03 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20260623082003epoutp028dd32501d8d1e8636380631dbb183002~7qAHOZnx62660126601epoutp02k
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1782202803;
+	bh=dZ4TskOON2YvURQFFWmRY4P5Y9n+8Cd9tCS6xs+1hiA=;
+	h=From:To:In-Reply-To:Subject:Date:References:From;
+	b=Ta09KgprExBRin2bxzqP9FI1SMCkP693d3x8isKsKLVoiUIFml0FLxgUiA63VVrZl
+	 rEmtY8m4Xh8YWVcy7SHWRKD7EhTWdDjQRk9X1vUIlC4LO9w4Hi1bl9Yle/xjH/O24f
+	 8/TFamVAMvAzBR0YFs9cF97zi46BzrhiGMcGzqMU=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20260623082002epcas5p2fe50239167a06f3f585cddc884be7fa9~7qAGuN5CW3001130011epcas5p2C;
+	Tue, 23 Jun 2026 08:20:02 +0000 (GMT)
+Received: from epcpadp1new (unknown [182.195.40.141]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4gkyfp4tcFz6B9m5; Tue, 23 Jun
+	2026 08:20:02 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20260623060044epcas5p17e4090ee1c1c62fe06e58db8d88a97f1~7oGe2XMKK2254522545epcas5p1J;
+	Tue, 23 Jun 2026 06:00:44 +0000 (GMT)
+Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20260623060041epsmtip1414f32065dfa22c1ef1804df9ea3cc7f~7oGbkWuZY1819318193epsmtip1B;
+	Tue, 23 Jun 2026 06:00:41 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@oss.qualcomm.com>, "'Bjorn
+ Andersson'" <andersson@kernel.org>, "'Michael Turquette'"
+	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Brian
+ Masney'" <bmasney@redhat.com>, "'Rob Herring'" <robh@kernel.org>,
+	"'Krzysztof Kozlowski'" <krzk+dt@kernel.org>, "'Conor Dooley'"
+	<conor+dt@kernel.org>, "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
+	"'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Peter	Griffin'"
+	<peter.griffin@linaro.org>, "'Barnabas Czeman'"
+	<barnabas.czeman@mainlining.org>, "'Tomasz Figa'" <tomasz.figa@gmail.com>,
+	<linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<cpgs@samsung.com>
+In-Reply-To: <20260623055626.23814-2-krzysztof.kozlowski@oss.qualcomm.com>
+Subject: RE: [PATCH] dt-bindings: clock: Replace bouncing emails
+Date: Tue, 23 Jun 2026 11:30:39 +0530
+Message-ID: <1212772528.01782202802678.JavaMail.epsvc@epcpadp1new>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQLjF+4RorsKFMyV2SdeBPjDChM9owMQIOWktCb6JMA=
+Content-Language: en-us
+X-CMS-MailID: 20260623060044epcas5p17e4090ee1c1c62fe06e58db8d88a97f1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+X-CPGSPASS: Y
+X-Hop-Count: 3
+X-CMS-RootMailID: 20260623055640epcas5p35fd0bc8b355d23ca802ceba85046b836
+References: <CGME20260623055640epcas5p35fd0bc8b355d23ca802ceba85046b836@epcas5p3.samsung.com>
+	<20260623055626.23814-2-krzysztof.kozlowski@oss.qualcomm.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	WHITELIST_SPF_DKIM(-3.00)[samsung.com:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314651-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:s.nawrocki@samsung.com,m:cw00.choi@samsung.com,m:peter.griffin@linaro.org,m:barnabas.czeman@mainlining.org,m:tomasz.figa@gmail.com,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:cpgs@samsung.com,m:krzk@kernel.org,m:conor@kernel.org,m:tomaszfiga@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,onsemi.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:devnull+Selvamani.Rajagopal.onsemi.com@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:linux-hwmon@vger.kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	FORGED_SENDER(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,baylibre.com,redhat.com,samsung.com,linaro.org,mainlining.org,gmail.com,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314704-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[samsung.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,Selvamani.Rajagopal.onsemi.com,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4DF386B4544
+X-Rspamd-Queue-Id: 1BCF26B53F1
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Low] Sysfs attribute descriptions contain mismatched input/output semant=
-ics due to copy-paste errors.
-- [Low] Incomplete sentence missing a trailing period.
---
 
-commit 10fc2806e78d641ce1fc7f05d01f0cec8dcccbe0
-Author: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
 
-Documentation/hwmon: Add onsemi's FD5121 controllers' documentation
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Sent: Tuesday, June 23, 2026 11:26 AM
+> To: Bjorn Andersson <andersson@kernel.org>; Michael Turquette
+> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Brian
+> Masney <bmasney@redhat.com>; Rob Herring <robh@kernel.org>;
+> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> <conor+dt@kernel.org>; Sylwester Nawrocki <s.nawrocki@samsung.com>;
+> Chanwoo Choi <cw00.choi@samsung.com>; Peter Griffin
+> <peter.griffin@linaro.org>; Alim Akhtar <alim.akhtar@samsung.com>;
+> Barnabas Czeman <barnabas.czeman@mainlining.org>; Tomasz Figa
+> <tomasz.figa@gmail.com>; linux-arm-msm@vger.kernel.org; linux-
+> clk@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-samsung-soc@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Subject: [PATCH] dt-bindings: clock: Replace bouncing emails
+> 
+> Replace permanently bouncing email addresses (550 5.1.1 Recipient address
+> rejected) of Adam Skladowski, Sireesh Kodali and Chanho Park.  There are
+no
+> new messages from them via other email addresses, so drop them
+> permanently.  Add Alim Akhtar to Samsung ExynosAutov9 SoC clocks,
+> because he looks at other Samsung clock hardware and drivers.
+> 
+> Signed-off-by: Krzysztof Kozlowski
+> <krzysztof.kozlowski@oss.qualcomm.com>
+> 
+Acked-by: Alim Akhtar <alim.akhtar@samsung.com>
 
-This commit documents the hardware monitoring support for FD5121, FD5123,
-and FD5125 devices. It describes the supported telemetry data exposed via
-sysfs, including voltage, current, power, and temperature measurements.
 
-> diff --git a/Documentation/hwmon/fd5121.rst b/Documentation/hwmon/fd5121.=
-rst
-> new file mode 100644
-> index 0000000000000..c279db4641e4a
-> --- /dev/null
-> +++ b/Documentation/hwmon/fd5121.rst
-
-[ ... ]
-
-> +Usage Notes
-> +-----------
-> +
-> +This driver does not probe for PMBus devices. You will have
-> +to instantiate devices explicitly.
-> +
-> +Example: the following commands will load the driver for the
-> +controller at address 0x50 on I2C bus #1::
-> +
-> +    # modprobe fd5121
-> +    # echo fd5121 0x50 > /sys/bus/i2c/devices/i2c-1/new_device
-> +
-> +It can also be instantiated by declaring in device tree
-
-[Severity: Low]
-This isn't a bug, but this sentence ends abruptly without a trailing period.
-
-> +Sysfs attributes
-> +----------------
-> +
-> +The following attributes are supported:
-> +
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D  =3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +curr[1-2]_label		"iin[1-2]"
-> +curr[3-4]_label		"iout[1-2]"
-> +curr[1-2]_input		Measured input current.
-> +curr[3-4]_input		Measured output current.
-> +curr[1-4]_crit_alarm	Output current critical high alarm.
-> +curr[1-4]_max_alarm	Output current high alarm.
-
-[Severity: Low]
-Are the alarm descriptions for curr[1-2] accurate? Since curr[1-2] are labe=
-led
-as input current, should their alarms be described as input current alarms
-instead of output current alarms?
-
-> +
-> +in[1-2]_label		"vin[1-2]"
-> +in[3-4]_label		"vout[1-2]"
-> +in[1-4]_lcrit_alarm	Input voltage critical low alarm.
-> +in[1-4]_crit_alarm	Input voltage critical high alarm.
-
-[Severity: Low]
-Similarly, are the alarm descriptions for in[3-4] correct? They are labeled=
- as
-output voltage, but their alarms are described as input voltage alarms.
-
-> +in[1-2]_max_alarm	Input voltage high alarm.
-> +in[1-2]_input           Measured input voltage.
-> +in[3-4]_input           Measured output voltage.
-> +
-> +power[1-2]_label	"pin[1-2]"
-> +power[3-4]_label	"pout[1-2]"
-> +power[3-4]_crit_alarm	Output power critical high alarm.
-> +power[1-2]_max_alarm	Output power high alarm.
-
-[Severity: Low]
-Should power[1-2]_max_alarm be described as an input power high alarm, given
-that power[1-2] represents input power?
-
-> +power[1-4]_max          Power limit.
-> +power[1-4]_input        Measured input power.
-
-[Severity: Low]
-Does power[3-4]_input actually measure input power? Given that power[3-4] is
-labeled as output power, shouldn't this be described as measured output pow=
-er?
-
-> +power[3-4]_crit         Critical maximum output power.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260622-support-fd=
-5121-from-onsemi-v1-0-b31767689c65@onsemi.com?part=3D1
 
