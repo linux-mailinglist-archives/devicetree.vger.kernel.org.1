@@ -1,196 +1,181 @@
-Return-Path: <devicetree+bounces-314653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314654-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pGB5FC0iOmpT2AcAu9opvQ
-	(envelope-from <devicetree+bounces-314653-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 08:05:33 +0200
+	id JmQHMy4iOmpY2AcAu9opvQ
+	(envelope-from <devicetree+bounces-314654-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 08:05:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B02476B458A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 08:05:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A4F06B4592
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 08:05:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=GHIeS6Wf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314653-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314653-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bvbTNqIV;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314654-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314654-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B2AFC30173BC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 06:05:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4357B30173A9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 06:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 665D73AB27B;
-	Tue, 23 Jun 2026 06:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A313AB466;
+	Tue, 23 Jun 2026 06:05:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208743A9636
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 06:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F2AC3AA4E1;
+	Tue, 23 Jun 2026 06:05:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782194729; cv=none; b=G0vS0eUEm0q3sh6GXM0omIKbbYHHpryj/Jl/Im29qz4fkjbAc7wegzY5H+AqWvk/AFVpiaaEKsKuRXWfXuRmMiTycEJras+RPpGN0rjlpw1Ur7KWuBRmY9tJlQnRPT8PUf/Qe9lVt5d4BHe+qE0ZTKJNaDOiN/6DLibFY87jJkM=
+	t=1782194731; cv=none; b=JyvA0yna9WnEKCayPse9+IYf73QwTVs3Or7icZKhMu8bgQqNtlgORoViYgGqwcFsH1XSWvsl1ckQOf/KxebBWx5ZhOvTJEq2oiEBVGhxg7DKXYyydRZy0GoiHVusLkp6T3NQAn5RGPHwFmggwEX6s3i0tjjo20SgKQhJskvKDJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782194729; c=relaxed/simple;
-	bh=X0Nc3LPeP3yvoTzuOeTi8HsCjRqSR9NDjqFs9CJsHhs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fKfvZU803XAdG28HHr+PqbNsKgHr2kubjIRMuiLOKfDUbLqre5zZpRt8hZ3EWGQ+LhwD7icXUu6j4iAwHUMGWkfk5i2D4G+xagoYeXLWhUk2EWhvqCmAGlLf72fpkLDmLWx4FbuWKEyX8uABi1xAaYVBO4bMU+WWfDknll0Z12A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GHIeS6Wf; arc=none smtp.client-ip=209.85.210.171
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-8422f395a4aso395197b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jun 2026 23:05:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782194727; x=1782799527; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2Ef21YKNRKTwE4+JoXHQ8LZhCHi66wbfOD/5s58Gc8o=;
-        b=GHIeS6Wf+elUptnsVmmKG8gxpY+5aMWllPzrJzm1nHBpKehSR0/0A31/Q0WzDiT/xe
-         q7nTAMtYJ/OLGg/MZCUOW8nwW138VFZE2+hU29egB1hrKPEGHoIzp/0v0xFdj/Dlog2n
-         2bLe5HqmLD0T3sz9O0iamkAbKwiwLkJ8r+JeR4zUkwDX3qhSqyQHwvDq0e43AoSyNXL3
-         YTxKxhVsTj79lW7WwmcqWWsjoUJZnS//GcJpfY5I0fDJlIfnJSMG50b4fo/haGlIWt/c
-         G+ju5CMB/xKjkCcHPRNIW4GAyQ6gvhOiq3k3NXFPecQ8f2vPJ/2FuMLo+t6LKibJ8fRI
-         613g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782194727; x=1782799527;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=2Ef21YKNRKTwE4+JoXHQ8LZhCHi66wbfOD/5s58Gc8o=;
-        b=Bb1yWLaO7jRNdheRKzu2XSBqNFyHw7a8FOHN2s96L/+WWNngJ2k0MQdRFJd3ikDxH+
-         vMDwk+wiAgZpd7YxrCVjQC8Rs8db2qph4VKHnvFruBWyVkoCyLOuQKY+hl2C/Wuc+raj
-         WNRzRsofQElrTxwes3MUzmr7eFAHoAQyP4G9oRzQ7Hqqwyt82+eC04HhigKT24w8UcFi
-         o4TwV1WiwbQdf+a7mzcZa2q5M5309IaZmzqtSgS3pGCrcfbJIJN/wQ/UI2FYDKCAT9Fp
-         OrliRLqGZI4PeQ4KEuRfvrnYqkQQ60OOrOdQFxfnVkIWjan3sMewITa2sIlg3c5GxV9O
-         wepg==
-X-Forwarded-Encrypted: i=1; AFNElJ+k4w41+IRQjLObP1torBPMzr/T1Xfw4/3zVSA2GbxyXXLpCh3sxL72Tx9p/gwCMMJUPYFxKMlOK4pX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrindRsrcDGekrukGJRXJBrdHQ5cjUxePv7jrnsXRzfpixHNev
-	y7nTzoW3DIroBEsxaKCVPgw4uWjB3MXfveNUPjgUY7preQ1cga5le6Mo
-X-Gm-Gg: AfdE7ckRQFdkd7WQoqrjRQi+dBdfQ7p+nApz1j1zjCe/SZ0BNpsDpQ1KymWNFs+Ty47
-	n0UeWXO9uMiO8Dm1mW/J59+0lLpJ/4ZdjaKMuWQCobEN5dPc3avxhdrcM1xz3i8u0WZAA2Fnw8V
-	rZt1TlDl9nmIflrkQhjPc6+0eJdN6niVZTpph5OhpsuYS6nzjlzgaVimFhbGPwVEZ2BAGu+47PY
-	XmvP6v8+zlST+o/e/lUmw689UBkV3OdQwdeI2RpfmHQ/BXlC3ohvEZU+mbK4vCGDzs0Aey7lNLI
-	gVL+H+bTnOPvLLDQ7kYUtS08eR02pYv71zxERl9JKVucLEwnCDQhSMrqFu3M1dOqCPK02u1Gi74
-	z/gcdyU9K+YS3RGG7GsfzNMzjHFnxEH8YBVsNPghWX5EOsKB1omg1sD3HOMKpBte5dOW4jP+MXl
-	8qfuUfwgaLpw==
-X-Received: by 2002:a05:6a00:2c95:b0:842:5ea5:5fe0 with SMTP id d2e1a72fcca58-84591b260d6mr2136947b3a.6.1782194727240;
-        Mon, 22 Jun 2026 23:05:27 -0700 (PDT)
-Received: from arch.localdomain ([2409:8a28:a57:2041::1002])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84564ee3dc2sm9160454b3a.58.2026.06.22.23.05.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jun 2026 23:05:26 -0700 (PDT)
-From: Jun Yan <jerrysteve1101@gmail.com>
-To: sashiko-bot@kernel.org
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	jerrysteve1101@gmail.com,
-	linux-amlogic@lists.infradead.org,
-	neil.armstrong@linaro.org,
-	robh@kernel.org,
-	sashiko-reviews@lists.linux.dev
-Subject: Re: [PATCH v3 3/3] arm64: dts: amlogic: meson-axg: Disable pcie_phy node by default
-Date: Tue, 23 Jun 2026 14:05:14 +0800
-Message-ID: <20260623060521.599380-1-jerrysteve1101@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260617083401.8777A1F000E9@smtp.kernel.org>
-References: <20260617083401.8777A1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782194731; c=relaxed/simple;
+	bh=r0sj/Azq0OkR6B6xr+X+vmHdEoEbwiP3FSAJbUSloAk=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ld5nVuVkdwMA4Pa8MdgF6iFxsEPwqzVg3/GFtFKvNu2eoTzbA9ohhWEDmPBYSRIO1IdBs52Oovndw5I8XClc9j2ZMAWkf8iOMEEdA+hSb8A06M6rWAzAQwvmVdYg0cV4W4/m0D+9otn4w1LaNnCsA2SvGbjGqwEkMTzcUsV5XZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bvbTNqIV; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B147E1F00A3A;
+	Tue, 23 Jun 2026 06:05:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782194730;
+	bh=gFN94CbkxuKMREe0dzgKun1w9F/fKof9XWXDf5dyawk=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=bvbTNqIVrKLlWd2ry2MQFYVbYn6yVMkVIFYWhosgNNHPFsJKOn6Y00L5nlLuzHFD2
+	 RCASxEcAk6vErOE3KymCcWjHzRaG1VeX4RuLm6RppcUkkLEYYwnN5W1YIbectdMYxO
+	 GA329rkMCoO+FnEqyYUrFW6Lf2rxGuxMfvb60Sm2GifR/hKyTZwtRW0H7vkOXsZ1HW
+	 bZbioaSxBgU56OY/tQYvGEiZGRLPEL2eKig/9KbOgeD9zNnZVJ7lkgugzQGTJTdQUr
+	 HYoeWoKlQIMJssYTh97if0k7pN5Zu9QcPL/1WrTgrFq480zNPgXH1E2Emr5ygXNAVa
+	 Ksy3OJuxY1g0A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: hwmon: pmbus: Support for onsemi's
+ FD5121
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Selvamani Rajagopal via B4 Relay" <devnull+Selvamani.Rajagopal.onsemi.com@kernel.org>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
+In-Reply-To: <20260622-support-fd5121-from-onsemi-v1-2-b31767689c65@onsemi.com>
+References: <20260622-support-fd5121-from-onsemi-v1-0-b31767689c65@onsemi.com>
+ <20260622-support-fd5121-from-onsemi-v1-2-b31767689c65@onsemi.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 23 Jun 2026 06:05:29 +0000
+Message-Id: <20260623060529.B147E1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,lists.infradead.org,linaro.org,lists.linux.dev];
-	TAGGED_FROM(0.00)[bounces-314653-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-bot@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:jerrysteve1101@gmail.com,m:linux-amlogic@lists.infradead.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:sashiko-reviews@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-314654-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,onsemi.com:email,lists.linux.dev:replyto];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:devnull+Selvamani.Rajagopal.onsemi.com@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,Selvamani.Rajagopal.onsemi.com,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B02476B458A
+X-Rspamd-Queue-Id: 8A4F06B4592
 
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> 
-> Pre-existing issues:
-> - [High] Enabling `pcie_phy` on `meson-axg-s400.dts` is insufficient to support PCIe functionality because its hardware dependency `mipi_pcie_analog_dphy` remains disabled.
-> --
-> 
-> commit cd94d06969e9f9a23ea319f406b8e86e8ed9ec44
-> Author: Jun Yan <jerrysteve1101@gmail.com>
-> 
-> arm64: dts: amlogic: meson-axg: Disable pcie_phy node by default
-> 
-> This patch disables the pcie_phy node by default in the meson-axg dtsi file
-> to suppress deferred probe warnings on boards that do not use it. It then
-> explicitly enables pcie_phy in the meson-axg-s400 board device tree to
-> preserve its PCIe functionality.
-> 
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> > index 285c6ac1dd613..7ba249cc3d569 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> 
-> [ ... ]
-> 
-> > @@ -448,6 +448,10 @@ &pcieB {
-> >  	status = "okay";
-> >  };
-> >  
-> > +&pcie_phy {
-> > +	status = "okay";
-> > +};
-> 
-> [Severity: High]
-> This is a pre-existing issue, but is it sufficient to only enable pcie_phy
-> to restore PCIe functionality on the s400 board?
-> 
-> The pcie_phy node depends on the mipi_pcie_analog_dphy analog PHY via its
-> phys property. Looking at meson-axg.dtsi, mipi_pcie_analog_dphy is disabled
-> by default:
-> 
-> arch/arm64/boot/dts/amlogic/meson-axg.dtsi:
->     mipi_pcie_analog_dphy: phy {
->         compatible = "amlogic,axg-mipi-pcie-analog-phy";
->         #phy-cells = <0>;
->         status = "disabled";
->     };
-> 
-> If the analog PHY is not also overridden to "okay" here in meson-axg-s400.dts,
-> will the analog PHY driver fail to probe, causing devm_phy_get(dev, "analog")
-> in the pcie_phy driver to continually return -EPROBE_DEFER?
-> 
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] The binding lacks a `regulators` node definition, preventing it =
+from functioning as a voltage regulator provider in devicetree.
+- [Low] The devicetree example uses a specific model name for the node inst=
+ead of a generic name.
+--
 
-I'd like to add an additional patch to resolve this pre-existing issue reported by Sashiko.
-Unfortunately I don't have S400 hardware available for testing.
+commit 52162fef263cc41ea7598b089db89b70bb4f6ebb
+Author: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20260617082239.645562-1-jerrysteve1101@gmail.com?part=3
+dt-bindings: hwmon: pmbus: Support for onsemi's FD5121
+
+This commit adds the devicetree schema for onsemi FD5121, FD5123, and FD5125
+dual rail, multi-phase digital controllers.
+
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/onnn,fd5121.ya=
+ml b/Documentation/devicetree/bindings/hwmon/pmbus/onnn,fd5121.yaml
+> new file mode 100644
+> index 0000000000000..b0453b0634f0d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/onnn,fd5121.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+
+[ ... ]
+
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+
+[Severity: Medium]
+Since this device is a multi-phase digital controller, should it have a
+regulators subnode pattern?
+
+The additionalProperties: false constraint strictly prohibits developers fr=
+om
+defining regulator constraints in their device trees. As the PMBus core
+framework looks for the regulators child node, would it be better to add an
+explicit pattern here to allow consumers to reference the device's voltage
+rails?
+
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      fd5121@50 {
+
+[Severity: Low]
+Is it possible to use a generic node name here like regulator@50, pmic@50, =
+or
+sensor@50 instead of the specific model name fd5121@50?
+
+The Devicetree specification recommends generic node names to ensure standa=
+rd
+patterns are used in examples.
+
+> +        compatible =3D "onnn,fd5121";
+> +        reg =3D <0x50>;
+> +      };
+> +    };
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260622-support-fd=
+5121-from-onsemi-v1-0-b31767689c65@onsemi.com?part=3D2
 
