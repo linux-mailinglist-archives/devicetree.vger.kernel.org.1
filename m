@@ -1,73 +1,70 @@
-Return-Path: <devicetree+bounces-315011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315012-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XX7tJdD1OmqYNAgAu9opvQ
-	(envelope-from <devicetree+bounces-315011-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 23:08:32 +0200
+	id 9uWFO1X3OmpvNQgAu9opvQ
+	(envelope-from <devicetree+bounces-315012-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 23:15:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96A2F6BA338
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 23:08:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B6546BA37E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 23:15:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=OuSaxk9E;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315011-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315011-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kZgljZL4;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315012-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315012-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2030F3010CC8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 21:08:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4A5043023371
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 21:14:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C19E83AE6E9;
-	Tue, 23 Jun 2026 21:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A8D3AE6F3;
+	Tue, 23 Jun 2026 21:14:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1121A3AE1B8
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 21:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 470263AE199;
+	Tue, 23 Jun 2026 21:14:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782248904; cv=none; b=adSu0M1UXIOq0E5XHiCJJ7bAZbcILL2vnWFbGx+1pq71S3NC6+DQBQoVhBqS6HWulUHhoz7c6e5fROKVm+XlmKiuuurigbB1PbaAg1cOwcXr75XaJYSkQaOv9C1nosOcAvd4QRhnR/K72scUnGyw5Li0sAcsX50o0pxgybiVifs=
+	t=1782249280; cv=none; b=F1lH9aYWcUl/VmrKCysa1WSx3YR3oOeyNOaMkT9LoFs+uc4QrHyuuZTQYk/3DPKhwMikT/nFOfnfp0pXaYqrpwSZS5wGpkSRjg44Z65ypWHVPNzAfew2+DPM9QH1qo4mHK2NWFg0Tl6MjUscm8kaDQJur/2CRAm+QLkeiBvryTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782248904; c=relaxed/simple;
-	bh=bH02PQgUP+LOytn8ULqS+x6+APWJqOhdUw98JalmD0Y=;
+	s=arc-20240116; t=1782249280; c=relaxed/simple;
+	bh=L545s0y/f5SRTt2r1MwPpF08m3pJeqJOFV+FfwuK8D8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bdey9MVgtxiDTHHgG5w5EhtSr4uT4BLJnOv6jnfrvZw+aB0aOBMI6M469sM/SFF2Onwr2bWzebmjgTZQRWdAzxllYTZhM0Lv7SDbYf/KxXnecnptaohSIHypw0y6yKEvHaxoHYyARE3a3gfS03gSQt2W8hojuMh7xctDAWb2q1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=OuSaxk9E; arc=none smtp.client-ip=194.117.254.33
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=bH02
-	PQgUP+LOytn8ULqS+x6+APWJqOhdUw98JalmD0Y=; b=OuSaxk9EwdXEEVLyybMX
-	H4waTPkSIOoUlqt2N68GEQkZmLTo/52h2DaT6ICShipoY+rKEHk+qvVHKfickyY/
-	UqMFYce/yioSQQq7owCmt7Ym68nNxlQse9ze+GoPokr8vas0YiY9URswbdSwmFq/
-	6ADvkO/eydafkhwpNpDK/tpojNbSsgiBX2DSLPQFwn4VSha1KrE8bpmxkAmHMOto
-	VxoKmB/TWnA3guZmzIr4kdBBJX2yO7UGeJG0I1Q6UvUXJt3HzD9MBLJE9g7AzeWV
-	a+CKSd1ldsP/0abua8bJaOaNse6W1t7vBKnccNTNuDQ0kGLUET3YtEFzld+QM5CP
-	wg==
-Received: (qmail 2505875 invoked from network); 23 Jun 2026 23:08:17 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 23 Jun 2026 23:08:17 +0200
-X-UD-Smtp-Session: l3s3148p1@SWdzKPJUqOMujnuj
-Date: Tue, 23 Jun 2026 23:08:17 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=mILxrTcW2tWr9eCCuaRndGwZVchzf4t7QsX62VPI0rO5BonFoD3AQuWeoU0IB5OXEkSgjVK/0Yxl5ionW9setEJXoOvJac+GRc8mOHnTCrIYACSPtMutTUUH8T2eYe6HO32QXfh2gWkLzTcQoaCufhOpMnsi+Sua5gVMb7HVP50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kZgljZL4; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9F031F000E9;
+	Tue, 23 Jun 2026 21:14:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782249278;
+	bh=zcIIErkGjpS9gouJWmWe/uRTsPwJwxCtmfwJLTVE1Jk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=kZgljZL4eEFYV3KFuxXkTE58t5e0Pp6/EX1FUdnGcIuLrR0GY/MVjttIyJlhBbHYh
+	 /Ud+U2h8Z7fuEQd2Tq6wYrQ1IzmXtRUSTTLByk9dJdR824d8S2LRAm/noriXMjsUXq
+	 4xVK2IzyIG2IUjE8q4Z7SQsnUgdx7SkIwGQzsekWPc08pyljbVu2UP3mKhvqzIyDvb
+	 OHlH1LLzxBNWfP3fpKgHXQHGWCmCYWpvvDJC0HPTj7SXUfQ9x5cprQpR3Rc3jGxTqd
+	 nDhC1LVoUQxkRbFno3ZCgN4P2XgnX3Enviqid9FiAbNCKP5W52hqVNyMyivCS0hDso
+	 Y2RZkFknrweKQ==
+Date: Tue, 23 Jun 2026 22:14:34 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-rtc@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 07/12] rtc: rzn1: fix alarm range check truncation on
- 32-bit systems
-Message-ID: <ajr1wXCI2U23d1sY@shikoro>
-References: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260615154805.1619693-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <ajJ9kNJtrY6DyQ-S@shikoro>
- <CA+V-a8u2wt6623mYjhipOvJPo4va+bXs3qirQewocFr2QmUFhA@mail.gmail.com>
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: hwmon: pmbus: Support for onsemi's
+ FD5121
+Message-ID: <20260623-scared-judgingly-7efc1c188670@spud>
+References: <20260622-support-fd5121-from-onsemi-v1-0-b31767689c65@onsemi.com>
+ <20260622-support-fd5121-from-onsemi-v1-2-b31767689c65@onsemi.com>
+ <20260623-anybody-gutter-e6ca04f53bdb@spud>
+ <CYYPR02MB98280DF78A07EADACFD084EE83EE2@CYYPR02MB9828.namprd02.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,83 +72,120 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="IQrbvfrJwKbLcqHs"
+	protocol="application/pgp-signature"; boundary="lpb6Ztvu8fvBKW7J"
 Content-Disposition: inline
-In-Reply-To: <CA+V-a8u2wt6623mYjhipOvJPo4va+bXs3qirQewocFr2QmUFhA@mail.gmail.com>
+In-Reply-To: <CYYPR02MB98280DF78A07EADACFD084EE83EE2@CYYPR02MB9828.namprd02.prod.outlook.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.26 / 15.00];
+X-Spamd-Result: default: False [-5.26 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[sang-engineering.com];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:miquel.raynal@bootlin.com,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:linux-rtc@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315012-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-315011-lists,devicetree=lfdr.de,renesas];
+	FORGED_RECIPIENTS(0.00)[m:Selvamani.Rajagopal@onsemi.com,m:linux@roeck-us.net,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-hwmon@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,glider.be,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:dkim,sang-engineering.com:from_mime,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 96A2F6BA338
+X-Rspamd-Queue-Id: 5B6546BA37E
 
 
---IQrbvfrJwKbLcqHs
+--lpb6Ztvu8fvBKW7J
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Jun 23, 2026 at 09:01:32PM +0000, Selvamani Rajagopal wrote:
+>=20
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Subject: Re: [PATCH 2/3] dt-bindings: hwmon: pmbus: Support for onsemi'=
+s FD5121
+> >=20
+> >
+> > > +
+> > > +title: onsemi's multi-phase digital controllers
+> >=20
+> > Can someone explain to me what a "digital controller" actually is?
+> > Seems very generi and that a word may have been left out, were it not
+> > for the fact that this wording is used several times in the patch.
+> >=20
+>=20
+> Thanks for reviewing.
+>=20
+> According to me, "digital controller" means the controller uses digital c=
+ircuits to implement=20
+> the features and functionality. We can remove "digital" and keep only con=
+troller. It won't make any
+> difference for Linux documentation.
 
-> Can you please share the commands you tried, I'll try and replicate it
-> on my side.
+My point is that what's actually being controlled is missing. Maybe it
+is obvious to you, but it is not to me. Your nodename in your example is
+> +      fd5121@50 {
+which doesn't comply with node naming requirements and I wanted to come
+up with a suggestion for what it should be.
+I am assuming that its power or voltage that you're controlling so
+either it should be hwmon@ or regulator@.=20
 
-Sorry, can't give you the commands, just from my head: I tried to set an
-alarm more than a week in the future, and the alarm was set to the next
-day. But I was in a hurry, maybe I overlooked something, because that
-handling used to work in the past IIRC. I can return to this topic on
-Friday earliest, sadly. Maybe next week only...
+>=20
+> > > +
+> > > + enum:
+> > > + - onnn,fd5121
+> > > + - onnn,fd5123
+> > > + - onnn,fd5125
+> >=20
+> > Your /OF/ match data in your driver suggests that you intended to permit
+> > fallback compatibles here?
+>=20
+> Agree. Sorry about the discrepancy. Will fix it.
+>=20
+> >=20
+> > |+#ifdef CONFIG_OF
+> > |+static const struct of_device_id fd5121_of_match[] =3D {
+> > |+ { .compatible =3D "onnn,fd5121" },
+> > |+ { }
+> > |+};
+> > |+MODULE_DEVICE_TABLE(of, fd5121_of_match);
+> > |+#endif
+> >=20
+>=20
 
-
---IQrbvfrJwKbLcqHs
-Content-Type: application/pgp-signature; name="signature.asc"
+--lpb6Ztvu8fvBKW7J
+Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmo69b0ACgkQFA3kzBSg
-KbbL/g/9Ffzr85nk4fwKrR+OVge9gQk368nR5HR+bXQ4T16cuZi6EwVQd8v7IeRL
-v2TNInbehi15qf2+T51IRvyBLlkAxEx/GHhDMp3AwVL4HAN4HpEPbjYU3WV/nxO2
-VcZBHdb9PvTMIzTrx8gpbXsVLRgxzNito4xdMEON5AEs3UImWIU8wqAjAGL0Co3T
-6nsfVTPkZyasJa6aqFDTYQtL3UZeio4a11HGUZdmm9RhIIthW0EcXaeMIuTHsrfQ
-6JA8FI6h6iZCxTVSuShdPCLl7+a34cLdudvlttGzRFkWcdNP5ORx8MKax8JuRkJr
-fNTvTMkOeuHbPTHZd7u/djq7iBK4mGVW55vghOZY7xw3rB9YDmSDPYQMCqyDkPbF
-BzLVONEYVvhpQYhOUHedypNJL6fSVTBKkfzlid5npy/EWUjuhzU8A//qkRAfyZBi
-FCw8O0RZafJ5WBpueWSGaeU1KCzIYyvv8jBsG1VVNcpOI/9reppr7Hihk0wCqSH6
-JmRmQqbesU4E63yTC6pZ7wH+fM6qA6bkBCX/eIRL3tApxXz1uRCARp5yG5hC3sBq
-bsiPOg/vQOaTInQLf71E/WgNaHDktBUOCv3uzWl2JZ0vML/TDnunzk9vHcR8kl3J
-sHx6QYjJLdhhL4+AM2Qj0P8pK0UgbWdvUAXeV8qfwc2DO5ecC44=
-=WL+b
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCajr3NwAKCRB4tDGHoIJi
+0p0RAQD36EDbuOtkF4cQhFpa/Fx2gItOFPFFN3q1M7BYekYz2AEAkPDxvFp9Qijd
+Oorv2sjNmq/fbSd8xsRo5bBS62nxVgY=
+=NHME
 -----END PGP SIGNATURE-----
 
---IQrbvfrJwKbLcqHs--
+--lpb6Ztvu8fvBKW7J--
 
