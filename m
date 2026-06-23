@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-314886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314889-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uZd6Ll2eOmpVBwgAu9opvQ
-	(envelope-from <devicetree+bounces-314886-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:55:25 +0200
+	id YnjpMsidOmoEBwgAu9opvQ
+	(envelope-from <devicetree+bounces-314889-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:52:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC186B812C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:55:25 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2B2E6B8097
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:52:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=JGFJy7d0;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=GBFjplO0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314886-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314886-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=l0q4Y1R3;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=XU3cEllK;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314889-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314889-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 104EE3112D7F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 14:52:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8748130443D3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 14:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1ED3D47B5;
-	Tue, 23 Jun 2026 14:52:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 321553D564B;
+	Tue, 23 Jun 2026 14:52:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3213D524F
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD1FD3D5241
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782226369; cv=none; b=Yb6g7YcoPfGCN3SKTzXj0PAD+t5JKwKk1NgBZ5mOdxYnm44cgF7UA8W1j2T0ea5Xe20/REkaCpXJRLnqcBLhHSOv04UGT/X7Db+R5I4176zJi/4VOf6u66cwjhcuYnq1tuYlL5hpkqavph7jObsGtcQtby05XffCb9kSSkbu9P0=
+	t=1782226374; cv=none; b=Afxwm/+5ypC+KZosV6+qtZcvqFfMc32T/IA6+4chHp6v9YEJOjDq2wZp7idhZ1S1IJniYBhxuMFRws6I+rYJGcqwIhCA+cf6+0i86IJhYvYeHr3YF2U2gqYpa16TaVzgCWmHwmfcyz4rsR6Fo2DSTBsLScYcC9e34IvfELVkTgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782226369; c=relaxed/simple;
-	bh=bDO0HLRhbLse9LwBMTvNU5f2Q19FfSoTjUtUdoZQL14=;
+	s=arc-20240116; t=1782226374; c=relaxed/simple;
+	bh=qz1R0fc4ZtSZbGixQFSfsZn1O76p2On6dZ7J6oiFRY4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=o5VZDlKXYQl8zTtOMGZS2s7uUi1khl2PZygq8Dn2io2XuC5vdKRDE0T+g9/SywZszzAYq3X2e90ZUInR/45ldttM3+A/XxEmtcvdHOvqUZRC5IjvzE99Wm4nZ/muVa51uZT3HpHqE7WWsKk4l5ZlgspEPdGZoG5Vn3qFn9GDe1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JGFJy7d0; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GBFjplO0; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65NBZCiE031267
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:47 GMT
+	 MIME-Version; b=ZnIpoyU89yfhhr9PaetS2LWDEWD//SYDBw8QFsJd8TjF5VsvPrXg4HVh3hKjPdJ8UZ4e5RTF/uEWKTrArplYKIgEQLj2G0ALp6pHB1OWnsx9D+/VRXpC4a8Fx2p9ywSH4WJhsfxsmSSs1VprBuanJ4l42imeoJt8pz4K5qjvKik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=l0q4Y1R3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XU3cEllK; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65NBYkuf113506
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:52 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=B+QYpwe3HHx
-	XgG64fNTU3zw9bNLgGI8Ei/eZTnIfCUA=; b=JGFJy7d0wt7QVGST9EsFT6BeXcG
-	ggvzuZl25BBq7IWFiFXbmHLMb03ibiXpBD1I0B0GXTdEsTn/PcGCKro2cCU1pBpz
-	6vtXdMZ7TDK/9j6vlfLRLrmkM4AWJb59KIU6Yacq7vqVpJ51EaXs6OL+CMU8+QCm
-	LjysqOcrbyLp4IftAvzld8VaqoTnd4TBiW2vhD5t0BvFqccLRYYCRuLWu3/3Y3bA
-	GDQymQvWAAn2bv3rdDVjAyTcpxmh9J5L5sYDrPfSGa7HnHSah4StvzfPm/WD4U+Q
-	i/0ZOOmz5Z7ZxCmnx55X41pK4/66CSJHjQRe8Zryp5WStBnP1zbw/6ju6SQ==
-Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com [209.85.217.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eyqe69cjk-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=zCrxoN3Ecrt
+	yDTN0qwQ7dQRoeDYaqf80JwfgO7XBFYc=; b=l0q4Y1R3SlUmadE6Rar184Lg7iM
+	xNrKLYtAbLZ2A0VD/jsRZj1e0r8OZTbJTiyAmqv1VigaPZrf+x5jj50r6dVMShH1
+	sfBDEncV1S8ybsvKZgZAP0PdAwvVGLwHkRr3nZ3YbB/+q3w9wcLHKd4LuKwbfaNz
+	HqXYDhlZ+kNlLC4xIW/NVf2TAH7/ZzrueOH6EbyLVlvHgyQEjzTEzaFyHhxIe3al
+	JMfWvJVIsORxN2GAEAeAgn8GwuEA5fNyYWgpg4eVXoxeOtaq61od6QSlPI19eqx7
+	PXxTR1nl6LVyEjDUGwQ5rNV0VliIExUosErpP887k4Pas+Sptxil9OxAFJg==
+Received: from mail-ua1-f70.google.com (mail-ua1-f70.google.com [209.85.222.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eymnvt3aj-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:46 +0000 (GMT)
-Received: by mail-vs1-f69.google.com with SMTP id ada2fe7eead31-6a2b8b91dc5so3171561137.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 07:52:46 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:51 +0000 (GMT)
+Received: by mail-ua1-f70.google.com with SMTP id a1e0cc1a2514c-9670f220557so4103830241.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 07:52:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782226365; x=1782831165; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1782226371; x=1782831171; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=B+QYpwe3HHxXgG64fNTU3zw9bNLgGI8Ei/eZTnIfCUA=;
-        b=GBFjplO0iME2KPlvsSYW8xXDRJHOwG+5PxMkQlxS84zhihYZGOEUxVB1RIVxLHXpMC
-         wtlsI+3XtrKi2OwhUxH4mRP7AlB0I2DbAkdJnVuc0l86MmBgb8FPvx7M2AZuNG0kHcxl
-         uFLMqtLWwRBY7UPbP8Q9dti5iCW0Fwm+EgZ1PZnfroDU2SVIgW2gVEMMzA0q1v3sMGNe
-         HvmiO4KWWz8LQ1Uih1tL1cJdfeXjaMxZGyysdAdFNbhNdRszrdLrAbOqxgWoV95krT3+
-         TNolTU7Lr37LeuuCxJDwPst6uXridhSSxdfpuG5HmC4EI3pA1biGqMetTrXX7d8h5UmK
-         guHw==
+        bh=zCrxoN3EcrtyDTN0qwQ7dQRoeDYaqf80JwfgO7XBFYc=;
+        b=XU3cEllKSBsU9bZ69z0cftaCGYgrTMV0qJanOEdkYBMIcQvVTTVnYjUBAMKIp2Uhd3
+         Tqv/QEzBYYQ05FgkR+oBSXipTNTeyW9exfNaHBUncAgUTkCmFv5l6gZmPu/gCG3y0i58
+         VspxhVVwCnPB/cZtOUPAE8LEXPnedWp6vW4glFmL6FKeoWp+PBZ9U86SB3Ulhhqp83Wl
+         i0UwGsq3iNa5jraLUeyGQzhqSMfSpfUA8iLCvn4qXJD9AaNS0yuvkJ7Yyr4LOaVRRFNC
+         MVNdhUqRVHSWiaiin6WBgPzQq8t6WGF2/9ZdX7SDTfnLBYvMSBftdSWJh5/NdBq6OZWt
+         OSfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782226365; x=1782831165;
+        d=1e100.net; s=20251104; t=1782226371; x=1782831171;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=B+QYpwe3HHxXgG64fNTU3zw9bNLgGI8Ei/eZTnIfCUA=;
-        b=Dn+1XN6pyHYKmm6K4iIqzDJtuiMkIp4TV61zjctBlwbNSJfU2e1M1WLAmae2BvBbxZ
-         ZwYXAAAK0Z5kguSAGEHCgVcM3rhCI4+6iRe8GqsAyvsX3emvDrZUS0AkXCANWC26wko1
-         FMUmqiYL+vUDvjiw7kDzRgXunq1UfKfW3O4wLJQhKivVPhLJfEc7K2TK/6PQ4xil0Ww+
-         zM0jarZrQWv+VLChoeeoI14VJc0WmVJzI7wIzkQOwUJdoqqLh7/Q2RgaEpBMSBi/nzLG
-         xIfjwGU1WdWzfUIWTNh51IDPH6qUdHgIrX4I9G/kaKAi4M5E4/L0LHK2cgiSKQ40ZmX/
-         HJrg==
-X-Forwarded-Encrypted: i=1; AFNElJ9ZifeUYWyFARgLh4/lnvyyLFZ6mcrtvh54msn9EGR8r9pPY6i/6kLo/Hr2W5LUq8MGIm06dTnlDqaB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIKLpOZf2W+c55EEOGhkbFyh09/7dWfHrBXCVZDrv0oRG0CzL+
-	ljQ7rocdTcBa35nq7ElCwRmV7YlGjITE18y+Gd3j3AI5R8CC6ocWxP3uwuOJb12N0Pea2Its+BG
-	wZ++H7zWB4wFLS3LVUQ3H7KiCjKgyqYuPrIfoDQuZ8aU55405NPxT4lmZTv+ztz1k
-X-Gm-Gg: AfdE7ckzeQperTp2G/ZdNaXJFgXql36AOt/cRFwFTEbxJmnsh/Pts/wGbgVJ2ACAxjh
-	p4iux5M7lY8X2Hd0Uf9F5vmZuBJxGs+t/KOyzAOZ70+BMtCRghfjgo02Epey4EdZ+kwby2EbP1e
-	wxErelxO1EP2Qr6mi2eO29BgJ3dJ2bgNdt6XzSaK5XE5ACmjNE/WmbQpydBYnfgHdFNDkHAY6MC
-	SnyIwavzA8rTZQz8b94JyK9f4mu7t9eJE25bldG7tRCq0uSWsHFiYOxlw1c4RwgFlq5H30zE/Ji
-	zmzGvyJrFPPbYsTpu9/f4OHNkPZv9hhO3W/QJx/1ejwJRD9a9MODxdB86/usjFq6bchzsl1+FM2
-	NQzX02e+q8MtNfMGlfw2XIphXK0JMMfZq7nXp8MHynsVlaR783R6M/S8WP8zgP/geDHcElJKZ5Q
-	74hZ/R+VtQ8k4iF49xSbdjz1uCiw==
-X-Received: by 2002:a05:6102:6444:b0:631:4cd8:b6aa with SMTP id ada2fe7eead31-72ff4c6710emr1681261137.13.1782226365485;
-        Tue, 23 Jun 2026 07:52:45 -0700 (PDT)
-X-Received: by 2002:a05:6102:6444:b0:631:4cd8:b6aa with SMTP id ada2fe7eead31-72ff4c6710emr1681234137.13.1782226364969;
-        Tue, 23 Jun 2026 07:52:44 -0700 (PDT)
+        bh=zCrxoN3EcrtyDTN0qwQ7dQRoeDYaqf80JwfgO7XBFYc=;
+        b=ajlvXsA3M8P2E5R4xkp9qY3V8fk0KqIRy5XLZVvgHuV21HraCB71gkYJjZoe1AuhSF
+         vYpJJqkOb7JO5NijMQJi6DdgDCEdY8tGZjt6vfGaN/e4RVna02Q5mmjTOXrcOqxJzUjG
+         C89ZeEiOYyQDJnQWTWuo62udmkYDQlmNDuLDZHNvv/9L8f5aEWf2oD1MhGbPz3NzWEoK
+         j0T3d0OmWeWL+d0xfDW7sNEJfYpPOIZGI/iZdH5DlLbQM7xOlMqM50mfJTVanc1dUUJA
+         Nb2bZ6VIZidYsQ7uYR2sb5nfJmOZEbtId3bDNYe0HhRCEsGZhlLNMIXdHGuIHmjuavuG
+         odVg==
+X-Forwarded-Encrypted: i=1; AFNElJ/mYNV+JuY7y0Z84nv0xF8GqafZD6Ngqk6nORU/M8H1FyPHwCDldRIbjlhNRjYXRMwauFLDFYfAj1JU@vger.kernel.org
+X-Gm-Message-State: AOJu0YytafM6VxnAs7liJV3n1E8dCr0SNptQdZLhcJbOxGz8jW9KAUXw
+	wckYrhJFpIchmrNSp5zUIsprISshzflF76sEAkYkop1KfOotBFqOlgW5OqiA5TT8gsSK0lknVr+
+	KXwE1xnTJCVT/OSdVvw/BB0KAup7L091WA4EUAxqDS24QVQX6kB6Jrhu58lgLcE5n
+X-Gm-Gg: AfdE7ckFPClFNUWl4KRKpQ4M0GWiqY4mtxSCCifY8nUI64KfHKcqFnjF/zHeUXVvuBK
+	eTqjunwai/L5NdZRFZKJIEqUrpX8rg+ms9vv1moOhTBUQTa/gIAyFUqj6GPGqo9wYEEK3ypqhBI
+	zGpH9BlvB4hwiQNp934ncjjhfNnyw9K8EixzrMxL5rTqkMZaGtkx+bJIqb3WiPyFpbsUD9r57QJ
+	SOR0Euz+1Q1hbWwDH0BCxDMIhATTSxjgzyEN/4Z6urdiQD0ySemqtdoCoAciNQ5Xhy1cDfS8V5R
+	EphJXU1FcWxZO0MI3DwTcaH7JgZ4B/oXQIXSqDFf25TSLCIQC0w2uu0lIOT25eQFioP9cK/xaDn
+	BaRXIVzWVvc9Heg4OLTVJTxzVERRrSWvXN3uLoVddEwWUzvvKfRj+9+w82J1XM7XswjJ2iGu9K2
+	87mSjOGVjJ5iFmo+M94CdH4cSMGg==
+X-Received: by 2002:a05:6102:3ec4:b0:6c5:d55d:c093 with SMTP id ada2fe7eead31-72ff3f837f9mr1545408137.8.1782226370023;
+        Tue, 23 Jun 2026 07:52:50 -0700 (PDT)
+X-Received: by 2002:a05:6102:3ec4:b0:6c5:d55d:c093 with SMTP id ada2fe7eead31-72ff3f837f9mr1545276137.8.1782226366816;
+        Tue, 23 Jun 2026 07:52:46 -0700 (PDT)
 Received: from shalem (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c0c60aca46csm534042666b.36.2026.06.23.07.52.43
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c0c60aca46csm534042666b.36.2026.06.23.07.52.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jun 2026 07:52:44 -0700 (PDT)
+        Tue, 23 Jun 2026 07:52:45 -0700 (PDT)
 From: Hans de Goede <johannes.goede@oss.qualcomm.com>
 To: "Rafael J . Wysocki" <rafael@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -107,9 +107,9 @@ Cc: Hans de Goede <johannes.goede@oss.qualcomm.com>,
         Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
         Abel Vesa <abel.vesa@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: [RFC 09/12] pinctrl: qcom: Add support for WoA ACPI tables virtual TLMM pin numbers
-Date: Tue, 23 Jun 2026 16:52:22 +0200
-Message-ID: <20260623145225.143218-10-johannes.goede@oss.qualcomm.com>
+Subject: [RFC 10/12] i2c: acpi: Also register ACPI i2c_clients for adapters with a secondary ACPI fwnode
+Date: Tue, 23 Jun 2026 16:52:23 +0200
+Message-ID: <20260623145225.143218-11-johannes.goede@oss.qualcomm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
 References: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
@@ -120,43 +120,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: m28saR1GjS3jjq81uf1Ki8TGeW7gkQys
-X-Proofpoint-ORIG-GUID: m28saR1GjS3jjq81uf1Ki8TGeW7gkQys
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfX/45KbhhBEtfD
- LXJtszonifDXAGFuBnIXw5eBb8S3iQ4GLZlCklA3b3kxgpX+uSdFWKfryssdPYpPSshtOpfCubn
- 6DfkY5olPled8zMo+aOR3Qf7HDY9hDI=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfX+WInxNBNu3Iw
- ZFVDoHcdcMYvJevKvVNMtvWZCfc6/jpCykOOpMxPTCRNpbTSfVFjXfC3Z6+bdGeON00No2MjVpp
- MYcpU915Jc9JwaZxFeMrPw0zMsiAxBkF77in+Ln8Q3H6DkXMQJWe8hgwgEcgcFMDZmvT1tis4ie
- DUPe+FlPxjYggPy9xc5Ytr0eh9085K19pUmxL+aFkrO7LV/CNCJ1TZ6DucdheIAXUyJGFPKpHHi
- RS9s10Iy3/9xJEdgTwFJgZEY/vC9AWncoqQNbvtxQkvrXtTDlj4QF7Myh1Md97JB52j8OtSHdky
- oImEzP8jHLLBWaj+lFGcGfMSBWKBeQp0iwXpiYyZ6N4whI74xxVOMaAO8CUWWvKneKYUYyzFvjp
- Mj4B3TPZ4WiMNNZsFROK1+R94HreTA==
-X-Authority-Analysis: v=2.4 cv=OeKoyBTY c=1 sm=1 tr=0 ts=6a3a9dbe cx=c_pps
- a=5HAIKLe1ejAbszaTRHs9Ug==:117 a=xqWC_Br6kY4A:10 a=FelO9ux0wxsA:10
+X-Authority-Analysis: v=2.4 cv=dOWWXuZb c=1 sm=1 tr=0 ts=6a3a9dc4 cx=c_pps
+ a=R6oCqFB+Yf/t2GF8e0/dFg==:117 a=xqWC_Br6kY4A:10 a=FelO9ux0wxsA:10
  a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8 a=LGgswLhdDZYStu4mGukA:9
- a=gYDTvv6II1OnSo0itH1n:22
+ a=gowsoOTTUOVcmtlkKump:22 a=EUspDBNiAAAA:8 a=6UeluGelAAAA:8
+ a=EkjFkVpK6-r5im3n5xMA:9 a=TD8TdBvy0hsOASGTdmB-:22 a=4zb3YkFaRy81KIeUJMwT:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfX4f8qgpsLfyhL
+ ik6vBcrL49rs64D5UBrLD1WUj782/gIvHCG3ezjSdcMRMT7Z/jTcZPJZqOKNc1r3yRNCAu8LMJE
+ 5A6EFd1zWA9saYEUcKrIwkBQn6EmcXw=
+X-Proofpoint-ORIG-GUID: VCzvSeIJPkwSAC2-Eb-DxXZ9kFWF-PSw
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfXymZsDx2sY3q0
+ kjGIuysVyf+CId50TdKE4ViZwihR3HqyAZyucB5ag7Am+0Oh5YfybM4yb0JVN/AbWveoDBVjE/1
+ /9ObFXem6h6hDnpBh9ftDpyJFaZXhgKLm+OInOsuiYd2UDG0UZkOLW91bgdtkZaFRNeudM299bX
+ DO9ly30jAoIaNu++vXUIkmzEsnq3vd7OCPG2wX6VyPH1kw1pCGB0UVBNLRGdZyxgWedhQU93a4c
+ S0jfEqyHb7HV3pCOAY9cCNt4w+9eZwonvdUH5ycA6mCReAhcg0bb1A7AvuPMftO78IfZ0nSJm/T
+ sm2pyqB2smorokGtY4otgRi5/TfpwaZdkV7nkFmhRx1M0ryzawP2tJR/B4hPU67m1s0heA7aV7J
+ sUXzmnIJbbnaMXNVlu5foY4Zx0vq84lKSqmC0Ux+YP1IIRwdIeErsuTO6w7/tXj4cFodJffeZzc
+ aNSE8ttHW9p8VkNS0Ew==
+X-Proofpoint-GUID: VCzvSeIJPkwSAC2-Eb-DxXZ9kFWF-PSw
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-23_03,2026-06-23_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 spamscore=0 malwarescore=0 adultscore=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 classifier=typeunknown authscore=0 authtc=
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.22.0-2606150000 definitions=main-2606230122
+ malwarescore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
+ adultscore=0 bulkscore=0 clxscore=1015 phishscore=0 spamscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2606230122
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314886-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314889-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:johannes.goede@oss.qualcomm.com,m:srini@kernel.org,m:krzk+dt@kernel.org,m:lumag@kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-acpi@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -165,484 +167,71 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[johannes.goede@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,vger.kernel.org:from_smtp,parse.data:url];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0EC186B812C
+X-Rspamd-Queue-Id: B2B2E6B8097
 
-The ACPI tabled on Windows on ARM laptops use TLMM pin numbers outside of
-the actual TLMM pin number range. These are a rather convoluted way to let
-the Windows Qualcomm GPIO driver now to use the PDC for some pins because
-these are wakeup sources.
+In DT-ACPI hybrid mode the primary fwnode of an i2c_adapter will be a DT/of
+node and the secondary fwnode may point to an ACPI fwnode.
 
-This adds support for translating the magic Windows virtual GPIOs for these
-back to a regular TLMM GPIO so that ACPI described devices using these
-virtual GPIOs can work with Linux.
+i2c_acpi_register_devices() exits early if has_acpi_companion() returns
+false and has_acpi_companion() only checks the primary fwnode. Switch to
+is_acpi_device_node_any() to also check the secondary.
 
-For now this code only tries to do this mapping when booting in DT-ACPI
-hybrid mode which is only used on some WoA devices so this should not
-impact any other use-cases.
+The rest of the code to register ACPI i2c_clients uses
+device_match_acpi_handle() which already handles this correctly.
 
-The new functions use woa_acpi in their name to make clear that these
-are for dealing with the ACPI tables found on WoA devices, rather then
-ACPI tables found on other devices, like ARM system ready devices which
-also use ACPI.
-
-Note that simply mapping these virtual GPIOs back to TLMM pin numbers can
-safely be done on Linux, because Linux always uses the PDC for GPIO IRQs
-where possible.
+Also adjust i2c_acpi_find_bus_speed() to use to_acpi_device_node_any()
+to als make it work in DT-ACPI hybrid mode.
 
 Signed-off-by: Hans de Goede <johannes.goede@oss.qualcomm.com>
 ---
- drivers/pinctrl/qcom/Makefile           |   4 +-
- drivers/pinctrl/qcom/pinctrl-msm-acpi.c | 196 ++++++++++++++++++++++++
- drivers/pinctrl/qcom/pinctrl-msm.c      |  47 +++++-
- drivers/pinctrl/qcom/pinctrl-msm.h      |  35 +++++
- 4 files changed, 278 insertions(+), 4 deletions(-)
- create mode 100644 drivers/pinctrl/qcom/pinctrl-msm-acpi.c
+ drivers/i2c/i2c-core-acpi.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
-index 84bda3ada874..9029d99190d2 100644
---- a/drivers/pinctrl/qcom/Makefile
-+++ b/drivers/pinctrl/qcom/Makefile
-@@ -1,6 +1,8 @@
- # SPDX-License-Identifier: GPL-2.0
- # Qualcomm pin control drivers
--obj-$(CONFIG_PINCTRL_MSM)	+= pinctrl-msm.o
-+obj-$(CONFIG_PINCTRL_MSM)	+= pinctrl-msm-core.o
-+pinctrl-msm-core-y		:= pinctrl-msm.o
-+pinctrl-msm-core-$(CONFIG_ACPI)	+= pinctrl-msm-acpi.o
- obj-$(CONFIG_PINCTRL_APQ8064)	+= pinctrl-apq8064.o
- obj-$(CONFIG_PINCTRL_APQ8084)	+= pinctrl-apq8084.o
- obj-$(CONFIG_PINCTRL_ELIZA)	+= pinctrl-eliza.o
-diff --git a/drivers/pinctrl/qcom/pinctrl-msm-acpi.c b/drivers/pinctrl/qcom/pinctrl-msm-acpi.c
-new file mode 100644
-index 000000000000..df180fd04749
---- /dev/null
-+++ b/drivers/pinctrl/qcom/pinctrl-msm-acpi.c
-@@ -0,0 +1,196 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * ACPI GPIO lookup handling for WoA (Windows on ARM) laptop ACPI tables.
-+ *
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+#include <linux/acpi.h>
-+#include <linux/device.h>
-+#include <linux/dev_printk.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/list.h>
-+#include <linux/math.h>
-+#include "pinctrl-msm.h"
-+
-+#define MSM_GPIO_WOA_ACPI_GPIOS_PER_BANK	64
-+#define MSM_GPIO_WOA_ACPI_IRQ_OFFSET		32
-+#define MSM_GPIO_WOA_ACPI_INVALID_GPIO		~0U
-+#define MSM_GPIO_WOA_ACPI_MAX_PDC_RANGES	16
-+
-+#define PDC_RANGE_PIN_BASE			0
-+#define PDC_RANGE_GIC_BASE			1
-+#define PDC_RANGE_COUNT				2
-+#define PDC_RANGE_ELEMENTS			3
-+
-+/**
-+ * struct msm_gpio_woa_acpi_parse_data - Data for parsing WoA ACPI GPIO ctl resources
-+ * @chip:		gpiochip handle
-+ * @data:		Data for mapping virtual WoA ACPI PDC IRQ GPIOs
-+ * @soc_data:		Reference to soc_data of platform specific data
-+ * @pdc_range:		PDC GIC to PDC map ranges
-+ * @pdc_range_count:	PDC GIC to PDC map range-count
-+ */
-+struct msm_gpio_woa_acpi_parse_data {
-+	struct gpio_chip *chip;
-+	struct msm_gpio_woa_acpi_data *data;
-+	const struct msm_pinctrl_soc_data *soc_data;
-+	u32 pdc_range[MSM_GPIO_WOA_ACPI_MAX_PDC_RANGES][PDC_RANGE_ELEMENTS];
-+	unsigned int pdc_range_count;
-+};
-+
-+/*
-+ * Mapping does not need translating the acpi_resource in to a regular resoure
-+ * and adding it to the resource list. Always return 1 to disable this.
-+ */
-+static int msm_gpio_woa_acpi_resource(struct acpi_resource *ares, void *_parse)
-+{
-+	struct msm_gpio_woa_acpi_parse_data *parse = _parse;
-+	const struct msm_pinctrl_soc_data *soc_data = parse->soc_data;
-+	struct msm_gpio_woa_acpi_data *data = parse->data;
-+	struct gpio_chip *chip = parse->chip;
-+	u32 gic_irq, pdc_pin;
-+
-+	if (ares->type != ACPI_RESOURCE_TYPE_EXTENDED_IRQ ||
-+	    ares->data.extended_irq.interrupt_count != 1)
-+		return 1;
-+
-+	if (data->nmap == MSM_GPIO_WOA_ACPI_MAX_VIRT_GPIOS) {
-+		dev_err(chip->parent, "ACPI resources contain more than %d IRQs\n",
-+			MSM_GPIO_WOA_ACPI_MAX_VIRT_GPIOS);
-+		return 1;
-+	}
-+
-+	/*
-+	 * Windows ACPI tables divide GPIOs into banks of 64 pins with one IRQ
-+	 * per bank. The resources start with listing the real TLMM IRQ for
-+	 * as many banks as are necessary to cover the real GPIOs. The Windows
-+	 * virtual GPIO indexes skip these banks, mark them as unavailable.
-+	 */
-+	if (data->nmap < DIV_ROUND_UP(chip->ngpio, MSM_GPIO_WOA_ACPI_GPIOS_PER_BANK)) {
-+		data->map[data->nmap++] = MSM_GPIO_WOA_ACPI_INVALID_GPIO;
-+		return 1;
-+	}
-+
-+	/*
-+	 * Use the "pdc-ranges" property on the PDC to translate the GIC IRQ
-+	 * from the acpi_resource to a PDC pin.
-+	 */
-+	gic_irq = ares->data.extended_irq.interrupts[0] - MSM_GPIO_WOA_ACPI_IRQ_OFFSET;
-+	pdc_pin = MSM_GPIO_WOA_ACPI_INVALID_GPIO;
-+	for (unsigned int i = 0; i < parse->pdc_range_count; i++) {
-+		u32 gic_base = parse->pdc_range[i][PDC_RANGE_GIC_BASE];
-+		u32 count = parse->pdc_range[i][PDC_RANGE_COUNT];
-+		if (gic_irq >= gic_base && gic_irq < (gic_base + count)) {
-+			pdc_pin = parse->pdc_range[i][PDC_RANGE_PIN_BASE] +
-+				  gic_irq - gic_base;
-+			break;
-+		}
-+	}
-+	if (pdc_pin == MSM_GPIO_WOA_ACPI_INVALID_GPIO)
-+		goto no_map;
-+
-+	/* Use wakeirq-map to map PDC pin to TLMM pin */
-+	for (unsigned int i = 0; i < soc_data->nwakeirq_map; i++) {
-+		if (soc_data->wakeirq_map[i].wakeirq == pdc_pin) {
-+			data->map[data->nmap++] = soc_data->wakeirq_map[i].gpio;
-+			return 1;
-+		}
-+	}
-+
-+no_map:
-+	dev_warn(chip->parent, "Cannot map GIC IRQ %u to TLMM pin\n", gic_irq);
-+	data->map[data->nmap++] = MSM_GPIO_WOA_ACPI_INVALID_GPIO;
-+	return 1;
-+}
-+
-+int msm_gpio_woa_acpi_init(struct gpio_chip *chip, struct msm_gpio_woa_acpi_data *data,
-+			   const struct msm_pinctrl_soc_data *soc_data)
-+{
-+	struct msm_gpio_woa_acpi_parse_data parse;
-+	struct fwnode_handle *fwnode;
-+	struct device_node *pdc_np;
-+	LIST_HEAD(resources);
-+	unsigned int ngpio;
-+	int ret;
-+
-+	/* WoA ACPI tables are only used in DT-ACPI hybrid mode */
-+	fwnode = chip->parent->fwnode;
-+	if (!is_of_node(fwnode) || !is_acpi_device_node(fwnode->secondary))
-+		return 0;
-+
-+	parse.chip = chip;
-+	parse.data = data;
-+	parse.soc_data = soc_data;
-+
-+	/* Get PDC ranges, the PDC is the TLMM's wakeup-parent. */
-+	pdc_np = of_parse_phandle(chip->parent->of_node, "wakeup-parent", 0);
-+	if (!pdc_np)
-+		return 0;
-+
-+	ret = of_property_count_elems_of_size(pdc_np, "qcom,pdc-ranges", sizeof(u32));
-+	if (ret <= 0 || ret % PDC_RANGE_ELEMENTS ||
-+	    ret > (MSM_GPIO_WOA_ACPI_MAX_PDC_RANGES * PDC_RANGE_ELEMENTS))
-+		goto err_pdc_ranges;
-+
-+	parse.pdc_range_count = ret / PDC_RANGE_ELEMENTS;
-+	ret = of_property_read_u32_array(pdc_np, "qcom,pdc-ranges",
-+					 &parse.pdc_range[0][0], ret);
-+	if (ret)
-+		goto err_pdc_ranges;
-+
-+	ret = acpi_dev_get_resources(to_acpi_device_node(fwnode->secondary), &resources,
-+				     msm_gpio_woa_acpi_resource, &parse);
-+	if (ret < 0)
-+		return ret;
-+
-+	acpi_dev_free_resource_list(&resources);
-+
-+	ngpio = data->nmap * MSM_GPIO_WOA_ACPI_GPIOS_PER_BANK + 1;
-+	chip->ngpio = max(chip->ngpio, ngpio);
-+
-+	for (unsigned int i = 0; i < data->nmap; i++) {
-+		if (data->map[i] != MSM_GPIO_WOA_ACPI_INVALID_GPIO) {
-+			/* TODO lower log level to dev_dbg() */
-+			dev_info(chip->parent, "mapped GPIO 0x%03x to TLMM pin %u\n",
-+				 i * MSM_GPIO_WOA_ACPI_GPIOS_PER_BANK, data->map[i]);
-+		}
-+	}
-+
-+	return 0;
-+
-+err_pdc_ranges:
-+	dev_err(chip->parent, "Error invalid pdc-ranges\n");
-+	return 0; /* Continue without mapping */
-+}
-+
-+void msm_gpio_woa_acpi_valid_mask(struct gpio_chip *chip,
-+				  struct msm_gpio_woa_acpi_data *data,
-+				  unsigned long *valid_mask,
-+				  unsigned int soc_ngpio)
-+{
-+	/* First mark all virtual ACPI PDC GPIOs (if any) as invalid */
-+	bitmap_clear(valid_mask, soc_ngpio, chip->ngpio - soc_ngpio);
-+
-+	/*
-+	 * WoA ACPI tables list 1 Interrupt resource per PDC pin and use
-+	 * a 1 interrupt per bank model. So each PDC pin gets its own bank,
-+	 * with only pin 0 of that bank used for that PDC pin.
-+	 */
-+	for (unsigned int i = 0; i < data->nmap; i++) {
-+		if (data->map[i] != MSM_GPIO_WOA_ACPI_INVALID_GPIO)
-+			set_bit(i * MSM_GPIO_WOA_ACPI_GPIOS_PER_BANK, valid_mask);
-+	}
-+}
-+
-+unsigned int msm_gpio_woa_acpi_map(struct msm_gpio_woa_acpi_data *data, unsigned int offset)
-+{
-+	unsigned int bank = offset / MSM_GPIO_WOA_ACPI_GPIOS_PER_BANK;
-+
-+	/* msm_gpio_woa_acpi_valid_mask() should ensure this never happens */
-+	if (WARN_ON(offset % MSM_GPIO_WOA_ACPI_GPIOS_PER_BANK || bank >= data->nmap ||
-+	    data->map[bank] == MSM_GPIO_WOA_ACPI_INVALID_GPIO))
-+		return 0;
-+
-+	return data->map[bank];
-+}
-diff --git a/drivers/pinctrl/qcom/pinctrl-msm.c b/drivers/pinctrl/qcom/pinctrl-msm.c
-index f780bab51d9c..60ba0da95634 100644
---- a/drivers/pinctrl/qcom/pinctrl-msm.c
-+++ b/drivers/pinctrl/qcom/pinctrl-msm.c
-@@ -45,6 +45,7 @@
-  * @pctrl:          pinctrl handle.
-  * @chip:           gpiochip handle.
-  * @desc:           pin controller descriptor
-+ * @woa_acpi:       data for mapping virtual WoA ACPI PDC IRQ GPIOs
-  * @irq:            parent irq for the TLMM irq_chip.
-  * @intr_target_use_scm: route irq to application cpu using scm calls
-  * @lock:           Spinlock to protect register resources as well
-@@ -64,6 +65,7 @@ struct msm_pinctrl {
- 	struct pinctrl_dev *pctrl;
- 	struct gpio_chip chip;
- 	struct pinctrl_desc desc;
-+	struct msm_gpio_woa_acpi_data woa_acpi;
+diff --git a/drivers/i2c/i2c-core-acpi.c b/drivers/i2c/i2c-core-acpi.c
+index 28c0e4884a7f..995bd88ad09f 100644
+--- a/drivers/i2c/i2c-core-acpi.c
++++ b/drivers/i2c/i2c-core-acpi.c
+@@ -322,7 +322,7 @@ void i2c_acpi_register_devices(struct i2c_adapter *adap)
+ 	struct acpi_device *adev;
+ 	acpi_status status;
  
- 	int irq;
+-	if (!has_acpi_companion(&adap->dev))
++	if (!is_acpi_device_node_any(adap->dev.fwnode))
+ 		return;
  
-@@ -553,6 +555,16 @@ static const struct pinconf_ops msm_pinconf_ops = {
- 	.pin_config_group_set	= msm_config_group_set,
- };
- 
-+static unsigned int msm_gpio_map(struct gpio_chip *chip, unsigned int offset)
-+{
-+	struct msm_pinctrl *pctrl = gpiochip_get_data(chip);
-+
-+	if (offset < pctrl->soc->ngpios)
-+		return offset;
-+
-+	return msm_gpio_woa_acpi_map(&pctrl->woa_acpi, offset);
-+}
-+
- static int msm_gpio_direction_input(struct gpio_chip *chip, unsigned offset)
+ 	status = acpi_walk_namespace(ACPI_TYPE_DEVICE, ACPI_ROOT_OBJECT,
+@@ -413,13 +413,15 @@ u32 i2c_acpi_find_bus_speed(struct device *dev)
  {
- 	const struct msm_pingroup *g;
-@@ -560,6 +572,8 @@ static int msm_gpio_direction_input(struct gpio_chip *chip, unsigned offset)
- 	unsigned long flags;
- 	u32 val;
+ 	struct i2c_acpi_lookup lookup;
+ 	struct i2c_board_info dummy;
++	struct acpi_device *adev;
+ 	acpi_status status;
  
-+	offset = msm_gpio_map(chip, offset);
-+
- 	g = &pctrl->soc->groups[offset];
+-	if (!has_acpi_companion(dev))
++	adev = to_acpi_device_node_any(dev->fwnode);
++	if (!adev)
+ 		return 0;
  
- 	raw_spin_lock_irqsave(&pctrl->lock, flags);
-@@ -580,6 +594,8 @@ static int msm_gpio_direction_output(struct gpio_chip *chip, unsigned offset, in
- 	unsigned long flags;
- 	u32 val;
- 
-+	offset = msm_gpio_map(chip, offset);
-+
- 	g = &pctrl->soc->groups[offset];
- 
- 	raw_spin_lock_irqsave(&pctrl->lock, flags);
-@@ -606,6 +622,8 @@ static int msm_gpio_get_direction(struct gpio_chip *chip, unsigned int offset)
- 	const struct msm_pingroup *g;
- 	u32 val;
- 
-+	offset = msm_gpio_map(chip, offset);
-+
- 	g = &pctrl->soc->groups[offset];
- 
- 	val = msm_readl_ctl(pctrl, g);
-@@ -620,6 +638,8 @@ static int msm_gpio_get(struct gpio_chip *chip, unsigned offset)
- 	struct msm_pinctrl *pctrl = gpiochip_get_data(chip);
- 	u32 val;
- 
-+	offset = msm_gpio_map(chip, offset);
-+
- 	g = &pctrl->soc->groups[offset];
- 
- 	val = msm_readl_io(pctrl, g);
-@@ -633,6 +653,8 @@ static int msm_gpio_set(struct gpio_chip *chip, unsigned int offset, int value)
- 	unsigned long flags;
- 	u32 val;
- 
-+	offset = msm_gpio_map(chip, offset);
-+
- 	g = &pctrl->soc->groups[offset];
- 
- 	raw_spin_lock_irqsave(&pctrl->lock, flags);
-@@ -717,10 +739,11 @@ static void msm_gpio_dbg_show_one(struct seq_file *s,
- 
- static void msm_gpio_dbg_show(struct seq_file *s, struct gpio_chip *chip)
- {
-+	struct msm_pinctrl *pctrl = gpiochip_get_data(chip);
- 	unsigned gpio = chip->base;
- 	unsigned i;
- 
--	for (i = 0; i < chip->ngpio; i++, gpio++)
-+	for (i = 0; i < pctrl->soc->ngpios; i++, gpio++)
- 		msm_gpio_dbg_show_one(s, NULL, chip, i, gpio);
- }
- 
-@@ -738,6 +761,10 @@ static int msm_gpio_init_valid_mask(struct gpio_chip *gc,
- 	const int *reserved = pctrl->soc->reserved_gpios;
- 	u16 *tmp;
- 
-+	/* WOA ACPI handles virtual PDC GPIO range, only handle real GPIOs here */
-+	ngpios = pctrl->soc->ngpios;
-+	msm_gpio_woa_acpi_valid_mask(gc, &pctrl->woa_acpi, valid_mask, ngpios);
-+
- 	/* Remove driver-provided reserved GPIOs from valid_mask */
- 	if (reserved) {
- 		for (i = 0; reserved[i] >= 0; i++) {
-@@ -1046,6 +1073,10 @@ static void msm_gpio_irq_init_valid_mask(struct gpio_chip *gc,
- 	const struct msm_pingroup *g;
- 	int i;
- 
-+	/* WOA ACPI handles virtual PDC GPIO range, only handle real GPIOs here */
-+	ngpios = pctrl->soc->ngpios;
-+	msm_gpio_woa_acpi_valid_mask(gc, &pctrl->woa_acpi, valid_mask, ngpios);
-+
- 	for (i = 0; i < ngpios; i++) {
- 		g = &pctrl->soc->groups[i];
- 
-@@ -1387,6 +1418,9 @@ static bool msm_gpio_needs_valid_mask(struct msm_pinctrl *pctrl)
- 	if (pctrl->soc->reserved_gpios)
- 		return true;
- 
-+	if (pctrl->chip.ngpio != pctrl->soc->ngpios)
-+		return true;
-+
- 	return device_property_count_u16(pctrl->dev, "gpios") > 0;
- }
- 
-@@ -1428,8 +1462,6 @@ static int msm_gpio_init(struct msm_pinctrl *pctrl)
- 	chip->label = dev_name(pctrl->dev);
- 	chip->parent = pctrl->dev;
- 	chip->owner = THIS_MODULE;
--	if (msm_gpio_needs_valid_mask(pctrl))
--		chip->init_valid_mask = msm_gpio_init_valid_mask;
- 
- 	np = of_parse_phandle(pctrl->dev->of_node, "wakeup-parent", 0);
- 	if (np) {
-@@ -1450,6 +1482,13 @@ static int msm_gpio_init(struct msm_pinctrl *pctrl)
- 		}
- 	}
- 
-+	ret = msm_gpio_woa_acpi_init(chip, &pctrl->woa_acpi, pctrl->soc);
-+	if (ret)
-+		return ret;
-+
-+	if (msm_gpio_needs_valid_mask(pctrl))
-+		chip->init_valid_mask = msm_gpio_init_valid_mask;
-+
- 	girq = &chip->irq;
- 	gpio_irq_chip_set_chip(girq, &msm_gpio_irq_chip);
- 	girq->parent_handler = msm_gpio_irq_handler;
-@@ -1463,6 +1502,8 @@ static int msm_gpio_init(struct msm_pinctrl *pctrl)
- 	girq->handler = handle_bad_irq;
- 	girq->parents[0] = pctrl->irq;
- 	girq->init_valid_mask = msm_gpio_irq_init_valid_mask;
-+	if (pctrl->chip.ngpio != pctrl->soc->ngpios)
-+		girq->child_offset_to_irq = msm_gpio_map;
- 
- 	ret = devm_gpiochip_add_data(pctrl->dev, &pctrl->chip, pctrl);
- 	if (ret) {
-diff --git a/drivers/pinctrl/qcom/pinctrl-msm.h b/drivers/pinctrl/qcom/pinctrl-msm.h
-index 4fbff61de6bb..3a8a55a6d8c1 100644
---- a/drivers/pinctrl/qcom/pinctrl-msm.h
-+++ b/drivers/pinctrl/qcom/pinctrl-msm.h
-@@ -10,6 +10,7 @@
- 
- #include <linux/pinctrl/pinctrl.h>
- 
-+struct gpio_chip;
- struct platform_device;
- 
- struct pinctrl_pin_desc;
-@@ -181,9 +182,43 @@ struct msm_pinctrl_soc_data {
- 	unsigned int egpio_func;
- };
- 
-+#define MSM_GPIO_WOA_ACPI_MAX_VIRT_GPIOS	32
-+
-+/**
-+ * struct msm_gpio_woa_acpi_data - Data for mapping virtual WoA ACPI PDC IRQ GPIOs
-+ * @map:	Map to translate virtual ACPI GPIO offsets to TLMM pin offsets
-+ * @nmap:	Number of valid entried in @map
-+ */
-+struct msm_gpio_woa_acpi_data {
-+	unsigned int map[MSM_GPIO_WOA_ACPI_MAX_VIRT_GPIOS];
-+	unsigned int nmap;
-+};
-+
- extern const struct dev_pm_ops msm_pinctrl_dev_pm_ops;
- 
- int msm_pinctrl_probe(struct platform_device *pdev,
- 		      const struct msm_pinctrl_soc_data *soc_data);
- 
-+#ifdef CONFIG_ACPI
-+int msm_gpio_woa_acpi_init(struct gpio_chip *chip, struct msm_gpio_woa_acpi_data *data,
-+			   const struct msm_pinctrl_soc_data *soc_data);
-+void msm_gpio_woa_acpi_valid_mask(struct gpio_chip *chip,
-+				  struct msm_gpio_woa_acpi_data *data,
-+				  unsigned long *valid_mask,
-+				  unsigned int soc_ngpio);
-+unsigned int msm_gpio_woa_acpi_map(struct msm_gpio_woa_acpi_data *data, unsigned int offset);
-+#else
-+static inline int
-+msm_gpio_woa_acpi_init(struct gpio_chip *chip, struct msm_gpio_woa_acpi_data *data,
-+		       const struct msm_pinctrl_soc_data *soc_data)
-+{ return 0; }
-+static inline void msm_gpio_woa_acpi_valid_mask(struct gpio_chip *chip,
-+						struct msm_gpio_woa_acpi_data *data,
-+						unsigned long *valid_mask,
-+						unsigned int soc_ngpio) { }
-+static inline unsigned int
-+msm_gpio_woa_acpi_map(struct msm_gpio_woa_acpi_data *data, unsigned int offset)
-+{ return 0; }
- #endif
-+
-+#endif /* ifndef __PINCTRL_MSM_H__ */
+ 	memset(&lookup, 0, sizeof(lookup));
+-	lookup.search_handle = ACPI_HANDLE(dev);
++	lookup.search_handle = adev->handle;
+ 	lookup.min_speed = UINT_MAX;
+ 	lookup.info = &dummy;
+ 	lookup.index = -1;
 -- 
 2.54.0
 
