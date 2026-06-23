@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-314990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314991-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wJRaLFbvOmpVMAgAu9opvQ
-	(envelope-from <devicetree+bounces-314990-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 22:40:54 +0200
+	id EtYpLXvvOmp5MAgAu9opvQ
+	(envelope-from <devicetree+bounces-314991-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 22:41:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 063DB6BA114
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 22:40:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D5D06BA125
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 22:41:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EyQ1t7bW;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314990-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314990-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Y+i0J6Eh;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314991-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314991-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4E31E3007F6F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 20:40:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7362230075D7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 20:40:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 926813A6F06;
-	Tue, 23 Jun 2026 20:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 461943A6F11;
+	Tue, 23 Jun 2026 20:40:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7584A395ADC
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 20:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DD33395ADC
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 20:40:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782247214; cv=none; b=mbQTO9qkUUaPAtgJeCUfE+j9Z2L+/qRj2oBSitgpvaffxvnTf4WonWRvVRDb4iusqi2BSP+lkHGyj19xxrKqPD3AzlZZS808yRzILO3MqlZoaBYGSspj0CAxvKVYblYvdi49VNWC0UvWtkUvirQz6QYPuHWo+Iq03qqH60Ipr8Q=
+	t=1782247245; cv=none; b=EYu8i5hP7vx+lHyMbpdUX6Ea8MQ9QmnSy8325+tg137llH1/DLx+/DcNry7yMkDbWemEKRASsy/2b1CmDjFnfDjPDJQGFQnHQtZB0mNGXlVcUj4SJwFkL69Yn7XUQ2GXyh8HrSDGkoqiVuNXkya/MfoOTq+d/JPxFxZc2L9GP1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782247214; c=relaxed/simple;
-	bh=sD/zksH2mE1kkAJhidqgTnXb1+/8APImKquJezqD1Io=;
+	s=arc-20240116; t=1782247245; c=relaxed/simple;
+	bh=kbg5OAfafgq29fo8OONYMYf3OCJ6T/LszsluN7gjgCs=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=N6rTceLhuDHI/f71q3Lu5gUCPnu9qN0g3F52Bnl4JxYrb/1u5vJQo8EQqBfgFIQOmKTe1cmwzAMuttP7B2uKeJMOgiTjHr2rLGjRcevcASBjUStxFKTp6cQk5Y6h+c0KN0zH43P4BzdVSm9QWFrjOOVmwEW4I8g9Kcp5UfAHcf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EyQ1t7bW; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF44B1F00A3D;
-	Tue, 23 Jun 2026 20:40:12 +0000 (UTC)
+	 Message-Id; b=Avbpmosf17FehSDtU5q1ACnMiP9YGR1tafn6f9c9Ki6v863gCn4EO4xeQAVIQtBGwAGm8X28MuwHaSjKBoHYRvEH2uu/3xcRRMLREbGVizOdKJCf7I++U0iXdXR79lrXEjWLqpg+IThueRftAyov/yfWGtNxcjU3fvFE5HJ9s8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y+i0J6Eh; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6B921F000E9;
+	Tue, 23 Jun 2026 20:40:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782247213;
-	bh=rz/Uz3MDqqp3Q062hRrjhSkgMloIHqoA66u6jsIgMVs=;
+	s=k20260515; t=1782247244;
+	bh=J+gk5L5yw4PN+kPDrLzlGnj7v2zg2XZU/CjzwFcHYk0=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=EyQ1t7bWONcoOiFV8j5/QofZL0Ww3DEwIGqHFfAyaWIZsOp613kVh6uT4SSFEZwTI
-	 P1A0FlFD57OSSn1+TSC+u1QS99j0ZNhz+ue58WwErJdkFsIEulloexLDg7fVKRBbC4
-	 9Xh63s9KOqi2KuwRR3K5JHgoUcLdnvfzouQVzxdA306zLuSB5GlHDrKRU5WZ+t8IFL
-	 UfscbAFvIQBOGqfY/KMaWafnDFdYfJKJSM8ti5Jd6jj1CBLu1O9hKmVL/HryaPFj/z
-	 0TcW8HiJ44x3VnflhTN05vwSgSs/On75wAN+DZElVq/gG5CjMBaHIhnT8V/egJ0p6y
-	 nbSvT15P7EeBw==
+	b=Y+i0J6Ehno69SWmN3U/JA4xqv8o8I7/en979cShv2OBxFISZ55Ns8JDJrWCsNrkXF
+	 zX8zgqiIyOI48tI4X1gf5A/b34FTOO30D2C7jf9EWiEsnNFOvfGdTD1Z41tr7YGZ5U
+	 3bOaHm1EPt85G2ScWl+E+XyjLmAChTKmG2J4iN8LkpcaayepFDOVHSyn3RBuxtUh54
+	 AgrYuKZBk9XigSl1Qvjqctw8mb8HjihdsH28LOMFwz4JcmTUpPFoHlMC0LCLzXUDT3
+	 eaCKiksrLeFaZILrghUHFATQMGEorXc6iZH3DozcXg+r1P2UChW694bJGIf32V0vqi
+	 vRZ5hd9TP+LDw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 4/9] drm/rockchip: vop2: Consolidate HDMI PHY PLL clock
- parent switch
+Subject: Re: [PATCH v3 08/10] drm/rockchip: dw_dp: Add runtime PM support
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Cristian Ciocaltea" <cristian.ciocaltea@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260617-dw-hdmi-qp-yuv-v1-4-a665cfd06d7d@collabora.com>
-References: <20260617-dw-hdmi-qp-yuv-v1-0-a665cfd06d7d@collabora.com>
- <20260617-dw-hdmi-qp-yuv-v1-4-a665cfd06d7d@collabora.com>
+To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260612-synopsys-dw-dp-improvements-v3-8-dc61e6352508@collabora.com>
+References: <20260612-synopsys-dw-dp-improvements-v3-8-dc61e6352508@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 23 Jun 2026 20:40:12 +0000
-Message-Id: <20260623204012.BF44B1F00A3D@smtp.kernel.org>
+Date: Tue, 23 Jun 2026 20:40:43 +0000
+Message-Id: <20260623204043.C6B921F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,11 +77,11 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-314990-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314991-lists,devicetree=lfdr.de];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:cristian.ciocaltea@collabora.com,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -105,59 +103,75 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 063DB6BA114
+X-Rspamd-Queue-Id: 1D5D06BA125
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] Calling sleepable functions (`mutex_lock` and CCF APIs) inside an =
-atomic context.
+- [High] Runtime PM initialized without matching active hardware state, cau=
+sing clocks to remain permanently enabled.
+- [High] Using devm_pm_runtime_enable() in a component bind callback ties P=
+M lifecycle incorrectly, causing Use-After-Free and devres leaks.
 --
 
-commit daeb5d187e2f25bcf364f65898a9cf55a75558aa
-Author: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+commit 77c03b774daaa80f329daaa791a8229e9e24ad9e
+Author: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-drm/rockchip: vop2: Consolidate HDMI PHY PLL clock parent switch
+drm/rockchip: dw_dp: Add runtime PM support
+   =20
+Add support for runtime PM to the Rockchip RK3576/3588 Synopsys
+DesignWare DisplayPort driver.
 
-This commit refactors the DCLK parent switch logic for HDMI0 and HDMI1
-PHY PLLs. It consolidates duplicated clk_get_parent() and clk_set_parent()
-calls into a single shared code path based on the active HDMI endpoint.
-
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/d=
-rm/rockchip/rockchip_drm_vop2.c
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> diff --git a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c b/drivers/gpu/drm/=
+rockchip/dw_dp-rockchip.c
+> index 9c53f1d2c29ab..1f53228e56d9f 100644
+> --- a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
 [ ... ]
-> @@ -1932,42 +1932,34 @@ static void vop2_crtc_atomic_enable(struct drm_cr=
-tc *crtc,
-[ ... ]
-> +		if (pll_hdmiphy) {
-> +			if (!vp->dclk_src)
-> +				vp->dclk_src =3D clk_get_parent(vp->dclk);
-> +
-> +			ret =3D clk_set_parent(vp->dclk, pll_hdmiphy);
+> @@ -213,6 +218,12 @@ static int dw_dp_rockchip_bind(struct device *dev, s=
+truct device *master, void *
+>  	if (IS_ERR(dp->base))
+>  		return PTR_ERR(dp->base);
+> =20
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_set_autosuspend_delay(dev, 500);
 
 [Severity: High]
-This is a pre-existing issue, but does calling clk_set_parent() here
-result in a sleep inside an atomic context?
+Since dw_dp_bind() enables the clocks (via devm_clk_get_enabled() when
+setting up the base dw_dp struct), shouldn't we call
+pm_runtime_set_active() before enabling runtime PM here?
 
-The vop2_crtc_atomic_enable() function executes as a CRTC atomic enable
-callback, which runs in an atomic context where sleeping is forbidden.
+Without it, the PM core assumes the device starts in RPM_SUSPENDED state.
+When the device resumes, dw_dp_runtime_resume() will enable the clocks
+again (incrementing the enable count to 2). When autosuspend fires,
+dw_dp_runtime_suspend() will disable them (decrementing the count back to
+1), meaning the hardware clocks are never physically disabled.
 
-Both clk_set_parent() and clk_prepare_enable() (called earlier in this
-function) acquire sleepable mutexes, and vop2_lock() internally calls
-mutex_lock(). Can this lead to kernel warnings or potential deadlocks
-during the atomic commit phase?
+> +	ret =3D devm_pm_runtime_enable(dev);
 
-> +			if (ret < 0)
-> +				drm_warn(vop2->drm,
-> +					 "Failed to switch DCLK to HDMI PHY PLL: %d\n",
-> +					 ret);
-> +		}
->  	}
+[Severity: High]
+Does using devm_pm_runtime_enable() here tie the PM lifecycle to the
+component platform device instead of the DRM master?
+
+The rockchip_dw_dp structure is allocated using drmm_kzalloc() earlier in
+this function, which binds its lifetime to the DRM master device. However,
+devm_pm_runtime_enable() attaches the devres action to the component device,
+whose lifetime spans the full probe/remove cycle.
+
+If the DRM master is unbound, dw_dp_rockchip_unbind() will execute but it
+does not disable PM runtime or flush the autosuspend timer. The DRM core
+will then free the drmm-managed memory.
+
+Could an autosuspend timer firing after unbind cause a use-after-free
+regression in dw_dp_rockchip_runtime_suspend() when it tries to access the
+freed dp pointer? Repeated bind/unbind cycles might also endlessly leak
+devres actions on the platform device.
+
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to enable runtime PM\n");
+> +
+>  	connector =3D drm_bridge_connector_init(drm_dev, encoder);
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260617-dw-hdmi-qp=
--yuv-v1-0-a665cfd06d7d@collabora.com?part=3D4
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260612-synopsys-d=
+w-dp-improvements-v3-0-dc61e6352508@collabora.com?part=3D8
 
