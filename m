@@ -1,154 +1,185 @@
-Return-Path: <devicetree+bounces-314848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314849-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GJv/GxCOOmp+/wcAu9opvQ
-	(envelope-from <devicetree+bounces-314848-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 15:45:52 +0200
+	id NHAFL1mROmo9AQgAu9opvQ
+	(envelope-from <devicetree+bounces-314849-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 15:59:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61E9B6B78FC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 15:45:51 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F20C6B7B0B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 15:59:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=cknow-tech.com header.s=key1 header.b=Xvt2Wwtm;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314848-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-314848-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=cknow-tech.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=SEFTnnxl;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314849-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314849-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6A05530055CA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:45:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3353230AA3E0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:58:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742B537DE89;
-	Tue, 23 Jun 2026 13:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7546637F001;
+	Tue, 23 Jun 2026 13:58:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C17137DAD0;
-	Tue, 23 Jun 2026 13:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1012837EFF8
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 13:58:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782222346; cv=none; b=ijbcwEkpVJYKCNR1J+ZFQ0mkpBieSaj7DGzd79bbLDZRs5SIhXkg6CmhsdWFYXUiCNMFbn9hXu95WCTxl+0kucABpWZ+0m5vARXKZA1B7GN0M6g6uH1QlWJxYYwu+RNy5IyVkIyEP1ETOu5HWbDDUDG39NV31l4HXybkru5YMlc=
+	t=1782223089; cv=none; b=TtaA7Roj0qlw6cqxfloP6m2qHPNpY+VBTw4fiHdtP6uDVaiAfQUr6x0pWefb3v+xTXMDjtPkXBw80eq89O3Z1hdziUjgZH2CSIna6FUoGWzMRWzA4Cl4HrslhNi0A19Yw37FiFbDYcxFwXQ5BiWZA6gH+b0+ZcFT4hVrCOe0eaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782222346; c=relaxed/simple;
-	bh=q6rtuqN+Z7tw5EmIRdDkfYl2/euip2mlqTSfSrZt9sA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=iWn49ddAgzMCMO9GHxE2DU3ojq8LbTEoqlakTKWjKxDUCSVH47pethyXscwPKVVKkO0zAVmsrmioiJ2+DtvlOIIwROg6HRLXuOwwSU9ETzD6ZbR/1KB9+rObcQIFM13urcDUl4zCWkm69jeD/0g3kUGmhR4rQiG/qL4xzg+TM0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=Xvt2Wwtm; arc=none smtp.client-ip=91.218.175.174
+	s=arc-20240116; t=1782223089; c=relaxed/simple;
+	bh=K0eDSr61tMBeB/CtX6Gq0TUcfZhQn3LMlVfv2m9GtBE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=a4jh4TF9TY23LeoQsjb82XAsCvLQ+jQ+C+GRR7KorsgkBjEToUw6fJCQ/0tFXugOPS8cGZJxPnn8UpAcpx+AUtSDcn3EwpLNEvY7HWzFfwi0fZ1qtAQDyG56kNKYu6hWyzYWZTbZmNlmkYuJLurY7K6wkEmZV5A/+PHBa7p72Hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SEFTnnxl; arc=none smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-490cf3000f0so59154035e9.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 06:58:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782223086; x=1782827886; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qm9QBhEQ0YB2AXes3jM+Kp4ITvGr2+JfvL/tfEuQ2tI=;
+        b=SEFTnnxlYa1+ppZzQcRV/VhDPYGDobhxlnhEDfalL2Qfj1yszhbgY6rMz6GD9lYL/U
+         6oAMZJZF+MzbLehm0TexOLai8/7VQypadACQNFvA1N37gBLnsfWimxm7E0PWxjbwmiQa
+         p79sAvGMDtxCkPQq2TR4sB/mpTxEiAcCNllaI1idD5M/FS7yDmKduClqrq3Ni86kwexo
+         h+LRkGHm+KSKtFRiKaeHPZYIt6IunS2UK6xGJK1FtDwZr1KtbCEcgnum1jqL58uZf+Mx
+         7FDTFfjOGeEqOwP+n2CfbN4+ekhO5zoccMtx4hhOo2bVcbTXIYZtSyTRhCXoDBo0PF5w
+         VIuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782223086; x=1782827886;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qm9QBhEQ0YB2AXes3jM+Kp4ITvGr2+JfvL/tfEuQ2tI=;
+        b=DXrKD0rGSWyf9zlnuxDIjGBKagk2U4X2ubkSPxj9n7q3qaCWjYGiLTFy02p/kuZmnf
+         1N/kaguP0I9nVdu3axubpxhTfOLqLziJJysUQE7Rm0OukkuU6wD6hTa4NBzMuum9EA5e
+         pXihly8CGo5Kkc2G0wEdazDBHq4kLA7iSF1NVb58NYpyHGyi97I7vB/DY/bM622Bg7sm
+         d4O1a1KkmtAZgIVxRJf9nU0aA/RazdAf8aSazPe7HzcgjFPeVs7jmCqNGphWAcfOWJjG
+         Ibz74ZNi8aJbZVcPZqCQFzepVJkRaMt8Lgo3CHc/G2oEZmJFOrMYl2zD9ZNxe4DZQyTv
+         RjNQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8IOZaaXjDVpUm4x1vwWod4Ol9Cnp89fZz2CfLDtcwVueQchVT4pylr1i5N8JSk+czltP1m4eySalXB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvkVxthJi3GaSai4zvxPR4PL2/ZWw6Y4s0DdzplNTHTg74UuFy
+	5ug5eXmukFyA/LhY0SaURABmhduiI7eB/jxz4vXHFvgDDziw8l6tNCPG
+X-Gm-Gg: AfdE7clkCRsOtETkJVsR5+gVc+Tb5UPk1ePHM+db9LRNDnkbg7tiyr4HrohbF+imzyx
+	hWcp5N2Ey4wF1y+fIi6KkcFV9fQP4ymLHwYOCOrSoLoIZHzrcmX/9ZAvyMcn6YNNrcKb822g1xZ
+	YhckKCodtkoQVCsCu+3JRQ4AdJbKw9aMwCHAz6jaJd8rUWqaCdYmNp1kPBPgvcg/yMfu2gxP6gS
+	B5ndYwxHSZWvyabSw2DzLHWHOmXsu0ng4QY0zpfLnFwJjwIuetTW0ca/YXelQgMLj0jt53yxZVy
+	BmyPOuartioS4DSwIfvTX41aXPtMYxiykSEwXZOUUyus2FbJJBJs4odRZSby22mGSiWrTycGBxB
+	5griDfNskHAN5Cq9UaZ34OCkho3LshA2CAQnIQOgTk72SiCCRRbx82o/hTDWK2oWwympMJwn25S
+	Sz/qA2hA==
+X-Received: by 2002:a05:600c:3110:b0:492:463d:b2af with SMTP id 5b1f17b1804b1-4925b38ca04mr38947105e9.31.1782223086132;
+        Tue, 23 Jun 2026 06:58:06 -0700 (PDT)
+Received: from luca-vm.. ([81.56.18.151])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-466643f56aasm35145716f8f.6.2026.06.23.06.58.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jun 2026 06:58:05 -0700 (PDT)
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+To: linux-mediatek@lists.infradead.org
+Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	CK Hu <ck.hu@mediatek.com>,
+	Jitao shi <jitao.shi@mediatek.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] dt-bindings: mediatek: cec: Correct the compatibles for mt7623-mt8167
+Date: Tue, 23 Jun 2026 15:57:53 +0200
+Message-ID: <20260623135757.5111-1-l.scorcia@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1782222332;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=UZ4++YxJXc/6SFIqw2u6ldCc2haTxcSXXUeS9bd2ENM=;
-	b=Xvt2WwtmOY6PYw8fMMtaKUPwhp00TjzdQIEHqcqaypIosTEKgcmztrkWySTKWpaBWtZTCA
-	1L4m4hU0BAGVvOjQ+nMVV0yHMl39CI6/NJfo8JrXcGL71Gtfc2bxxcCIpcQ1/NHm0YSScq
-	VixU+qrUJNYvHsjEUT/yHEAyQjSidSJOszChjXClbXTCVq1nBsFVsdfkEQ3XlUrvRKI7Co
-	QdXQtaOX2kRLeEiv6rBCwXc0J7rhVqhqtw7KvAZ3ArRpIPUeJEG9l7IjUTcel/3bweDh7B
-	moSJILJFXOBN0NCfuwE0orLdYnOz0zgWN6FG/xVbLACwjwdu2UIz6BWcHfUQWw==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 23 Jun 2026 15:45:23 +0200
-Message-Id: <DJGH34DVKL0W.3T6UB4G4WYYUJ@cknow-tech.com>
-Cc: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>,
- <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- "Ricardo Pardini" <ricardo@pardini.net>
-Subject: Re: [PATCH v4 5/5] clk: rockchip: rk3588: add GATE_GRF clocks for
- I2S MCLK output to IO
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <diederik@cknow-tech.com>
-To: "Daniele Briguglio" <hello@superkali.me>, "Diederik de Haas"
- <diederik@cknow-tech.com>, "Heiko Stuebner" <heiko@sntech.de>, "Michael
- Turquette" <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
-References: <20260419-rk3588-mclk-gate-grf-v4-0-513a42dd1dcc@superkali.me>
- <20260419-rk3588-mclk-gate-grf-v4-5-513a42dd1dcc@superkali.me>
- <DJGDSS875DDO.22TYPVYK5X8KZ@cknow-tech.com> <2100447.PIDvDuAF1L@diego>
- <20260623123316.4111002-1-hello@superkali.me>
- <DJGG8DEAKSPK.1GJ8FARAHXPXM@cknow-tech.com>
- <20260623132351.4144457-1-hello@superkali.me>
-In-Reply-To: <20260623132351.4144457-1-hello@superkali.me>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[cknow-tech.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[cknow-tech.com:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314848-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:ricardo@pardini.net,m:hello@superkali.me,m:diederik@cknow-tech.com,m:heiko@sntech.de,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-314849-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-mediatek@lists.infradead.org,m:l.scorcia@gmail.com,m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:ck.hu@mediatek.com,m:jitao.shi@mediatek.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:lscorcia@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,ffwll.ch,linux.intel.com,suse.de,collabora.com,mediatek.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[cknow-tech.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,cknow-tech.com:dkim,cknow-tech.com:mid,cknow-tech.com:from_mime]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 61E9B6B78FC
+X-Rspamd-Queue-Id: 2F20C6B7B0B
 
-Hi Daniele,
+The HDMI CEC driver for both mt7623 and mt8167 is actually the same as
+mt8173-cec and the mt7623n.dtsi board include file already uses mt8173-cec
+compatible as a fallback, but the documentation lists them as separate
+entries. Correct the binding by adding the correct fallback.
 
-On Tue Jun 23, 2026 at 3:23 PM CEST, Daniele Briguglio wrote:
->> md.l 0xfd58c318
->> fd58c318: 00000600
->
-> Thanks. Bit 0 is clear there, so the I2S0 gate is open at the U-Boot
-> prompt, after BL31 and before Linux. That matches the symptom: the
-> firmware on your T6 leaves it open, and the kernel closes it once nothing
-> references it.
->
-> Given that, I think Heiko's suggestion makes sense here. Marking the four
-> gates CLK_IGNORE_UNUSED keeps the kernel from disabling what the firmware
-> already left open, and boards that reference _TO_IO still drive it throug=
-h
-> the consumer.
+This change fixes a dtbs_check error.
 
-My suspicion that more RK3588 based boards would be broken is because NONE =
-use
-I2S0_8CH_MCLKOUT_TO_IO; they all use I2S0_8CH_MCLKOUT.
-(And the testing was only done on not (yet?) upstreamed boards)
+Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+---
+ .../bindings/display/mediatek/mediatek,cec.yaml       | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-> Could you test that change if you get a chance? Just set the flag on the
-> I2S0/1/2/3 _TO_IO gates in clk-rk3588.c and check your analog audio comes
-> back. The series is already merged, so I'll send the fix as a separate
-> follow-up patch, this evening if Heiko is fine with the approach.
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
+index 080cf321209e..4d741ba415e8 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
+@@ -15,10 +15,13 @@ description: |
+ 
+ properties:
+   compatible:
+-    enum:
+-      - mediatek,mt7623-cec
+-      - mediatek,mt8167-cec
+-      - mediatek,mt8173-cec
++    oneOf:
++      - const: mediatek,mt8173-cec
++      - items:
++        - enum:
++          - mediatek,mt7623-cec
++          - mediatek,mt8167-cec
++        - const: mediatek,mt8173-cec
+ 
+   reg:
+     maxItems: 1
+-- 
+2.43.0
 
-I'm going to build a new kernel where I did ``s/0/CLK_IGNORE_UNUSED/`` 4 ti=
-mes
-and I adjusted my NanoPC-T6 Plus board dts to use I2S0_8CH_MCLKOUT_TO_IO, w=
-hile
-I keep the LTS board dts to I2S0_8CH_MCLKOUT.
-So IIUC that means I'd be testing both variants.
-
-Cheers,
-  Diederik
 
