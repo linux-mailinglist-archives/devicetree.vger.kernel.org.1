@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-314788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314790-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8oW/N4VqOmpA8gcAu9opvQ
-	(envelope-from <devicetree+bounces-314788-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:14:13 +0200
+	id cNiCCuVpOmru8QcAu9opvQ
+	(envelope-from <devicetree+bounces-314790-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:11:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB6F16B69AF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:14:12 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AB286B693F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:11:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=IOIbX35W;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314788-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-314788-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=l+C6lWWe;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314790-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314790-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EB22B30207E5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 11:03:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D2099306E761
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 11:05:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CAE936A343;
-	Tue, 23 Jun 2026 11:03:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE203D3301;
+	Tue, 23 Jun 2026 11:05:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE8D3D1AA0
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 11:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEA1B377004
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 11:05:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782212598; cv=none; b=XpOyrs5Revaj2qN/ipWknMmGovahiJdjBE+UhsMKRqFkGJiUFgnn7QJN6+U8MQ6Nm8rgxUvcqV2luBmxxmVyYu8KSN0d1cXLfi9RpcrlvuIUdoo0vj9nAy8ekjIDUBIbCXUZackHj5YEbmum/dVwD0p0o3VXO0BfzxPb51TbSx8=
+	t=1782212707; cv=none; b=EALgeuY3p0jNlFFcH1M53evEoXMOuU3ntediUgEDWs25tgUIVBm5oHyYVf9CmgS83ZODQ1pdi+7qJv/viUFHnHW4ejtgFxYrSmKUKSwocvAN2BaW+XwiRTZy6FmpXs3F6TkXH4/bFEaKQT/D4R3gGvBkllKaU4wiKj6TwRvQUCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782212598; c=relaxed/simple;
-	bh=SYgBo7ET/7xg1LQhKiogbvgvYfZS0mYrVznf2X6/4tk=;
+	s=arc-20240116; t=1782212707; c=relaxed/simple;
+	bh=yCjcEU/zJ1VXKmJoltuZ5e+4REu9WjXwk2iA1H01GqA=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=MjUNLR9+cj3v3ga4+8azAIQIijATTQRT+q60Jzq4bQtVI22PRyhD3UmOYR+KabRJ0nXfNce+Nsq4x7kUCb+f+DMKLl8bHYQJat8K8AREU1qi3mwNoQU4U4995CZSTI7LzLC7DX9TJ+sGv9OR9F07Ej/1FGgSURewXdLPG2u9gWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IOIbX35W; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2DEA1F000E9;
-	Tue, 23 Jun 2026 11:03:16 +0000 (UTC)
+	 Message-Id; b=e46VS685E4BVtpZ8jkIci2MzxJwzYGhn8rncpQc49YZJomlB2goFKjO3Ixg+iBSdetA1jggD/1O8I6p8p1i0P3D+G8Ntc7LAZw+R7oR0GaENCuEreYN29llU+mWNw7+4ST0yXAqwmkN53D9ifDT3v0c1W0sAxjGzSXSsLhGQMyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l+C6lWWe; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48F8A1F000E9;
+	Tue, 23 Jun 2026 11:05:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782212597;
-	bh=eUO0/8Wt17VMEgXVEw35ukQ8tqRNjvaljQtqVUNaNeI=;
+	s=k20260515; t=1782212706;
+	bh=ZsGQ1D78Ky4/PFHTAXLx0JChWu/NAKZdAhVGO6QN4dA=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=IOIbX35WVplJzGIlsd1Qb8BqqsJKME4znkoXTe0qCJZ4oeKppo4cUK2XXIEGBwqJ+
-	 8TAeWsQRN//b3EsGo+pTMl1VFG02qXRbm4qzFNympG32YOz1O2lTwt0NaKt6E0cqIQ
-	 z/aSHN+TeITtxGF1WXiAK4dFBUm8iJuZvWhLrIT+qyrlYh1rn26D3rUjw7d93OWdlr
-	 wfLDlfpukSsDnPq33Drl9KUV6/jzz8W6ry3k6mSjjTX4z2TzoL+R6SnQl/UCpNMjib
-	 RrkqgMQkv+/HojXFF83QY8F1a2RULR/l+V25BIrf02EsQSSokrwtpNSiGBm9ytnu/i
-	 0vQl76Symcjeg==
+	b=l+C6lWWeRWh1YXJMhEb0KRnTsh5CMyFdSTPPrah2PodC+usI7r1k76IuKfgOitFhx
+	 kctgybvsxF4wXmG2odwA+Lr8HrYPA2XWuN94G+XhGQXUGbsQQ5xeUeaPlOqVbyjMBA
+	 ac+771nhrhssPBOawpwkD53IzhvQzAUOFqa9NVw3aiuD3TMC/L4d+UjDZmXitQMYJx
+	 3jrSAG6+y6UdI6AKA45DaFhjPVll8IYXqvgFW+aVIJdz93Du0XhPIWDNQgWjervGyj
+	 BGGsezj7YG13Bznq50QoTLkdYv8p0syVg7WH9LtsC/GoubvTFEGOBIvA/J6bO9r4rJ
+	 57TtbE89z4P5w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 06/12] iio: dac: ad5686: consume optional reset
- signal
+Subject: Re: [PATCH v4 04/12] dt-bindings: iio: dac: ad5686: rework on power
+ supplies
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Rodrigo Alencar via B4 Relay" <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260623-ad5686-new-features-v4-6-28962a57db0f@analog.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260623-ad5686-new-features-v4-4-28962a57db0f@analog.com>
 References: <20260623-ad5686-new-features-v4-0-28962a57db0f@analog.com>
- <20260623-ad5686-new-features-v4-6-28962a57db0f@analog.com>
+ <20260623-ad5686-new-features-v4-4-28962a57db0f@analog.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 23 Jun 2026 11:03:16 +0000
-Message-Id: <20260623110316.E2DEA1F000E9@smtp.kernel.org>
+Date: Tue, 23 Jun 2026 11:05:05 +0000
+Message-Id: <20260623110506.48F8A1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,7 +71,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -79,9 +79,9 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314788-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314790-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:devnull+rodrigo.alencar.analog.com@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:devnull+rodrigo.alencar.analog.com@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -98,67 +98,80 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,analog.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,analog.com:email,smtp.kernel.org:mid,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DB6F16B69AF
+X-Rspamd-Queue-Id: 8AB286B693F
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] Missing power-up/reset recovery delay after reset deassertion.
-- [Medium] Ignored return values from reset control operations.
+- [Medium] The dt-binding makes `vdd-supply`, `vlogic-supply`, and conditio=
+nally `vref-supply` strictly required, which breaks schema validation for e=
+xisting device trees.
 --
 
-commit 6b4f1604bc9722fb4790d1198babf7ca8eb4d482
+commit 91cd8407525317fa145de80deea6f4d2c2d3a4d3
 Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
+dt-bindings: iio: dac: ad5686: rework on power supplies
 
-iio: dac: ad5686: consume optional reset signal
+This commit updates the AD5686 binding to add vdd, vlogic, and vref power
+supplies. It also deprecates the misleading vcc-supply property in favor of
+vref-supply.
 
-This commit adds support for an optional reset control in the probe
-function. It manually generates a reset pulse after the device is
-powered up.
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml b/=
+Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+> index d781baca6a6c2..02e8c78e36d3d 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
 
-> diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
-> --- a/drivers/iio/dac/ad5686.c
-> +++ b/drivers/iio/dac/ad5686.c
 [ ... ]
-> @@ -509,6 +516,11 @@ int ad5686_probe(struct device *dev,
->  	/* 4.5us power-up time: Datasheet Table 4: Timing Characteristics */
->  	fsleep(5);
+
+> @@ -60,9 +74,23 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> +  - vdd-supply
+> +  - vlogic-supply
+
+[Severity: Medium]
+Does adding vdd-supply and vlogic-supply to the unconditional required list
+break dtbs_check for older device trees?
+
+Since existing unmodified device trees lack these newly introduced supplies,
+making them strictly required violates device tree backward compatibility.
+While the driver handles missing supplies via dummy regulators, the schema
+will flag older device trees as invalid.
+
 > =20
-> +	/* 1us >> 30ns reset pulse activation time: Datasheet Table 4 */
-> +	reset_control_assert(rstc);
-> +	fsleep(1);
-> +	reset_control_deassert(rstc);
+>  allOf:
+>    - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,ad5676
+> +              - adi,ad5683
+> +              - adi,ad5684
+> +              - adi,ad5686
+> +    then:
+> +      required:
+> +        - vref-supply
 
 [Severity: Medium]
-Should we check the return values of reset_control_assert() and
-reset_control_deassert() here?
+Will this conditional block cause validation failures for legacy device tre=
+es
+that define the previously valid vcc-supply instead of vref-supply?
 
-If the reset controller is backed by a fallible bus (such as an I2C or
-SPI GPIO expander), these calls can fail. If deassertion fails and the
-return value is ignored, the driver might proceed while the hardware
-is still stuck in reset, causing subsequent bus communications to silently
-fail.
-
-[Severity: Medium]
-Does the hardware require a stabilization delay after the reset line is
-deasserted before we start communicating with it?
-
-Similar to the 4.5us power-up time handled above, if the device needs
-recovery time after a hardware reset, proceeding immediately to the
-initialization and first register writes might result in corrupted or
-dropped commands.
-
-> +
->  	/* Initialize masks to all ones */
->  	st->pwr_down_mask =3D ~0;
->  	st->pwr_down_mode =3D ~0;
+The driver code continues to support the deprecated vcc-supply for backward
+compatibility, but this schema update does not mirror that logic. Could this
+use an anyOf block to allow either vref-supply or vcc-supply to satisfy the
+reference voltage requirement for these chips?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260623-ad5686-new=
--features-v4-0-28962a57db0f@analog.com?part=3D6
+-features-v4-0-28962a57db0f@analog.com?part=3D4
 
