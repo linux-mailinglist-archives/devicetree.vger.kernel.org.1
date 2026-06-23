@@ -1,221 +1,134 @@
-Return-Path: <devicetree+bounces-314932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314933-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SoDTKwDGOmoUGggAu9opvQ
-	(envelope-from <devicetree+bounces-314932-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 19:44:32 +0200
+	id 8ZM1CpnFOmrTGQgAu9opvQ
+	(envelope-from <devicetree+bounces-314933-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 19:42:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EE266B930A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 19:44:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79C416B92AB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 19:42:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="UbZp2Md/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314932-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314932-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=cknow-tech.com header.s=key1 header.b=Q0PuAcog;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314933-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314933-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=cknow-tech.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3F8A830F51C1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 17:36:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D4A73028B45
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 17:42:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9303538D01E;
-	Tue, 23 Jun 2026 17:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B05838C42B;
+	Tue, 23 Jun 2026 17:42:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A64D38C2C3;
-	Tue, 23 Jun 2026 17:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE6E388E59
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 17:42:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782236171; cv=none; b=fFHppYQtf+BuePB2kwjIlQGiD0r3acv62WeeXWXe9OaJWwa0yxqtA1vpmuUxsrYbJijqfK4px7HNge4Z4ouWy9C/EhteaqQPZRogIoCQfN8v2meNRbwLlklr/5YdXtDOoYF/na8Wm4+x61fiApUYR7hQEwst4MkNoeLe2nqt6ks=
+	t=1782236558; cv=none; b=bXvbWqDGQty2JzRZh6SC5x+qP9f65EuMpE4ADi5yxLhIryb/oOQLRZYMe8Is2bF8XYeMM7Nh+JzjMNtyop+jN8pMVaESmKN0pRc9ZUoAiDndNmWpXHuGvRJwElUxzeLFJcgb+0KCRLxoGZljkoxRunC+aa/ngd3MOUPUsapZ0Eg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782236171; c=relaxed/simple;
-	bh=y1qJtc7ng0dCOWVbMwEhMDR6b3x8Nv5erfwUmiM2oWA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MEVZBjAw5xxoZtU2BaBTSxPOpOfAW7ATNnyPYgJWbhxywUxf+3fMO+uFiB6fjsnufhEmIM6O9PjZCKN/c9BNcG3tGjMbDlscermjF9VcnshnKL0tsXQ8NnuyyGy6nUyLx9Ti2Y/TPGRI5qtE1uIkzFO6edC8jfc5JCl7oxzSxAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UbZp2Md/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9D611F000E9;
-	Tue, 23 Jun 2026 17:36:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782236170;
-	bh=qi/jSwvOEDOKKa14c7iFr4Cmv7LaMJ54Xw33KCqa6os=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=UbZp2Md/QsJASeGKrBovcPDcCCYLG8px709WAnSRLfE7DEbiYZiWp/Q9VEnSb5r6q
-	 GVpQqBP/L2ZDWWVp5m3EVuxVZCxVCGp7fkTEbpbU+NrS7J6gDV3C/7W0SCLcmp6jb3
-	 5gOj+yx8SCPLVOfDENBtCmEas/VSbrrIeassoWT6TN8iR0GdSgTrL8Gwqk1aWXYY0D
-	 dd6RxdoRf0st3Ofj0IMZmWV1TLBM6Qm9nNkaH9Zaad6R7UoLKPjnnq+uTn2/9OZalx
-	 B0OuP5axqT/iX5HPgJKrRBlboQ8X1svEbIxE+iKmGp38YhR53RKpkc48dyUhK/6/dl
-	 IW07PMKNmLJBw==
-Date: Tue, 23 Jun 2026 18:36:06 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Selvamani.Rajagopal@onsemi.com
-Cc: Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: hwmon: pmbus: Support for onsemi's
- FD5121
-Message-ID: <20260623-anybody-gutter-e6ca04f53bdb@spud>
-References: <20260622-support-fd5121-from-onsemi-v1-0-b31767689c65@onsemi.com>
- <20260622-support-fd5121-from-onsemi-v1-2-b31767689c65@onsemi.com>
+	s=arc-20240116; t=1782236558; c=relaxed/simple;
+	bh=W9uBPlyCQ3blz+hUhtuOZkmZRvfPPuyJHIh4Q5xPYNg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=qA6E9x1iq+vzdy1uFAUN0yz8T+DVvfM1bwjvF1fE8U4qERD8YZwa4Bk8EmON1yYSVdkwYRBBP88VeFmGG1xmLq+vcfu59FHfEgXeb1Wto86ia7yXs/B5kHWTClG8U0pmM7vOzIej3tX5XsJn9kKyc5Cw8T9ZtG3qFdKhHBCFTVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=Q0PuAcog; arc=none smtp.client-ip=91.218.175.177
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nNUv3Ue/fcUdZ8T0"
-Content-Disposition: inline
-In-Reply-To: <20260622-support-fd5121-from-onsemi-v1-2-b31767689c65@onsemi.com>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1782236541;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=anXIIGzRFZpi+NzeuxQSLJlrJLRMzvd+LQ042QGuIHg=;
+	b=Q0PuAcogSHo6YqMF4M1DObl2CwZSvYOyKWh+wwqNkirzKwnMAErvazQZfpaMcSimyE/T96
+	z2P+bFMPWUq2gwjGpNIOlhuTiQjY1YWkU9UMwx2Zuei/ej8hLDnJ2LN3q9V1clcej9nQ+L
+	LPI1TkXrJmqztjqKwvSpyE4IxKcB2B+1SBBLm7jr7hBR4vSi/s39On7sBuyr097z8ctoJQ
+	xDstumeVTZHvoD6X/qAcNF33W7BBHzE4wWHuwHvObc/pi7YoOIHKvO8VxiLGwv9Mhnoc06
+	HX4qLDz44CuDFsesX9JCU7B0X5595CwII/0iV2DAUA7cgt4cWSE2o9k0pejSrg==
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 23 Jun 2026 19:42:05 +0200
+Message-Id: <DJGM4D19H31O.4I5N79CG5Z8C@cknow-tech.com>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+To: "Daniele Briguglio" <hello@superkali.me>, "Diederik de Haas"
+ <diederik@cknow-tech.com>, "Heiko Stuebner" <heiko@sntech.de>, "Michael
+ Turquette" <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
+Cc: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>,
+ <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ "Ricardo Pardini" <ricardo@pardini.net>
+Subject: Re: [PATCH v4 5/5] clk: rockchip: rk3588: add GATE_GRF clocks for
+ I2S MCLK output to IO
+References: <20260419-rk3588-mclk-gate-grf-v4-0-513a42dd1dcc@superkali.me>
+ <20260419-rk3588-mclk-gate-grf-v4-5-513a42dd1dcc@superkali.me>
+ <DJGDSS875DDO.22TYPVYK5X8KZ@cknow-tech.com> <2100447.PIDvDuAF1L@diego>
+ <20260623123316.4111002-1-hello@superkali.me>
+ <DJGG8DEAKSPK.1GJ8FARAHXPXM@cknow-tech.com>
+ <20260623132351.4144457-1-hello@superkali.me>
+ <DJGH34DVKL0W.3T6UB4G4WYYUJ@cknow-tech.com>
+ <20260623140958.4181297-1-hello@superkali.me>
+In-Reply-To: <20260623140958.4181297-1-hello@superkali.me>
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[cknow-tech.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[cknow-tech.com:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314932-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314933-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:hello@superkali.me,m:diederik@cknow-tech.com,m:heiko@sntech.de,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nicolas.frattaroli@collabora.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:ricardo@pardini.net,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:Selvamani.Rajagopal@onsemi.com,m:linux@roeck-us.net,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-hwmon@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[cknow-tech.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,spud:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,onsemi.com:email]
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cknow-tech.com:dkim,cknow-tech.com:mid,cknow-tech.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5EE266B930A
+X-Rspamd-Queue-Id: 79C416B92AB
 
+Hi,
 
---nNUv3Ue/fcUdZ8T0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue Jun 23, 2026 at 4:10 PM CEST, Daniele Briguglio wrote:
+>> So IIUC that means I'd be testing both variants.
+>
+> Right, that covers both: the mux path and the consumer path. Looking
+> forward to the results.
 
-On Mon, Jun 22, 2026 at 10:55:38PM -0700, Selvamani Rajagopal via B4 Relay =
-wrote:
-> From: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
->=20
-> Add devicetree schema for onsemi FD5121, FD5123, and
-> FD5125 dual rail, multi-phase digital controllers.
->=20
-> Signed-off-by: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
-> ---
->  .../bindings/hwmon/pmbus/onnn,fd5121.yaml          | 41 ++++++++++++++++=
-++++++
->  1 file changed, 41 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/onnn,fd5121.ya=
-ml b/Documentation/devicetree/bindings/hwmon/pmbus/onnn,fd5121.yaml
-> new file mode 100644
-> index 000000000000..b0453b0634f0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/onnn,fd5121.yaml
-> @@ -0,0 +1,41 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/pmbus/onnn,fd5121.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: onsemi's multi-phase digital controllers
-
-Can someone explain to me what a "digital controller" actually is?
-Seems very generi and that a word may have been left out, were it not
-for the fact that this wording is used several times in the patch.
-
-> +
-> +maintainers:
-> +  - Selvamani Rajagopal <selvamani.rajagopal@onsemi.com>
-> +
-> +description:
-> +  onsemi multi-phase digital controllers with PMBus.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - onnn,fd5121
-> +      - onnn,fd5123
-> +      - onnn,fd5125
-
-Your /OF/ match data in your driver suggests that you intended to permit
-fallback compatibles here?
-
-|+#ifdef CONFIG_OF
-|+static const struct of_device_id fd5121_of_match[] =3D {
-|+       { .compatible =3D "onnn,fd5121" },
-|+       { }
-|+};
-|+MODULE_DEVICE_TABLE(of, fd5121_of_match);
-|+#endif
-
-pw-bot: changes-requested
+Analog audio works on both. Plus with _TO_IO and LTS without in their
+respective DTS's. So I guess CLK_IGNORE_UNUSED works.=20
+Whether it's a good/right fix, I'll leave up to others.
 
 Cheers,
-Conor.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      fd5121@50 {
-> +        compatible =3D "onnn,fd5121";
-> +        reg =3D <0x50>;
-> +      };
-> +    };
->=20
-> --=20
-> 2.43.0
->=20
->=20
->=20
-
---nNUv3Ue/fcUdZ8T0
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCajrEBQAKCRB4tDGHoIJi
-0hHeAP4oKgrpS2qCVz/7ODVGFkKjS9WeVrY9WRU2VoFRwu94LAD/cWvC5fHHab1e
-08TsiaHzIQKJUchGnnu1pP0VNTlNvwQ=
-=+IXw
------END PGP SIGNATURE-----
-
---nNUv3Ue/fcUdZ8T0--
+  Diederik
 
