@@ -1,205 +1,197 @@
-Return-Path: <devicetree+bounces-314796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314798-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wROpKKlqOmpK8gcAu9opvQ
-	(envelope-from <devicetree+bounces-314796-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:14:49 +0200
+	id JOc/AcFrOmqx8gcAu9opvQ
+	(envelope-from <devicetree+bounces-314798-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:19:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA8886B69B8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:14:48 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B6A6B6A5A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:19:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QxNTRBdZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314796-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314796-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=altera.com header.s=selector2 header.b=JauMXRae;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314798-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314798-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=altera.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A81C6302F5A2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 11:14:47 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6787F300442C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 11:17:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC643D3480;
-	Tue, 23 Jun 2026 11:14:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C9B37BE7C;
+	Tue, 23 Jun 2026 11:17:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011052.outbound.protection.outlook.com [52.101.52.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6F7A3D3008
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 11:14:45 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782213286; cv=none; b=jv9DSczaTzwNelBrY3yMthP1QELZX+BSYtT5JyXT5uVRhE8Xa2wbP5x0YzmmRNXh8Zn3socNpt8FCzcdo2CD6Vg2wj04l//606/Xn8FHipcrgDxVr1z5PzTyrFiCRUH4d0ThdFvdDruflGVcSNJcmmSP3Xu88bqRbsiiRH9MI6A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782213286; c=relaxed/simple;
-	bh=nUZTklU2H+5J4h+Nehggt2IJQpnnt678lKgCnnxQCeE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=pxQwZXNNZJavlQD7h3pVzHD6demCQ8e8KYJLeTz1tRwT3plQYlVRBvXjxyXZ3fWqlblJ8T9q7Za63c5vHhCLgSC7FE73GMNMXcQcQQbNY4dPHQNrcr5OoT4IJ19BITosUuvZVTo2PfYTm8M+PpXnyIhEf5Zrbp80r2fPM36PINM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QxNTRBdZ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DE691F000E9;
-	Tue, 23 Jun 2026 11:14:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782213285;
-	bh=JMA8KsZrpTygOiCSvtA/U0530clzBZE17o2YfbQ0UXo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=QxNTRBdZ4uBmCjwnorsq33KNKc5H1qyRYu+YeUkpLnxQUQelRS7XcPs0f2DY+IHHe
-	 jWlRA0VoBQDzaag0u1hlwGr2UWWCuKfYbvCiNDBy8PM4u4cKxtNRlCJIci/OyG/Ahw
-	 0zqbOgoLj2cUc3WLrygGRORaVduzeF7/evMcmvUPh6w5ZX/UK0ohJwsO51xUOfzkxi
-	 c/R/SVv8XjzsHK2w1oEN1Er10egOkodHZx8dxjVf5yJYH42hvFTI43kb8k3XBptZQd
-	 WpV9T3+28vNqu1unczV5bn2UIAJHNQWOcAS4daElRuAyvJIERIo5ZHrWpaebufyMFW
-	 dDBTL+AypSNtw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 11/12] iio: dac: ad5686: add triggered buffer support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Rodrigo Alencar via B4 Relay" <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260623-ad5686-new-features-v4-11-28962a57db0f@analog.com>
-References: <20260623-ad5686-new-features-v4-0-28962a57db0f@analog.com>
- <20260623-ad5686-new-features-v4-11-28962a57db0f@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 23 Jun 2026 11:14:44 +0000
-Message-Id: <20260623111445.4DE691F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E1B2298CAF;
+	Tue, 23 Jun 2026 11:17:21 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782213442; cv=fail; b=GexmRko2MhaDwf8xosy3kn3g2Og9aH5C2ApPFHe3OZorXFMNoLxqKdiwTugLegMn4B3zaHFwlAd30J2p/VM6GIWNDgxYvnHs3+PufR1iL93Dw/YD4+92KmfEq202cFF4xPpdox0kT6QFGXkZOt8vo+xFnwCOZaQeymQFoHesDd0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782213442; c=relaxed/simple;
+	bh=BeVRg9sKZJBmCUFHGJC9FaJj+Hc7Aat3OnBRiPDhN3Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=h/XnroCc+A0rAvRPcYnfZmmnPY5uwul5NkcRMdKprMQzhn+EaibK4aZ2cxCTcvJQF2fGi50rNEYLJDcrFe4eoFoeAPa06r7jZQOGEZAP8MEDdrxGJrqcq9NWiEKZv4UJK4PgLJVr9vnZTtoiFvuqnX78jS5A9g0kYXxe/0mWciA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=JauMXRae; arc=fail smtp.client-ip=52.101.52.52
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=L2artF+h412uMIv94D1R7TclaBjpNzmjkOnbeDlUVeELpQHliWNIs7d8/80hGYp2vmj8E1difIW8Ss2IuPqK8T/1MCMwVFuFz9gesycKWWg1Iv6Lo0er8OdjmYtsyLsS1k9iLGv0UKey6ODrZ3e8e5FowWndI4nWL5VZBKzsKYnAlaffCC+K1oUxfrvc7mngsE/pHJIblv1Yx3DPuD/80LQQRwjKjEulzYdPGlIYkwP33NaBYbhn6q/7PYezLpuCxs1tTcmlbvtfoEkDi8tKR+3w/V5i0L7p+A+Dvijf5W9va/TtIrEyrv4eRd9QncUKuBbiOHgCpPwJlosppg7OnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=f5xlUO9sZ6EDmBfcd1Pi3h4r34JOdt5devswXA7zm7M=;
+ b=wOykDLTyVZT2av88NZ2N/dGkf/G5bGLFmKpkLHAGjFt636oTYx4L8WpsHtTmGbiZcL4qSaVUSx3ufLBQTTeq9nZN61ZBs9obnDbFSYsoLx/SPxgfGcmDn+oafXOxzfk5G5FwfBZ3zfETQd1qTjgOpLMavggm/3GRuB9dGrWN0/3Py63EkV7JTtSzbniAddZ7mw9XqKXUiy3utPG63GxIGAGhqt8TDF3sfTMF2L4LxqYpRK7L8qOa3rIEICl2PaGzFix8diEhHehDSfN0FLpot2cYU4g+m4Cv023hFdHLZ0HzGypNfSi/ZSTr2dI0jfh0b3kouXkzdDlU5EPT2NspEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=f5xlUO9sZ6EDmBfcd1Pi3h4r34JOdt5devswXA7zm7M=;
+ b=JauMXRaee7JyTtkOs/90aHfbsRppgfvvDfH8E9DdxNYPTYKO6q5je9bWeIa8svuXQrG8BfkNNEw2j7WX6KRXLtYcohPevUW/JBa5/i4pX+ExX+qOXhbzYU141t2Eg/UX2ELdPwfWr1RcwYmiv8pMASHAlyYXu8FQuZycKiMZOYaSqhDqqqeQ35F2ZE4qtQHfGaQKGiJ8cvBcTNY5P9c4MWgEbPCLT/CXKhZZf1eWR7DZJGFaS7pM8ACscC97X8qwPC5JHdRrqm1OhiYNLr/8N7Y7x2lfNWtwitgbt+2/neBJyPOHzocpH4ebjyD1B4gB/7AFvDMeg2jfmWxe2y327w==
+Received: from SJ0PR03MB6964.namprd03.prod.outlook.com (2603:10b6:a03:432::18)
+ by MN6PR03MB7670.namprd03.prod.outlook.com (2603:10b6:208:4f6::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.19; Tue, 23 Jun
+ 2026 11:17:18 +0000
+Received: from SJ0PR03MB6964.namprd03.prod.outlook.com
+ ([fe80::b965:bfa8:58fb:e775]) by SJ0PR03MB6964.namprd03.prod.outlook.com
+ ([fe80::b965:bfa8:58fb:e775%4]) with mapi id 15.21.0139.018; Tue, 23 Jun 2026
+ 11:17:18 +0000
+From: muhammad.nazim.amirul.nazle.asmade@altera.com
+To: dinguyen@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] arm64: dts: socfpga: agilex7-gen2: Add initial device tree support
+Date: Tue, 23 Jun 2026 04:17:14 -0700
+Message-ID: <20260623111716.16690-1-muhammad.nazim.amirul.nazle.asmade@altera.com>
+X-Mailer: git-send-email 2.43.7
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0033.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::8) To SJ0PR03MB6964.namprd03.prod.outlook.com
+ (2603:10b6:a03:432::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR03MB6964:EE_|MN6PR03MB7670:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0053d0e7-15b4-4373-7525-08ded118fc74
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|23010399003|376014|366016|18002099003|55112099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info:
+	s7DnbJ7ZiQV1ql3aW+WxAVne1xD1mGD5ddxRtWqagcFIhcIWvUvsLJ1Vbg5jSD/6LiUsHWbi9M9U1wYLc5LwZ+ZnwCwDSCxDtCadfreJMNzdv1rx+W6CASnYbAq8WdSgBC1cy2DFCKlxy7dRjDdjrwHk0flNRwiT8hDgP3N5m5hu2UhAQlkWgMQ69kyGHF80qiTQS3XtOOJRRbC47YfQB5C7OCf2g6Sk9G6eUtgAdHsK91lBvku/cBRNai0QGSo3njPTALAotKOgjwytfTDZjaSJZnqzggY/ZvP7Uf1KGnjmeGG5fHVG0Az+IGLkW81JEtsERMV1ZgfXfh4DbMCXrxRwqhK0pMeoNZwHUOHiItISH4ll9PFZEDBQvsp01y2EPCq59yc2An3+VNk6bu2AWlg7e2Cert6yu07a2Q+S2x3YRJ2WHX8xk84s/OkIthLKLAtZOCqdLZhjoqu27UR9Db/MTafbflgDxJaWMwLwtWDkOCe4l9GZsbq0iULVkBcyJUacNdWb2C47OJDucvzBTncM3G5vozMAp8tUkpM6WL35pPTl8F+my3f1GVZKR96ZDrmAvCbelb6fifWdjH2tDxaPWaUgMKOA/TPFZcCCHvpMk3TIkz0NYDftO6b9nB3FZR81Qcg2gnqVlR7x8zBgJ8yURs/ti7oqPpTDSTMLriU=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR03MB6964.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(18002099003)(55112099003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?7mjPEruJzkPflMbxzCOa6TWraH1L+Cv3fe3fBD0GTxHNuu47OdmHIaiNR3cV?=
+ =?us-ascii?Q?EXNHPTvhAsinKkBZW1ueU6Ibl5VHXX0gjcj9NRKp99Bnws0VLme8UZsvkXVZ?=
+ =?us-ascii?Q?tg29Eh4gkahh+x/bSa55PB0ZSfWpts6o92MH0fxHVQcBFZO4lf3LeJhqWJ/K?=
+ =?us-ascii?Q?Rzq1X3VBNHqH9wjEuJf6qKxnldhWEhlu5BsgrAV6i19jEhk13v8xS15np3qM?=
+ =?us-ascii?Q?y2S0B7Hc97Agvh2wOTLFBGxaQFGnf8KVUc0ON/Y2j6cEVvyDYhqPYAf/VqBP?=
+ =?us-ascii?Q?LpmyP+k3d5ApPYC8q/zj3uf9JB6b4hpvl8H2QbCmZD/0fISX/wA0wiNhpoBW?=
+ =?us-ascii?Q?PpqO2GN65upPPw8ygB4SivLY4NzGlXIDlG2CoKb0mStLfXfw0qhWgMVvpXnw?=
+ =?us-ascii?Q?5f285AY46oEzhA9tws2jXo07xN2uxRWF+nzkoTFWZ61v17URczOyeYzbVlM2?=
+ =?us-ascii?Q?LSyu1PuYbzBx2pyB2WyVY5/vS3UCyh5ta8WYP8KjwHVqh8QgltJq41tudCc9?=
+ =?us-ascii?Q?YY7CN/1hz3KI5A5s7FB07y3SkFea+yZAHtEyioi+QFjzrROj+UHBB1XUyu2V?=
+ =?us-ascii?Q?K2tqzBpCFxNpAj+HkEDyeyrblLRKit83jzUEH2ocIbLKHV6mz9l9x5YC4c/r?=
+ =?us-ascii?Q?Z1kKWGsCgCAQpu/EWrLt6AXxAK8L16xRi4/YoPdo4tD84V2iVJX18XlbnTsj?=
+ =?us-ascii?Q?6i4O3lnlbuEx+M2jeAiSfeP75qyOa1g3XwUaY3dCKESD5roX+E50FpbdF/zp?=
+ =?us-ascii?Q?AuEKr2FEv9p5h6XN9mYLp41bdoFZs4pvp9nLnhcSnQAb4DUBaZTitExHpP0m?=
+ =?us-ascii?Q?lY8va4uwDB8kVfaFi3FshFDOz96qD8hS7D59hsLBm5RQ+F3lT72X2HBMgIzo?=
+ =?us-ascii?Q?BOLCdcyvpmFf80Jcmy5/p14rT9Qpo3cR7GHHEWzLV6zMA+pm6YHjd+lhNbBj?=
+ =?us-ascii?Q?keI8Z37IgkWjJcV7J1cVIPOXgxzmdUcPyalLY2hlbkLmYfLgC0vOx0HVCTZg?=
+ =?us-ascii?Q?O3o/J4ot6aFLknFvWvJx211pzMFycbuNDBF0LFlXdGmUr8JJwM6HAuLxP9Js?=
+ =?us-ascii?Q?tF5hFsCbxZvjOhmH2wITGuhnc5Z/YIELQgTohRy3/oC+EQAd+QakiaDwja8D?=
+ =?us-ascii?Q?DqGtwCUjklILHKebTjxxVBIDWyORc46YmXE3sziHa2mlE1mtHRn+Owzum7oe?=
+ =?us-ascii?Q?hg2Wh+PDtLT7YaSwO/uQzG75adoC4xZFGgNRNYMceP+ou2JyoAqBJMbRVSeR?=
+ =?us-ascii?Q?Lnx/7Y2W5M/Czy7IlDPm6wUf4z6gIYaNnkrk+fcFoeKjqKVhf1n2102m2YBu?=
+ =?us-ascii?Q?WME24wHH6wOGMZjmBpx5+sp+QWRsMB9Qq0v6B0rHCkB5UuB7wKGNhSHLXqyo?=
+ =?us-ascii?Q?rleC3GYo2h/Zm3t/IrqzcwtT8FOuoaaoLZ1WKtUDeGCPSlGDboT5E58bqYns?=
+ =?us-ascii?Q?aw3YRY1l2V3Vfqyoj7WaWgHubn+J3zXMzBT+vHUDLj6wUBtEf5Rr2nibio/F?=
+ =?us-ascii?Q?l+8AG6uzwxzco6zTZe/a6diltAjOOKRWKbi6fvxnQVzF8Ko00d2trl2NuNsW?=
+ =?us-ascii?Q?Mj36SxxZehT4acbboWIXMA5JjlPhdmdhoLARt677+oiu6SHeJQ6K6PVX71lH?=
+ =?us-ascii?Q?csfhE8XlU8DJaGRpFSTl1GVS0OXhH7koqpbEtMTIWcEBB0+doB3kR+4ijrAA?=
+ =?us-ascii?Q?xmfZa3QVT+RrRgYW+b8JQ43WwO/jnP9fSxITxphgNVxZ/uIPsJiEL5wIgASa?=
+ =?us-ascii?Q?bSiiTSz485TK+wtKTovBck7tHtkLcbAMXJC8i7S9S+3sB1KGyGmHBREALqlj?=
+X-MS-Exchange-AntiSpam-MessageData-1: 0OqnXm2XbKgPFw==
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0053d0e7-15b4-4373-7525-08ded118fc74
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR03MB6964.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 11:17:18.5117
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4Dwv3ntcd2D9fVe8dKMjg7Vb83JOtZMf5jUY1sjeaNHsqZfI1W2pzta+VHiw+l6Qb+A7V4l4rIRP9Ll3GO3RoiW9r9Gu8BHXlTmNGhb2Mxz2daxUk6V5VVBTjBpeRwHMy+QX3FGbUSnxI8VyuOmdfw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR03MB7670
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[altera.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[altera.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314796-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:devnull+rodrigo.alencar.analog.com@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:dinguyen@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314798-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[muhammad.nazim.amirul.nazle.asmade@altera.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[altera.com:+];
 	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[muhammad.nazim.amirul.nazle.asmade@altera.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,analog.com:email,sashiko.dev:url]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,altera.com:dkim,altera.com:email,altera.com:mid,altera.com:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EA8886B69B8
+X-Rspamd-Queue-Id: 03B6A6B6A5A
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] The ad5686_trigger_handler fails to convert Big Endian buffer data=
- to native CPU endianness before passing it to the write operations, causin=
-g scrambled DAC values on Little Endian systems.
---
+From: Nazim Amirul <muhammad.nazim.amirul.nazle.asmade@altera.com>
 
-commit b9bb35e4f394ef5515930983f7b76ce0cae1335e
-Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
+This series introduces initial device tree support for the Intel
+SoCFPGA Agilex7 Gen2 platform.
 
-iio: dac: ad5686: add triggered buffer support
+The first patch registers the new SoC and board compatible strings in
+the DT binding. The second patch adds the SoC DTSI and board DTS with
+basic platform nodes.
 
-This commit implements a trigger handler for the AD5686 DAC driver to updat=
-e=20
-all channels simultaneously when the LDAC GPIO is available. It also flushe=
-s=20
-multiple channel writes at once using the sync() operation.
+Nazim Amirul (2):
+  dt-bindings: arm: altera: Add Agilex7 Gen2 SoCFPGA compatible strings
+  arm64: dts: socfpga: agilex7-gen2: Add initial device tree
 
-> diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
-> index db175e77b0b7c..4dc681eb077d6 100644
-> --- a/drivers/iio/dac/ad5686.c
-> +++ b/drivers/iio/dac/ad5686.c
-[ ... ]
-> @@ -467,6 +472,60 @@ const struct ad5686_chip_info ad5679r_chip_info =3D {
->  };
->  EXPORT_SYMBOL_NS_GPL(ad5679r_chip_info, "IIO_AD5686");
-> =20
-> +static irqreturn_t ad5686_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf =3D p;
-> +	struct iio_dev *indio_dev =3D pf->indio_dev;
-> +	struct iio_buffer *buffer =3D indio_dev->buffer;
-> +	struct ad5686_state *st =3D iio_priv(indio_dev);
-> +	u16 val[AD5686_MAX_CHANNELS] =3D { };
-> +	unsigned int scan_count, ch, i;
-> +	bool async_update;
-> +	int ret;
-> +	u8 cmd;
-> +
-> +	ret =3D iio_pop_from_buffer(buffer, val);
-> +	if (ret) {
-> +		iio_trigger_notify_done(indio_dev->trig);
-> +		return IRQ_HANDLED;
-> +	}
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	scan_count =3D bitmap_weight(indio_dev->active_scan_mask,
-> +				   iio_get_masklength(indio_dev));
-> +	async_update =3D st->ldac_gpio && scan_count > 1;
-> +	if (async_update) {
-> +		/* use LDAC to update all channels simultaneously */
-> +		cmd =3D AD5686_CMD_WRITE_INPUT_N;
-> +		gpiod_set_value_cansleep(st->ldac_gpio, 0);
-> +	} else {
-> +		cmd =3D AD5686_CMD_WRITE_INPUT_N_UPDATE_N;
-> +	}
-> +
-> +	i =3D 0;
-> +	iio_for_each_active_channel(indio_dev, ch) {
-> +		ret =3D st->ops->write(st, cmd, indio_dev->channels[ch].address, val[i=
-++]);
+ .../devicetree/bindings/arm/altera.yaml       |   6 +
+ arch/arm64/boot/dts/intel/Makefile            |   1 +
+ .../boot/dts/intel/socfpga_agilex7_gen2.dtsi  | 175 ++++++++++++++++++
+ .../dts/intel/socfpga_agilex7_gen2_socdk.dts  |  15 ++
+ 4 files changed, 197 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex7_gen2.dtsi
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex7_gen2_socdk.dts
 
-[Severity: High]
-Will this send scrambled data on Little Endian CPUs?
+-- 
+2.43.7
 
-Since the driver declares IIO_BE, the data populated by iio_pop_from_buffer=
-()=20
-into the val array is in Big Endian format. Passing val[i++] directly to=20
-st->ops->write() as a native u16 without using be16_to_cpu() means the byte=
-s=20
-might be incorrectly byte-swapped before transmission.
-
-> +		if (ret)
-> +			break;
-> +	}
-> +
-> +	/*
-> +	 * If sync() is available, it is called here regardless of write
-> +	 * failure to allow bus implementation to reset. In that case, partial
-> +	 * writes are unlikely as the write operations would just queue up
-> +	 * the transfers.
-> +	 */
-> +	if (st->ops->sync)
-> +		st->ops->sync(st);
-> +
-> +	if (async_update)
-> +		gpiod_set_value_cansleep(st->ldac_gpio, 1);
-> +
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +	return IRQ_HANDLED;
-> +}
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260623-ad5686-new=
--features-v4-0-28962a57db0f@analog.com?part=3D11
 
