@@ -1,180 +1,146 @@
-Return-Path: <devicetree+bounces-314681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314683-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VRCFJ44yOmpp3wcAu9opvQ
-	(envelope-from <devicetree+bounces-314681-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 09:15:26 +0200
+	id o9HeF98yOmqJ3wcAu9opvQ
+	(envelope-from <devicetree+bounces-314683-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 09:16:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56B806B4C1E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 09:15:26 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA7476B4C65
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 09:16:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YULqLzxC;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314681-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-314681-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=h5CfAzdI;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314683-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-314683-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E5A8C301625F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 07:15:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 630F130277BE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 07:16:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED5173C5849;
-	Tue, 23 Jun 2026 07:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CBE03C584A;
+	Tue, 23 Jun 2026 07:16:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2C8B2D7D59
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 07:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5D225B0BD;
+	Tue, 23 Jun 2026 07:16:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782198921; cv=none; b=N8oiOoesLtQrDrSd5spx/dDGpwVKEzmFB50e0xkfWBahNlFJkVs5Y8eZ9VCydgATMTFfdy/i3EebEb20UcAflct+aAhPFJchSr+IhE4SojefK+dYwZeDDB9Yxr8muam5ZreN4KT5pX2rSOzStHQYc/VoUbQg+nJFi0fYrA81Li4=
+	t=1782199005; cv=none; b=j8EGx08RToJubdyizTizCvGwlx1EvI8lFRcwkhydSN+3rid/Jk9gDGe66Nei8m75TvzjFLDbJDLtCy/Zjt5jJAUrm/pwvPWUNQryVas2yGGc8Wwub7ov1hOLAXBvRxg8f5QClZff9J8JQ2PDm7FSMvxcl589+XcDWCxyLK1Ddi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782198921; c=relaxed/simple;
-	bh=BkIrv3PeQJrIrIyJpIE7lPE0AkoiwGoLxnXFFNdR3Go=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EiNjygliURWNumZnxwptkOnRSpOdIXp8YvaXWXxsNqV09XIl48Ni8y3/q7qGnBJ3FyEm6MWSY8y2wcljkQ7bOfmt8P8RP5rIfZsZMgUFqzp1jb1Aku61NSMkXeqJses0YR8a/vqdHkmL75MSaU4Q6/lHi9sZLe29OCiWNqrZpO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YULqLzxC; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95E3A1F00AC4
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 07:15:20 +0000 (UTC)
+	s=arc-20240116; t=1782199005; c=relaxed/simple;
+	bh=gpnTGdcztncAjW8i8Gv7WMGY7xQWt1iK0mNs8BKETCM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iNnUibOHhEQ0GD9IA5i9iv12ppGUoG/Kv5XCThJe4izrclXtGJvlfmVKnMb3kA5dAZHt1VvKfLRdmbJEeiMZZveLpNqLU6agVPgx7L+JRXydGfKYO7BwS7GKvoTehInsV5tfoLgHKnT35y5Hhqb/Sl2DboZlPbQL1U7vutaU3yM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h5CfAzdI; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01DAA1F00A3A;
+	Tue, 23 Jun 2026 07:16:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782198920;
-	bh=6+U07TSbyfoGNdA2P/aBkTcdGl+S1M9ab9Yxk/ZPUzI=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=YULqLzxCrdobVNjKQ2ZqvgsdWJB2h6JQAKhLZG6XiWzS3P9MEboRU7kwYwPoF5FsG
-	 tYNvitt9UZhkKMCCn3S9ufSpfjpiNUR6TXdHmzFgCZOFap5rTZsbPOdAcOLlFB+M38
-	 w7/VXBDd9MzHVWvYKaWvHUOSkD47fVrhG4jlDLlObKZYsGcwrY7GIokDfLcfCH7zRI
-	 WEOR9LN5limT2Y0AXUFyScAkkQvSSH8mRmEQXCCXc4pxYlUnmH+Ki0hquGHSHUJbNw
-	 fyNrGMn3aYnkddaaFMUs2R1UUmggx66UyS6WhN2Ei0me22gAoqRTL1QPsUaW3sXz3Q
-	 MriVxbN2dp4zQ==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-39677c80386so57986761fa.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 00:15:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ8g1AE1m2JoJg7O32VmOwoI1RuLP1SKf8RdDo+mot6+FGXgBWmvAEq+btO6JPXZjq4ybwAwCLR/nNz6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4WAaVY0EuN0fhvMa3uD50gA2BC9Fhj1nrbak2//JOyEws88cd
-	xEx6qeYW2dpz5YJ/v2itZwQAwv5Kmw0h+3lokt3BF+NSa/qeT36ioPZGkdhBJ2UNyM5l02s2O2v
-	KMsOircjE51vqQayo3IWsDspNMQ+D+0LdlF6S2FjKBQ==
-X-Received: by 2002:a05:6512:238c:b0:5ad:2a73:8a0a with SMTP id
- 2adb3069b0e04-5addc486646mr466863e87.20.1782198919228; Tue, 23 Jun 2026
- 00:15:19 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 23 Jun 2026 03:15:17 -0400
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 23 Jun 2026 03:15:17 -0400
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260622181909.GA1250822@google.com>
+	s=k20260515; t=1782199004;
+	bh=/yBQWoIX0me/kOlOjp6A2PM4P/0tQRM9KzZq2kfCXQA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=h5CfAzdIb6VramPthISKStfJdMzxXg+18AJ1qlXC2q7je2HpqpaF7AxMnSdXQAIzP
+	 Sj4JgJuAhM2B2/gKTSON9NbNyB5PcNuqQ41T6LqUjYmlc9kI/9kZ2N0ART/knO2nYn
+	 1QLh9dhgmWH+4KmUXZ7Zlna1jXG365gxIt9KgVzyOXJkBtNOBXJ8sVrjMPJh0G2OVV
+	 Ej0dBOMZ0wqMXgAdmP8LBva/Qp3iMD6khTIMuQHMV7/yus6q5Q11qvSseK7e6p9LjW
+	 S0XonmfjLvUzFZ/JmQ8gWO7vnEFxckye+hNZXmxkQohwCPWmJzbNGfG7AbNTGkmalL
+	 YzIesEIkM6SKw==
+Date: Tue, 23 Jun 2026 09:16:40 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Herve Codina <herve.codina@bootlin.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] spi: dt-bindings: snps,dw-apb-ssi: add
+ 'power-domains' property
+Message-ID: <20260623-banana-bettong-from-saturn-417cce@quoll>
+References: <20260622174806.74450-5-wsa+renesas@sang-engineering.com>
+ <20260622174806.74450-6-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260521-shikra_crypto_changse-v1-0-0154cc9cc0de@oss.qualcomm.com>
- <53b1fa61-9692-42fd-a295-98bbeacbcd9a@oss.qualcomm.com> <20260619164506.GA3223@sol>
- <CAMRc=MdJJRPBeNtAUr82b4zv7vLjrRQ76Q3bJHQYEigaE2Hqog@mail.gmail.com> <20260622181909.GA1250822@google.com>
-Date: Tue, 23 Jun 2026 03:15:17 -0400
-X-Gmail-Original-Message-ID: <CAMRc=McxsU8h7ZFFRX+MsrufeWZaXzQv_QZpF3zZWTvOQr6A+A@mail.gmail.com>
-X-Gm-Features: AVVi8Cdztrg_PDv4XwvulJ3y8k7gxEzu4r1Z1W6KytPslNOCvABFoRyn5h6EeHI
-Message-ID: <CAMRc=McxsU8h7ZFFRX+MsrufeWZaXzQv_QZpF3zZWTvOQr6A+A@mail.gmail.com>
-Subject: Re: [PATCH 0/5] Shikra: Add DT support for ice, rng and qce
-To: Eric Biggers <ebiggers@kernel.org>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Thara Gopinath <thara.gopinath@gmail.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Frank Li <Frank.Li@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Harshal Dev <harshal.dev@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org, 
-	Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>, Bartosz Golaszewski <brgl@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260622174806.74450-6-wsa+renesas@sang-engineering.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-4.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314681-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ebiggers@kernel.org,m:herbert@gondor.apana.org.au,m:davem@davemloft.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:vkoul@kernel.org,m:thara.gopinath@gmail.com,m:konradybcio@kernel.org,m:Frank.Li@kernel.org,m:agross@kernel.org,m:harshal.dev@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:kuldeep.singh@oss.qualcomm.com,m:brgl@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:tharagopinath@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gondor.apana.org.au,davemloft.net,kernel.org,gmail.com,oss.qualcomm.com,vger.kernel.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,mail.gmail.com:mid,vger.kernel.org:from_smtp];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:wsa+renesas@sang-engineering.com,m:linux-renesas-soc@vger.kernel.org,m:herve.codina@bootlin.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:wsa@sang-engineering.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-314683-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bootlin.com:email,sang-engineering.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 56B806B4C1E
+X-Rspamd-Queue-Id: EA7476B4C65
 
-On Mon, 22 Jun 2026 20:19:09 +0200, Eric Biggers <ebiggers@kernel.org> said:
-> On Mon, Jun 22, 2026 at 04:25:12AM -0400, Bartosz Golaszewski wrote:
->> On Fri, 19 Jun 2026 18:45:06 +0200, Eric Biggers <ebiggers@kernel.org> said:
->> > On Fri, Jun 19, 2026 at 02:13:28PM +0530, Kuldeep Singh wrote:
->> >> On 21-05-2026 18:47, Kuldeep Singh wrote:
->> >> > This patchseries attempt to enable sdhc-ice, rng and qce on shikra
->> >> > platform similar to other platforms.
->> >> >
->> >> > Previously, the 3 dt-bindigs/DT changes were sent as individual series
->> >> > and with feedback received, clubbed them together as all belong to same
->> >> > crypto subsystem.
->> >> >
->> >> > Here's link to old patchsets.
->> >> > QCE: https://lore.kernel.org/lkml/20260515-shikra_qcrypto-v1-0-80f07b345c29@oss.qualcomm.com/
->> >>
->> >> Hi Eric,
->> >>
->> >> As selftests issues for QCE are now fixed[1], so shikra series should be
->> >> good to proceed? as your concerns[2] are now addressed.
->> >> I am waiting for merge window to end and will send next rev post that.
->> >>
->> >> [1]
->> >> https://lore.kernel.org/linux-arm-msm/20260617-qce-fix-self-tests-v3-0-ecc2b4dedcfd@oss.qualcomm.com/
->> >> [2] https://lore.kernel.org/lkml/20260522024912.GC5937@quark/
->> >
->> > If you think that then it sounds like you need to read what I actually
->> > said.  The fixes are appreciated but don't change the big picture.
->> >
->> > - Eric
->> >
->>
->> Eric,
->>
->> I mentioned it in another thread[1]. This series is not adding any new features
->> to the QCE driver, it describes the hardware. The SoC *does have* this IP and
->> no matter the state of the support in the kernel, there's nothing wrong in
->> extending the existing bindings and adding new dts nodes.
->>
->> Thanks,
->> Bartosz
->
-> It enables the driver on a new platform.  So it very much has a real
-> effect.  It's not just adding a hardware description without a user.
->
+On Mon, Jun 22, 2026 at 07:48:07PM +0200, Wolfram Sang wrote:
+> On the Renesas RZ/N1D SoC, this SPI controller belongs to a power
+> domain. Enable the property to describe it in DTs.
+> 
+> Reported-by: Herve Codina <herve.codina@bootlin.com>
 
-The driver can be disabled by not building it. The hardware description in dts
-must reflect the reality. This is what dt-bindings and devicetree sources do:
-they *describe* the hardware. It's up to the systems integrator to build the
-relevant driver or not.
+No bug to be fixed here. Usually incomplete hardware description is not
+a reported bug.
 
-Let's wait for DT maintainers to respond to v2 once it's out.
+> Closes: https://lore.kernel.org/r/20260622132842.7e0d772c@bootlin.com
 
-Bartosz
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+> 
+> Change since v2:
+> * new patch (Thanks, Herve!)
+> 
+>  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> index 8ebebcebca16..3896ee02d7b6 100644
+> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> @@ -88,6 +88,9 @@ properties:
+>        - const: ssi_clk
+>        - const: pclk
+>  
+> +  power-domains:
+> +    maxItems: 1
+
+You should explain in the commit msg that likely other devices belong to
+power domain as well or likely can belong. Otherwise based on the commit
+msg I would suggest restricting it per variant... except that indeed
+these other variants could have a power domain.
+
+Best regards,
+Krzysztof
+
 
