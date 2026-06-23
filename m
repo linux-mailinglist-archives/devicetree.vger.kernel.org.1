@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-314883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314885-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id R7E3JEueOmpFBwgAu9opvQ
-	(envelope-from <devicetree+bounces-314883-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:55:07 +0200
+	id qKH+A1yeOmpQBwgAu9opvQ
+	(envelope-from <devicetree+bounces-314885-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:55:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E86676B8103
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:55:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C6F46B8129
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 16:55:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=HLwOCHlm;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=gK4oJD72;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314883-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-314883-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=W9s4bgpb;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=PA0dzL9D;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314885-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314885-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 87040306D603
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 14:52:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DEE4C311259E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 14:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2143C9EED;
-	Tue, 23 Jun 2026 14:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3F843D4119;
+	Tue, 23 Jun 2026 14:52:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D09C43D1CC1
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 659FD3CC32B
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782226363; cv=none; b=HknfXGQBRCxy4Vyqj7vUErBG0HOJf4YeSWWIAr4js4QQE5iGhpQqYc733K8k9cN9Ybdu/41q1bkRWAxWlzjuQeffEskwYxZSf35j5fIJ+J0UixHGLs1SFMunn4PsZgXOYi9Kgj1d1eeBSoWQmqQxHL3gNJrFzupMho18bMb0mk8=
+	t=1782226369; cv=none; b=ou3D/11qNoQWIZR1uk39o134kYKTXbhxnLrwP0bWAgPnL7T5qZesMigjRr1orpvyGvas1oxoaOql1+z72uJBi6LVB7JWSQEsIQ+wV3oCJIVMcxrwZboeyT1SpluPosR4/Y7ZIetRsL2q/AbhfGCbWig7jOnsK0dYI4TAXnItng0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782226363; c=relaxed/simple;
-	bh=CADuPPHBFTGamZXiLDVwfcLPxeezA49Zbw+re0HVbOI=;
+	s=arc-20240116; t=1782226369; c=relaxed/simple;
+	bh=ZInW5BeuvtKt7WQjVviDvn0AZGfWJ5zHlxLDGSfpHNI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pPSVL65eKMtfGK0Wa4qUM7L9Dz916zQUwLFOnD2dn+Mlccccb++z06HMM5MmTC46ebfDo6tXCSBeuEqqJXGPSfPNBVC2NXXsCQ09GNo6rPC8e7xY743zs92FK6F5pHrFQh1tO8S4lSNKT2cKE789PTL7u3K2BLtEWKfeIaeJcpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HLwOCHlm; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gK4oJD72; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65NBYdl4113363
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:41 GMT
+	 MIME-Version; b=Fr6FmIK87GL4EW0O70Va1xW+CeASE70VfHDrEnov0/+HRGg/dJ3L4NJjlrwaMR9STaf8Dy3pz3yKeyCgThLC3NRO8MdYOxE7bbqI9HHKYevK8ik2SkeXHkzVf9AA5UCgax7MMTzd96xjoEdGt0LRwQNvTmMTBTDEfuU7OgNCHcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=W9s4bgpb; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PA0dzL9D; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65NDFqeR271015
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:47 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=B0ZrDubUMv3
-	UsfDfx0OoaWw1HQVC6S6Wq7xyx/eBxqU=; b=HLwOCHlmT0pbctt3AL2B4KECHEQ
-	z96FH19Yupn/8HcDB6GeB3eXnyFaMGwi6N8bB5k6xClW5CECYyF/NQMH3JIkVlR1
-	gzfkY9lCq7iv6eAQx9hlCNbJCoh/guJmGx64+vcKzJAch5gd/htA0lGUhbz63F4S
-	ZO6BOPNCU+9/e5COQ0IiG7f53GfeVmwvB0Nfx1jRxDMOBQeLw32KZD6br02NS168
-	0dqWIIMC1kD/YC148Oaagg/wO0Cc/3rokwys9bXWAHhh7RB2UwodpiPskui3dcG9
-	lnfZNV0SlH3tF8NZAt9ghefIOvEJRHBoTxbqFT0H8piATX1wvn/SLH1yNDA==
-Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com [209.85.217.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eymnvt392-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=z/hxETDnXsC
+	raHrXPssAhfCHbQlGbo8HPXOtzZsYNVQ=; b=W9s4bgpbLDsFB3yz0AYq4TU2AEV
+	XhrGPGaKIOEhxj/XhfZ0L7CxS4gfx20iYodnmRt9WKHe8hp8UFfcEx4VbNb9GO/Y
+	2z7PH9WAuvN2Ac8NbNzRZJU9w2gRHveHX9LI1OqsoPyFT3FqVRDW2MqBXM3Rrntw
+	hYDvi1ofVjyKx94pa0btKCDv+1mJEE+YJ1iePOiqNn4oVgY5rd65fGNETAua7t+w
+	TSrKrZ28SxVBvWAzbrXH9AFugfxwYRTPpOv1Yeso12o2G4+N/acMHxhnkppErKG0
+	ZITjy2i677Dv7f5AiZaV9RGtfit5OIwgVdcdbJkjuLAKK3UuLeSjuPmo8/w==
+Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com [209.85.222.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eytvh0f8g-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:40 +0000 (GMT)
-Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-6c554284973so6936075137.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 07:52:40 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 14:52:47 +0000 (GMT)
+Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-966cf5e2a48so2794450241.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 07:52:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782226360; x=1782831160; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1782226367; x=1782831167; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=B0ZrDubUMv3UsfDfx0OoaWw1HQVC6S6Wq7xyx/eBxqU=;
-        b=gK4oJD72eBZHQAQnT6xf1EzGpzR7+vEyfGJJMfRzZDY+Ky4cvZF0h0ntt2iVwRpUB2
-         JWI4ugXHOxFp0eDPa3gTQ4SwGLJDvjS7UYMIfPDj/82ep7uFVdpwX6cqxzC7QNUWZ+Sw
-         3JAq36TXz4Mo8osdFOH6cyqUI+WNngmrKGwDxVrStQcd80vS/YpjstESciXquujK0wXv
-         JRu/3WUHsNvpeCumoW0c8QTXjqTwHPuedWugH9qP50bBA+OcHzvYzDMDzcKoiB0QJxjC
-         ScG3ivR5/o7/KxIpXxKj58G6aWpUb2Ey92z1bageiGMCKMtMPNwo08vH5qAS4sfr/c+f
-         u+Bg==
+        bh=z/hxETDnXsCraHrXPssAhfCHbQlGbo8HPXOtzZsYNVQ=;
+        b=PA0dzL9DgJnUvGnTRkez/oj8oJ4n+xi4xvkBz2WiX59976p3UeLOCDUpjquUNIhccp
+         140dNENRcRDkBNIjr5OUR4sC9FPNiAV+WffJwpRuOV7DUjtZc5beNG2S5qn1YBciIlhS
+         z51gbPZFTMIRgCi9ORRbma7RAJRCFgUt0e3lbwxdjTgxCnQWk7twcxW/kpZ/umjnEqiH
+         kf83q3xsch9SLRE5lM0C3ozBgFhCmbWQBxu+Q0gII/uGaKYPY028ZtkpC0PPUOrbI4DE
+         SdCOUl4GP8ksB8hEt5+9OzTEaXMbg/K9SSjT7qtymXq1XR9XEE0yt0TBFVwKOTw3V7zP
+         /+vA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782226360; x=1782831160;
+        d=1e100.net; s=20251104; t=1782226367; x=1782831167;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=B0ZrDubUMv3UsfDfx0OoaWw1HQVC6S6Wq7xyx/eBxqU=;
-        b=fwtftQrjudKmHOdnbCKmrBYZqBr2Rb1ToddfBw2hri9YY7e2/yVuOzpUWfuRH/ohwP
-         akAkcx5N0wusBi4ilstgAd1jcrekUzd0OBrtpEFnWXUNWzbtQmV2EuTnDiyDK5aa/QVP
-         A8/KRzlUHuBZYpxtNXR8W5uFag0LSLi7P+kYCh5ionsgjmxkq0AWiiPFtNql3t4WEx8I
-         WZvuMEf8tNt0bwjT1Cg5lAOCy59MY2CqtD0yTVoL8Ea+q3Dy5KU2d2wHbGEtWNKmcStk
-         rRVS7kbt6yh+McjT7pQJUlWAeXueDBCT+tfBl+jtRrUbVyxNi67TL7AD5dCUTvD4gHud
-         V0bg==
-X-Forwarded-Encrypted: i=1; AFNElJ8B2DNHGPqe9liZN6yVNg3BGBpD/uF94mteyu9xCPP6JaHQlKRrQhFhJt4fQXetLAdvFESMhN8u9vut@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOuEhJMhmlDoVwnHQ5momiI8WdRuN+pLU12HofgpXMlBclyiEW
-	Ic/t+/moLFPkUswupZyadpUQvYFlh78ZZgNGjxfUpkxN/suw/eQIvJiXDjpGS9qcQx/tCXrBpVs
-	5UtMJrtX0XWmdMY8i35pDPsQcP7S3rHDqV3FBiFZR84a4QjoP+bY9usY1mP7iqs20ZS74rRNj
-X-Gm-Gg: AfdE7ckCIuz6jkv9OsOUeHzcZreaRhE8cnXC41xQ1mIR82bXTSZClMcQlYUEgX/5h8g
-	9Ly/Os9YM6HzHJviOjP7Du3LPdgoYmmvZqpFotN2E5vPRchhixyAwwn1dkl7WSv+i7hroV+5e0Z
-	KspnEBkFcosJ/YbvakRcNjZyZSLn1+Faqf742ZhXsjCXqDvmIPpP+b+q0XYQ4hPUatyUBOgrAYl
-	9JIuvRLwRz5L/QOZI+JfHWFn1DKwITzFPhvMJ6ODqrEVH7Btn5u/srL7gNbFZw0dgq6NGnd/H2b
-	BIvRfZ98692S+KtzUbT/Ib0XagoRX9Pq5h0yf7Zku8SmW/VXv4jDBzTYe5k5RQaqaK3H1mHZihk
-	zq06ED89VIVheuPrQHfI5AxmTReaZaKHBctRrRTDjGTcElhOv7AV+VPlOveaWn676Va/7rjAX+n
-	Tpg7kz+TGlSPc+QiCStaMjYeEipg==
-X-Received: by 2002:a05:6102:685d:b0:72b:a25a:60bb with SMTP id ada2fe7eead31-72ba25a669fmr6040860137.10.1782226360209;
-        Tue, 23 Jun 2026 07:52:40 -0700 (PDT)
-X-Received: by 2002:a05:6102:685d:b0:72b:a25a:60bb with SMTP id ada2fe7eead31-72ba25a669fmr6040778137.10.1782226358197;
-        Tue, 23 Jun 2026 07:52:38 -0700 (PDT)
+        bh=z/hxETDnXsCraHrXPssAhfCHbQlGbo8HPXOtzZsYNVQ=;
+        b=pNYFGYlINzyIxvbkSPvHVtQ6dPDaGXfZzifjAAEiwzrZdPplRrXe+fZlMmR32koret
+         suy/V6nJwCxn9DkeRxHYkc71+JJ/SWQn9c9g8iX321+OrCFSY0cXeicvj9Y7eOOXQSxm
+         WKRSADzUajdosrOlq4GiKVI9wGj3Kx4IWdDnbl6Ay0RB/wNZdlWMn7WTonwwr6xNYTqw
+         1PpZGWbycM+RmxlOP20++/jipIgGZ2cRX1PaLo86Z1/RAinqBpngr5/9upBCSI4sLvmg
+         szCb3wkdiBB/QEtNwxSlPeLEfkqGXFLTuBRCWrsi8KdAhs5ZBCIjtbrd9RoEWSdE7fXv
+         z81w==
+X-Forwarded-Encrypted: i=1; AFNElJ+nwizwsyvj13p/k8LyNm3YrprqCopLdXFaTy53jyfF1FwfWFW9eSSKGm9bHDspwcwzQqQOe9Z11VSj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9KCHVvKMph1H2M4nCpQQvuSi+g+aqdLT3Eul76xAfcyEjuV9e
+	WZzcR8j1KKCnVcktZ+kallg+RFtIs7TdwiWI9qahR2gJbKfvTUwvaG5Yx3943zaeofOv+dAZl85
+	MkGgn45UQMhB9GGP1+wSTyhaWKhWkcRjVIezXqr91IwrhneJRF6sO0kVleXdEEkI3W0K6Sujg
+X-Gm-Gg: AfdE7cmQDsl+IWVkXN/hPCtckHgek3u9DPuGQJj6H74IrrwrvrxAN7FOQZqUspxCr8R
+	iMEE9UO/IVXqHlKJaUVa5B7bmW7iMYgFMxL7GgIBPDPoVGs8o6hU3W4pR2L4ClCmIzdsI9EKPsY
+	kpXFzhl/wF/kQDdGv47/o2m+R67j/lA/lfIgyc9+GX4OdXnmMiqdiiNcGEe3vfkh/ei96wYW2Mh
+	tn3ZrYnsmxM57/sUvgVZDDBC+8xQgN7PrHRMtsX/TFsf4grZhSgVHTx0qpodAZxWEgNh5l5LojF
+	y9EpNpEHkCyy2svIxhSO0cyVExAJeQPWHDcB3nZssGQQcqfIIwUKsUpDKlPaDcPK21Wq5klmApU
+	SYya391kQPdhqHPADEdQw48rgu1d6asEbZ6/F7Oot3nOBgD5N6z44JtpzDP3l5rvbKzolueYn77
+	HbPH+MGfuuxqpIA59liUYbQ04nVg==
+X-Received: by 2002:a05:6102:956:b0:650:94b2:3839 with SMTP id ada2fe7eead31-72ff476b12fmr1406006137.7.1782226362491;
+        Tue, 23 Jun 2026 07:52:42 -0700 (PDT)
+X-Received: by 2002:a05:6102:956:b0:650:94b2:3839 with SMTP id ada2fe7eead31-72ff476b12fmr1405980137.7.1782226361847;
+        Tue, 23 Jun 2026 07:52:41 -0700 (PDT)
 Received: from shalem (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c0c60aca46csm534042666b.36.2026.06.23.07.52.36
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c0c60aca46csm534042666b.36.2026.06.23.07.52.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jun 2026 07:52:36 -0700 (PDT)
+        Tue, 23 Jun 2026 07:52:39 -0700 (PDT)
 From: Hans de Goede <johannes.goede@oss.qualcomm.com>
 To: "Rafael J . Wysocki" <rafael@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -107,9 +107,9 @@ Cc: Hans de Goede <johannes.goede@oss.qualcomm.com>,
         Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
         Abel Vesa <abel.vesa@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: [RFC 06/12] ACPI: scan: Retry acpi_device_notify() in DT-ACPI hybrid mode
-Date: Tue, 23 Jun 2026 16:52:19 +0200
-Message-ID: <20260623145225.143218-7-johannes.goede@oss.qualcomm.com>
+Subject: [RFC 07/12] ACPI: Make device_match_acpi_handle() also check the secondary fwnode
+Date: Tue, 23 Jun 2026 16:52:20 +0200
+Message-ID: <20260623145225.143218-8-johannes.goede@oss.qualcomm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
 References: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
@@ -120,45 +120,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=dOWWXuZb c=1 sm=1 tr=0 ts=6a3a9db8 cx=c_pps
- a=N1BjEkVkxJi3uNfLdpvX3g==:117 a=xqWC_Br6kY4A:10 a=FelO9ux0wxsA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfX3itvGcS6UNN/
+ PIklI6JVRV5GIt3mA32EOmtLARzuQ3E+usylw6Ul3AlToOOofolWMMXDpoOD6W0xVsnRXDsOo1W
+ ZAuGURZsd78KaJQY313DjFqDqzpdzzVhZhfz6m0evDKsmV8uBM4UWsKYNy5J74Gqsy1v/kvywXI
+ 7C8o0hzYfAu418cJeoAMwAVzTPIiOM7LN0PuyY0DFLtafjr+4REiIBtFcK+XVj1eOEFNo8ur1yl
+ u3fJ1dgMnjHYa0HjsbM/i9OzQ+7CDSTl3PX4j64gT2/OZPZytEBsj20B+ghGTLUi5PtVkQiMlF2
+ q+yr0s+MQC7N+pHTS0abXNS+dZIessvg5eCBnFCiJqdIIEDFeH4DHc/eUsaok1HTKRNFrPwy2YU
+ b6UALttV9J6glUVzaTTQZq+sDCUg15VhgHqAt/tZ6T+AHtC9g68XZr+k56na0ePVyBCcxOi/w5l
+ BMFdxsaFMxsXZlPcdcA==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfX7lGRjbNrLWNB
+ 4OC2yTCELshI58EOm40rAjEZyxG9dvjKB2xzBDhxx53Dm4fAhpRC3xKb42ITcgD/ptwyUHoj7Aq
+ Duu5kdhF3YH0mIZr9fkMcLQjG+58KTw=
+X-Proofpoint-GUID: 4-fMgND-A3OtDBREdZznwHmqeyZLilPy
+X-Authority-Analysis: v=2.4 cv=AJDhMgPs c=1 sm=1 tr=0 ts=6a3a9dbf cx=c_pps
+ a=UbhLPJ621ZpgOD2l3yZY1w==:117 a=xqWC_Br6kY4A:10 a=FelO9ux0wxsA:10
  a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=gowsoOTTUOVcmtlkKump:22 a=EUspDBNiAAAA:8 a=wPdX0GlK9JqYqbOWQHgA:9
- a=crWF4MFLhNY0qMRaF8an:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfX65qtM65WFWxY
- zAIjGIfpLgORdjrQVz8oFSFLTifRNGOriJZwEkY50XLEdCamgT1M3bnj2o5mhmPXkPegALE/+IR
- omQSZSmO+FXn1orHS9DWzCH6SF4Ag/c=
-X-Proofpoint-ORIG-GUID: NXkIlH-OLJXSEzVrKLd6u3-nuFrmQUKA
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjIzMDEyMiBTYWx0ZWRfX3N9BwBnmMgNb
- GoeEEcoAHqui9Ad0hhh/myuuUoT2buGlsumqpYkqi9nc1Y0Shx1KCBIO7CwrDfsWViNgstCDmmM
- 9ghvkqEPVsMtepNYXFBo9m799+eG5661RoZclyG1o1hsoBnuW10ORbtsOqKyNgeWEhwF37qEgGo
- 4X7gp/cSff+goLsyFi4SDQu7/pa1kE2Aiaz9Kj6eqww1NsR9LKJahtyapjwSQcPLRJNznQw3B37
- Q3zt9E9PZyq5UraTyXgMxORlASlOY+PtDRA+6J6UxZbV7PlrM/5WLN0ps95Xc9lNJATCy9YUsSF
- 1qchQKvHW3+X9aIltPQ6aHoIw5QDtNHSwODHGYxb9DhTUBXLR3S+u80lw3UHDfsAsP6NCmEJvzK
- 4VDP01M8Gtm7rmH9TfwyfJAWWxLpHhxZKtPT8qqQG1XZWujs553nSDo1mPhc691k3fnFSsI1glK
- f4rS9pdz2/9wjWHCWoA==
-X-Proofpoint-GUID: NXkIlH-OLJXSEzVrKLd6u3-nuFrmQUKA
+ a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8 a=Z_5jWvXtYKhrpjqL7kIA:9
+ a=TOPH6uDL9cOC6tEoww4z:22
+X-Proofpoint-ORIG-GUID: 4-fMgND-A3OtDBREdZznwHmqeyZLilPy
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-23_03,2026-06-23_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
- adultscore=0 bulkscore=0 clxscore=1015 phishscore=0 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2606230122
+ lowpriorityscore=0 adultscore=0 impostorscore=0 clxscore=1015 phishscore=0
+ malwarescore=0 suspectscore=0 bulkscore=0 priorityscore=1501 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606230122
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-314883-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-314885-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:johannes.goede@oss.qualcomm.com,m:srini@kernel.org,m:krzk+dt@kernel.org,m:lumag@kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-acpi@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -167,98 +166,52 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[johannes.goede@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E86676B8103
+X-Rspamd-Queue-Id: 7C6F46B8129
 
-of_platform_default_populate_init creates DT platform devices from
-an arch_initcall(), so before acpi_scan_init() runs this causing
-acpi_device_notify() to be unable to honor "acpi-path" properties
-in DT-ACPI hybrid mode.
+In DT-ACPI hybrid mode the secondary fwnode of a device may point to
+an ACPI fwnode instead of the primary.
 
-Re-call acpi_device_notify() at the end of scanning ACPI devices to
-fix this up.
+device_match_acpi_handle() is used to find parent GPIO/I2C/SPI controllers
+when resolving ACPI device resources from (_CRS) in this case we always
+want to also check the secondary fwnode to help find the parent.
 
-Note this relies on the driver which may use the bound ACPI fwnode
-to only register after subsys_initcall(acpi_init) has run.
-
-TODO: It is probably better to add an acpi_platform_device_pre_probe()
-function and call that from drivers/base/platform.c:platform_probe() and
-dot the setting of the secondary fwnode for platform-devices with
-an "acpi-path" property there. Basically moving the "if (acpi_dt_hybrid)"
-block in acpi_device_notify() to a new acpi_platform_device_pre_probe().
+Modify the existing device_match_acpi_handle() function to also check
+the secondary fwnode.
 
 Signed-off-by: Hans de Goede <johannes.goede@oss.qualcomm.com>
 ---
- drivers/acpi/scan.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+ drivers/base/core.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-index 4836286968e8..b305c03e8504 100644
---- a/drivers/acpi/scan.c
-+++ b/drivers/acpi/scan.c
-@@ -21,6 +21,7 @@
- #include <linux/dmi.h>
- #include <linux/dma-map-ops.h>
- #include <linux/platform_data/x86/apple.h>
-+#include <linux/platform_device.h>
- #include <linux/pgtable.h>
- #include <linux/crc32.h>
- #include <linux/dma-direct.h>
-@@ -2818,6 +2819,22 @@ static void __init acpi_get_spcr_uart_addr(void)
- 	acpi_put_table((struct acpi_table_header *)spcr_ptr);
+diff --git a/drivers/base/core.c b/drivers/base/core.c
+index bd2ddf2aab50..2573253f5815 100644
+--- a/drivers/base/core.c
++++ b/drivers/base/core.c
+@@ -5357,7 +5357,9 @@ EXPORT_SYMBOL(device_match_acpi_dev);
+ 
+ int device_match_acpi_handle(struct device *dev, const void *handle)
+ {
+-	return handle && ACPI_HANDLE(dev) == handle;
++	struct acpi_device *adev = to_acpi_device_node_any(dev->fwnode);
++
++	return handle && adev && adev->handle == handle;
  }
+ EXPORT_SYMBOL(device_match_acpi_handle);
  
-+static int acpi_scan_retry_of_acpi_binding(struct device *dev, void *data)
-+{
-+	struct fwnode_handle *fwnode = dev_fwnode(dev);
-+	const char *acpi_path;
-+
-+	/* Check primary fwnode is OF and secondary fwnode is not yet ACPI */
-+	if (!is_of_node(fwnode) || is_acpi_device_node(fwnode->secondary))
-+		return 0;
-+
-+	/* If there is an "acpi-path" property retry binding ACPI fwnode */
-+	if (of_property_read_string(dev->of_node, "acpi-path", &acpi_path) == 0)
-+		acpi_device_notify(dev);
-+
-+	return 0;
-+}
-+
- static bool acpi_scan_initialized;
- 
- void __init acpi_scan_init(void)
-@@ -2881,6 +2898,18 @@ void __init acpi_scan_init(void)
- 	if (!acpi_gbl_reduced_hardware)
- 		acpi_bus_scan_fixed();
- 
-+	/*
-+	 * of_platform_default_populate_init creates DT platform devices from
-+	 * an arch_initcall(), so before acpi_scan_init() runs this causing
-+	 * acpi_device_notify() to be unable to honor "acpi-path" properties
-+	 * in DT-ACPI hybrid mode. Re-call acpi_device_notify() to fix this up.
-+	 * Note this relies on the driver which may use the bound ACPI fwnode
-+	 * to only register after subsys_initcall(acpi_init) has run.
-+	 */
-+	if (acpi_dt_hybrid)
-+		bus_for_each_dev(&platform_bus_type, NULL, NULL,
-+				 acpi_scan_retry_of_acpi_binding);
-+
- 	acpi_turn_off_unused_power_resources();
- 
- 	acpi_scan_initialized = true;
 -- 
 2.54.0
 
