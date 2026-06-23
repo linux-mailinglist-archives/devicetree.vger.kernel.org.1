@@ -1,167 +1,263 @@
-Return-Path: <devicetree+bounces-314783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-314773-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QEXfBiNoOmoz8QcAu9opvQ
-	(envelope-from <devicetree+bounces-314783-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:04:03 +0200
+	id xsZfGGZnOmrr8AcAu9opvQ
+	(envelope-from <devicetree+bounces-314773-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:00:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A84AA6B6814
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:04:02 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21D1E6B67BC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 13:00:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=microchip.com header.s=mchp header.b=NMPMBRRz;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314783-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-314783-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=microchip.com;
+	dkim=pass header.d=cknow-tech.com header.s=key1 header.b=HYa5Rqwl;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-314773-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-314773-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=cknow-tech.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8E14B30407EB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 11:01:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 014BA3005AB3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jun 2026 10:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D123D5237;
-	Tue, 23 Jun 2026 11:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9B13D16F9;
+	Tue, 23 Jun 2026 10:59:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B3E3D5244;
-	Tue, 23 Jun 2026 11:01:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B3F3D16E4
+	for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 10:59:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782212468; cv=none; b=IrfqO1S1T4RIRVwA4wKjl7HZBytlHZLENILMJDRZbel7MEG5XNS7+iwA/rqTI+IDtWCD8wZYCnp3csD9My+03IUwQdCxhxegblXD44/xniUTqGq7639luvfN+FHWLLaeSJQ6ECtjhF7mCjWFiCSUuGnxoG1tkX5k6W6VS85sHHA=
+	t=1782212394; cv=none; b=Zg17fC8UdEHDVZgKHaOCKCPpdH7HzobEPruRboznkr9PHfgVNMLJolZRNn0FaHfKSyAz0ZRBFSbU4HBd4gvXbJMQc4CIkf8lY2Ga6C4Jx8vG2pTl3BSrru4ByQbqFKJVkI0oJdOfGlYzDizlBrNQJF66Q6Blbu+L5Yhprul3kdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782212468; c=relaxed/simple;
-	bh=kCkIkCkZ+wCnKYcp7lkrWemwFvAzwzkCoeW6zMFBkzc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Myp01OPwxHScKUboWGB5fIV8wfS0IsCcjxvUipARKUy+EsLXQhn0lkAbH6G9z6cOf5tWWvMyMtt6FMFIgQNvlj2yKTfa9/eK8Jo4kceuGU+qYQ9ACWtnTIuwi4Kd9Y6gyBTbacj9hRSMFuJoOLvE2hMhk0xLy1Y+2ZM3gmaEGrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=NMPMBRRz; arc=none smtp.client-ip=68.232.153.233
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1782212468; x=1813748468;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=kCkIkCkZ+wCnKYcp7lkrWemwFvAzwzkCoeW6zMFBkzc=;
-  b=NMPMBRRzZ4/DZKfnKAzR8LbON2mwuQ440QMkJeB9phMNehXXLOU9ULhD
-   yvFalHNax0eSK8+tsvTd5nFRzFrSK5/mCJl6TZz2WrvVDtRRcOReACKg0
-   XGqUzX11WOe8l+xyjB9PUszPhzmxuxNbzQEozgcaIdqHRyFqNZ5SB2fUG
-   dhU88HVFtuq/sszquEvCA8Mz1ahrUGG3HfdIEVlY1Wre6vRgzKHquuq3+
-   ggtDYDU1nVCvyCwIDd8u63cw4ahQ4aaAiyE7fgWX8gOUBEkEV82ecn+bz
-   1eVk3rTcpyzgodcEu0zMXfRVXv7r2GkjRr8+I/swwOy2hVNfFR7A8MUGX
-   Q==;
-X-CSE-ConnectionGUID: M1Dk4sdfSjKBfdLv3FILiQ==
-X-CSE-MsgGUID: gLEfMQIZSlmkqlsd4r9xjw==
-X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; 
-   d="scan'208";a="290925173"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Jun 2026 04:01:07 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Tue, 23 Jun 2026 04:01:05 -0700
-Received: from che-ll-i67070.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Tue, 23 Jun 2026 04:00:59 -0700
-From: Varshini Rajendran <varshini.rajendran@microchip.com>
-To: <ehristev@kernel.org>, <jic23@kernel.org>, <dlechner@baylibre.com>,
-	<nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<srini@kernel.org>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <varshini.rajendran@microchip.com>
-Subject: [PATCH v2 09/12] ARM: dts: microchip: sama7d65: add otpc node
-Date: Tue, 23 Jun 2026 16:29:41 +0530
-Message-ID: <20260623105944.128840-10-varshini.rajendran@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260623105944.128840-1-varshini.rajendran@microchip.com>
-References: <20260623105944.128840-1-varshini.rajendran@microchip.com>
+	s=arc-20240116; t=1782212394; c=relaxed/simple;
+	bh=1g3yVFwvi3QLJf+kLTELRhLDnDw+SCQq8UtKU9T4u5s=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=X8q5sDoftu1aFGrHbMGELAfVbptDBt4MqektwbFb8zg5UNLCtPcohppNh0/iqOX8REvM/n1ybwelwQojfiR1BJPosUhYtVfMmuboSLDlJyk5Qy8LwEnNfY3jyWkYdhZMYXOaMPskmdj3+q0psmIgDwYng0koT4WMbojx2cRN8R4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=HYa5Rqwl; arc=none smtp.client-ip=91.218.175.178
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1782212387;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=bgNiBBf4cu32q0ZEEYeIX25WTZd4hvVr+vxDhDI/sgY=;
+	b=HYa5RqwlJ97bZG6XkmSoo1V2BG9Sl5u3bd9B979ewpsl0t7WfPVOgbblAc9tppbn8W81IF
+	ws3PmW4qlw5MDLAaSsT47fneTsbFfeWdM8GpbxLKDEUR6iXpzuncovQpZn0HOawytQ96OD
+	smvR8ur1LVCWoZE+c0ZuUfVD2pkaUnCCWPs7pzuhq/5/5hIC2xO+eLdMjL+o4inKUWrf0y
+	W+AZTc3j/AMmNkGi2FLd4uqNB1W+jtKIEu7TvC3PY8+CQrtAMWd8JGLPV1y7B5wvqlBAD3
+	Eotg7rAGQ5w54BsUVGBXghHV7esKFYng9FeAy4MqfP53ZogSiISQPVJJ4MoVQg==
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 23 Jun 2026 12:59:42 +0200
+Message-Id: <DJGDK9WA46IK.AH6NJASRAR0J@cknow-tech.com>
+Cc: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>,
+ <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ "Ricardo Pardini" <ricardo@pardini.net>
+Subject: Re: [PATCH v3 4/4] clk: rockchip: rk3588: add GATE_GRF clocks for
+ I2S MCLK output to IO
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+To: "Daniele Briguglio" <hello@superkali.me>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
+References: <20260320-rk3588-mclk-gate-grf-v3-0-980338eacd2c@superkali.me>
+ <20260320-rk3588-mclk-gate-grf-v3-4-980338eacd2c@superkali.me>
+In-Reply-To: <20260320-rk3588-mclk-gate-grf-v3-4-980338eacd2c@superkali.me>
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[cknow-tech.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[cknow-tech.com:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-314773-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:ricardo@pardini.net,m:hello@superkali.me,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-314783-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[varshini.rajendran@microchip.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:ehristev@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nicolas.ferre@microchip.com,m:alexandre.belloni@bootlin.com,m:claudiu.beznea@tuxon.dev,m:srini@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:varshini.rajendran@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[varshini.rajendran@microchip.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[cknow-tech.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:dkim,microchip.com:email,microchip.com:mid,microchip.com:from_mime,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,cknow-tech.com:dkim,cknow-tech.com:mid,cknow-tech.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A84AA6B6814
+X-Rspamd-Queue-Id: 21D1E6B67BC
 
-Add OTPC node along with temperature calibration cell.
+Hi,
 
-Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
----
- arch/arm/boot/dts/microchip/sama7d65.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+On Fri Mar 20, 2026 at 11:34 AM CET, Daniele Briguglio wrote:
+> The I2S MCLK outputs on RK3588 are gated by bits in the SYS_GRF
+> register SOC_CON6 (offset 0x318). These gates control whether the
+> internal CRU MCLK signals reach the external IO pins connected to
+> audio codecs.
+>
+> The kernel should explicitly manage these gates so that audio
+> functionality does not depend on bootloader register state. This is
+> analogous to what was done for RK3576 SAI MCLK outputs [1].
+>
+> Register the SYS_GRF as an auxiliary GRF with grf_type_sys in the
+> early clock init, and add GATE_GRF entries for all four I2S MCLK
+> output gates:
+>
+>   - I2S0_8CH_MCLKOUT_TO_IO (bit 0)
+>   - I2S1_8CH_MCLKOUT_TO_IO (bit 1)
+>   - I2S2_2CH_MCLKOUT_TO_IO (bit 2)
+>   - I2S3_2CH_MCLKOUT_TO_IO (bit 7)
+>
+> Board DTS files that need MCLK on an IO pin can reference these
+> clocks, e.g.:
+>
+>     clocks =3D <&cru I2S0_8CH_MCLKOUT_TO_IO>;
+>
+> Tested on the Youyeetoo YY3588 (RK3588) with an ES8388 codec on I2S0.
 
-diff --git a/arch/arm/boot/dts/microchip/sama7d65.dtsi b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-index ba775459a816..5867fda378b1 100644
---- a/arch/arm/boot/dts/microchip/sama7d65.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-@@ -15,6 +15,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/mfd/at91-usart.h>
-+#include <dt-bindings/nvmem/microchip,sama7g5-otpc.h>
- 
- / {
- 	model = "Microchip SAMA7D65 family SoC";
-@@ -1112,6 +1113,21 @@ ddr3phy: ddr3phy@e3804000 {
- 			reg = <0xe3804000 0x1000>;
- 		};
- 
-+		otpc: efuse@e8c00000 {
-+			compatible = "microchip,sama7d65-otpc", "microchip,sama7g5-otpc", "syscon";
-+			reg = <0xe8c00000 0x100>;
-+
-+			nvmem-layout {
-+				compatible = "fixed-layout";
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+
-+				temperature_calib: calib@41435354 {
-+					reg = <0x41435354 0x2c>;	/* Temp calib data packet TAG */
-+				};
-+			};
-+		};
-+
- 		gic: interrupt-controller@e8c11000 {
- 			compatible = "arm,cortex-a7-gic";
- 			reg = <0xe8c11000 0x1000>,
--- 
-2.34.1
+Doesn't this break audio on a lot of RK3588 based boards?
+I have a kernel with this patch set and since then analog audio on my NanoP=
+C-T6
+LTS and my WIP NanoPC-T6 Plus stopped working.
+Until I did s/I2S0_8CH_MCLKOUT/I2S0_8CH_MCLKOUT_TO_IO/ in my dts[i] files.
+
+And I wouldn't be surprised if the same thing applies to other RK3588 based
+boards? The same dtb file with a 7.1 kernel, without this patch set, works.
+
+Cheers,
+  Diederik
+
+> [1] https://lore.kernel.org/r/20250305-rk3576-sai-v1-2-64e6cf863e9a@colla=
+bora.com/
+>
+> Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Tested-by: Ricardo Pardini <ricardo@pardini.net>
+> Signed-off-by: Daniele Briguglio <hello@superkali.me>
+> ---
+>  drivers/clk/rockchip/clk-rk3588.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>
+> diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk=
+-rk3588.c
+> index 1694223f4f84..2cc85fb5b2cc 100644
+> --- a/drivers/clk/rockchip/clk-rk3588.c
+> +++ b/drivers/clk/rockchip/clk-rk3588.c
+> @@ -5,11 +5,14 @@
+>   */
+> =20
+>  #include <linux/clk-provider.h>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/of.h>
+> +#include <linux/slab.h>
+>  #include <linux/of_address.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/syscore_ops.h>
+>  #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> +#include <soc/rockchip/rk3588_grf.h>
+>  #include "clk.h"
+> =20
+>  #define RK3588_GRF_SOC_STATUS0		0x600
+> @@ -892,6 +895,8 @@ static struct rockchip_clk_branch rk3588_early_clk_br=
+anches[] __initdata =3D {
+>  			RK3588_CLKGATE_CON(8), 0, GFLAGS),
+>  	MUX(I2S2_2CH_MCLKOUT, "i2s2_2ch_mclkout", i2s2_2ch_mclkout_p, CLK_SET_R=
+ATE_PARENT,
+>  			RK3588_CLKSEL_CON(30), 2, 1, MFLAGS),
+> +	GATE_GRF(I2S2_2CH_MCLKOUT_TO_IO, "i2s2_2ch_mclkout_to_io", "i2s2_2ch_mc=
+lkout",
+> +			0, RK3588_SYSGRF_SOC_CON6, 2, GFLAGS, grf_type_sys),
+> =20
+>  	COMPOSITE(CLK_I2S3_2CH_SRC, "clk_i2s3_2ch_src", gpll_aupll_p, 0,
+>  			RK3588_CLKSEL_CON(30), 8, 1, MFLAGS, 3, 5, DFLAGS,
+> @@ -907,6 +912,8 @@ static struct rockchip_clk_branch rk3588_early_clk_br=
+anches[] __initdata =3D {
+>  			RK3588_CLKGATE_CON(8), 4, GFLAGS),
+>  	MUX(I2S3_2CH_MCLKOUT, "i2s3_2ch_mclkout", i2s3_2ch_mclkout_p, CLK_SET_R=
+ATE_PARENT,
+>  			RK3588_CLKSEL_CON(32), 2, 1, MFLAGS),
+> +	GATE_GRF(I2S3_2CH_MCLKOUT_TO_IO, "i2s3_2ch_mclkout_to_io", "i2s3_2ch_mc=
+lkout",
+> +			0, RK3588_SYSGRF_SOC_CON6, 7, GFLAGS, grf_type_sys),
+>  	GATE(PCLK_ACDCDIG, "pclk_acdcdig", "pclk_audio_root", 0,
+>  			RK3588_CLKGATE_CON(7), 11, GFLAGS),
+>  	GATE(HCLK_I2S0_8CH, "hclk_i2s0_8ch", "hclk_audio_root", 0,
+> @@ -935,6 +942,8 @@ static struct rockchip_clk_branch rk3588_early_clk_br=
+anches[] __initdata =3D {
+>  			RK3588_CLKGATE_CON(7), 10, GFLAGS),
+>  	MUX(I2S0_8CH_MCLKOUT, "i2s0_8ch_mclkout", i2s0_8ch_mclkout_p, CLK_SET_R=
+ATE_PARENT,
+>  			RK3588_CLKSEL_CON(28), 2, 2, MFLAGS),
+> +	GATE_GRF(I2S0_8CH_MCLKOUT_TO_IO, "i2s0_8ch_mclkout_to_io", "i2s0_8ch_mc=
+lkout",
+> +			0, RK3588_SYSGRF_SOC_CON6, 0, GFLAGS, grf_type_sys),
+> =20
+>  	GATE(HCLK_PDM1, "hclk_pdm1", "hclk_audio_root", 0,
+>  			RK3588_CLKGATE_CON(9), 6, GFLAGS),
+> @@ -2220,6 +2229,8 @@ static struct rockchip_clk_branch rk3588_early_clk_=
+branches[] __initdata =3D {
+>  			RK3588_PMU_CLKGATE_CON(2), 13, GFLAGS),
+>  	MUX(I2S1_8CH_MCLKOUT, "i2s1_8ch_mclkout", i2s1_8ch_mclkout_p, CLK_SET_R=
+ATE_PARENT,
+>  			RK3588_PMU_CLKSEL_CON(9), 2, 2, MFLAGS),
+> +	GATE_GRF(I2S1_8CH_MCLKOUT_TO_IO, "i2s1_8ch_mclkout_to_io", "i2s1_8ch_mc=
+lkout",
+> +			0, RK3588_SYSGRF_SOC_CON6, 1, GFLAGS, grf_type_sys),
+>  	GATE(PCLK_PMU1, "pclk_pmu1", "pclk_pmu0_root", CLK_IS_CRITICAL,
+>  			RK3588_PMU_CLKGATE_CON(1), 0, GFLAGS),
+>  	GATE(CLK_DDR_FAIL_SAFE, "clk_ddr_fail_safe", "clk_pmu0", CLK_IGNORE_UNU=
+SED,
+> @@ -2439,6 +2450,8 @@ static struct rockchip_clk_branch rk3588_clk_branch=
+es[] =3D {
+>  static void __init rk3588_clk_early_init(struct device_node *np)
+>  {
+>  	struct rockchip_clk_provider *ctx;
+> +	struct rockchip_aux_grf *sys_grf_e;
+> +	struct regmap *sys_grf;
+>  	unsigned long clk_nr_clks, max_clk_id1, max_clk_id2;
+>  	void __iomem *reg_base;
+> =20
+> @@ -2479,6 +2492,17 @@ static void __init rk3588_clk_early_init(struct de=
+vice_node *np)
+>  			&rk3588_cpub1clk_data, rk3588_cpub1clk_rates,
+>  			ARRAY_SIZE(rk3588_cpub1clk_rates));
+> =20
+> +	/* Register SYS_GRF for I2S MCLK output to IO gate clocks */
+> +	sys_grf =3D syscon_regmap_lookup_by_compatible("rockchip,rk3588-sys-grf=
+");
+> +	if (!IS_ERR(sys_grf)) {
+> +		sys_grf_e =3D kzalloc_obj(*sys_grf_e);
+> +		if (sys_grf_e) {
+> +			sys_grf_e->grf =3D sys_grf;
+> +			sys_grf_e->type =3D grf_type_sys;
+> +			hash_add(ctx->aux_grf_table, &sys_grf_e->node, grf_type_sys);
+> +		}
+> +	}
+> +
+>  	rockchip_clk_register_branches(ctx, rk3588_early_clk_branches,
+>  				       ARRAY_SIZE(rk3588_early_clk_branches));
+> =20
 
 
