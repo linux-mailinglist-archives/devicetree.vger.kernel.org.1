@@ -1,532 +1,308 @@
-Return-Path: <devicetree+bounces-315273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315269-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +87hOMTsO2rcfQgAu9opvQ
-	(envelope-from <devicetree+bounces-315273-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 16:42:12 +0200
+	id 2fFVGBHsO2qmfQgAu9opvQ
+	(envelope-from <devicetree+bounces-315269-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 16:39:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CAFA6BF3A8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 16:42:12 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57C5B6BF343
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 16:39:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=Es2glisq;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315273-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315273-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=ixit.cz header.s=dkim header.b=D4Ovcwk8;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315269-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315269-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ixit.cz;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0ED5A311993F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 14:39:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F33D9303B673
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 14:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1E1A3CA4BB;
-	Wed, 24 Jun 2026 14:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B5D3CB2FE;
+	Wed, 24 Jun 2026 14:37:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012068.outbound.protection.outlook.com [40.107.200.68])
+Received: from ixit.cz (ixit.cz [185.100.197.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DCD3C2794;
-	Wed, 24 Jun 2026 14:39:33 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782311975; cv=fail; b=iwmDxV1d+NtZLhksFnbCDaJSqsOD7s/zvXT5Vet3AWs68qHvIqAG26MfePHvUwvMOC0aq+3GI4t/Ylp+29Gp9odiYSuhNpsaY8pqh8HvBN9FCWaSuWDpMwIUXCAdJyMwol4dYdL+fm+rzAhCRi38XRav2eYeQT69Vu3fTtotXOI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782311975; c=relaxed/simple;
-	bh=yzFxhWQc5mxZEiy8R5bgsigQ8+kcHZS2mSqWZEOGTkk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qOvWwZIAPqk5K1aDDgwqwlGKJI0o80mB5fv7JMIBm3iJ93ZGycM4WwwKGMTaD3wXLcbyGqf1LdtOYnVjsCXKGFklJOEQakA1GRnxROyJUSy4msr55k8UowRZXqvncwJ2wBSL2b1kSeU0VBjV7Yum9o0LEG1T1na5NZ/PRguQaGs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Es2glisq; arc=fail smtp.client-ip=40.107.200.68
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=j4BQJiGLcKTD+pp0WPxPWPW4keNJthLqWsFT8mHGyKWRk4vsK0HoPh2vL1yHj/wbEoYCNfiu8xssFZngQ4hPrzXC30k8Gfp/YaXRSfT/ZaIQalWExc6aQQ1bDBAIRlGcMfEKtHvi1qT1ufRH+xd0WMujdNh7CWlhuYMuZcz4BmiHjVLDjNCGt6YwkMV2yZPmQlPa4DiPW4wqDi/8C0BWitgiEczziaJxAO+o7KJ3Up5dgftPpxG7i/uwdMG7hWIbBBrfNKVlZcM3dmA6kAVa35tbyi1/EosQ1SQt9oYAIJf8hljXZntvbwgyVYG8+fAYW6w6XOM8hmililWR5z5vrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FtQkOQ6xL6Gs1JH6WbrTKTzRixQiN7VXwYJe/vlqsqI=;
- b=LlSzDAqXlLm770VEKnPgcU7u4JJI22pG8MSERNDI2iGKOUaIY7wB5rohEau7PtdFyQUBvZfI1jg0kMpxsgn6GEP33eVmyCOhmaoLH1EIgCyIC2g8Vrt6i7PtiZ3pzl5ZiVwqdt4E++Ym/51LBjsffheSkLuPifoeonGIARwYMPQat+vTUhzG7gMfPGHYPVzhvanWxJw51ts27xGOZJb7yMho9/HskdmWPMP0uUKNi2EscDGjmWzkoHiMPALOBd/GkTQs85Ss1SAZJszJvtsbiM23HCMZfucmOfTfMz3KQCpk9XEniNVIrOcOkc2BItaIW+BvpvnHV9IzdOqNO4iKzA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FtQkOQ6xL6Gs1JH6WbrTKTzRixQiN7VXwYJe/vlqsqI=;
- b=Es2glisqNpUbxE0p19wI0emiDiKOyXkn1NLkZ1OEs9//xp73yEHQVQ2VJq2vRS7Hf2ZXJyAhHAq7Hu0jIHFgdBlO5br9ydHkxFR5i2D3Y+jSTu3xj7k1Rc9Z/4QZDaueu1tAP0PgoCd4pHC9ktnT3Ed+XHbntDbxs/ad5x3X+p4=
-Received: from PH8PR21CA0014.namprd21.prod.outlook.com (2603:10b6:510:2ce::28)
- by DS2PR12MB9664.namprd12.prod.outlook.com (2603:10b6:8:27b::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Wed, 24 Jun
- 2026 14:39:23 +0000
-Received: from SN1PEPF0002BA4D.namprd03.prod.outlook.com
- (2603:10b6:510:2ce:cafe::9d) by PH8PR21CA0014.outlook.office365.com
- (2603:10b6:510:2ce::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.6 via Frontend Transport; Wed, 24
- Jun 2026 14:39:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SN1PEPF0002BA4D.mail.protection.outlook.com (10.167.242.70) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Wed, 24 Jun 2026 14:39:23 +0000
-Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 24 Jun
- 2026 09:38:24 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
- (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 24 Jun
- 2026 07:38:04 -0700
-Received: from xirsalihe40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 24 Jun 2026 09:38:02 -0500
-From: Salih Erim <salih.erim@amd.com>
-To: <jic23@kernel.org>, <andy@kernel.org>
-CC: <dlechner@baylibre.com>, <nuno.sa@analog.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <conall.ogriofa@amd.com>,
-	<michal.simek@amd.com>, <sai.krishna.potthuri@amd.com>, <linux@roeck-us.net>,
-	<erimsalih@gmail.com>, <git@amd.com>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Salih Erim
-	<salih.erim@amd.com>, Andy Shevchenko <andriy.shevchenko@intel.com>
-Subject: [PATCH v12 5/5] iio: adc: versal-sysmon: add oversampling support
-Date: Wed, 24 Jun 2026 15:37:22 +0100
-Message-ID: <20260624143722.4047649-6-salih.erim@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260624143722.4047649-1-salih.erim@amd.com>
-References: <20260624143722.4047649-1-salih.erim@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0D473C8719;
+	Wed, 24 Jun 2026 14:37:32 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782311855; cv=none; b=AIh5YePsTnGrx3oUHMDncvCUiPzZot1RJ402HOcG5G37yM+7w0wlkI9ZkQT/lT3Mq3Azh0tIX3aItIgpq8GR64tT8/8H79rCY3p7bvi97qWeLCZ1ZHqxm5FKhbSrPgWZColRYYdvYUQNgOot7LzaNaZgHYSCahzbbtcN2V5sYLk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782311855; c=relaxed/simple;
+	bh=X5+06UqZzkHrP6XrYqi7IbD4LXgp8YyzW7DWroQ38NU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EMpJfsoETnZi6wprqtqt/FooIWI52jlsgb5EQ2GqLoFwzywV007ABtrZCOSJvyNKCXDEaiOtPgD8y3Ug5FF7fZvunzpXFgPtbaUnvMjft6BLkQp2tS3FQ7cUaH0VawQ2OIGPh6PVBtD7IoDgQM2pXhlpmzkfXso+95Xp7eeEWJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=D4Ovcwk8; arc=none smtp.client-ip=185.100.197.86
+Received: from [10.0.0.200] (unknown [10.88.125.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 8C6D05341340;
+	Wed, 24 Jun 2026 16:37:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1782311845;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=m4ErC33RfBLiCY2kdeSnjPaFzr/CFyTNYdB6Jj+bpow=;
+	b=D4Ovcwk8Jyqkpx6KcpNfckOx/0BHHRfU/e0Lhao3aZczIkjICR90jBr8AG3hxbhM7Z2fy5
+	ML7H8XGFq1DDRKE0iz5Kyx4f945Sf2zfsyJ3BFjjqWwDSxvwqaNUr1nYACXh2NaK4y7g9D
+	2d9+Oz62YcaJE7M3hYprMcOlCHxBRrA=
+Message-ID: <52b7dd3a-3f6f-474c-8386-4fc2776b185b@ixit.cz>
+Date: Wed, 24 Jun 2026 16:37:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sdm845-oneplus: Update
+ compatible to include model
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+ Vincent Huang <vincent.huang@tw.synaptics.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+ Krzysztof Kozlowski <krzk@kernel.org>
+References: <20260523-synaptics-rmi4-dt-v2-0-0645122babdc@ixit.cz>
+ <20260523-synaptics-rmi4-dt-v2-2-0645122babdc@ixit.cz>
+ <ahdoBl3qCTyvlYJf@google.com> <1d0e7e31-f808-4347-955a-7246dea208f5@ixit.cz>
+ <742c7a13-9465-40e8-8990-e679712e9784@ixit.cz> <ajtaUb4YmyZTDLmQ@google.com>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <ajtaUb4YmyZTDLmQ@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4D:EE_|DS2PR12MB9664:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1b9f3e73-05ac-4075-926f-08ded1fe625e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|23010399003|36860700016|1800799024|7416014|376014|82310400026|22082099003|18002099003|11063799006|56012099006|6133799003;
-X-Microsoft-Antispam-Message-Info:
-	pq4E/ZuGfveU0RfaeHiZaj2HbFBMJ/LGURDMieD+9Zp0bre881KU0HLGqaAhyTM9uDemijdiT6+uE8gfONe7NrMt8MGSV8yO6q9Qs9KD9BPyuK9stAL0tD9pynQV9aUDj1Nt9gMoe7w7TUxbKej5mFNV9f9wKDdLMb+BN1hJPH7ZUxTNqnAN66p5lbXDVnQuZe3jkhl4DyQJbm7SfWU4OGNJOwIjpWN3Y8bPGR59DSwfRVntWp/iUNKPwo+fuQ74df/wDGfcnJ1nS7D95sMFhkp4rTthcQWY46D6IuZ1gwJrjPchf6ASeX0WkhKszBKDZ7OmGEETg1u/Ln3pfX1StzFuIixoCE2qmT8x9xWIDJH4lzFHwcF34d3pHX09ccb/ZLSOxq8DEYqT9y+6YkyDDOiySXDl7snVZcJGOU9DdQ8wrQRs9HVAEnDvkG7K53sazFy0uo1pMs3uGIJ8Q1/cX1jYYN4Y2KWfvsEFh0pYEYe5289SjCs0y5BsQDDA5SU3OnY8eSe4PLHiuX0mXInqg5t4GiIyZxAyT+ndVdzkqB1FeFMPZCSK9pExRJ0FMe5C1Adje+9/7wAKrYqetO2+pu7YN1Phyl1YjOjJ7XTb7xmt9ehbbA5nDZWeWao/W5rb2BRhCXW3a2L0YqS+VUnyh+iJv6XsJcSaeRMRWp9zGPm9fmjX70eMiQRnSu5q0MVub5U+Yc2lZcSlk+cLBLafsA==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(1800799024)(7416014)(376014)(82310400026)(22082099003)(18002099003)(11063799006)(56012099006)(6133799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	CRfkSYzZpl76WglLICQSCVgCAUKyMdzbgp6JZv1QoeOPDfqs8rnK8nL0G6HcE2Z3xvVVD1f96R0jr8Q7snUdUyC1AYe+4HiPjDLEcQiNnreFVC4a3Saf09u5ELF5y+RZjGKJwm4Wv1YsytaXD/Xbt7TbsU19l0Vh9d6onp99PABcGTS4BO7xqT+lteFNWwpXB400Ux+NW6o5V0n2q4bo0XFBfkIh5HJGIbRIJWTs3r/AkVjsjIC94yZpVuH9bCkKOGtCoBcAGxycPbtegLLxg27bkGF6u8/Ih87YiRs9s07cF/K5SCTHxk05ukAAbkymRr174ehgXBiPMJGMFhxtL7N3QYXLam/hlHPPCPOUtScuKLTONXry3ObJNPo9+7pRMD5bm36a8T/86DTM7PE8jQ1vawAfpz6ljE8lEta3lEnzTqndeoQJDs+LnaSzCnRv
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 14:39:23.4796
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b9f3e73-05ac-4075-926f-08ded1fe625e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF0002BA4D.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS2PR12MB9664
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
+	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:sai.krishna.potthuri@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:git@amd.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:salih.erim@amd.com,m:andriy.shevchenko@intel.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-315273-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315269-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.torokhov@gmail.com,m:krzk+dt@kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:Jason@zx2c4.com,m:matthias.schiffer@ew.tq-group.com,m:vincent.huang@tw.synaptics.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:phone-devel@vger.kernel.org,m:krzk@kernel.org,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,oss.qualcomm.com];
+	FORGED_SENDER(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[salih.erim@amd.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,amd.com,roeck-us.net,gmail.com,vger.kernel.org,intel.com];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[salih.erim@amd.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ixit.cz:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email,ixit.cz:dkim,ixit.cz:email,ixit.cz:mid,ixit.cz:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3CAFA6BF3A8
+X-Rspamd-Queue-Id: 57C5B6BF343
 
-Add support for reading and writing the oversampling ratio through
-the IIO oversampling_ratio attribute. The hardware supports averaging
-2, 4, 8, or 16 samples, plus a ratio of 1 (no averaging).
+On 24/06/2026 06:28, Dmitry Torokhov wrote:
+> Hi David,
+> 
+> On Sun, Jun 21, 2026 at 07:11:45PM +0200, David Heidelberg wrote:
+>> On 28/05/2026 00:13, David Heidelberg wrote:
+>>> On 27/05/2026 23:56, Dmitry Torokhov wrote:
+>>>> Hi David,
+>>>>
+>>>> On Sat, May 23, 2026 at 11:45:35AM +0200, David Heidelberg via B4 Relay wrote:
+>>>>> From: David Heidelberg <david@ixit.cz>
+>>>>>
+>>>>> We know the driver is reporting s3706b, introduce the compatible so we
+>>>>> can more easily introduce quirks for weird touchscreen replacements in
+>>>>> followup series.
+>>>>>
+>>>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>>>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 2 +-
+>>>>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>>>>> b/arch/ arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>>>>> index 6b7378cf4d493..148164d456a5a 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>>>>> @@ -475,17 +475,17 @@ bq27441_fg: bq27441-battery@55 {
+>>>>>        };
+>>>>>    };
+>>>>>    &i2c12 {
+>>>>>        status = "okay";
+>>>>>        clock-frequency = <400000>;
+>>>>>        synaptics-rmi4-i2c@20 {
+>>>>> -        compatible = "syna,rmi4-i2c";
+>>>>> +        compatible = "syna,rmi4-s3706b", "syna,rmi4-i2c";
+>>>>
+>>>> So I believe we established that this device (s3706b) does not in fact
+>>>> implement rmi4 protocol properly. Why do we have "syna,rmi4-i2c" as a
+>>>> fallback? Shouldn't it be just "syna,rmi4-s3706b"?
+>>>
+>>> The vendor supplies s3706b which does implement the RMI4 properly.
+>>>
+>>> The 3rd party replacement impersonating original parts may not implement
+>>> it properly, but I don't address this issue in this initial submission.
+>>>
+>>> With this compatible we know which original part is used by the vendor
+>>> and installed in the phones, so later we can deduct specific sequences
+>>> for the replacement aftermarket parts to keep phone touchscreen working
+>>> same as they do on Android without affecting other devices.
+>>
+>> Hello Dmitry.
+>>
+>> May I ask what is currently preventing this series from moving forward?
+>>
+>> The first version was posted in 2023 [1]. I picked it up again in 2025 [2]
+>> and am now on the 9th iteration (this patchset). At this point, the series
+>> has been under discussion for well over a year, with relatively little
+>> feedback and increasingly long gaps between review rounds.
+>>
+>> The current approach is based on the guidance I have received so far,
+>> including suggestions from the device-tree maintainers. When concerns were
+>> raised, I tried to address them and rework the series accordingly.
+>>
+>> What I am struggling with is understanding what specific issue still needs
+>> to be resolved before these patches can be accepted. If there are remaining
+>> requirements, objections to the approach, or technical concerns that I have
+>> not addressed, I would appreciate having them stated explicitly so I can
+>> work on them.
+>>
+>> I also split out the straightforward, self-contained changes in the hope
+>> that at least those could progress independently while I continued working
+>> on any follow-up requirements. However, even those patches do not appear to
+>> be moving forward.
+>>
+>> Could you please clarify what outcome you would like to see from this
+>> series, and what concrete changes would be required to get it accepted?
+> 
+> I am still confused about how you want to differentiate between the full
+> RMI4 support vs the OnePlus flavor. The "syna,rmi4-s3706b", as you
+> mentioned, implements RMI4 protocol properly, so we do not need to
+> actually have it documented neither in binding nor in DTS.
 
-Temperature and supply channels share oversampling configuration at
-the type level (all temperature channels share one ratio, all supply
-channels share another), exposed through info_mask_shared_by_type.
+--- part 1 ---
 
-The hardware encoding uses sample_count / 2 in a 4-bit field within
-the CONFIG register. Per-channel averaging enable registers must also
-be updated to activate or deactivate averaging.
+This series addresses identification within device-tree. It's normal recommended 
+practice.
 
-Signed-off-by: Salih Erim <salih.erim@amd.com>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
----
-Changes in v12:
-  - No code changes
+If we know, the device ships specific, but **compliant** variant, we just put it 
+as compatible = "more-specific", "less-specific"; in this case 
+"syna,rmi4-s3706b", "syna,rmi4-i2c"
 
-Changes in v11:
-  - Add oversampling info_mask bits to static SYSMON_CHAN_TEMP
-    macro (Jonathan)
+This approach is used everywhere. This has nothing to do with after-market parts.
 
-Changes in v10:
-  - No code changes
+--- part 2 (irrelevant for this series) ---
 
-Changes in v9:
-  - Add Reviewed-by tag from Andy Shevchenko
-  - No code changes
+> 
+> The issue you have with after-market parts that are not compliant and we
+> need to figure out how to deal with them. Inside the driver I
 
-Changes in v8:
-  - Use unsigned int for val parameter and hw_val in both
-    osr_write helpers (Andy)
-  - Use ~0 instead of ~0U for avg enable bitmask (Andy)
+As was suggested by device-tree folks, this is the first step, there isn't 
+better one available. If there is, please suggest one, and I'll apply it.
 
-Changes in v7:
-  - Split sysmon_osr_write into sysmon_osr_write_temp and
-    sysmon_osr_write_supply; caller dispatches with if/else
-    on chan->type (Jonathan)
-  - Restore HW encoding comment in both helpers; fix
-    cross-reference in sysmon_osr_write_supply
+> essentially need a"incomplete protocol" flag that we can use to
+> implement additional checks or skip known to be not implemented
+> functions/queries. In DT we could introduce something like
+> "oneplus,rmi4-i2c" that is decidedly not compatible with "syna,rmi4-i2c"
+> and neither one should be a fallback for the other.
+> 
+> This of course needs buy-in from DT maintainers.
 
-Changes in v6:
-  - Fix FIELD_PREP indentation in sysmon_osr_write (Andy)
-  - unsigned int for loop index in sysmon_write_raw (Andy)
+As you can see, this still holds Acked-by and Reviewed-by from the relevant 
+people - Krzysztof and Konrad.
 
-Changes in v5:
-  - Remove unneeded parentheses in i * SYSMON_REG_STRIDE (Andy)
-  - Use struct regmap *map local variable in
-    sysmon_set_avg_enable (Andy)
-  - switch instead of redundant if/if on channel_type (Andy)
-  - Add CONFIG register readback fence after oversampling update
-    to prevent NoC bus hang from posted writes (found during
-    hardware stress testing)
+> 
+> Does this make sense?
 
-Changes in v4:
-  - Return directly from sysmon_set_avg_enable calls, remove
-    else after early returns, drop unreachable return 0 (Jonathan)
-  - Rename mask defines to SYSMON_CONFIG_SUPPLY_OSR and
-    SYSMON_CONFIG_TEMP_SAT_OSR (Jonathan)
-  - Drop "bits X:Y" from GENMASK comments (Jonathan)
-  - Blank lines after if (ret) return ret blocks (Jonathan)
-  - Move oversampling read inside guard(mutex) scope
+For the scope we're discussing it doesn't seems so.
 
-Changes in v3:
-  - No changes
+This discussion should be associated with the last revision of the full series I 
+sent 3 months ago. We're in very unflattering state, where:
 
-Changes in v2:
-  - EN_AVG per-channel bitmask registers written with all-ones
-    instead of boolean 1 when oversampling is enabled
-  - EN_AVG write errors propagated to userspace
-  - Oversampling limited to satellite temp and supply channels;
-    static temp channels do not participate
-  - Oversampling exposes actual sample counts (1,2,4,8,16) to
-    userspace with internal HW register translation
-  - write_raw_get_fmt returns IIO_VAL_INT for oversampling ratio
-  - HW encoding documented (sample_count/2, not log2)
-  - oversampling_avail is const int[] (type match fix)
- drivers/iio/adc/versal-sysmon-core.c | 159 ++++++++++++++++++++++++++-
- drivers/iio/adc/versal-sysmon.h      |  17 +++
- 2 files changed, 174 insertions(+), 2 deletions(-)
+   2018 - these aftermarket touchscreen worked on Android well enough for people 
+to have working touch (let's say with slightly worse experience then the original).
 
-diff --git a/drivers/iio/adc/versal-sysmon-core.c b/drivers/iio/adc/versal-sysmon-core.c
-index 8f2c502d9cb..1b55d343982 100644
---- a/drivers/iio/adc/versal-sysmon-core.c
-+++ b/drivers/iio/adc/versal-sysmon-core.c
-@@ -28,6 +28,12 @@
- 
- #include "versal-sysmon.h"
- 
-+/*
-+ * Oversampling ratio values exposed to userspace via IIO.
-+ * Actual number of samples averaged: 1=none, 2=2x, 4=4x, 8=8x, 16=16x.
-+ */
-+static const int sysmon_oversampling_avail[] = { 1, 2, 4, 8, 16 };
-+
- /* TEMP hysteresis mode bit in SYSMON_TEMP_EV_CFG */
- #define SYSMON_TEMP_HYST_MASK		BIT(1)
- 
-@@ -42,7 +48,11 @@
- 	.address = _address,					\
- 	.channel = _chan,					\
- 	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
--	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-+	.info_mask_shared_by_type =				\
-+		BIT(IIO_CHAN_INFO_SCALE) |			\
-+		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
-+	.info_mask_shared_by_type_available =			\
-+		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
- 	.datasheet_name = _name,				\
- }
- 
-@@ -166,6 +176,12 @@ static int sysmon_read_raw(struct iio_dev *indio_dev,
- 
- 	guard(mutex)(&sysmon->lock);
- 
-+	if (mask == IIO_CHAN_INFO_OVERSAMPLING_RATIO) {
-+		*val = (chan->type == IIO_TEMP) ? sysmon->temp_oversampling :
-+						 sysmon->supply_oversampling;
-+		return IIO_VAL_INT;
-+	}
-+
- 	switch (chan->type) {
- 	case IIO_TEMP:
- 		if (mask == IIO_CHAN_INFO_SCALE) {
-@@ -465,6 +481,132 @@ static int sysmon_write_event_value(struct iio_dev *indio_dev,
- 	}
- }
- 
-+static int sysmon_set_avg_enable(struct sysmon *sysmon,
-+				 u32 base, u32 count, u32 val)
-+{
-+	struct regmap *map = sysmon->regmap;
-+	int ret;
-+
-+	for (unsigned int i = 0; i < count; i++) {
-+		ret = regmap_write(map, base + i * SYSMON_REG_STRIDE, val);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int sysmon_osr_write_temp(struct sysmon *sysmon, unsigned int val)
-+{
-+	/*
-+	 * HW register encoding is sample_count / 2:
-+	 * 0=none, 1=2x, 2=4x, 4=8x, 8=16x (not log2-based).
-+	 */
-+	unsigned int hw_val = val >> 1;
-+	unsigned int readback;
-+	int ret;
-+
-+	ret = regmap_update_bits(sysmon->regmap, SYSMON_CONFIG,
-+				SYSMON_CONFIG_TEMP_SAT_OSR,
-+				FIELD_PREP(SYSMON_CONFIG_TEMP_SAT_OSR, hw_val));
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Readback fence: the SysMon CONFIG register resides in the
-+	 * PMC domain behind the NoC. A posted write may not reach the
-+	 * hardware before the next MMIO access. Reading the register
-+	 * back forces the interconnect to complete the write, preventing
-+	 * a bus hang on the subsequent access.
-+	 */
-+	regmap_read(sysmon->regmap, SYSMON_CONFIG, &readback);
-+
-+	return sysmon_set_avg_enable(sysmon, SYSMON_TEMP_EN_AVG_BASE,
-+				     SYSMON_TEMP_EN_AVG_COUNT,
-+				     hw_val ? ~0 : 0);
-+}
-+
-+static int sysmon_osr_write_supply(struct sysmon *sysmon, unsigned int val)
-+{
-+	/* HW encoding: sample_count / 2 (see sysmon_osr_write_temp) */
-+	unsigned int hw_val = val >> 1;
-+	unsigned int readback;
-+	int ret;
-+
-+	ret = regmap_update_bits(sysmon->regmap, SYSMON_CONFIG,
-+				SYSMON_CONFIG_SUPPLY_OSR,
-+				FIELD_PREP(SYSMON_CONFIG_SUPPLY_OSR, hw_val));
-+	if (ret)
-+		return ret;
-+
-+	/* Readback fence -- see sysmon_osr_write_temp for details */
-+	regmap_read(sysmon->regmap, SYSMON_CONFIG, &readback);
-+
-+	return sysmon_set_avg_enable(sysmon, SYSMON_SUPPLY_EN_AVG_BASE,
-+				     SYSMON_SUPPLY_EN_AVG_COUNT,
-+				     hw_val ? ~0 : 0);
-+}
-+
-+static int sysmon_write_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan,
-+			    int val, int val2, long mask)
-+{
-+	struct sysmon *sysmon = iio_priv(indio_dev);
-+	unsigned int i;
-+	int ret;
-+
-+	if (mask != IIO_CHAN_INFO_OVERSAMPLING_RATIO)
-+		return -EINVAL;
-+
-+	for (i = 0; i < ARRAY_SIZE(sysmon_oversampling_avail); i++) {
-+		if (val == sysmon_oversampling_avail[i])
-+			break;
-+	}
-+	if (i == ARRAY_SIZE(sysmon_oversampling_avail))
-+		return -EINVAL;
-+
-+	guard(mutex)(&sysmon->lock);
-+
-+	if (chan->type == IIO_TEMP) {
-+		ret = sysmon_osr_write_temp(sysmon, val);
-+		if (ret)
-+			return ret;
-+		sysmon->temp_oversampling = val;
-+	} else {
-+		ret = sysmon_osr_write_supply(sysmon, val);
-+		if (ret)
-+			return ret;
-+		sysmon->supply_oversampling = val;
-+	}
-+
-+	return 0;
-+}
-+
-+static int sysmon_write_raw_get_fmt(struct iio_dev *indio_dev,
-+				    struct iio_chan_spec const *chan,
-+				    long mask)
-+{
-+	if (mask == IIO_CHAN_INFO_OVERSAMPLING_RATIO)
-+		return IIO_VAL_INT;
-+
-+	return -EINVAL;
-+}
-+
-+static int sysmon_read_avail(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan,
-+			     const int **vals, int *type,
-+			     int *length, long mask)
-+{
-+	if (mask != IIO_CHAN_INFO_OVERSAMPLING_RATIO)
-+		return -EINVAL;
-+
-+	*vals = sysmon_oversampling_avail;
-+	*type = IIO_VAL_INT;
-+	*length = ARRAY_SIZE(sysmon_oversampling_avail);
-+
-+	return IIO_AVAIL_LIST;
-+}
-+
- static int sysmon_read_label(struct iio_dev *indio_dev,
- 			     struct iio_chan_spec const *chan,
- 			     char *label)
-@@ -477,6 +619,9 @@ static int sysmon_read_label(struct iio_dev *indio_dev,
- 
- static const struct iio_info sysmon_iio_info = {
- 	.read_raw = sysmon_read_raw,
-+	.write_raw = sysmon_write_raw,
-+	.write_raw_get_fmt = sysmon_write_raw_get_fmt,
-+	.read_avail = sysmon_read_avail,
- 	.read_label = sysmon_read_label,
- 	.read_event_config = sysmon_read_event_config,
- 	.write_event_config = sysmon_write_event_config,
-@@ -768,6 +913,10 @@ static int sysmon_parse_fw(struct iio_dev *indio_dev, struct device *dev, int ir
- 			.indexed = 1,
- 			.address = reg,
- 			.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
-+			.info_mask_shared_by_type =
-+				BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+			.info_mask_shared_by_type_available =
-+				BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
- 			.event_spec = irq > 0 ?
- 				sysmon_supply_events : NULL,
- 			.num_event_specs = irq > 0 ?
-@@ -799,7 +948,11 @@ static int sysmon_parse_fw(struct iio_dev *indio_dev, struct device *dev, int ir
- 			.address = SYSMON_TEMP_SAT_BASE +
- 				   (reg - 1) * SYSMON_REG_STRIDE,
- 			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
--			.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
-+			.info_mask_shared_by_type =
-+				BIT(IIO_CHAN_INFO_SCALE) |
-+				BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+			.info_mask_shared_by_type_available =
-+				BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
- 			.datasheet_name = label,
- 		};
- 	}
-@@ -846,6 +999,8 @@ int devm_versal_sysmon_core_probe(struct device *dev, struct regmap *regmap)
- 
- 	sysmon = iio_priv(indio_dev);
- 	sysmon->regmap = regmap;
-+	sysmon->temp_oversampling = 1;
-+	sysmon->supply_oversampling = 1;
- 
- 	ret = devm_mutex_init(dev, &sysmon->lock);
- 	if (ret)
-diff --git a/drivers/iio/adc/versal-sysmon.h b/drivers/iio/adc/versal-sysmon.h
-index 9fe2793757a..bb9a75bf71c 100644
---- a/drivers/iio/adc/versal-sysmon.h
-+++ b/drivers/iio/adc/versal-sysmon.h
-@@ -23,11 +23,13 @@ struct regmap;
- #define SYSMON_IMR			0x0048
- #define SYSMON_IER			0x004C
- #define SYSMON_IDR			0x0050
-+#define SYSMON_CONFIG			0x0100
- #define SYSMON_TEMP_MAX			0x1030
- #define SYSMON_TEMP_MIN			0x1034
- #define SYSMON_SUPPLY_BASE		0x1040
- #define SYSMON_ALARM_FLAG		0x1018
- #define SYSMON_ALARM_REG		0x1940
-+#define SYSMON_SUPPLY_EN_AVG_BASE	0x1958
- #define SYSMON_TEMP_TH_LOW		0x1970
- #define SYSMON_TEMP_TH_UP		0x1974
- #define SYSMON_SUPPLY_TH_LOW		0x1980
-@@ -37,6 +39,7 @@ struct regmap;
- #define SYSMON_TEMP_MAX_MAX		0x1F90
- #define SYSMON_STATUS_RESET		0x1F94
- #define SYSMON_TEMP_SAT_BASE		0x1FAC
-+#define SYSMON_TEMP_EN_AVG_BASE		0x24B4
- #define SYSMON_MAX_REG			0x24C0
- 
- /* NPI unlock value written to SYSMON_NPI_LOCK */
-@@ -53,6 +56,16 @@ struct regmap;
- /* ISR/IMR temperature alarm mask (bit 9) */
- #define SYSMON_TEMP_INTR_MASK		BIT(9)
- 
-+/* SYSMON_CONFIG: supply oversampling ratio */
-+#define SYSMON_CONFIG_SUPPLY_OSR	GENMASK(17, 14)
-+
-+/* SYSMON_CONFIG: temperature satellite oversampling ratio */
-+#define SYSMON_CONFIG_TEMP_SAT_OSR	GENMASK(27, 24)
-+
-+/* Per-channel averaging enable register counts */
-+#define SYSMON_SUPPLY_EN_AVG_COUNT	5
-+#define SYSMON_TEMP_EN_AVG_COUNT	2
-+
- /* Supply voltage conversion register fields */
- #define SYSMON_MANTISSA_MASK		GENMASK(15, 0)
- #define SYSMON_FMT_MASK			BIT(16)
-@@ -77,6 +90,8 @@ struct regmap;
-  * @temp_mask: temperature interrupt configuration mask
-  * @temp_hysteresis: cached DEVICE_TEMP hysteresis in millicelsius
-  * @sysmon_unmask_work: re-enables events after alarm condition clears
-+ * @temp_oversampling: current temp oversampling ratio
-+ * @supply_oversampling: current supply oversampling ratio
-  */
- struct sysmon {
- 	struct regmap *regmap;
-@@ -96,6 +111,8 @@ struct sysmon {
- 	unsigned int temp_mask;
- 	int temp_hysteresis;
- 	struct delayed_work sysmon_unmask_work;
-+	unsigned int temp_oversampling;
-+	unsigned int supply_oversampling;
- };
- 
- int devm_versal_sysmon_core_probe(struct device *dev, struct regmap *regmap);
--- 
-2.48.1
+   2026 in the mainline, we cannot even more forward and report to user-space 
+there is aftermarket non-compliant piece of hardware installed.
 
+Actionable steps I suggest after this series lands:
+
+1. don't do any changes, but since we know what 3rd party touchscreen do 
+incorrectly deviating from the standard, REPORT it to the userspace, so USER 
+know, their device (phone/tablet) doesn't have original part.
+
+2. then figure out, IF we can reasonably well workaround it and HOW to do it
+
+These two steps present some progress which could be discussed and could lead us 
+somewhere, what do you think?
+
+David
+
+> 
+> Thanks.
+> 
 
