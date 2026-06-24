@@ -1,398 +1,206 @@
-Return-Path: <devicetree+bounces-315108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315110-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hRoqN6mVO2oVaAgAu9opvQ
-	(envelope-from <devicetree+bounces-315108-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 10:30:33 +0200
+	id rYVzBLuWO2pZaAgAu9opvQ
+	(envelope-from <devicetree+bounces-315110-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 10:35:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F9B66BC92E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 10:30:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FBF36BC987
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 10:35:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315108-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315108-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=RhSKEbPH;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="gCzcj/+b";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315110-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315110-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BD4643014106
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:30:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B611730285D3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C373AD534;
-	Wed, 24 Jun 2026 08:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B37338B7D5;
+	Wed, 24 Jun 2026 08:35:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4F463AC0F5;
-	Wed, 24 Jun 2026 08:30:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511A935E948
+	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 08:35:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782289820; cv=none; b=P0MDaLaMjXfXuMTyb3exUlqu+gRT3rqtj+5B3R0T5b2S9I51c/uK8Ea7XMc/dEo38WQNK/KemdLge9MLJ1cHTZEF4V8uhvZLICMZNZ6H33ZgaZ7B6O4htqaI/z7pkAQvl3YkgpsiJr068bCAuXpEKJM8N4wooRV5yRRPf3h3VBw=
+	t=1782290103; cv=none; b=hB6ymhNPQMWuQjiYo+sy3wZJ7w7YyfmzItdrV3sh0Lx+bYLLVlPUV0wqh112H/aTtguLq3CRdKUEMKzFi1ZJt1QQb0dSt8ZOE0dTK0khOkzvCUFQlfw/7nExgNX+yGQNnrHKHTzcQGSup0OMADF4yMNmTGQ/FO2fs8tei4gIZeo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782289820; c=relaxed/simple;
-	bh=lkaYPeVqE1Sh6B2MbSNE28E8PWIOnrh2JVKCnTPSS2s=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=UC0WZMQV2GM6hca1qktot+vVABWY9m7VOgoX+PPou4Rt6FEzXzWJUPnGvUymISeX1kW5skmyyiEw3yUkDyEqVF0xWvtjW0wdUaBjkfCm8cRGMLYFvD7Cd7cRBvs7bjAJMtb6ebH8SrP8MvyPL3HrYCO/BauMfnEMLZPrk2JcmLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.200.13
-Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
-	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 1BB7A200320;
-	Wed, 24 Jun 2026 10:30:09 +0200 (CEST)
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1wcIzp-004OaY-05;
-	Wed, 24 Jun 2026 10:30:09 +0200
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1wcIzo-000000003om-3yka;
-	Wed, 24 Jun 2026 10:30:08 +0200
-Message-ID: <0193c47ff4ca98b1a6cb56ed8f4d8876b54756d8.camel@pengutronix.de>
-Subject: Re: [PATCH v6 3/4] reset: cix: add sky1 audss auxiliary reset driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: joakim.zhang@cixtech.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	bmasney@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, 	gary.yang@cixtech.com
-Cc: cix-kernel-upstream@cixtech.com, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Date: Wed, 24 Jun 2026 10:30:08 +0200
-In-Reply-To: <20260623070805.211019-4-joakim.zhang@cixtech.com>
-References: <20260623070805.211019-1-joakim.zhang@cixtech.com>
-	 <20260623070805.211019-4-joakim.zhang@cixtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1782290103; c=relaxed/simple;
+	bh=htoxQB7Zr4deDUOX4Mg2XTgZsnaZj1b8ci5u3iYnfP0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=otrbwXS/peU5N+/Z8Lo6bs98g5TsJJfJJtsu4Z0z94VHIItpn7xvIWC5NmHZBKBcpnQwY6e7zF/mkTyFKs/zsn0mK9Y2pi3Tt20OtPpF8wZgBpvHUYtl6U700PptzmhPIz9llgnRr9J1Av7zrul4gH9sWPQ94kPKFQJglQ0RH8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RhSKEbPH; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gCzcj/+b; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65O7FhYX2439241
+	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 08:35:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5mrd230kpk0uUu17irqvk0Ds0ZSnBgyPtN1TTgwZ7Z0=; b=RhSKEbPHNn8q8j/e
+	lguLjB8G1nVkkg10CM8wZv7GhiT4Lo1Kmz1HuUTwjC4JHkfUqJTV6uBCbb7WVWQl
+	ne8p7cXcbfjslXvAqYatgyXP0dNERwSRpMXLLbTFKv1Z5qyqk3CcjfONNhsS/+uP
+	b7uKVVMp0mRt2r6BURikDlmZ8VDYOY/rDACDaX11KOxRGrd4wunDZT2waN8iVlIV
+	QwA8Bm0VoPMmDbC1mnbyqT84iaIxYTJvxVtSGiAfulYHd2GQzfVnDQL/qzRlyblS
+	cVcVw059dQfoHO2TQBeyDg6jZ2BgNq0Ol+m6jDuH53FEwpp9l/3fXCBNU5mQn/3Z
+	CVIKzw==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f0apq08xg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 08:35:00 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-8454912a507so1524243b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 01:35:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1782290100; x=1782894900; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5mrd230kpk0uUu17irqvk0Ds0ZSnBgyPtN1TTgwZ7Z0=;
+        b=gCzcj/+b+1jFKCLmVQeG22Hf8e5m2YoXqb4vrpn1TaP/DXFwCz4T/ICfxpYrokXgcP
+         pzuqmnPsAJfNlMTfBN2YmmjiYqwh2uzgS9We6ZGFbxYnxeQ3bZbI25Dod8RUe9cBqb57
+         baVwtFBiHehRyyVoSXILtbc8ByQ+LCSiDnVCsHYlQaGmmtEcW/ZKlGQmof30Ly4d+1xx
+         NfarvzkhUsrkGxY0iwYaFRA0b/fUgy0Ao6XFUHFs1Xwa+Z9tMGFQCgzhWOrpMF717bpb
+         JIRNs0uz9bgnQWH02ah5d3lzQOKcDK5EaxjsPEoQbxoFCPx7xvOBF/bpy16KV96pFRR5
+         8/Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782290100; x=1782894900;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5mrd230kpk0uUu17irqvk0Ds0ZSnBgyPtN1TTgwZ7Z0=;
+        b=CZ1mQngNHq7H1hQ8MgpiNh2FYr9SzyXoubwl4Wiu/ITQdTjoPKyvnySmg2zTP85uxo
+         p1Rx+ZghrcEwOawIfzIz99dqtHAF2AgooKsiMKSTZMfzoTXvRIOUfNVssKsT2DN+UoH4
+         +a5ixQiJpvs9doBF9EeYSmiWVzaGL8n1N6ROmmoJPT5d5gTuPjHdyGEH95Oo19FN+N+N
+         f0e2TCaZ80coFM9QsrLHCkE/mYYrCLzQiY43MeCB12bMv7YPee8g9N/ra9qBgfmo4qzo
+         kf/qATNbhntGEePPPl++5I0iv+oda6yndiHZcLt/eM2BVpz4ibo3pbifaLxY1AZjKKx8
+         csqQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+1hSCrOQKKdH3ITYBg6sxUJMXMRxPhKMBUE5NwJVX4QVN+eiLqr4ZduWTOjnI4a4ZzeaxmA5SawffL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxicQPyszjewq3GShRoNMD1bmvqN0HdBBBm5i+oiicdaUBbpue
+	fvB+o6Xu1YupqAlUZt7xJCstpXKfwcDU2qNOMt/c/tjaNTgMbuMSlZplWrqnvOQ3VrV2lgUHaPY
+	pKXS4sTlaZtxxk0L0gUTCvk2Ss+9APiIj2SMgEhu3LT9TIk77qZZeB3S260jzc+HS
+X-Gm-Gg: AfdE7clIpBjQmvWYOkFdaIeOMDPOYvQz+/nNO22IFaghgQs++K6Y3C+eUQNupmGEcIn
+	3ntR/PXLWbrC8lan272yuLSmXfz8DmvIUXaxfV4yj8qufnOARcmzMlGJXktuRfKRWB72wkXNy3r
+	OK+Z97Li5lMRKAa20dvu1wV7g3toaKmvKE2LpXx1L6jjtflGomKA3tcHg7Iy1iK6wbuDDnS7sol
+	DMuvSuyEd2TcmFobFKA76mOWieMSlFqMohjSdG+CS09qfL7LmRUicO/2n6jnrH3JD9R5UeA5l4Y
+	JBhxW5nasRh4Tz6pyevebnuw+ZBFZ9So6xeEx1IjjOFUhO6LVg3IpzO80KPeJDa0KeVHGbREtev
+	E7MypWbI+v0aWgerezrOoP1coNooDTt9+yPtxdGsWGr3suw==
+X-Received: by 2002:a05:6a00:b46:b0:842:7992:bdd6 with SMTP id d2e1a72fcca58-845a2cad138mr3014607b3a.36.1782290100039;
+        Wed, 24 Jun 2026 01:35:00 -0700 (PDT)
+X-Received: by 2002:a05:6a00:b46:b0:842:7992:bdd6 with SMTP id d2e1a72fcca58-845a2cad138mr3014577b3a.36.1782290099604;
+        Wed, 24 Jun 2026 01:34:59 -0700 (PDT)
+Received: from [10.219.57.229] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-845a40f4722sm1628731b3a.43.2026.06.24.01.34.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Jun 2026 01:34:59 -0700 (PDT)
+Message-ID: <c2bb7a24-e1d0-4308-ab53-208901108a5a@oss.qualcomm.com>
+Date: Wed, 24 Jun 2026 14:04:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v22 04/13] firmware: psci: Introduce command-based resets
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        Sudeep Holla <sudeep.holla@kernel.org>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, sashiko-reviews@lists.linux.dev
+References: <20260514-arm-psci-system_reset2-vendor-reboots-v22-4-28a5bde07483@oss.qualcomm.com>
+ <20260514212353.881AFC2BCB8@smtp.kernel.org>
+Content-Language: en-US
+From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+In-Reply-To: <20260514212353.881AFC2BCB8@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: nzbGMSCnxwCGmuq7mys2eD0PmMBsuEww
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI0MDA3MCBTYWx0ZWRfX/Wjts3R1V0Ka
+ tHyan+33VQn4AMHj+4ny/Ba8ekVNvdvKyoHVNHfDZC3L7hrIWgjB5appF9JK8hdexEL+MtKdd4r
+ QdFgRBx02oyMOxSHcfKqd2ayFtelJY9FtlJcZaeMvMNoEhzMqxDCAo89fc8op/JAIChhiDA360B
+ oVabkQ2bsH6gs+HpnD9PTA1fLFGxfC006VZBgEyvepl2mMGqf7f/c7MNlkxjs8L271JkXehTI37
+ mALVQlGI7B2mTPoaH4J2KiuN0GK11idczzhCMFTAAdkKqgMFLO1g+T/SpLi6wdBBsO/o1skSg+/
+ BLPJIsUZQaUogRKuHbqQUwOg73EzAi03wXIc7392fsbGgwvlN0iFu6Z3mGDZBr6B+VOvd127K/t
+ QIagjuUYvAou/Z3kzY4eUR+/+awlok1+pGU4qy02ryH75rumeWvnqkVKK+6+M70LGtqJNwI0vvC
+ 3YKu438OG2HeHf7VLQQ==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI0MDA3MCBTYWx0ZWRfX0UYUEEfKPtnk
+ 1Bh0pCyv2F+ZAn3WRuyZNVNKukcPDMe2yX7JdXKqYmN/9oRntraFL1WuWupZEi4HdmbT1hwIeMz
+ lw/9qWFYE4J568SiJ7DKNXV4ZrooY5Y=
+X-Authority-Analysis: v=2.4 cv=NpbhtcdJ c=1 sm=1 tr=0 ts=6a3b96b4 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=VwQbUJbxAAAA:8 a=Mda6OO27nty_hdtp-zcA:9 a=QEXdDO2ut3YA:10
+ a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-ORIG-GUID: nzbGMSCnxwCGmuq7mys2eD0PmMBsuEww
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-24_02,2026-06-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 bulkscore=0 adultscore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606240070
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-315110-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:dkim];
+	FORGED_SENDER(0.00)[shivendra.pratap@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:lpieralisi@kernel.org,m:arnd@arndb.de,m:sre@kernel.org,m:mark.rutland@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Souvik.Chakravarty@arm.com,m:brgl@kernel.org,m:sudeep.holla@kernel.org,m:devicetree@vger.kernel.org,m:sashiko-reviews@lists.linux.dev,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shivendra.pratap@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315108-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_SENDER(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:joakim.zhang@cixtech.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gary.yang@cixtech.com,m:cix-kernel-upstream@cixtech.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_NONE(0.00)[];
-	R_DKIM_NA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7F9B66BC92E
+X-Rspamd-Queue-Id: 6FBF36BC987
 
-On Di, 2026-06-23 at 15:08 +0800, joakim.zhang@cixtech.com wrote:
-> From: Joakim Zhang <joakim.zhang@cixtech.com>
->=20
-> Add an auxiliary reset controller driver for the AUDSS CRU. Sixteen
-> software reset lines for audio subsystem peripherals are controlled
-> through one register in the CRU register map.
->=20
-> The driver is created by the AUDSS clock platform driver and registers
-> the reset controller on the CRU device node.
->=20
-> Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
-> ---
->  drivers/reset/Kconfig            |  14 +++
->  drivers/reset/Makefile           |   1 +
->  drivers/reset/reset-sky1-audss.c | 192 +++++++++++++++++++++++++++++++
->  3 files changed, 207 insertions(+)
->  create mode 100644 drivers/reset/reset-sky1-audss.c
->=20
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index d009eb0849a3..f74859b292ae 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -300,6 +300,20 @@ config RESET_SKY1
->  	help
->  	  This enables the reset controller for Cix Sky1.
-> =20
-> +config RESET_SKY1_AUDSS
-> +	tristate "Cix Sky1 Audio Subsystem reset controller"
-> +	depends on ARCH_CIX || COMPILE_TEST
-> +	select AUXILIARY_BUS
-> +	select REGMAP_MMIO
-> +	default CLK_SKY1_AUDSS
-> +	help
-> +	  Support for block-level software reset lines in the Cix Sky1
-> +	  Audio Subsystem (AUDSS) Clock and Reset Unit. Sixteen reset
-> +	  outputs for audio peripherals are controlled through the CRU
-> +	  register map. The driver binds as an auxiliary device from
-> +	  the AUDSS clock driver. Say M or Y here if you want to build
-> +	  this driver.
-> +
->  config RESET_SOCFPGA
->  	bool "SoCFPGA Reset Driver" if COMPILE_TEST && (!ARM || !ARCH_INTEL_SOC=
-FPGA)
->  	default ARM && ARCH_INTEL_SOCFPGA
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 3e52569bd276..e81407ea3e29 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -39,6 +39,7 @@ obj-$(CONFIG_RESET_RZV2H_USB2PHY) +=3D reset-rzv2h-usb2=
-phy.o
->  obj-$(CONFIG_RESET_SCMI) +=3D reset-scmi.o
->  obj-$(CONFIG_RESET_SIMPLE) +=3D reset-simple.o
->  obj-$(CONFIG_RESET_SKY1) +=3D reset-sky1.o
-> +obj-$(CONFIG_RESET_SKY1_AUDSS) +=3D reset-sky1-audss.o
->  obj-$(CONFIG_RESET_SOCFPGA) +=3D reset-socfpga.o
->  obj-$(CONFIG_RESET_SUNPLUS) +=3D reset-sunplus.o
->  obj-$(CONFIG_RESET_SUNXI) +=3D reset-sunxi.o
-> diff --git a/drivers/reset/reset-sky1-audss.c b/drivers/reset/reset-sky1-=
-audss.c
-> new file mode 100644
-> index 000000000000..20870f37d7d7
-> --- /dev/null
-> +++ b/drivers/reset/reset-sky1-audss.c
-> @@ -0,0 +1,192 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Cix Sky1 Audio Subsystem reset controller driver
-> + *
-> + * Copyright 2026 Cix Technology Group Co., Ltd.
-> + */
-> +
-> +#include <dt-bindings/reset/cix,sky1-audss-cru.h>
-> +
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset-controller.h>
-> +
-> +#define SKY1_RESET_SLEEP_MIN_US		50
-> +#define SKY1_RESET_SLEEP_MAX_US		100
-> +
-> +#define AUDSS_SW_RST			0x78
-> +
-> +struct sky1_audss_reset_map {
-> +	unsigned int offset;
-> +	unsigned int mask;
-> +};
-> +
-> +struct sky1_audss_reset {
-> +	struct reset_controller_dev rcdev;
-> +	struct regmap *regmap;
-> +	const struct sky1_audss_reset_map *map;
-> +};
-> +
-> +static const struct sky1_audss_reset_map sky1_audss_reset_map[] =3D {
-> +	[AUDSS_I2S0_SW_RST]   =3D { AUDSS_SW_RST, BIT(0) },
-> +	[AUDSS_I2S1_SW_RST]   =3D { AUDSS_SW_RST, BIT(1) },
-> +	[AUDSS_I2S2_SW_RST]   =3D { AUDSS_SW_RST, BIT(2) },
-> +	[AUDSS_I2S3_SW_RST]   =3D { AUDSS_SW_RST, BIT(3) },
-> +	[AUDSS_I2S4_SW_RST]   =3D { AUDSS_SW_RST, BIT(4) },
-> +	[AUDSS_I2S5_SW_RST]   =3D { AUDSS_SW_RST, BIT(5) },
-> +	[AUDSS_I2S6_SW_RST]   =3D { AUDSS_SW_RST, BIT(6) },
-> +	[AUDSS_I2S7_SW_RST]   =3D { AUDSS_SW_RST, BIT(7) },
-> +	[AUDSS_I2S8_SW_RST]   =3D { AUDSS_SW_RST, BIT(8) },
-> +	[AUDSS_I2S9_SW_RST]   =3D { AUDSS_SW_RST, BIT(9) },
-> +	[AUDSS_WDT_SW_RST]    =3D { AUDSS_SW_RST, BIT(10) },
-> +	[AUDSS_TIMER_SW_RST]  =3D { AUDSS_SW_RST, BIT(11) },
-> +	[AUDSS_MB0_SW_RST]    =3D { AUDSS_SW_RST, BIT(12) },
-> +	[AUDSS_MB1_SW_RST]    =3D { AUDSS_SW_RST, BIT(13) },
-> +	[AUDSS_HDA_SW_RST]    =3D { AUDSS_SW_RST, BIT(14) },
-> +	[AUDSS_DMAC_SW_RST]   =3D { AUDSS_SW_RST, BIT(15) },
-> +};
-> +
-> +static struct sky1_audss_reset *to_sky1_audss_reset(struct reset_control=
-ler_dev *rcdev)
-> +{
-> +	return container_of(rcdev, struct sky1_audss_reset, rcdev);
-> +}
-> +
-> +static int sky1_audss_reset_set(struct reset_controller_dev *rcdev,
-> +				unsigned long id, bool assert)
-> +{
-> +	struct sky1_audss_reset *priv =3D to_sky1_audss_reset(rcdev);
-> +	const struct sky1_audss_reset_map *signal =3D &priv->map[id];
-> +	unsigned int value =3D assert ? 0 : signal->mask;
-> +
-> +	return regmap_update_bits(priv->regmap, signal->offset, signal->mask, v=
-alue);
 
-Why does this propagate the return value ...
 
-> +}
-> +
-> +static int sky1_audss_reset_assert(struct reset_controller_dev *rcdev,
-> +				   unsigned long id)
-> +{
-> +	sky1_audss_reset_set(rcdev, id, true);
+On 15-05-2026 02:53, sashiko-bot@kernel.org wrote:
+> - [High] The API illegally truncates the 64-bit PSCI SYSTEM_RESET2 cookie parameter to 32 bits, violating the ARM PSCI specification.
 
-... only to be ignored? It'd be better to pass it on.
+Hi Lorenzo,
 
-> +	usleep_range(SKY1_RESET_SLEEP_MIN_US, SKY1_RESET_SLEEP_MAX_US);
-> +	return 0;
-> +}
-> +
-> +static int sky1_audss_reset_deassert(struct reset_controller_dev *rcdev,
-> +				     unsigned long id)
-> +{
-> +	sky1_audss_reset_set(rcdev, id, false);
-> +	usleep_range(SKY1_RESET_SLEEP_MIN_US, SKY1_RESET_SLEEP_MAX_US);
-> +	return 0;
-> +}
-> +
-> +static int sky1_audss_reset(struct reset_controller_dev *rcdev,
-> +			    unsigned long id)
-> +{
-> +	sky1_audss_reset_assert(rcdev, id);
-> +	sky1_audss_reset_deassert(rcdev, id);
-> +	return 0;
-> +}
+Was going through this comment. The patch currently uses a 32 bit 
+cookie. The spec also talks about "SMC64 - uint64 - cookie". Can you 
+please suggest if we should add support for 64 bit cookie here?
 
-Will any AUDSS reset consumer use the reset_control_reset() API?
-If not, no need to implement this.
+This will require a re-design for supporting about up-to three 32-bit 
+numbers in reboot-mode framework.
 
-> +
-> +static int sky1_audss_reset_status(struct reset_controller_dev *rcdev,
-> +				   unsigned long id)
-> +{
-> +	struct sky1_audss_reset *priv =3D to_sky1_audss_reset(rcdev);
-> +	const struct sky1_audss_reset_map *signal =3D &priv->map[id];
-> +	unsigned int value;
-> +
-> +	regmap_read(priv->regmap, signal->offset, &value);
-> +	return !!(value & signal->mask);
-> +}
-> +
-> +static const struct reset_control_ops sky1_audss_reset_ops =3D {
-> +	.reset    =3D sky1_audss_reset,
-> +	.assert   =3D sky1_audss_reset_assert,
-> +	.deassert =3D sky1_audss_reset_deassert,
-> +	.status   =3D sky1_audss_reset_status,
-> +};
-> +
-> +static const struct regmap_config sky1_audss_regmap_config =3D {
-> +	.reg_bits =3D 32,
-> +	.val_bits =3D 32,
-> +	.reg_stride =3D 4,
-> +};
-> +
-> +static void sky1_audss_reset_iounmap(void *data)
-> +{
-> +	iounmap(data);
-> +}
-> +
-> +static int sky1_audss_reset_get_regmap(struct sky1_audss_reset *priv)
-> +{
-> +	struct device *dev =3D priv->rcdev.dev;
-> +	void __iomem *base;
-> +	int ret;
-> +
-> +	priv->regmap =3D dev_get_regmap(dev->parent, NULL);
-> +	if (priv->regmap)
-> +		return 0;
-> +
-> +	base =3D of_iomap(dev->parent->of_node, 0);
-> +	if (!base)
-> +		return dev_err_probe(dev, -ENOMEM, "failed to iomap address space\n");
-> +
-> +	ret =3D devm_add_action_or_reset(dev, sky1_audss_reset_iounmap, base);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to register iounmap action\n");
-> +
-> +	priv->regmap =3D devm_regmap_init_mmio(dev, base, &sky1_audss_regmap_co=
-nfig);
-> +	if (IS_ERR(priv->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-> +				     "failed to initialize regmap\n");
-
-Why is there a fallback path? The clock driver creates the regmap
-before creating the reset aux device, so dev_get_regmap() can never
-fail.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int sky1_audss_reset_probe(struct auxiliary_device *adev,
-> +				  const struct auxiliary_device_id *id)
-> +{
-> +	struct sky1_audss_reset *priv;
-> +	struct device *dev =3D &adev->dev;
-> +	int ret;
-> +
-> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->map =3D sky1_audss_reset_map;
-> +	priv->rcdev.owner =3D THIS_MODULE;
-> +	priv->rcdev.nr_resets =3D ARRAY_SIZE(sky1_audss_reset_map);
-> +	priv->rcdev.ops =3D &sky1_audss_reset_ops;
-> +	priv->rcdev.of_node =3D dev->parent->of_node;
-
-auxiliary_device_create() uses device_set_of_node_from_dev() to inherit
-the parent of_node, so you can use dev->of_node here.
-
-> +	priv->rcdev.dev =3D dev;
-> +	priv->rcdev.of_reset_n_cells =3D 1;
-
-No need to set of_reset_n_cells.
-
-> +
-> +	dev_set_drvdata(dev, priv);
-
-This seems unnecessary as well.
-
-> +
-> +	ret =3D sky1_audss_reset_get_regmap(priv);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to get regmap\n");
-> +
-> +	return devm_reset_controller_register(dev, &priv->rcdev);
-> +}
-> +
-> +static const struct auxiliary_device_id sky1_audss_reset_ids[] =3D {
-> +	{ .name =3D "clk_sky1_audss.reset" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(auxiliary, sky1_audss_reset_ids);
-> +
-> +static struct auxiliary_driver sky1_audss_reset_driver =3D {
-> +	.probe =3D sky1_audss_reset_probe,
-> +	.id_table =3D sky1_audss_reset_ids,
-> +};
-> +
-
-Drop this empty line.
-
-> +module_auxiliary_driver(sky1_audss_reset_driver);
-> +
-> +MODULE_AUTHOR("Joakim Zhang <joakim.zhang@cixtech.com>");
-> +MODULE_DESCRIPTION("Cix Sky1 Audio Subsystem reset driver");
-> +MODULE_LICENSE("GPL");
-
-regards
-Philipp
+thanks,
+Shivendra
 
