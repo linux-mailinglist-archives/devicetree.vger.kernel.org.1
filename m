@@ -1,61 +1,68 @@
-Return-Path: <devicetree+bounces-315097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315098-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id z5O2KJ+MO2qRZggAu9opvQ
-	(envelope-from <devicetree+bounces-315097-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:51:59 +0200
+	id O2oJBQKNO2qiZggAu9opvQ
+	(envelope-from <devicetree+bounces-315098-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:53:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C699B6BC58A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:51:57 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53C436BC5A8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:53:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=jluGIgQo;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315097-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315097-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="bKk/bikN";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315098-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315098-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 124743046413
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 07:51:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C3E4B3006B79
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 07:53:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE8EE3932EE;
-	Wed, 24 Jun 2026 07:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547393932EE;
+	Wed, 24 Jun 2026 07:53:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA0FE39281B;
-	Wed, 24 Jun 2026 07:51:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 528DA38C2C6;
+	Wed, 24 Jun 2026 07:53:34 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782287502; cv=none; b=QmeSN6bdUPlY06MDTyuysb2+QTDNf0CD4RvxbrdX9PGvSvUiavhOPT3PgOBQnMo5NqNHY+LZyGGq6EUGGSWZHfTveQvVMigwi99UQz8Ih6CkzXVIePra7RfKWqnewgwxhADPe3G7qP6o9Tvl6cYzG1noCEUtZSmYts/EISwaukE=
+	t=1782287615; cv=none; b=NHaY5P/eHHPmd1ILGy/wEsKXadupMVgwL1cDcoVbqYakdKBUNSZdHpXmgICHUKC25qLf6aUm630WlCg1LTbND7DS1bVeqJom2L12r6sQBlW1Qt2DKBAzHxLrGKMP5rCtcO+ammgtoYspVs1FNtB4+QDKN4COlMue6IEHPSXjbl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782287502; c=relaxed/simple;
-	bh=DYe7VwFNV9j8vSBxh0sxvNFJ5tm4QCGE7sLXePjo40w=;
+	s=arc-20240116; t=1782287615; c=relaxed/simple;
+	bh=NxhM7haVXzOhrdp2hyw8slzEGeBWdGRIQpJIQYwNGVI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qXFeqqspyt3HVWC5YJOm7QHMpXGMnH/9YqeY7NAacYKuSx+v47UKExanShaaEWPPfyw8XfSz9wnDFP6QN4yR1qAzX1cj35Gxg45sjGKRVSD/UKZb6BhRSXh4o2swfFr01cKRmKI6zyXKmTTXWy0D8rG86eXmMWg54FcQbyRhIko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jluGIgQo; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49F291F000E9;
-	Wed, 24 Jun 2026 07:51:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=erK8bLC6ZEbGTAWZ0VHUoXe+DcyPsZAQWMTc5CSyO5zxry1C+zJjhm1B7HDGBxDeP4R2qUpWRnkjIseQiEok8BHei0gXrroDSZwWawTRftUZSml9wQIWhvzki5EBYUAvlYm8uMY0sUQUH1WBeb8EpYbxPhjMpS7U9BlV3bov72I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bKk/bikN; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E08691F000E9;
+	Wed, 24 Jun 2026 07:53:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782287501;
-	bh=NSEEVjv1/4kjXV4htQAieMuaFZE2MmtV1l1wYqenhLc=;
+	s=k20260515; t=1782287613;
+	bh=g1ts7TNTeKBHivKT6flBbPP8OJxLx/1C/SeU6xllzAg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=jluGIgQojegfwtFhgq8ElqtfozWVNevAYkAS+7eRG+5ceLHulNoFDgbgOEEPKDyhJ
-	 rbm/gwN+vQMLxFYA1EKDHmd394oQelcS9Jaq97jgrREgjDnNN7a9pMacaUm4x2+pmW
-	 64eNX4jO8ucN6Gv3yu7V/rY/iDYJp0UexXaPfmRRPSAmlb35XxBrRona04RJngU6MQ
-	 qZ0zueAe2rc5pEB/JgIcQ8wcNJaPcir9l9ZiQKeZZjB6MK2L29on4OIUo/Gr3XdPAs
-	 xlCj+e6aRRXmKQvlXyY4jOWTWCCG+tB0Mh8wuQRjtiMuOvC4p/p7PfIdPVDWrqY+C1
-	 DPhx5f6suev1Q==
-Date: Wed, 24 Jun 2026 09:51:37 +0200
+	b=bKk/bikNE5B0dfuP3ERP9VWSMWCF9kDgSc4g1WKAmnQT/qon8URxvJVyuCz8vDmzR
+	 hMVsLXwaVh8lpu8CcELHO1hCrTveT49fU2Rhc+4LoEkY/uy2yvDKiZN4oMJXiPp33d
+	 7N9he7qhJZoMvcj1iq8ZaihCw6qqhDCGNzq+EvhnoIiekyW+MBKGJgsUgtmJIZR6s/
+	 6CmIayu05JfPUi4j56WAiChUBZbuN1BSauJ/YIz12PHow9wlTc+Zw4Eo8xASgK34BQ
+	 Z4csZsjVqmom7aUEp7GfMpyJGkEd9npymOZ3HAhAAITFLfnhPNGfxf7jcyQelXlGnN
+	 u4uHWGZ8+qXhQ==
+Date: Wed, 24 Jun 2026 09:53:30 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Eduard Bostina <egbostina@gmail.com>
-Cc: daniel.baluta@nxp.com, simona.toaca@nxp.com, goledhruva@gmail.com, 
-	m-chawdhry@ti.com, Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: Convert TI OMAP2420 MMC to DT schema
-Message-ID: <20260624-frisky-wakeful-wombat-d1be2d@quoll>
-References: <20260623094336.4172741-1-egbostina@gmail.com>
+To: Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney@redhat.com>, Shawn Guo <shengchao.guo@oss.qualcomm.com>, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Ajit Pandey <ajit.pandey@oss.qualcomm.com>, Imran Shaik <imran.shaik@oss.qualcomm.com>, 
+	Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/6] dt-bindings: clock: qcom: Document Nord display
+ clock controller
+Message-ID: <20260624-logical-walrus-of-enthusiasm-adfeb6@quoll>
+References: <20260623-nords_mm_v1-v1-0-860c84539804@oss.qualcomm.com>
+ <20260623-nords_mm_v1-v1-3-860c84539804@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,75 +71,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260623094336.4172741-1-egbostina@gmail.com>
+In-Reply-To: <20260623-nords_mm_v1-v1-3-860c84539804@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:egbostina@gmail.com,m:daniel.baluta@nxp.com,m:simona.toaca@nxp.com,m:goledhruva@gmail.com,m:m-chawdhry@ti.com,m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_RECIPIENTS(0.00)[m:taniya.das@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:shengchao.guo@oss.qualcomm.com,m:bartosz.golaszewski@oss.qualcomm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:konradybcio@kernel.org,m:ajit.pandey@oss.qualcomm.com,m:imran.shaik@oss.qualcomm.com,m:jagadeesh.kona@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-315097-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315098-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[nxp.com,gmail.com,ti.com,kernel.org,vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,quoll:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,quoll:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C699B6BC58A
+X-Rspamd-Queue-Id: 53C436BC5A8
 
-On Tue, Jun 23, 2026 at 09:43:35AM +0000, Eduard Bostina wrote:
-> +  reg:
-> +    maxItems: 1
+On Tue, Jun 23, 2026 at 04:24:06PM +0530, Taniya Das wrote:
+> Add Device Tree binding documentation for the display clock controller
+> on the Qualcomm Nord SoC.
+> 
+> The Nord platform contains two instances of the display clock controller,
+> DISPCC_0 and DISPCC_1. Update the bindings to include compatible strings
+> for both instances.
+> 
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+
+...
+
+> diff --git a/include/dt-bindings/clock/qcom,nord-dispcc.h b/include/dt-bindings/clock/qcom,nord-dispcc.h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..9f6c9979e0f358678f28a992af6083b0ae6c97e1
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/qcom,nord-dispcc.h
+> @@ -0,0 +1,115 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +#ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_NORD_H
+> +#define _DT_BINDINGS_CLK_QCOM_DISP_CC_NORD_H
 > +
-> +  ti,hwmods:
-> +    description: |
-> +      Name of the hwmod associated to the MMC controller. Must be
-> +      "msdi<n>" where n is the controller instance starting from 1.
-> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +/* DISP_CC_0 clocks */
 
-You should not use different type than already used and currently this
-is a string (so also no items below).
-
-> +    items:
-> +      - pattern: "^msdi[0-9]+$"
-
-"^msdi([1-9]|[1-9][0-9]+)$"
-
-> +
-> +  dmas:
-> +    maxItems: 2
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
+Where are clocks/resets/power domains for DISP_CC_1?
 
 Best regards,
 Krzysztof
