@@ -1,166 +1,192 @@
-Return-Path: <devicetree+bounces-315324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315325-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id U/F1GEEUPGp0jggAu9opvQ
-	(envelope-from <devicetree+bounces-315324-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 19:30:41 +0200
+	id nPukG6AVPGqejggAu9opvQ
+	(envelope-from <devicetree+bounces-315325-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 19:36:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD14A6C0598
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 19:30:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 010BB6C05F6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 19:36:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="E08dD9M/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315324-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315324-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=OkMUjFxw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315325-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315325-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DDAC23029C22
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 17:30:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7CBF8301BF43
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 17:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD49534846A;
-	Wed, 24 Jun 2026 17:30:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC95437DEB2;
+	Wed, 24 Jun 2026 17:35:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE071FFC48;
-	Wed, 24 Jun 2026 17:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FFDB3DD51D
+	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 17:35:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782322237; cv=none; b=ROJfJ2t+Oc90WtDarSjsENX6QwtvOSEafKPwqdDfFm98xroY2akrW16gaMnUBnOQgDZu562dZw5+G+jXrRVHPl1v+EqlO4uLSpqHXOFw8aukkEOrk+c+hrJJoY40t4n1icdulptroi9smsrEOtTNbYe2C1Zn73A5IY3nrr9MY4Q=
+	t=1782322554; cv=none; b=Zgz+I+RJklyh+lGXNOdnLkTHU7mUfnDUE5IahGtYhNFAwnql93wTnv0fUcQ7vWa/J0yOMcnEHSpTvryVeRoJUFltgJGrScUNCgmtWUn0n/KurxZ5WQJvlEMdUHd41Z4Rc0zJ84sjd7hBJdntSQ9dwW+X2+oIHH0POLQMbcQIDJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782322237; c=relaxed/simple;
-	bh=1NW8xouruuORoUuB1OXUIgSirStgX6IUnPKVsubKicE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=l/zRrOiZ9ZpM4OZlmLcYoFZLzFhMZJfwhoEDFN0kT4T7DE/gje6dQuFjmdAQwZD0wAHusCTyBBY0yxk3oA8JIft4y8wBdSF858fchH4oueFokMKheNJRpKr42DOSqe9hzJfUMdk1cTogQ61uxpREJccpf0P0+NSs1yAFBeH/JLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E08dD9M/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F4041F000E9;
-	Wed, 24 Jun 2026 17:30:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782322236;
-	bh=NtllajPUK8pNbCH5Sg5mf10NWoNUabwl2VDQFDahwnA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject;
-	b=E08dD9M/e9JmkMjl3YBHeGU/wLLjM8y/g+n7W0mtj6SKi9A2ManngzK2KwP89NLkK
-	 jHrpgOWaOuIg/56kxzJbKhYamupU2arK7w/Snzz+WR7n0JPIdv2OBIj6DpCw9P+65w
-	 e3gHHKlmH2jViZzmulMkbJ2NHBGZTubsiDL+0HfNgykjwcl69k11espZCUPpCKLkDw
-	 MLckr+9WweAhxjqN5m/o3jI4OHqlmJXXLxj+UvbpcER1puUoUQvcfzR8csf/exHsmz
-	 pgaoaCUSYcKXHqHfxtmVhiWRSEZYXqDB4mKQ70ZxE0eUd3491CyJP3fas2f6XiwO69
-	 Ru7VuV3WCgzgw==
-Date: Wed, 24 Jun 2026 12:30:35 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1782322554; c=relaxed/simple;
+	bh=+kM3kPDWNiXgNtUJVg8ywoa5vnULQyhWeCjppMaIOL0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iMRJ4uu+FttseU2Q08jLGexANIAk2CO4+BT9sYTsKxsTzrjl+CS3A0bsYKYaJaKkDESg5d+4IbPqf2VkCF29XTVZllHHUTRniyAn8aiah4Pcrv1W84OoYQpFLduYkCLYgWsMOiuvRp+7WCEolt5pvTJnqzgTEnqz53RsEE3SwsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OkMUjFxw; arc=none smtp.client-ip=209.85.128.43
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4926046fbc5so1326185e9.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 10:35:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782322552; x=1782927352; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y3ESHjFhIcPG4hvwDoMj3pKaSJ5JAGh6fCIgpcDiAdw=;
+        b=OkMUjFxwyGkbTekG69wnYSuAOf7/+wcfG4Dl6S1mPOQYCy7li/wn8RPj8FunDvfvtt
+         Y/6jD992dXXJDXdlRyeuE8aMcc7uXli3zKBu+KR4wbdDzHIhjNdOO6rt/Vbe8kT/x+Nt
+         34FlJMQx1PgApv0ZxPnL1W3JebnWOgA+uF8R8yi075qwVepVEYhUpCevv5PGLA1MQva5
+         TTtoA0FfBGMHnhLvMnH51855FefrHhJ+VGVDyUg+u6BWXbwfTVc0XpyhTNFz1FIxlO8c
+         I4j2fB7iv6yxfXA8zqNO1NOLP8ixJxBZL6EPxdxvbldl2qgZGrWeNTVxmptW553ZzYui
+         FhwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782322552; x=1782927352;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y3ESHjFhIcPG4hvwDoMj3pKaSJ5JAGh6fCIgpcDiAdw=;
+        b=VFz2hcv3wXLw67RpIsCFosGans+wSR23ovq2cY+UB1VAwV1+A+tOuHyit1HUeoGPQY
+         v91Sc8pCho0O4z6E2QUqXAGAWsMbQI5eo+WIn2ac1vL8SLLrhuTWVbgu8hPOjcG/wygg
+         iPhVMSIwhY7TssitmDoAzo79IWUnso2wmgC840YoeeyPnCpdT0c5vGo7xZXO/ri9/lFr
+         RJa33/2MIuxYGJFDzH/tuUzRqczlDtZdp+pv0ncqjqZr9KG07+xKsn9Avana6LMlQe/0
+         zM5M+3d4JrLWdbIpd5PCXLfMMhn3O5dIH1Dq3i4T2UwHETnS2UgXlNWQqaqRBe8otyw1
+         tImQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9Ytuw/6CHJuiBHVMHWw4X9FLVKSJefS+7QrzMIKSwQAlGMfcpUJdeuHmWz2U0xfibIBbINptScek1F@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKrs3FcZM34349wJ4bF/KbHDXRbBno7psic3ID8so3GPnnRpT5
+	sGkM7aM6Sc6kHRyAxdp64PXz1S/7wY1MMmoPLhf87Y6vYIyj9iSI0Q23
+X-Gm-Gg: AfdE7clTNzA+sWFKVPIN0ARnITjQpsI+azGybmfbdoUqQ5ZCYElAj8v116d5zLPAKkI
+	BceqJ2psU1AAcRRjAZL7IZkf83bLuPWYkW8Bf3ntHd6M9XJzBrFhdEi/Rtg9J+gcPtp+M40q3MT
+	1gogTmBLN2Rb0+zlQ13dVvuCnHjj1GvDbVy+9POop5SEVEBMY2KDJUuwk9tAFg4MKQA44b4AjOK
+	HatDDQyjODo4dBoP1kIW0dy5I1vt+byQGiddmXU4ixaTG4T1skofIRTUA+J97g3hUhvBmt68hjm
+	n+/f97/H6CbaN5sLT5vqYuvaf4GQYcPschtDXJ8Ofg2bFdNZkIC6Ygomvfwkg1FO3fiHnpBFr5q
+	U+symQEcYdcO8yb1D6WYmkDJVB2F/UGoLgI4QITFYTkAudi8uugjMBl/bVB9tvhSfENXp6rjtbM
+	fPdZARBQ==
+X-Received: by 2002:a05:600c:4503:b0:492:6348:d7b0 with SMTP id 5b1f17b1804b1-4926348d7e5mr17448505e9.18.1782322551566;
+        Wed, 24 Jun 2026 10:35:51 -0700 (PDT)
+Received: from luca-vm.. ([81.56.18.151])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49260d917a5sm41336865e9.2.2026.06.24.10.35.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jun 2026 10:35:51 -0700 (PDT)
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+To: linux-mediatek@lists.infradead.org
+Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	CK Hu <ck.hu@mediatek.com>,
+	Jitao shi <jitao.shi@mediatek.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] dt-bindings: mediatek: hdmi-ddc: Correct the compatibles for mt7623-mt8167
+Date: Wed, 24 Jun 2026 19:34:56 +0200
+Message-ID: <20260624173514.19752-1-l.scorcia@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: David Rhodes <david.rhodes@cirrus.com>, linux-sound@vger.kernel.org, 
- Bjorn Helgaas <bhelgaas@google.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, phone-devel@vger.kernel.org, 
- Mark Brown <broonie@kernel.org>, patches@opensource.cirrus.com, 
- Richard Fitzgerald <rf@opensource.cirrus.com>, 
- David Rhodes <David.Rhodes@cirrus.com>, Liam Girdwood <lgirdwood@gmail.com>
-To: David Heidelberg <david@ixit.cz>
-In-Reply-To: <20260624-dt-cirrus-cs35l36-v2-1-74eccdbd8fe4@ixit.cz>
-References: <20260624-dt-cirrus-cs35l36-v2-1-74eccdbd8fe4@ixit.cz>
-Message-Id: <178232223507.468387.3561420324292249199.robh@kernel.org>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: Convert cirrus,cs35l36 to DT
- schema
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315324-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:david.rhodes@cirrus.com,m:linux-sound@vger.kernel.org,m:bhelgaas@google.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:phone-devel@vger.kernel.org,m:broonie@kernel.org,m:patches@opensource.cirrus.com,m:rf@opensource.cirrus.com,m:David.Rhodes@cirrus.com,m:lgirdwood@gmail.com,m:david@ixit.cz,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-315325-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-mediatek@lists.infradead.org,m:l.scorcia@gmail.com,m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:ck.hu@mediatek.com,m:jitao.shi@mediatek.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:lscorcia@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[cirrus.com,vger.kernel.org,google.com,kernel.org,opensource.cirrus.com,gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,linux.intel.com,suse.de,ffwll.ch,collabora.com,mediatek.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[]
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CD14A6C0598
+X-Rspamd-Queue-Id: 010BB6C05F6
 
+The HDMI DDC driver for both mt7623 and mt8167 is actually the same as
+mt8173-hdmi-ddc and the mt7623n.dtsi board include file already uses
+mt8173-hdmi-ddc compatible as a fallback, but the documentation lists
+them as separate entries. Correct the binding by adding the correct
+fallback.
 
-On Wed, 24 Jun 2026 18:02:25 +0200, David Heidelberg wrote:
-> Convert CS35L36 Speaker Amplifier to yaml.
-> 
-> Changes:
->  - maintainers email to the generic Cirrus email
->  - Both the codec and downstream worked just fine without
->    VP-supply provided. Align with datasheet for similar models.
->  - add dai-common.yaml to cover for '#sound-dai-cells',
->    'sound-name-prefix'
-> 
-> Reviewed-by: David Rhodes <David.Rhodes@cirrus.com>
-> Co-developed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> Relevant for Pixel 3 / 3XL / 4.
-> ---
-> Changes in v2:
-> - Rename the commit. (Mark)
-> - Link to v1: https://lore.kernel.org/r/20260618-dt-cirrus-cs35l36-v1-1-1a43515666ad@ixit.cz
-> ---
->  .../devicetree/bindings/sound/cirrus,cs35l36.yaml  | 224 +++++++++++++++++++++
->  .../devicetree/bindings/sound/cs35l36.txt          | 168 ----------------
->  2 files changed, 224 insertions(+), 168 deletions(-)
-> 
+This change fixes the following dtbs_check errors:
 
-My bot found errors running 'make dt_binding_check' on your patch:
+DTC [C] arch/arm/boot/dts/mediatek/mt7623n-rfb-emmc.dtb
+i2c@11013000 (mediatek,mt7623-hdmi-ddc): compatible:
+  ['mediatek,mt7623-hdmi-ddc', 'mediatek,mt8173-hdmi-ddc'] is too long
+DTC [C] arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dtb
+i2c@11013000 (mediatek,mt7623-hdmi-ddc): compatible:
+  ['mediatek,mt7623-hdmi-ddc', 'mediatek,mt8173-hdmi-ddc'] is too long
 
-yamllint warnings/errors:
+Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+---
+ .../bindings/display/mediatek/mediatek,hdmi-ddc.yaml  | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/cirrus,cs35l36.yaml: properties:cirrus,vpbr-config:type: 'boolean' was expected
-	hint: A vendor boolean property can use "type: boolean"
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/cirrus,cs35l36.yaml: Unresolvable reference: /schemas/sound/dai-common.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/cirrus,cs35l36.example.dtb: codec@40 (cirrus,cs35l36): Unevaluated properties are not allowed ('cirrus,weak-fet-delay', 'cirrus,weak-fet-thld' were unexpected)
-	from schema $id: http://devicetree.org/schemas/cirrus,cs35l36.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260624-dt-cirrus-cs35l36-v2-1-74eccdbd8fe4@ixit.cz
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
+index bd8f7b8ae0ff..966127e1ee63 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
+@@ -15,10 +15,13 @@ description: |
+ 
+ properties:
+   compatible:
+-    enum:
+-      - mediatek,mt7623-hdmi-ddc
+-      - mediatek,mt8167-hdmi-ddc
+-      - mediatek,mt8173-hdmi-ddc
++    oneOf:
++      - const: mediatek,mt8173-hdmi-ddc
++      - items:
++          - enum:
++              - mediatek,mt7623-hdmi-ddc
++              - mediatek,mt8167-hdmi-ddc
++          - const: mediatek,mt8173-hdmi-ddc
+ 
+   reg:
+     maxItems: 1
+-- 
+2.43.0
 
 
