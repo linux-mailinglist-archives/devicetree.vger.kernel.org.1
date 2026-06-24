@@ -1,135 +1,192 @@
-Return-Path: <devicetree+bounces-315060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315061-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EdeQGjh/O2o0YwgAu9opvQ
-	(envelope-from <devicetree+bounces-315060-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:54:48 +0200
+	id rrBPF5Z/O2pTYwgAu9opvQ
+	(envelope-from <devicetree+bounces-315061-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:56:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1AE06BBEB5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:54:47 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B276C6BBEFA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:56:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=l7etd0EK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315060-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315060-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=YcHVNIIQ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315061-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315061-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linux.dev;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 82F503007AF4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 06:54:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B93A9302D0BE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 06:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1279637CD41;
-	Wed, 24 Jun 2026 06:54:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05536389E1A;
+	Wed, 24 Jun 2026 06:55:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 110473043CE;
-	Wed, 24 Jun 2026 06:54:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4803890F7
+	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 06:55:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782284085; cv=none; b=hpVPlZmBP+wHnrsmBtCCfcICkPcXQq4KunHfA5aaXI5cCYypps3sOTc6HeMg2QwQtdRLFIi5bRgDTCwvduqOG4pd4PC4afWcfjYZlEq4h3xpjCOcRm5Ze1j0hpnkVduqiY/q+UJM3Z+ZSOF0eOOTa/aY0h3cHNs6GKF3P/g2mTc=
+	t=1782284149; cv=none; b=NDSRlC4/mSJmHRv2XRy64coUBn66+pXdLnhuOmqYFeA4PluNPRucWMEjiNuAkIZTaRFkyWpvIQij2l24ijesjnbSpwkXUDo0GkroRD/MXo1xA2kLraDB6mwljEy8EsrHBtMyJqOI/U71gJnygwdZHe0JQc2HHaS3xbaru9o2fUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782284085; c=relaxed/simple;
-	bh=2Fg/QGGGzid3AXP1F4Ce3P5oT8xbQFNGTUsX+bdFCEc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cT68vRUnUsoQEBtkKlfYxy34ncxKdqAmBlhq5eXhxUfh4VHD6UKOLUhPSje2b8clDnlievvN8iZAn6ef/ulkU1Jzk8KFtnaKdZwj7HoyB0jpqdhNP+e2b4G1RqUJwEO2ES57nfDJ/IQcbFHYXMD4dU4e8X3iyAiGBoWiSWct/fo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l7etd0EK; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBCB11F000E9;
-	Wed, 24 Jun 2026 06:54:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782284083;
-	bh=eUEgOxIyYt3NMIhcgazfhnCBtv48+0aBbIMcropJEa0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=l7etd0EKsqEU4OrzXbg4S9/+K3sPJiLBId0lo85N3TGQAwZL0rk0Vm2q1xmfuyZjt
-	 fSLnrhP+iia0xc6W7Mh0BaHw2LgG7QKfiEDfB9gN/dI/VOWLmu1yF5yO6C6CEFnFvG
-	 nkPTiiKYnOswiJEq6SAeLI+fYQU8AxmF2DsE141BVLWY7fah3kyXxCVp2ZOft6h44n
-	 c+9iGY0USIvRcLLj0tt1xCP/vQXuTg064fpMtY1q1Q9Rrd5O3ZHSfu6UpOf8bN2Cg1
-	 /WldVF6SV1rO3naHSRnKA1OTdjGC9t69wqgqd+bwrQ91yiOuxK7eVBEE54/SCWlW/5
-	 eqW6K/BdUbV1A==
-Date: Wed, 24 Jun 2026 08:54:40 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Biju <biju.das.au@gmail.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: display: bridge: Document Renesas
- RZ/G3L LVDS encoder
-Message-ID: <20260624-crafty-hysterical-muskox-1bd1f9@quoll>
-References: <20260619101026.323633-1-biju.das.jz@bp.renesas.com>
- <20260619101026.323633-2-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1782284149; c=relaxed/simple;
+	bh=rLH9ynL6Uvxn7RnSmUHLRZRTqjWpsodZDL+nLrHffhY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QZXTtBU6MzajneV+2v7ykV1daTdJcmXOGqIT+oJgkxCoeHd1EQIEQMIauUvDw8+OUbPsN+nCaFSPQDlgr+QrNAmnGclyyPIWHkQmwrbNddfcKbYiTqYbHxnEF0A2DMvfRqalBp/3wSSDarJjvh8pSISYyglki+YXhFbQWSoIRNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=YcHVNIIQ; arc=none smtp.client-ip=91.218.175.177
+Message-ID: <df40cc47-98ec-44b6-afda-76f483b788f9@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1782284135;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yWm8hwbOHYEuIVgePKE1QjEJreKex9TPU9yjx6MzZcc=;
+	b=YcHVNIIQIPlkM4Otj/PcpwiswIuKazAwMKCk9ChENUfKCwBT6Gh/wiQr0oNjKrv1nipBGG
+	ct24V6l0dxWtjw8Rc02pGLqDchRSQLB/o2NKzC0FKFohLycg4yJTIH0RPJbw0uwB5DODaP
+	v0GqAVxtEwq+zjEoS/Pic5q81ZOQ9Ic=
+Date: Tue, 23 Jun 2026 23:55:28 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260619101026.323633-2-biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v6 04/21] RISC-V: Define indirect CSR access helpers
+To: Charlie Jenkins <thecharlesjenkins@gmail.com>
+Cc: James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Jiri Olsa <jolsa@kernel.org>,
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Anup Patel <anup@brainfault.org>, Namhyung Kim <namhyung@kernel.org>,
+ Paul Walmsley <pjw@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Ian Rogers <irogers@google.com>, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org,
+ Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260608-counter_delegation-v6-0-285b72ed65a9@meta.com>
+ <20260608-counter_delegation-v6-4-285b72ed65a9@meta.com>
+ <ajjZR-R11yPYWuDp@blinky>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Atish Patra <atish.patra@linux.dev>
+In-Reply-To: <ajjZR-R11yPYWuDp@blinky>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	TAGGED_FROM(0.00)[bounces-315061-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:biju.das.au@gmail.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:biju.das.jz@bp.renesas.com,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:tommaso.merciai.xr@bp.renesas.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:bijudasau@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[25];
 	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-315060-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_RECIPIENTS(0.00)[m:thecharlesjenkins@gmail.com,m:james.clark@linaro.org,m:robh@kernel.org,m:acme@kernel.org,m:jolsa@kernel.org,m:will@kernel.org,m:mark.rutland@arm.com,m:anup@brainfault.org,m:namhyung@kernel.org,m:pjw@kernel.org,m:krzk+dt@kernel.org,m:irogers@google.com,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:conor@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,gmail.com,ffwll.ch,linux.intel.com,suse.de,glider.be,bp.renesas.com,ideasonboard.com,kwiboo.se,bootlin.com,lists.freedesktop.org,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,quoll:mid,vger.kernel.org:from_smtp,qualcomm.com:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,infradead.org:url,infradead.org:email,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B1AE06BBEB5
+X-Rspamd-Queue-Id: B276C6BBEFA
 
-On Fri, Jun 19, 2026 at 11:10:16AM +0100, Biju wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> 
-> Document the LVDS encoder IP found on the RZ/G3L SoC. It supports
-> single-link mode. LVDS and the DSI interface share a peripheral clock and
-> the MIPI_DSI_PRESET_N reset signal. However, the LVDS module cannot be
-> used at the same time as MIPI-DSI.
-> 
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-Best regards,
-Krzysztof
-
+On 6/21/26 11:42 PM, Charlie Jenkins wrote:
+> On Mon, Jun 08, 2026 at 11:01:18PM -0700, Atish Patra wrote:
+>> From: Atish Patra <atishp@rivosinc.com>
+>>
+>> The indriect CSR requires multiple instructions to read/write CSR.
+> indirect
+>
+>> Add a few helper functions for ease of usage.
+>>
+>> Signed-off-by: Atish Patra <atishp@rivosinc.com>
+>> ---
+>>   arch/riscv/include/asm/csr_ind.h | 44 ++++++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 44 insertions(+)
+>>
+>> diff --git a/arch/riscv/include/asm/csr_ind.h b/arch/riscv/include/asm/csr_ind.h
+>> new file mode 100644
+>> index 000000000000..6fd7d44dc640
+>> --- /dev/null
+>> +++ b/arch/riscv/include/asm/csr_ind.h
+>> @@ -0,0 +1,44 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/*
+>> + * Copyright (C) 2024 Rivos Inc.
+> I don't think it makes sense to introduce this copyright in new commits.
+Yeah. I will update these.
+> - Charlie
+>
+>> + */
+>> +
+>> +#ifndef _ASM_RISCV_CSR_IND_H
+>> +#define _ASM_RISCV_CSR_IND_H
+>> +
+>> +#include <linux/irqflags.h>
+>> +
+>> +#include <asm/csr.h>
+>> +
+>> +#define csr_ind_read(iregcsr, iselbase, iseloff) ({		\
+>> +	unsigned long __value = 0;				\
+>> +	unsigned long __flags;					\
+>> +	local_irq_save(__flags);				\
+>> +	csr_write(CSR_ISELECT, (iselbase) + (iseloff));		\
+>> +	__value = csr_read(iregcsr);				\
+>> +	local_irq_restore(__flags);				\
+>> +	__value;						\
+>> +})
+>> +
+>> +#define csr_ind_write(iregcsr, iselbase, iseloff, value) ({	\
+>> +	unsigned long __flags;					\
+>> +	local_irq_save(__flags);				\
+>> +	csr_write(CSR_ISELECT, (iselbase) + (iseloff));		\
+>> +	csr_write(iregcsr, (value));				\
+>> +	local_irq_restore(__flags);				\
+>> +})
+>> +
+>> +#define csr_ind_warl(iregcsr, iselbase, iseloff, warl_val) ({	\
+>> +	unsigned long __old_val = 0, __value = 0;		\
+>> +	unsigned long __flags;					\
+>> +	local_irq_save(__flags);				\
+>> +	csr_write(CSR_ISELECT, (iselbase) + (iseloff));		\
+>> +	__old_val = csr_read(iregcsr);				\
+>> +	csr_write(iregcsr, (warl_val));				\
+>> +	__value = csr_read(iregcsr);				\
+>> +	csr_write(iregcsr, __old_val);				\
+>> +	local_irq_restore(__flags);				\
+>> +	__value;						\
+>> +})
+>> +
+>> +#endif
+>>
+>> -- 
+>> 2.53.0-Meta
+>>
+>>
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+>>
 
