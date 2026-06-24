@@ -1,415 +1,278 @@
-Return-Path: <devicetree+bounces-315088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315086-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 87vjDQ6JO2qEZQgAu9opvQ
-	(envelope-from <devicetree+bounces-315088-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:36:46 +0200
+	id dulaIoqJO2qoZQgAu9opvQ
+	(envelope-from <devicetree+bounces-315086-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:38:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0D856BC35E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:36:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED6D56BC3C5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:38:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=D7Ig03zo;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=F7CrBAzs;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315088-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315088-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HpTUhmIL;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315086-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315086-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 392FA3006B55
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 07:36:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9574330038E4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 07:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF0683921E9;
-	Wed, 24 Jun 2026 07:36:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB012EC57C;
+	Wed, 24 Jun 2026 07:36:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16ABB2DB7BD
-	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 07:36:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5FF02E736B
+	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 07:36:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782286597; cv=none; b=qTas4pIn2udTYqZ5EgmG2gJIF6GsWvQM/d9kXghQgUl7/QfmDfZPz/utig23OfNKzhx1QOk3p4xev3s3kswszHeYVbstOaQg3RJC2/qUJUWz5S0VZybedBhd6EjHQzgNcl8EdY8GdDipZ9lOmCpKUA+UuiPhD6xn0BZ1BZIvQcU=
+	t=1782286586; cv=none; b=XKV7VapizZHpWZEIzD3vKPDPS/yPoIBvX3iBY1rywV72VTzDYMfytihbecgYjajTHnVD3M1kmnumeHjpqGB53JGidZ9reDHlU6Nsf4wvr6El9tTAXVHlxhBspHgomfhUJ1gqMp1PF1lpoJYkShDBmG2WxACh9zbjzCbsMeLUJnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782286597; c=relaxed/simple;
-	bh=tDDoK0gI9NknoyPvkxNP953LYm2NW/AivRP4ykYPyw0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YD2NhIVhgHZLuOoNqgAwbTsMKUAbNra6hGcG+zfVD4MBbjlUO2mdKHl1VOZYtmTN8xhtVfS5ctRUf8L+3zq/UfKZxjk06jOk3JfsQLgpPOISXkXkjlm6MM3mw3aDshoRKzvvK2cG5dXBJ0Qq+2TXMuFEPQNhmPGnj8IiLaarwFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=D7Ig03zo; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=F7CrBAzs; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65O5u8xW2555573
-	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 07:36:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	f3VJr2nXkN6JkmoVWffh0E+FdJk5nSbPALZBfnaspT8=; b=D7Ig03zo+nW2WwyQ
-	nZo+YtlgYK5d8LA6r5VPGBjsvGBxbk7lXQnuU6Qho2sFj3YiXEEdnd6gCuqh+Pm2
-	SQkjSp9IP72tUB972qkp2LXng23cIGgjSMo283khawiqr0Ups1Nbe7ieQfPfH4Iw
-	IRS5qBDlpNmXP1Q85jJVAeu701laJowZBdDN2MoeZxwBRg5JP/nxqau3y1n7KZSZ
-	GjVWvIG1iiz3fUPpq7hH+sQ85tpx2BzF8FvYNSvgNYyTkTEjUQR3WjtxVa3SfJ6y
-	sJ8Hns5Y3kTOHpzVQbpHaJTCXSpZRi1K6l6ap1YlJwenpdTTotOhGl/VmTQlAWd6
-	6w3DPg==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f0996gd83-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 07:36:31 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-8ddad6183f9so16706016d6.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 00:36:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782286591; x=1782891391; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=f3VJr2nXkN6JkmoVWffh0E+FdJk5nSbPALZBfnaspT8=;
-        b=F7CrBAzsaz9oBvlBQI2G7WEiIM5tZdZsBpcun8cZGc/F2RpXo6SgYvrQ+YKNJHn8tE
-         kDtYy1X7HKqHBxXli73QRsPEad+LVpsIL44qLTvAYcZQrva25UxCPWqrZwfA1VqOfp1r
-         DvhxMk5u2NwyliKPeUdiIYefTwvh1y53aUyuSvBLvpZLc0kW6+Iz3q0XORim3BMzNM0f
-         cv25rDW2LqxOkHn0Ht4LhfJIxyAnKOitrW8WVgh0LQhzCFvviTmeDcw9nLO3JlTv8qzS
-         opc+vaEd1utVqknjhc64CoFKPu0Gojc4Z7YeI/bCkZteLvRp8eaAVuQ0w8P9LXJlYZRN
-         jvYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782286591; x=1782891391;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=f3VJr2nXkN6JkmoVWffh0E+FdJk5nSbPALZBfnaspT8=;
-        b=SmKe/Et7QNGINATKmqkDg/OHOFJIFLB3RDlFYmV9dKpImfNF38q8g0ua+BK2v7ki5/
-         VBWRfslQ9QZed8xhX8liymdlGQtwRO+EhC+FHTuHkEv30XjCO9KnF4Hw1lwODfe+shso
-         9LCe5L8+6dmPisHszKtmm41afr1D7mrM6zN41e0NXNJ7GL4/cOlGWqia/cu1d6hPX7YN
-         Jgk3ka2svFeV0aJbRwbIESIiL0HNK0ZhdkC2cHJPxiukOEC7LS/ObLDpWV9T/1ouOKmz
-         Up9XbBfzm5ALZEkbC1o7PdZZkyiXZZA1INJwb9VOKo9YS6XKif38UHUVfz++YXkY3Vhb
-         lDFQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8Pu4Vc9Zr2xevsw20l6XTgf2pJ//+H2fyXq9yNZd7OZ1eGL8aN4BMf8NA8m/F1Hcrh+sYXjDVqyWp5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxm6zNL4r/DEyzKUifktEoOG7jC08ReSxtDIqXDhkXaclMyC5FI
-	x0xiSJ7uw4SE8KXxGzAxIYS2KW+8XSqX8TDeLGqEDPEQcvIF15XUcgXKz+tg+WMhuxov3fYuX4r
-	YsO8NClChSQeyRMuhoxNn6PA6uq8dODPFvUfE9fX/cR4hR+VLBNWlf6y4feS7y4Ex
-X-Gm-Gg: AfdE7cnT1uaQx2Tt+GcwYv8Up+5W0YmmdUxn+9p/O6p39XtEaYEFTXDyScEx/dcolk2
-	OIuGRzrekeg+8I8hzYO/gmDdpO+M0NK2tVJpq0o+zba8s+lqgYfayBbctEUJo1hg+t7HpfwWmFa
-	rZ9vk+sniH0SlfX9pF7TD15qyggXT+EmuIbKAT/AsYpFAo3iWojpQrNdcODm8Qyapxu7SYe/cfc
-	oRlLhybsg6QZIImJ3qzvoM/8vHhqSvNJxthjexcTAuAwrKPq47EdyhFUAD4O4slNRwJGHWWdNMG
-	cIHvFYQ2O541H7hZkPjiJF8DNrAac2+RSDluImNlqDPMmkzCSs26fGZdy5cYy57lFn+4/DMKTJ3
-	AjGedOTl50v41kBL6DIMBiIC/Whw7kkNhmDMx6hDn6s9Pmg==
-X-Received: by 2002:a05:620a:29d2:b0:915:c76f:26e0 with SMTP id af79cd13be357-9277e739cffmr377969185a.18.1782286591012;
-        Wed, 24 Jun 2026 00:36:31 -0700 (PDT)
-X-Received: by 2002:a05:620a:29d2:b0:915:c76f:26e0 with SMTP id af79cd13be357-9277e739cffmr377965585a.18.1782286590436;
-        Wed, 24 Jun 2026 00:36:30 -0700 (PDT)
-Received: from [192.168.0.172] ([49.205.250.204])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c0c5ef8acaesm616235666b.27.2026.06.24.00.36.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jun 2026 00:36:29 -0700 (PDT)
-Message-ID: <72b8e47e-df95-46f4-8c42-91f07a328065@oss.qualcomm.com>
-Date: Wed, 24 Jun 2026 13:06:19 +0530
+	s=arc-20240116; t=1782286586; c=relaxed/simple;
+	bh=zd8EYRTUqO0t+3O0wv/ubwpl+LZPfemplxSr05rbdbA=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=gbDytvI4BvsZP3UarR+vFfUvLHcoh80WrRbnmwxIEYqJP8agZSDX5MJV3MnZyFSOoofGwQ3KWwKH9zUD9aCH6qIJscej3YKPN/OR4uUF6EhSkGg5c58wWE966PRhrGy+N61OaOJ3i4TFFZ6/1GJ/jdQJlWSwqvziWubdRXZ3w7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HpTUhmIL; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C28CB1F000E9;
+	Wed, 24 Jun 2026 07:36:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782286583;
+	bh=+SAqtamMeDaGdOZqFV03/n34zmecNDUAdFERo+ztHA0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=HpTUhmILn4UWGUz2oxWYYxEWi+FHc1jSad8SeKiSboDZbyzrmsZ1RmLE0PemqOAfB
+	 UVN5OpqY+VKHVBu25OW+bKvMrMBhNL6HZyqRmwQ+mRkIO/yfLv5xVxvfdXDtBEPST8
+	 ec6Wj2P9LI4t6GON103ngC13X14CAcd3Sl676j/2C6bCyxnHOV9R/2tZaC300jfB8d
+	 1KVQwkssQTwxn/dumsW9Ze/+WZlQ0sXFyyOjbF2p8oY1N6Q6T4bbbcRSHqaaRmh4Cg
+	 MqxwZHhg7AAGZjHjZN1QUmNXkKLyMh48y+SLi4cgJ7fqIuMuXwOblTsNxMi0cZ9b3z
+	 0ytLMn4CCDHEQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 6/9] media: chips-media: wave6: Improve debugging
+ capabilities
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Nas Chung" <nas.chung@chipsnmedia.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260624072043.238-7-nas.chung@chipsnmedia.com>
+References: <20260624072043.238-1-nas.chung@chipsnmedia.com>
+ <20260624072043.238-7-nas.chung@chipsnmedia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 24 Jun 2026 07:36:22 +0000
+Message-Id: <20260624073622.C28CB1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 09/16] media: iris: Add framework support for AR50_LITE
- video core
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-References: <20260616-iris-ar50lt-v5-0-583b42770b6a@oss.qualcomm.com>
- <20260616-iris-ar50lt-v5-9-583b42770b6a@oss.qualcomm.com>
-Content-Language: en-US
-From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-In-Reply-To: <20260616-iris-ar50lt-v5-9-583b42770b6a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: mFWkxbN7FibsU_FbuWErmLtEG1RAK03g
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI0MDA2MSBTYWx0ZWRfXx9jvfOeLLd3i
- oTyKKqMAQWu1zSsr12LjfwfFlpw3cir63NXfPPysrrSHaV9sF9vS/NLZlFyuvqjhkvjST7l5bva
- a/aT2lf0fBphiCGglQxLiqbS4PmdiHc=
-X-Proofpoint-ORIG-GUID: mFWkxbN7FibsU_FbuWErmLtEG1RAK03g
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI0MDA2MSBTYWx0ZWRfX62RRULMeUFXI
- CgBNVWFV7Qrnm0foH/CtOgRL/UHUIrdnh45D+IL0bP5xfxvtJse2zxIHV6aapiRRQP6/wbwm2wd
- spU9JkLnVR4lXORTyh99QYGqtfZhKtgU1XWU6KfcIu83Y0ZPaEQ4J1AOOrkdkY1VyLMDL+Sk1U9
- FGxDCwmSJgN5CYgIghpFpmDyt1tpiEZwA/EwdYrbb52JjDfWSHQGhCcv/omREHy6z/q0/LdgosO
- 0Q2UiT6ywwYQybiAsNq4y/qaLGcDJ6lhla2IBNVIrGNhne0AXvvpuoehtXCvQ79YAnTekypQgR1
- sGMvlylHyeLWQN6D8B/l4Q3uQZDfq+FewernEYUIuOnqgj1Lj6IbjBuIqlMOxwzLlqHgmYtj9cN
- T6ett46xWSpl3edF4Gji6AftRHbaxQ==
-X-Authority-Analysis: v=2.4 cv=Tv/WQjXh c=1 sm=1 tr=0 ts=6a3b88ff cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=9U17wRWtyhLDe7ZN7ogbJw==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=Lu1VWoxmIdvzX4MP_goA:9 a=QEXdDO2ut3YA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-24_02,2026-06-23_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 adultscore=0 lowpriorityscore=0 spamscore=0
- malwarescore=0 phishscore=0 classifier=typeunknown authscore=0 authtc=
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.22.0-2606150000 definitions=main-2606240061
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315088-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:abhinav.kumar@linux.dev,m:bod@kernel.org,m:mchehab@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:busanna.reddy@oss.qualcomm.com,m:linux-media@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:dikshita.agarwal@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315086-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:nas.chung@chipsnmedia.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,chipsnmedia.com:email,smtp.kernel.org:mid,nxp.com:email,mailbox.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C0D856BC35E
+X-Rspamd-Queue-Id: ED6D56BC3C5
 
+Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+s) to consider:
+- [High] Kernel panic due to division by zero in debugfs FPS calculation.
+- [High] Lockless access to `vb2_queue` internals causes Use-After-Free dur=
+ing concurrent `REQBUFS(0)`.
+- [Medium] Checking `IS_ERR_OR_NULL` on an optional debugfs dentry inapprop=
+riately triggers `WARN_ON` when debugfs is disabled.
+- [Medium] 32-bit integer multiplication overflow when calculating FPS stat=
+istics.
+- [Medium] Data truncation of 64-bit DMA addresses in trace events.
+- [Low] Use of 64-bit division and modulo operators breaks compilation on 3=
+2-bit architectures.
+- [Low] Incorrect chaining of assignments with comma operators in `TP_fast_=
+assign`.
+--
 
-On 6/16/2026 5:34 AM, Dmitry Baryshkov wrote:
-> From: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-> 
-> Add power sequence for ar5lt core.
-> Add register handling for ar50lt by hooking up vpu op with ar50lt
-> specific implemtation or resue from earlier generation wherever
-> feasible.
-> 
-> Signed-off-by: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->   drivers/media/platform/qcom/iris/Makefile          |   1 +
->   .../platform/qcom/iris/iris_platform_common.h      |   2 +
->   drivers/media/platform/qcom/iris/iris_vpu2.c       |  28 +----
->   drivers/media/platform/qcom/iris/iris_vpu_ar50lt.c | 130 +++++++++++++++++++++
->   drivers/media/platform/qcom/iris/iris_vpu_common.c |  29 ++++-
->   drivers/media/platform/qcom/iris/iris_vpu_common.h |   2 +
->   6 files changed, 164 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
-> index 48e415cbc439..f1b204b95694 100644
-> --- a/drivers/media/platform/qcom/iris/Makefile
-> +++ b/drivers/media/platform/qcom/iris/Makefile
-> @@ -26,6 +26,7 @@ qcom-iris-objs += iris_buffer.o \
->                iris_vpu2.o \
->                iris_vpu3x.o \
->                iris_vpu4x.o \
-> +             iris_vpu_ar50lt.o \
->                iris_vpu_buffer.o \
->                iris_vpu_common.o \
->   
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> index accc1627defd..6a189489369f 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> @@ -74,6 +74,7 @@ enum platform_clk_type {
->   	IRIS_VPP0_HW_CLK,
->   	IRIS_VPP1_HW_CLK,
->   	IRIS_APV_HW_CLK,
-> +	IRIS_THROTTLE_CLK,
+commit 59a3991812bdf6b7f45f197b804c2beea6a0e9aa
+Author: Nas Chung <nas.chung@chipsnmedia.com>
+Subject: media: chips-media: wave6: Improve debugging capabilities
 
-As we extend the common enum for (one off probably) SOC specific 
-entries, should we bring in the changes to migrate this to per block 
-clock data, something which was done here [1] ?
+Add debugfs entries and trace events to provide detailed
+debugging information.
+These enhancements help diagnose issues and improve debugging
+capabilities for the Wave6 core driver.
 
-[1] 
-https://lore.kernel.org/linux-media/20260610-glymur-v8-6-1c79b9d51fc0@oss.qualcomm.com/
+Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
+Tested-by: Ming Qian <ming.qian@oss.nxp.com>
+Tested-by: Marek Vasut <marek.vasut@mailbox.org>
 
->   };
->   
->   struct platform_clk_data {
-> @@ -315,6 +316,7 @@ struct iris_platform_data {
->   	u32 tz_cp_config_data_size;
->   	u32 num_vpp_pipe;
->   	bool no_aon;
-> +	bool no_rpmh;
->   	u32 wd_intr_mask;
->   	u32 icc_ib_multiplier;
->   	u32 max_session_count;
-> diff --git a/drivers/media/platform/qcom/iris/iris_vpu2.c b/drivers/media/platform/qcom/iris/iris_vpu2.c
-> index dd2eeae0d9eb..5419a5096b00 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vpu2.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vpu2.c
-> @@ -12,38 +12,12 @@
->   
->   #include "iris_vpu_register_defines.h"
->   
-> -static u64 iris_vpu2_calc_freq(struct iris_inst *inst, size_t data_size)
-> -{
-> -	struct platform_inst_caps *caps = inst->core->iris_platform_data->inst_caps;
-> -	struct v4l2_format *inp_f = inst->fmt_src;
-> -	u32 mbs_per_second, mbpf, height, width;
-> -	unsigned long vpp_freq, vsp_freq;
-> -	u32 fps = inst->frame_rate;
-> -
-> -	width = max(inp_f->fmt.pix_mp.width, inst->crop.width);
-> -	height = max(inp_f->fmt.pix_mp.height, inst->crop.height);
-> -
-> -	mbpf = NUM_MBS_PER_FRAME(height, width);
-> -	mbs_per_second = mbpf * fps;
-> -
-> -	vpp_freq = mbs_per_second * caps->mb_cycles_vpp;
-> -
-> -	/* 21 / 20 is overhead factor */
-> -	vpp_freq += vpp_freq / 20;
-> -	vsp_freq = mbs_per_second * caps->mb_cycles_vsp;
-> -
-> -	/* 10 / 7 is overhead factor */
-> -	vsp_freq += ((fps * data_size * 8) * 10) / 7;
-> -
-> -	return max(vpp_freq, vsp_freq);
-> -}
-> -
->   const struct vpu_ops iris_vpu2_ops = {
->   	.power_off_hw = iris_vpu_power_off_hw,
->   	.power_on_hw = iris_vpu_power_on_hw,
->   	.power_off_controller = iris_vpu_power_off_controller,
->   	.power_on_controller = iris_vpu_power_on_controller,
-> -	.calc_freq = iris_vpu2_calc_freq,
-> +	.calc_freq = iris_vpu2_calculate_frequency,
->   	.set_hwmode = iris_vpu_set_hwmode,
->   	.set_preset_registers = iris_vpu_set_preset_registers,
->   	.interrupt_init = iris_vpu_interrupt_init,
-> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_ar50lt.c b/drivers/media/platform/qcom/iris/iris_vpu_ar50lt.c
+> diff --git a/drivers/media/platform/chips-media/wave6/wave6-trace.h b/dri=
+vers/media/platform/chips-media/wave6/wave6-trace.h
 > new file mode 100644
-> index 000000000000..e084a5b49f2e
 > --- /dev/null
-> +++ b/drivers/media/platform/qcom/iris/iris_vpu_ar50lt.c
-> @@ -0,0 +1,130 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2026 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/reset.h>
-> +
-> +#include "iris_instance.h"
-> +#include "iris_vpu_common.h"
-> +
-> +#include "iris_vpu_register_defines.h"
-> +
-> +#define WRAPPER_INTR_MASK_A2HVCODEC_BMSK_AR50LT BIT(3)
-> +
-> +#define WRAPPER_VCODEC0_CLOCK_CONFIG_AR50LT		0xb0080
-> +
-> +#define CPU_CS_VCICMD					0xa0020
-> +#define CPU_CS_VCICMD_ARP_OFF			0x1
-> +
-> +static void iris_vpu_ar50lt_set_preset_registers(struct iris_core *core)
-> +{
-> +	writel(0x0, core->reg_base + WRAPPER_VCODEC0_CLOCK_CONFIG_AR50LT);
-> +}
-> +
-> +static void iris_vpu_ar50lt_interrupt_init(struct iris_core *core)
-> +{
-> +	writel(WRAPPER_INTR_MASK_A2HVCODEC_BMSK_AR50LT, core->reg_base + WRAPPER_INTR_MASK);
-> +}
-> +
-> +static void iris_vpu_ar50lt_disable_arp(struct iris_core *core)
-> +{
-> +	writel(CPU_CS_VCICMD_ARP_OFF, core->reg_base + CPU_CS_VCICMD);
-> +}
-> +
-> +static int iris_vpu_ar50lt_power_off_controller(struct iris_core *core)
-> +{
-> +	iris_disable_unprepare_clock(core, IRIS_AHB_CLK);
-> +	iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
-> +	iris_disable_unprepare_clock(core, IRIS_CTRL_CLK);
-> +	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-> +
-> +	return 0;
-> +}
-> +
-> +static void iris_vpu_ar50lt_power_off_hw(struct iris_core *core)
-> +{
-> +	dev_pm_genpd_set_hwmode(core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN], false);
-> +	iris_disable_unprepare_clock(core, IRIS_THROTTLE_CLK);
-> +	iris_disable_unprepare_clock(core, IRIS_HW_AHB_CLK);
-> +	iris_disable_unprepare_clock(core, IRIS_HW_CLK);
-> +	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN]);
-> +}
-> +
-> +static int iris_vpu_ar50lt_power_on_controller(struct iris_core *core)
-> +{
-> +	int ret;
-> +
-> +	ret = iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iris_prepare_enable_clock(core, IRIS_CTRL_CLK);
-> +	if (ret)
-> +		goto err_disable_power;
-> +
-> +	ret = iris_prepare_enable_clock(core, IRIS_AXI_CLK);
-> +	if (ret && ret != -ENOENT)
-> +		goto err_disable_ctrl_clock;
-> +
-> +	ret = iris_prepare_enable_clock(core, IRIS_AHB_CLK);
-> +	if (ret)
-> +		goto err_disable_axi_clock;
-> +
-> +	return 0;
-> +
-> +err_disable_axi_clock:
-> +	iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
-> +err_disable_ctrl_clock:
-> +	iris_disable_unprepare_clock(core, IRIS_CTRL_CLK);
-> +err_disable_power:
-> +	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-> +
-> +	return ret;
-> +}
-> +
-> +static int iris_vpu_ar50lt_power_on_hw(struct iris_core *core)
-> +{
-> +	int ret;
-> +
-> +	ret = iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN]);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iris_prepare_enable_clock(core, IRIS_HW_CLK);
-> +	if (ret)
-> +		goto err_disable_power;
-> +
-> +	ret = iris_prepare_enable_clock(core, IRIS_HW_AHB_CLK);
-> +	if (ret)
-> +		goto err_disable_hw_clock;
-> +
-> +	ret = iris_prepare_enable_clock(core, IRIS_THROTTLE_CLK);
-> +	if (ret)
-> +		goto err_disable_hw_ahb_clock;
-> +
-> +	return 0;
+> +++ b/drivers/media/platform/chips-media/wave6/wave6-trace.h
+[ ... ]
+> +TRACE_EVENT(wave6_vpu_source_change,
+> +	    TP_PROTO(struct vpu_instance *inst, struct dec_seq_info *info),
+> +	    TP_ARGS(inst, info),
+[ ... ]
+> +	    TP_fast_assign(__assign_str(name);
+> +			   __entry->id =3D inst->id;
+> +			   __entry->width =3D info->pic_width,
+> +			   __entry->height =3D info->pic_height,
 
-...lot of these per soc specific clock handling would be removed.
+[Severity: Low]
+Is there a typo in these assignments? The width and height fields are
+terminated with commas instead of semicolons inside TP_fast_assign.
 
-Regards,
-Vikash
+> +			   __entry->profile =3D info->profile,
+> +			   __entry->level =3D info->level;
+[ ... ]
+> +TRACE_EVENT(wave6_vpu_enc_pic,
+> +	    TP_PROTO(struct vpu_instance *inst, struct enc_param *param),
+> +	    TP_ARGS(inst, param),
+> +	    TP_STRUCT__entry(__string(name, dev_name(inst->dev->dev))
+> +			     __field(u32, id)
+> +			     __field(u32, srcidx)
+> +			     __field(u32, buf_y)
+
+[Severity: Medium]
+Does this truncate 64-bit physical addresses?=20
+
+Variables like buf_y and buf_cb are dma_addr_t, which can be 64-bit on=20
+platforms like arm64. Declaring these fields as u32 will lose the upper=20
+32 bits of the address in the trace output.
+
+> +			     __field(u32, buf_cb)
+> +			     __field(u32, buf_cr)
+> +			     __field(u32, stride)
+[ ... ]
+> diff --git a/drivers/media/platform/chips-media/wave6/wave6-vpu-dbg.c b/d=
+rivers/media/platform/chips-media/wave6/wave6-vpu-dbg.c
+> new file mode 100644
+> --- /dev/null
+> +++ b/drivers/media/platform/chips-media/wave6/wave6-vpu-dbg.c
+[ ... ]
+> +static int wave6_vpu_dbg_instance(struct seq_file *s, void *data)
+> +{
+> +	struct vpu_instance *inst =3D s->private;
+> +	struct vpu_performance_info *perf =3D &inst->performance;
+> +	struct vb2_queue *vq;
+[ ... ]
+> +	vq =3D v4l2_m2m_get_src_vq(inst->v4l2_fh.m2m_ctx);
+> +	seq_printf(s, "output (%2d, %2d): fmt =3D %c%c%c%c %d x %d, %d;\n",
+> +		   vb2_is_streaming(vq),
+> +		   vb2_get_num_buffers(vq),
+
+[Severity: High]
+Can this lead to a use-after-free?=20
+
+This accesses the queue state locklessly in wave6_vpu_dbg_instance(). If a
+concurrent userspace thread calls VIDIOC_REQBUFS with count=3D0, the buffers
+bitmap is freed.
+
+If the lockless read evaluates vb2_get_num_buffers() at the same time, it=20
+can race against the release and cause bitmap_weight() to read uninitialized
+or freed memory.
+
+> +		   inst->src_fmt.pixelformat,
+[ ... ]
+> +	seq_puts(s, "fps");
+> +	tmp =3D MSEC_PER_SEC * inst->processed_buf_num;
+
+[Severity: Medium]
+Can this multiplication overflow on 32-bit architectures?=20
+
+MSEC_PER_SEC and inst->processed_buf_num are both 32-bit integers. The resu=
+lt
+will wrap around after about 4.29 million frames before the implicit cast t=
+o=20
+the 64-bit tmp variable.
+
+> +	if (perf->ts_last > perf->ts_first + NSEC_PER_MSEC) {
+> +		fps =3D DIV_ROUND_CLOSEST(tmp, (perf->ts_last - perf->ts_first) / NSEC=
+_PER_MSEC);
+
+[Severity: Low]
+Will this break the build on 32-bit platforms?=20
+
+The calculation performs direct division using the / operator on 64-bit typ=
+es,=20
+which results in undefined references to __divdi3. Should this use a kernel=
+=20
+math helper like div64_s64() instead?
+
+> +		seq_printf(s, " actual: %lld;", fps);
+> +	}
+> +	if (perf->total_sw_time) {
+> +		fps =3D DIV_ROUND_CLOSEST(tmp, perf->total_sw_time / NSEC_PER_MSEC);
+
+[Severity: High]
+What happens if total_sw_time or total_hw_time is non-zero but less than
+1,000,000 nanoseconds?
+
+The division perf->total_sw_time / NSEC_PER_MSEC will evaluate to zero.
+Passing zero as the divisor to DIV_ROUND_CLOSEST causes an immediate
+division by zero exception and a kernel panic.
+
+> +		seq_printf(s, " sw: %lld;", fps);
+> +	}
+> +	if (perf->total_hw_time) {
+> +		fps =3D DIV_ROUND_CLOSEST(tmp, perf->total_hw_time / NSEC_PER_MSEC);
+> +		seq_printf(s, " hw: %lld", fps);
+> +	}
+[ ... ]
+> +int wave6_vpu_create_dbgfs_file(struct vpu_instance *inst)
+> +{
+> +	char name[64];
+> +
+> +	if (WARN_ON(!inst || !inst->dev || IS_ERR_OR_NULL(inst->dev->debugfs)))
+> +		return -EINVAL;
+
+[Severity: Medium]
+Is it intended to trigger a warning when debugfs is disabled?
+
+If CONFIG_DEBUG_FS is disabled, debugfs_create_dir() returns ERR_PTR(-ENODE=
+V).
+Using IS_ERR_OR_NULL() here will trigger the WARN_ON() every time a new
+encoder or decoder instance is created, dumping a stack trace into the kern=
+el
+log.
+
+> +
+> +	scnprintf(name, sizeof(name), "instance.%d", inst->id);
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260624072043.238-=
+1-nas.chung@chipsnmedia.com?part=3D6
 
