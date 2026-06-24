@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-315372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315370-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dcxcFikwPGqBlAgAu9opvQ
-	(envelope-from <devicetree+bounces-315372-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:29:45 +0200
+	id EluAEccvPGptlAgAu9opvQ
+	(envelope-from <devicetree+bounces-315370-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:28:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8B3A6C10CC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:29:44 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E400C6C109E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:28:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kwiboo.se header.s=fe-e1b5cab7be header.b=JIBhN8Ww;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315372-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315372-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kwiboo.se header.s=fe-e1b5cab7be header.b=p+HrM0+l;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315370-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315370-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kwiboo.se;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4F981302066C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 19:29:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4CF0430143F4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 19:27:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D232382F10;
-	Wed, 24 Jun 2026 19:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E0C382F0A;
+	Wed, 24 Jun 2026 19:27:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.66])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C434B382397
-	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 19:29:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59B9D382393
+	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 19:27:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782329375; cv=none; b=g7YdmveF7shIPwzkw0unWJX1Cwp9ZHyyxpT/FayARE01nODsXjqY0d4pmDCDcOor4p61f/EjBFekgaU0jYTyww/QsFNxA645sK/+cw5unQK3G7FiO8ADdJwEmjWpI5KKFFXNUg5CkLh8e8MFYOarxibgi2S9lEX2ITJSzlu7ZAo=
+	t=1782329265; cv=none; b=XKstT/LMkKxl4tGOfry6bMe64eWr+uIOFuJSQc5zENIhieqnY3CN0TMAl8XqUxPJsnk2pXuL62MaT8g+iT7I2THfwzMRk9DHvea4iwIHRRNIu1u4CBmt2zgtunijH3QzgDwnchvjVaFivPaZfpe1SEyckxp2F9JLuDkbmjlta1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782329375; c=relaxed/simple;
-	bh=t4mXeQQzSfEO5bS6iVqLDj3M9FECyJRZ/OxLtlR0yl8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ttlbKvosPn5rvQf2CMeqEgWI8dpYPgjnYVLwKgVktQeRu/dQxKsz8WinSh0bkv31s3Nsh992DmIVhAfp+SG5kLZ4qG6VCEdZ7vLKrC8lk8PbFAIAxi1ipYR3zGNvFzifzXCOr9Bo4O6hjxCWuKJNvEKZyDevlMpp/rKnp0THUKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=JIBhN8Ww; arc=none smtp.client-ip=121.127.44.66
+	s=arc-20240116; t=1782329265; c=relaxed/simple;
+	bh=9E65z7OGWd2P6qUZoSyq/lFPj2UX4EeAgZgWnF+37+c=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=KX4tJOxdrkgAtDUIy+0jA4a7nTnTHlgkUxKHumEof4bgpBP6Ugn1RqcogZifbkUOWt3HuYM5KXqLZ6w3cjKBtcIXP/9mJGcEdu6Og0BRWW3VY4d6VElg1ucFHvpweN4bnzhnUT5RJ9Q4W6JMc+QTrFYw/rKaSw2pclahs9mlIa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=p+HrM0+l; arc=none smtp.client-ip=149.28.215.223
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
- To: From; q=dns/txt; s=fe-e1b5cab7be; t=1782329372;
- bh=HB+X1zwClEyuS34sjRMolD4Gdv13rlFePfJPWzCgmg4=;
- b=JIBhN8WwwnfK05u4UInYQTFbXLx5h5Og8Co7l5qqnPfsENAh44VU4qM8vvq6xN7OZLmZBULWn
- h6arrQYmvroITRrySjPGgCcdOgq8mAXHqXKKEdiuhA7jriEMpD8zZbYrNMlqM3Ca4h4cEu0PnLb
- 0LcAqW0evkuMjmX2pnadky7I+4cKuqqKAAniQmQwurEDc64x27mUatrnZhNs8ngCbiYio3p3P60
- W1hr9vRGJKI7jno43iVvojRNVeERKYREmeh5pwlkCpQbDPzZmngWfAQdLC/X+ywsvHDjMAxLsqr
- WISU0aOiAY9fLRY4gz0qOmMQrusKe3ePjd0f4R4D6/Qw==
-X-Forward-Email-ID: 6a3c2fa3138f49c481104aa0
+ h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
+ Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
+ t=1782329257; bh=Z99Q29vxpTumNbDlSLV/5spk9aNhNsdFqpygOCzOZY4=;
+ b=p+HrM0+l0GEQWHc+lPTMqwE6E6QulYtJnr+EOhMYjhAki0wdENoGZUVpOjRQO916lQvCcdGs4
+ /Ig+kh8IOM2mt4z7vFWCHS5p6m3EvBreDsGWpqfvEwEmsE+Pnun4eNhGW7hzLNBYIkynC3L+sB2
+ oXw8ayMHDQV/WErC0YtMklJ3G8lZtEoJsIMBxlqWdYZo9FLsyrLUWsC15sBJi+Lf+iqXPp8OY0h
+ QlFcPFaE0L/KOt/kuFfEQMXoxof810+XPybRei2OjWWUByMkKl5+de7xd4zRwl3ZngdK5uTYdZE
+ Uj3Lb+aWYlr9AGa+5Ij0OXymqzRBgk2RD637DEuRX0Hg==
+X-Forward-Email-ID: 6a3c2fa5138f49c481104abd
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.66
+ 149.28.215.223
 X-Forward-Email-Version: 2.8.32
 X-Forward-Email-Website: https://forwardemail.net
 X-Complaints-To: abuse@forwardemail.net
@@ -54,19 +55,21 @@ From: Jonas Karlman <jonas@kwiboo.se>
 To: Heiko Stuebner <heiko@sntech.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc: Diederik de Haas <diederik@cknow-tech.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	devicetree@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
 	linux-usb@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH v2 0/2] rockchip: Fix devices suspend freeze on RK3568/RK3566
-Date: Wed, 24 Jun 2026 19:27:23 +0000
-Message-ID: <20260624192726.781864-1-jonas@kwiboo.se>
+Subject: [PATCH v2 1/2] dt-bindings: usb: Add Rockchip RK3568 compatible for EHCI and OHCI
+Date: Wed, 24 Jun 2026 19:27:24 +0000
+Message-ID: <20260624192726.781864-2-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260624192726.781864-1-jonas@kwiboo.se>
+References: <20260624192726.781864-1-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,20 +84,20 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	TAGGED_FROM(0.00)[bounces-315372-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gregkh@linuxfoundation.org,m:diederik@cknow-tech.com,m:devicetree@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-usb@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:jonas@kwiboo.se,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315370-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:diederik@cknow-tech.com,m:gregkh@linuxfoundation.org,m:devicetree@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-usb@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:jonas@kwiboo.se,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	DKIM_TRACE(0.00)[kwiboo.se:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -104,42 +107,97 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[kwiboo.se:dkim,kwiboo.se:mid,kwiboo.se:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[kwiboo.se:dkim,kwiboo.se:email,kwiboo.se:mid,kwiboo.se:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D8B3A6C10CC
+X-Rspamd-Queue-Id: E400C6C109E
 
-This series fixes a system freeze during suspend in ohci_suspend() due
-to clk_usbphy1_480m not being enabled when EHCI/OHCI registers are
-accessed on e.g. a Raxa ROCK 3C board.
+The Rockchip RK3568 EHCI/OHCI controller depends on clk_usbphy1_480m
+being enabled, or the system may freeze when registers are accessed.
 
-Following pm_test modes work on my ROCK 3C with the missing usbphy clk
-refs added:
+Add Rockchip RK3568 EHCI and OHCI compatibles with a similar four-clock
+constraint as RK3588, also extend the EHCI constraint to include RK3588
+to match similar requirements of RK3588.
 
-  echo N > /sys/module/printk/parameters/console_suspend
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+---
+Existing DTs for RK3568 use the plain generic-ehci/ohci compatible,
+next patch make use of these new compatibles and adds the missing
+clk_usbphy1_480m clock references.
 
-  echo devices > /sys/power/pm_test
-  echo platform > /sys/power/pm_test
-  echo processors > /sys/power/pm_test
-  echo core > /sys/power/pm_test
-
-  echo mem > /sys/power/state
+Existing DTs for RK3588 have contained the required four clocks since
+the initial addition of the EHCI/OHCI nodes.
 
 Changes in v2:
 - Include rockchip,rk3588-ehci in the EHCI constraint
 - Make clocks prop required for EHCI and OHCI
-- Collect t-b tag
+---
+ .../devicetree/bindings/usb/generic-ehci.yaml      | 14 ++++++++++++++
+ .../devicetree/bindings/usb/generic-ohci.yaml      |  7 ++++++-
+ 2 files changed, 20 insertions(+), 1 deletion(-)
 
-Jonas Karlman (2):
-  dt-bindings: usb: Add Rockchip RK3568 compatible for EHCI and OHCI
-  arm64: dts: rockchip: Fix devices suspend freeze on RK3568/RK3566
-
- .../devicetree/bindings/usb/generic-ehci.yaml    | 14 ++++++++++++++
- .../devicetree/bindings/usb/generic-ohci.yaml    |  7 ++++++-
- arch/arm64/boot/dts/rockchip/rk356x-base.dtsi    | 16 ++++++++--------
- 3 files changed, 28 insertions(+), 9 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+index 55a5aa7d7a54..a39f01e740b1 100644
+--- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
++++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+@@ -52,6 +52,7 @@ properties:
+               - ibm,476gtr-ehci
+               - nxp,lpc1850-ehci
+               - qca,ar7100-ehci
++              - rockchip,rk3568-ehci
+               - rockchip,rk3588-ehci
+               - snps,hsdk-v1.0-ehci
+               - socionext,uniphier-ehci
+@@ -186,6 +187,19 @@ allOf:
+       required:
+         - clocks
+         - clock-names
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - rockchip,rk3568-ehci
++              - rockchip,rk3588-ehci
++    then:
++      properties:
++        clocks:
++          minItems: 4
++      required:
++        - clocks
+ 
+ unevaluatedProperties: false
+ 
+diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+index d42f448fa204..19449a6b3033 100644
+--- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
++++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+@@ -47,6 +47,7 @@ properties:
+               - hpe,gxp-ohci
+               - ibm,476gtr-ohci
+               - ingenic,jz4740-ohci
++              - rockchip,rk3568-ohci
+               - rockchip,rk3588-ohci
+               - snps,hsdk-v1.0-ohci
+           - const: generic-ohci
+@@ -198,11 +199,15 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: rockchip,rk3588-ohci
++            enum:
++              - rockchip,rk3568-ohci
++              - rockchip,rk3588-ohci
+     then:
+       properties:
+         clocks:
+           minItems: 4
++      required:
++        - clocks
+     else:
+       properties:
+         clocks:
 -- 
 2.54.0
 
