@@ -1,192 +1,282 @@
-Return-Path: <devicetree+bounces-315061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315063-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rrBPF5Z/O2pTYwgAu9opvQ
-	(envelope-from <devicetree+bounces-315061-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:56:22 +0200
+	id /+UJJ46AO2qdYwgAu9opvQ
+	(envelope-from <devicetree+bounces-315063-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:00:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B276C6BBEFA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:56:21 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74FEC6BBF82
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:00:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=YcHVNIIQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315061-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315061-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linux.dev;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=hR6Pnlln;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=VpD5rwx0;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315063-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-315063-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B93A9302D0BE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 06:55:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7251C3019B06
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 07:00:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05536389E1A;
-	Wed, 24 Jun 2026 06:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC66E386441;
+	Wed, 24 Jun 2026 07:00:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4803890F7
-	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 06:55:48 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782284149; cv=none; b=NDSRlC4/mSJmHRv2XRy64coUBn66+pXdLnhuOmqYFeA4PluNPRucWMEjiNuAkIZTaRFkyWpvIQij2l24ijesjnbSpwkXUDo0GkroRD/MXo1xA2kLraDB6mwljEy8EsrHBtMyJqOI/U71gJnygwdZHe0JQc2HHaS3xbaru9o2fUw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782284149; c=relaxed/simple;
-	bh=rLH9ynL6Uvxn7RnSmUHLRZRTqjWpsodZDL+nLrHffhY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QZXTtBU6MzajneV+2v7ykV1daTdJcmXOGqIT+oJgkxCoeHd1EQIEQMIauUvDw8+OUbPsN+nCaFSPQDlgr+QrNAmnGclyyPIWHkQmwrbNddfcKbYiTqYbHxnEF0A2DMvfRqalBp/3wSSDarJjvh8pSISYyglki+YXhFbQWSoIRNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=YcHVNIIQ; arc=none smtp.client-ip=91.218.175.177
-Message-ID: <df40cc47-98ec-44b6-afda-76f483b788f9@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1782284135;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yWm8hwbOHYEuIVgePKE1QjEJreKex9TPU9yjx6MzZcc=;
-	b=YcHVNIIQIPlkM4Otj/PcpwiswIuKazAwMKCk9ChENUfKCwBT6Gh/wiQr0oNjKrv1nipBGG
-	ct24V6l0dxWtjw8Rc02pGLqDchRSQLB/o2NKzC0FKFohLycg4yJTIH0RPJbw0uwB5DODaP
-	v0GqAVxtEwq+zjEoS/Pic5q81ZOQ9Ic=
-Date: Tue, 23 Jun 2026 23:55:28 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1502338642C
+	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 07:00:17 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782284420; cv=pass; b=HdaW2S/P6Q9wzaHwWTyjKSjv3vLf+haUJHwoveyNKGYAmMLXRWYJL8MukSY5ZIyqdj+1q8INZJZyA7iPmvQsgYTpT30Cf8IN9ukoqEoiOoSlkDPBIQ+jPnhTwQb/48YUr38oHGyptRyLXLVSfv23mnWttNYA72vTsO9XVj2PnZ0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782284420; c=relaxed/simple;
+	bh=oPnXewy+StHDGXwtmPu4kj4a3Pu/agCuE4dOn+nwcWY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SqZ4Tg+OB0q/Z4KLDofcIvcbZ8TQjCzv+qIheuEEe9BnyJtrpgqf9RTZ6UQSq5NU6rlnDurMpkjNniHk0PlnRqwgfjZqms3DjK2Rt2WgxVW87bdyfcXVH4Ptsy1DxgdMa2tsLu6Nm8b+6bE+6t/fsLv35FQu1bO3y6NXpttt6RA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hR6Pnlln; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VpD5rwx0; arc=pass smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65O5u5C42238228
+	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 07:00:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jo+tjDv7dD6J6AfSDYrRcLpY+LDm1i1herlYND0gQWk=; b=hR6Pnlln/3aTUja8
+	to+PzjGWDGeLr0WRnKM0mB7YnxlMZ8PKIsUTckEloS6v1OaVBdYXSOHnd7R9dulg
+	VSYAeqic7CkFAJB8tu/RVbJHXUaaUggiM2GcrGo5IOBaWXutVwRxpCI0lgekX93e
+	QJU2PpQxpCCTTx0MA6gDKOKs846DK5J/gERgNKHkWUUD2CkeYQZkLuazqFdI2XPY
+	z59olEJZvC4liV1eB1O36sGwJ3E4T+vM2uiyoCgTYWoAnGuic1m8i4fjpzHXoUJE
+	RAIOn2ruzi+YVuiMxjh/TvTAOHM9rJzM1aExKfZGqasgB1JlDwxUpviTBvTD1dB+
+	wdDTwQ==
+Received: from mail-yw1-f198.google.com (mail-yw1-f198.google.com [209.85.128.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f004p1wp9-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 07:00:10 +0000 (GMT)
+Received: by mail-yw1-f198.google.com with SMTP id 00721157ae682-7dbb5e586c1so18215957b3.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 00:00:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782284410; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Jp9c6/16ku7FHNwdylA+B3i4/WzlSaT3JQBNMG381RQCFcg/7443wGbF3frTf/UdKM
+         wSnYkYBH0d/b3RLbxC0VaFrsqHU5HWWnMevQfskwNt8SBKzmn0aHBln8duoFwzuk2KEc
+         oz7OnYxlyk0yLyGP05rsoJ2DJpp+g/QaVk6KxjKvkQEgwFCq5X3OvjiL5N/2kRjG/V4g
+         9Fcqd3VQvjUa5Ccn3q+NIJJO8IzszHNeHmg/Qlf1aoaPLFWfAxwgU1C6AJIEuYuUSziT
+         +LYaH+HnKA1zt4FOolz67o6x+2M8vynM9pElIwNzsYK+eeMTX2fq2cSxG6poZRTK6TmX
+         HYJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=jo+tjDv7dD6J6AfSDYrRcLpY+LDm1i1herlYND0gQWk=;
+        fh=qXSDUDHQPQUuf+7JxU2FjBDBR380xBmX3WxNuaeqMfw=;
+        b=Iq48Xoh8uxvZOFNI5HofZnTim7lLuzb9JI7jcgDYCbyjJb9EO0Fi2ht8yYKr2LyIr/
+         QmOj0k7QUGeEjSO8XPUOCXQPvmWMmFNG+UE4ZspMUNKMY2oo+Gao24CoqN4V+0jKYniS
+         M41R7OkGHR+ZJlSbscikrZl0Gk+/cV+auxSF+t86udY6VNtHKP+pgD+J2pnBvrPORlK5
+         yPrOduvhIqQfyeQuKIQLjSHNuS06yTMorUcffwmCoTTLcSQhMA2ovvGdNTTl1jmW/sZA
+         IG9UDr6tOVJ68YLYgHVcPxbrLCXVgntmI2v5vwxibi9JaoR7yzKVAJH5hrRyGVklhgPT
+         e6Bw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1782284410; x=1782889210; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jo+tjDv7dD6J6AfSDYrRcLpY+LDm1i1herlYND0gQWk=;
+        b=VpD5rwx0Qws68vuaT+0qsdJhRyrjtBYdiadrI0enkcVftwr1tX65AsuxU21tCN7iHg
+         Jmp1ky0xRBBkF1aTgXBju4OIN1GrGOqTfF5htg0eBe5uEXnkcj98bkeLXUlKuwwO6pU6
+         GI/Aa9qvVP4/QXOsEAducRJqb9DhlFzIuI5wpVvuqNsW9hNr4gXcYW4jjuS7miqrrwaq
+         D5Mk7+3aIec9KpwrgZpwAgmrnVk+zNdTjVj74Ntl5WcAM9Er7RCFt9dZHmD10XbFNgcA
+         dcHv2PumMPl01MmZ83/lvIdAE7fvzwHf21g2jQ9m+5UBg4CrG7+DfxrymHQ+3jb3O5nH
+         4IVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782284410; x=1782889210;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=jo+tjDv7dD6J6AfSDYrRcLpY+LDm1i1herlYND0gQWk=;
+        b=A2ydN6sZJ3hS1TLcUFGzjA3IzDzvZdOzoBc5knwMXnnlZIEcf+8egFx+KgaNta/Qx4
+         QwGmJjhdg6FHJygI+oSScU/rcLcQbbUA3p5veBrskpwpz5XAAWHtjnMeAW7U/K1jPJ+n
+         2aSk4oKYEASG1sqYHJW4v6ZCqmuJ+izAuFXqbZ6r4yy2PQYWHD7MKWILuuek1ILxU4Nv
+         jATkRW9YiMJ/V6BHwgnRLtbkXgdeERu2aIpWFNNRaeMbkWop4ox/hvUC4jYkedwEJg7K
+         iwN796D6NiXevHizkDlUeSR2gPdXDgj8Oq4nihc+OBMN3iHcdLMg6qeYIspSoWhz1SRC
+         Eiug==
+X-Forwarded-Encrypted: i=1; AHgh+Ro1dRRRXzY+JZnTNaIDDgV/36ageSMSEy0NAvClHa2X2nbW2ibuUPt5iE9cWfAXAggJ28yMZ+WQJPpw@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpG4ow0JVcpCOYf6+J2ab0Zd7Tmt2yYr3WmOniSGhzUa0sH12V
+	K/3G5b88vX/19Nv2l1nABVAXBdmKwaNR3AVYNg5oyeXW26L2hwV/cmNXY9lpPKkzZclHpmdeeWX
+	sIs1JpSn8djHcAQDq0Ds8YG7zyf/jia70azUBq2y3dv23QxQ2YQKfPJsTCYOlohKFcnmy5F3Y8H
+	HGVL1RfXWNxNkil3SSm9HA76/g/6Ysgq/nTpG8BnI=
+X-Gm-Gg: AfdE7ckcyNaPmd9YPMnQMFCeg+guJDfpsB1610lG1Dwvplxqm+RHXqlmNU2JvYBNU3I
+	SAZynKwlg146v4FqlRGHHFgEt1cLgtbk8jXRI8zmxJFmzCzDLzSw/mHX4JvN0DW4bqDEkAVH70i
+	rpKreML31eaRGfgjJ2osWxnPxW9h8MYiktEYQnYI1SSEIzRtwZvnGTN5XTjUxb6hf0I/7H
+X-Received: by 2002:a05:690c:c455:b0:7ff:83b:72ac with SMTP id 00721157ae682-807f27fbd82mr20880237b3.12.1782284410353;
+        Wed, 24 Jun 2026 00:00:10 -0700 (PDT)
+X-Received: by 2002:a05:690c:c455:b0:7ff:83b:72ac with SMTP id
+ 00721157ae682-807f27fbd82mr20879917b3.12.1782284409886; Wed, 24 Jun 2026
+ 00:00:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v6 04/21] RISC-V: Define indirect CSR access helpers
-To: Charlie Jenkins <thecharlesjenkins@gmail.com>
-Cc: James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Jiri Olsa <jolsa@kernel.org>,
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Anup Patel <anup@brainfault.org>, Namhyung Kim <namhyung@kernel.org>,
- Paul Walmsley <pjw@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Ian Rogers <irogers@google.com>, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org,
- Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260608-counter_delegation-v6-0-285b72ed65a9@meta.com>
- <20260608-counter_delegation-v6-4-285b72ed65a9@meta.com>
- <ajjZR-R11yPYWuDp@blinky>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Atish Patra <atish.patra@linux.dev>
-In-Reply-To: <ajjZR-R11yPYWuDp@blinky>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+References: <20260605103739.3557573-1-harendra.gautam@oss.qualcomm.com>
+ <20260605103739.3557573-3-harendra.gautam@oss.qualcomm.com>
+ <3da8b668-1504-450e-bde2-b383d63090a8@oss.qualcomm.com> <CAC-tS8CuhED2dvne=cuTBUcrL93WXPjNB-nDUYHWNtFF9oVVjQ@mail.gmail.com>
+ <7948feb4-9eca-48f2-944e-ec982b6823dd@oss.qualcomm.com>
+In-Reply-To: <7948feb4-9eca-48f2-944e-ec982b6823dd@oss.qualcomm.com>
+From: Harendra Gautam <harendra.gautam@oss.qualcomm.com>
+Date: Wed, 24 Jun 2026 12:29:56 +0530
+X-Gm-Features: AVVi8CcSQz5bnv0X064mFitr8CQPXMcyB5PfpB6F6jJw0iQ1yBkRbyOZPxsG1VY
+Message-ID: <CAC-tS8Af8GNQ1rq2PN6Yr-wG8_D55ddU9t77H4CUEvWfaP=Gkw@mail.gmail.com>
+Subject: Re: [PATCH 2/13] dt-bindings: sound: Add Qualcomm QAIF binding
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Srinivas Kandagatla <srini@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI0MDA1NiBTYWx0ZWRfX7j63AaPGs21V
+ nOHTqEv//ukTxQZTGWbjbXqLfmEplptsXJ+B9MpNRzEyrWYvjI6S6lMBvxW4Q8wIEJSZqSKt+dU
+ jCUtFKPi5uxwzzRJpHogMogtUIOYuvM=
+X-Proofpoint-ORIG-GUID: Pz6Biu4v7Rf7Lny30_flfDXAjRIo4mJ4
+X-Proofpoint-GUID: Pz6Biu4v7Rf7Lny30_flfDXAjRIo4mJ4
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI0MDA1NiBTYWx0ZWRfX+7OAaOy+qsjy
+ /cIMDrBHfGvU47u+3hTGRWhw9S5wlpFijs+wqNWH4o9IYhY1/CmBZ5+CwZuVRoVKi8uOU/0yH9Y
+ 27EYKYA44aZnNy4SNgarqSYzfsTGRQ9/jOBbHZwR7vxJboE3DOcyxdHvazlHyYwx2JjvdM2J7Gq
+ JSTMK5mRZ5aRvY6kqcipKVLcjP/kgeDCcpuiIJo/KwFIeTjbOB23wAc8oR4hN8NSospPfAHLfKB
+ 34S8PucCYfWhjxMjuYt0PoAvSFz33MzTjQXFF+9srP+YE4oEjwBn+pIPdjkkXITiYiDZAJg/Xmi
+ +5D59PaviiZFurLqnCSpQh3TWQLx+wgleGE57hNa6ullPn+XOsPdVE48xkSjBq7jgHtbEvhkoRW
+ hWMnjpfrkXLgAGuFl22WcoAm1erCGxs+8rIk+OikapNVeZ3e1/i6mS+x472jhkIhyA2QML3Ldi/
+ CgyvaZfW7mB6tk3uAJQ==
+X-Authority-Analysis: v=2.4 cv=Q9TiJY2a c=1 sm=1 tr=0 ts=6a3b807a cx=c_pps
+ a=g1v0Z557R90hA0UpD/5Yag==:117 a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=yx91gb_oNiZeI1HMLzn7:22 a=EUspDBNiAAAA:8 a=70Ip3T5yH-gdihXWpJwA:9
+ a=QEXdDO2ut3YA:10 a=MFSWADHSvvjO3QEy5MdX:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-24_02,2026-06-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 spamscore=0 phishscore=0 bulkscore=0
+ malwarescore=0 clxscore=1015 impostorscore=0 adultscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606240056
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	TAGGED_FROM(0.00)[bounces-315061-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-315063-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_RECIPIENTS(0.00)[m:thecharlesjenkins@gmail.com,m:james.clark@linaro.org,m:robh@kernel.org,m:acme@kernel.org,m:jolsa@kernel.org,m:will@kernel.org,m:mark.rutland@arm.com,m:anup@brainfault.org,m:namhyung@kernel.org,m:pjw@kernel.org,m:krzk+dt@kernel.org,m:irogers@google.com,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:conor@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[harendra.gautam@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:srini@kernel.org,m:broonie@kernel.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[harendra.gautam@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,infradead.org:url,infradead.org:email,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime,mail.gmail.com:mid,qualcomm.com:dkim,qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B276C6BBEFA
+X-Rspamd-Queue-Id: 74FEC6BBF82
 
-
-On 6/21/26 11:42 PM, Charlie Jenkins wrote:
-> On Mon, Jun 08, 2026 at 11:01:18PM -0700, Atish Patra wrote:
->> From: Atish Patra <atishp@rivosinc.com>
->>
->> The indriect CSR requires multiple instructions to read/write CSR.
-> indirect
+On Tue, Jun 23, 2026 at 9:18=E2=80=AFPM Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
 >
->> Add a few helper functions for ease of usage.
->>
->> Signed-off-by: Atish Patra <atishp@rivosinc.com>
->> ---
->>   arch/riscv/include/asm/csr_ind.h | 44 ++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 44 insertions(+)
->>
->> diff --git a/arch/riscv/include/asm/csr_ind.h b/arch/riscv/include/asm/csr_ind.h
->> new file mode 100644
->> index 000000000000..6fd7d44dc640
->> --- /dev/null
->> +++ b/arch/riscv/include/asm/csr_ind.h
->> @@ -0,0 +1,44 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Copyright (C) 2024 Rivos Inc.
-> I don't think it makes sense to introduce this copyright in new commits.
-Yeah. I will update these.
-> - Charlie
+> On 6/23/26 2:26 PM, Harendra Gautam wrote:
+> > On Tue, Jun 9, 2026 at 3:27=E2=80=AFPM Konrad Dybcio
+> > <konrad.dybcio@oss.qualcomm.com> wrote:
+> >>
+> >> On 6/5/26 12:37 PM, Harendra Gautam wrote:
+> >>> Add a Devicetree binding for the Qualcomm Audio Interface (QAIF) CPU =
+DAI
+> >>> controller used on the Shikra audio platform.
+> >>>
+> >>> QAIF moves PCM data between system memory and external serial audio
+> >>> interfaces through the AIF path, and between memory and the internal =
+Bolero
+> >>> digital codec through the CIF path. The controller needs a binding so
+> >>> platform Devicetree files can describe its MMIO region, DMA IOMMU str=
+eam,
+> >>> clocks, interrupt, DAI cells and per-interface AIF configuration.
+> >>>
+> >>> Describe the single register region, one EE interrupt, the required G=
+CC
+> >>> LPASS and audio core clocks, the DMA IOMMU mapping, and 'aif-interfac=
+e@N'
+> >>> child nodes used for static PCM, TDM or MI2S configuration.
+> >>>
+> >>> Signed-off-by: Harendra Gautam <harendra.gautam@oss.qualcomm.com>
+> >>> ---
+> >>
+> >> [...]
+> >>
+> >>> +  clock-names:
+> >>> +    items:
+> >>> +      - const: lpass_config_clk
+> >>> +      - const: lpass_core_axim_clk
+> >>> +      - const: aud_dma_clk
+> >>> +      - const: aud_dma_mem_clk
+> >>> +      - const: bus_clk
+> >>> +      - const: aif_if0_ebit_clk
+> >>> +      - const: aif_if0_ibit_clk
+> >>> +      - const: aif_if1_ebit_clk
+> >>> +      - const: aif_if1_ibit_clk
+> >>> +      - const: aif_if2_ebit_clk
+> >>> +      - const: aif_if2_ibit_clk
+> >>> +      - const: aif_if3_ebit_clk
+> >>> +      - const: aif_if3_ibit_clk
+> >>> +      - const: ext_mclka_clk
+> >>> +      - const: ext_mclkb_clk
+> >>
+> >> Drop the _clk suffix, we already know they are clocks, as they are
+> >> listed under the clocks property
+> > Okay, will correct.
+> >>
+> >> [...]
+> >>
+> >>> +      qcom,qaif-aif-sync-mode:
+> >>> +        $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +        description:
+> >>> +          Sync mode. Use QAIF_AIF_SYNC_MODE_SHORT (0) for short (pul=
+se)
+> >>> +          sync or QAIF_AIF_SYNC_MODE_LONG (1) for long (level) sync.
+> >>> +      qcom,qaif-aif-sync-src:
+> >>> +        $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +        description:
+> >>> +          Sync source. Use QAIF_AIF_SYNC_SRC_SLAVE (0) for slave mod=
+e
+> >>> +          or QAIF_AIF_SYNC_SRC_MASTER (1) for master mode.
+> >>
+> >> Should these be boolean flags then?
+> > It should not be, the intention is to define explicitly, for better
+> > readability I can rename these flags as EXTERNAL/INTERNAL, Please
+> > suggest.
 >
->> + */
->> +
->> +#ifndef _ASM_RISCV_CSR_IND_H
->> +#define _ASM_RISCV_CSR_IND_H
->> +
->> +#include <linux/irqflags.h>
->> +
->> +#include <asm/csr.h>
->> +
->> +#define csr_ind_read(iregcsr, iselbase, iseloff) ({		\
->> +	unsigned long __value = 0;				\
->> +	unsigned long __flags;					\
->> +	local_irq_save(__flags);				\
->> +	csr_write(CSR_ISELECT, (iselbase) + (iseloff));		\
->> +	__value = csr_read(iregcsr);				\
->> +	local_irq_restore(__flags);				\
->> +	__value;						\
->> +})
->> +
->> +#define csr_ind_write(iregcsr, iselbase, iseloff, value) ({	\
->> +	unsigned long __flags;					\
->> +	local_irq_save(__flags);				\
->> +	csr_write(CSR_ISELECT, (iselbase) + (iseloff));		\
->> +	csr_write(iregcsr, (value));				\
->> +	local_irq_restore(__flags);				\
->> +})
->> +
->> +#define csr_ind_warl(iregcsr, iselbase, iseloff, warl_val) ({	\
->> +	unsigned long __old_val = 0, __value = 0;		\
->> +	unsigned long __flags;					\
->> +	local_irq_save(__flags);				\
->> +	csr_write(CSR_ISELECT, (iselbase) + (iseloff));		\
->> +	__old_val = csr_read(iregcsr);				\
->> +	csr_write(iregcsr, (warl_val));				\
->> +	__value = csr_read(iregcsr);				\
->> +	csr_write(iregcsr, __old_val);				\
->> +	local_irq_restore(__flags);				\
->> +	__value;						\
->> +})
->> +
->> +#endif
->>
->> -- 
->> 2.53.0-Meta
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
->>
+> Are all 4 combinations of them being present/absent valid on shikra?
+>
+> Konrad
+Sorry if I did not put details properly, I will be correcting in the
+next patch. sync-src can be external clock or internal clock, where 0
+means external and 1 means internal.
+-Harendra
 
