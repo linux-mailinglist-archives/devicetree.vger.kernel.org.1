@@ -1,209 +1,216 @@
-Return-Path: <devicetree+bounces-315371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315374-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RNK4I74vPGpqlAgAu9opvQ
-	(envelope-from <devicetree+bounces-315371-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:27:58 +0200
+	id kSTTDuszPGrplAgAu9opvQ
+	(envelope-from <devicetree+bounces-315374-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:45:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 117D46C1092
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:27:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 797B46C1157
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:45:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kwiboo.se header.s=fe-e1b5cab7be header.b="JqagC7i/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315371-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315371-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kwiboo.se;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FMVDEan6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315374-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315374-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3933A303599B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 19:27:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D3E453031AEE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 19:45:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9E7382F26;
-	Wed, 24 Jun 2026 19:27:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BD13C769F;
+	Wed, 24 Jun 2026 19:45:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9154C382380
-	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 19:27:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC7AB33D506;
+	Wed, 24 Jun 2026 19:45:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782329266; cv=none; b=tb+7sFvXSn8Tp5Lfpmfe7+ORb8+p0BVGWcIdTf4Z+Y+i0ydjmWepIvm6rYYsW89VeyoRdcpw0rkLgNEhCUrE7DLLm/CuF+rTp5x0t8qbKsEGvgIP2eTc9qfifwxkE5C1UEtUHdBp7w78DwXfsLMMP81EWINBy0XOjBL+cQbWi7o=
+	t=1782330344; cv=none; b=vF2cKYbvGJ59gFuQx3PxQ60s+0L+yVAiMiyHjS7/YnZLLPlyNtXpPDF5nLSX1mzrIJBT5DyFkDaGQAqU3xoMxWvqyvAE72vmzWls5++cV//WqgItFZrz5dP6oShHxf91nCvsvxtZXnhxHEbFVmsCijvdztLctEbbm3jPrQ9inFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782329266; c=relaxed/simple;
-	bh=ixngPg4wVUYXZ9I8svhRE1rYei1Cz5bpE8b6hANKxJs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kh0qnWtrOZee3rXa6FnSZ8Q8z/JwP33NutdwCXDRw6Jp2K3FBcK6CH03W3y9J6XI/P5aWMMnVFPBmJKUbTRVYL0YXr9jF3VIoIs7qlxZlehD2vx7C79+MqVkaReRvfzbcbZaPSWOhARzs/0WARiqvunX7hAKXqPKfenCyQEpkSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=JqagC7i/; arc=none smtp.client-ip=121.127.44.73
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1782329257; bh=QvtzBjRWJhsbenkKdH0SFCY3vwPhaULuIOm7rRelHtw=;
- b=JqagC7i/nwDWgUqQyZsUhmY9wjzKRCEepkRsAwKF21cQysI3FfFwwWfk8VNRxafncx1uGqU+c
- dJmjwMZ6OEPhR8Fv2IZgrnhHtk877zsIS0MoaaO2tiP8QPcUpj2RQvngriD3Hele104D8zQ/yTC
- rrNvccBI0PJ2IewKq2pStT9kLGdiJgjrjR+6kCnDCZ4+gW/164pZyG+Eh2jX7qlsb2BKrw7LV/w
- GQep8f97DN1URVgfFGCw6RlxucCkYcxbY43QgKhoCko5WCu9zPEkNprJ4EpxGxFpdm//ldXNjJL
- 5/6xG/FYlLcv6h/8j87OLSGvrNBzW/cyTOIS8E6F/5yg==
-X-Forward-Email-ID: 6a3c2fa8138f49c481104ad8
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 2.8.32
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1782330344; c=relaxed/simple;
+	bh=BzyOlsszxJEeIY9pYAhULIu3fNM+/17IvpEOrDVmRlM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cpd2VO68KxOM8KMS1nsVhV/rsyKpOQ3LaAmB3F2/3IOEbdDdX4pOLPdmT2J4XG3NI19AWmtDc78gE/I2HSegr2QIblpojM/Swg/bNr0D68h9XfHozG/oWN3PPBMsKy+XpcYdhttKuaTQRZrQhtC3hPo6ZDo3I+Ngn+YHqaVnk6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FMVDEan6; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B7721F000E9;
+	Wed, 24 Jun 2026 19:45:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782330342;
+	bh=+YMatfDrWesAa/1uFkH2Ifq/id2ddc7RPiI/6Itz998=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=FMVDEan6qU6OtyY5LEV2DZpmdbMtUaUlp4bGR+hj/6BaKiZBthX3JDxLTeYBcn6wL
+	 pis5nHOFr0KRSIdPqA37dHiLVA0QObfTLf9TCHkWsBGStCFWSq+wl2SaMhz6Bnc5TI
+	 vTOHNf52lphs9i3auX4oelZQyhTrD5ehQT1YWyVSiZlqKTXXDsNgUwgevCUBWRJnal
+	 M3CHeoOQwbijcGkXyqtRozyAKuAbRRiU0GCWpl+7Vu+m3vhSFvKnU2SyVcwRAYVc8Z
+	 kGirYKHROlNAVvC53Oh2GPlEFkL5QwZ0Tmv4vcMhZe0BdniAEKnSuN7MiCmh9diO1N
+	 hvlr/NPwAyzYA==
+Date: Wed, 24 Jun 2026 14:45:41 -0500
+From: Rob Herring <robh@kernel.org>
+To: David Heidelberg <david@ixit.cz>
+Cc: David Rhodes <david.rhodes@cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Geis <pgwipeout@gmail.com>,
-	Michael Riesch <michael.riesch@collabora.com>
-Cc: Diederik de Haas <diederik@cknow-tech.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: Fix devices suspend freeze on RK3568/RK3566
-Date: Wed, 24 Jun 2026 19:27:25 +0000
-Message-ID: <20260624192726.781864-3-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260624192726.781864-1-jonas@kwiboo.se>
-References: <20260624192726.781864-1-jonas@kwiboo.se>
+	Conor Dooley <conor+dt@kernel.org>, patches@opensource.cirrus.com,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: Convert cirrus,cs35l36 to DT schema
+Message-ID: <20260624194541.GA672824-robh@kernel.org>
+References: <20260624-dt-cirrus-cs35l36-v2-1-74eccdbd8fe4@ixit.cz>
+ <CAL_JsqLE8Z-LbeF9r=sqRqAoGUcs7R-T4cN+hF3QzjGydHctgQ@mail.gmail.com>
+ <3873b111-36d5-442e-996c-31d05d23c8e8@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <3873b111-36d5-442e-996c-31d05d23c8e8@ixit.cz>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[sntech.de,kernel.org,gmail.com,collabora.com];
-	FORGED_SENDER(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_RECIPIENTS(0.00)[m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pgwipeout@gmail.com,m:michael.riesch@collabora.com,m:diederik@cknow-tech.com,m:gregkh@linuxfoundation.org,m:devicetree@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-usb@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:jonas@kwiboo.se,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315374-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-315371-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kwiboo.se:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:david@ixit.cz,m:david.rhodes@cirrus.com,m:rf@opensource.cirrus.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:patches@opensource.cirrus.com,m:bhelgaas@google.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phone-devel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[cirrus.com,opensource.cirrus.com,gmail.com,kernel.org,google.com,vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,kwiboo.se:dkim,kwiboo.se:email,kwiboo.se:mid,kwiboo.se:from_mime]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 117D46C1092
+X-Rspamd-Queue-Id: 797B46C1157
 
-The EHCI/OHCI controller depends on clk_usbphy1_480m being enabled, or
-the system may freeze when registers are accessed, i.e. during suspend
-in ohci_suspend().
+On Wed, Jun 24, 2026 at 08:39:28PM +0200, David Heidelberg wrote:
+> On 24/06/2026 20:17, Rob Herring wrote:
+> > On Wed, Jun 24, 2026 at 11:02 AM David Heidelberg via B4 Relay
+> > <devnull+david.ixit.cz@kernel.org> wrote:
+> > > 
+> > > From: David Heidelberg <david@ixit.cz>
+> > > 
+> > > Convert CS35L36 Speaker Amplifier to yaml.
+> > > 
+> > > Changes:
+> > >   - maintainers email to the generic Cirrus email
+> > >   - Both the codec and downstream worked just fine without
+> > >     VP-supply provided. Align with datasheet for similar models.
+> > >   - add dai-common.yaml to cover for '#sound-dai-cells',
+> > >     'sound-name-prefix'
+> > > 
+> > > Reviewed-by: David Rhodes <David.Rhodes@cirrus.com>
+> > 
+> > If you are going to take stuff I haven't fixed:
+> > 
+> > Assisted-by: OpenAI:gpt-4
+> > 
+> > (I don't remember the exact flavor I used)
+> > 
+> > > Co-developed-by: Rob Herring (Arm) <robh@kernel.org>
+> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > > Signed-off-by: David Heidelberg <david@ixit.cz>
+> > > ---
+> > > Relevant for Pixel 3 / 3XL / 4.
+> > > ---
+> > > Changes in v2:
+> > > - Rename the commit. (Mark)
+> > > - Link to v1: https://lore.kernel.org/r/20260618-dt-cirrus-cs35l36-v1-1-1a43515666ad@ixit.cz
+> > > ---
+> > >   .../devicetree/bindings/sound/cirrus,cs35l36.yaml  | 224 +++++++++++++++++++++
+> > >   .../devicetree/bindings/sound/cs35l36.txt          | 168 ----------------
+> > >   2 files changed, 224 insertions(+), 168 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l36.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l36.yaml
+> > > new file mode 100644
+> > > index 0000000000000..af0acaaefb68e
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l36.yaml
+> > > @@ -0,0 +1,224 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/cirrus,cs35l36.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Cirrus Logic CS35L36 Speaker Amplifier
+> > > +
+> > > +maintainers:
+> > > +  - patches@opensource.cirrus.com
+> > > +  - Bjorn Helgaas <bhelgaas@google.com>
+> > 
+> > Bjorn is not correct. Generally we want a person, not a company list.
+> 
+> I'm adding back James, can I keep the patches at 2nd place?
 
-Add the missing clk_usbphy1_480m clocks reference to EHCI/OHCI
-controllers to ensure the clock is enabled when ECHI/OHCI registers are
-accessed to prevent a system freeze.
+Yes.
 
-Fixes suspend pm_test issue with EHCI/OHCI devices due to the missing
-clk_usbphy1_480m reference and makes following pm_test modes work:
+> > > +      cirrus,vpbr-thld:
+> > > +        description: Initial VPBR threshold voltage
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +
+> > > +      cirrus,vpbr-atk-rate:
+> > > +        description: Attenuation attack step rate
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +
+> > > +      cirrus,vpbr-atk-vol:
+> > > +        description: VP brownout prevention step size
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +
+> > > +      cirrus,vpbr-max-attn:
+> > > +        description: Maximum attenuation during VP brownout prevention
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +
+> > > +      cirrus,vpbr-wait:
+> > > +        description: Delay between brownout clearance and attenuation release
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +
+> > > +      cirrus,vpbr-rel-rate:
+> > > +        description: Attenuation release step rate
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +
+> > > +      cirrus,vpbr-mute-en:
+> > > +        description: Mute audio if maximum attenuation reached
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > 
+> > Constraints on any of these?
+> 
+> Code just applies whatever is thrown at it, maybe David knows more?
+> 
+> #nodatasheet (but would be lovely to have one)
 
-  echo N > /sys/module/printk/parameters/console_suspend
+Unless the driver just takes these values and shoves them straight into 
+a 32-bit register, the driver should give some clue about the size or 
+possible values.
 
-  echo devices > /sys/power/pm_test
-  echo platform > /sys/power/pm_test
-  echo processors > /sys/power/pm_test
-  echo core > /sys/power/pm_test
-
-  echo mem > /sys/power/state
-
-Fixes: 91c4c3e06a25 ("arm64: dts: rockchip: add usb2 nodes to rk3568 device tree")
-Fixes: 78f7186095db ("arm64: dts: rockchip: rename and sort the rk356x usb2 phy handles")
-Tested-by: Diederik de Haas <diederik@cknow-tech.com>
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
-v2: Collect t-b tag
----
- arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-index a5832895bd39..c930a6fd6ea0 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-@@ -321,44 +321,44 @@ its: msi-controller@fd440000 {
- 	};
- 
- 	usb_host0_ehci: usb@fd800000 {
--		compatible = "generic-ehci";
-+		compatible = "rockchip,rk3568-ehci", "generic-ehci";
- 		reg = <0x0 0xfd800000 0x0 0x40000>;
- 		interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru HCLK_USB2HOST0>, <&cru HCLK_USB2HOST0_ARB>,
--			 <&cru PCLK_USB>;
-+			 <&cru PCLK_USB>, <&usb2phy1>;
- 		phys = <&usb2phy1_otg>;
- 		phy-names = "usb";
- 		status = "disabled";
- 	};
- 
- 	usb_host0_ohci: usb@fd840000 {
--		compatible = "generic-ohci";
-+		compatible = "rockchip,rk3568-ohci", "generic-ohci";
- 		reg = <0x0 0xfd840000 0x0 0x40000>;
- 		interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru HCLK_USB2HOST0>, <&cru HCLK_USB2HOST0_ARB>,
--			 <&cru PCLK_USB>;
-+			 <&cru PCLK_USB>, <&usb2phy1>;
- 		phys = <&usb2phy1_otg>;
- 		phy-names = "usb";
- 		status = "disabled";
- 	};
- 
- 	usb_host1_ehci: usb@fd880000 {
--		compatible = "generic-ehci";
-+		compatible = "rockchip,rk3568-ehci", "generic-ehci";
- 		reg = <0x0 0xfd880000 0x0 0x40000>;
- 		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru HCLK_USB2HOST1>, <&cru HCLK_USB2HOST1_ARB>,
--			 <&cru PCLK_USB>;
-+			 <&cru PCLK_USB>, <&usb2phy1>;
- 		phys = <&usb2phy1_host>;
- 		phy-names = "usb";
- 		status = "disabled";
- 	};
- 
- 	usb_host1_ohci: usb@fd8c0000 {
--		compatible = "generic-ohci";
-+		compatible = "rockchip,rk3568-ohci", "generic-ohci";
- 		reg = <0x0 0xfd8c0000 0x0 0x40000>;
- 		interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru HCLK_USB2HOST1>, <&cru HCLK_USB2HOST1_ARB>,
--			 <&cru PCLK_USB>;
-+			 <&cru PCLK_USB>, <&usb2phy1>;
- 		phys = <&usb2phy1_host>;
- 		phy-names = "usb";
- 		status = "disabled";
--- 
-2.54.0
-
+Rob
 
