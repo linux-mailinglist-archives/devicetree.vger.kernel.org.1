@@ -1,60 +1,56 @@
-Return-Path: <devicetree+bounces-315196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315194-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id agf8CjTAO2rWcAgAu9opvQ
-	(envelope-from <devicetree+bounces-315196-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 13:32:04 +0200
+	id JK35Gea/O2q2cAgAu9opvQ
+	(envelope-from <devicetree+bounces-315194-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 13:30:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C44586BDAA2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 13:32:03 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F283F6BDA53
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 13:30:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=realtek.com header.s=dkim header.b=ejRbpWeb;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315196-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315196-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=realtek.com header.s=dkim header.b=Pp8w3vim;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315194-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315194-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=realtek.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2F6AE308E996
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 11:30:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6D1FC300F5EF
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 11:30:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4F13A0B13;
-	Wed, 24 Jun 2026 11:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9421388863;
+	Wed, 24 Jun 2026 11:30:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 008AC389105;
-	Wed, 24 Jun 2026 11:30:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 722C6286AC;
+	Wed, 24 Jun 2026 11:30:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782300644; cv=none; b=h+9A+QoSJ6xD9PLdss8E2EgLxT5FId4ojSwAu4IgQS78eQ+phjWk9nSAAP0tvJyXWjTHXzPeWRuU/CKLttdYAB+Ats3+F1R0T/pX5oi+/RmcBVB905HV9sALQKUG4oWs7pxndWcT2/e7boMIA37uTm7YRBCMRoXgc5NrIZuHnyQ=
+	t=1782300642; cv=none; b=LG/QcEudY+z3G1YvDFqs6QdQoAoKvSYJBiiuS+JsQx3HG6wa91Bie3qD7e8ycvya7KNwfvVRLRYWe+5Jc4s7Vd+lsj70TAd2C6jkPM0lRMx2K71RQTo1wEQ8h73/S3JcWI2UA2XLX2tcwsEoj9ZNlhbYlfBQ+6ZnN9DnuhhuDkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782300644; c=relaxed/simple;
-	bh=JPVFGbgeUcgDWsGS/cLnYPU1hHSl3/cJH11c9XxtZ9c=;
+	s=arc-20240116; t=1782300642; c=relaxed/simple;
+	bh=iLnKPqbNpXHgl+wrhoJxMA29BMyB5f9SLv8sq9r7ncg=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LR7Lgf5NVKDa4ECJ124xuQ23ZLI0hs8i6FOaheuiNiuBqprUjPZ3tsww33v/mtDuemLPCzi7hU1yo/TetNlRuhZ56iwC9Q344n2OTAPnMXx5BiuDieqI4tQwO2BBwLS1xBSh31lBcoiH7OcTF35yyIAEkgOEvUNDbbfZoMuE3XI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=ejRbpWeb; arc=none smtp.client-ip=211.75.126.72
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 65OBTj3vA4147251, This message is accepted by code: ctloc85258
+	 MIME-Version:Content-Type; b=Rj2DXCsJQrc4UszQaI65yl9T1OiHd5M8P4O2WhN8sI4tFn1q7b4p1ynkF6djuHXQGpjbTOE03ikL7XjhMAuSeEItWlCQ+wG1NVJoFSfDUig5cdQhYoE4fG1ynqJb1zCLl5mX9TorDP83RA6EqG0Q4yau4S7a37+A1VJZIExyyp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=Pp8w3vim; arc=none smtp.client-ip=211.75.126.72
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 65OBTjEI24147253, This message is accepted by code: ctloc85258
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1782300585; bh=qAOUbo/1p128tVHptJ4mU0jT91GW4wZCWa80G9NU8gU=;
+	t=1782300585; bh=MLTRbdcInA6nyLqoCNrwBKRTLG5pQWpW8t5mlzl2B98=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
 	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=ejRbpWebxPQZHG+yqwTkzbmC7cHNVKbImI0jue12Ac++OYuVALNf1y3i+cXqGbSKG
-	 GyNPt+s9ySAirmaYscVp5TL4U+yfE2gIfgUCEHKvMM1y+PyNv5U/XrOeHF8h+xUt6n
-	 Nu2QRpc26/S1sTm/B1KPOZcZ5p6leCPNVKnjbT1Yljc8QUzqoS9M1g8bfa4L2w5YgD
-	 P63BTcoT3wCwmg8Am5WhsGiT6sBZKi+xzhvRLk1z+nAijl1QJmzy4y+1wbIOGgNHWS
-	 IUwrf4jiV4p0Qzo6LTXItgk4X7WmTf7KUcR/CdNo/uKzRiCHtzM/zzwFCYxo6rLVBW
-	 RDzdYcg7pF5Dg==
-Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
-	by rtits2.realtek.com.tw (8.15.2/3.29/5.94) with ESMTPS id 65OBTj3vA4147251
+	b=Pp8w3vimUfZ7ouq3LBxIlShDKQozT+qUXWbayapBHHmcEDj0DXxkiK0wnc61HOaZB
+	 5ssflsu647gfS7avOObbIK21WfGa2ZqkKqWN/c2aNfQrQUT79AjMAQRAKf9IvUXf+8
+	 lIVeyP5pX+xMkIyv8WVCDW4iKSj+3GvkX6e/1eN48hgW1pc2/PL79oNIHSxaZc/sLW
+	 Ldktqdi22escljxoP1NmOo8c4D8TEDNgX1XCcDUAV6OjhQqEYmKOzNmcIS0p5KpDk2
+	 awbsmJzHBSPCf8v8RtPkP02TUzw8E4Zy3XVCTyylgkYwfIqUAxCIq61YFIUxjLs7Wd
+	 vXlGE6zZN692A==
+Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
+	by rtits2.realtek.com.tw (8.15.2/3.29/5.94) with ESMTPS id 65OBTjEI24147253
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Wed, 24 Jun 2026 19:29:45 +0800
 Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 24 Jun 2026 19:29:45 +0800
-Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
+ RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.2562.17; Wed, 24 Jun 2026 19:29:45 +0800
 Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS05.realtek.com.tw
@@ -70,9 +66,9 @@ CC: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
 	<linux-realtek-soc@lists.infradead.org>, <james.tai@realtek.com>,
 	<cy.huang@realtek.com>, <stanley_chang@realtek.com>,
 	<eleanor.lin@realtek.com>
-Subject: [PATCH v9 04/12] reset: realtek: Add RTD1625-ISO reset controller driver
-Date: Wed, 24 Jun 2026 19:29:32 +0800
-Message-ID: <20260624112940.3475605-5-eleanor.lin@realtek.com>
+Subject: [PATCH v9 05/12] clk: realtek: Introduce a common probe()
+Date: Wed, 24 Jun 2026 19:29:33 +0800
+Message-ID: <20260624112940.3475605-6-eleanor.lin@realtek.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260624112940.3475605-1-eleanor.lin@realtek.com>
 References: <20260624112940.3475605-1-eleanor.lin@realtek.com>
@@ -87,11 +83,11 @@ Content-Type: text/plain
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -100,163 +96,253 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315196-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315194-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:cylee12@realtek.com,m:afaerber@suse.com,m:jyanchou@realtek.com,m:bmasney@redhat.com,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:james.tai@realtek.com,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:eleanor.lin@realtek.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	DKIM_TRACE(0.00)[realtek.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[19];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	ALIAS_RESOLVED(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,realtek.com:dkim,realtek.com:email,realtek.com:mid,realtek.com:from_mime,vger.kernel.org:from_smtp];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,realtek.com:dkim,realtek.com:email,realtek.com:mid,realtek.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C44586BDAA2
+X-Rspamd-Queue-Id: F283F6BDA53
 
 From: Cheng-Yu Lee <cylee12@realtek.com>
 
-Add support for the ISO (Isolation) domain reset controller on the Realtek
-RTD1625 SoC.
+Add rtk_clk_probe() to set up the shared regmap, register clock hardware,
+and add the clock provider.
 
-The reset controller shares the same register space with the ISO clock
-controller. To handle this shared register space, the reset driver is
-implemented as an auxiliary driver. It will be instantiated and probed via
-the auxiliary bus by the RTD1625-ISO clock controller driver.
+Additionally, if the "#reset-cells" property is present in the device tree,
+it creates and registers an auxiliary device using the provided aux_name.
+This allows the dedicated reset driver to bind to this device, enabling
+both clock and reset drivers to share the same regmap.
 
 Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
 Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 ---
 Changes in v9:
-- Extract reset-related code from the previous clock driver patch
-(formerly patch 9 in v8).
+- Rename common.[ch] to clk-rtk-common.[ch].
 ---
- drivers/reset/realtek/Makefile            |  2 +-
- drivers/reset/realtek/reset-rtd1625-iso.c | 99 +++++++++++++++++++++++
- 2 files changed, 100 insertions(+), 1 deletion(-)
- create mode 100644 drivers/reset/realtek/reset-rtd1625-iso.c
+ MAINTAINERS                          |  1 +
+ drivers/clk/Kconfig                  |  1 +
+ drivers/clk/Makefile                 |  1 +
+ drivers/clk/realtek/Kconfig          | 30 +++++++++++++
+ drivers/clk/realtek/Makefile         |  4 ++
+ drivers/clk/realtek/clk-rtk-common.c | 66 ++++++++++++++++++++++++++++
+ drivers/clk/realtek/clk-rtk-common.h | 37 ++++++++++++++++
+ 7 files changed, 140 insertions(+)
+ create mode 100644 drivers/clk/realtek/Kconfig
+ create mode 100644 drivers/clk/realtek/Makefile
+ create mode 100644 drivers/clk/realtek/clk-rtk-common.c
+ create mode 100644 drivers/clk/realtek/clk-rtk-common.h
 
-diff --git a/drivers/reset/realtek/Makefile b/drivers/reset/realtek/Makefile
-index c3f605ffb11c..9007c9d5683b 100644
---- a/drivers/reset/realtek/Makefile
-+++ b/drivers/reset/realtek/Makefile
-@@ -1,3 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-$(CONFIG_RESET_RTK_COMMON) += reset-rtk-common.o
--obj-$(CONFIG_RESET_RTD1625) += reset-rtd1625-crt.o
-+obj-$(CONFIG_RESET_RTD1625) += reset-rtd1625-crt.o reset-rtd1625-iso.o
-diff --git a/drivers/reset/realtek/reset-rtd1625-iso.c b/drivers/reset/realtek/reset-rtd1625-iso.c
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 3bc431a2a7d1..9cdcb333b68f 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -22675,6 +22675,7 @@ L:	devicetree@vger.kernel.org
+ L:	linux-clk@vger.kernel.org
+ S:	Supported
+ F:	Documentation/devicetree/bindings/clock/realtek*
++F:	drivers/clk/realtek/*
+ F:	drivers/reset/realtek/*
+ F:	include/dt-bindings/clock/realtek*
+ F:	include/dt-bindings/reset/realtek*
+diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+index b2efbe9f6acb..8bf262dd23a9 100644
+--- a/drivers/clk/Kconfig
++++ b/drivers/clk/Kconfig
+@@ -519,6 +519,7 @@ source "drivers/clk/nuvoton/Kconfig"
+ source "drivers/clk/pistachio/Kconfig"
+ source "drivers/clk/qcom/Kconfig"
+ source "drivers/clk/ralink/Kconfig"
++source "drivers/clk/realtek/Kconfig"
+ source "drivers/clk/renesas/Kconfig"
+ source "drivers/clk/rockchip/Kconfig"
+ source "drivers/clk/samsung/Kconfig"
+diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+index a3e2862ebd7e..e226bee2d039 100644
+--- a/drivers/clk/Makefile
++++ b/drivers/clk/Makefile
+@@ -140,6 +140,7 @@ obj-$(CONFIG_COMMON_CLK_PISTACHIO)	+= pistachio/
+ obj-$(CONFIG_COMMON_CLK_PXA)		+= pxa/
+ obj-$(CONFIG_COMMON_CLK_QCOM)		+= qcom/
+ obj-y					+= ralink/
++obj-$(CONFIG_COMMON_CLK_REALTEK)	+= realtek/
+ obj-y					+= renesas/
+ obj-$(CONFIG_ARCH_ROCKCHIP)		+= rockchip/
+ obj-$(CONFIG_COMMON_CLK_SAMSUNG)	+= samsung/
+diff --git a/drivers/clk/realtek/Kconfig b/drivers/clk/realtek/Kconfig
 new file mode 100644
-index 000000000000..78eaabb408f0
+index 000000000000..ed97531e321d
 --- /dev/null
-+++ b/drivers/reset/realtek/reset-rtd1625-iso.c
-@@ -0,0 +1,99 @@
++++ b/drivers/clk/realtek/Kconfig
+@@ -0,0 +1,30 @@
++# SPDX-License-Identifier: GPL-2.0-only
++config COMMON_CLK_REALTEK
++	tristate "Clock driver for Realtek SoCs"
++	depends on ARCH_REALTEK || COMPILE_TEST
++	default ARCH_REALTEK
++	help
++	  Enable the common clock framework infrastructure for Realtek
++	  system-on-chip platforms.
++
++	  This provides the base support required by individual Realtek
++	  clock controller drivers to expose clocks to peripheral devices.
++
++	  If you have a Realtek-based platform, say Y.
++
++if COMMON_CLK_REALTEK
++
++config RTK_CLK_COMMON
++	tristate "Realtek Clock Common"
++	depends on RESET_CONTROLLER
++	select AUXILIARY_BUS
++	select MFD_SYSCON
++	select RESET_RTK_COMMON
++	help
++	  Common helper code shared by Realtek clock controller drivers.
++
++	  This provides utility functions and data structures used by
++	  multiple Realtek clock implementations, and include integration
++	  with reset controllers where required.
++
++endif
+diff --git a/drivers/clk/realtek/Makefile b/drivers/clk/realtek/Makefile
+new file mode 100644
+index 000000000000..13000ed4ba11
+--- /dev/null
++++ b/drivers/clk/realtek/Makefile
+@@ -0,0 +1,4 @@
++# SPDX-License-Identifier: GPL-2.0-only
++obj-$(CONFIG_RTK_CLK_COMMON) += clk-rtk.o
++
++clk-rtk-y += clk-rtk-common.o
+diff --git a/drivers/clk/realtek/clk-rtk-common.c b/drivers/clk/realtek/clk-rtk-common.c
+new file mode 100644
+index 000000000000..4fd16585dbf4
+--- /dev/null
++++ b/drivers/clk/realtek/clk-rtk-common.c
+@@ -0,0 +1,66 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +/*
-+ * Copyright (C) 2026 Realtek Semiconductor Corporation
++ * Copyright (C) 2019-2026 Realtek Semiconductor Corporation
++ * Author: Cheng-Yu Lee <cylee12@realtek.com>
 + */
 +
-+#include <dt-bindings/reset/realtek,rtd1625.h>
 +#include <linux/auxiliary_bus.h>
 +#include <linux/device.h>
-+#include <linux/errno.h>
-+#include <linux/of.h>
-+#include <linux/slab.h>
-+#include "reset-rtk-common.h"
++#include <linux/export.h>
++#include <linux/mfd/syscon.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include "clk-rtk-common.h"
 +
-+#define RTD1625_ISO_RSTN_MAX	29
-+#define RTD1625_ISO_S_RSTN_MAX	5
-+
-+static const struct rtk_reset_desc rtd1625_iso_reset_descs[] = {
-+	[RTD1625_ISO_RSTN_VFD]                 = { .ofs = 0x88, .bit = 0 },
-+	[RTD1625_ISO_RSTN_CEC0]                = { .ofs = 0x88, .bit = 2 },
-+	[RTD1625_ISO_RSTN_CEC1]                = { .ofs = 0x88, .bit = 3 },
-+	[RTD1625_ISO_RSTN_CBUSTX]              = { .ofs = 0x88, .bit = 5 },
-+	[RTD1625_ISO_RSTN_CBUSRX]              = { .ofs = 0x88, .bit = 6 },
-+	[RTD1625_ISO_RSTN_USB3_PHY2_XTAL_POW]  = { .ofs = 0x88, .bit = 7 },
-+	[RTD1625_ISO_RSTN_UR0]                 = { .ofs = 0x88, .bit = 8 },
-+	[RTD1625_ISO_RSTN_GMAC]                = { .ofs = 0x88, .bit = 9 },
-+	[RTD1625_ISO_RSTN_GPHY]                = { .ofs = 0x88, .bit = 10 },
-+	[RTD1625_ISO_RSTN_I2C_0]               = { .ofs = 0x88, .bit = 11 },
-+	[RTD1625_ISO_RSTN_I2C_1]               = { .ofs = 0x88, .bit = 12 },
-+	[RTD1625_ISO_RSTN_CBUS]                = { .ofs = 0x88, .bit = 13 },
-+	[RTD1625_ISO_RSTN_USB_DRD]             = { .ofs = 0x88, .bit = 14 },
-+	[RTD1625_ISO_RSTN_USB_HOST]            = { .ofs = 0x88, .bit = 15 },
-+	[RTD1625_ISO_RSTN_USB_PHY_0]           = { .ofs = 0x88, .bit = 16 },
-+	[RTD1625_ISO_RSTN_USB_PHY_1]           = { .ofs = 0x88, .bit = 17 },
-+	[RTD1625_ISO_RSTN_USB_PHY_2]           = { .ofs = 0x88, .bit = 18 },
-+	[RTD1625_ISO_RSTN_USB]                 = { .ofs = 0x88, .bit = 19 },
-+	[RTD1625_ISO_RSTN_TYPE_C]              = { .ofs = 0x88, .bit = 20 },
-+	[RTD1625_ISO_RSTN_USB_U3_HOST]         = { .ofs = 0x88, .bit = 21 },
-+	[RTD1625_ISO_RSTN_USB3_PHY0_POW]       = { .ofs = 0x88, .bit = 22 },
-+	[RTD1625_ISO_RSTN_USB3_P0_MDIO]        = { .ofs = 0x88, .bit = 23 },
-+	[RTD1625_ISO_RSTN_USB3_PHY1_POW]       = { .ofs = 0x88, .bit = 24 },
-+	[RTD1625_ISO_RSTN_USB3_P1_MDIO]        = { .ofs = 0x88, .bit = 25 },
-+	[RTD1625_ISO_RSTN_VTC]                 = { .ofs = 0x88, .bit = 26 },
-+	[RTD1625_ISO_RSTN_USB3_PHY2_POW]       = { .ofs = 0x88, .bit = 27 },
-+	[RTD1625_ISO_RSTN_USB3_P2_MDIO]        = { .ofs = 0x88, .bit = 28 },
-+	[RTD1625_ISO_RSTN_USB_PHY_3]           = { .ofs = 0x88, .bit = 29 },
-+	[RTD1625_ISO_RSTN_USB_PHY_4]           = { .ofs = 0x88, .bit = 30 },
-+};
-+
-+static const struct rtk_reset_desc rtd1625_iso_s_reset_descs[] = {
-+	[RTD1625_ISO_S_RSTN_ISOM_MIS] = { .ofs = 0x310, .bit = 0, .write_en = 1 },
-+	[RTD1625_ISO_S_RSTN_GPIOM]    = { .ofs = 0x310, .bit = 2, .write_en = 1 },
-+	[RTD1625_ISO_S_RSTN_TIMER7]   = { .ofs = 0x310, .bit = 4, .write_en = 1 },
-+	[RTD1625_ISO_S_RSTN_IRDA]     = { .ofs = 0x310, .bit = 6, .write_en = 1 },
-+	[RTD1625_ISO_S_RSTN_UR10]     = { .ofs = 0x310, .bit = 8, .write_en = 1 },
-+};
-+
-+static int rtd1625_iso_reset_probe(struct auxiliary_device *adev,
-+				   const struct auxiliary_device_id *id)
++static int rtk_reset_controller_register(struct device *dev, const char *aux_name,
++					 struct regmap *map)
 +{
-+	struct device *dev = &adev->dev;
-+	struct device *parent = dev->parent;
-+	struct rtk_reset_data *data;
++	struct auxiliary_device *adev;
 +
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
++	if (!of_property_present(dev->of_node, "#reset-cells"))
++		return 0;
++
++	adev = devm_auxiliary_device_create(dev, aux_name, (void *)map);
++
++	if (!adev)
 +		return -ENOMEM;
 +
-+	if (of_device_is_compatible(parent->of_node, "realtek,rtd1625-iso-s-clk")) {
-+		data->descs           = rtd1625_iso_s_reset_descs;
-+		data->rcdev.nr_resets = RTD1625_ISO_S_RSTN_MAX;
-+	} else {
-+		data->descs           = rtd1625_iso_reset_descs;
-+		data->rcdev.nr_resets = RTD1625_ISO_RSTN_MAX;
-+	}
-+
-+	data->rcdev.owner     = THIS_MODULE;
-+
-+	return rtk_reset_controller_add(dev, data);
++	return 0;
 +}
 +
-+static const struct auxiliary_device_id rtd1625_iso_reset_ids[] = {
-+	{ .name = "clk_rtk.iso_rst" },
-+	{ .name = "clk_rtk.iso_s_rst" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(auxiliary, rtd1625_iso_reset_ids);
++int rtk_clk_probe(struct platform_device *pdev, const struct rtk_clk_desc *desc,
++		  const char *aux_name)
++{
++	struct device *dev = &pdev->dev;
++	struct regmap *regmap;
++	int i, ret;
 +
-+static struct auxiliary_driver rtd1625_iso_driver = {
-+	.probe = rtd1625_iso_reset_probe,
-+	.id_table = rtd1625_iso_reset_ids,
-+	.driver = {
-+		.name = "rtd1625-iso-reset",
-+	},
-+};
-+module_auxiliary_driver(rtd1625_iso_driver);
++	regmap = device_node_to_regmap(dev->of_node);
++	if (IS_ERR(regmap))
++		return dev_err_probe(dev, PTR_ERR(regmap), "failed to get regmap\n");
 +
-+MODULE_DESCRIPTION("Realtek RTD1625 ISO Reset Controller Driver");
++	for (i = 0; i < desc->num_clks; i++)
++		desc->clks[i]->regmap = regmap;
++
++	for (i = 0; i < desc->clk_data->num; i++) {
++		struct clk_hw *hw = desc->clk_data->hws[i];
++
++		if (!hw)
++			continue;
++
++		ret = devm_clk_hw_register(dev, hw);
++		if (ret)
++			return dev_err_probe(dev, ret, "failed to register hw of clk%d\n", i);
++	}
++
++	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
++					  desc->clk_data);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to add clock provider\n");
++
++	return rtk_reset_controller_register(dev, aux_name, regmap);
++}
++EXPORT_SYMBOL_NS_GPL(rtk_clk_probe, "REALTEK_CLK");
++
++MODULE_DESCRIPTION("Realtek clock infrastructure");
 +MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("REALTEK_RESET");
+diff --git a/drivers/clk/realtek/clk-rtk-common.h b/drivers/clk/realtek/clk-rtk-common.h
+new file mode 100644
+index 000000000000..c52fcdbff5ee
+--- /dev/null
++++ b/drivers/clk/realtek/clk-rtk-common.h
+@@ -0,0 +1,37 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (C) 2016-2026 Realtek Semiconductor Corporation
++ * Author: Cheng-Yu Lee <cylee12@realtek.com>
++ */
++
++#ifndef __CLK_REALTEK_COMMON_H
++#define __CLK_REALTEK_COMMON_H
++
++#include <linux/clk-provider.h>
++
++#define __clk_regmap_hw(_p) ((_p)->hw)
++
++struct device;
++struct platform_device;
++struct regmap;
++
++struct clk_regmap {
++	struct clk_hw hw;
++	struct regmap *regmap;
++};
++
++struct rtk_clk_desc {
++	struct clk_hw_onecell_data *clk_data;
++	struct clk_regmap * const *clks;
++	size_t num_clks;
++};
++
++static inline struct clk_regmap *to_clk_regmap(struct clk_hw *hw)
++{
++	return container_of(hw, struct clk_regmap, hw);
++}
++
++int rtk_clk_probe(struct platform_device *pdev, const struct rtk_clk_desc *desc,
++		  const char *aux_name);
++
++#endif /* __CLK_REALTEK_COMMON_H */
 -- 
 2.43.0
 
