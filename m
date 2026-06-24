@@ -1,137 +1,127 @@
-Return-Path: <devicetree+bounces-315420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315421-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3HjXMzFQPGojmggAu9opvQ
-	(envelope-from <devicetree+bounces-315420-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 23:46:25 +0200
+	id aBpFDtxQPGozmggAu9opvQ
+	(envelope-from <devicetree+bounces-315421-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 23:49:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39F196C1953
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 23:46:25 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF4A6C197C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 23:49:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=ef5AS1ej;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315420-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315420-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GNcO5HRE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315421-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315421-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A05BC3038963
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:44:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 75D1E305505A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:45:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B71DE3783C1;
-	Wed, 24 Jun 2026 21:42:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22C3B39B498;
+	Wed, 24 Jun 2026 21:43:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9CA3EC2E6;
-	Wed, 24 Jun 2026 21:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E71121638D;
+	Wed, 24 Jun 2026 21:43:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782337367; cv=none; b=JXn/c3JOh1oKrhn6led+Pg0HTamD9m9H1bPVPQaza6tNhh1AWh+RAfIDBpeI+Aoq0XHJwl351YoGbzbFftrMB+eza/VWS6lk0unqKOSSReotPrg7e0cZBBQ2biv5xqQ/5zv8D0NBWIEeL6Y5Ltab2Irr7HNDDPm0b5iEojkqwRU=
+	t=1782337427; cv=none; b=uRK7oJja3SOb5UyyuTAacgIRYslM4d0qwUVoJIiVZAX3VfOSZd2fdIs5o94Ga+xYtR38Obj5j7/FiKO3y8siT9pThD5K3qyntnR/vhPZiDXyzyXtuDSTiuDQr4KAWf2qtBiWfAp8rjhFUv1APdZjd/rq2GF6x/ukRXdaaBwU4Pc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782337367; c=relaxed/simple;
-	bh=mNXH0gPksALksOUSVR4xWJfeqrjverHGyRYbPxb5Lbc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=awjKK2mExXs+z/ANXfT3EvLJWkslVO/YvHN1eYl2iR3NFvr8IwkwBjleORIqrKcM6Yc22YUiEdslXgsrb3awBwMsRTRe1HwdHLM4n7mhzgji8fQCVcQ8P+stJnlMYo3T+CEWBYAqdF4HkdFuNv8dSE0tS+qPNcFS4F8zAbP7Yp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ef5AS1ej; arc=none smtp.client-ip=185.246.85.4
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 9B40E4E40838;
-	Wed, 24 Jun 2026 21:42:41 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6EE20601C5;
-	Wed, 24 Jun 2026 21:42:41 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 07B0A106C8077;
-	Wed, 24 Jun 2026 23:42:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1782337360; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=+29MxL+qYKYZTOhpZW5lzLw5Y43KvG5Hzj4+XJodO0Y=;
-	b=ef5AS1ej8N8Aj9MuJnQCNMapBSkxKeLjRaultSIzPPtjY9J1XKEeJJyGyNZBcqgWen/Pls
-	4g5SIVsDvjpDdbUoo6bFi5wFFl3ULbZGGorQ9VuicAOgXAG4inkvPKddYXB5yv3jQeOv9C
-	8mt3vPtPe1CaiaVp9/SKQ8g+bw42hpgyB5UoeeCTxz5jVVMu06cyo+9PtURVfbL0BhiTIm
-	HMwOo9RS/5QNXWTBmwmmeVXPnaDi3mcilQ+wQtsJuWfea3dy2W3CVg7Qm4wld8iaX+pVx6
-	MAsK5YBgtimBd6Yi/8dfRC4/lbTVolzjbPIZw9xvY0gCpeAnAnZaBiqk+yiNJQ==
-Date: Wed, 24 Jun 2026 23:42:37 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
-	Fredrik M Olsson <fredrik.m.olsson@axis.com>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kernel@axis.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@mail.toshiba>
-Subject: Re: (subset) [PATCH v2 0/3] rtc: ds1307: Add support for Epson
- RX8901CE
-Message-ID: <178233723840.1527737.4950949208053608857.b4-ty@b4>
-References: <20260520-ds1307-rx8901-add-v2-0-e069ea32e1db@axis.com>
+	s=arc-20240116; t=1782337427; c=relaxed/simple;
+	bh=WmAK/ogmeQIgKmJeBDKVi3kiBLxBeRE1V9T+DFXBUVw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=slEEUlSc62jDjwRg9j23lJ6jK5dcwMk4TH1MvaevRSv9Oeze7ntSpmNFMHDvWllG9sssetF+gPzNbz46MVqEuxN+OMNT6iWP6QZpCUyM3ot8rYKZvPHlNcKjrtbL3auvscpvqHf0IU0GyLwBbjqPJlJUe0p8AKpTxZRJ2XaSOmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GNcO5HRE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B5C21F000E9;
+	Wed, 24 Jun 2026 21:43:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782337425;
+	bh=vy8753oEDHZ+TgVjM9qVb55/Ynl5ILjPJGo5LoGz+jM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To;
+	b=GNcO5HREJAlA/HfdiQU3O6Kprnk/YXWiUkXROCgIMx9Yekfv+v81iAsFSO38cCjMg
+	 66ql1wS0KMukDH9DSLu+nT63Sx58c1KprVxl1BXSqAKy56o92JpnyJd41QXehqYxpI
+	 1NLfKXFymvVc9w+IaOPnefDg7VgbQE5keoFJtUXh/X6ilKFrlLT8Xl/Y/3m8aDkVE3
+	 bkFMVj/I2VFFpfphWoSr11CucyCU9yoDXoaBQoBmCaQQf2VeiP/25aNFTlblVUtDcv
+	 zg2HmQHil7Rbdl3LjPeR6ZODSKb+/snsDeTXiVD0rvL8WGPmKnYMMmwa8xHGKoMux3
+	 TZyBw8CwfMRjw==
+Date: Wed, 24 Jun 2026 16:43:44 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: david@ixit.cz, David Rhodes <david.rhodes@cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, patches@opensource.cirrus.com,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: Convert cirrus,cs35l36 to DT schema
+Message-ID: <20260624214344.GA1031014@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260520-ds1307-rx8901-add-v2-0-e069ea32e1db@axis.com>
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqLE8Z-LbeF9r=sqRqAoGUcs7R-T4cN+hF3QzjGydHctgQ@mail.gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315420-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nobuhiro.iwamatsu.x90@mail.toshiba,m:fredrik.m.olsson@axis.com,m:linux-rtc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:kernel@axis.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:nobuhiro1.iwamatsu@mail.toshiba,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:david@ixit.cz,m:david.rhodes@cirrus.com,m:rf@opensource.cirrus.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:patches@opensource.cirrus.com,m:bhelgaas@google.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phone-devel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315421-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[ixit.cz,cirrus.com,opensource.cirrus.com,gmail.com,kernel.org,google.com,vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[epsondevice.com:url,bootlin.com:dkim,bootlin.com:url,bootlin.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,bhelgaas:mid,cirrus.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 39F196C1953
+X-Rspamd-Queue-Id: 8FF4A6C197C
 
-On Wed, 20 May 2026 16:48:52 +0200, Fredrik M Olsson wrote:
-> Add basic support for the Epson RX8901CE RTC.
-> Datasheet: https://download.epsondevice.com/td/pdf/app/RX8901CE_en.pdf
+On Wed, Jun 24, 2026 at 01:17:58PM -0500, Rob Herring wrote:
+> On Wed, Jun 24, 2026 at 11:02 AM David Heidelberg via B4 Relay
+> ...
+
+> <devnull+david.ixit.cz@kernel.org> wrote:
+> > +title: Cirrus Logic CS35L36 Speaker Amplifier
+> > +
+> > +maintainers:
+> > +  - patches@opensource.cirrus.com
+> > +  - Bjorn Helgaas <bhelgaas@google.com>
 > 
-> Also includes a bug fix for an issue with reading the weekday from the
-> RTC which affects both the existing rx8130 and this rx8901 driver.
-> 
-> 
-> [...]
+> Bjorn is not correct. Generally we want a person, not a company list.
 
-Applied, thanks!
-
-[1/3] dt-bindings: rtc: ds1307: Add epson,rx8901
-      https://git.kernel.org/abelloni/c/cc387941c0a1
-[2/3] rtc: ds1307: Fix off-by-one issue with wday for rx8130
-      https://git.kernel.org/abelloni/c/6882aab3c661
-
-Best regards,
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Haha, thanks for noticing that.  I definitely do not want to be listed
+here; I have nothing to do with this.
 
