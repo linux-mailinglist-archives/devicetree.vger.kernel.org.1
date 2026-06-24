@@ -1,563 +1,255 @@
-Return-Path: <devicetree+bounces-315191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315193-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nnDIKNW+O2qFcAgAu9opvQ
-	(envelope-from <devicetree+bounces-315191-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 13:26:13 +0200
+	id MX/ON+i/O2q5cAgAu9opvQ
+	(envelope-from <devicetree+bounces-315193-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 13:30:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB45B6BDA23
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 13:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC436BDA61
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 13:30:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=BsbNXGri;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=RVFycnjY;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315191-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315191-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=realtek.com header.s=dkim header.b=uVCUQqTg;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315193-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315193-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=realtek.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5BFEB302ED7D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 11:26:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 99E7A302616C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 11:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A06D370AED;
-	Wed, 24 Jun 2026 11:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3180371D11;
+	Wed, 24 Jun 2026 11:30:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B62D2DAFCB
-	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 11:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A016D1A239A;
+	Wed, 24 Jun 2026 11:30:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782300363; cv=none; b=RWQmOSeF1r0Stedf5kAKmUlrfx7YbKTC7H/xg59JYtFZn/eH6K6of7liEF7V14fnLBbVyFiboEIW7UXHmiL3ieQZXFFCXK7jyrILB5neipjQkYJfdP3hDWaH9xQXZs/p1cWrVFyRRRZGxOj4m7j7RxWrCehQQ2NORnHVKMP2rNs=
+	t=1782300642; cv=none; b=tnmJPKhX+toI8iZvVC9qBr8M81pQIb1lqLyc+N/SwrtGfKDZQP6KC6TGzXmI2KhpbQYt0Pf1xPIte+YVwtIIcpyvjIecYw6+Fwlba6+ZWKo06uyeDlZqqNgD3YXTkiqap3UrI1S4X/SW6vLd1mGQ+qU56WXU4vBmTvv7NuBHfiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782300363; c=relaxed/simple;
-	bh=UlqEJPDnLANpGaK/dBHE8jaHyoG1D+SwqpkXfmgtD/w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gxrxezqTkiwsmucYhs5qyC1mdHEjZVvJgp7qOVdKrNtOneCAV9HA7w958oLV8wTZHMJ91+knuIFBrcaAyCYtlJV18p9OC91iG44MXAB9VUSp2LWE3x/8yEb10wDCirlDbLSj5iIsiZyGv2LzE5pJ+8CjHYQhe4MughsIIA9U2cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BsbNXGri; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RVFycnjY; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65OANZ3F2869046
-	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 11:26:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=90ylR7uLuQk3JCNdNWJu/F
-	0ziqsUiDApUuvh6r7i4ho=; b=BsbNXGriNbXYvFXihowILrbpb9PohztNG5brKK
-	06sAMARl7obJAblPvVBH3QYedMtEoPbA6fzuKIlBX2AdXjcUb35QWGtyCnRHQ7bg
-	julHx5Vt56ntNr3S/MZNyAuJjItzpAwC3b2U0FdVMMRUAUF9L2uvjwxZJIxECMnd
-	CVfBJCbh7RCOQL2Nv4Em7QPITRdOYXIbJmMwlNHor6S0gIQWU032xG3cnFTDTfna
-	8ecC84yXN87iGOpu/4oLOvnVq3tfgKWQvcH8rYatfHY2nYBynTmT82NhiPD/S5Qw
-	iN3uOXnF50/Rl4QhNAN9bXNE4/yTHpIpGQj/KA2Lt9B8AVEg==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f0apq0wx3-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 11:25:59 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c889d1eedcdso685372a12.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 04:25:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782300359; x=1782905159; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=90ylR7uLuQk3JCNdNWJu/F0ziqsUiDApUuvh6r7i4ho=;
-        b=RVFycnjYmmAAWYx+kiRtV50quk100eR7yH4IY8GBDjiu4nldVDX2m1jw2Z7cpI+w4u
-         aWDkdKQ/rzb34AGFgArWAh71HcqiFlBQmMaAMrMYWG0u++DiwEx5RBEuMnStfIj+G5mC
-         8iaEuXhWFUMevkUiBpCGX3dhG3HJNdtrIhSc5GAjHHHA/sGAHfF6k+x0XmuYtrLMtRrC
-         UMLuZFXHr1vqxlVQagl41djAwTbWiJNjpQH4xE/KMS9q8PWrrJBPfCjdfZD4NReIuy7L
-         ulCcLjNIeSIkvZmJLVxSr3Un1hNGmLL9imY+S3Mo0ioonR+Qaa1THgabTLnGP5Feq6mg
-         doBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782300359; x=1782905159;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=90ylR7uLuQk3JCNdNWJu/F0ziqsUiDApUuvh6r7i4ho=;
-        b=HdYURjSsURtiGSekpTnhJ0qeeoxtZuggvcUI4+0HiOITYCEh4S2hBOLPAXyB2Bb9na
-         KaTSd6BlxAKrW80NWc3AhTedbMAdBO/weeR5fuPefnokX0CYq65RhhFwE5b7tQSUMxac
-         blgYWuLDU0MLEE5Oeu/PuXLbia4biH8bSRsJ1o38nFAblG10Y3Kqh0CVtj24r2oEyx8u
-         AS0MNgSx9ZZY++ltvju3HpPOgqrnHaWP+0WVwA05Z3+nkqrgvbKEl1UgpUu49abhxdlh
-         SZrjD1/tykJO7rQiLgWe1m+nw3208N4K3q+luWqwP3tM+Hqj3vldHF4jJ7It+I2esgLo
-         6fCA==
-X-Forwarded-Encrypted: i=1; AFNElJ/5ocJXbE4o0NCymQ0Pyie2+9ULEhE1UadIjw09ZQleNadRNq1KD2pelebhmbcZoEjqXEVcJ85nw4ft@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHovTEO0wutNewSFwAs2IE/4idjFv5j2GreEfKF6LNCRn/L8L4
-	neRBz9R/oyJQK8GQU5icCQwhfmXY4o/irpWGWUWWHIBHDqp8J7TuZxKsUA/9aBWmwZcbNcw5JLc
-	NbkQlPXwT4xxUf9saVEk+skO2tTGldhlEWmpFNi8fk8VVVrR1wcUvS8z8kUt5i2ty
-X-Gm-Gg: AfdE7ckgA7NA4g9EncwS9Sn2suQJp3ZwkmLx88AqV1L5vCMGYwzpSJMQ6SC2qHe/Rn8
-	GRZYkHc+B4Sd6gGOPIAdfvlZFjuiv2JEqym4n+xr6TJ1tenbB2gEzjLkMmSjfdgPTLVHz34zfBP
-	G3vPuQC+n9n2Zt++U1ibzyr3vLZf3Smt6HBlpkJvJV4HJ7e6BCyYiKk6GUdpqhuhpvCYZTtZhbX
-	jbm/oIwPUhzS0AMZxk4Cfx+wZDHQ4mrSGIMXJc6jD6+LEJehf/ZNJUmaeco6D80xh1/En9mNsxZ
-	P808QjagKWwW+aBwmXuiwq5CyakLcazBB3lE7kH2BwWhKn1tu4NYx+khg6ntZLWjW4vR5a0Lar4
-	n78knUlAZ6EdFkWgkSgQGZmta0cAFnfc1MwYt12R+DXMR0g==
-X-Received: by 2002:a05:6a00:a17:b0:842:614e:cc97 with SMTP id d2e1a72fcca58-84562535516mr24170699b3a.23.1782300358621;
-        Wed, 24 Jun 2026 04:25:58 -0700 (PDT)
-X-Received: by 2002:a05:6a00:a17:b0:842:614e:cc97 with SMTP id d2e1a72fcca58-84562535516mr24170651b3a.23.1782300358097;
-        Wed, 24 Jun 2026 04:25:58 -0700 (PDT)
-Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-845a3feb7casm2008122b3a.18.2026.06.24.04.25.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jun 2026 04:25:57 -0700 (PDT)
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Wed, 24 Jun 2026 16:55:49 +0530
-Subject: [PATCH v11] PCI: Add support for PCIe WAKE# interrupt
+	s=arc-20240116; t=1782300642; c=relaxed/simple;
+	bh=VXeJU2KfSIk6L/YBsqqDhY8jVlI4TfMzcGJUvWwL2J4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=K6RGNPqraKmGA+hpwXvZSGruYiy2DosFkdf7rK+fgsuhnXkpm/8ZWGKTVAt41hOxWgCCS+p8Lo/tbYBjTTJuee1x6E7kbjKV0AKWHZa5CzSscJ7eEUP7znOwwrqV0PdeZqN61CdlGeMBnDTqPeedCb028Jav5BiRGTRyIPJxh+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=uVCUQqTg; arc=none smtp.client-ip=211.75.126.72
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 65OBTfF424147232, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1782300581; bh=sRd2SUZvI7Z6xZrr0TceYWCOUa5NCwFoRY1lmFgsVnE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type;
+	b=uVCUQqTg4e9X75rPh4pnC5x6QeTNqZU9DiB6lBZF1/D8/AZVuvK34HUD70iT7Kj/Q
+	 itZTFdVIBy/NjiQW12dv05kJqN202XF4Pe+7R2EoBrfhkfXCPshEziH9cp3T6ySsca
+	 0iwa3vqtRNLyJKyxiYjVzXAvM8sPTxiMFaWi3wr1p0W8koSmDOX9mcjjdVCo3ZE9KX
+	 huMjAfeNhjEhIweCZOzT1q5BR3EMJckJruv1TocST8dblJ5fDXNgCJO8SUqpglYXJt
+	 tn1LkmlRQV3sDZCQefkDM+px6x0D4m3B7E3/qxkSQ3tYm4vRDkIBipKZr7pqdnRKgd
+	 1RbjRnon5wU9A==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.29/5.94) with ESMTPS id 65OBTfF424147232
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 24 Jun 2026 19:29:41 +0800
+Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 24 Jun 2026 19:29:41 +0800
+Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
+ RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 24 Jun 2026 19:29:41 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS05.realtek.com.tw
+ (10.21.1.55) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Wed, 24 Jun 2026 19:29:41 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <p.zabel@pengutronix.de>,
+	<cylee12@realtek.com>, <afaerber@suse.com>, <jyanchou@realtek.com>,
+	<bmasney@redhat.com>
+CC: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-realtek-soc@lists.infradead.org>, <james.tai@realtek.com>,
+	<cy.huang@realtek.com>, <stanley_chang@realtek.com>,
+	<eleanor.lin@realtek.com>
+Subject: [PATCH v9 00/12] clk / reset: realtek: Add RTD1625 clock and reset support
+Date: Wed, 24 Jun 2026 19:29:28 +0800
+Message-ID: <20260624112940.3475605-1-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260624-wakeirq_support-v11-1-120fbfaebe59@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIALy+O2oC/3XQ22rDMAwA0F8pfp6L5Pi6p/3HGMNx7NVsrVO7z
- TZK/n1OoWSQ5EUggY4uN1J8jr6Q592NZD/EEtOpJohPO+IO9vThaexqgTBgAhE4/bafPubze7n
- 2fcoXGgR3vLUWtROkdvXZh/hzJ1/fan6I5ZLy733CIKbqw1ILaxAUKJfcowrMMXAvqZT9+Wq/X
- Doe9zWQiRzkP4atMLIyEoLQGAxnIDYY9WAkMNRLRlUGOi610Q0wUBuMnpkGmyWjp6O0BaumhbX
- dYMzMcFhhTGXQtd6FphW629oGYXbqe5YO1qOoQ7DBOONbvfbkcRz/AAW9U/QbAgAA
-X-Change-ID: 20251104-wakeirq_support-f54c4baa18c5
-To: "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
-        Pavel Machek <pavel@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Danilo Krummrich <dakr@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, Linus Walleij <linusw@kernel.org>,
-        Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>,
-        Saravana Kannan <saravanak@kernel.org>,
-        Linus Walleij <linusw@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-        quic_vbadigan@quicinc.com, sherry.sun@nxp.com,
-        driver-core@lists.linux.dev, devicetree@vger.kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782300351; l=14207;
- i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=UlqEJPDnLANpGaK/dBHE8jaHyoG1D+SwqpkXfmgtD/w=;
- b=a9DH3JxCM0QErgtZcdC8AxGVSeWrcPQNWV6jtzf19clxKUZIlLuq9SGcV4Ly2qXmyDHkWdrHu
- qhk0+gGRTmLAsCDOvbqm5d7Hb//yjQ+XwH/EP7g14nDGasoaYg4qwGx
-X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-GUID: 3-ZH_8R03IzZaWuoTVVciJ3LfVjfMqEP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI0MDA5NSBTYWx0ZWRfX73tBHiKH8SOE
- 3Vih+suBtwmdZZy1F3Rovm8+uILz5DAURUKRq47B7/A+o+blfgTNTFASMBFDtZqMT42hVNvq3Bo
- HfmBMo2ajRt6iac0HS3t2uq839EogPjcYreR65EjyDYiJnIeSXr4lZlAtAGYiDd+O6atQIVx6cq
- 6zjOnC84uaYStBlQvNEr02lYJOjiLZ9A5PqFKCPJ+VeF/sJ/ZUmn3eiqUamtZh1pdVzQIgnmtyB
- CwadHib/Uz9cgoRdSsjkAAMabE9LVfL14AZZ08R27uWnaCDjSvTJGHOgq0Ecb5hIWFsv7aXTbU2
- xQzMm/0KmeRYdIic/vFvNESZn3k89yvquBgENVRXkbPmMw9WIkUjsvrvzvIR4/EKdG96zb9K67q
- yx4aUGAXxyl9kPD6Da1QY51JvJoTmDz0NpRJxdl5mCiAietedQJ1ouSfrLxkJLqBy1a0dMpJjnJ
- sV2axob167/0keh2X4Q==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI0MDA5NSBTYWx0ZWRfX7nh4QGvNeUl7
- SqitDDhLjlASS4wDuP6fWA19nkz7Zx7nXaKzL1j7h+PnJKQuk7Mz7hOiVQ+RBB3+9YZSbSydAWs
- pEPgODPoLblySjUPsvegmwbjCKbILlo=
-X-Authority-Analysis: v=2.4 cv=NpbhtcdJ c=1 sm=1 tr=0 ts=6a3bbec7 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=NEAV23lmAAAA:8 a=Ikd4Dj_1AAAA:8
- a=s8YR1HE3AAAA:8 a=bC-a23v3AAAA:8 a=KKAkSRfTAAAA:8 a=1XWaLZrsAAAA:8
- a=K-mQ55XP2AAS2IO8IhoA:9 a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
- a=jGH_LyMDp9YhSvY-UuyI:22 a=FO4_E8m0qiDe52t0p3_H:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: 3-ZH_8R03IzZaWuoTVVciJ3LfVjfMqEP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-24_03,2026-06-23_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0
- priorityscore=1501 bulkscore=0 adultscore=0 spamscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606240095
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315191-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:lenb@kernel.org,m:pavel@kernel.org,m:gregkh@linuxfoundation.org,m:dakr@kernel.org,m:bhelgaas@google.com,m:brgl@bgdev.pl,m:linusw@kernel.org,m:brgl@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pci@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:quic_vbadigan@quicinc.com,m:sherry.sun@nxp.com,m:driver-core@lists.linux.dev,m:devicetree@vger.kernel.org,m:mani@kernel.org,m:krishna.chundru@oss.qualcomm.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[krishna.chundru@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,linaro.org:email];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315193-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:cylee12@realtek.com,m:afaerber@suse.com,m:jyanchou@realtek.com,m:bmasney@redhat.com,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:james.tai@realtek.com,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:eleanor.lin@realtek.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DKIM_TRACE(0.00)[realtek.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krishna.chundru@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,realtek.com:dkim,realtek.com:mid,realtek.com:from_mime,vger.kernel.org:from_smtp,sashiko.dev:url];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DB45B6BDA23
+X-Rspamd-Queue-Id: 4BC436BDA61
 
-According to the PCI Express specification (PCIe r7.0, Section 5.3.3.2),
-two link wakeup mechanisms are defined: Beacon and WAKE#. Beacon is a
-hardware-only mechanism and is invisible to software (PCIe r7.0,
-Section 4.2.7.8.1). This change adds support for the WAKE# mechanism
-in the PCI core.
+Hello,
 
-According to the PCIe specification, multiple WAKE# signals can exist in
-a system or each component in the hierarchy could share a single WAKE#
-signal. In configurations involving a PCIe switch, each downstream port
-(DSP) of the switch may be connected to a separate WAKE# line, allowing
-each endpoint to signal WAKE# independently. From figure 5.4 in sec
-5.3.3.2, WAKE# can also be terminated at the switch itself. Such topologies
-are typically not described in Device Tree, therefore it is out of scope
-for this series.
+This patch series adds the clock and reset controller support for Realtek's
+RTD1625 SoC platform.
 
-To support this, the WAKE# should be described in the device tree node of
-the endpoint/bridge. If all endpoints share a single WAKE# line, then each
-endpoint node shall describe the same WAKE# signal or a single WAKE# in
-the Root Port node.
+Because the reset controllers share the same register space with the
+clock controllers on this platform, we utilize the Auxiliary Bus framework
+to decouple them. The clock controllers act as the primary devices,
+registering the reset controllers as auxiliary devices.
 
-In pci_device_add(), PCI framework will search for the WAKE# in device
-node. Once found, register for the wake IRQ through
-dev_pm_set_dedicated_wake_irq() associates a wakeup IRQ with a device
-and requests it, but the PM core keeps the IRQ disabled by default. The
-IRQ is enabled by the PM core, only when the device is permitted to wake
-the system, i.e. during system suspend and after runtime suspend, and
-only when device wakeup is enabled.
+To make it easier for maintainers to review, the series has been organized
+by subsystem:
 
-If the same WAKE# GPIO is described in multiple device tree nodes, only the
-first device that successfully registers the wake IRQ will succeed, while
-subsequent registrations may fail. This limitation does not affect
-functional correctness, since WAKE# is only used to bring the link to D0,
-and endpoint-specific wakeup handling is resolved later through
-PME detection (PME_EN is set in suspend path by PCI core by default).
+1. Device Tree Bindings:
+   - Add bindings for the Realtek RTD1625 Clock & Reset Controllers.
 
-When the wake IRQ fires, the wakeirq handler invokes pm_runtime_resume() to
-bring the device back to an active power state, such as transitioning from
-D3cold to D0. Once the device is active and the link is usable, the
-endpoint may generate a PME, which is then handled by the PCI core through
-PME polling or the PCIe PME service driver to complete the wakeup of the
-endpoint.
+2. Reset Subsystem:
+   - Introduce the basic Realtek reset infrastructure.
+   - Add the RTD1625-CRT and RTD1625-ISO platform reset drivers.
 
-WAKE# is added in dts schema and merged based on below links.
+3. Clock Subsystem Infrastructure:
+   - Introduce a common probe, and add support for basic clocks including
+     PLLs, gate clocks, mux clocks, and MMC-tuned PLLs.
 
-Link: https://lore.kernel.org/all/20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com/
-Link: https://github.com/devicetree-org/dt-schema/pull/170
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
-Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
----
-PCIe WAKE# interrupt is needed for bringing back PCIe device state from
-D3cold to D0.
-
-This is pending from long time, there was two attempts done previously to
-add WAKE# support[1], [2]. Those series tried to add support for legacy
-interrupts along with WAKE#. Legacy interrupts are already available in
-the latest kernel and we can ignore them. For the wake IRQ the series is
-trying to use interrupts property define in the device tree.
-
-WAKE# is added in dts schema and merged based on this patch.
-https://lore.kernel.org/all/20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com/
-
-[1]: https://lore.kernel.org/all/b2b91240-95fe-145d-502c-d52225497a34@nvidia.com/T/
-[2]: https://lore.kernel.org/all/20171226023646.17722-1-jeffy.chen@rock-chips.com/
----
-Changes in v11:
-- Add device_init_wakeup() as client driver is not expected to enable
-  bridge dev wakeup capability.
-- Link to v10: https://patch.msgid.link/20260511-wakeirq_support-v10-0-c10af9c9eb8c@oss.qualcomm.com
-
-Changes in v10:
-- As sashiko pointed, shared irq has plenty of race conditions.
-- So we are moving away from the shared IRQ patch and registering with
-  dedicated wake irq only, as part of wake irq the link will come to D0
-  as the parent controller driver will be runtime resume first and then
-  pme service will kick in wake up correct endpoint driver.
-- Removed device_init_wakeup() since it enabling wakeup explicitly,
-  which is not intended as this should be set by endpoint driver only.
-- Link to v9: https://lore.kernel.org/r/20260403-wakeirq_support-v9-0-1cbecf3b58d7@oss.qualcomm.com
-
-Changes in v9:
-- Call device_init_wakeup() only if
-  dev_pm_set_dedicated_shared_wake_irq() succeeds (Mani).
-- Change the IRQ_TYPE from IRQ_TYPE_EDGE_FALLING to IRQ_TYPE_LEVEL_LOW (Mani).
-- Link to v8: https://lore.kernel.org/r/20260313-wakeirq_support-v8-0-48a0a702518a@oss.qualcomm.com
-
-Changes in v8:
-- Moved the stub functions under CONFIG_OF_IRQ(mani).
-- Added the description of how dev_pm_set_dedicated_shared_wake_irq()
-  works.
-- Link to v7: https://lore.kernel.org/r/20260218-wakeirq_support-v7-0-0d4689830207@oss.qualcomm.com
-
-Changes in v7:
-- Updated the commit text (Mani).
-- Couple of nits like using pci_err instead of dev_err,
-  use platform_pci_configure_wake(), platform_pci_remove_wake() instead
-  of calling directly calling pci_configure_of_wake_gpio() & pci_remove_of_wake_gpio() etc (Mani).
-- Add a new fwnode_gpiod_get() API that wraps fwnode_gpiod_get_index(..0..), similar to
-  devm_fwnode_gpiod_get() (Mani).
-- Link to v6: https://lore.kernel.org/r/20251127-wakeirq_support-v6-0-60f581f94205@oss.qualcomm.com
-
-Changes in v6:
-- Change the name to dev_pm_set_dedicated_shared_wake_irq() and make the
-  changes pointed by (Rafael). 
-- Link to v5: https://lore.kernel.org/r/20251107-wakeirq_support-v5-0-464e17f2c20c@oss.qualcomm.com
-
-Changes in v5:
-- Enable WAKE# irq only when there is wake -gpios defined in its device
-  tree node (Bjorn).
-- For legacy bindings for direct atach check in root port if we haven't
-  find the wake in the endpoint node.
-- Instead of hooking wake in driver bound case, do it in the framework
-  irrespective of the driver state (Bjorn).
-- Link to v4: https://lore.kernel.org/r/20250801-wake_irq_support-v4-0-6b6639013a1a@oss.qualcomm.com
-
-Changes in v4:
-- Move wake from portdrv to core framework to endpoint (Bjorn).
-- Added support for multiple WAKE# case (Bjorn). But traverse from
-  endpoint upstream port to root port till you get WAKE#. And use
-  IRQF_SHARED flag for requesting interrupts.
-- Link to v3: https://lore.kernel.org/r/20250605-wake_irq_support-v3-0-7ba56dc909a5@oss.qualcomm.com
-
-Changes in v3:
-- Update the commit messages, function names etc as suggested by Mani.
-- return wake_irq if returns error (Neil).
-- Link to v2: https://lore.kernel.org/r/20250419-wake_irq_support-v2-0-06baed9a87a1@oss.qualcomm.com
-
-Changes in v2:
-- Move the wake irq teardown after pcie_port_device_remove
-  and move of_pci_setup_wake_irq before pcie_link_rcec (Lukas)
-- teardown wake irq in shutdown also.
-- Link to v1: https://lore.kernel.org/r/20250401-wake_irq_support-v1-0-d2e22f4a0efd@oss.qualcomm.com
-
-To: Bjorn Helgaas <bhelgaas@google.com>
-To: Rob Herring <robh@kernel.org>
-To: Saravana Kannan <saravanak@kernel.org>
-Cc: linux-pci@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: devicetree@vger.kernel.org
----
- drivers/pci/of.c       | 76 ++++++++++++++++++++++++++++++++++++++++++++++++++
- drivers/pci/pci.c      | 11 ++++++++
- drivers/pci/pci.h      |  2 ++
- drivers/pci/probe.c    |  2 ++
- drivers/pci/remove.c   |  1 +
- include/linux/of_pci.h |  6 ++++
- include/linux/pci.h    |  2 ++
- 7 files changed, 100 insertions(+)
-
-diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-index 8b18c4ba845c..0f5effe1d702 100644
---- a/drivers/pci/of.c
-+++ b/drivers/pci/of.c
-@@ -7,6 +7,7 @@
- #define pr_fmt(fmt)	"PCI: OF: " fmt
- 
- #include <linux/cleanup.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/irqdomain.h>
- #include <linux/kernel.h>
- #include <linux/pci.h>
-@@ -15,6 +16,7 @@
- #include <linux/of_address.h>
- #include <linux/of_pci.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_wakeirq.h>
- #include "pci.h"
- 
- #ifdef CONFIG_PCI
-@@ -586,6 +588,80 @@ int of_irq_parse_and_map_pci(const struct pci_dev *dev, u8 slot, u8 pin)
- 	return irq_create_of_mapping(&oirq);
- }
- EXPORT_SYMBOL_GPL(of_irq_parse_and_map_pci);
-+
-+static void pci_configure_wake_irq(struct pci_dev *pdev, struct gpio_desc *wake)
-+{
-+	int ret, wake_irq;
-+
-+	wake_irq = gpiod_to_irq(wake);
-+	if (wake_irq < 0) {
-+		pci_err(pdev, "Failed to get wake irq: %d\n", wake_irq);
-+		return;
-+	}
-+
-+	/*
-+	 * dev_pm_set_dedicated_wake_irq() associates a wakeup IRQ with the
-+	 * device and requests it, but the PM core keeps it disabled by default.
-+	 * The IRQ is enabled only when the device is allowed to wake the system
-+	 * (during system suspend and after runtime suspend), and only if device
-+	 * wakeup is enabled.
-+	 *
-+	 * When the wake IRQ fires, the wakeirq handler invokes pm_runtime_resume()
-+	 * to bring the device back to an active power state (e.g. from D3cold to D0).
-+	 * Once the device is active and the link is usable, the endpoint may signal
-+	 * a PME, which is then handled by the PCI core (either via PME polling or the
-+	 * PCIe PME service driver) to wakeup particular endpoint.
-+	 */
-+	ret = dev_pm_set_dedicated_wake_irq(&pdev->dev, wake_irq);
-+	if (ret < 0) {
-+		pci_err(pdev, "Failed to set WAKE# IRQ: %d\n", ret);
-+		return;
-+	}
-+
-+	ret = irq_set_irq_type(wake_irq, IRQ_TYPE_LEVEL_LOW);
-+	if (ret < 0) {
-+		dev_pm_clear_wake_irq(&pdev->dev);
-+		pci_err(pdev, "Failed to set irq_type: %d\n", ret);
-+		return;
-+	}
-+
-+	device_init_wakeup(&pdev->dev, true);
-+}
-+
-+void pci_configure_of_wake_gpio(struct pci_dev *dev)
-+{
-+	struct device_node *dn = pci_device_to_OF_node(dev);
-+	struct gpio_desc *gpio;
-+
-+	if (!dn)
-+		return;
-+	/*
-+	 * fwnode_gpiod_get() may fail with -EBUSY (e.g. shared WAKE#), but the
-+	 * actual WAKE# trigger from the device would still work and the host
-+	 * controller driver will enable power to the topology.
-+	 *
-+	 * -EPROBE_DEFER cannot be propagated here since pci_device_add() has no
-+	 *  retry mechanism.
-+	 */
-+	gpio = fwnode_gpiod_get(of_fwnode_handle(dn), "wake", GPIOD_IN, NULL);
-+	if (!IS_ERR(gpio)) {
-+		dev->wake = gpio;
-+		pci_configure_wake_irq(dev, gpio);
-+	}
-+}
-+
-+void pci_remove_of_wake_gpio(struct pci_dev *dev)
-+{
-+	struct device_node *dn = pci_device_to_OF_node(dev);
-+
-+	if (!dn)
-+		return;
-+
-+	device_init_wakeup(&dev->dev, false);
-+	dev_pm_clear_wake_irq(&dev->dev);
-+	gpiod_put(dev->wake);
-+	dev->wake = NULL;
-+}
- #endif	/* CONFIG_OF_IRQ */
- 
- static int pci_parse_request_of_pci_ranges(struct device *dev,
-diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-index d34266651ad0..9d9777fe099a 100644
---- a/drivers/pci/pci.c
-+++ b/drivers/pci/pci.c
-@@ -17,6 +17,7 @@
- #include <linux/lockdep.h>
- #include <linux/msi.h>
- #include <linux/of.h>
-+#include <linux/of_pci.h>
- #include <linux/pci.h>
- #include <linux/pm.h>
- #include <linux/slab.h>
-@@ -1123,6 +1124,16 @@ static inline bool platform_pci_bridge_d3(struct pci_dev *dev)
- 	return acpi_pci_bridge_d3(dev);
- }
- 
-+void platform_pci_configure_wake(struct pci_dev *dev)
-+{
-+	pci_configure_of_wake_gpio(dev);
-+}
-+
-+void platform_pci_remove_wake(struct pci_dev *dev)
-+{
-+	pci_remove_of_wake_gpio(dev);
-+}
-+
- /**
-  * pci_update_current_state - Read power state of given device and cache it
-  * @dev: PCI device to handle.
-diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-index e8ad27abb1cf..8633c093385c 100644
---- a/drivers/pci/pci.h
-+++ b/drivers/pci/pci.h
-@@ -284,6 +284,8 @@ void pci_msix_init(struct pci_dev *dev);
- bool pci_bridge_d3_possible(struct pci_dev *dev);
- void pci_bridge_d3_update(struct pci_dev *dev);
- int pci_bridge_wait_for_secondary_bus(struct pci_dev *dev, char *reset_type);
-+void platform_pci_configure_wake(struct pci_dev *dev);
-+void platform_pci_remove_wake(struct pci_dev *dev);
- 
- static inline bool pci_bus_rrs_vendor_id(u32 l)
- {
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index b63cd0c310bc..143b0bd35b3c 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -2775,6 +2775,8 @@ void pci_device_add(struct pci_dev *dev, struct pci_bus *bus)
- 	/* Establish pdev->tsm for newly added (e.g. new SR-IOV VFs) */
- 	pci_tsm_init(dev);
- 
-+	platform_pci_configure_wake(dev);
-+
- 	pci_npem_create(dev);
- 
- 	pci_doe_sysfs_init(dev);
-diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
-index e9d519993853..d781b41e57c4 100644
---- a/drivers/pci/remove.c
-+++ b/drivers/pci/remove.c
-@@ -35,6 +35,7 @@ static void pci_destroy_dev(struct pci_dev *dev)
- 	if (pci_dev_test_and_set_removed(dev))
- 		return;
- 
-+	platform_pci_remove_wake(dev);
- 	pci_doe_sysfs_teardown(dev);
- 	pci_npem_remove(dev);
- 
-diff --git a/include/linux/of_pci.h b/include/linux/of_pci.h
-index 29658c0ee71f..649fe8eafcfa 100644
---- a/include/linux/of_pci.h
-+++ b/include/linux/of_pci.h
-@@ -30,12 +30,18 @@ static inline void of_pci_check_probe_only(void) { }
- 
- #if IS_ENABLED(CONFIG_OF_IRQ)
- int of_irq_parse_and_map_pci(const struct pci_dev *dev, u8 slot, u8 pin);
-+void pci_configure_of_wake_gpio(struct pci_dev *dev);
-+void pci_remove_of_wake_gpio(struct pci_dev *dev);
- #else
- static inline int
- of_irq_parse_and_map_pci(const struct pci_dev *dev, u8 slot, u8 pin)
- {
- 	return 0;
- }
-+
-+static inline void pci_configure_of_wake_gpio(struct pci_dev *dev) { }
-+
-+static inline void pci_remove_of_wake_gpio(struct pci_dev *dev) { }
- #endif
- 
- #endif
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 2c4454583c11..4289b60dcc83 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -588,6 +588,8 @@ struct pci_dev {
- 	/* These methods index pci_reset_fn_methods[] */
- 	u8 reset_methods[PCI_NUM_RESET_METHODS]; /* In priority order */
- 
-+	struct gpio_desc *wake; /* Holds WAKE# gpio */
-+
- #ifdef CONFIG_PCIE_TPH
- 	u16		tph_cap;	/* TPH capability offset */
- 	u8		tph_mode;	/* TPH mode */
-
----
-base-commit: 840ef6c78e6a2f694b578ecb9063241c992aaa9e
-change-id: 20251104-wakeirq_support-f54c4baa18c5
+4. Clock Platform Drivers:
+   - Add the clock controller drivers for RTD1625-CRT and RTD1625-ISO.
+   - These drivers provide the clock sources and instantiate the
+     corresponding auxiliary reset devices.
 
 Best regards,
---  
-Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Yu-Chun Lin
+---
+Changes in v9:
+General:
+- Split the combined clock and reset drivers into separate patches.
+- Rename 'common.[ch]' to 'clk-rtk-common.[ch]' and 'reset-rtk-common.[ch]' to
+avoid generic names.
+- Adapt suggestions from AI review.
+- Link: https://sashiko.dev/#/patchset/20260610080824.255063-1-eleanor.lin%40realtek.com.
+
+Patch 6:
+- Add 'ftbl_find_ceil_by_rate()' as a fallback in 'clk_pll_determine_rate()'.
+
+Patch 8:
+- Fix error handling in 'clk_regmap_mux_get_parent()'.
+
+Patch 9:
+- Fix potential integer overflow on 32-bit architectures in
+'clk_pll_mmc_determine_rate()'.
+- Add comments in 'clk_pll_mmc_set_rate()'.
+
+v8: https://lore.kernel.org/lkml/20260610080824.255063-1-eleanor.lin@realtek.com/
+v7: https://lore.kernel.org/lkml/20260508111641.3192177-1-eleanor.lin@realtek.com/
+v6: https://lore.kernel.org/lkml/20260402073957.2742459-1-eleanor.lin@realtek.com/
+v5: https://lore.kernel.org/lkml/20260324025332.3416977-1-eleanor.lin@realtek.com/
+v4: https://lore.kernel.org/lkml/20260313081100.596224-1-eleanor.lin@realtek.com/
+v3: https://lore.kernel.org/lkml/20260122110857.12995-1-eleanor.lin@realtek.com/
+v2: https://lore.kernel.org/lkml/20260113112333.821-1-eleanor.lin@realtek.com/
+v1: https://lore.kernel.org/lkml/20251229075313.27254-1-eleanor.lin@realtek.com/
+
+Cheng-Yu Lee (10):
+  reset: Add Realtek basic reset support
+  reset: realtek: Add RTD1625-CRT reset driver
+  reset: realtek: Add RTD1625-ISO reset controller driver
+  clk: realtek: Introduce a common probe()
+  clk: realtek: Add support for phase locked loops (PLLs)
+  clk: realtek: Add support for gate clock
+  clk: realtek: Add support for mux clock
+  clk: realtek: Add support for MMC-tuned PLL clocks
+  clk: realtek: Add RTD1625-CRT clock controller driver
+  clk: realtek: Add RTD1625-ISO clock controller driver
+
+Yu-Chun Lin (2):
+  dt-bindings: clock: Add Realtek RTD1625 Clock & Reset Controller
+  arm64: dts: realtek: Add clock support for RTD1625
+
+ .../bindings/clock/realtek,rtd1625-clk.yaml   |  58 ++
+ MAINTAINERS                                   |  20 +
+ arch/arm64/boot/dts/realtek/kent.dtsi         |  33 +
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/realtek/Kconfig                   |  48 ++
+ drivers/clk/realtek/Makefile                  |  12 +
+ drivers/clk/realtek/clk-pll-mmc.c             | 430 ++++++++++
+ drivers/clk/realtek/clk-pll.c                 | 217 +++++
+ drivers/clk/realtek/clk-pll.h                 |  60 ++
+ drivers/clk/realtek/clk-regmap-gate.c         |  70 ++
+ drivers/clk/realtek/clk-regmap-gate.h         |  65 ++
+ drivers/clk/realtek/clk-regmap-mux.c          |  41 +
+ drivers/clk/realtek/clk-regmap-mux.h          |  43 +
+ drivers/clk/realtek/clk-rtd1625-crt.c         | 792 ++++++++++++++++++
+ drivers/clk/realtek/clk-rtd1625-iso.c         | 151 ++++
+ drivers/clk/realtek/clk-rtk-common.c          |  66 ++
+ drivers/clk/realtek/clk-rtk-common.h          |  37 +
+ drivers/clk/realtek/freq_table.c              |  57 ++
+ drivers/clk/realtek/freq_table.h              |  18 +
+ drivers/reset/Kconfig                         |   1 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/realtek/Kconfig                 |  19 +
+ drivers/reset/realtek/Makefile                |   3 +
+ drivers/reset/realtek/reset-rtd1625-crt.c     | 187 +++++
+ drivers/reset/realtek/reset-rtd1625-iso.c     |  99 +++
+ drivers/reset/realtek/reset-rtk-common.c      |  90 ++
+ drivers/reset/realtek/reset-rtk-common.h      |  29 +
+ .../dt-bindings/clock/realtek,rtd1625-clk.h   | 164 ++++
+ include/dt-bindings/reset/realtek,rtd1625.h   | 171 ++++
+ 30 files changed, 2984 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/realtek,rtd1625-clk.yaml
+ create mode 100644 drivers/clk/realtek/Kconfig
+ create mode 100644 drivers/clk/realtek/Makefile
+ create mode 100644 drivers/clk/realtek/clk-pll-mmc.c
+ create mode 100644 drivers/clk/realtek/clk-pll.c
+ create mode 100644 drivers/clk/realtek/clk-pll.h
+ create mode 100644 drivers/clk/realtek/clk-regmap-gate.c
+ create mode 100644 drivers/clk/realtek/clk-regmap-gate.h
+ create mode 100644 drivers/clk/realtek/clk-regmap-mux.c
+ create mode 100644 drivers/clk/realtek/clk-regmap-mux.h
+ create mode 100644 drivers/clk/realtek/clk-rtd1625-crt.c
+ create mode 100644 drivers/clk/realtek/clk-rtd1625-iso.c
+ create mode 100644 drivers/clk/realtek/clk-rtk-common.c
+ create mode 100644 drivers/clk/realtek/clk-rtk-common.h
+ create mode 100644 drivers/clk/realtek/freq_table.c
+ create mode 100644 drivers/clk/realtek/freq_table.h
+ create mode 100644 drivers/reset/realtek/Kconfig
+ create mode 100644 drivers/reset/realtek/Makefile
+ create mode 100644 drivers/reset/realtek/reset-rtd1625-crt.c
+ create mode 100644 drivers/reset/realtek/reset-rtd1625-iso.c
+ create mode 100644 drivers/reset/realtek/reset-rtk-common.c
+ create mode 100644 drivers/reset/realtek/reset-rtk-common.h
+ create mode 100644 include/dt-bindings/clock/realtek,rtd1625-clk.h
+ create mode 100644 include/dt-bindings/reset/realtek,rtd1625.h
+
+-- 
+2.43.0
 
 
