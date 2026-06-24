@@ -1,68 +1,61 @@
-Return-Path: <devicetree+bounces-315098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315099-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id O2oJBQKNO2qiZggAu9opvQ
-	(envelope-from <devicetree+bounces-315098-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:53:38 +0200
+	id z2+yJ4aNO2q3ZggAu9opvQ
+	(envelope-from <devicetree+bounces-315099-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:55:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53C436BC5A8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:53:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E69396BC5DF
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:55:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="bKk/bikN";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315098-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315098-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=jyKH1tea;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315099-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315099-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C3E4B3006B79
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 07:53:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C3A3430262E6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 07:55:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547393932EE;
-	Wed, 24 Jun 2026 07:53:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 516F83932C9;
+	Wed, 24 Jun 2026 07:55:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 528DA38C2C6;
-	Wed, 24 Jun 2026 07:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5391C346AF1;
+	Wed, 24 Jun 2026 07:55:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782287615; cv=none; b=NHaY5P/eHHPmd1ILGy/wEsKXadupMVgwL1cDcoVbqYakdKBUNSZdHpXmgICHUKC25qLf6aUm630WlCg1LTbND7DS1bVeqJom2L12r6sQBlW1Qt2DKBAzHxLrGKMP5rCtcO+ammgtoYspVs1FNtB4+QDKN4COlMue6IEHPSXjbl8=
+	t=1782287710; cv=none; b=k8jwK4y6IWOHGvJNuoUPnCdSEg1M8m+9OSSKqzTS984lvbmAVaMYcAQL+1PpT4ajSxaDyw3BU05ZCmvkcEcwuEV7Wz+8oo5RXR0Ej6SGb3wMogg8bmHVMY5Hu2mHVRyuGkhSuZm2crw7bPqluN6fpWKQTzdu5mVPuTQOdszG99w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782287615; c=relaxed/simple;
-	bh=NxhM7haVXzOhrdp2hyw8slzEGeBWdGRIQpJIQYwNGVI=;
+	s=arc-20240116; t=1782287710; c=relaxed/simple;
+	bh=kELh0lHy1dTMB2YxBIbSALnUhpKyzKtDKgFW3GZ1KME=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=erK8bLC6ZEbGTAWZ0VHUoXe+DcyPsZAQWMTc5CSyO5zxry1C+zJjhm1B7HDGBxDeP4R2qUpWRnkjIseQiEok8BHei0gXrroDSZwWawTRftUZSml9wQIWhvzki5EBYUAvlYm8uMY0sUQUH1WBeb8EpYbxPhjMpS7U9BlV3bov72I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bKk/bikN; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E08691F000E9;
-	Wed, 24 Jun 2026 07:53:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YLkCYXHNzZZ+U1U1XqoQL6IPdsxFeKJc45+d3f/ilF2ImE1A4YkHwFLjKyn0R7Q8of/JH8FT3aNM4YerCQ0PQgKzHWhXrxx4qJfhiLY6dAbWTK671N0S/uyE7Bsx/nTezZ67Ffu3cLT8E82gF5pBYwRMPRLbdKFZJ02LQuyRYk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jyKH1tea; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E06711F000E9;
+	Wed, 24 Jun 2026 07:55:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782287613;
-	bh=g1ts7TNTeKBHivKT6flBbPP8OJxLx/1C/SeU6xllzAg=;
+	s=k20260515; t=1782287708;
+	bh=u8KakYLRbSNoDbaJ2N1yCCxJNFyKU8/mguk9kIB734c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=bKk/bikNE5B0dfuP3ERP9VWSMWCF9kDgSc4g1WKAmnQT/qon8URxvJVyuCz8vDmzR
-	 hMVsLXwaVh8lpu8CcELHO1hCrTveT49fU2Rhc+4LoEkY/uy2yvDKiZN4oMJXiPp33d
-	 7N9he7qhJZoMvcj1iq8ZaihCw6qqhDCGNzq+EvhnoIiekyW+MBKGJgsUgtmJIZR6s/
-	 6CmIayu05JfPUi4j56WAiChUBZbuN1BSauJ/YIz12PHow9wlTc+Zw4Eo8xASgK34BQ
-	 Z4csZsjVqmom7aUEp7GfMpyJGkEd9npymOZ3HAhAAITFLfnhPNGfxf7jcyQelXlGnN
-	 u4uHWGZ8+qXhQ==
-Date: Wed, 24 Jun 2026 09:53:30 +0200
+	b=jyKH1tea+3lFjdnW4QVmodi8w6Js5i2v90aLwYW70dJ3DfrxCwYKvTblRss91dfdr
+	 Y3LCO9cN1F5NiUqWZmrjOxtJHyHhO1k8AFYG4sG9XxXrC3qp48bvkjy7XqzXtmuJSb
+	 Y0juL1e6BGomCgJTPszYo3HR7ux626G0b3mpGNsy7ukq+zqMyFhMVxsagfIZRtlnwj
+	 uGqbgq8ssxG3kcOxsi//FcRt8wCF/w07ty7p9ABEAMpWAo/HDNtnezRiyrUgmloUEs
+	 9/a9eHMnXltRP5X4YEMt/VadDkvBhTNOBYnuRAcBChbwnmAbX/u8o6tm0ynOtTudk1
+	 HYoaudRnDojGw==
+Date: Wed, 24 Jun 2026 09:55:05 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Taniya Das <taniya.das@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney@redhat.com>, Shawn Guo <shengchao.guo@oss.qualcomm.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Ajit Pandey <ajit.pandey@oss.qualcomm.com>, Imran Shaik <imran.shaik@oss.qualcomm.com>, 
-	Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/6] dt-bindings: clock: qcom: Document Nord display
- clock controller
-Message-ID: <20260624-logical-walrus-of-enthusiasm-adfeb6@quoll>
-References: <20260623-nords_mm_v1-v1-0-860c84539804@oss.qualcomm.com>
- <20260623-nords_mm_v1-v1-3-860c84539804@oss.qualcomm.com>
+To: muhammad.nazim.amirul.nazle.asmade@altera.com
+Cc: dinguyen@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: altera: Add Agilex7 Gen2 SoCFPGA
+ compatible strings
+Message-ID: <20260624-inescapable-myrtle-yak-b8e825@quoll>
+References: <20260623111716.16690-1-muhammad.nazim.amirul.nazle.asmade@altera.com>
+ <20260623111716.16690-2-muhammad.nazim.amirul.nazle.asmade@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,74 +64,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260623-nords_mm_v1-v1-3-860c84539804@oss.qualcomm.com>
+In-Reply-To: <20260623111716.16690-2-muhammad.nazim.amirul.nazle.asmade@altera.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-4.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-315099-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_RECIPIENTS(0.00)[m:taniya.das@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:shengchao.guo@oss.qualcomm.com,m:bartosz.golaszewski@oss.qualcomm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:konradybcio@kernel.org,m:ajit.pandey@oss.qualcomm.com,m:imran.shaik@oss.qualcomm.com,m:jagadeesh.kona@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:muhammad.nazim.amirul.nazle.asmade@altera.com,m:dinguyen@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-315098-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,quoll:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,qualcomm.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,altera.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 53C436BC5A8
+X-Rspamd-Queue-Id: E69396BC5DF
 
-On Tue, Jun 23, 2026 at 04:24:06PM +0530, Taniya Das wrote:
-> Add Device Tree binding documentation for the display clock controller
-> on the Qualcomm Nord SoC.
+On Tue, Jun 23, 2026 at 04:17:15AM -0700, muhammad.nazim.amirul.nazle.asmade@altera.com wrote:
+> From: Nazim Amirul <muhammad.nazim.amirul.nazle.asmade@altera.com>
 > 
-> The Nord platform contains two instances of the display clock controller,
-> DISPCC_0 and DISPCC_1. Update the bindings to include compatible strings
-> for both instances.
+> Add the SoC and board compatible strings for the Intel SoCFPGA
+> Agilex7 Gen2 platform.
 > 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Signed-off-by: Nazim Amirul <muhammad.nazim.amirul.nazle.asmade@altera.com>
+> ---
+>  Documentation/devicetree/bindings/arm/altera.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-...
-
-> diff --git a/include/dt-bindings/clock/qcom,nord-dispcc.h b/include/dt-bindings/clock/qcom,nord-dispcc.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..9f6c9979e0f358678f28a992af6083b0ae6c97e1
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,nord-dispcc.h
-> @@ -0,0 +1,115 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_NORD_H
-> +#define _DT_BINDINGS_CLK_QCOM_DISP_CC_NORD_H
-> +
-> +/* DISP_CC_0 clocks */
-
-Where are clocks/resets/power domains for DISP_CC_1?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
