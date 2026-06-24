@@ -1,85 +1,84 @@
-Return-Path: <devicetree+bounces-315410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315412-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mEhgK6lLPGozmQgAu9opvQ
-	(envelope-from <devicetree+bounces-315410-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 23:27:05 +0200
+	id uuhsBM5LPGo+mQgAu9opvQ
+	(envelope-from <devicetree+bounces-315412-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 23:27:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A4336C177B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 23:27:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2526C1790
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 23:27:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=0RKUspsr;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315410-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315410-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=amd.com header.s=selector1 header.b=4SFso0qd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315412-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315412-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8C529303C428
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:26:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8AF6530969FF
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 21:26:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6B13E6386;
-	Wed, 24 Jun 2026 21:26:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BC9A3E639A;
+	Wed, 24 Jun 2026 21:26:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010037.outbound.protection.outlook.com [52.101.61.37])
+Received: from PH0PR06CU001.outbound.protection.outlook.com (mail-westus3azon11011068.outbound.protection.outlook.com [40.107.208.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369643E5EE3;
-	Wed, 24 Jun 2026 21:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ECC23E6389;
+	Wed, 24 Jun 2026 21:26:12 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782336370; cv=fail; b=KMFxZ4p2dQB0AopLj+AhMgT/Fd5KbYfnJfcMzZ5HPRYK2uGXj5mFxeBkQO2lSya+YStWT9M3uPWy3wa6+rB6ZjPIXwvr502LM5Rxv8NwqsCGjVv0v6SNiazpUPWIiWuG2GLqs83cc12YeLBTeXdUG0YGtGHng7UDyIhIBRdWRyc=
+	t=1782336374; cv=fail; b=BVqIYkOWNzw1fzS+rqS/V+b7A+QAbswBj3XWeuOUrBp8/5/+Xbgpwi6MkJP5UTt9HRZmizSAWTZqoDE8ypzkZRxq14f7I08LUVZwTNntDGAoe0Nx3uHAQMnWaNztGXxhL4JF/kaLBWG5puZrQmjM914ybKL+biYYtOXe3+nWKwQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782336370; c=relaxed/simple;
-	bh=dFUdPjmamNyUuDCmpFer1R6QIs/stLHtNtv3xhf8uVM=;
+	s=arc-20240116; t=1782336374; c=relaxed/simple;
+	bh=G+kBCuT/0sWJY+AnLmgf69m5wzShZUtUNitV2HomoYs=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=F4h64h+5tU8QfCyR/4T1DOFsMLKSlJcqx39RiRp9/zV7W1Xv+IptM6Im5v7qgvDA9jo5GdtbDsPlc1cUSsGp9Yp6PnkXIyeW1saKlAk95l8jhW+/k/sIFuYmYtXqALC+1dcZYO3jJNNtJ3qc8+ZHtF3CB4Sn/CngTwRmd67pFq8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=0RKUspsr; arc=fail smtp.client-ip=52.101.61.37
+	 MIME-Version:Content-Type; b=qQUr4bimGWq1wmOCMiy4Rx7UX9js0l6lTXgrHGMqwbw1GD5SzhZwko5ROuz0WSEsXbm14aT5GRdh2b0JuktvASTWZ0V6zNxlC82Uefa0HUhbO1yuHjOaQAKQuvD3QISPpCrbzGo4fQf7tsgj+8I1tX+kojtsWtQsTyT3h+/znoY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=4SFso0qd; arc=fail smtp.client-ip=40.107.208.68
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WyBCRggWmnr1mmta9wZYjV1biMQ6rBj7vLzCvDH8MMzspYPpMtUjEtakOScqmQ5MKF5LddHa0RAP8uoa7raMdfmIoEQqf8jtqYyqMu4R7N8H8UgTDm+7z8kGRygP02fKNc2eO2bhGr8yGIXAsGwZoRtRZWVYE8x+jd5DSgTSVYHv8kHg/I3ndWBJ+fshri52PKKH4nK4gygu8m+W3rELlu4kUxlJBdRXTjfs/saAj6BvOmTsI4AuHItfQgPcO6xyU4HqWpe13iA+2siVfmNdrvtSAF3MFw+E0zkMrcxKc/F6dm8QJq/Kxn+lxULGWAShIf8Si2pWApkJDy0dx++UXQ==
+ b=wYRk1KFtxCNjR2cGSg8OnTzzoFHx+hqqAElEbQC1KJsucw9EbuuiclgSG4vY0TAK0fNLGKcI2Z/eSDYf8ACmvBe3sRFgPgb/XeTa8PY31Dnrj64y3blub0vPa2pgPhyOKkSU4GduHkhGzJ0BXPoPC9Wo02rtlGUYlDzQuw0c6iw/sjj/JA2vyrFsXjDQ1fH3Va+4e4xp+EiFpQ2AfnJg6KgcwxO3Gqo7m3mTPEch5xD1X+RprSHN7WpHPmSQhrPApMiJBPko037AmfQfw6FFZmEiADwLZHNV+d7kfgQFxCaP3+psEnqzELeUPnxwHypdPEcn9HvkjRfYZRSe/koYeg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZWrQZ8Pwbqif86v1yKm3rMLC9I9EuS/FAnXhK9EdVj0=;
- b=n31JkP4+KDbQ4heTJYAQkbaIu2MQ5d55/fZwbKLKFYvEQ6VJ3weqAbgBETjT+UHL4sd8AnSKlYXSWTfbrG0w4qPMM3WqBNC0X9ymj8bjTvpBkO7pbm5KmC2jsxfGw2/kDTEvQGNMUN/eed5CCIn4KC8AseWGOk6Ey54gofk6zUD3SWwCTXYD58hnJavZx2cVfEGnmCUNp2DyXycdsUbc010DuvMCRPdQnW83oSToBZ40RZFnW387syPVcAvyR88f6aVyP5SwSvIcMWu0SS23xoYTE9Sazn0ACdIiELbFJ0+rHiuSgWN8IEmXzoMPtKWAvq3tGUa2C1Mt/zZktby2kA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=alien8.de smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
+ bh=78KTU0DsZN5FwEgn5+8xho7Jp3HH0896cYOJtIUDn7I=;
+ b=qhb1KpwItHn+rLFkYn5hK7iEGN+ijf9kv+dkOtIQvDwPPzcrXrsmUYat/RiRKQWzoS3glN8ecwdju7Vv6h64CyJSOfiXvRi/smFTG04QTdZwEJ/mN0KXbgCXnPU8l47WpRYMpEKNp2Pg1YCXCjNKzycgSw4m5y0cIVntYRNn5ZoLPuKK27L5p8Y5Dzi928vcUzvbC20cwep3y8hI5XBv5QHHucNcLNY7KzKwMmbQVxk9dL94pRk/BZ2xLeEWZw3iHh2Fs2VKTfeHVH7eF3UDRTCHOTzeWIjvw5fAGui2Qy9ICOeoVpeh2tLHpDTkE/cI1bXJCuVn72zehzucl8w4SA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
+ is 165.204.84.17) smtp.rcpttodomain=alien8.de smtp.mailfrom=amd.com;
+ dmarc=temperror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZWrQZ8Pwbqif86v1yKm3rMLC9I9EuS/FAnXhK9EdVj0=;
- b=0RKUspsr7hKwn5DJSXH4ihyXcNBlEaWitIHO9rHq4xxeExIoglkjVwDme+IcTfupkRr1zYIFTIn7TofRiLoXC2dAIy45PHMFfhWjEo4qfw/aLljBGN5U9u3u0XQfTwmbutiIqOMThooHL6UfBLe2hIgVitsD3I5aRZA8tfAVSiU=
-Received: from PH7P220CA0101.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:32d::17)
- by PH7PR12MB6979.namprd12.prod.outlook.com (2603:10b6:510:1b9::20) with
+ bh=78KTU0DsZN5FwEgn5+8xho7Jp3HH0896cYOJtIUDn7I=;
+ b=4SFso0qdkTW0Sio0Osw3lsVNKV0qlkqERATCWTBPtZWvCynp3kBlERSwV6LtvvmIceVHfbwt4kxTs1I+kRI5YZpyST/uKzMQzFRYz5fBLIdeiIIkrX8AizljSqrlaR1wWPDxCy6HnDRipCg1S8dfB6EsMQSZCtKq80Xq5yXqR3s=
+Received: from SN7P222CA0020.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:124::10)
+ by DS0PR12MB9421.namprd12.prod.outlook.com (2603:10b6:8:1a1::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Wed, 24 Jun
- 2026 21:26:02 +0000
-Received: from SN1PEPF0002BA50.namprd03.prod.outlook.com
- (2603:10b6:510:32d:cafe::8d) by PH7P220CA0101.outlook.office365.com
- (2603:10b6:510:32d::17) with Microsoft SMTP Server (version=TLS1_3,
+ 2026 21:26:07 +0000
+Received: from SN1PEPF0002BA4E.namprd03.prod.outlook.com
+ (2603:10b6:806:124:cafe::9c) by SN7P222CA0020.outlook.office365.com
+ (2603:10b6:806:124::10) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.14 via Frontend Transport; Wed,
- 24 Jun 2026 21:26:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+ 24 Jun 2026 21:26:06 +0000
+X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is
+ 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=temperror action=none header.from=amd.com;
+Received-SPF: TempError (protection.outlook.com: error in processing during
+ lookup of amd.com: DNS Timeout)
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SN1PEPF0002BA50.mail.protection.outlook.com (10.167.242.73) with Microsoft
+ SN1PEPF0002BA4E.mail.protection.outlook.com (10.167.242.71) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Wed, 24 Jun 2026 21:26:02 +0000
-Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ 15.21.181.6 via Frontend Transport; Wed, 24 Jun 2026 21:26:05 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 24 Jun
- 2026 16:26:01 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
- (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 16:26:05 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 24 Jun
- 2026 14:26:00 -0700
+ 2026 16:26:04 -0500
 Received: from xhdvaralaxm41.xilinx.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 24 Jun 2026 16:25:56 -0500
+ Transport; Wed, 24 Jun 2026 16:26:00 -0500
 From: Rama devi Veggalam <rama.devi.veggalam@amd.com>
 To: <bp@alien8.de>, <tony.luck@intel.com>, <michal.simek@amd.com>,
 	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
@@ -87,9 +86,9 @@ CC: <linux-kernel@vger.kernel.org>, <linux-edac@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <james.morse@arm.com>, <mchehab@kernel.org>,
 	<rric@kernel.org>, <git@amd.com>, Rama devi Veggalam
 	<rama.devi.veggalam@amd.com>
-Subject: [PATCH v3 2/4] Documentation: ABI: Add ABI doc for versal edac sysfs
-Date: Thu, 25 Jun 2026 02:55:43 +0530
-Message-ID: <20260624212545.2850787-3-rama.devi.veggalam@amd.com>
+Subject: [PATCH v3 3/4] firmware: xilinx: Add support for Xilsem scan operations
+Date: Thu, 25 Jun 2026 02:55:44 +0530
+Message-ID: <20260624212545.2850787-4-rama.devi.veggalam@amd.com>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20260624212545.2850787-1-rama.devi.veggalam@amd.com>
 References: <20260624212545.2850787-1-rama.devi.veggalam@amd.com>
@@ -103,30 +102,30 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA50:EE_|PH7PR12MB6979:EE_
-X-MS-Office365-Filtering-Correlation-Id: 783dc6f7-8c85-4dbe-b995-08ded237311e
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4E:EE_|DS0PR12MB9421:EE_
+X-MS-Office365-Filtering-Correlation-Id: 37bf33c5-a416-462e-a1c5-08ded2373320
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700016|376014|7416014|1800799024|82310400026|23010399003|22082099003|56012099006|6133799003|11063799006|18002099003;
+	BCL:0;ARA:13230040|1800799024|82310400026|23010399003|376014|36860700016|7416014|18002099003|22082099003|56012099006|11063799006|5023799004|3023799007|6133799003;
 X-Microsoft-Antispam-Message-Info:
-	YDJtMCc57DI76AHe7fma2dJKX85kj29kt2XtMif7YsM0I8RRvVuxx7SZ+0qHMdkBHqiFULJX8kKt5vXS4geGRB7D1LgH03Et7FRwmiRsAp8qmpOdfdUkrV9fnYtisyYaBRC5FZlMAS82kUpzXDhTUTQXjVUuKRlUjwfC0FNg9kpJMerMeeJUFncVSTtsMA2Lkrs51iMzvGiP7pbO1Vu5ztlg2u65Z3al7CQc4MohCHHl/qtDkx4tARHK5RvuHDC7OpNB94WSzAGv6/a5zvlt2xlTkuyR/vh+0RPnMEN+crTLsJHcIT5XqS7/WgMbxet+V9iMD3FePnsVXWnEZIkAV7oA4Va3uRWmHyh/e6BnqZX5XjcOqipA0eJ6zhQ8MSxmvZDEmB5y6m+lPjNxKz9C6jd7kIGCczRuvvSJz4nYZ8Ae6llQEdHe6h9XaxDyOmivyr3+NnPHuwqDanYNHbhhs4DRY0gWc6030AHYo3Ty3No6SMtIJ9+TFac9gf/zJiCGvmyOGER0qL0XNCbRs+d1vX/2EVC+AqMjqLwfsl9cUOSpmCs+ql/E5B1VEl4PoayjqmshrvkIsbaWXUbBeUWI0p6CCNnrJGR56viTW0c9TzCwwdFRA6eurM/zmQA1ANkYIHiF2jPzsQHBsJHMwabkLVTICWhUc49toh5OVllap48ACO/gnVGLqWvmaivyKgJDEgvCx7uEBOS3NNDCBzvl7Q==
+	V8fYHMPvb2GbBatD7Rj1IB4JjWgNW+Grg24/naKN7rie0aTmj0JvtxL3s3WS8aZ2TF2lLonrvJBMuTU3PYtpMePFVst3NqBngEz4/nQfi5thOpAAS8i3lZleWBEEVayVFe8h8oSWloeTsh02Kqp9e/ueuagnWbD1J+m2zyZgH1U68AmehEwlO5etj1d3VS5Mzx5Lku5BjGwcMi1ZNywoUJdXxRK0wr228XgreaPaLgc7ds1UMTe+ZJm1YFcDGhpG95egMGx+ZDXgzBGdMnM34qsHbrv30BnR5HVxoA5IF3v+bjRSEECdlAvRWPzkuWyzl1OihK56OAGjY7XpmVcSEA2uZ8PYME2uzRfqB7CHBFC8j7eSrQyBkD/M24Y1/ov6hBBOEOP3OfobMcGvM9F6SqdpTCnu+jul71zS890pZLaxjXDbX8yggyGo/DBzVpjx0NHiTb89pTFkS2xVYHlagLxXNPHA5M+id+NinsnWniCMZSwDP7XrKITI5kdJAS6cP1SqWFMg4v3F6fRc/5TgqoLpUGqGKp0q6eLCQ7t0fNY91kNIEesSXiKFQ+Pl+01Jaj5n2Jt/1KNAk7lqPegvGAExWUeFIuiy8D02YiOolZv/F9Bkvxk4SHXhvg/o9aLEIo4Ct+KVvhUzND6wV71UxyWDanB0YhRoKYPJwJxCZRvImXJf0lnrhi6/QuLG758iPMwx1ScdlvR9nE7Yy2WDlQ==
 X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(376014)(7416014)(1800799024)(82310400026)(23010399003)(22082099003)(56012099006)(6133799003)(11063799006)(18002099003);DIR:OUT;SFP:1101;
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(23010399003)(376014)(36860700016)(7416014)(18002099003)(22082099003)(56012099006)(11063799006)(5023799004)(3023799007)(6133799003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	Ncc+OfYrbdrYxZj2Km3tOJbzXjz+suppFPcdqBdcYOUUaaom+eFjLJ60hS8nf+E+pzHo2IHd4cBwz/5qvKoChTFk8UuINsBta5wJw59BPKY3ZwoENzeUPn3oiBznzGaoLUDBKXPoekgzL7qd49ttlKGnBx+R0HXg5GX7cYVhg+U11fyeHIzscgprgPUmzhXt9eyYblMl+n1tABFcxWUA0ywPFebFnqaHgnRDlHMvOmT0Cw+fT4xkX8a2MG656Ru0ZTnE46zu/ZzJLfZvhoj2uDTSc1V50YcWAwWcxLsTHi/+qopEc/rQWvksi53/5Xp5lawMprgX34yEaQ3Pt3FLl1nysfFXIbmf43XPSbO84rdnW5qnhyWtjR5MoudCaDO+yeYvO4RHgRbNhCkVYJjOhDJP/bY2YIGIu1iB8/Ip5bTS3LKeeknWjxYBqf+KjsGq
+	gGPjQc4cMz4zUrqGZJuV1Vf3bb6mZJWVrJ7L0UBnrYHoov9lvl9TtSwpeoAVjMN9ADoahz8ENNP64iGHPu8SaHwS1xnp/jmpF4zHrHU7zMHH8wcmhq8IibbBjx8qk5X2Sx9ZdjJcIhQPydJcWfw5idQy3/wMRaimcuEp8Ak4a7gk9E4haY/qbjqvEeiwWom7NwjbhAsg4fjbqNfyiIhgI+QX9CKTIS6TqSkUZW3lJNuF6a2MU5rI/wSEAXj1TNXW30neY2vVS1af+rnDoEpUGQK1yxd8bk6BMgXvvDm04x1T42783n+E+qRR3a+hgHi7I9VSoxTHKqdf1f3yjnP7k906obbOlt2V5lrp0nev6bW1rJSAh+A9Wzzw6XPxW4aFMBfcGhtp5OuyRCGoasuF6Hyo+m2oe9HSfbyKRzAbg7I8pgoH6VhyS3YvTQ/FKV5h
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 21:26:02.1655
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 21:26:05.5386
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 783dc6f7-8c85-4dbe-b995-08ded237311e
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37bf33c5-a416-462e-a1c5-08ded2373320
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF0002BA50.namprd03.prod.outlook.com
+	SN1PEPF0002BA4E.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6979
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9421
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -142,7 +141,7 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER(0.00)[rama.devi.veggalam@amd.com,devicetree@vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-315410-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315412-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -154,339 +153,403 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[rama.devi.veggalam@amd.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,xilinx.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0A4336C177B
+X-Rspamd-Queue-Id: 9B2526C1790
 
-Add documentation for the sysfs entries created for
-versal edac (XilSEM).
+Add the ATF EEMI call support for Xilsem scan operations.
+Initialize, start, stop scan, error inject, read configuration,
+status and register for software error events.
+
+Add macros for XilSem correctable and uncorrectable error events.
 
 Signed-off-by: Rama devi Veggalam <rama.devi.veggalam@amd.com>
 ---
 Changes in v3:
-- Renamed file name from xilsem edac to versal edac
+- created separate file for Xilsem ATF EEMI calls.
 
 Changes in v2:
-- Updated Date field in sysfs file
+- Patch created on top of dependent patch series
+"enhance zynqmp_pm_get_family_info()"
+- Removed non-relevant SOB names in error event header files
+- Updated copyright information
+- Merged Versal and Versal NET error event definitions to firmware
+patch
 ---
- .../ABI/testing/sysfs-driver-versal-edac      | 303 ++++++++++++++++++
- 1 file changed, 303 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-driver-versal-edac
+ drivers/firmware/xilinx/Makefile              |   2 +-
+ drivers/firmware/xilinx/zynqmp-sem.c          | 176 ++++++++++++++++++
+ drivers/soc/xilinx/xlnx_event_manager.c       |   6 +-
+ .../linux/firmware/xlnx-versal-error-events.h |  43 +++++
+ include/linux/firmware/xlnx-zynqmp-sem.h      |  69 +++++++
+ include/linux/firmware/xlnx-zynqmp.h          |   1 +
+ 6 files changed, 294 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/firmware/xilinx/zynqmp-sem.c
+ create mode 100644 include/linux/firmware/xlnx-versal-error-events.h
+ create mode 100644 include/linux/firmware/xlnx-zynqmp-sem.h
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-versal-edac b/Documentation/ABI/testing/sysfs-driver-versal-edac
+diff --git a/drivers/firmware/xilinx/Makefile b/drivers/firmware/xilinx/Makefile
+index 8db0e66b6b7e..f9380c8931ae 100644
+--- a/drivers/firmware/xilinx/Makefile
++++ b/drivers/firmware/xilinx/Makefile
+@@ -1,5 +1,5 @@
+ # SPDX-License-Identifier: GPL-2.0
+ # Makefile for Xilinx firmwares
+ 
+-obj-$(CONFIG_ZYNQMP_FIRMWARE) += zynqmp.o zynqmp-ufs.o zynqmp-crypto.o
++obj-$(CONFIG_ZYNQMP_FIRMWARE) += zynqmp.o zynqmp-sem.o zynqmp-ufs.o zynqmp-crypto.o
+ obj-$(CONFIG_ZYNQMP_FIRMWARE_DEBUG) += zynqmp-debug.o
+diff --git a/drivers/firmware/xilinx/zynqmp-sem.c b/drivers/firmware/xilinx/zynqmp-sem.c
 new file mode 100644
-index 000000000000..c35d864fcbe2
+index 000000000000..5cd399b165f5
 --- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-driver-versal-edac
-@@ -0,0 +1,303 @@
-+What:		/sys/devices/system/edac/versal_xilsem/xsem_scan_control
-+Date:		What:		/sys/devices/system/edac/mc/mc0/xsem_scan_control
-+Date:		June 2026
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request to the firmware for doing requested scan operation in
-+		Configuration RAM (CRAM) or NPI of Versal mono/SSIT devices.
-+		User needs to provide scan operation id (init, start, stop) and
-+		SLR id (Versal SSIT device) details. For Versal mono devices,
-+		the SLR id should be 0.
-+		The scan operation id values are as given below:
-+		1 - Initialize the scan
-+		2 - Start CRAM scan
-+		3 - Stop CRAM scan
-+		5 - Start NPI scan
-+		6 - Stop NPI scan
-+		7 - Inject NPI error in first descriptor
++++ b/drivers/firmware/xilinx/zynqmp-sem.c
+@@ -0,0 +1,176 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Firmware layer for XilSEM APIs.
++ *
++ * Copyright (C), 2026 Advanced Micro Devices, Inc.
++ */
 +
-+		When read, it shows the current scan status with error code.
-+		The format is <0x1030 | operation Id> <error code> <Slr ID>
-+		The different error codes are as given below:
-+		==========	=====
-+		Error Code	Cause
-+		==========	=====
-+		0x0			Scan operation success
-+		0x1			Failure in NPI scan
-+		0x80		Calibration timeout
-+		0x2000		Internal error
-+		0x500000	CRAM initialization not yet done
-+		0x600000	Start scan failed
-+		0x700000	Stop scan failed
-+		0xF00000	Active CRC/UE error
-+		0x1000000	ECC/CRC error detected during calibration
-+		==========	=====
++#include <linux/export.h>
++#include <linux/firmware/xlnx-zynqmp.h>
 +
-+What:		/sys/devices/system/edac/mc/mc0/xsem_cram_injecterr
-+Date:		June 2026
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request to the firmware for doing error injection in
-+		Configuration RAM (CRAM) of Versal mono/SSIT devices.
-+		User needs to provide the location details of CRAM
-+		(frame, qword, bit number, row number) and
-+		SLR id (Versal SSIT device) details to inject the error.
-+		For Versal mono devices, the SLR id should be 0..
-+		When read, it shows the current error injection status. The
-+		format is <header> <error code> <Slr ID>
-+		Example: 0x10304 0
-+		The different error codes are as given below:
-+		==========	=====
-+		Error Code	Cause
-+		==========	=====
-+		0x0			Error injection success
-+		0x2000		Internal NULL pointer error
-+		0x500000	CRAM initialization not yet done
-+		0x800000	Invalid row
-+		0x900000	Invalid qword
-+		0xA00000	Invalid bit
-+		0xB00000	Invalid frame address
-+		0xC00000	Unexpected bits flipped
-+		0xD00000	Masked bit
-+		0xE00000	Invalid block type
-+		0xF00000	Active CRC/UE error in CRAM
-+		==========	=====
++/**
++ * zynqmp_pm_xilsem_cntrl_ops - PM call to perform XilSEM operations
++ * @cmd:	Command for XilSEM scan control operations
++ * @slrid:	SLR id on which scan operation to be done
++ * @response:	Output response (command header, error code or status, slr id)
++ *
++ * Return: Returns 0 on success or error value on failure.
++ */
++int zynqmp_pm_xilsem_cntrl_ops(u32 cmd, u32 slrid, u32 *const response)
++{
++	u32 ret_buf[PAYLOAD_ARG_CNT];
++	int ret;
 +
-+What:		/sys/devices/system/edac/mc/mc0/xsem_cram_framecc_read
-+Date:		June 2026
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request to the firmware for reading frame ECC values in
-+		Configuration RAM (CRAM) of Versal devices. User needs
-+		to provide the location details of CRAM
-+		(frame, row number, SLR id in SSIT device) to read the ECC values.
-+		For Versal mono devices, SLR id should be 0.
-+		When read, it shows the ECC values for the requested frame.
-+		The format is <header> <ECC_0> <ECC_1> <status>
-+		Example:
-+		Read Frame ECC Cmd: [0x3030a]
-+		Frame ECC Word_0: [0x52f245]
-+		Frame ECC Word_1: [0x7c5a6b]
-+		Cmd Status: [0x0]
++	ret = zynqmp_pm_invoke_fn(PM_XSEM_HEADER | cmd, ret_buf, 1, slrid);
++	response[0] = ret_buf[1];
++	response[1] = ret_buf[2];
++	response[2] = ret_buf[3];
++	response[3] = ret_buf[4];
++	response[4] = ret_buf[5];
++	response[5] = ret_buf[6];
 +
-+What:		/sys/devices/system/edac/mc/mc0/xsem_read_config
-+Date:		June 2026
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request to the firmware for reading Xilsem configuration.
-+		When read, it shows the CRAM and NPI scan configuration.
-+		The format is <status> <header> <CRAM config> <NPI config>
-+		Example: Read Config Cmd: [0x30309]
-+		CRAM Scan Config: [0x2e]
-+		NPI Scan Config: [0x5016]
-+		Cmd Status: [0x0]
++	return ret;
++}
++EXPORT_SYMBOL_GPL(zynqmp_pm_xilsem_cntrl_ops);
 +
-+What:		/sys/devices/system/edac/mc/mc0/xsem_read_status
-+Date:		June 2026
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request read the Xilsem status. User needs to provide
-+		the module id for status. The module id values are as given below:
-+		1 - CRAM scan
-+		2 - NPI scan
-+		When read, it shows the status of the requested module.
-+		For CRAM: <status> <CE count>
-+		Example: 0x10005 0
-+		For NPI: <status> <scan count> <heartbeat count>
-+		Example: 0xA01 0x10 0x1
++/**
++ * zynqmp_pm_xilsem_cram_errinj - PM call to perform CRAM error injection
++ * @slrid:	SLR id to inject error in CRAM
++ * @frame:	Frame number to be used for error injection
++ * @qword:	Word number to be used for error injection
++ * @bit:	Bit location to be used for error injection
++ * @row:	CFRAME row number to be used for error injection
++ * @response:	Output response (command header, error code or status, slr id)
++ *
++ * Return: Returns 0 on success or error value on failure.
++ */
++int zynqmp_pm_xilsem_cram_errinj(u32 slrid, u32 frame, u32 qword, u32 bit, u32 row,
++				 u32 *const response)
++{
++	u32 ret_buf[PAYLOAD_ARG_CNT];
++	int ret;
 +
-+What:		/sys/devices/system/edac/mc/mc0/xsem_cram_ssit_getcrc
-+Date:		June 2026
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request to read CRC of a row in CRAM. User needs to provide
-+		the row number and SLR id (Versal SSIT device) for which CRC
-+		to be read. For Versal mono devices, SLR id should be 0.
-+		When read, it shows the CRC of the requested row.
-+		The format is: <Header> <CRC Word 0 to 3> <status>
-+		Example: Read CRC Cmd:[0x1030c]
-+		CRC_Word 0:[0x0]
-+		CRC_Word 1:[0x1f72d881]
-+		CRC_Word 2:[0x0]
-+		CRC_Word 3:[0x0]
-+		Cmd status: [0x0]
++	ret = zynqmp_pm_invoke_fn(PM_XSEM_CRAM_ERRINJ, ret_buf, 5, slrid, frame, qword, bit, row);
++	response[0] = ret_buf[1];
++	response[1] = ret_buf[2];
++	response[2] = ret_buf[3];
 +
-+What:		/sys/devices/system/edac/mc/mc0/xsem_read_ssit_status
-+Date:		June 2026
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request to read CRAM and NPI scan status information in a given SLR.
-+		User needs to provide SLR id in Versal SSIT device for which
-+		XilSEM status to be read. When read, it shows
-+		the XilSEM status of the requested SLR.
-+		The format is: <Header> <SLR id> <NPI status info> <CRAM status info>
-+		Example: Read SLR Status Cmd:[0x1030d]
-+		SLR ID:[0x3]
-+		NPI status:[0xa01]
-+		NPI scan count:[0x413]
-+		NPI Heartbeat count:[0x1150c]
-+		NPI scan skip count 0 :[0x0]
-+		NPI scan skip count 1 :[0x0]
-+		NPI scan skip count 2 :[0x0]
-+		NPI scan skip count 3 :[0x0]
-+		NPI scan skip count 4 :[0x0]
-+		NPI scan skip count 5 :[0x0]
-+		NPI scan skip count 6 :[0x0]
-+		NPI scan skip count 7 :[0x0]
-+		NPI error info 0 :[0x0]
-+		NPI error info 1 :[0x0]
-+		CRAM status:[0x10005]
-+		Error Location High 0: [0x0]
-+		Error Location Low 0: [0x0]
-+		Error Location High 1: [0x0]
-+		Error Location Low 1: [0x0]
-+		Error Location High 2: [0x0]
-+		Error Location Low 2: [0x0]
-+		Error Location High 3: [0x0]
-+		Error Location Low 3: [0x0]
-+		Error Location High 4: [0x0]
-+		Error Location Low 4: [0x0]
-+		Error Location High 5: [0x0]
-+		Error Location Low 5: [0x0]
-+		Error Location High 6: [0x0]
-+		Error Location Low 6: [0x0]
-+		CRAM scan CE count:[0x0]
++	return ret;
++}
++EXPORT_SYMBOL_GPL(zynqmp_pm_xilsem_cram_errinj);
 +
-+What:		/sys/devices/system/edac/mc/mc0/xsem_total_cframes_ssit
-+Date:		June 2026
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request to read total cframes in a row in CRAM.
-+		User needs to provide row number and SLR id in
-+		Versal SSIT device for which total frames to be read.
-+		When read, it shows total number of Cframes for the requested SLR.
-+		The format is: <Header> <SLR id> <row> <total frames> <Cmd status>
-+		Example: Read Total Frames Cmd : [0x4030e]
-+		SLR ID : [0x3]
-+		Row Index: [0x0]
-+		Type[0] frame count: [38752]
-+		Type[1] frame count: [262144]
-+		Type[2] frame count: [20480]
-+		Type[3] frame count: [16]
-+		Type[4] frame count: [8]
-+		Type[5] frame count: [0]
-+		Type[6] frame count: [83]
-+		Cmd Status: [0x0]
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request to the firmware for doing requested scan operation in
-+		Configuration RAM (CRAM) or NPI of Versal devices. User needs
-+		to provide scan operation id (init, start, stop) details.
-+		The scan operation id values are as given below:
-+		1 - Initialize the scan
-+		2 - Start CRAM scan
-+		3 - Stop CRAM scan
-+		5 - Start NPI scan
-+		6 - Stop NPI scan
-+		7 - Inject NPI error in first descriptor
++/**
++ * zynqmp_pm_xilsem_cram_readecc - PM call to perform CFRAME ECC read
++ * @slrid:	SLR id on which Frame ECC read to be done
++ * @frame:	Frame number to be used for reading ECC
++ * @row:	CFRAME row number to be used for reading ECC
++ * @response:	Output response (Frame ecc header, ECC values, status)
++ *
++ * Return: Returns 0 on success or error value on failure.
++ */
++int zynqmp_pm_xilsem_cram_readecc(u32 slrid, u32 frame, u32 row, u32 *const response)
++{
++	u32 ret_buf[PAYLOAD_ARG_CNT];
++	int ret;
 +
-+		When read, it shows the current scan status with error code.
-+		The format is <0x1030 | operation Id> <error code>.
-+		The different error codes are as given below:
-+		==========	=====
-+		Error Code	Cause
-+		==========	=====
-+		0x0			Scan operation success
-+		0x1			Failure in NPI scan
-+		0x80		Calibration timeout
-+		0x2000		Internal error
-+		0x500000	CRAM initialization not yet done
-+		0x600000	Start scan failed
-+		0x700000	Stop scan failed
-+		0xF00000	Active CRC/UE error
-+		0x1000000	ECC/CRC error detected during calibration
-+		==========	=====
++	ret = zynqmp_pm_invoke_fn(PM_XSEM_CRAM_RD_ECC, ret_buf, 3, slrid, frame, row);
++	response[0] = ret_buf[1];
++	response[1] = ret_buf[2];
++	response[2] = ret_buf[3];
++	response[3] = ret_buf[4];
 +
-+What:		/sys/devices/system/edac/versal_xilsem/xsem_cram_injecterr
-+Date:		July 2025
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request to the firmware for doing error injection in
-+		Configuration RAM (CRAM) of Versal devices. User needs
-+		to provide the location details of CRAM
-+		(frame, qword, bit number, row number) to inject the error.
-+		When read, it shows the current error injection status. The
-+		format is <header> <error code>.
-+		Example: 0x10304 0
-+		The different error codes are as given below:
-+		==========	=====
-+		Error Code	Cause
-+		==========	=====
-+		0x0			Error injection success
-+		0x2000		Internal NULL pointer error
-+		0x500000	CRAM initialization not yet done
-+		0x800000	Invalid row
-+		0x900000	Invalid qword
-+		0xA00000	Invalid bit
-+		0xB00000	Invalid frame address
-+		0xC00000	Unexpected bits flipped
-+		0xD00000	Masked bit
-+		0xE00000	Invalid block type
-+		0xF00000	Active CRC/UE error in CRAM
-+		==========	=====
++	return ret;
++}
++EXPORT_SYMBOL_GPL(zynqmp_pm_xilsem_cram_readecc);
 +
-+What:		/sys/devices/system/edac/versal_xilsem/xsem_cram_framecc_read
-+Date:		July 2025
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request to the firmware for reading frame ECC values in
-+		Configuration RAM (CRAM) of Versal devices. User needs
-+		to provide the location details of CRAM
-+		(frame, row number) to read the ECC values.
-+		When read, it shows the ECC values for the requested frame.
-+		The format is <status> <header> <ECC_0> <ECC_1>
-+		Example: 0 0x1030A 0x363B1A 0x8A0200
++/**
++ * zynqmp_pm_xilsem_read_cfg - PM call to perform Xilsem configuration read
++ * @slrid:	SLR id for which configuration to be read
++ * @response:	Output response (config header, Xilsem config, status)
++ *
++ * Return: Returns 0 on success or error value on failure.
++ */
++int zynqmp_pm_xilsem_read_cfg(u32 slrid, u32 *const response)
++{
++	u32 ret_buf[PAYLOAD_ARG_CNT];
++	int ret;
 +
-+What:		/sys/devices/system/edac/versal_xilsem/xsem_read_config
-+Date:		July 2025
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request to the firmware for reading Xilsem configuration.
-+		When read, it shows the CRAM and NPI scan configuration.
-+		The format is <status> <header> <CRAM config> <NPI config>
-+		Example: 0 0x1030A 0x26 0x5016
++	ret = zynqmp_pm_invoke_fn(PM_XSEM_RD_CONFIG, ret_buf, 1, slrid);
++	response[0] = ret_buf[1];
++	response[1] = ret_buf[2];
++	response[2] = ret_buf[3];
++	response[3] = ret_buf[4];
 +
-+What:		/sys/devices/system/edac/versal_xilsem/xsem_read_status
-+Date:		July 2025
-+Contact:	rama.devi.veggalam@amd.com
-+Description:
-+		It is a read/write file.
-+		Writing to this file causes the software to initiate a
-+		request read the Xilsem status. User needs to provide
-+		the module id for status. The module id values are as given below:
-+		1 - CRAM scan
-+		2 - NPI scan
-+		When read, it shows the status of the requested module.
-+		For CRAM: <status> <CE count>
-+		Example: 0x10005 0
-+		For NPI: <status> <scan count> <heartbeat count>
-+		Example: 0xA01 0x10 0x1
++	return ret;
++}
++EXPORT_SYMBOL_GPL(zynqmp_pm_xilsem_read_cfg);
++
++/**
++ * zynqmp_pm_xilsem_read_ssit_status - PM call to perform Xilsem SSIT status
++ * @slrid:	SLR id for which ECC read to be done
++ * @bufaddr:	Buffer address to get the status information
++ * @response:	Output response (status read header, slr id)
++ *
++ * Return: Returns 0 on success or error value on failure.
++ */
++int zynqmp_pm_xilsem_read_ssit_status(u32 slrid, u32 bufaddr, u32 *const response)
++{
++	u32 ret_buf[PAYLOAD_ARG_CNT];
++	int ret;
++
++	ret = zynqmp_pm_invoke_fn(PM_XSEM_SSIT_RD_STS, ret_buf, 2, slrid, bufaddr);
++	response[0] = ret_buf[1];
++	response[1] = ret_buf[2];
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(zynqmp_pm_xilsem_read_ssit_status);
++
++/**
++ * zynqmp_pm_xilsem_cram_getcrc - PM call to perform CRAM Row CRC read
++ * @slrid:	SLR id for which CRC read to be done
++ * @rowindex:	CFRAME row number to be used for reading CRC
++ * @response:	Output response (Get CRC header, CRC values, status)
++ *
++ * Return: Returns 0 on success or error value on failure.
++ */
++int zynqmp_pm_xilsem_cram_getcrc(u32 slrid, u32 rowindex, u32 *const response)
++{
++	u32 ret_buf[PAYLOAD_ARG_CNT];
++	int ret;
++
++	ret = zynqmp_pm_invoke_fn(PM_XSEM_SSIT_GET_CRC, ret_buf, 2, slrid, rowindex);
++	response[0] = ret_buf[1];
++	response[1] = ret_buf[2];
++	response[2] = ret_buf[3];
++	response[3] = ret_buf[4];
++	response[4] = ret_buf[5];
++	response[5] = ret_buf[6];
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(zynqmp_pm_xilsem_cram_getcrc);
++
++/**
++ * zynqmp_pm_xilsem_cram_ssit_totframes - PM call to perform total frames read
++ * @slrid:	SLR id for which total frames read to be done
++ * @row:	CFRAME row number to be used for reading ECC
++ * @framecnt: Buffer address to get toral frames data
++ * @response:	Output response (Total frames header, slr id, row, status)
++ *
++ * Return: Returns 0 on success or error value on failure.
++ */
++int zynqmp_pm_xilsem_cram_ssit_totframes(u32 slrid, u32 row, u32 framecnt, u32 *const response)
++{
++	u32 ret_buf[PAYLOAD_ARG_CNT];
++	int ret;
++
++	ret = zynqmp_pm_invoke_fn(PM_XSEM_SSIT_GET_FRAMES, ret_buf, 3, slrid, row, framecnt);
++	response[0] = ret_buf[1];
++	response[1] = ret_buf[2];
++	response[2] = ret_buf[3];
++	response[3] = ret_buf[4];
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(zynqmp_pm_xilsem_cram_ssit_totframes);
+diff --git a/drivers/soc/xilinx/xlnx_event_manager.c b/drivers/soc/xilinx/xlnx_event_manager.c
+index f733dc42b3b1..fb820fb15173 100644
+--- a/drivers/soc/xilinx/xlnx_event_manager.c
++++ b/drivers/soc/xilinx/xlnx_event_manager.c
+@@ -3,12 +3,13 @@
+  * Xilinx Event Management Driver
+  *
+  *  Copyright (C) 2021 Xilinx, Inc.
+- *  Copyright (C) 2024 Advanced Micro Devices, Inc.
++ *  Copyright (C) 2024-2026 Advanced Micro Devices, Inc.
+  *
+  *  Abhyuday Godhasara <abhyuday.godhasara@xilinx.com>
+  */
+ 
+ #include <linux/cpuhotplug.h>
++#include <linux/firmware/xlnx-versal-error-events.h>
+ #include <linux/firmware/xlnx-event-manager.h>
+ #include <linux/firmware/xlnx-zynqmp.h>
+ #include <linux/hashtable.h>
+@@ -85,7 +86,8 @@ static bool xlnx_is_error_event(const u32 node_id)
+ 		if (node_id == VERSAL_EVENT_ERROR_PMC_ERR1 ||
+ 		    node_id == VERSAL_EVENT_ERROR_PMC_ERR2 ||
+ 		    node_id == VERSAL_EVENT_ERROR_PSM_ERR1 ||
+-		    node_id == VERSAL_EVENT_ERROR_PSM_ERR2)
++		    node_id == VERSAL_EVENT_ERROR_PSM_ERR2 ||
++		    node_id == VERSAL_EVENT_ERROR_SW_ERR)
+ 			return true;
+ 	} else if (pm_family_code == PM_VERSAL_NET_FAMILY_CODE) {
+ 		if (node_id == VERSAL_NET_EVENT_ERROR_PMC_ERR1 ||
+diff --git a/include/linux/firmware/xlnx-versal-error-events.h b/include/linux/firmware/xlnx-versal-error-events.h
+new file mode 100644
+index 000000000000..4767a23c9e4d
+--- /dev/null
++++ b/include/linux/firmware/xlnx-versal-error-events.h
+@@ -0,0 +1,43 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Xilinx Versal Error Event Node IDs and Error Event Mask.
++ * Use with Xilinx Event Management Driver
++ *
++ * Copyright (C) 2021-2022 Xilinx
++ * Copyright (C) 2023-2026 Advanced Micro Devices, Inc.
++ *
++ */
++
++#ifndef _FIRMWARE_XLNX_VERSAL_ERROR_EVENTS_H_
++#define _FIRMWARE_XLNX_VERSAL_ERROR_EVENTS_H_
++
++/*
++ * Error Event Node Ids
++ */
++#define VERSAL_EVENT_ERROR_PMC_ERR1	(0x28100000U)
++#define VERSAL_EVENT_ERROR_PMC_ERR2	(0x28104000U)
++#define VERSAL_EVENT_ERROR_PSM_ERR1	(0x28108000U)
++#define VERSAL_EVENT_ERROR_PSM_ERR2	(0x2810C000U)
++#define VERSAL_EVENT_ERROR_SW_ERR	(0x28110000U)
++
++/*
++ * XPM_VERSAL_EVENT_ERROR_MASK_XSEM_CRAM_CE_5: Error event mask for handling
++ * correctable error in Versal Configuration RAM which is reported by
++ * Soft Error Mitigation (XilSEM).
++ */
++#define XPM_VERSAL_EVENT_ERROR_MASK_XSEM_CRAM_CE_5		BIT(5)
++
++/**
++ * XPM_VERSAL_EVENT_ERROR_MASK_XSEM_CRAM_UE_6: Error event mask for handling
++ * uncorrectable error in Versal Configuration RAM which is reported by
++ * Soft Error Mitigation (XilSEM).
++ */
++#define XPM_VERSAL_EVENT_ERROR_MASK_XSEM_CRAM_UE_6		BIT(6)
++
++/**
++ * XPM_VERSAL_EVENT_ERROR_MASK_XSEM_NPI_UE_7: Error event mask for handling
++ * uncorrectable error in Versal NoC programming interface (NPI)
++ * register which is reported by Soft Error Mitigation (XilSEM).
++ */
++#define XPM_VERSAL_EVENT_ERROR_MASK_XSEM_NPI_UE_7		BIT(7)
++#endif /* _FIRMWARE_XLNX_VERSAL_ERROR_EVENTS_H_ */
+diff --git a/include/linux/firmware/xlnx-zynqmp-sem.h b/include/linux/firmware/xlnx-zynqmp-sem.h
+new file mode 100644
+index 000000000000..722849cc6403
+--- /dev/null
++++ b/include/linux/firmware/xlnx-zynqmp-sem.h
+@@ -0,0 +1,69 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Firmware layer for XilSEM APIs.
++ *
++ * Copyright (C), 2026 Advanced Micro Devices, Inc.
++ */
++
++#ifndef __FIRMWARE_ZYNQMP_SEM_H__
++#define __FIRMWARE_ZYNQMP_SEM_H__
++
++/* XilSEM commands */
++#define PM_XSEM_HEADER			0x300
++#define PM_XSEM_CRAM_ERRINJ		0x304
++#define PM_XSEM_RD_CONFIG		0x309
++#define PM_XSEM_CRAM_RD_ECC		0x30B
++#define PM_XSEM_SSIT_GET_CRC		0x30C
++#define PM_XSEM_SSIT_RD_STS		0x30D
++#define PM_XSEM_SSIT_GET_FRAMES		0x30E
++
++#if IS_REACHABLE(CONFIG_ZYNQMP_FIRMWARE)
++int zynqmp_pm_xilsem_cntrl_ops(u32 cmd, u32 slrid, u32 *const response);
++int zynqmp_pm_xilsem_cram_errinj(u32 slrid, u32 frame, u32 qword, u32 bit, u32 row,
++				 u32 *const response);
++int zynqmp_pm_xilsem_cram_readecc(u32 slrid, u32 frame, u32 row, u32 *const response);
++int zynqmp_pm_xilsem_read_cfg(u32 slrid, u32 *const response);
++int zynqmp_pm_xilsem_read_ssit_status(u32 slrid, u32 bufaddr, u32 *const response);
++int zynqmp_pm_xilsem_cram_getcrc(u32 slrid, u32 rowindex, u32 *const response);
++int zynqmp_pm_xilsem_cram_ssit_totframes(u32 slrid, u32 row, u32 framecnt,
++					 u32 *const response);
++#else
++static inline int zynqmp_pm_xilsem_cntrl_ops(u32 cmd, u32 slrid, u32 *const response)
++{
++	return -ENODEV;
++}
++
++static inline int zynqmp_pm_xilsem_cram_errinj(u32 slrid, u32 frame, u32 qword, u32 bit, u32 row,
++					       u32 *const response)
++{
++	return -ENODEV;
++}
++
++static inline int zynqmp_pm_xilsem_cram_readecc(u32 slrid, u32 frame, u32 row, u32 *const response)
++{
++	return -ENODEV;
++}
++
++static inline int zynqmp_pm_xilsem_read_cfg(u32 slrid, u32 *const response)
++{
++	return -ENODEV;
++}
++
++static inline int zynqmp_pm_xilsem_read_ssit_status(u32 slrid, u32 bufaddr, u32 *const response)
++{
++	return -ENODEV;
++}
++
++static inline int zynqmp_pm_xilsem_cram_getcrc(u32 slrid, u32 rowindex, u32 *const response)
++{
++	return -ENODEV;
++}
++
++static inline int zynqmp_pm_xilsem_cram_ssit_totframes(u32 slrid, u32 row, u32 framecnt,
++						       u32 *const response)
++{
++	return -ENODEV;
++}
++#endif
++
++#endif /* __FIRMWARE_ZYNQMP_SEM_H__ */
+diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
+index 7e27b0f7bf7e..f5808f39c7a6 100644
+--- a/include/linux/firmware/xlnx-zynqmp.h
++++ b/include/linux/firmware/xlnx-zynqmp.h
+@@ -18,6 +18,7 @@
+ #include <linux/err.h>
+ #include <linux/firmware/xlnx-zynqmp-ufs.h>
+ #include <linux/firmware/xlnx-zynqmp-crypto.h>
++#include <linux/firmware/xlnx-zynqmp-sem.h>
+ 
+ #define ZYNQMP_PM_VERSION_MAJOR	1
+ #define ZYNQMP_PM_VERSION_MINOR	0
 -- 
 2.23.0
 
