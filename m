@@ -1,278 +1,182 @@
-Return-Path: <devicetree+bounces-315086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315089-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dulaIoqJO2qoZQgAu9opvQ
-	(envelope-from <devicetree+bounces-315086-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:38:50 +0200
+	id nf0mGE6JO2qTZQgAu9opvQ
+	(envelope-from <devicetree+bounces-315089-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:37:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED6D56BC3C5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:38:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAAD76BC38D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:37:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HpTUhmIL;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315086-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315086-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Ww6cDGFr;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315089-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315089-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9574330038E4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 07:36:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 631CE3006460
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 07:37:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB012EC57C;
-	Wed, 24 Jun 2026 07:36:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C202EC0A6;
+	Wed, 24 Jun 2026 07:37:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5FF02E736B
-	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 07:36:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5572DEA95;
+	Wed, 24 Jun 2026 07:37:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782286586; cv=none; b=XKV7VapizZHpWZEIzD3vKPDPS/yPoIBvX3iBY1rywV72VTzDYMfytihbecgYjajTHnVD3M1kmnumeHjpqGB53JGidZ9reDHlU6Nsf4wvr6El9tTAXVHlxhBspHgomfhUJ1gqMp1PF1lpoJYkShDBmG2WxACh9zbjzCbsMeLUJnQ=
+	t=1782286665; cv=none; b=rzitquhwmdsvQQW/B3fRhjGb+qbdvB8FVNi9FQm2TQCSMYcll38WhciG0mE5SY5zyqCcNVO8gaiSunX7p0H+I8bu0g+KpkoCEfTYuCx+QqYU8ZeSSKzpPq075b0Mq9ZDQmLbU00aLVEKD2AFnQkW041gBgI4OAR7gm5jNWWiiio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782286586; c=relaxed/simple;
-	bh=zd8EYRTUqO0t+3O0wv/ubwpl+LZPfemplxSr05rbdbA=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=gbDytvI4BvsZP3UarR+vFfUvLHcoh80WrRbnmwxIEYqJP8agZSDX5MJV3MnZyFSOoofGwQ3KWwKH9zUD9aCH6qIJscej3YKPN/OR4uUF6EhSkGg5c58wWE966PRhrGy+N61OaOJ3i4TFFZ6/1GJ/jdQJlWSwqvziWubdRXZ3w7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HpTUhmIL; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C28CB1F000E9;
-	Wed, 24 Jun 2026 07:36:22 +0000 (UTC)
+	s=arc-20240116; t=1782286665; c=relaxed/simple;
+	bh=hM9yO5bNf9kKVksz4ZKuhK35ov61B/mOU+Y0JmU2Th4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C7pWtPm7NeW8c8ZUgAui13VJCwh+bp8AYnjuy/f6qP/pn3rHb6CgirX5W+/i269OpTEySPns8q80irpM4jfbwkrIHKvAvoyU6oc23naBdKSbnWzStSWqu6Zt2eyMDDmNlFG7u6qJ1ySiMOL4sTWdGu226OZ/uGGCFFe6d+SwmWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ww6cDGFr; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E4D71F000E9;
+	Wed, 24 Jun 2026 07:37:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782286583;
-	bh=+SAqtamMeDaGdOZqFV03/n34zmecNDUAdFERo+ztHA0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=HpTUhmILn4UWGUz2oxWYYxEWi+FHc1jSad8SeKiSboDZbyzrmsZ1RmLE0PemqOAfB
-	 UVN5OpqY+VKHVBu25OW+bKvMrMBhNL6HZyqRmwQ+mRkIO/yfLv5xVxvfdXDtBEPST8
-	 ec6Wj2P9LI4t6GON103ngC13X14CAcd3Sl676j/2C6bCyxnHOV9R/2tZaC300jfB8d
-	 1KVQwkssQTwxn/dumsW9Ze/+WZlQ0sXFyyOjbF2p8oY1N6Q6T4bbbcRSHqaaRmh4Cg
-	 MqxwZHhg7AAGZjHjZN1QUmNXkKLyMh48y+SLi4cgJ7fqIuMuXwOblTsNxMi0cZ9b3z
-	 0ytLMn4CCDHEQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 6/9] media: chips-media: wave6: Improve debugging
- capabilities
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Nas Chung" <nas.chung@chipsnmedia.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260624072043.238-7-nas.chung@chipsnmedia.com>
-References: <20260624072043.238-1-nas.chung@chipsnmedia.com>
- <20260624072043.238-7-nas.chung@chipsnmedia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 24 Jun 2026 07:36:22 +0000
-Message-Id: <20260624073622.C28CB1F000E9@smtp.kernel.org>
+	s=k20260515; t=1782286664;
+	bh=yWkx/8YKGmpLHNBSXTQrAH7Mz4DsSFxvTb6Z+Em2aEo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=Ww6cDGFrIVo1S+vBzH04lOSMWz0ZVFP/QkpySJzW75IS2JrxzujR0+V8gODVjmQmy
+	 NB0+eIswhDrfKsuJCkbTk5WiuJuo5wSWX/7gR7D85HM3XT0gNOq9S0eiFd9cXNeKsR
+	 H6iRG/BG5+4EasSbFjYwctLZwvODuHm/F/D0QJkVvziBtmAuLPx9umu6tH2EijQXDE
+	 hjqsoZ6NXPkWHQu6zB0+ip2ge1c6QdRWnwVkE3YQRO79zgxA+UzOOaPTu7yUbLJZXG
+	 lFbSKAloeBNcTwd7H65EV3ooTjGhPV5+XHiEntB67HOWUnRQww2EqaWJWjLiSktn9x
+	 PJ0pMzHdGfTLw==
+Message-ID: <9b089e83-56a2-465f-a364-a1e8bad20540@kernel.org>
+Date: Wed, 24 Jun 2026 09:37:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: arm: qcom,ids: Add SoC ID for Snapdragon SDA
+ 850
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, david@ixit.cz,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260623-sda850-v1-1-ddd8e62c85d8@ixit.cz>
+ <6ddd0652-d18e-4e23-a230-5f5c8a9756f8@kernel.org>
+ <90f9f8a8-971d-4cb7-b2a0-248349b329d4@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGPBBMBCgA5AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJp2mE8AAoJEBuTQ307QWKbeaIP
+ /ihHTkTW4KsN/DQ945JJbyu5tI0J80Wue7QyyLPglyKfhgb5cLLNPpOC8cCIJsc7+W3i2P38
+ s2c1cOH6CYGE7E9ur3Vfme8NW2S2I/Z8VC7bZnzyS23wT17LrsdS/qCpx4o8U+pt/xdXDKph
+ EGRYrIEmMpUWvyYzyYKGIe25FtaayIIKpq8eZYyFcp2f/sG5IkOW5uZzHPMPdcm87jU7fyuQ
+ rAU2vx9r+ulUfQ/q9Z2roC/ode3l7t2pN7BCBCsUDp6JCrUyZrtT1e7EbA0ZRP3aOBNk2P2E
+ DQOgJGjGdO5Yx2Y9LFtltu6JbsBJHi1syGRX3AtQYOMc4Y1WGoeZJmMlvKj2ZqqXNkcWi2DS
+ IQEWB0uW6CqFsBBIMGDa+6OzdaVO/uAVXWDWml02Men3CILdI1MbVjoh8ECqYUY7OQ+JJvNN
+ vnliuq5WM3Ghd3jg/LZZrxXjdIginRHFQCjIJYLKpLZWm1/iDFedcfzqRNYmTtqscdCNHW41
+ oT3Z7BmO9xwdjuwBS6nmS6JJwkbf5Ot2QR4pB/DRU7ZwjT1qHe+9r9gF32wXVQatHNGK/VVu
+ sfwOnkdxCWkp/qb2gdQRmZh+SedStWshigH6sNfuHBloF/q+hjMRc8b2m326OZdrbSHwY1Sz
+ vti8Hn7n8NjdHO9LKB7BIdjkA9DA5WsqOuVCzsFNBFVDXDQBEADNkrQYSREUL4D3Gws46JEo
+ Z9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLueMNsWLJBv
+ BaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6eiOMheesVS
+ 5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wAGldWsRxb
+ f3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA6z6lBZn0
+ WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9YegxWKvX
+ XHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt91pFzBSO
+ IpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gUBLHFTg2h
+ YnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/JoFzZ4B0
+ p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu4vXVFBYI
+ GmpyNPYzRm0QPwARAQABwsF2BBgBCgAgAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtBYpsFAmna
+ YUkACgkQG5NDfTtBYptX+BAApg32CkxwNucNEi8WfWA8oKkW0y8YDuY6ORMo9FWNGiT/OTy0
+ vyJrLocrpn86zwfjVp+eCrssPYh8eqJfnWqmYv6ACQtHPYzPZQ3mSo8H97Z01oUxITzCxpXm
+ ZkLgPIqtDPcC2E3dPM/fVxcyowM8XsaMA9wcsaUYrta8toOq2b9tKcjleKMfMrm0gQ9u7wUc
+ QbLkwj6TCLOwucb07GXzLTNF9PZmaDUpKAZjMjmrW+le+SFvQbhamx0rxLWPR0NWntXpbCn+
+ +ACch03p/JyTBVktxFsFyCt7pTPE1kEaeuXBTe/a2D9iQvRxRW19LvuO2e59/u1wYUiH/orz
+ wbIC2S4dBsPAPihL3ztOU1yE86GPyQtSE0kU+/7snnLt4QGi6PChf3t5gnNjAzjUUovO8rgI
+ c+5yN5heq5loYHgK6OQ9OlHzsPHO9e9MOQcKlFycs1pyijFGzDwdNUm/SchK8iWT2QApTx4A
+ K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
+ n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
+ qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
+In-Reply-To: <90f9f8a8-971d-4cb7-b2a0-248349b329d4@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-315089-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315086-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:nas.chung@chipsnmedia.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:david@ixit.cz,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,chipsnmedia.com:email,smtp.kernel.org:mid,nxp.com:email,mailbox.org:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,ixit.cz:email,comma.ai:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ED6D56BC3C5
+X-Rspamd-Queue-Id: EAAD76BC38D
 
-Thank you for your contribution! Sashiko AI review found 7 potential issue(=
-s) to consider:
-- [High] Kernel panic due to division by zero in debugfs FPS calculation.
-- [High] Lockless access to `vb2_queue` internals causes Use-After-Free dur=
-ing concurrent `REQBUFS(0)`.
-- [Medium] Checking `IS_ERR_OR_NULL` on an optional debugfs dentry inapprop=
-riately triggers `WARN_ON` when debugfs is disabled.
-- [Medium] 32-bit integer multiplication overflow when calculating FPS stat=
-istics.
-- [Medium] Data truncation of 64-bit DMA addresses in trace events.
-- [Low] Use of 64-bit division and modulo operators breaks compilation on 3=
-2-bit architectures.
-- [Low] Incorrect chaining of assignments with comma operators in `TP_fast_=
-assign`.
---
+On 24/06/2026 09:35, Konrad Dybcio wrote:
+> On 6/24/26 8:26 AM, Krzysztof Kozlowski wrote:
+>> On 23/06/2026 20:41, David Heidelberg via B4 Relay wrote:
+>>> From: David Heidelberg <david@ixit.cz>
+>>>
+>>> Add SoC ID for Qualcomm Snapdragon SDA850.
+>>>
+>>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>>> ---
+>>> Will be used by Comma three.
+>>
+>> Can you provide a link?
+> 
+> Previous gen of https://comma.ai/shop/comma-four, they don't seem
+> to have the old one listed on their website anymore
 
-commit 59a3991812bdf6b7f45f197b804c2beea6a0e9aa
-Author: Nas Chung <nas.chung@chipsnmedia.com>
-Subject: media: chips-media: wave6: Improve debugging capabilities
+I meant, link to the upstream user. Something which will convince why do
+we want this patch.
 
-Add debugfs entries and trace events to provide detailed
-debugging information.
-These enhancements help diagnose issues and improve debugging
-capabilities for the Wave6 core driver.
+> 
+> The other computer tells me SDA850 doesn't exist and 348 is SDM850
+> (for which we have a number of DTs in the kernel today), so let's
+> rename it and add a second patch to add it to socinfo
 
-Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
-Tested-by: Ming Qian <ming.qian@oss.nxp.com>
-Tested-by: Marek Vasut <marek.vasut@mailbox.org>
 
-> diff --git a/drivers/media/platform/chips-media/wave6/wave6-trace.h b/dri=
-vers/media/platform/chips-media/wave6/wave6-trace.h
-> new file mode 100644
-> --- /dev/null
-> +++ b/drivers/media/platform/chips-media/wave6/wave6-trace.h
-[ ... ]
-> +TRACE_EVENT(wave6_vpu_source_change,
-> +	    TP_PROTO(struct vpu_instance *inst, struct dec_seq_info *info),
-> +	    TP_ARGS(inst, info),
-[ ... ]
-> +	    TP_fast_assign(__assign_str(name);
-> +			   __entry->id =3D inst->id;
-> +			   __entry->width =3D info->pic_width,
-> +			   __entry->height =3D info->pic_height,
 
-[Severity: Low]
-Is there a typo in these assignments? The width and height fields are
-terminated with commas instead of semicolons inside TP_fast_assign.
-
-> +			   __entry->profile =3D info->profile,
-> +			   __entry->level =3D info->level;
-[ ... ]
-> +TRACE_EVENT(wave6_vpu_enc_pic,
-> +	    TP_PROTO(struct vpu_instance *inst, struct enc_param *param),
-> +	    TP_ARGS(inst, param),
-> +	    TP_STRUCT__entry(__string(name, dev_name(inst->dev->dev))
-> +			     __field(u32, id)
-> +			     __field(u32, srcidx)
-> +			     __field(u32, buf_y)
-
-[Severity: Medium]
-Does this truncate 64-bit physical addresses?=20
-
-Variables like buf_y and buf_cb are dma_addr_t, which can be 64-bit on=20
-platforms like arm64. Declaring these fields as u32 will lose the upper=20
-32 bits of the address in the trace output.
-
-> +			     __field(u32, buf_cb)
-> +			     __field(u32, buf_cr)
-> +			     __field(u32, stride)
-[ ... ]
-> diff --git a/drivers/media/platform/chips-media/wave6/wave6-vpu-dbg.c b/d=
-rivers/media/platform/chips-media/wave6/wave6-vpu-dbg.c
-> new file mode 100644
-> --- /dev/null
-> +++ b/drivers/media/platform/chips-media/wave6/wave6-vpu-dbg.c
-[ ... ]
-> +static int wave6_vpu_dbg_instance(struct seq_file *s, void *data)
-> +{
-> +	struct vpu_instance *inst =3D s->private;
-> +	struct vpu_performance_info *perf =3D &inst->performance;
-> +	struct vb2_queue *vq;
-[ ... ]
-> +	vq =3D v4l2_m2m_get_src_vq(inst->v4l2_fh.m2m_ctx);
-> +	seq_printf(s, "output (%2d, %2d): fmt =3D %c%c%c%c %d x %d, %d;\n",
-> +		   vb2_is_streaming(vq),
-> +		   vb2_get_num_buffers(vq),
-
-[Severity: High]
-Can this lead to a use-after-free?=20
-
-This accesses the queue state locklessly in wave6_vpu_dbg_instance(). If a
-concurrent userspace thread calls VIDIOC_REQBUFS with count=3D0, the buffers
-bitmap is freed.
-
-If the lockless read evaluates vb2_get_num_buffers() at the same time, it=20
-can race against the release and cause bitmap_weight() to read uninitialized
-or freed memory.
-
-> +		   inst->src_fmt.pixelformat,
-[ ... ]
-> +	seq_puts(s, "fps");
-> +	tmp =3D MSEC_PER_SEC * inst->processed_buf_num;
-
-[Severity: Medium]
-Can this multiplication overflow on 32-bit architectures?=20
-
-MSEC_PER_SEC and inst->processed_buf_num are both 32-bit integers. The resu=
-lt
-will wrap around after about 4.29 million frames before the implicit cast t=
-o=20
-the 64-bit tmp variable.
-
-> +	if (perf->ts_last > perf->ts_first + NSEC_PER_MSEC) {
-> +		fps =3D DIV_ROUND_CLOSEST(tmp, (perf->ts_last - perf->ts_first) / NSEC=
-_PER_MSEC);
-
-[Severity: Low]
-Will this break the build on 32-bit platforms?=20
-
-The calculation performs direct division using the / operator on 64-bit typ=
-es,=20
-which results in undefined references to __divdi3. Should this use a kernel=
-=20
-math helper like div64_s64() instead?
-
-> +		seq_printf(s, " actual: %lld;", fps);
-> +	}
-> +	if (perf->total_sw_time) {
-> +		fps =3D DIV_ROUND_CLOSEST(tmp, perf->total_sw_time / NSEC_PER_MSEC);
-
-[Severity: High]
-What happens if total_sw_time or total_hw_time is non-zero but less than
-1,000,000 nanoseconds?
-
-The division perf->total_sw_time / NSEC_PER_MSEC will evaluate to zero.
-Passing zero as the divisor to DIV_ROUND_CLOSEST causes an immediate
-division by zero exception and a kernel panic.
-
-> +		seq_printf(s, " sw: %lld;", fps);
-> +	}
-> +	if (perf->total_hw_time) {
-> +		fps =3D DIV_ROUND_CLOSEST(tmp, perf->total_hw_time / NSEC_PER_MSEC);
-> +		seq_printf(s, " hw: %lld", fps);
-> +	}
-[ ... ]
-> +int wave6_vpu_create_dbgfs_file(struct vpu_instance *inst)
-> +{
-> +	char name[64];
-> +
-> +	if (WARN_ON(!inst || !inst->dev || IS_ERR_OR_NULL(inst->dev->debugfs)))
-> +		return -EINVAL;
-
-[Severity: Medium]
-Is it intended to trigger a warning when debugfs is disabled?
-
-If CONFIG_DEBUG_FS is disabled, debugfs_create_dir() returns ERR_PTR(-ENODE=
-V).
-Using IS_ERR_OR_NULL() here will trigger the WARN_ON() every time a new
-encoder or decoder instance is created, dumping a stack trace into the kern=
-el
-log.
-
-> +
-> +	scnprintf(name, sizeof(name), "instance.%d", inst->id);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260624072043.238-=
-1-nas.chung@chipsnmedia.com?part=3D6
+Best regards,
+Krzysztof
 
