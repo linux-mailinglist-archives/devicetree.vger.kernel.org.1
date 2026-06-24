@@ -1,372 +1,236 @@
-Return-Path: <devicetree+bounces-315036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315039-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ShI1NJlyO2oFYAgAu9opvQ
-	(envelope-from <devicetree+bounces-315036-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:00:57 +0200
+	id SbLQJrpyO2oMYAgAu9opvQ
+	(envelope-from <devicetree+bounces-315039-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:01:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DDC86BBA7A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D6B6BBA83
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 08:01:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=altera.com header.s=selector2 header.b="swko8fl/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315036-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315036-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=altera.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=UwQFkaVE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315039-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315039-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9F31D30AA3F4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 05:56:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CA06630ECBBA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 05:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 413FB32B10A;
-	Wed, 24 Jun 2026 05:56:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 138DF3290D1;
+	Wed, 24 Jun 2026 05:57:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010055.outbound.protection.outlook.com [52.101.61.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA26C329E5D;
-	Wed, 24 Jun 2026 05:56:49 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782280611; cv=fail; b=de4nK4Pf4afbXBgF76STvxpM6gnFTC92VjapsCdU4akbXWRnylzz/byOAeVRzeLGjaqfF9p7Z1YPP/U9Tb+4B9Z9OYuaqDfg0nFZ8MF15ckP/kQ53KFx8DEv36t6JnpQVIBcLhvPNwOTCuO1Brm0KEjj+hZo81SHlRxwSKSpSBk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782280611; c=relaxed/simple;
-	bh=AhS48X6Vrow+NGID5ZJNRmkIXyvsr0gRNIWePWDy4a4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=He5D72hvmhalgbSBSd6p4/e+SM/pfqq/D3/tkxYA+7NTS5BV6Oexhz6hERN5bDqY1KaCUdei1RnnojL+jJ6J10Y9b37i1qaXJJBatdZ1TZ+uSbteeUV8z5hE+8zkzP79ELpIfPUhFaDL9XTJU9HasFLcJGtk87ZCdGf+gtV6Axg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=swko8fl/; arc=fail smtp.client-ip=52.101.61.55
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kaSq2GhMppgA0j99cyEVNk1DBRcY83gmtYo8cJsESbVrc251p2oVxO6pxNYHQGf0u45/Ia56df/4LA+aFJCffFV7GUQ0/49s5t22gje/IsfJp7balA0ZXPV7sixraa/yWGnSEuUXRuejF2CcXrK1Ngd5LeSMKB3JXaTJWkbHuKj0q2Gq0/hHF+P5UwmRKuogwmZTa2G5BbRu2DFNz0LecWNj0gopiaGlr/qmEc9J+ykCISA2l7PoYOMFeZRZqm29iSj7tLIDugucTH8E52tYDkS7Rl4xCIrkl4rBRdOtJNJ86rUjLR0160kF/d5krH6G6bQAIB4L5ol/GsIvcoyOSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4ZDRi9wZ8QLk9S/SU0Z39DEclwAp7QQ2mwWmwrSDE14=;
- b=f+AXD+CylPGOT0TZuFVr2I7BhhjtVck8ra33oRmWhZzhjkjsM+zl0oOICaBZfuC97lBy+zHMwzuX3TDv9+BeYT/CiGY7XWhQpHq+eGYAURtMWgJcVZtmEHU5pfMjUJesNypROcqJjJE7ARkZ+HnNMPSs+7OhCOLM8h2qwbogml/z2vdlFbBQ4UWE1PKdoDW9wntAGq15gaGknwj0G6mxUO6kRLnMmy264Zesz0FGncKdQWCYbEti3FG2DESjibmhFJs64CiD7S/ydlAlnhePSHc4F3lKlHASolW4eGPYWKUsCy1tqW7N+b/L+CR+94k05fuXs8CIk0zbqdg4nvFGVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
- dkim=pass header.d=altera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4ZDRi9wZ8QLk9S/SU0Z39DEclwAp7QQ2mwWmwrSDE14=;
- b=swko8fl/wQLqdQv75JP38h/e0g8s8N5fF9rZQg9ZTaWYPTJ/riSyPPvINTW8km93yYGdaPU/uajOWMylcUrk+wUFTvkfsnQfmesllJSDRds0vlWe6fRuY+g9GfeMbTVXPn41lRt0eIOLzecZr/ZohqraywlWc5ZeM8wsOyWeinTWPU9qG30FRV3gVsSeJ7xP8L4svDmx60osrCPXhO94LESzajabLOGdooayjYmuAHqp5XePvYFfXOF19JFCY+TAHkdqpewwEs/fOtwkln0tN3odMpVdjjMkt2je4YOj5FwRs74P9sUZ2N5p4vqz/65p/hoao9GyetbDsrprOakotg==
-Received: from SJ0PR03MB6964.namprd03.prod.outlook.com (2603:10b6:a03:432::18)
- by CO1PR03MB5683.namprd03.prod.outlook.com (2603:10b6:303:9a::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.14; Wed, 24 Jun
- 2026 05:56:47 +0000
-Received: from SJ0PR03MB6964.namprd03.prod.outlook.com
- ([fe80::b965:bfa8:58fb:e775]) by SJ0PR03MB6964.namprd03.prod.outlook.com
- ([fe80::b965:bfa8:58fb:e775%4]) with mapi id 15.21.0139.018; Wed, 24 Jun 2026
- 05:56:47 +0000
-From: muhammad.nazim.amirul.nazle.asmade@altera.com
-To: dinguyen@kernel.org
-Cc: robh@kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B15D632AAB5
+	for <devicetree@vger.kernel.org>; Wed, 24 Jun 2026 05:57:00 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782280622; cv=none; b=LuJPi6wB5sJWGZlUS69lNL536SNR+IkzwmVrpS2CKoCaxtkjLrkuNebAMZuXrCuVU7zDvQPIJnpYBPtVHwcEasfpBOBfVJMIbFVFxJjptrULy1Yiytw5ID/8ai0ivu8oOe3lmMpQtb18j0xPIMVmjZ4ftIF747E0pR+0w2H0wZg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782280622; c=relaxed/simple;
+	bh=2Oa3gWUqiv60AmEEbko4WvF89zBxld/jaKyNngfmtjg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ekeySXc7bR48pog/EKL8nri7IBDv7oA47S9U0B+Uh+d6zIFSMs1H8crmeVEpG4KtqKt4l4sricxfRijBWY3YlfrSs6y8XeR8G8ZbM7/5U+Ap2B/s1RPOqzsbkhI1EpCVONxumRnwP7JU6j4i8JJwIGfANEsgGDN/KVUgwHq3/6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UwQFkaVE; arc=none smtp.client-ip=209.85.215.171
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-c8584e80d59so246027a12.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Jun 2026 22:57:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782280620; x=1782885420; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7vTuRJJKfRZ8rcgDCBsBsq6iRcx2SeEj6L1B+EwY0TA=;
+        b=UwQFkaVE7FwHguWEzb46w5730UEpo/Jc1pMq/wlNl/IQqNrtsuEen6t5FZGzpghAoV
+         ilmhZsOI0i/1vMFV/itfXESmGCP8kx0ZPp7uIoAL683hhzd06q+U4hbaZDH6pEvmtvHB
+         sb/2ho+SDoGoe3rnxRGNaTUlWqGhGchWraEJ7g9cVE/JVAJxZSiUSo9jG57RVbiiGMnD
+         1HIj11Vu9+47eIeEURerA0mkg5oWl1CYBo/vwg5HrkkvumfHeM9msV/znAvarY1cTmaL
+         H/nGIU4ogSWOrsOZrLFVulvanwkMgtxoS/nCXWJqVI0lKBO0t2ccT97BF8HxKTKy7Tqd
+         ARyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782280620; x=1782885420;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7vTuRJJKfRZ8rcgDCBsBsq6iRcx2SeEj6L1B+EwY0TA=;
+        b=oHkd/3I9GZ0g9yXJZ91V1PmU4iYHrUhg3TJaw9hTGQiNmRUX80bA0iVYUwNUWM0kHP
+         EkmUr0g3rB7I4A90rsBPbMa/x0oKdDYJQK5i5szKjskb2VV/XFr9k3585mFxeDW8Cx31
+         2LB3RF60Sa9b+RyJ1FYTGeZdi+SR7CgYmFRvDFmAFURdwfFe8J7jPDaNMOhGKwI4AwiU
+         V0nRNUf1l4GOKFM7UcqgcPMk6RKbON9cUfdomyOHqTgRlQe99ypaH8A2zuGWTghRp710
+         jTsy24bb4alvopYww90dnKCW6DrqGlGyHnk7eyHaFUB03+j7MImsO2QsCRA76oLuSwyf
+         LOOg==
+X-Forwarded-Encrypted: i=1; AFNElJ9e+U+nsNvuQZr6Ow88BGAAw3/LiWXMvrhGsH3dFdBrQvrjlQyoZ4/VWQ42+K6j0AYIoirXom/WCnUB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIurrXwmp23yCzFDBZ87jcNMg6BeAZiWsMZVJYT850+RjpRSVO
+	kiA6hyOOl/J5/dARzllEdgj0fNVtaPDWXZM8aU438o1LANhyPQlHSoYW
+X-Gm-Gg: AfdE7ck9e10zICLHUEAzZuQV3+AVPj/hrmMeWMAbh6/cCcWY7XbzVaO7U0usMD8V/B6
+	jKjSEzBzXFhFXarINhgKR4FKgG4N4LcTNtEnJ16jaXk52qS8PiPzFc8yUUvn/gCdhAwKrMH3iKe
+	gI+tJVdBX1GOodwNEFqaFUPtpzcylVmcwS8RxQ8n+5jkoK11Yv3SOFzoyt3qpk6tnebexwiVP9A
+	JTB3oIBieZzwe3DpPq8qj6IdpBCoG0alQtV7kWlEEg4UIZP/GGnclzcDq/FWq+k5yLT9xvYxqpD
+	Q+6K3bBirGOPVFUxMD3lLj0Dkgt1WtUFEG7JXe/GzEdRsHPcAUqs2L1FSD/5PxBSQKf+pmwRc7F
+	OFvKJ+/kmgzsaXN5YWr3T3WTWLgESMU2e2rg/VWFH574uW9cS0otoSCQvh5oJKS3LqGNnie9e8z
+	ptsLfWuTd/mcH6HWW+PKZPB8mUKkiYgD8=
+X-Received: by 2002:a05:6a21:69b:b0:3bb:106d:77be with SMTP id adf61e73a8af0-3bd1527d66bmr8223822637.44.1782280619978;
+        Tue, 23 Jun 2026 22:56:59 -0700 (PDT)
+Received: from inhnjlux1020.ls.ege.ds ([103.28.245.138])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c91e65bab0bsm524110a12.27.2026.06.23.22.56.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jun 2026 22:56:58 -0700 (PDT)
+From: Udaya Kiran Challa <challauday369@gmail.com>
+To: tsbogend@alpha.franken.de,
+	robh@kernel.org,
 	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: skhan@linuxfoundation.org,
+	me@brighamcampbell.com,
+	linux-rtc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: socfpga: agilex72: Add initial device tree
-Date: Tue, 23 Jun 2026 22:56:44 -0700
-Message-ID: <20260624055644.7508-3-muhammad.nazim.amirul.nazle.asmade@altera.com>
-X-Mailer: git-send-email 2.43.7
-In-Reply-To: <20260624055644.7508-1-muhammad.nazim.amirul.nazle.asmade@altera.com>
-References: <20260624055644.7508-1-muhammad.nazim.amirul.nazle.asmade@altera.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0184.namprd03.prod.outlook.com
- (2603:10b6:a03:2ef::9) To SJ0PR03MB6964.namprd03.prod.outlook.com
- (2603:10b6:a03:432::18)
+	linux-kernel@vger.kernel.org,
+	Udaya Kiran Challa <challauday369@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH v2] dt-bindings: watchdog: microchip,pic32mzda-wdt: Convert to DT schema
+Date: Wed, 24 Jun 2026 11:26:48 +0530
+Message-Id: <20260624055648.127399-1-challauday369@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR03MB6964:EE_|CO1PR03MB5683:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6959e089-5af4-4321-9954-08ded1b56085
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|23010399003|1800799024|376014|18002099003|22082099003|55112099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info:
-	mrCDw73r/nVxFo3MHaP9CJMuz4Nwrh89qXYoa1kvX29Bdq1BAzFa8yEJ8V1YsshKa5fn0rc6lBS2jbU6i4mqP3KIBJUo/fcVmTJtv47YroyCKFmyz/iKrBm0J7vjYQQzdthTuypAiJs4UgWcLlT1bhFBxQp3XliASW+Z069RUXzj9mXUxLgJAwDL2gl2+oERU41lF4A6GcgLZBHl4nSZ7FalM9jKEMvHN+848qFNnLJxFTBerH047maNj5qpsnUZgNdYzVNbXT5bF+7KXOs2gpVyMUR0TJsMkbInbVWUsiaPoJit2hcfLuEjD42KY0di32uVla6JQ2Jok3/K6sh0oWJorH06dwOk9YAeiQRUSKg7c1bljeGF6GWIjMa/1xDqLFR16sP1HuNrEbxTbRHE6ecVIh4pBqLRNWPV8yl0ejhvRSDosXynCHXmfSk6iX+boMpFmDLGb1f8/hB6SP7Br1vOi9HtbfwfJWXZJCCwV1M5+scoTgp6jVnmzyI13gPvxTb94jnVQupBBD5ijcEeuk9JWHSWvhNwdPDDEPwmQeEeHEHhtgRG9nxvf4fcbpGc9ZTRVPX2R6gFxlj63HX0YlyUi6UQaY7Imnjse7ZiQWnlZWRIn6Pa/Wo31lMqVtazpqRjBK4b0A0u0tikXFw0Sr/O4VyNhbkMzte/DOcPmKA=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR03MB6964.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(18002099003)(22082099003)(55112099003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?l68Z5I4txV49iG4FL4x2WgpmmkjgMAV1F+uWo2B/xPvwBC+eLafDwtopfHTC?=
- =?us-ascii?Q?sI0+s+o3ibZklbV4/fGKVWwXAHlwdKpAGwLSQe2ORj5cg1Jm9Rw/7uixlB2r?=
- =?us-ascii?Q?VIqYTVWmrYHptWzWjD4bMXphiiDR+J2XS3JRamhLfw2xvO4rBRN/wfGU6VlC?=
- =?us-ascii?Q?CP1y1oFi1Jme23XPshIjDDcyl3Lb5XE+EZasX2NQc3DkVuQnpd6M+IzpsgAf?=
- =?us-ascii?Q?NAq+nDo9/MxHZQ/qMAqRafwMKt5+nEQIfDemjroka5sy2lFrDjCTfX1o5A5N?=
- =?us-ascii?Q?I7Yigz85qmPUxLeYL4o+XjgB98JsjpKTbL0ROwLbN6uR4yjzv6PiBcl27dQb?=
- =?us-ascii?Q?z/L6N27FqY4C0T25XmN8eRKSdUgN3cXvAqr1m+h+CD878794lRQFHxCtLo/y?=
- =?us-ascii?Q?tUzAxHqBnWG//xuwBXNsbBEyyYBibLIZ3kLngQGyxSEz3bCb9GLOaxJsX+px?=
- =?us-ascii?Q?q5mU1xXws1O+u3P2swTGmFfk1A33bPV5hb/Tho4XW75tERbm9p6rzeR/x6KI?=
- =?us-ascii?Q?q34zbA7EyRHsZgV3/HZ0gmouTpk9G+LKS4NibZXm9J+uSOPSwi/GirCrVd7i?=
- =?us-ascii?Q?t04qfTNDL8ZHjEZW0DpvLEgzxq5viCbuBZl9NRzEgHdpVzzS9Gq5M2LPxmxF?=
- =?us-ascii?Q?63IorogbFCkO7uIBU31lCj16LMrghN5/6/A/WiGQ5V8lcyxOUOLq7zlPTMDD?=
- =?us-ascii?Q?sbo5NuZfbxwOSSFi2lELDcKTEOvrbNq7xq5KyBXLj2ymJj3mctb5dbtmjLC2?=
- =?us-ascii?Q?eQhznHxKEc7Ulgc9S2Isd2J/byqd8wdwE0BxctKWuTIP7LJ2SChvREti+kjT?=
- =?us-ascii?Q?WwjMRPwl4Rkln9C1IiwmA5RhbSnF0dUFadCZvyHxu52FGkuTeMbJf4mxG+GX?=
- =?us-ascii?Q?Jkx0YFl9F5ysXpP+eBl/LFey4NahoUqslUJ2+PjV0QHcyp0iMyN6qHsHscKs?=
- =?us-ascii?Q?dqcXLYka5Ewm1M6lZ0393Rrne4fg/9lSbpjTUQe259iJF9OXqL+v7rBM5IHu?=
- =?us-ascii?Q?/S5YNJS3VSPwnbS12tzZmPY+CbFpqe8k/Yzdtb8jdg/BMOzoSGpjskEwsOz0?=
- =?us-ascii?Q?DKiMJWXrsw4CciD1WTVJ/gG+doFE3EGiAiGnXOjob8QKV7m51sBUsxr2aNl4?=
- =?us-ascii?Q?EzlOVpdVScYo7Yu2GgwiYr65yGAWEEc42QHEFlUgDV7jctDPn1eSFehJNhes?=
- =?us-ascii?Q?lNXlXQULv2XDxLDhAOxCv/NgL5KKA1zcHkDKbPFFV+lqjn8tyNDR6HcuXzmO?=
- =?us-ascii?Q?bZ53rVzUsvdJjSekO6THGOo+8vzjdmGNQ3raojYPyF9b85ffuo004F2Z4F1C?=
- =?us-ascii?Q?zvYIzxUxc2gljWiUjw/RtgsOzV5yy+SNTv5SFPEc0WPH7B39nfo3zExOP4OV?=
- =?us-ascii?Q?PK0YS/qfdQKHoZGfzCpqi9YKAWSWoe6zXz+TA5HuRf3Jsm7kiJMCYvhnETIy?=
- =?us-ascii?Q?+mf3droVrVydTHAt5boT/DM1QbYGb4V3dSF1the7VCCRjZjjoOUM9W/D+uw1?=
- =?us-ascii?Q?DxspAHibUZmn8jaE4NNC1lItHdOoGqdDw4lbV2CgysHY+GML0kVkZwP1X+hI?=
- =?us-ascii?Q?bNjfhU1v934Cak9TfnbwRUY66jGqHiE8SWx4ZMqaggc57y5P6HPXfWMToBlD?=
- =?us-ascii?Q?6vHKBtksUCsJI1QIi0whkBypv980TteHS+kzF8RmQZdxQGeXqT7srqsIZeF6?=
- =?us-ascii?Q?XyDGsrtFgBBLbGM6/ULn2AGFFiKbqFI5u/lWOMrl3Ik93DMRzcqu6EzueB4R?=
- =?us-ascii?Q?YyKSwjFbgGRvUB9NWJqJuqNfBq7BBJ+HqJz9/HJZ366sUzHJ8yKMBup8B2vy?=
-X-MS-Exchange-AntiSpam-MessageData-1: XazLxiR/7gkjPA==
-X-OriginatorOrg: altera.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6959e089-5af4-4321-9954-08ded1b56085
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR03MB6964.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 05:56:47.4387
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zcR+kms6oeHAwKVlwJrayv2Fus+xONi03ZqI430XzC+jhm7DxPAbjqMSSWWtZrst2jZC6LJZD/LdOZPgEmXkYuaCwTMY9t3s4QvsEDS2Pml349FXjfkrDwzSm0Lycu23l6JaaUj+uRRgYxfHWy9Xdw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR03MB5683
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[altera.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[altera.com:s=selector2];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:dinguyen@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315036-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[muhammad.nazim.amirul.nazle.asmade@altera.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,brighamcampbell.com,vger.kernel.org,gmail.com,oss.qualcomm.com];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[altera.com:+];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315039-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:tsbogend@alpha.franken.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:skhan@linuxfoundation.org,m:me@brighamcampbell.com,m:linux-rtc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:challauday369@gmail.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[challauday369@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[muhammad.nazim.amirul.nazle.asmade@altera.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[challauday369@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,altera.com:dkim,altera.com:email,altera.com:mid,altera.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email,franken.de:email,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2DDC86BBA7A
+X-Rspamd-Queue-Id: F0D6B6BBA83
 
-From: Nazim Amirul <muhammad.nazim.amirul.nazle.asmade@altera.com>
+Convert Microchip PIC32 Watchdog Timer devicetree binding
+from legacy text format to DT schema.
 
-Add initial device tree support for the Intel SoCFPGA Agilex72
-platform. This introduces the SoC DTSI and the SoCDK board DTS as
-the first upstream submission for this platform.
-
-The Agilex72 SoC features a heterogeneous CPU cluster with
-Cortex-A520 and Cortex-A720 cores, and includes an SMMU v3 for
-memory management.
-
-Signed-off-by: Nazim Amirul <muhammad.nazim.amirul.nazle.asmade@altera.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Udaya Kiran Challa <challauday369@gmail.com>
 ---
-Changes in v2:
-- Rename platform from agilex7-gen2 to agilex72
-- Add arm,armv8-timer node (was mistakenly removed in v1); other
-  review comments from Shashiko are either addressed or confirmed as false positives
-  consistent with existing SoCFPGA platform conventions
+Changelog:
+
+Changes since v1:
+- Fix example indentation
+- Correct example clock specifier from REF2CLK to LPRCCLK
+
+Link to v1:https://lore.kernel.org/all/20260620172354.155565-1-challauday369@gmail.com/
 ---
+ .../bindings/watchdog/microchip,pic32-wdt.txt | 18 --------
+ .../watchdog/microchip,pic32mzda-wdt.yaml     | 44 +++++++++++++++++++
+ 2 files changed, 44 insertions(+), 18 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/microchip,pic32-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/microchip,pic32mzda-wdt.yaml
 
- arch/arm64/boot/dts/intel/Makefile            |   1 +
- .../boot/dts/intel/socfpga_agilex72.dtsi      | 128 ++++++++++++++++++
- .../boot/dts/intel/socfpga_agilex72_socdk.dts |  15 ++
- 3 files changed, 144 insertions(+)
- create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex72.dtsi
- create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex72_socdk.dts
-
-diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
-index 088a03b89c99..270c70fdf084 100644
---- a/arch/arm64/boot/dts/intel/Makefile
-+++ b/arch/arm64/boot/dts/intel/Makefile
-@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
- 				socfpga_agilex5_socdk_013b.dtb \
- 				socfpga_agilex5_socdk_modular.dtb \
- 				socfpga_agilex5_socdk_nand.dtb \
-+				socfpga_agilex72_socdk.dtb \
- 				socfpga_agilex7m_socdk.dtb \
- 				socfpga_n5x_socdk.dtb
- dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex72.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex72.dtsi
+diff --git a/Documentation/devicetree/bindings/watchdog/microchip,pic32-wdt.txt b/Documentation/devicetree/bindings/watchdog/microchip,pic32-wdt.txt
+deleted file mode 100644
+index f03a29a1b323..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/microchip,pic32-wdt.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-* Microchip PIC32 Watchdog Timer
+-
+-When enabled, the watchdog peripheral can be used to reset the device if the
+-WDT is not cleared periodically in software.
+-
+-Required properties:
+-- compatible: must be "microchip,pic32mzda-wdt".
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-- clocks: phandle of source clk. Should be <&rootclk LPRCCLK>.
+-
+-Example:
+-
+-	watchdog@1f800800 {
+-		compatible = "microchip,pic32mzda-wdt";
+-		reg = <0x1f800800 0x200>;
+-		clocks = <&rootclk LPRCCLK>;
+-	};
+diff --git a/Documentation/devicetree/bindings/watchdog/microchip,pic32mzda-wdt.yaml b/Documentation/devicetree/bindings/watchdog/microchip,pic32mzda-wdt.yaml
 new file mode 100644
-index 000000000000..2a4ad4130f37
+index 000000000000..a5dd633c3e78
 --- /dev/null
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex72.dtsi
-@@ -0,0 +1,128 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2026, Altera Corporation
-+ */
-+/dts-v1/;
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
++++ b/Documentation/devicetree/bindings/watchdog/microchip,pic32mzda-wdt.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/microchip,pic32mzda-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/ {
-+	compatible = "intel,socfpga-agilex72";
-+	#address-cells = <2>;
-+	#size-cells = <2>;
++title: Microchip PIC32MZDA Watchdog Timer
 +
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
++maintainers:
++  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
 +
-+		atf_reserved: atf@80000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x80000000 0x0 0x100000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
++description:
++  The PIC32 watchdog timer can be used to reset the device if software fails
++  to periodically service the watchdog.
 +
-+		service_reserved: svcbuffer@80100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x80100000 0x0 0xf00000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+	};
++allOf:
++  - $ref: watchdog.yaml#
 +
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
++properties:
++  compatible:
++    const: microchip,pic32mzda-wdt
 +
-+		cpu0: cpu@0 {
-+			compatible = "arm,cortex-a520";
-+			device_type = "cpu";
-+			enable-method = "psci";
-+			reg = <0x0>;
-+		};
++  reg:
++    maxItems: 1
 +
-+		cpu1: cpu@100 {
-+			compatible = "arm,cortex-a520";
-+			device_type = "cpu";
-+			enable-method = "psci";
-+			reg = <0x100>;
-+		};
++  clocks:
++    maxItems: 1
 +
-+		cpu2: cpu@200 {
-+			compatible = "arm,cortex-a720";
-+			device_type = "cpu";
-+			enable-method = "psci";
-+			reg = <0x200>;
-+		};
++required:
++  - compatible
++  - reg
++  - clocks
 +
-+		cpu3: cpu@300 {
-+			compatible = "arm,cortex-a720";
-+			device_type = "cpu";
-+			enable-method = "psci";
-+			reg = <0x300>;
-+		};
-+	};
++unevaluatedProperties: false
 +
-+	psci {
-+		compatible = "arm,psci-0.2";
-+		method = "smc";
-+	};
++examples:
++  - |
++    #include <dt-bindings/clock/microchip,pic32-clock.h>
 +
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupt-parent = <&intc>;
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	intc: interrupt-controller@7000000 {
-+		compatible = "arm,gic-v3";
-+		reg = <0x0 0x7000000 0x0 0x10000>,
-+		      <0x0 0x7080000 0x0 0x100000>;
-+		ranges;
-+		#interrupt-cells = <3>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		interrupt-controller;
-+		#redistributor-regions = <1>;
-+		redistributor-stride = <0x0 0x40000>;
-+
-+		its: msi-controller@7040000 {
-+			compatible = "arm,gic-v3-its";
-+			reg = <0x0 0x7040000 0x0 0x20000>;
-+			msi-controller;
-+			#msi-cells = <1>;
-+		};
-+	};
-+
-+	soc: soc@0 {
-+		compatible = "simple-bus";
-+		ranges = <0 0 0 0xffffffff>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		device_type = "soc";
-+		interrupt-parent = <&intc>;
-+
-+		smmu: iommu@c100000 {
-+			compatible = "arm,smmu-v3";
-+			reg = <0x0c100000 0x30000>;
-+			interrupts = <GIC_SPI 134 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 129 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 132 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "eventq", "gerror", "priq";
-+			dma-coherent;
-+			#iommu-cells = <1>;
-+		};
-+
-+		ocram: sram@0 {
-+			compatible = "mmio-sram";
-+			reg = <0x00000000 0x80000>;
-+			ranges = <0 0 0x80000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex72_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex72_socdk.dts
-new file mode 100644
-index 000000000000..336e12a88cb4
---- /dev/null
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex72_socdk.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2026, Altera Corporation
-+ */
-+#include "socfpga_agilex72.dtsi"
-+
-+/ {
-+	model = "Altera SoCFPGA Agilex72 SoCDK";
-+	compatible = "intel,socfpga-agilex72-socdk", "intel,socfpga-agilex72";
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x0 0x80000000>;
-+	};
-+};
++    watchdog@1f800800 {
++        compatible = "microchip,pic32mzda-wdt";
++        reg = <0x1f800800 0x200>;
++        clocks = <&rootclk LPRCCLK>;
++    };
 -- 
-2.43.7
+2.34.1
 
 
