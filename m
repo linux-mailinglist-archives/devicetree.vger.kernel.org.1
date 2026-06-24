@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-315127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315128-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DB52Kp2nO2qGawgAu9opvQ
-	(envelope-from <devicetree+bounces-315127-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 11:47:09 +0200
+	id Svo9CLmmO2pjawgAu9opvQ
+	(envelope-from <devicetree+bounces-315128-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 11:43:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E96146BD0BA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 11:47:08 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6026BD086
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 11:43:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=MhAdwshj;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315127-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315127-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RuXE8ETs;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315128-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315128-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A8E67301B702
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:42:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 883AB300ECBE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 09:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B11D3A7D82;
-	Wed, 24 Jun 2026 09:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC0F3A7F60;
+	Wed, 24 Jun 2026 09:43:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ACE43A1A56;
-	Wed, 24 Jun 2026 09:42:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E393323815B;
+	Wed, 24 Jun 2026 09:43:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782294145; cv=none; b=SV+z1F3Poij1ln4dLSFZi8WwEMmxxmJpvFVdYQKCUNWbqLSEPUvOX/qNMSiJdJ+gZ+Zg7oTLvwn5/OtAkEb4OWP7DXyo1MxlzgqmEa7xzevIO8JUDhH1VnDTIf4iB9xVrUgdy7v1hYxTKtAFlINt0I/3yKvn21hTOSZshW33raE=
+	t=1782294197; cv=none; b=J5TY0ZIx+As+UH05cofHipNBGPiSt/sWHWhJwRM37nYbDOM3TIAt1vaO+HoUvYz/z5fgNhYeKCzycoolqBj+ROAEeYAm7TWYB+DEq+KGv6zuu9PblQxePMB/WPw5014Ba3E7UjUiMvoJqE/eSCA5JSeq1IWVGAa+4MH3ZDQ4Ac0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782294145; c=relaxed/simple;
-	bh=DwW0VX4GVqWfFeo8X4S15xeVrgJHGownLQ3IXADaDio=;
+	s=arc-20240116; t=1782294197; c=relaxed/simple;
+	bh=HAjUxuTKNJxAw4ETnQWWxQKZ93F8ZWP9wcxlRVp/9dg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cZCr5m679vVO2v/vAC4NyG8LhoJFpG9PAbHO4tfElKdzRljBx+Ku2owoUcob45Ff389Ymc7kLZjrYM7gRamGfoyUkma1/GEP0BXFf/gXD9f0rYi6Jv2OCku5hiTXslHPmL7CZkAoliSAj12RO0iRBroKA3ZoFQCHd/jDEo7wrpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MhAdwshj; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8D801F000E9;
-	Wed, 24 Jun 2026 09:42:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=R2A42hJHzPJRwiSmB6nTEfbF3Xp4PErnl9ZnQoRmTxm8cfuTGTL3fI3V9QOWqynjPgkBQF3l9bWRNJkoN79HJVpeNPyFgQqrcgFB3mpZR0LXbshAKqYjerq1dJUJMIxWx/jAm3NWeV6U+777bo7BQloqQgmD66Bd0NvbL9f5yTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RuXE8ETs; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A070A1F000E9;
+	Wed, 24 Jun 2026 09:43:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782294140;
-	bh=eIb76RKd8kDbIfaU0zouCWtia/gRhkmDPPIIJTmfYmM=;
+	s=k20260515; t=1782294196;
+	bh=CmQBt7P2Kn0Io0KbERzB0bMS4Qfw0eQOzIjOmBYJhVE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=MhAdwshjP71OUnOWtCjiWxp+k+aBs5HHl/Q7usllXn7Jagb0KTazWILP/XY2chsIL
-	 ikVKMWq3z8RCKoeefCekD+hWigt4u8z2xOym4fzPQPDn2ATlzYv7TRlVtU7s6JfZ+Q
-	 +qDfYbh7x8cVghySlGCdfqBdo1PrkglNpJW/QGhWOEunjPmY99dSGP+oFzDoYRnXIu
-	 6DyVztQLmTt5+N8/I29HzA+7siG6RZTUOJ/6CEASHg1NH9puFzZfj4W2clArt4zVRH
-	 GHWF9N5HWXNV+gho2h088RgxD47QSzRx6Imn8vCgOSARXD1rqgHZ4XNkWbgR4xYyOV
-	 s8tLy5Rmon1dQ==
-Date: Wed, 24 Jun 2026 11:42:17 +0200
+	b=RuXE8ETsiYdf/BYMy07f+nmvmgv5OeYMGl4o2FVqeg9X6ft3YXRusep8wyxM2rC+W
+	 llE2wP5bjOqvWPEpakRTgk9Drf4ZhW38ubz7DOZbIQkdi36GBVHMhxElH16M6AWWby
+	 q/UIbzfkf+qCpshD0jIGs5HkUNm7YgvNd8fBUxXDL50Xg6eQVucege54nFyRp3fNUA
+	 ZtSlG3K2mXFwNVQNTpsmiMZNOHRuyStj66JklCq6keN/zEgxJKGcpBpeFpcRj/cGoF
+	 ueM0gAXvK6VgpggwlnhUSV0VwSMGjWK2P5r5Ec8AzWctPbvYsaK1mWvFH4ChVfFqKk
+	 i5MppQzcYxCVQ==
+Date: Wed, 24 Jun 2026 11:43:12 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Leonardo Costa <leoreis.costa@gmail.com>
 Cc: laurent.pinchart@ideasonboard.com, neil.armstrong@linaro.org, 
@@ -57,10 +57,11 @@ Cc: laurent.pinchart@ideasonboard.com, neil.armstrong@linaro.org,
 	thierry.reding@gmail.com, sam@ravnborg.org, leonardo.costa@toradex.com, 
 	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/5] dt-bindings: vendor-prefixes: Add Opto Logic
-Message-ID: <20260624-immortal-hippogriff-of-promotion-ea09f4@quoll>
+Subject: Re: [PATCH 2/5] dt-bindings: display: panel-lvds: Add compatible for
+ Opto Logic SCX1001511GGC49
+Message-ID: <20260624-sociable-infrared-manatee-0e847a@quoll>
 References: <20260623195741.495734-1-leoreis.costa@gmail.com>
- <20260623195741.495734-2-leoreis.costa@gmail.com>
+ <20260623195741.495734-3-leoreis.costa@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,7 +70,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260623195741.495734-2-leoreis.costa@gmail.com>
+In-Reply-To: <20260623195741.495734-3-leoreis.costa@gmail.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -78,7 +79,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -90,7 +91,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[23];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-315127-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315128-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -101,25 +102,24 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FREEMAIL_CC(0.00)[ideasonboard.com,linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,ti.com,bp.renesas.com,ravnborg.org,toradex.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,optologic.ch:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,quoll:mid,vger.kernel.org:from_smtp,qualcomm.com:email,toradex.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E96146BD0BA
+X-Rspamd-Queue-Id: 7E6026BD086
 
-On Tue, Jun 23, 2026 at 04:57:37PM -0300, Leonardo Costa wrote:
+On Tue, Jun 23, 2026 at 04:57:38PM -0300, Leonardo Costa wrote:
 > From: Leonardo Costa <leonardo.costa@toradex.com>
 > 
-> Add vendor prefix for Opto Logic, a Swiss display solutions provider and
-> printing systems manufacturer.
+> The Opto Logic SCX1001511GGC49 is a 10.1" WXGA (1280x800) TFT LCD LVDS
+> panel.
 > 
-> Link: https://optologic.ch/
 > Signed-off-by: Leonardo Costa <leonardo.costa@toradex.com>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  Documentation/devicetree/bindings/display/panel/panel-lvds.yaml | 2 ++
 >  1 file changed, 2 insertions(+)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
