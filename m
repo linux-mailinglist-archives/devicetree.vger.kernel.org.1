@@ -1,212 +1,203 @@
-Return-Path: <devicetree+bounces-315165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315149-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GZ3uINmwO2qmbQgAu9opvQ
-	(envelope-from <devicetree+bounces-315165-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 12:26:33 +0200
+	id jSBmB8uvO2o5bQgAu9opvQ
+	(envelope-from <devicetree+bounces-315149-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 12:22:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B2D6BD58E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 12:26:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BC686BD47B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 12:22:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=Nvidia.com header.s=selector2 header.b=W4a2K8tt;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315165-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-315165-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=nvidia.com;
+	dkim=pass header.d=axiado.com header.s=selector1 header.b=RHUiZ8Z5;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315149-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315149-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C2AD53040669
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 10:25:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EDD3430037F8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jun 2026 10:21:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E1B2594B9;
-	Wed, 24 Jun 2026 10:25:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 687AC20297C;
+	Wed, 24 Jun 2026 10:21:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012033.outbound.protection.outlook.com [40.107.209.33])
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11020109.outbound.protection.outlook.com [52.101.56.109])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2ADA248F72;
-	Wed, 24 Jun 2026 10:25:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9BFA1DDC35;
+	Wed, 24 Jun 2026 10:21:18 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782296705; cv=fail; b=DH67U5q1yEeKFJEbwuuRbinXKfP4LmQ1cIYtCfqUx5Kb5V13UngjSPJxaxxnd4ve+oZCnW7yI+vNUnt+lrX6Y+TydC/pIr2FXSZtYUvo9b6QM+C3JbmyUxg1NaEVOYAh+OAKr+hFXd01Urzo60lzPo+50KuPOhH4uNwjpBXLn/Q=
+	t=1782296480; cv=fail; b=EL7x6g8YLaLoakXIunn9zTLt6Hjk6ymrH8RXAE64I1D5FJ4k+HTlXr9e5m27vvM6mjkZhtklXL9GhUw6Wf1HvLQfzMiVibJwWjaSp3WQBz6IeYIL1X/u6rxT5EcKiOleA2vpYk5QdjUr8qaMwdf1zZJGrgFuHkmFSP6e7yCwxB0=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782296705; c=relaxed/simple;
-	bh=H5JkWApYKDnXldT4KwVhsSi5iKUHPCqxJGC8X2ny9S8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qEMNV9znFi7RTb27ye1QswLouvrTt6IZH8xGQpEPfJoXpw7f9myBKPoNLG2k6fkjNqakej5pYiXNagYCs4sIuM4hRjwmo3HLtI2SYr7+KQtnd0rKPgCOiyYyz0zx8p3/wIS9llRYXoUmiQ7G/u4vtmVpMfT2q+hcLAd/omj22/k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=W4a2K8tt; arc=fail smtp.client-ip=40.107.209.33
+	s=arc-20240116; t=1782296480; c=relaxed/simple;
+	bh=6Qu41YkTVw0Aea3tf3nySdVEJwX7EwpJFgqu3j4YmWQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=I3lI7n9XqvQkOpsWCoAeZSjJP5KATdbQb9v3+9IsXxuRPpiEQNuwFsMHN1Lflxtrj11L5gS9ZvcCwdEe6jB1YoHEa3hqw3dGiSJ2De3j9HxEv/OISAoJuaC91iu4Anq4A3wsHm4bBZd3bUUG2yH59RYsODd33Pl8pyE6fUHCXVE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=RHUiZ8Z5; arc=fail smtp.client-ip=52.101.56.109
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bMfrtcI2z9RGkiMfbj1M5qy2KMKVNvSimZadGWLuWyAudW5vOMD2YdE0pleCMvbYhIICleB591REWxIqxrA51nTxCsMA2VmMaWJko5ltEuhYLUv6eKXq/u+aK47RJZXyVJcZm7RgXSbLALKPTwVZkn6gEhJK1wICBqNhJzR6B5jlYGRz+d4BBAm45L3KsdkZ26p3iJHCMaj28KTxpTsr5ySIvagHr/Ll6eKP5yE+adzfegs7szSZCiBXlWC6iwog5MAJCZ++t1YO+S28rBaljtKVIBtJqEyYbGqBMpUkNlG+d+HbPmIQt/kItQWgdSVoBletWF2243xxs04BUeZVag==
+ b=liztio+NlmqUTbfyAG5uzp1FdMdbchs3uS4RHRPzAmMo7wk8geL0BNmx2VrRWJfgTgWoHd1FAl3lJH22y1/v6RX4rh1ywxM+CD02kXnyZijAj/0RR+eE7JYbbO4ZbawLS4omqYXl0rSLd6CvY1eMe/flc6DvGpl0H1r5yvii41ugr1b4/jiFpOEcwQCN6E5njM3AXr276GJFVzQS56b72khbEj15spY493We+5CcvEhzZ8/ReI1qoyzVlvJJTSrT4cJ1x6DcESsDO0tX6GN5I080fcOLfavZ8iikCri6XUMFmMPCNerime1CwJFI6FHDSatzkj46Y+ijLNBpBiD6jw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jeSRTK/Poczz+CYtJpBOFiHy1EowJp3dR3tgxJDLunM=;
- b=SSqYiccU+Gq7QoG2yXK3Z1JsAKIBtQomsDjTi1cMfAKv1xDPQMZNfCZH3FA4KQCDrha0c9zI3gc7uBHrfdXXlgxkkgp2DFVAOtJUTFZgkZksBicwiBkmlM+ucxcXoAAfJZ9UYQAK5P2s0ms3g6KU/Q3Sct3LNGkz89oAyGlvjXYLVM0EKlg1+VGeUHS8pMHJsdBz87yYPtuuWXagzAR7grsvUy6ChEH1S7IUHdTn7kcnWr32UpEDGRAO10QPGKfSt4HX0Vr43PsOxZChkvQpl+Ms2i7ztWJ3SaoU0bnr4SDt2CGXHzrZIzw3ClK9GnrOh0L4wpBegkUvFBhNHAyzmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=bootlin.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=v45FiVOtEGPP9tEtrl6BUl+25dQD1nGsu51hjwPV8wk=;
+ b=Vrq2XW04H7d7F9b6rgpRDUY1SoaeIKYwwKIX8Rvyk+hjcyOi9qLgrsWVJN3Hjeu+hf0Oh5L6W5n4B/qpBG2anByjGkhmPSWtncr/QDEiD2f05XV3O8clC79wXYHUXWk0DOpTXp0ucx/gOibhSjYLeb6Orvqs/Jp66V5Ygh6ui3MM/eDLSkUgIrfAsnuGcWqW+BRMQS32HxuWlXPv+zpDT3KjruLhKU2WXdnQPmWuxVr2le1xZz/c8AMd0T4O+s/eCGp7fRnYatKfzkkYlIKlLvhu7p/Os+XJYlTIXoXoUBZ8MORlzs9LUMhEPHHoBcPWbQfwbW6wN+eRjxtQjW1IMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 64.62.143.114) smtp.rcpttodomain=axiado.com smtp.mailfrom=axiado.com;
+ dmarc=none action=none header.from=axiado.com; dkim=none (message not
+ signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jeSRTK/Poczz+CYtJpBOFiHy1EowJp3dR3tgxJDLunM=;
- b=W4a2K8tt1+7UoirOyAfAuogqktCnQI+ZL5Jw13D5rdy2FzUiRD99HcyJ4/FmopFIH8p0mOFO7VKOoCyotIXkyTVHcc4tOwHQZaSVMI0IZtWmSAOWkdZY9jI8ouHBU3v7PEcFsw18Jau/jnxVYKZrP+yAxuLxSrKICbqEuoEcszTakLn9wYZ2xYtQZ1gPn+DQdp/cgfnkDZZ/sbeCnNH4/v8TgZ+IAcqpkQzXBpG5OwnVn9Jj9ZWoqz/HFLsSFO+AFvt5wzbTrkbzW8W+gSx8PVx9o8JMDVKjTnPec8IneDLtDB9NjKWUu5QQCUrp2xGRqyNJudzpVKsLApk0WHSY4A==
-Received: from SA0PR11CA0141.namprd11.prod.outlook.com (2603:10b6:806:131::26)
- by DS7PR12MB6007.namprd12.prod.outlook.com (2603:10b6:8:7e::13) with
+ bh=v45FiVOtEGPP9tEtrl6BUl+25dQD1nGsu51hjwPV8wk=;
+ b=RHUiZ8Z516uC1bE9CIXWJpXXJ4FSMs0KJeBjiORYrKKQ/pGT2nvfT3u3sezWllgdUMxM/QbYHkjrsKevxtjA/NDLKedy3WSX+SjdwXpTKdsf3nfZpbR8ENv/RyLbtWXDjQoEJg3waSsK3KE8cAUwH6Jyq+/5phOqCWUx7T5KMB3hwYPrekDNBYGB8Ka7ruWw0vfi4kPDu26lOqKrTcKxdHPiNS5hjHx1XZ4bH/3wVgZq14xHXvkrNo0SBbNE7b2r6k+NftmDkwcHwGipZUXS6TvIV48hnJYzddywDLrgUZCq5HCTTO7t4SopH09KHee4obbtfGcpJRJitRdcu17LfA==
+Received: from BLAP220CA0005.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:32c::10)
+ by BY3PR18MB4594.namprd18.prod.outlook.com (2603:10b6:a03:3c1::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.15; Wed, 24 Jun
- 2026 10:24:57 +0000
-Received: from SN1PEPF000397B0.namprd05.prod.outlook.com
- (2603:10b6:806:131:cafe::63) by SA0PR11CA0141.outlook.office365.com
- (2603:10b6:806:131::26) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.13 via Frontend Transport; Wed,
- 24 Jun 2026 10:24:57 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- SN1PEPF000397B0.mail.protection.outlook.com (10.167.248.54) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Wed, 24 Jun 2026 10:24:56 +0000
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 24 Jun
- 2026 03:24:42 -0700
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail202.nvidia.com
- (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 24 Jun
- 2026 03:24:41 -0700
-Received: from build-akhilrajeev-noble-20260602.internal (10.127.8.11) by
- mail.nvidia.com (10.129.68.8) with Microsoft SMTP Server id 15.2.2562.20 via
- Frontend Transport; Wed, 24 Jun 2026 03:24:36 -0700
-From: Akhil R <akhilrajeev@nvidia.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC: Frank Li <Frank.Li@nxp.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Jon Hunter <jonathanh@nvidia.com>,
-	Thierry Reding <thierry.reding@kernel.org>, <linux-i3c@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-hwmon@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Akhil R
-	<akhilrajeev@nvidia.com>
-Subject: [PATCH v5 12/12] arm64: defconfig: Enable I3C and SPD5118 hwmon
-Date: Wed, 24 Jun 2026 10:21:06 +0000
-Message-ID: <20260624102153.1770072-13-akhilrajeev@nvidia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260624102153.1770072-1-akhilrajeev@nvidia.com>
-References: <20260624102153.1770072-1-akhilrajeev@nvidia.com>
+ 2026 10:21:14 +0000
+Received: from BN3PEPF0000B077.namprd04.prod.outlook.com
+ (2603:10b6:208:32c:cafe::66) by BLAP220CA0005.outlook.office365.com
+ (2603:10b6:208:32c::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.20 via Frontend Transport; Wed,
+ 24 Jun 2026 10:21:14 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 64.62.143.114)
+ smtp.mailfrom=axiado.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axiado.com;
+Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
+ designate 64.62.143.114 as permitted sender) receiver=protection.outlook.com;
+ client-ip=64.62.143.114; helo=smtp.corp.axiado.com;
+Received: from smtp.corp.axiado.com (64.62.143.114) by
+ BN3PEPF0000B077.mail.protection.outlook.com (10.167.243.122) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.10
+ via Frontend Transport; Wed, 24 Jun 2026 10:21:14 +0000
+Received: from [127.0.0.1] (unknown [10.4.1.181])
+	by smtp.corp.axiado.com (Postfix) with ESMTPS id 8F4784186B58;
+	Wed, 24 Jun 2026 03:18:27 -0700 (PDT)
+From: Swark Yang <syang@axiado.com>
+Subject: [PATCH 0/2] arm64: Add Axiado AX3005 SoC and EVK support
+Date: Wed, 24 Jun 2026 03:21:07 -0700
+Message-Id: <20260624-upstream-axiado-ax3005-upstream-v1-0-c05bd0bc9124@axiado.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJSvO2oC/0WNOwqAMBAFryJbG1gjfq8iFqvZ6BZ+SFQC4t0NN
+ lbDTPHeDZ6dsIc2ucHxJV62NUqWJjDOtE6sxEQHjbrEMqvUufvDMS2KgpDZInLE4s/DgE1VI2l
+ rLMSV3bGV8D10/fO8HvJtxHEAAAA=
+X-Change-ID: 20260617-upstream-axiado-ax3005-upstream-bb09780a2fdf
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Swark Yang <syang@axiado.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1496; i=syang@axiado.com;
+ h=from:subject:message-id; bh=6Qu41YkTVw0Aea3tf3nySdVEJwX7EwpJFgqu3j4YmWQ=;
+ b=owGbwMvMwCHWlWK8+EozbyzjabUkhizr9TP0pQOtt+i1a3XPTHTaYHxtn/HUx/dT10v7slQu4
+ nBoDhfqKGVhEONgkBVTZPmq8y3/ZK72vc69K0th5rAygQxh4OIUgInYHWX4w1f+5cH9iYcP1zyT
+ q/ooO5fhh/DHR6xfRE70BL7ccCizaSPD/+Lz/vwGd0Wj0pLvrfvW2rD29IaqjddWycScTFIUVZn
+ hxg0A
+X-Developer-Key: i=syang@axiado.com; a=openpgp;
+ fpr=F52CF66FC96D2BDE89BDA9758A6433A3D4830D5D
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397B0:EE_|DS7PR12MB6007:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5b41724b-d6a0-4131-79ab-08ded1dad6ba
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B077:EE_|BY3PR18MB4594:EE_
+X-MS-Office365-Filtering-Correlation-Id: 61097491-e54c-4189-f279-08ded1da5208
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|23010399003|36860700016|1800799024|82310400026|7416014|376014|11063799006|56012099006|22082099003|18002099003;
+	BCL:0;ARA:13230040|23010399003|36860700016|1800799024|82310400026|376014|3023799007|56012099006|18002099003;
 X-Microsoft-Antispam-Message-Info:
-	8HtfSAqyG/xHYICvxl4Ioz62XuILLnu5GAs73cNrmYjKzMqrKd6VzFY9C9JbupmJl/Bosmlm6jJXCpekYt9rdGh08Cp5sn/JESfvlIQAbBD/sy2Qo7YKN/2QOUWClN85QKrbFgFwU2GV55l8PFiFE2qtyWR84dwvkS1fWtAN1ZgnBV0eDJzP8vARvxL7akp6BuxLnrMXXLVTnVWYPBXsN+0V/o7TaXkZICp9P0wy/lYPa+JVzgUDkJTkB+b1ZjIFqzd5H9ed5tHJtQ/K41jeuylzKNlJJET7MVUeLR5KWQICcqr0re9eueVGD+6Iw01xEB8rpuuUoxqNgDgIGgwazMMWfm7kweVFBiNVKbIdQrBa+kOWmaPkTLg8oAzA3FdeixgoewNeqElR++OZMaEE6r39cuhnQOGzWOxr/GyExJPlcKIe0+ua3Pk6Hk/aWszmGMziZz2Ami2m4u8ajinybJfxASYWFUJkpr5iqd7b9RsENZfL1i6OtNTDKpqsuYLHyytMy27N1s7n0ZDe5DJRDwAZZvmJ+ZaTTgYcuFmHBRVBHlFV8SP6GnO3fCCkKGfAkAnPXt/nH4EyszgDGJlXsXsRn/yBVMpSjwqzkC5Ej5ajRE9wEDLY2ZwvCzi9/3Sut4XSFmfSFsMsj4AWpQWQc/0otWlUQpFric+UD4SgFDrH3jpcRmrTEJoakDkfQMcguWkxJcXMLvvEQ9iMHEjGgA==
+	vxHx+lHkUYa/5GU7ayT1eB+8TTKlH6MVdkwrXZnPF0PN202EwxEY5r8jgFCbaGOCs/Jo/26STtYmNt26dtiK4rIWnVPgtTFhlbXw9vnhVuYaliIokYAL9ldZjoGi+G4TD+vo/xEMk2iRayQjSo4z1uT/hJqZS0x4Q8wwJ3I3r3Ogvi4rm4jRkE5g+Erxf3i2IrD+WZs3g7t7zHomZ1j4RgNHDSrWwEOjqlg+npAnJaCDurjS8bFTErsOrNJOaExu0P+dVtuipf5OmVpzzNNSrYtz4uAXblg3R8RRozf/YV7s5PCxkOecp/h+o1JDwvdj73eySKnCoYGF1UtqFU13AYL1nBxVziThrXEwavuzm4xGRNU+btNCRf7uRSCppLmAq8/KseVNB7ayEHw/ENlRATxz+pYM1GQz/Z96Ad9WsUxfJGTOaMGtPCxr2yp+RYN3p3ySJGYOWEsloXhAZ+7qk1C0QneEt4PVBHZ6qrWAKtOS3JYY4nJdpLIm2ZS9dRah7DzrGOmESZuAHYokZ/hheUhb32Ax76iFEZIaddg8fj6MhwWZDMnw+P7jam0Nf28Zt2cmbGmoM92VWGrdiC7N+bb1eeHFu1To7UY826rX7PClJEewFxWC/vk5WeqqV9n9y+dMDWRpPScFjZRbvtdILXmfSxEK4h8FcLE7rsLuYEeOY9WTT2QaWaKmT4TdROHCv5nVk3LvDtwL0BSegE1ZNw==
 X-Forefront-Antispam-Report:
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(1800799024)(82310400026)(7416014)(376014)(11063799006)(56012099006)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+	CIP:64.62.143.114;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(1800799024)(82310400026)(376014)(3023799007)(56012099006)(18002099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	HBf6LLa0I4JzNxbXYeKnTmCUXEYxHIza+b6Zk5La+2bIZtwHbhE/JMGVesD2+3CFNSiVK+S/0nGRgDqj8re2wSTCE2JEITkzLtNyCnV3FWlYxdFZZ+RJK1/YGulmqoHf7r/2M+jbAIwBTIPk7YSOqsi57uLdBSivPHG4OAnnk+K+xL/hvN4fvjNPXSYsGxIsEsOtNtd0GhleLyofSFS8epi2JTwXEzOWMpo28Tj1Z6MNx8evD+8P9ZisZFiwgS+5rcfeCMElxH9vt2C49a+PoZT0xVWQfcE4BncsNoY5kBIh9PV7CAIpBeLJ647U1wY4oYB/yzidbwKdUM0Ol7Kug2+inMheJkJzPBFyMzyIw9PZO2Gl24J1MdPdrHN8ByXJJZ9IlDT94EzImQfrFlhsTSqlDiDyfiu4JhLLjk303MyW1pTOf73Sqf6Q1dIMK+Pr
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 10:24:56.7342
+	zkEQAo5UNrt1qmK+hNKo8ff4X+8WLP6UcFyIKIXBkVBi5vAYELAA8Ys/Hgcir313JUuAWq2A5NF32M0n77ItrP3K5EDQ6rCdirRlu0jUPlNvZzvt1OJCzuFYFnrwhhXVPeuHekWH/8qkFu7YqYhfGgLXo/HteaSwzip2FnULGdZopbxsWaDiy4Q3KGUNFbHC/Hn8SG5DaGueTKhlW9MiGb9jnUliOQ9LyaAhA6Ncwcn5C9U2rhk5cU5geLq3y6Jl2qJh6eK7hXhvL7VlqyboKJ19FheVNNkjaU4ik8UDR6NaWWNd6B144QXMaVY1KDfCmMb1vUKo4AfzLEGUEVdpoD5yLITQU5bPMzIdtE3Snqor3JUQYnzem8EwO4FD7gnovj8e35yPriKJ/0w/fUIWSo8AY3okfx5qWTnBpIxwF1VbIXd5f/VjNPPB+3wP5enF
+X-OriginatorOrg: axiado.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 10:21:14.0850
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b41724b-d6a0-4131-79ab-08ded1dad6ba
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61097491-e54c-4189-f279-08ded1da5208
+X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[64.62.143.114];Helo=[smtp.corp.axiado.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF000397B0.namprd05.prod.outlook.com
+	BN3PEPF0000B077.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6007
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY3PR18MB4594
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.16 / 15.00];
-	WHITELIST_DMARC(-7.00)[nvidia.com:D:+];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[axiado.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315165-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:alexandre.belloni@bootlin.com,m:Frank.Li@nxp.com,m:miquel.raynal@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux@roeck-us.net,m:p.zabel@pengutronix.de,m:jonathanh@nvidia.com,m:thierry.reding@kernel.org,m:linux-i3c@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:akhilrajeev@nvidia.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hshah@axiado.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:syang@axiado.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DMARC_NA(0.00)[axiado.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[syang@axiado.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-315149-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,nvidia.com:email,nvidia.com:mid,nvidia.com:from_mime,Nvidia.com:dkim];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[syang@axiado.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[axiado.com:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 78B2D6BD58E
+X-Rspamd-Queue-Id: 6BC686BD47B
 
-Enable I3C subsystem (I3C), Synopsys DesignWare I3C master controller
-(DW_I3C_MASTER), and SPD5118 hwmon temperature sensor (SENSORS_SPD5118)
-as modules.
+This series adds initial device tree support for the Axiado AX3005 SoC
+and its evaluation board (EVK).
 
-The NVIDIA Vera CPU uses SOCAMM LPDDR5X memory module, which contains
-SPD5118 (JEDEC JESD300) compliant temperature sensor. This sensor is
-accessible over the I3C bus through the DesignWare I3C controller present
-on the SoC. Enabling these configs allows monitoring memory module
-temperatures on platforms such as Vera Rubin. Vera is an ACPI-based
-platform and does not use device tree.
+The AX3005 uses Cadence-derived UART/I2C/I3C/GPIO and Synopsys
+DesignWare SPI IP blocks. These are already described by 
+existing bindings, so the device tree reuses the "axiado,ax3000-*",
+"cdns,*" and "snps,*" compatible strings; only a new SoC/board 
+level compatible is added.
 
-Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+Patch 1 adds the AX3005 board/SoC compatible strings to the Axiado
+platform binding.
+Patch 2 adds the AX3005 SoC dtsi, the EVK board dts, and the Makefile
+entry. The EVK enables the CPUs, timer, GPIO, UART, I2C, I3C, SPI and
+USB controllers.
+
+Validated with:
+- make CHECK_DTBS=y axiado/ax3005-evk.dtb
+- make dt_binding_check DT_SCHEMA_FILES=axiado.yaml
+- boot-tested on the AX3005 EVK (to init CLI via ramfs)
+
+Signed-off-by: Swark Yang <syang@axiado.com>
 ---
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+Swark Yang (2):
+      dt-bindings: arm: axiado: add AX3005 EVK
+      arm64: dts: axiado: Add initial support for AX3005 SoC and eval board
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index f2e6ae93e533..65d9eb56e978 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -640,6 +640,8 @@ CONFIG_I2C_UNIPHIER_F=y
- CONFIG_I2C_XILINX=m
- CONFIG_I2C_RCAR=y
- CONFIG_I2C_CROS_EC_TUNNEL=y
-+CONFIG_I3C=m
-+CONFIG_DW_I3C_MASTER=m
- CONFIG_SPI=y
- CONFIG_SPI_APPLE=m
- CONFIG_SPI_ARMADA_3700=y
-@@ -769,6 +771,7 @@ CONFIG_SENSORS_SL28CPLD=m
- CONFIG_SENSORS_AMC6821=m
- CONFIG_SENSORS_INA2XX=m
- CONFIG_SENSORS_INA3221=m
-+CONFIG_SENSORS_SPD5118=m
- CONFIG_SENSORS_TMP102=m
- CONFIG_THERMAL_GOV_POWER_ALLOCATOR=y
- CONFIG_CPU_THERMAL=y
+ Documentation/devicetree/bindings/arm/axiado.yaml |   6 +
+ arch/arm64/boot/dts/axiado/Makefile               |   1 +
+ arch/arm64/boot/dts/axiado/ax3005-evk.dts         | 327 +++++++++
+ arch/arm64/boot/dts/axiado/ax3005.dtsi            | 843 ++++++++++++++++++++++
+ 4 files changed, 1177 insertions(+)
+---
+base-commit: 2b414a95b8f7307d42173ba9e580d6d3e2bcbfce
+change-id: 20260617-upstream-axiado-ax3005-upstream-bb09780a2fdf
+
+Best regards,
 -- 
-2.43.0
+Swark Yang <syang@axiado.com>
 
 
