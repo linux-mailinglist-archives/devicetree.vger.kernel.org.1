@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-315751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315752-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Yn8zO55TPWqU1QgAu9opvQ
-	(envelope-from <devicetree+bounces-315751-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:13:18 +0200
+	id PlvxIp1TPWqT1QgAu9opvQ
+	(envelope-from <devicetree+bounces-315752-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:13:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D33A6C75FB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:13:18 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24A8B6C75F8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:13:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=I+Mif8Qp;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315751-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315751-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WP1MytgW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315752-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315752-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 644223007ADB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:11:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B3E993010923
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED7A23B14B4;
-	Thu, 25 Jun 2026 16:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F0143E717F;
+	Thu, 25 Jun 2026 16:13:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFDB034B66F;
-	Thu, 25 Jun 2026 16:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8677E3E7BA6;
+	Thu, 25 Jun 2026 16:13:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782403867; cv=none; b=fNgEvl3gfHDakrzKSuaSJae/nNi8cJnEmCMuW41GnxQB8pd/3vjOQ1j9wFKxzO8DIZCUFIhhAMfcNZlYcLnmRIaoYkaCAuwQEGEnlldsMzA/Q5fZZHRnYEQAUsjmAo7fxDn1QW8oxG9UlRY6Aty+0ZtdM/+Uj5EpeMPPApWaBHM=
+	t=1782403994; cv=none; b=ZWgyVyk7LM8JT+SI6+j6ZrsJVCTLXMEsz92MS+rV3y6rg+/7cZv8RgcaW3a0L0arT2puRkF9twhNwgIgvUsDcpg2/H9B9jUdmrmDnd5UNEUL6LXPv64Ks6GT5B/Xx41SD2qGpJ///DpNkz2nwoPeb68LixSjJk3+vH7y0k4bXh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782403867; c=relaxed/simple;
-	bh=yFCCzm/KdgVU4uFdLtWI48Ge22N0YAafJTuDiadrh7w=;
+	s=arc-20240116; t=1782403994; c=relaxed/simple;
+	bh=dLVDjtSGgBwa/acFzmAl3BQ4HgLZlUbIiGZ0Yrc1yWM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WTxtIV6ID/q9RN7mxJXwvbcJZ8aX5z6ydHb+cEB1bJeVuymw5Y1ZIWxPtVchAJyS95qydfcdPBmfU7GzTY8xjdeGV5FP+x1l/nB761UoQog4PCSS3/N36Dol+MMGL9aO2sRKk309QpG40f1U+MuF0BXDSoiUJeZ3FPL+Ag1ocfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I+Mif8Qp; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98D661F000E9;
-	Thu, 25 Jun 2026 16:11:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JbDMqRsckBqex7cZ83zvj83/9QeoW8x8DXEolonCdrLN6NRiBShUBh3m6ZW2bSl6NgVzHA4I8reqFnIz5hY6nWlHvqApMiQVolWtoiwpAlBUXVJ627mkmJMk2jZBVrExlTJNiV/wBWfLDvZSLYnANLHOE4nd//7SHYP4wU7r+tE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WP1MytgW; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 091A01F000E9;
+	Thu, 25 Jun 2026 16:13:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782403866;
-	bh=d3tRZC2ZgRPZq0bKjzedKVRAqXUxgIuTst8YQOxOnZE=;
+	s=k20260515; t=1782403988;
+	bh=dLVDjtSGgBwa/acFzmAl3BQ4HgLZlUbIiGZ0Yrc1yWM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=I+Mif8QpcJu7H88kUiq5MJGoexqeh9AFuyaHK/laUyCJZVF746ymySFQ9MzbaWWcU
-	 ar13kGdm7J5Q9Zpivk7MkpaS3GGsJQfPybL0IwaaOZrJgkhZ8cxALB1+M9rdycm03A
-	 vVsSP6HulBO6FC95X6/00lTwDPNmDxHEmD6pNxlOz7ceGbWfG1vLvI5bO37QVsQ0VQ
-	 CDHiTVOHjSHB5QNWWvzih1djqBDlN2jsiRGFSoQ1sKFRfefgJFrcNe2GCxz8rggeX5
-	 Tb4HPcfie9P1AlKYTrhWrsXd/Urv6vLNCY8W9pWJ5/i7V4fq/0nKU+jxDWEShQeKD3
-	 q4MLFZ9p0oInA==
-Date: Thu, 25 Jun 2026 17:11:02 +0100
+	b=WP1MytgW/IiR2EVMG8BQ1WahjX6htr2rv4eg+mVfvYB+9KXptQpvy6blScZcMTz7A
+	 jFRALrsSbMHGDeawJTn83C84vjZNxAKQaYKWxnnEC2n5lOQ870kDUSOsIF5wQPJnyV
+	 +4QSs3BS9BKJw1cubJ5lZL0hVaCgVsLhqKr3ZPwiZ7C7fGXh5kbeRY7ME55MmWFWMH
+	 P5fgDPi86q4Yu9zE5krQL9vzuXEoaoWkxwaCAg+9pZWl9j5gvzXqSuUOCXoexjfXm/
+	 Y337pi0HXoyp16pPmBOddS/ofqu72scJONvKGkA0qmFpso5mfg2UfIsPRl95LOY8Yb
+	 XxusdyX43r/1Q==
+Date: Thu, 25 Jun 2026 17:13:04 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Matt Coster <matt.coster@imgtec.com>
-Cc: imagination@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	Alessio Belle <alessio.belle@imgtec.com>,
-	Luigi Santivetti <luigi.santivetti@imgtec.com>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Brajesh Gupta <brajesh.gupta@imgtec.com>,
-	Alexandru Dadu <alexandru.dadu@imgtec.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: gpu: img,powervr-*: Add maintainer
- entries
-Message-ID: <20260625-pope-tassel-e18a30aa2b90@spud>
-References: <20260625-maintainer-updates-v1-0-35112b2f038e@imgtec.com>
- <20260625-maintainer-updates-v1-3-35112b2f038e@imgtec.com>
+To: cy_huang@richtek.com
+Cc: Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Yoon Dong Min <dm.youn@telechips.com>, edward_kim@richtek.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: rtq2208: Label mtp-sel-high
+ property as deprecated
+Message-ID: <20260625-buzz-commute-63cee949fedc@spud>
+References: <cover.1782353659.git.cy_huang@richtek.com>
+ <d111d67d40cc182a2ab8c6292e4ffff9c7dad9ba.1782353659.git.cy_huang@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,119 +67,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="N1XFFjAdkRCPOk67"
+	protocol="application/pgp-signature"; boundary="Zi+74F9DJcl8r4X+"
 Content-Disposition: inline
-In-Reply-To: <20260625-maintainer-updates-v1-3-35112b2f038e@imgtec.com>
+In-Reply-To: <d111d67d40cc182a2ab8c6292e4ffff9c7dad9ba.1782353659.git.cy_huang@richtek.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-6.76 / 15.00];
+X-Spamd-Result: default: False [-5.26 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315751-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:matt.coster@imgtec.com,m:imagination@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:alessio.belle@imgtec.com,m:luigi.santivetti@imgtec.com,m:frank.binns@imgtec.com,m:brajesh.gupta@imgtec.com,m:alexandru.dadu@imgtec.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-315752-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:cy_huang@richtek.com,m:broonie@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:dm.youn@telechips.com,m:edward_kim@richtek.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,telechips.com,richtek.com,vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6D33A6C75FB
+X-Rspamd-Queue-Id: 24A8B6C75F8
 
 
---N1XFFjAdkRCPOk67
+--Zi+74F9DJcl8r4X+
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 25, 2026 at 03:03:39PM +0100, Matt Coster wrote:
-> These entries already exist in MAINTAINERS, add them here so downstream
-> users of the bindings also see them.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-They only "already exist" because of the patch before this. The commit
-message should reflect that this is a functional change in
-maintainership not a correction to match a longstanding thing.
-pw-bot: changes-requested
-
-Thanks,
-Conor.
-
->=20
-> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-> ---
->  Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml | 4 +++-
->  Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml   | 4 +++-
->  2 files changed, 6 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml=
- b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> index a1f54dbae3f3..91e4ff61b394 100644
-> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> @@ -8,7 +8,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Imagination Technologies PowerVR and IMG Rogue GPUs
-> =20
->  maintainers:
-> -  - Frank Binns <frank.binns@imgtec.com>
-> +  - Matt Coster <matt.coster@imgtec.com>
-> +  - Alessio Belle <alessio.belle@imgtec.com>
-> +  - Luigi Santivetti <luigi.santivetti@imgtec.com>
-> =20
->  properties:
->    compatible:
-> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml b=
-/Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml
-> index f5898b04381c..3e7df7344430 100644
-> --- a/Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml
-> @@ -9,7 +9,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Imagination Technologies PowerVR SGX GPUs
-> =20
->  maintainers:
-> -  - Frank Binns <frank.binns@imgtec.com>
-> +  - Matt Coster <matt.coster@imgtec.com>
-> +  - Alessio Belle <alessio.belle@imgtec.com>
-> +  - Luigi Santivetti <luigi.santivetti@imgtec.com>
-> =20
->  properties:
->    compatible:
->=20
-> --=20
-> 2.48.1
->=20
->=20
-
---N1XFFjAdkRCPOk67
+--Zi+74F9DJcl8r4X+
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaj1TFgAKCRB4tDGHoIJi
-0mVaAQCX9s/y81M4FMSUEWkKFJSqoDARvNYfD25NEHpzGHUTPAD/bJrJdRpoxOA1
-i8mKP1T5GEcbx/79IgJ0bzn4vtQHVAY=
-=GeFp
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaj1TjwAKCRB4tDGHoIJi
+0gxWAQCt7oErqk6HF3XPlLuAjvw8IKW3PscWapyx1pGLjgecfwEApLHCIzYOMLln
+v4d/3jhMSEbuRL+11eGsOc5VbOk9WwM=
+=mS9m
 -----END PGP SIGNATURE-----
 
---N1XFFjAdkRCPOk67--
+--Zi+74F9DJcl8r4X+--
 
