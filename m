@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-315554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315555-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rMDRNBHoPGrduAgAu9opvQ
-	(envelope-from <devicetree+bounces-315554-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 10:34:25 +0200
+	id HE+CNsvoPGoquQgAu9opvQ
+	(envelope-from <devicetree+bounces-315555-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 10:37:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65AAC6C3DA1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 10:34:25 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7386C3E51
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 10:37:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mIpmk87a;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315554-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315554-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iQ1p8ohR;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315555-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315555-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D8A61301FF1F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 08:34:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0241530268E9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 08:36:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA60F37B41E;
-	Thu, 25 Jun 2026 08:34:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1B737F8D7;
+	Thu, 25 Jun 2026 08:36:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCAF9326927;
-	Thu, 25 Jun 2026 08:34:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21EFB326927;
+	Thu, 25 Jun 2026 08:36:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782376463; cv=none; b=KqSi8Xr9EOZpsY3w02zLyck8Rae1TIVVQFCaswH3sTA3Gi+rwn7GY9GqaANoJNQjUEoLUT+lR6HpT1BiTEflv2xZRd8pRv0bvHrO8uc4ShwbRUU/M0UWTiuxfh4YmyD4FpygDV/Xqg1/ov4+Yj5xX6q0W2SxvI7tDlafwf2171Y=
+	t=1782376574; cv=none; b=kDAnLTnRs/nc+sl9JtCnO71oey24zjX4f5fU6zs+nglkXH+cq46KvFvEFfNdE/gSKHoUeR4t+kDuu9mwSzrUsE/wgyxHHR3ilFs0bQOlYt+f7oDCCt3j17Ne2RKR+uZtQ7PQATbklb9kgD370yL+HqT+IwTG/bozZS49Nmq3AII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782376463; c=relaxed/simple;
-	bh=jkHuq+aWcDX/8nA6BwwAfyDf2vD4pL0yEgIxFBKGs4M=;
+	s=arc-20240116; t=1782376574; c=relaxed/simple;
+	bh=oD1VxhZq9697KH+qXgV3dLwh8bpLta0Equ9DdguzgIk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BHMpVWxyaZ5GyqCHG0yzeptA1fiVGirMcyzYDV4MAlXpvk+I2U7I+ZHjwvwhcL55ktqEfYiGrFdcXgxOBQFbtpNZu8DWjNR2nHmn9E3CkcjKK8H3jzBEab41910wBNny5Z04shNJU2AwitIkGkl+h3ZHG5gpD4l0Jj4gt3luD/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mIpmk87a; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A9D11F000E9;
-	Thu, 25 Jun 2026 08:34:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=i92QJWPgvHSMiOjZJvfj8sJx5kuiY1LRSfbwoo2TQ38PV7m3P1x13qBF/pi+gJHMnNWauKa7v1cJKoqIc/chBADV0DH23y8Hcp68+E+shVdHLh9CuRRSlzrIwTMdb2aAFo2MPB4mZW4WC1Bsz93NNAO/g20869MmyOlPtThGspw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iQ1p8ohR; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 654C71F00A3A;
+	Thu, 25 Jun 2026 08:36:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782376462;
-	bh=jkHuq+aWcDX/8nA6BwwAfyDf2vD4pL0yEgIxFBKGs4M=;
+	s=k20260515; t=1782376572;
+	bh=oD1VxhZq9697KH+qXgV3dLwh8bpLta0Equ9DdguzgIk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=mIpmk87a1O17ZA9QaCQ4gygtPORIjx/LUMWppLF46QEB/E92hIl9n9YoMQAGkiQTO
-	 MSIanUm5GcOG6+cjVln91x43uf38AWaelLpXm08dCRypqsY5rMywlzaM0VwL4H78aY
-	 rM5KwlB20YNllXLWoipxxXxaQQrDxkMqLxwSV63yDebROFUmPdFcrXvl5dR7p2Vgsn
-	 ugmrsEqOhmTBY9C+rrv71jgzJIE5EcOHbYyEGyEntlrVQVlMSDvrZSzODg1nZnggNq
-	 V6h9jbfWjIixxbc1103eQtnD1i1LXUjfXh6lfa2j4nVSn9Fg8APyDsPRAiLf1o0a6u
-	 d21pPb44bSRoQ==
-Date: Thu, 25 Jun 2026 10:34:18 +0200
+	b=iQ1p8ohRyKBQ7KY1xLnpE2A7CijIb0wV9ojbLnsIUVienGHT1LGanmRv+2U4ThS2V
+	 mkpwyZ3vOHiyyezR2aygJo67d+CUufQWIbtoo/1nZ1pP/kztbpYtT1s6wU13ibESF1
+	 2zl5YhqGRnoJqaQfkYe4qHegUAa/WONp9y8vLwDEcaX/Ie5YsbL5NDI8lYEbmUx9sZ
+	 ntRJelUX6p77oOSWfPqa8fwvDx2xSkCWGNsqem87UFw7P1PO6sokYqv3GeKc14uVXU
+	 6SU7+5Gvzb2Xa/+HF0uViYKJ9hVOZrR9/iiELgNhi6MUfFTA3sl2NmVCcosv1HsAg5
+	 C+pxOb10VtVtQ==
+Date: Thu, 25 Jun 2026 10:36:08 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Mikko Perttunen <mperttunen@nvidia.com>
 Cc: Thierry Reding <thierry.reding@kernel.org>, 
@@ -56,11 +56,11 @@ Cc: Thierry Reding <thierry.reding@kernel.org>,
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: display: tegra: Make non-vm registers
- optional
-Message-ID: <20260625-hospitable-antelope-of-diversity-f3456d@quoll>
+Subject: Re: [PATCH 2/4] dt-bindings: display: tegra: Add channel/syncpoint
+ range properties
+Message-ID: <20260625-poetic-heavy-vulture-7baabb@quoll>
 References: <20260622-host1x-nohv-v1-0-65bc682a617f@nvidia.com>
- <20260622-host1x-nohv-v1-1-65bc682a617f@nvidia.com>
+ <20260622-host1x-nohv-v1-2-65bc682a617f@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,7 +69,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260622-host1x-nohv-v1-1-65bc682a617f@nvidia.com>
+In-Reply-To: <20260622-host1x-nohv-v1-2-65bc682a617f@nvidia.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -78,7 +78,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -89,7 +89,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:mperttunen@nvidia.com,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-tegra@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315554-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315555-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -104,21 +104,24 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 65AAC6C3DA1
+X-Rspamd-Queue-Id: CD7386C3E51
 
-On Mon, Jun 22, 2026 at 05:22:50PM +0900, Mikko Perttunen wrote:
-> Host1x can be used without accessing the hypervisor or common
-> registers. Adjust the bindings to make them optional.
+On Mon, Jun 22, 2026 at 05:22:51PM +0900, Mikko Perttunen wrote:
+> Channels and syncpoints available may be limited when other system
 
-You still have these registers in the hardware, so it is not optional,
-not flexible. IOW, DTS represents the view of real hardware for the
-software, and that hardware still has this address space regardless if
-OS should use it or not.
+What are channels and syncpoints?
 
-Otherwise you need to provide better background here.
+> components are using them. Add properties nvidia,channels and
+> nvidia,syncpoints to limit the range of usable channels and/or
+> syncpoints.
+
+Why isn't this deducible from the compatible?
+
+Also, nvidia,channels is too broad/generic. This is not ADC, right? And
+channels is a common term in IIO. And in few other cases.
 
 Best regards,
 Krzysztof
