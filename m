@@ -1,177 +1,147 @@
-Return-Path: <devicetree+bounces-315575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315577-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HlGxJiv1PGr8uwgAu9opvQ
-	(envelope-from <devicetree+bounces-315575-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:30:19 +0200
+	id decXFwv1PGrzuwgAu9opvQ
+	(envelope-from <devicetree+bounces-315577-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:29:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D2186C43CD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:30:19 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 552CE6C43B1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:29:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=Nvidia.com header.s=selector2 header.b="ZOE/r9uU";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315575-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315575-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=nvidia.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=linaro.org header.s=google header.b=uNft3tnY;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315577-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-315577-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D19D6304D76C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 09:27:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CC7213018EB6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 09:29:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 618A6386C36;
-	Thu, 25 Jun 2026 09:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9123E31F9BA;
+	Thu, 25 Jun 2026 09:29:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011023.outbound.protection.outlook.com [52.101.52.23])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08681384CEA;
-	Thu, 25 Jun 2026 09:27:03 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782379625; cv=fail; b=BCJ0Xh49oMFkNZurZYUc4RvxfgUTDRpK2Nr5NhO2SSta5oOgjduLmMjHbBigyJK5RDWcFfZEOsYY+adT20HgOJHnNRRFgp+5eZ+qvlGx8sl8p3t6S6lsOpLWsiipecL4Q7i+1vZgfD6JEBedFQLQo350JQ+YVT5CInO7lv/Nfuk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782379625; c=relaxed/simple;
-	bh=WYspXsYu+OTTHQz46D8JnC9xquNSvlZ0gpTC9ahzl+I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hqD6OljgW800bqwvvky7KtDI9RgolfMrtnSnQ7sHIb+cxjiZXCji+Fs0tOyB2NLWB596v5DQRSzv6mpQ4yNx+++nYgOgz9E1OGIWT9vEdeusiDf8BGkXhWsavxwbaPKIFx5gJT2LURXyQdvSnNk254qBpEBoLOR8HypT+/ju2xI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=ZOE/r9uU; arc=fail smtp.client-ip=52.101.52.23
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FMTF4G16lVpi8BmVAVIBxCEEvA1XkBz/rqDgiER1Q3oTECKCaxn6Ix32CrzsjwLUiKwxquMOVdzzvlWv0q/vqq68SgZPYwud9wnMhPVlcKS4PuVJo9IXh5JM8AlOC2LU5qWNx5yfC3nhSak13x6ihrW+VhZXWrmW/94GNxa1seK0Srehwo3vhKjgoMDc+GU9uPzR3NUHmt4Cfi2/gj4Lo8RZwHjybueNbqZ3zs8vlCZtFdqtLAXHrbLeQDIWB3wvpDVskfMv/424fCHwD45zWsoY6TW5aTRcdAq8zuiY6a42E+gWv8vQIDhaWv8P0N+AR9ykACZCJMTevr/ooSwk3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WYspXsYu+OTTHQz46D8JnC9xquNSvlZ0gpTC9ahzl+I=;
- b=ZpzMDlD0/d4Mjt8tj89h5qUQnbCLZRv/Xc2e7kg+gz1hYmZjt/GS7pM59oKfNkMedRz2hlxHKbBK0wVznDJP0NVngoJvtb79qWLWazA4eLMRAsSZPNKmuiViFX9afiF5LTVcyvcQFRph3h9inukwppa0t/AzTsesgqowfeYKms1ZKyAsDpLEr/cEMxGUI/nCA3m7A0myp138Q4M35kuz81cA4Ou1JRlPyK0UA2SK00W97h9JboJK9IpUjWf3XfRoyIUfKvDVLjBgF2/dhNCQsyruHwmj5o/ZZ4SNGcwLF1D1sx2/NNSnZwd6Sred1SAKQoGO6uHVW/W/vx6qeKOXTw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WYspXsYu+OTTHQz46D8JnC9xquNSvlZ0gpTC9ahzl+I=;
- b=ZOE/r9uUGDT56D5b86+CAgKnl3gZJ4RG92QM8HYC7jxUlRCsaSLURzyv7R3A4j/+IqGGA/7yb2KccJTajU89KAiq7D65GoBCWF1HYyOFW8uZQCiC2ynG/9u31A6ntaLS7ZALjeVqwW3/rkwjP7cwE/uAw/jNI8A4iylfjdeCWpqcsI+i7Yz5CuTEk2ZsP1zLxMN0m1Ri/PcAMWn153+CPKWD2tJIuonexYxBt0Oqynj3cr944dFZ/jjgpUdQydPEVm4fDBAm5t8bWWj/T/2P/+K0mwVk0w34/YdNyigQH0RMqCsT6gA8AzDFxBMLy0vPw7NqExF+H9jyfbmShTmSQA==
-Received: from SJ2PR12MB9161.namprd12.prod.outlook.com (2603:10b6:a03:566::20)
- by SJ1PR12MB6194.namprd12.prod.outlook.com (2603:10b6:a03:458::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Thu, 25 Jun
- 2026 09:27:00 +0000
-Received: from SJ2PR12MB9161.namprd12.prod.outlook.com
- ([fe80::d9d1:8c49:a703:b017]) by SJ2PR12MB9161.namprd12.prod.outlook.com
- ([fe80::d9d1:8c49:a703:b017%6]) with mapi id 15.21.0139.018; Thu, 25 Jun 2026
- 09:27:00 +0000
-From: Mikko Perttunen <mperttunen@nvidia.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Thierry Reding <thierry.reding@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-tegra@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 2/4] dt-bindings: display: tegra: Add channel/syncpoint range
- properties
-Date: Thu, 25 Jun 2026 18:26:43 +0900
-Message-ID: <Np88My8kTE-rRphOw0a-Ew@nvidia.com>
-In-Reply-To: <20260625-poetic-heavy-vulture-7baabb@quoll>
-References:
- <20260622-host1x-nohv-v1-0-65bc682a617f@nvidia.com>
- <20260622-host1x-nohv-v1-2-65bc682a617f@nvidia.com>
- <20260625-poetic-heavy-vulture-7baabb@quoll>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-ClientProxiedBy: TY4P286CA0056.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:405:36e::8) To SJ2PR12MB9161.namprd12.prod.outlook.com
- (2603:10b6:a03:566::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B474A387345
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 09:29:12 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782379755; cv=none; b=IB0HxqXRxgy0WIZ5QcAXqgK3CY+pX9XjBfZwVjlYXb7kTuA4PqSOyPapJthwaTO3KCPquNd/sfS36lIGkRMbHc9w6hnx4SYAXOJPBd9Yrh1Fyetojah4ssUObG41Wc/RCe6oj2LRRDB7QFgWvb7FOLTbQ7q/xcpAxUaGmYIDABE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782379755; c=relaxed/simple;
+	bh=JZ6x+4HXQCf0qklTwQbSEog/fEcbxqfwTfTEQH/gfao=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lFfNUdsBcwWcSkJEDSn0331VX4tBLZE+b9vEYP11gw3Io/UVbCap/Owprpj0z+lshUsU6om5i50ElRpooyVRfVt6f5lhKfZr2B4D8vzwuw3e1kX6syMgOEe1A0RnB/dSAFtoGn2lcC3/wdAGopyRGOSU8GRoHSijtaFYtYzv8lY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uNft3tnY; arc=none smtp.client-ip=209.85.128.43
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4923fb1f095so19958265e9.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 02:29:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1782379751; x=1782984551; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1qmqlBS+NOvUVwDO1d/d5gRMpOTlf6GDJuFG270RH6Y=;
+        b=uNft3tnYw3aY47amy7tKi4aTTGB/Y8XazZ4w3BpCxLgScriZAk35TlzkOqXh2FR+aT
+         wvx8/BJaYD5BNxDHTA9g3y+VZg5vEmkOfyZcB6Hgt074RQIz64j4ZTYEkmBCwyw4/0dM
+         7Zbb9G4aTH6/H6dZt258q608/OI5H3XdnlAYBjU/7D5D1kDKlQCfPjnghPy/Yh2VXhMj
+         IS9BSpsIn2Sh0Yv82NjqYYzillwVXJe90EObqUEFeCAOj30h67t+revsZ9czI4w8wJQs
+         J8c57W29vVTCKUnCrVcnNRBgMo391xEEdjRkkU+bIxs7fnmv2l71qPhwoDnYisJWp4J+
+         B4ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782379751; x=1782984551;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1qmqlBS+NOvUVwDO1d/d5gRMpOTlf6GDJuFG270RH6Y=;
+        b=ZIq1tA8L5iGWuqt6WKH8PUOps6LziuNoouuN5LC0fTxgw5Z50cYAWEEiL/QfNtEYB2
+         ezY2mec3LVQWadgqgrcFacdar9U9BUgbu17n71kKCNqxcou7CJXFKHEN8I8i1ajjYYKP
+         fZ2KCMvlFuHVe58H5umcLPQRa4lYdMNJ/w79sco16yID2BpeszDaH3OMAbS/gk2sJ8wX
+         f91CGDpp+05maC9AS40YJ6RONRqgCVKBSBcRYEGJYWA2dyMuVWvqmdATW7LZbzfX0MWY
+         /PYStQYKWmnJX1gNUpwJQ9SQEPfTJWMGddmBLsdhHcEUIReflpR2vpnXBlfrZYzMAflF
+         DEnA==
+X-Forwarded-Encrypted: i=1; AFNElJ+yMa9jec4kU7DCbJuzf/kpI3ApziJSwhpzeyhO4y+PwMeu2pddzwtGgD+SIK1IOo3VK/ELOqVCuqWK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcjQbk/3TduCiDosB/kJwQdM3WpHyftRhwrv6CzTnDmpolXgZb
+	uVif+k/I37RTQayzOuQvlnvYHimHj0c5EAghsu+9icMO70hNWPnwQ9mNKdiaTo1W0/k=
+X-Gm-Gg: AfdE7clmvTwvBOjoBBLAJBGDkWWHJVpGjsUD/8lQTWJJntYA4lPGNOtUgt4hdXaICz3
+	moR037KHnizOCAzRvac7jIiHftAz/xBJNik2tNu17MMU4OuCZMgo0O/0V6IOSQXLrYEltOm+zgT
+	cLjBGOTYwDN0BOoAADZzLyZJGEN9FoXUNyZLw9PIbZoA/d89X8hUt3j9fq2ZVDutEDM9Bk26Xji
+	WHEX91XrNGVAqyATBoK6zPKthKkfNG2sneKhTY4Hrw5PNRo+2xDufLmXUSkFSZWHNna6GMw4/8W
+	ttuLCSuIEQZvmSgA3OEhF4BB5meammo4xg7hFLeiRSPBe4fDXHF8H7w11DnDi3yC0q9Ux20RmtQ
+	qDLidRK5dkJC6qg1zOgaJ15tpsqRC/4bStyh1ttkUAG3mECvGzer6h1PDIYc4gwUjkENQX223UN
+	8YI6VWqJqjVbkGMoUuQygm99jrldspJTy1QA==
+X-Received: by 2002:a05:600c:e557:20b0:490:a1dc:e542 with SMTP id 5b1f17b1804b1-49266862d71mr14954775e9.6.1782379751095;
+        Thu, 25 Jun 2026 02:29:11 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4926544dfaesm33846195e9.2.2026.06.25.02.29.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jun 2026 02:29:10 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v8 0/2] drm: panel: support the R63419 based dual-DSI video
+ mode Display Panels
+Date: Thu, 25 Jun 2026 11:29:06 +0200
+Message-Id: <20260625-topic-sm8650-ayaneo-pocket-s2-r63419-v8-0-8570e692143e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB9161:EE_|SJ1PR12MB6194:EE_
-X-MS-Office365-Filtering-Correlation-Id: d39e1f3e-cb13-4a92-6b6d-08ded29be8ae
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|10070799003|1800799024|23010399003|7416014|376014|366016|18002099003|22082099003|56012099006|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info:
-	kf8PoRoSlL8CtxOwwyp0i8jFMFiLSKza00FtZv4JVqHKVYw/0FK5vZJANvxuyPk5a9ciqPlhpAvkFgc8NdqfuGUbtfHgGjXomFWjYPIo2Xfn4U4W8cwCkuipj+Guwqe/OL7eQAmbWZ+vEMcjWFInb5jkqr2JITS0M4GGL0rqyvLbBVYv8uykvI17bL9fni8HIOKK8FwONTjKQ5cyHX4dDUnl2ImKfK6/WVS7WKE58gRW28/Va4L8wM3KH9rtrEdAk3t79iWeI8acPn9w1BsWH2DvR26KrSBe2M164LDO2Q+lSJ8ohe8wyqghk6NbmxZ5NUKdx+7nNH6JBZw7+HDBEdkmvgqJCM3OQGJCHps5aQUObsR6SRXG0m5Hp/MWQXBqztJLrZMODDML8stvWPIjp2hRw+UCIMF7PHzQjfbMbSu99YiyiQ3C8pY9DVmuzTqrkyHGKyb+mToQk1KnHquI3YOM6+tiUzlwAgLzMTdNXETAGuq3OH38BrKsYVCNGDwNDdBfNbVEreLz3iAH8sY0JhtuU/NyCaeZqtCxKWOo6l8DFmx8wqOBhe+IUL454BpTWZFQkUCf2N46GvzpuK+N9PzftkqGsbD+lQsHRVNOrZeqTognVc0ic2kwX6OsU+QWEMEp8XwCHFhI/Em+YTcJ8BEaVbSbo6xC4up3P2ExLYs=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB9161.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(23010399003)(7416014)(376014)(366016)(18002099003)(22082099003)(56012099006)(11063799006)(4143699003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?b3pvSi84OXhDTitENkd3ZXR0RUV0QXB1UXlWS0prMFJQMHZXckFzSUhPcVFh?=
- =?utf-8?B?b0hKMjhZWWh1ajhVMERVZ1RWYWFZUDY0Zjd5d2plVXpUTUd0ZFkvS213Uktl?=
- =?utf-8?B?WlJTK0JQM3BHcHRCNzZLTmdUTUR0QzZZSWdydTc1VXc5MnlLZ1FLU2xxMWxE?=
- =?utf-8?B?Qk40a0dPUFZDUnFRMm1Sb05JNlZFMDN4VXFXTVRqeU9RR3dkQkNnUFIvd1pk?=
- =?utf-8?B?ejRXUDZUVnpoZng2TktYTVlzZDhNUTNISkVOWkRsZXp6WmdFSWVIdDIzNzBx?=
- =?utf-8?B?aFo5akl0dmpNaFNwWXlVZW5SOWhpdmo3VnpxSXQ4RnAxZS82SmpWc29qMnUv?=
- =?utf-8?B?cWhVcThUQ1dUcy9HenJxK1FER2RHblVCVWV1Y0V3UlRmNk9GWXg0YlJhZHdY?=
- =?utf-8?B?MWlWMVZHem95STNTcGxPU2lqZWhYaWJ0ZlgvNlE5TGl1eTBUZ3M1aHBEL2Qz?=
- =?utf-8?B?Qjh5dWJzUG9mdUYyTDYrNmlWQ0N1TG8rVlduSmhZcG5sU0IxOE5WdUo5MWps?=
- =?utf-8?B?Q2tySVZ1K0JPdnpKb05YN2ZDWVU5TkZqd3BFUStSRm02YnE1ZGZmd2Fldk9B?=
- =?utf-8?B?T3hXelhRSHNUU3Z6VUxHcmF0WEZjMTl6cTlSTGQySmNkTXUvdUYzRlVZMzFw?=
- =?utf-8?B?T2lteERPQk1vVUx2MHpnTzVYbjdJdTdCL24zcGoyWWpRME16S3FaWmMvTG1R?=
- =?utf-8?B?Z2c3UHFuYk9vK1QzT2x5ekY3MFJGSkptSFAyY2VFaW1xWjd2S0F1Qkk4NTlL?=
- =?utf-8?B?R3NnYVgrQXhBT0gxZk96c0tJTEU3Uy9FRTFYQXBQaDJicytTZmNaTUZoRmR3?=
- =?utf-8?B?Mk4zTEg2MlFNeXhWRllyRVhCeFBHdlYyUktQL1pZNHJ3Rm9jbFdvbFVDdVdH?=
- =?utf-8?B?M093VzhDUDZybXlyRWlwUFdvTEkxb2ZBelJxak5pYXRGZDcyY2syMm53Q3l5?=
- =?utf-8?B?Y0w0TFgwSXdWTXVLTEV3d0ZMdXMzVkhqcmFKblFiU2RIemdJdGg0Y0k1Uzlx?=
- =?utf-8?B?dkM1NlFQQUZUdHRKMDN3VzRpQUNRUXA4ZzFUVFl0cDJVMWV1aTgzNkFob0lH?=
- =?utf-8?B?bHF1WHZINmlMcmd1R2pzL3Z0amE4NmtIa0JWZmd5dldtZFVocFZLWFc0VlRP?=
- =?utf-8?B?UWFnWlhmR0xwSkEraURxMnRGM0JkenJTRXZpOHJzOXpuemNkZDNlTzhXU0t6?=
- =?utf-8?B?Y05veFlPV3JtZ0ZmUGhuWVVZZlB1MGRPdXR2aVRreWF2dVBZVFIySjFyc3Y0?=
- =?utf-8?B?TTI3bXZ5dkZaV2FsU1Y0ZGtmT3dqRUgvNjdsQkZZVENUbzJpcXY1Zi9mOGdS?=
- =?utf-8?B?N0h1NHRtQjNPWHU3MFVYK1lQR1hWOG9ZRXJvYWF6K0JhRkk3emUyVXhGcmQr?=
- =?utf-8?B?cUZ4RnFZVzgzRkdiUjlQUCtabXNUMWtUY3RUZ2M4STZtL1pQT0c1QnZOdkl2?=
- =?utf-8?B?b1VsNlNxUUZYTVFQNHpJUHkvdkNsOWhoZDEvMHFLVFRldy81WWlVa05sQldH?=
- =?utf-8?B?OGhlMkd6OHY5Ykl1clJ6WElyNDV0bldVRFRsbzVhRmxpcmR1dHQzOTRROVBM?=
- =?utf-8?B?ODlQNjUxdW1XL3VlNFgrZzlHNEM2UmtXOE15N1V0eml2T2lSSDJvaDVPNEJM?=
- =?utf-8?B?UjFwaHU4N01LZFZtT09mcDNtbGRNK09udEpZcDJmc3h4eS9YRHFmMXdXTVJz?=
- =?utf-8?B?WjJkVHFJS3laRTA3Zm5RU1JTeGVwT3N1Zk96azYxWjVlVWxOaWVHVk1YNFZI?=
- =?utf-8?B?ZU1oaDR5R3JFRW03aFBxYkthcnppSXhkK1A2QktZd3VCYTM4aXdqVmc0d29i?=
- =?utf-8?B?SFdNZFRQOU5CU01NR1ByTVFoN21rTlE4OUpIZkpEQjVBc05FR3pCRVQ0bzBO?=
- =?utf-8?B?KzhyRFpOQ2MwM2U5RmVsZ0V4QVo0YTQ2V1ZvVlJZWEtSTjI0UUF3ci9mcy9w?=
- =?utf-8?B?TmFGTjFUNjZtNWZ4UWI2dlNESmdnZ1A0eWZnekhPTU1rb2pwRzBSSkl6TmJZ?=
- =?utf-8?B?ZHVEZ3lDZFlFa1hCRFdxQ052Vnl0ekhub3VNNTI2b1VFemlmRWloc2w0bDZw?=
- =?utf-8?B?Nmw1UzdUWThXWnpISzVYOGg3WlNLKzZwVWlVUUFGYmVzYkl5WEF3V2JqaVF6?=
- =?utf-8?B?cUtzNkpDSks4ekRjSU9lUDNSS0ZTTThRR25oWWtiMllzaU9ibVFlRmJOSWFx?=
- =?utf-8?B?ZzNqOFRnMWpWM05TZ2huck51WFJjQ0QwU0EwRU45cENvWm5CMGJ1UWJTZlRn?=
- =?utf-8?B?QlhBV0FrL3NkSUk3Mkl4T3VPSWwrOHRXeXBQbW8xUHQ1U2N3M0d1d2tOWVNk?=
- =?utf-8?B?OVZzaUFiWkFKSjBmYXlPelNmT0pqZHUxT1VlUWFBb1NvRFRmU1BQYjhwMERO?=
- =?utf-8?Q?V/on5Mwb3DrxtimPTdIuRP5ZDsh2YyOG5CgWI1JODGLZ6?=
-X-MS-Exchange-AntiSpam-MessageData-1: dN0UF3bdi47W3g==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d39e1f3e-cb13-4a92-6b6d-08ded29be8ae
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB9161.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 09:26:59.9618
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TBHFoFW7dOoEwJrKRlSCNgDuwy55ZdwX+0MWPO5IBDLxHxeaEMpKKTzGqUeJUws73dsAkrfoavT0gPBdJMQ+BQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6194
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOL0PGoC/5XQS27DIBAG4KtErEsFw8Omq96j6gLDkNCHscC1G
+ kW+e3G6iCtn4SI2I818/2gupGCOWMjT4UIyTrHE1NeifTgQd7L9EWn0tSbAQDMJLR3TEB0tn61
+ WjNqz7THRIbl3HGkBmrWQ3FBsQOoGwXcskEoNGUP8vsa8vP7W5at7Qzcu9tJximVM+XzdY+JL3
+ z8jJ04ZNS3HTtn6FX/+iL3N6THlI1kyJ1ipgu1UYVG5dZxJJTxzG1XcVMXkTlUsatDcBZAWu7B
+ R5UqtA/tUWdWuNWBsUGjuXECtVOA7VVVV71XDGBgjDNuoeq3CTlVXlWv09Vlzb9fmplZ3p9pcL
+ yA77W0rwYg/6jzPP1dCtSPvAgAA
+X-Change-ID: 20260428-topic-sm8650-ayaneo-pocket-s2-r63419-e72467e2db0f
+To: Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Doug Anderson <dianders@chromium.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Conor Dooley <conor.dooley@microchip.com>, KancyJoe <kancy2333@outlook.com>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3109;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=JZ6x+4HXQCf0qklTwQbSEog/fEcbxqfwTfTEQH/gfao=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBqPPTkU0lwl9mndInTTxFKj3+RDBDu6m+62iBo+2Vt
+ hlUQGriJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCajz05AAKCRB33NvayMhJ0d+KEA
+ DNc7WttevYyJv35sE13rnt1FLMVAaXNcwOD6iRizL406fRZlqAw/PMLkxO1cNCzpqbE5zDQ2B+MAiB
+ D2c5fT8KFdlfX2F6djJ9lu7UooNnfu+PFHlavPwdowmB8sk+q/LNOHg7QsInGdfdWBkUsyXVaqEBkU
+ 98qC1EZybMaQSxiqL7F5fmhuMt9GOO1vbtK87qQ8D/5PL3qyEswP2gaBHYbo+bvfw/68Rer8erU5qf
+ b/E27zRNAmdYOkmXgaq13OJ+gb5n3/rqOtNMvYNtN6xKoxsrBCpdK7jh4ENvj/fu86NehhUKLfl12P
+ TMkPBAjGmtxF7FTJwRwfTPYXY0wi95w1ONgtLrYAF9JYi7H7/KUTxsibp3Q1Sdm2ZjfbcKjkDCxZQi
+ E0jdsQIjFRM0PoPobzpPUbOgA/C9s67nBBwo2IMdcFgNx6782jXkBfnro/6iRA/CgCaQsCYIQCy2bU
+ zY0EWYTykKCiQ9OYB0BD1qkD8tZ9KydQGHyZs/ag0DPTKxZbkQ3TuEp3ixXA3NOB/dLI6XiQ0S+pRa
+ q0F4LG1aLGvtS62uC1gDhqR8Z+FV8GoNbd3gNTkB9ppsPUHbv14NTwibSxcbtpsHEEN75ZvWgSVcl7
+ y9SpnMGYL0AkSZOWZViH4j/PkSavgA2UJYlNBDrleAp5AYz8Co2CUUWYSk+A==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.66 / 15.00];
-	WHITELIST_DMARC(-7.00)[nvidia.com:D:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315575-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315577-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-tegra@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[mperttunen@nvidia.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,vger.kernel.org,lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:jesszhan0024@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:dianders@chromium.org,m:neil.armstrong@linaro.org,m:conor.dooley@microchip.com,m:kancy2333@outlook.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,glider.be];
+	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,oss.qualcomm.com,chromium.org,linaro.org,microchip.com,outlook.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -181,60 +151,87 @@ X-Spamd-Result: default: False [-5.66 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mperttunen@nvidia.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,nvidia.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,Nvidia.com:dkim,vger.kernel.org:from_smtp]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,msgid.link:url,linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1D2186C43CD
+X-Rspamd-Queue-Id: 552CE6C43B1
 
-On Thursday, June 25, 2026 5:36=E2=80=AFPM Krzysztof Kozlowski wrote:
-> On Mon, Jun 22, 2026 at 05:22:51PM +0900, Mikko Perttunen wrote:
-> > Channels and syncpoints available may be limited when other system
->=20
-> What are channels and syncpoints?
+Add support for the Renesas 63419 based dual-DSI video mode
+Display Panels found in the Ayaneo gaming handled devices.
 
-Very host1x-specific hardware resources. Somewhat close to GPU channels
-and semaphores / fences if you're familiar with those.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v8:
+- Use mipi_dsi_dual instead of helper
+- Revert to recommended prepare sequence from DDIC spec
+- Disable VCC after gpio up
+- Remove drm_connector_set_panel_orientation
+- Use 2 params strscpy and make sure mipi_dsi_device_info is cleared
+- Link to v7: https://patch.msgid.link/20260605-topic-sm8650-ayaneo-pocket-s2-r63419-v7-0-b84b6da84293@linaro.org
 
->=20
-> > components are using them. Add properties nvidia,channels and
-> > nvidia,syncpoints to limit the range of usable channels and/or
-> > syncpoints.
->=20
-> Why isn't this deducible from the compatible?
+Changes in v7:
+- Reverse "on" command order
+- Rebase on drm-misc-next
+- Link to v6: https://patch.msgid.link/20260522-topic-sm8650-ayaneo-pocket-s2-r63419-v6-0-16edddda9951@linaro.org
 
-When Host1x is partitioned, the hypervisor (or other software entity
-with access to the non-vm host1x register regions) can configure which
-channels and syncpoints are available to each partition arbitrarily.
+Changes in v6:
+- Get new dt bindings review from Conor
+- Properly init dsi_ctx
+- Link to v5: https://patch.msgid.link/20260521-topic-sm8650-ayaneo-pocket-s2-r63419-v5-0-dd5700299390@linaro.org
 
-How that partitioning was done is not discoverable through hardware
-directly, so we need to pass that information through device tree.
+Changes in v5:
+- Import panel-common-dual.yaml in bindings
+- Set reg as required
+- fix bindings example typo
+- Add helper to switch link in order to use single dsi_ctx to properly handle errors
+- Disable vdd supplies if vcc supplied fail to enable
+- Precise the power off sequence is recommended by the vendor spec
+- Drop passing of node to second dsi to avoid re-probing the driver twice
+- Link to v4: https://patch.msgid.link/20260519-topic-sm8650-ayaneo-pocket-s2-r63419-v4-0-b8929af5e951@linaro.org
 
->=20
-> Also, nvidia,channels is too broad/generic. This is not ADC, right? And
-> channels is a common term in IIO. And in few other cases.
+Changes in v4:
+- Moved height/width in the drm_mode, duplicated modes to use drm_connector_helper_get_modes_fixed
+- Create dsi_info on the stack with proper OF node and name passed
+- Switched to devm_drm_panel_add/devm_mipi_dsi_attach & dropped remove
+- Link to v3: https://patch.msgid.link/20260504-topic-sm8650-ayaneo-pocket-s2-r63419-v3-0-9f61cf24aebf@linaro.org
 
-It's not ADC. Yes, it's a common term in a lot of contexts. I can call
-it nvidia,host1x-channels if you prefer but that seems a bit redundant
-given the context.
+Changes in v3:
+- Added DDIC compatible as fallback
+- Added rotation in bindings example
+- Fixed bindings subject
+- Added second MODULE_AUTHOR entry and re-ordered signed-off-by order
+- Link to v2: https://patch.msgid.link/20260430-topic-sm8650-ayaneo-pocket-s2-r63419-v2-0-91ac10453d0c@linaro.org
 
->=20
-> Best regards,
-> Krzysztof
->=20
->=20
+Changes in v2:
+- Add missing rotation property into bindings
+- Fix commit message & subject typos
+- Link to v1: https://patch.msgid.link/20260428-topic-sm8650-ayaneo-pocket-s2-r63419-v1-0-981eb5ab5a51@linaro.org
 
-Thank you
-Mikko
+---
+KancyJoe (1):
+      drm: panel: add support for the Renesas R63419 based dual-DSI video mode Display Panels
 
+Neil Armstrong (1):
+      dt-bindings: display: panel: document the Renesas R63419 based dual-DSI video mode Display Panels
 
+ .../bindings/display/panel/renesas,r63419.yaml     |  98 ++++++
+ drivers/gpu/drm/panel/Kconfig                      |  12 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-renesas-r63419.c       | 350 +++++++++++++++++++++
+ 4 files changed, 461 insertions(+)
+---
+base-commit: cdeb2ccd993ed8647adbbda2c3b103aa717fd6f7
+change-id: 20260428-topic-sm8650-ayaneo-pocket-s2-r63419-e72467e2db0f
 
-
+Best regards,
+--  
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
