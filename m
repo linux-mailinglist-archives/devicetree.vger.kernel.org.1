@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-315852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315853-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4TRpCQ2lPWpb5AgAu9opvQ
-	(envelope-from <devicetree+bounces-315852-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 00:00:45 +0200
+	id AgawESqlPWpp5AgAu9opvQ
+	(envelope-from <devicetree+bounces-315853-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 00:01:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC766C8D85
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 00:00:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFD736C8D93
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 00:01:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=hC7JLwuO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315852-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315852-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="cSW/gAqE";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315853-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315853-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BAABE304F23D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 21:58:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AE86E3066C52
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 21:58:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79873378D63;
-	Thu, 25 Jun 2026 21:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB988377009;
+	Thu, 25 Jun 2026 21:58:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78D613750DC
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 21:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C05376BE2
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 21:58:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782424680; cv=none; b=mBKzApMemZu/7WJLk1B+u7rkDr0qs8JS/rI2FXGjVAedYcfELQZu4nufvyNO/MHWUjZJjaF3k6SnxQbUtR4Z3+Z9J2UaIQ2FnWmBVR7ab4OfgwlaFSDHtycXCnvKiq+uVI9D39DEw3H4vBovY9sRHYOoVxT515D5Tpg5pTUDy4o=
+	t=1782424682; cv=none; b=TrXNbC3EpjcPIGML4zXSvdY2bBi/wnLjnIewv5fhg8g94E9oE5YLVdT4OcvL0UB0c9OiPc1H63lBFuWpkT3hPnJD6apFAfMKZzX0dxM+ybQmKtyTBTR2m0Mvu5n21uGLAJ6x91MpE/wpEnZmfSjUT41+QWbkot8UUv2Zco0ezxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782424680; c=relaxed/simple;
-	bh=46jnChl2wMQ+0gZn2yaYikR3dO6y8zMPR9FWL51dirc=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=mvR3wLvixwN/o0Dn+POHj6gi7cWnKVJTEGb5jwOWVHSbClmJk9Bz9m2oGZksibbb3ix2KR+BnZaa+edKBt3Tj51QbrQRkoL3Y+tiWRfIwdG1zzd55xmgJOieWSd87P2s/AWvSOapGl6cKCEA/Gx4q373zKwKnE/8Q+aAUDLXsag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hC7JLwuO; arc=none smtp.client-ip=209.85.221.52
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-46db3c9a9e0so152986f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 14:57:58 -0700 (PDT)
+	s=arc-20240116; t=1782424682; c=relaxed/simple;
+	bh=ZuNZE8rcXpZILcOaEBKLDnkP7uQZIoXjCu/kApiOj7o=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=pESp0h06iTJWAnkaj3x6yGwod0A9MoyaSe7iHU8oA2tDwMxIKB0q6awdgpZsFrSxF9s9enQAS4la2YOavQRgqdqQmhZgrBZhj1QMF+4o5m3XEzpK4OT3Meug1p1EbKp3Ri5jM5EFZGGIR9qHpueb84FbHDXwC4utblLZ77DIssE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cSW/gAqE; arc=none smtp.client-ip=209.85.128.54
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-49241896317so1631745e9.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 14:58:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782424677; x=1783029477; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/GDPKha/I8hlDx0JY3/FoA06iUy7EbgInPO5kMOUnzM=;
-        b=hC7JLwuO0WYi0WhAb7P0MGyaaRuVutebLmfOKIz+6dNJBUhYpzKFb7Oj4HhSSt3Ht/
-         j1aQ5IZub3BZuK3dPFebnWHmpkUOMjG5m1NXqtw0pyYzU7VKLduWttzZ66d+EVq3vxUd
-         Z6f55TaH+1pwY2YtK2whgphRaya3Q9+cpfrL5DamzlS4vfQzPbW/SCZOXub/VNFxVcnd
-         XMYZyc4hftgcD6bEKLacn6r7+icwcEdDxZqOD/jJWDL3uVqxYjKVmdFwSNufDarFJWdd
-         Ab/FiQlju492ejXJ0Z3+i5AQdSat9QCaIlwzbUqa6e6Wdvrpzx7BJ00kcLcdmaKrcysy
-         b6Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782424677; x=1783029477;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20251104; t=1782424679; x=1783029479; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/GDPKha/I8hlDx0JY3/FoA06iUy7EbgInPO5kMOUnzM=;
-        b=lUqCBzS9O3FbCMFbXexH+w+lsoYR9tCc8eJ2KFhwPQCkJtCZrU2zhM4Nm3cXTIs+HW
-         og+pt85tQJwXXB48WQB7mN5qu+JjyGht+ZDl5OPmbeZ2/fio/Me8EnMQtPOh8bMav6yf
-         abzO3yU7YI/3fVA+BJd1KPIE3Nz1P8RVR4tXe+Q4SMzLYQU4RXyvkUTx9m2rYzTa/A+o
-         bxKuYPfEOcNKr9ZszlRG7IUl3TP5imZdwMXPuy3MSh9R6WYFaM3JPp4WZfzAEXKgKLY7
-         pEWcrGeyxXlRCEl3v0D31JPy4RyB7GrB5N89ISBJd1tcUIJj/1jqagUPrIkED2769wrn
-         jRMQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9SGGhjewWQi8H91ruIslRWgf8sji1PU10esHs1iRf30ht4MLwr4C9VeujroPPE1O1wnwZ71AtjPDTZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYkPRQCiHCAhdCpkOplmgIxJCm6UJ4esG61V5rRF4mn1attkoE
-	h6sR+EVaSwAIYMaI2TGulyFPwbq8TrMlqwTUkfsSIbYNJE0ajfiwinv6
-X-Gm-Gg: AfdE7clF7GLLPkOQDGfjF/xwq04saV0hbkaHISLPRKBkwEoiZ8Tf53aDYGnx7ADlOjK
-	lYoASWWce2PB1ntpbwQrtaZVtxG49pc1O1Gx2Z8G+K6Drrk/vVMTuozS8c1HpSv6Df9gcw0U2o6
-	24/fJNStrKi4xxygPSxgApAjPf6MDP3ujjQd0AIVZg9Tw2h8GhB8lq3UuWKeaQpdhBiR30BRk3J
-	jiFpAIm7TYMvsYbW/pS6TmW2CR+N17Tbo/4kUa9Tp6bs7Uq6PWqQlegJaU/30BM48xBKS2hZoAc
-	ZlfnvD62+8NQUp3nSsdgLRQ1M8UnMMI6OjTDt8HPPEQk+VBInqwtaMFOyAG134BghO72R85T7yg
-	21qLiFomXF1xpztYKz6k1QFxyvsdr1Eq90eG/nqGME3m7KTtujeIaZRQivBHjs/9rKGKQg1Mkcg
-	DmdMgLINCRa5Zc262nfkAH9kwb1j5ggK2qIFXCVcTdpJbeUBYQiAP87O50QVPHYRUuJKv9DFrdo
-	PPzj9RdxRKe
-X-Received: by 2002:a05:600c:4353:b0:492:1eed:3e67 with SMTP id 5b1f17b1804b1-49266893383mr39799415e9.26.1782424676723;
-        Thu, 25 Jun 2026 14:57:56 -0700 (PDT)
+        bh=E49Adk+rz41ma/ZabM7UStJxIriNv9H3xlG3UDtods8=;
+        b=cSW/gAqE+L/J1Jm/7Dbcb4QcLx+DZDmo5LeW1VIln2ZMRQLu8F2pxJLAuY+TvRsNmC
+         UTJBH2VDst0hEVGXCMAxE6Cj+j/ZORFQRLLYcdySYR1m7WzYrKhxVpY8iHZd7tsz117d
+         WOzWElJAcWMlKir4mnG4l2jm2hJe1KhjMLfcdcCgw143g7S6E2OkC1Aj/wCUF0/4vPrN
+         1OrZb+z1BaB9kh5UiJn9CuP6VuthtJL2P37imkXcLq3LmtFYnJDyw9pUpX17RX+Ozl3g
+         MecAy/Lrsgxyoo63m87kV6/GmSayt6OBO3nAvSsaN//0ENHZNnjd9p8FbgXbmC5RG4SA
+         9tug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782424679; x=1783029479;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=E49Adk+rz41ma/ZabM7UStJxIriNv9H3xlG3UDtods8=;
+        b=I2eoOVBwhNbOF+n1yN6zpOArwf3XkzCZBVsK5mvL96W+a+xW4qjXXh7VcUi5muRMsw
+         haOtZaeAJQJM9+jXpvUIBMoIdG0BTMh12IOpEitcapIn6DWpYam3WLKpCVRmyPyN81Ep
+         1ruMJrnBm2COQ2LWXfFWdiXq6mMrKAtZR1QTc4UQSR6dqZKZCes6RRlGxWqqfJO5AWBB
+         05yTc5AB4obTfyOczJRZaMXco2uI8Z2KBxR570S6txxE5b1b2ScaiaAFgCl+hxZC9CMM
+         eqHLX+2VnAnIz8k9bpm6QByHHRF85LeRUOo8JFmjEskfToV40Sur/03LXo24fRkib9Jm
+         qvsw==
+X-Forwarded-Encrypted: i=1; AFNElJ8m2KF9A4RFL+Jc1z03M8jSreLliQeTZ7yka+1ag0GDoVyVA2gliNdXpgg9StsGYsktRt9raDvf2Bgv@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPdFduWLCo0oVsTJ+aO1r8WVkR0RHeVP/bXk6gweYMbmrvNJ3E
+	BhYkB9oCCdOeo6ODcKzQoFYqMeO5LRtrN4Cfzocgbxz7BtMxjkEYA4y1
+X-Gm-Gg: AfdE7ck8pg4pw06KUz8vSOFP0mBbVq1HSZBiFDqPyhZMo5MhplKg58QL8tuusfMghUE
+	mavSTLUwY0fL52UPw1J6+nA2/AuifYC6yGh2Xl8pN0WhLjDGZzaTsMwZuvk1Ta0UJZwSE+5WS/Z
+	vOMu7rB2sHyFvm1bKrEGYab1JW+LGrlmBQ7FucU0CpU8a7/qKlCPuwzHvHSvkS79Hz/Z+1x3cDv
+	pjtN4eMJglVO3G7ciDs1fZhjx84ePlZKkJt2aWqDKeG/ULCwVYpJMtngcET9wN3k17MxzmNNtNK
+	IwTcGnwjvxE325snn89g/KZpOZEOlim8a3K5PCu5v5tXI4LEQWp9laMGsSbT6BzkS2dmRx78KN/
+	F3NKFm9eYqg7VN1paFQ6O8bmWbBpt+cVJhaKVRrYn7jxCaCuREN0tEXGk0rcjXsXBHPFcHCzVhg
+	5ACoWIjGyjljFjhKhvDNop1dWdU2zTv3DtXZ6AdAsfI12LB5TiMcPL+CdrF819TiwSfHwP6JJiC
+	5oiHHnft37C8oxZC9b8q7k=
+X-Received: by 2002:a05:600c:154a:b0:490:b8e6:be40 with SMTP id 5b1f17b1804b1-49266881b0dmr61623945e9.21.1782424678463;
+        Thu, 25 Jun 2026 14:57:58 -0700 (PDT)
 Received: from Ansuel-XPS24.localdomain (host-80-183-219-152.pool80183.interbusiness.it. [80.183.219.152])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-492690988e0sm27339185e9.14.2026.06.25.14.57.54
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-492690988e0sm27339185e9.14.2026.06.25.14.57.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jun 2026 14:57:56 -0700 (PDT)
+        Thu, 25 Jun 2026 14:57:58 -0700 (PDT)
 From: Christian Marangi <ansuelsmth@gmail.com>
 To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
@@ -98,10 +100,12 @@ To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	linux-mediatek@lists.infradead.org,
 	linux-clk@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 0/4] PCI: mediatek-gen3: Add 2-lanes mode support + clock
-Date: Thu, 25 Jun 2026 23:57:33 +0200
-Message-ID: <20260625215741.3253212-1-ansuelsmth@gmail.com>
+Subject: [PATCH 1/4] dt-bindings: clock: airoha: Add additional reset for PCIe PERSTOUT
+Date: Thu, 25 Jun 2026 23:57:34 +0200
+Message-ID: <20260625215741.3253212-2-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260625215741.3253212-1-ansuelsmth@gmail.com>
+References: <20260625215741.3253212-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -116,7 +120,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -124,7 +128,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[22];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315852-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315853-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS(0.00)[m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:bhelgaas@google.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ryder.lee@mediatek.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:p.zabel@pengutronix.de,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:ansuelsmth@gmail.com,m:jianjun.wang@mediatek.com,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-clk@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -140,48 +144,36 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9DC766C8D85
+X-Rspamd-Queue-Id: CFD736C8D93
 
-This small series introduce support for 2-lanes mode for Airoha AN7581
-SoC. This is needed for correctly functionality of Eagle WiFi Card
-normally attached to this SoC that require a 2-line PCIe card to
-correctly work (and give the proper performance)
+Add additional reset to control PCIe PERSTOUT reset line for each of the 3
+PCIe lines.
 
-The first 2 patch address a limitation of the PCIe implementation
-where the PERSTOUT reset were indirectly asserted and deasserted
-all at the same time (for all the 3 PCIe card) with PCIe
-enable and disable.
-The 2 patch address this and introduce correct reset to control
-reset line for the relevant PCIe line.
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+ include/dt-bindings/reset/airoha,en7581-reset.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-The last 2 patch add additional logic and support to assert
-and deassert the PERSTOUT and also apply the required configuration
-for 2-lanes mode.
-
-2-lanes mode is implemented in DT by adding the required property
-and by defining the "num-lanes" to 2.
-
-Christian Marangi (4):
-  dt-bindings: clock: airoha: Add additional reset for PCIe PERSTOUT
-  clk: en7523: add support for dedicated PCIe PERSTOUT reset
-  dt-bindings: PCI: mediatek-gen3: Split Airoha schema and document
-    2-lanes
-  PCI: mediatek-gen3: Add 2-lanes mode support for Airoha AN7581
-
- .../bindings/pci/airoha,en7581-pcie.yaml      | 251 ++++++++++++++++++
- .../bindings/pci/mediatek-pcie-gen3.yaml      |  77 +-----
- drivers/clk/clk-en7523.c                      |  27 +-
- drivers/pci/controller/pcie-mediatek-gen3.c   |  98 +++++--
- .../dt-bindings/reset/airoha,en7581-reset.h   |   4 +
- 5 files changed, 358 insertions(+), 99 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pci/airoha,en7581-pcie.yaml
-
+diff --git a/include/dt-bindings/reset/airoha,en7581-reset.h b/include/dt-bindings/reset/airoha,en7581-reset.h
+index 6544a1790b83..25e75534daa9 100644
+--- a/include/dt-bindings/reset/airoha,en7581-reset.h
++++ b/include/dt-bindings/reset/airoha,en7581-reset.h
+@@ -62,5 +62,9 @@
+ #define EN7581_CPU_TIMER_RST		50
+ #define EN7581_PCIE_HB_RST		51
+ #define EN7581_XPON_MAC_RST		52
++/* RST_PCIC */
++#define EN7581_PCIC_PERSTOUT0_RST	53
++#define EN7581_PCIC_PERSTOUT1_RST	54
++#define EN7581_PCIC_PERSTOUT2_RST	55
+ 
+ #endif /* __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_ */
 -- 
 2.53.0
 
