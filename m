@@ -1,83 +1,86 @@
-Return-Path: <devicetree+bounces-315455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315454-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pTXRNd+QPGqypQgAu9opvQ
-	(envelope-from <devicetree+bounces-315455-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 04:22:23 +0200
+	id 5fmmCK+QPGqgpQgAu9opvQ
+	(envelope-from <devicetree+bounces-315454-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 04:21:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 010E66C25CE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 04:22:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3879C6C25BB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 04:21:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=richtek.com header.s=richtek header.b=Rn9VVZht;
-	dkim=pass header.d=richtek.com header.s=richtek header.b=mKRM2q3j;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315455-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315455-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=richtek.com header.s=richtek header.b=GK2jCSfh;
+	dkim=pass header.d=richtek.com header.s=richtek header.b=JAB2YpIe;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315454-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315454-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=richtek.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2B4963063930
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 02:21:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2DFC030071F9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 02:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3881A3ACA4C;
-	Thu, 25 Jun 2026 02:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F24438333F;
+	Thu, 25 Jun 2026 02:21:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 540A6368282;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B7814F70;
 	Thu, 25 Jun 2026 02:21:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782354083; cv=none; b=aoEnkAPqV8umhSXln1nWRLM16NGeDCJrxWDojORjvn8Y5Z4V7cyVkRLibnUMH35RVvuesWa97Wm8W39S0M+8lWarNGQlWSvpCvvMDVpI7vBdALogRZmbxKzFbwPv4KQ4INmhCfO68c7+02yU+N58DDUTluxfRVrpzOxDzbW2Y8o=
+	t=1782354080; cv=none; b=AH35VKgq0zvWTZtYeIrZMCnlLhUw/OiZMLPz0+mniihmQwy5/UxdFPLM5x5qe3OAzazJGVIz4mGK+MDpz0Q22SfegkssT3rCSQE7KJxh+m946UaBRru8Urz0vrw/BQEV9L/EcHs9NurzkCMUJ2G5xd55SkWmNV4oexmw0yh0Vok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782354083; c=relaxed/simple;
-	bh=FQPp29QYeK6SH/2eMU3elbE4b+N/apy/2bHYa4tYqCk=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jKNBgl2ImlRz5H9AXVe32ieFNZudG7jfzMddtsTW0NKoJnmG0kvqFuM9W2BJYQofItFDUHxGPMFQJDLJJy3sl9rEUEOiwEvmUra4bkycYGtnKa4X4WlJmaZM2UsYEXFTrP1WQ7dG55D/D31eQiLWYXJx7uAAHnksCHT/Ub8jxUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=Rn9VVZht; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=mKRM2q3j; arc=none smtp.client-ip=220.130.44.152
+	s=arc-20240116; t=1782354080; c=relaxed/simple;
+	bh=n3FguokLKa5XF/sHoEw0fV37VwkwvZ7zE6bkX3xLzaA=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GXxGpHglI23+8XZ1Oc+/8xzTquJ5Gg3LH5w3Ei57khlV+kOkBIGFY4CVEs1wnZOM1HRBnzrsdl1QeEkCCvg8fTFqxS1NGgis+53pcAJIJm4pM6VedD/Fa1jFivKjcD8V7frPmvHqfjG6y2O3XZ0/e5eLWZZ2pyB4Cnhtwx4BEEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=GK2jCSfh; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=JAB2YpIe; arc=none smtp.client-ip=220.130.44.152
 X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
 	s=richtek; t=1782354075;
-	bh=TdkGUMn/SqX11xQxQeSmg1el+7f50A7Ug9aYI52XI5k=; l=479;
+	bh=RnKiHfQO/8/K95dyssAfJMF+vU30tPTOGITImD896ZI=; l=1077;
 	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=Rn9VVZhtB2Kzq1yqBgp265jC048GfAhYJEzW1UcyYi4ztXjlUkxOIShwslwRjoHuB
-	 vRQcjEXQI67A26DIgEdHl2aZ7zeOHULis+RaFtTnzKzIFO+LPI0KAnUJqEgLhL6JZd
-	 hC0FeYu202nWraasoCxS3+4TZG3qcgmQyOovwH+5qS5UrWjT+gy7LxYS0km71XsmIs
-	 4E4OPo1ln3cH4daGWAqKdeJR39lfrpkchJILJndR9buXXm1+oEuksd2r9F6Ceso4aU
-	 rtZr1utZXHr1p46powFAUU4kCGleDfxb4zGvx9HjDV2Ot+gDniHYeSHPSdB3poKXXS
-	 3xeWeQVU7ZHHw==
+	b=GK2jCSfhTVi7xxjKWuNQJ/6czZ3UwIWZSg510rIBqBpnFVe5hP/QpZffxkVfa4LHh
+	 0Dp9+YXgYu3WOuclV9E0c/Y14Vfy8T5/MK4xkQ3qAQp+fBo6duaCPDvbAo9tGRXh8A
+	 qR39zjebfpCauBq5hrnDcRc0VcvL1sOK5nWrk/QM+DhG+19sPIM+uV4xaPnWJ8prrs
+	 qAlBlwKkXlojQj0Xx9PS0Q1IplNA9bxI/hA7U8a6b0qrLt+n+S4REmgvOSNaXNp307
+	 vo1LdXyBFJBDz1E7RtMQ8ZQ+tMTt/8kqImXgCf1HS1/5D0gflkFqXys3uw2jkdSYiI
+	 tJabopmOTGuyA==
 Received: from 192.168.8.21
-	by mg.richtek.com with MailGates ESMTP Server V3.0(1128083:0:AUTH_RELAY)
+	by mg.richtek.com with MailGates ESMTP Server V3.0(1128086:0:AUTH_RELAY)
 	(envelope-from <prvs=163233BBEA=cy_huang@richtek.com>); Thu, 25 Jun 2026 10:21:15 +0800 (CST)
 X-MailGates: (compute_score:DELIVER,40,3)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
 	s=richtek; t=1782354074;
-	bh=TdkGUMn/SqX11xQxQeSmg1el+7f50A7Ug9aYI52XI5k=; l=479;
+	bh=RnKiHfQO/8/K95dyssAfJMF+vU30tPTOGITImD896ZI=; l=1077;
 	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=mKRM2q3j4k18wr3ayEbHK3JXLDGh2omHaAUpFcSzwIwSRE3/OpWTii9Zk/lcHdP3i
-	 L96GT0qckBiOPdJjxydGtsdYrsidwHcQoJBaHixnbWDMtBGYHRDJw6TQ31tCt60dHP
-	 oi+a3XIwFjrHnqGZGKgvr1CV9nwdRhmB7TpKBbDu4ubBjT+1rwVo9S2DrG+HU5GJ00
-	 dSzh/KylNDwk6lh8qxpiif7O/qYazsOw5v8AAb8Rb5plGi8UBMESB/T0XglQk+cvCR
-	 FTQjMwFgL/6KkVxThTTi+TtkLbXtXiKBNw/4nE+bORKA7ZEQqxKyWwqWIrbIY6AouN
-	 D44W1dvoUVNfA==
+	b=JAB2YpIeP895q8KmAx5qm2FZP5bmjOkbZ2ERNB4lp4CL2ZpF9aNyOWqMEO/xzBipJ
+	 ruyTYgbB+BaUHw9sOWOqJDzsAQAldZfdWQfaZZJqUdfIH8jVfmqr8npRGJWw+k9E0W
+	 s+h8JLjcJrsB91stOyN+DKb0QReDV3wb+zSKPK+0EJvmCW3Qob2qKRP7FKdpuSxZQX
+	 mm48IDxU/EUy42ODA5w/zC87aXSoj7e0bu3dYqV6xVaXBVI+FQpPVwzUHHAT91jIQu
+	 SiFaPYpwxozIeyNYSOW5sUi20qa1Mlr1wg47ptPY0T4BrXgCvwqm8Tt10C3TynKlWG
+	 UuK+SoSgKNaUg==
 Received: from 192.168.10.46
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(1155879:0:AUTH_RELAY)
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(1155896:0:AUTH_RELAY)
 	(envelope-from <cy_huang@richtek.com>)
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Thu, 25 Jun 2026 10:18:36 +0800 (CST)
 Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.26; Thu, 25 Jun
- 2026 10:18:35 +0800
+ 2026 10:18:36 +0800
 Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
  (192.168.10.45) with Microsoft SMTP Server id 15.2.1748.26 via Frontend
- Transport; Thu, 25 Jun 2026 10:18:35 +0800
+ Transport; Thu, 25 Jun 2026 10:18:36 +0800
 From: <cy_huang@richtek.com>
 To: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
 CC: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Liam
  Girdwood" <lgirdwood@gmail.com>, ChiYuan Huang <cy_huang@richtek.com>, "Yoon
  Dong Min" <dm.youn@telechips.com>, <edward_kim@richtek.com>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 0/2] rtq2208: Remove the unnecessary MTP_SEL property
-Date: Thu, 25 Jun 2026 10:18:30 +0800
-Message-ID: <cover.1782353659.git.cy_huang@richtek.com>
+Subject: [PATCH 1/2] regulator: dt-bindings: rtq2208: Label mtp-sel-high property as deprecated
+Date: Thu, 25 Jun 2026 10:18:31 +0800
+Message-ID: <d111d67d40cc182a2ab8c6292e4ffff9c7dad9ba.1782353659.git.cy_huang@richtek.com>
 X-Mailer: git-send-email 2.43.5
+In-Reply-To: <cover.1782353659.git.cy_huang@richtek.com>
+References: <cover.1782353659.git.cy_huang@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,11 +108,11 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[cy_huang@richtek.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS(0.00)[m:broonie@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:cy_huang@richtek.com,m:dm.youn@telechips.com,m:edward_kim@richtek.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-315455-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315454-lists,devicetree=lfdr.de];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[richtek.com:dkim,richtek.com:email,richtek.com:mid,richtek.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[cy_huang@richtek.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[richtek.com:+];
@@ -121,22 +124,37 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 010E66C25CE
+X-Rspamd-Queue-Id: 3879C6C25BB
 
 From: ChiYuan Huang <cy_huang@richtek.com>
 
-This patch series remove the 'richtek,mtp-sel-high' property usage.
+Since it can be identified by hardware register, label the unnecessary
+property 'richtek,mtp-sel-high' as deprecated.
 
-ChiYuan Huang (2):
-  regulator: dt-bindings: rtq2208: Label mtp-sel-high property as
-    deprecated
-  regualtor: rtq2208: Initiate the default MTP_SEL state by hardware
-    register
+Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+---
+ .../devicetree/bindings/regulator/richtek,rtq2208.yaml         | 3 +++
+ 1 file changed, 3 insertions(+)
 
- .../devicetree/bindings/regulator/richtek,rtq2208.yaml     | 3 +++
- drivers/regulator/rtq2208-regulator.c                      | 7 ++++++-
- 2 files changed, 9 insertions(+), 1 deletion(-)
-
+diff --git a/Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml b/Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml
+index 022c1f197364..08648916e1fb 100644
+--- a/Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml
++++ b/Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml
+@@ -42,11 +42,14 @@ properties:
+ 
+   richtek,mtp-sel-high:
+     type: boolean
++    deprecated: true
+     description:
+       vout register selection based on this boolean value.
+       false - Using DVS0 register setting to adjust vout
+       true - Using DVS1 register setting to adjust vout
+ 
++      The property is now deprecated. Will be identified by RG HW register.
++
+   regulators:
+     type: object
+     additionalProperties: false
 -- 
 2.43.0
 
