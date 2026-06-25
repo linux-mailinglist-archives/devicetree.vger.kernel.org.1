@@ -1,303 +1,324 @@
-Return-Path: <devicetree+bounces-315644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315645-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id M/9yLfMOPWr7wQgAu9opvQ
-	(envelope-from <devicetree+bounces-315644-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:20:19 +0200
+	id cskDO+sPPWoVwggAu9opvQ
+	(envelope-from <devicetree+bounces-315645-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:24:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 286766C50F8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:20:19 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 746A06C513D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:24:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="BzX/pOa4";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315644-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315644-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Ppza4FFM;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315645-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315645-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 91415301371D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:20:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7C74330297A8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:24:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B023D8116;
-	Thu, 25 Jun 2026 11:20:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BD733D9028;
+	Thu, 25 Jun 2026 11:24:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com [74.125.82.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA39A3D7D90
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 11:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AADF3D813D
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 11:24:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782386414; cv=none; b=By56fjWOzZg3vzmdvUN56hnILIvIkFd+bHi0yrCT+t8dWpfVqjjg4OSBqrzquf9ItJThaUrlFq7hXVJ93tGaFibpDaqPJ4ny0ViQE+orMg6Qcp4qwGmX4Ngtaee63ZlVXwzrE9mlxNGMkQfiL1s05/kBQTuC6BcB6W2Ahw/EcLs=
+	t=1782386664; cv=none; b=Cii2O1XUmsYCCUdrsXtnbSlHmRzP23W2S6AWrS3RJsMmfBBMyyk5IjeRcj0JM3ryuuBThFZqy/3gMvtqlKE6YOZcNTvuIB07gSInakpdY/U1v+bNda2hFeBP8decBGkSaEqf6XKmVB5ZXQu8M8Y19a6DJ3w/cr3SJ9NWCGOqg3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782386414; c=relaxed/simple;
-	bh=+Ru5MpapoPW9CEJLUVBrt4UAN1B01LK9JqzyiUJmsPg=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=rPm4R1WSmXlhz684/TldmSDLyRFJIK6qlmLrD7xzasrflbFYDtp9/lEU8QumF/w44n+tWBJqLD3n/YkFijgyQlsbNRLEOEDpCz1k4zPXKO2uzwR3lkXH32DeAbRU/FrK1FBCKJxWs2+zPDsPb+kE69p1bzG+si03Ah9F/PGEt0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BzX/pOa4; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E8EE1F000E9;
-	Thu, 25 Jun 2026 11:20:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782386409;
-	bh=YM93BSADDkTm8aQwrFk+5zuJQlCMRIyAeq6e6rfIMPo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=BzX/pOa49TAWA2o3TtkUGYA+X5gTGGtFulhx8r2/Ddcmd9p7T1X6hTo+sL7kAPOVI
-	 uFzYtqu4vThX7lrNx6C8Fd3YBFHEtwaoLXuq1+J8MhkUKWz93BJQZx7QstB2BfHVow
-	 2fNBzUiXFtOH1K6ro/TCXOls+tz1Y7flIDm+zqIilDCUJJZT9Ruo3oUZgoFgQdHBm8
-	 JidNu0LqzW0wkA/yL7Jx/otHc1j59zrYUoupj9Z5tsa++xqSBjjhqqX+wSCBS9mUDx
-	 +YT8T/l+LOmPIkolvuV2bAga4M7ZptqrAGblsslrpDjq2LUsUsvrdVxJe/9KhDszIG
-	 MkaXuske7rvTw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] iio: adc: Add Nuvoton MA35D1 EADC driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Chi-Wen Weng" <cwweng.linux@gmail.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260625110638.38438-3-cwweng.linux@gmail.com>
-References: <20260625110638.38438-1-cwweng.linux@gmail.com>
- <20260625110638.38438-3-cwweng.linux@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 25 Jun 2026 11:20:08 +0000
-Message-Id: <20260625112009.4E8EE1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782386664; c=relaxed/simple;
+	bh=z6Gw1SPw/lmw93dnDilsrhDw8RqP2rNo7ttvYQy1Rlc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Hqcgq7QNzbgx5RS4Un6XrrcNAT80NeKe6a2GM7+Epp2ifsdmaDZKWJof1fVLh205A+n15iCN7TV9BZRnBcSkrbT8L18jTEJrTMOOQ2Jk7R8clVaWSC4VIjq28VueFTTg+sU0Xc2X7m31UKDDMwU77/mP1M3EZ3ndZ29dePrRlIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ppza4FFM; arc=none smtp.client-ip=74.125.82.174
+Received: by mail-dy1-f174.google.com with SMTP id 5a478bee46e88-3078e0dcd67so3094403eec.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 04:24:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782386662; x=1782991462; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SU+MC387FWgefKqGRXg3QcxpIQf2/exgLisxfx7HExg=;
+        b=Ppza4FFMEJlyPOD8/R28Bv5PS1NuUcfhAzDGv+Xqn3IMqDGWC8UQWUJoqVOR+Uu35V
+         2hPGl7qb4I3elgGxJD6H73MSZ1t/afVPxtPKhHJnjmNvTPJCqYG6dXK01fcXIUfhcjZH
+         cAcbY/OLWBL3JOiFDh0H4ZdHVrXtI2XHHOXehVG+0pCdz+R8sg3ExR0+ktksiDT5x4tv
+         ZlCs6Mme2ASBIq+FWdRTFEmiomrDpRfDqDrYffntHyRpAJDNIRS3ZXj7m6C/LgtwoZsk
+         XYGUjMIxOjQo6jnaXotPGwDgaf+a2vujUcZnPIJjw3uUCd+COCZUmkdRimI0cYf74Q71
+         /8/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782386662; x=1782991462;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SU+MC387FWgefKqGRXg3QcxpIQf2/exgLisxfx7HExg=;
+        b=WSPUSawJAw8C7IxfA5h/GY+VL2kI+u8dxztmONc8nOfBEjV8V8lYxSoI+hdD1bArsS
+         i1cTzGYMnfjNOn9Xz3U6j4XYJ+V65nO4cBubxFE8F6v7OssiqA5U4yV9SnK7CRkhAqcy
+         CNKpCK70h3AL6OldXbuDCGbeFXck4pqk/xaU4siQwWypm8VPQLUWxf2i2QG25/IEre5a
+         kAiu5AI9qw4TKV3XIS80tCbu0Y3qEy9c942Gz5TaWmSFbb+uHHNl5UMbxqHR6qW/pW6k
+         9Hx8Xwh0erZlm+xtkL2pX5FO6CiLRBGc5+xdq9FogTqCgLGlHaoiYVdIIE7TVmzf5vCx
+         MFWw==
+X-Forwarded-Encrypted: i=1; AHgh+RoJ1oW7N0fzg1ObWtSmMo6bZdDvV8ARub7d3YrkclPnXndiVwT30JG8VoTGxeUO5nlhMDN2ldPGp5U3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGzgUDYqyNbkYmIKQbNYGVJ04VPOlCCNHJYPSKeu7+wxD7cp1/
+	qnXiCT7QGle9b/6LW6X3tJ/AqminqiDxFrYwx8MsjRF+d+Th9N34C3LnTF6e9w==
+X-Gm-Gg: AfdE7ckDdgPMXCBU2EsM2H0LHPkbHT35ceVKNZPd7Q/SzSwhLdEuDlK5y3N9KRKW6pJ
+	XssHHyhIwU1cjfO1HKZENAcwt4ZjKRYSUk7BF+Z89zcEB16ZZ8+UVSSHhPvtqcV1J18+PgoCrFG
+	Zf0C+UQUCMvy2/L2Ipi1d2+UxeVhEUpjWENxe5cY8997EVWnQpBuH7K7IHE4glqZtq0NRK3Bcyj
+	amKuYva/uooggd2Ngras/aKshOsGGwXF2B9XofdLN4BsTUbK40cGZVRZyinpcm19hANTrlkzg0s
+	n+NpGKGyKzhT9YBMaC5KANPkVX9fkuqQA+70uqnDxvEyIlciCxIvc5aqWS+pdcyJoxiev6pxub4
+	XChEffatYfKY4aCtsHTVTt8XybBOu442JD/+0SmruqkkjCItNd9EY2Ar7VdmNSCuwOKChiAB+5C
+	14nnoNcvdyxfWcwTLYkIpuIAVE29gv/IEYJw==
+X-Received: by 2002:a05:7301:e2a:b0:30c:72ab:89df with SMTP id 5a478bee46e88-30c84dc2b24mr2058486eec.29.1782386662131;
+        Thu, 25 Jun 2026 04:24:22 -0700 (PDT)
+Received: from Black-Pearl.localdomain ([49.207.56.32])
+        by smtp.googlemail.com with ESMTPSA id 5a478bee46e88-30c7c9e9214sm8357352eec.20.2026.06.25.04.24.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jun 2026 04:24:21 -0700 (PDT)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Date: Thu, 25 Jun 2026 11:24:15 +0000
+Subject: [PATCH v4] dt-bindings: pwm: st,sti-pwm: convert to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260625-st-pwm-v4-1-958d7d6bdf39@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAN4PPWoC/2XNTQ6CMBAF4KuQrq2hA4XWlfcwLsowQI38hCJqC
+ He3YEKIriYved+biTnqLTl2CibW02idbRsf4kPAsDJNSdzmPjMIIQkTEXE38O5Zc1GQySlBfyL
+ my11PhX2tQ5frN7tHdiMcFr00KuuGtn+vn0ax9P5GR8EFj6VCQKXTUJtzWRt7P2Jbs2V0hD1TG
+ wPPMNWQy1RLJPhl0Y6B3FjkmUHSWVEoJUHv2TzPHyxRJtwcAQAA
+X-Change-ID: 20260613-st-pwm-1feade6cfea3
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.15.2
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315645-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315644-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ukleinek@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lee@kernel.org,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:charan.pedumuru@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:charanpedumuru@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:cwweng.linux@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:cwwenglinux@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,nuvoton.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linaro.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 286766C50F8
+X-Rspamd-Queue-Id: 746A06C513D
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
-- [High] Multi-channel buffered scans read stale or actively converting dat=
-a for subsequent channels due to premature interrupt mapping.
-- [High] Unpaced software re-triggering loop in the buffer interrupt handle=
-r causes an IRQ storm and livelock.
-- [High] Missing sign-extension and incorrect scan type for negative differ=
-ential readings.
-- [High] Device suspend does not synchronize with ongoing direct conversion=
-s, leading to potential hardware aborts.
-- [Medium] Differential negative channel configuration from device tree is =
-accepted but completely ignored by hardware configuration.
---
+Convert STMicroelectronics STiH41x PWM/Capture controller binding
+to DT schema.
+Changes during conversion:
+- Fix compatible string from "st,pwm" to "st,sti-pwm" to match the
+  actual hardware variant naming convention used across STi bindings.
+- Drop pinctrl-names from the required list as pinctrl properties are
+  inherited and validated by the pinctrl schema.
 
-commit 71778e9c3ef41a6d7da62ab5f861733a638e3f61
-Author: Chi-Wen Weng <cwweng@nuvoton.com>
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+Changes in v4:
+- Fix compatible to "st,sti-pwm" in examples.
+- Modify subject line to point to the correct YAML file.
+- Link to v3: https://patch.msgid.link/20260625-st-pwm-v3-1-ace9bff88529@gmail.com
 
-iio: adc: Add Nuvoton MA35D1 EADC driver
+Changes in v3:
+- Fix compatible to "st,sti-pwm".
+- Drop pinctrl-names from required.
+- Modify the commit message to explain the changes made.
+- Change maintainer to "Lee Jones <lee.jones@linaro.org>".
+- Link to v2: https://patch.msgid.link/20260618-st-pwm-v2-1-c792d5795ce2@gmail.com
 
-This patch adds an IIO driver for the Nuvoton MA35D1 Enhanced ADC
-controller, supporting both direct reads and triggered buffered capture.
+Changes in v2:
+- Add the missing interrupts to the required following the old binding.
+- Modify the commit message to explain the changes made.
+- Link to v1: https://patch.msgid.link/20260613-st-pwm-v1-1-458c2c89709a@gmail.com
+---
+ Documentation/devicetree/bindings/pwm/pwm-st.txt   | 43 ----------
+ .../devicetree/bindings/pwm/st,sti-pwm.yaml        | 92 ++++++++++++++++++++++
+ 2 files changed, 92 insertions(+), 43 deletions(-)
 
-> diff --git a/drivers/iio/adc/ma35d1_eadc.c b/drivers/iio/adc/ma35d1_eadc.c
-> new file mode 100644
-> --- /dev/null
-> +++ b/drivers/iio/adc/ma35d1_eadc.c
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-st.txt b/Documentation/devicetree/bindings/pwm/pwm-st.txt
+deleted file mode 100644
+index 19fce774cafa..000000000000
+--- a/Documentation/devicetree/bindings/pwm/pwm-st.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-STMicroelectronics PWM driver bindings
+---------------------------------------
+-
+-Required parameters:
+-- compatible :		"st,pwm"
+-- #pwm-cells : 		Number of cells used to specify a PWM. First cell
+-			specifies the per-chip index of the PWM to use and the
+-			second cell is the period in nanoseconds - fixed to 2
+-			for STiH41x.
+-- reg :			Physical base address and length of the controller's
+-			registers.
+-- pinctrl-names: 	Set to "default".
+-- pinctrl-0: 		List of phandles pointing to pin configuration nodes
+-			for PWM module.
+-			For Pinctrl properties, please refer to [1].
+-- clock-names: 		Valid entries are "pwm" and/or "capture".
+-- clocks: 		phandle of the clock used by the PWM module.
+-			For Clk properties, please refer to [2].
+-- interrupts:		IRQ for the Capture device
+-
+-Optional properties:
+-- st,pwm-num-chan:	Number of available PWM channels.  Default is 0.
+-- st,capture-num-chan:	Number of available Capture channels.  Default is 0.
+-
+-[1] Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+-[2] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-Example:
+-
+-pwm1: pwm@fe510000 {
+-	compatible = "st,pwm";
+-	reg = <0xfe510000 0x68>;
+-	#pwm-cells = <2>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_pwm1_chan0_default
+-		     &pinctrl_pwm1_chan1_default
+-		     &pinctrl_pwm1_chan2_default
+-		     &pinctrl_pwm1_chan3_default>;
+-	clocks = <&clk_sysin>;
+-	clock-names = "pwm";
+-	st,pwm-num-chan = <4>;
+-	st,capture-num-chan = <2>;
+-};
+diff --git a/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml b/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml
+new file mode 100644
+index 000000000000..e980c76b54e7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/st,sti-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: STMicroelectronics STiH41x PWM/Capture controller
++
++maintainers:
++  - Lee Jones <lee.jones@linaro.org>
++
++description:
++  The STiH41x PWM controller supports both PWM output and input capture
++  functionality. It provides multiple PWM output channels for generating
++  variable duty-cycle waveforms, and multiple input capture channels for
++  measuring external signal periods and pulse widths. PWM output channels
++  and input capture channels are configured independently via
++  st,pwm-num-chan and st,capture-num-chan respectively.
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    const: st,sti-pwm
++
++  reg:
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 2
++
++  pinctrl-names:
++    const: default
++
++  clock-names:
++    items:
++      enum: [pwm, capture]
++    minItems: 1
++    maxItems: 2
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  interrupts:
++    description: IRQ line for the capture device.
++    maxItems: 1
++
++  st,pwm-num-chan:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of available PWM output channels.
++    minimum: 0
++    maximum: 4
++    default: 0
++
++  st,capture-num-chan:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of available input capture channels.
++    minimum: 0
++    maximum: 4
++    default: 0
++
++required:
++  - reg
++  - compatible
++  - "#pwm-cells"
++  - clock-names
++  - clocks
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    pwm@fe510000 {
++        compatible = "st,sti-pwm";
++        reg = <0xfe510000 0x68>;
++        interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
++        #pwm-cells = <2>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_pwm1_chan0_default
++                     &pinctrl_pwm1_chan1_default
++                     &pinctrl_pwm1_chan2_default
++                     &pinctrl_pwm1_chan3_default>;
++        clocks = <&clk_sysin>;
++        clock-names = "pwm";
++        st,pwm-num-chan = <4>;
++        st,capture-num-chan = <2>;
++    };
++...
 
-[ ... ]
+---
+base-commit: c425609d6ac4012c8bbf01ec2e10e801b1923a7b
+change-id: 20260613-st-pwm-1feade6cfea3
 
-> +static void ma35d1_adc_config_sample(struct ma35d1_adc *adc,
-> +				     unsigned int sample, unsigned int channel)
-> +{
-> +	u32 reg =3D MA35D1_EADC_SCTL(sample);
-> +
-> +	ma35d1_adc_rmw(adc, reg,
-> +		       MA35D1_EADC_SCTL_CHSEL_MASK |
-> +		       MA35D1_EADC_SCTL_TRGSEL_MASK,
-> +		       FIELD_PREP(MA35D1_EADC_SCTL_CHSEL_MASK, channel) |
-> +		       MA35D1_EADC_SCTL_TRGSEL_ADINT0);
-> +}
+Best regards,
+--  
+Charan Pedumuru <charan.pedumuru@gmail.com>
 
-[Severity: Medium]
-Will the hardware properly sample differential pairs if only the positive
-channel is configured here?
-
-The driver parses differential configurations using diff-channels and stores
-the negative channel in chan->channel2, but only the positive channel is ev=
-er
-written to the hardware CHSEL mask here.
-
-If the hardware relies on arbitrary negative channel configurations rather
-than fixed hardware pairings, the negative pin won't be sampled correctly.
-Additionally, ma35d1_adc_parse_channels() doesn't seem to validate against
-any fixed hardware pair requirements.
-
-[ ... ]
-
-> +static irqreturn_t ma35d1_adc_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf =3D p;
-> +	struct iio_dev *indio_dev =3D pf->indio_dev;
-> +	struct ma35d1_adc *adc =3D iio_priv(indio_dev);
-> +	int i;
-> +
-> +	for (i =3D 0; i < adc->scan_chancnt; i++)
-> +		adc->scan.channels[i] =3D
-> +			ma35d1_adc_read(adc, MA35D1_EADC_DAT(i)) &
-> +			MA35D1_EADC_DAT_MASK;
-
-[Severity: High]
-Will this loop read stale or actively converting data for channels 1 throug=
-h N
-during multi-channel scans?
-
-In ma35d1_adc_buffer_postenable(), the interrupt source is hardcoded to sam=
-ple
-module 0:
-
-    ma35d1_adc_rmw(adc, MA35D1_EADC_INTSRC0,
-                   MA35D1_EADC_INTSRC0_ADINT0,
-                   MA35D1_EADC_INTSRC0_ADINT0);
-
-This means the interrupt fires as soon as the first channel finishes
-converting. When this threaded handler wakes up and immediately reads all
-DAT(i) registers, the subsequent sample modules may not have completed their
-conversions yet.
-
-> +
-> +	iio_push_to_buffers_with_timestamp(indio_dev, &adc->scan, pf->timestamp=
-);
-> +	iio_trigger_notify_done(adc->trig);
-> +
-> +	ma35d1_adc_rmw(adc, MA35D1_EADC_CTL, MA35D1_EADC_CTL_ADCIEN0,
-> +		       MA35D1_EADC_CTL_ADCIEN0);
-> +	ma35d1_adc_write(adc, MA35D1_EADC_SWTRG, 1);
-
-[Severity: High]
-Does unconditionally triggering the next conversion here cause an interrupt
-storm?
-
-Since the driver starts the conversion in postenable by writing SWTRG =3D 1,
-and then unconditionally restarts it immediately at the end of the handler,
-this creates a 0-delay free-running loop without any hardware timer or
-pacing mechanism. This can livelock the system by flooding the CPU with
-interrupts as fast as the ADC converts.
-
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int ma35d1_adc_read_conversion(struct iio_dev *indio_dev,
-> +				      const struct iio_chan_spec *chan,
-> +				      int *val)
-> +{
-
-[ ... ]
-
-> +	timeout =3D wait_for_completion_interruptible_timeout(&adc->completion,
-> +							    MA35D1_EADC_TIMEOUT);
-> +	ma35d1_adc_disable_irq(adc);
-> +
-> +	if (timeout < 0)
-> +		return timeout;
-> +	if (!timeout)
-> +		return -ETIMEDOUT;
-> +
-> +	*val =3D ma35d1_adc_read(adc, MA35D1_EADC_DAT(0)) & MA35D1_EADC_DAT_MAS=
-K;
-
-[Severity: High]
-Will this return massive positive values for negative differential readings?
-
-Differential channels return two's complement values. Without using
-sign_extend32() before assigning to the 32-bit *val, negative voltage
-differences will be incorrectly returned to userspace as large positive
-integers instead of signed values.
-
-[ ... ]
-
-> +static void ma35d1_adc_init_channel(struct ma35d1_adc *adc,
-> +				    struct iio_chan_spec *chan, u32 vinp,
-> +				    u32 vinn, int scan_index, bool differential)
-> +{
-
-[ ... ]
-
-> +	chan->info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW);
-> +	chan->scan_type.sign =3D 'u';
-
-[Severity: High]
-Should differential channels be marked as signed instead of unsigned?
-
-When differential is true, this forces the scan type sign to 'u', which
-incorrectly informs the IIO subsystem that the differential data is unsigned
-instead of two's complement.
-
-[ ... ]
-
-> +static int ma35d1_adc_suspend(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev =3D dev_get_drvdata(dev);
-> +	struct ma35d1_adc *adc =3D iio_priv(indio_dev);
-> +
-> +	if (iio_buffer_enabled(indio_dev))
-> +		return -EBUSY;
-> +
-> +	ma35d1_adc_hw_disable(adc);
-> +	clk_disable_unprepare(adc->clk);
-
-[Severity: High]
-Can this race with active direct conversions and cause a bus fault?
-
-ma35d1_adc_suspend() disables the peripheral clock without acquiring
-adc->lock or checking iio_device_claim_direct_mode().
-
-If a concurrent direct read is waiting in ma35d1_adc_read_conversion():
-
-    timeout =3D wait_for_completion_interruptible_timeout(&adc->completion,
-                                                        MA35D1_EADC_TIMEOUT=
-);
-    ma35d1_adc_disable_irq(adc);
-
-and suspend disables the clock, the wait may time out or be interrupted.
-Accessing the ADC registers immediately afterward in ma35d1_adc_disable_irq=
-()
-with the clock disabled could result in a synchronous external abort.
-
-> +
-> +	return 0;
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625110638.3843=
-8-1-cwweng.linux@gmail.com?part=3D2
 
