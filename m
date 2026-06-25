@@ -1,331 +1,187 @@
-Return-Path: <devicetree+bounces-315743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315745-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BjYZAuBRPWoK1QgAu9opvQ
-	(envelope-from <devicetree+bounces-315743-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:05:52 +0200
+	id jXCtGwxSPWoa1QgAu9opvQ
+	(envelope-from <devicetree+bounces-315745-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:06:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94C376C74AA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26FD46C74E7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:06:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Nbb1m7RR;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315743-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315743-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Irtaw5nb;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315745-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315745-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 74294309A674
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:04:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6687E3060798
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFDBB348C7C;
-	Thu, 25 Jun 2026 16:03:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2838A3DB62D;
+	Thu, 25 Jun 2026 16:05:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55E933DE44C;
-	Thu, 25 Jun 2026 16:03:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C71A13A1A3B
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 16:05:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782403435; cv=none; b=kHrm64xwURc+B6hshzb1fR5SH7T8L1S/AjiFjLjn8FvY8DTE55zpx7G4vSyDSyzPsqeif4532Y61YANbwY94NiTrLPNP8viyHNWpNKBu0Rdlwdnds/rzOWJ8+6W3FN8LEsoEl2smF9Kwr/pb22yoD2iFWwrm8rfArA/7hpgd+us=
+	t=1782403509; cv=none; b=l7YAxTxw2M8v409vWm4RkdaSdF3Bk5hxBUEcr8Y45iFNbGi9GYlyaBMDpE+otacXz/ciFwcv99vJyqXnntUdo7CPDnsw3qwssb53YAKRU2ERyIUYDSL/zcphENOisszKWK+IpPMlJ+upEzSVWc38SnSNiwJ6NN0ZHkCtFV6bGEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782403435; c=relaxed/simple;
-	bh=0kBIPaYcVTPtLsKzP7y9AEPSyWpwTPiPVrljFMMzzpg=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=A4blbif8gUyCxCUjqBAp515oPW9ksTqIPLPRkrNYZZpNhNltLn0BXzTbff0HTPpjIbwNJoffRcciP9Wh4BXKRfuzwOc/uzbx/cTD33ypNfG1tdyIqS1xpGCQyUeloUmyXYBXEYllr5KmzTybA0kQfReSccZCHW9QqQouinP5lVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nbb1m7RR; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D00FF1F000E9;
-	Thu, 25 Jun 2026 16:03:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782403429;
-	bh=ekQv0KO6FNssdkODIRevoRI79j6ADqNsmkhkyh1hNsI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Nbb1m7RR9ORs8Jolk/mu+ZronZHKYwOgNm+dO9hidWhsBvhp4R13helXtfvpPaibg
-	 FngLarCPanXaLwmjADmi6JHf6C5BuaW30n7B0fY/RphIccCbzvvY8sixknNFftqq1q
-	 kZ7hy+6bstq5A4bF6CFLOZ3G51wi9YJf0Bm1XsGsoSu/GgoGZJCpJmmjJ46VMeV4k4
-	 kcES8S9OpZj4jNjbvZT3VgtLN5Xe33WwudbM0pPoz195cXQOk6tlVyzhQj6zRDkaLW
-	 jxlVlCaj1RcrZgcPOtwp0QjBxvoKdHa7EoqMFrD9ARWhm1Aql54SOkiApcP96AoMfM
-	 yCNhPdotrR09Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v14 1/5] docs: driver-api: gpio: rpmsg gpio driver over
- rpmsg bus
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Shenwei Wang" <shenwei.wang@oss.nxp.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev
-In-Reply-To: <20260625155432.815185-2-shenwei.wang@oss.nxp.com>
-References: <20260625155432.815185-1-shenwei.wang@oss.nxp.com>
- <20260625155432.815185-2-shenwei.wang@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 25 Jun 2026 16:03:47 +0000
-Message-Id: <20260625160348.D00FF1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782403509; c=relaxed/simple;
+	bh=f5C4+Bt5ugEiy2LVyokcq17w8vPsIll+88We6QbmemE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uaMpYMEaCEnJSKiXYzNmX/4ktpiTbeHLriBOgxNgdCjZtN8Ss60axdyZGj0CjCG/VH3TB/iZYCRlBl1v1xIxRQHZp1htmM4JDU9NY3bzbhuCICMm7SQ4q5OQ8COyWl32iOLTV7YQrg+Oa29VscDeY1d8SaxnZ5x6ZQisenF0y4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Irtaw5nb; arc=none smtp.client-ip=209.85.221.42
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-46cbe01d4b6so1318133f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 09:05:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782403505; x=1783008305; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EjKkKqp9fBdZiADoXkPIOzR6TnKUMV6AHpcUuhEviCE=;
+        b=Irtaw5nbN4SvenQo3FpAg3NpzzAkMJtoyybgHtk+XnSgILrcrSaLWXHMKsZ+rtOymu
+         dvn/+Qg6nq5+uKO9/nFeyKJy6s33oYNsCOT3QXTlmZP2LEhi9wQgyzT09LMl7rcaruRN
+         wRTQ15fRMcZg/LrywQpd3gD5qvvmJmXEXCzPdvfk67HI0aYJk5YU8C7sZohRy/C1D5fb
+         zrpn5d4jL7PTToey2mFhdC1+Cn9iIcjzQE1PAy5oMws1f6+kSwjA9A2LpcSXt/Jq/bRk
+         DtaA89mmpslcQPElZmwV+5bKZYGJ5zgE/2jrjBFd0OsrjIbJw0G5LpRau7AjeaPUbDKG
+         iU+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782403505; x=1783008305;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EjKkKqp9fBdZiADoXkPIOzR6TnKUMV6AHpcUuhEviCE=;
+        b=cH0HtQ2D9u1QpxjsH8iYrOA6T0VA2PTJL0dWKyYxbonvcc2NTes88ZMsTHrZ23PXlG
+         6b9lhPEyifI7vpol4EuSHbrV3Mjr+7iYOVcDLBblDsmlycH9R7wU5FsU2ZqFmWd1abnK
+         7ia4DbCZseaxNTiQDlrpzUMJQC2hHlfapopudK8FBvi2ouFIYVAktCSYZOxqvP5Z6+kX
+         curcdLqpz2avL0shOLh+otiEKgA7+lW1xPESUz0XUmy6HwRC1iUDQ++EYnOL7AwdFVXu
+         HgqctIFEBr4FF4b9PZ60zNhxLL7+CBZ5ZmAuLv9CGgk6DWcq96z1RtRndKZzOmBbHXBZ
+         nEpQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/gPFwXCRc/9SzQvk3lYdb/LZAD2GljfwvxvlfGqZBaiLK+Y1pqv6rAgndC3J5eNruCWiHUc4nVATQC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yztr03TkDUVrWSKZQZHJJJf98Dthb2ifm97gDHFzeJApF0c89No
+	PY5VEEdAPhqFUNcGvicW3nAsnUYqcMc4jZ4XUyeK7yDA69eMrPNIv1T/
+X-Gm-Gg: AfdE7cm1fnglO02ZCYj7tYag07wCU9fI9ePgd06MdrhPSu0tpZnNUVPj9wk68Igt38W
+	cg6Jmd1+dkx9o1gKp87+jaoCrliXaoLlzNAapFS73H8MkX/FKjaCmzhKt+ItLmtHLMoxQ+JDl0d
+	oRbBcP4t232kxpgBvlcR9dm1xwbtoq+D9JDUREnWNJLq32f43r9jq7CTg5ysACPhKnP1U9MqWtz
+	NtgHxR5dhRzJzwpf3i4VXbpVsshF3EQrTppg3n+nMNl5l5io/soatlTg8OOid/WDLpe92AVPriY
+	XIADwetSQl0mikzWs0xvczjoPpoZC3C0ZAe1LXEjYzL9bb3sRfSEcrZf0Fygl1c1PUQUyRvZkxt
+	P6JKjefFYGdORYldniXv/tRBJEjRIEYG9F93e+CB9bJPneN5mxieSFaCNhDdwh31HUik+dO3qqw
+	khsdqoxEB5q0udknwHk6v3P6AomKjeVTR2jWccstHIm6cG2kxFCuvJ0BETfHyMGw==
+X-Received: by 2002:a05:600c:4692:b0:490:4b89:535d with SMTP id 5b1f17b1804b1-492668677ebmr48000945e9.1.1782403504589;
+        Thu, 25 Jun 2026 09:05:04 -0700 (PDT)
+Received: from flaviu-Aspire-E5-572G.. ([5.15.86.252])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4926543be74sm52220975e9.1.2026.06.25.09.05.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jun 2026 09:05:03 -0700 (PDT)
+From: Flaviu Nistor <flaviu.nistor@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Cc: Flaviu Nistor <flaviu.nistor@gmail.com>,
+	linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: hwmon: chipcap2: Add label property
+Date: Thu, 25 Jun 2026 19:04:22 +0300
+Message-ID: <20260625160423.17882-1-flaviu.nistor@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-315745-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315743-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:shenwei.wang@oss.nxp.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:javier.carrasco.cruz@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:flaviu.nistor@gmail.com,m:linux-hwmon@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:javiercarrascocruz@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:flaviunistor@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[flaviunistor@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[roeck-us.net,gmail.com,kernel.org,lwn.net,linuxfoundation.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[flaviunistor@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 94C376C74AA
+X-Rspamd-Queue-Id: 26FD46C74E7
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
-s) to consider:
-- [High] Missing endianness specification and implementation for multi-byte=
- protocol fields.
-- [High] The driver's direction_output callback causes hardware glitches by=
- setting the direction before the initial value.
-- [Medium] Inconsistent field sizes for REPLY and NOTIFICATION messages tru=
-ncate the 'line' field.
-- [Low] Incorrect command code in the SET_WAKEUP request diagram.
-- [Low] Incorrect Linux error code usage (-ETIMEOUT).
-- [Low] Grammatical error in SET_WAKEUP description.
---
+Add support for an optional label property similar to other hwmon devices.
+This allows, in case of boards with multiple CHIPCAP2 sensors, to assign
+distinct names to each instance.
 
-commit 7712498eeadf5080c07364375a209ec4b75b63fd
-Author: Shenwei Wang <shenwei.wang@nxp.com>
-docs: driver-api: gpio: rpmsg gpio driver over rpmsg bus
+Signed-off-by: Flaviu Nistor <flaviu.nistor@gmail.com>
+---
+Changes in v2:
+- Implement suggestion from Javier Carrasco as proposed by Krzysztof Kozlowski.
+- Link to v1: https://lore.kernel.org/all/20260622122200.14245-1-flaviu.nistor@gmail.com/
 
-This commit introduces the documentation for the GPIO RPMSG transport
-protocol used over the RPMSG bus. It details the message formats,
-command codes, and notification structures for communicating with
-remote processors.
+ .../devicetree/bindings/hwmon/amphenol,chipcap2.yaml        | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-> diff --git a/Documentation/driver-api/gpio/gpio-rpmsg.rst b/Documentation=
-/driver-api/gpio/gpio-rpmsg.rst
-> new file mode 100644
-> index 0000000000000..7d351ff0adb0e
-> --- /dev/null
-> +++ b/Documentation/driver-api/gpio/gpio-rpmsg.rst
-> @@ -0,0 +1,271 @@
-> +.. SPDX-License-Identifier: GPL-2.0-or-later
-> +
-> +GPIO RPMSG (Remote Processor Messaging) Protocol
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+diff --git a/Documentation/devicetree/bindings/hwmon/amphenol,chipcap2.yaml b/Documentation/devicetree/bindings/hwmon/amphenol,chipcap2.yaml
+index 17351fdbefce..56b0cecfca5f 100644
+--- a/Documentation/devicetree/bindings/hwmon/amphenol,chipcap2.yaml
++++ b/Documentation/devicetree/bindings/hwmon/amphenol,chipcap2.yaml
+@@ -45,6 +45,8 @@ properties:
+       - const: low
+       - const: high
+ 
++  label: true
++
+   vdd-supply:
+     description:
+       Dedicated, controllable supply-regulator to reset the device and
+@@ -55,6 +57,9 @@ required:
+   - reg
+   - vdd-supply
+ 
++allOf:
++  - $ref: hwmon-common.yaml#
++
+ additionalProperties: false
+ 
+ examples:
+@@ -72,6 +77,7 @@ examples:
+                          <5 IRQ_TYPE_EDGE_RISING>,
+                          <6 IRQ_TYPE_EDGE_RISING>;
+             interrupt-names = "ready", "low", "high";
++            label = "Room";
+             vdd-supply = <&reg_vdd>;
+         };
+     };
+-- 
+2.34.1
 
-[ ... ]
-
-> +Message Format
-> +--------------
-> +
-> +The RPMSG message consists of a 8-byte packet with the following layout:
-> +
-> +.. code-block:: none
-> +
-> +   +------+------+------+------+------+------+------+------+
-> +   | 0x00 | 0x01 | 0x02 | 0x03 | 0x04 | 0x05 | 0x06 | 0x07 |
-> +   |     cmd     |    line     |           value           |
-> +   +------+------+------+------+------+------+------+------+
-
-[Severity: High]
-Does this message format lack an explicit endianness specification for the
-multi-byte fields (cmd, line, value)?
-
-Without defining the endianness here, the driver implementation in
-drivers/gpio/gpio-rpmsg.c:rpmsg_gpio_msg_prepare() assigns native integer t=
-ypes
-directly:
-
-	msg->type =3D cmd;
-	msg->gpio =3D line;
-	msg->value =3D val;
-
-Could this cause malformed packets when communicating between a big-endian =
-host
-and the remote processor?
-
-> +
-> +- **cmd**: Command code, used for GPIO_RPMSG_SEND messages.
-
-[ ... ]
-
-> +GPIO Commands
-> +-------------
-> +
-> +Commands are specified in the **Cmd** field.
-> +
-> +The SEND message is always sent from Linux to the remote firmware. Each
-> +SEND corresponds to a single REPLY message. The GPIO driver should
-> +serialize messages and determine whether a REPLY message is required. If=
- a
-> +REPLY message is expected but not received within the specified timeout
-> +period (currently 1 second in the Linux driver), the driver should return
-> +-ETIMEOUT.
-
-[Severity: Low]
-Should this use the standard Linux kernel error code -ETIMEDOUT instead of
--ETIMEOUT?
-
-> +
-> +GET_DIRECTION (Cmd=3D2)
-
-[ ... ]
-
-> +SET_DIRECTION (Cmd=3D3)
-> +~~~~~~~~~~~~~~~~~~~~~
-> +
-> +**Request:**
-> +
-> +.. code-block:: none
-> +
-> +   +------+------+------+------+------+------+------+------+
-> +   | 0x00 | 0x01 | 0x02 | 0x03 | 0x04 | 0x05 | 0x06 | 0x07 |
-> +   |      3      |    line     |           value           |
-> +   +------+------+------+------+------+------+------+------+
-> +
-> +- **value**: Direction.
-> +
-> +  - 0: None
-> +  - 1: Output
-> +  - 2: Input
-
-[Severity: High]
-Does this command lack a parameter to specify the initial output level,
-requiring a separate SET_VALUE call?
-
-In drivers/gpio/gpio-rpmsg.c:rpmsg_gpio_direction_output(), the driver sends
-the SET_DIRECTION command before the SET_VALUE command:
-
-	rpmsg_gpio_msg_prepare(port, line, VIRTIO_GPIO_MSG_SET_DIRECTION,
-			       VIRTIO_GPIO_DIRECTION_OUT);
-
-	ret =3D rpmsg_gpio_send_message(port);
-	if (ret)
-		return ret;
-
-	rpmsg_gpio_msg_prepare(port, line, VIRTIO_GPIO_MSG_SET_VALUE, val);
-
-	return rpmsg_gpio_send_message(port);
-
-Could this sequence cause a hardware glitch by driving an unintended default
-state on the physical GPIO line during the IPC transit time, before the
-SET_VALUE command is processed?
-
-> +
-> +**Reply:**
-
-[ ... ]
-
-> +SET_WAKEUP (Cmd=3D16)
-> +~~~~~~~~~~~~~~~~~~~
-> +
-> +**Request:**
-> +
-> +.. code-block:: none
-> +
-> +   +------+------+------+------+------+------+------+------+
-> +   | 0x00 | 0x01 | 0x02 | 0x03 | 0x04 | 0x05 | 0x06 | 0x07 |
-> +   |      1      |    line     |           value           |
-> +   +------+------+------+------+------+------+------+------+
-
-[Severity: Low]
-Does the command field in this diagram say '1' when it should say '16' or
-'0x10' to match the SET_WAKEUP (Cmd=3D16) heading?
-
-> +
-> +- **value**: Wakeup enable.
-> +
-> +  The remote system should always aim to stay in a power-efficient state=
- by
-> +  shutting down or clock-gating the GPIO blocks that aren't in use. Since
-> +  the remoteproc driver is responsible for managing the power states of =
-the
-> +  remote firmware, the GPIO driver does not require to know the firmware=
-'s
-> +  running states.
-
-[Severity: Low]
-Should "does not require to know" be rephrased to "does not need to know" f=
-or
-better grammar?
-
-> +
-> +  When the wakeup bit is set, the remote firmware should configure the l=
-ine
-
-[ ... ]
-
-> +Notification Message
-> +--------------------
-> +
-> +Notifications are sent by the remote core and they have
-> +**Type=3D2 (GPIO_RPMSG_NOTIFY)**:
-> +
-> +When a GPIO line asserts an interrupt on the remote processor, the firmw=
-are
-> +should immediately mask the corresponding interrupt source and send a
-> +notification message to the Linux. Upon completion of the interrupt
-> +handling on the Linux side, the driver should issue a
-> +command **SET_IRQ_TYPE** to the firmware to unmask the interrupt.
-> +
-> +A Notification message can arrive between a SEND and its REPLY message,
-> +and the driver is expected to handle this scenario.
-> +
-> +.. code-block:: none
-> +
-> +   +------+------+--------+
-> +   | 0x00 | 0x01 |  0x02  |
-> +   |   2  | line | trigger|
-> +   +------+------+--------+
-
-[Severity: Medium]
-Does this notification message truncate the line index to 8 bits?
-
-The SEND message diagram earlier explicitly defines an 8-byte layout with a
-16-bit line field (occupying bytes 0x02 and 0x03). However, this NOTIFICATI=
-ON
-diagram and the driver's struct rpmsg_gpio_response in
-drivers/gpio/gpio-rpmsg.c restrict the line index to an 8-bit __u8:
-
-	struct rpmsg_gpio_response {
-		...
-		__u8 line;
-		...
-	};
-
-If an interrupt occurs on a line index greater than 255, could this cause t=
-he
-driver to mishandle the IRQ due to truncation?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625155432.8151=
-85-1-shenwei.wang@oss.nxp.com?part=3D1
 
