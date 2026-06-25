@@ -1,349 +1,240 @@
-Return-Path: <devicetree+bounces-315713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315718-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ECBIDhY8PWo+zwgAu9opvQ
-	(envelope-from <devicetree+bounces-315713-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:32:54 +0200
+	id F4ACHpE8PWpuzwgAu9opvQ
+	(envelope-from <devicetree+bounces-315718-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:34:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82D556C6AAF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:32:53 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E4A06C6AEA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:34:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=outlook.com header.s=selector1 header.b=f9FsrxA8;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315713-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315713-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=outlook.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=analog.com header.s=DKIM header.b="hq/azv/f";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315718-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315718-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=analog.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 19FDA3136F8C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 14:26:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 532A8300C014
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 14:34:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F3D7379C59;
-	Thu, 25 Jun 2026 14:25:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFA93E5ED8;
+	Thu, 25 Jun 2026 14:34:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com (mail-southcentralusazolkn19013080.outbound.protection.outlook.com [52.103.14.80])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5E8536DA1F;
-	Thu, 25 Jun 2026 14:25:06 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782397508; cv=fail; b=Ek2JH4jCmWi43dktpJjyx+mRIbW80YeZRaYU/bSQ2UOI/wFr50PS9vohCgOnfIFmOV7YKaNVgC/LP6IQ1LkN0XXpx6x/3J0i2H+QN5126pGKcvs2EAoVRhLA6RUEexyhKlG0mig103Ay9S0MFUrWBSeL+hFaiSy4ti6sosapS00=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782397508; c=relaxed/simple;
-	bh=QXMjPsbLeLaacEWqZ4530hUF414/zTYYbViKR2WL638=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=XbOYNyj+0CEqubFmP+ciV3gl5CaoNqJ+bjRN4SxPZOYFO4b2p0OMxWgZubOYtZq7hnUs2r4jf2usaVLRTeDIFR834NO2oLTgElDPK3fOXSGUWqn7PARVpxyXyI5XDgXvmmirxJ9dbNUlLmGtnhlaJ1mTiyPKHcc0tSF/I3iBLe0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=f9FsrxA8; arc=fail smtp.client-ip=52.103.14.80
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ztx/9WQrzyr+G5Bd8QPV5r+D3VUujlwT7m1F0olZ+8cg3vDlYsC4h0tHqsjfJenU4LvWS9dPgelfglrcptA/ar/gr4MwA4VZlY7eye/i1V0m3zzij+0zC9iDqT9173fzAsWV6AflLESAbwFrRwiagvU8I/vay5ngcTQsOveoZE26gLtUbURF2ih0LsbmtmtXxdU508jNXmd0xR/cVM/yj2CY6Fx06pWl3w2vZ0dUYJaBQJe3uFDsytt+54VghwBAbXW4JyQuJ6g00oeuRoQdyQdzJu9PDaWReuMGnZ+t/TZqPC9eXiRwgBwWmdBL5S09awaO82BhHjbNwJSMgi2Z8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g5f9VsYJwLq4AYpPqV2rvGHdoEUUyi99/rKpR3Dw37Y=;
- b=cek61uSJ93+otlWMo5I1t+ldsRLns4beCfUod7ErJ8vXZjN8TLysCRRjg+BU3/F6JRGp/8vcdHV5F3SlDqWaTLN4mrnwjyTMIM72FW/ujaUZb75YW3SGqZoIXJmcCtpm9C2cAhCLEPclQmHdL3rDiS9a0libSWFJ0kd9G9I2AJZopsGXsfUujPc7RfRO4m0mrBNkQR11X9zoyqWVYPWXyI0/gw/p8wfHfWuZ+/QjxTmmoCIVlEBNI7zdu0yYcwLB1AcUnM8i+nI8pKj5YJjIIEAnZ58eiu4DNtnnUai5Qmfa1ZuSwNOrBNu9czNHBjGPXzAkBU7QwzRETiXi+ptZUg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g5f9VsYJwLq4AYpPqV2rvGHdoEUUyi99/rKpR3Dw37Y=;
- b=f9FsrxA8GpiEXy9hRHeSNNccVs6Iv0eoNcunMXs9Lc1P6fVnF43gIegeahd1vJ1KPPqtsLYRaR9Nd7ARgYG6kUQM/jCYn5l0RPgXAydBtLgfr6WSwSef9isEpdDJxM7Xn7eB830SvWhbxNLjES685imqGdcaHKilJNWf7bzOVgCMwaKG0JpMVqspuCZChRYqwOTFF0E/l//CbW3Q5kxevI1SFx/WGdStJ683bgjQnFxpQyYsyCSmUu0Z54WReX/3eRApdA4CBaCKQBt7UvQ36/gokKxbcRLC2jLDEL2GAfA2tawftvGGSj8okr9H/Dz+h0la8dHnDF7BA4Zh2mE5/g==
-Received: from SN7PR19MB6736.namprd19.prod.outlook.com (2603:10b6:806:263::12)
- by SJ0PR19MB4622.namprd19.prod.outlook.com (2603:10b6:a03:28b::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.16; Thu, 25 Jun
- 2026 14:25:03 +0000
-Received: from SN7PR19MB6736.namprd19.prod.outlook.com
- ([fe80::4b6c:b84f:b71c:d0a]) by SN7PR19MB6736.namprd19.prod.outlook.com
- ([fe80::4b6c:b84f:b71c:d0a%3]) with mapi id 15.21.0159.007; Thu, 25 Jun 2026
- 14:25:02 +0000
-Message-ID:
- <SN7PR19MB6736656C55BC6DA32A3E75CA9DEC2@SN7PR19MB6736.namprd19.prod.outlook.com>
-Date: Thu, 25 Jun 2026 18:24:48 +0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] remoteproc: qcom: Add M0 BTSS secure PIL driver
-To: Philipp Zabel <p.zabel@pengutronix.de>, Jens Axboe <axboe@kernel.dk>,
- Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Johannes Berg <johannes@sipsolutions.net>,
- Jeff Johnson <jjohnson@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
- Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
- Rocky Liao <quic_rjliao@quicinc.com>, Saravana Kannan
- <saravanak@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: linux-block@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- netdev@vger.kernel.org, linux-remoteproc@vger.kernel.org
-References: <20260625-ipq5018-bluetooth-v1-0-d999be0e04f7@outlook.com>
- <20260625-ipq5018-bluetooth-v1-2-d999be0e04f7@outlook.com>
- <439f76c3fcafdfb91cca426fcae17ef776776eab.camel@pengutronix.de>
-Content-Language: en-US
-From: George Moussalem <george.moussalem@outlook.com>
-In-Reply-To: <439f76c3fcafdfb91cca426fcae17ef776776eab.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P195CA0034.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:65a::22) To SN7PR19MB6736.namprd19.prod.outlook.com
- (2603:10b6:806:263::12)
-X-Microsoft-Original-Message-ID:
- <aab339ca-6b5c-472b-9737-87d41e49e8a4@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 848DE283C82;
+	Thu, 25 Jun 2026 14:34:50 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782398093; cv=none; b=sWuJ1jL68sGNZcRO+c8RFFLmLKGIm0k3/8qH3RnUsOf2CQLbWCBLgIYrYX6cbQf7RIws87cVKFsDP2EZa+vcJJvFSy+lHAcMlOWtGAHI5yaaUd/rRl9Ga48h0LBmGuKF21l24x+RZDWbcwDFSnXaCrFGOns19odccN0EENHSrEI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782398093; c=relaxed/simple;
+	bh=EZTPqJxnv33ol2PgQpIJJMlpLqYX3uSn6r02EFN0jaA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RpXAyGuqbcmZpu4BABSC4Mc53La8S3SbexlGV+dIa5qEi8AX2uEssgBCp8udFuzhm7/O7c+lSkUHil9yV6R5YnhRX/gkaHb/toyB3HdkgY8R5ZgB1s+7SK4z974bQ43nQZa1uvOK4Tg0FDSBVHcJMwEGIeEFCST5G8jxiHJbF7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=hq/azv/f; arc=none smtp.client-ip=148.163.135.77
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65PD2iF12581872;
+	Thu, 25 Jun 2026 10:34:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=jHSbJmiuw4dHgOjOCZYSA6Fhwop
+	srMCgZrTPE051F9Q=; b=hq/azv/fak282ppTPWPZ67POcPVFcS5df6EFaaPj8Sd
+	MsfW87y6uXNgJQ/GE6khn2fxmRmz0W8Ho0CaTyJvq5AdNqvdWOrN2sc7HH78glaS
+	gseAzSAsRV4XlW2n4DWiVHT8HU9GXlvnksxVF6U9/t5fnCuP6Wq8qOutQUBzebMZ
+	HoKHaRUiERzfz2/7oBSfs/r5u3HrRuutHUl+NOpzxegSq/tXRVlxbC8myzxZSqUW
+	OrCYngHCjVwMRajzTFpa646rBMhrjOuckFAHCJxSMaZt8tyQtpXFx6PKTJzgqbti
+	rYuEoNp1ClRW13EaPAepuEsj47R7BW7wPpuL7VhTzqw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4f0qgvktu3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Jun 2026 10:34:46 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 65PEYjJa047960
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 25 Jun 2026 10:34:45 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Thu, 25 Jun 2026 10:34:44 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Thu, 25 Jun 2026 10:34:44 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Thu, 25 Jun 2026 10:34:44 -0400
+Received: from work.maxim-ic.internal ([10.66.6.190])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 65PEYXLJ009871;
+	Thu, 25 Jun 2026 10:34:35 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <jic23@kernel.org>, <nuno.sa@analog.com>, <Michael.Hennerich@analog.com>,
+        <dlechner@baylibre.com>, <andy@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <julianbraha@gmail.com>,
+        <marcelo.schmitt1@gmail.com>
+Subject: [PATCH v4 0/4] iio: adc: Add support for LTC2378 and similar ADCs
+Date: Thu, 25 Jun 2026 11:34:26 -0300
+Message-ID: <cover.1782397418.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR19MB6736:EE_|SJ0PR19MB4622:EE_
-X-MS-Office365-Filtering-Correlation-Id: 12ef7d2f-83b5-4fcb-7ca9-08ded2c58b11
-X-MS-Exchange-SLBlob-MailProps:
-	dx7TrgQSB6cUe9t9Fs5HiQGsDL5YS4Qs2BZu8RFnRVvnmRZ50OLmZvuZddTIKQYBJDJ3dcbD3MjGALgl4piH4lEY7nWQfLnigh26shyJrzR0iaVV0q/zQmEsbLxBgIDkXm/L1wyOMTKpF4jB9lK/Unf5SU4v8/ESc9wgvqTMq0MrxksKbrAQTsTXwdzjINiNXm0UixeQvUY7A0jx2niOf7+HoH4MOdqXKrQhRUf3eZGFIZj35V8cuGwjSwJu0r7baLWc3mS0UrIAoio0GAN/VU/Dl1ajWzzrNzt1SxtV9F5YQB8jyK7yJOxvz/06QOulIsIMkr+NhX9MthJE4CelwFV17hOMH8VOn9lZpayf1DZvj6ZEDkaEHSOIVEJw6bsdrpc96XyCPCRtUn5/xvESko9bdjAiH75lblNu12hhw5gcY/BY63eLQsRfInl7bFo5R57kMuU1meV12GG8oalsj4uRpRFzzehxtwgE2Eb7/RtrOO774ixxsSWmPxziJ0lnvgJ59BVO8MEb8Y1S8jb+eI5NmKQnWUNUcN/7n4Cx/6N+j6/xvkUvDzcJSnGTPbIGYaONdiWM/4J0mkpUPAl8xPjs/KzfK+I7r1BNRKugDkdxx2XZP5pKs83uj5Df1tbX7FqfCk9rAF5Mx4DTZNULrTQ8pIuFIO83XkemQZQRcAMQurIZ0twiA1547/NBhk8LG4J5+eSqiceHopoO2Pw+wPKW96tBakwxBGnks+VWBDhWeLpQF8rnPq4bXYmZ4U6FWju6HWmJ7i4=
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|4140399003|15080799012|25010399006|23021999003|37011999003|19110799012|5072599009|8060799015|41001999006|6090799003|24021099003|53005399003|40105399003|41105399003|3412199025|440099028|12091999003;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZjQyTmMzNVBJYW54eHdzekd0Rktoem9kYm5IanIvRHFWZjNuSllVZGp4cVFj?=
- =?utf-8?B?WTZlWDRvRXFOeXZMekNxV2VFd0F3cjBUM3MzQW9zTWUyemM2c3puZzMxTzR1?=
- =?utf-8?B?U0Y3UWZtaGNZMTkzWS9lZmgxVkdaWUpLVlBYYmdDcmltQkdVdThtR2cxbjVH?=
- =?utf-8?B?aVhZcjNrT1MwUVE4TW1Lc0RFa2pRUnVYVnpGdnFSd0hxeXFsZ3JzbDJnNUEr?=
- =?utf-8?B?Skk0SEdFWTJLMEN5OGFOcG8xWVdkVGZ2SEJ1SzA3aVAxMC9nbVN2WDU1Y0pH?=
- =?utf-8?B?TG54VmEzc3htVmdjM1F1QmhxYVJFQjJQMWVaaTVxcjAzVHA4eVowNXNCcm5Y?=
- =?utf-8?B?dWx4UFFXUzladW5GQ1Fzc2ZVbCtPTGExRmpMTHAxNnFXQk1aUFFBOXRiaUZQ?=
- =?utf-8?B?Q1QyeGV3Mmp1ajNUS0k5dUpDWm5QN2pXbDdDSG1OVGl1Sjg2cGhlODVoSFhj?=
- =?utf-8?B?NWs5ZFRlNU1XbkpzSEU1UGdFYUkzY3g0bzU1blVPUjQzaTNycmQzQ3dEckhN?=
- =?utf-8?B?Z2RGS29BdzRmWlVBS2tvdTQ2dWc0SklhditwVVFkME43bEdMUXMwNGxVWnUz?=
- =?utf-8?B?dVR0dEMwM1JNMGZjSmFuMXh2ZjUxMXBHd3ErQldPbWhwdG1VcUJ6cWtSMW4y?=
- =?utf-8?B?UndWTVJKOHdaN2FRZjcyV0ZIdHo3MFlKdmJ1eVpjc2xJdGxHbnh6UjhLbWJi?=
- =?utf-8?B?TlZYODM3eUhTOGxuNytnME9vVTVyYi9EcnBpZmZ2MUdtM1JSdkhzZngwZWV1?=
- =?utf-8?B?RUVrdGFnQTZNbXB5Q015RTdQOWtSU3IvMjRtVlQ1a1JsdVBYMzZibjl0VTBH?=
- =?utf-8?B?bStwMEUrdmRHSTJMcWFCVWxkRjF4cGF6RWNaL2kxai9LdWhWQzNrVnJLS05a?=
- =?utf-8?B?RmlMM1diTE1aYkIyWXpNSVJaMTYyZ09takFwQkdHbGFNT3hSM0h4VmNFalA5?=
- =?utf-8?B?OE9ieGtxaWxHeW5EemwrL29GQmNPYjB3NENkK1gvbG1JUE5CSTBNSE8yU0ph?=
- =?utf-8?B?S2NyLzhEcE8rVWViUU41dnYxeDlLVGNZdXNvRDVUTXlkeHVROW10RGg2eklk?=
- =?utf-8?B?MGpzcWVQcktER2UzQ2U5TFMzTWdxY0ZTb1o2KzZtN3JBSHMrL0JMaUJrTEJF?=
- =?utf-8?B?TWFlaG0valFEbTdZNGZJK2g0WFdlb2RHZFBjYU9sbXJpWlJ5RUJEdHZmVFV4?=
- =?utf-8?B?TlBYVTBVdDZTUndhRmtOVGxSWDcwRitWYnJzUmdZWHdQTlFSR3owWDdnVkl4?=
- =?utf-8?B?ck9ub0phSElodjZSMXM4TS9xVzRHTXNsYTZFYVNFVUp3RFpoUHdGWm1QSlNK?=
- =?utf-8?B?TmpnZENWWjEwa0R5a1ZHM3FoaHZudWo2czZMVU5GMXBTdXNiWjVVUzBDem1a?=
- =?utf-8?B?MDJpYXBLQlJ4V0FydUluNFBNOE9tSFAzVHZBSStYSjcwZWJjN0hjZWpwUllZ?=
- =?utf-8?B?elJMS0hacjgrZXlDQ3Q3bEcxSVQ4YmJqTkYyNGtTQjM0bVVFVEo1TU02MTNO?=
- =?utf-8?Q?BvQPYo=3D?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cnVVd3c3UCt3UUVtdGp6WklMdlowTWhaaDdxdUZiZHdkbGtaSGZMejBPQmU3?=
- =?utf-8?B?UkxkemhUTHEzWnFjU2xNc3Vtcngyc2IzdHJSS0xTSzJlTW9uZm5JU2FwUTJz?=
- =?utf-8?B?dWlHZTAxcjVJbWgxNzF6WFNVKzh3S3MvT2J6RTN3RlFKem4rOFh5ZmZpK2Va?=
- =?utf-8?B?VUs2VSs4OEg3L2VVQW5iRWhlWUNXQ0FQSTMvVEdXem4ycmNpTUI1SmRURWxO?=
- =?utf-8?B?c2ZVb25UY0wreFphb0NVZDlUSm96eDduTEJtQ21vZWl6Z1dQTjd4YVdKdXNo?=
- =?utf-8?B?VkJub2xEbE1SNTlLelNvMVJUeTdRdURiYktjbmRTY2RNdWRrSzhBRWpXMDFq?=
- =?utf-8?B?NmVIODVmR0xTcEdjOUE3Y1YrVVBOcTcwY1ZuNVN2dkhPTFF3MEpHZU5BT3o0?=
- =?utf-8?B?eGx5Z05WQitDZkNkNGNsRHNRS1c4RXBZUmhiUTNnbWtXSDRSZEN0UGNWamp2?=
- =?utf-8?B?MnJqUVJKYWVONHRYK3M2OTlhYXpKcGlDNytjZXZ2VUQzdmlmOVdUVXR6NWdw?=
- =?utf-8?B?SDZ1bVhEWnVoN2gxQzRiTDFXWGxSd2V5dk9zbDkyZUJKbXgyRzFQcHA4bWIv?=
- =?utf-8?B?bHA3c0hFeGN3K0JIZFhOdjBFWTlnRHYyYXRXRzlEZmlUWEFteVBEdVl5N3lx?=
- =?utf-8?B?SjA2VThTUDMreTFqamprcTBpajZYMW9PaTM1UW9IVnF3Rm5xODQza01Yb3Ex?=
- =?utf-8?B?SEw3MXlvK2VnOVU4dlNPaWZDaXJBSXBOTVhJWXllQ3kzWXdFcVNVSjI5cG5a?=
- =?utf-8?B?VmpvbHF1ZUFRVHRCMytvdHhZUXZ3SkdqKzVhS21rYno1SEZYMjV3ZUI0Zkx2?=
- =?utf-8?B?RVRIdmcrTUdSdWlhWFJPcktxK0NLNTRPaWVHd0JnVUVzblpmSm8wSmlGdTkx?=
- =?utf-8?B?bnFkSDZqZEJaZ1M4Q0pMaDluQlBneURRODF5M2RZNDB4SDZzZk92L2pINXQ0?=
- =?utf-8?B?NXlRRzM3NDE5R2hMQTk1VXo3a0NIeXlPU0UyRXU2TkJFalh4WnpvYjlCSTJF?=
- =?utf-8?B?aUN1MC9yTW1NYVhSNENmQkRtcE85QlBCZ3NETGVmOFZiSWxoSmptc25JOGJD?=
- =?utf-8?B?L3FCQXUwWlVzbWRXT1RBdFdYcnJmWTZtODZwb0piZmRHa0YyNENqUXVoNDZM?=
- =?utf-8?B?bGx3bVpnR1l0Q1NYYVpQRmx1NENDcnV4VytyaHRIZCtiVFcyU1o1M3I5QVpI?=
- =?utf-8?B?VVpiWlB4bW1OMkVzZVc3VHFJdzlVMUV4cWk4akZNZDBBZFdCZDc1QUc5UlNC?=
- =?utf-8?B?R0hWNXAvdG1BVzFsbS9wbFZiR3lLK1FkMnVyYURIY2VaWXhsVnM1MitxcXcw?=
- =?utf-8?B?M3ZtdDFoMU5NS3RLLzc4aFdxeGZERW9nRHp1a2RZODVFaUI4eUZIdm5BcHRs?=
- =?utf-8?B?aHZwdXBJU0swRGdMU2lqWU54bTl4bElDS2Z0a0tHYllLL3IxZkxUVlZwcXhx?=
- =?utf-8?B?eStWV1RGRWJBZEs0QVE1UlpoSFVrdGYxVGdURXd1L3lCbHhHZUFtTktQQjI4?=
- =?utf-8?B?OWlPdFhISVFQVWRVcnQxVk1HejdaRGc3OTRMT0VqWFVQc0NxVVZSNmZxd1Qw?=
- =?utf-8?B?Z1VOZWY2ZE5ISVpvUkRrS1QvVXN3T08vZk5SZ3RPWXFPamduNEVvaWIySmhh?=
- =?utf-8?B?U2lRWWJFNnBSUEhVOWdsUEdnTXEyTW1abXB5K1UxeEVXQlp3YnM1eUJXOXdD?=
- =?utf-8?B?MjUvOUUrSG0rRjZBNU1tc1lKUXRNc0tMVDYzYUV1cmdJRExaTnVLdUpka0Q3?=
- =?utf-8?B?TXRtbHNCTjVCekM2MzBRTnNCTkhVY29mR1dCMVNsMzd5ZTJlQVZtTFczUEVi?=
- =?utf-8?B?YmpuSkFQRzdiYm1TMGM3OS8xUFcwZ1RHZThqVWZVV0FsQkVIdFhoNUNLdGgv?=
- =?utf-8?B?OGc4M3R6emlIN1c5dWZsVStpdlVMQWVkNXIySStLV0l2aFE9PQ==?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 12ef7d2f-83b5-4fcb-7ca9-08ded2c58b11
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR19MB6736.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 14:25:02.2196
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR19MB4622
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=c62bhx9l c=1 sm=1 tr=0 ts=6a3d3c86 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
+ a=uXIjobp8t2wMuQ0fPvqm:22 a=gAnH3GRIAAAA:8 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8
+ a=XqN69BuZ7wOcV2cAv7kA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI1MDEyNSBTYWx0ZWRfX1cVbDnLQCCv4
+ Sd16EGytgbPCmqtY27XeSb0cNjtcOK58OdtLePb+jHj67+67jsGEp0ZhJWL1Jx7MascD2E5HW3w
+ SgSTXm2rWp/Unwy+KlAOGO6Ic/xT5vjOAdGKQjpuViHQCabf/a4WIj4OONmAEGjtE04Cg4WbxO1
+ jCvNjyL0WwCMu37ej/O6cwt4A3oTO9vCkZ4IJ3rW26SvvQ1o7YGD5dWK5+Auzya4MoYcYwmRzXW
+ PSi5ZjT/qtoV+NwsWDB3KbjXMVQhQ1AAzyzDPys5FeFDZOpUKfjKDBp4IC52jm1TvnJ956u3le2
+ n2/SgRdL+p/Vz6ULPOihaD5908kCc84wnmbLt21vPhoRwS1kf7Rf3IgEEst501dl02/IMn/ffDD
+ 9u4oTUbNrh9SEp0pc1NtMgBd8IleNA9crcPH4IHzE0Mdvv/MkzDS7WM36poLOrI4c8jWF5xUbTz
+ dPKT1u7jTIPCnzJnI3A==
+X-Proofpoint-ORIG-GUID: ZJmIJh5RMeerIyHaud76YNvFeTkIp-lB
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI1MDEyNSBTYWx0ZWRfX1BqRsobXzHzo
+ S8qDsadRHdYdanSIpnTnQowLFiyRm0op33wkOfzvgKhhmwudaqBB7+55eaXiPd4MDS+j2gQy1Ux
+ nOHREuIsPrga9eLDaHck++0LbZcA25pJ5K5mOsWrXjW0832fmBl1
+X-Proofpoint-GUID: ZJmIJh5RMeerIyHaud76YNvFeTkIp-lB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-25_01,2026-06-24_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 malwarescore=0 suspectscore=0 bulkscore=0 clxscore=1011
+ priorityscore=1501 lowpriorityscore=0 spamscore=0 impostorscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2606250125
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[outlook.com,none];
-	R_DKIM_ALLOW(-0.20)[outlook.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_MUA_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:p.zabel@pengutronix.de,m:axboe@kernel.dk,m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:johannes@sipsolutions.net,m:jjohnson@kernel.org,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:quic_bgodavar@quicinc.com,m:quic_rjliao@quicinc.com,m:saravanak@kernel.org,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:mathieu.poirier@linaro.org,m:linux-block@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:ath10k@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[george.moussalem@outlook.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[outlook.com];
-	FREEMAIL_TO(0.00)[pengutronix.de,kernel.dk,kernel.org,sipsolutions.net,holtmann.org,gmail.com,quicinc.com,lunn.ch,armlinux.org.uk,davemloft.net,google.com,redhat.com,linaro.org];
-	RCPT_COUNT_TWELVE(0.00)[35];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-315713-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[outlook.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:julianbraha@gmail.com,m:marcelo.schmitt1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:marceloschmitt1@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,gmail.com];
+	FORGED_SENDER(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-315718-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[analog.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[george.moussalem@outlook.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,analog.com:dkim,analog.com:mid,analog.com:url,analog.com:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,SN7PR19MB6736.namprd19.prod.outlook.com:mid,outlook.com:dkim,outlook.com:email,outlook.com:from_mime]
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 82D556C6AAF
+X-Rspamd-Queue-Id: 0E4A06C6AEA
 
-Thanks, that was quick!
+This patch series adds support for LTC2378 and similar low noise, low power,
+high speed, successive approximation register (SAR) ADCs. These ADCs are similar
+among each other, varying mainly on the amount of precision bits, maximum sample
+rate, and input configuration (either fully differential or pseudo-differential).
 
-On 6/25/26 18:18, Philipp Zabel wrote:
-> On Do, 2026-06-25 at 18:10 +0400, George Moussalem via B4 Relay wrote:
->> From: George Moussalem <george.moussalem@outlook.com>
->>
->> Add support to bring up the M0 core of the bluetooth subsystem found in
->> the IPQ5018 SoC.
->>
->> The signed firmware loaded is authenticated by TrustZone. If successful,
->> the M0 core boots the firmware and the peripheral is taken out of reset
->> using a Secure Channel Manager call to TrustZone.
->>
->> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
->> ---
->>  drivers/remoteproc/Kconfig            |  12 ++
->>  drivers/remoteproc/Makefile           |   1 +
->>  drivers/remoteproc/qcom_m0_btss_pil.c | 261 ++++++++++++++++++++++++++++++++++
->>  3 files changed, 274 insertions(+)
->>
-> [...]
->> diff --git a/drivers/remoteproc/qcom_m0_btss_pil.c b/drivers/remoteproc/qcom_m0_btss_pil.c
->> new file mode 100644
->> index 000000000000..7168e270e4d4
->> --- /dev/null
->> +++ b/drivers/remoteproc/qcom_m0_btss_pil.c
->> @@ -0,0 +1,261 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2026 The Linux Foundation. All rights reserved.
->> + */
->> +
->> +#include <linux/clk.h>
->> +#include <linux/delay.h>
->> +#include <linux/elf.h>
->> +#include <linux/firmware/qcom/qcom_scm.h>
->> +#include <linux/io.h>
->> +#include <linux/kernel.h>
->> +#include <linux/of_reserved_mem.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/reset.h>
->> +#include <linux/soc/qcom/mdt_loader.h>
->> +
->> +#include "qcom_common.h"
->> +
->> +#define BTSS_PAS_ID	0xc
->> +
->> +struct m0_btss {
->> +	struct device *dev;
->> +	phys_addr_t mem_phys;
->> +	phys_addr_t mem_reloc;
->> +	void __iomem *mem_region;
->> +	size_t mem_size;
->> +	struct reset_control *btss_reset;
-> 
-> Why is this stored here? It doesn't seem to be used.
+Patch 1 adds device tree documentation for LTC2378.
 
-will remove it and use devm_reset_control_get_exclusive_deasserted as
-suggested below.
+Patch 2 enables single-shot sample read with a GPIO connected to the LTC2378 CNV pin.
 
-> 
-> [...]
->> +static int m0_btss_pil_probe(struct platform_device *pdev)
->> +{
->> +	// struct reset_control *btss_reset;
-> 
-> It looks like this shouldn't be commented out.
-> 
->> +	struct device *dev = &pdev->dev;
->> +	const char *fw_name = NULL;
->> +	struct m0_btss *desc;
->> +	struct clk *lpo_clk;
->> +	struct rproc *rproc;
->> +	int ret;
->> +
->> +	ret = of_property_read_string(dev->of_node, "firmware-name",
->> +				      &fw_name);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	rproc = devm_rproc_alloc(dev, "m0btss", &m0_btss_ops,
->> +				 fw_name, sizeof(*desc));
->> +	if (!rproc) {
->> +		dev_err(dev, "failed to allocate rproc\n");
->> +		return -ENOMEM;
->> +	}
->> +
->> +	desc = rproc->priv;
->> +	desc->dev = dev;
->> +
->> +	ret = m0_btss_alloc_memory_region(desc);
->> +	if (ret)
->> +		return ret;
->> +
->> +	lpo_clk = devm_clk_get_enabled(dev, "btss_lpo_clk");
->> +	if (IS_ERR(lpo_clk))
->> +		return dev_err_probe(dev, PTR_ERR(lpo_clk),
->> +				     "Failed to get lpo clock\n");
->> +
->> +	desc->btss_reset = devm_reset_control_get(dev, "btss_reset");
-> 
-> Please use devm_reset_control_get_exclusive() directly.
-> 
->> +	if (IS_ERR_OR_NULL(desc->btss_reset))
->> +		return dev_err_probe(dev, PTR_ERR(desc->btss_reset),
->> +				     "unable to acquire btss_reset\n");
->> +
->> +	ret = reset_control_deassert(desc->btss_reset);
->> +	if (ret)
->> +		return dev_err_probe(rproc->dev.parent, ret,
->> +				     "Failed to deassert reset\n");
-> 
-> Shouldn't this be asserted on remove? Otherwise after an unbind/bind
-> cycle probe will enable the clock with reset already deasserted.
-> That may or may not be problematic.
-> 
-> Consider using devm_reset_control_get_exclusive_deasserted().
-> 
-> 
-> regards
-> Philipp
+Patch 3 enables high-speed data captures with SPI offloading.
+The setup is similar to AD4030, with a specialized PWM generator being used both
+for SPI offload triggering and conversion start signaling.
 
-Regards,
-George
+Patch 4 enables running buffered data captures without SPI offloading.
+
+Even though these parts are somewhat similar to AD4000, the wiring configuration
+for LTC parts is different as well as the available HDL for high speed sample
+rate mode. Because of that, I propose creating a new device driver for
+supporting LTC2378-like devices.
+
+Specifications can be found at:
+https://www.analog.com/media/en/technical-documentation/data-sheets/233818fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236416fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236418f.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236716fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236718f.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236816f.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236818f.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236918fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237016fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237616fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237618fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237620fb.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237716fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237718fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237720fb.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237816fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237818fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237820fb.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237918fb.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/238016fb.pdf
+
+Despite the initial version of the LTC2378 driver had been developed by
+Ioan-Daniel. The current version has been greatly rewritten such that very
+little remained from that initial version. Due to that, having Ioan-Daniel in
+the author list now seems inaccurate.
+
+Previous submissions:
+  v3: https://lore.kernel.org/linux-iio/cover.1781661028.git.marcelo.schmitt@analog.com/
+  v2: https://lore.kernel.org/linux-iio/cover.1779976379.git.marcelo.schmitt@analog.com/
+  v1: https://lore.kernel.org/linux-iio/cover.1779117444.git.marcelo.schmitt1@gmail.com/
+
+Change log v3 -> v4:
+[DT]
+- Added PWM property.
+- Documented LTC2338-18 specific refin-supply.
+- Picked up Conor's review tag.
+[IIO]
+- Dropped DMAengine buffer changes.
+- Reworked the driver to make IIO channels static according to v3 feedback.
+- Updated to use default 8 bits_per_word for non-offloaded transfers.
+- Handled refin voltage reference supply for LTC2338.
+- Used spi_bpw_to_bytes() where applicable.
+
+With best regards,
+Marcelo
+
+Marcelo Schmitt (4):
+  dt-bindings: iio: adc: Add ltc2378
+  iio: adc: ltc2378: Add support for LTC2378-20 and similar ADCs
+  iio: adc: ltc2378: Enable high-speed data capture
+  iio: adc: ltc2378: Enable triggered buffer data capture
+
+ .../bindings/iio/adc/adi,ltc2378.yaml         | 185 +++++
+ MAINTAINERS                                   |   8 +
+ drivers/iio/adc/Kconfig                       |  19 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ltc2378.c                     | 778 ++++++++++++++++++
+ 5 files changed, 991 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
+ create mode 100644 drivers/iio/adc/ltc2378.c
+
+
+base-commit: cc746297b23e89bd5df9f91f3a0ca209e8991763
+-- 
+2.53.0
 
 
