@@ -1,173 +1,194 @@
-Return-Path: <devicetree+bounces-315631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315632-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wSp6KeUJPWrfwAgAu9opvQ
-	(envelope-from <devicetree+bounces-315631-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 12:58:45 +0200
+	id pn1TFJwKPWonwQgAu9opvQ
+	(envelope-from <devicetree+bounces-315632-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:01:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B7726C4E5C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 12:58:45 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FC806C4ED2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:01:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=k3TEOPYI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315631-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315631-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BzVWJXzn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315632-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-315632-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D00D33024EA6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 10:58:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6DD9A30151A4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:00:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D1739DBC0;
-	Thu, 25 Jun 2026 10:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629401DDC35;
+	Thu, 25 Jun 2026 11:00:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C9F39902D;
-	Thu, 25 Jun 2026 10:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9B42BE035
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 11:00:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782385120; cv=none; b=V+ofd251eP/9JTaXFmt+TC/H3gK27xuTmjVppTMIprUrt8kBqimLy0bI4QHk4r6LzhuHrISp3pfLhOgW6xlF1GS6i1GPFyOOQl+Bpq2rv5EaZkL2Fqu89JwG+G5M7ST3fSyCUaSmQjEfrNNPDwNeaMYfEPM4/Z58fHdoPp+uyHg=
+	t=1782385253; cv=none; b=roZthGIk4vx76+S6Agt6Ou9J2Htfp8QMwMCEsPDD27dr0XsFyYTSxvPQfIEuSrj00C3M5qyXJ7rm86geuzAWqlpYeRrp7MflQMeg6j+BYUOOe8vbt9ZvozKLBwYRgwQ10PTz85ohlsPHyPzgKIKDkpkDWa5q35EB/GPIxE919xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782385120; c=relaxed/simple;
-	bh=KwW7qyjgnxA70oz0aACby5DwbwCNuJlA4xR+bm64lZs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I7+1bi+rrwdaMw++qygdWKaZ1gJLriwLRQdPZ4EWcRxxPZv7+HZcT9uWB6jH/adYKIAFq1CKOzFEwLK4BSplhHyhDohcyGPsuYTfCRFgsBfrybN0R2BAxylQ5yuOVMYy7TB1FTgQmFkGKx6YkbMrjBE07QVWnCHlYPm+GmlwtZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k3TEOPYI; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ADA21F000E9;
-	Thu, 25 Jun 2026 10:58:31 +0000 (UTC)
+	s=arc-20240116; t=1782385253; c=relaxed/simple;
+	bh=qV+vRs+jC6CsUL4gr5HztVL7qh3ikcowt1bSPFB/GCM=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=JEGCUl3eg7WPwDThE03ezeNG70ktEsVM85/M+dBcOrFTxx9Sb3IrBvoBbRI49qWRSWNMMjrtXuh5HMbzjZcFwRvYhpsf0ObjyvTAfonnweqIS4Puw1aExScpo6j/edJ+4hdfZksNa3HLCXob9onlZTMEX8jy/wIs9DBEApjg74c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BzVWJXzn; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADACB1F000E9;
+	Thu, 25 Jun 2026 11:00:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782385119;
-	bh=pMXF+NVKTFFxwr9GwGi5i1hUtipTiGvNWUzd91eHN4M=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=k3TEOPYIDeRb/dRHX22w48vl7H0eKsTXCYREKNIoSRM0DSZailPMVLCHlYc8CRj/9
-	 xpZZ2NKi7g4VR37BxD6tbWaj/EK4k89hNu1ZhH26fdy9P8f29ShnkN+IBUgK+N3q48
-	 OPNC3qHQMRvuPxFWp3l+dtvDYEfgN+7ep8DTLAzUnVcwprWGkh1jmvbF0mM5nFSeBk
-	 QGYshyA588f2L060+YXKyq2YCrpp9OxEm5Ve7kYuF4S1Mv3C6sQRXRQvFADUPmyOFu
-	 RtWdXLghjqB0fkwS2vAiHNv0kzkoS+YhZo7vV/y/hCThfAxH2v5NOLAoxNPjoZ4Qx8
-	 u8sQwhhiQJ1Ag==
-Date: Thu, 25 Jun 2026 11:58:26 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, linux@analog.com, David Lechner
- <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Andrew Morton
- <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, Steven Rostedt
- <rostedt@goodmis.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, Sergey Senozhatsky
- <senozhatsky@chromium.org>, Shuah Khan <skhan@linuxfoundation.org>
-Subject: Re: [PATCH v16 04/14] lib: kstrtox: add initial value to
- _parse_integer_limit()
-Message-ID: <20260625115826.3c0f2052@jic23-huawei>
-In-Reply-To: <ssrckqgv3rqpfgxwpx4ca3m5m2mp3frxs6sd673chvsorhsjiq@63t3eosivg3a>
-References: <20260604-adf41513-iio-driver-v16-0-1a7d09143bc2@analog.com>
-	<20260604-adf41513-iio-driver-v16-4-1a7d09143bc2@analog.com>
-	<rvx36i2ydmwhbbkdgbvh26uqchyoptzuu7tleuyarqn2skzkxz@owzwp62mzkdo>
-	<20260614210044.19dfc8df@jic23-huawei>
-	<20260624155414.61755e9a@jic23-huawei>
-	<ssrckqgv3rqpfgxwpx4ca3m5m2mp3frxs6sd673chvsorhsjiq@63t3eosivg3a>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20260515; t=1782385252;
+	bh=6pkvCbJQG9wgnPpzMYe1gW0IJKCCY8T6gbhyWk2msZQ=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=BzVWJXznrrzNfxPW+asKDeZnyxE0wphUF8WwwiQfsVKeabDhkkLjJGMJZVrB6ukkv
+	 4pNcYxcKyPQGuOhtvS+hiP4oX0x4nkJJITa2gABn3uQ8WvkD1C1b9skycQ7og+LFdo
+	 imhcC2POcpJ74ErpR41C8jC0SNX3/IsnfVmAA6EG8811kqedhYiUmCuW5s4MGoWI8L
+	 NuEJrAr1A1+s/QU2WaLkBPqKFDwpco0g6je22LsnUkKw4g4d+sgf34kcyRcz2361Yo
+	 KOwgEBAtUBiVzhhne5+P5wzeJ7JBSYc2SEy4DnKuY5DY1hxcD5ByuDFnI0daIg04nt
+	 Acfj2URz9yswQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v19 3/7] coresight: tmc: introduce tmc_sysfs_ops to wrap
+ sysfs read operations
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jie Gan" <jie.gan@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260625-enable-byte-cntr-for-ctcu-v19-3-8fbbf22e8381@oss.qualcomm.com>
+References: <20260625-enable-byte-cntr-for-ctcu-v19-0-8fbbf22e8381@oss.qualcomm.com>
+ <20260625-enable-byte-cntr-for-ctcu-v19-3-8fbbf22e8381@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 25 Jun 2026 11:00:50 +0000
+Message-Id: <20260625110051.ADACB1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:455.rodrigo.alencar@gmail.com,m:rodrigo.alencar@analog.com,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:akpm@linux-foundation.org,m:pmladek@suse.com,m:rostedt@goodmis.org,m:andriy.shevchenko@linux.intel.com,m:linux@rasmusvillemoes.dk,m:senozhatsky@chromium.org,m:skhan@linuxfoundation.org,m:455rodrigoalencar@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315632-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jie.gan@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RSPAMD_URIBL_FAIL(0.00)[sashiko.dev:query timed out];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-315631-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[]
+	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	RSPAMD_EMAILBL_FAIL(0.00)[devicetree@vger.kernel.org:query timed out];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,desc.name:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email,sashiko.dev:url,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6B7726C4E5C
+X-Rspamd-Queue-Id: 8FC806C4ED2
 
-On Thu, 25 Jun 2026 08:30:07 +0100
-Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-> On 24/06/26 15:54, Jonathan Cameron wrote:
-> > On Sun, 14 Jun 2026 21:00:44 +0100
-> > Jonathan Cameron <jic23@kernel.org> wrote:
-> >   
-> > > On Thu, 4 Jun 2026 11:09:33 +0100
-> > > Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
-> > >   
-> > > > On 26/06/04 10:58AM, Rodrigo Alencar via B4 Relay wrote:    
-> > > > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > > > > 
-> > > > > Add init parameter to _parse_integer_limit() that defines an initial
-> > > > > value for the accumulated result when parsing an 64-bit integer. The
-> > > > > new function prototype is adjusted so that the _parse_integer() macros
-> > > > > stay consistent allowing for one more argument, which defaults to 0.      
-> > > > 
-> > > > ...
-> > > >     
-> > > > >  noinline
-> > > > >  unsigned int _parse_integer_limit(const char *s, unsigned int base, unsigned long long *p,
-> > > > > -				  size_t max_chars)
-> > > > > +				  size_t max_chars, unsigned long long init)
-> > > > >  {
-> > > > >  	unsigned long long res;
-> > > > >  	unsigned int rv;
-> > > > >  
-> > > > > -	res = 0;
-> > > > > +	res = init;      
-> > > > 
-> > > > This might generate conflict, as the code around have changed in linux-next.
-> > > > It is an easy fix though.
-> > > >     
-> > > Thanks for the heads up. Hopefully that will all fall out when I rebase testing
-> > > on rc1 once that is out.  
-> > I've done a mid merge cycle rebase as the char-misc branches have merged.
-> > So this should be resolve on my testing branch now.  
-> 
-> https://lore.kernel.org/oe-kbuild-all/202606250230.etPGuolf-lkp@intel.com/
-> 
-> Apparently, the documentation header now includes parameter descriptions.
-> The new one is missing.
+Pre-existing issues:
+- [High] The error handling path in `__tmc_probe()` at the `out:` label unc=
+onditionally accesses `drvdata->csdev` and attempts to register the crash m=
+etadata interface, leading to NULL pointer dereference, error pointer deref=
+erence, or Use-After-Free.
+--
 
-I'm snowed under for next few days so if you have time to spin me a fixup patch
-that I can just apply that would be great.
+commit 0e2c5d1f36c04454695412377951547f5c57c845
+Author: Jie Gan <jie.gan@oss.qualcomm.com>
 
-If not I'll get to it next week probably.
+coresight: tmc: introduce tmc_sysfs_ops to wrap sysfs read operations
 
-Jonathan
+Introduce tmc_sysfs_ops as a wrapper, wrap sysfs read operations,
+for reading trace data from the TMC buffer.
 
->  
+> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/h=
+wtracing/coresight/coresight-tmc-core.c
+> index bc7dd676da473..4b40b692be4d8 100644
+> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
+> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
 
+[ ... ]
+
+> @@ -835,6 +826,7 @@ static int __tmc_probe(struct device *dev, struct res=
+ource *res)
+>  		idr_init(&drvdata->idr);
+>  		mutex_init(&drvdata->idr_mutex);
+>  		dev_list =3D "tmc_etr";
+> +		drvdata->sysfs_ops =3D &etr_sysfs_ops;
+>  		INIT_LIST_HEAD(&drvdata->etr_buf_list);
+>  		break;
+>  	case TMC_CONFIG_TYPE_ETF:
+> @@ -844,6 +836,7 @@ static int __tmc_probe(struct device *dev, struct res=
+ource *res)
+>  		desc.subtype.link_subtype =3D CORESIGHT_DEV_SUBTYPE_LINK_FIFO;
+>  		desc.ops =3D &tmc_etf_cs_ops;
+>  		dev_list =3D "tmc_etf";
+> +		drvdata->sysfs_ops =3D &etb_sysfs_ops;
+>  		break;
+>  	default:
+>  		pr_err("%s: Unsupported TMC config\n", desc.name);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but looking at __tmc_probe(),
+is it safe to unconditionally call the crashdata functions at the out: label
+if probe fails?
+
+If an error occurs during probe (for example, coresight_alloc_device_name()
+returns NULL, or coresight_register() returns an ERR_PTR), the code jumps
+to out:
+
+out:
+	if (is_tmc_crashdata_valid(drvdata) &&
+	    !tmc_prepare_crashdata(drvdata))
+		register_crash_dev_interface(drvdata, desc.name);
+
+is_tmc_crashdata_valid() then attempts to access drvdata->csdev->dev:
+
+drivers/hwtracing/coresight/coresight-tmc-core.c:is_tmc_crashdata_valid() {
+    ...
+	/* Check for valid metadata */
+	if (!mdata->valid) {
+		dev_dbg(&drvdata->csdev->dev,
+			"Data invalid in tmc crash metadata\n");
+    ...
+}
+
+Will this cause a NULL pointer or ERR_PTR dereference if drvdata->csdev
+hasn't been successfully registered?
+
+Furthermore, if misc_register() fails, coresight_unregister() frees csdev,
+potentially leading to a use-after-free. If register_crash_dev_interface()
+succeeds on an error path, could the driver core subsequently free drvdata
+via devres cleanup, leaving a dangling pointer in the global miscdevice lis=
+t?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625-enable-byt=
+e-cntr-for-ctcu-v19-0-8fbbf22e8381@oss.qualcomm.com?part=3D3
 
