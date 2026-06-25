@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-315826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315827-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nbIhOWFuPWpi3AgAu9opvQ
-	(envelope-from <devicetree+bounces-315826-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 20:07:29 +0200
+	id CotpAtFuPWpt3AgAu9opvQ
+	(envelope-from <devicetree+bounces-315827-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 20:09:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ACD26C8196
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 20:07:29 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96F536C81A5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 20:09:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bzRk+pVU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315826-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315826-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GNg1WJC7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315827-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315827-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EF21A30262C3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:07:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1244D301476E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4082FFDEA;
-	Thu, 25 Jun 2026 18:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50DE2305693;
+	Thu, 25 Jun 2026 18:09:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E629245019
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 18:07:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D861304972
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 18:09:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782410822; cv=none; b=Dk9Pw03+NMz7AmFLneemdtGx4KKgp22L/qVVaKrINY75S2cYYP795BzGEdZD0wiIKRIKD4SBwtFbMQcC8tBw86KhDqhMHyadfNfco9iZumcxbUpQFr9JnrnAxOB+Bv7u4gBIqEPYo2xGb2Jm1rQh0/YUsnWu8QvQmjFdagB7lHk=
+	t=1782410958; cv=none; b=ItdotGS+1tzRQtOWkMfbaADrtBd/KXc9GraV3HZYrHakFPSWJoSLPaX9M5k/SvrcWB9RSpuUpl3HzyQccS7kCiHVsbZh1BBnreKEEBxmSoyhNqqY+RF+Xk8LHctXoqNbHdpxR0c9zB/cv4Iu48F+4/+oG2Sv5DezmzMFBdd9GdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782410822; c=relaxed/simple;
-	bh=6H5HIli4mH391tt2UnTsr0qhBr7rIDvscFcpOa523dw=;
+	s=arc-20240116; t=1782410958; c=relaxed/simple;
+	bh=fB5m7/zUBNT8/czaCuLH0Jji44I1TW+UjyYZ8xvfkas=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=iy4ul9ElxOpIhelSLJ0AIEfdzzRMG6YWqfVgY3LVF9IbWddJKAQmevh0bcS+xJjNe+TV1fSedp5HVkbhT56aI2N48q/STtr/O/eZp6+WLB/84CNhyXXk+5YZVKiRDu/ZqTxAwhA5wxMT98dCuUSNw32G/3D4U/cWSvLW7BeXXsw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bzRk+pVU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A26CA1F000E9;
-	Thu, 25 Jun 2026 18:07:00 +0000 (UTC)
+	 Message-Id; b=kRBTTACW+qpFn2lBH8HmwWg9NyQKY9jfDVpO37ZZDYl7OCMB94Mmw4IlaObmrYk5U3g5SH+1dL6DXj7M01rSOuDlYTR2hqD3XFjUPSPhS3ji9iQZIq78F9zxiCzgyOlHmClD/1SyAz0lPzjgbVcp4WJ4bkt+hk0R5MoSf/WixB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GNg1WJC7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 024651F00A3A;
+	Thu, 25 Jun 2026 18:09:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782410821;
-	bh=EaZbnQOn0MPQvWZ6F+LS+fFsMM8oBssvZ/nEnaaaFHw=;
+	s=k20260515; t=1782410957;
+	bh=z7AqSzxt+g9e3qTlqyT0n5Wyzzm1hya7KV6dbGrs9Yc=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=bzRk+pVUBFClFeonxzXcMhYFVdExZNrPnrnu6Ap+zv/OWxvCIVik7//dUx5jG/zCG
-	 Gtv9DwUrHKGpedvdWVHEoDiWj8uA/d7c9mpPbX46dNTc4gPgjBeBtNl+bth0NH8PSa
-	 vK7PVdQXFxeAvAqtfnUQNA4LHair3LGDIPSFfxox7ajOfHB12DC5QbUrt/DgKFyLXC
-	 n2k8AHwtNd4LFHfhUKEnxHKk7pY1/gfUNqHl8ZhH7Ydm6zZ89S1d9eL5RJVO9T9llK
-	 0srsQLNUX07MH54M1Ns/lu9n+vHjoVTpXMdysUXgcR24bxcXjzIli9nMUXcZQxL34D
-	 WyEdiBjLLeRpA==
+	b=GNg1WJC7WzUlDUyNSEVLSKhC6D5Fx9z9c16vg36T9AI1luVU5EVOX3bsWMntXZYPc
+	 lhoU+3l3iCTVCxln7AsjoikVk5dAeQfcLC4Banrp8ow4B+eXGK/b42LfgPMLEeBsam
+	 DMMF5GoP+NESRxbUXmax823+V8fX6qN44mkEEbTKkxrSIHLaZMt2XgnrBd8hRBp0MN
+	 3lT8QLGgtYwSWP3R2NLFB9oxTH6WuW6NcTeoDkjQcHAfZ5W3004bTAEgMNqj9N8fEL
+	 pbNN0L1+FdjlqlCVKxuMhgndIYPmelWLRX88txHAHCHIlOdEfvhJE//vu19Tm/5HEZ
+	 2cLCr7zqNXQrQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 08/27] phy: rockchip: usbdp: Limit DP lane count to
- muxed lanes
+Subject: Re: [PATCH v7 20/27] phy: rockchip: usbdp: Re-init the PHY on
+ orientation change
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: linux-phy@lists.infradead.org, robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, devicetree@vger.kernel.org, vkoul@kernel.org
-In-Reply-To: <20260625-rockchip-usbdp-cleanup-v7-8-38eb3cf654fd@collabora.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, olteanv@gmail.com, neil.armstrong@linaro.org, vkoul@kernel.org, linux-phy@lists.infradead.org, robh@kernel.org
+In-Reply-To: <20260625-rockchip-usbdp-cleanup-v7-20-38eb3cf654fd@collabora.com>
 References: <20260625-rockchip-usbdp-cleanup-v7-0-38eb3cf654fd@collabora.com>
- <20260625-rockchip-usbdp-cleanup-v7-8-38eb3cf654fd@collabora.com>
+ <20260625-rockchip-usbdp-cleanup-v7-20-38eb3cf654fd@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 25 Jun 2026 18:07:00 +0000
-Message-Id: <20260625180700.A26CA1F000E9@smtp.kernel.org>
+Date: Thu, 25 Jun 2026 18:09:15 +0000
+Message-Id: <20260625180916.024651F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,24 +72,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315826-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315827-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:linux-phy@lists.infradead.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:devicetree@vger.kernel.org,m:vkoul@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:olteanv@gmail.com,m:neil.armstrong@linaro.org,m:vkoul@kernel.org,m:linux-phy@lists.infradead.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,linaro.org,gmail.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,linaro.org,lists.infradead.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
@@ -100,69 +100,74 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url,collabora.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url,collabora.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4ACD26C8196
+X-Rspamd-Queue-Id: 96F536C81A5
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] The target patch introduces a validation check against `udphy->dp_=
-lanes`, but this struct member does not exist at this point in the patch se=
-ries, causing a fatal build error. Even if it did exist, it is not initiali=
-zed, leading to permanent validation failure.
+- [High] The patch attempts to fix PHY lane muxing on cable orientation cha=
+nges by setting `phy_needs_reinit =3D true`, but this fails to re-initializ=
+e the PHY for USB3-only connections, leaving USB3 broken on reverse orienta=
+tion plugs or flips.
 --
 
-commit 4d319652ccfe3b1db53193c06a94733191acf3bc
+commit d1dadcaee0ea260b3047754297edae7462107b62
 Author: Sebastian Reichel <sebastian.reichel@collabora.com>
+phy: rockchip: usbdp: Re-init the PHY on orientation change
 
-phy: rockchip: usbdp: Limit DP lane count to muxed lanes
-
-This commit adds a check to limit the DP lane count to the number of muxed
-lanes available on the PHY, preventing the DP controller from requesting
-4 lanes when restricted to 2.
-
-Closes: https://lore.kernel.org/linux-phy/20260612165546.98E1F1F000E9@smtp.=
-kernel.org/
+This commit changes the cable orientation logic to reconfigure lane muxing
+and sets a flag to re-initialize the PHY if the cable is re-plugged with a
+swapped orientation.
 
 > diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
 chip/phy-rockchip-usbdp.c
-> index 121dd78d8c161..2324f9050f638 100644
+> index b08f0c142b0d2..3fa97a8c2555a 100644
 > --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
 > +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> @@ -1132,6 +1132,9 @@ static int rk_udphy_dp_phy_verify_link_rate(struct =
-rk_udphy *udphy,
->  static int rk_udphy_dp_phy_verify_lanes(struct rk_udphy *udphy,
->  					struct phy_configure_opts_dp *dp)
->  {
-> +	if (dp->lanes > udphy->dp_lanes)
-> +		return -EINVAL;
+
+[ ... ]
+
+> @@ -636,7 +637,10 @@ static int rk_udphy_orien_sw_set(struct typec_switch=
+_dev *sw,
+>  		goto unlock_ret;
+>  	}
+> =20
+> -	udphy->flip =3D orien =3D=3D TYPEC_ORIENTATION_REVERSE;
+> +	if (udphy->flip !=3D flipped)
+> +		udphy->phy_needs_reinit =3D true;
 > +
+> +	udphy->flip =3D flipped;
 
 [Severity: High]
-Does this break the build at this point in the patch series?
+Does setting phy_needs_reinit here actually trigger a re-initialization for
+USB3-only connections?
 
-It appears that the dp_lanes member of struct rk_udphy is not yet declared
-or initialized at this point in the tree. This would cause a compilation
-failure and break git bisect. Additionally, if the field were present but
-uninitialized, it would evaluate to 0 and cause this check to unconditional=
-ly
-return -EINVAL, breaking DisplayPort configuration.
+When the Type-C controller detects a cable orientation change, it calls
+rk_udphy_orien_sw_set(). The driver updates udphy->flip and defers hardware
+re-initialization until rk_udphy_power_on() is called.
 
-I understand this is resolved later in the patch series by commit
-02003c09070591a7 ("phy: rockchip: usbdp: Support single-lane DP"), which
-adds and correctly initializes the dp_lanes struct member. Could the struct
-member addition be moved to this commit to ensure the build remains fully
-bisectable?
+However, for USB3-only connections, DWC3 does not cycle phy_init() or
+phy_power_on() on a simple replug since the PHY remains powered. This means
+rk_udphy_power_on() is never invoked and the PHY is never re-initialized wi=
+th
+the new lane muxing, which could cause USB 3.0 link training to fail when a
+cable is flipped.
 
->  	switch (dp->lanes) {
->  	case 1:
->  	case 2:
+A later patch in the series (phy: rockchip: usbdp: Properly handle
+TYPEC_STATE_SAFE and TYPEC_STATE_USB) attempts to address Type-C state
+changes, but its logic appears to abort for both TYPEC_STATE_USB and modal
+states. Even if corrected, its transition check would be false for a simple
+cable flip that remains in USB mode, meaning this issue would persist.
+
+>  	rk_udphy_set_typec_default_mapping(udphy);
+>  	rk_udphy_usb_bvalid_enable(udphy, true);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625-rockchip-u=
-sbdp-cleanup-v7-0-38eb3cf654fd@collabora.com?part=3D8
+sbdp-cleanup-v7-0-38eb3cf654fd@collabora.com?part=3D20
 
