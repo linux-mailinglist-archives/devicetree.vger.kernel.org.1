@@ -1,235 +1,287 @@
-Return-Path: <devicetree+bounces-315773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315795-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Xq3ONr5mPWpC2ggAu9opvQ
-	(envelope-from <devicetree+bounces-315773-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 19:34:54 +0200
+	id tW1SNWhqPWqM2wgAu9opvQ
+	(envelope-from <devicetree+bounces-315795-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 19:50:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C1B26C7D19
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 19:34:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A6866C803D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 19:50:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=rambus.com header.s=selector1 header.b=PNFJpP5g;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315773-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315773-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=rambus.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=collabora.com header.s=mail header.b=XyyXqNTz;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315795-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315795-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=collabora.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97650307E68D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 17:34:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E1994311A971
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 17:39:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7F8F3ECBFD;
-	Thu, 25 Jun 2026 17:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B68573ED125;
+	Thu, 25 Jun 2026 17:39:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11021074.outbound.protection.outlook.com [52.101.62.74])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63EA63EB0FE;
-	Thu, 25 Jun 2026 17:34:14 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782408855; cv=fail; b=G90Q/eGQBUVZZveJ7DmRrVC6PmWg6yagT6Jz9Rv00GErX3sxN50zFdCdW90w7CNg4n+HDkghdAauXI17LR6n1AAKGrT3quz/8yr1mav8fm2zD84t2PLVJX0nalmkAo6GHP8yEfix+5VxggEZFlB3nnLL0wXDhvThX/bqe97EQuo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782408855; c=relaxed/simple;
-	bh=hLqOaqivW3RocLS0CzTpi2YwnHLk/EkiWluwWHMdBx0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jJR0uzH/rm8qgP5HWLRLONx5J74slbfDdw+Hxr6sbneKk7J1LyB3KQI51Gpd3xfMqiqsWNWPTAHaCFvf0F6xaj805Akac7RpnHqEfUM6ewP9LjL+RDhb5IggcLO7VayWvNUXe4vXq50jyNfc/NM0duxiqSaedCNddL3zKElHrsY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rambus.com; spf=fail smtp.mailfrom=rambus.com; dkim=pass (2048-bit key) header.d=rambus.com header.i=@rambus.com header.b=PNFJpP5g; arc=fail smtp.client-ip=52.101.62.74
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EmK68oU2oaV4t590qwz+J9p2CyIEl1Fttq1Vu46NuwHxUiEZbzELJZrsR987ydZrFUmSP5h4Q2s4z3AyrjTLri4bhw09F1b62x0j6NkdQxHgUvEpLDLCDzZBLzkzMiMqnSNaYFWKjzOsW0gpKoOXe4jQNGEdj/tRYH/ocQe2iFOqHh4SdGCwX0UTgE0lV+VEqKyI10zINiZ93xDOZifVSpdHwyRLbT7TJZ1jC9wuJrPdU3dEck9HdaIhpvS5y8/1hc51R+JCw5Rb9hF7oqjlwGHsE1Vhd4h4JqENcYJbmk8Rt1DyZbWwjIlWNwwWmOWP6MxNz+NdtV85DcbxII9dVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/3/a4Fm0bgWXNMRw8/5ZwMOyNawyFZztKFFN500z1os=;
- b=NEtPUt5AT8jdeWubDZDiF7Hll0f0mC/RUGGrld+sQkcQYS+ICnYCx2RkC98ZphVTuprNyR5qy7IJnvs8TxAccmS+l1fLThWtyb7NCHggtDvg7duec6bS/HJxFxlTdW+I+wrCW5dVEh18bxpDQq/WRo58lYyvraJutlF7IeyWCMCZFUzkK+p4KOH3KspV+bnrBQSCgBUYHA0dDPXyTTV81aYrq7bggusm4JfDCyXOL6GFaSzrECigrOeMqfDLdGxGdVdL5xAcQyQoCUBMbiZmMxVHGJNhhKK5PqVBnoWJfwR7kYFCuMDCOZM/yTA7ugCq9srr6mf/b8BwAiWmk0qC6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 192.86.86.210) smtp.rcpttodomain=cryptography.com smtp.mailfrom=rambus.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=rambus.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rambus.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/3/a4Fm0bgWXNMRw8/5ZwMOyNawyFZztKFFN500z1os=;
- b=PNFJpP5ge5WvLK41G5Hhdv1mZfMSU7IYSNfDCrWof32ZzOhiSghHJU1nQScEe6s1IcEFMhG1fkY+NQCMx0DFUB3qmgOd65XinRQ9Y5luLhczhAfNgp3yrn8eKPFWHkYZQBNheGI1PNHcYasUzEqvTUaj7oMKB7Vbk+H1Mr1tCH0/RLPFlbEdFdQgKBvLjGXmM7fvJNN9PJI8JyUdmsZrXhrjhH8ae3GYqu7UA1RXFtzl3I1HgVBdZ4h894yb81OUX/4f/R4PhfzHNcJHMwEZnrzxfyOayOvY8rkUZl0GG4ulBdEYP/L/wNC/5YU3dXFvnOK8HGaRkshEPER6JckxgQ==
-Received: from BN9PR03CA0863.namprd03.prod.outlook.com (2603:10b6:408:13d::28)
- by IA3PR04MB9301.namprd04.prod.outlook.com (2603:10b6:208:51b::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Thu, 25 Jun
- 2026 17:34:10 +0000
-Received: from BN2PEPF0000449E.namprd02.prod.outlook.com
- (2603:10b6:408:13d:cafe::47) by BN9PR03CA0863.outlook.office365.com
- (2603:10b6:408:13d::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.15 via Frontend Transport; Thu,
- 25 Jun 2026 17:34:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 192.86.86.210)
- smtp.mailfrom=rambus.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=rambus.com;
-Received-SPF: Pass (protection.outlook.com: domain of rambus.com designates
- 192.86.86.210 as permitted sender) receiver=protection.outlook.com;
- client-ip=192.86.86.210; helo=hqxsv-psmtppxy02.rambus.com; pr=C
-Received: from hqxsv-psmtppxy02.rambus.com (192.86.86.210) by
- BN2PEPF0000449E.mail.protection.outlook.com (10.167.243.149) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.6
- via Frontend Transport; Thu, 25 Jun 2026 17:34:10 +0000
-Received: from hqxsv-cmdev3-skrishnamoorthy.rambus.com (hqn-lb-int-float.rambus.com [10.12.20.20])
-	by hqxsv-psmtppxy02.rambus.com (Postfix) with ESMTPS id 9EEF41801802;
-	Thu, 25 Jun 2026 17:34:07 +0000 (UTC)
-From: Saravanakrishnan Krishnamoorthy <skrishnamoorthy@rambus.com>
-To: Albert Ou <aou@eecs.berkeley.edu>,
-	Alex Ousherovitch <aousherovitch@rambus.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravanakrishnan Krishnamoorthy <skrishnamoorthy@rambus.com>,
-	Shuah Khan <shuah@kernel.org>
-Cc: Alexandre Ghiti <alex@ghiti.fr>,
-	devicetree@vger.kernel.org,
-	Joel Wittenauer <Joel.Wittenauer@cryptography.com>,
-	linux-api@vger.kernel.org,
-	linux-crypto@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-kselftest@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	sipsupport@rambus.com,
-	Thi Nguyen <thin@rambus.com>
-Subject: [PATCH 19/19] MAINTAINERS: add Rambus CryptoManager Hub (CMH)
-Date: Thu, 25 Jun 2026 10:33:27 -0700
-Message-ID: <20260625173328.1140487-20-skrishnamoorthy@rambus.com>
-X-Mailer: git-send-email 2.43.7
-In-Reply-To: <20260625173328.1140487-1-skrishnamoorthy@rambus.com>
-References: <20260625173328.1140487-1-skrishnamoorthy@rambus.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F02C31E7C18;
+	Thu, 25 Jun 2026 17:39:41 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782409183; cv=none; b=fznB29sbdrGUH8igkm1EmAYl8Mx0EymXrzTwsuEWpbE7HQSEWeK8DBIDjwruEdNLcYd6QTU3+Hy6AwACJxc67YieFoAkYvlTQJVIMcAW7hAUn+N4h45HMEsPN1IcI3F5YKhiiu90RorYqe/GERtoHJ1LwqiTWVST/vxLso4HdaE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782409183; c=relaxed/simple;
+	bh=Xidkai6dG7IvIi8u6EQSDUjAZNOD0zk4aO+q5/KcZ1o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SWeHboty5t3dvts/+rHAGqUCoDj9rDlcD6sIUs2W5THYHPIRUYKuzH7RDZgK1+uD7GDFYJCQenKBOUgglg/mdvZNcZBYqdlRZ8uNtO1QTWRsci2vc1kTx0mY1jb4byceT+jBoiB8UbkwppSi5lqDgtb+pINRP7AJuwFneUM8PwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=XyyXqNTz; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1782409180;
+	bh=Xidkai6dG7IvIi8u6EQSDUjAZNOD0zk4aO+q5/KcZ1o=;
+	h=From:Subject:Date:To:Cc:From;
+	b=XyyXqNTz1WJGfTA+mCWgjfDmsbO0viNnxuUgVEhVl37AEebWj3PdK2vDhfTEW2ynD
+	 J3jzHkpB6BiKiKYYGGVhirI5dZeSTFumISMk8g+91ZCXvcnxJzu2gJVx8aQXw+4q4Y
+	 MRzOVZstrp1iwe1j6SLE90YezS2cLOPkm7b6bhxnH33pNo/h3TGYr7AmOLhdkmliFx
+	 XSS2dgXC/IyPAIq45LK5WFqixAkCEM4+x1dhETg3f+7lUtHcVa/oHxH8I/LZ/PKCjV
+	 9GemnKYov40N9gF1Odr+FYfBP0HBtRhuK4Iceu++NacmSgaUqYJTQgfRtQ//CQh/MT
+	 BPA8HfuDtOKYQ==
+Received: from jupiter.universe (unknown [100.64.1.62])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 46E1E17E0190;
+	Thu, 25 Jun 2026 19:39:40 +0200 (CEST)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id EDC7D480027; Thu, 25 Jun 2026 19:39:39 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH v7 00/27] phy: rockchip: usbdp: Fixes, DP 1-lane support
+ and cleanups
+Date: Thu, 25 Jun 2026 19:39:27 +0200
+Message-Id: <20260625-rockchip-usbdp-cleanup-v7-0-38eb3cf654fd@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF0000449E:EE_|IA3PR04MB9301:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: ce8f2c94-c2f6-4bca-c4c8-08ded2dff768
-X-LD-Processed: bd0ba799-c2b9-413c-9c56-5d1731c4827c,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700016|23010399003|82310400026|376014|7416014|1800799024|921020|6133799003|18002099003|22082099003|13003099007|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info:
-	vUM1AwQ9MLAuVvOlrESPCo0T8t6DP0H1ldCOBnAdTF0Z6c2RM1IlhzGn9WhNBf10IekrOBosW+FgWM7irZKsXiLbA1DrPcH5Q7aRDYlU1+zy7wT7rO2FMPyHRiQyIpGuWdWBE5sCGx2cs+VjxbBPxkvubspk7pz0M6yf4yYnA22xpxQaXnYUnbqfJ9VLBjyXH+Z3n4tmAbYCT0795RXBHksDJOGJrBof5oqshD1JAXw7NeLUxg+1mEOt3Rbg+GERYBragHU4rm8rPjsa1gY2COFiDa/yN0IKOPKXwAqdzGGQuGJVm7wIXElblQkEMCnYWomAh8TsOZWAGAboPjo47J6polggguJIao/BKJ6kKX8q27ocCtrLezraCFVrPyR40Cbs1nU8ZrcxEboP2kQdrs6Ky1jVCuAMYJFNCsBfuSCR3/unh+sdLsBtkbaAZY2LQIb20BdlVpRSlGgjHyfB8EVGprtxzTFq5OW09OisV1IjcPmyC5DqagGFZERvPzHwULPj0uFoKN+liJowbMlwxtF6eZEIBjnvBn3Y6xVMO/jfuQV5qQaIS/wNkTtebHQLkeQLO4G2KDB51sdR++YCAtzpS4WKgXCpJI73HSvC7JnvyEt4ksvqEaroKtMp9zIrWXXk7T10RZ/FhCshe7FuS432N4uFKslu6Pf+CGObkfVGGZPE9onPljQikQqvleI/MUmEVfWl8Kqmmtxweft2ioqtFKQuXDNHXcJoWkbK3YLWeNik0/IX7TsC98Qx0sOw
-X-Forefront-Antispam-Report:
-	CIP:192.86.86.210;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:hqxsv-psmtppxy02.rambus.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(23010399003)(82310400026)(376014)(7416014)(1800799024)(921020)(6133799003)(18002099003)(22082099003)(13003099007)(56012099006)(11063799006);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	HKmx1Mnzgc+rLXB+egtQbNpbbz5JcDbEPx2vUQADlxN/UjPzjxMyg9fe/l8pQXjGPG/xGfKMnU0Xxsotu1eq8JgJCjm8JzNejbwVlJMgkCzaAG0Ji3d4E9k29QvjvKgjNDECFmpEYW4wSC//lWjNVdJ+FAxqnR0gBVXgiTmVO7mfcwEoLXC/Xe0JegHKmric6uTOjyAFvxDrnPIeCPKVa3Y26a3S9Hgwsz7ybZmXUgS0CKz4mijH/9nN6SzLYJbzekQWtF9A/wWwiS9yZ0Kb3uRpXYfIoEWvin+GyxL11ecPgBnsas/yWsThbxuR/eJzFkzEfuoSyO3IysA4zINVWjorkk0utkS2BXWe9Ww6V/qIZOKv7Xl1n1AXDh+4EaBNaCQSWXvus0yy+swco+ayxMDK+Jj2mAQM376ZnbnS1mH+31wNTF0SeFij+BePdhDJ
-X-OriginatorOrg: rambus.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 17:34:10.1895
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce8f2c94-c2f6-4bca-c4c8-08ded2dff768
-X-MS-Exchange-CrossTenant-Id: bd0ba799-c2b9-413c-9c56-5d1731c4827c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bd0ba799-c2b9-413c-9c56-5d1731c4827c;Ip=[192.86.86.210];Helo=[hqxsv-psmtppxy02.rambus.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN2PEPF0000449E.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR04MB9301
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM9nPWoC/4XPwW6EIBAG4FfZcC6NDDJIT32PZg+AQyW1YrBrt
+ tn47sW9uEm1Pf6TzPfnv7GJcqSJvZxuLNMcp5iGEvTTifnODu/EY1sygwqwgkrynPyH7+LIL5N
+ rR+57ssNl5Mop0wanUFjJyvOYKcTrHX47l9zF6Svl73vPLNbrv+QseMUFWgwGqBUaX33qe+tSt
+ s8+fbKVneGBEscUFMqhJg+ggkHao+RGyT8oWShJTaDGWFlm71H1RtXQHFJ1obTWCrUgTwB7lNo
+ oFHBIqUJR8I2s0DRowh6Fj5Q5pHAd6JwIqnYyyF8Dl2X5AVfJCZ43AgAA
+X-Change-ID: 20260203-rockchip-usbdp-cleanup-5b59dfb561a3
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Frank Wang <frank.wang@rock-chips.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Yubing Zhang <yubing.zhang@rock-chips.com>, 
+ Alexey Charkov <alchark@gmail.com>, linux-phy@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, kernel@collabora.com, 
+ devicetree@vger.kernel.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Sashiko <sashiko-bot@kernel.org>, William Wu <william.wu@rock-chips.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7483;
+ i=sebastian.reichel@collabora.com; h=from:subject:message-id;
+ bh=Xidkai6dG7IvIi8u6EQSDUjAZNOD0zk4aO+q5/KcZ1o=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGo9Z9p++4oN4q+Iw/Yxy6C52p2C05n8nex8S
+ 3AUk1GhbSNE9IkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqPWfaAAoJENju1/PI
+ O/qa93gQAKGVvNij8bXAGsmJspdtTVPIy52pQcaQLXzDu6X88+JEFSfQCoj3r6HJ7UZky4z9rDj
+ DIvCvFqeVcz02qyzZY95HBDgVFlDjF5j7It89nE4azUVHldLYdOEeR+jo80/pl0hbrWW+eYUrFN
+ lITB3lKlrD4475/uHC/rh672FFNpJ8qM/1+BdRNQmrIG/WStWHOiLabYlI5N2y5dmxrK6jsCeix
+ mTahzTRagQgvq1/2H20QDTBDXxDEryA3uFVkAC8wQ0oP43RnQRda7MhzMfVUqh1424tjy7FQNe8
+ CSGPO6yAn9EadxMijKzzmYkUO0ZhL189UmDbIOdcRTu5nhncl13S/tVJFK8ScJ35g32RIHawyyz
+ UuTAB+znw9ZxeQiHoa4hIPUBjHwaUUNYNYwaCTKdb6KWjoX6tAWDjF38jeodE5Sc0Ng8EhIc8s2
+ EVNSeYakl3fZSlf+7M0aKxgp7/IgnS+yMH9AuSPHflx/WDD5ngkRVOpRUo11ry26dUkogeHOcqa
+ Dxuukc4/vLe0DfTZ9vQSe/EICLDmLJpTsI9BEPpKg1n7VAH2C0kHLNxmld3/trXkRtblZ0/ZHdW
+ 6aaJP7u6/HxGMbeoHT+6Apufj8rifiBllqiweJDkOgXI6TPt6YsekspfFo+bp98KGeJMXK1/zG0
+ 5mAIdiln9y1VG4FiZ86E05g==
+X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[rambus.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[rambus.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[skrishnamoorthy@rambus.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	TAGGED_FROM(0.00)[bounces-315773-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-315795-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@gmail.com,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:sebastian.reichel@collabora.com,m:sashiko-bot@kernel.org,m:william.wu@rock-chips.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:aou@eecs.berkeley.edu,m:aousherovitch@rambus.com,m:conor+dt@kernel.org,m:davem@davemloft.net,m:herbert@gondor.apana.org.au,m:corbet@lwn.net,m:krzk+dt@kernel.org,m:palmer@dabbelt.com,m:pjw@kernel.org,m:robh@kernel.org,m:skrishnamoorthy@rambus.com,m:shuah@kernel.org,m:alex@ghiti.fr,m:devicetree@vger.kernel.org,m:Joel.Wittenauer@cryptography.com,m:linux-api@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-kselftest@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:skhan@linuxfoundation.org,m:sipsupport@rambus.com,m:thin@rambus.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	DKIM_TRACE(0.00)[rambus.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[skrishnamoorthy@rambus.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[rock-chips.com,kernel.org,gmail.com,lists.infradead.org,vger.kernel.org,collabora.com];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,cryptography.com:email,vger.kernel.org:from_smtp,rambus.com:url,rambus.com:from_mime,rambus.com:dkim,rambus.com:email,rambus.com:mid];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3C1B26C7D19
+X-Rspamd-Queue-Id: 4A6866C803D
 
-From: Alex Ousherovitch <aousherovitch@rambus.com>
+This series overhauls the Rockchip USBDP driver; apart from a
+a bunch of cleanups and small improvements the main goal is to
+get the driver ready for proper USB-C DP AltMode support. At
+the moment it only contains a semi-working state.
 
-Add MAINTAINERS entry for the CRI CryptoManager Hub (CMH) hardware
-crypto accelerator driver under drivers/crypto/cmh/.
+Once this series has landed, it unblocks enabling proper USB-C
+DP AltMode on the RK3588 and RK3576 platforms incl. runtime PM
+for the Synopsys DesignWare DisplayPort controller.
 
-Co-developed-by: Saravanakrishnan Krishnamoorthy <skrishnamoorthy@rambus.co=
-m>
-Signed-off-by: Saravanakrishnan Krishnamoorthy <skrishnamoorthy@rambus.com>
-Signed-off-by: Alex Ousherovitch <aousherovitch@rambus.com>
-Reviewed-by: Joel Wittenauer <Joel.Wittenauer@cryptography.com>
-Reviewed-by: Thi Nguyen <thin@rambus.com>
+Apart from this series, further changes are required on the
+DRM side. There are no compile-time dependencies between the
+DRM side and the PHY side, but the PHY side must be applied
+to avoid SErrors once runtime PM is added to the DisplayPort
+controller driver. Thus it would be really good to land this
+series ASAP as it blocks the DRM side.
+
+Apart from that it also fixes a bunch of issues pointed out by
+Sashiko (mostly harmless), as well as some real problems. Among
+other things it should help drastically with orientation switch
+problems and potential SErrors when a USB-C device is hot-plugged.
+
+Changes in v7:
+- Link to v6: https://lore.kernel.org/r/20260619-rockchip-usbdp-cleanup-v6-0-3bb1f54b3f35@collabora.com
+- Add new patch handling missing clock-names in DT gracefully (Sashiko)
+- Add new patch handling rk_udphy_reset_deassert_all errors in init check (Sashiko)
+- Add new patch to handle Properly handle TYPEC_STATE_SAFE and TYPEC_STATE_USB (Sashiko)
+- Add new patch to avoid xHCI SErrors
+
+Changes in v6:
+- Link to v5: https://lore.kernel.org/r/20260612-rockchip-usbdp-cleanup-v5-0-efc83069869f@collabora.com
+- Add explicit <linux/string_choices.h> include in last patch (Sashiko)
+- Add new patch moving mode_change update after error handling (Sashiko)
+- Add new patch fixing error masking of devm_clk_bulk_get_all() (Sashiko)
+- Add new patch dropping seamless DP takeover as it is non-functional and buggy (Sashiko) 
+- Add new patch limiting DP lane count to muxed lanes (Sashiko)
+- Add error handling in the patch that keeps clocks running on PHY re-init (Sashiko)
+- Also look for DP being configured to second lane for the flip config
+  in DP single-lane mode, which should at least keep USB working for
+  this super unusual config (Sashiko)
+- Drop useless ret variable in patch introducing guard() for the mutex
+- Add error handling for PHY re-enablement in the patch fixing support for
+  DP-only -> USB mode (Sashiko)
+
+Changes in v5:
+- Link to v4: https://lore.kernel.org/r/20260428-rockchip-usbdp-cleanup-v4-0-7775671ece22@collabora.com
+- Picked up Acked-by from Rob Herring for DT binding
+- Fix typos in commit messages/comments
+- Add Fixes tag to "Do not looe USB3 PHY status" patch
+- Collect Reviewed-by: Neil Armstrong for multiple patches
+- Drop now unused code from "Drop DP HPD handling" patch (Sashiko)
+- Ignore mux events not involving DP AltMode (Sashiko)
+- Add new patch to support going back from DP only mode to USB combo
+  mode; technically this is a fix, but DP mode does not yet work
+  upstream, so it does not matter (Sashiko)
+- Add new patch adding a few debug messages, which are useful
+  to investigate potential hotplug issues in the future
+- Sashiko comments about the DT binding and property usage
+  are wrong as the first port is for the superspeed lanes
+  used for DP and USB, while the last port is just about
+  DP aux. I ignored them.
+- There is a pre-existing bug, that can already be hit with the
+  upstream kernel and that the series doesn't fix properly:
+  Accessing the USB3 controller registers requires the USB PHY
+  running, since it provides a clock. Re-initializing the PHY
+  means there is a race-condition - if the system tries to access
+  the USB3 controller in parallel to the re-init, the system will
+  hang and/or fail with an SError. By keeping the clocks running
+  and only asserting the resets this time is minimized by this
+  series. A proper fix for this will be looked into independently
+  from this series.
+- I used v7.1-rc6 as base, but the driver has no changes since
+  6.18 even in linux-next and there are no pending patches for
+  it on the mailinglist either, so it applies to *any* recent
+  kernel branch.
+
+Changes in v4:
+- Link to v3: https://lore.kernel.org/r/20260313-rockchip-usbdp-cleanup-v3-0-3e8fe89a35b5@collabora.com
+- rebased to v7.1-rc1 (no changes)
+- Update DRM bridge registration patch to avoid registration when DP aux
+  port is not connected to anything, since this results in errors and some
+  boards use USBDP instances for USB3 only.
+- Add patch renaming mode_change into phy_needs_reinit
+- Add patch to re-init PHY on orientation change
+- Add patch to factor out lane_mux_sel setup
+- Add patch to handle mutex via guard functions
+
+Changes in v3:
+- Link to v2: https://lore.kernel.org/r/20260213-rockchip-usbdp-cleanup-v2-0-b67ec225f96e@collabora.com
+- Add patch to register the USBDP PHY as DRM bridge
+- Add patch to describe ports in DT binding (used by the DRM bridge)
+- Add patch to drop HPD handling from the PHY
+
+Changes in v2:
+- Link to v1: https://lore.kernel.org/r/20260203-rockchip-usbdp-cleanup-v1-0-16a6f92ed176@collabora.com
+- Added new patches to fix USB3 SError
+
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- MAINTAINERS | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+Frank Wang (1):
+      phy: rockchip: usbdp: Amend SSC modulation deviation
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90034eb7874e..ecb389795e3d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6797,6 +6797,25 @@ F:       kernel/cred.c
- F:     rust/kernel/cred.rs
- F:     Documentation/security/credentials.rst
+Sebastian Reichel (24):
+      dt-bindings: phy: rockchip-usbdp: add improved ports scheme
+      phy: rockchip: usbdp: Update mode_change after error handling
+      phy: rockchip: usbdp: Do not lose USB3 PHY status
+      phy: rockchip: usbdp: Fix devm_clk_bulk_get_all check
+      phy: rockchip: usbdp: Handle missing clock-names DT property gracefully
+      phy: rockchip: usbdp: Drop seamless DP takeover
+      phy: rockchip: usbdp: Handle rk_udphy_reset_deassert_all errors in init check
+      phy: rockchip: usbdp: Limit DP lane count to muxed lanes
+      phy: rockchip: usbdp: Keep clocks running on PHY re-init
+      phy: rockchip: usbdp: Add missing mode_change update
+      phy: rockchip: usbdp: Rename DP lane functions
+      phy: rockchip: usbdp: Use FIELD_PREP_WM16_CONST
+      phy: rockchip: usbdp: Cleanup DP lane selection function
+      phy: rockchip: usbdp: Register DP aux bridge
+      phy: rockchip: usbdp: Drop DP HPD handling
+      phy: rockchip: usbdp: Rename mode_change to phy_needs_reinit
+      phy: rockchip: usbdp: Re-init the PHY on orientation change
+      phy: rockchip: usbdp: Factor out lane_mux_sel setup
+      phy: rockchip: usbdp: Properly handle TYPEC_STATE_SAFE and TYPEC_STATE_USB
+      phy: rockchip: usbdp: Use guard functions for mutex
+      phy: rockchip: usbdp: Support going from DP-only mode to USB mode
+      phy: rockchip: usbdp: Hold mutex in DP PHY configure
+      phy: rockchip: usbdp: Add some extra debug messages
+      phy: rockchip: usbdp: Avoid xHCI SErrors
 
-+CRI CRYPTOMANAGER HUB (CMH) HARDWARE CRYPTO ACCELERATOR
-+M:     Alex Ousherovitch <aousherovitch@rambus.com>
-+M:     Saravanakrishnan Krishnamoorthy <skrishnamoorthy@rambus.com>
-+R:     Joel Wittenauer <Joel.Wittenauer@cryptography.com>
-+R:     Thi Nguyen <thin@rambus.com>
-+L:     linux-crypto@vger.kernel.org
-+L:     sipsupport@rambus.com (moderated for non-subscribers)
-+S:     Maintained
-+T:     git https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptod=
-ev-2.6.git
-+F:     Documentation/ABI/testing/cmh-mgmt
-+F:     Documentation/ABI/testing/debugfs-driver-cmh
-+F:     Documentation/ABI/testing/sysfs-driver-cmh
-+F:     Documentation/crypto/device_drivers/cmh.rst
-+F:     Documentation/devicetree/bindings/crypto/cri,cmh.yaml
-+F:     Documentation/userspace-api/ioctl/cmh_mgmt.rst
-+F:     drivers/crypto/cmh/
-+F:     include/uapi/linux/cmh_mgmt_ioctl.h
-+F:     tools/testing/selftests/drivers/crypto/cmh/
-+
- INTEL CRPS COMMON REDUNDANT PSU DRIVER
- M:     Ninad Palsule <ninad@linux.ibm.com>
- L:     linux-hwmon@vger.kernel.org
---
-2.43.7
+William Wu (1):
+      phy: rockchip: usbdp: Fix LFPS detect threshold control
 
+Zhang Yubing (1):
+      phy: rockchip: usbdp: Support single-lane DP
 
-** This message and any attachments are for the sole use of the intended re=
-cipient(s). It may contain information that is confidential and privileged.=
- If you are not the intended recipient of this message, you are prohibited =
-from printing, copying, forwarding or saving it. Please delete the message =
-and attachments and notify the sender immediately. **
+ .../bindings/phy/phy-rockchip-usbdp.yaml           |  23 ++
+ drivers/phy/rockchip/Kconfig                       |   2 +
+ drivers/phy/rockchip/phy-rockchip-usbdp.c          | 396 ++++++++++-----------
+ 3 files changed, 209 insertions(+), 212 deletions(-)
+---
+base-commit: ab9de95c9cf952332ab79453b4b5d1bfca8e514f
+change-id: 20260203-rockchip-usbdp-cleanup-5b59dfb561a3
 
-Rambus Inc.<http://www.rambus.com>
+Best regards,
+-- 
+Sebastian Reichel <sebastian.reichel@collabora.com>
+
 
