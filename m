@@ -1,82 +1,93 @@
-Return-Path: <devicetree+bounces-315645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315646-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cskDO+sPPWoVwggAu9opvQ
-	(envelope-from <devicetree+bounces-315645-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:24:27 +0200
+	id MhhFJ74QPWoywggAu9opvQ
+	(envelope-from <devicetree+bounces-315646-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:27:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 746A06C513D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 010106C516E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:27:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Ppza4FFM;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315645-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315645-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=axis.com header.s=selector1 header.b=lksh2q1Z;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315646-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315646-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=axis.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7C74330297A8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:24:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 87CA8300A8F3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BD733D9028;
-	Thu, 25 Jun 2026 11:24:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B4B3D904E;
+	Thu, 25 Jun 2026 11:27:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com [74.125.82.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011027.outbound.protection.outlook.com [52.101.65.27])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AADF3D813D
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 11:24:22 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782386664; cv=none; b=Cii2O1XUmsYCCUdrsXtnbSlHmRzP23W2S6AWrS3RJsMmfBBMyyk5IjeRcj0JM3ryuuBThFZqy/3gMvtqlKE6YOZcNTvuIB07gSInakpdY/U1v+bNda2hFeBP8decBGkSaEqf6XKmVB5ZXQu8M8Y19a6DJ3w/cr3SJ9NWCGOqg3Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782386664; c=relaxed/simple;
-	bh=z6Gw1SPw/lmw93dnDilsrhDw8RqP2rNo7ttvYQy1Rlc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Hqcgq7QNzbgx5RS4Un6XrrcNAT80NeKe6a2GM7+Epp2ifsdmaDZKWJof1fVLh205A+n15iCN7TV9BZRnBcSkrbT8L18jTEJrTMOOQ2Jk7R8clVaWSC4VIjq28VueFTTg+sU0Xc2X7m31UKDDMwU77/mP1M3EZ3ndZ29dePrRlIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ppza4FFM; arc=none smtp.client-ip=74.125.82.174
-Received: by mail-dy1-f174.google.com with SMTP id 5a478bee46e88-3078e0dcd67so3094403eec.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 04:24:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782386662; x=1782991462; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SU+MC387FWgefKqGRXg3QcxpIQf2/exgLisxfx7HExg=;
-        b=Ppza4FFMEJlyPOD8/R28Bv5PS1NuUcfhAzDGv+Xqn3IMqDGWC8UQWUJoqVOR+Uu35V
-         2hPGl7qb4I3elgGxJD6H73MSZ1t/afVPxtPKhHJnjmNvTPJCqYG6dXK01fcXIUfhcjZH
-         cAcbY/OLWBL3JOiFDh0H4ZdHVrXtI2XHHOXehVG+0pCdz+R8sg3ExR0+ktksiDT5x4tv
-         ZlCs6Mme2ASBIq+FWdRTFEmiomrDpRfDqDrYffntHyRpAJDNIRS3ZXj7m6C/LgtwoZsk
-         XYGUjMIxOjQo6jnaXotPGwDgaf+a2vujUcZnPIJjw3uUCd+COCZUmkdRimI0cYf74Q71
-         /8/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782386662; x=1782991462;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SU+MC387FWgefKqGRXg3QcxpIQf2/exgLisxfx7HExg=;
-        b=WSPUSawJAw8C7IxfA5h/GY+VL2kI+u8dxztmONc8nOfBEjV8V8lYxSoI+hdD1bArsS
-         i1cTzGYMnfjNOn9Xz3U6j4XYJ+V65nO4cBubxFE8F6v7OssiqA5U4yV9SnK7CRkhAqcy
-         CNKpCK70h3AL6OldXbuDCGbeFXck4pqk/xaU4siQwWypm8VPQLUWxf2i2QG25/IEre5a
-         kAiu5AI9qw4TKV3XIS80tCbu0Y3qEy9c942Gz5TaWmSFbb+uHHNl5UMbxqHR6qW/pW6k
-         9Hx8Xwh0erZlm+xtkL2pX5FO6CiLRBGc5+xdq9FogTqCgLGlHaoiYVdIIE7TVmzf5vCx
-         MFWw==
-X-Forwarded-Encrypted: i=1; AHgh+RoJ1oW7N0fzg1ObWtSmMo6bZdDvV8ARub7d3YrkclPnXndiVwT30JG8VoTGxeUO5nlhMDN2ldPGp5U3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGzgUDYqyNbkYmIKQbNYGVJ04VPOlCCNHJYPSKeu7+wxD7cp1/
-	qnXiCT7QGle9b/6LW6X3tJ/AqminqiDxFrYwx8MsjRF+d+Th9N34C3LnTF6e9w==
-X-Gm-Gg: AfdE7ckDdgPMXCBU2EsM2H0LHPkbHT35ceVKNZPd7Q/SzSwhLdEuDlK5y3N9KRKW6pJ
-	XssHHyhIwU1cjfO1HKZENAcwt4ZjKRYSUk7BF+Z89zcEB16ZZ8+UVSSHhPvtqcV1J18+PgoCrFG
-	Zf0C+UQUCMvy2/L2Ipi1d2+UxeVhEUpjWENxe5cY8997EVWnQpBuH7K7IHE4glqZtq0NRK3Bcyj
-	amKuYva/uooggd2Ngras/aKshOsGGwXF2B9XofdLN4BsTUbK40cGZVRZyinpcm19hANTrlkzg0s
-	n+NpGKGyKzhT9YBMaC5KANPkVX9fkuqQA+70uqnDxvEyIlciCxIvc5aqWS+pdcyJoxiev6pxub4
-	XChEffatYfKY4aCtsHTVTt8XybBOu442JD/+0SmruqkkjCItNd9EY2Ar7VdmNSCuwOKChiAB+5C
-	14nnoNcvdyxfWcwTLYkIpuIAVE29gv/IEYJw==
-X-Received: by 2002:a05:7301:e2a:b0:30c:72ab:89df with SMTP id 5a478bee46e88-30c84dc2b24mr2058486eec.29.1782386662131;
-        Thu, 25 Jun 2026 04:24:22 -0700 (PDT)
-Received: from Black-Pearl.localdomain ([49.207.56.32])
-        by smtp.googlemail.com with ESMTPSA id 5a478bee46e88-30c7c9e9214sm8357352eec.20.2026.06.25.04.24.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jun 2026 04:24:21 -0700 (PDT)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Thu, 25 Jun 2026 11:24:15 +0000
-Subject: [PATCH v4] dt-bindings: pwm: st,sti-pwm: convert to DT schema
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E65E73CF1FF;
+	Thu, 25 Jun 2026 11:27:36 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782386858; cv=fail; b=t8NyxhX4fn+XaZKILQZ1J5Osot0s6XfhN4L/6vGdR9pnPv7Qe263TgNbwU8NxM8UkNLYxaAHPioSwnDz6H22Ok3FVKHt4UpbBXwrk+9ar6gFAk24xIHCUVrVGtPWR01iiQGd/zP4r6to5uIApHvRqNMIeYaqK/l101HqFvcHbMA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782386858; c=relaxed/simple;
+	bh=8ku9u7Hm6aqsqHJGBykoiMXfP8YFmXmtMvOqb4+oUz4=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=jThfaFkwk5INqNxVCB3yPCbvpcJ9O0+J473GDP9Gg4LYn7CkgT/KJdhs6+9/M+rjLfJjQb43H/voRy61IST0bbEggGcBPxVh7oVaJgkK6zuZI0QPTAq7TMqD/pXfWnL5FGggCqXxwo42MHUMQeXI1r864Ee2lIxe0R1/DejYon4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=lksh2q1Z; arc=fail smtp.client-ip=52.101.65.27
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ODpt0/jvqC/DAR+RUEchknI+w6jpc5FJfWMRWHXJTyMAZVAfv4DBhBv3CGFkUiGcmM1yCLKlQpfgoC2NO7wdvSzfutIewJO9BUzuAsBDIDqwnTtyK5MSS3D+f7PIqEGGfnv4w6asOdndT2zT9zz+LEaH+ld8PXc14AduVwqtAaW9Ny9wQdY3kBnW9wa+iyzKswRIdbyYS0vfcQH21J21v1rkGZGQ/M9RCTBA05fbHzQAj6AY7GsaiDae6d7nHzVgTPL6GGS7DzoLn9bxZFburc+J9sRy0gYmJCPrzDRtTlbEpAgUTZnoTxk5HH/Q2kg6jV768U2MP1jVMXp+lW/RLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=C6SERsrbrXMt41bMkXJCE59I4Pr17v8bSdZ0CGuDYTQ=;
+ b=mggFBEJbS76T1NI42gYzNvxb4A00/Ff+aLJ9AP0joIfX9bllh6mL/04E7jx5MewWGhJkmN7O7I6wECoDlOzj/BqM17iXh11jU5+hw2MOVqhr7Oi+HtT3oX7wxnlLRLD2K6eX421TxRrjZCjWoOuWY78m7xhbnXbFBYLfwGIFk/PjE8PaFwX9mq5k5/UnVhwdUAc1tsAw5KQIvVgRhZOWVPN2tvS7EebDD/icVbX3DutOcuMac9qygVfqsn6zKw1sbugjTQJSo+LLgfmlHEY4F6ci1KzDG6XaykU+gRcpVeRPEw4OUJXzsp+eHmtRs3pQi/sv6ra9Ar6kDSrQamfwug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=C6SERsrbrXMt41bMkXJCE59I4Pr17v8bSdZ0CGuDYTQ=;
+ b=lksh2q1ZD0u14N27xACYBrO/7wO9mQC+rVx92RQL5flTwFNtOREe4FtUvJB5lc26JgFSr0dIcN2NWD99SvObyMpmffH5sLfPMFduVW2Hf3iRnhjkYCTTAOCM4hWecLzX9FwPH/hdd5RtV1az+DRDP/HuBIh5Xl75U81gguxu2A0=
+Received: from DUZPR01CA0317.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4ba::27) by GVXPR02MB10618.eurprd02.prod.outlook.com
+ (2603:10a6:150:153::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.16; Thu, 25 Jun
+ 2026 11:27:31 +0000
+Received: from DB5PEPF00014B8F.eurprd02.prod.outlook.com
+ (2603:10a6:10:4ba:cafe::65) by DUZPR01CA0317.outlook.office365.com
+ (2603:10a6:10:4ba::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.16 via Frontend Transport; Thu,
+ 25 Jun 2026 11:27:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ DB5PEPF00014B8F.mail.protection.outlook.com (10.167.8.203) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Thu, 25 Jun 2026 11:27:30 +0000
+Received: from pc67007-2609 (10.4.0.13) by se-mail11w.axis.com (10.20.40.11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.39; Thu, 25 Jun
+ 2026 13:27:30 +0200
+From: Waqar Hameed <waqar.hameed@axis.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<kernel@axis.com>, <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: supply: Add TI BQ25630 charger
+In-Reply-To: <20260622-whimsical-inescapable-pronghorn-5f94bb@quoll>
+	(Krzysztof Kozlowski's message of "Mon, 22 Jun 2026 13:06:51 +0200")
+References: <cover.1781789320.git.waqarh@axis.com>
+	<96b7d1a0aa0c00929f0fef2847db116b54079a30.1781789320.git.waqarh@axis.com>
+	<20260622-whimsical-inescapable-pronghorn-5f94bb@quoll>
+User-Agent: a.out
+Date: Thu, 25 Jun 2026 13:27:29 +0200
+Message-ID: <pndwlvm6ese.a.out@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,241 +95,139 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260625-st-pwm-v4-1-958d7d6bdf39@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAN4PPWoC/2XNTQ6CMBAF4KuQrq2hA4XWlfcwLsowQI38hCJqC
- He3YEKIriYved+biTnqLTl2CibW02idbRsf4kPAsDJNSdzmPjMIIQkTEXE38O5Zc1GQySlBfyL
- my11PhX2tQ5frN7tHdiMcFr00KuuGtn+vn0ax9P5GR8EFj6VCQKXTUJtzWRt7P2Jbs2V0hD1TG
- wPPMNWQy1RLJPhl0Y6B3FjkmUHSWVEoJUHv2TzPHyxRJtwcAQAA
-X-Change-ID: 20260613-st-pwm-1feade6cfea3
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.15.2
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: se-mail11w.axis.com (10.20.40.11) To se-mail11w.axis.com
+ (10.20.40.11)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB5PEPF00014B8F:EE_|GVXPR02MB10618:EE_
+X-MS-Office365-Filtering-Correlation-Id: a621ce97-1072-4182-8c4d-08ded2acbebb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|1800799024|376014|82310400026|23010399003|11063799006|56012099006|3023799007|4143699003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+	arRhJTvG0OLAhonVU/M16dN0dIBltSb8icKBY4r2DjmbFEzgZckBcQQluIo/71qXAM9sXQZcpOoBNqeSYBMMEGH5tlP05/kg8rUovRYHSi9WXKrB4L3xu0l1daOzz7dBCB9SQ3kBzSE/8bn0aACYvT9sU/R4EiRfnFmwMOHeEK7H7EYWnb0/Y5UZbCnVi1XDJ1/S3hJ227EmRH0JpT6NZMo8Wv9XsrzxgyXTJPv7H6Xgzu3Twt0iczxZSTVITtlmSTp+wliy3bgO8vD6b1Snno9tA7h/8J+aOBot1mKLmdNIYoK+BXjg2Nd03L8cUAwOxA8bETcURduiz+UMTaObDDI6cc/uJsJzwP0rhBV3guiW77J/osD1wGmOEmtNd0kv/Cw++EZp9Tn+BY/sr6T2bW8NUSj3c2vL76+zAYjVhgIObVm7T5Xce2ZOrWqZ7zOhDQNPEi1dDE2ZKbexqIAlF1R5spNKRr78yXNDFzGG9S5kNiFz4rZdtGMUbjFtOry9tcwdSF6ttGGu5/dIwkwtphJiefLWxjVHW7A1XM8C2ABUEn+2r7i+0Mgw6vA59kEZDmAm67VD0G8EoMql1fqy2OTN+/S1EUtrHrLtOMy15jfGrYUUKGRjZAAOruxM6Y1vvHMoOtYSIJ/iIQTbphv7oxiB8et1FgAgK2ImtW8E8llQcBkWlAdci5Bhf6X0CghvMDdA4U2UT02u4H2841SrAg==
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(376014)(82310400026)(23010399003)(11063799006)(56012099006)(3023799007)(4143699003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	Kxgweae4GHCafS/FcROt7ScQZeeB2gl1QZLcKWfBiIuQ/n8HpW5MwVS46jkjM8logZ5TEiaqLvB40wQBjXIZoIylIrezsx4gYvT66h7yZSghw7N+5+CibTOszMC1sPq86gSvMHkmHFI4SttSU3TqD1V8kK6uQhvYfCPIMnzMG5Djo55FYcdukZSn2glPG2rB4B14wa+TqmhXuZ2wVFFJhA3xrmp9onK3eg3XVn9I2y6xPWGwLgt/5of21SGy44zT7NfRSTS5dhJd9f3n8GH3scFSEWnrSOJBrprTcrQwn4kCS0IsGaTugNBIU40VMpxfSXrV6/aiWOzzMsAYJs2bSprJe6maC5K0IhqzMsLpBYWjvd/uTHco0BQkwpb2Yh1yC/2EXUZraxedDSPhPsHeblYfv6W+eNtMMUvrtQ36mR+yU8pjIG36cRM3L+7iwq7F
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 11:27:30.8839
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a621ce97-1072-4182-8c4d-08ded2acbebb
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB5PEPF00014B8F.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR02MB10618
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-0.15 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[axis.com,none];
+	R_DKIM_ALLOW(-0.20)[axis.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315645-lists,devicetree=lfdr.de];
+	XM_UA_NO_VERSION(0.01)[];
+	TAGGED_FROM(0.00)[bounces-315646-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ukleinek@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lee@kernel.org,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:charan.pedumuru@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:charanpedumuru@gmail.com,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,axis.com:dkim,axis.com:mid,axis.com:from_mime];
+	FORGED_SENDER(0.00)[waqar.hameed@axis.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:sre@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kernel@axis.com,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[axis.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[waqar.hameed@axis.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linaro.org:email]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 746A06C513D
+X-Rspamd-Queue-Id: 010106C516E
 
-Convert STMicroelectronics STiH41x PWM/Capture controller binding
-to DT schema.
-Changes during conversion:
-- Fix compatible string from "st,pwm" to "st,sti-pwm" to match the
-  actual hardware variant naming convention used across STi bindings.
-- Drop pinctrl-names from the required list as pinctrl properties are
-  inherited and validated by the pinctrl schema.
+On Mon, Jun 22, 2026 at 13:06 +0200 Krzysztof Kozlowski <krzk@kernel.org> w=
+rote:
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
-Changes in v4:
-- Fix compatible to "st,sti-pwm" in examples.
-- Modify subject line to point to the correct YAML file.
-- Link to v3: https://patch.msgid.link/20260625-st-pwm-v3-1-ace9bff88529@gmail.com
+> On Thu, Jun 18, 2026 at 03:37:59PM +0200, Waqar Hameed wrote:
+>> +allOf:
+>> +  - $ref: power-supply.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: ti,bq25630
+>> +
+>> +  reg:
+>> +    const: 0x6b
+>> +    description:
+>> +      Device I2C address.
+>
+> Drop description, obvious.
 
-Changes in v3:
-- Fix compatible to "st,sti-pwm".
-- Drop pinctrl-names from required.
-- Modify the commit message to explain the changes made.
-- Change maintainer to "Lee Jones <lee.jones@linaro.org>".
-- Link to v2: https://patch.msgid.link/20260618-st-pwm-v2-1-c792d5795ce2@gmail.com
+I see that several others actually don't have a description for this
+property. I'll drop it!
 
-Changes in v2:
-- Add the missing interrupts to the required following the old binding.
-- Modify the commit message to explain the changes made.
-- Link to v1: https://patch.msgid.link/20260613-st-pwm-v1-1-458c2c89709a@gmail.com
----
- Documentation/devicetree/bindings/pwm/pwm-st.txt   | 43 ----------
- .../devicetree/bindings/pwm/st,sti-pwm.yaml        | 92 ++++++++++++++++++++++
- 2 files changed, 92 insertions(+), 43 deletions(-)
+>
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +    description: |
+>
+> Do not need '|' unless you need to preserve formatting.
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-st.txt b/Documentation/devicetree/bindings/pwm/pwm-st.txt
-deleted file mode 100644
-index 19fce774cafa..000000000000
---- a/Documentation/devicetree/bindings/pwm/pwm-st.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--STMicroelectronics PWM driver bindings
----------------------------------------
--
--Required parameters:
--- compatible :		"st,pwm"
--- #pwm-cells : 		Number of cells used to specify a PWM. First cell
--			specifies the per-chip index of the PWM to use and the
--			second cell is the period in nanoseconds - fixed to 2
--			for STiH41x.
--- reg :			Physical base address and length of the controller's
--			registers.
--- pinctrl-names: 	Set to "default".
--- pinctrl-0: 		List of phandles pointing to pin configuration nodes
--			for PWM module.
--			For Pinctrl properties, please refer to [1].
--- clock-names: 		Valid entries are "pwm" and/or "capture".
--- clocks: 		phandle of the clock used by the PWM module.
--			For Clk properties, please refer to [2].
--- interrupts:		IRQ for the Capture device
--
--Optional properties:
--- st,pwm-num-chan:	Number of available PWM channels.  Default is 0.
--- st,capture-num-chan:	Number of available Capture channels.  Default is 0.
--
--[1] Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
--[2] Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--Example:
--
--pwm1: pwm@fe510000 {
--	compatible = "st,pwm";
--	reg = <0xfe510000 0x68>;
--	#pwm-cells = <2>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_pwm1_chan0_default
--		     &pinctrl_pwm1_chan1_default
--		     &pinctrl_pwm1_chan2_default
--		     &pinctrl_pwm1_chan3_default>;
--	clocks = <&clk_sysin>;
--	clock-names = "pwm";
--	st,pwm-num-chan = <4>;
--	st,capture-num-chan = <2>;
--};
-diff --git a/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml b/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml
-new file mode 100644
-index 000000000000..e980c76b54e7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml
-@@ -0,0 +1,92 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/st,sti-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STiH41x PWM/Capture controller
-+
-+maintainers:
-+  - Lee Jones <lee.jones@linaro.org>
-+
-+description:
-+  The STiH41x PWM controller supports both PWM output and input capture
-+  functionality. It provides multiple PWM output channels for generating
-+  variable duty-cycle waveforms, and multiple input capture channels for
-+  measuring external signal periods and pulse widths. PWM output channels
-+  and input capture channels are configured independently via
-+  st,pwm-num-chan and st,capture-num-chan respectively.
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    const: st,sti-pwm
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#pwm-cells":
-+    const: 2
-+
-+  pinctrl-names:
-+    const: default
-+
-+  clock-names:
-+    items:
-+      enum: [pwm, capture]
-+    minItems: 1
-+    maxItems: 2
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  interrupts:
-+    description: IRQ line for the capture device.
-+    maxItems: 1
-+
-+  st,pwm-num-chan:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Number of available PWM output channels.
-+    minimum: 0
-+    maximum: 4
-+    default: 0
-+
-+  st,capture-num-chan:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Number of available input capture channels.
-+    minimum: 0
-+    maximum: 4
-+    default: 0
-+
-+required:
-+  - reg
-+  - compatible
-+  - "#pwm-cells"
-+  - clock-names
-+  - clocks
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    pwm@fe510000 {
-+        compatible = "st,sti-pwm";
-+        reg = <0xfe510000 0x68>;
-+        interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
-+        #pwm-cells = <2>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_pwm1_chan0_default
-+                     &pinctrl_pwm1_chan1_default
-+                     &pinctrl_pwm1_chan2_default
-+                     &pinctrl_pwm1_chan3_default>;
-+        clocks = <&clk_sysin>;
-+        clock-names = "pwm";
-+        st,pwm-num-chan = <4>;
-+        st,capture-num-chan = <2>;
-+    };
-+...
+Right, let's remove it.
 
----
-base-commit: c425609d6ac4012c8bbf01ec2e10e801b1923a7b
-change-id: 20260613-st-pwm-1feade6cfea3
+>
+>> +      Device sends active low 256 =C2=B5s pulse. Type should therefore =
+be
+>> +      IRQ_TYPE_EDGE_FALLING.
+>> +
+>> +  monitored-battery: true
+>
+> Drop this one
 
-Best regards,
---  
-Charan Pedumuru <charan.pedumuru@gmail.com>
+I was actually unsure about this one, but several other bindings had
+this one. We can remove it.
 
+>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - monitored-battery
+>> +
+>> +additionalProperties: false
+>
+> And here use 'unevaluatedProperties: false' instead.
+
+Hm, reading the documentation [1], `unevaluatedProperties` should be
+used, because of the "include" of `power-supply.yaml`. I'll change to
+that.
+
+However, there are tons of other places where `additionalProperties` is
+used instead _with_ a reference to `power-supply.yaml` (which is what I
+followed). Are all of them actually "wrong" then?
+
+>
+> With these fixed:
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+
+Thank you for your review Krzysztof!
+
+[1] `Documentation/devicetree/bindings/writing-schema.rst`
 
