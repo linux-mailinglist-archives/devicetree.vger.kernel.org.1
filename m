@@ -1,105 +1,85 @@
-Return-Path: <devicetree+bounces-315650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315652-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /jhmO9USPWqdwggAu9opvQ
-	(envelope-from <devicetree+bounces-315650-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:36:54 +0200
+	id yWvELgsUPWrVwggAu9opvQ
+	(envelope-from <devicetree+bounces-315652-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:42:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E1B06C52BC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECDE36C535B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:42:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=X2gd777n;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=WtpATyup;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315650-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315650-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=foss.st.com header.s=selector2 header.b=hDWdmlld;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315652-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315652-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=foss.st.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0609F30067AC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:36:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 608BF3018D06
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:42:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BA63DC4BC;
-	Thu, 25 Jun 2026 11:36:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9273DC856;
+	Thu, 25 Jun 2026 11:41:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013016.outbound.protection.outlook.com [40.107.159.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B1063D7D78
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 11:36:49 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782387410; cv=none; b=GaHN/zx6uoT/ZlRLOQeucjULdR1G8R11U4ehLyBFVm3IU31ivjDlWpZ+XLHf9vSw1dUP2KTK6QPuwAykxIl/jxWHCYyC4XfDzudDZAcvyFuCMAr5tUmPhMq7M/Y8EHaECqrO6E2Bcb1fMUNZ0SQxJHlVEaJ/IjxPx66JHtHkfes=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782387410; c=relaxed/simple;
-	bh=EKoghlk8RH2zNWov+Ldx9Bakuy2XIl3xFyMtc1/ag+4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kqDzNwcb6KC/uRbi+17gWtfkvJLFUQQOwXnYRQxD3lI8SLOwRT8ep6Tnl9JO7710Eu6vVLGwQ7fivIxfKHF9luzVVXEDNPWUwvfCLA0S9ewC2vG/DSYXpIh6+qT8yYNyhkTQIZpbkPik6qIiXA0uTvqGoLKuCVDXPEEeyGG/pSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=X2gd777n; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WtpATyup; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65P9k2Pj1398919
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 11:36:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WVY/1XuYxAJzExKXdHQeGSKvfHtqz93hoztP85UA33I=; b=X2gd777n8egnysoz
-	xelcUMjWxePk5DhDwNcAZk/WsoU7MGigh7XE76wS3sA9ohFY5KTFd6MACOV/mrny
-	iv7u9KBsa2bl1NI/oLOhoOw0Vqp//8tlizfWLCidjcD14MhY5xG+WZcmKx37CzkO
-	yqFt84dhhTY2Wt7JHNOf7VvG+9GU9DjKVGD4GZxDMKQct5Vd7NbGusMzUGY1gqNK
-	2XeEXfcDqf17zhnIb6E4Lf3rcGnOy/cLftKGXq80H/iKbMiukCDyW1KJHFyjm+XC
-	bSIY+sJW7htd6od9SreojJ8QKtHRj7iGCyEMsNSIWERiv+QyjhyA4Zn7bYt0+pwL
-	+UppEw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f0uudhwee-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 11:36:48 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-51a07295d67so5955711cf.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 04:36:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782387408; x=1782992208; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=WVY/1XuYxAJzExKXdHQeGSKvfHtqz93hoztP85UA33I=;
-        b=WtpATyupeDwKW4nuq5eBTjOvmO5zFM96eME5bohugOJxnHJHYnNf2dign71pS47Lx/
-         NiXU2zPcBwY2cRBh92cn3d1jXTxp/hQCwPaf0+9H2+eLRs0nVqt/a5dEDp5rp6J08c8K
-         ea+LGb+B8o3bitp2xJbai08dFPsYN5pADQMpJPUPyrnq0cliYcSoYAnu2ymTYohT9+UM
-         uaAT4xpyKaojUxLeVAQo5kZOs5jPVoy4Grj2kweVQihcTfdOfhtqz+4YNzGKGVuv0wUN
-         D8GTDhZmqZMFtjdLaHIywAazfBVzF0nhkFk/tK/ORJaOg5+MNuXmS4C6m6Kx/VYgh8gG
-         Pl/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782387408; x=1782992208;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=WVY/1XuYxAJzExKXdHQeGSKvfHtqz93hoztP85UA33I=;
-        b=sXcEDpV6liEFr6nrEMNgxyyGPKootXVKC08ENxWJcZr6svy2sEXzL84O9XEs3uJtMr
-         HfXtaJZQbCTP1TQ/g/1qjrMqdJCA4oEgUcwiX09MR7vV2NIs1rd2gXvgMP5IyMERyS5e
-         pefvmCAGspG5XmKetnTpwkn3oDRtzutkBTpI5SkjF3ZV1ko5Tw47EDSj6wGHcN3rTQ+F
-         GyDdC+N/h+sxojS3/kw3tyTyS078ZQZ62NTz8xM0UaizsZvsn4Di6K+9e26wAce2H7mE
-         RzoDw+ooDT6hEMLHIo/tUN/v1VarG8vxjWNrs42Si4cBDLOFFBCXe+g2EiZVnDlK3+ya
-         9rfg==
-X-Forwarded-Encrypted: i=1; AFNElJ/Qr5FeIBIToEqw2hwjCx1CR3y53H8OdGwntl8UvdlW+lMafbDjXPkZnO5KOH6IuWmt51VCJBxzYRc0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlHyMtE7/k18qUF6CA1s48nNaZqJmha5gtq24jjv1AaAagZG3C
-	dRE/9/qTXO9jH2FBKT0dAM1lfu2ejHnJfKLn2p5O5H+vQpMWhvGuEEOIzcjU3CSYR1kPPWBECrv
-	E9WiWLjrkQ5S9fuJTcfJm0DTsFl4VZdHE+poEm5e4LdTPZ+AU5O36NTcAErBCcrl+
-X-Gm-Gg: AfdE7ckYFMbMSvSvV5ckIZAQ08NfHb2KEBV0MctGnjuAoCFa6MFSCE05fuxZmh0IPfN
-	BWuugdsNqDOIYIgxPTIb5qxOXaX9f707i+8moFhXh9Hj2fXjNN0lDTmZEduoEa+y9zm05xdJESj
-	4bbkf+kQJR4P9ACuN+UVEleLJZ7GWYZ4ATVIyUoXjk+LHJC202i1OPfHmiyliG35hso29RrSUv0
-	aE/KVjkMAbVfKXzAopjZoE9PgdQ9082JTSQg6JZ1ZMeMtSnLzZSgpyG6Zr177F/kt0z2eavFubY
-	FY82biwnps0jnCGdDASvsw8JptnslqT6eZIs3sSsnvvGrBVhiVRPdPGrQ8vKObSdlU4vZ45KH+Z
-	Cz/rwIdR7qVUMMrjWxruv1uYtGrQssieaGJM=
-X-Received: by 2002:ac8:57c5:0:b0:517:6162:daf5 with SMTP id d75a77b69052e-51a72a47ba5mr15818731cf.3.1782387407660;
-        Thu, 25 Jun 2026 04:36:47 -0700 (PDT)
-X-Received: by 2002:ac8:57c5:0:b0:517:6162:daf5 with SMTP id d75a77b69052e-51a72a47ba5mr15818501cf.3.1782387407280;
-        Thu, 25 Jun 2026 04:36:47 -0700 (PDT)
-Received: from [192.168.120.170] ([178.235.128.140])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c11fbed6c78sm161489066b.60.2026.06.25.04.36.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jun 2026 04:36:46 -0700 (PDT)
-Message-ID: <ea233160-505d-496d-a321-dc23e7f69d80@oss.qualcomm.com>
-Date: Thu, 25 Jun 2026 13:36:44 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38EE92FA0DF;
+	Thu, 25 Jun 2026 11:41:56 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782387718; cv=fail; b=ruYwdqHM4GdPMzWJT2eEbCP6fLHd03FOu5Z1UzamcZvC4y0EDeSOorrjs2Mce8kij2Xvnvjd/zjIIjorXSwzOz8TavxXBdfVpaYmxEqw5ImsEE8abfHlzk5gsufJPjdF5u78NOjxEnTAA+DW7cLom/sV1ZcAWs44Ulfk3ypgcmw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782387718; c=relaxed/simple;
+	bh=RVz3C8e8VReoQzwgzUlBnRsmQZICvpH47y/iAO/aFwQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ia/uNsQ7DrxEAYHUYjU+bPQfBXHpeM5dvMQSeNVCVZ+1ZL+H/qTz1nW6yQb9Kz57Xvc9sq42AAFHPdlTuNMpTDS3AsSDZ/ki3CDnwffr4OaPv+za6hJtR7q6e0QExHC2J8x5fmn+mzxDKOrRQIEYjV7wB3pP6l9F+uscInIMSXI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=hDWdmlld; arc=fail smtp.client-ip=40.107.159.16
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TA34OiKjGHKpZ6kKV/uew9+B5zg/swK/ytGCeq+SMwv84fj4DCw6OdwUFOyPMTcl0Mw1Mr8SJDThtkq367vCXQuGzwLZNuNsN4vfsChBgZV8yD8acqSb/LVwp7J6gyjk882p1gpYdnCnWTwDdlJvT/unoq5imim9ZpvHC0Mol5FUlt6YzWZuKhtvMuzejjy1bxCn0kUeLN4Qy0HmH3q4OUW5h+b3IrhqfgltppQYCVNv72hYxjDDNkmbjlSD5gXFYSZuThGuKfhE/djPST+c3dvHHW8nf9cgsGdPO9TIAHRjqZdWXPg5H20ajyOgtEWQcEqqvPoTY6u5/u22UQelgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eTsWmzBeDG4lSr6tE85cXEc2udThmcWRStw2seQj9bY=;
+ b=HmIPYAFhAzur5ZlGQSPJdQinZHaVyMym2XwOwFmWKBFTu7MKkWOTTxklKWtP6oDNke51nGPrCs71GWLZ8AcDR91iKftiSci42o4wnFsPkBGnUvyX8KS3EwvNGiWuTj5ddXd+5dqxlOjr5GMTSnFbA/QuBzLiiiO1sv521vQRJjBvE6Ojn1tp0yDhIksz75uGkmV9+xjZX6qDQaMn7Nbh8a/QD/utIOwSDuvrPGxwmR6VG1LMi/jts+sryE6DfBVSVySaM4ORRLaWaTt73TsyjujFxDj1MQyXEuqZQ+nAAzBi1EbEP1aC4/ozu32Z0mv9RGHHUaDUc/lTMkb0F32y9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=ideasonboard.com smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eTsWmzBeDG4lSr6tE85cXEc2udThmcWRStw2seQj9bY=;
+ b=hDWdmlld4uTGr485JxhsizZrZZak8Twx/4bNrfoScyK6VZVjPvxwcRoQrk9QtRM4LvycZLHoIJAByMcp92gcLt51XXS5OV0DEq7SS34KhlFvYiBXCbdgouTX7KiDsHTBltDqesnpIC1ZCXyLXyegwvFeZl1bnoqgdh9JBfpcGiMCSdnIZwHmhNeASwoyFZs4nWOr0ugU/6tWGtSXBGvsWQA8vTECSPwt+SS45wQUM9IcKKG2Yel80Q+R20Yfv8+vi7mraq5uRte/LVuvLRlP5VxsB2wkuXLwDJ5p1BEgBhNg1A0h+zEREaeG0V/5899utzKeTlZFEjp6jyxNT4/T6g==
+Received: from DU7P191CA0019.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:54e::33)
+ by VI0PR10MB9720.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:33c::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.18; Thu, 25 Jun
+ 2026 11:41:49 +0000
+Received: from DB5PEPF00014B9F.eurprd02.prod.outlook.com
+ (2603:10a6:10:54e:cafe::18) by DU7P191CA0019.outlook.office365.com
+ (2603:10a6:10:54e::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.16 via Frontend Transport; Thu,
+ 25 Jun 2026 11:41:47 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.60)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ DB5PEPF00014B9F.mail.protection.outlook.com (10.167.8.169) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Thu, 25 Jun 2026 11:41:46 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Thu, 25 Jun
+ 2026 13:45:59 +0200
+Received: from [10.130.78.67] (10.130.78.67) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Thu, 25 Jun
+ 2026 13:41:45 +0200
+Message-ID: <f51d5d21-54fb-444a-9ae9-9b60e7a500f1@foss.st.com>
+Date: Thu, 25 Jun 2026 13:41:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,154 +87,242 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] arm64: dts: qcom: x1e78100-t14s: Add thermal zones
- for keyboard skin and charging sensors
-To: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>, sre@kernel.org,
-        hansg@kernel.org, ilpo.jarvinen@linux.intel.com, linux@roeck-us.net,
-        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: bryan.odonoghue@linaro.org, platform-driver-x86@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260624210825.264454-1-daniel.lezcano@oss.qualcomm.com>
- <20260624210825.264454-4-daniel.lezcano@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260624210825.264454-4-daniel.lezcano@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI1MDA5OSBTYWx0ZWRfX2fSG2GfsSUCc
- GMuIB5VW+YBeQXeZcbJG48At93cYecmlyKmo1Gzs3DGTLdpQN42n0NXZ9kbLBOMCMU+wj2u7UxX
- 3RdtW3lSN6pObUlKo2V5zy8l8BK675E=
-X-Proofpoint-ORIG-GUID: HsXY9jyBev43kSxH_c-Q727ePSr0iCC-
-X-Proofpoint-GUID: HsXY9jyBev43kSxH_c-Q727ePSr0iCC-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI1MDA5OSBTYWx0ZWRfXx1mXmP/CbY+0
- Cic/jlDxAri7CaXYY2UTa8UHr/6B13dXK4xzUzP0OuXaPeCLsbZwJxHvtCRb7lrX2Pt/2l1vWTl
- /dvimKBhrnRN1h0vFRLO1ll8R5ckx8JfAFJDWM13OsHke4lrtlUvLabSzDY/epZQS2OSfMB3Fm5
- /Nj5oyqjTWIcMDCkys0XzKvhyJjRDS1viVquiD6QWCXyACyQlJttkgSmC7RqkIS4eJRUc3y3NXo
- u6MefpHI6fucndJ9zTNYzGnpB1WxFpoefyKrdhpVVTDnA021qee+fc34iy4qT6pIuKrKBVJiSTD
- xxEyU4z1/JNcjgr1K29OBo6Ro2CPjpEEYPqC9UwxqcEAPsr3krtONIsWI1tf8oUhIDDO/wiJj1I
- RqPKBDzf9+LNfQHXdhlhvsgnOfI0rj4+1sFK4Qc3+eOriO2SPx0nC+igFeVD6D3jWUMO2oIJw/s
- vbsrQW7yNSSHNSZIYQw==
-X-Authority-Analysis: v=2.4 cv=HdckiCE8 c=1 sm=1 tr=0 ts=6a3d12d0 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=EUspDBNiAAAA:8 a=68P_60IqByrghkTM5uUA:9 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-25_01,2026-06-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 impostorscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 suspectscore=0 clxscore=1015
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2606250099
+Subject: Re: [PATCH 1/5] media: i2c: vd55g1: Fix media bus code initialization
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+CC: Sylvain Petinot <sylvain.petinot@foss.st.com>, Sakari Ailus
+	<sakari.ailus@linux.intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil+cisco@kernel.org>,
+	<linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+References: <20260428-vd55g4_and_fixes-v1-0-4f745a83b87e@foss.st.com>
+ <20260428-vd55g4_and_fixes-v1-1-4f745a83b87e@foss.st.com>
+ <ajj90hhNwx7bLkOZ@zed>
+Content-Language: en-GB
+From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+In-Reply-To: <ajj90hhNwx7bLkOZ@zed>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB5PEPF00014B9F:EE_|VI0PR10MB9720:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0a48303d-14ca-4516-c358-08ded2aebd07
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|23010399003|82310400026|376014|7416014|1800799024|36860700016|13003099007|6133799003|4143699003|11063799006|56012099006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+	TN9LZnsCgw7s+BenRMfx/yavf2XI/HZga0B1csr9dHJ404ySbc1OsAxVYKsSe+DMN5nlXZ4d/T7bwkrRxy0kFnQPpGPDKqoNsMu2HniZTj6yNysSOuhwsl10wR8SwdD1Rj7Fntpxur2iZpaQrSTcL7IR0dTY3o8BGdlqvbs1FKCsOTMYOsAWM3IbTe2WD+k7bklJxb2rkw/WJs8dlJZlgF8R5JxBwID9QlZyfGmDH6SGOP8vcZtwjUezpwYAsg50dmiBFsXSyc34BFm+lsiABScmx7u0fCWTiGEW3VV7GkQroAfGEUByA7kIpCcxx2xyczv86JXkdIFGKJpG1FmyM8BAvIqMnpi/nHVzsGXpDIi1w2UNyvcuBU7q2PbOJQ+/iRmmY7+RlDt4wAmqnN5ME+7mCoTI9tnX9ySAATO0zxD0sk+CkZzyyKZD7UTIDJnlmsev9YgZ65yWN5bKW/ePUwB6+rTxCamE9Og0L8syoqmp7diAlAiFfThZlL/GEvLzVo/B6nIbVlFfS2/eosEnfJ/PZawDT9V6YWGfiPD1EnscKYUslTzaPepK/0x3fr0Wx9EBb9tMFnBebVn2vmmnbSDU0ZTzS8cYuGm6KglU9CyI3BKvHnuVrb5a7q7HXes30QlJKCGMzY9Pc9nt0VVccQ==
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(82310400026)(376014)(7416014)(1800799024)(36860700016)(13003099007)(6133799003)(4143699003)(11063799006)(56012099006)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	LuiS++/fMN/vksSl290b716i+Z9SRVfY/nkD6NENZLEfzNECpbruS5mFr78PvfmZJP7uAOfxQh5Tz3smOVZxdmBF5ASQpmhDpAc9RbysiyoI1wkHsbtvy+226iUQkSd/wd4ocSg1phVKuCbiM8hXP7zIu17AnWLcg+5ng9lSnHxVkaHZT6vKhNnbt+9p4FBfr8t4G4Oskfldv5I1kFy8gaXY852pP4OHCehqt7QAjigta0hHIYb7aQ6UfzJNuKW9AJeK011UIRycq4o4vDUmQyRdAOCNPtbczGC69CU5RvRJOInE5Vd/+Ny24u9qRXxun6sccenFOAK8QkCpGtfy4QYiArtYBIk+AcSJUIYN1crZI64JfickfZjSLolsorAk7GLz5Q28t5x6ttk6lXy/qbKYyE+jpvOCR/fYtUZwkfPG5RHwc2XGKtDbzI1CKwnQ
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 11:41:46.9524
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a48303d-14ca-4516-c358-08ded2aebd07
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB5PEPF00014B9F.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR10MB9720
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315650-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp];
-	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS(0.00)[m:daniel.lezcano@oss.qualcomm.com,m:sre@kernel.org,m:hansg@kernel.org,m:ilpo.jarvinen@linux.intel.com,m:linux@roeck-us.net,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bryan.odonoghue@linaro.org,m:platform-driver-x86@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315652-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,foss.st.com:dkim,foss.st.com:mid,foss.st.com:from_mime,gitlab.freedesktop.org:url];
+	FORGED_SENDER(0.00)[benjamin.mugnier@foss.st.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jacopo.mondi@ideasonboard.com,m:sylvain.petinot@foss.st.com,m:sakari.ailus@linux.intel.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hverkuil+cisco@kernel.org,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:hverkuil@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[foss.st.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[benjamin.mugnier@foss.st.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8E1B06C52BC
+X-Rspamd-Queue-Id: ECDE36C535B
 
-On 6/24/26 11:08 PM, Daniel Lezcano wrote:
-> Add thermal zone descriptions for the keyboard skin temperature and
-> battery charging circuitry sensors exposed by the embedded controller.
+Hi Jacopo,
+
+Thank you for your review.
+
+Le 22/06/2026 à 11:28, Jacopo Mondi a écrit :
+> Hi Benjamin
 > 
-> Expose the EC as a thermal sensor provider and define two thermal zones
-> using the temperatures reported by the EC:
+> On Tue, Apr 28, 2026 at 10:40:55AM +0200, Benjamin Mugnier wrote:
+>> In the driver initialization, the index of the default media bus code
+>> from the supported media bus code array is passed directly to the
+>> vd55g1_get_fmt_code() function instead of the proper media bus code.
+>>
+>> This works correctly as a proper media bus code is set after
+>> initialization but could not have been the case. This also resulted in
+>> mutliple "Unsupported mbus format" error messages.
+>>
+>> Retrieve the media bus code from the media bus code array, and pass this
+>> media bus code to vd55g1_get_fmt_code() instead of the code index.
+>>
+>> Rename VD55G1_MBUS_CODE_DEF to VD55G1_MBUS_CODE_IDX_DEF and
+>> VD55G1_MODE_DEF to VD55G1_MODE_IDX_DEF while at it to avoid future
+>> confusions. Display the guilty error code in warning message.
+>>
+>> Fixes: e138e7f00042 ("media: i2c: vd55g1: Add support for vd65g4 RGB variant")
+>>
+> You should cc stable for fixes
 > 
->   - a keyboard skin temperature zone with passive and hot trip points,
->   - a charging circuitry temperature zone with multiple passive trip
->     points and CPU frequency mitigation levels.
+> Cc: stable@vger.kernel.org
 > 
-> The charging thermal zone progressively throttles the different CPU
-> clusters as the charging circuitry temperature rises and triggers a hot
-> condition at the highest trip point.
+
+We talked about this very recently and somehow I still forgot.
+
 > 
-> This provides thermal framework integration for the EC temperature
-> sensors and enables platform thermal management through standard thermal
-> zone definitions.
+> The CI should have flagged that, but for some reason it didn't run
+> properly on your series
+> https://gitlab.freedesktop.org/linux-media/users/patchwork/-/pipelines/1655147
 > 
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
-> ---
+>> Signed-off-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+>> ---
+>>  drivers/media/i2c/vd55g1.c | 17 +++++++++++------
+>>  1 file changed, 11 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/media/i2c/vd55g1.c b/drivers/media/i2c/vd55g1.c
+>> index 78d18c028154..1e9db21322e3 100644
+>> --- a/drivers/media/i2c/vd55g1.c
+>> +++ b/drivers/media/i2c/vd55g1.c
+>> @@ -114,9 +114,9 @@
+>>
+>>  #define VD55G1_WIDTH					804
+>>  #define VD55G1_HEIGHT					704
+>> -#define VD55G1_MODE_DEF					0
+>> +#define VD55G1_MODE_IDX_DEF				0
+>>  #define VD55G1_NB_GPIOS					4
+>> -#define VD55G1_MBUS_CODE_DEF				0
+>> +#define VD55G1_MBUS_CODE_IDX_DEF			0
+>>  #define VD55G1_DGAIN_DEF				256
+>>  #define VD55G1_AGAIN_DEF				19
+>>  #define VD55G1_EXPO_MAX_TERM				64
+>> @@ -634,7 +634,7 @@ static u32 vd55g1_get_fmt_code(struct vd55g1 *sensor, u32 code)
+> 
+> Unrelated, but it seems you now have 2 codes for MONO. Does
+> 
+> 	if (sensor->id == VD55G1_MODEL_ID_VD55G1)
+> 		return code;
+> 
+> need an update ?>
 
-[...]
+Not in this patch because it does not add the new MONO sensor, but in
+4/5 I separated the model ID from the color code. Example for the vd55g4 :
 
-> +	ec-charging-thermal {
-> +		polling-delay = <5000>;
-> +		polling-delay-passive = <2000>;
-> +
-> +		thermal-sensors = <&ec 3>;
-> +
-> +		trips {
-> +			psv0: trip-point0 {
+  .name  = "vd55g4",
+  .id    = VD55G1_MODEL_ID_3,
+  .color = VD55G1_COLOR_VERSION_MONO,
 
-"ec_charging_tripN", please - these labels are file-wide, so it's
-better if they're not overly short
+So the patch 4/5 updates the previous 'if' you mentioned to check the
+color member instead of the model :
 
-> +				temperature = <55000>;
-> +				hysteresis = <0>;
-> +				type = "passive";
-> +			};
-> +
-> +			alert0: trip-point1 {
-> +				temperature = <63000>;
-> +				hysteresis = <0>;
-> +				type = "hot";
-> +			};
-> +		};
-> +
-> +		cooling-maps {
-> +			map0 {
-> +				trip = <&psv0>;
-> +				cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						 <&cpu4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						 <&cpu5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						 <&cpu6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						 <&cpu7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						 <&cpu8 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						 <&cpu9 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						 <&cpu10 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						 <&cpu11 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +
-> +			};
+  if (sensor->version->color != VD55G1_COLOR_VERSION_BAYER)
 
-Stray \n above, might also possibly want to throttle the GPU.
-I don't know.
+Which IMO is a good way to handle this problematic. Tell me if you're
+thinking about something else.
 
-Konrad
+>>  				goto adapt_bayer_pattern;
+>>  		}
+>>  	}
+>> -	dev_warn(sensor->dev, "Unsupported mbus format\n");
+>> +	dev_warn(sensor->dev, "Unsupported mbus format: 0x%x\n", code);
+>>
+>>  	return code;
+>>
+>> @@ -1347,6 +1347,7 @@ static int vd55g1_init_state(struct v4l2_subdev *sd,
+>>  {
+>>  	struct vd55g1 *sensor = to_vd55g1(sd);
+>>  	struct v4l2_subdev_format fmt = { 0 };
+>> +	int code;
+>>  	struct v4l2_subdev_route routes[] = {
+>>  		{ .flags = V4L2_SUBDEV_ROUTE_FL_ACTIVE }
+>>  	};
+>> @@ -1361,9 +1362,13 @@ static int vd55g1_init_state(struct v4l2_subdev *sd,
+>>  	if (ret)
+>>  		return ret;
+>>
+>> -	vd55g1_update_pad_fmt(sensor, &vd55g1_supported_modes[VD55G1_MODE_DEF],
+>> -			      vd55g1_get_fmt_code(sensor, VD55G1_MBUS_CODE_DEF),
+>> -			      &fmt.format);
+>> +	if (sensor->id == VD55G1_MODEL_ID_VD55G1)
+>> +		code = vd55g1_mbus_formats_mono[VD55G1_MBUS_CODE_IDX_DEF];
+>> +	else
+>> +		code = vd55g1_mbus_formats_bayer[VD55G1_MBUS_CODE_IDX_DEF][0];
+> 
+> Being this a multi-dimensional array, I don't seem much value in
+> defining VD55G1_MBUS_CODE_IDX_DEF if this is the only place where it
+> is used. What's the meaning of VD55G1_MBUS_CODE_IDX_DEF for
+> vd55g1_mbus_formats_bayer ? Does it represent the bitwidth or does it
+> represent the bayer pattern ?
+
+For vd55g1_mbus_formats_bayer, the first dimension of the array is the
+bitwidth, and the second one is the bayer pattern.
+
+> 
+> I would rather define a
+> VD55G1_DEF_MBUS_CODE_MONO       MEDIA_BUS_FMT_Y8_1X8
+> VD55G1_DEF_MBUS_CODE_BAYER      MEDIA_BUS_FMT_SRGGB8_1X8
+> 
+> Or maybe do
+> 
+> 		code = vd55g1_mbus_formats_bayer[VD55G1_MBUS_CODE_IDX_DEF]
+>                                                 [VD55G1_MBUS_CODE_IDX_DEF];
+> 
+> if easier.
+> 
+> I understand it's a minor, so up to you.
+
+As you mentioned it's only used here. I won't mind removing
+VD55G1_MBUS_CODE_IDX_DEF entirely and do :
+
+  code = vd55g1_mbus_formats_bayer[0][0];
+
+Does that sound okay ?
+
+> 
+> 
+> 
+>> +	vd55g1_update_pad_fmt(sensor,
+>> +			      &vd55g1_supported_modes[VD55G1_MODE_IDX_DEF],
+>> +			      vd55g1_get_fmt_code(sensor, code), &fmt.format);
+>>
+>>  	return vd55g1_set_pad_fmt(sd, sd_state, &fmt);
+>>  }
+>>
+>> --
+>> 2.43.0
+>>
+>>
+
+-- 
+Regards,
+Benjamin
+
 
