@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-315828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315829-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Q8OGEU9vPWp23AgAu9opvQ
-	(envelope-from <devicetree+bounces-315828-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 20:11:27 +0200
+	id cwbIF+1vPWqa3AgAu9opvQ
+	(envelope-from <devicetree+bounces-315829-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 20:14:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 899266C81AD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 20:11:26 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B88896C81E2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 20:14:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=d8gLwM2h;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315828-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315828-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=g+s+1Kjw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315829-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315829-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4313C300CE62
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:11:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7AB2D302C0F4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:12:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58616305693;
-	Thu, 25 Jun 2026 18:11:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D5A309F09;
+	Thu, 25 Jun 2026 18:12:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB9B27B32C
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 18:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A86B30C345
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 18:12:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782411084; cv=none; b=EGimA/5IB0Wquh0vxcyqzM/nRQD979UwvqdBaIctsTQJqUsrbe6yNKLnYXCD/nb4m4/OWpdBt4Uk5ScBOumoWOSJD8n20iq+BKGYGEof+sAnwcRNYKyfOqeHzx0r3bgHbcyA/QtdcnhbF86nsbc36tmO3jWFVLuiyu3YS9mOrtY=
+	t=1782411166; cv=none; b=cZo0HGWRylWvT929H4peNjS5huJHYZl0JFoxJBoEH9av1sPDMeijGMVR714BSHt/i7gqyE882n6I6RhxAYFChGHN1fJhYjBvBo/HasKYqTnVpLG6xLNPR9eUXSk5zGn7VLq+20Ake1T+vMeHKI2En8Wqo7z9XISL/pGsjYrB+nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782411084; c=relaxed/simple;
-	bh=KQ9Fqaqnh3HTGL05IQ7sRvhmb3PuL9n5lBLsJ3lC0Qg=;
+	s=arc-20240116; t=1782411166; c=relaxed/simple;
+	bh=XYNRYYneIOze7VO2TZ6DkbB2bB+6Rv2RayjOk4Zi6us=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=iJ7b9Jbpnk2PYBEFhFfV5bCnTXuhJ2kuzC0bDl7gqQLlIJlBIzcr8WEWD58tE2uEnjejZBpHfQWECjwcR0ebSSYA1YFnCHGyGaIcErodIXQ6fp1pvBtqJgBvgINL8L8CsruCBJsmGnaxEogVrdtXog/m++EtXMcwZAZw30n4K2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d8gLwM2h; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43BDB1F000E9;
-	Thu, 25 Jun 2026 18:11:22 +0000 (UTC)
+	 Message-Id; b=G7JeUVpLlrMfC2BCsKxj+Tph+HvLDdrwzsYWyUsiEsXnnU38vAaJnJECznWdYQcO5tqJfJmA6zw9DbiU4l+/Lhg9xpO67ja3g/aBy7gZ+ev68pQxKDv0hGVLU7GAOdIXDMMuI1iH/qBv41eBcROoc3aMwXldWHMv5j77yFBxRgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g+s+1Kjw; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B0E81F00A3A;
+	Thu, 25 Jun 2026 18:12:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782411082;
-	bh=y5UPaOGHnpnYDmhc58eVJL+p1//zSIxO7jsVvb6HobA=;
+	s=k20260515; t=1782411164;
+	bh=2RncQXwqznbhHie3Ilv2VL9/L076OrAzGH/nhSvBvr4=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=d8gLwM2hhYVRilku9CANBerETGqeUst/4+ciXFkkjdT5WEZzWFQNIjv56s/r7bH7m
-	 Nvu3p0suyQaagGX6TXkJuWCgqdCYKjKKCrF5aLQvXv88T+TzgwkWOLlr45FWHe5uV7
-	 Oq5F1KufIF1KUipD0r23MiuKnge3D8/vg5R3pwQF0Qhgy8UjVuWpK5uNPnQshkevei
-	 yHNQYKEGexNMa7aDonVXiAXe8GVywUAWqnrMD0aAIfK3xuya4NYX6JycYrKj1oft6V
-	 VJLQo1Zmo73tXo22BPPVwm0xFgNDM9PIOzCRdYLbbzUbUGrMMyBK2aouJOUM8BTMVE
-	 uKgfOg07yk3lA==
+	b=g+s+1KjweIhWVkk2zwPdcwali+AKhnshLhtPfX4lKUxr7Rm4fczlSUrF+3xor2VmL
+	 8ynuieaJhOufUTN1HcyGJN/tTh0K8NWp+PY0gm6LxxLZ/EuA9dloNr2bVv5GRA8+Gz
+	 BMbM9fj/y/3dYDr/JB76N9BC9UenCPWas+fT8rvozXnlnwtP3ZN89PFfHf9IyCeDTh
+	 VXrgSDIYUQHbfRRPII3JL7wG+CVhUa7ZQ86vdne9IIKxb4onKBGsAvxxJrTne8UitT
+	 mrySyNfby6lGLmyAZstMwaeWD1vfHVgn8Ar7JgdD89ahrWeChZ8F1tOKpVYFruL665
+	 CTe64EkMxnMzg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 22/27] phy: rockchip: usbdp: Properly handle
- TYPEC_STATE_SAFE and TYPEC_STATE_USB
+Subject: Re: [PATCH v7 24/27] phy: rockchip: usbdp: Support going from
+ DP-only mode to USB mode
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: olteanv@gmail.com, robh@kernel.org, neil.armstrong@linaro.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, vkoul@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260625-rockchip-usbdp-cleanup-v7-22-38eb3cf654fd@collabora.com>
+Cc: linux-phy@lists.infradead.org, robh@kernel.org, vkoul@kernel.org, devicetree@vger.kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, conor+dt@kernel.org
+In-Reply-To: <20260625-rockchip-usbdp-cleanup-v7-24-38eb3cf654fd@collabora.com>
 References: <20260625-rockchip-usbdp-cleanup-v7-0-38eb3cf654fd@collabora.com>
- <20260625-rockchip-usbdp-cleanup-v7-22-38eb3cf654fd@collabora.com>
+ <20260625-rockchip-usbdp-cleanup-v7-24-38eb3cf654fd@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 25 Jun 2026 18:11:21 +0000
-Message-Id: <20260625181122.43BDB1F000E9@smtp.kernel.org>
+Date: Thu, 25 Jun 2026 18:12:43 +0000
+Message-Id: <20260625181244.4B0E81F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,22 +72,22 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315828-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315829-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:olteanv@gmail.com,m:robh@kernel.org,m:neil.armstrong@linaro.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:vkoul@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:linux-phy@lists.infradead.org,m:robh@kernel.org,m:vkoul@kernel.org,m:devicetree@vger.kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linaro.org,lists.infradead.org,vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,vger.kernel.org,linaro.org,gmail.com];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[8];
@@ -100,102 +100,148 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url,collabora.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 899266C81AD
+X-Rspamd-Queue-Id: B88896C81E2
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
 
 New issues:
-- [High] A critical boolean logic error in `rk_udphy_typec_mux_set` incorre=
-ctly uses logical OR (`||`), causing all valid Type-C events to be ignored =
-and breaking the state machine.
+- [High] The `typec_mux_set` early return condition is a tautology, causing=
+ the function to always return 0 and ignore all events.
+- [High] The `usb_in_use` flag fails to record the USB controller's intent =
+if `phy_init` is called while a DP-only adapter is plugged in.
+- [High] The fallback USB power-on logic in `rk_udphy_typec_mux_set` will n=
+ever trigger due to mode transition interference from orientation switch ca=
+llbacks.
 
 Pre-existing issues:
-- [High] NULL pointer dereference when handling non-DP accessory modes (lik=
-e Audio Accessory) in Type-C mux drivers.
+- [High] The `UDPHY_MODE_USB` state bit is leaked in `udphy->status` if the=
+ USB controller unbinds/exits while the PHY is in DP-only mode.
 --
 
-commit b36f3de7b0f44156b05e5cda72d2bdd174f98299
+commit b29d116f72e458e2aa19213a694463c70672b033
 Author: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-phy: rockchip: usbdp: Properly handle TYPEC_STATE_SAFE and TYPEC_STATE_USB
+phy: rockchip: usbdp: Support going from DP-only mode to USB mode
 
-This patch handles TYPEC_STATE_SAFE and TYPEC_STATE_USB Type-C state events
-so that the muxing is properly updated when exiting DP AltMode.
-
-Fixes: 2f70bbddeb45 ("phy: rockchip: add usbdp combo phy driver")
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://sashiko.dev/#/message/20260619155020.CC7361F000E9%40smtp.ke=
-rnel.org
+When a USB-C adapter mapping all Superspeed lanes to DP is plugged in,
+USB support is disabled in the PHY. This patch tracks USB usage and
+powers on the USB PHY in the Type-C mux set callback to ensure USB
+functionality is restored when switching to a USB-capable adapter.
 
 > diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
 chip/phy-rockchip-usbdp.c
-> index 0bcaf54c5645d..0119b6229b0a9 100644
+> index 6f3184011e5f2..1821418375968 100644
 > --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
 > +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> @@ -1329,11 +1329,12 @@ static int rk_udphy_typec_mux_set(struct typec_mu=
-x_dev *mux,
+[ ... ]
+> @@ -1293,7 +1299,13 @@ static int rk_udphy_usb3_phy_init(struct phy *phy)
+>  		return 0;
+>  	}
+> =20
+> -	return rk_udphy_power_on(udphy, UDPHY_MODE_USB);
+> +	ret =3D rk_udphy_power_on(udphy, UDPHY_MODE_USB);
+> +	if (ret)
+> +		return ret;
+> +
+> +	udphy->usb_in_use =3D true;
+> +
+> +	return 0;
+>  }
+
+[Severity: High]
+If the USB controller probes and calls rk_udphy_usb3_phy_init() while a
+DP-only adapter is physically connected, udphy->mode will lack
+UDPHY_MODE_USB. The early return right before this will skip setting
+udphy->usb_in_use =3D true.
+
+Will this cause the fallback logic introduced below to fail when later
+switched to a USB-capable adapter?
+
+>  static int rk_udphy_usb3_phy_exit(struct phy *phy)
+> @@ -1302,6 +1314,8 @@ static int rk_udphy_usb3_phy_exit(struct phy *phy)
+> =20
+>  	guard(mutex)(&udphy->mutex);
+> =20
+> +	udphy->usb_in_use =3D false;
+> +
+>  	/* DP only or high-speed */
+>  	if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs)
+>  		return 0;
+> =20
+>  	rk_udphy_power_off(udphy, UDPHY_MODE_USB);
+
+[Severity: High]
+This is a pre-existing issue, but does this early return bypass state
+cleanup if the USB controller unbinds while the PHY is in DP-only mode?
+
+If udphy->mode lacks UDPHY_MODE_USB, rk_udphy_power_off() is skipped, which
+permanently leaves UDPHY_MODE_USB set in udphy->status and leaks hardware
+clocks and resets.
+
+> @@ -1321,6 +1335,7 @@ static int rk_udphy_typec_mux_set(struct typec_mux_=
+dev *mux,
+>  				  struct typec_mux_state *state)
+>  {
 >  	struct rk_udphy *udphy =3D typec_mux_get_drvdata(mux);
+> +	u8 old_mode;
 > =20
 >  	/*
-> -	 * Ignore mux events not involving DP AltMode, because
-> -	 * the mode field is being reused, e.g. state->mode =3D=3D 4
-> -	 * could be either TYPEC_MODE_USB4 or TYPEC_DP_STATE_C.
-> +	 * Ignore mux events not involving Safe State, USB State or DP AltMode,
-> +	 * because the mode field is being reused, e.g. state->mode =3D=3D 4 co=
+>  	 * Ignore mux events not involving Safe State, USB State or DP AltMode,
+>  	 * because the mode field is being reused, e.g. state->mode =3D=3D 4 co=
 uld
-> +	 * be either TYPEC_MODE_USB4 or TYPEC_DP_STATE_C.
+>  	 * be either TYPEC_MODE_USB4 or TYPEC_DP_STATE_C.
 >  	 */
-> -	if (!state->alt || state->alt->svid !=3D USB_TYPEC_DP_SID)
-> +	if (state->mode >=3D TYPEC_STATE_MODAL || !state->alt ||
-> +	    state->alt->svid !=3D USB_TYPEC_DP_SID)
+>  	if (state->mode >=3D TYPEC_STATE_MODAL || !state->alt ||
+>  	    state->alt->svid !=3D USB_TYPEC_DP_SID)
 >  		return 0;
 
 [Severity: High]
-Does this conditional unintentionally ignore all valid states by using
-logical OR instead of logical AND?
+Is this early return condition a tautology that drops all events?
 
-If a DP AltMode event is passed, state->mode >=3D TYPEC_STATE_MODAL evaluat=
-es
-to true, causing an early return.=20
+For Safe and USB states, state->alt is NULL, so !state->alt evaluates to
+true. For DP AltMode states, state->mode >=3D TYPEC_STATE_MODAL evaluates to
+true. Since these use logical OR, the function will always return 0.
 
-If a Safe State or USB State event is passed, state->alt is NULL, which also
-causes an early return.=20
-
-This appears to short-circuit and return 0 for all expected Type-C muxing
-events, breaking the state machine.
-
+> =20
+>  	guard(mutex)(&udphy->mutex);
+> =20
+> +	old_mode =3D udphy->mode;
+> +
+>  	rk_udphy_set_typec_state(udphy, state->mode);
+> =20
+> +	/*
+> +	 * If the new mode includes USB but the old one didn't (e.g. leaving
+> +	 * DP-only), and the USB PHY was already initialized by the USB
+> +	 * controller, we need to power on the USB side now since no
+> +	 * subsequent phy_init call will come from the controller.
+> +	 */
+> +	if ((udphy->mode & UDPHY_MODE_USB) && !(old_mode & UDPHY_MODE_USB) &&
+> +	    udphy->usb_in_use && !udphy->hs)
+> +		return rk_udphy_power_on(udphy, UDPHY_MODE_USB);
+> +
+>  	return 0;
+>  }
 
 [Severity: High]
-This is a pre-existing issue, but can accessory modes trigger a NULL pointer
-dereference in other Type-C mux drivers?
+Will this fallback logic ever execute during a replug?
 
-When the Type-C port is set to an accessory mode like TYPEC_MODE_AUDIO,
-state->mode >=3D TYPEC_STATE_MODAL evaluates to true, but state->alt is
-initialized to NULL.
+When swapping a DP-only adapter for a USB-capable one, the orientation swit=
+ch
+callback rk_udphy_orien_sw_set() is typically invoked first. This sets the
+mode to UDPHY_MODE_DP_USB.
 
-In drivers/usb/typec/mux/it5205.c:it5205_mux_set():
-
-	if (state->mode >=3D TYPEC_STATE_MODAL &&
-	    state->alt->svid !=3D USB_TYPEC_DP_SID)
-		return -EINVAL;
-
-And similarly in drivers/usb/typec/mux/tusb1046.c:tusb1046_mux_set():
-
-	if (state->mode >=3D TYPEC_STATE_MODAL &&
-	    state->alt->svid !=3D USB_TYPEC_DP_SID)
-		return -EINVAL;
-
-Does this condition dereference state->alt without checking if it is NULL
-when a non-DP modal device is plugged in?
+By the time rk_udphy_typec_mux_set() is called here, udphy->mode already
+includes UDPHY_MODE_USB, so old_mode will have it as well. As a result,
+!(old_mode & UDPHY_MODE_USB) will evaluate to false and bypass this logic.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625-rockchip-u=
-sbdp-cleanup-v7-0-38eb3cf654fd@collabora.com?part=3D22
+sbdp-cleanup-v7-0-38eb3cf654fd@collabora.com?part=3D24
 
