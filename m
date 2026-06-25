@@ -1,256 +1,270 @@
-Return-Path: <devicetree+bounces-315842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315845-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id clUFLfebPWom4wgAu9opvQ
-	(envelope-from <devicetree+bounces-315842-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 23:21:59 +0200
+	id LL2COgOkPWoC5AgAu9opvQ
+	(envelope-from <devicetree+bounces-315845-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 23:56:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4815F6C8B4C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 23:21:59 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F160B6C8CF3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 23:56:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=rambus.com header.s=selector1 header.b=JSNp6c4N;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315842-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315842-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=rambus.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=baylibre.com header.s=google header.b=MdjuYzMa;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315845-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-315845-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9F94E3043ACC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 21:21:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E7654301A77D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 21:56:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5359A3672AF;
-	Thu, 25 Jun 2026 21:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BDF73783A2;
+	Thu, 25 Jun 2026 21:56:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com (mail-southcentralusazon11023075.outbound.protection.outlook.com [40.93.196.75])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17A42F7EF8;
-	Thu, 25 Jun 2026 21:21:53 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782422515; cv=fail; b=CDI0NthA6CjO0/JNJhkjfYBlNT1bclpwlbtU6v5nJnicG/wCNH0Ooz1YiU/TnJ1KXjG9CznNDs9dbv/pG1vmTuTf9pn2GYWkWLEXpjT8iTDmJCnx5au+r3jq+Nefut62SVOlyko3Ka7YbrFnXHQe+3ItojBPO2p8DJOXwCuSqVI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782422515; c=relaxed/simple;
-	bh=DL6HMDLV9DFFzsJdaV7tADIe5c/NRRqAfeb9JW2PW9c=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=BJ2IQO3fF6B1WFgVlt9y661K1/1YUgou0yicA25ljjvboojJqb7YDWT0m1jZbmN+eWruFBG1mqmo7gCN/nSLg+ILj0x5Z08s6OKMbuk3gbLXXKeM+ixeVdqY92YQAHWYsb1SxSuMCozgUYM/cdBdGJXOtWzyMwgy6SY4I4N4mVo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rambus.com; spf=fail smtp.mailfrom=rambus.com; dkim=pass (2048-bit key) header.d=rambus.com header.i=@rambus.com header.b=JSNp6c4N; arc=fail smtp.client-ip=40.93.196.75
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vJeNGuHKmRaW+w6rXdbyke6VcvowXu8xxyA0gKKcDlwXbU9Eyg6RXL3v9exPIDpv8aH+LsOuq0l+aa6OEPgIqfih5CuJm5ncNII4hPoylvmhRP2MNE5JFvfadRBjZU4Hnd7wA2XLuoLM2FO1Tju9Ej/4Hexjf5njPEpYKxJvp27PbMQA8GzKImt5yu3di2zRE5P8Wu2CTH7kclvrGqCarks4ckzjMff8GHrGMb+cir5W1uKgzgJ7eVcmFb5NeuIOAiUyIvvsvIEquCg5sfMEkRMuVkvgPAigFuco4g8brNYISXy2QZvxVN64PZ15LkX+MRTvsV0G9hikAGKsV1zZPA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YA51S0pesopoKLwbt6yUIBshppdISFMB8sZGTlRdlEk=;
- b=jriYLPeL+cjGa2MkYe2zAtrv3lyyYdQ3n8LCQ09485aJIhfKieMW1oRSRH2I/DuyRlIIiKliCxn9Wp9HyDxqK4ZL578zbSjALRdYTe5rXW8YK5/ly5m7VumAEd/vHX7DG6ErDFiqAdy/yVsChqepTmGwjIcOsKHodsOa96vg4laO5Dm5mZQZagLsrZQjQWW/dYfAbNgmMB5c08GymJ9KFiGQe4H0mcwMshj6edKvc3hNMQq9HTw0S9vKYIk2kH6DCYT2WnS55z/8BbTsxp4CZVMjWZETT8LEY6F8lydM9bSkscFVOq9tE2uIA8hGegVQYx84eCu3RDn8xy4Lr+kr+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=rambus.com; dmarc=pass action=none header.from=rambus.com;
- dkim=pass header.d=rambus.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rambus.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YA51S0pesopoKLwbt6yUIBshppdISFMB8sZGTlRdlEk=;
- b=JSNp6c4NR8WEbxOJLZ48CNvrVy7uPYiGYsAFpraF3JX71Tk7byo5fJOKconUtEIMbxOyE3lfJSTB/KVJ/LfVrp2aMI/Xn2ypj38Q/7SzZwstPQGDdf2vbLaWoT+PdnWbkd4gXydeSXF3ogrf1+htLAQ4hUrjD4Hear1MVGI1y7XeUPG+1t3MEIHuN09eCd/dC2OBLpRJ/fh2UqPJa1UZwbxJlqAM81O1O/gd8e+qpR90i7Ju73LmlgEPumatjxVTqutm7RcJw5SNjTO9xmXM4WO4HVO8xUsedVcRZsPrLL7nsLeez39gl1hshyplfkBO9k/vf7MJ0iEjNCT6jQ5KVg==
-Received: from SA1PR04MB9851.namprd04.prod.outlook.com (2603:10b6:806:4ac::5)
- by DSVPR04MB10174.namprd04.prod.outlook.com (2603:10b6:8:3a6::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.17; Thu, 25 Jun
- 2026 21:21:50 +0000
-Received: from SA1PR04MB9851.namprd04.prod.outlook.com
- ([fe80::5f38:dbea:4e4c:9a0f]) by SA1PR04MB9851.namprd04.prod.outlook.com
- ([fe80::5f38:dbea:4e4c:9a0f%6]) with mapi id 15.21.0159.016; Thu, 25 Jun 2026
- 21:21:50 +0000
-From: "Krishnamoorthy, Saravanakrishnan" <skrishnamoorthy@rambus.com>
-To: Randy Dunlap <rdunlap@infradead.org>, Albert Ou <aou@eecs.berkeley.edu>,
-	"Ousherovitch, Alex" <aousherovitch@rambus.com>, Conor Dooley
-	<conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, Herbert Xu
-	<herbert@gondor.apana.org.au>, Jonathan Corbet <corbet@lwn.net>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul
- Walmsley <pjw@kernel.org>, Rob Herring <robh@kernel.org>, Shuah Khan
-	<shuah@kernel.org>
-CC: Alexandre Ghiti <alex@ghiti.fr>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "Wittenauer, Joel"
-	<Joel.Wittenauer@cryptography.com>, "linux-api@vger.kernel.org"
-	<linux-api@vger.kernel.org>, "linux-crypto@vger.kernel.org"
-	<linux-crypto@vger.kernel.org>, "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-kselftest@vger.kernel.org"
-	<linux-kselftest@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, Shuah Khan <skhan@linuxfoundation.org>,
-	SIPSupport <sipsupport@rambus.com>, "Nguyen, Thi" <thin@rambus.com>
-Subject: Re: [PATCH 17/19] Documentation: ioctl: add CMH ioctl documentation
- and register 'J'
-Thread-Topic: [PATCH 17/19] Documentation: ioctl: add CMH ioctl documentation
- and register 'J'
-Thread-Index: AQHdBMjaL7m/gAnGP0iQl0ogSD/mPrZPl3gAgAAv1so=
-Date: Thu, 25 Jun 2026 21:21:50 +0000
-Message-ID:
- <SA1PR04MB985100241C022033C8F4B952C2EC2@SA1PR04MB9851.namprd04.prod.outlook.com>
-References: <20260625173328.1140487-1-skrishnamoorthy@rambus.com>
- <20260625173328.1140487-18-skrishnamoorthy@rambus.com>
- <60a7850d-1527-4517-aae8-cd5cbebcb9b5@infradead.org>
-In-Reply-To: <60a7850d-1527-4517-aae8-cd5cbebcb9b5@infradead.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA1PR04MB9851:EE_|DSVPR04MB10174:EE_
-x-ms-office365-filtering-correlation-id: e00322b9-ffad-44a8-f011-08ded2ffc597
-x-ld-processed: bd0ba799-c2b9-413c-9c56-5d1731c4827c,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|23010399003|7416014|376014|1800799024|366016|38070700021|921020|11063799006|56012099006|4143699003|22082099003|18002099003|3023799007;
-x-microsoft-antispam-message-info:
- KbUWLw+0+oelTWPHFRMH80sQ7lk0Yki0ui0oEF3gikUdsv/BuUo7T06O4NVp9ds0644UHi4HkljJ/lJX/TG+NyOUEutYwky5rhjN8aNSUALq9mxwUadfH98ivNLIjwsv+S+ER+iqosrQrMK64hKboCpgPxL9+Y7+on+oEveW7EPCrnatmoj+q8EOS+iOu2x6loRUhadNUUg+dA8/pVHrf0TTR4CT8NKigkZfMk4uYxNnaYrzIKGiC9n5SeLKkggNu/HirpCvnD+a1w2/v5MYiFiSf21b0G9IgyUtLG/yNJwGDvaECDLC2YTrlWMJHMkFGRvont6+vbhA1tp6eNVpkf7fkyEDYk6IZ2y/9EOkvTLyThpjg3AnhJ+xQRgqT2o/PLKF3Cl+kOV1PKonQUggYE97Z2bewobTX9iN4R1CtckO7cBH9fvb3i2GLBMNyj/hYG9ZpLB3D7cP3z23/r3k2rtcRHa2NeDpi6Fz5MGBUTxkY3RaC67wvun11rfquOxd06hXOBTjoU5xhiKGfxgxiYhzPya5hKO6TexM2pEf0bm1zNRRHJrIeSTz4S6QMpPLlVu77WuGG+tOFm7VsVmNMhLFcIOWJt/AomYpskBw4q/SW3SLezR2vHgY7Q3zNP6fvYSJTVhCd3QrmRF/UN3qXhdfvaZQzXkb5c5FX8nJNOpIZsF/XDg0FKi9BhsBQeAm29u7zBRQ2UUZgv1f+oboJFOhTCuHZzj7cc2yy0yB86A=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR04MB9851.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(1800799024)(366016)(38070700021)(921020)(11063799006)(56012099006)(4143699003)(22082099003)(18002099003)(3023799007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?DrXJ097McVWHo4nbN3PpbmZYUbb91Bsu3aEd/dJVUI33VtXCDme9WfOAFtez?=
- =?us-ascii?Q?uikt3MPmk4dvoqz2NC1ceAyaKRvLHKAAQwSS155uJE09GQ9pmTLL+ojgDx5K?=
- =?us-ascii?Q?/RgAqYBMxRfaA0H7NVfUw9yr0vGpxiu/DkzsGSEdzWrHRR3UwuFDez+RFOzQ?=
- =?us-ascii?Q?lXh/XtG/5hWFb1PiG5svSY8fojaGCr4i6C89KSPm7g9nt4cdMmz6RujfctTU?=
- =?us-ascii?Q?9qAIKcUy/4CGaP5Gb7kNFhcP0Madkg0Z0PHcZDxNlTZOwVv60Vog5WYPlYse?=
- =?us-ascii?Q?o0vOsAlstMJcErU4zWdVd0T7ai1xPpanolmrWZ9AHjj0Dqm48mMdO5sIWKoM?=
- =?us-ascii?Q?2oEiX+q9zycUxpK+TOQ40kPnxdhIsmhFN8u7QGLf/D+w/9Q6upaf2+2vz2qv?=
- =?us-ascii?Q?jmSga7vEBEMFc4xh8yJbNOpulFplUR0l8bp9YEpMeyZaDZ8r7XbWtvyGzF6h?=
- =?us-ascii?Q?d2bxPWBhdzwoSzT5AHzjvcXcSpFecrk5juMNwZ1tym6+GzmfkCrHDKmi1Iq7?=
- =?us-ascii?Q?yByjy1vjkFctmYxmqCFeQazqnzT+stmyrXTkLqrABRQuXQnwn0EEGLjl5TgF?=
- =?us-ascii?Q?+Mpvv5O4m+culHPjw/i0dJXB+joaO5FyC0+wMDRSKOEhcBR9zXniWaxQFd8q?=
- =?us-ascii?Q?7+r0T5bSE7rvo3bjSVIL9fl0HG++AolEvST/za5yur0eBkCXSlXbPkIl9IAf?=
- =?us-ascii?Q?VoAk1yEq3HIkzmKk3db1STK0FtPgdZIGLKYkGlKOUUtdnWflZHCm8v023k/f?=
- =?us-ascii?Q?OAIekdEIbUXLlOow0FRfLYxDVK93FUa7U0F+I1oexv9ZMUex+JNxq4/5YsSc?=
- =?us-ascii?Q?QQlP60yPCdHhJLRzJ3C+H2EbsSqndITD9gDRfulNzTRJdo3coXRkAxnMqEAd?=
- =?us-ascii?Q?l0Qe70qoENoswcO2TPyt08Sdd88sJ9jyXi5REzj1R4j7E0m/GU4ICPsPZhjs?=
- =?us-ascii?Q?H0DmXUPZv3GwE17+5iOf7L4rDWYxqHlf+YirWSlXw2ccvz+CifxLblBbEJFo?=
- =?us-ascii?Q?GhBWESgohGv4EaZVtUNQGbbZGCkCoJApWXzKNYm7PWD5Vylzguk9JErN2SF6?=
- =?us-ascii?Q?EtMc1fg74xppgwFNdAQGPZvprI/t8+69AatXuG52r8OiCLBtL0ri2WMkBQ8R?=
- =?us-ascii?Q?OqIg3cuTRamCUFXEKqhZVPvTxeMqsSreUYxe6Jc2XU4GmAN1cs+Cpn57ibFb?=
- =?us-ascii?Q?HIoJ35Kbus0PRfqL4wOB4SrQcBiAV/g/Upa3vol9Mur/9R/usweJF96ZdDcc?=
- =?us-ascii?Q?C6DzYPDyFT7uC5xVL3bqpp5i/K4N7Szh01rkg7mjV7jFJsq9wrx26/Uh/Mwj?=
- =?us-ascii?Q?C4p0A0PQE0pYtk2IWvMJIyrT88NFEX1a2nBuUl476dzN9a4Ki9C+St8oNlrl?=
- =?us-ascii?Q?xa9/TSQ18NShkLceoY7ZlkAleyrY6mTyK5fDiuuld9dtAIK5kd3s9RK/qwS3?=
- =?us-ascii?Q?PNAPLutVozzpg+KAo+aADQDsOzesY+G2KFbgQVGQFhSzy2RoH5AfJUZYoS8S?=
- =?us-ascii?Q?NaCz8b44RplLXtW01uVYmaZfur9ELC6CHifgMA/Sv8t+7ElOgxHcXfEzKlvB?=
- =?us-ascii?Q?m3rvIX6Q4x9U+fA03j5dppYYwJbJMn9IMUQLQuPdChFlOYROI2U2yMyQYBg2?=
- =?us-ascii?Q?92tDoVcMzHS8jdzSUTz42t6FojvnOBjV90lCOhkdEiJdw9L7umGQIbsIwmbR?=
- =?us-ascii?Q?U6RLY632++R8BagRzG2sXf6d0WJUbDBuiWVBDHi0fTAAV6Cqx0akIguVBksu?=
- =?us-ascii?Q?LXqUpg80jw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84CD63672A7
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 21:56:09 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782424572; cv=none; b=LjvZZ5qByMu1gMwmN7bdeDp4xojmH3Mlz5/6eJB23D6nxm2Q2Oa82Mb7kDbHaRSdBEtXXb1dD/ncF31HSXWGZF4ZG06qxoTgaYIhkwuBLytL5s0zeevn76TqCfgKYr8iUw9rDnDX+qpZH9g/DFMISDa9dK9Xh3tjYZTSAP50cAk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782424572; c=relaxed/simple;
+	bh=nNMxTBc5fDicYoz2xcvYwtrUTa/XAdzjVSeQdkqOwIY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ko6vApthCH8WIbVZigg79Jxk4w1xh9IJSSFVT6A5vln2VMvf19kKtBkdUbGmT4z6TwqnCVTQi3O+QYNCInMHinjijeQZzqTZ00PUYxPrpELSF0SzGmIb8Jpg61463dos6FYAANM2/0ZcrEZbDNsOAPgogsHWWtn83yFCXBza1k0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=MdjuYzMa; arc=none smtp.client-ip=209.85.210.44
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-7e93c3f1717so134509a34.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 14:56:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1782424568; x=1783029368; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MorUFOvH/y5//XS82u27kOV/BbsfEPmaMl8nnIWDcaE=;
+        b=MdjuYzMaUble3vCXQWbH8MwFb8MWimC8q64WoPnxG3zcdgRAbOKwmrnj4em/Q47MM8
+         npNNCm0B6WvjoWEapeOFlPo0DWhCBGbD9dSetet0YPCMFOACW3TV0dSqXrPcipewgpkI
+         zl80UJPxjJ2iq0Czh0OYoHVV3e128A3XQCNh+c6XOlK52hIwU+7+amtiHE4Mtad2zKxc
+         BDTDMcz6Sf320wKNUHSlwCiSspLpoKuJX1zNMm+z05Hu5FUf461T6D8vejYFt/YgGAB/
+         KB96ui4Zca4CM7B1gsF/HN6faySGCg7tYdVl0fxhqUBDaCvHMm9fxgQcqtTuncmQ8sDw
+         ttYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782424568; x=1783029368;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MorUFOvH/y5//XS82u27kOV/BbsfEPmaMl8nnIWDcaE=;
+        b=LXbOFyXXPv93bIEL099njeyAIbWLWJI4j5gd6BwgT0OwWng4wUPLjITl15DKBEEdv8
+         h4OJCaE2mIcb35v/xQOowAMMvBcPQaQAkdRo9KNmP6iKqRKmCjXuFM2gAccgJPtC7fYU
+         oaJFw7l5V9GwQ5KWsKVjniSY1dxj66keNDIXcrQI2nroj0yaFuJO46fW7RU6COkDX1x8
+         T8+Jgv6NM3lLX8OU4vCv68+X2Bx0GoTVk6A8Cnv7TeOxhq80e8ER+YMp6dYy+9IlVF6P
+         MQfXonZGGV9SEcHiahMFh5URzs6FDm6VYXPEyiu4fhrovFlZQ0ztYG76NY09mpDEgdf+
+         YpuA==
+X-Forwarded-Encrypted: i=1; AFNElJ8pF5vQfqd/Y9tHvtkltwQo9KSpz8Muin83iQ+IwHgG6oFX2RILuCzSWA1KqjUJZVbH5ZRMlVtMaD63@vger.kernel.org
+X-Gm-Message-State: AOJu0YwyhDNts/P/SHK1A3pMy6K8m4XuxzpcR7/MNfRMMdHrHOk77/hI
+	q0AhGgQP7jBHq9gS8zrbsWoY0nXdPKO6YnhL9SsTpD15sFyjCrYZmLnUYYCwWeWU4fEDQLwtI3U
+	94zl1
+X-Gm-Gg: AfdE7cmQ4thC+E3agEYwrWmYTurG1s3+oFXbDCqZjOvZUxv7rMtqmlqXbOsSugNVxrY
+	+s6UqYI2slMp9hJfM4ausUc4J8fhG0oNgYLT6m+G7M9DBvb6hBIUbJUiLJBAhvevfT3BJziPQ1s
+	uMJY3GxHcXOEOUXonkkLD/D5gSIaLngQzHhSu2N1aLkU0J3ar3pThQIz3DzMY/k3DR0Y+L7kFxN
+	9VfW5Y+9mmulQPkf+Qnou7JtuZLqowh51CzdLYwaeNapNXgfFaM3UkJWpc8pubf1UxlHekSfc6t
+	NJL3YjTejJfO+5tjHqil8xjRij/GGNxRkVRWl9YklbcBGWRBFhEH6E3Vuaa6pM2cCE6l835LZg1
+	JU04wMCk2FEFifkGK604hOrqJZtUq3SEW74AymRKX0cDCcrjuao29Lg5GLefagb2BMXMYRRkFsZ
+	QgCST3s8ATPHGjOGdlYg==
+X-Received: by 2002:a05:6830:6d2c:b0:7e7:c1d:bf5b with SMTP id 46e09a7af769-7e99c24ef20mr4182941a34.24.1782424568258;
+        Thu, 25 Jun 2026 14:56:08 -0700 (PDT)
+Received: from [127.0.1.1] ([2600:8803:e7e4:500:f1f0:2d9f:2f31:3426])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e9aa5e575csm206058a34.11.2026.06.25.14.56.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jun 2026 14:56:07 -0700 (PDT)
+From: David Lechner <dlechner@baylibre.com>
+Subject: [PATCH v2 0/8] iio: adc: new ti-ads112c14 driver
+Date: Thu, 25 Jun 2026 16:55:02 -0500
+Message-Id: <20260625-iio-adc-ti-ads122c14-v2-0-ceb9b0b561cb@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: rambus.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR04MB9851.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e00322b9-ffad-44a8-f011-08ded2ffc597
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2026 21:21:50.6714
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: bd0ba799-c2b9-413c-9c56-5d1731c4827c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qJrINyB66J0oepJbgqqIgmif1iOa+jy9k9DlZH9+nqyWK63TQnwLI3lI/oOfTLmC7lMxpkv+czHPKf3beGEnDMOFLPYaTS9Wb861l79xi1Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSVPR04MB10174
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22Nyw6CMBBFf4V0bU07vIIr/8Ow6LSDjFFqWiQSw
+ r9bYOtqcib33rOISIEpiku2iEATR/ZDAjhlwvZmuJNkl1iAgkqVupDMXhpn5cjpRA1g09MpbKC
+ omzwvSKTqO1DH33321h4cP/ggO25bW6LnOPow795Jb7lDUenyv2LSUkmq0BnX1RYBr2jmJ2Ogs
+ /Uv0a7r+gPPhywMzQAAAA==
+X-Change-ID: 20260514-iio-adc-ti-ads122c14-d0b92479334e
+To: Jonathan Cameron <jic23@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Chris Hall <c-hall@ti.com>, Patrick Edwards <pedwards@ti.com>, 
+ Kurt Borja <kuurtb@gmail.com>, Nguyen Minh Tien <zizuzacker@gmail.com>, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6186; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=nNMxTBc5fDicYoz2xcvYwtrUTa/XAdzjVSeQdkqOwIY=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBqPaO7t3aP8rSr2GvZYEiPM7JHa+RjmhwtGcMim
+ TA4oICkqwqJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaj2juwAKCRDCzCAB/wGP
+ wE8aB/4m9s7mfif+beBlQhrqt41PtPqsACJEB/r2wDrFPVqp3T6+OMyOclHJM1JjWHjKUYLtSgT
+ 6BdtHugSXOKxtiWwWC9XF2TlMqh6SWkaapsFewYPRX6NwW7ab8udEuNfz/f56KPoi3a+db1EogG
+ KCo1G7xkNpWeWlb/ratQITOLH7SA2tGekBnCl+Ol/ZvBg9u20piGxH+6OgRN8joik+9DNi67kE/
+ tVptqAC+AtPS6acqKSEjaDO+JSTJF72ZLSrqYGifdqpdf00YQGUYv95fj9WWoLgm26Dr2uoGGOn
+ iMSfTS5k3VIov2vsGCXvOZLSs758MInKJa91xUVNhSei1JNl
+X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
+ fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[rambus.com,reject];
-	R_DKIM_ALLOW(-0.20)[rambus.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315842-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rdunlap@infradead.org,m:aou@eecs.berkeley.edu,m:aousherovitch@rambus.com,m:conor+dt@kernel.org,m:davem@davemloft.net,m:herbert@gondor.apana.org.au,m:corbet@lwn.net,m:krzk+dt@kernel.org,m:palmer@dabbelt.com,m:pjw@kernel.org,m:robh@kernel.org,m:shuah@kernel.org,m:alex@ghiti.fr,m:devicetree@vger.kernel.org,m:Joel.Wittenauer@cryptography.com,m:linux-api@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-kselftest@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:skhan@linuxfoundation.org,m:sipsupport@rambus.com,m:thin@rambus.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FORGED_SENDER(0.00)[skrishnamoorthy@rambus.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[rambus.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[skrishnamoorthy@rambus.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-315845-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:c-hall@ti.com,m:pedwards@ti.com,m:kuurtb@gmail.com,m:zizuzacker@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dlechner@baylibre.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DMARC_NA(0.00)[baylibre.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[ti.com,gmail.com,vger.kernel.org,baylibre.com];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	REDIRECTOR_URL(0.00)[aka.ms];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,vger.kernel.org:from_smtp,aka.ms:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,cryptography.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:dkim,baylibre.com:email,baylibre.com:mid,baylibre.com:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4815F6C8B4C
+X-Rspamd-Queue-Id: F160B6C8CF3
 
-Thanks for catching this, Randy. You're right. cmh_mgmt.rst isn't pulled in=
-to any toctree. We will fix it in v2 by adding cmh_mgmt to the toctree in D=
-ocumentation/userspace-api/ioctl/index.rst (alongside cdrom/hdio).
+This adds support for TI ADS112C14 and ADS122C14 ADC chips.
 
-Krishnan
+The closest thing we've seen to this in the kernel already is ads124s08.
+However, that has a completely different register map and the DT
+bindings are incomplete and the driver is extremely basic. So I've just
+started from scratch here.
 
-________________________________________
-From: Randy Dunlap <rdunlap@infradead.org>
-Sent: Thursday, June 25, 2026 11:29 AM
-To: Krishnamoorthy, Saravanakrishnan; Albert Ou; Ousherovitch, Alex; Conor =
-Dooley; David S. Miller; Herbert Xu; Jonathan Corbet; Krzysztof Kozlowski; =
-Palmer Dabbelt; Paul Walmsley; Rob Herring; Shuah Khan
-Cc: Alexandre Ghiti; devicetree@vger.kernel.org; Wittenauer, Joel; linux-ap=
-i@vger.kernel.org; linux-crypto@vger.kernel.org; linux-doc@vger.kernel.org;=
- linux-kernel@vger.kernel.org; linux-kselftest@vger.kernel.org; linux-riscv=
-@lists.infradead.org; Shuah Khan; SIPSupport; Nguyen, Thi
-Subject: Re: [PATCH 17/19] Documentation: ioctl: add CMH ioctl documentatio=
-n and register 'J'
+We've also had a similar submission recently for ADS1220 [1]. That chip
+is in a similar situation to ads124s08 in that it has a different
+register map (but the submitted DT bindings are better than the ones for
+ads124s08, even if still a bit incomplete). And literally as I was
+writing the previous sentence, another series [2]  was sent for yet
+another similar family of chips (ADS1262). That one is even more complex
+in the feature set than the ones I am working on. I was going to polish
+up the driver a bit more before submitting it, but now it seems more
+urgent to coordinate with the other two series to align on how we would
+like to handle all of these.
 
-[Some people who received this message don't often get email from rdunlap@i=
-nfradead.org. Learn why this is important at https://aka.ms/LearnAboutSende=
-rIdentification ]
+[1]: https://lore.kernel.org/linux-iio/20260610151342.44274-1-zizuzacker@gmail.com/
+[2]: https://lore.kernel.org/linux-iio/20260612-ads126x-v1-0-894c788d03ed@gmail.com/
 
-Caution: < External Email >
+All of these chips have in common that they are designed for use with
+RTDs and thermocouples and so they look very similar to each other in
+terms of wiring and feature set, even if the register maps are
+different. They are in the gray area where we could either keep them
+separate because they are just different enough, or we could do like
+we've done before with ad_sigma_delta and have a bit of an abstraction
+layer for the register differences and otherwise try to share as much
+code as possible. Normally, I would lean towards keeping them separate,
+but in this case, I'm considering trying to share code because the
+devicetree bindings for the inputs is complex and is going to be mostly
+the same across all of these chips.
 
-On 6/25/26 10:33 AM, Saravanakrishnan Krishnamoorthy wrote:
-> From: Alex Ousherovitch <aousherovitch@rambus.com>
->
-> Add Documentation/userspace-api/ioctl/cmh_mgmt.rst documenting the
-> ioctl commands on the /dev/cmh_mgmt misc device for the CRI
-> CryptoManager Hub (CMH) hardware crypto accelerator driver.  Covers
-> key management, KIC key derivation, PKE (RSA, ECDSA, ECDH, EdDSA),
-> PQC (ML-KEM, ML-DSA, SLH-DSA), SM2, EAC, and DRBG.
->
-> Register ioctl magic number 'J' (0x4A) in ioctl-number.rst.  The
-> driver uses ioctls 0x01-0x40.
->
-> Co-developed-by: Saravanakrishnan Krishnamoorthy <skrishnamoorthy@rambus.=
-com>
-> Signed-off-by: Saravanakrishnan Krishnamoorthy <skrishnamoorthy@rambus.co=
-m>
-> Signed-off-by: Alex Ousherovitch <aousherovitch@rambus.com>
-> Reviewed-by: Joel Wittenauer <Joel.Wittenauer@cryptography.com>
-> Reviewed-by: Thi Nguyen <thin@rambus.com>
-> ---
->  .../userspace-api/ioctl/cmh_mgmt.rst          | 941 ++++++++++++++++++
->  .../userspace-api/ioctl/ioctl-number.rst      |   1 +
->  2 files changed, 942 insertions(+)
->  create mode 100644 Documentation/userspace-api/ioctl/cmh_mgmt.rst
->
+If we decide to go the route of sharing code, we could still merge this
+series as-is and then do the refactoring to add the abstraction layer in
+a follow-up series that also adds support for the first of the other
+chips.
 
-One docs build warning:
+This series includes just basic support for reading single measurements
+from the ADC and gain selection via the scale attribute. I plan to
+follow this up with additional series to add support for buffered reads,
+filtering/oversampling configuration, event support, gpio controller
+support and perhaps a few other things that are slipping my mind right
+now.
 
-Documentation/userspace-api/ioctl/cmh_mgmt.rst: WARNING: document isn't inc=
-luded in any toctree [toc.not_included]
+The most interesting part about this (that I alluded to above) is the
+way channels are handled. These are multipling ADCs with differential
+and single-ended inputs. But what sets them apart from other similar
+chips is that since they are designed for use with RTDs, there can also
+be a current output required to excite the RTD and this current output
+might be different for different channels. So the way I conceptualized
+the channels is that the devicetree specifies the conditions needed
+to take a particular measurement rather than being purely a physical
+channel.
 
+This makes things more flexible, but does make the driver a bit more
+complex. For example, knowing when the current output needs to be
+enabled or disabled. For now, I have chosen a lazy-enable where they
+are not turned on until the first measurement is taken that requires
+them, but then they stay on until another measurement is taken that
+doesn't require them. This can lead to some oddness with the diagnostic
+channels that may be measuring something that indirectly requires the
+current output (i.e. the external reference voltage when it is connected
+to a resistor rather than a power supply). This means you need to take
+a measurement that requires the current output to be enabled before the
+diagnostic channels will give accurate readings.
 
---
-~Randy
+I have also pushed a branch to [3] that contains the start of some
+documentation for this driver that can give some more insight into how
+the implementation works. It still needs some work and also documents
+some things that haven't been implemented yet, so I haven't included it
+in this series yet.
+
+[3]: https://github.com/dlech/linux/blob/b4/iio-adc-ti-ads122c14/Documentation/iio/ads112c14.rst
+
+Signed-off-by: David Lechner <dlechner@baylibre.com>
+---
+Changes in v2:
+- Added patches for adding properties to adc.yaml.
+- Some of these are coming from: https://lore.kernel.org/linux-iio/20260622-new-channel-props-v2-0-aafd5369f253@gmail.com/
+- For now, I have stuck with one channel per single-channel pin or
+  diff-channels pin pair rather than some of the other ideas that were
+  discussed. Handling burn out current enable will be handled in a later
+  series. I'm leaning towards something like the _burnoutraw attribute
+  that Jonathan suggested.
+- See individual patches for details of changes (mostly renaming DT
+  properties, fixing some driver bugs and style issues).
+- Link to v1: https://patch.msgid.link/20260615-iio-adc-ti-ads122c14-v1-0-e6bdadf7cb2b@baylibre.com
+
+---
+David Lechner (TI) (5):
+      dt-bindings: iio: adc: add input-channel-rotation property
+      dt-bindings: iio: adc: add ti,ads122c14
+      iio: adc: add ti-ads112c14 driver
+      iio: adc: ti-ads112c14: implement gain on internal short SYS_MON channel
+      iio: adc: ti-ads112c14: add measurement channel support
+
+Kurt Borja (3):
+      dt-bindings: iio: adc: Add reference-sources property
+      dt-bindings: iio: adc: Add excitation current sources properties
+      dt-bindings: iio: adc: Add burn-out current properties
+
+ Documentation/devicetree/bindings/iio/adc/adc.yaml |   41 +
+ .../devicetree/bindings/iio/adc/ti,ads112c14.yaml  |  205 ++++
+ MAINTAINERS                                        |    7 +
+ drivers/iio/adc/Kconfig                            |   12 +
+ drivers/iio/adc/Makefile                           |    1 +
+ drivers/iio/adc/ti-ads112c14.c                     | 1186 ++++++++++++++++++++
+ 6 files changed, 1452 insertions(+)
+---
+base-commit: 948efecf22e49aa4bf55bb73ec79a0ddcfd38571
+change-id: 20260514-iio-adc-ti-ads122c14-d0b92479334e
+
+Best regards,
+--  
+David Lechner (TI) <dlechner@baylibre.com>
 
 
