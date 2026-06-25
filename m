@@ -1,156 +1,160 @@
-Return-Path: <devicetree+bounces-315642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315643-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BsyhHTkOPWrHwQgAu9opvQ
-	(envelope-from <devicetree+bounces-315642-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:17:13 +0200
+	id a9V7O6YOPWrowQgAu9opvQ
+	(envelope-from <devicetree+bounces-315643-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:19:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id F36A06C5081
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:17:12 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B166C50D8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:19:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=VTkKtV5a;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315642-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315642-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hzfdEp29;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315643-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315643-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B8871300073E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:17:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C817830316F8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 11:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB013CEB8B;
-	Thu, 25 Jun 2026 11:17:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF403DA5AF;
+	Thu, 25 Jun 2026 11:18:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19D1F3D811F
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 11:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 485533DA5AD
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 11:18:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782386224; cv=none; b=NOdV8OHYyABcLlzNpuMFXl/8rIl9YLMo9/05bMGvSPWzMmlOZHZXbA/c8TuAApMjgISbL6Ic6eBbmY2zTlGbvNWNIAfaOb28J39yTaiEQsIk9smttLgAvWiGusp6FYUto3YK+99ynJuU3uEAsZ3rdsPqs8ZZ2jV5Hdh8bZTz15c=
+	t=1782386318; cv=none; b=ElDnyhs2sv6+bkILBxbi3dIQISlo6xeEEtVdlGNqis8rPIq3vfthoF+73mc56FxV7F4o1jwiGHN0wyus7l8oJFXFW1WN5/sZhEpk7l0JJxX2CYW62m1clZ1G19Y3L1dDn4xbHWvbYqg7nxXBdC6D/2QgDKX/daHl510xrBLtNXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782386224; c=relaxed/simple;
-	bh=oQHpMP4mZpVXB/dic7XmBtsJFQ5/0Yp2ocCSPKakpAA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UyEujN2Ki/nxoczhEHfErM2CH3WwIFjFkmWdROdyXHjwcVAc3qaMNNySeaUrFN+y4wWnzknw15Bcbf26LVAG9ggf+9Zc99oSYYyvR9DpkyhPVZuB8HqzvgOz7P+jsZfAxUyHSpY+8cU9nLsQSv3+A5QanTE/UwIB2XpMdngbLOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VTkKtV5a; arc=none smtp.client-ip=209.85.221.46
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-4627adcf4d6so1611091f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 04:17:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782386220; x=1782991020; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=t8MKmcF0nT49i2GawTpf7NpORM+r6MBMmeMYSKcKc/0=;
-        b=VTkKtV5a58U7TmtnpQlA11NqmELvxpOtcwjECA1lFIDCUJipk5xce+sUMtlTKq8LDX
-         RFyB7XFs4MHysW8J3KAddqah7XjOwTown/4pyRVW/UkyvmQ3xT0boKTOuA9wu8A3Yp3C
-         GLJ4kAfPMW2c5KsxumZy6FJtua2Z9Ka3LnlbFBzgjIZBz+6q4SwwTibHbXWo8EHG8v7D
-         QzoV4T7oLtu/NMQQQ3xQvf1RDS9iiPED3X8RiMADdH638BZ8TMmGS59OeAE3Dk3844aS
-         UKWW5LtLfpZ6rHoPhhQ0JdseYoGMYCyANXE/NEDFiwE5URA0QzaSCHQ35N6dlfOHQOTl
-         n3dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782386220; x=1782991020;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t8MKmcF0nT49i2GawTpf7NpORM+r6MBMmeMYSKcKc/0=;
-        b=NBZq7O2/FS2nnVqQo9RqM18nBMbVz+8/3FwFN2Q1LiWmZ+x9wRsKuMqyUvGhB6mZzd
-         hHChTq0sq6WHvb9dMfQisEgO0xbh9OqmJjytOPmw3qnBmU0NRSWGztvvOHYabj/tHO94
-         Z6I5Msy5Qdxw1YHG0uSA6mZdYhpENC+4fJVCcTmRdr07mIKZ+TaJGveG1mh1CGjqD8pc
-         Y5Soxi6WtHwHiO7mQzE0HA8hNzptHQ6leDUFi1ediZ4TN2YaQacbxBEpGpHrMmvj4wvM
-         /nDd/+uPPGcbo1VUBMX0pk4Vl8EIKnilfgdrZBZLK/V7LllU1EtQZjx/oTUzA8xD9Sg/
-         /ftg==
-X-Forwarded-Encrypted: i=1; AHgh+RrnUkH4vJIF0h6bobxIYnB/nSQECQlAtGxpdhm6EHfAj6/vFoe/1g9f540IFqwkev1lay+RSTPEuIYw@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCyDEJXWHM7aEtTT+xaej0M0xleQnt3vj5v1bA9kURNj2TFDOw
-	DqQ5voS8byGLxhl+hFuuUNDYLtfgARpekZl/fDbzvHBdLIQyWn399wd7
-X-Gm-Gg: AfdE7cnJRf/JKicVSUsqh67g7oD8CJYNZYz9e6TddyXEgP8Yzb0i1sptHEWR6+HlDPK
-	FiMmttfjaeD996WNC83N1+swP2rkIHjNRFPl3gR1iXYec79KGJ4xZuvr4WCSbqqZDXHqkJg1QN0
-	1jsOitsbAkgT/OFfmPd4G/zpDznyDuJcY/4srHI48JSZLXZewOT/cEv1+Ja1q+UZHyoIqmcT9RB
-	+TGkY08jJKwidE7kwIWSP+Ot/xWSHmxLcvOg/upluQTm3viCJvMSiUjJssxbh9WMWlp1fXO+mMb
-	FysxgxRhUJX808j3GisMaZi26z/mDyOWrg8GFfSnfI3W5/Ur+PEy1TRQ0PYuAPvEJs7g/jbBWn4
-	4P+EonqYzEJIKGYEn5+f2xjb3uoKdtgDJTAPjOpWryWyy/SoVpGViU9Ei9ika+52WI+gYytUm0T
-	9ZjPCKsF4ShyeeCjTNLBmX70LJqnUc6zEVvjWd0TxOEkCk2qFdUqc2s0VLyebddl4FdOUqIZl5N
-	bGd/yXl
-X-Received: by 2002:a05:6000:460f:b0:45e:eaed:afd2 with SMTP id ffacd0b85a97d-46dbc1bc950mr3169703f8f.0.1782386220097;
-        Thu, 25 Jun 2026 04:17:00 -0700 (PDT)
-Received: from [10.128.11.131] (195-23-151-163.net.novis.pt. [195.23.151.163])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-46d86960991sm6919343f8f.6.2026.06.25.04.16.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jun 2026 04:16:59 -0700 (PDT)
-Sender: Julian Braha <julian.braha@gmail.com>
-Message-ID: <66945d22-17e4-4856-9704-8256650c4b25@gmail.com>
-Date: Thu, 25 Jun 2026 12:16:58 +0100
+	s=arc-20240116; t=1782386318; c=relaxed/simple;
+	bh=xp9aKdXYDUqHSeLZ47Kh03QM4ilxZ03UaX17WKMzmV0=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=X3mAZslaK093za6ifb1JgHWN4vP+hu+WjSgCDIb+gra6alJlnFqANklKvQqRnDDj6Yt2CJpGPqKpAtJqnXtu/u0BxldqmY02xFvKfQQinSuXeUMSwjiH3vSlyxkFYkrZo2fdlxuUqqBGdTSmBrqomsFpoYJ3eNNF56SU+/wYFpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hzfdEp29; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B22B51F000E9;
+	Thu, 25 Jun 2026 11:18:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782386312;
+	bh=FTlFv5wOZiYCFjzHs5UXZSWg4myGoj7qa9O2ZY39FuY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=hzfdEp29C1TnmYJ4J3yhx5qaDGAxWNXvqpqeY+LOzPO2AOrNDnzF1mw500TwFBAJD
+	 +jEmvGHumrEtAHLhSzonj69gKllBQIfJ8d1FsuvezZNQdzzf+pYTwLIn9U49jB3Y4y
+	 zdnC7SWG+vUjp2BFI5uHkxQrLheFeyzdyhWMitb8UOzn6ontvVd1xnKFZiV5R/LKTj
+	 D5T+avNlrzvErbLASEcIPeidzxIlGFIYYt4VlZBLvIOP620U7Vf527GrEVOMIBKBn5
+	 9mT0Z4j+gbdPK3bRwASOVcZqKAC2gZ05t7rmRFE2SOtHHVndIcIqKOrt4J3MvRDrKm
+	 V4likf5X5zCuw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add Nuvoton MA35D1 EADC
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Chi-Wen Weng" <cwweng.linux@gmail.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260625110638.38438-2-cwweng.linux@gmail.com>
+References: <20260625110638.38438-1-cwweng.linux@gmail.com>
+ <20260625110638.38438-2-cwweng.linux@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 25 Jun 2026 11:18:31 +0000
+Message-Id: <20260625111831.B22B51F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/2] hwmon: Add Eswin EIC7700 PVT sensor driver
-To: hehuan1@eswincomputing.com, linux@roeck-us.net, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- pinkesh.vaghela@einfochips.com, luyulin@eswincomputing.com,
- dongxuyang@eswincomputing.com
-References: <20260625061049.1614-1-hehuan1@eswincomputing.com>
- <20260625061214.1648-1-hehuan1@eswincomputing.com>
-Content-Language: en-US
-From: Julian Braha <julianbraha@gmail.com>
-In-Reply-To: <20260625061214.1648-1-hehuan1@eswincomputing.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315642-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:hehuan1@eswincomputing.com,m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ningyu@eswincomputing.com,m:linmin@eswincomputing.com,m:pinkesh.vaghela@einfochips.com,m:luyulin@eswincomputing.com,m:dongxuyang@eswincomputing.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315643-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:cwweng.linux@gmail.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:cwwenglinux@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,eswincomputing.com:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto,nuvoton.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F36A06C5081
+X-Rspamd-Queue-Id: 52B166C50D8
 
-Hi Huan,
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Missing `resets` property for a hardware block that has a dedicated=
+ reset line.
+--
 
-On 6/25/26 07:12, hehuan1@eswincomputing.com wrote:
-> +config SENSORS_EIC7700_PVT
-> +	tristate "Eswin EIC7700 Voltage, Temperature sensor driver"
-> +	depends on ARCH_ESWIN || COMPILE_TEST
-> +	depends on HWMON
+commit 1f48c0ec2f3eb7b2358c1e0e2db87a26859d5fc5
+Author: Chi-Wen Weng <cwweng@nuvoton.com>
 
-You already put SENSORS_EIC7700_PVT inside the 'if HWMON .. endif', so
-you don't need the 'depends on HWMON'. It creates a duplicate
-dependency.
+dt-bindings: iio: adc: Add Nuvoton MA35D1 EADC
 
-- Julian Braha
+This commit adds the devicetree binding for the Enhanced ADC controller
+found on Nuvoton MA35D1 SoCs. It describes the register region, interrupt,
+functional clock, and standard channel child nodes.
+
+> diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,ma35d1-ead=
+c.yaml b/Documentation/devicetree/bindings/iio/adc/nuvoton,ma35d1-eadc.yaml
+> new file mode 100644
+> index 0000000000000..ae7ad0f7689ab
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,ma35d1-eadc.yaml
+
+[ ... ]
+
+> +properties:
+> +  compatible:
+> +    const: nuvoton,ma35d1-eadc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+
+[Severity: Low]
+Is the resets property missing from this binding? The Nuvoton MA35D1 SoC
+explicitly provides a reset line for the Enhanced ADC block (defined as
+MA35D1_RESET_EADC0 in include/dt-bindings/reset/nuvoton,ma35d1-reset.h).
+
+Should the resets property be declared here and added to the required list
+to accurately reflect the hardware dependencies and avoid dt-schema
+validation errors if a board uses the reset line?
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625110638.3843=
+8-1-cwweng.linux@gmail.com?part=3D1
 
