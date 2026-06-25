@@ -1,183 +1,147 @@
-Return-Path: <devicetree+bounces-315814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315819-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MJg4HkNrPWrP2wgAu9opvQ
-	(envelope-from <devicetree+bounces-315814-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 19:54:11 +0200
+	id zNE/Cl9qPWqK2wgAu9opvQ
+	(envelope-from <devicetree+bounces-315819-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 19:50:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D56D96C80A7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 19:54:10 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B29E36C8033
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 19:50:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=de5i03LJ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315814-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315814-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=collabora.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=MmJy1Y6+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315819-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315819-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D3917303D120
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 17:46:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 20519300AEC9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 17:50:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5329C3ECBC2;
-	Thu, 25 Jun 2026 17:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F17B3ED135;
+	Thu, 25 Jun 2026 17:50:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B123ED10B;
-	Thu, 25 Jun 2026 17:46:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3903ECBDD;
+	Thu, 25 Jun 2026 17:50:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782409582; cv=none; b=EiyY4XPn3cb1sS/yg3PtnhrIBGy3m5VrIovmQlcPT4dT+U27qd/wOZWTWwjBJ0IQBuqaIbO9ix+3aFHhkvCKxiUAGVmkawf2uElt91Enu0U1dhTYqABjS6pNIYEE3bXZrYrOkLRJhhMdNqh75RQqFo6mpKto9ObXUa2HD4lHbdc=
+	t=1782409817; cv=none; b=QER1s0gLsCgp2fXHJr/V6JkFg4zM6g0P/o1M8z4KumkQsyfL7voThtSLzXUBZl62fu11vNA6qOKNHK8yHXjJnwRAviphDMpMy4/s36R5XMw/Q4O4TD7+Gb7AV+zZ8/a43yt97zMGVmmMFmi7UxuwSPy5ojd00F6Il/jbc6rLMs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782409582; c=relaxed/simple;
-	bh=BYScj2yZ+eSgHWhDbJdeSOOvZifwTS8fqOkiX4kBNLU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JNboX7GfktpEVkFxygHxNLnbwP68EYq6Sx9Dbhi7jjZw98wvqbHlvEKyzjS/OzhZKUUorCtBOmE2GbheS6H99FhDcvdDlpLRlxwIHmDlRjNJjTw/trOEekyRWn5zOBsVXk/Fseae0odNZu0Hm33Gsus5pbjz4KHrhsHAH3N5mxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=de5i03LJ; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1782409579;
-	bh=BYScj2yZ+eSgHWhDbJdeSOOvZifwTS8fqOkiX4kBNLU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=de5i03LJUgYkg6yo4QP8Zgxg/hv72F7UEukSuhCFN/T6YMAdR7sihoGUzbMgP+Lzg
-	 F8tkLHoxonz2f9g+rLLzunECImxvXLNb9DpIwd1a5aABHG3vtmL/RnymzlGUVTdRA/
-	 hkhI/jVQku73y+n9f+BrL5DJlwg/8vYOZUQHGeebB8Zyv3NQyDJSWv5+LrhMBWqain
-	 gG72ADSQx4rMncU0O3C+QCMF2QarnR8bJDEK4SAIjhphIr/EXpH9bXolngj7jESEva
-	 06T3g0Ibk5WGe6WZN0mIOQ6cydoxrrGAFW8WE50yhsAj+h7KguShfwYS+EviXgY95h
-	 HJg5q1xcMOtwQ==
-Received: from jupiter.universe (unknown [100.64.1.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1050B17E0C91;
-	Thu, 25 Jun 2026 19:46:19 +0200 (CEST)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 205B248006D; Thu, 25 Jun 2026 19:39:40 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Thu, 25 Jun 2026 19:39:54 +0200
-Subject: [PATCH v7 27/27] phy: rockchip: usbdp: Avoid xHCI SErrors
+	s=arc-20240116; t=1782409817; c=relaxed/simple;
+	bh=D+kt955t7AM1TA307DOmIvmXHBacueSXEI1jmVLOE5g=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=OnPpfGcKB3zamfz8asvsnhDCd4nkizrJ4nv3AXIDD0XbaJb490qF2nEa2XHOoTkYjP4p27JK7qE2JolmDUwUF2nIB61Z4rHTuEyofD0zFCIyweOmkaHyN96gOSBxtkQKHkme4S4F7zNRUqRIufV+EBweCwuAEI86xbKgaiF1ITg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MmJy1Y6+; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03D851F000E9;
+	Thu, 25 Jun 2026 17:50:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782409816;
+	bh=h8OhrhsqQ2Miacsjs8uP266A7aQYd0mZ+To0MUYPgzo=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject;
+	b=MmJy1Y6+0EZEpLyEQTMDhevN9H1VEyVnXlGgShE70KPCi5pPUpkB/ELpllzE/9Pxp
+	 MoH+pWMWGcGL00r6mRdX+lu5rkgJC2m1xPdld9HylVPf9VfkTxBsYOrZjzz07YKXKo
+	 TZjQ0eSYkoTgsY6zrz8VmvUytiDaJTHqWrX5LDXHC4kKoOnRxJdob3uSLOXOsNjfyX
+	 gGygGa7qWR3lfnPI4hd50AohreCZZLGM2at0DII1KVrhnQmibgUUy31GtCjIuM3kJz
+	 cTxO/EIVJtIe92y2VJFsWiUrLN62zf7fY9gKUnGnwo5i7H3eBSycVMta1+qZMH6eIj
+	 2GHDT+msWpWBg==
+Date: Thu, 25 Jun 2026 12:50:15 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260625-rockchip-usbdp-cleanup-v7-27-38eb3cf654fd@collabora.com>
-References: <20260625-rockchip-usbdp-cleanup-v7-0-38eb3cf654fd@collabora.com>
-In-Reply-To: <20260625-rockchip-usbdp-cleanup-v7-0-38eb3cf654fd@collabora.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Heiko Stuebner <heiko@sntech.de>, Frank Wang <frank.wang@rock-chips.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>, 
- Yubing Zhang <yubing.zhang@rock-chips.com>, 
- Alexey Charkov <alchark@gmail.com>, linux-phy@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, kernel@collabora.com, 
- devicetree@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1810;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=BYScj2yZ+eSgHWhDbJdeSOOvZifwTS8fqOkiX4kBNLU=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGo9Z9sJxTZSFqmDzq7h3AJWTCi/9vWbhhj2Z
- LBAIFgr+7TX9YkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqPWfbAAoJENju1/PI
- O/qaaS8P/3HJ7NE6/ONYUJltywLoibRkMx88TBKwR7z/aTSJOxxRnKD/3wv5zNu/K0fjhByguw4
- mRmdcKxu0yUaN3m97gz7jOD0a6V1orEDQo/ye6haiHtMOOOhNJKNACHrfzuFnBD+tdsYcBmy9rv
- KrsjR9PsVR7aJqCnJV2gNz1joZCttCjAV+joVJmh9w/zUslG7vNJx3Kjo3DdLs2lmClXIldBYqp
- iZpFjwR+3lAZ7KeAZUmiXnRWnUvsyJEYatHq83XN2ABIUwmpDSIV08lgZf7bLtivE/ToYiD+1yW
- C0HcGIgzOLIz2GA1ZdyHf+crHtqQWrb5LVG6U3j9IrUwNiNhAO5IxOGoKG1Q3yQi/3T+REOJnrG
- eP+7dUQVQsorGO8G+FoGX8EPlSbB/weug2XP8yaIDhgmjkzR8UGZC9Xy552GG6BA5J4aIT2WpR1
- l1XyIqlDMT9DQ+2WnI9P6Xh4xc03uS6jcNGRe8P1wj/MvbXLDnoVrp0A1Pkc6viISYIjJobInlC
- d1QOVY3Skj2cEz3r5++ZZ6P2Py6DpTrJvtkVf9RadOl0AxsTxN6TPmEc3yKp7mrsHnlmDan95DW
- pr3cQDVKh0hqYUpaB1xfX4KZT4grELSVOidyUsj5ncSSG7JveanxudFdtLbjjC3N+DCvTMndbhK
- Q+R0NMrBTOgRUEF6H+icqWg==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de, 
+ conor+dt@kernel.org, krzk+dt@kernel.org, nm@ti.com, 
+ devicetree@vger.kernel.org, kristo@kernel.org, linux-kernel@vger.kernel.org, 
+ vigneshr@ti.com
+To: Nathan Morrisson <nmorrisson@phytec.com>
+In-Reply-To: <20260625160214.4001298-1-nmorrisson@phytec.com>
+References: <20260625160214.4001298-1-nmorrisson@phytec.com>
+Message-Id: <178240981517.3450987.4497389495200583534.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: ti: Add bindings for PHYTEC
+ AM67x based hardware
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-315814-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@gmail.com,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:sebastian.reichel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315819-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-arm-kernel@lists.infradead.org,m:upstream@lists.phytec.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:nm@ti.com,m:devicetree@vger.kernel.org,m:kristo@kernel.org,m:linux-kernel@vger.kernel.org,m:vigneshr@ti.com,m:nmorrisson@phytec.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[rock-chips.com,kernel.org,gmail.com,lists.infradead.org,vger.kernel.org,collabora.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D56D96C80A7
+X-Rspamd-Queue-Id: B29E36C8033
 
-The USBDP PHY provides the PIPE clock to the USB3 controller, which
-means the PHY must be fully running when anything tries to access
-the xHCI registers.
 
-When switching between USB3-only, USB3 + DP and DP-only mode, the
-PHY must be re-initialized resulting in a short period of the PHY
-being disabled. If the DWC3 driver decides to access the xHCI at
-this point the system will fail with an SError.
+On Thu, 25 Jun 2026 09:02:13 -0700, Nathan Morrisson wrote:
+> Add device tree bindings for the AM67x based phyCORE-AM67x SoM and
+> phyBOARD-Rigel.
+> 
+> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
+> ---
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-This patch avoids the problems by disabling the USB3 port before
-re-initializing it. This does a couple of things:
+My bot found errors running 'make dt_binding_check' on your patch:
 
-- forces phystatus to 0 from GRF (not from PHY)
-- switches PIPE clock source from PHY to UTMI (safe fallback clock)
-- num_u3_port=0
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/arm/ti/k3.yaml:228:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
-The last part will be ignored, as DWC3 already probed, but the
-clock re-routing will avoid the SError. There is a small delay
-afterwards to make sure the mux happened. The datasheet gives
-no hints how long it takes, so delay time is a guess.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/ti/k3.yaml: ignoring, error parsing file
+./Documentation/devicetree/bindings/arm/ti/k3.yaml: error loading YAML: while scanning for the next token
+found character '\t' that cannot start any token
+  in "./Documentation/devicetree/bindings/arm/ti/k3.yaml", line 228, column 1
+./Documentation/devicetree/bindings/arm/ti/k3.yaml:228:1: found character '\t' that cannot start any token
 
-Fixes: 2f70bbddeb45 ("phy: rockchip: add usbdp combo phy driver")
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- drivers/phy/rockchip/phy-rockchip-usbdp.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+doc reference errors (make refcheckdocs):
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-index 8c5d6b8595e2..82ce80dc9dbc 100644
---- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
-+++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-@@ -1026,8 +1026,8 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
- 			rk_udphy_u3_port_disable(udphy, false);
- 		udphy->phy_needs_reinit = false;
- 	} else if (udphy->phy_needs_reinit) {
--		if (udphy->mode == UDPHY_MODE_DP)
--			rk_udphy_u3_port_disable(udphy, true);
-+		rk_udphy_u3_port_disable(udphy, true);
-+		udelay(10);
- 
- 		ret = rk_udphy_init(udphy);
- 		if (ret)
+See https://patchwork.kernel.org/project/devicetree/patch/20260625160214.4001298-1-nmorrisson@phytec.com
 
--- 
-2.53.0
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
