@@ -1,387 +1,143 @@
-Return-Path: <devicetree+bounces-315452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315455-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QAgcOr+OPGp8pQgAu9opvQ
-	(envelope-from <devicetree+bounces-315452-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 04:13:19 +0200
+	id pTXRNd+QPGqypQgAu9opvQ
+	(envelope-from <devicetree+bounces-315455-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 04:22:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF596C258B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 04:13:19 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 010E66C25CE
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 04:22:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=em99h2x9;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315452-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315452-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=richtek.com header.s=richtek header.b=Rn9VVZht;
+	dkim=pass header.d=richtek.com header.s=richtek header.b=mKRM2q3j;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315455-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315455-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=richtek.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A999F301C949
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 02:13:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B4963063930
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 02:21:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656F4376A02;
-	Thu, 25 Jun 2026 02:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3881A3ACA4C;
+	Thu, 25 Jun 2026 02:21:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 146DB8635D;
-	Thu, 25 Jun 2026 02:13:14 +0000 (UTC)
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 540A6368282;
+	Thu, 25 Jun 2026 02:21:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782353596; cv=none; b=i5dKb0wccJNQ4PgvHJJN9T14mxmuYd/PLX5G7HHXalDBoc7HNe7nHI6bt0Km1VLm0Px2qmW+ul0DmyVWFXd7N9B/I2xgWLQ2/FQyeTf4UUQ7zvd6bORX1K4vgG8mfl+WisY9HKQAknqORcjprXCPtz1CFnVwoRAtCe61l1B0Soo=
+	t=1782354083; cv=none; b=aoEnkAPqV8umhSXln1nWRLM16NGeDCJrxWDojORjvn8Y5Z4V7cyVkRLibnUMH35RVvuesWa97Wm8W39S0M+8lWarNGQlWSvpCvvMDVpI7vBdALogRZmbxKzFbwPv4KQ4INmhCfO68c7+02yU+N58DDUTluxfRVrpzOxDzbW2Y8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782353596; c=relaxed/simple;
-	bh=A/bk+BmVPxTlTnVBMX3+8zkaoz6NSLxYPhgt8RIiixg=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=o0QmQkhPjikpV4KimcW0POovnPCAleCyuvfL//YXUi6VWBASCWK6ITA9/deVIV6n3DXNK1DIuxPwcgM5wr2XfWpPuXEdJzH78HrLmzXsKQhqpR3xJKupfP/5zmlXurbDxEcgQlS37XvvW70uYifoY9aqMg4+WLj/hyxT8oW1NsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=em99h2x9; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 630C71F000E9;
-	Thu, 25 Jun 2026 02:13:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782353594;
-	bh=kuFblr0RxLHi4JE/kUad6uvBVgCfZrXmoX6TXIKPO9Q=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=em99h2x9McR6cNazQV9jBWeZF8SzXuTHkZrr+OXcv6X70zIw+zC5WmLwxkhrShi1G
-	 wdpER6W0Nvu+/fRF4xGSOXm6QD4uXCCb/Hl3rt+R2JPnTDbCVj/X/fKHeRR3VsrpnT
-	 teHfQeyFHpGdBVxezSteCnLEIUP3ZRH55vnnEFpiREeULRAvFZ7nrYOuZjYB9msxX5
-	 fOd2iP+ggtbY/ueDS+sBDGsirGq9Lsm6IzJPlzqzPyZ81UfLa+ptTKLOhMWhiA0j7+
-	 CpNo+Px/ynMLLQT2OM55XsvXIFbRlw7KFhmjjUNjqQGmhkDWL9VKtJdu6SaKSg82ZC
-	 zjavziGR3Z1Gw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 3/3] input: misc: Add Qualcomm SPMI PMIC haptics
- driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Fenglin Wu" <fenglin.wu@oss.qualcomm.com>
-Cc: linux-input@vger.kernel.org, dmitry.torokhov@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260624-qcom-spmi-haptics-v2-3-b9118e60f3e3@oss.qualcomm.com>
-References: <20260624-qcom-spmi-haptics-v2-0-b9118e60f3e3@oss.qualcomm.com>
- <20260624-qcom-spmi-haptics-v2-3-b9118e60f3e3@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 25 Jun 2026 02:13:14 +0000
-Message-Id: <20260625021314.630C71F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782354083; c=relaxed/simple;
+	bh=FQPp29QYeK6SH/2eMU3elbE4b+N/apy/2bHYa4tYqCk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jKNBgl2ImlRz5H9AXVe32ieFNZudG7jfzMddtsTW0NKoJnmG0kvqFuM9W2BJYQofItFDUHxGPMFQJDLJJy3sl9rEUEOiwEvmUra4bkycYGtnKa4X4WlJmaZM2UsYEXFTrP1WQ7dG55D/D31eQiLWYXJx7uAAHnksCHT/Ub8jxUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=Rn9VVZht; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=mKRM2q3j; arc=none smtp.client-ip=220.130.44.152
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1782354075;
+	bh=TdkGUMn/SqX11xQxQeSmg1el+7f50A7Ug9aYI52XI5k=; l=479;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=Rn9VVZhtB2Kzq1yqBgp265jC048GfAhYJEzW1UcyYi4ztXjlUkxOIShwslwRjoHuB
+	 vRQcjEXQI67A26DIgEdHl2aZ7zeOHULis+RaFtTnzKzIFO+LPI0KAnUJqEgLhL6JZd
+	 hC0FeYu202nWraasoCxS3+4TZG3qcgmQyOovwH+5qS5UrWjT+gy7LxYS0km71XsmIs
+	 4E4OPo1ln3cH4daGWAqKdeJR39lfrpkchJILJndR9buXXm1+oEuksd2r9F6Ceso4aU
+	 rtZr1utZXHr1p46powFAUU4kCGleDfxb4zGvx9HjDV2Ot+gDniHYeSHPSdB3poKXXS
+	 3xeWeQVU7ZHHw==
+Received: from 192.168.8.21
+	by mg.richtek.com with MailGates ESMTP Server V3.0(1128083:0:AUTH_RELAY)
+	(envelope-from <prvs=163233BBEA=cy_huang@richtek.com>); Thu, 25 Jun 2026 10:21:15 +0800 (CST)
+X-MailGates: (compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1782354074;
+	bh=TdkGUMn/SqX11xQxQeSmg1el+7f50A7Ug9aYI52XI5k=; l=479;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=mKRM2q3j4k18wr3ayEbHK3JXLDGh2omHaAUpFcSzwIwSRE3/OpWTii9Zk/lcHdP3i
+	 L96GT0qckBiOPdJjxydGtsdYrsidwHcQoJBaHixnbWDMtBGYHRDJw6TQ31tCt60dHP
+	 oi+a3XIwFjrHnqGZGKgvr1CV9nwdRhmB7TpKBbDu4ubBjT+1rwVo9S2DrG+HU5GJ00
+	 dSzh/KylNDwk6lh8qxpiif7O/qYazsOw5v8AAb8Rb5plGi8UBMESB/T0XglQk+cvCR
+	 FTQjMwFgL/6KkVxThTTi+TtkLbXtXiKBNw/4nE+bORKA7ZEQqxKyWwqWIrbIY6AouN
+	 D44W1dvoUVNfA==
+Received: from 192.168.10.46
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(1155879:0:AUTH_RELAY)
+	(envelope-from <cy_huang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Thu, 25 Jun 2026 10:18:36 +0800 (CST)
+Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.26; Thu, 25 Jun
+ 2026 10:18:35 +0800
+Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1748.26 via Frontend
+ Transport; Thu, 25 Jun 2026 10:18:35 +0800
+From: <cy_huang@richtek.com>
+To: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Liam
+ Girdwood" <lgirdwood@gmail.com>, ChiYuan Huang <cy_huang@richtek.com>, "Yoon
+ Dong Min" <dm.youn@telechips.com>, <edward_kim@richtek.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] rtq2208: Remove the unnecessary MTP_SEL property
+Date: Thu, 25 Jun 2026 10:18:30 +0800
+Message-ID: <cover.1782353659.git.cy_huang@richtek.com>
+X-Mailer: git-send-email 2.43.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[richtek.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[richtek.com:s=richtek];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-315452-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:fenglin.wu@oss.qualcomm.com,m:linux-input@vger.kernel.org,m:dmitry.torokhov@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,richtek.com,telechips.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[cy_huang@richtek.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:broonie@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:cy_huang@richtek.com,m:dm.youn@telechips.com,m:edward_kim@richtek.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315455-lists,devicetree=lfdr.de];
 	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[richtek.com:dkim,richtek.com:email,richtek.com:mid,richtek.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cy_huang@richtek.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[richtek.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9EF596C258B
+X-Rspamd-Queue-Id: 010E66C25CE
 
-Thank you for your contribution! Sashiko AI review found 8 potential issue(=
-s) to consider:
-- [High] Concurrent effect uploads or erasures free `fifo_data` while it is=
- actively used by the playback worker or IRQ handler, leading to a Use-Afte=
-r-Free.
-- [High] System suspend races with the asynchronous playback worker, leavin=
-g the hardware active during sleep and leaking a PM runtime reference.
-- [High] Incorrect teardown ordering allows userspace to trigger Use-After-=
-Free of driver structures after removal.
-- [High] The driver fails to terminate FIFO playback when finished, permane=
-ntly leaking a PM runtime reference.
-- [Medium] Unbounded user-controlled kmalloc size allows memory exhaustion.
-- [Medium] Missing signedness check on the custom play rate allows negative=
- values to bypass boundary checks.
-- [Medium] Lockless, non-atomic accesses to `play_request` and `cur_effect_=
-id` cause new play requests to be lost.
-- [Medium] The runtime PM usage counter is leaked during device removal if =
-playback is active.
---
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-commit 06679c85ddc3489b6ff4ed3aec7d938287e570cd
-Author: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+This patch series remove the 'richtek,mtp-sel-high' property usage.
 
-input: misc: Add Qualcomm SPMI PMIC haptics driver
+ChiYuan Huang (2):
+  regulator: dt-bindings: rtq2208: Label mtp-sel-high property as
+    deprecated
+  regualtor: rtq2208: Initiate the default MTP_SEL state by hardware
+    register
 
-Add an initial driver for the Qualcomm PMIH0108 PMIC haptics module,
-named as HAP530_HV. This module supports several play modes, including
-DIRECT_PLAY, FIFO, PAT_MEM, and SWR, each with distinct data sourcing
-and hardware data handling logic. Currently, the driver provides support
-for two play modes using the input force-feedback framework: FF_CONSTANT
-effect for DIRECT_PLAY mode and FF_PERIODIC effect with FF_CUSTOM
-waveform for FIFO mode.
+ .../devicetree/bindings/regulator/richtek,rtq2208.yaml     | 3 +++
+ drivers/regulator/rtq2208-regulator.c                      | 7 ++++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
-> diff --git a/drivers/input/misc/qcom-spmi-haptics.c b/drivers/input/misc/=
-qcom-spmi-haptics.c
-> new file mode 100644
-> index 0000000000000..4b27638df9605
-> --- /dev/null
-> +++ b/drivers/input/misc/qcom-spmi-haptics.c
+-- 
+2.43.0
 
-[ ... ]
-
-> +static irqreturn_t haptics_fifo_empty_irq(int irq, void *dev_id)
-> +{
-> +	struct qcom_haptics *h =3D dev_id;
-> +	u32 sts, to_write;
-> +	int ret;
-> +
-> +	ret =3D regmap_read(h->regmap,
-> +			  h->cfg_base + HAP_CFG_INT_RT_STS_REG, &sts);
-> +	if (ret || !(sts & FIFO_EMPTY_BIT))
-> +		return IRQ_HANDLED;
-> +
-> +	mutex_lock(&h->fifo_lock);
-> +
-> +	if (!h->fifo_data) {
-> +		mutex_unlock(&h->fifo_lock);
-> +		return IRQ_HANDLED;
-> +	}
-> +
-> +	if (h->data_done) {
-> +		ptn_write(h, HAP_PTN_FIFO_EMPTY_CFG_REG, 0);
-> +		h->fifo_data =3D NULL;
-> +		h->play_request =3D false;
-> +		schedule_work(&h->play_work);
-> +		mutex_unlock(&h->fifo_lock);
-> +		return IRQ_HANDLED;
-> +	}
-> +
-> +	/* Refill: write the next chunk, conservatively sized to the threshold =
-*/
-> +	to_write =3D min_t(u32, h->data_len - h->data_written,
-> +			 h->fifo_len - FIFO_EMPTY_THRESH);
-> +	haptics_write_fifo_chunk(h, &h->fifo_data[h->data_written], to_write);
-
-[Severity: High]
-Does this code dereference a freed pointer?
-
-A userspace process can start a FIFO effect, then concurrently call=20
-EVIOCSFF (to re-upload) or EVIOCRMFF (to erase) the effect.
-
-The input core calls haptics_erase() or haptics_upload_effect(), which=20
-immediately execute kfree(priv->fifo_data).
-
-Since the IRQ handler or worker continues to use h->fifo_data under=20
-h->fifo_lock, it appears it will dereference the freed memory.
-
-> +	h->data_written +=3D to_write;
-> +
-> +	if (h->data_written >=3D h->data_len) {
-> +		/* Last chunk enqueued; disable threshold to stop further IRQs */
-> +		h->data_done =3D true;
-> +		ptn_write(h, HAP_PTN_FIFO_EMPTY_CFG_REG, 0);
-
-[Severity: High]
-Does this fail to terminate FIFO playback when finished?
-
-When the final chunk is written, the code sets FIFO_EMPTY_CFG_REG to 0,
-disabling the empty interrupt.
-
-Because the interrupt is disabled, the handler will never fire again to
-process the h->data_done block at the start of the function. This leaves
-the hardware active indefinitely and leaks the PM runtime usage counter.
-
-> +	}
-> +
-> +	mutex_unlock(&h->fifo_lock);
-> +	return IRQ_HANDLED;
-> +}
-
-[ ... ]
-
-> +static int haptics_upload_effect(struct input_dev *dev,
-> +				 struct ff_effect *effect,
-> +				 struct ff_effect *old)
-> +{
-> +	struct qcom_haptics *h =3D input_get_drvdata(dev);
-> +	struct qcom_haptics_effect *priv;
-> +	int id =3D effect->id;
-> +	u32 data_len;
-> +	s16 *buf;
-> +	s8 *fifo;
-> +
-> +	if (id < 0 || id >=3D HAPTICS_MAX_EFFECTS)
-> +		return -EINVAL;
-> +
-> +	priv =3D &h->effects[id];
-> +
-> +	switch (effect->type) {
-> +	case FF_CONSTANT:
-> +		kfree(priv->fifo_data);
-> +		priv->fifo_data =3D NULL;
-> +		priv->data_len  =3D 0;
-> +		priv->mode =3D HAPTICS_DIRECT_PLAY;
-> +		return 0;
-> +
-> +	case FF_PERIODIC:
-> +		if (effect->u.periodic.waveform !=3D FF_CUSTOM)
-> +			return -EINVAL;
-> +		/*
-> +		 * Minimum 3 elements: play-rate code + vmax + at least one sample.
-> +		 * No upper bound: the FIFO is refilled continuously from the IRQ
-> +		 * handler, so any length of PCM data is supported.
-> +		 */
-> +		if (effect->u.periodic.custom_len < 3)
-> +			return -EINVAL;
-> +
-> +		buf =3D memdup_array_user(effect->u.periodic.custom_data,
-> +					effect->u.periodic.custom_len,
-> +					sizeof(s16));
-
-[Severity: Medium]
-Is there a missing upper bound check on custom_len?
-
-A local user with write access to the input device can provide a very
-large custom_len, and this directly allocates kernel memory without an
-upper bound, which could lead to memory exhaustion.
-
-> +		if (IS_ERR(buf))
-> +			return PTR_ERR(buf);
-> +
-> +		if (buf[CUSTOM_DATA_RATE_IDX] > PLAY_RATE_MAX) {
-
-[Severity: Medium]
-Can negative values bypass this boundary check?
-
-buf is an array of signed 16-bit integers. A user passing a negative value=
-=20
-would bypass this check, get cast to u8 later, and be written to the
-hardware registers as an out-of-bounds unsigned value.
-
-> +			kfree(buf);
-> +			return -EINVAL;
-> +		}
-
-[ ... ]
-
-> +static int haptics_playback(struct input_dev *dev, int effect_id, int va=
-l)
-> +{
-> +	struct qcom_haptics *h =3D input_get_drvdata(dev);
-> +
-> +	h->cur_effect_id =3D effect_id;
-> +	h->play_request  =3D (val > 0);
-
-[Severity: Medium]
-Are play requests occasionally lost due to lockless accesses?
-
-If the IRQ handler overwrites h->play_request to false immediately after a
-new play event from userspace sets it to true here, the new request seems
-to be lost. The worker will see play_request =3D=3D false and stop the
-hardware instead of starting the new effect.
-
-> +	schedule_work(&h->play_work);
-> +
-> +	return 0;
-> +}
-
-[ ... ]
-
-> +static void qcom_haptics_remove(struct platform_device *pdev)
-> +{
-> +	struct qcom_haptics *h =3D platform_get_drvdata(pdev);
-> +	int i;
-> +
-> +	pm_runtime_disable(&pdev->dev);
-> +	pm_runtime_set_suspended(&pdev->dev);
-> +
-> +	mutex_lock(&h->play_lock);
-> +	haptics_stop_locked(h);
-> +	mutex_unlock(&h->play_lock);
-
-[Severity: Medium]
-Does this leak the runtime PM usage counter?
-
-If remove is invoked while a haptics effect is actively playing,=20
-h->pm_ref_held is true. This stops the hardware but does not call
-pm_runtime_put_noidle(dev) to release the reference, leaving the PM
-state unbalanced.
-
-> +
-> +	haptics_enable_module(h, false);
-> +	cancel_work_sync(&h->play_work);
-> +	for (i =3D 0; i < HAPTICS_MAX_EFFECTS; i++) {
-> +		kfree(h->effects[i].fifo_data);
-> +		h->effects[i].fifo_data =3D NULL;
-> +	}
-> +
-> +	input_unregister_device(h->input);
-
-[Severity: High]
-Is it safe to tear down resources before unregistering the input device?
-
-Because the input device is still registered and active, an unprivileged
-user can concurrently issue an ioctl (like EVIOCSFF or EVIOCRMFF) on the
-open event node. This could access the freed effect structures or schedule=
-=20
-h->play_work after they have been destroyed.
-
-> +}
-
-[ ... ]
-
-> +static int qcom_haptics_suspend(struct device *dev)
-> +{
-> +	struct qcom_haptics *h =3D dev_get_drvdata(dev);
-> +
-> +	mutex_lock(&h->play_lock);
-> +	haptics_stop_locked(h);
-> +	if (h->pm_ref_held) {
-> +		pm_runtime_put_noidle(dev);
-> +		h->pm_ref_held =3D false;
-> +	}
-> +	mutex_unlock(&h->play_lock);
-
-[Severity: High]
-Does this system suspend race with the asynchronous playback worker?
-
-If userspace requests playback right before system suspend, h->play_request=
-=20
-is set to true and play_work is scheduled.
-
-This suspend function stops the hardware but forgets to clear
-h->play_request.
-
-When this drops the lock, play_work can execute, see play_request is still=
-=20
-true, and re-enable the hardware just before the system suspends.
-
-> +
-> +	cancel_work_sync(&h->play_work);
-> +	return pm_runtime_force_suspend(dev);
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260624-qcom-spmi-=
-haptics-v2-0-b9118e60f3e3@oss.qualcomm.com?part=3D3
 
