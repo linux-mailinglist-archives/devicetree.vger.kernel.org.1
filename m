@@ -1,63 +1,67 @@
-Return-Path: <devicetree+bounces-315762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315763-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id N0u7D6RWPWpQ1ggAu9opvQ
-	(envelope-from <devicetree+bounces-315762-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:26:12 +0200
+	id xgM5GiBXPWpb1ggAu9opvQ
+	(envelope-from <devicetree+bounces-315763-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:28:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F6BE6C7772
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:26:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCB8D6C778E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:28:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=e0sPHYhS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315762-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315762-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="OrnML/WH";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315763-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315763-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E5D4C30046B4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:24:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 34B47301F9CB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:28:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BDE43E8684;
-	Thu, 25 Jun 2026 16:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D8C3E8355;
+	Thu, 25 Jun 2026 16:28:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91DE12F8E9F;
-	Thu, 25 Jun 2026 16:24:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4E32459CF;
+	Thu, 25 Jun 2026 16:28:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782404680; cv=none; b=Lpdhp5qqd0qFSqkacmdKOoH83U3+cGaPmZ6U9GWEkj8wN87xQ0JQO9v+WWUPWLUN9wYmIHB65e83UWGR2eTzQEm072jk8boDlqFm0Kx5G2pQ/PxmTZ9CsuLtyFC+v6BwOA2AWX8xwOFfEAM2iorCMKscHkMSJYYHdchcxJQDYEI=
+	t=1782404892; cv=none; b=pd3HFeCkfKEmQJmnccP1SWpKVW3AdG8eBuF8Xi3Fm+gsI5q6iW/cYjsUms4BK+GUdvKlik3QZsMsBeletFUEpm437h+bDZRxOT9SFLzStaiOyix3YC7ChI3FLtp/82cGYZXQittFvH8uJQ5m8kN4T3AIbHu51wmJVyLN5LeLx18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782404680; c=relaxed/simple;
-	bh=Thgki5zYQNPufQB/hqjVbfgpOjLAZ0LYxJg6D63BT2k=;
+	s=arc-20240116; t=1782404892; c=relaxed/simple;
+	bh=4VVsx8KixFshX7pWU223Udq4wt39mD1SFHuyrgftX50=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D0bUK9cV6rpEIQUkHA1EN0RGymVQdVoYkYpMMzb+6caVF5X+gcDQY3hgZYaq96HFuIMOhCfILguZLfZXvAd80tmlbR59LUG3/ue5a71VKSfD8tthdmbx67c9/d+bFSY3T6mjR2gjWPx5hMlKCn5u/JWulPY4pLyj2DwvTsOIkgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e0sPHYhS; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDBC61F000E9;
-	Thu, 25 Jun 2026 16:24:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=o64GKSN1EC+Qs4jmeN6FQF2M/nnTjPYY1EZQkS0mf8//H/NxDDkH85kbTERUdMkWqIlKTjCawislj2i6jb/eO4m6QjLMsHqqQLZCkIum1q1Sw0KMn6ZW34KMwNaU/AfKXmAq8t9JqK3mL9GZ0FZLleH+RfypgfZdcMQytMwsjbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OrnML/WH; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEC451F000E9;
+	Thu, 25 Jun 2026 16:28:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782404679;
-	bh=Thgki5zYQNPufQB/hqjVbfgpOjLAZ0LYxJg6D63BT2k=;
+	s=k20260515; t=1782404891;
+	bh=WtHTE0ZUOjcMfiVh3eBEYex+oSym3DakLquUDoIGAK0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=e0sPHYhS15iIt6v6svyOSB6VfqT2c+Nbmp6t4lEzP02sAJOrt/DlDumjKNrBI0QiB
-	 w+xXAJWNiNgOZe2zJLLwZ4cCUcKvtHkIg7uoidvdNzZS/RRLDmIItHRQPG/90tQn29
-	 F0NYkygXW50pxT0X1QFGqv42wuHARillQnmOjgnmEuZ7dhX10w1ZF1JGRmZasBPFVb
-	 7/Q2uL03x6ssc1Q9vz9e2N9mQbl2j3fuiv7g6R/tV2mI/zsUDqzIaAmZryCb7xOIA4
-	 FcTY2XLRn8VrTOndUvKBUDH3YgkiEVKQkv2MDYTJd8UBbtnYkO+99GQgICGPYKTqVU
-	 ygx49lbKpiv3g==
-Date: Thu, 25 Jun 2026 17:24:34 +0100
+	b=OrnML/WHmTgEM8hECMVUFCXgOabcaUPalCHsOgPbadDyN2KlV0HJNHv1ek7iRlt5a
+	 riZ/irtakiS2NB7d2Pv7N49R4idkhbhKD+VZx8CQqGX21ci6hnAwkK51k5eJOKHzu9
+	 DvTL/S0QoaPEm/TkeEBoBRqEOgtaQPJliJLcKjooMTNjZLVKUGYl6Spt4ncBnpr4/z
+	 VSjNzQ3EnUBZMMXPGCSsrDdteBgpgRYegtOiGjMnny9eqEXuNIrB6VnRxKzJYC+Vv9
+	 f2BskVg3UcU1UO34mgOLs6gmIhp4z8Yh4TDMdmJ1AJARrSHkB3ob1qsFSyFM32/9LP
+	 Pwy0rZN9EkTCQ==
+Date: Thu, 25 Jun 2026 17:28:06 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Chi-Wen Weng <cwweng.linux@gmail.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, cwweng@nuvoton.com
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add Nuvoton MA35D1 EADC
-Message-ID: <20260625-gab-tartly-46ae1d07bb22@spud>
-References: <20260625110638.38438-1-cwweng.linux@gmail.com>
- <20260625110638.38438-2-cwweng.linux@gmail.com>
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Cc: linux-mediatek@lists.infradead.org, Sean Wang <sean.wang@kernel.org>,
+	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH 1/3] dt-bindings: pinctrl: mt8516/mt8167: Move
+ compatibles from mt66xx to mt6795
+Message-ID: <20260625-cameo-siamese-cd78c349519c@spud>
+References: <20260625104742.113803-1-l.scorcia@gmail.com>
+ <20260625104742.113803-2-l.scorcia@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,80 +69,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="KgOo0vAcTHRZVL56"
+	protocol="application/pgp-signature"; boundary="lpFCCusrIGXpI9Qc"
 Content-Disposition: inline
-In-Reply-To: <20260625110638.38438-2-cwweng.linux@gmail.com>
+In-Reply-To: <20260625104742.113803-2-l.scorcia@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
+X-Spamd-Result: default: False [-6.76 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:cwweng.linux@gmail.com,m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cwweng@nuvoton.com,m:cwwenglinux@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:l.scorcia@gmail.com,m:linux-mediatek@lists.infradead.org,m:sean.wang@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:lscorcia@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315763-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-315762-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,collabora.com,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,vger.kernel.org:from_smtp,spud:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,nuvoton.com:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2F6BE6C7772
+X-Rspamd-Queue-Id: BCB8D6C778E
 
 
---KgOo0vAcTHRZVL56
+--lpFCCusrIGXpI9Qc
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 25, 2026 at 07:06:37PM +0800, Chi-Wen Weng wrote:
-> From: Chi-Wen Weng <cwweng@nuvoton.com>
+On Thu, Jun 25, 2026 at 12:46:30PM +0200, Luca Leonardo Scorcia wrote:
+> Pinctrl settings for MediaTek mt8516-mt8167 SoCs use two reg base
+> addresses, one for GPIO and the other for EINT, as it is common in the
+> "Paris" pinctrl platform that is described in the MediaTek mt6795 docs.
 >=20
-> Add devicetree binding for the Enhanced ADC controller found on
-> Nuvoton MA35D1 SoCs.
->=20
-> The controller has one register region, one interrupt and one functional
-> clock. ADC inputs are described using standard channel child nodes,
-> including optional differential channel pairs.
->=20
-> Signed-off-by: Chi-Wen Weng <cwweng@nuvoton.com>
+> Move the binding compatible for these two SoCs from mt66xx to the mt6796
+> one as a prerequisite for migrating the pinctrl driver to the
+> pinctrl-paris platform.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+I've not done a very through analysis, but this seems like a massive ABI
+break.
+The change you're trying to make here will mean that new kernels will
+not work with older devicetrees AFAICT.
 
---KgOo0vAcTHRZVL56
+>=20
+> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+> ---
+>  .../devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml | 2 --
+>  .../devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml | 5 ++++-
+>  2 files changed, 4 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pi=
+nctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinc=
+trl.yaml
+> index 1468c6f87cfa..0cff2a352b1f 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.y=
+aml
+> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.y=
+aml
+> @@ -22,9 +22,7 @@ properties:
+>        - mediatek,mt7623-pinctrl
+>        - mediatek,mt8127-pinctrl
+>        - mediatek,mt8135-pinctrl
+> -      - mediatek,mt8167-pinctrl
+>        - mediatek,mt8173-pinctrl
+> -      - mediatek,mt8516-pinctrl
+> =20
+>    reg:
+>      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pi=
+nctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinc=
+trl.yaml
+> index 9a937f414cc9..c703de72e1d5 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.y=
+aml
+> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.y=
+aml
+> @@ -15,7 +15,10 @@ description:
+> =20
+>  properties:
+>    compatible:
+> -    const: mediatek,mt6795-pinctrl
+> +    enum:
+> +      - mediatek,mt6795-pinctrl
+> +      - mediatek,mt8167-pinctrl
+> +      - mediatek,mt8516-pinctrl
+> =20
+>    gpio-controller: true
+> =20
+> --=20
+> 2.43.0
+>=20
+
+--lpFCCusrIGXpI9Qc
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaj1WQgAKCRB4tDGHoIJi
-0rzsAQC4BpLKlBd36IGdD4/quH53bLAWjEVwrOFiN5Oh3JYKfwD/a+oArr5PGsuQ
-N2sp8zcfi/PLAn244zTapkzBFxNtkgY=
-=oDJ9
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaj1XFgAKCRB4tDGHoIJi
+0jrbAP97wobMnRO7HdyCFDRjLsINUhRhF1pHhFQuAEIeonbG2gEAsdjf82z1L2/O
+CIqr2L2XbnkDV93d6huma3K037t9dQ8=
+=uL4W
 -----END PGP SIGNATURE-----
 
---KgOo0vAcTHRZVL56--
+--lpFCCusrIGXpI9Qc--
 
