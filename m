@@ -1,224 +1,246 @@
-Return-Path: <devicetree+bounces-315708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315709-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id i7vOKZU3PWoYzQgAu9opvQ
-	(envelope-from <devicetree+bounces-315708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:13:41 +0200
+	id X71RIwM5PWq0zQgAu9opvQ
+	(envelope-from <devicetree+bounces-315709-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:19:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 470276C6783
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A5516C68B0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:19:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=q3CQaR0E;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315708-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315708-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=wHXbjJXu;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315709-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315709-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 89F8B30AB4F9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 14:11:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 436A5301704E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 14:13:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04F237B3E4;
-	Thu, 25 Jun 2026 14:10:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8806351C17;
+	Thu, 25 Jun 2026 14:13:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30A635F180;
-	Thu, 25 Jun 2026 14:10:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0482E34041B;
+	Thu, 25 Jun 2026 14:13:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782396631; cv=none; b=HLxASLAsGj1pYY2cJnR/88lMcHFq4Wrme32QxOAazsG4red+plG0H3qpDBVdDwBweTB/Hbwc0VYr+Jb1H+umfBoQ21w+lZ8gocsgtWb4Xr9gKSv24dT0I94hSnibLFE/ZvC0co486iunEHDlW54N7751k9+Ii7EV3wNn6cutus4=
+	t=1782396815; cv=none; b=QFbs4/rNL/9/TZhO9mIVQaN1Ghn0/QLo0+CnAOtNCtBPbNp/vAsFCM3WGc+U+SlCJbHqClOHDYA5gnPWf1x0300UmZmks3LdIqxi2QJuAVe9pka7++1HmFK8DFXvY26G7Ri836++Qp1iGn5lyG4CHRWrK+c/0u3LhGe4ukGgi2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782396631; c=relaxed/simple;
-	bh=cGlrzfrVFE1P+AOMseHD4xEMCebg1rxM3TlgaPrOlmI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AbFZRXFpQstpe/rfFXcRUHFpKEzIRtv4ZyIW66/+co6jcTKV9BQv//dk4IWwAOvPO8PWCM2nFM0NK4N2MKFozsbJd8soeUOhpRvpd4JN9n9YcGCXWEX1s5nZlmtmJfeTM7Qao8TxPvRkhj9XIvX3kgpfuSUsIw0s8lQp3xwHT5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q3CQaR0E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 878E7C2BCB7;
-	Thu, 25 Jun 2026 14:10:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1782396631;
-	bh=cGlrzfrVFE1P+AOMseHD4xEMCebg1rxM3TlgaPrOlmI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=q3CQaR0ECmYMzAv/aPi/BVrstYd6WeM2zEXiYExYNg86sPm4UqraFh1n/0T25mqAw
-	 mEw5tlsPGUi5J8K3Td9gJICJaeiczJAjphybRefGZsD9WGnumFeOhCqKy/gP8lvxD1
-	 QzvXhSY0S+DpRCW2JQFj1grtR8/YHvHXNCJDfdOR4WbbLw8yAiqLmR2ko2icZQIOAO
-	 ZY1MNOYgOXVgnIDcUSUWUr61VPRLdn8pzyCz7mG7JPKzcm8dROOo63T3VitJTspEtV
-	 ySNn3aaz032OLsWDxWky/Bk1wWLCRgkUeGH+Hfz4s7m8UaGK/PTsM08umuOqow/zj9
-	 O7PODHosRHzWw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C3F8CDE00B;
-	Thu, 25 Jun 2026 14:10:31 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Thu, 25 Jun 2026 18:10:10 +0400
-Subject: [PATCH 6/6] arm64: dts: qcom: ipq5018: add nodes required for
- Bluetooth support
+	s=arc-20240116; t=1782396815; c=relaxed/simple;
+	bh=W8LfLYhskNUNLbZYP6fAdN6VqoJhy74OyG6BAyFTReM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Ok7wl21PMfzV1jg+LWQOWBYdW6dkTHREF1PNoC6R3oQp52urI4uUL8jYHMYmGS4UBhBZsEswQ6wVxrTY9D9RKhw8JUzxmdkfRa2BqA24TYFIx3R5Phvs4MKxOMFfcdcpkAim/YNnwiB4Ld3GUxXdGEu/EjR4HV5tXs6JpImKSII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=wHXbjJXu; arc=none smtp.client-ip=185.246.84.56
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 5FA651A09B2;
+	Thu, 25 Jun 2026 14:13:30 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 2E7535FF03;
+	Thu, 25 Jun 2026 14:13:30 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2B3FC104C9776;
+	Thu, 25 Jun 2026 16:13:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1782396808; h=from:subject:date:message-id:to:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=k3XImR5LuwT8/GVFa0sNRFYkN/CDPKz36sZeNivR0Ps=;
+	b=wHXbjJXutSwFzKdyBO+JadrL7vzZXU2Ju+iay6NC3mqD2OVKNOmpQcK+SqpaVzmb/kfhUw
+	b9eJsyPs0swywCYolXBHA9sqiLCYmtT6uu9qlEbPcUoYONRWs4Qz3g9ycv/87AB2lXiaCY
+	dVXvQeAZhwn9vqI4DnCISuk++CUKb6I/A1KPjM1BARbiKqito2vCTmjxITZn6c+TsasA/Y
+	hgDUl7mLW9wPZQ94naWK5t7dGuiPvzFXNe/mc9zgn4DI6COoTOIcigvIHeeJPFhcpbK2qu
+	LZ4JptlGAm20dUa3h0Eg3n2MoWAJ+oZYl9WKk/LHhvhj9PpkpYcIf2WUrIh4ow==
+Message-ID: <a271385e-302d-45c7-a1df-aebd380b427b@bootlin.com>
+Date: Thu, 25 Jun 2026 16:13:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH net-next v8 03/12] net: phylink: add
+ phylink_release_pcs() to externally release a PCS
+To: Christian Marangi <ansuelsmth@gmail.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ Saravana Kannan <saravanak@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Nathan Chancellor
+ <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ llvm@lists.linux.dev
+References: <20260618125752.1223-1-ansuelsmth@gmail.com>
+ <20260618125752.1223-4-ansuelsmth@gmail.com>
+Content-Language: en-US
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+In-Reply-To: <20260618125752.1223-4-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260625-ipq5018-bluetooth-v1-6-d999be0e04f7@outlook.com>
-References: <20260625-ipq5018-bluetooth-v1-0-d999be0e04f7@outlook.com>
-In-Reply-To: <20260625-ipq5018-bluetooth-v1-0-d999be0e04f7@outlook.com>
-To: Jens Axboe <axboe@kernel.dk>, Ulf Hansson <ulfh@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Johannes Berg <johannes@sipsolutions.net>, 
- Jeff Johnson <jjohnson@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
- Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
- Rocky Liao <quic_rjliao@quicinc.com>, 
- Saravana Kannan <saravanak@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Simon Horman <horms@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-block@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-wireless@vger.kernel.org, ath10k@lists.infradead.org, 
- linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
- netdev@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782396628; l=1962;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=ojtleJtDhQce/+XX9j6vq/OyHIn9zWr0G+phOI1scMI=;
- b=mB7Kl8oo6p9qGG8S83k1i8WmNveVSPly3y06IvufkwdoKbpyKrwO16ajhuW3SA7lgpXy+Ip47
- WLniTF1QpjgDlYPL6e8t4RQt1S+4CsO7tztDkEfprQ0UCWrbZxiEfmq
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315708-lists,devicetree=lfdr.de,george.moussalem.outlook.com];
+	TAGGED_FROM(0.00)[bounces-315709-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:axboe@kernel.dk,m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:johannes@sipsolutions.net,m:jjohnson@kernel.org,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:quic_bgodavar@quicinc.com,m:quic_rjliao@quicinc.com,m:saravanak@kernel.org,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:mathieu.poirier@linaro.org,m:p.zabel@pengutronix.de,m:linux-block@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:ath10k@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:george.moussalem@outlook.com,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_REPLYTO(0.00)[outlook.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,armlinux.org.uk,pengutronix.de,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	FORGED_SENDER(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:lorenzo@kernel.org,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:saravanak@kernel.org,m:p.zabel@pengutronix.de,m:nathan@kernel.org,m:nick.desaulniers+lkml@gmail.com,m:morbo@google.com,m:justinstitt@google.com,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:llvm@lists.linux.dev,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:nickdesaulniers@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[36];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.dk,kernel.org,sipsolutions.net,holtmann.org,gmail.com,quicinc.com,lunn.ch,armlinux.org.uk,davemloft.net,google.com,redhat.com,linaro.org,pengutronix.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,outlook.com:replyto,outlook.com:email,outlook.com:mid];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[george.moussalem@outlook.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,outlook.com];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[]
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,lkml];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,bootlin.com:dkim,bootlin.com:mid,bootlin.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 470276C6783
+X-Rspamd-Queue-Id: 3A5516C68B0
 
-From: George Moussalem <george.moussalem@outlook.com>
+Hello Christian,
 
-Add nodes for the M0 remoteproc, reserved memory carveout, and Bluetooth
-to bring up the M0 core and enable the Bluetooth Subsystem.
+On 6/18/26 14:57, Christian Marangi wrote:
+> Add phylink_release_pcs() to externally release a PCS from a phylink
+> instance. This can be used to handle case when a single PCS needs to be
+> removed and the phylink instance needs to be refreshed.
+> 
+> On calling phylink_release_pcs(), the PCS will be removed from the
+> phylink internal PCS list and the phylink supported_interfaces value is
+> reparsed with the remaining PCS interfaces.
+> 
+> Also a phylink resolve is triggered to handle the PCS removal.
+> 
+> The flag force_major_config is set to make phylink resolve reconfigure
+> the interface (even if it didn't change).
+> This is needed to handle the special case when the current PCS used
+> by phylink is removed and a major_config is needed to propagae the
+> configuration change. With this option enabled we also force mac_config
+> even if the PHY link is not up for the in-band case.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  drivers/net/phy/phylink.c | 56 +++++++++++++++++++++++++++++++++++++++
+>  include/linux/phylink.h   |  2 ++
+>  2 files changed, 58 insertions(+)
+> 
+> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
+> index c38bcd43b8c8..064d6f5a06da 100644
+> --- a/drivers/net/phy/phylink.c
+> +++ b/drivers/net/phy/phylink.c
+> @@ -158,6 +158,8 @@ static const phy_interface_t phylink_sfp_interface_preference[] = {
+>  static DECLARE_PHY_INTERFACE_MASK(phylink_sfp_interfaces);
+>  
+>  static void phylink_run_resolve(struct phylink *pl);
+> +static void phylink_link_down(struct phylink *pl);
+> +static void phylink_pcs_disable(struct phylink_pcs *pcs);
+>  
+>  /**
+>   * phylink_set_port_modes() - set the port type modes in the ethtool mask
+> @@ -918,6 +920,60 @@ static void phylink_resolve_an_pause(struct phylink_link_state *state)
+>  	}
+>  }
+>  
+> +/**
+> + * phylink_release_pcs - Removes a PCS from the phylink PCS available list
+> + * @pcs: a pointer to the phylink_pcs struct to be released
+> + *
+> + * This function release a PCS from the phylink PCS available list if
+> + * actually in use. It also refreshes the supported interfaces of the
+> + * phylink instance by copying the supported interfaces from the phylink
+> + * conf and merging the supported interfaces of the remaining available PCS
+> + * in the list and trigger a resolve.
+> + */
+> +void phylink_release_pcs(struct phylink_pcs *pcs)
+> +{
+> +	struct phylink *pl;
+> +
+> +	ASSERT_RTNL();
+> +
+> +	pl = pcs->phylink;
+> +	if (!pl)
+> +		return;
+> +
+> +	mutex_lock(&pl->state_mutex);
+> +
+> +	list_del(&pcs->list);
+> +	pcs->phylink = NULL;
+> +
+> +	/*
+> +	 * Check if we are removing the PCS currently
+> +	 * in use by phylink. If this is the case, tear down
+> +	 * the link, force phylink resolve to reconfigure the
+> +	 * interface mode, disable the current PCS and set the
+> +	 * phylink PCS to NULL.
+> +	 */
+> +	if (pl->pcs == pcs) {
+> +		phylink_link_down(pl);
+> +		phylink_pcs_disable(pl->pcs);
+> +
+> +		pl->force_major_config = true;
+> +		pl->pcs = NULL;
+> +	}
+> +
+> +	mutex_unlock(&pl->state_mutex);
+> +
+> +	/* Refresh supported interfaces */
+> +	phy_interface_copy(pl->supported_interfaces,
+> +			   pl->config->supported_interfaces);
+> +	list_for_each_entry(pcs, &pl->pcs_list, list)
+> +		phy_interface_or(pl->supported_interfaces,
+> +				 pl->supported_interfaces,
+> +				 pcs->supported_interfaces);
 
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- arch/arm64/boot/dts/qcom/ipq5018.dtsi | 34 +++++++++++++++++++++++++++++++++-
- 1 file changed, 33 insertions(+), 1 deletion(-)
+I've given more thought to that 'supported_interfaces' thing. This
+patchset redefines the meaning of
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-index 6f8004a22a1f..4fdf20c87b0a 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-@@ -17,6 +17,17 @@ / {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
-+	bluetooth: bluetooth {
-+		compatible = "qcom,ipq5018-bt";
-+
-+		qcom,ipc = <&apcs_glb 8 23>;
-+		interrupts = <GIC_SPI 162 IRQ_TYPE_EDGE_RISING>;
-+
-+		qcom,rproc = <&m0_btss>;
-+
-+		status = "disabled";
-+	};
-+
- 	clocks {
- 		gephy_rx_clk: gephy-rx-clk {
- 			compatible = "fixed-clock";
-@@ -131,11 +142,31 @@ psci {
- 		method = "smc";
- 	};
- 
-+	m0_btss: remoteproc {
-+		compatible = "qcom,ipq5018-btss-pil";
-+
-+		firmware-name = "qca/bt_fw_patch.mbn";
-+
-+		clocks = <&gcc GCC_BTSS_LPO_CLK>;
-+		clock-names = "btss_lpo_clk";
-+		resets = <&gcc GCC_BTSS_BCR>;
-+		reset-names = "btss_reset";
-+
-+		memory-region = <&btss_region>;
-+
-+		status = "disabled";
-+	};
-+
- 	reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges;
- 
-+		btss_region: bluetooth@7000000 {
-+			reg = <0x0 0x07000000 0x0 0x58000>;
-+			no-map;
-+		};
-+
- 		bootloader@4a800000 {
- 			reg = <0x0 0x4a800000 0x0 0x200000>;
- 			no-map;
-@@ -647,7 +678,8 @@ watchdog: watchdog@b017000 {
- 
- 		apcs_glb: mailbox@b111000 {
- 			compatible = "qcom,ipq5018-apcs-apps-global",
--				     "qcom,ipq6018-apcs-apps-global";
-+				     "qcom,ipq6018-apcs-apps-global",
-+				     "syscon";
- 			reg = <0x0b111000 0x1000>;
- 			#clock-cells = <1>;
- 			clocks = <&a53pll>, <&xo_board_clk>, <&gcc GPLL0>;
+  pl->config->supported_interfaces
 
--- 
-2.53.0
+Currently, it's filled by the MAC driver and means "Every interface
+we can support, including the ones provided by PCSs that we can use
+with this MAC".
+
+It now becomes "Every interface we support without needing a PCS", at
+least the way I understand that.
+
+It's not an error in your code, but I think this is worth documenting
+somewhere as this changes one the things that's already fairly
+error-prone in new drivers.
+
+I don't know to what extent people use that, be we have a porting guide
+that explains how to use phylink in a MAC driver, maybe an update in there
+would be nice as well :
+
+https://docs.kernel.org/networking/sfp-phylink.html#rough-guide-to-converting-a-network-driver-to-sfp-phylink
+
+Maxime
 
 
 
