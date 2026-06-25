@@ -1,224 +1,319 @@
-Return-Path: <devicetree+bounces-315626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315618-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id P91+O30HPWoywAgAu9opvQ
-	(envelope-from <devicetree+bounces-315626-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 12:48:30 +0200
+	id cZABOBQHPWodwAgAu9opvQ
+	(envelope-from <devicetree+bounces-315618-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 12:46:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D57626C4D15
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 12:48:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A06066C4CD6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 12:46:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=ZzD2goIW;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315626-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315626-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="sGe5t3/A";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315618-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315618-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 81E253030D15
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 10:48:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 12C613023329
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 10:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C41389DE0;
-	Thu, 25 Jun 2026 10:48:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC660329E46;
+	Thu, 25 Jun 2026 10:46:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-dy1-f180.google.com (mail-dy1-f180.google.com [74.125.82.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81D62388392
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 10:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37A083749F5
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 10:46:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782384496; cv=none; b=a2OS52kGnz1h38+hcHOl4V0bHORL0A7fH5eHdNVrCaCuNwDp3332GHdwsjCHjf05ixdVuOBxz41wyX19dPLfLlsQmFNHPKuAmOOK1/O+nkLDirLBV0BSpwHKRhoyLoeenKOgVOR25Teahjz+QogWrOVf5dJ9UWK0gD2a7YRFaIQ=
+	t=1782384403; cv=none; b=QpiP6gznPYI7gxgwPzTbbbLBJgZllfbJ4B+ZzpjV1OdveJeqcMaKcrmaEg5vKqBVW417wfntRyiO0hqLpNyXQnJDmyQZDiVeljmSgiJ+lt7FznBCKYy2BZdlYPBXJ+6j59BBvMmuNS6qAOIlz0KGIsgSYEDBXuY/j8tSahQq+zA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782384496; c=relaxed/simple;
-	bh=85JpFHUCR3X4aSnnJhNaKIDBi3/5GXYIOqt+mp/9g2I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=onxVv4Dwhsu/cJZZENTFuZuqr5oElXi9S4d0gmBcRnDz2xt+LTPdf3f3xq/JbVUh4DsjA7daMnESN2yU1udsgENf+Nerfz644HuF7FktKGcapooqnbSIM3XZ7gww2xJVBWs2jz/CikzjMM7KPbg2OR/lmLszPajATcoiCJcKBVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZzD2goIW; arc=none smtp.client-ip=209.85.221.54
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-4624c1409c9so1736225f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 03:48:13 -0700 (PDT)
+	s=arc-20240116; t=1782384403; c=relaxed/simple;
+	bh=IUW/jWuAZqZ00WBiH/PlhaaRj68O9+LDUzp8Oi0esoI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Pq/EjIt9YAgQKVbRuRxFvvQ4FihL8pTWyduaA2vBT3zJszuzw0nTrfjFZqaIbKtbGp7fxnQKIzBWxzxhHuXvJMyJzjEczammlTcl/K10gZ51f2FHRvfCXRrWy/eZ8q+8POMKYUgPl4qV3CcEdHPi7XGBZZRWjMGjDov9r0BXtZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=sGe5t3/A; arc=none smtp.client-ip=74.125.82.180
+Received: by mail-dy1-f180.google.com with SMTP id 5a478bee46e88-30bf854d5feso5145565eec.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 03:46:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782384492; x=1782989292; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qGDKUwtGAyS+7+q7mgtQ02+mVANH5ixDJ+D4q6Iez1w=;
-        b=ZzD2goIWyVsx0p+c+8vPFrK6ygwSXJLlAtkoHSmXGNEWySXGv4uc9eyTxPXEFR3BEm
-         H4lbWjovEFGa07umxQx+JBeG8i3FMUVkD9wVFODxtoOVlOjMCIyml/ZfPgIRuZageGhg
-         aJqe6wI8tsyrH8AXL0lGwh+9BkCSTze8m8it2xdXu7duLb+UiDdYLPz0pmEe/YRPMOwg
-         HD1BJWVsy6mc8IcA8/cozT9GxbC8poyNhd9HW1+01xFWYvr6Tx+sFFidIg5UAoYPvFWP
-         e0ztlFzMINtGEaScwW0XABan8lYT1KSB6dfthajwgkqjozCD9GRO9hYiygOR+cArSGVf
-         rUKA==
+        d=gmail.com; s=20251104; t=1782384401; x=1782989201; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=00nxWzmG28kPWf/SxYgPpee9K9fo84Tt12Dcs5puz7E=;
+        b=sGe5t3/Ak1LtDO2PDpWJpOXG6osQpMexKlQmZp025rLLx8YaivVlFMFH7Ze9qi6qLs
+         qC8RZkoxhJJIykjLOpj9RnCLnEMGGD5oOsaeqLEXcnvhe+053wgxeUGZpgSK9M2ZuMPR
+         ReUDR3uRu5eFvvFeqXFLQoD3QOcYo/O07542HuaxumcZFdyeRHoNhExJzUjCiLd+Fytk
+         r1OZDpuL/efg/9+qsQrK8VVMH9563ikhGJdxT9tP4vdadJjVPFg8ZBG8HAqaVydwj3D+
+         NwfVuJucUiRCnlsFGPwcbmivjSwT5rW+91wvoTSCRxnS1mmQZUMj9FEfCVXw+ZLCAq7Q
+         iahw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782384492; x=1782989292;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=qGDKUwtGAyS+7+q7mgtQ02+mVANH5ixDJ+D4q6Iez1w=;
-        b=NI3K64nA4NrlG9rU65ZA1izTPtP8s7jj3TNAmCYgWvwsv7RCfdm8Mf4ckJ9SaFETI5
-         75yFNmef3u/TX9hCM9GmQ1A4jSKFuUVR3ZHBHow11wXHBgRgKjLa4aaTAYsiWj0mQKlx
-         L7jGOcnmHfpgYr/hLB5BFxolQdXuIREpsNmUjyj0rU9A+7N8v1K9/ga+q+oUzCjiIAYm
-         GarV+j2ACAX10GQ01hnir5vDevUbgvLtrvngi5UsUPITJ4iV5J6OsS1K+7HcckRaPYdX
-         PlpwFjIZRRYw8LaD7ARpsfj9WbZ6O2PhvtbgJWbbeOU/kB0yzXT3WrxmNXCxnxUI3+eZ
-         BBTw==
-X-Forwarded-Encrypted: i=1; AHgh+RpHAtKFqSJwfqa5tkCSPAqqhzANkwhAAzI35nq4ygByeqji4ZVuzEpRYb+5CMBWuxbkaw2WwqAX58mU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuR7ZzfG+FHQj1AlYAeoxCDYZRd9rc6ZwWsdm7UfprQrMwR2ZU
-	xzi4MDkgJ1B2eZidBfJJXEXXR+wzt+FbGpDEDcvLFMPLOxIxeJGPAV00
-X-Gm-Gg: AfdE7ckAzkraaS9rLR4/Ic4ddhkLe/yt8ue0tZBo4fjIYM0W4fYLdXr3TATpdUYJlN8
-	aWI19jlb/i3l+bmxovWkJIhI6vePMGYlU/IuCH6NbtRPTXzQ70jt4Cf6aBCp/CIWWZ7oycnylBG
-	aIUGdCqciVwdplWKUKOantHM4mgszeRMtgSBQZzcFpO8Go7tPdif13dnI4qeR7I2IV4q4cC6b+C
-	yRoY1zqELfib+9nZIA3gLbA+fD+reeOEdhAflqIsQaEcRfMqczBL/RStlYK6SrHNBMd4yEIqU5k
-	n7M2ViMHTwafZ6A6Zej/V8I0liRXSjwZ8IBEBjDGvbb/7sjzoVJp07/ZZ3nN1Jj7KojoiV99vTA
-	9jc4T0unHT8vWtDf/GhKWOFVkui3OJh2D1F3qoRQ+9QpmVBrLd3XkETX2PnO6RU+1WonmBSmXWA
-	G90k73eQ==
-X-Received: by 2002:a5d:64cb:0:b0:46d:32:3340 with SMTP id ffacd0b85a97d-46dc16b9abbmr3055956f8f.36.1782384491908;
-        Thu, 25 Jun 2026 03:48:11 -0700 (PDT)
-Received: from luca-vm.. ([81.56.18.151])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-46c1ee01c6csm15254989f8f.14.2026.06.25.03.48.10
+        d=1e100.net; s=20251104; t=1782384401; x=1782989201;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=00nxWzmG28kPWf/SxYgPpee9K9fo84Tt12Dcs5puz7E=;
+        b=K7UuVxiykt43WOQbipcafUXZINMSKWsgDXX0a9YcbIyvLroNPlNLWQvsI1aHKKYfgj
+         +My1d3FPblAtIOcMLk0sN/3BXDmc3CleYrYxljfxFDui+WI7fPH09QIIlLu33dwvhUHD
+         1W27kS69OdNfD1/toOMAWv4+VwJVEWBTI/L/8xbQFLHP2nc8IHqvcjmIIc5uGv6FGDY/
+         ymChkY6hvSq5fbwfzLrS/jo4mHgEe3JdICA1MyVPbn//rR4ewDJcHhSV9qqY/Z4Bj46e
+         VzNyMovuCzrf38A+vDX1iPmtEuP4DOHcFy/FqEOgLQ31RTDLPAohMoFpc5SpNB93s3i9
+         udlw==
+X-Forwarded-Encrypted: i=1; AHgh+RqeYb90BUAi5IbgV1z6fWv3ZboOw74Zq13Q+air5hmWtl1Zt/0oEjowtDktlV7Dy9/kPUaW4J9GDLSM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhPHVHrZbQQxIxZYmgjZp8YolSVCZ3BzIw7orVh3OzXiejjOpX
+	5DNIoY+yx5bFRDRY2puVz9kzY98KVc3Z9QopEnSRNhec5ghSazpKdeXHMC5U3A==
+X-Gm-Gg: AfdE7cl0zRlpJcKt4bc0UmGAkDV1n5encZ4WP+nIiMun63kIyxfDGNe3XjbFT60t9XT
+	uzJmh2G5E07/XBk7cvYCFez6li+Gvdwd5dzqfz3c7RCJwUrG1VtulsL90l0HnpHk4TV8A2o0EJA
+	N6eNt6tHJp8r3k9n9ba/GYzKNAFsti975wn1k6kujBOxpS2i0Fus6Rl6js4cOlpe0smTkloKSuo
+	hRgBSO6fmT09FRIMT3qJkdhso+2knKQRV+stJI9oFL7H8+6p/aQOL1eUL+IkCnmaKXbKvprTW46
+	5r9fe+Ae6s0BTgSK+BiAxQH4CAk7OVZbRYPunjRqnssJtxs0diGan+heAqSEc7IPi8dN7Io6Jyn
+	1irKdB70dk+OJnrGBSx+3HhKEdzVA1mrA8ppHedPggic3Qxr5amb9hqONNYWBC3zroiFPjLsSJ5
+	a+F/Ow/PrRbOnarKID0h2R82lvDBn+9Rkhrw==
+X-Received: by 2002:a05:7301:1001:b0:307:140f:d511 with SMTP id 5a478bee46e88-30c84ea683dmr2346028eec.33.1782384401309;
+        Thu, 25 Jun 2026 03:46:41 -0700 (PDT)
+Received: from Black-Pearl.localdomain ([49.207.56.32])
+        by smtp.googlemail.com with ESMTPSA id 5a478bee46e88-30c7c52c591sm10103022eec.7.2026.06.25.03.46.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jun 2026 03:48:11 -0700 (PDT)
-From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-To: linux-mediatek@lists.infradead.org
-Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
-	Sean Wang <sean.wang@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [RFC PATCH 3/3] arm64: dts: mt8516/mt8167: Update pinctrl nodes for the new paris driver
-Date: Thu, 25 Jun 2026 12:46:32 +0200
-Message-ID: <20260625104742.113803-4-l.scorcia@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260625104742.113803-1-l.scorcia@gmail.com>
-References: <20260625104742.113803-1-l.scorcia@gmail.com>
+        Thu, 25 Jun 2026 03:46:40 -0700 (PDT)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Date: Thu, 25 Jun 2026 10:46:34 +0000
+Subject: [PATCH v3] dt-bindings: pwm: st,pwm: convert to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260625-st-pwm-v3-1-ace9bff88529@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAkHPWoC/2WNzQ6CMBAGX4X0bA0t8lNPvofxUJcF1gglLVYN4
+ d1tMTEknjaTzHw7M4eW0LFjMjOLnhyZIUC2Sxh0emiRUx2YyVQWaSEy7iY+PnsuGtQ1FhBOxoI
+ 8WmzotQ6dL192j+sNYYp1NDpyk7Hv9ZMX0fsb9YILfsgrkFCpMlX61Paa7nswPYujXm6z6pfJk
+ EGpZJ2XKgeU22xZlg9NwY8d5QAAAA==
+X-Change-ID: 20260613-st-pwm-1feade6cfea3
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.15.2
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315626-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,collabora.com,vger.kernel.org,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315618-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-mediatek@lists.infradead.org,m:l.scorcia@gmail.com,m:sean.wang@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:lscorcia@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ukleinek@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lee@kernel.org,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:charan.pedumuru@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:charanpedumuru@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,msgid.link:url,vger.kernel.org:from_smtp,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D57626C4D15
+X-Rspamd-Queue-Id: A06066C4CD6
 
-Update the MediaTek mt8516-mt8167 SoCs descriptions to respect the
-constraints of the Paris pinctrl driver.
+Convert STMicroelectronics STiH41x PWM/Capture controller binding
+to DT schema.
+Changes during conversion:
+- Fix compatible string from "st,pwm" to "st,sti-pwm" to match the
+  actual hardware variant naming convention used across STi bindings.
+- Drop pinctrl-names from the required list as pinctrl properties are
+  inherited and validated by the pinctrl schema.
 
-In those SoCs the pinctrl has base address 0x10005000 for gpio settings
-while 0x1000b000 is used for eint configuration.
-
-This change also drops the no longer required syscfg_pctl syscon node
-that was used before to access the gpio regmap, fixing the following
-dtbs_check errors:
-
-mt8167-pumpkin.dtb: syscfg-pctl@10005000 (syscon): compatible: ['syscon']
-  is too short
-mt8516-pumpkin.dtb: syscfg-pctl@10005000 (syscon): compatible: ['syscon']
-  is too short
-
-Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8167.dtsi | 15 ++++-----------
- arch/arm64/boot/dts/mediatek/mt8516.dtsi | 12 ++++--------
- 2 files changed, 8 insertions(+), 19 deletions(-)
+Changes in v3:
+- Fix compatible to "st,sti-pwm".
+- Drop pinctrl-names from required.
+- Modify the commit message to explain the changes made.
+- Change maintainer to "Lee Jones <lee.jones@linaro.org>".
+- Link to v2: https://patch.msgid.link/20260618-st-pwm-v2-1-c792d5795ce2@gmail.com
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-index 27cf32d7ae35..65da6c0538b1 100644
---- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-@@ -95,17 +95,6 @@ power-domain@MT8167_POWER_DOMAIN_CONN {
- 			};
- 		};
- 
--		pio: pinctrl@1000b000 {
--			compatible = "mediatek,mt8167-pinctrl";
--			reg = <0 0x1000b000 0 0x1000>;
--			mediatek,pctl-regmap = <&syscfg_pctl>;
--			gpio-controller;
--			#gpio-cells = <2>;
--			interrupt-controller;
--			#interrupt-cells = <2>;
--			interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
--		};
+Changes in v2:
+- Add the missing interrupts to the required following the old binding.
+- Modify the commit message to explain the changes made.
+- Link to v1: https://patch.msgid.link/20260613-st-pwm-v1-1-458c2c89709a@gmail.com
+---
+ Documentation/devicetree/bindings/pwm/pwm-st.txt   | 43 ----------
+ .../devicetree/bindings/pwm/st,sti-pwm.yaml        | 92 ++++++++++++++++++++++
+ 2 files changed, 92 insertions(+), 43 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-st.txt b/Documentation/devicetree/bindings/pwm/pwm-st.txt
+deleted file mode 100644
+index 19fce774cafa..000000000000
+--- a/Documentation/devicetree/bindings/pwm/pwm-st.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-STMicroelectronics PWM driver bindings
+---------------------------------------
 -
- 		apmixedsys: apmixedsys@10018000 {
- 			compatible = "mediatek,mt8167-apmixedsys", "syscon";
- 			reg = <0 0x10018000 0 0x710>;
-@@ -178,3 +167,7 @@ larb2: larb@16010000 {
- 		};
- 	};
- };
+-Required parameters:
+-- compatible :		"st,pwm"
+-- #pwm-cells : 		Number of cells used to specify a PWM. First cell
+-			specifies the per-chip index of the PWM to use and the
+-			second cell is the period in nanoseconds - fixed to 2
+-			for STiH41x.
+-- reg :			Physical base address and length of the controller's
+-			registers.
+-- pinctrl-names: 	Set to "default".
+-- pinctrl-0: 		List of phandles pointing to pin configuration nodes
+-			for PWM module.
+-			For Pinctrl properties, please refer to [1].
+-- clock-names: 		Valid entries are "pwm" and/or "capture".
+-- clocks: 		phandle of the clock used by the PWM module.
+-			For Clk properties, please refer to [2].
+-- interrupts:		IRQ for the Capture device
+-
+-Optional properties:
+-- st,pwm-num-chan:	Number of available PWM channels.  Default is 0.
+-- st,capture-num-chan:	Number of available Capture channels.  Default is 0.
+-
+-[1] Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+-[2] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-Example:
+-
+-pwm1: pwm@fe510000 {
+-	compatible = "st,pwm";
+-	reg = <0xfe510000 0x68>;
+-	#pwm-cells = <2>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_pwm1_chan0_default
+-		     &pinctrl_pwm1_chan1_default
+-		     &pinctrl_pwm1_chan2_default
+-		     &pinctrl_pwm1_chan3_default>;
+-	clocks = <&clk_sysin>;
+-	clock-names = "pwm";
+-	st,pwm-num-chan = <4>;
+-	st,capture-num-chan = <2>;
+-};
+diff --git a/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml b/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml
+new file mode 100644
+index 000000000000..c69073e79ce9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/st,sti-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+&pio {
-+	compatible = "mediatek,mt8167-pinctrl";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-index b5e753759465..63f36df4d1b4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-@@ -231,17 +231,13 @@ keypad: keypad@10002000 {
- 			status = "disabled";
- 		};
- 
--		syscfg_pctl: syscfg-pctl@10005000 {
--			compatible = "syscon";
--			reg = <0 0x10005000 0 0x1000>;
--		};
--
--		pio: pinctrl@1000b000 {
-+		pio: pinctrl@10005000 {
- 			compatible = "mediatek,mt8516-pinctrl";
--			reg = <0 0x1000b000 0 0x1000>;
--			mediatek,pctl-regmap = <&syscfg_pctl>;
-+			reg = <0 0x10005000 0 0x1000>, <0 0x1000b000 0 0x1000>;
-+			reg-names = "base", "eint";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			gpio-ranges = <&pio 0 0 124>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 			interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.43.0
++title: STMicroelectronics STiH41x PWM/Capture controller
++
++maintainers:
++  - Lee Jones <lee.jones@linaro.org>
++
++description:
++  The STiH41x PWM controller supports both PWM output and input capture
++  functionality. It provides multiple PWM output channels for generating
++  variable duty-cycle waveforms, and multiple input capture channels for
++  measuring external signal periods and pulse widths. PWM output channels
++  and input capture channels are configured independently via
++  st,pwm-num-chan and st,capture-num-chan respectively.
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    const: st,sti-pwm
++
++  reg:
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 2
++
++  pinctrl-names:
++    const: default
++
++  clock-names:
++    items:
++      enum: [pwm, capture]
++    minItems: 1
++    maxItems: 2
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  interrupts:
++    description: IRQ line for the capture device.
++    maxItems: 1
++
++  st,pwm-num-chan:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of available PWM output channels.
++    minimum: 0
++    maximum: 4
++    default: 0
++
++  st,capture-num-chan:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of available input capture channels.
++    minimum: 0
++    maximum: 4
++    default: 0
++
++required:
++  - reg
++  - compatible
++  - "#pwm-cells"
++  - clock-names
++  - clocks
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    pwm@fe510000 {
++        compatible = "st,pwm";
++        reg = <0xfe510000 0x68>;
++        interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
++        #pwm-cells = <2>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_pwm1_chan0_default
++                     &pinctrl_pwm1_chan1_default
++                     &pinctrl_pwm1_chan2_default
++                     &pinctrl_pwm1_chan3_default>;
++        clocks = <&clk_sysin>;
++        clock-names = "pwm";
++        st,pwm-num-chan = <4>;
++        st,capture-num-chan = <2>;
++    };
++...
+
+---
+base-commit: c425609d6ac4012c8bbf01ec2e10e801b1923a7b
+change-id: 20260613-st-pwm-1feade6cfea3
+
+Best regards,
+--  
+Charan Pedumuru <charan.pedumuru@gmail.com>
 
 
