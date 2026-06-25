@@ -1,173 +1,215 @@
-Return-Path: <devicetree+bounces-315691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315692-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qgyMNToxPWoJywgAu9opvQ
-	(envelope-from <devicetree+bounces-315691-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 15:46:34 +0200
+	id I51uLlUyPWpHywgAu9opvQ
+	(envelope-from <devicetree+bounces-315692-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 15:51:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6ED56C63D7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 15:46:33 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3B66C6425
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 15:51:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XzxiAbT6;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315691-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-315691-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="cz2Gtm/7";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315692-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315692-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 86679301B1D9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:46:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9BDA9301516D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 13:51:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA05F345CAA;
-	Thu, 25 Jun 2026 13:46:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7EB631C56D;
+	Thu, 25 Jun 2026 13:51:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A2332AAA3
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 13:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0AD625B0B2;
+	Thu, 25 Jun 2026 13:51:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782395169; cv=none; b=KJl2COqhJ8gKqrpE8+viu5Ti0N7+NH2eyls6cxyzdhsJzXBUIv074uBvQIOg3inx/CGD0RMAxGEC33LN1wSrGX3tZ3HDVWsN+bS+mKVa8DvIUNIGJU5qGAGwzuuEay8ZAHckJciAvZMSBGZ5yrYKqogLsQeUIahpZpBbuL8qDjk=
+	t=1782395469; cv=none; b=QSHAj/5nxFIypqKcDdzLXDLOMw5M6KHYEGREka+W9xRBs/MT2CUEC4IrvxulSQQCCVe4VMRgKAvOYHzhFoCLEW51+XPu0JfuDQRsJ26uSqJ2IwGcMAz0iB+2ZLBOvpeVEUtltYQuPDBEExyasr/iBbT1WEoX/ze9M23Wr/02SbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782395169; c=relaxed/simple;
-	bh=uwFHfu2Kh3Ey3+MYrOA2Fa4jjI+7oL/GlhUTdTqjkbw=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=JtH7/zNovJPLlDN8Ln8DfZVa0JHgUBQrZaz/SIjy2CeNO5oxajMPkluqnlWf33I843AikBoRQAdqOnvroKLrCyeefygG4TvqZtj7HiccG1GfjPze5DO6c+f+VGnEN9g2kdzQU3Si3tQE/xU7H9iI3JFLRDwdW1eJGyGlTRwfFm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XzxiAbT6; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 284FF1F000E9;
-	Thu, 25 Jun 2026 13:46:08 +0000 (UTC)
+	s=arc-20240116; t=1782395469; c=relaxed/simple;
+	bh=njBTN4Cztk6q/NHx4oY93q8YuA081cP2rs6ToF7LFnI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KGd92DfLk46H5BzAggNzWfkOCnFSKdFcD5BchF/VJ+Xj8u8nscLL42yjdy5wbE+NpGbbBMkd3i+TTT3Sx/XlzHzvfhICz11zUUpMXrGUtN6H83b/dQ4egzVVxo1K3+LgAfPEG4gaEObNAq3/vnPuYHi/Gb1bbwN3BqlcV95gliI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cz2Gtm/7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27C611F000E9;
+	Thu, 25 Jun 2026 13:51:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782395168;
-	bh=HLkzmPcAApni3sby0mI1IlQLUWqZECTLDEeYKL//KHE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=XzxiAbT6s2vlQtCvKpVF04OSEk1b7k2/m7t8/NhhdNVrw05gzhAuur5WcNEssvUcA
-	 5xa0ZAg4OJGIbSbZVHHJt4xA0nbBBricyAxCEzPpO0C1xzoMVJjVUBUwN9IoI0qR2b
-	 v1cCzP9PE1Jl+MOj1zH0+4zb1sEGAHQ2UmhFL0w7RK27MPEnDzXSUhWEA8VAOg/xhg
-	 iUgLPBLPFpjeqG2qg0vl1JzCPuR3al1STULYCgi2WFuq7LeE4qWHEz1fIqBV6mYqlZ
-	 HQP2Uoh0gK3rRKrRR8usoaeYd1n+QY9NcZfEm8uj9gwdfGlN+tBCpN2Bw8bH9XCEWe
-	 SDozyXB9TylSA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: qcom: Add JPEG encoder
- binding
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Atanas Filipov" <atanas.filipov@oss.qualcomm.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260625133828.3221781-2-atanas.filipov@oss.qualcomm.com>
-References: <20260625133828.3221781-1-atanas.filipov@oss.qualcomm.com>
- <20260625133828.3221781-2-atanas.filipov@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 25 Jun 2026 13:46:07 +0000
-Message-Id: <20260625134608.284FF1F000E9@smtp.kernel.org>
+	s=k20260515; t=1782395468;
+	bh=jWToBIL5m9uigLFzc/+YrKGhjYbdNomJ4Aeysudoj8w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=cz2Gtm/7Gtfa3gQQG5eAs7V0aCLDlfTgiizaeiV6lc7SNfU1paxAHWsvo0f64KGjB
+	 a+18yaTOHhe+NWi+dlWVhWM4Zzszu7buMlxKQm13zndbPyr5Td9lSkt6sPTAEDFRHr
+	 h/fEgFEz4v9bddePfQX6gwcl7HMhgb6GBimITlABB4DtSse9JqmevXDGqijGBG1s4A
+	 vPb92krGwLzWd7YRIobFHlcPtdY1xLTFp6kJ2tRs4MteKIcAWEVT35YguHafWx8Mxj
+	 +QcXx6QpyAKPL0S3nJ9gLW0UXnJP07pq6cbu+eCF7zrUzGOnlNFxOjfOEeKkVp+nxD
+	 mDQt77h4yz+gg==
+Message-ID: <8a14ed89-fe48-4d57-8f46-800d228eb9ed@kernel.org>
+Date: Thu, 25 Jun 2026 15:50:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] drm/bridge: Add Lontium LT9611C(EX/UXD) MIPI DSI
+ to HDMI driver
+To: Sunyun Yang <syyang@lontium.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ dmitry.baryshkov@oss.qualcomm.com, maarten.lankhorst@linux.intel.com,
+ rfoss@kernel.org, mripard@kernel.org, Laurent.pinchart@ideasonboard.com,
+ tzimmermann@suse.de, jonas@kwiboo.se, jernej.skrabec@gmail.com,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, xmzhu@lontium.corp-partner.google.com,
+ xmzhu@lontium.com, rlyu@lontium.com, xbpeng@lontium.com
+References: <20260508134009.4582-1-syyang@lontium.com>
+ <20260508134009.4582-3-syyang@lontium.com>
+ <3188f63f-5358-48d7-b934-af20a8f95c6f@kernel.org>
+ <CAFQXuNbKBfyeQL3N3P5QY=6BWoD3O6DSbXN-WMA1rRG9vCs3Kg@mail.gmail.com>
+ <a0352a42-15db-4c7a-ae73-8a4e1543cd50@kernel.org>
+ <CAFQXuNZVE6cZJGwrGKGtWnB-seSJLHFh8zW3jjAs6U4JLZFWng@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <CAFQXuNZVE6cZJGwrGKGtWnB-seSJLHFh8zW3jjAs6U4JLZFWng@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315691-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:atanas.filipov@oss.qualcomm.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315692-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:syyang@lontium.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:dmitry.baryshkov@oss.qualcomm.com,m:maarten.lankhorst@linux.intel.com,m:rfoss@kernel.org,m:mripard@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:tzimmermann@suse.de,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:xmzhu@lontium.corp-partner.google.com,m:xmzhu@lontium.com,m:rlyu@lontium.com,m:xbpeng@lontium.com,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,oss.qualcomm.com,linux.intel.com,ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lontium.com:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D6ED56C63D7
+X-Rspamd-Queue-Id: AF3B66C6425
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] The `clock-names` property is missing from the `required` list des=
-pite `clocks` being required and the driver relying on the names.
-- [Medium] The commit message claims `reg-names` is documented as a propert=
-y, but it is missing from the YAML schema.
---
+On 25/06/2026 15:26, Sunyun Yang wrote:
+> Krzysztof Kozlowski <krzk@kernel.org> 于2026年6月25日周四 21:17写道：
+>>
+>> On 25/06/2026 15:14, Sunyun Yang wrote:
+>>> Krzysztof Kozlowski <krzk@kernel.org> 于2026年6月25日周四 20:54写道：
+>>>>
+>>>> On 08/05/2026 15:40, syyang@lontium.com wrote:
+>>>>> +
+>>>>> +static void lt9611c_reset(struct lt9611c *lt9611c)
+>>>>> +{
+>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+>>>>> +     msleep(20);
+>>>>> +
+>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
+>>>>> +     msleep(20);
+>>>>> +
+>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+>>>>
+>>>> This is just plain wrong. Why do you assert, then de-assert and then
+>>>> finally assert AGAIN the reset leaving the device in powerdown stage?
+>>>>
+>>> I am using software to emulate the hardware RESET button on our EVB.
+>>> When the hardware RESET button is pressed while our chip is running,
+>>> the signal level changes from HIGH to LOW and then back to HIGH.
+>>>
+>>> Of course, we can also use the following:
+>>> static void lt9611c_reset(struct lt9611c *lt9611c)
+>>> {
+>>>     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
+>>>     msleep(50);
+>>>     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+>>>     msleep(20);
+>>> }
+>>
+>> Makes no sense either and you just did not get the point and did not
+>> answer my question. I asked WHY you leave asserted. Answer "we emulate"
+>> is just plain wrong.
+>>
+>> So again please answer:
+>>
+>> Why do you leave device with reset asserted?
+>>
+> 
+>  devicetree:   reset-gpios = <&tlmm 128 GPIO_ACTIVE_HIGH>;
 
-commit d5b47be66fcc52e7570e1b138452c400f72abc6b
-Author: Atanas Filipov <atanas.filipov@oss.qualcomm.com>
+That's irrelevant. I do not talk about DT.
 
-dt-bindings: media: qcom: Add JPEG encoder binding
+Review is happening in specific place - here I question driver code. If
+you do not have actual arguments why device is left in reset stage, then
+please fix it.
 
-This commit adds a device-tree binding for the Qualcomm JPEG encoder
-hardware block present in SM8250 (Kona) SoCs.
 
->     Properties documented:
->     - compatible: qcom,sm8250-jenc
->     - reg / reg-names: single MMIO region named "jpeg"
->     - interrupts: single edge-triggered interrupt
-
-[Severity: Medium]
-The commit message claims reg-names is documented as a property, but it
-is missing from the YAML schema below.
-
-If a device tree uses reg-names =3D "jpeg" based on this documentation,
-the device tree will fail schema validation because additionalProperties: f=
-alse
-is enforced. Should reg-names be added to the properties definition?
-
-> diff --git a/Documentation/devicetree/bindings/media/qcom,jpeg-encoder.ya=
-ml b/Documentation/devicetree/bindings/media/qcom,jpeg-encoder.yaml
-> new file mode 100644
-> index 0000000000000..ab8d8951d21fa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/qcom,jpeg-encoder.yaml
-[ ... ]
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - interrupts
-
-[Severity: High]
-Does clock-names need to be included in the required list here?
-
-If an incomplete device tree node provides clocks but omits clock-names,
-the schema validation will silently pass since clock-names is not in the
-required list.
-
-At runtime, if the driver calls devm_clk_bulk_get_all(), it leaves the clock
-id fields as NULL when clock-names is missing. The driver then iterating
-over the clocks and calling strcmp(jenc->clks[c_idx].id, "core") would cause
-a panic due to a NULL pointer dereference.
-
-> +  - power-domains
-> +  - iommus
-> +  - interconnects
-> +  - interconnect-names
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625133828.3221=
-781-1-atanas.filipov@oss.qualcomm.com?part=3D1
+Best regards,
+Krzysztof
 
