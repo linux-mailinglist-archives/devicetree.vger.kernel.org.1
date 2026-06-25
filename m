@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-315669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315670-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BCWvKRsePWrpxAgAu9opvQ
-	(envelope-from <devicetree+bounces-315669-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 14:24:59 +0200
+	id R7+HIRwePWrqxAgAu9opvQ
+	(envelope-from <devicetree+bounces-315670-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 14:25:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C106C588F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 14:24:59 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B746C5892
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 14:25:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=l3XZaZCm;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315669-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315669-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="WuGVU/RD";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315670-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315670-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 287CD3037BB9
+	by sto.lore.kernel.org (Postfix) with ESMTP id E6D02307BB4A
 	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 12:21:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D993E0234;
-	Thu, 25 Jun 2026 12:20:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1133E024B;
+	Thu, 25 Jun 2026 12:20:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5192F3E022B
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 12:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452DE3E0241
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 12:20:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782390008; cv=none; b=LQ3zjYqy9XZmYs20WSDsSUwIkpG/ECaycTPYTnnRVcypN9ka36yYLbqO/JP1KZERBbsWO51ayAZYZWjFxzB4ZSCubF3ZGnRsaL0tMCvr5ewIDJOmxyez1orJdHyEU5FPPXepLKFvLJuQsmQ2nevFuC1++dwGIq8ndEYX6/Ex/9Y=
+	t=1782390036; cv=none; b=pGWYKN6kY/lzJTpUcGJrDAV/PNcHWNojHRZuj524kE6etLw3B55IepMLOTqGi8rMFOEVIn9JLf4g9QtUIOoLliECALm5I2m3QgudOuzvMfsnDZV8Cn2NmJcBhhq+cWSWJtcRFmAOdWT4j1wOIciHm+HLDqRXsXdXU21Q7RXfGPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782390008; c=relaxed/simple;
-	bh=OJCmzFlkr7pJHKUvvUvTAs8iMCXjyWBIjLkN1D0ms/k=;
+	s=arc-20240116; t=1782390036; c=relaxed/simple;
+	bh=7Vd+m/Mxqb3aiQh24z3KIrhMm6y9UlIUmatOa7K5FpE=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=pRG11U29N9HDIchm2pOrpTL8QTSs8DW4G39bM6s5wjW7z2s4qmKTb5CHhlbxljF5OKvb/OaTJHSeksUX8l0VsmVg+jGE+YrOhprdu+uVOwS3Jxnp1I+5yI9GHiMXdMPxcMaWhuaAgoyXyiIaYIVPTds2pMLb/nQGxrd5QKLzuWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l3XZaZCm; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A13361F000E9;
-	Thu, 25 Jun 2026 12:20:06 +0000 (UTC)
+	 Message-Id; b=SV1dSBZekGgnvToCmEwvX3ZEWtmvxYWCvr657BLBC5ysJ6oHY/YOJ95dFfDA2RKlJzm16VL3o4PaqvDcABOwRQTKcUTFpuE3M9gm+604AaylncN0TyqYTW+1jgEK3oW535Uealw/p1JlZebaW2LaMLM3Bore1Ol2Cd8QbWFYg20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WuGVU/RD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE9681F000E9;
+	Thu, 25 Jun 2026 12:20:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782390006;
-	bh=wVKUBAOc7aY5V56B0lcAw6Bgjk/IjFirKhKfJ9pNzH4=;
+	s=k20260515; t=1782390035;
+	bh=beTQ17WFlwMPyYaVTtvxW0amXStDO1oZ3ezaBcWlqDI=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=l3XZaZCmz1flHWSSf01TP7p9FFnurSNU4iKlWC/7xz0XzFoIAvMfJ5rNCBfBrHt4q
-	 rAA04RPqmayT+viKfw9nfVh1cUV2QpBzPSSq4zq9SyYiHn3iCHRuSzal64gnEueT5x
-	 lrwKrkFoQOb8LZJFjrXtJQc8af0kn3Yt/vVR62WW6C8sMj4cXZx4X0i011H/NweVJ/
-	 RTXZuWvfHPBhaBopECvHW2G2L9puhyCKtt9fl2scyWg08yrBR7yFt1B7CceS66lIuD
-	 VTn426PUMkxg8/K8VLoqAYuxsMfOAT9cPycTMSFmlV/gZCkPAiFR+Sc/GniaEwSGnb
-	 8W7o3IjN+okKQ==
+	b=WuGVU/RD9vyTKZBlXnT12NnsjbUA0xRZ3VBz6SKX+Zpp/V0a1hIC/D3Q8iqBkOojj
+	 PUPKDv2DINd6SiGFYfm3nfiiypuTsTXInFAok5pmYOKD6DL3R23KTck91gCuFYa7Xd
+	 DHAG1o4FrsEn/E+Pkt8RF5kR5qSpps5wq2yZ0bQ3CcGIr5XYK4PK0cD99fL1mUld6P
+	 h/QuL+vW/Ar8mqcv177BZiHrVU66IG/vkvDIdMKSz5sH57Hb18F929rfcaYi+dqGf3
+	 rERMkffllU20YWaaWOxPqPx0maBfGRVpMvsIw78OmV8F3/MY+BLEspKxvw0YElbOG3
+	 oxou7Jj9QIBvA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j784s4: Add overlay for dual
- port USXGMII+SGMII mode
+Subject: Re: [PATCH 1/3] arm64: dts: ti: Add PLL1 refclk to J784S4 SoC
+ SERDES node
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Gokul Praveen" <g-praveen@ti.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260625120805.28948-4-g-praveen@ti.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260625120805.28948-2-g-praveen@ti.com>
 References: <20260625120805.28948-1-g-praveen@ti.com>
- <20260625120805.28948-4-g-praveen@ti.com>
+ <20260625120805.28948-2-g-praveen@ti.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 25 Jun 2026 12:20:06 +0000
-Message-Id: <20260625122006.A13361F000E9@smtp.kernel.org>
+Date: Thu, 25 Jun 2026 12:20:33 +0000
+Message-Id: <20260625122034.DE9681F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,24 +72,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315669-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315670-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:g-praveen@ti.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:g-praveen@ti.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -99,148 +99,61 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url,ti.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 42C106C588F
+X-Rspamd-Queue-Id: 52B746C5892
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] Incomplete clock configuration in `&serdes_wiz2` leaves a dangli=
-ng `assigned-clocks` element as dead code.
-- [Low] The unit addresses in the PHY node names do not match their `reg` p=
-roperty values.
+- [Low] Adding a third clock to the serdes2 node violates the Cadence Torre=
+nt PHY DT binding schema, which will cause `dtbs_check` validation to fail.
 --
 
-commit ec16658036ad6f4bdcb6018a15184b9bd2b3c4aa
+commit c7948a2c66b640fab1ce0e80a89c69a933059939
 Author: Gokul Praveen <g-praveen@ti.com>
 
-arm64: dts: ti: k3-j784s4: Add overlay for dual port USXGMII+SGMII mode
+arm64: dts: ti: Add PLL1 refclk to J784S4 SoC SERDES node
 
-The CPSW9G instance of the CPSW Ethernet Switch supports SGMII and
-USXGMII mode with MAC Ports 1 and 2 of the instance, which are
-connected to ENET Expansion 1 and ENET Expansion 2 slots on
-the EVM respectively, through the Serdes2 instance of the SERDES.
+This commit adds the PLL1 reference clock to the clocks and clock-names
+properties of the SERDES2 node. This is done to satisfy the assigned-clocks
+parameter and prevent multilink configuration failures.
 
-Enable CPSW9G MAC Ports 1 and 2 in fixed-link configuration
-SGMII and USXGMII mode at 1Gbps and 5 Gbps each.
-
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm-sgmii-usxgmii-exp1-exp2=
-_board1.dtso b/arch/arm64/boot/dts/ti/k3-j784s4-evm-sgmii-usxgmii-exp1-exp2=
-_board1.dtso
-> new file mode 100644
-> index 0000000000000..553546b281a9e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm-sgmii-usxgmii-exp1-exp2_board1=
-.dtso
-
-[ ... ]
-
-> +&serdes_wiz2 {
-> +	assigned-clocks =3D <&k3_clks 406 6>,  <&k3_clks 406 5>;
-> +	//assigned-clock-parents =3D <&k3_clks 406 9>; /* Use 100 MHz clock for=
- SGMII */
-> +	status =3D "okay";
-> +};
-
-[Severity: Medium]
-The assigned-clock-parents override is commented out here, but the
-assigned-clocks array was expanded to two elements.
-
-Because the base device tree only defines a single parent, the clock framew=
-ork
-will only process the first clock and silently ignore the second element.
-
-Does this leave the second clock unconfigured, and should
-assigned-clock-parents be uncommented to resolve this?
-
-> +
-> +&serdes2 {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <0>;
-> +	status =3D "okay";
-> +
-> +	assigned-clock-parents =3D <&k3_clks 406 5>,
-> +						 <&k3_clks 406 6>,
-> +						 <&k3_clks 406 5>;
-> +
-> +	serdes2_sgmii2_link: phy@1 {
-> +		reg =3D <2>;
-> +		cdns,num-lanes =3D <1>;
-> +		#phy-cells =3D <0>;
-> +		cdns,phy-type =3D <PHY_TYPE_SGMII>;
-> +		resets =3D <&serdes_wiz2 3>;
-> +	};
-> +	serdes2_usxgmii_link: phy@0 {
-> +		reg =3D <3>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot=
+/dts/ti/k3-j784s4-main.dtsi
+> index 78fcd0c40abcf..da8d582574d03 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> @@ -122,8 +122,9 @@ serdes2: serdes@5020000 {
+>  			resets =3D <&serdes_wiz2 0>;
+>  			reset-names =3D "torrent_reset";
+>  			clocks =3D <&serdes_wiz2 TI_WIZ_PLL0_REFCLK>,
+> +				 <&serdes_wiz2 TI_WIZ_PLL1_REFCLK>,
+>  				 <&serdes_wiz2 TI_WIZ_PHY_EN_REFCLK>;
+> -			clock-names =3D "refclk", "phy_en_refclk";
+> +			clock-names =3D "refclk","pll1_refclk", "phy_en_refclk";
 
 [Severity: Low]
-Do the unit addresses phy@1 and phy@0 need to match their reg property
-values <2> and <3>?
+Will adding a third clock to the serdes2 node cause dtbs_check validation
+to fail?
 
-The dtc compiler will generate unit_address_vs_reg warnings when the unit
-address and reg property do not match.
+The Cadence Torrent PHY device tree binding schema in
+Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml restricts
+the clocks and clock-names properties to a maximum of 2 items. By adding
+pll1_refclk alongside refclk and phy_en_refclk, the array now contains 3
+items, which violates the existing schema constraints.
 
-[ ... ]
+Does the device tree binding schema need to be updated first to support
+this third clock?
 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-sgmii-exp1-exp2=
-_board2.dtso b/arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-sgmii-exp1-exp2=
-_board2.dtso
-> new file mode 100644
-> index 0000000000000..c98be3bbf2c8b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-sgmii-exp1-exp2_board2=
-.dtso
-
-[ ... ]
-
-> +&serdes_wiz2 {
-> +	assigned-clocks =3D <&k3_clks 406 6>,  <&k3_clks 406 5>;
-> +	//assigned-clock-parents =3D <&k3_clks 406 9>; /* Use 156.25 MHz clock =
-for USXGMII */
-> +	status =3D "okay";
-> +};
-
-[Severity: Medium]
-Similar to the first overlay, the assigned-clock-parents override is commen=
-ted
-out while assigned-clocks contains two elements.
-
-Is the second clock intended to be left unconfigured here?
-
-> +
-> +&serdes2 {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <0>;
-> +	status =3D "okay";
-> +
-> +	assigned-clock-parents =3D <&k3_clks 406 5>,
-> +						 <&k3_clks 406 6>,
-> +						 <&k3_clks 406 5>;
-> +
-> +
-> +
-> +	serdes2_sgmii2_link: phy@1 {
-> +		reg =3D <3>;
-> +		cdns,num-lanes =3D <1>;
-> +		#phy-cells =3D <0>;
-> +		cdns,phy-type =3D <PHY_TYPE_SGMII>;
-> +		resets =3D <&serdes_wiz2 4>;
-> +	};
-> +	serdes2_usxgmii_link: phy@0 {
-> +		reg =3D <2>;
-
-[Severity: Low]
-Are the unit addresses for these nodes correct?
-
-They are named phy@1 and phy@0, but their reg properties are set to <3>
-and <2>. Should they be updated to match the reg properties to prevent dtc
-warnings?
+>  			assigned-clocks =3D <&serdes_wiz2 TI_WIZ_PLL0_REFCLK>,
+>  					  <&serdes_wiz2 TI_WIZ_PLL1_REFCLK>,
+>  					  <&serdes_wiz2 TI_WIZ_REFCLK_DIG>;
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625120805.2894=
-8-1-g-praveen@ti.com?part=3D3
+8-1-g-praveen@ti.com?part=3D1
 
