@@ -1,169 +1,153 @@
-Return-Path: <devicetree+bounces-315506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315507-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lG7GDZnXPGqutAgAu9opvQ
-	(envelope-from <devicetree+bounces-315506-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 09:24:09 +0200
+	id 3HpwJr3XPGq7tAgAu9opvQ
+	(envelope-from <devicetree+bounces-315507-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 09:24:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301816C353E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 09:24:08 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F66B6C354F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 09:24:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b="iXK/SKHT";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315506-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-315506-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=C4E3+3x0;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315507-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315507-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 50CE73004D95
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 07:24:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id ECB603020E34
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 07:24:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD773BE659;
-	Thu, 25 Jun 2026 07:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFB8F3C0628;
+	Thu, 25 Jun 2026 07:24:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A90F41D47AC;
-	Thu, 25 Jun 2026 07:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8411D47AC;
+	Thu, 25 Jun 2026 07:24:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782372241; cv=none; b=igjpsnsbrM0GrfZVYmGLSK3pqrzYVyR8II8EEuwGSUrUjqtuZsjlJBWux3Sd08vVLv0Zy0M2ZiDxrWgxZNBNbNApIborlL41WWIFfF60cdNTEI1gYm14M9UMtLdPDFy+18sIfaqbMlcaNnrcPSG356RgEL54FPB4rgHcJVQSXAU=
+	t=1782372281; cv=none; b=Q7bLf0XuY7xjjcRKl/3nR7mHsMmL6aSaKwdi7UHD/ZZFHm3SU1fNhkHVibw4/hQZxDlF8SxQkVwe0EgYl41AsLGUDe9Qr73eH9GL6WtaOzNTwF51ax7561Rmgdc7q84XhSblDIvIN3dZhmVMzTdQaBr1afUnBwzBOD6NEmkxKIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782372241; c=relaxed/simple;
-	bh=1UZvmdf4Q5tnJFY7xUSRWz7uM0sTceNWud0IQD8vJU8=;
+	s=arc-20240116; t=1782372281; c=relaxed/simple;
+	bh=tgADfh0EdrTzy7lzOlJwRcq+VaeN/ikekakGmu4wCkU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AhdryaALWqUf+IVwKaHfT65pqbsGpReQn46iINfqpWBPIi1oxaF+K0YzYGiUFkBvBaGQ/0Yi9h9ENzgSi9oflAGf0OJO5tFBEJSWOXJdQPl6y1W4yPnt6lM+5YW4Sdvzsu2GJA1prshAm4wNps67TuWfCp8Gg5wNN9wHW+KfTZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iXK/SKHT; arc=none smtp.client-ip=198.175.65.14
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1782372241; x=1813908241;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1UZvmdf4Q5tnJFY7xUSRWz7uM0sTceNWud0IQD8vJU8=;
-  b=iXK/SKHTyj+9kBDv9AF3N+K2gbB1QRFAHwlWHJ44O5Tsy9FFkdYkxBm2
-   5PuvaQnoMJO3418kZj/d/nK9YyypXl6v6cZNNptYrsf4MLafh+5AI5zeu
-   Lg/6H00ARofwScriNoI9gjWrxODd4ltZSPlAUM+aR73DwZXZG5HXmao4r
-   XG9QQK00Pi9xIRYMwiXyrZdKALo8+8TEh0ApDNHoUgzlHTS76BFII3rLt
-   uJSMSsxWycOIGAMW/Xfj5xzzOl5vGb6A+ShSGzL95nlMjKd81VGxIZsIY
-   S9nXglyKwwMbFGEk26Dh0TzyWdgt1hKIFbgPje7CG9zB875ND7S92d5OI
-   A==;
-X-CSE-ConnectionGUID: nhR7eYHHTbuG97dyQXswXA==
-X-CSE-MsgGUID: IfZiO6AUTNSks3l82woRGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="87049969"
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; 
-   d="scan'208";a="87049969"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jun 2026 00:24:00 -0700
-X-CSE-ConnectionGUID: 4B3wNXkYTvCXf9SkCyOppQ==
-X-CSE-MsgGUID: w3gGCdMqQL2K5wlStobBiw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; 
-   d="scan'208";a="254238373"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.93])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jun 2026 00:23:56 -0700
-Date: Thu, 25 Jun 2026 10:23:53 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Helge Deller <deller@gmx.de>,
-	Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v5 07/14] mfd: lm3533: Use dev_groups in struct
- device_driver
-Message-ID: <ajzXidQCd8pe-L5b@ashevche-desk.local>
-References: <20260617080031.99156-1-clamor95@gmail.com>
- <20260617080031.99156-8-clamor95@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=r/2y8luSLzRzaCTKhUedWGT+bSsZObiTA1g55DjcuN9h0wWkzKpU/D6G/JvCXP7S01IpjFs+E7TIcxItm+mZ7UEbgtKtlg3eS25NWLZzt+BFyb9qk0YhIHNFZfTFXjESI3YwPYyCBjfXTcysUahWb4YgzbmMihLgQDpMWh0MC9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C4E3+3x0; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 500E91F000E9;
+	Thu, 25 Jun 2026 07:24:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782372280;
+	bh=szlf9WMEbP6Ff6qejR6ZQRZMLqe4N8GVxyJBVP9cdAY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=C4E3+3x0VOSFH0dFkeBFT8LkX/oEbOZWh8QB6g2J+48cJA86FJuWUw/PeyuQdKB6l
+	 5U3PhXyhJvCXBjIDYLF2FFD2C+RwMKtWXlRlqc5HhNFqDC9XugMnRhytbEfpAVxMp8
+	 xTb0sAnGKkZM0TTrY2qRaK1Ug1stzt5Tn1+/o8j0v/afKTx7jQX9ZEG4xIHEnvk2FS
+	 jemzgjl/9q5d7vNnpS+7VZRkwlxVwLJWpFjPhbNJHj6L+r9oDyfWaupf6n34P2rXsG
+	 GJIZJqyhyBH/kOvsn7uXSsaExB/M/ejYuhEp09nLOVgZY3/vD46S2zB58Pjc2tPUDp
+	 YOfJdJjtfIruA==
+Date: Thu, 25 Jun 2026 09:24:36 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jie Gan <jie.gan@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>, Jingyi Wang <jingyi.wang@oss.qualcomm.com>, 
+	Abel Vesa <abel.vesa@oss.qualcomm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>, 
+	Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom,coresight-tnoc: allow
+ arm,primecell-periphid
+Message-ID: <20260625-strong-daft-pudu-21471f@quoll>
+References: <20260624-fix-tracenoc-probe-issue-v2-0-786520f62f21@oss.qualcomm.com>
+ <20260624-fix-tracenoc-probe-issue-v2-1-786520f62f21@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260617080031.99156-8-clamor95@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20260624-fix-tracenoc-probe-issue-v2-1-786520f62f21@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315506-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:clamor95@gmail.com,m:lee@kernel.org,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:deller@gmx.de,m:johan@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:linux-fbdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-315507-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jie.gan@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tingwei.zhang@oss.qualcomm.com,m:jingyi.wang@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:suzuki.poulose@arm.com,m:mike.leach@arm.com,m:james.clark@linaro.org,m:leo.yan@arm.com,m:yuanfang.zhang@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:coresight@lists.linaro.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[20];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 301816C353E
+X-Rspamd-Queue-Id: 7F66B6C354F
 
-On Wed, Jun 17, 2026 at 11:00:24AM +0300, Svyatoslav Ryhel wrote:
-> Instead of creating and removing the device sysfs attributes directly
-> during probe and remove of the driver, respectively, use dev_groups in
-> struct device_driver to point to the attribute definitions and let the
-> core take care of creating and removing them.
+On Wed, Jun 24, 2026 at 05:49:25PM +0800, Jie Gan wrote:
+> The TNOC device is an AMBA primecell and may carry the standard
+> arm,primecell-periphid property, which is used to supply the
+> peripheral ID when it cannot be read from the device registers.
 > 
-> No intentional functional impact.
-
-Suggested-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-And thanks for doing that!
-
-...
-
->  	.attrs		= lm3533_attributes
->  };
+> Reference primecell.yaml and set additionalProperties to true so the
+> binding accepts arm,primecell-periphid along with the other common
+> primecell properties.
+> 
+> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml
+> index ef648a15b806..9624fc0adfdc 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tnoc.yaml
+> @@ -32,6 +32,9 @@ select:
+>    required:
+>      - compatible
 >  
-> +static const struct attribute_group *lm3533_attribute_groups[] = {
-> +	&lm3533_attribute_group,
-> +	NULL,
-> +};
+> +allOf:
+> +  - $ref: /schemas/arm/primecell.yaml#
+> +
+>  properties:
+>    $nodename:
+>      pattern: "^tn(@[0-9a-f]+)$"
+> @@ -78,7 +81,7 @@ required:
+>    - in-ports
+>    - out-ports
+>  
+> -additionalProperties: false
+> +additionalProperties: true
 
-We have ATTRIBUTE_GROUPS() macro.
+Nope, it is not allowed. Explicitly mentioned in writing bindings and
+all DT introductory talks by me.
 
-...
-
-> +++ b/drivers/video/backlight/lm3533_bl.c
-
-Same as per above.
-
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
 
