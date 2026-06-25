@@ -1,258 +1,428 @@
-Return-Path: <devicetree+bounces-315746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315744-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id V866KjpSPWou1QgAu9opvQ
-	(envelope-from <devicetree+bounces-315746-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:07:22 +0200
+	id lDULA6JSPWpI1QgAu9opvQ
+	(envelope-from <devicetree+bounces-315744-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:09:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 258B76C7513
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:07:22 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA516C755B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 18:09:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=qDOZDhT2;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315746-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315746-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="O+/L6BlA";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315744-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315744-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 175A130A4BC4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:05:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 900DE312D354
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 16:04:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 351FE2F8E9F;
-	Thu, 25 Jun 2026 16:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EA483DB62D;
+	Thu, 25 Jun 2026 16:04:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B05B73E168B
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 16:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F7E33A1A3B;
+	Thu, 25 Jun 2026 16:04:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782403518; cv=none; b=ol4NqSibYSpBMW29Qy0armr6aV7kcczlmXsDsb/ZvVtt8pgZ/50Vdz0+xzsjWUyuf44CJzvoAK9b2ukw2TUhGm8V+SnDYChvdCkJx1VnIFn9lU4vxzISipBTYE2vC9tDRXHQXjGGv17w8SEmvc7hHfUT7RMcQHPLsklsyokfE7g=
+	t=1782403488; cv=none; b=ND3g5mtxpngALCrBBGbGZGLEH3aY8PrOqXPX5utkUOqvKJ978LnwzmrGU51zY2Waft3d7TY0IyG4Z8Oc9pXgHEdnZohHjJsG6ncAyTpjPpZ/+bdbpTlYd35XfF1DhtZ97EdWFQqit4iiJEGijE3CIlx0AKVrubSasjrRxF3eba4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782403518; c=relaxed/simple;
-	bh=P3Fmu2M7yicfX8YegW+8uTR/Xoo2VqnCcOOBa6qBxYU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kMVU9vyzI2+yhZuhOOaYoWriEo4OiVoh4F2DEYpDiz307xAarrQZuKU117oMyljRhaA8sVJ/+p19cWJJ5vq00PfOb845PrShwik/CsyFRUCRCTk7VGMFmRR9kd70Va2uKQ+rH2aLewyGT4Nlm4vD7IntwFFhDHO7o8lUhG+CBBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qDOZDhT2; arc=none smtp.client-ip=209.85.128.49
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-490b9318997so171325e9.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 09:05:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782403513; x=1783008313; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JWN54lw7/VCj9KUx153JrqSzq8vKsCI/ogPA08qnUmE=;
-        b=qDOZDhT2z7s2cP2F/Ki17zjN8ywlqzv7zqql5VMvdG8Huf+9syzT1zLhMyqGk+3+fN
-         UeBNpalNlkiR4O47kcjxdYmssT5kpuD+owGX4mRjhOsoiXqt7c3PfGpxgojJHTXcVvkH
-         rd6/STA45x/gcN9bsUYze9tI7+eTlqC7CgPZshxIdh2Fcow0DfsPaqDQdgaaN3oUSh7f
-         /VoomYd/VLbOom65KYn9YgHmWga4DQNohX/Bci4TLi0oV8l/qWyia6PHA+5NbKY/Lo6X
-         5AScUahZpoV3bxoU88rGp+LI4Mrtj3OoYnF+a8bqPlZy/zF/7x9G7qg7NZwFkguYDpBJ
-         5HkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782403513; x=1783008313;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=JWN54lw7/VCj9KUx153JrqSzq8vKsCI/ogPA08qnUmE=;
-        b=OPRqaRMrcxNcrDj5qzecHthzbAGit9Yt78Xk5Yy3z/sJD3AIAxHEiVNq6pOr+bKVsk
-         oZzDsffDHD+cgfwUF295cmjRgD+DMJOqcfMqiBc7CLo3Ir2JfO1qI4J5+tnIjwM9yBbq
-         QlBn6QFBd/apFykYYI8juAttiwOUG2U5drntxh8rlbePK1LYXo/5Mj1E6z6aRbGQ10wV
-         72DPr0DsgYG+hhAFInHYXt7BeXmURXr8C/5xOCRXv4f6D+Ixgog00XMK7cKDh8Aj+5z8
-         jo2NS3kenMb6AxaNhdVZwZ0HIz4HU9g0JUiXWF3NWI79dbXQlCUj6BeCa9GYKIwfZ/1I
-         F37g==
-X-Forwarded-Encrypted: i=1; AFNElJ8D94ihIJ7Ar2dzglmiOmlrqEhy4hECMRxzYT712t8F8IwA8GtZOLFn6ep1FDlmQ7hQxK3oqJnOV4A0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVSbxikBD/XmYxG51rrdTXwWvXBLkp6rSGe4vdLsIDRf2EWCbB
-	uO96GYIhlsua6yo9iHuHrvxabS29ZGZiKyOUuSchWv6i4DmFCziSqXDT
-X-Gm-Gg: AfdE7cmiPDevX5LsH+LfkE4ctqonXrF1wnl+BuaopIxPO6qTM+RmXerX+iL/01p5hdH
-	Xqyb61pNySAC44kM1aY4fFtlaSUPa9SNKci26Ji9fPztCiVzegumuQe0M9H0UkWVlIVcuUP0hKu
-	K6yiYgb7QtqgMBQTxccdMIbMd/mcmtuhoWs3MLaLYEIMW19k8MUnkEdqkc4cov5JTSFLM6PRDNL
-	kgcw7rWnQrS5sO+MA9OdHjG6bUTTceyKF4VOGKvk+CiRnPzuF7+YCrX8fyCSlchmb2NQdt10i1f
-	PGA5FQkutwPwlJUtvY9h8+B2qQb+MH+GxbqLk+qt9a6G7BPsLTg74fRF2ujsPyDA+uJOfuW2Gxh
-	H+O20njvQ5S0D/GVz2OU97LMYaOfXPtCOxqyw5+V2f2wKBGJBV8o1YdZYMJvv9XLery5bFINUPy
-	La8O2dWRYLpCXHBpqk7/UP1TqVi5blq893Vtb01VEnAQOktcr8Oih5C1QI67wA7Q==
-X-Received: by 2002:a05:600c:6b70:b0:490:b06a:649e with SMTP id 5b1f17b1804b1-49266893253mr29913545e9.25.1782403512695;
-        Thu, 25 Jun 2026 09:05:12 -0700 (PDT)
-Received: from flaviu-Aspire-E5-572G.. ([5.15.86.252])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4926543be74sm52220975e9.1.2026.06.25.09.05.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jun 2026 09:05:12 -0700 (PDT)
-From: Flaviu Nistor <flaviu.nistor@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>
-Cc: Flaviu Nistor <flaviu.nistor@gmail.com>,
-	linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: [PATCH v2 2/2] hwmon: (chipcap2) Add support for label
-Date: Thu, 25 Jun 2026 19:04:23 +0300
-Message-ID: <20260625160423.17882-2-flaviu.nistor@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260625160423.17882-1-flaviu.nistor@gmail.com>
-References: <20260625160423.17882-1-flaviu.nistor@gmail.com>
+	s=arc-20240116; t=1782403488; c=relaxed/simple;
+	bh=UMl2ynnlPBw0WUr4C4fKB205gSaMrdmHnBuB3pcb21s=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=n4LiBk2E26DyEOFYeCTHJ8fLKhsYrPXVq0cKTfHYgc0K8J4lKADMH6TtAs7TTwvp6wHrjpD1vjQt2wDwIEeMi/LzwK8WrJ98H1M2B96V3W1sb5Prmk9infX4bGnKF4pzvsd0/PNb0c6o3KM/Cx7x35MPC6UhWpnsoHHf8Od23D8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O+/L6BlA; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B63C1F000E9;
+	Thu, 25 Jun 2026 16:04:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782403480;
+	bh=73jA7wU3Uyuu0sS4WJHrAZsJvgB4lxU31+sQr9/PAsg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=O+/L6BlApGIhbjKWVR78JvNsPfsh7r5h5VSeTmglnGn8YtfoV84918OwtjSi6cO3d
+	 Bcx/DEYiY5TqrjnZ3pIbBga3Lnw28Cplt7AOtSC8dSX4TSV2RM5y31Pld0wvA/nPUO
+	 GxLpZz47lfGd9oFr7shBawS2lJyMKh2qZYCDOjMe23n857aLEF/zDO6YH4coAwEczi
+	 qUWARxBikkhQoDC5qvjHO6IEVPTwm50HRWt6I9DWECS/DAEEApEJCNuRPRGsyu4ww5
+	 QLwEjtpHscfuJa+3UYhbR0WVkOiMb3HGGQpuGoFhq99WVLKrlHWRn5XUlKZ4/IPOgQ
+	 iwA/eaXeXRolQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v14 4/5] gpio: rpmsg: add generic rpmsg GPIO driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Shenwei Wang" <shenwei.wang@oss.nxp.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev, robh@kernel.org
+In-Reply-To: <20260625155432.815185-5-shenwei.wang@oss.nxp.com>
+References: <20260625155432.815185-1-shenwei.wang@oss.nxp.com>
+ <20260625155432.815185-5-shenwei.wang@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 25 Jun 2026 16:04:39 +0000
+Message-Id: <20260625160440.6B63C1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315746-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:javier.carrasco.cruz@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:flaviu.nistor@gmail.com,m:linux-hwmon@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:javiercarrascocruz@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:flaviunistor@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[flaviunistor@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[roeck-us.net,gmail.com,kernel.org,lwn.net,linuxfoundation.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315744-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[flaviunistor@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:shenwei.wang@oss.nxp.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_HAS_DN(0.00)[]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 258B76C7513
+X-Rspamd-Queue-Id: 5AA516C755B
 
-Add support for label sysfs attribute similar to other hwmon devices.
-This is particularly useful for systems with multiple sensors on the
-same board, where identifying individual sensors is much easier since
-labels can be defined via device tree.
+Thank you for your contribution! Sashiko AI review found 8 potential issue(=
+s) to consider:
+- [Critical] Writing to the `.name` field of the immutable `gpio_rpmsg_irq_=
+chip` structure attempts to modify read-only memory, causing a kernel panic.
+- [High] Host-endian integers are directly assigned to little-endian protoc=
+ol fields, breaking communication on big-endian architectures.
+- [High] An RPMSG timeout permanently desynchronizes the request/response s=
+tate machine because the driver lacks transaction IDs to discard late repli=
+es.
+- [High] The RPMSG callback blindly accesses the incoming message without v=
+alidating that the payload length is sufficient.
+- [High] The driver's GPIO callbacks can sleep, but it fails to set `gc->ca=
+n_sleep =3D true`, incorrectly allowing them to be called from atomic conte=
+xts.
+- [High] Interrupts will be permanently masked after firing once because th=
+e driver incorrectly relies on `irq_bus_sync_unlock` to send the unmask com=
+mand during normal IRQ flow.
+- [Medium] The driver leaks a reference to the `rproc` parent device node.
+- [Medium] `rpmsg_gpio_direction_output()` configures the GPIO line as an o=
+utput before setting the desired logical value, potentially causing a signa=
+l glitch.
+--
 
-Signed-off-by: Flaviu Nistor <flaviu.nistor@gmail.com>
----
-Changes in v2:
-- No change for this patch in the patch series. 
-- Link to v1: https://lore.kernel.org/all/20260622122200.14245-1-flaviu.nistor@gmail.com/
+commit e50fe4c0d14d5e1abdf1ce315d5d9511d01ee66e
+Author: Shenwei Wang <shenwei.wang@nxp.com>
+Subject: gpio: rpmsg: add generic rpmsg GPIO driver
 
- Documentation/hwmon/chipcap2.rst |  2 ++
- drivers/hwmon/chipcap2.c         | 25 +++++++++++++++++++++++--
- 2 files changed, 25 insertions(+), 2 deletions(-)
+This commit adds a generic GPIO driver to support controlling GPIO
+controllers that reside on a remote processor. It translates standard
+Linux GPIO calls into RPMSG protocol messages sent to the remote side.
 
-diff --git a/Documentation/hwmon/chipcap2.rst b/Documentation/hwmon/chipcap2.rst
-index dc165becc64c..c38d87b91b69 100644
---- a/Documentation/hwmon/chipcap2.rst
-+++ b/Documentation/hwmon/chipcap2.rst
-@@ -70,4 +70,6 @@ humidity1_min_hyst:             RW      humidity low hystersis
- humidity1_max_hyst:             RW      humidity high hystersis
- humidity1_min_alarm:            RO      humidity low alarm indicator
- humidity1_max_alarm:            RO      humidity high alarm indicator
-+humidity1_label:                RO      descriptive name for the sensor
-+temp1_label:                    RO      descriptive name for the sensor
- =============================== ======= ========================================
-diff --git a/drivers/hwmon/chipcap2.c b/drivers/hwmon/chipcap2.c
-index 4aecf463180f..086571d556b7 100644
---- a/drivers/hwmon/chipcap2.c
-+++ b/drivers/hwmon/chipcap2.c
-@@ -22,6 +22,8 @@
- #include <linux/irq.h>
- #include <linux/module.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/property.h>
- 
- #define CC2_START_CM			0xA0
- #define CC2_START_NOM			0x80
-@@ -83,6 +85,7 @@ struct cc2_data {
- 	struct i2c_client *client;
- 	struct regulator *regulator;
- 	const char *name;
-+	const char *label;
- 	int irq_ready;
- 	int irq_low;
- 	int irq_high;
-@@ -449,6 +452,8 @@ static umode_t cc2_is_visible(const void *data, enum hwmon_sensor_types type,
- 		switch (attr) {
- 		case hwmon_humidity_input:
- 			return 0444;
-+		case hwmon_humidity_label:
-+			return cc2->label ? 0444 : 0;
- 		case hwmon_humidity_min_alarm:
- 			return cc2->rh_alarm.low_alarm_visible ? 0444 : 0;
- 		case hwmon_humidity_max_alarm:
-@@ -466,6 +471,8 @@ static umode_t cc2_is_visible(const void *data, enum hwmon_sensor_types type,
- 		switch (attr) {
- 		case hwmon_temp_input:
- 			return 0444;
-+		case hwmon_temp_label:
-+			return cc2->label ? 0444 : 0;
- 		default:
- 			return 0;
- 		}
-@@ -552,6 +559,16 @@ static int cc2_humidity_max_alarm_status(struct cc2_data *data, long *val)
- 	return 0;
- }
- 
-+static int cc2_read_string(struct device *dev, enum hwmon_sensor_types type,
-+			   u32 attr, int channel, const char **str)
-+{
-+	struct cc2_data *data = dev_get_drvdata(dev);
-+
-+	*str = data->label;
-+
-+	return 0;
-+}
-+
- static int cc2_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 		    int channel, long *val)
- {
-@@ -670,8 +687,9 @@ static int cc2_request_alarm_irqs(struct cc2_data *data, struct device *dev)
- }
- 
- static const struct hwmon_channel_info *cc2_info[] = {
--	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
--	HWMON_CHANNEL_INFO(humidity, HWMON_H_INPUT | HWMON_H_MIN | HWMON_H_MAX |
-+	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT | HWMON_T_LABEL),
-+	HWMON_CHANNEL_INFO(humidity, HWMON_H_INPUT | HWMON_H_LABEL |
-+			   HWMON_H_MIN | HWMON_H_MAX |
- 			   HWMON_H_MIN_HYST | HWMON_H_MAX_HYST |
- 			   HWMON_H_MIN_ALARM | HWMON_H_MAX_ALARM),
- 	NULL
-@@ -680,6 +698,7 @@ static const struct hwmon_channel_info *cc2_info[] = {
- static const struct hwmon_ops cc2_hwmon_ops = {
- 	.is_visible = cc2_is_visible,
- 	.read = cc2_read,
-+	.read_string = cc2_read_string,
- 	.write = cc2_write,
- };
- 
-@@ -710,6 +729,8 @@ static int cc2_probe(struct i2c_client *client)
- 		return dev_err_probe(dev, PTR_ERR(data->regulator),
- 				     "Failed to get regulator\n");
- 
-+	device_property_read_string(dev, "label", &data->label);
-+
- 	ret = cc2_request_ready_irq(data, dev);
- 	if (ret)
- 		return dev_err_probe(dev, ret, "Failed to request ready irq\n");
--- 
-2.34.1
+> diff --git a/drivers/gpio/gpio-rpmsg.c b/drivers/gpio/gpio-rpmsg.c
+> new file mode 100644
+> index 0000000000000..332e2925a8309
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-rpmsg.c
 
+[ ... ]
+
+> +static int rpmsg_gpio_send_message(struct rpmsg_gpio_port *port)
+> +{
+> +	int ret;
+> +
+> +	reinit_completion(&port->cmd_complete);
+> +
+> +	ret =3D rpmsg_send(port->rpdev->ept, port->send_msg, sizeof(*port->send=
+_msg));
+> +	if (ret) {
+> +		dev_err(&port->rpdev->dev, "rpmsg_send failed: cmd=3D%d ret=3D%d\n",
+> +			port->send_msg->type, ret);
+> +		return ret;
+> +	}
+> +
+> +	ret =3D wait_for_completion_timeout(&port->cmd_complete,
+> +					  msecs_to_jiffies(RPMSG_TIMEOUT));
+> +	if (ret =3D=3D 0) {
+> +		dev_err(&port->rpdev->dev, "rpmsg_send timeout! cmd=3D%d\n",
+> +			port->send_msg->type);
+> +		return -ETIMEDOUT;
+
+[Severity: High]
+If rpmsg_send times out, can this permanently desynchronize the request and
+response state machine?
+
+If a timeout occurs, rpmsg_gpio_send_message() returns -ETIMEDOUT but leaves
+the channel active. Since the rpmsg_gpio_response doesn't appear to contain=
+ a
+transaction ID, if the remote processor sends a delayed reply to this timed=
+-out
+command, will rpmsg_gpio_channel_callback() mistakenly accept it as the
+completion for the next unrelated command sent by the host?
+
+> +	}
+> +
+> +	if (unlikely(port->recv_msg->status !=3D VIRTIO_GPIO_STATUS_OK)) {
+> +		dev_err(&port->rpdev->dev, "remote core replies an error: cmd=3D%d!\n",
+> +			port->send_msg->type);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static struct virtio_gpio_request *
+> +rpmsg_gpio_msg_prepare(struct rpmsg_gpio_port *port, u16 line, u16 cmd, =
+u32 val)
+> +{
+> +	struct virtio_gpio_request *msg =3D port->send_msg;
+> +
+> +	msg->type =3D cmd;
+> +	msg->gpio =3D line;
+> +	msg->value =3D val;
+
+[Severity: High]
+Are these values being assigned with the correct endianness?
+
+The virtio_gpio_request structure defines these fields as __le16 and __le32,
+but this assigns native host-endian integers to them directly. On big-endian
+architectures, could this result in the remote processor misinterpreting the
+commands?
+
+> +
+> +	return msg;
+> +}
+
+[ ... ]
+
+> +static int rpmsg_gpio_direction_output(struct gpio_chip *gc, unsigned in=
+t line, int val)
+> +{
+> +	struct rpmsg_gpio_port *port =3D gpiochip_get_data(gc);
+> +	int ret;
+> +
+> +	guard(mutex)(&port->lock);
+> +
+> +	rpmsg_gpio_msg_prepare(port, line, VIRTIO_GPIO_MSG_SET_DIRECTION,
+> +			       VIRTIO_GPIO_DIRECTION_OUT);
+> +
+> +	ret =3D rpmsg_gpio_send_message(port);
+> +	if (ret)
+> +		return ret;
+> +
+> +	rpmsg_gpio_msg_prepare(port, line, VIRTIO_GPIO_MSG_SET_VALUE, val);
+
+[Severity: Medium]
+Could configuring the direction before setting the value cause a signal
+glitch?
+
+rpmsg_gpio_direction_output() sends VIRTIO_GPIO_MSG_SET_DIRECTION to the
+remote processor before VIRTIO_GPIO_MSG_SET_VALUE. If the remote hardware
+applies the direction immediately, could this drive the line to its default
+or previous state for a short window before the intended new value is appli=
+ed?
+
+> +
+> +	return rpmsg_gpio_send_message(port);
+> +}
+
+[ ... ]
+
+> +static void gpio_rpmsg_unmask_irq(struct irq_data *d)
+> +{
+> +	struct rpmsg_gpio_port *port =3D irq_data_get_irq_chip_data(d);
+> +	u32 line =3D d->hwirq;
+> +
+> +	port->lines[line].irq_unmask =3D 1;
+> +}
+
+[Severity: High]
+Will interrupts remain permanently masked on the remote processor after they
+fire once?
+
+gpio_rpmsg_unmask_irq() updates local memory but does not send an RPMSG
+command to unmask the interrupt remotely. While gpio_rpmsg_irq_bus_sync_unl=
+ock()
+does send the command, the core IRQ subsystem (like handle_level_irq) masks
+and unmasks interrupts without invoking bus lock/unlock callbacks during no=
+rmal
+interrupt dispatch. Does this mean the unmask command is never actually sent
+after an interrupt is handled?
+
+[ ... ]
+
+> +static int rpmsg_gpiochip_register(struct rpmsg_device *rpdev,
+> +				   struct device_node *np, const char *name)
+> +{
+> +	struct rpmsg_gpio_port *port;
+> +	struct gpio_irq_chip *girq;
+> +	struct gpio_chip *gc;
+> +	int ret;
+> +
+> +	port =3D devm_kzalloc(&rpdev->dev, sizeof(*port), GFP_KERNEL);
+> +	if (!port)
+> +		return -ENOMEM;
+> +
+> +	ret =3D of_property_read_u32(np, "reg", &port->idx);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D devm_mutex_init(&rpdev->dev, &port->lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D of_property_read_u32(np, "ngpios", &port->ngpios);
+> +	if (ret || port->ngpios > GPIOS_PER_PORT_DEFAULT)
+> +		port->ngpios =3D GPIOS_PER_PORT_DEFAULT;
+> +
+> +	port->send_msg =3D devm_kzalloc(&rpdev->dev,
+> +				      sizeof(*port->send_msg),
+> +				      GFP_KERNEL);
+> +
+> +	port->recv_msg =3D devm_kzalloc(&rpdev->dev,
+> +				      sizeof(*port->recv_msg),
+> +				      GFP_KERNEL);
+> +	if (!port->send_msg || !port->recv_msg)
+> +		return -ENOMEM;
+> +
+> +	init_completion(&port->cmd_complete);
+> +	port->rpdev =3D rpdev;
+> +
+> +	gc =3D &port->gc;
+> +	gc->owner =3D THIS_MODULE;
+> +	gc->parent =3D &rpdev->dev;
+> +	gc->fwnode =3D of_fwnode_handle(np);
+> +	gc->ngpio =3D port->ngpios;
+> +	gc->base =3D -1;
+> +	gc->label =3D devm_kasprintf(&rpdev->dev, GFP_KERNEL, "%s-gpio%d",
+> +				   name, port->idx);
+
+[Severity: High]
+Should gc->can_sleep be explicitly set to true for this gpio_chip?
+
+The .set and .get callbacks in this driver acquire a mutex and wait for
+completion, which will sleep. Without setting gc->can_sleep =3D true, the
+gpiolib framework treats these GPIOs as atomic. If consumer drivers call
+these GPIO operations from within an interrupt handler or a spinlock,
+could this trigger a "scheduling while atomic" panic?
+
+> +
+> +	gc->direction_input =3D rpmsg_gpio_direction_input;
+> +	gc->direction_output =3D rpmsg_gpio_direction_output;
+> +	gc->get_direction =3D rpmsg_gpio_get_direction;
+> +	gc->get =3D rpmsg_gpio_get;
+> +	gc->set =3D rpmsg_gpio_set;
+> +
+> +	girq =3D &gc->irq;
+> +	gpio_irq_chip_set_chip(girq, &gpio_rpmsg_irq_chip);
+> +	girq->parent_handler =3D NULL;
+> +	girq->num_parents =3D 0;
+> +	girq->parents =3D NULL;
+> +	girq->chip->name =3D devm_kstrdup(&rpdev->dev, gc->label, GFP_KERNEL);
+
+[Severity: Critical]
+Does this attempt to write to read-only memory?
+
+gpio_irq_chip_set_chip() assigns the const structure gpio_rpmsg_irq_chip to
+girq->chip. Modifying the .name field of a const structure placed in the
+.rodata section will trigger a write-protection page fault and crash the
+kernel. Should the irq_chip be dynamically allocated, or should the name be
+set differently?
+
+> +
+> +	dev_set_drvdata(&rpdev->dev, port);
+> +
+> +	return devm_gpiochip_add_data(&rpdev->dev, gc, port);
+> +}
+
+[ ... ]
+
+> +static struct device_node *
+> +rpmsg_get_channel_ofnode(struct rpmsg_device *rpdev, const char *compat,=
+ u32 idx)
+> +{
+> +	struct device_node *np_chan =3D NULL, *np;
+> +	struct rproc *rproc;
+> +
+> +	rproc =3D rproc_get_by_child(&rpdev->dev);
+> +	if (!rproc)
+> +		return NULL;
+> +
+> +	np =3D of_node_get(rproc->dev.of_node);
+> +	if (!np && rproc->dev.parent)
+> +		np =3D of_node_get(rproc->dev.parent->of_node);
+> +
+> +	if (np)
+> +		np_chan =3D rpmsg_find_child_by_compat_reg(np, compat, idx);
+> +
+> +	return np_chan;
+
+[Severity: Medium]
+Does this leak the reference to the parent device node?
+
+rpmsg_get_channel_ofnode() acquires a reference to np using of_node_get(),
+but it appears to return without calling of_node_put(np) to release it.
+
+> +}
+
+[ ... ]
+
+> +static int rpmsg_gpio_channel_callback(struct rpmsg_device *rpdev, void =
+*data,
+> +				       int len, void *priv, u32 src)
+> +{
+> +	struct rpmsg_gpio_response *msg =3D data;
+> +	struct rpmsg_gpio_port *port =3D NULL;
+> +
+> +	port =3D dev_get_drvdata(&rpdev->dev);
+> +
+> +	if (!port) {
+> +		dev_err(&rpdev->dev, "port is null\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (msg->type =3D=3D GPIO_RPMSG_REPLY) {
+
+[Severity: High]
+Is there a risk of an out-of-bounds read here if the message is truncated?
+
+rpmsg_gpio_channel_callback() receives a payload of size len, but blindly
+dereferences the data pointer as struct rpmsg_gpio_response without
+verifying that len >=3D sizeof(struct rpmsg_gpio_response). Could this read
+out-of-bounds memory if the remote processor sends a malformed or small
+message?
+
+> +		*port->recv_msg =3D *msg;
+> +		complete(&port->cmd_complete);
+> +	} else if (msg->type =3D=3D GPIO_RPMSG_NOTIFY) {
+> +		generic_handle_domain_irq_safe(port->gc.irq.domain, msg->line);
+> +	} else {
+> +		dev_err(&rpdev->dev, "wrong message type (0x%x)\n", msg->type);
+> +	}
+> +
+> +	return 0;
+> +}
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625155432.8151=
+85-1-shenwei.wang@oss.nxp.com?part=3D4
 
