@@ -1,192 +1,203 @@
-Return-Path: <devicetree+bounces-315613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315624-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0yCxFmYHPWorwAgAu9opvQ
-	(envelope-from <devicetree+bounces-315613-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 12:48:06 +0200
+	id Ifu3DGoHPWouwAgAu9opvQ
+	(envelope-from <devicetree+bounces-315624-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 12:48:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD7976C4D01
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 12:48:05 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D2596C4D06
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 12:48:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=a2wN5+y+;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315613-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315613-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Aqepoqgq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315624-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315624-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A665A3002767
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 10:46:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 503AA300405D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jun 2026 10:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F62F2F5474;
-	Thu, 25 Jun 2026 10:46:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C59D37998A;
+	Thu, 25 Jun 2026 10:48:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08E532EEE6E
-	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 10:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00E8A35201B
+	for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 10:48:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782384376; cv=none; b=Pe3ojKTMc4G4oTFYOAAmfNyJkg+85Ik6avD5+ZCTPUowXmBkwe3QVik2lPg9ZphSibCOX552PxzZJmQqx3Bt9YmXr2cxNykef1ylc/tnEdoes4uY3aIQ6eINVvAFT7tEU8tuHNQvqDqKuF9E6FxwrMfIPGTB5mJ4BPtz/jtkIjg=
+	t=1782384483; cv=none; b=hIyc6SOnHf9aJElcai3RPKN8pwZqzB8U43pUNgzyftimOC6xMWsC/XlV+1YevK/bIJ2BiWtjLHb5D1Vrz9lMpcw1FvquNpv38x+wCBTXtw7V39wtoUAg1Cwc75BlKwAI9BQ/DwvgW1In7SKuyiD6k9TGSPyEbP7GFeVZRulKuwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782384376; c=relaxed/simple;
-	bh=VeemTjViH4TIGolU997sQJIjoJhO4tNp+f8FTGl9L8s=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=uHqmhNKPukcvKjwirnttOsXMFo+5HvlPuPoWTfXfMWU+wHIYmeSqzVK8nt2+9PWFZ7+hg/XT2jFwTyfaaA+SYghwMPCufr2aDfdoVHbXLgg+YAhJ/+H0+izPB1Xi5MF0bVy7b8+b3eF8z5/5c2q9V6gKXvxOHuDF7arCVrKyIww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a2wN5+y+; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFCD41F00A3A;
-	Thu, 25 Jun 2026 10:46:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782384374;
-	bh=9Zxz8ZrFC140kBNmQsghzZft7XCHtYietZ/XJLw+81c=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=a2wN5+y+9ker3NR3FKmdWHh2Xt5jOBfKLZbr7q2S7+77Or3KUl6KKN246EDlas8Yv
-	 oTEn+lKXUx9AlRWDQin1PjCs6awzSYJD4AP+nOE5GqFvhk+2GGAtMTLwowi2bXXvSt
-	 oq2Rhq6ktwhTbG1Qm1Cou2fFCSYtwSXdU+Pr4TKxbAolJG/P9MEX9LuaTsGOkg3Rex
-	 J/mdUlko/lvuxRbMs//u4B7h/Ptz2AYucILbsQt+IuqXIwoqNyLuNEHimNDNfyE3jL
-	 H3sZAruEYfQOIkEGDNIGj4HeYvf7Ptzb5lA8fNuiKhzl9L+Su9gzGBPx2TsCzeQK9O
-	 BRlE5+Lt4rcsA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 2/3] pwm: add Andes PWM driver support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Ben Zong-You Xie via B4 Relay" <devnull+ben717.andestech.com@kernel.org>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260625-andes-pwm-v6-2-3aef11711017@andestech.com>
-References: <20260625-andes-pwm-v6-0-3aef11711017@andestech.com>
- <20260625-andes-pwm-v6-2-3aef11711017@andestech.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 25 Jun 2026 10:46:13 +0000
-Message-Id: <20260625104613.CFCD41F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1782384483; c=relaxed/simple;
+	bh=eNnisl9qtnyVoa9BbRoub00ZqcY/iztZW2x9ofj5vdk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PUi2yFPlvf4Y2ADwgsZEsi3w9gFEu/55ioRwmMLXa+p/pKGhuTR2qWfRdilMK8okqdF8PFSNgvcCgO8jQXY77gsUXFV4WZs+fEmn0a4FLKT2JYh19kJFB3NhO5WHc4jVsEhZmS5SpvPJiDNvQtXeg0AkHDkrqXe413ooa9W8ugg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Aqepoqgq; arc=none smtp.client-ip=209.85.128.53
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-491609cdd8fso13127115e9.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 03:48:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782384480; x=1782989280; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vd1pAolJ32WGUV5hqmP6vxrovN7AtVmD6Ko3jeyWjvE=;
+        b=AqepoqgqOnZbkMrgSTxsgdIIBdlq1ZLzX3zklC8IGQEhX+UeVWlixm1ATnudyfznLJ
+         825/Qf837PEVjo+amQ80YzRxRe+EyoRpSEdqd8k0JM052tn5pZlsYnofztyhJwOGVK9E
+         vfDT8UvQZw+Spjp0s5b10rthlfo0azDffbkSyCkYV86+h2uzz0P9azeH0yk6/GouOd2N
+         iFhVJHsiVOStLrNzD3AT8jdWpi7O8tPoXdCNG0ptL1XQzI73gjaEELtdze//gs0xNSfU
+         ycckfVAWW5nH/xIeFdKf3uuypDjBTOyWoD6cH3SzNWe0Dce+mW5Y9435oJNf+WgBCqbP
+         H2kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782384480; x=1782989280;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vd1pAolJ32WGUV5hqmP6vxrovN7AtVmD6Ko3jeyWjvE=;
+        b=pGkueZWv9zN6/5jO6dkfDVY0YmDI7NGoWn2fWMfdBaARDn26D3FvCvwd2HbiU6MlJK
+         5a+wBkaQiLlte/RA3zzXm0gn1hLo3p9hctoDFnMYlEb9vfJgh+iZjCzAJZOMpXLwZrfA
+         OP0BAiU7dGDd3E0MsJdoYFzhao62vS+/9uSNLR+drRl4XfygDh5mRRrdLPYMzjlhbomj
+         vDji5TbsiniLZnWv/r+Lb3DdZBwFNZTlTNQjIQtm/wMDmiEkUxerYMCPQwYS1CSTMR03
+         1JxeaEZfbEj5E6MPe5X9GYAeN53z/RKJ+qP4ZSZ+zyZFQ5FEcrEU8XQ2pKYwlkC+2WB5
+         3tLQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9pEjlLJzEFdDwZd4mpZFEt4egUGCcgkTbNun8dCMBAONX2wwnF4Duc+9kn3OiEmZjnLcgkuvIeuxLL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrRg2K0U9pNqiewuXH0IHp9CmPYuUdqeVpXtDqOYYpZymDBAa/
+	RVYT2xaFPB7hKHtZ3iwf9MHOgApaBkqQJ1EC940cuvH33zfkQ5LF4vGs
+X-Gm-Gg: AfdE7cnwwkfITUlGo2Uk9M6Fem9GQWYciwuW2s01VG7KPPrljkmX/UH5GIOxq5dB0ja
+	NZxoKfomS8PCknn8SWzKsAye0WU87kpxEdLLtZLdg1H3m2Iq6BXQXKcG3WGrTNsca1GsF5Q6srA
+	TvJ6s0v7WHojG9Dhoy9+4uVQJD7FGo87k4WPNsFgJz+Z1tCakR4j249cwT0U4q62FHoCn2rED/C
+	WyeAHpJE/524Zhhv88MqweYjnaJfIx646VlhnkvAjAEkOQxtwQwwG5kxScBRgNh4Cn0vUxT+cge
+	kmEeyeius6VHb3hNPdS6TCNvx78SxaYGWIwOwIrx/mUWzs8JEOMIoaQpH7jOqD05pEymvwE2O5c
+	vAX5NOZ3M7zk1OGK2mE3dk1fMzIZ8WRDC9gkVy0mrsHFEb26l6uqguhc9QGUZIAd7Sw/5HZYhAF
+	GE2tnkOA==
+X-Received: by 2002:a05:600c:b96:b0:492:6447:7a7f with SMTP id 5b1f17b1804b1-4926686b3f3mr25232275e9.6.1782384480165;
+        Thu, 25 Jun 2026 03:48:00 -0700 (PDT)
+Received: from luca-vm.. ([81.56.18.151])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-46c1ee01c6csm15254989f8f.14.2026.06.25.03.47.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jun 2026 03:47:59 -0700 (PDT)
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+To: linux-mediatek@lists.infradead.org
+Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+	Sean Wang <sean.wang@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [RFC PATCH 0/3] pinctrl: mediatek: mt8516-mt8167: Convert to Paris driver
+Date: Thu, 25 Jun 2026 12:46:29 +0200
+Message-ID: <20260625104742.113803-1-l.scorcia@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315613-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:devnull+ben717.andestech.com@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-315624-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,collabora.com,vger.kernel.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,ben717.andestech.com,dt];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-mediatek@lists.infradead.org,m:l.scorcia@gmail.com,m:sean.wang@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:lscorcia@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto,andestech.com:email,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AD7976C4D01
+X-Rspamd-Queue-Id: 2D2596C4D06
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] The driver fails to update the hardware PARK level to the inactive=
- state when disabling the PWM channel, leaving the output stuck ON or at th=
-e wrong polarity.
---
+The pinctrl registers of the mt8516 and mt8167 SoCs follow the layout of
+the Paris platform, but their pinctrl driver is currently modeled on
+the mt65xx legacy driver. As suggested in [1], it is possible to migrate
+them to the Paris driver.
 
-commit 6823cc7ba3d3233c8090db2e53dc0a9b52b74a25
-Author: Ben Zong-You Xie <ben717@andestech.com>
+In the process it is also possible to completely drop one of the two
+drivers as their register layout is identical, they only differ in some
+pin functions (mt8167 is basically mt8516 with added display blocks).
 
-pwm: add Andes PWM driver support
+The Paris driver allows specifying two base registers, gpio and eint;
+this way it's no longer necessary to have a syscfg node in the device
+tree, referenced as a phandle in the pinctrl node. This also fixes the
+following long standing dtbs_check errors:
 
-Add a driver for the PWM controller found in Andes AE350 platforms and
-QiLai SoCs.
+mt8167-pumpkin.dtb: syscfg-pctl@10005000 (syscon): compatible: ['syscon']
+  is too short
+mt8516-pumpkin.dtb: syscfg-pctl@10005000 (syscon): compatible: ['syscon']
+  is too short
 
-> diff --git a/drivers/pwm/pwm-andes.c b/drivers/pwm/pwm-andes.c
-> new file mode 100644
-> index 0000000000000..580e673d2cff0
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-andes.c
+The new driver has been checked against the SoC data sheet and adds the
+capability to control pin driving strength and R1R0 pullup-pulldown
+resistors.
 
-[ ... ]
+This series is sent as a RFC since the changes could theoretically impact
+existing devices. I am pretty sure that no device ever used upstream
+drivers though, not even the Pumpkin board that's present in Linux
+sources since this board lacks the associated mt6392 PMIC driver that
+is required for regulator management. If for compatibility reasons it is
+deemed better to keep both drivers in the kernel I would welcome any
+suggestion on how to name the new driver, and how to adjust the two
+bindings for coexistence.
 
-> +static int andes_pwm_config(struct pwm_chip *chip, unsigned int channel,
-> +			    const struct pwm_state *state)
-> +{
+These changes have been tested on the Xiaomi Mi Smart Clock X04G and on
+the Lenovo Smart Clock 2 CD-24502F.
 
-[ ... ]
+[1] https://lore.kernel.org/linux-mediatek/296b000c-5970-4668-bd42-b99ca78d598f@collabora.com/
 
-> +	/*
-> +	 * A zero-length phase means a 0% or 100% relative duty cycle, which the
-> +	 * hardware cannot run. Emit the matching constant level by parking the
-> +	 * channel: high_cycles =3D=3D 0 stays low, low_cycles =3D=3D 0 stays h=
-igh.
-> +	 */
-> +	if (!high_cycles)
-> +		return andes_pwm_park(chip, channel, false);
-> +	if (!low_cycles)
-> +		return andes_pwm_park(chip, channel, true);
+Luca Leonardo Scorcia (3):
+  dt-bindings: pinctrl: mt8516/mt8167: Move compatibles from mt66xx to
+    mt6795
+  pinctrl: mediatek: mt8516/mt8167: Migrate driver to pinctrl-paris
+    platform
+  arm64: dts: mt8516/mt8167: Update pinctrl nodes for the new paris
+    driver
 
-[Severity: High]
-When configuring a 100 percent duty cycle, this code sets the PARK bit to t=
-he
-active state to emulate the output. If the channel is subsequently disabled,
-could the output remain stuck ON?
+ .../pinctrl/mediatek,mt65xx-pinctrl.yaml      |   2 -
+ .../pinctrl/mediatek,mt6795-pinctrl.yaml      |   5 +-
+ arch/arm64/boot/dts/mediatek/mt8167.dtsi      |  15 +-
+ arch/arm64/boot/dts/mediatek/mt8516.dtsi      |  12 +-
+ drivers/pinctrl/mediatek/Kconfig              |  11 +-
+ drivers/pinctrl/mediatek/Makefile             |   1 -
+ drivers/pinctrl/mediatek/pinctrl-mt8167.c     | 345 --------
+ drivers/pinctrl/mediatek/pinctrl-mt8516.c     | 770 +++++++++++-------
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt8167.h | 562 +++++++------
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt8516.h | 512 ++++++------
+ 10 files changed, 1018 insertions(+), 1217 deletions(-)
+ delete mode 100644 drivers/pinctrl/mediatek/pinctrl-mt8167.c
 
-> +
-> +	/*
-> +	 * If changing the clock source here, the output will not be the old one
 
-[ ... ]
+base-commit: 4e5dfb7c84012007c3c7061126491bbc92d71bf1
+-- 
+2.43.0
 
-> +static int andes_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			   const struct pwm_state *state)
-> +{
-> +	unsigned int channel =3D pwm->hwpwm;
-> +
-> +	if (!state->enabled) {
-> +		if (pwm->state.enabled)
-> +			andes_pwm_enable(chip, channel, false);
-> +
-> +		return 0;
-> +	}
-
-[Severity: High]
-Does this early return path disable the channel but fail to update the=20
-hardware's PARK bit to reflect the inactive state of the current polarity?
-
-If the PWM was previously configured to 100 percent duty cycle where the PA=
-RK
-bit was set active, it appears bypassing the PARK bit configuration on the
-disable path leaves the output driven at the active level.=20
-
-Additionally, if the polarity changes while the channel is disabled, will t=
-he
-hardware's inactive level fail to update?
-
-> +
-> +	return andes_pwm_config(chip, channel, state);
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625-andes-pwm-=
-v6-0-3aef11711017@andestech.com?part=3D2
 
