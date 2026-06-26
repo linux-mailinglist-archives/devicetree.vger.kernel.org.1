@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-316235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316237-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mqhDJObrPmoJNAkAu9opvQ
-	(envelope-from <devicetree+bounces-316235-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 23:15:18 +0200
+	id cIzgMDPsPmoTNAkAu9opvQ
+	(envelope-from <devicetree+bounces-316237-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 23:16:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1FD16D033D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 23:15:17 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2877B6D0355
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 23:16:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VKrmGjth;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316235-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316235-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NP7SHClv;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316237-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316237-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 47FC53057482
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 21:14:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E7FDB3040D92
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 21:16:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 252F33BED27;
-	Fri, 26 Jun 2026 21:14:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E5018DB01;
+	Fri, 26 Jun 2026 21:16:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 012573BF660
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 21:14:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A8A2FDC27
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 21:16:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782508487; cv=none; b=Ps2HTXbR/eZe6ut3w1lJrsAZk4Sqd3DAIjqN7sxtiCTVNvmxUE1TxpZyGx9qPNrGfE06e717JmhCAahv1E/DF/8O3VP4U0gPFKBFEcm1oQVcz8EBruBz9riAkVIyoglEn9weH7yTNb2TWkAnVL7KmsJzzitJcT1k4tTMe5vXt+k=
+	t=1782508586; cv=none; b=COMYDfIJ8vUcuKNQwqQQfe8L35+ZF/L6r+rxXZmgnZ8NQ9vY8McsPA5ETz/YRuNwuMYoUKjSQTbRgHDbXCwdl/d4krQn1K4IQM8xBwc+0M4KNmZHlzxOD8rNT7kBNKOkkqFoIF0FowyyNRonImGi15lVWZoxZfZhUhh88AMxF0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782508487; c=relaxed/simple;
-	bh=ey28x3LJxjePfXMA1pE7g6sAY7eOKqf52VHAHV2l2TY=;
+	s=arc-20240116; t=1782508586; c=relaxed/simple;
+	bh=tE6sgGEYhzw7/8HY52SzKgpzvwewl/C2OKL9riJpAgE=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=cg1uLE0mHd+VjrIs4cJW44mHoPm1I+WOvkjN7DJxGn2zEYhsHWcj3ZpmbUhhxHuHtNcwOvyv2bNoqfb0297VCrGQ4t89Fm7FW/WoPd1wKSUOXLU3vnSUTxTATjZdz6amRJgYGj/S29M7wVjpdWkMI+MtZ296GVe1Kz6UzSpQN3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VKrmGjth; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D1151F000E9;
-	Fri, 26 Jun 2026 21:14:45 +0000 (UTC)
+	 Message-Id; b=DKKLu4eBK8XBQ+mTAHkwGpb9oJQhqm6gNQ2joygeLbJYs+cmPnfYpT5LxmD9maDpZtZDpWhXXU6Oj4Vw8P8B5tu0wFkXWzSVE+LG4I7zcxg7h9MuA4Ez4ecB7Z2ddC9rjN3jcMB3D7Ojv4SCGd9jlrM2inA8BN403IfDLDA7MNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NP7SHClv; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B06A1F00A3A;
+	Fri, 26 Jun 2026 21:16:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782508485;
-	bh=4+e1r8jT3JogeYU9rX54CBUZqrxvMgDlNyHi9c2oDvQ=;
+	s=k20260515; t=1782508584;
+	bh=KmTa9EWFcjjs/UzPD8dR70INSTu++99OmYLpPcfybYM=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=VKrmGjthw1uLeVaz1HPGCR+WPOxvJAsNxPC+YScDKfvSwxu248W3kP+IXTOjpk30Y
-	 0hwC+SvRYKaG49pRzzgQPsrreIhBCNXve+0lgjCb1ecobp2CCgkxw1TtRLW2yKAv3Z
-	 pREdaU3MCvn5/HFfu2LgAZrZbIgIXnO5X3DtN/22prH7fJFUDKEFUErlt1Ds3mODDW
-	 O+wJhG8L4IPSilF2z9v8mp3XnYi+SXQlzdSTnYfSoUFYNCtB8HPapYK02GGTnDd19/
-	 7jqE4zbyHkVqAXX55TGD1UBLtBooPWgpag9RoOG8BDdd2ixVpKfUeeVZkiFxG+RRg3
-	 aAEU0IwoI0H1g==
+	b=NP7SHClvdT3HEvWwt5zxzgx7b0RMNIQKW23poSBlsG3pUj7/6o2Dt7pCpxyHj5kMN
+	 jXDlIz/DsZ3gDs5VFNJB73bMCgkEDGX6eSxiPSaaUX2sQvYOsZ7Sse1br1d475V2n+
+	 IAbnBNceviyUL4Sw3ebnHmMoMqC9QCkPJNQbWDvA9EEkibS4bSL2lbNoL7uxTsU4Qa
+	 za216jPtOOceGg1UwJfZWk9HHTGroQ+cXPalnPhJZDqx47cCX/08yJRpGcNuUMNo4L
+	 Qg6BC3Sv3ZE6wtZcdMjK7Dt4IbY5MY4cL5UGY7PpgBuyB0eYSinR0vrENWXmCGd5VS
+	 HV4EIsCt0W3UA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 17/29] phy: rockchip: usbdp: Register DP aux bridge
+Subject: Re: [PATCH v8 06/29] phy: rockchip: usbdp: Drop seamless DP
+ takeover
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: vkoul@kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, olteanv@gmail.com, neil.armstrong@linaro.org
-In-Reply-To: <20260626-rockchip-usbdp-cleanup-v8-17-47f682987895@collabora.com>
+Cc: devicetree@vger.kernel.org, olteanv@gmail.com, robh@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, neil.armstrong@linaro.org, linux-phy@lists.infradead.org
+In-Reply-To: <20260626-rockchip-usbdp-cleanup-v8-6-47f682987895@collabora.com>
 References: <20260626-rockchip-usbdp-cleanup-v8-0-47f682987895@collabora.com>
- <20260626-rockchip-usbdp-cleanup-v8-17-47f682987895@collabora.com>
+ <20260626-rockchip-usbdp-cleanup-v8-6-47f682987895@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 26 Jun 2026 21:14:44 +0000
-Message-Id: <20260626211445.1D1151F000E9@smtp.kernel.org>
+Date: Fri, 26 Jun 2026 21:16:23 +0000
+Message-Id: <20260626211624.5B06A1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,16 +72,16 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316235-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316237-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:vkoul@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:olteanv@gmail.com,m:neil.armstrong@linaro.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,vger.kernel.org,gmail.com,linaro.org];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:devicetree@vger.kernel.org,m:olteanv@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:linux-phy@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,kernel.org,linaro.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -96,7 +97,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -104,68 +105,84 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E1FD16D033D
+X-Rspamd-Queue-Id: 2877B6D0355
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] drm_aux_bridge_register() is incompatible with the rockchip-usbdp =
-PHY topology, breaking the DP bridge chain when USB and DP ports are split.
+- [High] Unconditionally disabling the active DP PHY while the upstream dis=
+play controller is still streaming data causes an AXI bus stall and system =
+hang on Rockchip SoCs.
+- [High] Forcing DP HPD to disconnected during probe permanently breaks fix=
+ed eDP/DP displays.
 --
 
-commit 70d2ba94c5da680bd420eb74b5cffb26d6fad15d
+commit 31addd0a9ff6667916e1a40ca73d061ababa8583
 Author: Sebastian Reichel <sebastian.reichel@collabora.com>
-phy: rockchip: usbdp: Register DP aux bridge
 
-This patch adds support to register a DRM auxiliary bridge if the DP
-aux channel is connected. This enables DP altmode helper code on
-devicetree based platforms.
+phy: rockchip: usbdp: Drop seamless DP takeover
+
+This commit drops support for seamless DP takeover from the bootloader. If a
+pre-enabled DP PHY is detected, it logs a warning, forces HPD low, and
+unconditionally disables the PHY.
+
+Link: https://lore.kernel.org/linux-phy/20260612164107.C7DB21F000E9@smtp.ke=
+rnel.org/
 
 > diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
 chip/phy-rockchip-usbdp.c
-> index e243d92483e09..a204699619b80 100644
+> index 3fc8222fcaec2..f7ff55f03b7cf 100644
 > --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
 > +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-[ ... ]
-> @@ -1505,6 +1507,18 @@ static int rk_udphy_probe(struct platform_device *=
-pdev)
->  			return ret;
->  	}
+> @@ -938,10 +939,12 @@ static int rk_udphy_get_initial_status(struct rk_ud=
+phy *udphy)
+>  	rk_udphy_reset_deassert_all(udphy);
 > =20
-> +	/*
-> +	 * Only register the DRM bridge, if the DP aux channel is connected.
-> +	 * Some boards use the USBDP PHY only for its USB3 capabilities.
-> +	 */
-> +	dp_aux_ep =3D fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 3, 0, 0);
-> +	if (dp_aux_ep) {
-> +		ret =3D drm_aux_bridge_register(dev);
+>  	regmap_read(udphy->pma_regmap, CMN_LANE_MUX_AND_EN_OFFSET, &value);
+> -	if (FIELD_GET(CMN_DP_LANE_MUX_ALL, value) && FIELD_GET(CMN_DP_LANE_EN_A=
+LL, value))
+> -		udphy->status =3D UDPHY_MODE_DP;
+> -	else
+> -		rk_udphy_disable(udphy);
+> +	if (FIELD_GET(CMN_DP_LANE_MUX_ALL, value) && FIELD_GET(CMN_DP_LANE_EN_A=
+LL, value)) {
+> +		dev_info(udphy->dev, "Started with DP PHY pre-enabled; seamless takeov=
+er unsupported\n");
+> +		rk_udphy_grfreg_write(udphy->vogrf, &cfg->vogrfcfg[udphy->id].hpd_trig=
+ger, false);
 
 [Severity: High]
-Since the PHY detects the DP connector on port 3, is the call to
-drm_aux_bridge_register() compatible with this topology?
+Will forcing HPD low here permanently break fixed eDP or DP displays?
 
-Looking at how the auxiliary bridge driver probes in
-drivers/gpu/drm/bridge/aux-bridge.c, it hardcodes the downstream bridge
-lookup to port 0:
+While this pulls HPD low to signal a disconnect, fixed eDP/DP boards do not
+use Type-C muxes and will never trigger a re-assertion via Type-C events.
+Since the upstream DP controller driver does not know about the VO GRF
+override, the HPD signal remains permanently forced low, and the display
+will be seen as disconnected by the kernel.
 
-drm_aux_bridge_probe()
-  data->next_bridge =3D devm_drm_of_get_bridge(..., 0, 0);
-
-If port 0 (the USB output) is unconnected or connected to a non-DRM
-component, will devm_drm_of_get_bridge() return an error like -ENODEV?
-This looks like it would cause the aux bridge probe to fail, breaking the
-DP chain and leaving the DP controller waiting indefinitely with
--EPROBE_DEFER, unless both port 0 and port 3 happen to point to the exact
-same connector node.
-
-> +		fwnode_handle_put(dp_aux_ep);
-> +		if (ret)
-> +			return ret;
 > +	}
 > +
->  	udphy->phy_u3 =3D devm_phy_create(dev, dev->of_node, &rk_udphy_usb3_phy=
-_ops);
+> +	rk_udphy_disable(udphy);
+
+[Severity: High]
+Could calling rk_udphy_disable() synchronously right after forcing HPD low
+trigger an AXI bus stall?
+
+If the DP PHY was left enabled by the bootloader, the upstream display
+controller (VOP) might still be actively issuing AXI/AHB transactions to the
+PHY.=20
+
+The HPD state change via GRF is asynchronous, but this disables the PHY clo=
+cks
+immediately on the very next line. Removing the clock from an active AXI sl=
+ave
+often causes the bus to stall indefinitely, resulting in a hard system free=
+ze.
+
+> =20
+>  	return 0;
+>  }
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260626-rockchip-u=
-sbdp-cleanup-v8-0-47f682987895@collabora.com?part=3D17
+sbdp-cleanup-v8-0-47f682987895@collabora.com?part=3D6
 
