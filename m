@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-315883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315884-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KeB7MaDjPWqy7ggAu9opvQ
-	(envelope-from <devicetree+bounces-315883-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:27:44 +0200
+	id 7Od7M8TjPWq27ggAu9opvQ
+	(envelope-from <devicetree+bounces-315884-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:28:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 439E16C9C0B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:27:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB456C9C1C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:28:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315883-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315883-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315884-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315884-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4DFB4301914E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 02:27:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0220B30459F3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 02:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6911E2FC01B;
-	Fri, 26 Jun 2026 02:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2A443009F6;
+	Fri, 26 Jun 2026 02:27:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD602249EB;
-	Fri, 26 Jun 2026 02:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 035101CDFCA;
+	Fri, 26 Jun 2026 02:27:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782440862; cv=none; b=QoYWSjeSthaKFBT4iOD86bCHAmlfaMuGolzjOCjoF41r+EclSDo9Jl9P5DBwkkv96osd5+ZMLCDM0g7aKVAwEClw9M7t7UwoIuV+fTlMFkg09Xa6wE8gAylgS/Mhv5IRYbwsFzKvIm42ouTy4X/d2e8l7o99bK1T2Z9SE6T/89A=
+	t=1782440863; cv=none; b=fnJetW5q7zlz8mcEqgjjzPkQnM6GsJIh6syQoeohbDhY/7O9KSDpHjG0Qo8N9yueURClAfBZxTCD4n8d88o+Mvp5mPeC8cP0i8WJcT28Hk4mF9J0ysuUN5fF0KSboqd41CZIWjZG217L4Xg2CF7lTbiWVd+7kZ2WLbdfQbzOTO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782440862; c=relaxed/simple;
-	bh=SnojmJIFb+w5VugSLouXkiwNXzM6eXF1SqdLwT7p/Io=;
+	s=arc-20240116; t=1782440863; c=relaxed/simple;
+	bh=fUQpPSS0W6gZsMG8KBIG6vTVer1Mny9E4l4aej5Bm8U=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CET+QTEWNyP3sGxNUBR2627ybrEpppkFv2vGbFCsYsPPRgS+kNnmr+o6ILIJoaNJ4BBCVPi9tliu1z+8TqazDnxdX7SoBA+ezncrU9MIXRr8QMccYxQV7b90XUsux/CWUq6pCytStV9I3D7KzU0TFXkhltaotnNqH2JPtJChZys=
+	 MIME-Version; b=KDd0exurHMteaEUcNpgpMMLI+alFeJtkZDDEQp3Isp2F8eFAsXpgCBiLvwth7q1hnaitqLUCoDcveUXQpZ3TLJNG3DPtivQUxkeft6LReBb6nG5qW5Xp38dfEYiKDOJrjgz1VqVfZ0X921KxpY8RVpytkgGi32tky3ljFhOjkNE=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
 Received: from loongson.cn (unknown [223.64.68.155])
-	by gateway (Coremail) with SMTP id _____8CxnOmb4z1q_jAYAA--.59898S3;
-	Fri, 26 Jun 2026 10:27:39 +0800 (CST)
+	by gateway (Coremail) with SMTP id _____8DxEvCc4z1qBTEYAA--.62377S3;
+	Fri, 26 Jun 2026 10:27:40 +0800 (CST)
 Received: from kernelserver (unknown [223.64.68.155])
-	by front1 (Coremail) with SMTP id qMiowJCxWeCY4z1qr22zAA--.13114S3;
-	Fri, 26 Jun 2026 10:27:38 +0800 (CST)
+	by front1 (Coremail) with SMTP id qMiowJCxWeCY4z1qr22zAA--.13114S4;
+	Fri, 26 Jun 2026 10:27:39 +0800 (CST)
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 To: Binbin Zhou <zhoubb.aaron@gmail.com>,
 	Huacai Chen <chenhuacai@loongson.cn>,
@@ -55,9 +55,9 @@ Cc: Huacai Chen <chenhuacai@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-sound@vger.kernel.org,
 	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v3 5/9] ASoC: dt-bindings: loongson,ls-audio-card: Add ctcisz forever pi compatible
-Date: Fri, 26 Jun 2026 10:27:26 +0800
-Message-ID: <183d809cd51874bcb78743273e4b7617f120fedb.1782439646.git.zhoubinbin@loongson.cn>
+Subject: [PATCH v3 6/9] ASoC: loongson: Add Loongson-2K0300 CTCISZ Forever Pi sound card support
+Date: Fri, 26 Jun 2026 10:27:27 +0800
+Message-ID: <ed1314e1d3275fd20aff47397345a88fad6e9368.1782439646.git.zhoubinbin@loongson.cn>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <cover.1782439646.git.zhoubinbin@loongson.cn>
 References: <cover.1782439646.git.zhoubinbin@loongson.cn>
@@ -68,11 +68,11 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJCxWeCY4z1qr22zAA--.13114S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAQEKCGo8w2QaoQAAsI
-X-Coremail-Antispam: 1Uk129KBj93XoW7Jry7CF48ZF1xJrW5GF4kuFX_yoW8Jr1kpr
-	s7CasrKFWxK3W7Zwn8Xa4fAw4rZ3s3tan7AF47Xw1xGF98tw15W390k3Wjva1akryDJFWU
-	XFyFkr4rWFyYywcCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
+X-CM-TRANSID:qMiowJCxWeCY4z1qr22zAA--.13114S4
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAQEKCGo8w2QaowAAsK
+X-Coremail-Antispam: 1Uk129KBj93XoWxCrWDXF1fAF43Ar18Jw48Zrc_yoW5CFyDpa
+	nxA3yjgr4YqF13uFn8XFWrAF15Z3s3A3ZFqF47Jw18Kr9Fyw15uryUKF1jvF4ayrykGFyU
+	ZrykCrWxG3WDGrbCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
 	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
 	0xBIdaVrnRJUUUBab4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
 	IYs7xG6rWj6s0DM7CIcVAFz4kK6r126r13M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
@@ -84,7 +84,7 @@ X-Coremail-Antispam: 1Uk129KBj93XoW7Jry7CF48ZF1xJrW5GF4kuFX_yoW8Jr1kpr
 	AKI48JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
 	6r1j6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
 	xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xII
-	jxv20xvE14v26ryj6F1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04
+	jxv20xvE14v26F1j6w1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04
 	k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7Cj
 	xVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j6VbgUUUUU=
 X-Rspamd-Action: no action
@@ -93,11 +93,11 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315883-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315884-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[loongson.cn];
@@ -117,39 +117,105 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	R_DKIM_NA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[loongson.cn:email,loongson.cn:mid,loongson.cn:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[loongson.cn:email,loongson.cn:mid,loongson.cn:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 439E16C9C0B
+X-Rspamd-Queue-Id: 2CB456C9C1C
 
-Add a new compatible string `loongson,ls2k0300-forever-pi-audio-card`
-for the audio card on Loongson-2K0300 ctcisz forever pi SoC. It uses a
-different DAI format compared to existing Loongson platforms.
+The Loongson-2K0300 audio card uses a different DAI format compared to
+existing Loongson platforms.
 
-The existing "loongson,ls-audio-card" remains valid for LS7A,
-Loongson-2K1000 and Loongson-2K2000.
+Move the dai_fmt setting from the static DAI link to runtime hw_params
+via snd_soc_runtime_set_dai_fmt(), and pass the correct format through
+driver match data.
 
 Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 ---
- .../devicetree/bindings/sound/loongson,ls-audio-card.yaml     | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ sound/soc/loongson/loongson_card.c | 34 +++++++++++++++++++++++++-----
+ 1 file changed, 29 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
-index e1b7445a8b22..8c214e5d04b1 100644
---- a/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
-+++ b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
-@@ -20,7 +20,9 @@ allOf:
+diff --git a/sound/soc/loongson/loongson_card.c b/sound/soc/loongson/loongson_card.c
+index ea895fe6b5e9..0e63cbcad57a 100644
+--- a/sound/soc/loongson/loongson_card.c
++++ b/sound/soc/loongson/loongson_card.c
+@@ -2,8 +2,9 @@
+ //
+ // Loongson ASoC Audio Machine driver
+ //
+-// Copyright (C) 2023 Loongson Technology Corporation Limited
++// Copyright (C) 2023-2026 Loongson Technology Corporation Limited
+ // Author: Yingkun Meng <mengyingkun@loongson.cn>
++//         Binbin Zhou <zhoubinbin@loongson.cn>
+ //
  
- properties:
-   compatible:
--    const: loongson,ls-audio-card
-+    enum:
-+      - loongson,ls-audio-card  # Loongson-2K1000/Loongson-2K2000/LS7A
-+      - loongson,ls2k0300-forever-pi-audio-card # CTCISZ Forever Pi
+ #include <linux/module.h>
+@@ -18,6 +19,19 @@ static char codec_name[SND_ACPI_I2C_ID_LEN];
+ struct loongson_card_data {
+ 	struct snd_soc_card snd_card;
+ 	unsigned int mclk_fs;
++	const struct loongson_card_config *cfg;
++};
++
++struct loongson_card_config {
++	unsigned int fmt;
++};
++
++static const struct loongson_card_config ls2k1000_card_config = {
++	.fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_IB_NF | SND_SOC_DAIFMT_CBC_CFC,
++};
++
++static const struct loongson_card_config ls2k0300_forever_pi_card_config = {
++	.fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBC_CFC,
+ };
  
-   mclk-fs:
-     $ref: simple-card.yaml#/definitions/mclk-fs
+ static int loongson_card_hw_params(struct snd_pcm_substream *substream,
+@@ -45,7 +59,7 @@ static int loongson_card_hw_params(struct snd_pcm_substream *substream,
+ 		return ret;
+ 	}
+ 
+-	return 0;
++	return snd_soc_runtime_set_dai_fmt(rtd, ls_card->cfg->fmt);
+ }
+ 
+ static const struct snd_soc_ops loongson_ops = {
+@@ -61,8 +75,6 @@ static struct snd_soc_dai_link loongson_dai_links[] = {
+ 	{
+ 		.name = "Loongson Audio Port",
+ 		.stream_name = "Loongson Audio",
+-		.dai_fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_IB_NF
+-			| SND_SOC_DAIFMT_CBC_CFC,
+ 		SND_SOC_DAILINK_REG(analog),
+ 		.ops = &loongson_ops,
+ 	},
+@@ -177,6 +189,10 @@ static int loongson_asoc_card_probe(struct platform_device *pdev)
+ 	if (!ls_priv)
+ 		return -ENOMEM;
+ 
++	ls_priv->cfg = (const struct loongson_card_config *)device_get_match_data(dev);
++	if (!ls_priv->cfg)
++		return -EINVAL;
++
+ 	card = &ls_priv->snd_card;
+ 
+ 	card->dev = dev;
+@@ -202,7 +218,15 @@ static int loongson_asoc_card_probe(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id loongson_asoc_dt_ids[] = {
+-	{ .compatible = "loongson,ls-audio-card" },
++	/* Loongson-2K1000/Loongson-2K2000/LS7A */
++	{
++		.compatible = "loongson,ls-audio-card",
++		.data = &ls2k1000_card_config
++	},
++	{
++		.compatible = "loongson,ls2k0300-forever-pi-audio-card",
++		.data = &ls2k0300_forever_pi_card_config
++	},
+ 	{ /* sentinel */ },
+ };
+ MODULE_DEVICE_TABLE(of, loongson_asoc_dt_ids);
 -- 
 2.52.0
 
