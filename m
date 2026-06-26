@@ -1,222 +1,323 @@
-Return-Path: <devicetree+bounces-316200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316203-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id afK7AHTmPmr7MgkAu9opvQ
-	(envelope-from <devicetree+bounces-316200-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 22:52:04 +0200
+	id QTQXLjTnPmoZMwkAu9opvQ
+	(envelope-from <devicetree+bounces-316203-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 22:55:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA916D017E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 22:52:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EC926D01A9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 22:55:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=i+V4AI96;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=YwPlTOAJ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316200-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316200-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=collabora.com header.s=mail header.b=koCZGsl9;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316203-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316203-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1F8493008743
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 20:52:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D6A5A303C00D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 20:55:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C753AE6FC;
-	Fri, 26 Jun 2026 20:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07DDF3BF694;
+	Fri, 26 Jun 2026 20:55:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4803978F2B
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 20:52:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ABE82EA47C;
+	Fri, 26 Jun 2026 20:55:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782507121; cv=none; b=IUYcaq2TXdl1tLV+ZaPYAuR2MhBy1y5/M1NY32Cktq75yGfd+Q2BXsIuxaeYU5d4bjarKhbrZ+GZQFtGF50TPitQWez43UBemhaF0Kia1iSy9ofn3pEft8JXxpX1e+XnpFm7jN876bCuHtZHQK6sr8Qa31C8qz2zgiO9X7k+JZ0=
+	t=1782507305; cv=none; b=n3773dw6cJEu6e3HK1goIeS6VK8JiT1QH/Q+3urMPZpUyhxupaCkGoRO8Y/xnp80ok+oHhZGYa0t1mkR2VVvuQjF616pX3smSf4JdmG2MQ0jhEWiVzBP4/1MqWfauy6BAR8ga9A+fhcYGLSscSQs7T3nr+7wo2Yeat/JA1Fo4Yg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782507121; c=relaxed/simple;
-	bh=glTje0SHGKlC2O0ypUPh35USbtgkKD62Pb/EXcf9JII=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KUBhEmNCcU+ksCfvCeXZmvho2m6XMVwza7VHHdMh/766m+a2ixyg7KxneL1uyOaGNzDgQqkep0aG+Itklwoph+5ZVveMRv6ca45IytgxAyCp/pn2IGgdENhcKUbDJrfSu/v0vv+AR8Tm3+Bacmg8Vv6e9g5awV8ZKOtut6wL4Uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=i+V4AI96; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YwPlTOAJ; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65QJ8asc1980854
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 20:51:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=IKOnoEyFWDXwr7o29D1hxEeo
-	ex+IYcsFA0olkn9Z9N4=; b=i+V4AI96BKmhrDCEqgsvg/u19N9C6xGtwpqu9FEp
-	QtMPLsEnCOV/33NhzPQeR5WIIARh5oLOe9uHSthJhdrmrlEPt6wYz6BXVARACBrV
-	V+9lWM5a7qV+ljPGrui/E/6ysaq+BrtZiNRn5TVssfLIuoY/WYF21kXEcKAvWZm0
-	M9f4+5F6bsTlS/x+04XG3n11IqAkkhzVFG5lMyFO7GolA3hSGntVYOBkvFLSGb8x
-	nEZ5izinMXi8mD/ooejaBcruN8jjh+zPBldgvH2TjW97PcVvn/IC3dCGOJYgjIp9
-	zQVy4B0C66Gl/uu3ABJ1I0+KqhMPQfgSKQ/PPW7Q1DUVHA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f1p2ttk4u-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 20:51:59 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-92af3d5e85aso171783385a.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 13:51:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782507119; x=1783111919; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IKOnoEyFWDXwr7o29D1hxEeoex+IYcsFA0olkn9Z9N4=;
-        b=YwPlTOAJLaFNtyU+rgc9DPm5Tdh3fSFVdgz07tqM2FMLwoi3u5mElKueXX4+ZTd0K9
-         HhEVXnvWDEVCJEsGfxgJw1VlkfUT8qx8fZPBiNKcqmzJgfFJIR3lJRoTGFybso1tOR2e
-         MrDXumHguzyyn97i5A/tBBPmSZsyk8AQMp2q2qMeiziDLu80TPQwGfomDSUofFTZ2l2c
-         x3H5znIZJsluY5oPcH9hOaKJ9ZlJFQrIlPG5gUHQrjIP/wW2UmljS+YcOuaaFwH8r4Rs
-         Ehyziv7K1YcZZNW/8bZ4rIJhXh80tXsash/OVIJKVnM9IULtut9WGToBpsPxjKnh5VaO
-         vFJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782507119; x=1783111919;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IKOnoEyFWDXwr7o29D1hxEeoex+IYcsFA0olkn9Z9N4=;
-        b=FgM/FicOGUzT76SXshJXEoQJYs1RQ8HEtPgS3RfGDMlleFAMOlgVBhn2sl87sDjoAi
-         5XPyohZz78r/0rcpjo1HuXT1JgLP0zwwHpCNZ1YOWa/9V0fjFVrnlhFlO02k1XrW48P+
-         hRapzXTmV1DBwEJpgd9DZ8YtuyY682Ez8zsNjtShGO5SZOtIrpr+Ij0SNaqcb48dUZd3
-         foTAxg4b7fqNulRet/JIBn8oRFyuJxMlQkpWQPMMb7Fh9wl425U3N81g3gFK6X3D3oaP
-         xGDJEGNwmnOWkJcQlRiYnODDOvPcuKWlVxk6OjvcclBhORm77rSC/xHKdBJA9tAO+B0A
-         FXKQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8KGOPGSiDoiI+f9SZ+jIK4kGEfVcW/MOJDbj2Zj/Ez4UXoZv/ZuW1LhnU6lwQ857PwMd8JPVyuOADB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEn4Y8Kiy6hBTMSEPa5sW8sD/CQvheODTUTXWPlftFsg6/c2mW
-	NETt0IYFoWymYypisr87nOuwlFl5GMoLcVBA4hFzilzmmFaPXdRGW4KCnuR9SZB/6b0cvysZlj7
-	x3A/2kAQG9/JgRza5GHr54YIo+xKrGqQubIyXFNwM86rfd4AgQrETm3DJ2yfoDYMn
-X-Gm-Gg: AfdE7cnQDZ7eU2UwySTLmfFuXadMqsinUVFtBD0n7r0ipHVgG2THw4mfp6k5ZuzqtVE
-	sK7IqCvEdo3TS93t2L0uk80piRTrIVuDDO3ae68/FS9AtvWj/A83pIWc6Co9sIeJ+saAMVwejrW
-	I4By9gtoooFT2DhjfYJkYT+8Px1eXiU0ObfVj8TSFZaR8Y51Q+rvnTg4LZ4vuXodnM4r1c2j2hr
-	qDs5vxG5l1f8tq70gJs3f3NXFpJu8P7IpDYMZLmWDA9mzjupvlN1C475z3f0cgUrHO7k6i02Hj+
-	65XlMI+jUP1IvRfCJBQSkMxTxfNpC/nq16OTiMR95B+jGuCCd1QuBmWydjOKr6mIcwJbpp/iGRe
-	Nd3do3etFbNSpF3/t0RjQr12Nm3P7efCOeluhqa48IBf1Ayw8d3DLjAqy6NN+zjSQg/Knxc5A7b
-	A0rDKb+FwqFfXVRjRt65anaGEQ
-X-Received: by 2002:a05:620a:471e:b0:918:4737:ea8f with SMTP id af79cd13be357-9293d3a3332mr1308465885a.54.1782507118639;
-        Fri, 26 Jun 2026 13:51:58 -0700 (PDT)
-X-Received: by 2002:a05:620a:471e:b0:918:4737:ea8f with SMTP id af79cd13be357-9293d3a3332mr1308462485a.54.1782507118261;
-        Fri, 26 Jun 2026 13:51:58 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3999afcf08asm56901861fa.16.2026.06.26.13.51.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jun 2026 13:51:55 -0700 (PDT)
-Date: Fri, 26 Jun 2026 23:51:52 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Mahadevan P <mahadevan.p@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mahadevan P <mahap@qti.qualcomm.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: kodiak: Set up 4-lane DP
-Message-ID: <dquxvlawcvggc3lml2twudquio7xy7nj3p2w5atcjeliueeyxf@wn26uoiz6l33>
-References: <20260429-kodiak_v2-v2-0-c3a703cc30eb@oss.qualcomm.com>
- <20260429-kodiak_v2-v2-3-c3a703cc30eb@oss.qualcomm.com>
+	s=arc-20240116; t=1782507305; c=relaxed/simple;
+	bh=UrLCAhUpEZcIt6PAQMBwOY8rOy1yJLTsWIfJZe/SqbM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sBuSgO74ZthKrILi4BhDzmgmC+eR8PUpHDKj3S8nX274uKeDIXpLg1v/rQq7AK0r4dC6Brl88+yVDvkM8FSKVgCzfl0iZ1EIxs9kenadGxOTaBOn7qqa/Un6rGkvQXtKyUmV7lJzjUyaSyR9/9P/kGqFZA3OgXBay0HwHBpTw0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=koCZGsl9; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1782507302;
+	bh=UrLCAhUpEZcIt6PAQMBwOY8rOy1yJLTsWIfJZe/SqbM=;
+	h=From:Subject:Date:To:Cc:From;
+	b=koCZGsl9UQbL3B+CTkUkQ3dHqdbNtYVUu71FmDQhLY3KjAVAWu2VmLhckpw0PrEuV
+	 owoaxuEWJ9GtmgmoZOakfbQ/+ZFIyQHuV+RyGrIBNpXFQK/EOHjb/B7+C2wTGB5ns/
+	 WB/6EC/x6BVsXAZ9ccx/Dy1RqkMFSapZv7zqTsq8/CBNFOmis3weIrz6JEHlvmaEga
+	 qegaqGb20OnblXBNEy16eWGGT9teKFl5QcZaIKKA168mdCzZiap2uSOXqJrhjn4iEX
+	 loNdvNcj23cJGDyhUwRDRSpxcFoWPoz3OF9wCTQB3hlfXZaDEYFgBbMJ5+ya4GaYKG
+	 n+KloGFH6ciPg==
+Received: from jupiter.universe (unknown [100.64.1.62])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5D69217E02CB;
+	Fri, 26 Jun 2026 22:55:02 +0200 (CEST)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id 0B93C480027; Fri, 26 Jun 2026 22:55:02 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH v8 00/29] phy: rockchip: usbdp: Fixes, DP 1-lane support
+ and cleanups
+Date: Fri, 26 Jun 2026 22:54:53 +0200
+Message-Id: <20260626-rockchip-usbdp-cleanup-v8-0-47f682987895@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260429-kodiak_v2-v2-3-c3a703cc30eb@oss.qualcomm.com>
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI2MDE3MiBTYWx0ZWRfX3J8Hu1SUwzBm
- ENEUtGghWW6DOhw6VN4sDCUsRWCTdXVKYNT2DmNIn6yRj0KN0dMW++CQZz4M53JjqMgwHmVDLXt
- f9a9BWMtr1469mJtW003NBWF9lcn8lI=
-X-Proofpoint-GUID: K3OQOJ6TMs_Im_MaJzNBWDSnStOHUmzF
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI2MDE3MiBTYWx0ZWRfX3e/oG11jj99U
- pqL/g4Mv+/J8uaYtVQD2hgkHq9KZ713h5fDo3Hi6mGlitexLuztLcP5Ogv9Pkb+7V5pep3PnPJQ
- cquFAbKzA9R9J3BOegee+5s9NGv7juucj9bSdg4gr49NiTchNXW2r/l1IV5r3uKaCu8okBszhj/
- DRYZTClGL9yhMaNCdpMw/db8CQ9hmy1dkTAoqGL5eO++ySsgFgBzTZ5jDeqpJpcbPLjPV1G6DWH
- NvulKoyk2kdJafCtSSbJ9LKRUgJa26SYV9iUduwNohwYcUhj8IB9bkD9kJNKIvcmitO0PsMHJe/
- jz0R++h0gohJcmPl8y7bK1qJjg8yQk90YAn/5milalb9SCqUWLSn73B89eEw0/PTAMn0nYmRskX
- 7VSIhcAiGRy3LJyrBFQR4qvmyembtlokzS32BVkoUbwnp296k6wIvbkDVRJ43V7CMA3pgi2+ldk
- UnGJpD00D+WzrYsBHhw==
-X-Proofpoint-ORIG-GUID: K3OQOJ6TMs_Im_MaJzNBWDSnStOHUmzF
-X-Authority-Analysis: v=2.4 cv=IM8yzAvG c=1 sm=1 tr=0 ts=6a3ee66f cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=EUspDBNiAAAA:8
- a=5DEvdoOZ6e79lswV-sIA:9 a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-26_05,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
- impostorscore=0 priorityscore=1501 phishscore=0 suspectscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606260172
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB7nPmoC/4XPwU6FMBAF0F956doaOqXT1pX/YVy0ZSqNSAn4i
+ OaFf7e8DcSALu8kc27ujU00JprY0+XGRprTlHJfgnm4sNC6/o14akpmUAFWUEk+5vAe2jTw6+S
+ bgYeOXH8duPLKNtErFE6y8jyMFNPXHX55LblN02cev+89s1iv/5Kz4BUX6DBaoEZofA6565zPo
+ 3sM+YOt7Aw7SpxTUCiPmgKAihbpiJIbJf+gZKEkmUjGOllmH1H1RtVgTqm6UFprhVpQIIAjSm0
+ UCjilVKEoBiMrtAZtPKJwT9lTCteB3ouoai+jPByodxSoU0qvlCEvQ0RVx+Y3tSzLD6XQY1uCA
+ gAA
+X-Change-ID: 20260203-rockchip-usbdp-cleanup-5b59dfb561a3
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Frank Wang <frank.wang@rock-chips.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Yubing Zhang <yubing.zhang@rock-chips.com>, 
+ Alexey Charkov <alchark@gmail.com>, linux-phy@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, kernel@collabora.com, 
+ devicetree@vger.kernel.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Sashiko <sashiko-bot@kernel.org>, William Wu <william.wu@rock-chips.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9525;
+ i=sebastian.reichel@collabora.com; h=from:subject:message-id;
+ bh=UrLCAhUpEZcIt6PAQMBwOY8rOy1yJLTsWIfJZe/SqbM=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGo+5yQNOxEHuc4kH/ZjcPhLkyVyBMdwrKAAa
+ UBiG0XlIGtHSYkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqPuckAAoJENju1/PI
+ O/qa/3MP/2vfmTo6QkLfveA7oBFmf3eey0eOnXTDJxJRMghE2IofhQeizrG9HWBdawrAzIUCY9X
+ KQNYpiAMsiDBRArILF/WCIBhEYS0lguBmf2WX4ZkqkmVyYp5agIr4in0Ff4BsxCMfYQCDD7YVwP
+ +/YYURaYx2gNJQaQe92l3kjlA0AAAyHbT23l7Canf2K5wza+RvgALPbmPkIdyojqSgIsyebPd1J
+ Cw95ApY0Sk1xJdUPm+ewiN98pZKV07xikMuVgRIpP98Ac/IXYYUS9adHqnP8OZoUVtjz7RzmkTO
+ 05ROCgG1EJx0lKqIBff6UYI4/4QIYNrlLnlgScmdRPfiivkB1RE4qQEw8FnNkr2tguEqLMsM8Me
+ LcbGuV3bGCVadHSWJESIdjbNryzj0rIehM16b/JxTUnGSx/C59hdhp4Io/ydSNbMJ1ZQXloO4Ru
+ cvWjFVahCM79+KNklZ/QCsvrj0ZRsYQpa7n1tz4KvJz15k9Cv7zK0mwYbwIDe84mASiauhkakXJ
+ jNhiX4yAmYYpN5VD2WkGMrnVWTiHMwhp3gWynmt4fFqFxMaSfo8/hAE2wQqeIvPbwpvHkYVkuKX
+ KQYJGVv0U82/ygauNNaVr+bxJVhg4mBXCRo+e130kWFZGQI2m1bjmlvhqPyLgEj0STxkVGZS/Qj
+ 3csKN6UFKC9b9L+tfX+8f/Q==
+X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-316200-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime,qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:mahadevan.p@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:cros-qcom-dts-watchers@chromium.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:mahap@qti.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-316203-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@gmail.com,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:sebastian.reichel@collabora.com,m:sashiko-bot@kernel.org,m:william.wu@rock-chips.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[rock-chips.com,kernel.org,gmail.com,lists.infradead.org,vger.kernel.org,collabora.com];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4EA916D017E
+X-Rspamd-Queue-Id: 4EC926D01A9
 
-On Wed, Apr 29, 2026 at 12:10:42PM +0530, Mahadevan P wrote:
-> From: Mahadevan P <mahap@qti.qualcomm.com>
-> 
-> Allow up to 4 lanes for the DisplayPort link from the PHY to the
-> controller now the mode-switch events can reach the QMP Combo PHY.
-> 
-> Signed-off-by: Mahadevan P <mahadevan.p@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/kodiak.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi b/arch/arm64/boot/dts/qcom/kodiak.dtsi
-> index 0acc6917d7aa..204513a6bd89 100644
-> --- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
-> @@ -5704,7 +5704,7 @@ dp_in: endpoint {
->  					port@1 {
->  						reg = <1>;
->  						mdss_dp_out: endpoint {
-> -							data-lanes = <0 1>;
-> +							data-lanes = <0 1 2 3>;
+This series overhauls the Rockchip USBDP driver; apart from a
+a bunch of cleanups and small improvements the main goal is to
+get the driver ready for proper USB-C DP AltMode support. At
+the moment it only contains a semi-working state.
 
-So, basically, you've force-enabled 4 lanes for all devices, even though
-they had 2 lanes enabled only. Don't do that. Squash it to the previous
-commit and enable carefully, only for the platforms where you actually
-know that there are 4 DP lanes to be used.
+Once this series has landed, it unblocks enabling proper USB-C
+DP AltMode on the RK3588 and RK3576 platforms incl. runtime PM
+for the Synopsys DesignWare DisplayPort controller.
 
->  							remote-endpoint = <&usb_dp_qmpphy_dp_in>;
->  						};
->  					};
-> 
-> -- 
-> 2.34.1
-> 
+Apart from this series, further changes are required on the
+DRM side. There are no compile-time dependencies between the
+DRM side and the PHY side, but the PHY side must be applied
+to avoid SErrors once runtime PM is added to the DisplayPort
+controller driver. Thus it would be really good to land this
+series ASAP as it blocks the DRM side.
 
+Apart from that it also fixes a bunch of issues pointed out by
+Sashiko (mostly harmless), as well as some real problems. Among
+other things it should help drastically with orientation switch
+problems and potential SErrors when a USB-C device is hot-plugged.
+
+With this series applied, I did not notice any SErrors. What I do see is
+cmn ana lcpll lock timeouts after a few replugs, which are permanent
+(i.e. it still happens when re-trying to init the PHY after running into
+the timeout). After a reboot the problem is gone. It seems the dynamic
+USB3 disabling increased the chance a lot to hit this problem. I think
+this is better than the current status where Serrors can appear on hotplug
+due to the re-init. Unfortunately LCPLL is more or less undocumented in
+the TRM, so it is hard to figure out what is going on exactly.
+
+Changes in v8:
+- Link to v7: https://lore.kernel.org/r/20260625-rockchip-usbdp-cleanup-v7-0-38eb3cf654fd@collabora.com
+- Move patch "Limit DP lane count to muxed lanes" after single lane
+  support, which introduces dp_lanes variable to make sure series
+  is bi-sectable (Sashiko)
+- Force disable HPD in "Drop seamless DP takeover" patch and update
+  patch description to mention potential issues with SErrors for
+  bootloaders really keeping the DW-DP on. As mentioned in the new
+  commit message this is untested as I'm not aware of such a
+  bootloader anyways; this also means we need to keep the HPD GRF
+  register defines in the 'Drop DP HPD handling' patch (Sashiko)
+- Fix mode logic in "Properly handle TYPEC_STATE_SAFE and
+  TYPEC_STATE_USB" patch; I blame the heat (Sashiko)
+- Improve "Support going from DP-only mode to USB mode" patch to
+  better handle starting in DP only mode; due to TypeC logic
+  starting delayed this does not really happen, though (Sashiko)
+- Improve "Support going from DP-only mode to USB mode" to avoid
+  checking previous state and instead power on USB state based
+  on previous requested state to avoid effects from the flip
+  callback (Sashiko)
+- Update the debug message patch to include some more info
+- Ad one more patch, which disables USB3 at startup and drops
+  the -EPROBE_DEFER logic
+
+Changes in v7:
+- Link to v6: https://lore.kernel.org/r/20260619-rockchip-usbdp-cleanup-v6-0-3bb1f54b3f35@collabora.com
+- Add new patch handling missing clock-names in DT gracefully (Sashiko)
+- Add new patch handling rk_udphy_reset_deassert_all errors in init check (Sashiko)
+- Add new patch to handle Properly handle TYPEC_STATE_SAFE and TYPEC_STATE_USB (Sashiko)
+- Add new patch to avoid xHCI SErrors
+
+Changes in v6:
+- Link to v5: https://lore.kernel.org/r/20260612-rockchip-usbdp-cleanup-v5-0-efc83069869f@collabora.com
+- Add explicit <linux/string_choices.h> include in last patch (Sashiko)
+- Add new patch moving mode_change update after error handling (Sashiko)
+- Add new patch fixing error masking of devm_clk_bulk_get_all() (Sashiko)
+- Add new patch dropping seamless DP takeover as it is non-functional and buggy (Sashiko) 
+- Add new patch limiting DP lane count to muxed lanes (Sashiko)
+- Add error handling in the patch that keeps clocks running on PHY re-init (Sashiko)
+- Also look for DP being configured to second lane for the flip config
+  in DP single-lane mode, which should at least keep USB working for
+  this super unusual config (Sashiko)
+- Drop useless ret variable in patch introducing guard() for the mutex
+- Add error handling for PHY re-enablement in the patch fixing support for
+  DP-only -> USB mode (Sashiko)
+
+Changes in v5:
+- Link to v4: https://lore.kernel.org/r/20260428-rockchip-usbdp-cleanup-v4-0-7775671ece22@collabora.com
+- Picked up Acked-by from Rob Herring for DT binding
+- Fix typos in commit messages/comments
+- Add Fixes tag to "Do not looe USB3 PHY status" patch
+- Collect Reviewed-by: Neil Armstrong for multiple patches
+- Drop now unused code from "Drop DP HPD handling" patch (Sashiko)
+- Ignore mux events not involving DP AltMode (Sashiko)
+- Add new patch to support going back from DP only mode to USB combo
+  mode; technically this is a fix, but DP mode does not yet work
+  upstream, so it does not matter (Sashiko)
+- Add new patch adding a few debug messages, which are useful
+  to investigate potential hotplug issues in the future
+- Sashiko comments about the DT binding and property usage
+  are wrong as the first port is for the superspeed lanes
+  used for DP and USB, while the last port is just about
+  DP aux. I ignored them.
+- There is a pre-existing bug, that can already be hit with the
+  upstream kernel and that the series doesn't fix properly:
+  Accessing the USB3 controller registers requires the USB PHY
+  running, since it provides a clock. Re-initializing the PHY
+  means there is a race-condition - if the system tries to access
+  the USB3 controller in parallel to the re-init, the system will
+  hang and/or fail with an SError. By keeping the clocks running
+  and only asserting the resets this time is minimized by this
+  series. A proper fix for this will be looked into independently
+  from this series.
+- I used v7.1-rc6 as base, but the driver has no changes since
+  6.18 even in linux-next and there are no pending patches for
+  it on the mailinglist either, so it applies to *any* recent
+  kernel branch.
+
+Changes in v4:
+- Link to v3: https://lore.kernel.org/r/20260313-rockchip-usbdp-cleanup-v3-0-3e8fe89a35b5@collabora.com
+- rebased to v7.1-rc1 (no changes)
+- Update DRM bridge registration patch to avoid registration when DP aux
+  port is not connected to anything, since this results in errors and some
+  boards use USBDP instances for USB3 only.
+- Add patch renaming mode_change into phy_needs_reinit
+- Add patch to re-init PHY on orientation change
+- Add patch to factor out lane_mux_sel setup
+- Add patch to handle mutex via guard functions
+
+Changes in v3:
+- Link to v2: https://lore.kernel.org/r/20260213-rockchip-usbdp-cleanup-v2-0-b67ec225f96e@collabora.com
+- Add patch to register the USBDP PHY as DRM bridge
+- Add patch to describe ports in DT binding (used by the DRM bridge)
+- Add patch to drop HPD handling from the PHY
+
+Changes in v2:
+- Link to v1: https://lore.kernel.org/r/20260203-rockchip-usbdp-cleanup-v1-0-16a6f92ed176@collabora.com
+- Added new patches to fix USB3 SError
+
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+Frank Wang (1):
+      phy: rockchip: usbdp: Amend SSC modulation deviation
+
+Sebastian Reichel (26):
+      dt-bindings: phy: rockchip-usbdp: add improved ports scheme
+      phy: rockchip: usbdp: Update mode_change after error handling
+      phy: rockchip: usbdp: Do not lose USB3 PHY status
+      phy: rockchip: usbdp: Fix devm_clk_bulk_get_all check
+      phy: rockchip: usbdp: Handle missing clock-names DT property gracefully
+      phy: rockchip: usbdp: Drop seamless DP takeover
+      phy: rockchip: usbdp: Handle rk_udphy_reset_deassert_all errors in init check
+      phy: rockchip: usbdp: Keep clocks running on PHY re-init
+      phy: rockchip: usbdp: Add missing mode_change update
+      phy: rockchip: usbdp: Limit DP lane count to muxed lanes
+      phy: rockchip: usbdp: Rename DP lane functions
+      phy: rockchip: usbdp: Use FIELD_PREP_WM16_CONST
+      phy: rockchip: usbdp: Cleanup DP lane selection function
+      phy: rockchip: usbdp: Register DP aux bridge
+      phy: rockchip: usbdp: Drop DP HPD handling
+      phy: rockchip: usbdp: Rename mode_change to phy_needs_reinit
+      phy: rockchip: usbdp: Re-init the PHY on orientation change
+      phy: rockchip: usbdp: Factor out lane_mux_sel setup
+      phy: rockchip: usbdp: Properly handle TYPEC_STATE_SAFE and TYPEC_STATE_USB
+      phy: rockchip: usbdp: Use guard functions for mutex
+      phy: rockchip: usbdp: Support going from DP-only mode to USB mode
+      phy: rockchip: usbdp: Clear USB status on PHY exit
+      phy: rockchip: usbdp: Hold mutex in DP PHY configure
+      phy: rockchip: usbdp: Add some extra debug messages
+      phy: rockchip: usbdp: Avoid xHCI SErrors
+      phy: rockchip: usbdp: Disable USB3 on probe
+
+William Wu (1):
+      phy: rockchip: usbdp: Fix LFPS detect threshold control
+
+Zhang Yubing (1):
+      phy: rockchip: usbdp: Support single-lane DP
+
+ .../bindings/phy/phy-rockchip-usbdp.yaml           |  23 ++
+ drivers/phy/rockchip/Kconfig                       |   2 +
+ drivers/phy/rockchip/phy-rockchip-usbdp.c          | 427 ++++++++++-----------
+ 3 files changed, 231 insertions(+), 221 deletions(-)
+---
+base-commit: 4edcdefd4083ae04b1a5656f4be6cd83ae919ef4
+change-id: 20260203-rockchip-usbdp-cleanup-5b59dfb561a3
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Sebastian Reichel <sebastian.reichel@collabora.com>
+
 
