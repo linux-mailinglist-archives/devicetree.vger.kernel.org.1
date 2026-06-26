@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-316103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316104-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7SAxE2qIPmpgHgkAu9opvQ
-	(envelope-from <devicetree+bounces-316103-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:10:50 +0200
+	id PWySBWuIPmphHgkAu9opvQ
+	(envelope-from <devicetree+bounces-316104-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:10:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7D366CDCAD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:10:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86A996CDCB0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:10:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="Aw6/7A4R";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316103-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316103-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nYjCWIRQ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316104-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-316104-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DF3C83012C89
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 14:10:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EDBCD3021CA7
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 14:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81DD33F5BF8;
-	Fri, 26 Jun 2026 14:10:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9901C3F54A7;
+	Fri, 26 Jun 2026 14:10:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C212F6560
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 14:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86CDE3F787B
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 14:10:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782483047; cv=none; b=fJO/+FCPBbxPekEFoTRPhVux2VVNiJirYYO0yzIc4NUT0BUGPFc3IoRYrMCwNEvDpwvIA/hULDz0WaLG5OrErwx7Fw5r1MVgyI6GbY3VvCRxX1Q3a2xngF614F6RwJLBGgahCQLKF/HI/5Jp8O+gQbO+NvSEUIwIFxQY5g9fvYQ=
+	t=1782483049; cv=none; b=qf7V9qOFHF1ovLLXt+PeE6hdgLEP6WyIfyKgx3/NCy94+Pjvir2FT1gmSbg8QKmOv7c+9Xq4G2WUFyKdh2XpfEsmml1UFqLtr0K5bA2DaOo+1CXpcmvP+5Sh98WHcyrmRKhpoVWP6OoD+OkeBC/UmxcmPvIYYRUGKEJuHvBwqJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782483047; c=relaxed/simple;
-	bh=SIMn3wV+nVRuHr+S2/3SCNKUIBeh2wuzynd1XwEealg=;
+	s=arc-20240116; t=1782483049; c=relaxed/simple;
+	bh=DDEKwTiPlFrkGV5+hjM/xG5FQ9xPZubUaY/LpcS1UuY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Q/1HWVnCCDG/WH1hUdMQlWiNV4ZkB8uhm9I8goL2+PhaZVWQ4InASztBJiLuoLYFEyfhkf1TP3qH29UiM9TNmejLHkwoXQ84olIMgoCnvXE+z/zgnd8zWbKo8MIqzOQgWGgW6ghGEXZ0xT6bl7rnAfU2s79LxLV3pccSg6M7sUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Aw6/7A4R; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7F4E1F000E9;
-	Fri, 26 Jun 2026 14:10:45 +0000 (UTC)
+	 Message-Id; b=BDvED9H0nVHEUZr3CEh1fUsewguoj+x/AQN7PFpNMgLYPyn2iLxBvfYP45gLswTk2ZFzR2mgYlpH+VFtVmbaS8OivNZR4cOD6wEsTkU22tKtYowy8QNLcdYkXnvl/TSmKpWbAcWAl5y8t7U5Lrq8gZK3rcjw0Y2WUnsWxTfkzx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nYjCWIRQ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFFC21F000E9;
+	Fri, 26 Jun 2026 14:10:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782483046;
-	bh=cpDSMon+bmw4Q4hVU/1CRXgzCUOkAtebgLlTodIxu9Y=;
+	s=k20260515; t=1782483048;
+	bh=PxovwiKiTFuOZIA1X9SuIL0lmTpc/gW6yOtk4D8tsFg=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Aw6/7A4R9B5TwZI9/j1LoSWI/IWcCsPwqd2Y3XmPg0UmrpTx10lwZBLBQyGq9MYgz
-	 30kFpe5gLzZAjVTBTosSkPxkK1qWZjLBfdx1fhDo+RFNXZLYpON1byyKPqQAR2V16A
-	 8ebUua0d4v3MxZff20HyL6eRqvdKFc7h8jIcpDXcQ8bcsMS5+Y1g08Gm+DgwouW8us
-	 pk68suEKm4K7kMJg6caX9kObZePcqL8P8GnRi49ITdrVjsvO8wsMUErXdt0jpVurgi
-	 cY2q2SX2OWOXy54GUkzBE2u1PbGo71o7rAgxam5akzal9B4iuzA079J/kCaOrr410J
-	 Z+tjZpPqO4TKA==
+	b=nYjCWIRQyM26Gngyz0uc3jRy1O21SSI88+RMokSVG8ce+hJSPU6NIGO+1AxsX2Ugl
+	 dV5UNqZ5ObfUAVr903e5Vi97pzGxBct9NelagyedcMi2AQWVp1B5/u/W40GymOBWcX
+	 4tC0Fl6YpkPAZwr0Hep1fiQOB9bgkkA8KuggGxD+9xzf8wU7QgDtRKn9yqQfP/9Xc9
+	 nmGh2j2Rj3FTnr8lSw+niHpE1qPnJuEmaKwBcINXIbXedLHwczpvDNnyBFdcYD2Hul
+	 jv4Q1A1rXKnAiFN9Yq4g0yKthcSDmdfsnHKkHjLm995w5lEJyuwxXUwZmqQ1hbY915
+	 hD6hffemUBtPA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: ipq5018: add nodes required for
- Bluetooth support
+Subject: Re: [PATCH 4/6] dt-bindings: net: bluetooth: Document Qualcomm
+ IPQ5018 Bluetooth controller
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "George Moussalem via B4 Relay" <devnull+george.moussalem.outlook.com@kernel.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260625-ipq5018-bluetooth-v1-6-d999be0e04f7@outlook.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260625-ipq5018-bluetooth-v1-4-d999be0e04f7@outlook.com>
 References: <20260625-ipq5018-bluetooth-v1-0-d999be0e04f7@outlook.com>
- <20260625-ipq5018-bluetooth-v1-6-d999be0e04f7@outlook.com>
+ <20260625-ipq5018-bluetooth-v1-4-d999be0e04f7@outlook.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 26 Jun 2026 14:10:44 +0000
-Message-Id: <20260626141045.C7F4E1F000E9@smtp.kernel.org>
+Date: Fri, 26 Jun 2026 14:10:47 +0000
+Message-Id: <20260626141047.DFFC21F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,7 +71,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -79,9 +79,9 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316103-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316104-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:devnull+george.moussalem.outlook.com@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:devnull+george.moussalem.outlook.com@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -98,60 +98,54 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,outlook.com:email,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A7D366CDCAD
+X-Rspamd-Queue-Id: 86A996CDCB0
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] Adding 'syscon' to the 'apcs_glb' compatible string list without up=
-dating the devicetree bindings causes a schema validation failure.
+- [Low] The description for the 'interrupts' property is abruptly truncated=
+ mid-sentence.
 --
 
-commit d7e5dd126ba08d18fdb72c0c8149b7aba5e36e82
+commit 6f8911a9af73d725c2b86b32d5b5e404664a0809
 Author: George Moussalem <george.moussalem@outlook.com>
 
-arm64: dts: qcom: ipq5018: add nodes required for Bluetooth support
+dt-bindings: net: bluetooth: Document Qualcomm IPQ5018 Bluetooth controller
 
-Add nodes for the M0 remoteproc, reserved memory carveout, and Bluetooth
-to bring up the M0 core and enable the Bluetooth Subsystem.
+This commit documents the Qualcomm IPQ5018 Bluetooth controller by adding a
+new device tree binding schema.
 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/=
-qcom/ipq5018.dtsi
-> index 6f8004a22a1ff..4fdf20c87b0a9 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qcom,ipq5018=
+-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/qcom,ipq5018-bt.=
+yaml
+> new file mode 100644
+> index 0000000000000..afd33f8518588
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/qcom,ipq5018-bt.yaml
 [ ... ]
-
-> @@ -647,7 +678,8 @@ watchdog: watchdog@b017000 {
-> =20
->  		apcs_glb: mailbox@b111000 {
->  			compatible =3D "qcom,ipq5018-apcs-apps-global",
-> -				     "qcom,ipq6018-apcs-apps-global";
-> +				     "qcom,ipq6018-apcs-apps-global",
-> +				     "syscon";
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,ipq5018-bt
+> +
+> +  interrupts:
+> +    items:
+> +      - description:
+> +          Interrupt line from the M0 Bluetooth Subsystem to the host pro=
+cessor
+> +          to notify it of events such as re
 
 [Severity: Low]
-Will appending "syscon" to the apcs_glb compatible string list cause a
-devicetree schema validation failure?
-
-It looks like the qcom,apcs-kpss-global.yaml bindings enforce that the
-qcom,ipq5018-apcs-apps-global compatible list must contain exactly two stri=
-ngs.
-Running make dtbs_check might fail here without a corresponding update to t=
-he
-YAML binding to permit this third item.
-
->  			reg =3D <0x0b111000 0x1000>;
->  			#clock-cells =3D <1>;
->  			clocks =3D <&a53pll>, <&xo_board_clk>, <&gcc GPLL0>;
+Is this description abruptly truncated mid-sentence? It appears to cut off =
+at
+"events such as re".
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625-ipq5018-bl=
-uetooth-v1-0-d999be0e04f7@outlook.com?part=3D6
+uetooth-v1-0-d999be0e04f7@outlook.com?part=3D4
 
