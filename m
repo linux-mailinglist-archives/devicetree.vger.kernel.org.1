@@ -1,421 +1,174 @@
-Return-Path: <devicetree+bounces-315872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315916-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RZmIFDfPPWrM6ggAu9opvQ
-	(envelope-from <devicetree+bounces-315872-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 03:00:39 +0200
+	id 6e3GGCD9PWo1+AgAu9opvQ
+	(envelope-from <devicetree+bounces-315916-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 06:16:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC1736C95C4
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 03:00:38 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61A966CA15C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 06:16:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bp.renesas.com header.s=selector1 header.b=kWuYH2mu;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315872-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315872-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=renesas.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=lenovo.com header.s=DKIM202306 header.b=5agKnRUO;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315916-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-315916-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=lenovo.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C5E41304605B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 00:59:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7F70E30069B4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F5CA2BFC60;
-	Fri, 26 Jun 2026 00:59:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4388E26E173;
+	Fri, 26 Jun 2026 04:16:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011026.outbound.protection.outlook.com [52.101.125.26])
+Received: from mx0b-00823401.pphosted.com (mx0b-00823401.pphosted.com [148.163.152.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB37A2BE644;
-	Fri, 26 Jun 2026 00:59:36 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782435579; cv=fail; b=ievq2ACSTpOX8+ukMhan+iZ2aO6dvdUZ0t2Fpajc4/XrVgC109doswBpYnseWWbB9aTzAyXLPYNxjLNy+zK3AjuiYf3hL0hp9XHPNhZFEgbrESH/RrZT7OddPYenD3D7WRkaE/IB3i3UiiDNoTEysBzL1xbMh2JivE3npirHLV0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782435579; c=relaxed/simple;
-	bh=ZKIA9jYY72/D3ZQ9Jbx69ko/fMfLeXbnRLnvYUZES2c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=ZepJD1V+wZZjGLyBmjnSU2ZfHkaipkeQmY2VsoazMGL7hHl7SqJLLuAV64bA6qgL91qfLiNM1bd91gjYeP6l9mvUpmAZi+akG6gjuOGfFp7JJZ6KThQXLSuQjyXG7/WOG7cYLFyPg1j5vkYpPoiMoUeLF4out0EwtntzJN4CFT4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=kWuYH2mu; arc=fail smtp.client-ip=52.101.125.26
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zM90CjWTxw2BzVIlDZSINTrSInJvTd5ZyNd0A4Yywvsl8scl7TyVl2yz/6IhTKBYWVk9aRYHAP5GbWHhrx4xbDwM76gE00gsSyYcIYIx6EIcHa/AiqPYoQC9HbzQ1l9zYV45DCpsJZ26PbqWNpQYJr0twPc5PMkDEJmjJJaTLwMXaMBJ0/j5t26fmDyJdqgwfCeQmfXqBrfw9CBLuIV878NcxavG3qzGHQOQP55GnjtRLV1DFmAcdGY24X7aQjqw2FkKloGnF8BVFjMu9bllC+QAlcb1DkBkqPYiWIW+4VCOiQ09OfDOMowd1rnOotVL1paW20gLkFiQajKNuHXA6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SnKvjL+0DMSuJlLXbOtjbLWY5RwhXgC0eT31JCOmnnU=;
- b=WoekNNBx6naZk/s8YFbplb+bLEL19Rx/SOLpUGc2e5vK/rQlmzEFOyYGOtD9SxxUnaWz14B1fywQ2vQ9u27WaHnUYkmPJbRqBvtmZLOvsIjPr04PUpxKdcKdANYJb8feQRCYPHH1C98yjnDQNtqp8FBN4J52iIAhvD7yspm8tCMKAOn7ZPmUlwByaJZxkq/Ur/cOsGcVF3PPrM6dGLjrr6ZM7Zt4PBm5F06UoJ1vLsiyKgYcoyCUVZcjTp8AX5oj8fdppgY9Zzkoh1SMFuYkgqlckVk8fHidYe3JXPPIl1B+0B9OGZPwCAD6nGMNvWe60kMRoMpM5RswuMCIHliGfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SnKvjL+0DMSuJlLXbOtjbLWY5RwhXgC0eT31JCOmnnU=;
- b=kWuYH2muqwuoQ2colvwaN7updic8CmDor+qtqGOUXzub3/dqIZl9cDESm/KNTkJAMCkN2o0amDqrpyg1EyLf3H2X3sYK4mzykjT0Je/Kn0npHjZjUtZBpha02mE9PuEHQzOTfhJ8RPGeDoO7GYXUabuRfLEtx9IRqo7fEwSXW78=
-Received: from TYRPR01MB13588.jpnprd01.prod.outlook.com (2603:1096:405:18d::7)
- by OS3PR01MB6610.jpnprd01.prod.outlook.com (2603:1096:604:10a::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.16; Fri, 26 Jun
- 2026 00:59:32 +0000
-Received: from TYRPR01MB13588.jpnprd01.prod.outlook.com
- ([fe80::2f5b:8560:48ed:3828]) by TYRPR01MB13588.jpnprd01.prod.outlook.com
- ([fe80::2f5b:8560:48ed:3828%4]) with mapi id 15.21.0159.016; Fri, 26 Jun 2026
- 00:59:32 +0000
-Date: Fri, 26 Jun 2026 02:59:11 +0200
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>
-Cc: tomm.merciai@gmail.com, geert@linux-m68k.org,
-	laurent.pinchart@ideasonboard.com,
-	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 02/13] dt-bindings: display: renesas,rzg2l-du: Add
- support for RZ/G3E SoC
-Message-ID: <aj3O36J4q04nIpNs@tom-desktop>
-References: <cover.1778141145.git.tommaso.merciai.xr@bp.renesas.com>
- <ff8e401a0667970a42a55420dcb071e34730a923.1778141145.git.tommaso.merciai.xr@bp.renesas.com>
- <20260513222725.GA2069022-robh@kernel.org>
- <aiqtSWTTa4ZIThrp@tom-desktop>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aiqtSWTTa4ZIThrp@tom-desktop>
-X-ClientProxiedBy: VI1PR0102CA0003.eurprd01.prod.exchangelabs.com
- (2603:10a6:802::16) To TYRPR01MB13588.jpnprd01.prod.outlook.com
- (2603:1096:405:18d::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D7A78F2B;
+	Fri, 26 Jun 2026 04:16:24 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782447386; cv=none; b=u7z6aG8abUHUMTq836pK8kZ1Zo518y2/Hz6IAwVbB/LBT89yae/QHkKihIvw5xakURs+DeoW/j2ibFerLBdWaoLUxVS7AVEDDrUbVicC98VeXM+baXf992wCnF+C0bld3BAffGbjrLdBVJsOUIekGwTGrKqKEvvqMnYdER13ZPU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782447386; c=relaxed/simple;
+	bh=SD41HtAWuhHpjv7zbR6oJUZQHyLQ+OxFUxA0WK5wTGk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eJKGGxXydn4YawpGqqPepNDlnbafVoh+g7kR77b05tG8sSmjDpiza6PMZc+BG0IgxkPQOkanrRIFWcvTspinAU4zuIyWIb1x30AiRQpeXIXI8wacETGKjRHvlKcYumDsVKdrohs8ITH7w+9V3KstSKtDIMuIa9lXvsDVnCPt47k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lenovo.com; spf=pass smtp.mailfrom=lenovo.com; dkim=pass (2048-bit key) header.d=lenovo.com header.i=@lenovo.com header.b=5agKnRUO; arc=none smtp.client-ip=148.163.152.46
+Received: from pps.filterd (m0355092.ppops.net [127.0.0.1])
+	by mx0b-00823401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65PMYxnK2654107;
+	Fri, 26 Jun 2026 01:09:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lenovo.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=DKIM202306; bh=k6uWojxqr6dwn9XkSkMNKSoksjyLTPysi9
+	r8WEDjemw=; b=5agKnRUON/ltRyuCmPSJdiYVxX/O3LfARZLuQC0Vu4mpMf9jZI
+	eVFjmk0KEoAetveKq57VlaHNTsdbzDVh+Oz2ZaOLNlcy+Z0PbZhP1BJlDHasuuyW
+	i3RO7KF5cO6mYSoptDrWwjOT0djjFjcSyclw8k3IaDZErZug/jiFGF6nuji9lky9
+	GWXwOeTEtD4hZH9NGZqU6/PbMK+ZSuANL6MvJjXAN5wdlLnnNtT1L+JTeNu484Wv
+	9/gSn5mhMrjjhdr+exM5wHfCHOgH5OrqZvBM1EaFETrti3WSkWJqIIdjJY4GYcSI
+	yPyeZrn9t+Hbhfr1KRW84LYkr2X/47kMNn6A==
+Received: from hkglppfpool3.lenovo.com ([103.30.235.220])
+	by mx0b-00823401.pphosted.com (PPS) with ESMTPS id 4ex96ejhjm-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 26 Jun 2026 01:09:53 +0000 (GMT)
+Received: from hetlppfpool2.lenovo.com (unknown [10.196.132.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hkglppfpool3.lenovo.com (Postfix) with ESMTPS id 4gmcvk2X9QzDRKyM;
+	Fri, 26 Jun 2026 01:06:58 +0000 (UTC)
+Received: from lenovo.com (unknown [10.119.171.213])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hetlppfpool2.lenovo.com (Postfix) with ESMTPS id 4gmcz31pwKz18W7cG;
+	Fri, 26 Jun 2026 01:09:51 +0000 (UTC)
+From: Jiqi Li <lijq9@lenovo.com>
+To: linux-tegra@vger.kernel.org
+Cc: devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, jonathanh@nvidia.com, thierry.reding@gmail.com,
+        mpearson-lenovo@squebb.ca, Jiqi Li <lijq9@lenovo.com>
+Subject: [RFC PATCH 0/2] Add Lenovo ThinkEdge SE70 carrier board support
+Date: Fri, 26 Jun 2026 09:09:48 +0800
+Message-ID: <20260626010950.459899-1-lijq9@lenovo.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYRPR01MB13588:EE_|OS3PR01MB6610:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32b207a8-bc7d-43d3-172c-08ded31e2ee4
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|52116014|7416014|376014|23010399003|366016|38350700014|13003099007|22082099003|18002099003|3023799007|4143699003|6133799003|11063799006|5023799004|56012099006;
-X-Microsoft-Antispam-Message-Info:
- XpVqyCMjNee4n3BlHcmSndmR2oOcZ8Kf9SZMy2soAj6kC9UJ6giN+CnCg8R3EeF9UyPq8+C4PxiiHy1kALJhHyxFHFzze9Ed2T6+618Mi8uuizpE0txg8YF6AXKmE/arwnzIXhVWglV7cJxRm28o2rjUsXiWmDxjlklvDBIxc+tzTziAVbdb+NUVl4ec3t/7D0Ausvc2K1kVmwdtPFnI10ZN9xzaiLldBQwLjtVLfyeGuqbdglbikX68pCkO5W+lZrcNuGkdRGHGlSOXlDtBZGqymp2sEw4aeICXkSTqe4o8w0BfgzfyUF05aCfHa8YiziD2ZNgquNZzi0xxVik2Yf9SlxG/b3HUVyPFXiggQnVB0WXRnTF290g4lFEX8kuZe0/cPkKqML4vWDYHyqTkuXC5MChDYOdTWmWP0I8OqpHvmnjjR1W8aUQ9eKjFCf/LHIB+anYFIdIa7EBluILxM6i7emczjnWFg2oHUHgz7WdWprH8zMaKwnzmrLEwISwFRRVAGqVvxkkf3VGeMFOXTB04dw/Pkf+bNmfvsMoLgcNEH5YhD9Fg289ELF4I63WD/WtQoYGqk12/H1BUVmVAt5rBqi5lw9Lb8MZ8aVyeoAmYFeMY/vVgantJ3XBxEoeocMd4FRNgm9EqSgbzVET3tcTnfWyLp/4aslVk9AuWTL0HJ/mMfy4Pjfki5sCjIUDqfZRH9ReT3t19T2Tx7QHnubRQqqh2GyMxR+cyYCUC9aU=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYRPR01MB13588.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(23010399003)(366016)(38350700014)(13003099007)(22082099003)(18002099003)(3023799007)(4143699003)(6133799003)(11063799006)(5023799004)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?Vro8yVIWs4/uvomroXluy6Q2Nj/RVUo0woPcaedsLKVwIevx4OutsZROoA0I?=
- =?us-ascii?Q?62GdJZSO5ME8twEuPZu/S7yJHwRMBgRRu9w5DYtfc2ga7eHBMJf81EBKk86C?=
- =?us-ascii?Q?R3QR8VPGXxuiTN1PAbOyj5f6GI83btXqchha4F8Ryx8H2ieGZPmXirQezxl4?=
- =?us-ascii?Q?8x3luplb9aqZYDiGld+msFiL8C0aOvfZhz0emDbsbFjs2AiBwNFSb4+xK9+/?=
- =?us-ascii?Q?NbZYZw6TXlDszpFynudio8WosrEcEknj0wq7WtQ302VpTReRG/AQjC3Y5emK?=
- =?us-ascii?Q?Yrqcz86AV2wSIKuND8NHIe99DnGT2TBg2bxHNXRSDZ+65bUXAf8LwVXjU2Pv?=
- =?us-ascii?Q?sfLj2bOc22FIK1X2CVN1IiCMW3A2XKMl1ebsOEPwm2Ycg14P90oMRvbByOKY?=
- =?us-ascii?Q?JkvCU2q5uJ/crJAfB3kK7JTUP0Rel3i1c27C7u9mV/kVu26S6wlJYVFZClmE?=
- =?us-ascii?Q?38B/6JOxMY508/oWIF0py/MQHXEpn+7KJ6mpdTVS1axNQ8YkY+3vzddj7QCm?=
- =?us-ascii?Q?v/x5X1kFV+jAYZLFqFHryJ9Y5vgKnHH2WjKWZ18lvauq8er7MaxYGyuRX2ac?=
- =?us-ascii?Q?neIehi6K9DCHXei3q4RfUEUxbrAyCVKC6HNZ3z4OeTI/f3mlCe3OJkWjsl9I?=
- =?us-ascii?Q?WnF8XSjoroSSJJnQcOfw4UVNSsy+HnIUjUoD5nw4f49lCcZ0yhKYiNeiOOCK?=
- =?us-ascii?Q?eokm2xsQvfYmDECkph6MYzky1vNVJ1/e6TVJF7gcQAwEnejLhW/YeMszn/oO?=
- =?us-ascii?Q?+HkXTN0eWx4B3KVhq4MxiAVg11bfqmEp+m0GgMhYOpQPxzGGlc9mDfZM0QDK?=
- =?us-ascii?Q?Wq4YJiaHDksJJZTBGKC95lMizs0KSRgFpqpBSJFtXu1iQhOVDqckcuPgACGL?=
- =?us-ascii?Q?Ex4Ft5w0svZdJtjGI3ic4GG/FuHxyHb2u+eVToMYKDcPQLK5WNa6IEY2UEiN?=
- =?us-ascii?Q?b99+d4bZZK1DliTNWTHbPDfUrDXSsDWTiJSlTn1uIjyp8nRDe758Xybve5TS?=
- =?us-ascii?Q?aygCBLYZ/H5Mb6mF+Xk7xvGn14B1TDLeq57Wo88R/awXhlTQato0pbQLXQzU?=
- =?us-ascii?Q?rqMbIo/X/mdlnsS1s+sSLRYeJeoSGjXDxe30rvxfXL8eYrqwdUizmeurTBbF?=
- =?us-ascii?Q?t0viqLIf8/5Wf4x1Nwuy+IyZAgUS0ISxtMOROByXaIjrd3et7Mbd9vI442X4?=
- =?us-ascii?Q?fW0t/EiMp/y55gNvJfIBNeId8pJ0S/o/PWoPmLCTZM4pDzmaKqaWHLRcK7/3?=
- =?us-ascii?Q?nx33IzI4slmW36K8/Rf0nuZHfdpPt4Ph9msrkk1CUKSm/5Irz8+AuwBMZ7Ok?=
- =?us-ascii?Q?rIAgj4CeX2T/9CkUhkAZblsjbvoZy7lypThXIZALitT0D+dTRBgx65Lj3SfC?=
- =?us-ascii?Q?W9fVXYV6hxXOs6Zm9aiespZDhItUdXE8oUzOhAYDt/xy6IpBmqm/vkok2Qt7?=
- =?us-ascii?Q?Rtj/1eAzlrB/5Bwazpvo1v4RnKNCBeWHTYZk7H8W0q19oA6NV8pOkLTTR2Kp?=
- =?us-ascii?Q?Fneafw+X4UK2Pv6ITKbTu9ULs8mJ+zfU0hikeOvQCnX0iFGBTxEan34QCWv4?=
- =?us-ascii?Q?8Pxb1A7F8zW5OwKf/Cqh6GwXk+DKJMakAvplAN2PH8VlIEQdNPdaH/m3drMP?=
- =?us-ascii?Q?PenKqnuyZAGEWYJB4Nz+phNJmRXiNcAbBdaMhtuJLreqJaudsJ99oPMsHqLc?=
- =?us-ascii?Q?5Hmh2m8FVL3E9R2q9eJDBgqUFcFD3xQz0tB87v8hQ8U/P/YdfZWBNPk4IsSM?=
- =?us-ascii?Q?+yxKT37ZAKRHtsKrPzeSRnCotpcGcGUo2OPSxfqcWDLtBNz6ITKH?=
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32b207a8-bc7d-43d3-172c-08ded31e2ee4
-X-MS-Exchange-CrossTenant-AuthSource: TYRPR01MB13588.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2026 00:59:32.6390
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kY6Y+vj41Lh/TfIrdnLw/Ox6++BWiJt6eXtUKr4+5fCR+weK0YrBbTDpTW5Z6RzuDeVduSJGk287VCbzase3iwnaqPpAit60pJV/H0P4cOxRooLu7zAXEvmZnfsQvFSP
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB6610
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI2MDAwNiBTYWx0ZWRfXyGV5hFbQSfA0
+ 4DjRcQVMFMKMz2HLwS9axxYmcDNp7r4YydmPrYRarx/Nk9SZNg1ZK768RFhFyR3wTDMyfzvALlE
+ QlAuYeWYSp1BtcYJnCFS8NdXScFtK/I=
+X-Proofpoint-ORIG-GUID: VAIUTSf570eYCFJ4KGnfGpWGDAjngKAs
+X-Authority-Analysis: v=2.4 cv=S7fpBosP c=1 sm=1 tr=0 ts=6a3dd161 cx=c_pps
+ a=3okn395cuUlJnlrAQteHYA==:117 a=3okn395cuUlJnlrAQteHYA==:17
+ a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=2RTuljz969oO5usasWGy:22
+ a=rq6KeYSQr_4CDViOXtGD:22 a=2OInYS7Tu0KDO6MBh90A:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI2MDAwNiBTYWx0ZWRfX2z67it4CuA4b
+ XYiYeIJdv/gUfgjNWRjCLjefxZLa1MW/Jhh0+UIkuroM2sQun3QC4a/LWV1GZsI6hwGIq2MasBb
+ uO23+PGuVdPvwz5cJzUMVem8met6vmYOj2/b7aaR4nzO27uoDI5bc31ALE7McMBODTfR3N1fcos
+ Uh3b76spOAJE3MgsoIVp9dFwV7QovK9t0JsNxNwhsRc3WCh0zPh2AVC6GJwK6AKUIvalGc6x2G5
+ Z10aDLARiUl4sEYB7UK5JP28uwfhbYz6EvLWg6Iuo7kF/LAN+vXKHmleepr8oQnT1xYKydwRi7r
+ T7TgYcqnQRVT3WHhFVSunIppx3/QoszQSVYrg5oSAohUL7tMdMScrhNlH7siiukBnH5YF/5E76K
+ w+CrnC8XLmTauwCzHoclS6dlmNAdsF9JN9VdpwUTwpJsbL6Ir5djaA3uwJOEeV4pzp7ChrhVef9
+ MqdqSHmKQS6n+BHXPIQ==
+X-Proofpoint-GUID: VAIUTSf570eYCFJ4KGnfGpWGDAjngKAs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-25_03,2026-06-24_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 adultscore=0 spamscore=0 suspectscore=0
+ lowpriorityscore=0 bulkscore=0 clxscore=1011 impostorscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=-20
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606260006
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[lenovo.com,reject];
+	R_DKIM_ALLOW(-0.20)[lenovo.com:s=DKIM202306];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315872-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[tommaso.merciai.xr@bp.renesas.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,nvidia.com,gmail.com,squebb.ca,lenovo.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:tomm.merciai@gmail.com,m:geert@linux-m68k.org,m:laurent.pinchart@ideasonboard.com,m:linux-renesas-soc@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:laurent.pinchart+renesas@ideasonboard.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:tommmerciai@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tommaso.merciai.xr@bp.renesas.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,linux-m68k.org,ideasonboard.com,vger.kernel.org,bp.renesas.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,pengutronix.de,glider.be,lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TAGGED_FROM(0.00)[bounces-315916-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-tegra@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh+dt@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonathanh@nvidia.com,m:thierry.reding@gmail.com,m:mpearson-lenovo@squebb.ca,m:lijq9@lenovo.com,m:robh@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[lenovo.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,lenovo.com:dkim,lenovo.com:mid,lenovo.com:from_mime];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,vger.kernel.org:from_smtp,bp.renesas.com:dkim,bp.renesas.com:from_mime,tom-desktop:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CC1736C95C4
+X-Rspamd-Queue-Id: 61A966CA15C
 
-Hi Rob,
+This series adds device tree bindings and standalone DTS for the Lenovo
+ThinkEdge SE70 fanless industrial edge gateway based on NVIDIA Tegra194
+Xavier NX SOM.
 
-On Thu, Jun 11, 2026 at 02:42:49PM +0200, Tommaso Merciai wrote:
-> Hi Rob,
-> Thanks for your review.
-> 
-> On Wed, May 13, 2026 at 05:27:25PM -0500, Rob Herring wrote:
-> > On Thu, May 07, 2026 at 11:21:30AM +0200, Tommaso Merciai wrote:
-> > > The RZ/G3E SoC integrates two LCD controllers (LCDC0 and LCDC1), each
-> > > containing a FCPVD, VSPD, and Display Unit (DU).
-> > > 
-> > >  - LCDC0 supports DSI and LVDS (single or dual-channel) outputs.
-> > >  - LCDC1 supports DSI, LVDS (single-channel), and RGB outputs.
-> > > 
-> > > Add compatible string 'renesas,r9a09g047-du' and extend the binding to
-> > > support two DU instances: add reg-names ('du0'/'du1'), extend reg,
-> > > interrupts, and resets to maxItems: 2, and extend clocks/clock-names to
-> > > six entries (aclk/pclk/vclk per instance, minItems: 3).
-> > 
-> > Don't write what the diff has. I can read the diff for that.
-> 
-> Ouch, thanks.
-> 
-> > 
-> > > 
-> > > Drop the "Each port shall have a single endpoint." constraint since
-> > > RZ/G3E ports expose multiple endpoints.
-> > > 
-> > > Add a RZ/G3E-specific allOf rule mapping two DU instances to two ports:
-> > > 
-> > >  - port@0 (DU0): endpoint@0 DSI, endpoint@2 LVDS ch0, endpoint@3 LVDS ch1
-> > >  - port@1 (DU1): endpoint@0 DSI, endpoint@1 RGB (DPAD), endpoint@3 LVDS ch1
-> > > 
-> > > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> > > ---
-> > > v6->v7:
-> > >  - Rebased on top of [1]
-> > >    [1] https://lore.kernel.org/all/20260429170012.366537-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> > >  - Use single DRM device aggregating both DU instances (1 DU dt node),
-> > >    modelling single port for each DU0, DU1 and multiple endpoints for
-> > >    outputs.
-> > 
-> > That seems like the completely wrong thing to do and you've given no 
-> > reason why you think it is the right choice.
-> 
-> 
-> We had a discussion with Laurent at [1] about this topic.
-> In particular:
-> 
-> DSI ip can select at runtime input data path or DU0 or DU1
-> via DSI_LINK_GPO0R VICH register. This can be done by managing the
-> 2 DUs as single DRM device aggregating both DU instances that will spawn
-> 2 crtcs. In this way at runtime we can select the output for DSI ip
-> via the following commands:
-> 
-> modetest -M rzg2l-du -s 58@55:800x600-56.25@XR24 (DU0 -> DSI)
-> modetest -M rzg2l-du -s 58@56:800x600-56.25@XR24 (DU1 -> DSI)
-> 
-> This can be done using option [B] (single drm device that spawn 2 crtc).
-> 
-> Using option [A] we will have 2 drm devices 1 for DU0 and 1 for DU1
-> that each will spawn a single CRTC and the above feature will be not
-> achievable.
-> 
-> In the end we need a way to have single DRM device that spawn 2 CRTCs.
-> 
-> A) Two device tree nodes rapresenting DU0 and DU1 design [v6]:
-> 
-> du0: display@16460000 {
-> 	compatible = "renesas,r9a09g047-du";
-> 	reg = <0 0x16460000 0 0x10000>;
-> 	interrupts = <GIC_SPI 882 IRQ_TYPE_LEVEL_HIGH>;
-> 	clocks = <&cpg CPG_MOD 0xed>,
-> 			<&cpg CPG_MOD 0xee>,
-> 			<&cpg CPG_MOD 0xef>;
-> 	clock-names = "aclk", "pclk", "vclk";
-> 	power-domains = <&cpg>;
-> 	resets = <&cpg 0xdc>;
-> 	renesas,vsps = <&vspd0 0>;
-> 	status = "disabled";
-> 
-> 	ports {
-> 		#address-cells = <1>;
-> 		#size-cells = <0>;
-> 
-> 		port@0 {
-> 			reg = <0>;
-> 			du0_out_dsi: endpoint {
-> 			};
-> 		};
-> 
-> 		port@2 {
-> 			reg = <2>;
-> 			du0_out_lvds0: endpoint {
-> 			};
-> 		};
-> 
-> 		port@3 {
-> 			reg = <3>;
-> 			du0_out_lvds1: endpoint {
-> 			};
-> 		};
-> 	};
-> };
-> 
-> du1: display@16490000 {
-> 	compatible = "renesas,r9a09g047-du";
-> 	reg = <0 0x16490000 0 0x10000>;
-> 	interrupts = <GIC_SPI 922 IRQ_TYPE_LEVEL_HIGH>;
-> 	clocks = <&cpg CPG_MOD 0x1a8>,
-> 			<&cpg CPG_MOD 0x1a9>,
-> 			<&cpg CPG_MOD 0x1aa>;
-> 	clock-names = "aclk", "pclk", "vclk";
-> 	power-domains = <&cpg>;
-> 	resets = <&cpg 0x11e>;
-> 	renesas,vsps = <&vspd1 0>;
-> 	status = "disabled";
-> 
-> 	ports {
-> 		#address-cells = <1>;
-> 		#size-cells = <0>;
-> 
-> 		port@0 {
-> 			reg = <0>;
-> 			du1_out_dsi: endpoint {
-> 			};
-> 		};
-> 
-> 		port@1 {
-> 			reg = <1>;
-> 			du1_out_rgb: endpoint {
-> 			};
-> 		};
-> 
-> 		port@3 {
-> 			reg = <3>;
-> 			du1_out_lvds1: endpoint {
-> 			};
-> 		};
-> 	};
-> };
-> 
-> ---
-> 
-> B) Single device tree node design aggregating both DU instances [v7]:
-> 
-> du: display@16460000 {
-> 	compatible = "renesas,r9a09g047-du";
-> 	reg = <0 0x16460000 0 0x10000>,
-> 		<0 0x16490000 0 0x10000>;
-> 	reg-names = "du0", "du1";
-> 	interrupts = <GIC_SPI 882 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 922 IRQ_TYPE_LEVEL_HIGH>;
-> 	clocks = <&cpg CPG_MOD 0xed>,
-> 			<&cpg CPG_MOD 0xee>,
-> 			<&cpg CPG_MOD 0xef>,
-> 			<&cpg CPG_MOD 0x1a8>,
-> 			<&cpg CPG_MOD 0x1a9>,
-> 			<&cpg CPG_MOD 0x1aa>;
-> 	clock-names = "aclk", "pclk", "vclk",
-> 			"aclk1", "pclk1", "vclk1";
-> 	power-domains = <&cpg>;
-> 	resets = <&cpg 0xdc>, <&cpg 0x11e>;
-> 	reset-names = "resetn", "resetn1";
-> 	renesas,vsps = <&vspd0 0>, <&vspd1 0>;
-> 	status = "disabled";
-> 
-> 	ports {
-> 		#address-cells = <1>;
-> 		#size-cells = <0>;
-> 
-> 		port@0 {
-> 			#address-cells = <1>;
-> 			#size-cells = <0>;
-> 
-> 			reg = <0>;
-> 
-> 			du0_out_dsi: endpoint@0 {
-> 				reg = <0>;
-> 			};
-> 
-> 			du0_out_lvds0: endpoint@2 {
-> 				reg = <2>;
-> 			};
-> 
-> 			du0_out_lvds1: endpoint@3 {
-> 				reg = <3>;
-> 			};
-> 		};
-> 
-> 		port@1 {
-> 			#address-cells = <1>;
-> 			#size-cells = <0>;
-> 
-> 			reg = <1>;
-> 
-> 			du1_out_dsi: endpoint@0 {
-> 				reg = <0>;
-> 			};
-> 
-> 			du1_out_rgb: endpoint@1 {
-> 				reg = <1>;
-> 			};
-> 
-> 			du1_out_lvds1: endpoint@3 {
-> 				reg = <3>;
-> 			};
-> 		};
-> 	};
-> };
-> 
-> ---
+Patch 1 adds the board compatible string to tegra.yaml for dt-schema
+validation.
+Patch 2 introduces the carrier board DTS with 40-pin header pinmux and
+external SD card power regulator, disables unused fan/PWM/spi peripherals.
 
+Static verification passed: dt_binding_check and dtbs compilation
+complete without errors.
 
-Gentle ping on how to proceed on this patch?
+We maintain downstream DTS for mass-deployed SE70 hardware internally.
+Upstreaming aligns with existing OEM board contributions (Google/Xiaomi)
+in the Tegra tree, cuts long-term out-of-tree patch maintenance overhead.
+This industrial platform has a full 7-year support lifecycle until 2028;
+Lenovo will keep backporting DT fixes throughout its service window.
+All peripherals use generic upstream drivers with no proprietary extensions.
 
-Kind Regards,
-Tommaso
+Jiqi Li (2):
+  dt-bindings: arm: tegra: Add lenovo,thinkedge-se70 compatible string
+  arm64: tegra: Add Lenovo ThinkEdge SE70 carrier board DTS
 
-> 
-> Please Biju, Laurent correct me if I'm missing something.
-> 
-> [1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/8f814f22ff62dcde6153260e2c8c29a5415c9a89.1775636898.git.tommaso.merciai.xr@bp.renesas.com/
-> [v6] https://patchwork.kernel.org/project/linux-renesas-soc/patch/8f814f22ff62dcde6153260e2c8c29a5415c9a89.1775636898.git.tommaso.merciai.xr@bp.renesas.com/
-> [v7] https://patchwork.kernel.org/project/linux-renesas-soc/patch/ff8e401a0667970a42a55420dcb071e34730a923.1778141145.git.tommaso.merciai.xr@bp.renesas.com/
-> 
-> Kind Regards,
-> Tommaso
-> 
-> > 
-> > Rob
+ .../devicetree/bindings/arm/tegra.yaml        |   4 +
+ arch/arm64/boot/dts/nvidia/Makefile           |   1 +
+ .../nvidia/tegra194-lenovo-thinkedge-se70.dts | 167 ++++++++++++++++++
+ 3 files changed, 172 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
+
+-- 
+2.43.0
+
 
