@@ -1,139 +1,181 @@
-Return-Path: <devicetree+bounces-316167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316165-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ixkGCgSpPmppJwkAu9opvQ
-	(envelope-from <devicetree+bounces-316167-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 18:29:56 +0200
+	id FfHkLP+oPmpmJwkAu9opvQ
+	(envelope-from <devicetree+bounces-316165-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 18:29:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E46556CF122
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 18:29:55 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B964C6CF117
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 18:29:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=rMdekB3o;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316167-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-316167-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=op+7qKnI;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316165-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-316165-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 27A27303C168
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:29:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AB498300B9D1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7DBB3FAE1D;
-	Fri, 26 Jun 2026 16:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEABD3FB7C7;
+	Fri, 26 Jun 2026 16:29:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88993F9F48
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 16:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70EA3FADE5
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 16:29:34 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782491385; cv=none; b=AbSQnLzFnSQSbYNEJd+5UqKM+z0BU/dE2i1+1YLifIdJMwJhzbcmntZ2LVDlT1wqNU6b+iyUvSq7ZD/ER7le9EtDQ3HB7mnRx9pqu4dCByrL//ltJ0trG7SaUZ9l6xXQqESo51+T5dlvfezUpiygY0ExNgXDOXsIYzY6pE38Vdw=
+	t=1782491375; cv=none; b=B22ORzJR25/ZmV/7qqlBSRzaONri/QwJozMRHsB66oR2IFO5Pl1W1ZhkAsg//4Y6JOGG6wK9igABwH6VTKscVS5ej9snjVqVC6b04kF5St7tAhRv6Uj2YRnyUSqrq4rUgUTmVwebybs440hGFGrmIlkebq/bigQmwntDh2zft1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782491385; c=relaxed/simple;
-	bh=MIG/8hLmHuma0CNnyl+85e+Hc/AR71sEQWPRNUZdWRw=;
-	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=U8QOTzB0jM3nM1Ec/fFl/vPyc9Tzn95mELqk6FJ+ARC03pOspR1Bzv37ZpmlAJSMUXgLwxpNGxAy8XCojvxEev4rlYwvfgBzaqq6F3YRlxPAperotvsZ2k4SH8frzXQdc2IoUWzx4Rk//XMesJwEm1BYgcQQw5/rJXRihq7K/P4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=rMdekB3o; arc=none smtp.client-ip=185.246.85.4
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 165E44E40970;
-	Fri, 26 Jun 2026 16:29:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C329360232;
-	Fri, 26 Jun 2026 16:29:41 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B26C3104C955F;
-	Fri, 26 Jun 2026 18:29:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1782491380; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Q0Ay+Nn4LPYfCIMIxKfuL34eMs2xRlO4A06aFPmJvUY=;
-	b=rMdekB3octyzR3BlwL50+P4o3/w2gjcnOoiNdFe83N1UEw1jIJXEbmDaBSFBRZYQtMl+Nf
-	mhjLkNZvDSHJS6BavFM59GiibovXVO20x1QrvJ+eyw3EUKDc9MiKtvw4oT3eFhjNWH6M+7
-	isNZdGKxDn7W+yvM1xFsdWZLIndEvZaycDDFsuDo0DxFQ0PuHp5RVgXBQOXBkxsQTOGTzw
-	np55BLuu9BYqC63ExvqsmJrQinu2uEQj4UGh259SbTm3eqs19aOSHOfYuOVSpQCLrvLiTi
-	Ls7rxoycSWo5la/Y8tbktKm2dZ2HUiflyl5RVIvOMfloo/Z8oEYt9Qsx76w0Sw==
+	s=arc-20240116; t=1782491375; c=relaxed/simple;
+	bh=AaJ5Ow4NVBOcsMgNUEPUqkPBaFN8aWuX99r3PRAHNf4=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=CUyroIBhQr1X9D3G7SnHGohdmsolHkAdNN50/It2q4yVM46/KxG07rY3qTE+Mw9QgNfZ6FVtsR8be4H8lS2uxBl+KIsoGCBbS+eLsC5xkAYC1L2It+v+YwijQ++uSNcJCq+g/IDjggPsH4Ro8TjXrQloKRn179y/zQ+EGigbzzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=op+7qKnI; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EAD71F00AC4;
+	Fri, 26 Jun 2026 16:29:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782491374;
+	bh=PppnD/+JO8a5dlNXSHWAPl6EdO59wXpp4gR/xt1Dekk=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=op+7qKnICjc70ptFS7+tm8UsLAMQKEbc5COUeuOBUikRCcl1EeB9+44HSlCSHHYj1
+	 SkXgeqC+O4USm+wRwqW3Lu/5XwbHpmIHLIWbsVv41BIJJIpUW+vURgm4hgUiraa0Ji
+	 lGea9DRCfSxPsxDGz2mAASkoMO+RY+BY+99NOhPv5I0hjIzwvnzDy93UjH4UwHgzF5
+	 IXITY9NWOlDAYFUTZjpt10l4Ib1G3iI7wXT1aWXDt5baaPeT46GmeP8yiIrxJEdo7X
+	 3aGzJ475tnKWwiJr3K2F6WbICEITkJYJV31Hrn+KJZoiFofCBASPYRQ2UsU63qhJGo
+	 1sr925irF0AgQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V15 8/9] iio: imu: inv_icm42607: Add Temp Support in
+ icm42607
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Chris Morgan" <macroalpha82@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260626161230.93069-9-macroalpha82@gmail.com>
+References: <20260626161230.93069-1-macroalpha82@gmail.com>
+ <20260626161230.93069-9-macroalpha82@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 26 Jun 2026 16:29:33 +0000
+Message-Id: <20260626162934.3EAD71F00AC4@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v5 2/4] drm/dp: Add helper to validate DP lane counts
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
- airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
- jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com, 
- cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com, 
- dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com, 
- dianders@chromium.org, m.szyprowski@samsung.com, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20260604085220.2862986-3-damon.ding@rock-chips.com>
-References: <20260604085220.2862986-1-damon.ding@rock-chips.com>
- <20260604085220.2862986-3-damon.ding@rock-chips.com>
-Date: Fri, 26 Jun 2026 18:29:25 +0200
-Message-Id: <178249136511.1374898.9104900523077961218.b4-review@b4>
-X-Mailer: b4 0.15.2
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-316167-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:damon.ding@rock-chips.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:nicolas.frattaroli@collabora.com,m:cristian.ciocaltea@collabora.com,m:sebastian.reichel@collabora.com,m:dmitry.baryshkov@oss.qualcomm.com,m:luca.ceresoli@bootlin.com,m:dianders@chromium.org,m:m.szyprowski@samsung.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-316165-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:url,bootlin.com:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	FROM_NO_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E46556CF122
+X-Rspamd-Queue-Id: B964C6CF117
 
-On Thu, 04 Jun 2026 16:52:18 +0800, Damon Ding <damon.ding@rock-chips.com> wrote:
-> Add a generic helper function drm_dp_lane_count_is_valid() to check
-> if a DisplayPort lane count is valid. According to the DP specification,
-> only 1, 2, or 4 lanes are supported.
-> 
-> This helper avoids duplicating DP lane count validation logic across
-> individual DisplayPort drivers.
-> 
-> [...]
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The IIO temperature channel advertises support for `IIO_CHAN_INF=
+O_SAMP_FREQ` (for read, write, and read_avail), but the `read_avail`, `writ=
+e_raw`, and `write_raw_get_fmt` callbacks incorrectly reject the `IIO_TEMP`=
+ channel.
+--
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+commit 0961338c1e88a743de08d3a1a83292daf58d5ceb
+Author: Chris Morgan <macromorgan@hotmail.com>
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+iio: imu: inv_icm42607: Add Temp Support in icm42607
 
+Add functions for reading temperature sensor data.
+
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c b/drivers/=
+iio/imu/inv_icm42607/inv_icm42607_accel.c
+> index 8ef9fdae1bc84..5ff6756b95154 100644
+> --- a/drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
+[ ... ]
+> @@ -54,6 +56,7 @@ static const struct iio_chan_spec inv_icm42607_accel_ch=
+annels[] =3D {
+>  				inv_icm42607_accel_ext_infos),
+>  	INV_ICM42607_ACCEL_CHAN(IIO_MOD_Z, INV_ICM42607_ACCEL_SCAN_Z,
+>  				inv_icm42607_accel_ext_infos),
+> +	INV_ICM42607_TEMP_CHAN(INV_ICM42607_ACCEL_SCAN_TEMP),
+>  };
+
+[Severity: Medium]
+Since INV_ICM42607_TEMP_CHAN advertises support for IIO_CHAN_INFO_SAMP_FREQ,
+will accessing the sampling frequency attributes for the temperature channel
+fail?
+
+For example, when reading available frequencies,
+inv_icm42607_accel_read_avail() unconditionally rejects non-acceleration
+channels:
+
+	if (chan->type !=3D IIO_ACCEL)
+		return -EINVAL;
+
+Will the same issue happen for writing SAMP_FREQ in
+inv_icm42607_accel_write_raw() and inv_icm42607_accel_write_raw_get_fmt(), =
+as
+they also check for IIO_ACCEL only?
+
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_gyro.c b/drivers/i=
+io/imu/inv_icm42607/inv_icm42607_gyro.c
+> index c7215b3826adc..4e5db5e19e9f3 100644
+> --- a/drivers/iio/imu/inv_icm42607/inv_icm42607_gyro.c
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_gyro.c
+[ ... ]
+> @@ -54,6 +56,7 @@ static const struct iio_chan_spec inv_icm42607_gyro_cha=
+nnels[] =3D {
+>  			       inv_icm42607_gyro_ext_infos),
+>  	INV_ICM42607_GYRO_CHAN(IIO_MOD_Z, INV_ICM42607_GYRO_SCAN_Z,
+>  			       inv_icm42607_gyro_ext_infos),
+> +	INV_ICM42607_TEMP_CHAN(INV_ICM42607_GYRO_SCAN_TEMP),
+>  };
+
+[Severity: Medium]
+Similar to the acceleration channels above, will the temperature channel fa=
+il
+when reading or writing SAMP_FREQ here, since inv_icm42607_gyro_read_avail()
+and inv_icm42607_gyro_write_raw() unconditionally return -EINVAL if the
+channel type is not IIO_ANGL_VEL?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260626161230.9306=
+9-1-macroalpha82@gmail.com?part=3D8
 
