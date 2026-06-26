@@ -1,294 +1,220 @@
-Return-Path: <devicetree+bounces-315875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315878-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id InP4OTvVPWrA6wgAu9opvQ
-	(envelope-from <devicetree+bounces-315875-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 03:26:19 +0200
+	id dINAGojjPWqs7ggAu9opvQ
+	(envelope-from <devicetree+bounces-315878-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:27:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8316C96DE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 03:26:19 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC2B56C9BF1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:27:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Cci9efty;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315875-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315875-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=lontium.com header.s=default header.b=tIp55UyV;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315878-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315878-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2D57C30C269C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 01:23:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 19989301C3EA
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 02:26:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E2C283FD4;
-	Fri, 26 Jun 2026 01:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15DF42F39B4;
+	Fri, 26 Jun 2026 02:26:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from out28-124.mail.aliyun.com (out28-124.mail.aliyun.com [115.124.28.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 223BB1684BE
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 01:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19D411419A4
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 02:26:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782437017; cv=none; b=KZstqTBziik3Tdkj4L9HwEu8MpzfdqNB469YoKQtxn+S+s42MRJIbOz0rO7izwnm/ZecixexQG7iYRT83VM5lkeKa6LLlfDrucl+IEBciMD2eRqVqpmvxAEFfL2VPOcoKuQNeClhccbKMnPEZfQBFkVBRDdInWLXVuNsBl/k3aI=
+	t=1782440810; cv=none; b=W1lgGNS8eLvOGo7fX+YBJOgYOYqRH8dfohadiq81dhBAnoRV63q0M1IIp2yPqiKW9ABbwl+2i8aJOpAkc2rVAuw1SqwiYdBPYu+CPhLGy6R+DlZ6/0qXimaPSwPGE1XazDiTHSqDI8nkSAm8nJf3iKyHIRBEo7seCjuaMIp80jM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782437017; c=relaxed/simple;
-	bh=jjRsh6GlNZeSlZdy0EnJQKbEp1IR6RDIrthSfs7NMmk=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=D/EQRtiukwnpGAqi4NRXmKOeiVLpDqsLr9javHHOpwH+4HT+mEr6UKUG/f/Yzq1WYSmW6DINWXUWV04kmhLomkoq4uOyHYUxiWpJg6Y/Xyb9lD/VGbBZoZQWeGFKnk/XE6bLLAKWYGgeMnbToGT5KLi6JSaYx2nqPgNaKweXCAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cci9efty; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 742BA1F000E9;
-	Fri, 26 Jun 2026 01:23:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782437015;
-	bh=/VwXRsrWNLwmWPLhLuDU+ohZUnMkSwdntbZdUTyz3Pw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Cci9eftytQRb9osDJ60JdJz7iiLJk7vd1Je//7N2LAyQj29f2IBCr1Vfy3bIBF6U0
-	 TBJvjgmcNJLg7sJRbO3fAAhp0ynXhoqWqCiVVUTu6OYu1rtKwACes3dxqSogOsNPQ8
-	 4V2FusKM3MbckCEHW1v90JZDWEv3JFRrgDzOvT156b4cfTZpcGQeQYvbNzuss0ri21
-	 cWfYTL84U5BUnqLCB9Wk/li6YBuUxYTdU/wKxaQQCi8u06qR7hAWy4v/5jObNNtcjW
-	 6c4GVMJVb5VbHsK8IGf2XZjHfvqFC4wf2+KF9VCtMq2p4/Okr76L7Z+FuzP3Z3AQ1P
-	 7E/LHk2pWanvQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] arm64: tegra: Add Lenovo ThinkEdge SE70 carrier
- board DTS
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jiqi Li" <lijq9@lenovo.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260626010950.459899-3-lijq9@lenovo.com>
-References: <20260626010950.459899-1-lijq9@lenovo.com>
- <20260626010950.459899-3-lijq9@lenovo.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 26 Jun 2026 01:23:34 +0000
-Message-Id: <20260626012335.742BA1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782440810; c=relaxed/simple;
+	bh=vaoGzW5e1gJwUQEv8jzoQNa1K5advn6Ccf2DfTE6l64=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YhetEOvMwmm2ALNMVV2oOyTmvGD0ivyg5+w2e/yHphJ6DEN8Dh4Uoidge7RtvjLsgdbQ43IDs3EzKBVVaeh/0vwyJjFBCczcuCyn/XiST0vb4uZeMGI8v/+A6WuCiY4kaEf3JnkkDI0eRKYLkvdgDaIkJffnWjg9uYT11BwRrXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=tIp55UyV; arc=none smtp.client-ip=115.124.28.124
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=lontium.com; s=default;
+	t=1782440805; h=MIME-Version:From:Date:Message-ID:Subject:To:Content-Type;
+	bh=qB8OQzAb/UAgfdSh0zhlBdG9PWiLGbf3G8yQApzy3Rs=;
+	b=tIp55UyV17GHWY+WVGXOqAcInpXH7831A7rUXoqnjGW4PwnPwo2cX7g97q/y/OQGd02LVMx8ilWwp6bsTnTvr74uKUk6qiQ6psAZeQ2Fzv0l2G8f7dLEoQHPc3J+xh5Eg5/Wk6D+f0lzh5zFVpEThWW6bCf///qK5E1hxnH96SKZmuvGbBly6h5th25CiEbMJQhVug81Y0RcemBPSTGlbC8mKi0fbCli4ssAPI0jIqnqaTuTo1qBI9Bm8O/jfF7elVwCo730KcguAGiZBMgOq7ON4kET53gfON7rppBlSz7T1mYPv4sVKF/a4y+Ccl+NglplHbKAj5UtflCnTJO7xg==
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07437244|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0543176-0.00480501-0.940877;FP=16812355890543396106|10|1|9|0|-1|-1|-1;HT=maildocker-contentspam033037017159;MF=syyang@lontium.com;NM=1;PH=DS;RN=1;RT=1;SR=0;TI=SMTPD_---.i65Df9w_1782438951;
+Received: from mail-ot1-f49.google.com(mailfrom:syyang@lontium.com fp:SMTPD_---.i65Df9w_1782438951 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Fri, 26 Jun 2026 09:55:52 +0800
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-7e936c2473dso845488a34.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 18:55:52 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9c20R/9Z43y1Bvm7Kfyt8tuL4DpZ1iyfQkEnWyMXYPb5DtudxK0mwodsOIjqyUNa9zswL3CHbzHMmk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6sV0QK96oDccFzGeT8oCBJtynGuYtSW26R3zB+yPWEMvnwPMx
+	lMGDJVtU1ZmMSAI8CktGLncz9Tg1CcSHwfDPcdAWJSF5Zp4sbpuhl/fuoW+OkdN75M0eRiTxvEl
+	wF7tBkivHMIYc5eec9rQGkf/NKh9mTKA=
+X-Received: by 2002:a05:6808:3505:b0:48a:a666:e763 with SMTP id
+ 5614622812f47-48ee556a028mr8634888b6e.30.1782438951020; Thu, 25 Jun 2026
+ 18:55:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260508134009.4582-1-syyang@lontium.com> <20260508134009.4582-3-syyang@lontium.com>
+ <3188f63f-5358-48d7-b934-af20a8f95c6f@kernel.org> <CAFQXuNbKBfyeQL3N3P5QY=6BWoD3O6DSbXN-WMA1rRG9vCs3Kg@mail.gmail.com>
+ <a0352a42-15db-4c7a-ae73-8a4e1543cd50@kernel.org> <CAFQXuNZVE6cZJGwrGKGtWnB-seSJLHFh8zW3jjAs6U4JLZFWng@mail.gmail.com>
+ <tpqutwzasfwhraxzymorkiot7uryef4l2n32fyo3i3fp337sak@fugghdkcqfrj>
+In-Reply-To: <tpqutwzasfwhraxzymorkiot7uryef4l2n32fyo3i3fp337sak@fugghdkcqfrj>
+From: Sunyun Yang <syyang@lontium.com>
+Date: Fri, 26 Jun 2026 09:55:39 +0800
+X-Gmail-Original-Message-ID: <CAFQXuNaOkDADrnUNMWt9JL0R9yAPrSUN1M08Z5CT=J3uXqwhkw@mail.gmail.com>
+X-Gm-Features: AVVi8CcBMJd5tnV9CcZVmih9yHEbFd_Nru3jA9XKcANqlxTU-8aU2AoO7h8XO8A
+Message-ID: <CAFQXuNaOkDADrnUNMWt9JL0R9yAPrSUN1M08Z5CT=J3uXqwhkw@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] drm/bridge: Add Lontium LT9611C(EX/UXD) MIPI DSI
+ to HDMI driver
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
+	maarten.lankhorst@linux.intel.com, rfoss@kernel.org, mripard@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, tzimmermann@suse.de, jonas@kwiboo.se, 
+	jernej.skrabec@gmail.com, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	xmzhu@lontium.corp-partner.google.com, xmzhu@lontium.com, rlyu@lontium.com, 
+	xbpeng@lontium.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[lontium.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315875-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:lijq9@lenovo.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315878-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:krzk@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:maarten.lankhorst@linux.intel.com,m:rfoss@kernel.org,m:mripard@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:tzimmermann@suse.de,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:xmzhu@lontium.corp-partner.google.com,m:xmzhu@lontium.com,m:rlyu@lontium.com,m:xbpeng@lontium.com,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	DMARC_NA(0.00)[lontium.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,linux.intel.com,ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lontium.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,lenovo.com:email,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lontium.com:dkim,lontium.com:email,lontium.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,qualcomm.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5E8316C96DE
+X-Rspamd-Queue-Id: BC2B56C9BF1
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
-s) to consider:
-- [High] Peripheral overrides and configuration nodes are incorrectly place=
-d at the root of the device tree, failing to override the actual bus childr=
-en.
-- [High] The `fixed-regulators` container lacks the `compatible =3D "simple=
--bus"` property, preventing its children from probing.
-- [High] The `cd-inverted` property combined with `GPIO_ACTIVE_LOW` causes =
-a double-inversion of the SD card detect signal.
-- [Medium] Use of downstream Linux-for-Tegra (L4T) device tree properties t=
-hat are invalid in mainline.
-- [Low] Device tree node names use underscores instead of hyphens.
-- [Low] Mismatch between inline code comment and regulator voltage configur=
-ation.
---
+Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> =E4=BA=8E2026=E5=B9=B4=
+6=E6=9C=8825=E6=97=A5=E5=91=A8=E5=9B=9B 22:57=E5=86=99=E9=81=93=EF=BC=9A
+>
+> On Thu, Jun 25, 2026 at 09:26:47PM +0800, Sunyun Yang wrote:
+> > Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2026=E5=B9=B46=E6=9C=882=
+5=E6=97=A5=E5=91=A8=E5=9B=9B 21:17=E5=86=99=E9=81=93=EF=BC=9A
+> > >
+> > > On 25/06/2026 15:14, Sunyun Yang wrote:
+> > > > Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2026=E5=B9=B46=E6=9C=
+=8825=E6=97=A5=E5=91=A8=E5=9B=9B 20:54=E5=86=99=E9=81=93=EF=BC=9A
+> > > >>
+> > > >> On 08/05/2026 15:40, syyang@lontium.com wrote:
+> > > >>> +
+> > > >>> +static void lt9611c_reset(struct lt9611c *lt9611c)
+> > > >>> +{
+> > > >>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+> > > >>> +     msleep(20);
+> > > >>> +
+> > > >>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
+> > > >>> +     msleep(20);
+> > > >>> +
+> > > >>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+> > > >>
+> > > >> This is just plain wrong. Why do you assert, then de-assert and th=
+en
+> > > >> finally assert AGAIN the reset leaving the device in powerdown sta=
+ge?
+> > > >>
+> > > > I am using software to emulate the hardware RESET button on our EVB=
+.
+> > > > When the hardware RESET button is pressed while our chip is running=
+,
+> > > > the signal level changes from HIGH to LOW and then back to HIGH.
+> > > >
+> > > > Of course, we can also use the following:
+> > > > static void lt9611c_reset(struct lt9611c *lt9611c)
+> > > > {
+> > > >     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
+> > > >     msleep(50);
+> > > >     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+> > > >     msleep(20);
+> > > > }
+> > >
+> > > Makes no sense either and you just did not get the point and did not
+> > > answer my question. I asked WHY you leave asserted. Answer "we emulat=
+e"
+> > > is just plain wrong.
+> > >
+> > > So again please answer:
+> > >
+> > > Why do you leave device with reset asserted?
+> > >
+> >
+> >  devicetree:   reset-gpios =3D <&tlmm 128 GPIO_ACTIVE_HIGH>;
+>
+> It should be GPIO_ACTIVE_LOW, if the pin as active-low.
+>
 
-commit ce1b543209b572c99dba284d418dec1c8ce39718
-Author: Jiqi Li <lijq9@lenovo.com>
+Yes, I understand that.
 
-arm64: tegra: Add Lenovo ThinkEdge SE70 carrier board DTS
+I used GPIO_ACTIVE_HIGH intentionally, because I did not want to
+modify the existing reset-gpios =3D <&tlmm 128 GPIO_ACTIVE_HIGH>
+property in the lontium-lt9611.yaml device tree file that was
+submitted by others. If I used GPIO_ACTIVE_LOW, I would have to change
+that line in the device tree binding, and also update the driver files
+lontium-lt9611.c and lontium-lt9611uxc.c accordingly. That would add a
+significant amount of extra work for me.
 
-ThinkEdge SE70 is a fanless industrial edge gateway built around
-NVIDIA Tegra194 Xavier NX SOM. This patch adds a standalone device
-tree file describing core carrier board peripherals:
-- Custom 40-pin header pinmux configuration
-- External SD card slot with dedicated 3.3V fixed regulator
 
-No fan, PWM, tachometer, extra camera/spi peripherals are present
-on this passively cooled platform, so unused nodes are explicitly
-disabled following mainline device tree best practices.
+Moreover, in much earlier versions, I had added a separate
+lontium-lt9611c.yaml file to decouple this new chip from the existing
+lontium-lt9611 / lontium-lt9611uxc support. However, Dmitry Baryshkov
+considered that unnecessary and asked me to merge lontium-lt9611c
+together with the existing drivers. He also told me that the
+differences in reset=E2=80=91pin and VDD/VCC supply did not matter.
 
-Static verification passed: dt_binding_check and dtbs compilation
-complete without errors.
 
-[ ... ]
+The existing device tree and driver code already had issues, and I had
+raised them with you before. At that time, you did not seem to care,
+and the community reviewers insisted that I must follow your
+directions. So I did exactly what you told me to do.
 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dt=
-s b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
-> new file mode 100644
-> index 0000000000000..075e057c90954
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
-> @@ -0,0 +1,167 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/dts-v1/;
-> +
-> +#include "tegra194-p3668-0001.dtsi"
-> +#include "tegra194-p3509-0000.dtsi"
-> +
-> +/ {
-> +	model =3D "Lenovo ThinkEdge SE70";
-> +	compatible =3D "lenovo,thinkedge-se70", "nvidia,p3509-0000+p3668-0001",=
- "nvidia,tegra194";
-> +
-> +	chosen {
-> +		bootargs =3D "console=3DttyTCU0,115200";
-> +	};
-> +
-> +	/* Fixed 2.3V regulator for external SD card slot */
-[Severity: Low]
-Is this comment accurate? It mentions a 2.3V regulator, but the configurati=
-on
-properties below (regulator-min-microvolt and regulator-max-microvolt) enfo=
-rce
-3.3V.
-
-> +	fixed-regulators {
-[Severity: High]
-Does this fixed-regulators container need a compatible =3D "simple-bus" pro=
-perty?
-Without a recognized bus compatible string, of_platform_populate() won't
-recurse into this node at boot. This would prevent the ap2306gn_3v3_sd child
-regulator from probing, causing the SDHCI controller requesting it to fail =
-with
--EPROBE_DEFER.
-
-> +		ap2306gn_3v3_sd: ap2306gn_3v3_sd {
-[Severity: Low]
-Should this node name use hyphens instead of underscores (e.g.,
-ap2306gn-3v3-sd) to comply with Devicetree specification naming rules and a=
-void
-node_name_chars warnings during compilation?
-
-> +			compatible =3D "regulator-fixed";
-> +			regulator-name =3D "ap2306gn-3v3-sd";
-> +			regulator-min-microvolt =3D <3300000>;
-> +			regulator-max-microvolt =3D <3300000>;
-
-[ ... ]
-
-> +	/* Custom pinmux configurations for 40-pin expansion header */
-> +	pinmux@c302000 {
-[Severity: High]
-Are these peripheral and pinmux configuration nodes incorrectly placed at t=
-he
-root level of the device tree (/ {}) rather than being children of the SoC =
-bus?
-Placing nodes like pinmux@..., i2c@..., and sdhci@... directly under the ro=
-ot
-creates disconnected dummy nodes instead of overriding the actual bus-attac=
-hed
-controllers, causing these intended configurations to be completely ignored.
-
-> +		status =3D "okay";
-> +		touch_clk_pcc4 {
-
-[ ... ]
-
-> +	pinmux@2430028 {
-> +		status =3D "okay";
-> +		soc_gpio41_pq5 {
-> +			nvidia,pins =3D "soc_gpio41_pq5";
-> +			nvidia,function =3D "rsvd2";
-> +			nvidia,pull =3D <TEGRA_PIN_PULL_NONE>;
-> +			nvidia,tristate =3D <TEGRA_PIN_DISABLE>;
-> +			nvidia,enable-input =3D <TEGRA_PIN_DISABLE>;
-> +			nvidia,lpdr =3D <TEGRA_PIN_DISABLE>;
-> +			nvidia,io-high-voltage =3D <TEGRA_PIN_DISABLE>;
-[Severity: Medium]
-Are nvidia,lpdr and nvidia,io-high-voltage downstream Linux-for-Tegra (L4T)
-properties? They don't appear to exist in the mainline devicetree bindings,
-which means they will be ignored by upstream drivers and fail dt_binding_ch=
-eck
-schema validation.
-
-> +		};
-> +	};
-
-[ ... ]
-
-> +	/* SDMMC3 for external user SD card slot with dedicated 3.3V power */
-> +	sdhci@3440000 {
-[Severity: High]
-Similar to the pinmux nodes above, is this sdhci node placed as a direct ch=
-ild
-of the root (/ {}) instead of the SoC bus? This creates a new orphaned node
-rather than overriding the actual bus-attached SDHCI controller.
-
-> +		uhs-mask =3D <0x78>;
-> +		mmc-ocr-mask =3D <0x0>;
-[Severity: Medium]
-Are uhs-mask and mmc-ocr-mask valid mainline properties? Like the pinmux
-properties above, these appear to be downstream L4T properties that will fa=
-il
-dt_binding_check schema validation.
-
-> +		cd-inverted;
-> +		cd-gpios =3D <&gpio_aon TEGRA194_AON_GPIO(CC, 4) GPIO_ACTIVE_LOW>;
-[Severity: High]
-Does combining the cd-inverted property with GPIO_ACTIVE_LOW in cd-gpios ca=
-use
-a logical double inversion of the SD card detect signal? The GPIO subsystem
-will invert the active-low physical signal, and then the MMC core will inve=
-rt
-that result again due to cd-inverted. This could mean an inserted card is s=
-een
-as removed and vice versa, breaking card hotplugging.
-
-> +		nvidia,cd-wakeup-capable;
-[Severity: Medium]
-Is nvidia,cd-wakeup-capable another downstream property unsupported in
-mainline?
-
-> +		vmmc-supply =3D <&ap2306gn_3v3_sd>;
-> +		status =3D "okay";
-> +	};
-
-[ ... ]
-
-> +	pwm@32f0000 {
-> +		status =3D "disabled";
-> +	};
-> +	generic_pwm_tachometer {
-[Severity: Low]
-Should this node name use hyphens instead of underscores (e.g.,
-generic-pwm-tachometer) to avoid devicetree specification violations and
-node_name_chars warnings?
-
-> +		status =3D "disabled";
-> +	};
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260626010950.4598=
-99-1-lijq9@lenovo.com?part=3D2
+> >
+> > GPIO_ACTIVE_HIGH:
+> >
+> > gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);   ------   reset pin
+> > is Low level : Clear the register configuration in the chip to stop
+> > the chip from working.
+> >
+> > gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);   ------  reset pin
+> > is high level:  The chip resumes operation.
+> >
+> >
+> >
+> > > Best regards,
+> > > Krzysztof
+>
+> --
+> With best wishes
+> Dmitry
 
