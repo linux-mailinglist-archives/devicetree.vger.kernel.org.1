@@ -1,220 +1,201 @@
-Return-Path: <devicetree+bounces-316226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316232-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XRo8H1zoPmpgMwkAu9opvQ
-	(envelope-from <devicetree+bounces-316226-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 23:00:12 +0200
+	id 5a2zEBzrPmr1MwkAu9opvQ
+	(envelope-from <devicetree+bounces-316232-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 23:11:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6266D0262
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 23:00:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86BBB6D0309
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 23:11:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=j2Xcs9rH;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=CaQAi7O0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316226-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316226-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Qr5Jlw8e;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316232-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316232-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2BE1D302D30B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 20:57:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 52F15300D458
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 21:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2BCB3AD510;
-	Fri, 26 Jun 2026 20:57:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 243CD3A7F7A;
+	Fri, 26 Jun 2026 21:11:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD663B1ED0
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 20:57:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B45437D124
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 21:11:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782507474; cv=none; b=GDuzZ7d0PIgzTXXsrM4XgJAe5d5Vff+FK4T1LIpX4bOBGDQs0z0GSaRCH8kBLIKjSZgLV9amP4M920ywWg/Cz1gMb/7Uo6zBcouMBNyt1Q+N+wxMWWNv5lsboQTSo6uM+dmmK0lPnRYOL+G+gu3lJoOToDAsWADIvNQKlp4xDIU=
+	t=1782508313; cv=none; b=P7E4nAClUMejCkch0Fubk8uLrvMWImqxzP8Gx2IS1p1pKm/kJAHbfosbRwomZhrr13/T08FNmusefzPyWKKArsy+xvNdjEmXFXMfsoF3e46UshPtbrD+cVhCzad8B8PJ4jCVp0uO5gJY3o927ZJRDGRKw57iykmTVYUHcQoZRc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782507474; c=relaxed/simple;
-	bh=1Mlqdx0yALmjRxStf7R8xHxhf5GtiIJdHJ/PGKKoFS0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ih1xs9QkopmloQDv2ta+3VUJBROhCb43KqI0LplvXTsVM6zK8ZZkdKeiuY29wSzX4pWLlxq4g3B50ceW4ms/mdRsjon/g79PV54UojwirywLbeBKQ8KJiBWcz1pXfBWB4bUdPYk4dzF4O/Pg/durjd/0uW09Zq5B76828bIrpuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j2Xcs9rH; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CaQAi7O0; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65QJ8aQ91729739
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 20:57:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=yd7du5bvNXW9tUAU2kTjwJsr
-	b2hTJirrDWb8BV4Ma7c=; b=j2Xcs9rH5ijerF/VZLQstRSueiY1yoyk0h05sPev
-	MSHTJ9Lk5WDThq/f+Q55ViUkCvHrZ1gSFVddqPTyD/VBehY43Xi/D7d+LCoq6dwG
-	dWA6KkwIDLJkyhfQcDEJyC4IM9pX8Yz2EF6EkMsnsjmXDka+iP7dybiWFt1rjU+h
-	J8QFvdUdQYZVub2fvKeQLwTpDY5iRx+SMriiq1u4dUoIupdoLWJgYPNbYiTWCHqi
-	g+zD9iOFlbk7GnUvhQSqoT67qSzYoHKmx/AH4QTC5MkKw/OEk4Sd6cadcFVQ3q94
-	RWTB+9p96rpqGFkxNjzQA4nx61b0P1iLhyBZ4y1ImeRJpQ==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f1t0qspns-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 20:57:52 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-921ed86ddeaso300476985a.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 13:57:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782507472; x=1783112272; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yd7du5bvNXW9tUAU2kTjwJsrb2hTJirrDWb8BV4Ma7c=;
-        b=CaQAi7O0pJRlDy2DxBfFupchhfmCZ/1nnLmPYxGU5d1SC3DApgZkiS+fRJ5R3SVGG7
-         w4a1nZtnDPNPk3a9Fn665leMsRxScPEtzrDe8H1NDTvPkaLDMXEa7TuJ2YFIVEIYVxf6
-         3nNkVsgfMgBBQJecAssyuDXNjzW7G2fpyLOuHUs6nPp/noeppMORv26aRjCJajaR2yNc
-         xOVsUy59OlXbkuvcJ7AMYbzz/cKKgnGfl7lJKLJnFlMRGc9ozq7q9zoHiwQONP51Yyyp
-         CUJD2CsKcmACR5IeofbvfBlkJ0reTG8dYlC4wtA+GKtp0j/Rvwg4wnL746jiu+lNrFFA
-         uyoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782507472; x=1783112272;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yd7du5bvNXW9tUAU2kTjwJsrb2hTJirrDWb8BV4Ma7c=;
-        b=Yjtvp506CP//o6QeygPs8dQuH4U6a6Ykg6uXi1W/GMIf7l3rlYpsYLj36AOK93trvl
-         nunsxVTNfyQ0ZnHndupONvRwjWmxPv1lK76QbFFy1YXLV4NzX3itgUZpeR2LS+g1F9Qc
-         FAYYlbeRSK/9qwuw9xXEQbtZhSax+U3Mv3oAZksPNuOIgZ4eipHSr3FeAWJZnXDxFyqA
-         O3uT/Vkt72p7Z8wuL1X5yKLaQ4WtYWWBXYjmC1/oZ+/B3mE7Zh90qM0ZcDkhW19A07dc
-         ffkuk6K3nrQyaXrVqmLUGt+mMaQZ0aR4VZAHJFpMY3n6lIVSUtDXYIpFooX5nYhDsNx5
-         7tqg==
-X-Forwarded-Encrypted: i=1; AFNElJ+NE0nhiFzBCJqOc2PGNihOMCx1OOZIOyGCbAJslABsOk0vmSLqpO1uAfAqTBIJLnNlnZmMv08AxbN3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcSnWq3Sd2LH3h7QQEzoOphoKiwheM9ExmbV53OyFzVeniDvtX
-	YiiEwQpMfng4Th/VAe7q7e1b0kZttKnrXo+dRi9K8hgd/pDgdbEP05ThHompQiT/D9kYK3iPzTz
-	2OVUKJvE1byDCBkyjTN0UJWsT0ohb8q1m1J5e0hEnColsU/BLB7e7c5n602g02OGcs2B60P6e
-X-Gm-Gg: AfdE7cmi81H4rHZWbFWfTiHibJDX4I8j2lHspskxaGp3WXxOeCWaivG15AD54ikyyRI
-	7ay4u/BWcszc0VlpZUAVWM11umDizDVb7BH51/2RPs+w2rwRBiRADbxO1g+0wTAziG3/Adr9pb+
-	dYmll5RZf1p6gO6+xOH+3z/K8jA1G1xGP67X37sxkdaEBMIyRQ91Dfm1W3BawVMf1mtWnPH88yQ
-	LCVFnXsIkBsGcMoU3bGb/+ZMl7tVQHVaLA7Sd/h1Fvgq8RO93IQEBJJ7n2ISmKKudPPr00/AOBx
-	Zy2E/PlfdjfI2HiNxnLyxYI13kvrj5iKuijqhy1q3EMNzlW/3M189ts2oj2+9np9QVx6UZR4R+S
-	4CBV0fVcOJLulU+q0akJBNCIEhP5dxzY62loj4IkSkqWWX08SX+vkjjFnNce6/2yfjobq0F8wl6
-	4aPCmUEZTWOqgH+lOs20FmddnL
-X-Received: by 2002:a05:620a:6302:10b0:92a:9d2b:1ccf with SMTP id af79cd13be357-92a9d2b265dmr434981485a.36.1782507471881;
-        Fri, 26 Jun 2026 13:57:51 -0700 (PDT)
-X-Received: by 2002:a05:620a:6302:10b0:92a:9d2b:1ccf with SMTP id af79cd13be357-92a9d2b265dmr434978985a.36.1782507471408;
-        Fri, 26 Jun 2026 13:57:51 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5ad69585a76sm3638337e87.74.2026.06.26.13.57.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jun 2026 13:57:50 -0700 (PDT)
-Date: Fri, 26 Jun 2026 23:57:47 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Sudeep Holla <sudeep.holla@kernel.org>
-Cc: Hans de Goede <johannes.goede@oss.qualcomm.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-        Abel Vesa <abel.vesa@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: Re: [RFC 00/12] RFC: Devicetree-ACPI hybrid mode
-Message-ID: <obvpvyx3kmzcdc5nxmx4inlpiqugjxdgzfzmdxzfqqy4qqwt7l@y2zyrtso6yk4>
-References: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
- <20260626-friendly-ammonite-of-holiness-aabefb@sudeepholla>
+	s=arc-20240116; t=1782508313; c=relaxed/simple;
+	bh=2bMSfDxse70Kqf/F/uP5O/ZUVm5247cs6YJLiO7ePYU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=nQTJtsFitY1owDd2d/YQs8ZQKoIb+naq+wc4qj/JgKa+0kMQfohxbQhI9H16Z7S6C3Ag24uxx0Iz2iJSYMkl+fsDQNw7wAiWzEZ4N6M9NhyFQPHBX/zMAj5TwxUoJN7tMFzgG/GHviSdnoYXLbvr65a57ckPO+LuBi+qxk37FZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qr5Jlw8e; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2332F1F000E9;
+	Fri, 26 Jun 2026 21:11:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782508311;
+	bh=y7pZiLQeaytZMgQeQIifYpqOvUTnF5RVOku7B6TDsqc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Qr5Jlw8esNq4NgE+ksKJKeIvXAXWp0oAWuMlDCrPOzAdz64uEXn0qiMmHhu8FfZK2
+	 6F5J85i5ZiqFU1vxgJRM2ywRgNCADpM7tgXjtORaiw6z9xoWU4GuwUw2bZVpKAR6qJ
+	 AO1y1rEIlfSVYz6rJgiBHPWLBocob1nSZJGSns9WqR1l1+NwpnUD+uxQJkZixHoAN0
+	 1FuSLltkCgqz4o/hKtu/SX/3upxt4B2lioXc/GSY4mzusb+vB9HN3wWadCqzcfiZ2X
+	 dXlELXX7Y6wAyED1XpxyzRKI+baYCc7oQfmF82VMVcMnqLRc58Ej0C1t6XxgWs68KO
+	 Tbxa89UP1u0Ig==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v8 07/29] phy: rockchip: usbdp: Handle
+ rk_udphy_reset_deassert_all errors in init check
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
+Cc: vkoul@kernel.org, neil.armstrong@linaro.org, conor+dt@kernel.org, olteanv@gmail.com, robh@kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+In-Reply-To: <20260626-rockchip-usbdp-cleanup-v8-7-47f682987895@collabora.com>
+References: <20260626-rockchip-usbdp-cleanup-v8-0-47f682987895@collabora.com>
+ <20260626-rockchip-usbdp-cleanup-v8-7-47f682987895@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 26 Jun 2026 21:11:50 +0000
+Message-Id: <20260626211151.2332F1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260626-friendly-ammonite-of-holiness-aabefb@sudeepholla>
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI2MDE3MyBTYWx0ZWRfX6o/F3N3x6xkJ
- clF+FNPt9Ybg2QYvgdGRNoYJv1doznBiBxI5TvtqCxxlJ6qg7fzqPKOjAhXSFlOoRhSDdjACyCH
- 4tmJaaZZGvh8A96ETCOhA5Uk5Ycd40o=
-X-Proofpoint-GUID: vXqTgfC-bKO92hxT-SHVhjiizY4_WYof
-X-Authority-Analysis: v=2.4 cv=StqgLvO0 c=1 sm=1 tr=0 ts=6a3ee7d0 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22 a=NEAV23lmAAAA:8
- a=Fl7lxUCT7PhOQckEiWcA:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-ORIG-GUID: vXqTgfC-bKO92hxT-SHVhjiizY4_WYof
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI2MDE3MyBTYWx0ZWRfX7EQeNQOngutH
- 3I3sLoUmqAmjZeL8cpx8VdN0lIqHzvWV8N3kaPXb8/6uW2h7hCr8fbyZx1T8XO5/kuqASStQqK2
- N6iiWKvkLXiM9qdMgEpHW1NlBA7SmPpTMIEOjD1SWPxliW+7PXn/ptW3QNzScmW/QIu5OtvEc3e
- z2V/bCYn5No3UJ4smi0xT9zyeigYgYNpcxQTSFwPE1tlmWtjsAaAW1KtH9chc0gUDL8oplGQd8z
- F2n8DAMYF59NVhECyHGG3F6+5b8xF2yn2KrYjg91//YwVAchFdEPufI5AOn+q9Yypz5wHauabKA
- jMteVB8MRtF0UFtIMT0d92NPeKgJfUMD7VtlTi4ioC/iNC1VwNWj5cve0IlGoP8XvEzYs8Nf+vV
- 8ArG/z9Z+TBEteD/cchIxODGa2pvJjmGSbM6gsJ8mujZ+pXGmJK8+zt48gt72NBK9U/dNTEXEmh
- wDI3p4WIYfwOGuQ4y+w==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-26_05,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 adultscore=0 impostorscore=0 spamscore=0
- priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606260173
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316226-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,y2zyrtso6yk4:mid,oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS(0.00)[m:sudeep.holla@kernel.org,m:johannes.goede@oss.qualcomm.com,m:rafael@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:srini@kernel.org,m:krzk+dt@kernel.org,m:lumag@kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-acpi@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-316232-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:olteanv@gmail.com,m:robh@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,gmail.com,lists.infradead.org,vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DA6266D0262
+X-Rspamd-Queue-Id: 86BBB6D0309
 
-On Fri, Jun 26, 2026 at 04:52:41PM +0100, Sudeep Holla wrote:
-> On Tue, Jun 23, 2026 at 04:52:13PM +0200, Hans de Goede wrote:
-> > Hi All,
-> > 
-> > Currently as soon as the kernel boots with a populated DT provided then
-> > the arch/arm64 code sets acpi_disabled=1 and the complete ACPI subsystem
-> > gets disabled. On WoA Snapdragon laptops where the factory Windows OS
-> > actually boots using these tables this is not necessarily desirable.
-> > 
-> 
-> I am bit lost reading the very first statement here.
-> 
-> Who is populating DT and why ? It seems that is the source of the problem.
-> 
-> If windows can boot with ACPI tables, why is it causing issues for the
-> Linux kernel, any specifics?
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-Windows uses a separate beast called PEP, which nobody wanted to
-implement for these platforms up to now. You can find a lot of ACPI
-dumps for these devices at [1].
+Pre-existing issues:
+- [Medium] The return value of `regmap_read` is ignored, leading to the use=
+ of an uninitialized stack variable.
+- [Medium] The patch fails to address identical reset deassertion vulnerabi=
+lities in `rk_udphy_init`, leaving the driver susceptible to the exact same=
+ SError it claims to fix.
+--
 
-> IOW why is DT populated which creates the problem you are trying to address
-> here.
+commit af7a83cb1b1746054cd095d5743210c65397d6b1
+Author: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Most of the laptops resemble other Qualcomm platforms, which use DT for
-hardware description. In some cases, it is the same platform being used
-for both mobile, IoT and laptops. It was more or less natural to reuse
-existing support.
+phy: rockchip: usbdp: Handle rk_udphy_reset_deassert_all errors in init che=
+ck
 
-[1] https://github.com/aarch64-laptops/build/tree/master/misc
+This commit fixes a theoretical SError issue by ensuring that the return
+value of rk_udphy_reset_deassert_all is checked. It bails out early if
+deasserting the reset lines fails before attempting further register access.
 
--- 
-With best wishes
-Dmitry
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Closes: https://sashiko.dev/#/message/20260619154903.2225A1F000E9%40smtp.ke=
+rnel.org
+
+> Fix theoretical issue, that failure to deassert the reset lines would
+> result in an SError in follow-up register access. Note, that this cannot
+> happen with current code, since the Rockchip reset driver never returns
+> any errors for (de)asserting reset lines.
+
+[Severity: Medium]
+This is a pre-existing issue, but does this same vulnerability still exist =
+in
+rk_udphy_init() where reset deassertions are also unchecked?
+
+For example:
+
+drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_init() {
+	...
+	rk_udphy_reset_deassert(udphy, "pma_apb");
+	rk_udphy_reset_deassert(udphy, "pcs_apb");
+
+	/* Step 2: set init sequence and phy refclk */
+	ret =3D regmap_multi_reg_write(udphy->pma_regmap, ...
+	...
+}
+
+If rk_udphy_reset_deassert() fails here, wouldn't the follow-up
+regmap_multi_reg_write() trigger the exact same SError?
+
+Should the reset deassertions in rk_udphy_init() also be checked?
+
+> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
+chip/phy-rockchip-usbdp.c
+> index f7ff55f03b7cf..b8de0a47a6165 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> @@ -936,7 +936,9 @@ static int rk_udphy_get_initial_status(struct rk_udph=
+y *udphy)
+>  		return ret;
+>  	}
+> =20
+> -	rk_udphy_reset_deassert_all(udphy);
+> +	ret =3D rk_udphy_reset_deassert_all(udphy);
+> +	if (ret)
+> +		goto exit;
+> =20
+>  	regmap_read(udphy->pma_regmap, CMN_LANE_MUX_AND_EN_OFFSET, &value);
+>  	if (FIELD_GET(CMN_DP_LANE_MUX_ALL, value) && FIELD_GET(CMN_DP_LANE_EN_A=
+LL, value)) {
+
+[Severity: Medium]
+This is a pre-existing issue, but does this code evaluate an uninitialized
+variable if the read fails?
+
+If regmap_read() fails and returns an error, value is not initialized, and
+the subsequent FIELD_GET() checks will operate on uninitialized stack memor=
+y.
+
+Should the return value of regmap_read() be checked here?
+
+>  		dev_info(udphy->dev, "Started with DP PHY pre-enabled; seamless takeov=
+er unsupported\n");
+>  		rk_udphy_grfreg_write(udphy->vogrf, &cfg->vogrfcfg[udphy->id].hpd_trig=
+ger, false);
+>  	}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260626-rockchip-u=
+sbdp-cleanup-v8-0-47f682987895@collabora.com?part=3D7
 
