@@ -1,201 +1,149 @@
-Return-Path: <devicetree+bounces-315991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315994-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9C5xNWE1Pmr2BQkAu9opvQ
-	(envelope-from <devicetree+bounces-315991-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:16:33 +0200
+	id Q+5+K/E2PmpCBgkAu9opvQ
+	(envelope-from <devicetree+bounces-315994-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:23:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32EAE6CB421
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:16:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29BEF6CB4CA
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:23:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linutronix.de header.s=2020 header.b=4exj1H1F;
-	dkim=pass header.d=linutronix.de header.s=2020e header.b="Ge7o6t/X";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315991-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315991-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linutronix.de;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="aA/AaODJ";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315994-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315994-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7F6493038C55
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 08:16:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0C0D430C3194
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 08:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6D23383C8F;
-	Fri, 26 Jun 2026 08:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ECC13E5A25;
+	Fri, 26 Jun 2026 08:21:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8054F349CDD
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 08:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E5A3E3D89;
+	Fri, 26 Jun 2026 08:21:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782461782; cv=none; b=pZhzH6eqeoPRp25KhazVX4jJpy3e2bzz/QMimjN6zXvG5FPcH1z8q+bvVQ7ZmfU0bdy/aFVd4YABS8kz6YoiHIZWlFWPEEoFzqIMhl78XM9N3EhAfv0PvQDeWu+zHJdgN+42cIUT8OgkWlaRJpR544aIs14nqTH06+FL+qz9UL4=
+	t=1782462087; cv=none; b=QmMk8zranDV9QIvzJxtdYyMLWWFKXrvxT5oThh+vQUjHNO4RBMtVD4aB70krTN0f3dfwnRYvEOFbdhKD4xxje8FUy/7WhLkz2z/FPqKq7+fP+yQEmMHpvW52SFn/7OwiiXgaswHqjMgYSeO86L91G7j5MMy8z1tbOhMWI4L8Wzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782461782; c=relaxed/simple;
-	bh=RjjyukIZMmOnjDwapm6OGfDxKHHzl++raccQCKbpkYY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=melWcPlrQbmcOt6a1qEd1j+z4Cmgqsu30e3mifW5ZSJRBNu2A54nkpl/g82803quag0AsavH5dOLkn8ga8WD/6f36fIxuF2GLBfXqA/6m5EtEinmHu55is89LghTHOFjHbGFpV3AHwTaBoVXFqMq8cKQnlsmMvxr8opR9Rh4afg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=4exj1H1F; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=Ge7o6t/X; arc=none smtp.client-ip=193.142.43.55
-Date: Fri, 26 Jun 2026 10:16:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1782461774;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=77C0PIPkULCawspeoWKKGGZpSr9VYMCEg9bVPkUJvKI=;
-	b=4exj1H1FGsbItgE2+P+dxaCGBmAHpVH8AYiCNG86+ljGeN5UXANG5/OuEMTydr+CMqNfT4
-	qM0qmepTQeRy8cSPv6jogC6qKPqyRFPn2+Yj1i+e0LkS5iPMiWawRQwqsNI/8/VVz6DMt7
-	h8SuotguzVAUhiDyA/uxEn0dUM14URaar6R5PF2lo7xrBrnWNsYChqq8INKnb+ctKXMmYM
-	9tetVENG902o6A/uXIIPboSvlkvcyGCMa2DxHkasaRSFPLUbTPKtN0Kbafvl04qRVf5LCu
-	eDsl5JzedpRU/iLj9kZT0kXLq8wY9HCyzDA7n4GESCam+pKxI82sZdpJI3KG4g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1782461774;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=77C0PIPkULCawspeoWKKGGZpSr9VYMCEg9bVPkUJvKI=;
-	b=Ge7o6t/XBifeIRVO5XxBXlOr5nivRHc+bH9JJFCw3uKgqZpY9zZweo8A+0dIOrsnyhBm7y
-	1Ej32Gw2hQTekXCg==
-From: Gregor Herburger <gregor.herburger@linutronix.de>
-To: sashiko-reviews@lists.linux.dev
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4] firmware: raspberrypi: Add reboot mode support
-Message-ID: <skyj4e4opab6toljwr2mc4prybrzxhsptdemy5ynrytu6u5ibi@2qsfb6m2r4dl>
-References: <20260626-rpi-tryboot-v1-0-490b1c4c4970@linutronix.de>
- <20260626-rpi-tryboot-v1-3-490b1c4c4970@linutronix.de>
- <20260626074334.8E6201F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782462087; c=relaxed/simple;
+	bh=hRPd+g9ODFZEheZ9pUuMMOA161rtDcsucEGKN32Gs9w=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=sgRXPJAtTN2JSKyA3cz5j9cb26bd+1BAEzJkSSKyVbtAYqyJsPinLBAThoaH52QlUe5BHCwdnlAx+1tgMOa0hYjarGMQkrhYYllxYSC+hmwCSeAAfR4Bfnt1XFY4448lFfDXflr87HNQjqBT/soRL63npZYFcPUO13UYQyvpgz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aA/AaODJ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B0AC1F00A3D;
+	Fri, 26 Jun 2026 08:21:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782462080;
+	bh=Xf3kAwe5ywIQY//rN3h6sBdlm1lF9rusVsWktLYdFkk=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc;
+	b=aA/AaODJC9hNx87l7DWmFqF1ycvUQDGXM6GzZfkNDnaN83wpqMr7NjTKa3W749koe
+	 hwI7hQleW1NVEl2PH70tTqE+TBtvDm8AwRL2dm6Hcj+k9PQxhyaItrC9HsLeyyIqR0
+	 zndpM5dfZUZ+rxd7ac/2X/rhEe3gGN3uSkL1j5ZvFuZKkz4qiMsVS0UdRBcW255bmd
+	 B7KThCYiQMxkacYR+Lx1CIiiqfC6QKOcMNcIWeEeOhqYwGxKSKPiOIfXmLesV17yR2
+	 Odx/7NmU+bJ7ZzRHg/3Xun0PK3w6/xBip2pDM77MGz/xkgB+IWxpgu7gJukMW3wPcN
+	 lLNjFjZn/RKUw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 5695239389E8;
+	Fri, 26 Jun 2026 08:21:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260626074334.8E6201F000E9@smtp.kernel.org>
+Subject: Re: [PATCH v9 0/4] Introduce ASPEED AST27xx BMC SoC
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <178246206701.3816447.15009741745882675380.git-patchwork-notify@kernel.org>
+Date: Fri, 26 Jun 2026 08:21:07 +0000
+References: <20260609-upstream_ast2700-v9-0-f631752f0cb1@aspeedtech.com>
+In-Reply-To: <20260609-upstream_ast2700-v9-0-f631752f0cb1@aspeedtech.com>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: linux-riscv@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+ catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, krzk@kernel.org,
+ alexandre.belloni@bootlin.com, linusw@kernel.org, fustini@kernel.org,
+ pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ soc@lists.linux.dev, conor.dooley@microchip.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linutronix.de,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linutronix.de:s=2020,linutronix.de:s=2020e];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-315994-lists,devicetree=lfdr.de,linux-riscv];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-315991-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[gregor.herburger@linutronix.de,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FORGED_RECIPIENTS(0.00)[m:ryan_chen@aspeedtech.com,m:linux-riscv@lists.infradead.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:catalin.marinas@arm.com,m:will@kernel.org,m:arnd@arndb.de,m:krzk@kernel.org,m:alexandre.belloni@bootlin.com,m:linusw@kernel.org,m:fustini@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-aspeed@lists.ozlabs.org,m:linux-kernel@vger.kernel.org,m:soc@lists.linux.dev,m:conor.dooley@microchip.com,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregor.herburger@linutronix.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linutronix.de:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,aspeedtech.com:url,arndb.de:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 32EAE6CB421
+X-Rspamd-Queue-Id: 29BEF6CB4CA
 
-Hi,
-On Fri, Jun 26, 2026 at 07:43:33AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
-> - [High] Mixing managed (devm) and manual API calls for reboot mode registration causes a double-free and a use-after-free on device removal.
-> - [High] Ignoring the return value of `devm_reboot_mode_register` leads to a NULL pointer dereference or double free if registration fails.
-> --
+Hello:
 
-yes I will address this points  in a v2. But first I want to wait if I get more
-feedback on this series. In particular, whether this is the right approach from
-a conceptual standpoint.
+This series was applied to riscv/linux.git (fixes)
+by Arnd Bergmann <arnd@arndb.de>:
 
+On Tue, 9 Jun 2026 10:47:17 +0800 you wrote:
+> This introduces initial support for the Aspeed AST27xx SoC and the AST2700
+> Evaluation Board (EVB) to the Linux kernel. The AST27xx is the 8th
+> generation Baseboard Management Controller (BMC) SoC from Aspeed,
+> featuring improved performance, enhanced security, and expanded I/O
+> capabilities compared to previous generations.
 > 
-> commit c4eb702fd9dc0d615bc8a99fbb83befc50f8971f
-> Author: Gregor Herburger <gregor.herburger@linutronix.de>
+> AST27xx SOC Family
+>  - https://www.aspeedtech.com/server_ast2700/
+>  - https://www.aspeedtech.com/server_ast2720/
+>  - https://www.aspeedtech.com/server_ast2750/
 > 
-> firmware: raspberrypi: Add reboot mode support
-> 
-> The Raspberry Pi firmware has a tryboot mode where it tries to boot from
-> another partition. This patch adds support for this by registering a reboot
-> mode driver.
-> 
-> > diff --git a/drivers/firmware/raspberrypi.c b/drivers/firmware/raspberrypi.c
-> > --- a/drivers/firmware/raspberrypi.c
-> > +++ b/drivers/firmware/raspberrypi.c
-> > @@ -306,6 +323,12 @@ static int rpi_firmware_probe(struct platform_device *pdev)
-> >  	rpi_register_hwmon_driver(dev, fw);
-> >  	rpi_register_clk_driver(dev);
-> >  
-> > +	fw->reboot_mode.dev = dev;
-> > +	fw->reboot_mode.write = rpi_firmware_reboot_mode_write;
-> > +	ret = devm_reboot_mode_register(dev, &fw->reboot_mode);
-> > +	if (ret)
-> > +		dev_err(dev, "Failed to register reboot mode: %d\n", ret);
-> > +
-> >  	return 0;
-> >  }
-> 
-> [Severity: High]
-> Should we return the error code here instead of returning 0?
-> 
-> If devm_reboot_mode_register() fails, the probe succeeds but the internal
-> list head for the reboot mode might remain uninitialized. 
-> 
-> Later during device removal, rpi_firmware_remove() calls
-> reboot_mode_unregister() unconditionally. This could lead to a null pointer
-> dereference when iterating the uninitialized list, or a double free if the
-> failure occurred inside the register function and it already freed the
-> resources.
-> 
-> [ ... ]
-> 
-> > @@ -323,6 +346,8 @@ static void rpi_firmware_remove(struct platform_device *pdev)
-> >  {
-> >  	struct rpi_firmware *fw = platform_get_drvdata(pdev);
-> >  
-> > +	reboot_mode_unregister(&fw->reboot_mode);
-> > +
-> 
-> [Severity: High]
-> Could this manual unregister cause a double-free and use-after-free?
-> 
-> Since devm_reboot_mode_register() is used in probe, the devres cleanup will
-> automatically unregister the reboot mode when the device is removed.
-> 
-> By manually calling reboot_mode_unregister() here:
-> 1. It frees the strings in the list.
-> 2. rpi_firmware_put(fw) drops the reference, potentially freeing the fw
->    structure.
-> 3. The devres cleanup runs devm_reboot_mode_release() upon returning,
->    accessing the freed fw structure and attempting to unregister and free
->    the strings a second time.
-> 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20260626-rpi-tryboot-v1-0-490b1c4c4970@linutronix.de?part=3
+> [...]
 
+Here is the summary with links:
+  - [v9,1/4] dt-bindings: arm: aspeed: Add AST2700 board compatible
+    https://git.kernel.org/riscv/c/34efd73379ff
+  - [v9,2/4] arm64: Kconfig: Add ASPEED SoC family Kconfig support
+    https://git.kernel.org/riscv/c/df6f379eb4ac
+  - [v9,3/4] arm64: dts: aspeed: Add initial AST27xx SoC device tree
+    https://git.kernel.org/riscv/c/e77bb5dc5759
+  - [v9,4/4] arm64: configs: Update defconfig for AST2700 platform support
+    https://git.kernel.org/riscv/c/512cef2af615
+
+You are awesome, thank you!
 -- 
-Gregor Herburger
-Linutronix GmbH | Bahnhofstrasse 3 | D-88690 Uhldingen-Mühlhofen
-Phone: +49 7556 25 999 35; Fax.: +49 7556 25 999 99
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-Hinweise zum Datenschutz finden Sie hier (Informations on data privacy 
-can be found here): https://linutronix.de/legal/data-protection.php
 
-Linutronix GmbH | Firmensitz (Registered Office): Uhldingen-Mühlhofen | 
-Registergericht (Registration Court): Amtsgericht Freiburg i.Br., HRB700 
-806 | Geschäftsführer (Managing Directors): Dr. Wilfried Wessner, 
-Katharina Kopp, Alexander Gieringer
 
