@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-315888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315887-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KWYnAAHkPWrB7ggAu9opvQ
-	(envelope-from <devicetree+bounces-315888-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:29:21 +0200
+	id 1vGyG/vjPWrA7ggAu9opvQ
+	(envelope-from <devicetree+bounces-315887-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:29:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E3016C9C2E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:29:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C642E6C9C2B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:29:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315888-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315888-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315887-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315887-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 047643043522
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 02:28:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 42D3030262C3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 02:28:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7454B305057;
-	Fri, 26 Jun 2026 02:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B78430170F;
+	Fri, 26 Jun 2026 02:28:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F96D3009F6;
-	Fri, 26 Jun 2026 02:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57F5A3009E1;
+	Fri, 26 Jun 2026 02:28:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782440887; cv=none; b=t1Y2bat1T+R9ySkt6YtGAciT21Zoz1IxMRGtBOD637vQa5UxkzL2ZpoEzR2Gp5tEXqJaFy+BBQXPpZ6jChGvSbuoIK7CPoeqfp0b3KQOLq5GyVSXgQL8b0RKNX05PeRAvzOd4ShiqlxgdKvMKTAEU6hcmKlTet7qvy60SbDp244=
+	t=1782440883; cv=none; b=b1ywRFwhOQ7/bzA9B3GxP6JFwPi26f7jL9E3VL+d0vszoJp53/CH0ect0XsjBMX/RMVPANC3tkMYJGS/Vzcfr6mMwRIccS2j4+NlTrMIsyZVvqd6t7YZn3RvFHtA3TnYQ3WgN1b4WwCEX1PGKkyvLl/n+H6DycNi5/jmUrUnkwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782440887; c=relaxed/simple;
-	bh=noAg+IT1cwF/wm0lavT2jdfHpwNojYlhhiVnYLSkpS8=;
+	s=arc-20240116; t=1782440883; c=relaxed/simple;
+	bh=AkvTLSpf8tNX3O3zxFlSCiZyBI46jiN6mQBAhF7Ah6c=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FdJhl8hXhaAOxvB02QXkK7XieiFK4rYkyyudZFCSIpZiSSfYI3wlLvWpclj+CkDlu5XU7M/HDtW+U/Ytr5atevo+8Vqfmqt5Wet20EuncSGiJGgKvuIM3V44SJd6BtcZR6xKp0QX/bS71CWkgCrYFTQ7TfBngP7hPd5SyF+poT0=
+	 MIME-Version; b=WiOa1qXaVZd8q8dffHijY5jv6aBRvIWWejpNzm76Bz5MWgJVSPOuMndVAGKruvjYNk+e2l7xMDdN3i3JlErKY5bso3Iho7kyJfF2fiATW/Z29I+e1bf4jhEXP1V8AAB4uSMY5y336xHXyox4CD0II4O4blzom4cEa2s9GtXbMCo=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
 Received: from loongson.cn (unknown [223.64.68.155])
-	by gateway (Coremail) with SMTP id _____8AxvsCy4z1qOzEYAA--.38446S3;
-	Fri, 26 Jun 2026 10:28:02 +0800 (CST)
+	by gateway (Coremail) with SMTP id _____8Ax_umv4z1qNTEYAA--.61668S3;
+	Fri, 26 Jun 2026 10:27:59 +0800 (CST)
 Received: from kernelserver (unknown [223.64.68.155])
-	by front1 (Coremail) with SMTP id qMiowJBx68Gs4z1q0m2zAA--.10481S2;
-	Fri, 26 Jun 2026 10:27:57 +0800 (CST)
+	by front1 (Coremail) with SMTP id qMiowJBx68Gs4z1q0m2zAA--.10481S3;
+	Fri, 26 Jun 2026 10:27:58 +0800 (CST)
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 To: Binbin Zhou <zhoubb.aaron@gmail.com>,
 	Huacai Chen <chenhuacai@loongson.cn>,
@@ -55,9 +55,9 @@ Cc: Huacai Chen <chenhuacai@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-sound@vger.kernel.org,
 	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v3 8/9] ASoC: loongson: Add headphone jack detection and DAPM routing
-Date: Fri, 26 Jun 2026 10:27:48 +0800
-Message-ID: <c4b1503220b6fb433ecdcb881556827579041c3d.1782439646.git.zhoubinbin@loongson.cn>
+Subject: [PATCH v3 9/9] ASoC: es8328: Add DAPM routes from MIC inputs to Mic Bias
+Date: Fri, 26 Jun 2026 10:27:49 +0800
+Message-ID: <dcf1f8ae4f1f192a1d63e9fe7044b0218119b5eb.1782439646.git.zhoubinbin@loongson.cn>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <cover.1782439646.git.zhoubinbin@loongson.cn>
 References: <cover.1782439646.git.zhoubinbin@loongson.cn>
@@ -68,11 +68,11 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJBx68Gs4z1q0m2zAA--.10481S2
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAgEKCGo8wzAaJwAAsZ
-X-Coremail-Antispam: 1Uk129KBj93XoW3GFyfGr13CFyUAw47XrWkuFX_yoWxZF13pF
-	9rZayYgF45JrWrZF1rXrW3ArnxA393CFZrta17tw1vkrsFywn8WryDGF12vFW3ArWkGr1U
-	XFWkCFWfCas8uFcCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
+X-CM-TRANSID:qMiowJBx68Gs4z1q0m2zAA--.10481S3
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAQEKCGo8w2QargAAsH
+X-Coremail-Antispam: 1Uk129KBj93XoW7CFW7WrWfZr1kuFy5AFW3CFX_yoW8GrWkpF
+	4rKrs3tF97J3WfAw1vkw13XF13GFy7uFWfGFWUK3yDKrn8JF4vqr1Fyr129Fs7JrZYgan7
+	X3s7t3yrCa43ArXCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
 	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
 	0xBIdaVrnRJUUUBCb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
 	IYs7xG6rWj6s0DM7CIcVAFz4kK6r126r13M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
@@ -93,11 +93,11 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315888-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315887-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[loongson.cn];
@@ -117,224 +117,46 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	R_DKIM_NA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[loongson.cn:email,loongson.cn:mid,loongson.cn:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4E3016C9C2E
+X-Rspamd-Queue-Id: C642E6C9C2B
 
-Extend the Loongson audio machine driver with jack detection, DAPM
-widgets support, enabling proper switching between headphones and
-speakers on the Loongson-2K0300 ATK-DL2K0300B board.
+The ES8328 codec has differential/single-ended microphone inputs
+(LINPUT1/RINPUT1, LINPUT2/RINPUT2) that require connection to the
+internal Mic Bias generator for proper operation. Currently, these
+routes are missing, which can cause microphone recording to fail.
+
+Add the missing DAPM routes to link the input pins to the Mic Bias
+supply, ensuring the microphone bias voltage is correctly applied.
 
 Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 ---
- sound/soc/loongson/loongson_card.c | 131 ++++++++++++++++++++++++++++-
- 1 file changed, 127 insertions(+), 4 deletions(-)
+PS:
+I'm not sure if this patch is also required for other platforms using
+the ES8328. If not, I'll drop the patch and add this DAPM route to the
+`audio-routing` property of the Loongson ASoC machine driver.
 
-diff --git a/sound/soc/loongson/loongson_card.c b/sound/soc/loongson/loongson_card.c
-index 0e63cbcad57a..25cd12eab4b1 100644
---- a/sound/soc/loongson/loongson_card.c
-+++ b/sound/soc/loongson/loongson_card.c
-@@ -7,33 +7,126 @@
- //         Binbin Zhou <zhoubinbin@loongson.cn>
- //
+ sound/soc/codecs/es8328.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/sound/soc/codecs/es8328.c b/sound/soc/codecs/es8328.c
+index 9838fe42cb6f..aaa6646ad4c5 100644
+--- a/sound/soc/codecs/es8328.c
++++ b/sound/soc/codecs/es8328.c
+@@ -405,6 +405,11 @@ static const struct snd_soc_dapm_route es8328_dapm_routes[] = {
  
--#include <linux/module.h>
--#include <sound/soc.h>
--#include <sound/soc-acpi.h>
- #include <linux/acpi.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
- #include <linux/pci.h>
-+#include <sound/jack.h>
- #include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+#include <sound/soc-acpi.h>
+ 	{ "Mic Bias", NULL, "Mic Bias Gen" },
  
- static char codec_name[SND_ACPI_I2C_ID_LEN];
- 
- struct loongson_card_data {
- 	struct snd_soc_card snd_card;
- 	unsigned int mclk_fs;
-+	struct gpio_desc *gpiod_hp_det;
-+	struct gpio_desc *gpiod_hp_ctl;
-+	struct gpio_desc *gpiod_spkr_en;
- 	const struct loongson_card_config *cfg;
- };
- 
- struct loongson_card_config {
- 	unsigned int fmt;
-+	bool add_hp_jack;
-+	bool add_dapm_widgets;
-+	bool add_dapm_routes;
- };
- 
- static const struct loongson_card_config ls2k1000_card_config = {
- 	.fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_IB_NF | SND_SOC_DAIFMT_CBC_CFC,
-+	.add_hp_jack = false,
-+	.add_dapm_widgets = false,
-+	.add_dapm_routes = false,
- };
- 
- static const struct loongson_card_config ls2k0300_forever_pi_card_config = {
- 	.fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBC_CFC,
-+	.add_hp_jack = false,
-+	.add_dapm_widgets = false,
-+	.add_dapm_routes = false,
-+};
++	{ "LINPUT1", NULL, "Mic Bias" },
++	{ "RINPUT1", NULL, "Mic Bias" },
++	{ "LINPUT2", NULL, "Mic Bias" },
++	{ "RINPUT2", NULL, "Mic Bias" },
 +
-+static const struct loongson_card_config ls2k0300_dl2k0300b_card_config = {
-+	.fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBC_CFC,
-+	.add_hp_jack = true,
-+	.add_dapm_widgets = true,
-+	.add_dapm_routes = true,
-+};
-+
-+static int tegra_machine_event(struct snd_soc_dapm_widget *w,
-+			       struct snd_kcontrol *k, int event)
-+{
-+	struct snd_soc_card *card = snd_soc_dapm_to_card(w->dapm);
-+	struct loongson_card_data *priv = snd_soc_card_get_drvdata(card);
-+
-+	if (!snd_soc_dapm_widget_name_cmp(w, "Speaker"))
-+		gpiod_set_value_cansleep(priv->gpiod_spkr_en,
-+					 SND_SOC_DAPM_EVENT_ON(event));
-+
-+	if (!snd_soc_dapm_widget_name_cmp(w, "Headphone"))
-+		gpiod_set_value_cansleep(priv->gpiod_hp_ctl,
-+					 SND_SOC_DAPM_EVENT_ON(event));
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dapm_widget loongson_aosc_dapm_widgets[] = {
-+	SND_SOC_DAPM_HP("Headphone", tegra_machine_event),
-+	SND_SOC_DAPM_SPK("Speaker", tegra_machine_event),
-+};
-+
-+/* Headphones Jack */
-+
-+static struct snd_soc_jack loongson_asoc_hp_jack;
-+
-+static struct snd_soc_jack_pin loongson_asoc_hp_jack_pins[] = {
-+	{
-+		.pin = "Headphone",
-+		.mask = SND_JACK_HEADPHONE
-+	},
-+	{
-+		.pin = "Speaker",
-+		.mask = SND_JACK_HEADPHONE,
-+		.invert = 1
-+	},
-+};
-+
-+static struct snd_soc_jack_gpio loongson_asoc_hp_jack_gpio = {
-+	.name = "Headphones detection",
-+	.report = SND_JACK_HEADPHONE,
-+	.debounce_time = 150,
- };
- 
-+static int loongson_asoc_machine_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_card *card = rtd->card;
-+	struct loongson_card_data *ls_priv = snd_soc_card_get_drvdata(card);
-+	int ret = 0;
-+
-+	if (!ls_priv->cfg->add_hp_jack || !ls_priv->gpiod_hp_det)
-+		return 0;
-+
-+	ret = snd_soc_card_jack_new_pins(card, "Headphones Jack",
-+					 SND_JACK_HEADPHONE,
-+					 &loongson_asoc_hp_jack,
-+					 loongson_asoc_hp_jack_pins,
-+					 ARRAY_SIZE(loongson_asoc_hp_jack_pins));
-+	if (ret) {
-+		dev_err(rtd->dev, "Headphones Jack creation failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	loongson_asoc_hp_jack_gpio.desc = ls_priv->gpiod_hp_det;
-+
-+	ret = snd_soc_jack_add_gpios(&loongson_asoc_hp_jack, 1, &loongson_asoc_hp_jack_gpio);
-+	if (ret)
-+		dev_err(rtd->dev, "Headphone GPIO not added: %d\n", ret);
-+
-+	return ret;
-+}
-+
- static int loongson_card_hw_params(struct snd_pcm_substream *substream,
- 				   struct snd_pcm_hw_params *params)
- {
-@@ -75,6 +168,7 @@ static struct snd_soc_dai_link loongson_dai_links[] = {
- 	{
- 		.name = "Loongson Audio Port",
- 		.stream_name = "Loongson Audio",
-+		.init = loongson_asoc_machine_init,
- 		SND_SOC_DAILINK_REG(analog),
- 		.ops = &loongson_ops,
- 	},
-@@ -135,16 +229,35 @@ static int loongson_card_parse_acpi(struct loongson_card_data *data)
- 
- static int loongson_card_parse_of(struct loongson_card_data *data)
- {
--	struct device_node *cpu, *codec;
- 	struct snd_soc_card *card = &data->snd_card;
-+	struct device_node *cpu, *codec;
- 	struct device *dev = card->dev;
- 	int ret, i;
- 
-+	data->gpiod_hp_det = devm_gpiod_get_optional(dev, "hp-det", GPIOD_IN);
-+	if (IS_ERR(data->gpiod_hp_det))
-+		return PTR_ERR(data->gpiod_hp_det);
-+
-+	data->gpiod_hp_ctl = devm_gpiod_get_optional(dev, "hp-ctl", GPIOD_OUT_LOW);
-+	if (IS_ERR(data->gpiod_hp_ctl))
-+		return PTR_ERR(data->gpiod_hp_ctl);
-+
-+	data->gpiod_spkr_en = devm_gpiod_get_optional(dev, "spkr-en", GPIOD_OUT_LOW);
-+	if (IS_ERR(data->gpiod_spkr_en))
-+		return PTR_ERR(data->gpiod_spkr_en);
-+
-+	if (data->cfg->add_dapm_routes) {
-+		ret = snd_soc_of_parse_audio_routing(card, "audio-routing");
-+		if (ret)
-+			return ret;
-+	}
-+
- 	cpu = of_get_child_by_name(dev->of_node, "cpu");
- 	if (!cpu) {
- 		dev_err(dev, "platform property missing or invalid\n");
- 		return -EINVAL;
- 	}
-+
- 	codec = of_get_child_by_name(dev->of_node, "codec");
- 	if (!codec) {
- 		dev_err(dev, "audio-codec property missing or invalid\n");
-@@ -199,6 +312,12 @@ static int loongson_asoc_card_probe(struct platform_device *pdev)
- 	card->owner = THIS_MODULE;
- 	card->dai_link = loongson_dai_links;
- 	card->num_links = ARRAY_SIZE(loongson_dai_links);
-+
-+	if (ls_priv->cfg->add_dapm_widgets) {
-+		card->dapm_widgets = loongson_aosc_dapm_widgets;
-+		card->num_dapm_widgets = ARRAY_SIZE(loongson_aosc_dapm_widgets);
-+	}
-+
- 	snd_soc_card_set_drvdata(card, ls_priv);
- 
- 	ret = device_property_read_string(dev, "model", &card->name);
-@@ -227,6 +346,10 @@ static const struct of_device_id loongson_asoc_dt_ids[] = {
- 		.compatible = "loongson,ls2k0300-forever-pi-audio-card",
- 		.data = &ls2k0300_forever_pi_card_config
- 	},
-+	{
-+		.compatible = "loongson,ls2k0300-dl2k0300b-audio-card",
-+		.data = &ls2k0300_dl2k0300b_card_config
-+	},
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, loongson_asoc_dt_ids);
+ 	{ "Left Mixer", NULL, "Left DAC" },
+ 	{ "Left Mixer", "Left Bypass Switch", "Left Line Mux" },
+ 	{ "Left Mixer", "Right Playback Switch", "Right DAC" },
 -- 
 2.52.0
 
