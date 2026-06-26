@@ -1,406 +1,249 @@
-Return-Path: <devicetree+bounces-315990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315992-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id R3/iNXk0Pmq4BQkAu9opvQ
-	(envelope-from <devicetree+bounces-315990-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:12:41 +0200
+	id xs+QFB82PmoXBgkAu9opvQ
+	(envelope-from <devicetree+bounces-315992-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:19:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7CD86CB3C7
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:12:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2FBA6CB451
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:19:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=eZfN77Ky;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=sMmEYJFw;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315990-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315990-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=mailbox.org;
+	dkim=pass header.d=lontium.com header.s=default header.b=P7fSlnfA;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315992-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315992-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EE15D300D7B6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 08:12:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8A6213044217
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 08:18:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC283ACF1D;
-	Fri, 26 Jun 2026 08:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202453BED4A;
+	Fri, 26 Jun 2026 08:18:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from out28-109.mail.aliyun.com (out28-109.mail.aliyun.com [115.124.28.109])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D73AA3AB29D;
-	Fri, 26 Jun 2026 08:12:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A463AB298
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 08:18:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782461556; cv=none; b=Ne0gwcR/iMp1OB2nkjbGcc/rjX2fq3B3YWvMb4MmwZAGUACbaMZeEWKbjGyzxfTxK507cHZPgyDlpu1CkCpkyKOlOMnCiHcvDTMMnW1yJriD/3ohiHkLzp0gLVMWLUpxK6ZG5RzYT8HMB+IYYvN2ssj3ujismR3EZtbO+wXhvsk=
+	t=1782461934; cv=none; b=N4/qHFovZpg5N7CEJoK+3l09Zr5zYzpCzAW01ox2c81pRxZTw62F8NPtO0LWnOYjrDBae9M6DaVqrBrxuP8YAwRQyC3Js07QHGjA9MyjkOiHf2AW5utbA4tvhIfzG24GzsXmjEBiPN/J5/AjZpbsxKPAEntqj7AroJhoWf6clGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782461556; c=relaxed/simple;
-	bh=24kQqyCQI8GpNsMl85YvfO3JvPz6Ler6LRig8dyCuIE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pASzEh2OjaEq3UR4vUIGDo1ano0h7vUjtYAhAZ1inOshjtix6mweJ43V/yLFmJ8iTAhOv3G4uTozG8wtmF8ozcc6rrVp14z6QGtxgn0msWWkY9B0Y6yOLABM3k1CoEj+m51eaXq6JsLaXtpEfF7bIPDoSu+1iN45oChiow6bNnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=eZfN77Ky; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=sMmEYJFw; arc=none smtp.client-ip=80.241.56.151
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4gmpLn1Cmfz9tjB;
-	Fri, 26 Jun 2026 10:12:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1782461553;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+nVugsGa9zWngmQtmGL/zlq0zV/IdO94ruEW1ZTfl7g=;
-	b=eZfN77KylBPsRrndmsLRrCvA4RPLB4kY5tD6rSMifp3vClqes2TbubV/+pfKhIDIi7c0pX
-	DlI6INAHqJTjjwakIKYkaBob8FalJxCQ2075uesBMYnxBx3Etlh1nWDeDSPLs+pq/BdTET
-	wfzm1EuzOtX4A+7Pd3sMusivkLYtD11PW4x8i48t17NjvXghSRoMkaUC2MC9+XtByzPZyb
-	4hzf5NZLN/vuIqirlDLAlHYUL8QWoETz1TD53iNvZhgGwQPjQ9zotJO3f7bbacDaDFGvl/
-	O0JVCTgH6gqm7K4AuJHEe+lRZ+v7YvJLtQCd1svenKV2VK+NuoS9VSJLqgcRAA==
-From: Shuwei Wu <shuwei.wu@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1782461552;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+nVugsGa9zWngmQtmGL/zlq0zV/IdO94ruEW1ZTfl7g=;
-	b=sMmEYJFwSXbm4yG90IeHCTS9a00wYrht1uc2x/+Qs8yk6XWlKUK5l7nNbO9pK5taqAQipp
-	88NdBKyFmwT31AhgJPVwU6uB8k09AJRl1jMRJuSAJERosq8O5TUCTC6y7PureK72oSetOV
-	wxKb7vPD/kgcp8sFwu/Of8/KscsQ1jDrCeurAaRAw6WbmDmewSfBIaPxObJevSfLud8O5U
-	ykgIUemfRSRCEMIIL9MxfyLxg2Fn27cKObKkQhfGq5qH9kgpPUyt8bbhUxK0R0qyYNXJhB
-	gx3o2UJPYC+ba7jEAx44ee83deh26Y0gitYzpv3hcGi33/BF7ODtnE8xs/fRlg==
-Date: Fri, 26 Jun 2026 16:10:24 +0800
-Subject: [PATCH v4 2/2] riscv: dts: spacemit: Add cpu scaling for K1 SoC
+	s=arc-20240116; t=1782461934; c=relaxed/simple;
+	bh=gQb9tomqIwes42vV/XXwrMknW5aKZwC68aRU1hkpFNg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hAfF86K81fHo95JZT11CAPsPmmNoJIhElYgO8+wyavCRtKEHJFcF8ofdflZf8IW5hU6s2ip368F0QtqvBdf1t04XhikCUshWyooBIvPdwOfol1ERkkPEjcSyZ0zSAfN70F02weS7ORKKEo5bAZZOq5tyEnT9CJbhC8L3ek7BcRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=P7fSlnfA; arc=none smtp.client-ip=115.124.28.109
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=lontium.com; s=default;
+	t=1782461930; h=MIME-Version:From:Date:Message-ID:Subject:To:Content-Type;
+	bh=Hz7GoxRrDOeP6izzI+KPGlftBZo8WhaNw4ObLmMqKhs=;
+	b=P7fSlnfAQWsCr0HO13Sp6JsaisF4ONN+jZoxod3vmBPBab0l486miVATWlBQXwUCVnegYR1suuBh3AdzlzdJoD7imUfSI95eUj5qEmy9YInCsqGA1jBILGli+2QxwBLQaegieNKvS6Y6VJHx7KMvOMPbajDDc485kX1Tw7vioXy7/yeDD9v06E0DQKLPG7B89RrZzTaAks7+KvCqMAkRBi7rYNPkDowg6W9/i5oCZ8zQ07kKs+f7yXrXWivSN5ff40OhGs/n8/WdzU6gcJgkFCTPz+9wMoiXcE+UvdcUn0j2vcf55uegbB3zlrrWG8DEoxy0hjBEJ+C327ulTkqsXg==
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07436325|-1;CH=blue;DM=|OVERLOAD|false|;DS=CONTINUE|ham_regular_dialog|0.230135-0.00832398-0.761541;FP=18253502819858982146|8|1|7|0|-1|-1|-1;HT=maildocker-contentspam033045018182;MF=syyang@lontium.com;NM=1;PH=DS;RN=1;RT=1;SR=0;TI=SMTPD_---.i6MfSZ1_1782461609;
+Received: from mail-oi1-f171.google.com(mailfrom:syyang@lontium.com fp:SMTPD_---.i6MfSZ1_1782461609 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Fri, 26 Jun 2026 16:13:30 +0800
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-487167d083bso414407b6e.3
+        for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 01:13:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+UcCoLJMsdKyGj/zFKr0kao9IHIgu0rsrxYG7LSIgW8vv0QQ+evEe3CHfIXO8Jxg6F33L5bcGzRrHM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1hOP8Qfvl3TOr7c95ZyySrLmEOCzikFDRhRWp5qVSurGXf3ma
+	uZjHYTKY+v/y/yMmiH/sz/bNS3aBWOO3Im67ko+YVQwJ3iuFPtNL4GM32b6NaJL8uX6KdVifI/6
+	1e1E+aRAkHmtMMFjze2FWcOEQdU61qCo=
+X-Received: by 2002:a05:6808:c185:b0:490:a66f:9aac with SMTP id
+ 5614622812f47-492190fc5b3mr5591967b6e.14.1782461609193; Fri, 26 Jun 2026
+ 01:13:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260626-shadow-deps-v4-2-bba9831f2f1d@mailbox.org>
-References: <20260626-shadow-deps-v4-0-bba9831f2f1d@mailbox.org>
-In-Reply-To: <20260626-shadow-deps-v4-0-bba9831f2f1d@mailbox.org>
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@kernel.org>, 
- Yixun Lan <dlan@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- devicetree@vger.kernel.org, Shuwei Wu <shuwei.wu@mailbox.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782461515; l=8417;
- i=shuwei.wu@mailbox.org; s=20251125; h=from:subject:message-id;
- bh=24kQqyCQI8GpNsMl85YvfO3JvPz6Ler6LRig8dyCuIE=;
- b=Pt0AZLBFdH+b+8aDfYOOy8RKshOi7kag2eex7/t4bLQF0NSpf5U8HLzqFNtzsBgmJb3cvw9ki
- GG3uGLINtHdD0MPu/icBfnzgNLa94yyff5KzZQowVRwoZ8iyip96ldh
-X-Developer-Key: i=shuwei.wu@mailbox.org; a=ed25519;
- pk=qZs6i2UZnXkmjUrwO5HJxcfpCvgSNrR4dcU5cjtfTSk=
-X-MBO-RS-ID: 46e67d3906907dae3fd
-X-MBO-RS-META: ipmf4g4fardkawcstbtisa4ohijfyh1t
+References: <20260508134009.4582-1-syyang@lontium.com> <20260508134009.4582-3-syyang@lontium.com>
+ <3188f63f-5358-48d7-b934-af20a8f95c6f@kernel.org> <CAFQXuNbKBfyeQL3N3P5QY=6BWoD3O6DSbXN-WMA1rRG9vCs3Kg@mail.gmail.com>
+ <a0352a42-15db-4c7a-ae73-8a4e1543cd50@kernel.org> <CAFQXuNZVE6cZJGwrGKGtWnB-seSJLHFh8zW3jjAs6U4JLZFWng@mail.gmail.com>
+ <CAFQXuNa8bJCpZBkMs_3mtbK_pjVzDdaDaoGk0KDxiG_Pf7txdg@mail.gmail.com>
+ <6371d1d8-cdfb-40fa-84c7-ba3ec4e2ac00@kernel.org> <CAFQXuNZtzBu+WiG8n0BeN47zagQmL-iz_6Af7prk-xHLAeRBwg@mail.gmail.com>
+ <20260626-zippy-affable-hamster-22101d@houat>
+In-Reply-To: <20260626-zippy-affable-hamster-22101d@houat>
+From: Sunyun Yang <syyang@lontium.com>
+Date: Fri, 26 Jun 2026 16:13:18 +0800
+X-Gmail-Original-Message-ID: <CAFQXuNbN1bW3DVGUtVf7--dW_UhSk4LZdk+v14P=VSbDU4ZzsQ@mail.gmail.com>
+X-Gm-Features: AVVi8Ccy1Vot-JXWqeZuZ9hQ6HBLxv1b4oTaGEUoItSLAk3USIt4bCYDgyYi4Os
+Message-ID: <CAFQXuNbN1bW3DVGUtVf7--dW_UhSk4LZdk+v14P=VSbDU4ZzsQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] drm/bridge: Add Lontium LT9611C(EX/UXD) MIPI DSI
+ to HDMI driver
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
+	dmitry.baryshkov@oss.qualcomm.com, maarten.lankhorst@linux.intel.com, 
+	rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, tzimmermann@suse.de, 
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	xmzhu@lontium.corp-partner.google.com, xmzhu@lontium.com, rlyu@lontium.com, 
+	xbpeng@lontium.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[lontium.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315990-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:viresh.kumar@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:dlan@kernel.org,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:devicetree@vger.kernel.org,m:shuwei.wu@mailbox.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[shuwei.wu@mailbox.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315992-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:krzk@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:dmitry.baryshkov@oss.qualcomm.com,m:maarten.lankhorst@linux.intel.com,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:tzimmermann@suse.de,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:xmzhu@lontium.corp-partner.google.com,m:xmzhu@lontium.com,m:rlyu@lontium.com,m:xbpeng@lontium.com,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	DMARC_NA(0.00)[lontium.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,oss.qualcomm.com,linux.intel.com,ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shuwei.wu@mailbox.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lontium.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,mailbox.org:dkim,mailbox.org:email,mailbox.org:mid,mailbox.org:from_mime]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,lontium.com:dkim,lontium.com:email,lontium.com:from_mime,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D7CD86CB3C7
+X-Rspamd-Queue-Id: A2FBA6CB451
 
-Add CPU clock properties and OPP tables for the two CPU clusters in the
-SpacemiT K1 SoC. The OPP entries use voltage ranges because the CPU
-supply is shared by both clusters.
+Maxime Ripard <mripard@kernel.org> =E4=BA=8E2026=E5=B9=B46=E6=9C=8826=E6=97=
+=A5=E5=91=A8=E4=BA=94 15:49=E5=86=99=E9=81=93=EF=BC=9A
+>
+> On Fri, Jun 26, 2026 at 10:15:03AM +0800, Sunyun Yang wrote:
+> > Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2026=E5=B9=B46=E6=9C=882=
+5=E6=97=A5=E5=91=A8=E5=9B=9B 21:51=E5=86=99=E9=81=93=EF=BC=9A
+> > >
+> > > On 25/06/2026 15:40, Sunyun Yang wrote:
+> > > > Sunyun Yang <syyang@lontium.com> =E4=BA=8E2026=E5=B9=B46=E6=9C=8825=
+=E6=97=A5=E5=91=A8=E5=9B=9B 21:26=E5=86=99=E9=81=93=EF=BC=9A
+> > > >>
+> > > >> Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2026=E5=B9=B46=E6=
+=9C=8825=E6=97=A5=E5=91=A8=E5=9B=9B 21:17=E5=86=99=E9=81=93=EF=BC=9A
+> > > >>>
+> > > >>> On 25/06/2026 15:14, Sunyun Yang wrote:
+> > > >>>> Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2026=E5=B9=B46=E6=
+=9C=8825=E6=97=A5=E5=91=A8=E5=9B=9B 20:54=E5=86=99=E9=81=93=EF=BC=9A
+> > > >>>>>
+> > > >>>>> On 08/05/2026 15:40, syyang@lontium.com wrote:
+> > > >>>>>> +
+> > > >>>>>> +static void lt9611c_reset(struct lt9611c *lt9611c)
+> > > >>>>>> +{
+> > > >>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+> > > >>>>>> +     msleep(20);
+> > > >>>>>> +
+> > > >>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
+> > > >>>>>> +     msleep(20);
+> > > >>>>>> +
+> > > >>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+> > > >>>>>
+> > > >>>>> This is just plain wrong. Why do you assert, then de-assert and=
+ then
+> > > >>>>> finally assert AGAIN the reset leaving the device in powerdown =
+stage?
+> > > >>>>>
+> > > >>>> I am using software to emulate the hardware RESET button on our =
+EVB.
+> > > >>>> When the hardware RESET button is pressed while our chip is runn=
+ing,
+> > > >>>> the signal level changes from HIGH to LOW and then back to HIGH.
+> > > >>>>
+> > > >>>> Of course, we can also use the following:
+> > > >>>> static void lt9611c_reset(struct lt9611c *lt9611c)
+> > > >>>> {
+> > > >>>>     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
+> > > >>>>     msleep(50);
+> > > >>>>     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+> > > >>>>     msleep(20);
+> > > >>>> }
+> > > >>>
+> > > >>> Makes no sense either and you just did not get the point and did =
+not
+> > > >>> answer my question. I asked WHY you leave asserted. Answer "we em=
+ulate"
+> > > >>> is just plain wrong.
+> > > >>>
+> > > >>> So again please answer:
+> > > >>>
+> > > >>> Why do you leave device with reset asserted?
+> > > >>>
+> > > >>
+> > > >>  devicetree:   reset-gpios =3D <&tlmm 128 GPIO_ACTIVE_HIGH>;
+> > > >>
+> > > >> GPIO_ACTIVE_HIGH:
+> > > >>
+> > > >> gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);   ------   reset=
+ pin
+> > > >> is Low level : Clear the register configuration in the chip to sto=
+p
+> > > >> the chip from working.
+> > > >>
+> > > >> gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);   ------  reset =
+pin
+> > > >> is high level:  The chip resumes operation.
+> > > >>
+> > > >>
+> > > >
+> > > > Our purpose is: pull the level low to clear the register configurat=
+ion
+> > > > in the chip, and then pull it high to allow the MCU inside the chip=
+ to
+> > > > re=E2=80=91initialize the registers.
+> > >
+> > >
+> > > And you do completely opposite... so that confirms your code is just =
+wrong.
+> > >
+> >
+> > The lontium-lt9611.yaml uses GPIO_ACTIVE_HIGH. I am just following the
+> > rule of this device tree. If I modify the device tree to use
+> > GPIO_ACTIVE_LOW,
+> > and use the following code in my driver, then my driver would be correc=
+t.
+> > However, would the existing kernel drivers lontium-lt9611uxc.c and
+> > lontium-lt9611.c be affected?
+>
+> It might, but then it's a DT problem. The GPIO API for drivers always
+> considers the logical state of a GPIO, so if you need to assert a
+> signal, you'll always need to set 1. That's what Krzysztof was trying to
+> explain.
+>
+> The DT will provide with GPIO_ACTIVE_* how that logical state translates
+> to a physical GPIO state.
+>
+> If the DT says that this particular GPIO is active-high, then it means
+> that we need to set the GPIO to 1 to assert reset. Now of course, it
+> might not make sense for the controller itself, but it might for the
+> board if there's a GPIO inverter in the middle for example.
+>
+> Anyway, in the case you're raising, the issue definitely lies in the DT,
+> and that's what would need to be fixed.
+>
+> I also wouldn't be too concerned about lontium-lt9611.yaml, it's just an
+> example.
+>
+> Maxime
 
-Enable CPU DVFS on Banana Pi BPI-F3 by including the OPP tables and
-wiring the CPU nodes to the CPU regulator supply.
+thanks Maxime, I will modify this code in the next version of the
+driver, and I hope you can accept these changes.
 
-Signed-off-by: Shuwei Wu <shuwei.wu@mailbox.org>
----
-Changes in v4:
-- Use separate OPP tables for the two CPU clock clusters
-- Use voltage ranges for the shared CPU supply
+Maxime:
+I have another question I would like to ask you
+regarding sashiko-bot@kernel.org. Since sashiko-bot sometimes has
+opinions that differ from yours, whose advice should I follow?
 
-Changes in v3:
-- Use one shared CPU OPP table for all CPUs
-
-Changes in v2:
-- Add k1-opp.dtsi with OPP tables for both CPU clusters
-- Assign CPU supplies and include OPP table for Banana Pi BPI-F3
----
----
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts |  35 +++++++-
- arch/riscv/boot/dts/spacemit/k1-opp.dtsi        | 105 ++++++++++++++++++++++++
- arch/riscv/boot/dts/spacemit/k1.dtsi            |   8 ++
- 3 files changed, 147 insertions(+), 1 deletion(-)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 444c3b1e6f44..487179f7b9b9 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -4,6 +4,7 @@
-  */
- 
- #include "k1.dtsi"
-+#include "k1-opp.dtsi"
- #include "k1-pinctrl.dtsi"
- 
- / {
-@@ -86,6 +87,38 @@ &combo_phy {
- 	status = "okay";
- };
- 
-+&cpu_0 {
-+	cpu-supply = <&buck1_0v9>;
-+};
-+
-+&cpu_1 {
-+	cpu-supply = <&buck1_0v9>;
-+};
-+
-+&cpu_2 {
-+	cpu-supply = <&buck1_0v9>;
-+};
-+
-+&cpu_3 {
-+	cpu-supply = <&buck1_0v9>;
-+};
-+
-+&cpu_4 {
-+	cpu-supply = <&buck1_0v9>;
-+};
-+
-+&cpu_5 {
-+	cpu-supply = <&buck1_0v9>;
-+};
-+
-+&cpu_6 {
-+	cpu-supply = <&buck1_0v9>;
-+};
-+
-+&cpu_7 {
-+	cpu-supply = <&buck1_0v9>;
-+};
-+
- &emmc {
- 	bus-width = <8>;
- 	mmc-hs400-1_8v;
-@@ -201,7 +234,7 @@ pmic@41 {
- 		dldoin2-supply = <&buck5>;
- 
- 		regulators {
--			buck1 {
-+			buck1_0v9: buck1 {
- 				regulator-min-microvolt = <500000>;
- 				regulator-max-microvolt = <3450000>;
- 				regulator-ramp-delay = <5000>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1-opp.dtsi b/arch/riscv/boot/dts/spacemit/k1-opp.dtsi
-new file mode 100644
-index 000000000000..4cebfcd87485
---- /dev/null
-+++ b/arch/riscv/boot/dts/spacemit/k1-opp.dtsi
-@@ -0,0 +1,105 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/ {
-+	cluster0_opp_table: opp-table-cluster0 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-614400000 {
-+			opp-hz = /bits/ 64 <614400000>;
-+			opp-microvolt = <950000 950000 1050000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-819000000 {
-+			opp-hz = /bits/ 64 <819000000>;
-+			opp-microvolt = <950000 950000 1050000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-microvolt = <950000 950000 1050000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1228800000 {
-+			opp-hz = /bits/ 64 <1228800000>;
-+			opp-microvolt = <950000 950000 1050000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1600000000 {
-+			opp-hz = /bits/ 64 <1600000000>;
-+			opp-microvolt = <1050000 1050000 1050000>;
-+			clock-latency-ns = <200000>;
-+		};
-+	};
-+
-+	cluster1_opp_table: opp-table-cluster1 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-614400000 {
-+			opp-hz = /bits/ 64 <614400000>;
-+			opp-microvolt = <950000 950000 1050000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-819000000 {
-+			opp-hz = /bits/ 64 <819000000>;
-+			opp-microvolt = <950000 950000 1050000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-microvolt = <950000 950000 1050000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1228800000 {
-+			opp-hz = /bits/ 64 <1228800000>;
-+			opp-microvolt = <950000 950000 1050000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1600000000 {
-+			opp-hz = /bits/ 64 <1600000000>;
-+			opp-microvolt = <1050000 1050000 1050000>;
-+			clock-latency-ns = <200000>;
-+		};
-+	};
-+};
-+
-+&cpu_0 {
-+	operating-points-v2 = <&cluster0_opp_table>;
-+};
-+
-+&cpu_1 {
-+	operating-points-v2 = <&cluster0_opp_table>;
-+};
-+
-+&cpu_2 {
-+	operating-points-v2 = <&cluster0_opp_table>;
-+};
-+
-+&cpu_3 {
-+	operating-points-v2 = <&cluster0_opp_table>;
-+};
-+
-+&cpu_4 {
-+	operating-points-v2 = <&cluster1_opp_table>;
-+};
-+
-+&cpu_5 {
-+	operating-points-v2 = <&cluster1_opp_table>;
-+};
-+
-+&cpu_6 {
-+	operating-points-v2 = <&cluster1_opp_table>;
-+};
-+
-+&cpu_7 {
-+	operating-points-v2 = <&cluster1_opp_table>;
-+};
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 529ec68e9c23..bdd109b81730 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -54,6 +54,7 @@ cpu_0: cpu@0 {
- 			compatible = "spacemit,x60", "riscv";
- 			device_type = "cpu";
- 			reg = <0>;
-+			clocks = <&syscon_apmu CLK_CPU_C0_CORE>;
- 			riscv,isa = "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
- 			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "zicbom",
-@@ -84,6 +85,7 @@ cpu_1: cpu@1 {
- 			compatible = "spacemit,x60", "riscv";
- 			device_type = "cpu";
- 			reg = <1>;
-+			clocks = <&syscon_apmu CLK_CPU_C0_CORE>;
- 			riscv,isa = "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
- 			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "zicbom",
-@@ -114,6 +116,7 @@ cpu_2: cpu@2 {
- 			compatible = "spacemit,x60", "riscv";
- 			device_type = "cpu";
- 			reg = <2>;
-+			clocks = <&syscon_apmu CLK_CPU_C0_CORE>;
- 			riscv,isa = "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
- 			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "zicbom",
-@@ -144,6 +147,7 @@ cpu_3: cpu@3 {
- 			compatible = "spacemit,x60", "riscv";
- 			device_type = "cpu";
- 			reg = <3>;
-+			clocks = <&syscon_apmu CLK_CPU_C0_CORE>;
- 			riscv,isa = "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
- 			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "zicbom",
-@@ -174,6 +178,7 @@ cpu_4: cpu@4 {
- 			compatible = "spacemit,x60", "riscv";
- 			device_type = "cpu";
- 			reg = <4>;
-+			clocks = <&syscon_apmu CLK_CPU_C1_CORE>;
- 			riscv,isa = "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
- 			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "zicbom",
-@@ -204,6 +209,7 @@ cpu_5: cpu@5 {
- 			compatible = "spacemit,x60", "riscv";
- 			device_type = "cpu";
- 			reg = <5>;
-+			clocks = <&syscon_apmu CLK_CPU_C1_CORE>;
- 			riscv,isa = "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
- 			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "zicbom",
-@@ -234,6 +240,7 @@ cpu_6: cpu@6 {
- 			compatible = "spacemit,x60", "riscv";
- 			device_type = "cpu";
- 			reg = <6>;
-+			clocks = <&syscon_apmu CLK_CPU_C1_CORE>;
- 			riscv,isa = "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
- 			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "zicbom",
-@@ -264,6 +271,7 @@ cpu_7: cpu@7 {
- 			compatible = "spacemit,x60", "riscv";
- 			device_type = "cpu";
- 			reg = <7>;
-+			clocks = <&syscon_apmu CLK_CPU_C1_CORE>;
- 			riscv,isa = "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc_svinval_svnapot_svpbmt";
- 			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "zicbom",
-
--- 
-2.53.0
-
+If I do not adopt sashiko-bot's suggestions, will my patches still be
+accepted into the upstream Linux kernel?
 
