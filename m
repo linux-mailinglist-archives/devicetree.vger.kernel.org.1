@@ -1,266 +1,130 @@
-Return-Path: <devicetree+bounces-316020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316018-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JJ+aAYlGPmriCQkAu9opvQ
-	(envelope-from <devicetree+bounces-316020-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:29:45 +0200
+	id 9gEXK/BFPmq4CQkAu9opvQ
+	(envelope-from <devicetree+bounces-316018-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:27:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52D326CBB2D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:29:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C8A96CBAEA
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:27:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=microchip.com header.s=mchp header.b=0mbsY0zH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316020-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316020-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=microchip.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=K9AtRuJz;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316018-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316018-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 07D1D30A7B2A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:27:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D9D3300639B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D73023AD520;
-	Fri, 26 Jun 2026 09:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A373BC68A;
+	Fri, 26 Jun 2026 09:26:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CAB63E0088;
-	Fri, 26 Jun 2026 09:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E1C9288B8;
+	Fri, 26 Jun 2026 09:26:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782466033; cv=none; b=b0+EzfJWS4/WJB1NVJ+YPd6b/1oLTJX0DWT7qzrPxXC7Qy8L3kfEvkhgBk4rd9xEpzJaEdEmkjWTXhBUpwKmb8DHYxFQiSdVS20tVxpqezswi2jLUC1bm6GMsT/E8TJlH9zgaw0fCh5GIi0DW/OQdvLNbUm16aUTeudbTfroM1Q=
+	t=1782465982; cv=none; b=lOHKj5kffpnn5xdq2pZj76dLTtp94YhoyFv28X4I5/8V1VZQ3fShtcGIx8BdTVUdEmdxIkHbBGwzF6UTMdT0d08Wz41Br5QdbZJm3iWwNuVzuOP/W55LgxzYkqPD0FVglGKAPmnRdeubWn6rsda5lEuBpd+7W4KBHImvTZD5o6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782466033; c=relaxed/simple;
-	bh=Wkt3ar6iPUbFcYacgPNJpIHFcNav7UI8z4kHnwZokzk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gk5ldCeWMVo7GyvTC8O4ecKdZW4qFFykD1ISdmK4EErsOW5MLWx8SZkCSEId/m+2Wj/m4OrbMikl8hqtwL61X2oXfMndjbtJiMI0QTB+YIDSxe2iv3ShFIcbiQT/R21N5q254bdSr8vu8S8p9spEJZQ8APn/3bWtTaeLs7+lwkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=0mbsY0zH; arc=none smtp.client-ip=68.232.153.233
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1782466033; x=1814002033;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Wkt3ar6iPUbFcYacgPNJpIHFcNav7UI8z4kHnwZokzk=;
-  b=0mbsY0zHT7rt+jWOYfvXxMuNZfQhm+y3gNKKMVd3bbTbYKOYVmiTRPfC
-   lk/zOVBT7DXkd+BSu7u50zYaaDR2LYRDOkbIWeSVHZZfjJxlkoOElV738
-   wsmpEMcP10b6P6wbfsLwVF7XOgpKCoHZxohSF04kKI6PkJX6bHYpgr+Xp
-   akRF6okbmTTZqQPPyDeeEBtAS/PZtp/6CEDnJvzFWTRz/Zx1i8U92dQq0
-   76o66H69AT+DMdwY9AUPK3NHktQnn2R7ev/AJ0ups2pPI97lvU+N1il+c
-   O8+ZboUaUS9L0sT0HSHy3+JUngjlzim7hl56pLlh/ohxGfXSd2uSu8hD7
-   A==;
-X-CSE-ConnectionGUID: YBF2Gm23RaCAopAUoC2ytw==
-X-CSE-MsgGUID: oIg1nReOT0iGvs4oFRTaTw==
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; 
-   d="asc'?scan'208";a="291102737"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jun 2026 02:27:11 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
- chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.43; Fri, 26 Jun 2026 02:27:10 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
- Transport; Fri, 26 Jun 2026 02:27:07 -0700
-Date: Fri, 26 Jun 2026 10:26:16 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-CC: Conor Dooley <conor@kernel.org>, Joey Lu <a0987203069@gmail.com>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<ychuang3@nuvoton.com>, <schung@nuvoton.com>, <yclu4@nuvoton.com>,
-	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 1/7] dt-bindings: display: verisilicon,dc: generalize
- for single-output variants
-Message-ID: <20260626-everybody-epilogue-8fb298a54981@wendy>
-References: <20260625094449.708386-1-a0987203069@gmail.com>
- <20260625094449.708386-2-a0987203069@gmail.com>
- <20260625-bobbing-annotate-d1c4d6874ee2@spud>
- <e3fe23ddbc504879bd797bbaa595d3653fa139ff.camel@iscas.ac.cn>
- <20260626-astrology-mural-853d3860e048@wendy>
- <c0731801729713d35f97bec40ebc21cef31b72b5.camel@iscas.ac.cn>
+	s=arc-20240116; t=1782465982; c=relaxed/simple;
+	bh=kJczjSgymTjyLlOVg//iCerVlQx0COxgwjgmTeJggg4=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=lOxe+cup5ZDK7knqiFtsSiAs0GrMxM7efQnQp0Blj/fkVjTqXgMGX/GTgLLucUJmcV/6pSIEItFyobxNbi2B8O1y4yWr16XOnhewAXr9mnTqGaCEUVjUCGA5IZIXIPan+7dB0UGMyCtDzpWty1ZsKYjg4dnUwCyTZNyqa52MA54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K9AtRuJz; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 830091F000E9;
+	Fri, 26 Jun 2026 09:26:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782465980;
+	bh=kJczjSgymTjyLlOVg//iCerVlQx0COxgwjgmTeJggg4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=K9AtRuJzdJNj/6N8Y63xUVUaYRk3hq016cY97hHq0Buad0dJlweoUh1K5DkBCZ/g1
+	 Tw8njRFpwLtveY96eAbVFDMmaonQgRK7eZyIBZlM0sBNvriXu+PUSv+yFk+QKeLOcB
+	 doRV8Z7+Y/XC+vm59PdBvIe615SlZJ0aCwzVa38O1qLmCb1Qvyd19Sj2YS9Umm/KLD
+	 qlWZexaE88MA9F8pradrzs8MhpjEvtC7PvdnZfKoAm2XlWHsh4R/6ul66nZh01mHoN
+	 d1/PQ4VQCBBjKEpX3YleHZSCM+lGzy/vYOmkRcSIi9/YnN6LK8UrR4vIpGtovRw3el
+	 j8+WUng5D7GsA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 3/4] dt-bindings: PCI: mediatek-gen3: Split Airoha
+ schema and document 2-lanes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Christian Marangi" <ansuelsmth@gmail.com>
+Cc: linux-pci@vger.kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260626092029.3525264-4-ansuelsmth@gmail.com>
+References: <20260626092029.3525264-1-ansuelsmth@gmail.com>
+ <20260626092029.3525264-4-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 26 Jun 2026 09:26:20 +0000
+Message-Id: <20260626092620.830091F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="r8rF78kmCgnz4y87"
-Content-Disposition: inline
-In-Reply-To: <c0731801729713d35f97bec40ebc21cef31b72b5.camel@iscas.ac.cn>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316020-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_RECIPIENTS(0.00)[m:zhengxingda@iscas.ac.cn,m:conor@kernel.org,m:a0987203069@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:yclu4@nuvoton.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:linux-pci@vger.kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316018-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linux.intel.com,suse.de,ffwll.ch,nuvoton.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:dkim,microchip.com:from_mime,vger.kernel.org:from_smtp,wendy:mid]
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 52D326CBB2D
+X-Rspamd-Queue-Id: 0C8A96CBAEA
 
---r8rF78kmCgnz4y87
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Jun 26, 2026 at 05:00:35PM +0800, Icenowy Zheng wrote:
-> =E5=9C=A8 2026-06-26=E4=BA=94=E7=9A=84 08:19 +0100=EF=BC=8CConor Dooley=
-=E5=86=99=E9=81=93=EF=BC=9A
-> > On Fri, Jun 26, 2026 at 01:27:21PM +0800, Icenowy Zheng wrote:
-> > > =E5=9C=A8 2026-06-25=E5=9B=9B=E7=9A=84 17:33 +0100=EF=BC=8CConor Dool=
-ey=E5=86=99=E9=81=93=EF=BC=9A
-> > > > On Thu, Jun 25, 2026 at 05:44:43PM +0800, Joey Lu wrote:
-> > > > > +allOf:
-> > > > > +=C2=A0 - if:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 const: thead,th1520-dc8200
-> > > > > +=C2=A0=C2=A0=C2=A0 then:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems:=
- 5
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems:=
- 5
-> > > > > +
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems:=
- 5
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems:=
- 5
-> > > >=20
-> > > > All the maxItems here repeat the maximum constraint and do
-> > > > nothing.
-> > > >=20
-> > > > Since you didn't change the minimum constraint at the top level,
-> > > > your
-> > > > minItems also do nothing.
-> > > >=20
-> > > > > +
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 resets:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems:=
- 3
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems:=
- 3
-> > > > > +
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-names:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems:=
- 3
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems:=
- 3
-> > > > > +
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 required:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - resets
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - reset-names
-> > > >=20
-> > > > Both conditional sections have this, but the original binding
-> > > > doesn't
-> > > > require these for the thead device. This is a functional change
-> > > > therefore and shouldn't be in a patch calling itself "generalise
-> > > > for
-> > > > single ended variants".
-> > >=20
-> > > Well yes they're required.
-> > >=20
-> > > Should I send a patch adding the `thead,th1520-dc8200` part of the
-> > > schema?
-> >=20
-> > If you mean the code above, no. Adding a conditional section when
-> > there's only that compatible doesn't make sense.
-> >=20
-> > What you could do is just add it at the top level though, which would
-> > also benefit this patch since it'd not have to be conditionally added
-> > for the new nuvoton device.
-> > Just note in your commit message about what the ABI impact of the
-> > change
-> > to required properties is (effectively nothing because it's optional
-> > in
-> > the driver and the only user has the properties).
+> To permit proper documentation of required property to support PCIe
+> configured for 2-lanes mode, split the Airoha schema part from the
+> mediatek-gen3 schema to a dedicated schema.
 >=20
-> Okay, I will craft such a patch and send it.
+> A PCIe configured for 2-lanes mode require an additional reg for the
+> secondary PCIe to be configured and the airoha,scu phandle to correctly
+> configure the PCIe MUX.
 >=20
-> >=20
-> > > > > +
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 resets:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems:=
- 1
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems:=
- 1
-> > > > > +
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-names:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 - const: core
-> > > >=20
-> > > > This is just maxItems: 1.
-> > >=20
-> > > Well the implicit rules of DT binding schemas are quite weird...
-> >=20
-> > I don't think it is that strange, as the binding has
-> > =C2=A0 reset-names:
-> > =C2=A0=C2=A0=C2=A0 items:
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: core
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: axi
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: ahb
+> Rework the mediatek-gen3 schema to drop any redundant constraint previsou=
+ly
+> introduced for Airoha PCIe properties.
 >=20
-> Ah does the list constraint the order of items? If it constrains the
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-It does, yes.
-Alternatively, using an enum permits free ordering.
+Sashiko has reviewed this patch and found no issues. It looks great!
 
-> order, it partly breaks the intention of having names; if it does not
-> constrain the order, it needs to be clarified that the required 1 reset
-> is core instead of the other two.
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260626092029.3525=
+264-1-ansuelsmth@gmail.com?part=3D3
 
-Given the discussion we're having on the clocks, I wonder if this is
-also an oversimplification and the IP has three resets inputs hooked up
-to one output of the reset controller (or 3 outputs controlled by one
-bit..).
-
---r8rF78kmCgnz4y87
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaj5FuAAKCRB4tDGHoIJi
-0sUHAQC+jTasbIiodz+h8pTi1hrZwttHaW1rwv2+JI+IilqgIgD+LU/w2PQybkmB
-IYTfrIxpqApp9H5myhsNrMD3QJIRRgE=
-=OJVD
------END PGP SIGNATURE-----
-
---r8rF78kmCgnz4y87--
 
