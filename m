@@ -1,207 +1,333 @@
-Return-Path: <devicetree+bounces-316147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316151-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qa7VMqumPmqsJgkAu9opvQ
-	(envelope-from <devicetree+bounces-316147-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 18:19:55 +0200
+	id h1PuMGCpPmqDJwkAu9opvQ
+	(envelope-from <devicetree+bounces-316151-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 18:31:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AAA86CEEDD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 18:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 323FB6CF17C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 18:31:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b="C/NUSohY";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316147-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316147-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="RirL8m/v";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316151-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316151-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 90E3A310F1E1
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:13:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 989143150FAD
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:16:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C07D3FE350;
-	Fri, 26 Jun 2026 16:12:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC373FC5D9;
+	Fri, 26 Jun 2026 16:14:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42BBC3F7AB2;
-	Fri, 26 Jun 2026 16:11:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FD4B3F8ECA
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 16:14:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782490323; cv=none; b=HFWL/Wrefp6dSrPc8lGvFwrMoIQeEqcOK1sR1CMxJAsNxaCUTcMyYKess/rLPTtC3T64nie6Msm+1LoDuhJvsfi8/d648PHRb5nuNIqYRRFpot5KMfzHtmgwtyVeHilzDgWxYg231GOxtB0jnrMyEDHHbKfs1GLHFhkQ//JZrvM=
+	t=1782490496; cv=none; b=EGE+50U53BZGfyAwnm2KrOb8fyIPm/MbGozv71ysmoqtcE6Dfl4c3jzAYMUxqqI8Ye/wp8e1KdjFCyxuTZG0su+vFpm29kzvn2DuKKw91FG1M3YHkV1NOe9wbq/hYyUV0YQ8NNbXnh1GTkiRXesmixwzGAhnFzBpULqJhxuKXwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782490323; c=relaxed/simple;
-	bh=5YRniym/2tbxtuJ/K7G4NyD6iKvP4Rntx9BGCG6QVCc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=iHzoNQCzIZyc1iImBx2a9tQmPwxybIOeL+4nAAK3g0AvD8GzPOQuBM6vv873cB+FrceC/I2xHTbI5C4zk5rqh/hZm7J2JsC8YQ3NIHbBJB9JN8Sp3YFOBcZukN++pdX+Uds1Qayalj16S9mrg+RXwXQAmVQbprUsNtOKBpuupTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=C/NUSohY; arc=none smtp.client-ip=185.171.202.116
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 2F3E6C5CD68;
-	Fri, 26 Jun 2026 16:12:05 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 465EB60232;
-	Fri, 26 Jun 2026 16:11:56 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1D56E104C98AB;
-	Fri, 26 Jun 2026 18:11:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1782490314; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=2aMpjqPpJ3jB+9a9ya7QqmAO5GA2YL86oNP/6GMR7AA=;
-	b=C/NUSohY5vtGaRJld8ZdfDxYs5JmRhsZfHf2sMEvr+zI2ISREqyOFDdPUzfAlNDNSkmwjv
-	m4MDWVI6r3d8tyl53THMcnLJBvOgU4C46LVuZAh5GvlJ++5QTILp9oIzONPtQBdVUeKdX5
-	8iyisAOJwjmUNtOX9ubsQ/aiTmiZUkrBrwhxwzbsHFvTK5UI9J/s1ITN+vayybv0HyFW/l
-	9zK2ebMFYtf7OWlPohfx2BGrQAdkK5Th7Y+LhdsUDTatQpo9D/rQFfgHkxJgAmTAql6iFM
-	sPuvdkbNEz8O2TklPCFL7VZQhhTaBdkIqo2cUDzyP2p6a2jDXW4AkDMmsXGrYg==
+	s=arc-20240116; t=1782490496; c=relaxed/simple;
+	bh=Z4P9SpvY/otKIUQeO1nInbQcZUYx7xU24QUGtzVVMoc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kk9IxiwRwbpq1mXjZ/hASsDLb8NeX+OtR/yluANKHG8P2JaQDaVaNUtrRBBzznh8YpW7J8LvIq6WkIZyvDQKqir36A2nFW9RHQILt/kItq1mt6d4w3eVYM+cewRB+/FJhd+V9jlPgwUAjAlZHNfpWHOD4pbFqwIveDX6NA9ZT4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RirL8m/v; arc=none smtp.client-ip=209.85.210.47
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-7e9b895ee02so21515a34.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 09:14:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782490493; x=1783095293; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4xHWEOper191CMSyTFNthImMht5LodlFV4q9KnknyWQ=;
+        b=RirL8m/v+HEUpiW+ovwUbjn0KVT5ezQs4anz5oyGPLKAmyaQhzuKQ0lzepaXtUwbr+
+         S2VEKkZYenPa2Zs1rT8xiMr91XWT/DfrSW/uclQbfJIW+9TB2yv+f0Wkz41vbzadEJ4O
+         Q+v4dfa616U1NZSGRRK1FprApW3kFqXtKescRTY287ZQPRioxURDLJG4LOXrcpmVJGML
+         R+6CFUWfyMOmqVptlTKBsNV2y6GvgiWSQgOGLPk0u9pgw8oOrq9tn8+QsiInpzXi4oT4
+         INW3PQYJ5VJFcvsvH6HM3HYD1mMOl2pqKkxVVRtqTQC/vJxf0Urgbrq8Z8HRVkghay4e
+         KoHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782490493; x=1783095293;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4xHWEOper191CMSyTFNthImMht5LodlFV4q9KnknyWQ=;
+        b=XMUY8ZFFX/jPZ9gLhR6+18k76svsIJGX/lhGNTMwsqyhRRU0P/m7/hxdf4lkVhictx
+         vtCiiK+Nwmwmn8GSPyxqAkQd55+JC5XcHXK7D8f+WfYjUQuucLPTSqLlCurpf5KjJ9dR
+         Hreu1FeKIsChL79qdFNt/robeRNE2J4yUoCty31GCaELFnTd6TEsGG5d+C80eyAdSUS+
+         btGE4hRQffgCJuxM8N7wIKXRcg1NK5rZCpezjww80K1XjqY/jm7Y04IUn6M2pgPe2e0n
+         lPF7Tq8r5OVCpQzjHxwBMZk6s5bzhQ9LySqhq9RhM2ItYZf+5EHH94bfEvMiIPidC+9U
+         d2Rg==
+X-Forwarded-Encrypted: i=1; AFNElJ8Tp66V7UsLYK1lWdEVaPWUyrC8nzRZK1vvucB6upKd6IqfF3/jPMbrRurB9xUxvJ/DBahlPPx9u2xN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjaMONiCE95Nwr6rtI5mLDdLZ2R9eKFmhYot3dErFzTNjD9GLc
+	Pzm36guR7AIb14v8ZhJlzxmD61DZkDuXslFJkHoF1xisIKm2BQc7+kuJNL9Nxcvk
+X-Gm-Gg: AfdE7cncxXpiSwXjM4dpFJetZzUYIjzzSq1BctcN1ucbA74ZCOmLN3pgiYUrHV5dSa2
+	pn52QIeyDNj5sD7zrANbqjNDyzjURV5IX4ef0wHIaFbMCX9Zh7JIVj3Dpjz7Z44KrcWUImAXZbq
+	5L4IRJWN7+lW6YlsRJovtPbeQ+sDfJ3rf1aR3n71r83nd59HQ18CPvd7x42VL9ohHhAYcsDFo1G
+	HAOaoUK5vi9GlYRLrjxtRISoBEJds84OiLElprf6sos15wDLa3n951uBo6z50K9VigZDUGEp6BZ
+	kpp7Ocb7c907QvjYaaMJ3jXtwE0gyXopXutiOsjRBLKRntrXkxgYIDDagBCSf3VL6dgzbr3E1F4
+	z889aDSduGF/nMKEWeskb4pL4WdQiXpkh1JdneCZhRA4QcM7ZRq8DfEaAS2BX/7IDdA3vOthwHm
+	Dvul5tilGui9k=
+X-Received: by 2002:a05:6830:6e08:b0:7e9:b4d0:539e with SMTP id 46e09a7af769-7e9b4d064dbmr674821a34.31.1782490493445;
+        Fri, 26 Jun 2026 09:14:53 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e9aa579235sm1970211a34.1.2026.06.26.09.14.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Jun 2026 09:14:52 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-iio@vger.kernel.org
+Cc: andy@kernel.org,
+	nuno.sa@analog.com,
+	dlechner@baylibre.com,
+	jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	andriy.shevchenko@intel.com,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V15 0/9] Add Invensense ICM42607
+Date: Fri, 26 Jun 2026 11:12:21 -0500
+Message-ID: <20260626161230.93069-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 26 Jun 2026 18:11:46 +0200
-Message-Id: <DJJ42UCJ1Y6X.TBR370GE9U1Q@bootlin.com>
-Subject: Re: [PATCH 3/4] drm-bridge: lontium lt9611c: fixes and improvements
-Cc: "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
- Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
- <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Vinod Koul" <vkoul@kernel.org>,
- <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <boss@oss.qualcomm.com>,
- <qc-display-maintainer@oss.qualcomm.com>
-To: "Mohit Dsor" <mohit.dsor@oss.qualcomm.com>, "Luca Ceresoli"
- <luca.ceresoli@bootlin.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.21.0
-References: <20260611-lt9611-b4-send-v1-0-42abbcd3bb1e@oss.qualcomm.com>
- <20260611-lt9611-b4-send-v1-3-42abbcd3bb1e@oss.qualcomm.com>
- <DJ6YOZ4G73A3.37QF618MHAR4F@bootlin.com>
- <ajkl2kl5oFh5tNG6@hu-mdsor-hyd.qualcomm.com>
-In-Reply-To: <ajkl2kl5oFh5tNG6@hu-mdsor-hyd.qualcomm.com>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-316151-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316147-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FORGED_SENDER(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jic23@kernel.org,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:andriy.shevchenko@intel.com,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,lists.freedesktop.org,vger.kernel.org,oss.qualcomm.com];
-	FORGED_RECIPIENTS(0.00)[m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:boss@oss.qualcomm.com,m:qc-display-maintainer@oss.qualcomm.com,m:mohit.dsor@oss.qualcomm.com,m:luca.ceresoli@bootlin.com,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3AAA86CEEDD
+X-Rspamd-Queue-Id: 323FB6CF17C
 
-Hello Mohit,
+From: Chris Morgan <macromorgan@hotmail.com>
 
-On Mon Jun 22, 2026 at 2:08 PM CEST, Mohit Dsor wrote:
-> On Fri, Jun 12, 2026 at 11:26:34AM +0200, Luca Ceresoli wrote:
->> On Wed Jun 10, 2026 at 11:14 PM CEST, Mohit Dsor wrote:
->> > Remove two redundant lt9611c_reset() calls:
->> >
->> > 1. In lt9611c_bridge_atomic_pre_enable(): a reset is already performed
->> >    during probe and resume; calling it again on every display enable
->> >    adds ~440ms of unnecessary latency.
->> >
->> > 2. At the end of lt9611c_probe(): a reset was already performed earlie=
-r
->> >    in probe before lt9611c_lock(). The second reset is redundant.
->> >
->> > Also, the DRM HDMI bridge framework requires hdmi_write_hdmi_infoframe=
- and
->> > hdmi_clear_hdmi_infoframe callbacks for HDMI vendor-specific infoframe
->> > (VSI) support, used for features such as HDR metadata signalling.
->> >
->> > This patch add stub implementations that return success. Wire them int=
-o the bridge
->> > function table.
->> >
->> > Also, Store the chip variant enum value in the of_match_table .data fi=
-eld and
->> > retrieve it via of_device_get_match_data() when probing from a DT node=
-.
->> > Fall back to i2c_device_id.driver_data for non-DT (e.g. ACPI) probe
->> > paths.
->> >
->> > This is the standard kernel pattern for passing per-compatible data
->> > through the OF match table, and avoids relying solely on the I2C devic=
-e
->> > ID table for chip type detection when DT is available.
->> >
->> > Populate bridge.vendor and bridge.product so the DRM HDMI framework ca=
-n
->> > report the correct manufacturer and product name in the HDMI connector
->> > properties (visible via xrandr --prop and related sysfs entries).
->> >
->> > Signed-off-by: Mohit Dsor <mohit.dsor@oss.qualcomm.com>
->>
->> These are several unrelated changes and should be separate commits.
->>
->> Luca
->>
->> --
->> Luca Ceresoli, Bootlin
->> Embedded Linux and Kernel engineering
->> https://bootlin.com
->
-> Hi Luca,
-> Thanks for the review.
-> I see your point about separation, but in this case I intended this as a =
-single cohesive update to the driver rather than unrelated changes.
->
-> The redundant lt9611c_reset() removals are cleanup to avoid unnecessary l=
-atency during enable/probe.
-> The HDMI VSI infoframe callbacks are required to align with the DRM HDMI =
-bridge framework expectations.
-> The OF match data change ensures correct chip variant detection when prob=
-ing via DT.
-> The bridge vendor/product population improves user-visible HDMI connector=
- reporting.
+Add support for the ICM42607 IMU. This sensor shares the same
+functionality but a different register layout with the existing
+ICM42600.
 
-This a list of 4 things your patch does, and they seem fairly independent
-from each other. That's a hint that they should probably be 4 patches.
+This driver should work with the ICM42607 and ICM42607P over both I2C
+and SPI, however only the ICM42607P over I2C could be tested.
 
-If each is small, no problem.
+Changes Since V1:
+ - Instead of creating a new driver, merged with the existing inv_icm42600
+   driver. This necessitated adding some code to the existing driver to
+   permit using a different register layout for the same functionality.
+ - Split changes up a bit more to decrease the size of the individual
+   patches. Note that patch 0004 is still pretty hefty; if I need to split
+   further I may need to create some temporary stub functions.
+ - Used guard() and PM_RUNTIME_ACQUIRE_AUTOSUSPEND() on the new functions
+   per Jonathan's recommendations.
 
-An additional, pragmatic reason to split: if there's a bug in one of your
-patches, it can be easily bisected and the problematic patch be reverted
-without removing the other 3 patches.
+Changes Since V2:
+ - Went back to using a new driver on advice from Invensense engineer.
+ - Further split changes up into smaller chunks of functionality. Note
+   still that the largest patch is approximately 900 lines, and that while
+   the driver compiles cleanly at each commit it is not able to drive the
+   hardware until the commit that adds the Interrupt (as it also adds the
+   Makefile).
+ - Change the error to a warning when the devicetree binding does not match
+   the hardware ID.
+ - Dropped the ack on the devicetree bindings, as I am creating a new file
+   (for a new driver) instead of modifying the existing one.
 
-Luca
+Changes Since V3:
+ - Numerous small fixes (too many to list here). Thank you to everyone who
+   provided feedback.
+ - Split power management additions into an additional commit to break
+   things up further.
+ - Consolidated devicetree documentation in existing
+   invensense,icm42600.yaml file.
+ - Removed most of the FIELD_PREP from header file to c files to make code
+   easier to read.
+ - Changed scale values to 2D arrays for Gyro and Accelerometer.
+ - Removed IIO_CHAN_INFO_CALIBBIAS attribute.
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Changes Since V4:
+ - Additional numerous small fixes, thank you again for all the feedback.
+ - Dropped power control API and instead run device in low noise mode.
+ - Split devicetree bindings into two distinct changes.
+ - Reordered adding of enums and structs to main header file so that they
+   are only brought in when needed.
+ - Stopped using enum for driver data and instead am using pointer to
+   device specific driver data.
+
+Changes Since V5:
+ - Corrected use of "dev_warn_probe" to just "dev_warn".
+ - Fixed some return scenarios which would unconditionally return 0
+   when an error was present.
+ - Corrected use of max() to min() for bounds checking. max() was
+   incorrect.
+ - Fixed using "st->conf.accel.odr" in the gyroscope function. It
+   should have been "st->conf.gyro.odr" which it now is.
+ - Additional small fixes suggested by "sashiko.dev".
+ - Added a regmap cache. I used the datasheet to try and determine
+   which registers might change without explicit writes.
+
+Changes Since V6:
+ - Corrected additional errors identified by sashiko.dev, mostly
+   fixing potential deadlocks, missing calls for pm runtime, and
+   potential overflow issues.
+
+Changes Since V7:
+ - Dropped Wake on Movement patches, since some of the functionality
+   was only available for a device on which I cannot test.
+ - Dropped support for SPI 3-Wire mode, since it complicated the
+   bus setup (and I lack the hardware to test such features anyway).
+ - Fixed a few additional bugs identified by sashiko.dev bot.
+
+Changes Since V8:
+ - Added back IRQ dropped accidentally when dropping wake on movement
+   patches.
+ - Dropped "Reviewed-By" tag on patch 2 because of substantial changes
+   made to devicetree binding documentation.
+ - Additional small fixes as suggested.
+
+Changes Since V9:
+ - Removed interrupts (and buffers) from the driver. I previously was
+   unable to detect deadlocks because it turns out my IRQ was not even
+   wired correctly in my device.
+ - Updated devicetree binding commits to make interrupts optional for
+   users of the icm42607 driver.
+
+Changes Since V10:
+ - Explicitly specified enum values in header file.
+ - Removed additional dead code for buffer handling.
+ - Cleaned up headers.
+ - Added additional locks as requested by sashiko.dev bot.
+
+Changes Since V11:
+ - Since driver has shrunk in size considerably, moved i2c bits into
+   first code commit. This ensures that the very first commit with code
+   can now be compiled. The commit after that adds SPI support as it
+   was in the previous versions.
+ - Used pahole to optimize inv_icm42607_state. Reordering elements
+   reduced size in memory from 384 bytes to 256 bytes.
+ - Added a map of all readable registers and all writeable registers
+   according to the datasheet.
+ - Added back some missing headers pointed out by the maintainers.
+ - Added FIELD_PREP in a few more places to make the code more
+   obvious on what it's doing.
+ - Added a comment to the power management code to note that
+   temperature sensor being enabled doesn't matter as the clocks
+   are off by default when the gyro and accel channels are off.
+ - Removed iio_device_claim_direct() calls since it was no longer
+   needed.
+ - Fixed shared_by_all attributes for temperature sensor.
+ - Additional miscellanous fixes as requested.
+
+Changes Since V12:
+ - Removed aligned buffer from inv_icm42607_state struct as we do not
+   currently have the need for it.
+ - Corrected the order of the odr values in the accel and gyro files
+   as the values were out of order (the place in the array corresponds
+   to the register value).
+ - Stopped setting the clock value depending upon the temp config. The
+   datasheet advised to keep using the default value.
+ - Corrected logic when changing between states. We only need to pause
+   when a sensor changes from off to an on state or when the gyro
+   changes from an on state to off.
+ - Added missing includes for several files.
+
+Changes Since V13:
+ - Refactored inv_icm42607_set_accel_conf() and
+   inv_icm42607_set_gyro_conf() into a single function.
+ - Refactored inv_icm42607_accel_read_sensor() and
+   inv_icm42607_gyro_read_sensor() into a single function.
+ - Merged inv_icm42607_set_temp_conf() into initial init function
+   since it only really needs to be called once.
+ - Saved adding temp sensor for last and updated
+   inv_icm42607_temp_read() to either confirm other sensors are already
+   enabled or enable the accelerometer so it can get a reading.
+ - Updated inv_icm42607_set_pwr_mgmt0() so that it does not update the
+   sensor mode and forcibly keep the sensor enabled.
+ - Added inv_icm42607_temp_filter_bw enums since it appears to use
+   different values than the accel or gyro sensor.
+ - Set the temp startup time from 77ms to 77us, as I previously misread
+   the datasheet.
+ - Additional minor fixes.
+
+Changes Since V14:
+ - Added IIO_BE for temp sensor.
+ - Switched from ktime_get_real() to ktime_get().
+
+Chris Morgan (9):
+  dt-bindings: iio: imu: icm42600: Add mount-matrix
+  dt-bindings: iio: imu: icm42600: Add icm42607
+  iio: imu: inv_icm42607: Add inv_icm42607 Core Driver
+  iio: imu: inv_icm42607: Add SPI For icm42607
+  iio: imu: inv_icm42607: Add PM support for icm42607
+  iio: imu: inv_icm42607: Add Accelerometer for icm42607
+  iio: imu: inv_icm42607: Add Gyroscope to icm42607
+  iio: imu: inv_icm42607: Add Temp Support in icm42607
+  arm64: dts: rockchip: Add icm42607p IMU for RG-DS
+
+ .../bindings/iio/imu/invensense,icm42600.yaml |  20 +-
+ .../dts/rockchip/rk3568-anbernic-rg-ds.dts    |   8 +-
+ drivers/iio/imu/Kconfig                       |   1 +
+ drivers/iio/imu/Makefile                      |   1 +
+ drivers/iio/imu/inv_icm42607/Kconfig          |  30 +
+ drivers/iio/imu/inv_icm42607/Makefile         |  13 +
+ drivers/iio/imu/inv_icm42607/inv_icm42607.h   | 423 ++++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_accel.c | 317 +++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_core.c  | 606 ++++++++++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_gyro.c  | 313 +++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_i2c.c   |  98 +++
+ .../iio/imu/inv_icm42607/inv_icm42607_spi.c   | 108 ++++
+ .../iio/imu/inv_icm42607/inv_icm42607_temp.c  |  98 +++
+ .../iio/imu/inv_icm42607/inv_icm42607_temp.h  |  38 ++
+ 14 files changed, 2072 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/iio/imu/inv_icm42607/Kconfig
+ create mode 100644 drivers/iio/imu/inv_icm42607/Makefile
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607.h
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_gyro.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_i2c.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_spi.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_temp.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_temp.h
+
+-- 
+2.43.0
+
 
