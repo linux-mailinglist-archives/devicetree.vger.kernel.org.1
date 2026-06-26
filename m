@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-315967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315968-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8y2PO6AsPmqTAwkAu9opvQ
-	(envelope-from <devicetree+bounces-315967-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:39:13 +0200
+	id 33teOg8tPmquAwkAu9opvQ
+	(envelope-from <devicetree+bounces-315968-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:41:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 511E76CB024
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:39:12 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75B306CB048
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:41:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BO2P4jk3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315967-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315967-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=l8DprBuf;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315968-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315968-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 18D0B3010DB0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 07:38:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7E1C730099AF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 07:40:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7193E1D0D;
-	Fri, 26 Jun 2026 07:38:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E253E3C50;
+	Fri, 26 Jun 2026 07:40:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95365175A92;
-	Fri, 26 Jun 2026 07:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5E913E3156;
+	Fri, 26 Jun 2026 07:40:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782459537; cv=none; b=kmK7+3D/Wj5dTkxOJvqUNy4Kx7qhPYZ3NXggaTrf96rdDaKfuG9jEWIs9dAoO1FvKPoXJnalYVVmiGLxI+XnFL8BsRjyUScWpBXqVOoBwGn3ARtyCzwUnuuOCuvHJSZa2gTgk/GoLsQUtXESopsTjEy5SFrmjiOtFomkBaXPbrg=
+	t=1782459650; cv=none; b=SdftYWx+d53Ko3W/2mjXwy4HAMpar4m4RS6Fzk5dScjU1QdZdakS5SbB0izdXOmuIO/NoUDbU90v9/fR5+wXI5bLyffGIv18XOwW8ce7CUSiU1sHTIW+VY1xRQ7VUQuULIFhYKQ8t6iUHHy01A5SRuffhx9EnAsZX24Bm2GUJTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782459537; c=relaxed/simple;
-	bh=Hyf3fJLZ3zUzV8C+aO71cNUV+rF6iuxLBesXm3Ad0pI=;
+	s=arc-20240116; t=1782459650; c=relaxed/simple;
+	bh=GZqXT9Ip/JO+OGFUfsAmg+5Z5295gCYwwiBd6y9iYj0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f1z2bdiK6q7VtjG9q5F81uW5nczS1PzSKotZexAkzubbwZxiNVgK6vPHf3ThlUYOQGjiRlR9r9NlFNzPLxRgx5HDrAQ4JTw2gKJPohXGafaFNLiYQJKUWXpYjUXhEs+M4QmUuQGMQYofDpG6zoX5DIKE65cjJXVxwOmA3yzSKB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BO2P4jk3; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21C971F00A3A;
-	Fri, 26 Jun 2026 07:38:49 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=XhRE8jdEb3n40ZzpNmREH23jPbdc026JpJr+fg6n/4pTFhaGvwj3uYx6Zcqpu1pksMTsv8nBLWioetdP6+2PDKZiuBXHHW8NdpgxByooLjbOQi+0h8587RkAeBvJt/j3mO0NXmZeVNYyVkxIiJbFUoL5OLPFI+OGk3lLyZOI75M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l8DprBuf; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D7941F000E9;
+	Fri, 26 Jun 2026 07:40:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782459536;
-	bh=ic8Bm5KdmIIXc6QloY21tIYgrTVRgIkjPmPTeOkkreU=;
+	s=k20260515; t=1782459649;
+	bh=N8XrY+wXxLK2NxQ4BW48R9sEgb+goFZ/Ui0Zz6LHgw0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=BO2P4jk3NTslrrLva3ZcZkVVj/ASsV0FGfySjnCevyCXdsq9TYlWipPzN7PCgeZD0
-	 1qbelKqNv5rKTF+IqhR6QMzo+h5yhsRBfRRuuvuhOKw66q69PHCAmuqsMsyYy1GJ6E
-	 Ic1M+3yfpwwHRAkHy400wXTDxfd0SkpetfBQF6kPGiTSbdBnPboCjkuXsChySVPeDz
-	 QBbhAaOWDaV/WlAmvgSllpdR/LjqlfbLFxpvsH9GAGX5VqnnhDY/K0EFUzcVT60KiY
-	 4iMYPUswndSLLOjeGDz19LMU2IYt1Ab4S6mZG3fDhA3Rh3v9ZGMeVTTkwht47jaKuB
-	 wP+qYm0GKb95Q==
-Message-ID: <e8001fe1-684d-4de2-bde4-8b0c1ce1dd0d@kernel.org>
-Date: Fri, 26 Jun 2026 09:38:48 +0200
+	b=l8DprBuf6Iya+bmN6b3AdCa8GMgRBC09SjyD/wZcdFS3TzPLlTlsrIseVwqO2Qw1M
+	 U++7kuXoVfJCjDF5CnHLBj9ypbGqqOevTtZBwQs1q/ybBGg1QmhgP9AeBsv//Cd8Mj
+	 ZDiBrIJb9d86SMlKQAnTdPlTHjZYv/eZHkwH7BWnqUQeUrY9UwDlwq1Izw1WrjWXPI
+	 OQpfRiRS5oNwNuY6y/OSasdaMbBNW64cvtwZHteqH8ileT1TUaMCaC42WxY3eFizwZ
+	 3GjUKcqfkiIp6QghQ1vZg0R/QDymYEAVCWnzNI0YeSdqiQ2CrkycbjsP7F8xWKzkXL
+	 g1X1fA+nTQkiw==
+Message-ID: <440a78ed-2ac9-4926-affd-8697348eb83d@kernel.org>
+Date: Fri, 26 Jun 2026 09:40:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,24 +57,24 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v6 2/2] drm/bridge: Add Lontium LT9611C(EX/UXD) MIPI DSI
  to HDMI driver
-To: Sunyun Yang <syyang@lontium.com>
+To: Sunyun Yang <syyang@lontium.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- dmitry.baryshkov@oss.qualcomm.com, maarten.lankhorst@linux.intel.com,
- rfoss@kernel.org, mripard@kernel.org, Laurent.pinchart@ideasonboard.com,
- tzimmermann@suse.de, jonas@kwiboo.se, jernej.skrabec@gmail.com,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, xmzhu@lontium.corp-partner.google.com,
- xmzhu@lontium.com, rlyu@lontium.com, xbpeng@lontium.com
+ maarten.lankhorst@linux.intel.com, rfoss@kernel.org, mripard@kernel.org,
+ Laurent.pinchart@ideasonboard.com, tzimmermann@suse.de, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ xmzhu@lontium.corp-partner.google.com, xmzhu@lontium.com, rlyu@lontium.com,
+ xbpeng@lontium.com
 References: <20260508134009.4582-1-syyang@lontium.com>
  <20260508134009.4582-3-syyang@lontium.com>
  <3188f63f-5358-48d7-b934-af20a8f95c6f@kernel.org>
  <CAFQXuNbKBfyeQL3N3P5QY=6BWoD3O6DSbXN-WMA1rRG9vCs3Kg@mail.gmail.com>
  <a0352a42-15db-4c7a-ae73-8a4e1543cd50@kernel.org>
  <CAFQXuNZVE6cZJGwrGKGtWnB-seSJLHFh8zW3jjAs6U4JLZFWng@mail.gmail.com>
- <CAFQXuNa8bJCpZBkMs_3mtbK_pjVzDdaDaoGk0KDxiG_Pf7txdg@mail.gmail.com>
- <6371d1d8-cdfb-40fa-84c7-ba3ec4e2ac00@kernel.org>
- <CAFQXuNZtzBu+WiG8n0BeN47zagQmL-iz_6Af7prk-xHLAeRBwg@mail.gmail.com>
+ <tpqutwzasfwhraxzymorkiot7uryef4l2n32fyo3i3fp337sak@fugghdkcqfrj>
+ <CAFQXuNaOkDADrnUNMWt9JL0R9yAPrSUN1M08Z5CT=J3uXqwhkw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -120,7 +120,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <CAFQXuNZtzBu+WiG8n0BeN47zagQmL-iz_6Af7prk-xHLAeRBwg@mail.gmail.com>
+In-Reply-To: <CAFQXuNaOkDADrnUNMWt9JL0R9yAPrSUN1M08Z5CT=J3uXqwhkw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
@@ -130,15 +130,15 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-315967-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315968-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:syyang@lontium.com,m:dmitry.baryshkov@oss.qualcomm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:maarten.lankhorst@linux.intel.com,m:rfoss@kernel.org,m:mripard@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:tzimmermann@suse.de,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:xmzhu@lontium.corp-partner.google.com,m:xmzhu@lontium.com,m:rlyu@lontium.com,m:xbpeng@lontium.com,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:syyang@lontium.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:dmitry.baryshkov@oss.qualcomm.com,m:maarten.lankhorst@linux.intel.com,m:rfoss@kernel.org,m:mripard@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:tzimmermann@suse.de,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:xmzhu@lontium.corp-partner.google.com,m:xmzhu@lontium.com,m:rlyu@lontium.com,m:xbpeng@lontium.com,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[21];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -150,96 +150,80 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,oss.qualcomm.com,linux.intel.com,ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,linux.intel.com,ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lontium.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lontium.com:email,qualcomm.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 511E76CB024
+X-Rspamd-Queue-Id: 75B306CB048
 
-On 26/06/2026 04:15, Sunyun Yang wrote:
-> Krzysztof Kozlowski <krzk@kernel.org> 于2026年6月25日周四 21:51写道：
+On 26/06/2026 03:55, Sunyun Yang wrote:
+> Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> 于2026年6月25日周四 22:57写道：
 >>
->> On 25/06/2026 15:40, Sunyun Yang wrote:
->>> Sunyun Yang <syyang@lontium.com> 于2026年6月25日周四 21:26写道：
+>> On Thu, Jun 25, 2026 at 09:26:47PM +0800, Sunyun Yang wrote:
+>>> Krzysztof Kozlowski <krzk@kernel.org> 于2026年6月25日周四 21:17写道：
 >>>>
->>>> Krzysztof Kozlowski <krzk@kernel.org> 于2026年6月25日周四 21:17写道：
->>>>>
->>>>> On 25/06/2026 15:14, Sunyun Yang wrote:
->>>>>> Krzysztof Kozlowski <krzk@kernel.org> 于2026年6月25日周四 20:54写道：
->>>>>>>
->>>>>>> On 08/05/2026 15:40, syyang@lontium.com wrote:
->>>>>>>> +
->>>>>>>> +static void lt9611c_reset(struct lt9611c *lt9611c)
->>>>>>>> +{
->>>>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
->>>>>>>> +     msleep(20);
->>>>>>>> +
->>>>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
->>>>>>>> +     msleep(20);
->>>>>>>> +
->>>>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
->>>>>>>
->>>>>>> This is just plain wrong. Why do you assert, then de-assert and then
->>>>>>> finally assert AGAIN the reset leaving the device in powerdown stage?
->>>>>>>
->>>>>> I am using software to emulate the hardware RESET button on our EVB.
->>>>>> When the hardware RESET button is pressed while our chip is running,
->>>>>> the signal level changes from HIGH to LOW and then back to HIGH.
+>>>> On 25/06/2026 15:14, Sunyun Yang wrote:
+>>>>> Krzysztof Kozlowski <krzk@kernel.org> 于2026年6月25日周四 20:54写道：
 >>>>>>
->>>>>> Of course, we can also use the following:
->>>>>> static void lt9611c_reset(struct lt9611c *lt9611c)
->>>>>> {
->>>>>>     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
->>>>>>     msleep(50);
->>>>>>     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
->>>>>>     msleep(20);
->>>>>> }
+>>>>>> On 08/05/2026 15:40, syyang@lontium.com wrote:
+>>>>>>> +
+>>>>>>> +static void lt9611c_reset(struct lt9611c *lt9611c)
+>>>>>>> +{
+>>>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+>>>>>>> +     msleep(20);
+>>>>>>> +
+>>>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
+>>>>>>> +     msleep(20);
+>>>>>>> +
+>>>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+>>>>>>
+>>>>>> This is just plain wrong. Why do you assert, then de-assert and then
+>>>>>> finally assert AGAIN the reset leaving the device in powerdown stage?
+>>>>>>
+>>>>> I am using software to emulate the hardware RESET button on our EVB.
+>>>>> When the hardware RESET button is pressed while our chip is running,
+>>>>> the signal level changes from HIGH to LOW and then back to HIGH.
 >>>>>
->>>>> Makes no sense either and you just did not get the point and did not
->>>>> answer my question. I asked WHY you leave asserted. Answer "we emulate"
->>>>> is just plain wrong.
->>>>>
->>>>> So again please answer:
->>>>>
->>>>> Why do you leave device with reset asserted?
->>>>>
+>>>>> Of course, we can also use the following:
+>>>>> static void lt9611c_reset(struct lt9611c *lt9611c)
+>>>>> {
+>>>>>     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
+>>>>>     msleep(50);
+>>>>>     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
+>>>>>     msleep(20);
+>>>>> }
 >>>>
->>>>  devicetree:   reset-gpios = <&tlmm 128 GPIO_ACTIVE_HIGH>;
+>>>> Makes no sense either and you just did not get the point and did not
+>>>> answer my question. I asked WHY you leave asserted. Answer "we emulate"
+>>>> is just plain wrong.
 >>>>
->>>> GPIO_ACTIVE_HIGH:
+>>>> So again please answer:
 >>>>
->>>> gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);   ------   reset pin
->>>> is Low level : Clear the register configuration in the chip to stop
->>>> the chip from working.
->>>>
->>>> gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);   ------  reset pin
->>>> is high level:  The chip resumes operation.
->>>>
+>>>> Why do you leave device with reset asserted?
 >>>>
 >>>
->>> Our purpose is: pull the level low to clear the register configuration
->>> in the chip, and then pull it high to allow the MCU inside the chip to
->>> re‑initialize the registers.
+>>>  devicetree:   reset-gpios = <&tlmm 128 GPIO_ACTIVE_HIGH>;
 >>
->>
->> And you do completely opposite... so that confirms your code is just wrong.
+>> It should be GPIO_ACTIVE_LOW, if the pin as active-low.
 >>
 > 
-> The lontium-lt9611.yaml uses GPIO_ACTIVE_HIGH. I am just following the
-> rule of this device tree. If I modify the device tree to use
-> GPIO_ACTIVE_LOW,
-> and use the following code in my driver, then my driver would be correct.
-> However, would the existing kernel drivers lontium-lt9611uxc.c and
-> lontium-lt9611.c be affected?
+> Yes, I understand that.
+> 
+> I used GPIO_ACTIVE_HIGH intentionally, because I did not want to
+> modify the existing reset-gpios = <&tlmm 128 GPIO_ACTIVE_HIGH>
+> property in the lontium-lt9611.yaml device tree file that was
 
-DT has nothing to do here. 1 is assert, 0 is de-assert. Your code does
-things opposite to any logic, because you finish function with reset
-asserted.
+The example there does not matter. You must write correct driver.
+
+That is it.
+
+If you cannot bring the arguments why reset must be asserted for the
+normal operation of the device, then this is the end of discussion.
 
 
 Best regards,
