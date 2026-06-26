@@ -1,153 +1,184 @@
-Return-Path: <devicetree+bounces-315962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315964-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Od3SAcMrPmpsAwkAu9opvQ
-	(envelope-from <devicetree+bounces-315962-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:35:31 +0200
+	id 6lgjKz8sPmqAAwkAu9opvQ
+	(envelope-from <devicetree+bounces-315964-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:37:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A29FA6CAFDD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1066B6CAFFB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:37:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linutronix.de header.s=2020 header.b=n3vHKV2+;
-	dkim=pass header.d=linutronix.de header.s=2020e header.b=UdKKD7nH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315962-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315962-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linutronix.de;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RSXBpkkd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315964-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315964-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 08A40302C147
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 07:35:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9C0AA3028B77
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 07:35:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 944743E3C4C;
-	Fri, 26 Jun 2026 07:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 226FE3DFC99;
+	Fri, 26 Jun 2026 07:35:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF213DFC99;
-	Fri, 26 Jun 2026 07:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0479A3DB62F;
+	Fri, 26 Jun 2026 07:35:21 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782459312; cv=none; b=RYNcLT6p1Kb5JkthID1ZekhqCQb/NY873vqVroCLjlzjNkVdLy0Ro2STPPICydsj4WUjvj+A9jxeUdtfZGYAaJmVUW63icQjndGaKsGtnNZzeP1cRB+5yC2OAB+qHl7vdXYHUWDHq0Fze/JonrxsX0GuEWVUuyKb7HEzbVcyGdU=
+	t=1782459323; cv=none; b=d7A3JhdgonxhHHnFnr8jhtcyKvc90w3ZBhFsDMlFD249dagLtuBGrksM+GDIe/weNpmQco1TxC2a3ryD28Te0bHtZDlUYTwC72okLOCT+bPHb0u/J1EalceGMDTpSLhh+Xvp7LPhPfcDXXrN12VgCCpTxdVjkTcm6IQCi4yJUng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782459312; c=relaxed/simple;
-	bh=vDH7xyINpB8aIhH1p1k0iDI8THECYcbWKH4TgFUwSIg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EI/mAo4LgNl+kk9/DoPR2ov5ylI/R6Ja7ZCc4h7lVn8xTWVjdnq1JBTfcyswgWZPfTc+NTBVuWpgB9ooAu4g2g9SDF+H1zaDB54I/HKnYqWi9yCBS2pRRkBz2RaI2hQ2O0iIk1lh/J0mtOHzmGixantDUOlgR2Vg4u59PSPMMkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=n3vHKV2+; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=UdKKD7nH; arc=none smtp.client-ip=193.142.43.55
-From: Gregor Herburger <gregor.herburger@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1782459310;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fwt/kxlU0Ywgyydlp2eJ2vLoMTfcjLWZMUoUXLH7s2E=;
-	b=n3vHKV2+xyyd0FcD/B/ZRr+mENG/2UskwZQsL52jvLLvCg3Nf5HhURbSZKJG5e1kI1k9Xc
-	WoqpsrFqthiHF397xaPv3ZSYqyGW8kJTmocpyzUHaS8pq80pFtoBlAoVTm5g4cuuDAoG5p
-	Xiu95cpTnAScvQVn6+WpjR/XT9uYqSgZKAeiPn1dSE7DVKE1gB/C22ZsgTLZHDhBNM7JPg
-	xqUcx2Jv0YyZXgQ0RqxdGaGQi5ikBBLqEZee/4MvSE6UweDkWKyN9hkP3qI4ZTVZmd/Hn0
-	fIMu4UR/icihYh3jk0m7F/BPhG/2YIfv23O1DmtOM6Pllg4k0PmNB4//+oKqNw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1782459310;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fwt/kxlU0Ywgyydlp2eJ2vLoMTfcjLWZMUoUXLH7s2E=;
-	b=UdKKD7nH7jwPMpCuF2zQyM6eSag1HbHvxmhpIW6pgZKlqJ/8saWIn4BeJVqhJctwB6BeqH
-	H3sLvvJpcsRMnbAw==
-Date: Fri, 26 Jun 2026 09:35:07 +0200
-Subject: [PATCH 4/4] arm64: dts: broadcom: bcm2712: Add reboot modes to
- firmware node
+	s=arc-20240116; t=1782459323; c=relaxed/simple;
+	bh=z45vmdd53GHeYrkigurFxzU4erJc7jfwenc8JerYWLk=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=StNopli9Evfmgw4Bg8jIvGdcpgWao2RXACpstPEhONBrr4eJDyAywYaOlbhmjMplUBSyJNv/a5clpnUz0zoj5sGRMqkBPPzLHsvl7uAWzgOHBh78EW//Ai9UHW8ScF9StrBX2U+3HGfvYHA9UpOlKKOWsNYRtoeLZ/YSftv7XZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RSXBpkkd; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 337D81F00AC4;
+	Fri, 26 Jun 2026 07:35:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782459321;
+	bh=fkbxbQ4MgOZ3maHI9+amJkEJt9Pq33/cqSVn5CWowag=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=RSXBpkkd1aXpWuTCW2fRbdU81gJ4IwqqsYR0yIRK4wBhMkpItUaeTYSpHU8y8FT8O
+	 5MR+FtyP4rMpP/3+kiroT9hdmnItWDqjU011XPCf6YmW2p8ggQ8/Isww9OjifAHeaZ
+	 w4FdNjvZevoOjLTSRA1aDdVmgWGLr/h9PwfSKOnSxxk48lV+Gw/5hZhtvar3GDUHk9
+	 heDjuUWt0kHg/K+pVfmCisD/DgwvAz/zS8m8uFb70Bj7FcN47EyQw/Ow3MDXvUkLKo
+	 1p2X3/1Lq4s5EMRUbERm89+0ESFBdgokgmnA+bqozRN+hVRkSsYP/Csjl3fcgpOWoX
+	 PfCOkTHYfCFHw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 3/9] hwmon: adm1275: Detect coefficient overflow
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Matti Vaittinen" <matti.vaittinen@linux.dev>
+Cc: linux-hwmon@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <d9e3320dbd62e094ff89598cb3aac5b5e716f9e7.1782458224.git.mazziesaccount@gmail.com>
+References: <cover.1782458224.git.mazziesaccount@gmail.com>
+ <d9e3320dbd62e094ff89598cb3aac5b5e716f9e7.1782458224.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 26 Jun 2026 07:35:20 +0000
+Message-Id: <20260626073521.337D81F00AC4@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260626-rpi-tryboot-v1-4-490b1c4c4970@linutronix.de>
-References: <20260626-rpi-tryboot-v1-0-490b1c4c4970@linutronix.de>
-In-Reply-To: <20260626-rpi-tryboot-v1-0-490b1c4c4970@linutronix.de>
-To: Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Eric Anholt <eric@anholt.net>, 
- Stefan Wahren <wahrenst@gmx.net>
-Cc: linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Gregor Herburger <gregor.herburger@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782459308; l=866;
- i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
- bh=vDH7xyINpB8aIhH1p1k0iDI8THECYcbWKH4TgFUwSIg=;
- b=DMU3jwcQAgiYGwTw+ByY8t8n4oB09PTsBDQ/38EeI5tZNG33/zES84FT5LRHK5fgWTU1olYYR
- OEgslcJPBR/CR1sxonPSrQzbFAwJaiKjCNNIkvhc/gnqYa998iYvrZp
-X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
- pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linutronix.de,none];
-	R_DKIM_ALLOW(-0.20)[linutronix.de:s=2020,linutronix.de:s=2020e];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:rjui@broadcom.com,m:sbranden@broadcom.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:eric@anholt.net,m:wahrenst@gmx.net,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:gregor.herburger@linutronix.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-315962-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315964-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[broadcom.com,kernel.org,anholt.net,gmx.net];
-	FORGED_SENDER(0.00)[gregor.herburger@linutronix.de,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:matti.vaittinen@linux.dev,m:linux-hwmon@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregor.herburger@linutronix.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linutronix.de:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:dkim,linutronix.de:email,linutronix.de:mid,linutronix.de:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A29FA6CAFDD
+X-Rspamd-Queue-Id: 1066B6CAFFB
 
-The raspberry pi firmware driver allows the tryboot reboot mode. Add
-this mode and normal boot mode to the node.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] The patch introduces spurious probe failures by restricting the in=
+termediate `shunt * m` multiplication to a 32-bit limit instead of using a =
+64-bit calculation, needlessly rejecting perfectly valid shunt resistor con=
+figurations.
+--
 
-Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
----
- arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+commit 02af229d429dc5c77e875edeb815b9caba7e6da2
+Author: Matti Vaittinen <mazziesaccount@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-index b7a6bc34ae1ab..67095c7ff770d 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-@@ -49,6 +49,8 @@ firmware: rpi-firmware {
- 			compatible = "raspberrypi,bcm2835-firmware", "simple-mfd";
- 
- 			mboxes = <&mailbox>;
-+			mode-normal = <0>;
-+			mode-tryboot = <1>;
- 
- 			firmware_clocks: clocks {
- 				compatible = "raspberrypi,firmware-clocks";
+hwmon: adm1275: Detect coefficient overflow
 
--- 
-2.47.3
+This commit detects potential coefficient overflow when a large shunt
+resistor is used and aborts the probe if an overflow is detected.
 
+> diff --git a/drivers/hwmon/pmbus/adm1275.c b/drivers/hwmon/pmbus/adm1275.c
+> index 43baa5ded35e5..ccc3ad21e38e7 100644
+> --- a/drivers/hwmon/pmbus/adm1275.c
+> +++ b/drivers/hwmon/pmbus/adm1275.c
+> @@ -839,15 +839,25 @@ static int adm1275_probe(struct i2c_client *client)
+>  		info->R[PSC_VOLTAGE_OUT] =3D coefficients[voindex].R;
+>  	}
+>  	if (cindex >=3D 0) {
+> +		u32 m;
+> +
+>  		/* Scale current with sense resistor value */
+> -		info->m[PSC_CURRENT_OUT] =3D
+> -			coefficients[cindex].m * shunt / 1000;
+> +		if (unlikely(check_mul_overflow(coefficients[cindex].m, shunt, &m))) {
+
+[Severity: High]
+Does this code introduce a spurious probe failure for valid setups?
+
+By checking for overflow on the intermediate product using a 32-bit
+unsigned integer, the probe will fail for configurations where the
+product exceeds U32_MAX, but the final scaled value after dividing by
+1000 would safely fit into the 32-bit signed integer target field.
+
+Could we use a 64-bit intermediate calculation instead, such as
+div_s64((s64)coefficients[cindex].m * shunt, 1000), to prevent this
+regression and avoid needlessly rejecting valid shunt resistor setups?
+
+> +			dev_err(&client->dev, "Current coefficient overflow\n");
+> +			return -EOVERFLOW;
+> +		}
+> +		info->m[PSC_CURRENT_OUT] =3D m / 1000;
+>  		info->b[PSC_CURRENT_OUT] =3D coefficients[cindex].b;
+>  		info->R[PSC_CURRENT_OUT] =3D coefficients[cindex].R;
+>  	}
+>  	if (pindex >=3D 0) {
+> -		info->m[PSC_POWER] =3D
+> -			coefficients[pindex].m * shunt / 1000;
+> +		u32 m;
+> +
+> +		if (unlikely(check_mul_overflow(coefficients[pindex].m, shunt, &m))) {
+
+[Severity: High]
+Can this similarly cause the probe to abort prematurely?
+
+For example, configuring an ADM1293 on the 100mV range with a 250000 uOhm
+shunt resistor yields a power coefficient product of 26042 * 250000, which
+is 6,510,500,000. This mathematically overflows the 32-bit check here, but
+the final value of 6,510,500 easily fits in the target field.
+
+Would it be better to calculate this using 64-bit math so the device can
+successfully initialize all of its sensors?
+
+> +			dev_err(&client->dev, "Power coefficient overflow\n");
+> +			return -EOVERFLOW;
+> +		}
+> +		info->m[PSC_POWER] =3D m / 1000;
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1782458224.gi=
+t.mazziesaccount@gmail.com?part=3D3
 
