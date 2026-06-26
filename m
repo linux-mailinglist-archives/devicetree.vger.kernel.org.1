@@ -1,84 +1,75 @@
-Return-Path: <devicetree+bounces-316056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316057-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id o1bxMm1bPmr1EQkAu9opvQ
-	(envelope-from <devicetree+bounces-316056-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 12:58:53 +0200
+	id /Gh4LiBePmqtEgkAu9opvQ
+	(envelope-from <devicetree+bounces-316057-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 13:10:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD7396CC411
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 12:58:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C8E86CC4BF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 13:10:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YTtqDhZW;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316056-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316056-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BtHFzkDm;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316057-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316057-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2B6C530236F5
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:58:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 811C13004D3F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:10:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F773F0757;
-	Fri, 26 Jun 2026 10:58:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7217B3E51E7;
+	Fri, 26 Jun 2026 11:10:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E98C3E024F;
-	Fri, 26 Jun 2026 10:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65CE61C84A6
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 11:10:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782471516; cv=none; b=M+MgfR6nSEgLo32Ho2O4IL6mpsb5esQZeGq8myegWhZuQQlXcpWqYevTB52XKZaLaV1vmEkfP0NO9GyssZ9Dk7Pp5JkmVvAyGfL2ZVMxQOLUmtm9vRhqHVH5Uy01CoInQf2ngH9qrwluErGCZF1tTNCGlX0c7gLOq7t/Ntvc0eI=
+	t=1782472219; cv=none; b=ntZaV7fEuJAi+q+SSYesstrin7Cyw03rrIW+eeO8Pf4YPflOiDpRbJG8eu+k0rPWP3VFDkjmkAINmY763jVeqmCZM32pSq/POq+/vkYsDRwLeXHEzKsh5Z5zPLKIvUvUPFvoFBsXxgQf9O0MPnDF+lSiXUkZENjm8C8XJT6+fLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782471516; c=relaxed/simple;
-	bh=kkhq87eNHx45rDTRj2aYiXEgmDVbyoXLvkV567xOy14=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VuvU1yFYa0mrQoJfu/kcnsu7mYk6E5uPSPiDj3tg9dmBAISraRNqI1F/vVyI4AuhTXAoiIq13KYiQL6KiYF65dXqrf47TKEwE5G5uM4rO/lYfWv0uO4fhmh3p/2abkr8hOc8u/B4JNWLZd+BBdk901XpAxTZNOBtZPC2ePrn0gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YTtqDhZW; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 164181F00A3A;
-	Fri, 26 Jun 2026 10:58:32 +0000 (UTC)
+	s=arc-20240116; t=1782472219; c=relaxed/simple;
+	bh=JZ6X4Bl7x64rsajdBLeuSwl+BJpnpd7jPfF3t9KaxWU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=BSCAWeZWwqVS6ZstEqcTrNaae9U/AzO5DfGK91mxovL5BNlGr3xShTNunPrwxNmv4Pj4HZayiMXEOhTryED0XvijNkiLDTo24wX74VSDbJh2cQMQVIYmHH8AgwwHxkTru/BOBEITOvNuSoHrJjyKFhRKOaDhi25fXxJTnrI7Sq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BtHFzkDm; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 262C51F000E9;
+	Fri, 26 Jun 2026 11:10:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782471514;
-	bh=RiRGYMelPViVpJAFJ/+wpKu/uY7s9Tmxp1lwWzuPoWo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=YTtqDhZWX4gDsM3ZhC+RSSrkB6J3+JXyXalf7KZmvI6BZPpAJGkTDga9CWGHqDQGn
-	 LJHpssTXYqG+amR6YdlEILOJENU/76GWqwO9J07I/gVIQuOKuKPxG1P0gZoo7iKOir
-	 n5q9Ss+JnmDQJ4iDyJS+T3T595NfO5VNqkOq5RpDhd1nZ+VRhXaL8O6OcAC2ODGb1/
-	 tdmbvqX/GoyXHKrGw5iLfPbV32OPxdhF9Lyd+Ie/CiDTl34hXH2yilooJMnQY1yYAv
-	 vLIL5WimkP1EXPSZvqgSGY2TsG+++V4xUtmjlcTAFyS9QmoSyjCMwWDOin+YSd+MoR
-	 tO4VZbNwqH69g==
-Date: Fri, 26 Jun 2026 12:58:30 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ryder Lee <ryder.lee@mediatek.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Jianjun Wang <jianjun.wang@mediatek.com>, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/4] dt-bindings: clock: airoha: Add additional reset for
- PCIe PERSTOUT
-Message-ID: <20260626-talkative-cerulean-hedgehog-93ccdc@quoll>
-References: <20260625215741.3253212-1-ansuelsmth@gmail.com>
- <20260625215741.3253212-2-ansuelsmth@gmail.com>
+	s=k20260515; t=1782472218;
+	bh=V1+3ByO9sZTBOPPaag1NOlKHNCayeOkBmlsCMLPFYpU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=BtHFzkDmWcTgOoz7uqsCTEuQpHmEWGygCQtTB8J79LL3p6JQ9VNNys0EDN+XP9uar
+	 RjoGTPftrjTuNrsYF5LFlNDqfCR+7RMNpNkRKb1JstOt/6Z7Oy7QqZ4WNAHNQBZZaL
+	 8Ylnq+q0oXWoLtQ52kzI6unlPjPjoy6H7KLZ/BloQAWiB35YmewmCgz6DeWrifSx6h
+	 tAI86STRHozPqCxSnQEpd/EUzI7z2kYgjxNMdlW3hfKxcL8LCr/CuzikPn6/F1l5RX
+	 u+R52nJzqGk2mS67x96JsaEgHOA6TA4GhhLGE+OEz56W6RcPvwbTzPqjnBGK08WRVy
+	 X7UELYXhRtiew==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/2] arm64: tegra: Add Lenovo ThinkEdge SE70 carrier
+ board DTS
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jiqi Li" <lijq9@lenovo.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260626105625.600156-3-lijq9@lenovo.com>
+References: <20260626105625.600156-1-lijq9@lenovo.com>
+ <20260626105625.600156-3-lijq9@lenovo.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 26 Jun 2026 11:10:17 +0000
+Message-Id: <20260626111018.262C51F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260625215741.3253212-2-ansuelsmth@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
@@ -86,45 +77,76 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:bhelgaas@google.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ryder.lee@mediatek.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:p.zabel@pengutronix.de,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:jianjun.wang@mediatek.com,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-clk@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-316056-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,mediatek.com,baylibre.com,redhat.com,pengutronix.de,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-316057-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:lijq9@lenovo.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,quoll:mid,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AD7396CC411
+X-Rspamd-Queue-Id: 8C8E86CC4BF
 
-On Thu, Jun 25, 2026 at 11:57:34PM +0200, Christian Marangi wrote:
-> Add additional reset to control PCIe PERSTOUT reset line for each of the 3
-> PCIe lines.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  include/dt-bindings/reset/airoha,en7581-reset.h | 4 ++++
->  1 file changed, 4 insertions(+)
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The device tree erroneously disables the QSPI NOR flash controll=
+er (`spi@3270000`), breaking OS-level access to the SOM's boot firmware.
+--
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+commit 0ad71e09cd3382aee8aca7f31b76da55ec8f3499
+Author: Jiqi Li <lijq9@lenovo.com>
 
-Best regards,
-Krzysztof
+arm64: tegra: Add Lenovo ThinkEdge SE70 carrier board DTS
 
+This commit adds a standalone device tree file for the Lenovo ThinkEdge
+SE70 carrier board, which is based on the NVIDIA Tegra194 Xavier NX SOM.
+It configures the 40-pin header pinmux, an external SD card slot, and
+disables unused PWM and SPI nodes to reflect the passively cooled platform.
+
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dt=
+s b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
+> new file mode 100644
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
+[ ... ]
+> +		pwm@32f0000 {
+> +			status =3D "disabled";
+> +		};
+> +
+> +		spi@3270000 {
+> +			status =3D "disabled";
+> +		};
+
+[Severity: Medium]
+Will disabling spi@3270000 break OS-level access to the SOM's boot firmware=
+?=20
+
+This overrides the 'okay' status inherited from the carrier board DTSI,
+disabling the QSPI controller needed to access the internal SPI NOR flash.
+Without this controller, userspace tools may be permanently prevented from
+updating the bootloader or firmware.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260626105625.6001=
+56-1-lijq9@lenovo.com?part=3D2
 
