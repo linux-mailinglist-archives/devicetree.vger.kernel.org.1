@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-315993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315995-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8bt2L842Pmo7BgkAu9opvQ
-	(envelope-from <devicetree+bounces-315993-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:22:38 +0200
+	id 4/iGOQ44PmqcBgkAu9opvQ
+	(envelope-from <devicetree+bounces-315995-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:27:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 349016CB4AD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 547D66CB55F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:27:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XcOuCqMe;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315993-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315993-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BJM5zP4G;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315995-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315995-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AB19630B12B9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 08:21:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3E2523121003
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 08:22:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66F053E3DBE;
-	Fri, 26 Jun 2026 08:21:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B788B3E00A3;
+	Fri, 26 Jun 2026 08:21:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E1E13DA7FF;
-	Fri, 26 Jun 2026 08:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A451A3EB801;
+	Fri, 26 Jun 2026 08:21:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782462086; cv=none; b=ICb2+IgDL5Hw9F1bxIiCFBflGJZLh/N8yvgfPfp4soeH+zxh+MiLoA+KBqNHkUZyNyD4u7pqXc3TPuV23FBYj55OIT2QQ1f63WVoqIJjr78T4rfKRLBTwvN9VQB1q1hxb0zoxyX9HBI5Sc/wlBQ0IqJTTMIMvUQfR3alID4dCvA=
+	t=1782462099; cv=none; b=qMje8WhZJyiJJ3GYsgWEca2HjbyVjQVWzTWBkV4NhEBq7mFgC6ukBUMzW9cM5uE7+M5d5UhJOazutI6eG+F59lWDVuz4iMuNnD5YG1PA5EilTMakr50/cwZllknALDx+CcPeCSsEjAwksluKBhmW14EiftJ0EEZ8E5atD9UQhyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782462086; c=relaxed/simple;
-	bh=jozA/9hSSEl0LZa5zjviMwaxKKk6EFT508tBeV+rv90=;
+	s=arc-20240116; t=1782462099; c=relaxed/simple;
+	bh=KKfZwsNULbXMXuKQ4L/hsV/GzFEQX4IGUo/kQ+gXwew=;
 	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=jyJ6BmXvJfCgDUAcxiqDBMIn1DsPL8pvp0NnYbKQh6eh3yNMkLspjF8zzzbNi+n6PQCDMKjo10yI9B3fwjlkaUvswtriQmnedRfkVrTcxLC6r/flgJGPet9LaZGIa0TuZCN7Q24zAT3+PkmORxSGzsLoU7QMxuJEx4E5nvUAk1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XcOuCqMe; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D08041F01558;
-	Fri, 26 Jun 2026 08:21:24 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=Fkt/U7PqFeL6IEiY1SZucqob/TrCjA0ePzfR3XW9SgFHAOABPD16RI+fLOWWZ9Lt51brEVBkmr7iUFI1vJmV8T5osSbLDnt+GjlGA3Z541Kj1ifF4HOs0ANj5sIKp9uvH46owwEBUyhoc5GGGKI9YEoNbqzNg2B8hCYicsLtGts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BJM5zP4G; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57AA61F000E9;
+	Fri, 26 Jun 2026 08:21:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782462084;
-	bh=E/4pqgcq9wOLsYE6QVsSxWSWz+ZXSQyYGZ30obGSCUs=;
+	s=k20260515; t=1782462098;
+	bh=OcfJataYZCIIYP70MrY9Og+F3eHYjF96zIois1cHY+M=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=XcOuCqMetxebaok5K747BiRuwF263jUQf6yCWdNaDMF23/wT10XwviIPTA4JVVOgb
-	 hRJ7fmvjaJO0hVXMKrZUCfZooWH/3Hc7nUL4tCBnkBaXogndD+PeCVBixrS/bW7XaO
-	 dvKHJMmlqOkiKcgmDDgUBx8dz6IdWYyFHI8Ka/+4zqAOiGbYE8UC409sw8N1fVBxVN
-	 jIN+faUZCAstmP7Q4rPNVuxR9HqnLb8yKeiFOlsxXRjgbnGFAhKmjWIT8m/R2vKSk7
-	 B0YgUgN5Q+i/YL7zbEhLJy34F2qFUnwC/froHedJvhycoV0suw+233NPcpZHU4Osz8
-	 +8q+nGUMMfE0Q==
+	b=BJM5zP4GDATae9/zW4iR8aZvtylByM4rIKA7jgZg+y/9sRqYyzGZs08y0oIdoYlPN
+	 PShzN3N+HxTOX6+SIIJmw115s8z3nZC66sBI//P9lakJTw4xt0FNP6KYT7PxX/VOLQ
+	 0txPPdqzvOoxWmdhSnSlZ5tvaDAcOhUpRfKYXjTe49tJ/WDGrUH4H/X+NloN6tyteA
+	 m0D7MD4OfvNqYnFvbwbuy8OSYy5rzdoxjOpLOnnnzDlW6C9vUVGyo7jT91qMLqjqNR
+	 dx907T+7em6jm0UJQWZDoYTnU4hloDE3pYPx7DtxCXGjDtqvQHIrF9k4O5c+Fd3bfG
+	 AygpfoSrMrQCQ==
 Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 19ABB39389E8;
-	Fri, 26 Jun 2026 08:21:13 +0000 (UTC)
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 9396539389E8;
+	Fri, 26 Jun 2026 08:21:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -57,99 +57,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 00/11] kdump: reduce vmcore size and capture time
+Subject: Re: [PATCH v1] dt-bindings: soc: microchip: document irqmux on
+ pic64gx
 From: patchwork-bot+linux-riscv@kernel.org
 Message-Id: 
- <178246207180.3816447.2682390089667943548.git-patchwork-notify@kernel.org>
-Date: Fri, 26 Jun 2026 08:21:11 +0000
-References: <20260527032917.3385849-1-chenwandun1@gmail.com>
-In-Reply-To: <20260527032917.3385849-1-chenwandun1@gmail.com>
-To: Wandun <chenwandun1@gmail.com>
-Cc: linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
- devicetree@vger.kernel.org, kexec@lists.infradead.org, iommu@lists.linux.dev,
- zhaomeijing@lixiang.com, catalin.marinas@arm.com, will@kernel.org,
- chenhuacai@kernel.org, kernel@xen0n.name, pjw@kernel.org, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, robh@kernel.org, saravanak@kernel.org,
- akpm@linux-foundation.org, bhe@redhat.com, rppt@kernel.org,
- pasha.tatashin@soleen.com, pratyush@kernel.org, ruirui.yang@linux.dev,
- m.szyprowski@samsung.com, robin.murphy@arm.com, quic_obabatun@quicinc.com
+ <178246208525.3816447.14558154449045550945.git-patchwork-notify@kernel.org>
+Date: Fri, 26 Jun 2026 08:21:25 +0000
+References: <20260407-headache-reward-ae93bacdba0e@spud>
+In-Reply-To: <20260407-headache-reward-ae93bacdba0e@spud>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org, conor.dooley@microchip.com,
+ daire.mcnamara@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-5.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315993-lists,devicetree=lfdr.de,linux-riscv];
-	FORGED_RECIPIENTS(0.00)[m:chenwandun1@gmail.com,m:linux-riscv@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:loongarch@lists.linux.dev,m:devicetree@vger.kernel.org,m:kexec@lists.infradead.org,m:iommu@lists.linux.dev,m:zhaomeijing@lixiang.com,m:catalin.marinas@arm.com,m:will@kernel.org,m:chenhuacai@kernel.org,m:kernel@xen0n.name,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:robh@kernel.org,m:saravanak@kernel.org,m:akpm@linux-foundation.org,m:bhe@redhat.com,m:rppt@kernel.org,m:pasha.tatashin@soleen.com,m:pratyush@kernel.org,m:ruirui.yang@linux.dev,m:m.szyprowski@samsung.com,m:robin.murphy@arm.com,m:quic_obabatun@quicinc.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315995-lists,devicetree=lfdr.de,linux-riscv];
 	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:linux-riscv@lists.infradead.org,m:conor.dooley@microchip.com,m:daire.mcnamara@microchip.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	FROM_NO_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,lixiang.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 349016CB4AD
+X-Rspamd-Queue-Id: 547D66CB55F
 
 Hello:
 
-This series was applied to riscv/linux.git (fixes)
-by Rob Herring (Arm) <robh@kernel.org>:
+This patch was applied to riscv/linux.git (fixes)
+by Conor Dooley <conor.dooley@microchip.com>:
 
-On Wed, 27 May 2026 11:29:06 +0800 you wrote:
-> From: Wandun Chen <chenwandun@lixiang.com>
+On Tue,  7 Apr 2026 16:29:31 +0100 you wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> On SoCs that carve out large firmware-owned reserved memory (GPU
-> firmware, DSP, modem, camera ISP, NPU, ...), kdump currently dumps
-> those carveouts as part of system RAM even though their contents are
-> firmware state that is not useful for kernel crash analysis.
+> Being practically identical to PolarFire SoC, pic64gx has a irqmux
+> that's entirely compatible with that on mpfs.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > 
 > [...]
 
 Here is the summary with links:
-  - [v3,01/11] of: reserved_mem: handle NULL name in of_reserved_mem_lookup()
-    https://git.kernel.org/riscv/c/cfba13a18672
-  - [v3,02/11] kexec/crash: provide crash_exclude_mem_range() stub when CONFIG_CRASH_DUMP=n
-    (no matching commit)
-  - [v3,03/11] of: reserved_mem: avoid post-init UAF when alloc_reserved_mem_array() fails
-    (no matching commit)
-  - [v3,04/11] of: reserved_mem: zero total_reserved_mem_cnt if no valid /reserved-memory entry
-    https://git.kernel.org/riscv/c/50a488de5fcc
-  - [v3,05/11] of: reserved_mem: split alloc_reserved_mem_array() from fdt_scan_reserved_mem_late()
-    (no matching commit)
-  - [v3,06/11] of: reserved_mem: add dumpable flag to opt-in vmcore
-    (no matching commit)
-  - [v3,07/11] of: reserved_mem: save /memreserve/ entries into the reserved_mem array
-    (no matching commit)
-  - [v3,08/11] of: reserved_mem: add kdump helpers to exclude non-dumpable regions
-    (no matching commit)
-  - [v3,09/11] arm64: kdump: exclude non-dumpable reserved memory regions from vmcore
-    (no matching commit)
-  - [v3,10/11] riscv: kdump: exclude non-dumpable reserved memory regions from vmcore
-    (no matching commit)
-  - [v3,11/11] loongarch: kdump: exclude non-dumpable reserved memory regions from vmcore
-    (no matching commit)
+  - [v1] dt-bindings: soc: microchip: document irqmux on pic64gx
+    https://git.kernel.org/riscv/c/17d9064987ca
 
 You are awesome, thank you!
 -- 
