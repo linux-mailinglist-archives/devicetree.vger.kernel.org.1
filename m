@@ -1,215 +1,222 @@
-Return-Path: <devicetree+bounces-315877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315880-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jMyELzbhPWox7ggAu9opvQ
-	(envelope-from <devicetree+bounces-315877-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:17:26 +0200
+	id hmlSNZLjPWqu7ggAu9opvQ
+	(envelope-from <devicetree+bounces-315880-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:27:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F4466C9B85
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:17:26 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D1396C9BF9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:27:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lontium.com header.s=default header.b=WRFm9EI+;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315877-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315877-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=none;
 	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315880-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315880-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A3E05306F9CE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 02:15:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 242203019810
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 02:27:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0DF2F5313;
-	Fri, 26 Jun 2026 02:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD6430569B;
+	Fri, 26 Jun 2026 02:27:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out28-124.mail.aliyun.com (out28-124.mail.aliyun.com [115.124.28.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CCF9248886
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 02:15:19 +0000 (UTC)
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B1942ED84A;
+	Fri, 26 Jun 2026 02:27:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782440122; cv=none; b=H5OQ2CEpAJioSYjzczIgcmMqDcdOpNVWDF6fwn5lgRia3MTQRiQrwDW/+r/ODmeAw8nfJclvI2eFSpTyRwwHGWUCVWeoDA0oC5npRXEhICO9Ipt65oaanJfls6OROcNQ5yLsCVVx19SgJmWopv3mTH42s6n93fnixlVuHkSqNBE=
+	t=1782440846; cv=none; b=H/mwScywh/+P3TwMY4L1M7g/5ugsiQMSAmdLO7PfeINjV9o6l9BIiexgYay522X085G5g6OTcBGqT4xD5B8P6WGZXs2mmQD25pML/cXaogklfVWywgqL5L3Lu5n2NL5TylJoSjDrYO+KGon4B57G3HWxhV+F9p9lQvLV7rVtxRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782440122; c=relaxed/simple;
-	bh=b/ijV46iH0mSU6JndiHuzBFXWZKigw5caZlgTXmjwMc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Fxcbx9+PcoxqBcDK8xJuWWlagW6gaIi2QFlKs6yW954YA1x0JoIKUMcXI5WEANpsFl39bW4SmEaUq6/zqbCwwg6C5yIhEBjdnsSXGDJsXB9pc2YIKMUf0f8mZnNKmQfJH8MeV8HonKsQEpvun90J+QAfeBVn7f94nYVOVKi42m0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=WRFm9EI+; arc=none smtp.client-ip=115.124.28.124
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=lontium.com; s=default;
-	t=1782440117; h=MIME-Version:From:Date:Message-ID:Subject:To:Content-Type;
-	bh=Wb7F0HgHSsOQi1v3oh8YOg8rPkXbeVLfr1rGV3IZM3A=;
-	b=WRFm9EI+2jbtuP3Ewkkodvv2oITCqBy0ERH14fTRzg6selRIMG8bpktsZvipD+WoGMV1mNaT92NSToxlzxmpYvXwV0+ofe6QE2HleI5mVMFFLcY2AN2OMWTEKrNm9Pb3Hauo2QNzbcuiDu7Zh+lWVcP351APsF5Wk/wkqCk8CteqyK8r2QgLTPDnbIIdlVyKNnJvrt+8cCaHy10nnwIPFLRVoPeNwBuCIjA1JPgQghQ0q7qAubf/6is6BN5cxM40kSY8K94sYFApW6EnXH3HTsY4QpRBLZeIBJyICvJPwL9GV5az5z7Q51fKZlFtaAMxvC64IPEVYLQzAxyavkdkoA==
-X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07438967|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0504687-0.00160094-0.94793;FP=17965206477170353410|2|1|2|0|-1|-1|-1;HT=maildocker-contentspam033037017159;MF=syyang@lontium.com;NM=1;PH=DS;RN=1;RT=1;SR=0;TI=SMTPD_---.i60vge7_1782440115;
-Received: from mail-oi1-f175.google.com(mailfrom:syyang@lontium.com fp:SMTPD_---.i60vge7_1782440115 cluster:ay29)
-          by smtp.aliyun-inc.com;
-          Fri, 26 Jun 2026 10:15:16 +0800
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-485ecc0f2dfso339362b6e.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 19:15:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ/qeGTunouQPYF1K0EZADv49Ax1WESWqVgH/G+rCQF/MRqQDeQzE0XVXWZ8pEYvQpmol8u02J3qltuK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/Yy40RLeoqt5u81xBLYTE33PvmFvFUFH7IBPuXdvQviFgOPGB
-	ksf/sOd3uUn68UAUnru4DgRYjvBRjopz0kyz3Z1KFWAjkQEvIwZPU65afYND6ekOLcx3bLuicAZ
-	LjMeg/FZwNGQnWQ0xZvMY9bTD5jdx2uI=
-X-Received: by 2002:a05:6808:e87:b0:485:41fc:71e1 with SMTP id
- 5614622812f47-49217d271fcmr4756254b6e.21.1782440115200; Thu, 25 Jun 2026
- 19:15:15 -0700 (PDT)
+	s=arc-20240116; t=1782440846; c=relaxed/simple;
+	bh=lvVxjrbdPD39TkmjEb3d6UFMQJyJbOOk9m165/3zjvE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RD7bLANuGffxLLsSigblzb8/8Uem3qfyPPmzolyVtqwPQK2NCqUuuSXhGzVKS0HKPMaskt0SjdIYthR/UmGoLyfzS9qtMstDg+//9Pcm86Gy0nomxr4RgX94iDRGlqVxGJizKpywrkDvieBIAZfyxbi0jPRkfDxqYLkqxDO1S4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Received: from loongson.cn (unknown [223.64.68.155])
+	by gateway (Coremail) with SMTP id _____8DxVXiG4z1quDAYAA--.37427S3;
+	Fri, 26 Jun 2026 10:27:18 +0800 (CST)
+Received: from kernelserver (unknown [223.64.68.155])
+	by front1 (Coremail) with SMTP id qMiowJBxSeCC4z1qim2zAA--.12873S2;
+	Fri, 26 Jun 2026 10:27:15 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Keguang Zhang <keguang.zhang@gmail.com>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v3 0/9] ASoC: Add Loongson-2K0300 I2S controller and sound card support
+Date: Fri, 26 Jun 2026 10:27:02 +0800
+Message-ID: <cover.1782439646.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260508134009.4582-1-syyang@lontium.com> <20260508134009.4582-3-syyang@lontium.com>
- <3188f63f-5358-48d7-b934-af20a8f95c6f@kernel.org> <CAFQXuNbKBfyeQL3N3P5QY=6BWoD3O6DSbXN-WMA1rRG9vCs3Kg@mail.gmail.com>
- <a0352a42-15db-4c7a-ae73-8a4e1543cd50@kernel.org> <CAFQXuNZVE6cZJGwrGKGtWnB-seSJLHFh8zW3jjAs6U4JLZFWng@mail.gmail.com>
- <CAFQXuNa8bJCpZBkMs_3mtbK_pjVzDdaDaoGk0KDxiG_Pf7txdg@mail.gmail.com> <6371d1d8-cdfb-40fa-84c7-ba3ec4e2ac00@kernel.org>
-In-Reply-To: <6371d1d8-cdfb-40fa-84c7-ba3ec4e2ac00@kernel.org>
-From: Sunyun Yang <syyang@lontium.com>
-Date: Fri, 26 Jun 2026 10:15:03 +0800
-X-Gmail-Original-Message-ID: <CAFQXuNZtzBu+WiG8n0BeN47zagQmL-iz_6Af7prk-xHLAeRBwg@mail.gmail.com>
-X-Gm-Features: AVVi8Cf8o4UMoK0nnWXG70UOOa3TP4xvy7_Ao2U944dWAm89fBUWaicxN-xgha8
-Message-ID: <CAFQXuNZtzBu+WiG8n0BeN47zagQmL-iz_6Af7prk-xHLAeRBwg@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] drm/bridge: Add Lontium LT9611C(EX/UXD) MIPI DSI
- to HDMI driver
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
-	dmitry.baryshkov@oss.qualcomm.com, maarten.lankhorst@linux.intel.com, 
-	rfoss@kernel.org, mripard@kernel.org, Laurent.pinchart@ideasonboard.com, 
-	tzimmermann@suse.de, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, xmzhu@lontium.corp-partner.google.com, 
-	xmzhu@lontium.com, rlyu@lontium.com, xbpeng@lontium.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowJBxSeCC4z1qim2zAA--.12873S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAgEKCGo8wzAaEwAAst
+X-Coremail-Antispam: 1Uk129KBj93XoWxXr43uw15XF4rtw13Cr1Utwc_yoW5tFyDpF
+	s3u39xGryUGFyjyFZxXry8Cr4fZ34xJa9rJF45J34kJanrC3yjv34qy3WYvF47ZrZ5GrWj
+	qrn5KF4rWFy5ZFXCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUB0b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
+	Gr0_Gr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYI
+	kI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWU
+	AwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI4
+	8JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
+	6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwV
+	AFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv2
+	0xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4
+	v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AK
+	xVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUc9a9UUUUU
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[lontium.com:s=default];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-315880-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315877-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:dmitry.baryshkov@oss.qualcomm.com,m:maarten.lankhorst@linux.intel.com,m:rfoss@kernel.org,m:mripard@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:tzimmermann@suse.de,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:xmzhu@lontium.corp-partner.google.com,m:xmzhu@lontium.com,m:rlyu@lontium.com,m:xbpeng@lontium.com,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	DMARC_NA(0.00)[lontium.com];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[loongson.cn];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:zhoubb.aaron@gmail.com,m:chenhuacai@loongson.cn,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:keguang.zhang@gmail.com,m:chenhuacai@kernel.org,m:kernel@xen0n.name,m:loongarch@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-sound@vger.kernel.org,m:zhoubinbin@loongson.cn,m:zhoubbaaron@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:keguangzhang@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,oss.qualcomm.com,linux.intel.com,ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lontium.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER(0.00)[zhoubinbin@loongson.cn,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,loongson.cn,kernel.org,perex.cz,suse.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lontium.com:dkim,lontium.com:email,lontium.com:from_mime]
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zhoubinbin@loongson.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[loongson.cn:mid,loongson.cn:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1F4466C9B85
+X-Rspamd-Queue-Id: 1D1396C9BF9
 
-Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2026=E5=B9=B46=E6=9C=8825=E6=
-=97=A5=E5=91=A8=E5=9B=9B 21:51=E5=86=99=E9=81=93=EF=BC=9A
->
-> On 25/06/2026 15:40, Sunyun Yang wrote:
-> > Sunyun Yang <syyang@lontium.com> =E4=BA=8E2026=E5=B9=B46=E6=9C=8825=E6=
-=97=A5=E5=91=A8=E5=9B=9B 21:26=E5=86=99=E9=81=93=EF=BC=9A
-> >>
-> >> Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2026=E5=B9=B46=E6=9C=88=
-25=E6=97=A5=E5=91=A8=E5=9B=9B 21:17=E5=86=99=E9=81=93=EF=BC=9A
-> >>>
-> >>> On 25/06/2026 15:14, Sunyun Yang wrote:
-> >>>> Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2026=E5=B9=B46=E6=9C=
-=8825=E6=97=A5=E5=91=A8=E5=9B=9B 20:54=E5=86=99=E9=81=93=EF=BC=9A
-> >>>>>
-> >>>>> On 08/05/2026 15:40, syyang@lontium.com wrote:
-> >>>>>> +
-> >>>>>> +static void lt9611c_reset(struct lt9611c *lt9611c)
-> >>>>>> +{
-> >>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
-> >>>>>> +     msleep(20);
-> >>>>>> +
-> >>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
-> >>>>>> +     msleep(20);
-> >>>>>> +
-> >>>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
-> >>>>>
-> >>>>> This is just plain wrong. Why do you assert, then de-assert and the=
-n
-> >>>>> finally assert AGAIN the reset leaving the device in powerdown stag=
-e?
-> >>>>>
-> >>>> I am using software to emulate the hardware RESET button on our EVB.
-> >>>> When the hardware RESET button is pressed while our chip is running,
-> >>>> the signal level changes from HIGH to LOW and then back to HIGH.
-> >>>>
-> >>>> Of course, we can also use the following:
-> >>>> static void lt9611c_reset(struct lt9611c *lt9611c)
-> >>>> {
-> >>>>     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
-> >>>>     msleep(50);
-> >>>>     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
-> >>>>     msleep(20);
-> >>>> }
-> >>>
-> >>> Makes no sense either and you just did not get the point and did not
-> >>> answer my question. I asked WHY you leave asserted. Answer "we emulat=
-e"
-> >>> is just plain wrong.
-> >>>
-> >>> So again please answer:
-> >>>
-> >>> Why do you leave device with reset asserted?
-> >>>
-> >>
-> >>  devicetree:   reset-gpios =3D <&tlmm 128 GPIO_ACTIVE_HIGH>;
-> >>
-> >> GPIO_ACTIVE_HIGH:
-> >>
-> >> gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);   ------   reset pin
-> >> is Low level : Clear the register configuration in the chip to stop
-> >> the chip from working.
-> >>
-> >> gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);   ------  reset pin
-> >> is high level:  The chip resumes operation.
-> >>
-> >>
-> >
-> > Our purpose is: pull the level low to clear the register configuration
-> > in the chip, and then pull it high to allow the MCU inside the chip to
-> > re=E2=80=91initialize the registers.
->
->
-> And you do completely opposite... so that confirms your code is just wron=
-g.
->
+Hi all:
 
-The lontium-lt9611.yaml uses GPIO_ACTIVE_HIGH. I am just following the
-rule of this device tree. If I modify the device tree to use
-GPIO_ACTIVE_LOW,
-and use the following code in my driver, then my driver would be correct.
-However, would the existing kernel drivers lontium-lt9611uxc.c and
-lontium-lt9611.c be affected?
-static void lt9611c_reset(struct lt9611c *lt9611c)
-{
-    gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
-    msleep(50);
-    gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
-    msleep(20);
-}
+This series adds ASoC support for the Loongson-2K0300 SoC and its
+associated development boards, including the CTCISZ Forever Pi and the
+ATK-DL2K0300B.
 
+Key changes:
+- Extend DT bindings to support ls2k0300-i2s and new audio card
+  compatibles.
+- Refactor the platform I2S driver to handle SoC differences via per-device
+  configuration (rev_id, optional APB DMA config, reset sequence).
+- Refactor the audio machine driver to support board-specific DAI formats,
+  GPIO-based headphone detection/control, speaker enable, and DAPM routing.
+- Add jack detection and automatic switching between headphones and
+  speakers for the DL2K0300B board.
 
+The patchset also cleans up the existing audio card binding by
+referencing the common sound-card properties, and adds new compatibles
+for the Loongson-2K0300 variants with proper DAI format handling.
 
->
-> Best regards,
-> Krzysztof
+All changes have been tested on Loongson-2K2000 (PCI), Loongson-2K0300
+Forever Pi and Loongson-2K0300 DL2K0300B boards.
+
+Thanks.
+Binbin
+
+========
+V3:
+Patch (1/9):
+  - New patch;
+  - Error handling reported by AI Sashiko;
+Patch (3/9):
+  - Mark platform configuration structures as `const`;
+Patch (4/9):
+  - Add Acked-by tag from Rob, thanks;
+Patch (5/9):
+  - Correct commit message;
+Patch (7/9):
+  - Drop `loongson` prefix;
+  - Change `gpiod_hp_mute` to `gpiod_hp_ctl`;
+Patch (8/9):
+  - Add `add_dapm_routes` to  loongson_card_config;
+  - Move gpiod* register ops into loongson_card_parse_of();
+  - Change `gpiod_hp_mute` to `gpiod_hp_ctl`;
+  - Add `ls_priv->gpiod_hp_det` judgment in loongson_asoc_machine_init()
+    to avoid double-free;
+Patch (9/9):
+  - New patch;
+  - Add DAPM routes from MIC inputs to Mic Bias. 
+
+Link to V2:
+https://lore.kernel.org/all/cover.1780538113.git.zhoubinbin@loongson.cn/
+
+v2:
+- The first four patches for V1 (related to code cleanup) have been
+  accepted as a separate series. The link is as follows:
+https://lore.kernel.org/all/178041371415.93058.4794135670349989571.b4-ty@b4/
+
+Patch (1/7):
+  - Add Reviewed-by tag from Krzysztof Kozlowski;
+Patch (3/7):
+  - New patch;
+  - Reference sound-card-common.yaml, drop custom model property;
+Patch (4/7)(5/7):
+  - New patches;
+  - Support Forever Pi board with different DAI format;
+Patch (6/7)(7/7):
+  - New patches;
+  - Implement headphone jack detection and DAPM routing for ATK-DL2K0300B
+    board.
+
+Link to V1:
+https://lore.kernel.org/all/cover.1773107475.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (9):
+  ASoC: loongson: Fix error handling in ACPI property parsing
+  ASoC: dt-bindings: loongson,ls2k1000-i2s: Document Loongson-2K0300
+    compatible
+  ASoC: loongson: Add Loongson-2K0300 I2S controller support
+  ASoC: dt-bindings: loongson,ls-audio-card: Use common sound card
+  ASoC: dt-bindings: loongson,ls-audio-card: Add ctcisz forever pi
+    compatible
+  ASoC: loongson: Add Loongson-2K0300 CTCISZ Forever Pi sound card
+    support
+  ASoC: dt-bindings: loongson,ls-audio-card: Add ATK-DL2K0300B
+    compatible
+  ASoC: loongson: Add headphone jack detection and DAPM routing
+  ASoC: es8328: Add DAPM routes from MIC inputs to Mic Bias
+
+ .../sound/loongson,ls-audio-card.yaml         |  53 +++++-
+ .../bindings/sound/loongson,ls2k1000-i2s.yaml |  22 ++-
+ sound/soc/codecs/es8328.c                     |   5 +
+ sound/soc/loongson/loongson_card.c            | 171 ++++++++++++++++--
+ sound/soc/loongson/loongson_i2s_plat.c        |  42 ++++-
+ 5 files changed, 267 insertions(+), 26 deletions(-)
+
+-- 
+2.52.0
+
 
