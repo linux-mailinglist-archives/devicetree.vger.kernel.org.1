@@ -1,356 +1,180 @@
-Return-Path: <devicetree+bounces-316106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316107-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oFRdDHSIPmpoHgkAu9opvQ
-	(envelope-from <devicetree+bounces-316106-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:11:00 +0200
+	id oa5bCJiIPmpxHgkAu9opvQ
+	(envelope-from <devicetree+bounces-316107-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:11:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27A5D6CDCBB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:10:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 889E36CDCC7
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 16:11:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="YCT/mSTm";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316106-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-316106-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=ixit.cz header.s=dkim header.b=Uf4675RJ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316107-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316107-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ixit.cz;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3008E3001CE6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 14:10:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 524B3301992C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 14:11:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 388A23F7A83;
-	Fri, 26 Jun 2026 14:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0FEC3F660F;
+	Fri, 26 Jun 2026 14:11:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from ixit.cz (ixit.cz [185.100.197.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02A273F7AAB
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 14:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 308E73750D6;
+	Fri, 26 Jun 2026 14:11:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782483054; cv=none; b=bxjtFsF+a4ylnr9NePbE4ZC2XG+2OifjVTk8gPYnWbbAZ0fKNGv7/errJeYvqcB3oGmn1OD8ZcrrnGINE+tiB3gdNThkzaSQ5PNI4yMQjYjRwplC0lmZ62vw3QtSWbCKTuhGvOONfJga35eaeP2E4t0at3nqxDkJpF245stBdrI=
+	t=1782483093; cv=none; b=fqRvQbzD1kf/D0J16EsE6VzYwCtboPw9WmyccSjf7L3iTUzdYo6Pme/vxLrEpwwj9RqvQWjqFsItQelTHgadrUUplJbwE84M+ByTii+boYCqpKn52vYaZelTTpProJZpgDDkgS7JiN3BhU9xo4FQ3U92IGjYs2KsPFq1oekBzHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782483054; c=relaxed/simple;
-	bh=e6SQjG3Ppqpecfa/cOeXD909QWHkXDSaWAn/AgM0B6c=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=OefIG2PfwyP4toiFsV7MZ9BuszJ0+zCICLpniIqzbn9sA/p+Bg+L2RDRG6GWydkKz13RGN5MAWixUPbkWtU/DxXt5yr5qZ1kpQG5wlrio6YRuMmfXsWPb13CgKdoZVHTVLkIN886nhPxLZPRBtas3dl9UeNIVGScwRbxVvqHczk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCT/mSTm; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D366B1F000E9;
-	Fri, 26 Jun 2026 14:10:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782483051;
-	bh=SdrXOSLcBxchPmHF1Y8g5RUEBjhwhc1rUWMBshrC9oQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=YCT/mSTmQJutHIEFBq+JEq0wEnoZEPgAK7lhMDF9j2YcgTShx8wB02+00WZ0cDbO7
-	 VvYYH3+zK6tAvehFoWyvuO9jh+S3Hyfs3DP5r3p+OTa7k7gCLPEc0QJpP2Ys/ENVLi
-	 G6GbnGL7ghDCxwXEFYQL/vZZn8MyP5lYaQQWxwNAVP8KlLh2xUyTVQf3ke0gt8Jdxw
-	 0fq95MoRq+e4RCBQG69mEiqfklQ8HZ+VFWqRa0o0XYLOp6KQGnuaxT5zl4p4wbsKPS
-	 //MoqIk2apUjBDnv6q57ljCQm7pmIW+YNMW/Kkyb6zhDHwoFCXm7llWoL1UOZ6hRZl
-	 8G8oZRvI3sAzQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/6] remoteproc: qcom: Add M0 BTSS secure PIL driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "George Moussalem via B4 Relay" <devnull+george.moussalem.outlook.com@kernel.org>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260625-ipq5018-bluetooth-v1-2-d999be0e04f7@outlook.com>
-References: <20260625-ipq5018-bluetooth-v1-0-d999be0e04f7@outlook.com>
- <20260625-ipq5018-bluetooth-v1-2-d999be0e04f7@outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 26 Jun 2026 14:10:50 +0000
-Message-Id: <20260626141050.D366B1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782483093; c=relaxed/simple;
+	bh=6C5hArhWwYzdaJr2MzciUWsQUrFgJpjcA2bCkwkiVPE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Fdk9zQ/wIy55ub+FBiCxshHVQV/mw4IvkickTFZQkWqhBcTx3WizTvUbM+LwWbDTkIpRJqgp7LLg2NvhjvkZsONRgNWbXHIUIH5t5leIWZwRJx04UohNLUlfw74Irs6C5HtYAp6vG1R/HhUcwUZY6sMzu+GiDOarkfP3+4YGmsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=Uf4675RJ; arc=none smtp.client-ip=185.100.197.86
+Received: from [10.0.0.200] (unknown [10.88.125.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 639055340139;
+	Fri, 26 Jun 2026 16:11:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1782483088;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=HTCmCgqDJk51YW5CVQgQ9h2UDSSC2DWCPmLn+V/EXWc=;
+	b=Uf4675RJd8MkDZp4kSGXR6RHR5XZbmq07Yr6ws9alDkZSLKoCHZtQyx4ieqBrUl5ayh45n
+	S6svrVSGyPGeRPL3bGmluLICAJ6VKLfg2YYu2QXVbcw6IkELJfT0pslC7U8sn00jeOlrLT
+	iXRV+6QCcfszUPn9UqJ1Hf6E16zF8vY=
+Message-ID: <71691c8e-f05e-4f3a-9507-9a590fd5e2c5@ixit.cz>
+Date: Fri, 26 Jun 2026 16:11:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sdm845-oneplus: Update
+ compatible to include model
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+ Vincent Huang <vincent.huang@tw.synaptics.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>
+References: <20260523-synaptics-rmi4-dt-v2-2-0645122babdc@ixit.cz>
+ <ahdoBl3qCTyvlYJf@google.com> <1d0e7e31-f808-4347-955a-7246dea208f5@ixit.cz>
+ <742c7a13-9465-40e8-8990-e679712e9784@ixit.cz> <ajtaUb4YmyZTDLmQ@google.com>
+ <52b7dd3a-3f6f-474c-8386-4fc2776b185b@ixit.cz> <ajxakXFuKAkhdZLN@google.com>
+ <f81e4d83-90d9-47c8-aee9-319df3f8b0fb@kernel.org>
+ <aj1OhZQjO5nNYlAo@google.com> <32affded-bae2-46c4-a702-2054fbfe46a8@ixit.cz>
+ <aj4QUY5p7gqLplVT@google.com>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <aj4QUY5p7gqLplVT@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
+	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316106-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316107-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:devnull+george.moussalem.outlook.com@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	FORGED_SENDER(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.torokhov@gmail.com,m:andersson@kernel.org,m:krzk@kernel.org,m:krzk+dt@kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:conor+dt@kernel.org,m:Jason@zx2c4.com,m:matthias.schiffer@ew.tq-group.com,m:vincent.huang@tw.synaptics.com,m:konradybcio@kernel.org,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:phone-devel@vger.kernel.org,m:robh@kernel.org,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,george.moussalem.outlook.com,dt];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ixit.cz:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,outlook.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 27A5D6CDCBB
+X-Rspamd-Queue-Id: 889E36CDCC7
 
-Thank you for your contribution! Sashiko AI review found 10 potential issue=
-(s) to consider:
-- [High] Redundant request_firmware call leaks newly allocated firmware and=
- metadata on success path.
-- [High] Direct return on kstrdup failure leaks previously acquired metadat=
-a and firmware objects.
-- [High] Heap buffer underflow and overflow when formatting split segment f=
-ilenames with sprintf.
-- [High] 32-bit integer overflow in ELF segment bounds validation allows ou=
-t-of-bounds memory writes.
-- [High] Missing size validation for split firmware segments leads to out-o=
-f-bounds reads.
-- [High] Out-of-bounds read due to unvalidated ELF headers and hardcoded pr=
-ogram header offset.
-- [High] Time-of-Check to Time-of-Use (TOCTOU) vulnerability due to parsing=
- ELF headers from a different firmware copy than the one authenticated.
-- [Medium] Subsystem guide violation: Mixing goto-based error handling with=
- scope-based __free() cleanup.
-- [Medium] Failure to zero-initialize the BSS section of ELF segments expos=
-es stale memory to the peripheral.
-- [Medium] Missing reset assertion on late probe failures and driver remova=
-l leads to resource leaks and state mismatch.
---
+[...]
 
-commit a3d2212c4a13a5646a7fb048e4d391fc0784f11e
-Author: George Moussalem <george.moussalem@outlook.com>
-Subject: remoteproc: qcom: Add M0 BTSS secure PIL driver
+> 
+> OK, I applied the binding change, the dts change should go through some
+> other tree.
+> 
+> Thanks.
+> 
 
-This commit introduces a new Peripheral Image Loader driver for the M0
-bluetooth subsystem found in the IPQ5018 SoC. The driver brings up the
-M0 core by loading signed firmware, authenticating it via TrustZone,
-and starting the peripheral using a Secure Channel Manager call.
+Thank you, I think Bjorn will be picking the dts change :)
 
-> diff --git a/drivers/remoteproc/qcom_m0_btss_pil.c b/drivers/remoteproc/q=
-com_m0_btss_pil.c
-> new file mode 100644
-> index 0000000000000..7168e270e4d46
-> --- /dev/null
-> +++ b/drivers/remoteproc/qcom_m0_btss_pil.c
-
-[ ... ]
-
-> +static int m0_btss_load(struct rproc *rproc, const struct firmware *fw)
-> +{
-> +	struct m0_btss *desc =3D rproc->priv;
-> +	const struct elf32_phdr *phdrs;
-> +	const struct firmware *seg_fw;
-> +	const struct elf32_phdr *phdr;
-> +	const struct elf32_hdr *ehdr;
-> +	void __iomem *metadata;
-> +	size_t metadata_size;
-> +	int i, ret;
-> +
-> +	ehdr =3D (const struct elf32_hdr *)fw->data;
-> +	phdrs =3D (const struct elf32_phdr *)(ehdr + 1);
-
-[Severity: High]
-Does this code perform an out-of-bounds read if the firmware file is smaller
-than the ELF header structure? The pointer is cast and dereferenced without
-validating that the provided firmware is large enough.
-
-[Severity: High]
-Is there an issue with using a hardcoded offset to locate the program heade=
-rs
-instead of using the standard e_phoff field from the ELF header? If the file
-uses a non-standard layout, it could parse arbitrary memory as program
-headers.
-
-> +
-> +	ret =3D request_firmware(&fw, rproc->firmware, rproc->dev.parent);
-
-[Severity: High]
-Does this code introduce a time-of-check to time-of-use vulnerability? The
-ehdr and phdrs pointers are established from the original fw parameter, but
-then a new fw copy is requested and authenticated by TrustZone. If the file
-changes between these reads, could malicious segment locations from the fir=
-st
-unauthenticated read be used to subvert the loading of the authenticated da=
-ta?
-
-[Severity: High]
-Is this call to request_firmware() redundantly overwriting the local fw
-parameter, preventing the original structure from being accessed?
-
-> +	if (ret) {
-> +		dev_err(rproc->dev.parent, "Failed to request firmware: %d\n",
-> +			ret);
-> +		return ret;
-> +	}
-> +
-> +	metadata =3D qcom_mdt_read_metadata(fw, &metadata_size, rproc->firmware,
-> +					  rproc->dev.parent);
-> +	if (IS_ERR(metadata)) {
-> +		ret =3D PTR_ERR(metadata);
-> +		dev_err(rproc->dev.parent,
-> +			"Failed to read firmware metadata: %d\n", ret);
-> +		goto release_fw;
-> +	}
-> +
-> +	ret =3D qcom_scm_pas_init_image(BTSS_PAS_ID, metadata,
-> +				      metadata_size, NULL);
-> +	if (ret) {
-> +		dev_err(rproc->dev.parent, "PAS init image failed: %d\n", ret);
-> +		goto free_metadata;
-> +	}
-> +
-> +	for (i =3D 0; i < ehdr->e_phnum; i++) {
-> +		char *seg_name __free(kfree) =3D kstrdup(rproc->firmware,
-> +						       GFP_KERNEL);
-
-[Severity: Medium]
-Is it safe to mix goto-based error handling with scope-based cleanup helpers
-like __free(kfree) in the same function? The kernel cleanup subsystem
-guidelines indicate that functions should either use goto-based cleanup
-exclusively, or scope-based cleanup exclusively, to prevent confusing
-ownership semantics.
-
-> +		if (!seg_name)
-> +			return -ENOMEM;
-
-[Severity: High]
-Does returning directly here leak the metadata buffer and the locally
-requested fw structure? It appears this direct return bypasses the
-free_metadata and release_fw cleanup labels.
-
-> +
-> +		phdr =3D &phdrs[i];
-> +
-> +		/* Only process valid loadable data segments */
-> +		if (phdr->p_type !=3D PT_LOAD || !phdr->p_memsz)
-> +			continue;
-> +
-> +		if (phdr->p_vaddr + phdr->p_filesz > desc->mem_size) {
-
-[Severity: High]
-Can the addition of phdr->p_vaddr and phdr->p_filesz overflow? Since both
-are read directly from the ELF header as 32-bit integers, a crafted firmware
-could provide values that wrap around the 32-bit limit, passing the bounds
-check against desc->mem_size and allowing out-of-bounds memory writes.
-
-> +			dev_err(rproc->dev.parent,
-> +				"Segment data exceeds the reserved memory area!\n");
-> +			goto free_metadata;
-> +		}
-> +
-> +		/* Check if firmware is split across multiple segment files */
-> +		if (phdr->p_offset > fw->size ||
-> +		    phdr->p_offset + phdr->p_filesz > fw->size) {
-> +			sprintf(seg_name + strlen(seg_name) - 3, "b%02d", i);
-
-[Severity: High]
-Could this sprintf() call result in a heap buffer underflow or overflow?
-If the provided firmware-name is fewer than 3 characters long, the pointer
-arithmetic could underflow. Additionally, if the unvalidated ehdr->e_phnum
-produces a large index, the formatted string could overflow the allocated
-buffer.
-
-> +			ret =3D request_firmware(&seg_fw, seg_name,
-> +					       rproc->dev.parent);
-> +			if (ret) {
-> +				dev_err(rproc->dev.parent,
-> +					"Could not find split segment binary: %s\n",
-> +					seg_name);
-> +				goto free_metadata;
-> +			}
-> +
-> +			/*
-> +			 * Use the virtual instead of the physical address as
-> +			 * the offset
-> +			 */
-> +			memcpy_toio(desc->mem_region + phdr->p_vaddr,
-> +				    seg_fw->data, phdr->p_filesz);
-
-[Severity: High]
-Does this memcpy_toio() read past the end of seg_fw->data? It uses
-phdr->p_filesz from the main ELF header, but there doesn't seem to be a che=
-ck
-ensuring that the loaded seg_fw->size is actually at least that large.
-
-> +
-> +			release_firmware(seg_fw);
-> +		} else {
-> +			memcpy_toio(desc->mem_region + phdr->p_vaddr,
-> +				    fw->data + phdr->p_offset, phdr->p_filesz);
-
-[Severity: Medium]
-If an ELF segment's memory size (p_memsz) exceeds its file size (p_filesz),
-does the remaining memory need to be zero-initialized for the BSS section?
-The driver currently only copies p_filesz bytes, which might leave stale
-kernel memory exposed to the peripheral.
-
-> +		}
-> +	}
-> +
-> +	return 0;
-
-[Severity: High]
-Does this success path leak the dynamically allocated metadata buffer and t=
-he
-firmware structure? The function returns directly without freeing them.
-
-> +
-> +free_metadata:
-> +	kfree(metadata);
-> +release_fw:
-> +	release_firmware(fw);
-> +	return ret;
-> +}
-
-[ ... ]
-
-> +static int m0_btss_pil_probe(struct platform_device *pdev)
-> +{
-
-[ ... ]
-
-> +	desc->btss_reset =3D devm_reset_control_get(dev, "btss_reset");
-> +	if (IS_ERR_OR_NULL(desc->btss_reset))
-> +		return dev_err_probe(dev, PTR_ERR(desc->btss_reset),
-> +				     "unable to acquire btss_reset\n");
-> +
-> +	ret =3D reset_control_deassert(desc->btss_reset);
-
-[Severity: Medium]
-Is a cleanup action needed to assert the reset if probe fails later or if t=
-he
-driver is unbound? The probe function deasserts desc->btss_reset but
-doesn't seem to register a corresponding devm_add_action_or_reset() to hand=
-le
-teardown.
-
-> +	if (ret)
-> +		return dev_err_probe(rproc->dev.parent, ret,
-> +				     "Failed to deassert reset\n");
-> +
-> +	rproc->auto_boot =3D false;
-> +	ret =3D devm_rproc_add(dev, rproc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	platform_set_drvdata(pdev, rproc);
-> +
-> +	return 0;
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260625-ipq5018-bl=
-uetooth-v1-0-d999be0e04f7@outlook.com?part=3D2
+David
 
