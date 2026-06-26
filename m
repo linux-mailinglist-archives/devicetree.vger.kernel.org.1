@@ -1,209 +1,210 @@
-Return-Path: <devicetree+bounces-315980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315981-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DZvyIXoxPmoOBQkAu9opvQ
-	(envelope-from <devicetree+bounces-315980-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:59:54 +0200
+	id GliHEZAxPmobBQkAu9opvQ
+	(envelope-from <devicetree+bounces-315981-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:00:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id F16D06CB2EE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:59:53 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94A3F6CB304
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 10:00:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=QQ3WcdOp;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="YHKSW/WN";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315980-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315980-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=l98AsZbc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315981-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315981-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DC87B3056520
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 07:59:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 42E7B302EE86
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 08:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88A2A3E4C64;
-	Fri, 26 Jun 2026 07:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9ACF3E3DAB;
+	Fri, 26 Jun 2026 08:00:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1E13E3DBB
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 07:59:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9CE43DB32E
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 08:00:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782460778; cv=none; b=ly8rBHrVQdOApA6bKFNqRmnmbNZoLafzhPcRdfFldpcGibq5kbr8YGtvs11jBl+K83F2KDz5yB2wi2uW5aOJ3ekwvncMXi0PxLXJoVHRFZwUAaw8/RhghAWMIgkhnyh/lEIYnTTL88PcU5in+hisBfLTUnn6IEhVAdUhBtdO3ww=
+	t=1782460813; cv=none; b=DqpV3HHedV+B+xxN3bQvNe6Q605wSTpjc++/3L4UQPFoOfwLJpAM+bIgmIDh8Mw7zjddvd9Ybav9PCaenPKOpXY/aBvWmr3EFTrebgE6++G+4AJxWlXDoekJxlC9PpoMR5+I68+xWNDUaoWRiY/nVjJk7CqF2Ngnivqamft/baY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782460778; c=relaxed/simple;
-	bh=sYODxyt2foDNZT7s5ipSpvmDlkzEZeJUT7Uw64IOTRA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Omcd2IHquN+E33qdK0KDrAqkK/8bwIIauc0Vfc9jAtmMSQ787oqZPcdDf/Z60fOZKMrGUbePBYH+7J5etkuOSxditYWf/7hEaPdkoTTAkqw2mMMXKpkR7CSYgJNubTRif0T+HKGt27jMDoG1Yo/wNBOn2OlPw10RIXL/cyEEwfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QQ3WcdOp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YHKSW/WN; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65Q6W6GN511905
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 07:59:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JL6QkyFsiaToiUkSApRBS0AsrnA+UtA0FCtB5uyugqQ=; b=QQ3WcdOpy8FX1X3C
-	ViS9CcO4FgYSgsCf+1zcQjsWxCxf6MSUyV6p9aGq4i5kW0FdTUFCBgpLq5H8pbAb
-	v5ZtjlFgBJSgcD5cTzkSR2Cqwf7EPJrTOJt1v1sblWWVDdWlDyA8WEa/C44luVbQ
-	VihaGly9is2RSCxRWhwONyTuV1L9z1UX5YWAQDJWroGfertabn5alKfsx4bIcX5g
-	r3icvzCKCyPrkyiZe3G1b0Crw0pYaCUBCyygI5MfMUuUuEkjgJsaK8Tv4KxGmA/0
-	UQdJzxuCVHE+qRAF5RMcMAA6btGmtwDusc6/7lc3jC3obEkIaWJHmoqKSIillsXS
-	Na7hKQ==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f1fct9djp-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 07:59:35 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-9157ae36434so106218585a.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 00:59:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782460775; x=1783065575; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JL6QkyFsiaToiUkSApRBS0AsrnA+UtA0FCtB5uyugqQ=;
-        b=YHKSW/WNlMtkn4LUbjgTOhLD+ZGzALz8bqkge5GOrjy2xjdBSXdUesD+rNzgkL+Evv
-         sWfrn4ZjK7M7sXAC/Ya5eHWnD7CxgQ7fG5eZmt1B1xH/VwEXTIcZjjXjh3i9icMYy1qK
-         rsjxl1Pe7vc7gQm7+q05L21RQvwKOpP3tyUo+jXtBUKi6O6nP/NUp/RoHq3bQPnsvHV3
-         txdlm2JRNm4k1eooIiX8GmaJobaCXForBtKiKybV7Ira+p5LmV4wrxy5+FCUf8b/jifa
-         7B4Hxv2KskEhnHbMDLDclP+/ObYufFgcKQ1sU3IPlUxaZlFU8dwVEYnLL8K7oEMlchVb
-         xUTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782460775; x=1783065575;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=JL6QkyFsiaToiUkSApRBS0AsrnA+UtA0FCtB5uyugqQ=;
-        b=bpeA4kH7WPYIGX15TDYtcG36fGsR4tg0E3UhXY14cLlul1St+BR4Zsgqbf/y0G27/7
-         LpuuP0TL4b3EiusqtznlKpdgw4VkO4CJzfQ5iic8duz5zwnNP8Xs/QbQqg3MPQ1Gz5UE
-         Vha7+wqts2qiZz4hB49rn5rpaHzMFP6YPchNMwn9bPlqv+zD/ECaiG3/nqsu2uY/CFu0
-         L93RFxYNr5rPV5MrNjMkboJLk+5WXWi1TuJu6ectd/I73quZIxhqTUGMsFTHjR42bpcw
-         Kv7+mg6ytQUFLoLTG9fz4fU/4XQQ1qmASNj4BKOow2rK53RHyB1vjjTBER5JqLu9B/bC
-         vJBQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8hB3G8WD3HbX5mxaqQr6/VqoCOpOpBXmZ8tcTIcanrJigLJzp0mUvRPR66XamV3eaI58p7G76ISBbZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUFq9xYzVdTUPaL1s6iTyWWlb1qNi+/4xwsNL/B6jID0jjIsKB
-	4E7fQuzA1HqdRyzjv+sGUxd+fVzCzs1lN7KDSyceWq9RhrlOWxav2bMi5aeGCvJUTtKxr6cxLgH
-	owHX4aFoG0pTXl+fk4vGcEJ69gcDaiAn6isZbCwiUJWdCNjhoUKfXvjX4QzRkeVm8
-X-Gm-Gg: AfdE7clJrHxBuefIXkwSmXKW9S4h0KyKPD4C64H8ubmPr7sqQaUqdZTI92HTVxwckt3
-	f8fKCjVyny99g15BvRYZu/h9G10CptRSbWWmjnJtkAcYLOtEhJuG1o4nIgfJIBcJjm2HpOvJ+ZV
-	8F+XVxHByUVfg0oIJW3lYSeq8Qn0AP+5u73RlsEtCL/eASN/U7OZnNIXERtX99c/mjRAvFc16f+
-	Hwzrh4ByHhh0SO0AmbXrToYjFEjBMt5pTsGKjhqPjmh2jdMKPj/7Wt5uSX96BO1Wg79P6cEnHJD
-	fI6GJ9FBanE00HNTpmzeQKjl/mBEVuxt8kRe0baFj5R2O0Eyj47a5JTGPbsiWp7VpJAnTuVnShb
-	EQ/IthZPxyGyOWBwoec7rXvvpaRRNoESNJTQBRV4=
-X-Received: by 2002:a05:620a:45a7:b0:8ee:eb50:4f51 with SMTP id af79cd13be357-9293d1b5483mr919784785a.54.1782460775386;
-        Fri, 26 Jun 2026 00:59:35 -0700 (PDT)
-X-Received: by 2002:a05:620a:45a7:b0:8ee:eb50:4f51 with SMTP id af79cd13be357-9293d1b5483mr919780985a.54.1782460774858;
-        Fri, 26 Jun 2026 00:59:34 -0700 (PDT)
-Received: from brgl-qcom.home ([2a01:cb1d:dc:7e00:d8a4:9330:ebc2:b0c2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49268fd9e77sm54432355e9.4.2026.06.26.00.59.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jun 2026 00:59:34 -0700 (PDT)
-From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-To: linusw@kernel.org, brgl@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, afaerber@suse.com, mwalle@kernel.org,
-        andriy.shevchenko@intel.com, tychang@realtek.com,
-        Yu-Chun Lin <eleanor.lin@realtek.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org, cy.huang@realtek.com,
-        stanley_chang@realtek.com, james.tai@realtek.com
-Subject: Re: (subset) [PATCH v4 0/4] gpio: realtek: Add support for Realtek DHC RTD1625
-Date: Fri, 26 Jun 2026 09:59:29 +0200
-Message-ID: <178246069898.6685.11577448681947659397.b4-ty@oss.qualcomm.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260622092335.1166876-1-eleanor.lin@realtek.com>
-References: <20260622092335.1166876-1-eleanor.lin@realtek.com>
+	s=arc-20240116; t=1782460813; c=relaxed/simple;
+	bh=zXnqmnMBsui0S12+79yYS83DGfU1KEDQllOcEpz7zs0=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=jMQeV10Ajiq6N5DqO2bk04NcaTAcL4Qq8T4F9TB+zobKVbk7rhq/XLOgeYANVWE7fP20dxleeuJ+hdHhD8MVp8erXAs6XZv8xMxgy4ct3xdToDhYzbl+2lD1ovHRgkmnXcLhCqFe+kZQh9JZ8GuNY8Kb/y7G2uVo0u/QbUwURTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l98AsZbc; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C593F1F000E9;
+	Fri, 26 Jun 2026 08:00:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782460812;
+	bh=QflDPfYKo1q3NPmvfU1mW+6sHkESYmQCq3tRJGGg9kA=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=l98AsZbcT1L4XXg8ITDEFF+xcGgER/cbfsDH2QlCC3/+eHsjpSkoFqHNBkKPq6YEi
+	 b2dXxBIOkxlZiIZUAQYnJiFDIO6f8fFwny1JwAT6XFRtVPD/worg+ER+aK9ENxGgi1
+	 yn1dLwXaUnJfKe1msCnOx4sEduK2YrmjVVJHP4RYdK/Ro7ZlhPysidYsPalY+ZqjGa
+	 prm2FrufNtkOFsP0PWz6SGsMWNVL74S+SC/xRpBFasfzZGa9VxuPgF1QJ4xF63OP/g
+	 k87KgnOr3HPC62V1nUU2Hiha7AHLtHDkjh+7tXmsy72IE7ohKy7VaOqPoKxmlMiN25
+	 ZgsOOXCKSFbtw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v1 2/2] reset: mediatek: add syscon-based reset
+ controller driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: peter.wang@mediatek.com
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260626074820.2537772-3-peter.wang@mediatek.com>
+References: <20260626074820.2537772-1-peter.wang@mediatek.com>
+ <20260626074820.2537772-3-peter.wang@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 26 Jun 2026 08:00:11 +0000
+Message-Id: <20260626080011.C593F1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: hfGFKJPD_6r9EU5iqQ3cbw7ekg8KdJHE
-X-Proofpoint-ORIG-GUID: hfGFKJPD_6r9EU5iqQ3cbw7ekg8KdJHE
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI2MDA2MiBTYWx0ZWRfXyjCYKC9ek1hI
- +9jz8hE8bdUQfcSBGEx0amBb32yf7xXXqI3RuzIG+KK1MY9tb76/sJOp/r0kyt/vv4AJTMm6Qwj
- xkH4sy61lerQbNpgXkUI6qxmdXP7EarUy4tlG8LwNJ8orHn84DczoJsjeDkqgS6X4IpSujP8MYa
- JFEJbqhguQc3TuEyTJV9+JuEppVtoh0gDGl01WJ+qR0V6OoKugXD+r4hPcdRrB//DZwI6CSG7zE
- lcMhg82uTL8VH8cbOUb33qCl1+w8AXz+VG9iNiS/xBb/gMLzIjQ4gqJvTlQl73npjhzsKJj6Hrk
- jSIi1XQjU/d7WEI60OjbfF0phhk1vQBSn67bHRgHnR+TlaJpE4RIlINM2blPk578mc2OKD6t84M
- NkiBS956XS1sFvRTmLDcISG2NhRpkzSx2EkuwujzN+Zi7GhjZUP/dJf2gprFCgiTdqFCzBiZfJ4
- umr1mHo+d/zvksTu2ww==
-X-Authority-Analysis: v=2.4 cv=FPkrAeos c=1 sm=1 tr=0 ts=6a3e3168 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=gmxu7H2YFhVDB807_QQA:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI2MDA2MiBTYWx0ZWRfX4ZB8ZHdpgACk
- KhoyuOE09Qb8qzrkqY+yZFR7OrArQQjXpK/wIEncq0QNHwHvvh5CsuIrDKO/4R1z6m400kg9SFA
- gl/sxfcpaKZqiVcbCP/v56nXCHnnME8=
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-26_02,2026-06-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 clxscore=1015 priorityscore=1501 malwarescore=0 adultscore=0
- bulkscore=0 impostorscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606260062
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-315980-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
-	FORGED_SENDER(0.00)[bartosz.golaszewski@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:brgl@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:afaerber@suse.com,m:mwalle@kernel.org,m:andriy.shevchenko@intel.com,m:tychang@realtek.com,m:eleanor.lin@realtek.com,m:bartosz.golaszewski@oss.qualcomm.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:james.tai@realtek.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315981-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:peter.wang@mediatek.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bartosz.golaszewski@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto,mediatek.com:email,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F16D06CB2EE
+X-Rspamd-Queue-Id: 94A3F6CB304
 
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] The driver incorrectly uses read-modify-write operations (`regmap_=
+write_bits`) on dedicated set/clear registers, causing spurious resets or c=
+lear operations on unrelated hardware lines.
+- [Medium] The temporary array `arr` is allocated with `devm_kcalloc`, perm=
+anently wasting memory for the lifetime of the device.
+--
 
-On Mon, 22 Jun 2026 17:23:31 +0800, Yu-Chun Lin wrote:
-> This series adds GPIO support for the Realtek DHC RTD1625 SoC.
-> 
-> Unlike the existing driver (gpio-rtd.c) which uses shared bank registers,
-> the RTD1625 features a per-pin register architecture where each GPIO line
-> is managed by its own dedicated 32-bit control register. This distinct
-> hardware design requires a new, separate driver.
-> 
-> [...]
+commit 51d3326953762868e035e2bcec526fcc8e9e6083
+Author: Peter Wang <peter.wang@mediatek.com>
 
-Applied, thanks!
+reset: mediatek: add syscon-based reset controller driver
 
-[1/4] dt-bindings: gpio: realtek: Add realtek,rtd1625-gpio
-      https://git.kernel.org/brgl/c/8f32808e1530b2229e07695fb39c54fee910bd4a
-[2/4] gpio: Replace "default y" with "default ARCH_REALTEK" in Kconfig
-      https://git.kernel.org/brgl/c/b5d23fcdb12972c522e96f90ab48be8a0d971b0e
-[3/4] gpio: realtek: Add driver for Realtek DHC RTD1625 SoC
-      https://git.kernel.org/brgl/c/a57e27c43b0315ee86c6896510d69be5257e093e
+Add a new reset controller driver for MediaTek SoCs that expose reset
+lines through memory-mapped registers managed by a syscon node. The
+driver reads reset configurations from the mediatek,reset-bits property.
 
-Best regards,
--- 
-Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+> diff --git a/drivers/reset/reset-mediatek-syscon.c b/drivers/reset/reset-=
+mediatek-syscon.c
+> new file mode 100644
+> index 0000000000000..da8aa646cee76
+> --- /dev/null
+> +++ b/drivers/reset/reset-mediatek-syscon.c
+[ ... ]
+> +static int mediatek_syscon_reset_assert(struct reset_controller_dev *rcd=
+ev,
+> +					unsigned long id)
+> +{
+> +	struct mediatek_syscon_reset_data *data =3D
+> +		container_of(rcdev, struct mediatek_syscon_reset_data, rcdev);
+> +	struct mediatek_syscon_reset_control *rstc =3D &data->mrstc[id];
+> +	unsigned int val =3D BIT(rstc->assert_bit);
+> +
+> +	return regmap_write_bits(data->regmap, rstc->assert_offset, val, val);
+
+[Severity: High]
+Since the hardware uses separate set and clear registers, could using
+regmap_write_bits() here cause an unintended read-modify-write cycle?
+
+If the register is Write-1-to-Set, reading it might return the current
+status, and writing that back will unintentionally write '1' to other
+active lines in the same register. Should this use a direct regmap_write()
+instead?
+
+> +}
+> +
+> +/**
+> + * mediatek_syscon_reset_deassert() - Deassert a specific reset line.
+[ ... ]
+> + */
+> +static int mediatek_syscon_reset_deassert(struct reset_controller_dev *r=
+cdev,
+> +					  unsigned long id)
+> +{
+> +	struct mediatek_syscon_reset_data *data =3D
+> +		container_of(rcdev, struct mediatek_syscon_reset_data, rcdev);
+> +	struct mediatek_syscon_reset_control *rstc =3D &data->mrstc[id];
+> +	unsigned int val =3D BIT(rstc->deassert_bit);
+> +
+> +	return regmap_write_bits(data->regmap, rstc->deassert_offset, val, val);
+
+[Severity: High]
+Similarly, for the deassert (Write-1-to-Clear) register, does using a
+read-modify-write operation here risk unintentionally clearing other
+unrelated reset lines that happen to read back as '1'?
+
+> +}
+[ ... ]
+> +static int mediatek_syscon_reset_probe(struct platform_device *pdev)
+> +{
+[ ... ]
+> +	if (count % 5 !=3D 0) {
+> +		dev_err(dev, "mediatek,reset-bits count (%d) must be a multiple of 5\n=
+", count);
+> +		return -EINVAL;
+> +	}
+> +
+> +	nr_resets =3D count / 5;
+> +
+> +	arr =3D devm_kcalloc(dev, count, sizeof(u32), GFP_KERNEL);
+
+[Severity: Medium]
+Since arr is only used temporarily during probe to parse the device tree
+properties and is not needed afterwards, does using devm_kcalloc()
+unnecessarily keep this memory allocated for the lifetime of the device?
+
+Would a standard kcalloc() followed by a kfree() at the end of the function
+be more appropriate?
+
+> +	if (!arr)
+> +		return -ENOMEM;
+> +
+> +	ret =3D of_property_read_u32_array(np, "mediatek,reset-bits", arr, coun=
+t);
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260626074820.2537=
+772-1-peter.wang@mediatek.com?part=3D2
 
