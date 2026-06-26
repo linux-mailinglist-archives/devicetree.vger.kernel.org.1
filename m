@@ -1,155 +1,177 @@
-Return-Path: <devicetree+bounces-316085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316088-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oe6UMoFtPmrVFwkAu9opvQ
-	(envelope-from <devicetree+bounces-316085-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 14:16:01 +0200
+	id +lseLaVyPmoyGQkAu9opvQ
+	(envelope-from <devicetree+bounces-316088-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 14:37:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59A396CCE89
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 14:16:01 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9BE06CD10A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 14:37:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Ty8PBRr2;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316085-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316085-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316088-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316088-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C611F300D4D3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 12:16:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9AF483004630
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 12:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CD453F4852;
-	Fri, 26 Jun 2026 12:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DE73CE0AE;
+	Fri, 26 Jun 2026 12:37:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365033F4848;
-	Fri, 26 Jun 2026 12:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79772369D64
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 12:37:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782476159; cv=none; b=JDJBqMKgNZe+jSAxHDuYq87JBSf9kURZ09tMe/T8I9Hy3dtmioPUZign+TSAHcxRS72Q/+8kTaupUExRXnfKyeKtkRVqdx88pgrH3wbcgWkNo6OjfdjZJxrj85qMjq9S8YJG2eOdLoem3mGZtdWnTgm9fxQ0+jxqi/StijcLmoA=
+	t=1782477472; cv=none; b=qKieKEtZ0sL0UQKKvxjsjUxQfs0cOAlQv/aGCXEyqeRC+OCq97W/SUuSIbBg+ZXxZmTz+brsvqDCUqTvNVj+YYtyYnFk+GwQAC5sJ2Ch2cT9noEfZobD0ySkH/vgL/IJdTUpjJPZFsDM3opIbZXVamSiMmj1Kx8p/uxjJCUvii0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782476159; c=relaxed/simple;
-	bh=l+LL0qKVxsXNMvEVk38PwsT0oAsHI5BM+jVoH3sR16I=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=MJv8HKmSdpTo+NBkDcT1b+xnTyYRZx50d+UixzKgIHayBiqTy2a2IrV6GtPSGnUWWOVN0FGYUj3Z4Syu+mDUdaNBFXCdi85v0g9FfQK8yK5ybiOOtxcWa2HU1FHxFIPXfb4cZfb66hb33wUTazGcyhmtQqxyUP+UGTaoTikyQTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ty8PBRr2; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92C6D1F000E9;
-	Fri, 26 Jun 2026 12:15:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782476157;
-	bh=zLQFaXhzNMKMTKhwKJXj/Oa0YPUoCfs8nckuiihE6Uc=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Ty8PBRr2c52B+oGFOJY/CYj3YDjyRjL8Vak/sfbUIJefAb8FMLSpAFIoRvNP9tAMP
-	 3r57W9lBGDXkSULiH6UDHWs7wr8I5lppN+UqJSp6YeRg86nbtzJEwMTQSRdcTWZKZh
-	 2NahjwvZCV+mIAbswhVA/lINpfTLSPLZwtrH2P08EA0KIgD4qq8MLKV9VqJseh3RSY
-	 QUZ7edziQ1Mb/qUELW6P6AWUngM91g/jdRp69a9qfhC51zDXjEfjDqSQDCBpYN/gUx
-	 BItnC28k+wyojQTkdBwVGNSGqJ6R+Wifi4hm0FH5FSMAs+UvD8E9H7S5v4+WPYPVcZ
-	 0Qm523Z6Dk+Pw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 4/8] ARM: tegra: Convert to new media orientation
- definitions
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Kieran Bingham" <kieran.bingham@ideasonboard.com>
-Cc: wsa+renesas@sang-engineering.com, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev
-In-Reply-To: <20260626-kbingham-orientation-v2-4-47178be927b4@ideasonboard.com>
-References: <20260626-kbingham-orientation-v2-0-47178be927b4@ideasonboard.com>
- <20260626-kbingham-orientation-v2-4-47178be927b4@ideasonboard.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 26 Jun 2026 12:15:57 +0000
-Message-Id: <20260626121557.92C6D1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782477472; c=relaxed/simple;
+	bh=L8m+v9Mumd9PBrIoKCr6p8n/MbxpHP4z26Qvy7erVnI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YgeAjet6SSgaZcZAxk7AkKe8ZOgTM/smto3MwIVPBtJ2PXlNAmD8O9K95RDibSxHRu66DoaiHiXCwwXKZEy/nfcU8wYq0QudMD4FkiT2rLYh5fXMZCawtgzWKqDwp9pBTDehn8spWXC4FZMQzM0sd9M2w7d/evqRC87Gk5+B4bY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.182
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-4876d5335b2so563333b6e.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 05:37:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782477470; x=1783082270;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3Qc4TavqegVrav+S2qpl9+8s6wcCSKt3nqOoGSJ8Fvk=;
+        b=hjzNj1byAsKsWSFReNztn3FcNSiKGYOlxFlCaNl+ErVMcc/P5rJel1b//FT8eoVw4P
+         m+hy/P4UjwOcD060ndfos8cENFnoX7b3e1W176DdVvCsT96eo3ufWdXH4v/hwql25RS7
+         0SSNw2opqUi7E8qTkTo8NgEIh68JZqkDzE1CJJuEO+Wb+8BxVbMdU0rw5A6e73uqfDcz
+         YmggpIHKW20+OM16vCYJpJr/h5T500VGmvnloppaZrsFStpWFMsDgYwTdqIYnKld0D8j
+         GOeFPTfIwb2RHppQ/0Fh1tOAraXk3nS63+KIolaZD4v5ONs5wlMGDe5uR0B0hWL8suU5
+         8Q5w==
+X-Forwarded-Encrypted: i=1; AFNElJ93gzT2NR/M39Xl7E6A/LmXWPSDa3EjwXphKn2XRQwrEXSF7mm37NWQ2H66ViJUC0ZX1l9F4x2hXy8R@vger.kernel.org
+X-Gm-Message-State: AOJu0YytDKSpnISzeBjcUlja5JU9OE2ZLyliKX8R8RzBfcAg4hHWuCgp
+	y/Z7yZDqioF0xPObF36w+qlNRXaxyYhM/1dxSuDnkjwzMwg8OsUHEnvB3fVKYo5p
+X-Gm-Gg: AfdE7clECgw4eHx7PPzl/sTBt1GarEfEryS6KXCwUo5/yjLacXLRQdxUS/9w5hqO/J3
+	8yMi70w0K2AKbtLk4XpJ9985pccfnnzg7PL7b+3kC4TMfAGCyKl0ccJ+7uFegWii79Durn7+N/W
+	tEsRs+g3GPU/jTTGrr6WTv54iM/JdWcDaw2zAz/V+OnqLF51X2rHKkqqzeyQN5mcDHreaF6eZts
+	e/to5TT6mgFLqAFKX0oRKoKEgzPKk4dN6wVR7EvMyT2AZKUugyjLOtddZVJBTINu+N+bV6cUbw2
+	La1LRipMh9h12Xw7ewoX7gVxyiK9ZFkN77rOc9sWL5b+EYpCKM72z6fcPtbKtfKQ2ly6hpdrvRR
+	NDbsIbuSW1pbjaNcts+LvIB/P3Laog86I3JVpx5RLF1Re3Mwh01KKJiWWwx4KvUK6chO8jk3Zqf
+	Isop3hLii250kyvQAfJTbZrWj7gOHthr1Drah7xcbseExwL61RWzy2EQ==
+X-Received: by 2002:a05:6808:50a3:b0:485:4815:de29 with SMTP id 5614622812f47-49215249fbdmr6747546b6e.6.1782477470517;
+        Fri, 26 Jun 2026 05:37:50 -0700 (PDT)
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com. [209.85.167.171])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-49352b057dasm1262136b6e.6.2026.06.26.05.37.49
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jun 2026 05:37:50 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-4864a8e80bbso593412b6e.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 05:37:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8bFmvR1IZfLV7rb5Tzw+JSorhFBYD0ITrGdMKQlJYm2q78aB6OryqbLT6AeEYpcrPQRPWIcAUGPNeO@vger.kernel.org
+X-Received: by 2002:a05:6102:5491:b0:631:4580:6a46 with SMTP id
+ ada2fe7eead31-73435b90f5fmr3476500137.17.1782477036873; Fri, 26 Jun 2026
+ 05:30:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260626-kbingham-orientation-v2-0-47178be927b4@ideasonboard.com> <20260626-kbingham-orientation-v2-7-47178be927b4@ideasonboard.com>
+In-Reply-To: <20260626-kbingham-orientation-v2-7-47178be927b4@ideasonboard.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 26 Jun 2026 14:30:24 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV+BDLjuhVo5fyHxSEibW8E4opXbaDrgsmTgygXXJoATA@mail.gmail.com>
+X-Gm-Features: AVVi8Cc1rFvCNNORSHDtFmL_tkYQ91oxJ5vGSfmmYwanPmDM2yIyJwQSJ-fX378
+Message-ID: <CAMuHMdV+BDLjuhVo5fyHxSEibW8E4opXbaDrgsmTgygXXJoATA@mail.gmail.com>
+Subject: Re: [PATCH v2 7/8] arm64: dts: renesas: Convert to new media
+ orientation definitions
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Jimmy Su <jimmy.su@intel.com>, Matthias Fend <matthias.fend@emfend.at>, 
+	Mikhail Rudenko <mike.rudenko@gmail.com>, Daniel Scally <dan.scally@ideasonboard.com>, 
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Michael Riesch <michael.riesch@collabora.com>, 
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
+	Sylvain Petinot <sylvain.petinot@foss.st.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Paul Elder <paul.elder@ideasonboard.com>, Martin Kepplinger <martin.kepplinger@puri.sm>, 
+	Quentin Schulz <quentin.schulz@theobroma-systems.com>, 
+	Tommaso Merciai <tomm.merciai@gmail.com>, Svyatoslav Ryhel <clamor95@gmail.com>, 
+	Richard Acayan <mailingradian@gmail.com>, Thierry Reding <thierry.reding@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux@ew.tq-group.com, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316085-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:kieran.bingham@ideasonboard.com,m:wsa+renesas@sang-engineering.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316088-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:kieran.bingham@ideasonboard.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jacopo@jmondi.org,m:sakari.ailus@linux.intel.com,m:jimmy.su@intel.com,m:matthias.fend@emfend.at,m:mike.rudenko@gmail.com,m:dan.scally@ideasonboard.com,m:jacopo.mondi@ideasonboard.com,m:michael.riesch@collabora.com,m:benjamin.mugnier@foss.st.com,m:sylvain.petinot@foss.st.com,m:laurent.pinchart@ideasonboard.com,m:paul.elder@ideasonboard.com,m:martin.kepplinger@puri.sm,m:quentin.schulz@theobroma-systems.com,m:tomm.merciai@gmail.com,m:clamor95@gmail.com,m:mailingradian@gmail.com,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:magnus.damm@gmail.com,m:heiko@sntech.de,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux@ew.tq-group.com,m
+ :imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:kieran.bingham+renesas@ideasonboard.com,m:krzk@kernel.org,m:conor@kernel.org,m:mikerudenko@gmail.com,m:tommmerciai@gmail.com,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[43];
+	FREEMAIL_CC(0.00)[kernel.org,jmondi.org,linux.intel.com,intel.com,emfend.at,gmail.com,ideasonboard.com,collabora.com,foss.st.com,puri.sm,theobroma-systems.com,nvidia.com,nxp.com,pengutronix.de,sntech.de,vger.kernel.org,ew.tq-group.com,lists.linux.dev,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,smtp.kernel.org:mid,ideasonboard.com:email,sashiko.dev:url]
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,linux-m68k.org:from_mime,linux-m68k.org:email,vger.kernel.org:from_smtp,mail.gmail.com:mid,ideasonboard.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 59A396CCE89
+X-Rspamd-Queue-Id: A9BE06CD10A
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The commit introduces an undefined macro `MEDIA_ORIENTATION_REAR`, =
-causing a Device Tree Compiler (dtc) build failure.
+On Fri, 26 Jun 2026 at 14:08, Kieran Bingham
+<kieran.bingham@ideasonboard.com> wrote:
+> From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+>
+> The orientation property for video interface devices now has definitions
+> to prevent hardcoded integer values for the enum options.
+>
+> Update the users throughout the renesas device trees to use the new
+> definitions.
+>
+> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
 --
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-commit 26c9ba57e237b4ebfdbb6dbf2af353106c11c695
-Author: Kieran Bingham <kieran.bingham@ideasonboard.com>
-
-ARM: tegra: Convert to new media orientation definitions
-
-The commit updates the NVIDIA device trees to use new media orientation
-definitions instead of hardcoded integer values for video interface devices.
-
-> diff --git a/arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi b/arch/arm/boot/=
-dts/nvidia/tegra30-lg-x3.dtsi
-> index 60e8a19aa70ec..c58e3026a115e 100644
-> --- a/arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi
-> +++ b/arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi
-[ ... ]
-> @@ -1216,7 +1217,7 @@ rear-camera@10 {
->  			dvdd-supply =3D <&vdd_1v2_rear>;
->  			avdd-supply =3D <&vdd_2v7_rear>;
-> =20
-> -			orientation =3D <1>; /* Rear camera */
-> +			orientation =3D <MEDIA_ORIENTATION_REAR>;
-
-[Severity: Low]
-Will this cause a Device Tree Compiler build failure?
-
-Looking at the dt-bindings/media/video-interface-devices.h header, it
-defines MEDIA_ORIENTATION_FRONT, MEDIA_ORIENTATION_BACK, and
-MEDIA_ORIENTATION_EXTERNAL.
-
-Since MEDIA_ORIENTATION_REAR is undefined, the C preprocessor will leave it
-as an unexpanded token, which will cause a syntax error when dtc parses it.
-Could this be updated to use MEDIA_ORIENTATION_BACK instead?
-
->  			rotation =3D <90>;
-> =20
->  			nvmem =3D <&m24c08>;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260626-kbingham-o=
-rientation-v2-0-47178be927b4@ideasonboard.com?part=3D4
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
