@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-316024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316025-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kJnaDS5HPmoLCgkAu9opvQ
-	(envelope-from <devicetree+bounces-316024-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:32:30 +0200
+	id NnlQH75HPmoxCgkAu9opvQ
+	(envelope-from <devicetree+bounces-316025-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:34:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BBFB6CBB6A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:32:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D00F16CBBBB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:34:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XiAFswy0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316024-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316024-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YUwMsEEH;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316025-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316025-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 125C33003737
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:32:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4CAE3026C38
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:32:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFF6D30C168;
-	Fri, 26 Jun 2026 09:32:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E435F3DB330;
+	Fri, 26 Jun 2026 09:32:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9710039934B;
-	Fri, 26 Jun 2026 09:32:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B113E30C168;
+	Fri, 26 Jun 2026 09:32:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782466344; cv=none; b=YJtgNwdrXF+sfK24mXr7szdZrxTtftFUz8Y/HzC8688ABxdTjqwFGeuASp+PcnKFI6xJX+9tLPwUKgIr00TPZKufNNneP/h9I/QH2CtnFSBjleR6VxCOnKgZgDYzj91JOsIJW3ou7xtg/Z/GD2gcpGmI5hKldXTOyW3moDTOGO4=
+	t=1782466367; cv=none; b=K2PjP1/Xcj3akOidomtiXlFePrm4GksLu0C0KPoNIR9mJ65YFtVfH3hjFYq2hPDSieybL1tM01mRm6MQI6GMmWOcDbf/0nqCeyacRWN9Lo8qmSmrH3AJR7lg79kJJRk7F0/GuYmQRj1cRMAlzAGswojgk5iAca2PNCor/74A8Iw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782466344; c=relaxed/simple;
-	bh=ISETJgny0FhUBDWnCRGIvusL7DYxDMg1h3Myi/794yI=;
+	s=arc-20240116; t=1782466367; c=relaxed/simple;
+	bh=3u+evhwVpWlcCgyaSo9s3ExGfObJmNuE1TryFWI/FPs=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=D0beWEsLucPB9RkG/KmWaUPedZV6LvBBtbLm5IRAHvqShuCDkHMJLN16PPBEn+M9pBbiAHlrt7s4kNAQK7ZsRVkjR+szgJx8lVoGyyLK4sNNRB0EOggum4eoGKWp1vP9Jr/vqifMMf25PPe5Hjqa8KT9EWLeCUDr565aVRh/ZNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XiAFswy0; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A977A1F000E9;
-	Fri, 26 Jun 2026 09:32:22 +0000 (UTC)
+	 Message-Id; b=fkV2pjPcBe90SmfdbVZTx1iqJjQYIiSir/3QiQlYbn5YrTdA5Wm0zttVB7ii73huHq3cpHPATLXNcfIhHLloDeQEBesoPfKSUsfat2e4kI3gSgXUEJ6mCKdKx53S1lZrG5a8AASjvsDEv9d3I3O/8xIYEqL4GKqoOcg7ct0Cdto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YUwMsEEH; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF75D1F000E9;
+	Fri, 26 Jun 2026 09:32:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782466343;
-	bh=xuaZxxUxiDkUsheq3lHvaYuGanzSsZ7TpmpR+u1/KAc=;
+	s=k20260515; t=1782466366;
+	bh=UUX+1yjjUNwClEZqRp+nFhRVsZRk/4sc3rX1ISojAO8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=XiAFswy0N70ie9A8+dn8NgxpP467+mzDNhDtxFPAxZK/Ru6P7gpLTCLyiEnajyXMz
-	 yEXalNHOzt2UTIS8W5FK3W0yIdgGe1SK0UQQxmbGFfl3w6f14JXUPXRbXVXZqTvnPs
-	 paDT1YJGf9ckDNJRCSeio/w7hEHAGCkYGxmANVNsqnFjUgRU8I1Iw4iLnlgIEw1vhJ
-	 XR+6pG7Vdh7B6RKI6oKob4H48ZDBAR0bXIwGaqvruBhJvebYPtzQKCzjRQPj8YEL1m
-	 l35U0vjIkPr1QetAPBQWVtaSuIMtHkwswolVaUTp/p9HGawpoLIkCu11i2TBD1fLSN
-	 rUX9oezSRcAuA==
+	b=YUwMsEEHhOfIFUs5tIAUjgalU0EYxCH6m5GP8i9q4PRLNCcOsngOtodaHE9bbEqMr
+	 MXuPvRk+nHllV7sQUEm90KQTrZM991as0wUyywnsmgxErMs9e6LLZMOLOoekhG3JF3
+	 /+No7NLTb148XQHf7rTfNmY+WK+OjvpAKmcrtgExl/o0qxtGTAPwWYjF7E9VFyUYHV
+	 Bd1SqUJuvkGrRZZaRr67QsHW0Hd6vE3Hubf3rUrAju5g8s8ry8HsqXvKztrZayKDt8
+	 qxKITDl8O79N/osAfgQWQd4l8PV9MCKu0TZdRVh52Qmp1XBLd2k8uHdgHvaW4WCKsX
+	 Oxj5+3pbDSEAg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 4/4] PCI: mediatek-gen3: Add 2-lanes mode support for
- Airoha AN7581
+Subject: Re: [PATCH v2 2/4] clk: en7523: add support for dedicated PCIe
+ PERSTOUT reset
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Christian Marangi" <ansuelsmth@gmail.com>
-Cc: linux-pci@vger.kernel.org, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260626092029.3525264-5-ansuelsmth@gmail.com>
+Cc: conor+dt@kernel.org, linux-pci@vger.kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260626092029.3525264-3-ansuelsmth@gmail.com>
 References: <20260626092029.3525264-1-ansuelsmth@gmail.com>
- <20260626092029.3525264-5-ansuelsmth@gmail.com>
+ <20260626092029.3525264-3-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 26 Jun 2026 09:32:22 +0000
-Message-Id: <20260626093222.A977A1F000E9@smtp.kernel.org>
+Date: Fri, 26 Jun 2026 09:32:44 +0000
+Message-Id: <20260626093245.DF75D1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,16 +71,16 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-316024-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:conor+dt@kernel.org,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316025-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
@@ -89,112 +89,173 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2BBFB6CBB6A
+X-Rspamd-Queue-Id: D00F16CBBBB
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
 s) to consider:
 
 New issues:
-- [High] Uninitialized stack variable `num_lanes` leads to unpredictable pr=
-obe failures
+- [High] Concurrent read-modify-write accesses to the shared register 0x88 =
+between the clock and reset subsystems will cause lost updates.
+- [Medium] Removing the PERSTOUT reset deassertion from the clock enable pa=
+th breaks PCIe initialization for existing Device Trees.
 
 Pre-existing issues:
-- [High] The return value of `pm_runtime_get_sync()` is ignored, which can =
-lead to hardware access on suspended devices.
+- [High] Missing spinlock in the reset controller to serialize read-modify-=
+write operations.
+- [High] Call to the sleeping function usleep_range() inside the atomic clo=
+ck disable callback.
+- [High] Stale register state written back after sleeping, clobbering concu=
+rrent hardware updates.
 --
 
-commit b24fe645228ac8c1e16f2ba7617e18b13b23173d
+commit f7fec9791d69805c2bca6f3b03a2e7c0e7f0a28c
 Author: Christian Marangi <ansuelsmth@gmail.com>
 
-PCI: mediatek-gen3: Add 2-lanes mode support for Airoha AN7581
+clk: en7523: add support for dedicated PCIe PERSTOUT reset
 
-This commit adds 2-lanes mode support for the Airoha AN7581 SoC by
-configuring the PCIe MUX in the SCU register. It introduces logic to
-parse the secondary PCIe MAC region and handle necessary PERSTOUT resets
-for the newly supported lane configuration.
+This commit adds support for resetting the PCIe lines using the PERSTOUT re=
+set
+by updating the reset map and moving the handling of these bits from the cl=
+ock
+enable and disable paths to the reset controller framework. The reset logic=
+ is
+inverted for these specific bits and handled internally.
 
-> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/co=
-ntroller/pcie-mediatek-gen3.c
-> index b0accd8285892..14893cff135a1 100644
-> --- a/drivers/pci/controller/pcie-mediatek-gen3.c
-> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-
+> diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
+> index 1ab0e2eca5d32..c9b21d9bf2f3f 100644
+> --- a/drivers/clk/clk-en7523.c
+> +++ b/drivers/clk/clk-en7523.c
 [ ... ]
-
-> @@ -949,18 +965,38 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie=
- *pcie)
->  			pcie->num_lanes =3D num_lanes;
->  	}
+> @@ -635,9 +641,7 @@ static int en7581_pci_enable(struct clk_hw *hw)
+>  	void __iomem *np_base =3D cg->base;
+>  	u32 val, mask;
 > =20
-> +	/* Map secondary PCIe for 2-lanes mode for EN7581 */
-> +	if (num_lanes =3D=3D 2 && device_is_compatible(dev, "airoha,en7581-pcie=
-")) {
+> -	mask =3D REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1 |
+> -	       REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT2 |
+> -	       REG_PCI_CONTROL_PERSTOUT;
+> +	mask =3D REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1;
+
+[Severity: Medium]
+Does removing the PERSTOUT reset deassertion from the clock enable path
+break PCIe initialization for existing Device Trees?
+
+When booting with an older DTB built before the resets property was updated
+to explicitly list the PERSTOUT lines, the clock driver will no longer
+automatically clear these resets in en7581_pci_enable(). Since the PCIe
+driver also lacks references to them in the older DTB, it seems the PCIe
+controller will remain in reset.
+
+>  	val =3D readl(np_base + REG_PCI_CONTROL);
+>  	writel(val | mask, np_base + REG_PCI_CONTROL);
 
 [Severity: High]
-If the num-lanes property is missing from the device tree,
-of_property_read_u32() returns an error without modifying the num_lanes out=
-put
-parameter, leaving it uninitialized. If the stack memory happens to contain=
- 2,
-could this enter the block and fail the probe by returning -EINVAL since the
-sec-pcie-mac resource would be missing in a 1-lane configuration?
+Can concurrent read-modify-write accesses to this shared register between
+the clock and reset subsystems cause lost updates?
 
-Should this evaluate pcie->num_lanes instead?
+The clock API protects operations with its global enable_lock, while the
+reset framework operates lockless at the driver level. If PCIe host 0 enabl=
+es
+its clock in en7581_pci_enable() concurrently with PCIe host 1 toggling its
+reset in en7523_reset_update(), their read-modify-write operations on the
+exact same physical register (REG_PCI_CONTROL / REG_NP_SCU_PCIC at offset
+0x88) will race and silently overwrite each other.
 
-> +		regs =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "sec-pcie-=
-mac");
-> +		if (!regs)
-> +			return -EINVAL;
-> +		pcie->sec_base =3D devm_ioremap_resource(dev, regs);
+[ ... ]
+> @@ -650,9 +654,7 @@ static void en7581_pci_disable(struct clk_hw *hw)
+>  	void __iomem *np_base =3D cg->base;
+>  	u32 val, mask;
+> =20
+> -	mask =3D REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1 |
+> -	       REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT2 |
+> -	       REG_PCI_CONTROL_PERSTOUT;
+> +	mask =3D REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1;
+>  	val =3D readl(np_base + REG_PCI_CONTROL);
+>  	writel(val & ~mask, np_base + REG_PCI_CONTROL);
+>  	usleep_range(1000, 2000);
+
+[Severity: High]
+This is a pre-existing issue, but is it safe to call the sleeping function
+usleep_range() inside the atomic clock disable callback?
+
+The clk_ops->disable callback executes in atomic context with the clock
+framework's enable_lock spinlock held and local interrupts disabled. Calling
+usleep_range() here attempts a context switch, which will result in a
+scheduling while atomic bug.
+
+[ ... ]
+> @@ -754,14 +756,21 @@ static int en7523_reset_update(struct reset_control=
+ler_dev *rcdev,
+>  			       unsigned long id, bool assert)
+>  {
+>  	struct en_rst_data *rst_data =3D container_of(rcdev, struct en_rst_data=
+, rcdev);
+> -	void __iomem *addr =3D rst_data->base + rst_data->bank_ofs[id / RST_NR_=
+PER_BANK];
+> +	u32 offset =3D rst_data->bank_ofs[id / RST_NR_PER_BANK];
+> +	void __iomem *addr =3D rst_data->base + offset;
+> +	bool inverted =3D false;
+>  	u32 val;
+> =20
+> +	/* For PCIC reset logic is inverted, 0:assert 1:deassert*/
+> +	if (offset =3D=3D REG_NP_SCU_PCIC)
+> +		inverted =3D true;
+> +
+>  	val =3D readl(addr);
+> +	val &=3D ~BIT(id % RST_NR_PER_BANK);
+>  	if (assert)
+> -		val |=3D BIT(id % RST_NR_PER_BANK);
+> +		val |=3D inverted ? 0 : BIT(id % RST_NR_PER_BANK);
+>  	else
+> -		val &=3D ~BIT(id % RST_NR_PER_BANK);
+> +		val |=3D inverted ? BIT(id % RST_NR_PER_BANK) : 0;
+>  	writel(val, addr);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does this function need a
+spinlock to serialize the read-modify-write operations?
+
+The en7523_reset_update() callback performs unguarded read-modify-writes on
+shared reset banks. If two distinct device drivers (such as I2C and PCIe)
+probe concurrently and assert or deassert their respective resets, the
+lockless read-modify-write cycles will race, overwriting one of the
+operations and leading to silent hardware state corruption.
 
 [ ... ]
 
-> @@ -1024,33 +1073,47 @@ static int mtk_pcie_en7581_power_up(struct mtk_ge=
-n3_pcie *pcie)
->  	pm_runtime_enable(dev);
->  	pm_runtime_get_sync(dev);
-
 [Severity: High]
-This is a pre-existing issue, but is it safe to ignore the return value of
-pm_runtime_get_sync()?
+This isn't a bug introduced by this patch, but could the caching of register
+state in en7523_pci_prepare() clobber concurrent hardware updates?
 
-If the runtime PM framework fails to power up or clock the device, accessing
-hardware registers directly afterward might cause a synchronous external ab=
-ort
-and kernel panic on ARM platforms. The same pre-existing behavior is also
-present in the legacy mtk_pcie_power_up() path.
+val =3D readl(np_base + REG_RESET_CONTROL1);
+mask =3D REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2 | REG_RESET_CONT=
+ROL_PCIEHB;
+writel(val & ~mask, np_base + REG_RESET_CONTROL1);
+usleep_range(1000, 2000);
+writel(val | mask, np_base + REG_RESET_CONTROL1);
 
-> -	val =3D FIELD_PREP(PCIE_VAL_LN0_DOWNSTREAM, 0x47) |
-> -	      FIELD_PREP(PCIE_VAL_LN1_DOWNSTREAM, 0x47) |
-> -	      FIELD_PREP(PCIE_VAL_LN0_UPSTREAM, 0x41) |
-> -	      FIELD_PREP(PCIE_VAL_LN1_UPSTREAM, 0x41);
-> -	writel_relaxed(val, pcie->base + PCIE_EQ_PRESET_01_REG);
-> -
-> -	val =3D PCIE_K_PHYPARAM_QUERY | PCIE_K_QUERY_TIMEOUT |
-> -	      FIELD_PREP(PCIE_K_PRESET_TO_USE_16G, 0x80) |
-> -	      FIELD_PREP(PCIE_K_PRESET_TO_USE, 0x2) |
-> -	      FIELD_PREP(PCIE_K_FINETUNE_MAX, 0xf);
-> -	writel_relaxed(val, pcie->base + PCIE_PIPE4_PIE8_REG);
-> -
->  	err =3D clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
+The cached register state val is re-used to write after a sleep. If any
+other driver toggles a reset bit in the same register (which controls up to
+32 different resets) during the sleep duration, their reset state will be
+unconditionally reverted and corrupted by this stale writeback.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260626092029.3525=
-264-1-ansuelsmth@gmail.com?part=3D4
+264-1-ansuelsmth@gmail.com?part=3D2
 
