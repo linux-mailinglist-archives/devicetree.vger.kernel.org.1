@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-315900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315901-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HY6CGTLmPWpb7wgAu9opvQ
-	(envelope-from <devicetree+bounces-315900-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:38:42 +0200
+	id /MfvGUHmPWpk7wgAu9opvQ
+	(envelope-from <devicetree+bounces-315901-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:38:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6E4A6C9D52
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:38:41 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DFF06C9D5C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:38:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mbDcdjzY;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315900-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315900-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=afCAMCDd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315901-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-315901-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 79C213029E45
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 02:38:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AB4553008634
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 02:38:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD65C376A08;
-	Fri, 26 Jun 2026 02:38:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA8DA391E7A;
+	Fri, 26 Jun 2026 02:38:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB514390C8E
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 02:38:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AC8E317144
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 02:38:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782441519; cv=none; b=mLWoeDYZ8tkStCZMaSAOPg/DKPc/y+Tzms3LLaNGpRVBGGL1Pgg/QmA/EZqJFTNSO1+mlKHu1GaFKV0rJvrMgJCc3Y2o+gCFba68LY0n4lWpFZVFamA1/Jl2AofKkq14ndj6EIHiQzvW6EsAi+jS4eYInyu0HEXSXF/Wmjo7I+I=
+	t=1782441530; cv=none; b=OJ+cMR8vz54NWkvHDzy4uKR8HyiOSgfhy+XQxY2QV55rZlPGp65H6uukCk2j0iC7H5n0z7Ne+9dX001GaXhlUJnT2SpRTw8mrLq3I6YT91dcMRAuFxizbpnhTamfRxg07e7bj+5J8bOI4sPHGheP6vT1RXVEg0HpX9PFQMfeiZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782441519; c=relaxed/simple;
-	bh=X5splIcy0GuCQtfmPA3InAlf+z2ZI0wKvk+URkjXHw4=;
+	s=arc-20240116; t=1782441530; c=relaxed/simple;
+	bh=sLt4d5MoJXUtaaXsJ+qatIu7hCoMb9iKPw51xK+A1fc=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=OVnpBqtaICwEjznZLZITXCDxLch7j+b8aXXeo0b1dssOZacMD+SWmqlbvx1PJN08WPE9rQonuBdZ3Qhhdezmjs61WI4yNEh/S5KUqCxTLRVaAn8qs32zQeMThqTMk5o+EUs9Q27e1EGdPH0dcwsyrmQwE9iB+F9FepBrFDk9EPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mbDcdjzY; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E9081F000E9;
-	Fri, 26 Jun 2026 02:38:37 +0000 (UTC)
+	 Message-Id; b=Om/SC30OyJ+CkrTjHrf3eJWG7ZHd0BcIwCgx2WLrYBICT5FjzKzX9QIPGIRIVOFWUoMttUZTNJd/d4IS0fAj9vcB4AweVe+n9oN841z5A4SfjqguuUsVnrvYV42e4CRa52svAQIAvik89GchCaJ03bLxazK/dJq4ftnG2nL4+8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=afCAMCDd; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFEAA1F000E9;
+	Fri, 26 Jun 2026 02:38:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782441517;
-	bh=a/LDu1elJuq5ZpneWEEUcv0fCbFFJ4wFbEX5gTt4A2s=;
+	s=k20260515; t=1782441528;
+	bh=WxCzGYAJbB12I2AtraCgK25VEg9M5UDHHtXDtbPrTuY=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=mbDcdjzYhpAz901yI2t3U53etk2Mb04szJWOx4rTvh+89XNaoNDESiJClWbegTbBl
-	 Tb5F4tnruTmYhnvGS9uKNwzdbRI+vROYeFdxlUxAxUksG0Leh0cEiAo/H9KjS+pX9S
-	 WGGyzhU23/1MdLIoLAkAPUTPTAnZIQpfzHJJ2jpyR2ivPKLBCCQHOr8KiysCMa/8P6
-	 GrWLrOGprER8Srw5qknz20kyEQ0OphShIN06wyEEo3vuFbYRJXoWiNrd6NB5rr8Wd3
-	 KQAtXbZVDsNLp4wWNGNv/JjqhKFdsGrwr0uLjN+3Ph3AarsCS2UqMZQ++eD0TW10I1
-	 QcJnaXbaQA71g==
+	b=afCAMCDdKiWFw8xq6fylrP2AE+BqWJ80vPQAu3Ac/qz7lTrHrDnCMOkG0JpkLgzFQ
+	 UMDXLtINIOYm6ZhC5eUBeOyQFCxolMqQAl8IkbJTtOBEysesMi50AZWKjYq3VzozZ6
+	 RAS/DQ3K/T7I3O3UXolsPQOouFkaYHG0IwzOdWlIwkjq+zIbFco1Lb0vpuqJE4tpQW
+	 37lVGQb0Xf909QGuk2zeZMfLqOLriRM/p/+Dpx6uqGf16WxfUnsgD0zY4avrwWGnbg
+	 oHZNsa1LCZii+YgemJa0hJ1pqFWFE3Mtq2Zncbo7zwP6iPn5Ur4RnxLWB+oKcbjVmO
+	 nR03USSJHxFWw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 6/9] ASoC: loongson: Add Loongson-2K0300 CTCISZ
- Forever Pi sound card support
+Subject: Re: [PATCH v3 1/9] ASoC: loongson: Fix error handling in ACPI
+ property parsing
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Binbin Zhou" <zhoubinbin@loongson.cn>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <ed1314e1d3275fd20aff47397345a88fad6e9368.1782439646.git.zhoubinbin@loongson.cn>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <08e44a54708eae053be148524346bb8dfcd55b03.1782439646.git.zhoubinbin@loongson.cn>
 References: <cover.1782439646.git.zhoubinbin@loongson.cn>
- <ed1314e1d3275fd20aff47397345a88fad6e9368.1782439646.git.zhoubinbin@loongson.cn>
+ <08e44a54708eae053be148524346bb8dfcd55b03.1782439646.git.zhoubinbin@loongson.cn>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 26 Jun 2026 02:38:36 +0000
-Message-Id: <20260626023837.2E9081F000E9@smtp.kernel.org>
+Date: Fri, 26 Jun 2026 02:38:47 +0000
+Message-Id: <20260626023847.DFEAA1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,24 +72,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315900-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315901-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:zhoubinbin@loongson.cn,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:zhoubinbin@loongson.cn,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -99,56 +99,78 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,loongson.cn:email,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[loongson.cn:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A6E4A6C9D52
+X-Rspamd-Queue-Id: 6DFF06C9D5C
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] DAI format configuration is entirely bypassed if `mclk-fs` is 0.
+
+Pre-existing issues:
+- [High] The driver statically allocates global variables (`codec_name`, `l=
+oongson_dai_links`) and modifies them locklessly during the device probe ph=
+ase without creating instance-specific copies. This leads to data races, st=
+ate corruption on probe deferral, and a use-after-free vulnerability upon d=
+evice unbind.
 --
 
-commit 00af2efc83640c13d13fd25311896531fc01a8e7
+commit b0aab833787c20534a1a8d5a4fb96b7f089e37e4
 Author: Binbin Zhou <zhoubinbin@loongson.cn>
 
-ASoC: loongson: Add Loongson-2K0300 CTCISZ Forever Pi sound card support
+ASoC: loongson: Fix error handling in ACPI property parsing
 
-The Loongson-2K0300 audio card uses a different DAI format compared to
-existing Loongson platforms. Move the dai_fmt setting from the static
-DAI link to runtime hw_params via snd_soc_runtime_set_dai_fmt(), and pass
-the correct format through driver match data.
+This commit fixes a missing error check for device_property_read_string()
+in loongson_card_parse_acpi(). It propagates the error if the codec-dai-name
+property is missing or invalid, preventing the use of an uninitialized
+pointer.
+
+Closes: https://sashiko.dev/#/patchset/cover.1780538113.git.zhoubinbin@loon=
+gson.cn?part=3D5
 
 > diff --git a/sound/soc/loongson/loongson_card.c b/sound/soc/loongson/loon=
 gson_card.c
-> index ea895fe6b5e97..0e63cbcad57ac 100644
 > --- a/sound/soc/loongson/loongson_card.c
 > +++ b/sound/soc/loongson/loongson_card.c
+
 [ ... ]
-> @@ -45,7 +59,7 @@ static int loongson_card_hw_params(struct snd_pcm_subst=
-ream *substream,
->  		return ret;
->  	}
+
+> @@ -108,7 +108,9 @@ static int loongson_card_parse_acpi(struct loongson_c=
+ard_data *data)
+>  		return -ENOENT;
+>  	snprintf(codec_name, sizeof(codec_name), "i2c-%s", acpi_dev_name(adev));
 > =20
-> -	return 0;
-> +	return snd_soc_runtime_set_dai_fmt(rtd, ls_card->cfg->fmt);
->  }
+> -	device_property_read_string(card->dev, "codec-dai-name", &codec_dai_nam=
+e);
+> +	ret =3D device_property_read_string(card->dev, "codec-dai-name", &codec=
+_dai_name);
+> +	if (ret)
+> +		return ret;
+> =20
+>  	for (i =3D 0; i < card->num_links; i++) {
+>  		loongson_dai_links[i].platforms->name =3D dev_name(phy_dev);
 
-[Severity: Medium]
-If a platform's firmware explicitly sets the mclk-fs property to 0,
-loongson_card_hw_params() will exit early:
+[Severity: High]
+This is a pre-existing issue, but I noticed that loongson_dai_links appears
+to be a statically allocated global array being modified locklessly here wi=
+th
+instance-specific pointers like dev_name(phy_dev).
 
-	if (!ls_card->mclk_fs)
-		return 0;
+If the device is unbound, could this leave a dangling pointer in the global
+array?
 
-By moving the format configuration to the end of this function, will
-the CPU and CODEC DAIs fail to be configured with the correct format when
-mclk-fs is 0, since the early return bypasses this new call?
+Additionally, if multiple audio cards are instantiated, could they overwrite
+each other's state in this shared array?
+
+Similarly, in loongson_card_parse_of(), snd_soc_of_get_dlc() acquires a
+reference to an of_node and stores it in this global array. If probe defers,
+does the error path fail to clean up the globally stored refcount, causing
+a memory leak?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1782439646.gi=
-t.zhoubinbin@loongson.cn?part=3D6
+t.zhoubinbin@loongson.cn?part=3D1
 
