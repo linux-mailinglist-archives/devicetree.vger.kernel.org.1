@@ -1,147 +1,132 @@
-Return-Path: <devicetree+bounces-315874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315875-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Cj5CH3jRPWoT6wgAu9opvQ
-	(envelope-from <devicetree+bounces-315874-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 03:10:16 +0200
+	id InP4OTvVPWrA6wgAu9opvQ
+	(envelope-from <devicetree+bounces-315875-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 03:26:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B486C960E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 03:10:16 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E8316C96DE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 03:26:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lenovo.com header.s=DKIM202306 header.b="G2nkgsN/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315874-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315874-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=lenovo.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Cci9efty;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315875-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-315875-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 87DB9303CEEE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 01:10:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2D57C30C269C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 01:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3179D2C11FD;
-	Fri, 26 Jun 2026 01:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E2C283FD4;
+	Fri, 26 Jun 2026 01:23:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00823401.pphosted.com (mx0a-00823401.pphosted.com [148.163.148.104])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D5826158C;
-	Fri, 26 Jun 2026 01:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 223BB1684BE
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 01:23:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782436215; cv=none; b=QNCoGVhfMyY7/PBbcauPapVKwuvcKubkYkcpxYlbG3Km/8XmiUPclHULhhgAAQyj2Zp2L80JZX/dUcqS3J/0tQpwQvQVkW4F6+lAIpGj8eE5SgSppSyJkPc/YsjhQw8XxZgiRqF8Z2JOnzSgAjGkOkSZJQhZwa9S5pUsdQnNsr8=
+	t=1782437017; cv=none; b=KZstqTBziik3Tdkj4L9HwEu8MpzfdqNB469YoKQtxn+S+s42MRJIbOz0rO7izwnm/ZecixexQG7iYRT83VM5lkeKa6LLlfDrucl+IEBciMD2eRqVqpmvxAEFfL2VPOcoKuQNeClhccbKMnPEZfQBFkVBRDdInWLXVuNsBl/k3aI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782436215; c=relaxed/simple;
-	bh=da5GPsIdftlKdtk4reWwxLn3VuMo7ImPqfTB2eCzYpA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BXXX+S79vR4AFtT5jR5ywFJnKRUyAr/Ie9W8G8eEhXBkuN4II5ISHGN32Z2iUDiywdq9lu7xneCLmWexu3le+1n+U42JIJcNmGHyUR1w1Bim3/vx85AzZmwPo4H78wCICc8fTZq5GDaS4mJ3MnoFW/GZ9zox8rxrYTVIaG4pmFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lenovo.com; spf=pass smtp.mailfrom=lenovo.com; dkim=pass (2048-bit key) header.d=lenovo.com header.i=@lenovo.com header.b=G2nkgsN/; arc=none smtp.client-ip=148.163.148.104
-Received: from pps.filterd (m0355086.ppops.net [127.0.0.1])
-	by mx0a-00823401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65PMYKgZ2186202;
-	Fri, 26 Jun 2026 01:09:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lenovo.com; h=cc
-	:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=DKIM202306; bh=ord9PmGtRn
-	a1a778MEynuU6M0BiU4pN42GPSmzKnDYo=; b=G2nkgsN//0S+9pV+LPcogIR26M
-	MMgw8cm1P8CpvQbIsch24w1fKLLmGkYdjUn80N17ExIFX2i0qjIoeRXR65C9uJM9
-	is88sUr5/YcoTUFtRsql+rGduCUb8v90hNt5m8BYchQHMicIEgyJ210K1ycZI2kj
-	SP2nCQYjszYku8RJAzmgD5v57xeDlcTvzcFeKU0V+GWKn1zgFuGUIjO7XW/MoDLW
-	4gEv8CcsFlNnXfuEjBjkWFcniPBRYu9FGvi8AW3fhE6vwuGJeUTOMCugIr7WPSdl
-	ooiF8Okr/EPNUJqLHghaP54ffJnaDiBDApV3dq6wxQkhNOZsBQAzxeKX876Q==
-Received: from hkglppfpool3.lenovo.com ([103.30.235.220])
-	by mx0a-00823401.pphosted.com (PPS) with ESMTPS id 4ex8mham5b-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 26 Jun 2026 01:09:54 +0000 (GMT)
-Received: from hetlppfpool2.lenovo.com (unknown [10.196.132.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hkglppfpool3.lenovo.com (Postfix) with ESMTPS id 4gmcvk6XlYzDRDt2;
-	Fri, 26 Jun 2026 01:06:58 +0000 (UTC)
-Received: from lenovo.com (unknown [10.119.171.213])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hetlppfpool2.lenovo.com (Postfix) with ESMTPS id 4gmcz35HLLz18W90N;
-	Fri, 26 Jun 2026 01:09:51 +0000 (UTC)
-From: Jiqi Li <lijq9@lenovo.com>
-To: linux-tegra@vger.kernel.org
-Cc: devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, jonathanh@nvidia.com, thierry.reding@gmail.com,
-        mpearson-lenovo@squebb.ca, Jiqi Li <lijq9@lenovo.com>
-Subject: [PATCH 2/2] arm64: tegra: Add Lenovo ThinkEdge SE70 carrier board DTS
-Date: Fri, 26 Jun 2026 09:09:50 +0800
-Message-ID: <20260626010950.459899-3-lijq9@lenovo.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260626010950.459899-1-lijq9@lenovo.com>
+	s=arc-20240116; t=1782437017; c=relaxed/simple;
+	bh=jjRsh6GlNZeSlZdy0EnJQKbEp1IR6RDIrthSfs7NMmk=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=D/EQRtiukwnpGAqi4NRXmKOeiVLpDqsLr9javHHOpwH+4HT+mEr6UKUG/f/Yzq1WYSmW6DINWXUWV04kmhLomkoq4uOyHYUxiWpJg6Y/Xyb9lD/VGbBZoZQWeGFKnk/XE6bLLAKWYGgeMnbToGT5KLi6JSaYx2nqPgNaKweXCAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cci9efty; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 742BA1F000E9;
+	Fri, 26 Jun 2026 01:23:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782437015;
+	bh=/VwXRsrWNLwmWPLhLuDU+ohZUnMkSwdntbZdUTyz3Pw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Cci9eftytQRb9osDJ60JdJz7iiLJk7vd1Je//7N2LAyQj29f2IBCr1Vfy3bIBF6U0
+	 TBJvjgmcNJLg7sJRbO3fAAhp0ynXhoqWqCiVVUTu6OYu1rtKwACes3dxqSogOsNPQ8
+	 4V2FusKM3MbckCEHW1v90JZDWEv3JFRrgDzOvT156b4cfTZpcGQeQYvbNzuss0ri21
+	 cWfYTL84U5BUnqLCB9Wk/li6YBuUxYTdU/wKxaQQCi8u06qR7hAWy4v/5jObNNtcjW
+	 6c4GVMJVb5VbHsK8IGf2XZjHfvqFC4wf2+KF9VCtMq2p4/Okr76L7Z+FuzP3Z3AQ1P
+	 7E/LHk2pWanvQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/2] arm64: tegra: Add Lenovo ThinkEdge SE70 carrier
+ board DTS
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jiqi Li" <lijq9@lenovo.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260626010950.459899-3-lijq9@lenovo.com>
 References: <20260626010950.459899-1-lijq9@lenovo.com>
+ <20260626010950.459899-3-lijq9@lenovo.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 26 Jun 2026 01:23:34 +0000
+Message-Id: <20260626012335.742BA1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: U-_WUhlB44oVMw3ad7m-onLuNIHXAtSu
-X-Authority-Analysis: v=2.4 cv=LbMMLDfi c=1 sm=1 tr=0 ts=6a3dd162 cx=c_pps
- a=3okn395cuUlJnlrAQteHYA==:117 a=3okn395cuUlJnlrAQteHYA==:17
- a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=2RTuljz969oO5usasWGy:22
- a=hJVLCblJc-VYA0_z04R5:22 a=8k6WQxmsAAAA:8 a=bFGgLEeuC7ymnU_s7ckA:9
-X-Proofpoint-ORIG-GUID: U-_WUhlB44oVMw3ad7m-onLuNIHXAtSu
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI2MDAwNiBTYWx0ZWRfXzlzVwXNVbPTX
- a+ssiICo2w77aCTYr2NsXn9AFqJdKDEDxQEDqOHo7ZhlqNX9yf0kJm0o9qw7jfg3HdvCsyO5pse
- EfygT5hge9N9fwbiQoRX42gGkiMwTXILW6yL6u6CPodaISbTl6IK1g1xZfdXCt5Ezl2rZ9f+1ld
- dA+gxOKt0PwOQ57nWQ9LtTZUsKDaaC6mNu+GgwNbBBFhkLqi/ZuKGYyOO0NyHaanTVGgywgLwzs
- Yrvra0fn9PZLm6jG9NVIRbNGACSs+Xrj8BSofLohCvEWv4AWIdx2IZwcb+TBSvjZKPBdEXpJMtZ
- 8JYkhtzvhaibJC0oleC+xVgYSDi7CL4IvdVoBeMrOQL4ShI1mRoBDnZRQgJAKv+UjxUZKeO3uu2
- /+WExDy3k6YgWj5L6nNDHfEt+QvJeb5jcbvlZrftOmpWXVT8bl7PBXETB3JqR1ELQcKrc7zuL0A
- fMlJeJ6DstPw46OseUQ==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI2MDAwNiBTYWx0ZWRfX+85IMyjMIKZW
- juO+DQ/aQ3eFe0HA+uX5Li+2+EE82tq8g9frp/ZGsA8NMlW6bHGM1xL7l98oqOvSrgmMAnAb5Vn
- UfqfN70T99mkwR13k92jj0Lc2GYqUwY=
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-25_03,2026-06-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 adultscore=0
- impostorscore=0 suspectscore=0 phishscore=0 bulkscore=0 clxscore=1015
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=-20 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2606260006
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[lenovo.com,reject];
-	R_DKIM_ALLOW(-0.20)[lenovo.com:s=DKIM202306];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,nvidia.com,gmail.com,squebb.ca,lenovo.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-315874-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-tegra@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh+dt@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonathanh@nvidia.com,m:thierry.reding@gmail.com,m:mpearson-lenovo@squebb.ca,m:lijq9@lenovo.com,m:robh@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-315875-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:lijq9@lenovo.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lenovo.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,lenovo.com:dkim,lenovo.com:email,lenovo.com:mid,lenovo.com:from_mime];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,lenovo.com:email,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 19B486C960E
+X-Rspamd-Queue-Id: 5E8316C96DE
+
+Thank you for your contribution! Sashiko AI review found 6 potential issue(=
+s) to consider:
+- [High] Peripheral overrides and configuration nodes are incorrectly place=
+d at the root of the device tree, failing to override the actual bus childr=
+en.
+- [High] The `fixed-regulators` container lacks the `compatible =3D "simple=
+-bus"` property, preventing its children from probing.
+- [High] The `cd-inverted` property combined with `GPIO_ACTIVE_LOW` causes =
+a double-inversion of the SD card detect signal.
+- [Medium] Use of downstream Linux-for-Tegra (L4T) device tree properties t=
+hat are invalid in mainline.
+- [Low] Device tree node names use underscores instead of hyphens.
+- [Low] Mismatch between inline code comment and regulator voltage configur=
+ation.
+--
+
+commit ce1b543209b572c99dba284d418dec1c8ce39718
+Author: Jiqi Li <lijq9@lenovo.com>
+
+arm64: tegra: Add Lenovo ThinkEdge SE70 carrier board DTS
 
 ThinkEdge SE70 is a fanless industrial edge gateway built around
 NVIDIA Tegra194 Xavier NX SOM. This patch adds a standalone device
@@ -156,199 +141,154 @@ disabled following mainline device tree best practices.
 Static verification passed: dt_binding_check and dtbs compilation
 complete without errors.
 
-Signed-off-by: Jiqi Li <lijq9@lenovo.com>
----
- arch/arm64/boot/dts/nvidia/Makefile           |   1 +
- .../nvidia/tegra194-lenovo-thinkedge-se70.dts | 167 ++++++++++++++++++
- 2 files changed, 168 insertions(+)
- create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
+[ ... ]
 
-diff --git a/arch/arm64/boot/dts/nvidia/Makefile b/arch/arm64/boot/dts/nvidia/Makefile
-index 72c0cb5efa47..736a3f8a923f 100644
---- a/arch/arm64/boot/dts/nvidia/Makefile
-+++ b/arch/arm64/boot/dts/nvidia/Makefile
-@@ -29,6 +29,7 @@ dtb-$(CONFIG_ARCH_TEGRA_186_SOC) += tegra186-p3509-0000+p3636-0001.dtb
- dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p2972-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p3509-0000+p3668-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p3509-0000+p3668-0001.dtb
-+dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-lenovo-thinkedge-se70.dtb
- dtb-$(CONFIG_ARCH_TEGRA_234_SOC) += tegra234-sim-vdk.dtb
- dtb-$(CONFIG_ARCH_TEGRA_234_SOC) += tegra234-p3737-0000+p3701-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_234_SOC) += tegra234-p3737-0000+p3701-0008.dtb
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
-new file mode 100644
-index 000000000000..075e057c9095
---- /dev/null
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
-@@ -0,0 +1,167 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "tegra194-p3668-0001.dtsi"
-+#include "tegra194-p3509-0000.dtsi"
-+
-+/ {
-+	model = "Lenovo ThinkEdge SE70";
-+	compatible = "lenovo,thinkedge-se70", "nvidia,p3509-0000+p3668-0001", "nvidia,tegra194";
-+
-+	chosen {
-+		bootargs = "console=ttyTCU0,115200";
-+	};
-+
-+	/* Fixed 2.3V regulator for external SD card slot */
-+	fixed-regulators {
-+		ap2306gn_3v3_sd: ap2306gn_3v3_sd {
-+			compatible = "regulator-fixed";
-+			regulator-name = "ap2306gn-3v3-sd";
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3300000>;
-+			gpio = <&gpio TEGRA194_MAIN_GPIO(Q, 5) GPIO_ACTIVE_HIGH>;
-+			enable-active-high;
-+			status = "okay";
-+		};
-+	};
-+
-+	/* Custom pinmux configurations for 40-pin expansion header */
-+	pinmux@c302000 {
-+		status = "okay";
-+		touch_clk_pcc4 {
-+			nvidia,pins = "touch_clk_pcc4";
-+			nvidia,function = "rsvd2";
-+			nvidia,pull = <TEGRA_PIN_PULL_UP>;
-+			nvidia,tristate = <TEGRA_PIN_ENABLE>;
-+			nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+			nvidia,lpdr = <TEGRA_PIN_DISABLE>;
-+		};
-+	};
-+
-+	pinmux@2430028 {
-+		status = "okay";
-+		soc_gpio41_pq5 {
-+			nvidia,pins = "soc_gpio41_pq5";
-+			nvidia,function = "rsvd2";
-+			nvidia,pull = <TEGRA_PIN_PULL_NONE>;
-+			nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+			nvidia,enable-input = <TEGRA_PIN_DISABLE>;
-+			nvidia,lpdr = <TEGRA_PIN_DISABLE>;
-+			nvidia,io-high-voltage = <TEGRA_PIN_DISABLE>;
-+		};
-+	};
-+
-+	pinmux@2430000 {
-+		status = "okay";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hdr40_pinmux>;
-+
-+		hdr40_pinmux: header-40pin-pinmux {
-+			pin7 {
-+				nvidia,pins = "aud_mclk_ps4";
-+				nvidia,function = "aud";
-+				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
-+				nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+				nvidia,enable-input = <TEGRA_PIN_DISABLE>;
-+			};
-+			pin11 {
-+				nvidia,pins = "uart1_rts_pr4";
-+				nvidia,function = "uarta";
-+				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
-+				nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+				nvidia,enable-input = <TEGRA_PIN_DISABLE>;
-+				nvidia,lpdr = <0x0>;
-+			};
-+			pin12 {
-+				nvidia,pins = "dap5_sclk_pt5";
-+				nvidia,function = "i2s5";
-+				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+				nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+			};
-+			pin35 {
-+				nvidia,pins = "dap5_fs_pu0";
-+				nvidia,function = "i2s5";
-+				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+				nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+			};
-+			pin36 {
-+				nvidia,pins = "uart1_cts_pr5";
-+				nvidia,function = "uarta";
-+				nvidia,pull = <TEGRA_PIN_PULL_UP>;
-+				nvidia,tristate = <TEGRA_PIN_ENABLE>;
-+				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+				nvidia,lpdr = <0x0>;
-+			};
-+			pin38 {
-+				nvidia,pins = "dap5_din_pt7";
-+				nvidia,function = "i2s5";
-+				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+				nvidia,tristate = <TEGRA_PIN_ENABLE>;
-+				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+			};
-+			pin40 {
-+				nvidia,pins = "dap5_dout_pt6";
-+				nvidia,function = "i2s5";
-+				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+				nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+				nvidia,enable-input = <TEGRA_PIN_DISABLE>;
-+			};
-+		};
-+	};
-+
-+	/* Configure i2c bus clock to 400kHz for carrier board peripherals */
-+	i2c@3160000 {
-+		clock-frequency = <400000>;
-+		status = "okay";
-+	};
-+
-+	/* SDMMC3 for external user SD card slot with dedicated 3.3V power */
-+	sdhci@3440000 {
-+		uhs-mask = <0x78>;
-+		mmc-ocr-mask = <0x0>;
-+		cd-inverted;
-+		cd-gpios = <&gpio_aon TEGRA194_AON_GPIO(CC, 4) GPIO_ACTIVE_LOW>;
-+		nvidia,cd-wakeup-capable;
-+		vmmc-supply = <&ap2306gn_3v3_sd>;
-+		status = "okay";
-+	};
-+
-+	/* Disable fan and tachometer hardware not populated on SE70 carrier board */
-+	pwm-fan {
-+		status = "disabled";
-+	};
-+	thermal-fan-est {
-+		status = "disabled";
-+	};
-+	tachometer@39c0000 {
-+		status = "disabled";
-+	};
-+	pwm@c340000 {
-+		status = "disabled";
-+	};
-+	pwm@3280000 {
-+		status = "disabled";
-+	};
-+	pwm@32c0000 {
-+		status = "disabled";
-+	};
-+	pwm@32d0000 {
-+		status = "disabled";
-+	};
-+	pwm@32f0000 {
-+		status = "disabled";
-+	};
-+	generic_pwm_tachometer {
-+		status = "disabled";
-+	};
-+
-+	/* Disable unused SPI interfaces on 40-pin header */
-+	spi@3210000 {
-+		status = "disabled";
-+	};
-+	spi@3230000 {
-+		status = "disabled";
-+	};
-+};
--- 
-2.43.0
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dt=
+s b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
+> new file mode 100644
+> index 0000000000000..075e057c90954
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
+> @@ -0,0 +1,167 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/dts-v1/;
+> +
+> +#include "tegra194-p3668-0001.dtsi"
+> +#include "tegra194-p3509-0000.dtsi"
+> +
+> +/ {
+> +	model =3D "Lenovo ThinkEdge SE70";
+> +	compatible =3D "lenovo,thinkedge-se70", "nvidia,p3509-0000+p3668-0001",=
+ "nvidia,tegra194";
+> +
+> +	chosen {
+> +		bootargs =3D "console=3DttyTCU0,115200";
+> +	};
+> +
+> +	/* Fixed 2.3V regulator for external SD card slot */
+[Severity: Low]
+Is this comment accurate? It mentions a 2.3V regulator, but the configurati=
+on
+properties below (regulator-min-microvolt and regulator-max-microvolt) enfo=
+rce
+3.3V.
 
+> +	fixed-regulators {
+[Severity: High]
+Does this fixed-regulators container need a compatible =3D "simple-bus" pro=
+perty?
+Without a recognized bus compatible string, of_platform_populate() won't
+recurse into this node at boot. This would prevent the ap2306gn_3v3_sd child
+regulator from probing, causing the SDHCI controller requesting it to fail =
+with
+-EPROBE_DEFER.
+
+> +		ap2306gn_3v3_sd: ap2306gn_3v3_sd {
+[Severity: Low]
+Should this node name use hyphens instead of underscores (e.g.,
+ap2306gn-3v3-sd) to comply with Devicetree specification naming rules and a=
+void
+node_name_chars warnings during compilation?
+
+> +			compatible =3D "regulator-fixed";
+> +			regulator-name =3D "ap2306gn-3v3-sd";
+> +			regulator-min-microvolt =3D <3300000>;
+> +			regulator-max-microvolt =3D <3300000>;
+
+[ ... ]
+
+> +	/* Custom pinmux configurations for 40-pin expansion header */
+> +	pinmux@c302000 {
+[Severity: High]
+Are these peripheral and pinmux configuration nodes incorrectly placed at t=
+he
+root level of the device tree (/ {}) rather than being children of the SoC =
+bus?
+Placing nodes like pinmux@..., i2c@..., and sdhci@... directly under the ro=
+ot
+creates disconnected dummy nodes instead of overriding the actual bus-attac=
+hed
+controllers, causing these intended configurations to be completely ignored.
+
+> +		status =3D "okay";
+> +		touch_clk_pcc4 {
+
+[ ... ]
+
+> +	pinmux@2430028 {
+> +		status =3D "okay";
+> +		soc_gpio41_pq5 {
+> +			nvidia,pins =3D "soc_gpio41_pq5";
+> +			nvidia,function =3D "rsvd2";
+> +			nvidia,pull =3D <TEGRA_PIN_PULL_NONE>;
+> +			nvidia,tristate =3D <TEGRA_PIN_DISABLE>;
+> +			nvidia,enable-input =3D <TEGRA_PIN_DISABLE>;
+> +			nvidia,lpdr =3D <TEGRA_PIN_DISABLE>;
+> +			nvidia,io-high-voltage =3D <TEGRA_PIN_DISABLE>;
+[Severity: Medium]
+Are nvidia,lpdr and nvidia,io-high-voltage downstream Linux-for-Tegra (L4T)
+properties? They don't appear to exist in the mainline devicetree bindings,
+which means they will be ignored by upstream drivers and fail dt_binding_ch=
+eck
+schema validation.
+
+> +		};
+> +	};
+
+[ ... ]
+
+> +	/* SDMMC3 for external user SD card slot with dedicated 3.3V power */
+> +	sdhci@3440000 {
+[Severity: High]
+Similar to the pinmux nodes above, is this sdhci node placed as a direct ch=
+ild
+of the root (/ {}) instead of the SoC bus? This creates a new orphaned node
+rather than overriding the actual bus-attached SDHCI controller.
+
+> +		uhs-mask =3D <0x78>;
+> +		mmc-ocr-mask =3D <0x0>;
+[Severity: Medium]
+Are uhs-mask and mmc-ocr-mask valid mainline properties? Like the pinmux
+properties above, these appear to be downstream L4T properties that will fa=
+il
+dt_binding_check schema validation.
+
+> +		cd-inverted;
+> +		cd-gpios =3D <&gpio_aon TEGRA194_AON_GPIO(CC, 4) GPIO_ACTIVE_LOW>;
+[Severity: High]
+Does combining the cd-inverted property with GPIO_ACTIVE_LOW in cd-gpios ca=
+use
+a logical double inversion of the SD card detect signal? The GPIO subsystem
+will invert the active-low physical signal, and then the MMC core will inve=
+rt
+that result again due to cd-inverted. This could mean an inserted card is s=
+een
+as removed and vice versa, breaking card hotplugging.
+
+> +		nvidia,cd-wakeup-capable;
+[Severity: Medium]
+Is nvidia,cd-wakeup-capable another downstream property unsupported in
+mainline?
+
+> +		vmmc-supply =3D <&ap2306gn_3v3_sd>;
+> +		status =3D "okay";
+> +	};
+
+[ ... ]
+
+> +	pwm@32f0000 {
+> +		status =3D "disabled";
+> +	};
+> +	generic_pwm_tachometer {
+[Severity: Low]
+Should this node name use hyphens instead of underscores (e.g.,
+generic-pwm-tachometer) to avoid devicetree specification violations and
+node_name_chars warnings?
+
+> +		status =3D "disabled";
+> +	};
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260626010950.4598=
+99-1-lijq9@lenovo.com?part=3D2
 
