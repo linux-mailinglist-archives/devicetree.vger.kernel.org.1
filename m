@@ -1,309 +1,367 @@
-Return-Path: <devicetree+bounces-315978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315979-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id G1RvEDExPmr9BAkAu9opvQ
-	(envelope-from <devicetree+bounces-315978-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:58:41 +0200
+	id pwrxLUcxPmoEBQkAu9opvQ
+	(envelope-from <devicetree+bounces-315979-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:59:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 889566CB2C6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:58:40 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6F376CB2D5
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:59:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315978-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-315978-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=ideasonboard.com header.s=mail header.b=hEft3WdC;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315979-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315979-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=ideasonboard.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 57ED3302DF54
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 07:58:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9C8D8300BD6C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 07:58:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0683E3D89;
-	Fri, 26 Jun 2026 07:58:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 960D53E3DA6;
+	Fri, 26 Jun 2026 07:58:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE2C33DF019;
-	Fri, 26 Jun 2026 07:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8424D2F7EF4;
+	Fri, 26 Jun 2026 07:58:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782460718; cv=none; b=m9tzRDIrB/tFge9h9xvO4XVQ0eTBw3spCi//4OPpuBHYfKzRu6Aox3wIo0nyruXz247lxI76pck01C3IiOb0IEpM259bFlsaYqZmY/V4HLCY/AI+3zoPsfsWgMsyhn+morlIjk/oUKYrIhlPUtE81rv3+PFYx4tarQLiufXzGW8=
+	t=1782460736; cv=none; b=R+ckE6MYzGiBCNc1HDn4XZx7Y+VttFwVtcoJUxTMToRcaoE4IpsfFsxvcI6K8u9hjWY99xGji790g4FE46l7mubfN9FiWkyW5MVHg0O8ZTCgafBklA0js8qSZBi+3bmeXgev3qPQic2vI56KLUvpgGrbYgxbds2p1sJn0eBe2qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782460718; c=relaxed/simple;
-	bh=3+rQ6nmc3d/IvxcyBtFnRZ08qv50iuMOBkn/g4QT4Gs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KI1KIZqovtPQF/6x65VnTHwu5NVUA4zIE7GXQAJzSv0wQlMM+J1VzmaBE968xBh81F0qXaMUU3DvY10ydckylY676m6A7Nxl8VTm9Hm0ca6jbf4qn5rWI+4hJtl2y0x0DElrzwsaXt1uthofuetbfx7Nl7g6jUATWYhgRTUyrm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Received: from edelgard.fodlan.icenowy.me (unknown [112.94.101.182])
-	by APP-03 (Coremail) with SMTP id rQCowADXwagWMT5qnInoFQ--.17195S2;
-	Fri, 26 Jun 2026 15:58:15 +0800 (CST)
-Message-ID: <84b93c496fabdeee05d2f962a1b764fdbfaacdb7.camel@iscas.ac.cn>
-Subject: Re: [PATCH v5 1/7] dt-bindings: display: verisilicon,dc: generalize
- for single-output variants
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Conor Dooley <conor.dooley@microchip.com>, Conor Dooley
- <conor@kernel.org>
-Cc: Joey Lu <a0987203069@gmail.com>, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- simona@ffwll.ch, 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- ychuang3@nuvoton.com, 	schung@nuvoton.com, yclu4@nuvoton.com,
- dri-devel@lists.freedesktop.org, 	devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 	linux-kernel@vger.kernel.org
-Date: Fri, 26 Jun 2026 15:58:14 +0800
-In-Reply-To: <20260626-zit-amuck-e743e58d2e15@wendy>
-References: <20260625094449.708386-1-a0987203069@gmail.com>
-	 <20260625094449.708386-2-a0987203069@gmail.com>
-	 <20260625-bobbing-annotate-d1c4d6874ee2@spud>
-	 <20260626-zit-amuck-e743e58d2e15@wendy>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+	s=arc-20240116; t=1782460736; c=relaxed/simple;
+	bh=UH14fvN8UKaofZyLqiMZ2A0E9yCSuZbf7bcMkyArlaA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SAOarQeZn8pHowXHhlewq/GKmwY7uw2vPo+s3ykaPVTOuwyRp4gUKIDFkGvhdRrzq3bXyu5bvYbRT9pFj4NWaFwoJTeW3r5BT+ZY9k4SDszViKor5Oee1GtlVaecvTFhOUL2es2rOVEH6/Nn9QCTs60qJ1g44+tb9jVx2s5O+1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=hEft3WdC; arc=none smtp.client-ip=213.167.242.64
+Received: from ideasonboard.com (net-93-65-100-155.cust.vodafonedsl.it [93.65.100.155])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B6EB31E7;
+	Fri, 26 Jun 2026 09:58:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1782460691;
+	bh=UH14fvN8UKaofZyLqiMZ2A0E9yCSuZbf7bcMkyArlaA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hEft3WdCRkuYEGff0JiurC0IswICD76B/PxgNUcjZjAgy6Jt2w3RU8CULCuqtPop+
+	 L8Xypo0TT4//jpe+zD8Daw0Pu01DTAyLjwIHQXlDlnKtvUXjTtmQ6mzbqKbUN0rBuD
+	 zbK7tMOUySucOxmiLfeQqPn2v6qtdYa2C+VTJLAg=
+Date: Fri, 26 Jun 2026 09:58:49 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Sylvain Petinot <sylvain.petinot@foss.st.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Hans Verkuil <hverkuil+cisco@kernel.org>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/5] media: i2c: vd55g1: Add support for vd55g4
+Message-ID: <aj4xDDy0UubUzCVx@zed>
+References: <20260428-vd55g4_and_fixes-v1-0-4f745a83b87e@foss.st.com>
+ <20260428-vd55g4_and_fixes-v1-4-4f745a83b87e@foss.st.com>
+ <ajkKkSeDNoijIsub@zed>
+ <68d276f9-e688-4736-a296-f56c5aaa4b77@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-CM-TRANSID:rQCowADXwagWMT5qnInoFQ--.17195S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3XFW8ur13trWfCryrtry7ZFb_yoW7Aw18pF
-	WkAFWUJr95Jrn5Jr1UKr1UJFyjyw1kJ3WDJr1xXFyxAFsrAr12gr4jgr1qgFy7Xr48Jr1j
-	qr4jqr9xZr1ayFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I
-	8E87Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
-	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
-	14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
-	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
-	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-	IFyTuYvjxUvaZXDUUUU
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <68d276f9-e688-4736-a296-f56c5aaa4b77@foss.st.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:conor.dooley@microchip.com,m:conor@kernel.org,m:a0987203069@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:yclu4@nuvoton.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315979-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:benjamin.mugnier@foss.st.com,m:jacopo.mondi@ideasonboard.com,m:sylvain.petinot@foss.st.com,m:sakari.ailus@linux.intel.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hverkuil+cisco@kernel.org,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:hverkuil@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-315978-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER(0.00)[jacopo.mondi@ideasonboard.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,nuvoton.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,iscas.ac.cn:mid,iscas.ac.cn:from_mime]
+	FROM_NEQ_ENVFROM(0.00)[jacopo.mondi@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[zed:mid,st.com:email,ideasonboard.com:dkim,ideasonboard.com:email,ideasonboard.com:from_mime,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 889566CB2C6
+X-Rspamd-Queue-Id: A6F376CB2D5
 
-=E5=9C=A8 2026-06-26=E4=BA=94=E7=9A=84 08:22 +0100=EF=BC=8CConor Dooley=E5=
-=86=99=E9=81=93=EF=BC=9A
-> On Thu, Jun 25, 2026 at 05:33:37PM +0100, Conor Dooley wrote:
-> > On Thu, Jun 25, 2026 at 05:44:43PM +0800, Joey Lu wrote:
-> > > The verisilicon,dc binding was originally written for the T-Head
-> > > TH1520
-> > > SoC carrying a DC8200, and hard-codes five clocks, three resets
-> > > and two
-> > > output ports.
-> > >=20
-> > > Add the Nuvoton MA35D1 DCUltraLite (nuvoton,ma35d1-dcu) to the
-> > > binding.
-> > > The DCUltraLite uses only two clocks (core, pix0) and one reset
-> > > (core),
-> > > with a single output port.
-> > >=20
-> > > Use allOf/if blocks to express per-variant constraints rather
-> > > than
-> > > hard-coding the DC8200 topology at the top level.=C2=A0 Each
-> > > compatible's
-> > > block constrains the clock and reset item counts; the nuvoton
-> > > block
-> > > additionally overrides clock-names to the two names it actually
-> > > uses.
-> > >=20
-> > > Signed-off-by: Joey Lu <a0987203069@gmail.com>
-> > > ---
-> > > =C2=A0.../bindings/display/verisilicon,dc.yaml=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 57
-> > > +++++++++++++++++++
-> > > =C2=A01 file changed, 57 insertions(+)
-> > >=20
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > > b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > > index 9dc35ab973f2..1e751f3c7ce8 100644
-> > > ---
-> > > a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > > +++
-> > > b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > > @@ -17,6 +17,7 @@ properties:
-> > > =C2=A0=C2=A0=C2=A0=C2=A0 items:
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - thead,=
-th1520-dc8200
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - nuvoton,ma3=
-5d1-dcu
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: verisilicon,dc # DC IPs=
- have discoverable
-> > > ID/revision registers
-> > > =C2=A0
-> > > =C2=A0=C2=A0 reg:
-> > > @@ -77,6 +78,62 @@ required:
-> > > =C2=A0=C2=A0 - clock-names
-> > > =C2=A0=C2=A0 - ports
-> > > =C2=A0
-> > > +allOf:
-> > > +=C2=A0 - if:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 c=
-onst: thead,th1520-dc8200
-> > > +=C2=A0=C2=A0=C2=A0 then:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 5
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 5
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 5
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 5
-> >=20
-> > All the maxItems here repeat the maximum constraint and do nothing.
-> >=20
-> > Since you didn't change the minimum constraint at the top level,
-> > your
-> > minItems also do nothing.
-> >=20
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 resets:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 3
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 3
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-names:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 3
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 3
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 required:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - resets
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - reset-names
-> >=20
-> > Both conditional sections have this, but the original binding
-> > doesn't
-> > require these for the thead device. This is a functional change
-> > therefore and shouldn't be in a patch calling itself "generalise
-> > for
-> > single ended variants".
-> >=20
-> > FWIW, adding your new compatible shouldn't really be in a patch
-> > with
-> > that subject either, it really should say "add support for nuvoton
-> > ma35d1" or something.
-> >=20
-> > > +
-> > > +=C2=A0 - if:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 c=
-onst: nuvoton,ma35d1-dcu
-> > > +=C2=A0=C2=A0=C2=A0 then:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 2
-> >=20
-> > Anything that updates the minimum constraint should be done at the
-> > top
-> > level of this schema. The conditional section should then tighten
-> > the
-> > constraint, in this case that means only having maxItems.
-> >=20
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 2
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- const: core
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- const: pix0
-> >=20
-> > Does this even work when the top level schema thinks clock 2 should
-> > be
-> > called axi?
->=20
-> Additionally here, only have core and pix0 seems like it might be an
-> oversimplification. I doubt removing the second output port means
-> that
-> the axi and ahb clocks are no longer needed.
-> Is it the case that your device supplies the same clock to core, ahb
-> and
-> axi? If so, then you should fill those clocks in in your devicetree
-> and
-> this can just constrain the number of clocks/clock-names to 4.
+Hi Benjamin
 
-The clock controller of that SoC is quite weird -- it has only a single
-gate bit, but controlling 3 clock gates. All core, ahb and axi clocks
-have gates controlled by this single bit, so it's why currently it's
-modelled as only core clock supplied.
+On Thu, Jun 25, 2026 at 01:41:56PM +0200, Benjamin Mugnier wrote:
+> Hi Jacopo,
+>
+> Le 22/06/2026 à 12:16, Jacopo Mondi a écrit :
+> > Hi Benjamin
+> >
+> > On Tue, Apr 28, 2026 at 10:40:58AM +0200, Benjamin Mugnier wrote:
+> >> vd55g4 is the same device as vd65g4 but outputs in monochrome instead of
+> >> RGB. Adapt the driver structure according to this new variant, and add
+> >> its support.
+> >>
+> >> Signed-off-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+> >> ---
+> >>  drivers/media/i2c/vd55g1.c | 110 ++++++++++++++++++++++++++++++---------------
+> >>  1 file changed, 74 insertions(+), 36 deletions(-)
+> >>
+> >> diff --git a/drivers/media/i2c/vd55g1.c b/drivers/media/i2c/vd55g1.c
+> >> index 2c962fcb41d2..9f62fc0428a1 100644
+> >> --- a/drivers/media/i2c/vd55g1.c
+> >> +++ b/drivers/media/i2c/vd55g1.c
+> >> @@ -29,11 +29,7 @@
+> >>
+> >>  /* Register Map */
+> >>  #define VD55G1_REG_MODEL_ID				CCI_REG32_LE(0x0000)
+> >> -#define VD55G1_MODEL_ID_VD55G1				0x53354731 /* Mono */
+> >> -#define VD55G1_MODEL_ID_VD65G4				0x53354733 /* RGB */
+> >> -#define VD55G1_REG_REVISION				CCI_REG16_LE(0x0004)
+> >> -#define VD55G1_REVISION_CCB				0x2020
+> >> -#define VD55G1_REVISION_BAYER				0x3030
+> >> +#define VD55G1_REG_COLOR_VERSION			CCI_REG32_LE(0x0670)
+> >>  #define VD55G1_REG_FWPATCH_REVISION			CCI_REG16_LE(0x0012)
+> >>  #define VD55G1_REG_FWPATCH_START_ADDR			CCI_REG8(0x2000)
+> >>  #define VD55G1_REG_SYSTEM_FSM				CCI_REG8(0x001c)
+> >> @@ -138,8 +134,39 @@
+> >>  #define VD55G1_MIPI_RATE_MIN				(250 * MEGA)
+> >>  #define VD55G1_MIPI_RATE_MAX				(1200 * MEGA)
+> >>
+> >> -#define VD55G1_MODEL_ID_NAME(id) \
+> >> -	((id) == VD55G1_MODEL_ID_VD55G1 ? "vd55g1" : "vd65g4")
+> >> +enum vd55g1_model_id {
+> >> +	VD55G1_MODEL_ID_2 = 0x53354731,
+> >> +	VD55G1_MODEL_ID_3 = 0x53354733,
+> >> +};
+> >> +
+> >> +enum vd55g1_color_version {
+> >> +	VD55G1_COLOR_VERSION_MONO = 0x0,
+> >> +	VD55G1_COLOR_VERSION_BAYER = 0x1,
+> >
+> > nit: you don't need to initialize the enum members here
+>
+> Thank you, will do.
+>
+> >
+> >> +};
+> >> +
+> >> +struct vd55g1_version {
+> >> +	char *name;
+> >> +	enum vd55g1_model_id id;
+> >> +	enum vd55g1_color_version color;
+> >> +};
+> >> +
+> >> +static const struct vd55g1_version vd55g1_versions[] = {
+> >> +	{
+> >> +		.name  = "vd55g1",
+> >> +		.id    = VD55G1_MODEL_ID_2,
+> >> +		.color = VD55G1_COLOR_VERSION_MONO,
+> >> +	},
+> >> +	{
+> >> +		.name  = "vd55g4",
+> >> +		.id    = VD55G1_MODEL_ID_3,
+> >> +		.color = VD55G1_COLOR_VERSION_MONO,
+> >> +	},
+> >> +	{
+> >> +		.name  = "vd65g4",
+> >> +		.id    = VD55G1_MODEL_ID_3,
+> >> +		.color = VD55G1_COLOR_VERSION_BAYER,
+> >> +	},
+> >> +};
+> >>
+> >>  static const u8 vd55g1_patch_array[] = {
+> >>  	0x44, 0x03, 0x09, 0x02, 0xe6, 0x01, 0x42, 0x00, 0xea, 0x01, 0x42, 0x00,
+> >> @@ -535,7 +562,7 @@ struct vd55g1_vblank_limits {
+> >>
+> >>  struct vd55g1 {
+> >>  	struct device *dev;
+> >> -	unsigned int id;
+> >> +	const struct vd55g1_version *version;
+> >>  	struct v4l2_subdev sd;
+> >>  	struct media_pad pad;
+> >>  	struct regulator_bulk_data supplies[ARRAY_SIZE(vd55g1_supply_name)];
+> >> @@ -628,7 +655,7 @@ static u32 vd55g1_get_fmt_code(struct vd55g1 *sensor, u32 code)
+> >>  {
+> >>  	unsigned int i, j;
+> >>
+> >> -	if (sensor->id == VD55G1_MODEL_ID_VD55G1)
+> >> +	if (sensor->version->color != VD55G1_COLOR_VERSION_BAYER)
+> >>  		return code;
+> >
+> > As pointed out in the previous patch, you seem to have 2 mono formats.
+> > Is this still ok ?
+> >
+> >>
+> >>  	for (i = 0; i < ARRAY_SIZE(vd55g1_mbus_formats_bayer); i++) {
+> >> @@ -1183,8 +1210,8 @@ static int vd55g1_patch(struct vd55g1 *sensor)
+> >>  	u64 patch;
+> >>  	int ret = 0;
+> >>
+> >> -	/* vd55g1 needs a patch while vd65g4 does not */
+> >> -	if (sensor->id == VD55G1_MODEL_ID_VD55G1) {
+> >> +	/* Version 2 needs a patch while version 3 does not */
+> >> +	if (sensor->version->id == VD55G1_MODEL_ID_2) {
+> >>  		vd55g1_write_array(sensor, VD55G1_REG_FWPATCH_START_ADDR,
+> >>  				   sizeof(vd55g1_patch_array),
+> >>  				   vd55g1_patch_array, &ret);
+> >
+> > You might want to consider renaming vd55g1_patch_array ?
+>
+> It doesn't really patch an array, it writes an array of values into
 
-Well it might be worthful to supply the bus clock before the gate as
-ahb/axi, especially axi, because both the AXI clock and the core clock
-constraints the maximum pixel clock.
+My only point here was that it has 'vd55g1' in the name.
 
-Thanks,
-Icenowy
-
->=20
-> >=20
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 resets:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 1
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-names:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- const: core
-> >=20
-> > This is just maxItems: 1.
-> >=20
-> > pw-bot: changes-requested
-> >=20
-> > Thanks,
-> > Conor.
-> >=20
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 required:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - resets
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - reset-names
-> > > +
-> > > =C2=A0additionalProperties: false
-> > > =C2=A0
-> > > =C2=A0examples:
-> > > --=20
-> > > 2.43.0
-> > >=20
->=20
-
+> continuous i2c registers. Just like before converting to cci_write() I
+> used to have a vd55g1_write() function to write a register, I derived a
+> vd55g1_write_array() function. Here it happens to be a firmware patch,
+> but it could be anything you want ;)
+>
+> >
+> >> @@ -1256,7 +1283,7 @@ static int vd55g1_enum_mbus_code(struct v4l2_subdev *sd,
+> >>  	struct vd55g1 *sensor = to_vd55g1(sd);
+> >>  	u32 base_code;
+> >>
+> >> -	if (sensor->id == VD55G1_MODEL_ID_VD55G1) {
+> >> +	if (sensor->version->color != VD55G1_COLOR_VERSION_BAYER) {
+> >>  		if (code->index >= ARRAY_SIZE(vd55g1_mbus_formats_mono))
+> >>  			return -EINVAL;
+> >>  		base_code = vd55g1_mbus_formats_mono[code->index];
+> >> @@ -1372,7 +1399,7 @@ static int vd55g1_init_state(struct v4l2_subdev *sd,
+> >>  	if (ret)
+> >>  		return ret;
+> >>
+> >> -	if (sensor->id == VD55G1_MODEL_ID_VD55G1)
+> >> +	if (sensor->version->color != VD55G1_COLOR_VERSION_BAYER)
+> >>  		code = vd55g1_mbus_formats_mono[VD55G1_MBUS_CODE_IDX_DEF];
+> >>  	else
+> >>  		code = vd55g1_mbus_formats_bayer[VD55G1_MBUS_CODE_IDX_DEF][0];
+> >> @@ -1659,38 +1686,48 @@ static int vd55g1_init_ctrls(struct vd55g1 *sensor)
+> >>  	return ret;
+> >>  }
+> >>
+> >> +static const struct vd55g1_version *
+> >> +	vd55g1_get_version(enum vd55g1_model_id id,
+> >> +			   enum vd55g1_color_version color)
+> >
+> > Should you indent one tab left ?
+> >
+>
+> checkpatch.pl is fine with both. I can indent left, it looks cleaner.
+>
+> >> +{
+> >> +	unsigned int i;
+> >> +
+> >> +	for (i = 0; i < ARRAY_SIZE(vd55g1_versions); i++) {
+> >
+> > You can declare i inside the for loop
+> >
+>
+> Yes, thank you.
+>
+> >> +		if (vd55g1_versions[i].id == id &&
+> >> +		    vd55g1_versions[i].color == color)
+> >> +			return &vd55g1_versions[i];
+> >> +	}
+> >> +
+> >> +	return NULL;
+> >> +}
+> >> +
+> >>  static int vd55g1_detect(struct vd55g1 *sensor)
+> >>  {
+> >> -	unsigned int dt_id = (uintptr_t)device_get_match_data(sensor->dev);
+> >> -	u64 rev, id;
+> >> -	int ret;
+> >> +	const struct vd55g1_version *dt_version =
+> >> +		device_get_match_data(sensor->dev);
+> >> +	const struct vd55g1_version *version;
+> >> +	u64 color, id;
+> >> +	int ret = 0;
+> >>
+> >> -	ret = vd55g1_read(sensor, VD55G1_REG_MODEL_ID, &id, NULL);
+> >> +	vd55g1_read(sensor, VD55G1_REG_MODEL_ID, &id, &ret);
+> >> +	vd55g1_read(sensor, VD55G1_REG_COLOR_VERSION, &color, &ret);
+> >>  	if (ret)
+> >>  		return ret;
+> >>
+> >> -	if (id != VD55G1_MODEL_ID_VD55G1 && id != VD55G1_MODEL_ID_VD65G4) {
+> >> -		dev_warn(sensor->dev, "Unsupported sensor id 0x%x\n",
+> >> -			 (u32)id);
+> >> +	version = vd55g1_get_version(id, color);
+> >> +	if (!version) {
+> >> +		dev_warn(sensor->dev, "Unsupported sensor version, expected %s\n",
+> >> +			 dt_version->name);
+> >>  		return -ENODEV;
+> >>  	}
+> >> -	if (id != dt_id) {
+> >> -		dev_err(sensor->dev, "Probed sensor %s and device tree definition (%s) mismatch",
+> >> -			VD55G1_MODEL_ID_NAME(id), VD55G1_MODEL_ID_NAME(dt_id));
+> >> +	if (version->id != dt_version->id ||
+> >> +	    version->color != dt_version->color) {
+> >> +		dev_err(sensor->dev, "Probed sensor version %s and device tree definition %s mismatch",
+> >> +			version->name, dt_version->name);
+> >>  		return -ENODEV;
+> >>  	}
+> >> -	sensor->id = id;
+> >>
+> >> -	ret = vd55g1_read(sensor, VD55G1_REG_REVISION, &rev, NULL);
+> >> -	if (ret)
+> >> -		return ret;
+> >> -
+> >> -	if ((id == VD55G1_MODEL_ID_VD55G1 && rev != VD55G1_REVISION_CCB) &&
+> >> -	    (id == VD55G1_MODEL_ID_VD65G4 && rev != VD55G1_REVISION_BAYER)) {
+> >> -		dev_err(sensor->dev, "Unsupported sensor revision 0x%x for sensor %s\n",
+> >> -			(u16)rev, VD55G1_MODEL_ID_NAME(id));
+> >> -		return -ENODEV;
+> >> -	}
+> >> +	sensor->version = version;
+> >>
+> >>  	return 0;
+> >>  }
+> >> @@ -2048,8 +2085,9 @@ static void vd55g1_remove(struct i2c_client *client)
+> >>  }
+> >>
+> >>  static const struct of_device_id vd55g1_dt_ids[] = {
+> >> -	{ .compatible = "st,vd55g1", .data = (void *)VD55G1_MODEL_ID_VD55G1 },
+> >> -	{ .compatible = "st,vd65g4", .data = (void *)VD55G1_MODEL_ID_VD65G4 },
+> >> +	{ .compatible = "st,vd55g1", .data = (void *)&vd55g1_versions[0] },
+> >> +	{ .compatible = "st,vd55g4", .data = (void *)&vd55g1_versions[1] },
+> >> +	{ .compatible = "st,vd65g4", .data = (void *)&vd55g1_versions[2] },
+> >>  	{ /* sentinel */ }
+> >>  };
+> >
+> > All minors
+> > Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> >
+> > Thanks
+> >   j
+> >
+> >>  MODULE_DEVICE_TABLE(of, vd55g1_dt_ids);
+> >>
+> >> --
+> >> 2.43.0
+> >>
+> >>
+>
+> --
+> Regards,
+> Benjamin
+>
 
