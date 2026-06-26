@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-316208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316213-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +FrlEp3nPmo0MwkAu9opvQ
-	(envelope-from <devicetree+bounces-316208-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 22:57:01 +0200
+	id epqDLsjnPmo/MwkAu9opvQ
+	(envelope-from <devicetree+bounces-316213-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 22:57:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1D536D01F6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 22:57:00 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A55E6D0222
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 22:57:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=kNLaLxuO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316208-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316208-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=iqYVbMDh;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316213-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316213-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D889730A1F17
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 20:55:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3F0BF30C36D8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 20:55:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F8033C1406;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1ED33C278A;
 	Fri, 26 Jun 2026 20:55:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30D153BFE4C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C8A3BFE4A;
 	Fri, 26 Jun 2026 20:55:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782507309; cv=none; b=VBYXHjL9Tl55My3h6VXTdAN2mq1jIituSj01MwbS9lojQNWfUdh5pLn2rIu5J2Hf2Iz+82N9pJBiKxEfRrrk5w6DLuLlDYAHRYmwnM7j7r4LaaVYeAJIzXR1U160moyQUNa8FYopLoGfg6ytHCDfxAYtkvyWG8Mj/H2CACpSrJI=
+	t=1782507309; cv=none; b=g9a7OgsnFiIT4j0te1b5dxL0KG8yhYkNy3iWs0HHJNOP8e2rOEce6m3UDPd2H7Ew2kuciz8ZO76G78vwHh8cy+4me4NOcDM7D0AaanHAagdmfiMaTctrXQ339UBjUG8MFya/RH0nNHT9BOxQMq2xa6Ciefaa21vLBRz9kjdWe+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1782507309; c=relaxed/simple;
-	bh=1nHF1vrjaNXH6VxWJ8xbYUrny3B+6HOnTbC9UsQPiUA=;
+	bh=wIdm6WAvSCnmDVmjn0d4nzjlUVyQK7d9rbn5XLogh8M=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CX1ZenVhOMNdhU3vy+shnwGb6FSGcvqRqN7QrsG7cQdB6lF4iriZ52MixALqVrKI24f9ojRa/5b2DAwfhsFwj+Bvs/VzBAksi1g15gxJyw/jhzswKlIgLpINTEp+72Z+umBo9EAPbMgzaf8yoFPA2zj/CukiZWEi6XC46aeULqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kNLaLxuO; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=IOSvKquCkVrWqB9woHxcOwLJllqiot2iEhhfUW1rwoeVARXjSYl6pXdp7Rc2ExCytPR/bYOJIB6gM79FWnuMxEXDhIZpWkS9RODmSKz4Ib1nrZ4zL1yB98R4MLEe0RnBlVOLM9PQngqLuJwBMSR9rBFj47/p48BOZHbPz4xK0QY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iqYVbMDh; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1782507302;
-	bh=1nHF1vrjaNXH6VxWJ8xbYUrny3B+6HOnTbC9UsQPiUA=;
+	bh=wIdm6WAvSCnmDVmjn0d4nzjlUVyQK7d9rbn5XLogh8M=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=kNLaLxuOFDahf/RD0A7UG+SZrqlNJu9EKRGOAAVZaaFDOZt+byKPdXaxGSqGcpZ4h
-	 SpS5qtqB3h2m1N8tN/yl2LUjsIomJq3Q2BqzQBgrw08rI9i89ZeQ7CurPAd5bTF9bu
-	 QBT9LpEuVwI4wIx0Nxygpu9onus2YPMdaBTxBeqaqXaBdmiMnOe02KbZlOLG4ddBPQ
-	 bD7rtXofqNgbH3XQ5oIq0QFNIFgthViWjNqoX4eUKeJWO6I4s2yrKGnLNbdSiWkpcQ
-	 7DIyTIeA+V6lvVuxknBFG5cwChZTPXsg9xlvlgN6a5k8rdAnidq+4sshYf2kB97e1d
-	 uPMSRIhCZpUwg==
+	b=iqYVbMDhwwrTVKiaXVZ6eBKE5tbmln5Mp4Ahy1GfBKnui0PLjte3v11igZmrCPUPA
+	 2QvrjmOS5zXqBogYNNo0E7bac1uNUjVYoK+yHYYMAYs6BsrI+C/vYaJ/qWwmgVeLwu
+	 YnutpULYGVo47VheQjke3klDNP2nowPz6eBk4WHgpuKSnKmUbukRIGeQn3JG4ByWxe
+	 s9U0aKjJCA4iPr2FDC/fh4UarrIUl2loo7bSSeJ+L3u4mQ90KvnSMHnFhjtsUZj+Hi
+	 zPVQRXDQSAwyYUHwegFLy8qW3rlBG7oAEFbd2FPDlPyAyIW4RWs+e+T0HNbqE4zGwA
+	 MANh4Zyyz327w==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id AFD7D17E1270;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B7D4317E140E;
 	Fri, 26 Jun 2026 22:55:02 +0200 (CEST)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id 13EBC480031; Fri, 26 Jun 2026 22:55:02 +0200 (CEST)
+	id 158E6480035; Fri, 26 Jun 2026 22:55:02 +0200 (CEST)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Fri, 26 Jun 2026 22:54:59 +0200
-Subject: [PATCH v8 06/29] phy: rockchip: usbdp: Drop seamless DP takeover
+Date: Fri, 26 Jun 2026 22:55:00 +0200
+Subject: [PATCH v8 07/29] phy: rockchip: usbdp: Handle
+ rk_udphy_reset_deassert_all errors in init check
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260626-rockchip-usbdp-cleanup-v8-6-47f682987895@collabora.com>
+Message-Id: <20260626-rockchip-usbdp-cleanup-v8-7-47f682987895@collabora.com>
 References: <20260626-rockchip-usbdp-cleanup-v8-0-47f682987895@collabora.com>
 In-Reply-To: <20260626-rockchip-usbdp-cleanup-v8-0-47f682987895@collabora.com>
 To: Vinod Koul <vkoul@kernel.org>, 
@@ -81,21 +82,21 @@ Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>,
  Sebastian Reichel <sebastian.reichel@collabora.com>, 
  Sashiko <sashiko-bot@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2693;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1587;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=1nHF1vrjaNXH6VxWJ8xbYUrny3B+6HOnTbC9UsQPiUA=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGo+5yVrcDd9pGLx40GIcnPMFQdfjYzZAJukZ
- oEs5fq1+0WHRokCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqPuclAAoJENju1/PI
- O/qakkMQAJsmLpk5yiZKcUP5L+SHN9M/nrx1QT+6PnzKk0T1s7CltqMrycoE81zZw0W/r+Dn7cI
- wfbCHUHnrJHhWWu3FCROZcmuhdo+eushp9DTctYIeAB1FIY/peYhZLi5GKkN5Od+pYNr4Xhp8si
- LnklzD2/cXdwPrXu3tIPpY3HiHy0QYwmw47Rbu03P0Y0AM8Uwn9GE6UXCm+d0mkvXQJKx27LyRj
- 32DgVpmySh7bZRRPMp7FMyC+ztePV8wBwdXaTiWmHxQM/RMDWEoKQEQrVb15747YlvnhnQ4pLrD
- uQWPeJ1gObDgC0DvlMbYdAzoFXQ3ekYUdVVo6FmPUy6sjF+hS4ODo/E5HU0fTNep+u4JiolvR8w
- PfbTTFOqxrBVIIJkWqMn2MHqJz0VZd346t738e7Agn4ZLaOj9xClj8C1lw2d37JXXGzSB0qzS+F
- yxmEvd+WngwPpiVDgf8hZ1lMQ0JUnkzTAiT+CJksif7da3cIZYIg7BAdNA143gMK6lN2uoF8Znr
- UqRgA4W0mu2DM0sSd5vCelgc+GMoE6MnrmR/3ggIt9TStxwEcIvFa3nItAC3nXFPC2Q4z+U5BGj
- bn8AxYrGfX0eD3RWVTmQ06m7RmTKEjpKsZHgxU81hYxBzRUZIeQ4WaKuJwXUvVgEzrO8vDN1LCp
- fljNRnd08BOVT4vvJUt8trw==
+ bh=wIdm6WAvSCnmDVmjn0d4nzjlUVyQK7d9rbn5XLogh8M=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGo+5yWbE39BAB+33EfKvnPIrrl2F4e82Rhpy
+ Fhj2WG76sGY/IkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqPuclAAoJENju1/PI
+ O/qabkEP/0fQDfGFBdE3Qjyi91pEFGDFfdMbowO1VMEMn2LpVopP514hAJkGol9ABBk4/YCYzPh
+ q9PPGL8kM4g313JuDwpHTl+VyYlZrxGE4ht26BytKRwZDRkycwqs6tcgFk60VGqCR4eXizWOVlo
+ kKgu29ASRVKy1uZr5sTFOZdCjA/6CQKFNiRrrOCD6pnO+5ZV5g7f9tadHbu4YHLyfLrwmf0qj9X
+ kM2K3lIEaei4Nk+hkcNd028WUu+YLyFlEs4xtUxLyhR9QHBdGTcPwYkjg3e95HfYmOtrHNbLY3r
+ XlYRx6v4xG0qDRvRVS/BByNozkusfG19tVqjPkx2s3l5jrpzJMr8acapRQ4Ky2XtxEUIoxjZ20R
+ TOAsO+/BfWnOjfQgOwZj0xbJnOV1gC2L0519nFktLxgur65Ogu3rW1lS7YQTi40rSA2qhnA6VQy
+ VSbaI68fvsMBkZLhDdCrH0rMXyz1IoDtIxOf4VekbgvOphuEdJplWXg1l+7ToAdZJVZNs2cB/Id
+ 6Fw2mW6GwEN6BgLJikjuOLLaEVxkKvBQXnhU3KJqWwmUIOjID69Frbc6fuwD5lGZyIV+8B3jsTY
+ A2EuwGX3giuGG3SK8nFVGXwChvvnG1lSPgKiVDAIxXg41Jht/w4i1mbX+Fyxrc/DUCUwfguJkug
+ scDllP0rFCxDrY4iU38YlwQ==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
@@ -103,14 +104,14 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-316208-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316213-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@gmail.com,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:sebastian.reichel@collabora.com,m:sashiko-bot@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
@@ -118,7 +119,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[rock-chips.com,kernel.org,gmail.com,lists.infradead.org,vger.kernel.org,collabora.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -133,66 +134,48 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A1D536D01F6
+X-Rspamd-Queue-Id: 0A55E6D0222
 
-Right now the DRM drivers do not support seamless DP takeover and I'm
-I'm not aware of any bootloader implementing this feature either.
-
-In any case this feature would be limited to boards using the USBDP PHY
-for a DP or eDP connection instead of the more commonly USB-C connector.
-With USB-C's DP AltMode a seamless DP takeover requires handing over the
-state of the TCPM state machine from the bootloader to the kernel. This
-in turn requires a huge amount of work to keep the state machine
-implementations synchronized. It's very unlikely we will see somebody
-implementing that in the foreseeable future.
-
-As the current code is obviously buggy and untested, let's simply drop
-support for seamless DP takeover. It can be re-implemented cleanly once
-somebody adds all missing bits.
-
-Technically the VOP side should be disabled first to avoid data being
-send to an unpowered PHY from the running pipeline. As a workaround this
-force disables HPD. I'm not sure if this would be good enough, but cannot
-test as there is no support in the bootloaders known to me and my test
-boards route USBDP to USB-C connectors.
+Fix theoretical issue, that failure to deassert the reset lines would
+result in an SError in follow-up register access. Note, that this cannot
+happen with current code, since the Rockchip reset driver never returns
+any errors for (de)asserting reset lines.
 
 Fixes: 2f70bbddeb45 ("phy: rockchip: add usbdp combo phy driver")
 Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://lore.kernel.org/linux-phy/20260612164107.C7DB21F000E9@smtp.kernel.org/
+Closes: https://sashiko.dev/#/message/20260619154903.2225A1F000E9%40smtp.kernel.org
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/phy/rockchip/phy-rockchip-usbdp.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+ drivers/phy/rockchip/phy-rockchip-usbdp.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-index 3fc8222fcaec..f7ff55f03b7c 100644
+index f7ff55f03b7c..b8de0a47a616 100644
 --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
 +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-@@ -926,6 +926,7 @@ static int rk_udphy_parse_lane_mux_data(struct rk_udphy *udphy)
+@@ -936,7 +936,9 @@ static int rk_udphy_get_initial_status(struct rk_udphy *udphy)
+ 		return ret;
+ 	}
  
- static int rk_udphy_get_initial_status(struct rk_udphy *udphy)
- {
-+	const struct rk_udphy_cfg *cfg = udphy->cfgs;
- 	int ret;
- 	u32 value;
- 
-@@ -938,10 +939,12 @@ static int rk_udphy_get_initial_status(struct rk_udphy *udphy)
- 	rk_udphy_reset_deassert_all(udphy);
+-	rk_udphy_reset_deassert_all(udphy);
++	ret = rk_udphy_reset_deassert_all(udphy);
++	if (ret)
++		goto exit;
  
  	regmap_read(udphy->pma_regmap, CMN_LANE_MUX_AND_EN_OFFSET, &value);
--	if (FIELD_GET(CMN_DP_LANE_MUX_ALL, value) && FIELD_GET(CMN_DP_LANE_EN_ALL, value))
--		udphy->status = UDPHY_MODE_DP;
--	else
--		rk_udphy_disable(udphy);
-+	if (FIELD_GET(CMN_DP_LANE_MUX_ALL, value) && FIELD_GET(CMN_DP_LANE_EN_ALL, value)) {
-+		dev_info(udphy->dev, "Started with DP PHY pre-enabled; seamless takeover unsupported\n");
-+		rk_udphy_grfreg_write(udphy->vogrf, &cfg->vogrfcfg[udphy->id].hpd_trigger, false);
-+	}
-+
-+	rk_udphy_disable(udphy);
+ 	if (FIELD_GET(CMN_DP_LANE_MUX_ALL, value) && FIELD_GET(CMN_DP_LANE_EN_ALL, value)) {
+@@ -944,9 +946,10 @@ static int rk_udphy_get_initial_status(struct rk_udphy *udphy)
+ 		rk_udphy_grfreg_write(udphy->vogrf, &cfg->vogrfcfg[udphy->id].hpd_trigger, false);
+ 	}
  
- 	return 0;
++exit:
+ 	rk_udphy_disable(udphy);
+ 
+-	return 0;
++	return ret;
  }
+ 
+ static int rk_udphy_parse_dt(struct rk_udphy *udphy)
 
 -- 
 2.53.0
