@@ -1,78 +1,107 @@
-Return-Path: <devicetree+bounces-316011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316013-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xwltDRVDPmoUCQkAu9opvQ
-	(envelope-from <devicetree+bounces-316011-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:15:01 +0200
+	id rAPSGX9EPmpeCQkAu9opvQ
+	(envelope-from <devicetree+bounces-316013-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:21:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB9D96CB9DE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:15:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6CD96CBA74
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 11:21:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lenovo.com header.s=DKIM202306 header.b=FJWHUZlZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316011-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316011-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=lenovo.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Elypdu4x;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316013-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316013-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A01E23024449
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:14:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BF290302508F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 09:20:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B632C3E6DC9;
-	Fri, 26 Jun 2026 09:14:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C98323EA947;
+	Fri, 26 Jun 2026 09:20:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00823401.pphosted.com (mx0b-00823401.pphosted.com [148.163.152.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0DC3BBA1A;
-	Fri, 26 Jun 2026 09:13:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339753E8C55
+	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 09:20:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782465241; cv=none; b=dpWi4BxS0N1OnfuuLoCxhpfE/1r1wyFTBmFnIl9DMuPQFqUVBh8wXcrhotorB9qSszLUN6w194sV1dh895iWuRhMLoqHr6KCd4ATjvohGna1b2AJ4zK7CqfiOTVincn+QZDdxGT3yNZTVyhjo8OKG22oFflrWoxo/5DEqznJClU=
+	t=1782465648; cv=none; b=CVjC+khHH0NzOM7qaqCLF61YDRBScAhOIGd4fyWoLjiDmWu8w8iom6v4uRhfUeLUis55RwlM3y0JdYh7OIdPO0Y3SmpjIVLJZ8q6kPnYFgdCxxKFYssgFVpFVwnJhrLOQEwEv6tztY68H+btfA7rXXHNdMHGvSbfx5xbRx2l2K4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782465241; c=relaxed/simple;
-	bh=cOCsfBT78xhG3fRxZmukicNrxlZSmKoWTQRGDf0G/MA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ECnhgnnR5wrAEvhdsBdsw/1hsz0Ow9rjV9KXyOxOvdraZD4/RMVR+iNQjNY392rreaI/ehxSUnLbFkUS3AhbBrETSCdMMSEfy1qL4MG7r5w2YZjxyO/qbtaptCGbh8pvKKcKlAM85Pqn2c8y3e3bKrpfj3EK0n0r3g47aHV1Gzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lenovo.com; spf=pass smtp.mailfrom=lenovo.com; dkim=pass (2048-bit key) header.d=lenovo.com header.i=@lenovo.com header.b=FJWHUZlZ; arc=none smtp.client-ip=148.163.152.46
-Received: from pps.filterd (m0355092.ppops.net [127.0.0.1])
-	by mx0b-00823401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65Q6Swr13458129;
-	Fri, 26 Jun 2026 09:13:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lenovo.com; h=cc
-	:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=DKIM202306; bh=tz/cw+b/G0
-	c9ABcmoPa/b048iyxpHB2exivshQ8ngB4=; b=FJWHUZlZUPicSjdw7m3D7uPZO8
-	B67th0A0x/Co2Je0MWGBY8EQp4RfKQ+k2i6tRqhQRbYgawWTkW4loJ9CLWIy+BS2
-	Y5ak1jagNtKRCfzNZJuEOvkBHpNAvYFeirJDoxgNpBmgllhEp6RUDE1KxYwuEJZp
-	WzZ46NlZ2wCfQL1Q02yJX/w4GPInFcXvZwY2/7Q2ZNim3pPhWeSgRPXDDfzWVEQV
-	WD/iGilKJwdWSy09JGh4DR6ZTXzet2VgktGMCVjl96POl8rj0dUx2EDMnghJop36
-	OeDosrqJXJR9nf4Tm0WTTe2PrIoKoQPzSViGKaAFYVd+Y6IInW2Y+dpXWwAQ==
-Received: from hkglppfpool4.lenovo.com ([103.30.235.221])
-	by mx0b-00823401.pphosted.com (PPS) with ESMTPS id 4ex96ek7fs-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 26 Jun 2026 09:13:53 +0000 (GMT)
-Received: from shelppfpol2.lenovo.com (unknown [10.122.146.24])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hkglppfpool4.lenovo.com (Postfix) with ESMTPS id 4gmqjW52bYzltBBw;
-	Fri, 26 Jun 2026 09:13:51 +0000 (UTC)
-Received: from lenovo.com (unknown [10.119.171.213])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by shelppfpol2.lenovo.com (Postfix) with ESMTPS id 4gmqjW0Xj9zhZ;
-	Fri, 26 Jun 2026 09:13:51 +0000 (UTC)
-From: Jiqi Li <lijq9@lenovo.com>
-To: linux-tegra@vger.kernel.org
-Cc: devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, jonathanh@nvidia.com, thierry.reding@gmail.com,
-        mpearson-lenovo@squebb.ca, Jiqi Li <lijq9@lenovo.com>
-Subject: [PATCH 2/2] arm64: tegra: Add Lenovo ThinkEdge SE70 carrier board DTS
-Date: Fri, 26 Jun 2026 17:13:49 +0800
-Message-ID: <20260626091349.570091-3-lijq9@lenovo.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260626091349.570091-1-lijq9@lenovo.com>
-References: <20260626091349.570091-1-lijq9@lenovo.com>
+	s=arc-20240116; t=1782465648; c=relaxed/simple;
+	bh=FCGrZ4ia9moub3vpndSIDoB0WJ00EU6aXtezVQRRMPc=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=cnGVG8rh/SjMfsQ/XJKIsLdguOVQowH1UC0OWUlk3ZH2+fUNdA8dOEPCYYtzDLP9gukW7fNBibFokKqVvLNthFgYdgovleb89RfXQ2Q8sDqZrKVc/0j/KhMgnuAwQuBVlIQiOumhorWSpsQ8YIVj8+I4Hq6qoTElfco+Ol0Po94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Elypdu4x; arc=none smtp.client-ip=209.85.221.45
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-4631679f204so1013008f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 02:20:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782465642; x=1783070442; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z7RIq6wHh9BtCzFgGyY7sK62eHn+d9xSU82SzTr05Co=;
+        b=Elypdu4xi0M8dd2ntH3MR89nYmZoTtHRgc5LGXAlTwR07gD918mQ7nHYC9B9irBq6b
+         HQEgPt+REk2YlKR6IhMmvsCS+ftOD0+ey8ikl7RH50MZHHNZSf0ClUDSmNET75vPfWI8
+         /TY5s1zwrrMZmah8GsXqBP9xAnqJWWTDkPezQo7pgKr//OzkJ3E7bsIeLlcDaGrIfTiY
+         PcLUhP/52jiJv27YJjQPrUhZbXc9xG3Zw40arc3acNExqrQWcCryBqa2PKhKMriS133g
+         Xr9lm2sxdQbe8SWI5fS17wVEc9Bre9viIXgwkzOIbAx75KDD6Gmb03NDCaHHGtyFmBzC
+         DbDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782465642; x=1783070442;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z7RIq6wHh9BtCzFgGyY7sK62eHn+d9xSU82SzTr05Co=;
+        b=bbbCSlRfLfi95YOYccyxE7SGpff2euS+XS9EJKJtP9EKDcLYRArwhAG3v2FcVBOOix
+         z2WlzuDPWmzY6L7sPa9WpJPhFaQNnzjeef6Erfe9Yl6o8gfi/fssRYgEMLvn5pmTEmAg
+         TC66Fdbswjht3u33bAYX1ryWAgNooq0uZQor+4cxp80wP6qG2P4bb3ltudrzm3oDiSdE
+         GSGVHk/zazcgiqCxJHgsBcDZPcGU7XYVlIqfNuE+hXQ3OgxQDbkm5QoEr6mQzhfM48xC
+         OPpG7/NmJ+KZh+ThXf+ycBb6yPbvgBqD8+LBAYar/vaCdpoPmf0SjFG7H7EXKexaepBl
+         TcUw==
+X-Forwarded-Encrypted: i=1; AHgh+RpgOBr0CqRY1wF957z72xPql6e0puahCZ73GwqRcHrlJbzNN3MAFJUpEvpI6acJUqgsh/j81hI50zBp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxA8CYOGh+HARbHtA+DYLTVMnOu3uF50EJV5RaXvOJ4ezpqTN4v
+	CJDTzZPJm66ezHfRR/IOtE3sgsa89Za97/Iesd5iRW7/XnTAhVKegkUV
+X-Gm-Gg: AfdE7cm1r9ljAVZKEcUXn4hDIOzGk5ClRBbBIypy9if4FcfJK4J4vVSBHjt0DjINoqu
+	SL0Kmm5BbHfurNcF3qs+/NOL5kmN1q4G6LN5ZMq778KK1rqqy1PdbwpDKgYIyWn03MRxgTNYFX9
+	/NM0ttlwfvcuBFurdvdavb8JOcdB3Z8qRGiMhZLs8wca6NttBhUcldjRyhs77UClLj+QKBgbhGB
+	dNH/L8Ju7z7K0CUg4QDL4knIDdzwlR96xpLfT0kCoA2mqmqQ5wICxzJRzCtMbHxIC2tojS1nuDs
+	r4467mCg7Pgra9Z+6CcLni9LkCPF1Y3USG5lVWLXRDIKMg6oSHRPb+HPqa58Z8KAsw1VOvh+BsH
+	8Lyzr+hQelQgmZo16C2QFoNmneJV2+ZBkmrH/aH1e5VrCuYb/AP7Hi6m1nN0IaFXhneLH5O5J45
+	VM5PbOhZZyX36Oekz9IJNBhTcU568dtVOznPFPwmPpDdcq4yj312NsKkzGT6MTU9GWn9mGrLKFu
+	TY276/NcRo5
+X-Received: by 2002:a05:6000:18a9:b0:461:a15a:4160 with SMTP id ffacd0b85a97d-46da8c5fcb6mr10187397f8f.13.1782465642257;
+        Fri, 26 Jun 2026 02:20:42 -0700 (PDT)
+Received: from Ansuel-XPS24.localdomain (host-80-183-219-152.pool80183.interbusiness.it. [80.183.219.152])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-46e6167c05fsm9094388f8f.25.2026.06.26.02.20.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Jun 2026 02:20:41 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Jianjun Wang <jianjun.wang@mediatek.com>,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/4] PCI: mediatek-gen3: Add 2-lanes mode support + clock
+Date: Fri, 26 Jun 2026 11:20:24 +0200
+Message-ID: <20260626092029.3525264-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,231 +109,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI2MDA3MyBTYWx0ZWRfX4yEafK7ndQHQ
- aO+35j4+AuWIYv5cUoLIwFx4raok32No2/LEfIU2j91e+dxGqHb1OQFR7saiH0bAcaCuz9vA2nv
- aY9ufbU8OedPEBNDIVW7/kB8pm/+oVE=
-X-Proofpoint-ORIG-GUID: NSINOSvFFuAwlp4bLgRQ4WoidJzyu1i3
-X-Authority-Analysis: v=2.4 cv=S7fpBosP c=1 sm=1 tr=0 ts=6a3e42d1 cx=c_pps
- a=kYoHdcNGVJUooFJAQZl1vA==:117 a=kYoHdcNGVJUooFJAQZl1vA==:17
- a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=2RTuljz969oO5usasWGy:22
- a=rq6KeYSQr_4CDViOXtGD:22 a=8k6WQxmsAAAA:8 a=e3-4sso9unGw9Dwr07EA:9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI2MDA3MyBTYWx0ZWRfX8yqffQrmmb+a
- p00YzdcFC42y2GugXyJX5cXJss5pb/PVTppZvw+JACEJcXOWkpqZ9ZagMuo0oB6pDLYSdCE7wOG
- L+z8Ij7G6eHyVEsE6VnC19A1FqT0kyhyNWCo1j7EJcCww4eAvZLrAZaMMZs3p/xHb0g9LU5ekKA
- Z1Ap0v5H85UG+gFOEMJsGHJlR8pIwtEweGkkm9PUjE4CN3WpILn5ZW7xI4kfCZm3FT5yAHdHoOc
- FEJy5ZgoBFbFNB0d/9XECXCx0iwT49D9Dg5XxgH8RnS4bwJQ/oKvui38s5OjLpXtESYsKsz927T
- s2/ugYDZgKmdk2iGsZbcfn5b79cvtBt6N/kNvHAGgE9OQ6WQ55zs2R5OK2y3xoqQPaW9SR1XrBv
- rFi5sp7poIwW3k2HadwIF4vZkTdOAm1ItSPvCGz9dvwWGmtyRzSpdbqOclRBIgDi3eygRiGJdYS
- AUgLW/5hkpHYwZ3KUlA==
-X-Proofpoint-GUID: NSINOSvFFuAwlp4bLgRQ4WoidJzyu1i3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-26_02,2026-06-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 adultscore=0 spamscore=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 clxscore=1015 impostorscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=-20
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606260073
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[lenovo.com,reject];
-	R_DKIM_ALLOW(-0.20)[lenovo.com:s=DKIM202306];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,nvidia.com,gmail.com,squebb.ca,lenovo.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-316011-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-316013-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:bhelgaas@google.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ryder.lee@mediatek.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:p.zabel@pengutronix.de,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:ansuelsmth@gmail.com,m:jianjun.wang@mediatek.com,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-clk@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[google.com,kernel.org,mediatek.com,baylibre.com,redhat.com,pengutronix.de,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-tegra@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh+dt@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonathanh@nvidia.com,m:thierry.reding@gmail.com,m:mpearson-lenovo@squebb.ca,m:lijq9@lenovo.com,m:robh@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lenovo.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lenovo.com:dkim,lenovo.com:email,lenovo.com:mid,lenovo.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BB9D96CB9DE
+X-Rspamd-Queue-Id: C6CD96CBA74
 
-ThinkEdge SE70 is a fanless industrial edge gateway built around
-NVIDIA Tegra194 Xavier NX SOM. This patch adds a standalone device
-tree file describing core carrier board peripherals:
-- Custom 40-pin header pinmux configuration
-- External SD card slot with dedicated 3.3V fixed regulator
+This small series introduce support for 2-lanes mode for Airoha AN7581
+SoC. This is needed for correctly functionality of Eagle WiFi Card
+normally attached to this SoC that require a 2-line PCIe card to
+correctly work (and give the proper performance)
 
-No fan, PWM, tachometer, extra camera/spi peripherals are present
-on this passively cooled platform, so unused nodes are explicitly
-disabled following mainline device tree best practices.
+The first 2 patch address a limitation of the PCIe implementation
+where the PERSTOUT reset were indirectly asserted and deasserted
+all at the same time (for all the 3 PCIe card) with PCIe
+enable and disable.
+The 2 patch address this and introduce correct reset to control
+reset line for the relevant PCIe line.
 
-Static verification passed: dt_binding_check and dtbs compilation
-complete without errors.
+The last 2 patch add additional logic and support to assert
+and deassert the PERSTOUT and also apply the required configuration
+for 2-lanes mode.
 
-Signed-off-by: Jiqi Li <lijq9@lenovo.com>
----
- arch/arm64/boot/dts/nvidia/Makefile           |   1 +
- .../nvidia/tegra194-lenovo-thinkedge-se70.dts | 124 ++++++++++++++++++
- 2 files changed, 125 insertions(+)
- create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
+2-lanes mode is implemented in DT by adding the required property
+and by defining the "num-lanes" to 2.
 
-diff --git a/arch/arm64/boot/dts/nvidia/Makefile b/arch/arm64/boot/dts/nvidia/Makefile
-index 72c0cb5efa47..736a3f8a923f 100644
---- a/arch/arm64/boot/dts/nvidia/Makefile
-+++ b/arch/arm64/boot/dts/nvidia/Makefile
-@@ -29,6 +29,7 @@ dtb-$(CONFIG_ARCH_TEGRA_186_SOC) += tegra186-p3509-0000+p3636-0001.dtb
- dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p2972-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p3509-0000+p3668-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p3509-0000+p3668-0001.dtb
-+dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-lenovo-thinkedge-se70.dtb
- dtb-$(CONFIG_ARCH_TEGRA_234_SOC) += tegra234-sim-vdk.dtb
- dtb-$(CONFIG_ARCH_TEGRA_234_SOC) += tegra234-p3737-0000+p3701-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_234_SOC) += tegra234-p3737-0000+p3701-0008.dtb
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
-new file mode 100644
-index 000000000000..44a7ae9a05bf
---- /dev/null
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
-@@ -0,0 +1,124 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "tegra194-p3668-0001.dtsi"
-+#include "tegra194-p3509-0000.dtsi"
-+
-+/ {
-+	model = "Lenovo ThinkEdge SE70";
-+	compatible = "lenovo,thinkedge-se70", "nvidia,p3509-0000+p3668-0001", "nvidia,tegra194";
-+
-+	chosen {
-+		bootargs = "console=ttyTCU0,115200";
-+	};
-+
-+	/* Fixed 3.3V regulator for external SD card slot */
-+	fixed-regulators {
-+		compatible = "simple-bus";
-+		ap2306gn_3v3_sd: ap2306gn-3v3-sd {
-+			compatible = "regulator-fixed";
-+			regulator-name = "ap2306gn-3v3-sd";
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3300000>;
-+			gpio = <&gpio TEGRA194_MAIN_GPIO(Q, 5) GPIO_ACTIVE_HIGH>;
-+			enable-active-high;
-+			status = "okay";
-+		};
-+	};
-+
-+	bus@0 {
-+
-+		/* Custom pinmux configurations for 40-pin expansion header */
-+		pinmux@2430000 {
-+			status = "okay";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&hdr40_pinmux>;
-+
-+			hdr40_pinmux: header-40pin-pinmux {
-+				pin7 {
-+					nvidia,pins = "aud_mclk_ps4";
-+					nvidia,function = "aud";
-+					nvidia,pull = <TEGRA_PIN_PULL_NONE>;
-+					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_DISABLE>;
-+				};
-+				pin11 {
-+					nvidia,pins = "uart1_rts_pr4";
-+					nvidia,function = "uarta";
-+					nvidia,pull = <TEGRA_PIN_PULL_NONE>;
-+					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_DISABLE>;
-+				};
-+				pin12 {
-+					nvidia,pins = "dap5_sclk_pt5";
-+					nvidia,function = "i2s5";
-+					nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+				};
-+				pin35 {
-+					nvidia,pins = "dap5_fs_pu0";
-+					nvidia,function = "i2s5";
-+					nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+				};
-+				pin36 {
-+					nvidia,pins = "uart1_cts_pr5";
-+					nvidia,function = "uarta";
-+					nvidia,pull = <TEGRA_PIN_PULL_UP>;
-+					nvidia,tristate = <TEGRA_PIN_ENABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+				};
-+				pin38 {
-+					nvidia,pins = "dap5_din_pt7";
-+					nvidia,function = "i2s5";
-+					nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+					nvidia,tristate = <TEGRA_PIN_ENABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+				};
-+				pin40 {
-+					nvidia,pins = "dap5_dout_pt6";
-+					nvidia,function = "i2s5";
-+					nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
-+					nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_DISABLE>;
-+				};
-+			};
-+		};
-+
-+		/* Configure i2c bus clock to 400kHz for carrier board peripherals */
-+		i2c@3160000 {
-+			clock-frequency = <400000>;
-+			status = "okay";
-+		};
-+
-+		/* SDMMC3 for external user SD card slot with dedicated 3.3V power */
-+		mmc@3440000 {
-+			vmmc-supply = <&ap2306gn_3v3_sd>;
-+			cd-gpios = <&gpio_aon TEGRA194_AON_GPIO(CC, 4) GPIO_ACTIVE_HIGH>;
-+			status = "okay";
-+		};
-+
-+		pwm@c340000 {
-+			status = "disabled";
-+		};
-+		pwm@3280000 {
-+			status = "disabled";
-+		};
-+		pwm@32c0000 {
-+			status = "disabled";
-+		};
-+		pwm@32d0000 {
-+			status = "disabled";
-+		};
-+		pwm@32f0000 {
-+			status = "disabled";
-+		};
-+	};
-+
-+	/* Disable fan hardware not populated on SE70 carrier board */
-+	pwm-fan {
-+		status = "disabled";
-+	};
-+};
+Changes v2:
+- Address typo regs -> reg in Documentation
+- Address typo lan -> lane in Documentation
+- Apply a suggested fix from Airoha for PCIe MUX configuration
+  before PHY init
+- Parse secondary reg in probe
+- Add missing reset_status handling for inverted bits
+- Move SCU to local handling in power_up
+- Add check for max num-lanes for EN7581
+
+Christian Marangi (4):
+  dt-bindings: clock: airoha: Add additional reset for PCIe PERSTOUT
+  clk: en7523: add support for dedicated PCIe PERSTOUT reset
+  dt-bindings: PCI: mediatek-gen3: Split Airoha schema and document
+    2-lanes
+  PCI: mediatek-gen3: Add 2-lanes mode support for Airoha AN7581
+
+ .../bindings/pci/airoha,en7581-pcie.yaml      | 251 ++++++++++++++++++
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  77 +-----
+ drivers/clk/clk-en7523.c                      |  39 ++-
+ drivers/pci/controller/pcie-mediatek-gen3.c   | 101 +++++--
+ .../dt-bindings/reset/airoha,en7581-reset.h   |   4 +
+ 5 files changed, 370 insertions(+), 102 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/airoha,en7581-pcie.yaml
+
 -- 
-2.43.0
+2.53.0
 
 
