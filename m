@@ -1,283 +1,199 @@
-Return-Path: <devicetree+bounces-315923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315925-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zBoaE4EQPmqs/QgAu9opvQ
-	(envelope-from <devicetree+bounces-315923-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 07:39:13 +0200
+	id mwO1GZ0QPmq6/QgAu9opvQ
+	(envelope-from <devicetree+bounces-315925-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 07:39:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A65BB6CA6DE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 07:39:12 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEC286CA6E8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 07:39:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="I/f4P/dh";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315923-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315923-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=NBCXpoyE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315925-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315925-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8F448303A8C2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 05:39:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 503243024E50
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 05:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31AAE3C555B;
-	Fri, 26 Jun 2026 05:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94ED83C870E;
+	Fri, 26 Jun 2026 05:39:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com [74.125.82.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C8EA3C6A38
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 05:39:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8C73C6A43;
+	Fri, 26 Jun 2026 05:39:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782452347; cv=none; b=iy33swoHDfo+ri3kotKveJBcjCXy8wHpbMGxP3f+yRHYpEkTz99+Oz8Ewe+amfaEVHxDr/RvGbmr6gCCTv63IuDmUqGo07Ywxzw5f7YuxZHMyupRrJglMBCm8srvSSKHBAAjOWvRDjbp4SNMPQOj6jQTE3ZnNcFJPCIhb3gANZc=
+	t=1782452378; cv=none; b=n43LzsRSr1qxeleaoSuSgma+rJEjxFZMnCqgS10zk+Z6jvceiE28wQ1qBH4W/HLDcpQ9peAJ4zcxctN0OduKdoiKdiP+BM04Er8qtDJJtCRGTD8tPenudub1z1vRw1ZAEj9lAWIGEXSnuK8UOImCxdcENZ9zjsJD4UxCso2de7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782452347; c=relaxed/simple;
-	bh=yg1iR2eX+aSwl1WeDbQ1iGJMeExq9sx+kGcLa1kbL6Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n7uTvYHjjnKjGRDgO7BrXcE/ghzMtq7kh22OfkHddfXvPMWXTtFwlCWcAVqjhTkExV0d3wQ8iIsR2mgyg1UEsCVj1myQrXGIk20RH0k5FoSGtcG3AXOqmm+Oiunwt+vjzl80iunia6zM2sE49yeDkS+8fLNNi0dH7MD0ZTs5DrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I/f4P/dh; arc=none smtp.client-ip=74.125.82.172
-Received: by mail-dy1-f172.google.com with SMTP id 5a478bee46e88-30bbe98c3f0so904742eec.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Jun 2026 22:39:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782452343; x=1783057143; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PhqZPVerKLJBXebvWPDJC0C1pTu6QcXLOIWVjWqdOYk=;
-        b=I/f4P/dh+jCMG5RpP6ArymqE1ISPTSS6gZIqambDTuSrDMh840Vd7CDU+vSkOqhait
-         F4xA0y9ByvMN7QFYY6qhTT3zAcDFNtPQpTauM7bVo3YiUUIOWknhQs6/jwZPVPV1UHD9
-         reAKweUqgyNuF/XsyxgCXgryMJQ9alWRmRDeBqFztGoX2Q8irPyKNS1/BtFy5Xz1I/3j
-         TKOP/aKgx1qzPHX7vDHPSoSjvRDHdaBevRx2NurMxb2SkPKG7xmPwn0GdV27yroqo9kL
-         h3rnGCcvHTVCiGklrOZs05xRaiqA5SRwStMMyLBmYhtni2HGUfSmPA0lbDXhUi1jKWpe
-         2BFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782452343; x=1783057143;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PhqZPVerKLJBXebvWPDJC0C1pTu6QcXLOIWVjWqdOYk=;
-        b=pWiHI/mM+JY7r8drumBBTaySz69n3Wev/95Gm6yc88sZ8OE0WIfc8dX/zWK1jLm0RA
-         zhxijZ6+43flhC9OZc236SADMbI1/G58tbaEK53J9ofr+36WtuSQugDdE6Mc90rHbWzR
-         XupJuNf1oa50DkLRs2SxuhDAQxGHo8bbqEx8qM9d9xxbvfuxYpUZ+GgmfyiLPEQun3ld
-         CWE1hVBUY5e+74oZhfrRCxhC5UajvAAKDSySi2Ti8zhew+G2hdm505YXklqnIQ2BM+bO
-         /k+4d0uYrv0GgEjfKiE5hLDCzp9X2AjRBZ4Cjm0z1uN5ZbkeVVxHOSat8HpTTNQ0CMFR
-         mBwQ==
-X-Forwarded-Encrypted: i=1; AHgh+Rp6vZo4+pG5rxXm94UWgs7TPzr61PVjOIL9yFLQTGZosFJeLv1mAbLCc+TgzjNupYVn1uwbcHcav8KD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMxblL32pmi+Nm3PBHgdjcN9gNdy9sjG2g2YTUZ7j9KOss+t2U
-	hErEbjSg8jsnfBP6a35XnRKkHswws7Z4rzBOVk3UQCrfIF8xwpSXkjg3
-X-Gm-Gg: AfdE7clbwMjEiRO3pQreyfAyk7T5BL3wzF/i/1FN4bYqiVtP7SI7cqClqlQ+8EB5KhY
-	SEviX/bnnLGgnZsawUnFrCD02dgyUZmyyI5sKQrBI+yhk6b9iDOLoFZ0mX3OYuQaohEgSbuE+8x
-	1mmkmOl6D1wQbaUJbTJgmJm18Se+lZ5gpQksAbfW+r36SzP/l446CmfaqyN5+ERwCuvDhs8aY09
-	HgeDNAyaIjyGWRtrOPUusU0IprF3cpRFOmFm+pO5G5VXQJ3AkxyiLXnRI7gLPr2HF1dZMVv3R45
-	/cJbFPZ71D+VnWews18jntiq9nfCE1+KOliIXngXrgV5a5LCyMD1LvW5Un5Xt/MxHJN3BsB1S4C
-	ZbXu8wdpx4imCMgf/Z7RsZOqqAG9up9OpYW+tRu3n+M/Ocs/hE30ehD8SCZCpGmVfYpQiYXtJP1
-	qmWNPM5H5SWE9B+qKOIDpC0rtdnqapoPaScqhUyIzDsNPw8XFdZj5D+w==
-X-Received: by 2002:a05:693c:23c9:b0:30b:c6f0:1cd9 with SMTP id 5a478bee46e88-30c84d7f362mr5143316eec.26.1782452343350;
-        Thu, 25 Jun 2026 22:39:03 -0700 (PDT)
-Received: from google.com ([2a00:79e0:2ebe:8:a474:bf4a:4966:8d97])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-30c7c570b7bsm13347671eec.12.2026.06.25.22.39.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jun 2026 22:39:02 -0700 (PDT)
-Date: Thu, 25 Jun 2026 22:38:59 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: David Heidelberg <david@ixit.cz>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Jason A. Donenfeld" <Jason@zx2c4.com>, Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
-	Vincent Huang <vincent.huang@tw.synaptics.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sdm845-oneplus: Update
- compatible to include model
-Message-ID: <aj4QUY5p7gqLplVT@google.com>
-References: <20260523-synaptics-rmi4-dt-v2-2-0645122babdc@ixit.cz>
- <ahdoBl3qCTyvlYJf@google.com>
- <1d0e7e31-f808-4347-955a-7246dea208f5@ixit.cz>
- <742c7a13-9465-40e8-8990-e679712e9784@ixit.cz>
- <ajtaUb4YmyZTDLmQ@google.com>
- <52b7dd3a-3f6f-474c-8386-4fc2776b185b@ixit.cz>
- <ajxakXFuKAkhdZLN@google.com>
- <f81e4d83-90d9-47c8-aee9-319df3f8b0fb@kernel.org>
- <aj1OhZQjO5nNYlAo@google.com>
- <32affded-bae2-46c4-a702-2054fbfe46a8@ixit.cz>
+	s=arc-20240116; t=1782452378; c=relaxed/simple;
+	bh=g+qv6yDnSKfM5Y35nL+/IDMuJ04Lv9xK2LZVXVlDSpQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DpLkWgs7rSNzpWW/ZGD4Ri2TkX/QIi/X8lGNqyDSE6bjm6WIf03I9+R2cu92qeCjbmnCz4VaLDR9bmrYrWRVF3WvdrdoYv9ot559JrGzQgnBui/mQIJTYSszMGH2bhIFIVrlYzcLWNoC9BtrqA+VlxNX+VP9VYBaizLZVSYEJ+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NBCXpoyE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0ACFFC2BCB8;
+	Fri, 26 Jun 2026 05:39:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1782452378;
+	bh=g+qv6yDnSKfM5Y35nL+/IDMuJ04Lv9xK2LZVXVlDSpQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=NBCXpoyEA1cDV2LrF8mxKCyfNXCbPWJINR9N0DnUsb70Bs3ByD1iuL375+SdScgNS
+	 f8xF1I56Tq4tvKDXK/eCFU6gWcEsx4c62+kxKfctlAe3TVBbpEcX6TN6hS4zAZoSJm
+	 zmZrw4n2K7QjQ5zufmgRwQxO4mVzkKsAgjzYoZl9ZRaDCk07o9WUtQXwHghApz3ACV
+	 GvDffGWlCGQraLRQFu24j5omOLP+UtmLmB44WCnzZCuU4wW6Z4Vb/xjUO6wgi085yc
+	 iw7gOnQziRuN/b2F31YmlgZy3IeVSJLjfBx9VMqEDduhEftsIFUrS0Uzcp1/q0nCHb
+	 rsbaZsKjD+vYQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6659CD4F26;
+	Fri, 26 Jun 2026 05:39:37 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v9 0/3] Add Amlogic general DMA
+Date: Fri, 26 Jun 2026 05:39:32 +0000
+Message-Id: <20260626-amlogic-dma-v9-0-558d672c4a95@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <32affded-bae2-46c4-a702-2054fbfe46a8@ixit.cz>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJQQPmoC/23QTU7EMAwF4KuMsqaoduykYcU9EIs0cWci0SlqU
+ QUa9e6kI0b9Y/kSfc+Wb2qQPsmgXk431cuYhtRdc3BPJxUu/nqWIsWcFZbIgMCFbz+6cwpFbH1
+ hHVkbOUQ0pLL47KVJ3/e2t/ecL2n46vqfe/kI8+ujx2x6RijKQrBywlac8fb17/c5dK2am0Z8a
+ FMC2q3GrImRo0YbLcWj1ovGcjdbZ82mqV3DTiLiUdNK72dT1g2ykAESV/+zOS9al7TVnLX3xDo
+ CNZH0UZu1dlttsjZak4uo60j1UduVxt1sO29e1Q5EwGGAo64WzQhbXWVdmRAwiCOg3dWmafoFE
+ uGPSloCAAA=
+X-Change-ID: 20251215-amlogic-dma-79477d5cd264
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Frank Li <Frank.Li@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782452375; l=2825;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=g+qv6yDnSKfM5Y35nL+/IDMuJ04Lv9xK2LZVXVlDSpQ=;
+ b=mDnEzc5cmYQ9D1pqlFBAkvAS8wOrutsoF7kY2et9MK1iAJabMWCZVNZIbjhzSpi3V8fp5/MLV
+ jKtI/Okrw1uAvN0i5dlShGgHVXY9ex4goTEgkU2w1tnPkjaRGLq1/2K
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-315923-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-315925-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:Frank.Li@kernel.org,m:linux-amlogic@lists.infradead.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:xianwei.zhao@amlogic.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:Frank.Li@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:david@ixit.cz,m:krzk@kernel.org,m:krzk+dt@kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:Jason@zx2c4.com,m:matthias.schiffer@ew.tq-group.com,m:vincent.huang@tw.synaptics.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:phone-devel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,ixit.cz:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A65BB6CA6DE
+X-Rspamd-Queue-Id: EEC286CA6E8
 
-On Thu, Jun 25, 2026 at 08:39:15PM +0200, David Heidelberg wrote:
-> On 25/06/2026 18:57, Dmitry Torokhov wrote:
-> > Hi Krzysztof,
-> > 
-> > On Thu, Jun 25, 2026 at 10:23:54AM +0200, Krzysztof Kozlowski wrote:
-> > > On 25/06/2026 06:53, Dmitry Torokhov wrote:
-> > > > On Wed, Jun 24, 2026 at 04:37:25PM +0200, David Heidelberg wrote:
-> > > > > On 24/06/2026 06:28, Dmitry Torokhov wrote:
-> > > > > > Hi David,
-> > > > > > 
-> > > > > > On Sun, Jun 21, 2026 at 07:11:45PM +0200, David Heidelberg wrote:
-> > > > > > > On 28/05/2026 00:13, David Heidelberg wrote:
-> > > > > > > > On 27/05/2026 23:56, Dmitry Torokhov wrote:
-> > > > > > > > > Hi David,
-> > > > > > > > > 
-> > > > > > > > > On Sat, May 23, 2026 at 11:45:35AM +0200, David Heidelberg via B4 Relay wrote:
-> > > > > > > > > > From: David Heidelberg <david@ixit.cz>
-> > > > > > > > > > 
-> > > > > > > > > > We know the driver is reporting s3706b, introduce the compatible so we
-> > > > > > > > > > can more easily introduce quirks for weird touchscreen replacements in
-> > > > > > > > > > followup series.
-> > > > > > > > > > 
-> > > > > > > > > > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> > > > > > > > > > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > > > > > > > > > ---
-> > > > > > > > > >     arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 2 +-
-> > > > > > > > > >     1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > > > > > > > 
-> > > > > > > > > > diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> > > > > > > > > > b/arch/ arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> > > > > > > > > > index 6b7378cf4d493..148164d456a5a 100644
-> > > > > > > > > > --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> > > > > > > > > > +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> > > > > > > > > > @@ -475,17 +475,17 @@ bq27441_fg: bq27441-battery@55 {
-> > > > > > > > > >         };
-> > > > > > > > > >     };
-> > > > > > > > > >     &i2c12 {
-> > > > > > > > > >         status = "okay";
-> > > > > > > > > >         clock-frequency = <400000>;
-> > > > > > > > > >         synaptics-rmi4-i2c@20 {
-> > > > > > > > > > -        compatible = "syna,rmi4-i2c";
-> > > > > > > > > > +        compatible = "syna,rmi4-s3706b", "syna,rmi4-i2c";
-> > > > > > > > > 
-> > > > > > > > > So I believe we established that this device (s3706b) does not in fact
-> > > > > > > > > implement rmi4 protocol properly. Why do we have "syna,rmi4-i2c" as a
-> > > > > > > > > fallback? Shouldn't it be just "syna,rmi4-s3706b"?
-> > > > > > > > 
-> > > > > > > > The vendor supplies s3706b which does implement the RMI4 properly.
-> > > > > > > > 
-> > > > > > > > The 3rd party replacement impersonating original parts may not implement
-> > > > > > > > it properly, but I don't address this issue in this initial submission.
-> > > > > > > > 
-> > > > > > > > With this compatible we know which original part is used by the vendor
-> > > > > > > > and installed in the phones, so later we can deduct specific sequences
-> > > > > > > > for the replacement aftermarket parts to keep phone touchscreen working
-> > > > > > > > same as they do on Android without affecting other devices.
-> > > > > > > 
-> > > > > > > Hello Dmitry.
-> > > > > > > 
-> > > > > > > May I ask what is currently preventing this series from moving forward?
-> > > > > > > 
-> > > > > > > The first version was posted in 2023 [1]. I picked it up again in 2025 [2]
-> > > > > > > and am now on the 9th iteration (this patchset). At this point, the series
-> > > > > > > has been under discussion for well over a year, with relatively little
-> > > > > > > feedback and increasingly long gaps between review rounds.
-> > > > > > > 
-> > > > > > > The current approach is based on the guidance I have received so far,
-> > > > > > > including suggestions from the device-tree maintainers. When concerns were
-> > > > > > > raised, I tried to address them and rework the series accordingly.
-> > > > > > > 
-> > > > > > > What I am struggling with is understanding what specific issue still needs
-> > > > > > > to be resolved before these patches can be accepted. If there are remaining
-> > > > > > > requirements, objections to the approach, or technical concerns that I have
-> > > > > > > not addressed, I would appreciate having them stated explicitly so I can
-> > > > > > > work on them.
-> > > > > > > 
-> > > > > > > I also split out the straightforward, self-contained changes in the hope
-> > > > > > > that at least those could progress independently while I continued working
-> > > > > > > on any follow-up requirements. However, even those patches do not appear to
-> > > > > > > be moving forward.
-> > > > > > > 
-> > > > > > > Could you please clarify what outcome you would like to see from this
-> > > > > > > series, and what concrete changes would be required to get it accepted?
-> > > > > > 
-> > > > > > I am still confused about how you want to differentiate between the full
-> > > > > > RMI4 support vs the OnePlus flavor. The "syna,rmi4-s3706b", as you
-> > > > > > mentioned, implements RMI4 protocol properly, so we do not need to
-> > > > > > actually have it documented neither in binding nor in DTS.
-> > > > > 
-> > > > > --- part 1 ---
-> > > > > 
-> > > > > This series addresses identification within device-tree. It's normal
-> > > > > recommended practice.
-> > > > > 
-> > > > > If we know, the device ships specific, but **compliant** variant, we just
-> > > > > put it as compatible = "more-specific", "less-specific"; in this case
-> > > > > "syna,rmi4-s3706b", "syna,rmi4-i2c"
-> > > > > 
-> > > > > This approach is used everywhere. This has nothing to do with after-market parts.
-> > > > 
-> > > > We do this in many cases, sometimes when a part has different timings or
-> > > > maybe additional functionality compared to the base model.
-> > > 
-> > > Generic expectation is to have always dedicated front compatible for
-> > > every device. rmi4-i2c is not really specific enough, more like a
-> > > family, thus a specific device compatible is essential by the DT rules.
-> > 
-> > Essential in what way? What will break if such compatible is not there?
-> > We have lived without it for many years and will continue live happily
-> > without it for years to come.
-> 
-> Hi Dmitry, Krzystof,
-> 
-> Device tree should describe the hardware, rmi4-i2c isn't the exact model of
-> hardware used, the real hardware is Synaptics S3706B. Device-tree should,
-> where possible, describe the actual hardware used.
-> 
-> > 
-> > We keep having this conversation each time there is self-describing
-> > protocol that does not require knowledge of a specific part number:
-> > i2c-hid, rmi4, spi-hid coming over soon.
-> 
-> While the protocol doesn't require this knowledge, where is the issue
-> provide the model, at least in the places where we know it?
-> 
-> Does it making things worse to describe hardware in more detail?
+Add DMA driver and bindigns for the Amlogic SoCs.
 
-OK, I applied the binding change, the dts change should go through some
-other tree.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v9:
+- Use each transmission request sg_link mem instead of the loop mem get.
+- Fix some hidden issues which reviewed by ai robot.
+- Link to v8: https://lore.kernel.org/r/20260521-amlogic-dma-v8-0-86cc2ce94142@amlogic.com
 
-Thanks.
+Changes in v8:
+- Use kzalloc instead of kmalloc.
+- Initialize the temporary variable and fix a spelling mistake.
+- Link to v7: https://lore.kernel.org/r/20260324-amlogic-dma-v7-0-f8b91ee192c1@amlogic.com
 
+Changes in v7:
+- Take use vchan to support mltiple txns.
+- Link to v6: https://lore.kernel.org/r/20260309-amlogic-dma-v6-0-63349d23bd4b@amlogic.com
+
+Changes in v6:
+- Some minor modifications according to Frank's suggestion.
+- Link to v5: https://lore.kernel.org/r/20260304-amlogic-dma-v5-0-aa453d14fd43@amlogic.com
+
+Changes in v5:
+- Rename head file and rename macro definition.
+- Rename the subject in [2/3] from "dma" to "dmaengine".
+- Link to v4: https://lore.kernel.org/r/20260227-amlogic-dma-v4-0-f25e4614e9b7@amlogic.com
+
+Changes in v4:
+- Support split transfer when data len > MAX_LEN.
+- When a module fails or exits, perform de-initialization.
+- Some other minor modifications.
+- Link to v3: https://lore.kernel.org/r/20260206-amlogic-dma-v3-0-56fb9f59ed22@amlogic.com
+
+Changes in v3:
+- Adjust the format of binding according to Frank's suggestion.
+- Some code format modified according to Frank's suggestion.
+- Support one prep_sg and one submit, drop multi prep_sg and one submit.
+- Keep pre state when resume from pause status.
+- Link to v2: https://lore.kernel.org/r/20260127-amlogic-dma-v2-0-4525d327d74d@amlogic.com
+
+Changes in v2:
+- Introduce what the DMA is used for in the A9 SoC.
+- Some minor modifications were made according to Krzysztof's suggestions.
+- Some modifications were made according to Neil's suggestions.
+- Fix a build error.
+- Link to v1: https://lore.kernel.org/r/20251216-amlogic-dma-v1-0-e289e57e96a7@amlogic.com
+
+---
+Xianwei Zhao (3):
+      dt-bindings: dma: Add Amlogic A9 SoC DMA
+      dmaengine: amlogic: Add general DMA driver for A9
+      MAINTAINERS: Add an entry for Amlogic DMA driver
+
+ .../devicetree/bindings/dma/amlogic,a9-dma.yaml    |  65 ++
+ MAINTAINERS                                        |   7 +
+ drivers/dma/Kconfig                                |  10 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/amlogic-dma.c                          | 708 +++++++++++++++++++++
+ include/dt-bindings/dma/amlogic,a9-dma.h           |   8 +
+ 6 files changed, 799 insertions(+)
+---
+base-commit: 4e01d2f7809240ed63a44889386635921c0627b1
+change-id: 20251215-amlogic-dma-79477d5cd264
+
+Best regards,
 -- 
-Dmitry
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
