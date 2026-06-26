@@ -1,239 +1,190 @@
-Return-Path: <devicetree+bounces-315904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-315907-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FMB5D5PnPWrW7wgAu9opvQ
-	(envelope-from <devicetree+bounces-315904-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:44:35 +0200
+	id S/BMDU/zPWpq9AgAu9opvQ
+	(envelope-from <devicetree+bounces-315907-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 05:34:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBC436C9D99
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 04:44:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE8086C9F07
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 05:34:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="CQ/bMqvL";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315904-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-315904-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=lenovo.com header.s=DKIM202306 header.b=a5sV4Q2n;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-315907-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-315907-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=lenovo.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3C8DC300288F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 02:44:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 88F1B304B113
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jun 2026 03:34:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E479D30BB94;
-	Fri, 26 Jun 2026 02:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556383A0B3B;
+	Fri, 26 Jun 2026 03:34:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-00823401.pphosted.com (mx0b-00823401.pphosted.com [148.163.152.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF82B274FD1
-	for <devicetree@vger.kernel.org>; Fri, 26 Jun 2026 02:44:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0B6288530;
+	Fri, 26 Jun 2026 03:34:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782441871; cv=none; b=gzfAg/U1UuLEhL5hk+O2CFLxEyrGvhMtsxPL6c2cPUyMQLD/KHbvuCcwNXmHPwUFZUgthl0N9BQmoDQe2w/NZAVy9uUcKI3uXz+TmK3YN5cD1tQh46EuyG6/+YJ/lxk3O07wpJfYkDhagrZw+DqsZuEdNK61nNihlhixnhHwuc4=
+	t=1782444870; cv=none; b=oWwTj3/QolWuREF+UutkCgMLvYyab1J/sklJ4YHMyBzJFo1JtOIIuUp/kk/1FJ6Bj5C/5BMzgAT5IiM4GOxlTtqJ3YB7Xa/Du6FJXGyZUof/fOBK8m3wZx0Oy32oYOsnVjxwi4qFLhym4m0sDAhAsj36Rz4LqVy4rbtts4xMuNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782441871; c=relaxed/simple;
-	bh=YfOIcol+acxFW/8DHA+Ll6ntSLqpoyt2KhdyQ+gcg/k=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=uXD+64ymQrLhevMlqtdzSp1Adecw6//iHX1AaAJ7WjdwsK7GpUC5shMdFnQCVtV9yJQJR2vrmDBm3R87Z12Zj/jbvI5qgZm2v7BVjE/efvfqKjEbQEhNntUgaTu/ak80KN+ScuLGQpykDvldmfAXNhWIUd4CehTltQdNbTaHD/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CQ/bMqvL; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 476391F000E9;
-	Fri, 26 Jun 2026 02:44:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782441870;
-	bh=7vIKUjVeivQJrhvZX6xrs8HXycrKbXsORtjD4WQMHkY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=CQ/bMqvLFIY1TOIQ8/UxdbjbQWWIeG823TuGfxyCHCky7YOkmu5uyzQpzm0pbiswi
-	 SMNbTU/2bn7K02U/urj/FqrM529C+kB4R2jEATuZ7WbHy9GMqX0/Qff/fka5za7TRm
-	 zF01vZqQj02E1kBNYYuZcf92r4WpF6x1nIdtL/sfDtXnhGXdO5A8NrQeMn/PeQ26Dk
-	 m5iR4bKNiyqdEMbxh6C1xV2qE1gxNVv9FL7Qwq7N31a/7RBIoZWuhXbuZQ4zYPxppU
-	 PYhIqSYdwNnBNzsOUVhNZVweS4GCpolGFDALnh2Zpmy/OvoGkr6H5adihO1CeGkPMF
-	 We7TAVNB1SD4Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 8/9] ASoC: loongson: Add headphone jack detection and
- DAPM routing
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Binbin Zhou" <zhoubinbin@loongson.cn>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <c4b1503220b6fb433ecdcb881556827579041c3d.1782439646.git.zhoubinbin@loongson.cn>
-References: <cover.1782439646.git.zhoubinbin@loongson.cn>
- <c4b1503220b6fb433ecdcb881556827579041c3d.1782439646.git.zhoubinbin@loongson.cn>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 26 Jun 2026 02:44:29 +0000
-Message-Id: <20260626024430.476391F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782444870; c=relaxed/simple;
+	bh=XsBGdvkc62f/VTseiN5qGDVklvO4zm2p8n+0UJaV3Go=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nX7XSElr4yyXZ1N59zlvga5C9N1Y1X0zzilea1gDWGdG4nyOehcpstlDR6oLPoJxKm3Vw/JkLuMnpboiMv0R5//ZwT5VUDhvgET4OX24duHIk2P8r+ka4jbb6h4Zn1pB5KvRPw1B3VPlgihuza6Zl7/dLMSCPypopnih7RHpY3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lenovo.com; spf=pass smtp.mailfrom=lenovo.com; dkim=pass (2048-bit key) header.d=lenovo.com header.i=@lenovo.com header.b=a5sV4Q2n; arc=none smtp.client-ip=148.163.152.46
+Received: from pps.filterd (m0355090.ppops.net [127.0.0.1])
+	by m0355090.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 65Q2mEih3937176;
+	Fri, 26 Jun 2026 03:34:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lenovo.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=DKIM202306; bh=S5a/fY+UjWgPSz+cq2GdW9k/I4965gQ97E
+	q6TPuTeDk=; b=a5sV4Q2nMJUJSIFl5ywSsxcwlLTzzWdPqAC52jVBKqisbC6gGC
+	8pajAyDpBZCJYGpz0W1VbJ5vd94Iv/ahfeYEaMbDefxu77cYHiLZ48nlM2SdEOH9
+	WFHUGi5cuHoVMn1qqeeC8tYaCkj5ezU2ZcfocqUVstBlH3GQUjD7NgOReq3ozLtn
+	jWZrghYsKBa+ArMlTkW3JKQOEz0Yf3IWu/n51A+K0oIC6uW50P0EC8FcveVx/GCW
+	Cg7I1sZZ+SU/zibtsJIhLdWejgFMJwZEUhAdKQXQYuGLLZs7nrjhAtZoGkVXl1x+
+	74PwKeBGeToga/hCAnm06Sn30bn7xgX64BVw==
+Received: from hkglppfpool1.lenovo.com ([103.30.235.218])
+	by m0355090.ppops.net (PPS) with ESMTPS id 4ex66q4275-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 26 Jun 2026 03:34:21 +0000 (GMT)
+Received: from hetlppfpool2.lenovo.com (unknown [10.196.132.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hkglppfpool1.lenovo.com (Postfix) with ESMTPS id 4gmh9l0PNMz9vWQL;
+	Fri, 26 Jun 2026 03:34:19 +0000 (UTC)
+Received: from lenovo.com (unknown [10.119.171.213])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hetlppfpool2.lenovo.com (Postfix) with ESMTPS id 4gmh9k69hYz18W90N;
+	Fri, 26 Jun 2026 03:34:18 +0000 (UTC)
+From: Jiqi Li <lijq9@lenovo.com>
+To: linux-tegra@vger.kernel.org
+Cc: devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, jonathanh@nvidia.com, thierry.reding@gmail.com,
+        mpearson-lenovo@squebb.ca, Jiqi Li <lijq9@lenovo.com>
+Subject: [RFC v2 PATCH 0/2] Add Lenovo ThinkEdge SE70 carrier board support
+Date: Fri, 26 Jun 2026 11:34:16 +0800
+Message-ID: <20260626033418.520762-1-lijq9@lenovo.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: MTvn2QoFEfZqXo53UjKi4htV-QqIMeGd
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI2MDAyNCBTYWx0ZWRfX53HLqWzJ86EX
+ KPTUdiK+Ci16tSF1e0LqTls93YSdIiuQoaY58UKz0utRmuPHGoqK9xCzwT5m2k06KrC6o+TTfmk
+ 0OwJpVXhDOzOEJL3DzIUu2mupg9jzv0=
+X-Proofpoint-ORIG-GUID: MTvn2QoFEfZqXo53UjKi4htV-QqIMeGd
+X-Authority-Analysis: v=2.4 cv=SNFykuvH c=1 sm=1 tr=0 ts=6a3df33d cx=c_pps
+ a=yIlUyoB/d3ZP/uZUHEUQoQ==:117 a=yIlUyoB/d3ZP/uZUHEUQoQ==:17
+ a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=2RTuljz969oO5usasWGy:22
+ a=ZyEuT479hi48zPIlagN0:22 a=jdbAUWAbH2aiuixtsQYA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI2MDAyNCBTYWx0ZWRfX5GjSxk5Y9OyT
+ E8UdZazgcJ03DLGf5I7z6H1kL0v3xTxPh4ihMdGuCV7CgcVjQYLq7SR/7udG0Wi5G6p6bBBqpmG
+ PUC2RP8NJWt5VICXAWlOAfOQvQ8JUhG7XbeP2R8kj7j2vfollCD4Jnk1myathiJGtXF5mKSz++f
+ lThEmxACdnGGpawXKnPk7KZkkdMH+rh6+uL9sFfAontSTZLT5SmsLKfXqffoNt2KbsV2+TjBMN4
+ hwa3gG3uwOzjQ9+Hs8HSPuowJWF7LsUJBRcDQmG7+7igaaek8fobi8YgVg82UTS727m0oO+Jcvq
+ +L4JqSssmYjAfPOuvY07jAc9JnSKS+H7mFJcLg8RriZ95Wg6tXT4TvC59SDVgwjqDfxXhKVyQg/
+ m0q4meFr/Hpt6Um2J9veZuMJmq3ppENez9xuSfGWpqV+x74GU0sBQOXPnsBOyihT6IHB3LEqCA9
+ O/TKxZMbSIh0nqkAS1w==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-26_01,2026-06-24_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 phishscore=0 adultscore=0 bulkscore=0
+ priorityscore=1501 malwarescore=0 impostorscore=0 spamscore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=-20 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2606260024
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[lenovo.com,reject];
+	R_DKIM_ALLOW(-0.20)[lenovo.com:s=DKIM202306];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-315904-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:zhoubinbin@loongson.cn,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,nvidia.com,gmail.com,squebb.ca,lenovo.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-315907-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-tegra@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh+dt@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonathanh@nvidia.com,m:thierry.reding@gmail.com,m:mpearson-lenovo@squebb.ca,m:lijq9@lenovo.com,m:robh@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[lenovo.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,loongson.cn:email,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CBC436C9D99
+X-Rspamd-Queue-Id: BE8086C9F07
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] Double-free of the hp-det GPIO descriptor on probe failure or driv=
-er unbind.
-- [High] Global state mutation via static global instance structures.
-- [Low] Misleading DAPM event handler name and widget array typos due to co=
-py-pasting.
---
+This series adds device tree bindings and standalone DTS for the Lenovo
+ThinkEdge SE70 fanless industrial edge gateway based on NVIDIA Tegra194
+Xavier NX SOM.
 
-commit 96bfdeee5a35a70f217e0f245943a82eb9a7ce3b
-Author: Binbin Zhou <zhoubinbin@loongson.cn>
+Patch 1 adds the board compatible string to tegra.yaml for dt-schema
+validation.
+Patch 2 introduces the carrier board DTS with 40-pin header pinmux and
+external SD card power regulator, disables unused fan/PWM/spi peripherals.
 
-ASoC: loongson: Add headphone jack detection and DAPM routing
+Static verification passed: dt_binding_check and dtbs compilation
+complete without errors.
 
-Extend the Loongson audio machine driver with jack detection, DAPM
-widgets support, enabling proper switching between headphones and
-speakers on the Loongson-2K0300 ATK-DL2K0300B board.
+We maintain downstream DTS for mass-deployed SE70 hardware internally.
+Upstreaming aligns with existing OEM board contributions (Google/Xiaomi)
+in the Tegra tree, cuts long-term out-of-tree patch maintenance overhead.
+This industrial platform has a full 7-year support lifecycle until 2028;
+Lenovo will keep backporting DT fixes throughout its service window.
+All peripherals use generic upstream drivers with no proprietary extensions.
 
-> diff --git a/sound/soc/loongson/loongson_card.c b/sound/soc/loongson/loon=
-gson_card.c
-> index 0e63cbcad57ac..25cd12eab4b1f 100644
-> --- a/sound/soc/loongson/loongson_card.c
-> +++ b/sound/soc/loongson/loongson_card.c
 
-[ ... ]
+Changes in v2:
+- Wrap all memory-mapped peripherals under root bus@0 node to match upstream
+  tegra194.dtsi hardware topology
+- Add missing tegra194.dtsi include to resolve undefined GPIO/pinctrl macros
+- Fix regulator label syntax error (illegal hyphens replaced with underscores),
+  sync supply reference in sdhci node
+- Remove downstream L4T-only nvidia,lpdr pinmux property which lacks upstream binding
+- Fix SD card detect double inversion logic: drop cd-inverted property,
+  set cd-gpios to GPIO_ACTIVE_HIGH
+- Add required simple-bus properties (#address-cells, #size-cells) to fixed-regulators
+- Unify all node labels to underscore naming per devicetree specification
+- Correct mismatched 2.3V -> 3.3V regulator comment
+- Trim compound SOM compatible string to eliminate un-documented binding warning
 
-> +static int tegra_machine_event(struct snd_soc_dapm_widget *w,
-> +			       struct snd_kcontrol *k, int event)
-> +{
+Jiqi Li (2):
+  dt-bindings: arm: tegra: Add lenovo,thinkedge-se70 compatible string
+  arm64: tegra: Add Lenovo ThinkEdge SE70 carrier board DTS
 
-[Severity: Low]
-This isn't a bug, but should this function be renamed to match the loongson
-namespace instead of keeping the tegra_ prefix from a copied driver?
+ .../devicetree/bindings/arm/tegra.yaml        |   4 +
+ arch/arm64/boot/dts/nvidia/Makefile           |   1 +
+ .../nvidia/tegra194-lenovo-thinkedge-se70.dts | 164 ++++++++++++++++++
+ 3 files changed, 169 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
 
-> +	struct snd_soc_card *card =3D snd_soc_dapm_to_card(w->dapm);
-> +	struct loongson_card_data *priv =3D snd_soc_card_get_drvdata(card);
-> +
-> +	if (!snd_soc_dapm_widget_name_cmp(w, "Speaker"))
-> +		gpiod_set_value_cansleep(priv->gpiod_spkr_en,
-> +					 SND_SOC_DAPM_EVENT_ON(event));
+-- 
+2.43.0
 
-[ ... ]
-
-> +static const struct snd_soc_dapm_widget loongson_aosc_dapm_widgets[] =3D=
- {
-
-[Severity: Low]
-This isn't a bug, but there is a typo here (aosc instead of asoc).
-
-> +	SND_SOC_DAPM_HP("Headphone", tegra_machine_event),
-> +	SND_SOC_DAPM_SPK("Speaker", tegra_machine_event),
-> +};
-> +
-> +/* Headphones Jack */
-> +
-> +static struct snd_soc_jack loongson_asoc_hp_jack;
-> +
-> +static struct snd_soc_jack_pin loongson_asoc_hp_jack_pins[] =3D {
-
-[ ... ]
-
-> +static struct snd_soc_jack_gpio loongson_asoc_hp_jack_gpio =3D {
-> +	.name =3D "Headphones detection",
-> +	.report =3D SND_JACK_HEADPHONE,
-> +	.debounce_time =3D 150,
-> +};
-
-[Severity: High]
-Will using a static global instance for snd_soc_jack_gpio cause cross-device
-state corruption?
-
-The ASoC core function snd_soc_jack_add_gpios() takes ownership of this
-struct and initializes a delayed_work structure inside it. If multiple
-instances of this driver probe concurrently or across unbind/rebind cycles,
-multiple driver instances might mutate and re-initialize the same global
-static struct and its workqueue list head.
-
-Could this be moved to the instance-specific loongson_card_data instead?
-
-> +
-> +static int loongson_asoc_machine_init(struct snd_soc_pcm_runtime *rtd)
-> +{
-> +	struct snd_soc_card *card =3D rtd->card;
-> +	struct loongson_card_data *ls_priv =3D snd_soc_card_get_drvdata(card);
-> +	int ret =3D 0;
-
-[ ... ]
-
-> @@ -135,16 +229,35 @@ static int loongson_card_parse_acpi(struct loongson=
-_card_data *data)
-> =20
->  static int loongson_card_parse_of(struct loongson_card_data *data)
->  {
-> -	struct device_node *cpu, *codec;
->  	struct snd_soc_card *card =3D &data->snd_card;
-> +	struct device_node *cpu, *codec;
->  	struct device *dev =3D card->dev;
->  	int ret, i;
-> =20
-> +	data->gpiod_hp_det =3D devm_gpiod_get_optional(dev, "hp-det", GPIOD_IN);
-
-[Severity: High]
-Will this devm-managed GPIO descriptor trigger a double-free on driver unbi=
-nd
-or probe deferral?
-
-When devm_gpiod_get_optional() requests the GPIO, it registers a devres
-cleanup action. Later in loongson_asoc_machine_init():
-
-loongson_asoc_machine_init() {
-    ...
-    loongson_asoc_hp_jack_gpio.desc =3D ls_priv->gpiod_hp_det;
-    ret =3D snd_soc_jack_add_gpios(&loongson_asoc_hp_jack, 1,
-                                 &loongson_asoc_hp_jack_gpio);
-    ...
-}
-
-The snd_soc_jack_add_gpios() call registers a second overlapping devres act=
-ion
-that unconditionally frees the GPIO descriptor. When the device is unbound,
-won't both cleanup actions attempt to free the same gpio_device, leading to
-a Use-After-Free?
-
-> +	if (IS_ERR(data->gpiod_hp_det))
-> +		return PTR_ERR(data->gpiod_hp_det);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1782439646.gi=
-t.zhoubinbin@loongson.cn?part=3D8
 
