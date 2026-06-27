@@ -1,176 +1,160 @@
-Return-Path: <devicetree+bounces-316297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Y2WdLFTYP2poZAkAu9opvQ
-	(envelope-from <devicetree+bounces-316297-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 16:04:04 +0200
+	id WEETNljaP2qGZQkAu9opvQ
+	(envelope-from <devicetree+bounces-316298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 16:12:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3345E6D2106
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 16:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 270E66D211C
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 16:12:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=igug3ZAI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316297-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316297-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kaduymzg;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316298-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316298-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 39C903018ACE
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 14:03:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ADB4730136AC
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 14:12:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 830433AD53D;
-	Sat, 27 Jun 2026 14:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E58CE36C5AE;
+	Sat, 27 Jun 2026 14:12:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827C61C5D72;
-	Sat, 27 Jun 2026 14:03:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F4EBE63;
+	Sat, 27 Jun 2026 14:12:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782569015; cv=none; b=HpICElIx240lX2oRSvhHYGHJC9ETloJ7lnO08QkPYMEqWkqS8xm3BFSV/u/gMoANvm2rnGG/x3YZE0m4CqhHSA6fvlA0V+mmWfeptoO5WvWZsfUiTBfTOfyX274GZWY1cFaSHRtkaoec2srM8al+qOjhX6W/8CRTLVmar/bexHg=
+	t=1782569557; cv=none; b=ZdKHlf7CyW7jLfWpMSllJfJtth23qLBrECux6Gm7q37BZjNT/V+3X6N4kKMykbHSx8o/7xIPKJx1wulYr5O73ZFCfoV8Zx7e0X3Fho0naxm1Lag4Vp6d/KxnSBpzlEeCcukwnaIbd5w6wYq2ix/mgtZEn54n2/8yh0N4mD0YS6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782569015; c=relaxed/simple;
-	bh=2jp4dUgNN7qxpz2GlUubMNn0MTODUMmhv6mJ1wohE0U=;
+	s=arc-20240116; t=1782569557; c=relaxed/simple;
+	bh=rSpZw36NyPOB7EqC/lJN9eRgCijS4xzRO0Ko+O2De3I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MEDdE7F2t9mbQehCz2dgy84ocEp8d3V6jqQ0wzh6EZ26qdRqZPBEQCcGBtycQH15Bz3fi7qnHfL/2V/zTUDx5ZXnhZ2lvHr4HCNsIL2zq3zmtwBnR99rhPEmln5tTeHP8aGjgt92DyaYkeAw2PLpU/lraWFNK3GdfiCrCzUHVxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=igug3ZAI; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80C381F000E9;
-	Sat, 27 Jun 2026 14:03:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dfGH+Y5dN4S+6VK34nxI1h1nKW7b2y/v/VbIsDAUyfG8SIcU9SFl6h4N55wTY3U/vc2nRsby67f8JtqPFw6rQ4RTS38To/w5WU2pQNMHC1CnYAAqJ10YD0D41cpflCyWZgRshqr9cuM9kG+yThz3J8zOHoISxt39neenzSgpobs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kaduymzg; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C1691F000E9;
+	Sat, 27 Jun 2026 14:12:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782569014;
-	bh=9mCDnmGglO2sIeCdvnxemRXH84TvTrXTDYrvwilcTY0=;
+	s=k20260515; t=1782569556;
+	bh=RsEsmEqrIzycIaSTj/W3zmpo1iGvzRxGr9mlEHGW4OA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=igug3ZAIsoMLorqrCWKf6R3eZ6aVNgYxZIs6W4ojHX0Hps5V/wB3ef52NoUDS4Bfs
-	 sHeL9YnpsVALScg+Norm49emNg1gr5W8PJeDxsr/pdQNy6d++j4CbfQqbpM8aVDnoR
-	 A9J7GOeYtYc8Ooo1L59GRbfVih0XY8nCy9e1MQvDd+eCu1lrhnfYSakZ0/bbhb4VRd
-	 8PMnXm9ptN5oRKI+NwnbWD2mCTktqjrPO57O+bq48VRXa/ID40zG3N8ioKJqtfObuB
-	 vfxh7RVDDlRrshc4aAq+ghcUBn5cQRmBhajoTfZa/XMsCuz0yjsb4j48oVnSz+d8UL
-	 VNKAjSAL2sQJw==
-Date: Sat, 27 Jun 2026 15:03:29 +0100
-From: Conor Dooley <conor@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	b=kaduymzgikZ+SNaoe6/KHrrwdsMD8lYj7r0SxxOKOEXRgNvbGXvn5OJ6owe3+GdUn
+	 X4Fn6Rd02xkH0jExllIDza2dWCwhRxxNn9fckx0Kjbp+Ac0WnMNMKPOgLAHASE/xXl
+	 v4XJuqLdRQwPPypE2YwlyMO6MSj8d707vXpM/AQHzd0Sj9Rd0dVvRZSUWvz3WgdBR5
+	 tzV1aBvtb/ga5leUEl/9BY5Mf8pk1EZo7Wgbpo1zvghpQOlU73jRI/YqehB2k0+buV
+	 O1uZVxJPe7+8G07pFY2UM1RMK7ZJ6AnGGoifPFQLklNF0mR1P3vcW1dZnty4MswrrV
+	 VIIqqFVQ7naMg==
+Date: Sat, 27 Jun 2026 15:12:31 +0100
+From: Sudeep Holla <sudeep.holla@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Hans de Goede <johannes.goede@oss.qualcomm.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Srinivas Kandagatla <srini@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chris Hall <c-hall@ti.com>,
-	Patrick Edwards <pedwards@ti.com>, Kurt Borja <kuurtb@gmail.com>,
-	Nguyen Minh Tien <zizuzacker@gmail.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/8] dt-bindings: iio: adc: add ti,ads122c14
-Message-ID: <20260627-corridor-word-0fbe89fd2294@spud>
-References: <20260625-iio-adc-ti-ads122c14-v2-0-ceb9b0b561cb@baylibre.com>
- <20260625-iio-adc-ti-ads122c14-v2-5-ceb9b0b561cb@baylibre.com>
- <20260626-rising-legged-dea08bb68bfe@spud>
- <82294468-c4cf-4003-93f1-31a113c79979@baylibre.com>
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+	Abel Vesa <abel.vesa@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-acpi@vger.kernel.org
+Subject: Re: [RFC 00/12] RFC: Devicetree-ACPI hybrid mode
+Message-ID: <20260627-miniature-skink-of-superiority-234091@sudeepholla>
+References: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
+ <20260626-friendly-ammonite-of-holiness-aabefb@sudeepholla>
+ <obvpvyx3kmzcdc5nxmx4inlpiqugjxdgzfzmdxzfqqy4qqwt7l@y2zyrtso6yk4>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="cPC/5N2jzs1o5Frl"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <82294468-c4cf-4003-93f1-31a113c79979@baylibre.com>
+In-Reply-To: <obvpvyx3kmzcdc5nxmx4inlpiqugjxdgzfzmdxzfqqy4qqwt7l@y2zyrtso6yk4>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
+X-Spamd-Result: default: False [-4.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_RECIPIENTS(0.00)[m:dlechner@baylibre.com,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:c-hall@ti.com,m:pedwards@ti.com,m:kuurtb@gmail.com,m:zizuzacker@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316297-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:johannes.goede@oss.qualcomm.com,m:sudeep.holla@kernel.org,m:rafael@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:srini@kernel.org,m:krzk+dt@kernel.org,m:lumag@kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-acpi@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER(0.00)[sudeep.holla@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316298-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,ti.com,gmail.com,vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sudeep.holla@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3345E6D2106
+X-Rspamd-Queue-Id: 270E66D211C
 
---cPC/5N2jzs1o5Frl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, Jun 26, 2026 at 11:57:47PM +0300, Dmitry Baryshkov wrote:
+> On Fri, Jun 26, 2026 at 04:52:41PM +0100, Sudeep Holla wrote:
+> > On Tue, Jun 23, 2026 at 04:52:13PM +0200, Hans de Goede wrote:
+> > > Hi All,
+> > > 
+> > > Currently as soon as the kernel boots with a populated DT provided then
+> > > the arch/arm64 code sets acpi_disabled=1 and the complete ACPI subsystem
+> > > gets disabled. On WoA Snapdragon laptops where the factory Windows OS
+> > > actually boots using these tables this is not necessarily desirable.
+> > > 
+> > 
+> > I am bit lost reading the very first statement here.
+> > 
+> > Who is populating DT and why ? It seems that is the source of the problem.
+> > 
+> > If windows can boot with ACPI tables, why is it causing issues for the
+> > Linux kernel, any specifics?
+> 
+> Windows uses a separate beast called PEP, which nobody wanted to
+> implement for these platforms up to now. You can find a lot of ACPI
+> dumps for these devices at [1].
+> 
 
-On Fri, Jun 26, 2026 at 01:35:22PM -0500, David Lechner wrote:
+Agreed and I assume that is the reason why we want DT.
 
-> >> +required:
-> >> +  - compatible
-> >=20
-> > reg?
->=20
-> I thought reg being required by i2c-controller.yaml was already good enou=
-gh.
->=20
-> https://github.com/devicetree-org/dt-schema/blob/2203c1720f4ebeebd7f8d10e=
-9dc1812993482fab/dtschema/schemas/i2c/i2c-controller.yaml#L219
+> > IOW why is DT populated which creates the problem you are trying to address
+> > here.
+> 
+> Most of the laptops resemble other Qualcomm platforms, which use DT for
+> hardware description. In some cases, it is the same platform being used
+> for both mobile, IoT and laptops. It was more or less natural to reuse
+> existing support.
+> 
 
-Nothing mandates that this is a device on a bus at all without requiring
-reg, since that's a schema applied by the parent.
-It's unlikely that that will actually occur, but I think properties
-mandated by schema that are not referenced in a binding should be
-required by the binding.
+Sure, just use DT then, why are we even talking about mixed/hybrid mode.
+It gives no incentive to OEMs using PEP to get away from it and use
+standard ACPI or improve if anything is missing.
 
->=20
-> >=20
-> >> +  - avdd-supply
-> >> +  - dvdd-supply
-> >> +
-> >> +dependencies:
-> >> +  refn-supply: [ refp-supply ]
-> >> +
-> >> +oneOf:
-> >> +  - required: [ refp-supply ]
-> >> +  - required: [ "ti,refp-refn-resistor-ohms" ]
-> >> +  - properties:
-> >> +      refp-supply: false
-> >> +      refn-supply: false
-> >> +      ti,refp-refn-resistor-ohms: false
-> >=20
-> > I assume you've tested this to make sure it enforces the behaviour that
-> > you want?
->=20
->=20
-> yes
+So I don't like this idea of mixing at all. Use ACPI or DT, make up you
+mind. You can't expect to get the best of both worlds if you are not improving
+the missing parts in either of those. This is just a shortcut.
 
-:)=20
-
---cPC/5N2jzs1o5Frl
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaj/YMQAKCRB4tDGHoIJi
-0hkDAP0fT+KcpXeoZEwFJKmE0QbRfiO7M+R1m+EzEjRU5i4NegD/StMTfqxIlFFQ
-QfFYwRqT3ot3StMAeHG4I9X2WnKIsg0=
-=NIhp
------END PGP SIGNATURE-----
-
---cPC/5N2jzs1o5Frl--
+-- 
+Regards,
+Sudeep
 
