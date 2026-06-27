@@ -1,203 +1,186 @@
-Return-Path: <devicetree+bounces-316316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316307-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Fu/mAAkDQGrlbAkAu9opvQ
-	(envelope-from <devicetree+bounces-316316-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 19:06:17 +0200
+	id UViLEU0AQGp/bAkAu9opvQ
+	(envelope-from <devicetree+bounces-316307-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 18:54:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D4C26D2609
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 19:06:16 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3A9A6D2583
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 18:54:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=m4plowG3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316316-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316316-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=samsung.com header.s=mail20170921 header.b=dXZoiVc0;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316307-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316307-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=samsung.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 01B523011779
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 17:06:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 807163026C13
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 16:54:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 913B32F0661;
-	Sat, 27 Jun 2026 17:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D4632A3C9;
+	Sat, 27 Jun 2026 16:54:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729C72EFDA6
-	for <devicetree@vger.kernel.org>; Sat, 27 Jun 2026 17:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2D73246E8
+	for <devicetree@vger.kernel.org>; Sat, 27 Jun 2026 16:54:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782579974; cv=none; b=JZqEZX4jNuKT6oYccnlKtQmHEM1FJvPTFkt9DtMJnKsIVR0Q1N2v+Bagyk1EFM8kRIgxNmxXp4MQHmCVTdJXM4U78Ev5z0tGsWqGRNLGpV1H30ahzAZYDkYzv/J9RadnUwBv3hbF+JEfI/y322L7n12phup5M+KpuT8hhHVdepY=
+	t=1782579255; cv=none; b=FQndY+t4dE2/DpRdIbKdhbNZR+WBO8KRjC7R0N0v1IDXc2UBvdQSIq9UCBjMUkb7a8srk39P9BYumaCsAWMdZN9q8UPKY3rLKa3muvj0SMpWf9MCqNRZXcv6j1vUTjTQeaW2osIEPOU9e5zC0X9xkNiqZRBPsQlqDCk++GcFFms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782579974; c=relaxed/simple;
-	bh=M9L7AXXhJgQLTz5NpAwi7LaclsewlY8QyWJg7WtnVi4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=CIIfVjD01GGvaxurH5C53SduiGpXEKkor0Y1W9J+uAOrY+ZLUdA3T9d7NsYa/WfaRnNtlG0u5ixmAr5LQsYcUGnA2Il17/q56v4EozSeVSvWJJj967szyjdTD8K3Mpvlxcvl/pIJLxSrPy+iiBZXntZQ0eoos1KRM7k41k3SDOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m4plowG3; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDCFA1F000E9;
-	Sat, 27 Jun 2026 17:06:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782579973;
-	bh=kTlZBBiVMZn6SswD0xhgS1f2XNydaojBH23tbMcp6B8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=m4plowG3qKHA8VDOCpneaTyGsvKlNo5xIyfSwMx72Mv0Jc56iy5UPzTKDUww5ldoW
-	 Vmr6//yb2KbVBJX67Oj1eNJEpKcCmYD6LW2LXCNgrnVSC/APT7MuoOZuWugS4PVrFw
-	 +3GDI+4i65MrpfjpilWS1y/ENy+y6t9Y8gDxUG73cwBfyGotEKjJxu2I5sBiwI/hnZ
-	 O8YP0/l7nICFiDWXzPdVGAg9HrERp7peZAGJDPjc+Vn9kR5bbMjByZ7Us5PF712i4d
-	 wxVOK8HpaWnyTzH28m+q6N+lYqvO0YIoosWUeAWflWTt10J2gkts7EGUn/wbjaC7MO
-	 b6WuY3rrf1rEQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 5/6] arm64: dts: exynos: add initial support for
- Samsung Exynos8855 smdk
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Alim Akhtar" <alim.akhtar@samsung.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260627171228.2687857-6-alim.akhtar@samsung.com>
-References: <20260627171228.2687857-1-alim.akhtar@samsung.com>
- <CGME20260627165422epcas5p4e4c6bce0e2daa6d08a9ec18afde9ce0e@epcas5p4.samsung.com>
- <20260627171228.2687857-6-alim.akhtar@samsung.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sat, 27 Jun 2026 17:06:12 +0000
-Message-Id: <20260627170612.BDCFA1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782579255; c=relaxed/simple;
+	bh=rzCb1447y/zm5tdTXc3sG9OJHE2N4vNmxHUPt962Ess=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=qThzI3NbSLmgyHH3fvtXJ0vxGvfrJCvmJkHdd0A7jiiV3zKV6KbS00K97+ssPTBoiM6L41LL9qJf1rk+Km/VMx4SIEKgCW2WnPaFjCPFxClqKwT8Ly1oSbqcfeavAuPOGUc8FTVVwaxIv9aZqI74FMYHrPXbRn14rV2yru9durM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=dXZoiVc0; arc=none smtp.client-ip=203.254.224.24
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20260627165405epoutp01790f1849f7f0787d8ed60ea735a5a33b~8-mEGVphZ1141211412epoutp01C
+	for <devicetree@vger.kernel.org>; Sat, 27 Jun 2026 16:54:05 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20260627165405epoutp01790f1849f7f0787d8ed60ea735a5a33b~8-mEGVphZ1141211412epoutp01C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1782579245;
+	bh=OHvnddbhZoVh1ad3OJgY9WBYfNy7pqTB8Qj+hO8+Nks=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=dXZoiVc0Dgr8x28UMYixrFZICAksCAHL/iiABhD1tL36N06nhkCvycF4t8OVnPTan
+	 FNaSoA7aVfqkProLRen1gd0cLgH5mSoBI/AIy7cM+cuMK103TJr2ELA9HXub77FRq7
+	 mcLm7RUsjHHXxSegwqdRtRkUIr8wyEyo3PaWbSlQ=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20260627165403epcas5p34817f474da749448ea078d0533476115~8-mCvxxI00994709947epcas5p3w;
+	Sat, 27 Jun 2026 16:54:03 +0000 (GMT)
+Received: from epcas5p2.samsung.com (unknown [182.195.38.94]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4gndt25nkSz6B9m4; Sat, 27 Jun
+	2026 16:54:02 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20260627165402epcas5p4481839961bdedebfa4d96a3517edaf2b~8-mBT6jXt1269212692epcas5p4c;
+	Sat, 27 Jun 2026 16:54:02 +0000 (GMT)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20260627165400epsmtip1a4d5dc983183cb1bbd6cc6bfe3339b6a~8-l-xhaTK2007020070epsmtip1P;
+	Sat, 27 Jun 2026 16:54:00 +0000 (GMT)
+From: Alim Akhtar <alim.akhtar@samsung.com>
+To: krzk@kernel.org, peter.griffin@linaro.org, robh@kernel.org,
+	conor+dt@kernel.org, linusw@kernel.org
+Cc: linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	hajun.sung@samsung.com, Alim Akhtar <alim.akhtar@samsung.com>
+Subject: [PATCH v3 0/6]  Add minimal Exynos8855 SoC support
+Date: Sat, 27 Jun 2026 22:42:22 +0530
+Message-Id: <20260627171228.2687857-1-alim.akhtar@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20260627165402epcas5p4481839961bdedebfa4d96a3517edaf2b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-543,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20260627165402epcas5p4481839961bdedebfa4d96a3517edaf2b
+References: <CGME20260627165402epcas5p4481839961bdedebfa4d96a3517edaf2b@epcas5p4.samsung.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[samsung.com:d:+,kernel.org:s:+];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-316307-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316316-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:alim.akhtar@samsung.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,samsung.com:dkim,samsung.com:mid,samsung.com:from_mime];
+	FORGED_SENDER(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:peter.griffin@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:hajun.sung@samsung.com,m:alim.akhtar@samsung.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,samsung.com:url,samsung.com:email,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4D4C26D2609
+X-Rspamd-Queue-Id: A3A9A6D2583
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] The pinctrl_cmgp controller and its first child bank gpm0 both cla=
-im the exact same GIC interrupt (SPI 114), and the driver configuration is =
-fundamentally broken for CMGP interrupts.
-- [Medium] The asymmetric big.LITTLE CPU topology (Cortex-A520 and Cortex-A=
-720) is missing CPU capacity definitions.
---
+This series adds initial support for the Exynos8855 SoC and also
+initial SMDK board support. 
 
-commit 46c39da58bc865179bf89eb7be4c747cacdd7227
-Author: Alim Akhtar <alim.akhtar@samsung.com>
+Exynos8855 is octa-core CPUs, a combination of Cortex-A720 and Cortex-A520,
+arranged in 3 clusters. And other peripheral for mobile application.
 
-arm64: dts: exynos: add initial support for Samsung Exynos8855 smdk
+This initial support consists of CPUs, pinctrl and related nodes
+needed for initial kernel boot.
 
-This commit adds initial devicetree support for the Samsung SMDK board using
-the Exynos8855 SoC. The SoC features an Octa-core CPU with a tri-cluster
-architecture, a custom GPU, and an NPU supporting up to 14.7 TOPS.
+With these patches, kernel can boot using initramfs till file system mounts.
 
-Link: https://semiconductor.samsung.com/processor/mobile-processor/exynos-1=
-580/
+More platform support will be added in near future, clock driver to go next.
 
-> diff --git a/arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi b/arch/ar=
-m64/boot/dts/exynos/exynos8855-pinctrl.dtsi
-> new file mode 100644
-> index 0000000000000..b65f1698cd74a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi
-[ ... ]
-> +&pinctrl_cmgp {
-> +	gpm0: gpm0-gpio-bank {
-> +		gpio-controller;
-> +		#gpio-cells =3D <2>;
-> +
-> +		interrupt-controller;
-> +		#interrupt-cells =3D <2>;
-> +		interrupt-parent =3D <&gic>;
-> +		interrupts =3D <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
+Changes since v2:
+* Addressed review comments from Peter Griffin and Krzysztof.
+* Updated uses of GS101 MACROS for pinctrl driver
+* Documented  wakeup interrupt binding
+* Rebased on latest Linux-next
+ 
+Chanegs since v1:
+* Fixed some of the review comments by Sashiko [1]
+* Dropped serial node, will be added once clock support is available
+* Dropped wkup interrupt for CMGP block, will be added later
 
-[Severity: High]
-Does this child bank gpm0 claim the exact same SPI 114 interrupt as its
-parent pinctrl_cmgp node?
+Link of v2:
+https://lore.kernel.org/all/20260615085252.1964423-1-alim.akhtar@samsung.com/
 
-If the child explicitly requests SPI 114 here, it might create an IRQ
-resource conflict with the parent.
+Link of v1:
+https://lore.kernel.org/linux-samsung-soc/20260612163020.411761-1-alim.akhtar@samsung.com/
 
-[ ... ]
-> diff --git a/arch/arm64/boot/dts/exynos/exynos8855.dtsi b/arch/arm64/boot=
-/dts/exynos/exynos8855.dtsi
-> new file mode 100644
-> index 0000000000000..9d82fceb5130a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/exynos/exynos8855.dtsi
-[ ... ]
-> +	cpus {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
+[1] https://sashiko.dev/#/patchset/20260612163020.411761-1-alim.akhtar@samsung.com?part=4
 
-[Severity: Medium]
-Will the Energy Aware Scheduler function properly without the
-capacity-dmips-mhz property defined here for the asymmetric Cortex-A520 and
-Cortex-A720 nodes?
 
-Without this property and lacking OPP tables, the scheduler might assume a
-symmetric topology, which could cause it to schedule heavy tasks on the
-small A520 cores or background tasks on the big A720 cores.
+Alim Akhtar (6):
+  dt-binding: ARM: samsung: Add Samsung Exynos8855
+  dt-binding: pinctrl: samsung: Add exynos8855-pinctrl compatible
+  pinctrl: samsung: Add Exynos8855 pinctrl configuration
+  dt-bindings: pinctrl: samsung: Add exynos8855-wakeup-eint compatible
+  arm64: dts: exynos: add initial support for Samsung Exynos8855 smdk
+  MAINTAINERS: Add entry for Samsung Exynos8855 SoC
 
-[ ... ]
-> +		pinctrl_cmgp: pinctrl@12030000 {
-> +			compatible =3D "samsung,exynos8855-pinctrl";
-> +			reg =3D <0x12030000 0x1000>;
-> +			interrupts =3D <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
+ .../bindings/arm/samsung/samsung-boards.yaml  |   6 +
+ .../samsung,pinctrl-wakeup-interrupt.yaml     |   1 +
+ .../bindings/pinctrl/samsung,pinctrl.yaml     |   1 +
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/exynos/Makefile           |   1 +
+ .../boot/dts/exynos/exynos8855-pinctrl.dtsi   | 574 ++++++++++++++++++
+ .../arm64/boot/dts/exynos/exynos8855-smdk.dts |  32 +
+ arch/arm64/boot/dts/exynos/exynos8855.dtsi    | 204 +++++++
+ .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 132 ++++
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
+ drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
+ 11 files changed, 961 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos8855-smdk.dts
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos8855.dtsi
 
-[Severity: High]
-Could claiming GIC_SPI 114 here in the parent node lead to initialization
-failures for CMGP interrupts?
 
-The Exynos driver configures CMGP to use exynos_eint_gpio_init, which
-expects a single demultiplexed IRQ on the parent. However, the gpm banks
-are Wakeup EINTs with direct per-bank GIC interrupts (like the SPI 114
-requested by gpm0).
+base-commit: 3d5670d672ae08b8c534b7beed6f57c8b44e7b43
+-- 
+2.34.1
 
-Because exynos_eint_gpio_init skips EINT_TYPE_WKUP banks, the parent
-successfully claims SPI 114 for a non-functional demux handler, blocking
-gpm0. Any peripheral attempting to map an interrupt from a CMGP bank might
-fail to probe. Should this instead have a wakeup-interrupt-controller
-child node without claiming a parent interrupt?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260627171228.2687=
-857-1-alim.akhtar@samsung.com?part=3D5
 
