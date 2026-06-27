@@ -1,166 +1,143 @@
-Return-Path: <devicetree+bounces-316317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316320-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HQGXC2INQGrPbQkAu9opvQ
-	(envelope-from <devicetree+bounces-316317-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 19:50:26 +0200
+	id UepkLbkWQGq5bgkAu9opvQ
+	(envelope-from <devicetree+bounces-316320-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 20:30:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C79696D26F7
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 19:50:25 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CF0D6D27B4
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 20:30:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=klJy8mq7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316317-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316317-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=baylibre.com header.s=google header.b=BXDLkK27;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316320-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-316320-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E695C301702A
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 17:50:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 060D3300F56C
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jun 2026 18:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9023382CD;
-	Sat, 27 Jun 2026 17:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0633333859A;
+	Sat, 27 Jun 2026 18:30:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C59A330F932;
-	Sat, 27 Jun 2026 17:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FA7C30F806
+	for <devicetree@vger.kernel.org>; Sat, 27 Jun 2026 18:30:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782582618; cv=none; b=JdwdDFLHAUA15hz7Ooeqb2Q15so2pUOup4jn9QV5VyRV6gH943lSKwOUf7muDHdRgKw8KGbu4nP+qM3kSFysekIDKLVb6gKfUfGd6AeeiU5y8VtViBc/hXd5dMY75Q4zQyI2AZHigqZNK85DVh6U7GF71jaSlgR6kJOaycyulSY=
+	t=1782585014; cv=none; b=nltebDxmq6L1IDYvtZQ+RVT/ViEnHL1K/kRSSXvGYw5x6hLGAB7bHcUWsfkXFtjxWizj5I2xLUPLp8DQNhn8vWCSRS/zOeiAttTEBXQLWSOg6mSxIDHaFJAYxebQLGADSdyf8AtcmJGoWy6uo+4LYY5O4ww3TeagPuQYzB8rJVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782582618; c=relaxed/simple;
-	bh=/HNG3f78YIRsRKCwKJNDTmkSwLWsUieIR+XO+Hc3QL4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=J9wQ3b1HJU3cmUJA2GCV5alL0OLaGrmBvYzzf4Q/AGnoHvHrWXU/riKDf62S/J/uEbPs318BaAMMrCuHiA7RdcvKi80r8tb4FKkG4vCOeO6Hxcm2Oscv4ypK+P8/dRFyqqNCgiSatDmytxlJykUgiLG1E1l4hjKb4et+7AuOm18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=klJy8mq7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 76794C2BCC7;
-	Sat, 27 Jun 2026 17:50:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1782582618;
-	bh=/HNG3f78YIRsRKCwKJNDTmkSwLWsUieIR+XO+Hc3QL4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=klJy8mq73bhbp75m8ihZGQ7E+6DHJS7O0oQZF0O6IMr2mJgr/xLNGLtAZ8tRlAEGR
-	 3Z7eghwIh+oDyEKnGZwl49cZCIykcf7P3zde61QEPO/V5do8OnHaynpWFldSXnTsyE
-	 6cgFbj5GT0rNbGIlKRNS5HDzxcLFs9piEg168kmP+b4W4Bp3HS3eo9Ye5y11BDSMNJ
-	 DYenJ6kSnJ42GNtRGPXqfnMgRPDDFOYBldukcSp/SilN3ZUXacNy66W92ghixfRASw
-	 F1xmrl3sy2HveXPvRMVq7GFX3cnp3zgwDl3Ck/bHl8izhowC5au3atslveWYw8aRKV
-	 39976JHRM5B6w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 61C24C43638;
-	Sat, 27 Jun 2026 17:50:18 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Sat, 27 Jun 2026 19:50:16 +0200
-Subject: [PATCH v2 2/2] soc: qcom: socinfo: Add SoC ID for SDM850
+	s=arc-20240116; t=1782585014; c=relaxed/simple;
+	bh=pC8fa4X+KpaN8K12A60eHy8/3aNwxEawC4NV5EKQasE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Lc5xFZBVrRVUXN0s+ALQOyB26N6IlmPscNpVV/gU87FYRwDQODu/kGqBOeg21q81Sw4qVCzXpx31qmhJ0rAshTH+6DgUDEFOCyV80XalM7o4FaB22lyaPgqt1fczIrVg4jRTP34C+su93uGEDBDjOZBJc8s895yjRhDZbF6Wibc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=BXDLkK27; arc=none smtp.client-ip=209.85.210.49
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-7e94c26f9e0so905566a34.1
+        for <devicetree@vger.kernel.org>; Sat, 27 Jun 2026 11:30:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1782585012; x=1783189812; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xwOhfje936cydMDnrwerRTqSDQiNMF3yBn9vwrjGE2I=;
+        b=BXDLkK27ip3mhkfvOrg0LB/S+puU+Q/Rw9XCsakriOOqwOVP/wftQ6McILZj0Egpcv
+         inxj50Sgkl4T51ENM40gsE/Tdp4KNq2fsEJO6pPX/KoMI+/CwtiE2ocJGA9THfJNrpAI
+         d8BHi9dK60Uj29A7lVO+BauEcolebKTCAl5WH65dVcnz/AhGAGgWGGo6bOouW3qofYxa
+         IFtS3Ot8EKREZQzi84a7kGqdxFp9Wirg37oWA4u+p8lvJDv3WHWba2CunFa3q9qX2P6f
+         24daYbjq9PPsemWAQRTMbJHD3zWKTGRaQn0zoYa+eUJBql5cm4mcCVqdMSCKGedKjE2N
+         gB9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782585012; x=1783189812;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xwOhfje936cydMDnrwerRTqSDQiNMF3yBn9vwrjGE2I=;
+        b=Xr8lvC+fvE+tpMrnX/EwOo/QDWyQsfbaJ1cHlrYvaO6VtGYHkFsz7+1ra98tYnwNwF
+         Tq2XgA/l+L2U2ve8r9EJvDHA07SQTJZw1No342y8s3g2Fc9m33h8gEyn+7VfC/m/BwUo
+         9yuo8Z+ey9nu9ql39QW74CkMqfMwb4ZYXwxgI5ataTbi73C38oG9cEApDdZEXK/K51oI
+         iZ2IkdQf6j5HWt8x+LyuozhVLncVnzb/UBChz48mWbzGlK/zgfxBJJ5qqOslFWhUd2FX
+         m+t2PSpp7+S4K/9nEacZ9isjZ5eecGWrBr3KxxjcmHfSTuUcfmJczsFvYVWGz321q7Za
+         hdnA==
+X-Forwarded-Encrypted: i=1; AFNElJ9sMr11gZVOZRcwJT/A+RFpy8A0s8ANdy7I08WJOv4VCBSQwtoImTVc7pkC0G/DXsvUXPBIORa8rWs5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzN25L57rFtuRU6JV4xuS8AZXcDHawe+D8nUcJ/KfCXrLHGvoxH
+	AXZOf+e5bDWzKi0KzegDImTLqGc2GL8QDsQB265oe/UI+aqqgnDEyKuUjeiTYBuJeKw=
+X-Gm-Gg: AfdE7cmoWXxyF/XlK/iUxt844gz4kRVNB6pBiMJzFVeXM5RdgWi4Fr2y8zJqA1msh7b
+	VIOB+egxQkTef6o6v9gPA4UPcn/voNy89FeIr202j+1v/r2vnYRAp6pYtKstFIGCHNd2F8f50iI
+	wV7RkpHw4iERr1VhOPTFI7za7Yv6ouoUPI55tmtl7XbFU5IxoTMv9rqZ7fEX0oXhT9qmgq4jlOK
+	WoOwhwDcCLbX7YB1sI0mnCWoatFkm0YE+Ca/E4qSGTc7uUs0U6v1qbPhvYO0oUx4NkBQwnWJJkb
+	1VEQDYdUkJoK13Ca4lCPzS065hSkKk+yuHeEUclPHbuFUAw/Bd5lqmWTsiQ3OBgx3NhTgMpDI87
+	PRt4g6vVGda3+YDV0XqbXQwK6y7iAA0e+giYqhFC/X2MLFIECiz528PpcLHPnfpAe0Ef3MwK7qt
+	9iHGfVlhVLXSLHgeeeie84mjDKuErfvBKFCm5iY6GWoZen9/SEeSnbnUwj3qr7qp4=
+X-Received: by 2002:a05:6830:4119:b0:7e6:e0ab:416c with SMTP id 46e09a7af769-7e99c19229dmr10659662a34.16.1782585012056;
+        Sat, 27 Jun 2026 11:30:12 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:47b8:1bb2:ed26:1150? ([2600:8803:e7e4:500:47b8:1bb2:ed26:1150])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e9aa5d4a4bsm4618913a34.10.2026.06.27.11.30.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 27 Jun 2026 11:30:11 -0700 (PDT)
+Message-ID: <7dd221e7-07de-4922-a2fd-87a865558a87@baylibre.com>
+Date: Sat, 27 Jun 2026 13:30:10 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/2] iio: magnetometer: add support for Melexis
+ MLX90393
+To: Nikhil Gautam <nikhilgtr@gmail.com>, linux-iio@vger.kernel.org
+Cc: jic23@kernel.org, nuno.sa@analog.com, andy@kernel.org,
+ u.kleine-koenig@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260627005843.7786-1-nikhilgtr@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260627005843.7786-1-nikhilgtr@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260627-sda850-v2-2-44bf46ade42e@ixit.cz>
-References: <20260627-sda850-v2-0-44bf46ade42e@ixit.cz>
-In-Reply-To: <20260627-sda850-v2-0-44bf46ade42e@ixit.cz>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=925; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=Xn+qNAcb0PhgtgeqElX7l/kJ7Cxp5jn3JqQBWNWtfAc=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBqQA1Z98Bkl+uqsNZLU3rSbDb4orvxGE5iyjjxo
- dg+ikEit1eJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCakANWQAKCRBgAj/E00kg
- ckDwD/9OT1gp9OuR4ZFFwAEpeMmEavmBLdHmRZWYf4mkyYE2q28t+GmEpiQlD5rbFbMbbHM6Q6t
- mrUp5htDIy5hvC/c13936dA4iHzSNYg/GuESsgqJXOAwyOUAhWNOi47o3fjdglgVFuPlyRdaCwZ
- mw0ZYVjnTyyzPpirJzc7W2aiTtTEB6uAgGlYaYBBz3QQVp9DnJ3Jg7VSmXPg/qARI8iPmJJswQ/
- vzRolbblALhvDOfhQZDjlMCH2vf726zWsBtcAd7QoXySiiVr7J3A0ACYfTCqJ5BFbfEJJCs+ySR
- BPvUhPXuYRHcdcNfarn+Vc4fIFrowgBodKnUZ1eYttHweCfx91pITKe2BK+NYMLWxb1TAenmCfA
- 6J3AaCxK16A77CP9qBafs7A+L3nhJYd5bMUTt8Cankz8ESxAqybFe/aXbeP4LBmPLp339BmGyZX
- IFnvQQU0PHvOglFaNl56hy5WU51Pp1ivJUUuHajS5lDw+hpuVMkr5IYxdcT7LOXnkZFp7A2EiQW
- GVnUK/Byx1pVOkhijsN41w6hjC9ufBlkyiznFM5O7+ZDXAETEp9hMaloTcsdDD7XF0au+Xp+TaG
- 3npwBbQrh7KbX/T9IfI47PwFz54TSt5GdSPst/Az6WgcxZjX20V17A0l7/ZLMW7GwSbmcGVmTN0
- REA/XaCl8mWHjuQ==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-316317-lists,devicetree=lfdr.de,david.ixit.cz];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:david@ixit.cz,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316320-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:nikhilgtr@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:u.kleine-koenig@baylibre.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[baylibre.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[david@ixit.cz];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ixit.cz:replyto,ixit.cz:email,ixit.cz:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,baylibre.com:dkim,baylibre.com:mid,baylibre.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C79696D26F7
+X-Rspamd-Queue-Id: 1CF0D6D27B4
 
-From: David Heidelberg <david@ixit.cz>
-
-Recognize the SDM850 SoC.
-
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- drivers/soc/qcom/socinfo.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
-index af418adad7aaf..1836e226a2945 100644
---- a/drivers/soc/qcom/socinfo.c
-+++ b/drivers/soc/qcom/socinfo.c
-@@ -420,16 +420,17 @@ static const struct soc_id soc_id[] = {
- 	{ qcom_board_id(SDM450) },
- 	{ qcom_board_id(SM8150) },
- 	{ qcom_board_id(SDA845) },
- 	{ qcom_board_id(IPQ8072) },
- 	{ qcom_board_id(IPQ8076) },
- 	{ qcom_board_id(IPQ8078) },
- 	{ qcom_board_id(SDM636) },
- 	{ qcom_board_id(SDA636) },
-+	{ qcom_board_id(SDM850) },
- 	{ qcom_board_id(SDM632) },
- 	{ qcom_board_id(SDA632) },
- 	{ qcom_board_id(SDA450) },
- 	{ qcom_board_id(SDM439) },
- 	{ qcom_board_id(SDM429) },
- 	{ qcom_board_id(SM8250) },
- 	{ qcom_board_id(SA8155) },
- 	{ qcom_board_id(SDA439) },
-
--- 
-2.53.0
-
-
+On 6/26/26 7:58 PM, Nikhil Gautam wrote:
+> Subject: [PATCH v3 0/2] iio: magnetometer: add support for Melexis MLX90393
+> 
+It is best not to manually edit the emails before sending. Somehow the
+subject ended up in the email body.
 
