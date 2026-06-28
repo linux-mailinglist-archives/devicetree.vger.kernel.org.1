@@ -1,141 +1,280 @@
-Return-Path: <devicetree+bounces-316484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316478-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 73HlMAxcQWqYoAkAu9opvQ
-	(envelope-from <devicetree+bounces-316484-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 19:38:20 +0200
+	id F6CBJ3RaQWoFoAkAu9opvQ
+	(envelope-from <devicetree+bounces-316478-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 19:31:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23BF36D491F
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 19:38:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF846D48BF
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 19:31:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=etehtsea.me header.s=sig1 header.b="ED/Qelnm";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316484-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316484-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=NzVjkylx;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=ha8k3us2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316478-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316478-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B294302E93A
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 17:37:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4FF3E3016CA3
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 17:31:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 167402F8E90;
-	Sun, 28 Jun 2026 17:37:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17A212F5A13;
+	Sun, 28 Jun 2026 17:31:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound.qs.icloud.com (qs-2004c-snip4-11.eps.apple.com [57.103.84.33])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81D72D73B9
-	for <devicetree@vger.kernel.org>; Sun, 28 Jun 2026 17:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4723C28CF5D
+	for <devicetree@vger.kernel.org>; Sun, 28 Jun 2026 17:31:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782668221; cv=none; b=eyU/n8ihbSy53b0yydxV3D4zO1hHebZSDVcFUtQ1Fg/7edwE3hmEFUl7+Ggc+cDwBojUHK5lSNstdNbEAVokGrahbGJeAKrsVrMc3MHSOt/89lSIv43Gt5VR+tM76Q4/+aX4ENFcokEbgYNlbOa88iL9Lqo/iJmwXjs7AVxn1Fo=
+	t=1782667869; cv=none; b=HK/9iJv9283Q6P+CaUeji+cgMgO8WvN4jbuSdgmJW15BNrK2PKu8bo6a3uqMPmnvEL8LnjtxTJSw9+P9MokqCUM+Jpl0Qg2HNx6qr5bH4t5erqYcDOsYmb10rgiH4C/r7E/8qRZwv+1RvOfgKq/dveif92OQ0phjUeXA6E0aS+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782668221; c=relaxed/simple;
-	bh=Nv2Xbmn8R223NXCsTFqI7f59JxfMT0JXaaCOOYJ2TqQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BaSPQ0R610TsHh/0CRQd0Nj/4YKSgTymj3MILyPpjhQmKeE6VIk32XkCmCldEq0gT7gkLBKcJvY0v7q3xA4CoGik0iwakZSdgDvIOmB0Ex49nO+972JgQNJ1R2BBs5uFhTjTkq1+Lan4ZmIbhiGqoEBpKl9pLWioiXPGC1kaU7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=etehtsea.me; spf=pass smtp.mailfrom=etehtsea.me; dkim=pass (2048-bit key) header.d=etehtsea.me header.i=@etehtsea.me header.b=ED/Qelnm; arc=none smtp.client-ip=57.103.84.33
-Received: from outbound.qs.icloud.com (unknown [127.0.0.2])
-	by p00-icloudmta-asmtp-us-east-2d-100-percent-0 (Postfix) with ESMTPS id 6EA6D1800096;
-	Sun, 28 Jun 2026 17:36:56 +0000 (UTC)
-X-ICL-RepId: 019f0f4e-4828-730e-8b4a-1a28c5517ca8
-X-ICL-Out-Info: HUtFAUMHWwJACUgATUQeDx5WFlZNRAJCTQtJBEMGXAVeDU8dXA9fEhVdRV4MXgdyFU0dWxlEDlNeVB0TC1NWVwRcEEceUgocHVxYQQ4KWgNQUR1fAgoERwRbF0YDU0VDAxcRUAFYHlZeWhdeTUcfQE1iSQFaGVscQBdKbk1TDw8VTR1bGUQOU15UHRMAXg8PTAtIAVsHXQBICE8BWwNbHEIKSQVaGl4fHVgRXy1SH1cYTQtWDBkGV04ZDEodUlZRBUoMXABoD10dWBFd
-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=etehtsea.me; s=sig1; t=1782668219; x=1785260219; bh=wVm4n6U2mxb1jAMB2xT+3KE4DHy9V5nCLK9Uksr+Kr0=; h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme; b=ED/QelnmO1uknZR/5phPGa6fTf1v/AvR0JgIfBbHzBi6qpuWC6T58ASrKLdMwlPqIyU51a8wnCETYT822FHsMcvmowDO8C096y9dQv366M7Q5zp1DIvRhwavlTKANpRZOWa9WpEmjAqPV2GJb4Mlcjiw8minL70IoiJNUG810NmrUBbIhsJMUg57B9pECUvqv1dGNQhtHbKAwJYmR9oLWE8TYRAtMQySxzCkRccC+4jalBxpTts+dQsUmBf3DJSZ/VQl5+XaH8BYtHgZsHN8BCwft9fH4KDx3QkO6tsmOJgS2iRFtk3Ina7i/bwHAj7Rv7D7xdgKB1cwVvDWXaXX1w==
-mail-alias-created-date: 1634905887181
-Received: from localhost (unknown [17.57.155.37])
-	by p00-icloudmta-asmtp-us-east-2d-100-percent-0 (Postfix) with ESMTPSA id 2B2FC1874946;
-	Sun, 28 Jun 2026 17:36:54 +0000 (UTC)
-From: Konstantin Shabanov <mail@etehtsea.me>
-To: andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	valentin.manea@mrs.ro,
-	Konstantin Shabanov <mail@etehtsea.me>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: [PATCH v5 4/4] firmware: qcom: scm: Allow QSEECOM on Honor Magicbook Art 14
-Date: Mon, 29 Jun 2026 00:26:40 +0700
-Message-ID: <20260628172640.23167-5-mail@etehtsea.me>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260628172640.23167-1-mail@etehtsea.me>
-References: <20260628172640.23167-1-mail@etehtsea.me>
+	s=arc-20240116; t=1782667869; c=relaxed/simple;
+	bh=ZT4Oi48MQ2edPaWjW8khM1ET81+4j1v2TQ4M0MI6hX4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y7hqEtR3iLVzsrBDhkN6YcT54Kb+jnxbB31poeIk5UYh4DbWpwHRcYR92JBXmHjEUaxkGSsfrhI109DQIk1YQHoLcZXNmB43sKJTP1MD8NWzTM2p5LKrzed4ETOsOzUAdXnWDO4DRXlTEU25oZ74rcEeimjumFpx6ZcPCNhv5FY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NzVjkylx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ha8k3us2; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65SET7Cc046368
+	for <devicetree@vger.kernel.org>; Sun, 28 Jun 2026 17:31:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/LYGGwI5goWOdRY7GIiaFjBfkoZM/HlIDwQhWdcH2Ro=; b=NzVjkylxUjSWlaA4
+	g03Tq7LAV2Yhm3AjQYZWm/oEjfM1/OvIFu7/0RbkV+K5MY8GVoELRGPrnkxclIFV
+	cTuuQVXx1t2jrD+DSSPff1jpUChZyG+DsaZ5+XgeYObuDVxXLJyGa4ou7oUNM09X
+	3N9r/nuPYEw/Piu7NUaakINNB0pvBtBdIir9P7MebKCZhIeF1oedKH5ljMsH8L9X
+	YqozeKwYCVBe6J/4YeWiyVkFPms85ZVLFikjExrXM0Edsg1RLGiWOKRAXbs3GMcD
+	WZ8/IZe7BlVyKBLaCSkiRc/w4zwqs2QJPCXsAYeNDdBJZ/rIBJx3kDxpEGfRoYU2
+	5RAvvg==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f26x8kc6x-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 28 Jun 2026 17:31:05 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-92e538afe65so4905485a.3
+        for <devicetree@vger.kernel.org>; Sun, 28 Jun 2026 10:31:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1782667864; x=1783272664; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/LYGGwI5goWOdRY7GIiaFjBfkoZM/HlIDwQhWdcH2Ro=;
+        b=ha8k3us2yjr7ofmbSD9rt3FfuEqUoVZURiuUlj6HDSX/WxNlTQyrget+R6/oDMGpbD
+         yk7ujqPBBd5sRGpCleSMFrBvNVVHW4hLUlH4GD3UKTEGnrdOA9OmQOzVHCCT8m58xG2r
+         XtL4Bbj9YDy2la+dpXzG4zjzwwXgWmuPJHvfjY8N7BlFDrHa8qOVi1WzZ6lCFfiJ6yA1
+         8rC8J//QOK9MgKi9ZP1S2c6jMck9ukOEshtvCutw0/dbwo2h18r83y3r8xbN6C6Xw59t
+         DdFeYprrVB+JR7OxZ8X3H+U7IWYE4bReGFRn4xLnPv0+EW7WMb6wt1BK86IimGnVQd62
+         UgIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782667864; x=1783272664;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/LYGGwI5goWOdRY7GIiaFjBfkoZM/HlIDwQhWdcH2Ro=;
+        b=GN2oMB5+/bG/u0DRQWeWPkPZZglaMAS9GdR54YoaD/XZurjo+6en62IPZswhSETuhr
+         w8sIf+Mnb7kILc5hTTVc2jTfTqTuR7saXY2tF+XaDTJuNQauKqoFmLoJCiGBNtW34LhE
+         43w4rhMKJ0JWRiNNWnQ4v4Py4T3z241XgdwMcgXB5DNZb+AYqicfvlWJcIs8WJ3uQXOn
+         8bYzb0g0jEgMyYnNnPzXIt5gTVRfSw3/1bQmdwpfRB4Rvawy2pDVUEeUCz9jAUwROyWp
+         zH9TcUlhT2WYLr9Ep3BouL5oG6mBwazc1uwedfZ/HTzepsse5zJSTcSU3yFb4VfAYLe+
+         KPwQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+vO/tyUKrz974wj0ZUniV1SQ1aNzHgNydyK5wcPQF/m6XV6S3CsWRegG4PNNXk4bqhSqYMt07d5uKx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOq2UaKh8CEyPralzZzEjmb+7hGbqQzPZGHuBfvz8LM3gGd2Yn
+	jfQxZD8aD9V4UB3eeYu70OixLjzQNq6Z8ZVyittJ2zyTbB1n5J48PMaxDfGdvqIN1WHtXzUOx0R
+	2d4GRIDToNWwh4bVrI3SSxcmT5HyLfGviRsCxiqULCtpgYf3s/azmSmERL3WZcFTU
+X-Gm-Gg: AfdE7ckrlTQQhCs8x9TU6yZ/ByX5ShheB8CZ3kcrlclLxp25iun3z4U8hHvvqF3bsA8
+	8h9XQlQGArWL2nxOZjHET9GMACBDxpq7TqvnSdLLbuNCkXAVj/ykD9I3dFHRRBLulYfez7ET1cZ
+	3ZEB76WYxTEL55JGYK8KDzGoxohb6TZ6m351xkHMG0W/xp9bCUfM3mOKa8sbj/XyEcgcVAW+qvM
+	Cqjx1wQ4B+HtJ1aF5fozIp6u9Sma5HCTGP9ZXVQByB9zofLJ+1PVU6qIoehBceVbnIKuJakVsRp
+	YEJco3lqb9sQG71V4pwLXaKWmrDPprKE/PQDld+Gq9zLjGSHj6Qa3gf+b0fq0GXbHiW5fGcjzFW
+	9TLPEzi1jBew4cATGimO3RBd4zKaf1Vvifs3oTJMB9N4zQDTUQ7v+mZ7rVTafE+8bUnw4bys=
+X-Received: by 2002:a05:620a:4808:b0:915:7e22:6f1f with SMTP id af79cd13be357-9293a8a8bd6mr2058531885a.22.1782667864506;
+        Sun, 28 Jun 2026 10:31:04 -0700 (PDT)
+X-Received: by 2002:a05:620a:4808:b0:915:7e22:6f1f with SMTP id af79cd13be357-9293a8a8bd6mr2058528285a.22.1782667863990;
+        Sun, 28 Jun 2026 10:31:03 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:670:107a:d931:c86f? ([2a05:6e02:1041:c10:670:107a:d931:c86f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4932f100e4asm144355955e9.1.2026.06.28.10.31.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 28 Jun 2026 10:31:03 -0700 (PDT)
+Message-ID: <8e7a604a-4cd2-40ec-b1a1-ae5ac68c4189@oss.qualcomm.com>
+Date: Sun, 28 Jun 2026 19:31:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI4MDE1OCBTYWx0ZWRfXyprtNsJ0XA6K
- 6OEiHS9QafYeE51hwjo8Q9qtGWtVRAxWDpfkJq4gNO42qSccQNtVqqUzpCNN59ZkRNhEXfMUTJe
- mumMtvVSaf1dEp0UYES5h3zevh0YRBdkIXI91OdOyrXNDHlA94oNi5P+P1VvoqQW0EFSbOSDj0c
- X/BthoVQiyuWXZsQjcxzq8jkm+b8mBPLCO2cbFfm8YuSH78cx2jI+wKxKjMsHW7J8Q3DhokmDSH
- L7jdgsPeWLBKr6xaGENnrlmWU2f3ps+4gJQyDsfI/fExuCt/gcKOkY5+U+fINXJKmrWwTEMw9/t
- uwUOXRBcgLc11RkHZqB
-X-Proofpoint-GUID: iDxFxfNYfu74ewQfhKSij8tVjgBx-1qy
-X-Proofpoint-ORIG-GUID: iDxFxfNYfu74ewQfhKSij8tVjgBx-1qy
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] drivers/platform: lenovo-t14s-ec: Add hwmon
+ support for temperatures and fan speed
+To: Sebastian Reichel <sre@kernel.org>
+Cc: hansg@kernel.org, ilpo.jarvinen@linux.intel.com, linux@roeck-us.net,
+        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, bryan.odonoghue@linaro.org,
+        platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20260624210825.264454-1-daniel.lezcano@oss.qualcomm.com>
+ <20260624210825.264454-2-daniel.lezcano@oss.qualcomm.com>
+ <akEj6XEByCOkuJaY@venus>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+In-Reply-To: <akEj6XEByCOkuJaY@venus>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI4MDE1NiBTYWx0ZWRfXxzVGzKKhCer4
+ vbj7Dtb5MJBxHVUgtQLLroZpRi86j32MBzPsZz2OvTRsv0UASY+KeJrqLgIsiplx2U9AvNnViaL
+ IogOcogb09MlaZ/3iYSTd1nFaMihBGI=
+X-Authority-Analysis: v=2.4 cv=D+N37PRj c=1 sm=1 tr=0 ts=6a415a59 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8
+ a=bjHr9k4kyxrlvEBRdikA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: H3_KAtJUCSC8MMErDO_QpvJRyWYqUk6y
+X-Proofpoint-ORIG-GUID: H3_KAtJUCSC8MMErDO_QpvJRyWYqUk6y
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI4MDE1NiBTYWx0ZWRfX3930HYqoUcIc
+ 97gkqPsmmPfyuk21AE+PahmM+4GX7SVEFn8uviur4GFdQwRu4LnlGuiLhI6uidFjtdp4mHq3wgz
+ p7XL7Ta6l6rfUcmfrs2A0oMFdYCXQpkAo9zXspTyE8Jzzz0KFkGIxPerA8bwhW6ivAipRwLChuh
+ sokPWk5GJYygkyAZBhnzb7bDzjcSCu4ydF7fCzKIQ9w0tzeHqnzMSrOo1a4K4Xu+SMyrN98QxUf
+ 3O8dF8rdW+MiWgn6n4Pn8BzUREUftaN2AzEz6rKO/Pl7KEJZCz+Eq6jWFEidAd6uFATVRuKxgUY
+ sMXhiXnOrV9Bu7SGbPl5XZxAUjAwA4i1ZDkMI3lp5fXv7gkevzuWsxn9tHgPxkjDBOb45e4Gc3S
+ mp2G9L7MgV++E/EhNtENUKyF0/aUuDFGYe7oxB1QTRc3ydSlWTwSBs85eNAxhYav66TJxHJntuq
+ NpWqiCJc4/UhzvQu4zA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-28_04,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 clxscore=1015 suspectscore=0 bulkscore=0 impostorscore=0
+ malwarescore=0 lowpriorityscore=0 adultscore=0 spamscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606280156
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[etehtsea.me:s=sig1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-316484-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316478-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[mail@etehtsea.me,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:valentin.manea@mrs.ro,m:mail@etehtsea.me,m:dmitry.baryshkov@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DMARC_NA(0.00)[etehtsea.me];
-	DKIM_TRACE(0.00)[etehtsea.me:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
+	FORGED_SENDER(0.00)[daniel.lezcano@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:sre@kernel.org,m:hansg@kernel.org,m:ilpo.jarvinen@linux.intel.com,m:linux@roeck-us.net,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bryan.odonoghue@linaro.org,m:platform-driver-x86@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mail@etehtsea.me,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[daniel.lezcano@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[etehtsea.me:dkim,etehtsea.me:email,etehtsea.me:mid,etehtsea.me:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 23BF36D491F
+X-Rspamd-Queue-Id: EEF846D48BF
 
-Allow particular machine accessing eg. efivars.
+On 6/28/26 15:50, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Wed, Jun 24, 2026 at 11:08:23PM +0200, Daniel Lezcano wrote:
+>> Expose the Lenovo ThinkPad T14s EC environmental sensors through
+>> the hwmon subsystem.
+>>
+>> The driver now registers a hwmon device providing access to six EC
+>> temperature sensors corresponding to the SoC, keyboard area, base
+>> cover, PMIC/charging circuitry, QTM module and SSD. Sensor labels
+>> are exported to allow user space to identify each measurement.
+>>
+>> Additionally, expose the system fan speed by reading the fan RPM
+>> registers from the embedded controller.
+>>
+>> This allows standard monitoring tools such as lm-sensors to report
+>> platform temperatures and fan speed.
+>>
+>> Signed-off-by: Daniel Lezcano daniel.lezcano@oss.qualcomm.com
+>> ---
+> 
+> I gave this a try and for me the fan data is always 65535 (i.e. -1):
+> 
+> $ cat /sys/class/hwmon/hwmon66/{name,fan1_input}
+> t14s_ec
+> 65535
 
-Signed-off-by: Konstantin Shabanov <mail@etehtsea.me>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- drivers/firmware/qcom/qcom_scm.c | 1 +
- 1 file changed, 1 insertion(+)
+Strange, I have:
 
-diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-index 6b601a4b89db..b6f7c567d4a8 100644
---- a/drivers/firmware/qcom/qcom_scm.c
-+++ b/drivers/firmware/qcom/qcom_scm.c
-@@ -2295,6 +2295,7 @@ static const struct of_device_id qcom_scm_qseecom_allowlist[] __maybe_unused = {
- 	{ .compatible = "dell,latitude-7455" },
- 	{ .compatible = "dell,xps13-9345" },
- 	{ .compatible = "ecs,liva-qc710" },
-+	{ .compatible = "honor,magicbook-art-14-snapdragon" },
- 	{ .compatible = "hp,elitebook-ultra-g1q" },
- 	{ .compatible = "hp,omnibook-x14" },
- 	{ .compatible = "huawei,gaokun3" },
--- 
-2.54.0
+fan speed=0, temp=40000
+fan speed=0, temp=41000
+fan speed=0, temp=41000
+fan speed=0, temp=43000
+fan speed=0, temp=43000
+fan speed=0, temp=44000
+fan speed=0, temp=44000
+fan speed=0, temp=45000
+fan speed=0, temp=46000
+fan speed=0, temp=46000
+fan speed=65535, temp=48000
+           ^^^
+fan speed=1903, temp=48000
+fan speed=2345, temp=49000
+fan speed=2367, temp=49000
+fan speed=2417, temp=50000
+fan speed=2431, temp=50000
+fan speed=2430, temp=51000
+fan speed=2441, temp=51000
+fan speed=2450, temp=52000
+fan speed=2457, temp=52000
+fan speed=2458, temp=53000
+fan speed=2458, temp=53000
+fan speed=2458, temp=54000
+fan speed=2460, temp=54000
+fan speed=2572, temp=55000
+fan speed=2788, temp=55000
+fan speed=3009, temp=55000
+fan speed=3229, temp=56000
+fan speed=3424, temp=56000
+fan speed=3610, temp=56000
+fan speed=3631, temp=56000
+fan speed=3597, temp=56000
+fan speed=3594, temp=56000
+fan speed=3592, temp=56000
+fan speed=3592, temp=56000
+fan speed=3588, temp=56000
+fan speed=3588, temp=56000
+fan speed=3594, temp=56000
+fan speed=3594, temp=56000
+fan speed=3597, temp=56000
+fan speed=3597, temp=56000
+fan speed=3594, temp=56000
+fan speed=3597, temp=55000
+fan speed=3594, temp=55000
+fan speed=3594, temp=55000
+fan speed=3592, temp=55000
+fan speed=3592, temp=54000
+fan speed=3588, temp=54000
+fan speed=3592, temp=53000
+fan speed=3590, temp=53000
+fan speed=3592, temp=52000
+fan speed=3590, temp=52000
+fan speed=3588, temp=52000
+fan speed=3588, temp=52000
+
+
+> This is with the fan running:
+> 
+> $ cat /sys/class/hwmon/hwmon57/{name,fan1_input}
+> fan-controller
+> 2564
 
 
