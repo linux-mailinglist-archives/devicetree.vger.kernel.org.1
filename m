@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-316368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316369-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4uQnDF7eQGpLiwkAu9opvQ
-	(envelope-from <devicetree+bounces-316368-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 10:42:06 +0200
+	id 24j8IeXeQGpliwkAu9opvQ
+	(envelope-from <devicetree+bounces-316369-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 10:44:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B48E26D36E4
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 10:42:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22CBD6D370C
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 10:44:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=afEyoG7H;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316368-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-316368-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=MLqXu9oG;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316369-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-316369-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 217C930058C1
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 08:42:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 908CD30055BA
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 08:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3CCF372ED2;
-	Sun, 28 Jun 2026 08:42:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88E0F351C0C;
+	Sun, 28 Jun 2026 08:44:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E16112F0C62;
-	Sun, 28 Jun 2026 08:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D13B305057;
+	Sun, 28 Jun 2026 08:44:15 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782636122; cv=none; b=LzRAAJ0ZhnVYiZHXR3YWFpa2oQkTDp/Cfqvl32LYM03G1QNiVG9wYLZqKYzN0J/gEFRWkbs1FwnwfH9CQ/B1sQzxRkewXIqbxEbVDJr0nv0nvbzkkr5U0EjhWa+2lhF4KK29WkMZgWp9IwcZmWEKrWqhXy1eLSsR0vdKWzEaYrU=
+	t=1782636257; cv=none; b=qGp0cxLwSpKEKQ3v4RX+jifSyR6z5jrbUSEmwglQVxgzRkkOhu36EEU4x9MZZPTKtnyuYFBAnR06To+s1/heXwlcVN2bHD250VrqOJs1VBJIS4CWTwsz3p+/4PYg1pNYtQRGdvRVhqKSQAOxXVGQEV6fxVY/EVYUPWKp2bped1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782636122; c=relaxed/simple;
-	bh=dw/lGv1u3Lv5xeoGtgMzlxFSTqpFonsNuG+PhX1LHdQ=;
+	s=arc-20240116; t=1782636257; c=relaxed/simple;
+	bh=laWz/PWzk7WsqKDkxiCO/3cJBC7ORlLSKlI/yWMEuqs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HId+zOCy8cHyUIm+mDwctHabfzOnbcvcOKigiZg1DN7oCp8bckefHjbNtvo980smtarjQSQvcJzAZW9uzG3GRTbKhwYVs30KUyOxSK6Yj7BYQvijyCzWiXAn0CNIvGJNQQOmPI9sC5wXvUbTdrYXl9m1zVoDGmedci1LeMmpPCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=afEyoG7H; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59D7B1F000E9;
-	Sun, 28 Jun 2026 08:41:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WbSQcTT9A1FC/4jlDqdy/yq9eNsiEkipfG2Tpp2hyuKFA4NVQooivFJnlqvJLer0hpiF2SfYHmxfJGxrfhHiI4RDMJurgLgDuEh8fymnYM1AfXmnrM+GTo2sJNugJB8c+QIjGTJ5XTc6kY6NiLwUsepJE2SY8Vk8Ac/SQYieEDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MLqXu9oG; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C10791F000E9;
+	Sun, 28 Jun 2026 08:44:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782636121;
-	bh=bCKnwMfrXZz+g37EJ+TFMnIZa/Yzua6c1+9WVaqAyf0=;
+	s=k20260515; t=1782636255;
+	bh=FBoMAHCtH8Ri/28sMpEUa1oUvQsHO1sXb4qphcRiN9k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=afEyoG7HoZ5pCVWP3Gd2mvK4Y5ZjixxblF89Psqh5ydny60oHAbYGwqM6DNkeC1Bl
-	 cYsVK9ijvei7VNM5K/KenAFrklEwX+GHOyqGQjymKMHX88X3PtfQZozJ91FR1sBrp3
-	 8GUUVQRK9yQeGCLswvHuH/49SV+faPfb8XYgJxb8QZuLp4w7zbS5n4s4DIa7KFwcHD
-	 oy2qnvjLzYJEUjdws5Y+FI6HZTbnnzcjlJyXp8Xa7U9DZMtQ/DY7x6pQoBpPx+3n22
-	 75eo2ylbBOvERcS1V7Sj/Cpncx99wySS2/f95WDJFVGWldSms+TOn6xQCY0Xlwt7E+
-	 zF1SfLtxYNRfg==
-Message-ID: <1594185d-130d-467e-8061-8cd888f0d3b8@kernel.org>
-Date: Sun, 28 Jun 2026 10:41:43 +0200
+	b=MLqXu9oGFic/n+k6lkp9XZMETh6J2KGZeS3Ueiro7ME6Fg8TAaXTAorn74/Y2M5DR
+	 y2N3Sq6n8DkjZbmuXIwNsXVQWKWylO13iGSDY2q7RAjaif5Oo2umqzOuTEvuZrObpC
+	 8Kmci3Tx/026HwS9hiDUy3F9EY6YmCS1gRmfiXu5vRYfduzaRIDDeblCItlW8s+HeT
+	 82GsHMjX8YKhNkztLsy2frpWMT3yljpUQ8IM8RtxXj2eXFjgangyUzxWl/AzssU6Es
+	 G82Rs4m5J3JeofsaZv4R6Yv6GGkGFoWqSZ48pyhlrEBlqcE00fDmnBrEN2q6fhX5hO
+	 slAP1tE8gtD3A==
+Message-ID: <cfb45d95-7bf1-47dc-96f2-2ea4e9be9e70@kernel.org>
+Date: Sun, 28 Jun 2026 10:44:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,30 +55,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 19/19] MAINTAINERS: add Rambus CryptoManager Hub (CMH)
-To: "Krishnamoorthy, Saravanakrishnan" <skrishnamoorthy@rambus.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>,
- "Ousherovitch, Alex" <aousherovitch@rambus.com>,
- Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- Herbert Xu <herbert@gondor.apana.org.au>, Jonathan Corbet <corbet@lwn.net>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- Rob Herring <robh@kernel.org>, Shuah Khan <shuah@kernel.org>,
- Alexandre Ghiti <alex@ghiti.fr>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "Wittenauer, Joel" <Joel.Wittenauer@cryptography.com>,
- "linux-api@vger.kernel.org" <linux-api@vger.kernel.org>,
- "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- Shuah Khan <skhan@linuxfoundation.org>, SIPSupport <sipsupport@rambus.com>,
- "Nguyen, Thi" <thin@rambus.com>
-References: <20260625173328.1140487-1-skrishnamoorthy@rambus.com>
- <20260625173328.1140487-20-skrishnamoorthy@rambus.com>
- <20260626-lush-eel-of-election-5fcbde@quoll>
- <SA1PR04MB985196991689AF3F3DCD349BC2EB2@SA1PR04MB9851.namprd04.prod.outlook.com>
+Subject: Re: [PATCH 3/5] arm64: defconfig: Enable ILI7807S DSI panel driver
+To: Nabige Aala <nabige.aala@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, arpit.saini@oss.qualcomm.com,
+ mohit.dsor@oss.qualcomm.com
+References: <20260627-shikra-dt-changes-v1-0-449a402673d0@oss.qualcomm.com>
+ <20260627-shikra-dt-changes-v1-3-449a402673d0@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -124,13 +110,12 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <SA1PR04MB985196991689AF3F3DCD349BC2EB2@SA1PR04MB9851.namprd04.prod.outlook.com>
+In-Reply-To: <20260627-shikra-dt-changes-v1-3-449a402673d0@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-5.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
@@ -138,45 +123,46 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-316368-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[24];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-316369-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:skrishnamoorthy@rambus.com,m:aou@eecs.berkeley.edu,m:aousherovitch@rambus.com,m:conor+dt@kernel.org,m:davem@davemloft.net,m:herbert@gondor.apana.org.au,m:corbet@lwn.net,m:krzk+dt@kernel.org,m:palmer@dabbelt.com,m:pjw@kernel.org,m:robh@kernel.org,m:shuah@kernel.org,m:alex@ghiti.fr,m:devicetree@vger.kernel.org,m:Joel.Wittenauer@cryptography.com,m:linux-api@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-kselftest@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:skhan@linuxfoundation.org,m:sipsupport@rambus.com,m:thin@rambus.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:nabige.aala@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:arpit.saini@oss.qualcomm.com,m:mohit.dsor@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B48E26D36E4
+X-Rspamd-Queue-Id: 22CBD6D370C
 
-On 26/06/2026 19:22, Krishnamoorthy, Saravanakrishnan wrote:
-> Hi Krzysztof,
+On 27/06/2026 12:01, Nabige Aala wrote:
+> From: Arpit Saini <arpit.saini@oss.qualcomm.com>
 > 
-> Thanks for the review - all fair, and we'll fix them in v2:
-> 
-> Drop L: sipsupport@rambus.com (keeping only linux-crypto).
-> Drop the T: line - we don't maintain a tree; the driver will go through the crypto tree.
-> 
-> Yes, Joel and Thi reviewed and acknowledged with the statement of oversight.
+> Enable the ILI7807S 1080x1920 video-mode DSI panel driver as a module,
+> used on the Shikra board.
 
+So that's a v4, no changelog, tags ignored, comments not responded and
+also ignored.
 
-Do not top post, please.
+You got yourself one NAK, now second:
+
+NAK
+
+Address the comments before you send the next version.
 
 Best regards,
 Krzysztof
