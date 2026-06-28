@@ -1,200 +1,206 @@
-Return-Path: <devicetree+bounces-316544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316546-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7lrHJOiCQWrprgkAu9opvQ
-	(envelope-from <devicetree+bounces-316544-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 22:24:08 +0200
+	id /hWPJ+eDQWoRrwkAu9opvQ
+	(envelope-from <devicetree+bounces-316546-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 22:28:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB3D86D4E38
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 22:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE8076D4E4D
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 22:28:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316544-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316544-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=intel.com header.s=Intel header.b=bKn7cF+Z;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316546-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316546-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6EA68300D6B7
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 20:24:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8B0E6300FEC1
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 20:28:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D02793B6344;
-	Sun, 28 Jun 2026 20:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8633B6BF2;
+	Sun, 28 Jun 2026 20:28:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE9D3A2549
-	for <devicetree@vger.kernel.org>; Sun, 28 Jun 2026 20:24:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D933930FC1A;
+	Sun, 28 Jun 2026 20:28:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782678245; cv=none; b=GtMTglQFUQiCOW2lmEJa6swgWjahoMs+AnttFLGMRU+5Q6B9HZjDVZaImBbAfs8fCiJ8oeA+C/Kq5BIDrn2H7EQu6ackocUNZwAio4uInVvkQRmnlwPAucq7G2ShuoQxf67vFVDoxqgJjB5dCbzCl8smxC4KYlGsMC61hORrjas=
+	t=1782678501; cv=none; b=Da3J3LHK6byqy422ldUI6h4mbIvrqePNU6iyJT5ji2SS33fdiSSozudreaKq9eJH2bzcqRb9GwHtDjU6kvoiPAi2ylChzKSOp9n/tsn9SFgg0xQs8pN756qjyaxuAoutdn76Ak/GsJ1353GQplmrMHha5jbxO8XcSE2IB0wpgi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782678245; c=relaxed/simple;
-	bh=J+EtlgeQFHl/nWsWbKn3kXmKZUyGn9tY50hcIYk5nVQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=rdMEfUrG0ysZk82GjYu/tMHwa8yw5X4Xi5e0Z/BhtAuWGzMC7lVzlosg1VgFhhB6IxSO9VajJLSAaibUaag15oBWJkcKobXXI+OdQeJbcdKiNJ9MDrtVVfqbZlii0jmY1fvgkTKWwRQxI/oAVkM+TAA3fyxIIXe6sK+THdx7gII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 616361F000E9;
-	Sun, 28 Jun 2026 20:24:04 +0000 (UTC)
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC v5 11/12] reset: zte: Add a zx297520v3 reset driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: =?utf-8?b?U3RlZmFuIETDtnNpbmdlcg==?= <stefandoesinger@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260628-zx29clk-v5-11-79ff044e4192@gmail.com>
-References: <20260628-zx29clk-v5-0-79ff044e4192@gmail.com>
- <20260628-zx29clk-v5-11-79ff044e4192@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sun, 28 Jun 2026 20:23:55 +0000
-Message-Id: <20260628202404.616361F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782678501; c=relaxed/simple;
+	bh=x5Vi4f0phvjV60V3TXIOIorQbkIhfFhMCJ4c7HWwdqk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A7qkqeUsErtHbuaD6nNdKwQ8hn8ky9WKoaHVJ000qDAAEp/0+lYw+KJG/hNAR2OGABI4nbKJsuhKLu1P8RGNbt9GjCvBpXydy/LPzuf7GXQnjna12nZ94wnMhtuGa3U4S6PIKrK2s0cqEWAsS1O8vbhFByJty/6HgG3DGTFHVso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bKn7cF+Z; arc=none smtp.client-ip=198.175.65.12
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1782678498; x=1814214498;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=x5Vi4f0phvjV60V3TXIOIorQbkIhfFhMCJ4c7HWwdqk=;
+  b=bKn7cF+Z9KvPEAC/JgqtbVIreNirgZFH+j8KuUzh1ajj+/osD0aK/T3R
+   M7SFqv1XhtAJnGkFbgF7PMP/fA/gtHLZYMlNFpZtlM/uNNID/63yI5eE9
+   C8pQ1I92if9YnDWWa+SPpQsTOKO0QK8F68czPwQd64wkYUfoKp2AZ/n/p
+   0VNN9M94ocJ/ArtPzIYcjtXSwpTm6EGjMUEcH8FTA3SqLuw5/XqI+uUw4
+   KRxgu0G5TZHuz2tyer7ohQrLKfAaZK6K7jYj6fMdIOLVTSQMS2Nw5m591
+   T8HUXiKsZcYQ9brlqdLYGvFhmyHKvlfOhngnAc9aBsTZLcFUUORf+8ccR
+   w==;
+X-CSE-ConnectionGUID: IbSWCcHpSpiTaM/8oRUsAQ==
+X-CSE-MsgGUID: XyDHT2ouTe6qdeq0LpRtjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="94860430"
+X-IronPort-AV: E=Sophos;i="6.24,230,1774335600"; 
+   d="scan'208";a="94860430"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2026 13:28:17 -0700
+X-CSE-ConnectionGUID: 0nckVlaHRHaa9RU2NwKC9w==
+X-CSE-MsgGUID: QfjrX7T9R5Wi5lax0QCKnA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,230,1774335600"; 
+   d="scan'208";a="249152241"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.193])
+  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2026 13:28:13 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 229E0121C1C;
+	Sun, 28 Jun 2026 23:28:13 +0300 (EEST)
+Date: Sun, 28 Jun 2026 23:28:13 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Frank Li <Frank.Li@nxp.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Hans Verkuil <hans@jjverkuil.nl>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Michael Riesch <michael.riesch@collabora.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Martin Kepplinger-Novakovic <martink@posteo.de>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Purism Kernel Team <kernel@puri.sm>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	Guoniu Zhou <guoniu.zhou@nxp.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 1/9] media: mc-entity: Store parsed V4L2 fwnode
+ endpoint in media_pad
+Message-ID: <akGD3ZjW6GPHHI3D@kekkonen.localdomain>
+References: <20260624-imx8qxp_pcam-v6-0-4b3f45920d2f@nxp.com>
+ <20260624-imx8qxp_pcam-v6-1-4b3f45920d2f@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260624-imx8qxp_pcam-v6-1-4b3f45920d2f@nxp.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.54 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316544-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:stefandoesinger@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	R_DKIM_NA(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-316546-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:Frank.Li@nxp.com,m:laurent.pinchart@ideasonboard.com,m:hans@jjverkuil.nl,m:mchehab@kernel.org,m:michael.riesch@collabora.com,m:martink@posteo.de,m:rmfrfs@gmail.com,m:kernel@puri.sm,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:imx@lists.linux.dev,m:guoniu.zhou@nxp.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,collabora.com,nxp.com,posteo.de,gmail.com,puri.sm,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,intel.com:dkim,linux.intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DB3D86D4E38
+X-Rspamd-Queue-Id: BE8076D4E4D
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [Medium] Missing `MODULE_ALIAS` for the platform drivers prevents module =
-autoloading if the auxiliary device is not present.
-- [Medium] The Kconfig entry `RESET_ZTE_ZX297520V3` fails to `select MFD_SY=
-SCON` or `depends on MFD_SYSCON`.
-- [Low] The driver is missing the `#include <linux/module.h>` header, leadi=
-ng to a build failure.
---
+Hi Frank,
 
-commit 2568a484547168ba23bd6f47affd8cc3aa186393
-Author: Stefan D=C3=B6singer <stefandoesinger@gmail.com>
+Thanks for the patch.
 
-reset: zte: Add a zx297520v3 reset driver
+On Wed, Jun 24, 2026 at 04:37:48PM -0400, Frank.Li@oss.nxp.com wrote:
+> From: Frank Li <Frank.Li@nxp.com>
+> 
+> Each media pad is associated with a firmware node endpoint. Capture the
+> parsed V4L2 fwnode endpoint information in struct media_pad so it can be
+> reused by consumers.
+> 
+> This avoids reparsing firmware node endpoint data every time the endpoint
+> configuration is needed, reduces duplicate code, and provides a common
+> place to store endpoint properties associated with a pad.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Assume 1 to 1 map between dt's endpoint to medie pad.
+> Change in v6
+> - new patch
+> ---
+>  include/media/media-entity.h | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/media/media-entity.h b/include/media/media-entity.h
+> index d9b72cd87d524..4a3785cd9f370 100644
+> --- a/include/media/media-entity.h
+> +++ b/include/media/media-entity.h
+> @@ -20,6 +20,8 @@
+>  #include <linux/minmax.h>
+>  #include <linux/types.h>
+>  
+> +#include <media/v4l2-fwnode.h>
 
-This commit adds a reset driver for ZTE zx297520v3 SoCs. It registers two
-platform drivers and one auxiliary driver to handle resets across different
-hardware blocks.
+We have dependencies from V4L2 to MC but not the other way around as MC is
+(or was?) intended for wider use then just V4L2. I'm thus more than a bit
+hesitant adding any references to V4L2 in MC.
 
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index d009eb0849a3b..116dd23f1b8e3 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-[ ... ]
-> @@ -404,6 +404,17 @@ config RESET_UNIPHIER_GLUE
->  	  on UniPhier SoCs. Say Y if you want to control reset signals
->  	  provided by the glue layer.
-> =20
-> +config RESET_ZTE_ZX297520V3
-> +	tristate "ZTE zx297520v3 Reset Driver"
-> +	depends on (ARCH_ZTE || COMPILE_TEST)
-> +	default CLK_ZTE_ZX297520V3
-> +	select AUXILIARY_BUS
-
-[Severity: Medium]
-Since this driver uses device_node_to_regmap() to acquire the parent syscon
-regmap, should this config also select or depend on MFD_SYSCON?=20
-
-If MFD_SYSCON is disabled, device_node_to_regmap() acts as a stub returning
--ENOTSUPP, which will cause the reset driver to unconditionally fail to pro=
-be.
-
-> +	help
-> +	  This enables the reset controller for ZTE zx297520v3 SoCs. The reset
-> +	  controller is part of the clock controller on this SoC. This driver
-> +	  operates on an auxiliary device exposed by the clock driver. Enable
-> +	  this driver if you plan to boot the kernel on a zx297520v3 based SoC.
-> +
->  config RESET_ZYNQ
->  	bool "ZYNQ Reset Driver" if COMPILE_TEST
->  	default ARCH_ZYNQ
-
-> diff --git a/drivers/reset/reset-zte-zx297520v3.c b/drivers/reset/reset-z=
-te-zx297520v3.c
-> new file mode 100644
-> index 0000000000000..8ef4349042308
-> --- /dev/null
-> +++ b/drivers/reset/reset-zte-zx297520v3.c
-[ ... ]
-> +static struct platform_driver * const reset_zx297520v3_mfddrv[] =3D {
-> +	&reset_zx297520v3_top,
-> +	&reset_zx297520v3_matrix,
-> +};
-
-[Severity: Medium]
-Since these platform drivers do not have an .of_match_table and match purel=
-y by
-name, do they need explicit MODULE_ALIAS declarations (such as
-MODULE_ALIAS("platform:zx297520v3-toprst")) for proper udev module autoload=
-ing?
-
-Without these aliases, the module might only autoload when the auxiliary de=
-vice
-appears, creating a dependency on the LSP clock driver being loaded first.
-
-[ ... ]
-> +static void __exit reset_zx297520v3_exit(void)
-> +{
-> +	platform_unregister_drivers(reset_zx297520v3_mfddrv,
-> +				    ARRAY_SIZE(reset_zx297520v3_mfddrv));
-> +	auxiliary_driver_unregister(&reset_zx297520v3_auxdrv);
-> +}
-> +
-> +module_init(reset_zx297520v3_init);
-> +module_exit(reset_zx297520v3_exit);
-
-[Severity: Low]
-Does this file need to include <linux/module.h>?=20
-
-Without it, building this as a loadable module could fail because macros li=
-ke
-module_init, module_exit, MODULE_AUTHOR, and MODULE_DESCRIPTION are not
-provided by the other included headers.
+I wonder what Hans and Laurent think.
 
 > +
-> +MODULE_AUTHOR("Stefan D=C3=B6singer <stefandoesinger@gmail.com>");
-> +MODULE_DESCRIPTION("ZTE zx297520v3 reset driver");
-> +MODULE_LICENSE("GPL");
+>  /* Enums used internally at the media controller to represent graphs */
+>  
+>  /**
+> @@ -230,6 +232,7 @@ enum media_pad_signal_type {
+>   * @flags:	Pad flags, as defined in
+>   *		:ref:`include/uapi/linux/media.h <media_header>`
+>   *		(seek for ``MEDIA_PAD_FL_*``)
+> + * @vep:	associated fwnode endpoint information
+>   * @pipe:	Pipeline this pad belongs to. Use media_entity_pipeline() to
+>   *		access this field.
+>   */
+> @@ -240,7 +243,7 @@ struct media_pad {
+>  	u16 num_links;
+>  	enum media_pad_signal_type sig_type;
+>  	unsigned long flags;
+> -
+> +	struct v4l2_fwnode_endpoint vep;
+>  	/*
+>  	 * The fields below are private, and should only be accessed via
+>  	 * appropriate functions.
+> 
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260628-zx29clk-v5=
--0-79ff044e4192@gmail.com?part=3D11
+-- 
+Regards,
+
+Sakari Ailus
 
