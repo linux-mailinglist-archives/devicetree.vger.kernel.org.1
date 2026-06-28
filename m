@@ -1,233 +1,163 @@
-Return-Path: <devicetree+bounces-316580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316581-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ricKDiSaQWpWsgkAu9opvQ
-	(envelope-from <devicetree+bounces-316580-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 00:03:16 +0200
+	id cLFMETCbQWq3sgkAu9opvQ
+	(envelope-from <devicetree+bounces-316581-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 00:07:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C039F6D517B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 00:03:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8879C6D5212
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 00:07:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=axis.com header.s=selector1 header.b=a33nWLkk;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316580-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316580-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=axis.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="ct5S/gnf";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316581-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316581-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4707B301FF28
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 22:01:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 392A1300A8D7
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 22:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660873BAD9B;
-	Sun, 28 Jun 2026 22:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65B362F8EBC;
+	Sun, 28 Jun 2026 22:07:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011062.outbound.protection.outlook.com [40.107.130.62])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B17A35836A;
-	Sun, 28 Jun 2026 22:01:25 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782684087; cv=fail; b=q8e1/VFeTMiBkNHY8N302l7OMcNp7apq2pwUTNeUA+zwceF89QY8XCGdYauX4eWPG9FZgRBnoNilQN7MqeAM1jeu4mWgXyGsCeJPtXt8TgtwWpF59FSeQzvVhaTV+6iiJgT+7zGcchqVnd3OLAnqLktlc/QFLIqnPZIYHBB/p3Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782684087; c=relaxed/simple;
-	bh=O11G8rxmdTSh3W8yg7YJDD9kQCCwdpSxxv9d8z+Ye0I=;
-	h=From:To:CC:Subject:In-Reply-To:References:Message-ID:Date:
-	 MIME-Version:Content-Type; b=TA51Ma9QtxNuE73p62g+lUlijiHsKkfrKnl5Rujl9uMUJGVvUZ6jTYZ5y2/f1mVY/qhcCuhtyqVb0m4K23VgqIByPkyXiwPhUa0NgeaK/PLbGRmkwpgY+ASuoUOkp7r8zA2VX9eSaDWNLvP1PWB/1Pwyga9dtZLrwFlu6FveyN0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=a33nWLkk; arc=fail smtp.client-ip=40.107.130.62
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qFQis/IQcj7M8IWy4afq3bTwzdgbO++4Vy/p3iYFy7Di/DB4DDp5TVAxs4B+4yyAxmtCK257Djd0bquB/xx/Fr9QfxXD/BSla7Kr73GOO3Fc5qMhVXRt5O6MyxKWvTM1Vm/lz5lewLPkE4Psj4YdEd7cUEz+8kXiTKeHwtz4Riw9pU9Cgp3Cmz8FF3aNmjAOK9amaeew35QHxe98eawKmtY3Xiy5rC4HspaFrVGSg/qI2SPveQF3FCmpZdrGwZ3sdtdlrvmYlgvtN8I1am8KdlS8ayj9xSeA74zfdjuCDJ3Km+Vu3l/2WyVBx2X0g8gDiYjwobWpqvmS2s6cYYiBGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mb5JdtztTDOyq1MTJgbwY94+lVApv2GerXob413beI0=;
- b=YW8iNrKloIm4lCriVKc8GZL6Y40tdq/3nBbumios4cR2+23OXDeZvcQBPXzxa7S5nmE+deMItJkr/mFhwPNIpEe5opGzudncRwwPtYJWSyK/eSklX145k4885pR+5F2upuqDnU2amRFdLQK4vDxVtiaZbNZLLaCtzc4Bp2Z5RtLS/uKa8iIv+QI7YP0HrjgAlxv0yWVPapKK0sA1MFDiVf974YRnsLCrurSu5xiTfDGA1giNn5Wx5Y6sv7ChVs1RHz88pQSiCCqERYXhTzwNr9v46skkIHqlMULZuH1oT7lQitA400SXErM8m4okPcgF9gxAnyS/vio0js7bCGC+Zg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mb5JdtztTDOyq1MTJgbwY94+lVApv2GerXob413beI0=;
- b=a33nWLkkAw4k+PZpJe94GJKhP6ygwJU5d5LLVW92ClgViyEgKnF4G3HXE+2zMQsdV8FwDoHe8Bw/FXg9hSQBr9Pv8kx/EVmHbZdGO09/PD/JiuYqbNx1+rv5HeuZ2BBUuHco7ReApChYB61XtGXJBNH23Ve0IJ1UZrcbUAMW07s=
-Received: from AS4P191CA0006.EURP191.PROD.OUTLOOK.COM (2603:10a6:20b:5d5::17)
- by PA6PR02MB10616.eurprd02.prod.outlook.com (2603:10a6:102:3c7::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Sun, 28 Jun
- 2026 22:01:20 +0000
-Received: from AM3PEPF00009BA2.eurprd04.prod.outlook.com
- (2603:10a6:20b:5d5:cafe::8d) by AS4P191CA0006.outlook.office365.com
- (2603:10a6:20b:5d5::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.19 via Frontend Transport; Sun,
- 28 Jun 2026 22:01:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- AM3PEPF00009BA2.mail.protection.outlook.com (10.167.16.27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Sun, 28 Jun 2026 22:01:20 +0000
-Received: from pc67007-2609 (10.4.0.13) by se-mail10w.axis.com (10.20.40.10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.39; Mon, 29 Jun
- 2026 00:01:19 +0200
-From: Waqar Hameed <waqar.hameed@axis.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: <kernel@axis.com>, <linux-pm@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings: power: supply: Add TI BQ25630 charger
-In-Reply-To: <cover.1782683551.git.waqar.hameed@axis.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59BAC7083C
+	for <devicetree@vger.kernel.org>; Sun, 28 Jun 2026 22:07:40 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782684461; cv=none; b=IZ/pl3MP/vrxAa6HkPXcJO89K0w81PmgoVLAFgef8aD0X/9UVlD+Yf8zOc1pmHup3V46OZ+jX4Zq8cTw1QIFvbtKXiXjQ5uQxv3V2Jd+R/3YscpQJA+NUTAGIew9spJhz5SFM1i8VCTGuc4kzq5lscfzGYsPHrr1/iS8MThxlYI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782684461; c=relaxed/simple;
+	bh=BgVNjo+VO4vvod5e48mTVqMNh//hktRf5RBuOFus4lw=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=gbH0Ra/wXBYJdZIh1FEl3cWhsWuEs0Q/FAdwsMkMudtifvE/ihvTVKKidGb3kiJC5W/D/SEDeLVNo0+heJp2zxRlqFhQXnYGgxtXxnivn5YpWsDpNbPb+AWSNllmorMejXyRdOFKc0s8s42R/PasCtMdcJvpLswxeJFYfv8Uyn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ct5S/gnf; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B37191F000E9;
+	Sun, 28 Jun 2026 22:07:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782684460;
+	bh=014QyZeFbFvMibi16Gv2EHrhRKZXTcCMPRd2Z00LG0E=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=ct5S/gnfS4r5fYwxnRzLX91r5VUIZP1FQKOTHsWTlYhqfIPb5M+qdVMpyloxFsZSd
+	 5Ju0dCogZ3YBTJ90k4YuXZuYLOe0ISPT8hhAuzDjabLZhAtOu+rpz1NcCkV3Xsq0JJ
+	 /8r8SyGSLszJ+foE3Lr8WG/uJFEZUt+uzGL8fk3rwluD+Fz6wbccbYis0wh2X/L8te
+	 0rbqO4SOy5hBlWqi1Rt5L5dryguWPLIvTHlMffBdHS6UeIutk4Oa1hcoD3KgDZfNAb
+	 J2a3BObl6a27v6YXqDAx71cdtMit6Euu/j/cwT0+YzaYvCK3uMEYSghGorlv0eql5W
+	 Xy1TZmDOeA9ow==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: power: supply: Add TI BQ25630
+ charger
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Waqar Hameed" <waqar.hameed@axis.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <3c28e53cff6d2e6ee94f8bf516ffa75134cb0959.1782683551.git.waqar.hameed@axis.com>
 References: <cover.1782683551.git.waqar.hameed@axis.com>
-User-Agent: a.out
-Message-ID: <3c28e53cff6d2e6ee94f8bf516ffa75134cb0959.1782683551.git.waqar.hameed@axis.com>
-Date: Mon, 29 Jun 2026 00:01:19 +0200
+ <3c28e53cff6d2e6ee94f8bf516ffa75134cb0959.1782683551.git.waqar.hameed@axis.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sun, 28 Jun 2026 22:07:39 +0000
+Message-Id: <20260628220739.B37191F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: se-mail11w.axis.com (10.20.40.11) To se-mail10w.axis.com
- (10.20.40.10)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM3PEPF00009BA2:EE_|PA6PR02MB10616:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a5008ed-5d30-488f-c204-08ded560c967
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700016|23010399003|376014|56012099006|3023799007|22082099003|18002099003|11063799006|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	jY2rw4QPUepAMxtA4Z5w4Q/aZoMj7g8RK+b/PkZ9DRWiO+VvC1m9dorwEJ8r6F8uMLTXMazCUbZHHWUoHYNIHEm+G5Wrhlktz6I5o69hpRhvpjtUyApdkg+RSvnWlw8Kft6OQ1C5WUg3Dr3AaPo3GuGfFwoESrelhZEAzgvuDeMvrMRu6CjzfoTQOuJu3jMJYdY/l6fhOxpInNzS1ULptMi2dZG1/1pt1NyWNlisHTkfX3mqnpQEMb5TRfA5AqxAlinL8mNEmAeq/xFPOcWhrTlknML6X+sJlgBZNLZ+2LerEXNJ0DvtJlO4eS3aGxdMhMZhD3lMfdhvZknreKe02rkCfaF5uOFpIqfMGBWtSie3+iEeW+SX7a7XMgwaqySaHJtsOKuujXrBnt23oXCfRZdHIT8XazSX/5nhwPRXM/PJ3xdLlqVbOsFive+/AorZaU4kk7a6DOsLxVPfcoRHnA8JRQdS45RuJXz3zut1gYjfKuQFtSjY+2/tQGzkoBPNMachCiXGJH7lX4CCnEYRNpb17NKMQySITAlj4T9S78TbhXPMLyMRkH7gWJXIazUwUbf7F/GerYCumHn4hIULh0RI/CDjhcXtNNjawJPlCy1htT48UTHozzhfSS+SGBO5LYXAES9OxizUIOQJTFG7IQ==
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700016)(23010399003)(376014)(56012099006)(3023799007)(22082099003)(18002099003)(11063799006)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	LxIQPQRqqTGOVHAWuxgFc6r4vrgw9wVJO83EGip5Fae4XxSmUIIybJBHYs1zMadvpC9Rx85IyiskuHKqS/okkT9w+OADIkDhUx4bNFXD0IedAoi0Xg2hOnO5kvQNJKHyfdgt+TqR19tnzocRGPMA9p5dMuiHrEH2Z6d+7o6EaXeHlDe5CE4sdPeKI97qWRz2uSSCFMgnbdmFn48jryUrUF8GbQI1aX7jJNR+Jqs7xYVsg7mvYSw/Yr6QkdVpek8MOrLUSSCCRnMFRioVquT4WUOAr8fx1qGzFgDkk1xm7QwGrnovtQlnnmK7VOvJe9eEvz/suUFcrufxsvFej+F9PS8xjkwyXKZUY+Bc+vvKVA2O4XzW4bgaj1g303k74/NfyuD5xuvhHP62JxgO/RD+6Q3f8b/C/82aPfVIn1jF4NU+fDm7Gl0B4CdIohTVarvb
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2026 22:01:20.5417
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a5008ed-5d30-488f-c204-08ded560c967
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM3PEPF00009BA2.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA6PR02MB10616
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.85 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[axis.com,none];
-	R_DKIM_ALLOW(-0.20)[axis.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-316580-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sre@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kernel@axis.com,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[waqar.hameed@axis.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[axis.com:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-316581-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[waqar.hameed@axis.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:waqar.hameed@axis.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,axis.com:email,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C039F6D517B
+X-Rspamd-Queue-Id: 8879C6D5212
 
-Add devicetree bindings for the TI BQ25630 battery charger. It's I2C
-controlled and sends interrupts.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The devicetree binding example references an undefined phandle labe=
+l `&bat`, which will cause `dtc` compilation to fail during `make dt_bindin=
+g_check`.
+--
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
----
- .../bindings/power/supply/ti,bq25630.yaml     | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/supply/ti,bq256=
-30.yaml
+commit 4d0f17bc3ce487f6e8027b9ef945b17aba3d6bee
+Author: Waqar Hameed <waqar.hameed@axis.com>
 
-diff --git a/Documentation/devicetree/bindings/power/supply/ti,bq25630.yaml=
- b/Documentation/devicetree/bindings/power/supply/ti,bq25630.yaml
-new file mode 100644
-index 0000000000000..3f2904731c5a4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/supply/ti,bq25630.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/supply/ti,bq25630.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI BQ25630 battery charger
-+
-+maintainers:
-+  - Waqar Hameed <waqar.hameed@axis.com>
-+
-+description: |
-+  I2C controlled single cell Li-ion and Li-polymer 5A buck charger.
-+  Datasheet: https://www.ti.com/lit/gpn/bq25630
-+
-+allOf:
-+  - $ref: power-supply.yaml#
-+
-+properties:
-+  compatible:
-+    const: ti,bq25630
-+
-+  reg:
-+    const: 0x6b
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Device sends active low 256 =C2=B5s pulse. Type should therefore be
-+      IRQ_TYPE_EDGE_FALLING.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - monitored-battery
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        charger@6b {
-+            compatible =3D "ti,bq25630";
-+            reg =3D <0x6b>;
-+            interrupts =3D <13 IRQ_TYPE_EDGE_FALLING>;
-+            monitored-battery =3D <&bat>;
-+        };
-+    };
-+...
+dt-bindings: power: supply: Add TI BQ25630 charger
+
+This commit adds devicetree bindings for the TI BQ25630 battery charger.
+It defines standard properties for I2C and interrupts, and sets up
+requirements for a monitored battery reference.
+
+> diff --git a/Documentation/devicetree/bindings/power/supply/ti,bq25630.ya=
+ml b/Documentation/devicetree/bindings/power/supply/ti,bq25630.yaml
+> new file mode 100644
+> index 0000000000000..3f2904731c5a4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/ti,bq25630.yaml
+
+[ ... ]
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        charger@6b {
+> +            compatible =3D "ti,bq25630";
+> +            reg =3D <0x6b>;
+> +            interrupts =3D <13 IRQ_TYPE_EDGE_FALLING>;
+> +            monitored-battery =3D <&bat>;
+
+[Severity: Low]
+Does this example reference an undefined phandle label?
+
+Looking at the example scope, the node with the bat label is not defined
+anywhere. Could this cause dtc compilation to fail with a 'Reference to=20
+non-existent node or label' error during make dt_binding_check?
+
+> +        };
+> +    };
+> +...
+
 --=20
-2.43.0
-
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1782683551.gi=
+t.waqar.hameed@axis.com?part=3D1
 
