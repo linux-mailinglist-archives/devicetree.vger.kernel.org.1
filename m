@@ -1,153 +1,166 @@
-Return-Path: <devicetree+bounces-316548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316550-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CgXuFFeJQWqwrwkAu9opvQ
-	(envelope-from <devicetree+bounces-316548-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 22:51:35 +0200
+	id n49EJoeKQWrerwkAu9opvQ
+	(envelope-from <devicetree+bounces-316550-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 22:56:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026236D4EA1
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 22:51:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BE7D6D4ECC
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 22:56:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=H11eCqCw;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316548-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316548-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VjRBIj7r;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316550-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316550-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 19620300B87D
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 20:51:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 932ED300E3AE
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jun 2026 20:56:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DD13375F7B;
-	Sun, 28 Jun 2026 20:51:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5BB23783A0;
+	Sun, 28 Jun 2026 20:56:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 718EE2FFDE3;
-	Sun, 28 Jun 2026 20:51:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B53D274FE8
+	for <devicetree@vger.kernel.org>; Sun, 28 Jun 2026 20:56:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782679891; cv=none; b=LzMNSBD0KgsjMXPVCYJfuexlTGQGlYEB50eVxPUmV9iXSavK2mBserFPGQr5CkKk0eT3Yi+9w6t9KB3uMoxammbX27qU2LfjBawD+2dg67Uhz9SuO4XGs0akWE629amrxmAElGBuj6MWoatwU3wr22Fi6IhdutS+m1+4Y0WH1wA=
+	t=1782680182; cv=none; b=QrWVVl/cIdGACX/RaVqLgYjuJywI1gsHMiy0OHzUxyZaSavhFPclFUW+5JXrirKNf+/iIM+YgXYP1jphuZzMLJ3c4fgBF9LwyyZDOa7yJ00lE9V39Ey3LsJ1zweuXejnhNj/lMKjnY0HNJhobjgO+idl6njytA1AuPuPczzKYn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782679891; c=relaxed/simple;
-	bh=/Psvts4bK0De9buR/Tb14Gff3P1NfGViWnpQhQj3bbg=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=tbcR/WgD+sYtJrBXQZmTLuabxesVTMcD8jnY07bnhwX+bIs1DQclbaWLHYFfergdMKbCaEcaT/ZYqkBexa38yeH68FZTdEHXk+fEYXc+8j1lx6y6yamQ+1aR+fUKXkOJquOkgJpNU+FDN1CoZc9ZQVeXNXeALYkKYIDpm4C/G+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H11eCqCw; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF13A1F00A3A;
-	Sun, 28 Jun 2026 20:51:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782679890;
-	bh=cV5nLM46V6v/htc0lFctV0QauB6Y72+YuHxfHLCch3w=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject;
-	b=H11eCqCwY1jc/+hlN4DaU9CVWUaM5QBNrKK6D7zyITL8TzgdMVTvM0Ta6kjU13c/Q
-	 KRKDZe7OQZytTmS/I/KD7V+2XB4+E7+PIMzEtHhgQOqwMZ0HMWA60f8gJTHng+35Rh
-	 aX/qNg9SuiN7MYnS+etDBgMXQ2UnxFiPNOQoxb8gd7Wrmxnf9seeiaHRvwCGkMOoiQ
-	 yB0gVqIqI7vKsh8FKItB0VepxKqaM+BzKpWvmyQynuLdef30/6KnQKoT4SnC0eUjtJ
-	 EdDIXkD/lgjHGy6hQ8OBBgsHeLlpzTbZI55P64RAFovUc1OzIKpEi1jkE3kGkQIC36
-	 tEPq2zOItg+BA==
-Date: Sun, 28 Jun 2026 15:51:29 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1782680182; c=relaxed/simple;
+	bh=RFmH0IW/4aCKDX1ZwFlUh4PpvBL59snjoL8qYRGhFEo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Vtl5rGDs7s0Bf6fcpyMydQkwSWjf5Btbce95etlN7pcb+Kka+Cp4FuIYN9RYEIvKkg6lVhCW24ofPmfnOJiL5Me5ARe+Zr21vKncwn5Gn9+0vpa6yGhAaFFVP+FZYqdmogKFK08fvqhGsKsUoRWojR4Wer+X55sY0EsLh4QN64M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VjRBIj7r; arc=none smtp.client-ip=209.85.221.41
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-4631679f204so1975643f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 28 Jun 2026 13:56:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782680178; x=1783284978; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zB2RgA4LcSFDTrHCUEiIFGumRAW+eppHEw/DC5yOWko=;
+        b=VjRBIj7rttIuWcxYHXJy6KUMquBQYpCGdzE8p26hlt27NIpyasmSRCpajJ7v5MFB5t
+         OcAYokHHSxFXThusOBJuNemLhBvZK4aUN2eADyOP4pOuqT6iRVRK8rbhax6FOmIFYWVV
+         6zHjpGd2tw1Sir992UpU3KuYf2ciEiX/pyUgM6v80x7RTaotvJTOARLt9I22mUXgfiTj
+         +x+/pvu3OruC9WSRjL4LvmofvUxpMeXNDUfER2aLiD+eyt1TT7W3zRAVjrySDdN5Gq+r
+         nx+XWjUnvpXVLMy6J4cOpjn6QOPGxzU90OAYUmCALIwtY6llNgzt7jm6Y1NQr2DiP9aL
+         AkOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782680178; x=1783284978;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zB2RgA4LcSFDTrHCUEiIFGumRAW+eppHEw/DC5yOWko=;
+        b=IlyWQ3hE8FVnKzktzZIeTqPW4754Kn31HqXc332djg8R4MTVLFnudQy9t87YkOTmWH
+         /HwJDOiMZcfbN/+PWtuO/7t4NBpQmEiLFw4cjjepl08J9G4Zrw/WQKves5xNK/J6RkpL
+         YVf69p4BcA8/8a589otiw8BF37R7gkYYedqo2I66gUPF1qrS5viY/SNX3QeqkGObn+Uh
+         QV6Tovf4qeCxgfZhdonaUzK1tZEXnawZ6PMrfbxuJxX/FPAcs3Nxoa0FInvPN0C9Jz75
+         Q0MAw+sEEmn0KACxRyGTFbev33MJ8XoJOOpXGyx+WNFXX2SkAqIlh0svrGHtupd+8Kpb
+         I3fw==
+X-Forwarded-Encrypted: i=1; AHgh+RqyG8JJwEKh7OZOS8tHaNNhnqfUjDv/13U9a2jNWgJ3S4weFHrPMAdBIknMVkshYtkP0cP4S1nI8QRy@vger.kernel.org
+X-Gm-Message-State: AOJu0YzI1azjJxkFCHLoHan8CqkSWCMf3s/vbY1hyxcrcXUyJD4jeBNf
+	sa7tSL6JoU2yUq8X1esoO/ntGOqsvNaIadg5BqeucaBfqq5HFJpy0DFT
+X-Gm-Gg: AfdE7cmAGdXgBrOmAQzFLAoo8d8twl09o/zrJg0rJdWANraboFMJGDvoyiXaxA9THkU
+	Sj016cF3UOHc+tbifyyNjOGJVjkeXIc2tZG26TvIpsFoS0+wn33AnYAWFeZmrqbm0K//gyftklA
+	HZ+kANjREQLnd01w0TWRnoPPMZeL9tpf1uWvHY8UHgTxKwMcVtW+jDaghfhT9PAd9OB5uMowPXj
+	ES3jfczGwggrAJ9A3l+kd6nKul6Q8Ux4cAq0m1b/vRAALaLfZc57jvBTVYlkKSjqozEwRzq1jC3
+	TBZfFZyxf7QSmmhsy9d6dS+dAp8qRf9Aw8/CnCRX2SfjS/GF3QFyJB6yuE3fb9sSjPDHqYWTuG0
+	ZnbkMVoDU9RAjmnb9ZmjuPTrNJyz9FB1V2KuCFYQVBH3+tIqEet/tT3i4gP+sE3wLvjYOuchG9h
+	5xD3Cks6/qn1D3P5C42CuOsGSVL2JVQqVSdSaTHqKGIP4oaKLV6Is1RzdJSy+r9csd4HRk5vkse
+	7HnKAzELnA3vifnWOxp0hxk2w==
+X-Received: by 2002:a05:6000:4022:b0:473:1e79:87e6 with SMTP id ffacd0b85a97d-4731e798941mr3474546f8f.3.1782680178221;
+        Sun, 28 Jun 2026 13:56:18 -0700 (PDT)
+Received: from Lord-Beerus.station (net-93-144-65-248.cust.dsl.teletu.it. [93.144.65.248])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-46f86c34d76sm19448910f8f.3.2026.06.28.13.56.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Jun 2026 13:56:17 -0700 (PDT)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: pierluigi.p@variscite.com,
+	matthias.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH v2 0/4] arm64: dts: am62p5-var-som-symphony: align DTS with hardware revision
+Date: Sun, 28 Jun 2026 22:56:04 +0200
+Message-ID: <cover.1782680023.git.stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Matheus Sampaio Queiroga <srherobrine20@gmail.com>, 
- devicetree@vger.kernel.org, Benjamin Larsson <benjamin.larsson@genexis.eu>, 
- Christian Marangi <ansuelsmth@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>, linux-mediatek@lists.infradead.org, 
- Markus Gothe <markus.gothe@genexis.eu>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-gpio@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Linus Walleij <linusw@kernel.org>
-To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-In-Reply-To: <20260628143733.273651-16-mikhail.kshevetskiy@iopsys.eu>
-References: <20260628143733.273651-1-mikhail.kshevetskiy@iopsys.eu>
- <20260628143733.273651-16-mikhail.kshevetskiy@iopsys.eu>
-Message-Id: <178267988796.4168242.2437491560145176405.robh@kernel.org>
-Subject: Re: [PATCH v6 15/17] pinctrl: airoha: add support of en7523 SoC
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316548-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:matthias.p@variscite.com,m:stefano.r@variscite.com,m:nm@ti.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-316550-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:srherobrine20@gmail.com,m:devicetree@vger.kernel.org,m:benjamin.larsson@genexis.eu,m:ansuelsmth@gmail.com,m:conor+dt@kernel.org,m:linux-mediatek@lists.infradead.org,m:markus.gothe@genexis.eu,m:krzk+dt@kernel.org,m:linux-gpio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:lorenzo@kernel.org,m:angelogioacchino.delregno@collabora.com,m:linusw@kernel.org,m:mikhail.kshevetskiy@iopsys.eu,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,genexis.eu,kernel.org,lists.infradead.org,collabora.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 026236D4EA1
+X-Rspamd-Queue-Id: 0BE7D6D4ECC
+
+This series updates the device tree description for the Variscite
+VAR-SOM-AM62P and Symphony carrier board to better reflect the current
+board configuration.
+
+It aligns the Ethernet PHY description, updates the audio codec
+configuration, and adds the touchscreen and TPM devices together with
+their required board-level resources.
+
+v1->v2:
+ - Remove unused eth property
+ - Remove wrong dmic property
+ - Fix commit message
+
+Stefano Radaelli (4):
+  arm64: dts: ti: var-som-am62p: fix Ethernet PHY configuration
+  arm64: dts: ti: var-som-am62p: update audio codec configuration
+  arm64: dts: am62p5-var-som-symphony: add touchscreen support
+  arm64: dts: am62p5-var-som-symphony: add TPM support
+
+ .../dts/ti/k3-am62p5-var-som-symphony.dts     | 43 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi | 35 +++++++++++++--
+ 2 files changed, 74 insertions(+), 4 deletions(-)
 
 
-On Sun, 28 Jun 2026 17:37:31 +0300, Mikhail Kshevetskiy wrote:
-> This patch adds support of Airoha en7523 SoC pin controller.
-> Also it adds corresponding device tree binding schema.
-> 
-> Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-> ---
->  .../pinctrl/airoha,en7523-pinctrl.yaml        |  375 ++++++
->  drivers/pinctrl/airoha/Kconfig                |    6 +
->  drivers/pinctrl/airoha/Makefile               |    1 +
->  drivers/pinctrl/airoha/pinctrl-en7523.c       | 1124 +++++++++++++++++
->  4 files changed, 1506 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/airoha,en7523-pinctrl.yaml
->  create mode 100644 drivers/pinctrl/airoha/pinctrl-en7523.c
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pinctrl/airoha,en7523-pinctrl.example.dtb: /example-0/pinctrl: failed to match any schema with compatible: ['airoha,en7521-pinctrl']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260628143733.273651-16-mikhail.kshevetskiy@iopsys.eu
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+base-commit: 3d5670d672ae08b8c534b7beed6f57c8b44e7b43
+-- 
+2.47.3
 
 
