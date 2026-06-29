@@ -1,284 +1,175 @@
-Return-Path: <devicetree+bounces-316769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316775-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hbeIBqImQmoN1AkAu9opvQ
-	(envelope-from <devicetree+bounces-316769-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:02:42 +0200
+	id H95pCioqQmrU1AkAu9opvQ
+	(envelope-from <devicetree+bounces-316775-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:17:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B096D743E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:02:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B32A6D7656
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:17:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=r+fYN8Wp;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316769-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-316769-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=karo-electronics.de header.s=kas202603021246 header.b=ecw7eren;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316775-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316775-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=karo-electronics.de;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9DA1030D8030
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:49:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D7CC63056A87
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:00:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7316B3DB651;
-	Mon, 29 Jun 2026 07:48:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B3E53B4EB3;
+	Mon, 29 Jun 2026 08:00:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013038.outbound.protection.outlook.com [40.107.159.38])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from dd54918.kasserver.com (dd54918.kasserver.com [85.13.167.58])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF3CB3A5E96;
-	Mon, 29 Jun 2026 07:48:27 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782719315; cv=fail; b=RWzbdkgpJg6kOfETVWygviSs9+Dk3ckMhfhKX+LAkTFZWsQc1GyRp05evU5+wwIUF3obzF8Q+xo4JFX1fXqrPAtJpcxclclwuw7cJz+Wm9Sb5XnqtQTIi1JTQZ95FT+ma4Z8TBMCpjtEY0JmA30IcqQN1FdX++KHWkvtJsVwS2c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782719315; c=relaxed/simple;
-	bh=1usy4JHCj6fRo4ec+O/igmlRRhnHUt1xBKsjsOMdUAI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=RT6Dl4FwiAJIXxY4Ic6/7boZwh4Z7K8l7yIfSBZC1/fo6LN8z5mWG1hCtMnxKkQ1rWTelOkdTpyCi1uJ9SMbGtWuAbtlaVCHXTMf6BDU1xBZCNMVQID1u6tIwEUwny6sUGxNCDvHip+iEH5FPsM5zfOjRyZ2A9r+nrX16t81wow=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=r+fYN8Wp; arc=fail smtp.client-ip=40.107.159.38
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=x9Ed5j8hNl4d8AvUnyGWvjAfrOYRLE/VMX0XHFwfO+VAEp+7CVby3Rsgh+O5UCAteu1B/MCzuI7odElb9gDt9UoJETewZ50Rm9g2kMeWLraPg2UKRXJcPdMMs9VMz3RFzkiHtJ1S3aNe6JTIEBflWdzhwi7JwvN1vtSqLS822MHZ9bT/pLdFfrzmk6QqxZONHjswpndQS22qxEZmlNUtMt6v7PyYoCbBCBCDZ57REUebjixcAD5Xa0PY4whcL48sEI1va1+e1rMgp1FhoSUfBMuWb4EDp1ihtpdmK4D1LYLa4tS9pAfIA0CXGcONGy3vRTG4/cK0nW/bSLeZ/fs7mQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mEa8kPpUCj7rcCD7ijUMPoeV7puoVbelN4G7TkDPWQQ=;
- b=HpzR+8Rv3z3JbZ9OTDXokFBuRAAUZYZgJrom1yG9LzAcwjhxStuRyxVMK53IT7jZjZ55X26Brnco9UPKuAn24h1zxyepEd6lmbbLNxuMF0f4rQlNLE4FYhHtukpbMqi9VVe+5QZLqBdma4q0Cyt9cqjicZUJH/pQ9ADYt0OHA5Tuy6t+/fRByRSdd7AhWdMRuA5xEl28QMyptFn0Rnffiyv2AOD+l7OxIerD5sbKmQVIwvYN0724LiX6hGTgQXN6UWQkLiQafnfpjmQBzkB6E4gHtYUHIUb9G1M9VM7y5nF6GXTHRCh7zqvV10doXEOwKz0eVASG4xuMGzsYM0ItdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mEa8kPpUCj7rcCD7ijUMPoeV7puoVbelN4G7TkDPWQQ=;
- b=r+fYN8WppNMo01v8P7sdokWVNvxjvEd9ldBpS+3iYgfPAf3iDP0iwINkSZPxfK77PL1uvOi4xV/tSG/3n1bcekOzV5HhmUA8Ax8bzoGFckguec6u31tdJ9C51ClCnmSohtBDltiujmUWwvUJnn5czJmMausqPd98gp/VdkZVp1iysU8gocyaP5pTsyOBcj3Cmwqf7PvOouSnlDhk2UOrBz0QR9nAnQRs6kyLppQbVaoKuK8t1Ci2aBRnqvfSeq8CODoL5lZ/9Tt1GJ9y6Jm3qH+AyV6AjOHLbpNERnZHRGQpJZ1r7Q5IhwsdlYfrIhY8EZbfx6aqS9G1APo6QdFKiQ==
-Received: from GVXPR04MB10021.eurprd04.prod.outlook.com
- (2603:10a6:150:112::20) by PA1PR04MB10553.eurprd04.prod.outlook.com
- (2603:10a6:102:485::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Mon, 29 Jun
- 2026 07:48:08 +0000
-Received: from GVXPR04MB10021.eurprd04.prod.outlook.com
- ([fe80::d247:853:3e16:1994]) by GVXPR04MB10021.eurprd04.prod.outlook.com
- ([fe80::d247:853:3e16:1994%5]) with mapi id 15.21.0159.018; Mon, 29 Jun 2026
- 07:48:08 +0000
-From: chancel.liu@oss.nxp.com
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Frank.Li@nxp.com,
-	s.hauer@pengutronix.de
-Cc: kernel@pengutronix.de,
-	festevam@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 4/4] arm64: dts: freescale: Add common DTS overlay for IMX-AUD-IO add-on board
-Date: Mon, 29 Jun 2026 16:47:34 +0900
-Message-ID: <20260629074734.3643227-5-chancel.liu@oss.nxp.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260629074734.3643227-1-chancel.liu@oss.nxp.com>
-References: <20260629074734.3643227-1-chancel.liu@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SEWP216CA0137.KORP216.PROD.OUTLOOK.COM
- (2603:1096:101:2c0::6) To GVXPR04MB10021.eurprd04.prod.outlook.com
- (2603:10a6:150:112::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6253B4EB0;
+	Mon, 29 Jun 2026 08:00:20 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782720023; cv=none; b=UcXwu85HR8wtpwgtwnhd0l7qgxk4MvAFbCYoU8Z8qxQJbHk9ozmZ2mynMpbPCjFjN1V0Vitl+SZNbw1XS2IMtKA9GqLIhxJKZAQlsBFIDR5d9j4XBWl3Bn3sYOWpGl8dzP0rKSsDmuguT7/HWjALJsRobhRmZ+xNtd2/Jg44nkY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782720023; c=relaxed/simple;
+	bh=Mu/vYRPrMM6y78Zq6iLYUkQGJTBkafHpPpDy8E5c9xQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=QwXpN5w01tAxYSCXSHl+K451mrYv+WKVW+jwPsH7oVkRAf+0htZc3Atdjg1HEOqA2cHy3uMge37OZq8DmfoL8Z2/fwSJKfuag27fyrfX92wr7Js+eRYyMWf8/Vj4Ze4SvJmd//toQWnz6HoKplIw60mY0GLRa7qfJzIIjP4CrfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=KARO-electronics.de; spf=pass smtp.mailfrom=KARO-electronics.de; dkim=pass (2048-bit key) header.d=karo-electronics.de header.i=@karo-electronics.de header.b=ecw7eren; arc=none smtp.client-ip=85.13.167.58
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=karo-electronics.de;
+	s=kas202603021246; t=1782719411;
+	bh=Qylp1+q58BKXjVYMlUJn3x4tvz3kf67QuXXQvLn3hVQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=ecw7erenvWIYPBx2V7ZPPuTiP0QJvB7JeAWgS4GWnn8/503xZok/8BGzb9DeXRFBc
+	 XeC7jO4MWatNjCHC1ECcBW6XrZdV0OBa382Qs/IVNEJ5dgLX3G92WP+J1ri7YIyWer
+	 dwai6hyb94q6EmVN0GrRTOkeBo/h0lefqhkodnLOH1A79zFz1cvQTTHVYCYQsOCsz1
+	 c62YtKjIwpqQE3i0RhHvCf2yilcCcl4J95W3ejucUfo5okw7f5V89GB8iMAPWRex8x
+	 ZZ1n2IpEQXDTL/6Gfp4KBftpnC4mSJJIA2vDTx0WN8aEMFIQMHm9Gls1wkkKm9TBcP
+	 0b7q1/LHFGtGQ==
+Received: from karo-electronics.de (unknown [89.1.81.74])
+	by dd54918.kasserver.com (Postfix) with ESMTPSA id 8485F7722430;
+	Mon, 29 Jun 2026 09:50:10 +0200 (CEST)
+Date: Mon, 29 Jun 2026 09:50:09 +0200
+From: Lothar =?UTF-8?B?V2HDn21hbm4=?= <LW@KARO-electronics.de>
+To: pankaj.gupta@oss.nxp.com
+Cc: Jonathan Corbet <corbet@lwn.net>, Shuah Khan
+ <skhan@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank
+ Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Pankaj Gupta <pankaj.gupta@nxp.com>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Frieder Schrempf
+ <frieder.schrempf@kontron.de>, kernel test robot <lkp@intel.com>,
+ sashiko-bot <sashiko-bot@kernel.org>
+Subject: Re: [PATCH v26 3/7] firmware: imx: add driver for NXP EdgeLock
+ Enclave
+Message-ID: <20260629095009.3256f956@karo-electronics.de>
+In-Reply-To: <20260629-imx-se-if-v26-3-146446285744@nxp.com>
+References: <20260629-imx-se-if-v26-0-146446285744@nxp.com>
+	<20260629-imx-se-if-v26-3-146446285744@nxp.com>
+Organization: Ka-Ro electronics GmbH
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXPR04MB10021:EE_|PA1PR04MB10553:EE_
-X-MS-Office365-Filtering-Correlation-Id: 735feabf-80b9-4657-5992-08ded5b2c2cc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|23010399003|7416014|19092799006|376014|56012099006|11063799006|3023799007|22082099003|18002099003|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	VaZSRlVojQLdRxRR3bX+vlfYwhM7QenKtHwUBS7s0GYWhFnROrnpzfBUWMCpG6/3AHTr5KagGKTYtfGurQQ/ZuNxcplN7z37VhPxRk0e/wEKI7lyY+jmn760AYiKNjqoYBUld7gx2FWNhGi3citSXjiMjh+0zXFlxBt7hx3Z/zuK1pY78i5yMfCXqJNXzt0KrvTXkzSrBJHD+OCQ40C/0feGAR5H3469aUSHPP3N9vV446JXGgcDzdwVCIrDlMdf9RWN+6vRefNMy3yTUjYYTt5e6MzMFlJbODREFOd9cNgNh0XRhPWeWVqPRoPk9GgMvQP1EFVbAb+LSDA2EjeoSFp8H76xpUN/tDcgciKIsoGkBgxsanNtfF3qV1xWia2aAHS21e1ovUdfWMBL7OKMjQVJYte8wWRlXSJ+U3x21ip09eqDg4ynHYnB866ffqSr4UChwen2xSEmJ1HlUMRzAhSGYA/Wc8zgv5H2eN9bxixuMuNMqQv5qapnOU9VOteKbykbu9lNkRtd9RhMZOrF60o3wba/8kxbN+heCuDgJxDY3T7kFVjejybN1hvCkCRWSz+6tojg9h7YMz9qB9NlJh6g9TeVMNHaGshoAs8Ts/i0K5SctNi3h6NbAXK5kiC8haGogza338Tz0UK9QUcmB9pvMCBE2rWgtSkRTttQFjg=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB10021.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(23010399003)(7416014)(19092799006)(376014)(56012099006)(11063799006)(3023799007)(22082099003)(18002099003)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?kkHKSFNehgEb4Gr0tXLklQoBZCJOvML7WNgfOtxh028IiyQqCXwd0R4hjcZ+?=
- =?us-ascii?Q?L1dTmVrGKXmJ6KWPn26aKLn8Zcz19BbLnwGZLC3zsHU2Y0W7BgAo0WWbNGcr?=
- =?us-ascii?Q?2ZoMbOw0VGwVVI+tevxZ8X25saT69PbiH2wyvQwiJ48cGaWEfI1jFxYZ/Vez?=
- =?us-ascii?Q?3s9xIkdiEAglqDSZHUTtRSneKomw7MnOFnUMIFk5/s9hWa4kI9IjQW2R4eNT?=
- =?us-ascii?Q?aXBQzTf3nHBITMut6UwD+gCT6TGMT0QBVF2JZ7DSuyn4Y8bSX9hDFX5sWEfb?=
- =?us-ascii?Q?qXW+t9Lx77xsXK0v47BzCf/w6XJxb5ej5aQov1fU39gE6VwVqUWO4CqIV6Wl?=
- =?us-ascii?Q?zZpj7z3pRRF9u9RTMKFQdMrxS5V+wd7KomUkyXy0WPDla4w04NqwTLmlbitC?=
- =?us-ascii?Q?HQKI1pBAGB4/sUeZGLh32t7MGq3t45HV65CqikuwRLy7zX+dr0JbMu2hniIW?=
- =?us-ascii?Q?Jqbo2X6nalbGBbDw+Jhs3N+ge+LvMNVFEZOozdAa011uvtzL9xdT1C4oiZsp?=
- =?us-ascii?Q?gG7tPwgNiAZKzMa4HU16TP3Ox8GGa1nG81YGBDZ/K9AY5tvZQrb8juptfj1C?=
- =?us-ascii?Q?Js9JpVZbjtBnAozFLAshkRhgIls0BvF48UQ55O7NI/gD5WpDuVOQg9k5QPgl?=
- =?us-ascii?Q?xjXCb6j0U/WbsSZVuPkpLL7MY+UbehHhDxOmwaoFShoBJrM2L2aqiqRD0CIx?=
- =?us-ascii?Q?eKnVSYc7lS9y7CY9PNuaDcF+xlnDHq7+3R9tiH7eScEfYpsQSPUa5Xhvcgir?=
- =?us-ascii?Q?dF2SfJF9Db78cYLC6o767KCgxSN5geVc7tZN/G4oVuT6y4WNeFRgSSdgGmcL?=
- =?us-ascii?Q?cfgVcCaJ0mUuhVah3GcjsA55iJ8ZXTj/BlOoYL61vMRF3D0+PXXuF51+befV?=
- =?us-ascii?Q?gB45mlHelpZLfkotEmXGAbo0nrNVt/JnzXhpeHM5HHC7mFdgrFSUTir6g2UJ?=
- =?us-ascii?Q?preXL6f2lj/FN1YZykQIWRoNLYsDKMgb1DDHiACnnufdo1X1CwubBMQxqqUH?=
- =?us-ascii?Q?Gk53ejKO3BJEGJ5B7nBPS+oQ3rCcwk7o4WX9ORyNiJRIIGSCOimgUb4IAwVC?=
- =?us-ascii?Q?KVySGs8KjIVC/KP6G1yGML8ECYIZ0q1RKtrBQllC4m5P+yW5Hfx8bAT0+nxm?=
- =?us-ascii?Q?eNUYPm9osm+YnO0nu/cKXa5PMWA9MfeH69Vhs/70x+Nr2F+SKQOgx2wujks5?=
- =?us-ascii?Q?9TraOYIjvCp53g7sk0LCulDK/b58iBgk46Bi+0xpuPOLpuwlqb//nHVTrjHI?=
- =?us-ascii?Q?xCzeh10gv1yq+u3b5W81q3Y1X6DT3eihq7M50RI1R8VEeppl140S/P3xrb0o?=
- =?us-ascii?Q?i5Mpgmxv4L80idabhqnvhrMVZswurhj23PbwBZDTtpcodIqXVvic5vfclsDz?=
- =?us-ascii?Q?T9kpqeLyvJjTsNGEuKsrztgRRO0Qk5P5gt1UNIcIpbMPWFHpFX/2Z0RK/Mt3?=
- =?us-ascii?Q?G2LMd3zHNY32SQOb2uemYtWhuQinvtwMeVM+H6eg3Ccdaj7i2QVVJIUytZs8?=
- =?us-ascii?Q?7hS6h3RYgrkXfHNvtKwRXIzVPSyQNQJKjv/dOfRcNrsOVJoJKrxlPGDs0KUg?=
- =?us-ascii?Q?Wow9N42bXUNphQzNXTUtXvpxnSBoXkBd/uWzVHa0WRdnvvy4AdK22XH97LXN?=
- =?us-ascii?Q?VwnV/XukRy0GBpCJ16P9VZHDUxj+dyYXLXnjt/wGnxTKeXDgd4mQEU/ZZNqw?=
- =?us-ascii?Q?mDOw2A4uHiiLUSVBNWaB4PSLMB7wv8W4Egbo0TnebLbxBvKBtq0EYY8JZ2kU?=
- =?us-ascii?Q?MrW5TGnIEFc/x0NgzxAwYO2pW1Y8d1ZP4Q4OpJJzsqAkN6b33viu?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 735feabf-80b9-4657-5992-08ded5b2c2cc
-X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB10021.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2026 07:48:08.3913
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PNwQMMUpnAkvbEZTs+ZWc+bwjy6E0iXvzTQ+hQ4yTRl5wYPLUCYy8WMutoklHzBNnb7U+zhPdsiGGpppWBcci0TMOtSYzUjXSakkP5aYeUjvHmuU2W53MRjCt6iMtp+X
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10553
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Bar: /
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.44 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[karo-electronics.de,none];
+	R_DKIM_ALLOW(-0.20)[karo-electronics.de:s=kas202603021246];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316775-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:pankaj.gupta@oss.nxp.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:pankaj.gupta@nxp.com,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:frieder.schrempf@kontron.de,m:lkp@intel.com,m:sashiko-bot@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[LW@KARO-electronics.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,kontron.de,intel.com];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316769-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[chancel.liu@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	FROM_NO_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chancel.liu@oss.nxp.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[LW@KARO-electronics.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[karo-electronics.de:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,nxp.com:url,nxp.com:email,NXP1.onmicrosoft.com:dkim,oss.nxp.com:mid,oss.nxp.com:from_mime]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,karo-electronics.de:dkim,karo-electronics.de:mid,i.mx:url,vger.kernel.org:from_smtp,nxp.com:email,KARO-electronics.de:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 79B096D743E
+X-Rspamd-Queue-Id: 7B32A6D7656
 
-From: Chancel Liu <chancel.liu@nxp.com>
+Hi,
 
-Add common DTS overlay for the IMX-AUD-IO add-on board[1] which
-connects to the base board through a fsl,aud-io-slot connector.
+On Mon, 29 Jun 2026 17:51:59 +0530 pankaj.gupta@oss.nxp.com wrote:
+> From: Pankaj Gupta <pankaj.gupta@nxp.com>
+>=20
+> Add MU-based communication interface for secure enclave.
+>=20
+> NXP hardware IP(s) for secure-enclaves like Edgelock Enclave(ELE), are
+> embedded in the SoC to support the features like HSM, SHE & V2X, using
+> message based communication interface.
+>=20
+> The secure enclave FW communicates with Linux over single or multiple
+> dedicated messaging unit(MU) based interface(s).
+> Exists on i.MX SoC(s) like i.MX8ULP, i.MX93, i.MX95 etc.
+>=20
+> For i.MX9x SoC(s) there is at least one dedicated ELE MU(s) for each
+> world - Linux(one or more) and OPTEE-OS (one or more).
+>=20
+[...]
+> +	ret =3D se_fill_cmd_msg_hdr(priv, (struct se_msg_hdr *)&tx_msg->header,
+> +				  ELE_GET_INFO_REQ, ELE_GET_INFO_REQ_MSG_SZ,
+> +				  true);
+> +	if (ret)
+> +		goto exit;
+[...]
+> +/* Fill a command message header with a given command ID and length in b=
+ytes. */
+> +static inline int se_fill_cmd_msg_hdr(struct se_if_priv *priv, struct se=
+_msg_hdr *hdr,
+> +				      u8 cmd, u32 len, bool is_base_api)
+> +{
+> +	hdr->tag =3D priv->if_defs->cmd_tag;
+> +	hdr->ver =3D (is_base_api) ? priv->if_defs->base_api_ver : priv->if_def=
+s->fw_api_ver;
+> +	hdr->command =3D cmd;
+> +	hdr->size =3D len >> 2;
+> +
+> +	return 0;
+> +}
+>
+I don't see a point in having a function always return zero and
+implement error checks that will never be used.
 
-This board features a CS42888 codec providing 2 microphone inputs, 2
-line inputs and 6 channels audio output capability.
+[...]
+> +static const struct of_device_id se_match[] =3D {
+> +	{ .compatible =3D "fsl,imx8ulp-se-ele-hsm", .data =3D &imx8ulp_se_ele_h=
+sm},
+> +	{ .compatible =3D "fsl,imx93-se-ele-hsm", .data =3D &imx93_se_ele_hsm},
+> +	{},
+>
+Since the last entry in this array must be a NULL entry, there should be
+no comma after the {}. This will generate a compile error if (e.g. by
+patch conflict resolution) an entry is added after the end marker.
 
-[1]https://www.nxp.com/part/IMX-AUD-IO
 
-Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |  4 ++
- arch/arm64/boot/dts/freescale/imx-aud-io.dtso | 57 +++++++++++++++++++
- 2 files changed, 61 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx-aud-io.dtso
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 8ddaab127ab9..f2417c20300c 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -672,11 +672,15 @@ dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-pcie0-ep.dtb
- imx95-19x19-evk-pcie0-ep-dtbs += imx95-19x19-evk.dtb imx-pcie0-ep.dtbo
- imx95-19x19-evk-pcie1-ep-dtbs += imx95-19x19-evk.dtb imx-pcie1-ep.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-pcie0-ep.dtb imx95-19x19-evk-pcie1-ep.dtb
-+imx95-19x19-evk-aud-io-dtbs += imx95-19x19-evk.dtb imx-aud-io.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-aud-io.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-libra-rdk-fpsc.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-verdin-evk.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx952-evk.dtb
-+imx952-evk-aud-io-dtbs += imx952-evk.dtb imx-aud-io.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx952-evk-aud-io.dtb
- 
- imx8mm-kontron-dl-dtbs			:= imx8mm-kontron-bl.dtb imx8mm-kontron-dl.dtbo
- imx8mm-kontron-bl-lte-dtbs		:= imx8mm-kontron-bl.dtb imx8mm-kontron-bl-lte.dtbo
-diff --git a/arch/arm64/boot/dts/freescale/imx-aud-io.dtso b/arch/arm64/boot/dts/freescale/imx-aud-io.dtso
-new file mode 100644
-index 000000000000..311b7f984576
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx-aud-io.dtso
-@@ -0,0 +1,57 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Common Device Tree for the IMX-AUD-IO add-on board[1].
-+ * It connects to the base board through an AUD-IO slot.
-+ *
-+ * [1]https://www.nxp.com/part/IMX-AUD-IO
-+ *
-+ * Copyright 2026 NXP
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&{/} {
-+	aud-io-sound-cs42888 {
-+		compatible = "fsl,imx-audio-card";
-+		model = "imx-cs42888";
-+
-+		pri-dai-link {
-+			link-name = "cs42888";
-+			format = "i2s";
-+			fsl,mclk-equal-bclk;
-+
-+			codec {
-+				sound-dai = <&audio_io_codec>;
-+			};
-+
-+			cpu {
-+				sound-dai = <&aud_io_cpu>;
-+			};
-+		};
-+	};
-+};
-+
-+&aud_io_i2c {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	audio_io_codec: codec@48 {
-+		compatible = "cirrus,cs42888";
-+		reg = <0x48>;
-+		clocks = <&aud_io_slot 0>;
-+		clock-names = "mclk";
-+		VA-supply = <&aud_io_reg_5v>;
-+		VD-supply = <&aud_io_reg_3v3>;
-+		VLS-supply = <&aud_io_reg_1v8>;
-+		VLC-supply = <&aud_io_reg_1v8>;
-+		#sound-dai-cells = <0>;
-+		reset-gpios = <&aud_io_slot 0 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&aud_io_cpu {
-+	status = "okay";
-+};
--- 
-2.50.1
-
+Lothar Wa=C3=9Fmann
 
