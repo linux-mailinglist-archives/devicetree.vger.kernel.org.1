@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-316655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316657-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mm6cEusJQmrazAkAu9opvQ
-	(envelope-from <devicetree+bounces-316655-lists+devicetree=lfdr.de@vger.kernel.org>)
+	id 2wfTJ+sJQmrbzAkAu9opvQ
+	(envelope-from <devicetree+bounces-316657-lists+devicetree=lfdr.de@vger.kernel.org>)
 	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:00:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83CB26D61EF
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:00:10 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D1036D61F6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:00:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=bZkkxZEK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316655-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316655-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=K3qt0raC;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316657-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316657-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6DE463005153
+	by tor.lore.kernel.org (Postfix) with ESMTP id C4EB530094C9
 	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 06:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1BA32FE057;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D62822F8EB8;
 	Mon, 29 Jun 2026 06:00:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD23013A258;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD27C1531E8;
 	Mon, 29 Jun 2026 06:00:03 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782712803; cv=none; b=Ew4Ame18TPcHDx2TVpepaSzTVe3XH9rXlX9hJJCdima5fyHy2lOWdAYfYvym8PInBxc/DcB9KM7F0vuaFe3BhdtmIpub4gMq6H10uJGpKmVOeIHqHrSvEOZY2LikQeIJOjRL+zdOO7pDB+VieZNLMwcA4lVzO8gWh5OmFsNhZII=
+	t=1782712803; cv=none; b=pUeySIo7OF0tGtI/Vz3BV/CWXbQAs10ViBomWn4/HUXH5n9fZPnNlnqDlIkv8KzXY82cX84Uuh7zr9D2IKR9fizmVLAIeY4BXOrsg5qB5SeVf3gBY/Xr79bl3MJCAypVkRqpamSIaYffX832pHdLV3j2gPjwPqN2p0KyYdnuXTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1782712803; c=relaxed/simple;
-	bh=CFcQxEN4ubM2jNS7X2+wp3KWqGB/YjZfJP2UATNZkQQ=;
+	bh=HcEUM7JJTPo7A5XYpjjOnhzLdkJnGn7kiEtZHv9QU5Q=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sas8Rr7+hIIkrrnDGewvBKgqAVA8BHVgvBAh44+kfnmd7BNHkSdeAMYzHfD4BNB7KUN1VGeyz5xLPuFCN+VV8EPTQbFCwt3MgnC3Ft2I5d2PNekws5kxqesQOu1N1ESv+YJQdALuLz4aQjgaqw8D4C8TDomdhl68ZTDaawAAQlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bZkkxZEK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 69F13C2BCF5;
+	 In-Reply-To:To:Cc; b=XbxxPXpQb2ESMl3i1T6Hkbg3vW1QJu1kIaxKMmZGD3vSB+EhJ674lXRrYL/Qfvp7ayHCpj4ABxhLxgJY2tVXwyT74JY6NGR8LgZpxFtxwdqljpMPKSxmE8oRn3Y2Ruw6oNyB8YybB4okKk0SWQd+svBts9QoFv29XZhgaS6lI1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K3qt0raC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 65C2DC2BCF4;
 	Mon, 29 Jun 2026 06:00:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1782712803;
-	bh=CFcQxEN4ubM2jNS7X2+wp3KWqGB/YjZfJP2UATNZkQQ=;
+	bh=HcEUM7JJTPo7A5XYpjjOnhzLdkJnGn7kiEtZHv9QU5Q=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=bZkkxZEK8x3QbJ3lQIN9SOXbroBBlWGIo/idPj96IU/x0gATqnCWrf8TS+/AnZos8
-	 kBwTSRm/Uc7bKIUru5HE6IEQvNiI7A30DKOozNQRG5WCM1TRyB3qNy/cI/tAPVpi04
-	 r3LfXgKrFJ5tM3zs3Bj8I2CLXwyQ4Ea0id3qEitnexN9+tcJRR6C4QXVQwImc9swkH
-	 53Dlk5Gp+/E2bNFRo16GfDzosD2kUYPe1gvOxxGGOOo+wgJWw5xlt3H/7cqPTIobew
-	 Xq1hbuRadDrIDuia9vPtLRazypD+9o4cBVmeRF7OmuJTu68Lwe4RybhHEg/2myBRIe
-	 Xbi15tvZKizMg==
+	b=K3qt0raCjKd1yur8d2DkG1uY+IPVL00RKH2aSYHoY3r0PSidJxfoS9Bl2BWjo8kEs
+	 FyoYNmTwc6UaDf6VcRVMmt90TFQjeFh/T3H5GZFVMxw2zb919cBsmoac0yB2aZn8ga
+	 XK5zXPSEqzAz1E0BbEhkw+UAGz5T9y25IXCXjaba6RlFrg+UwBcCWYuNlyd8G04h+P
+	 6iA/+nX+qR9xa4bf0wuSJd7SZcPqUglP2V1Fy4lhRNRJqU7R86Gk+wA8ZrUWaVsGRA
+	 FfNE08zFx/kpFHPbehrkaoZnR7oKrlSws+NyHCyz6gc9hhxCZbW8Jj0So2puRKt+3T
+	 R8cwouU0atSsA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 431F7C43602;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 50816C43638;
 	Mon, 29 Jun 2026 06:00:03 +0000 (UTC)
 From: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>
-Date: Mon, 29 Jun 2026 13:59:50 +0800
-Subject: [PATCH 1/2] dt-bindings: pci: ultrarisc: add required DP1000 PCIe
- clocks
+Date: Mon, 29 Jun 2026 13:59:51 +0800
+Subject: [PATCH 2/2] PCI: ultrarisc: get and enable DP1000 PCIe clocks
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,7 +60,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260629-ultrarisc-pci-clk-v1-1-5ea3308fdab3@ultrarisc.com>
+Message-Id: <20260629-ultrarisc-pci-clk-v1-2-5ea3308fdab3@ultrarisc.com>
 References: <20260629-ultrarisc-pci-clk-v1-0-5ea3308fdab3@ultrarisc.com>
 In-Reply-To: <20260629-ultrarisc-pci-clk-v1-0-5ea3308fdab3@ultrarisc.com>
 To: Xincheng Zhang <zhangxincheng@ultrarisc.com>, 
@@ -74,11 +73,11 @@ To: Xincheng Zhang <zhangxincheng@ultrarisc.com>,
 Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Jia Wang <wangjia@ultrarisc.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782712801; l=1750;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782712801; l=3985;
  i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
- bh=lh7Q6BO8G4kaApUfS6DwKL6o9OH0GZihU/1HgX0D1ow=;
- b=OTU8MSd21jrAQoR5SGLTy5x7dZerI6zVRF8OY5qC6pGmdTYaX1TNSpFyGhQU5Y17C2N7GeaOu
- ExRQxhfXgq1Drkxmc86i20qNiSQLX6MT+2J+i3csQd81MNl+8p+lc7q
+ bh=LtJ66+myRw3X2vCGc+65Ap5gE7bLwVO+Sf4xHFQmlfE=;
+ b=MwLsvGel0miFh1m/CsqhcqyhlWjcj9ABZiQcYV9GLudA9sNZHyysEEht7zGI/ohO+kuOKDOYC
+ 9l0jGwIGC0JDC7FbhPyTKnPAGmywPtX+w/tVIsl+VfYlUlcI+w+JvET
 X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
  pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
 X-Endpoint-Received: by B4 Relay for wangjia@ultrarisc.com/20260515 with
@@ -91,7 +90,7 @@ X-Spamd-Result: default: False [-4.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_MATCH_TO(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -106,7 +105,7 @@ X-Spamd-Result: default: False [-4.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-316655-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
+	TAGGED_FROM(0.00)[bounces-316657-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	HAS_REPLYTO(0.00)[wangjia@ultrarisc.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -118,63 +117,151 @@ X-Spamd-Result: default: False [-4.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,ultrarisc.com:replyto,ultrarisc.com:email,ultrarisc.com:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ultrarisc.com:replyto,ultrarisc.com:email,ultrarisc.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 83CB26D61EF
+X-Rspamd-Queue-Id: 5D1036D61F6
 
 From: Jia Wang <wangjia@ultrarisc.com>
 
-Require the DP1000 PCIe controller nodes to provide clocks and
-clock-names, using the standard DesignWare clock names "core",
-"dbi", and "aux".
+Add the required core, dbi, and aux clocks for the DP1000 PCIe
+controller and enable them before initializing the DesignWare host.
+
+Also manage the clocks across system suspend and resume.
 
 Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
 ---
- .../devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml   | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/pci/controller/dwc/pcie-ultrarisc.c | 74 ++++++++++++++++++++++++++---
+ 1 file changed, 67 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml b/Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml
-index 512b935bf5d1..d9d1488e915a 100644
---- a/Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml
-@@ -43,6 +43,18 @@ properties:
-       - description: Legacy INTC interrupt
-       - description: Legacy INTD interrupt
+diff --git a/drivers/pci/controller/dwc/pcie-ultrarisc.c b/drivers/pci/controller/dwc/pcie-ultrarisc.c
+index 6ee661ceff67..74010a86244e 100644
+--- a/drivers/pci/controller/dwc/pcie-ultrarisc.c
++++ b/drivers/pci/controller/dwc/pcie-ultrarisc.c
+@@ -5,6 +5,7 @@
+  * Copyright (C) 2026 UltraRISC Technology (Shanghai) Co., Ltd.
+  */
  
-+  clocks:
-+    items:
-+      - description: PCIe core clock
-+      - description: Data Bus Interface (DBI) clock
-+      - description: Auxiliary clock
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: dbi
-+      - const: aux
-+
-   interrupt-names:
-     items:
-       - const: msi
-@@ -55,6 +67,8 @@ required:
-   - compatible
-   - reg
-   - reg-names
-+  - clocks
-+  - clock-names
-   - interrupts
-   - interrupt-names
++#include <linux/clk.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/of_device.h>
+@@ -23,6 +24,11 @@
  
-@@ -71,6 +85,8 @@ examples:
-         reg = <0x0 0x21000000 0x0 0x01000000>,
-               <0x0 0x4fff0000 0x0 0x00010000>;
-         reg-names = "dbi", "config";
-+        clocks = <&clkc 9>, <&clkc 7>, <&clkc 10>;
-+        clock-names = "core", "dbi", "aux";
-         ranges = <0x81000000 0x0 0x4fbf0000 0x0 0x4fbf0000 0x0 0x00400000>,
-                  <0x82000000 0x0 0x40000000 0x0 0x40000000 0x0 0x0fbf0000>,
-                  <0xc3000000 0x40 0x00000000 0x40 0x00000000 0xd 0x00000000>;
+ #define ULTRARISC_PCIE_COMP_TIMEOUT_65_210MS	0x6
+ 
++struct ultrarisc_pcie {
++	struct dw_pcie pci;
++	struct clk_bulk_data clks[3];
++};
++
+ static struct pci_ops ultrarisc_pci_ops = {
+ 	.map_bus = dw_pcie_own_conf_map_bus,
+ 	.read = pci_generic_config_read32,
+@@ -98,17 +104,46 @@ static const struct dw_pcie_ops dw_pcie_ops = {
+ 	.start_link = ultrarisc_pcie_start_link,
+ };
+ 
++static void ultrarisc_pcie_disable_clks(void *data)
++{
++	struct ultrarisc_pcie *ultra = data;
++
++	clk_bulk_disable_unprepare(ARRAY_SIZE(ultra->clks), ultra->clks);
++}
++
++static int ultrarisc_pcie_init_clks(struct ultrarisc_pcie *ultra)
++{
++	struct device *dev = ultra->pci.dev;
++	int ret;
++
++	ultra->clks[0].id = "core";
++	ultra->clks[1].id = "dbi";
++	ultra->clks[2].id = "aux";
++
++	ret = devm_clk_bulk_get(dev, ARRAY_SIZE(ultra->clks), ultra->clks);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to get clocks\n");
++
++	ret = clk_bulk_prepare_enable(ARRAY_SIZE(ultra->clks), ultra->clks);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to enable clocks\n");
++
++	return devm_add_action_or_reset(dev, ultrarisc_pcie_disable_clks, ultra);
++}
++
+ static int ultrarisc_pcie_probe(struct platform_device *pdev)
+ {
++	struct ultrarisc_pcie *ultra;
+ 	struct device *dev = &pdev->dev;
+ 	struct dw_pcie_rp *pp;
+ 	struct dw_pcie *pci;
+ 	int ret;
+ 
+-	pci = devm_kzalloc(dev, sizeof(*pci), GFP_KERNEL);
+-	if (!pci)
++	ultra = devm_kzalloc(dev, sizeof(*ultra), GFP_KERNEL);
++	if (!ultra)
+ 		return -ENOMEM;
+ 
++	pci = &ultra->pci;
+ 	pci->dev = dev;
+ 	pci->ops = &dw_pcie_ops;
+ 
+@@ -117,7 +152,11 @@ static int ultrarisc_pcie_probe(struct platform_device *pdev)
+ 
+ 	pp = &pci->pp;
+ 
+-	platform_set_drvdata(pdev, pci);
++	platform_set_drvdata(pdev, ultra);
++
++	ret = ultrarisc_pcie_init_clks(ultra);
++	if (ret)
++		return ret;
+ 
+ 	pp->num_vectors = MAX_MSI_IRQS;
+ 	/* No L2/L3 Ready indication is available on this platform */
+@@ -135,16 +174,37 @@ static int ultrarisc_pcie_probe(struct platform_device *pdev)
+ 
+ static int ultrarisc_pcie_suspend_noirq(struct device *dev)
+ {
+-	struct dw_pcie *pci = dev_get_drvdata(dev);
++	struct ultrarisc_pcie *ultra = dev_get_drvdata(dev);
++	struct dw_pcie *pci = &ultra->pci;
++	int ret;
++
++	ret = dw_pcie_suspend_noirq(pci);
++	if (ret)
++		return ret;
+ 
+-	return dw_pcie_suspend_noirq(pci);
++	if (pci->suspended)
++		clk_bulk_disable_unprepare(ARRAY_SIZE(ultra->clks), ultra->clks);
++
++	return 0;
+ }
+ 
+ static int ultrarisc_pcie_resume_noirq(struct device *dev)
+ {
+-	struct dw_pcie *pci = dev_get_drvdata(dev);
++	struct ultrarisc_pcie *ultra = dev_get_drvdata(dev);
++	struct dw_pcie *pci = &ultra->pci;
++	int ret;
++
++	if (pci->suspended) {
++		ret = clk_bulk_prepare_enable(ARRAY_SIZE(ultra->clks), ultra->clks);
++		if (ret)
++			return ret;
++	}
++
++	ret = dw_pcie_resume_noirq(pci);
++	if (ret && pci->suspended)
++		clk_bulk_disable_unprepare(ARRAY_SIZE(ultra->clks), ultra->clks);
+ 
+-	return dw_pcie_resume_noirq(pci);
++	return ret;
+ }
+ 
+ static const struct dev_pm_ops ultrarisc_pcie_pm_ops = {
 
 -- 
 2.34.1
