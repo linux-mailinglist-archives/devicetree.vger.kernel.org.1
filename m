@@ -1,256 +1,296 @@
-Return-Path: <devicetree+bounces-316763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316607-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jdBRGSkmQmr20wkAu9opvQ
-	(envelope-from <devicetree+bounces-316763-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:00:41 +0200
+	id GY4cIynYQWoNvAkAu9opvQ
+	(envelope-from <devicetree+bounces-316607-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 04:27:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ABED6D7401
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:00:40 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 773816D5807
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 04:27:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=starfivetech.com (policy=quarantine);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316763-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316763-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fpV1MKa6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316607-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316607-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DB69F30C7674
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:47:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 819AA3001FA0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 02:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3847F3DD853;
-	Mon, 29 Jun 2026 07:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80DA2D3A7C;
+	Mon, 29 Jun 2026 02:27:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2138.outbound.protection.partner.outlook.cn [139.219.17.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A03A53D905F;
-	Mon, 29 Jun 2026 07:45:10 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782719119; cv=fail; b=nnqDugxQgojlZfcc0EK97gcTsN0iJYyP2Ud4iw3akPJ3BEsrKHBqgav3ZAR7svaKY5ZiOOOZPT+TIQDQjU00GiVfBzlrqmwzUvYoJM//V2ksY+xEfU5nkUVP+y1dJbHBzV+rYk/198wzmpC0H8LQlp9QVqGcJ7I1mXFhO1RxbNM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782719119; c=relaxed/simple;
-	bh=INX3l8g9eEOWtIJr0gucljJJhwccaQZ4GJIhnnUSel8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=cUCoAaiAl8XjM+PaJi2KmUK8gR6ZRIoqi4zWHbGFQcAejeXzwlWgywSPZZ0F0sN0ValNjkL9AP5yC/LeGR8RRiqShVbT0aOhPTlI2VqUtuQzH4P/XzCwLSKy/98/6l2NFJW9wir3Jq4IORfIuntR2ldaoARjgmtAtO60JjPp2Nk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.138
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TnEdndAvh8U6sgLlTxDZEVq8mRvWv75xWZuHL3FwkIoAjVPaZcdJbeBehCz6jOZQtT96O9GyYL7dCnAziYwgOpTETfLcvSFeoi0sUj0WGIC6IU8F1HMZ2rGOoeQdMbFZ1itWY6RZDAYkKllYsEVFzPjl9Hlmt9ZS0w1FMa7jSF+bVGDTVdqtOGtTATF1PhxQc5vMcvxV2xgzsTegzFnN/chWNCt+cUtdjeO+5URzKWyLgWhWCID6QtpclUfK2fGrg5OFNYbJH8wtjt6qHBvpzWx5+uHH97kMli2fFCPPYf5i022H0A7+HAEo3VV5ay+LAJoUuA+6aFQnvM5Fm83Eew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sEBoUnmkAlAqhavEz/RdJAnjV8hQJTGrF4zmjVwzNOQ=;
- b=J0LIG00Z1g6zmO/jDqvcolbXsL3ph6t0e/Ur/qxyCCc5Mhu6aeGGkxcxBVexTJ4rNVSFaKSm/px5EtMgXhSNT3dHDaopUTAcL9hPo8wbhpDVVKHopG0FM8CGHzqQAj1MsXlwg3dI7U7bg7wJXTd3OVf2Xd07BcW6fqwgQgg23GJ1Wqd7Dn+xI0fcuLHKACDbDfFMA8K1e1BWCAAYNV8OpkAajC7G/rN5BOTFTYRwd5qRWa5gRmCLMDq+1toMBpZ27iIgq7ci6fYN1b6e75/WfL6dEnMmObJRTPKyxF0elHBEWWJ3VZye2n5h9gNbyvyoB18Rfn9n/GA3THYUzdjVew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from ZQ4PR01MB1299.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:15::9) by ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:17::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.23; Mon, 29 Jun
- 2026 02:09:25 +0000
-Received: from ZQ4PR01MB1299.CHNPR01.prod.partner.outlook.cn
- ([fe80::9284:55ac:8499:dfc2]) by
- ZQ4PR01MB1299.CHNPR01.prod.partner.outlook.cn ([fe80::9284:55ac:8499:dfc2%4])
- with mapi id 15.21.0113.020; Mon, 29 Jun 2026 02:09:25 +0000
-From: Hal Feng <hal.feng@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>
-CC: =?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= <ukleinek@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Emil Renner Berthing
-	<emil.renner.berthing@canonical.com>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <pjw@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
-	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v19 1/3] dt-bindings: pwm: opencores: Update compatibles,
- examples and maintainers
-Thread-Topic: [PATCH v19 1/3] dt-bindings: pwm: opencores: Update compatibles,
- examples and maintainers
-Thread-Index: AQHc/N/BbYwhFywv1U+0WhLg7DD1frY/zFoAgBUSgjA=
-Date: Mon, 29 Jun 2026 02:09:25 +0000
-Message-ID:
- <ZQ4PR01MB1299D0EB20EE30602AD13A2BE6E82@ZQ4PR01MB1299.CHNPR01.prod.partner.outlook.cn>
-References: <20260615155759.129210-1-hal.feng@starfivetech.com>
- <20260615155759.129210-2-hal.feng@starfivetech.com>
- <20260615-crescent-equation-d948fcc46cd1@spud>
-In-Reply-To: <20260615-crescent-equation-d948fcc46cd1@spud>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZQ4PR01MB1299:EE_|ZQ4PR01MB1202:EE_
-x-ms-office365-filtering-correlation-id: bf25ee96-9daf-4277-20b9-08ded5837184
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|7416014|1800799024|376014|23010399003|18002099003|22082099003|38070700021|3023799007|56012099006|4143699003;
-x-microsoft-antispam-message-info:
- mw9bMNSVrOb3vCRqCaV2mwhXXM+0A+EjE1xqrmIQdLxlSkHER1/UsIELOCZWQS/Q2SJU0w/M+ScavcnTVyz2Bv8eBMgE+ILBNlD/I0q/qOFGNQSf84gnwgdTddcNGbU1iuqMZVej/O61MYAoP0Zwxex6qfQz+J0GxZDzlYvBKFDTmJBavktsWPlnE5Vse6qiEuZpmP3BnrXHOG79AyObu32zAfTgG6agBgyduL7FjrQ66jZPBhdGMXiRyQFjMjaoUL34/m02RwBvxlskEQP8zswJF/r5tQSGn4rxHNTvIuqXhO4Nqg3spPkqbuzeAwqDCnHu+jcuwvHS7dyFbvJpYCEtOhwm6FpHQBhrxVPeYaXJ2w23eX/C9JNkM9fsWndDoXGOuE8GjjTa1d49V2/8m/sVLJEclGrKPSQqTA8Sl2mOuaK3tQl7dTO8nstAIoo2veOtR74Tw8dDvpxuwbCXE9MD3fNl+gCVtqGhKUetM8jU01p+Z4YcZWjfbZvEWwDLmmSRAJa7uBHXlGNgwCiDZcjXrNXOX6SS2lXlannciwZ6K3uBYOe8MNAgTqae1oj9
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1299.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(1800799024)(376014)(23010399003)(18002099003)(22082099003)(38070700021)(3023799007)(56012099006)(4143699003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?LXyYL4ojFS3EokgCZrVJUbsNiqYxwur42EDCOBFBBrXIMlOvL0CGguWk41?=
- =?iso-8859-1?Q?uMI6MYB74ZjrC7rNO7BPw8nwcCIHdJhpnyUjMLkNpsKdbXB7kiJWat72jK?=
- =?iso-8859-1?Q?NPVBEaGJQuB/8AtcAonZ3hoePbwALvL2gtN4G++x/ZJAKVYfyu77WMyQbK?=
- =?iso-8859-1?Q?qW/7RAxu5cQumZuMX0YrVkJbsQ9nCtNWDCVasygCg6ziDBDk3fQfJ3PRiw?=
- =?iso-8859-1?Q?taDbq/AcX6UV2pgtM/H19SBRw7MTTKCADAxRMXokVXlR8vMmZ/7vFlGxZg?=
- =?iso-8859-1?Q?tdR5NLT/g6niPnZUOPyGRJUuMf7zgiRxkedfiBxYxJj531rpgIZrtSW5Ie?=
- =?iso-8859-1?Q?ywj8jHqzJnG7yIH09MGgVvyFqZ7a919DHC6oFKCrpyO/Hm/3OpS4SBP+0D?=
- =?iso-8859-1?Q?drbq81JrINnKFsTxpL+TTNQTKeG+B50WZhNOcka3jUdUHy1gvhAJmMjnRD?=
- =?iso-8859-1?Q?XF2tYaXC7Hj4/so2B2PUR/bozbs2CT+47c6MgNWXq879Qd2FXmtuMMgeLx?=
- =?iso-8859-1?Q?C/9yF80m1Qiet2qiy3ThgIS5xpvHIF+Vjs+37KUMvtk5chYP5NCyzFA0s+?=
- =?iso-8859-1?Q?psnzqhp5Xr9heAsvw2ZJc2EB5bx7D3Ejyc34lctotlhpa+Nn4njktDyfjG?=
- =?iso-8859-1?Q?Klp1swghJEm0wkIvMk1a3oM5s21Hqj22lnEJpkJOKylqdULQqDlosujRWe?=
- =?iso-8859-1?Q?iBDVuO+FAGgLdbyOcI2hNHj08HEQMkHBd2t4ZWZ1Q25NwwpFi5+9t17cv+?=
- =?iso-8859-1?Q?EQ1umVKXlcb1oVAuS7HLhbKVuuxe0fN4ERaWEh7rNwEefJuIVEHl+ZUb8w?=
- =?iso-8859-1?Q?BwIsUE3+dUoT6Ug3Q+98wiP3Kk5Vay2IyTZkwW/v0YFr7TjR55xwLaUouF?=
- =?iso-8859-1?Q?FytLHNlxgpBsKgOlybw2TALbxhu35kXFX99YPtEZdCMDHmu2XwRkCmuRTL?=
- =?iso-8859-1?Q?+1xeRSCOi35AgM/2p6s5TJgG2crNBngcflTOvp9wb8F8TQwUZAHHsMJbdF?=
- =?iso-8859-1?Q?UAmOE2pOGhAKNd34M4aCA47GElQLLEDHcCahJMwQQ5CuSNpuy+eFifew1q?=
- =?iso-8859-1?Q?jhiqaFK0OjNIbfWw/jlIv1ZfRu8P7cTJC3d0U8cVggeYtDeeNP+b331oHb?=
- =?iso-8859-1?Q?upAwJcUOyireBuTcx3QNMFgVsuY0uJxP4M/UY96eFAvnP/ZVmjMigFBjTX?=
- =?iso-8859-1?Q?Q/yq0LFd+2tQ+lbbnr+M38AH6iB0pXGKL5cDQGrlw7nkmdaCRauv6lOTw+?=
- =?iso-8859-1?Q?Ne5yJ7aaO6solweApY9386hWm9fee/cgA2HEXX5Mqdy3FaCXsf35WuVGbv?=
- =?iso-8859-1?Q?cCswZHQVj8+zfQYi8Y2XVy0oQ0Z7pgWCCOu6DeL6ZJRRu8eDENkjIag7Bd?=
- =?iso-8859-1?Q?RhkfwlaLEDddezTBTN3zsuZzfBCQ4MYbMN0rQrBG2fkQxs6qpNkGww36Dv?=
- =?iso-8859-1?Q?hwpY46cYpnTfFuSoWyVH/4U9dx+LOIV+KC///Vvyj83vA53/Z9u1tlAV6u?=
- =?iso-8859-1?Q?WTfi6N+BjqV20xg3nKkncB/nOgZDA8N9x7so3aLhWiiXBMj1wttcHYamUB?=
- =?iso-8859-1?Q?lL2QDHpTKtnTgbGoYgbDiLnrR7ssYZdKba8HfNxu2x7aLecpUxr/H6OrUf?=
- =?iso-8859-1?Q?j+ZtBpM10x7Gh+vznRRW94JGF5XbuQx8Je6REOZt2Kem24eq5rjlMEDBT8?=
- =?iso-8859-1?Q?BMRTQW6Y05A0/cXB3MLhh/WlWJhi3txJ2yGpYxHJgS4OllBgMqwya7h4r/?=
- =?iso-8859-1?Q?EFg9AsJlPpvm43xaL9nVoRk2hxZuy8dl2rm3cNgGfUOAyQUh3i9GFb3X+H?=
- =?iso-8859-1?Q?aJIzvbmj4A=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5694940D585;
+	Mon, 29 Jun 2026 02:27:46 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782700067; cv=none; b=am6GM+iscwpaLIfsgeALgB5HuaNQwZ6+aMItN8NUi9M8/YBVoxEzsqCuNAxfi871ol89lewgCoAEKfPHG7s+CQ/RN05mA32i9VhtaioU/P1AW60Enw5pWqQVSYSL2C1paVL6A3zuANVHSdlEQnQzYjNTO9Ge8DzqbW/5+E0d+fg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782700067; c=relaxed/simple;
+	bh=MzOn116bCikcpWyGXfXSG+0J+ylTVaP0Vccky3qEfaQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e4oAC32Ng09A4ahbb4JMHb4HJczMQRQSx4rAL5KOA/ckcjUF2SW/0lwE7fgfPTpgY0YIOubUQ15cf6R4kgfwmZIECJEUWoQ4rugEgi4yNcpz1SkiH2RsWCxSWAOKKmenVvTnHfzqDIr3sHtMjYvzYfkaOPxrInFtl/xVNO+RHHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fpV1MKa6; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B2F21F000E9;
+	Mon, 29 Jun 2026 02:27:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782700066;
+	bh=R+L59wpa0lFCCdTpCWDpJ9Lgn8eL+gBxZH1T0tyvv/A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=fpV1MKa6HJkk05UVfXfd8GUCKgfvaNaKfk+G7+I0JfeGnCI6ianYcMtkIQLcPugXE
+	 Ck2526icMz+UyA8GTxRd+qO28JiGlVtWM6yvpT2mMfIe5Nj4TqnFI6bng8Kw9rgvmW
+	 aiZOCHGa3QnwT73MynQVaevy6tNEmOyApH3TbezKoRlVeBxhESsc+g03lAcZ5nmdzX
+	 ptQx6BgVN9jOBtovXjOj2Znoxabv1k5VJTa8TgwiWKbdQ9rmtsD7L+VeNYRhktKixI
+	 vn0Hs5Jtv/8/V725Llsvvd+xh+36CBNcmXcSl0l5xFosw6/ddDjDackl0me2N6+4H0
+	 08+UWgdXkO6ug==
+Date: Sun, 28 Jun 2026 21:27:30 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Hans de Goede <johannes.goede@oss.qualcomm.com>
+Cc: "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Srinivas Kandagatla <srini@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Abel Vesa <abel.vesa@oss.qualcomm.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
+Subject: Re: [RFC 00/12] RFC: Devicetree-ACPI hybrid mode
+Message-ID: <akHTOUvHXooq7ykT@baldur>
+References: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1299.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf25ee96-9daf-4277-20b9-08ded5837184
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jun 2026 02:09:25.4756
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: uIJuPEbVH0Nrs7EDhXAsmx3FvLrvowcAcihcrF1+FZDgS/Wam2nWbuN15PZfA64VbKIMAiAcBP3RfxNri7c/6mDGjNZsg2Cl2ytbcu+ugw4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1202
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [-4.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-316763-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:ukleinek@kernel.org,m:p.zabel@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:emil.renner.berthing@canonical.com,m:palmer@dabbelt.com,m:pjw@kernel.org,m:aou@eecs.berkeley.edu,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[hal.feng@starfivetech.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:johannes.goede@oss.qualcomm.com,m:rafael@kernel.org,m:konradybcio@kernel.org,m:srini@kernel.org,m:krzk+dt@kernel.org,m:lumag@kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-acpi@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hal.feng@starfivetech.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-316607-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,starfivetech.com:from_mime,starfivetech.com:email]
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,baldur:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4ABED6D7401
+X-Rspamd-Queue-Id: 773816D5807
 
-> On 26.06.16 00:22, Conor Dooley wrote:
-> On Mon, Jun 15, 2026 at 11:57:57PM +0800, Hal Feng wrote:
-> > Remove the jh8100 compatible since the JH8100 SoC has been canceled
-> > and will not be released. Add the jhb100 compatible to replace it.
->=20
-> > Use a oneOf construct to support the single-string opencores,pwm-v1
-> > compatible.
->=20
-> No thanks. Simple as this IP might be, I still want soc-specific compatib=
-les to be a
-> requirement.
-> pw-bot: changes-requested
+On Tue, Jun 23, 2026 at 04:52:13PM +0200, Hans de Goede wrote:
+> Hi All,
+> 
+> Currently as soon as the kernel boots with a populated DT provided then
+> the arch/arm64 code sets acpi_disabled=1 and the complete ACPI subsystem
+> gets disabled. On WoA Snapdragon laptops where the factory Windows OS
+> actually boots using these tables this is not necessarily desirable.
+> 
+> It might still be interesting to at least parse the ACPI tables and make
+> the ACPI fwnodes available for device-drivers to use. I call this DT-ACPI
+> hybrid mode.
+> 
+> This mainly is an experiment for now and possibly a method for accelerating
+> the ongoing effort to run Linux on currently available Snapdragon laptops.
+> 
+> On current laptops Linux cannot boot using ACPI due to some information
+> missing from the ACPI tables. People are working on changing this so that
+> for future WoA Snapdragon laptops Linux can boot using ACPI only without
+> requiring Devicetree.
+> 
+> 
+> There are a couple of scenarios where DT-ACPI hybrid mode is useful:
+> 
+> a) This leads to a populated /sys/firmware/acpi/tables allowing one to run
+> acpidump, which is useful to grab info from the ACPI tables when e.g.
+> creating a DT for a new laptop model.
 
-Okay, will update accordingly. Thanks for your review.
+This depends on the laptop in question sufficiently following the
+reference design, such that you actually have a good enough base DT to
+find those i2c-hid devices...
 
-Best regards,
-Hal
+E.g. on the Glymur-based Asus Zenbook A14 that I recently brought up,
+keyboard sits on a previously unused I2C bus - something I wouldn't know
+without first acpidumping.
 
->=20
-> >
-> > Change the register size in examples to 0x10, since an OpenCores PTC
-> > IP has only 4 32-bit registers: CNTR, HRC, LRC and CTRL.
-> >
-> > I will maintain this pwm module in place of William.
-> >
-> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> > ---
-> >  .../devicetree/bindings/pwm/opencores,pwm.yaml   | 16 +++++++++-------
-> >  1 file changed, 9 insertions(+), 7 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
-> > b/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
-> > index 52a59d245cdb..5f05606a2d3d 100644
-> > --- a/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
-> > +++ b/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
-> > @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  title: OpenCores PWM controller
-> >
-> >  maintainers:
-> > -  - William Qiu <william.qiu@starfivetech.com>
-> > +  - Hal Feng <hal.feng@starfivetech.com>
-> >
-> >  description:
-> >    The OpenCores PTC ip core contains a PWM controller. When operating
-> > in PWM @@ -19,12 +19,14 @@ allOf:
-> >
-> >  properties:
-> >    compatible:
-> > -    items:
-> > -      - enum:
-> > -          - starfive,jh7100-pwm
-> > -          - starfive,jh7110-pwm
-> > -          - starfive,jh8100-pwm
-> > +    oneOf:
-> >        - const: opencores,pwm-v1
-> > +      - items:
-> > +        - enum:
-> > +            - starfive,jh7100-pwm
-> > +            - starfive,jh7110-pwm
-> > +            - starfive,jhb100-pwm
-> > +        - const: opencores,pwm-v1
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -49,7 +51,7 @@ examples:
-> >    - |
-> >      pwm@12490000 {
-> >          compatible =3D "starfive,jh7110-pwm", "opencores,pwm-v1";
-> > -        reg =3D <0x12490000 0x10000>;
-> > +        reg =3D <0x12490000 0x10>;
-> >          clocks =3D <&clkgen 181>;
-> >          resets =3D <&rstgen 109>;
-> >          #pwm-cells =3D <3>;
-> > --
-> > 2.43.2
-> >
+> As a bonus /sys/firmware/acpi/bgrt
+> is also populated allowing the boot-splash to show the vendor logo.
+> 
+> b) It might be useful for device-drivers to be able to access ACPI data
+> for the device even when running in DT mode. E.g. Srini Kandagatla first
+> got me thinking about this because he wants to use the ACPI MIPI SDCA
+> tables for audio codec routing when booting Linux on Windows Qualcomm X2
+> (Glymur) laptops.
+> 
+
+As I argued during last year's Plumbers, I'm strongly against this, for
+anything but prototyping/experimentation.
+
+Specifically something like the MIPI SDCA tables, are we going to define
+an ABI across DT/ACPI such that we now require the hybrid system in
+order to build a Glymur-based DT-based product?
+
+> c) It is also possible to go truely hybrid and use ACPI to instantiate
+> some of the kernel device objects representing the hardware. For example
+> the last patch in this RFC series switches to using ACPI instantiation for
+> the I2C clients for the keyboard and touchpad on the Snapdragon X1E Lenovo
+> ThinkPad T14s gen 6.
+> 
+
+Which introduces the very shortcomings that are a key part of why we
+don't just run off ACPI in the first place today.
+
+> d) This may help identify shortcomings in the current ACPI tables which
+> need to be fixed to allow future laptop generations to use ACPI only.
+> 
+
+This is worth looking further at.
+
+> 
+> Upstreaming of these patches (to upstream or not to upstream?).
+> 
+> 1. The first couple of patches in this series mainly implement a) + b) from
+> above. This seems like something genuinely useful to have; and except for
+> missing DT-bindings for hybrid mode this seems mostly ready to go upstream.
+> 
+> 2. I see c) as a way to slowly evolve support for current Snapdragon laptops
+> to use more and more info from ACPI and get closer to a point where we only
+> need a single DT describing the SoC and any info related to laptop model
+> specific bits outside of the SoC can be read from the ACPI tables.
+> 
+> As mentioned above work is being done to have Linux boot on future laptop
+> generations using ACPI only, so all this applies to currently available
+> Snapdragon laptop generations only.
+> 
+> The question is what to do wrt upstreaming patches necessary for c) though
+> (patches 7-12) are we going to allow new Devicetree files for not yet
+> supported laptop models to partially rely on ACPI?
+> 
+> The current demo ACPI usage in this RFC series just instantiates I2C-HID
+> devices from ACPI. More interesting would be to hookup the embedded
+> controller (EC) handling in the ACPI tables instead of having to write
+> a special EC driver for each laptop model separately. For the EC parts
+> I believe that it might be worthwhile to implement c).
+> 
+
+Wiring up the EC is the one use case that I can think of where the
+hybrid mode would be really interesting, as a hack around the need to
+write custom device drivers for each one.
+
+> This new DT-ACPI hybrid mode works as follows:
+> 
+> 1. A new global ACPI subsys flag called acpi_dt_hybrid is introduced which
+> can be set to 1 combined with acpi_disabled=1. When this is done, then
+> despite acpi_disabled being set the ACPI tables will still get parsed and
+> /sys/firmware/acpi (tables) and /sys/bus/acpi/devices (fwnodes) will still
+> get populated. No devices will be instantiated, no fwnodes will get
+> attached to any other (e.g. PCI, USB) devices and no other actions will
+> be taken.
+> 
+> 2. Add acpi=hybrid kernel-commandline option to the arch/arm64 code.
+> TODO: Add a DT-binding for selecting hybrid mode from Devicetree.
+> 
+> 3. drivers/acpi/glue.c changes to support devices with an of_node as
+> primary fwnode having a "acpi-path" string property and when present look
+> up the ACPI fwnode for that path, e.g. "\\_SB.GIO0", "\\_SB.I2C1" and
+> set that fwnode as secondary node.
+> 
+> 4. pinctrl-msm changes to map special WoA ACPI table virtual GPIO numbers
+> for PDC pins back to regular TLMM GPIO numbers.
+> 
+> 5. Tiny drivers/i2c/i2c-core-acpi.c change to make it instantiate ACPI
+> described I2C clients under a DT instantiated I2C adapter if that
+> adapter has an ACPI secondary fwnode.
+> 
+> With this I can drop the DT description of the ThinkPad T14s gen 6
+> keyboard and touchpad and instead have these be instantiated by ACPI,
+> as shown in patch 12/12.
+> 
+> Comments, thoughts ?
+> 
+
+I love the experimentation!
+
+Regards,
+Bjorn
+
+> Regards,
+> 
+> Hans
+> 
+> 
+> Hans de Goede (12):
+>   ACPI: Introduce DT-ACPI hybrid mode
+>   arm64: acpi: Cleanup acpi=[on|off|force] handling
+>   arm64: acpi: add acpi=hybrid support
+>   ACPI: Add helpers for dealing with ACPI fwnode as secondary fwnode
+>   ACPI: glue: Implement setting secondary-fwnode for DT-ACPI hybrid mode
+>   ACPI: scan: Retry acpi_device_notify() in DT-ACPI hybrid mode
+>   ACPI: Make device_match_acpi_handle() also check the secondary fwnode
+>   irqchip/gic-v3: Always call acpi_set_irq_model()
+>   pinctrl: qcom: Add support for WoA ACPI tables virtual TLMM pin
+>     numbers
+>   i2c: acpi: Also register ACPI i2c_clients for adapters with a
+>     secondary ACPI fwnode
+>   i2c: qcom-geni: Fall back to i2c_acpi_find_bus_speed()
+>   arm64: dts: qcom: x1e78100-thinkpad-t14s: Move keyb and touchpad to
+>     ACPI enumeration
+> 
+>  .../qcom/x1e78100-lenovo-thinkpad-t14s.dtsi   |  61 +-----
+>  arch/arm64/include/asm/acpi.h                 |   1 +
+>  arch/arm64/kernel/acpi.c                      |  47 +++--
+>  arch/loongarch/include/asm/acpi.h             |   1 +
+>  arch/riscv/include/asm/acpi.h                 |   3 +-
+>  arch/x86/include/asm/acpi.h                   |   1 +
+>  drivers/acpi/acpi_apd.c                       |   3 +
+>  drivers/acpi/acpi_memhotplug.c                |   3 +
+>  drivers/acpi/acpi_processor.c                 |   3 +
+>  drivers/acpi/arm64/init.c                     |   2 +
+>  drivers/acpi/bus.c                            |   6 +-
+>  drivers/acpi/glue.c                           |  70 ++++++-
+>  drivers/acpi/property.c                       |  13 ++
+>  drivers/acpi/scan.c                           |  33 +++
+>  drivers/acpi/tables.c                         |   4 +-
+>  drivers/base/core.c                           |   4 +-
+>  drivers/firmware/efi/efi-bgrt.c               |   2 +-
+>  drivers/i2c/busses/i2c-qcom-geni.c            |  10 +-
+>  drivers/i2c/i2c-core-acpi.c                   |   8 +-
+>  drivers/irqchip/irq-gic-v3.c                  |  29 ++-
+>  drivers/pinctrl/qcom/Makefile                 |   4 +-
+>  drivers/pinctrl/qcom/pinctrl-msm-acpi.c       | 196 ++++++++++++++++++
+>  drivers/pinctrl/qcom/pinctrl-msm.c            |  47 ++++-
+>  drivers/pinctrl/qcom/pinctrl-msm.h            |  35 ++++
+>  include/acpi/acpi_bus.h                       |  16 ++
+>  include/linux/acpi.h                          |  10 +
+>  26 files changed, 502 insertions(+), 110 deletions(-)
+>  create mode 100644 drivers/pinctrl/qcom/pinctrl-msm-acpi.c
+> 
+> -- 
+> 2.54.0
+> 
 
