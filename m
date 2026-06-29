@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-317168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317170-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /vkyMHmXQmoo+QkAu9opvQ
-	(envelope-from <devicetree+bounces-317168-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:04:09 +0200
+	id PbTFH0CZQmql+QkAu9opvQ
+	(envelope-from <devicetree+bounces-317170-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:11:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 199F76DD178
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:04:09 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6B3D6DD2A8
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:11:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=imgtec.com header.s=dk201812 header.b=HTdJm4UU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317168-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317168-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=imgtec.com header.s=dk201812 header.b=iuucbIyh;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317170-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317170-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=imgtec.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BCF2A3228ECC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:48:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 24C423033AE6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:48:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8824B3EA95F;
-	Mon, 29 Jun 2026 15:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25D7243CEDF;
+	Mon, 29 Jun 2026 15:48:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0EC4367B6C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F5F36D9F6;
 	Mon, 29 Jun 2026 15:48:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782748086; cv=none; b=qpuxCe3kk3BLSzDLild9Yh/cB/DAPDCH7uHXMWupJPd9wySRIrihzhXXL97zZfDmrawW6tf+N3h/u7tA8m4j1j2YT4q6sXOgjN1T3XEuF1huk5PqqRxbYfpxd5abVANKnN4huC0BLhKt/drp7D5XpJcbu6jT6X3EVcGCUi0gPvs=
+	t=1782748088; cv=none; b=hZ4amMTuIGgWb0rnvjf/PC1pU7ciU2aIwucQ28cyh9szRJ94RxCz0ETTIMfeBmMjNzdOk6RSTo/yeotBdBKGGHCBA5i5UgN4BGKKq+ymnoeWUU28WFAl0uwcMuOPSOMC/HOw6NwMPml3E/fpggnLvmgQkYylBOmFg/W2KC3Bexw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782748086; c=relaxed/simple;
-	bh=wvM+kSMgAW3ZdGwbxhh3uqR4mXzxG0ev3yJmwHGBHmc=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=aV4taGz6SUUqr0C2wlaVOK+ynl5x+SERge9N57HQ1l+fcvE2ZgZL6oB7NEUhzXNgkKkXJuyGjZgHXAqKwoaKwZJ0H0S18VXqiVhAV7rgr5ZISXtWOIlts9RmKasGWqSjEAyiFKC1zlriJ4zBB1PhDC86w+41bBmnjpeMrqIe5/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=HTdJm4UU; arc=none smtp.client-ip=185.132.180.163
+	s=arc-20240116; t=1782748088; c=relaxed/simple;
+	bh=RFDK1ETs1BmWS52JrlBOYalroQQm/nfKoVZJWw0vdi8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=TwQxGDl2RayDAoZoZa3wLD8o3nuiKvOgj6dEoUzzkF/nIdAXy0LyskH7afRllYcWECkqwUjVOYhdc8ewRQ1VH1UPb8CHeNA1AwfZ4vZqWK6CDfIXL38dQgynIg4pNlKkFgVy2jDXCA4f3AV50wuTVd69p3cpNG7c89MIZQUgU0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=iuucbIyh; arc=none smtp.client-ip=185.132.180.163
 Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
-	by mx07-00376f01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65TATKNA3000395;
-	Mon, 29 Jun 2026 16:47:50 +0100
+	by mx07-00376f01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65TATKNB3000395;
+	Mon, 29 Jun 2026 16:47:59 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=dk201812; bh=f18RwDvW+lLYC/yt5tChdj2
-	vTuPOQbGsgrpbnm2a5AQ=; b=HTdJm4UUEiN8ASNf8IjGQE/oYizYXw0oEkmlqJh
-	S3CEbcbDyrbGd5gq/Odon+xqc+ZNl+ltAIiReu01Ks6M1RgZy++SB7Gzrp+QJCbG
-	fsjA1LAPZrYmZP6QjTjqJMkGMRSHJhn43IC2GnTERiIOLMj65j8pv1no3Km2HBmM
-	lCspiiv5s5jFY2QsdqgTt0v5dd+ne2bkcCkzwtELoObeNLsy9ObBSfedJCx677Uv
-	KfKPLdnc+3hk70UZjl9Uqby/jBig7FgSXU4rrDB9t+sc7qvtzId8ehA9J4dqGthq
-	bJhscVe8x9RMs3H3C2WIfU7J1fb40OYebIM3MG8XPBnn8mA==
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=dk201812; bh=H
+	11ndfnu+HlP5osipVtliJHgXnDq7yPOgDeu/zYelnA=; b=iuucbIyhwIaNZIN5X
+	pljso6Q3KdwYNbpNUrJjA9Dud9HBYOKjsz6h+yPhTk4Q1iOdt8lD55iOczCn61Uz
+	K3GJJrzxmp1vqyAw7MscK2kkV0eMk3myb2CkRCIEplHRwLmDBMW7IoeLju0RMYGa
+	BNPSEQG/ylpkkDPHms7z3KKZ0LZd+f1wAyZuRqoBqS+180DRX4J4EhudCVeb9Guj
+	RkihOXRN+sJ4m9cV6Mo9gbgJLVEf6Lw0wwlDtNVI3DU6bb5nAcUPX4YVv5olo7cr
+	bEcBnNHljWJh+QJ1coux8a7KBz1Cs84IpJos0AP7dQngFsXvqW7F4ZR1jTVgzB5K
+	KX2AA==
 Received: from hhmail01.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
-	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 4f26kuj3rr-1
+	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 4f26kuj3rr-2
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jun 2026 16:47:50 +0100 (BST)
+	Mon, 29 Jun 2026 16:47:58 +0100 (BST)
 Received: from [127.0.1.1] (172.25.6.219) by HHMAIL01.hh.imgtec.org
  (10.100.10.19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.43; Mon, 29 Jun
  2026 16:47:49 +0100
 From: Matt Coster <matt.coster@imgtec.com>
-Subject: [PATCH 0/2] drm/imagination: Remove Matt Coster as maintainer
-Date: Mon, 29 Jun 2026 16:47:28 +0100
-Message-ID: <20260629-goodbye-v1-0-3bab53a80c53@imgtec.com>
+Date: Mon, 29 Jun 2026 16:47:29 +0100
+Subject: [PATCH 1/2] MAINTAINERS, mailmap: Update address for Matt Coster
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,10 +66,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJGTQmoC/yXMQQ5AMBCF4as0s9akJjS4ilgog7FopUWIuLti+
- SX/excE8kwBKnGBp50DOxuRJgK6qbUjSe6jARVqpbGUo3O9OUmiznQxlLlCk0GsF08DH99T3fw
- Om5mpW9853PcDbD7nS2sAAAA=
-X-Change-ID: 20260629-goodbye-26468f9502b4
+Message-ID: <20260629-goodbye-v1-1-3bab53a80c53@imgtec.com>
+References: <20260629-goodbye-v1-0-3bab53a80c53@imgtec.com>
+In-Reply-To: <20260629-goodbye-v1-0-3bab53a80c53@imgtec.com>
 To: <imagination@lists.freedesktop.org>
 CC: Matt Coster <opensource@mtcoster.net>,
         Alessio Belle
@@ -81,44 +81,48 @@ CC: Matt Coster <opensource@mtcoster.net>,
         <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, Matt Coster <opensource@mtcoster.net>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=974; i=matt.coster@imgtec.com;
- h=from:subject:message-id; bh=wvM+kSMgAW3ZdGwbxhh3uqR4mXzxG0ev3yJmwHGBHmc=;
- b=owGbwMvMwCVWuUfy8817WRsYT6slMWQ5TV5i/Ud2S3rRnmmzVYLffZ+0vubwngV3Ny4/7bqkk
- LtzQxGzVkcpC4MYF4OsmCLLjhWWK9T+qGlJ3PhVDDOHlQlkCAMXpwBMhI2FkWFmYLx5nqvs0YpF
- 5gq7JeRk3nr5/TnE0ntR7ci0IydK1FwZ/heI2bzOvMV7sURW8uiEzO8R/X3fw873n90vxGDxVat
- 3HRMA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1325;
+ i=matt.coster@imgtec.com; h=from:subject:message-id;
+ bh=RFDK1ETs1BmWS52JrlBOYalroQQm/nfKoVZJWw0vdi8=;
+ b=owGbwMvMwCVWuUfy8817WRsYT6slMWQ5TV6idugr68rJdscN7moFxTulrjwoc8Xs5HuNzrgt5
+ U3nPTc/6ChlYRDjYpAVU2TZscJyhdofNS2JG7+KYeawMoEMYeDiFICJsMkw/Pc/f1q2/2HziT7h
+ hYxMmT8W9V7xuDxTetqSidbe8034P19n+Gf9QWVOSdnxnsWJhWVL7772ttmZ1v0hNue+wvMbEgk
+ 3mXgA
 X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
  fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
-X-Authority-Analysis: v=2.4 cv=epXvCIpX c=1 sm=1 tr=0 ts=6a4293a6 cx=c_pps
+X-Authority-Analysis: v=2.4 cv=epXvCIpX c=1 sm=1 tr=0 ts=6a4293ae cx=c_pps
  a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17
  a=UteWFfMXGp8A:10 a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10
  a=VkNPw1HP01LnGYTKEx00:22 a=kQ-hrUj2-E3RCbRHssb7:22 a=7RYWX5rxfSByPNLylY2M:22
- a=r_1tXGB3AAAA:8 a=ZoOuzrvA5ULBp74qVeUA:9 a=QEXdDO2ut3YA:10
- a=t8nPyN_e6usw4ciXM-Pk:22
-X-Proofpoint-ORIG-GUID: dYhIBzPHjBrBE5HiyTOp4Pz9qhd_6Ni9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI5MDEzMSBTYWx0ZWRfXy7uAVVEhLql3
- O+Q8/hTseqCOtvnGJvrY0IEue6rOwMeGyTEqfN5mcNZc1jRbMf20OZ82IiLKOJq65znEkuOblIb
- e65iUXnp0BKEBc7V/vKpOrPX59Jb3dHFTTYc2q/veAQjAsFnBRIzXzAJMknUgi4o8B/BTPji2GM
- RRGuAjw6DDg5b93qdnroeOLuWknSKTlLn7kw2L+zow96pvB1e2io1rCNk00mxnVLbh/nwd7BG7g
- lprJcLxwfQqFZFoqAz3tDsK8RD5k4Wcce/K8eNH9kFmO/FpCrJ3XUgoi6SFejQ9oKVz3MwNiB/m
- P+jAP76WOwTqPibl6JVatHLs6s/BhPgPNJIx/TnUrJsaYVw2N84WrK8nXaY9u3Gl85GfB6KC0D4
- YSI5x7I9Jd/d0g/URoSqR3LgbA0wbTuXIhsBiBH0zopjgfhhlZTihiDJoLjkU7Tsa1XqxK+7CNl
- smGOoQJ7GuZEj48vq5w==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI5MDEzMSBTYWx0ZWRfXwvt4fZh1V+VR
- uesFB0Ps9KAViiCFKBgyEeDvSLgeYeoxONarEkbgzkR79tAcXlE90AVp1SQM32I/zYH9jkoDML7
- Hn/HP3IogNyiu8dBerKt4D+az+HdMGc=
-X-Proofpoint-GUID: dYhIBzPHjBrBE5HiyTOp4Pz9qhd_6Ni9
+ a=r_1tXGB3AAAA:8 a=QyXUC8HyAAAA:8 a=mDV3o1hIAAAA:8 a=pGLkceISAAAA:8
+ a=VwQbUJbxAAAA:8 a=LpQP-O61AAAA:8 a=iB0s77fEAAAA:8 a=JfrnYn6hAAAA:8
+ a=Odnh0R2cAAAA:8 a=e5mUnYsNAAAA:8 a=Q0WHy3Y73_uH-jEgx5EA:9 a=QEXdDO2ut3YA:10
+ a=t8nPyN_e6usw4ciXM-Pk:22 a=pioyyrs4ZptJ924tMmac:22 a=HyUCkmmLtCL0fD60kmUx:22
+ a=1CNFftbPRP8L7MoqJWF3:22 a=lNAA6UHySJB7qmBR1x20:22 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-ORIG-GUID: RhsFuBl-Ot-aqA5vBDbjtCs9HXyD_ebr
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI5MDEzMSBTYWx0ZWRfX9OOGu/aRccOE
+ 0wOiEaZNyqg98ZAQ0V81EMOxZMuJMZKemc+UexZ4nyXFIuPOdmXGNaZLTsayTAQ3ianxWOJWUBc
+ FvOI6iSYN6DCv/UPl5a53gRscRtO8CR2X02ycDG62JFFF++Va8f4EHWDwzynfQTGKqgJ/GZtQvD
+ cbJI1B47HfdyMCeyFC6hM2FGyXKJHjsKRhRfYx2wRrHGXD4rvwyfIudDa7iRZmhc4OiU/70alYs
+ ilYjclrdH2yppUt1LgwpfIuo27z3xA8am3Wk2EsFzzkOtLf6ApJwXUOkTDBih6ahV1c5DSiVYnn
+ O9qne7vvFX+IX7uygT4cx/SwVFSt3/qS6yYuzkDiLuFSexfmS56wC+2+BGoI9tQpcQ2DbhblU9v
+ iXfqem8/YNbLU4Vg3T+WnPi9txqzwyrNbbwmPgSAnqFqE+oWCB4rKYG6i5cPjeJxpfCW4dGCXKF
+ DnKUY8oWv6s9fSexjDw==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI5MDEzMSBTYWx0ZWRfX1W+Fg28rfCcf
+ V7GRPDzZn5nQ5bPM/tcLjkNFGe3g0HvB6xf7rXTeY8s6jrI4bR1UTXFJsh42hT8zaiolXJe4yjY
+ 1/HQO++85KSsEdrsqK2WcRYFxG1DHOM=
+X-Proofpoint-GUID: RhsFuBl-Ot-aqA5vBDbjtCs9HXyD_ebr
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[imgtec.com,none];
 	R_DKIM_ALLOW(-0.20)[imgtec.com:s=dk201812];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317168-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317170-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:imagination@lists.freedesktop.org,m:opensource@mtcoster.net,m:alessio.belle@imgtec.com,m:luigi.santivetti@imgtec.com,m:frank.binns@imgtec.com,m:brajesh.gupta@imgtec.com,m:alexandru.dadu@imgtec.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
@@ -127,7 +131,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	FORGED_SENDER(0.00)[matt.coster@imgtec.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -138,30 +142,45 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,codeaurora.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 199F76DD178
+X-Rspamd-Queue-Id: E6B3D6DD2A8
 
-I'll apply this towards the end of business tomorrow; my last day.
-
-In case anyone reads this, I'd like to take the opportunity to thank
-everyone who reviewed my patches, or sent patches for me to review. It's
-been a great chapter of my life contributing to this project, and I hope
-to cross paths with it again in the future.
+I'm leaving Imagination; remove myself as a maintainer but leave
+a personal forwarding address.
 
 Signed-off-by: Matt Coster <matt.coster@imgtec.com>
 ---
-Matt Coster (2):
-      MAINTAINERS, mailmap: Update address for Matt Coster
-      dt-bindings: gpu: img,powervr-*: Remove Matt Coster as maintainer
+ .mailmap    | 1 +
+ MAINTAINERS | 1 -
+ 2 files changed, 1 insertion(+), 1 deletion(-)
 
- .mailmap                                                     | 1 +
- Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml | 1 -
- Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml   | 1 -
- MAINTAINERS                                                  | 1 -
- 4 files changed, 1 insertion(+), 3 deletions(-)
----
-base-commit: 2637cc60b0e10dbb77fbc749f5d2de10acf133f6
-change-id: 20260629-goodbye-26468f9502b4
+diff --git a/.mailmap b/.mailmap
+index 99dba08041fa..ecc8e574df11 100644
+--- a/.mailmap
++++ b/.mailmap
+@@ -549,6 +549,7 @@ Martyna Szapar-Mudlaw <martyna.szapar-mudlaw@linux.intel.com> <martyna.szapar-mu
+ Mathieu Othacehe <othacehe@gnu.org> <m.othacehe@gmail.com>
+ Mat Martineau <martineau@kernel.org> <mathew.j.martineau@linux.intel.com>
+ Mat Martineau <martineau@kernel.org> <mathewm@codeaurora.org>
++Matt Coster <opensource@mtcoster.net> <matt.coster@imgtec.com>
+ Matthew Wilcox <willy@infradead.org> <matthew.r.wilcox@intel.com>
+ Matthew Wilcox <willy@infradead.org> <matthew@wil.cx>
+ Matthew Wilcox <willy@infradead.org> <mawilcox@linuxonhyperv.com>
+diff --git a/MAINTAINERS b/MAINTAINERS
+index fe02d1087ab2..8e7c2f9c8249 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12567,7 +12567,6 @@ S:	Orphan
+ F:	drivers/media/rc/img-ir/
+ 
+ IMGTEC POWERVR DRM DRIVER
+-M:	Matt Coster <matt.coster@imgtec.com>
+ M:	Alessio Belle <alessio.belle@imgtec.com>
+ M:	Luigi Santivetti <luigi.santivetti@imgtec.com>
+ L:	imagination@lists.freedesktop.org
+
+-- 
+2.48.1
 
 
