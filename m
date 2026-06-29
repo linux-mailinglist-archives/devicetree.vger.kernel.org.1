@@ -1,173 +1,144 @@
-Return-Path: <devicetree+bounces-316773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316774-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gkuRDAUqQmrJ1AkAu9opvQ
-	(envelope-from <devicetree+bounces-316773-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:17:09 +0200
+	id jp7NNA8qQmrL1AkAu9opvQ
+	(envelope-from <devicetree+bounces-316774-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:17:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 843336D762A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:17:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AD786D7635
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:17:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="h/gPVgeU";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316773-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316773-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=fail ("headers rsa verify failed") header.d=superkali.me header.s=default header.b=XZ7uOx38;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316774-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316774-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=superkali.me (policy=reject);
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A61683012E8F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:59:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 80579301F5F2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:59:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47CAA35FF5B;
-	Mon, 29 Jun 2026 07:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA61D3DFC62;
+	Mon, 29 Jun 2026 07:59:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from fr5000-r.dnsiaas.com (fr5000-r.dnsiaas.com [92.42.104.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A68835A395
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 07:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D99D43E1687;
+	Mon, 29 Jun 2026 07:59:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782719963; cv=none; b=GaBaU8OZ0zs64wIFdIbUXreaj4sjW2uKEX6nqoHI8959d8IWA+khzD6Ub1ncvdhcl8bXSqnDRofuoWV2BPcW7GJ8hOFN7+MT2yeTknL826IK+E1ymXdU3yEikXeHCRopSpy13pS/19RZr1TknfIc95mfTiL0HHozbchDyiVzwig=
+	t=1782719986; cv=none; b=jVu3QlE8fbcIfrP+pqT5I/MU5NdQ1xuegalRr6qzlN1b4HQGFXmYOe9oCN8/ZASoUF5kiCK5SgoQ84E5Fq9k3MrJfAT6HCg8fx/GsjPEEkAuFKlLchQWDaUmiklbMCaYn2FWbNT5XvkMeL7T6zHm/OdVTPOFIA60iEzJyBVBOt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782719963; c=relaxed/simple;
-	bh=ilmp5/r/vxILNKwXrWpGltehB7NXG6vcL72NHeYieR8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ND2osnERDxI7dczSaez8xfIuW5QlNdlgrpVToezuyVluZhw1KwFWMyNwx/gEQnNZY2O8X4RngFYuMzcAwAcFEo9cm5DUNIybcNpu3unthPWyrOoAi+s8NBCizMOSjzdcrnAxob+4I9G0zlZL2XGKelGqH3IQ9sQE/7RwMaqu0co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h/gPVgeU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77EB31F000E9;
-	Mon, 29 Jun 2026 07:59:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782719961;
-	bh=w9glr4HeWElJLpE2bR3Nca6kaifVNh6xp9EHnrn2qwA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=h/gPVgeUjgKt/caC0TphV9W1LP1KjHU3KprU4Ya12v5iY1j9vzQG+QLgPcaRe5QkO
-	 lMuc37InDdFWM0UI7wR26GzdwSAj1ASQtyFukKUrH6qVpF9BSuiQHgwpTJCQJNanNG
-	 YMLOV50qgz13oMW/Deao5ZfFTk1rGydXUKFb6K2WJEIifXzYnwodkd1PNLjcpMlU6E
-	 7HdC3A3anuQ867MY22HZWFNVLpd3ViojGtdAdwZVp5Z8qU3zy4NJLmtlMcOT+GGi23
-	 KZhkVtX08Fry9bBMz3UhbcPa5NcwJM68M90WYCxmWUoJxaaKU9bmaEAEVewYfNmgWq
-	 ZdmVvMnZrOtgA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 2/3] arm64: dts: qcom: kodiak: enable inline crypto
- engine for SDHC
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Kuldeep Singh" <kuldeep.singh@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260629-ice_emmc_support-v8-2-1a26e1717b85@oss.qualcomm.com>
-References: <20260629-ice_emmc_support-v8-0-1a26e1717b85@oss.qualcomm.com>
- <20260629-ice_emmc_support-v8-2-1a26e1717b85@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 29 Jun 2026 07:59:20 +0000
-Message-Id: <20260629075921.77EB31F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782719986; c=relaxed/simple;
+	bh=/nvwFv0JfmjK2NA5Qy4Mb1EPkG5HgybnUNzmPA+S75k=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CepP+0D/rnoDdHNmNKfHklzud7Ke1agemmlziqfKGssA4ZtNvvnQbFOgxYes8+t1ozi2QPokNCS9wzz/lBsHo54jgpR9S4TpE7R1wOYRBq4Xs+Ue+KVT6QQFYf15ho+lu6jZqmVrEFG5FJfqYUMgnsmlFD5KQi62Qg8VIjCsH94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=superkali.me; spf=pass smtp.mailfrom=superkali.me; dkim=pass (2048-bit key) header.d=superkali.me header.i=@superkali.me header.b=XZ7uOx38; arc=none smtp.client-ip=92.42.104.18
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=superkali.me; s=default; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=/nvwFv0JfmjK2NA5Qy4Mb1EPkG5HgybnUNzmPA+S75k=; b=XZ7uOx38ZJ4O0V7qpLnD5cQ9u2
+	SDJkMOPnuHSkURQBGK3plOCj0HwhIB1h6EHGKY33vhCwHwnAtQ3lsx3BnnFj9IEb6mf8m26gLfll2
+	JHvM1KU0xGpVutlRiy7ATGXmLnD5H6e59Qrm7Ytfye/w58z993n1aP2Ofgk5EShtWNafl+oNbzU9H
+	wvPMf7/bCt2XsIMfuaopzXLbqekUfWLDeS8RGHOfbUf5Zf1xKheGerDQrJQgePpAQCz/13RY8ygU1
+	bxwIl/cma034VcE8fDYA/JaDi/A5nT10QMyCOgvuKoGMLvNMS2VlVfoXo9FczLilL7ObcVaN/hxUO
+	tLMVAU9g==;
+Received: from [81.57.40.39] (port=42644 helo=superkali.me)
+	by fr5000-r.dnsiaas.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.4)
+	(envelope-from <hello@superkali.me>)
+	id 1we6u1-00000001mbW-18ue;
+	Mon, 29 Jun 2026 09:59:36 +0200
+From: Daniele Briguglio <hello@superkali.me>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 0/3] arm64: dts: rockchip: Add Youyeetoo YY3588
+Date: Mon, 29 Jun 2026 09:59:34 +0200
+Message-ID: <20260629075934.518649-1-hello@superkali.me>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260610-yy3588-board-v1-0-4bb7176b6826@superkali.me>
+References: <20260610-yy3588-board-v1-0-4bb7176b6826@superkali.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - fr5000-r.dnsiaas.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - superkali.me
+X-Get-Message-Sender-Via: fr5000-r.dnsiaas.com: authenticated_id: hello@superkali.me
+X-Authenticated-Sender: fr5000-r.dnsiaas.com: hello@superkali.me
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [2.54 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[superkali.me : SPF not aligned (relaxed),reject];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_REJECT(1.00)[superkali.me:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316773-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:kuldeep.singh@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[hello@superkali.me,devicetree@vger.kernel.org];
+	HAS_X_SOURCE(0.00)[];
+	TAGGED_FROM(0.00)[bounces-316774-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_X_GMSV(0.00)[hello@superkali.me];
+	FORWARDED(0.00)[lists@lfdr.de];
+	HAS_X_AS(0.00)[hello@superkali.me];
+	HAS_X_ANTIABUSE(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[hello@superkali.me,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[superkali.me:-];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,superkali.me:mid,superkali.me:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 843336D762A
+X-Rspamd-Queue-Id: 4AD786D7635
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+On Wed, Jun 10, 2026 at 03:58:57PM +0200, Daniele Briguglio wrote:
+> This series adds support for the Youyeetoo YY3588, a single board
+> computer built around the Rockchip RK3588.
+> [...]
 
-Pre-existing issues:
-- [High] Moving ICE to a standalone DT node with a dedicated `power-domains=
-` property permanently prevents the core `SC7280_CX` domain from suspending.
---
+Hi Heiko,
 
-commit 069378a35dbb2b4d5a77519ee0c458e99459094d
-Author: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+Gentle ping on this one, it's been about three weeks. Conor acked the
+vendor-prefixes and rockchip.yaml patches (1/3 and 2/3). The dts in 3/3
+hasn't had any comments yet, and I'd hate for it to slip through.
 
-arm64: dts: qcom: kodiak: enable inline crypto engine for SDHC
+I know the dts queue is long, so no rush. Anything you'd want changed, or
+is it OK to queue for the next cycle? Happy to respin if there's something
+to fix.
 
-This commit adds the dedicated inline crypto engine (ICE) node for kodiak a=
-nd
-references it from the SDHC controller. It keeps the ICE node disabled by
-default in kodiak.dtsi and enables it in the respective board DTS files.
-
-> diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi b/arch/arm64/boot/dts/q=
-com/kodiak.dtsi
-> index fa540d8c2615d..633ebfd86352d 100644
-> --- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
-[ ... ]
-> @@ -1076,6 +1078,18 @@ opp-384000000 {
->  			};
->  		};
-> =20
-> +		sdhc_ice: crypto@7c8000 {
-> +			compatible =3D "qcom,sc7280-inline-crypto-engine",
-> +				     "qcom,inline-crypto-engine";
-> +			reg =3D <0x0 0x007c8000 0x0 0x18000>;
-> +			clocks =3D <&gcc GCC_SDCC1_ICE_CORE_CLK>,
-> +				 <&gcc GCC_SDCC1_AHB_CLK>;
-> +			clock-names =3D "core",
-> +				      "iface";
-> +			power-domains =3D <&rpmhpd SC7280_CX>;
-
-[Severity: High]
-This is a pre-existing issue, but does adding the power-domains property he=
-re
-permanently prevent the SC7280_CX domain from suspending?
-
-The genpd framework automatically powers on the SC7280_CX domain during the
-qcom-ice driver's probe sequence. However, the qcom-ice driver in
-drivers/soc/qcom/ice.c lacks pm_runtime support.
-
-Without a call to pm_runtime_enable(), the device's disable_depth remains 1,
-causing pm_runtime_suspended() to unconditionally return false. When
-genpd_power_off() evaluates the domain's state to determine if it can be
-suspended, it sees the qcom-ice device as active and aborts the power-off
-sequence.
-
-Could this keep the domain active indefinitely and prevent the SoC from
-entering deep sleep states like CX retention or power collapse?
-
-> +			status =3D "disabled";
-> +		};
-> +
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260629-ice_emmc_s=
-upport-v8-0-1a26e1717b85@oss.qualcomm.com?part=3D2
+Thanks,
+Daniele
 
