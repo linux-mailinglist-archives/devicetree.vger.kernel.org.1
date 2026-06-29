@@ -1,207 +1,194 @@
-Return-Path: <devicetree+bounces-316938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316941-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fApkHUxMQmpO4QkAu9opvQ
-	(envelope-from <devicetree+bounces-316938-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 12:43:24 +0200
+	id 54k4HL1MQmp74QkAu9opvQ
+	(envelope-from <devicetree+bounces-316941-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 12:45:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA63C6D9050
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 12:43:23 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA6066D908D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 12:45:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bIPHKEd0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316938-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316938-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=linaro.org header.s=google header.b=vYwkTSNy;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316941-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316941-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0D1F1301D4CB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:41:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8FF143032CC4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:44:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD45D3B9DA5;
-	Mon, 29 Jun 2026 10:41:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A47203BB11D;
+	Mon, 29 Jun 2026 10:44:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF9D3B9930
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 10:41:32 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782729693; cv=none; b=RGE+T+ABpXhzuSpkP7F5XL4YHouDzH9FQzmoFXWlvVjpnigzKRyZQ3nTV2Ptgb7fzfuMC25eSTl2klSzAZc4DO9WvC2mCp0OCLR8P78epxTscplKeZNdSIrYH4k0Iw3mITuyQ2MFUhPbMznGiyS6ujFishsLlSvE7KzUxu3RRY4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782729693; c=relaxed/simple;
-	bh=Nec21H0EcnFFtiFbJM4XlsG5iGGTEArCHPE3HSYPXus=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ij/UfyBkeee3HdRmkEM+Gsjbzhv2HnyGTG3bbXUTovWMKKczqfWN2k0na+x03ZGaIDMj/dm9AJKRKkfrlpuq0sLQ91g1eteVcj6RNPvZJcUOHei+CcPHJLuUigBycsJnM90lxNRc69untiu/OhP2hpFm8UHYbAfjRK10StevVQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bIPHKEd0; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F4151F000E9;
-	Mon, 29 Jun 2026 10:41:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782729692;
-	bh=k0b/aLPPsartUoVDYcslU1DgPszS82fOji7+C4Kra48=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=bIPHKEd0x3GdAqkOSaqxUT6zS1wujVzViudFoeMjf36/D2wrCZWInu5soVjoclRTI
-	 E09NVOQIot1yy4EQEIMMMoQQvTcosWEybGmSwWKyhktEUKtRlI70QfPNEO+sKBy8ZH
-	 q5fNQsmDHnJTsFP7m+mkgNtBEPmsWzzjmfZq+ujeEvXoc2ICmR/+7u1P3v7YBx0z/g
-	 3YCxMWmulYRgSuhWLF1Z1nWhYXEYn4kOXo/o0nazM+fY8I4/jT4f8vNEBi7GTKKpks
-	 3iP56QE7JVi3QzsvpvQ/G8KL+gK2KZhvexv5kb4EzCOJ0x/0Uf/mqnbyIALgQuuTsj
-	 fxFBpDGuujmDA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v17 05/10] x86/crash: Use crash_prepare_headers() helper
- to simplify code
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jinjie Ruan" <ruanjinjie@huawei.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260629094746.191843-6-ruanjinjie@huawei.com>
-References: <20260629094746.191843-1-ruanjinjie@huawei.com>
- <20260629094746.191843-6-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 29 Jun 2026 10:41:31 +0000
-Message-Id: <20260629104132.1F4151F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6EE43B9DBA
+	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 10:44:19 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782729862; cv=pass; b=hO9lnRai4aC2NFamHy9x0P1Eq4e/gTXkoQBTaL9hmN7tb2Dqa5fGrmbxAqtmsRr3cMCWZFXBwesZuVDzykeisNch5DtBLTXOyo7YCRBbOZGM7jsXvj3gQzK7labLMiuL8bkbf/544/d992HAZvqjRmKdvaM+/7A+pZUaAC/3B9E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782729862; c=relaxed/simple;
+	bh=iDO4j2JAZZI6/SJz0ZNmXzlln8bKUKTt/Dj4jurK9p0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XRmU/hqxFxO1SB1TNOmlctpGNThcPmk/t+2mjOOGQrFAfP41EOhcoAwSbrsA6gwibZ5OUqplf0JSMS7O/WTQzfDES76KK8pLUb1n6875Ny/wGx/2s+lU6q22GtsMSspDK98jukcybItpdV2m7Bp4dYtc3oiTbL3UNJ42B7Mk3UY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vYwkTSNy; arc=pass smtp.client-ip=209.85.208.51
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-6976b0c5adbso5913113a12.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 03:44:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782729858; cv=none;
+        d=google.com; s=arc-20260327;
+        b=JBHWh/G+p/Q5lTihPAkTv5saZCn2I7FteT9hoCZBokNNDItDDS9fku5WdJSrxPMoeu
+         T3k4fapOP7klgW+J17zu29aNSYfreNrhKLomuA44ScpisyyaJsrTB7WGXNWxbT4J1UP9
+         AvGcvoTN/O/NfahWrBhW2Y9LmAWX/k7gulAjAyaruKwVvUlIyk7TmvXIYPl7j9Lxo9kH
+         X6cqTEmpSFWCbr8J80y6oMiS3w4cp05xvun2oqvIs2uEYgRPZn2TfZt4g6L/63YZUyri
+         kiW7kuC6NyOtItBJB+crq3ji4FnONgrlxpVn8Mz5yKEsT0XV/pwpxokuJyH/Hdj0k8xh
+         95Ow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=wmnqsRJKYkgjvaCA1bs99cASP2GQp3sADe+ZeD2I3KY=;
+        fh=edaa3W1sEXfCvX+n906TMLU2f+Hz6iujY3HbfL0ay+U=;
+        b=hNqFEPuQOLFocIaNYjZ+c6dtYb7LYa4iudFrvpluHKiiZmze6SXDFYWR8N9BQKKc+H
+         ITd95KTaXQkcYuhokfmZdp6neo4oS/P9smq3fLBkEW4RVXewyLmpx9iIAprkzqUU6wWx
+         +CcrNUWTRpAsW9wjZanwgAp+cu/DDpJUG7NzTNNIbf+4xhDs8/IeGP7cqI9wn4Tgv3WH
+         WVcp+fKfTycyiU+phYn+Tte50MuhbNct+hjP4R3I+qCSYpggKnfPQvkqxkYlTpaYrLTT
+         BdPallWGX7UqWvQqNZ2h5+55xIgwaYB82lgpF/S+gzk4YGu9Fp9rF4LiNTfsqvqoHDZi
+         gxMg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1782729858; x=1783334658; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=wmnqsRJKYkgjvaCA1bs99cASP2GQp3sADe+ZeD2I3KY=;
+        b=vYwkTSNydHDJMWhbVKWp3I0A/xVS9T1wUnB7DRi8/z1KJKysqwd0m+tNU6a7mIqter
+         81qyJTlFztmPfCOU08vBZ6TLf3KmdjYKvrh0PNSfr2FVMEpPBlvHSPjAII0F5FhongtE
+         lCLvfP+yYvcQ+KyYst5BxA5MVAeuPx9EIorhQD0rwKrduR/aEKB9/0Bjuwstj8EjVETg
+         I/vsZOnVgQxYvnhMPv0MG6WoNRUdo+TS/wTgAxNxH6TalLxH7uZsaLJ+aajCSxXgfwg+
+         htXJAluBwnzF5sQed2QkKuHsFWARL6sy1lD2FpKWCc3OYlGND1J/Swh3ME7e4cXGLQ85
+         8kKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782729858; x=1783334658;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wmnqsRJKYkgjvaCA1bs99cASP2GQp3sADe+ZeD2I3KY=;
+        b=KjIX2ZCt47LnDWwgBi+VPAMYV+Y26Q/cpqFUXJShbdXY28ojc3uE6ST4T02txHXnyi
+         nPWdswQ7zcV/4Pg4X/1wFd+7Ktxmxmxd+pHrNb6sae3klfv8gBze2A8f6X8gn3uK7DdL
+         qjviwq53vNOv7dDoDN9X3OuuDOwQHdExTgXqM0U5it5X1QW7HiFC7famEDXKIFebHu+6
+         XRD6ADC1bRxUtZ55SZI3BcTXlbofH6Y0dgy6ED2j7I0VCTS5J7Pqt8ftko7qgH+JVv5N
+         PDPXsdn5pYNQwc2by5elWSRuhTLzWHSqwc5DDOFfx82BWSl/4hymjePPH77cnSmX9dUH
+         z/2g==
+X-Forwarded-Encrypted: i=1; AHgh+RrBXaoWapc4sE3CrsxGkQqgUHOUCrGdww9Dqaio0IsFOfEaEQG6zK+OhsnWrPcen8pqLTgBCeQr+KDt@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWEe4flOlsC0/+GRaWduZYF4fbUo4yfIFdpBK2bq+GJfTRc85b
+	ssR2zCKKvCsvdoUuIzbSHTB4/tIVrQoHoBGOJJ76dr/nhDBUrpHjAzC0hI5A3GZ3uVZMBXA24wn
+	bIpsMS2FBcJJxvCr/gy/ta/BA3wxqwTbzeqnf8r1Nzw==
+X-Gm-Gg: AfdE7cmZEr8R+jMNIoBI8R522AnwcUi4tX1W2ZzsWAkQhotZc88eBqMi6gFuG1qeBb1
+	fMVDqKIGcbh3zADfWCgudK4YfybmCOJ56B/5XOV0ERLGjmLzwDakV7JC88iaRYjl/kdqfvziXqr
+	wQYoUD4SQ37ZXq/4jFA0yYB76NmcArH0koLBgJ5+zftCwE1zK/kSjxR9rc0+ZGIyIeNSHcz7r3N
+	LOjeKNaKGCohrmmXWQaJ5rJfPD2kknDSbE2sx7qM7yN361C5B9/kiwETz9QhXVJM6YWwnzWIxv2
+	yAoYXJ9RZ8vuNvasLZWij/iFevS2tQ==
+X-Received: by 2002:a05:6402:400d:b0:697:8d48:7fa7 with SMTP id
+ 4fb4d7f45d1cf-69810ae01c2mr5980595a12.22.1782729858308; Mon, 29 Jun 2026
+ 03:44:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260613-exynos990-peris-fix-v3-v3-0-2b230db78ae4@gmail.com> <20260613-exynos990-peris-fix-v3-v3-2-2b230db78ae4@gmail.com>
+In-Reply-To: <20260613-exynos990-peris-fix-v3-v3-2-2b230db78ae4@gmail.com>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 29 Jun 2026 11:44:05 +0100
+X-Gm-Features: AVVi8CdUhgADG2xSK96hAWTQ9tVWRhtK6fekJr5xsrWPfeyuxnqLTd7JZu91VDg
+Message-ID: <CADrjBPrCKS-_FSFaL+124cdRioGOEvk+6HFfrJCGt7HB983rGw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] clk: samsung: exynos990: Add PERIS TMU_SUB_PCLK gate
+To: Denzeel Oliva <wachiturroxd150@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:wachiturroxd150@gmail.com,m:krzk@kernel.org,m:s.nawrocki@samsung.com,m:cw00.choi@samsung.com,m:alim.akhtar@samsung.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316938-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:ruanjinjie@huawei.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316941-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linaro.org:dkim,linaro.org:email,linaro.org:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CA63C6D9050
+X-Rspamd-Queue-Id: BA6066D908D
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+On Sat, 13 Jun 2026 at 13:36, Denzeel Oliva <wachiturroxd150@gmail.com> wrote:
+>
+> Add the missing CLK_GOUT_PERIS_TMU_SUB_PCLK gate clock for the Thermal
+> Management Unit sub-block and update CLKS_NR_PERIS accordingly.
+>
+> Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
+> ---
 
-Pre-existing issues:
-- [High] A TOCTOU race condition with concurrent memory hotplug events can =
-cause an out-of-bounds array write in `prepare_elf64_ram_headers_callback()=
-`.
---
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
-commit cd182ef6162a3474e9e6717a10d9147468938990
-Author: Jinjie Ruan <ruanjinjie@huawei.com>
-
-x86/crash: Use crash_prepare_headers() helper to simplify code
-   =20
-This commit simplifies the x86 crash code by replacing the existing
-prepare_elf_headers() with the newly introduced crash_prepare_headers()
-helper function. It implements the three required architecture-specific
-callbacks to pre-count, collect, and exclude memory ranges.
-
-> diff --git a/arch/x86/kernel/crash.c b/arch/x86/kernel/crash.c
-> index cd796818d94d9..cb2ce7acfec45 100644
-> --- a/arch/x86/kernel/crash.c
-> +++ b/arch/x86/kernel/crash.c
-
-[ ... ]
-
-> @@ -177,49 +169,16 @@ static struct crash_mem *fill_up_crash_elf_data(voi=
-d)
->  	 * But in order to lest the low 1M could be changed in the future,
->  	 * (e.g. [start, 1M]), add a extra slot.
->  	 */
-> -	nr_ranges +=3D 3 + crashk_cma_cnt;
-> -	cmem =3D vzalloc(struct_size(cmem, ranges, nr_ranges));
-> -	if (!cmem)
-> -		return NULL;
-> -
-> -	cmem->max_nr_ranges =3D nr_ranges;
-> +	unsigned int nr_ranges =3D 3 + crashk_cma_cnt;
-> =20
-> -	return cmem;
-> +	walk_system_ram_res(0, -1, &nr_ranges, get_nr_ram_ranges_callback);
-> +	return nr_ranges;
->  }
-
-[ ... ]
-
-> @@ -233,35 +192,9 @@ static int prepare_elf64_ram_headers_callback(struct=
- resource *res, void *arg)
->  	return 0;
->  }
-> =20
-> -/* Prepare elf headers. Return addr and size */
-> -static int prepare_elf_headers(void **addr, unsigned long *sz,
-> -			       unsigned long *nr_mem_ranges)
-> +int arch_crash_populate_cmem(struct crash_mem *cmem)
->  {
-> +	return walk_system_ram_res(0, -1, cmem, prepare_elf64_ram_headers_callb=
-ack);
-> +}
-
-[Severity: High]
-This is a pre-existing issue, but could concurrent memory hotplug events
-cause an out-of-bounds array write here?
-
-In kernel/crash_core.c:crash_prepare_headers(), we first count the ranges
-and allocate memory, then later populate it:
-
-	max_nr_ranges =3D arch_get_system_nr_ranges();
-	if (!max_nr_ranges)
-		return -ENOMEM;
-
-	cmem =3D alloc_cmem(max_nr_ranges);
-	if (!cmem)
-		return -ENOMEM;
-
-	ret =3D arch_crash_populate_cmem(cmem);
-
-Since mem_hotplug_lock isn't held during this sequence, a concurrent memory
-hotplug event (like ACPI memory hot-add) can execute add_memory_resource()
-and insert new System RAM resources into the iomem resource tree between the
-count and the population steps.
-
-If the number of newly added resources exceeds the padding added in
-arch_get_system_nr_ranges(), prepare_elf64_ram_headers_callback()
-can blindly write past the allocated bounds of cmem->ranges:
-
-	cmem->ranges[cmem->nr_ranges].start =3D res->start;
-	cmem->ranges[cmem->nr_ranges].end =3D res->end;
-	cmem->nr_ranges++;
-
-It doesn't appear to check against cmem->max_nr_ranges before incrementing
-cmem->nr_ranges. Does this need an explicit bounds check or synchronization
-to prevent potential heap corruption?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260629094746.1918=
-43-1-ruanjinjie@huawei.com?part=3D5
+>  drivers/clk/samsung/clk-exynos990.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/clk/samsung/clk-exynos990.c b/drivers/clk/samsung/clk-exynos990.c
+> index 4385c3b76dd6..ee3566b8e57c 100644
+> --- a/drivers/clk/samsung/clk-exynos990.c
+> +++ b/drivers/clk/samsung/clk-exynos990.c
+> @@ -21,7 +21,7 @@
+>  #define CLKS_NR_HSI0 (CLK_GOUT_HSI0_LHS_ACEL_D_HSI0_CLK + 1)
+>  #define CLKS_NR_PERIC0 (CLK_GOUT_PERIC0_SYSREG_PCLK + 1)
+>  #define CLKS_NR_PERIC1 (CLK_GOUT_PERIC1_XIU_P_ACLK + 1)
+> -#define CLKS_NR_PERIS (CLK_GOUT_PERIS_OTP_CON_TOP_OSCCLK + 1)
+> +#define CLKS_NR_PERIS (CLK_GOUT_PERIS_TMU_SUB_PCLK + 1)
+>
+>  /* ---- CMU_TOP ------------------------------------------------------------- */
+>
+> @@ -2619,6 +2619,10 @@ static const struct samsung_gate_clock peris_gate_clks[] __initconst = {
+>              "gout_peris_d_tzpc_peris_pclk", "mout_peris_bus_user",
+>              CLK_CON_GAT_GOUT_BLK_PERIS_UID_D_TZPC_PERIS_IPCLKPORT_PCLK,
+>              21, 0, 0),
+> +       GATE(CLK_GOUT_PERIS_TMU_SUB_PCLK,
+> +            "gout_peris_tmu_sub_pclk", "mout_peris_bus_user",
+> +            CLK_CON_GAT_GOUT_BLK_PERIS_UID_TMU_SUB_IPCLKPORT_PCLK,
+> +            21, 0, 0),
+>         GATE(CLK_GOUT_PERIS_TMU_TOP_PCLK,
+>              "gout_peris_tmu_top_pclk", "mout_peris_clk_peris_gic",
+>              CLK_CON_GAT_GOUT_BLK_PERIS_UID_TMU_TOP_IPCLKPORT_PCLK,
+>
+> --
+> 2.54.0
+>
 
