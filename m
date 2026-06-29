@@ -1,203 +1,168 @@
-Return-Path: <devicetree+bounces-317071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317072-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id muBQLhZ5Qmo18AkAu9opvQ
-	(envelope-from <devicetree+bounces-317071-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:54:30 +0200
+	id drJTMsp5Qmp78AkAu9opvQ
+	(envelope-from <devicetree+bounces-317072-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:57:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3488E6DB94B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:54:30 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6788F6DB9F6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:57:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317071-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317071-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=intel.com header.s=Intel header.b=ZTbxVPBv;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317072-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317072-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EB4503049E1E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 13:51:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1A1A1300D34C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 13:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1237021B905;
-	Mon, 29 Jun 2026 13:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF724319852;
+	Mon, 29 Jun 2026 13:53:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B533930B517
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 13:51:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F30640D58C;
+	Mon, 29 Jun 2026 13:53:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782741110; cv=none; b=Y6coKT5ugtj3QWCJlyzjMa/juo94FJjcwUsQ1G8bPw+J5YJV8s6AV/HrVYIUEy980bH569d7+NPhFeg0YD/X6mct84IGaEF4xnpsuWlEw16qDQZiMvdIyjkJusJQiqCjwBzR/CT99w9FIu72Wjkf2i+dr6j9dD9l4PvJWZnJALE=
+	t=1782741221; cv=none; b=riXNnHzffoHWigz+Wu51iCJUy0otHwUciYyXSUiaVeK2gfCKwd+iArvebJTjhe1SDw1evnqrdIqDqBABZ2obh8qr+XRhIKKMj0qfpUT4PJ44nkZcunzKdQFbO98AzjNEABoV9yf4FfQF3z02r0g8JL8q4kns37D0kqtQBjsn/eY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782741110; c=relaxed/simple;
-	bh=UvkvBBzeyeMqgudY2G6gDFJg27JiOFKpvozKSRN3iE8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=m23aYSc4TRkJh3JlJ8VZ2uKAoD++H5bqSYwpLwR9ka7kYZhk3RhG6K/oPrOY/7JySYYn/w6DH/HZDk4F3laVni5iRUIS34qBKQyW6030I/CgsMYQBK0urU9Pi+vB+BrPp7osYWQAj4hAESHtXvc65Cf1F4RDN3RQFVFnJuxS0Jc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.172
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-59e23d70dfaso1073665e0c.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 06:51:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782741108; x=1783345908;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yDPhNjOsxEQ0DHLYZPQfDHuBKCTUhxYTzus1J/5tEMc=;
-        b=B4KKcEVYK694J2ZQfcnZn9HIj15vFsMjBePmNAJZt7w0+H3iV6jk2/vM2yV2g+bI0e
-         ZCW/K4/JQSWu/cxzfwXd0jkkL0Wcq3y4beNFbJ7R5HxP2SHcRjU841qIqqxYzqcOZF71
-         no53VE785+0eXX15p1ESQ6LBdajtxCwNCsL7yRjDulj5oSkQRlc7Yp+CTUzeDJDBFw5s
-         kptFN10+mvVhtJGS0zlb1HKppeQ6t+rk3DghGinUV8C+4hfS4PgPbleWnlPchEkuu1AQ
-         KIU+exdii3mlYv+YQcilxA8uRfBisve0WF6t9oNjNjYr5NpVX5LEzrMSg2C/AtX8X+jL
-         lDvg==
-X-Forwarded-Encrypted: i=1; AHgh+RpHjfOBj+5jqMpda5Z12uepwkonM8sfE+M/xHB6PYnq7gcLBt7liWRDHy+IZ8Rj4pvoFaxgO8GfzczD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBmhHvaYulmiJsykBo2fWreGOKlF1oOoGW+UUg26n7kyIpvf/n
-	laRve8symj3nqIEST7US5CYHDPTYPzcUOlSexLLavDP+3V8jdeRIf8WSebHjCrjV
-X-Gm-Gg: AfdE7cmCNWYRw8SugOSgqz+bGCU9+ShaDWfq4v840ItVsEDo2be09hxyJIiTZnSYgcl
-	DrhIw+Pr8YLkzoCIbrXAgjGCVa0mMryDvJ0zEfXURQ2iWU8GSMo26hZsgxIIH48fBNBJ9KkbZ/d
-	0WWDNqd8FN1LoT7G9gHVIYfmbElVZ7ePSIRwRYyxXqkkWwYKA9r1TiqItsoQ8LzuwzxHcE4sC4w
-	XkT9EPUq8dCEMTqYwRr77zTZSQkS2OFapO4PYd4c7jfh7YpZxKGIf6UHP3RPVI3jTkOVicCMZEY
-	QmI8z5MI3qoOBncMUJ9XrP+QF2wo3M8o3to+44eixDEWJy3r0HPv+F9vWgapRlIGDLmHSPvj3Wq
-	0HQQrWd0tkWtzMbuBdXEU6Z0jfL9rgG+2p6QhxSYngfenBGc64ZDFwJpRQOKB/KxP/c/70SBbRE
-	Ryajz7iNMnU5UvM9MIatSSIovYgsvjKPHW2Y2jnGGP2/M7uXOLVQ==
-X-Received: by 2002:a05:6122:3488:b0:5bd:b27c:bade with SMTP id 71dfb90a1353d-5bdba970665mr407553e0c.5.1782741107667;
-        Mon, 29 Jun 2026 06:51:47 -0700 (PDT)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5bd78c3248esm5710902e0c.0.2026.06.29.06.51.44
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jun 2026 06:51:44 -0700 (PDT)
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-966d4da9fa6so814685241.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 06:51:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RofR3z/YyEta1POACiGW7epFMu3PsCXglziFiRfnnhGfSeXOB6ZpfHizmVBhpmtS5jv7RxRLBbt/hK1@vger.kernel.org
-X-Received: by 2002:a05:6102:c93:b0:739:86da:7777 with SMTP id
- ada2fe7eead31-739fa951f6emr430364137.27.1782741103904; Mon, 29 Jun 2026
- 06:51:43 -0700 (PDT)
+	s=arc-20240116; t=1782741221; c=relaxed/simple;
+	bh=nhC4N/RoN3vH4H4XL5Lh4kA8NMxwTy59ncOjPdVNhdU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vC9MLSgIKWzYkDcusnrE7hNWYy+kqCujhU7dWGync9GHQSyLucegvHozL032KXJ19aU9FAshyct6sgnhQMPyy+9rdtTHqouTeDp0sATAs9+23KUHdJS5XPmaXfqaB3Jo26C09mbFvYDfA88dCmLOA4k86RF9388drtY5n2Ya4u8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZTbxVPBv; arc=none smtp.client-ip=198.175.65.9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1782741221; x=1814277221;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nhC4N/RoN3vH4H4XL5Lh4kA8NMxwTy59ncOjPdVNhdU=;
+  b=ZTbxVPBvvK4F8/hZ+FxuZ9NMPQC9JybbDF1NTWMWTHjVPVRbugYzaoaV
+   fVVibUHfO2OOGtZuTc3GAD3J9tARFVnwbxcYpTn1QMCfWVUDV6n92Kj77
+   +cKWZ4aqEO0/sWhaMlwYkH99c4njPPZBsqzP7QHY5AgKLSMAx4aoqylzZ
+   05KjBxmBa63whrD1f+qKCkg5ccwUHfG7j2WhPDHFzGbTlSmH7NoqriUTe
+   nGnFjRp8Yxhd7r4cGjPPFkOU196d2jPinXqh/3iiMGxG4c7Z924tbVrJH
+   l9xyS4G1FQYW3PCw5dUJrqLp1bqfcaKTpdy5diJ0kz4/DYX0yJ9S7SQx6
+   A==;
+X-CSE-ConnectionGUID: /EsKsz87Q/yxzZz2mIruTA==
+X-CSE-MsgGUID: luoYyrhhSZ25jz8YAfgWdQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="106224258"
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; 
+   d="scan'208";a="106224258"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 06:53:40 -0700
+X-CSE-ConnectionGUID: GW4mJAoRSB2hTEwgOPv0lg==
+X-CSE-MsgGUID: J8UbZ21iRXaHVRr9LXBjnQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; 
+   d="scan'208";a="255563700"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.207])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 06:53:36 -0700
+Date: Mon, 29 Jun 2026 16:53:34 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Nikhil Gautam <nikhilgtr@gmail.com>
+Cc: linux-iio@vger.kernel.org, jic23@kernel.org, dlechner@baylibre.com,
+	nuno.sa@analog.com, andy@kernel.org, u.kleine-koenig@baylibre.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/2] iio: magnetometer: add support for Melexis
+ MLX90393
+Message-ID: <akJ43m8p06Vb5FE_@ashevche-desk.local>
+References: <20260627095519.8377-1-nikhilgtr@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260629-qcom-sa8255p-emac-v11-0-1b7fb95b51f9@oss.qualcomm.com> <20260629-qcom-sa8255p-emac-v11-1-1b7fb95b51f9@oss.qualcomm.com>
-In-Reply-To: <20260629-qcom-sa8255p-emac-v11-1-1b7fb95b51f9@oss.qualcomm.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 29 Jun 2026 15:51:31 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXen+E-Ai51aWBa_KV9W8Fz2cQPpT-FG_kQ7akhrrYa_A@mail.gmail.com>
-X-Gm-Features: AVVi8CdHRRLXddfc63bNJYLQ9RF__6zMi6ngPMxYGYM87lHlKy_8kZoakyQBXrY
-Message-ID: <CAMuHMdXen+E-Ai51aWBa_KV9W8Fz2cQPpT-FG_kQ7akhrrYa_A@mail.gmail.com>
-Subject: Re: [PATCH net-next v11 1/7] dt-bindings: phy: document the serdes
- PHY on sa8255p
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
-	Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>, Romain Gantois <romain.gantois@bootlin.com>, 
-	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
-	Christophe Roullier <christophe.roullier@foss.st.com>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Radu Rendec <rrendec@redhat.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
-	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
-	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
-	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260627095519.8377-1-nikhilgtr@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317071-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:bartosz.golaszewski@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:vkoul@kernel.org,m:peppe.cavallaro@st.com,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:shawnguo@kernel.org,m:festevam@gmail.com,m:jan.petrous@oss.nxp.com,m:s32@nxp.com,m:mohd.anwar@oss.qualcomm.com,m:romain.gantois@bootlin.com,m:magnus.damm@gmail.com,m:mripard@kernel.org,m:christophe.roullier@foss.st.com,m:brgl@kernel.org,m:rrendec@redhat.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:dfustini@tenstorrent.com,m:linux-sun
- xi@lists.linux.dev,m:linux-amlogic@lists.infradead.org,m:linux-mips@vger.kernel.org,m:imx@lists.linux.dev,m:linux-renesas-soc@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:sophgo@lists.linux.dev,m:linux-riscv@lists.infradead.org,m:bartosz.golaszewski@linaro.org,m:krzk@kernel.org,m:conor@kernel.org,m:andrew@lunn.ch,m:mcoquelinstm32@gmail.com,m:jernejskrabec@gmail.com,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[47];
-	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,st.com,linaro.org,baylibre.com,oss.nxp.com,nxp.com,oss.qualcomm.com,bootlin.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,tenstorrent.com,lists.linux.dev];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317072-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:nikhilgtr@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:u.kleine-koenig@baylibre.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linux-m68k.org:from_mime,linux-m68k.org:email,qualcomm.com:email,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ashevche-desk.local:mid,intel.com:dkim,intel.com:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3488E6DB94B
+X-Rspamd-Queue-Id: 6788F6DB9F6
 
-Hi Bartosz,
+On Sat, Jun 27, 2026 at 03:25:17PM +0530, Nikhil Gautam wrote:
+> Hi,
+> 
+> This series adds initial Industrial I/O subsystem support for the
+> Melexis MLX90393 3-axis magnetometer and temperature sensor.
+> 
+> The MLX90393 supports both I2C and SPI interfaces. This series
+> implements support for the I2C interface while keeping the driver
+> structure transport-independent to simplify future SPI support.
+> 
+> The device uses a command-based communication protocol rather than a
+> conventional register-addressed interface. A small transport abstraction
+> layer is therefore used instead of regmap to share the common sensor
+> logic between the current I2C implementation and future SPI support.
+> 
+> Currently supported features:
+> 
+> * Raw magnetic field measurements for X/Y/Z axes
+> * Raw temperature measurements
+> * Configurable gain/scale selection
+> * Configurable oversampling ratio
+> * Direct mode operation through the IIO subsystem
+> * I2C interface support
+> 
+> The driver has been tested on Raspberry Pi 5 hardware using an
+> MLX90393 sensor connected over I2C. Magnetic field and temperature
+> measurements were verified through the IIO sysfs interface.
 
-Thanks for your patch!
+...
 
-On Mon, 29 Jun 2026 at 13:29, Bartosz Golaszewski
-<bartosz.golaszewski@oss.qualcomm.com> wrote:
-> Describe the SGMII/SerDes PHY present on the Qualcomm sa8255p platforms.
-> This is essentially the same hardware as sa8775p rev3 but the PHY is
-> managed by firmware over SCMI.
+> v3: https://lore.kernel.org/linux-iio/20260627005843.7786-3-nikhilgtr@gmail.com/T/#u
+> v2: https://lore.kernel.org/linux-iio/20260618160141.11409-1-nikhilgtr@gmail.com/T/#t
+> v1: https://lore.kernel.org/linux-iio/20260510191010.155380-1-nikhilgtr@gmail.com/
 
-So why can't it be reuse the DT bindings, and be compatible with
-qcom,sa8775p-dwmac-sgmii-phy?
+No, do not issue versions so often, especially for a new driver. *Minimum* of
+one week must be between two versions.
 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sa8255p-dwmac-sgmii-phy.yaml
-
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: serdes
-
-> +examples:
-> +  - |
-> +    phy@8901000 {
-> +        compatible = "qcom,sa8255p-dwmac-sgmii-phy";
-> +        reg = <0x08901000 0xe10>;
-> +        #phy-cells = <0>;
-> +        power-domains = <&scmi7_dvfs 0>;
-> +        power-domain-names = "serdes";
-
-Ah, this uses power-domains, while the existing bindings for
-qcom,sa8775p-dwmac-sgmii-phy use a clock.
-I guess the clock is the correct hardware description?
-
-Adding to my list of examples for backing a hardware-to-SCMI remapping
-driver...
-
-> +    };
-
-Gr{oetje,eeting}s,
-
-                        Geert
+NAK. Please, go to v3, study, address, and settle down the comments given there.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+With Best Regards,
+Andy Shevchenko
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
