@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-317084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317085-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3qmWM/N/Qmqr8gkAu9opvQ
-	(envelope-from <devicetree+bounces-317084-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:23:47 +0200
+	id FroqNqqCQmpZ8wkAu9opvQ
+	(envelope-from <devicetree+bounces-317085-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:35:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C8786DBFCE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:23:47 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC976DC1BD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:35:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=NFAd7HZq;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317084-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317084-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=intel.com header.s=Intel header.b=IUJ1kk8t;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317085-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-317085-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 479BE3137E76
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 14:12:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DE44F30A669F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 14:14:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB4440960B;
-	Mon, 29 Jun 2026 14:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7827E3D6491;
+	Mon, 29 Jun 2026 14:13:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3832367F21;
-	Mon, 29 Jun 2026 14:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBA8C35675B;
+	Mon, 29 Jun 2026 14:13:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782742241; cv=none; b=AMWjNM5oGjjUtxxepT/3sWgNRkBrfjaIrsfJY9ORVAR/pkxjBlZVzKC1rAEj8h9M0Ck8TbjyorNYdLvmQCuyzyg7Fdt/Cjz4WLcDrnlQWECyWj9TrIo9mYoi5Yi/2pKMAPmolxsIs7WQV5SEo2Nkf/GmMLYmlz+OW6nEXmI9LWw=
+	t=1782742384; cv=none; b=YTla0rxTtkabfmNiSXyuhWx9wr0jiHhuhsuDwakCwvriK4ljNbU5gs6EKbHdp2d8g08nb2XzeGE0VYHoCQOmpn7NJ4d41QoARwDJcngebIdz/EK/KzqhmOn8OX/4NpISEBNwoZTSSw9yoFzPPXXJpPnkEx4Ezll7lVVp59RA65g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782742241; c=relaxed/simple;
-	bh=LdXGeqRZm1zX38I76IbM2w6lSEul5LwMI/yoPc9QNwM=;
+	s=arc-20240116; t=1782742384; c=relaxed/simple;
+	bh=tKHtzoYf+ONSIaUJBs5LTkbQeLS8Vw/N8hPM7z+LNrU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B6FM8Dodi9T7HBJMAYRyGCpl5D3BucnCSwed7IN7nFk8UkW3lbHeeXXf7reVNED9qKu1uc49SQo6mOd1J810DN6zBgRdIMDWbX10hE7VVNxWhUw+iZMjnNcjAGcSd1EY+i8cN35zov4r0D7uWEKwFl2up8pjm4t0TX/Qa0sG3Vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NFAd7HZq; arc=none smtp.client-ip=198.175.65.20
+	 Content-Type:Content-Disposition:In-Reply-To; b=W5PNoJAbVcVi13Yo0VPntbVs1MQl/OG47u8UBT+E5d+8CKL+lWJR1VJEg/AtGoSowdOHsIn0lEZYSaAGycO+grHLm99yN2NghcTTlYaJ6i/qc8rZMQhJJAq7jgDAeQbpCbcmjKdnLWyPCt1oeVg6WcWiSnrXd6J+vzyrG4h5Vk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IUJ1kk8t; arc=none smtp.client-ip=198.175.65.19
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1782742238; x=1814278238;
+  t=1782742382; x=1814278382;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=LdXGeqRZm1zX38I76IbM2w6lSEul5LwMI/yoPc9QNwM=;
-  b=NFAd7HZqF14myp9dwn87anf2r1LTQrIcnGLRxNoE511Eyux3OAmdEeZb
-   ouTwm60byF1vVl8qy4x3KVFgpWUgfX3VVKqqG/OCBZrtT43lFHBeZ+kiw
-   iHJl1GkuC+9Q1KFn/7mQLgx/DkYEtVL2pF11quqgFxkRC5ozE7Ed7BiZO
-   e0KQgpesxfi9K84uad2ztaLZX/NyEqVlLDHrbHAWHfqV7GgNgDe+daE7n
-   8xgQpIQENfaLDVHDDAH6QTaU6IPiMHrQNOrwJsieK6Axe8PQZaCn/FeXC
-   LzCgH0YzjCh1mg2/CNUAzvLjh3pcggSyS9AwvmvwhcFHhYrO07H2Dfw50
-   Q==;
-X-CSE-ConnectionGUID: V254eKMrQAusW+t/8nf8sQ==
-X-CSE-MsgGUID: 5/LxCCFLS4eIENJLYfykHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="83202056"
+  bh=tKHtzoYf+ONSIaUJBs5LTkbQeLS8Vw/N8hPM7z+LNrU=;
+  b=IUJ1kk8tWIE1O5CP70MOak48GS0VVaiBx2skXhCBHk4YJKFH9+KOuQga
+   AhIBGkaVISht7nf0ciKWGR68Oznv6sSfDzKSB7nob/pXeb4PLqnZlbFKx
+   lyATNBUbRJw0jk66q6NUUMnPakVDJZyEyRB1bFG9DMKqa5z54n1+ooaPk
+   Jx5If7xvY3IJtK7cMb6vauwX0Mn+9JCCwZN6PvRxNRmz5PqEK9PiK/sFw
+   B5U2342r3rBJOKlPOOlVsytAFB5eQDQaLXWOALxt2xqk4nzEqUYRkVFN7
+   encvr3e50CVjlNFxNxIwb0sAdmyd5yCNI3JMW7IPU2WXhmyYFb337fmwi
+   w==;
+X-CSE-ConnectionGUID: lkSszQRBQDChiMe6uaQUAw==
+X-CSE-MsgGUID: MAjGVTpcRFKWQnMbx+seuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="83438253"
 X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; 
-   d="scan'208";a="83202056"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 07:10:37 -0700
-X-CSE-ConnectionGUID: iPAmdyPcSoamB9OOks0qKg==
-X-CSE-MsgGUID: pF33BSxARYm1lMYFnHvbFQ==
+   d="scan'208";a="83438253"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 07:13:01 -0700
+X-CSE-ConnectionGUID: 0fjlTSkHS1Wmu1mSwb6SIg==
+X-CSE-MsgGUID: t2VRGnY9THqgHT5uGXYA0A==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; 
-   d="scan'208";a="290092242"
+   d="scan'208";a="252607197"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.207])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 07:10:34 -0700
-Date: Mon, 29 Jun 2026 17:10:31 +0300
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 07:12:58 -0700
+Date: Mon, 29 Jun 2026 17:12:55 +0300
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
 To: Jinseob Kim <kimjinseob88@gmail.com>
 Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -73,10 +73,10 @@ Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
 	Shuah Khan <skhan@linuxfoundation.org>, linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC v6 4/5] iio: osf: add authenticated stream parser
-Message-ID: <akJ818gkVzLN7HqU@ashevche-desk.local>
+Subject: Re: [PATCH RFC v6 0/5] iio: add Open Sensor Fusion IIO driver
+Message-ID: <akJ9Z6jHGP-fUPFz@ashevche-desk.local>
 References: <20260628191337.937-1-kimjinseob88@gmail.com>
- <20260628191337.937-5-kimjinseob88@gmail.com>
+ <akJ8itlDBJfaYRj2@ashevche-desk.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260628191337.937-5-kimjinseob88@gmail.com>
+In-Reply-To: <akJ8itlDBJfaYRj2@ashevche-desk.local>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
@@ -95,12 +95,12 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-317084-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317085-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -120,70 +120,31 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ashevche-desk.local:mid,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:from_mime,vger.kernel.org:from_smtp,ashevche-desk.local:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8C8786DBFCE
+X-Rspamd-Queue-Id: 4FC976DC1BD
 
-On Mon, Jun 29, 2026 at 04:13:36AM +0900, Jinseob Kim wrote:
-> Add a UART byte-stream parser for Open Sensor Fusion frames.
+On Mon, Jun 29, 2026 at 05:09:21PM +0300, Andy Shevchenko wrote:
+> On Mon, Jun 29, 2026 at 04:13:32AM +0900, Jinseob Kim wrote:
+> > Open Sensor Fusion (OSF) devices expose a UART/serdev host interface
+> > for a sensor aggregation hub.  This RFC adds a Linux IIO driver that
+> > parses OSF frames and creates IIO devices at runtime from capability
+> > reports provided by the device firmware.
+> > 
+> > When the corresponding capabilities are reported, the driver exposes
+> > accelerometer, gyroscope, magnetometer, and temperature data as IIO
+> > devices named osf-accel, osf-gyro, osf-magn, and osf-temp.
+> > 
+> > This remains RFC while the binding, protocol subset, runtime discovery
+> > model, and driver-facing ABI are reviewed.
 > 
-> The parser searches for the OSF0 wire magic, keeps partial frames
-> buffered, checks header length and payload bounds, and passes complete
-> candidate frames to the core decoder.
-> 
-> Rejected candidate frames drop only the current head byte before
-> resynchronizing, so a corrupted unauthenticated payload length cannot
-> make the parser skip later valid frames.
+> Where are the lore links to the previous versions?
 
-...
-
-> +#define OSF_STREAM_MAGIC_LEN	4
-> +#define OSF_STREAM_MAX_PAYLOAD_LEN				\
-> +	(OSF_STREAM_MAX_FRAME_LEN - OSF_FRAME_HEADER_LEN - OSF_FRAME_CRC_LEN)
-> +
-> +static const u8 osf_stream_magic[OSF_STREAM_MAGIC_LEN] = {
-> +	'O', 'S', 'F', '0',
-> +};
-
-You have already this in the header (as FourCC), use that.
-
-...
-
-> +static size_t osf_stream_discard_to_magic(struct osf_stream *stream)
-> +{
-> +	size_t old_len = stream->len;
-> +	size_t match_len;
-
-> +	size_t i;
-> +
-> +	for (i = 0; i < stream->len; i++) {
-
-	for (size_t i = 0; i < stream->len; i++) {
-
-> +		match_len = stream->len - i;
-> +		if (match_len > OSF_STREAM_MAGIC_LEN)
-> +			match_len = OSF_STREAM_MAGIC_LEN;
-> +
-> +		if (osf_stream_magic_match(stream->buf + i, match_len)) {
-> +			if (i)
-> +				osf_stream_discard(stream, i);
-> +			return i;
-> +		}
-> +	}
-> +
-> +	stream->len = 0;
-> +	return old_len;
-> +}
-
-...
-
-I stop here, because it's obvious that you neglected and ignored my previous
-reviews. No explanation given, nothing. This is not how you should interact
-with the community.
-
-Come again when each of the given comment will be either addressed or argued.
+Besides that you utterly ignorant in replying to the comments of the reviewers.
+v3 and v5 left unanswered, third time in this version I give the very same
+comments. What the heck?!
 
 -- 
 With Best Regards,
