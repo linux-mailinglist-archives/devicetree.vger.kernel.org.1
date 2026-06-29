@@ -1,186 +1,304 @@
-Return-Path: <devicetree+bounces-316784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316786-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ETu+MEgrQmoX1QkAu9opvQ
-	(envelope-from <devicetree+bounces-316784-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:22:32 +0200
+	id /7xzCoQtQmp11QkAu9opvQ
+	(envelope-from <devicetree+bounces-316786-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:32:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A7916D7756
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:22:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F2906D7858
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:32:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="MM/swq+/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316784-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316784-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=dKovW1ZK;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316786-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316786-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 43CEF30031C7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:22:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 931293028B12
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:28:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 185203EFFAE;
-	Mon, 29 Jun 2026 08:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3CC53F077C;
+	Mon, 29 Jun 2026 08:28:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013012.outbound.protection.outlook.com [52.101.83.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618273C343C;
-	Mon, 29 Jun 2026 08:22:07 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782721329; cv=none; b=rW5NPo0pslBXJYc1dDBEfHYtlT4K5IJ5NOUEV3ZUZJQyu4gWD6FE/c/1w1xmOzS4yMQJAy1ttxNv+k9lZL2HwZV+nekessn7IelUb5KjaY3vB9/yofOjI7bbE5ghNOTMir97wYcBKemUFuMJIVzCb0/2iUII1fxHKPa80ZefQfw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782721329; c=relaxed/simple;
-	bh=yKusn79KwbrEg3D9I4t24OWk4gQ1Qu/IOk6Ez3ri9Pg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oELQUu9b5hj4yuKCvDeO/73oeLELq8x5pMwJe02Kk9NROLYZ+FL6sCMTebk84ZU8iGwAKTLrp52s6LULGhacML+chyl37I2DZxl9H0UoquO3aZFfnmPicfM13UXs/+7lYiCqUEyt5RUglwUlvggkUGa1TxdCIOGchB2J5lrTuLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MM/swq+/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBABE1F00A3F;
-	Mon, 29 Jun 2026 08:22:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782721327;
-	bh=iAxmFHuidiONJITAk4OsD6egnPPOI7pNLRnDMvxzO4w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=MM/swq+/Q3P9Fov5m3VAhpuj3kXFVIVyWrSteq+Tir1K1zOA/zOWHBEwgHnpStX4E
-	 W+kQvbTXjbp/31NabZgkk8HhSpv1ZnlP8aQtaei+/vBpmcwpPwGQ5+HXdjbUS41DvC
-	 HqhSmhSnsfsZHcjY32H4oLxt8gIQYr7Bv1B6d4wCi0D6sShp1c1l6GNrbisvk8MkYa
-	 DMqfK1l2aqPoTXPtxoOu+sYMgRVGZV+B5iLhwpFJyRJCv1lvgMU4tJcpirrAr8Hs3F
-	 g5loHCEMSU6Ut0NgC23qnph9mifKMLmWFdHLXlESnhEE6igi5R+Vfafoq8j8l+MS0s
-	 5FeFNpWysQdAQ==
-Date: Mon, 29 Jun 2026 09:22:02 +0100
-From: Sudeep Holla <sudeep.holla@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Hans de Goede <johannes.goede@oss.qualcomm.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-	Abel Vesa <abel.vesa@oss.qualcomm.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org
-Subject: Re: [RFC 00/12] RFC: Devicetree-ACPI hybrid mode
-Message-ID: <20260629-optimal-vermilion-salamander-0190fc@sudeepholla>
-References: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
- <20260626-friendly-ammonite-of-holiness-aabefb@sudeepholla>
- <obvpvyx3kmzcdc5nxmx4inlpiqugjxdgzfzmdxzfqqy4qqwt7l@y2zyrtso6yk4>
- <20260627-miniature-skink-of-superiority-234091@sudeepholla>
- <2dbfkh3djdrvklsin7zcy53g3wpc76dd4iosxgahbd26zssmx5@zpkplzscllx3>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 669BF3E5A24;
+	Mon, 29 Jun 2026 08:28:01 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782721682; cv=fail; b=pr02KUtP0DqZtoqy1VHqHWfE5cVaIQ2boDB4gGHlUHK8v4G5d6/jvMbUK58QnIseR6JYIWwpY9IgH3BazWpJr3K5sd4fitfivlY99kN6PdTwDX/Ly+xppmTIXAvw6ztnvo/aJblcTvB9Xc9ILlN1pQum2hUF/ME4NRPRzEg16Ig=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782721682; c=relaxed/simple;
+	bh=oq/zb6GP5VOQJLr9Of2f98pGXtGGGvyZnVeu1y9SSIU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=okvJ0gtYZ0CC7FiXn9K6t4vlSZWgCNZdld7G4PmlkKIcsWlIWjwrd1qAgn0edtp1Tm+mp0OXU8bdG20616lSCr2FNxjBwYSYhKsl85G1XYHE0ujp82/ZN4ktpmuQ88Ev/mT3eqWx/MHW+XVfG6mGsWtms4cAylSGNkI9sqhkQp8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=dKovW1ZK; arc=fail smtp.client-ip=52.101.83.12
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JW60UZDxaXiatvxgBuGYfcNV+R10+HYKiIM3vwpv1AeHQtChiDsiakKTZAtB+0Cr2NEpTvKAA8wMmygN22r6uDYYx+DSTw8nKriJ27PXsceaauPZUMNSg2cipyHfqiFZB3+jwxL0Kf1ElrVO0HY5ekYb5ajyBOi9yeFbtVD8qj5TWPSyNKm3X78UWPcWNkAJJZNlFj3eHdjEZLJogpBtrbqhG4YkbLkm/o07WyFCC7NKjqQWIMWGVH4HKAg+DPp/E9yQsDyURC8LYzQTwzssX2KQSwmdtMpxgg6qArbM/dc68fBRVeymXFnkDdGrdBYBLnF9XUGhYPGTOP6PTiZxbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DNEqPyZr0SoYzYr1LXdRL6klSeRWrXueUloBM72etzI=;
+ b=CAmMKaVjZSF3FzxOBCA+Uow1IS67IEV2pXsDb+BhJQG5X+77t74+DARvIQvu63ex7g4inMKtrpkPqnQ84qRDLoAns+OKU/Q28ZIJiy4dsFe5jimkQDpAUtYYG/SmdLpRguDh+rWn0Jv8FvPhsLUQxFyDrxfknCC8WJJMhJ25DkVlB5I1T2MVq/zbioK8aLZpYeG7uV24bEg2q3gBeedUw8ebRRb49GikDyMYS/8oMg6DN/8USj81fvjNObeso8aZ7SbZ9zDSjLG7NxRb2Kdi0h5LYjv5UMpsNdjewU1vERmzHrNY3wYe7XZcYY2xr9m94wAjGa13IHRRJr86rLEkVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DNEqPyZr0SoYzYr1LXdRL6klSeRWrXueUloBM72etzI=;
+ b=dKovW1ZKN+PUPfr1M+HBiJ7RYUqUrEQ6c0zVd3MEnjf0z8M1FZhXqHmG8CDhdG0IhhTpfnJ/UIDE4PeigrlKL8ZP5eddjOawJK/CmksPkh4Ma0qxIyjz+sUeLMnYcCekb0TY/wAAyD+N8qY+MSEPyAzInGznar6rpZStjENRgW2WojomcvJNoRNOHpb+KkLcTfHiD9WSvubPg5Rs8RSpvTvCBaMRk4pga7/EN6ErNlnM4/sVqDbjNGn2736vSdVRqSlal+rEcZR8Q8o7x4P5qxSPz6AgpRwxBOBNmA4nPz0okuq/EMDgGDhUbYg6gxLhiFwxw4Ot0Kr5nqRbnMN0xg==
+Received: from PAXPR04MB9422.eurprd04.prod.outlook.com (2603:10a6:102:2b4::21)
+ by AMDPR04MB11555.eurprd04.prod.outlook.com (2603:10a6:20b:71d::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Mon, 29 Jun
+ 2026 08:27:58 +0000
+Received: from PAXPR04MB9422.eurprd04.prod.outlook.com
+ ([fe80::54e:28bf:aa85:d25d]) by PAXPR04MB9422.eurprd04.prod.outlook.com
+ ([fe80::54e:28bf:aa85:d25d%4]) with mapi id 15.21.0159.018; Mon, 29 Jun 2026
+ 08:27:57 +0000
+Date: Mon, 29 Jun 2026 16:26:32 +0800
+From: Xu Yang <xu.yang_2@oss.nxp.com>
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Chaoyi Chen <kernel@airkyi.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Peter Chen <hzpeterchen@gmail.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>, 
+	Andy Yan <andy.yan@rock-chips.com>, Yubing Zhang <yubing.zhang@rock-chips.com>, 
+	Frank Wang <frank.wang@rock-chips.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>, 
+	Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>, 
+	Peter Robinson <pbrobinson@gmail.com>, Hugh Cole-Baker <sigmaris@gmail.com>, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v15 1/9] drm/bridge: Implement generic USB Type-C DP HPD
+ bridge
+Message-ID: <k53t2soc3nxhwugncatksektig6agxfgdkogkdwbhrhu2fn2g7@auvsfrv76wxy>
+References: <20260304094152.92-1-kernel@airkyi.com>
+ <20260304094152.92-2-kernel@airkyi.com>
+ <erx73m2ueuvbzjteadjli6aki5by4pr3hyertkkqqoqwhaa4v3@5cstmshcercx>
+ <56c6abb8-c127-449f-9368-12f94620c2bc@rock-chips.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <56c6abb8-c127-449f-9368-12f94620c2bc@rock-chips.com>
+X-ClientProxiedBy: SI3PR01CA0011.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:296::6) To PAXPR04MB9422.eurprd04.prod.outlook.com
+ (2603:10a6:102:2b4::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2dbfkh3djdrvklsin7zcy53g3wpc76dd4iosxgahbd26zssmx5@zpkplzscllx3>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9422:EE_|AMDPR04MB11555:EE_
+X-MS-Office365-Filtering-Correlation-Id: f5305d0b-3a9e-4c44-5ca9-08ded5b852ab
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|23010399003|376014|7416014|19092799006|366016|6133799003|18002099003|22082099003|4143699003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info:
+ WEAYDRX9M4Cqh+zmF67SmUsU435qfb5fvhxevYQJWqkz93Uq0qc2+WMOwIcHo/UxlD2jmP94D04ir6Xi9y7r3FigE6wu14944Rtm2JTBS4O1Nbn2Z9h8M2DphY/L03v3UiL+EgkFpDUGuU/IfhGzNgOwH19qK2jA4OK3vXuO6FR5ORRsddemRGcNCUhniKdQT9CFjAl9v2BzGevYgyhckfoylEM2CVagR3rL9wBXgqX2yhIV6KLlHBjwLt9ZJCAxEWBTWfIz4BtadGJcxbXWBL1ZBwjmPVVI5agASSK3wX8iMQ4LA7virZ5F18tYCAtOn4MgDwtVj+Y6Yo3oXo4F0jQBlAR+jANc9AsE9Il5Exe62/IhICtiz4en7kQk6C/8IRaCNMwwWly/RRzMbP5FRsKk4guR8pyAWtT4An1iTJPfqWJ2tx1py0yTTtuZGxHlOALcCe4BoA5w9Coz1jgH5l8miItwKAJ148F1kgTjWTwAuoWo78MiDrMCW7UNUSojouFRTjMgVZ9ELu8NqjDp0lyHvGHYaVlGd2VqztUxsrEIFrjY7olNzGoQNpfn/tejMKeE9rEYQeLbBJaudw4fkGpX4dpn3B/DK/bOYK16qLwzt0g27kWgN2gjmkbdasRcoeWk54gaKvOzoOh2MtBL4I3kEH2DO6sgUkS6ZJkVCno=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9422.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(23010399003)(376014)(7416014)(19092799006)(366016)(6133799003)(18002099003)(22082099003)(4143699003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?gsTkS+0Di68y5Q1piqQ18BwEkP/IfsmODRGTPm/FxcXoCx9N3qfY60BWYyVo?=
+ =?us-ascii?Q?ndXtwNZAbGPqMYnZSShszMJ8LUjXKYGAaNcGjcZhGCUOTpT6/dmlvjaJYd1V?=
+ =?us-ascii?Q?QKp/x2azcmnyOCCRr8ZpgiL/KxxGLLiIekLu7g5Qlo06sUFzbtYawkAzdzVb?=
+ =?us-ascii?Q?1G9BaR7IvJwsoqB5RXbya5KwHN8Mp9T4h+KO/pHfjJX5C4KEhpnufu/fo91t?=
+ =?us-ascii?Q?gjI7ZQvHKFye5kMSEBAfIb7cseWCH3s+0WZTSqi8wTNfgtp0nckE1QNN4rnq?=
+ =?us-ascii?Q?Mv8DERWqb7nFaPzYP5HOdhQK3OxQVjkmcWizyq9w96loekIrPNjtozGDxWkR?=
+ =?us-ascii?Q?ur1ouKJDniTGFM8ub96sFR7rJ0OgyhK7HKyw/+P2g97z9TWvvtwDGXlFyWSW?=
+ =?us-ascii?Q?oDLGE3U/UWqm3dSBVPcXmv/i8u+UiSlqg1PUobdu0YrSrgJ2riAIHjVSCahx?=
+ =?us-ascii?Q?6Jq0D3N7jeKHZ0quvC/UqFeLq6D/h9l1b1x9ui+yCWUY5XFGSvjss3JVn7+M?=
+ =?us-ascii?Q?twuv2aOhr/KY20a9HT1Fdpz9Vpuml5RzmjHUZd7f21X7KbDv2eCn2LN3BmBm?=
+ =?us-ascii?Q?7aqzFvq7FUFfJ7jUPcoMlrvO3huckpTCjlY+pKmv2ZAeSaxD7ECdYpkeaHRz?=
+ =?us-ascii?Q?OsgLvGxWB5PLJrdNtRftr0PEC1KQCma8Y5NX0ODP0GDGq1D6QdxY6J0nlwtZ?=
+ =?us-ascii?Q?bxitZCJwdpARTPcImO6QHA+DQHO+0El7MjrxyhqFpXMDdcWhzbqnWJt/5N5P?=
+ =?us-ascii?Q?kUIlKt8/d4vXer/EiyunOw0auMzUvy72/dfLArLQoOvuAIQbtCvyvduQ1yoc?=
+ =?us-ascii?Q?xeNQLKGXTiXa/wDzQ5lFvqYi7b7S8y2tTPxZSxt2AGpsDtuXma44DunwKqhH?=
+ =?us-ascii?Q?p4YIXqVBWiM1JSi5CAcdHjsagAkPTg1PUSFfl0WuB4kyH47gzj1mLlE/yZfD?=
+ =?us-ascii?Q?dIfQr6YmQgOhLsSPbWb4pJj2rky8djkiWa1jCgx/j8PaoqNsNWV3q7YtsDzd?=
+ =?us-ascii?Q?96LR/kWvbC4YOTGFCrEwxO9p3mYpOAeuGtqZYj/TPl9QztVz+en9ZeVExuYW?=
+ =?us-ascii?Q?CBo/IOh2YS80PS2s3jmP31xQT1NC/seb6g62kV+WR6j/mPjLCE7am7of2MK9?=
+ =?us-ascii?Q?hnB4zMzy73YrWlMTG0yiJYEpfDQTLIRs2WlsCvXdYq94b6S4zKBmOCykaBqU?=
+ =?us-ascii?Q?Py4OzvavKG9XJ1iJAEMW0WY066EIkkM6mjvwdzLlJdrX+nH5HKoQMJTaO/qV?=
+ =?us-ascii?Q?z+S00YgKxd6JThcXQSl5sKOaUMyuDSkRK3mn9f6ENT1sH6cFG9ihjn5XuGk6?=
+ =?us-ascii?Q?xjsqX9wCKunOeSvg385hPkVszhKgxZYN4gg9P916z1N3xf1qyy3L4rDMfTWi?=
+ =?us-ascii?Q?iN9cwojD6rNP/b7mYUn99EPFxkQfN1ALhnyODwR9JiUZkO2EjErMH8Wg5So1?=
+ =?us-ascii?Q?gOTkFK+ftoILdZ46mH5vsLprBJT3DJBGUz5jdF1vYm/nlANHwWrSHf97kRc/?=
+ =?us-ascii?Q?/6y/v8RIDEHK/FaUEmJZyIYqHb+AALhHyWjhhyFa9N8WEQ0vaHxl8+xjGg2A?=
+ =?us-ascii?Q?kVclzsGoS8i3uzL9TUCg+6e1M2RfMnHpSLUNCVjwlG62uEP15JxXgf/DtCY8?=
+ =?us-ascii?Q?RHkM2EERa3WxPSRlHnazfTI0RzfkR+YDEE62aeGJQ0TuedOWqP+6YejKPRyn?=
+ =?us-ascii?Q?gUVjJP+fPAONs9P3F/zNyZgeNJhgZhHgQ30IXDU0G661HHhalDtoekVjDy8j?=
+ =?us-ascii?Q?z2RCk8bYcap9O563Gf/w44EQ/Ho+ND+bjXHH7aIhIUJQXCHIUkUI?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f5305d0b-3a9e-4c44-5ca9-08ded5b852ab
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9422.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2026 08:27:57.5896
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uCvQgZstkF7npR5g4ojWVi75soPfGVpUq1uN0j7PtOIqd3qhkoFp674Ws/rwzXkb6V0EKWhqtClxrxe5IoWcY4aZMNX5b1ej7saM0u7c+m47NMqQaVEAOHZQZ4M+88k7
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMDPR04MB11555
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [2.44 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:johannes.goede@oss.qualcomm.com,m:sudeep.holla@kernel.org,m:rafael@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:srini@kernel.org,m:krzk+dt@kernel.org,m:lumag@kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-acpi@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER(0.00)[sudeep.holla@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-316786-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[41];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-316784-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:chaoyi.chen@rock-chips.com,m:heikki.krogerus@linux.intel.com,m:kernel@airkyi.com,m:gregkh@linuxfoundation.org,m:dmitry.baryshkov@oss.qualcomm.com,m:hzpeterchen@gmail.com,m:luca.ceresoli@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:kishon@kernel.org,m:heiko@sntech.de,m:hjc@rock-chips.com,m:andy.yan@rock-chips.com,m:yubing.zhang@rock-chips.com,m:frank.wang@rock-chips.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:amitsd@google.com,m:dsimic@manjaro.org,m:jbx6244@gmail.com,m:didi.debian@cknow.org,m:pbrobinson@gmail.com,m:sigmaris@gmail.com,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infra
+ dead.org,m:linux-rockchip@lists.infradead.org,m:dri-devel@lists.freedesktop.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[xu.yang_2@oss.nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sudeep.holla@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xu.yang_2@oss.nxp.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linux.intel.com,airkyi.com,linuxfoundation.org,oss.qualcomm.com,gmail.com,bootlin.com,kernel.org,sntech.de,rock-chips.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,suse.de,ffwll.ch,google.com,manjaro.org,cknow.org,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,intel.com:email,oss.nxp.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,auvsfrv76wxy:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2A7916D7756
+X-Rspamd-Queue-Id: 1F2906D7858
 
-On Sun, Jun 28, 2026 at 10:23:15PM +0300, Dmitry Baryshkov wrote:
-> On Sat, Jun 27, 2026 at 03:12:31PM +0100, Sudeep Holla wrote:
-> > On Fri, Jun 26, 2026 at 11:57:47PM +0300, Dmitry Baryshkov wrote:
-> > > On Fri, Jun 26, 2026 at 04:52:41PM +0100, Sudeep Holla wrote:
-> > > > On Tue, Jun 23, 2026 at 04:52:13PM +0200, Hans de Goede wrote:
-> > > > > Hi All,
-> > > > > 
-> > > > > Currently as soon as the kernel boots with a populated DT provided then
-> > > > > the arch/arm64 code sets acpi_disabled=1 and the complete ACPI subsystem
-> > > > > gets disabled. On WoA Snapdragon laptops where the factory Windows OS
-> > > > > actually boots using these tables this is not necessarily desirable.
-> > > > > 
-> > > > 
-> > > > I am bit lost reading the very first statement here.
-> > > > 
-> > > > Who is populating DT and why ? It seems that is the source of the problem.
-> > > > 
-> > > > If windows can boot with ACPI tables, why is it causing issues for the
-> > > > Linux kernel, any specifics?
-> > > 
-> > > Windows uses a separate beast called PEP, which nobody wanted to
-> > > implement for these platforms up to now. You can find a lot of ACPI
-> > > dumps for these devices at [1].
-> > > 
+On Mon, Jun 29, 2026 at 09:29:08AM +0800, Chaoyi Chen wrote:
+> Hello Xu Yang,
+> 
+> On 6/26/2026 7:15 PM, Xu Yang wrote:
+> > On Wed, Mar 04, 2026 at 05:41:44PM +0800, Chaoyi Chen wrote:
+> >> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> >>
+> >> The HPD function of Type-C DP is implemented through
+> >> drm_connector_oob_hotplug_event(). For embedded DP, it is required
+> >> that the DRM connector fwnode corresponds to the Type-C port fwnode.
+> >>
+> >> To describe the relationship between the DP controller and the Type-C
+> >> port device, we usually using drm_bridge to build a bridge chain.
+> >>
+> >> Now several USB-C controller drivers have already implemented the DP
+> >> HPD bridge function provided by aux-hpd-bridge.c, it will build a DP
+> >> HPD bridge on USB-C connector port device.
+> >>
+> >> But this requires the USB-C controller driver to manually register the
+> >> HPD bridge. If the driver does not implement this feature, the bridge
+> >> will not be create.
+> >>
+> >> So this patch implements a generic DP HPD bridge based on
+> >> aux-hpd-bridge.c. It will monitor Type-C bus events, and when a
+> >> Type-C port device containing the DP svid is registered, it will
+> >> create an HPD bridge for it without the need for the USB-C controller
+> >> driver to implement it.
+> >>
+> >> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> >> Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> >> ---
+> >>
+> >> (no changes since v14)
+> >>
+> >> Changes in v13:
+> >> - Only register drm dp hpd bridge for typec port altmode device.
+> >>
+> >> (no changes since v12)
+> >>
+> >> Changes in v11:
+> >> - Switch to using typec bus notifiers.
+> >>
+> >> (no changes since v10)
+> >>
+> >> Changes in v9:
+> >> - Remove the exposed DRM_AUX_HPD_BRIDGE option, and select
+> >> DRM_AUX_HPD_TYPEC_BRIDGE when it is available.
+> >> - Add more commit comment about problem background.
+> >>
+> >> Changes in v8:
+> >> - Merge generic DP HPD bridge into one module.
+> >> ---
+> >>
+> >>  drivers/gpu/drm/bridge/Kconfig                | 10 ++++
+> >>  drivers/gpu/drm/bridge/Makefile               |  1 +
+> >>  .../gpu/drm/bridge/aux-hpd-typec-dp-bridge.c  | 49 +++++++++++++++++++
+> >>  3 files changed, 60 insertions(+)
+> >>  create mode 100644 drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+> >>
+> >> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+> >> index a250afd8d662..559487aa09a9 100644
+> >> --- a/drivers/gpu/drm/bridge/Kconfig
+> >> +++ b/drivers/gpu/drm/bridge/Kconfig
+> >> @@ -30,6 +30,16 @@ config DRM_AUX_HPD_BRIDGE
+> >>  	  Simple bridge that terminates the bridge chain and provides HPD
+> >>  	  support.
+> >>  
+> >> +if DRM_AUX_HPD_BRIDGE
+> >> +config DRM_AUX_HPD_TYPEC_BRIDGE
+> >> +	tristate
+> >> +	depends on TYPEC || !TYPEC
+> >> +	default TYPEC
+> >> +	help
+> >> +	  Simple bridge that terminates the bridge chain and provides HPD
+> >> +	  support. It build bridge on each USB-C connector device node.
+> >> +endif
+> >> +
 > > 
-> > Agreed and I assume that is the reason why we want DT.
-> 
-> Not completely... Using DT forces us to reimplement bits and pieces for
-> these laptops. E.g. drivers for EC, battery, etc.
-> 
-
-Not entirely clear still. I mean use ACPI for those as well.
-
+> > Should CONFIG_TYPEC_DP_ALTMODE select this one? Otherwise, we need to do it
+> > manually.
 > > 
-> > > > IOW why is DT populated which creates the problem you are trying to address
-> > > > here.
-> > > 
-> > > Most of the laptops resemble other Qualcomm platforms, which use DT for
-> > > hardware description. In some cases, it is the same platform being used
-> > > for both mobile, IoT and laptops. It was more or less natural to reuse
-> > > existing support.
-> > > 
+> > $ grep -nr --include=Kconfig "select DRM_AUX_HPD_BRIDGE" .
+> > ./drivers/soc/qcom/Kconfig:118: select DRM_AUX_HPD_BRIDGE
+> > ./drivers/usb/typec/ucsi/Kconfig:88:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
+> > ./drivers/usb/typec/ucsi/Kconfig:99:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
+> > ./drivers/usb/typec/tcpm/Kconfig:62:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
+> > ./drivers/usb/typec/tcpm/Kconfig:85:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
 > > 
-> > Sure, just use DT then, why are we even talking about mixed/hybrid mode.
-> > It gives no incentive to OEMs using PEP to get away from it and use
-> > standard ACPI or improve if anything is missing.
 > 
-> Well. Here we are talking about the laptops which were being sold since
-> 2018. I doubt there will be a UEFI update for all these models.
-> 
+> That's a fair point. But based on the previous discussion, Heikki
+> point out that configurations in the TYPEC subsystem should not
+> select configurations from DRM.
 
-This problem is discussed multiple times and yet OEMs are not interested in
-fixing it 🙁.
+I have just reviewed your previous patchsets but I did't find such opinion from
+Heikki. Otherwise, why are tcpm.c/ucsi.c already allowed to add the above select
+condition in their configs?
 
-> > 
-> > So I don't like this idea of mixing at all. Use ACPI or DT, make up you
-> > mind. You can't expect to get the best of both worlds if you are not improving
-> > the missing parts in either of those. This is just a shortcut.
-> 
-> So, if we need to append the DSDT, what would be the best way to do it?
-> Something like Surface platform drivers, providing extra device nodes?
-> 
+I think Heikki means that the DRM_AUX_HPD_BRIDGE shouldn't been selected at the
+top level of Type-C subsystem. Because not all Type-C devices support the DP function.
 
-CONFIG_ACPI_TABLE_UPGRADE allows to override the ACPI tables via initrd IIRC.
+As a generic Type-C DP HPD bridge, displayport.c will likely need to use it in
+the future. Therefore, allowing displayport.c to select DRM_AUX_HPD_BRIDGE makes sense.
 
--- 
-Regards,
-Sudeep
+According to my testing, it's impossible to build this driver in unless TYPEC_FUSB302
+or a relevant CONFIG is built in to select DRM_AUX_HPD_BRIDGE, or the defconfig is modified.
+
+Thanks,
+Xu Yang
 
