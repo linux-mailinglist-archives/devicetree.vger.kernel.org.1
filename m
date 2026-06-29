@@ -1,268 +1,491 @@
-Return-Path: <devicetree+bounces-316841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316818-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id veb9K405QmrE2AkAu9opvQ
-	(envelope-from <devicetree+bounces-316841-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:23:25 +0200
+	id veMzHAA3QmrL1wkAu9opvQ
+	(envelope-from <devicetree+bounces-316818-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:12:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB14C6D8197
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:23:23 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D28CA6D7E94
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:12:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=rock-chips.com header.s=default header.b=KeP9lnKD;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316841-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316841-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=rock-chips.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316818-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-316818-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7974230117B5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:18:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 313C7301CC5F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:11:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39AD3F927E;
-	Mon, 29 Jun 2026 09:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 454943F8EC5;
+	Mon, 29 Jun 2026 09:11:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15574.qiye.163.com (mail-m15574.qiye.163.com [101.71.155.74])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023124.outbound.protection.outlook.com [52.101.127.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070A93F88A3;
-	Mon, 29 Jun 2026 09:14:44 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782724489; cv=none; b=IA8evcaHpZRPOvU06OPx1hI50n2ii55zakB1R59wJ8kZ8ZILtpCNB7haZ+3JYZE2bqW+gB0UAoofqmtLPS33yvX06wZOOGCgBu1/HrY0TEPT7Ghqws7MUJ8UKV8uwz+n3flo0YKSW2cI+6kLImPUcNyL8lQV909MruYX11yoSL0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782724489; c=relaxed/simple;
-	bh=DKksF8ObdV5cCc8gNPV4GonL7jA1mzJBaHtSuhG6HEE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UpiXadbU1ZtCOYibS0mxZ8q361UFLUWmAf++2JfQspMXZqGSfKWliLZ5gMhii5bywdItzZk8hq6Bp6GNQFB0778egBk4hoytnqCOMFIJfgW+XwHo6+4j85jJmfbJ0c15U+qKTbExyBIj0oHgF4WCoj1bA7SBeXImskkKrGUIC90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=KeP9lnKD; arc=none smtp.client-ip=101.71.155.74
-Received: from [172.16.12.90] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 442780943;
-	Mon, 29 Jun 2026 17:09:24 +0800 (GMT+08:00)
-Message-ID: <b2633b22-da30-4778-8e23-7b5bed9ead07@rock-chips.com>
-Date: Mon, 29 Jun 2026 17:09:23 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1149F3F7A9E;
+	Mon, 29 Jun 2026 09:11:49 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782724313; cv=fail; b=smtmTinhsNqItoOXY8eKEcN9KsERfBcaMsirB1+vtwSA3cU5vTLLWcQkVWqRX0MUoRWakXwtxJ0DeuU22NjJbhrH8Wj4JXIeAki10VTx+rSoz7RlL6LZZTp5mvhiiTZllaPP7rf/v/s4LwTZjPs+57fIqn3SrJJI3hbH7ebfdC0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782724313; c=relaxed/simple;
+	bh=3G/SWsDLdztJdg3wzrwWfJY4Nq2FjQplmwVThGvAcbA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=WOaHmHu0UYeye05O0Avek5zJO9mittqxRVDRIT7FrmrIQfDkm5FrZB8MK8uawoyZDAAAoniWqVY+MpS13E5+LkCd5oAk5sW7et2+uTanDR7T+388zTjNKpgqOaD2G0xRvyaAVfO9mTEEW0u2uqrguFVmzlLCmciZW6B0MZqyQu8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.124
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Zk/uo/1d4t64PyCd/e/qIxdBhWM+UwD9D9nTyYBctmN7s+yCX8La39ixHhPz32I5UzANSX8Q7iXXz5LYIFiurRxU0lBLOhjZAkjIvcpBhXv8C09c7m4VsnxjFj+8Lm0se6Pd25j/2v4qcYJZfay4Mpz4R3R4uMx2TxSP4fJ1IBNXgbb1jrjaPeV8m3I8On4aCnIP7nBsaHXCXSbrDDgvNbyY70OqRQTNu+9bX3zkybLqAIVs5tClgKv/gC6moe7diKgTZBknIza22ktfgRYmNyHD01nXpMzuHej4aST/p4glSw/QRUvMvO0Fc3WJA5OUzk12uJg0OnUH1+Ui31/aKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=X/6DMeF+VzrPuokfm4ZDmzjeVtbdIynLnrQnwoD7BaQ=;
+ b=isE9JF63dOSkcj+sUESuoB0J2G7fQN0bHaDyjpABOC2/ZbpwofctwuWOM+TE7S4HycC+U8DAybb0hgvD/OUIYG7UAmTGnc9rPnOvWEneuZfDVkAQT2+CUQIGdJH7W20DXzSXdVWhao/NX8QscjeZ4FHleLPUNPFRjPNe9hyEjpFU5Jm8bzEyzfc1ratCtXOsgDlo41aOT5JVk9Ti9KkFnoCtErRr1zKnfIjEE/2tmUo6cYD+fJoIMWRPG0V31gPnHDgojeJGYz/OO3SshHZv4sX2PkuIisbwPBhpKEA4ajOlJbBeGeHsvLr/A3wkM0pBMX35EcPV4ozsC+xREbBlxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cixtech.com; dmarc=pass action=none header.from=cixtech.com;
+ dkim=pass header.d=cixtech.com; arc=none
+Received: from SEYPR06MB6226.apcprd06.prod.outlook.com (2603:1096:101:df::13)
+ by SEYPR06MB6432.apcprd06.prod.outlook.com (2603:1096:101:16f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Mon, 29 Jun
+ 2026 09:11:46 +0000
+Received: from SEYPR06MB6226.apcprd06.prod.outlook.com
+ ([fe80::56e8:777c:d80e:d364]) by SEYPR06MB6226.apcprd06.prod.outlook.com
+ ([fe80::56e8:777c:d80e:d364%5]) with mapi id 15.21.0159.018; Mon, 29 Jun 2026
+ 09:11:46 +0000
+From: "Joakim  Zhang" <joakim.zhang@cixtech.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>, "mturquette@baylibre.com"
+	<mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
+	"bmasney@redhat.com" <bmasney@redhat.com>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, Gary Yang
+	<Gary.Yang@cixtech.com>
+CC: cix-kernel-upstream <cix-kernel-upstream@cixtech.com>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH v6 3/4] reset: cix: add sky1 audss auxiliary reset driver
+Thread-Topic: [PATCH v6 3/4] reset: cix: add sky1 audss auxiliary reset driver
+Thread-Index: AQHdAt8NOhOy9rSMn0W7G5oKLL4fGrZNYZYAgAfI1iA=
+Date: Mon, 29 Jun 2026 09:11:46 +0000
+Message-ID:
+ <SEYPR06MB62260AFE3A4C2CBC998F876082E82@SEYPR06MB6226.apcprd06.prod.outlook.com>
+References: <20260623070805.211019-1-joakim.zhang@cixtech.com>
+	 <20260623070805.211019-4-joakim.zhang@cixtech.com>
+ <0193c47ff4ca98b1a6cb56ed8f4d8876b54756d8.camel@pengutronix.de>
+In-Reply-To: <0193c47ff4ca98b1a6cb56ed8f4d8876b54756d8.camel@pengutronix.de>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEYPR06MB6226:EE_|SEYPR06MB6432:EE_
+x-ms-office365-filtering-correlation-id: 4ba44a18-6353-4426-4d38-08ded5be71eb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|23010399003|376014|366016|1800799024|38070700021|3023799007|22082099003|18002099003|5023799004|4143699003|56012099006;
+x-microsoft-antispam-message-info:
+ nsJXqU3DDeN02DEtm2pkaRkOzvdUq/3VM3WktrXMPTBVEa9cDHMzbyGLs1T4kDF2EKnSWdCEnjcDePWdMbQUHduiWNBcHKm42N53e0B+FE+zc3dRo3Vp72VLagQUhoZdABNsFgCf4d7PPrGKfYKbjubmYqjb4N/dkU8HhLI+5aoPrb+oPcpzB+oZFVjOTDGXvZkHikqFxvxULbRvJy+ct9JR6+4a5agNWk5Gb408N49u9Ru0QAJzsLEI/vm8Bb2fQfridCA0p+UQ1mfchQupSEhTwDgfs5Laui3sxpoEJK7Cu+7iEBT8bvXZFNMdlfSAM0lOfhaaYcnzJQ8JLc3Gm6eQptni/MSni0RC82KjyuxcsgQJIpE/k37Ah+q4XMyb/dHPtyRocKTO97gDj5irx0ag9E1UTpWk0TqSSyQraIyUHQ1MJIRdB2Cx2TObMtfYEB5qi5MR+wr+KL6U8XNZxC7+h3IYB2Hl8Z4S1c16FJJIJMKnpR8YY737lpZo8JiLTofrsXjrqHfneUnnUiTUPDI4OGLoxXjWjAK+u0NpPWJRGqIScqZF6ezac8PU/yM5sYVD+l2SMbu2Fwm6ApCs7p3eltt0O46zm9rpMRiGZvad+Rbz6KLDSvxXfoN1zt2lUiW6TxKAPUdBuScH04UKsl2WQOjoi1LmjEmherPtF75+AFXrUc5hQ86NG3HuEj/ON8w85oxbDMwKGnwjFYu6estQqTT8SOn4VL71u/AMFDM=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB6226.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(38070700021)(3023799007)(22082099003)(18002099003)(5023799004)(4143699003)(56012099006);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?Ibg5Ais5PLqKNIyrDBK1wkbFEUazH78InRJy0ECUQAEJNHKp+Uyb88nMge8N?=
+ =?us-ascii?Q?ylQkRCQiSsMlwtgL91sniqyLJJUFdx9NKKWiu0RFfgXN2hp4rjkTJ7CHNRwF?=
+ =?us-ascii?Q?bs7eI1PDxp6LAIOS8cMOjzTW7s0h4J2XFMkOtjev+YsaUhHDJEOfhVbftx3p?=
+ =?us-ascii?Q?m59aQ6Eb4ZhwwJPIfJxmY0MB6ZBGYmdd6rjUZoICm9hK3FiS9jdWt0BzKaC+?=
+ =?us-ascii?Q?J+kORjKGCyvK9meks75Wk1oU2XY+2O44P5pjwPFCsVmIPk3xDy8WBI0cocgp?=
+ =?us-ascii?Q?LfD4h196yrhX3k88iP2+MVqHkkPI/YHW2XBkkSKUb38Yswn9IAp08u9OVEq1?=
+ =?us-ascii?Q?IC054bngxYT7eoE1OhJ0jTrTNYnbzm0tADNSgzu2bj25i4wnvevNS9t/t9Wl?=
+ =?us-ascii?Q?BIlduj5xfMUDuOCSw/a7ykWNOQ0v3jjPJYvrrW8hXc52s/9CqQLzuaPfuxkP?=
+ =?us-ascii?Q?0Q26jSlt3m9u/D/EnSfvc5D9uj3ITAbuFqCpXhPeMTz7nfAzxVVHHaiT4xfx?=
+ =?us-ascii?Q?OKowxSgUnDKI9qUi9p33OVVG2mdbUX3Rk2Xuhhv6BGiJxoISTqD6Cnjxtt4y?=
+ =?us-ascii?Q?Mpuu7z3idE1RRV7n/hFpjVdZmrHgM3YhvjDYjBIsyg4blOeBUKL6EYzuq8pm?=
+ =?us-ascii?Q?DxepZUsUlwznj8ixXR4WG15DremRlJuK4jGWG9NTwkKF9PPInpbKZ8h2cdid?=
+ =?us-ascii?Q?Zb/S3aoAoOm5xkqLMyLwsf7HcXzVkR/ov5fXkUhFT7tzggv1xoJzjQT7FDEn?=
+ =?us-ascii?Q?2q0cpNnf2eIcIWNSGPiTE233Sslaq8wFbvZEa5Nl0Z2SMK0JNOAjkMfDieka?=
+ =?us-ascii?Q?4Ujb6lK9WmBS1fvJA9y7tUUUNsXn8Pkf/j/GJGM4qCaW/Z5ZvHHFB/rIeHOt?=
+ =?us-ascii?Q?6/Eh7M56z+hZWv9DSXtDPlvopiZvxjFQQ8/PhCHBQGUAsdXPiPN/dd+gJi41?=
+ =?us-ascii?Q?OhnxM0YoPi9wLKLyT/oWUNVQOz/a472O+VfbivBT4oLTQgWI70KD9UpWNjIe?=
+ =?us-ascii?Q?2oCzVUOF99RgdRtlcZz5+YtqdZbfqDTwZVqvJ0sxZZ2PHZc3sJe6fMzk1ZV2?=
+ =?us-ascii?Q?1CQRWlBxXMoZNnGGTjh7B8GF3p+Dnb7Otz5acv08Ue8fbaU6Qi7TDGscgMGL?=
+ =?us-ascii?Q?dvKXm3s3E9SjYTcasUm21C2acUFw5rhtluBVq4vDb44HiGNrzimUyDC7XDQD?=
+ =?us-ascii?Q?uWsGXLI6tDwQPDuFk5EcjIJ0w9pP1XOX4UvDjrcwkCjNv+vQrgQb4sgxw0pU?=
+ =?us-ascii?Q?D/N7/Km+W35nIIVL8I7y4EVTciGNE4zwIHVBd6zTMJCpzFfLIMHbyIv5nnNw?=
+ =?us-ascii?Q?bgJq0yZEaYu+7PjMoQK3ZpXDpVucvlm1Gx1MuybaYMAg3o7ZfLQo+/Z7bpjq?=
+ =?us-ascii?Q?8+SSEbB2S2rbQ4KxXwWhMUbbEu408sYwE9pb0ZO4EjkUj0NuxgKHU/bSficl?=
+ =?us-ascii?Q?E76QlqFBAsc4CBMo/QlFKYR2pn9vVLOqO15TNQwivnrpXwRnwLqHQM4xOgwv?=
+ =?us-ascii?Q?yVR4mppJSCN+mvNQssGuqSAyYHWA+QTcwzBvrc/ayKtGlqMAq8+tYOUfx9ZZ?=
+ =?us-ascii?Q?agIA479FIv2VgFnee/k/ecykq9E/JZcnz1leJAdITYMc+GECnzgkB2CHU8NF?=
+ =?us-ascii?Q?nlbrlja6D4P3onElKGNq3wWHKicojVOyL70Y0GyuVk4b72gc/22SWTRTvXaF?=
+ =?us-ascii?Q?Z/GvkNjW1NlyQGLZyUckIVrX/rKKs1ckRqL68Xfs4lc74bfngpmuhYRNCl+C?=
+ =?us-ascii?Q?apxUY/9ykw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 1/9] drm/bridge: Implement generic USB Type-C DP HPD
- bridge
-To: Xu Yang <xu.yang_2@oss.nxp.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Peter Chen <hzpeterchen@gmail.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, Hugh Cole-Baker <sigmaris@gmail.com>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org
-References: <20260304094152.92-1-kernel@airkyi.com>
- <20260304094152.92-2-kernel@airkyi.com>
- <erx73m2ueuvbzjteadjli6aki5by4pr3hyertkkqqoqwhaa4v3@5cstmshcercx>
- <56c6abb8-c127-449f-9368-12f94620c2bc@rock-chips.com>
- <k53t2soc3nxhwugncatksektig6agxfgdkogkdwbhrhu2fn2g7@auvsfrv76wxy>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <k53t2soc3nxhwugncatksektig6agxfgdkogkdwbhrhu2fn2g7@auvsfrv76wxy>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9f12a3faa703a7kunmb5a121f9254176
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCSUhIVkwfQ0hMHkxCHUNLHVYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQk1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=KeP9lnKD//VlvvlxIiRxEa09oTrs/v+c7Ck0y9CJ7kebPxL1eAQ4LuYjyaIGw/OYsBbKdtssXKahpSlLQkKujxKOUvxCbJxwSZlr8H/ZYK2KhzjMnwcoDd1Sn9tYhC8NZeSIdOHyY2fC9yOG+KjawDDY3dqQlsRMu7fzSYuGBdk=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=oOV+Bwk6KYyidJt86LeBdzQS5L6KRlfhXQ6hucCploM=;
-	h=date:mime-version:subject:message-id:from;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB6226.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ba44a18-6353-4426-4d38-08ded5be71eb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jun 2026 09:11:46.4282
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: uuQhD6rS+k7JWAVd9yWYsoRm7TQAyuB5A7TcRakxf4MPbwySCdp4SewNqA0/dytTtXdf7wztmuRLfuAKiCwZExCy7zndX2NSc5d9SOlusSc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB6432
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [3.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	FROM_NAME_EXCESS_SPACE(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[cixtech.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316841-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:xu.yang_2@oss.nxp.com,m:heikki.krogerus@linux.intel.com,m:kernel@airkyi.com,m:gregkh@linuxfoundation.org,m:dmitry.baryshkov@oss.qualcomm.com,m:hzpeterchen@gmail.com,m:luca.ceresoli@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:kishon@kernel.org,m:heiko@sntech.de,m:hjc@rock-chips.com,m:andy.yan@rock-chips.com,m:yubing.zhang@rock-chips.com,m:frank.wang@rock-chips.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:amitsd@google.com,m:dsimic@manjaro.org,m:jbx6244@gmail.com,m:didi.debian@cknow.org,m:pbrobinson@gmail.com,m:sigmaris@gmail.com,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.
- org,m:linux-rockchip@lists.infradead.org,m:dri-devel@lists.freedesktop.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[chaoyi.chen@rock-chips.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[41];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-316818-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_RECIPIENTS(0.00)[m:p.zabel@pengutronix.de,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Gary.Yang@cixtech.com,m:cix-kernel-upstream@cixtech.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chaoyi.chen@rock-chips.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[airkyi.com,linuxfoundation.org,oss.qualcomm.com,gmail.com,bootlin.com,kernel.org,sntech.de,rock-chips.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,google.com,manjaro.org,cknow.org,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,intel.com:email,vger.kernel.org:from_smtp,rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:from_mime]
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,infradead.org:email,pengutronix.de:email,SEYPR06MB6226.apcprd06.prod.outlook.com:mid,cixtech.com:from_mime,cixtech.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AB14C6D8197
-
-Hello Xu Yang, Heikki
-
-On 6/29/2026 4:26 PM, Xu Yang wrote:
-> On Mon, Jun 29, 2026 at 09:29:08AM +0800, Chaoyi Chen wrote:
->> Hello Xu Yang,
->>
->> On 6/26/2026 7:15 PM, Xu Yang wrote:
->>> On Wed, Mar 04, 2026 at 05:41:44PM +0800, Chaoyi Chen wrote:
->>>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>>>
->>>> The HPD function of Type-C DP is implemented through
->>>> drm_connector_oob_hotplug_event(). For embedded DP, it is required
->>>> that the DRM connector fwnode corresponds to the Type-C port fwnode.
->>>>
->>>> To describe the relationship between the DP controller and the Type-C
->>>> port device, we usually using drm_bridge to build a bridge chain.
->>>>
->>>> Now several USB-C controller drivers have already implemented the DP
->>>> HPD bridge function provided by aux-hpd-bridge.c, it will build a DP
->>>> HPD bridge on USB-C connector port device.
->>>>
->>>> But this requires the USB-C controller driver to manually register the
->>>> HPD bridge. If the driver does not implement this feature, the bridge
->>>> will not be create.
->>>>
->>>> So this patch implements a generic DP HPD bridge based on
->>>> aux-hpd-bridge.c. It will monitor Type-C bus events, and when a
->>>> Type-C port device containing the DP svid is registered, it will
->>>> create an HPD bridge for it without the need for the USB-C controller
->>>> driver to implement it.
->>>>
->>>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>>> Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
->>>> ---
->>>>
->>>> (no changes since v14)
->>>>
->>>> Changes in v13:
->>>> - Only register drm dp hpd bridge for typec port altmode device.
->>>>
->>>> (no changes since v12)
->>>>
->>>> Changes in v11:
->>>> - Switch to using typec bus notifiers.
->>>>
->>>> (no changes since v10)
->>>>
->>>> Changes in v9:
->>>> - Remove the exposed DRM_AUX_HPD_BRIDGE option, and select
->>>> DRM_AUX_HPD_TYPEC_BRIDGE when it is available.
->>>> - Add more commit comment about problem background.
->>>>
->>>> Changes in v8:
->>>> - Merge generic DP HPD bridge into one module.
->>>> ---
->>>>
->>>>  drivers/gpu/drm/bridge/Kconfig                | 10 ++++
->>>>  drivers/gpu/drm/bridge/Makefile               |  1 +
->>>>  .../gpu/drm/bridge/aux-hpd-typec-dp-bridge.c  | 49 +++++++++++++++++++
->>>>  3 files changed, 60 insertions(+)
->>>>  create mode 100644 drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
->>>>
->>>> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
->>>> index a250afd8d662..559487aa09a9 100644
->>>> --- a/drivers/gpu/drm/bridge/Kconfig
->>>> +++ b/drivers/gpu/drm/bridge/Kconfig
->>>> @@ -30,6 +30,16 @@ config DRM_AUX_HPD_BRIDGE
->>>>  	  Simple bridge that terminates the bridge chain and provides HPD
->>>>  	  support.
->>>>  
->>>> +if DRM_AUX_HPD_BRIDGE
->>>> +config DRM_AUX_HPD_TYPEC_BRIDGE
->>>> +	tristate
->>>> +	depends on TYPEC || !TYPEC
->>>> +	default TYPEC
->>>> +	help
->>>> +	  Simple bridge that terminates the bridge chain and provides HPD
->>>> +	  support. It build bridge on each USB-C connector device node.
->>>> +endif
->>>> +
->>>
->>> Should CONFIG_TYPEC_DP_ALTMODE select this one? Otherwise, we need to do it
->>> manually.
->>>
->>> $ grep -nr --include=Kconfig "select DRM_AUX_HPD_BRIDGE" .
->>> ./drivers/soc/qcom/Kconfig:118: select DRM_AUX_HPD_BRIDGE
->>> ./drivers/usb/typec/ucsi/Kconfig:88:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
->>> ./drivers/usb/typec/ucsi/Kconfig:99:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
->>> ./drivers/usb/typec/tcpm/Kconfig:62:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
->>> ./drivers/usb/typec/tcpm/Kconfig:85:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
->>>
->>
->> That's a fair point. But based on the previous discussion, Heikki
->> point out that configurations in the TYPEC subsystem should not
->> select configurations from DRM.
-> 
-> I have just reviewed your previous patchsets but I did't find such opinion from
-> Heikki. Otherwise, why are tcpm.c/ucsi.c already allowed to add the above select
-> condition in their configs?
-> 
-> I think Heikki means that the DRM_AUX_HPD_BRIDGE shouldn't been selected at the
-> top level of Type-C subsystem. Because not all Type-C devices support the DP function.
-> 
-> As a generic Type-C DP HPD bridge, displayport.c will likely need to use it in
-> the future. Therefore, allowing displayport.c to select DRM_AUX_HPD_BRIDGE makes sense.
-> 
-> According to my testing, it's impossible to build this driver in unless TYPEC_FUSB302
-> or a relevant CONFIG is built in to select DRM_AUX_HPD_BRIDGE, or the defconfig is modified.
-> 
-
-Yep. For me, I select DRM_AUX_HPD_BRIDGE in DRM.
-
-@Heikki, what do you think of the following change?
-Should we add a new patch for this? Thanks.
+X-Rspamd-Queue-Id: D28CA6D7E94
 
 
-diff --git a/drivers/usb/typec/altmodes/Kconfig b/drivers/usb/typec/altmodes/Kconfig
-index 7867fa7c405d..f89cdf3c949b 100644
---- a/drivers/usb/typec/altmodes/Kconfig
-+++ b/drivers/usb/typec/altmodes/Kconfig
-@@ -5,6 +5,7 @@ menu "USB Type-C Alternate Mode drivers"
- config TYPEC_DP_ALTMODE
-        tristate "DisplayPort Alternate Mode driver"
-        depends on DRM
-+       select DRM_AUX_HPD_BRIDGE 
-        help
-          DisplayPort USB Type-C Alternate Mode allows DisplayPort
-          displays and adapters to be attached to the USB Type-C
+Hello, Philipp
 
--- 
-Best, 
-Chaoyi
+> -----Original Message-----
+> From: Philipp Zabel <p.zabel@pengutronix.de>
+> Sent: Wednesday, June 24, 2026 4:30 PM
+> To: Joakim Zhang <joakim.zhang@cixtech.com>; mturquette@baylibre.com;
+> sboyd@kernel.org; bmasney@redhat.com; robh@kernel.org;
+> krzk+dt@kernel.org; conor+dt@kernel.org; Gary Yang
+> <gary.yang@cixtech.com>
+> Cc: cix-kernel-upstream <cix-kernel-upstream@cixtech.com>; linux-
+> clk@vger.kernel.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel=
+.org;
+> linux-arm-kernel@lists.infradead.org
+> Subject: Re: [PATCH v6 3/4] reset: cix: add sky1 audss auxiliary reset dr=
+iver
+>=20
+> EXTERNAL EMAIL
+>=20
+> CAUTION: Suspicious Email from unusual domain.
+>=20
+> On Di, 2026-06-23 at 15:08 +0800, joakim.zhang@cixtech.com wrote:
+> > From: Joakim Zhang <joakim.zhang@cixtech.com>
+> >
+> > Add an auxiliary reset controller driver for the AUDSS CRU. Sixteen
+> > software reset lines for audio subsystem peripherals are controlled
+> > through one register in the CRU register map.
+> >
+> > The driver is created by the AUDSS clock platform driver and registers
+> > the reset controller on the CRU device node.
+> >
+> > Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
+> > ---
+> >  drivers/reset/Kconfig            |  14 +++
+> >  drivers/reset/Makefile           |   1 +
+> >  drivers/reset/reset-sky1-audss.c | 192
+> > +++++++++++++++++++++++++++++++
+> >  3 files changed, 207 insertions(+)
+> >  create mode 100644 drivers/reset/reset-sky1-audss.c
+> >
+> > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig index
+> > d009eb0849a3..f74859b292ae 100644
+> > --- a/drivers/reset/Kconfig
+> > +++ b/drivers/reset/Kconfig
+> > @@ -300,6 +300,20 @@ config RESET_SKY1
+> >       help
+> >         This enables the reset controller for Cix Sky1.
+> >
+> > +config RESET_SKY1_AUDSS
+> > +     tristate "Cix Sky1 Audio Subsystem reset controller"
+> > +     depends on ARCH_CIX || COMPILE_TEST
+> > +     select AUXILIARY_BUS
+> > +     select REGMAP_MMIO
+> > +     default CLK_SKY1_AUDSS
+> > +     help
+> > +       Support for block-level software reset lines in the Cix Sky1
+> > +       Audio Subsystem (AUDSS) Clock and Reset Unit. Sixteen reset
+> > +       outputs for audio peripherals are controlled through the CRU
+> > +       register map. The driver binds as an auxiliary device from
+> > +       the AUDSS clock driver. Say M or Y here if you want to build
+> > +       this driver.
+> > +
+> >  config RESET_SOCFPGA
+> >       bool "SoCFPGA Reset Driver" if COMPILE_TEST && (!ARM
+> || !ARCH_INTEL_SOCFPGA)
+> >       default ARM && ARCH_INTEL_SOCFPGA diff --git
+> > a/drivers/reset/Makefile b/drivers/reset/Makefile index
+> > 3e52569bd276..e81407ea3e29 100644
+> > --- a/drivers/reset/Makefile
+> > +++ b/drivers/reset/Makefile
+> > @@ -39,6 +39,7 @@ obj-$(CONFIG_RESET_RZV2H_USB2PHY) +=3D
+> > reset-rzv2h-usb2phy.o
+> >  obj-$(CONFIG_RESET_SCMI) +=3D reset-scmi.o
+> >  obj-$(CONFIG_RESET_SIMPLE) +=3D reset-simple.o
+> >  obj-$(CONFIG_RESET_SKY1) +=3D reset-sky1.o
+> > +obj-$(CONFIG_RESET_SKY1_AUDSS) +=3D reset-sky1-audss.o
+> >  obj-$(CONFIG_RESET_SOCFPGA) +=3D reset-socfpga.o
+> >  obj-$(CONFIG_RESET_SUNPLUS) +=3D reset-sunplus.o
+> >  obj-$(CONFIG_RESET_SUNXI) +=3D reset-sunxi.o diff --git
+> > a/drivers/reset/reset-sky1-audss.c b/drivers/reset/reset-sky1-audss.c
+> > new file mode 100644
+> > index 000000000000..20870f37d7d7
+> > --- /dev/null
+> > +++ b/drivers/reset/reset-sky1-audss.c
+> > @@ -0,0 +1,192 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Cix Sky1 Audio Subsystem reset controller driver
+> > + *
+> > + * Copyright 2026 Cix Technology Group Co., Ltd.
+> > + */
+> > +
+> > +#include <dt-bindings/reset/cix,sky1-audss-cru.h>
+> > +
+> > +#include <linux/auxiliary_bus.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/device.h>
+> > +#include <linux/io.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_address.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/reset-controller.h>
+> > +
+> > +#define SKY1_RESET_SLEEP_MIN_US              50
+> > +#define SKY1_RESET_SLEEP_MAX_US              100
+> > +
+> > +#define AUDSS_SW_RST                 0x78
+> > +
+> > +struct sky1_audss_reset_map {
+> > +     unsigned int offset;
+> > +     unsigned int mask;
+> > +};
+> > +
+> > +struct sky1_audss_reset {
+> > +     struct reset_controller_dev rcdev;
+> > +     struct regmap *regmap;
+> > +     const struct sky1_audss_reset_map *map; };
+> > +
+> > +static const struct sky1_audss_reset_map sky1_audss_reset_map[] =3D {
+> > +     [AUDSS_I2S0_SW_RST]   =3D { AUDSS_SW_RST, BIT(0) },
+> > +     [AUDSS_I2S1_SW_RST]   =3D { AUDSS_SW_RST, BIT(1) },
+> > +     [AUDSS_I2S2_SW_RST]   =3D { AUDSS_SW_RST, BIT(2) },
+> > +     [AUDSS_I2S3_SW_RST]   =3D { AUDSS_SW_RST, BIT(3) },
+> > +     [AUDSS_I2S4_SW_RST]   =3D { AUDSS_SW_RST, BIT(4) },
+> > +     [AUDSS_I2S5_SW_RST]   =3D { AUDSS_SW_RST, BIT(5) },
+> > +     [AUDSS_I2S6_SW_RST]   =3D { AUDSS_SW_RST, BIT(6) },
+> > +     [AUDSS_I2S7_SW_RST]   =3D { AUDSS_SW_RST, BIT(7) },
+> > +     [AUDSS_I2S8_SW_RST]   =3D { AUDSS_SW_RST, BIT(8) },
+> > +     [AUDSS_I2S9_SW_RST]   =3D { AUDSS_SW_RST, BIT(9) },
+> > +     [AUDSS_WDT_SW_RST]    =3D { AUDSS_SW_RST, BIT(10) },
+> > +     [AUDSS_TIMER_SW_RST]  =3D { AUDSS_SW_RST, BIT(11) },
+> > +     [AUDSS_MB0_SW_RST]    =3D { AUDSS_SW_RST, BIT(12) },
+> > +     [AUDSS_MB1_SW_RST]    =3D { AUDSS_SW_RST, BIT(13) },
+> > +     [AUDSS_HDA_SW_RST]    =3D { AUDSS_SW_RST, BIT(14) },
+> > +     [AUDSS_DMAC_SW_RST]   =3D { AUDSS_SW_RST, BIT(15) },
+> > +};
+> > +
+> > +static struct sky1_audss_reset *to_sky1_audss_reset(struct
+> > +reset_controller_dev *rcdev) {
+> > +     return container_of(rcdev, struct sky1_audss_reset, rcdev); }
+> > +
+> > +static int sky1_audss_reset_set(struct reset_controller_dev *rcdev,
+> > +                             unsigned long id, bool assert) {
+> > +     struct sky1_audss_reset *priv =3D to_sky1_audss_reset(rcdev);
+> > +     const struct sky1_audss_reset_map *signal =3D &priv->map[id];
+> > +     unsigned int value =3D assert ? 0 : signal->mask;
+> > +
+> > +     return regmap_update_bits(priv->regmap, signal->offset,
+> > + signal->mask, value);
+>=20
+> Why does this propagate the return value ...
+I'll propagate the return value in the ops callbacks.
+
+
+> > +}
+> > +
+> > +static int sky1_audss_reset_assert(struct reset_controller_dev *rcdev,
+> > +                                unsigned long id) {
+> > +     sky1_audss_reset_set(rcdev, id, true);
+>=20
+> ... only to be ignored? It'd be better to pass it on.
+Yes, will add.
+
+
+> > +     usleep_range(SKY1_RESET_SLEEP_MIN_US,
+> SKY1_RESET_SLEEP_MAX_US);
+> > +     return 0;
+> > +}
+> > +
+> > +static int sky1_audss_reset_deassert(struct reset_controller_dev *rcde=
+v,
+> > +                                  unsigned long id) {
+> > +     sky1_audss_reset_set(rcdev, id, false);
+> > +     usleep_range(SKY1_RESET_SLEEP_MIN_US,
+> SKY1_RESET_SLEEP_MAX_US);
+> > +     return 0;
+> > +}
+> > +
+> > +static int sky1_audss_reset(struct reset_controller_dev *rcdev,
+> > +                         unsigned long id) {
+> > +     sky1_audss_reset_assert(rcdev, id);
+> > +     sky1_audss_reset_deassert(rcdev, id);
+> > +     return 0;
+> > +}
+>=20
+> Will any AUDSS reset consumer use the reset_control_reset() API?
+> If not, no need to implement this.
+Will remove both .reset and .status.
+
+
+> > +
+> > +static int sky1_audss_reset_status(struct reset_controller_dev *rcdev,
+> > +                                unsigned long id) {
+> > +     struct sky1_audss_reset *priv =3D to_sky1_audss_reset(rcdev);
+> > +     const struct sky1_audss_reset_map *signal =3D &priv->map[id];
+> > +     unsigned int value;
+> > +
+> > +     regmap_read(priv->regmap, signal->offset, &value);
+> > +     return !!(value & signal->mask); }
+> > +
+> > +static const struct reset_control_ops sky1_audss_reset_ops =3D {
+> > +     .reset    =3D sky1_audss_reset,
+> > +     .assert   =3D sky1_audss_reset_assert,
+> > +     .deassert =3D sky1_audss_reset_deassert,
+> > +     .status   =3D sky1_audss_reset_status,
+> > +};
+> > +
+> > +static const struct regmap_config sky1_audss_regmap_config =3D {
+> > +     .reg_bits =3D 32,
+> > +     .val_bits =3D 32,
+> > +     .reg_stride =3D 4,
+> > +};
+> > +
+> > +static void sky1_audss_reset_iounmap(void *data) {
+> > +     iounmap(data);
+> > +}
+> > +
+> > +static int sky1_audss_reset_get_regmap(struct sky1_audss_reset *priv)
+> > +{
+> > +     struct device *dev =3D priv->rcdev.dev;
+> > +     void __iomem *base;
+> > +     int ret;
+> > +
+> > +     priv->regmap =3D dev_get_regmap(dev->parent, NULL);
+> > +     if (priv->regmap)
+> > +             return 0;
+> > +
+> > +     base =3D of_iomap(dev->parent->of_node, 0);
+> > +     if (!base)
+> > +             return dev_err_probe(dev, -ENOMEM, "failed to iomap
+> > + address space\n");
+> > +
+> > +     ret =3D devm_add_action_or_reset(dev, sky1_audss_reset_iounmap, b=
+ase);
+> > +     if (ret)
+> > +             return dev_err_probe(dev, ret, "failed to register
+> > + iounmap action\n");
+> > +
+> > +     priv->regmap =3D devm_regmap_init_mmio(dev, base,
+> &sky1_audss_regmap_config);
+> > +     if (IS_ERR(priv->regmap))
+> > +             return dev_err_probe(dev, PTR_ERR(priv->regmap),
+> > +                                  "failed to initialize regmap\n");
+>=20
+> Why is there a fallback path? The clock driver creates the regmap before
+> creating the reset aux device, so dev_get_regmap() can never fail.
+Agreed.=20
+
+
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int sky1_audss_reset_probe(struct auxiliary_device *adev,
+> > +                               const struct auxiliary_device_id *id)
+> > +{
+> > +     struct sky1_audss_reset *priv;
+> > +     struct device *dev =3D &adev->dev;
+> > +     int ret;
+> > +
+> > +     priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> > +     if (!priv)
+> > +             return -ENOMEM;
+> > +
+> > +     priv->map =3D sky1_audss_reset_map;
+> > +     priv->rcdev.owner =3D THIS_MODULE;
+> > +     priv->rcdev.nr_resets =3D ARRAY_SIZE(sky1_audss_reset_map);
+> > +     priv->rcdev.ops =3D &sky1_audss_reset_ops;
+> > +     priv->rcdev.of_node =3D dev->parent->of_node;
+>=20
+> auxiliary_device_create() uses device_set_of_node_from_dev() to inherit t=
+he
+> parent of_node, so you can use dev->of_node here.
+Done. rcdev.of_node now uses dev->of_node.
+
+
+> > +     priv->rcdev.dev =3D dev;
+> > +     priv->rcdev.of_reset_n_cells =3D 1;
+>=20
+> No need to set of_reset_n_cells.
+>=20
+> > +
+> > +     dev_set_drvdata(dev, priv);
+>=20
+> This seems unnecessary as well.
+>=20
+> > +
+> > +     ret =3D sky1_audss_reset_get_regmap(priv);
+> > +     if (ret)
+> > +             return dev_err_probe(dev, ret, "failed to get
+> > + regmap\n");
+> > +
+> > +     return devm_reset_controller_register(dev, &priv->rcdev); }
+> > +
+> > +static const struct auxiliary_device_id sky1_audss_reset_ids[] =3D {
+> > +     { .name =3D "clk_sky1_audss.reset" },
+> > +     { }
+> > +};
+> > +MODULE_DEVICE_TABLE(auxiliary, sky1_audss_reset_ids);
+> > +
+> > +static struct auxiliary_driver sky1_audss_reset_driver =3D {
+> > +     .probe =3D sky1_audss_reset_probe,
+> > +     .id_table =3D sky1_audss_reset_ids, };
+> > +
+>=20
+> Drop this empty line.
+Removed dev_set_drvdata() and the extra blank line.
+
+Thanks,
+Joakim
 
