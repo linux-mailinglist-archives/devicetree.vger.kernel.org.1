@@ -1,219 +1,267 @@
-Return-Path: <devicetree+bounces-316822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316842-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qPI4Azo3Qmro1wkAu9opvQ
-	(envelope-from <devicetree+bounces-316822-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:13:30 +0200
+	id qTkTAaI5QmrR2AkAu9opvQ
+	(envelope-from <devicetree+bounces-316842-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:23:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4BB16D7EE9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:13:29 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DB776D81BB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:23:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=axis.com header.s=selector1 header.b=K6S+vBGk;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316822-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-316822-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=axis.com;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316842-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316842-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DB8573011E9E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:13:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DFFDB303BC1C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:18:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B3203FA5C7;
-	Mon, 29 Jun 2026 09:13:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 460793FADE2;
+	Mon, 29 Jun 2026 09:15:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012024.outbound.protection.outlook.com [52.101.66.24])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023125.outbound.protection.outlook.com [52.101.127.125])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 578CA3F9A1A
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 09:13:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C59123F822A;
+	Mon, 29 Jun 2026 09:15:07 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782724385; cv=fail; b=uMp75wNllfENJAGuYwLC/2Hmbm5H0W+5RzIWPCR6MoZjJob+cZP21k124GMfGxi2+h4Qbib5oTtFBaB8UumWB7Ax+sW08Zag+UEdGIWYgSKU/rtAGjoBefufCKg8FIvM3HvxEVRmCLEL8ismgq+JT4b77KlerLyQtYahpXlrc1g=
+	t=1782724509; cv=fail; b=ANieuSv81vcVxy3IlXc/usYWisNXb6SUlZ0jnUtz4MVDsvCLkuNwoKZ9Rl4Y1J946GmcwFKTBCzAZK3f/Gszrv65WBOZr/u4vpSfGDRlNeJZMMKA9pB/o1T1zUknbvKiyvHVUHht0FVhROyATprHRloK4SRCom1qmpAJmkdrT88=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782724385; c=relaxed/simple;
-	bh=hAiKE/tjjGqP7b9yLf1noMrTqrEa/G5l3y8Cw00sGUg=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=DGWCCcUyd0YkhTKBADPL7InnmNWMyfK9WGzfQMTghcQm+35LVsJy5/Tc5uI4rTXvTEKIjdvk9nxw74KY9ayM/TGh60qEDR5gqQK+yMANs4+bDEqRM3OQzX8RpJF7OxEiyjWMi9j7CHAvNBC/iIdaObFmIQmC41pUKeXy44yIhWQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=K6S+vBGk; arc=fail smtp.client-ip=52.101.66.24
+	s=arc-20240116; t=1782724509; c=relaxed/simple;
+	bh=XHiwxhXXETGhLUI9ej+Gm0w2PgZLqq+pJi6zeOu8eUc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rSJq+fglnAkNhzuEEy4ACFOmbecJUFKnH1LcSCoDaWUO9dwkNVM+eI4jC7leM8fH0w60EKrAfszZce/W5TX6zoUi63dLRtqLaRgtpO4EclJPRNdE7K/iWXnxbch4A+19KpWmGdYDAEl3hmXhhWhiwzEI8HeV52zX2JTZATjfCYY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.125
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d547sAUUqZrDfKxnYXYnbwBFfwKrbumqGVMm7SDVIzHgHpw2qEWVfLATRwhKaQBbvgHuR0NUKk47bUO9Qo6j1zJ8lptAZ6KM2stgRQuVaPLYhRnxRhJ6wIPg4KQTeQtE4TDPzqKtGu4vUtdB5ADb9aHSph9jJnvn9bk/fo2T2HCN1SWTPPP2y7iz9ld00GX5lAqXshXQWnx8EWKLKSTx489SZQgy+WGwi+duW13uSDk1K6bR0DHez2r4QADw8O4P/0pnaAG+elB1+3TxonuS+tUj6boZ8V0Ih5G08OzMzMq01j/J716zKFiWeJf+Ef8eE4Sy37JDIilItxGz350ANg==
+ b=hiTQjcLwlC8rS0sIqFJ0ZDxvlEPfvRoOTAxZnInhFFbFXH6pr42QCVuK9HRdWeQ31bwzcX/PmrxGxejgD71dMIoI+/EYkmZF799Mg8xLeyYUeY4hGE2u0fls8mazW6h2d8C9lq/wbqylbPNWg9KDpx5KOzTVUmm4c7k9vvpDiaGudosyWLYaqjediCD4I1mC8AVl0IY5MwzqmmrcVZCTi+4tKEqn+m9sY3vd6zKQsb9qlQjNaE/nJFnn/tqCnISrjWMeb97KXLWNhi1IrHhryChOZ/ZITRTonjO9QVy1mYciEHbvcI0LFQbjZTU4HilI3iKj/5TCw9L7K6Jr0aY/lA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z8Zt4gYXPb+idIvcPCrwGDWMCWkgI92ruPs7bFaPPCQ=;
- b=MmyWJIpngiMSIBlxast6gb0xcEdHOlZX0k09lQeWTjew7/vRTJrSBBZo68OoOpRf9gH+iYDOVc34rnuSG+t6n85V86ErjoT5dNc4sVWNz7B/ycbH5hiaKyVUvSBRQ2J3YPz3bIqpSHiW2xDpT45I/qtvx/QIQkWrxRPJTwz6cIDKzJ3pW3NzssYJfB/IjnXUS5G7Nuk4mO5iS6qJYPSF4DTc8C+s/DvEFd5JT3SSQEiUxVxtkT35A8AZhKTwki2ZHKVaV6qSpCzB2FSV7+l7Mkkiw9pZeYA3/FmUwvoIJDiwDug2QGzs/l5oNBtVBCIxXXgrHeFNmmg1nlYoUcWwdg==
+ bh=MmCkUJr8R/kRpoOCJTj2tfjUd66/jpXi5fsU7B2WDVo=;
+ b=s8ClVnKgJcjYZi5qffcuydS9EG64bVv/UVPqWhZ1L6/F8ZUTjWU1H4q64MIqtllLfkgl1gHcH/+UZTPj6EFdi5DmxIUVV68gHOuaTWxzMGWXji5ZqWR/UZicQVdwuRhf+BCFCWYgltpOSFqm8xDU+MxHvDSh/d9yxoxx9DctuIBnfOD7rvc9roaNFGyMUdxbIAaV8zt0bp859GSzvZE/ffLMTQi43BsSHqe7kVc6RDkPxWFWLv7p+7uJ3zzOdfji6tAAwifnMHVuAM06pnoU5IHW8QmeELTnbXRW9PtnqIS+pwrl67+r2eetLzVsIM2pXsEmjAukVh9JwPYn/Lix7Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=kernel.org smtp.mailfrom=axis.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z8Zt4gYXPb+idIvcPCrwGDWMCWkgI92ruPs7bFaPPCQ=;
- b=K6S+vBGkzYxmJQjl8OFGvO3EOZwLULbcFNBcMFtD3RlQ3r1GZTG/t4RdSdVRoJbb2jzq/zjnagNL/dcmoGTE3VOC3c45/ykjBbuGRVE0LtY9M5n/DcWUZ1Doe2BbjZmK3tNf6o5PLbM0rH3rEXJLt7fxIrTxItZGlyLnGumhZnw=
-Received: from AM0P190CA0010.EURP190.PROD.OUTLOOK.COM (2603:10a6:208:190::20)
- by DBAPR02MB6438.eurprd02.prod.outlook.com (2603:10a6:10:17c::22) with
+ 222.71.101.198) smtp.rcpttodomain=baylibre.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI1PR02CA0007.apcprd02.prod.outlook.com (2603:1096:4:1f7::6) by
+ KL1PR0601MB5512.apcprd06.prod.outlook.com (2603:1096:820:bc::6) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Mon, 29 Jun
- 2026 09:12:58 +0000
-Received: from AMS0EPF000001A4.eurprd05.prod.outlook.com
- (2603:10a6:208:190:cafe::8e) by AM0P190CA0010.outlook.office365.com
- (2603:10a6:208:190::20) with Microsoft SMTP Server (version=TLS1_3,
+ 2026 09:15:04 +0000
+Received: from SG2PEPF000B66C9.apcprd03.prod.outlook.com
+ (2603:1096:4:1f7:cafe::4d) by SI1PR02CA0007.outlook.office365.com
+ (2603:1096:4:1f7::6) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.19 via Frontend Transport; Mon,
- 29 Jun 2026 09:12:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- AMS0EPF000001A4.mail.protection.outlook.com (10.167.16.229) with Microsoft
+ 29 Jun 2026 09:15:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66C9.mail.protection.outlook.com (10.167.240.20) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Mon, 29 Jun 2026 09:12:58 +0000
-Received: from pc67007-2609 (10.4.0.13) by se-mail10w.axis.com (10.20.40.10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.39; Mon, 29 Jun
- 2026 11:12:57 +0200
-From: Waqar Hameed <waqar.hameed@axis.com>
-To: <sashiko-bot@kernel.org>
-CC: <sashiko-reviews@lists.linux.dev>, <devicetree@vger.kernel.org>,
-	<conor+dt@kernel.org>, <robh@kernel.org>, <kernel@axis.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: power: supply: Add TI BQ25630 charger
-In-Reply-To: <20260628220739.B37191F000E9@smtp.kernel.org>
-	(sashiko-bot@kernel.org's message of "Sun, 28 Jun 2026 22:07:39 +0000")
-References: <cover.1782683551.git.waqar.hameed@axis.com>
-	<3c28e53cff6d2e6ee94f8bf516ffa75134cb0959.1782683551.git.waqar.hameed@axis.com>
-	<20260628220739.B37191F000E9@smtp.kernel.org>
-User-Agent: a.out
-Date: Mon, 29 Jun 2026 11:12:57 +0200
-Message-ID: <pndh5mlemli.a.out@axis.com>
+ 15.21.181.6 via Frontend Transport; Mon, 29 Jun 2026 09:15:03 +0000
+Received: from cix (unknown [172.18.64.61])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id AF17040920FD;
+	Mon, 29 Jun 2026 17:15:02 +0800 (CST)
+From: joakim.zhang@cixtech.com
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	bmasney@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de
+Cc: cix-kernel-upstream@cixtech.com,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Joakim Zhang <joakim.zhang@cixtech.com>
+Subject: [PATCH v7 0/4] Add Cix Sky1 AUDSS clock and reset support
+Date: Mon, 29 Jun 2026 17:14:56 +0800
+Message-ID: <20260629091500.52540-1-joakim.zhang@cixtech.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: se-mail11w.axis.com (10.20.40.11) To se-mail10w.axis.com
- (10.20.40.10)
+Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AMS0EPF000001A4:EE_|DBAPR02MB6438:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4b5acaf5-88ea-4ad6-6b81-08ded5be9ce6
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66C9:EE_|KL1PR0601MB5512:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 6b57c157-d2a9-4fb2-c005-08ded5bee771
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|23010399003|376014|82310400026|36860700016|1800799024|13003099007|22082099003|18002099003|4143699003|11063799006|56012099006;
+	BCL:0;ARA:13230040|7416014|376014|82310400026|1800799024|36860700016|23010399003|3023799007|18002099003|56012099006;
 X-Microsoft-Antispam-Message-Info:
-	Ubo9eJr+bVwSRsHKVDH2Qq9veRvb9yRk2FXY9Qg+sHkSKSAt3I7YuVyYWQtH2Vc/Op9dn28aLpaA0jD2fq77lpWtbAQpQXLkvNkC3RN4Ce+19Q41iswSoqKtNxnbuF+n4cRO5nNM2pONQ1rhORbQh8+om15lqJfXUqPmLQqZ68EkkQh3JawYFehyRvAbmP3CKr/d7wBtgN8rUG4lrAJ4ZDB6JHlhgmCnpyKyE2nG30WMKUqq2kH9K/5GZOdMP7QYcn18OWFmTjAR5eeLqeQPOpO48VGLNROiKUEazmM9dpnhVq1137kQ3zvs1ezYYz/2iss3HbMGh7FYxrTm+eJJDKI0zSxpWZ4FGBoPELVznM++l9ht19pxcYxdR3g4ocV/ecp1oX/MMMUEAig687PLX4y41jGpYPVVRmU2pccOTdQHkRp0yJK66fKsvTFX+ilypB2SVcPikvPnxqWAF82h4vfCUHLOA5+NbYNrhU24f95TnlRcIebu4zYqD+E1FVk29/wSkMAjKnyNoH8SuxHO17GEva+8ALUyEe7EnAMbYI2cm3kDe6ficrY3YV7UK2oa5Dcpa0sf/R8a/2hmkQM9se0F32rGWBr03FVFWeCwdtkw+2EOx0LwkcWeooH2q7HoehGl/X1Ysll8nlnVFV/4AzNr8H7B5xx1iugowWozGrKixn8YVysIn0an5ImzfwRd8cldtm8DxGVoU7duSDQa5g==
+	dwgb/5+Iji1SFspypZTyVKAJWH1KsGDOgcuT11dCTAhvzugQ7el1DdsiSqf/JBzIdk9hv8EdRh4Im2EaVydEmdePdnprYpdzDGJDNSkfqIGD3vt+3E+UbnS1OEWFj0dY0sClRqPcdEuTN3rEogoJvRQ4crY6rnpzsTD+KB6Pi4VZIjW99BfoXTzaSNJfI/oev168fYDQMdwFIyB9zI1jIlKfeBN1jJnjKY6n5oXutCb8xSQaTbvnZJblLjiGRKYq0NLcG4ap+5eK7pCDFjlVDxuj4lqVEJbzdQaKrQQjZ2nzgUDt6WCxQ2Et4fog2KryrI9dsOyi2b9EF8kwdFWKdH+LQcxGcIlpUSha/uVWnT5Gfyd7KxuK5MJGkMQ6i1wXQkNEW4o0mUoil1m/V7MsdpED+DB0sRPk08suOK8VlzLzwZQWHw5Dfb46LLNLoBJdXeoxutf2GJVPkuswz8sSGnpQFpR9/fFpeg4pJr6LmhgsbH2LxUnF0UT2hAFqnmY1VpY7NZ9D0KxMg1k1lC4/II0074QFR6O9QNWOil10ZPa2ASmI6JkjtotXFHzS/XiVaFAhmZJQoTJy6xCk27Drz77aRuHASz0/8zKYe5WrmNwlm95NZlb9lm10JhuSbX6oddK4yTamRUY4bvgrWfugfUEOzq/OgrR5/Sx064tjkGi+dYF0D6I9SgpuXhrAnhU43f3GyauWcWBu+8vCU9epFA==
 X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(376014)(82310400026)(36860700016)(1800799024)(13003099007)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(1800799024)(36860700016)(23010399003)(3023799007)(18002099003)(56012099006);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	RVUvX2R8FeTvbqAeI4RyC4SMzuAjDdZ/8tyGIzsZNO3uEAFBvn06oEbXck3KCNYVpavKquyj4wRDjzrDCI4tZna221x+3tIpNlWUfl3CbR1SFVbftD4MI4Oi1pIKZ71G40UKS6W9QnloA+5T9SqRSqhzLRDc2RlCCIL2y0wcCa9rYoOE1zJd38DTlty6EX3h3bbBXVy7KNTSB4sKDYhksP6gtJIYihHoveEzF2ObBhO5R8xNyg6Mmx98elsx6i7SHUK+0xdZTMAqZnix7SM5LfGcsNTi15+tv4+yckb3hR7lxQPeQoOuSB3ApWv7AtKWb689OSgwmYyB9rWGWL9PMKxrc5dnLt05jVt/ueCFMoq6AgI/w8Dl2uX+TyWWUPTxWIxJEqMb6K9i3hB0bUpHdW8RMsRirPajpwB1UHOyBRAZWHk4OO4zZ1rRy4GAHI4o
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2026 09:12:58.5654
+	8vrmb8shT4eJoDzDzCNpQ1ob4TLpuwcKM+hbdiXmmJV1UVUBta7PE0zQypQ4j6sfPeTDMWE4Jgj877NtrrA1zXrvF+kN8z1e2E9iNzmCLguPNqFJmV7A8W7N6cQjMep3UPLCBANbVVumZ2wKNQkBOosJg8cAH1JBH4bqcOki2AwXDlfj3HkoxhIMWES4CFjMNWeW5BC3zjIZh68hBt/w5NeR0JBOUkqblYpnspp/zy+p5jhXdtNRvWlwD+D71VurmPQ98zExPSqXvnrQy3ANsTr9LIsAA2kWPhdod0IS4LFltH95uW5rJz4DZCeiwlkF6Oh1dsPtaOT9npZw01KVJYC5scT80ObqdKq6Xu9h4MXUf8XEWJO2cbxdPW3kpQtzKXP267ZPj5TokfThdJ1ZU3XF5lRM7KvBUIhwEe4oWsCCGrBjSp+TCJIWQtH+Ppe7
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2026 09:15:03.4971
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b5acaf5-88ea-4ad6-6b81-08ded5be9ce6
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b57c157-d2a9-4fb2-c005-08ded5bee771
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	AMS0EPF000001A4.eurprd05.prod.outlook.com
+	SG2PEPF000B66C9.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR02MB6438
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB5512
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.85 / 15.00];
+X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[axis.com,none];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[axis.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-bot@kernel.org,m:sashiko-reviews@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:kernel@axis.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316822-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[waqar.hameed@axis.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-316842-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[axis.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[cixtech.com];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:cix-kernel-upstream@cixtech.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:joakim.zhang@cixtech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[waqar.hameed@axis.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:email,cixtech.com:mid,cixtech.com:from_mime,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NO_DN(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B4BB16D7EE9
+X-Rspamd-Queue-Id: 7DB776D81BB
 
-Cc: kernel@axis.com
+From: Joakim Zhang <joakim.zhang@cixtech.com>
 
-On Sun, Jun 28, 2026 at 22:07 +0000 sashiko-bot@kernel.org wrote:
+The Cix Sky1 Audio Subsystem (AUDSS) groups audio-related blocks such as
+HDA, I2S, DSP, DMA, mailboxes, watchdog and timer behind one Clock and
+Reset Unit (CRU). The CRU is a single MMIO register block that provides
+clock muxing, gating and block-level software reset lines for those
+peripherals.
 
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Low] The devicetree binding example references an undefined phandle label
-> `&bat`, which will cause `dtc` compilation to fail during `make
-> dt_binding_check`.
-> --
->
-> commit 4d0f17bc3ce487f6e8027b9ef945b17aba3d6bee
-> Author: Waqar Hameed <waqar.hameed@axis.com>
->
-> dt-bindings: power: supply: Add TI BQ25630 charger
->
-> This commit adds devicetree bindings for the TI BQ25630 battery charger.
-> It defines standard properties for I2C and interrupts, and sets up
-> requirements for a monitored battery reference.
->
->> diff --git a/Documentation/devicetree/bindings/power/supply/ti,bq25630.yaml
->> b/Documentation/devicetree/bindings/power/supply/ti,bq25630.yaml
->> new file mode 100644
->> index 0000000000000..3f2904731c5a4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/power/supply/ti,bq25630.yaml
->
-> [ ... ]
->
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        charger@6b {
->> +            compatible = "ti,bq25630";
->> +            reg = <0x6b>;
->> +            interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
->> +            monitored-battery = <&bat>;
->
-> [Severity: Low]
-> Does this example reference an undefined phandle label?
->
-> Looking at the example scope, the node with the bat label is not defined
-> anywhere. Could this cause dtc compilation to fail with a 'Reference to 
-> non-existent node or label' error during make dt_binding_check?
+Clock and reset support are submitted in one series because they belong
+to the same hardware block and share one devicetree node
+(cix,sky1-audss-cru). The binding, clock indices and reset indices are
+defined together; the clock driver maps the CRU and instantiates the
+reset controller as an auxiliary driver on that node. Splitting clk and
+reset across separate series would leave neither side self-contained: the
+DTS node needs both providers, and the reset driver has no standalone
+probe path without the clock driver.
 
-No, `make dt_binding_check` passes. This was discussed in first patchset
-[1].
+---
+ChangeLogs:
+v6->v7:
+  * reset driver:
+    * propagate regmap errors in assert/deassert ops
+    * drop .reset and .status ops (no consumer uses them)
+    * remove regmap fallback path; use parent regmap only
+    * use dev->of_node for rcdev.of_node
+    * drop of_reset_n_cells and dev_set_drvdata()
+  * dt-binding:
+    * Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
->
->> +        };
->> +    };
->> +...
+v5->v6:
+  * rename dt-bindings headers to cix,sky1-audss-cru.h to match compatible
+  * drop status = "okay" from audss_cru node in sky1.dtsi
 
-[1] https://lore.kernel.org/lkml/65f55d19b4bcf8f07300df5922ba1605bb669138.1772201049.git.waqar.hameed@axis.com/
+v4->v5:
+  * refactor the driver, using platform_driver for clk and auxiliary_driver
+    for reset.
+
+v3->v4:
+  * move both power domain and resets into parset node (audss_cru)
+  * remove "simple-mfd", and change to populate the child node
+  * cix,sky1-audss.h -> cix,sky1-audss-clock.h
+
+v2->v3:
+  * clk part:
+    * devm_reset_control_get()->devm_reset_control_get_exclusive()
+    * assert noc reset from suspend
+    * clock parents changes from 6 to 4, and rename the clock names,
+      explain more about this: confirm with our designer, In fact,
+      there are 6 clock sources going into the audio subsystem. audio_clk1
+      and audio_clk3 are redundant in design and are not actually needed
+      in practice, so they are not shown here.
+    * refine clocks and clock-names property
+    * add detailed description of clocks
+    * drop parent node from clk binding
+    * drop define AUDSS_MAX_CLKS
+  * reset part:
+    * rename reset signal macro, remove _N
+    * drop SKY1_AUDSS_SW_RESET_NUM
+    * switching to compatible-style of defining subnodes in parent schema
+
+v1->v2:
+  * remove audss_rst device node since it doesn't has resource, and
+    move to reset-sky1.c driver.
+  * remove hda related which would be sent after this patch set accepted
+  * soc componnet is okay by default from dtsi
+  * fix for audss clk driver:
+    * remove "comment "Clock options for Cixtech audss:""
+    * add select MFD_SYSCON
+    * move lock and clk_data into struct sky1_audss_clks_priv
+    * const char *name -> const char * const * name
+    * remove CLK_GET_RATE_NOCACHE
+    * divicer -> divider
+    * Reverse Christmas tree order
+    * return reg ? 1 : 0; -> return !!reg;
+    * return ERR_CAST(hw); -> return hw;
+    * of_device_get_match_data(dev) -> device_get_match_data()
+    * add lock from runtime_suspend/resume
+  * loop to more mailing lists
+
+Joakim Zhang (4):
+  dt-bindings: soc: cix: add sky1 audss cru controller
+  clk: cix: add sky1 audss clock controller
+  reset: cix: add sky1 audss auxiliary reset driver
+  arm64: dts: cix: sky1: add audss cru
+
+ .../bindings/soc/cix/cix,sky1-audss-cru.yaml  |   92 ++
+ arch/arm64/boot/dts/cix/sky1.dtsi             |   18 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/cix/Kconfig                       |   16 +
+ drivers/clk/cix/Makefile                      |    3 +
+ drivers/clk/cix/clk-sky1-audss.c              | 1203 +++++++++++++++++
+ drivers/reset/Kconfig                         |   14 +
+ drivers/reset/Makefile                        |    1 +
+ drivers/reset/reset-sky1-audss.c              |  137 ++
+ .../dt-bindings/clock/cix,sky1-audss-cru.h    |   60 +
+ .../dt-bindings/reset/cix,sky1-audss-cru.h    |   25 +
+ 12 files changed, 1571 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/cix/cix,sky1-audss-cru.yaml
+ create mode 100644 drivers/clk/cix/Kconfig
+ create mode 100644 drivers/clk/cix/Makefile
+ create mode 100644 drivers/clk/cix/clk-sky1-audss.c
+ create mode 100644 drivers/reset/reset-sky1-audss.c
+ create mode 100644 include/dt-bindings/clock/cix,sky1-audss-cru.h
+ create mode 100644 include/dt-bindings/reset/cix,sky1-audss-cru.h
+
+-- 
+2.50.1
+
 
