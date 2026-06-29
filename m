@@ -1,133 +1,175 @@
-Return-Path: <devicetree+bounces-316753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316754-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tTGqIgAhQmrg0gkAu9opvQ
-	(envelope-from <devicetree+bounces-316753-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:38:40 +0200
+	id SWg/MQwhQmrj0gkAu9opvQ
+	(envelope-from <devicetree+bounces-316754-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:38:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02C646D7169
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:38:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 223D46D7173
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:38:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Dom5+f7q;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316753-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316753-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=DEPVWt5t;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316754-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316754-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3F5E230B3B1E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:31:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 39C173044A49
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:31:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC773D7D9B;
-	Mon, 29 Jun 2026 07:30:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D945332EBA;
+	Mon, 29 Jun 2026 07:30:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4610D3CC314;
-	Mon, 29 Jun 2026 07:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2219A391855;
+	Mon, 29 Jun 2026 07:30:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782718221; cv=none; b=u246CYX3zAbSpNpTZbxBtzdg6WgT1kwNSI6tZoaHnRj9NqbD1HL7AplX87W0CxDmk0k08wXCRYhOJ4NRAmigbcOrA5CIBzbN1aaPifDfDmhCJKvo5oyKOxqhy93tLeTsp7T25NScydjKAutmgjG+ldRBb3GUyDkXZghJ0lBupdE=
+	t=1782718246; cv=none; b=TQSslCVFm1phv+3gEtYz1WFEqrwNlIzFaC3iWVb+R9itSMvfsimw/71KfTSuyBz70YWlVx6FjdvvkyH3GIRCG0e+ZOOOP1h11zUpe8hKnrZKiLtru7BMh2rb83LRpv/v+jo81JODH9Bq6I3sONkBB04+ScXClJ5bTn5eoT8ifAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782718221; c=relaxed/simple;
-	bh=g14TrWfaAOikxyH48mdhNMlGi/I/3OG20zoFFfnu4kg=;
+	s=arc-20240116; t=1782718246; c=relaxed/simple;
+	bh=6niIvsu0JkdZrV/2LrFiOXa6pCaKYbdMuqzt72NpmzA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KxSjbFPpIUOb8A6EjGbasHwqbjDsimDpRTi9rgSVwjHQ11jEHAZLoTsh2ptbgCOXT5yg4hywAG6LlAsbrATfACYV5k9DvMhzkHAe7XhSpDCXRfJw01+Pl50RYfn1AnSFXWXpozXjL6pTGZK0Ch8xkI27OmljVOuTq3CnFIKx7wQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dom5+f7q; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B13FB1F000E9;
-	Mon, 29 Jun 2026 07:30:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782718215;
-	bh=hmgzdPY7zdf6EY9LMwzczIbYjz2M0rg28POJh7yjcFQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Dom5+f7q132wrlORN7BIhWI4174ts9dpgeYBdoL3YFPPp+9evPhw+xG7drC2ylQKV
-	 0Tuvlco0FpbWfeja+j4iAajvoQGgg683wkrVZ7zogyNThxIt01/1s6mVWTbcW9VGmC
-	 lJpUymwXdcrrnwRfPGf5D5NZ/sLpslXT/9XVegpFzO5XAlAqpFbTZMwd3JlpjoGrmZ
-	 5wplg8NTrKCXiIEV6j65CW4EmDRPfFa8aMWFHaSfYTPwysHmIVR2gO2c56QdbqkizE
-	 q48X3Jq/cNkjStCSugOd9Z8Qhs+Qkx60v28mse+t8PCBkcbIy7C1ivZPbjs8CIg2gj
-	 dr9V+pkFSJeuw==
-Date: Mon, 29 Jun 2026 09:30:11 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add APSS clock driver support for IPQ5210
-Message-ID: <20260629-resilient-lucky-lynx-d9db0d@quoll>
-References: <20260629-apss-clk-v1-0-8c92fe118ce4@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=OBDav3LcvTWN65rC3TPV1Je+kEyHM/SdIUvfARiGT+qQSNwN73XR3DRNT5n6e1zaQdbkdGzNmyorzuFEKfOBaekyGgJHfSWy8YTzgWtHtmgU7hvGaWysPXO4f/++FKYmqqHz535o4TjnuHQlE5jYb2+tRBHebpOHhmiSTk80b48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DEPVWt5t; arc=none smtp.client-ip=198.175.65.11
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1782718243; x=1814254243;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6niIvsu0JkdZrV/2LrFiOXa6pCaKYbdMuqzt72NpmzA=;
+  b=DEPVWt5t7RsGefDFcypcJhVYw9ZRnPU2fHOstBRtJE/v4v9Qu5vhuiPW
+   QVSWvtOAp40bvuMZkr4qAmxem3iiVSSX2oZWnVNLYpv8TDekiDE7b9DPe
+   8Bvbxl0hS95+LyM8LiNnClyPkOCkPtqeFvlcYxZldR8gp0AZmswGiuWCn
+   FG3Vmjy/LHGzoSKsiSX94MZI++f7tzbek1zFZLgqhol6mpJsm/hlE3zqO
+   qqdoNRcv2YksaN+sU3OFEUl/XKaUUxLsmmGsGyi8FTMMlQ/WGjJemD1uR
+   EuhhpX5B0xB7w8Qz1Z+Q4Bm4ua1KHGvVQEkvW1IzHJDKn9aMkU1xoGzKk
+   A==;
+X-CSE-ConnectionGUID: H1fqH5peRmm5Lr5yc7IhAA==
+X-CSE-MsgGUID: WmOSjeVJSbyi7cOCQNa2tA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="93750656"
+X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; 
+   d="scan'208";a="93750656"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 00:30:43 -0700
+X-CSE-ConnectionGUID: CE+3+MbXQFy2Plx38LHSkQ==
+X-CSE-MsgGUID: 3NfcIMd2TICGldXr21Zgbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; 
+   d="scan'208";a="245515617"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.207])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 00:30:39 -0700
+Date: Mon, 29 Jun 2026 10:30:36 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Zijun Hu <zijun.hu@oss.qualcomm.com>
+Cc: Alban Bedel <alban.bedel@lht.dlh.de>, driver-core@lists.linux.dev,
+	devicetree@vger.kernel.org, Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@kernel.org>,
+	linux-kernel@vger.kernel.org, Sashiko <sashiko-bot@kernel.org>
+Subject: Re: [PATCH v2 2/2] software node: Fix
+ software_node_get_reference_args() with index -1
+Message-ID: <akIfHJd2gpLC1u5o@ashevche-desk.local>
+References: <20260618152035.1600436-1-alban.bedel@lht.dlh.de>
+ <20260618152035.1600436-2-alban.bedel@lht.dlh.de>
+ <85b2bac4-9882-4f35-81e4-1718a52aacc9@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260629-apss-clk-v1-0-8c92fe118ce4@oss.qualcomm.com>
+In-Reply-To: <85b2bac4-9882-4f35-81e4-1718a52aacc9@oss.qualcomm.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-5.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_RECIPIENTS(0.00)[m:varadarajan.narayanan@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-316754-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-316753-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS(0.00)[m:zijun.hu@oss.qualcomm.com,m:alban.bedel@lht.dlh.de,m:driver-core@lists.linux.dev,m:devicetree@vger.kernel.org,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:gregkh@linuxfoundation.org,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:linux-kernel@vger.kernel.org,m:sashiko-bot@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[lht.dlh.de,lists.linux.dev,vger.kernel.org,gmail.com,linux.intel.com,linuxfoundation.org,kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,quoll:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linux.intel.com:from_mime,ashevche-desk.local:mid,vger.kernel.org:from_smtp,intel.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 02C646D7169
+X-Rspamd-Queue-Id: 223D46D7173
 
-On Mon, Jun 29, 2026 at 10:08:41AM +0530, Varadarajan Narayanan wrote:
-> IPQ5210 uses the HUAYRA pll for the APSS clock. This series adds support
-> for the APSS clock to change the CPU frequency to one of the supported
-> frequencies.
+On Sat, Jun 27, 2026 at 07:50:12AM +0800, Zijun Hu wrote:
+> On 6/18/2026 11:20 PM, Alban Bedel wrote:
+> > The bounds check for the index passed to
+> > software_node_get_reference_args() was failing when passed UINT_MAX,
+> > this in turn would lead to an out of bound access in the property
+> > array. Fix the bound check to also cover the UINT_MAX case.
+> > 
+> > Fixes: 31e4e12e0e960 ("software node: Correct a OOB check in software_node_get_reference_args()")
 > 
-> Signed-off-by: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
-> ---
-> Varadarajan Narayanan (2):
->       dt-bindings: clock: qcom,a53pll: Add IPQ5210 compatible
->       clk: qcom: apss-ipq-pll: Add IPQ5210 support
+> i think the fix tag may not be right.
 > 
->  .../devicetree/bindings/clock/qcom,a53pll.yaml        |  1 +
->  drivers/clk/qcom/apss-ipq-pll.c                       | 19 +++++++++++++++++++
->  2 files changed, 20 insertions(+)
-> ---
-> base-commit: 533704f3c28c3f5f9e2542aa3a6a326c32e6f5c0
-> change-id: 20260625-apss-clk-ed39c40ed468
-> prerequisite-change-id: 20260515-tsens-802eef7a2cf6:v1
-> prerequisite-patch-id: 55c7e7f58ff80ecfed956707a9a893bbf59ef74b
+> for original express before the fix tag: if (index * sizeof(*ref) > prop->length)
+> 
+> for UINT_MAX, multiplication overflow?
 
-Really, how?
+I agree that Fixes tag may be not the best chosen.
 
-Best regards,
-Krzysztof
+...
+
+> > software_node_get_reference_args(const struct fwnode_handle *fwnode,
+
+> >  	if (prop->is_inline)
+> >  		return -EINVAL;
+> >  
+> > -	if ((index + 1) * sizeof(*ref) > prop->length)
+> > +	if (index >= prop->length / sizeof(*ref))
+> >  		return -ENOENT;
+> >  
+> 
+> who will use UINT_MAX ?
+> 
+> This function is a interface function.  the best fix should check
+> input parameter @index and return -EINVAL if it is not expected?
+
+And how do you know which index is allowed without doing that division?
+Basically this patch does what you asked for: check input parameter for
+the allowed range (which is dynamic, depending on the property length and
+size of the reference structure.
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
