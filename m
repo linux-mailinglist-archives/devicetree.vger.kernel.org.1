@@ -1,283 +1,186 @@
-Return-Path: <devicetree+bounces-316720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316723-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6wZkHssaQmo80QkAu9opvQ
-	(envelope-from <devicetree+bounces-316720-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:12:11 +0200
+	id 4MLXEYgeQmo40gkAu9opvQ
+	(envelope-from <devicetree+bounces-316723-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:28:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05E106D6D32
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:12:11 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E1E16D6FF9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:28:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FMI7VlU0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316720-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-316720-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=none;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316723-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-316723-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CBEFB300CEA9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:05:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7BCE630230F3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:06:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3A73BB9EB;
-	Mon, 29 Jun 2026 07:05:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156CA3B3C1D;
+	Mon, 29 Jun 2026 07:06:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F2CD3B19AE
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 07:05:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCC0D2DF6EA;
+	Mon, 29 Jun 2026 07:06:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782716702; cv=none; b=bJkJG/XEDVznaYlzVUwyyJuwbYpnoJska9eh71iG8qXIIhLBwxqfYseE1lunXOyaIzdYchg+hp+tbw7jcK+qxNfhmS61w+TOBVT9Iw/Sa9Gfl83B130N7zRNcAWorLOhpKX2iP8Op/XdteMybk4J1Dj+hrG31flgzWN+ax5kvCA=
+	t=1782716781; cv=none; b=cBsvt0aeybKBCcjUSUo8nc8KbeRim9KRwU42ox6l/OHF9/whI1riYEA3QIb/VsD2OZuP/HPTavBOiRatIkv4FdXvPuOsBLK/AQdMJpEI6wPc2QOgP3o1jaT9LbKQnECInp+nq1tiun+19EjYluWsMPUH+4wt/eMuzEQ7/18WhRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782716702; c=relaxed/simple;
-	bh=zOM6xUgD2AG71+GS/6gc6/l1E1/yXHuf5V1tKu4b+b0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=hKbsUdxqDA6xGp14MiBV937UK+rjBuA51sOeEcBTjsKu9fU/nCXxvGSLql+gaYsdHAbJCNQFQJLPEcA6rCCcqjVOGLR98Vz4+lOk6si1j9okN0acTT7HW+cnf99voZPi4f7mlCiNgIv7rD9MQHsIrRXn8XHCgdf4pBNkLVEgtDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FMI7VlU0; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61A381F00A3A;
-	Mon, 29 Jun 2026 07:05:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782716700;
-	bh=cYsLc7VeFnzHRlR+FRxD2eiYZMglrm3vgeqW8aFo4VU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=FMI7VlU0jof+qSicGu/mxreS6kAUfopwWCBFIq/auuzh2il/9l70OJfLXyqM9yLe6
-	 X7dkd/plODzB6/lbXAdcdOtR+fe/em0BTnye04PhZOA79sEEsoyv7235GxtGYsosmx
-	 g24EGAEXmLTpxEqV74XVHn2FFpoOGLUPTJwzmiA97PFlOGLx/xKA4a6xZdRuV2xUrx
-	 IUg7aT6ikrjZtH4PB22AYaL/8/E1Bu5dykU0i0nbqLkbp2AVt0PO8E4kp5fAinQpvL
-	 JDB8WlIWrY/caB6zX0sZ/4lmVvkdC6IN2vAtt0trtvga0KcjH++tSv13VhejVzG+HW
-	 rbvjn/U+Qagjg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/4] ipmi: bt-bmc: Track open state per device
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Yu-Che Hsieh via B4 Relay" <devnull+yc_hsieh.aspeedtech.com@kernel.org>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260629-aspeed-bt-bmc-multichannel-v1-2-fc23ee337f7a@aspeedtech.com>
-References: <20260629-aspeed-bt-bmc-multichannel-v1-0-fc23ee337f7a@aspeedtech.com>
- <20260629-aspeed-bt-bmc-multichannel-v1-2-fc23ee337f7a@aspeedtech.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 29 Jun 2026 07:04:55 +0000
-Message-Id: <20260629070500.61A381F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1782716781; c=relaxed/simple;
+	bh=/ffu7S91LDVYFDk94ULXepy5DfMjq4D77F8qd/ZSdG0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LaEacseZi+5kbgvgwirqYMvbGuIbje9UMX9IUtLiJkNPj9ih9RSN/uIaV0jGot8TVUNYRwTnHWLH+MjV1jpTI12Visf3LnFFFTp+zztAw2N7BGG+DAjrlRPbl0PSLfljaeO2alW5n+RF/of35fo2opCimSHNYllpbUbhvFqkLR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BD321F000E9;
+	Mon, 29 Jun 2026 07:06:18 +0000 (UTC)
+Date: Mon, 29 Jun 2026 09:06:13 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Tanmay Kathpalia <tanmay.kathpalia@altera.com>
+Cc: linux-mmc@vger.kernel.org, ulf.hansson@linaro.org, 
+	Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/9] arm64: dts: agilex5: add Cadence SD6HC controller
+ and SOCDK enablement
+Message-ID: <20260629-tireless-hippo-of-innovation-eb5e27@quoll>
+References: <20260627201457.12318-1-tanmay.kathpalia@altera.com>
+ <20260627201457.12318-4-tanmay.kathpalia@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260627201457.12318-4-tanmay.kathpalia@altera.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316720-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:devnull+yc_hsieh.aspeedtech.com@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-316723-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:tanmay.kathpalia@altera.com,m:linux-mmc@vger.kernel.org,m:ulf.hansson@linaro.org,m:dinguyen@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,yc_hsieh.aspeedtech.com,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,aspeedtech.com:email,lists.linux.dev:replyto]
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,altera.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,quoll:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 05E106D6D32
+X-Rspamd-Queue-Id: 3E1E16D6FF9
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
+On Sat, Jun 27, 2026 at 01:14:48PM -0700, Tanmay Kathpalia wrote:
+> Add the Cadence SD6HC controller node to the Agilex5 SoC DTSI as a
+> shared SD/eMMC node, disabled by default. The controller integrates
+> with the system SMMU for IOMMU support and uses SDMCLK as the primary
+> clock source for PHY timing.
+> 
+> On the SOCDK board, add a fixed 3.3V regulator for card power and a
+> GPIO-controlled regulator for I/O voltage switching between 1.8V and
+> 3.3V. Enable the controller for SD-only operation in 4-bit bus width
+> with high-speed and SDR104 UHS-I modes at 200 MHz.
+> 
+> Signed-off-by: Tanmay Kathpalia <tanmay.kathpalia@altera.com>
+> ---
+>  .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 25 +++++++++++++++
+>  .../boot/dts/intel/socfpga_agilex5_socdk.dts  | 31 +++++++++++++++++++
+>  2 files changed, 56 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> index 02e62d954e94..f552aa0c1faa 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> @@ -300,6 +300,31 @@ portb: gpio-controller@0 {
+>  			};
+>  		};
+>  
+> +		/*
+> +		 * Shared SD/eMMC controller node. On the SOCDK OOBE daughter-card
+> +		 * this is used for SD card operation; on the SOCDK eMMC daughter-card
+> +		 * it is configured for eMMC.
+> +		 */
+> +		emmc: mmc@10808000 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
 
-New issues:
-- [Medium] The patch fails to achieve its stated goal of allowing multiple =
-independent BT devices because it hardcodes the miscdevice name, causing a =
-sysfs collision during probe.
+Please follow DTS coding style for new code.
 
-Pre-existing issues:
-- [High] A race condition between `bt_bmc_release` and `bt_bmc_open` can le=
-ave the BT device hardware incorrectly marked as busy, permanently blocking=
- communication.
-- [High] Unbinding the driver via sysfs while the miscdevice is held open l=
-eads to a Use-After-Free (UAF) and kernel panic.
-- [High] Hardware interrupts are not disabled during device removal, leadin=
-g to a potential unhandled interrupt storm if the IRQ line is shared.
-- [High] In `bt_bmc_read()`, passing a `count` of 0 causes an integer under=
-flow that leads to an out-of-bounds `copy_to_user()`, silently corrupting u=
-serspace memory.
---
-
-commit a5620fa074169f5d84ab115271732484510fd6a0
-Author: Yu-Che Hsieh <yc_hsieh@aspeedtech.com>
-
-ipmi: bt-bmc: Track open state per device
-
-The patch moves the open count from a global variable into the per-device
-struct bt_bmc. This is intended to maintain the single-open restriction per
-device while allowing multiple distinct BT devices to be opened independent=
-ly.
-
-> diff --git a/drivers/char/ipmi/bt-bmc.c b/drivers/char/ipmi/bt-bmc.c
-> index f3c67272502fb..486ecc0b68159 100644
-> --- a/drivers/char/ipmi/bt-bmc.c
-> +++ b/drivers/char/ipmi/bt-bmc.c
-
-[ ... ]
-
-> @@ -152,12 +151,12 @@ static int bt_bmc_open(struct inode *inode, struct =
-file *file)
->  {
->  	struct bt_bmc *bt_bmc =3D file_bt_bmc(file);
-> =20
-> -	if (atomic_inc_return(&open_count) =3D=3D 1) {
-> +	if (atomic_inc_return(&bt_bmc->open_count) =3D=3D 1) {
->  		clr_b_busy(bt_bmc);
->  		return 0;
->  	}
-
-[Severity: High]
-This is a pre-existing issue, but is there a race condition between
-bt_bmc_open() and bt_bmc_release()?
-
-If process A closes the device and process B opens it concurrently, could
-they interleave like this:
-
-Process A in bt_bmc_release():
-    atomic_dec(&bt_bmc->open_count);
-
-Process B in bt_bmc_open():
-    if (atomic_inc_return(&bt_bmc->open_count) =3D=3D 1) {
-        clr_b_busy(bt_bmc);
-        return 0;
-    }
-
-Process A continues in bt_bmc_release():
-    set_b_busy(bt_bmc);
-
-Could this sequence leave the newly opened device incorrectly marked as busy
-in the hardware, permanently blocking communication?
-
-[ ... ]
-
-> @@ -313,7 +312,7 @@ static int bt_bmc_release(struct inode *inode, struct=
- file *file)
->  {
->  	struct bt_bmc *bt_bmc =3D file_bt_bmc(file);
-> =20
-> -	atomic_dec(&open_count);
-> +	atomic_dec(&bt_bmc->open_count);
->  	set_b_busy(bt_bmc);
->  	return 0;
->  }
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does this function lead to a
-use-after-free if the driver is unbound while the device is held open?
-
-When bt_bmc_remove() unbinds the driver, it deregisters the misc device:
-
-bt_bmc_remove() {
-    struct bt_bmc *bt_bmc =3D dev_get_drvdata(&pdev->dev);
-    ...
-    misc_deregister(&bt_bmc->miscdev);
-}
-
-Because misc_deregister() does not instantly revoke open file descriptors,
-the bt_bmc structure can be freed by devres while userspace still has the
-file open.
-
-When the file is eventually closed, won't bt_bmc_release() access the freed
-bt_bmc pointer to decrement open_count and update the hardware?
-
-
-[Severity: High]
-This is a pre-existing issue, but do we need to disable hardware interrupts
-during device removal?
-
-When configuring the IRQ, hardware interrupts are enabled:
-
-bt_bmc_config_irq() {
-    ...
-    reg |=3D BT_CR1_IRQ_EN_H2B | BT_CR1_IRQ_EN_HBUSY;
-    writel(reg, bt_bmc->base + BT_CR1);
-    ...
-}
-
-However, bt_bmc_remove() doesn't seem to clear these interrupt enable bits
-before the IRQ handler is freed by devres.
-
-If the hardware asserts an interrupt after removal, could this result in an
-unhandled interrupt storm that forces the kernel to disable the shared IRQ
-line?
-
-[ ... ]
-
-> @@ -425,6 +424,8 @@ static int bt_bmc_probe(struct platform_device *pdev)
->  	if (IS_ERR(bt_bmc->base))
->  		return PTR_ERR(bt_bmc->base);
-> =20
-> +	atomic_set(&bt_bmc->open_count, 0);
+> +			compatible = "altr,agilex5-sd6hc", "cdns,sd6hc";
+> +			reg = <0x10808000 0x1000>;
+> +			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+> +			resets = <&rst SDMMC_RESET>, <&rst COMBOPHY_RESET>, <&rst SDMMC_OCP_RESET>;
+> +			reset-names = "sdhc-reset", "combophy", "sdmmc-ocp";
+> +			/*
+> +			 * "ciu" (SDMCLK) is listed first so it is selected as the
+> +			 * primary clock by the SDHCI platform layer; the SD6HC PHY
+> +			 * timing calculations are derived from this clock rate.
+> +			 */
+> +			clocks = <&clkmgr AGILEX5_SDMCLK>, <&clkmgr AGILEX5_L4_MP_CLK>;
+> +			clock-names = "ciu", "biu";
+> +			iommus = <&smmu 5>;
+> +			dma-coherent;
+> +			status = "disabled";
+> +		};
 > +
+>  		nand: nand-controller@10b80000 {
+>  			compatible = "cdns,hp-nfc";
+>  			reg = <0x10b80000 0x10000>,
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+> index 262bb3e8e5c7..c56f46721bb0 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+> @@ -34,6 +34,24 @@ memory@80000000 {
+>  		/* We expect the bootloader to fill in the reg */
+>  		reg = <0x0 0x80000000 0x0 0x0>;
+>  	};
+> +
+> +	vmmc_reg: regulator-fixed-3p3v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc-sd";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vqmmc_io_reg: regulator-1p8v {
+> +		compatible = "regulator-gpio";
+> +		regulator-name = "vqmmc-io";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		states =	<1800000 0x1>,
 
-[Severity: Medium]
-Will this actually allow multiple independent BT devices to operate, as
-intended by the commit message?
+There is only one space after '='.
 
-Later in bt_bmc_probe(), the misc device name is statically assigned:
+> +				<3300000 0x0>;
+> +		gpios = <&portb 3 GPIO_ACTIVE_HIGH>;
+> +	};
+>  };
 
-bt_bmc_probe() {
-    ...
-    bt_bmc->miscdev.name =3D DEVICE_NAME;
-    ...
-    rc =3D misc_register(&bt_bmc->miscdev);
-    ...
-}
+Best regards,
+Krzysztof
 
-Because DEVICE_NAME is statically defined as "ipmi-bt-host", won't a second
-device probe fail with an -EEXIST error from misc_register() due to sysfs
-and /dev name collisions?
-
-
-[Severity: High]
-This isn't a bug introduced by this patch, but could passing a count of zero
-to bt_bmc_read() result in an out-of-bounds copy?
-
-Looking at bt_bmc_read():
-
-bt_bmc_read() {
-    ...
-    if (len + 1 > count)
-        len =3D count - 1;
-    ...
-}
-
-If count is 0, len + 1 is 1, which is greater than 0, so len becomes 0 - 1.
-Because len is an 8-bit unsigned integer, wouldn't this underflow to 255?
-
-This could cause the loop to read 255 bytes from the hardware and copy 256
-bytes to userspace using copy_to_user(), which might silently corrupt
-memory.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260629-aspeed-bt-=
-bmc-multichannel-v1-0-fc23ee337f7a@aspeedtech.com?part=3D2
 
