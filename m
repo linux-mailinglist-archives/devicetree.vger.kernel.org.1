@@ -1,320 +1,214 @@
-Return-Path: <devicetree+bounces-317112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317118-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hAkIMLSKQmrV9QkAu9opvQ
-	(envelope-from <devicetree+bounces-317112-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:09:40 +0200
+	id 2ow5B4aNQmqc9gkAu9opvQ
+	(envelope-from <devicetree+bounces-317118-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:21:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B98B06DC792
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:09:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24BCE6DC953
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:21:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=Q8uKzxwA;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=kOSyxHxD;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317112-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317112-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317118-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317118-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D62C4304EE5E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 14:50:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 13FF23040D2A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:00:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED19421EFD;
-	Mon, 29 Jun 2026 14:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7CC423A97;
+	Mon, 29 Jun 2026 15:00:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8CC35675B
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 14:48:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43DD4421A0A
+	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 15:00:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782744530; cv=none; b=BzuNN3kI7+X1ajGYu6xAlB7oB7pFgmGC0V7938qMdMedz0UJCZceCzd26Dy1hNMk8myv9wYbSEe7Ajo93HJpD9KGBdfEaXoW5hQqqTs1w/0tZ8of2rtSns6CC2UXkuAc8B7AMPBFnkPq6H9t71KIjvX25GWUkEUdpK2d4d0PdKA=
+	t=1782745223; cv=none; b=BVD3rzRI6VhScqOCHvGhyg0BQSfhRSRb0r2kjn1ZgxFvPktLPe3XHwawZIoD6kg58RQQcjYwKnubpOy4YxXH1k3MMZQm0Yu4D0ENGhYjJlF3cqn1ULDWjH158QD5wQgI3E9Hk24/wDZK/+18sPqSu5uCScXoiFyZSe4MyDHC9Jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782744530; c=relaxed/simple;
-	bh=Cs3QIOvflvCrcjeDTiLoWqYrAKt3UNUaD/sCKGjx5v0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=uK2UCHYRYxXynJkssYoyGhG7YtOhdUf79DUY31sDcjO3yVOubCy6HRu0YkVLs1a1rQaCWesu/8qGXGtd9Xza1BSwuD1y/MTyRmBSv/wolXTZYkeEzGF5kt0TjBtUpMa/96NNmsGoP7gOQt6X41gs9kA45Cn+O7kObQivxzALTN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Q8uKzxwA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kOSyxHxD; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65TATMsC2647667
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 14:48:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iYQHKrNAuY55Xo4YAYBwK1+PtQbR+3tl/cQx6YHt1j8=; b=Q8uKzxwAGrj09eX3
-	D+NNartPaUyAzBh5IHVLtFMjezGieFgm4Verrsr/aMCI6Y6+2pcf8wno4/4DMoXC
-	mD+nmnJZ1OMiV2XKq89idAsYnHBQy3D1oj4/OcIojM4o6od3J9HE7V1tiSFYRQvs
-	PcVpwGspfgoOHaVUpwTPLHsoBQmw5aQcT61ggtU2K9xS99hUBl+8YOU48Q9T6IBl
-	D25ppjDmYO2N++SwQVYk/UZYGKz3bl+ZU2I75Hpt3ZAmNrBVFFlUuVAguC5rBsoy
-	qw9DVI/v5M7OV6dKmCMMKX5E5Zh3Ib7yK9MhRMzD2GEYkLACbu7SE3WQbAcI7CXw
-	5s3UbA==
-Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f3m4tsu77-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 14:48:45 +0000 (GMT)
-Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-30c0d568830so15210411eec.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 07:48:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782744525; x=1783349325; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iYQHKrNAuY55Xo4YAYBwK1+PtQbR+3tl/cQx6YHt1j8=;
-        b=kOSyxHxDABkl78wUs0Ws9TqMam47NR4rj8bqJ/vS8Jr7nhpsZbYGbjaCH7ST82UGh4
-         +pSzte/cdcTrZmq+AxoFPzEJzc0nDS7gRAPeyxI93z7WLEIjeht7geA7WyrVvYAnRLR9
-         1zADNL/ZHZKAS6RQt/LZ9649uXkWUilwKFKMrOu70OrMb2TO/C4nY9i1z4JxOLvnWfES
-         rCG6SxYnEMuGYYoYYaUCcSYeK1D3Z63ZAW+2acAtDRjcrsdpCG/PsQXcFzTVl+4aU0kC
-         bGQbEQlANGtCJS3aJ5BJQTpoj+Rng0ocSqP0WS9C/nXLriOxOuyQ1nsSMQYeANgS+osh
-         QKog==
+	s=arc-20240116; t=1782745223; c=relaxed/simple;
+	bh=LAoZJqVfdU9+V8F5hBZtY//uWnuQHis0eN8ii8DLed0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=F5/QSDEqFdAPRzTUVeWsL6P+a1u0csgy2IvTrP2t3JII643RiDm0Iu1/v5lcpFlWxBshvS9WuISMbEXKzAgcbwEIJnug695/xo6P3mczDjzWpOeozyJhvT5DxynK5+YYBYxE02TdrXgCUFnOahAZKYZVbRoVZgIvw5bXo00DX5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.53
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-6a16bcd0a2aso724498eaf.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 08:00:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782744525; x=1783349325;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iYQHKrNAuY55Xo4YAYBwK1+PtQbR+3tl/cQx6YHt1j8=;
-        b=T6aoxgmvCmNmHmKC3Nf4NHdzOnaYOQhNJIsIhKoJ+PvvXZJ+lrnuEsOXLZ01jecJf9
-         1GkszVb6q+R4haY3ik5rCuAxbOWGcCmur3Ed6RtHA8U9puPKzMg28dX89fhuNPiDRD8j
-         d+5R7MAbHO/WnvEr6zGWoVDxjYx9r4n3zk4NWSCXNneFaBQ2JklED7VqI6MiqcW23a6X
-         fROQCaGOJaLLYA5cla5oEiV/KZGF+dCHscfUKqwmUD9B+7YglIdR6R+TyhMH6rW3ZfFR
-         JVo9CIjHCDoo3b9WBS+4BaZqTJmXthsCQHECw35fjJMn50ROJrdj8btDxTHrhAKHfVXF
-         EnRg==
-X-Forwarded-Encrypted: i=1; AHgh+RpPAySDbclMTxQ/rDIfQXmx0eSOfEZaCvjn8RsF1QcZhtZ/TFV6zYpMRIr+EZXtxJoyGTFG1MC+1nL+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6+getkmnUaNyah5KrB/qlk16/32d7NF21JwhA+TMIkAH7//2M
-	X7IhJ1p74mJYyQUz8S1bVIOXxpx2gwEZpf1YtcDf5/S4LwDdKMPbBicsPYVZZi0qhittnzNkxuu
-	LtWtDdSyo1fAWSnVz4KF+VwPryteDmrdHiCGBJlkvBNWZeAjSWeuv04CYxIBlF2H7
-X-Gm-Gg: AfdE7ck+IZCPMN9i6bLCDBkCICZAQIOsu8jxFTa3XTr0HCubuylIaIl8lABAmzta6wE
-	Vk/883XQUN2epoFXvImdrA21os1IbTJ8htMyMO2zD7+LPMTLPiJAoHV7sfN1AWKA1fFejpfnc/E
-	Imofx7ukuji18mZw5KYNavkVwOmKJpHNa5pSPqDQbLKO2T+ZPU67yr/XvM5qEJNcuxwYZk7Jb2I
-	+OrgEJjyV+H9bH90LS8KheH6nVi8idBzGzRUnImoeC/dQgz2hxLHV2V8H8SwcQXvNPNgts8YNn+
-	390nkeCFQNsZapvzLzpyFqKf763+yVhnu/9OqHvCihip00Vp+ehxVOVpCD8G7eZ/mqB/dBLCKKu
-	1idFrw4pMCQ7KjpBzOHgetz7MevaP0nUT94w+xPKF0yb1suAS1XP3tlCj4lA8YfMxZOilU+VS1V
-	il8RY=
-X-Received: by 2002:a05:7300:2316:b0:30e:952b:ddf4 with SMTP id 5a478bee46e88-30edd1ae37emr686690eec.3.1782744525290;
-        Mon, 29 Jun 2026 07:48:45 -0700 (PDT)
-X-Received: by 2002:a05:7300:2316:b0:30e:952b:ddf4 with SMTP id 5a478bee46e88-30edd1ae37emr686667eec.3.1782744524668;
-        Mon, 29 Jun 2026 07:48:44 -0700 (PDT)
-Received: from ?IPV6:2603:8001:7f00:fc12:853f:f554:7d46:88f4? ([2603:8001:7f00:fc12:853f:f554:7d46:88f4])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-30c7c8b1ae5sm54673511eec.16.2026.06.29.07.48.43
+        d=1e100.net; s=20251104; t=1782745221; x=1783350021;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YrA9ccFaco9J2BZQ3eRpFjtGI3CKCK/xF2koXbFr26M=;
+        b=RTQOAs/gJzN1sujIjpe+VHt/oCMfFHMSNSIseglQM9YBKxOZ5IACC2zDrbb5pqApca
+         2QXFotNd7UNW8QALk9e1tKJFPzvAwLAIUtcV1KU8dLryo49B8BBMG2NMB37+2g6Idwzt
+         p2Ut8hFEfACxIkp49esYr7MCYUV+oq55ISlbr4uhOP+NRAklv3Jd+bB+JRvgHkfbxa4L
+         yDw9S9auJqFwXT0FwFNb0ix9H/bCg69eoZZhm8fxg73VmxbY7BT7mWgGGKTOmv+sY/y8
+         /LOu9ijzXVLrCEV4BNd30AU9vEXyACwQaMNs/5TmAb4+5Fgs8MZPxt+MlwTLMk3n56xI
+         2KtQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8CJsZLcBSpewlA+seK7RCsRXYkz7HY+mVu0dN2RSDufsxuR/RmRH5dRzCQkYwHSLT6z/3xNC1LE60t@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEG539vrA9J3/c2+WGbrAH57Af1hIEUsEfOUXrOAOTkru8doNy
+	+hBWUgNI1607FZhSMHB0d+3l07dpjn2AurYzuy31Ed6ByzUT/sf35baqu3XegKpG
+X-Gm-Gg: AfdE7cmhga8peqtsjVPcGLtGygoxOyT44LD2qJxvV5B7WVGVRcD8YcnkS32q4SIz6Wp
+	FRPp/z+Nssgi8t24ZpZfW1p/9+q2UXsqJXYQx0dv0PtAKMhcSEdGk4GXgrslixjOOwkQOjpQ+AP
+	YQBj6hzEwIj3dFfFnEtwRk6UUqDzl+Rb8BoeQGlDUZYuaPhT1qC7v9Hmoc1khYAtulEV4LHtW2G
+	sEdPsTjYN/VQUh7h3ZjjeVhJ+3ARX664NpUYDqO1SV8Akvm6BB5XRlye8nX4ej0IBp6FAC7kHne
+	Jl2VXJBA3ubzU8pkWytO7Lax8/mF+cwKKvUrMCX08SsN6MRPfBh1Mv6GEFPIJMc1vhT1jBDO6G1
+	iyR7gd92sB4dlUSE2VIO3q4XWUOBC9GlykCifp8BJSrHwZ0BH3B0m00YL4Hi3PwOeaG1MXQtDAO
+	sBEGeEv8TLnb5ZP6Cp+w0ECkSHhfndp5QGzrzRnW4C9rqKEM512w==
+X-Received: by 2002:a05:6808:1a27:b0:495:b8ad:6bf2 with SMTP id 5614622812f47-495b8ad740amr3980452b6e.33.1782745221192;
+        Mon, 29 Jun 2026 08:00:21 -0700 (PDT)
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com. [209.85.210.45])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-494c3766f3esm4824667b6e.8.2026.06.29.08.00.20
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jun 2026 07:48:44 -0700 (PDT)
-Message-ID: <35348aa8-f878-4ee7-bb96-a1d9203bca4f@oss.qualcomm.com>
-Date: Mon, 29 Jun 2026 07:48:42 -0700
+        Mon, 29 Jun 2026 08:00:20 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-7e94cd6f99aso3844776a34.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 08:00:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9XTv/ClCtvolgEzCbi9F3G1FHSaoFQDzEHOK8mbc/ZA1uXQv01nBRLjLwXG9xEklKi9WMP6N4E2J4n@vger.kernel.org
+X-Received: by 2002:a05:6102:c86:b0:738:ecd7:198e with SMTP id
+ ada2fe7eead31-738ecd71defmr1394925137.19.1782744721048; Mon, 29 Jun 2026
+ 07:52:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/9] Improve Qualcomm EUD driver and platform support
-From: Elson Serrao <elson.serrao@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260501170635.2641748-1-elson.serrao@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20260501170635.2641748-1-elson.serrao@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI5MDEyMyBTYWx0ZWRfX4fH7AOP+Vk5P
- C5X1HjMAHU/vrrMWynMYe+dznLJfIpxN1gsky2DUfi15Mkqmzl200yKm6PmfwejmraTv3+nBRPZ
- 5Z9x1SeILVblbY7Lp0aQCCjvBq4sfTSONLf7TV14QiF/Cj2KUWi5gEWJp4A1GZfWbKRORCw8k9I
- Vt/N+fMiiIYlIsPBNTJbGv3+lEEBivtG0wUqlVW3Hvpu3Ap04la/YKAoBXyrWlF3XRxy0xBSUl8
- qu9IkWvFQabVD8liPPzm5kdxoEzTrEiq/yig91jH0mcwGnvLH0NoCVFsTwUmunwoTjnfIq1owwt
- 82+jncIFYbjkXKWSr3ebG5DQEwxCxtrHbVoQxwyps22uXvo0OibFXQgGHSb0qVqEaB1LI9+fP01
- 2KplHG8vWGPJ3YvPQY/Df1HpZud2m1d2IGBTFpU84zdrtNRmLpptTRFEdwM2ElXq9UNyKOh9xw8
- xhx8UpfQ3t/VRftPJuQ==
-X-Authority-Analysis: v=2.4 cv=R58z39RX c=1 sm=1 tr=0 ts=6a4285ce cx=c_pps
- a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=oEN8I4j559GpTlrCs2sA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=bBxd6f-gb0O0v-kibOvt:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI5MDEyMyBTYWx0ZWRfX2CgU0D8ft8Vn
- 5To3wCr0NERCJTZeF5MYZo3HG+BDXffyNXkz6KHZoJ297Nw2Qjvl8SY1pS8TlVdk/fTD+ZXu58/
- VMBhDJU2kuTpQ4zT23YmsEkxo6WaxpQ=
-X-Proofpoint-ORIG-GUID: cz3Hmkg3xBui8Tr64K5BIVLC0iuQGNNO
-X-Proofpoint-GUID: cz3Hmkg3xBui8Tr64K5BIVLC0iuQGNNO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-29_03,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 suspectscore=0 phishscore=0 clxscore=1015
- adultscore=0 malwarescore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606290123
+References: <20260629-qcom-sa8255p-emac-v11-0-1b7fb95b51f9@oss.qualcomm.com>
+ <20260629-qcom-sa8255p-emac-v11-1-1b7fb95b51f9@oss.qualcomm.com>
+ <CAMuHMdXen+E-Ai51aWBa_KV9W8Fz2cQPpT-FG_kQ7akhrrYa_A@mail.gmail.com> <CAMRc=Me3jaZXiXa1sFXr=8Do4sCd+XN1pKTcWC8-0j78SjCkKA@mail.gmail.com>
+In-Reply-To: <CAMRc=Me3jaZXiXa1sFXr=8Do4sCd+XN1pKTcWC8-0j78SjCkKA@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 29 Jun 2026 16:51:49 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVUBgG0EFB16OxHisbxx-sBvDKvBPNZdpyDnmBrnX4ptQ@mail.gmail.com>
+X-Gm-Features: AVVi8CdkJoaQviVQ7ltoNYHwA2g-kW32TDsBBJn2QkEKdC-zwJrV4O3to75iJ6g
+Message-ID: <CAMuHMdVUBgG0EFB16OxHisbxx-sBvDKvBPNZdpyDnmBrnX4ptQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v11 1/7] dt-bindings: phy: document the serdes
+ PHY on sa8255p
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
+	Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>, Romain Gantois <romain.gantois@bootlin.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, Radu Rendec <rrendec@redhat.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
+	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-317112-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
-	FORGED_SENDER(0.00)[elson.serrao@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:gregkh@linuxfoundation.org,m:konradybcio@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:quic_schowdhu@quicinc.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317118-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:brgl@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:vkoul@kernel.org,m:peppe.cavallaro@st.com,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:shawnguo@kernel.org,m:festevam@gmail.com,m:jan.petrous@oss.nxp.com,m:s32@nxp.com,m:mohd.anwar@oss.qualcomm.com,m:romain.gantois@bootlin.com,m:magnus.damm@gmail.com,m:mripard@kernel.org,m:christophe.roullier@foss.st.com,m:rrendec@redhat.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:dfustini@tenstorrent.com,m:linux-sunxi@lists.linux.dev,m:linux-amlogic@list
+ s.infradead.org,m:linux-mips@vger.kernel.org,m:imx@lists.linux.dev,m:linux-renesas-soc@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:sophgo@lists.linux.dev,m:linux-riscv@lists.infradead.org,m:bartosz.golaszewski@linaro.org,m:bartosz.golaszewski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:andrew@lunn.ch,m:mcoquelinstm32@gmail.com,m:jernejskrabec@gmail.com,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[47];
+	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,st.com,linaro.org,baylibre.com,oss.nxp.com,nxp.com,oss.qualcomm.com,bootlin.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,tenstorrent.com,lists.linux.dev];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[elson.serrao@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,mail.gmail.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,linux-m68k.org:from_mime,linux-m68k.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B98B06DC792
+X-Rspamd-Queue-Id: 24BCE6DC953
 
+Hi Bartosz,
 
+On Mon, 29 Jun 2026 at 16:07, Bartosz Golaszewski <brgl@kernel.org> wrote:
+> On Mon, 29 Jun 2026 15:51:31 +0200, Geert Uytterhoeven
+> <geert@linux-m68k.org> said:
+> > On Mon, 29 Jun 2026 at 13:29, Bartosz Golaszewski
+> > <bartosz.golaszewski@oss.qualcomm.com> wrote:
+> >> Describe the SGMII/SerDes PHY present on the Qualcomm sa8255p platforms.
+> >> This is essentially the same hardware as sa8775p rev3 but the PHY is
+> >> managed by firmware over SCMI.
+> >
+> > So why can't it be reuse the DT bindings, and be compatible with
+> > qcom,sa8775p-dwmac-sgmii-phy?
+> >
+> >> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+> >
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/phy/qcom,sa8255p-dwmac-sgmii-phy.yaml
+> >
+> >> +  power-domains:
+> >> +    maxItems: 1
+> >> +
+> >> +  power-domain-names:
+> >> +    items:
+> >> +      - const: serdes
+> >
+> >> +examples:
+> >> +  - |
+> >> +    phy@8901000 {
+> >> +        compatible = "qcom,sa8255p-dwmac-sgmii-phy";
+> >> +        reg = <0x08901000 0xe10>;
+> >> +        #phy-cells = <0>;
+> >> +        power-domains = <&scmi7_dvfs 0>;
+> >> +        power-domain-names = "serdes";
+> >
+> > Ah, this uses power-domains, while the existing bindings for
+> > qcom,sa8775p-dwmac-sgmii-phy use a clock.
+> > I guess the clock is the correct hardware description?
+> >
+> > Adding to my list of examples for backing a hardware-to-SCMI remapping
+> > driver...
+> >
+>
+> Russell King asked me to put the PHY logic for SCMI pm domains into the PHY
+> driver instead of the MAC driver where it was previously. Instead of cramming
+> both HLOS and firmware handling into the same driver, I figured it makes more
+> sense to have a dedicated, cleaner driver as the two share very little code (if
+> any).
 
-On 5/1/2026 10:06 AM, Elson Serrao wrote:
-> Note: This v4 revision introduces a design change compared to v3.
-> Based on discussion and feedback, the binding adopts a child-node-based
-> model while preserving the legacy top-level 'ports' property. The
-> child-node approach is required because EUD needs a separate OF graph
-> per UTMI path to accurately describe per-path role switching.
-> 
-> Link to the discussion leading to this decision:
-> https://lore.kernel.org/all/20260324172916.804229-1-elson.serrao@oss.qualcomm.com/
-> 
+I think you are mixing up DT bindings and driver implementation?
 
+Gr{oetje,eeting}s,
 
-Hi Dmitry,
+                        Geert
 
-Just following up on this series.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Could you please take a look at the updated design and share
-your feedback? Does it align with what we discussed earlier:
-https://lore.kernel.org/all/20260324172916.804229-1-elson.serrao@oss.qualcomm.com/
-
-Please let me know if any further changes are needed.
-
-Thanks,
-Elson
-
-
-> ---
-> 
-> The Embedded USB Debugger (EUD) is a High-Speed USB on-chip hub that
-> provides debug and trace capabilities on Qualcomm platforms. The current
-> EUD driver, however, lacks essential hardware resources such as PHY
-> references and support for multi-port configurations. This series
-> addresses those gaps and introduces the necessary device tree updates
-> to enable testing and validation of the enhanced functionality.
-> 
-> Below is a high-level block diagram showing the EUD and its connections.
-> 
-> 
-> 			              EUD Block
->  	                   +------------------------------+  
-> 			   |                              |
-> [Conn-0]-->[USB2PHY-0]---->|-------- Path 0 --------------|-->[USBCtrl-0]
-> 			   |                              |  
-> [Conn-1]-->[USB2PHY-1]---->|-------- Path 1 --------------|-->[USBCtrl-1]
-> 			   |                              |
-> 			   |      +------------------+    |
-> 			   |      |  EUD Debug Hub   |    |
-> 			   |      +------------------+    |
-> 			   +------------------------------+
-> 
-> This work builds upon an earlier EUD driver submission:
-> https://lore.kernel.org/all/20240730222439.3469-1-quic_eserrao@quicinc.com/
-> and extends it with support for multi-port use cases and proper handling
-> of EUD operation across different USB roles.
-> 
-> The series has been validated on the Qualcomm Dragonwing Q6 platform
-> (RB3 Gen2 board), confirming successful OpenOCD connectivity to the EUD
-> interface. For detailed usage instructions, refer to Qualcomm’s Linux
-> kernel debugging guide:
-> https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-12/debugging_linux_kernel.html#debug-using-openocd
-> 
-> ---
-> Changes in v4:
-> - [Patch 0001] Restructure the flattened ports representation to a child-node
->   based model.
->   - Preserve the top-level 'ports' property and add per-path child nodes,
->     so that each role-switch path is described using its own OF graph.
->     (Dmitry).
->   - Link to the discussion leading to this design decision:
->     https://lore.kernel.org/all/20260324172916.804229-1-elson.serrao@oss.qualcomm.com/
-> - [Patch 0002] Use explicit port names when selecting the active EUD
->   port (Greg)
-> - [Patch 0003] Use a scoped iterator when looping over child nodes and
->   drop redundant EUD path validation checks (Konrad). Preserve support
->   for the legacy top-level ports description.
-> - [Patch 0004] Register role switch per path and forward the role switch
->   notifications to the USB controller.
-> - [Patch 0006]  Add host mode co-ordination based on the role changes as
->   per the new design and drop the custom API that was used to get role
->   notifications.
-> - [Patch 0008] Described the UTMI path as a child node with role switch
->   capability.
-> - Link to v3: https://lore.kernel.org/all/20260309203337.803986-1-elson.serrao@oss.qualcomm.com/
-> 
-> Changes in RFC v3:
-> - Replaced the per-path (eud-path@N) model with a flattened ports
->   representation based on the feedback.
-> - Added port@2 and port@3 to support dual-port configurations.
-> - Removed the EUD-local 'phys' and 'usb-role-switch' properties since PHY
->   and role-switch information is obtained from walking the OF graph.
-> - Updated PHY discovery logic by fetching the PHY from the controller
->   node/fwnode, and exported a new API for the controller to report role
->   changes. The dwc3-qcom driver now uses this API to notify EUD on role
->   transitions.
-> - Updated the DTS structure by moving the EUD-to-controller port mapping
->   into the base SoC DTSI, enabling EUD by default, and adjusting all board
->   DTS files accordingly, including adding the usb-role-switch provider
->   link on connector nodes.
-> - Link to v2: https://lore.kernel.org/all/20260126233830.2193816-1-elson.serrao@oss.qualcomm.com/
-> 
-> Changes in v2:
-> - Improved commit message of patch 0001 and 0003 with historical context
->   on why EUD worked without PHY references on single-path systems.
->   Expanded the usb-role-switch property description in the bindings file.
-> - Link to v1: https://lore.kernel.org/all/20260116232106.2234978-1-elson.serrao@oss.qualcomm.com/
-> ---
-> 
-> Elson Serrao (9):
->   dt-bindings: soc: qcom: eud: Add per-path child nodes for UTMI routing
->   usb: misc: qcom_eud: add sysfs attribute for port selection
->   usb: misc: qcom_eud: add per-path High-Speed PHY control
->   usb: misc: qcom_eud: add per-path role switch support
->   usb: misc: qcom_eud: improve enable_store API
->   usb: misc: qcom_eud: add host mode coordination
->   usb: misc: qcom_eud: fix virtual attach/detach event handling
->   arm64: dts: qcom: kodiak: Describe EUD UTMI path using child node
->   arm64: dts: qcom: Map USB connector to EUD on Kodiak boards
-> 
->  Documentation/ABI/testing/sysfs-driver-eud    |  16 +
->  .../bindings/soc/qcom/qcom,eud.yaml           |  55 ++-
->  arch/arm64/boot/dts/qcom/kodiak.dtsi          |  35 +-
->  .../boot/dts/qcom/qcm6490-fairphone-fp5.dts   |  10 +-
->  .../dts/qcom/qcm6490-particle-tachyon.dts     |  10 +-
->  .../boot/dts/qcom/qcm6490-shift-otter.dts     |  10 +-
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts  |  10 +-
->  .../dts/qcom/qcs6490-thundercomm-rubikpi3.dts |  10 +-
->  .../boot/dts/qcom/sm7325-nothing-spacewar.dts |  10 +-
->  drivers/usb/misc/qcom_eud.c                   | 346 ++++++++++++++++--
->  10 files changed, 446 insertions(+), 66 deletions(-)
-> 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
