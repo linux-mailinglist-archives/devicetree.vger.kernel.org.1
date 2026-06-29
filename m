@@ -1,192 +1,162 @@
-Return-Path: <devicetree+bounces-317244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317682-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TevBBYWxQmpQ/wkAu9opvQ
-	(envelope-from <devicetree+bounces-317244-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 19:55:17 +0200
+	id w3G4E3GoQ2qoeQoAu9opvQ
+	(envelope-from <devicetree+bounces-317682-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:28:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76FA26DDE6E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 19:55:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02A0D6E3982
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:28:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ixit.cz header.s=dkim header.b=yeemfvqO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317244-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-317244-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=ixit.cz;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iSPZY21t;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317682-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317682-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7D44E303EBA9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:55:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1037D3023325
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:16:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C479303A07;
-	Mon, 29 Jun 2026 17:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1A363CC7CC;
+	Tue, 30 Jun 2026 11:16:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7482ED872;
-	Mon, 29 Jun 2026 17:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D5D3CB8F1;
+	Tue, 30 Jun 2026 11:16:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782755713; cv=none; b=NHdKXCCCQ0q9K73YuQdDA7R3AO3/1DoLkcx7VSvenLim8GsVmPEyd21tiaDRzjbG9OWcLy7oKRP/pN2msy5w79c+6/lb4BmxpgSGwPsjxVerJefDsxqvdbG4xMmruEjKf6bduPJRo+AiQMzue8G+kGynMuTC4xP/vl/cncagHyU=
+	t=1782818190; cv=none; b=Q5Qz6OZbt7V0hpyGDTTCzUTsmZ+GVzAmenaBnJt9iQ+V3h9cIEqsPHSOOzqrzBIkhSGQsx4yvdMXJNd6yVy+wwbw8Q2bNjmxEUEJxF2ov72zblN8C3tEPo7VfBwTXULs0UsKDvSk3WKWFGYTBLO/UzExVK+dtrAMZdh3QOZybvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782755713; c=relaxed/simple;
-	bh=WPp9V9rieLa0szWhakoJkRFeRxiMV0iUR0cF5Y9wGxo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NFsI1R/nvuASqiJencZgu7Y54FhPLzYU8HBIHX49UzJIx3Cm4xWWwN2oyn412nMQtpmIdKucnJpDic5HnsjWMZM88TB60TwWmgn5y856PySEvYfDc2bbkaKoIbz84VOEmuF16NpRLIPIuTzF/L9u+rQeTOIR0b+jM5VgC9EFZP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=yeemfvqO; arc=none smtp.client-ip=185.100.197.86
-Received: from [10.0.0.200] (unknown [10.88.125.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 52B0D53411D7;
-	Mon, 29 Jun 2026 19:55:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1782755702;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=j+TFjbHrHu87xxKwwVcWMdfo2sF9lRUN8NIQ1Lagubg=;
-	b=yeemfvqO1JQN6/WYseI/WDriOWpcHy2zSoQy4FTwMpfxqu435NuafGcwrsJXYVmyCqC0YT
-	K1F2OcSJGZ4w8KqgGV8kTkuRg/2jJqmEdwmxemMH41yVmMTHkEd//LgzVjpLkTRn4hunsO
-	eWI8jq+HY/y85EHvn/P0mIe+w4XLN+U=
-Message-ID: <c364a9fb-59c6-41bd-bb91-620c96e7ab8b@ixit.cz>
-Date: Mon, 29 Jun 2026 19:55:01 +0200
+	s=arc-20240116; t=1782818190; c=relaxed/simple;
+	bh=YV6YJpcGwfQvseMKoKnas43u5Hxx1rnlDUu4/Nw/DGA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Y+UH2nv9M96mRL+9BV8XZejG2isjmA2SZ3Nzo1TpC56cInEx8uRvMRIB3tAozhTGFDp1unavM19HSarijmJ439zNoqepNtcm41QnKIosfdrXPwMHJkZb0aADHXIbyOsSZOWf0q60TNlofSwzY9yCH5keGFXu+4STDa+atqUy2A0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iSPZY21t; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00A591F000E9;
+	Tue, 30 Jun 2026 11:16:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782818189;
+	bh=7uk3YhrWEUg+nWNZmn8lka+Y14/S6FL8oxksKWCkBzA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=iSPZY21tUzZI3mSVAns2pmoP4+ViGPrR5XdX85l/Ln5ve31xO1MP1z/3qBNrml4by
+	 nlYuzU8StaOLqHUBBM7mVnQ2GIWLEoOXg9WVx4TZZCZ/gPsc5+R4BMWNu9NKxc7T/l
+	 4ShnRP2L8n4HZKDP8qt6T4ApG72v1memvv009JoJGvxlmU91LkhQbiPt2HvnpnTUFy
+	 qMeosOKayOX27UBnkR4MGhO/euoPVotFYQ4IiCFoGMEn0NKwDor9jZNg1W+5idJ0UF
+	 miGlbrfUgUaNIU862RyhHtAVPMFFTDyH42jqfMnVAse3iSPa5622uOI8A3umXPpClh
+	 D/laua+JWlMpg==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+ Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, stable@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260617-ipq9650_refgen-v4-0-c505ea6c6661@oss.qualcomm.com>
+References: <20260617-ipq9650_refgen-v4-0-c505ea6c6661@oss.qualcomm.com>
+Subject: Re: [PATCH v4 0/3] Add support for the REFGEN in the IPQ9650 SoC
+Message-Id: <178275629145.47562.9789998445156549572.b4-ty@b4>
+Date: Mon, 29 Jun 2026 19:04:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: display: panel: Add documentation for
- lg,sw49410-lh609qh1
-To: Paul Sajna <sajattack@postmarketos.org>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
- Jessica Zhang <jesszhan0024@gmail.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- phone-devel@vger.kernel.org, Amir Dahan <system64fumo@tuta.io>
-References: <20260614-judyln-panel-v3-0-07f4134441bd@postmarketos.org>
- <20260614-judyln-panel-v3-2-07f4134441bd@postmarketos.org>
- <20260615-thick-trout-of-inquire-4e4251@quoll>
- <0ca65209-0b03-4458-a11a-24e750d10bd3@postmarketos.org>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <0ca65209-0b03-4458-a11a-24e750d10bd3@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1685; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=YV6YJpcGwfQvseMKoKnas43u5Hxx1rnlDUu4/Nw/DGA=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqQ6WJ3gs57rxjOYInD2MF9f70GjUy2TeB0g/30
+ HGlGgu5FpeJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCakOliQAKCRAk1otyXVSH
+ 0AygB/4weS7fOFEV/Z0PlEhepkVD4y5TuXvddWKlAAjgw8nIXPWn7jbUbSbRi/WDmjhOYTEUZpj
+ V6dYcOhzVh592w8H950ox5WAVxWmBiySqVDYffEc8WAJMsKKR4SS0iQvd1wybjws/X7MxRqIjni
+ LlOSTDK1ov/1NN+F/4w2ny4Kr5Ph76svAogSdPIibgV+hZMPe5sd8FR3IHOZgdOrKN6YbDl1Vkv
+ caYA0vKOCLB3esiXvs7ZJZkYT2fXWN41kSQOr+edO4SkRjWENO1BAjFQ6IT2PPNdF13qoI6yuye
+ ypWVxhjdXZa2VN8MefEy7znvZSSz2RwuNsuwwx1PyJ7RVVOo
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317244-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_RECIPIENTS(0.00)[m:sajattack@postmarketos.org,m:krzk@kernel.org,m:neil.armstrong@linaro.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:thierry.reding@gmail.com,m:sam@ravnborg.org,m:jesszhan0024@gmail.com,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:phone-devel@vger.kernel.org,m:system64fumo@tuta.io,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:konradybcio@kernel.org,m:kathiravan.thirumoorthy@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:stable@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,oss.qualcomm.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[linaro.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,ravnborg.org,vger.kernel.org,lists.freedesktop.org,tuta.io];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ixit.cz:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-317682-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 76FA26DDE6E
+X-Rspamd-Queue-Id: 02A0D6E3982
 
-On 28/06/2026 23:22, Paul Sajna wrote:
-> On 2026-06-14 10:38 p.m., Krzysztof Kozlowski wrote:
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - const: lg,sw49410
->>> +      - const: lg,sw49410-lh609qh1
->>
->> This is very confusing - why two compatibles and why same devices - both
->> sw49410 - are compatible with each other?
+On Wed, 17 Jun 2026 23:08:42 +0530, Kathiravan Thirumoorthy wrote:
+> Add support for the REFGEN in the IPQ9650 SoC
 > 
-> Hi Krzysztof, yes they are both compatible. One with DDIC and one with
-> DDIC+Panel. David Heidelberg suggested I include the panel.
-> Is this the correct style for both compatible?
+> IPQ9650 SoC has 2 REFGEN blocks providing the reference current to
+> the PCIe and USB, UNIPHY PHYs. For the other SoCs, clocks for this block
+> is enabled on power up but that's not the case for IPQ9650 and we have
+> to explicitly enable those clocks.
 > 
-> properties:
->    compatible:
->      items:
->        - enum:
->            lg,sw49410-lh609qh1
->        - const: lg,sw49410
-> 
+> [...]
 
-Better, but since `lg,sw49410` is contained in the compatible string with the 
-panel itself, I guess `lg,sw49410-lh609qh1` should be enough.
+Applied to
 
-David
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.3
+
+Thanks!
+
+[1/3] regulator: qcom-refgen: correct the regulator type to CURRENT
+      https://git.kernel.org/broonie/regulator/c/05dfeb2d0ccf
+[2/3] regulator: dt-bindings: qcom,sdm845-refgen-regulator: Document IPQ9650
+      https://git.kernel.org/broonie/regulator/c/7b5cd466e488
+[3/3] regulator: qcom-refgen: add support for the IPQ9650 SoC
+      https://git.kernel.org/broonie/regulator/c/ca5c1a0ca229
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
