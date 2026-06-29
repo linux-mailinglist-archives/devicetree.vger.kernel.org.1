@@ -1,151 +1,149 @@
-Return-Path: <devicetree+bounces-317239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317683-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id W7a0MwmsQmoM/gkAu9opvQ
-	(envelope-from <devicetree+bounces-317239-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 19:31:53 +0200
+	id urvxDF2mQ2ojeQoAu9opvQ
+	(envelope-from <devicetree+bounces-317683-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:19:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55726DDBF4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 19:31:52 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B00816E3828
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:19:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=V4WSJ0Et;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317239-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317239-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=lhOHaHXd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317683-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-317683-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 66F2230314F6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:26:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E1E09304AC28
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:16:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F41C449ED7;
-	Mon, 29 Jun 2026 17:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95E59403AE6;
+	Tue, 30 Jun 2026 11:16:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D36337C906
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 17:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794923537DE;
+	Tue, 30 Jun 2026 11:16:34 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782753884; cv=none; b=DLu5ibViy99YhAQ32R8cH6XGyRndrstbEWEOrzHyGhKpTqqUj/K9aLdp9Bt9QEMJUwXzRdl5bx1ReLtI6styfQwB/4LX+q+Ftm7WrJCjVHjj1wXDQj+edwRRMpVF1o2Ti2QxQXqyoygSvRfemH5Qyu7kcaKa/R9FL5j6pGgmzKM=
+	t=1782818195; cv=none; b=X0ZVhIxi5/C1Xf+LrpqDoZcTS1ES9Wvapj+rN9lULviAg1nCtkc28THwlziU9soEXI7tU05j3BdjfXuHHjysED4wHo8z9BOlBUKwp+jqNuClxhROOMhjkrmlne4ljKMCcd+F2LkVeL2/6miL6LZYLVKUEy+y6FOF9m6/jobrIWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782753884; c=relaxed/simple;
-	bh=ZzxOJDqPylofYp3FrL29P1xnRxESrls3/fvfW5iZ6Cc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z1AYUzSlbQICxp7EYdZrbcU9BOqMH7p2H9zNIWbYUf3K3z3Urm/pAb/ermUNVzT5x23Pt1Z5trvkzJF284dnrLWIP05vjsg55CBaUhxiy5XfsA+D6DkyOEmMnDBODBiPpErhRpQxLtG9qox03hGx1mNxvqv5Sspu6Dx88r/DXFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V4WSJ0Et; arc=none smtp.client-ip=74.125.82.50
-Received: by mail-dl1-f50.google.com with SMTP id a92af1059eb24-13b29f58698so370261c88.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 10:24:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782753882; x=1783358682; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cAHgI8v/5iahDWqdzu4/MvO4nkjuwauBP+gsMYKfHv4=;
-        b=V4WSJ0EthNcw7okvlNvM7rfEAnrSn/v9giK8zhB/vp7e1+7ewvh/cqgqnQhI5YwW6n
-         GtG/P+24Wfcz++WJyvD8K8YjUY9o1UwgQI8D0H3epXJUMMS9KnkSiEBjtF59tZsKp1fO
-         uE6HVmFN8tS/RfkOzaj0Le7fz5T3zESzVcQb2iTBMdgTyNTvJD4q5cvsQn+T8k3lrAAX
-         hRCv6N/VWQx7VV+Cxj2iazwN++V82lcKng7bdhlNnhsGXb5KFpOAoXp6+jNnFUMW1CX5
-         pc/gW12qyzxUsZO3txuRZ7rgVOh54zJjGcWZ7PC/2eBvwSUxAcWnGDMlNzrA2zn/MFya
-         AagA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782753882; x=1783358682;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cAHgI8v/5iahDWqdzu4/MvO4nkjuwauBP+gsMYKfHv4=;
-        b=M+mBtvRLLGSHN0ROVil0i2fHow/L9+58apWhq07ry40T9ZVkLNPXdVn1gNiXy2KS/d
-         fYHAZuW55vQAwY2pHwFvEaSovmwXd0SUgERPfrPJ/3+V2XXyxFQ8YyqkkiRsQS9JH2aY
-         UYKWZIPiIPxy/dzoZ39RWMzOpm7GS1WU2RJwTwSvRc1uwegwdFeAHuixgXjkXZRR+MOY
-         PdG62Px5sNpo1Kj2LWjhN5rpPeXyn5aRBoLx5n0oFy/hRijdjlCZt9T9BbpJsL2sWEdO
-         IiBi8QUWL3dLIw463DtnGlx2TfydxXbgR2IX8EtNvo5F7dyEpmcOb+S/JNUQrw+E1CIc
-         X2Tw==
-X-Forwarded-Encrypted: i=1; AFNElJ+i0L8s+Mnd0qEhrtInwW9HlnVk/zDdJuQ1RcCr+DsW1urQd6D/nHo/JYzNENbvbHGzNDuj3qUO1C9p@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQ3NCUABiYCy4vLFArGdnyW1EOrlMTLEXKApAGX6buHGuvvlnU
-	RbvgCcqi72Om3eLBmWeQ+sYHGcaQ8W2BCo9wPe+2PIL7LuFu4Z834GzbEDPS7OyJuz0=
-X-Gm-Gg: AfdE7clJJ0GjazHJrqFRtS5lvihaikmCNHeQsgjUrwD90qcZJNw+6IItLqOJMQJS80Y
-	ewnLbXO9sr+MAgcx7Nbf2L8gbPFdyIlbzAiXUeGRRqjFzcsbi8sqKHHWCCHFuFBjKagfh6CcLEt
-	zA9M4EIZfHcXq05+IjTYSaOQCig/r9HlUNxinudVs24Y/7C9N+O4P8di+WdZuOdyEf9Eih7rxjE
-	7QqZM9mP+YpQuJoHLdtPSqe++spa4TDa/VVkYGeqFcEuzgWjUiF0wOefD2lfYYv6Akm5u4Je9Vf
-	fhMFkVwtP8qrSihLgrLxOq9nYPa/AwoJEFBR44oRbrvV8OZWDBcdOO4d50k2sux3hlk19uX1uIK
-	/CQptRCHt7eAk/4KFRDO4qtGzLxfEf/OtpHJqqXyNkky65uxYDBm5+kaHvriUBtkTNwfRUWO1jH
-	pcN2nS3AHtWvcFGn8zJZv/AQ==
-X-Received: by 2002:a05:7023:b16:b0:139:90ab:36bc with SMTP id a92af1059eb24-13b2a1dcbb5mr155645c88.38.1782753882083;
-        Mon, 29 Jun 2026 10:24:42 -0700 (PDT)
-Received: from localhost ([2804:30c:1618:8400:e838:86ad:21d4:de00])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-139d8f6acf9sm47567925c88.6.2026.06.29.10.24.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2026 10:24:41 -0700 (PDT)
-Date: Mon, 29 Jun 2026 14:25:27 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	jic23@kernel.org, nuno.sa@analog.com, Michael.Hennerich@analog.com,
-	dlechner@baylibre.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, julianbraha@gmail.com
-Subject: Re: [PATCH v4 3/4] iio: adc: ltc2378: Enable high-speed data capture
-Message-ID: <akKqhwv4cbR-fL-g@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1782397418.git.marcelo.schmitt@analog.com>
- <7d91f48bb03a16e6876e7aeb05fe259e33ae625f.1782397418.git.marcelo.schmitt@analog.com>
- <akIHUgTtyZv44TWv@ashevche-desk.local>
+	s=arc-20240116; t=1782818195; c=relaxed/simple;
+	bh=+/JESTVsFDcoGuMP/FgRRyUeBmA9JLzIgr4Vp6EzN6M=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=HWu9zpegYHCSTufqhhfXpdFcm5W3BeJsmFz4+vr9t25EXjFpLFflh81vTDtO9uIbKSmHB5CK1m5S+yQTWplWDMfvXrPHW7W/w43hAf1+VHmC/55Z52X3rJscnd+CBgap3v2mH/TL32C5ytlKsZGrrUicBAPkq1fbl5qGobQUJiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lhOHaHXd; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F9BE1F000E9;
+	Tue, 30 Jun 2026 11:16:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782818194;
+	bh=gW8Bndv8QKhGjBf6SmFc2HG7s+OzjKpn0rdNZPfQmiE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=lhOHaHXdwAOtzMatMbWXvAMmH/VRdCeXIYozgkjUCTcJ5LUVIiYp6TpeA7N6nZRZC
+	 xN7bCU7e6yvghuleLbKTQcy1FCH9hKutrJou/ycDbCQFX5CeuNT7OWlkotCXl+wx/W
+	 eR+GQJArUZ1S7+Rbv8Us8rCnDgG0r+0t0a9wOi1MY79NVAMwoX7RflFgEBLjO5HHmu
+	 yR65q57af+0tItc+Cq4v1l5EsG0K7tMAK8GgHa3m5kN+uIW7mWEaPHUIFNbsXOCVLd
+	 V+tkynqWTtd91xXsMAQDn4g15zmB/jfeS0WUx6xYIltpxhr5zuoPrmZgos2gGfJQ0Q
+	 cCxDQpdK69sWQ==
+From: Mark Brown <broonie@kernel.org>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ david.daney@cavium.com, Ninad Naik <ninadnaik07@gmail.com>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, me@brighamcampbell.com, 
+ linux-kernel-mentees@lists.linux.dev, skhan@linuxfoundation.org
+In-Reply-To: <20260618180149.475658-1-ninadnaik07@gmail.com>
+References: <20260618180149.475658-1-ninadnaik07@gmail.com>
+Subject: Re: [PATCH v3] spi: dt-bindings: octeon: Convert to DT schema
+Message-Id: <178275394462.47562.15525184882513666560.b4-ty@b4>
+Date: Mon, 29 Jun 2026 18:25:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <akIHUgTtyZv44TWv@ashevche-desk.local>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1104; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=+/JESTVsFDcoGuMP/FgRRyUeBmA9JLzIgr4Vp6EzN6M=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqQ6WP7aX+WmRfwVyfJ8p/6OJonHaNEPMoxTTFN
+ 9er12Q4w5GJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCakOljwAKCRAk1otyXVSH
+ 0AgnB/9R1ftlqt+yfnfefzrGR9DVNQvDxSL4yL6muRaOrN4HzRHSkgHnNrPpnF7rtrpjzcAKwOr
+ WWtFJ4WvJQH1z7ahK078iL38SowkEF9vvM1yhDAzanHaZRZRNb7jDXeSc6JWRAKXnpU7+ft48xJ
+ rnP0qO/nSC9u9eU+RS1k90GgmAwjl0hrdsY2T7zQv5u2W7cWQXQkwZUx7TrCcpBa1QN3yDp4IU8
+ ZLTOvSq+9lag5stqH/RBUBm7sALYiA1HsesqM5H/Z8KIm3llxDhScDEAdbPmt6s7a65fir5REcd
+ nt/WSY18EaHL3AJqT2gFNbaAx7yLqXW49Ckd0qm7d1jIamSr
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317239-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:marcelo.schmitt@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:julianbraha@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[analog.com,vger.kernel.org,kernel.org,baylibre.com,gmail.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[kernel.org,cavium.com,gmail.com];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:david.daney@cavium.com,m:ninadnaik07@gmail.com,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:me@brighamcampbell.com,m:linux-kernel-mentees@lists.linux.dev,m:skhan@linuxfoundation.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317683-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D55726DDBF4
+X-Rspamd-Queue-Id: B00816E3828
 
-> > +	/* Double check the minimum CNV high time is met */
-> > +	if (cnv_wf.duty_length_ns < LTC2378_TCNV_HIGH_NS)
-> > +		return -EIO;
-> 
-> Hmm... How is this IO issue?
+On Thu, 18 Jun 2026 23:31:49 +0530, Ninad Naik wrote:
+> spi: dt-bindings: octeon: Convert to DT schema
 
-Okay, what about EDOM for PWM setup failures? Any error code suggestion otherwise?
-Will follow the other suggestions.
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.3
+
+Thanks!
+
+[1/1] spi: dt-bindings: octeon: Convert to DT schema
+      https://git.kernel.org/broonie/spi/c/cb8c374a632b
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 Thanks,
-Marcelo
+Mark
+
 
