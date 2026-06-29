@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-317323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317324-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wHVpAfYBQ2pnMQoAu9opvQ
-	(envelope-from <devicetree+bounces-317323-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 01:38:30 +0200
+	id xd22DCwDQ2o2MgoAu9opvQ
+	(envelope-from <devicetree+bounces-317324-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 01:43:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 505956DF41B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 01:38:29 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB5196DF444
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 01:43:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Pap7AHEE;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317323-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317323-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Qe2M+ppn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317324-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317324-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 30C0430142B2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 23:38:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 23D00300679A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 23:43:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A2023CCFB2;
-	Mon, 29 Jun 2026 23:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F8CE3CFF5E;
+	Mon, 29 Jun 2026 23:43:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 491BF86329;
-	Mon, 29 Jun 2026 23:38:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696D6315D53;
+	Mon, 29 Jun 2026 23:43:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782776306; cv=none; b=oKWJXif7ZDD2cZeRGkJRg1qurukVWm23KkVPizcEG/I7+P7WR8wlV5ERDoEq2duvT6Y39ogQrGWosi5k8K0B1n14JHr2d+mbc0XWZQYFqGHAs719EI3S6qYNRYI5lcTxxpBDRlkZppk16FMu7BjYywp4OGCP6EPcfG5VS3Nomi0=
+	t=1782776617; cv=none; b=r+bMwHlAlNQTB/I84zkt5Xf7Yej/VlAjUsZGkOFk3cxVRVyD3dUHW/tpeSoL7ArDY8pngvl06lP/MDDAhS8ZoR+SaU22Dk0sKyryD+vE5x0yySf81KAs0BCaXlIO5CdtQesXPfgFpAXKXkBuF3I1iXCU5iwMDnM/6J8SteSlw1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782776306; c=relaxed/simple;
-	bh=PwI+aPvuoruHcUMHzILq46ZyzXIfIq+mXC6iYEaY2SQ=;
+	s=arc-20240116; t=1782776617; c=relaxed/simple;
+	bh=MoMKnesAl7723DUIMewnSHfad4y06mPzTdapbJ9qY/A=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oEISDtirWFRsBUQZN6NS2EN4m8vdxwhFx4UmrIwPpMAgqe9SHe02BpTF21ATZge7lkzF8zKHdlqDusQv4iLKM7ARuOKpUZjODGDUCwzfI5x+vR4yCf225P0xexqNLECa44wGvS2PbDynhbn+r1kpFRPUVjcrHySl3DI0MMIAsNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pap7AHEE; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5873A1F000E9;
-	Mon, 29 Jun 2026 23:38:23 +0000 (UTC)
+	 MIME-Version:Content-Type; b=FDk4VBTTTd5rb0uzOHl9oZRmcfhirJ9XiNNvRH6ycDErEoPbh+UaQWMfHTgFJeDPGbzzcdU8s7qmALeO/bAEbH3jOliaaqFXkdbBQ7XMh1o9nAsEHvsOp0uMsGOhcXOMKoGp4GBhnurEG0D1blGTGKvB7BcmldfF4Mp3yNp6glM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qe2M+ppn; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22C3C1F000E9;
+	Mon, 29 Jun 2026 23:43:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782776304;
-	bh=sG4xinHvB/NIYL5C4QDciARVziCppV1KFjGbEXYkF5E=;
+	s=k20260515; t=1782776616;
+	bh=/OjkqCPo1cGwYr2tXP/RciVXObNPz8yMQMnfJck0Tgo=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=Pap7AHEEdstJCEDvQ7WoQAslrMwVpg0hzTyNAnWpGyl2VfUoMRB0P/SguGi11xZhE
-	 SnB1sykxrmb5DckLtH4ebbV67GoVhCbG8kA0sWYDqGhIW2NunijSpbClkTkLAPcr9Q
-	 E0ua5oiUXY0qasBpqq6vLF0pzNTOAeUmjObUeYs8MXMqNhQNftpAs/QT5yG15un0+K
-	 4PEQmrrSrIqSyJ/tmS+iznvq2lV8nv6D/KmnkwMppAzv389fGL7O4DVYwmOb6MHLAX
-	 /pl/Mbnk3yY9LDrWIcvz91/0BIWaENDCNNV/0wkHkwqdKK+W4frTwH5FRNO+uwdErX
-	 ctfMGFeCxNfxw==
-Date: Tue, 30 Jun 2026 00:38:19 +0100
+	b=Qe2M+ppnLLQTaO5jVpMUoF1+NETgkS7HDzZ1ssd0NFsBgkD6dLfhnT1VtisBvHnrW
+	 dgLO8PzRIitjIWgd5Yb3rjAr3YUfKL9uTIntH/wJ+PAttqpBmR0eXk+n/PXmz29nie
+	 Ptk6U3uKSt74FznHBo+DPqksD74ydGLE4rz7GeX0dPgmmhbByUmCYpU+WQ1fjHrRmU
+	 7M947e4pSNObN5deB8zS2+Y5ksqf9soiXMjJo0Tlr0Qcy2kj+bTP8Rg0E7J+9vDb/P
+	 b/A/X7qnLTf9EPFvR1Lj9zjGwFwJdrADvUjbL0Z7Eiv8FJBtpPlzah9lKLXZiPkJWD
+	 MGHJQuT5HMP+A==
+Date: Tue, 30 Jun 2026 00:43:31 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: Rodrigo Alencar via B4 Relay
  <devnull+rodrigo.alencar.analog.com@kernel.org>
@@ -58,11 +58,11 @@ Cc: rodrigo.alencar@analog.com, Michael Auchter <michael.auchter@ni.com>,
  <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook
  <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH v5 11/12] iio: dac: ad5686: add triggered buffer support
-Message-ID: <20260630003819.3798ae27@jic23-huawei>
-In-Reply-To: <20260628-ad5686-new-features-v5-11-577caadbf7c0@analog.com>
+Subject: Re: [PATCH v5 07/12] iio: dac: ad5686: add ldac gpio
+Message-ID: <20260630004331.086f4efe@jic23-huawei>
+In-Reply-To: <20260628-ad5686-new-features-v5-7-577caadbf7c0@analog.com>
 References: <20260628-ad5686-new-features-v5-0-577caadbf7c0@analog.com>
-	<20260628-ad5686-new-features-v5-11-577caadbf7c0@analog.com>
+	<20260628-ad5686-new-features-v5-7-577caadbf7c0@analog.com>
 X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -79,7 +79,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -99,76 +99,31 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-317323-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317324-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,analog.com:email,jic23-huawei:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,vger.kernel.org:from_smtp,jic23-huawei:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 505956DF41B
+X-Rspamd-Queue-Id: AB5196DF444
 
-On Sun, 28 Jun 2026 15:08:18 +0100
+On Sun, 28 Jun 2026 15:08:14 +0100
 Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
 > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 > 
-> Implement trigger handler by leveraging the LDAC gpio to update all DAC
-> channels at once when it is available. Also, the multiple channel writes
-> can be flushed at once with the sync() operation.
+> If wired LDAC, should be asserted when unused (pin is active-low), which
+> allows for synchronous DAC updates. This will be used to update all the
+> channels at the same time when adding buffer support.
 > 
 > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-I may well have forgotten an earlier discussion about this (assuming Sashiko
-found it before now) but the masking of the stuff from the ring buffer
-does look necessary to me (at first glance anyway!)
+In the interests of moving this forward. Applied patches 1-7
+The rest are tied up with the triggered buffer support and that one
+comment from Sashiko so should all merge together.
 
-> diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
-> index db175e77b0b7..3120e6983d9e 100644
-> --- a/drivers/iio/dac/ad5686.c
-> +++ b/drivers/iio/dac/ad5686.c
+Thanks,
 
->  };
->  EXPORT_SYMBOL_NS_GPL(ad5679r_chip_info, "IIO_AD5686");
->  
-> +static void do_ad5686_trigger_handler(struct iio_dev *indio_dev)
-> +{
-> +	struct iio_buffer *buffer = indio_dev->buffer;
-> +	struct ad5686_state *st = iio_priv(indio_dev);
-> +	u16 val[AD5686_MAX_CHANNELS] = { };
-> +	unsigned int scan_count, ch, i;
-> +	bool async_update;
-> +	u8 cmd;
-> +
-> +	if (iio_pop_from_buffer(buffer, val))
-
-The Sashiko comment is that the data in val is controlled by
-userspace so might include stuff in the bits where the
-_CMD() macros are placing the cmd.  I think we need masking
-somewhere and I think it should be in the ad5686_write()
-rather than here as that is where the per device macros
-are applied.
-
-> +		return;
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	scan_count = bitmap_weight(indio_dev->active_scan_mask,
-> +				   iio_get_masklength(indio_dev));
-> +	async_update = st->ldac_gpio && scan_count > 1;
-> +	if (async_update) {
-> +		/* use LDAC to update all channels simultaneously */
-> +		cmd = AD5686_CMD_WRITE_INPUT_N;
-> +		gpiod_set_value_cansleep(st->ldac_gpio, 0);
-> +	} else {
-> +		cmd = AD5686_CMD_WRITE_INPUT_N_UPDATE_N;
-> +	}
-> +
-> +	i = 0;
-> +	iio_for_each_active_channel(indio_dev, ch) {
-> +		if (st->ops->write(st, cmd, indio_dev->channels[ch].address, val[i++]))
-> +			break;
-> +	}
-
-
+Jonathan
 
