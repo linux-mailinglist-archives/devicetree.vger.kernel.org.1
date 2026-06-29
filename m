@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-316704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316706-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MWxtAW8cQmqd0QkAu9opvQ
-	(envelope-from <devicetree+bounces-316704-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:19:11 +0200
+	id bUofG6MaQmot0QkAu9opvQ
+	(envelope-from <devicetree+bounces-316706-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:11:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 043606D6E67
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:19:10 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D849A6D6CF1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:11:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=d5reHM9a;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316704-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316704-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Agx+YXaQ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316706-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316706-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1861A3091CA8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:01:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D9F10303608F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CEDB3ADB9A;
-	Mon, 29 Jun 2026 07:00:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D29BA3BB9F4;
+	Mon, 29 Jun 2026 07:00:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B1BA3A4274
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 07:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72AE03B2FED
+	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 07:00:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782716448; cv=none; b=plfx4t+Wpm7q0lVJF6SbneiM74sBlQZE8K64Rsg0q63G77tiO6zie2palvzlRzOFT5awWjhEOU1QStQ8cHgn+IWY5Z/n38dufx3zWAA7URw9lWGcWWL18rH0MY0u8A1I8e1C4cBLZ3ckYkH+Fniv84FCYn+tNplqqZNbTmYTidQ=
+	t=1782716454; cv=none; b=O4L8jTWXanIyGnfsB95j7XxGjCZI/Nim7kwuseYOw5h5d/opZ0stn6AzJM09THG/0632k7Fn+PJiLqkoRlruPYxxQ7AV4acM9yUH2/fYDncO4206opqMLQdFFDs3G/OMQQm6w/eCOEQPv0BXE9BD0ruoHj4sQyJg8ZHUrc18q4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782716448; c=relaxed/simple;
-	bh=lp7LAimrZs1QHVxx24pfSjBh3OWT1HxcKdnhmz8J8yo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uhzLPkJMeVa1MKSLdNC6ZyChUP08U062eaZiULpRxp8NaeYzgckoRq5g5ufWSy+tDcy5RAtjQqku4LmOTIfGs9APJr3iNk2PQgyrdebpAmWED7IQtajIdirthMZTSUSaiAF6gBLhH0uJUG2etZWhHNIrv905pAuSqKhIKh2yEnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d5reHM9a; arc=none smtp.client-ip=209.85.215.175
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-c88973b6965so1799645a12.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 00:00:47 -0700 (PDT)
+	s=arc-20240116; t=1782716454; c=relaxed/simple;
+	bh=kVMtXl7rCmx5JlnaHYpMBj69E287VOYKC3xVI2EdEes=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=SoNXp3Za5Vz9FJ5iJ1u1emskOjxS9xCnlxsBuG2MlU82pcZxc2N2hnDnQw+ZQEwZod1CESFK17+1iA4jOWfU0ilpCSCY4al5AuM91GoGBZ6u7cpmbf28uSv17gp1kXYpSMvxHt5/giDoiHz8JuRkww6XCis4c2m9MbHpEJdxkZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Agx+YXaQ; arc=none smtp.client-ip=209.85.215.180
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-c96d2bebca3so511998a12.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 00:00:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782716446; x=1783321246; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jrV/R25cT3pDEPiIHQ/ia5vCE1mVaRFviplQpQbaE6s=;
-        b=d5reHM9arn8uNVNPjuPYi5EyHDY+dYRQ6y/hsAky7g64R2uQz0a/Q/BOXBieMkz84P
-         /jg4rrV5BefESRVSmEXKaI2xt2eBWHWbDgiDLsrEKVNi87nQnJBNwz+m2LopRKEbGhwb
-         zEA0lgmJ+kpbomx91vPxULdCkfHNVb0MDsuiqQIpA1LBhGevWNVmqsVJAEarkKno1EYq
-         GdBRh3dKPt3okBz+mWEo74maCkJ7n/QH41XAI30Y2M14AKixik1aFqS0oU578YCOy3Hw
-         i/gqb1bzT8ht31oogR6d2Qxn6c4gmT2FtMwWfY6MFZQoJGZDdtZ9kaDLbHzFkoKKRN/U
-         gK1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782716446; x=1783321246;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1782716452; x=1783321252; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jrV/R25cT3pDEPiIHQ/ia5vCE1mVaRFviplQpQbaE6s=;
-        b=rDQaewKdduRsNfeLSMY3HAiGygK60+C4L8Vlw07RmeAFqZqZsrywg/k4qb5qLKaUXi
-         fQaBrzUzQTupb145+pYWVHIS9wJrGENDcGG+2xz0bysJZ/VMFJ90PFtc61hZB/3bULyD
-         VnZwg7sc/5aX2hW4vAB7RVxsS/+lYYRKrYefgChpu+PjyMr2b8skXEk1SkT2B4O3GuYZ
-         SuYhOm1/0H/eP1Wtwx/ZuXLpoHc0+S6CjxOIK4tjT1emhH5fu+kC8DyKQ0/g3HPqoQhP
-         oMnOUC2E8tjmQIfH9Alq44YeRDWLbKMl6277xita/UF4OlKtK1hxHYbr4uh+PTaHtiiR
-         1x/A==
-X-Forwarded-Encrypted: i=1; AFNElJ8XNYIrK/+nF9hKKkWkdGHf4PD6MNtjf1okWqWUbUTGrTOMEfbEpz1ZDz//H0F2GlFPOGhjV/lI8iyf@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdU7qyF2HSkNX8XW8CfJWKoQecEACiuZl0jT1vp9asuvWbaVeo
-	Vad2x4MN+ThDmW0sHNPBP96hzG23NsmNjvMYQcrslA3f7FNH7V9F0+3N
-X-Gm-Gg: AfdE7ckSxmUmv1JwC31jk/KHi2GGmLBTp6h+etL2lBHnmQUHHwTdG4IXssVOWRakONZ
-	a+qseW3Cpbq32evkOwL2Gww3ECoLLbmlRDryhKEmDgJQflRgMu9J8zZPJFhw4jG7mS3jVs+Iyi2
-	xawzf43y53+8ILjWX18Ck1Xe8O9BC2BX5s/KmZmDjucd8pzbYn1m0QUaZuIOLEE68aJzdfk/5QK
-	eQzQA/wZR2jyZvKjVa38M6GqIZ44QlpaG7mvYOlSo3VijtsWAjx6Hpdwz1AVKw4kO1lrgCWNiFZ
-	jpHw+ZecACTyyQikRtA/hPEBTpRqygyUIG8uSVbRt1YzD9WoRIC9aSnlLI5vrUAh52Fb6c9m5Hg
-	HTLH9LCLu3tzPTSAQdIeFAUwhn7xIofflAlaJuW9kBsJVAPMQPR1J+W0gNfnoXmRFPKHMRHLqJM
-	ho+vHrt3f9/RY=
-X-Received: by 2002:a05:6a21:4cc6:b0:3b4:6af4:bdce with SMTP id adf61e73a8af0-3bd4ac5d9a3mr12152783637.20.1782716446385;
-        Mon, 29 Jun 2026 00:00:46 -0700 (PDT)
+        bh=OmJhwlnvHDQUYncTcDLRsXQNIfCpXR83f5hKepY0aRc=;
+        b=Agx+YXaQUv9tyklnaYAzKlFgVN8wqL5OKM46Gmtva/DtTHUuSoKADSW7K7Cpv6T01Q
+         W9QTWltkfbNf/LKxZIQJJZfbqFjtLvKINDk+zvTabmlUOJRzhqjsJM83b5PpQ42rMoOD
+         HUkUHG6aAMiXA01BfyhiyfkQ/8v0ic0OXCWF6MJEXmr/BsdBEAOy9XchQ4GTE1VikI+a
+         Py9XQRu324npZ/gRkERNGlHjx5o9YMfuYWr4QLZ96gVymWVFVwqChTSJPGZ3NEJuyxPD
+         SUnpiH3AFBid7GmQDxWy6/dm2SEM7+QCpDiMPIAh2OzNWdaxF6MFjtDXr+lIVO4VXkDj
+         MZWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782716452; x=1783321252;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=OmJhwlnvHDQUYncTcDLRsXQNIfCpXR83f5hKepY0aRc=;
+        b=pjOF92gPbNcpLCyBAP4LJIxo+SK2Il7VUGgpxlRGsygDSQfaHEPUn6DoLQ6ii9ihza
+         vRaOQBJunKbpfBIqrmOIN1yKZvAcSoOa2K4cD9Z26WIdK5xPL2GX2kEXD9mMJBBq6FM1
+         hN5Nk7Dwd//Oad1WBGfLXYMYB6WA3kvTf+/VzCjvw2Ls7xo7ex5ZEApK4S8/0qMl9ed8
+         i45yLNxmhj9GtM78r9+AKs4nNx3ULRN6djnZsfnwODX8MWqIybuHkOirLVHDIRBdV+tP
+         SCvbvaGb5+LV7E7zz5zTWzsGmRFIGq0hHBagYtisWokOENU869HJV9rh9bw7rUc5+n2/
+         qVJw==
+X-Forwarded-Encrypted: i=1; AFNElJ+SKp9zczwm+VGs+vCUo4e6nlEvxVuY0IDASZHO4UsqP9Sbu0QcxKM3e8d2L/7vwRpXurC7gNM97q4P@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUgUSDpYP1GtwyByh/S+9ZX3BAFi4yMbeH/nPS7nR1o3VxmIP1
+	YpHha+RrHkrIjp0HgqfKJTARpJ8b4tEsn5IFm+vJiaFeR/3KDZWygo/2
+X-Gm-Gg: AfdE7clM2yvCHYJZHemqKloOegKOQanq9T7kK30fU1HNaCcpamuVrbuFD2oTV+Nayyz
+	8ckK3AVy59mQ0F2tk0kykec9WJmBLj/N6EhbBPgqlsoYisH60dTkXDnA94oOAgKJjrdH1QW4Mi/
+	4Eko1vpha7phxQz4bHT8jHe2DGkinQhyCYvINSZurE5GMw/Q+sjarjgUJP4NeUSgD1fi/brnJVT
+	KMedPE5jalghTYripLF54upJelsnIctlqMHUMSyAamqSFkGSU90ZnsN78vPLTr+8PeOKcOYwvPw
+	2SMs/FGv4+Q/owbB+VUlQWeNW8LwTKmToyH/tvL4a5GKq+NTQ3fKCXlpbsKl0XkTYjbjioRbnpj
+	wKyPLMxkk2PBYwBZm5c1cig7KFRrBqcrwBMf6uqjy5Q1Yj/oHTrA6vFAkBz3xwM1caeBpyuLBbf
+	sb0MbGdaz04xs/L9zhIjfsHA==
+X-Received: by 2002:a05:6a20:43a5:b0:3b2:8675:4866 with SMTP id adf61e73a8af0-3bd4aea1393mr16514328637.31.1782716451742;
+        Mon, 29 Jun 2026 00:00:51 -0700 (PDT)
 Received: from nuvole ([2408:844c:b00:2b2f:398a:8bef:b88c:653a])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c92bcc90af5sm7061725a12.28.2026.06.29.00.00.39
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c92bcc90af5sm7061725a12.28.2026.06.29.00.00.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2026 00:00:45 -0700 (PDT)
+        Mon, 29 Jun 2026 00:00:51 -0700 (PDT)
 From: Pengyu Luo <mitltlatltl@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
@@ -86,10 +88,12 @@ Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Pengyu Luo <mitltlatltl@gmail.com>
-Subject: [PATCH v2 0/3] arm64: dts: qcom: sc8280xp: fix and improve pinctrl
-Date: Mon, 29 Jun 2026 14:59:02 +0800
-Message-ID: <20260629065905.15651-1-mitltlatltl@gmail.com>
+Subject: [PATCH v2 1/3] arm64: dts: qcom: sc8280xp-x13s: Fix the drive-strength of mclk pin
+Date: Mon, 29 Jun 2026 14:59:03 +0800
+Message-ID: <20260629065905.15651-2-mitltlatltl@gmail.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260629065905.15651-1-mitltlatltl@gmail.com>
+References: <20260629065905.15651-1-mitltlatltl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,7 +108,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -112,13 +116,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TO_DN_SOME(0.00)[];
 	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-316704-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316706-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bryan.odonoghue@linaro.org,m:vladimir.zapolskiy@linaro.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:mitltlatltl@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -131,31 +135,45 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 043606D6E67
+X-Rspamd-Queue-Id: D849A6D6CF1
 
-Add camera mclk pinctrl definitions to sc8280xp.dtsi and drop local
-and duplicated definitions, as this is common for sc8280xp based
-devices. Since the correct drive-strength is 6, fix it too.
+The value can be retrieve via windbg on Windows.
 
+lkd> !dd f111000 L8
+
+ctl_reg => 0x284
+
+in drivers/pinctrl/qcom/pinctrl-msm.c
+function msm_gpio_dbg_show_one()
+...
+drive = (ctl_reg >> g->drv_bit) & 7; // (0x284 >> 6) & 7 == 2
+...
+seq_printf(s, " %dmA", msm_regval_to_drive(drive)); // (drive + 1) * 2 == 6;
+...
+
+So the value is 6, not 16, it matches Windows now.
+
+Fixes: 21927e94caa5 ("arm64: dts: qcom: sc8280xp-x13s: Enable RGB sensor")
 Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
 ---
-Changes in v2:
-- Collect tag
-- Add Fixes tag (Konrad)
-- Rearrange the patches to ensure the fix is properly backported (Vladimir)
-- Link to v1: https://lore.kernel.org/linux-arm-msm/20260607160435.36546-1-mitltlatltl@gmail.com
+ arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Pengyu Luo (3):
-  arm64: dts: qcom: sc8280xp-x13s: Fix the drive-strength of mclk pin
-  arm64: dts: qcom: sc8280xp: Add camera MCLK pinctrl
-  arm64: dts: qcom: sc8280xp-x13s: Use predefined MCLK pinctrl
-
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 10 +---
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 56 +++++++++++++++++++
- 2 files changed, 58 insertions(+), 8 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+index abd9c5a67b9f..3ddd44e16e67 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+@@ -1555,7 +1555,7 @@ cam_rgb_default: cam-rgb-default-state {
+ 		mclk-pins {
+ 			pins = "gpio17";
+ 			function = "cam_mclk";
+-			drive-strength = <16>;
++			drive-strength = <6>;
+ 			bias-disable;
+ 		};
+ 
 -- 
 2.54.0
 
