@@ -1,76 +1,74 @@
-Return-Path: <devicetree+bounces-316859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316851-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4cZBK/c8Qmrn2QkAu9opvQ
-	(envelope-from <devicetree+bounces-316859-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:37:59 +0200
+	id 3swNEbw8QmrU2QkAu9opvQ
+	(envelope-from <devicetree+bounces-316851-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:37:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4640F6D84EE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:37:59 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36B6F6D84BB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:36:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=analog.com header.s=DKIM header.b=JXc3gcaN;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316859-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316859-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=analog.com header.s=DKIM header.b=nXa+M7Rj;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316851-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-316851-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=analog.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 798FF301BA46
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:32:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3BE1C3017F2B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 235C63F9F4C;
-	Mon, 29 Jun 2026 09:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E723B3F9F4C;
+	Mon, 29 Jun 2026 09:22:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3DC3F8EA1;
-	Mon, 29 Jun 2026 09:32:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2345C3F9F45;
+	Mon, 29 Jun 2026 09:22:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782725563; cv=none; b=OjSN5MSBclZOT0wodS+tDhhaghiE8J1Csa/n9Vks+1UV0OcDq/WI5z/kf4zZeblRmOCH6uj4OR1y0G84Dgi5vEp1NG04GbdRc6crpUnlKoFFSavQMUtBQHCq8dKVIOAB+ESXaO/JskGBaxoNFgf6wKo3+MRiIu5+NgUfY8L+m6c=
+	t=1782724946; cv=none; b=hXzv0JfQ6F21QzqB7frVZj1cTPcG8DtqXyyGioKPI7m7Te+HPOwymrzwt2AITEdtbgRe6R+coE+HVbcJ8GkUL9GOJijcvBpsDkVfG72zRNLRKGwcZan0vUXgzCS3d3hAmhvV+fGgNp2YeXmyxkt4YX56bi2ch84MyAvNcmb+2Ek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782725563; c=relaxed/simple;
-	bh=p05yBjmRfIM5xcXyOjHBN0a3UxpSbkwCE+TzU5H/+sc=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=VWX21CU8Es3AlahSWWvjnd6Wb/RsrlYpWnW5e0zbx8ckwb1uh6X6s1+hIiZjJRqCjw8EnYcoZfqzWS0UQXRITRVbfguH0hjFrWC9cfO46xFXQ0GCrQruYjqlIqT/p/LiqL7SVzxq+exk+HD6kciA9RBpKZJxvmOkUGol8WdbiVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=JXc3gcaN; arc=none smtp.client-ip=148.163.135.77
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65T6kGwJ1423996;
-	Mon, 29 Jun 2026 04:31:34 -0400
+	s=arc-20240116; t=1782724946; c=relaxed/simple;
+	bh=bntcjrAzxByk55yr1oqaWU94IgLBBZWiNnJSUSoa3Ws=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=hCCa+TTvgPMgJaysO3//UmkdtXd62yrLQOURjkohKUAqDwMlnbtEQs8GvdQfQDBhFIzYaSONIrRSA7WBonYGoltz80GwvV+eHq9/4H4HLt5UjBGiVknysboKD5/d+hJ6xuxL0HwNsEivHSnD3XNKkHBPFBoURItyN5vMX1XqFfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=nXa+M7Rj; arc=none smtp.client-ip=148.163.135.77
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65T6jw001430210;
+	Mon, 29 Jun 2026 04:31:40 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=DKIM; bh=gtRs9K8WHcG1hZni2OIyiQpnrJm
-	/GLGF6FSWaUPLf9Q=; b=JXc3gcaNsfOHloY4eBQ8E86/Pfe9skGwQkcuKrjZz6Y
-	CMjgRpmFZGGKT543QXoW3sqZGqxImTh/BOuQqkbMBl3nigaqWsX0bdIBUZ8prsQG
-	khSxX/Nfl7EH2fRKqAHFTlguroKyJctM7A2+MMuwzsum/TwlkS4uiZjhEAPKhH8d
-	J5arWCh5qRb/E1+37Am4keoKsb+vNElj9EV2qC+bQwg4ucxdjHXXMcEcb5nRqYJA
-	7b4QsAdKRq8jVkWq5cDdKpvHJd6Pzvf66GZZC2vW4i/GL/owRx2zxoeHKOuExN4r
-	9K1LtrS4ftfH/uYR1MKF74v/GuND4i5aURfSPX5haXQ==
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=IoME8
+	4TZtjUwHK5/b2EwTrGDaZhC8ScHNV+1GEk7JkQ=; b=nXa+M7RjvddEDyQI8fRij
+	3F8DN01zJjCXZjDMmE9w+rbn5Y87Oa+oBi6yy0vdFkDE0kavMu/eHDFBF66kkTIr
+	bb/7JVuhj5d4cU5HNMX9tOZVFXm0Hti9dsEZxT87fdLYte3eHcIUZpj4pBwLTR0v
+	1agnAkZUmVFXDMIW9XV6i547QScSO6Hv4X2V6dtatnktBs1qXL2jFrNfC2xjmSWV
+	0abEb1DXZQcJs0pvsNoFOxGITVWFNCi5rUuYcqZTRMrcQY7qHPFd+7CJa0ZLwaBF
+	bBO0gQsM49mnzVf0mHlhm5r09yn3EmYUHwtCA68NyKCuB+LD7ejyekmcqXvm2ScA
+	g==
 Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4f3gypsafq-1
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4f3k4egqdh-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jun 2026 04:31:33 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 65T8VWiI022760
+	Mon, 29 Jun 2026 04:31:39 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 65T8Vces022777
 	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Jun 2026 04:31:32 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 29 Jun 2026 04:31:32 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 29 Jun 2026 04:31:32 -0400
+	Mon, 29 Jun 2026 04:31:38 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Mon, 29 Jun
+ 2026 04:31:38 -0400
 Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
  (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Mon, 29 Jun 2026 04:31:32 -0400
+ Transport; Mon, 29 Jun 2026 04:31:38 -0400
 Received: from 10.32.22.147 ([10.66.6.190])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 65T8VJke012929;
-	Mon, 29 Jun 2026 04:31:22 -0400
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 65T8VJkf012929;
+	Mon, 29 Jun 2026 04:31:30 -0400
 From: Kim Seer Paller <kimseer.paller@analog.com>
-Subject: [PATCH v3 0/4] Add support for AD3532R/AD3532
-Date: Mon, 29 Jun 2026 16:31:03 +0800
-Message-ID: <20260629-iio-ad3532r-support-v3-0-f6e4f4abebbe@analog.com>
+Date: Mon, 29 Jun 2026 16:31:04 +0800
+Subject: [PATCH v3 1/4] iio: dac: ad3530r: Refactor setup to table-driven
+ register bank approach
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,179 +76,344 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAEgtQmoC/32Nyw7CIBQFf8WwFnOB0ocr/8O4oO2lxWhpoCWap
- v8u1I0mxuUk58wsxKMz6MlxtxCHwXhjhwhivyNNr4YOqWkjEw48hxwyaoylqhVScEf9PI7WTbS
- QFeQFVpAhI/E5OtTmsVnPlzf7ub5iMyVVWvTGT9Y9t2xgafe/EBgF2ggpua5AsBZPalA32x0ae
- ycpEfiHhMnfEh4lZaZA6bIuhVZfknVdX+sLvU4OAQAA
-X-Change-ID: 20260604-iio-ad3532r-support-759067e904e1
+Content-Transfer-Encoding: 7bit
+Message-ID: <20260629-iio-ad3532r-support-v3-1-f6e4f4abebbe@analog.com>
+References: <20260629-iio-ad3532r-support-v3-0-f6e4f4abebbe@analog.com>
+In-Reply-To: <20260629-iio-ad3532r-support-v3-0-f6e4f4abebbe@analog.com>
 To: Jonathan Cameron <jic23@kernel.org>,
         David Lechner
 	<dlechner@baylibre.com>,
         =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-        "Andy
- Shevchenko" <andy@kernel.org>,
+        Andy
+ Shevchenko <andy@kernel.org>,
         Michael Hennerich
 	<Michael.Hennerich@analog.com>,
         Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>
 CC: <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux@analog.com>, <devicetree@vger.kernel.org>,
         Kim Seer Paller
-	<kimseer.paller@analog.com>,
-        Conor Dooley <conor.dooley@microchip.com>
+	<kimseer.paller@analog.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782721879; l=3531;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782721879; l=8468;
  i=kimseer.paller@analog.com; s=20250213; h=from:subject:message-id;
- bh=p05yBjmRfIM5xcXyOjHBN0a3UxpSbkwCE+TzU5H/+sc=;
- b=Tuk+Vww2AHQyhQvAMB+ayTTQTiZ0BhWJqGS3f3hLZKHf1hv6YEFFlaTmtR5Ni+TUd5lLvsiDh
- d2Pqx2WEhVQCH0ME9aMgqwZZWyxGOmxlTfOvmrNyevCxBkOrQklESdB
+ bh=bntcjrAzxByk55yr1oqaWU94IgLBBZWiNnJSUSoa3Ws=;
+ b=z1BjBXhXu8beYOmTr33dFjkF28RintfdGQFeoFfPbxRwvENrAg9TFtnxLUVT+/dQPUBbSYHUj
+ EwhfubKzZXqDLUZnTwRs/5q0QAs4EJ44LXRTLegmjiVrnCQG8Gh3gy4
 X-Developer-Key: i=kimseer.paller@analog.com; a=ed25519;
  pk=SPXIwGLg4GFKUNfuAavY+YhSDsx+Q+NwGLceiKwm8Ac=
 X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI5MDA2NyBTYWx0ZWRfX/s4rCnfsKd9L
- SITiV1lOcfwvIhT7Z9YEYrtNIuzAX1B5f+3Y+Ns2c1o3yMbSZ08dL/GIxVtNPWXJF/bDlxNf283
- Ml9Wj/nhS3GUlz+jbFeeL0+Tr0PlOILTihw+xhlf6KtS4ALm/u1buZ1chfbdCQ+LRdq7YE27hyP
- 5lQQoDrtIkU/9AnuyYm0iJTDtAphD5yxtB86jO4lTe7mzql8WuSxUSV5EgEF/w5+Bd3vcONSHrV
- qtNDnJjq5Z34bb+2lZCtbGrsGIu9c64qlYtJ9eCSzQuPofNgfAt4DNcssp5c/EUh+3tRh3xd4g5
- znNQD0kdsu4p2mJXVWKp9IHUbMAK9wt1VPLaIL7a6K06RP++hybeCoUfMW/xt06aoo/A7CWPQKr
- bTiwn5gZiaOb8gcgt/+9BC+tgBiKMn0BasFeAIIR6Z7CfzGuXATLlCu7HezAUhNSwygsVzSDPWA
- cuUQrYZqpUfIEdnkKSw==
-X-Authority-Analysis: v=2.4 cv=A8Rc+aWG c=1 sm=1 tr=0 ts=6a422d66 cx=c_pps
+X-Authority-Analysis: v=2.4 cv=bIgm5v+Z c=1 sm=1 tr=0 ts=6a422d6c cx=c_pps
  a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
  a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=0sLvza09kfJOxVLZPwjg:22 a=Z0pTeXoby7EwIRygza74:22 a=gAnH3GRIAAAA:8
- a=bC-a23v3AAAA:8 a=VwQbUJbxAAAA:8 a=IpJZQVW2AAAA:8 a=ep6SA9rybd9mEnJAnAsA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=FO4_E8m0qiDe52t0p3_H:22
- a=IawgGOuG5U0WyFbmm1f5:22
-X-Proofpoint-ORIG-GUID: yTtQ4k9h-4Xjpot8vI0KTD087zAvY3db
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI5MDA2NyBTYWx0ZWRfX5EmwqW2EH0Oa
- A/Ru/1Z5PSJ5pyCNVWsOc0Xqi72CAl2pc1M7vS/lk+Iq61UHrCpaDt99+NTz9GAYTzD+MOw6g7D
- 0ytIjJdPLy59syGzZQ6IqDg3kceK9Pf3BJC+TBIGj4haQMVmxtgF
-X-Proofpoint-GUID: yTtQ4k9h-4Xjpot8vI0KTD087zAvY3db
+ a=0sLvza09kfJOxVLZPwjg:22 a=uXIjobp8t2wMuQ0fPvqm:22 a=gAnH3GRIAAAA:8
+ a=NlKgOxvxEZLQOO4oMgkA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: JUSi2brOWOr1QQNfU7kp-Y7sjsqQZHi_
+X-Proofpoint-ORIG-GUID: JUSi2brOWOr1QQNfU7kp-Y7sjsqQZHi_
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI5MDA2NyBTYWx0ZWRfX4v2AczajOuDn
+ wrM1jB6uXY7hVe2/0ZJu8Q50j+YBYvz4gqTisrPpQ2arQYlnGk5dUi3Mn63QoKZwvlgDkl3wkcV
+ 4g6L98UJQhYOYKDbeWfQmq5EQrviualF0jJCV5vnngSHf6c+p4eO
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI5MDA2NyBTYWx0ZWRfXzOC8EDboUean
+ T8PEoSfW6QaI6iUk8ngyp82SuKZUXaiL2BW8vTbc7Gg2SNgy5ee+q+Omu12NEwUrdGXialc4+/2
+ qJ1O3WcBCWvYnG5/1R9pzfLOvaHO347ogoTMHGcW2GGqFy8xqdNOoDcEE0IJ6M0zG5wiZxxASAJ
+ tJKf6+dwh63xNPbdgB2qn3ZEUxUnPG3RfoT7cqxnw2mcmr+nds6UrgajL9lKWeaNYbFfA13u1Ar
+ vpzX6PQrwgAxkcNgdYnnMZaB1BSUmYM1QJohnWvjWjNqLETbFQhzEScB3zoElBZ6qlFJ7LBpbCk
+ /0IXICLMZypi69SKwErPxYTtlQamRXvy9GYEyzW1CYnWR0+bt47D/C7OIxRtely9rVymfZAwKpg
+ bmojuObQgWWTmkjRPE5EaDq8xBH7D7dh0r1+MAovkOl/Q4EsQmVCAzFfpnlKmbs/cJeTHeKKmLJ
+ ZcSniypGGIDfyZ9iiVA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-29_02,2026-06-26_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 lowpriorityscore=0 priorityscore=1501
- malwarescore=0 bulkscore=0 adultscore=0 phishscore=0 clxscore=1015
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2606290067
+ malwarescore=0 impostorscore=0 clxscore=1015 bulkscore=0 adultscore=0
+ suspectscore=0 priorityscore=1501 spamscore=0 phishscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606290067
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
 	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-316859-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:Michael.Hennerich@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux@analog.com,m:devicetree@vger.kernel.org,m:kimseer.paller@analog.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[kimseer.paller@analog.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-316851-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:Michael.Hennerich@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux@analog.com,m:devicetree@vger.kernel.org,m:kimseer.paller@analog.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:dkim,analog.com:email,analog.com:mid,analog.com:from_mime,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,analog.com:url,analog.com:from_mime,analog.com:dkim,analog.com:email,analog.com:mid,baylibre.com:email,vger.kernel.org:from_smtp];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER(0.00)[kimseer.paller@analog.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[analog.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[kimseer.paller@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[analog.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4640F6D84EE
+X-Rspamd-Queue-Id: 36B6F6D84BB
 
-This series adds support for the AD3532R/AD3532, a 16-channel, 16-bit
-voltage output DAC, to the existing ad3530r driver.
-
-The AD3532R is part of the AD3530R family and shares similar
-functionality (channel configuration, LDAC triggering, powerdown
-control). It extends the existing ad3530r driver as the underlying
-workflow remains the same. The main difference being the register
-address map due to the dual-bank architecture, which is handled
-by table-driven helpers introduced in this series.
-
-The AD3532R uses a dual-bank register architecture (bank 0 at 0x1000
-for channels 0-7, bank 1 at 0x3000 for channels 8-15). Per-chip
-register address arrays in chip_info are iterated by bank helpers,
-replacing single-register setup calls for existing variants and scaling
-naturally to the AD3532R's dual-bank layout.
-
-The series also adds AD3532R-specific powerdown modes (1kohm_to_gnd,
-10kohm_to_gnd, three_state) and a new ABI entry for the 10kohm_to_gnd
-powerdown mode.
-
-Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ad3532r.pdf
+Replace direct register calls in ad3530r_setup() with per-chip register
+address arrays and bank helpers (ad3530r_set_reg_bank_bits,
+ad3530r_write_reg_banks). Convert sw_ldac_trig_reg from a static
+register address to a function pointer for per-bank LDAC trigger
+register selection. Switch spi_device_id to named initializers.
 
 Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
 ---
-Changes in v3:
-- Reverted the spi_device_id named initializer change from v2, to avoid
-  crossing with Uwe's tree-wide SPI series.
-- Reworked the Kconfig help text into an explicit per-part list.
-- Removed a duplicate .input_ch_reg initialization in ad3530r_chip
-  caught by Sashiko.
-- Sorted AD3532R register defines by address (bank 0, then bank 1) with
-  a comment about the two banks.
-- Split the register/mask calculation in ad3532r_set_dac_powerdown()
-  into named variables for readability.
-- Link to v2: https://patch.msgid.link/20260615-iio-ad3532r-support-v2-0-84a0af8b83fa@analog.com
+ drivers/iio/dac/ad3530r.c | 135 ++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 113 insertions(+), 22 deletions(-)
 
-Changes in v2:
-- Split AD3532R patch into refactor only and new device support patches.
-- Add ad3530r_set_reg_bank_bits() helper for set-bits call sites.
-- Use for (unsigned int i = 0; ...) in bank helpers.
-- Add per-chip regmap_config to limit debugfs register space per variant.
-- Switch spi_device_id to named initializers.
-- Fix line wrapping in ad3532r_set_dac_powerdown().
-- Link to v1: https://patch.msgid.link/20260604-iio-ad3532r-support-v1-0-c3552f9031de@analog.com
+diff --git a/drivers/iio/dac/ad3530r.c b/drivers/iio/dac/ad3530r.c
+index d9db3226ecd6..3f7c983739fc 100644
+--- a/drivers/iio/dac/ad3530r.c
++++ b/drivers/iio/dac/ad3530r.c
+@@ -69,8 +69,14 @@ struct ad3530r_chip_info {
+ 	const char *name;
+ 	const struct iio_chan_spec *channels;
+ 	int (*input_ch_reg)(unsigned int channel);
++	int (*sw_ldac_trig_reg)(unsigned int channel);
++	const unsigned int *interface_config_a;
++	const unsigned int *output_control;
++	const unsigned int *reference_control;
++	const unsigned int *op_mode;
+ 	unsigned int num_channels;
+-	unsigned int sw_ldac_trig_reg;
++	unsigned int num_banks;
++	unsigned int num_op_mode_regs;
+ 	bool internal_ref_support;
+ };
+ 
+@@ -190,6 +196,16 @@ static ssize_t ad3530r_set_dac_powerdown(struct iio_dev *indio_dev,
+ 	return len;
+ }
+ 
++static int ad3530r_trigger_sw_ldac_reg(unsigned int channel)
++{
++	return AD3530R_SW_LDAC_TRIG_A;
++}
++
++static int ad3531r_trigger_sw_ldac_reg(unsigned int channel)
++{
++	return AD3531R_SW_LDAC_TRIG_A;
++}
++
+ static int ad3530r_trigger_hw_ldac(struct gpio_desc *ldac_gpio)
+ {
+ 	gpiod_set_value_cansleep(ldac_gpio, 1);
+@@ -215,7 +231,7 @@ static int ad3530r_dac_write(struct ad3530r_state *st, unsigned int chan,
+ 	if (st->ldac_gpio)
+ 		return ad3530r_trigger_hw_ldac(st->ldac_gpio);
+ 
+-	return regmap_set_bits(st->regmap, st->chip_info->sw_ldac_trig_reg,
++	return regmap_set_bits(st->regmap, st->chip_info->sw_ldac_trig_reg(chan),
+ 			       AD3530R_SLD_TRIG_A);
+ }
+ 
+@@ -331,12 +347,39 @@ static const struct iio_chan_spec ad3531r_channels[] = {
+ 	AD3530R_CHAN(3, ad3531r_ext_info),
+ };
+ 
++static const unsigned int ad3530r_if_config[] = {
++	AD3530R_INTERFACE_CONFIG_A,
++};
++
++static const unsigned int ad3530r_out_ctrl[] = {
++	AD3530R_OUTPUT_CONTROL_0,
++};
++
++static const unsigned int ad3530r_ref_ctrl[] = {
++	AD3530R_REFERENCE_CONTROL_0,
++};
++
++static const unsigned int ad3530r_op_mode[] = {
++	AD3530R_OUTPUT_OPERATING_MODE_0,
++	AD3530R_OUTPUT_OPERATING_MODE_1,
++};
++
++static const unsigned int ad3531r_op_mode[] = {
++	AD3530R_OUTPUT_OPERATING_MODE_0,
++};
++
+ static const struct ad3530r_chip_info ad3530_chip = {
+ 	.name = "ad3530",
+ 	.channels = ad3530r_channels,
+ 	.num_channels = ARRAY_SIZE(ad3530r_channels),
+-	.sw_ldac_trig_reg = AD3530R_SW_LDAC_TRIG_A,
++	.sw_ldac_trig_reg = ad3530r_trigger_sw_ldac_reg,
+ 	.input_ch_reg = ad3530r_input_ch_reg,
++	.interface_config_a = ad3530r_if_config,
++	.output_control = ad3530r_out_ctrl,
++	.reference_control = ad3530r_ref_ctrl,
++	.op_mode = ad3530r_op_mode,
++	.num_banks = ARRAY_SIZE(ad3530r_if_config),
++	.num_op_mode_regs = ARRAY_SIZE(ad3530r_op_mode),
+ 	.internal_ref_support = false,
+ };
+ 
+@@ -344,8 +387,14 @@ static const struct ad3530r_chip_info ad3530r_chip = {
+ 	.name = "ad3530r",
+ 	.channels = ad3530r_channels,
+ 	.num_channels = ARRAY_SIZE(ad3530r_channels),
+-	.sw_ldac_trig_reg = AD3530R_SW_LDAC_TRIG_A,
++	.sw_ldac_trig_reg = ad3530r_trigger_sw_ldac_reg,
+ 	.input_ch_reg = ad3530r_input_ch_reg,
++	.interface_config_a = ad3530r_if_config,
++	.output_control = ad3530r_out_ctrl,
++	.reference_control = ad3530r_ref_ctrl,
++	.op_mode = ad3530r_op_mode,
++	.num_banks = ARRAY_SIZE(ad3530r_if_config),
++	.num_op_mode_regs = ARRAY_SIZE(ad3530r_op_mode),
+ 	.internal_ref_support = true,
+ };
+ 
+@@ -353,8 +402,14 @@ static const struct ad3530r_chip_info ad3531_chip = {
+ 	.name = "ad3531",
+ 	.channels = ad3531r_channels,
+ 	.num_channels = ARRAY_SIZE(ad3531r_channels),
+-	.sw_ldac_trig_reg = AD3531R_SW_LDAC_TRIG_A,
++	.sw_ldac_trig_reg = ad3531r_trigger_sw_ldac_reg,
+ 	.input_ch_reg = ad3531r_input_ch_reg,
++	.interface_config_a = ad3530r_if_config,
++	.output_control = ad3530r_out_ctrl,
++	.reference_control = ad3530r_ref_ctrl,
++	.op_mode = ad3531r_op_mode,
++	.num_banks = ARRAY_SIZE(ad3530r_if_config),
++	.num_op_mode_regs = ARRAY_SIZE(ad3531r_op_mode),
+ 	.internal_ref_support = false,
+ };
+ 
+@@ -362,17 +417,56 @@ static const struct ad3530r_chip_info ad3531r_chip = {
+ 	.name = "ad3531r",
+ 	.channels = ad3531r_channels,
+ 	.num_channels = ARRAY_SIZE(ad3531r_channels),
+-	.sw_ldac_trig_reg = AD3531R_SW_LDAC_TRIG_A,
++	.sw_ldac_trig_reg = ad3531r_trigger_sw_ldac_reg,
+ 	.input_ch_reg = ad3531r_input_ch_reg,
++	.interface_config_a = ad3530r_if_config,
++	.output_control = ad3530r_out_ctrl,
++	.reference_control = ad3530r_ref_ctrl,
++	.op_mode = ad3531r_op_mode,
++	.num_banks = ARRAY_SIZE(ad3530r_if_config),
++	.num_op_mode_regs = ARRAY_SIZE(ad3531r_op_mode),
+ 	.internal_ref_support = true,
+ };
+ 
++static int ad3530r_set_reg_bank_bits(const struct ad3530r_state *st,
++				     const unsigned int *regs,
++				     unsigned int num_regs,
++				     unsigned int mask)
++{
++	int ret;
++
++	for (unsigned int i = 0; i < num_regs; i++) {
++		ret = regmap_update_bits(st->regmap, regs[i], mask, mask);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++static int ad3530r_write_reg_banks(const struct ad3530r_state *st,
++				   const unsigned int *regs,
++				   unsigned int num_regs,
++				   unsigned int val)
++{
++	int ret;
++
++	for (unsigned int i = 0; i < num_regs; i++) {
++		ret = regmap_write(st->regmap, regs[i], val);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
+ static int ad3530r_setup(struct ad3530r_state *st, int external_vref_uV)
+ {
++	const struct ad3530r_chip_info *chip_info = st->chip_info;
+ 	struct device *dev = regmap_get_device(st->regmap);
+ 	struct gpio_desc *reset_gpio;
+-	int i, ret;
+ 	u8 range_multiplier, val;
++	int ret;
+ 
+ 	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(reset_gpio))
+@@ -385,8 +479,9 @@ static int ad3530r_setup(struct ad3530r_state *st, int external_vref_uV)
+ 		gpiod_set_value_cansleep(reset_gpio, 0);
+ 	} else {
+ 		/* Perform software reset */
+-		ret = regmap_update_bits(st->regmap, AD3530R_INTERFACE_CONFIG_A,
+-					 AD3530R_SW_RESET, AD3530R_SW_RESET);
++		ret = ad3530r_set_reg_bank_bits(st, chip_info->interface_config_a,
++						chip_info->num_banks,
++						AD3530R_SW_RESET);
+ 		if (ret)
+ 			return ret;
+ 	}
+@@ -395,8 +490,9 @@ static int ad3530r_setup(struct ad3530r_state *st, int external_vref_uV)
+ 
+ 	range_multiplier = 1;
+ 	if (device_property_read_bool(dev, "adi,range-double")) {
+-		ret = regmap_set_bits(st->regmap, AD3530R_OUTPUT_CONTROL_0,
+-				      AD3530R_OUTPUT_CONTROL_RANGE);
++		ret = ad3530r_set_reg_bank_bits(st, chip_info->output_control,
++						chip_info->num_banks,
++						AD3530R_OUTPUT_CONTROL_RANGE);
+ 		if (ret)
+ 			return ret;
+ 
+@@ -406,8 +502,9 @@ static int ad3530r_setup(struct ad3530r_state *st, int external_vref_uV)
+ 	if (external_vref_uV) {
+ 		st->vref_mV = range_multiplier * external_vref_uV / MILLI;
+ 	} else {
+-		ret = regmap_set_bits(st->regmap, AD3530R_REFERENCE_CONTROL_0,
+-				      AD3530R_REFERENCE_CONTROL_SEL);
++		ret = ad3530r_set_reg_bank_bits(st, chip_info->reference_control,
++						chip_info->num_banks,
++						AD3530R_REFERENCE_CONTROL_SEL);
+ 		if (ret)
+ 			return ret;
+ 
+@@ -420,18 +517,12 @@ static int ad3530r_setup(struct ad3530r_state *st, int external_vref_uV)
+ 	      FIELD_PREP(AD3530R_OP_MODE_CHAN_MSK(2), AD3530R_NORMAL_OP) |
+ 	      FIELD_PREP(AD3530R_OP_MODE_CHAN_MSK(3), AD3530R_NORMAL_OP);
+ 
+-	ret = regmap_write(st->regmap, AD3530R_OUTPUT_OPERATING_MODE_0, val);
++	ret = ad3530r_write_reg_banks(st, st->chip_info->op_mode,
++				      st->chip_info->num_op_mode_regs, val);
+ 	if (ret)
+ 		return ret;
+ 
+-	if (st->chip_info->num_channels > 4) {
+-		ret = regmap_write(st->regmap, AD3530R_OUTPUT_OPERATING_MODE_1,
+-				   val);
+-		if (ret)
+-			return ret;
+-	}
+-
+-	for (i = 0; i < st->chip_info->num_channels; i++)
++	for (unsigned int i = 0; i < st->chip_info->num_channels; i++)
+ 		st->chan[i].powerdown_mode = AD3530R_POWERDOWN_32K;
+ 
+ 	st->ldac_gpio = devm_gpiod_get_optional(dev, "ldac", GPIOD_OUT_LOW);
 
-To: Nuno Sá <nuno.sa@analog.com>
-To: Michael Hennerich <Michael.Hennerich@analog.com>
-To: Kim Seer Paller <kimseer.paller@analog.com>
-To: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-To: Andy Shevchenko <andy@kernel.org>
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org
-Cc: linux@analog.com
-Cc: linux-kernel@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-
----
-Kim Seer Paller (4):
-      iio: dac: ad3530r: Refactor setup to table-driven register bank approach
-      iio: ABI: add DAC 10kohm_to_gnd powerdown mode
-      dt-bindings: iio: dac: add support for AD3532R/AD3532
-      iio: dac: ad3530r: Add support for AD3532R/AD3532
-
- Documentation/ABI/testing/sysfs-bus-iio            |   1 +
- .../devicetree/bindings/iio/dac/adi,ad3530r.yaml   |  16 +-
- drivers/iio/dac/Kconfig                            |   7 +-
- drivers/iio/dac/ad3530r.c                          | 350 ++++++++++++++++++---
- 4 files changed, 331 insertions(+), 43 deletions(-)
----
-base-commit: 7667a80340e99fd45357d0c90ae05813b01bbfef
-change-id: 20260604-iio-ad3532r-support-759067e904e1
-
-Best regards,
---  
-Kim Seer Paller <kimseer.paller@analog.com>
+-- 
+2.34.1
 
 
