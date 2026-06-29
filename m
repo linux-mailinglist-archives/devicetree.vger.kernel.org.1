@@ -1,223 +1,188 @@
-Return-Path: <devicetree+bounces-316604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316611-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JJhDF8TNQWqPugkAu9opvQ
-	(envelope-from <devicetree+bounces-316604-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 03:43:32 +0200
+	id 1STiNNLhQWrDvQkAu9opvQ
+	(envelope-from <devicetree+bounces-316611-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 05:09:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C7B6D56D1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 03:43:31 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67F646D59C7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 05:09:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Itfo6XEG;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316604-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316604-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=rock-chips.com header.s=default header.b="Jy7T/u28";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316611-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-316611-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=rock-chips.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 44C48300C587
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 01:43:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 673483001FB1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 03:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C408C372EC0;
-	Mon, 29 Jun 2026 01:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9BF37BE8A;
+	Mon, 29 Jun 2026 03:08:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-m1973183.qiye.163.com (mail-m1973183.qiye.163.com [220.197.31.83])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC762246770;
-	Mon, 29 Jun 2026 01:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173E035E92F;
+	Mon, 29 Jun 2026 03:08:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782697409; cv=none; b=I/x9SXZeqCk/ZL8VXyqWWxQv0hHw+AG7tMr1G/WWnnXbBB3Mr0GjA+GZbdbaWOC42f2RHCGl8y6Z7/33FCZVlX9O29m6y6fVYL/F1ejzCueswvBWx5gx/xiRav701a/SKpW1D8kLGwNLojKm0DM0SqHJq7u/q3nu/Gpmnp3ktKA=
+	t=1782702538; cv=none; b=VMw21sS6POQrM8OWev6tUHbV4w6OglnzpM3F6UBy5GI26Vw81t9HPD5Ax2E6G5bD78uixOdv1Q3/TlV/GEIx/BFKcAgBrlpD8KK/nVXcTF5RA9thL1+h4EHPtrLMkFJG/O2p5ia5w3ccehkoadEIaA5nJ5oCPv0NioGQWgnzKKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782697409; c=relaxed/simple;
-	bh=CJEU8jTKhJu0qMOVZ8KJ8qztpi1RoG9A2b6xPvx71c4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZsPnDV052iV+0m9qcdUqwjZDSzWJimGBnhlctprmL2QjDFjO9Dbd7ua+jcui5LlFtD52H0uEY5df5lBIvHw5PxpcBp6qlqRXkdql9YtBgkixF/u+LBm1QBCao282CN8TS6qCVi4yaSr85dSyz4hiJs+9LV/Vab/jtItu0hvUabk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Itfo6XEG; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F11B91F000E9;
-	Mon, 29 Jun 2026 01:43:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782697408;
-	bh=aiOHAtTL2EWvj6gPunoFCMBcQAV/X61VwfbqelqdEvA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Itfo6XEG7WXZi9KIDHcKZS/nUVLFxT0ChuAfcFSW74EGD5UPTnwBxlBOsC34X2cx4
-	 lK4uCp/SU4PMkbxDFODRwE+Iouo4l3jFC/q/iUG0clRkTu51868BfpT2otk91nWsIL
-	 +eMI+PStg7u0UYhSdMcwr65Zft9AQbOVpTCVjLH21qoevBIg9l/q9EBhbPrnAl1y9z
-	 GhlmM+KPVbEi6HoClQwCHqP35x+RlV3qzAH89UCqICPyJzDMkHQK/isQn+XiKMXxq1
-	 pyzjTiYcn9gEvb3DG6f+CKOXocJ2Od6CqL1W1N+lqlvfM5vnaiWMOV+LsHoxQ82ZmC
-	 EagnQJmRGIA5g==
-Date: Sun, 28 Jun 2026 20:43:07 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Hans de Goede <johannes.goede@oss.qualcomm.com>
-Cc: "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Srinivas Kandagatla <srini@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Abel Vesa <abel.vesa@oss.qualcomm.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: Re: [RFC 12/12] arm64: dts: qcom: x1e78100-thinkpad-t14s: Move keyb
- and touchpad to ACPI enumeration
-Message-ID: <akHMf0MiXrYydnAg@baldur>
-References: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
- <20260623145225.143218-13-johannes.goede@oss.qualcomm.com>
+	s=arc-20240116; t=1782702538; c=relaxed/simple;
+	bh=F99FZXoLe6WSw3sG+7NTs4ty8+muEj3Q2FczZK1t5UQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MGe28Xza9BTj2TPslS/52+q53zfN/Q3ponYq/7pf4WyaA/4MepeO9FxBkIhLFYVf0dnZuK3hbc1ugUPL4oKaYwwTQ2XIUQwxxKJozYw2pXmoAMrDwzV0ZrhksysyE+o6lyL+THbWjwGUvEVdfXU4zpjbcB0vTYPkV5ZvxOjvkac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Jy7T/u28; arc=none smtp.client-ip=220.197.31.83
+Received: from [172.16.12.74] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 4414d26eb;
+	Mon, 29 Jun 2026 09:53:02 +0800 (GMT+08:00)
+Message-ID: <cb533b04-e550-4eb4-8a8f-6d17c3d43a48@rock-chips.com>
+Date: Mon, 29 Jun 2026 09:53:02 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260623145225.143218-13-johannes.goede@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/4] drm/bridge: analogix_dp: Add validation for
+ samsung,lane-count property
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
+ cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
+ dmitry.baryshkov@oss.qualcomm.com, dianders@chromium.org,
+ m.szyprowski@samsung.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260604085220.2862986-1-damon.ding@rock-chips.com>
+ <20260604085220.2862986-4-damon.ding@rock-chips.com>
+ <178249136513.1374898.11400378046460567437.b4-review@b4>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <178249136513.1374898.11400378046460567437.b4-review@b4>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9f11147a4003a8kunm26f77d9422c470
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZGExMVh5DSUkaHRpOSUtLT1YVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=Jy7T/u28jP/+4T2VA2B9kxcFXAX9Dsq0ShxLHsURI3PTBcA0yO9T5KXoRBqEUSEuSuuttXE1GmOzP+PWv7OtI23helQrMLrSBkS5sop9hRxcLvUyMJF8AERH+JkKsMXw9cy7+oLAcg8pQYGhVPkRyg/D5ZPafYOGQAK8JHC5ptI=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=W782AbfO1D1R5eEJlgStJCNw/OtsvmDShB2b7uB9ZM8=;
+	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-316611-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FORGED_RECIPIENTS(0.00)[m:luca.ceresoli@bootlin.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:nicolas.frattaroli@collabora.com,m:cristian.ciocaltea@collabora.com,m:sebastian.reichel@collabora.com,m:dmitry.baryshkov@oss.qualcomm.com,m:dianders@chromium.org,m:m.szyprowski@samsung.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:johannes.goede@oss.qualcomm.com,m:rafael@kernel.org,m:konradybcio@kernel.org,m:srini@kernel.org,m:krzk+dt@kernel.org,m:lumag@kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-acpi@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-316604-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baldur:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,msgid.link:url,rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 97C7B6D56D1
+X-Rspamd-Queue-Id: 67F646D59C7
 
-On Tue, Jun 23, 2026 at 04:52:25PM +0200, Hans de Goede wrote:
-> Add acpi-path properties for DT-ACPI hybrid mode and remove the keyboard
-> and touchpad description switching to relying on ACPI to enumerate these.
-> 
-> Also drop the clock-frequency this is also provided by ACPI now.
-> 
-> FIXME: Needs DT-bindings patch as pre-req
-> 
-> Note this depends on these 2 patch-series for working PDC support on Hamoa:
-> https://lore.kernel.org/linux-arm-msm/20260410184124.1068210-1-mukesh.ojha@oss.qualcomm.com/
-> https://lore.kernel.org/linux-arm-msm/20260616-hamoa_pdc_v3-v3-0-4d8e1504ea75@oss.qualcomm.com/
-> 
-> Signed-off-by: Hans de Goede <johannes.goede@oss.qualcomm.com>
-> ---
->  .../qcom/x1e78100-lenovo-thinkpad-t14s.dtsi   | 59 +------------------
->  1 file changed, 3 insertions(+), 56 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> index 2fc01e8e8c04..a73576ec238d 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> @@ -1017,57 +1017,8 @@ &gpu_zap_shader {
->  };
->  
->  &i2c0 {
-> -	clock-frequency = <400000>;
-> -
-> -	pinctrl-0 = <&qup_i2c0_data_clk>, <&tpad_default>;
-> -	pinctrl-names = "default";
-> -
-> +	acpi-path = "\\_SB.I2C1";
+Hi Luca,
 
-The +/- are not equivalent, you're removing both pinctrl state and
-device power management - relying on the default state (or other
-client's votes).
-
-In addition \\_SB.I2C1 is not a stable ABI.
-
-Regards,
-Bjorn
-
->  	status = "okay";
-> -
-> -	/* ELAN06E2 or ELAN06E3 */
-> -	touchpad@15 {
-> -		compatible = "hid-over-i2c";
-> -		reg = <0x15>;
-> -
-> -		hid-descr-addr = <0x1>;
-> -		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
-> -
-> -		vdd-supply = <&vreg_misc_3p3>;
-> -		vddl-supply = <&vreg_l12b_1p2>;
-> -
-> -		wakeup-source;
-> -	};
-> -
-> -	/* SYNA8022 or SYNA8024 */
-> -	touchpad@2c {
-> -		compatible = "hid-over-i2c";
-> -		reg = <0x2c>;
-> -
-> -		hid-descr-addr = <0x20>;
-> -		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
-> -
-> -		vdd-supply = <&vreg_misc_3p3>;
-> -		vddl-supply = <&vreg_l12b_1p2>;
-> -
-> -		wakeup-source;
-> -	};
-> -
-> -	/* ELAN06F1 or SYNA06F2 */
-> -	keyboard@3a {
-> -		compatible = "hid-over-i2c";
-> -		reg = <0x3a>;
-> -
-> -		hid-descr-addr = <0x1>;
-> -		interrupts-extended = <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
-> -
-> -		vdd-supply = <&vreg_misc_3p3>;
-> -		vddl-supply = <&vreg_l15b_1p8>;
-> -
-> -		pinctrl-0 = <&kybd_default>;
-> -		pinctrl-names = "default";
-> -
-> -		wakeup-source;
-> -	};
->  };
->  
->  &i2c3 {
-> @@ -1598,6 +1549,8 @@ wcd_tx: codec@0,3 {
->  };
->  
->  &tlmm {
-> +	acpi-path = "\\_SB.GIO0";
-> +
->  	gpio-reserved-ranges = <34 2>, /* Unused */
->  			       <44 4>, /* SPI (TPM) */
->  			       <72 2>, /* Secure EC I2C connection (?) */
-> @@ -1655,12 +1608,6 @@ hdmi_hpd_default: hdmi-hpd-default-state {
->  		bias-disable;
->  	};
->  
-> -	tpad_default: tpad-default-state {
-> -		pins = "gpio3";
-> -		function = "gpio";
-> -		bias-pull-up;
-> -	};
-> -
->  	nvme_reg_en: nvme-reg-en-state {
->  		pins = "gpio18";
->  		function = "gpio";
-> -- 
-> 2.54.0
+On 6/27/2026 12:29 AM, Luca Ceresoli wrote:
+> On Thu, 04 Jun 2026 16:52:19 +0800, Damon Ding <damon.ding@rock-chips.com> wrote:
 > 
+> Hello Damon,
+> 
+>>
+>> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>> index 7a85774aaac1..e120ef3320c1 100644
+>> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>> @@ -1261,8 +1262,11 @@ static int analogix_dp_dt_parse_pdata(struct analogix_dp_device *dp)
+>>   		 */
+>>   		of_property_read_u32(dp_node, "samsung,link-rate",
+>>   				     &video_info->max_link_rate);
+>> -		of_property_read_u32(dp_node, "samsung,lane-count",
+>> -				     &video_info->max_lane_count);
+>> +		ret = of_property_read_u32(dp_node, "samsung,lane-count",
+>> +					   &video_info->max_lane_count);
+>> +		if (ret || !drm_dp_lane_count_is_valid(video_info->max_lane_count))
+>> +			return dev_err_probe(dp->dev, ret ? ret : -EINVAL,
+>> +					     "failed to parse samsung,lane-count\n");
+> 
+> I think this report by sashiko makes sense:
+> 
+>    >  sashiko-bot@kernel.org <sashiko-bot@kernel.org>:
+>    >
+>    >  [Severity: High]
+>    >  Does this make the optional and deprecated samsung,lane-count property a
+>    >  strict requirement?
+>    >
+>    >  If samsung,lane-count is absent from the device tree, of_property_read_u32()
+>    >  returns -EINVAL. This causes the condition to evaluate to true, aborting the
+>    >  probe with an error.
+>    >
+>    >  According to the device tree bindings
+>    >  (Documentation/devicetree/bindings/display/samsung/samsung,exynos5-dp.yaml),
+>    >  this property is marked as deprecated and explicitly optional because the
+>    >  lane count can be read from the monitor. Does this patch break compatibility
+>    >  with device trees that rightfully omit this deprecated property?
+> 
+>   (via: https://patch.msgid.link/20260604090935.7FC051F00898@smtp.kernel.org)
+> 
+> Can you comment on this?
+> 
+> 
+
+I was also confused about this handling at first. From commit 
+0d0abd894ead ("drm: bridge: analogix/dp: add max link rate and lane 
+count limit for RK3288"), its commit message does not explain why 
+samsung,lane-count was changed from a mandatory to optional property.
+
+After digging into the code flow, I found that 
+analogix_dp_full_link_train() picks the smaller value between the 
+platform-supported lane count and the lane count retrieved from sink 
+DPCD for link training. If the samsung,lane-count property is 
+missing/invalid here, link training will end up using an unexpected lane 
+count configuration.
+
+Additionally, I checked Samsung’s upstream device trees that utilize 
+this DP controller, and all of them carry the lane-count property. Based 
+on this observation, I believe restoring the strict mandatory 
+requirement for this property makes sense.
+
+Should I create an independent fix patch to revert these two properties 
+to mandatory, instead of bundling the fix in this series?
+
+Best regards,
+Damon
+
 
