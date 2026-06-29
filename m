@@ -1,175 +1,316 @@
-Return-Path: <devicetree+bounces-316775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316770-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id H95pCioqQmrU1AkAu9opvQ
-	(envelope-from <devicetree+bounces-316775-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:17:46 +0200
+	id OJtmHOcoQmp11AkAu9opvQ
+	(envelope-from <devicetree+bounces-316770-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:12:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B32A6D7656
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:17:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFA676D7556
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:12:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=karo-electronics.de header.s=kas202603021246 header.b=ecw7eren;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316775-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316775-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=karo-electronics.de;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=h0FFBMOU;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316770-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316770-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D7CC63056A87
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:00:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BFAD630EFA49
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B3E53B4EB3;
-	Mon, 29 Jun 2026 08:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D188C3A8730;
+	Mon, 29 Jun 2026 07:52:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from dd54918.kasserver.com (dd54918.kasserver.com [85.13.167.58])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6253B4EB0;
-	Mon, 29 Jun 2026 08:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC0E35D615;
+	Mon, 29 Jun 2026 07:52:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782720023; cv=none; b=UcXwu85HR8wtpwgtwnhd0l7qgxk4MvAFbCYoU8Z8qxQJbHk9ozmZ2mynMpbPCjFjN1V0Vitl+SZNbw1XS2IMtKA9GqLIhxJKZAQlsBFIDR5d9j4XBWl3Bn3sYOWpGl8dzP0rKSsDmuguT7/HWjALJsRobhRmZ+xNtd2/Jg44nkY=
+	t=1782719575; cv=none; b=IbS2Pbl6sr9m7MPGyGOYzChBXkPqJUaAOOV3U7JfwP4ObcTM7DuW+I/z3UHyWFsA8Q3ElblT4h0BAJOBDjMpDg1b2LjaYOFZkvIFsCuonlThXqQ7Pffa0s9OmDGOecvq3SCbXqHWpa1sXo2oaja9EX9cGhN12sXG+0El/e9yMlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782720023; c=relaxed/simple;
-	bh=Mu/vYRPrMM6y78Zq6iLYUkQGJTBkafHpPpDy8E5c9xQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QwXpN5w01tAxYSCXSHl+K451mrYv+WKVW+jwPsH7oVkRAf+0htZc3Atdjg1HEOqA2cHy3uMge37OZq8DmfoL8Z2/fwSJKfuag27fyrfX92wr7Js+eRYyMWf8/Vj4Ze4SvJmd//toQWnz6HoKplIw60mY0GLRa7qfJzIIjP4CrfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=KARO-electronics.de; spf=pass smtp.mailfrom=KARO-electronics.de; dkim=pass (2048-bit key) header.d=karo-electronics.de header.i=@karo-electronics.de header.b=ecw7eren; arc=none smtp.client-ip=85.13.167.58
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=karo-electronics.de;
-	s=kas202603021246; t=1782719411;
-	bh=Qylp1+q58BKXjVYMlUJn3x4tvz3kf67QuXXQvLn3hVQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=ecw7erenvWIYPBx2V7ZPPuTiP0QJvB7JeAWgS4GWnn8/503xZok/8BGzb9DeXRFBc
-	 XeC7jO4MWatNjCHC1ECcBW6XrZdV0OBa382Qs/IVNEJ5dgLX3G92WP+J1ri7YIyWer
-	 dwai6hyb94q6EmVN0GrRTOkeBo/h0lefqhkodnLOH1A79zFz1cvQTTHVYCYQsOCsz1
-	 c62YtKjIwpqQE3i0RhHvCf2yilcCcl4J95W3ejucUfo5okw7f5V89GB8iMAPWRex8x
-	 ZZ1n2IpEQXDTL/6Gfp4KBftpnC4mSJJIA2vDTx0WN8aEMFIQMHm9Gls1wkkKm9TBcP
-	 0b7q1/LHFGtGQ==
-Received: from karo-electronics.de (unknown [89.1.81.74])
-	by dd54918.kasserver.com (Postfix) with ESMTPSA id 8485F7722430;
-	Mon, 29 Jun 2026 09:50:10 +0200 (CEST)
-Date: Mon, 29 Jun 2026 09:50:09 +0200
-From: Lothar =?UTF-8?B?V2HDn21hbm4=?= <LW@KARO-electronics.de>
-To: pankaj.gupta@oss.nxp.com
-Cc: Jonathan Corbet <corbet@lwn.net>, Shuah Khan
- <skhan@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank
- Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Pankaj Gupta <pankaj.gupta@nxp.com>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Frieder Schrempf
- <frieder.schrempf@kontron.de>, kernel test robot <lkp@intel.com>,
- sashiko-bot <sashiko-bot@kernel.org>
-Subject: Re: [PATCH v26 3/7] firmware: imx: add driver for NXP EdgeLock
- Enclave
-Message-ID: <20260629095009.3256f956@karo-electronics.de>
-In-Reply-To: <20260629-imx-se-if-v26-3-146446285744@nxp.com>
-References: <20260629-imx-se-if-v26-0-146446285744@nxp.com>
-	<20260629-imx-se-if-v26-3-146446285744@nxp.com>
-Organization: Ka-Ro electronics GmbH
+	s=arc-20240116; t=1782719575; c=relaxed/simple;
+	bh=5km4NmuYF9DScyquNyhzgnIdcqYff1K4clJTIfXF2U8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gyrX76ffD+2e+6CB9wupFxSeLXlaJQPg34jKjUYURBMBsqtq+zcuBRte5bzv5eYLq0iY3gysUyuk23B8iAcPJqHkQ7Xex5KzogHtjJcEzWs8gxcnQTKy1I8Bt/YMhUz4AQgsq8oW3WsV4VX3XH+SFH88C8t4PVVC975259AkoSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h0FFBMOU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4FD52C2BCB8;
+	Mon, 29 Jun 2026 07:52:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1782719575;
+	bh=5km4NmuYF9DScyquNyhzgnIdcqYff1K4clJTIfXF2U8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=h0FFBMOU/GYZC6i0PCy8lSk6gzKWJOKtVOZ33jhhz/hpd9ZX0U+6G/hjRagPP0Suz
+	 FuoPp7sqD1VgDH1tk3AVeb5mEMEELSMH2EjGqnNdJizLNeNI5DXrJ8hjhwuavFu3ZG
+	 IcPuxIg4P8zszmfG6v1H0VoUHa4rYM7gUmK6Gu8jAQFBOyCuxDLYGwjP7JGW4w5GRJ
+	 q8eO2HRQ8vUrwgrO3Tw6dAFRu5R3NJWc/0V5A3RoCgmGtqPn7ruREtB3R0rfaw1UML
+	 +TlBYL2P4N6k4dxAL/BthJHaf1vXZ88cp74LMGAUx4tSINsWB13ZZl8+3eJV3Wfkcu
+	 qUiJ0SKimZhwA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3075EC43458;
+	Mon, 29 Jun 2026 07:52:55 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Mon, 29 Jun 2026 07:52:53 +0000
+Subject: [PATCH v2] arm64: dts: amlogic: add some device nodes for A9
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Bar: /
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260629-a9-node-v2-1-dadd3401fccb@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAFQkQmoC/2XMQQrCMBCF4auUWTuSRInElfeQLqbppB2wjSQSl
+ JK7G7t1+T8e3waZk3CGa7dB4iJZ4trCHDrwM60To4ytwShjlTUOyeEaR8YT2+B5oIt3Ctr7mTj
+ Ie5fufetZ8iumzw4X/Vv/jaJR49mEYEl5bWm40fKIk/ijjwv0tdYvVP6iHaAAAAA=
+X-Change-ID: 20260629-a9-node-3e6fceba7c90
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782719573; l=5518;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=4hEc0Y3kJi0oLWhBei8MgVtCOquaYcl8dUAJU9UbQBo=;
+ b=DlbUk+TTjIUALWf5L5T56AOLfQA4dYtobtp6v0o1p/if76zO5DUT8ikuqbEEWI1i6OBSakAyI
+ /SelcFZcKfGAkrtrlAZ0doTeS2BxFk5/n5x+Z2zyzIqOc8UI7MlmARi
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[karo-electronics.de,none];
-	R_DKIM_ALLOW(-0.20)[karo-electronics.de:s=kas202603021246];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-316775-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:pankaj.gupta@oss.nxp.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:pankaj.gupta@nxp.com,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:frieder.schrempf@kontron.de,m:lkp@intel.com,m:sashiko-bot@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[LW@KARO-electronics.de,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,kontron.de,intel.com];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-316770-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-amlogic@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:xianwei.zhao@amlogic.com,m:martinblumenstingl@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[LW@KARO-electronics.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[karo-electronics.de:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,karo-electronics.de:dkim,karo-electronics.de:mid,i.mx:url,vger.kernel.org:from_smtp,nxp.com:email,KARO-electronics.de:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,amlogic.com:replyto,amlogic.com:email,amlogic.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7B32A6D7656
+X-Rspamd-Queue-Id: BFA676D7556
 
-Hi,
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-On Mon, 29 Jun 2026 17:51:59 +0530 pankaj.gupta@oss.nxp.com wrote:
-> From: Pankaj Gupta <pankaj.gupta@nxp.com>
->=20
-> Add MU-based communication interface for secure enclave.
->=20
-> NXP hardware IP(s) for secure-enclaves like Edgelock Enclave(ELE), are
-> embedded in the SoC to support the features like HSM, SHE & V2X, using
-> message based communication interface.
->=20
-> The secure enclave FW communicates with Linux over single or multiple
-> dedicated messaging unit(MU) based interface(s).
-> Exists on i.MX SoC(s) like i.MX8ULP, i.MX93, i.MX95 etc.
->=20
-> For i.MX9x SoC(s) there is at least one dedicated ELE MU(s) for each
-> world - Linux(one or more) and OPTEE-OS (one or more).
->=20
-[...]
-> +	ret =3D se_fill_cmd_msg_hdr(priv, (struct se_msg_hdr *)&tx_msg->header,
-> +				  ELE_GET_INFO_REQ, ELE_GET_INFO_REQ_MSG_SZ,
-> +				  true);
-> +	if (ret)
-> +		goto exit;
-[...]
-> +/* Fill a command message header with a given command ID and length in b=
-ytes. */
-> +static inline int se_fill_cmd_msg_hdr(struct se_if_priv *priv, struct se=
-_msg_hdr *hdr,
-> +				      u8 cmd, u32 len, bool is_base_api)
-> +{
-> +	hdr->tag =3D priv->if_defs->cmd_tag;
-> +	hdr->ver =3D (is_base_api) ? priv->if_defs->base_api_ver : priv->if_def=
-s->fw_api_ver;
-> +	hdr->command =3D cmd;
-> +	hdr->size =3D len >> 2;
-> +
-> +	return 0;
-> +}
->
-I don't see a point in having a function always return zero and
-implement error checks that will never be used.
+Add pinctrl and irqchip-gpio device nodes for A9 SoC.
 
-[...]
-> +static const struct of_device_id se_match[] =3D {
-> +	{ .compatible =3D "fsl,imx8ulp-se-ele-hsm", .data =3D &imx8ulp_se_ele_h=
-sm},
-> +	{ .compatible =3D "fsl,imx93-se-ele-hsm", .data =3D &imx93_se_ele_hsm},
-> +	{},
->
-Since the last entry in this array must be a NULL entry, there should be
-no comma after the {}. This will generate a compile error if (e.g. by
-patch conflict resolution) an entry is added after the end marker.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Add pinctrl and irqchip-gpio device node for A9.
+---
+Changes in v2:
+- Reorder device node by address.
+- Link to v1: https://lore.kernel.org/r/20260629-a9-node-v1-1-42ff6a0c16ab@amlogic.com
+---
+ arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi | 140 ++++++++++++++++++++++++++++
+ 1 file changed, 140 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
+index 660c8556a864..b0e0fadeed82 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
+@@ -6,6 +6,7 @@
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/pinctrl/amlogic,pinctrl.h>
+ 
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -97,6 +98,95 @@ soc {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
++		apb: bus@fe000000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xfe000000 0x0 0x480000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
++
++			periphs_pinctrl: pinctrl@4000 {
++				compatible = "amlogic,pinctrl-a9";
++				#address-cells = <2>;
++				#size-cells = <2>;
++				ranges = <0x0 0x0 0x0 0x4000 0x0 0x340>;
++
++				gpioz: gpio@c0 {
++					reg = <0 0xc0 0 0x20>, <0 0x18 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_Z<<8) 16>;
++				};
++
++				gpiox: gpio@100 {
++					reg = <0 0x100 0 0x24>, <0 0xc 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_X<<8) 18>;
++				};
++
++				gpioh: gpio@140 {
++					reg = <0 0x140 0 0x20>, <0 0x2c 0 0x4>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_H<<8) 8>;
++				};
++
++				gpiom: gpio@1a0 {
++					reg = <0 0x1a0 0 0x20>, <0 0x20 0 0x4>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_M<<8) 8>;
++				};
++
++				gpiob: gpio@240 {
++					reg = <0 0x240 0 0x20>, <0 0x0 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_B<<8) 14>;
++				};
++
++				gpioa: gpio@280 {
++					reg = <0 0x280 0 0x24>, <0 0x40 0 0xc>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_A<<8) 20>;
++				};
++
++				gpioy: gpio@2c0 {
++					reg = <0 0x2c0 0 0x20>, <0 0x30 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_Y<<8) 10>;
++				};
++
++				gpiocc: gpio@300 {
++					reg = <0 0x300 0 0x20>, <0 0x14 0 0x4>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_CC<<8) 2>;
++				};
++			};
++
++			gpio_intc: interrupt-controller@4080 {
++				compatible = "amlogic,a9-gpio-intc",
++					     "amlogic,meson-gpio-intc";
++				reg = <0x0 0x4080 0x0 0x20>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				amlogic,channel-interrupts =
++					<10 11 12 13 14 15 16 17 18 19 20 21>;
++			};
++		};
++
+ 		gic: interrupt-controller@ff800000 {
+ 			compatible = "arm,gic-v3";
+ 			#interrupt-cells = <3>;
+@@ -114,6 +204,56 @@ aobus: bus@ffa00000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xffa00000 0x0 0x100000>;
+ 
++			aobus_pinctrl: pinctrl@4000 {
++				compatible = "amlogic,pinctrl-a9";
++				#address-cells = <2>;
++				#size-cells = <2>;
++				ranges = <0x0 0x0 0x0 0x4000 0x0 0x0e0>;
++
++				gpioao: gpio@1c {
++					reg = <0 0x1c 0 0x20>, <0 0x0 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&aobus_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 13>;
++				};
++
++				gpioc: gpio@3c {
++					reg = <0 0x3c 0 0x20>, <0 0x10 0 0x4>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&aobus_pinctrl 0 (AMLOGIC_GPIO_C<<8) 7>;
++				};
++
++				gpiod: gpio@5c {
++					reg = <0 0x5c 0 0x24>, <0 0x8 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&aobus_pinctrl 0 (AMLOGIC_GPIO_D<<8) 18>;
++				};
++
++				test_n: gpio@c0 {
++					reg = <0 0xc0 0 0x20>;
++					reg-names = "gpio";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&aobus_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
++				};
++			};
++
++			gpio_ao_intc: interrupt-controller@4080 {
++				compatible = "amlogic,a9-gpio-ao-intc",
++					     "amlogic,meson-gpio-intc";
++				reg = <0x0 0x4080 0x0 0x34>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				amlogic,channel-interrupts =
++					<384 385 386 387 388 389 390 391 392 393
++					394 395 396 397 398 399 400 401 402 403>;
++			};
++
+ 			uart_b: serial@1e000 {
+ 				compatible = "amlogic,a9-uart",
+ 					     "amlogic,meson-s4-uart";
+
+---
+base-commit: 3d5670d672ae08b8c534b7beed6f57c8b44e7b43
+change-id: 20260629-a9-node-3e6fceba7c90
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
 
-
-Lothar Wa=C3=9Fmann
 
