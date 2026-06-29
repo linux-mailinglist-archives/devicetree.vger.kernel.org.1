@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-317304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317305-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id T46SDuDuQmqYIwoAu9opvQ
-	(envelope-from <devicetree+bounces-317304-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 00:17:04 +0200
+	id a5LhGo/vQmoZJAoAu9opvQ
+	(envelope-from <devicetree+bounces-317305-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 00:19:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BCE96DF043
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 00:17:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E8556DF054
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 00:19:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TEVZ9hZB;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317304-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317304-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iTEM9bPa;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317305-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317305-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 411A73005328
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 22:17:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C1269300CE55
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 22:19:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496F230CD95;
-	Mon, 29 Jun 2026 22:16:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E180D31B83B;
+	Mon, 29 Jun 2026 22:19:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB04191;
-	Mon, 29 Jun 2026 22:16:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB0AF30EF9B;
+	Mon, 29 Jun 2026 22:19:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782771418; cv=none; b=NqcXKgTk8mUJAWapWerGSP4vufb0twsu5sgbh/TMkJXI8l8VmeZKoYRnrMYa+Jv96LUQkdWOHMVSS8S3alVU7SU/lkxXcE0O7wT8kF1HDzgwMJbW0Muckn4LfEf+7oqF6HzepkUcz55yD9ZQU6rBNjdP9QbJ1WlkklsJt10dOUM=
+	t=1782771595; cv=none; b=dRt+gXzyGjAbePmfyP/C9TKBpbA8/VTosduI7zN19UiN6cBvCSfqnjhbOPc6xkTB9gFWdEWfAtFb5pz/A91cYm75E6MVdq1/XqUIHsbJtKgZ0h0qjpUvvy2xuFdvxag8R3110bLvu2lEZoB3sTLwD3Mdw7GNGoGidPQSuwELuxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782771418; c=relaxed/simple;
-	bh=AGfMJBMByvaNwcIcdNYaRh/QI4GMZznW+k/lnUDsEFk=;
+	s=arc-20240116; t=1782771595; c=relaxed/simple;
+	bh=+lnRhzM0rVCZ7DoCHdgHQB0Wr2zcenKVrHKy2OXYxvk=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=el8P9pz0/5FHkRPGBcXD5Isa2rx19vzMCKp94hTafb+RK0fYJ/DqhOf2IsxQAkDOBlHqUe7C3t8+43IeYcDVcv3vOvUlU84qzyhu/6u2yDe6Oxnlm5FuuLTFG5oo6EakPn2FkgvUbiJoeyr3ATml/4B4D/5MU8QJI0kHuZdJ/Gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TEVZ9hZB; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 902A11F000E9;
-	Mon, 29 Jun 2026 22:16:56 +0000 (UTC)
+	 Message-Id; b=Vb902DJUoGNUo9jxexCGzMxHENs/CYIfPp2WD12ZD6yTlw8g0fqa/Wgu2ABiWy0IRaNO9FuVmWmNZ1cMfRqYiFAnB87vNfvwQ4NPGszVMhMePdu46lqAcmBKm6/Fk4oEeqh0GP9SFv69lCz2k8z0LpgjNssR97BfRgpjefi76eY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iTEM9bPa; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E3F11F000E9;
+	Mon, 29 Jun 2026 22:19:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782771416;
-	bh=AGfMJBMByvaNwcIcdNYaRh/QI4GMZznW+k/lnUDsEFk=;
+	s=k20260515; t=1782771594;
+	bh=KSdPYNcXfulqbtnNuAE7hceMgNDks1Ok9ejaXdnYI1o=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=TEVZ9hZB/zMTZl+tvYGbn0J1nlbQ+P+QgSrgwaXOMXYqbLVOeBBLMXlV7Z3+A1hfL
-	 54l/UE0M9KxMpAbli0Vz7rHab9LWeHpmFYcFcTBPpiBK+Yihko4HNPKt0+RTVUNy6q
-	 z8EftgCqEbpr2oUTS33b0GfU72SvigDTM9XWj3BTaMIwx5OLxxP049Aoe5PCNBRMg7
-	 JRKGox86TVvzUQ0ow9qEkUhb5uzYjjl1xsYAUHhsYsEOXUfKSuJ6R8l36h7pxyGfsx
-	 r6//SxdRzoz+s68OssuN1TbLLmY7+iCXNBJSOBvqeF+FcW1DGXqyu5Mmoe4BkDwWjT
-	 Ex/nCdHM/ogSg==
+	b=iTEM9bParlP8BY3j3FkXF1blR9FRiuZra/q9hBgTrBC0sQViWkK0SDw6H/VcFlDlj
+	 NIJ0izBLMyUGAtAeuQPavxfiYaLOkM/UChaUjjtyXurCzuQci/rzf5k3ldsvU83b6A
+	 9+Bpa2tEoOrmywUgKTboB57wbYWCQUjcvNyTsIPZ3/tpRVny514Faiywx4edQHf+TS
+	 0D8KB09xB53vf56qyzmk+kv6yFYhXX0a3+3zO3BShZue6QKjl7roy/7yS909bjB9zd
+	 e0IgV89lPq5r8ebGZMIxsVPBNTxQu0emjWg6LoaPyUoZIO5g8EnrISDSGeWfL5TBAc
+	 uNypX4YO84pUg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 4/4] PCI: rzg3s-host: Add support for RZ/V2H(P) SoC
+Subject: Re: [PATCH v5 2/4] PCI: rzg3s-host: Use shared reset controls for
+ power domain resets
 Reply-To: sashiko-reviews@lists.linux.dev
 To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, robh@kernel.org, wsa+renesas@sang-engineering.com
-In-Reply-To: <20260629220932.861445-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc: wsa+renesas@sang-engineering.com, linux-pci@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260629220932.861445-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 References: <20260629220932.861445-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260629220932.861445-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260629220932.861445-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 29 Jun 2026 22:16:56 +0000
-Message-Id: <20260629221656.902A11F000E9@smtp.kernel.org>
+Date: Mon, 29 Jun 2026 22:19:53 +0000
+Message-Id: <20260629221954.0E3F11F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,16 +71,16 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:wsa+renesas@sang-engineering.com,m:prabhakarcsengg@gmail.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-317304-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:wsa+renesas@sang-engineering.com,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:prabhakarcsengg@gmail.com,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317305-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,renesas.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,renesas.com:email,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
@@ -95,8 +96,8 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -104,29 +105,128 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[6]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2BCE96DF043
+X-Rspamd-Queue-Id: 0E8556DF054
 
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> Add support for the RZ/V2H(P) SoC PCIe controllers to the rzg3s-host
-> driver.
->=20
-> The RZ/V2H(P) SoC features two independent PCIe controllers that share
-> four physical lanes. The hardware supports two configuration modes:
-> single x4 mode where the first controller uses all four lanes, or dual
-> x2 mode where both controllers use two lanes each.
->=20
-> Introduce a setup_lanes() function pointer to configure the PCIe lanes
-> based on the hardware instance. Implement rzv2h_pcie_setup_lanes() to
-> detect the configuration at boot time and program the lane mode via the
-> system controller.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+Pre-existing issues:
+- [High] The PCIe reference clock (`port->refclk`) is permanently leaked (e=
+nable count imbalance) if `pci_host_probe()` fails during driver probe.
+- [High] Hardware access violation in `rzg3s_pcie_suspend_noirq()` causes s=
+ystem crash by writing to unclocked AXI registers.
+- [High] Missing chained IRQ handler cleanup on probe error paths leads to =
+Use-After-Free.
+--
+
+commit f0476ca1c132af88924c762e84517c32e45ebd21
+Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+PCI: rzg3s-host: Use shared reset controls for power domain resets
+
+This commit switches the PCIe power resets to use shared reset controls
+to prepare for RZ/V2H(P) support. On this platform, multiple PCIe
+controllers share the same reset line.
+
+> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/contr=
+oller/pcie-rzg3s-host.c
+> index 66f687304c1cb..cca2617f29157 100644
+> --- a/drivers/pci/controller/pcie-rzg3s-host.c
+> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
+> @@ -1277,9 +1277,9 @@ static int rzg3s_pcie_resets_prepare_and_get(struct=
+ rzg3s_pcie_host *host)
+>  	for (i =3D 0; i < data->num_cfg_resets; i++)
+>  		host->cfg_resets[i].id =3D data->cfg_resets[i];
+> =20
+> -	ret =3D devm_reset_control_bulk_get_exclusive(host->dev,
+> -						    data->num_power_resets,
+> -						    host->power_resets);
+> +	ret =3D devm_reset_control_bulk_get_shared(host->dev,
+> +						 data->num_power_resets,
+> +						 host->power_resets);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but looking at rzg3s_pcie_probe(=
+),
+is it possible we are leaking the reference clock enable count on probe fai=
+lure?
+
+In rzg3s_pcie_host_init_port(), the clock is prepared and enabled:
+
+	ret =3D clk_prepare_enable(port->refclk);
+	if (ret)
+		return dev_err_probe(dev, ret, "Failed to enable refclk!\n");
+
+If pci_host_probe() fails later in the probe sequence, the cleanup path
+drops the reference without disabling it:
+
+port_refclk_put:
+	clk_put(host->port.refclk);
+
+Could this keep the reference clock and its parent PLLs permanently enabled,
+preventing the SoC from reaching deep sleep states?
+
+
+[Severity: High]
+This is a pre-existing issue, but does rzg3s_pcie_suspend_noirq() have a
+hardware access violation?
+
+The runtime PM domain and clocks are gated by pm_runtime_put_sync() before
+invoking the de-initialization callback:
+
+	ret =3D pm_runtime_put_sync(dev);
+	if (ret)
+		return ret;
+
+	clk_disable_unprepare(port->refclk);
+
+	/* SoC-specific de-initialization */
+	ret =3D data->config_deinit(host);
+
+When rzg3e_pcie_config_deinit() is called, it accesses the controller's
+AXI register space:
+
+static int rzg3e_pcie_config_deinit(struct rzg3s_pcie_host *host)
+{
+	writel_relaxed(0, host->axi + RZG3S_PCI_RESET);
+	return 0;
+}
+
+Can writing to a memory-mapped peripheral register while its bus clock is
+gated cause an immediate bus fault or system crash during suspend?
+
+
+[Severity: High]
+This isn't a bug introduced by this patch, but is there a use-after-free
+risk in rzg3s_pcie_teardown_irqdomain() if a probe failure occurs?
+
+During rzg3s_pcie_init_irqdomain(), chained handlers are registered and a
+pointer to the host context is installed into the underlying interrupt:
+
+		irq_set_chained_handler_and_data(irq,
+						 rzg3s_pcie_intx_irq_handler,
+						 host);
+
+If the probe fails downstream, rzg3s_pcie_teardown_irqdomain() removes the
+domain but doesn't clear the chained handlers:
+
+static void rzg3s_pcie_teardown_irqdomain(struct rzg3s_pcie_host *host)
+{
+	if (IS_ENABLED(CONFIG_PCI_MSI))
+		rzg3s_pcie_teardown_msi(host);
+
+	irq_domain_remove(host->intx_domain);
+}
+
+Since the host structure is allocated with devm_pci_alloc_host_bridge(),
+it gets freed when probe returns an error. Would an interrupt firing after
+this point lead to a kernel panic by dereferencing the freed host pointer?
+
+>  	if (ret)
+>  		return ret;
+>
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260629220932.8614=
-45-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D4
-
+45-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D2
 
