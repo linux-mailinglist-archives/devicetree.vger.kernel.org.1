@@ -1,188 +1,315 @@
-Return-Path: <devicetree+bounces-316611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316605-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1STiNNLhQWrDvQkAu9opvQ
-	(envelope-from <devicetree+bounces-316611-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 05:09:06 +0200
+	id o52+EaDRQWoiuwkAu9opvQ
+	(envelope-from <devicetree+bounces-316605-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 04:00:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67F646D59C7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 05:09:05 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9D176D573C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 03:59:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=rock-chips.com header.s=default header.b="Jy7T/u28";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316611-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-316611-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=rock-chips.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GvjA8xZV;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316605-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316605-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 673483001FB1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 03:09:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E3A98300514B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 01:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9BF37BE8A;
-	Mon, 29 Jun 2026 03:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A8E379C5A;
+	Mon, 29 Jun 2026 01:59:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973183.qiye.163.com (mail-m1973183.qiye.163.com [220.197.31.83])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173E035E92F;
-	Mon, 29 Jun 2026 03:08:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2123749FF;
+	Mon, 29 Jun 2026 01:59:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782702538; cv=none; b=VMw21sS6POQrM8OWev6tUHbV4w6OglnzpM3F6UBy5GI26Vw81t9HPD5Ax2E6G5bD78uixOdv1Q3/TlV/GEIx/BFKcAgBrlpD8KK/nVXcTF5RA9thL1+h4EHPtrLMkFJG/O2p5ia5w3ccehkoadEIaA5nJ5oCPv0NioGQWgnzKKg=
+	t=1782698395; cv=none; b=YdVxuOLomuyOI3gKOlRmYnP6FuPC4IBFHI57dB1DQZr2r6jASev+rsud8E7+ZbSQk3YjUxxh2ks1Wq4nObHGurBCIVRURlfyAmUogOaH1Wsen1XvZ07TGzE1WSObG+6ox7sP+pD6SHvLEUXeQ/h1F171/3Z3/Q3YX7HPqlq9KU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782702538; c=relaxed/simple;
-	bh=F99FZXoLe6WSw3sG+7NTs4ty8+muEj3Q2FczZK1t5UQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MGe28Xza9BTj2TPslS/52+q53zfN/Q3ponYq/7pf4WyaA/4MepeO9FxBkIhLFYVf0dnZuK3hbc1ugUPL4oKaYwwTQ2XIUQwxxKJozYw2pXmoAMrDwzV0ZrhksysyE+o6lyL+THbWjwGUvEVdfXU4zpjbcB0vTYPkV5ZvxOjvkac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Jy7T/u28; arc=none smtp.client-ip=220.197.31.83
-Received: from [172.16.12.74] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 4414d26eb;
-	Mon, 29 Jun 2026 09:53:02 +0800 (GMT+08:00)
-Message-ID: <cb533b04-e550-4eb4-8a8f-6d17c3d43a48@rock-chips.com>
-Date: Mon, 29 Jun 2026 09:53:02 +0800
+	s=arc-20240116; t=1782698395; c=relaxed/simple;
+	bh=fUTmaEVmNdNSuyIY1gYvqvyP6ctXnUfQBmnbhVpNyi0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=loVEopxcl72y7sCrhDzhhobdowh7Cx7WABoccvqdA/r52lJXNxKqRiqeOv8UcTXj4n/XYR0STZCO+v6k/5a6m+uwwwJwy9xgXSPF2dQZBzgErPNSlxwCL3K0aPOZKwi2J8Q9e4lVCm2d4mzsVe291fLAW4lmeuTb1K4kDyJKaMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GvjA8xZV; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9F2F1F000E9;
+	Mon, 29 Jun 2026 01:59:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782698393;
+	bh=6WhoFyf49lYcxI/isV8lofhDX03wjkJMVpoYodnKkCU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=GvjA8xZV1RRe3cvZ4SUDtnTXpc1eUD9o5U6F+fBWfGlu//65bR5ZJBy70SEgwsZqD
+	 W65N69+dVirLV8U4+FBR7kLOELeQjGUdt0x+peE6swTmajf6g5Sj4oFzJIIoPZqrfU
+	 MChHYMhfDByr2lXhaOJBZpbwikyE/15tgQX0FVvY94WrhuZyWQ7F1NtuhHDa7vSs9b
+	 Yd2rtp301DYyKN4lv2jfqRQTbzBmixha+3URMXZ3yspje1eRM3sMD+7zaHP0+VFhlY
+	 RcYsfc3Ufiz9wJoZJpAkYXcbgBXlR8a+63CKb5r+6vzkgY9YBtGsihyvei6djYhK/b
+	 Qhuhbc4/A7DUg==
+Date: Sun, 28 Jun 2026 20:59:36 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Hans de Goede <johannes.goede@oss.qualcomm.com>
+Cc: "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Srinivas Kandagatla <srini@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Abel Vesa <abel.vesa@oss.qualcomm.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
+Subject: Re: [RFC 09/12] pinctrl: qcom: Add support for WoA ACPI tables
+ virtual TLMM pin numbers
+Message-ID: <akHOI2Ki1L1pVEVy@baldur>
+References: <20260623145225.143218-1-johannes.goede@oss.qualcomm.com>
+ <20260623145225.143218-10-johannes.goede@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] drm/bridge: analogix_dp: Add validation for
- samsung,lane-count property
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
- cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
- dmitry.baryshkov@oss.qualcomm.com, dianders@chromium.org,
- m.szyprowski@samsung.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260604085220.2862986-1-damon.ding@rock-chips.com>
- <20260604085220.2862986-4-damon.ding@rock-chips.com>
- <178249136513.1374898.11400378046460567437.b4-review@b4>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <178249136513.1374898.11400378046460567437.b4-review@b4>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9f11147a4003a8kunm26f77d9422c470
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZGExMVh5DSUkaHRpOSUtLT1YVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQk1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=Jy7T/u28jP/+4T2VA2B9kxcFXAX9Dsq0ShxLHsURI3PTBcA0yO9T5KXoRBqEUSEuSuuttXE1GmOzP+PWv7OtI23helQrMLrSBkS5sop9hRxcLvUyMJF8AERH+JkKsMXw9cy7+oLAcg8pQYGhVPkRyg/D5ZPafYOGQAK8JHC5ptI=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=W782AbfO1D1R5eEJlgStJCNw/OtsvmDShB2b7uB9ZM8=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260623145225.143218-10-johannes.goede@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316611-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FORGED_RECIPIENTS(0.00)[m:luca.ceresoli@bootlin.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:nicolas.frattaroli@collabora.com,m:cristian.ciocaltea@collabora.com,m:sebastian.reichel@collabora.com,m:dmitry.baryshkov@oss.qualcomm.com,m:dianders@chromium.org,m:m.szyprowski@samsung.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:johannes.goede@oss.qualcomm.com,m:rafael@kernel.org,m:konradybcio@kernel.org,m:srini@kernel.org,m:krzk+dt@kernel.org,m:lumag@kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-acpi@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-316605-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,msgid.link:url,rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:from_mime,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,parse.data:url,baldur:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 67F646D59C7
+X-Rspamd-Queue-Id: E9D176D573C
 
-Hi Luca,
-
-On 6/27/2026 12:29 AM, Luca Ceresoli wrote:
-> On Thu, 04 Jun 2026 16:52:19 +0800, Damon Ding <damon.ding@rock-chips.com> wrote:
+On Tue, Jun 23, 2026 at 04:52:22PM +0200, Hans de Goede wrote:
+> The ACPI tabled on Windows on ARM laptops use TLMM pin numbers outside of
+> the actual TLMM pin number range. These are a rather convoluted way to let
+> the Windows Qualcomm GPIO driver now to use the PDC for some pins because
+> these are wakeup sources.
 > 
-> Hello Damon,
+> This adds support for translating the magic Windows virtual GPIOs for these
+> back to a regular TLMM GPIO so that ACPI described devices using these
+> virtual GPIOs can work with Linux.
 > 
->>
->> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->> index 7a85774aaac1..e120ef3320c1 100644
->> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->> @@ -1261,8 +1262,11 @@ static int analogix_dp_dt_parse_pdata(struct analogix_dp_device *dp)
->>   		 */
->>   		of_property_read_u32(dp_node, "samsung,link-rate",
->>   				     &video_info->max_link_rate);
->> -		of_property_read_u32(dp_node, "samsung,lane-count",
->> -				     &video_info->max_lane_count);
->> +		ret = of_property_read_u32(dp_node, "samsung,lane-count",
->> +					   &video_info->max_lane_count);
->> +		if (ret || !drm_dp_lane_count_is_valid(video_info->max_lane_count))
->> +			return dev_err_probe(dp->dev, ret ? ret : -EINVAL,
->> +					     "failed to parse samsung,lane-count\n");
+> For now this code only tries to do this mapping when booting in DT-ACPI
+> hybrid mode which is only used on some WoA devices so this should not
+> impact any other use-cases.
 > 
-> I think this report by sashiko makes sense:
+> The new functions use woa_acpi in their name to make clear that these
+> are for dealing with the ACPI tables found on WoA devices, rather then
+> ACPI tables found on other devices, like ARM system ready devices which
+> also use ACPI.
 > 
->    >  sashiko-bot@kernel.org <sashiko-bot@kernel.org>:
->    >
->    >  [Severity: High]
->    >  Does this make the optional and deprecated samsung,lane-count property a
->    >  strict requirement?
->    >
->    >  If samsung,lane-count is absent from the device tree, of_property_read_u32()
->    >  returns -EINVAL. This causes the condition to evaluate to true, aborting the
->    >  probe with an error.
->    >
->    >  According to the device tree bindings
->    >  (Documentation/devicetree/bindings/display/samsung/samsung,exynos5-dp.yaml),
->    >  this property is marked as deprecated and explicitly optional because the
->    >  lane count can be read from the monitor. Does this patch break compatibility
->    >  with device trees that rightfully omit this deprecated property?
-> 
->   (via: https://patch.msgid.link/20260604090935.7FC051F00898@smtp.kernel.org)
-> 
-> Can you comment on this?
-> 
+> Note that simply mapping these virtual GPIOs back to TLMM pin numbers can
+> safely be done on Linux, because Linux always uses the PDC for GPIO IRQs
+> where possible.
 > 
 
-I was also confused about this handling at first. From commit 
-0d0abd894ead ("drm: bridge: analogix/dp: add max link rate and lane 
-count limit for RK3288"), its commit message does not explain why 
-samsung,lane-count was changed from a mandatory to optional property.
+This adds a fair amount of complexity to the driver, to support a model
+that I am not convinced we want to retain - and that only works in the
+hybrid case.
 
-After digging into the code flow, I found that 
-analogix_dp_full_link_train() picks the smaller value between the 
-platform-supported lane count and the lane count retrieved from sink 
-DPCD for link training. If the samsung,lane-count property is 
-missing/invalid here, link training will end up using an unexpected lane 
-count configuration.
+> Signed-off-by: Hans de Goede <johannes.goede@oss.qualcomm.com>
+> ---
+>  drivers/pinctrl/qcom/Makefile           |   4 +-
+>  drivers/pinctrl/qcom/pinctrl-msm-acpi.c | 196 ++++++++++++++++++++++++
+>  drivers/pinctrl/qcom/pinctrl-msm.c      |  47 +++++-
+>  drivers/pinctrl/qcom/pinctrl-msm.h      |  35 +++++
+>  4 files changed, 278 insertions(+), 4 deletions(-)
+>  create mode 100644 drivers/pinctrl/qcom/pinctrl-msm-acpi.c
+> 
+> diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
+> index 84bda3ada874..9029d99190d2 100644
+> --- a/drivers/pinctrl/qcom/Makefile
+> +++ b/drivers/pinctrl/qcom/Makefile
+> @@ -1,6 +1,8 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  # Qualcomm pin control drivers
+> -obj-$(CONFIG_PINCTRL_MSM)	+= pinctrl-msm.o
+> +obj-$(CONFIG_PINCTRL_MSM)	+= pinctrl-msm-core.o
+> +pinctrl-msm-core-y		:= pinctrl-msm.o
+> +pinctrl-msm-core-$(CONFIG_ACPI)	+= pinctrl-msm-acpi.o
+>  obj-$(CONFIG_PINCTRL_APQ8064)	+= pinctrl-apq8064.o
+>  obj-$(CONFIG_PINCTRL_APQ8084)	+= pinctrl-apq8084.o
+>  obj-$(CONFIG_PINCTRL_ELIZA)	+= pinctrl-eliza.o
+> diff --git a/drivers/pinctrl/qcom/pinctrl-msm-acpi.c b/drivers/pinctrl/qcom/pinctrl-msm-acpi.c
+> new file mode 100644
+> index 000000000000..df180fd04749
+> --- /dev/null
+> +++ b/drivers/pinctrl/qcom/pinctrl-msm-acpi.c
+> @@ -0,0 +1,196 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * ACPI GPIO lookup handling for WoA (Windows on ARM) laptop ACPI tables.
+> + *
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +#include <linux/acpi.h>
+> +#include <linux/device.h>
+> +#include <linux/dev_printk.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/list.h>
+> +#include <linux/math.h>
+> +#include "pinctrl-msm.h"
+> +
+> +#define MSM_GPIO_WOA_ACPI_GPIOS_PER_BANK	64
 
-Additionally, I checked Samsung’s upstream device trees that utilize 
-this DP controller, and all of them carry the lane-count property. Based 
-on this observation, I believe restoring the strict mandatory 
-requirement for this property makes sense.
+Wasn't this 32 for a while?
 
-Should I create an independent fix patch to revert these two properties 
-to mandatory, instead of bundling the fix in this series?
+> +#define MSM_GPIO_WOA_ACPI_IRQ_OFFSET		32
+> +#define MSM_GPIO_WOA_ACPI_INVALID_GPIO		~0U
+> +#define MSM_GPIO_WOA_ACPI_MAX_PDC_RANGES	16
+> +
+> +#define PDC_RANGE_PIN_BASE			0
+> +#define PDC_RANGE_GIC_BASE			1
+> +#define PDC_RANGE_COUNT				2
+> +#define PDC_RANGE_ELEMENTS			3
+> +
+> +/**
+> + * struct msm_gpio_woa_acpi_parse_data - Data for parsing WoA ACPI GPIO ctl resources
+> + * @chip:		gpiochip handle
+> + * @data:		Data for mapping virtual WoA ACPI PDC IRQ GPIOs
+> + * @soc_data:		Reference to soc_data of platform specific data
+> + * @pdc_range:		PDC GIC to PDC map ranges
+> + * @pdc_range_count:	PDC GIC to PDC map range-count
+> + */
+> +struct msm_gpio_woa_acpi_parse_data {
+> +	struct gpio_chip *chip;
+> +	struct msm_gpio_woa_acpi_data *data;
+> +	const struct msm_pinctrl_soc_data *soc_data;
+> +	u32 pdc_range[MSM_GPIO_WOA_ACPI_MAX_PDC_RANGES][PDC_RANGE_ELEMENTS];
+> +	unsigned int pdc_range_count;
+> +};
+> +
+> +/*
+> + * Mapping does not need translating the acpi_resource in to a regular resoure
+> + * and adding it to the resource list. Always return 1 to disable this.
+> + */
+> +static int msm_gpio_woa_acpi_resource(struct acpi_resource *ares, void *_parse)
+> +{
+> +	struct msm_gpio_woa_acpi_parse_data *parse = _parse;
+> +	const struct msm_pinctrl_soc_data *soc_data = parse->soc_data;
+> +	struct msm_gpio_woa_acpi_data *data = parse->data;
+> +	struct gpio_chip *chip = parse->chip;
+> +	u32 gic_irq, pdc_pin;
+> +
+> +	if (ares->type != ACPI_RESOURCE_TYPE_EXTENDED_IRQ ||
+> +	    ares->data.extended_irq.interrupt_count != 1)
+> +		return 1;
+> +
+> +	if (data->nmap == MSM_GPIO_WOA_ACPI_MAX_VIRT_GPIOS) {
+> +		dev_err(chip->parent, "ACPI resources contain more than %d IRQs\n",
+> +			MSM_GPIO_WOA_ACPI_MAX_VIRT_GPIOS);
+> +		return 1;
+> +	}
+> +
+> +	/*
+> +	 * Windows ACPI tables divide GPIOs into banks of 64 pins with one IRQ
 
-Best regards,
-Damon
+Is this really "Windows ACPI tables"?
 
+> +	 * per bank. The resources start with listing the real TLMM IRQ for
+> +	 * as many banks as are necessary to cover the real GPIOs. The Windows
+> +	 * virtual GPIO indexes skip these banks, mark them as unavailable.
+> +	 */
+> +	if (data->nmap < DIV_ROUND_UP(chip->ngpio, MSM_GPIO_WOA_ACPI_GPIOS_PER_BANK)) {
+> +		data->map[data->nmap++] = MSM_GPIO_WOA_ACPI_INVALID_GPIO;
+> +		return 1;
+> +	}
+> +
+> +	/*
+> +	 * Use the "pdc-ranges" property on the PDC to translate the GIC IRQ
+> +	 * from the acpi_resource to a PDC pin.
+> +	 */
+> +	gic_irq = ares->data.extended_irq.interrupts[0] - MSM_GPIO_WOA_ACPI_IRQ_OFFSET;
+> +	pdc_pin = MSM_GPIO_WOA_ACPI_INVALID_GPIO;
+> +	for (unsigned int i = 0; i < parse->pdc_range_count; i++) {
+> +		u32 gic_base = parse->pdc_range[i][PDC_RANGE_GIC_BASE];
+> +		u32 count = parse->pdc_range[i][PDC_RANGE_COUNT];
+> +		if (gic_irq >= gic_base && gic_irq < (gic_base + count)) {
+> +			pdc_pin = parse->pdc_range[i][PDC_RANGE_PIN_BASE] +
+> +				  gic_irq - gic_base;
+> +			break;
+> +		}
+> +	}
+> +	if (pdc_pin == MSM_GPIO_WOA_ACPI_INVALID_GPIO)
+> +		goto no_map;
+> +
+> +	/* Use wakeirq-map to map PDC pin to TLMM pin */
+> +	for (unsigned int i = 0; i < soc_data->nwakeirq_map; i++) {
+> +		if (soc_data->wakeirq_map[i].wakeirq == pdc_pin) {
+> +			data->map[data->nmap++] = soc_data->wakeirq_map[i].gpio;
+> +			return 1;
+> +		}
+> +	}
+> +
+> +no_map:
+> +	dev_warn(chip->parent, "Cannot map GIC IRQ %u to TLMM pin\n", gic_irq);
+> +	data->map[data->nmap++] = MSM_GPIO_WOA_ACPI_INVALID_GPIO;
+> +	return 1;
+> +}
+> +
+> +int msm_gpio_woa_acpi_init(struct gpio_chip *chip, struct msm_gpio_woa_acpi_data *data,
+> +			   const struct msm_pinctrl_soc_data *soc_data)
+
+This function name makes me think this deals with "the ACPI case", but
+it requires both ACPI and DT tables to define the TLMM block - in other
+words, it complicates the DT-only case and it's useless in a ACPI-only
+system.
+
+> +{
+> +	struct msm_gpio_woa_acpi_parse_data parse;
+> +	struct fwnode_handle *fwnode;
+> +	struct device_node *pdc_np;
+> +	LIST_HEAD(resources);
+> +	unsigned int ngpio;
+> +	int ret;
+> +
+> +	/* WoA ACPI tables are only used in DT-ACPI hybrid mode */
+> +	fwnode = chip->parent->fwnode;
+> +	if (!is_of_node(fwnode) || !is_acpi_device_node(fwnode->secondary))
+> +		return 0;
+> +
+> +	parse.chip = chip;
+> +	parse.data = data;
+> +	parse.soc_data = soc_data;
+> +
+> +	/* Get PDC ranges, the PDC is the TLMM's wakeup-parent. */
+> +	pdc_np = of_parse_phandle(chip->parent->of_node, "wakeup-parent", 0);
+> +	if (!pdc_np)
+> +		return 0;
+> +
+> +	ret = of_property_count_elems_of_size(pdc_np, "qcom,pdc-ranges", sizeof(u32));
+
+That said, do you actually need to do this? Doesn't the ACPI resource
+give you the INTID directly? (Perhaps I'm misremember? Or perhaps that's
+of no use to us)
+
+Regards,
+Bjorn
 
