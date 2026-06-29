@@ -1,994 +1,356 @@
-Return-Path: <devicetree+bounces-317214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317211-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id s8LEENeiQmoz/AkAu9opvQ
-	(envelope-from <devicetree+bounces-317214-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:52:39 +0200
+	id V2GpGcOiQmop/AkAu9opvQ
+	(envelope-from <devicetree+bounces-317211-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:52:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 319156DD864
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:52:38 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E94036DD84A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:52:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=p4wucOot;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317214-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317214-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=posteo.de header.s=2017 header.b=P+ILBzph;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317211-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317211-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=posteo.de;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4BDB630028E5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:52:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 649A9300A484
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4391946AECF;
-	Mon, 29 Jun 2026 16:52:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0FE4466B68;
+	Mon, 29 Jun 2026 16:52:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013071.outbound.protection.outlook.com [52.101.72.71])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFD10466B5B;
-	Mon, 29 Jun 2026 16:52:18 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782751952; cv=fail; b=bLo8exSTE7LmsdhZ57vGFvmccj06ijqHfO5/k+qFG3MLkBxMlWHn52GOQNX0uX8LLPq8F6EwP4XJeV0c45bLa2FIMDj2gEnAZV5tn305QWwsHPFv3WRQMrxxD/Ahmckl4JEWXo2ZDzYoOcbxU2lM5nG/sxk1V7FDuhqJY5Ey254=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782751952; c=relaxed/simple;
-	bh=1i7IVSnBhMtu0+xqkQLcFZmWFSOhoID4RG0BmvDPmL4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=e9wu1ez7sQObQvEARJTBidnQXElBVfubeXDG+GFBNw70/YaSpEnPC1AUzjTkSFwsmF2aXvbqKUcPSSvSn2SRjPeZpWjlftPj4I++5u7gd3lY6rXAzb752mKtidS8u04l3KOf9Z8AeraQpunZkg9iqHRYFM1twrhcHdVpSSqgqGc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=p4wucOot; arc=fail smtp.client-ip=52.101.72.71
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C/bw226iDnGsChCiwwOicLM0r3KfKD5T/ByD+yV6P8qJlhVi5anwGcscz0hfe9Cc0is0NTtzhpWd+kT4uJ9rWbQIWdoscdF8yy8cBOe1futkxpaghUXv/Tm4NgI/qp2wgvmSUHjNdfB2oDk/d034gelAMQ1Kg2sqQWxk+rBnyhbmHE6vZ1HSOliiE5hkSwEwyQtntTCcHAyXXj0bYeSYp+1p9aUitlF2XmR6eYiPdqF02fscoXEXYOGENw3hV3VWlQ7Un5mztpBtJEkfe2ytvBFxhuifyQ/IRlHJuG4kDGC2HKVKx+FAFBJ8jLy/3MQowMb8mse0+yUXam7NwBCKKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m5koF6/kKhbXGE6PkQ89uWyabnSZ4qrsPglHpXYkiVA=;
- b=DJvLORXs0nnlAjVn8jWied9CmNOYf33OSJjL1HzhlAVH/ulq97hHhJdIWuUF4d7qrO2lw8CguMhmwMyQs0HJU1+h0SxNUPkbNlE4qQVoY2oQVm9H8kliOOlj6P5GFUR1oD9wn1zGVZpPtvMn75N6f2/Y4/SobBU6RtGptw+I8xBAoOMBvkBppGnm49lqDVTLvXwHQvRY7wUbch4n6eoQOKFstHTSCnHjbTLEgnaGIwrx2yzesUYlmvzFJASoIrcN+rqTfT7/CkZ8ySQeMGM47hOvc9jmLDW5wze4kVTCBsYqARm853C4lDGoWKZ0eVXqxeN0JW4aD/wc3x4RgQsSRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m5koF6/kKhbXGE6PkQ89uWyabnSZ4qrsPglHpXYkiVA=;
- b=p4wucOotNJGHcvyaUxa0usKZkJc7P5VycmCDttXynaGvQ/nPeUDp0tVHELpiXhdJ264OxtwOse1O+FLIaMa1wxiKqOoChTh3cwML32tFsKQsea7kNLna90DssYgoH4HghXTRp1sL2aFhgUC+BgM/tKKn9FJ4PdQvfxQ+ZpRrXu/xAKnDjKu5BFW3qeKgYYD/AZ3FoE5he4U0whdKfzXa57OD4HqUKUX0kZt+NJEpx18BAPHtO0anqY2BG8/QQUosndekfRYjDIC8bND7qoJjoPXTIw7kZ4vBzgaoXipI0NJFYyUdAzOBl5txI3c6lFIql3+hyqZ7HL8bYDkOiMYw+g==
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by DB9PR04MB8156.eurprd04.prod.outlook.com (2603:10a6:10:246::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Mon, 29 Jun
- 2026 16:52:14 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0159.007; Mon, 29 Jun 2026
- 16:52:13 +0000
-Date: Mon, 29 Jun 2026 12:52:04 -0400
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Josua Mayer <josua@solid-run.com>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Maud Spierings <maudspierings@gocontroll.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: Re: [PATCH v5 3/3] arm64: dts: imx8mp-var-dart: Add support for
- Variscite Sonata board
-Message-ID: <akKitFCYv8D-0xPL@lizhi-Precision-Tower-5810>
-References: <cover.1780998600.git.stefano.r@variscite.com>
- <4a43b387ebc5c0d715a2a736094b7544e68018f8.1780998600.git.stefano.r@variscite.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4a43b387ebc5c0d715a2a736094b7544e68018f8.1780998600.git.stefano.r@variscite.com>
-X-ClientProxiedBy: SA1PR02CA0009.namprd02.prod.outlook.com
- (2603:10b6:806:2cf::14) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C5AF4508E0
+	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 16:52:14 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782751937; cv=none; b=BRv03lDmfJ5UTaHBnRcJ1Iys8MlKsvN/UtciNOn49G1bDFoXCberqOuoMIrR3NHeJXsYMhCGLV/04E0rUkUo9jnHTUJ5fOu2CiaBqYzbsXIm97uIBpHm7zQ34J27eXx8WHFNIP8ylQXpgMG/UvF63m2BRdml33XHzk3QA5QD658=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782751937; c=relaxed/simple;
+	bh=z1zZh1djxGy2ZsNvysNjNmKprImL5Jf2OqcaRQQylGE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bLTa9NC/7ZydDB6kQo2NQpOj98pus22Mb7cwWcjEqF8ik7ga3CWwWrTSACmKmAzP330Rh/LsAScRQlGEEl0Ew9gcJQ6aLhRC/icGp06PNH/A3zqr+cWIwoIvPejidKPJZ6LpuedUYhXyhFuXnwr4X0ILLK0V3bXlMzRXjaslv+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=P+ILBzph; arc=none smtp.client-ip=185.67.36.66
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 76A98240101
+	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 18:52:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1782751932; bh=xnap5pPEwOijocoUIJe48x7ZycTeTyEXbYr2mwb6y28=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:To:Cc:Autocrypt:OpenPGP:From;
+	b=P+ILBzph0y9GygviVS/IC8i450OiaqO3uM0TyIH1R0JrKceAqJXkFLnaAYbnv5b6l
+	 AT9bg1qMel0k6qIToA9lliDabofpxDgdiINqSstesnt4AbOpGKQAUwKUCatFkke7jX
+	 hXIzg2iKzxHl+PfUoxv1qCZ52MCDHJtA9MQOxZB9CHUSlmxoOTT+eFfQ2EaRp+ktpi
+	 ZHgoMRWZzXpus8M1y/gzM2PwmrkS6S/2lVTNLjKcuuTFaGe2JzzheX6E/J4yiobdGf
+	 Vueyg6xxi1MoVGqUd0g+9P4rkRFP+oA1jOsdg+481IqWsE+9onRi2K/4OH72+UD3m2
+	 Fyk2K78RJlTvQ==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4gpskw1d6Pz6twQ;
+	Mon, 29 Jun 2026 18:52:07 +0200 (CEST)
+From: Markus Probst <markus.probst@posteo.de>
+Subject: [PATCH v16 0/2] Introduce Synology Microp driver
+Date: Mon, 29 Jun 2026 16:52:11 +0000
+Message-Id: <20260629-synology_microp_initial-v16-0-601e91c49e0d@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|DB9PR04MB8156:EE_
-X-MS-Office365-Filtering-Correlation-Id: d6cc4b1b-01ab-4da8-721b-08ded5fec472
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|366016|376014|23010399003|19092799006|7416014|6133799003|13003099007|3023799007|22082099003|18002099003|56012099006|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info:
- bgikC2nS66jlg/Eu2NqW9McGODEG/56+JonHN3gEtF1Aps1MGBAVRWF/5HI/tgDvAgOcSFKg8qlylw+aXva6Tuxe25DrP4LKSBSbbSrVhBb8aI2jtE7COAVdtLmtTbwy3HdynuJKOp9wdWkU8ZDpYiLL44481aqphH6HT3o5SaY4Zu9vSF9tXxFUJGHs2xF3GJon8TJnk6AxECQNnajYVKGZolfJEkj8l2oLWZ+kOU4ziD69L6+UZ6uZbkn4Nuu+rwjoPzRdcpLlfX5yUe0YNMkKL7uQPKAXvHUl6Iu4qqK6Ge0fRBuRnJD9/5WwZuwceXNjp/larALuOtyRshUEX24GYyCG54Ng5dHgd5KNugZlS2h++724Bc/2sXVBGwfzTKvedcAakdJvyAent9kiYC1tUBiC2aLWKbM8FRWRFk8sFtW+WtksSLIpNIcHMBeKxpSnSHpXGCU6XZPCn0Nw/gckvFiB0l6zAdEevS7oDFhB0ONxZM6rBQh8SpfDixXq3FflRXytWnCUgnXkGBbTre3UVDx5qZq4ljGZ5o7t5tw3oy7dci2v5y7cVN6urUX/3oBNxnEN/CtivnRjuOmidwX5ZiA30eMk6yt58ASbZ3g=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(19092799006)(7416014)(6133799003)(13003099007)(3023799007)(22082099003)(18002099003)(56012099006)(11063799006)(4143699003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?iq9EY9qcIPKReEz45bTo/tDnsnixip/ZOrRk6UBpe4i7XmE4zqYEggT8jfu6?=
- =?us-ascii?Q?cR+pQ1yq4B1XhOCHeQTi+4nWSC81u/kePoSI4TTgM/1kWM50FE61+DI3QioZ?=
- =?us-ascii?Q?CoERBpChCQLDUAY4w2sUm016SMCEBndazHZ495Yn8rywI1AUuPgS1RBDP2Hj?=
- =?us-ascii?Q?uKiQK2Pl81hbDuV1C/OKGHCbx154I+P6AeBpqVRr++RUglEpjt4fAhJZudS5?=
- =?us-ascii?Q?UuZQ/jXGD+Y8EyBY+0p6V8MdsvyjANtt6qWB55RliBN1Rb7XFu4z7cduQOqN?=
- =?us-ascii?Q?ajZ6Rt1I4lLwZccFflx1MkCWZyRJ34tqp3sYWz4tizH605bQoyNdNh+Vlp6I?=
- =?us-ascii?Q?b6DCn7yi2aKO7OlDix7Z76S4lytr55XTD9u91yAR3xY4vV6DVYgUaB2H1CIc?=
- =?us-ascii?Q?dB/AZKHVce1zBC/aTWpKEy2eoeisuF0EK9/ds5L/UAo01W1JuEPlNjC/fmDB?=
- =?us-ascii?Q?fgEvOweOqlvFI7XAAvY+N8NsjwZ8UoMj2kvjwBQ6xD3YrhbLoJJT3IgFg5kl?=
- =?us-ascii?Q?3lHz9qHW8ZirORxA78eKLFQD7W577lLFVD1R8BQEQmIRw7+w0Dzp4usyILx9?=
- =?us-ascii?Q?/Y1S604ZYbmRJTArPrZP5p1p1QjUm8Fl19tnMc26WGWna3eiYv925TALZEEj?=
- =?us-ascii?Q?nSIoSm+0AB8feVkxNl7IP+Ld7lHqT9YRGD9ybIOf9jS1+WDNUtmZbdjoXgy4?=
- =?us-ascii?Q?HL5BSXcLHv5Sh7EunRiB+SIReoQh6d0dtlFTdmPJ6+bg1rgaaPPEtqk/SgSf?=
- =?us-ascii?Q?T273V13mtVT6cOpmiWJMHapRiQh4ZbQQ6nDdOEXlc+5OND4Q91eZIBuUDopz?=
- =?us-ascii?Q?N7Sv0RyHar7/bIlfpJLzI7SZwBOhrUi+JFA39isWGoR6hNIDLNkJhjb7QTlZ?=
- =?us-ascii?Q?iWzTwINTfRqSCDCRGSQrXOKkuuEYjZ6qfDVXVBs/Ni0hi0MhM6b5D+PdyLm/?=
- =?us-ascii?Q?CCCakL+HJj5OFOm7Q1cFBiOsJZCjaD0t29oF7OnHRTogbIo1mQMjriOm2zJ8?=
- =?us-ascii?Q?a72HrL0R2u029fl7OB0Ntpv1JRo6QcDqyFltEbTsR0OcI+4vmueMXYC4MyR+?=
- =?us-ascii?Q?65Cb3LdwQZJzfyRnUy9+hr+CsDXfcRqvKlNktzx+52H95B/ssMXv3zrcNP4Q?=
- =?us-ascii?Q?zBaNJt9by3UDLfjlpf68/AHSZ34NwtRcJEtdckF1+aWGbltdPAKqMMgm+C02?=
- =?us-ascii?Q?hSUioJcWWsR+fFnQg1Iks++xxqltruMmEmbZypqh8q08qUi9gzVekpctLFO4?=
- =?us-ascii?Q?/54+b372fqRC9UNSp2aGnoZfpdT/JjwkuOaBzWgJ5j6kO2OlOr0aLICxxgQN?=
- =?us-ascii?Q?nIX8R/ud7BPByoFLLOfDr4g1NZUoUvqdWJz+EcH/QvZ7QihEuYkIROb2zLuz?=
- =?us-ascii?Q?RClhYz4SMF8RxkJyPMLcEuRV6USsnsBJmmMxfbTssrCuj7rpg3GtwBe8BwLs?=
- =?us-ascii?Q?kduhO3fugTQO1yre2tomVuBFDhlSqNq6axOWiUL/H+GUphKQ/3h+eq/XUBp6?=
- =?us-ascii?Q?eVtI7h+xtuC4Fdtigc8+c/4a6SG09o2B+QkeRS5GOXXy8K54e/o7RYV0a+5I?=
- =?us-ascii?Q?58SI+GgLtDFoojqmWBsauZXpyuMDL13dbOXI4pgiBFHGBd5WlFauuCUYsR1+?=
- =?us-ascii?Q?l9jhE/p9SPN3R6OND4L/L8mfm8yOj5M31d1/5IVfzWWLt9oDszNEB9JMkusQ?=
- =?us-ascii?Q?TTWoBjEeD6ofhHu2NuqzBBmBgIlP6BFJzHWOaVIz3w5u8zL1ZnNjRW2xODPP?=
- =?us-ascii?Q?QT71tUQLN1Ps4SuAXobiAWXiXxose0oOTjcrvelNGRbzY2T/TJMa?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d6cc4b1b-01ab-4da8-721b-08ded5fec472
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2026 16:52:13.0458
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FgGyY2w47AwkU063TNEK+mv1MKB1xJBddtOfgg3XQtKZHfhoS/7CJSmFybXRkT5+6Uelrwi4YAC8YRhwmZDqeLIxTxcY8taalCPemwQrch0GqoNbNc9GTZ0oz0e6lImT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8156
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4XU247aMBAG4FdBua6Rxx6fuNr3qCrkw5iNFgibs
+ FHRinevEy5qkZJe2tJ89oz/5LsZqG9paHab76ansR3a7lwWoH9smvjuzwdibSobjeBCc8k1G27
+ n7tgdbvtTG/vusm/P7bX1R8azST6aYNDpplRfesrt75n++eux7unzq5xwfWw2JxoGPx+w28y8k
+ hykMFJvpXBWoWPAkv/o3z6oP9Nx2/WHpr7XXKZAgGH913Ddl14SjYxIoQVy3Kq4G0H8qwYAHzV
+ HSgPzTrlsosgmu90oYKoIfiAWu9Opve42o9kK1kdopk7e2+Ha9bd5ZiPMrfx3OiMwznLMmRJpR
+ BvfLt1wpW6baDZHUTv2tSOK46R1TsssIapnR1YOyNeOLI5P2kfU0gsOzw5WjuCvHSwORyFTClZ
+ Gj8+Oqh332lHFESYGy0PKyi3uo/86yNVrR0/3sTkRGgw6umfHVA7Aa8dMc/bSc4dkyoieHVs5a
+ /OxxTEOtXcgEJd9udpZeS9XHPRWSZmtIW6eHeA1hCtBLPNhZJVIIksKfnEjgFoyK9KUaRchJOV
+ 1sdJCErW08vgwpRq554pLGbXgC6mKdflLrEhzrr0IwUWlKS++M8BaWgkATMkGaUxCoYLAsJCqa
+ OvV7qZsY5Cp/NlMNDHX0v1+/wNLzuHFhQUAAA==
+X-Change-ID: 20260306-synology_microp_initial-0f7dac7b7496
+To: Hans de Goede <hansg@kernel.org>, 
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Pavel Machek <pavel@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Tamir Duberstein <tamird@kernel.org>, 
+ Alexandre Courbot <acourbot@nvidia.com>, 
+ =?utf-8?q?Onur_=C3=96zkan?= <work@onurozkan.dev>
+Cc: platform-driver-x86@vger.kernel.org, linux-leds@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, Markus Probst <markus.probst@posteo.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7570;
+ i=markus.probst@posteo.de; h=from:subject:message-id;
+ bh=z1zZh1djxGy2ZsNvysNjNmKprImL5Jf2OqcaRQQylGE=;
+ b=owEBiQJ2/ZANAwAIATR2H/jnrUPSAcsmYgBqQqK3IFG5xwzh4fCYyU5FzLqA1f3n60NHOJI6k
+ M67Oa6drM+JAk8EAAEIADkWIQSCdBjE9KxY53IwxHM0dh/4561D0gUCakKitxsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMiwyLDIACgkQNHYf+OetQ9JNXBAAgB/DvbWW1L2gH04dS+mtuxmhUwV+/Ut
+ dGBTgMiocD1+TkKxSoQZuKXOlMGrwIQr7Yq1CBizS5Oq7ItUCT/B8V6JZVXk3f5TeEsqegJnssB
+ JZiWHgygWwkU9K3aeckPd+FdnFH69PQbIyK64fvk5xdYGY9EJqmmffgrzprOhnx4YNuQ4votPPu
+ tOH318iAcP66OK6SgLag/xF7rPC8rOVpO6uQdF3q/HfqM+nS2bycX5RvdI7RWMzbtoakqIwuTDY
+ Z1ykuX30S/6gL3k29f3oLquDVb5fy5sbl4Erbmd+9cTn7IMZ6SP1fVRZrs/jYXi9+M1+hC3+apd
+ JAtNA8BLOEssgDR82HYbKORtv9oVXkYe5FRTBnpfoyC9W/gYV37vMud3VP2GDkSsjU8XbFRgyPi
+ 46MwT5iUXa5iJyUDboE2NzSXuV73x81nsdcUxMiOCxTMjk4fnKW7sDHBjR3s0OB5haK7hRmyYad
+ W8UZmAEDiJjbKHD2NB0/CJ6rUNi0g1TKa3WlX0RU66U5/7o9TydCvlvt5+mZd3uc4JIy89vQzZk
+ aGo8P/wndiDCvhEmXwfgvMXAa8zpyMYE//JMaT1oERaf9Le79Rn98tJglSOyD4RGxa1CCQ1NS7z
+ Uw0ByY/ZC9lSHI5F/5CPHTeMUHZRGl4XOCpG8s00zu6DYCjw6hf0=
+X-Developer-Key: i=markus.probst@posteo.de; a=openpgp;
+ fpr=827418C4F4AC58E77230C47334761FF8E7AD43D2
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+  keydata=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
+  aBeNN4ijKZchBXHPgVx+YtWRHfcm4l8=
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:stefano.radaelli21@gmail.com,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:daniel.baluta@nxp.com,m:josua@solid-run.com,m:dario.binacchi@amarulasolutions.com,m:maudspierings@gocontroll.com,m:alexander.stein@ew.tq-group.com,m:ernest.vanhoecke@toradex.com,m:francesco.dolcini@toradex.com,m:hvilleneuve@dimonoff.com,m:stefanoradaelli21@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-317214-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317211-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com,solid-run.com,amarulasolutions.com,gocontroll.com,ew.tq-group.com,toradex.com,dimonoff.com];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,linaro.org,garyguo.net,protonmail.com,google.com,umich.edu,linuxfoundation.org,collabora.com,nvidia.com,onurozkan.dev];
+	FORGED_SENDER(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FORGED_RECIPIENTS(0.00)[m:hansg@kernel.org,m:ilpo.jarvinen@linux.intel.com,m:bryan.odonoghue@linaro.org,m:lee@kernel.org,m:pavel@kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:aliceryhl@google.com,m:tmgross@umich.edu,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gregkh@linuxfoundation.org,m:daniel.almeida@collabora.com,m:tamird@kernel.org,m:acourbot@nvidia.com,m:work@onurozkan.dev,m:platform-driver-x86@vger.kernel.org,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:rust-for-linux@vger.kernel.org,m:markus.probst@posteo.de,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[posteo.de:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,oss.nxp.com:from_mime,vger.kernel.org:from_smtp,NXP1.onmicrosoft.com:dkim,lizhi-Precision-Tower-5810:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[posteo.de:dkim,posteo.de:email,posteo.de:mid,posteo.de:from_mime,msgid.link:url,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 319156DD864
+X-Rspamd-Queue-Id: E94036DD84A
 
-On Tue, Jun 09, 2026 at 11:51:20AM +0200, Stefano Radaelli wrote:
-> From: Stefano Radaelli <stefano.r@variscite.com>
->
-> Add device tree support for the Variscite Sonata carrier board with the
-> DART-MX8M-PLUS system on module.
->
-> The Sonata board includes
-> - uSD Card support
-> - USB ports and OTG
-> - Additional Gigabit Ethernet interface
-> - Uart, SPI and I2C interfaces
-> - HDMI support
-> - GPIO Expanders
-> - RTC module
-> - TPM module
-> - CAN peripherals
->
-> Link: https://variscite.com/carrier-boards/sonata-board/
-> Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
-> ---
-> v4->v5:
->  - Fix nodes order
->
-> v3->v4:
->  - Add snvs nodes
->
-> v2->v3:
->  -
->
-> v1->v2:
->  - Fixed model name
->  - Added new usdhc2 regulator pinctrl
->  - Adjusted irq edges
->
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../dts/freescale/imx8mp-var-dart-sonata.dts  | 731 ++++++++++++++++++
->  2 files changed, 732 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-sonata.dts
->
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 03988f0eae30..818e57f54475 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -448,6 +448,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-tx8p-ml81-moduline-display-106-av101hdt-a10.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtb
->
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-ultra-mach-sbc.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-dart-sonata.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-som-symphony.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw71xx-2x.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw72xx-2x.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-dart-sonata.dts b/arch/arm64/boot/dts/freescale/imx8mp-var-dart-sonata.dts
-> new file mode 100644
-> index 000000000000..283864b2d4b3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-dart-sonata.dts
-> @@ -0,0 +1,731 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Variscite Sonata carrier board for DART-MX8M-PLUS
-> + *
-> + * Link: https://variscite.com/carrier-boards/sonata-board/
-> + *
-> + * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/phy/phy-imx8-pcie.h>
-> +#include "imx8mp-var-dart.dtsi"
-> +
-> +/ {
-> +	model = "Variscite DART-MX8M-PLUS on Sonata-Board";
-> +	compatible = "variscite,var-dart-mx8mp-sonata",
-> +		     "variscite,var-dart-mx8mp",
-> +		     "fsl,imx8mp";
-> +
-> +	chosen {
-> +		stdout-path = &uart1;
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		button-home {
-> +			label = "Home";
-> +			linux,code = <KEY_HOME>;
-> +			gpios = <&pca6408_1 4 GPIO_ACTIVE_LOW>;
-> +			wakeup-source;
-> +		};
-> +
-> +		button-up {
-> +			label = "Up";
-> +			linux,code = <KEY_UP>;
-> +			gpios = <&pca6408_1 5 GPIO_ACTIVE_LOW>;
-> +			wakeup-source;
-> +		};
-> +
-> +		button-down {
-> +			label = "Down";
-> +			linux,code = <KEY_DOWN>;
-> +			gpios = <&pca6408_1 6 GPIO_ACTIVE_LOW>;
-> +			wakeup-source;
-> +		};
-> +
-> +		button-back {
-> +			label = "Back";
-> +			linux,code = <KEY_BACK>;
-> +			gpios = <&pca6408_1 7 GPIO_ACTIVE_LOW>;
-> +			wakeup-source;
-> +		};
-> +	};
-> +
-> +	gpio-leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_gpio_leds>;
-> +
-> +		led-emmc {
-> +			gpios = <&gpio4 18 GPIO_ACTIVE_HIGH>;
-> +			label = "eMMC";
-> +			linux,default-trigger = "mmc2";
-> +		};
-> +	};
-> +
-> +	native-hdmi-connector {
-> +		compatible = "hdmi-connector";
-> +		label = "HDMI OUT";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_in: endpoint {
-> +				remote-endpoint = <&hdmi_tx_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	clk40m: oscillator {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <40000000>;
-> +		clock-output-names = "can_osc";
-> +	};
-> +
-> +	pcie0_refclk: pcie0-refclk {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-vmmc-usdhc2 {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_vmmc_usdhc2>;
-> +		regulator-name = "VSD_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		startup-delay-us = <100>;
-> +		off-on-delay-us = <12000>;
-> +	};
-> +
-> +	sound-hdmi {
-> +		compatible = "fsl,imx-audio-hdmi";
-> +		model = "audio-hdmi";
-> +		audio-cpu = <&aud2htx>;
-> +		hdmi-out;
-> +	};
-> +
-> +	sound-xcvr {
-> +		compatible = "fsl,imx-audio-card";
-> +		model = "imx-audio-xcvr";
-> +
-> +		pri-dai-link {
-> +			link-name = "XCVR PCM";
-> +
-> +			cpu {
-> +				sound-dai = <&xcvr>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&aud2htx {
-> +	status = "okay";
-> +};
-> +
-> +&ecspi1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_ecspi1>;
-> +	cs-gpios = <&gpio5  9 GPIO_ACTIVE_LOW>,
-> +		   <&gpio1 12 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +
-> +	ads7846: touchscreen@0 {
-> +		compatible = "ti,ads7846";
-> +		reg = <0>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_restouch>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-> +		spi-max-frequency = <1500000>;
-> +		pendown-gpio = <&gpio1 7 GPIO_ACTIVE_LOW>;
-> +		ti,x-min = /bits/ 16 <125>;
-> +		ti,x-max = /bits/ 16 <4008>;
-> +		ti,y-min = /bits/ 16 <282>;
-> +		ti,y-max = /bits/ 16 <3864>;
-> +		ti,x-plate-ohms = /bits/ 16 <180>;
-> +		ti,pressure-max = /bits/ 16 <255>;
-> +		ti,debounce-max = /bits/ 16 <10>;
-> +		ti,debounce-tol = /bits/ 16 <3>;
-> +		ti,debounce-rep = /bits/ 16 <1>;
-> +		ti,settle-delay-usec = /bits/ 16 <150>;
-> +		ti,keep-vref-on;
-> +		wakeup-source;
-> +	};
-> +
-> +	can0: can@1 {
-> +		compatible = "microchip,mcp251xfd";
-> +		reg = <1>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_can>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
-> +		microchip,rx-int-gpios = <&gpio5 4 GPIO_ACTIVE_LOW>;
-> +		clocks = <&clk40m>;
-> +		spi-max-frequency = <20000000>;
-> +	};
-> +};
-> +
-> +&eqos {
-> +	mdio {
-> +		ethphy1: ethernet-phy@1 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <1>;
-> +			reset-gpios = <&pca6408_2 0 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <10000>;
-> +			reset-deassert-us = <20000>;
-> +			vddio-supply = <&reg_phy_vddio>;
-> +
-> +			leds {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				led@0 {
-> +					reg = <0>;
-> +					color = <LED_COLOR_ID_YELLOW>;
-> +					function = LED_FUNCTION_LAN;
-> +					linux,default-trigger = "netdev";
-> +				};
-> +
-> +				led@1 {
-> +					reg = <1>;
-> +					color = <LED_COLOR_ID_GREEN>;
-> +					function = LED_FUNCTION_LAN;
-> +					linux,default-trigger = "netdev";
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&ethphy0 {
-> +	leds {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		led@0 {
-> +			reg = <0>;
-> +			color = <LED_COLOR_ID_YELLOW>;
-> +			function = LED_FUNCTION_LAN;
-> +			linux,default-trigger = "netdev";
-> +		};
-> +
-> +		led@1 {
-> +			reg = <1>;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			function = LED_FUNCTION_LAN;
-> +			linux,default-trigger = "netdev";
-> +		};
-> +	};
-> +};
-> +
-> +&fec {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec>;
-> +	/*
-> +	 * The required RGMII TX and RX 2ns delays are implemented directly
-> +	 * in hardware via passive delay elements on the SOM PCB.
-> +	 * No delay configuration is needed in software via PHY driver.
-> +	 */
-> +	phy-mode = "rgmii";
-> +	phy-handle = <&ethphy1>;
-> +	status = "okay";
-> +};
-> +
-> +&flexcan1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan1>;
-> +	status = "okay";
-> +};
-> +
-> +&flexcan2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan2>;
-> +	status = "okay";
-> +};
-> +
-> +&hdmi_pai {
-> +	status = "okay";
-> +};
-> +
-> +&hdmi_pvi {
-> +	status = "okay";
-> +};
-> +
-> +&hdmi_tx {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_hdmi>;
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@1 {
-> +			hdmi_tx_out: endpoint {
-> +				remote-endpoint = <&hdmi_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&hdmi_tx_phy {
-> +	status = "okay";
-> +};
-> +
-> +&i2c2 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default", "gpio";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-> +	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	status = "okay";
-> +
-> +	pca9534: gpio@22 {
-> +		compatible = "nxp,pca9534";
-> +		reg = <0x22>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +
-> +		eth10g-en-hog {
-> +			gpio-hog;
-> +			gpios = <5 GPIO_ACTIVE_HIGH>;
-> +			output-low;
-> +			line-name = "eth10g_sel";
-> +		};
-> +
-> +		pcie2-en-hog {
-> +			gpio-hog;
-> +			gpios = <6 GPIO_ACTIVE_HIGH>;
-> +			output-high;
-> +			line-name = "pcie2_sel";
-> +		};
-> +
-> +		/* RGB_SEL */
-> +		lvds-brg-enable-hog {
-> +			gpio-hog;
-> +			gpios = <7 GPIO_ACTIVE_HIGH>;
-> +			output-low;
-> +			line-name = "rgb_sel";
-> +		};
+Synology uses a microcontroller in their NAS devices connected to a
+serial port to control certain LEDs, fan speeds, a beeper, to handle
+proper shutdown and restart, buttons and fan failures.
 
-Please provide comments it is safe for these hogs, gpio driver may probe
-later than ether net\pcie.
+This patch series depends on the rust led abstraction [1] and the rust
+serdev abstraction [2].
 
-If it is on-boards signal mux, please use
-https://lore.kernel.org/imx/20260504-pinctrl-mux-v6-2-8ea858ba3a5b@nxp.com/
+This is only a initial version of the driver able to control LEDs.
+The following rust abstractions would be required, to implement the
+remaining features:
+- hwmon (include/linux/hwmon.h)
+- input (include/linux/input.h)
+- sysoff handler (include/linux/reboot.h)
 
-which already in 7.2
+[1] https://lore.kernel.org/rust-for-linux/20260629-rust_leds-v21-0-4f0f19579db5@posteo.de/
+[2] https://lore.kernel.org/rust-for-linux/20260603-rust_serdev-v12-0-3400ffb88b12@posteo.de/
 
-Frank
+Signed-off-by: Markus Probst <markus.probst@posteo.de>
+---
+Changes in v16:
+- fix issues reported by Sashiko:
+  - fix typo in dt compatible
+  - fix not compilable as loadable module
+- Link to v15: https://patch.msgid.link/20260629-synology_microp_initial-v15-0-4b3d7367c7cf@posteo.de
 
-> +	};
-> +
-> +	/* Capacitive touch controller */
-> +	ft5x06_ts: touchscreen@38 {
-> +		compatible = "edt,edt-ft5206";
-> +		reg = <0x38>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_captouch>;
-> +		reset-gpios = <&pca6408_2 4 GPIO_ACTIVE_LOW>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
-> +		touchscreen-size-x = <800>;
-> +		touchscreen-size-y = <480>;
-> +		touchscreen-inverted-x;
-> +		touchscreen-inverted-y;
-> +		wakeup-source;
-> +	};
-> +
-> +	typec@3d {
-> +		compatible = "nxp,ptn5150";
-> +		reg = <0x3d>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_extcon>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <10 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		port {
-> +			typec_dr_sw: endpoint {
-> +				remote-endpoint = <&usb3_drd_sw>;
-> +			};
-> +		};
-> +	};
-> +
-> +	rtc@68 {
-> +		compatible = "dallas,ds1337";
-> +		reg = <0x68>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_rtc>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-> +		wakeup-source;
-> +	};
-> +};
-> +
-> +&i2c3 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default", "gpio";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +	pinctrl-1 = <&pinctrl_i2c3_gpio>;
-> +	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c4 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default", "gpio";
-> +	pinctrl-0 = <&pinctrl_i2c4>;
-> +	pinctrl-1 = <&pinctrl_i2c4_gpio>;
-> +	scl-gpios = <&gpio5 20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	sda-gpios = <&gpio5 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	status = "okay";
-> +
-> +	pca6408_1: gpio@20 {
-> +		compatible = "nxp,pcal6408";
-> +		reg = <0x20>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pca6408>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +
-> +	pca6408_2: gpio@21 {
-> +		compatible = "nxp,pcal6408";
-> +		reg = <0x21>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +
-> +	st33ktpm2xi2c: tpm@2e {
-> +		compatible = "st,st33ktpm2xi2c", "tcg,tpm-tis-i2c";
-> +		reg = <0x2e>;
-> +		label = "tpm";
-> +		reset-gpios = <&pca9534 0 GPIO_ACTIVE_HIGH>;
-> +	};
-> +};
-> +
-> +&lcdif3 {
-> +	status = "okay";
-> +};
-> +
-> +&pcie {
-> +	reset-gpios = <&pca6408_2 3 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> +
-> +&pcie_phy {
-> +	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
-> +	clocks = <&pcie0_refclk>;
-> +	clock-names = "ref";
-> +	status = "okay";
-> +};
-> +
-> +&pwm1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_pwm1>;
-> +	status = "okay";
-> +};
-> +
-> +&snvs_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +&snvs_rtc {
-> +	status = "disabled";
-> +};
-> +
-> +/* Console */
-> +&uart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	status = "okay";
-> +};
-> +
-> +/* Header */
-> +&uart2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +	status = "okay";
-> +};
-> +
-> +/* Header */
-> +&uart3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart3>;
-> +	status = "okay";
-> +};
-> +
-> +&usb3_0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb3_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3_0 {
-> +	dr_mode = "otg";
-> +	hnp-disable;
-> +	srp-disable;
-> +	adp-disable;
-> +	usb-role-switch;
-> +	snps,dis-u1-entry-quirk;
-> +	snps,dis-u2-entry-quirk;
-> +	status = "okay";
-> +
-> +	port {
-> +		usb3_drd_sw: endpoint {
-> +			remote-endpoint = <&typec_dr_sw>;
-> +		};
-> +	};
-> +};
-> +
-> +&usb_dwc3_1 {
-> +	dr_mode = "host";
-> +	status = "okay";
-> +};
-> +
-> +&usb3_phy0 {
-> +	fsl,phy-tx-vref-tune-percent = <122>;
-> +	fsl,phy-tx-preemp-amp-tune-microamp = <1800>;
-> +	fsl,phy-tx-vboost-level-microvolt = <1156>;
-> +	fsl,phy-comp-dis-tune-percent = <115>;
-> +	fsl,phy-pcs-tx-deemph-3p5db-attenuation-db = <33>;
-> +	fsl,phy-pcs-tx-swing-full-percent = <100>;
-> +	status = "okay";
-> +};
-> +
-> +&usb3_phy1 {
-> +	fsl,phy-tx-preemp-amp-tune-microamp = <1800>;
-> +	fsl,phy-tx-vref-tune-percent = <116>;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc2 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-> +	vmmc-supply = <&reg_usdhc2_vmmc>;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&xcvr {
-> +	#sound-dai-cells = <0>;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_can: cangrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO06__GPIO1_IO06		0x1c6
-> +			MX8MP_IOMUXC_SPDIF_RX__GPIO5_IO04		0x16
-> +		>;
-> +	};
-> +
-> +	pinctrl_captouch: captouchgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14		0x16
-> +		>;
-> +	};
-> +
-> +	pinctrl_ecspi1: ecspi1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_ECSPI1_SCLK__ECSPI1_SCLK		0x12
-> +			MX8MP_IOMUXC_ECSPI1_MOSI__ECSPI1_MOSI		0x12
-> +			MX8MP_IOMUXC_ECSPI1_MISO__ECSPI1_MISO		0x12
-> +			MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09		0x12
-> +			MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12		0x12
-> +		>;
-> +	};
-> +
-> +	pinctrl_extcon: extcongrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10		0x10
-> +		>;
-> +	};
-> +
-> +	pinctrl_fec: fecgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0		0x90
-> +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1		0x90
-> +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2		0x90
-> +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3		0x1d0
-> +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC		0x90
-> +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL	0x90
-> +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0		0x00
-> +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1		0x00
-> +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2		0x00
-> +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3		0x00
-> +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL	0x00
-> +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC		0x00
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan1: flexcan1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI2_RXC__CAN1_TX			0x154
-> +			MX8MP_IOMUXC_SAI2_TXC__CAN1_RX			0x154
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan2: flexcan2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI2_MCLK__CAN2_RX			0x154
-> +			MX8MP_IOMUXC_SAI2_TXD0__CAN2_TX			0x154
-> +		>;
-> +	};
-> +
-> +	pinctrl_gpio_leds: ledgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18		0xc6
-> +		>;
-> +	};
-> +
-> +	pinctrl_hdmi: hdmigrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL	0x1c2
-> +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0x1c2
-> +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x10
-> +			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x10
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL			0x400001c2
-> +			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA			0x400001c2
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2_gpio: i2c2gpiogrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C2_SCL__GPIO5_IO16		0x1c2
-> +			MX8MP_IOMUXC_I2C2_SDA__GPIO5_IO17		0x1c2
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL			0x400001c2
-> +			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA			0x400001c2
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3_gpio: i2c3gpiogrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C3_SCL__GPIO5_IO18		0x1c2
-> +			MX8MP_IOMUXC_I2C3_SDA__GPIO5_IO19		0x1c2
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c4: i2c4grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL			0x400001c2
-> +			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA			0x400001c2
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c4_gpio: i2c4gpiogrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C4_SCL__GPIO5_IO20		0x1c2
-> +			MX8MP_IOMUXC_I2C4_SDA__GPIO5_IO21		0x1c2
-> +		>;
-> +	};
-> +
-> +	pinctrl_pca6408: pca6408grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO05__GPIO1_IO05		0x1c6
-> +		>;
-> +	};
-> +
-> +	pinctrl_pwm1: pwm1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO01__PWM1_OUT		0x116
-> +		>;
-> +	};
-> +
-> +	pinctrl_restouch: restouchgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO07__GPIO1_IO07		0xc0
-> +		>;
-> +	};
-> +
-> +	pinctrl_rtc: rtcgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15		0x1c0
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX		0x40
-> +			MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX		0x40
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX		0x40
-> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX		0x40
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart3: uart3grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX		0x40
-> +			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX		0x40
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x190
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d0
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x194
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d4
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x196
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d6
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
-> +		>;
-> +	};
-> +
-> +	pinctrl_vmmc_usdhc2: regvmmc-usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19		0x40
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_gpio: usdhc2-gpiogrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12		0x1c4
-> +		>;
-> +	};
-> +};
-> --
-> 2.47.3
->
+Changes in v15:
+- adapted to rust led abstractiopn v21
+- Link to v14: https://patch.msgid.link/20260531-synology_microp_initial-v14-0-1377d425b24b@posteo.de
+
+Changes in v14:
+- adapt to led abstraction v18 and serdev abstraction v11
+- Link to v13: https://patch.msgid.link/20260530-synology_microp_initial-v13-0-aa2bb9c56efc@posteo.de
+
+Changes in v13:
+- adapted to driver-lifetime v5 patch series.
+- set blink = false as initial power led state, as set_blink hasn't been
+  called yet (even though the led is blinking at startup)
+- Link to v12: https://patch.msgid.link/20260429-synology_microp_initial-v12-0-40a05033c620@posteo.de
+
+Changes in v12:
+- adapted to driver-lifetime patch series. The driver can't take
+  advantage of it, until class devices like led also make use of it.
+- Link to v11: https://patch.msgid.link/20260427-synology_microp_initial-v11-0-9c1bd5a6f3ed@posteo.de
+
+Changes in v11:
+- rebased on top of 7.1-rc1
+- add "synology" as devicename to led, like it is done in existing dts
+  files in the kernel
+- fix color for led being orange instead of amber. I personally can't
+  clearly tell them apart, but apparently its amber.
+- replaced MCU with EC in Kconfig help
+- Link to v10: https://patch.msgid.link/20260424-synology_microp_initial-v10-0-e852d2f3eba1@posteo.de
+
+Changes in v10:
+- resolved issues reported by Sashiko Bot:
+  - removed unneeded include from device tree
+  - fix typo in of device table
+  - fix blink not set to false, if delay_off or delay_on is 0
+- Link to v9: https://patch.msgid.link/20260423-synology_microp_initial-v9-0-4a8533f87e07@posteo.de
+
+Changes in v9:
+- separate fallback and front compatibles in dt schema
+- remove front compatibles from of id table, if all functionality is
+  by covered by the fallback
+- remove TODO file
+- add platform-driver-x86@vger.kernel.org to Maintainers file entry
+- use `Delta` type in `BLINK_DELAY` const
+- Link to v8: https://patch.msgid.link/20260420-synology_microp_initial-v8-0-7946a9124491@posteo.de
+
+Changes in v8:
+- removed unnecessary Copy and Clone derive
+- added `BLINK_DELAY` constant
+- added compatible id fallbacks
+- moved dt schema patch before the driver
+- added ds411p
+- Link to v7: https://lore.kernel.org/r/20260411-synology_microp_initial-v7-0-9a3a094e763a@posteo.de
+
+Changes in v7:
+- remove list of compatible ids from commit msg
+- explain what makes the different models not compatible in the commit msg
+- remove unnecessary examples
+- Link to v6: https://lore.kernel.org/r/20260405-synology_microp_initial-v6-0-08fde474b6c9@posteo.de
+
+Changes in v6:
+- moved devicetree bindings patch at the end of the set
+- remove several patches
+- move of id table from model.rs to synology_microp.rs
+- remove the model! macro
+- use if blocks in devicetree schema to narrow down the
+  fan-failure-gpios property
+- add multiple devicetree examples to test if blocks
+- Link to v5: https://lore.kernel.org/r/20260329-synology_microp_initial-v5-0-27cb80bdf591@posteo.de
+
+Changes in v5:
+- add esata led support
+- use different compatible for each model
+- add visibility modifier to of_device_table macro
+- fix match data missing when using PRP0001
+- Link to v4: https://lore.kernel.org/r/20260320-synology_microp_initial-v4-0-0423ddb83ca4@posteo.de
+
+Changes in v4:
+- convert to monolithic driver and moved it into drivers/platform
+- removed mfd rust abstraction
+- moved dt-bindings to embedded-controller
+- Link to v3: https://lore.kernel.org/r/20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de
+
+Changes in v3:
+- remove `default n` from Kconfig entry, as n is the default already.
+- select RUST_SERIAL_DEV_BUS_ABSTRACTIONS in Kconfig
+- add mfd rust abstraction
+- split core and led parts into their own driver. It should now be considered a
+  MFD device.
+- split led part of dt binding into its own file
+- Link to v2: https://lore.kernel.org/r/20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de
+
+Changes in v2:
+- fix missing tabs in MAINTAINERS file
+- remove word binding from patch subject
+- add missing signed-off-by
+- add missing help entry in Kconfig
+- add missing spdx license headers
+- remove no-check{,-cpu}-fan properties from the dt-bindings and replace
+  them with the check_fan module parameter
+- use patternProperties for leds in dt-bindings
+- license dt-binding as GPL-2.0-only OR BSD-2-Clause
+- move driver from staging tree into mfd tree and mark it as work in
+  progress inside Kconfig
+- only register alert and usb led if fwnode is present
+- Link to v1: https://lore.kernel.org/r/20260306-synology_microp_initial-v1-0-fcffede6448c@posteo.de
+
+---
+Markus Probst (2):
+      dt-bindings: embedded-controller: Add synology microp devices
+      platform: Add initial synology microp driver
+
+ .../synology,ds918p-microp.yaml                    | 100 +++++++
+ MAINTAINERS                                        |   7 +
+ drivers/platform/Kconfig                           |   2 +
+ drivers/platform/Makefile                          |   1 +
+ drivers/platform/synology_microp/Kconfig           |  13 +
+ drivers/platform/synology_microp/Makefile          |   5 +
+ drivers/platform/synology_microp/command.rs        |  54 ++++
+ drivers/platform/synology_microp/led.rs            | 297 +++++++++++++++++++++
+ drivers/platform/synology_microp/model.rs          |  49 ++++
+ .../platform/synology_microp/synology_microp.rs    |  91 +++++++
+ 10 files changed, 619 insertions(+)
+---
+base-commit: 728e68a889bcf257b1e67298b12c360e5c3a13e0
+change-id: 20260306-synology_microp_initial-0f7dac7b7496
+prerequisite-message-id: 20260530132736.3298549-1-dakr@kernel.org
+prerequisite-patch-id: 310c6bee038ca3909a8e5e58ec12b74f7189b869
+prerequisite-patch-id: 92812c3d42b29504838e6dc66c307ff5c035bb5e
+prerequisite-change-id: 20251217-rust_serdev-ee5481e9085c:v12
+prerequisite-patch-id: 059e43aa20628647ba98a0e5582444a5a7b68ec4
+prerequisite-patch-id: 310c6bee038ca3909a8e5e58ec12b74f7189b869
+prerequisite-patch-id: 92812c3d42b29504838e6dc66c307ff5c035bb5e
+prerequisite-patch-id: a75cb3f900db0e765351b773cbfffaeb9a01a107
+prerequisite-patch-id: 19eb53ce0c653c1406f8f192f6ad158fb4bd8d8f
+prerequisite-patch-id: 55d6a70baf3be7f4da36b82cf02a5a7d59457520
+prerequisite-change-id: 20251114-rust_leds-a959f7c2f7f9:v21
+prerequisite-patch-id: d6a2bb314f215e3c6bd3a3ac87b991a33e3d6256
+prerequisite-patch-id: 50bfe4b15f07d3733d4fc4b4520ce74cbac2cf4f
+prerequisite-patch-id: ec48c2616ea8f0bd8f71cec858f1d5d0fdb2bac0
+
 
