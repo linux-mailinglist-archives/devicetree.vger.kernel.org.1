@@ -1,171 +1,217 @@
-Return-Path: <devicetree+bounces-316728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316726-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3peKH24bQmpb0QkAu9opvQ
-	(envelope-from <devicetree+bounces-316728-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:14:54 +0200
+	id K9+QLTIbQmpP0QkAu9opvQ
+	(envelope-from <devicetree+bounces-316726-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:13:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20E6D6D6DA7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:14:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA446D6D71
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:13:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316728-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-316728-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316726-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-316726-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7F5CC3037065
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:07:56 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CD01130FF7DC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:07:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5E63BCD13;
-	Mon, 29 Jun 2026 07:07:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A3DB3B42E3;
+	Mon, 29 Jun 2026 07:07:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB3D3BCD23;
-	Mon, 29 Jun 2026 07:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D733ACA58
+	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 07:07:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782716854; cv=none; b=Wboz2PSyJ5fT+yrGyK2bDy4KmL37+DmMeT/035unyjTxO4IifBBdFOx23m17CdD3p1NTxP6LQts4FLePNDCzeXOPtqIjDyAFcLU0SuqRMAp9d70bVmtvIGK9UCOLSdrpFIe038nIvJWg+5X41jJE91DGbYcG8+SRbOEaD17jOv4=
+	t=1782716846; cv=none; b=eRdr60IPzMPvhy1swHSEBC3/gkYlpCNQMc1a5VQF16Owvz+zCWwY7EQN93jnmPE7Z/o8mBXd0DpHvUNUJFtbgtfwcgWd+ccPBPmHrr9rZ8bU3ka/aUjYDW2L0bLTjJX6usRmWOLIwx0cF2qpBWKFGIiz+p4qoswuQokStA4QNAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782716854; c=relaxed/simple;
-	bh=Jw6vNOtoZ6w5SsAHnbHy9znudhYHX9kAAkfnsf4a0Vo=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=p6HJRTJefpdJl82WJ76gdLk7FQR8NLsDCQZWMlAawJsQLNuWpdZ1Y3Hc+nFoy0PUVnp7iIfN3PTuQs651dBsJmhwA7Zkp7Fm4/jXLwM09AijPSoikagd//KFAniv3Oz0Xkl4xRo0HTpHVH78f7j2C3DLIAl2uwsYfvrDNWxnmfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.200.13
-Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
-	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 7740B20027F;
-	Mon, 29 Jun 2026 09:07:22 +0200 (CEST)
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1we65S-005CZR-1I;
-	Mon, 29 Jun 2026 09:07:22 +0200
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1we65S-000000003Wg-1Jlm;
-	Mon, 29 Jun 2026 09:07:22 +0200
-Message-ID: <68b43224e0a124c055fc228b3a254fc7908dbcdd.camel@pengutronix.de>
-Subject: Re: [PATCH v3 2/4] clk: en7523: add support for dedicated PCIe
- PERSTOUT reset
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Christian Marangi <ansuelsmth@gmail.com>, Bjorn Helgaas	
- <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof
- =?UTF-8?Q?Wilczy=C5=84ski?=	 <kwilczynski@kernel.org>, Manivannan
- Sadhasivam <mani@kernel.org>, Rob Herring	 <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Ryder
- Lee <ryder.lee@mediatek.com>, Michael Turquette	 <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Brian Masney	 <bmasney@redhat.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,  AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Jianjun Wang
- <jianjun.wang@mediatek.com>, 	linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, 	linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Date: Mon, 29 Jun 2026 09:07:22 +0200
-In-Reply-To: <20260627121450.3529133-3-ansuelsmth@gmail.com>
-References: <20260627121450.3529133-1-ansuelsmth@gmail.com>
-	 <20260627121450.3529133-3-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+	s=arc-20240116; t=1782716846; c=relaxed/simple;
+	bh=Wj8MX3C4aW9weipUZgwtMrVrnPg5Cc6roG/WTW/LRcA=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=GjY7HChtLqYnocTvL5hD1Y20apBfqTThQHoYXXOsCUxlZ1pSgVF03EjsEqh5rpNzqE6m/MEBFzDEeCi8kz9TmrGjJ+gZTKufj5I6CBSHZBDbvsnEOPYt7Gy9INmA3DmzYDiRP7yIoVbbmbZqSnHaE1B1AYF7ZujMGNNIm1rrnfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFE591F000E9;
+	Mon, 29 Jun 2026 07:07:24 +0000 (UTC)
+From: sashiko-bot@kernel.org
+Subject: Re: [RESEND PATCH 2/2] memory: ti-k3-fsas: Add TI FSS_FSAS driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Santhosh Kumar K" <s-k6@ti.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260629065517.868418-3-s-k6@ti.com>
+References: <20260629065517.868418-1-s-k6@ti.com>
+ <20260629065517.868418-3-s-k6@ti.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+Date: Mon, 29 Jun 2026 07:07:23 +0000
+Message-Id: <20260629070724.CFE591F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	TAGGED_FROM(0.00)[bounces-316728-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-316726-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,google.com,kernel.org,mediatek.com,baylibre.com,redhat.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	FORGED_SENDER(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:bhelgaas@google.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ryder.lee@mediatek.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:jianjun.wang@mediatek.com,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-clk@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:s-k6@ti.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,pengutronix.de:mid,pengutronix.de:from_mime]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp,ti.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 20E6D6D6DA7
+X-Rspamd-Queue-Id: 5AA446D6D71
 
-On Sa, 2026-06-27 at 14:14 +0200, Christian Marangi wrote:
-> Add support for resetting the PCIe lines with the PERSTOUT reset. These
-> special reset are controlled by the PCIC register and are specific to eac=
-h
-> of the 3 PCIe lines.
->=20
-> Notice that reset logic is inverted for these bit where 0 is assert and 1
-> deassert. This is intenrally handled in the reset function.
-                        ^^
-typo: internally
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] The driver accesses memory-mapped registers without enabling the d=
+evice's power domain via runtime PM, causing a synchronous external abort.
+- [High] Probe ordering race condition between the FSS wrapper and the OSPI=
+ child device can lead to DMA data corruption.
+- [Low] The TI_K3_FSS_FSAS driver can be built on architectures without HAS=
+_IOMEM via COMPILE_TEST, causing build failures.
+--
 
-> PCI enable/disable are updated to drop PERSTOUT bits in favor dedicated
-> reset handling.
->=20
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  drivers/clk/clk-en7523.c | 39 ++++++++++++++++++++++++++++-----------
->  1 file changed, 28 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
-> index 1ab0e2eca5d3..c9b21d9bf2f3 100644
-> --- a/drivers/clk/clk-en7523.c
-> +++ b/drivers/clk/clk-en7523.c
-[...]
-> @@ -754,14 +756,21 @@ static int en7523_reset_update(struct reset_control=
-ler_dev *rcdev,
->  			       unsigned long id, bool assert)
->  {
->  	struct en_rst_data *rst_data =3D container_of(rcdev, struct en_rst_data=
-, rcdev);
-> -	void __iomem *addr =3D rst_data->base + rst_data->bank_ofs[id / RST_NR_=
-PER_BANK];
-> +	u32 offset =3D rst_data->bank_ofs[id / RST_NR_PER_BANK];
-> +	void __iomem *addr =3D rst_data->base + offset;
-> +	bool inverted =3D false;
->  	u32 val;
+commit 472a60060ef7ef11966794e0d895b41600560dca
+Author: Santhosh Kumar K <s-k6@ti.com>
+
+memory: ti-k3-fsas: Add TI FSS_FSAS driver
+
+Add a platform driver for the TI Flash SubSystem Application Subsystem
+(FSS_FSAS_GENREGS) in K3 SoCs. This driver takes care of disabling the
+OSPI XIP prefetch which causes DMA transfer data corruption.
+
+> diff --git a/drivers/memory/Kconfig b/drivers/memory/Kconfig
+> index e5527020ff337..954e47810e8db 100644
+> --- a/drivers/memory/Kconfig
+> +++ b/drivers/memory/Kconfig
+> @@ -125,6 +125,16 @@ config TI_EMIF_SRAM
+>  	  sequence so this driver provides several relocatable PM functions
+>  	  for the SoC PM code to use.
 > =20
-> +	/* For PCIC reset logic is inverted, 0:assert 1:deassert*/
-> +	if (offset =3D=3D REG_NP_SCU_PCIC)
-> +		inverted =3D true;
+> +config TI_K3_FSS_FSAS
+> +	tristate "TI K3 Flash Subsystem Application Subsystem (FSAS) support"
+> +	depends on ARCH_K3 || COMPILE_TEST
+
+[Severity: Low]
+Does this config need to depend on HAS_IOMEM?
+
+If COMPILE_TEST is enabled on architectures that do not support MMIO and do
+not select HAS_IOMEM (e.g., s390 or UM), will compiling this driver fail
+because devm_platform_ioremap_resource(), readl(), and writel() are not ful=
+ly
+supported?
+
+> +	help
+> +	  Driver for the TI K3 Flash Subsystem Application Subsystem
+> +	  (FSS_FSAS_GENREGS) wrapper found on K3 related SoCs.
+
+[ ... ]
+
+> diff --git a/drivers/memory/ti-k3-fsas.c b/drivers/memory/ti-k3-fsas.c
+> new file mode 100644
+> index 0000000000000..9ff109b8d96fd
+> --- /dev/null
+> +++ b/drivers/memory/ti-k3-fsas.c
+
+[ ... ]
+
+> +static int k3_fsas_probe(struct platform_device *pdev)
+> +{
+> +	struct k3_fsas *fsas;
 > +
->  	val =3D readl(addr);
-> +	val &=3D ~BIT(id % RST_NR_PER_BANK);
->  	if (assert)
-> -		val |=3D BIT(id % RST_NR_PER_BANK);
-> +		val |=3D inverted ? 0 : BIT(id % RST_NR_PER_BANK);
->  	else
-> -		val &=3D ~BIT(id % RST_NR_PER_BANK);
-> +		val |=3D inverted ? BIT(id % RST_NR_PER_BANK) : 0;
+> +	fsas =3D devm_kzalloc(&pdev->dev, sizeof(*fsas), GFP_KERNEL);
+> +	if (!fsas)
+> +		return -ENOMEM;
+> +
+> +	fsas->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(fsas->base))
+> +		return PTR_ERR(fsas->base);
+> +
+> +	platform_set_drvdata(pdev, fsas);
+> +
+> +	k3_fsas_disable_xip_prefetch(fsas);
 
-You can simplify this into a single (assert ^ inverted) condition.
+[Severity: High]
+Will this register access cause a synchronous external abort (bus fault) by
+accessing memory-mapped registers before the device's power domain is enabl=
+ed?
 
-regards
-Philipp
+On TI K3 platforms, power domains and clocks are managed by the
+ti_sci_pm_domain driver, and the hardware domain remains power-gated until
+explicitly enabled.
+
+Should this driver call pm_runtime_enable() and pm_runtime_resume_and_get()
+before calling k3_fsas_disable_xip_prefetch()?
+
+> +
+> +	return 0;
+> +}
+
+[Severity: High]
+Does this driver need to explicitly populate its child nodes using
+devm_of_platform_populate() to prevent a probe ordering race with the OSPI
+child device?
+
+Since the driver core allows a child device to probe even if its parent dev=
+ice
+is not yet bound, could the spi-cadence-quadspi driver probe first due to
+module load ordering?
+
+If the child initiates DMA transfers before this wrapper has probed and
+disabled the prefetch, wouldn't it trigger the exact data corruption this
+patch aims to fix?
+
+> +
+> +static int k3_fsas_resume(struct device *dev)
+> +{
+> +	k3_fsas_disable_xip_prefetch(dev_get_drvdata(dev));
+
+[Severity: High]
+Will this register access crash the system during resume?
+
+Since this driver acts as a parent to the OSPI child device, it resumes bef=
+ore
+the child. If the shared hardware power domain is completely powered off
+at this point, accessing FSAS_GENREGS_SYSCONFIG here would cause a bus faul=
+t.
+
+> +	return 0;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260629065517.8684=
+18-1-s-k6@ti.com?part=3D2
 
