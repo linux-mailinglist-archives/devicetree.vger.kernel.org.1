@@ -1,190 +1,143 @@
-Return-Path: <devicetree+bounces-317122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317125-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JjAoGWKLQmr69QkAu9opvQ
-	(envelope-from <devicetree+bounces-317122-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:12:34 +0200
+	id GCuDHEGMQmo+9gkAu9opvQ
+	(envelope-from <devicetree+bounces-317125-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:16:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5CC6DC7EF
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:12:34 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 026276DC881
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:16:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=WTSkdzLW;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317122-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317122-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=intel.com header.s=Intel header.b=iS0m+baW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317125-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317125-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 46F6330A4D92
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:06:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A587730816E1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:08:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C5E443901F;
-	Mon, 29 Jun 2026 15:04:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F056428470;
+	Mon, 29 Jun 2026 15:07:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70714438FEE
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 15:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9FE426ECA;
+	Mon, 29 Jun 2026 15:07:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782745473; cv=none; b=NQVCml619LLViNGruYUY8j+V/epFY9eAIkNBqkWQogQvwL2y/YPwaO5LPQzWw71fBDx2l07W+UUMEWwN2VkAYkE4RRleoo5IsIhuOtiaFYkW2EA7gHJBa/lYuq5vNVjXjNCoyDSFVq6gnf73Uob2mcXaVkOkmY2sqHnL4nU57gI=
+	t=1782745649; cv=none; b=AdqrHkFrAOyDvkaxC7DnIpdO58tX/9CwnE9hfoh9kZoc6WejNQ1Z8CmXo2iUwQtccBHLqk2i9dGLI56Dbi9W3G7ItFunMQpMwp7IGsFMHq+zDqP7cPG9rIga1fSjOYT0ho9g6vE5jwibNE/2oq10ZQQTcYrjqija4k9hvUibyS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782745473; c=relaxed/simple;
-	bh=mLbyaEAgqepNN61bWeIhuKu91cbHIs1TgT0DiSEwuG8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E3cxpFtXEKZQ6KqKvt403v59qwulFgiUOINB1D/UQzkJDalyNUOJkydfwYNntWUEE+btaRbctv3y4rrdPFNva9eo1eF9UisbkgI1xUKyrNvdmo4eStClyKm7Sjc1PVoydIiSjQsKTvVkmQe6Rk4GZlXYP/aWlYdf36r9oTz+4Hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=WTSkdzLW; arc=none smtp.client-ip=209.85.161.43
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-6a0e55e82d0so2003704eaf.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 08:04:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1782745470; x=1783350270; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mKC86SBllWMC5DazOx7jxMwvHWS3vvb7786WkQz0OjY=;
-        b=WTSkdzLWZFj3XvffUCor6PD83mAixGrmyrRS+WHPILF6lvxKDB4/yNU8kWfmrTpVYD
-         o694SCilIQO2xrBhE3ZBbwM+ZQWUotrQGGvUtwbu+0fUHD3HwyTbQOFzBq3x7DibI0y9
-         ESxSjsJyGs7RPFGRk60kNc0jF1Ar6QOlLCYr9Dq+mPpntxmdjgnNLcRy5eDZ2910F/X2
-         8tSuCL43GtR7LgggGvVrweXz55IIV93Vh7FanbIpjtw4g2/p1U3GFSq4ktzNA2Ag9sTd
-         dfbrTAQzfDaUnSbB6bm3t9iv7cja12yj+IOPqEuxsNouQu0kDnAOz/ZRKQDNK+J2uQRl
-         tJyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782745470; x=1783350270;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mKC86SBllWMC5DazOx7jxMwvHWS3vvb7786WkQz0OjY=;
-        b=IcbAc3qRaEW0BVclIRTxwOiaCrJw1rueCJ+lIksLjk9J5aUmxKoB4W5B4D5T5AqJYb
-         Z5Anb0k7Zz7CbwAAjvKOuY0tkXG4bEp+Y/i/uJg1i0jKz6lzkMslSIg+WvyDqEESiaQs
-         tQR6U4TG+eStF33u53zv6G+YNzmlqtPIfEyBhZQAVvGXIWOZlM9ajWYzm5b1qHfiU22X
-         yP+643DFmmzcSqqWnLPFBFJdrCXFbfAJfpGeELp+jYyuZb9Vsqz2sctQcFqBI2SiGVP9
-         EIh0AZLGo5eWtnUH4PFgyQbJBJ+7hnuh9LKakPdXpt1h1/ac+OrOeMeF3Y+J/bnwoh11
-         J2fA==
-X-Forwarded-Encrypted: i=1; AFNElJ+AuOxS3xoK3smaQxohMW7fIrkvOFNF0KVr2DZaELS/ZLFhn8ZR++l1Po7ppRR230B1Oneo88fn+Xqj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwctWgT9QZSYPo4mWZMDXmAV30knCUPhFo4E7Ye4ZTsyVb+17tA
-	BRH1mTnflT5G0K8jEDzxBN0DLJ4PekGFpgnrH4xRPucZy41ym+fMjXmrQDpwWkLDY20=
-X-Gm-Gg: AfdE7cnzSUkMvdnuKAz7s+gimHys8IL1uChBq35oVqWGLAQg/gbqEwKpkfPpifmRu/x
-	x6Sb2rTdgNHRm29dkCNM8Si4YIwILfMeurTvSsXP3dGNDkwrk46HVjhk+1pCf7RdHNqQG/Fd1N1
-	R+xuQzHLd7Wz0O0ez4DNbJVRMgLySwiN+EgEp//twfbVp0Wde3kUxApqaL2RRMDUpkIsqRsHTIE
-	ztpuuxlotKoyFPwUYX4GnUVdkZWRU00mGu82K2yDP2L7JEwVQX/HckVpp7+D33a5uw4hALGs8hF
-	tOwvmAhhGxvoaQQPPCvN/DyGFxWhxoCNpF+Hsv127FXG8RT7ljPTrSVwgtmvhsjCatmLOQrN5ck
-	eUOKxIWbzk54DYIRP7631CK6JwxfEgfUWFhqJOzdFp95xyGA6r2QSms55CV2QMugg9m8mQmLzSJ
-	w50UEcnHC/EBsqGNBy4eJ5BxLsUH6wdcayGxPztnXxZFfEFY+4ZFJsMNSSeM52/x8KdbVHGkGuL
-	A==
-X-Received: by 2002:a05:6820:55d0:20b0:6a1:82f5:b009 with SMTP id 006d021491bc7-6a18910d066mr33242eaf.13.1782745470465;
-        Mon, 29 Jun 2026 08:04:30 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:3533:aa22:9a69:df1c? ([2600:8803:e7e4:500:3533:aa22:9a69:df1c])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-448db92c113sm26526fac.4.2026.06.29.08.04.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jun 2026 08:04:29 -0700 (PDT)
-Message-ID: <2f01a3a0-3698-41e6-8fee-1d2e1629726c@baylibre.com>
-Date: Mon, 29 Jun 2026 10:04:29 -0500
+	s=arc-20240116; t=1782745649; c=relaxed/simple;
+	bh=ql0M0w+CscFTV+YxYSpNeRlsFza4Hf0je2juqgar7iw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sMjezd7V6ScpOPiV8ARmnQjrvQw+FKBxKSxdmGOw5Uk/Eap/QIQ69MF6EGrdjc4NdnkG55PgSZ/fgJ4NWVoElJIbd36U7TWYsgFq0XwbM8uR37k5Y1YPcGoadf3BKGyS4huL/Za3+fr3+bjzJUSqjNhjYDrguVxc1MX5V8TPW2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iS0m+baW; arc=none smtp.client-ip=198.175.65.13
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1782745648; x=1814281648;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ql0M0w+CscFTV+YxYSpNeRlsFza4Hf0je2juqgar7iw=;
+  b=iS0m+baWKT0FXxncZIX5VHpDB20btQBEzdonNImyNVdQXxppnT0wmBY+
+   8kG8XvIuvUpB9IG1j53/r718OfXyKoQ0mM/SRlqA0gcB6KbijtVK8xMIF
+   3DMmsloLUFglVYvl7mavjovsqTm1COeJGFbH1s0lpdAkbiiT7kPwSwoUi
+   Xzj6uAut5EpNv5rywXWvoJzj60/gN7zQUINZi2kuNMJ5OMnwCVbY86zlL
+   PXXcJyjKlvm5VE3E/zj83F56xpy8O67vRCTLS1BKLchcl2yhyO+MPdVze
+   iAabVYD8dcVhxGU7+VDyW1pEkXDfYCgV/yc6ovQ3RqlkflN2odxspsE5S
+   A==;
+X-CSE-ConnectionGUID: QdrbZZ+RRJukmrui5o4l/g==
+X-CSE-MsgGUID: tE05RjviSgiXDfd4azDyYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="94589985"
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; 
+   d="scan'208";a="94589985"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 08:05:07 -0700
+X-CSE-ConnectionGUID: BBPCFxVpTWKSq7aBv+84uA==
+X-CSE-MsgGUID: mn4rLmXtRXCNIgSR9BxEQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; 
+   d="scan'208";a="282053809"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.207])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 08:04:58 -0700
+Date: Mon, 29 Jun 2026 18:04:56 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jakub Szczudlo <jakubszczudlo40@gmail.com>
+Cc: linux-iio@vger.kernel.org, andy@kernel.org, antoniu.miclaus@analog.com,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	dlechner@baylibre.com, duje@dujemihanovic.xyz, jic23@kernel.org,
+	jishnu.prakash@oss.qualcomm.com, jorge.marques@analog.com,
+	joshua.crofts1@gmail.com, krzk+dt@kernel.org, linusw@kernel.org,
+	linux-kernel@vger.kernel.org, marcelo.schmitt@analog.com,
+	mazziesaccount@gmail.com, mike.looijmans@topic.nl,
+	nuno.sa@analog.com, robh@kernel.org, sakari.ailus@linux.intel.com,
+	wens@kernel.org
+Subject: Re: [PATCH v5 3/3] iio: adc: Add ti-ads1110 support to ti-ads1100
+ driver
+Message-ID: <akKJmHlE5CEQu17g@ashevche-desk.local>
+References: <20260628194341.66752-1-jakubszczudlo40@gmail.com>
+ <20260628194341.66752-4-jakubszczudlo40@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add Nuvoton MA35D1 EADC
-To: Chi-Wen Weng <cwweng.linux@gmail.com>, jic23@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: nuno.sa@analog.com, andy@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, cwweng@nuvoton.com
-References: <20260625110638.38438-1-cwweng.linux@gmail.com>
- <20260625110638.38438-2-cwweng.linux@gmail.com>
- <40485b4e-6585-42a1-9b84-3019328574c5@baylibre.com>
- <7e96cc1a-eb60-4eeb-937d-64e83bc35279@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <7e96cc1a-eb60-4eeb-937d-64e83bc35279@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260628194341.66752-4-jakubszczudlo40@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-317125-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jakubszczudlo40@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:antoniu.miclaus@analog.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dlechner@baylibre.com,m:duje@dujemihanovic.xyz,m:jic23@kernel.org,m:jishnu.prakash@oss.qualcomm.com,m:jorge.marques@analog.com,m:joshua.crofts1@gmail.com,m:krzk+dt@kernel.org,m:linusw@kernel.org,m:linux-kernel@vger.kernel.org,m:marcelo.schmitt@analog.com,m:mazziesaccount@gmail.com,m:mike.looijmans@topic.nl,m:nuno.sa@analog.com,m:robh@kernel.org,m:sakari.ailus@linux.intel.com,m:wens@kernel.org,m:conor@kernel.org,m:joshuacrofts1@gmail.com,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:cwweng.linux@gmail.com,m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cwweng@nuvoton.com,m:cwwenglinux@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	DMARC_NA(0.00)[baylibre.com];
-	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-317122-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,dujemihanovic.xyz,oss.qualcomm.com,gmail.com,topic.nl,linux.intel.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,baylibre.com:dkim,baylibre.com:mid,baylibre.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:from_mime,vger.kernel.org:from_smtp,ashevche-desk.local:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2B5CC6DC7EF
+X-Rspamd-Queue-Id: 026276DC881
 
-On 6/29/26 2:11 AM, Chi-Wen Weng wrote:
+On Sun, Jun 28, 2026 at 09:43:41PM +0200, Jakub Szczudlo wrote:
+> Add ADS1110 support that have faster datarate than ADS1100, it also uses
+> internal voltage reference of 2.048V for measurement.
+
+Now LGTM,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
->> Should there be a dmas property? Datasheet says it supports PDMA transfer.
-> 
-> The hardware does support PDMA, but DMA support is intentionally not
-> included in this initial upstream version. The initial driver will only
-> support interrupt-driven direct raw reads, and the MA35D1 PDMA provider
-> is not upstream yet.
-> 
-> I would prefer to leave dmas/dma-names out of the initial binding and
-> add them later together with DMA support. Please let me know if you
-> would prefer optional DMA properties to be described now.
-
-We always want the devicetree to be as complete as possible even
-if the drier doesn't use all of the information.
-
-So for trivial/well-known bindings like dmas, we should be able to
-add it now.
-
-> 
->> I assume 8 is for the internal batter voltage channel? Often, we don't
->> include fixed internal channels like this in the devicetree since they
->> are always the same and don't depend on external wiring.
-> 
-> Correct. Channels 0 to 7 are the external ADC input pins, while channel
-> 8 is the internal VBAT input. I will limit the DT child channel nodes to
-> external channels 0 to 7.
-> 
-> If VBAT support is added later, it can be exposed by the driver as a
-> fixed internal channel rather than being described by devicetree.
-> 
->> adc.yaml already specifies minItems and maxItems, so we don't need to
->> repeat it.
-> 
-> Since I plan to simplify v2 and drop differential channel support from
-> the initial submission, I will remove diff-channels from the initial
-> binding.
-
-Same reasoning as above, we want the binding to be as complete as
-possible, so we should not omit diff-channels since we know what
-the bindings should look like already.
-
-> 
-> Differential input support can be added later once the fixed hardware
-> pair constraints and signed output handling are implemented in the
-> driver.
-> 
 
