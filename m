@@ -1,230 +1,190 @@
-Return-Path: <devicetree+bounces-317121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317122-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VpsPE/yNQmq29gkAu9opvQ
-	(envelope-from <devicetree+bounces-317121-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:23:40 +0200
+	id JjAoGWKLQmr69QkAu9opvQ
+	(envelope-from <devicetree+bounces-317122-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:12:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C95DF6DC9AF
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:23:39 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B5CC6DC7EF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:12:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EgKVZsNX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317121-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317121-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=baylibre.com header.s=google header.b=WTSkdzLW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317122-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317122-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1B5E230C2AB4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:02:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 46F6330A4D92
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A803E425CD8;
-	Mon, 29 Jun 2026 15:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C5E443901F;
+	Mon, 29 Jun 2026 15:04:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8743D3E075F;
-	Mon, 29 Jun 2026 15:02:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70714438FEE
+	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 15:04:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782745362; cv=none; b=Tg9aVqR5fzP/FymbpZXJFVAxdpo3qOtj3fyMSnrnMvTAAFHK8Q1Wo3UWmTIqC30beGYVKKclV7P30mbQnMQynbCfVvIc/1AaMWpHA19g2LtL5gAYDen+iHAdCAEg4Vk1m+nlLYJREhNmW70aqpiB4xGve2SpDDIqPYnEYKX4riU=
+	t=1782745473; cv=none; b=NQVCml619LLViNGruYUY8j+V/epFY9eAIkNBqkWQogQvwL2y/YPwaO5LPQzWw71fBDx2l07W+UUMEWwN2VkAYkE4RRleoo5IsIhuOtiaFYkW2EA7gHJBa/lYuq5vNVjXjNCoyDSFVq6gnf73Uob2mcXaVkOkmY2sqHnL4nU57gI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782745362; c=relaxed/simple;
-	bh=8nHH4gBN/s7IeS6y/9S8TpBtfSijBrQ1/bmAkV3Z6gE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iEM+YwxKO6ZF5EemTxuEYLCiut6UxMWqxbyOvQ+Pa0ksogu2FWM8axdw2kZtoOdiMSkPZpfMk+8kApJqx1uACNrNQi++DaT7KL91qrJEQHH0ZFOh7xu3IrZL/MUqop7WkzwB8v2mUoO5Kv7tcjbPOwjcTlUerw9L3I1xyR8mEuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EgKVZsNX; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF5641F000E9;
-	Mon, 29 Jun 2026 15:02:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782745361;
-	bh=8nHH4gBN/s7IeS6y/9S8TpBtfSijBrQ1/bmAkV3Z6gE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=EgKVZsNXSvXhmSCt1BVSoodDMvOemtG6Pw16rwqHRrmg1dK6X4ggf1FRqNQX2R0ZC
-	 PKawziiOHdwf53YIsMGoxtg7qptV9jJfE2D0/6NVHg2BGfMftzhO2ESVEegipqp8zr
-	 aAIru5612INZcMIMmIwFJAg7bdXMQUfX8m730cCXmGaAWhOuSyEk7STEwoNpm6AQGz
-	 A55ZKEfZKm9+VwuPrxhYAVP/Qk7Bpks1JwJcrYMFOwOt7fo1X3QgDoK6IcibPyCz5I
-	 V8lENQTcRCYaim9Z1ABEGrnxWezJ0YDgckPUfS8E8uv9nIhz5Ll0X/e7ajIVZbgOwT
-	 B0IouTn4WLtUg==
-Date: Mon, 29 Jun 2026 16:02:35 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: Joey Lu <a0987203069@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	ychuang3@nuvoton.com, schung@nuvoton.com, yclu4@nuvoton.com,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/7] dt-bindings: display: verisilicon,dc: generalize
- for single-output variants
-Message-ID: <20260629-chevron-awhile-7cf456a768a0@spud>
-References: <20260625094449.708386-1-a0987203069@gmail.com>
- <20260625094449.708386-2-a0987203069@gmail.com>
- <20260625-bobbing-annotate-d1c4d6874ee2@spud>
- <e3fe23ddbc504879bd797bbaa595d3653fa139ff.camel@iscas.ac.cn>
- <20260626-astrology-mural-853d3860e048@wendy>
- <c0731801729713d35f97bec40ebc21cef31b72b5.camel@iscas.ac.cn>
- <20260626-everybody-epilogue-8fb298a54981@wendy>
- <9456bde5059bea3aac1ed64355e3f017dd9bd3e5.camel@iscas.ac.cn>
- <b3b7a0f8-93a8-4965-a2f3-3ca1552a25d6@gmail.com>
- <80ae28925a67b7bee3b8873db3c113111437e717.camel@iscas.ac.cn>
+	s=arc-20240116; t=1782745473; c=relaxed/simple;
+	bh=mLbyaEAgqepNN61bWeIhuKu91cbHIs1TgT0DiSEwuG8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E3cxpFtXEKZQ6KqKvt403v59qwulFgiUOINB1D/UQzkJDalyNUOJkydfwYNntWUEE+btaRbctv3y4rrdPFNva9eo1eF9UisbkgI1xUKyrNvdmo4eStClyKm7Sjc1PVoydIiSjQsKTvVkmQe6Rk4GZlXYP/aWlYdf36r9oTz+4Hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=WTSkdzLW; arc=none smtp.client-ip=209.85.161.43
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-6a0e55e82d0so2003704eaf.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 08:04:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1782745470; x=1783350270; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mKC86SBllWMC5DazOx7jxMwvHWS3vvb7786WkQz0OjY=;
+        b=WTSkdzLWZFj3XvffUCor6PD83mAixGrmyrRS+WHPILF6lvxKDB4/yNU8kWfmrTpVYD
+         o694SCilIQO2xrBhE3ZBbwM+ZQWUotrQGGvUtwbu+0fUHD3HwyTbQOFzBq3x7DibI0y9
+         ESxSjsJyGs7RPFGRk60kNc0jF1Ar6QOlLCYr9Dq+mPpntxmdjgnNLcRy5eDZ2910F/X2
+         8tSuCL43GtR7LgggGvVrweXz55IIV93Vh7FanbIpjtw4g2/p1U3GFSq4ktzNA2Ag9sTd
+         dfbrTAQzfDaUnSbB6bm3t9iv7cja12yj+IOPqEuxsNouQu0kDnAOz/ZRKQDNK+J2uQRl
+         tJyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782745470; x=1783350270;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mKC86SBllWMC5DazOx7jxMwvHWS3vvb7786WkQz0OjY=;
+        b=IcbAc3qRaEW0BVclIRTxwOiaCrJw1rueCJ+lIksLjk9J5aUmxKoB4W5B4D5T5AqJYb
+         Z5Anb0k7Zz7CbwAAjvKOuY0tkXG4bEp+Y/i/uJg1i0jKz6lzkMslSIg+WvyDqEESiaQs
+         tQR6U4TG+eStF33u53zv6G+YNzmlqtPIfEyBhZQAVvGXIWOZlM9ajWYzm5b1qHfiU22X
+         yP+643DFmmzcSqqWnLPFBFJdrCXFbfAJfpGeELp+jYyuZb9Vsqz2sctQcFqBI2SiGVP9
+         EIh0AZLGo5eWtnUH4PFgyQbJBJ+7hnuh9LKakPdXpt1h1/ac+OrOeMeF3Y+J/bnwoh11
+         J2fA==
+X-Forwarded-Encrypted: i=1; AFNElJ+AuOxS3xoK3smaQxohMW7fIrkvOFNF0KVr2DZaELS/ZLFhn8ZR++l1Po7ppRR230B1Oneo88fn+Xqj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwctWgT9QZSYPo4mWZMDXmAV30knCUPhFo4E7Ye4ZTsyVb+17tA
+	BRH1mTnflT5G0K8jEDzxBN0DLJ4PekGFpgnrH4xRPucZy41ym+fMjXmrQDpwWkLDY20=
+X-Gm-Gg: AfdE7cnzSUkMvdnuKAz7s+gimHys8IL1uChBq35oVqWGLAQg/gbqEwKpkfPpifmRu/x
+	x6Sb2rTdgNHRm29dkCNM8Si4YIwILfMeurTvSsXP3dGNDkwrk46HVjhk+1pCf7RdHNqQG/Fd1N1
+	R+xuQzHLd7Wz0O0ez4DNbJVRMgLySwiN+EgEp//twfbVp0Wde3kUxApqaL2RRMDUpkIsqRsHTIE
+	ztpuuxlotKoyFPwUYX4GnUVdkZWRU00mGu82K2yDP2L7JEwVQX/HckVpp7+D33a5uw4hALGs8hF
+	tOwvmAhhGxvoaQQPPCvN/DyGFxWhxoCNpF+Hsv127FXG8RT7ljPTrSVwgtmvhsjCatmLOQrN5ck
+	eUOKxIWbzk54DYIRP7631CK6JwxfEgfUWFhqJOzdFp95xyGA6r2QSms55CV2QMugg9m8mQmLzSJ
+	w50UEcnHC/EBsqGNBy4eJ5BxLsUH6wdcayGxPztnXxZFfEFY+4ZFJsMNSSeM52/x8KdbVHGkGuL
+	A==
+X-Received: by 2002:a05:6820:55d0:20b0:6a1:82f5:b009 with SMTP id 006d021491bc7-6a18910d066mr33242eaf.13.1782745470465;
+        Mon, 29 Jun 2026 08:04:30 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:3533:aa22:9a69:df1c? ([2600:8803:e7e4:500:3533:aa22:9a69:df1c])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-448db92c113sm26526fac.4.2026.06.29.08.04.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Jun 2026 08:04:29 -0700 (PDT)
+Message-ID: <2f01a3a0-3698-41e6-8fee-1d2e1629726c@baylibre.com>
+Date: Mon, 29 Jun 2026 10:04:29 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="IgfcEfDUK/kmfpjk"
-Content-Disposition: inline
-In-Reply-To: <80ae28925a67b7bee3b8873db3c113111437e717.camel@iscas.ac.cn>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add Nuvoton MA35D1 EADC
+To: Chi-Wen Weng <cwweng.linux@gmail.com>, jic23@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: nuno.sa@analog.com, andy@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, cwweng@nuvoton.com
+References: <20260625110638.38438-1-cwweng.linux@gmail.com>
+ <20260625110638.38438-2-cwweng.linux@gmail.com>
+ <40485b4e-6585-42a1-9b84-3019328574c5@baylibre.com>
+ <7e96cc1a-eb60-4eeb-937d-64e83bc35279@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <7e96cc1a-eb60-4eeb-937d-64e83bc35279@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_RECIPIENTS(0.00)[m:zhengxingda@iscas.ac.cn,m:a0987203069@gmail.com,m:conor.dooley@microchip.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:yclu4@nuvoton.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317121-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:cwweng.linux@gmail.com,m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cwweng@nuvoton.com,m:cwwenglinux@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	DMARC_NA(0.00)[baylibre.com];
+	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-317122-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,microchip.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,nuvoton.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,spud:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,baylibre.com:dkim,baylibre.com:mid,baylibre.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C95DF6DC9AF
+X-Rspamd-Queue-Id: 2B5CC6DC7EF
 
---IgfcEfDUK/kmfpjk
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jun 29, 2026 at 01:31:46PM +0800, Icenowy Zheng wrote:
-> > > > > > > > > +
-> > > > > > > > > +=A0=A0=A0=A0=A0=A0=A0 resets:
-> > > > > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 minItems: 1
-> > > > > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 maxItems: 1
-> > > > > > > > > +
-> > > > > > > > > +=A0=A0=A0=A0=A0=A0=A0 reset-names:
-> > > > > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 items:
-> > > > > > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 - const: core
-> > > > > > > > This is just maxItems: 1.
-> > > > > > > Well the implicit rules of DT binding schemas are quite
-> > > > > > > weird...
-> > > > > > I don't think it is that strange, as the binding has
-> > > > > > =A0=A0 reset-names:
-> > > > > > =A0=A0=A0=A0 items:
-> > > > > > =A0=A0=A0=A0=A0=A0 - const: core
-> > > > > > =A0=A0=A0=A0=A0=A0 - const: axi
-> > > > > > =A0=A0=A0=A0=A0=A0 - const: ahb
-> > > > > Ah does the list constraint the order of items? If it
-> > > > > constrains
-> > > > > the
-> > > > It does, yes.
-> > > > Alternatively, using an enum permits free ordering.
-> > > Ah in this case this should be converted to an enum, I think.
-> > >=20
-> > > Should I send a patch for converting it?
-> > >=20
-> > > Thanks,
-> > > Icenowy
-> > Thank you all for the detailed review and discussion, it really
-> > helped
-> > clarify the right approach.
-> >=20
-> > Since I will supply all four clocks with the same phandle for
-> > core/axi/ahb,
-> > and only one reset "core" for MA35D1, the ordering constraint in the
-> > `items` list is not a problem, "core" is already the first entry.
-> > There
-> > is no need to convert to an enum.
-> >=20
-> > Regarding the clock situation for the MA35D1: I agree with supplying
-> > all
-> > four clocks (core, axi, ahb, pix0) in the devicetree, even though the
-> > MA35D1 clock controller gates core/axi/ahb with a single bit. The DT
-> > will
-> > use the same clock phandle for core, axi, and ahb:
-> >=20
-> > =A0=A0 clocks =3D <&clk X>, <&clk X>, <&clk X>, <&pix_clk Y>;
-> > =A0=A0 clock-names =3D "core", "axi", "ahb", "pix0";
-> >=20
-> > This correctly models the hardware topology. Since all three names
->=20
-> No, this doesn't correctly model the hardware topology -- this will
-> lead to clk_get_rate() return the rate of DC core clock when checking
-> the AXI clock rate, which is problematic because both clocks are
-> limiting the performance of the DC.
->=20
-> > resolve
-> > to the same underlying clock node, the CCF's standard enable
-> > refcounting
-> > handles the shared gate correctly without any custom implementation
-> > needed.
-> > I will also revert the change in patch 4/7 that made axi and ahb
-> > clocks
-> > optional, since they will now always be provided in the devicetree.
-> >=20
-> > Regarding moving `resets` and `reset-names` to the top-level
-> > `required:`,
-> > I will wait for Icenowy's patch to land before sending v6 to avoid
-> > duplicating the work.
->=20
-> The patch is sent.
->=20
-> >=20
-> > In v6 I will update patch 1/7 with:
-> > - Update the subject to "dt-bindings: display: verisilicon,dc: add
-> > =A0=A0 support for nuvoton,ma35d1-dcu"
-> > - Lower `clocks`/`clock-names` `minItems` to 4 at the top level
-> > - Remove the `thead,th1520-dc8200` conditional block entirely
->=20
-> I think this conditional block will still be needed, because it will
-> need to constrain the minItems to ensure all clocks / resets are
-> populated.
-
-Correct. When the outer constraints are relaxed to deal with the new
-device the conditional block for the th1520 becomes required. Or having
-an else, but if all devices are likely to be different in terms of
-configuration specific conditional blocks is better.
+On 6/29/26 2:11 AM, Chi-Wen Weng wrote:
 
 
---IgfcEfDUK/kmfpjk
-Content-Type: application/pgp-signature; name=signature.asc
+>> Should there be a dmas property? Datasheet says it supports PDMA transfer.
+> 
+> The hardware does support PDMA, but DMA support is intentionally not
+> included in this initial upstream version. The initial driver will only
+> support interrupt-driven direct raw reads, and the MA35D1 PDMA provider
+> is not upstream yet.
+> 
+> I would prefer to leave dmas/dma-names out of the initial binding and
+> add them later together with DMA support. Please let me know if you
+> would prefer optional DMA properties to be described now.
 
------BEGIN PGP SIGNATURE-----
+We always want the devicetree to be as complete as possible even
+if the drier doesn't use all of the information.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakKJCwAKCRB4tDGHoIJi
-0h7GAQCJb5feu4xl6yYVBQwiVZOZChwL0Lr7y5z363AQ+EVV9AEAmL++SyuqhNBW
-SKNJ/viml8vWj6f91Cb4O/UlhqZT8gY=
-=uZpY
------END PGP SIGNATURE-----
+So for trivial/well-known bindings like dmas, we should be able to
+add it now.
 
---IgfcEfDUK/kmfpjk--
+> 
+>> I assume 8 is for the internal batter voltage channel? Often, we don't
+>> include fixed internal channels like this in the devicetree since they
+>> are always the same and don't depend on external wiring.
+> 
+> Correct. Channels 0 to 7 are the external ADC input pins, while channel
+> 8 is the internal VBAT input. I will limit the DT child channel nodes to
+> external channels 0 to 7.
+> 
+> If VBAT support is added later, it can be exposed by the driver as a
+> fixed internal channel rather than being described by devicetree.
+> 
+>> adc.yaml already specifies minItems and maxItems, so we don't need to
+>> repeat it.
+> 
+> Since I plan to simplify v2 and drop differential channel support from
+> the initial submission, I will remove diff-channels from the initial
+> binding.
+
+Same reasoning as above, we want the binding to be as complete as
+possible, so we should not omit diff-channels since we know what
+the bindings should look like already.
+
+> 
+> Differential input support can be added later once the fixed hardware
+> pair constraints and signed output handling are implemented in the
+> driver.
+> 
 
