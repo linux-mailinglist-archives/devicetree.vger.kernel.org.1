@@ -1,172 +1,238 @@
-Return-Path: <devicetree+bounces-317186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317187-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id IA9yJHmaQmoJ+gkAu9opvQ
-	(envelope-from <devicetree+bounces-317186-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:16:57 +0200
+	id 0jwDO72dQmra+gkAu9opvQ
+	(envelope-from <devicetree+bounces-317187-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:30:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8622A6DD38A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:16:56 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F9016DD592
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:30:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=kHNpBNlX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317186-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-317186-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=Wrh+EvFw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317187-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-317187-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7CA46300E6AD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:11:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3C9E830DA10F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:15:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899DF44B690;
-	Mon, 29 Jun 2026 16:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D64CB44BC90;
+	Mon, 29 Jun 2026 16:15:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011045.outbound.protection.outlook.com [52.101.65.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BF2D44A71D;
-	Mon, 29 Jun 2026 16:11:44 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782749506; cv=none; b=c7oS3bsCWPgCaV9nb34Lq84cLJHdI1nzjuPqr9cX1gPASAFfd1UO1lKXII2tNLRXRUsPB1ju/Dy6RoTb8iU15Npf88P3qnmmIvAKZLfv4cWOVBhCKr57kYNY1GtUT0m9erkw49mNhVfi5nwwEy7rf8pfJ7GpmcN5CuZjBcu+0iA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782749506; c=relaxed/simple;
-	bh=k2rBsM5SdkD0PahKlRf1zlIPWlnImleJYr/aShQoNLE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VVBFpl3PadQt1LpONgHc80oxx+nY9N4wy1b8zv7TEdePQFRM4HZNdBkxjjT3ivmAp7MX4aujHqsgkOjBpHLrpaRhAfqlm0bFYvmANNPuX6vxotqp+I6l2cjR0ZZz65Tiy4WSHPDtPvWy31jZhZ2MAHSJ1mU20cPGVNzs2bQTaF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kHNpBNlX; arc=none smtp.client-ip=198.175.65.12
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1782749506; x=1814285506;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=k2rBsM5SdkD0PahKlRf1zlIPWlnImleJYr/aShQoNLE=;
-  b=kHNpBNlXhQj4/E7S7YPuj0FpErruG3cu+qzlG7gCBnifniZj8KrOx3+I
-   SmcL3gqqPIfL6ITmeJs6s7wVD1z4nUSxVkVNiw4q3hwFRt9oMzv+h/FmZ
-   4hX1ZWQy1xZE8VtDPK7VPHKy9BmjiinGHXx+ztEi5birAFOEvpPvdWX9c
-   u66lTe2wC4CNh80A3GjXV7J6bEFVekTkoHEAJ3bvpDhBjmrksXgSBt/ol
-   CgHnshbaSYrO5rgk+TSmoBDqMhb5thdLkrp24l3chdnWPYarZ98oxhYAO
-   J+oWKrImVa+qikoy2dyAXZeli22u0zZSV0+nVfJWnQwXYnseDlcZMdkuh
-   Q==;
-X-CSE-ConnectionGUID: xjiP8tYgRBa61Ny7fz2teg==
-X-CSE-MsgGUID: eSgb4OJqTa+C4tb5aybE1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="94938854"
-X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; 
-   d="scan'208";a="94938854"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 09:11:45 -0700
-X-CSE-ConnectionGUID: DtAxxEOlQGegv7F6X42NZw==
-X-CSE-MsgGUID: UMWxxFmBQFyUk13glEiYNg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; 
-   d="scan'208";a="250302466"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.207])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2026 09:11:41 -0700
-Date: Mon, 29 Jun 2026 19:11:38 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jic23@kernel.org, nuno.sa@analog.com,
-	Michael.Hennerich@analog.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, julianbraha@gmail.com
-Subject: Re: [PATCH v4 2/4] iio: adc: ltc2378: Add support for LTC2378-20 and
- similar ADCs
-Message-ID: <akKZOq6DV5x1FvAc@ashevche-desk.local>
-References: <cover.1782397418.git.marcelo.schmitt@analog.com>
- <0abf862eeb277ae82262d09b11b1446f04c47be7.1782397418.git.marcelo.schmitt@analog.com>
- <9c6e0a74-c9c5-43ee-8eca-ae1667c51c32@baylibre.com>
- <akKHv7j22P6KczXb@debian-BULLSEYE-live-builder-AMD64>
- <3a96a20c-f435-4b98-9e95-26a28bd06e7b@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1A21E5201;
+	Mon, 29 Jun 2026 16:15:53 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782749754; cv=fail; b=lFkFulXNNqohyXkCxiMUiewIgZmfqwthX3XqQjfMXPOs1KerhXN/sf36IN8gUDD8SVeUUuZENJxvGM3FKy6kZlfOo0BZNV3ffRts18OU5ciW5U1TQTu1DRpT8pJB4Mz66kD7PyUlR8hKwgrBEtR6Knw6Kqc2jTaONBgx60hXk18=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782749754; c=relaxed/simple;
+	bh=T6i7dqrliIkIIP7s3RjPP/rT6mde8m/kls/nyqfWDew=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Mr8Hl5hRXprCCosSFMUZIxjhlZzPigtSzdDUatlQMKwbhFsH8DY+POvu4c5QmIMnEdbh84e3xAlWXKOWhSJySw8m60ujQF14ddssUcxYEPHA/PCKHDwrsTFb78rAoFxo+lKqnm5dd8YIpTnE9OjYJyzLD0kij/Z4+0tzKocw4N0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=Wrh+EvFw; arc=fail smtp.client-ip=52.101.65.45
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WTJ60es+rlcmUJiJvlOFTwhiCc3vcxwrh7VJBFHgOyR6lpoDXNN7W/z65BC8d4V2XRwnZSX+qEtR5vbGJoLf6qkSHBF8J0HRlwUgXg4mWoZZQh/56Ehg7d7Sh7MBgzRYPBXGHoidgv7JOTmYeqToU1O4PZb0DfiFSVFumZvquILjjTmsMwSYUzinm7TByJs3IfOxzQ5KcXDmj5NYG9hHyYQ9M/yKB7I6fCKE/CQSLeBE2MSmDcrJ1acFwHw621Bvn0naFD5/Irra6I5zescw1e1k3FUuJnqujFydtI8z93OCC33uAqX3b972KDhAtsOAnhQFvRy7ncxRiHzSi+hvmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZNYWBSCzCV6ZIcvqI2Ren8adTaO+TYmBuxo5mXmrfyU=;
+ b=aiymn8Ypjj+JXutbelz6iP7n7Cj3diwmzu3BPcUSJxVvnxLsVqAXgAPbpwsmLBzSkRhu6jpBmPymS8uzJvrMgmi+8cabWQ6vRQvkFIwxlzckkI3N25PBhq6DgCi+kcs/Xl/McYQz8kOBAyfvNNC66SqoWPMY7ncbHdhH660Xq91I02N4podLG3cA9mv5KYAezYuKaebrf3gE3K0dYQDDfCMd8QxOvxG1WI6xcnECQ2OadBKWlEmDGEMErib7+aqfhYgUHv/UeEx+vhbQ0aeX/bxInJ1OrSj1QOatXYsFnGOA8fSbr66Rl16sOooA5yRfWfl7tRXoPGLhRnYQERXJKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZNYWBSCzCV6ZIcvqI2Ren8adTaO+TYmBuxo5mXmrfyU=;
+ b=Wrh+EvFwOvlPjfYMNWrk5FM1xXMzJKEBPxS9C6IX0valPx/9Nsl36wOQGOjjLgUXw/vDp2LHIrqt/Hj305HudZu82c9Zz4i/XBbWjPKJYPaJwDwhk4oHNlnxvrjq2opsgAIDIXInFwCUmQE1pTwJJm76uqeJVWC7nm/9Ao1HVTdZ8UJU74yWNzeJ0X9hlH6ETHYJw6pvv8JlTFM2yFda6ItnuRfAvYm6ekteTi/JXPlQB+k7T6HAqdwpkCrw5S5BRn5FG2meWK+j4dsOI6nmv+0ijLEpaTKeh761CLBkxfHW7NkadSipyM3LR/IVbDNr9fIC2vXPHVeZmSwQZqEZ6A==
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
+ by VI1PR04MB6944.eurprd04.prod.outlook.com (2603:10a6:803:133::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Mon, 29 Jun
+ 2026 16:15:50 +0000
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0159.007; Mon, 29 Jun 2026
+ 16:15:50 +0000
+From: Frank.Li@oss.nxp.com
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	bhelgaas@google.com,
+	hongxing.zhu@nxp.com,
+	l.stach@pengutronix.de,
+	"Sherry Sun (OSS)" <sherry.sun@oss.nxp.com>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	imx@lists.linux.dev,
+	linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	sherry.sun@nxp.com
+Subject: Re: (subset) [PATCH V3 0/8] PCI: imx6: Integrate pwrctrl API and update device trees
+Date: Mon, 29 Jun 2026 12:15:41 -0400
+Message-ID: <178274972426.2272292.10343813000676557857.b4-ty@b4>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260520084904.2424253-1-sherry.sun@oss.nxp.com>
+References: <20260520084904.2424253-1-sherry.sun@oss.nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SA0PR13CA0027.namprd13.prod.outlook.com
+ (2603:10b6:806:130::32) To GV2PR04MB11799.eurprd04.prod.outlook.com
+ (2603:10a6:150:2cf::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3a96a20c-f435-4b98-9e95-26a28bd06e7b@baylibre.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|VI1PR04MB6944:EE_
+X-MS-Office365-Filtering-Correlation-Id: e577f340-db2f-4092-7832-08ded5f9af7c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|366016|7416014|23010399003|19092799006|1800799024|22082099003|18002099003|11063799006|56012099006|921020;
+X-Microsoft-Antispam-Message-Info:
+	Fo7GAcMpJxYmelHI7ne0qKigxxLeAqcSCtYAZAJEn+0fa9puaYAa2nzDLrSubCb/OT0o2TJgmBEu9h+aa2f9YhcSX+MvHa9zgVUndgbJxGPdIKs/n6GUw05EgdyA4QsO8kP3xxXZ/3qp5IAQqBJdK27D/Asww00elYBr/qNvbWvLYTFdlJHxzM0+uoon2kahPDnBY4LYRr3Sd7eB3p2HB2nQH5N8MTxWG8V4bbm7yRwH6eCkJcbVA/ldV0WEETReImveS2hIO3biTInOpVHZySlb0ubtP3U2gfuKtCKxC3AvNOzTCwADAWTnS+VE7AFXn3ujxKyMMW5K8IElVGDj6z4EKrZN4WOl1nSamTUMEIOJCiRQccZ4AINIwnURuOc+Jc/anj1fojbTaK0wctNwoiZdCeaRGFqIK8xD5KoRe4MBzRlnZid5fOiiiSuoQqGWv4TPZcorfOA9Bak05gHqGni+ZA09mVFZemHYKhE0jLIWPU9sg5utBZLJUyC42pQEU2OM98eMF4TjO7FlVKOzE79A/LesC6KLN2M2AdfEiFtqlr3+obcXJ/sF9v3sv7+HHPXIOzj2+t8eCsbFYr7lrDP4LB+qhaD3GdbQNmyba2lezj6zZHrIJnOjqmHIWvQbQq7U5rdqrq3dEFFC0PMe8tZjX6pld1mxU5RmKxDccv+uGEUk40p4ApMN5ckPcwEmy9dS5y9BisWOTj/YTSpsLA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(7416014)(23010399003)(19092799006)(1800799024)(22082099003)(18002099003)(11063799006)(56012099006)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dHFRVWpLdkZFekZEbS9OTWpHZEZ5czZ3ZEpQSFVtUXVua0tuZ0VqQnI0U3Bx?=
+ =?utf-8?B?Q0J6bXVrSDEyNUMxU1dMVzZqK1RYaEVEbkI0WGZYMjhMcU1NMkFtdHBiV0pH?=
+ =?utf-8?B?WG9USCtxc1l3d2hobUlvblFqemFZakxzMVNqVnJ1dlRlOUFHVnVDWnMxVzFS?=
+ =?utf-8?B?SmtNLzJPOUlQdjFHMnFDVlJFelV4UmVJQmJNUmpvMG4yd0ZqcEo0cjdzcGxU?=
+ =?utf-8?B?U0xRTnZwcG4waC94RHNjZXFycEplb21kNEt0KzZBVlREd29EQ0FjQ1JLK3ZP?=
+ =?utf-8?B?WXlCU2VWZzV0Njc0T3hxbU1YbTBPREg1VUFUSjZYUXo5YnhQcVJpVGhrQ0ZR?=
+ =?utf-8?B?SENUdUkzSEFuQzB3cTJjbm9rN2t2eHZLK0xxT0NWdHNkTTM2UUwxMUlqTTA5?=
+ =?utf-8?B?dEdKT0NKbXNIRVJjaWZxMTZIME1aQnovd2I4d2VFNmwxbUlNWkFIMXlhLzNa?=
+ =?utf-8?B?eXRQM0xZK0UwcThkS1oweVhKTjhBM2tpbFBZMFBrZzl1Y010K2ZaWGdYb0ho?=
+ =?utf-8?B?RERZYTczcHBTSWRkQjE0bEo4eEtiYml6RHRQeitOZmQwaU1pV3JQcHBJVkd4?=
+ =?utf-8?B?b3ZUb0FMa0JMSC9tNTVuL2lNV3YrNWxFR09JOUtENDN5bVhWYXNYYUdyd1FR?=
+ =?utf-8?B?MzIxWmNZbFFXZW9HQ1ZvaC94UmNuS21YRGFRSzhQM1pvMWtGeklTdWNQODNK?=
+ =?utf-8?B?NzRTYnlJdEJ3TEpwTkUycjR3MzZJT0tBdmJuVmdLdStiSXUzdXhDUGw2VGF1?=
+ =?utf-8?B?MUhWYjdNZXBmMjMwWUt1cHhTNnFPS0pJZmI1MVRqa05PTmt5WEtSSG1NSHVv?=
+ =?utf-8?B?K1M1c0F4RHNweDY0V3dKSkEzZzc2QXB1MXd2YzJ6WElxSm41T1Nsc3FmNFIv?=
+ =?utf-8?B?L3hLdzlQbXZiWDI1UnFVQzd0VDVMRW1tQUxHZWU1UGJsU1h6S08yOXZDZWdE?=
+ =?utf-8?B?NXZBekszRSt5NHJtbS9mZSs0TWpHNmFaZFBjV0tWeWhMTTRLWHhSSmw1Uk5p?=
+ =?utf-8?B?alBXRitYRXVRUGZzUzl1UTRIU1VHY3BSMDlWYlRLQkZDY2RiZWdqcWJUYU5X?=
+ =?utf-8?B?THYyUTBEQkI3Zzc1VkNTR2crZzA5ZW9TOWZDS3VWYjVNelMrRGpMRHBZRVI1?=
+ =?utf-8?B?QXkzT3p1bmlTYjdudFlIMkZCMG1VVitzeUpKMFhiT0wvWUZPMDM5cTVKZ2ZP?=
+ =?utf-8?B?cEkzNWlCNEQwWFVXSHJHSDJoUWF5Ri9QM0pJVDExekZSdCs0dG4zSHdQRC9a?=
+ =?utf-8?B?eUpzaUlFR3NJQlhaOHhlVTRCOHBkaFh5bGJuRytrdDhGdzhCeUQxM2oyemk4?=
+ =?utf-8?B?MTlEWXRORm5TaytHaUJCU2NGK1NJNGMzaEQxaHMyQXplV0EwS2xiZi90UjNR?=
+ =?utf-8?B?WXNlUGY5WGp2TDlXWWtSdS9rV3lwTm5hRFB4a3BPckVVc212KzB2cS9FSlNM?=
+ =?utf-8?B?RkNYQk4waGVCTnJDWlFDK1RkRDJnNU1IR3hTbjkvbWp5MUY0bFpJMXM3WnFQ?=
+ =?utf-8?B?MDhZR21LKy9oMmlvQStHLzJWSHlCckxkYjdvSHY1YWZ6WHA3NDF0V3ZKU2Fu?=
+ =?utf-8?B?NDRPRXpwVTlJQWRKR2daV3hpakgvVDV6cWFSa3pjRjlENGh3QStrWVEzSFhn?=
+ =?utf-8?B?QXR4R3JkYnNuMkVLWWkyZnczSWkwNndEVkJXVVMrMlBIbkNxNkpuWnVDSUNk?=
+ =?utf-8?B?RTJvV29lb3R6SzQ0SXJHOElrT25wY0pKY2FhUVplK0NHa09nUW11Q0NPcDVH?=
+ =?utf-8?B?VmlnNzBhWXUwaWE4VEFMazlZL0xhVUdDTG11SHFzdU9DWG8xcnBIdlJSQ2FW?=
+ =?utf-8?B?ci80Z0pjOUQ2TXZmR0FMbjFXekl3WWcraitnNm5QV0lxUGJrUVFtcVIrUVJI?=
+ =?utf-8?B?SEpadDEwUDZKMmpqamFvbTFDNDFEcEpUYWs4NjN2QXlwZC9TYjMweDlxeXVW?=
+ =?utf-8?B?ckpQZWpnVUpwSnZIcWRWSmhzVC9xVTRHS2w5Vm9PU29nUmZSNyswdzBQNXBN?=
+ =?utf-8?B?ZHdndEdaL0VXMmJRUVJFRjBIUkJXZUhPU1hFK3M1YnAyWTJmSEdzd1owM3Zp?=
+ =?utf-8?B?NTF3S3kwNE95N0ozc1hEaHFhMW5waVgvSndDdGFsV2pVT2dRamlLUGV2b3FN?=
+ =?utf-8?B?bkdWMDVmZm5rbzZwSHo0YTY4dm80SmxHNjBKbzFZa29FcHc0ZjRtUlZkaFN1?=
+ =?utf-8?B?bk1qWWNWMnNackl2RTBadGRUdlNOMlE5ZVVkKzFCNzlXNjFoMzlmQ2lJN3lv?=
+ =?utf-8?B?bzF0d2tYNFJlekZFY2tGbGJ2eEN3c0RYYXlOcTQ1U3JoZVBvOVJWWGlQaHRC?=
+ =?utf-8?B?YzN3eVlhdGFoaUZmdFZ6akNoNGFFK1VKRE9qTVZVV2FVSlNQYTIvWTViQThi?=
+ =?utf-8?Q?Fjv5O6/1/CIIi2vlYlx079izVnAsGNYNjuwRX?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e577f340-db2f-4092-7832-08ded5f9af7c
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2026 16:15:50.3094
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KXcP/xh3//eqeXjxCXdu0wQsp58JLDgNqQxU5/dJad9ed38XIjuzle735SGibUyV8PZ+byXTd7V4UJsFDAnKIQqnCAFrKTlQ4ixkM/Q4P79wjSVWsbZGiPbnY3T2WRUR
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6944
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+X-Spamd-Result: default: False [2.44 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:bhelgaas@google.com,m:hongxing.zhu@nxp.com,m:l.stach@pengutronix.de,m:sherry.sun@oss.nxp.com,m:Frank.Li@nxp.com,m:imx@lists.linux.dev,m:linux-pci@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:sherry.sun@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317186-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:dlechner@baylibre.com,m:marcelo.schmitt1@gmail.com,m:marcelo.schmitt@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:julianbraha@gmail.com,m:marceloschmitt1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,analog.com,vger.kernel.org,kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[Frank.Li@oss.nxp.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,google.com,nxp.com,oss.nxp.com];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317187-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[Frank.Li@oss.nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,ashevche-desk.local:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,i.mx:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,oss.nxp.com:from_mime,nxp.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8622A6DD38A
+X-Rspamd-Queue-Id: 5F9016DD592
 
-On Mon, Jun 29, 2026 at 10:16:16AM -0500, David Lechner wrote:
-> On 6/29/26 9:57 AM, Marcelo Schmitt wrote:
+From: Frank Li <Frank.Li@nxp.com>
 
-...
 
-> It could use `_offl ? ...` in the macro for that. Not a big deal to me though.
-
-Personally I am for a full spelling here.
-
-...
-
-> >>> +static int ltc2378_regulator_setup(struct device *dev, struct ltc2378_state *st)
-> >>> +{
-> >>> +	int ret;
-> >>> +
-> >>> +	ret = devm_regulator_get_enable_read_voltage(dev, "refin");
-> >>> +	if (ret < 0 && ret != -ENODEV) {
-> >>> +		return dev_err_probe(dev, ret, "failed to read refin regulator\n");
-> >>> +	} else if (ret > 0) {
-> >>
-> >> Else is not needed here.
-> > Why not?
+On Wed, 20 May 2026 16:48:56 +0800, Sherry Sun (OSS) wrote:
+> From: Sherry Sun <sherry.sun@nxp.com>
 > 
-> The if returns unconditionally, so else is not needed. This is just a general
-> principal.
+> This series integrates the PCI pwrctrl framework into the pci-imx6
+> driver and updates i.MX EVK board device trees to support it.
+> 
+> Patches 2-8 update device trees for i.MX EVK boards which maintained
+> by NXP to move power supply properties from the PCIe controller node
+> to the Root Port child node, which is required for pwrctrl framework.
+> Affected boards:
+> - i.MX6Q/DL SABRESD
+> - i.MX6SX SDB
+> - i.MX8MM EVK
+> - i.MX8MP EVK
+> - i.MX8MQ EVK
+> - i.MX8DXL/QM/QXP EVK
+> - i.MX95 15x15/19x19 EVK
+> 
+> [...]
 
-Unfortunately in this case ENODEV will go further, I don't see full context,
-but it may lead to something unexpected.
+Applied, thanks!
 
-Personally I prefer the ladder of
+[4/8] arm64: dts: imx8mm-evk: Move power supply property to Root Port node
+      commit: 1d054c3d7ba2acf95140d2296a7500c44b28756f
+[5/8] arm64: dts: imx8mp-evk: Move power supply properties to Root Port node
+      commit: 6be00d898ed3bf5cacc90bc58b8ab760ad5f26a2
+[6/8] arm64: dts: imx8mq-evk: Move power supply properties to Root Port node
+      commit: d6dd43676b6acb4967060a27c711a482b687142a
+[7/8] arm64: dts: imx8dxl/qm/qxp: Move power supply properties to Root Port node
+      commit: b3731b730e6f0256bed55562cef39e61aea006be
+[8/8] arm64: dts: imx95: Move power supply properties to Root Port node
+      commit: 0ac3b96903603e3a0c9e0ce732716837ddd86c7b
 
-	if (ret == -ENODEV)
-		...
-	else if (ret < 0)
-		...
-	else
-		...
-
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Frank Li <Frank.Li@nxp.com>
 
