@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-316905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316906-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id y7i2AIZFQmqO3QkAu9opvQ
-	(envelope-from <devicetree+bounces-316905-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 12:14:30 +0200
+	id jdDsN9BGQmpv3gkAu9opvQ
+	(envelope-from <devicetree+bounces-316906-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 12:20:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0E596D8C2E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 12:14:29 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 368546D8D2E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 12:20:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gQxCdrYg;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316905-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-316905-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ipl7EHtH;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316906-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-316906-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9246B30300C8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:09:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6E0363029D4A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:10:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E05723C4172;
-	Mon, 29 Jun 2026 10:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A5553C81B6;
+	Mon, 29 Jun 2026 10:09:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D60F35DA67;
-	Mon, 29 Jun 2026 10:09:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225F93FE37A;
+	Mon, 29 Jun 2026 10:09:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782727782; cv=none; b=F3w0MaoSkXKrl4gRHfP6R4bvfXvQAKCp/KVI4aiZIJws32xEiqbp5KY4JOjtrUF8tbvhRuMQ06W+ye+hLloylsGPcklGQEbsXbSVJqHI1m9YTYrZRfZtx/sqC6beCBpJs2p2zGDrzRvKGD8zlwN2OoYczcgk851eoCeQrQX84dI=
+	t=1782727786; cv=none; b=eWr9a9r0W2ITcVAGJsuanjIn9qjcG1H6kfMMA/xFF+VeRjLNocz2QR8rNssrVKVtf3kSaJpLHrQXFfU3uUoIBNLQ0uuffXZlDMwye3GQ6taQAsstD52m+iBTY1rd5NJuw/R8lApgGwyqT8U27ameKRAQ3bWqe+i1yUDnC7bSGhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782727782; c=relaxed/simple;
-	bh=rJ7behxGWlK4N5LOMQ0+yWv9zW0C6Ey1TP3CJDWXHwA=;
+	s=arc-20240116; t=1782727786; c=relaxed/simple;
+	bh=UaemtKxNBlj6ZimiZ5qz7iTCrT1DLHiK5/MfXIsjMqA=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ePaOCp1oN0Y70QCQpfo+4wp7nHM7mnM9MsoR+DrSg8tLeuGIjYU8o9PV5J85hYQFAb88R/zf0u5m6+GKQ6VV2lUOZGOhfiZP6QsWcyclJ1lgWkVcKcN4XrcxCxdDH1STmfxOMTGmbw71xKrvu8GYoDO90pgDrA4dGkJxkactJ5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gQxCdrYg; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF7791F00A3A;
-	Mon, 29 Jun 2026 10:09:36 +0000 (UTC)
+	 MIME-Version:Content-Type; b=fEKkVsT26Wce4YiVj7bL7wy5Z7z3GexIz3FfLaSqin0sT/ZmUgYnHWvvhJWWYCkBd4VJv5mNTNInwSsGlydzHEl7fybyg366+uyv4fXgj2hN8IkreVWN+6CS0j4XYo5B9bVpVg+RUXclnCFPNQe7hgkX2ak1ju0iDwebxbN+1xA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ipl7EHtH; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00C781F000E9;
+	Mon, 29 Jun 2026 10:09:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782727779;
-	bh=ebjnWQv6XltAAY8DynSNwP32+/XGXdALp+3/b+dFArU=;
+	s=k20260515; t=1782727783;
+	bh=7S46Iwb1NGnrffwBD/ngt0H6s3rPjy6vqhD2kJh/Vng=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=gQxCdrYgAbwXldvgcL6PG3ezQ8sIeHf7AdSndy2A1JJr3tIBJMJOtHOAuVmGJO0+4
-	 clfjGn88ZIyJdYVk3/CLs07Ccetk6bU+jTQyT8TfMkwQZlhI1Bl5zu0W8nPZlTdaee
-	 dFczxm1IWhAJguvxQxjUOZNKrxff9yjZ1b440sgVNxBMcBPCKTIRLSR1hx1Q8qZddG
-	 pZFuS+rtFiWUjej5+WWE70L4b4yKvvX4SFC4CBlgX4bwFbuIsbZkmP3dip8pUVVGWY
-	 uhiM64WNNGwUZjFe/ZwG1c2x/l/X91rebzPl829H9qVapsVIveuV5WEHOVmtaUmCqW
-	 DF5kui8rQIuQg==
+	b=ipl7EHtHhkGr6ZP4iMSHY8+bCsuWQWuD7WODHFRShw0GgSxKPgsVRw+YLHlddDzId
+	 FbDz+fX6M+UeDL7BWXzJCeJmeHLrK9fD3RNeUM69Ey7sCIw9IUxfi9lhWXvrXcMPpd
+	 wZo0PGZnuOuePl9GnVyJreX6lq2WoLm/pCFxs7+yojjNvCipUuJrhYTt5hFIrF7p75
+	 yzd+XhnuExvEWF6ql6TWq931Rmsjx9oJ4rssJ+8hOgy8jFXmE4yWsRlMNqtvAhyH2p
+	 bDzkHcOGjq52M1LtyJA3FrIAwR7yyBeftfqCfKuL4V/FtwoIFx69Ll6DkJAl0igm9H
+	 JepvncrCnbQRg==
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: robh@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, 
  alim.akhtar@samsung.com, kishon@kernel.org, 
@@ -53,12 +53,12 @@ To: robh@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
 Cc: krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
  sowon.na@samsung.com
-In-Reply-To: <20260610050326.2903402-2-sh86.bae@samsung.com>
-References: <20260610050326.2903402-2-sh86.bae@samsung.com>
-Subject: Re: (subset) [PATCH v3 1/2] dt-bindings: soc: samsung:
- exynos-sysreg: Add hsi0 for ExynosAutov920
-Message-Id: <178272777644.113362.12732081976179857200.b4-ty@b4>
-Date: Mon, 29 Jun 2026 12:09:36 +0200
+In-Reply-To: <20260610050326.2903402-3-sh86.bae@samsung.com>
+References: <20260610050326.2903402-3-sh86.bae@samsung.com>
+Subject: Re: (subset) [PATCH v3 2/2] arm64: dts: exynosautov920: Add hsi0
+ syscon node for PCIe PHY
+Message-Id: <178272777972.113362.4544629350524485886.b4-ty@b4>
+Date: Mon, 29 Jun 2026 12:09:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,7 +74,7 @@ X-Spamd-Result: default: False [-4.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -82,11 +82,11 @@ X-Spamd-Result: default: False [-4.66 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:alim.akhtar@samsung.com,m:kishon@kernel.org,m:sh86.bae@samsung.com,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-samsung-soc@vger.kernel.org,m:sowon.na@samsung.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:alim.akhtar@samsung.com,m:kishon@kernel.org,m:sh86.bae@samsung.com,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-samsung-soc@vger.kernel.org,m:sowon.na@samsung.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-316905-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316906-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -98,27 +98,21 @@ X-Spamd-Result: default: False [-4.66 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A0E596D8C2E
+X-Rspamd-Queue-Id: 368546D8D2E
 
 
-On Wed, 10 Jun 2026 14:03:25 +0900, Sanghoon Bae wrote:
-> Add hsi0 compatible on samsung,exynos-sysreg
-> To support ExynosAutov920 PCIe settings:
-> - PCIe PHY power control
-> - PLL settings for PCIe
-> - PCIe device direction (RC/EP)
-> 
-> 
-> [...]
+On Wed, 10 Jun 2026 14:03:26 +0900, Sanghoon Bae wrote:
+> Add the syscon-hsi0 node to control PCIe PHY power, PLL settings,
+> and device direction (RC/EP mode) on ExynosAutov920.
 
 Applied, thanks!
 
-[1/2] dt-bindings: soc: samsung: exynos-sysreg: Add hsi0 for ExynosAutov920
-      https://git.kernel.org/krzk/linux/c/d3ebfcb66147497c1f6a4ceaed9a499cec2b3fe2
+[2/2] arm64: dts: exynosautov920: Add hsi0 syscon node for PCIe PHY
+      https://git.kernel.org/krzk/linux/c/2c19e75101ee17059bf10101f4cf0157f61776a2
 
 Best regards,
 -- 
