@@ -1,211 +1,173 @@
-Return-Path: <devicetree+bounces-317039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317040-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pZmfGMFrQmom6wkAu9opvQ
-	(envelope-from <devicetree+bounces-317039-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 14:57:37 +0200
+	id 6/VPHbhtQmrQ6wkAu9opvQ
+	(envelope-from <devicetree+bounces-317040-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:06:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37BCD6DAA0E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 14:57:37 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D43236DABDB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:05:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=UN0yR38q;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317039-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317039-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=KZUnlIKv;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317040-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-317040-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1BE313045688
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 12:52:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 363EA3098A99
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 12:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0141403146;
-	Mon, 29 Jun 2026 12:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D935C3FE363;
+	Mon, 29 Jun 2026 12:53:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE73E4028EB
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 12:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9CF836CE19;
+	Mon, 29 Jun 2026 12:53:05 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782737551; cv=none; b=AOxjTxwTIsWqt4kvP6S08x3RDaLZt9lsLDq6TYl7m+xVBWRymrw1olRDfzPFoe4XcWVnin3v9V9Me1kxASqCt+FO5anJSupZxQDWUCsaui56UKR5F4eFB/QnZmniNWSFoyVpXgBgjclH2UTqtDY3AaFqa2mGr4o7iHPyK2MdLi4=
+	t=1782737586; cv=none; b=T2nbBjBinX19gs9JlbGZwQtEOmWZCgHvOWtGFqhZc3F7VCAwUXCp5qp4ul3nDs0ziGRxJUkeA3RwaIFtoLQlHoaQdMUx7+/rc7rul3ASt/0oaOJFgOifJ1Rl641ijFEk/vpGEI1134NCG21XsGtYcFljAV9JQKRVK/gqamU3t80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782737551; c=relaxed/simple;
-	bh=e4bFcTetKCUY0BiWFDdCjYfdtTZJIAxrLcBYwnPJ6cY=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ARg7t6ycX1bc1+Pkj9iWAMFjbYFRq2e/8hSiXiHgrYajm6+j4pbXe/6IeoxJq1FteOX4fk4UrTU8Wh3pRgBSQ0GwO9u9ocIrqFmwocT0o4zsySYOAI1B4PF7/7ti6afi2gT2j0TCLqmoFX0gzIYNl8EHKSXqJZtk5yuVQmbpgoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=UN0yR38q; arc=none smtp.client-ip=209.85.128.52
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-49270caa5c0so25573275e9.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 05:52:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1782737548; x=1783342348; darn=vger.kernel.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0G67qeINcThvr9unh9wEXsyMZVKpN32CweVhhELeDY0=;
-        b=UN0yR38qZupuDkHVCk/7Hw6NhlRMoDYZxkuznyZtluTSIlKTliB3H2zAN5W3JN5XJX
-         3It6g+9/AbI5vhF67FeVYun6/SxR+ELAvUIyrGNVyVDX9Cp9uSTcYgQKpw0i0qTCdEjY
-         0v4gQkM6+lFYw4iGeDH9lsabTOVM+hb2TwUcNvEMY5tFOByUKy/0nNve8VdAc979Km95
-         LMN49H2i9WH1CD8N3CbrLJ+D4MPRrghzKy4PQSxZ7YQFhoaBXhLqf60Ej0qMfBumGDOr
-         woxDdWTrhQn78SGuCMFTyQWUG5isIoBuNnqxQPxqzcE3VIFgDJRaprR2ZofQFN4Vmuj5
-         bSQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782737548; x=1783342348;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=0G67qeINcThvr9unh9wEXsyMZVKpN32CweVhhELeDY0=;
-        b=e+LSX7WIQZK1wSHOA9nmJS1FlzsxTROzvBg6rSp6RMBBkPGpOMiyYHL8aZrrQ1KOSk
-         CXh/7JFq4wxXWMLkTFCf/x4OmIKtylINR0ip32Rclwcd97xSCrt4j9hHuUpTuo7DeBlC
-         dm877BBnmXo7UCUK+MB42S9ae9e8kKIajVfLnAnuEKDcoDkPjGxXdatxr3YTelpgVBoL
-         VK33+Nr4hQ3P4sFPjZzB7p74cvkLK2uIDhaJfxGS9TSeEaLROU+GnQNduClgtRZEj/5X
-         iRGxpODDnkn0tsNkSCzCuYC351ZEqE/Oh2x7KZw/eKFgpc6WcmdXLGkIBoKC2kPUf0Lp
-         5qJA==
-X-Forwarded-Encrypted: i=1; AFNElJ+L/2QFw44XqRGGDsxekLSArP6SqwNxStLqUnH3fta4nlJ7+8QXIQEcqpInfuMTyrw6vbHtsxsAizIm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyvcso2Cl2bV/+DIfLsdBuc9h1SGn+9W7r9KAtB1Invsjv/2OEk
-	buNRznCC1BTbxp+lq4pQY4bJ+cpz+NN1GMeJN0oXscVn9ofZjvZ19eaSXoTKM9tSSug=
-X-Gm-Gg: AfdE7cnDQvPX13CBaVZWVndFefFOjAu1dzsFmWobDhdsZ1IXYmaXzS1/yxFuAFd93ch
-	AxpPqnCigfxkesQX1RDvCWfwaiD/NHJnuN0XR4A0nRdx771BB7SJtwYxewvrcc77CC7kOhFyU0j
-	dtmzmu/jMxdtUZlak9Yk/dZbLbBtUdYL+fRKwFXznBLkVcQpEWLI8764RW7bVyqpgsm0feln92U
-	YsK/WJLyq4bk0qNVFRf/odWQUXw4JYHCfVP1Mf3owmalRdbv05kpr0MiAaRsCwnuSpDiInfpa1Q
-	cIsIZu4VDR2/4qKz+GDMkUfWoVGiCVFucy/Rm9fbaJ/bHtuvvFvQSn7e0hIF8GDHbBdweajvoYh
-	mD9Tn68gpbZvCUkBYPv/kLqo7kMchhXoz3RBPKBPIcSbFKdH4XYKPy2zsawebWwZqqfwUKkuapx
-	Dq9kaztsZeWSw=
-X-Received: by 2002:a05:600c:4f8f:b0:493:a75e:cf2e with SMTP id 5b1f17b1804b1-493a75ed171mr81258945e9.25.1782737548101;
-        Mon, 29 Jun 2026 05:52:28 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:1d21:f5d5:2d3c:23a7])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4926f94f213sm276984895e9.12.2026.06.29.05.52.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2026 05:52:27 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Junhui Liu <junhui.liu@pigmoral.tech>
-Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Chen-Yu Tsai
- <wens@kernel.org>,  Jernej Skrabec <jernej.skrabec@gmail.com>,  Samuel
- Holland <samuel@sholland.org>,  Philipp Zabel <p.zabel@pengutronix.de>,
-  Paul Walmsley <pjw@kernel.org>,  Palmer Dabbelt <palmer@dabbelt.com>,
-  Albert Ou <aou@eecs.berkeley.edu>,  Alexandre Ghiti <alex@ghiti.fr>,
-  Richard Cochran <richardcochran@gmail.com>,  linux-clk@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-  linux-sunxi@lists.linux.dev,  linux-kernel@vger.kernel.org,
-  linux-riscv@lists.infradead.org,  netdev@vger.kernel.org
-Subject: Re: [PATCH RFC 0/8] clk: sunxi-ng: Add support for Allwinner A733
- CCU and PRCM
-In-Reply-To: <20260310-a733-clk-v1-0-36b4e9b24457@pigmoral.tech> (Junhui Liu's
-	message of "Tue, 10 Mar 2026 16:33:53 +0800")
-References: <20260310-a733-clk-v1-0-36b4e9b24457@pigmoral.tech>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Mon, 29 Jun 2026 14:52:25 +0200
-Message-ID: <1jo6gta4qe.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1782737586; c=relaxed/simple;
+	bh=nU6Y3w5yolp1tZccfMy8JvrFaF26v+81615Huj7uD2Q=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=b+rXaPyb4z+gqGdGf5FwKV+hkhgsAKWcLELdnkKs1FoM6v9nfTsT0O2bcL88n52mDbg2l9FYK4tS85cmFfg5kCxV3+kcSHlBTk2wIRu7Ld5sOD9fzQovwbRQbMjOgq0eWlhEMfuae+tR5m+t3kdOU32fG4f4mHpmGcDvvkillTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KZUnlIKv; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DF981F000E9;
+	Mon, 29 Jun 2026 12:53:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782737585;
+	bh=9Xw8i+yyhVlqVUz3VSTmocg5vpjTfcW/Y7E+yAfAoWU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=KZUnlIKvsUesJXJRON9atvmntmBGnbDx4aecjV8rCgvCrELpb9DF68MpfEveltNyN
+	 Hh6NJmNZCAT8b8wU8wBd71yFzGabPebXa7dsaX9oOFmBLvD2i8e5/NJZ/iMHS807G0
+	 7X4WnxF3xN1GiiFfW8TpjVOiQ5n7+S/6WjNwfWzl9ACTmym1hhHcJQ07uvi2mJScTO
+	 Icr4cTkWd5YZ7UErrrEmqMudNYNOIOoDFMg85peLt7r/wU6Aqu0E/106ASPkcaq3mj
+	 b0A4e6Xk5yinOr17+AxqQNWjz+Q0wLam+ZkP+S6olfNW2hu3+YjqCU63l/oa09iUE3
+	 CEWQobL5rEi7Q==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: rtc: sun6i: add sun60i-a733 support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jerome Brunet" <jbrunet@baylibre.com>
+Cc: linux-sunxi@lists.linux.dev, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260629-a733-rtc-v2-1-7b72112784f8@baylibre.com>
+References: <20260629-a733-rtc-v2-0-7b72112784f8@baylibre.com>
+ <20260629-a733-rtc-v2-1-7b72112784f8@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 29 Jun 2026 12:53:04 +0000
+Message-Id: <20260629125305.0DF981F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317039-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:junhui.liu@pigmoral.tech,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:p.zabel@pengutronix.de,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:richardcochran@gmail.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:netdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	DMARC_NA(0.00)[baylibre.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,sholland.org,pengutronix.de,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-317040-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,baylibre.com:email,lists.linux.dev:replyto];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[baylibre.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jbrunet@baylibre.com,m:linux-sunxi@lists.linux.dev,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,pigmoral.tech:email,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 37BCD6DAA0E
+X-Rspamd-Queue-Id: D43236DABDB
 
-On mar. 10 mars 2026 at 16:33, Junhui Liu <junhui.liu@pigmoral.tech> wrote:
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The `clock-output-names` property has a global `maxItems: 3` constr=
+aint and a description limiting it to three clocks, which contradicts the n=
+ew clock outputs (IDs up to 11) added for the sun60i-a733-rtc.
+--
 
-> Add support for the main CCU and the PRCM module (R-CCU) found in the
-> Allwinner A733 SoC. The clock architecture of the A733 is an evolution
-> of the previous A523 design but introduces several significant changes.
->
-> One of the key changes is the introduction of a "pll-ref" clock that
-> normalizes the physical oscillator frequency (which can be 19.2MHz,
-> 24MHz, or 26MHz) into a consistent 24MHz reference for the entire clock
-> tree. Additionally, while the A733 inherits many module clock structures
-> from the A523, the MCU_CCU has been removed, and the overall clock tree
-> has been expanded to support more new functional units.
->
-> Also update the sunxi-ng SDM (Sigma-Delta Modulation) helper to support
-> a new dual-pattern register design. On the A733, the SDM enable bit has
-> been moved from the main PLL register to a second pattern register
-> (PATTERN1). The driver is updated to handle this register layout to
-> ensure accurate frequency synthesis for "pll-audio0".
->
-> This is marked as RFC because the parent clocks for several instances in
-> the main CCU are difficult to determine as the user manual provides
-> limited information on their specific clock sources. In these cases, the
-> implementation follows vendor practices and previous SoC designs,
-> generally defaulting to "hosc" where documentation is lacking. In
-> contrast, the bus clock gates in the PRCM (R-CCU) are explicitly defined
-> based on the Memory Map in the manual, which clearly associates each
-> module with its respective bus. Feedback or insights on these specific
-> clock parents would be greatly appreciated.
->
-> This functionally relies on the RTC series for the A733 SoC [1].
->
-> Link: https://lore.kernel.org/all/20260121-a733-rtc-v1-0-d359437f23a7@pigmoral.tech/ [1]
->
+commit a1565b632e372c724867216463a453c9d1600ad2
+Author: Jerome Brunet <jbrunet@baylibre.com>
 
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
+dt-bindings: rtc: sun6i: add sun60i-a733 support
+   =20
+Adds a new rtc compatible for the sun60i-a733 SoC and new IDs for the
+peripheral oscillator clock gates of this SoC.
 
-> ---
-> Junhui Liu (8):
->       dt-bindings: clk: sun60i-a733-ccu: Add allwinner A733 support
->       clk: sunxi-ng: sdm: Add dual patterns support
->       clk: sunxi-ng: a733: Add PRCM CCU
->       clk: sunxi-ng: a733: Add PLL clocks support
->       clk: sunxi-ng: a733: Add bus clocks support
->       clk: sunxi-ng: a733: Add mod clocks support
->       clk: sunxi-ng: a733: Add bus clock gates
->       clk: sunxi-ng: a733: Add reset lines
->
->  .../bindings/clock/allwinner,sun60i-a733-ccu.yaml  |  107 +
->  drivers/clk/sunxi-ng/Kconfig                       |   10 +
->  drivers/clk/sunxi-ng/Makefile                      |    4 +
->  drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c           |  276 +++
->  drivers/clk/sunxi-ng/ccu-sun60i-a733.c             | 2375 ++++++++++++++++++++
->  drivers/clk/sunxi-ng/ccu_sdm.c                     |   51 +-
->  drivers/clk/sunxi-ng/ccu_sdm.h                     |   32 +-
->  include/dt-bindings/clock/sun60i-a733-ccu.h        |  289 +++
->  include/dt-bindings/clock/sun60i-a733-r-ccu.h      |   39 +
->  include/dt-bindings/reset/sun60i-a733-ccu.h        |  131 ++
->  include/dt-bindings/reset/sun60i-a733-r-ccu.h      |   23 +
->  11 files changed, 3311 insertions(+), 26 deletions(-)
-> ---
-> base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-> change-id: 20260202-a733-clk-0d4fc00a9f9c
->
-> Best regards,
+> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rt=
+c.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> index 9df5cdb6f63f2..197a6f67b180a 100644
+> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> @@ -33,6 +33,7 @@ properties:
+>            - enum:
+>                - allwinner,sun20i-d1-rtc
+>                - allwinner,sun55i-a523-rtc
+> +              - allwinner,sun60i-a733-rtc
+>            - const: allwinner,sun50i-r329-rtc
 
--- 
-Jerome
+[ ... ]
+
+> diff --git a/include/dt-bindings/clock/sun6i-rtc.h b/include/dt-bindings/=
+clock/sun6i-rtc.h
+> index 3bd3aa3d57ce1..5132a393ca4b6 100644
+> --- a/include/dt-bindings/clock/sun6i-rtc.h
+> +++ b/include/dt-bindings/clock/sun6i-rtc.h
+> @@ -6,5 +6,9 @@
+>  #define CLK_OSC32K		0
+>  #define CLK_OSC32K_FANOUT	1
+>  #define CLK_IOSC		2
+> +#define CLK_HOSC_UFS		8
+> +#define CLK_HOSC_HDMI		9
+> +#define CLK_HOSC_SERDES0	10
+> +#define CLK_HOSC_SERDES1	11
+
+[Severity: Low]
+Will adding clock IDs up to 11 conflict with the existing clock-output-names
+constraint in allwinner,sun6i-a31-rtc.yaml?
+
+The clock-output-names property currently has a global maxItems constraint
+alongside its description:
+
+  clock-output-names:
+    minItems: 1
+    maxItems: 3
+    description:
+      The RTC provides up to three clocks
+
+If a device tree author attempts to define an array of clock-output-names
+to document all outputs for the allwinner,sun60i-a733-rtc node, won't it fa=
+il
+dt_binding_check validation because it exceeds the maximum allowed items?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260629-a733-rtc-v=
+2-0-7b72112784f8@baylibre.com?part=3D1
 
