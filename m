@@ -1,162 +1,236 @@
-Return-Path: <devicetree+bounces-316694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316696-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id W4uQCt4WQmoI0AkAu9opvQ
-	(envelope-from <devicetree+bounces-316694-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:55:26 +0200
+	id BxqBJCMXQmoj0AkAu9opvQ
+	(envelope-from <devicetree+bounces-316696-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:56:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CA806D699E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:55:25 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 054CC6D69F6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:56:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=KvB2MVwU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316694-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-316694-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=ew.tq-group.com header.s=default2602 header.b=BkwvXFAQ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316696-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316696-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ew.tq-group.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CA8BE3001CF4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 06:50:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E4CAC30237F1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 06:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6AEF38D016;
-	Mon, 29 Jun 2026 06:50:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15092D592D;
+	Mon, 29 Jun 2026 06:52:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7B6E2E0914
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 06:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 579F63A783F;
+	Mon, 29 Jun 2026 06:52:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782715856; cv=none; b=GdHCZK7gIgt+iEJQGzm/vJIIk10U9RSZ6rej3aEU6B1OeD82CcKbhIbuLtS8ROfpwz3LMpqjtkP80wbvOXAKY0eH8If4MwCuUEnlqUG5LzhSVAXQQlBeRJ4LE7pIGVyf0mH1PbUg/zxk+/W9wbXxI+1hAMNXpd5Kx2fSmunrMes=
+	t=1782715946; cv=none; b=QzL0WDIWZ8oyMa1m55UcNlialROIt+oLbKyoGf2HJT0G7uvrqhcEYWCaLD6NNUlzsIaHDxAzHkzwuIwP1OwAZHEqd2tFk75fp1z5KFY3BW9GjEFBmNkdefjfu0nIJvs7JMjScaA1WzK+A8dT7IBRYtnPO738mODuLW1qGotA9iI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782715856; c=relaxed/simple;
-	bh=17NXH42t3AUzjYrzvRVJCEr//2Wmn/+jp2aJYlj1xbk=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=okJ0+1PCwg1/bR6KM0i3yGtG13+UUZ5F3+8whqxYX98619Va/fqC1g0H5a5w9olR5seEFwdFnflvxN6Ma6y+t3MsdWOfLPMJdYfWqIJwcS8yQTOUuQhLPs+ZlaI/Jz7sYbfNeh3GQEIbdta0mXcURy/BzlHT0l7wkgpp6Gut0z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KvB2MVwU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25A9B1F00A3A;
-	Mon, 29 Jun 2026 06:50:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782715855;
-	bh=3DyKUUQKx0PGUqHICimL4I0hv8JoAZyQ6gahw+9je98=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=KvB2MVwUoNys6TLhOZSlgzTNLGPTW5G+hcebGxvIdFdQ7N94RROZhwUMQvoXCohZO
-	 j2Ilymo/16qvMCj1etWu8/FCrKnRuararR5UDYReNFtrkOz7Y9DKjNfCsjzR9anILe
-	 Cofka7d7MW7O21zaN/NfUMVl5F3zuy3gyawKHIkkIxE7URRMmxDJguNxlwGn1dTuJX
-	 9xrQZqPzQdSIqhVuN305Z95/48U3fzdhuxCDue+YHO1mJdJFYttGej3dC97OIvHkfC
-	 RCOyyerMQOAuE5TEFGT2MmT+3LuLCdo16omZeLSKnVcjJMswd/qpgDgsv3paF0nd4z
-	 GWKLeVE5mRkXw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] memory: ti-k3-fsas: Add TI FSS_FSAS driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Santhosh Kumar K" <s-k6@ti.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260629064228.860226-3-s-k6@ti.com>
-References: <20260629064228.860226-1-s-k6@ti.com>
- <20260629064228.860226-3-s-k6@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 29 Jun 2026 06:50:51 +0000
-Message-Id: <20260629065055.25A9B1F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1782715946; c=relaxed/simple;
+	bh=rm47+tpUCXXjsY0MFCWIxazlAwj+ph7QsUfZlbraD0k=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lGKAz4gfeih5Qzjn3I3d258EZjsRWGepf/Hjad5Usm6ChAFeQJDqZzQF8tomIzLTjQTJjEm2x78ykfUZWRHoXL+QSHUwxvDcWu+llR49xMFkT4RoSbW5VCdFe/a5ojdiBLdjAdcQ7hyyCncJBIyydQ2dHg8symz67JWRuQknW1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=BkwvXFAQ; arc=none smtp.client-ip=188.40.3.216
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Type:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=rtnYJeteQp4s1E1MicQfJts/ZAxcW/7K90s6vct7pZE=; b=BkwvXFAQ6smfdrg/nXRoimRlhb
+	q+XJB34lgmHXEC8Gc04TJb++TYjB5dpPnCgEjvkjZATQ7nKxqtAthdlz6+NwW+CiWh+gQsbkiNzkP
+	EGtoTvfpqcFbQH76bolFuh845Qm7/6bRu9PO7FgwXPyCwYpUtkPrYeCjKMTMlHtcPvJM3QDFRjOlX
+	LRz2BpOLtYOndWFxfD1aaEb/AdT4fMIeoWG8nTU3Z2Lm8Js1iK6Kc5sKh+V+WDG4H871/gc9dpTSa
+	0Kn2N5bryTAu9rosMW5+PA0sRjn5aSD20u50kMfWVHh9LTx0osU3EMex6taYd6y4QhrzTgA/EjlR5
+	32PgrGcA==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1we5ql-000KPh-1o;
+	Mon, 29 Jun 2026 08:52:11 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy06.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1we5qk-000Dff-0L;
+	Mon, 29 Jun 2026 08:52:10 +0200
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jacopo Mondi <jacopo@jmondi.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Jimmy Su <jimmy.su@intel.com>,
+ Matthias Fend <matthias.fend@emfend.at>,
+ Mikhail Rudenko <mike.rudenko@gmail.com>,
+ Daniel Scally <dan.scally@ideasonboard.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+ Sylvain Petinot <sylvain.petinot@foss.st.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Paul Elder <paul.elder@ideasonboard.com>,
+ Martin Kepplinger <martin.kepplinger@puri.sm>,
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+ Tommaso Merciai <tomm.merciai@gmail.com>,
+ Svyatoslav Ryhel <clamor95@gmail.com>,
+ Richard Acayan <mailingradian@gmail.com>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux@ew.tq-group.com, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>
+Subject:
+ Re: [PATCH v3 4/7] arm64: dts: freescale: Convert to new media orientation
+ definitions
+Date: Mon, 29 Jun 2026 08:52:08 +0200
+Message-ID: <2840219.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To:
+ <20260628-kbingham-orientation-v3-4-4ed92968aff8@ideasonboard.com>
+References:
+ <20260628-kbingham-orientation-v3-0-4ed92968aff8@ideasonboard.com>
+ <20260628-kbingham-orientation-v3-4-4ed92968aff8@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Virus-Scanned: Clear (ClamAV 1.4.3/28045/Sun Jun 28 08:26:16 2026)
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-316696-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[44];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316694-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,jmondi.org,linux.intel.com,intel.com,emfend.at,gmail.com,ideasonboard.com,collabora.com,foss.st.com,puri.sm,theobroma-systems.com,nvidia.com,nxp.com,pengutronix.de,glider.be,sntech.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jacopo@jmondi.org,m:sakari.ailus@linux.intel.com,m:jimmy.su@intel.com,m:matthias.fend@emfend.at,m:mike.rudenko@gmail.com,m:dan.scally@ideasonboard.com,m:jacopo.mondi@ideasonboard.com,m:michael.riesch@collabora.com,m:benjamin.mugnier@foss.st.com,m:sylvain.petinot@foss.st.com,m:laurent.pinchart@ideasonboard.com,m:paul.elder@ideasonboard.com,m:martin.kepplinger@puri.sm,m:quentin.schulz@theobroma-systems.com,m:tomm.merciai@gmail.com,m:clamor95@gmail.com,m:mailingradian@gmail.com,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:heiko@sntech.de,m:kieran.bingham@ideasonboard.com,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org
+ ,m:linux@ew.tq-group.com,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:mikerudenko@gmail.com,m:tommmerciai@gmail.com,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:s-k6@ti.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,smtp.kernel.org:mid,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ew.tq-group.com:dkim,ew.tq-group.com:from_mime,tq-group.com:url,tq-group.com:email,vger.kernel.org:from_smtp,steina-w:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6CA806D699E
+X-Rspamd-Queue-Id: 054CC6D69F6
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] Incorrect wrapper macro `pm_sleep_ptr()` used for the `dev_pm_ops` =
-structure pointer.
---
+Hi Kieran,
 
-commit be06c2a7e885af5ffba7e5ddc137bd7ba0758747
-Author: Santhosh Kumar K <s-k6@ti.com>
-memory: ti-k3-fsas: Add TI FSS_FSAS driver
+thanks for the patch.
 
-This commit adds a new platform driver for the TI K3 Flash Subsystem
-Application Subsystem (FSS_FSAS). It configures the SYSCONFIG register to
-disable OSPI XIP prefetch, preventing DMA data corruption.
+Am Sonntag, 28. Juni 2026, 12:22:19 CEST schrieb Kieran Bingham:
+> The orientation property for video interface devices now has definitions
+> to prevent hardcoded integer values for the enum options.
+>=20
+> Update the users throughout the freescale/NXP device trees to use the new
+> definitions.
+>=20
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
 
-> diff --git a/drivers/memory/ti-k3-fsas.c b/drivers/memory/ti-k3-fsas.c
-> new file mode 100644
-> index 0000000000000..9ff109b8d96fd
-> --- /dev/null
-> +++ b/drivers/memory/ti-k3-fsas.c
-[ ... ]
-> +static DEFINE_SIMPLE_DEV_PM_OPS(k3_fsas_pm_ops, NULL, k3_fsas_resume);
-> +
-> +static const struct of_device_id k3_fsas_of_match[] =3D {
-> +	{ .compatible =3D "ti,am62a-fsas" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, k3_fsas_of_match);
-> +
-> +static struct platform_driver k3_fsas_driver =3D {
-> +	.probe =3D k3_fsas_probe,
-> +	.driver =3D {
-> +		.name		=3D "k3-fsas",
-> +		.of_match_table	=3D k3_fsas_of_match,
-> +		.pm		=3D pm_sleep_ptr(&k3_fsas_pm_ops),
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-[Severity: Low]
-Should this use pm_ptr() instead of pm_sleep_ptr() for the dev_pm_ops
-structure pointer?
+> ---
+>  .../boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314-imx219.dtso      |=
+ 3 ++-
+>  arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi                      |=
+ 3 ++-
+>  2 files changed, 4 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314=
+=2Dimx219.dtso b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras3=
+14-imx219.dtso
+> index e5a2b3780215..7b44ae0f19b2 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314-imx219=
+=2Edtso
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314-imx219=
+=2Edtso
+> @@ -9,6 +9,7 @@
+> =20
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/media/video-interfaces.h>
+> +#include <dt-bindings/media/video-interface-devices.h>
+> =20
+>  #include "imx8mp-pinfunc.h"
+> =20
+> @@ -47,7 +48,7 @@ camera@10 {
+>  		VANA-supply =3D <&reg_cam>;
+>  		VDIG-supply =3D <&reg_cam>;
+>  		VDDL-supply =3D <&reg_cam>;
+> -		orientation =3D <2>;
+> +		orientation =3D <MEDIA_ORIENTATION_EXTERNAL>;
+>  		rotation =3D <0>;
+> =20
+>  		port {
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm=
+64/boot/dts/freescale/imx8mq-librem5.dtsi
+> index f5d529c5baf3..178cfad93483 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+> @@ -8,6 +8,7 @@
+>  #include "dt-bindings/input/input.h"
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/media/video-interface-devices.h>
+>  #include "dt-bindings/pwm/pwm.h"
+>  #include "dt-bindings/usb/pd.h"
+>  #include "imx8mq.dtsi"
+> @@ -1116,7 +1117,7 @@ camera_front: camera@20 {
+>  		vddd-supply =3D <&reg_vcam_1v2>;
+>  		vddio-supply =3D <&reg_csi_1v8>;
+>  		rotation =3D <90>;
+> -		orientation =3D <0>;
+> +		orientation =3D <MEDIA_ORIENTATION_FRONT>;
+> =20
+>  		port {
+>  			camera1_ep: endpoint {
+>=20
+>=20
 
-The PM subsystem guidelines specify that pm_sleep_ptr() is intended for the
-individual sleep callbacks, while pm_ptr() should be used for the dev_pm_ops
-structure pointer itself. While this doesn't cause immediate issues since
-the driver currently only uses sleep callbacks, using pm_ptr() here ensures
-consistency with standard PM usage and prevents issues if runtime PM
-callbacks are added later.
 
-> +	},
-> +};
-> +module_platform_driver(k3_fsas_driver);
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260629064228.8602=
-26-1-s-k6@ti.com?part=3D2
+
 
