@@ -1,184 +1,222 @@
-Return-Path: <devicetree+bounces-317169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317171-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SUb8F3yXQmoq+QkAu9opvQ
-	(envelope-from <devicetree+bounces-317169-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:04:12 +0200
+	id aneEFzOWQmrG+AkAu9opvQ
+	(envelope-from <devicetree+bounces-317171-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:58:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE7CD6DD180
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 18:04:11 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7D616DD066
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 17:58:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=imgtec.com header.s=dk201812 header.b=RNeNIY8y;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317169-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317169-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=imgtec.com;
+	dkim=pass header.d=etehtsea.me header.s=sig1 header.b=RsAH5fg1;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317171-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317171-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0485F32296FB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:48:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 716B03140F94
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4AC3423152;
-	Mon, 29 Jun 2026 15:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8BB042B75A;
+	Mon, 29 Jun 2026 15:48:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
+Received: from outbound.st.icloud.com (p-east2-cluster1-host7-snip4-10.eps.apple.com [57.103.76.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 271F23B3884;
-	Mon, 29 Jun 2026 15:48:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24B9A429806
+	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 15:48:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782748086; cv=none; b=s8A/O+XlcOOCt/2B1aGYSKa8cn8M3M2k1yGkH1Mzepyfq1Swhb0xXqRvcs7gMvZXvtCYqSNhhhHnQu29EQ26zIYDbNAhBcOuaJak24E0wrkioL6G/aUJcL1/KNYL0EEksKh8aGq4oK3nqe9/NmMnUHGfyvKpW1DjcrGJN4YjB3A=
+	t=1782748113; cv=none; b=FwYfsc9KyL9buQTMDR8Gb601BEfG1LeQNg3xsy4sZ+AnvdfiQA6wsK+ompaLoto7tRs5bp1DZalPpAelyrT3Cq4U9blc8vVnOkohH1e1AAd2tO3lh65t5znJlci42Ipy/LzOwGpGLgttOFc5vZD9scJIuxW5ykIbTSJuf8OJAyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782748086; c=relaxed/simple;
-	bh=6YBVrSMUXze77+Xd/FL5lyc2twQbOub7RcX+7ZKQHSU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=P1+mhOYqnIGG6kmbvWHymNCmoiQXB8l+MZ6drkoaYXxRDvDY3fgM9hcu4OufYg5MkKa1I5eWDDP//gCSFWVcgSuAhDSjVvHMxSt0vI4xVGsUK6e/7u99avx/Yxzx74R7w0J/GcUfTLwfr/aTZcJnBVKf44MTPIPczDXdcjAo0CM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=RNeNIY8y; arc=none smtp.client-ip=185.132.180.163
-Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
-	by mx07-00376f01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65TATKNC3000395;
-	Mon, 29 Jun 2026 16:47:59 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=dk201812; bh=D
-	ijOK/LXcfqczJQhyEEnk5RIdPK7dRxz0Uv6YYn+vmI=; b=RNeNIY8yoZj4j+ltA
-	5GaJL0LZRMiU9Udl9A445Mqi2gY1JytjIowJSASUlTLcIaYBuRHKK57NphAG1N21
-	A7smo9/f3kmka56QfTwHOQkmaRBCZFGvz2gcLchzimquhOl6glkGSV3KKUuMmWDY
-	cajbMJpA2p+DdcmqHZvmUsUDXFcVVSMzfR0pB5zBei408MCuDmDc0L+SL0MUU109
-	H5y9OvYl1CQxBqu1ft/wfVFctWKeiqs00CtYfG7B1M2SOIKBUNViuHWOReKZKR0R
-	k20DsvURkhH7iOfZONW1VzoAXDHlHyDxCz70ZutXyQ1g6/oQDUf74JrdMs8k3gtE
-	A335g==
-Received: from hhmail01.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
-	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 4f26kuj3rr-3
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jun 2026 16:47:59 +0100 (BST)
-Received: from [127.0.1.1] (172.25.6.219) by HHMAIL01.hh.imgtec.org
- (10.100.10.19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.43; Mon, 29 Jun
- 2026 16:47:50 +0100
-From: Matt Coster <matt.coster@imgtec.com>
-Date: Mon, 29 Jun 2026 16:47:30 +0100
-Subject: [PATCH 2/2] dt-bindings: gpu: img,powervr-*: Remove Matt Coster as
- maintainer
+	s=arc-20240116; t=1782748113; c=relaxed/simple;
+	bh=nt1xidh77PLL11Xy5ZZwkKmLhdJucIs7UxpbLbnci9s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AImnsAjglUAh/75FWoxvq3+Iq52uNtP2te2zAjvYDawjvxTwItzwynTeOpGgFHcFMFPonkOcC85+LWmO9g33Ui1hZI7HFB/ud9GTIHXteI7pnJQVMCRG8fkjkHhDop2qS3yTwKBeG6029unBYpirWSpZ5kERl/ZllFYRPujBj/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=etehtsea.me; spf=pass smtp.mailfrom=etehtsea.me; dkim=pass (2048-bit key) header.d=etehtsea.me header.i=@etehtsea.me header.b=RsAH5fg1; arc=none smtp.client-ip=57.103.76.73
+Received: from outbound.st.icloud.com (unknown [127.0.0.2])
+	by p00-icloudmta-asmtp-us-east-1a-60-percent-3 (Postfix) with ESMTPS id E02B61801BD9;
+	Mon, 29 Jun 2026 15:48:27 +0000 (UTC)
+X-ICL-RepId: 019f1411-5409-70ad-beef-2c032225d4c7
+X-ICL-Out-Info: HUtFAUMHWwJACUgATUQeDx5WFlZNRAJCTQtJBEMGXAVeDU8dXA9fEhVdRV4MXgdyFU0dWxlEDlNeVB0TC1NWVwRcEEceUgocHVxYQQ4KWgJQUR1fAgoERwRbF0YDU0VBBBcRUAFYHlZeWhdeTUcfQE1iSQFaGVscQBdKbk1TDw8VTR1bGUQOU15UHRMAXg8PTAtIAVsHXQBJCE0HVQZZHEkJTgVABkZfEVAUcwhDDloESh1SQ1oODFBNAUMICghHA00XXjJTBF8RUBY=
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=etehtsea.me; s=sig1; t=1782748111; x=1785340111; bh=oGgt+abRxX+I/sSsG1kHOzXeO7wMvb/snFF6mT8Ykjs=; h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme; b=RsAH5fg1xYTnP1GR+ysLaIflE+liLVqChI2Sm5+R8BAtSWX2O7DOqCur+PzujOSJqUMFuMFaGsM8nVTH0Bx0MhMFHq3vDDL/MWva5gE4K+2Iuf58Dsm2UwoP9B6fk8zl4m5tuU++H4S8LpI8tRy0VW093WK7WaXNHy0IqWdATkU0W14viutgA8Ht1uO3FcBiBCrj1uwiLNyIPEpImW11fSlK34Bg7b4hK2qChyu074uUtPyZGuZxvjx4M3Nhz5xJRLtG4usF/B74c6QjHQRZkOrEPwh3Jxvex6rprHG8v9OdHdXPTj3+2SpJOUpWUvjd8H+dBXT4yN+rwRM4dFiWRQ==
+mail-alias-created-date: 1634905887181
+Received: from localhost (unknown [17.42.251.67])
+	by p00-icloudmta-asmtp-us-east-1a-60-percent-3 (Postfix) with ESMTPSA id 6A6FC1800218;
+	Mon, 29 Jun 2026 15:48:25 +0000 (UTC)
+From: Konstantin Shabanov <mail@etehtsea.me>
+To: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	valentin.manea@mrs.ro,
+	Konstantin Shabanov <mail@etehtsea.me>
+Subject: [PATCH v6 0/4] Introduce HONOR MagicBook Art 14 Snapdragon device tree
+Date: Mon, 29 Jun 2026 22:48:08 +0700
+Message-ID: <20260629154812.9066-1-mail@etehtsea.me>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260629-goodbye-v1-2-3bab53a80c53@imgtec.com>
-References: <20260629-goodbye-v1-0-3bab53a80c53@imgtec.com>
-In-Reply-To: <20260629-goodbye-v1-0-3bab53a80c53@imgtec.com>
-To: <imagination@lists.freedesktop.org>
-CC: Matt Coster <opensource@mtcoster.net>,
-        Alessio Belle
-	<alessio.belle@imgtec.com>,
-        Luigi Santivetti <luigi.santivetti@imgtec.com>,
-        Frank Binns <frank.binns@imgtec.com>,
-        Brajesh Gupta
-	<brajesh.gupta@imgtec.com>,
-        Alexandru Dadu <alexandru.dadu@imgtec.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Matt Coster <opensource@mtcoster.net>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1584;
- i=matt.coster@imgtec.com; h=from:subject:message-id;
- bh=6YBVrSMUXze77+Xd/FL5lyc2twQbOub7RcX+7ZKQHSU=;
- b=owGbwMvMwCVWuUfy8817WRsYT6slMWQ5TV768r/3Vk2ZoMo7LTNlV7vPfqMTZdKgl/34wA/ZY
- H61gDP8HaUsDGJcDLJiiiw7VliuUPujpiVx41cxzBxWJpAhDFycAjARp6uMDCtO35xYWNQ6o1xW
- TEFrdq9DF8vZcs4FH2ucpp6oz7m3vp+RoYW1/LlmWeRRn2Xvzt1af9MmPGVOqcGhs0uq81sPOIo
- u4QAA
-X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
- fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
-X-Authority-Analysis: v=2.4 cv=epXvCIpX c=1 sm=1 tr=0 ts=6a4293af cx=c_pps
- a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17
- a=UteWFfMXGp8A:10 a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=kQ-hrUj2-E3RCbRHssb7:22 a=7RYWX5rxfSByPNLylY2M:22
- a=gEfo2CItAAAA:8 a=r_1tXGB3AAAA:8 a=8QhHSuk9faHXqeo9-7sA:9 a=QEXdDO2ut3YA:10
- a=sptkURWiP4Gy88Gu7hUp:22 a=t8nPyN_e6usw4ciXM-Pk:22
-X-Proofpoint-ORIG-GUID: Q10Qk_iM9ovGIHtbfURw8_mlCk8m8lPG
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI5MDEzMSBTYWx0ZWRfX3vGlLiiSVy6P
- 4GpCBHFWe8jQUOxZ5igqi2YEyKwhCHdCauq7vDhmKpwrLNnGYIq0teFEjiqVMxo/1JIizKBJU+6
- J0kqeWYMGhHBOvKhGA1pZeEs8enDlws57CghA+5hxFboviF6Jb4CW7ZnQ4J8jcrBgAkekK4VCKo
- X/kWZY6Msf/5L89CehGTp1Xvb8iiqZ1A6BA2vSv7o6mL7AalNTsSP7bopplnBqEQemCeFjKRNzy
- EeUhlL7iuLvrQSNw6hJJ1L2og1+MxSAiTyBQ9xuuBT2v5jO35yFqPnOZO/+k9bdXpvBXhJxHBlz
- PA3I5EYqyZZm1P3FvxR2HtoA6oaeZxNfUjo3/HJx8xDU/npTAR9Az0ww81wedEFxI2SLYJZQy30
- G3CB3NUioVO4UUB0LTRTy4Bfh/iKbDhNp/x3/tC53TnFhBN0W11q0SBK5lqUzhW6q5MNWQOf6pt
- DivJLr6FNJ3bET880Bg==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI5MDEzMSBTYWx0ZWRfX/fyGBTSOF7Sx
- Ta5aREdNzQ7qhJQNxxSZKjpUhPSyFeX9jJ35J9C68bo6vwscNDgF4UbMTT0GV3p2TwyEqhU3gWG
- f3315imdxr4die+GuLWfuzw6wZPZd0o=
-X-Proofpoint-GUID: Q10Qk_iM9ovGIHtbfURw8_mlCk8m8lPG
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI5MDEzMiBTYWx0ZWRfX3q6nzKfsh+CE
+ Do1Wk4brdmhrQ7IYRzPjta4+oQcNrR7/goN3ImHbWH2lXsLVG7JS/gfZbDUdQLr6KolKmdYMGyP
+ 9kahfeHMfqfkVzRLvBxS8IQ8Ims/R6VTxBcsGxnSoMaPc9B3gZ8B3PAyxf070gi1TgoXksZ53eb
+ REmW44XOe/eIrKQwrJggPeZtCWt+fnHYP3cE1kTErpP+0pVz3mqrv5qSL2xLBa09p5HZIWK5NiS
+ lO/c6/1nUlTXQKVwCFAFvES2RahHXa80jDxwru14QYUDB3BbCpSRgovFMcle9RhfPL0LU4qGhYN
+ JzBgcd9h02CZLZFsNnK
+X-Proofpoint-ORIG-GUID: e3dYQX4_p1C13rU1JO27WYDNglv68xii
+X-Proofpoint-GUID: e3dYQX4_p1C13rU1JO27WYDNglv68xii
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[imgtec.com,none];
-	R_DKIM_ALLOW(-0.20)[imgtec.com:s=dk201812];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[etehtsea.me:s=sig1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317169-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:imagination@lists.freedesktop.org,m:opensource@mtcoster.net,m:alessio.belle@imgtec.com,m:luigi.santivetti@imgtec.com,m:frank.binns@imgtec.com,m:brajesh.gupta@imgtec.com,m:alexandru.dadu@imgtec.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[imgtec.com:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[matt.coster@imgtec.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-317171-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER(0.00)[mail@etehtsea.me,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:valentin.manea@mrs.ro,m:mail@etehtsea.me,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DMARC_NA(0.00)[etehtsea.me];
+	DKIM_TRACE(0.00)[etehtsea.me:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[matt.coster@imgtec.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mail@etehtsea.me,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,devicetree.org:url]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,etehtsea.me:dkim,etehtsea.me:mid,etehtsea.me:from_mime,linux-hardware.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CE7CD6DD180
+X-Rspamd-Queue-Id: E7D616DD066
 
-I'm leaving Imagination; remove myself as a maintainer. A separate patch
-leaves a personal forwarding address in the .mailmap.
+Introduce support for the HONOR MagicBook Art 14 Snapdragon laptop.
+This version is based on the initial work by Kirill A. Korinsky [1]
+and Valentin Manea [2].
 
-Signed-off-by: Matt Coster <matt.coster@imgtec.com>
+I'm using it with two external displays connected to the HDMI port and
+DP<->USB-C (over external hub) as a daily driver.
+
+eDP support is disabled and hopefully will be addressed in
+the follow-up [1]. I can confirm that the RFC patch by the link fixes
+output corruption (thanks Valentin!). Though, I have a suspicion that
+the issue can be resolved w/o introducing the panel driver as the very
+same panel seems to work out of the box in x86 version of
+the laptop [7].
+
+Another caveat is USB-C orientation as I could boot from an external SSD
+only with specific cable orientation. I've tried the patch [8] but got
+some instabilities (last checked before v4 submission) , so put it
+out of scope for the initial submission.
+
+Supported:
+
+- Sound (with alsa-ucm-conf config [5])
+  - Speakers
+  - Headphone jack
+- Bluetooth
+- Battery
+- HDMI
+- DP over USB-C
+- Touchpad
+- Keyboard (with backlight)
+- Touchscreen
+- WiFi
+- USB-C ports
+- USB-A port
+- UFS
+- H/W accel
+
+Untested:
+
+- Camera
+- Fingerprint reader
+- Sleep/Suspend
+
+Disabled:
+
+- eDP
+
+ACPI dumps are available in aarch64-laptops repo [3].
+HWids in dtbloader repo [4].
+
+[1]: https://lore.kernel.org/all/871px910m1.wl-kirill@korins.ky/
+[2]: https://github.com/vamanea/linux-magicbook/blob/qcom-x1e-7.0/arch/arm64/boot/dts/qcom/x1e80100-honor-magicbook-art-14.dts
+[3]: https://github.com/aarch64-laptops/build/tree/master/misc/honor-magicbook-art-14/acpi
+[4]: https://github.com/TravMurav/dtbloader/blob/main/src/devices/honor_magicbook_art_14.c
+[5]: https://github.com/alsa-project/alsa-ucm-conf/pull/755
+[6]: https://lore.kernel.org/linux-arm-msm/2095cb86-6729-41f3-a0f3-b806d6acafd3@mrs.ro/
+[7]: https://linux-hardware.org/?id=eisa:edo-edo4179
+[8]: https://github.com/vamanea/linux-magicbook/commit/b855efb02268677d84dac4b9e27b1c5c9425d81d.patch
 ---
- Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml | 1 -
- Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml   | 1 -
- 2 files changed, 2 deletions(-)
+Changes in v6:
+- Reordered some more nodes
+- Fixed indentation
+- Declared missing phys to usb_mp
+- Link to v5: https://lore.kernel.org/linux-arm-msm/20260628172640.23167-1-mail@etehtsea.me
 
-diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-index 91e4ff61b394..a6bccb600a57 100644
---- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-+++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-@@ -8,7 +8,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Imagination Technologies PowerVR and IMG Rogue GPUs
- 
- maintainers:
--  - Matt Coster <matt.coster@imgtec.com>
-   - Alessio Belle <alessio.belle@imgtec.com>
-   - Luigi Santivetti <luigi.santivetti@imgtec.com>
- 
-diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml
-index 3e7df7344430..58b799b8e96e 100644
---- a/Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml
-+++ b/Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml
-@@ -9,7 +9,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Imagination Technologies PowerVR SGX GPUs
- 
- maintainers:
--  - Matt Coster <matt.coster@imgtec.com>
-   - Alessio Belle <alessio.belle@imgtec.com>
-   - Luigi Santivetti <luigi.santivetti@imgtec.com>
- 
+Changes in v5:
+- Added hdmi-bridge definition compatible with simple-bridge
+- Link to v4: https://lore.kernel.org/linux-arm-msm/20260628094031.54452-1-mail@etehtsea.me
 
--- 
-2.48.1
+Changes in v4:
+- Dropped output-foo properties from TLMM pins
+- Sorted pins by their index
+- Dropped data-lanes from mdss_dpX to use the default (4-lane)
+- Added a space before the opening bracket in the comment
+- Link to v3: https://lore.kernel.org/linux-arm-msm/20260620175210.19563-1-mail@etehtsea.me
 
+Changes in v3:
+- Update sound model to the board's name
+- Dropped unnecessary output-foo properties as they are controlled by the driver
+- Reordered properties alphabetically where needed
+- Updated mdss_dp0_out from 2 to 4 data lanes
+- Dropped extraneous USB related comments
+- Link to v2: https://lore.kernel.org/linux-arm-msm/20260515172926.16597-1-mail@etehtsea.me
+
+Changes in v2:
+- Disabled eDP;
+- Dropped displayport dai links (they weren't tested);
+- Dropped SBU MUXes as they make DP over USB-C unreliable;
+- Link to v1: https://lore.kernel.org/linux-arm-msm/20260501155612.5490-1-mail@etehtsea.me
+---
+Konstantin Shabanov (4):
+  dt-bindings: vendor-prefixes: Add HONOR
+  dt-bindings: arm: qcom: Add HONOR MagicBook Art 14
+  arm64: dts: qcom: Add HONOR MagicBook Art 14 device tree
+  firmware: qcom: scm: Allow QSEECOM on Honor Magicbook Art 14
+
+ .../devicetree/bindings/arm/qcom.yaml         |    1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ arch/arm64/boot/dts/qcom/Makefile             |    2 +
+ .../qcom/x1e80100-honor-magicbook-art-14.dts  | 1341 +++++++++++++++++
+ drivers/firmware/qcom/qcom_scm.c              |    1 +
+ 5 files changed, 1347 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-honor-magicbook-art-14.dts
+
+
+base-commit: 4edcdefd4083ae04b1a5656f4be6cd83ae919ef4
+--
+2.54.0
 
