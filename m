@@ -1,214 +1,204 @@
-Return-Path: <devicetree+bounces-317061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317062-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kU6kLaJ6QmrN8AkAu9opvQ
-	(envelope-from <devicetree+bounces-317061-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:01:06 +0200
+	id pbCfHRF7Qmr+8AkAu9opvQ
+	(envelope-from <devicetree+bounces-317062-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:02:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 600FF6DBAC5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:01:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BBA96DBB00
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 16:02:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=IQxSl2C5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317061-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317061-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=BAUHus22;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317062-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317062-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2CAEE30DB79A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 13:32:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A166330882D2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 13:36:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E47C81C8604;
-	Mon, 29 Jun 2026 13:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEB8F21D00A;
+	Mon, 29 Jun 2026 13:36:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2124185B48;
-	Mon, 29 Jun 2026 13:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D37BE20D4FF
+	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 13:35:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782739975; cv=none; b=nUZpXeH/7Duqlzd4VcAymLvdiqvk65mlJqrMjcptGmzhIBWm1UWw+j6FepMlKdgVzuJPzeF11xvTGjH85E2RJfnbZyRa0xvMoPOGKQvAxP4b5ZA7Mub3UlWGm6G0P+orTvSz0ldvWNAKyZP6T/Pqd/cGeTkQWxOpTWQdoJ963TU=
+	t=1782740161; cv=none; b=Gb6VkFhnSXHPzhe9+GLiysAPv7J4Twt1O3FyuyM18qhKQQv6GwtVix4hb4qEtZDyuwM21BeOr8tk4e8URSKg/Dys+yTDSwY6iIPvkAaEjHgvoPl39TTRRkqt5XcP+uGsRLq3m6NGHd989Zz8hdcJ04KexrVqJ3ozbTEbKX8/E/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782739975; c=relaxed/simple;
-	bh=8VTsBeJsTItTrYLIla5gsOdK1SUroginizbkezRNh2w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=helZ+9AG34QhiQEPr1ATSU5Qj/Y0XNCqcupBDct3oKMrs+wllRctCmRCVYT5tqdWRlxgJxTakGdyWfa4J6SjT5CU7lhrCYLHjaZ6u2jCn+pjCqx4w/93fpgxif/e1gnNtLDReU1esdTEIzQA/vEgdt4HmmC2RbNuMWLfZ2oiD7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IQxSl2C5; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EF3F1F000E9;
-	Mon, 29 Jun 2026 13:32:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782739974;
-	bh=Ah5EDiHoXZZ+lJdmyeIH71Txk5rReWMRYVm4i/71Zto=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=IQxSl2C5ZVoL+RZJnQ3IGrU4zyMNjh1eQY3r2zP0WlKD7IATkcPbK7dfca6hsG4pS
-	 pxjIWksqD+fcsHFRVIPvbQ6FTsyowM/bEaqgt+NVPjJCSiRYd+l6crhjRUhImCH19w
-	 9I6J+a/uYOHnEzIIuT7pFCJk295i8ji9aSw6zH/6ougbdQwIKenkRyWE2agDpYPaZd
-	 WexRZ5Gk4UluaTfonEeEXYmc+VEBKlpLdLb7mKSr3gxNOyytLSeGUpSOGGrljN6vhe
-	 shavK04GKdJYbw9MOmNjGQJwg2mstrjuZDbIHCHdSSIKzM03CI/PHPFeooC9mLYtZ7
-	 stxgnBRbClUQQ==
-Date: Mon, 29 Jun 2026 08:32:53 -0500
-From: Rob Herring <robh@kernel.org>
-To: chancel.liu@oss.nxp.com
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, Frank.Li@nxp.com,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: connector: Add fsl,aud-io-slot
- binding
-Message-ID: <20260629133253.GA2593312-robh@kernel.org>
-References: <20260629074734.3643227-1-chancel.liu@oss.nxp.com>
- <20260629074734.3643227-2-chancel.liu@oss.nxp.com>
+	s=arc-20240116; t=1782740161; c=relaxed/simple;
+	bh=zqrAv4ptgcQDDabtUqrMSNTpUU2PxpRKSgX2iLRPyeM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WYjRs1G8v5jufXiXmO2gLZi84fahBDBdrgB8/9PASXUG/izhha2faBCcwkoWBfRSif7u9Glj2JW16+H8IfEKmwhgh8lwCF/moPs5PpXx6/bKuzitKMiD06NFfZCjCjIRmwo4riQM0nu7vyozWPKxfqlE2kEKvu/0H7f+szM1sjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BAUHus22; arc=none smtp.client-ip=209.85.128.41
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4926f8e02e8so20225665e9.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 06:35:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782740158; x=1783344958; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=RBM+1nAZz4BwsUG4gfSKzLFy6PeoM2OFZ8wfEYkLDpg=;
+        b=BAUHus22URUgc6vBRNzRs52RNxaC46SCFKUYBEJQsgAjvynGGvuQ/Fw55zKg3PHD77
+         I+iCBcGT1VPTj9VHFPu2QRkMOLGomEf82qzwoPhWoosFuMvv+JJJ0R3WGJ2uI4eH2KUl
+         jWx+jWZaQm/S9cuynT5/Hgg3BkSfgyzkpUEHcE1c5soMAoILr1Kq7aVqkg+tQzJdS2Q5
+         qgCKBjYX6/elDsrM08FW1ok5oj3KzayS+JBFvZq7L2vPTKyxWx1SWY7+TLjcvRN2+lb0
+         Zu/FuWy974mdZRq8QBzNtJo8WyeDO3hZtp/CopNb2yZrUBhqaokXZMeuNhvyx52d6/vf
+         YvMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782740158; x=1783344958;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RBM+1nAZz4BwsUG4gfSKzLFy6PeoM2OFZ8wfEYkLDpg=;
+        b=XC9/y8hu5m0158V7TnlGxyd7vsNwfLKPl6/TSTHTxUNOV6/Mtn3Ga+9ppwiTnyXsPX
+         VWP2kv7X8zkn6EgI4AKMHMdNj8y31ORDCz7bBBUDz9Fe/S75OUt5JQiv9u63IH+ejuhS
+         RHaAgGlL5O0ymEsTkbAPpdv77/f1yklO/mYXjefqfkiqjnxJwkV04THCzYYJ+vBq8hH5
+         N/Plhc4tPolpjFfkZjYXemf636RB55wHUWJYwHE0q+Nxa3nSDcdHP7HhCEvdI9PjbShO
+         D1O8FP1WGPyxcs2pYnjurb+tAjjR+Bpb3S0b9kVf79s9FZLLZ0D8omEcWz6abPZJ8w4B
+         FZXw==
+X-Forwarded-Encrypted: i=1; AFNElJ82L4+roTzcLV8JwR6AoYsxYBFDt8WqT/dNBRPWOEpRmzDT0IXWuCQldw47Z3zAHWGiaH2tq6saP2YT@vger.kernel.org
+X-Gm-Message-State: AOJu0YziZonhhMREwsK+C/youeLYsipf5J/qa55iPJNcEMgD/JYqi5Nh
+	dnGUDaDu4NhrjOffEkvWrVSPr20NEkuAA9MDR5XHNd5K2w86GqPc9PKW
+X-Gm-Gg: AfdE7clRM6GqF5UKWiXE7M11soZ11q0Hu/1FJeqYakq4xOH1vV8ADNtjwtTFF+zSoNN
+	z5J+G41n86kpSn9eYQxfbHvE1fV2dUNvQ6EZJQaRLd55tJvBz71grKInISf8IpnlwSNXpy1Xuuy
+	nRg7Y1XE3xbCO8ng3yO4e8GbV2UypU/zu2SXVPmCbRGTFkqY1gQz1NHIpENTujW1tFD3WO89FNg
+	ii3TAU+ViMOj5yhGt1eS5SiTct5M42yUatm4L8jUHl17thgNVukghfjnu60eaBOhSDqt/YAWARC
+	SpaLG+An0JPFdOzU2oUVApSQpCW4PgWvG7FJyUZZc4t+Oih+9JelAAXws2fFprQImMvhNQUUgqW
+	3nliFdRb6LywfmihbH33R9CtCi7tLhgVblY/vE9o41VZSU/sgAr+o0n9tftSbJVmMwJYX2VTqNF
+	On7KGNajss7jRUmyG03Dwr0jNQy/cdj11y9xEyfkzj7RoOX0bQMiEfqk8p4inEfqkw/MKArGO2R
+	gjOYGzL
+X-Received: by 2002:a05:600c:524e:b0:493:b2c1:b302 with SMTP id 5b1f17b1804b1-493b2c1b445mr34652035e9.16.1782740157956;
+        Mon, 29 Jun 2026 06:35:57 -0700 (PDT)
+Received: from [10.128.11.240] (195-23-151-163.net.novis.pt. [195.23.151.163])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47327c47122sm13954850f8f.34.2026.06.29.06.35.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Jun 2026 06:35:57 -0700 (PDT)
+Sender: Julian Braha <julian.braha@gmail.com>
+Message-ID: <2496717f-12b9-4d33-b6db-1db278aee8e2@gmail.com>
+Date: Mon, 29 Jun 2026 14:35:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260629074734.3643227-2-chancel.liu@oss.nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v11 2/7] phy: qcom: add the SGMII SerDes PHY
+ driver for SCMI systems
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com,
+ Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>,
+ Romain Gantois <romain.gantois@bootlin.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ Christophe Roullier <christophe.roullier@foss.st.com>,
+ Bartosz Golaszewski <brgl@kernel.org>, Radu Rendec <rrendec@redhat.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, Drew Fustini
+ <dfustini@tenstorrent.com>, linux-sunxi@lists.linux.dev,
+ linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
+ imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
+ linux-riscv@lists.infradead.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20260629-qcom-sa8255p-emac-v11-0-1b7fb95b51f9@oss.qualcomm.com>
+ <20260629-qcom-sa8255p-emac-v11-2-1b7fb95b51f9@oss.qualcomm.com>
+Content-Language: en-US
+From: Julian Braha <julianbraha@gmail.com>
+In-Reply-To: <20260629-qcom-sa8255p-emac-v11-2-1b7fb95b51f9@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-317061-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:chancel.liu@oss.nxp.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317062-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:bartosz.golaszewski@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:vkoul@kernel.org,m:peppe.cavallaro@st.com,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:shawnguo@kernel.org,m:festevam@gmail.com,m:jan.petrous@oss.nxp.com,m:s32@nxp.com,m:mohd.anwar@oss.qualcomm.com,m:romain.gantois@bootlin.com,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:mripard@kernel.org,m:christophe.roullier@foss.st.com,m:brgl@kernel.org,m:rrendec@redhat.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:dfustini@t
+ enstorrent.com,m:linux-sunxi@lists.linux.dev,m:linux-amlogic@lists.infradead.org,m:linux-mips@vger.kernel.org,m:imx@lists.linux.dev,m:linux-renesas-soc@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:sophgo@lists.linux.dev,m:linux-riscv@lists.infradead.org,m:bartosz.golaszewski@linaro.org,m:krzk@kernel.org,m:conor@kernel.org,m:andrew@lunn.ch,m:mcoquelinstm32@gmail.com,m:jernejskrabec@gmail.com,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RSPAMD_EMAILBL_FAIL(0.00)[chancel.liu.oss.nxp.com:query timed out];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,st.com,linaro.org,baylibre.com,oss.nxp.com,nxp.com,bootlin.com,glider.be];
+	RCPT_COUNT_TWELVE(0.00)[48];
+	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url,nxp.com:url,nxp.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 600FF6DBAC5
+X-Rspamd-Queue-Id: 7BBA96DBB00
 
-On Mon, Jun 29, 2026 at 04:47:31PM +0900, chancel.liu@oss.nxp.com wrote:
-> From: Chancel Liu <chancel.liu@nxp.com>
-> 
-> The NXP AUD-IO slot represents a physically present I/O connector on
-> the base board. It acts as a nexus that exposes a constrained set of
-> I/O resources, such as GPIOs, clocks and interrupts, through fixed
-> electrical wiring. All actual hardware providers reside on the base
-> board. The connector node only defines index-based mappings to those
-> providers.
-> 
-> This connector type is present on i.MX95 19x19 EVK and i.MX952 EVK,
-> where it is used to attach the IMX-AUD-IO audio expansion card[1]. The
-> same add-on board can be reused across different base boards that carry
-> this connector.
-> 
-> [1]https://www.nxp.com/part/IMX-AUD-IO
-> 
-> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
-> ---
->  .../bindings/connector/fsl,aud-io-slot.yaml   | 113 ++++++++++++++++++
->  1 file changed, 113 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/connector/fsl,aud-io-slot.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/connector/fsl,aud-io-slot.yaml b/Documentation/devicetree/bindings/connector/fsl,aud-io-slot.yaml
-> new file mode 100644
-> index 000000000000..5085574d221b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/connector/fsl,aud-io-slot.yaml
-> @@ -0,0 +1,113 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/connector/fsl,aud-io-slot.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP AUD-IO Slot
-> +
-> +maintainers:
-> +  - Frank Li <Frank.li@nxp.com>
-> +  - Chancel Liu <chancel.liu@nxp.com>
-> +
-> +description:
-> +  The NXP AUD-IO slot represents a physically present I/O connector on
-> +  the base board. It acts as a nexus that exposes a constrained set of
-> +  I/O resources, such as GPIOs, clocks and interrupts, through fixed
-> +  electrical wiring. All actual hardware providers reside on the base
-> +  board. The connector node only defines index-based mappings to those
-> +  providers. This connector type is present on i.MX95 19x19 EVK and
-> +  i.MX952 EVK, where it is used to attach the IMX-AUD-IO expansion card.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - fsl,imx952-evk-aud-io
-> +          - const: fsl,imx95-19x19-evk-aud-io
-> +      - const: fsl,imx95-19x19-evk-aud-io
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +  gpio-map:
-> +    minItems: 1
-> +    maxItems: 32
+Hi Bartosz,
 
-You don't know how many GPIOs are on the connector?
+On 6/29/26 12:28, Bartosz Golaszewski wrote:
+> +config PHY_QCOM_SGMII_ETH_SCMI
+> +	tristate "Qualcomm DWMAC SGMII SerDes/PHY driver (firmware managed)"
+> +	depends on OF && (ARCH_QCOM || COMPILE_TEST)
+> +	select GENERIC_PHY
+> +	select PM_GENERIC_DOMAINS
+> +	help
 
-> +
-> +  gpio-map-mask:
-> +    items:
-> +      - const: 0xffff
-> +      - const: 0x0
-> +
-> +  gpio-map-pass-thru:
-> +    items:
-> +      - const: 0x0
-> +      - const: 0x1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  clock-map:
-> +    minItems: 1
-> +    maxItems: 16
+I think PHY_QCOM_SGMII_ETH_SCMI is missing a dependency on PM. I get a
+build error currently:
 
-You don't know how many clocks are on the connector?
+WARNING: unmet direct dependencies detected for PM_GENERIC_DOMAINS
+  Depends on [n]: PM [=n]
+  Selected by [y]:
+  - PHY_QCOM_SGMII_ETH_SCMI [=y] && OF [=y] && (ARCH_QCOM ||
+COMPILE_TEST [=y])
 
-> +
-> +  clock-map-mask:
-> +    items:
-> +      - const: 0xff
+drivers/pmdomain/core.c: In function ‘genpd_queue_power_off_work’:
+drivers/pmdomain/core.c:936:20: error: ‘pm_wq’ undeclared (first use in
+this function)
+  936 |         queue_work(pm_wq, &genpd->power_off_work);
+      |                    ^~~~~
+drivers/pmdomain/core.c:936:20: note: each undeclared identifier is
+reported only once for each function it appears in
+drivers/pmdomain/core.c: In function ‘genpd_dev_pm_qos_notifier’:
+drivers/pmdomain/core.c:1133:39: error: ‘struct dev_pm_info’ has no
+member named ‘ignore_children’
+ 1133 |                 if (!dev || dev->power.ignore_children)
+      |                                       ^
+  CC      mm/truncate.o
 
-> +
-> +  clock-map-pass-thru: true
-
-The purpose of this property (for GPIO) was to pass thru flag cells 
-which are standardized. That's not the case for clocks.
-
-Anyways, these properties need to be defined in dtschema first.
-
-Rob
+- Julian Braha
 
