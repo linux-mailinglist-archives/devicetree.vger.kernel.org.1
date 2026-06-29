@@ -1,144 +1,265 @@
-Return-Path: <devicetree+bounces-316774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316776-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jp7NNA8qQmrL1AkAu9opvQ
-	(envelope-from <devicetree+bounces-316774-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:17:19 +0200
+	id cDfuMRsoQmpH1AkAu9opvQ
+	(envelope-from <devicetree+bounces-316776-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:08:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AD786D7635
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:17:19 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C17C6D74D9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 10:08:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=superkali.me header.s=default header.b=XZ7uOx38;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316774-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316774-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=superkali.me (policy=reject);
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=bp.renesas.com header.s=selector1 header.b=shposDPR;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316776-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316776-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=renesas.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 80579301F5F2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 07:59:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D3D203081EA5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 08:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA61D3DFC62;
-	Mon, 29 Jun 2026 07:59:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE3D53B4EB7;
+	Mon, 29 Jun 2026 08:01:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fr5000-r.dnsiaas.com (fr5000-r.dnsiaas.com [92.42.104.18])
+Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011026.outbound.protection.outlook.com [52.101.125.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D99D43E1687;
-	Mon, 29 Jun 2026 07:59:44 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782719986; cv=none; b=jVu3QlE8fbcIfrP+pqT5I/MU5NdQ1xuegalRr6qzlN1b4HQGFXmYOe9oCN8/ZASoUF5kiCK5SgoQ84E5Fq9k3MrJfAT6HCg8fx/GsjPEEkAuFKlLchQWDaUmiklbMCaYn2FWbNT5XvkMeL7T6zHm/OdVTPOFIA60iEzJyBVBOt4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782719986; c=relaxed/simple;
-	bh=/nvwFv0JfmjK2NA5Qy4Mb1EPkG5HgybnUNzmPA+S75k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CepP+0D/rnoDdHNmNKfHklzud7Ke1agemmlziqfKGssA4ZtNvvnQbFOgxYes8+t1ozi2QPokNCS9wzz/lBsHo54jgpR9S4TpE7R1wOYRBq4Xs+Ue+KVT6QQFYf15ho+lu6jZqmVrEFG5FJfqYUMgnsmlFD5KQi62Qg8VIjCsH94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=superkali.me; spf=pass smtp.mailfrom=superkali.me; dkim=pass (2048-bit key) header.d=superkali.me header.i=@superkali.me header.b=XZ7uOx38; arc=none smtp.client-ip=92.42.104.18
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=superkali.me; s=default; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=/nvwFv0JfmjK2NA5Qy4Mb1EPkG5HgybnUNzmPA+S75k=; b=XZ7uOx38ZJ4O0V7qpLnD5cQ9u2
-	SDJkMOPnuHSkURQBGK3plOCj0HwhIB1h6EHGKY33vhCwHwnAtQ3lsx3BnnFj9IEb6mf8m26gLfll2
-	JHvM1KU0xGpVutlRiy7ATGXmLnD5H6e59Qrm7Ytfye/w58z993n1aP2Ofgk5EShtWNafl+oNbzU9H
-	wvPMf7/bCt2XsIMfuaopzXLbqekUfWLDeS8RGHOfbUf5Zf1xKheGerDQrJQgePpAQCz/13RY8ygU1
-	bxwIl/cma034VcE8fDYA/JaDi/A5nT10QMyCOgvuKoGMLvNMS2VlVfoXo9FczLilL7ObcVaN/hxUO
-	tLMVAU9g==;
-Received: from [81.57.40.39] (port=42644 helo=superkali.me)
-	by fr5000-r.dnsiaas.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.4)
-	(envelope-from <hello@superkali.me>)
-	id 1we6u1-00000001mbW-18ue;
-	Mon, 29 Jun 2026 09:59:36 +0200
-From: Daniele Briguglio <hello@superkali.me>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 0/3] arm64: dts: rockchip: Add Youyeetoo YY3588
-Date: Mon, 29 Jun 2026 09:59:34 +0200
-Message-ID: <20260629075934.518649-1-hello@superkali.me>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260610-yy3588-board-v1-0-4bb7176b6826@superkali.me>
-References: <20260610-yy3588-board-v1-0-4bb7176b6826@superkali.me>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BC511E2614;
+	Mon, 29 Jun 2026 08:01:28 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782720090; cv=fail; b=orBcwAENm5g2rPUMfml7CE4r67JjcyRcIO3rjnUxe3wZZn0PsfFfDzvOTDHabRKUjeORCoXbJIxpaRb4/YtROhyVreSooG/pTLbABXhnhLmwT3z3uAPqyBIoWgd4cbAREEVuxCmNwyh+w88IUtub4TrlKuKhYPOGtCTM1GiiMa8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782720090; c=relaxed/simple;
+	bh=1PHGbB1/8HYkSyfDa9S20g2aEkGFtWf0/1h7iDmnsDY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=indh/+0KUt9/l7o486yzGwjV1AiO4s7rRWx/F2UTrp61NDdT9MO+tVrwAGX77kQgfv652AE78l+bQthuoQEXdwkoUA8vOLdfi+35elrcD0IPTQCAABM+B8RsRsDKlHvafbTf/i/DehIulZyIuOM2QYqqz7Mi/IesViVR2FzbUnc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=shposDPR; arc=fail smtp.client-ip=52.101.125.26
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dAH+7aJA+wNdwIXijWTjvO0IBZvqKkcTpuwbOON1aEctroChAd6YV/7bKtxnLZdUXc3TECVQbdYeLL4nWdlO8jS7Op4fW2O4EZ26bnqXNba1fu9+B6Mo6GkliuWW3wYz4/ibxAagdivHI/H8xeqeU6a/+zcThyvDE00oGQLCLiwnSRJVg/7F5R2yl5XMcn9CKENg6p5YAYVsaAoZWV+3PIOUHAZ6qurgR9uyuXZnOvE/1zJcS8S1MRhOD1BlUp5EzloDZz34XSn1cJM7Giqc1O/pZmJ8yrik9lHCzNRxj5tBlw0T7MmC8bP++RXzxSpPLIDH/BM6E74SN16JAE4osA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Fy5iKZwbNIU1su3GXxKFSIkadkiJKPayWEL18UZ7sEU=;
+ b=cBsQpw9/qKKLFBRr82lbGZgPzunpVAik8f+SctdBfxmojcgBS1cFH+wGdKnLPy3mm8dVwwEUeoV08T+DdPwQMgiM84fJ8NmYbRNEcDzY8n4z2QkWKqnI7tRhKhKzAk7WIk79+sfy5zeStP3kEzwOAXHj8PvkQQg0c0IKBF9ALl5hZaB1Ml0CHAJEDjaFzIIyvnaIJYB+O1+FDPWwSAe8zDokbIRkwOLgFl8Qt6C0xRzKWP8J71PkBJHMLdEpreGgLhO++76JUfWfB4evCoM/248L3ZutORcZJ7hyMwtirgnQH7K5r1tongqz2mMw0h15UBXTMc6P8Boe9S7TZ1uVfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Fy5iKZwbNIU1su3GXxKFSIkadkiJKPayWEL18UZ7sEU=;
+ b=shposDPRMlwqVNN1Q3ieKVNqEMrhPD/1UxPGOujbBVk91CERzU3OMt2vtXwuVmAu8w1lU7B6byIHR/ZwIgLBhwdiJjHOkdriAE5aRhZ4/Zlk0WHa6TKIp+JhPiudxh3C7XD6phDel6/FY4og1TygPsQ9zahuRyMIFJ+qvesfRzA=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYCPR01MB8787.jpnprd01.prod.outlook.com (2603:1096:400:18b::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Mon, 29 Jun
+ 2026 08:01:26 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::87d1:4928:d55:97de]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::87d1:4928:d55:97de%4]) with mapi id 15.21.0159.018; Mon, 29 Jun 2026
+ 08:01:16 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: biju.das.au <biju.das.au@gmail.com>, Ulf Hansson <ulfh@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+	Philipp Zabel <p.zabel@pengutronix.de>, magnus.damm <magnus.damm@gmail.com>
+CC: wsa+renesas <wsa+renesas@sang-engineering.com>,
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
+	<biju.das.au@gmail.com>
+Subject: RE: [PATCH v18 00/12] Add Renesas RZ/G3L SD/eMMC support
+Thread-Topic: [PATCH v18 00/12] Add Renesas RZ/G3L SD/eMMC support
+Thread-Index: AQHdAl+r4yj1HERfHk6QPePkoaHOOLZVNPhQ
+Date: Mon, 29 Jun 2026 08:01:16 +0000
+Message-ID:
+ <TY3PR01MB1134652261EF120BB5B8027DB86E82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20260622155610.184271-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20260622155610.184271-1-biju.das.jz@bp.renesas.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYCPR01MB8787:EE_
+x-ms-office365-filtering-correlation-id: 97f37e9a-23af-4dec-f364-08ded5b49864
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|23010399003|7416014|366016|1800799024|56012099006|22082099003|11063799006|18002099003|38070700021;
+x-microsoft-antispam-message-info:
+ o+cpMlHfdJmvlBD7KRzBUa6/XdpczF6SRuHfACVpU1t71pveJvTxUwtnWreCP/N5bYHnPH/zWEXODp3y4Iou8iqRRkwFnicxHJI/rCkG9hEGK1+oH5ilPPcalDB7vw/gWGe80fR9ySLJIfou02kUpWjlCNjIx9QMFXTYOcnwiomq4rGbwTo69sKpwBi9oRfdQmJO0AlcwrMpgi5uGkzojxSPgdiqx5ZUPv+xvr1LiYAQq/DKRt6UGiYj0LWKGLCTwkS74ejfsRLh77RKPkNCvICUfpTWNOnhptgMGBGhjuzi/Hh0LsjRzHcsV3BF7GdwcEeA+v+MkgUqvz3wTgxknaL9jDts84m1QNZDZjZlsMGSSMdIqEj5/I3zJfKadkpDbi5o+kPZNzgb9tCG/qIA9A99je17pHEtVWkg1evUeYEKzOpuVGgiIzgZ4UR6W8h414VCWQudtcrTeZcuPHYpT1V09P7uG04Irw9yNExdj95uiJlFvjeajmpIJAW9kZsmJvlPotL10tCsWXQNIGqYb3JrqdCkBjfgd/qElmWwzze0XFbIqYNewxHbPT9iii8tazvv+nQ4mAYdmUt2bAQrTDzEydOWiRLRuR34dtAXKeKNmDrIKLl7Te26fvY4Sm9873kmpBrmSLCPubOet583+IuwwT4GdPMBEy5Z/877Zhk=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(23010399003)(7416014)(366016)(1800799024)(56012099006)(22082099003)(11063799006)(18002099003)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?tce2dP2iTzrV+YeLIy3CJ1+8sno0qYDneLNgPCIeq7uFg/2Cy3WxFW4zURrX?=
+ =?us-ascii?Q?ikTkxFxN6ehgVpwE0wvpuDJwWdo6vRjN/uk9wM2JGG4jRH8ULk/BIoTTZUv9?=
+ =?us-ascii?Q?nt0yk/sOIYSVM6db6sKHMuD5LNfGc5bz9u+GBwsnu3uSqoHLAM8pZHXAAwz+?=
+ =?us-ascii?Q?kFwiXp0zkW/tMPG9Xc1Ku56rZzLBOMk1ymyqHXNqH4HB3Pn9eXoznXZ4epe7?=
+ =?us-ascii?Q?H8keZtubrRxzRZ0tiCyS2keGvEG2VWGWcbIMLfDKJHmRIlwgJeEtXxDHk+m1?=
+ =?us-ascii?Q?xsR6UZGOsudMCkEaOZtCd/C0Ayni6XSQavrXGdqWWmYpwlLSQH+RFenDjCSz?=
+ =?us-ascii?Q?AmM5HqOPdWB2tfe8RxeNRIpuY5dAMn3U3fexXRHtaBjnwBostINwdhXJBSio?=
+ =?us-ascii?Q?ruE7TVe0iktXMhKNXcl25ru16llOjSnDVUIV8erIgZ4VZh6uJDWDYXWyanS6?=
+ =?us-ascii?Q?Qf/Ik1ikplJEa+m/aR4EoTgxAySYqYyevJp2fCMk3aIif7VUDe0QmKntgEuj?=
+ =?us-ascii?Q?AiGK/i7eDCoTUhe+eSltIlLmLmHaLYZV0Ud1Mu/f4zcPtE2BBbjCRw90FpKj?=
+ =?us-ascii?Q?fCGP2ZVTDefjx6P0YA1iq4snxAVY+q3aK7fdESaagEpHlIiiu/ehAe83vfNr?=
+ =?us-ascii?Q?F6bnFusvstqdYzIjjUrMbnvIgyTjfQS2R0BHWmJHKFdq2N9b6lSlmtpAdsfl?=
+ =?us-ascii?Q?rFVwaCaQRZo+C/Qu7X8FvvExVxwoGMEL+Unkxa3IKzkHZpSgt9NYPWEmDWcI?=
+ =?us-ascii?Q?n/N14QkUTLrULtzfqLhWHUl0dtfd6bD0nmymtgT0/WDhQqrbMARvY0kjlfjH?=
+ =?us-ascii?Q?DrXDZLGXOLRrDn1JegK1y3/kZ07NdAySb8fO4NTlULfEhXgkqMiBIJfjbZUg?=
+ =?us-ascii?Q?8uXPsl4Vl4fzG0qgLaHVEUorzwehO5uqMxdCt6hhph42SWyw0QxXF4B+1Msz?=
+ =?us-ascii?Q?Yb0NhomKMhb/lzOXNaWYs53YBh6wJ5mDW672/cU77OZUwSzeRHwL1Ws/FlKc?=
+ =?us-ascii?Q?e61sPsKMpMHrNXElNYRRa0kRlSHlpmUs0D2HLm1bl9XMEzeJnaWcxi3xEJXd?=
+ =?us-ascii?Q?3tTBKES1QH1JyLqIlnSQ8iQZ+T9hSDX6AJmHZA2QXSejDjxO6qNzUQa3OvmW?=
+ =?us-ascii?Q?WOt4g8qs79K1csZxn8gB/O5EAYXbimyjuESBL/AyB8aRJkzvuu6ALUDxY95L?=
+ =?us-ascii?Q?LGwJPQrnxXSKoOqZXc30bgDzxprPHgvN4yK6P2ndC2heW44QkpBeS6XxrGI6?=
+ =?us-ascii?Q?ot8ROL8Ot0DW4I4BjJXlx+QWLsszLmGMwfT74CHFlYeGdqkuYiKtSeCTH5d1?=
+ =?us-ascii?Q?UeoBXDYQPk65NgUiPZkjvo+FGGcJ0sY985Nk9ciWPJCRYNM1da39ArUUru+3?=
+ =?us-ascii?Q?4Ns/z3nl+LqdHJdM8MbjYQR9Bhk5seZH9seEz2ICtcsNQxsV+Cz5QGA8ErRz?=
+ =?us-ascii?Q?Gy8RaQSDR6uFibDZwzJAQ7cBapcZwu7r/kcy3LVRwRlhHuj5e9LkHDqydCJa?=
+ =?us-ascii?Q?FPAwk9ljOIgYp+sxwtMxaXdvurgJE4TevgYNx6YeEi+iUy7xuk09PZ+uJdX5?=
+ =?us-ascii?Q?itZGraDCipc+0qLjvTVVFQvFYIgcAXas/NiAPH3UH5W5+0QkMvEjb+aXupTe?=
+ =?us-ascii?Q?aXkd7vRy4uWCHKon4lAbMMvSUjwpkfqrKHFDe8e9Loncx6AcIglF2EdQCwcO?=
+ =?us-ascii?Q?efROB76isXUKzDvAlFOUu4D9eLA339RreWRVg8uaO1wCbtcznQAn6ZYdLTxY?=
+ =?us-ascii?Q?qXehDjS1vw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - fr5000-r.dnsiaas.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - superkali.me
-X-Get-Message-Sender-Via: fr5000-r.dnsiaas.com: authenticated_id: hello@superkali.me
-X-Authenticated-Sender: fr5000-r.dnsiaas.com: hello@superkali.me
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97f37e9a-23af-4dec-f364-08ded5b49864
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jun 2026 08:01:16.0614
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: N66MNUwCwAxpIaeBSVthZ9WCyLZWFQeCz6jzILmYR4g725UM/8gVeeR89rquPHiTnfZcSm6B7Bj+viHu/ag8iUIjxHreKGHZ1bTwVbhqqzw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8787
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.54 / 15.00];
-	DMARC_POLICY_REJECT(2.00)[superkali.me : SPF not aligned (relaxed),reject];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[superkali.me:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
+	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[hello@superkali.me,devicetree@vger.kernel.org];
-	HAS_X_SOURCE(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316774-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316776-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:biju.das.au@gmail.com,m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:p.zabel@pengutronix.de,m:magnus.damm@gmail.com,m:wsa+renesas@sang-engineering.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:bijudasau@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:wsa@sang-engineering.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_X_GMSV(0.00)[hello@superkali.me];
+	FORGED_SENDER(0.00)[biju.das.jz@bp.renesas.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,glider.be,pengutronix.de];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	HAS_X_AS(0.00)[hello@superkali.me];
-	HAS_X_ANTIABUSE(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[sang-engineering.com,vger.kernel.org,bp.renesas.com,gmail.com];
+	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hello@superkali.me,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[biju.das.jz@bp.renesas.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[superkali.me:-];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,superkali.me:mid,superkali.me:from_mime,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,vger.kernel.org:from_smtp,bp.renesas.com:dkim,bp.renesas.com:from_mime,renesas.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4AD786D7635
+X-Rspamd-Queue-Id: 5C17C6D74D9
 
-On Wed, Jun 10, 2026 at 03:58:57PM +0200, Daniele Briguglio wrote:
-> This series adds support for the Youyeetoo YY3588, a single board
-> computer built around the Rockchip RK3588.
-> [...]
+Hi Wolfram,
 
-Hi Heiko,
+> -----Original Message-----
+> From: Biju <biju.das.au@gmail.com>
+> Sent: 22 June 2026 16:56
+> Subject: [PATCH v18 00/12] Add Renesas RZ/G3L SD/eMMC support
+>=20
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>=20
+> RZ/G3L SoC has:
+>=20
+> Channel 0 supports SD and eMMC (including HS400/HS400ES).
+> Channel 1 supports SD and eMMC (except for HS400).
+> Channel 2 supports SD.
+>=20
+> The SoC supports a maximum frequency of 150 MHz. The SD0 interface does n=
+ot support IOVS and PWEN in the
+> SDHI register (no internal regulator), unlike SD1 and SD2. It has an inte=
+rnal divider for all modes
+> except HS400.
+> It also has a 2048-bit divider compared to 512 on others. Moreover RZ/G3L=
+ supports HS400 enhanced strobe
+> mode.
 
-Gentle ping on this one, it's been about three weeks. Conor acked the
-vendor-prefixes and rockchip.yaml patches (1/3 and 2/3). The dts in 3/3
-hasn't had any comments yet, and I'd hate for it to slip through.
+Sashiko pointed out some issues with this patch series[1], Should I start i=
+nvestigating these issues=20
+or you have any additional comments for me to look at? Please let me know.
 
-I know the dts queue is long, so no rush. Anything you'd want changed, or
-is it OK to queue for the next cycle? Happy to respin if there's something
-to fix.
+[1] https://sashiko.dev/#/patchset/20260622155610.184271-1-biju.das.jz%40bp=
+.renesas.com
 
-Thanks,
-Daniele
+Cheers,
+Biju
+
+
+>=20
+> v17->v18:
+>  * Collected tag
+>  * Merged patch #4 and #5 and updated commit description
+>  * Annotated the empty sentinel entries in the OF match tables with a
+>    "Sentinel." comment for clarity.
+>  * Retained the tag as it is a trivial cleanup.
+>  * New patches drop struct renesas_sdhi_hw_info, instead using
+>    renesas_sdhi_of_data and tmio_mmc_data.
+>  * Dropped clk, pinctrl, SoC, and board dtsi from this patch series;
+>    will send later.
+> v1->v17:
+>  * Collected tag for binding patch.
+>  * Resending the series as there is an issue with patch threading from
+>    patch #14.
+>=20
+> Biju Das (12):
+>   dt-bindings: mmc: renesas,sdhi: Document RZ/G3L (r9a08g046) SoC
+>   mmc: renesas_sdhi: Fix whitespace alignment in struct
+>     renesas_sdhi_of_data
+>   mmc: renesas_sdhi: Add clk_mask field to support SoC-specific clock
+>     divider widths
+>   mmc: renesas_sdhi: Add max_divider field to support SoC-specific clock
+>     divider ranges
+>   mmc: renesas_sdhi: Add tuning delay support for RZ/G2L
+>   mmc: renesas_sdhi: Add TMIO_MMC_INTERNAL_DIVIDER flag
+>   mmc: renesas_sdhi: Add optional axis/axim reset controls
+>   mmc: renesas_sdhi: Add RZ/G3L SDHI support
+>   mmc: renesas_sdhi: Save and restore IOVS across suspend/resume
+>   mmc: renesas_sdhi: Make HS400 OSEL bit configurable per SoC
+>   mmc: renesas_sdhi: Add RZ/G3L HS400 support
+>   mmc: renesas_sdhi: Add HS400 enhanced strobe support for RZ/G3L
+>=20
+>  .../devicetree/bindings/mmc/renesas,sdhi.yaml | 101 ++++++--
+>  drivers/mmc/host/renesas_sdhi.h               |  12 +-
+>  drivers/mmc/host/renesas_sdhi_core.c          | 239 ++++++++++++++----
+>  drivers/mmc/host/renesas_sdhi_internal_dmac.c |  73 +++++-
+>  drivers/mmc/host/renesas_sdhi_sys_dmac.c      |  12 +-
+>  include/linux/platform_data/tmio.h            |  18 ++
+>  6 files changed, 370 insertions(+), 85 deletions(-)
+>=20
+> --
+> 2.43.0
+
 
