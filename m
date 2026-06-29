@@ -1,378 +1,328 @@
-Return-Path: <devicetree+bounces-317041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317054-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tb37IvNwQmpU7QkAu9opvQ
-	(envelope-from <devicetree+bounces-317041-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:19:47 +0200
+	id kPvpAh11Qmqb7gkAu9opvQ
+	(envelope-from <devicetree+bounces-317054-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:37:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E79F26DB12A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:19:46 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 076AA6DB511
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 15:37:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=OtKc6xDj;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=PM9tblU4;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317041-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317041-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=G570oWgW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317054-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-317054-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D7D983111C2C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 12:58:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 20EAD3150E1A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 13:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46DF8403AF9;
-	Mon, 29 Jun 2026 12:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F71336A366;
+	Mon, 29 Jun 2026 13:13:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f180.google.com (mail-dy1-f180.google.com [74.125.82.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E996B403AED
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 12:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB14405C4E
+	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 13:13:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782737890; cv=none; b=MB3wltOsqtQ0Se/AfXPRD5cdzKt0vsu45NaX7k1tXlUt46GKNKA6qwde/IH2K8kUldvs9VuglO58uqPIA9nCQHESImbhHfCWIZaGtBOVlFx/GCsvKPe8XInEFYfvDpnZtwMBXYPFm+sx5iumw2EMzNBwg1neko0F9TomSy1RBHA=
+	t=1782738826; cv=none; b=NSUgYoou4OsnlRSY7mgXH72z37zDTS5GkaD7RP/xNoFPNw5gd72W3UKUxfh61pfYg+z0guXleV7P5r9IO1xAO3xx4k1vtiXP0kkwbQjKLnqs0MdxMB7xv+vixExInMFF/4nbh5wy61JYimkHSYKKwRLTaYVmQHrZ6uNEcjHfSeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782737890; c=relaxed/simple;
-	bh=GN+ENysdiDdzO37pUY+h8l/bPE2nFulQeO00vlfFr1M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mIY+bXo570ojCKetVQw5Ir9By2nT3M0dKSwrCyXe+I1NuhPYZF5ggE1NEDnyns5IL8e/GWyYqfDXcJTUsPEsTySaTuZeg6ARDoQNzEcCOYfi9+L0HIYWfdrHYA6Z9CHnQFRU1Qqj8EbPJizkCymfVeSry6dHks9Yp5V1ioHes1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OtKc6xDj; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PM9tblU4; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65TATRBe2592814
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 12:58:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=PNfdf4Gwdi1FOTJ0GQC585fh
-	e2B9GJS+MtypU4Ccw5U=; b=OtKc6xDjTQLyKv/lHqDPhJza+kazCPzh4U4QUz3W
-	eFaaoszQcy0iRI7mt0cy1IUI1c2KJ3HcJ5+fxuK5bEdiygLecRmCAyPPyGLqqxvB
-	8m0Ak+0Uz2ZmKoJlvdRZn7lSxb355WLcukmme1J5ORpaBGWhH4rAvri349jATJ48
-	JLCcLNcLR0kV7fwXT60rI87zU8rquzKzuCAfrTVS84angfvGP4hg9XuuQS0IYuCD
-	5AtarUwRikY6rSmlfi65pZXPvB+Ncf/U7WJMbdvb3l2WiVvesj1O8H96lmC8hb07
-	vyxE+jVoY5xrwQoSiG1uxEEiKB0AB1CEI2Z6Dj9jOaeShg==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f3k7vhqgp-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 12:58:06 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-92ae405b5eeso410069885a.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 05:58:06 -0700 (PDT)
+	s=arc-20240116; t=1782738826; c=relaxed/simple;
+	bh=uqWUiWxqoK1z4suv25KsMeSJmhIYeFSFGYemREkDadc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=AB4ycXcMh73Y9U4wZCOVGaowSfxlC5qSXU9TrekkEaj5g3APN0dC2hzK66/WuleHPv+euI/67Ueakc37kC9iqnDD+L1BwCd/V/+JvAXXjSmdvhBsk5jObZYL9QTXGcxgSXc0PU6yZC6wtzmHPKIPjcaCb2yE1Gk6xkTqzTcnEOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G570oWgW; arc=none smtp.client-ip=74.125.82.180
+Received: by mail-dy1-f180.google.com with SMTP id 5a478bee46e88-30bf8b2bd20so6575141eec.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 06:13:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782737886; x=1783342686; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PNfdf4Gwdi1FOTJ0GQC585fhe2B9GJS+MtypU4Ccw5U=;
-        b=PM9tblU4ZtEpcfkZHuTD/3ZFLFfM72Fnqp6S0ZHBAHIBoGbcM+Gc/A0BMorAr8N4Sh
-         THG5x8yvWs+tezjf+XDO1gW69KkHCK/GxnB8/Frm6rUN19J6IUg6fU0D9EwYvhZ4PPIR
-         Lp052sXkeICnAo9OOXHTRxhNl3Q0r4jpUs2TFPimqOj5hOFC3zr7+48A8bE8vQFGMvoU
-         UQOWHPWk9nrsnrPE+nkOOH+0D9ApLFXeoqb35bbUIAy9TwJm7AyTAU43gV+DllxTqCfY
-         TloJtUKUTsEqesi8nuQB+u2rnV9sOzACxY6wbGXH+mFCsj2mQIEOsjIYmWAidZvTRjy2
-         zz0w==
+        d=gmail.com; s=20251104; t=1782738824; x=1783343624; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ag7rMygxbcOcB4P3e3XBrLKcZ4BXMFcVbEIShzaDpgU=;
+        b=G570oWgWLMNssA1eAouLvtU6M2Os3Sl/nBh/j670e9zc7X1djenc8sOoYh5ZrL/Pqm
+         MWRrp4dzw5W63JfkhR0bPYxPVHP6Y+7wZJrj5qKrIi3+dxbRV1X8MQXMJtBBLCBjawrw
+         aD1Wp9O4wfJubmab50DpVBXL5J/8VZM3aXpv4CLlx+VX66zrUL1n4I9rS0cbd1LmOAPa
+         wOz8IivHV2vkSyYdCxlSvCzQIersA9y+8HKa+qR8zip4QmQ21rhTh/Fnj4wq8D6oLS4S
+         sgKCRNymuOvG7JgPffQ/+2Q5QMLsKAi1U1BAmJcGyJ9kgN7BC+NqYNnDDddDzP7ZCoaS
+         5row==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782737886; x=1783342686;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PNfdf4Gwdi1FOTJ0GQC585fhe2B9GJS+MtypU4Ccw5U=;
-        b=c9NTSbeiFDAx+2S3cJdRqTbHYqXvrPw7vOXQolSddrGTvId5GgyGIBIRhexEHjWqKV
-         LWO5Da0UCF9a7Z06DC9KfUjXmCb+DQ9MD9kkCJT/xQZdSQAV+nhIq8Rj8jgmuIcIqKTS
-         8iZV6RZtv7ezSuyOd2BKR4Y6triZUd1CR4sDecOIYjlExAC1kJknRC/Vzfdg5ArfxNxM
-         IjKTh7TiiszRjjyebn8TrPp8uGLgJM/NxlMTzDTNCcB0eDsIykA6EotM755RIH1KR5Pe
-         UrumTMhxGWTO6CBiqhu4++yLLS8w46lhtP/8mLP3P81I55u5Ngw6exHZ7ztsWT5OQd1U
-         iSyQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+0W4hydVRbE9zQ09WF8fgVB9YEyEjJN+S2TbzkakogVVqEb2q1afBUMNGgHdMURjzw7qCfRB+jJMpA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAjVQasgrMmrQ0hUHhSrmdzKce1LBFfUAXgkZjtIaw3jNV3Egi
-	cSQaR5CEMjdtZMXRsEXqwzd8URBzlcxu6FqZt2/SfLNnT/ZB2m+Rq5KQkE0bCLT2EJslGbW1/yd
-	GpoTL9Nj4qP4hzk9SK7wo4fkWM2PaKywX4K++5bLS3sxsmcADq+1QQpHGvtcJ5agU
-X-Gm-Gg: AfdE7cki9I4inTEZbImkA7Wi0nYvbtHthmhxvbYkKHIDJvqf64uKIyPLsaXZnAyOIAQ
-	P2Pg9Ul0M/fRT2k5gfHZmD6aLqShYo3UPz8OevQPDuehki7Cyugql7SCUGD0D5JiVSPUIfK2YEa
-	c8SZs4PZ/KmFx+hnVY7BwnYT4H5RxA1CaEK/xdOjeVXSttCIn2rBnE4ParEJNKOJTYgWoEquEui
-	6YW2OV5LHeCu3kxpsvVrkD83Sb15YDu1Q4Ta9jeLD11iLTS1S0eqnoQDcZwbv86urAmg9r7eJj8
-	+8qOoIY77Pm656qKihum2SWkLnIzwIRup2F01sW0RAzOeK/L5H0lCzO4vuPic5nhxIK+U5zvSej
-	SqKt+ilxKrUKveytRHEYnB9/+g5K8WRogna24fhjJnaTTjjOGtGQD0G1ZLL7zAR9TN/qMdkjwDx
-	6jZVyruOajIZPSuhksEkLYMD+s
-X-Received: by 2002:a05:620a:44c5:b0:915:bf79:3e08 with SMTP id af79cd13be357-9293e3c92cbmr2740044085a.56.1782737885991;
-        Mon, 29 Jun 2026 05:58:05 -0700 (PDT)
-X-Received: by 2002:a05:620a:44c5:b0:915:bf79:3e08 with SMTP id af79cd13be357-9293e3c92cbmr2740035485a.56.1782737885217;
-        Mon, 29 Jun 2026 05:58:05 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-39b1a4e2d5fsm1091291fa.37.2026.06.29.05.58.03
+        d=1e100.net; s=20251104; t=1782738824; x=1783343624;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ag7rMygxbcOcB4P3e3XBrLKcZ4BXMFcVbEIShzaDpgU=;
+        b=kZdcO4gMuB8zdCKsV6699pQJFs/BA05YgvsMd1I0pSzCPROg0tLd3akkiFQ6HH9lMk
+         2EWfS1Rxbw8oxqM3mWTeLCybkZ7z1tCXWaWadgx1WW0eIDsnBUJ6fmDaEUCkuwgWjaB6
+         itaoN7C6NWCNuqEBfgYXSzN2mkMYxPrkPBvUdL+KlpmcSRr1jLxn36ch1RKeeFOil/k+
+         ejy2eprdJUKW4/Ev82kOoy6QEnxVeUvhI/0IS2WbYQZn3lJbuxEA0hDYR7EMxl2yLTHf
+         1Qz7G7G0PN+DPRQPka8nrAMM0CwOa7jukO8Wf5cVzJlFwr2tPLLW0gj90OHlZw9p7vTk
+         TeiA==
+X-Forwarded-Encrypted: i=1; AHgh+RrCPMSA6XiGlLgzXPfLvhUDZlYChtrl7sURpQLIOSh1fUAgKFSkhWib6GRhb7rNLVGnzBri1Pzu3j5F@vger.kernel.org
+X-Gm-Message-State: AOJu0YwivSQ6umRcNuPPenSjf6LePxRTB+jwait/qyXcJr40uUmbdUME
+	75kt4XjUzwErrN1bDnN2Z5L+WkTFGLbZjNd0MghExPvv8tXBbZt0sOoe
+X-Gm-Gg: AfdE7cmblKb0SrXN3nNSSxbrGYWBY5i4MWgtVOTaM0PKb6tbUjcIembSNUfch0ultLR
+	dSld0/JeTSVW0Nvh1Pv//B8oUX2DuXd1jh0JV2QjCquxE2BS16O2SC83aLzUZTg7ujuXlHVQ0WH
+	8E0oJC3C5qdhOWpHyBivS6D8lONAfV6BUZE9ifodsQhKxdwC79jJaFigBeRxT5U96LyCfRanllr
+	YZfnTrCRmaXtAkW2QLVx5wOB7AK+rIItooluxMLGO8OBVncjuE+tLo7FuLb6eK6t30pyE6pgYJ5
+	G1pAq4yf+nEOQMghhe9i3o2lolGrQlyFoLK5JDRTRUJKmHV8/RBxKCUXWtU3YFfkfVxEsB3d5ER
+	D/cYO915kNdiCcG9E427hvnf8eA1R36bp2mUzWV+IwNlPfO3wy1Z/QZfcpugLg7cnuvtYVvGUIA
+	we2oC4r7IH6+zX9XRo8+0npTvk6MiESCZeee0=
+X-Received: by 2002:a05:7300:8bab:b0:30c:56a0:ce3f with SMTP id 5a478bee46e88-30caae2f116mr11362069eec.2.1782738823488;
+        Mon, 29 Jun 2026 06:13:43 -0700 (PDT)
+Received: from Black-Pearl.localdomain ([49.207.62.174])
+        by smtp.googlemail.com with ESMTPSA id 5a478bee46e88-30c7c52eed6sm43883676eec.9.2026.06.29.06.13.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2026 05:58:04 -0700 (PDT)
-Date: Mon, 29 Jun 2026 15:58:02 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Atanas Filipov <atanas.filipov@oss.qualcomm.com>
-Cc: linux-media@vger.kernel.org, mchehab@kernel.org, robh@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        andersson@kernel.org, quic_vgarodia@quicinc.com,
-        quic_jesszhan@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: media: qcom: Add JPEG encoder binding
-Message-ID: <gaod5k77yywmimg6bajpdk4keym4hirksgdxxbphw6rw6mkfal@oquq5oyies2c>
-References: <20260629121750.3469292-1-atanas.filipov@oss.qualcomm.com>
- <20260629121750.3469292-3-atanas.filipov@oss.qualcomm.com>
+        Mon, 29 Jun 2026 06:13:42 -0700 (PDT)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Date: Mon, 29 Jun 2026 12:58:37 +0000
+Subject: [PATCH v5] dt-bindings: pwm: st,sti-pwm: convert to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260629121750.3469292-3-atanas.filipov@oss.qualcomm.com>
-X-Proofpoint-GUID: H1-r0h_x2Az8-5FMPkWikUFXoRfJuPvv
-X-Authority-Analysis: v=2.4 cv=CqCPtH4D c=1 sm=1 tr=0 ts=6a426bde cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=gEfo2CItAAAA:8
- a=EUspDBNiAAAA:8 a=xu2w3LTtMloSOAqb-NgA:9 a=CjuIK1q_8ugA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI5MDEwNyBTYWx0ZWRfX2BFFsGDuzlJQ
- IhyAPjUaDJ7rW5uW6YtxCbE3rCViDvHlbAtsuHN94sAk71uzoZAevdzTRfnTSQZBta+gKgUiAGG
- LroET96fb+elMG/VmeOSsnmR5ySbHzg=
-X-Proofpoint-ORIG-GUID: H1-r0h_x2Az8-5FMPkWikUFXoRfJuPvv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI5MDEwNyBTYWx0ZWRfX7h7aa/SuyZ0r
- julIUpP0AUqdC0X3gTMHQnCprqLPuVL4S1Uep8oprhVi7ZlDKFpH2NBiKZ9MD0hULB/M0ZEvjAY
- ZRXFf5BOJbYWgsUTLzJmZNmVNx36xAGSJI5rBEZmDxCHRhgkG+jpw5Wx5JkdDojewXx7VSXQ8fJ
- 3G/UVynsKszDP9mJTvZ7+AiHzDiV9/RRWKg+CTZWSdDrfYWGKmiOTvjq65G4MMuozF1XvAvHi/X
- V9w9Mo4rtWIBkNhnZFLdnMfud5R4b9PUL9PgDueyY0SaaNpsXHk5tyE9tA00VyNNAPAnBWcv85G
- Tvwo5p2jCAjPDNtFc2IQjao0TfUO7+/KPl1AovDhxykvZOJu1oRdRMowEY64Z587C2/5Xx1muGN
- 2NQDneYqqVkgYx9qKzuUVP5tIMxVF+/4RetwIoXkg8sCnUwMFjuueI/WQdeXVRz1YcEjMGqw4d9
- cLqrl69TsLz7TdsyrMw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-29_03,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 clxscore=1015 impostorscore=0 malwarescore=0
- priorityscore=1501 spamscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606290107
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260629-st-pwm-v5-1-a93f2bfec38c@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAP1rQmoC/23NTQ6CMBAF4KuYrq2hUwqtK+9hXJTpVGsEDEXUG
+ O5u0cT4t5q85H1vbixSFyiy5ezGOhpCDG2TgprPGO5ssyUeXMoMMiiyQkgee34811x4so4KTEe
+ yVD525MPlMbTePHM8VXvCftJTYxdi33bXx6dBTL2f0UFwwXOlEVCbMjN2ta1tOCywrdk0OsA70
+ y8GiWFpwKnSKCT4ZvKNgXoxmZhFMpX3Wisw3yz/z/LEjNKudEXlvPxg4zjeAbM5W1NTAQAA
+X-Change-ID: 20260613-st-pwm-1feade6cfea3
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.15.2
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-317054-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317041-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ukleinek@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lee@kernel.org,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:charan.pedumuru@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:charanpedumuru@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:atanas.filipov@oss.qualcomm.com,m:linux-media@vger.kernel.org,m:mchehab@kernel.org,m:robh@kernel.org,m:krzysztof.kozlowski+dt@linaro.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:quic_vgarodia@quicinc.com,m:quic_jesszhan@quicinc.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski@linaro.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oquq5oyies2c:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,vger.kernel.org:from_smtp,devicetree.org:url,oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,msgid.link:url,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E79F26DB12A
+X-Rspamd-Queue-Id: 076AA6DB511
 
-On Mon, Jun 29, 2026 at 03:17:48PM +0300, Atanas Filipov wrote:
-> Add device-tree binding for the Qualcomm JPEG encoder hardware block
-> present in SM8250 (Kona) SoCs.
-> 
-> The JPEG encoder is a standalone hardware IP within the camera subsystem
-> that performs JPEG compression in memory-to-memory fashion.  It is
-> separate from the CAMSS ISP pipeline and has its own register space,
-> interrupt, clocks, power domain, IOMMU streams, and interconnect paths.
-> 
-> Signed-off-by: Atanas Filipov <atanas.filipov@oss.qualcomm.com>
-> ---
->  .../bindings/media/qcom,jpeg-encoder.yaml     | 160 ++++++++++++++++++
->  1 file changed, 160 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,jpeg-encoder.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,jpeg-encoder.yaml b/Documentation/devicetree/bindings/media/qcom,jpeg-encoder.yaml
-> new file mode 100644
-> index 000000000000..c8b4808054cb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/qcom,jpeg-encoder.yaml
-> @@ -0,0 +1,160 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/qcom,jpeg-encoder.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm JPEG Encoder
-> +
-> +maintainers:
-> +  - Atanas Filipov <atanas.filipov@oss.qualcomm.com>
-> +
-> +description:
-> +  Qualcomm JPEG Encoder is the JPEG encode hardware present in Qualcomm SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sm8250-jenc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 6
-> +
-> +  clock-names:
-> +    items:
-> +      - const: hf_axi
-> +      - const: sf_axi
-> +      - const: core_ahb
-> +      - const: cpas_ahb
-> +      - const: cnoc_axi
-> +      - const: jpeg
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  iommus:
-> +    description:
-> +      Two SMMU stream IDs for the JPEG hardware. The first entry is for
-> +      the JPEG core engine; the second is for the JPEG DMA/scale path.
-> +      The exact stream ID assignment is SoC-specific and not publicly
-> +      documented by Qualcomm.
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  interconnects:
-> +    maxItems: 4
-> +
-> +  interconnect-names:
-> +    items:
-> +      - const: cpu-cfg
-> +      - const: hf-mnoc
-> +      - const: sf-mnoc
-> +      - const: icp-mnoc
-> +
-> +  operating-points-v2: true
-> +
-> +  opp-table:
-> +    type: object
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - power-domains
-> +  - iommus
-> +  - interconnects
-> +  - interconnect-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,camcc-sm8250.h>
-> +    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
-> +    #include <dt-bindings/interconnect/qcom,sm8250.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        camss@ac6a000 {
-> +            compatible = "qcom,sm8250-camss";
-> +            reg = <0 0x0ac6a000 0 0x2000>;
-> +            #address-cells = <2>;
-> +            #size-cells = <2>;
-> +            ranges;
+Convert STMicroelectronics STiH41x PWM/Capture controller binding
+to DT schema.
+Changes during conversion:
+- Fix compatible string from "st,pwm" to "st,sti-pwm" to match the
+  actual hardware variant naming convention used across STi bindings.
+- Drop pinctrl-names from the required list as pinctrl properties are
+  inherited and validated by the pinctrl schema.
 
-Drop both SoC and camss nodes. Rework your _example_ to work with the
-default seeting (address/size-cells = 1).
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+Changes in v5:
+- Enforce stricter validation of the clock-names property.
+- Link to v4: https://patch.msgid.link/20260625-st-pwm-v4-1-958d7d6bdf39@gmail.com
 
-> +
-> +            jpeg-encoder@ac53000 {
-> +                compatible = "qcom,sm8250-jenc";
-> +                reg = <0 0xac53000 0 0x1000>;
-> +
-> +                interrupts = <GIC_SPI 474 IRQ_TYPE_EDGE_RISING>;
-> +                power-domains = <&camcc TITAN_TOP_GDSC>;
-> +
-> +                clocks = <&gcc GCC_CAMERA_HF_AXI_CLK>,
-> +                         <&gcc GCC_CAMERA_SF_AXI_CLK>,
-> +                         <&camcc CAM_CC_CORE_AHB_CLK>,
-> +                         <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +                         <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> +                         <&camcc CAM_CC_JPEG_CLK>;
-> +                clock-names = "hf_axi",
-> +                              "sf_axi",
-> +                              "core_ahb",
-> +                              "cpas_ahb",
-> +                              "cnoc_axi",
-> +                              "jpeg";
-> +
-> +                iommus = <&apps_smmu 0x2040 0x400>,
-> +                         <&apps_smmu 0x2440 0x400>;
-> +
-> +                interconnects =
-> +                    <&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_CAMERA_CFG 0>,
-> +                    <&mmss_noc MASTER_CAMNOC_HF 0 &mc_virt SLAVE_EBI_CH0 0>,
-> +                    <&mmss_noc MASTER_CAMNOC_SF 0 &mc_virt SLAVE_EBI_CH0 0>,
-> +                    <&mmss_noc MASTER_CAMNOC_ICP 0 &mc_virt SLAVE_EBI_CH0 0>;
-> +                interconnect-names = "cpu-cfg",
-> +                                     "hf-mnoc",
-> +                                     "sf-mnoc",
-> +                                     "icp-mnoc";
-> +
-> +                operating-points-v2 = <&jpeg_opp_table>;
-> +
-> +                jpeg_opp_table: opp-table {
-> +                    compatible = "operating-points-v2";
-> +
-> +                    opp-300000000 {
-> +                        opp-hz = /bits/ 64 <300000000>;
-> +                        opp-level = <0>;
+Changes in v4:
+- Fix compatible to "st,sti-pwm" in examples.
+- Modify subject line to point to the correct YAML file.
+- Link to v3: https://patch.msgid.link/20260625-st-pwm-v3-1-ace9bff88529@gmail.com
 
-No numbers for levels, thank you.
+Changes in v3:
+- Fix compatible to "st,sti-pwm".
+- Drop pinctrl-names from required.
+- Modify the commit message to explain the changes made.
+- Change maintainer to "Lee Jones <lee.jones@linaro.org>".
+- Link to v2: https://patch.msgid.link/20260618-st-pwm-v2-1-c792d5795ce2@gmail.com
 
-> +                        required-opps = <&rpmhpd_opp_svs>;
-> +                    };
-> +
-> +                    opp-400000000 {
-> +                        opp-hz = /bits/ 64 <400000000>;
-> +                        opp-level = <1>;
-> +                        required-opps = <&rpmhpd_opp_svs>;
-> +                    };
-> +
-> +                    opp-480000000 {
-> +                        opp-hz = /bits/ 64 <480000000>;
-> +                        opp-level = <2>;
-> +                        required-opps = <&rpmhpd_opp_svs_l1>;
-> +                    };
-> +
-> +                    opp-600000000 {
-> +                        opp-hz = /bits/ 64 <600000000>;
-> +                        opp-level = <3>;
-> +                        required-opps = <&rpmhpd_opp_nom>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.34.1
-> 
+Changes in v2:
+- Add the missing interrupts to the required following the old binding.
+- Modify the commit message to explain the changes made.
+- Link to v1: https://patch.msgid.link/20260613-st-pwm-v1-1-458c2c89709a@gmail.com
+---
+ Documentation/devicetree/bindings/pwm/pwm-st.txt   | 43 ----------
+ .../devicetree/bindings/pwm/st,sti-pwm.yaml        | 92 ++++++++++++++++++++++
+ 2 files changed, 92 insertions(+), 43 deletions(-)
 
--- 
-With best wishes
-Dmitry
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-st.txt b/Documentation/devicetree/bindings/pwm/pwm-st.txt
+deleted file mode 100644
+index 19fce774cafa..000000000000
+--- a/Documentation/devicetree/bindings/pwm/pwm-st.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-STMicroelectronics PWM driver bindings
+---------------------------------------
+-
+-Required parameters:
+-- compatible :		"st,pwm"
+-- #pwm-cells : 		Number of cells used to specify a PWM. First cell
+-			specifies the per-chip index of the PWM to use and the
+-			second cell is the period in nanoseconds - fixed to 2
+-			for STiH41x.
+-- reg :			Physical base address and length of the controller's
+-			registers.
+-- pinctrl-names: 	Set to "default".
+-- pinctrl-0: 		List of phandles pointing to pin configuration nodes
+-			for PWM module.
+-			For Pinctrl properties, please refer to [1].
+-- clock-names: 		Valid entries are "pwm" and/or "capture".
+-- clocks: 		phandle of the clock used by the PWM module.
+-			For Clk properties, please refer to [2].
+-- interrupts:		IRQ for the Capture device
+-
+-Optional properties:
+-- st,pwm-num-chan:	Number of available PWM channels.  Default is 0.
+-- st,capture-num-chan:	Number of available Capture channels.  Default is 0.
+-
+-[1] Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+-[2] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-Example:
+-
+-pwm1: pwm@fe510000 {
+-	compatible = "st,pwm";
+-	reg = <0xfe510000 0x68>;
+-	#pwm-cells = <2>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_pwm1_chan0_default
+-		     &pinctrl_pwm1_chan1_default
+-		     &pinctrl_pwm1_chan2_default
+-		     &pinctrl_pwm1_chan3_default>;
+-	clocks = <&clk_sysin>;
+-	clock-names = "pwm";
+-	st,pwm-num-chan = <4>;
+-	st,capture-num-chan = <2>;
+-};
+diff --git a/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml b/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml
+new file mode 100644
+index 000000000000..39f96596c1ef
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/st,sti-pwm.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/st,sti-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: STMicroelectronics STiH41x PWM/Capture controller
++
++maintainers:
++  - Lee Jones <lee.jones@linaro.org>
++
++description:
++  The STiH41x PWM controller supports both PWM output and input capture
++  functionality. It provides multiple PWM output channels for generating
++  variable duty-cycle waveforms, and multiple input capture channels for
++  measuring external signal periods and pulse widths. PWM output channels
++  and input capture channels are configured independently via
++  st,pwm-num-chan and st,capture-num-chan respectively.
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    const: st,sti-pwm
++
++  reg:
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 2
++
++  pinctrl-names:
++    const: default
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: pwm
++      - const: capture
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  interrupts:
++    description: IRQ line for the capture device.
++    maxItems: 1
++
++  st,pwm-num-chan:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of available PWM output channels.
++    minimum: 0
++    maximum: 4
++    default: 0
++
++  st,capture-num-chan:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of available input capture channels.
++    minimum: 0
++    maximum: 4
++    default: 0
++
++required:
++  - reg
++  - compatible
++  - "#pwm-cells"
++  - clock-names
++  - clocks
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    pwm@fe510000 {
++        compatible = "st,sti-pwm";
++        reg = <0xfe510000 0x68>;
++        interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
++        #pwm-cells = <2>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_pwm1_chan0_default
++                     &pinctrl_pwm1_chan1_default
++                     &pinctrl_pwm1_chan2_default
++                     &pinctrl_pwm1_chan3_default>;
++        clocks = <&clk_sysin>;
++        clock-names = "pwm";
++        st,pwm-num-chan = <4>;
++        st,capture-num-chan = <2>;
++    };
++...
+
+---
+base-commit: c425609d6ac4012c8bbf01ec2e10e801b1923a7b
+change-id: 20260613-st-pwm-1feade6cfea3
+
+Best regards,
+--  
+Charan Pedumuru <charan.pedumuru@gmail.com>
+
 
