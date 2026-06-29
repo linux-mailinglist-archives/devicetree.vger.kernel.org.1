@@ -1,169 +1,268 @@
-Return-Path: <devicetree+bounces-316817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316841-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4h4ZOlE2QmqZ1wkAu9opvQ
-	(envelope-from <devicetree+bounces-316817-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:09:37 +0200
+	id veb9K405QmrE2AkAu9opvQ
+	(envelope-from <devicetree+bounces-316841-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:23:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B8D46D7E15
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:09:37 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB14C6D8197
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:23:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iyUhTV03;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316817-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316817-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=rock-chips.com header.s=default header.b=KeP9lnKD;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316841-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316841-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=rock-chips.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A3A353011844
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:06:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7974230117B5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:18:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67CD83F8899;
-	Mon, 29 Jun 2026 09:06:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39AD3F927E;
+	Mon, 29 Jun 2026 09:14:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-m15574.qiye.163.com (mail-m15574.qiye.163.com [101.71.155.74])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 153293F823F
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 09:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070A93F88A3;
+	Mon, 29 Jun 2026 09:14:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782723972; cv=none; b=m7A/Lr+rHJQCa1G2OT6u4W6BdcRFBAqNvWx4Qp/RtZ9FUzx97gryrATk6Ufc5c4bxvfjPsCloc0TM7eCJC+2AX4qmoMPAM2CVmXt3ESAuD//Aq98WodTg3lyxFCTYLoUjlrlFfAo1XDkquwnYoZaNjidlKZ+ctC4J5D9tIDg8iI=
+	t=1782724489; cv=none; b=IA8evcaHpZRPOvU06OPx1hI50n2ii55zakB1R59wJ8kZ8ZILtpCNB7haZ+3JYZE2bqW+gB0UAoofqmtLPS33yvX06wZOOGCgBu1/HrY0TEPT7Ghqws7MUJ8UKV8uwz+n3flo0YKSW2cI+6kLImPUcNyL8lQV909MruYX11yoSL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782723972; c=relaxed/simple;
-	bh=qB4tJg2aYLg8hehpYin2dptPRoadEzGzbBpoppNMyKk=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SHPqbDk4qjmtp/O52xN34mYp/Xo+Sw0f7vVGmWAYypPcgpWH5OsBrNoWzD1ey6ZMFy11DJ5/MDzzdVcjX1wDE/xRjYSvQAFs72L+eft3v9IAAguymPkuVqJ521ewdlWZ7GjYveWA4R34dDQouG4CuiSJzml7HNZ4hdbiizqSsR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iyUhTV03; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9C3F1F00A3A
-	for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 09:06:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782723971;
-	bh=qB4tJg2aYLg8hehpYin2dptPRoadEzGzbBpoppNMyKk=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=iyUhTV03bOKBX3P50ZCu5uI5Z9GdSG5FaWYf46X7lJcOmFmX+TOB5ZSHaEGQvoVvi
-	 w7QBgX5wGnlIt9PwETkpMRIPTtL2gcrwvVGZlvQ9UEO6y0jwZX9Mmn6Zpk9DscDEuY
-	 F0AAPET4mFlLtpb3GilD+x3+Q8aLT5LUaL+qRXeepLEhJbSMjM6672Tt+0t+JTi4Ib
-	 aZbeAoeQD4GZ24bf76pYRPdkOembLX2HEF5nuge3oTrb5EA6IK7gusKHdgBYLt0wZe
-	 2UB/jbL1RUF+Rd3fa80u2w1VGLhbQLmwYrqVheU88CxYlRSZkCxTIpqImYjye4YPzK
-	 QVoyZa2wkJ4iA==
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-39b03d41976so9720821fa.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 02:06:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+Rqh2UavRWBaavlWwU9b/ipDJUxWZJbIRlSb7Nh5ynUtmPVNspda9CsLR3nZmy8h7zr2X/wLMdrLEJrR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+DWJUBvIsh2+g8aTJfnN4L7lYt4zHIrPVgjuhkCLWxun+fdbr
-	AVIwP9U3GkFkklbtpDV8jIZwnr5b8fwK6HxuBkkf46/2rCtjITe9gDonCUDu0fAHSK1DILLJQV+
-	mcucbHx/XpLk6uuMaSOFqT5fYZSKpvk8DM6TVLVJ8uA==
-X-Received: by 2002:a05:651c:1587:b0:39a:e3c7:6644 with SMTP id
- 38308e7fff4ca-39ae3c76ecdmr17150311fa.12.1782723969253; Mon, 29 Jun 2026
- 02:06:09 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 29 Jun 2026 09:06:07 +0000
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 29 Jun 2026 09:06:07 +0000
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <ah9QPgco9BxEix7T@ashevche-desk.local>
+	s=arc-20240116; t=1782724489; c=relaxed/simple;
+	bh=DKksF8ObdV5cCc8gNPV4GonL7jA1mzJBaHtSuhG6HEE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UpiXadbU1ZtCOYibS0mxZ8q361UFLUWmAf++2JfQspMXZqGSfKWliLZ5gMhii5bywdItzZk8hq6Bp6GNQFB0778egBk4hoytnqCOMFIJfgW+XwHo6+4j85jJmfbJ0c15U+qKTbExyBIj0oHgF4WCoj1bA7SBeXImskkKrGUIC90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=KeP9lnKD; arc=none smtp.client-ip=101.71.155.74
+Received: from [172.16.12.90] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 442780943;
+	Mon, 29 Jun 2026 17:09:24 +0800 (GMT+08:00)
+Message-ID: <b2633b22-da30-4778-8e23-7b5bed9ead07@rock-chips.com>
+Date: Mon, 29 Jun 2026 17:09:23 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
- <20260521-pdev-fwnode-ref-v1-21-88c324a1b8d2@oss.qualcomm.com> <ah9QPgco9BxEix7T@ashevche-desk.local>
-Date: Mon, 29 Jun 2026 09:06:07 +0000
-X-Gmail-Original-Message-ID: <CAMRc=McSDNdBMc_MAbBiOgeWusQXPEvivxniX5dJq+X6rp3UZw@mail.gmail.com>
-X-Gm-Features: AVVi8Cem7nS_T_r8P1YOw4p48wRJJJKggepy3MNLXmsKDTbaRpH5jyNSSJ0YwZw
-Message-ID: <CAMRc=McSDNdBMc_MAbBiOgeWusQXPEvivxniX5dJq+X6rp3UZw@mail.gmail.com>
-Subject: Re: [PATCH 21/23] usb: musb: use platform_device_set_of_node_from_dev()
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Lee Jones <lee@kernel.org>, Mark Brown <broonie@opensource.wolfsonmicro.com>, 
-	Thierry Reding <thierry.reding@avionic-design.de>, 
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Srinivas Kandagatla <srini@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>, 
-	Madhavan Srinivasan <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>, 
-	Nicholas Piggin <npiggin@gmail.com>, "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
-	Andi Shyti <andi.shyti@kernel.org>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Doug Berger <opendmb@gmail.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson <ulfh@kernel.org>, 
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Matthew Brost <matthew.brost@intel.com>, 
-	=?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
-	Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>, 
-	Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Maximilian Luz <luzmaximilian@gmail.com>, 
-	Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
-	driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-pm@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
-	dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
-	linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v15 1/9] drm/bridge: Implement generic USB Type-C DP HPD
+ bridge
+To: Xu Yang <xu.yang_2@oss.nxp.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Chaoyi Chen <kernel@airkyi.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Peter Chen <hzpeterchen@gmail.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, Hugh Cole-Baker <sigmaris@gmail.com>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org
+References: <20260304094152.92-1-kernel@airkyi.com>
+ <20260304094152.92-2-kernel@airkyi.com>
+ <erx73m2ueuvbzjteadjli6aki5by4pr3hyertkkqqoqwhaa4v3@5cstmshcercx>
+ <56c6abb8-c127-449f-9368-12f94620c2bc@rock-chips.com>
+ <k53t2soc3nxhwugncatksektig6agxfgdkogkdwbhrhu2fn2g7@auvsfrv76wxy>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <k53t2soc3nxhwugncatksektig6agxfgdkogkdwbhrhu2fn2g7@auvsfrv76wxy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9f12a3faa703a7kunmb5a121f9254176
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCSUhIVkwfQ0hMHkxCHUNLHVYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=KeP9lnKD//VlvvlxIiRxEa09oTrs/v+c7Ck0y9CJ7kebPxL1eAQ4LuYjyaIGw/OYsBbKdtssXKahpSlLQkKujxKOUvxCbJxwSZlr8H/ZYK2KhzjMnwcoDd1Sn9tYhC8NZeSIdOHyY2fC9yOG+KjawDDY3dqQlsRMu7fzSYuGBdk=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=oOV+Bwk6KYyidJt86LeBdzQS5L6KRlfhXQ6hucCploM=;
+	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,opensource.wolfsonmicro.com,avionic-design.de,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,linuxfoundation.org,linux.ibm.com,ellerman.id.au,8bytes.org,arm.com,broadcom.com,nxp.com,pengutronix.de,intel.com,linux.intel.com,ffwll.ch,crapouillou.net,ti.com,kernel.crashing.org,vger.kernel.org,lists.linux.dev,lists.ozlabs.org,lists.infradead.org,lists.freedesktop.org,oss.qualcomm.com];
-	TAGGED_FROM(0.00)[bounces-316817-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid];
-	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@linux.intel.com,m:lee@kernel.org,m:broonie@opensource.wolfsonmicro.com,m:thierry.reding@avionic-design.de,m:sebastian.hesselbarth@gmail.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:srini@kernel.org,m:gregkh@linuxfoundation.org,m:vkoul@kernel.org,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:chleroy@kernel.org,m:andi.shyti@kernel.org,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:opendmb@gmail.com,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:ulfh@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:peter.chen@kernel.org,m:paul@crapouillou.net,m:b-liu@ti.com,m:p.zabel
- @pengutronix.de,m:luzmaximilian@gmail.com,m:hansg@kernel.org,m:ilpo.jarvinen@linux.intel.com,m:krzk@kernel.org,m:benh@kernel.crashing.org,m:brgl@kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-sound@vger.kernel.org,m:driver-core@lists.linux.dev,m:devicetree@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:linux-i2c@vger.kernel.org,m:iommu@lists.linux.dev,m:linux-pm@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-usb@vger.kernel.org,m:linux-mips@vger.kernel.org,m:platform-driver-x86@vger.kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:sebastianhesselbarth@gmail.com,m:andrew@lunn.ch,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-316841-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:xu.yang_2@oss.nxp.com,m:heikki.krogerus@linux.intel.com,m:kernel@airkyi.com,m:gregkh@linuxfoundation.org,m:dmitry.baryshkov@oss.qualcomm.com,m:hzpeterchen@gmail.com,m:luca.ceresoli@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:kishon@kernel.org,m:heiko@sntech.de,m:hjc@rock-chips.com,m:andy.yan@rock-chips.com,m:yubing.zhang@rock-chips.com,m:frank.wang@rock-chips.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:amitsd@google.com,m:dsimic@manjaro.org,m:jbx6244@gmail.com,m:didi.debian@cknow.org,m:pbrobinson@gmail.com,m:sigmaris@gmail.com,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.
+ org,m:linux-rockchip@lists.infradead.org,m:dri-devel@lists.freedesktop.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[chaoyi.chen@rock-chips.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[41];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[66];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chaoyi.chen@rock-chips.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[airkyi.com,linuxfoundation.org,oss.qualcomm.com,gmail.com,bootlin.com,kernel.org,sntech.de,rock-chips.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,google.com,manjaro.org,cknow.org,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,intel.com:email,vger.kernel.org:from_smtp,rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7B8D46D7E15
+X-Rspamd-Queue-Id: AB14C6D8197
 
-On Tue, 2 Jun 2026 23:50:54 +0200, Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> said:
-> On Thu, May 21, 2026 at 10:36:44AM +0200, Bartosz Golaszewski wrote:
->> Ahead of reworking the reference counting logic for platform devices,
->> encapsulate the assignment of the OF node from another device for
->> dynamically allocated platform devices with the provided helper.
->
-> Same Q as per chipidea. Do they provide a pin control facility at the same time?
->
-> Otherwise simple device_set_node() or whatever platform analogue should suffice.
->
+Hello Xu Yang, Heikki
 
-Hi!
+On 6/29/2026 4:26 PM, Xu Yang wrote:
+> On Mon, Jun 29, 2026 at 09:29:08AM +0800, Chaoyi Chen wrote:
+>> Hello Xu Yang,
+>>
+>> On 6/26/2026 7:15 PM, Xu Yang wrote:
+>>> On Wed, Mar 04, 2026 at 05:41:44PM +0800, Chaoyi Chen wrote:
+>>>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>>
+>>>> The HPD function of Type-C DP is implemented through
+>>>> drm_connector_oob_hotplug_event(). For embedded DP, it is required
+>>>> that the DRM connector fwnode corresponds to the Type-C port fwnode.
+>>>>
+>>>> To describe the relationship between the DP controller and the Type-C
+>>>> port device, we usually using drm_bridge to build a bridge chain.
+>>>>
+>>>> Now several USB-C controller drivers have already implemented the DP
+>>>> HPD bridge function provided by aux-hpd-bridge.c, it will build a DP
+>>>> HPD bridge on USB-C connector port device.
+>>>>
+>>>> But this requires the USB-C controller driver to manually register the
+>>>> HPD bridge. If the driver does not implement this feature, the bridge
+>>>> will not be create.
+>>>>
+>>>> So this patch implements a generic DP HPD bridge based on
+>>>> aux-hpd-bridge.c. It will monitor Type-C bus events, and when a
+>>>> Type-C port device containing the DP svid is registered, it will
+>>>> create an HPD bridge for it without the need for the USB-C controller
+>>>> driver to implement it.
+>>>>
+>>>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>> Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+>>>> ---
+>>>>
+>>>> (no changes since v14)
+>>>>
+>>>> Changes in v13:
+>>>> - Only register drm dp hpd bridge for typec port altmode device.
+>>>>
+>>>> (no changes since v12)
+>>>>
+>>>> Changes in v11:
+>>>> - Switch to using typec bus notifiers.
+>>>>
+>>>> (no changes since v10)
+>>>>
+>>>> Changes in v9:
+>>>> - Remove the exposed DRM_AUX_HPD_BRIDGE option, and select
+>>>> DRM_AUX_HPD_TYPEC_BRIDGE when it is available.
+>>>> - Add more commit comment about problem background.
+>>>>
+>>>> Changes in v8:
+>>>> - Merge generic DP HPD bridge into one module.
+>>>> ---
+>>>>
+>>>>  drivers/gpu/drm/bridge/Kconfig                | 10 ++++
+>>>>  drivers/gpu/drm/bridge/Makefile               |  1 +
+>>>>  .../gpu/drm/bridge/aux-hpd-typec-dp-bridge.c  | 49 +++++++++++++++++++
+>>>>  3 files changed, 60 insertions(+)
+>>>>  create mode 100644 drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+>>>>
+>>>> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+>>>> index a250afd8d662..559487aa09a9 100644
+>>>> --- a/drivers/gpu/drm/bridge/Kconfig
+>>>> +++ b/drivers/gpu/drm/bridge/Kconfig
+>>>> @@ -30,6 +30,16 @@ config DRM_AUX_HPD_BRIDGE
+>>>>  	  Simple bridge that terminates the bridge chain and provides HPD
+>>>>  	  support.
+>>>>  
+>>>> +if DRM_AUX_HPD_BRIDGE
+>>>> +config DRM_AUX_HPD_TYPEC_BRIDGE
+>>>> +	tristate
+>>>> +	depends on TYPEC || !TYPEC
+>>>> +	default TYPEC
+>>>> +	help
+>>>> +	  Simple bridge that terminates the bridge chain and provides HPD
+>>>> +	  support. It build bridge on each USB-C connector device node.
+>>>> +endif
+>>>> +
+>>>
+>>> Should CONFIG_TYPEC_DP_ALTMODE select this one? Otherwise, we need to do it
+>>> manually.
+>>>
+>>> $ grep -nr --include=Kconfig "select DRM_AUX_HPD_BRIDGE" .
+>>> ./drivers/soc/qcom/Kconfig:118: select DRM_AUX_HPD_BRIDGE
+>>> ./drivers/usb/typec/ucsi/Kconfig:88:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
+>>> ./drivers/usb/typec/ucsi/Kconfig:99:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
+>>> ./drivers/usb/typec/tcpm/Kconfig:62:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
+>>> ./drivers/usb/typec/tcpm/Kconfig:85:    select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
+>>>
+>>
+>> That's a fair point. But based on the previous discussion, Heikki
+>> point out that configurations in the TYPEC subsystem should not
+>> select configurations from DRM.
+> 
+> I have just reviewed your previous patchsets but I did't find such opinion from
+> Heikki. Otherwise, why are tcpm.c/ucsi.c already allowed to add the above select
+> condition in their configs?
+> 
+> I think Heikki means that the DRM_AUX_HPD_BRIDGE shouldn't been selected at the
+> top level of Type-C subsystem. Because not all Type-C devices support the DP function.
+> 
+> As a generic Type-C DP HPD bridge, displayport.c will likely need to use it in
+> the future. Therefore, allowing displayport.c to select DRM_AUX_HPD_BRIDGE makes sense.
+> 
+> According to my testing, it's impossible to build this driver in unless TYPEC_FUSB302
+> or a relevant CONFIG is built in to select DRM_AUX_HPD_BRIDGE, or the defconfig is modified.
+> 
 
-I don't know and I can't test it so let me respin the series as is. This can
-always be amended separately later.
+Yep. For me, I select DRM_AUX_HPD_BRIDGE in DRM.
 
-Bart
+@Heikki, what do you think of the following change?
+Should we add a new patch for this? Thanks.
+
+
+diff --git a/drivers/usb/typec/altmodes/Kconfig b/drivers/usb/typec/altmodes/Kconfig
+index 7867fa7c405d..f89cdf3c949b 100644
+--- a/drivers/usb/typec/altmodes/Kconfig
++++ b/drivers/usb/typec/altmodes/Kconfig
+@@ -5,6 +5,7 @@ menu "USB Type-C Alternate Mode drivers"
+ config TYPEC_DP_ALTMODE
+        tristate "DisplayPort Alternate Mode driver"
+        depends on DRM
++       select DRM_AUX_HPD_BRIDGE 
+        help
+          DisplayPort USB Type-C Alternate Mode allows DisplayPort
+          displays and adapters to be attached to the USB Type-C
+
+-- 
+Best, 
+Chaoyi
 
