@@ -1,77 +1,78 @@
-Return-Path: <devicetree+bounces-316819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-316871-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dhi2IQM3QmrM1wkAu9opvQ
-	(envelope-from <devicetree+bounces-316819-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:12:35 +0200
+	id kZLNBrI+Qmpt2gkAu9opvQ
+	(envelope-from <devicetree+bounces-316871-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:45:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07BFA6D7E98
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:12:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B396D864F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 11:45:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=analog.com header.s=DKIM header.b=HUqpCXhb;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316819-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-316819-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=analog.com header.s=DKIM header.b="f9Gj/2oF";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-316871-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-316871-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=analog.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1E39A301833E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:12:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6717530A5DD1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jun 2026 09:36:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED5D63F871C;
-	Mon, 29 Jun 2026 09:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E183FB7C7;
+	Mon, 29 Jun 2026 09:35:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544103F8EB3;
-	Mon, 29 Jun 2026 09:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E47EE3F8EA1;
+	Mon, 29 Jun 2026 09:35:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782724338; cv=none; b=CDGlUf6hfCA72HT5d/+ZQ2xSkp5GKb47X/bNGssEE0w5J1h3NWrlImWBdQHIL77hKTiFOai39AmdHO1GtGmfZsEcBpxkHn5DvwD+1rLiaGk/x6PCuKDRRYKA6r2qBB6AM4P32vHFF1HO4ipntuZRDcFPNktvLs271oBfk1yCcjM=
+	t=1782725742; cv=none; b=jaYEPzdjjVMIwmibpOGiFI42wVN/JPvpmn8KfdYEE2vnOm3s+IibhibrDNhToGpNN64wBFEltQ+0buGs+q8DCtuUxpBH7MnQAOMVh+ID/4IIoe6z+7PfUERrktXHk29C8lITLZaDowsa5LOnzKEfUlCP0wBBhsxMqgFj1Z98DeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782724338; c=relaxed/simple;
-	bh=x9UR8siIKA6bnwnWLZFTIbHCKZskbD2YgEM5xG+8hII=;
+	s=arc-20240116; t=1782725742; c=relaxed/simple;
+	bh=ZJT8k8sTYcw12a8/QGx6AqB3YyQW9OhZG3vVqXikb8w=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=Z+tXSAgf1MsFXi5h4lYLNnbW42XFi2MxAyzy5AgZeIj0ihvscxGt1rWvKdToxYVcDu87M09b4pl6lhdFSYtxkO1YTJArHFj34FvpupgaejtvU74gJzBiacPZfwmNqkxkuDW1+VOHsFWIeT5vQ+asEfdl4MjPKqcTuPohjSn2xKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=HUqpCXhb; arc=none smtp.client-ip=148.163.135.77
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65T6k5X31390909;
-	Mon, 29 Jun 2026 04:31:43 -0400
+	 In-Reply-To:To:CC; b=Y5xl1eg+CudJ1DDuS6oAIzAcrV37TVcD0s3Hd2Ebg1EuHqkZ0dHQbITmrdTc+DGgOcPIU0Shhs6fGwyyWq2M7Tqfc1liMIONs6HuP5c/wmSs6/udji3dMxRybEqKx83ynHyLzE37oNPlvoQWIZBo9Njo4DR/yuSrssHpxIGYCEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=f9Gj/2oF; arc=none smtp.client-ip=148.163.135.77
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65T6kGpY1423997;
+	Mon, 29 Jun 2026 04:31:46 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
 	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=8bIBR
-	yREFxPiZ0+qJhBjtcsvIDzTnaTbyQKPPzVPOYc=; b=HUqpCXhbVtqhExeQ+Brzh
-	zXuzCRS/FstHJE5JbOasjsQXvBV7BZalkDXBfQUFY34BEFv5BqJy8pTxE6CSM0IZ
-	tesiql36TbS7BlqepWC8rn+MH0YJ2PEQvUZWg+Cp3y2KA/stjxYCjxj8Y7ImTHVE
-	2V7YlqxZlyM1Uuyqca5d39qTL9xYfvuXg5jF1z3qTApT5K7ck2UJg/P4p1jQiJFU
-	cuHuh+YUMn9yiDOe5ukF6A/9ZXxDByrn1JYXSY5ZlyncE/qK0Iz5Tt6Ad5GAiGtU
-	m6sbU9svDQPk/psiUjGPi0dZDAoyv0jdD/miazDnKuVppRB7DRDifMVAdvoEXyQm
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=B0XBj
+	J0GAG4gXYj0uw3iuMc3fhaduq4KOMj1gpOf6s8=; b=f9Gj/2oFMM8F0G6DWQ0u1
+	PSCCXWqc8AIifRlSSEsauZgLbC+1+Lfd+vF8QGT+6cdYpzpy0KJKCX3lddlAfjbU
+	U/hTHB4ICLt3A+LO/YnNr/qT5cODGr+i/62pPsjJCxRRx9XTVOKsO1Dx7tUrpa/Z
+	hojeKtRV1bLipoD7Bqa93jXK+cM/t7yj8qqfX8uNFNVvL60ldrq1XzkHUS43t7Br
+	S4rNNO9x2NO6jX5KBB7ooXubc1y2HqhzRkwWbU9P1GJqAcLAgU2xIgt7gbDHDJVA
+	ZF4+L48BHtGyMBFhkGhpzE+WX88fFkQT8etYs/3zSszlE5UQyc9kAJQVpeCG0MJ0
 	Q==
 Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4f2vud3wca-1
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4f3gypsagb-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jun 2026 04:31:43 -0400 (EDT)
+	Mon, 29 Jun 2026 04:31:45 -0400 (EDT)
 Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 65T8VgAp022788
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 65T8Vi5E022792
 	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Jun 2026 04:31:42 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+	Mon, 29 Jun 2026 04:31:44 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
  ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 29 Jun 2026 04:31:42 -0400
+ 15.2.1748.37; Mon, 29 Jun 2026 04:31:44 -0400
 Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 29 Jun 2026 04:31:41 -0400
+ 15.2.1748.37; Mon, 29 Jun 2026 04:31:44 -0400
 Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
  (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Mon, 29 Jun 2026 04:31:41 -0400
+ Transport; Mon, 29 Jun 2026 04:31:44 -0400
 Received: from 10.32.22.147 ([10.66.6.190])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 65T8VJkg012929;
-	Mon, 29 Jun 2026 04:31:34 -0400
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 65T8VJkh012929;
+	Mon, 29 Jun 2026 04:31:38 -0400
 From: Kim Seer Paller <kimseer.paller@analog.com>
-Date: Mon, 29 Jun 2026 16:31:05 +0800
-Subject: [PATCH v3 2/4] iio: ABI: add DAC 10kohm_to_gnd powerdown mode
+Date: Mon, 29 Jun 2026 16:31:06 +0800
+Subject: [PATCH v3 3/4] dt-bindings: iio: dac: add support for
+ AD3532R/AD3532
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,8 +80,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260629-iio-ad3532r-support-v3-2-f6e4f4abebbe@analog.com>
+Content-Transfer-Encoding: 8bit
+Message-ID: <20260629-iio-ad3532r-support-v3-3-f6e4f4abebbe@analog.com>
 References: <20260629-iio-ad3532r-support-v3-0-f6e4f4abebbe@analog.com>
 In-Reply-To: <20260629-iio-ad3532r-support-v3-0-f6e4f4abebbe@analog.com>
 To: Jonathan Cameron <jic23@kernel.org>,
@@ -98,95 +99,126 @@ To: Jonathan Cameron <jic23@kernel.org>,
 CC: <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux@analog.com>, <devicetree@vger.kernel.org>,
         Kim Seer Paller
-	<kimseer.paller@analog.com>
+	<kimseer.paller@analog.com>,
+        Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782721879; l=932;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782721879; l=2293;
  i=kimseer.paller@analog.com; s=20250213; h=from:subject:message-id;
- bh=x9UR8siIKA6bnwnWLZFTIbHCKZskbD2YgEM5xG+8hII=;
- b=zBK9o/g0r/X0No379CQdK9iOG52FSIOa+axKoPk3ygvmWW477kYvCNsT2VB30HjM2opQjjIvw
- wQA+kNogXrpBfwK4aryydphQ28o5AnOrB1atl3BG0KHnwhmO17mnS7V
+ bh=ZJT8k8sTYcw12a8/QGx6AqB3YyQW9OhZG3vVqXikb8w=;
+ b=SsSi98BLw57OzXvfAQDjZU8z0cXvOfWth40jmlJSxt6gbl+rLS1b62C1p007WYQ5oTwKotnFr
+ CJEXS+0KvUoCw1Kyg7KjJMEEzkgBa6EW3KIKl7QQpN9bakDM7JbjQG+
 X-Developer-Key: i=kimseer.paller@analog.com; a=ed25519;
  pk=SPXIwGLg4GFKUNfuAavY+YhSDsx+Q+NwGLceiKwm8Ac=
 X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=bvJ8wkai c=1 sm=1 tr=0 ts=6a422d6f cx=c_pps
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI5MDA2NyBTYWx0ZWRfX2+er8mYrLqGC
+ 9aakmHUc5IOui02o6JXeHYe6B23AQHk6yREE24bSiA3P3Vse4F7SBB+B/MGodrSCv5+03CAiJNO
+ F9j7IAyxz8fWd4F+rvwTbGr0x6Lld6yOEaJQHS+PRLO5XqJD/3l1955aRWsA+nqOt/02KH6IL0H
+ +nfG3bY0hKR5fI/GGzH/Pzd36IFzIKLV8RWkAjuWCy+MlfmxVYkobHtylUhdHLPJ7JviGsRDy2P
+ Wzi8ew8KgWB5zTFReOExTIzUx5y7eejMFBNI3HZ5RniaX36hrGwXFMvH+TFJgUDrNNY1kuvs/6w
+ Ce6t8324ltvneBHyFHm4Kf0Unj+58T+C1WDNshKKpG/Ts4mziDFoIOv3+66sZAwRSgMQVPrqA8W
+ WPRb8jhKpQr9/wVINJW7fhUVU4Yfl3dXore206to3t+1V5HSWCqP6EUgAa0rsX4bhdktFaIDBkb
+ D+mLpRFT74j+FBtkWGQ==
+X-Authority-Analysis: v=2.4 cv=A8Rc+aWG c=1 sm=1 tr=0 ts=6a422d71 cx=c_pps
  a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
  a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=0sLvza09kfJOxVLZPwjg:22 a=N--XFCr6TIEc_64PeIT2:22 a=gAnH3GRIAAAA:8
- a=c9qRhK4E6t9TYzrPtjYA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: cRscYQi4wsxaunfQ6QbJm8caNwcjHlbD
-X-Proofpoint-GUID: cRscYQi4wsxaunfQ6QbJm8caNwcjHlbD
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI5MDA2NyBTYWx0ZWRfX1+YUXf5RUgjt
- t/V7RoEDSvYG2r62c7CS1NZNtSjl7RwwrfSes6ytGhpo/I570X0kjPNATN5LFb5itRlosm4G+xf
- K44vy6Yf6+cx9VXYUWGgaXs7lkQkA8JUoSnzRVqWLV9PEukLpoYc
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjI5MDA2NyBTYWx0ZWRfX9+RqQWnEvkkf
- yffvn4ybdS4VEU6VOUvh9jd29qVzEdgaCFYIrilTPuPEdEO0LKXChZgAJShTCHNrkv4c8vdm9Fz
- xq562UtbUJQ4yYtvatcCGSlpv3dt+BMabFjJIj1vRkw0E1H4T0SHyG97Ydl4ewEle7MZ/xCe4zw
- cOb6JW1BqB7kG8I3MKalNX29/j4+ZmNu3MXcJNEW/MQy6vBLsh6mq0F1n1lTiRVYCp7xjqcDHm/
- 79YYaBkSR25biPFpNwhelwMqhcwDnildxvT5A/E5d+CpINDROaxELqC4r1Z+taIkfu/THZVkrgs
- lzawlLR+SpD3jMJF+RmLKnTy9Xdia9oQfVwmIRDfsnl2efpZjYJiQMEEqriBAyCgRFtSQeJWZPL
- 18K1ccawgxva4++hbFv3JFZ6lxRHl9jHHMnds3qrjWEB0EdZiSEHmqIq8+g+fOSkDpLx2KaEfg/
- wNY1XhL78BOms5gWvUA==
+ a=0sLvza09kfJOxVLZPwjg:22 a=Z0pTeXoby7EwIRygza74:22 a=gAnH3GRIAAAA:8
+ a=XYAwZIGsAAAA:8 a=C9Di-RxILHxrQtiLBzUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=E8ToXWR_bxluHZ7gmE-Z:22
+X-Proofpoint-ORIG-GUID: H-HG1KJhbN9iOIFpyPElFBjBIRw1e58_
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjI5MDA2NyBTYWx0ZWRfX0p2qEf78ECAa
+ MM+r8phcOTWxJtEPXp3sk1e7ErcNxO9nxVX+jkOG4j8+l2dq+WkHpWH5P0bayQjV6gKhK7zRZpT
+ wObvKnw/8zyUb5E9ON3ImQHYiNx7NAoWerY97z9Hu2juQgNIL0YJ
+X-Proofpoint-GUID: H-HG1KJhbN9iOIFpyPElFBjBIRw1e58_
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-29_02,2026-06-26_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 bulkscore=0 spamscore=0 adultscore=0
- impostorscore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606290067
+ suspectscore=0 spamscore=0 lowpriorityscore=0 priorityscore=1501
+ malwarescore=0 bulkscore=0 adultscore=0 phishscore=0 clxscore=1015
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2606290067
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
 	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-316819-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:Michael.Hennerich@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux@analog.com,m:devicetree@vger.kernel.org,m:kimseer.paller@analog.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,analog.com:dkim,analog.com:email,analog.com:mid,analog.com:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER(0.00)[kimseer.paller@analog.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-316871-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:Michael.Hennerich@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux@analog.com,m:devicetree@vger.kernel.org,m:kimseer.paller@analog.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[analog.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[kimseer.paller@analog.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,analog.com:url,analog.com:from_mime,analog.com:dkim,analog.com:email,analog.com:mid];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[kimseer.paller@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[analog.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 07BFA6D7E98
+X-Rspamd-Queue-Id: 60B396D864F
 
-Add a new powerdown mode for DACs with 10kohm resistor to GND.
+The AD3532R/AD3532 is a 16-channel version of the AD3530R/AD3530.
+This adds compatible strings for the AD3532R/AD3532.
 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
 ---
- Documentation/ABI/testing/sysfs-bus-iio | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/iio/dac/adi,ad3530r.yaml         | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-index 4ea5598e7cd2..5cc2e82c4997 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio
-+++ b/Documentation/ABI/testing/sysfs-bus-iio
-@@ -770,6 +770,7 @@ Description:
- 		3.85kohm_to_gnd: connected to ground via a 3.85kOhm resistor,
- 		6kohm_to_gnd: connected to ground via a 6kOhm resistor,
- 		7.7kohm_to_gnd: connected to ground via a 7.7kOhm resistor,
-+		10kohm_to_gnd: connected to ground via a 10kOhm resistor,
- 		16kohm_to_gnd: connected to ground via a 16kOhm resistor,
- 		20kohm_to_gnd: connected to ground via a 20kOhm resistor,
- 		32kohm_to_gnd: connected to ground via a 32kOhm resistor,
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3530r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3530r.yaml
+index a355d52a9d64..2fe098619772 100644
+--- a/Documentation/devicetree/bindings/iio/dac/adi,ad3530r.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3530r.yaml
+@@ -10,15 +10,17 @@ maintainers:
+   - Kim Seer Paller <kimseer.paller@analog.com>
+ 
+ description: |
+-  The AD3530/AD3530R (8-channel) and AD3531/AD3531R (4-channel) are low-power,
+-  16-bit, buffered voltage output digital-to-analog converters (DACs) with
+-  software-programmable gain controls, providing full-scale output spans of 2.5V
+-  or 5V for reference voltages of 2.5V. These devices operate from a single 2.7V
+-  to 5.5V supply and are guaranteed monotonic by design. The "R" variants
+-  include a 2.5V, 5ppm/°C internal reference, which is disabled by default.
++  The AD3530/AD3530R (8-channel), AD3531/AD3531R (4-channel), and AD3532/AD3532R
++  (16-channel) are low-power, 16-bit, buffered voltage output digital-to-analog
++  converters (DACs) with software-programmable gain controls, providing
++  full-scale output spans of 2.5V or 5V for reference voltages of 2.5V. These
++  devices operate from a single 2.7V to 5.5V supply and are guaranteed monotonic
++  by design. The "R" variants include a 2.5V, 5ppm/°C internal reference, which
++  is disabled by default.
+   Datasheet can be found here:
+   https://www.analog.com/media/en/technical-documentation/data-sheets/ad3530_ad530r.pdf
+   https://www.analog.com/media/en/technical-documentation/data-sheets/ad3531-ad3531r.pdf
++  https://www.analog.com/media/en/technical-documentation/data-sheets/ad3532r.pdf
+ 
+ properties:
+   compatible:
+@@ -27,6 +29,8 @@ properties:
+       - adi,ad3530r
+       - adi,ad3531
+       - adi,ad3531r
++      - adi,ad3532
++      - adi,ad3532r
+ 
+   reg:
+     maxItems: 1
 
 -- 
 2.34.1
