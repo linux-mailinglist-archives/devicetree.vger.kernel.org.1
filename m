@@ -1,55 +1,54 @@
-Return-Path: <devicetree+bounces-317766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317767-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id W5o+IM6+Q2pOgQoAu9opvQ
-	(envelope-from <devicetree+bounces-317766-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:04:14 +0200
+	id mKZAKO+9Q2oKgQoAu9opvQ
+	(envelope-from <devicetree+bounces-317767-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:00:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BEA66E496D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:04:13 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 208ED6E48C0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:00:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OLnyglxS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317766-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317766-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="TLv/UWN3";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317767-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-317767-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 83E56305A39A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:53:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CB838314B581
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056FB41168F;
-	Tue, 30 Jun 2026 12:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B518413245;
+	Tue, 30 Jun 2026 12:53:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1F7841166B;
-	Tue, 30 Jun 2026 12:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3556641166B;
+	Tue, 30 Jun 2026 12:53:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782823994; cv=none; b=Wnnd3rmEk5LZMzI9fngMLonI8qStfm7VXpvIP13F8q9roIJmRk4n62yh4FqlmonxrgSopx3T+LRsowpXADi8VWAMNmjBlOYNzkbEwAbTtzgvqdCr35z50D4yTH3GMfiPP8U+J419tmp+OrZYY8AB/5TTAv0huME+03EXU6zhSHs=
+	t=1782823999; cv=none; b=Vua1Ca8T7EUF+h28RtYG2B23w6pJ87Cmkg0E3alFsNKFT/tNkl/31+HQ/KqEaQxvoOLXd9WpKjA4/CqtfT+mecnn/bdqzW/pkx3L8ygrk4306OkxdWHA9j5cfK3+1kAulw2/vvJ3SyjGkYGyxPrHao3Ato78crOvUBonxJ0op2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782823994; c=relaxed/simple;
-	bh=0N8wB9AygfV86ZorVys70rYyjqXDnG7WcMIqzIZbULA=;
+	s=arc-20240116; t=1782823999; c=relaxed/simple;
+	bh=cnv+dro6g/o2f7nGM4zI5C5UpZYNAQtm/R+vGOgu5mg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HQJCNx34xkMd55EX0o3n2FXFUZPSMXz8YRI5RcoiGIg/WDWlbxnuFG/KwU4ckQCEwsgwylGBBQ9MCjG5gDEJ80DbSXV2BgAdFXxJts4hOAss7VQfs0/Vp6eiMDw8Rp6+pvrNwhStPDoaN6Y3NsXpt4ANHdaPA+fHdS0oALlvysE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OLnyglxS; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3E131F000E9;
-	Tue, 30 Jun 2026 12:53:10 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=uRhm38y/RDlFrN1TMp61K/I64UQnPboPvz1P/+ipuRqo/Gc8TP49LMIHES6CfFOk2s0H5cyPFFXu49jUnJasprbhZmALDwEBTetS9yfu5YWOaVUXBgp6xoxaboedx+4K1xbpKfmNDk5sxYJEWfStnCXBsIWCFtH+2+QlRLg554w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TLv/UWN3; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD2F71F00A3A;
+	Tue, 30 Jun 2026 12:53:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782823993;
-	bh=XbpRzGPd/1ntY5OxN5hkLLlD5mSljwyCXcdDCBAm+aU=;
+	s=k20260515; t=1782823998;
+	bh=quqKXaOY/defIjRmqlpmFrrkZp9Qyvv8wvLYUfMRkgc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=OLnyglxSldNUZol091T0wxb+26ISICSulG0mz2ZMIqjpXRXkmWJDyV8hyZOySlUbg
-	 QWn5hIAYaw2Ir4oZM+YqkKAkfVdo7eZDQf3Y2a5uvirqOJrOms8r7g3dUqKqQjltkU
-	 yeQ/NgD+nJxMlbBkobqEguaiRNsc2DRt/dV6GdzASCKSWkCetFMXRwUi2L9K5FNKd3
-	 KGDK/79aOT85x0TLFxsM7KVEQww7HdGOYgYGt+dhqttyNVnGBB06vRY7z7FXOM0kaA
-	 QEdtFBZ4kbexZKdHjS4MvT+3pdjOwzXtQ/MeJqUBREI6q+q/g5/N0mfUUaHEymURDN
-	 jRu9sdfbpIQbg==
+	b=TLv/UWN3CAeV6uXwH3EbVRAnpgw6kiMg7Yq8UqcDNmbUtPqP63zj7rrzQCmUojzKt
+	 M0qIbVH2l43eT0MkIKElK5XG9040QFhd9XlhNZ2JNXq4oKwFf6EBdYTVHNyW8Vpfyi
+	 u3Vh0adnLjhQ4OfuOlUpr0VGcPgBcqTm3isO4QPMFXTQxPmNlvnyR0tHSTYUygrFMo
+	 NF62V08ySqx+8yYCIEF3uhsvUeaUxnbhd2nYs+hYCM/UiD9/RhtrKTtFn993Bcra/H
+	 GBET2e+Civfwt2D7Q1chPDqxH9ynxxy19CDkxY00Zri0tpSFfoR5dVeFy+SBDItlWR
+	 c5Li+PZXWUQ9A==
 From: Yixun Lan <dlan@kernel.org>
-Date: Tue, 30 Jun 2026 12:52:46 +0000
-Subject: [PATCH 2/3] dt-bindings: soc: spacemit: k3: Add clock ID for UFS
- refclk
+Date: Tue, 30 Jun 2026 12:52:47 +0000
+Subject: [PATCH 3/3] clk: spacemit: k3: Add UFS refclk clock
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260630-06-clk-ufs-support-v1-2-cf7521d1d0fe@kernel.org>
+Message-Id: <20260630-06-clk-ufs-support-v1-3-cf7521d1d0fe@kernel.org>
 References: <20260630-06-clk-ufs-support-v1-0-cf7521d1d0fe@kernel.org>
 In-Reply-To: <20260630-06-clk-ufs-support-v1-0-cf7521d1d0fe@kernel.org>
 To: Michael Turquette <mturquette@baylibre.com>, 
@@ -69,22 +68,22 @@ Cc: linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
  spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, Yixun Lan <dlan@kernel.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=707; i=dlan@kernel.org;
- h=from:subject:message-id; bh=0N8wB9AygfV86ZorVys70rYyjqXDnG7WcMIqzIZbULA=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBqQ7wpQtUsn2WvndZxzP2ao2TZfEZVp/46Op6Kh
- hEGKXQUNdmJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCakO8KRsUgAAAAAAEAA5t
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1218; i=dlan@kernel.org;
+ h=from:subject:message-id; bh=cnv+dro6g/o2f7nGM4zI5C5UpZYNAQtm/R+vGOgu5mg=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBqQ7wsYcTfVh9d/UL94SxpyG3obN2aao1WIBGwj
+ GtVg1z+n4KJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCakO8LBsUgAAAAAAEAA5t
  YW51MiwyLjUrMS4xMiwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
  maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+33Cg/+IxquelHZIKSNOkIiy0rET64Y+bOST5nLQUR4t6mbvn6ax8FtKurkt
- j3As9zheRpcSSqAxHBiuo1MXJL1FSxMxOAYpcHmWLrkjRcIl7ZGNrlhNpv8hdwXfd8W1UOtNA6P
- IYLN+ohVE51ccQa7YyHRYAdMz+cDp6SEWHIprJMEenFPY8ihoNck4UWjK5oX+A/9hC9ptVplfsh
- OMMdYGVd1bznXTfO4TQ4TMe5I3Wn/r6221pcQHRVRrrVWO2bMlvRlT0Mo5/EEqCpdPWiKLR/U3c
- RIyLy6+hz3qvrWrgEW019kwMrLDTJi0Nxc8+80V41Sqyla7MTLjFVta8Akfxz58SWXdPgIskyS/
- 2xVnyDIUh9AsbAPQULp+7SZBJzIaoh5Ew1ho3C0FvPTbAhbBRz+0V6181dHTJZXA7yTRveGIQoo
- q8/twiMXnqHDabXSbHt5yRnIN0Kyzz8epWgH+ZI1VxWc9x9BhuPjR67RzYiDA0+CScmoIEhvnaN
- KeB/FTNd/UavOstPhq+mWg+VGq+d1dq6h7aP+Yi9Q1HLWuom6os2FrbbwIDE3w4Ks3POFfKmLFf
- Uv8Rvqh9puOj6x2HZqvtxxDhAvPcdiEUihQcEguLZE/tP+hnLP3cUolS/qBhO13+KjM+CSDobsL
- 1y9M0ZDp/29d2/+M3tCNBA503zye9M=
+ QACgkQMarqR1lNu+2xxw//cr0AfxHPxyn4fD5bkV+IHBESEcc8l0lbe/ajtvkD0oRE38o9f9B9V
+ MHYwIJjIS+wIJZBGdf5m07pXDtwf422sqPBJqH5qlz28FSxzYTCK9r2SndzUz0lEyf5mWnx/KH9
+ 2bUs3uTgeDiKv7rRcJBA8lyktZ583yfAsJTrjiaHodhbPTeUed+ICTmIPxs5L+owohoGHMRR5fv
+ f49lQtt1sfkA1eKtHGWf76U//XLAam3wg7mGYeu+v5j1sXVGztcr2gHeF4J+/M28lH5DQUMa57K
+ ngnS7Kt24jdzh98zuHvpgx0rfOnUzz+roi9HjlmamdwEHxauLgfR58ArrwZgL+AyHMQIpXersA9
+ Qwmt9QKD1X9o4kMtckXiEMNGKAITWKWgXRq/l4vn2II5QfXBOqwIZp7wvc3W++dt2jWvVRw7VvG
+ 9TOksiiXMOAe8kpm9abAzf6S2G4mzIWs52PpfpIIlLk50TQsGr/sHbkRRC6/nu9SdLi30wB4LMx
+ 4h221xXKCMd7fX6K0oia+TyChOXJay0dpkzgEx7jwuiLc6wBt/gxIkh56CO+StB85s78/lRbNcA
+ v6ske83tWiM79Yt75D7SO0tZpf3nFN9wIjKBt+dUa8nL2wxLc8T4gPE9snT9N5wNl6NCQGVRFnq
+ /1hjg7bCkVWBO2s0m1MjhzLGJATnmY=
 X-Developer-Key: i=dlan@kernel.org; a=openpgp;
  fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 X-Rspamd-Action: no action
@@ -94,15 +93,15 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-317766-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317767-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-clk@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:dlan@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -118,31 +117,40 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7BEA66E496D
+X-Rspamd-Queue-Id: 208ED6E48C0
 
-Add clock ID for the UFS refclk clock in SpacemiT K3 SoC.
+Add the UFS reference clock for SpacemiT K3 SoC.
 
 Signed-off-by: Yixun Lan <dlan@kernel.org>
 ---
- include/dt-bindings/clock/spacemit,k3-clocks.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/clk/spacemit/ccu-k3.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/include/dt-bindings/clock/spacemit,k3-clocks.h b/include/dt-bindings/clock/spacemit,k3-clocks.h
-index dfae52547cda..69978ab0b29f 100644
---- a/include/dt-bindings/clock/spacemit,k3-clocks.h
-+++ b/include/dt-bindings/clock/spacemit,k3-clocks.h
-@@ -385,6 +385,7 @@
- #define CLK_APMU_PCIE_PORTC_DBI  91
- #define CLK_APMU_PCIE_PORTD_DBI  92
- #define CLK_APMU_PCIE_PORTE_DBI  93
-+#define CLK_APMU_UFS_REFCLK      94
+diff --git a/drivers/clk/spacemit/ccu-k3.c b/drivers/clk/spacemit/ccu-k3.c
+index 42293a38b098..f47d26e1d642 100644
+--- a/drivers/clk/spacemit/ccu-k3.c
++++ b/drivers/clk/spacemit/ccu-k3.c
+@@ -934,6 +934,8 @@ static const struct clk_parent_data ufs_aclk_parents[] = {
+ CCU_MUX_DIV_GATE_FC_DEFINE(ufs_aclk, ufs_aclk_parents, APMU_UFS_CLK_RES_CTRL, 5, 3, BIT(8),
+ 			   2, 3, BIT(1), 0);
  
- /* DCIU clocks */
- #define CLK_DCIU_HDMA            0
++CCU_FACTOR_DEFINE(ufs_refclk, CCU_PARENT_HW(pll1_d64_38p4), 2, 1);
++
+ static const struct clk_parent_data edp0_pclk_parents[] = {
+ 	CCU_PARENT_HW(lcd_pxclk),
+ 	CCU_PARENT_NAME(external_clk),
+@@ -1391,6 +1393,7 @@ static struct clk_hw *k3_ccu_apmu_hws[] = {
+ 	[CLK_APMU_DSI4LN2_DPU_ACLK]	= &dsi4ln2_dpu_aclk.common.hw,
+ 	[CLK_APMU_DPU_ACLK]		= &dpu_aclk.common.hw,
+ 	[CLK_APMU_UFS_ACLK]		= &ufs_aclk.common.hw,
++	[CLK_APMU_UFS_REFCLK]		= &ufs_refclk.common.hw,
+ 	[CLK_APMU_EDP0_PXCLK]		= &edp0_pxclk.common.hw,
+ 	[CLK_APMU_EDP1_PXCLK]		= &edp1_pxclk.common.hw,
+ 	[CLK_APMU_PCIE_PORTA_MSTE]	= &pciea_mstr_clk.common.hw,
 
 -- 
 2.54.0
