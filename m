@@ -1,134 +1,145 @@
-Return-Path: <devicetree+bounces-317442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317447-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id T3n8OglvQ2p7YQoAu9opvQ
-	(envelope-from <devicetree+bounces-317442-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:23:53 +0200
+	id R/zQGj9wQ2q4YQoAu9opvQ
+	(envelope-from <devicetree+bounces-317447-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:29:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598B66E118D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:23:53 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E176E1262
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:29:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=MQ8ISaVF;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317442-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317442-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317447-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317447-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2301B3042019
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 07:22:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 44FD43043987
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 07:23:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6306837DEA2;
-	Tue, 30 Jun 2026 07:22:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C5B0375F87;
+	Tue, 30 Jun 2026 07:23:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B8B939DBE9;
-	Tue, 30 Jun 2026 07:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED1CB4369A;
+	Tue, 30 Jun 2026 07:23:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782804169; cv=none; b=XXMHRTvccABc6p0/WHsZKDzjbovc4GiYfjAAlt50hwJYRJv4z1wJYzkcBWlGHjD7z8f6x5iWGOFYVA6nsEFPoxx1YN1qOFVg6AqVf07cVLjloDd+vF0tZX9j/NipFuczB1GhgXesEVFWFYRqkb+7FqEEw2ScfN29lIlpkP0jqa0=
+	t=1782804211; cv=none; b=bK9633FP6z+0AbAFqR1B1MjmasN6+Q+2EseZs2IZoSDCEOGmtq/WudZnYwqD/OPdv9ch4vldNd11dnzNt7o4ciHCTmNVRzZJBVbDydprJF8liP0hVTG/YFaxHaTl4Pq1oOlocYsKkVrFaKfR4xQYc7MYkz+uMcR5TtcAHNvXLiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782804169; c=relaxed/simple;
-	bh=KhDE1nTNO2ZyY46YrJf71+gBQuMbn/LqDfePdF/OsoY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X/Oyy5mYkCgMFgq8rnRW00BZLzq6QjehEXgLm2CAsjDqh2aF/pbh/OtoBNolj1cvMZUrJiC0tM3K5W4CVoT7p9YqNUM3Fo9DwJNUGTbF7fh7OQm/DOyMzJpyCbwrz07trf5Cwc2Tce651/GlU/OD/lYS3gwCeYyXLRQLsVHJUJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MQ8ISaVF; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FAC11F000E9;
-	Tue, 30 Jun 2026 07:22:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782804167;
-	bh=15o4K5qq7tiiYrARQISBqxgVYHpa/9wf+7SjLZ2Y6sM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=MQ8ISaVFYbFlEc3zyzDgHvYhw+iQtIDneEJqEzkupZhIm79ia7yr70OVW/Ox4QP2o
-	 G9NFInht/TzBZRHDeTM5uhfLWkPcK2qfrMNBRf/3uzYHG2FzAuJRf9x/mxwpSEdOlq
-	 kc4c/wgz5MuiYBeV4BdQOPh1nnsVBX1pauxgE75XrNdeIITHg1vxCXtURjXnDBE6U1
-	 W4ejAxge/0m0iQMA3O9a6A2My+1q2zYMNL00kVqIgOLqyVO3a4OW+k/ALHY4O9QhAU
-	 onNWzkiNe+GnY/KThuYCiW5nTuxSk7X/y6jbyUeyZD6VKrUTsaIZw4bsE3Pi8UEma6
-	 qOdBXgXQPz6sg==
-Date: Tue, 30 Jun 2026 09:22:44 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Matt Coster <matt.coster@imgtec.com>
-Cc: imagination@lists.freedesktop.org, 
-	Matt Coster <opensource@mtcoster.net>, Alessio Belle <alessio.belle@imgtec.com>, 
-	Luigi Santivetti <luigi.santivetti@imgtec.com>, Frank Binns <frank.binns@imgtec.com>, 
-	Brajesh Gupta <brajesh.gupta@imgtec.com>, Alexandru Dadu <alexandru.dadu@imgtec.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: gpu: img,powervr-*: Remove Matt Coster
- as maintainer
-Message-ID: <20260630-electronic-lemon-oarfish-ccaeb6@quoll>
-References: <20260629-goodbye-v1-0-3bab53a80c53@imgtec.com>
- <20260629-goodbye-v1-2-3bab53a80c53@imgtec.com>
+	s=arc-20240116; t=1782804211; c=relaxed/simple;
+	bh=q2RFJvMDBuqW6a23HXCD3/Yd6XxV6jXX4kM/tbNUiUg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=HLwU8xQizBGsw8/iLOyWtugRgwwQelLRuWMx0miciW3qlqZjQ3gJXy4Iq3TQigouBXBU62oxE0/CHqms3wy/UfJ4KBvRf8Lr1LzpJEbjDT2J3KkTdad/b03I3JFmckS87rFFS5g5MpWjNgJhDL1tEMfBlENVKHTch9zaKiEjVVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=fail smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.200.13
+Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
+	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 8811E2007C0;
+	Tue, 30 Jun 2026 09:23:20 +0200 (CEST)
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1weSoS-005NFc-1V;
+	Tue, 30 Jun 2026 09:23:20 +0200
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1weSoS-000000002RU-1a3o;
+	Tue, 30 Jun 2026 09:23:20 +0200
+Message-ID: <0ccf83ca31fe30a77099aafd8fae31e75fd276e3.camel@pengutronix.de>
+Subject: Re: [PATCH v5 4/6] reset: anlogic: add support for Anlogic DR1V90
+ resets
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Brian Masney <bmasney@redhat.com>, Junhui Liu <junhui.liu@pigmoral.tech>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Paul Walmsley	
+ <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou	
+ <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Date: Tue, 30 Jun 2026 09:23:20 +0200
+In-Reply-To: <akLcbHYKJfvZzf27@redhat.com>
+References: <20260514-dr1v90-cru-v5-0-34f3021aab51@pigmoral.tech>
+	 <20260514-dr1v90-cru-v5-4-34f3021aab51@pigmoral.tech>
+	 <akLcbHYKJfvZzf27@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260629-goodbye-v1-2-3bab53a80c53@imgtec.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:matt.coster@imgtec.com,m:imagination@lists.freedesktop.org,m:opensource@mtcoster.net,m:alessio.belle@imgtec.com,m:luigi.santivetti@imgtec.com,m:frank.binns@imgtec.com,m:brajesh.gupta@imgtec.com,m:alexandru.dadu@imgtec.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-317442-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317447-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_RECIPIENTS(0.00)[m:bmasney@redhat.com,m:junhui.liu@pigmoral.tech,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree];
-	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,devicetree.org:url,quoll:mid,vger.kernel.org:from_smtp,imgtec.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pigmoral.tech:email,pengutronix.de:email,pengutronix.de:mid,pengutronix.de:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 598B66E118D
+X-Rspamd-Queue-Id: D2E176E1262
 
-On Mon, Jun 29, 2026 at 04:47:30PM +0100, Matt Coster wrote:
-> I'm leaving Imagination; remove myself as a maintainer. A separate patch
-> leaves a personal forwarding address in the .mailmap.
-> 
-> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-> ---
->  Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml | 1 -
->  Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml   | 1 -
->  2 files changed, 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> index 91e4ff61b394..a6bccb600a57 100644
-> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> @@ -8,7 +8,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Imagination Technologies PowerVR and IMG Rogue GPUs
->  
->  maintainers:
-> -  - Matt Coster <matt.coster@imgtec.com>
+Hi Brian,
 
-Next from next-20260629 does not have these entries, so maybe it was
-already removed...
+On Mo, 2026-06-29 at 16:58 -0400, Brian Masney wrote:
+> Hi Philipp,
+>=20
+> On Thu, May 14, 2026 at 05:27:20PM +0800, Junhui Liu wrote:
+> > Add reset controller support for the Anlogic DR1V90 SoC, which is an
+> > auxiliary device associated with the Clock and Reset Unit (CRU). All
+> > resets are active-low.
+> >=20
+> > Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+>=20
+> I don't see a Reviewed-by or Acked-by for you on the reset portion of
+> this driver.
+>=20
+> I'm gathering a pull for Stephen for various clk drivers that were
+> missed during the last merge window. Does all of this usually go in via
+> one tree?
 
-Best regards,
-Krzysztof
+When both clk and reset drivers depend on the dt-bindings + headers
+patch, often all of it is merged through the clk tree. For this,
 
+Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+> Or Stephen merges the clk part, you merge the reset portion?
+> Who usually merges the dts changes?
+
+In most cases clk is the platform device, and reset is just an
+auxiliary device. So if I can merge the reset driver on its own, dts
+usually goes with clk.
+
+regards
+Philipp
 
