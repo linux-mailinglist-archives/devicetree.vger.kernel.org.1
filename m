@@ -1,126 +1,220 @@
-Return-Path: <devicetree+bounces-318001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318002-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /6PtJPD+Q2oUnAoAu9opvQ
-	(envelope-from <devicetree+bounces-318001-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:37:52 +0200
+	id XuqsN+D/Q2qBnAoAu9opvQ
+	(envelope-from <devicetree+bounces-318002-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:41:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E34946E6F49
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:37:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77EB36E6FCB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:41:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NERHJxgT;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318001-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318001-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="QRBYu/IS";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318002-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318002-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C47B6303A714
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:37:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2F38F3041A8A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:39:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DDD63B635F;
-	Tue, 30 Jun 2026 17:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5223DCD8B;
+	Tue, 30 Jun 2026 17:39:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23BE0548EE;
-	Tue, 30 Jun 2026 17:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A35AE366541;
+	Tue, 30 Jun 2026 17:39:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782841068; cv=none; b=Y3PiFy8jfiriPAgnsj7IemgtFsSJKN8NW7ncHMTKitpW2tkRag/Vc43Fa/ksz3MVXjjvsbYVJBLzzpUoZQ1UqNY8jr0kqbGSfgGr3GAzxGs1mosDJtkRX6zuWJNex5Hi3P31DIj1KASDAD9kTCfyUvSqlS7Cn+EPaKsp/IpNVjA=
+	t=1782841180; cv=none; b=njv5xpshC/cuRJjc8PR0FecR/wZkVWM3SMaRTTeGOsFb4/vk0XkCzXrlmthNba2ESKSJVd6qnx9xqy7CBstSWO8zMNxXqxjn98O9HNiT5IhO4eO2jBu89SQhNtRdYvHy/fR6q2va69N5Cf+04mFYLBZVGU8DIToQ40g/TD5qVj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782841068; c=relaxed/simple;
-	bh=HJRM5qHyE5meSMlSI6WRBAbKT5AnOu1oLTv0gbcogxk=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=LWBEmsmcM4V4/kc4J4jsCeH/EqvZlAJvDIS7ElpivG72YXDR3u+836ZhRMmmwEv9J0TS9GJNwedDd4PeEDovjr4KsGQEgtqPDa7/6pxbrb0yX8hhPkeZDoXyMcaPEO4WyxKbox1OjaZLGEwav/MCKk5nDL9JIVroS+bhysvpo1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NERHJxgT; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65BEC1F000E9;
-	Tue, 30 Jun 2026 17:37:46 +0000 (UTC)
+	s=arc-20240116; t=1782841180; c=relaxed/simple;
+	bh=GVhSEjcUNDWjNrRCPcM8sK039JUB21hjqgUtF6Vyco8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HyGOsAvujlY7TaphbBH3tnrEUByyHgZKxvXWxjnznylsv+L22/i0dCwpbI6ymWFpvGvON6KlzJ9TZnt+VBjNtCTIwp5DfQty8zzm4p3e5Wy1kd0J+fNShuXMJd7xAWDiU36PYdPbuhLMdtgKNHScs846LVpLNZGxl9zblbnXiUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QRBYu/IS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 004331F000E9;
+	Tue, 30 Jun 2026 17:39:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782841066;
-	bh=oKhxSVXGDVm+qucXMK8YNhWI4lwMIt4fOF8+IcyMJ5E=;
-	h=Date:From:To:Cc:Subject:In-Reply-To;
-	b=NERHJxgTlKQbLnw800mRU4wiRtidr8eWnJrJ6u1axUtwriB6g9JzkCQhz9rrdY+Xc
-	 Lg0RB0duZfXGnPVNlEWZ+xrl17cdL0/H+Do75pa/AK56vUOiNxUfSPEmwcy7QrFuOu
-	 cl0CLGjqiv5VrS0cr4EHHyY+93wUMTJpIfXXkscL1KpRb1DYFb+DXMuEz9kcKGeSdT
-	 KC5zCbtLTjHFlFzb1MgU0oh+jk/utS6XyjtH+7ukIKxnctwVGEz3358ser+97m8ZgH
-	 vH/UKSJJPjwAfB6CHNNYWYATM4bChF3YkQZ+p7sWTDFX7J58HFOoTt+ao4cFAIisti
-	 HckZe76qpZXbQ==
-Date: Tue, 30 Jun 2026 12:37:45 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: "Sherry Sun (OSS)" <sherry.sun@oss.nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, amitkumar.karwar@nxp.com,
-	neeraj.sanjaykale@nxp.com, marcel@holtmann.org,
-	luiz.dentz@gmail.com, hongxing.zhu@nxp.com, l.stach@pengutronix.de,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	bhelgaas@google.com, brgl@kernel.org, imx@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org,
-	sherry.sun@nxp.com
-Subject: Re: [PATCH V4 1/8] PCI: imx6: Move pci_pwrctrl_create_devices() to
- imx_pcie_probe()
-Message-ID: <20260630173745.GA155769@bhelgaas>
+	s=k20260515; t=1782841179;
+	bh=ZSYKIMdaa8r55idhdlD4ARTKtizj6Luf8eogMh4Ab54=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=QRBYu/ISphMBIeZ86mvArT+CRnur19O0WjXXiSJ6rOrfeV1BmL0qKGj71oqDoZL6s
+	 1rjZaEBd73saORKRmmBmn2U5T3omqp1eIcPbthNGJC8RJSF2V/ck/b/JxvSpzhU2TE
+	 fePBFa4bO+x1D/af5qd7xAcJUmp2aO3Jj6BRqegaV00UqbW2dJLA+1eDB38JSPEg6m
+	 4gcxNK41ZqjKVL6rOQElB6+ptaQDc5zOnAHYF1tghofuW+dBQ9K/vOywwjwLheNsQa
+	 KuiO845XZTpnHQCOwKt+tq7Z8tvZK9XwhIzzEci/JXyZl81jSl3sYEG2vJUqyFhTEx
+	 r2aybJyysDqWw==
+Date: Tue, 30 Jun 2026 19:39:36 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Mikko Perttunen <mperttunen@nvidia.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Thierry Reding <treding@nvidia.com>, Yi-Wei Wang <yiweiw@nvidia.com>
+Subject: Re: [PATCH v5 0/7] Tegra264 PWM support
+Message-ID: <akP-KK1TUFAGXxpk@monoceros>
+References: <20260529-t264-pwm-v5-0-7bf9e405a96a@nvidia.com>
+ <e7b0d66e-ef2f-47d8-8844-38ae63eaf7fb@nvidia.com>
+ <add09636-7b0e-4a99-8503-d98a75c14f4c@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lyf4usywgl62u5tb"
 Content-Disposition: inline
-In-Reply-To: <20260630103139.3823329-2-sherry.sun@oss.nxp.com>
+In-Reply-To: <add09636-7b0e-4a99-8503-d98a75c14f4c@nvidia.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-6.76 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:sherry.sun@oss.nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:amitkumar.karwar@nxp.com,m:neeraj.sanjaykale@nxp.com,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:hongxing.zhu@nxp.com,m:l.stach@pengutronix.de,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:bhelgaas@google.com,m:brgl@kernel.org,m:imx@lists.linux.dev,m:linux-pci@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:linux-pm@vger.kernel.org,m:sherry.sun@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318001-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:jonathanh@nvidia.com,m:mperttunen@nvidia.com,m:thierry.reding@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-pwm@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:treding@nvidia.com,m:yiweiw@nvidia.com,m:thierryreding@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318002-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,holtmann.org,google.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
+	FROM_NEQ_ENVFROM(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[nvidia.com,gmail.com,kernel.org,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[monoceros:mid,nvidia.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E34946E6F49
+X-Rspamd-Queue-Id: 77EB36E6FCB
 
-On Tue, Jun 30, 2026 at 06:31:32PM +0800, Sherry Sun (OSS) wrote:
-> From: Sherry Sun <sherry.sun@nxp.com>
-> 
-> Move pci_pwrctrl_create_devices() to imx_pcie_probe() so that it is only
-> called once during probe, similar to other regulator_get calls.
 
-Can we say something in the subject about the purpose of this?  "Move
-X to Y" summarizes the code change but not the motivation.
+--lyf4usywgl62u5tb
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 0/7] Tegra264 PWM support
+MIME-Version: 1.0
 
-I guess previously pci_pwrctrl_create_devices() would be called during
-probe and then again during resume, and we don't want it called during
-resume?
+Hello,
+
+On Tue, Jun 30, 2026 at 02:54:51PM +0100, Jon Hunter wrote:
+> On 02/06/2026 10:16, Jon Hunter wrote:
+> >=20
+> > On 29/05/2026 03:47, Mikko Perttunen wrote:
+> > > Hello,
+> > >=20
+> > > this adds support for the PWM controller on Tegra264. The controller
+> > > is similar to previous generations, but the register fields are
+> > > widened, the depth is made configurable, and the enable bit moves
+> > > to a different spot.
+> > >=20
+> > > This series adds only basic support with fixed depth -- configurable
+> > > depth will come later.
+> > >=20
+> > > Patch 1 adds device tree bindings for Tegra264 PWM (compatible
+> > > =A0=A0 string).
+> > >=20
+> > > Patch 2 prefixes driver-local macros and static helpers with
+> > > =A0=A0 tegra_/TEGRA_ to make their scoping clear.
+> > >=20
+> > > Patches 3 to 6 contain the PWM driver changes for Tegra264.
+> > >=20
+> > > Patch 7 adds device tree nodes for the PWM controllers on Tegra264.
+> >=20
+> > ...
+> >=20
+> > > Mikko Perttunen (4):
+> > > =A0=A0=A0=A0=A0=A0 pwm: tegra: Prefix driver-local macros and functio=
+ns
+> > > =A0=A0=A0=A0=A0=A0 pwm: tegra: Modify read/write accessors for multi-=
+register channel
+> > > =A0=A0=A0=A0=A0=A0 pwm: tegra: Parametrize duty and scale field widths
+> > > =A0=A0=A0=A0=A0=A0 pwm: tegra: Add support for Tegra264
+> > >=20
+> > > Thierry Reding (2):
+> > > =A0=A0=A0=A0=A0=A0 dt-bindings: pwm: Document Tegra264 controller
+> > > =A0=A0=A0=A0=A0=A0 arm64: tegra: Add PWM controllers on Tegra264
+> > >=20
+> > > Yi-Wei Wang (1):
+> > > =A0=A0=A0=A0=A0=A0 pwm: tegra: Avoid hard-coded max clock frequency
+> > >=20
+> > > =A0 .../bindings/pwm/nvidia,tegra20-pwm.yaml=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 |=A0=A0 1 +
+> > > =A0 arch/arm64/boot/dts/nvidia/tegra264.dtsi=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 |=A0 72 ++++++++++
+> > > =A0 drivers/pwm/pwm-tegra.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 | 155
+> > > +++++++++++ +++-------
+> > > =A0 3 files changed, 176 insertions(+), 52 deletions(-)
+> >=20
+> >=20
+> > For the series ...
+> >=20
+> > Tested-by: Jon Hunter <jonathanh@nvidia.com>
+> > Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+> >=20
+> > Uwe, if you are OK with the version, we would like to get this into -ne=
+xt.
+>=20
+> This still applies fine on next-20260629 and so unless you have any
+> objections could we get this into -next?
+
+I dropped this patch series from my queue due to sashiko's replies. I
+just notice these were not sent to the linux-pwm list, otherwise I would
+have mentioned it. :-(
+
+So check on either
+
+	https://lore.kernel.org/all/add09636-7b0e-4a99-8503-d98a75c14f4c@nvidia.co=
+m/
+
+or
+
+	https://sashiko.dev/#/patchset/20260529-t264-pwm-v5-0-7bf9e405a96a%40nvidi=
+a.com
+
+=2E
+
+I only invested a quick glance, but the feedback seems relevant. If you
+don't agree, please point out why it's wrong/irrelevant.
+
+Best regards
+Uwe
+
+--lyf4usywgl62u5tb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmpD/1QACgkQj4D7WH0S
+/k5jgwgAkr72tIWgpzv/b+0mePymyvuVqmG86UilwIjrl2ZM3wJM1BynJZbVfWQd
+0iDdtbZWMV2WOQzzF/7lAZ0+uAFCu2zHbjc4VHEwsw8RFm1/QxiOpWg58qT3XUX3
+9m7U2PEucVXF1hml7RCLfHxsLfjiQRPIwDEi1IJy+hpjW8lROm95eG/SPl7XU2dZ
+TOzQKBQ196edIa40cEtlwvgkiTWG9ABv3+R01rCd7AgpUV/8mQItVt8Q2oT0ROiG
+ixd18yy/3XqbQuPU34voKC2oIbGQbAbLqQZUGb1rMdUkO+Ii6sP+sdJZdiR5NrKe
+b+QeSDXG2Sh4EMJhbCFCC3bRlikdug==
+=pRHi
+-----END PGP SIGNATURE-----
+
+--lyf4usywgl62u5tb--
 
