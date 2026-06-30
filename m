@@ -1,93 +1,95 @@
-Return-Path: <devicetree+bounces-317755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317756-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9w9BFAi8Q2plgAoAu9opvQ
-	(envelope-from <devicetree+bounces-317755-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 14:52:24 +0200
+	id sqPuL4a7Q2o2gAoAu9opvQ
+	(envelope-from <devicetree+bounces-317756-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 14:50:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8E96E477D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 14:52:23 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D6F6E471A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 14:50:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317755-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317755-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=q2y2G+eq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317756-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317756-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0D566310BE8C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:44:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 966F63062E94
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:47:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0313B413227;
-	Tue, 30 Jun 2026 12:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7AF410D01;
+	Tue, 30 Jun 2026 12:46:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022119.outbound.protection.outlook.com [40.107.75.119])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D8841168A;
-	Tue, 30 Jun 2026 12:44:25 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782823466; cv=fail; b=gf0vEJg8raqRfrI0QBZkbZlRBlMbgidqAtHY/+y3XJ5akbO5FcapS78GhfdEo7yXoIdOk/lNgkupp7sfegr0y329LhKpMmB7XdKxO3mrIEByp5bdIKuA7gtK90YbOJPPcY+WBUWYILwyIuuQoOahIQSPxMbHJw5eb/wkkHvNZEg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782823466; c=relaxed/simple;
-	bh=PX0dmIiy0Dw+VZf9uNau20dSHNglMDpYtCrHDUUQYJk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LvA6uN0KqRS/dDEmZeBTSVot/xkDbqNk3l3I3nM5s1mAvVWqPFLVOqfveH1MHt5Kg+qFhNmJplUzsUBpSf2zSrrnY+7trCONmIsCPsANYvDybKvvfn54wKPlg6egfRobsLqyiKhqpOTrYRsZpFE7biX0MfXkQp6OKMITDVuqvYQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.119
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SD/NjTsiBdYsSH8IssYkPaQTnxslrCHCgOr7iy90T+9tZM+GcoFjl9L1GPdzVFgcYbK4Oi/0cgmRlDe8ws8rgKtZ3Lbd6F8Cq2PzIifB9MqTcIUw45CSW2Q9XYsMc+ZKC+tUL8RXDS69uGiPE6tE+UoqHrRoMzgx0m/CdXm1U/I7NiU4z4sks/m4dUbJ+qZXaA+FJEgPByz5lrlmgMqy4UCguiqX29LAOpb43j+lXjx0qGQcy6RXm7zD1+v9YkqiyLpn+57paUsAOBM59I6+MQkI0ZxsjnPXjngCfBd7oC/pGZxs1SGZWVZqt0qOUBukD5xpsHHyekIxDMjKcdsjkQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NVP/cX8K+IizM7MHHIWGgxoxHAqmXb0N3FutYFrisSU=;
- b=OElyI84SvXVtL7FCjfXThXffIzkh1q81d5QPfDm7SNSuw/Mi4NfV1UPPIpUrE50OPMH4BY+tidNDYW3TXUI7RstTnpwbCSgBExGcBaIipa1+uiAIe9PUhuB8jd0qkk2utAqeveHkhuLZ32rWDny+NoUD88oGNkyNoLwJp70/kjC/0CBXryfDG+4PS51Q2BAesxSlR+LT7E39nf/Raxr2uwJyJjZaPQzLeoJf6+B2OgrwjmYFBP4SJsUVpAlokzGMkI+igQvMUnH+I4NAxt86pg/B37xN9Fcei7Lh3fEeDi5UeVfntKvy4lxVJ/SMeoeVWPMQ/sA1qgA6wOvlGJBuUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=baylibre.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from TYCP301CA0024.JPNP301.PROD.OUTLOOK.COM (2603:1096:400:381::14)
- by SG2PR06MB5058.apcprd06.prod.outlook.com (2603:1096:4:1c6::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Tue, 30 Jun
- 2026 12:44:21 +0000
-Received: from TY2PEPF0000AB88.apcprd03.prod.outlook.com
- (2603:1096:400:381:cafe::84) by TYCP301CA0024.outlook.office365.com
- (2603:1096:400:381::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Tue, 30
- Jun 2026 12:44:21 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB88.mail.protection.outlook.com (10.167.253.11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Tue, 30 Jun 2026 12:44:20 +0000
-Received: from cix (unknown [172.18.64.61])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 1FC9F40920E0;
-	Tue, 30 Jun 2026 20:44:17 +0800 (CST)
-From: joakim.zhang@cixtech.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	bmasney@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de
-Cc: cix-kernel-upstream@cixtech.com,
-	linux-clk@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A701941169B
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 12:46:51 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782823613; cv=none; b=MURSqxMnh24/R+ItbVX1Ox4FPgoyiH1GWSlfY8WrGXje2kNBVgGFoGZZ8S2bj/QUoyBqKh5w5cBRsET2TgW5nUIPPukG7zjZWw3rHk/un9mNVsJffDNFwC4oCNbR83btbilMMzml2vMOJAdjAJ2VUmTbkgEoKA6h7M/VZi07muc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782823613; c=relaxed/simple;
+	bh=kdJl+EUw8jVvMYC3N5IE68PLclBfqF2niKoiUYMWlgU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=bjxxhG0A/QsCtN23vTz1UdmGndxNgGw+4rChQS4eVssZpwr36ClTkdVZP024eBhLtN/k1W4oeuRzVaq0GZXJnyaY27Qutkuc+L8UVfzd/FazRG4NSFzUgq+NPglPhyq0ydTn4AZ58CuvE+udPfEDcm/4ZDJ4lXaUSAjbbxWTw8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=q2y2G+eq; arc=none smtp.client-ip=209.85.128.49
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-493a548fc99so12795585e9.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 05:46:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782823610; x=1783428410; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dap/ctidZYQin79oLPYBa3pq5WW66y6gAeCW8syc9mU=;
+        b=q2y2G+eqbt+hVbDhm0s4XJ13QGwn5Bn2bQwuWvlLWMPIdkLmfMhFRb7m40OaV22Wx0
+         +FQuYrknfQXiwT+TnPgKggRmas1idDNu9SHlLJYGsKGNPNyu+am3gZxcq5dytJaSngi+
+         rARkiJdbOuAYuMYIDXfWihw8MOazG3bYK75LCbpaiLCbxjZ/Dmfm046YGPtHqAmDSYky
+         Ig9fioun+h8/vumuABhGBuJTN5IW5g6Sb7w35hz0loB9ImFlWT2+A4zy7PT9Bx/px8jx
+         x3kOqiHv7cBLU9pBYHrMq9D3rC2yipLNMP55YKGof93jDimEBhd0MJyE/yEb3AJBLz1J
+         MOHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782823610; x=1783428410;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dap/ctidZYQin79oLPYBa3pq5WW66y6gAeCW8syc9mU=;
+        b=gaFP7odzNsBFywZjpTmneiUmhtUU8Ne4V4HK6nu2RI7kp3q5Act+68lutZreQpfIss
+         lyESdAN5U8786uoUtzrwm9233a3aKAeqj0XvwBB1o9tsX5MLeuqOz4baddVdN2lT9PSp
+         9hwdLjHQ9h8cJUdxhms+cMG2jzsEX0oeqPY7vhHuUjehreGndx/JX6MEv6wyRRTFEpss
+         OCedhULo0IV2Cvokv1YxklyrKVKio7EG/ABxIxy+/9usT1iQBpUyu2FGuoKd4uk8vXoB
+         zYEMUHSHxMCv60eqsIFgOZGOK9Wk5FwgUgVX/6yLArabGCEtTrt0wUvXMW4quLl62Nmz
+         m3xw==
+X-Forwarded-Encrypted: i=1; AFNElJ/GdN6SbJhl9N9Xd7e0X/NazSzbqZCeTk5ClbXrlaVrOeSOY4dvbz/WZtiKAzybAfk2GzYvOHmVP04/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yymf3nhQ9UZXAYjOfk/ItKZMPL1RB1tByvQkgctVEvZejJ1iUZi
+	ehjy29UGcEve5XFhF2RNGPIAIqrO1jtmaF7Yd0ppeOguDeJ/VHzulpwQ
+X-Gm-Gg: AfdE7cl0//xdwxdccnH5Cg0A9jDQjg6+ioxUwzADPCFPRFS22Y/74gZ4HpAEEF3lmex
+	E8DHkZQf0LR5YRCYZn0MReQIxtZ/T+RjfBAvj4o66f6VFR0U59Tp2UEvVPajTYJNvGtAAEDmXw1
+	27S1UkTERINh/s5X3hsrLKBA1OMXof2+PRg9KCJj9z7LRiXgvGgdprwwgxh86Vwz9c+Tf7sa1e8
+	xqkUOMJEATrIIdOVVFaJvmDXIkNYzQixOHWcNWREdgXFCj0PECvj2Hl4rQmMm4vpC/B8/E688AT
+	JGojs+JL/Nnj4jqhdX9g8zi73MsbMWw5M8NoAgszwuqv6HLLaf8pHug055opX1Xh85x7WzvRsKy
+	jqcx9nniCm8fqMX9NT+ppYnS7jBuvtZHn2XJryBtovzBvgo+/T4Ttq3ilZpZfIUEQNfOi++GbbV
+	emc+au62Zp8UmDaWakhB8Z2/MNQwl48rlgJGQAFR62FvDJvNNCDtMyAQ==
+X-Received: by 2002:a05:600c:56d7:b0:490:b724:507d with SMTP id 5b1f17b1804b1-493b828c5bfmr35016365e9.11.1782823609901;
+        Tue, 30 Jun 2026 05:46:49 -0700 (PDT)
+Received: from localhost.localdomain ([82.77.79.113])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-493b8d0bbbcsm79274455e9.13.2026.06.30.05.46.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jun 2026 05:46:49 -0700 (PDT)
+From: Eduard Bostina <egbostina@gmail.com>
+To: daniel.baluta@nxp.com,
+	simona.toaca@nxp.com,
+	goledhruva@gmail.com,
+	m-chawdhry@ti.com,
+	egbostina@gmail.com,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Joakim Zhang <joakim.zhang@cixtech.com>
-Subject: [PATCH v8 4/4] arm64: dts: cix: sky1: add audss cru
-Date: Tue, 30 Jun 2026 20:44:13 +0800
-Message-ID: <20260630124413.1814379-5-joakim.zhang@cixtech.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260630124413.1814379-1-joakim.zhang@cixtech.com>
-References: <20260630124413.1814379-1-joakim.zhang@cixtech.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: bus: Convert DA8XX MSTPRI to DT schema
+Date: Tue, 30 Jun 2026 12:46:27 +0000
+Message-ID: <20260630124631.2991596-1-egbostina@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,116 +97,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB88:EE_|SG2PR06MB5058:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: dfb484d4-1512-4469-67d9-08ded6a54ec4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|23010399003|376014|1800799024|36860700016|82310400026|56012099006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	f4y6AQ++GB4jFNbNiT3RB5/SIOO4RP9RZ7kcYLoi6g137tvvX8/4nHQHc3OsO2aZobMgvk61FQ2Xd4hvROM1Zd+u6DhsIa6NhzujKiSinw8l0BKH9GwkCJ/RODsk1O84yr2DeYSTzS0bHHHU8FapvL8JLjTVeDnVTDnOvnvQjoOXxo1szAoL/LYW4Egx005zARgbUhRLC+DFK243GxqX5H3FH6HrjNOs1lhu1Rb9cZ8lY9ZzA1EN2+KOLmvG1XOBKAwXDpq+GdAmTIAzWROQlfeWMBE9vadGvQSRhxBJolV9CKaCJ3VHabN2qJNR98MGrK4z3AyGhrzUbtdb2KuH+FedTBukywB4VQwmJjU/bUzZBBcaBBoytWasSdpcclEPU0TmCFV5P+Hm2gGyKHcs5mEfyNIxyDav1oOqtOfK5vB1yXlKNE+9ETPWhbC1SPrPoJsMk3p7Z5sWKdOQNI2nKg+kqXpscy/cvxRhlW+BpBllDN0jSbBF0wxupR7WZw9glfUfMB58lGazPe2/xaAFZA4WywIwOdb0+aHK4xsnokhXcHafctOrlYE2jeLtJ2O+IO1Y6ZYRkPp8IYuSlVFM4O0F4BA8jNNggVzF3givK5m8JXvN33z7N+U+HjcgpBxjRcNA+/It1PuHQh4qJuwSgtIUzp4okIqICidA0CDNcL0v7nyZ0uX/6LmYCYYXX3SXnCpX+giq3gCnNS9V1F2f+w==
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(23010399003)(376014)(1800799024)(36860700016)(82310400026)(56012099006)(18002099003)(22082099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	o+rTxVS9afxrC3Rni0ndQGhr+C5R/sFTrwOMwNp3Hvj8j9RK4gCJ0Dt2TFhFajB5s1gt/TTj5W2nDbwQCDxUMhvyFGHID3p9FPM8Ph6twBj5G4F3QyTFgb0ljItRWJjs4GicF/49LlfbO3tbmoKygk19vd/whPjPZ6Gx0JOj5I1vFzcCvjKoniEuC5bOCX/UU920JyMXFr1B+tR7ZcmXnRmNEt3OH+57zvQHmKeL7c8igZdRxS4svWVJpE7kVXkyePhXHmYaI7ssRxRJFaOTcJyQK69o+YM7mFwao5Am4QQc6F/WPUCSMmQ7jMrcghg3UvHmHX+MXYfRMdaWtadULOJN1DyrJlLkLMqLWCno4lNoV6xED7JPh9B11VRKvmDncKFMcD4nrj0Q5gmIB40tEj2xX426Orddn1ysZ+B/EoUBx9hs0yZkfW1LtcNu/Iqu
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 12:44:20.9938
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfb484d4-1512-4469-67d9-08ded6a54ec4
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	TY2PEPF0000AB88.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR06MB5058
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-317755-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[cixtech.com];
-	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:cix-kernel-upstream@cixtech.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:joakim.zhang@cixtech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:email,cixtech.com:mid,cixtech.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	TAGGED_FROM(0.00)[bounces-317756-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:daniel.baluta@nxp.com,m:simona.toaca@nxp.com,m:goledhruva@gmail.com,m:m-chawdhry@ti.com,m:egbostina@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:broonie@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[nxp.com,gmail.com,ti.com,kernel.org,vger.kernel.org];
+	FORGED_SENDER(0.00)[egbostina@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[egbostina@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ti.com:url,devicetree.org:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AA8E96E477D
+X-Rspamd-Queue-Id: 62D6F6E471A
 
-From: Joakim Zhang <joakim.zhang@cixtech.com>
+Convert the Texas Instruments DA8XX Master Peripheral
+Priority Registers bindings to DT schema.
 
-Add the AUDSS CRU device node providing clocks and software resets
-for audio subsystem peripherals.
+Documentation:
+OMAP-L138 (DA850) http://www.ti.com/lit/ug/spruh82c/spruh82c.pdf
 
-Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
+Signed-off-by: Eduard Bostina <egbostina@gmail.com>
 ---
- arch/arm64/boot/dts/cix/sky1.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ .../bindings/bus/ti,da850-mstpri.txt          | 20 ----------
+ .../bindings/bus/ti,da850-mstpri.yaml         | 37 +++++++++++++++++++
+ 2 files changed, 37 insertions(+), 20 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/bus/ti,da850-mstpri.txt
+ create mode 100644 Documentation/devicetree/bindings/bus/ti,da850-mstpri.yaml
 
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-index bb5cfb1f2113..6d045d7216e6 100644
---- a/arch/arm64/boot/dts/cix/sky1.dtsi
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -6,6 +6,10 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/cix,sky1.h>
-+#include <dt-bindings/clock/cix,sky1-audss-cru.h>
-+#include <dt-bindings/reset/cix,sky1-system-control.h>
-+#include <dt-bindings/reset/cix,sky1-s5-system-control.h>
-+#include <dt-bindings/reset/cix,sky1-audss-cru.h>
- #include "sky1-power.h"
- 
- / {
-@@ -488,6 +492,20 @@ mbox_pm2ap: mailbox@65a0080 {
- 			cix,mbox-dir = "rx";
- 		};
- 
-+		audss_cru: clock-controller@7110000 {
-+			compatible = "cix,sky1-audss-cru";
-+			reg = <0x0 0x07110000 0x0 0x10000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			clocks = <&scmi_clk CLK_TREE_AUDIO_CLK0>,
-+				 <&scmi_clk CLK_TREE_AUDIO_CLK2>,
-+				 <&scmi_clk CLK_TREE_AUDIO_CLK4>,
-+				 <&scmi_clk CLK_TREE_AUDIO_CLK5>;
-+			clock-names = "x8k", "x11k", "sys", "48m";
-+			power-domains = <&smc_devpd SKY1_PD_AUDIO>;
-+			resets = <&s5_syscon SKY1_AUDIO_HIFI5_NOC_RESET_N>;
-+		};
+diff --git a/Documentation/devicetree/bindings/bus/ti,da850-mstpri.txt b/Documentation/devicetree/bindings/bus/ti,da850-mstpri.txt
+deleted file mode 100644
+index 72daefc6b4a1..000000000000
+--- a/Documentation/devicetree/bindings/bus/ti,da850-mstpri.txt
++++ /dev/null
+@@ -1,20 +0,0 @@
+-* Device tree bindings for Texas Instruments da8xx master peripheral
+-  priority driver
+-
+-DA8XX SoCs feature a set of registers allowing to change the priority of all
+-peripherals classified as masters.
+-
+-Documentation:
+-OMAP-L138 (DA850) - http://www.ti.com/lit/ug/spruh82c/spruh82c.pdf
+-
+-Required properties:
+-
+-- compatible:		"ti,da850-mstpri" - for da850 based boards
+-- reg:			offset and length of the mstpri registers
+-
+-Example for da850-lcdk is shown below.
+-
+-mstpri {
+-	compatible = "ti,da850-mstpri";
+-	reg = <0x14110 0x0c>;
+-};
+diff --git a/Documentation/devicetree/bindings/bus/ti,da850-mstpri.yaml b/Documentation/devicetree/bindings/bus/ti,da850-mstpri.yaml
+new file mode 100644
+index 000000000000..5b03abd3fc3b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/bus/ti,da850-mstpri.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/bus/ti,da850-mstpri.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 		mbox_sfh2ap: mailbox@8090000 {
- 			compatible = "cix,sky1-mbox";
- 			reg = <0x0 0x08090000 0x0 0x10000>;
++title: Texas Instruments DA8XX Master Peripheral Priority Registers
++
++maintainers:
++  - Eduard Bostina <egbostina@gmail.com>
++
++description: |
++  DA8XX SoCs feature a set of registers allowing to change the priority of all
++  peripherals classified as masters.
++
++  Documentation:
++  OMAP-L138 (DA850) - http://www.ti.com/lit/ug/spruh82c/spruh82c.pdf
++
++properties:
++  compatible:
++    const: ti,da850-mstpri
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    mstpri@14110 {
++        compatible = "ti,da850-mstpri";
++        reg = <0x14110 0x0c>;
++    };
 -- 
-2.50.1
+2.43.0
 
 
