@@ -1,143 +1,277 @@
-Return-Path: <devicetree+bounces-317580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317586-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /qs4BV2QQ2prcAoAu9opvQ
-	(envelope-from <devicetree+bounces-317580-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:46:05 +0200
+	id YbIUKOqQQ2rYcAoAu9opvQ
+	(envelope-from <devicetree+bounces-317586-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:48:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 973BE6E2644
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:46:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 546936E26DC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:48:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317580-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317580-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=Nvidia.com header.s=selector2 header.b=LiGwf6h8;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317586-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317586-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=nvidia.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 49E963104B23
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:38:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CF9D5301D621
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:42:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29613A4F4B;
-	Tue, 30 Jun 2026 09:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99730391E57;
+	Tue, 30 Jun 2026 09:42:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010022.outbound.protection.outlook.com [52.101.61.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1A23CEBA7;
-	Tue, 30 Jun 2026 09:37:59 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782812282; cv=none; b=NlEyl7r4utWRYFjCh3g6OKOM35q3Z45co0abc5XE21ayFu4YEUJAm7rj9ujGORkpv2oaur2+m33jR/gv5nkFkMzBwpIt2zG4ewwRmURJoQNdkrj6FntFuUJLGqL29dJRDrL38kqobecivOFdnvUnsZeNHLy5xXbZuA0zzGgdw+8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782812282; c=relaxed/simple;
-	bh=Dx6r6KRQw/Y8Q9QV4XTwcNAgMQsPIjTj5hYAVq5+yTc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=oZtDcbhtlf6Qwyv9RhDvf1UvZ3g5SKKEzwi9Ukpp2iyXWX9Q2MUEayWeH+4AyzFNR36dNWkKWXSNEVZGfscWx7Xh7l2SeAyOHdYK9/3twarXP54WcKPNqGLbM0O9QYwaaPZrovonkCE2x4dfKcdVVt8rv9opMtfPkIhY7BLTq1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=fail smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.200.13
-Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
-	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id DA89D2006B4;
-	Tue, 30 Jun 2026 11:37:57 +0200 (CEST)
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1weUuj-005OHq-2d;
-	Tue, 30 Jun 2026 11:37:57 +0200
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1weUuj-000000006lu-33Ue;
-	Tue, 30 Jun 2026 11:37:57 +0200
-Message-ID: <90ecf77e16c17f0ac46b2996be58110fc01c2e08.camel@pengutronix.de>
-Subject: Re: [PATCH v7 3/4] reset: cix: add sky1 audss auxiliary reset driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: joakim.zhang@cixtech.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	bmasney@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: cix-kernel-upstream@cixtech.com, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Date: Tue, 30 Jun 2026 11:37:57 +0200
-In-Reply-To: <20260629091500.52540-4-joakim.zhang@cixtech.com>
-References: <20260629091500.52540-1-joakim.zhang@cixtech.com>
-	 <20260629091500.52540-4-joakim.zhang@cixtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BBE2192F9;
+	Tue, 30 Jun 2026 09:42:52 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782812573; cv=fail; b=SYMckkWs+5mSXi0PVb08Wfkg/jDdrd3YCARedOGXagJmk3HrjZ/Bu9hfhYXm0l6lnuoHoUBdHUUuoLSZel7UVar/oTcA2BVUzJ4ai1utoZTn5Ct306OKKayiYIkzk1slBqDF4SZX76Zp9CzXrRX+iMfciiFdg79hjUIngNLnsME=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782812573; c=relaxed/simple;
+	bh=NEe6S47c/lhGUrKovlJkLb5mcILPC9NOyM6T36Gz4eg=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=idOoaL3FTg42dAh5F28SbkzFfeBjrvzkIJjJ6fZYDnyVVS4IwZp0BsmJxq8WmfxnRy+lj0XGLO4tBwqmVsfK8wjrZsLzIZOOHaiqNRZAL/P0VZF/HlFWh0kozqAZFtBLt420GkgcFAX6pk3yGZbu3BJsBMe2QUHv0ZSmmJe8AXM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=LiGwf6h8; arc=fail smtp.client-ip=52.101.61.22
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FmYPTkhrCoH2JkiGaREz9NW0CbAN1t0oDEZzIETAyrro3+UTDvIW3321j4DEiYQe7qbKW4P0ZImJoWonm2eZJg0/pZtJHJsdL+WE1CkzZRvPMIhdrvyJYhnW+oAESiP2ImpW9cvW95hAY93MkbiFagihny1iQlMwLskg0FYYJrcJlypJF5xXzthb4zPFq4MtfXSinveDGYIusX0u1mh0KY0RMfzI5j1Jj4RtGkuDEOcilKCEjMEykpgpxonC+UVl9BHIVAtj5fgthWteD07FypZHWaD5ArJduMht+7mhqPvP996XpCVhlWAgGGTYUZSdo4XRDTs9VMcZqY6/YaQi2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zt77Lbtsncie1+AFWqr0tPcSeJdAyekHoPRmDpf4Y2c=;
+ b=jx2OcuBN6lkkQtckVuIu1rLlu/LoLFxootvxOmxrcqfOCEcDcdIlCZtR2FzCJr+D41i0R4brnY90IpelDqP+3prdts9wuoGd8HGuN/zyybdvxl2Su5Htb+RHh1xSwxdMSLdmu5YWy99kjamaystSBq9Y+raH/LD/Jb6kWlSVDabct3OyUFUq5AveuP7otE8o8z12GrOvUiBTWEHkwQ44+OnCAdvoLqALFM0JGc1nbJCGTjic1Y7ukfiMO3h3r6AzZJsRyyUAwGYRrqNfohdQAI/lEqwx4hpwjXyLyOxgkbO/Quqt8OSPqkSUoP3bU4qXYhyHTnvXuwmIQWtYP5V3QQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zt77Lbtsncie1+AFWqr0tPcSeJdAyekHoPRmDpf4Y2c=;
+ b=LiGwf6h8e/QrnFr/jsXPDQekn7V+ePCxGzF96r+8C68rXQO2K82x8Zfv5bmb8xq8BB2uN8XhDYijdaspVegxhuDRIo8byNl063pZKxVLPZg5ii3OebvOBdNkVX0rbqH54m6rwTI7weifDeBFSL846MDJm6q09mXKf2EjCwl45Xids36bWWxrSra3rmSngUaHaocFx9yziVcldF0CywbNJZk//CK59g1yzDf4CPSsiE0tCJiEbv3ivF5Qq6Frg2+jh9y3GDHfr3OwNT4VmRtmTrCQ62p7UiQbwDlBC/tWTAJLHSQUQjpYLnVrgicfROD08/QuMVPdrcj3fc8+Vos+sA==
+Received: from SJ1PR12MB6051.namprd12.prod.outlook.com (2603:10b6:a03:48a::18)
+ by IA0PR12MB7700.namprd12.prod.outlook.com (2603:10b6:208:430::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Tue, 30 Jun
+ 2026 09:42:47 +0000
+Received: from SJ1PR12MB6051.namprd12.prod.outlook.com
+ ([fe80::96e1:b300:7b78:d3a9]) by SJ1PR12MB6051.namprd12.prod.outlook.com
+ ([fe80::96e1:b300:7b78:d3a9%4]) with mapi id 15.21.0181.008; Tue, 30 Jun 2026
+ 09:42:47 +0000
+Message-ID: <3c714ae3-8f62-4785-9f61-ba9899fd70d8@nvidia.com>
+Date: Tue, 30 Jun 2026 10:42:34 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 12/17] arm64: dts: nvidia: Add EL2 virtual timer
+ interrupt
+To: Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Mark Rutland
+ <mark.rutland@arm.com>, Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Ge Gordon <gordon.ge@bst.ai>,
+ BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
+ Jesper Nilsson <jesper.nilsson@axis.com>,
+ Lars Persson <lars.persson@axis.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Dinh Nguyen <dinguyen@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, =?UTF-8?Q?Andreas_F=C3=A4rber?=
+ <afaerber@suse.de>, =?UTF-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?=
+ <eleanor.lin@realtek.com>, Heiko Stuebner <heiko@sntech.de>,
+ Shawn Lin <shawn.lin@rock-chips.com>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Michal Simek <michal.simek@amd.com>
+References: <20260523140242.586031-1-maz@kernel.org>
+ <20260523140242.586031-13-maz@kernel.org>
+From: Jon Hunter <jonathanh@nvidia.com>
+Content-Language: en-US
+In-Reply-To: <20260523140242.586031-13-maz@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0482.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:1a8::19) To SJ1PR12MB6051.namprd12.prod.outlook.com
+ (2603:10b6:a03:48a::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PR12MB6051:EE_|IA0PR12MB7700:EE_
+X-MS-Office365-Filtering-Correlation-Id: bfbdd434-1c28-41d0-b7e7-08ded68bf120
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|7416014|23010399003|366016|56012099006|22082099003|4143699003|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	1vYksPvq+pPyufTPmJ/8reBSOt1O3WpVvJsgtkA/NMbcdh9liSxmbcrh+UFfleOZi5Zyu5AM0feyigswrOSns0uWvl7L7BEn2g5fHlakMn5ynwbZjoHbZGsxTBgF9cfMOVUSR0QEhJaF8QSMVJe9I8vpmZreAhM3LHW0J6nMiqQvSU0WG26x/gIrhU+E6+mM4P39/23O7ASFgmHVW7SuPNG24AqfyCXNfd5LaURNxYk0T9UYueTkv1C74ekFbMWolE7IOmxw5fsSYUQHh1jrEshaY4qvAS3w/wXqobXOkFZcgnbb/qn84EC+mHwqh3cCL+FAw1+B3maSOfi/nlFl1isbnJNULZ01MQgAVyt7r7Qh1NEQtmaO7V9oMkh42iW0Ol6Ch98ojwCOOLVAR3v0YicyEAKaPq8UDAtAaDH5N19lDeO7DraaF9fAhtcS9GQl7hKKuayG8FbceGpbSde5jmfZoqhH8C0XA/mF0Y6m2xdCuZQS4xgHk20jcV/SWOmg4iuhEcHWmVayATqc/jRwc0vvf3oPy50htPo0YKN+s7SKY3pFLqwB4lj9xVzHrKmoM/wjtUQshkJyudU7o7Pbaosh9AVMCn9woicoKbGgZaHmj+B+M62OP9UJvtu3682lAHNtDmSFHWm5vDLHsBMIW/DfIuLzmHukpKQ2JKBRxxY=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ1PR12MB6051.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(23010399003)(366016)(56012099006)(22082099003)(4143699003)(11063799006)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bUhzemJnQVFjK0RtYWpXVlVmVFRxc3MyOVQyWWlrb2ZlaHZCaFNFRUY3RUpp?=
+ =?utf-8?B?TmM5VkZkZkZYRW8zY0w4VUM2VmQwVVBEcXFoSzFxdlN6VEJ0d0NFWmlDQnRV?=
+ =?utf-8?B?V1Q5dG41V2N2cENRNGM3c0FLMS9wTVR1SlVURDdPcWNleXo0YnZBeWZNVVRO?=
+ =?utf-8?B?Zk9XTWdyZmZFdjRXMVd4ZDJsNHdFektQVFhwVVRDQTkrZjJEMGtJcnBIVnJV?=
+ =?utf-8?B?bmFZSWttSXJRSG5NZSt5UkMyN3BGU2NnQXF6T0NQYlBwTFE0a3B1SHl4dTVu?=
+ =?utf-8?B?TlZMWFBZaHpHZTAzUk1lN1dwWTNOa0QwWXBoYjYrYUhOWU0wczZnOXlwK1dk?=
+ =?utf-8?B?VUt1UWdkKzNxTmhGb3pNMkZacGxKVGZpdkRkamtGV1lZYXF3Vlc3TVlYbjV4?=
+ =?utf-8?B?eEVjOG1vU3VzVWU5cUNNR213dWxUM2hvSHVJWitWM1RvQW9lMnp2Z1FhUTZO?=
+ =?utf-8?B?Mjc1RFZOU2Nib1hEVFI0aFNGWFV4dHV6elJYYk5IRVhSQkdBcEtmd2VmTWlp?=
+ =?utf-8?B?ZHJWVUdBMWtnKzJtcVFjQTV2eUFGTmE5aXZMdXczTFVYTDcyVGpaMDZqcHUz?=
+ =?utf-8?B?WG92aUt0Wmc2ZHdzZXNCdCtYUHMvMnh1eHdTd25YbXg3N1hQQVFiclIvUVhH?=
+ =?utf-8?B?MEgvV1pBN21BMzc5ZmZySzlKMEZXcnRzaERQV0xXdENaQ1lQTSt0WVkrWE1h?=
+ =?utf-8?B?a3hhdjVvWkNLUXE5cnlCZU1pVFJZaHRQMkloMVlUY1dNZW5kd3hZUkg4dWFE?=
+ =?utf-8?B?dFNpZ2FqZThQNS9WbXRkSGNnOXpVS0RGR1lKZVA1RkF5L2F4TXk2UXNnTllH?=
+ =?utf-8?B?YkgzcVBRSVdQalcvZFk5b3hiNENGdEJSRW5mR2tDK2VrN2FqU01jSU5BL0JP?=
+ =?utf-8?B?UVZLRFZIcmFJS1VYK1cxRFV5My9NVHFaYmFDNloyMkFSMVN2N1FXMDg1cWd3?=
+ =?utf-8?B?VzVXQTJJV3hCVm5mMnpTcWM5OGlFdHlidzROZE9lQkJqcFR3bUV3R2UwWHRo?=
+ =?utf-8?B?WjNFTFo0TFIyNm5NUmtQdXlwSXBPdDFpajk4NzVyVWh3MEk1ankzN01Zc3ZM?=
+ =?utf-8?B?S1p2NDViMStnSmVEcjVPWWJyZVFiQUhWMFZaTjlETUY3VGJBa2Y4S3FuOVRK?=
+ =?utf-8?B?dk5OeFRJSEVWQVVyWFVUdzcrMk1RRjBBYTZodDdaK3E1S0xaUkhJbysxaVJx?=
+ =?utf-8?B?dTg0ZWJZbTlVLzYwS0NQYkwwaWVPaGJ6Uy9tMFpHNFpWaWd4NTU2YWpjYW0w?=
+ =?utf-8?B?V1JUL211R0RBc3dKYmprL1hSV3NiSEtDQmYzcEtXYzVLS2hNM0hOUDRjN0Jy?=
+ =?utf-8?B?ZHRNMWVhalN5VHRLK3BrWG1XZ3BVbnhMSEVmSk1JTEpQOXpPOVUxdGpweGFl?=
+ =?utf-8?B?dmo0NWJ6YlZVT2E3RGJDU3VMdGhPVGV2QkRRSy9uMnhxVnVEWTJSSzF4cTRE?=
+ =?utf-8?B?WU5oRkNQcUxzbGRyZVpkU2xYaTlPb09UQkpKbERBNkNLWkdkM1pudkwwckxh?=
+ =?utf-8?B?eGlaRDJESDFRbm01bnNsNnVTTm5jZ1NsL2RjSWd5WjQ3QXk5dmYyYWtnQjN4?=
+ =?utf-8?B?RDlPZWg2dUFNV3RlNTFHclNpTUVHNmFpdnp4Q3ljSkhoNWh2Si9qNXByaFZz?=
+ =?utf-8?B?a3JXY1JFS0tzekhJM0VCTVc3VEFVaGE3RlZBM3huMmxFYzFkb01uMmwzTDFT?=
+ =?utf-8?B?VExMK3ZnVUt6Y3Z0blFubkM0ZFF0ZUs4ZWZGQ2ZSSEN4eDJKUVNlNHI0b25Z?=
+ =?utf-8?B?eG9rcFUxclF4b2wyR0Y0eHdacVY3dVdGbHliMEVjcVZIcjA5R3pmSndhOFhX?=
+ =?utf-8?B?L21idW9oZHl4a0VEeis0MTAyTVpyd1FDODN1SnBRcnRkNENHVGs4UEdVNnE0?=
+ =?utf-8?B?a2hDTDhpMHFZYnJiUmh1QzRKZFZZZXA0NFBQUmQ3WWk5M0RHbkkzKzRmQmds?=
+ =?utf-8?B?WkMwQlJFb3FiQWZkaytlR2diamw0TnBObGVodEVPWFNXTUhpSHc0WkxPNXdR?=
+ =?utf-8?B?UERZaThLUEtOcEZCQlhNVTZ1aW1xOFdtRzJuV0tkQVJ5ODVEU3FCMkdHOVZk?=
+ =?utf-8?B?cENKVTZkazEya2Qwc0Z3YVNmWE5xTDQvZG1zanRCN3dwQWxWV09GdnBwa2hv?=
+ =?utf-8?B?RTRrc3pLYy93M0VkT2JabFl1RnNVZUIrNVd1dVhKZnBHNnRvSkN1WEM3Uk5m?=
+ =?utf-8?B?bDVqVlNwTktLdFVDak1kUE1KblU0NGE2K3BNNnRVK2JKQnhUSFduZmtlK1R5?=
+ =?utf-8?B?ck9kbzhVVXVrd1krMG5RVFI4T2I2ZjIxSHFWdStpdDE3SnFOKzVVVG1SR2JF?=
+ =?utf-8?B?ekVEbHp6UC8rQWtTL3BCY2h0dmtGK2p2YUxrMFVuOC9oTVBlSS9MQT09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfbdd434-1c28-41d0-b7e7-08ded68bf120
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR12MB6051.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 09:42:46.9674
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OM1SJlOgXEZwOPBlIKwwqnKCNam7lrhcZ8daLNGm7JL0/ArjudpUcqwWUauvLeo7PIUDFvU9ioc0W6q7hYL4ZA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7700
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-5.66 / 15.00];
+	WHITELIST_DMARC(-7.00)[nvidia.com:D:+];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317580-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:joakim.zhang@cixtech.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:cix-kernel-upstream@cixtech.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ALIAS_RESOLVED(0.00)[];
-	TO_DN_NONE(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[jonathanh@nvidia.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-317586-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:maz@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-acpi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:lpieralisi@kernel.org,m:guohanjun@huawei.com,m:sudeep.holla@kernel.org,m:catalin.marinas@arm.com,m:will@kernel.org,m:rafael@kernel.org,m:mark.rutland@arm.com,m:daniel.lezcano@kernel.org,m:tglx@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:gordon.ge@bst.ai,m:bst-upstream@bstai.top,m:jesper.nilsson@axis.com,m:lars.persson@axis.com,m:alim.akhtar@samsung.com,m:ivo.ivanov.ivanov1@gmail.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:dinguyen@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:thierry.reding@kernel.
+ org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:afaerber@suse.de,m:eleanor.lin@realtek.com,m:heiko@sntech.de,m:shawn.lin@rock-chips.com,m:orsonzhai@gmail.com,m:baolin.wang@linux.alibaba.com,m:michal.simek@amd.com,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,m:martinblumenstingl@gmail.com,m:ivoivanovivanov1@gmail.com,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,huawei.com,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,suse.de,realtek.com,sntech.de,rock-chips.com,linux.alibaba.com,amd.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonathanh@nvidia.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12]
+	RCPT_COUNT_TWELVE(0.00)[48];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 973BE6E2644
+X-Rspamd-Queue-Id: 546936E26DC
 
-On Mo, 2026-06-29 at 17:14 +0800, joakim.zhang@cixtech.com wrote:
-> From: Joakim Zhang <joakim.zhang@cixtech.com>
->=20
-> Add an auxiliary reset controller driver for the AUDSS CRU. Sixteen
-> software reset lines for audio subsystem peripherals are controlled
-> through one register in the CRU register map.
->=20
-> The driver is created by the AUDSS clock platform driver and registers
-> the reset controller on the CRU device node.
->=20
-> Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
+Hi Marc,
+
+On 23/05/2026 15:02, Marc Zyngier wrote:
+> The ARMv8.2 based CPUs used in a number of nvidia SoCs are missing
+> the EL2 virtual timer interrupt. Add it.
+> 
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
 > ---
->  drivers/reset/Kconfig            |  14 ++++
->  drivers/reset/Makefile           |   1 +
->  drivers/reset/reset-sky1-audss.c | 137 +++++++++++++++++++++++++++++++
->  3 files changed, 152 insertions(+)
->  create mode 100644 drivers/reset/reset-sky1-audss.c
->=20
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index d009eb0849a3..f74859b292ae 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -300,6 +300,20 @@ config RESET_SKY1
->  	help
->  	  This enables the reset controller for Cix Sky1.
-> =20
-> +config RESET_SKY1_AUDSS
-> +	tristate "Cix Sky1 Audio Subsystem reset controller"
-> +	depends on ARCH_CIX || COMPILE_TEST
-> +	select AUXILIARY_BUS
-> +	select REGMAP_MMIO
+>   arch/arm64/boot/dts/nvidia/tegra194.dtsi | 2 ++
+>   arch/arm64/boot/dts/nvidia/tegra234.dtsi | 3 ++-
+>   2 files changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> index 849694f751d90..45cc180ac9973 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> @@ -3163,6 +3163,8 @@ timer {
+>   			     <GIC_PPI 11
+>   				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>   			     <GIC_PPI 10
+> +				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 12
+>   				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+>   		interrupt-parent = <&gic>;
+>   		always-on;
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+> index 04a95b6658caa..ab9813f9ba30c 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+> @@ -5872,7 +5872,8 @@ timer {
+>   		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>   			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>   			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> -			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+>   		interrupt-parent = <&gic>;
+>   		always-on;
+>   	};
 
-This driver doesn't need REGMAP_MMIO itself, it just inherits its
-parent's regmap.=20
+Sorry for the delay. I gave this a test because I observed the warning 
+that was added on the Tegra194 and Tegra234 platforms. This change fixes 
+the warning for Tegra234, but on Tegra194 the platforms I tested hang on 
+boot. It appears to be similar to the issue that Marek saw on his 
+platforms and so I am wondering if Tegra194 also doesn't have this wired up?
 
-regards
-Philipp
+Was there any resolution to the issue reported by Marek?
+
+FYI, the Tegra194 SoC has the 'NVIDIA Carmel ARM v8.2' CPUs [0].
+
+Jon
+
+[0] 
+https://www.nvidia.com/en-gb/autonomous-machines/embedded-systems/jetson-xavier-series/ 
+
+
+-- 
+nvpublic
+
 
