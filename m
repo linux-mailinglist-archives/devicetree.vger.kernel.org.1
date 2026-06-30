@@ -1,151 +1,199 @@
-Return-Path: <devicetree+bounces-317800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317801-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mfAOOTPDQ2obhAoAu9opvQ
-	(envelope-from <devicetree+bounces-317800-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:22:59 +0200
+	id +7mxKlHAQ2pAggoAu9opvQ
+	(envelope-from <devicetree+bounces-317801-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:10:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09E7B6E4CC3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:22:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CACDA6E4A6D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:10:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=mess.org header.s=2020 header.b=asNYKdG9;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317800-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-317800-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=mess.org;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ib5zBAa9;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317801-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317801-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0B0393026E6D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:06:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 18A183022FA2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61423413245;
-	Tue, 30 Jun 2026 13:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B5F0416D1A;
+	Tue, 30 Jun 2026 13:10:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from extorris.mess.org (extorris.mess.org [92.243.27.206])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72F141322F;
-	Tue, 30 Jun 2026 13:06:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F741416D09;
+	Tue, 30 Jun 2026 13:10:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782824802; cv=none; b=nTp4H8kDlsMZ5Ahne4W75opOIJqZp50UvK9WbZitekuaJxWA0/axwopYUfB5naDLzCLV+72lqAAQf59dajVVmuYjTJq01iDe+emDLavOsfSZnBRdzJ+vkIOGTg0TZeRTxuxAfDAEZPb4kCb7pwyTw18iJosOUoeAValW21Cai4g=
+	t=1782825020; cv=none; b=WhDcG4mFZtujx92JoWrboXm9Bad05phQ/LG1aJW/42oqXE+v7tWwUcrsokxv01tURlJ4c4v8mvz7rsA0aWfARgRg1jDPqT5oJ0/eCo9zRVAmMzL3VRdMObmwrY+LW912Bsp1TxYnecwWNT/U4GOwQ1QfvhSwFuRx6uaaIdrTYhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782824802; c=relaxed/simple;
-	bh=QKlrhyzobVAhmV/m1MnqprcVY1OLo/Qe+7LW1AiM6Q4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MeaygC9bnTYpomn9a78GiL4blKCliI2iPvHO7WJkO8toTRTkNmyVy5uGxzd+iw7evRl3hty+2KrdOdbzEQsjzp7sWtLgwuHUdKWy0oCvHwITNSZ0JmqQXgEBpT1502lt4rUErWccciZe+BJsQ9utlUbL4Dlvi+Tvr/YX5T9XOcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org; spf=pass smtp.mailfrom=mess.org; dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b=asNYKdG9; arc=none smtp.client-ip=92.243.27.206
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-	t=1782824799; bh=QKlrhyzobVAhmV/m1MnqprcVY1OLo/Qe+7LW1AiM6Q4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=asNYKdG9k5OKrOXLTL8geoeQ4xfuIry1KFnvPE0p3GIfyDq9gX5hbx9hQgNXCgllB
-	 C+kcDTK4o+m1ltH4D628t/FMy4uQHZujeZ0P3u7s2HxRFWHqPovhog94WufpweNwyE
-	 QXA/LjLrMFP8YzA96HkGqTiFmJYL1zlDM64fmZyrw+db6NBIGonFeBeyvUUZrV5b51
-	 kXPDAwi/3YAz8dA8idJ/tFU6Qbekbwtz7iXiVTf6UGM+Je71gYQ4sfo4784MoWob5Q
-	 e1LaP9NXe2+mqaqSHI+q6hP8+tr+vbKuEZONvkwCxe9Dr/I6UwdzErvw7MuVjZmon+
-	 ucmR+jKXeL4UQ==
-Received: by extorris.mess.org (Postfix, from userid 1001)
-	id 0E01C41567; Tue, 30 Jun 2026 14:06:39 +0100 (BST)
-Date: Tue, 30 Jun 2026 14:06:38 +0100
-From: Sean Young <sean@mess.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] media: dt-bindings: rc: Sync keymap list with latest
- list
-Message-ID: <akO_XqVQ-S72dveD@extorris.mess.org>
-References: <cover.1782300922.git.sean@mess.org>
- <2d87b050777b95ffe8adbdf156d2fb1de14c4dfb.1782300922.git.sean@mess.org>
+	s=arc-20240116; t=1782825020; c=relaxed/simple;
+	bh=71FGi3GNfI8IifyPtlk3/LtXzoRwq27IZZc7qX9MH1M=;
+	h=From:Subject:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=I0bQkUI+ISKhf4NPVo5j3MIndrtrjpu2o2hzXh0I3/jh0er/1ZMf6+YBG9w6ernAeSYuHz1i5neA3ikdAL2DKWCiWtyxCArlF2O2IrXiHAZ9hzWztoBEPuEZWyuaN/bHK6MkOJ/cGxhHiTs0mV68S++lAso4Y1uVKJWHeqVEns8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ib5zBAa9; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60D8C1F000E9;
+	Tue, 30 Jun 2026 13:10:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782825017;
+	bh=dW5cnOiLDGaHAlToRbB9W33P9zj9uViAhwdub11Sofg=;
+	h=From:Subject:Reply-To:Cc:In-Reply-To:References:Date;
+	b=ib5zBAa98KrK+zI7PQPEclF6Tk/E1NXlO1S6r+8fkB8VlH+26nlhBGsOBDLuJsDaZ
+	 AlR8KeC/fcWSWAqFRGFIp01zfpmqThkQvMVswAS0FbfSRE/bt8YEXwUdPdzho7IbH4
+	 Wv6b+4latBzWqB7iixSEIbxu0zj06bAqk24o9HySS3zLuIBA5vEh0Y+nONYDCWoQcv
+	 cxVd3MNW74HHiw3z6wW90xqBDHHpmhtK1KuqShVLnPUuzsbPjYv0Ku4/uVDI76+LXO
+	 bC/Cv2ru88VYa+4YVuMks+53dajuidAgn5p7JH3cXu+apFL4VUD0npqxtsgQoe6GjD
+	 FReNwYIZ69JAg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 4/5] gpio: aaeon: Add GPIO driver for SRG-IMX8P MCU
+Reply-To: sashiko-reviews@lists.linux.dev
+Cc: Frank.Li@kernel.org, devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, imx@lists.linux.dev
+In-Reply-To: <20260630-dev-b4-aaeon-mcu-driver-v6-4-d66b5fcbd2f0@bootlin.com>
+References: <20260630-dev-b4-aaeon-mcu-driver-v6-0-d66b5fcbd2f0@bootlin.com>
+ <20260630-dev-b4-aaeon-mcu-driver-v6-4-d66b5fcbd2f0@bootlin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 30 Jun 2026 13:10:16 +0000
+Message-Id: <20260630131017.60D8C1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2d87b050777b95ffe8adbdf156d2fb1de14c4dfb.1782300922.git.sean@mess.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_TO(2.00)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mess.org,none];
-	R_DKIM_ALLOW(-0.20)[mess.org:s=2020];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-317800-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317801-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:linux-media@vger.kernel.org,m:mchehab@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sean@mess.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,bootlin.com:email,smtp.kernel.org:mid];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:Frank.Li@kernel.org,m:devicetree@vger.kernel.org,m:linux-watchdog@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:imx@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[mess.org:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sean@mess.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mess.org:dkim,mess.org:email,mess.org:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,extorris.mess.org:mid]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 09E7B6E4CC3
+X-Rspamd-Queue-Id: CACDA6E4A6D
 
-Hi Rob, Krzysztof,
- 
-Could I have an Acked-by: please?
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] Unconditional resetting of all hardware pins in the `probe` functi=
+on breaks bootloader hand-off and destroys firmware configuration.
+- [Medium] Ignoring critical hardware errors during probe initialization le=
+ads to inconsistent software state.
+--
 
-Much appreciated,
+commit 73ee6d66b506331ac77e36c415e83febae316cf0
+Author: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.com>
 
-Sean
+gpio: aaeon: Add GPIO driver for SRG-IMX8P MCU
 
-On Wed, Jun 24, 2026 at 12:39:21PM +0100, Sean Young wrote:
-> The list is out of sync, so add missing entries, remove obsolete
-> entries and sort.
-> 
-> Signed-off-by: Sean Young <sean@mess.org>
-> ---
->  Documentation/devicetree/bindings/media/rc.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rc.yaml b/Documentation/devicetree/bindings/media/rc.yaml
-> index dedc5a4b81ec..43d84296e70d 100644
-> --- a/Documentation/devicetree/bindings/media/rc.yaml
-> +++ b/Documentation/devicetree/bindings/media/rc.yaml
-> @@ -122,10 +122,10 @@ properties:
->        - rc-proteus-2309
->        - rc-purpletv
->        - rc-pv951
-> -      - rc-rc5-tv
->        - rc-rc6-mce
->        - rc-real-audio-220-32-keys
->        - rc-reddo
-> +      - rc-siemens-gigaset-rc20
->        - rc-snapstream-firefly
->        - rc-streamzap
->        - rc-su3000
-> @@ -147,11 +147,11 @@ properties:
->        - rc-tt-1500
->        - rc-twinhan-dtv-cab-ci
->        - rc-twinhan1027
-> +      - rc-vega-s9x
->        - rc-videomate-k100
->        - rc-videomate-s350
->        - rc-videomate-tv-pvr
->        - rc-videostrong-kii-pro
-> -      - rc-vega-s9x
->        - rc-wetek-hub
->        - rc-wetek-play2
->        - rc-winfast
-> -- 
-> 2.54.0
+This commit adds a GPIO driver for the Aaeon SRG-IMX8P embedded controller.
+It supports 7 GPO pins and 12 GPIO pins, providing access to pins handled
+by the microcontroller. During probe, all pins are reset to a known state.
+
+> diff --git a/drivers/gpio/gpio-aaeon-mcu.c b/drivers/gpio/gpio-aaeon-mcu.c
+> new file mode 100644
+> index 0000000000000..a9e048c865f5c
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-aaeon-mcu.c
+
+[ ... ]
+
+> +static void aaeon_mcu_gpio_reset(struct aaeon_mcu_gpio *data, struct dev=
+ice *dev)
+> +{
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	/* Reset all GPOs */
+> +	for (i =3D 0; i < MAX_GPOS; i++) {
+> +		ret =3D aaeon_mcu_gpo_set_cmd(data, i, 0);
+> +		if (ret < 0)
+> +			dev_warn(dev, "Failed to reset GPO %u state: %d\n", i, ret);
+> +		clear_bit(i, data->dir_in);
+
+[Severity: Medium]
+Is it safe to update the internal software state tracking when the hardware
+command fails?
+
+If aaeon_mcu_gpo_set_cmd() returns an error because the underlying bus is
+temporarily inaccessible, clear_bit() is still executed. This could result
+in the GPIO controller registering with a mismatched view of the hardware.
+
+> +	}
+> +
+> +	/* Reset all GPIOs */
+> +	for (i =3D MAX_GPOS; i < MAX_GPOS + MAX_GPIOS; i++) {
+> +		ret =3D aaeon_mcu_gpio_config_input_cmd(data, i);
+> +		if (ret < 0)
+> +			dev_warn(dev, "Failed to reset GPIO %u state: %d\n", i, ret);
+> +		set_bit(i, data->dir_in);
+
+[Severity: Medium]
+Similarly, does this code lead to an inconsistent state by blindly updating
+data->dir_in even if aaeon_mcu_gpio_config_input_cmd() fails?
+
+> +	}
+> +}
+> +
+> +static int aaeon_mcu_gpio_probe(struct platform_device *pdev)
+> +{
+
+[ ... ]
+
+> +	/*
+> +	 * Reset all GPIO states to a known configuration. The MCU does not
+> +	 * reset GPIO state on soft reboot, only on power cycle (hard reboot).
+> +	 * Without this reset, GPIOs would retain their previous state across
+> +	 * reboots, which could lead to unexpected behavior.
+> +	 */
+> +	aaeon_mcu_gpio_reset(data, &pdev->dev);
+
+[Severity: High]
+Could forcing all output pins to low and resetting GPIO configurations to
+inputs unconditionally during probe disrupt the state established by the
+bootloader?
+
+Overriding the hardware state on every boot could inadvertently cut power to
+critical system components like regulators, eMMC, or displays that were left
+on by the bootloader or previous kernel execution.
+
+> +
+> +	return devm_gpiochip_add_data(&pdev->dev, &data->gc, data);
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260630-dev-b4-aae=
+on-mcu-driver-v6-0-d66b5fcbd2f0@bootlin.com?part=3D4
 
