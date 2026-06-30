@@ -1,67 +1,77 @@
-Return-Path: <devicetree+bounces-317839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317841-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3C97EqPJQ2rHhwoAu9opvQ
-	(envelope-from <devicetree+bounces-317839-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:50:27 +0200
+	id LF8HDBjLQ2qqiAoAu9opvQ
+	(envelope-from <devicetree+bounces-317841-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:56:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4700B6E50C4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:50:26 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE7CE6E51C7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:56:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nhYqmEaN;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317839-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-317839-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OYLpV4xa;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317841-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317841-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 514C93001F9F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:50:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 99EA23039385
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0E8934D4D6;
-	Tue, 30 Jun 2026 13:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A914038B7A2;
+	Tue, 30 Jun 2026 13:52:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A38B23D7DF;
-	Tue, 30 Jun 2026 13:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 151BC2FA0C4;
+	Tue, 30 Jun 2026 13:52:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782827421; cv=none; b=gOrMKHn4lZVi+Sl2jDQmrW6mFAEJwt1iTMkgRgUCun3FWq0QVOgh07m81gi03MrgNrCFqdGuaxyXX4s2SArQpJgBZKwKsz5LC806Q8FXXofOgJRqCk2Tl55WOt8OpGFNE7mwAYLT8yGeGxHakWmTRgMVmlBS9Zl0PRwWkeHN8Lk=
+	t=1782827529; cv=none; b=LePo1xF2etFNbbyHFwqVB3Fu3wumNhXVMInuTCLKN7J5Ucpba02koYGDv3iEy0Sxv3Q6C/92rJNuRfpVTakH9YARzLhtViIFLwwlXKeSvCviUaVMVFJbfP8In6Avkpbe/3FaJSBc3y5aVU9DquleLkhVFZGnAeNUzfa84aImK7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782827421; c=relaxed/simple;
-	bh=wKKfI6rfHepZWj931Iie8JnqM3m9gU1e0VmuJG7Mgmk=;
+	s=arc-20240116; t=1782827529; c=relaxed/simple;
+	bh=fcrjvHyRgEDnEyKZthITYPFPQmO3YCO/vYrKNtCSOkw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RnYi3m50xoHDCHHd73LUZxQv7ADp25AbrRvX3Pnd49eSkKC7lGBbK+aApHyiKXesn1Lni4ahZhkMrhQ5ac4pSub9IRbe6/eNQHBwjmMdbUD42fSWb5qCITck1Ehuu5lLQvCFdYtXXeGDkr89rX987R9u3r3/7YtYJrVm1v6c8K8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nhYqmEaN; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19CFF1F000E9;
-	Tue, 30 Jun 2026 13:50:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hd9qeRriKr1rHPvXtgyxmp6ZAashv6StHMKxhZdgF253Rm91U7Sp6+TwuaJwUVxc8OyfuAQDn5G9Mi+GZpJiF/HAtaJo7eSKdRug7bYg/RgVfTXSVWx+JkSEHlzOx82OgDKopzKZU1eEcj2PfX8FEkoEI5LXxvmnZBNDbv1mxBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OYLpV4xa; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8C6F1F000E9;
+	Tue, 30 Jun 2026 13:52:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782827418;
-	bh=r5/XEfDRgRNyeD3IF0mg0cZuaZMASN03u9kVorM3GNI=;
+	s=k20260515; t=1782827528;
+	bh=LIxDCIqGoO5YnS7sM89lDYN7/qU1dT6KiPHIvC5H1+0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=nhYqmEaN4wmBNsZUU8bKra5Imi5s/cf3NZTFsYJHnC9ANATTSlzBlyiq15+sOcFBf
-	 hH3EEr9IiReV4GshzevMtkVog9DbbxPJbfkLn6q/mhhwLi8qffyASXUGZ9V3Q0YiKG
-	 jGmGKjX9qFvlLR3zH6VX8aumoTt9j+QBqVERLcpG5XXaDGjegKba4+2jSCoRLvHuAD
-	 9UPmRGRC3lrVz/FJBPfWWCnzj7EsL3OyzN0p3APlsVDRHRt8Rd8QY8izt/AxXOasor
-	 I0/PobwDtqMJEsUy3y8Ls9v9o+AYIxZOOdmTOe5/c3mK2FIy+0fe6eyYy40tP2pp3/
-	 oE1970hKzUkzA==
-Date: Tue, 30 Jun 2026 08:50:17 -0500
-From: Rob Herring <robh@kernel.org>
-To: "A. Sverdlin" <alexander.sverdlin@siemens.com>
-Cc: linux-leds@vger.kernel.org, Lee Jones <lee@kernel.org>,
-	Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+	b=OYLpV4xaZjrElX/uvSWuXZD4SkkGn8NaPB8gcw1FkeLXh3gsJE3enB5YGDzMACuUm
+	 xiQuq7RXBrppXszJMeSSHON6WB6lYMao07R8wnK+D2EJEh63FRz+Gw4HzkHv/lT3D3
+	 BMim+rVqXKKw1S8lmk0Q8FnLrLrGAucqTYQ4ttrXK7eDC5LSmhA+HnXiywYfWMHqrp
+	 iM+w3JQQW6SFBqZ3A8yR122tXa+8Rf9L+FPLoxFQBcNVtyzmqOHdO4ySLVvdUbRbV9
+	 TycjXPq5lFHCEA23EshuBsFqrIoAqCmA6fdGumf0qnVCtWevDh0tEFW5hGjGa/rcxq
+	 TWugaKofRcx8A==
+Date: Tue, 30 Jun 2026 08:52:07 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ahmed Tiba <ahmed.tiba@arm.com>
+Cc: Dan Williams <djbw@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>, Borislav Petkov <bp@alien8.de>,
+	Tony Luck <tony.luck@intel.com>,
+	Alison Schofield <alison.schofield@intel.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	Andrew Davis <afd@ti.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: backlight: ti,lp8864: Add backlight
- class properties
-Message-ID: <20260630135017.GA2948054-robh@kernel.org>
-References: <20260615120353.3409035-1-alexander.sverdlin@siemens.com>
- <20260615120353.3409035-2-alexander.sverdlin@siemens.com>
+	linux-edac@vger.kernel.org, devicetree@vger.kernel.org,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Dave Jiang <dave.jiang@intel.com>,
+	Shuai Xue <xueshuai@linux.alibaba.com>,
+	linux-kernel@vger.kernel.org, linux-cxl@vger.kernel.org,
+	Dmitry.Lamerov@arm.com, linux-acpi@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, acpica-devel@lists.linux.dev,
+	Saket Dumbre <saket.dumbre@intel.com>,
+	Davidlohr Bueso <dave@stgolabs.net>,
+	Jonathan Corbet <corbet@lwn.net>, Len Brown <lenb@kernel.org>,
+	Ira Weiny <ira.weiny@intel.com>,
+	Vishal Verma <vishal.l.verma@intel.com>, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v6 09/10] dt-bindings: firmware: add arm,ras-cper
+Message-ID: <178282752577.2979480.8944194387626033684.robh@kernel.org>
+References: <20260617-topics-ahmtib01-ras_ffh_arm_internal_review-v6-0-91f725174aa0@arm.com>
+ <20260617-topics-ahmtib01-ras_ffh_arm_internal_review-v6-9-91f725174aa0@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,7 +80,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260615120353.3409035-2-alexander.sverdlin@siemens.com>
+In-Reply-To: <20260617-topics-ahmtib01-ras_ffh_arm_internal_review-v6-9-91f725174aa0@arm.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -79,118 +89,52 @@ X-Spamd-Result: default: False [-2.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317839-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317841-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:alexander.sverdlin@siemens.com,m:linux-leds@vger.kernel.org,m:lee@kernel.org,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:pavel@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:deller@gmx.de,m:afd@ti.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-fbdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ahmed.tiba@arm.com,m:djbw@kernel.org,m:rafael@kernel.org,m:jic23@kernel.org,m:bp@alien8.de,m:tony.luck@intel.com,m:alison.schofield@intel.com,m:krzk+dt@kernel.org,m:linux-edac@vger.kernel.org,m:devicetree@vger.kernel.org,m:skhan@linuxfoundation.org,m:guohanjun@huawei.com,m:mchehab@kernel.org,m:dave.jiang@intel.com,m:xueshuai@linux.alibaba.com,m:linux-kernel@vger.kernel.org,m:linux-cxl@vger.kernel.org,m:Dmitry.Lamerov@arm.com,m:linux-acpi@vger.kernel.org,m:conor+dt@kernel.org,m:acpica-devel@lists.linux.dev,m:saket.dumbre@intel.com,m:dave@stgolabs.net,m:corbet@lwn.net,m:lenb@kernel.org,m:ira.weiny@intel.com,m:vishal.l.verma@intel.com,m:linux-doc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,gmx.de,ti.com,lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,ti.com:email,vger.kernel.org:from_smtp,devicetree.org:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4700B6E50C4
+X-Rspamd-Queue-Id: BE7CE6E51C7
 
-On Mon, Jun 15, 2026 at 02:03:47PM +0200, A. Sverdlin wrote:
-> From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
-> 
-> Extend the TI LP8864/LP8866 device-tree binding to support backlight
-> class properties alongside the existing LED class child node.
-> 
-> This is a preparatory change for converting the LP8864 driver from a
-> pure LED class driver to additionally register a backlight class device,
 
-That's fine, but should have little to do with the binding. The h/w is 
-not changing.
-
-> motivated by a use case on a hot-pluggable segment of an I2C bus. The
-> generic led-backlight driver (led_bl.c) is a platform driver and thus
-> inherently non-hotpluggable, which makes it unsuitable for hardware
-> topologies where the backlight controller resides on a hot-pluggable I2C
-> bus segment. By making the LP8864 driver itself register a backlight
-> class device, it becomes a native I2C driver that properly supports
-> hot-plug/unplug events.
+On Wed, 17 Jun 2026 14:54:47 +0100, Ahmed Tiba wrote:
+> Describe the DeviceTree node that exposes the Arm firmware-first CPER
+> provider and hook the file into MAINTAINERS so the binding has an
+> owner.
 > 
-> The binding is updated to:
-> - Reference backlight common.yaml at the top level, making
->   default-brightness and max-brightness valid optional properties
-> - Make the "led" child node optional rather than required, since the
->   backlight class device is now the primary interface
-> - Use unevaluatedProperties instead of additionalProperties to properly
->   allow properties inherited from the referenced common schema
+> The initial user is the upstream zena-css platform, validated so far
+> on FVP.
 > 
-> The LED child node is preserved for backward compatibility with existing
-> device-trees. No in-tree device-trees reference this binding, so this
-> change has no impact on existing mainline users.
-> 
-> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
 > ---
->  .../bindings/leds/backlight/ti,lp8864.yaml       | 16 ++++++++++++----
->  1 file changed, 12 insertions(+), 4 deletions(-)
+>  .../devicetree/bindings/firmware/arm,ras-cper.yaml | 52 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 +++
+>  2 files changed, 57 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml b/Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
-> index d44232d462bde..11d7e3840c6fb 100644
-> --- a/Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
-> +++ b/Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/leds/backlight/ti,lp8864.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Texas Instruments - LP8864/LP8866 4/6-Channel LED Driver family
-> +title: Texas Instruments - LP8864/LP8866 4/6-Channel LED Backlight Driver family
->  
->  maintainers:
->    - Andrew Davis <afd@ti.com>
-> @@ -21,6 +21,9 @@ description: |
->      https://www.ti.com/product/LP8866-Q1
->      https://www.ti.com/product/LP8866S-Q1
->  
-> +allOf:
-> +  - $ref: common.yaml#
-> +
->  properties:
->    compatible:
->      const: ti,lp8864
-> @@ -36,9 +39,15 @@ properties:
->    vled-supply:
->      description: LED supply
->  
-> +  default-brightness:
-> +    maximum: 65535
-> +
-> +  max-brightness:
-> +    maximum: 65535
-> +
->    led:
->      type: object
-> -    $ref: common.yaml#
-> +    $ref: /schemas/leds/common.yaml#
 
-This was already supporting backlight properties. Changing it to leds is 
-an ABI break.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-The binding was designed to have a child node. Make that work for 
-whatever you want to do with the driver. I see no reason to support with 
-*and* without a child node.
-
-Rob
 
