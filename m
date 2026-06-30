@@ -1,165 +1,412 @@
-Return-Path: <devicetree+bounces-317951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317953-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4Y9KFI3wQ2p4lwoAu9opvQ
-	(envelope-from <devicetree+bounces-317951-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 18:36:29 +0200
+	id qV3uFSLxQ2qqlwoAu9opvQ
+	(envelope-from <devicetree+bounces-317953-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 18:38:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7CAE6E6825
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 18:36:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5DD56E6881
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 18:38:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=imgtec.com header.s=dk201812 header.b=P+Y4jdqe;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317951-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317951-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=imgtec.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=e4HcqTch;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317953-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317953-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E308830D79A9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 16:30:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DC42A305F0BD
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 16:32:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9793E3B6C15;
-	Tue, 30 Jun 2026 16:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE4D23A2E2B;
+	Tue, 30 Jun 2026 16:32:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B214F3B635F;
-	Tue, 30 Jun 2026 16:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60C7241686;
+	Tue, 30 Jun 2026 16:32:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782837057; cv=none; b=KXRmzjNsrnh4GVhSwY80PlMD6FZGhh7cRMhlw97QHFLylE6/JWKa6ZU6Mi9yQ7V1q+uJ2esZMCuJnpVlWDq1zV3akq9L9E2DjWHbvBJKQ3iLNMTVXUkA3rkKoTfOf6PmWxumzUqeD0NmM/qHzk1Iwpl7eNKMtyTnv/YHG72u4HU=
+	t=1782837152; cv=none; b=KJAzbSFXJO0jKtvCJJt/xJxr+sfaAQBPnEmdM+NC1YJOilooVC8TryQehdBYNIsacQjsis9I2yhnAAmbr5iHgqhs3QvtZMIverfPz8p/7b1OGPtrmsaNOooa+9LSA7PosRw6d1T8rbDtpiTNYDJX1WggeqBqEJn+/9BDhhgVKNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782837057; c=relaxed/simple;
-	bh=S+cD3I2AObcz2o1TgeI2q7EtoxabyAtZUYIv7evYz9I=;
-	h=From:To:CC:In-Reply-To:References:Subject:Message-ID:Date:
-	 MIME-Version:Content-Type; b=IdVnAQm2IMAXQtBYfwHLQDV4AZ46Hr+aDobtDnQkL2TldXNGISlHw+WASH0sjRP2YjViwIh3uIqpBfauqD9kSDyZc76AgGMyip8OP9nRINwXsYFg3u+KyrDPK5uiZ6nRGsVtHcG6HXkW//8JnknsUKpFqhmjvdqvTYl4/Rs97rg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=P+Y4jdqe; arc=none smtp.client-ip=91.207.212.86
-Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
-	by mx08-00376f01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65UFdtVn1938441;
-	Tue, 30 Jun 2026 17:30:50 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=dk201812; bh=F
-	K7qiVDeq+ryLH4+tlVco0CSrD/DbC1Nj9JW4CSyHTI=; b=P+Y4jdqeBDk/oCDrD
-	ZIVu+7/AibFZn7++sE7rw1gN5ohrFz8I/du4bIIuFL9F+0rqXMeU4Ron1EcGcfdR
-	y0F27Bo3vlKHOKpuxswtqjvjz+V0UNzsv0L8hTQ2td1UDaNxRa/hZWVTldos5uIL
-	HTExUPCh2FKS0x14s/3uaCPInEi0bcDKpu/v5EDlylBCTmoWEjPO3fi9hDGQlHUQ
-	KltO3cHnbdUGYhlg4vKNA4BTpWy5m53WONIiMbwFrc6NCHTL/6J0ox+u0flF2qKS
-	N+xhHF/7Ju8vRPQZDp+XO5vO0jc5Dy/rNISJynfoGQITa+k/ZWWzgDsLredVZ14M
-	N0O3A==
-Received: from hhmail01.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
-	by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 4f24snu4d4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jun 2026 17:30:49 +0100 (BST)
-Received: from HHMAIL03.hh.imgtec.org (10.44.0.121) by HHMAIL01.hh.imgtec.org
- (10.100.10.19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.43; Tue, 30 Jun
- 2026 17:30:49 +0100
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- (172.25.6.219) by HHMAIL03.hh.imgtec.org (10.44.0.121) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 30 Jun 2026 17:30:48 +0100
-From: Matt Coster <matt.coster@imgtec.com>
-To: <imagination@lists.freedesktop.org>, Matt Coster <opensource@mtcoster.net>
-CC: Matt Coster <opensource@mtcoster.net>,
-        Alessio Belle
-	<alessio.belle@imgtec.com>,
-        Luigi Santivetti <luigi.santivetti@imgtec.com>,
-        Frank Binns <frank.binns@imgtec.com>,
-        Brajesh Gupta
-	<brajesh.gupta@imgtec.com>,
-        Alexandru Dadu <alexandru.dadu@imgtec.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Matt Coster <opensource@mtcoster.net>
-In-Reply-To: <20260629-goodbye-v1-0-3bab53a80c53@imgtec.com>
-References: <20260629-goodbye-v1-0-3bab53a80c53@imgtec.com>
-Subject: Re: [PATCH 0/2] drm/imagination: Remove Matt Coster as maintainer
-Message-ID: <178283704864.38259.17260489926754951912.b4-ty@b4>
-Date: Tue, 30 Jun 2026 17:30:48 +0100
+	s=arc-20240116; t=1782837152; c=relaxed/simple;
+	bh=6H6k8LUo4pM0jTAf+cmBMP7ME73UIMHQVxt+e6JG7ZQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s9zP+rHHehmXIi/R8QIZDkqKJOM9aeqXuGTZaxzJ+lclCigPLR4GDJ0GOLJEY9KwjD7fUrNLSlVuwDaft/4w54ucJuVWUVfc3IKTLDUuEEdR0iEZsR0mIAR4UNyoLDnAHKvHixJG6UA0+q6h5VabqsX88ccUOX51Ekhw3be79MU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e4HcqTch; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 284C01F000E9;
+	Tue, 30 Jun 2026 16:32:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782837151;
+	bh=cZA+rBl+CczWQWJIFzL56sY9zOdyEBAGbEMiEyp4qoE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=e4HcqTchm8gnuTYCG2O9/toh0hBP0QRQMTi/mP0OASyYb2Ebitc/5cJjCAcWhHd+2
+	 tR4ycs2NolMZhu9mJvwHYn8ghnq9pZv3n+IY25OnvB8rQEcFeXHYKmDkxcYhWkxIaR
+	 bul9VtBkxtbfHHEtFSOhUo04MqTQBYuxOjVVULcOUVaQNZ4JA2S2acxL/l3W7Hv4aN
+	 uah9eIi1HnyGiUOIBVd9B+8S5DFbXCI07qZhrv3/1wwJLIqzcWAT/u99FZzhDaKi2V
+	 f7nuZgcC5UzpAIc2Tel92bvRkg41LX71fRfX1Gysog9qvsVapjfg+QCDkKz6m7+FUQ
+	 scH39KG/1T34A==
+Date: Tue, 30 Jun 2026 11:32:30 -0500
+From: Rob Herring <robh@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: sound: nvidia,tegra30-ahub:
+ Convert to DT schema
+Message-ID: <20260630163230.GA3903861-robh@kernel.org>
+References: <20260625-nvidia-ahub-v2-1-eb041c30f1f8@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15.2
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDE1NyBTYWx0ZWRfX0wf2e3i06kmb
- VJCL+W3eosWwls9pYXUgabBhhqtemZC5ldBqQ7TR1r3NHdooVUByijx1UEs4xmull/eVbzhVh9J
- XhmjaRhRVfzd6l6pAoSnVWP0QBERBqw=
-X-Authority-Analysis: v=2.4 cv=We48rUhX c=1 sm=1 tr=0 ts=6a43ef39 cx=c_pps
- a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17
- a=UteWFfMXGp8A:10 a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=kQ-hrUj2-E3RCbRHssb7:22 a=qZQ2PDNLMSdLoqI-hfl9:22
- a=r_1tXGB3AAAA:8 a=vWW80W6b-FRCtuUUefcA:9 a=QEXdDO2ut3YA:10
- a=t8nPyN_e6usw4ciXM-Pk:22
-X-Proofpoint-ORIG-GUID: xTcdZBu9juVrBPt89skewdSMR5QgM99r
-X-Proofpoint-GUID: xTcdZBu9juVrBPt89skewdSMR5QgM99r
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDE1NyBTYWx0ZWRfX3BhCoVERcHeV
- Jj3UpExmAyrZMWmV9lZMTvTBr3ALA+Bfjcg8eNV4l4VYagFi4JSzHiPeTfuwnAj1QVhAg+0yoLy
- 5XTRq9mRWbQ9CV4jjebXV+HsbS3z3H25HxALzJlIwolz3lqVkx3rEGPgnPtcFpCTONh8hqZBScl
- q2xEC26z4zN/oLl/0RWG1tr+sKQydsRRRM0q/nInyDEsZKTMkIWg8AabBM/nXEn8wiX9p4ei6gH
- +32qSHdIxTwBw5TjSPup7OMF4bHMaWkB8OaRIi1Yga9YPhwpohcFBMvY3AmpEGUWVLMsqMjuX86
- rMNtjFpQQ5MI3TBghjVg7D5tyH67aF3qSbK3h3f2GLH//lIhoqXOw1d2VZQCmsT6FQJTrQJS6KF
- 707jfqL4c6KzxIAuFj1FvtdKvRXdBuEdRV5z01v+IobKoMzJMWHsSQ7m9K43xiP3EVKEBbrAHzi
- F4IyWwEdzBkxE7FhYJQ==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260625-nvidia-ahub-v2-1-eb041c30f1f8@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[imgtec.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[imgtec.com:s=dk201812];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nvidia.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-317953-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317951-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER(0.00)[matt.coster@imgtec.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:charan.pedumuru@gmail.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:charanpedumuru@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:imagination@lists.freedesktop.org,m:opensource@mtcoster.net,m:alessio.belle@imgtec.com,m:luigi.santivetti@imgtec.com,m:frank.binns@imgtec.com,m:brajesh.gupta@imgtec.com,m:alexandru.dadu@imgtec.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,imgtec.com:dkim,imgtec.com:email,imgtec.com:from_mime];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[matt.coster@imgtec.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[imgtec.com:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url,nvidia.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B7CAE6E6825
+X-Rspamd-Queue-Id: A5DD56E6881
 
-
-On Mon, 29 Jun 2026 16:47:28 +0100, Matt Coster wrote:
-> I'll apply this towards the end of business tomorrow; my last day.
+On Thu, Jun 25, 2026 at 03:28:48PM +0000, Charan Pedumuru wrote:
+> Convert NVIDIA Tegra Audio Hub (AHUB) binding to DT schema.
 > 
-> In case anyone reads this, I'd like to take the opportunity to thank
-> everyone who reviewed my patches, or sent patches for me to review. It's
-> been a great chapter of my life contributing to this project, and I hope
-> to cross paths with it again in the future.
+> Per-SoC differences in reg, reset-names, and dma-names are enforced
+> via allOf conditionals.
 > 
-> [...]
+> Add patternProperties for i2s child nodes referencing
+> nvidia,tegra30-i2s.yaml, reflecting actual DTSI usage where i2s
+> controllers are placed directly under ahub. nvidia,ahub-cif-ids is
+> not redeclared here as it is defined in the child i2s schema.
+> 
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> ---
 
-Applied, thanks!
+[...]
 
-[1/2] MAINTAINERS, mailmap: Update address for Matt Coster
-      commit: 761923b8837f307b39a95ee53b5863485cf4cd43
-[2/2] dt-bindings: gpu: img,powervr-*: Remove Matt Coster as maintainer
-      commit: 2f6f6b525f52e458eb1c023b8467e8ab75f795d3
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra30-ahub.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra30-ahub.yaml
+> new file mode 100644
+> index 000000000000..1c3fc7a97465
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra30-ahub.yaml
+> @@ -0,0 +1,297 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/nvidia,tegra30-ahub.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVIDIA Tegra Audio Hub (AHUB)
+> +
+> +maintainers:
+> +  - Jonathan Hunter <jonathanh@nvidia.com>
+> +
+> +description:
+> +  The NVIDIA Tegra AHUB (Audio Hub) is an audio interconnect block used to
+> +  route data between various audio clients such as I2S, DAM, SPDIF, and
+> +  APBIF. It exposes multiple register regions and supports different
+> +  configurations depending on the Tegra SoC generation. The AHUB also
+> +  provides a configlink bus for child audio components, which use CIF
+> +  (Client Interface) IDs to identify their data paths. The number of DMA
+> +  channels, reset lines, and additional modules varies across Tegra30,
+> +  Tegra114, and Tegra124 platforms.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - nvidia,tegra114-ahub
+> +          - nvidia,tegra124-ahub
+> +          - nvidia,tegra30-ahub
+> +      - items:
+> +          - const: nvidia,tegra132-ahub
+> +          - const: nvidia,tegra124-ahub
+> +
+> +  reg:
+> +    minItems: 2
+> +    maxItems: 3
 
-Best regards,
--- 
-Matt Coster <matt.coster@imgtec.com>
+Somewhere what each entry is needs to be defined.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Clock for the D_AUDIO domain
+> +      - description: Clock for the APBIF interface
+> +
+> +  clock-names:
+> +    items:
+> +      - const: d_audio
+> +      - const: apbif
+> +
+> +  resets:
+> +    minItems: 11
+> +    maxItems: 21
+> +
+> +  reset-names:
+> +    minItems: 11
+> +    maxItems: 21
+> +
+> +  dmas:
+> +    minItems: 8
+> +    maxItems: 20
+> +
+> +  dma-names:
+> +    minItems: 8
+> +    items:
+> +      - const: rx0
+> +      - const: tx0
+> +      - const: rx1
+> +      - const: tx1
+> +      - const: rx2
+> +      - const: tx2
+> +      - const: rx3
+> +      - const: tx3
+> +      - const: rx4
+> +      - const: tx4
+> +      - const: rx5
+> +      - const: tx5
+> +      - const: rx6
+> +      - const: tx6
+> +      - const: rx7
+> +      - const: tx7
+> +      - const: rx8
+> +      - const: tx8
+> +      - const: rx9
+> +      - const: tx9
+> +
+> +  "#address-cells":
+> +    enum: [1, 2]
+> +
+> +  "#size-cells":
+> +    enum: [1, 2]
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^i2s@[0-9a-f]+$":
+> +    $ref: /schemas/sound/nvidia,tegra30-i2s.yaml#
+> +    unevaluatedProperties: false
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nvidia,tegra30-ahub
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 2
+
+Drop. 2 is already the min.
+
+> +          maxItems: 2
+> +
+> +        resets:
+> +          minItems: 11
+
+Drop. 11 is already the min at the top-level.
+
+Same issue elsewhere.
+
+> +          maxItems: 11
+> +
+> +        reset-names:
+> +          items:
+> +            - const: d_audio
+> +            - const: apbif
+> +            - const: i2s0
+> +            - const: i2s1
+> +            - const: i2s2
+> +            - const: i2s3
+> +            - const: i2s4
+> +            - const: dam0
+> +            - const: dam1
+> +            - const: dam2
+> +            - const: spdif
+> +
+> +        dmas:
+> +          minItems: 8
+> +          maxItems: 8
+> +
+> +        dma-names:
+> +          minItems: 8
+> +          maxItems: 8
+> +
+> +        "#address-cells":
+> +          const: 1
+> +
+> +        "#size-cells":
+> +          const: 1
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nvidia,tegra114-ahub
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 3
+> +          maxItems: 3
+
+3 is already the max.
+
+> +
+> +        resets:
+> +          minItems: 13
+> +          maxItems: 13
+> +
+> +        reset-names:
+> +          items:
+> +            - const: d_audio
+> +            - const: apbif
+> +            - const: i2s0
+> +            - const: i2s1
+> +            - const: i2s2
+> +            - const: i2s3
+> +            - const: i2s4
+> +            - const: dam0
+> +            - const: dam1
+> +            - const: dam2
+> +            - const: spdif
+> +            - const: amx
+> +            - const: adx
+> +
+> +        dmas:
+> +          minItems: 20
+> +          maxItems: 20
+> +
+> +        dma-names:
+> +          minItems: 20
+> +          maxItems: 20
+> +
+> +        "#address-cells":
+> +          const: 1
+> +
+> +        "#size-cells":
+> +          const: 1
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nvidia,tegra124-ahub
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 3
+> +          maxItems: 3
+> +
+> +        resets:
+> +          minItems: 21
+> +          maxItems: 21
+> +
+> +        reset-names:
+> +          items:
+> +            - const: d_audio
+> +            - const: apbif
+> +            - const: i2s0
+> +            - const: i2s1
+> +            - const: i2s2
+> +            - const: i2s3
+> +            - const: i2s4
+> +            - const: dam0
+> +            - const: dam1
+> +            - const: dam2
+> +            - const: spdif
+> +            - const: amx
+> +            - const: amx1
+> +            - const: adx
+> +            - const: adx1
+> +            - const: afc0
+> +            - const: afc1
+> +            - const: afc2
+> +            - const: afc3
+> +            - const: afc4
+> +            - const: afc5
+> +
+> +        dmas:
+> +          minItems: 20
+> +          maxItems: 20
+> +
+> +        dma-names:
+> +          minItems: 20
+> +          maxItems: 20
+> +
+> +        "#address-cells":
+> +          const: 2
+> +
+> +        "#size-cells":
+> +          const: 2
+> +
+> +required:
+> +  - reg
+> +  - compatible
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - dmas
+> +  - dma-names
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/tegra30-car.h>
+
+blank line
+
+> +    ahub@70080000 {
 
 
