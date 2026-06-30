@@ -1,696 +1,341 @@
-Return-Path: <devicetree+bounces-317357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317351-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id y5lCE/grQ2o4TQoAu9opvQ
-	(envelope-from <devicetree+bounces-317357-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:37:44 +0200
+	id 2+5uF5YrQ2rsTAoAu9opvQ
+	(envelope-from <devicetree+bounces-317351-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:36:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3CF36DFD43
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:37:43 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 552A56DFCFA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:36:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Vy6+MGGf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317357-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317357-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=big3inVH;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317351-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317351-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 836BF30067B6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 02:37:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D5F2A3008D2F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 02:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33BF736605A;
-	Tue, 30 Jun 2026 02:37:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89027238150;
+	Tue, 30 Jun 2026 02:35:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F20F155C97
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:37:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BED21E5B88
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:35:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782787054; cv=none; b=XkIcybBuHgYtOnyENlBqFinkrG51F1GMK8AJU2fGn6hd+brhLPxqOav0s+w28kWqMssCNKJRUMJ5uaFm49lR+6QCYL69uFDYj6wrwtRxtbMv/87aG52Og7erzd6Ab+hC8bfNGZA3PpMttjFFuogHCmiO1dAJ6IJgmrBmcnpGdXk=
+	t=1782786956; cv=none; b=jO91ANINkS1b9yRwtabxgwyWEaCOG+GMPTJio2Z/yfh/wdCYJHmHmRiEotXBEC/iDbQ8KJqUBwJ9CMvBzJw/DpGHgpdx67yNERqmfBZhQC6yYJb0axSgRaUuE5KANXNsHXpkU4hJrpTT3z24uG1RZw/7Z2hv9gXvUfLNOdPsbD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782787054; c=relaxed/simple;
-	bh=uSJvCT+mXdyuvDI+ny3ognP1Dvhnjdy7q2M0htPwkSk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AXkyLb51vAx5WUy9BeLLfUTZdtzmQMWKjIPmnmGY7MIMsJFFNUXkTlb21mjKGhqp59IEG+125R2Qi1k+WgB1GrhscfjP7cM2Ho/4Ho0SKNFJis71K1/ny5Fs9GZJDPDRL3KJxlSzhiJ1Uq8EuXqPLScwts7M0utR/qnHn9VsYQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vy6+MGGf; arc=none smtp.client-ip=209.85.214.180
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2c9e8a1d256so17652975ad.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jun 2026 19:37:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782787052; x=1783391852; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lxbjpX3+kf/I/sbIyYE21tJg4WcBkJjgekD+K3CM0yU=;
-        b=Vy6+MGGfTyXMaxy5OFcixoF47cXyNos7sqk/ngh0vqvd6hQ1pNLuyaXvh383L7rywt
-         iZLMZjqXKwB3Iw/Q7Dn4pJLQ/SBfP5Ictmju3r6oj91P3XbJCV1VVXnZ6guXhYLvvvv1
-         CTrBk4faZQwZxAQyojnd7pQJpDH3vKD7ktJswvcnuZGoP3ZmeVf03q7dCClRwrfBVovN
-         XXM4YfxDByD9KXjVBRYWwco5D1zmtDrsTtNfRITvPfDi/F4dzX63L8SrUYCp6P8NmObY
-         3EKoONJm2Zl1Q1N6qs5SOYROpy8VLVIKzztdo40fQgqvZjNRrbU/XN1MdNMMTP57cvcR
-         D9aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782787052; x=1783391852;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=lxbjpX3+kf/I/sbIyYE21tJg4WcBkJjgekD+K3CM0yU=;
-        b=m9jomwOCMnxbQiklvyzYAipihXe2JtERVFTZfSmk2RAfL/WC7wDV6iIEc76v3k3Yfu
-         jI6V+l394OdGolLNRQF5STIfJJ/aJpweKQaHGHpeir71LfSpXSIIYP8+JKL8rPA2BOA8
-         IvCp84oM08+kbSxZ9O9GL6IhyRKMuCRFWvZ+m7IPeNFEoJ1ROKP0FVlEyA6zXF9LUtI8
-         F1h8s3WazyHr/ReBV1pewvjzJ7vTdUuo6KnTiobqj98rJ+jpMNR+xK1qZKlgx6Kd0rXg
-         nXp1UYggpLePPQnqLv/XfFEBGQSH7lr0q36ZD3ZWXYW/0PFxG2FXQ0wFySO3up+OShSh
-         KgPA==
-X-Forwarded-Encrypted: i=1; AHgh+RoethBCtQTbVORe3sTXg3/JRxdnn+g2M1Jpo44FDHHwybh26ZJzV8//K0QS0dvMLht+xnLVp1BwS6OO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6yyPfWrXP0XxKteB9m6PfVgJC/dvs9ehl+Zxty/6iOYW7ioME
-	5YvZWHE7TVHOhpJALB22gz8k4EYBvRFL2fKy6DVFivN1QGEtW27+8tCX
-X-Gm-Gg: AfdE7cldJA9C708qtUWTw6kdxVXoeq+00PUzAzbUx1v/DQF1x6A9/siR1oTr414MgoP
-	Px6kCzF252X/aqyU1/DDYRzoVdkhMm0sddowvZpaxJO9iOnj/tbKY5lKq6FQ7Ek2BYxb5nhzJj+
-	2Bm12TuehZ7cSOcfFBtXa89R4LXKbnxUe6Pqb9xl8b8JoRkQClSzilLc/Jcou5sr8Ii/dQGI7QU
-	3BiZW1ZP40oEJZBliI3mCroBEtQbtBe7bNDiUxXu4LEulhO0dQanDqju7ZNzhHaDIlE/tPT4+iJ
-	G0gr52St51Oc7ahlby5sEnBr8hGqzGmLVkwa75DRwC72nNuJMdT8LE9FesYP6GakbDjiIzlwXk7
-	8L+I6uiiuNx1c88HczZShGysZHggHCRPdHqJds0fZxsXX0P1C8SvWeflHU4JbGWqG/3Jm5tkywJ
-	q9vl2Tdshm9+E=
-X-Received: by 2002:a17:902:dacf:b0:2c9:f3b5:4855 with SMTP id d9443c01a7336-2ca2d52a761mr14298915ad.8.1782787051533;
-        Mon, 29 Jun 2026 19:37:31 -0700 (PDT)
-Received: from nuvole ([2408:844c:b00:2b2f:398a:8bef:b88c:653a])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ca3828c2fesm3310465ad.49.2026.06.29.19.37.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jun 2026 19:37:31 -0700 (PDT)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Pengyu Luo <mitltlatltl@gmail.com>
-Subject: [PATCH 2/2] drm/panel: Add Novatek NT36536 panel driver
-Date: Tue, 30 Jun 2026 10:34:39 +0800
-Message-ID: <20260630023439.248861-3-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260630023439.248861-1-mitltlatltl@gmail.com>
-References: <20260630023439.248861-1-mitltlatltl@gmail.com>
+	s=arc-20240116; t=1782786956; c=relaxed/simple;
+	bh=JDm80PARaz8qhdcMsEM8DQ6kPwWmZTJalHdXNJIbWok=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=FO+O8tiNHZPb7z7r9WepTxdwVE4wYQyKYT07lsPBFOzd9DlE1dgXa6ECyj163y0rpM1OXKuvnM3z//mv4vbrhZQMXrX21I+7jd9TS4Ra0LUcHSgkwZxexpfr52ItbY8HRZ/bOYAriqlXSYyhof9sMou/Vag48ZmPvjFHnK3FGZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=big3inVH; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82CB91F000E9;
+	Tue, 30 Jun 2026 02:35:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782786954;
+	bh=DN51B/0E7mV8Fc4Y4R2TuXGaqK4Y7q8R6WUEeKr+3h4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=big3inVHqqvpDToRUwpIDlGEYkQG6HUHDbcVsfQ/r8WAD/nYucqotnLy7pnyriKWZ
+	 1LAHIGiTVCbPwCi6mw4grifKvC0biuPvY2SAlJQv7hNU8d9XIRwrZRrXAa4b/rj7MQ
+	 YNXAcdqZNmyDQYoJwbHTjOMQheacO6Vu726uyIuwbLv2Kf61lo9l1uMnYZluOtPgv7
+	 ltv/4XXJOk+Trm7zbX7+N4LtlpDD7/znj3F47D8lmZdN4eQk6/705bW0Jr8iVhxs4l
+	 KX7AJnOcwv4zyy1wYMaIySCwQRgatSPA8iDYEbTTezmKHP7HJetRdh79/WWh0sc28E
+	 zPGeHubZINixQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 2/2] ASoC: codecs: nau8360: Add support for NAU83G60
+ amplifier
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Neo Chang" <YLCHANG2@nuvoton.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260630021510.821919-3-YLCHANG2@nuvoton.com>
+References: <20260630021510.821919-1-YLCHANG2@nuvoton.com>
+ <20260630021510.821919-3-YLCHANG2@nuvoton.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 30 Jun 2026 02:35:54 +0000
+Message-Id: <20260630023554.82CB91F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-317357-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
-	FORGED_SENDER(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:jesszhan0024@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:mitltlatltl@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317351-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:YLCHANG2@nuvoton.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	ALIAS_RESOLVED(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nuvoton.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A3CF36DFD43
+X-Rspamd-Queue-Id: 552A56DFCFA
 
-Add a driver for panels using the Novatek NT36536 Display Driver IC,
-including support for the CSOT PP8807HB1-1, a 10-bit panel found in
-LENOVO Legion Y700 Gen4.
+Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+s) to consider:
+- [High] Asynchronous firmware loading via request_firmware_nowait() causes=
+ a Use-After-Free when the device is unbound.
+- [High] Missing NULL check on strstr() result causes a kernel panic if the=
+ ALSA control name is truncated by an ASoC prefix.
+- [Medium] device_property_read_string() always returns the first array ele=
+ment, causing all DSP cores to use identical firmware.
+- [Medium] Mathematical invalidity of TDM TX byte offsets for PDM Loopback =
+when changing channel length.
+- [Medium] Concurrent hardware state corruption due to missing locking arou=
+nd DSP protocol communication during system resume.
+- [Medium] Race condition between nau8360_anc_put() and nau8360_dac_mux_put=
+_enum() leads to inconsistent PEQ band configuration.
+- [Low] The DSP KCS setup result is retrieved from hardware but its value i=
+s completely ignored, masking configuration failures.
+--
 
-Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
----
- drivers/gpu/drm/panel/Kconfig                 |  11 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- drivers/gpu/drm/panel/panel-novatek-nt36536.c | 494 ++++++++++++++++++
- 3 files changed, 506 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-novatek-nt36536.c
+commit 90fa475e6f47a06dabf426d4caf28ef96fe5ed05
+Author: Neo Chang <YLCHANG2@nuvoton.com>
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 7450b27622a2..3912b79a2ebb 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -620,6 +620,17 @@ config DRM_PANEL_NOVATEK_NT36523
- 	  around the Novatek NT36523 display controller, such as some
- 	  Boe panels used in Xiaomi Mi Pad 5 and 5 Pro tablets.
- 
-+config DRM_PANEL_NOVATEK_NT36536
-+	tristate "Novatek NT36536 panel driver"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	select DRM_KMS_HELPER
-+	help
-+	  Say Y here if you want to enable support for Novatek NT36536-based
-+	  display panels, such as the one found in the LENOVO Legion Y700
-+	  Gen4.
-+
- config DRM_PANEL_NOVATEK_NT36672A
- 	tristate "Novatek NT36672A DSI panel"
- 	depends on GPIOLIB
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index c2c5cf817116..21a5bdca988a 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -60,6 +60,7 @@ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35532) += panel-novatek-nt35532.o
- obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35560) += panel-novatek-nt35560.o
- obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35950) += panel-novatek-nt35950.o
- obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36523) += panel-novatek-nt36523.o
-+obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36536) += panel-novatek-nt36536.o
- obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672A) += panel-novatek-nt36672a.o
- obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672E) += panel-novatek-nt36672e.o
- obj-$(CONFIG_DRM_PANEL_NOVATEK_NT37700F) += panel-novatek-nt37700f.o
-diff --git a/drivers/gpu/drm/panel/panel-novatek-nt36536.c b/drivers/gpu/drm/panel/panel-novatek-nt36536.c
-new file mode 100644
-index 000000000000..3ad21fcdf9f0
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-novatek-nt36536.c
-@@ -0,0 +1,494 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Novatek NT36536 DriverIC panels driver
-+ * Copyright (c) 2026 Pengyu Luo <mitltlatltl@gmail.com>
-+ *
-+ * Based on the sample code which is generated with
-+ * linux-mdss-dsi-panel-driver-generator
-+ */
-+
-+#include <linux/backlight.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_graph.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <drm/display/drm_dsc.h>
-+#include <drm/display/drm_dsc_helper.h>
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_probe_helper.h>
-+
-+#include <video/mipi_display.h>
-+
-+struct novatek {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi[2];
-+	const struct panel_desc *desc;
-+	struct drm_dsc_config dsc;
-+	struct gpio_desc *reset_gpio;
-+	struct regulator_bulk_data *supplies;
-+	struct backlight_device *backlight;
-+};
-+
-+struct panel_desc {
-+	unsigned int width_mm;
-+	unsigned int height_mm;
-+	unsigned int bpc;
-+	unsigned int lanes;
-+	enum mipi_dsi_pixel_format format;
-+	unsigned long mode_flags;
-+	const struct drm_dsc_config *dsc_cfg;
-+	const struct drm_display_mode *modes;
-+	unsigned int num_modes;
-+
-+	int (*init_sequence)(struct mipi_dsi_multi_context *dsi_ctx);
-+
-+	bool is_dual_dsi;
-+	bool has_dcs_backlight;
-+};
-+
-+static const struct regulator_bulk_data novatek_supplies[] = {
-+	{ .supply = "vddio" },
-+	{ .supply = "vsp" },
-+	{ .supply = "vsn" },
-+};
-+
-+static inline struct novatek *to_novatek(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct novatek, panel);
-+}
-+
-+static inline struct mipi_dsi_device *to_primary_dsi(struct novatek *ctx)
-+{
-+	/* Sync on DSI1 for dual dsi */
-+	return ctx->desc->is_dual_dsi ? ctx->dsi[1] : ctx->dsi[0];
-+}
-+
-+static void novatek_reset(struct novatek *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(11000, 12000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(1000, 2000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(3000, 4000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+}
-+
-+static int novatek_prepare(struct drm_panel *panel)
-+{
-+	struct novatek *ctx = to_novatek(panel);
-+	struct mipi_dsi_device *dsi = to_primary_dsi(ctx);
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
-+	struct drm_dsc_picture_parameter_set pps;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(novatek_supplies),
-+				    ctx->supplies);
-+	if (ret < 0)
-+		return ret;
-+
-+	novatek_reset(ctx);
-+
-+	ret = ctx->desc->init_sequence(&dsi_ctx);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+		regulator_bulk_disable(ARRAY_SIZE(novatek_supplies),
-+				       ctx->supplies);
-+		return ret;
-+	}
-+
-+	drm_dsc_pps_payload_pack(&pps, &ctx->dsc);
-+	mipi_dsi_picture_parameter_set_multi(&dsi_ctx, &pps);
-+	mipi_dsi_compression_mode_multi(&dsi_ctx, true);
-+	mipi_dsi_msleep(&dsi_ctx, 28);
-+
-+	return backlight_enable(ctx->backlight);
-+}
-+
-+static int novatek_off(struct mipi_dsi_multi_context *dsi_ctx)
-+{
-+	mipi_dsi_dcs_set_display_off_multi(dsi_ctx);
-+	mipi_dsi_dcs_enter_sleep_mode_multi(dsi_ctx);
-+
-+	return dsi_ctx->accum_err;
-+}
-+
-+static int novatek_unprepare(struct drm_panel *panel)
-+{
-+	struct novatek *ctx = to_novatek(panel);
-+	struct mipi_dsi_device *dsi = to_primary_dsi(ctx);
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	backlight_disable(ctx->backlight);
-+
-+	ret = novatek_off(&dsi_ctx);
-+	if (ret < 0)
-+		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	regulator_bulk_disable(ARRAY_SIZE(novatek_supplies), ctx->supplies);
-+
-+	return 0;
-+}
-+
-+static int novatek_get_modes(struct drm_panel *panel,
-+			     struct drm_connector *connector)
-+{
-+	struct novatek *ctx = to_novatek(panel);
-+	const struct panel_desc *desc = ctx->desc;
-+	int i;
-+
-+	for (i = 0; i < desc->num_modes; i++) {
-+		const struct drm_display_mode *m = &desc->modes[i];
-+		struct drm_display_mode *mode;
-+
-+		mode = drm_mode_duplicate(connector->dev, m);
-+		if (!mode) {
-+			dev_err(panel->dev, "failed to add mode %ux%u@%u\n",
-+				m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
-+			return -ENOMEM;
-+		}
-+
-+		mode->type = DRM_MODE_TYPE_DRIVER;
-+		if (i == 0)
-+			mode->type |= DRM_MODE_TYPE_PREFERRED;
-+
-+		drm_mode_set_name(mode);
-+		drm_mode_probed_add(connector, mode);
-+	}
-+
-+	connector->display_info.width_mm = desc->width_mm;
-+	connector->display_info.height_mm = desc->height_mm;
-+	connector->display_info.bpc = desc->bpc;
-+
-+	return desc->num_modes;
-+}
-+
-+static const struct drm_panel_funcs novatek_panel_funcs = {
-+	.prepare = novatek_prepare,
-+	.unprepare = novatek_unprepare,
-+	.get_modes = novatek_get_modes,
-+};
-+
-+static int novatek_bl_update_status(struct backlight_device *bl)
-+{
-+	struct novatek *ctx = bl_get_data(bl);
-+	u16 brightness = backlight_get_brightness(bl);
-+
-+	return mipi_dsi_dcs_set_display_brightness_large(to_primary_dsi(ctx),
-+							 brightness);
-+}
-+
-+static const struct backlight_ops novatek_bl_ops = {
-+	.update_status = novatek_bl_update_status,
-+};
-+
-+static struct backlight_device *novatek_create_backlight(struct novatek *ctx)
-+{
-+	struct mipi_dsi_device *dsi = to_primary_dsi(ctx);
-+	struct device *dev = &dsi->dev;
-+	const struct backlight_properties props = {
-+		.type = BACKLIGHT_RAW,
-+		.brightness = 512,
-+		.max_brightness = 4095,
-+		.scale = BACKLIGHT_SCALE_NON_LINEAR,
-+	};
-+
-+	return devm_backlight_device_register(dev, dev_name(dev), dev, ctx,
-+					      &novatek_bl_ops, &props);
-+}
-+
-+static int csot_pp8807hb1_1_init_seq(struct mipi_dsi_multi_context *dsi_ctx)
-+{
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xff, 0x20);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, MIPI_DCS_SET_PARTIAL_ROWS, 0x50);
-+
-+	/* cabc */
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xff, 0x23);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x89, 0xa4);
-+
-+	/* pen code */
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xff, 0x26);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xcd, 0x8f, 0xa9, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xce, 0x8c, 0xa9, 0x00);
-+
-+	/* esd init */
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xff, 0x27);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x79, 0x22);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xd0, 0x31);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xd1, 0x08, 0x08);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xd2, 0x08);
-+
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xff, 0xd0);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x00, 0x31);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x09, 0xee);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x1c, 0x77);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x1d, 0x07);
-+
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xff, 0xe0);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xbb, 0x00);
-+
-+	/* IC transfer */
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xff, 0xf0);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xe6, 0x02);
-+
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xff, 0x10);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xfb, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x3b,
-+				     0x03, 0x4e, 0x1a, 0x04, 0x04, 0x01, 0x80,
-+				     0x36, 0x36);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x60, 0x00);
-+	/* enable DSC */
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x90, 0x03, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x91,
-+				     0xab, 0xa8, 0x00, 0x14, 0xd2, 0x00, 0x00,
-+				     0x00, 0x01, 0xb9, 0x00, 0x06, 0x05, 0x7a,
-+				     0x05, 0xb8);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0x92, 0x10, 0xe0);
-+	/* frame ctl */
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xb2, 0x91, 0x80);
-+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xb3, 0x40);
-+	mipi_dsi_dcs_exit_sleep_mode_multi(dsi_ctx);
-+	mipi_dsi_msleep(dsi_ctx, 105);
-+	mipi_dsi_dcs_set_display_on_multi(dsi_ctx);
-+	mipi_dsi_msleep(dsi_ctx, 40);
-+
-+	return dsi_ctx->accum_err;
-+}
-+
-+static struct drm_dsc_config csot_pp8807hb1_1_dsc_cfg = {
-+	.dsc_version_major = 1,
-+	.dsc_version_minor = 2,
-+	.slice_height = 20,
-+	.slice_width = 476,
-+	.slice_count = 2,
-+	.bits_per_component = 10,
-+	.bits_per_pixel = 8 << 4,
-+	.block_pred_enable = true,
-+};
-+
-+static const struct drm_display_mode csot_pp8807hb1_1_modes[] = {
-+	/* 915552 KHz */
-+	{
-+		.clock = (952 + 138 + 16 + 16) * 2 * (3040 + 26 + 4 + 330) * 120 / 1000,
-+		.hdisplay = 952 * 2,
-+		.hsync_start = (952 + 138) * 2,
-+		.hsync_end = (952 + 138 + 16) * 2,
-+		.htotal = (952 + 138 + 16 + 16) * 2,
-+		.vdisplay = 3040,
-+		.vsync_start = 3040 + 26,
-+		.vsync_end = 3040 + 26 + 4,
-+		.vtotal = 3040 + 26 + 4 + 330,
-+	},
-+	{
-+		.clock = (952 + 138 + 16 + 16) * 2 * (3040 + 3426 + 4 + 330) * 60 / 1000,
-+		.hdisplay = 952 * 2,
-+		.hsync_start = (952 + 138) * 2,
-+		.hsync_end = (952 + 138 + 16) * 2,
-+		.htotal = (952 + 138 + 16 + 16) * 2,
-+		.vdisplay = 3040,
-+		.vsync_start = 3040 + 3426,
-+		.vsync_end = 3040 + 3426 + 4,
-+		.vtotal = 3040 + 3426 + 4 + 330,
-+	},
-+	{
-+		.clock = (952 + 138 + 16 + 16) * 2 * (3040 + 10226 + 4 + 330) * 30 / 1000,
-+		.hdisplay = 952 * 2,
-+		.hsync_start = (952 + 138) * 2,
-+		.hsync_end = (952 + 138 + 16) * 2,
-+		.htotal = (952 + 138 + 16 + 16) * 2,
-+		.vdisplay = 3040,
-+		.vsync_start = 3040 + 10226,
-+		.vsync_end = 3040 + 10226 + 4,
-+		.vtotal = 3040 + 10226 + 4 + 330,
-+	},
-+	/* 1064606.4 KHz */
-+	{
-+		.clock = (952 + 50 + 16 + 16) * 2 * (3040 + 26 + 4 + 50) * 165 / 1000,
-+		.hdisplay = 952 * 2,
-+		.hsync_start = (952 + 50) * 2,
-+		.hsync_end = (952 + 50 + 16) * 2,
-+		.htotal = (952 + 50 + 16 + 16) * 2,
-+		.vdisplay = 3040,
-+		.vsync_start = 3040 + 26,
-+		.vsync_end = 3040 + 26 + 4,
-+		.vtotal = 3040 + 26 + 4 + 50,
-+	},
-+	{
-+		.clock = (952 + 50 + 16 + 16) * 2 * (3040 + 481 + 4 + 50) * 144 / 1000,
-+		.hdisplay = 952 * 2,
-+		.hsync_start = (952 + 50) * 2,
-+		.hsync_end = (952 + 50 + 16) * 2,
-+		.htotal = (952 + 50 + 16 + 16) * 2,
-+		.vdisplay = 3040,
-+		.vsync_start = 3040 + 481,
-+		.vsync_end = 3040 + 481 + 4,
-+		.vtotal = 3040 + 481 + 4 + 50,
-+	},
-+	/* 737942.4 KHz */
-+	{
-+		.clock = (952 + 330 + 16 + 16) * 2 * (3040 + 26 + 4 + 50) * 90 / 1000,
-+		.hdisplay = 952 * 2,
-+		.hsync_start = (952 + 330) * 2,
-+		.hsync_end = (952 + 330 + 16) * 2,
-+		.htotal = (952 + 330 + 16 + 16) * 2,
-+		.vdisplay = 3040,
-+		.vsync_start = 3040 + 26,
-+		.vsync_end = 3040 + 26 + 4,
-+		.vtotal = 3040 + 26 + 4 + 50,
-+	},
-+};
-+
-+static int novatek_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct mipi_dsi_device_info dsi_info = {"dsi-secondary", 0, NULL};
-+	struct mipi_dsi_host *dsi1_host;
-+	struct device *dev = &dsi->dev;
-+	const struct panel_desc *desc;
-+	struct device_node *dsi1;
-+	struct novatek *ctx;
-+	int num_dsi = 1;
-+	int ret, i;
-+
-+	ctx = devm_drm_panel_alloc(dev, struct novatek, panel,
-+				   &novatek_panel_funcs,
-+				   DRM_MODE_CONNECTOR_DSI);
-+	if (IS_ERR(ctx))
-+		return PTR_ERR(ctx);
-+
-+	ret = devm_regulator_bulk_get_const(dev, ARRAY_SIZE(novatek_supplies),
-+					    novatek_supplies, &ctx->supplies);
-+	if (ret < 0)
-+		return ret;
-+
-+	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	desc = of_device_get_match_data(dev);
-+	if (!desc)
-+		return -ENODEV;
-+	ctx->desc = desc;
-+	ctx->dsc = *desc->dsc_cfg;
-+
-+	if (desc->is_dual_dsi) {
-+		num_dsi = 2;
-+		dsi1 = of_graph_get_remote_node(dsi->dev.of_node, 1, -1);
-+		if (!dsi1) {
-+			dev_err(dev, "cannot get secondary DSI node.\n");
-+			return -ENODEV;
-+		}
-+
-+		dsi1_host = of_find_mipi_dsi_host_by_node(dsi1);
-+		of_node_put(dsi1);
-+		if (!dsi1_host)
-+			return dev_err_probe(dev, -EPROBE_DEFER,
-+					     "cannot get secondary DSI host\n");
-+
-+		ctx->dsi[1] = devm_mipi_dsi_device_register_full(dev, dsi1_host,
-+								 &dsi_info);
-+		if (IS_ERR(ctx->dsi[1])) {
-+			dev_err(dev, "cannot get secondary DSI device\n");
-+			return PTR_ERR(ctx->dsi[1]);
-+		}
-+
-+		mipi_dsi_set_drvdata(ctx->dsi[1], ctx);
-+	}
-+
-+	ctx->dsi[0] = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	ctx->panel.prepare_prev_first = true;
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	for (i = 0; i < num_dsi; i++) {
-+		ctx->dsi[i]->lanes = desc->lanes;
-+		ctx->dsi[i]->format = desc->format;
-+		ctx->dsi[i]->mode_flags = desc->mode_flags;
-+		ctx->dsi[i]->dsc = &ctx->dsc;
-+		ret = devm_mipi_dsi_attach(dev, ctx->dsi[i]);
-+		if (ret < 0) {
-+			drm_panel_remove(&ctx->panel);
-+			return dev_err_probe(dev, ret,
-+					     "Failed to attach to DSI host\n");
-+		}
-+	}
-+
-+	if (desc->has_dcs_backlight) {
-+		ctx->backlight = novatek_create_backlight(ctx);
-+		if (IS_ERR(ctx->backlight))
-+			return dev_err_probe(dev, PTR_ERR(ctx->backlight),
-+					     "Failed to create backlight\n");
-+	} else {
-+		ret = drm_panel_of_backlight(&ctx->panel);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "Failed to get backlight\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static void novatek_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct novatek *ctx = mipi_dsi_get_drvdata(dsi);
-+
-+	drm_panel_remove(&ctx->panel);
-+}
-+
-+/* Model name: CSOT PP8807HB1-1 */
-+static const struct panel_desc csot_pp8807hb1_1_desc = {
-+	.width_mm = 118,
-+	.height_mm = 190,
-+	.bpc = 10, /* set this to 8 with RGB888 format to support 8-bit mode */
-+	.lanes = 3,
-+	.format = MIPI_DSI_FMT_RGB101010,
-+	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_CLOCK_NON_CONTINUOUS |
-+		      MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_MODE_VIDEO_BURST |
-+		      MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_DSC_ALL_SLICES_IN_PKT,
-+	.dsc_cfg = &csot_pp8807hb1_1_dsc_cfg,
-+	.modes = csot_pp8807hb1_1_modes,
-+	.num_modes = ARRAY_SIZE(csot_pp8807hb1_1_modes),
-+	.init_sequence = csot_pp8807hb1_1_init_seq,
-+	.is_dual_dsi = true,
-+	.has_dcs_backlight = false,
-+};
-+
-+static const struct of_device_id novatek_of_match[] = {
-+	{ .compatible = "csot,pp8807hb1-1", .data = &csot_pp8807hb1_1_desc },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, novatek_of_match);
-+
-+static struct mipi_dsi_driver novatek_driver = {
-+	.probe = novatek_probe,
-+	.remove = novatek_remove,
-+	.driver = {
-+		.name = "panel-novatek-nt36536",
-+		.of_match_table = novatek_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(novatek_driver);
-+
-+MODULE_AUTHOR("Pengyu Luo <mitltlatltl@gmail.com>");
-+MODULE_DESCRIPTION("Novatek NT36536 DriverIC panels driver");
-+MODULE_LICENSE("GPL");
--- 
-2.54.0
+ASoC: codecs: nau8360: Add support for NAU83G60 amplifier
 
+Add support for the Nuvoton NAU83G60 audio codec. The NAU83G60 is a
+stereo 30W+30W smart amplifier with an integrated low-latency
+Advanced Audio DSP.
+
+> diff --git a/sound/soc/codecs/nau8360-dsp.c b/sound/soc/codecs/nau8360-ds=
+p.c
+> index 0000000000000..d0483805607d4 100644
+> --- /dev/null
+> +++ b/sound/soc/codecs/nau8360-dsp.c
+[ ... ]
+> @@ -310,6 +310,23 @@ static void nau8360_dsp_fw_cb(const struct firmware =
+*fw, void *context)
+>  {
+>  	struct nau8360_dsp_ctx *dsp_ctx =3D context;
+>  	struct snd_soc_component *cp =3D dsp_ctx->cp;
+>  	struct nau8360 *nau8360 =3D snd_soc_component_get_drvdata(cp);
+
+[Severity: High]
+Can this sequence allow a use-after-free if the device is unbound?
+
+If a user unbinds the I2C device (e.g., via sysfs) while the background
+firmware worker is still pending, the nau8360 struct and the component are
+freed via devres. When the firmware callback eventually runs, it attempts to
+dereference the freed cp pointer and acquires a lock in the freed nau8360
+struct.
+
+It looks like the I2C driver lacks a .remove callback, meaning there is no
+synchronization point to wait for or cancel the asynchronous firmware worker
+before device resources are reclaimed.
+
+[ ... ]
+> @@ -341,6 +358,10 @@ static int nau8360_dsp_chan_kcs_setup(struct snd_soc=
+_component *cp,
+>  	struct device *dev =3D cp->dev;
+>  	int ret, status =3D 0;
+> =20
+>  	ret =3D nau8360_dsp_get_cmd_put(cp, dsp_addr,
+>  			NAU8360_DSP_CMD_GET_FRAME_STATUS, &status);
+
+[Severity: Medium]
+Could this unlocked I2C command to the DSP cause hardware state corruption
+during system resume?
+
+During system resume, the PM thread resets the DSP and calls
+nau8360_dsp_chan_kcs_setup(), which interacts with the DSP via
+nau8360_dsp_get_cmd_put(). The PM thread executes these commands without
+holding nau8360->lock.
+
+If a background firmware loading worker from a previous request was
+suspended and resumes simultaneously (or is running on another CPU), its
+locked DSP communications will interleave with the unlocked ones from the
+PM thread, destroying the expected DSP I2C fragment protocol.
+
+[ ... ]
+> @@ -481,6 +502,10 @@ static int nau8360_dsp_kcs_setup(struct snd_soc_comp=
+onent *cp, int offset, int s
+>  		addr_offset +=3D data_len;
+>  		data_rem -=3D data_len;
+> =20
+>  		/* checking KCS result */
+>  		ret =3D nau8360_dsp_exec_command(cp, NAU8360_DSP_CMD_GET_KCS_RSLTS,
+>  			0, NAU8360_DSP_DATA_BYTE, NULL,
+>  			NAU8360_DSP_DATA_BYTE, &kcs_rst, dsp_addr);
+>  		if (ret)
+>  			return ret;
+
+[Severity: Low]
+Is the DSP KCS setup result retrieved from hardware but its value completely
+ignored?
+
+While the I2C transaction success is verified via the return value, the
+actual hardware response stored in kcs_rst is never checked. Does this
+silently mask algorithmic configuration failures in the DSP?
+
+> diff --git a/sound/soc/codecs/nau8360.c b/sound/soc/codecs/nau8360.c
+> index 0000000000000..f4dc351a4030c 100644
+> --- /dev/null
+> +++ b/sound/soc/codecs/nau8360.c
+[ ... ]
+> @@ -288,6 +288,14 @@ static int nau8360_anc_put(struct snd_kcontrol *kcon=
+trol,
+>  	if (ret !=3D 1)
+>  		return ret;
+> =20
+>  	nau8360->anc_enable =3D ucontrol->value.integer.value[0];
+>  	if (nau8360_dsp_active(cp))
+>  		value =3D nau8360->anc_enable ? NAU8360_PEQ_BAND_15 : NAU8360_PEQ_BAND=
+_12;
+>  	regmap_update_bits(nau8360->regmap, NAU8360_R9D_PEQ_CTL, NAU8360_PEQ_BA=
+ND_MASK,
+>  		value << NAU8360_PEQ_BAND_SFT);
+
+[Severity: Medium]
+Could a Time-Of-Check to Time-Of-Use race condition occur between
+nau8360_anc_put() and nau8360_dac_mux_put_enum() that leads to an
+inconsistent PEQ band configuration?
+
+nau8360_anc_put() modifies nau8360->anc_enable and reads
+nau8360_dsp_active() without holding a driver-specific lock.
+Concurrently, nau8360_dac_mux_put_enum() updates the DAC path
+(changing the result of nau8360_dsp_active()) and calls
+nau8360_dsp_switch(), which reads nau8360->anc_enable locklessly.
+
+Both execute under ALSA's controls_rwsem read lock, allowing concurrent
+execution by two userspace threads. nau8360_anc_put() might calculate a tar=
+get
+register value based on the DSP being active, but before it writes to the
+hardware, nau8360_dac_mux_put_enum() could disable the DSP. This leaves the
+NAU8360_R9D_PEQ_CTL register with a value appropriate for an enabled DSP,
+even though the DSP path is disabled.
+
+[ ... ]
+> @@ -375,6 +383,9 @@ static inline int nau8360_peq_regaddr(const char *id_=
+name)
+>  	int reg, band_num, dsp_addr =3D NAU8360_DSP_ADDR_BYNAME(id_name);
+>  	char *band =3D strstr(id_name, "BIQ");
+> =20
+>  	if (kstrtoint((band + 3), 10, &band_num))
+
+[Severity: High]
+Can strstr() return NULL here and cause a kernel panic when its result is
+dereferenced?
+
+The ASoC subsystem permits machine drivers to apply a sound-name-prefix from
+the device tree to control names. If a long prefix causes the control name =
+to
+exceed the ALSA maximum length of 44 characters, the string will be truncat=
+ed.
+
+If truncation removes the "BIQ" substring, strstr() returns NULL. The code
+then unconditionally executes pointer arithmetic (band + 3) and dereference=
+s it,
+which crashes the kernel when unprivileged userspace accesses the affected =
+PEQ
+control.
+
+[ ... ]
+> @@ -439,6 +450,9 @@ static int nau8360_pdm_slot_get(struct snd_kcontrol *=
+kcontrol,
+>  	struct snd_soc_component *cp =3D snd_kcontrol_chip(kcontrol);
+>  	struct soc_enum *e =3D (struct soc_enum *)kcontrol->private_value;
+>  	int scale, slot =3D snd_soc_component_read(cp, e->reg);
+> =20
+>  	compute_slotx_scale(cp, &scale);
+>  	slot =3D ((slot >> e->shift_l) & e->mask) / scale;
+
+[Severity: Medium]
+Will this return a mutated, invalid slot index to userspace if the TDM chan=
+nel
+length changes dynamically?
+
+Because the PDM Loopback TX slots (PDM_L and PDM_R) are handled independent=
+ly
+and do not exist in the tdm_tx_func_slot cache array, nau8360_tdm_apply()
+fails to update their hardware offsets. When nau8360_pdm_slot_get() divides
+the stale byte offset by the new channel scale, it calculates an invalid va=
+lue.
+
+[ ... ]
+> @@ -660,6 +674,13 @@ static void nau8360_tdm_apply(struct snd_soc_compone=
+nt *cp, int slot_scale)
+>  	struct nau8360 *nau8360 =3D snd_soc_component_get_drvdata(cp);
+>  	int i, chan_tx;
+> =20
+>  	for (i =3D 0; i < NAU8360_TDM_TXN; i++) {
+>  		if (nau8360->tdm_tx_func_slot[i] =3D=3D TDM_SLOT_NONE)
+>  			continue;
+> =20
+>  		/* compute the slot location in bytes according to slot/chan width */
+>  		chan_tx =3D slot_scale * nau8360->tdm_tx_func_slot[i];
+>  		nau8360_set_tdm_tx_slot(cp, i, chan_tx);
+>  	}
+
+[Severity: Medium]
+Does this code incorrectly ignore PDM slots when recalculating byte offsets
+for TDM TX slots?
+
+The loop iterates over standard TX slots but omits PDM slots because they a=
+re
+absent from the iteration. The PDM slots are left with stale byte offsets t=
+hat
+no longer align with the new width boundaries, which corrupts the TDM strea=
+m.
+
+[ ... ]
+> @@ -2404,6 +2425,10 @@ static int nau8360_read_device_properties(struct n=
+au8360 *nau8360)
+>  		return -EINVAL;
+>  	}
+> =20
+>  	for (i =3D 0; i < NAU8360_DSP_FW_NUM; i++) {
+>  		ret =3D device_property_read_string(dev, "firmware-name",
+>  			&firmware);
+
+[Severity: Medium]
+Does device_property_read_string() always return the first array element
+in this loop?
+
+During device initialization, the loop uses device_property_read_string()
+instead of device_property_read_string_array() to extract strings from an
+array property. Since it simply fetches the first string of the array
+regardless of the loop index, all iterations process the exact same firmware
+name, causing both DSP cores to be loaded with the firmware intended only
+for the first core.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260630021510.8219=
+19-1-YLCHANG2@nuvoton.com?part=3D2
 
