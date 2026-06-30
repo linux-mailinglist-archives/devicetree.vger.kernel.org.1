@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-317364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317367-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2DiEIs8uQ2o4TwoAu9opvQ
-	(envelope-from <devicetree+bounces-317364-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:49:51 +0200
+	id E/m+C/UuQ2pUTwoAu9opvQ
+	(envelope-from <devicetree+bounces-317367-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:50:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F23A36DFE14
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:49:50 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFCDE6DFE22
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:50:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Nf2C7o6i;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317364-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317364-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HnOhJoWv;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317367-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317367-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B38B8306229A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 02:48:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 31AC13012B28
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 02:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 565A73D16F4;
-	Tue, 30 Jun 2026 02:47:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C5663C3438;
+	Tue, 30 Jun 2026 02:49:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB97E3CF1FA
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDDE3BC68E
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:49:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782787661; cv=none; b=ahDS2zb+myXqcSm7vbfe9qoJp35cQ2jRsgLxxtz+A0xfWhtDj0QYg8imK1wkR8W1EIBm5QhEPseRz6t7/N4QrOoiPvc4TbM7qIhIzqeBvk9ToZ0o6MjbznJLXvSwialXfpkHCaoYil95X1m458ti1QWcijiBQi8lB9qcFQXmvHE=
+	t=1782787758; cv=none; b=qaEt1hZDNQyNe4G8ZSpc5gjqdIQlzqHm1NYWWeUjLPRSoRgdMsnyjyArpGpofiVf5Rk2+CS8FQf4Md3nL01tl19fQ76ub5DR64j1TbuARKxztccAJoC8qgoRpKYkNQoJg/zTJIHxWJ8dnoG4jRPg//DHyGsei/SOAVPbIdXYnuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782787661; c=relaxed/simple;
-	bh=UIfNhEvhtRw4oYxLQ4Jo6TdwWoD5YNFeJMW7uhMOcqY=;
+	s=arc-20240116; t=1782787758; c=relaxed/simple;
+	bh=haduT/vq31mhh7Y2FJsH5SFyASmZIzzla2ftry9KEbk=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=E9Jp66yzog7fPG3//AZBBeD0lT7oGIc/7kYInsxKbxLv0FiXyvIxB0INHIzXpI52cYtj4nArj/Kct3VAMk4oN8PDEBbaqga5PmAH0rFOtyi2WVpqjPxuDHHDYNcRV6yvQ8WVOMr0nEad3rSt3fAIRyIo6/Y6pJEYxgceV/IUNus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nf2C7o6i; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 684231F000E9;
-	Tue, 30 Jun 2026 02:47:39 +0000 (UTC)
+	 Message-Id; b=cNKYor/zLkZzWdr88OxDwRNiyL7lDnexavwc40susVPyTbwBY4pvemRugB8txq1ZSmePjpqUUg9RKTjUEsF3cHeAzKEKXKtLW6r1AqelXBx1pnVduLyQV/n41k1LQ7wsUeWikCZJcB/D93GqzNHcVt/l8TJNMorO0Nov5TRd/Kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HnOhJoWv; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C9971F000E9;
+	Tue, 30 Jun 2026 02:49:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782787659;
-	bh=kNhcYq7dXKcWI+YTnj5UlFa+m8enRtVVXhSDjp8kDss=;
+	s=k20260515; t=1782787756;
+	bh=5YS2XUlEvVcUkPDZiWjVK7gB7qY2+dJUTkoUV+Xa4Eo=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Nf2C7o6iEb6xGd7Pw6yZ2x7+kyvi/V7MqTqDDRU5Ekg/+1KvF6h0DxXhFrDVFcOyW
-	 DxGwPh14Kv1h8Mgnf2Ugh4cRMwfzOEZAbMwkv1W5ajnZus5eUn8ZUvqlCUbuxGigYJ
-	 aUNCLA8l00ZsTCBN+iJwDTLZw8FgLkMmMMEZpfbNn9+E4ba5Y79MLZJRhTWgIgAVoF
-	 qxLp4GyC3qAJe5L+h7JArfqlqoOIYDrlgLG479OyRl6mPZVApulE5TNpvvjQ6IWKEM
-	 sBd605XjbO0YNu07Q1DQ5QFMCeJS/bKxtgS2aIE4jOamIEydrysbgZL+L5EaDmH3VE
-	 8vtQX6QKfAAIg==
+	b=HnOhJoWviXP3xnZJBXengjeS0jAK6Q7X718Hx7gXvN5h26vQOtvX5ZIx6kHSHECON
+	 OsFjZTdQ6ONbdMv/OVAjOxLf5mgKttlx6pQa+HFYXjkTGl6VLnb99x17TS2JZlROYm
+	 CYYqrteIGTTzSgttIW1oCYjusnMDkGaxYxBtah2nnpDEj7ZVAFbFNJHOhLy4NE8yA8
+	 7pNG/8HcWYOJX9y+xyQN42a8UNifN4Qj2XRfYR/LMKKugoy/TdAsFx2Ohuij0NrwJF
+	 PbOxrYR8HHlBzctO1jsF+k4j1A9DxSYRQlqOWaR5zOW9DAPHMNNEUDDawKhEZMn3qQ
+	 FfZSY6oeT0Znw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] drm/panel: Add Novatek NT36536 panel driver
+Subject: Re: [PATCH v5 2/2] clk: amlogic: Add A9 peripherals clock
+ controller driver
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Pengyu Luo" <mitltlatltl@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260630023439.248861-3-mitltlatltl@gmail.com>
-References: <20260630023439.248861-1-mitltlatltl@gmail.com>
- <20260630023439.248861-3-mitltlatltl@gmail.com>
+To: "Jian Hu via B4 Relay" <devnull+jian.hu.amlogic.com@kernel.org>
+Cc: conor+dt@kernel.org, robh@kernel.org, linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, neil.armstrong@linaro.org
+In-Reply-To: <20260630-a9_peripherals-v5-2-bc4019730354@amlogic.com>
+References: <20260630-a9_peripherals-v5-0-bc4019730354@amlogic.com>
+ <20260630-a9_peripherals-v5-2-bc4019730354@amlogic.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 30 Jun 2026 02:47:39 +0000
-Message-Id: <20260630024739.684231F000E9@smtp.kernel.org>
+Date: Tue, 30 Jun 2026 02:49:16 +0000
+Message-Id: <20260630024916.7C9971F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,239 +71,88 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317364-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:mitltlatltl@gmail.com,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317367-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url,amlogic.com:email];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:devnull+jian.hu.amlogic.com@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:linux-amlogic@lists.infradead.org,m:devicetree@vger.kernel.org,m:neil.armstrong@linaro.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,jian.hu.amlogic.com,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F23A36DFE14
+X-Rspamd-Queue-Id: AFCDE6DFE22
 
-Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Missing drm_panel_remove() in the probe error paths for backlight =
-initialization leads to a use-after-free on the global panel list.
-- [High] The panel is registered and exposed to the system via `drm_panel_a=
-dd()` before its initialization is complete, causing a race condition.
-- [High] Incomplete `drm_dsc_config` static definition leaves critical para=
-meters like `pic_width`, `pic_height`, and rate-control values as 0, breaki=
-ng DSC.
-- [Medium] Unchecked DSI multi-context accumulated error in `novatek_prepar=
-e()` during DSC configuration masks transmission failures.
-- [Medium] Missing rollback of hardware state and regulators when `backligh=
-t_enable()` fails in `novatek_prepare()`.
-- [Medium] DCS backlight commands issued in `novatek_bl_update_status()` wi=
-thout verifying the panel power state.
-- [Low] Missing Kconfig dependency on `DRM_DISPLAY_DSC_HELPER`.
+- [Medium] The Kconfig symbol COMMON_CLK_A9_PERIPHERALS implies the non-exi=
+stent symbol COMMON_CLK_A9_PLL.
 --
 
-commit 86b2b70476faa9f551d7227512ce180811421366
-Author: Pengyu Luo <mitltlatltl@gmail.com>
+commit 4ac705194c44e52e50be696d549cd67fcfe58042
+Author: Jian Hu <jian.hu@amlogic.com>
 
-drm/panel: Add Novatek NT36536 panel driver
+clk: amlogic: Add A9 peripherals clock controller driver
 
-Add a driver for panels using the Novatek NT36536 Display Driver IC,
-including support for the CSOT PP8807HB1-1, a 10-bit panel found in
-LENOVO Legion Y700 Gen4.
+This commit adds the peripherals clock controller driver for the Amlogic
+A9 SoC family.
 
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index 7450b27622a23..3912b79a2ebb2 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -620,6 +620,17 @@ config DRM_PANEL_NOVATEK_NT36523
->  	  around the Novatek NT36523 display controller, such as some
->  	  Boe panels used in Xiaomi Mi Pad 5 and 5 Pro tablets.
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -132,6 +132,21 @@ config COMMON_CLK_A1_PERIPHERALS
+>  	  device, A1 SoC Family. Say Y if you want A1 Peripherals clock
+>  	  controller to work.
 > =20
-> +config DRM_PANEL_NOVATEK_NT36536
-> +	tristate "Novatek NT36536 panel driver"
-> +	depends on OF
-> +	depends on DRM_MIPI_DSI
-> +	depends on BACKLIGHT_CLASS_DEVICE
-> +	select DRM_KMS_HELPER
+> +config COMMON_CLK_A9_PERIPHERALS
+> +	tristate "Amlogic A9 SoC peripherals clock controller support"
+> +	depends on ARM64 || COMPILE_TEST
+> +	default ARCH_MESON
+> +	select COMMON_CLK_MESON_REGMAP
+> +	select COMMON_CLK_MESON_CLKC_UTILS
+> +	select COMMON_CLK_MESON_DUALDIV
+> +	select COMMON_CLK_MESON_VID_PLL_DIV
+> +	imply COMMON_CLK_SCMI
+> +	imply COMMON_CLK_A9_PLL
 
-[Severity: Low]
-Does this config also need to select DRM_DISPLAY_DSC_HELPER? The driver
-utilizes DSC helper functions like drm_dsc_pps_payload_pack(), which could
-cause a linker error if DRM_DISPLAY_DSC_HELPER is not selected by another
-module.
+[Severity: Medium]
+Does the config symbol COMMON_CLK_A9_PLL exist in the kernel tree?=20
+Referencing a non-existent symbol in an imply statement will silently fail
+to pull in the expected dependency during configuration. Is it possible this
+config was missing from the patch series, or is this a typo?
 
 > +	help
-> +	  Say Y here if you want to enable support for Novatek NT36536-based
-> +	  display panels, such as the one found in the LENOVO Legion Y700
-> +	  Gen4.
+> +	  Support for the peripherals clock controller on Amlogic A311Y3 based
+> +	  device, AKA A9. Peripherals are required by most peripheral to operat=
+e.
+> +	  Say Y if you want A9 peripherals clock controller to work.
 > +
->  config DRM_PANEL_NOVATEK_NT36672A
-[ ... ]
-> diff --git a/drivers/gpu/drm/panel/panel-novatek-nt36536.c b/drivers/gpu/=
-drm/panel/panel-novatek-nt36536.c
-> new file mode 100644
-> index 0000000000000..3ad21fcdf9f02
-> --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-novatek-nt36536.c
-[ ... ]
-> +static int novatek_prepare(struct drm_panel *panel)
-> +{
-> +	struct novatek *ctx =3D to_novatek(panel);
-> +	struct mipi_dsi_device *dsi =3D to_primary_dsi(ctx);
-> +	struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D dsi };
-> +	struct drm_dsc_picture_parameter_set pps;
-> +	struct device *dev =3D &dsi->dev;
-> +	int ret;
-> +
-> +	ret =3D regulator_bulk_enable(ARRAY_SIZE(novatek_supplies),
-> +				    ctx->supplies);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	novatek_reset(ctx);
-> +
-> +	ret =3D ctx->desc->init_sequence(&dsi_ctx);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-> +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> +		regulator_bulk_disable(ARRAY_SIZE(novatek_supplies),
-> +				       ctx->supplies);
-> +		return ret;
-> +	}
-> +
-> +	drm_dsc_pps_payload_pack(&pps, &ctx->dsc);
-> +	mipi_dsi_picture_parameter_set_multi(&dsi_ctx, &pps);
-> +	mipi_dsi_compression_mode_multi(&dsi_ctx, true);
-> +	mipi_dsi_msleep(&dsi_ctx, 28);
-> +
-> +	return backlight_enable(ctx->backlight);
-
-[Severity: Medium]
-Will the DSI command failures accumulated in dsi_ctx.accum_err be silently
-ignored here? The mipi_dsi_*_multi() macros capture errors in the context,
-but the function returns the result of backlight_enable() without checking
-the accumulated error state.
-
-[Severity: Medium]
-If backlight_enable() returns an error, will the hardware state leak? The
-function exits without rolling back the regulators or the reset GPIO state
-that were enabled earlier in the function, and the DRM core will not call
-novatek_unprepare() on a prepare failure.
-
-> +}
-[ ... ]
-> +static int novatek_bl_update_status(struct backlight_device *bl)
-> +{
-> +	struct novatek *ctx =3D bl_get_data(bl);
-> +	u16 brightness =3D backlight_get_brightness(bl);
-> +
-> +	return mipi_dsi_dcs_set_display_brightness_large(to_primary_dsi(ctx),
-> +							 brightness);
-
-[Severity: Medium]
-Could this send DCS commands over a disabled DSI bus? If userspace modifies
-the backlight brightness via sysfs while the panel is off (such as after
-novatek_unprepare() has run), it looks like the commands are sent without
-verifying if the panel is currently prepared and powered.
-
-> +}
-[ ... ]
-> +static struct drm_dsc_config csot_pp8807hb1_1_dsc_cfg =3D {
-> +	.dsc_version_major =3D 1,
-> +	.dsc_version_minor =3D 2,
-> +	.slice_height =3D 20,
-> +	.slice_width =3D 476,
-> +	.slice_count =3D 2,
-> +	.bits_per_component =3D 10,
-> +	.bits_per_pixel =3D 8 << 4,
-> +	.block_pred_enable =3D true,
-> +};
-
-[Severity: High]
-Is this DSC configuration missing dynamic parameters? Fields like pic_width,
-pic_height, and rate-control parameters default to 0 and don't appear to be
-dynamically populated by the driver via drm_dsc_compute_rc_parameters()
-before being packed in novatek_prepare().
-
-[ ... ]
-> +static int novatek_probe(struct mipi_dsi_device *dsi)
-> +{
-[ ... ]
-> +	ctx->panel.prepare_prev_first =3D true;
-> +
-> +	drm_panel_add(&ctx->panel);
-> +
-> +	for (i =3D 0; i < num_dsi; i++) {
-> +		ctx->dsi[i]->lanes =3D desc->lanes;
-
-[Severity: High]
-Is it safe to expose the panel via drm_panel_add() before its initialization
-is complete? Calling this early allows consumers like DRM bridges to access
-the panel before ctx->dsi[i]->lanes is configured, devm_mipi_dsi_attach() is
-executed, or the backlight is set up.
-
-> +		ctx->dsi[i]->format =3D desc->format;
-> +		ctx->dsi[i]->mode_flags =3D desc->mode_flags;
-> +		ctx->dsi[i]->dsc =3D &ctx->dsc;
-> +		ret =3D devm_mipi_dsi_attach(dev, ctx->dsi[i]);
-> +		if (ret < 0) {
-> +			drm_panel_remove(&ctx->panel);
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to attach to DSI host\n");
-> +		}
-> +	}
-> +
-> +	if (desc->has_dcs_backlight) {
-> +		ctx->backlight =3D novatek_create_backlight(ctx);
-> +		if (IS_ERR(ctx->backlight))
-> +			return dev_err_probe(dev, PTR_ERR(ctx->backlight),
-> +					     "Failed to create backlight\n");
-
-[Severity: High]
-Does this leak the panel registration on error? The function returns
-directly without calling drm_panel_remove(&ctx->panel), leaving a dangling
-pointer in the global panel_list.
-
-> +	} else {
-> +		ret =3D drm_panel_of_backlight(&ctx->panel);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "Failed to get backlight\n");
-
-[Severity: High]
-Similarly, does this alternative error path also need to remove the panel
-from the global list to prevent a use-after-free?
-
-> +	}
-> +
-> +	return 0;
-> +}
-[ ... ]
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260630023439.2488=
-61-1-mitltlatltl@gmail.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260630-a9_periphe=
+rals-v5-0-bc4019730354@amlogic.com?part=3D2
 
