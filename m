@@ -1,167 +1,161 @@
-Return-Path: <devicetree+bounces-317702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317926-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fDcXDtuxQ2o0fQoAu9opvQ
-	(envelope-from <devicetree+bounces-317702-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 14:08:59 +0200
+	id aiDVCKXnQ2pZlQoAu9opvQ
+	(envelope-from <devicetree+bounces-317926-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:58:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7943B6E3FEF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 14:08:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B54F6E62DE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:58:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=F8nPtREP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317702-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317702-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RUFVmX8e;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317926-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317926-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C551131C0317
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:43:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6C0031AB54C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E056403EA5;
-	Tue, 30 Jun 2026 11:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79A4746AEF1;
+	Tue, 30 Jun 2026 15:49:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EABC3ED3CA
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 11:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32BE746AECC;
+	Tue, 30 Jun 2026 15:49:10 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782819785; cv=none; b=M9b52FU2VIPWOlhcIgHmCfBUN7Q3JMsqLIprzufLB5KMrggxJ6WA1zP0aq8BCVEZYvF//CRiuWdeMGwyCQ7OltxdXxsP3CQI0wV+QGbzZ2gi6Kbw1offOHGqL6f3VqwOSCWvAgZ0g2xE/Ulv6+0LGOfZaRm1xLugCRM8DmGxEaA=
+	t=1782834552; cv=none; b=iLrDx0pPmad2i48Q2daRP7mp2m9mJB02CONSMCvdy0fJMBn6gWLh6Ojaf/IgRZAN3VPoz3TDfzwQEUdXyjKhNDEHxEkm4OI6vaDk0/4+PSHFLXreI0bjcMqOZqY9ddtncECCKPJNPUWglxrh3kuS+/7WDvdyjUkrVqx21NzxfH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782819785; c=relaxed/simple;
-	bh=QhC0YYv4fn27rETgKjs6aQo1urnFU6/nSgE5fpOSNX8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=BRUdC85u3BxcfyCejW1SInE359V0zV52B+7OKgOGkm8po7f0i6NOIwQ+4gIxKsktvlr0fcZnnBx/2MfQBx+68/bi44DZqtMQVMzwaejSnuLkCOn0meqp36g4MwlzmIKwD8ahmokJSXxxAEMEMGhcAsX7WLAbAoRlJgR502jvowY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F8nPtREP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E94A21F00A3F;
-	Tue, 30 Jun 2026 11:43:03 +0000 (UTC)
+	s=arc-20240116; t=1782834552; c=relaxed/simple;
+	bh=+mu2xcT0nwoLIp0swtqhupdARRBhiosNKr6wrjgJjVI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=gDLdbz1XgWGMTjNdsJ8k+Ymi/8W5F6u/YqctDrZ6ngV8txfJukbri015CPf3pyqRDPW28/stl62w1mKiXZSpNK5mE5FZ7vg+v47QoS1k2a7h4cRE7NAsdfQ5moIQg+r5JlufJEfcF4BlUFDPAW5L41T3zR3Wg6636w0fuqV66IM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RUFVmX8e; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 306D31F000E9;
+	Tue, 30 Jun 2026 15:49:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782819784;
-	bh=1PP65HDeq9mt8DL9mubGQzxsOH7HCkJOZIDyDQSfgQ8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=F8nPtREPmQGC6PA/whW5vWjM+gmhcZyYu+BYU/qDvUoSCwP++7ecDJ6sDctRJd91i
-	 udqdfPMOvXCErZNhdxCeJeg++VJ1BIFZTs+sjq2EC7TH1ffiovKytzOIVJbVSJJCE2
-	 U6YEIp6R8GgHUJ1lfyhjuVu9OSKD+x43Nuowo5qpeXc65h/qH98HjNebkY69UBy+Zm
-	 5vvlaavttayOmU9PFGHCYezBS1KEeoYIAouldrqFmpSHvx+OP+CnZtFMNAi+fe2ZqT
-	 95vDs3CVgNm+VoUZk7eZowo0Z6V/LfI9VFfde/VQjNP9lJ+r+suNww6lG11ekpgxrT
-	 dl/zlXi4prOMQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/5] arm64: dts: ls1046a: describe the Lynx 10G SerDes
- blocks
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Ioana Ciornei" <ioana.ciornei@nxp.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260630110459.516364-4-ioana.ciornei@nxp.com>
-References: <20260630110459.516364-1-ioana.ciornei@nxp.com>
- <20260630110459.516364-4-ioana.ciornei@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 30 Jun 2026 11:43:03 +0000
-Message-Id: <20260630114303.E94A21F00A3F@smtp.kernel.org>
+	s=k20260515; t=1782834550;
+	bh=N1cs8dxUNXx7SRL0RkpGK0B4FDOYukdxUpHg73xldcM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=RUFVmX8eilDkdKM0sG6CWCGkb7gQrzEOndXlZzkoOZHum9hxFdF+niGsUUhFRVyjr
+	 tfh99GcFq1b3LwO5Rm80FcJBY41dVkCB7kmchY52rfSHxVpByWq3aNi/qFpVB/9KtT
+	 NfYVYjt9EapVoOxqyAtkATKZqY7R6j/YGL42STxRqaGXZBp+L9kUu7+EAZVAkSIAd5
+	 ORVb+3n5SHYu3A/53L1VWYregeGhxGbjnOKlr+glqkOYfHFPEEjI99Lvqkani2VyjF
+	 3RZ13tiHF9njRTMlyEGRy5fjaLL/uOSfAYcIH06KLpdjniwLRa5sO93KsdRggrSINc
+	 3v5agWethJwaQ==
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>, cy_huang@richtek.com
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Yoon Dong Min <dm.youn@telechips.com>, 
+ edward_kim@richtek.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <cover.1782444299.git.cy_huang@richtek.com>
+References: <cover.1782444299.git.cy_huang@richtek.com>
+Subject: Re: [PATCH v2 0/2] rtq2208: Remove the unnecessary MTP_SEL
+ property
+Message-Id: <178281978386.79320.3879730013919887255.b4-ty@b4>
+Date: Tue, 30 Jun 2026 12:43:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1509; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=+mu2xcT0nwoLIp0swtqhupdARRBhiosNKr6wrjgJjVI=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqQ+V07tRTTH4d/aOKjxbKgW3RbRGhh4fnB4gsw
+ LA6GKTeFgqJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCakPldAAKCRAk1otyXVSH
+ 0NnVB/wLYgGsMKhw7CRDJqy1pW+yYOxvs2vmra05EE22ASxIfgNt+/h6A5y+t7TeH//DjfXVSZf
+ zyKUNo3qWAALDnDGj/zuJ/l7QcYkOjhQ9AM5OSFJ+PdU/szmTW6gnmlrV5n+AXRJQGkAvqkZg+y
+ hDMrvFvXLD1n6Jduy6/7Z+tPqQxdVPKPzaSRwYvVkcOUSbVwZafI1ssw51/ugWE4LgtLFkAsFJ+
+ T1JRe4cyyK7CzgnP1kuhEGL2Go9zOToZ6IunAEOfcFq46RMkkZ/5D2pxnkzrxf/qyvdvrQU2fqa
+ PaxY11yR+m1JS8TbE2jz43zvSqjObbF+MSMQEmR0ILwgTV9j
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317702-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317926-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:ioana.ciornei@nxp.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:krzk+dt@kernel.org,m:cy_huang@richtek.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:dm.youn@telechips.com,m:edward_kim@richtek.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,telechips.com,richtek.com,vger.kernel.org];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:email,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[richtek.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7943B6E3FEF
+X-Rspamd-Queue-Id: 8B54F6E62DE
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] Incorrect 'reg' size property (0xffff instead of 0x10000) for the S=
-erDes blocks, improperly sizing the memory region and missing its last byte.
---
+On Fri, 26 Jun 2026 11:38:51 +0800, cy_huang@richtek.com wrote:
+> rtq2208: Remove the unnecessary MTP_SEL property
+> 
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> This patch series remove the 'richtek,mtp-sel-high' property usage.
+> 
+> v2:
+> - Remove'richtek,mtp-sel-high' from yaml example block
+> 
+> [...]
 
-commit e38fd823b92e0ac25dfc572821e4084ac6569201
-Author: Vladimir Oltean <vladimir.oltean@nxp.com>
+Applied to
 
-arm64: dts: ls1046a: describe the Lynx 10G SerDes blocks
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.3
 
-This patch describes the two Lynx 10G SerDes blocks and their associated la=
-nes
-found on the LS1046A SoC. The nodes are initially left disabled at the SoC
-level.
+Thanks!
 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/=
-boot/dts/freescale/fsl-ls1046a.dtsi
-> index 6fefe837f434f..db935805c3792 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-> @@ -424,6 +424,66 @@ sfp: efuse@1e80000 {
->  			clock-names =3D "sfp";
->  		};
-> =20
-> +		serdes1: phy@1ea0000 {
-> +			compatible =3D "fsl,ls1046a-serdes1";
-> +			reg =3D <0x00 0x1ea0000 0x0 0xffff>;
+[1/2] regulator: dt-bindings: rtq2208: Label mtp-sel-high property as deprecated
+      https://git.kernel.org/broonie/regulator/c/9f6e4b8befc4
+[2/2] regualtor: rtq2208: Initiate the default MTP_SEL state by hardware register
+      https://git.kernel.org/broonie/regulator/c/2f84cec84ffa
 
-[Severity: Low]
-Is the region size of 0xffff correct here?=20
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-The reg property typically specifies the total size of the block, not the
-maximum offset. Should this be 0x10000 to cover the full 64KB block and
-include the final byte of the hardware region?
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-[ ... ]
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-> +		serdes2: phy@1eb0000 {
-> +			compatible =3D "fsl,ls1046a-serdes2";
-> +			reg =3D <0x00 0x1eb0000 0x0 0xffff>;
+Thanks,
+Mark
 
-[Severity: Low]
-Similarly, does the serdes2 block also need a reg size of 0x10000 instead of
-0xffff?
-
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260630110459.5163=
-64-1-ioana.ciornei@nxp.com?part=3D3
 
