@@ -1,68 +1,69 @@
-Return-Path: <devicetree+bounces-318004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318005-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PoKrAT4ARGqVnAoAu9opvQ
-	(envelope-from <devicetree+bounces-318004-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:43:26 +0200
+	id /GXOJzoBRGrQnAoAu9opvQ
+	(envelope-from <devicetree+bounces-318005-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:47:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDB356E7003
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:43:25 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0298F6E7052
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:47:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gOFLfW1D;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318004-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318004-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EWfgRBmA;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318005-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318005-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 561A7303882F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:43:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BD475303A70F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:47:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 971B63DF00C;
-	Tue, 30 Jun 2026 17:43:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6043DB64E;
+	Tue, 30 Jun 2026 17:47:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63823DE451;
-	Tue, 30 Jun 2026 17:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFAE2DB794;
+	Tue, 30 Jun 2026 17:47:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782841400; cv=none; b=NdhEDZvglRbqIUCHPqe8MD1Qm8qo9fiZbk7+G2Dmb/DtyGxTarqS1cKfnuUaFLfzIqWraANXyeGQHxL7Iroasc1q6McmqVucAdMSNn4R8i4s/SN1xnnS7BYfBdIjZeA/tMuRJEUeeAUfkmLee2wL/ZDYd5kUIaodlomI9wUwYgE=
+	t=1782841653; cv=none; b=kIVG9H0VFwCDISD4aSrToZMbrgmryAHes3DB7Hwxos4MI1LHlD7pdX4/BSDgw6YC+zbgMf+UoZM8ZYHhqRuw6urMRMc7RDzpPFy9xsf1hpPwBo6MofExX56leX4CxvBxIGhdw4Gq42te7u0xJn22cAkVaE+tTl/F9Q1pjcprk9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782841400; c=relaxed/simple;
-	bh=4bME/lFWu03KnccIT78SQlKlqTHUi2zHDGnJOGODiv0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=rk5knAvUtiYzjpZ7Wf97HumV/pboPXVVLe6QFFWWOUZ+UXHDIyM9LcFUV+xZ/CGDC/3PSdGUpC/iRTh/cHZYa11M+ubWdlo4z2WALA8GdMnOqPeixetecrqnhbqFJDWfgreT1Xdtypa07xAjpFP1EFJmrCPNw2GDdIxfVd26ZbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gOFLfW1D; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E9321F00A3A;
-	Tue, 30 Jun 2026 17:43:17 +0000 (UTC)
+	s=arc-20240116; t=1782841653; c=relaxed/simple;
+	bh=XW4iUjVnb4D9jI5ydYsjbhP127xGVB6ghCda72WgOC0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BQze3ox6VEgX26rdvtoLsaQDgRk9pMdfuObleqdXecC2pHBdTgu6nrToeCG4W6INt2VIhMb1FlrbNpQwQs+/OS2+jml/+9wRq/PodWNILp0bBgdiqEZeP5tNhAfqwG5976lrqLfr3tFJ/eoXPmCwp3IJFFWggCEZqUGEUv/TASM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EWfgRBmA; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DE501F000E9;
+	Tue, 30 Jun 2026 17:47:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782841397;
-	bh=S3iXaxGaxT2dySeFVOF2DWE5gKOSoGbd0S/9p13lfiE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To;
-	b=gOFLfW1DzKuL4/zlQfn4onCyUuXVpktPNdtadshp8G1pFpnQMG7D3o7ViZK8+lScO
-	 TEs6YfC6jM77MewJww0XCCw9syRBHs0zH3bcbPY8zi9DYXBouWKG7HWQ3IYnOu4F+K
-	 jIGFUUttvihSV6RugIDs9aPsvH3Nw+2UWEYf6L4JJzMDeHuMK7d4WwnIT3DXKjZVtq
-	 8k0LFdMAUmWDR26QPCafsRnlERdpPsm4rcrt84rVMYwLWgck/Mryz679ch8r/b29H2
-	 BwAzXwbJr5AmLAgqoF9XW65nmWg+68WmguWP8KX7zf9OQCnzCiQHW1ZzJRiANn8hXZ
-	 Mh5d1kelM4GtA==
-Date: Tue, 30 Jun 2026 12:43:16 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: "Sherry Sun (OSS)" <sherry.sun@oss.nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, amitkumar.karwar@nxp.com,
-	neeraj.sanjaykale@nxp.com, marcel@holtmann.org,
-	luiz.dentz@gmail.com, hongxing.zhu@nxp.com, l.stach@pengutronix.de,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	bhelgaas@google.com, brgl@kernel.org, imx@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org,
-	sherry.sun@nxp.com, Ryder Lee <ryder.lee@mediatek.com>,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH V4 2/8] PCI: imx6: Add skip_pwrctrl_off flag support
-Message-ID: <20260630174316.GA162203@bhelgaas>
+	s=k20260515; t=1782841652;
+	bh=VludPtiNt/4OgEhY2vReMAGLmH75oM7QiBiAd69e6dI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=EWfgRBmAO8mwpzUrAM/0wQhvMt2zhExXSzxpONmLn9SOCdddoZU6z3i/lvcofDgdX
+	 MlRAfHMfN9TNIMUz666iPb5u+64KMLbAkgVqNgFnd7dpQOXUkB5PMXQg1v6hvPS7MR
+	 Am3JpPp18e59yE5ePurzXhdgH6GdUf8Y91ZbQxXdNTULth3/9nlfeXUORBqcNOKM3I
+	 TyQ0MsQHokXbDycjiT7W1JJ9y+7p/Liv7/JcVHDfeVhoUvbcu2/TykOs5/VcvqOKQg
+	 SKDWqjrrTSyVJ0MgsIRdZKBfiC3lc52AAIb1lPKkdiUNQewEzdDDBtkVpU+mcu63mU
+	 tR4rFLSu/AMkA==
+Date: Tue, 30 Jun 2026 12:47:31 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: aiqun.yu@oss.qualcomm.com, linux-crypto@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	devicetree@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
+	linux-kernel@vger.kernel.org, yijie.yang@oss.qualcomm.com,
+	Bjorn Andersson <andersson@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	trilok.soni@oss.qualcomm.com,
+	"David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH v2 3/3] dt-bindings: crypto: qcom,ice: Fix missing
+ power-domain and iface clk on Hawi
+Message-ID: <178284165109.4128424.1410136801617960222.robh@kernel.org>
+References: <20260628-maili-crypto-v2-0-f8ce760f71d6@oss.qualcomm.com>
+ <20260628-maili-crypto-v2-3-f8ce760f71d6@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,126 +72,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260630103139.3823329-3-sherry.sun@oss.nxp.com>
+In-Reply-To: <20260628-maili-crypto-v2-3-f8ce760f71d6@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318005-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:sherry.sun@oss.nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:amitkumar.karwar@nxp.com,m:neeraj.sanjaykale@nxp.com,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:hongxing.zhu@nxp.com,m:l.stach@pengutronix.de,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:bhelgaas@google.com,m:brgl@kernel.org,m:imx@lists.linux.dev,m:linux-pci@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:linux-pm@vger.kernel.org,m:sherry.sun@nxp.com,m:ryder.lee@mediatek.com,m:linux-mediatek@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jingyi.wang@oss.qualcomm.com,m:aiqun.yu@oss.qualcomm.com,m:linux-crypto@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:herbert@gondor.apana.org.au,m:devicetree@vger.kernel.org,m:tingwei.zhang@oss.qualcomm.com,m:linux-kernel@vger.kernel.org,m:yijie.yang@oss.qualcomm.com,m:andersson@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:trilok.soni@oss.qualcomm.com,m:davem@davemloft.net,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318004-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,holtmann.org,google.com,lists.linux.dev,vger.kernel.org,lists.infradead.org,mediatek.com];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bhelgaas:mid,nxp.com:email,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DDB356E7003
+X-Rspamd-Queue-Id: 0298F6E7052
 
-[+cc Mediatek folks]
 
-On Tue, Jun 30, 2026 at 06:31:33PM +0800, Sherry Sun (OSS) wrote:
-> From: Sherry Sun <sherry.sun@nxp.com>
+On Sun, 28 Jun 2026 23:44:37 -0700, Jingyi Wang wrote:
+> Fix the DT bindings for inline-crypto engine to require the UFS_PHY_GDSC
+> power-domain and iface clock on Qualcomm Hawi platform.
 > 
-> Use dw_pcie_rp::skip_pwrctrl_off to avoid powering off devices during
-> suspend to preserve wakeup capability of the devices and also not to power
-> on the devices in the init path.
-
-Only pci-imx6.c, pcie-qcom.c, and pcie-mediatek-gen3.c use
-pci-pwrctrl.  pcie-qcom.c already has similar skip_pwrctrl_off checks,
-but pcie-mediatek-gen3.c does not.  Does it need them?
-
-> This allows controller power-off to be skipped when some devices(e.g. M.2
-> cards key E without auxiliary power) required to support PCIe L2 link state
-> and wake-up mechanisms.
-> 
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+> Fixes: d273b258d8d58 ("dt-bindings: crypto: qcom,inline-crypto-engine: Document Hawi ICE")
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 > ---
->  drivers/pci/controller/dwc/pci-imx6.c | 21 ++++++++++++++-------
->  1 file changed, 14 insertions(+), 7 deletions(-)
+>  Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 1b535bb6fd31..0685573fee71 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -1382,10 +1382,12 @@ static int imx_pcie_host_init(struct dw_pcie_rp *pp)
->  		}
->  	}
->  
-> -	ret = pci_pwrctrl_power_on_devices(dev);
-> -	if (ret) {
-> -		dev_err(dev, "failed to power on pwrctrl devices\n");
-> -		goto err_reg_disable;
-> +	if (!pp->skip_pwrctrl_off) {
-> +		ret = pci_pwrctrl_power_on_devices(dev);
-> +		if (ret) {
-> +			dev_err(dev, "failed to power on pwrctrl devices\n");
-> +			goto err_reg_disable;
-> +		}
->  	}
->  
->  	ret = imx_pcie_clk_enable(imx_pcie);
-> @@ -1454,7 +1456,8 @@ static int imx_pcie_host_init(struct dw_pcie_rp *pp)
->  err_clk_disable:
->  	imx_pcie_clk_disable(imx_pcie);
->  err_pwrctrl_power_off:
-> -	pci_pwrctrl_power_off_devices(dev);
-> +	if (!pp->skip_pwrctrl_off)
-> +		pci_pwrctrl_power_off_devices(dev);
->  err_reg_disable:
->  	if (imx_pcie->vpcie)
->  		regulator_disable(imx_pcie->vpcie);
-> @@ -1473,7 +1476,8 @@ static void imx_pcie_host_exit(struct dw_pcie_rp *pp)
->  	}
->  	imx_pcie_clk_disable(imx_pcie);
->  
-> -	pci_pwrctrl_power_off_devices(pci->dev);
-> +	if (!pci->pp.skip_pwrctrl_off)
-> +		pci_pwrctrl_power_off_devices(pci->dev);
->  	if (imx_pcie->vpcie)
->  		regulator_disable(imx_pcie->vpcie);
->  }
-> @@ -1990,11 +1994,14 @@ static int imx_pcie_probe(struct platform_device *pdev)
->  static void imx_pcie_shutdown(struct platform_device *pdev)
->  {
->  	struct imx_pcie *imx_pcie = platform_get_drvdata(pdev);
-> +	struct dw_pcie *pci = imx_pcie->pci;
-> +	struct dw_pcie_rp *pp = &pci->pp;
->  
->  	/* bring down link, so bootloader gets clean state in case of reboot */
->  	imx_pcie_assert_core_reset(imx_pcie);
->  	imx_pcie_assert_perst(imx_pcie, true);
-> -	pci_pwrctrl_power_off_devices(&pdev->dev);
-> +	if (!pp->skip_pwrctrl_off)
-> +		pci_pwrctrl_power_off_devices(&pdev->dev);
->  	pci_pwrctrl_destroy_devices(&pdev->dev);
->  }
->  
-> -- 
-> 2.50.1
-> 
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
