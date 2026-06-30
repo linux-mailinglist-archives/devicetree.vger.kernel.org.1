@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-317403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317404-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id F5jxD5ZdQ2qUXQoAu9opvQ
-	(envelope-from <devicetree+bounces-317403-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 08:09:26 +0200
+	id OpgOLyJeQ2q6XQoAu9opvQ
+	(envelope-from <devicetree+bounces-317404-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 08:11:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4F316E09F2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 08:09:25 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 131E76E0A0A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 08:11:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QuQ2DFwq;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317403-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317403-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EG4G6Xif;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317404-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317404-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8ECE430036D2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 06:09:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B3E23300D6B9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 06:11:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0387B2F261C;
-	Tue, 30 Jun 2026 06:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 904843B47EF;
+	Tue, 30 Jun 2026 06:11:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C24D823DD;
-	Tue, 30 Jun 2026 06:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19903339872;
+	Tue, 30 Jun 2026 06:11:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782799761; cv=none; b=NIdHe3g+aWBOBbPzUb/pMhOUVWcXckvqdT1mR2LhF6wMWDsrCwO8buAbvMrl7RiutJ5WRnlU+hQt9cWl/qq22++jT/ekiSwiRTlSpbXIUaVnJs++u/3Fx5ZLXThZ9/N1AXfOCG7yHIoen5PkFxkgYbA7XYahprmXQU0YgZafwGo=
+	t=1782799903; cv=none; b=mqoi49A8m3qy6GCySuD0jqCqWnrygbYoBkL21KKAbIQt5AFazQ6dBGAPQKUfq+ospUQMJYYV0j4hMvemYiWZPDaKw9zCdr6IE53wWNoRiOh139o4kqWRfMWzOYT/WgN4NZNpcYrZfQFTT/0+IU7TruvXFlO6nZh03O2xIqZ33RY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782799761; c=relaxed/simple;
-	bh=VncxUlksy3/vGSuNeKee7FduyKwWApJ0Towh2E++93k=;
+	s=arc-20240116; t=1782799903; c=relaxed/simple;
+	bh=yl1WWLgJQ6u6Nz3R6dH/MVhVDKxX5jxoKchJElW648s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WCUT5FqNaqQTzcSujcn0M8WM6/oXIfzxVvGsDBTksG/FneXdvEiEn3cY5OR+Fzg53OJPunaNiXksADf0baT01b7kQf3VvvNWNPMcHOHxxLRcD952e+3kxw30E5+cLYURAAiJZaXOT1mDgr/WRGX5dXyuTi91wi+V1DDALvh0YsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QuQ2DFwq; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2B731F000E9;
-	Tue, 30 Jun 2026 06:09:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qaW/3OMVhV6V9pcksaBG5C4mveQfPtPz+A664Sg6I38sFU876NQ5KXUgrhcDSQvjBhftSUROajrUebV+E/0XIMMnjmlypsCYWnToL+eLN3efIJcjBsbVCP1Kin4e+TEq1KUc8qGz6g7lUonqAWKSg0JGLq4IGlyvbwoHrceiPv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EG4G6Xif; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF881F000E9;
+	Tue, 30 Jun 2026 06:11:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782799759;
-	bh=jj/yDbVpjsdeXQbpyLVzzZOqWFFcPrJsxLXlQd2ry+w=;
+	s=k20260515; t=1782799901;
+	bh=tltWWGTL9FFdiqSRf9Kfxc1Xnn7zryOZsVoDGgZFEh8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=QuQ2DFwqv2ZqYutP1lZbXPpbmJQzCbydW8FJGk/eOYX4c7YxNsDuzsBCKBoLlKUJ5
-	 2lJ2oY4RvXeaGUW49J9RsfaJJkKSj+T0fpJ2hRcnoUJX9LUxsSdiijeGS7oo3sOqys
-	 knaJwCcPOzLS1Sg2rf0XhXq9/Kxfo6opIpSJihTZd9EBDpI3g6AXQtnRdakAOtSegt
-	 rwlObEFAMugCVvDUHy6PZ6n9qIbuwKLEiA+3wAkK9W0/qljZ2WpwWcftv4HBXvomBu
-	 YjCesb2WRP5M4+Cv4aXu1F0GVyqGm8esUkl2QkkvbwL4C/+Bcerc+VNynJgA5yxR3S
-	 Z0M3Zjc7RTHBg==
-Message-ID: <c3bb6d55-3256-4642-80c9-363b51a9eecd@kernel.org>
-Date: Tue, 30 Jun 2026 08:09:05 +0200
+	b=EG4G6XifiuP4C/hNu+hZXXxCIPvUqX2K2T7EMrwC74tSo7UCV5iwl42j8rwwuKTiw
+	 oWeFqHY9QyYbvoh0tx0b7plb5AT0ZWlQv5nwOXkiVJm7RZVA+x7J7iSszmJVRPG+QK
+	 Gvfh6zEjbDFb1HOoRumJXUqZgeJ/XQ54HS4z9iM7KoYyPXka7ShVgdUq+ZSxx6bAe5
+	 gP+rKKr06Tb7qQeTRZqdpQgYg73kGqknw9Ymgqu1Wbk8sqhg5FhUX+Jo/nrx/JQ3cF
+	 idDMOs3FdE1XlAXQbSTPX6gUpQ1+4DLLHBCLavnnEmKCx0+XOh8tFnKxfK4NffZ75T
+	 qWzBQW3+M2k0A==
+Message-ID: <35a8e3b3-7725-4d1b-8667-84e6fa24b2ca@kernel.org>
+Date: Tue, 30 Jun 2026 08:11:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,24 +55,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] Revert "dt-bindings: display: panel: panel-simple:
- Add lg,sw49410 compatible"
-To: Paul Sajna <sajattack@postmarketos.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+Subject: Re: [PATCH 3/4] dt-bindings: ipmi: Add optional LPC properties to
+ ASPEED BT devices
+To: yc_hsieh@aspeedtech.com, Corey Minyard <corey@minyard.net>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
- Jessica Zhang <jesszhan0024@gmail.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org,
- Amir Dahan <system64fumo@tuta.io>
-References: <20260614-judyln-panel-v3-0-07f4134441bd@postmarketos.org>
- <20260614-judyln-panel-v3-4-07f4134441bd@postmarketos.org>
- <20260615-jacamar-of-angelic-aurora-1e4cba@quoll>
- <8a0348e5-a6bb-43e3-85e0-aa4673cd3a65@postmarketos.org>
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: openipmi-developer@lists.sourceforge.net, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org
+References: <20260629-aspeed-bt-bmc-multichannel-v1-0-fc23ee337f7a@aspeedtech.com>
+ <20260629-aspeed-bt-bmc-multichannel-v1-3-fc23ee337f7a@aspeedtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,7 +111,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <8a0348e5-a6bb-43e3-85e0-aa4673cd3a65@postmarketos.org>
+In-Reply-To: <20260629-aspeed-bt-bmc-multichannel-v1-3-fc23ee337f7a@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
@@ -128,56 +121,103 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-317403-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317404-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sajattack@postmarketos.org,m:neil.armstrong@linaro.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:thierry.reding@gmail.com,m:sam@ravnborg.org,m:jesszhan0024@gmail.com,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:david@ixit.cz,m:phone-devel@vger.kernel.org,m:system64fumo@tuta.io,m:krzk@kernel.org,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:yc_hsieh@aspeedtech.com,m:corey@minyard.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:openipmi-developer@lists.sourceforge.net,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-aspeed@lists.ozlabs.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[linaro.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,ravnborg.org,vger.kernel.org,lists.freedesktop.org,ixit.cz,tuta.io];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A4F316E09F2
+X-Rspamd-Queue-Id: 131E76E0A0A
 
-On 28/06/2026 23:23, Paul Sajna wrote:
-> On 2026-06-14 10:40 p.m., Krzysztof Kozlowski wrote:
->> On Sun, Jun 14, 2026 at 05:08:01PM -0700, Paul Sajna wrote:
->>> This reverts commit a74c2e55ab66519ffa2069ac9ae83cd937bff4c4.
->>>
->>> It isn't actually panel-simple-compatible, and we knew as much by the
->>
->> This is not a separate commit. Your work is non-bisectable - this commit
->> leaves undocumented compatible.
->>
->>
->> Best regards,
->> Krzysztof
->>
+On 29/06/2026 08:49, Yu-Che Hsieh via B4 Relay wrote:
+> From: Yu-Che Hsieh <yc_hsieh@aspeedtech.com>
 > 
-> Are you suggesting I should squash the revert into it's replacement?
+> Allocating IO and IRQ resources to LPC devices is in-theory an operation
+> 
+> for the host, however ASPEED systems describe these resources through
+> 
+> BMC-internal configuration, as already supported by the ASPEED KCS BMC
 
-If this is not a separate commit, obviously it should be part of some
-other commit.
+What
+
+is
+
+with
+
+this
+
+line breaks?
+
+
+> 
+> binding.
+> 
+> Add aspeed,lpc-io-reg and aspeed,lpc-interrupts to the ASPEED BT BMC
+> 
+> binding so firmware can describe the host LPC IO address and SerIRQ
+> 
+> configuration using the same properties as KCS devices.
+> 
+> Signed-off-by: Yu-Che Hsieh <yc_hsieh@aspeedtech.com>
+> ---
+>  .../bindings/ipmi/aspeed,ast2400-ibt-bmc.yaml       | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.yaml b/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.yaml
+> index c4f7cdbbe16b..1803c6bbae93 100644
+> --- a/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.yaml
+> +++ b/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.yaml
+> @@ -25,6 +25,24 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  aspeed,lpc-io-reg:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    maxItems: 1
+> +    description: |
+> +      The host CPU LPC IO address for the BT device.
+
+No, you do not get second reg property.
+
+> +
+> +  aspeed,lpc-interrupts:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 2
+> +    maxItems: 2
+> +    description: |
+> +      A 2-cell property expressing the LPC SerIRQ number and the interrupt
+> +      level/sense encoding (specified in the standard fashion).
+> +
+> +      Note that the generated interrupt is issued from the BMC to the host, and
+> +      thus the target interrupt controller is not captured by the BMC's
+> +      devicetree.
+
+No, you do not get second interrupts property.
+
+> 
+
 
 Best regards,
 Krzysztof
