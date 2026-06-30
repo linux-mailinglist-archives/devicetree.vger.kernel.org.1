@@ -1,169 +1,236 @@
-Return-Path: <devicetree+bounces-317927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317928-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id T8mFHyDmQ2oAlQoAu9opvQ
-	(envelope-from <devicetree+bounces-317927-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:52:00 +0200
+	id yfYuHsnnQ2polQoAu9opvQ
+	(envelope-from <devicetree+bounces-317928-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:59:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DCC56E61F9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:52:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8FD56E62EB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:59:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hYaFsO0F;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317927-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317927-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=JkaUkmSM;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317928-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-317928-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EC49330624D5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:50:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B436330778A2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:52:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA8DE46AF14;
-	Tue, 30 Jun 2026 15:50:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9739346AEE2;
+	Tue, 30 Jun 2026 15:52:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013046.outbound.protection.outlook.com [40.107.159.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FC6546AF12;
-	Tue, 30 Jun 2026 15:50:18 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782834623; cv=none; b=tt43vawGwdxekQMmbDhVgpljv7rFND0WbEv9T2gR0AqYu6+cWlr34a+J2Hsth3mJjXy3f3UkPjiS4Sp7Djb/76Ph2OC1Ue7YOeSJCK1LHZMcdWz9pQZYmTMlSQC/pwcgTJwusMo+Aj9xAjYxAmJxiiil6VvFcfaVipburUn9utY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782834623; c=relaxed/simple;
-	bh=wJVOvcEEpbA1CW16gcTsNnjYtnN5mAQFWxq+X6OZbkg=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=BEm8+WtTBi+2+DDzz4P6JnpUppnDXg/VZbTwe3r1IN5paHrhf9eYjHO7lwI832Cs17lDcGC6kYhlEs3LYlFC+4WJ9ivV73rveBcRcwY50TArUmtffNyMi31GGS48lN8Fj+nVS+O2/G9Zdxt/iyRet1bdMJU+tsViap2U8Hxl8QQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hYaFsO0F; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 272C01F00A3A;
-	Tue, 30 Jun 2026 15:50:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782834617;
-	bh=orBYolOiVh8P+Gs6dp8/inZibU5jKERhYsBdgyU7ewg=;
-	h=From:To:In-Reply-To:References:Subject:Date;
-	b=hYaFsO0FH9QTvOvjL+VAVldlJ2YPFGk7Uv9Z6QoYCVHtTYFvz5GLpT1JPoGmvuzja
-	 MTy6IgtdK2zMOgBks1ci94yQnYzuxOJiLmpU/slEb508GaEKc1CAdIz3+/Zq6Bt0w9
-	 2FVSSC8lyJ1ZeKB8y1XDpUIRQvZEcPOZths6ZliY3SggfKoZOFKnqpC88EFu33XLTW
-	 sn6AnFxz4EW0LATrsCAmY8ssBo7Q13rik2AkR7zp8ALgguCfUFUhwRyu2d3NhQu+/K
-	 Y2AM6LawUcaWvPp3WCkTdmmqcN+TndJjAv7WwB1TzTqCVHBCGCID2JuhETb5Xb/WQQ
-	 rTUnWQuYsWNdQ==
-From: Mike Rapoport <rppt@kernel.org>
-To: corbet@lwn.net, skhan@linuxfoundation.org, catalin.marinas@arm.com, 
- will@kernel.org, chenhuacai@kernel.org, kernel@xen0n.name, 
- maddy@linux.ibm.com, mpe@ellerman.id.au, npiggin@gmail.com, 
- chleroy@kernel.org, pjw@kernel.org, palmer@dabbelt.com, 
- aou@eecs.berkeley.edu, alex@ghiti.fr, tglx@kernel.org, mingo@redhat.com, 
- bp@alien8.de, dave.hansen@linux.intel.com, hpa@zytor.com, robh@kernel.org, 
- saravanak@kernel.org, akpm@linux-foundation.org, baoquan.he@linux.dev, 
- pasha.tatashin@soleen.com, pratyush@kernel.org, ruirui.yang@linux.dev, 
- rdunlap@infradead.org, peterz@infradead.org, feng.tang@linux.alibaba.com, 
- dapeng1.mi@linux.intel.com, elver@google.com, enelsonmoore@gmail.com, 
- kuba@kernel.org, ebiggers@kernel.org, lirongqing@baidu.com, 
- leitao@debian.org, kees@kernel.org, coxu@redhat.com, cfsworks@gmail.com, 
- jbohac@suse.cz, osandov@fb.com, ryan.roberts@arm.com, 
- tangyouling@kylinos.cn, sourabhjain@linux.ibm.com, ritesh.list@gmail.com, 
- gaohan@iscas.ac.cn, david@kernel.org, wangruikang@iscas.ac.cn, 
- muchun.song@linux.dev, vishal.moola@gmail.com, junhui.liu@pigmoral.tech, 
- guoren@kernel.org, namcao@linutronix.de, rick.p.edgecombe@intel.com, 
- djbw@kernel.org, liaoyuanhong@vivo.com, fuqiang.wang@easystack.cn, 
- vishal.l.verma@intel.com, chenjiahao16@huawei.com, x86@kernel.org, 
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev, 
- linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org, 
- devicetree@vger.kernel.org, kexec@lists.infradead.org, 
- Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <20260629094746.191843-1-ruanjinjie@huawei.com>
-References: <20260629094746.191843-1-ruanjinjie@huawei.com>
-Subject: Re: [PATCH v17 00/10] arm64/riscv: Add support for crashkernel CMA
- reservation
-Message-Id: <178283459765.548295.14688999641870037803.b4-ty@b4>
-Date: Tue, 30 Jun 2026 18:49:57 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F52B466B59;
+	Tue, 30 Jun 2026 15:52:25 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782834750; cv=fail; b=t8CjneuFFxJZoJv1i8iRinkqZ1ecxcg5npPeqLADpJ6xJhJyGLw2sB5hh+nCEQJwPYD/BwguR3MLp2cjV1vTjK8m64T449eF+KF2HNHC0FnLIsS05dD7ZoKZGycw1kYkHDrMuQo/0M2O+fxpz8ZkKZJA3kvMe/M3VIE7/fIMXj8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782834750; c=relaxed/simple;
+	bh=ZoQm2oLSD3NGukMknAkQRVF02eloMWhEVi9MqCZz+94=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=kf9//sXIntVZ3itJrcp2pQVOXlByT2ltdDHbeTJLNZtIiPsgo/RdmOJ/F3aBHNjkzS8xkVrtUPQZx4aCGPLj23fcThGD3CIwInTVKXYfbCQUp/OAotGZp0M2rvd+ogwsFyuqC7ElVkHNvrOuQegGmJxtEKK9YTjKYYNLbcBsyY4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=JkaUkmSM; arc=fail smtp.client-ip=40.107.159.46
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=g4w6QZRqhmW81ZGc8tT31WLcLlMEgztDYwok6SGDhAkHaYusZDnCJ9Q/QHC4J5z5pS9UCMM0L96rGBYDR1NvVbqYpBAjBpLq6B4AUJVl74MhNOga/OLBJy8xP4NUtRXuwZNbmGBL/LkKvLVUBmJMwpuS8M3Hg4T5geQdAH3SFHjsUIzEuefATsm42QVx+pfaAsn3AVchWQBEeHAP/JSThUlTN+zMkLPpXNzsUXAh2TLdPrPzHW/YIw8DYqu+yexcAaRAk93BlcRiMaZjr2vLl1LeN+/l8JdecKO9ncJWOHEDOyA1NxFAmhv0ZYlCix96lcWgXQR5Sllu7Oy0iig6rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Wlv76N5EuH9P6KSkDdhOV8+L2Ot3b9xQqRotC21u6ac=;
+ b=gAxE0fcTNIAPaD0ES/RNFikjcFAC5/izGQyH4+EGNyeFKE+t9nDYhDMuo1o5IP8Uq+sOjwRMpygMWcGFab2jWRCbpA6CAoEBnXJ19m6d7k81xq/Oshmhgp6yhosO0+eLAloMPrxH64X9KgcVBWXou8DCpud9M2Z17auOJExsMVg0PRYf7MSMmllhz7PiDZKmUL0LqNvhzNgfqh4/QMO51O7rDtRmjMCBjV8X7WoN+ZKOjbdvl57/E2EPyF9m0bPasYVVjHpnZuUaIzbsDcT8e4SN6UVFOYQz0ctA9RsryKSQ6doshoa7yAjUNTNCrYSMZWxzHhjwf/0HpyfcjPsL9w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Wlv76N5EuH9P6KSkDdhOV8+L2Ot3b9xQqRotC21u6ac=;
+ b=JkaUkmSMYj6AEkDIuG24ZUbAgJmarq9320fPqpAOiTsuUpt+aXnha0mQt2THKn9FvJC7CAarAHrN7EJRFJbFfDjtHTQ4uPwAe773iDycFTJdRi/Gx3RzRmLecctYXLHmZMMFKWbeHTBX7mOlUWUHS6BKDiPZwUTdp+FqEZE4m1rzYI+RLt03nt6nYgQ07ctQ8C+N4+aSsEf1isPg/JCI93ZLIi60h8/pvqnXDd6JzIiNdcmHKbBV63kvT0lYVeKeRpt5YLuVLQesdI6DVNoySQgroxUvVxE18Woz3Xl9DMpQmWyy2FYidcEDh+/9m9nQW7EQuWgfAMgpxZmK6qe7bA==
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
+ by AS8PR04MB8913.eurprd04.prod.outlook.com (2603:10a6:20b:42c::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Tue, 30 Jun
+ 2026 15:52:21 +0000
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0159.007; Tue, 30 Jun 2026
+ 15:52:21 +0000
+Date: Tue, 30 Jun 2026 10:52:11 -0500
+From: Frank Li <Frank.li@oss.nxp.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+	bhelgaas@google.com, hongxing.zhu@nxp.com, l.stach@pengutronix.de,
+	"Sherry Sun (OSS)" <sherry.sun@oss.nxp.com>
+Cc: Frank Li <Frank.Li@nxp.com>, imx@lists.linux.dev,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	sherry.sun@nxp.com
+Subject: Re: [PATCH V4 0/7] PCI: imx6: Integrate pwrctrl API and update
+ device trees
+Message-ID: <akPmK--SgmTTAjFw@SMW015318>
+References: <20260630060710.3294811-1-sherry.sun@oss.nxp.com>
+ <178283343009.3269775.506226017892254973.b4-ty@b4>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <178283343009.3269775.506226017892254973.b4-ty@b4>
+X-ClientProxiedBy: PH8P220CA0019.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:345::10) To GV2PR04MB11799.eurprd04.prod.outlook.com
+ (2603:10a6:150:2cf::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15.2
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|AS8PR04MB8913:EE_
+X-MS-Office365-Filtering-Correlation-Id: eca95978-4c03-4163-a32b-08ded6bf921d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|7416014|376014|19092799006|23010399003|18002099003|22082099003|11063799006|4143699003|56012099006|921020;
+X-Microsoft-Antispam-Message-Info:
+	woZGRPVj7+NGse2EYVeANnsV5hOLQ8SbTwjcSVKGjzkeRpxwogeNSLFKzFg6nZkBDxR8clkpwDF1f2PiYz1gEG1OkR5MgPwMyruaPct7qFeuHQUfu8NPTTPffK32V7e52l887qQkXIq8gdunlFiEbryFJPU/dhd3/FcOnSLvDubs/ze+xAcDkb7FX9qslrjV74ueSwu5/7+42vKoAOWR0w3Mcrm9wHfBUfthGv2nrZo3CvPoowhRWjeyKEqCtF/vxjk81P8ZpGjslDTmvp+T602T2weiuzF4kwQn1Aeb39BcKgNXaYlaQmothePwf61dRcjxGuZMKtXvxOyVvTdycPTQIzP1AvPVcd54DYg0TUyzfxw1J2ZU1SwnrA9PDmR4I/Zgm3Ir5LFHXP2P34AGjLuP8PC7Sw6fqPvNzSIYOwDCTM3SMAcFNcfaESBGKJnjUMFQx3an4ZQqLm3fv69khJ2VeSCenUljR5POrUqYi9ehLuAETZGyzY7tEIsRRfdbx6Url9o5dqnM8umjbzKi/kN1wGOzvWN8PJBlZdyvBYOTVExAlZiCDk5lEW3XnGxuDMr63ylrnTJQX8VqHvl65QXWWI+EybAYJ2ZAAnTSe4KSwI9b4a7JJKhQ8sGiq8iWuXT+0AqBqGjVLe+KYNugFtVM6R500qJUNtOCFncrzaPDGw5IbU+ZrMdEthNyXjPl+31byXWaf4oGNG9Dj9CxJA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(19092799006)(23010399003)(18002099003)(22082099003)(11063799006)(4143699003)(56012099006)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?z7RTtSGV8/XZPZ4xs8BJQkSZ9bF2NwNrzMFLJiquKB0Nr0ywCOdegIuVDJKO?=
+ =?us-ascii?Q?8EdHO7dxwNfbxyYR6fIHkVzK+QrhsaaozNxuu87whZkGxIbkbV6rKv0l4qEO?=
+ =?us-ascii?Q?7cTlSaGCnxElbLpk3xZWLup29iws6ah4dZDFIUjd+pSEVRb7W9J0ixJIn9b4?=
+ =?us-ascii?Q?Ea/m03T5fMvrCLH94GddaAl3E6965WsPuMCkLuGr3feBueeA1COo+vLTIoyU?=
+ =?us-ascii?Q?gWknCQLglKOeQEW6TD6HVdOsC2cCfaOVYz1BaAR5c0nEnaCNE+IA/htfDHXe?=
+ =?us-ascii?Q?9SZr756GMTVEsXirHldopKVhxuMpfr1vjOIFHMM7bwXR/NfPYoCSVW0UOxlO?=
+ =?us-ascii?Q?jDFIbHwvSoMX1rpxG3C6SvXF3aay89E+4q1N8OcrTvl2LUTv8e2dDKPSKNe4?=
+ =?us-ascii?Q?EmEnhX9lqb7MOwAT9Ce67goQBDVeDgJEVmzNhYdqCUTYMR7pAWP/rh/uupZ5?=
+ =?us-ascii?Q?yaFDS5dIeoSmzL2L8muKSdRTeBjfQIUP6naRct8wgfQxpzA8aHKmylib4js1?=
+ =?us-ascii?Q?OBg1nDZkaprIEQUwGkZpU8yB9OAykmiJ+KQx2PTpvLBTIululIu0bsl+1yA7?=
+ =?us-ascii?Q?OWOFLGDaij7t3oFitZ8SAQM5+AZNIQ2gSirztcgSrXSen7dO9caVdSj+XBaE?=
+ =?us-ascii?Q?uZQXWSLEv5Kqw0RbXqA7KIsI7/zPoY6mZZKmoPXL1E+8GoLqT+OAc/ocwHNn?=
+ =?us-ascii?Q?QhZRdK6k0UfaC6+OWbXngq9/EXtDRIwE3TW/LzeewxwxOby8bQ71aVDHDlmL?=
+ =?us-ascii?Q?u3PIcx1yJjn/LyC2DvcP6xfXGmV48grKvbmU7jzZSU/em886JfZfG/wVeUBR?=
+ =?us-ascii?Q?OBWbUyOcg76El2cWOBcs5nNf1+6LIQbCx0Dg4UV1rLjLzKAlRWAaZ4y+x08L?=
+ =?us-ascii?Q?q0NnnunnUIpcJLyB4T7N6HrzBAHYhSko+uErDYMbGdmqiqXq/pKqyADPSgt1?=
+ =?us-ascii?Q?SFgNoGBiSg7koVeb4MkS5UILZY4ZzIqy048ZrtCynmlGWt0ZKrrC/TpXdEnm?=
+ =?us-ascii?Q?XzjgymREJz/oMXdH0oAth0PBlypmKZG1vSG0k1D/OYbRd4uGvAGXBlYR9+xN?=
+ =?us-ascii?Q?FsHwt3px268uxWXjXSnH2G4MLGjGrF4tt+eHIp/6PE5QqKQn03+PYvd2GOTu?=
+ =?us-ascii?Q?6sAEo9Ww9Y3umYvDu47wr3pFB3TWDgF9sMNd+cFlg7Ht14RRHHOgzXGI4Mqa?=
+ =?us-ascii?Q?oqa7wCTr8xn4PJQNPgRuivk+oRP4+hQeMe+YjoX9Uw7K5GTeWZgza3GIXXk1?=
+ =?us-ascii?Q?2WbXftb7vOhwtOTfnDrG5IZNS5TG9RwGxY7+Tp55tKyjJar1quSWXKCDFZjB?=
+ =?us-ascii?Q?JhzIOlmlM6yj1yocEL4oYMWiYMgu0ocjLwiM81iENTNb1/X92fHsQfDgPLzY?=
+ =?us-ascii?Q?kT1/D+CeleAOncMuNzFooggU7/9xXP5q0n0tKPd7chtI5yM6kqbgg5RYAlXT?=
+ =?us-ascii?Q?gyFUy17E/gMrf7xw/uPdhbQo4I5Ibn52Y9Hc9YcQDn0cZ4obZTNXkthh0L5G?=
+ =?us-ascii?Q?1Ihf0cQE4wtlLMfgDvbqj7sPJX+x2fv98bHKncIwaPVfQ+eZ+HHXCMU+bRMe?=
+ =?us-ascii?Q?i8lChujuGR5PCJ1U3HLtp+LXk3U2zaaD+gBI5+rxbpVt+Da7/9WYS373HZqs?=
+ =?us-ascii?Q?3OCa3Ngp5KyOxfUBWHvJHCduz0xxptdIpj/tDHHj9Pz/JdbLlvypNiWNROFa?=
+ =?us-ascii?Q?n34DmWF2XiKCdNQ0ySnzpHzj74vlE8sUGLgBYT4mGjWmo9T+kJklo+MhGPhD?=
+ =?us-ascii?Q?CyFK3Insd1P6UfTAXpiQO4/AB5BlwYBkUI6+D+79aj2sGmOpdiOl?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eca95978-4c03-4163-a32b-08ded6bf921d
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 15:52:21.5475
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: m0+2l7YKqfZGL6MSQxdOrhGHMji65dHXEWUd9NYHSfbbHdfQHg1zXf4oW9SJ1xJFkMr2roBHXvR7ketmjmZx0uJ66GY4U148XjOBWupEJ0yud9ZdbfE+wbJ+QNcK/4AS
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8913
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:catalin.marinas@arm.com,m:will@kernel.org,m:chenhuacai@kernel.org,m:kernel@xen0n.name,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:chleroy@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:tglx@kernel.org,m:mingo@redhat.com,m:bp@alien8.de,m:dave.hansen@linux.intel.com,m:hpa@zytor.com,m:robh@kernel.org,m:saravanak@kernel.org,m:akpm@linux-foundation.org,m:baoquan.he@linux.dev,m:pasha.tatashin@soleen.com,m:pratyush@kernel.org,m:ruirui.yang@linux.dev,m:rdunlap@infradead.org,m:peterz@infradead.org,m:feng.tang@linux.alibaba.com,m:dapeng1.mi@linux.intel.com,m:elver@google.com,m:enelsonmoore@gmail.com,m:kuba@kernel.org,m:ebiggers@kernel.org,m:lirongqing@baidu.com,m:leitao@debian.org,m:kees@kernel.org,m:coxu@redhat.com,m:cfsworks@gmail.com,m:jbohac@suse.cz,m:osandov@fb.com,m:ryan.roberts@arm.com,m:tangyouling@kylinos.cn,m:sourabhjain@linux.ibm.com,m:ritesh.list@
- gmail.com,m:gaohan@iscas.ac.cn,m:david@kernel.org,m:wangruikang@iscas.ac.cn,m:muchun.song@linux.dev,m:vishal.moola@gmail.com,m:junhui.liu@pigmoral.tech,m:guoren@kernel.org,m:namcao@linutronix.de,m:rick.p.edgecombe@intel.com,m:djbw@kernel.org,m:liaoyuanhong@vivo.com,m:fuqiang.wang@easystack.cn,m:vishal.l.verma@intel.com,m:chenjiahao16@huawei.com,m:x86@kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:loongarch@lists.linux.dev,m:linuxppc-dev@lists.ozlabs.org,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:kexec@lists.infradead.org,m:ruanjinjie@huawei.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,linux.dev,soleen.com,infradead.org,linux.alibaba.com,google.com,baidu.com,debian.org,suse.cz,fb.com,kylinos.cn,iscas.ac.cn,pigmoral.tech,linutronix.de,intel.com,vivo.com,easystack.cn,huawei.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
-	FORGED_SENDER(0.00)[rppt@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:bhelgaas@google.com,m:hongxing.zhu@nxp.com,m:l.stach@pengutronix.de,m:sherry.sun@oss.nxp.com,m:Frank.Li@nxp.com,m:imx@lists.linux.dev,m:linux-pci@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:sherry.sun@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,google.com,nxp.com,oss.nxp.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317927-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317928-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[69];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rppt@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[SMW015318:mid,i.mx:url,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1DCC56E61F9
+X-Rspamd-Queue-Id: D8FD56E62EB
 
-On Mon, 29 Jun 2026 17:47:36 +0800, Jinjie Ruan wrote:
-> arm64/riscv: Add support for crashkernel CMA reservation
-> 
-> The crash memory allocation, and the exclude of crashk_res, crashk_low_res
-> and crashk_cma memory are almost identical across different architectures,
-> This patch set handle them in crash core in a general way, which eliminate
-> a lot of duplication code.
-> 
-> [...]
+On Tue, Jun 30, 2026 at 11:31:10AM -0400, Frank.Li@oss.nxp.com wrote:
+> From: Frank Li <Frank.Li@nxp.com>
+>
+>
+> On Tue, 30 Jun 2026 14:07:03 +0800, Sherry Sun (OSS) wrote:
+> > From: Sherry Sun <sherry.sun@nxp.com>
+> >
+> > This series integrates the PCI pwrctrl framework into the pci-imx6
+> > driver and updates i.MX EVK board device trees to support it.
+> >
+> > Patches 2-8 update device trees for i.MX EVK boards which maintained
+> > by NXP to move power supply properties from the PCIe controller node
+> > to the Root Port child node, which is required for pwrctrl framework.
+> > Affected boards:
+> > - i.MX6Q/DL SABRESD
+> > - i.MX6SX SDB
+> > - i.MX8MM EVK
+> > - i.MX8MP EVK
+> > - i.MX8MQ EVK
+> > - i.MX8DXL/QM/QXP EVK
+> > - i.MX95 15x15/19x19 EVK
+> >
+> > [...]
+>
+> Applied, thanks!
+>
+> [1/7] arm: dts: imx6qdl-sabresd: Move power supply property to Root Port node
+>       commit: b16fded592305f04ae40764f5fa91d5ac6f02a65
+> [2/7] arm: dts: imx6sx-sdb: Move power supply property to Root Port node
+>       commit: a1af6cf5a6ce526ea41d4686fa14580a48b2e768
+> [3/7] arm64: dts: imx8mm-evk: Move power supply property to Root Port node
+>       commit: b6a38d70bcbf0893ce5493f3daf0cb19e5102269
+> [4/7] arm64: dts: imx8mp-evk: Move power supply properties to Root Port node
+>       commit: fde093c386a64c820a704abaab9ffd9ec738cd4d
+> [5/7] arm64: dts: imx8mq-evk: Move power supply properties to Root Port node
+>       commit: 78610987333b0811a456f9a4782472fad00f4a19
+> [6/7] arm64: dts: imx8dxl/qm/qxp: Move power supply properties to Root Port node
+>       commit: 240950f3ad76761066ffe399f62670321c1be1f1
+> [7/7] arm64: dts: imx95: Move power supply properties to Root Port node
+>       commit: 6e53e8b854bc6f8330d07905b73e53ad02aff62b
 
-Applied to crashkernel-cma branch of liveupdate/linux.git tree, thanks!
+Sorry, I have to drop again because miss consider back compatible problem.
 
-[01/10] riscv: kexec_file: Fix crashk_low_res not exclude bug
-        commit: 5fc6e7d45373571d03cd04fd4c6069c0a97fa75a
-[02/10] powerpc/crash: sort crash memory ranges before preparing elfcorehdr
-        commit: 202b5de3ec34317d6a8944239fe227ef8f6853ec
-[03/10] crash: Add crash_prepare_headers() to exclude crash kernel memory
-        commit: 5beabef0cffaa1ea6e27e85dbd526b7a28e0e7c7
-[04/10] arm64: kexec_file: Use crash_prepare_headers() helper to simplify code
-        commit: 201b561cbc6c594aa1ef718a1204dd45720d96dd
-[05/10] x86/crash: Use crash_prepare_headers() helper to simplify code
-        commit: a8f09f2a7485956c3653696f6cb94faadd243645
-[06/10] riscv: kexec_file: Use crash_prepare_headers() helper to simplify code
-        commit: 7b078a0aa2753dcf5cae88e5349a25ac39998a9b
-[07/10] LoongArch: kexec_file: Use crash_prepare_headers() helper to simplify code
-        commit: 51ed0950adf05c99e393818887a2616dd4ab3e34
-[08/10] powerpc/kexec_file: Use crash_exclude_core_ranges() helper
-        commit: b0e06c5a30742bc6bc8523fe9c71c1a043a7661d
-[09/10] arm64: kexec_file: Add support for crashkernel CMA reservation
-        commit: c12c63d05dfe7088aa8b1b872fe261e25537c823
-[10/10] riscv: kexec_file: Add support for crashkernel CMA reservation
-        commit: a037fe3c58ed489ca8ad8531bd7e16b90a84badc
+All old platform, 1 - 6, need keep both under pcie and root port.
 
-tree: https://git.kernel.org/pub/scm/linux/kernel/git/liveupdate/linux
-branch: crashkernel-cma
+iMX95, you can move under root becasue it is new platform, it should be
+fine to break compatible since development phase.
 
---
-Sincerely yours,
-Mike.
+Frank
 
 
+>
+> Best regards,
+> --
+> Frank Li <Frank.Li@nxp.com>
+>
 
