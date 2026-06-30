@@ -1,224 +1,223 @@
-Return-Path: <devicetree+bounces-317626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317628-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jjB1MYCdQ2rEdQoAu9opvQ
-	(envelope-from <devicetree+bounces-317626-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:42:08 +0200
+	id JyOdHWKcQ2pNdQoAu9opvQ
+	(envelope-from <devicetree+bounces-317628-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:37:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB4FB6E30C6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:42:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C58096E2F96
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:37:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=JK8hOA7n;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317626-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-317626-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=CrReYOPO;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="Zuln/Mx/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317628-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317628-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 43E52307196D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 10:28:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3679330D3C2E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 10:30:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56B43F20E7;
-	Tue, 30 Jun 2026 10:27:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5178C3F1676;
+	Tue, 30 Jun 2026 10:29:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D6623F0AAD;
-	Tue, 30 Jun 2026 10:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F833F1678
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 10:29:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782815272; cv=none; b=GqvFqMkUNx430rVf4RaOzNg75bZHQlDbhUx5FIV1RQPgxHDZuq8mHS4lydjk8PvfVdCrPagqpvLPIe/zsL1KnyfXxPoLAb6IvczB+zTonMnNqsqXr5KpB5wdnBiX9i7WoIIqC3WstjHhs3h9NUY+F7jjj8yjc591bKbpANecTVs=
+	t=1782815388; cv=none; b=O5M1y4RRwFXhDSXOanTHxvy4iU0xBW3Ke5GCuc+FSxOp/ILdT15MBmuIh5IraQ6alSzlEwgyOImfDy2afqIMO8EiIg9zs5zLzIP/EEyE/M8lASVPlaDI3PUonsSKCbz8MIibtmdxmwCeNfpfukgr3XZU5/fquSnrtW47Ttegmzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782815272; c=relaxed/simple;
-	bh=w3bzU5+fI005BUSDFvDAmi3e1zzqSzsVWsUAnGjFQic=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=iFywwjQcCxYaKjqTPZdFfH0V6Zc6asUPKHa+/TbzAugBB4lqN0mFJcFC7RwjbE6SZVXR6uXJyhik1LxSOKWkS97QsEb/KrQDG8bO2wQG4ameCwbx6/c/r6BJjV5mK63gJc/Qy4vlPjwuQywuvHEgEkDfDF4BfKyh1Nf1KjKQjUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JK8hOA7n; arc=none smtp.client-ip=185.246.85.4
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id C6D5B4E40BA4;
-	Tue, 30 Jun 2026 10:27:49 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9A9686025A;
-	Tue, 30 Jun 2026 10:27:49 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 05BE0106F1D67;
-	Tue, 30 Jun 2026 12:27:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1782815268; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=f43D8ATRX3ZZph2a3Y4bwWOu8qESFbudFIHWHnMpJY0=;
-	b=JK8hOA7nxoF2EmxucLamkx9/cuUmYoi2GPUrDtEM2HfJ/YDFpQ3sXUhupxvhTfhDKsessr
-	J49QlT+N5om8nxwjUd9KfAhXeqA3eLH4aS7LPTzkV+WmkVLcm4HmgfsUMkEQIjmKcQHwVJ
-	EWOsC9PCFm/Vmy0RWM+WpI99UGIK114izfCEAPe5fLVEb58mkIroCr/PKLJwhqlMeoYsSH
-	dQ0eGC0l8C+Mlqdo2+TyfwLEj4/ujszq1uZEBpi+vI06eg3gdELu7hfrljbm/L9tZO8+Sw
-	esH49xhUvI8MUVVzNc/Z8IDVZnun1eLfRgJ5U21kCBckFYD49n0c9Rnia0Mx6g==
-From: Herve Codina <herve.codina@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Kalle Niemi <kaleposti@gmail.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>
-Cc: driver-core@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH v8 2/2] bus: simple-pm-bus: Populate child nodes at probe
-Date: Tue, 30 Jun 2026 12:27:13 +0200
-Message-ID: <20260630102717.413501-3-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260630102717.413501-1-herve.codina@bootlin.com>
-References: <20260630102717.413501-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1782815388; c=relaxed/simple;
+	bh=JHWRXvwmSeTOmbwGnLOsuT0Bx2T1EIUFvdkZow20AXE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G+rcMRCB4x4odAXs5XKHR7nQAL8uZI0+55pkypJg+9wHc82euna+QvDR6AAxO9fjI9XIO9yiu3kucEsOHO40MINYZIUriqMdhpEjzKQlasTqThNrmXEZf3iAGzJKf4dylprjO2f0sSqkHzXHAJBc6/4S5D9p7ODyJ9QOVvdedoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CrReYOPO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Zuln/Mx/; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65U9n4uB1508630
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 10:29:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XlYsuIGZuofNKg9UNzfroS1rGi/nK+bOboWBMSKVwlo=; b=CrReYOPOizaRMOtQ
+	aaHmDGF0s0/RPlzrp4zoq8ksqDyRDmskSlWiB7j1akzgtsgtLtd4aOhJB2PnsM+K
+	XaNEj4F3yzchJPArzkdQSaJ2K2V+OOtN28I8b06QZD4jJDPuVngd0D3oyd+Vf1NM
+	qiiPsQNIG1rl7PLQg4rAtiB5sDE8mBeX4h5hjO4YLJvuu0dn48aY8FErNNAB6Gf8
+	IHV+A0umSFg7LhYMeYj/utpRVfTaxnHxY2sqmJuhcmL50rZOGO1DB4Vu+3/4dW2p
+	+KfoiyP1oMbvXVaynBHqB+RIK3qVVpFlcsXF62stwrJ/0+jfZIULFirYHwHCnfbd
+	MNLU1g==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f3y9j300h-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 10:29:46 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-51a89451078so4326961cf.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 03:29:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1782815385; x=1783420185; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=XlYsuIGZuofNKg9UNzfroS1rGi/nK+bOboWBMSKVwlo=;
+        b=Zuln/Mx/44nfNqD/0SZh4vliqIJ5GS464FYKrxq7W/bKjBJfcsWaOi96xOIDf0btlD
+         5BFddG6757/t0Cfa/qhGWjHov7U65FxXs21FmIBUZcNz6P41iPOyoTm/f9kzGhZTJT7y
+         QdZ9KMTCK/TOpNvQ9I2cdc4wbOp1rD0R5a4nYL1z3fnOxVEy9PrbqvZr5wlQNH1CVM4Q
+         dwd+Hgza/QGSeypdAAoo1L7j36uqNwOfGEZq/JFiiz2sMBUsqGjf7/KQEwHlypuypOD/
+         8rvkzpuB4WHkhRUTcQzTyR6kfgiJAniT/EHLoETH4GMzNCs/WiPLf5tVrfuwlLjLBcYH
+         5rbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782815385; x=1783420185;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=XlYsuIGZuofNKg9UNzfroS1rGi/nK+bOboWBMSKVwlo=;
+        b=BaD1avWBL4O33PP79Xv2wh/vLr+SpswbX/bCNZqBrRzogGINwBEEqibvdbzObfllpQ
+         KFw+hRVFLAMJh+aSW9RaM+TQmAnHRSq02DE09ZjRB4Z4x807wu9X71e2suoCh4ktSxNK
+         mACRu5W8c6VaKIkHcQE6/hZwtpk4IygsyuzEm9NjqwsXt7hUPvBC/fl0xLf+nFqODXWm
+         o4V8TMh6vWNdl1eMOaWpggFa4okFf4VCMWwkTjv59ZHJBNG161GTcHD8mbrsgAggywIH
+         t272RAXtqaHwNXeUqHXXSmw2DHAgEod1OOGcD9J84EsOaZwFRlNcNDwj2OcXTBwDFtIs
+         BtlQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/MD6wtEvYnDFEFbd+gEu+YHowwPkHcTLYOoqtpAiSZpu0XATqwQYvfDseRWpAktd96zaYzfYnDp3HN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnBujvbH7sjNJdX9wOv+aTE752n98Y6i2mIc1nMVOKIJ3I+jT9
+	HDPlac1QdPpPkDvZcykzR4dvJvS3+9fomgECpcSUz6tigh1MdNjDPVLWmq3CJQzHRNa9vzk7D+M
+	nW9ubei3gls8mQVlfWfLj0qefTeK/N3lxnzrwhFBaUNVL/ewKvmimAO6APmWJOJd3
+X-Gm-Gg: AfdE7cmYawqXeEaYPw006rmUDxy7c3sThzQSBqyIa9FntVNqXT96aTAtG1imaaR4i7S
+	BRSIauIKWJCPXsiZ4HY8ovYALvpsk2Dw4GbWPtGd67UdHjeg2VkRXj09LJW1xtvffTb2Y07eUrG
+	GZS4mfA6tyqL2pqhwptciGzJgKdqNeHXmqgJmm+hv3LR4Ll39jDaGmrY9Nh8UIrTIZtwq4BN/kr
+	ju2aEZUJSh/t9F1QvBIV1ZxsME/O1bt3BqdvewrN5EQYDopClH21NILs8Udk1pmBmVWOfdL57TL
+	ILkGEPs6L8v+gBL/PCfw9o/y3TlSQI0Ln+1Olxw9PUYETcAuJXFidQWX3gOmfaT2gASnnpLb+Oj
+	UC/vJQoiSKWq51FL7MSaZ03Ln3KUuGyPQaZo=
+X-Received: by 2002:a05:622a:44a:b0:51a:8c9b:64a5 with SMTP id d75a77b69052e-51c109079a0mr27106271cf.9.1782815385337;
+        Tue, 30 Jun 2026 03:29:45 -0700 (PDT)
+X-Received: by 2002:a05:622a:44a:b0:51a:8c9b:64a5 with SMTP id d75a77b69052e-51c109079a0mr27106041cf.9.1782815384782;
+        Tue, 30 Jun 2026 03:29:44 -0700 (PDT)
+Received: from [192.168.120.170] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c1288f4d90esm100637466b.45.2026.06.30.03.29.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jun 2026 03:29:44 -0700 (PDT)
+Message-ID: <cbfb770e-0e27-4254-a3c0-6011e8eb37ec@oss.qualcomm.com>
+Date: Tue, 30 Jun 2026 12:29:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-huawei-gaokun3: Add dsi panel
+ DT node
+To: Pengyu Luo <mitltlatltl@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260630042229.277799-1-mitltlatltl@gmail.com>
+ <35f13ab2-cdba-426f-bf4b-36f53ce1d4bb@oss.qualcomm.com>
+ <CAH2e8h7p-i3epbxD6Ks-ru2OP+qY6nYXA+Fm+Luexo3cZ2Eucw@mail.gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <CAH2e8h7p-i3epbxD6Ks-ru2OP+qY6nYXA+Fm+Luexo3cZ2Eucw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-Proofpoint-ORIG-GUID: 507ggQWYiN8M-DSvOOTDOLNVwemeqCwu
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDA5NSBTYWx0ZWRfX4icHO8D5zcUl
+ allg5H7Cp1L3ZrWVuM9QqKIvpnYwNrZwojzPCdJJ4J7KCi9dAUEvqNA1prH8dmbXbIjwLfqkGBb
+ G6apbUtVfblmFwfRVbBhYZSUzAXpuuCyeB1vi8gOtivvFSJobyL1/mmmfyIDWof+GVXZyDXmLUF
+ FOH5M+9rOD5PvTpRPaDxPHiPtUySJYskG5coBFcDqFANTwgMfgoeMyxrc7KejQVmu6mVWsIXDjC
+ xrPUg9ju4+Gnf3Yb1Xyl5X/kfB3eHpe/QjIJ4zeHENyzsj7R35ia+BwwEqdD83PRqQsKq68lI0c
+ sJeK7xiFLjtGmKws1603DFgtQx3kBWTQsfLG4De5C788DU14Tgsloo72r0nnCJsEFVN5veQEgSQ
+ TfEEmf/9EzlpcyedOnGKxsLMqoihKBzPopWfVU044Qv9Bdj4RQoBZ9+MCSW/J+hYmRmAc9nY7YD
+ 0hyWCivgpahY5qu0Urw==
+X-Proofpoint-GUID: 507ggQWYiN8M-DSvOOTDOLNVwemeqCwu
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDA5NSBTYWx0ZWRfX0obUKcfqpOrB
+ w8I4DSUR5YMWU0rYdg3SrMVgPnOgpAT17QXlWbc/mtQz6ffSnfKZAynCQpvFQR9hfnxs2biRc6I
+ FRnQKicpoy6qnJpnzmNg9vTfzdn3rXU=
+X-Authority-Analysis: v=2.4 cv=SINykuvH c=1 sm=1 tr=0 ts=6a439a9a cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8 a=K0VU_phB8ntNZSznENYA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-30_03,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 malwarescore=0 priorityscore=1501 spamscore=0 phishscore=0
+ clxscore=1015 bulkscore=0 lowpriorityscore=0 adultscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606300095
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-317628-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317626-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[lunn.ch,kernel.org,glider.be,gmail.com,linuxfoundation.org];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mitltlatltl@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:andrew@lunn.ch,m:robh@kernel.org,m:saravanak@kernel.org,m:geert+renesas@glider.be,m:kaleposti@gmail.com,m:mazziesaccount@gmail.com,m:gregkh@linuxfoundation.org,m:rafael@kernel.org,m:dakr@kernel.org,m:driver-core@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:allan.nielsen@microchip.com,m:horatiu.vultur@microchip.com,m:daniel.machon@microchip.com,m:steen.hegelund@microchip.com,m:luca.ceresoli@bootlin.com,m:thomas.petazzoni@bootlin.com,m:herve.codina@bootlin.com,m:geert@glider.be,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,bootlin.com:from_mime]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BB4FB6E30C6
+X-Rspamd-Queue-Id: C58096E2F96
 
-The simple-pm-bus driver handles several simple busses. When it is used
-with busses other than a compatible "simple-pm-bus", it doesn't populate
-its child devices during its probe.
+On 6/30/26 11:28 AM, Pengyu Luo wrote:
+> On Tue, Jun 30, 2026 at 5:18 PM Konrad Dybcio
+> <konrad.dybcio@oss.qualcomm.com> wrote:
+>>
+>> On 6/30/26 6:22 AM, Pengyu Luo wrote:
+>>> DSI panel driver have been added for a while, so add the DT node to
+>>> enable it. vdd{a,s}-supply for dsi, dsi_phy are blank since the DSDT
+>>> describes the wrong, no impact after manual disabling these wrong
+>>> supplies.
+>>>
+>>> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+>>> ---
+>>
+>> [...]
+>>
+>>> +&mdss0_dsi0 {
+>>> +     /* real vdda is unknown */
+>>> +
+>>
+>> L3B: DSI core 1.2 V (both?)
+>> L6B: DSI0/1 PLL and core 0.9 V
+>>
+> 
+> Yes, that is what I saw in the DSDT, however, I can disable them
+> safely (hack the regulator driver to add a sysfs to handle these
+> regulators), the panel works well.
 
-This confuses fw_devlink and results in wrong or missing devlinks.
+L3B additionally powers CSIPHY2/3, EDP0/1, REFGEN (probably why it
+ends up being on), UFSPHY and USB1_PHY
 
-Once a driver is bound to a device and the probe() has been called,
-device_links_driver_bound() is called.
+L6B additionally powers the same components, minus refgen and USB
 
-This function performs operation based on the following assumption:
-    If a child firmware node of the bound device is not added as a
-    device, it will never be added.
-
-Among operations done on fw_devlinks of those "never be added" devices,
-device_links_driver_bound() changes their supplier.
-
-With devices attached to a simple-bus compatible device, this change
-leads to wrong devlinks where supplier of devices points to the device
-parent (i.e. simple-bus compatible device) instead of the device itself
-(i.e. simple-bus child).
-
-When the device attached to the simple-bus is removed, because devlinks
-are not correct, its consumers are not removed first.
-
-In order to have correct devlinks created, make the simple-pm-bus driver
-compliant with the devlink assumption and create its child devices
-during its probe.
-
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- drivers/bus/simple-pm-bus.c | 21 ++++++++++++---------
- 1 file changed, 12 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/bus/simple-pm-bus.c b/drivers/bus/simple-pm-bus.c
-index 4b2a793dfbd9..d969bf19a4e9 100644
---- a/drivers/bus/simple-pm-bus.c
-+++ b/drivers/bus/simple-pm-bus.c
-@@ -42,14 +42,15 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
- 	match = of_match_device(dev->driver->of_match_table, dev);
- 	/*
- 	 * These are transparent bus devices (not simple-pm-bus matches) that
--	 * have their child nodes populated automatically.  So, don't need to
--	 * do anything more. We only match with the device if this driver is
--	 * the most specific match because we don't want to incorrectly bind to
--	 * a device that has a more specific driver.
-+	 * need to have their child nodes populated. So, don't need to do
-+	 * anything more except populate child nodes during this probe(). We
-+	 * only match with the device if this driver is the most specific match
-+	 * because we don't want to incorrectly bind to a device that has a more
-+	 * specific driver.
- 	 */
- 	if (match && match->data) {
- 		if (of_property_match_string(np, "compatible", match->compatible) == 0)
--			return 0;
-+			goto populate;
- 		else
- 			return -ENODEV;
- 	}
-@@ -64,13 +65,14 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
- 
- 	dev_set_drvdata(&pdev->dev, bus);
- 
--	dev_dbg(&pdev->dev, "%s\n", __func__);
--
- 	pm_runtime_enable(&pdev->dev);
- 
-+populate:
- 	if (np)
- 		of_platform_populate(np, NULL, lookup, &pdev->dev);
- 
-+	dev_dbg(&pdev->dev, "%s\n", __func__);
-+
- 	return 0;
- }
- 
-@@ -78,7 +80,7 @@ static void simple_pm_bus_remove(struct platform_device *pdev)
- {
- 	const void *data = of_device_get_match_data(&pdev->dev);
- 
--	if (device_has_driver_override(&pdev->dev) || data)
-+	if (device_has_driver_override(&pdev->dev))
- 		return;
- 
- 	dev_dbg(&pdev->dev, "%s\n", __func__);
-@@ -86,7 +88,8 @@ static void simple_pm_bus_remove(struct platform_device *pdev)
- 	if (pdev->dev.of_node)
- 		of_platform_depopulate(&pdev->dev);
- 
--	pm_runtime_disable(&pdev->dev);
-+	if (!data)
-+		pm_runtime_disable(&pdev->dev);
- }
- 
- static int simple_pm_bus_runtime_suspend(struct device *dev)
--- 
-2.54.0
-
+Konrad
 
