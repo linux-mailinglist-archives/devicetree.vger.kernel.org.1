@@ -1,348 +1,308 @@
-Return-Path: <devicetree+bounces-317366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317364-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bci8OtwuQ2o/TwoAu9opvQ
-	(envelope-from <devicetree+bounces-317366-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:50:04 +0200
+	id 2DiEIs8uQ2o4TwoAu9opvQ
+	(envelope-from <devicetree+bounces-317364-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:49:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B18D6DFE19
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:50:04 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F23A36DFE14
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:49:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=analog.com header.s=DKIM header.b=cEV4SdVp;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317366-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317366-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=analog.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Nf2C7o6i;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317364-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317364-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6A4113011EBF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 02:49:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B38B8306229A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 02:48:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FFF93DB30C;
-	Tue, 30 Jun 2026 02:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 565A73D16F4;
+	Tue, 30 Jun 2026 02:47:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42C43DB314;
-	Tue, 30 Jun 2026 02:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB97E3CF1FA
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:47:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782787688; cv=none; b=Q0dbqnZiLtj/LKAIt969ckTdzFDRJWA2f4x8/x9GnlNkQrm8lGZ3rr/+/dK+DlnYyhimxBdxUkKHbjVB30AhukM26gZu5PT/4u9RoTIhAfOvho1IQ/Hkhu60XGCNOdzsfOz9kZn58hpjQQ6DtwmAnhYVH3rSLpDTLCaAjeGVa74=
+	t=1782787661; cv=none; b=ahDS2zb+myXqcSm7vbfe9qoJp35cQ2jRsgLxxtz+A0xfWhtDj0QYg8imK1wkR8W1EIBm5QhEPseRz6t7/N4QrOoiPvc4TbM7qIhIzqeBvk9ToZ0o6MjbznJLXvSwialXfpkHCaoYil95X1m458ti1QWcijiBQi8lB9qcFQXmvHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782787688; c=relaxed/simple;
-	bh=q/2RXkN4sgny+0WBS9fDs7LP6f4Fil4E2aNtWSk+ba0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=BD+fAbFHk0ln5yTsHVP11Ea7t043hR5hwOfP2N/5lC4DqfnBpYkbilPIzfm/nts1r37t0HG7DNo/2148w8PFjjAgDs9QXPxTtTHrb3bTdrq3ZP7s/KW+fLIiLOQj4ng5fvrlvJtvYORT/Lcd6gC73oNQmobV82YuE2hMr3VtJs8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=cEV4SdVp; arc=none smtp.client-ip=148.163.135.77
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65U1GJu53578895;
-	Mon, 29 Jun 2026 22:47:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=vsd8R
-	lUz8RhRMmxJA+sheAUqRE6BgZd3j/bFq9enUbU=; b=cEV4SdVpo08bVTSr5YcRX
-	kw4YqEzU0N2UX32P8ePrNfFYgNPmuvSGVpshGcEIciFhzx45E3asJ2fpQ/e62a+T
-	CB9cr4VLe9++ZR+EdUStoYrVNHvMZh4L6GQI/u4ZKbSPw0nCeTToF3deHHB07hiv
-	ZRPSJmDFuU0oeABRR4NtrR/bs7bZmzEFXMcm5Hy9NYigKF/6Wwk4vyiUjqRr75iX
-	78SLmWAVpR0pVy8R55zar4F1R7V/SlTXzSzWrWPpkT9itKR9RX/t/W/4mYtBrDlm
-	4/+BZB2tauAgW42etyLL3T/z2Oxjv8kQI5evIqUr4wL29F/VnRGo9ViqhDydw86N
-	w==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4f3sav3191-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jun 2026 22:47:49 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 65U2lWej033022
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Jun 2026 22:47:32 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Mon, 29 Jun
- 2026 22:47:32 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Mon, 29 Jun 2026 22:47:32 -0400
-Received: from ATORRENO-L02.ad.analog.com ([10.66.6.193])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 65U2kqhj019448;
-	Mon, 29 Jun 2026 22:47:22 -0400
-From: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Date: Tue, 30 Jun 2026 10:46:48 +0800
-Subject: [PATCH 6/6] hwmon: (pmbus/max20830): add support for max20830c and
- max20840c
+	s=arc-20240116; t=1782787661; c=relaxed/simple;
+	bh=UIfNhEvhtRw4oYxLQ4Jo6TdwWoD5YNFeJMW7uhMOcqY=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=E9Jp66yzog7fPG3//AZBBeD0lT7oGIc/7kYInsxKbxLv0FiXyvIxB0INHIzXpI52cYtj4nArj/Kct3VAMk4oN8PDEBbaqga5PmAH0rFOtyi2WVpqjPxuDHHDYNcRV6yvQ8WVOMr0nEad3rSt3fAIRyIo6/Y6pJEYxgceV/IUNus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nf2C7o6i; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 684231F000E9;
+	Tue, 30 Jun 2026 02:47:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782787659;
+	bh=kNhcYq7dXKcWI+YTnj5UlFa+m8enRtVVXhSDjp8kDss=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Nf2C7o6iEb6xGd7Pw6yZ2x7+kyvi/V7MqTqDDRU5Ekg/+1KvF6h0DxXhFrDVFcOyW
+	 DxGwPh14Kv1h8Mgnf2Ugh4cRMwfzOEZAbMwkv1W5ajnZus5eUn8ZUvqlCUbuxGigYJ
+	 aUNCLA8l00ZsTCBN+iJwDTLZw8FgLkMmMMEZpfbNn9+E4ba5Y79MLZJRhTWgIgAVoF
+	 qxLp4GyC3qAJe5L+h7JArfqlqoOIYDrlgLG479OyRl6mPZVApulE5TNpvvjQ6IWKEM
+	 sBd605XjbO0YNu07Q1DQ5QFMCeJS/bKxtgS2aIE4jOamIEydrysbgZL+L5EaDmH3VE
+	 8vtQX6QKfAAIg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/2] drm/panel: Add Novatek NT36536 panel driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Pengyu Luo" <mitltlatltl@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260630023439.248861-3-mitltlatltl@gmail.com>
+References: <20260630023439.248861-1-mitltlatltl@gmail.com>
+ <20260630023439.248861-3-mitltlatltl@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 30 Jun 2026 02:47:39 +0000
+Message-Id: <20260630024739.684231F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260630-dev-max20830c-v1-6-a02786bde470@analog.com>
-References: <20260630-dev-max20830c-v1-0-a02786bde470@analog.com>
-In-Reply-To: <20260630-dev-max20830c-v1-0-a02786bde470@analog.com>
-To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Shuah Khan <skhan@linuxfoundation.org>
-CC: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        Alexis Czezar
- Torreno <alexisczezar.torreno@analog.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782787612; l=6554;
- i=alexisczezar.torreno@analog.com; s=20250213; h=from:subject:message-id;
- bh=q/2RXkN4sgny+0WBS9fDs7LP6f4Fil4E2aNtWSk+ba0=;
- b=SCdIIAerPspnuinrehmyCGOvqJwCiwt36bVLGfCEf40403F0AKSo/G6kjSyPP2WC9d0ed481H
- IWaeHnkZw9bBhZr0vB8k874ZNs8kp+NbGT4FuCwDrC6+ZRxg2ftnVqn
-X-Developer-Key: i=alexisczezar.torreno@analog.com; a=ed25519;
- pk=XpXmJnRjnsKdDil6YpOlj9+44S+XYXVFnxvkbmaZ+10=
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=avWCzyZV c=1 sm=1 tr=0 ts=6a432e55 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=0sLvza09kfJOxVLZPwjg:22 a=N--XFCr6TIEc_64PeIT2:22 a=gAnH3GRIAAAA:8
- a=JjAQHO9wZUgTJTSyjjUA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: uEoljmUdJpRC3lZftHC7klNdomm8i0wu
-X-Proofpoint-GUID: uEoljmUdJpRC3lZftHC7klNdomm8i0wu
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDAyNCBTYWx0ZWRfX+DWVLo3u3Qdh
- nl0pJL3TLg7BKcwXetbQZfzYXg5bPK4z0U8CWfVh2ueekJLuNUsiLHGH3VdyeGMZJaHJqeVA9/v
- MFMbU3EsPXPDxZ/r1LffeCovYcRzpZxLW5sriuNaoJgidQeG3zOj
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDAyNCBTYWx0ZWRfXxFQ8e49k+6LX
- YRZMz851i5Egb0caE7B1BAZZcLN4uBj5iDt9pWjUJ8sqrK6e6QCEtMGDbAP2SzNSG7U5J0vxAX6
- zLKidzWLFYAdsP7xzYCQJB7AGskEgAA9Eii/0dfFnhCs7XkOFyC5TwW2DbehuSccQSipbg1P7/w
- lDvze6Q1Sf4yONb0b0w5lgeorD7952f7Z8L3dBrEJEnDreomNuLQnX+V1sCVMGh9h+0Qj6H1vrA
- OUpaTOQBCtPs56qdZHWlAwhcF6qOYBO8mJF5vJvwu5aojwOy1w3cQuxREY0OWBrbLVRbt9V2h/Y
- 60w0nskDQzGRrOwXKU56v9Cj/NhUuBCDxG29zOk7xS/DlhtzsGROj5V+13A+BQmQ/FDcOFh4mhl
- PGR+6gkFf5HfzsaypxCm/MFcs52IFDLKtTarcVTL0h6oZej53XMbZBx61FSjB61dmT4BBF1Y/zr
- B6j2xvoZkEZeh2Vn5AQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-30_01,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 suspectscore=0 spamscore=0 bulkscore=0
- clxscore=1015 lowpriorityscore=0 malwarescore=0 adultscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606300024
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317366-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,analog.com:url,analog.com:from_mime,analog.com:dkim,analog.com:email,analog.com:mid];
-	FORGED_SENDER(0.00)[alexisczezar.torreno@analog.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:alexisczezar.torreno@analog.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[analog.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexisczezar.torreno@analog.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317364-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mitltlatltl@gmail.com,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8B18D6DFE19
+X-Rspamd-Queue-Id: F23A36DFE14
 
-Add support for MAX20830C and MAX20840 step-down DC-DC switching
-regulator with PMBus interface. MAX20830C is a different packaging
-for MAX20830, and MAX20840C supports 40A regulation compared to
-MAX20830 that is only 30A.
+Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+s) to consider:
+- [High] Missing drm_panel_remove() in the probe error paths for backlight =
+initialization leads to a use-after-free on the global panel list.
+- [High] The panel is registered and exposed to the system via `drm_panel_a=
+dd()` before its initialization is complete, causing a race condition.
+- [High] Incomplete `drm_dsc_config` static definition leaves critical para=
+meters like `pic_width`, `pic_height`, and rate-control values as 0, breaki=
+ng DSC.
+- [Medium] Unchecked DSI multi-context accumulated error in `novatek_prepar=
+e()` during DSC configuration masks transmission failures.
+- [Medium] Missing rollback of hardware state and regulators when `backligh=
+t_enable()` fails in `novatek_prepare()`.
+- [Medium] DCS backlight commands issued in `novatek_bl_update_status()` wi=
+thout verifying the panel power state.
+- [Low] Missing Kconfig dependency on `DRM_DISPLAY_DSC_HELPER`.
+--
 
-Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
----
- Documentation/hwmon/max20830.rst | 27 +++++++++++++---
- drivers/hwmon/pmbus/max20830.c   | 68 ++++++++++++++++++++++++++++------------
- 2 files changed, 70 insertions(+), 25 deletions(-)
+commit 86b2b70476faa9f551d7227512ce180811421366
+Author: Pengyu Luo <mitltlatltl@gmail.com>
 
-diff --git a/Documentation/hwmon/max20830.rst b/Documentation/hwmon/max20830.rst
-index 936e409dcc5c0898dde27d782308d4a7e1357e73..b850f3b6e40d1f1d0cec944be40af02265aced59 100644
---- a/Documentation/hwmon/max20830.rst
-+++ b/Documentation/hwmon/max20830.rst
-@@ -13,6 +13,22 @@ Supported chips:
- 
-     Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/max20830.pdf
- 
-+  * Analog Devices MAX20830C
-+
-+    Prefix: 'max20830c'
-+
-+    Addresses scanned: -
-+
-+    Datasheet:
-+
-+  * Analog Devices MAX20840C
-+
-+    Prefix: 'max20840c'
-+
-+    Addresses scanned: -
-+
-+    Datasheet:
-+
- Author:
- 
-   - Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-@@ -21,12 +37,13 @@ Author:
- Description
- -----------
- 
--This driver supports hardware monitoring for Analog Devices MAX20830
--Step-Down Switching Regulator with PMBus Interface.
-+This driver supports hardware monitoring for Analog Devices MAX20830, MAX20830C
-+and MAX20840C. These are Step-Down Switching Regulator with PMBus Interface.
- 
--The MAX20830 is a 2.7V to 16V, 30A fully integrated step-down DC-DC switching
--regulator. Through the PMBus interface, the device can monitor input/output
--voltages, output current and temperature.
-+MAX20830, and MAX20830C are 2.7V to 16V, 30A fully integrated step-down DC-DC
-+switching regulators. MAX20840C is similar but can reach 40A. Through the PMBus
-+interface, these devices can monitor input/output voltages, output current and
-+temperature.
- 
- The driver is a client driver to the core PMBus driver. Please see
- Documentation/hwmon/pmbus.rst for details on PMBus client drivers.
-diff --git a/drivers/hwmon/pmbus/max20830.c b/drivers/hwmon/pmbus/max20830.c
-index a3abd24437e8e7560264aad55fc4f456d30ae235..252c77beb243c5a2d90fcf96941605ff31439383 100644
---- a/drivers/hwmon/pmbus/max20830.c
-+++ b/drivers/hwmon/pmbus/max20830.c
-@@ -14,7 +14,30 @@
- #include <linux/string.h>
- #include "pmbus.h"
- 
--#define MAX20830_IC_DEVICE_ID_LENGTH	9
-+struct max20830_chip_info {
-+	const char *id_str;
-+	u8 id_length;
-+};
-+
-+static const struct max20830_chip_info max20830_chip = {
-+	/*
-+	 * MAX20830 IC_DEVICE_ID has a byte length of 9 despite being an 8
-+	 * character string, as it includes a null terminator. The other
-+	 * devices do not include null.
-+	 */
-+	.id_str = "MAX20830\0",
-+	.id_length = 9,
-+};
-+
-+static const struct max20830_chip_info max20830c_chip = {
-+	.id_str = "MAX20830C",
-+	.id_length = 9,
-+};
-+
-+static const struct max20830_chip_info max20840c_chip = {
-+	.id_str = "MAX20840C",
-+	.id_length = 9,
-+};
- 
- struct max20830_data {
- 	struct pmbus_driver_info info;
-@@ -60,11 +83,14 @@ static struct pmbus_driver_info max20830_info = {
- 
- static int max20830_probe(struct i2c_client *client)
- {
-+	const struct max20830_chip_info *chip;
- 	u8 buf[I2C_SMBUS_BLOCK_MAX + 1] = {};
- 	struct max20830_data *data;
- 	struct gpio_desc *enable_gpio;
- 	int ret;
- 
-+	chip = i2c_get_match_data(client);
-+
- 	data = devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
- 	if (!data)
- 		return -ENOMEM;
-@@ -90,16 +116,14 @@ static int max20830_probe(struct i2c_client *client)
- 	 * which do not support SMBus block reads.
- 	 */
- 	if (i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_READ_BLOCK_DATA)) {
--		/* Reads 9 Data bytes from MAX20830 */
- 		ret = i2c_smbus_read_block_data(client, PMBUS_IC_DEVICE_ID, buf);
- 		if (ret < 0)
- 			return dev_err_probe(&client->dev, ret,
- 					     "Failed to read IC_DEVICE_ID\n");
- 	} else {
--		/* Reads 1 length byte + 9 Data bytes from MAX20830 */
-+		/* Reads 1 length byte + data bytes */
- 		ret = i2c_smbus_read_i2c_block_data(client, PMBUS_IC_DEVICE_ID,
--						    MAX20830_IC_DEVICE_ID_LENGTH + 1,
--						    buf);
-+						    chip->id_length + 1, buf);
- 		if (ret < 0)
- 			return dev_err_probe(&client->dev, ret,
- 					     "Failed to read IC_DEVICE_ID\n");
-@@ -108,36 +132,40 @@ static int max20830_probe(struct i2c_client *client)
- 		 * match the format of i2c_smbus_read_block_data().
- 		 * Also adjust return value to reflect length byte removal.
- 		 */
--		memmove(buf, buf + 1, MAX20830_IC_DEVICE_ID_LENGTH);
-+		memmove(buf, buf + 1, chip->id_length);
- 		ret = ret - 1;
- 	}
- 
--	/*
--	 * MAX20830 IC_DEVICE_ID sends string data "MAX20830\0".
--	 * Return value should at least be 9 bytes of data.
--	 */
--	if (ret < MAX20830_IC_DEVICE_ID_LENGTH)
-+	/* Verify we read the expected number of bytes */
-+	if (ret < chip->id_length)
- 		return dev_err_probe(&client->dev, -ENODEV,
--				     "IC_DEVICE_ID too short: expected at least 9 bytes, got %d\n",
--				     ret);
-+				     "IC_DEVICE_ID too short: expected %d bytes, got %d\n",
-+				     chip->id_length, ret);
-+
-+	/* Null-terminate the string */
-+	buf[chip->id_length] = '\0';
- 
--	/* 9 bytes of data, buf[0]-buf[7] = "MAX20830", buf[8] = '\0' */
--	buf[MAX20830_IC_DEVICE_ID_LENGTH - 1] = '\0';
--	if (strncmp(buf, "MAX20830", MAX20830_IC_DEVICE_ID_LENGTH - 1))
-+	/* Verify the device ID matches what we expect */
-+	if (strncmp(buf, chip->id_str, chip->id_length))
- 		return dev_err_probe(&client->dev, -ENODEV,
--				     "Unsupported device: '%s'\n", buf);
-+				     "Device mismatch: expected '%s', got '%s'\n",
-+				     chip->id_str, buf);
- 
--	return pmbus_do_probe(client, &max20830_info);
-+	return pmbus_do_probe(client, &data->info);
- }
- 
- static const struct i2c_device_id max20830_id[] = {
--	{"max20830"},
-+	{ "max20830", (kernel_ulong_t)&max20830_chip },
-+	{ "max20830c", (kernel_ulong_t)&max20830c_chip },
-+	{ "max20840c", (kernel_ulong_t)&max20840c_chip },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, max20830_id);
- 
- static const struct of_device_id max20830_of_match[] = {
--	{ .compatible = "adi,max20830" },
-+	{ .compatible = "adi,max20830", .data = &max20830_chip },
-+	{ .compatible = "adi,max20830c", .data = &max20830c_chip },
-+	{ .compatible = "adi,max20840c", .data = &max20840c_chip },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, max20830_of_match);
+drm/panel: Add Novatek NT36536 panel driver
 
--- 
-2.34.1
+Add a driver for panels using the Novatek NT36536 Display Driver IC,
+including support for the CSOT PP8807HB1-1, a 10-bit panel found in
+LENOVO Legion Y700 Gen4.
 
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 7450b27622a23..3912b79a2ebb2 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -620,6 +620,17 @@ config DRM_PANEL_NOVATEK_NT36523
+>  	  around the Novatek NT36523 display controller, such as some
+>  	  Boe panels used in Xiaomi Mi Pad 5 and 5 Pro tablets.
+> =20
+> +config DRM_PANEL_NOVATEK_NT36536
+> +	tristate "Novatek NT36536 panel driver"
+> +	depends on OF
+> +	depends on DRM_MIPI_DSI
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	select DRM_KMS_HELPER
+
+[Severity: Low]
+Does this config also need to select DRM_DISPLAY_DSC_HELPER? The driver
+utilizes DSC helper functions like drm_dsc_pps_payload_pack(), which could
+cause a linker error if DRM_DISPLAY_DSC_HELPER is not selected by another
+module.
+
+> +	help
+> +	  Say Y here if you want to enable support for Novatek NT36536-based
+> +	  display panels, such as the one found in the LENOVO Legion Y700
+> +	  Gen4.
+> +
+>  config DRM_PANEL_NOVATEK_NT36672A
+[ ... ]
+> diff --git a/drivers/gpu/drm/panel/panel-novatek-nt36536.c b/drivers/gpu/=
+drm/panel/panel-novatek-nt36536.c
+> new file mode 100644
+> index 0000000000000..3ad21fcdf9f02
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-novatek-nt36536.c
+[ ... ]
+> +static int novatek_prepare(struct drm_panel *panel)
+> +{
+> +	struct novatek *ctx =3D to_novatek(panel);
+> +	struct mipi_dsi_device *dsi =3D to_primary_dsi(ctx);
+> +	struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D dsi };
+> +	struct drm_dsc_picture_parameter_set pps;
+> +	struct device *dev =3D &dsi->dev;
+> +	int ret;
+> +
+> +	ret =3D regulator_bulk_enable(ARRAY_SIZE(novatek_supplies),
+> +				    ctx->supplies);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	novatek_reset(ctx);
+> +
+> +	ret =3D ctx->desc->init_sequence(&dsi_ctx);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
+> +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +		regulator_bulk_disable(ARRAY_SIZE(novatek_supplies),
+> +				       ctx->supplies);
+> +		return ret;
+> +	}
+> +
+> +	drm_dsc_pps_payload_pack(&pps, &ctx->dsc);
+> +	mipi_dsi_picture_parameter_set_multi(&dsi_ctx, &pps);
+> +	mipi_dsi_compression_mode_multi(&dsi_ctx, true);
+> +	mipi_dsi_msleep(&dsi_ctx, 28);
+> +
+> +	return backlight_enable(ctx->backlight);
+
+[Severity: Medium]
+Will the DSI command failures accumulated in dsi_ctx.accum_err be silently
+ignored here? The mipi_dsi_*_multi() macros capture errors in the context,
+but the function returns the result of backlight_enable() without checking
+the accumulated error state.
+
+[Severity: Medium]
+If backlight_enable() returns an error, will the hardware state leak? The
+function exits without rolling back the regulators or the reset GPIO state
+that were enabled earlier in the function, and the DRM core will not call
+novatek_unprepare() on a prepare failure.
+
+> +}
+[ ... ]
+> +static int novatek_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct novatek *ctx =3D bl_get_data(bl);
+> +	u16 brightness =3D backlight_get_brightness(bl);
+> +
+> +	return mipi_dsi_dcs_set_display_brightness_large(to_primary_dsi(ctx),
+> +							 brightness);
+
+[Severity: Medium]
+Could this send DCS commands over a disabled DSI bus? If userspace modifies
+the backlight brightness via sysfs while the panel is off (such as after
+novatek_unprepare() has run), it looks like the commands are sent without
+verifying if the panel is currently prepared and powered.
+
+> +}
+[ ... ]
+> +static struct drm_dsc_config csot_pp8807hb1_1_dsc_cfg =3D {
+> +	.dsc_version_major =3D 1,
+> +	.dsc_version_minor =3D 2,
+> +	.slice_height =3D 20,
+> +	.slice_width =3D 476,
+> +	.slice_count =3D 2,
+> +	.bits_per_component =3D 10,
+> +	.bits_per_pixel =3D 8 << 4,
+> +	.block_pred_enable =3D true,
+> +};
+
+[Severity: High]
+Is this DSC configuration missing dynamic parameters? Fields like pic_width,
+pic_height, and rate-control parameters default to 0 and don't appear to be
+dynamically populated by the driver via drm_dsc_compute_rc_parameters()
+before being packed in novatek_prepare().
+
+[ ... ]
+> +static int novatek_probe(struct mipi_dsi_device *dsi)
+> +{
+[ ... ]
+> +	ctx->panel.prepare_prev_first =3D true;
+> +
+> +	drm_panel_add(&ctx->panel);
+> +
+> +	for (i =3D 0; i < num_dsi; i++) {
+> +		ctx->dsi[i]->lanes =3D desc->lanes;
+
+[Severity: High]
+Is it safe to expose the panel via drm_panel_add() before its initialization
+is complete? Calling this early allows consumers like DRM bridges to access
+the panel before ctx->dsi[i]->lanes is configured, devm_mipi_dsi_attach() is
+executed, or the backlight is set up.
+
+> +		ctx->dsi[i]->format =3D desc->format;
+> +		ctx->dsi[i]->mode_flags =3D desc->mode_flags;
+> +		ctx->dsi[i]->dsc =3D &ctx->dsc;
+> +		ret =3D devm_mipi_dsi_attach(dev, ctx->dsi[i]);
+> +		if (ret < 0) {
+> +			drm_panel_remove(&ctx->panel);
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to attach to DSI host\n");
+> +		}
+> +	}
+> +
+> +	if (desc->has_dcs_backlight) {
+> +		ctx->backlight =3D novatek_create_backlight(ctx);
+> +		if (IS_ERR(ctx->backlight))
+> +			return dev_err_probe(dev, PTR_ERR(ctx->backlight),
+> +					     "Failed to create backlight\n");
+
+[Severity: High]
+Does this leak the panel registration on error? The function returns
+directly without calling drm_panel_remove(&ctx->panel), leaving a dangling
+pointer in the global panel_list.
+
+> +	} else {
+> +		ret =3D drm_panel_of_backlight(&ctx->panel);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "Failed to get backlight\n");
+
+[Severity: High]
+Similarly, does this alternative error path also need to remove the panel
+from the global list to prevent a use-after-free?
+
+> +	}
+> +
+> +	return 0;
+> +}
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260630023439.2488=
+61-1-mitltlatltl@gmail.com?part=3D2
 
