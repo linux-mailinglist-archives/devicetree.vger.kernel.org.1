@@ -1,252 +1,180 @@
-Return-Path: <devicetree+bounces-317604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317592-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dH50H+iSQ2oocgoAu9opvQ
-	(envelope-from <devicetree+bounces-317604-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:56:56 +0200
+	id 2Ft8AAaSQ2qEcQoAu9opvQ
+	(envelope-from <devicetree+bounces-317592-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:53:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEBC66E2868
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:56:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F17B6E278A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:53:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sifive.com header.s=google header.b=DxXsIDdx;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317604-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317604-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=sifive.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=bmjYG3MT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317592-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317592-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1739B30584AB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:49:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A3DE430FC256
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:47:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66FD13EFD14;
-	Tue, 30 Jun 2026 09:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C443EAC74;
+	Tue, 30 Jun 2026 09:47:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163C62C237E
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 09:47:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBFA73E9C26
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 09:47:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782812866; cv=none; b=fojhlY7VBmCMlU4qpnEJM8vMGKgdu9HWCC83RaPX2nAQhP9KhGhIulN8CfJ8Ex+Ebh9en2AF9YEy9MaP7lLAb8UzmZqsgl11BxTgeS6bJ930VdJ/pWobiCUJg1PXClhA/uFSaVS+hoZUyYfx97AGZnSsbiqYdzRChNE2zv6AJVg=
+	t=1782812824; cv=none; b=SqthzdVCIcgwsUTO6n2lEc4u58eJ7nOmSFVtdMvAfLvd1bfNfWO1HNQ3lw8jfkQB8/A9mqUt1aJo1mZu85LztMZiXw+t10fv+mm/p66Lx2S9Lyey08eMmeA2f1g957SMQ3eSo2XGUUgAx6WXv277F3/KoghrgcnGJ6UyJQPrCXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782812866; c=relaxed/simple;
-	bh=iA92P89O8Fbr2v9RT5UY8ZtumXveAuMX3tRI4pD1FjM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CYCleo092zOGpuAEJBBf44BuMGJgZ/20k5/TOe7riAHZhqd4KJ9FAbhMgc2pWHmod4w4EQ26K5J72LDg8m/gglZpHcuHvOI8ODRLbIjsXVGNT6B1BdjskDVsto0OX/R5Y3POAeIQ2bTg15Wep0X2vzG8ZzA78BbUGTARwjl/fXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=DxXsIDdx; arc=none smtp.client-ip=209.85.214.171
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2c9d87b1f9eso14299865ad.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:47:45 -0700 (PDT)
+	s=arc-20240116; t=1782812824; c=relaxed/simple;
+	bh=LsjrC7hDGVCOoXjAMQ6g5qbajMV2gM1v+LBhCbwDs8Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=S2apfAv4shTDb5+WjW+VsZbUta2WNET8K369AWW7TFyTUbDDCvHrPk4ThHPM+FOBb4QWKFq7v8WErEycUVHyuZulBpY0Oqth4Es942/0ZAbr6gvfTKFGO4rMZLQSvmrTGTlJ3E5JEOqQ0UEwuFapSEtUyFJWS6Pg8tuszc+6Ju4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bmjYG3MT; arc=none smtp.client-ip=209.85.128.51
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-493b779003fso4910835e9.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:47:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1782812864; x=1783417664; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fCd0Rjz6Hwu0tTfmpV0ijwjuzSLgPDCGqWDTMjcsJq8=;
-        b=DxXsIDdxyldu3IxGju8kNYUT5GNMBUihalIYpj6d25Bc2pwB9Vm8c9x5vR3j4GP9fK
-         QF82b6ao4OIvmuo+k2wDyJN71otl18u4FCDwmWw7X12E9LjvY+C6kKfXAeOpfUOnh2by
-         frVMAB0vsXh0AxqTBaFKtXmKj/1gGfRE58pKlIgl3PjUyxtFzlDAqDHMTQtE6SciaAdZ
-         3Zfau3aX+Wgc7a6/YYj/BeVqfQ4igEQNbCJL0aK/E+Y6kPoST+JJ22Q/UYqLLPY5D5W3
-         eKhlkDFXmzgWLttcsS3jvJztj3YEHbVWKRJoEXDUYH/VtY38H+tkDSwN3DdgohdC0zGM
-         598w==
+        d=gmail.com; s=20251104; t=1782812821; x=1783417621; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4TYHjDbbP6M0n9F6tX9dbKAlLVBmbBYfjjSGS7CObkc=;
+        b=bmjYG3MTVYCeUKt4A33sVUvDJc3AUBvYxV7SQBBk94XnkFLMwIuodq+vC3LGLyJh/K
+         oiw0OrIAVbKXOiTc2UMjGpCZR0kFzD5cffMG5qXum3hP5rmoY2C3PaeYQgnIFJkcDXrW
+         1W2lCi7ZoVxJwN8shSSDefezoiCHcxTvg3X8jURtXZ99g2xzJWVz00/O6FKTmuKg/kUe
+         GAueu2rrjEzsIFc09D26M+hrRPmk4nKMeqFaBVhjQyV5jpEkNECFEkujvZfZz8ThuQdc
+         kdaFFtQUp+v7SNldBSLD8o/c+PC+FoxVowWUu5uTTbsMAjfKAKgFWBDl+23roW5iwF00
+         ujNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782812864; x=1783417664;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=fCd0Rjz6Hwu0tTfmpV0ijwjuzSLgPDCGqWDTMjcsJq8=;
-        b=tW4+JFnikj/jTs/xpLrE2+GGbKj6GuJPMDXN97KHyOZLUEb7n4WHxQgBUNr56aQlN2
-         zMniC7PQ+lvcB2/lQfXDba9AsJOWNPL/veaTPvCx8ibL09NKRrlhBUYaQPeEOrC4jysF
-         prXXVflOpk987QF11Ryv33h3A/EWPnxncR6xhLfM6zdJwWDcC3pAuBtvYO+SbdkK2VRY
-         sczVjLfaR+5YgVL7+Q9+rBuyMY7Pa8aXE32OK6BUUdHe0WtpH3NnE7ZdEzLfPHtmj9lk
-         7C+Cisxy5hBl82EorSd+WcwVxFsrBw97d8v73XRE67K3HqMcI8flNtbnWOIJFXN8iBO/
-         qlng==
-X-Forwarded-Encrypted: i=1; AHgh+RonPEX3AK72lv3cCH/z5rLMg5QkcqKJ2YukZKGHOZ2Kdw0e42d/bNCNq77FpmWbMdVdanJhxEmalMZW@vger.kernel.org
-X-Gm-Message-State: AOJu0YzY4emZqc8B5+EH7vk8V4fn4oMdKyG4mdnM2Z3HnPltoDOYWyYl
-	JH01o1v/EkQg8/TxPIgSuBCR5io2Qe4NjaDAdi0OnNW8fZP72jkqaEcgOCv6A4/bnqWxi4vIloW
-	YxH8M9gUBkZY5V55XH05FL1W7/ps0YlNkHznAN3+9DZtOKJwZ/pwmdQbF1zABrzQEe3I6ksMQ/E
-	d8t+F2LKBrDv6J5UP5wsZsmf+eFN1S9SHKyr9uNJO/l2MW4KprbjTfBA==
-X-Gm-Gg: AfdE7ckwJqacOv5qNSn8RCDFNcMF1NuWg620z+y0zgG87UbT4V9nyJSiVBek4c2UGhY
-	z+/JRYI/VlEtU8njj1GGlSKJTcauIWc5QMSHbWnCB51FfwZndj8i2sjOlw93tNq/r/wMrQAHM7/
-	LVi2VrsNHdMFydLuitgmOui9UKT8aHiq2J9LPyYVPb035mji6el90GeXn7oLi2OvdkpFhb0bFw+
-	id4IcqWS3srThCTtp9QpIQAO75fyvDiToWAHERQLsWKdOBOcHeLR1SHG92Ww00Wz/pnApce8u80
-	xOr2CgVYeVTbmJM2TjWFf30m2A1yGUywclQkbW1Oqdx/GqHBmFzBvE0WAdQwtTa+3HVxhMwQdaR
-	w1OSFfT9ubL3+tvFzeITM1m8cLhCJb/l/Udza/Dr1MHVWxfGxkmINq+Qsiy/iLAuyUO4pQ0lvCu
-	CX9NUyaLNkf6tV2/6H6L54dDzwteSSXFNQqkjLihLd7g==
-X-Received: by 2002:a17:903:94b:b0:2bd:8395:fedd with SMTP id d9443c01a7336-2ca2ed6765amr21739245ad.37.1782812864165;
-        Tue, 30 Jun 2026 02:47:44 -0700 (PDT)
-Received: from EricL-ThinkPadX1-TW.local ([136.226.240.181])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ca37c87bb8sm10144675ad.30.2026.06.30.02.47.39
+        d=1e100.net; s=20251104; t=1782812821; x=1783417621;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4TYHjDbbP6M0n9F6tX9dbKAlLVBmbBYfjjSGS7CObkc=;
+        b=U/8+MDVGve4vF8Y434LG6B6pzDQTcJXZyDjd+BIh5/pt2keldP23Afy1RUXM23XgcM
+         +4OMRHEYmtU9Q7djbOoRqlUKMIqw9NPk3Zw9yh/s8fjuIVho1MALYmLt6qnfMuD6q8Ig
+         JEBaHo3eGHkz6eZz43NvTQkq3aLbIn3aaODQ1p+PPU0Mi1wBJ+KwwaOSuSRyNXdJISoE
+         sJ4QAtriqkSpfV6p6D7m9FuLGDjReb0xM6T/H+2It+DF1NmKXMtNdtSvCeJz9+Kdy1NQ
+         0r0e5FG1HX5usPdCKH8QwtHGZY3rgIkIgp0qQAX/KxOflmKjy57PDBxUsv1hHUHoHORb
+         QZUg==
+X-Forwarded-Encrypted: i=1; AFNElJ87cx1advGp8LoOIpkiSMLD1KTgk7OD0KKPbFsAIV6s5mxbLD3XVLRyPPXEoG/qru9WmdsXsSGwg2Qk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhK8hAQo1wHpYm7E3Ztjd7Z67V0hMoYbqs3eWs5EfaOZFStFHS
+	vCkyuDY0g1u3WZ3sW/+BPJTikIOSC1DT5M0kzogD9c+5LNhRC75aEbJh
+X-Gm-Gg: AfdE7ckKXjklOo8CuQW3u0mtnXPm68L6dhMZWKVQMPnpsM3tENw/0XOwOGTYCyhxRzC
+	CE4vLiKl7oNFZs2I/hI4FYnyvvLNk+oH+uHPHk/UHYOk3cYAh6pRopzQf1kExoEBMY6KJnJ6TDR
+	+Px1g0PgQyHjGXV52MqliKHv8WfVWVvMnj0OSXmUjEXGPyCmlenoO6He1FdA+UcCo7neAAk4YDm
+	jYCadhrbW78p2aKSzb4RY56ax6Lk0iFQGIRm8AqDpHMVc0+wNdOoJhlnOfmlwxfnmCeakJdMmcP
+	wq1c6DenpmCTuJHu5wWcSmqFRlIJ1zsPFwix6JnnNk35FfD5DwEPIXXgCPsn2q6y3AOEFCxGu9O
+	BU1iXujTJ5P7lWI4vSM3/d6w1lvX6nuugHL4R/25ANZohZCuZltkMGxFNSEAxg+nYOGrEMIa+LI
+	gKKqx6Ryx7/IyD43lQE5x92YfYIdFWzznF4LbEwSgIuwPrg60yJQSPH62zC0HXq1cFCvekXwOQo
+	I16L1jf8OWpuCR+L+k0jg18RQ==
+X-Received: by 2002:a05:600c:a086:b0:493:a607:f3b8 with SMTP id 5b1f17b1804b1-493b8146e9bmr42929345e9.0.1782812821044;
+        Tue, 30 Jun 2026 02:47:01 -0700 (PDT)
+Received: from Lord-Beerus.station (net-93-144-65-248.cust.dsl.teletu.it. [93.144.65.248])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4756778f015sm6552725f8f.31.2026.06.30.02.46.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jun 2026 02:47:43 -0700 (PDT)
-From: Eric Lin <eric.lin@sifive.com>
-Date: Tue, 30 Jun 2026 17:46:35 +0800
-Subject: [PATCH RFC 12/12] rvtrace: Reset RAM sink write pointer on every
- context switch
+        Tue, 30 Jun 2026 02:47:00 -0700 (PDT)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Josua Mayer <josua@solid-run.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
+	Maud Spierings <maudspierings@gocontroll.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Subject: [PATCH v1 0/3] Add support for Variscite VAR-SOM-MX8QM and Symphony board
+Date: Tue, 30 Jun 2026 11:46:53 +0200
+Message-ID: <cover.1782812572.git.stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260630-dev-ericl-riscv_trace_support_v3-new_sifive-v3-v1-12-c9c1ffc64e4b@sifive.com>
-References: <20260630-dev-ericl-riscv_trace_support_v3-new_sifive-v3-v1-0-c9c1ffc64e4b@sifive.com>
-In-Reply-To: <20260630-dev-ericl-riscv_trace_support_v3-new_sifive-v3-v1-0-c9c1ffc64e4b@sifive.com>
-To: Mayuresh Chitale <mchitale@gmail.com>, Anup Patel <anup@brainfault.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel.holland@sifive.com>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Greentime Hu <greentime.hu@sifive.com>, 
- Eric Lin <dslin1010@gmail.com>, Eric Lin <eric.lin@sifive.com>, 
- Nick Hu <nick.hu@sifive.com>, Vincent Chen <vincent.chen@sifive.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782812801; l=4041;
- i=eric.lin@sifive.com; s=20260630; h=from:subject:message-id;
- bh=iA92P89O8Fbr2v9RT5UY8ZtumXveAuMX3tRI4pD1FjM=;
- b=lsjfiPDk1AqzyEu8JGuSbv04BwI0yhfgIRKiFCOzihuc3tq96944PXrWZW1Mj/zfGVzQhjkBX
- Mhdd2tOT0HLC5GYyT/7/pzcoPOsKXN8HnIk4ItWwXsKEBB0vu/IlQNE
-X-Developer-Key: i=eric.lin@sifive.com; a=ed25519;
- pk=RLPQN6uNJ1cSM8GhP+L++2j3pf5ohznFbkNdwIO1XDw=
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
-	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-317604-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mchitale@gmail.com,m:anup@brainfault.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:samuel.holland@sifive.com,m:alexander.shishkin@linux.intel.com,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:greentime.hu@sifive.com,m:dslin1010@gmail.com,m:eric.lin@sifive.com,m:nick.hu@sifive.com,m:vincent.chen@sifive.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,brainfault.org,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,sifive.com,linux.intel.com];
-	FORGED_SENDER(0.00)[eric.lin@sifive.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,sifive.com,gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-317592-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:daniel.baluta@nxp.com,m:dario.binacchi@amarulasolutions.com,m:josua@solid-run.com,m:alexander.stein@ew.tq-group.com,m:ernest.vanhoecke@toradex.com,m:maudspierings@gocontroll.com,m:francesco.dolcini@toradex.com,m:hvilleneuve@dimonoff.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com,amarulasolutions.com,solid-run.com,ew.tq-group.com,toradex.com,gocontroll.com,dimonoff.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eric.lin@sifive.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sifive.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sifive.com:dkim,sifive.com:email,sifive.com:mid,sifive.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EEBC66E2868
+X-Rspamd-Queue-Id: 4F17B6E278A
 
-Currently, rvtrace_ramsink_copyto_auxbuf() only resets the RAM sink
-Write Pointer (WP) when a buffer wrap occurs. If no wrap occurs, the
-WP is not reset and is left at its advanced position.
+This patch series adds support for the Variscite VAR-SOM-MX8 QuadMax
+system on module and the Symphony carrier board.
 
-This creates a highly non-deterministic tracing environment. For example,
-consider a scenario where a user traces a program: On the first run, the
-trace data fits within the buffer (no wrap) and the output is perfectly
-captured. However, the WP is now left near the end of the RAM sink. If
-the user runs the exact same program a second time, the hardware resumes
-writing from this advanced WP. The buffer quickly wraps around,
-prematurely overwriting the new trace data and resulting in unexpected,
-incomplete output.
+The series includes:
+- SOM device tree with on-module peripherals
+- Symphony carrier board device tree with board-specific features
 
-Fix this by unconditionally resetting the WP to the base address of the
-RAM sink at the end of every data copy. This guarantees that every time
-a trace session starts or a task is scheduled in, it has the full
-capacity of the RAM sink available.
+The implementation follows the standard SOM + carrier board pattern
+where the SOM dtsi contains only peripherals mounted on the module,
+while carrier-specific interfaces are enabled in the board dts.
 
-Consequently, tracking `prev_wp` is no longer necessary for calculating
-offsets in the non-wrap case, so the data copy logic has been simplified
-to always read from the start of the buffer.
+Stefano Radaelli (3):
+  dt-bindings: arm: fsl: add Variscite VAR-SOM-MX8 QuadMax Boards
+  arm64: dts: freescale: Add support for Variscite VAR-SOM-MX8 QuadMax
+  arm64: dts: imx8qm-var-som: Add support for Variscite Symphony board
 
-Co-developed-by: Nick Hu <nick.hu@sifive.com>
-Signed-off-by: Nick Hu <nick.hu@sifive.com>
-Co-developed-by: Vincent Chen <vincent.chen@sifive.com>
-Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
-Signed-off-by: Eric Lin <eric.lin@sifive.com>
----
- drivers/hwtracing/rvtrace/rvtrace-ramsink.c | 25 +++++++++++--------------
- 1 file changed, 11 insertions(+), 14 deletions(-)
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8qm-var-som-symphony.dts | 488 ++++++++++++++++
+ .../boot/dts/freescale/imx8qm-var-som.dtsi    | 529 ++++++++++++++++++
+ 4 files changed, 1024 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-var-som-symphony.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-var-som.dtsi
 
-diff --git a/drivers/hwtracing/rvtrace/rvtrace-ramsink.c b/drivers/hwtracing/rvtrace/rvtrace-ramsink.c
-index d89cdcb971dd..8e9cbaa70f16 100644
---- a/drivers/hwtracing/rvtrace/rvtrace-ramsink.c
-+++ b/drivers/hwtracing/rvtrace/rvtrace-ramsink.c
-@@ -59,7 +59,6 @@ struct rvtrace_ramsink_regs {
-  * @stop_on_wrap: Whether to stop tracing when buffer wraps
-  * @mem_acc_width: Memory access width in bytes
-  * @regs:         Pointer to register offset definitions
-- * @prev_wp:      Previous write pointer position (for incremental copies)
-  */
- struct rvtrace_ramsink_priv {
- 	size_t size;
-@@ -70,7 +69,6 @@ struct rvtrace_ramsink_priv {
- 	bool stop_on_wrap;
- 	int mem_acc_width;
- 	const struct rvtrace_ramsink_regs *regs;
--	u64 prev_wp;
- };
- 
- /**
-@@ -202,25 +200,25 @@ size_t rvtrace_ramsink_copyto_auxbuf(struct rvtrace_component *comp,
- 	wrap = wp & RVTRACE_RAMSINK_WPLOW_WRAP;
- 	wp &= ~RVTRACE_RAMSINK_WPLOW_WRAP;
- 	if (wrap) {
--		rvtrace_write32(comp->pdata, lower_32_bits(priv->start),
--				regs->wp_low);
--		rvtrace_write32(comp->pdata, upper_32_bits(priv->start),
--				regs->wp_high);
- 		src.cur = wp - priv->start;
--		priv->prev_wp = priv->start;
- 		/*
--		 * There is no way to tell if trRamWp wrapped around more than once. As a
--		 * result priv->prev_wp can't be used and the entire buffer must be copied
--		 * even though some data might be duplicated.
-+		 * There is no way to tell if trRamWp wrapped around more than once.
-+		 * The entire buffer must be copied even though some data might be duplicated.
- 		 */
- 		bytes = priv->size;
- 	} else {
--		src.cur =  priv->prev_wp - priv->start;
--		bytes = wp - priv->prev_wp;
--		priv->prev_wp = wp;
-+		src.cur = 0;
-+		bytes = wp - priv->start;
- 	}
- 
- 	tbuf_to_pbuf_copy(&src, &dst, bytes);
-+
-+	/* Reset WP after trace data copy to perf AUX buf */
-+	rvtrace_write32(comp->pdata, lower_32_bits(priv->start),
-+			regs->wp_low);
-+	rvtrace_write32(comp->pdata, upper_32_bits(priv->start),
-+			regs->wp_high);
-+
- 	dev_dbg(&comp->dev, "Copied %zu bytes\n", bytes);
- 	return bytes;
- }
-@@ -258,7 +256,6 @@ static int rvtrace_ramsink_setup_buf(struct rvtrace_component *comp,
- 		return -ENOMEM;
- 
- 	priv->end = priv->start + priv->size;
--	priv->prev_wp = priv->start;
- 	if (priv->end <= start_min || priv->start >= limit_max) {
- 		dma_free_coherent(pdev, priv->size, priv->va, priv->start);
- 		dev_err(&comp->dev, "DMA memory not addressable by device\n");
 
+base-commit: 6d1a5ede11552f559ac02b31af03bfaa67f1e91f
 -- 
-2.34.1
+2.47.3
 
 
