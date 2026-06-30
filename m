@@ -1,341 +1,198 @@
-Return-Path: <devicetree+bounces-317351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317353-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2+5uF5YrQ2rsTAoAu9opvQ
-	(envelope-from <devicetree+bounces-317351-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:36:06 +0200
+	id DEMbCMwrQ2oXTQoAu9opvQ
+	(envelope-from <devicetree+bounces-317353-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:37:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 552A56DFCFA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 429F76DFD15
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 04:36:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=big3inVH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317351-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317351-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=ml7Kem8C;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317353-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317353-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D5F2A3008D2F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 02:35:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 633BF30095CF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 02:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89027238150;
-	Tue, 30 Jun 2026 02:35:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7F4A367B87;
+	Tue, 30 Jun 2026 02:36:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BED21E5B88
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:35:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A270827FB0E;
+	Tue, 30 Jun 2026 02:36:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782786956; cv=none; b=jO91ANINkS1b9yRwtabxgwyWEaCOG+GMPTJio2Z/yfh/wdCYJHmHmRiEotXBEC/iDbQ8KJqUBwJ9CMvBzJw/DpGHgpdx67yNERqmfBZhQC6yYJb0axSgRaUuE5KANXNsHXpkU4hJrpTT3z24uG1RZw/7Z2hv9gXvUfLNOdPsbD8=
+	t=1782787012; cv=none; b=QRrjqhoBZaO5PMOkHCOjQHyNDMf9UTPsX0/j2XPIpup8hkUeU6RKyCCkA1hZM2Hk8uEveRPbOsogs4l1sFgcElHjzRT9ja4T6wjWRDfpTwz50Rxrvt0N0riNuc0ECRE4O//03yvD4VdGvK+0/C4boQ2oBS62UVwYMwrlSM5p+uE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782786956; c=relaxed/simple;
-	bh=JDm80PARaz8qhdcMsEM8DQ6kPwWmZTJalHdXNJIbWok=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=FO+O8tiNHZPb7z7r9WepTxdwVE4wYQyKYT07lsPBFOzd9DlE1dgXa6ECyj163y0rpM1OXKuvnM3z//mv4vbrhZQMXrX21I+7jd9TS4Ra0LUcHSgkwZxexpfr52ItbY8HRZ/bOYAriqlXSYyhof9sMou/Vag48ZmPvjFHnK3FGZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=big3inVH; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82CB91F000E9;
-	Tue, 30 Jun 2026 02:35:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782786954;
-	bh=DN51B/0E7mV8Fc4Y4R2TuXGaqK4Y7q8R6WUEeKr+3h4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=big3inVHqqvpDToRUwpIDlGEYkQG6HUHDbcVsfQ/r8WAD/nYucqotnLy7pnyriKWZ
-	 1LAHIGiTVCbPwCi6mw4grifKvC0biuPvY2SAlJQv7hNU8d9XIRwrZRrXAa4b/rj7MQ
-	 YNXAcdqZNmyDQYoJwbHTjOMQheacO6Vu726uyIuwbLv2Kf61lo9l1uMnYZluOtPgv7
-	 ltv/4XXJOk+Trm7zbX7+N4LtlpDD7/znj3F47D8lmZdN4eQk6/705bW0Jr8iVhxs4l
-	 KX7AJnOcwv4zyy1wYMaIySCwQRgatSPA8iDYEbTTezmKHP7HJetRdh79/WWh0sc28E
-	 zPGeHubZINixQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 2/2] ASoC: codecs: nau8360: Add support for NAU83G60
- amplifier
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Neo Chang" <YLCHANG2@nuvoton.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260630021510.821919-3-YLCHANG2@nuvoton.com>
-References: <20260630021510.821919-1-YLCHANG2@nuvoton.com>
- <20260630021510.821919-3-YLCHANG2@nuvoton.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 30 Jun 2026 02:35:54 +0000
-Message-Id: <20260630023554.82CB91F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782787012; c=relaxed/simple;
+	bh=zKhPqDASnTI0/BJz6iMX5RR+f5ilxmRBxE8PYsuk2Js=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rJAw4M9ZaHd452X+KPj5L3paVzHaaVa4mrOEyIZEOnSEX9rOognl8xfj42wcJKm6iTocCOE48IKDgAm/1N6ZDfHsiOsfuyCRfJMqFf2MgefleJcfXXHRmAlxkesvD/lkP9G8xqSLWCoSK0XEA5geKmBBcaB/5mLxMk0bnSZYYqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ml7Kem8C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4B9B9C19425;
+	Tue, 30 Jun 2026 02:36:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1782787012;
+	bh=zKhPqDASnTI0/BJz6iMX5RR+f5ilxmRBxE8PYsuk2Js=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ml7Kem8CcP2yo2ycdlzBrFSXqZvUr/3+ZCRrAsCgO3b2rg189V5s0g71f6GcmMXl+
+	 ZlIkDhLXlAhAPMdCeycd/mHWjvPErx4VLaiUL+QTSyh6Wj8T3nBcSxMwUSJ1PTPUHg
+	 /8ZM4BuRwUCKsKGCNJ8geqF6VZ+IkTM/twdXGDH2QR0hmV4Qh7l7u6piech6g3s0ML
+	 zB2PZHrEbQSCrBIFVolIq64uBIWqBLzBlonTvSMAdKvGwKe0hBwTw9rxEKvsliMnnx
+	 wYWJK52U2u9iKqBA/ZXBSLATMHGW8aA/wBHMMRshWot9viQcqmv2Vtf85wRw11J701
+	 YPLI9p9E4k5nQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 32336C43458;
+	Tue, 30 Jun 2026 02:36:52 +0000 (UTC)
+From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Subject: [PATCH v5 0/2] clk: amlogic: Add A9 peripherals clock controller
+Date: Tue, 30 Jun 2026 10:36:47 +0800
+Message-Id: <20260630-a9_peripherals-v5-0-bc4019730354@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL8rQ2oC/3XP0QqDIBTG8VcJr+c4mmXtau8xxnB6KqEydMhG9
+ O6zrhqxy/+B7wdnJgG9xUAu2Uw8RhusG1MUp4zoTo0tUmtSEw68hBJyqurHlCZTh171gQrOBMp
+ aQmE0SaPJY2PfG3i7p+5seDn/2fzI1+tfKnIKFJE9Kw2KYamvauhda/VZu4GsWMx3AIMDkCfAg
+ FSygqpoJDsCYg9UB0AkoEHGwaBIb8lfYFmWL4HrEfswAQAA
+X-Change-ID: 20260603-a9_peripherals-4214e79705dc
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782787009; l=2655;
+ i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
+ bh=zKhPqDASnTI0/BJz6iMX5RR+f5ilxmRBxE8PYsuk2Js=;
+ b=XtN/aCd/urNFmmo7mfVr+3xALfNzvK2Gm1IYfdwvK3tcJeOrWxbPLk/eQ0gF4Sd0DuxhVVkE1
+ 2xmMundgxahBEW2P7rImFlTOX8dodGYINd+5q1IjjpJTeIT6GNkqw6s
+X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
+ pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
+X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
+ auth_id=735
+X-Original-From: Jian Hu <jian.hu@amlogic.com>
+Reply-To: jian.hu@amlogic.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317351-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:YLCHANG2@nuvoton.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317353-lists,devicetree=lfdr.de,jian.hu.amlogic.com];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:jbrunet@baylibre.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:xianwei.zhao@amlogic.com,m:khilman@baylibre.com,m:martin.blumenstingl@googlemail.com,m:linux-amlogic@lists.infradead.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:jian.hu@amlogic.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,kernel.org,amlogic.com,googlemail.com];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	HAS_REPLYTO(0.00)[jian.hu@amlogic.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nuvoton.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amlogic.com:replyto,amlogic.com:email,amlogic.com:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 552A56DFCFA
+X-Rspamd-Queue-Id: 429F76DFD15
 
-Thank you for your contribution! Sashiko AI review found 7 potential issue(=
-s) to consider:
-- [High] Asynchronous firmware loading via request_firmware_nowait() causes=
- a Use-After-Free when the device is unbound.
-- [High] Missing NULL check on strstr() result causes a kernel panic if the=
- ALSA control name is truncated by an ASoC prefix.
-- [Medium] device_property_read_string() always returns the first array ele=
-ment, causing all DSP cores to use identical firmware.
-- [Medium] Mathematical invalidity of TDM TX byte offsets for PDM Loopback =
-when changing channel length.
-- [Medium] Concurrent hardware state corruption due to missing locking arou=
-nd DSP protocol communication during system resume.
-- [Medium] Race condition between nau8360_anc_put() and nau8360_dac_mux_put=
-_enum() leads to inconsistent PEQ band configuration.
-- [Low] The DSP KCS setup result is retrieved from hardware but its value i=
-s completely ignored, masking configuration failures.
---
+This series adds Amlogic A9 peripherals clock support,
+including dt-binding and peripherals clock driver.
 
-commit 90fa475e6f47a06dabf426d4caf28ef96fe5ed05
-Author: Neo Chang <YLCHANG2@nuvoton.com>
+Note that this driver depends on the A9 PLL driver, which is not yet
+upstream. The Meson PLL framework is currently undergoing refactoring,
+and the A9 PLL driver will be submitted as a follow-up series after
+that work has been completed.
 
-ASoC: codecs: nau8360: Add support for NAU83G60 amplifier
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+Changes in v5:
+- Include <linux/module.h>.
+- Add missing '0' suffixes to some clocks.
+- Fix typo: "encorder1" -> "encoder1".
+- Fix the parent clock for a9_hdmitx1_pixel.
+- Link to v4: https://lore.kernel.org/r/20260618-a9_peripherals-v4-0-fe120de44e77@amlogic.com
 
-Add support for the Nuvoton NAU83G60 audio codec. The NAU83G60 is a
-stereo 30W+30W smart amplifier with an integrated low-latency
-Advanced Audio DSP.
+Changes in v4:
+- Expose channel 3 for gen_clk.
+- Add missing '0' suffixes to somes.
+- Use helper macro for vclk clocks definitions.
+- Drop forward declaration.
+- Drop CLK_HW_INIT* and revert to explicit clock declarations.
+- Fix can clock channel number comment.
+- Rename enc clocks to encoder0/encoder1.
+- Link to v3: https://lore.kernel.org/r/20260610-a9_peripherals-v3-0-d07a78085f71@amlogic.com
 
-> diff --git a/sound/soc/codecs/nau8360-dsp.c b/sound/soc/codecs/nau8360-ds=
-p.c
-> index 0000000000000..d0483805607d4 100644
-> --- /dev/null
-> +++ b/sound/soc/codecs/nau8360-dsp.c
-[ ... ]
-> @@ -310,6 +310,23 @@ static void nau8360_dsp_fw_cb(const struct firmware =
-*fw, void *context)
->  {
->  	struct nau8360_dsp_ctx *dsp_ctx =3D context;
->  	struct snd_soc_component *cp =3D dsp_ctx->cp;
->  	struct nau8360 *nau8360 =3D snd_soc_component_get_drvdata(cp);
+Changes in v3:
+- Add "depend on A9 pll" instructions in the cover-letter.
+- Move COMPILE_TEST after 'depends on ARM64' reported by sashiko-bot.
+- Fix usb_48m_pre_sel's parent reported by sashiko-bot.
+- Fix gen_div width reported by sashiko-bot.
+- Fix hdmitx1_pixel's parent reported by sashiko-bot.
+- Link to v2: https://lore.kernel.org/r/20260603-a9_peripherals-v2-0-ee1b8c0a1e6c@amlogic.com
 
-[Severity: High]
-Can this sequence allow a use-after-free if the device is unbound?
+Changes in v2:
+- Split the A9 clock driver and send the peripherals clock separately.
+- Add COMPILE_TEST in Kconfig.
+- Drop the 'optional'.
+- Rename apb4 to soc.
+- Sort the header file.
+- Rename hifi to hifi0.
+- Use CLK_HW_INIT_PARENTS_DATA to describe clk_init_data.
+- Use CLK_HW_INIT_HW to describe clk_init_data.
+- Use CLK_HW_INIT_PARENTS_HW to describe clk_init_data.
+- Link to v1: https://lore.kernel.org/all/20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com/
 
-If a user unbinds the I2C device (e.g., via sysfs) while the background
-firmware worker is still pending, the nau8360 struct and the component are
-freed via devres. When the firmware callback eventually runs, it attempts to
-dereference the freed cp pointer and acquires a lock in the freed nau8360
-struct.
+---
+Jian Hu (2):
+      dt-bindings: clock: Add Amlogic A9 peripherals clock controller
+      clk: amlogic: Add A9 peripherals clock controller driver
 
-It looks like the I2C driver lacks a .remove callback, meaning there is no
-synchronization point to wait for or cancel the asynchronous firmware worker
-before device resources are reclaimed.
+ .../clock/amlogic,a9-peripherals-clkc.yaml         |  164 ++
+ drivers/clk/meson/Kconfig                          |   15 +
+ drivers/clk/meson/Makefile                         |    1 +
+ drivers/clk/meson/a9-peripherals.c                 | 2095 ++++++++++++++++++++
+ .../clock/amlogic,a9-peripherals-clkc.h            |  351 ++++
+ 5 files changed, 2626 insertions(+)
+---
+base-commit: ca89c88bcf69daca829044c638a8163d5ce47af0
+change-id: 20260603-a9_peripherals-4214e79705dc
 
-[ ... ]
-> @@ -341,6 +358,10 @@ static int nau8360_dsp_chan_kcs_setup(struct snd_soc=
-_component *cp,
->  	struct device *dev =3D cp->dev;
->  	int ret, status =3D 0;
-> =20
->  	ret =3D nau8360_dsp_get_cmd_put(cp, dsp_addr,
->  			NAU8360_DSP_CMD_GET_FRAME_STATUS, &status);
+Best regards,
+-- 
+Jian Hu <jian.hu@amlogic.com>
 
-[Severity: Medium]
-Could this unlocked I2C command to the DSP cause hardware state corruption
-during system resume?
 
-During system resume, the PM thread resets the DSP and calls
-nau8360_dsp_chan_kcs_setup(), which interacts with the DSP via
-nau8360_dsp_get_cmd_put(). The PM thread executes these commands without
-holding nau8360->lock.
-
-If a background firmware loading worker from a previous request was
-suspended and resumes simultaneously (or is running on another CPU), its
-locked DSP communications will interleave with the unlocked ones from the
-PM thread, destroying the expected DSP I2C fragment protocol.
-
-[ ... ]
-> @@ -481,6 +502,10 @@ static int nau8360_dsp_kcs_setup(struct snd_soc_comp=
-onent *cp, int offset, int s
->  		addr_offset +=3D data_len;
->  		data_rem -=3D data_len;
-> =20
->  		/* checking KCS result */
->  		ret =3D nau8360_dsp_exec_command(cp, NAU8360_DSP_CMD_GET_KCS_RSLTS,
->  			0, NAU8360_DSP_DATA_BYTE, NULL,
->  			NAU8360_DSP_DATA_BYTE, &kcs_rst, dsp_addr);
->  		if (ret)
->  			return ret;
-
-[Severity: Low]
-Is the DSP KCS setup result retrieved from hardware but its value completely
-ignored?
-
-While the I2C transaction success is verified via the return value, the
-actual hardware response stored in kcs_rst is never checked. Does this
-silently mask algorithmic configuration failures in the DSP?
-
-> diff --git a/sound/soc/codecs/nau8360.c b/sound/soc/codecs/nau8360.c
-> index 0000000000000..f4dc351a4030c 100644
-> --- /dev/null
-> +++ b/sound/soc/codecs/nau8360.c
-[ ... ]
-> @@ -288,6 +288,14 @@ static int nau8360_anc_put(struct snd_kcontrol *kcon=
-trol,
->  	if (ret !=3D 1)
->  		return ret;
-> =20
->  	nau8360->anc_enable =3D ucontrol->value.integer.value[0];
->  	if (nau8360_dsp_active(cp))
->  		value =3D nau8360->anc_enable ? NAU8360_PEQ_BAND_15 : NAU8360_PEQ_BAND=
-_12;
->  	regmap_update_bits(nau8360->regmap, NAU8360_R9D_PEQ_CTL, NAU8360_PEQ_BA=
-ND_MASK,
->  		value << NAU8360_PEQ_BAND_SFT);
-
-[Severity: Medium]
-Could a Time-Of-Check to Time-Of-Use race condition occur between
-nau8360_anc_put() and nau8360_dac_mux_put_enum() that leads to an
-inconsistent PEQ band configuration?
-
-nau8360_anc_put() modifies nau8360->anc_enable and reads
-nau8360_dsp_active() without holding a driver-specific lock.
-Concurrently, nau8360_dac_mux_put_enum() updates the DAC path
-(changing the result of nau8360_dsp_active()) and calls
-nau8360_dsp_switch(), which reads nau8360->anc_enable locklessly.
-
-Both execute under ALSA's controls_rwsem read lock, allowing concurrent
-execution by two userspace threads. nau8360_anc_put() might calculate a tar=
-get
-register value based on the DSP being active, but before it writes to the
-hardware, nau8360_dac_mux_put_enum() could disable the DSP. This leaves the
-NAU8360_R9D_PEQ_CTL register with a value appropriate for an enabled DSP,
-even though the DSP path is disabled.
-
-[ ... ]
-> @@ -375,6 +383,9 @@ static inline int nau8360_peq_regaddr(const char *id_=
-name)
->  	int reg, band_num, dsp_addr =3D NAU8360_DSP_ADDR_BYNAME(id_name);
->  	char *band =3D strstr(id_name, "BIQ");
-> =20
->  	if (kstrtoint((band + 3), 10, &band_num))
-
-[Severity: High]
-Can strstr() return NULL here and cause a kernel panic when its result is
-dereferenced?
-
-The ASoC subsystem permits machine drivers to apply a sound-name-prefix from
-the device tree to control names. If a long prefix causes the control name =
-to
-exceed the ALSA maximum length of 44 characters, the string will be truncat=
-ed.
-
-If truncation removes the "BIQ" substring, strstr() returns NULL. The code
-then unconditionally executes pointer arithmetic (band + 3) and dereference=
-s it,
-which crashes the kernel when unprivileged userspace accesses the affected =
-PEQ
-control.
-
-[ ... ]
-> @@ -439,6 +450,9 @@ static int nau8360_pdm_slot_get(struct snd_kcontrol *=
-kcontrol,
->  	struct snd_soc_component *cp =3D snd_kcontrol_chip(kcontrol);
->  	struct soc_enum *e =3D (struct soc_enum *)kcontrol->private_value;
->  	int scale, slot =3D snd_soc_component_read(cp, e->reg);
-> =20
->  	compute_slotx_scale(cp, &scale);
->  	slot =3D ((slot >> e->shift_l) & e->mask) / scale;
-
-[Severity: Medium]
-Will this return a mutated, invalid slot index to userspace if the TDM chan=
-nel
-length changes dynamically?
-
-Because the PDM Loopback TX slots (PDM_L and PDM_R) are handled independent=
-ly
-and do not exist in the tdm_tx_func_slot cache array, nau8360_tdm_apply()
-fails to update their hardware offsets. When nau8360_pdm_slot_get() divides
-the stale byte offset by the new channel scale, it calculates an invalid va=
-lue.
-
-[ ... ]
-> @@ -660,6 +674,13 @@ static void nau8360_tdm_apply(struct snd_soc_compone=
-nt *cp, int slot_scale)
->  	struct nau8360 *nau8360 =3D snd_soc_component_get_drvdata(cp);
->  	int i, chan_tx;
-> =20
->  	for (i =3D 0; i < NAU8360_TDM_TXN; i++) {
->  		if (nau8360->tdm_tx_func_slot[i] =3D=3D TDM_SLOT_NONE)
->  			continue;
-> =20
->  		/* compute the slot location in bytes according to slot/chan width */
->  		chan_tx =3D slot_scale * nau8360->tdm_tx_func_slot[i];
->  		nau8360_set_tdm_tx_slot(cp, i, chan_tx);
->  	}
-
-[Severity: Medium]
-Does this code incorrectly ignore PDM slots when recalculating byte offsets
-for TDM TX slots?
-
-The loop iterates over standard TX slots but omits PDM slots because they a=
-re
-absent from the iteration. The PDM slots are left with stale byte offsets t=
-hat
-no longer align with the new width boundaries, which corrupts the TDM strea=
-m.
-
-[ ... ]
-> @@ -2404,6 +2425,10 @@ static int nau8360_read_device_properties(struct n=
-au8360 *nau8360)
->  		return -EINVAL;
->  	}
-> =20
->  	for (i =3D 0; i < NAU8360_DSP_FW_NUM; i++) {
->  		ret =3D device_property_read_string(dev, "firmware-name",
->  			&firmware);
-
-[Severity: Medium]
-Does device_property_read_string() always return the first array element
-in this loop?
-
-During device initialization, the loop uses device_property_read_string()
-instead of device_property_read_string_array() to extract strings from an
-array property. Since it simply fetches the first string of the array
-regardless of the loop index, all iterations process the exact same firmware
-name, causing both DSP cores to be loaded with the firmware intended only
-for the first core.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260630021510.8219=
-19-1-YLCHANG2@nuvoton.com?part=3D2
 
