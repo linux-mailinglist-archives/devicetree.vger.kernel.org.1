@@ -1,169 +1,247 @@
-Return-Path: <devicetree+bounces-317830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317832-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xZkAN5jIQ2oxhwoAu9opvQ
-	(envelope-from <devicetree+bounces-317830-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:46:00 +0200
+	id z/bDIqPIQ2o0hwoAu9opvQ
+	(envelope-from <devicetree+bounces-317832-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:46:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483A16E501F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:46:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FCEE6E5024
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:46:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Hj8y4IkE;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317830-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317830-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b=S3j9cZiU;
+	dkim=pass header.d=ti.com header.s=selector1 header.b=bMJ31qT7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317832-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317832-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ti.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 09A89301E21B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:43:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9E552304587E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:43:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8486A368D60;
-	Tue, 30 Jun 2026 13:43:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22C4340B6F2;
+	Tue, 30 Jun 2026 13:43:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0002e601.pphosted.com (mx0a-0002e601.pphosted.com [148.163.150.75])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78DAB1F91D6;
-	Tue, 30 Jun 2026 13:43:21 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782827002; cv=none; b=naw/gCfuQi5ZKZnO94GEbYANr0GIWI7MLV2kF/W+A8xHPeJi9LtCareYVN2y5lFmEl0WwDJlcQBcM54gWRKQelDfUkP6+4mVl1k5U+IiUpw+beifVb4qm76vBxKh7Bg++hetc2OukD+YdlPjlEHcDLGT6WUXkhJwVrR0dPV/Vr8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782827002; c=relaxed/simple;
-	bh=4xAGmXJqZM3io21y1PJtvb9xzmA+OJsDD68FA7vbQu8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=jRXLm5VUPlzimxe0EQnuAEJEDaUouCQ4JBbD2YetZjW3dRYd2sDZZM3PmJarmGy4/k4c/GTL3SKdj5J5eZf4p3CaUA6JRTMqUGdUG7csE+M4c9lq5J97zcF8hKArTDuEnzyyfdZtNeVycPR56TWxp6jbw2hx86GRrdxWEHeC0m0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hj8y4IkE; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A1271F000E9;
-	Tue, 30 Jun 2026 13:43:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782827001;
-	bh=hxvdIQKRJ+fZFg/VkVSimqsytVMc7FfZZeStsjMdW9Y=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Hj8y4IkEqjsE+EMF3nXeSRDdbt6PhCMSMHAYM/3gmqYSRMjs4VrrbykJ4GY1VoJoA
-	 NRP6JFQ6aJm6DTau5RkEvJncSfPnwf7fLTnwI3rlQwM/NVAA2e94QlFSX/GzUaVWqZ
-	 MLL/Wlt31jnvyS+MkRl3+bUsaN3H2S/rziKpaboPGUXk2gYSNqCSdHTTi+aXRbU65z
-	 ERMmfoVkVhLuctNpxjXTEMDJggz+++IHege+uqyfkuQaIOhZUf1zMhbnf59U6/VPFA
-	 xc9A4U5MjRRply29ivdw2I3LCla4iiPccPa6rmyAsiHaX8YAaUcfXbtHW9UVxDE5Uk
-	 K2/zY3BtaknSQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 07/10] HID: apple: Add support for DockChannel HID
- keyboards
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Michael Reeves via B4 Relay" <devnull+michael.reeves077.gmail.com@kernel.org>
-Cc: dmitry.torokhov@gmail.com, devicetree@vger.kernel.org, robh@kernel.org, linux-input@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260630-apple-mtp-keyboard-final-v1-7-506d936a1707@gmail.com>
-References: <20260630-apple-mtp-keyboard-final-v1-0-506d936a1707@gmail.com>
- <20260630-apple-mtp-keyboard-final-v1-7-506d936a1707@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 30 Jun 2026 13:43:19 +0000
-Message-Id: <20260630134320.9A1271F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86544368D60;
+	Tue, 30 Jun 2026 13:43:45 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782827027; cv=fail; b=H8iBUfgKR/dzgjzP8fWesD3ooA1joSJqL0hdQiXVRQfxFq2tV1Dd0Xg8a/PLumLJ7alkHLquooptMwdccL5EXbNjwGngRBzmeD17XdsHtnlXJXJ7xgRQQie/bxxrtTp6a4pMEcIpYYHr2MwV+tNoh2lj30LkKQks3N0LsBdghds=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782827027; c=relaxed/simple;
+	bh=kZgbdF/B+m/tMXesLrhOcYBIIIlEen+D1A856eSeJ90=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kb1ditz51Po6D0RDDQhI2CtD45eK2ncDsbnsbkJ4q+mKsRpXtvbvN/ZslhLWEP0rFjG0w8Lp6HfofQ15c1TGQXeGGln+lSvuEeCrAZEpqLs0Fv8ZL9Yndr8pEoHZr+tv+5tlqw//eh9TjCyY/J0OEWOsbSxA3SZX2lpXfEZDXE8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=S3j9cZiU; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bMJ31qT7; arc=fail smtp.client-ip=148.163.150.75
+Received: from pps.filterd (m0384305.ppops.net [127.0.0.1])
+	by m0384305.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 65UBCNWC401219;
+	Tue, 30 Jun 2026 08:43:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=proofpoint-05-2026; bh=wEFP8RvYL8oVv
+	2yu+5niZACOu/qCfFgSfWHD8nYBECw=; b=S3j9cZiUhwt4CRu2KgLs8ifg+f2L0
+	/RRylLBqcJLTUTsSkKNcvrgRiC72i++AEb85CiIAWDcgP3VgBJUbEJbKsyGIJNHa
+	WP+/AS7CymHNxjt/Oizym91+4UCEZkJ57K+BW6n/Lwh5g2RC4Jt06X+10CvwhBMb
+	PsAuaJTrTFBjoUM+HhokM0HsC5HynH9XSvQvdt+egco3+61mTmAgGXzQ2KU0g5tr
+	R63dIPGOqs1IYZbjusWAuVoP+ZoD72Vivc8wktbvluAjq/OHbpZEeX5w3Zx/mq/F
+	Mct1uEfs+XPly8NdKguCgkZigNIeH3paxddXlPAs0Zr9Dehrb2Fy+un9g==
+Received: from ch4pr04cu002.outbound.protection.outlook.com (mail-northcentralusazon11013000.outbound.protection.outlook.com [40.107.201.0])
+	by m0384305.ppops.net (PPS) with ESMTPS id 4f4cqj8tvp-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Tue, 30 Jun 2026 08:43:39 -0500 (CDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oKAuxgfIzQDD+7/tg1XK1BezIqtgPfq/UPF2eBNpSdTuZyi6N8+8Dq5EZBR0E5j9QWJvSmfENlJwwKkXK1nDYa1E/T7xS8E36oCZKLrfQeBcq40BvZcow/rkLmplDdAA2m+xnDVlXg5IMjz+KBz5ip6xyesEChgvwcY0fy6gzHo5M2qPygleShN1fsrFFJsOgAX4Hu4/QNgs3P24XQCsW0HOeyioPrdijCinygjXYIqtRZlX4i6vPN7nCO39sAfEek2KzJOdCkKuJzgv9WsLD+P0Zs7B60MuCuv9efsq0HT+UmvURVKuk5U7pJvaCJHFDwWnHqu3qZllObooQsCmuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wEFP8RvYL8oVv2yu+5niZACOu/qCfFgSfWHD8nYBECw=;
+ b=PZFOK+UdlzTmER8gesQN4Lds3VV8qFexXstmqX6vMFkCfj5KlU4Wuur+CDhMSVNU+TJ3qVLKLUob4ho2b7J1BLgZ0ozzR5xSJRXpXeB1Xt8lBCkTNcmbe7Uf7cYkUQsXHegDPCeeusjBh1AxloQmW3OzzjQq6WkgzM7Stzjvr0aSenPNwrX40IY5zbUtil8Xq4XfZln/lCxrNwMNjj5tdYBTg+VQw5cNLlPEOuSepK9mGEUhzpjAx55hwsc3KpuH1+sYx5dTdc9F1GxX9GKnCsKsmFYItJh9u65Fs1XmjZsRt+MY6eTvJWWYnDuRYcaeQ7amg2mYJ1ZPbXGfZpDX5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=cadence.com smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wEFP8RvYL8oVv2yu+5niZACOu/qCfFgSfWHD8nYBECw=;
+ b=bMJ31qT7Qpeop5ei/N+/lRd0CzXiX1rmaGOiho6AZ3e/YAhg5+GKbXweDUUEoNqDyDQVe3sXYnP7qbAvpsEpePXKp1XMBVJzKrk8bk/yBpVHvZed63hYSy7KMgRZPCiVmFtaH6ueQJcDXaRQoBoDOZhYWo4qSu+ylu5jsUAPhuo=
+Received: from SJ0PR05CA0056.namprd05.prod.outlook.com (2603:10b6:a03:33f::31)
+ by BLAPR10MB5089.namprd10.prod.outlook.com (2603:10b6:208:330::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Tue, 30 Jun
+ 2026 13:43:37 +0000
+Received: from SJ1PEPF00001CEB.namprd03.prod.outlook.com
+ (2603:10b6:a03:33f:cafe::9c) by SJ0PR05CA0056.outlook.office365.com
+ (2603:10b6:a03:33f::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Tue, 30
+ Jun 2026 13:43:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SJ1PEPF00001CEB.mail.protection.outlook.com (10.167.242.27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Tue, 30 Jun 2026 13:43:35 +0000
+Received: from DFLE211.ent.ti.com (10.64.6.69) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 30 Jun
+ 2026 08:43:29 -0500
+Received: from DFLE214.ent.ti.com (10.64.6.72) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 30 Jun
+ 2026 08:43:29 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE214.ent.ti.com
+ (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Tue, 30 Jun 2026 08:43:29 -0500
+Received: from a0507176-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0507176-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [10.24.50.145])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 65UDhOMZ2614781;
+	Tue, 30 Jun 2026 08:43:25 -0500
+From: Gokul Praveen <g-praveen@ti.com>
+To: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>, <krzk+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <neil.armstrong@linaro.org>,
+        <nm@ti.com>, <robh@kernel.org>, <sjakhade@cadence.com>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <vkoul@kernel.org>,
+        <yamonkar@cadence.com>
+Subject: [PATCH v3 net-next 0/2] Add support for dual port USXGMII+SGMII
+Date: Tue, 30 Jun 2026 19:13:22 +0530
+Message-ID: <20260630134324.61085-1-g-praveen@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CEB:EE_|BLAPR10MB5089:EE_
+X-MS-Office365-Filtering-Correlation-Id: 88b86346-6ee7-4a03-fc19-08ded6ad9557
+X-LD-Processed: e5b49634-450b-4709-8abb-1e2b19b982b7,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|82310400026|376014|7416014|1800799024|23010399003|56012099006|18002099003|6133799003|921020;
+X-Microsoft-Antispam-Message-Info:
+	gx+eUK0WlWzYc6GKNvBreIvQoQM5AhWVpl3olp9Il0K34AOm4QnrADst1VQ7EJ5SgKTUvU1zG3teIpvVx9blGJ+4OymSIlJm6w9VQuEe1UZnSo72hpzFAaKag5uk/XNj3JRnJF9XMEj0Ca8l16yUN+2GuLa2grsseIIgVjcIT5oRWKZ/i3S6jBd/XDtwFJ9Me3ftagIdermsYjhasEUGurDFb4reEIhq38tPPGeodNp96UToologb/PDLGxFWg9449rLfbunTJSVKxx5isqAc3B4kdEd7frJMJSLBORSKOtgp+v8iNnR4rk3tQqVnIyXiPQvwGpG47kO+mfN/lRjQsOVBYtgjt2R6DWcZW8rd/timhNG5nufcmqb1SLb7CrqgGMnp4i9YMlmGy7iffpRkevJHy23TdIZf6UEz+xN56bAphbqtDcIviM3H8pwgj/ZB6CjfAOJcIyyWA1uLPrwbf8YncRc9UefXvnmlq62U20HVNMppQV/WD5S/YQS0/B3Mog1wjRxbrB/omm86k08MK6rMzCOKDMq2iIvpNMGq0OIqLM9CgQDAEXdninzQ7iSrwRjh1w8mAJgzRWhaTy91/aCYkOkJyc9IvXfi+ChzTfGpjwNWqm8QO5S+JYwH8cYUUcfmT9c3zC4ZuoVb4iDW8jwmrzFsv5Vxs8ByFA9yzD1XA7otDxl/XU8GYqO3gvWrUsxj3R0dLuKZDe4XjnNL4hc+hJrQbem6NNuKxCyley00964c/EQFxYTeWzeZ85T
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(376014)(7416014)(1800799024)(23010399003)(56012099006)(18002099003)(6133799003)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	mbyHTUIh3/NyM+/vQZDp/8Q+MZzgMeLBuLJ6UfPux7kAumsUl3Rjw5pwWnAxucP4lVpkLk2xfgJWiBPv3pjAt47kqvyqDoH1Mo3H1lkT1japOs0crn7FV9Q6RJOVkDsAymroDLhyFUqtUEwxWpslUXgCXZCDfJirdtWnxvEbYnJW/03FxgLVR3WNV5vXpCf9UK/8BrjFpxWHVCQqVCZpljcVr14/D2i6vKpDcZ/OTBjrsr6rmxWQmkBmv9D6iR1Ug5Cptp1Nld+Wj0pKwJ/9WmwO0M55oqmQdACJfN9dsHWGOtb3qzjhseX//WFuhcHFiRQ5YtPO2Ju4b241lwLFQrRlh/KT64vwunyBD5cd50yeSEwInsT5106fKcrRvkGxUt+G75ravFGyV2zTt/kU+1+R+oR0uHjL+8NsY6oyKSpkjee2Hzbq/kv3VZuyc4En
+X-Exchange-RoutingPolicyChecked:
+	r64AePxaMLoT/YGbjrHCjxI7NzjgeENe2UTgJCsmr17GREIX3/FjafWNxYdeu9G1cN0kDlBwkOm/PbIHYJeIQfB3u7g9S8EeisvsuFwnM27MKwvC0pAWY4rGmtct5BqoYRMygORmTRwFXOLIzyreHBBU5pln36kqc9vT6BaCge7Ew/0tQqImz/XrCX1BO91T19qP+OjIs/dIkuN+4R9aCajIXbzJx9kJ177yttOWQNIMzzVWh3GdJNzch1UbbA0ECUAAXbQm0N1KQJCLw2he1eIHxY2ZyPhoamrFLHf1ujcDTicMYb5Tbsw2nBrNSdPMzSM5a7eVXQsdG2365cKLBg==
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 13:43:35.5130
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88b86346-6ee7-4a03-fc19-08ded6ad9557
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00001CEB.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR10MB5089
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDEyOCBTYWx0ZWRfX/3l4gHLDN6D2
+ WrjdpiDKHt0CNwntwpMDPzSdxZ55dUob5GSuTZQ+ppw/pX99F9Jf+GOpykoqOwpuDSL1T+xbwi1
+ nRYIJx0qnZCbLoPUcdbUkQQsSjei78cmeLRIqDPM8uTo20lT7mvBrnSNYCRRTwuDnmK2MqZiobZ
+ s32OtbMzAB3pve+uRlSJsGPNIxIkKYrddyB642AgFekym5DL6lAGdAzlnH5wiyZQu5VLgsDmUdH
+ HUHMW6UKe9d6dRh1ZvlxvJz4DOAUmUrZsPWrdcHwkX6D0L1fTZ6KbxB/0tCk5VCvCriNPjjFVys
+ P2iNXtuCxdgdFlCP4y3/cvWCyEI39hBZX11TiN4rWnmUvThYPIZKTo4XAIYC3B9eXhXfkIBluOT
+ PW9x6OFbTVSEoBQ20AtuYOJxP3hyFicPgpdURalJ4IjL25vLUwzyeqChr14+k+VbGKCO+Dtr599
+ 1fWnRTVsNVlvLda9qZw==
+X-Proofpoint-GUID: -EGejqiWm-8PdBh6g6X9UT56noiLuKAE
+X-Proofpoint-ORIG-GUID: -EGejqiWm-8PdBh6g6X9UT56noiLuKAE
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDEyOCBTYWx0ZWRfX4LZVmXWVFQX0
+ gJb8UNzMOEqmiWYPlBszkgD2k9zO6MtdQUwOLquUWRdS3M8NylAd9deLezeeOkjdVaGwLWqVicP
+ GB5sZtxoMZPlRqkv+1TTXm5L81Ele8Y=
+X-Authority-Analysis: v=2.4 cv=M5N97Sws c=1 sm=1 tr=0 ts=6a43c80b cx=c_pps
+ a=kza0H2G5rmQD+2VTu+diIA==:117 a=iwqwCZQqcuTv3JOpYdM7/Q==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=FelO9ux0wxsA:10 a=V5UXEbMT0ywA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22 a=taLDd7a_hP9WKsMzeGRc:22
+ a=WzQKXWopGxF6fKYYR6MA:9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-30_03,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 bulkscore=0 clxscore=1011 suspectscore=0
+ impostorscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2606300128
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=proofpoint-05-2026,ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-317830-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:devnull+michael.reeves077.gmail.com@kernel.org,m:dmitry.torokhov@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:linux-input@vger.kernel.org,m:conor+dt@kernel.org,m:devnull@kernel.org,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-phy@lists.infradead.org,m:neil.armstrong@linaro.org,m:nm@ti.com,m:robh@kernel.org,m:sjakhade@cadence.com,m:kristo@kernel.org,m:vigneshr@ti.com,m:vkoul@kernel.org,m:yamonkar@cadence.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[g-praveen@ti.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-317832-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,michael.reeves077.gmail.com,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[g-praveen@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWELVE(0.00)[12];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:mid,ti.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 483A16E501F
+X-Rspamd-Queue-Id: 9FCEE6E5024
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The custom `apple_match` callback fails to check for the `HID_QU=
-IRK_IGNORE_SPECIAL_DRIVER` quirk, bypassing system or BPF-driven overrides =
-that force the generic HID driver.
---
+This patch series enables dual port USXGMII and SGMII Ethernet mode
+support on the TI J784S4 EVM platform using the CPSW9G Ethernet switch.
 
-commit 28e52ea5c163ab3459cd9d8d4a75ee76a37b6489
-Author: Michael Reeves <michael.reeves077@gmail.com>
+The CPSW9G instance supports both SGMII and USXGMII modes simultaneously
+on MAC Ports 1 and 2, which connect to ENET Expansion 1 and ENET
+Expansion 2 slots through the SERDES2 instance. The series includes:
 
-HID: apple: Add support for DockChannel HID keyboards
-   =20
-This commit registers DockChannel keyboards as host-bus Apple HID devices.
-It updates hid-apple to match these devices, applies the Magic Keyboard
-function-key table, and fixes their oversized report-size descriptors before
-parsing.
+Multilink SERDES configuration support added to the SERDES2 node by adding
+the PLL1 refclk.
 
-> diff --git a/drivers/hid/hid-apple.c b/drivers/hid/hid-apple.c
-> index bf7dd0fbf2496..47c6ec09d5fae 100644
-> --- a/drivers/hid/hid-apple.c
-> +++ b/drivers/hid/hid-apple.c
+v2 <==> v1
+===========
+* Added modifications to the device tree bindings documentation.
 
-[ ... ]
+v3 <=> v2
+==========
+* Added net-next suffix in the patch subject.
+* Added a separate bindings patch and added appropriate subject
+  format expected for Bindings patches.
+* Updated the cover letter description
 
-> @@ -1003,6 +1035,17 @@ static void apple_remove(struct hid_device *hdev)
->  	hid_hw_stop(hdev);
->  }
-> =20
-> +static bool apple_match(struct hid_device *hdev, bool ignore_special_dri=
-ver)
-> +{
-> +	if (ignore_special_driver)
-> +		return false;
-> +
+Gokul Praveen (2):
+  arm64: dts: ti: Add PLL1 refclk to J784S4 SoC SERDES node
+  dt-bindings: phy: cadence-torrent: Update property values to support 3
+    clocks
 
-[Severity: Medium]
-Does this custom match function bypass the HID_QUIRK_IGNORE_SPECIAL_DRIVER
-quirk?
+ .../devicetree/bindings/phy/phy-cadence-torrent.yaml          | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi                    | 3 ++-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
 
-It checks the ignore_special_driver parameter, but it looks like it omits
-checking if hdev->quirks has the HID_QUIRK_IGNORE_SPECIAL_DRIVER bit set.
-By unconditionally returning true for standard Apple devices further down,
-this might allow hid-apple to bind even when a user or BPF program explicit=
-ly
-requested to ignore special drivers and use hid-generic instead.
+-- 
+2.34.1
 
-Should this also check for (hdev->quirks & HID_QUIRK_IGNORE_SPECIAL_DRIVER)
-before allowing the match?
-
-> +	if (hdev->group =3D=3D HID_GROUP_APPLE_DOCKCHANNEL)
-> +		return apple_is_dockchannel_keyboard(hdev);
-> +
-> +	return true;
-> +}
-> +
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260630-apple-mtp-=
-keyboard-final-v1-0-506d936a1707@gmail.com?part=3D7
 
