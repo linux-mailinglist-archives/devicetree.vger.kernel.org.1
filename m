@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-317993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317995-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PxJPDrj7Q2oamwoAu9opvQ
-	(envelope-from <devicetree+bounces-317993-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:24:08 +0200
+	id CopiKN37Q2ormwoAu9opvQ
+	(envelope-from <devicetree+bounces-317995-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:24:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9488C6E6DF4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:24:07 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CC786E6E31
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:24:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dsvjA+b6;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317993-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317993-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kcpZ+o0b;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317995-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317995-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 36ED0301A7E7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:24:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6260D306F2F6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 417C63DBD44;
-	Tue, 30 Jun 2026 17:24:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B3073DD504;
+	Tue, 30 Jun 2026 17:24:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73FD36F429
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 17:24:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A467936F429
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 17:24:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782840244; cv=none; b=XvEvfnJRM4H3TrM86DFE0OXxJj3gsqMgP3KeatbhcVPVnbpoYws7b+x+ZPvDrdVtUG2s/mL24FPPc4P0j/Eq/0p6H3M061bZxRbTs9qw14yejDFlO84bYxyxIRdEb1t2tTcvD6KCGK5t6/dDVyPfcG+AD/7J2AzSeOezFOSHdpw=
+	t=1782840246; cv=none; b=FxeKyhVjJdZajeOtvlMEyASRkQgEUtdSuVRK0n/2DiHAF/ovDI5KTfo13GYH9Ff2mYmtUEDXFvsuromJcHLRv9PJ7H2hhXsMvryd/Wbw4F30iOkCXU8qs0CpItOPt2LUL6w/Ez9OV1sEg8IZZql+LauZBakBBqPDQHGenO9mJGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782840244; c=relaxed/simple;
-	bh=BSKGMbToNNGgiCKJqArmibTqtl2KXMfu0O9CXAha1yc=;
+	s=arc-20240116; t=1782840246; c=relaxed/simple;
+	bh=cIK4wZkPBirXJu39nEQdKPRcWYpX/C48WhxRFHD/p2c=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=hJzdtbj6I4FtEJbp3M5xEEznpjfa8YVPyAuEe0pEtMqgho+tHD24f9VkUEQClPnz1uxm9y7tzHAp00bOGJFuTZVUENEaqnYahO74X9enVnCNfgc6eNreoamIudz3QKQdHlXe3vmgOAZYoSux3LUiBdPQp+K8ZmS3PYkWZuBrEAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dsvjA+b6; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 710D01F00A3A;
-	Tue, 30 Jun 2026 17:24:02 +0000 (UTC)
+	 Message-Id; b=dGtosgW5gQ38701gG+LIvAc9RPrAXu5s/kQh857uq45Dz8HUUKOW3t3+rUOULuV0g1DMvln7SD6VqN8Na9W0j37pOJn2o0rS2zlmsx0zh15HY9+Y6oJEg+NEkl1FX4S8EJHhlkNMg2PJqN6IulcWy4b+ZqHj1lLyCkxq9jeSf9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kcpZ+o0b; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 108871F000E9;
+	Tue, 30 Jun 2026 17:24:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782840242;
-	bh=bSAI3OIzhLujNz9GoiPY7FKWuFqd9On8iAsq1MH7rnQ=;
+	s=k20260515; t=1782840244;
+	bh=gWfi7ccCaAiMomrg8Es3RpJeLL77QNuclEUIvKIMEQY=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=dsvjA+b6aK4mJOLt7BxiIP3C9m6aDJJi6wu3Vc0D7R+8yp+Da/K0LEluqGkPo1Eyy
-	 dVdNGy4zPgDSeg+orah662Z/rT2e3Q0A1FrAcGn0Z/0vxmPT3GbbsA1TH3vXkL8FEa
-	 /XagUrPejEyVGDa1AVGremJ9ZSkgiyDTdkWh5QqUczcRdBF7H/Wu0JhByRQCFehtyN
-	 Ll+uyJIgHk/2e6JVUs4T7WzKSOViiF042tYqT+tBGzSH5K+3tw4M+RFxORFgleiB6y
-	 rCkMca/HIe+fGe5F9EUGcEr2epmAu+OCNw5FeIf0DmyrhsE9C0bZhLrnDDgplSybax
-	 HmQ4I/BIVD00A==
+	b=kcpZ+o0bxUEMTRoqAvh8uKai4JoqAdfxNAIytK9CK7/6jVj395Ldn8PEHcwZqtuUt
+	 Uc1WJZdJc9YuB3cn711RUmWGDywKCHxny1Bvwd6gaiiVoMlDwMRZpzWB38tJt7Xp0Y
+	 TGspveBzQ86PlffEaQsgqA/XVwTfK3oLwLVJ4lrBMu+EUPL61Dd+D+HwA4hlyiGy98
+	 BPMiiBilLZ0hfWFyiThoGpF2Oaoa5kfTVU3kf7NUXlIseJlWnPioHaYCrnZPMHOefK
+	 hIDEsskVNZ5vIMUlnefFsDXY9uHi04qJy0K4BohnTYH1abJIdTOenNUrzfp0j/pWaN
+	 9zFHJLdRXvZtA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v6 06/15] net: ethernet: oa_tc6: Support for
- hardware timestamp
+Subject: Re: [PATCH net-next v6 12/15] onsemi: s2500: Add driver support for
+ TS2500 MAC-PHY
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Selvamani Rajagopal via B4 Relay" <devnull+Selvamani.Rajagopal.onsemi.com@kernel.org>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260629-s2500-mac-phy-support-v6-6-18ce79500371@onsemi.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260629-s2500-mac-phy-support-v6-12-18ce79500371@onsemi.com>
 References: <20260629-s2500-mac-phy-support-v6-0-18ce79500371@onsemi.com>
- <20260629-s2500-mac-phy-support-v6-6-18ce79500371@onsemi.com>
+ <20260629-s2500-mac-phy-support-v6-12-18ce79500371@onsemi.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 30 Jun 2026 17:24:02 +0000
-Message-Id: <20260630172402.710D01F00A3A@smtp.kernel.org>
+Date: Tue, 30 Jun 2026 17:24:03 +0000
+Message-Id: <20260630172404.108871F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,7 +71,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -79,16 +79,16 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317993-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317995-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:devnull+Selvamani.Rajagopal.onsemi.com@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:devnull+Selvamani.Rajagopal.onsemi.com@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,Selvamani.Rajagopal.onsemi.com,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -98,292 +98,532 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,onsemi.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[onsemi.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9488C6E6DF4
+X-Rspamd-Queue-Id: 3CC786E6E31
 
-Thank you for your contribution! Sashiko AI review found 8 potential issue(=
-s) to consider:
-
-New issues:
-- [Critical] Use-After-Free of `ongoing_tx_skb` due to premature timestamp =
-processing.
-- [High] Memory leak of SKBs in `tx_ts_skb_q` during device teardown and lo=
-st interrupts.
-- [High] Unbounded queueing of TX timestamp SKBs leads to ID wrap-around an=
-d corrupt timestamp assignments.
-- [High] Invalid pointer dereference of ERR_PTR during PTP clock teardown.
-- [Medium] Packet corruption due to early return when disabling hardware ti=
-mestamps.
-- [Medium] Timestamp configuration state corruption on hardware programming=
- failure.
-
-Pre-existing issues:
-- [High] A transient SKB allocation failure permanently disables the networ=
-k interface (DoS).
-- [High] Missing bounds check allows malformed MAC-PHY packets to trigger `=
-skb_over_panic`.
+Thank you for your contribution! Sashiko AI review found 15 potential issue=
+(s) to consider:
+- [High] Lost wakeup race condition in the kthread wait loop causes `kthrea=
+d_stop()` to stall for up to 5 seconds during interface teardown.
+- [High] The PTP `adjtime` callback manually slews the clock synchronously,=
+ blocking the caller for up to 60 seconds.
+- [High] Missing cleanup of `oa_tc6` state and PTP clock on driver probe fa=
+ilure leads to resource leaks and Use-After-Free vulnerabilities.
+- [High] Unprotected iteration of the multicast address list in the backgro=
+und worker thread.
+- [High] Missing error handling and resource cleanup in `s2500_open` leads =
+to orphaned kthreads and active PHY states.
+- [High] The PTP `max_adj` configuration causes a signed long overflow of t=
+he `scaled_ppm` parameter on 32-bit architectures.
+- [High] Premature termination of the polling kthread on transient SPI erro=
+rs leaves a dangling pointer, leading to a Use-After-Free.
+- [High] Passing an uninitialized `struct timespec64` by value to `s2500_us=
+e_settime` triggers undefined behavior.
+- [High] Data Race on the `S2500_REG_MAC_CTRL` register due to concurrent R=
+ead-Modify-Write cycles.
+- [High] Concurrent calls to `s2500_ptp_adjfine()` clobber the long-running=
+ frequency slew in `s2500_ptp_adjtime()`, and `adjtime` destructively reset=
+s the baseline frequency.
+- [High] Incorrect math in the PTP frequency slew calculation results in a =
+1,000x slower adjustment.
+- [Medium] Standard networking statistics are improperly duplicated in driv=
+er-private `ethtool -S` strings instead of using the standard uAPI (`ndo_ge=
+t_stats64`).
+- [Medium] The driver fails to validate the constructed MAC address read fr=
+om NVRAM.
+- [Medium] Unhandled return value from `s2500_set_mac_filter` in `s2500_ini=
+t` masks configuration failures.
+- [Medium] The driver abuses `dev->platform_data` to store dynamically allo=
+cated runtime driver state.
 --
 
-commit 7f7731256fae07ec53c17aa75b9a25fc0f8b4a24
+commit 959b629541f81f549c8073520aa3f70fa8b692f6
 Author: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
-Subject: net: ethernet: oa_tc6: Support for hardware timestamp
+Subject: onsemi: s2500: Add driver support for TS2500 MAC-PHY
 
-This commit adds hardware timestamping support for the OPEN Alliance
-10BASE-T1x MAC-PHY framework. It introduces PTP clock registration,
-ioctl handling, and TX/RX packet timestamp extraction functions.
+This commit adds support for the onsemi S2500 Ethernet transceiver with
+integrated MAC-PHY. It implements SPI communication, ethtool support,
+and hardware timestamping utilizing the Open Alliance TC6 framework.
 
-> diff --git a/drivers/net/ethernet/oa_tc6/oa_tc6.c b/drivers/net/ethernet/=
-oa_tc6/oa_tc6.c
-> index bf96e8d1ccb9a..6cc7c76d1d3c2 100644
-> --- a/drivers/net/ethernet/oa_tc6/oa_tc6.c
-> +++ b/drivers/net/ethernet/oa_tc6/oa_tc6.c
+> diff --git a/drivers/net/ethernet/onsemi/s2500/s2500_ethtool.c b/drivers/=
+net/ethernet/onsemi/s2500/s2500_ethtool.c
+> new file mode 100644
+> index 0000000000000..7760cec578492
+> --- /dev/null
+> +++ b/drivers/net/ethernet/onsemi/s2500/s2500_ethtool.c
+
 [ ... ]
-> +static void oa_tc6_defer_for_hwtstamp(struct oa_tc6 *tc6,
-> +				      struct sk_buff *skb)
+
+> @@ -0,0 +1,353 @@
+> +static const char s2500_mac_stat_strings[][ETH_GSTRING_LEN] =3D {
+> +	"tx_bytes",
+> +	"tx_frames",
+
+[Severity: Medium]
+Are these standard statistics being exposed as private ethtool counters?
+The networking driver subsystem guidelines forbid duplicating standard=20
+counters in ethtool -S output. Exposing them here while omitting the=20
+standard ndo_get_stats64 callback prevents standard tools like=20
+"ip -s link show" from accessing them.
+
+> diff --git a/drivers/net/ethernet/onsemi/s2500/s2500_main.c b/drivers/net=
+/ethernet/onsemi/s2500/s2500_main.c
+> new file mode 100644
+> index 0000000000000..687c98b69cc02
+> --- /dev/null
+> +++ b/drivers/net/ethernet/onsemi/s2500/s2500_main.c
+
+[ ... ]
+
+> @@ -0,0 +1,655 @@
+> +static int s2500_read_mac_from_nvmem(struct s2500_info *priv)
 > +{
-> +	if (!tc6->hw_tstamp_enabled)
-> +		return;
-> +	if (!skb || (skb_shinfo(skb)->tx_flags & SKBTX_HW_TSTAMP) =3D=3D 0)
-> +		return;
-> +	if (tc6->ts_config.tx_type !=3D HWTSTAMP_TX_ON) {
-> +		tc6->tx_hwtstamp_lost++;
-> +		return;
-> +	}
+
+[ ... ]
+
+> +	addr[3] =3D FIELD_GET(S2500_VS_MACID1_BYTE3_MASK, mac1);
+> +	addr[4] =3D FIELD_GET(S2500_VS_MACID0_BYTE4_MASK, mac0);
+> +	addr[5] =3D FIELD_GET(S2500_VS_MACID0_BYTE5_MASK, mac0);
 > +
-> +	skb_shinfo(skb)->tx_flags |=3D SKBTX_IN_PROGRESS;
-> +	u8 ret =3D tc6->tx_ts_idx++;
+> +	__dev_addr_set(priv->ndev, addr, ETH_ALEN);
+> +	priv->ndev->addr_assign_type =3D NET_ADDR_PERM;
+> +	return ret;
+> +}
+
+[Severity: Medium]
+Is it possible for the hardware to yield an invalid MAC address here?
+There is no is_valid_ether_addr() check before assigning the address=20
+to the netdev. If the NVRAM is unprogrammed or corrupted, this bypasses=20
+the random MAC generation fallback in s2500_probe() and registers an=20
+invalid address.
+
+[ ... ]
+
+> +static int s2500_mac_ctrl_modify_bits(struct s2500_info *priv,
+> +				      u32 in_bits, bool clr)
+> +{
+> +	u16 mms =3D OA_TC6_PHY_C45_MAC_MMS1;
+> +	u32 reg =3D S2500_REG_MAC_CTRL;
+> +	u32 rval =3D 0;
+> +	u32 wval =3D 0;
+> +	int ret;
+> +
+> +	ret =3D oa_tc6_read_register_mms(priv->tc6, reg, mms, &rval);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (clr)
+> +		wval =3D rval & ~in_bits;
+> +	else
+> +		wval =3D rval | in_bits;
+> +	if (rval !=3D wval)
+> +		ret =3D oa_tc6_write_register_mms(priv->tc6, reg,
+> +						mms, wval);
+> +	return ret;
+> +}
 
 [Severity: High]
-Does this allow the hardware timestamp ID to wrap around and cause collisio=
-ns?
+Is this read-modify-write operation protected against concurrent execution?
+It appears this function can be invoked simultaneously by the background=20
+kthread updating RX filters and userspace bringing the interface down=20
+via s2500_stop(), leading to lost register updates and an inconsistent=20
+interface state.
 
-The hardware provides only 3 TX timestamp IDs. In oa_tc6_defer_for_hwtstamp,
-the code cyclically increments tsc from 1 to 3 and unconditionally adds the
-socket buffer to tx_ts_skb_q without checking queue depth. If more than
-3 timestamped packets are transmitted before an interrupt fires, the tsc
-wraps around. When the interrupt eventually arrives,
-oa_tc6_process_deferred_skb will process all buffers matching that tsc,
-which could result in the same timestamp being assigned to multiple unrelat=
-ed
-packets.
-
-> +
-> +	if (ret =3D=3D OA_TC6_TTSCC_REG_ID)
-> +		tc6->tx_ts_idx =3D OA_TC6_TTSCA_REG_ID;
-> +	oa_tc6_tsinfo_tx(skb)->tsc =3D ret;
-> +
-> +	list_add_tail(&skb->list, &tc6->tx_ts_skb_q);
-> +}
-> +
-> +static int oa_tc6_process_deferred_skb(struct oa_tc6 *tc6, u8 tsc)
-> +{
-> +	struct skb_shared_hwtstamps tstamp;
-> +	struct oa_tc6_ts_info_tx *ski;
-> +	struct sk_buff *skb, *tmp;
-> +	bool found =3D false;
-> +	int ret =3D 0;
 [ ... ]
-> +		if (!ret) {
-> +			tstamp.hwtstamp =3D ktime_set(data[0], data[1]);
-> +			skb_tstamp_tx(skb, &tstamp);
-> +			tc6->tx_hwtstamp_pkts++;
+
+> +static int s2500_init(struct s2500_info *priv)
+> +{
+> +	u32 val;
+> +	int ret;
+
+[ ... ]
+
+> +	/* Program the source MAC address into the device */
+> +	ret =3D s2500_set_mac_filter(priv->ndev, priv->ndev->dev_addr);
+> +
+> +	val =3D S2500_MAC_CTRL_ADRF_BIT | S2500_MAC_CTRL_FCSA_BIT;
+> +
+> +	return s2500_mac_ctrl_modify_bits(priv, val, false);
+> +}
+
+[Severity: Medium]
+Does this mask configuration failures during initialization?
+The ret variable is overwritten with the result of s2500_mac_ctrl_modify_bi=
+ts()
+without being validated. If s2500_set_mac_filter() encounters an SPI error,
+it will fail silently.
+
+[ ... ]
+
+> +static int s2500_set_multicast_mode(struct s2500_info *priv,
+> +				    unsigned int rx_flags)
+> +{
+
+[ ... ]
+
+> +		/* Disable filters */
+> +		for (i =3D 1; i <=3D S2500_N_MCAST_FILTERS; i++) {
+> +			addr =3D S2500_REG_MAC_ADDRFILTH(i);
+> +			ret =3D oa_tc6_write_register_mms(priv->tc6,
+> +							addr, mms, 0);
+> +			if (ret)
+> +				return ret;
 > +		}
 > +
-> +		dev_kfree_skb(skb);
+> +		i =3D 1;
+> +		netdev_for_each_mc_addr(ha, priv->ndev) {
+> +			if (i > S2500_N_MCAST_FILTERS)
+> +				break;
 
-[Severity: Critical]
-Is there a risk of a use-after-free on ongoing_tx_skb here?
+[Severity: High]
+Is it safe to iterate the multicast address list here without acquiring=20
+netif_addr_lock_bh()? Since this executes in the background worker thread,
+concurrent modifications via dev_mc_add() or dev_mc_del() could cause=20
+a use-after-free and list corruption.
 
-If an skb is assigned to ongoing_tx_skb and placed into tx_ts_skb_q before
-it is fully copied to the SPI TX buffer, a stale interrupt for an older
-packet sharing the same tsc (due to the ID wrap-around mentioned earlier)
-could arrive.
+[ ... ]
 
-oa_tc6_process_deferred_skb would then unconditionally call dev_kfree_skb on
-this buffer. The next iteration of the transmission loop in
-oa_tc6_add_tx_skb_to_spi_buf would then dereference the freed ongoing_tx_skb
-to continue transmitting its chunks.
+> +static int s2500_thread_fun(void *data)
+> +{
+> +	struct s2500_info *priv =3D data;
+> +	bool update_rx_mode =3D false;
+> +	unsigned long flags;
+> +	signed long tout;
+> +	int ret =3D 0;
+> +
+> +	tout =3D priv->poll_jiff;
+> +
+> +	do {
+> +		if (update_rx_mode) {
+> +			ret =3D s2500_rx_mode_update(priv);
+> +			if (unlikely(ret)) {
+> +				dev_err(&priv->spi->dev,
+> +					"Failed to set new RX mode");
+> +				break;
+> +			}
+> +		}
 
+[Severity: High]
+Could this break statement cause a use-after-free?
+By exiting the kthread loop on a transient SPI error, the thread will=20
+gracefully drop its task reference and its task_struct will be freed.=20
+However, priv->thread is left dangling and will be dereferenced later=20
+by kthread_stop() during interface teardown.
+
+[ ... ]
+
+> +		s2500_process_events(priv);
+> +
+> +		spin_lock_irqsave(&priv->lock, flags);
+> +		__set_current_state(TASK_INTERRUPTIBLE);
+> +
+> +		update_rx_mode =3D priv->rx_flags_upd;
+> +		ret =3D update_rx_mode;
+> +
+> +		spin_unlock_irqrestore(&priv->lock, flags);
+> +
+> +		if (!ret)
+> +			tout =3D schedule_timeout(tout);
+> +		else
+> +			set_current_state(TASK_RUNNING);
+> +	} while (!kthread_should_stop());
+> +	return 0;
+> +}
+
+[Severity: High]
+Does this sequence create a lost wakeup window?
+Because the state is set to TASK_INTERRUPTIBLE and the thread sleeps
+without a prior kthread_should_stop() check, if kthread_stop() sets=20
+the should_stop flag and wakes the thread right before __set_current_state(=
+),=20
+the thread will go to sleep ignoring the stop request. This can stall=20
+s2500_stop() for up to 5 seconds.
+
+[ ... ]
+
+> +static int s2500_open(struct net_device *ndev)
+> +{
+> +	struct s2500_info *priv =3D netdev_priv(ndev);
+> +	int ret =3D 0;
+> +	u32 val;
+> +
+> +	dev_dbg(&ndev->dev, "%s", "s2500_open");
+> +	phy_start(priv->ndev->phydev);
+> +
+> +	priv->thread =3D kthread_run(s2500_thread_fun, priv,
+> +				   DRV_NAME "/%s:%d",
+> +				   dev_name(&priv->spi->dev),
+> +				   spi_get_chipselect(priv->spi, 0));
+> +
+> +	if (IS_ERR(priv->thread)) {
+> +		ret =3D PTR_ERR(priv->thread);
+> +	} else {
+> +		val =3D S2500_MAC_CTRL_TXEN_BIT | S2500_MAC_CTRL_RXEN_BIT;
+> +		ret =3D s2500_mac_ctrl_modify_bits(priv, val, false);
+> +
+> +		netif_start_queue(priv->ndev);
 > +	}
 > +	return ret;
 > +}
+
+[Severity: High]
+Is cleanup missing on the error path here?
+If s2500_mac_ctrl_modify_bits() fails, the function returns an error=20
+but fails to call kthread_stop() or phy_stop(). Since ndo_open fails,=20
+the network stack will not invoke ndo_stop, permanently leaking the=20
+active PHY state and leaving the kthread running indefinitely.
+
 [ ... ]
-> +static void oa_tc6_update_ts_in_rx_skb(struct oa_tc6 *tc6)
-> +{
-> +	struct sk_buff *skb =3D tc6->rx_skb;
-> +	struct oa_tc6_ts_info_rx *ski;
-> +	__be32 ts_val[2];
-> +	u32 ts[2];
-> +
-> +	if (!tc6->hw_tstamp_enabled)
-> +		return;
+
+> +static const struct net_device_ops s2500_netdev_ops =3D {
+> +	.ndo_open            =3D s2500_open,
+> +	.ndo_stop            =3D s2500_stop,
+> +	.ndo_start_xmit      =3D s2500_start_xmit,
+> +	.ndo_set_mac_address =3D s2500_set_mac_address,
+> +	.ndo_set_rx_mode     =3D s2500_set_rx_mode,
+> +	.ndo_eth_ioctl       =3D s2500_ioctl,
+> +	.ndo_hwtstamp_get    =3D s2500_hwtstamp_get,
+> +	.ndo_hwtstamp_set    =3D s2500_hwtstamp_set,
+> +};
 
 [Severity: Medium]
-Could this leave corrupt hardware timestamp tags in the payload?
+This confirms the omission of the ndo_get_stats64 callback, which is=20
+required to expose standard networking statistics to userspace properly=20
+instead of duplicating them in ethtool -S.
 
-If the hardware was previously configured to append timestamps and the user
-dynamically disables the feature via ioctl, in-flight packets will arrive
-with ski->rtsa set. Because of this early return when hw_tstamp_enabled is
-false, oa_tc6_update_ts_in_rx_skb skips stripping the 8-byte hardware
-timestamp via skb_pull, which destroys the packet framing for the network
-stack.
-
-> +	ski =3D oa_tc6_tsinfo_rx(skb);
-> +	if (!ski->rtsa)
-> +		return;
-> +
-> +	memcpy(&ts_val[0], skb->data, 4);
 [ ... ]
-> -static int oa_tc6_allocate_rx_skb(struct oa_tc6 *tc6)
-> +static int oa_tc6_allocate_rx_skb(struct oa_tc6 *tc6, u32 footer)
->  {
-> +	struct oa_tc6_ts_info_rx *ski;
-> +
->  	tc6->rx_skb =3D netdev_alloc_skb_ip_align(tc6->netdev, tc6->netdev->mtu=
- +
-> -						ETH_HLEN + ETH_FCS_LEN);
-> +						ETH_HLEN + ETH_FCS_LEN + OA_TC6_TSTAMP_SZ);
->  	if (!tc6->rx_skb) {
->  		tc6->netdev->stats.rx_dropped++;
->  		return -ENOMEM;
 
-[Severity: High]
-This isn't a bug introduced by this patch, but does a transient memory
-allocation failure permanently disable the interface?
-
-If netdev_alloc_skb_ip_align fails under memory pressure, it returns -ENOME=
-M.
-This error propagates up to the threaded IRQ handler
-oa_tc6_macphy_threaded_irq, which explicitly checks for non-zero returns fr=
-om
-the rx path and calls disable_irq_nosync and oa_tc6_disable_traffic. This
-permanently halts the interface instead of safely dropping the frame and
-recovering.
-
->  	}
-> =20
-> +	ski =3D oa_tc6_tsinfo_rx(tc6->rx_skb);
-> +	ski->rtsa =3D FIELD_GET(OA_TC6_DATA_FOOTER_RTSA_VALID, footer);
-> +	ski->rtsp =3D FIELD_GET(OA_TC6_DATA_FOOTER_RTSP_VALID, footer);
->  	return 0;
->  }
-[ ... ]
-> @@ -831,13 +999,15 @@ static int oa_tc6_process_spi_data_rx_buf(struct oa=
-_tc6 *tc6, u16 length)
->  	/* Process the chunk with ongoing rx frame data */
-> -	oa_tc6_prcs_ongoing_rx_frame(tc6, data);
-> +	oa_tc6_prcs_ongoing_rx_frame(tc6, data, footer);
-
-[Severity: High]
-This is a pre-existing issue, but is there a missing bounds check here that
-could cause a panic?
-
-If the hardware sends a continuous stream of data chunks without ever setti=
-ng
-the end_valid flag, the receive loop continuously appends 64 bytes using
-skb_put in oa_tc6_prcs_ongoing_rx_frame. Without validating against the
-available socket buffer tailroom, a broken or malicious MAC-PHY could exhau=
-st
-the buffer and trigger an skb_over_panic.
-
-> =20
->  	return 0;
->  }
-[ ... ]
-> @@ -1151,6 +1332,8 @@ struct oa_tc6 *oa_tc6_init(struct spi_device *spi, =
-struct net_device *netdev)
->  	SET_NETDEV_DEV(netdev, &spi->dev);
->  	mutex_init(&tc6->spi_ctrl_lock);
->  	spin_lock_init(&tc6->tx_skb_lock);
-> +	tc6->tx_ts_idx =3D OA_TC6_TTSCA_REG_ID;
-> +	INIT_LIST_HEAD(&tc6->tx_ts_skb_q);
-
-[Severity: High]
-Are the socket buffers in tx_ts_skb_q properly freed during device teardown?
-
-When traffic is disabled or the device is torn down, it appears tx_ts_skb_q
-is ignored by oa_tc6_free_pending_skbs. If an interrupt is lost, the buffers
-remain in the queue forever, which could lead to a permanent memory leak of
-the socket buffers and their associated references.
-
-> =20
->  	/* Set the SPI controller to pump at realtime priority */
->  	tc6->spi->rt =3D true;
-> diff --git a/drivers/net/ethernet/oa_tc6/oa_tc6_ptp.c b/drivers/net/ether=
-net/oa_tc6/oa_tc6_ptp.c
-> new file mode 100644
-> index 0000000000000..921191ec6829f
-> --- /dev/null
-> +++ b/drivers/net/ethernet/oa_tc6/oa_tc6_ptp.c
-[ ... ]
-> +int oa_tc6_ptp_register(struct oa_tc6 *tc6, struct ptp_clock_info *info)
+> +static int s2500_probe(struct spi_device *spi)
 > +{
-> +	/* Not supporting hardware timestamp isn't an error */
-> +	if (!tc6->hw_tstamp_supported)
-> +		return 0;
+> +	struct device *dev =3D &spi->dev;
+> +	struct net_device *ndev;
+> +	struct s2500_info *priv;
+
+[ ... ]
+
+> +	spin_lock_init(&priv->lock);
+> +	mutex_init(&priv->ptp_adj_lock);
+> +	ndev->irq =3D spi->irq;
 > +
-> +	snprintf(info->name, sizeof(info->name), "%s",
-> +		 "OA TC6 PTP clock");
-> +	tc6->ptp_clock =3D ptp_clock_register(info, &tc6->spi->dev);
-> +	if (IS_ERR(tc6->ptp_clock)) {
-> +		dev_err(&tc6->spi->dev, "Registration of %s failed",
-> +			info->name);
-> +		return -EFAULT;
+> +	spi->dev.platform_data =3D priv;
+> +	spi_set_drvdata(spi, priv);
+
+[Severity: Medium]
+Could the usage of platform_data here overwrite board-supplied configuratio=
+n?
+The platform_data field is designated for system setup code to pass downwar=
+d=20
+static constraints. Storing dynamically allocated runtime state here should=
+=20
+be avoided; spi_set_drvdata() is already being used and is the correct=20
+mechanism.
+
+[ ... ]
+
+> +	/* Configure PTP if the model supports it */
+> +	ret =3D s2500_ptp_register(priv);
+> +	if (unlikely(ret))
+> +		goto err_reg_read;
+> +
+> +	ret =3D register_netdev(ndev);
+> +	if (ret) {
+> +		dev_err(&spi->dev, "failed to register netdev\n");
+> +		ret =3D -ENODEV;
+> +
+> +		goto err_reg_read;
+> +	}
+> +	return 0;
+> +
+> +err_reg_read:
+> +	dev_err(&spi->dev, "could not initialize macphy");
+> +	return ret;
+> +}
+
+[Severity: High]
+Does this error path leak resources?
+If register_netdev() or s2500_ptp_register() fails, the code jumps to=20
+err_reg_read without calling oa_tc6_ptp_unregister() or oa_tc6_exit().=20
+Because s2500_info is allocated via devm_, it will be freed on probe=20
+failure, leaving active components referencing freed memory.
+
+> diff --git a/drivers/net/ethernet/onsemi/s2500/s2500_ptp.c b/drivers/net/=
+ethernet/onsemi/s2500/s2500_ptp.c
+> new file mode 100644
+> index 0000000000000..7da660cb5b190
+> --- /dev/null
+> +++ b/drivers/net/ethernet/onsemi/s2500/s2500_ptp.c
+
+[ ... ]
+
+> @@ -0,0 +1,250 @@
+> +static int s2500_ptp_adjfine(struct ptp_clock_info *ptp, long scaled_ppm)
+> +{
+> +	struct s2500_info *priv =3D container_of(ptp, struct s2500_info,
+> +					       ptp_clock_info);
+> +	u32 sign_bit =3D 0;
+> +	long adj;
+> +	u32 val;
+> +	u64 ppm;
+> +
+> +	if (scaled_ppm < 0) {
+> +		/* split sign / mod */
+> +		sign_bit =3D 1U << 31;
+> +		scaled_ppm =3D ~scaled_ppm + 1;
 > +	}
 
-[Severity: High]
-Can this cause an invalid pointer dereference on cleanup?
+[ ... ]
 
-If ptp_clock_register fails, it returns an ERR_PTR which is stored directly
-in tc6->ptp_clock. The function returns an error without resetting the
-pointer to NULL. Later, oa_tc6_ptp_unregister checks if tc6->ptp_clock is
-true, which it is for an ERR_PTR, and attempts to unregister it, leading to=
- a
-panic.
-
-> +	dev_info(&tc6->spi->dev, "%s registered. index %d", info->name,
-> +		 ptp_clock_index(tc6->ptp_clock));
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(oa_tc6_ptp_register);
-[ ... ]
-> diff --git a/drivers/net/ethernet/oa_tc6/oa_tc6_tstamp.c b/drivers/net/et=
-hernet/oa_tc6/oa_tc6_tstamp.c
-> new file mode 100644
-> index 0000000000000..272701a4081dc
-> --- /dev/null
-> +++ b/drivers/net/ethernet/oa_tc6/oa_tc6_tstamp.c
-[ ... ]
-> +int oa_tc6_hwtstamp_set(struct oa_tc6 *tc6,
-> +			struct kernel_hwtstamp_config *cfg)
-> +{
-[ ... ]
-> +	hwtstamp_config_from_kernel(&tc6->ts_config, cfg);
+> +	/* check overflow */
+> +	if (adj >=3D (1L << 28))
+> +		return -ERANGE;
 > +
-> +	/* Supports timestamping all traffic */
-> +	if (cfg->rx_filter !=3D HWTSTAMP_FILTER_NONE)
-> +		tc6->ts_config.rx_filter =3D HWTSTAMP_FILTER_ALL;
-> +	return oa_tc6_set_hwtstamp_settings(tc6);
-
-[Severity: Medium]
-Does this leave the timestamp configuration in an inconsistent state if
-hardware programming fails?
-
-The driver copies the new configuration into tc6->ts_config before calling
-oa_tc6_set_hwtstamp_settings to program the hardware via SPI. If the SPI
-transfer fails, the function returns an error, but tc6->ts_config remains
-overwritten with the new values. Future queries to the timestamp
-configuration will falsely report the failed configuration.
-
+> +	val =3D (u32)adj | sign_bit;
+> +	return oa_tc6_write_register_mms(priv->tc6, S2500_REG_VS_PTP_ADJ,
+> +					 OA_TC6_PHY_C45_VS_MMS12, val);
 > +}
-> +EXPORT_SYMBOL_GPL(oa_tc6_hwtstamp_set);
+
+[Severity: High]
+Is this lockless hardware access safe?
+Concurrent calls to s2500_ptp_adjfine() can silently clobber the long-runni=
+ng=20
+frequency slew currently being performed in s2500_ptp_adjtime().
+
+[ ... ]
+
+> +static int s2500_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
+> +{
+> +	struct s2500_info *priv =3D container_of(ptp, struct s2500_info,
+> +					       ptp_clock_info);
+> +	struct ptp_system_timestamp sts;
+> +	struct timespec64 target;
+> +	unsigned int period_ms;
+> +	struct timespec64 now;
+> +	s64 scaled_ppm, rem;
+> +	int max_iters =3D 3;
+
+[ ... ]
+
+> +	while (rem !=3D 0 && max_iters--) {
+> +		s64 abs_delta =3D rem > 0 ? rem : -rem;
+> +
+> +		/* If the adjustment is very large, more than 1 second,
+> +		 * use settime to avoid very long slewing periods or
+> +		 * excessive frequency offsets.
+> +		 */
+> +		if (abs_delta > 1000000000LL) {
+> +			ret =3D s2500_use_settime(ptp, now, rem);
+> +			rem =3D 0;
+> +			break;
+> +		}
+
+[Severity: High]
+Can this result in undefined behavior?
+The "now" structure is declared but uninitialized here. It is passed=20
+by value to s2500_use_settime(), which copies the uninitialized stack memor=
+y.
+
+> +
+> +		/* Choose a slewing period depending on magnitude */
+> +		if (abs_delta <=3D 1000000LL) /* <=3D 1ms */
+> +			period_ms =3D 1000; /* 1 s */
+> +		else if (abs_delta <=3D 100000000LL) /* <=3D 100ms */
+> +			period_ms =3D 10000; /* 10 s */
+> +		else
+> +			period_ms =3D 60000; /* 60 s */
+> +
+> +		/* Compute current time and fixed target for this
+> +		 * iteration
+> +		 */
+> +		memset(&sts, 0, sizeof(sts));
+> +		ret =3D ptp->gettimex64(ptp, &now, &sts);
+> +		if (ret)
+> +			break;
+> +
+> +		if (rem >=3D 0)
+> +			target =3D timespec64_add(now,
+> +						ns_to_timespec64(rem));
+> +		else
+> +			target =3D timespec64_sub(now,
+> +						ns_to_timespec64(-rem));
+> +
+> +		/* Compute scaled_ppm (Qx.16). scaled_ppm =3D ppm * 2^16
+> +		 * ppm =3D (delta_seconds / period_seconds) * 1e6
+> +		 * =3D> scaled_ppm =3D delta_ns * 65536 / (period_ms * 1000)
+> +		 */
+> +		num =3D rem * 65536LL;
+> +		den =3D (s64)period_ms * 1000LL;
+
+[Severity: High]
+Does this math correctly scale the frequency adjustment?
+By dividing by (period_ms * 1000) instead of accurately scaling the values,=
+=20
+the resulting scaled_ppm drastically shrinks the frequency adjustment=20
+instead of expanding it. This creates a result mathematically 1,000,000=20
+times too small, causing the slew to fail to reach the target time offset.
+
+> +
+> +		/* Integer division rounds toward zero; keep sign in
+> +		 * numerator
+> +		 */
+> +		scaled_ppm =3D div_s64(num, den);
+> +
+> +		/* Apply frequency adjustment */
+> +		ret =3D ptp->adjfine(ptp, (long)scaled_ppm);
+> +		if (ret)
+> +			break;
+> +
+> +		/* Sleep for the slew period (interruptible). If
+> +		 * interrupted, clear the adjfine and return -EINTR.
+> +		 */
+> +		if (msleep_interruptible(period_ms)) {
+
+[Severity: High]
+Is it acceptable for adjtime to block synchronously?
+The PTP subsystem expects adjtime callbacks to return immediately by=20
+stepping the clock or deferring logic. Selecting a sleep duration of=20
+up to 60 seconds and calling msleep_interruptible() will freeze=20
+userspace PTP daemons and break PI control loops.
+
+> +			/* Clear adjfine */
+> +			ptp->adjfine(ptp, 0);
+> +			ret =3D -EINTR;
+> +			break;
+> +		}
+> +
+> +		/* Clear adjfine and measure remaining offset */
+> +		ptp->adjfine(ptp, 0);
+
+[Severity: High]
+Could this destructively reset the baseline frequency?
+By unconditionally resetting the frequency offset to 0 upon waking=20
+from sleep, any concurrent adjustments dynamically applied by the=20
+PTP daemon via clock_adjtime(ADJ_FREQUENCY) will be wiped out,=20
+preventing accurate clock synchronization.
+
+[ ... ]
+
+> +int s2500_ptp_register(struct s2500_info *priv)
+> +{
+> +	struct ptp_clock_info *info =3D &priv->ptp_clock_info;
+> +	int ret;
+> +
+> +	info->max_adj =3D 100000000;
+> +	info->owner =3D THIS_MODULE;
+
+[Severity: High]
+Will this maximum adjustment value overflow on 32-bit architectures?
+A max_adj of 100,000,000 ppb will be multiplied by 65.536 by the PTP core=20
+to yield a scaled_ppm of ~6.55 billion. This exceeds the capacity of a=20
+signed 32-bit long, causing large positive frequency adjustments to overflo=
+w=20
+into negative values and apply an inverted slew.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260629-s2500-mac-=
-phy-support-v6-0-18ce79500371@onsemi.com?part=3D6
+phy-support-v6-0-18ce79500371@onsemi.com?part=3D12
 
