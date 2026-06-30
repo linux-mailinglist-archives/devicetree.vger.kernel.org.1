@@ -1,251 +1,249 @@
-Return-Path: <devicetree+bounces-317735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317747-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GWhRJ2e5Q2pmfwoAu9opvQ
-	(envelope-from <devicetree+bounces-317735-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 14:41:11 +0200
+	id 6M5ZMRq6Q2qefwoAu9opvQ
+	(envelope-from <devicetree+bounces-317747-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 14:44:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 755096E44AB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 14:41:10 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 168F36E4552
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 14:44:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317735-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317735-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=okYOPVw2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317747-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317747-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 80FB33012258
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:36:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E814A30276B0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:40:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D29B8408617;
-	Tue, 30 Jun 2026 12:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 881B340B6E2;
+	Tue, 30 Jun 2026 12:40:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A4C1F3D56;
-	Tue, 30 Jun 2026 12:36:26 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782822989; cv=none; b=A9ZmXI+NKXFGFcqhfvVJoZW9i9OoHTUIcI9mPL/K05nd0UE66hJODl5e4z7wMGhaChv8eBqytVsP6eKnHMG0yjL095FY/WLYJBO/WRtrK5QQCRgTSKjDtjDt+NC4ef346P0OXC2/j9PLDGXCnQaiqlo8sG8x6qtMENvJgNlNsZk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782822989; c=relaxed/simple;
-	bh=+9gtoXI7zpH1/d174ZpBP6VfcwKOyAPrwaYEiqqHFfo=;
-	h=From:Subject:To:Cc:References:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=aWDqCT5vWWmHhlmQqArVoIdKvXy/EaBirMRpZkvFDwFOGYFtUANp0NcN+eWQASpSnJ6i5khddzNSSBFi4kbPiivP39oJhOmysYqTq17E6ChsrnhWR2ebChqwEpee7OkxkTKleAqlYW/e5Tb0iqjcC2CdtbA2K7l7LM9vDm5f9rQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Received: from loongson.cn (unknown [10.20.42.101])
-	by gateway (Coremail) with SMTP id _____8Bxh_BIuENqPwkAAA--.149S3;
-	Tue, 30 Jun 2026 20:36:24 +0800 (CST)
-Received: from [10.20.42.101] (unknown [10.20.42.101])
-	by front1 (Coremail) with SMTP id qMiowJDxaeAzuENqzQq5AA--.24273S3;
-	Tue, 30 Jun 2026 20:36:23 +0800 (CST)
-From: Hongliang Wang <wanghongliang@loongson.cn>
-Subject: Re: [PATCH v6 2/2] i2c: ls2x: Add clocks property parsing and adjust
- bus speed
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- loongarch@lists.linux.dev, Huacai Chen <chenhuacai@loongson.cn>,
- stable@vger.kernel.org
-References: <20260608024533.32419-1-wanghongliang@loongson.cn>
- <20260608024533.32419-3-wanghongliang@loongson.cn>
- <ajHRVJhAzo3V4C9g@zenone.zhora.eu>
-Message-ID: <c63e2126-02a0-18d9-896a-89257201cb0a@loongson.cn>
-Date: Tue, 30 Jun 2026 20:34:59 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E980640BCCC
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 12:40:48 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782823250; cv=pass; b=iaK1Hs6NbLgEZSzvbTrdnVjmuZ8Tu2858EbxvujqgX5zLCM5i1Q05yRz8J3I8DdCIldc9Xw/YH/gJUKojEEKdnmMJkDSXrXyPkbWCSxUaxtFLPM7yMbOOyZuVb5g3fSMyOhL64KLBk++pX1ST+DSy54yRiGZ+6NQkhHmSNgYrEw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782823250; c=relaxed/simple;
+	bh=uOJKz5W+d2p6Y6G+mO8v3mk6G4LRD5Z3XtmSK7BGQy4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sBaixGFfGtHUx0++v3mvvTYUtmn7V3UL76INliYkdyETdSadxMK1Jy1dw0oGVP6siPCYnq4vNMnYTTj9Lk9Fm861WfEOFzOZHNTvq+I8T/5HomPHHKLU6qbkeKEOzCWX0iLMFElgMmc7Pmcq51o/gOXioSDnmB2Xu2o+oY22MWA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=okYOPVw2; arc=pass smtp.client-ip=209.85.128.49
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-493a5392c60so14335215e9.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 05:40:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782823247; cv=none;
+        d=google.com; s=arc-20260327;
+        b=HikmHivRFKIt3ma1jbDDlZOf3Mh2PkS49me/b4YcG4JeEtBbZeqDo7AErHhpUSwN6K
+         hL2eUhxk+UoykCE0iiEeDuJmH5TEGr8HQ7ABRKKFznMcLaiDZzKoPkc/c3UDatwLIfZt
+         gijVT2KfFV5AxPsu/85lVWzehwkoxkWIkZYBhdh+F/ZdVBQ1myObeHagzzok/vRzN/cN
+         qAbVnfLrDIV2a51LG4FIv/Crxr9ZRuUmrhtd7W38GbHShXfF8kIZJECbANZIYaoTXPXm
+         Sry5z5fWD3RuqeyXThLxdKZfANOshmDu4P401fiq1ZM68ravFqQzXvF0JmH6PSEWK1yC
+         HTLw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=eV5IRKi1OeoMkxNq2d6si+B8SDj/PuxpdPHNUkls7HM=;
+        fh=iECXC4dKd8Ebl6ajkUljW6IuuS90fsE1VQGhTRi25EA=;
+        b=nUe6DSq/aPz9jvsyBQoXVb9BGH3rIcon5jFR1bpUpycXTiixfS5B0np/IBEziT0EZ5
+         Vm3hO/QrkMqKZe+DzS39ZIzkGHgvboMDBNxG9GijbNk9DQ5T1iOuoLynbWOjPjNSdrAh
+         rvUOwTXKKAgHTZBhc1gPF/FNVp2F4EtEErRrwHUAem+XW1oyLeii5BTnLUHuWikWjNde
+         nNJeF2lJceY3/oKPQ1z28Vqygx1vOuJSsOREmb/dc4D+cxHocvJ2gd/koCTI71xdUwV+
+         Ag67YCXQOkM0I/K4QmQlvMRz+g0pANLSmE31kXFIsgmdUtQKutC+uTuu32bs2vpxcioL
+         NGLg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782823247; x=1783428047; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eV5IRKi1OeoMkxNq2d6si+B8SDj/PuxpdPHNUkls7HM=;
+        b=okYOPVw2Q+8a0DjlK1NeXzgumgVYTGzXd73n6RNIzvvxcwTJ5XophTMRfU8cSS2mI+
+         bixAvDqaYTTKPYqQ5xK40UAVg5Ig4yTaqqaJgyNW71xx1FrfxpbpgJG3u9+3RUY5DNZf
+         gk741C9HIvNObnKUKTy10T2YUBluO0u+1B4JPnR4LevWTO4MlmyWmtIFwXhLlCtXEmVN
+         FjZdEQqflShRPY4XlutZXqyQP6HbC4+phfRsszXH2cL+pGGot5vWpsABD/T6BP7XZqbt
+         KqJ4JiPKSdOYwKflJSJa6RQ14d8NbsfNdhpCRC6BiYTkpTER911Bhbzd1l5fEt2AEukF
+         FjQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782823247; x=1783428047;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=eV5IRKi1OeoMkxNq2d6si+B8SDj/PuxpdPHNUkls7HM=;
+        b=q5a3k1g0k1CflQZ2H27R4SPeKgAOyyTWs7y9bwJ339GwswWeWQltEhVgOWfLZMe3NO
+         JJAPNfvRdCQwho3zzw/M075ynNFe8YPxf5hTeRwyKU46vj83dgsLBowiB3dFDhLF519k
+         gae5VYskPtYmuz843VQfqkP7vC7QkIIsDuIc84cc3yNQRVealz0iAzjVhPxEXp7fTi3T
+         uXdLZzDEdPKoX0wTIOXNqhBhC2dtIfjncG9LMbwAfoLE65rQkaQjbOviJEZ5h8FHabfv
+         IoZ53we57ppBp4eJYECI8R2DZms4K5wOcE3sHX+zIxkSd0Zleh5Ai0NvTZotkyHdVaE/
+         bp6w==
+X-Forwarded-Encrypted: i=1; AFNElJ9elv3bxAPYcGwiEA1vzz5cOOJynTFWvCweGH6PjKQ/tiND6Q0LGMCqOWvml2oD9Al10ZQTfQ8fmkun@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4ZUzASsBHQvD5aQmhwmfOJWnN+DDUK3NVTIEBqwNglSqUijKi
+	sBLin41Wu0SPZ+yIu+Zg89vVCj3ofUm/0n+xpGi+Wbi7+RYXrlXGADlLaY5mPK2K6HsaQ7J/Sf/
+	5lJwqI89ojCoKrtzNr/9sY8YzIURxwu0=
+X-Gm-Gg: AfdE7cltIi2gBrmuXypn9knEKRmE/MRthEK+4FDxSzg1i0EAdk698VBFKhEvv9qHqxU
+	BqmCAxmDZGZZs0qqCP2//D3q15a6npTj2hN+XYgMx4mKiOYta/D+Dhz93QrEZkd9cmMFSrTOZsY
+	0MfjtXIKHm+d+VHd1SR+ZCllzWHIN1LQOoxVYbCbnTiABcBDCm/9w1IFskC7ebyKgNbr9U//Cb6
+	s+9/yoFfEn1OXXLRQpX0uxIzmU/KdgyAfGhpnI+RkXXeweBbSEE991QBvkB14UYllALze6SEV/s
+	X4+4HxaGi4Hx8qpjWjLqfXi2YwhrBmteAyHgzp4=
+X-Received: by 2002:a05:600c:1383:b0:492:58d6:2565 with SMTP id
+ 5b1f17b1804b1-493b82b62b1mr51680335e9.25.1782823247134; Tue, 30 Jun 2026
+ 05:40:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <ajHRVJhAzo3V4C9g@zenone.zhora.eu>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-CM-TRANSID:qMiowJDxaeAzuENqzQq5AA--.24273S3
-X-CM-SenderInfo: pzdqwxxrqjzxhdqjqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBj93XoW3WF17tw1ktr43tF13KFW8KrX_yoW7GFW7pF
-	W8JF4UGrWDJr10qr1kXr1UZryUtw1DJ3WUJr18JF17Xr13Jr1jqF1UWr1qgr18Gr48Jw45
-	JF1UXr1UZr1UArbCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUv2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
-	xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
-	1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv
-	67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
-	AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
-	F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
-	ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
-	xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
-	1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8zw
-	Z7UUUUU==
+References: <20260614083424.464132-1-mitltlatltl@gmail.com>
+ <20260614083424.464132-2-mitltlatltl@gmail.com> <qwbda435on6rhsbf5o4jqijakanjmnmswnc6g6qsubuqbyvbok@fuoclv6u7tq5>
+ <c29776b4-04b8-4c59-8f1e-d766bf982a2f@oss.qualcomm.com> <CAH2e8h75xeRVvo+jOjRuFaBko5NNCnBX0dawFFsWBaiTwNd4Xw@mail.gmail.com>
+ <99eaf1d1-fbf9-4336-a13c-ae8ab789cc99@oss.qualcomm.com> <CAH2e8h6aWW_=pD6JAuFB-VqEZDj9x8gZVh9TdvTCRQakKzm3pA@mail.gmail.com>
+ <df03a3dc-1f6a-4725-a565-939838d3b1ba@oss.qualcomm.com>
+In-Reply-To: <df03a3dc-1f6a-4725-a565-939838d3b1ba@oss.qualcomm.com>
+From: Pengyu Luo <mitltlatltl@gmail.com>
+Date: Tue, 30 Jun 2026 20:39:14 +0800
+X-Gm-Features: AVVi8CfouiOAAEzdLUS5LEph1kSz7ajqtxX1IEObzFKZMd694YMeQZPjfxjVDBU
+Message-ID: <CAH2e8h7XmhwWPfDmPf8SVpu6syP2E=BriC0=x3BT=XNPzJDzMg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] spi: qcom-geni: Add property to force GSI mode
+To: Mukesh Savaliya <mukesh.savaliya@oss.qualcomm.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.46 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317735-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mukesh.savaliya@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:agross@kernel.org,m:andersson@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:andi.shyti@kernel.org,m:zhoubinbin@loongson.cn,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:loongarch@lists.linux.dev,m:chenhuacai@loongson.cn,m:stable@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[wanghongliang@loongson.cn,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[loongson.cn];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-317747-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wanghongliang@loongson.cn,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,loongson.cn:email,loongson.cn:mid,loongson.cn:from_mime]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,mail.gmail.com:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 755096E44AB
+X-Rspamd-Queue-Id: 168F36E4552
 
-Hi, Andi
-
-On 2026/6/17 上午6:55, Andi Shyti wrote:
-> Hi Hongliang,
+On Tue, Jun 30, 2026 at 8:28=E2=80=AFPM Mukesh Savaliya
+<mukesh.savaliya@oss.qualcomm.com> wrote:
 >
-> On Mon, Jun 08, 2026 at 10:45:33AM +0800, Hongliang Wang wrote:
->> The i2c-ls2x driver supports dts and acpi parameter passing.
->>
->> In dts, uses clock framework, by parsing clocks property to
->> get i2c bus reference clock, and define the div of reference
->> clock by device data.
->>
->> In acpi, by passing clocks property to describe i2c bus reference
->> clock and clock-div property to describe the div of reference clock.
->>
->> Based on i2c bus reference clock(clock_a), i2c bus speed(clock_s)
->> and div, calculate the prcescale of i2c divider register. The
->> calculation formula is
->>
->> prcescale = (clock_a*10)/(div*clock_s)-1
->>
->> Reviewed-by: Huacai Chen<chenhuacai@loongson.cn>
->> Cc:stable@vger.kernel.org
-> what are you fixing exactly? It's not clear from the commit log.
-> Do we need to add the Fixes tag?
-The modification from v5 to v6 only removed CC stable from patch 1/2 and 
-added
-Reviewed-by tag to patch 1/2 and patch 2/2, the source code of patch 2/2 
-has not
-been modified.
-
-Best regards,
-Hongliang Wang
->> Signed-off-by: Hongliang Wang<wanghongliang@loongson.cn>
-> ...
 >
->> @@ -96,6 +104,8 @@ static irqreturn_t ls2x_i2c_isr(int this_irq, void *dev_id)
->>   static void ls2x_i2c_adjust_bus_speed(struct ls2x_i2c_priv *priv)
->>   {
->>   	u16 val;
->> +	u32 pclk, div;
->> +	struct clk *clk;
->>   	struct i2c_timings *t = &priv->i2c_t;
->>   	struct device *dev = priv->adapter.dev.parent;
->>   	u32 acpi_speed = i2c_acpi_find_bus_speed(dev);
->> @@ -107,12 +117,30 @@ static void ls2x_i2c_adjust_bus_speed(struct ls2x_i2c_priv *priv)
->>   	else
->>   		t->bus_freq_hz = LS2X_I2C_FREQ_STD;
->>   
->> +	if (dev_of_node(dev)) {
->> +		clk = devm_clk_get_optional_enabled(dev, NULL);
-> Here you got a valid comment from the sashiko-bot, did you check
-> it?
-Yes, I moved this part of code to ls2x_i2c_probe and only called 
-devm_clk_get_optional_enabled once.
-> There are some other comments that is worth checking.
-I added div non-zero checking. Other comments I evaluate have no impact 
-on the
-functionality of the i2c-ls2x driver.
-
-The modify as follows:
-
-60 @@ -107,12 +116,13 @@ static void ls2x_i2c_adjust_bus_speed(struct 
-ls2x_i2c_priv *priv)
-  61         else
-  62                 t->bus_freq_hz = LS2X_I2C_FREQ_STD;
-  63
-  64 +       val = (priv->pclk * 10) / (priv->div * t->bus_freq_hz) - 1;
-  65 +
-  66         /*
-  67          * According to the chip manual, we can only access the 
-registers as bytes,
-  68          * otherwise the high bits will be truncated.
-  69          * So set the I2C frequency with a sequential writeb() 
-instead of writew().
-  70          */
-  71 -       val = LS2X_I2C_PCLK_FREQ / (5 * t->bus_freq_hz) - 1;
-  72         writeb(FIELD_GET(GENMASK(7, 0), val), priv->base + 
-I2C_LS2X_PRER_LO);
-  73         writeb(FIELD_GET(GENMASK(15, 8), val), priv->base + 
-I2C_LS2X_PRER_HI);
-  74  }
-
-
-  75 @@ -290,6 +300,7 @@ static int ls2x_i2c_probe(struct 
-platform_device *pdev)
-  76         struct i2c_adapter *adap;
-  77         struct ls2x_i2c_priv *priv;
-  78         struct device *dev = &pdev->dev;
-  79 +       struct clk *clk;
-  80
-  81         priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-  82         if (!priv)
-  83 @@ -304,6 +315,25 @@ static int ls2x_i2c_probe(struct 
-platform_device *pdev)
-  84         if (irq < 0)
-  85                 return irq;
-  86
-  87 +       if (dev_of_node(dev)) {
-  88 +               clk = devm_clk_get_optional_enabled(dev, NULL);
-  89 +               if (!IS_ERR_OR_NULL(clk))
-  90 +                       priv->pclk = clk_get_rate(clk);
-  91 +               else
-  92 +                       priv->pclk = LS2X_I2C_PCLK_FREQ;
-  93 +
-  94 +               priv->div = (unsigned long)device_get_match_data(dev);
-  95 +       } else {
-  96 +               /* clocks and clock-div are only ACPI properties. */
-  97 +               ret = device_property_read_u32(dev, "clocks", 
-&priv->pclk);
-  98 +               if (ret)
-  99 +                       priv->pclk = LS2X_I2C_PCLK_FREQ;
-100 +
-101 +               ret = device_property_read_u32(dev, "clock-div", 
-&priv->div);
-102 +               if (ret || !priv->div)
-103 +                       priv->div = LS2X_I2C_7A_CLOCK_DIV;
-104 +       }
-105 +
-
-> Thanks,
-> Andi
 >
->> +		if (!IS_ERR_OR_NULL(clk))
->> +			pclk = clk_get_rate(clk);
->> +		else
->> +			pclk = LS2X_I2C_PCLK_FREQ;
-> ...
-Best regards,
-Hongliang Wang
+> On 6/30/2026 3:36 PM, Pengyu Luo wrote:
+> > On Tue, Jun 30, 2026 at 5:52=E2=80=AFPM Mukesh Savaliya
+> > <mukesh.savaliya@oss.qualcomm.com> wrote:
+> >>
+> >>
+> >>
+> >> On 6/29/2026 1:33 PM, Pengyu Luo wrote:
+> >>> On Mon, Jun 29, 2026 at 1:36=E2=80=AFPM Mukesh Savaliya
+> >>> <mukesh.savaliya@oss.qualcomm.com> wrote:
+> >>>>
+> >>>> Hi Pengyu,
+> >>>>
+> >>>> On 6/15/2026 2:48 AM, Dmitry Baryshkov wrote:
+> >>>>> On Sun, Jun 14, 2026 at 04:34:24PM +0800, Pengyu Luo wrote:
+> >>>>>> Some devices (such as gaokun3) do not disable FIFO mode, causing t=
+he
+> >>>>>> driver to fallback to FIFO mode by default. However, these platfor=
+ms
+> >>>>>> also support GSI mode, which is highly preferred for certain
+> >>>>>> peripherals like SPI touchscreens to improve performance.
+> >>>>>>
+> >>>>>> Introduce the "qcom,force-gsi-mode" device property to hint and fo=
+rce
+> >>>>>> the controller into GSI mode during initialization.
+> >>>> Why to force ? You can directly configure in GSI mode. Note there ar=
+e
+> >>>> some configuration done prior to Linux bootup too.
+> >>>
+> >>> Sorry, I don't get it. how? I know there may be a qupfw, but it is
+> >>> impossible for a normal user like me to generate one with GSI
+> >>> preferred.
+> >>>
+> >> If firmware doesn't program in GSI, you can't have this working in GSI
+> >> mode, its going to fail (and work with fallback). if it's programmed i=
+n
+> >> GSI, anyway this will run in GSI mode. So why to add extra things
+> >> without any usage ?
+> >>
+> >
+> > What I can confirm is that fifo is not disabled on my device, and gsi
+> > is definitely enabled (under windows, check the register
+> > SE_GENI_DMA_MODE_EN), forcing the device to enable GSI mode on linux
+> > works well.
+> >
+> Thanks  ! if GSI is already enabled, then why do you need forced gsi ?
 
+I meant it is enabled on windows, not linux, and I think it is enabled
+in the driver, geni_se_select_dma_mode() does it. On windows,
+GENI_DMA_MODE_EN bit is set, but not on linux.
+
+Yes, I have no doubt about below(as I drop DT part in V2), but the
+GENI_IF_DISABLE_RO register only determines if fifo is disabled, if
+not, why can't we use GSI?
+
+> My point here - SW should only decide mode based on register read, not
+> enforce by DT flag. As such it's not a SOC exposed, can't be overridden
+> by user.
+
+Best wishes,
+Pengyu
+
+> >>>
+> >>>>>
+> >>>>> Ideally, this should be decided by the SPI controller based on the
+> >>>>> requirements. Another option would be to prefer GSI for all transfe=
+rs if
+> >>>>> it is available, ignoring the FIFO even if it is not disabled.
+> >>>>>
+> >>>> Yes, it should be decided in advance and configured accordingly for =
+GSI
+> >>>> vs non GSI mode. Because there would be limited set of GSI pipes, wh=
+ich
+> >>>> will actually make must have GSI mode device run with FIFO mode.
+> >>>>
+> >>>> Why don't you decide prior and configure for GSI mode ? We don't nee=
+d to
+> >>>> change the current logic of deciding FIFO vs GSI.
+> >>>>>>
+> >>>>>> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> >>>>>> ---
+> >>>>>>     drivers/spi/spi-geni-qcom.c | 7 +++++++
+> >>>>>>     1 file changed, 7 insertions(+)
+> >>>>>>
+> >>>>>
+> >>>>
+> >>
+>
 
