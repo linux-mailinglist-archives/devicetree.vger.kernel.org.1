@@ -1,225 +1,163 @@
-Return-Path: <devicetree+bounces-317816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317818-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /T81AefEQ2oYhQoAu9opvQ
-	(envelope-from <devicetree+bounces-317816-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:30:15 +0200
+	id GOY6KTLGQ2rShQoAu9opvQ
+	(envelope-from <devicetree+bounces-317818-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:35:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CCF36E4DCE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:30:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 221786E4E89
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:35:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NrKvkU6a;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317816-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-317816-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=aveCoyRz;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317818-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317818-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0C6763087626
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:27:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 600893112CF0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE19416D07;
-	Tue, 30 Jun 2026 13:27:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25FA423149;
+	Tue, 30 Jun 2026 13:29:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6EBB419312;
-	Tue, 30 Jun 2026 13:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C967421EFB
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 13:29:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782826069; cv=none; b=csgP84dP4YpYvXLNi2xbn6JDaxWy6NC7vmnaVjEoFXkVEywSaPjJroDuTb6yO//HncRoGhXXU2Fd6ltZl+HC+pZX1I+vK+8GsffUonmBFghU3nCNqpVUaAwnIPrriMFB5wPm/D2FwB4SQIuU1jc/1q+S1IJhbyAnl03Io92pphk=
+	t=1782826166; cv=none; b=dB3wal8G+g888PP4yVy29jKBVioEhZg7v9gcfCofsV2zEImc9Ah2HswBWxS57QAgaSfPpmK/FSeGMn8Ex7FFUUpzY5YGB9md/Q2tDGI0kltLBTqhTLWGG74f3lgv+gT8UpIN/d87sairLVRqXKVmLCC/xRoLEVwRTg41rCrG43I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782826069; c=relaxed/simple;
-	bh=O4ZOIBqgTCTGCaauOcbP6nlKwtDthgcddUKMleoVxoU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=IMF8U8lMw8/JQrQlgwEQ8zOrwDcaUX1OqJfC2o1X/O7a3W/w0K2xOoPCBnWkg18ttpAyaLUeJzBTHdMR1sPEzVSeTpSq8QxFNOO9oj+bVY9uPaGG2kdyJ/s/cYErDhAMXYKk3xhr9+sdtcUcMGCjKpnvjeBLkUzziTL9mvYSPqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NrKvkU6a; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EED71F00A3A;
-	Tue, 30 Jun 2026 13:27:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782826067;
-	bh=AYTh4JEcfVOC5woeIWj/5cORPnamgipv1avWKOLDEEY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=NrKvkU6aILmS3bXQOuYI/cwoG2xS7Mm6woTvS+GCU/+b0i0OWioIXttI6wfq5izHn
-	 u2xqHoVLxfM/2LB8RnrFnVAChiA2umCaqDWm8nVgB4s8Ya7bM4ZU6XDR2S79DVWKdv
-	 Fm0unsfmZ2z7CQcvirkQXfenCJdjuVeqpLR61zX5ey9GaYwPnXY7Iz5rZHZbFEoQEc
-	 zjXNIho4Gm1vTb7VAIX+bjrWNMgmPR6uh6Yt9yMiMmPxRSLZC0Xr6Hf+aFR/VklS4Y
-	 W4RbqpnQssny9MvnM47uC/wBwOZiymRthULrQBH24zWX8C6OoV2JeNu8n2M89G65gm
-	 7H+/msLxxp8Eg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v11 3/7] dt-bindings: net: qcom: document the
- ethqos device for SCMI-based systems
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Bartosz Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>
-Cc: neil.armstrong@linaro.org, wsa+renesas@sang-engineering.com, linux-amlogic@lists.infradead.org, Frank.Li@kernel.org, robh@kernel.org, conor+dt@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
-In-Reply-To: <20260629-qcom-sa8255p-emac-v11-3-1b7fb95b51f9@oss.qualcomm.com>
-References: <20260629-qcom-sa8255p-emac-v11-0-1b7fb95b51f9@oss.qualcomm.com>
- <20260629-qcom-sa8255p-emac-v11-3-1b7fb95b51f9@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 30 Jun 2026 13:27:46 +0000
-Message-Id: <20260630132747.0EED71F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1782826166; c=relaxed/simple;
+	bh=1jYHfBZ5v/zURoZ28SDfcz+g5I/GvgjfuChnVD+R+GY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=H2xHRj2BrxBY13+f8CEs/VVM/hY1gWDMJpq7PEDur+cSzDEOA+8S/rav3WoJsBtFWNOPQSSpy3PjV580CTkoOH33t0WOtmiVcPYtV9G6+tUOjn6vI13yJHq3UFDyHtn3vOnll5pC7acz8/xbFkDIvg2cSIC3U93UgBAmugPpkRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aveCoyRz; arc=none smtp.client-ip=209.85.221.47
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-4758bd3731bso553358f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 06:29:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782826163; x=1783430963; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gVr02XPdPojhLzYayj+MuNGvSbrZFpz/kS5Ho7Wv8Mo=;
+        b=aveCoyRzvZjjaGTe3JidA0yPS8QZV9VnEvzmWTu7yTgJLU6zrP4upITW2QqRmsfn4m
+         D8fIyEoD3e+Gh1C8cEJMjg8fU07T8PS9udHBuflc4ZzMJJxPHG2q7KW23H5oglATmif/
+         qu3Yko4C1dxS9NSX8352jFx0RxdzELKvz975yZhYbBfiyhEtV3uR8rYmCZI25X3Mjyf6
+         fpo5YQ93S9ojSeo2bANxBqyiKngrFomWEwwE2fG0zzb/OsMIcjMPEdYCBxwnkV7/dkEM
+         n68Q17oWeRLLbxExDKmoZMOVBuL4gUv+oG8YbicW/m+6252M8of05gxjJ5JwzvPc9N5Q
+         w3fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782826163; x=1783430963;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gVr02XPdPojhLzYayj+MuNGvSbrZFpz/kS5Ho7Wv8Mo=;
+        b=nZtAPXelPnGr7LZ23uXBlcTWUkBafVC4lGAL0cESFXWJtTPidRokN57l3kEkJQtyOK
+         eiwk+WzRQkkvLIFmI2gvDL96hjcsfP5E+GQjp7UggjIRseA6+cVigEtIxlKdvKBNKhB7
+         p/mwJLuhEA8noPhJ/a2hEon4zt+pzrTkRi9qEVItrJIuRUVPtFmLk/8t4Aeo5itEhHZf
+         pfwWDhgi7kJRGn/apVf8fNUp1WfnCINJi0a/GA76zg+/tiG/a0FkoF5+vrEZaBzoX010
+         pv4Qopss6EKiNccl3irFX7ZDtK4TM2zD1/AubKvVOmHplnvU1pQYYV6Cl5mR2JqKuoqo
+         J1Qw==
+X-Forwarded-Encrypted: i=1; AHgh+RrD3CEyvdfUxpzLDzG0JGL0KjtSqpZuoHEM1P/G8RqwfQeJiC4HHuGaoELHlOGcl/afxSc4rLOo40ZC@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywwp8XHdKYDYuWAc1+YXUE/BKUXBq+e9QddMpGeOXAuNeszeGgG
+	qiZQPhPkw8Zm0+DgfhtjKVz4f20Y4+/Er31/TUsjLx/S+XFWnxatgTwm
+X-Gm-Gg: AfdE7cmMiY7qdvpbebokU9rWjgXrcERxw+GQpIjwiKuJV0aLlPeGyhp8ugKV1Z+X+Da
+	p+7rVt+6OSsAE0kaCgPt5t2/TNfJLY8wMv0SxuWspB9yXmshk4Wb6q017fA0d179GH4dS9VDbdr
+	t897GtVvViHGxytQmhdTFaKciD3eecDnUbmo2zXcEkhFJOKM2RCa0My3Yz+lvzO795ltm4j54Wt
+	l8iwMTQAv6zwBWcYRiaPdwhnQycdRt2fFDXTmbPY5ILuw6CCDj8z8gf5v0SEEJz9YomzhC+Gc7k
+	voyiDhEAJlWbQ0iWDsFZFZdnxVg8y/OA9iYNXZUnim5Sxbf5BWlzSP8hcDp6+IYKN9ZD7wIt8f7
+	MqI223FXAwOud/zPtDkaePE7a+72HhbZIGMOgReBp4ffGuPzsZFGp6Xkd3Lq9tYZaytJ7AzdgUK
+	AWcQJ5SZKbusUW9g5+up2b0tqCQ7mKZiUJo9Bs9w5X01Z311YPv0syPTne2vEc1zgg
+X-Received: by 2002:a05:6000:400d:b0:474:8dbb:ccd0 with SMTP id ffacd0b85a97d-475dfa8909emr2660914f8f.19.1782826163485;
+        Tue, 30 Jun 2026 06:29:23 -0700 (PDT)
+Received: from localhost.localdomain ([82.77.79.113])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-47566743895sm7913706f8f.25.2026.06.30.06.29.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jun 2026 06:29:23 -0700 (PDT)
+From: Eduard Bostina <egbostina@gmail.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Eduard Bostina <egbostina@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>
+Cc: daniel.baluta@nxp.com,
+	simona.toaca@nxp.com,
+	goledhruva@gmail.com,
+	m-chawdhry@ti.com
+Subject: [PATCH 0/2] dt-bindings: arm: omap: Convert DSP and IVA bindings to DT schema
+Date: Tue, 30 Jun 2026 13:28:54 +0000
+Message-ID: <20260630132857.3007019-1-egbostina@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317816-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[egbostina@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[nxp.com,gmail.com,ti.com];
+	TAGGED_FROM(0.00)[bounces-317818-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:bartosz.golaszewski@oss.qualcomm.com,m:neil.armstrong@linaro.org,m:wsa+renesas@sang-engineering.com,m:linux-amlogic@lists.infradead.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:egbostina@gmail.com,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:broonie@kernel.org,m:robh@kernel.org,m:daniel.baluta@nxp.com,m:simona.toaca@nxp.com,m:goledhruva@gmail.com,m:m-chawdhry@ti.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[egbostina@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5CCF36E4DCE
+X-Rspamd-Queue-Id: 221786E4E89
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] The SCMI PHY driver fails to apply its power domain performance st=
-ate dynamically when `phy_set_mode` is called on an already powered-on PHY,=
- causing link speed to stall.
-- [Medium] Device tree bindings missed update for `power-domains` maxItems =
-constraints, allowing 2 power domains on hardware variants that only suppor=
-t 1.
---
+This series converts the Texas Instruments DSP and IVA
+Device Tree bindings from text format to DT schema.
 
-commit 53c301c3f426ecddb2b45080a9a52eeda51a523e
-Author: Bartosz Golaszewski <brgl@kernel.org>
+These conversions are grouped together because the IVA schema explicitly 
+depends on the DSP schema. The DSP is defined as a child node within the
+IVA subsystem.
 
-dt-bindings: net: qcom: document the ethqos device for SCMI-based systems
+Eduard Bostina (2):
+  dt-bindings: arm: omap: Convert DSP to DT schema
+  dt-bindings: arm: omap: Convert IVA to DT schema
 
-Describe the firmware-managed variant of the QCom DesignWare MAC. As the
-properties here differ a lot from the HLOS-managed variant, lets put it
-in a separate file. Since we need to update the maximum number of power
-domains, let's update existing bindings referencing the top-level
-snps,dwmac.yaml and limit their maxItems for power-domains to 1.
+ .../devicetree/bindings/arm/omap/dsp.txt      | 14 -----
+ .../devicetree/bindings/arm/omap/iva.txt      | 19 -------
+ .../devicetree/bindings/arm/omap/ti,iva.yaml  | 51 +++++++++++++++++++
+ .../bindings/arm/omap/ti,omap3-c64.yaml       | 32 ++++++++++++
+ 4 files changed, 83 insertions(+), 33 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/omap/dsp.txt
+ delete mode 100644 Documentation/devicetree/bindings/arm/omap/iva.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/omap/ti,iva.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/omap/ti,omap3-c64.yaml
 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,sa8255p-ethqos.ya=
-ml b/Documentation/devicetree/bindings/net/qcom,sa8255p-ethqos.yaml
-> new file mode 100644
-> index 0000000000000..5158481e5e5b0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/qcom,sa8255p-ethqos.yaml
-[ ... ]
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    items:
-> +      - const: serdes
+-- 
+2.43.0
 
-[Severity: High]
-The SCMI PHY driver fails to apply its power domain performance state
-dynamically when phy_set_mode is called on an already powered-on PHY. Will
-this cause the link speed to stall?
-
-If a link negotiates 2.5Gbps dynamically via phylink, but the PHY was
-originally powered on in 1Gbps SGMII mode, the link speed stalls at 1000Mbps
-because the PHY's SCMI performance state is not elevated to SPEED_2500.
-
-The performance state is stored but not applied if the device is already
-powered on:
-
-drivers/phy/qualcomm/phy-qcom-sgmii-eth-scmi.c:qcom_dwmac_sgmii_phy_scmi_se=
-t_mode() {
-    ...
-	priv->perf_state =3D (submode =3D=3D PHY_INTERFACE_MODE_2500BASEX) ?
-			   SPEED_2500 : SPEED_1000;
-
-	return 0;
-}
-
-The state is only sent to the GENPD core during power on, which executes too
-early to capture runtime 2.5Gbps mode transitions:
-
-drivers/phy/qualcomm/phy-qcom-sgmii-eth-scmi.c:qcom_dwmac_sgmii_phy_scmi_po=
-wer_on() {
-    ...
-	ret =3D dev_pm_genpd_set_performance_state(dev, priv->perf_state);
-    ...
-}
-
-This is triggered when phylink resolves the speed and invokes phy_set_mode_=
-ext
-on the already powered-on PHY:
-
-drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c:ethqos_mac_finish_s=
-erdes() {
-    ...
-		ret =3D phy_set_mode_ext(ethqos->serdes_phy, PHY_MODE_ETHERNET,
-				       interface);
-    ...
-}
-
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
-mentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 2449311c6d28e..d3aff1df3070d 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-[ ... ]
-> @@ -185,7 +186,8 @@ properties:
->            - const: ahb
-> =20
->    power-domains:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
-
-[Severity: Medium]
-When the common schema is relaxed to allow 2 power domains here, it affects
-all dependent schemas that reference it. Could this unintentionally allow
-maxItems: 2 in spacemit,k3-dwmac.yaml and nuvoton,ma35d1-dwmac.yaml?
-
-These schemas reference snps,dwmac.yaml# in their allOf block but lack a
-power-domains constraint override:
-
-Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
-allOf:
-  - $ref: snps,dwmac.yaml#
-
-Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
-allOf:
-  - $ref: snps,dwmac.yaml#
-
-Since they only support 1 power domain, dt_binding_check might now
-incorrectly pass device trees specifying two power domains for these
-hardware variants.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260629-qcom-sa825=
-5p-emac-v11-0-1b7fb95b51f9@oss.qualcomm.com?part=3D3
 
