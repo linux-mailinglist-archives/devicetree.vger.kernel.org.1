@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-317553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317555-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BfGPDvWPQ2oXcAoAu9opvQ
-	(envelope-from <devicetree+bounces-317553-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:44:21 +0200
+	id PJp/I/SOQ2pWbwoAu9opvQ
+	(envelope-from <devicetree+bounces-317555-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:40:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5B2D6E25F1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:44:20 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FD836E24E4
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:40:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=CcEMGUQ+;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317553-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-317553-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=SewhgDT8;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317555-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317555-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 20609317D636
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:33:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3D27C306DE63
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFCC40314F;
-	Tue, 30 Jun 2026 09:26:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7E7403B1F;
+	Tue, 30 Jun 2026 09:26:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFAF3FF882
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 09:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1622402451
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 09:26:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782811609; cv=none; b=Nd0ZvgGEQnE1DCvKF3sjp30xYZgV+2l4Vq7y0pvxUkQo7RcLsAKhyqhg0l2kjO8YHck2rciRBBjcOC0e63U7w0jFFmwupcLuZwgvh+Oma/obmxhOKZgyr/tHziaQ1fjSjNVQw8MewRwiOSqdc4WOMl9T00qbi17u3/utzFz/U0k=
+	t=1782811611; cv=none; b=E2TXIF+bCqfESMh+dIstunaeKD4qOGhwahHz0+CFaR5JbzZwvAERm74RXQ4/yFJeIRylnFQ6DzqRI7Ts6q4C9jchHUG0mZwrKve4cdtwnEOpvMkbO0dWIoHCM5ie3gTxMYTmC5MtDflhqJX2L9nc0jjLBgyFDB1+xvswsl8ggrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782811609; c=relaxed/simple;
-	bh=JHBphShF7jV8KWhQLnrjSOppbpAv9Vu+X6/V9F520k4=;
+	s=arc-20240116; t=1782811611; c=relaxed/simple;
+	bh=c8wmLIu3uRXg//Al5eUFcWoZj1e9M2f28Pl8RsqVAx8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FLETg1Dokui3uNRLUac5Sr1IikdGfT3A8LHVVyd9ztrcXM6ai95+ed7lpfh+doQoMhA93cRWtzkrJ7sh2/904FFmEAT3eO/zKhhVAJV8w3o7s/4AazOZhiyW/7BuUOAbdyEwhcd/eUU1VSxMBnHKNm7sC5o7wb1k/iZispFA65Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CcEMGUQ+; arc=none smtp.client-ip=185.246.85.4
+	 In-Reply-To:To:Cc; b=u6BFrjkH0Zz1Qznm9zy5XT93X7MCBqtWK6zLKQrWEQ+uB05S7k529M0bnvfV5DSjLuw8/P/nYUYFn+jZXH6Va5MuHGfnO7MTX5IqETLVBtu30SaIrCpTypyYBl82gA92S30zmipOrdcGwFaA+iFlR2GLLB3AQtnY52M8npnDwf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SewhgDT8; arc=none smtp.client-ip=185.246.85.4
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id D83174E40BA6;
-	Tue, 30 Jun 2026 09:26:45 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 535C24E40BAC;
+	Tue, 30 Jun 2026 09:26:47 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id AC39960233;
-	Tue, 30 Jun 2026 09:26:45 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C7B39106F1D14;
-	Tue, 30 Jun 2026 11:26:42 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 2837460233;
+	Tue, 30 Jun 2026 09:26:47 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DB6FB106F1D41;
+	Tue, 30 Jun 2026 11:26:44 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1782811604; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1782811606; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=o4VwmGHX+O1eNtL/TGDqwiWsVNqp3EO9QAN+rimq5hk=;
-	b=CcEMGUQ+YAKTzQKXxaAV6cI6nIS0dMaBsm3p7cJaq/Qz0rkJ4nKneUB2vYHzbpdd1HPITz
-	gnMclh8Pq/p0vwtdUM9/lUyBm3GRMrmcpI5BFGIR/L+rMAGn5/yhjDBT2IRJR8IYlawm7h
-	QCwmf5CWTwVxsjyXbXwOOo63NoAyLK9OM7iXjnh5NCXsX8Zq3kzy2OzwB4cGew8rYfZwKJ
-	vQVcKNLVL9QXoxJJCynAEb3F7/Mr+ORfj0ejXoAdvkgcgCiNLaM+L9wF89rWwpsImo9zOt
-	3TzIZP6WVw2rX6jndvu0EJsSiLFfD9ZZ2InkkN3STXbaPbhEaX/gM3xP+5A+LQ==
+	bh=Mt4NkHR9JVVbaE9t8ym4RvhwpVL66pkid5egJE9nv0Q=;
+	b=SewhgDT86D8eCTWZvS1TS24yHIp/vzKedimyTS92as4YfNM9eqmesZibhR8QxhtV4oB25t
+	KtAoYIRwSjKQe2jnVaFnlcDpNBlQItZVrawfvq9aIoVBD2EszR+ddDfPnTkpmxQMUN8BI+
+	c8LafFAuXoeJkFoZ39SkQrpXpjlzWaw6p8b7s0zeuxmLli7rdGKyzn3UhnSpP3f/FY+NG6
+	CROlXzKgoXW74eWtWo7S9CsZtGOJSLc59HFSLP4q4R2i3veuko+IKhBQG4ZwwAqlJIStdC
+	fwppA1vkkoW74bOC6yt/Cro7PJMgXon3wIgomr6XwJrHK37gySuAPEj2I76Axg==
 From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Tue, 30 Jun 2026 11:26:34 +0200
-Subject: [PATCH v3 1/2] dt-bindings: iio: ti,tmp117: add binding for the
- TMP119
+Date: Tue, 30 Jun 2026 11:26:35 +0200
+Subject: [PATCH v3 2/2] iio: temperature: tmp117: add TI TMP119 support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +62,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260630-tmp119-v3-1-cfdb50e2e99f@bootlin.com>
+Message-Id: <20260630-tmp119-v3-2-cfdb50e2e99f@bootlin.com>
 References: <20260630-tmp119-v3-0-cfdb50e2e99f@bootlin.com>
 In-Reply-To: <20260630-tmp119-v3-0-cfdb50e2e99f@bootlin.com>
 To: Puranjay Mohan <puranjay@kernel.org>, 
@@ -84,12 +83,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-317553-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317555-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -98,7 +97,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_SENDER(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
@@ -111,55 +110,82 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ti.com:url,devicetree.org:url,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,bootlin.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,bootlin.com:from_mime,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,keysight.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A5B2D6E25F1
+X-Rspamd-Queue-Id: 5FD836E24E4
 
-The TMP119 has the same register layout as the TMP117, and a better local
-sensor accuracy. Add a compatible for it.
+From: Wil Stark <wil_stark@keysight.com>
 
-Use ti,tmp117 as a fallback compatible for ti,tmp119.
+Add support for the TMP119 temperature sensor, which has the same
+programming model as the TMP117.
 
+Signed-off-by: Wil Stark <wil_stark@keysight.com>
+[rgantois: Rebased from v6.6.58 to v7.2-rc1]
+[rgantois: Commit log]
 Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
 ---
- .../devicetree/bindings/iio/temperature/ti,tmp117.yaml   | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+ drivers/iio/temperature/tmp117.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-index fbba5e934861c..7fb3e68207919 100644
---- a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-+++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-@@ -7,19 +7,25 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: TI TMP117 - Digital temperature sensor with integrated NV memory
+diff --git a/drivers/iio/temperature/tmp117.c b/drivers/iio/temperature/tmp117.c
+index 6bc18616ad15e..74cb8d62bef3c 100644
+--- a/drivers/iio/temperature/tmp117.c
++++ b/drivers/iio/temperature/tmp117.c
+@@ -9,6 +9,7 @@
+  * Note: This driver assumes that the sensor has been calibrated beforehand.
+  */
  
- description: |
--    TI TMP116/117 - Digital temperature sensor with integrated NV memory that
--    supports I2C interface.
-+    TI TMP116/117/119 - Digital temperature sensor with integrated NV memory
-+    that supports I2C interface.
-       https://www.ti.com/lit/gpn/tmp116
-       https://www.ti.com/lit/gpn/tmp117
-+      https://www.ti.com/lit/gpn/tmp119
++#include <linux/array_size.h>
+ #include <linux/delay.h>
+ #include <linux/err.h>
+ #include <linux/i2c.h>
+@@ -38,6 +39,7 @@
  
- maintainers:
-   - Puranjay Mohan <puranjay12@gmail.com>
+ #define TMP116_DEVICE_ID		0x1116
+ #define TMP117_DEVICE_ID		0x0117
++#define TMP119_DEVICE_ID		0x2117
  
- properties:
-   compatible:
--    enum:
--      - ti,tmp116
--      - ti,tmp117
-+    oneOf:
-+      - enum:
-+          - ti,tmp116
-+          - ti,tmp117
-+      - items:
-+          - enum:
-+              - ti,tmp119
-+          - const: ti,tmp117
+ struct tmp117_data {
+ 	struct i2c_client *client;
+@@ -139,6 +141,12 @@ static const struct tmp11x_info tmp117_channels_info = {
+ 	.num_channels = ARRAY_SIZE(tmp117_channels)
+ };
  
-   reg:
-     maxItems: 1
++static const struct tmp11x_info tmp119_channels_info = {
++	.name = "tmp119",
++	.channels = tmp117_channels,
++	.num_channels = ARRAY_SIZE(tmp117_channels)
++};
++
+ static const struct iio_info tmp117_info = {
+ 	.read_raw = tmp117_read_raw,
+ 	.write_raw = tmp117_write_raw,
+@@ -172,6 +180,9 @@ static int tmp117_probe(struct i2c_client *client)
+ 	case TMP117_DEVICE_ID:
+ 		match_data = &tmp117_channels_info;
+ 		break;
++	case TMP119_DEVICE_ID:
++		match_data = &tmp119_channels_info;
++		break;
+ 	default:
+ 		dev_info(&client->dev,
+ 			 "Unknown device id (0x%x), use fallback compatible\n",
+@@ -204,6 +215,7 @@ static int tmp117_probe(struct i2c_client *client)
+ static const struct of_device_id tmp117_of_match[] = {
+ 	{ .compatible = "ti,tmp116", .data = &tmp116_channels_info },
+ 	{ .compatible = "ti,tmp117", .data = &tmp117_channels_info },
++	{ .compatible = "ti,tmp119", .data = &tmp119_channels_info },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, tmp117_of_match);
+@@ -211,6 +223,7 @@ MODULE_DEVICE_TABLE(of, tmp117_of_match);
+ static const struct i2c_device_id tmp117_id[] = {
+ 	{ .name = "tmp116", .driver_data = (kernel_ulong_t)&tmp116_channels_info },
+ 	{ .name = "tmp117", .driver_data = (kernel_ulong_t)&tmp117_channels_info },
++	{ .name = "tmp119", .driver_data = (kernel_ulong_t)&tmp119_channels_info },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(i2c, tmp117_id);
 
 -- 
 2.54.0
