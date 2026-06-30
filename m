@@ -1,172 +1,148 @@
-Return-Path: <devicetree+bounces-317436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317437-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id P0zmIw1sQ2rRYAoAu9opvQ
-	(envelope-from <devicetree+bounces-317436-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:11:09 +0200
+	id 3s0QJc9sQ2rvYAoAu9opvQ
+	(envelope-from <devicetree+bounces-317437-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:14:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E17876E1002
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:11:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBD3A6E1033
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:14:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=ukauNkjo;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317436-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317436-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bd7WVLu3;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317437-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317437-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6D038301D627
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 07:10:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6C9D63018BEA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 07:13:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBFA53D6CCA;
-	Tue, 30 Jun 2026 07:10:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D583C10AB;
+	Tue, 30 Jun 2026 07:13:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C9E23D1CCF;
-	Tue, 30 Jun 2026 07:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B0B240D598;
+	Tue, 30 Jun 2026 07:13:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782803453; cv=none; b=OEww4ttPJZgu54qNjJproBYCxU3QTCa0LBXqDN0ReP7JU4dfqXT/minLehJjr8PK61bItsjZkFss1i1tHws6/V5Ptl63wPrEDdbX7j8tzsboRtedi8NZiQSz+zmq4lZwGVTpUJVZ5ecypbTvgzBh7D0thQPg7BR54VefUmaAfIQ=
+	t=1782803590; cv=none; b=iIo0DP1BDWHqn5m1DkdmAHPX7erjTyK0pj8QOozMjxND6Dzun71Yd7LGwd2qGIqwOKMXQO98sDkfS5jIQIBalaVT/2MHDeNaejt1XaAUvpuCoNoQK+c7UO1COeP5U2fUWWFPVbHyMXWoROM7O703X95/DxmPCFGoAZVZYA0r/Q0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782803453; c=relaxed/simple;
-	bh=coe15ogFPnrnNLGsSFkOoXrK9juFWi8tMyZD8xBfr7E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xtp5TeBQ0KGL8ip2nbiZ8DZOGPdt9iJozFjEEQtdxip5nP2J2Azj7K4wb1/Uw2TbKj8nE6vS/xQ4IO5qBm7kRQNdUHasomy6KQILaZG+smaFldA/CeBOgQhmqIcxNGFXAS7n6/ZrXGYwdUiEpvka7egn5KHUFjP0Th522TbDpmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ukauNkjo; arc=none smtp.client-ip=185.171.202.116
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id EFF13C5CD4C;
-	Tue, 30 Jun 2026 07:10:59 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6543F60233;
-	Tue, 30 Jun 2026 07:10:49 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E7836106F1C3F;
-	Tue, 30 Jun 2026 09:10:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1782803447; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=2WEvFOUe3RFPl/fYwecdyACzR7RbrE8OMXLcd2G9smQ=;
-	b=ukauNkjoFa+Izzi7oPn2g0tA9q7whk8DxJSbSLP4SFqYdfTnlnKGZ1S4XqYxEEwP8ROc9E
-	HBc0hiAPp7t+IiAp+olwJx+tnk551HcHvSjWCDN0CAqAC9n0GWw0PdeayEatvn0B87x+i2
-	UtCQ70rLf2WOGxPOPxiLprWMeC8InZK5XbLOStrcUyN9FT/CSPIE8djSzaSgoUsGbVtrxe
-	ZHuWI77VuVPssz2DRPOR0uitBZkzZoNSB2PL41BJvUg7Ik0Og/41Mijhl8L8HyfqFLpmni
-	K2yR3zqh15Dqv+kBkWLY7EwbaAqDcVbg9hQlF4vujxerOUvHat58mr27FL4SvQ==
-Message-ID: <0083a957-7afb-489b-b2db-de3acd71b445@bootlin.com>
-Date: Tue, 30 Jun 2026 09:10:34 +0200
+	s=arc-20240116; t=1782803590; c=relaxed/simple;
+	bh=4aBUYteHZHPQcO06KCfqu9ZgKzj73V3n+m0Dp5Q5FzE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MIvS+uAHqQdKryCSa+zgyU03B+cxYwAzIHja+Vf2RPn7UMlS5vSVD6k9LOLQ+tGbvvsfeIQUVtcKLe2z3zF1hF5L+xHFq+M4Xr0Ti95GrX4UA+IbqpZ/eTIifaD0K3UpfhRAIMI5CSfjVHUPcEoWIAHP1Gwf7o8SCSxFkdxIDog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bd7WVLu3; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F346D1F000E9;
+	Tue, 30 Jun 2026 07:13:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782803589;
+	bh=L/GHRXz3XUJsuDxreK6JmNSmv1iFcyXn6ceJJiVlqfE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=bd7WVLu32WVH9mOzZskDQ3kz2T62lDKqd9TogpBG+Z9CmeuAMRr6sCWFDPpvmP3vF
+	 OU4T3aMlaWCFag7YhPaeiQwpeKaG5TqF6rp97DRTm+exIYS89NL5MleGLExa7gcpYS
+	 WmayawxsZPBVqLRMrBXWd0TPS9ClYArt6tUBrE8A1mXtIyyw6vI3q8L7l0cFfYiWqe
+	 SsTVeLsGgoOAltI386PPg/47M4jybDihA+FZ0rxoa2DNp4MQfUo9+yCzl7cacShsQc
+	 KZisQA9I61RLhE4AMYqHmG94P+bKjmTOSjNQCNewdt6Z2aqyCDfQDozuR68B/9eDp9
+	 HcWy5hN36Wv5w==
+Date: Tue, 30 Jun 2026 09:13:04 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Santhosh Kumar K <s-k6@ti.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] Fix OSPI DMA corruption via FSS_FSAS driver
+Message-ID: <20260630-advanced-passionate-fossa-6beec0@quoll>
+References: <20260629072055.896322-1-s-k6@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v9 2/6] dt-bindings: ethernet: eswin: add EIC7700
- eth1 RX clock inversion variant
-To: lizhi2@eswincomputing.com, devicetree@vger.kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk, pjw@kernel.org,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- pinkesh.vaghela@einfochips.com, pritesh.patel@einfochips.com,
- weishangjuan@eswincomputing.com, horms@kernel.org, lee@kernel.org,
- wens@kernel.org
-References: <20260630063123.1118-1-lizhi2@eswincomputing.com>
- <20260630063239.1158-1-lizhi2@eswincomputing.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20260630063239.1158-1-lizhi2@eswincomputing.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260629072055.896322-1-s-k6@ti.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:s-k6@ti.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317436-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[eswincomputing.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:lizhi2@eswincomputing.com,m:devicetree@vger.kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:pabeni@redhat.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:rmk+kernel@armlinux.org.uk,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:linux-riscv@lists.infradead.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:ningyu@eswincomputing.com,m:linmin@eswincomputing.com,m:pinkesh.vaghela@einfochips.com,m:pritesh.patel@einfochips.com,m:weishangjuan@eswincomputing.com,m:horms@kernel.org,m:lee@kernel.org,m:wens@kernel.org,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,m:rmk@armlinux.org.uk,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317437-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,bootlin.com:dkim,bootlin.com:mid,bootlin.com:from_mime,eswincomputing.com:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,quoll:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ti.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E17876E1002
+X-Rspamd-Queue-Id: DBD3A6E1033
 
-Hi,
+On Mon, Jun 29, 2026 at 12:50:53PM +0530, Santhosh Kumar K wrote:
+> On TI K3 SoCs, DMA transfers from OSPI produce corrupted data when the
+> source address is only 4-byte aligned (not 4K-aligned). The root cause
+> is XIP read prefetch in the FSS_FSAS_GENREGS wrapper (SYSCONFIG.DISXIP,
+> bit 7), which is enabled by default.
+> 
+> This series adds a dedicated FSS_FSAS platform driver that disables XIP
+> prefetch at probe, plus the respective DT binding.
+> 
+> Testing:
+> This series was tested on TI's
+> AM62Ax SK with OSPI NAND flash and
+> AM62Px SK with OSPI NOR flash:
+> 
+> Test log: https://gist.github.com/santhosh21/3ac2a0273065e86315a9b442327c9599
+> Repo: https://github.com/santhosh21/linux/commits/fsas
 
-On 6/30/26 08:32, lizhi2@eswincomputing.com wrote:
-> From: Zhi Li <lizhi2@eswincomputing.com>
-> 
-> The EIC7700 SoC integrates two GMAC instances. The eth1 MAC exhibits
-> different RX clock sampling characteristics due to silicon-inherent
-> timing behavior.
-> 
-> The eth1 MAC has a fixed, non-configurable RX clock-to-data skew at the
-> MAC input in the order of 4-5 ns. This cannot be compensated solely by
-> the standard MAC internal delay configuration and PHY delay, and RX clock
-> inversion is required at 1000Mbps for correct sampling.
-> 
-> The eth1 TX path also includes a fixed silicon-inherent delay of
-> approximately 2 ns. This delay is always present and cannot be disabled.
-> It is therefore part of the effective transmit timing observed on the
-> wire.
-> 
-> For the eth1 variant, the valid tx-internal-delay-ps values include
-> this fixed delay component. Consequently, the effective range becomes
-> 2000-4540 ps (approximately 2000 ps fixed delay plus 0-2540 ps
-> programmable delay).
-> 
-> Introduce a dedicated compatible string
-> "eswin,eic7700-qos-eth-clk-inversion" to represent the eth1 variant,
-> allowing the driver to apply RX clock inversion only when required by
-> hardware variant selection.
-> 
-> This keeps SoC-level differentiation without exposing silicon-fixed skew
-> as configurable device tree parameters.
-> 
-> To reflect this, model the TX internal delay as a base 0-4540 ps range,
-> and constrain valid values per compatible using conditional schema rules.
-> 
-> Update the binding schema as follows:
-> 
->   - Define tx-internal-delay-ps as a base range: 0-4540 ps
->   - Add compatible-specific constraints using if/then rules:
->     * eswin,eic7700-qos-eth:
->         max 2540 ps
->     * eswin,eic7700-qos-eth-clk-inversion:
->         minimum 2000 ps (effective range 2000-4540 ps)
-> 
-Maybe Andrew can help answering that one, but does it ever make sense to insert
-a delay beyond 2540 ps ?
+Three versions within one day that's way too much. And b4 diff does not
+work:
 
-Maxime
+b4 diff 20260629072055.896322-1-s-k6@ti.com
+Looking up https://lore.kernel.org/all/20260629072055.896322-1-s-k6@ti.com/
+Grabbing thread from lore.kernel.org/all/20260629072055.896322-1-s-k6@ti.com/t.mbox.gz
+Checking for older revisions
+Grabbing search results from lore.kernel.org
+  Added from v1: 6 patches
+---
+Analyzing 14 messages in the thread
+WARNING: duplicate messages found at index 2
+   Subject 1: memory: ti-k3-fsas: Add TI FSS_FSAS driver
+   Subject 2: memory: ti-k3-fsas: Add TI FSS_FSAS driver
+  2 is not a reply... assume additional patch
+WARNING: duplicate messages found at index 1
+   Subject 1: dt-bindings: memory: Add TI FSS_FSAS binding
+   Subject 2: dt-bindings: memory: Add TI FSS_FSAS binding
+  2 is not a reply... assume additional patch
+Preparing fake-am for v1: dt-bindings: memory: Add TI FSS_FSAS binding
+ERROR: v1 series incomplete; unable to create a fake-am range
+
+If you want to make it difficult for maintainer to review, your patches
+will be moved to the end of the queue.
+
+Best regards,
+Krzysztof
 
 
