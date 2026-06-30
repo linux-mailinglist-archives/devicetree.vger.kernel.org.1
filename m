@@ -1,122 +1,155 @@
-Return-Path: <devicetree+bounces-318039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318040-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id b6qKNasZRGofogoAu9opvQ
-	(envelope-from <devicetree+bounces-318039-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 21:31:55 +0200
+	id ywgXJScZRGrroQoAu9opvQ
+	(envelope-from <devicetree+bounces-318040-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 21:29:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 981F16E7994
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 21:31:55 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BA526E7916
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 21:29:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=V3kByLAh;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318039-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318039-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HJDH9bzc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318040-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318040-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A167F30E8A78
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:28:45 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 97CAA302C4A1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:29:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47CF23C4B85;
-	Tue, 30 Jun 2026 19:28:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1963DA7EE;
+	Tue, 30 Jun 2026 19:29:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44CBB202F71;
-	Tue, 30 Jun 2026 19:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F89C3546E3;
+	Tue, 30 Jun 2026 19:29:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782847725; cv=none; b=LBxvTaE5fy9RZfGv9PfA3tkqlah8NQdfitu2L9lUmmbjRTJHkPacnEpiG1QOkdscHh8/05DZapuS39BJsOWsqp1qX4ZgnYSiBLRjXNMi/sGeJ+vEseFavbACgZDu0Y2qFxEr9bHUbqfHdUE4DwiZZeaHxRXqtMUxZu5MgbLAfgY=
+	t=1782847780; cv=none; b=bflmibToPHl33t8AThIP1J33OKzE+aGBbdF8VueO/ekqewobGd5H8b8qN5ovJzY8+63NaKOXETST9TqzWfYKEkWXwzFJJpN/VRfXh3LcnWY33y58lbzqN0XJPWAy/5RK0dZ9eePzyv3GVtCTwHhR8VVqU4FWvstaExcqdQdzwFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782847725; c=relaxed/simple;
-	bh=6vivW5XDH+zbeSdDI3Q94cMlRFbgFu+Ah9jxDnyVH6g=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=SMwAIN5s01nOX0ozU7hFf/EvUf7HTdykOkWz7PzMl6EQxKFEdbmyRM+0IqZKINufkmsOc5vssHMXzwqwCzPs9AzyI76EBWZAvYoAwcUYqgN0WMQ8Hp1cxBmPYHi//oW2G0W/Y8EyBUaZiWXazg2/nwWrnzSCRFJLeRKWnFgBRbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V3kByLAh; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B29CF1F000E9;
-	Tue, 30 Jun 2026 19:28:43 +0000 (UTC)
+	s=arc-20240116; t=1782847780; c=relaxed/simple;
+	bh=UQ7idkB16oZNRvqXTN2t6ylLNnnQY2/bylqkdCXbOl8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XO/okQDmkxhhblPrtRBqgdoy9sPDisbmHu7aeHwLmPVHEO2S+kA+ynAbgJWOQ3lJAn8qv/zD5O6BxZRCEmvchQ/ERBlUFUgyxBZcH2ZeBk314glVq5ot6FG0HayDah5L8iahAEShm9j7c/TE6LCn70CaG4VFELkiu2GIQTeIDxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HJDH9bzc; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E96F1F00A3A;
+	Tue, 30 Jun 2026 19:29:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782847724;
-	bh=6vivW5XDH+zbeSdDI3Q94cMlRFbgFu+Ah9jxDnyVH6g=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=V3kByLAhldM2wz9DqQ6RvL5rUxnzYOo1tWRZ01CfGI7uaX1hRodejD62+LUvJVPwD
-	 +Dvn27DFvY/PXdvsuAFPzvcpXB5nz5q4HP860hpDV51tD3nkcCLhU7jGAYBZlVdilu
-	 4QNZ8gyy/wsiE8l7KXYPqPehk3fN17vHx/2J69YuMfSlqHgDj7GqUlVKLyHHMWIaCt
-	 PJt4kr9Y9ezMp7PdByoIdGyrxC4JG3/P74QIDpHhYhJ3m6Y8Jztr/0+AmF12fDPTtl
-	 bXdVV/TDbh4ZmKL1mn+2LrkgvZT4175RoCGIyfFFqm5Uj1aUBo4XINjVJCJmvl3ob+
-	 TwdKUc+51bCaA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/3] rtc: s35390a: make use of interrupt signal 1
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Markus Probst" <markus.probst@posteo.de>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, "Alexandre
- Belloni" <alexandre.belloni@bootlin.com>, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260630-rtc_s35390a_int1-v1-3-1b2239e16be2@posteo.de>
-References: <20260630-rtc_s35390a_int1-v1-0-1b2239e16be2@posteo.de>
- <20260630-rtc_s35390a_int1-v1-3-1b2239e16be2@posteo.de>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 30 Jun 2026 19:28:42 +0000
-Message-Id: <20260630192843.B29CF1F000E9@smtp.kernel.org>
+	s=k20260515; t=1782847778;
+	bh=odnUHalfYdPtqwxNosDeWzdGUVRfJ+3jIreFbWqBzgE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=HJDH9bzcHH+i0M7vrMTEgoO/ZxE7buAfX2khrVdKutK/Zcj6WS/8CS94SWG9w1JBi
+	 HIkB1V7lRt5lnEgDHdBWyBOWJgcL/9IK1CaowNqGUWtxQtubfMV5jKXQ7py1ZZ0dGe
+	 JsOC1YWdsvrc5Rwpfnff1/8dAgjXYIhtowgbgN/T9hG2HX+Wb3frYY73YW8A54KrDF
+	 f7fw9sgdxdnRj2860w0b1IEXgT0c/IBl6KaNyvew8W8ZH2I1ykyypw6EXFzXgi7VxF
+	 YkDXvry15We7qzkV7vHSbt+YEEHZe2ri3LfuV2cKoDMlql1cl8K/HFpAx6JoChWlkr
+	 VGRaaar5vXGgQ==
+Date: Tue, 30 Jun 2026 14:29:37 -0500
+From: Rob Herring <robh@kernel.org>
+To: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+Cc: Srinivas Kandagatla <srini@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/7] dt-bindings: sound: qcom,sm8250: allow TDM slot
+ properties
+Message-ID: <20260630192937.GA87066-robh@kernel.org>
+References: <20260630091605.4043426-1-prasad.kumpatla@oss.qualcomm.com>
+ <20260630091605.4043426-6-prasad.kumpatla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260630091605.4043426-6-prasad.kumpatla@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318040-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-318039-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,posteo.de:email];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:markus.probst@posteo.de,m:linux-rtc@vger.kernel.org,m:devicetree@vger.kernel.org,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:prasad.kumpatla@oss.qualcomm.com,m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 981F16E7994
+X-Rspamd-Queue-Id: 2BA526E7916
 
-> If configured, use output pin for interrupt signal 1 for the wake alarm.
->=20
-> Successfully Tested on a Synology DS923+.
->=20
-> Signed-off-by: Markus Probst <markus.probst@posteo.de>
+On Tue, Jun 30, 2026 at 02:46:03PM +0530, Prasad Kumpatla wrote:
+> Allow the standard TDM slot properties in CPU and codec endpoint
+> nodes.
+> 
+> Some audio backends operate in TDM mode and require the slot
+> configuration to be described in Devicetree. The common TDM binding
+> defines dai-tdm-slot-num, dai-tdm-slot-width,
+> dai-tdm-slot-tx-mask and dai-tdm-slot-rx-mask for this purpose.
+> 
+> Permit these standard properties in endpoint nodes so TDM-capable
+> links can describe their slot configuration using the common binding.
+> 
+> Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+> ---
+>  .../bindings/sound/qcom,sm8250.yaml           | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> index 15f38622b98b..c82c6c521f40 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> @@ -90,6 +90,19 @@ patternProperties:
+>            sound-dai:
+>              maxItems: 1
+>  
+> +          dai-tdm-slot-num:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: Number of slots in use
+> +
+> +          dai-tdm-slot-width:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: Width, in bits, of each slot
+> +
+> +        patternProperties:
+> +          '^dai-tdm-slot-[rt]x-mask$':
+> +            $ref: /schemas/types.yaml#/definitions/uint32-array
+> +            description: Slot mask for active TDM slots
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+tdm-slot.yaml already defines these properties. Incorporate that into 
+this schema.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260630-rtc_s35390=
-a_int1-v1-0-1b2239e16be2@posteo.de?part=3D3
-
+Rob
 
