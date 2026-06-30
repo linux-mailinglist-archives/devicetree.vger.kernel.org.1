@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-317623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317627-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WnsOFDSaQ2pTdAoAu9opvQ
-	(envelope-from <devicetree+bounces-317623-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:28:04 +0200
+	id sdtvN6GaQ2qNdAoAu9opvQ
+	(envelope-from <devicetree+bounces-317627-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:29:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B9D26E2D4A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 947C36E2DCB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:29:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b="gc/7lO7P";
-	dkim=pass header.d=ti.com header.s=selector1 header.b=MJARFnA1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317623-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317623-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b=A0lXubmR;
+	dkim=pass header.d=ti.com header.s=selector1 header.b=YMABGubg;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317627-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317627-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=ti.com;
 	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E85DC302779E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 10:27:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DED55302A0DD
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 10:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 559DB3F0A8A;
-	Tue, 30 Jun 2026 10:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC3F3F0AA6;
+	Tue, 30 Jun 2026 10:29:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0002e601.pphosted.com (mx0a-0002e601.pphosted.com [148.163.150.75])
+Received: from mx0b-0002e601.pphosted.com (mx0b-0002e601.pphosted.com [148.163.154.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F5D73EF65D;
-	Tue, 30 Jun 2026 10:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19BD3F0761;
+	Tue, 30 Jun 2026 10:29:28 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782815262; cv=fail; b=cg1JUbgR0zJlpfT0frLAJ0W5DVefd3iYTIpVaFZDl1ip4gHBAGYJP6HmuFFfJoxI6xvhEQEw0cetjFAU1a8TaBXhvZSJH5SQujCW1TAqxeX1p0zesF+M87JAaFhuBMzrnwEwhnUVq1YnPa7EKhnG9Xus5AhsZI9b55pkl4GkcRs=
+	t=1782815370; cv=fail; b=D7T1QCbslZNkNeetkkbx4CdnfYBNPqeaqQI5Z8a3uws8iExQLZqKDXkHK9bFDY47DbmUmfFgOfquwx85uV7p0F+4Hap4kS3f5VtKYCaMgm/W1slSiQBb2tWHzJHUWbhfbjdJuhGE4/e/lOqQtfPxtqR8dYgWRPvXpon3IJs4qKQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782815262; c=relaxed/simple;
-	bh=/FEmj9BU/ekH10u2f9rHva+5GiyXJYvXfkY3JIiMnew=;
+	s=arc-20240116; t=1782815370; c=relaxed/simple;
+	bh=+xd9FcMbz66JLCKJhTY6DNJ+Ki/AYhR2jZaw0D8k3CA=;
 	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=duX4sq7SH2bOHAImuufjPWDd5fLK32k9LIlsd9WJxV0L09HpVzKymd1n4Q6RanKe6GRkPX42CD6nF0AnZiNbEGRo/BbNEkEkCv+BEbu/KTJbEa36qXS3rcW6TqPEsV215Kqo7Cg8tSAu4mPe3/Gs9Wx4mipCZcoKV2TcEcdd8lQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=gc/7lO7P; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MJARFnA1; arc=fail smtp.client-ip=148.163.150.75
-Received: from pps.filterd (m0384305.ppops.net [127.0.0.1])
-	by m0384305.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 65U9lL0R235970;
-	Tue, 30 Jun 2026 05:26:58 -0500
+	 MIME-Version:Content-Type; b=XyZSlmb7gnrRiG2AxSoUZeeem0oRqCrqYIBVUnbxvnqY7iga7sEalqhMOWnMpM0B3BXKgBIhzK5DqBbub/PazFy8jVbAhgdSMlbOCfwXmkw+TbZKNz5FRxrkrtLDyT6tI9SvOe7aNQpM105AM+ZlDJWYhdm4hQG+/jTV4gJB4Q0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=A0lXubmR; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YMABGubg; arc=fail smtp.client-ip=148.163.154.28
+Received: from pps.filterd (m0374956.ppops.net [127.0.0.1])
+	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65U9lGer504311;
+	Tue, 30 Jun 2026 05:27:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=
 	content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=
-	proofpoint-05-2026; bh=4XVg4Qb4q9LFFNzW10VQGD/1g8WEMJ5ihE4Wfn9w1
-	hc=; b=gc/7lO7PcBnN5nLu80S3jU8LLj90PGWDsQYSm9e4GCrW0Pqxc9g4gak8l
-	MnodyFG5JdQuAfA59pGgG1b/AknxVFojUIYPQqbzq1sctS0YWLgYHUz7doWgSyF7
-	Hcwc7hu+OBD7KM63t6N470sLWicMHF1LxCxcN6qlI19zt3ekHSOedA+DJ/gRfnlw
-	1BRNLb7rjt3xLvlejUdtyGrlNKUQwDxlQ+9kU0vc6KVJr+Qjads8bJaoZggeQcT/
-	wqdjoGDEfLk80jnsss+1P4W6ukMW0SSRKW5I4emX8Hl5bK0kZRiBEDcT5VQezZ1h
-	uRbJtSXJARfEYY+MTcq/BY9DZ/sRA==
-Received: from bl2pr02cu003.outbound.protection.outlook.com (mail-eastusazon11011036.outbound.protection.outlook.com [52.101.52.36])
-	by m0384305.ppops.net (PPS) with ESMTPS id 4f3yhsx25x-1
+	proofpoint-05-2026; bh=C52qNjj2SUvlVrZOeYyt09dchcMeUnBdp7EThteod
+	m0=; b=A0lXubmRN84FNBqqJBqI1LiMKrnCDaQ3MBN7oyS/B7MgmGO4d40iXq0YQ
+	FZFCS9oCw1OCY+hjkp1gjjXBSUmb7BliBXEUkwTG1t756Lh39gnk8Y+IAAH/nw1L
+	kw/cc8AbCh2WzGzrdX4dKLMKqyJWIvUZDI3wKsls+9tfBtYNV4FPrDpgOusKgxWx
+	rOTUbg5SVJMTmwfc4Di0Xx+IHc7dz4oZPho7tPmJa2ndVKEdaa1EBSy72sk8LLaJ
+	3DDzarHBVgH+viSZQKaBm5KZLA/r2xzvlgzVz/GawdXhaC3TFth/RlEOxm5ZgohO
+	HDGeR5XRUM7SV9ljMavk5Pdvb9nvA==
+Received: from co1pr03cu002.outbound.protection.outlook.com (mail-westus2azon11010025.outbound.protection.outlook.com [52.101.46.25])
+	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4f47k79h82-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Tue, 30 Jun 2026 05:26:58 -0500 (CDT)
+	Tue, 30 Jun 2026 05:27:04 -0500 (CDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aHmir1tQ4QevArmeRwlz1tI2gbqPnKyTkqszoAdBPguyZkBjeL0z+pObkjKNa25yxxdgeIfpPXW/8hhJzxF3fLRKQ5WVtTDtPuzRHd48klfh09HOY60Dt4pVcOlbe02Kz7N/cIjlT6nf9psNZf1KoRjPL8tYmxIWFHbhZt112wrhNzwZlsmWGBTXkT49nyY943Ga2IkoDY2O9fLHxYzlr6LUqXUYq30ql6CyIbErYOW+TdGSZRwXZ8n2zyTDLavlwAbVu6uN98dsdFHepENIEHMW/cE2PNsAE/C2w8umoIbR17pL6Xbe4v9SY4tRIafCqiKxMONEn1Ry5LgnADaucQ==
+ b=oXeEoV5emeD7WTWBttED9op7ejyQfFj8G1VIg6x4vu/i5HWYfmryArTyaWXeokvDuDgvTgvh9cgD1Br1XV/DZLhgivdq2KrbA+6LuK1f+UzDGLxYI5d/kqQgbtTk3OAwvMXdrJYNhoHi8uQ45j1rZYqMB/Jm/cVfbNtdEGM+geonXJq646Db5MBpW+fTP3Gsu5N3mL8TwZeh45qX5K4gSF/yVjIb0zT6duBe3LojrYErLVH24M2o4lcynU/fyEU/SzxmYevEJOtHrIajwKLrTT4+iPJa/J9kNmMIZpfBNySDA6Ave47cF4sQn7DXKQr4rPR2+5QFm1+MooxIVAGtwA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4XVg4Qb4q9LFFNzW10VQGD/1g8WEMJ5ihE4Wfn9w1hc=;
- b=k71z+lnmVu8Jh54Sfi8C4EX0iTQEKFUfFEzwBN6L9blM+TBLvi8sQ5s2AHGH2rlXfbzx4ygE1vvhZWG8fJPEXyV8iyUs/WJL4Gr/7E6//RW0jR4eAuxWx+d5PwxWyXIiPLEh94JPfq7rHkeWXUYONWh3r85EhBXkP6K3DAxVIybuiW1db/8BdGAkGm9kSQKvJLXQQONj/jSE10TppSaAqZGfOS8Nwq+1+dk3UJYR56TswkLqkQtppXhRtojNn21PnhpXr2r/UUThZH5miZA6QURxK928xYOZCtNNi6HmqYhhWNqq7HsKhZ7BNuFb6rV5ioPk0kNhwIZd8qqJNPa6lg==
+ bh=C52qNjj2SUvlVrZOeYyt09dchcMeUnBdp7EThteodm0=;
+ b=eTUxVkqF7xJ8YmRPuaRvE8seLskBQgIjI4Q59i4M4ogyXKVgxI28vP6yPAcq3h0Gm61hb0s43JLYOVrrAq/X56Z8mx4uxqEAGKbkLqsCXS8GAQM46EZLjfuz/QlQeCuStjc9C692M288KaBtzUtF+e4dcTYgM5ZohHcGcwjBdM619oKq9Vs0uOlfwtFeUw2exkShN+53aI8hcVM8ZiliuS8zIdWfutOWM3b0L/Db3ZiVOv8WhwiJBQcie8CNuSCV+NJVYZt3z63N+fStm0OevqUrziKiKzywd5MmmUxRpyOXqJNbQSYbhwtBcMzjphULj8lysjtkWW8njVbCilzkGg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4XVg4Qb4q9LFFNzW10VQGD/1g8WEMJ5ihE4Wfn9w1hc=;
- b=MJARFnA1alotSVJpjgiVe+MnOlAx6GdEnhp/yX5ToPYZcyTHH/OytUAzZsAWQJA2/4XRU9ozNppmOgD9fapg3qn9gI+zn4X/zzpQUsoHu6G7Wn0bjURS8f1IvPjS57qK5g0a9V0qD68c4XvgW2dI9qqBYIZaIXkFHPnHMBUL5Xo=
-Received: from CY5PR18CA0039.namprd18.prod.outlook.com (2603:10b6:930:13::28)
- by SJ5PPFC802EB2B9.namprd10.prod.outlook.com (2603:10b6:a0f:fc02::7cb) with
+ bh=C52qNjj2SUvlVrZOeYyt09dchcMeUnBdp7EThteodm0=;
+ b=YMABGubgq3DOPl3gWfsCGq25zdP1q0nLoeRTk83bfyD6KNn7CWly0gBgclZ39lzZlbHXu8B4BI5sybNC9MQ7vpj3/3kryfr1Bu8HdII0UYMwNPGlm9w0iLhi91TtWGeIjkZdQMVbpMiN+JShLsOTY86mwS23Rd52Y7GxgFTsFwU=
+Received: from CYZPR05CA0006.namprd05.prod.outlook.com (2603:10b6:930:89::10)
+ by IA0PR10MB7579.namprd10.prod.outlook.com (2603:10b6:208:493::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Tue, 30 Jun
- 2026 10:26:53 +0000
-Received: from CY4PEPF0000EE33.namprd05.prod.outlook.com
- (2603:10b6:930:13:cafe::2f) by CY5PR18CA0039.outlook.office365.com
- (2603:10b6:930:13::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.18; Tue, 30 Jun
+ 2026 10:27:01 +0000
+Received: from CY4PEPF0000EE37.namprd05.prod.outlook.com
+ (2603:10b6:930:89:cafe::2) by CYZPR05CA0006.outlook.office365.com
+ (2603:10b6:930:89::10) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Tue, 30
- Jun 2026 10:26:53 +0000
+ Jun 2026 10:27:01 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
@@ -84,24 +84,24 @@ Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.23.195 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
 Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CY4PEPF0000EE33.mail.protection.outlook.com (10.167.242.39) with Microsoft
+ CY4PEPF0000EE37.mail.protection.outlook.com (10.167.242.43) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Tue, 30 Jun 2026 10:26:53 +0000
-Received: from DLEE210.ent.ti.com (157.170.170.112) by lewvzet201.ext.ti.com
+ 15.21.181.6 via Frontend Transport; Tue, 30 Jun 2026 10:27:01 +0000
+Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet201.ext.ti.com
  (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 30 Jun
- 2026 05:26:52 -0500
-Received: from DLEE206.ent.ti.com (157.170.170.90) by DLEE210.ent.ti.com
- (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 05:27:00 -0500
+Received: from DLEE212.ent.ti.com (157.170.170.114) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 30 Jun
- 2026 05:26:52 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE206.ent.ti.com
- (157.170.170.90) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 05:27:00 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Tue, 30 Jun 2026 05:26:52 -0500
+ Transport; Tue, 30 Jun 2026 05:27:00 -0500
 Received: from yashas.dhcp.ti.com (yashas.dhcp.ti.com [10.24.53.80])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 65UAQaCN2273511;
-	Tue, 30 Jun 2026 05:26:44 -0500
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 65UAQaCO2273511;
+	Tue, 30 Jun 2026 05:26:52 -0500
 From: Yashas D <y-d@ti.com>
 To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
         <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
@@ -116,9 +116,9 @@ To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
         <linux-kernel@vger.kernel.org>, <y-d@ti.com>, <u-kumar1@ti.com>,
         <devarsht@ti.com>, <s-jain1@ti.com>, <d-mittal@ti.com>,
         <b-padhi@ti.com>
-Subject: [PATCH v4 1/2] dt-bindings: display/bridge: cdns-mhdp8546: Add no-hpd property to the cadence bridge
-Date: Tue, 30 Jun 2026 15:56:09 +0530
-Message-ID: <20260630102610.1849902-2-y-d@ti.com>
+Subject: [PATCH v4 2/2] drm: bridge: cdns-mhdp8546: Add no-hpd property
+Date: Tue, 30 Jun 2026 15:56:10 +0530
+Message-ID: <20260630102610.1849902-3-y-d@ti.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260630102610.1849902-1-y-d@ti.com>
 References: <20260630102610.1849902-1-y-d@ti.com>
@@ -133,57 +133,58 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE33:EE_|SJ5PPFC802EB2B9:EE_
-X-MS-Office365-Filtering-Correlation-Id: ba1ce754-1641-4ffa-acbd-08ded6921a7f
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE37:EE_|IA0PR10MB7579:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3e5c3297-17f8-449a-2599-08ded6921f44
 X-LD-Processed: e5b49634-450b-4709-8abb-1e2b19b982b7,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|23010399003|36860700016|376014|1800799024|82310400026|7416014|921020|18002099003|22082099003|3023799007|56012099006;
+	BCL:0;ARA:13230040|36860700016|1800799024|376014|7416014|82310400026|23010399003|18002099003|22082099003|3023799007|56012099006|921020;
 X-Microsoft-Antispam-Message-Info:
-	AiVSJfBxjN6UehyyXpufefNVDgm4+liSPyAqKu3dby9b34zAHx2mfm/EWgVGvRlmAihX/m99pliuZA5iak6cUHpmffOBWHQ4Bjuo8DYxYxGaURYDuy/eYBSS+5IvRYk/MtWqurHrYyu08tZO6e9+Yz8FKnYJNgtlm5uvEPyWS4BYFD7YDmBWW+XIC8Cw9Pa3AnSa5U23dj9e1GiUeUWrtNjWjaQX2TFFjMLF+qw5fQlBJBNLC53AvkmPRB98BrqanEjT/tyVDtnecHv/iGBz/c8bt0oSDYsd/Pk36hqw81H+n5lFG8b4yd3Grlc7n80lPTOFFVxpB0kIyX5f7iB4zRnh8pYCyXml0kzlfA0js4c3fc2NwFcIzzZL/nEF9ctZ/B1mLwyTD5sXuD+ZZSb4WC7hT4Iqk82WDhjJAaJJopgKAhhQWiwlGkEW9rIlpdtik/rcC4tcvHKjOwfx3HmhtwBGfIaVQqGrgBWlUecvafd7lWEkOl6PJxMi7hZj1LRndL3/qDeQVnLz6Xoq0CBCyqfeJ5P5ll+BMRiKWZ4iueob8JF/Qb8BtCELxzL5htmURWYHg2ahgeo9QiLBb76KkQrn7BupKu3T8Z4Ff8ImIGWyabxigsGwjl3NV6Y4I5JWV9o07jeVPxwKZ/3oth7UDrywBZ6jUBDa+Zba3sVPxAFdBQcKdOwbGep67OVjKM3fz1n/qFqgcA2/rCm/SBt9GvoavDwO2FIP6iM4ZA1bmruiEJBH7/fYfDRyOrdWV+bN
+	OLPQfbOtINlDo+/eziWkyuR5yj1S2tvNKwguKXHuABW3Sn4+5K2OasCBQ7xWuE+XbdeVyFbp6zE3HmBGzdJYMPVqANSfEYsUz6peyJ08tIGexsOih15ROtpgA0Eu4QVfQCRnjtlyDEW8kaQirgvd0Z7lozCP/W06eCoQlj+/QAA0XMsB6KvPxPSYQaq1lrRnCT8Fc0FNubJoGD0NIrslD87C9k9oZVHQ0/cOFrIWaMm8MbsVKHzQuhhkZkuD+ZWsszDvjzCrHtHPtai2hEx27QSkixq3eolqI6dBUolIGfyN/Z2fKjTyVt0cTh7d10LHzDJ4/22ps0L1F9B0SrGdZOhwQLVTj7BgHbJ1zQPt3JqSmqEpM4Z8MP6Xf/TzK/+brNuTSfc+cru8+MV6wADJWkSO6LWJLDh2g8WSzfVUX9FucRfD7gMCvBthWN7Blbvcp7TFfciBT0KVl+H6yXGfHxcYl5FlU5X4rWx1kCBADh4/GJzmSzHsd6JbN4hezVkjJHUjmxfDpyP/amY/eLIngvQ8NvH7lm0pZ54lSLa7IOWXsQ5sb3j5tfR/F+YpAj0oQT0AymLW2zTHbug7GLvdNhmmHhueOQP04JGTVm8+zVrdbzq755TM9ozE9U6uQaLLhD7i1vTf6/ztWiKw1S4KLQtZAr+M1FJFLqkFfq/Ne3SXVvO+H1kfar5e5llUABfvOgEj1PDmDeaKDeBrOxsiDhnry6BpvzepS+Pw0YpKMug=
 X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(376014)(1800799024)(82310400026)(7416014)(921020)(18002099003)(22082099003)(3023799007)(56012099006);DIR:OUT;SFP:1101;
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(376014)(7416014)(82310400026)(23010399003)(18002099003)(22082099003)(3023799007)(56012099006)(921020);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	U+qoCPsUx/2cyJUfFB5Fs/wl6ZIiR/9/YgTPM1JCBmC+Cnm6x/f+lYd834ZtOFehCoJwjV+JJyDo6M+rb8XI/ErYrpsKIYW/Ch8FatvQxfGtV5ug4Hy4UjCEQ1o3HCHfWo6YnSvlB0sDTzwpgUFWDIQXA8p5Z2ZmdwXxdAH5HXED8IlzhPLEBqZYigZBUdcVGeanm8RJjPiEHsa9k+y5Y/3v3jdAaqXBKckcBAKccfEAPSAg+1IF5ckmvO9iomMQA0wecddIQ2Ib7V8YjC5CKQJkrEIFm1W4oT3oYh9dSJ5vIW+Ir3FgYNsCU+KWoe9OR1Gf2Jvaq+iN/ohf2y/YdTkYmBlZoiwCL1z4DkBFSD/ASUeNpgYM9B7D7qTesDUeT72hQ1EKOcGvkwl4I6zLIW1CUlK2y93c6ee9qksjB4GiI8bLMjURsGZt2TwB9TMp
+	81HpQXThhMcl1l0UVMx+UA4Yme7Xri6bI0/FvgtuYGeYPni9IAD25YBWAm9+7qmoOruoBkiiepfnculCFRHwBs1AGpnvc3HPJibLLs3s3j4fC4uHfM2BX4mF/6a1aWwOIPvvDt/9HvAaI4C8HELAcRgf4ZERrLujr8fQ6zdY694JnLMEqINPxKxvnxdK3YbB9ZzNieTNTEmWyqrGGrp0Tf+lFvYRPyjquZ/SdJDCbSE+nHJyISCRLjRonjSixeZTeaOANRu+Bs3vPBd5W7St/n8zlqDUIajjn+LTMP+Ifow4mblzTLAU+czhG+RkDT4mwesoK7YZVIncLKrqTCDNHhJAfMSTsLodkqAb7jhjnRan4PpsyOtVZ60ZTJk3LziqM/rLWWnaH4Dp7tgY/FnlSCU8wjJPcs4RI3vJbn2rKjG1PSct63xRU77zsnmEYsjj
 X-Exchange-RoutingPolicyChecked:
-	RdqV+pNPTa7cMEJDnqhv8RnFCt7IJCe0apyMY+SjIGKWle/YI6V2n95FrxzVlbP5JX9erYlEphV8U+cPcHZH2IeBNJQAZVDQLXbE3CWwf+F3B1jLlLpQLSioSypJXLXBjsFPiTK+M22Ebm4HnP5FC4OVzifMvIBdzXEiYOY4yH+GG2sZIzxZOelDexyTv6IqtP4Lwaxw5FLsb/jws6boidVXEuqn3cPfplCf33+X61C1uONWz/M+qYFZFU7vlDhlPOP5rW6mWIls9++8aUHI5dC1GZWHnetYhA/6EJLIcMV3Nb+KfNQEf1wtJ/SOaNqMSNSaxizFMQfKRl4yVujQWQ==
+	dH1+vg+kyXp5KDwBMAvuMsUeX89830V0hT1yDWvXRHHNCS/2cP8rDAUD323nX22Pa6+mXvpyT3K2zo5Wfct1AABFYv61YBBgPeu0+XOACdFb9ZyoobPszycY1JQUl74xso1B6AixrJBgWl4fvh61tmousNOllreniTug23Qka0CMKAcc+Jrw2ObApCiNYYzG0OKxODi+JJ+xbTIdqcER3n7zzZDGkwHyXtaGnAt5r6EeaGxsChkjRL3iQST439T9lHjtQZhaOxOnw+P9vJ9HQtNALwbg0J80UASidBBgYiJe+SAaf6GMN193wD0R3vbZ6pN+JYPkZlzMDk6LOxQ7Jg==
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 10:26:53.0499
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 10:27:01.0532
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba1ce754-1641-4ffa-acbd-08ded6921a7f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e5c3297-17f8-449a-2599-08ded6921f44
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000EE33.namprd05.prod.outlook.com
+	CY4PEPF0000EE37.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFC802EB2B9
-X-Authority-Analysis: v=2.4 cv=Q+viJY2a c=1 sm=1 tr=0 ts=6a4399f2 cx=c_pps
- a=VYnc1ZjkwFV8r4Zgssgzxg==:117 a=f+v6EHfkeJbVwR46tk4DMg==:17
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR10MB7579
+X-Proofpoint-GUID: pm1LQhZzae8lt4NOlRQXMlV25ARCtLX8
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDA5NCBTYWx0ZWRfX7qTcuQUEw5Jp
+ wq+ffJzuwg4+D0A85XCSpK4MpMFJe8a8z1XCY9xmdQ10WcawnWoX77NpuTFGXYymLc2l7pgmRo+
+ cICQJG9sFwxRGx15XR1sBseIvdHgQqyJvdQGSmHVibIebidm3GRBgo2oh6RxNQEqjXYbaCqNRBY
+ sUA6Pc+F1z4v/lePSyVERF/GjwMjIhHxeTPtNKzg+TmMwl2egZM+uLLCY4RgQX8PGwrvs69VtiF
+ BE6c7ax5rFfeofMFrFJBDB4jYUjWLLfvlsYC+Jwfy2QhAk4/gJakMaaSqNMSmMlUNrO4nK3YQzW
+ Yb6D2WfASa9TP3QNtCl+fAydyLXJtBfSYuf3RI+eW18GDZboA+RgzM6+U9GVLYZYkdpKhhmZQUM
+ 4Rvhg+udxPGjgIDO3G6FW8FNjs4tOcn0kh+Y10vquGqevooEn+j2+b0W4XT9R7jq2fgMONcxKqh
+ 9S81s12EHK8pE2fUpsg==
+X-Authority-Analysis: v=2.4 cv=UshT8ewB c=1 sm=1 tr=0 ts=6a4399f8 cx=c_pps
+ a=1s4lD5itHyb3CJ4oxNoLhg==:117 a=f+v6EHfkeJbVwR46tk4DMg==:17
  a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=FelO9ux0wxsA:10 a=s63m1ICgrNkA:10
  a=V5UXEbMT0ywA:10 a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22
- a=taLDd7a_hP9WKsMzeGRc:22 a=sozttTNsAAAA:8 a=EzX1xrUl6JEdRszeJO8A:9
-X-Proofpoint-GUID: lG6Pf95Km0CcXSZUTEnxggjMTQgRsU5U
-X-Proofpoint-ORIG-GUID: lG6Pf95Km0CcXSZUTEnxggjMTQgRsU5U
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDA5NCBTYWx0ZWRfXy8eqRq0t8QBF
- bBhyiF2w8IZvQ9LkSuEu5mjXpm01VZVpoMmty30o84TcDKYT5XsOpCIRnBj5sesE+cSIS8eW9IY
- 7BXwCMy1vTdUT1aBD+IXtCzki6Wa8X2prHKv+zMJ9/vu3/T/AOYmXmPeUnjxx5cBWb6/vl/XwZ2
- af2WxBMEz0Zvb7bvrEzvSB1/XJGQqFH8O9jGfkLcHqdgXnMo61SbvLt+mH0rl/0m0cRDhw0jY4f
- 0qZX4J7fY59rBw+gq40bJUStFqZ59DeMx+YRvyZN4Dg992oLff5U9MvyhCxoIzwtByj8DcPRKCl
- mgBYObojLs/jhih9OjqEu4hasK7q6e7hfuktpWOqJYOC+k3IltwdXpqXlzelKooVDgJJaasAeOZ
- gvnds/hUWWo3dGjUlShHy35ROQ4qX/J2Cka5Z1lkXnqOXzE2pBk/hKibV2bzOYA+w3PGQ0B8wVt
- 6UnnMfXrLwdLzmvpRrw==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDA5NCBTYWx0ZWRfX+3bX2zBWFTzK
- 0BHja2bltEyR2X2CeHh7bocA7Ogq1kwpw1HZHA92CSRd0exUIXtn9cWfdL2xBp4DV90uQwGjpjv
- Y+AWm5n+6fkSf/pIvt78shBldKAAgfA=
+ a=jwouBfj2j3NM8CExmVVE:22 a=sozttTNsAAAA:8 a=Wp13WBNl3t4apYASe7MA:9
+ a=O8hF6Hzn-FEA:10
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDA5NCBTYWx0ZWRfX5PKArICAz1QJ
+ 0eov4m4+UBunSl8NNcuy6xtsSa9u+xqNPGAmjkuHIs2W1+i7Ia/VOiXbj4D6T2rS164has9dMZx
+ vZEzDBj2cWR2B1P79ujABwQzBfFvAHQ=
+X-Proofpoint-ORIG-GUID: pm1LQhZzae8lt4NOlRQXMlV25ARCtLX8
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-30_03,2026-06-26_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 suspectscore=0 malwarescore=0 bulkscore=0
- lowpriorityscore=0 phishscore=0 clxscore=1015 spamscore=0 adultscore=0
+ spamscore=0 phishscore=0 adultscore=0 priorityscore=1501 lowpriorityscore=0
+ suspectscore=0 impostorscore=0 clxscore=1011 bulkscore=0 malwarescore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606300094
 X-Rspamd-Action: no action
@@ -194,13 +195,13 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	R_DKIM_ALLOW(-0.20)[ti.com:s=proofpoint-05-2026,ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-317623-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317627-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[y-d@ti.com,devicetree@vger.kernel.org];
@@ -221,48 +222,168 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ti.com:dkim,ti.com:email,ti.com:mid,ti.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8B9D26E2D4A
+X-Rspamd-Queue-Id: 947C36E2DCB
 
 From: Rahul T R <r-ravikumar@ti.com>
 
-The mhdp bridge can work without its HPD pin hooked up to the connector,
-but the current bridge driver throws an error when hpd line is not
-connected to the connector. For such cases, we need an indication for
-no-hpd, using which we can bypass the hpd detection and instead use the
-auxiliary channels connected to the DP connector to confirm the
-connection.
-So add no-hpd property to the bindings, to disable hpd when not
-connected or cannot be used for hotplug detection.
+Add a 'no-hpd' boolean property to support boards where the HPD line
+cannot be used for hotplug detection due to hardware limitations.
+
+On TI J721S2 EVMs, the DP0 HPD signal has a MUX conflict with audio
+functionality. While the HPD pin is physically connected to GPIO0_18,
+routing it to the SoC requires sacrificing audio capability due to pin
+muxing constraints. This board-level hardware limitation necessitates
+an alternative detection mechanism.
+
+When this property is set, the driver uses auxiliary channel (AUX) DPCD
+reads to detect monitor presence instead of hardware HPD signals. The
+DRM framework polls the connection status via the .detect() callback,
+providing hotplug detection without requiring the HPD pin.
+
+Valid use cases:
+- HPD pin not routed to connector on PCB
+- HPD signal muxed with another function (e.g., audio) on SoC
+- Hardware designs where HPD cannot reliably detect monitor presence
 
 Signed-off-by: Rahul T R <r-ravikumar@ti.com>
 Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
 Signed-off-by: Yashas D <y-d@ti.com>
 ---
- .../bindings/display/bridge/cdns,mhdp8546.yaml        | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ .../drm/bridge/cadence/cdns-mhdp8546-core.c   | 58 ++++++++++++++++---
+ .../drm/bridge/cadence/cdns-mhdp8546-core.h   |  1 +
+ 2 files changed, 52 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-index c2b369456e4e..56ce3f65ff49 100644
---- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-@@ -57,6 +57,17 @@ properties:
-   interrupts:
-     maxItems: 1
+diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
+index 36c07b71fe04..5e1bad8fc73e 100644
+--- a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
++++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.c
+@@ -53,6 +53,8 @@
+ #include "cdns-mhdp8546-hdcp.h"
+ #include "cdns-mhdp8546-j721e.h"
  
-+  no-hpd:
-+    type: boolean
-+    description:
-+      Set if the HPD line on the bridge isn't physically connected to the
-+      DisplayPort connector or cannot be used for hotplug detection.
++static int cdns_mhdp_update_link_status(struct cdns_mhdp_device *mhdp);
 +
-+      Valid use cases include HPD pin not routed to the connector on the PCB,
-+      HPD signal muxed with another function on the SoC making it unavailable
-+      for hotplug detection, or hardware design where HPD cannot reliably
-+      detect monitor presence.
+ static void cdns_mhdp_bridge_hpd_enable(struct drm_bridge *bridge)
+ {
+ 	struct cdns_mhdp_device *mhdp = bridge_to_mhdp(bridge);
+@@ -698,7 +700,9 @@ static int cdns_mhdp_fw_activate(const struct firmware *fw,
+ 	 * MHDP_HW_STOPPED happens only due to driver removal when
+ 	 * bridge should already be detached.
+ 	 */
+-	cdns_mhdp_bridge_hpd_enable(&mhdp->bridge);
 +
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
++	if (!mhdp->no_hpd)
++		cdns_mhdp_bridge_hpd_enable(&mhdp->bridge);
  
+ 	spin_unlock(&mhdp->start_lock);
+ 
+@@ -788,9 +792,14 @@ static ssize_t cdns_mhdp_transfer(struct drm_dp_aux *aux,
+ 		ret = cdns_mhdp_dpcd_read(mhdp, msg->address,
+ 					  msg->buffer, msg->size);
+ 		if (ret) {
+-			dev_dbg(mhdp->dev,
+-				"Failed to read DPCD addr %u\n",
+-				msg->address);
++			if (mhdp->no_hpd)
++				dev_dbg(mhdp->dev,
++					"Failed to read DPCD addr %u\n",
++					msg->address);
++			else
++				dev_err(mhdp->dev,
++					"Failed to read DPCD addr %u\n",
++					msg->address);
+ 
+ 			return ret;
+ 		}
+@@ -1523,6 +1532,26 @@ static int cdns_mhdp_attach(struct drm_bridge *bridge,
+ 
+ 	spin_unlock(&mhdp->start_lock);
+ 
++	if (mhdp->no_hpd) {
++		/*
++		 * In no-hpd mode there is no interrupt to signal firmware
++		 * readiness. The firmware loads asynchronously after probe(),
++		 * so we must wait here until the uCPU is running before
++		 * attempting the first AUX channel poll for monitor presence.
++		 */
++		ret = wait_event_timeout(mhdp->fw_load_wq,
++					 mhdp->hw_state == MHDP_HW_READY,
++					 msecs_to_jiffies(100));
++		if (ret == 0) {
++			dev_err(mhdp->dev, "%s: Timeout waiting for fw loading\n",
++				__func__);
++			return -ETIMEDOUT;
++		}
++
++		cdns_mhdp_update_link_status(mhdp);
++		return 0;
++	}
++
+ 	/* Enable SW event interrupts */
+ 	if (hw_ready)
+ 		cdns_mhdp_bridge_hpd_enable(bridge);
+@@ -2013,6 +2042,9 @@ cdns_mhdp_bridge_detect(struct drm_bridge *bridge, struct drm_connector *connect
+ {
+ 	struct cdns_mhdp_device *mhdp = bridge_to_mhdp(bridge);
+ 
++	if (mhdp->no_hpd)
++		cdns_mhdp_update_link_status(mhdp);
++
+ 	return cdns_mhdp_detect(mhdp);
+ }
+ 
+@@ -2100,7 +2132,16 @@ static int cdns_mhdp_update_link_status(struct cdns_mhdp_device *mhdp)
+ 
+ 	mutex_lock(&mhdp->link_mutex);
+ 
+-	mhdp->plugged = cdns_mhdp_detect_hpd(mhdp, &hpd_pulse);
++	if (mhdp->no_hpd) {
++		ret = drm_dp_dpcd_read_link_status(&mhdp->aux, status);
++		hpd_pulse = false;
++		if (ret < 0)
++			mhdp->plugged = false;
++		else
++			mhdp->plugged = true;
++	} else {
++		mhdp->plugged = cdns_mhdp_detect_hpd(mhdp, &hpd_pulse);
++	}
+ 
+ 	if (!mhdp->plugged) {
+ 		cdns_mhdp_link_down(mhdp);
+@@ -2288,6 +2329,8 @@ static int cdns_mhdp_probe(struct platform_device *pdev)
+ 	mhdp->aux.dev = dev;
+ 	mhdp->aux.transfer = cdns_mhdp_transfer;
+ 
++	mhdp->no_hpd = of_property_read_bool(dev->of_node, "no-hpd");
++
+ 	mhdp->regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(mhdp->regs)) {
+ 		dev_err(dev, "Failed to get memory resource\n");
+@@ -2360,8 +2403,9 @@ static int cdns_mhdp_probe(struct platform_device *pdev)
+ 	mhdp->display_fmt.bpc = 8;
+ 
+ 	mhdp->bridge.of_node = pdev->dev.of_node;
+-	mhdp->bridge.ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID |
+-			   DRM_BRIDGE_OP_HPD;
++	mhdp->bridge.ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID;
++	if (!mhdp->no_hpd)
++		mhdp->bridge.ops |= DRM_BRIDGE_OP_HPD;
+ 	mhdp->bridge.type = DRM_MODE_CONNECTOR_DisplayPort;
+ 
+ 	ret = phy_init(mhdp->phy);
+diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h
+index b53335b0d22c..24ffb732a207 100644
+--- a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h
++++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-core.h
+@@ -388,6 +388,7 @@ struct cdns_mhdp_device {
+ 
+ 	bool link_up;
+ 	bool plugged;
++	bool no_hpd;
+ 
+ 	/*
+ 	 * "start_lock" protects the access to bridge_attached and
 -- 
 2.34.1
 
