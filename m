@@ -1,215 +1,571 @@
-Return-Path: <devicetree+bounces-317899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317901-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pYPiAgbdQ2pekgoAu9opvQ
-	(envelope-from <devicetree+bounces-317899-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:13:10 +0200
+	id uM6FDbncQ2o3kgoAu9opvQ
+	(envelope-from <devicetree+bounces-317901-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:11:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 537CC6E5CB9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:13:09 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C17656E5C7F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:11:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=onsemi.com header.s=mimecast20250127 header.b=MLsjK2ss;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317899-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317899-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=onsemi.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b=nF1noUCo;
+	dkim=pass header.d=ti.com header.s=selector1 header.b=uzFazhnO;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317901-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317901-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ti.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2AB8C3011869
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:09:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E126230781B2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:10:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B58932B118;
-	Tue, 30 Jun 2026 15:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABABA2FD69D;
+	Tue, 30 Jun 2026 15:10:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from usb-smtp-delivery-120.mimecast.com (usb-smtp-delivery-120.mimecast.com [170.10.153.120])
+Received: from mx0a-0002e601.pphosted.com (mx0a-0002e601.pphosted.com [148.163.150.75])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 456BF318EDF
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 15:09:15 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782832156; cv=none; b=qJDUE8TVgJBaaiGdZ7Yrh+UUHpxco/Mu0u8dPIRlG3O/0AAMfhRZpx22pDG0nR8YC38reNWKP4qpQLJzbiberRJr/fmyt0QdV2PCGkPPlu2xrLmkBJxMLT/gUQUS62/nH4qNLgoQ+u/80hMnLKYLJyaAQMSGwKGO+AXTFTejGP4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782832156; c=relaxed/simple;
-	bh=kWtta70ofGmRF7G9mTChUSqWizOzUgEcvRtLJpcT94g=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 MIME-Version:Content-Type; b=LN21taQ7eC+AvD3EJdJ3Ev2uhg56VJ8TOpVBjePT5m2G4L448dPdDX/RppqpFrfS7tJFu8KCKIWhgQrZSX/CBqnymCPxqdcHo2WBJQqDc1wd9auXh2d7B2M/eg0Ki1MOe6VKvbl2u35H/cGARU3rny5JmVU+HLYjsVa8wwi+c8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=onsemi.com; spf=pass smtp.mailfrom=onsemi.com; dkim=pass (2048-bit key) header.d=onsemi.com header.i=@onsemi.com header.b=MLsjK2ss; arc=none smtp.client-ip=170.10.153.120
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=onsemi.com;
-	s=mimecast20250127; t=1782832154;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kWtta70ofGmRF7G9mTChUSqWizOzUgEcvRtLJpcT94g=;
-	b=MLsjK2ssh4PoQSsyS9IHRGJiXVjyHryWVTasdfZAiFqYmGQK3oFGQw7f3ntyqAEaZ4DOb5
-	PAy/7+FDyjhdZY8AzISg2PZ7j3OqyplNLNRxvuzl/JLDq5xtCElbNU15O9Z635VoDMS+xo
-	rst92cDpFXf2DClSOn088Y1dfToDrAFJmO9KlhamBxOsGUGcYYjksG3k8pfWvb9YsDPNBT
-	xDfGDaj2ZuDo3yq+8q9oOzYXwbq+Kg9dC66TY0G7a7dDTwoWKlt2N0nYyPr7w6A7kzzvIo
-	s9k4Knk0gYS0NdpBhDyX0gvIE+SlkTptrIMTizGEagbNdtLeNTjHJGUeuWT6rw==
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012048.outbound.protection.outlook.com
- [40.93.195.48]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- usb-mta-12-oNkKPeHkOIm0d6kay7AZGQ-1; Tue, 30 Jun 2026 08:09:08 -0700
-X-MC-Unique: oNkKPeHkOIm0d6kay7AZGQ-1
-X-Mimecast-MFC-AGG-ID: oNkKPeHkOIm0d6kay7AZGQ_1782832143
-Received: from CYYPR02MB9828.namprd02.prod.outlook.com (2603:10b6:930:b8::20)
- by LVUPR02MB11515.namprd02.prod.outlook.com (2603:10b6:408:39b::21) with
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FD781427A;
+	Tue, 30 Jun 2026 15:09:58 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782832200; cv=fail; b=oa0XhDfIcLX1FKyOFLYKgUMUJE6acEfJOss8EqAz0GIASiExjsjFPPDu3hjpstw8MRZIOy3mYhrmtZ4RMoDdmcoWTfbnHzutufMgHpfQ4dgO50CtRuYImNoFh5IjOQOzM3hFrEkVYOZXaRqotn+V5+Z8xO26Zd6jG5g7GoaLLNQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782832200; c=relaxed/simple;
+	bh=wd16STb/RaZXq2RjWMHlY4SGmYVCMuArAecD+m9Q2dM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KtNwAC1FUkBv3rkHKVKo11ZA4xfwq2ITaZ4nMk/DphiKZM+XCpMaTai56ty4zlFyykL24VldPyh02RXwoWRQM+WPpCvtGNCxOIN0M2WqmTjW2sf+PKdSzl4b9XoNm/0EjlawCcT5Pk9gJAhqJ3tSGffHQT9eG4eNksbm7vELtzI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=nF1noUCo; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uzFazhnO; arc=fail smtp.client-ip=148.163.150.75
+Received: from pps.filterd (m0384305.ppops.net [127.0.0.1])
+	by m0384305.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 65UEdQdV804568;
+	Tue, 30 Jun 2026 10:09:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=proofpoint-05-2026; bh=w2OsffPaljUnf
+	Ic1R39qtDTAEk/xnYvtAcFLQWkHKg4=; b=nF1noUCoy2yK9gh+qiXkbqgorGS1L
+	4HOVlJcsibla897ew1xZYd6p9zr+EDr4nhgMuJF9MdqzOaX8Mse65D9v65K2Fzqa
+	Y8hDftGxzo142D1BCwbtvGZ+9uy5zE0C/uEzIcg8OoQu3p0z9ikqryqC8mC57QAE
+	3CZZE9N62+eP3BxfEij1QrSbXCe7v4XbwzPcjztmHWB5k/Pkn8yhEzr89dJqhrwB
+	nrj4fXyMkJy3h+IsqHK/2+bHY9xXIz1RTzhbQIRaHo4oEC7a9FsfQJCszBIEzjVt
+	7SA5aMapubgfBleRsIuf8nVvYD/0kBb+H6U2AZavkMLsdG3gTVKqn7fYA==
+Received: from ch4pr04cu002.outbound.protection.outlook.com (mail-northcentralusazon11013043.outbound.protection.outlook.com [40.107.201.43])
+	by m0384305.ppops.net (PPS) with ESMTPS id 4f4cqj9bq6-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Tue, 30 Jun 2026 10:09:52 -0500 (CDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JwYNDbpfkI1XiGhUVkaY//o/Vj6OtKkLi1gG1qK+MjmuMwzqO+gAtnKvzQyoLSDgAlTjiffIfZxi+V366a5ggrtsclNipAfimQofNt8Lxv/NlYF3G2kILOWIFAiBD7Na/y29zBafMH1MxDgjI+GlMDE2frgkZYRJhUrPdCdU/btlIEmbtTdtO9/CcQo9XoEQ3DlF0VeXxar1GrXJijDlhd76Jc9aWiP07OQe/curMKB2t4hUVPeS0gOQJVCO3zFry0YEsx9Ud5sZ1I1XWIDi1yYiYDxOSMA5mzsSTPO1Ep9NI1wOkFuYfOeQIssY5rxMcmFPj5tjDxh86wH2100/RQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=w2OsffPaljUnfIc1R39qtDTAEk/xnYvtAcFLQWkHKg4=;
+ b=rqhon5GksvLaNRi7Cf5WgSaUaPIxh50MMkjTdt0XKmGH2rydo84BV+9NbaG2jnY+/pg9R9/+n96z4CsT2pYb0CcHUOy31aoP72/3za++9Kyi98KWAKjFR/T1NYZymGaVOmRBXSsaxtMLB4p6SiNYDtDIaEIjzE2ss2XAWXfu0UhvTdHOaEiCKqd68TI8xXkUmYN23jno6j5ztM+Gdb4uXUGAflFLpseueacABTXfGDurUFCJStZZCq/bX5kOy9KdE8djwkTmCYxEqjtQ5/Vxl5p70XWv08CAbC+6tWV/iKkHPlaNUv6lm/eS2/yJp+E7IgWynXRc3zbyfbRZ6Ljnqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w2OsffPaljUnfIc1R39qtDTAEk/xnYvtAcFLQWkHKg4=;
+ b=uzFazhnOgVBJBshg3+JxmqUE8Y4EjeUAJ+kfuymh3QAUwgPdnUl2TYrAcc4fbMHZyf5LAs/nSzxp39hyiwfuvQ4IByyRj86CGk+XtNHpW5uJqipPMpMKrx5J2d4U7G/XKxKLTRAEZP/XYEyMDw0YOZAhhqWG9JUzUXMybrozhRg=
+Received: from MW4PR04CA0325.namprd04.prod.outlook.com (2603:10b6:303:82::30)
+ by PH0PR10MB6983.namprd10.prod.outlook.com (2603:10b6:510:286::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Tue, 30 Jun
- 2026 15:09:01 +0000
-Received: from CYYPR02MB9828.namprd02.prod.outlook.com
- ([fe80::2767:f7d2:778c:8dca]) by CYYPR02MB9828.namprd02.prod.outlook.com
- ([fe80::2767:f7d2:778c:8dca%4]) with mapi id 15.21.0159.012; Tue, 30 Jun 2026
- 15:09:00 +0000
-From: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Andrew Lunn <andrew@lunn.ch>, Piergiorgio Beruto <Pier.Beruto@onsemi.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Andrew
- Lunn <andrew+netdev@lunn.ch>, Parthiban Veerasooran
-	<parthiban.veerasooran@microchip.com>, Richard Cochran
-	<richardcochran@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Simon
- Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan
-	<skhan@linuxfoundation.org>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>, Jerry Ray <jerry.ray@microchip.com>
-Subject: RE: [PATCH net-next v6 14/15] dt-bindings: net: add onsemi's S2500
-Thread-Topic: [PATCH net-next v6 14/15] dt-bindings: net: add onsemi's S2500
-Thread-Index: AQHdCFnVC49Mza+OoEG88Iq8ZbN8+7ZXMRvA
-Date: Tue, 30 Jun 2026 15:09:00 +0000
-Message-ID: <CYYPR02MB98280A43E1F2D36CA55CD2A583F72@CYYPR02MB9828.namprd02.prod.outlook.com>
-References: <20260629-s2500-mac-phy-support-v6-0-18ce79500371@onsemi.com>
- <20260629-s2500-mac-phy-support-v6-14-18ce79500371@onsemi.com>
- <20260630-beryl-mongrel-of-exercise-abf63a@quoll>
-In-Reply-To: <20260630-beryl-mongrel-of-exercise-abf63a@quoll>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CYYPR02MB9828:EE_|LVUPR02MB11515:EE_
-x-ms-office365-filtering-correlation-id: 3ce3d931-ae9b-4992-c7a1-08ded6b98429
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|7416014|366016|23010399003|1800799024|22082099003|18002099003|4143699003|38070700021|11063799006|56012099006
-x-microsoft-antispam-message-info: 3sMm+pj4SK39FlZhX4ZJdB9+TUK9pIzO9QOLW9vdAsthU1wmxTzzQeIp/wE/AbdxGNERncwS5mwOa6Vjp4jhdiGdzicne8tYYBmVYzkiIBjuZtYPqCDOPW+nicj1UiKTciQgdyOoMqUR5dlnHNcLViHnw6gEampHbcnPHehumKdyCySDfxi4KDuHwlxk6/1AliwQuHBIl4oLr9PMxXDUCs+TaVNmMpM4m+VcOWu7dYZA0k1MiWFPP1GchM0KvrQyvqU+Nfs2/jHcy3J0ixxmd3+MTgJ1JXYytKF5hGCcQOuJxdbQjnmc5HAU6J5Q+SX2phajoulAiGCq8glKn180LVKR94X787Hu4X9/bdbDXRxY3Ghp4vYVgW8KCaXXzPJceZhl3+j9YUZ1mowczyhC0oaZ2Cv9r84/pMjbIIhEblmDmKlx8c1FwxCgzaP3TiVUsHT2Ic+tsxG73mJJJ/N5JL8x/pdo5daWseE5MCWlMl9ISeaDRFCLTnstIoP1AxdeFauQXigGWQbS84p0UkmMyKSTuWemWlS2V6HUgzYsJQjQwtnOwWLJ/LzQlvOhB8fjcLw3+TqNtJjbVk/2POAtYesLod1kXOHs/41Bc8yUCHCTUciqNykEjvHGUTV3ISXdv2FkYnj86oBsDxNErOlmG+kTHCqyCo8QXEc94tTUl8LVVzTP/JwVhJVRULIRqFX45OkP2sfTiHcqC7pObi3Dwhh9DyGxYdSqMP+skY2bCXM=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CYYPR02MB9828.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(23010399003)(1800799024)(22082099003)(18002099003)(4143699003)(38070700021)(11063799006)(56012099006);DIR:OUT;SFP:1101
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WE85bWN6QUlqa085eDVEQjk1aHlaK0FWQnhvN3h5WVY0ZCtEV0s0cFk4Vkhy?=
- =?utf-8?B?cE5FWTlmM2VKTlVkTE5DWTZLMjlTUHJLYUttUnlETEpKelpoaGhQTlNVL1Ns?=
- =?utf-8?B?K0x1c1hwclg3dHl4OXAxRU5jUkpLVHNOVHRzcytueHk2Yms4VzNRMHFETVVn?=
- =?utf-8?B?OUlvM05zN3l1aDRod09ZZjJXSWlKQWtIZEw2Z3VmYUNEQXh5QmZiRFk4S1pX?=
- =?utf-8?B?aFM5c0hIc3pxSVhhUkgxbEQxbVhZN0QrcjAveGJLeG9QQVJBeGxnVWFVUksx?=
- =?utf-8?B?TU5FNzZ1eFMxUmlCUlRpMTVPSWFWZG95a1FUT1Uwb2Y5Z2k2cGV3ZU1sNktV?=
- =?utf-8?B?ZHhJeFlJbFpZVklHMzFYOHVnRW1OcGpEdVVSV1ZzclNPNzd5SmRISHhERFlx?=
- =?utf-8?B?THhXdVdkWDBzRVVVR1BOWE5FM1AvVGhyWFlia2dMcjV1WE9URm9NaWRmcitD?=
- =?utf-8?B?RC9VZjkwY2FWMi9YVGcvYlVzclFTRElHK3ZXNVZBMGFmUDJsZnM2a0VIYTNB?=
- =?utf-8?B?WUp2STJWbE9jdUlMeSt1cG5mRE5SQnBuRmJuVllMUm92Sk50cFFPcEkwUm0w?=
- =?utf-8?B?YVdUbEFKdXVZUGVoUkxoNE9KVXJtdlpkRk5GMlB1THlGTTROaGFYQ1p4SGln?=
- =?utf-8?B?ak1iU0RoYUpER0RlUXh6bUFFeGFTYXY2MkZTVmVSalYrUXMzNks0WXJ4amlq?=
- =?utf-8?B?ekQxOXBWMHZxSTZaYjVMaGphbHVYalJRcXd0WnFCMEltQU9ReUVrTGUwS0ky?=
- =?utf-8?B?M1loU3N1U1ZGZmhUL3plVHF5eXI3anh3WURQZTNvUHVCSHVxUW8xMW9pcGFG?=
- =?utf-8?B?c0dUNDlzdURHOFFQZmZoSXpQK2d3LzB6RVNBZm5OVW0wVytLNWZiYThWWFkz?=
- =?utf-8?B?REFRWWM0WkZEOUtMOEFvaFp6NzN3a0R6RXdPZFNJeStkeHNneEVxdkp6OEF6?=
- =?utf-8?B?Lzl2d1hxckFONmJrdi8yQWNvNmNJS3FQZVUxMkdHbXRmK0Rub0xNV1N0Vzgv?=
- =?utf-8?B?aFlvU3p1VUFZclQ3N0tleFFIK0RNa0dJTEU4V2t6ek5tRDFCVk1aYmVDWlB0?=
- =?utf-8?B?VWpVWk9TQkVwMzdQUG1tUXVFeGtPY2E3NjdpdzF6eUd3V0ZuWXRPdE04V3JV?=
- =?utf-8?B?dFQzY280OFZjelMxTWZtSVhvN1ZZMDE1VStQS01QNFBJNVpaaFR3NUc0cDdR?=
- =?utf-8?B?aG4rNjk1T1ZQV29BVEJ5dzRqTWtRdUZUcnNxQWwxY2FZQ0Vwa3pBYjh1dHo5?=
- =?utf-8?B?eTZMR2Q0MU1GSUF3Z3FKMlp2RldDKzZmWit3b0R6d0NGWFozZG5PQnFZQmtN?=
- =?utf-8?B?YUU3ODVqSTh1Q3B4WFUrbUpuekN4RHFBMEJleHVhdUNhVkpYY1BKUzF5Q0xQ?=
- =?utf-8?B?WDBET0RqRVZoeW5PcTlxcVc1T1dVb2x5aXhldUVYcGZEYmN6NTBWTWtINllC?=
- =?utf-8?B?ZTY3bFdnYW1Qd3BHSVZmZVNTSjE4Z3g5aDIxTm5LNmZyUndjWmpNc0cxMWR6?=
- =?utf-8?B?NktHRis0ZG5mbTdNQkZkZmVRODB6NFNrOXdSeHNLQlhicjZvNzI3S202TjVY?=
- =?utf-8?B?QU1mZVRKQzUybjM3WkJkMmU1SVI0VVUrQkh2MDVqR3EwdVVWVjNocHdEM3VO?=
- =?utf-8?B?ZW9EbDVSQTQybTBUZG1CSm9uTlZweEprZENQcW1Da0hGMGxZbXBid0F6dExJ?=
- =?utf-8?B?dE1ZMWU1OERVVWFKVU9BbVZNeld0R0dPYTdYdlpmS241VFhnS2FSbU43aS9Q?=
- =?utf-8?B?eVhwdktvbUdTWG9MMUYrUElMay84TzNIMlFSVjN5bFZ0NjZ3OVEzN21PUXhy?=
- =?utf-8?B?R1pmRnF5WEhlMkxLdWttdW5NREpSZjc0N0RnVmNKSlY5NHZLZTdxS3hSd0lm?=
- =?utf-8?B?dW5Ld2ovREsvOUpuL0VzdFQxTmpLQnFFbVVnc3QyQVo1czd0UklQQkNxUUtI?=
- =?utf-8?B?aDR5aDJnbnZ2TlZUTm9VWXNZeVRuSTdnMW8xczJNZm50b2c0cXh0b3IzVXM0?=
- =?utf-8?B?QkNPbDFCMUNwVDNBVW1va3pJeG1ycjBJeXV5eWp1R0xqNHJQV25qOXRCRWlD?=
- =?utf-8?B?bFlqNG13Y2NQRFVyUmlYZFZFdlJLakhGS3JoM3ZheDlCS0FWNnZmMlpQWHFC?=
- =?utf-8?B?NDFaNHhVQUYrUTNKOU5LaEdVZGw5RnlsQzdRL3NNT2Jtc2VjOFd3VUU1NEx5?=
- =?utf-8?B?YW9mcG1FaGhQc25haVRFeHhSaS8yV3Z0QlZ5TFk5dm9OYkZGamljM1l6RnVP?=
- =?utf-8?B?RXM3U2NWOEw5Tjd6MmNFOXA4ODRsQXdrYzRLSUNWWEpScjlEY01BTW9XeXRt?=
- =?utf-8?B?QjlYK1dTZGxMNXk2OVZKT0FRU0c2T2FMNVlaNytoUzFjTmsxenpmT3Uycm9X?=
- =?utf-8?Q?GYxZtzMub8sK4drk=3D?=
+ 2026 15:09:47 +0000
+Received: from CO1PEPF00012E64.namprd05.prod.outlook.com
+ (2603:10b6:303:82:cafe::1c) by MW4PR04CA0325.outlook.office365.com
+ (2603:10b6:303:82::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Tue, 30
+ Jun 2026 15:09:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ CO1PEPF00012E64.mail.protection.outlook.com (10.167.249.73) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Tue, 30 Jun 2026 15:09:47 +0000
+Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 30 Jun
+ 2026 10:09:46 -0500
+Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 30 Jun
+ 2026 10:09:46 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Tue, 30 Jun 2026 10:09:46 -0500
+Received: from localhost (ula0502350.dhcp.ti.com [10.24.52.241])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 65UF9ju93334084;
+	Tue, 30 Jun 2026 10:09:45 -0500
+From: Paresh Bhagat <p-bhagat@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>
+CC: <praneeth@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <v-singh1@ti.com>, <bb@ti.com>,
+        <u-kumar1@ti.com>, <anshuld@ti.com>
+Subject: [PATCH] arm64: dts: ti: Rename DM firmware reserved memory nodes
+Date: Tue, 30 Jun 2026 20:39:19 +0530
+Message-ID: <20260630150919.457160-1-p-bhagat@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: I1xACmTUANKf0G7ACZrQLSDTHxDlgp4pRPpp7fmptqmp8l8dyWD9AGfqEAA5nEjGjSNvdu2GcXOdf7K2P3gccpEeqoNN9kIEA2Pj/0Li9EIDznXGblDTki4ELPhSmr+wgno7MH+dHSZmrSMkKa+Xw5vmK44lbDm/eKKaFPpMpO/kpVR0bD259fByAT3W1UsNZ1+5S1irIAOZFjiBWIyvASX9bIzpcjzNOOh5ctjl7VuJSwxM+uIaXY0OCaQ24qxSmDza69D3R/4O0ER7wqY7HmVKejQq+3/q5OAMKf0ffSDhbfIgodp186z5DUeXVFuAnZYF2OGMipDEIplDquUwYw==
-X-OriginatorOrg: onsemi.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR02MB9828.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ce3d931-ae9b-4992-c7a1-08ded6b98429
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jun 2026 15:09:00.7505
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF00012E64:EE_|PH0PR10MB6983:EE_
+X-MS-Office365-Filtering-Correlation-Id: c14159b7-7814-459a-b0a4-08ded6b99fdf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|23010399003|82310400026|36860700016|1800799024|376014|18002099003|56012099006;
+X-Microsoft-Antispam-Message-Info:
+	/Q6kijAyLjmbGaK/wAJQI0ocXyT3ZZKcWr5/6zSNVAJTK34lMuEnkhyjWAOwdZaDPAKqU4jF2S0ic0IkQNeQ9uwyyKx8EfgmPglsIlVGfBePGTngI6Y0EFYIcvyfqd1VGZDz+huOzKyOlArQ+B8QAqPNrSx0d+wdmZphw8+DqDdNJtNDMifeyZTT9vGGvk19JPdrs+upuEgMC3E6dQyG107yQWuHKTLga+TFpAV1+TdNWrVKLs/SP01/nQQ1CKL8AUjOPPtnGUDWzBt20c5+SLwBT4wFzJJhBmCDkPr009+3tE8KDijSx2EgAg+D1Fbbe29QIewH+7daiJetA85mRMrCuLBcUd6FGwWSLYA5dJMirORlrDurAeaqqZhEJK+HYIDisNdcoKceHb6gPAUg2VLFaJGS7qE9nkyQMmLmmwwkDTlrVtCNWEvZStBK9b20SpCpzmXhJ1Skbf/YzrLehaf8c7VsPZI0rg9S2OL9HFLmqyTJ10aIGpEnMKZyQDaS/LGmsveuqL35XC0iucvg29ynYSBKVQpUoglYyLyIVDVeay9tkVSrMo6cJsbXXhBW2JbuH8lPcXL/CSOVf+Q+HFlcjaaIBMuCf5xTaz7jWcPJh05wdK0iI1YGsQWnG1lw1ucF9AObKBRX96i3P/ORODU5t6l/lmkOXiB/iEsp63gtUvds7D2YLBYu0WzcdT5CaXrOgBB3CjKlNkPrwueGgw==
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(82310400026)(36860700016)(1800799024)(376014)(18002099003)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	pXn4ozeM+E6ymD+4zeif5pr2/XyGZMxtncd0VD6qrJ/EzkAAJuh3996lM5NAV/P7VQ40BKMPAu98gXdcvQXbvXGnWzQ1/zdjGfzGI3pTzKNcM5/ejamxs/1Td52oFHNbHnGe0oZKjOFqaj8Aq2E88BeFIKOPBUla7y/vu0KWayVOabMMCqKf5wgKZ7oGKbwwSpRkdUO6EZ4fjKFT7NkKy1qXxFnkCSyB3Vxg44U1UK3C8XknJdJqWfzN9tKFEkc/14XsDmODmMsNJBuqFi/zEBQsjgRftEDPNuIh70p7fXb9f0pAaDwvC3Z7GUiygzz6QCTofsg7p+RbNj5cesAQhKe6Zq9/PmNxy+ttXuSfBJeaDrqKlVu6qMePOdzkcetM0SoEh71ySaZ/OQ90zX6Caw+qJF5xr0XSZMXw+BoLcw4Qd8bCeiQVOrl+8mAmEg34
+X-Exchange-RoutingPolicyChecked:
+	q7IOhWcZSwdb148DkSwEFRuN9Ecz/qYl1po9A4O54WVo5KLQVkX1NLdgHNm01VjYLllBoowWSUKR+xLpYZAQZdpiw4z/AnxbM40QwvP2qExJ4uubMLEg4OUt1Oc49Pjk/6UJDY1y8JFoc4EeOZ/UnlNmOwEb7ca74zBnd3DFKGWwD8RTMOupVO8XazzScFke9Gc/9lqdgMXhWTb5X13j4OLBbq8InHncyZRtJQ1h92xnAzXqcKEeodab409DmAfnP2NOrNB1JYJzVWd2lGQtV2gSBtn0uEGLYDyzEEbzKGqBANSiVMgQKETNyiDhemlcFvw7qJ29GzRNCkxOWNI3pA==
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 15:09:47.1342
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 04e1674b-7af5-4d13-a082-64fc6e42384c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: R91K6lrK1yNgod1ePDiy54tQT4bgRJfJnPeNjo0m9lCZXVwhKpSWGCvgrcuWUfiMhmy2RCrvwTO30aRv+f9KZW+EcdDaOkAFdB4aYK2kUCo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LVUPR02MB11515
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: hRZtsEhdaEDb9KJPTmfeA95dg1hTadF7k78XRHMXhNQ_1782832143
-X-Mimecast-Originator: onsemi.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+X-MS-Exchange-CrossTenant-Network-Message-Id: c14159b7-7814-459a-b0a4-08ded6b99fdf
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF00012E64.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB6983
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDE0MiBTYWx0ZWRfX/Qdt3EJEdNph
+ jbf/nO5KT8lPh71gLTctHFvfOY9fa6arX5y5nMjG3ofs2wJNhthF+IrVS1nKdMUYBusF6ZOVKxl
+ 0J3d6KH7DDp/QVKeB/CNGFR7778cVXB/jcWWIYYpUH1ra5txWmMr9qxkMZawpD3Hyyc5YQQo3zN
+ OETbTdhCUBfj0uEmZ/GKp7lnSjmUaOaLtwPdSmbXS4kq7IQ3Tt8tIVKZINzzAIzHmfnapygNXdq
+ I6YSc2/2B6GSH3EVef9BGw9mAHvqLTM2V5/9X9QSG4PeARoP4ERQDemmXCXUUc82U+SrLPI4ccD
+ NT027PIrJjdxy9kkx6RVIaywxmuemO/0fAEpIoox2jxAh5EgFQG/+L6b4A7FgcZ7FN9Zef0V/5p
+ JyVDJU2FPJqOB6gw8VTmem7aUNBpribg/lIWcb17SBNePNSmJiCRoMEJ5GdlDVmW3Jg14nfFYqF
+ +fb0vfSz7D6FxiKPhVg==
+X-Proofpoint-GUID: BIZ9P9NesbUUzlyIXN80s5HrQ8OrdWiR
+X-Proofpoint-ORIG-GUID: BIZ9P9NesbUUzlyIXN80s5HrQ8OrdWiR
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDE0MiBTYWx0ZWRfXwFJ+Ppsku2R0
+ FCUE5l2p5/2UaNO9txYQBHNjTfS6qlnu+U65XExEFxgd9de2FeqgxOCBKctcSyd0w9xRhzPxubd
+ AkL4pX6QK9bAur+DC5VJqvgAzEPoUjY=
+X-Authority-Analysis: v=2.4 cv=M5N97Sws c=1 sm=1 tr=0 ts=6a43dc40 cx=c_pps
+ a=+LMkLzjU88PdHoliF3eHPQ==:117 a=WotqVVQAdb04rnGuttW3Kw==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=FelO9ux0wxsA:10 a=s63m1ICgrNkA:10
+ a=V5UXEbMT0ywA:10 a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22
+ a=taLDd7a_hP9WKsMzeGRc:22 a=sozttTNsAAAA:8 a=fv5Xb4zugy-HeHZQE2EA:9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-30_04,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 bulkscore=0 clxscore=1011 suspectscore=0
+ impostorscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2606300142
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.44 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[onsemi.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[onsemi.com:s=mimecast20250127];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=proofpoint-05-2026,ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-317899-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:andrew@lunn.ch,m:Pier.Beruto@onsemi.com,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:parthiban.veerasooran@microchip.com,m:richardcochran@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:jerry.ray@microchip.com,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[Selvamani.Rajagopal@onsemi.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[lunn.ch,onsemi.com,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,microchip.com,lwn.net,linuxfoundation.org,vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:nm@ti.com,m:vigneshr@ti.com,m:praneeth@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:v-singh1@ti.com,m:bb@ti.com,m:u-kumar1@ti.com,m:anshuld@ti.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317901-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[p-bhagat@ti.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Selvamani.Rajagopal@onsemi.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[p-bhagat@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[onsemi.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	TO_DN_NONE(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_COUNT_TWELVE(0.00)[12];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,ti.com:dkim,ti.com:email,ti.com:mid,ti.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 537CC6E5CB9
+X-Rspamd-Queue-Id: C17656E5C7F
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tp
-IDxrcnprQGtlcm5lbC5vcmc+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggbmV0LW5leHQgdjYgMTQv
-MTVdIGR0LWJpbmRpbmdzOiBuZXQ6IGFkZCBvbnNlbWkncyBTMjUwMA0KPiANCj4gTm8gaW1wcm92
-ZW1lbnRzLg0KPiANCj4gU28gbm90IG9ubHkgeW91IGlnbm9yZWQgcmV2aWV3IGNvbW1lbnQgYnV0
-IHlvdSBhbHNvIGlnbm9yZWQgYWN0dWFsDQo+IHJldmlldyB0YWcuDQo+IA0KPiBEb24ndCB3b3Jy
-eSwgd2UgY2FuIGlnbm9yZSB5b3VyIHBhdGNoZXMgYXMgd2VsbC4NCg0KRmFpciBjb21tZW50LiBT
-b3JyeSBhYm91dCB0aGF0LiBJIGxvb2tlZCB0aHJvdWdoIG15IGVtYWlscy4gQm90aCB3ZXJlIG1p
-c3NlZC4gV2lsbCB0YWtlIGNhcmUgb2YgaXQuDQoNCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6
-eXN6dG9mDQoNCg==
+Rename DM reserved memory nodes for K3 devices.
+
+Example:
+memory@xxxxxxxx -> to dm@xxxxxxxx
+
+This allows U-Boot to identify and resize these regions using
+fdt_fixup_reserved_memory() as done for TFA and optee.
+
+Also drop unnecessary bootph-pre-ram property from AM62D2.
+
+Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi         | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts        | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi              | 2 +-
+ arch/arm64/boot/dts/ti/k3-am625-tqma62xx.dtsi           | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi        | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts                 | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62d2-evm.dts                | 3 +--
+ arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi             | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts                 | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi           | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi          | 2 +-
+ arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi      | 2 +-
+ arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts          | 2 +-
+ arch/arm64/boot/dts/ti/k3-am68-phycore-som.dtsi         | 2 +-
+ arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi              | 2 +-
+ arch/arm64/boot/dts/ti/k3-am69-aquila.dtsi              | 2 +-
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts                   | 2 +-
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi             | 2 +-
+ arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts      | 2 +-
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts                  | 2 +-
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi             | 2 +-
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi            | 2 +-
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts                 | 2 +-
+ arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi | 2 +-
+ 24 files changed, 24 insertions(+), 25 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
+index 3baa653257bb..40148a37e294 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
+@@ -65,7 +65,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@9da00000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@9db00000 {
++		wkup_r5fss0_core0_memory_region: dm@9db00000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9db00000 0x00 0xc00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
+index 7a4cffc27bda..90380bd8bb77 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
+@@ -72,7 +72,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@9da00000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@9db00000 {
++		wkup_r5fss0_core0_memory_region: dm@9db00000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9db00000 0x00 0xc00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+index e97b2b047d10..ef2afcc51578 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+@@ -212,7 +212,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@9da00000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@9db00000 {
++		wkup_r5fss0_core0_memory_region: dm@9db00000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9db00000 0x00 0xc00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-tqma62xx.dtsi b/arch/arm64/boot/dts/ti/k3-am625-tqma62xx.dtsi
+index 72288678cd01..c71297a6a818 100644
+--- a/arch/arm64/boot/dts/ti/k3-am625-tqma62xx.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am625-tqma62xx.dtsi
+@@ -55,7 +55,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@9da00000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@9db00000 {
++		wkup_r5fss0_core0_memory_region: dm@9db00000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9db00000 0x00 0xc00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi
+index de4048a3564b..7af3c2ddeb22 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi
+@@ -65,7 +65,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@9c800000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@9c900000 {
++		wkup_r5fss0_core0_memory_region: dm@9c900000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9c900000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+index 821a9705bb7d..83743a79ee60 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+@@ -59,7 +59,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@9c800000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@9c900000 {
++		wkup_r5fss0_core0_memory_region: dm@9c900000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9c900000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts b/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
+index f5ceb6a1b5de..b06f0da35141 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
+@@ -65,11 +65,10 @@ wkup_r5fss0_core0_dma_memory_region: memory@9c800000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@9c900000 {
++		wkup_r5fss0_core0_memory_region: dm@9c900000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9c900000 0x00 0xf00000>;
+ 			no-map;
+-			bootph-pre-ram;
+ 		};
+ 
+ 		secure_ddr: optee@9e800000 {
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
+index 7ee894d59113..1688b003740f 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
+@@ -168,7 +168,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@9c800000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@9c900000 {
++		wkup_r5fss0_core0_memory_region: dm@9c900000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9c900000 0x00 0x01e00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+index b770ed82be9d..a570d764ee3f 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+@@ -55,7 +55,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@9c800000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@9c900000 {
++		wkup_r5fss0_core0_memory_region: dm@9c900000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9c900000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
+index fc5a3942cde0..48fa66ec08c1 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
+@@ -69,7 +69,7 @@ wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: r5f-memory@9c900000 {
++		wkup_r5fss0_core0_memory_region: dm@9c900000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9c900000 0x00 0x01e00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+index ab9e58c2d225..03787bd4b857 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+@@ -56,7 +56,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@9da00000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@9db00000 {
++		wkup_r5fss0_core0_memory_region: dm@9db00000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9db00000 0x00 0xc00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+index f3ee73e64d69..78b4e5d61dfc 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+@@ -53,7 +53,7 @@ mcu_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_memory_region: memory@a0100000 {
++		mcu_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0 0xa0100000 0 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
+index 5255e04b9ac7..f0353cb2e508 100644
+--- a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
++++ b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
+@@ -56,7 +56,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@a0100000 {
++		wkup_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-phycore-som.dtsi
+index ab87767419fe..be581f03d1f8 100644
+--- a/arch/arm64/boot/dts/ti/k3-am68-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am68-phycore-som.dtsi
+@@ -55,7 +55,7 @@ mcu_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_memory_region: memory@a0100000 {
++		mcu_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+index 6a6dc816b658..d49ab30658aa 100644
+--- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+@@ -33,7 +33,7 @@ mcu_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_memory_region: memory@a0100000 {
++		mcu_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-aquila.dtsi b/arch/arm64/boot/dts/ti/k3-am69-aquila.dtsi
+index 5119baf62a4c..78b0b3214665 100644
+--- a/arch/arm64/boot/dts/ti/k3-am69-aquila.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am69-aquila.dtsi
+@@ -110,7 +110,7 @@ mcu_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_memory_region: memory@a0100000 {
++		mcu_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+index e56772a334c5..a7c362dff589 100644
+--- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+@@ -55,7 +55,7 @@ mcu_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_memory_region: memory@a0100000 {
++		mcu_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+index 5a8c2e707fde..cb41743d8f74 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+@@ -35,7 +35,7 @@ mcu_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_memory_region: memory@a0100000 {
++		mcu_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+index 8040b6528c18..4a569b50f51a 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+@@ -57,7 +57,7 @@ mcu_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_memory_region: memory@a0100000 {
++		mcu_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+index 689ba2ff81f7..3a3eed8d9a9e 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+@@ -54,7 +54,7 @@ mcu_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_memory_region: memory@a0100000 {
++		mcu_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+index c8073ee634b7..e6da4dbd91a6 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+@@ -35,7 +35,7 @@ mcu_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_memory_region: memory@a0100000 {
++		mcu_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+index a19e535f4946..3efca08c3ae7 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+@@ -37,7 +37,7 @@ mcu_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_memory_region: memory@a0100000 {
++		mcu_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+index e66330c71593..faf1dfbb53e1 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+@@ -58,7 +58,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		wkup_r5fss0_core0_memory_region: memory@a0100000 {
++		wkup_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
+index ff3a85cbc524..b2b04ef9bcaa 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
+@@ -41,7 +41,7 @@ mcu_r5fss0_core0_dma_memory_region: memory@a0000000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_memory_region: memory@a0100000 {
++		mcu_r5fss0_core0_memory_region: dm@a0100000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0xa0100000 0x00 0xf00000>;
+ 			no-map;
+-- 
+2.34.1
 
 
