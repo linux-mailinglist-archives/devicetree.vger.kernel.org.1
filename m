@@ -1,155 +1,222 @@
-Return-Path: <devicetree+bounces-318010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318012-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mF0JCLMERGpBnQoAu9opvQ
-	(envelope-from <devicetree+bounces-318010-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 20:02:27 +0200
+	id K+bxMccGRGrZnQoAu9opvQ
+	(envelope-from <devicetree+bounces-318012-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 20:11:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 733C76E7112
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 20:02:26 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A694A6E71BD
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 20:11:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bW2LtgBu;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318010-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318010-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318012-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318012-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4BE09301C912
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 18:02:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 987E13000BBE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 18:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41DD3AA1B5;
-	Tue, 30 Jun 2026 18:02:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEF8F3E0725;
+	Tue, 30 Jun 2026 18:11:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B171F12CDBE;
-	Tue, 30 Jun 2026 18:02:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589143E0227
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 18:11:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782842541; cv=none; b=HY5uuORJQgWLnQaRoNT6A4TDhCOtXsbVR9jeZqD73iH4iNa8W37z6oGNHPPAZhOR6P/kgNoWGCr3cOdvkZAieaWmz1ttWZSv9rQMXrkqwhHpJHWZyggechlJA9ck1+ScnE7GCW4gX4oXp4+mvpNqYKrASSo09dmtEElMwZZHI0U=
+	t=1782843074; cv=none; b=QIVFVSHN/Pb5mVSti4Pf9f4NvA0AwmBfU/di2Gv552BLvdChWTaKnaxubxoLJVheJUCuOVv3XvAAIzPBxiB04hGKj88SSucmFydC7VHgaj7abHZd1rouSwW7vDdAd2cHUlhb3Xxnc9E5YPNkw/NPisYmpH5Vl9lEgndj1J1pjyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782842541; c=relaxed/simple;
-	bh=V16u8iU0zk+lCqlS1wIv/DHcIm7oRipJJhddV2VDekY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jbJ2hMw/+Vq/pFsMsKTj8FKzDhpW4T/fiI68JKB8snivEHVN4luFKCI0Ryz2sNRcNhDb7ONGaB7b0Kdsjd9ps7uZxjjQTAFoUGlMx5Y66YW9mGQ8pnHcAkOtFmEHgXVa5edmDf8L9ACP8f4WmgbOx5TL5RG4soRY1OyS1aJ+9Oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bW2LtgBu; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D4201F000E9;
-	Tue, 30 Jun 2026 18:02:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782842540;
-	bh=xrqqsPqaXbkExbvl7l6TbPo4VTzO9ytLt6edYlDgBT8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=bW2LtgBuXbPQAq4eiMMa8cUMnVjLuqj3Q6ugsddafkV7o5cM+0nsN+QgGxgqaE9Ke
-	 Hd2L/gR2uB4HHXsgPXibU6mlHo7TutX96zAGXa4SDB3W0MssskuFm1/Eozs7oBwvBA
-	 arL/o6a4H3Fr26i7Cxlgj1M2y63FOHzWKO/ny5MVsnEGMsX3sys6c3Cs30jcJHkO9+
-	 XRCna9Z2QOrPjFQ4omy9vh5UCxbCXgIqPfvOAEHTQtsCudlU/X2XioMfoqlzkl5rr7
-	 lEWWmTRxZJRsYFaORIATLAzNFLotlOzIx22OKAL6w1ojr3Hk3eIYpyEl3bK8vY9eJe
-	 Hrdb/XaxU/e/g==
-Date: Tue, 30 Jun 2026 13:02:19 -0500
-From: Rob Herring <robh@kernel.org>
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: Ulf Hansson <ulfh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Jens Axboe <axboe@kernel.dk>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	Jeff Johnson <jjohnson@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-	Rocky Liao <quic_rjliao@quicinc.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Christian Marangi <ansuelsmth@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-block@vger.kernel.org,
-	linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
-	daniel@makrotopia.org, stable@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: [PATCH v6 1/9] block: partitions: of: Skip child nodes without
- reg property
-Message-ID: <20260630180219.GA4139943-robh@kernel.org>
-References: <20260629-block-as-nvmem-v6-0-f02513dcd46d@oss.qualcomm.com>
- <20260629-block-as-nvmem-v6-1-f02513dcd46d@oss.qualcomm.com>
+	s=arc-20240116; t=1782843074; c=relaxed/simple;
+	bh=OYJNr+fvg0ooEirPKzpg45GmiwT9K/fc8PU+rAViuKk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i6GH+oZ3w+zQqjO2MDIVFq2b43h2J8f6aH3IaW6yJB8fx/V5Pfv2IY4lsHRFr5yDtxAz7pkx17Xb1TcDM0eY9se8Eyj0QohFcoliU2OfcEuk+nPUzyTo05JI9ntbu0gN83LM0oXSZPbj5p6U6D0fUQIAJOLOTVu7eShfYKX7wOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.50
+Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-6a15ca0d761so2196528eaf.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 11:11:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782843072; x=1783447872;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oCVJ3/YfnMGwAtAU15rL0FQBriNX8zfFDwNu+BCGAtk=;
+        b=XK5YNnZ4OJVWzq4fAcEH+7wjzq8Zme3iSGxRZegENI70kJrxJKPhdgiBD0BAEGKIq0
+         tg2kJHr6KhPT81lm65343Y2jZhKGF+xVAUClIIe50hc9dDZlqC8x6o+SBUumD8/QWUrb
+         Gb2BjlpfJSMeh+cqoR7YHl6lKeEbxCL0gdoIU/fMp8EqGsQHXZuAxeEakMfQQ19UE+v3
+         iUeXMrRz7H0eb6xBP7unY8S2UZr0OrKaE+gEitKl8n2DPCQGXvpRYhgfMnpCxl/Q7Hno
+         IycxUFjHIXK9btXxyzBu4Am4d2evrP5oIJL9iwPeYzFXk+mJJRJiBKAiXS04hLvNYBVF
+         ad5A==
+X-Forwarded-Encrypted: i=1; AFNElJ+j3EbKCzCLl+B5SGutNxmDE8Gb279DbQyv8TGoLwBJA9ewwr9W/HtEUXaON1VqMGopwXTXaw0bjpQb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyo4jZCi6NEEOMdhO8aXuJgQqcwoHx4ZcOxOKAlHPSYIZaWPyMc
+	uMKsEqX8ViXj0eXGsDz+hfJCWvTKAjDgHXWQT1gGPvFtNDxUuCWjFOQUcbgwlZ5M4/A=
+X-Gm-Gg: AfdE7clr+ZGaDal+PR556VS3C1Upj7clwG3SXhCNS2g5K+g8KhcNNY8WGlnJxOU12YP
+	voYAP/Lybu/m8MybiLEGaNkugVa1y+sSxUwPL/6UPn1d3vY6q8RYEO9LfQBNYribJItWYFMYoId
+	aMeH4Fsp8s6loIwPlle/zWCE9xAVcK4LRn1FpVzVPZJtP2E/V+KBv14fowR07r6dq6zCN9+TUMH
+	odgFOuEPHeE8vU58VriE0F2zGPDUhrWVeukrA3SwYDdMWPOGAkLgjAg4sIAK6u1lJx3BtwLVOMN
+	zQWqVCa+snOVagaFIFpVy/fLwjX1p0pzrcTRkKrgQTh+MGOjmzt1jGJp/xQtCsRSx3o2FaxTjC+
+	OIuc8G6oYrMDxnKJvBHWXd/f1OsRWzTSMr6DozTcp29mQT7fBj3Sst8QFFXPm0NPDDxrPKaUhUQ
+	YgGAAwdtqcnQLwR2Tl+mz2e4rNwyxuwwUDf+SM5mJuoeHGv0VaKg==
+X-Received: by 2002:a05:6820:1ca3:b0:6a1:50eb:2115 with SMTP id 006d021491bc7-6a18933a0b9mr3253547eaf.57.1782843072327;
+        Tue, 30 Jun 2026 11:11:12 -0700 (PDT)
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com. [209.85.161.41])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e9ebf89825sm2910497a34.3.2026.06.30.11.11.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jun 2026 11:11:12 -0700 (PDT)
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-6a0e55e82d0so2826622eaf.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 11:11:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8Ut2Vua5bv62AkeMQ8UPBPEDfj+mUFgOXM/M40Yrl8TEXyXccUEmGvro9Y5hY4zIiKhDnz7Y176yJp@vger.kernel.org
+X-Received: by 2002:a05:6102:5805:b0:738:472f:2ca9 with SMTP id
+ ada2fe7eead31-73a369ec1bcmr2473065137.7.1782842696311; Tue, 30 Jun 2026
+ 11:04:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260629-block-as-nvmem-v6-1-f02513dcd46d@oss.qualcomm.com>
+References: <20260618220427.14325-1-marek.vasut+renesas@mailbox.org> <20260618220427.14325-2-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260618220427.14325-2-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 30 Jun 2026 20:04:45 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV3tyZk8ckL-ihdbVcGV9tQumdntPc_nJB6HXEkZLytfw@mail.gmail.com>
+X-Gm-Features: AVVi8CcCGeVbbcW5z0757KT0rVC9sZPZEWMHF1Z1kDBEh7vVAiL0IbidDTttqgc
+Message-ID: <CAMuHMdV3tyZk8ckL-ihdbVcGV9tQumdntPc_nJB6HXEkZLytfw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] PCI: rcar-gen4: Configure AXIINTC if iMSI-RX not used
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: linux-pci@vger.kernel.org, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	TAGGED_FROM(0.00)[bounces-318012-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318010-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:ulfh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:axboe@kernel.dk,m:johannes@sipsolutions.net,m:jjohnson@kernel.org,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:quic_bgodavar@quicinc.com,m:quic_rjliao@quicinc.com,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:srini@kernel.org,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:saravanak@kernel.org,m:ansuelsmth@gmail.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-block@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:ath10k@lists.infradead.org,m:linux-bluetooth@vger.kernel.org,m:netdev@vger.kernel.org,m:daniel@makrotopia.org,m:stable@vger.kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com
- ,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,kernel.dk,sipsolutions.net,holtmann.org,gmail.com,quicinc.com,davemloft.net,google.com,redhat.com,lunn.ch,armlinux.org.uk,vger.kernel.org,lists.infradead.org,makrotopia.org,oss.qualcomm.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:marek.vasut+renesas@mailbox.org,m:yoshihiro.shimoda.uh@renesas.com,m:linux-pci@vger.kernel.org,m:kwilczynski@kernel.org,m:bhelgaas@google.com,m:catalin.marinas@arm.com,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:lpieralisi@kernel.org,m:mani@kernel.org,m:maz@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:marek.vasut@mailbox.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mailbox.org:email,linux-m68k.org:from_mime,linux-m68k.org:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,mail.gmail.com:mid,renesas.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 733C76E7112
+X-Rspamd-Queue-Id: A694A6E71BD
 
-On Mon, Jun 29, 2026 at 10:55:20AM +0200, Loic Poulain wrote:
-> Child nodes of a fixed-partitions node are not necessarily partition
-> entries, for example an nvmem-layout node has no reg property. The
-> current code passes a NULL reg pointer and uninitialized len to the
-> length check, which can result in a kernel panic or silent failure to
-> register any partitions.
+Hi Marek, Shimoda-san,
 
-That does not sound right to me. A fixed-partitions node should only be 
-defining partitions with address ranges. I would expect a partition node 
-could be nvmem-layout, but not the whole address range. If you wanted 
-the latter, then just do:
+On Fri, 19 Jun 2026 at 00:04, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> In case MSI are enabled, but DWC built-in iMSI-RX is not in use, the
+> MSI are handled via GIC ITS. Configure all controller MSI registers
+> fully.
+>
+> Set or clear MSI capability register MSICAP0 MSI enable MSIE bit and
+> PCIe Interrupt Status 0 Enable register PCIEINTSTS0EN MSI interrupt
+> enable MSI_CTRL_INT bit according to MSI enable state, set both bits
+> if MSI are enabled, clear both bits if MSI are disabled.
+>
+> If MSI are disabled, or MSI are enabled and iMSI-RX is used, then
+> deconfigure AXIINTCADDR and AXIINTCCONT to 0, which disables any
+> pass through of MSI TLPs onto the AXI bus and then further into
+> GIC ITS translation registers.
+>
+> If MSI are enabled and iMSI-RX is not used, the configure AXIINTCADDR
+> with target address of GIC ITS translation registers, and configure
+> AXIINTCCONT to enable MSI TLP pass through onto AXI bus and into the
+> GIC ITS. This specific configuration allows handling of MSI via the
+> GIC ITS instead of integrated iMSI-RX.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-partitions {
-  ...
-};
+Thanks for your patch!
 
-nvmem-layout {
-  ...
-};
+> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
 
-Rob
+> @@ -305,13 +320,103 @@ static struct rcar_gen4_pcie *rcar_gen4_pcie_alloc(struct platform_device *pdev)
+>         return rcar;
+>  }
+>
+> +static int rcar_gen4_pcie_host_msi_addr(struct dw_pcie_rp *pp, u32 *msi_addr)
+> +{
+> +       struct dw_pcie *dw = to_dw_pcie_from_pp(pp);
+> +       struct device_node *msi_node = NULL;
+> +       struct device *dev = dw->dev;
+> +       struct resource res;
+> +       u64 addr;
+> +       int ret;
+> +
+> +       /*
+> +        * Either the "msi-parent" or the "msi-map" phandle needs to exist
+> +        * to obtain the MSI node.
+> +        */
+> +       of_msi_xlate(dev, &msi_node, 0);
+> +       if (!msi_node)
+> +               return -ENODEV;
+
+This is not backwards-compatible with existing DTBs.
+I noticed because PCIe is broken on Gray Hawk Single with R-Car V4M
+after this series.  Indeed, "[PATCH v2 4/4] arm64: dts: renesas:
+r8a779g0: Add GICv3 ITS and update PCIe nodes" only covers R-Car V4H,
+but not R-Car S4-8 and R-Car V4M.
+
+> +
+> +       /* Check if "msi-parent" or the "msi-map" points to ARM GICv3 ITS. */
+> +       if (!of_device_is_compatible(msi_node, "arm,gic-v3-its"))
+> +               return dev_err_probe(dev, -ENODEV, "Compatible MSI controller not found\n");
+> +
+> +       /* Derive GITS_TRANSLATER address from GICv3 */
+> +       ret = of_address_to_resource(msi_node, 0, &res);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret, "MSI controller resources not obtained\n");
+> +
+> +       addr = res.start + GITS_TRANSLATER;
+> +       if (addr >= SZ_4G)
+> +               return dev_err_probe(dev, -EINVAL, "MSI controller address above 32bit range\n");
+> +
+> +       *msi_addr = addr;
+> +       return 0;
+> +}
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
