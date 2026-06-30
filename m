@@ -1,149 +1,166 @@
-Return-Path: <devicetree+bounces-317914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317915-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 42u6Af7jQ2pzlAoAu9opvQ
-	(envelope-from <devicetree+bounces-317914-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:42:54 +0200
+	id jHTMKwDjQ2oolAoAu9opvQ
+	(envelope-from <devicetree+bounces-317915-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:38:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ED2A6E60BF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:42:53 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45D026E6007
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:38:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Shy5SjIk;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317914-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317914-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="E12s/Lmh";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317915-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317915-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 975E830413B0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:37:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AC2433031FE5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE18544CADF;
-	Tue, 30 Jun 2026 15:37:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 744B844D6BD;
+	Tue, 30 Jun 2026 15:38:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pz2-f0.google.com (mail-pz2-f0.google.com [74.125.228.0])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4F6544CACA;
-	Tue, 30 Jun 2026 15:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E7B127B34E
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 15:38:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782833836; cv=none; b=d5+AIkjY6xg4KdO+C7b3JoZyuh8EGSY2PLt9leB+ZBNac8JZ/KmZu7TZJMBzcGahVilM/8R48TeNouuXx12SvCdLQ5A7Z27FYDTs3IbMQCDhf0kOFWzXtPKbYGkDeEQ+UVdd87gAwv0gmi/2sWHyAhZtAH2nDTGhSWQUE8y3NVY=
+	t=1782833917; cv=none; b=Qo22QGfYcQ9wmlPrd5IGuIpLrU8/Ev+g2YAuBEs8KG6BLJGIDOmXrXy24qYVmXSOmG4PAz/3EVbH28qWFf3YQrJL6docUzGCxPEhjem4xTkTurLi8uA1dfGT/TVPUR0VUnuggawJmtm3Vl5cxKQ/eaKHAC1eWrOgyumq5Jss96M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782833836; c=relaxed/simple;
-	bh=LXbKc+pk2xXz8b/bkoNzrA2gM/KwAImFNydJoG/KzbQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lDPMLFbL2I9gwplEh3RsMoSv02jwg49xLSpriFhNtVE2kCQ210r1H0NXUYTYDJ4cK+Eau63+vh6/+xEJes7xaLeIykm7hM4oDr4g80AsLC0RNaSvIKgG/kNHBaL5lqF+sfze5unZktuOZR4959aweUsnAwWPeh7npAjKYuQ8F7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Shy5SjIk; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4877E1F000E9;
-	Tue, 30 Jun 2026 15:37:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782833835;
-	bh=f3gDDpa2F+xxVGf0PANTbnb+AzneKEHuN6HprbF9bqI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Shy5SjIkdi8a1edi8K58WDtF7KRartQjSOwBFdhTNeADxFTOegM7p8O5auSkWXL6x
-	 fg+etw55D2K402q0wfLNBnR5E7TrnJaHZHpDMIEHEeaSY1KwWg8oF4ZiOyJtMQzGdk
-	 gzA/FtOWre0HXtUWZvzU/Zjm9II8YbvMgwfSqym8Cv/XKgLE8JUwwoogXQMps13vsN
-	 hMZhxLEMHOdWUd5A+RnVm83Rt4z75sMsncVtyi2XKshB9Lf41M3I5XZqI2+9qTm99G
-	 k87Jbc7MIOTDu/aWsyO7J+HUfZsWWKzpuwv+UqPup6Pf+3O9wAYt+Ouqmp+O1BOqTV
-	 SWAYCreI5+ZMA==
-Date: Tue, 30 Jun 2026 10:37:11 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank.Li@oss.nxp.com
-Cc: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	s=arc-20240116; t=1782833917; c=relaxed/simple;
+	bh=9F+YAr8YLKN22svH5CFFrddaSgce+A04HOUMM0xsx7o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JZp3BhEJsBjFcQMTlH51hndXMYtTdyvRzFO5QQejxWgI8hoi3fJJENRjeNb1Se3bk0HOX0e3HPncXOfD1LUJ3DkiGN0jW7hgWDn7+N7uqR2Le2Dy3XWeItyz3bM6W8tEuCtPOMU3AY+vjaeeEkuXPVIEO36cTarN2R3rtdU7lAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E12s/Lmh; arc=none smtp.client-ip=74.125.228.0
+Received: by mail-pz2-f0.google.com with SMTP id 41be03b00d2f7-c9abbd0a2e3so277637a12.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 08:38:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782833916; x=1783438716; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=p6+QzKXcRNoqQlHz7+u9sgV6eaPwE3xJHdlR/zl3wUs=;
+        b=E12s/Lmh1RPFZVZqWf5WJw+B/Zw2W2XrYfXKnNO1WBWHguqrlingEOk1dCkN0O1hZj
+         JnEPD7jOFXM1VxvZ0qupUsIQqgKFbEDpWDfiHtiiD5An+2pNVeyofoZurogXbz9h4pH4
+         eL0e73i17+ktfLqTLmY6MW1m6wJiQZv0+5eO9nX3MHGp4OPKEwXIyFhb1TMvVkJNvYPf
+         tjmBfG1157sjl7hGTcYRNRvnx3KoQiLCp1UnPwub/nhCO+5fH+pxlMPA7HKFdr7CGfL7
+         XCvYBL2RbgoNimPGwWfSjB+Jyv80t6WBTZMpbI6og3ZO6hKjYHsY8X8WQQBy8CjKQYzu
+         F1MQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782833916; x=1783438716;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p6+QzKXcRNoqQlHz7+u9sgV6eaPwE3xJHdlR/zl3wUs=;
+        b=P9oHlwhqB6VvXxcvay/W7meAaiPCEZ3aUPQ6icE42v0TSq45QbNH1T/oNdafxzcQ4A
+         wlxx/t+OrZTU0M50EVOaa4//qMvNN/GlLwmU+al+eRwtlz0a6rkiVZpFSiiBihwp6s04
+         L65vrc77AY26ZQ+fKfFXS+9Cc1yIQFOZbvomX5c0wBLOKCG+KuFfoWdg9mPGcIIQruVO
+         ffuTVDXf0aFmEU6HpdlblnhQDrgQTZVsucov+PFGXfGgjP6ZlLY0J1mcgPebjm4oXt16
+         a3bg8lx1ICM0LemFsPoA4DiCc2QXVcmBA1VmqNLDEqXo+3a39MRbFvmJyaMEAgWmI+0r
+         6ONQ==
+X-Gm-Message-State: AOJu0YxJ7Q4Tf6sjxXu1KRjP5b4ieeve4v0WUjMSOb340+O2QJu5TW3k
+	0l+21+1GrV67dJhpgDiKbUIXSbqWM/XWD0ChRR7Su1kZ7TbQ+iEnz/8x
+X-Gm-Gg: AfdE7clht+jmjmt2TlTXoRiipPVB3oB+kRXsSGh6zCrH3sTtOngi7+Pr6yFET2YPmL6
+	si2ZBdAMkc70fADu8fK+cJ4vkXFHKO2CYVR7MgXYq2voNIVVdH6Myp57ZAsOzm6OQnWjswXu++8
+	yJaQl/kBu+KvI3K8in8L9E4MLa8DvMZFcZFQfcpTrMZ0wSJDE+VXfE70kZb4x85ezvmi2nKzy6w
+	G5/E6F6L6pZm8Ic58bTPeHDNH/F/GsthVQWcAwD8ZcvkXxk3fIVquw+2Lc2NGcqzG51Z57sIHS4
+	sBbaH/vDk/GDUFDuYKT1xEgrDUSmRYSzWHAX9ARqHorAKEuMQ+3wvH8wh5IRxO1kpr+ZX1zGzlb
+	vW+YCed9SjSIsxixK0cdDCLIOuVtF5KnKe2w4m/aCg7LI16ca4yr0GQ3TgRAQJMI+ZS6GvUXTPy
+	8W8yi8bK07wqE=
+X-Received: by 2002:a05:6a00:174b:b0:842:5a8d:3035 with SMTP id d2e1a72fcca58-8479eee483amr3328451b3a.22.1782833915487;
+        Tue, 30 Jun 2026 08:38:35 -0700 (PDT)
+Received: from server.lan ([150.230.217.250])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-847a03cb50esm2413695b3a.60.2026.06.30.08.38.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jun 2026 08:38:34 -0700 (PDT)
+From: Coia Prant <coiaprant@gmail.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Kees Cook <kees@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Jacky Bai <ping.bai@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Brian Masney <bmasney@redhat.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Stefan Agner <stefan@agner.ch>, imx@lists.linux.dev,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Abel Vesa <abelvesa@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>, Stephen Boyd <sboyd@kernel.org>,
-	linux-hardening@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	Linus Walleij <linusw@kernel.org>, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Vladimir Zapolskiy <vz@mleia.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH 05/11] pinctrl: freescale: IMXRT: Remove NOMMU platform
- support
-Message-ID: <178283383072.3679006.860128200601452588.robh@kernel.org>
-References: <20260619-dts_cleanup_arm_mcore-v1-0-0101795a2662@nxp.com>
- <20260619-dts_cleanup_arm_mcore-v1-5-0101795a2662@nxp.com>
+	Heiko Stuebner <heiko@sntech.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Coia Prant <coiaprant@gmail.com>
+Subject: [PATCH v2 0/3] Add devicetree for the Graperain G3568 v2
+Date: Tue, 30 Jun 2026 23:38:07 +0800
+Message-ID: <20260630153810.3574714-2-coiaprant@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260619-dts_cleanup_arm_mcore-v1-5-0101795a2662@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-317915-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317914-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:Frank.Li@oss.nxp.com,m:piotr.wojtaszczyk@timesys.com,m:krzk+dt@kernel.org,m:kees@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-gpio@vger.kernel.org,m:gustavoars@kernel.org,m:ping.bai@nxp.com,m:aisheng.dong@nxp.com,m:mturquette@baylibre.com,m:bmasney@redhat.com,m:s.hauer@pengutronix.de,m:stefan@agner.ch,m:imx@lists.linux.dev,m:kernel@pengutronix.de,m:abelvesa@kernel.org,m:Frank.Li@nxp.com,m:peng.fan@nxp.com,m:sboyd@kernel.org,m:linux-hardening@vger.kernel.org,m:arnd@arndb.de,m:s32@nxp.com,m:festevam@gmail.com,m:devicetree@vger.kernel.org,m:linusw@kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:vz@mleia.com,m:conor+dt@kernel.org,m:linux@armlinux.org.uk,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:dsimic@manjaro.org,m:jonas@kwiboo.se,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:coiaprant@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[timesys.com,kernel.org,lists.infradead.org,vger.kernel.org,nxp.com,baylibre.com,redhat.com,pengutronix.de,agner.ch,lists.linux.dev,arndb.de,gmail.com,mleia.com,armlinux.org.uk];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,i.mx:url,nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8ED2A6E60BF
+X-Rspamd-Queue-Id: 45D026E6007
 
+Changes in v2:
+- Fix trailing whitespaces and other formatting issues.
 
-On Fri, 19 Jun 2026 11:41:02 -0400, Frank.Li@oss.nxp.com wrote:
-> From: Frank Li <Frank.Li@nxp.com>
-> 
-> Commercial users and hardware vendors migrated to Zephyr or other RTOS
-> solutions years ago, leaving the NOMMU platform support effectively
-> unused and unmaintained.
-> 
-> Remove the obsolete support to reduce maintenance burden and simplify the
-> i.MX platform code.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/pinctrl/fsl,imxrt1050.yaml |  79 -----
->  .../devicetree/bindings/pinctrl/fsl,imxrt1170.yaml |  77 -----
->  drivers/pinctrl/freescale/Kconfig                  |  16 -
->  drivers/pinctrl/freescale/Makefile                 |   2 -
->  drivers/pinctrl/freescale/pinctrl-imxrt1050.c      | 309 ------------------
->  drivers/pinctrl/freescale/pinctrl-imxrt1170.c      | 349 ---------------------
->  6 files changed, 832 deletions(-)
-> 
+Notes/Unchanged from v1:
+- ADC keys have been verified with evtest and works fine; kept unchanged.
+- The 'regulator-off-in-suspend' property for vqmmc-supply is retained.
+  This is a known issue shared by most similar boards and should be
+   addressed globally later.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Planned future changes (to be both with the similar X3568 v4 board series):
+- Replace the legacy 'gpio' label with 'gpios'.
+- Add the Bluetooth UART child node.
+
+Coia Prant (3):
+  dt-bindings: vendor-prefixes: Add graperain
+  dt-bindings: arm: rockchip: Add Graperain G3568 series
+  arm64: dts: rockchip: Add devicetree for the Graperain G3568 v2
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../rockchip/rk3568-graperain-g3568-v2.dts    | 894 ++++++++++++++++++
+ 4 files changed, 903 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-graperain-g3568-v2.dts
+
+-- 
+2.47.3
 
 
