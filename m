@@ -1,266 +1,366 @@
-Return-Path: <devicetree+bounces-318011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318013-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oqWGNKIFRGqdnQoAu9opvQ
-	(envelope-from <devicetree+bounces-318011-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 20:06:26 +0200
+	id jwJ2Ny4MRGq7ngoAu9opvQ
+	(envelope-from <devicetree+bounces-318013-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 20:34:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 428F96E7176
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 20:06:26 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 965336E7341
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 20:34:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=c56qQ5u2;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318011-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318011-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=baylibre.com header.s=google header.b=DCkKByV+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318013-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318013-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4B20F3019FE2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 18:06:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6CB5030917D6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 18:32:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28CCF3DF018;
-	Tue, 30 Jun 2026 18:06:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E6533DD500;
+	Tue, 30 Jun 2026 18:32:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA7B133F5A2;
-	Tue, 30 Jun 2026 18:06:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E20913E121A
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 18:32:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782842783; cv=none; b=cogCGJLDgPo4jOrpATjgYbSN8XPGvwPKRc/ZW1XcPaVpI6bg7Lss3q9YNOBqhibQSjlchaYB/khZczC4G+9vDsyME51L+nZIx8pJHRcEZZMNCcGZXI6nlaYXwaQUAADUXZz6UlIjWjvQq4uU+b1RYsFq6r0FprQEUcbfSfwfJIY=
+	t=1782844360; cv=none; b=sPtcFmQCZwHx6YTslgGr3ILWAiqHbBRHfwT31KxZ3JCr9t9yxpb+e7zhqJTXtnOUyHtSUmnq8N7Fqsm5vcYQyyv8pKNSS8T3wWuBwUW6Dk/6hO5GG2n9hNzhsBlT2Mb37g2T5EJfNL1QQbIzCGiUSRVRTiWOTV4HXg0d4PpX6HU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782842783; c=relaxed/simple;
-	bh=Yo8dfrESJG9IfUmB4Rc04gnfCoCs+wJExzmq4IMq2aI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D7waP4pvnbse0lRwDP1siKOHu/9rqR19+bV27E+waIvFZCSKKtm1OPACrfpagO/6EvMx/h0vWDT2ezPDeINIbooz9R1hvQsa7VZfAcADXZD5+KAZ+tatI//efNzsgu5u9oTIGe+1Ui+SmzhU39JPmOKF76GqQduvXUbPlxNxoyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c56qQ5u2; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 695EC1F000E9;
-	Tue, 30 Jun 2026 18:06:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782842781;
-	bh=8PWHsCluT3OCbg2LsYgRbkNFc7KX9vIUaT27QTkHN28=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=c56qQ5u2XKTmOS92xWDJTHj+zlvdzxuTazJAxr9vVSpx1+UfX/wfyiuusBEZuKgQB
-	 21q2bf00RQLBSsy6EvJ2D6bAEkEyMnhYr4TxKC3+tq6tAtx6fs30CV7X5+nlLKZCq3
-	 eN0zsQjyVH6fNQrcNmnxuD1GhOXGe784FRka5zHpK1Q6Yb9AnY4ISM+oFHIzaA2wxJ
-	 lLFWfR7aFgKmAFKRsnxyxyk8I9m7A+IktZa9koOnf54VDCNpwZusSg1glYmBlZMRfw
-	 tqF/TjzanotTRnzYQnMw+Taazt+b7bHneX+WzucSKQCURNMsjSckkjAlqRJwDiVwwb
-	 /kBLAzqtihLYw==
-Date: Tue, 30 Jun 2026 19:06:14 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Yu-Chien Peter Lin <peter.lin@sifive.com>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, pjw@kernel.org, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, samuel.holland@sifive.com,
-	dlan@kernel.org, guodong@riscstar.com, dfustini@oss.tenstorrent.com,
-	michal.simek@amd.com, junhui.liu@pigmoral.tech,
-	darshan.prajapati@einfochips.com, akpm@linux-foundation.org,
-	zhangchunyan@iscas.ac.cn, luxu.kernel@bytedance.com,
-	pincheng.plct@isrc.iscas.ac.cn, nick.hu@sifive.com,
-	jim.shu@sifive.com, zong.li@sifive.com, greentime.hu@sifive.com,
-	robin.randhawa@sifive.com, scott@riscstar.com,
-	dave.patel@riscstar.com, raymond.mao@riscstar.com
-Subject: Re: [RFC PATCH 2/3] dt-bindings: riscv: Add Worlds per-hart
- properties
-Message-ID: <20260630-frisk-excavate-7d562df75585@spud>
-References: <20260619105834.1277302-1-peter.lin@sifive.com>
- <20260619105834.1277302-3-peter.lin@sifive.com>
- <20260622-profanity-herbs-1cc1bcf6206f@spud>
- <aj5m00m4KxRAPAnB@plin-1878>
- <20260626-chitchat-purity-33af51f88380@spud>
- <akOkXpPi46LBHuIA@plin-1878>
+	s=arc-20240116; t=1782844360; c=relaxed/simple;
+	bh=kAqvTdLuMioonjY0C2caG7laYTKYm86k4OxJV9+YHoc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XABfG8p9yXkEvU9zxNiM8FttmR1P0un37ez3OtpOMZSdypgrqEyXeRRBWWbU3qsfI5r6VimbJ9e2Mqwo/YKAFbh3Apb+vOJBjZjt7QnuqA4jgfICR2cYVrU/BGafKGoWFu/1Aol3YNSxoTToVXJ0MeLlbrz+bXF/Rt7JwqLq7Mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=DCkKByV+; arc=none smtp.client-ip=209.85.210.54
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-7e9c7174e98so1360729a34.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 11:32:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1782844356; x=1783449156; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=s78fpSiarTPyZWyoM0/a10bvvp2HRphUlPqEYFibNnc=;
+        b=DCkKByV+00ukJk2DbiGJy5ZrhS0BoSzjP3TZchFKnBt2if9icv8EKKARw3uGVsYpZ7
+         qeVBKw2tsWoTwqy64YQ3vW0QMAXHFg0d8dvMNB0k53+/s97pSHNBHVV9KucT8mCCYUuW
+         rV1/ngjnFv4kcRb7M1XeZcym5dFJlnQNgNG106dvv9jHhnBmdc4kXF6vYOaU7MiQ9TRm
+         fMYeuiBBkT+FqcHgI8itlRgtrKZAwMHCFXWpFZOZj8kaSu0+Dq0evA/cCguDUA9w4ApW
+         mPmDFduX9RPa3p3SULPzANYfDlQDhCXKNkvoqUEQD0dD+F71Opa27QEuaIEmZViVsLgT
+         E7LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782844356; x=1783449156;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s78fpSiarTPyZWyoM0/a10bvvp2HRphUlPqEYFibNnc=;
+        b=QaXaoAoLzgY21HMrZQIWLfewd5DVjw/TAZGSq3B6QEQf8Oyz0WyEi2fwS3rjR8SezH
+         aQ91k1HIHwf6N5cPq6eWWDWO/ufWyNGb0NupXt0VQKOKqRCFTd+yllod6TsVZ/9aoK3y
+         TA2l+h2walbRFRQn/VCMD0fdyWTrnxneeR9cnT6f4NoLBIFTyaotBEIRn0/BFlU/tPiu
+         pSCp7FLbQWiEOBOdP/BD7js1n5lvY4p159W2noBj6GvgKRKhuu3QcaGuBLcC9qaVaj0A
+         cIovcX8CrghL9zSkDGXv1oz7guvZaG2rDPQHAOrC/Nk0f7aecGQY0SegxhE1bF3SJkC/
+         SsKQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/h1iME6hbCuM/JKt1/pIR7VH/1gODzeGHYOTT+fFVsKcPqERuYS4JIkkASnh6pmAERlL0++oh8IcgB@vger.kernel.org
+X-Gm-Message-State: AOJu0YztRwE7xFVjaS+2r0nj8ZYmUQnotlxj6QXchNdJihcZQvlAFOLI
+	OMXjQB0EeYC/8itHsiTYgBSWHoiW9yjY2uXt3W/EShLvjRCGfWyZtk93W9LHZBEpsI8=
+X-Gm-Gg: AfdE7cnt0xqzohWg5KMLkNnxmOiZUKDFuEoIBYEqtc4y/3H8ZSJBHX2qXv3LHYCKMXb
+	K9b5SNTTNYOL4cnJGSQogWhMcgb8H8/BhFgnHNg/kla9+ZYiOuxgxwGWZYrd/imkdVYCFnx9jP+
+	hBQTAp4vOol6NWYJCTCyGjAznPiHTOdJG3BZ5oYRdFsvxm+TxOkrrsuwvhgsHVAC2744hJW5H6y
+	mikb+qy7aeVRjbgXG79abBAZ4c2lIBuGDiAzgFgnpcHdA1HTwgFNOeN86EYlODs2Fp3YyV4ZB1b
+	FJLI/xtmUWhAmSy/81L7MJNFGETmOq03MksTUIooLnTXhGo3Vmx8Uqtv49SLpbhIUv8+AP0mLH0
+	8QqcfQNrtxg7SAxAy/7nnslr/RIvbfkpZkQJTFzG+aew04q/IKNLSyPTB4lES1KC9G3KBfusXqi
+	gD9dl1oRFeHl0d3Yx4w2tj+4rwS47EfN1Ign/RqXglNDQwETL5DJ8++7Luw0eFsIQ=
+X-Received: by 2002:a05:6830:8283:b0:7e9:dd93:b88 with SMTP id 46e09a7af769-7e9fc17bdabmr1009066a34.27.1782844355823;
+        Tue, 30 Jun 2026 11:32:35 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:e190:78b2:dd4e:ba94? ([2600:8803:e7e4:500:e190:78b2:dd4e:ba94])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e9ebf87f22sm2946454a34.2.2026.06.30.11.32.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jun 2026 11:32:35 -0700 (PDT)
+Message-ID: <752a33ab-41a1-404d-8413-888cc1a8f446@baylibre.com>
+Date: Tue, 30 Jun 2026 13:32:34 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zUJhvglUFjMqS5hn"
-Content-Disposition: inline
-In-Reply-To: <akOkXpPi46LBHuIA@plin-1878>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] iio: adc: ti-ads1298: add ADS1299 EEG ADC family
+ support
+To: Md Shofiqul Islam <shofiqtest@gmail.com>, linux-iio@vger.kernel.org
+Cc: jic23@kernel.org, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, mike.looijmans@topic.nl,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260630140311.1473031-1-shofiqtest@gmail.com>
+ <20260630140311.1473031-2-shofiqtest@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260630140311.1473031-2-shofiqtest@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318013-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:shofiqtest@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mike.looijmans@topic.nl,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	FORGED_RECIPIENTS(0.00)[m:peter.lin@sifive.com,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:samuel.holland@sifive.com,m:dlan@kernel.org,m:guodong@riscstar.com,m:dfustini@oss.tenstorrent.com,m:michal.simek@amd.com,m:junhui.liu@pigmoral.tech,m:darshan.prajapati@einfochips.com,m:akpm@linux-foundation.org,m:zhangchunyan@iscas.ac.cn,m:luxu.kernel@bytedance.com,m:pincheng.plct@isrc.iscas.ac.cn,m:nick.hu@sifive.com,m:jim.shu@sifive.com,m:zong.li@sifive.com,m:greentime.hu@sifive.com,m:robin.randhawa@sifive.com,m:scott@riscstar.com,m:dave.patel@riscstar.com,m:raymond.mao@riscstar.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[baylibre.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-318011-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,spud:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,baylibre.com:dkim,baylibre.com:mid,baylibre.com:from_mime,topic.nl:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 428F96E7176
+X-Rspamd-Queue-Id: 965336E7341
 
---zUJhvglUFjMqS5hn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 30, 2026 at 07:11:26PM +0800, Yu-Chien Peter Lin wrote:
-> Hi Conor,
->=20
-> On Fri, Jun 26, 2026 at 03:36:38PM +0100, Conor Dooley wrote:
-> > On Fri, Jun 26, 2026 at 07:47:31PM +0800, Yu-Chien Peter Lin wrote:
-> > > Hi Conor,
-> > >=20
-> > > On Mon, Jun 22, 2026 at 06:12:47PM +0100, Conor Dooley wrote:
-> > > > On Fri, Jun 19, 2026 at 06:58:33PM +0800, Yu-Chien Peter Lin wrote:
-> > > > > Add per-hart DT properties for RISC-V Worlds architecture:
-> > > > > riscv,pmwid, riscv,pmwidlist, and riscv,pmlwidlist. These
-> > > > > platform-defined values are primarily used by M-mode firmware
-> > > > > to configure World ID CSRs and restrict WID usage across
-> > > > > privilege levels.
-> > > > >=20
-> > > > > Signed-off-by: Yu-Chien Peter Lin <peter.lin@sifive.com>
-> > > > > ---
-> > > > >  .../devicetree/bindings/riscv/cpus.yaml       | 21 +++++
-> > > > >  .../devicetree/bindings/riscv/worlds.yaml     | 77 +++++++++++++=
-++++++
-> > > > >  2 files changed, 98 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/riscv/world=
-s.yaml
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/=
-Documentation/devicetree/bindings/riscv/cpus.yaml
-> > > > > index 5feeb2203050..4b5778b6d3e7 100644
-> > > > > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > > > > @@ -26,6 +26,7 @@ description: |
-> > > > >  allOf:
-> > > > >    - $ref: /schemas/cpu.yaml#
-> > > > >    - $ref: extensions.yaml
-> > > > > +  - $ref: worlds.yaml
-> > > > >    - if:
-> > > > >        not:
-> > > > >          properties:
-> > > > > @@ -120,11 +121,31 @@ properties:
-> > > > >        thead systems where the vector register length is not iden=
-tical on all harts, or
-> > > > >        the vlenb CSR is not available.
-> > > > > =20
-> > > > > +  riscv,pmwid:
-> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > +    description:
-> > > > > +      Platform-defined M-mode World ID (WID) assigned to this ha=
-rt.
-> > > > > +    minimum: 0
-> > > > > +    maximum: 63
-> > > > > +
-> > > > > +  riscv,pmwidlist:
-> > > > > +    $ref: /schemas/types.yaml#/definitions/uint64
-> > > > > +    description:
-> > > > > +      Platform-defined bitmap of M-mode World IDs (WIDs) that th=
-is hart may use.
-> > > >=20
-> > > > I don't understand what the difference is between this property and=
- the
-> > > > one before it are.
-> > > > Is this one meant to be used by m-mode software to then select one =
-which
-> > > > will appear in riscv,pmwid?
-> > >=20
-> > > pmwid (single value) is the reset default, while pmwidlist (bitmap)
-> > > defines the allowed set. The root-of-trust M-mode software may select
-> > > an allowed value from the pmwidlist and write it to the mwid CSR.
-> >=20
-> > I don't understand the point of the property then. If it is the reset
-> > default, just read it out of the register?
-> > Unless I am missing something, it's useless to s-mode because it may
-> > not be what m-mode chose and useless to m-mode that has access to
-> > the csr.
->=20
-> Smwid is optional. In the no-Smwid case:
-> - M-mode's WID is fixed to pmwid (hardware-defined via fuse/pinstrap/SoC
->   registers, exposed to software via riscv,pmwid DT property)
-> - S/U-mode's WID depends on opensbi-domain configuration [1]:
->   - If next-wid is specified: S/U use that WID (via mlwid CSR)
->   - If next-wid is absent   : S/U fall back to pmwid (M/S/U in same
->     world)
->=20
-> So riscv,pmwid serves two purpose:
-> 1. Source of truth for M-mode's WID when mwid CSR doesn't exist
-> 2. Fallback value for OpenSBI to write to mlwid when domain config is
->    absent.
+Please add a cover letter for multi-patch series.
 
-So it is not the default at reset at all then. The reset default is
-something else entirely and this is used to overwrite that.
+On 6/30/26 9:03 AM, Md Shofiqul Islam wrote:
+> The ADS1299, ADS1299-4 and ADS1299-6 are 8/4/6-channel, 24-bit
+> biopotential (EEG) ADCs from Texas Instruments.  They share the same
+> SPI interface, command set and register map as the ADS1298 ECG family,
+> making it straightforward to support them in this driver.
+> 
+> Key differences from the ADS1298:
+> - PGA gain range is 1/2/4/6/8/12/24 (vs 6/1/2/3/4/8/12 for ADS1298)
+> - Internal voltage reference is always 2.4V (no 4V option)
+> - Channel count is encoded differently in the ID register: bits [4:3]
+>   identify the ADS1299 family (both bits set), bits [1:0] encode the
+>   channel count as (bits + 2) * 2
+> 
+> Detect the chip family in ads1298_init() by checking bits [4:3] of
+> the ID register.  Store the result in the is_ads1299 flag and use it
+> to select the correct PGA table in ads1298_get_scale() and to skip
+> the 4V reference option in the CONFIG3 initialisation.
+> 
+> Signed-off-by: Md Shofiqul Islam <shofiqtest@gmail.com>
+> ---
+>  drivers/iio/adc/ti-ads1298.c | 88 ++++++++++++++++++++++++++++--------
+>  1 file changed, 69 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ti-ads1298.c b/drivers/iio/adc/ti-ads1298.c
+> index 579200e06cbd..8c48a72e6c61 100644
+> --- a/drivers/iio/adc/ti-ads1298.c
+> +++ b/drivers/iio/adc/ti-ads1298.c
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0
+> -/* TI ADS1298 chip family driver
+> +/* TI ADS1298/ADS1299 biopotential ADC driver
+>   * Copyright (C) 2023 - 2024 Topic Embedded Products
+> + * Copyright (C) 2026 Md Shofiqul Islam <shofiqtest@gmail.com>
+>   */
+>  
+>  #include <linux/bitfield.h>
+> @@ -43,6 +44,20 @@
+>  #define ADS1298_MASK_ID_CHANNELS		GENMASK(2, 0)
+>  #define ADS1298_ID_FAMILY_ADS129X		0x90
+>  #define ADS1298_ID_FAMILY_ADS129XR		0xd0
+> +/*
+> + * ADS1299 family is identified by bits [4:3] = 0b11.  Bits [7:5] encode
+> + * the silicon revision and vary between production lots, so only bits [4:3]
+> + * are checked for family identification.
+> + */
+> +#define ADS1299_MASK_ID_FAMILY			GENMASK(4, 3)
+> +#define ADS1299_ID_FAMILY_EEG			GENMASK(4, 3)
+> +/*
+> + * ADS1299 channel count is encoded in bits [1:0] of the ID register:
+> + * 00 -> 4 channels (ADS1299-4)
+> + * 01 -> 6 channels (ADS1299-6)
+> + * 10 -> 8 channels (ADS1299)
+> + */
+> +#define ADS1299_MASK_ID_CHANNELS		GENMASK(1, 0)
+>  
+>  #define ADS1298_REG_CONFIG1	0x01
+>  #define ADS1298_MASK_CONFIG1_HR			BIT(7)
+> @@ -101,6 +116,7 @@
+>  struct ads1298_private {
+>  	const struct ads1298_chip_info *chip_info;
+>  	struct spi_device *spi;
+> +	bool is_ads1299;
 
-> - M-mode's WID is fixed to pmwid (hardware-defined via fuse/pinstrap/SoC
->   registers, exposed to software via riscv,pmwid DT property)
+This is not how we handle chip-specific differences in IIO. Instead we
+should add a new chip info struct and pass that as the data in the
+module device tables.
 
-In this case, it seems like pmwidlist would just contain a single entry,
-and there is no need for pwmid.
+This new struct should have a flag, e.g. `bool is_fixed_internal_ref` and
+`const u8 *pga_settings` that is a pointer to the appropriate array.
 
-Quite frankly, it seems like you need to decouple these properties from
-being 1:1 mappings to your extension's CSRs and both name and explain
-how they are to be used by software.
+>  	struct regulator *reg_avdd;
+>  	struct regulator *reg_vref;
+>  	struct clk *clk;
+> @@ -276,7 +292,10 @@ static int ads1298_set_samp_freq(struct ads1298_private *priv, int val)
+>  				  cfg);
+>  }
+>  
+> +/* ADS1298 PGA: register bits [6:4] -> gain (000=6, 001=1, 010=2, ...) */
+>  static const u8 ads1298_pga_settings[] = { 6, 1, 2, 3, 4, 8, 12 };
+> +/* ADS1299 PGA: register bits [6:4] -> gain (000=1, 001=2, 010=4, ...) */
+> +static const u8 ads1299_pga_settings[] = { 1, 2, 4, 6, 8, 12, 24 };
+>  
+>  static int ads1298_get_scale(struct ads1298_private *priv,
+>  			     int channel, int *val, int *val2)
+> @@ -291,12 +310,15 @@ static int ads1298_get_scale(struct ads1298_private *priv,
+>  			return ret;
+>  
+>  		*val = ret / MILLI; /* Convert to millivolts */
+> +	} else if (priv->is_ads1299) {
 
-For example, how is software to treat the value in riscv,pwmid when
-Smwid is enabled? Must it be the same value? Is riscv,pwmidlist useless
-in that scenario as a result and should not be populated? Should
-riscv,pwmid not be used if Smwid is enabled?
+So this would change to:
 
-There's a lot of extensions defined in this series, and there's no
-clarity on how these properties behave depending on what's enabled in
-the binding. There must be.
+	} else if (priv->info->is_fixed_internal_ref) {
 
-> - S/U-mode's WID depends on opensbi-domain configuration [1]:
->   - If next-wid is specified: S/U use that WID (via mlwid CSR)
->   - If next-wid is absent   : S/U fall back to pmwid (M/S/U in same
->     world)
->=20
-> So riscv,pmwid serves two purpose:
-> 1. Source of truth for M-mode's WID when mwid CSR doesn't exist
-> 2. Fallback value for OpenSBI to write to mlwid when domain config is
->    absent.
+> +		/* ADS1299 internal reference is always 2.4V */
+> +		*val = 2400;
+>  	} else {
+>  		ret = regmap_read(priv->regmap, ADS1298_REG_CONFIG3, &regval);
+>  		if (ret)
+>  			return ret;
+>  
+> -		/* Reference in millivolts */
+> +		/* ADS1298 reference in millivolts: 2.4V or 4V */
+>  		*val = regval & ADS1298_MASK_CONFIG3_VREF_4V ? 4000 : 2400;
+>  	}
+>  
+> @@ -304,7 +326,8 @@ static int ads1298_get_scale(struct ads1298_private *priv,
+>  	if (ret)
+>  		return ret;
+>  
+> -	gain = ads1298_pga_settings[FIELD_GET(ADS1298_MASK_CH_PGA, regval)];
+> +	gain = (priv->is_ads1299 ? ads1299_pga_settings : ads1298_pga_settings)
+> +		[FIELD_GET(ADS1298_MASK_CH_PGA, regval)];
 
-Again same point applies here, why can a single-entry riscv,pmwidlist
-not suffice here?
-Additionally, if it cannot, you may need to introduce mutual exclusion
-and the relevant extensions because it doesn't seem like in your current
-design that the two properties are intended to co-exist.
+And this would be:
 
-Cheers,
-Conor.
+	gain = priv->info->pga_settings[FIELD_GET(ADS1298_MASK_CH_PGA, regval)];
 
---zUJhvglUFjMqS5hn
-Content-Type: application/pgp-signature; name=signature.asc
+>  	*val /= gain; /* Full scale is VREF / gain */
+>  
+>  	*val2 = ADS1298_BITS_PER_SAMPLE - 1; /* Signed, hence the -1 */
+> @@ -600,20 +623,39 @@ static int ads1298_init(struct iio_dev *indio_dev)
+>  	if (ret)
+>  		return ret;
+>  
+> -	/* Fill in name and channel count based on what the chip told us */
+> -	indio_dev->num_channels = 4 + 2 * (val & ADS1298_MASK_ID_CHANNELS);
+> -	switch (val & ADS1298_MASK_ID_FAMILY) {
+> -	case ADS1298_ID_FAMILY_ADS129X:
+> -		suffix = "";
+> -		break;
+> -	case ADS1298_ID_FAMILY_ADS129XR:
+> -		suffix = "r";
+> -		break;
+> -	default:
+> -		return dev_err_probe(dev, -ENODEV, "Unknown ID: 0x%x\n", val);
+> +	/*
+> +	 * Detect chip family from the ID register.  The ADS1299 EEG family
+> +	 * is identified by bits [4:3] = 0b11; the ADS1298 ECG family uses
+> +	 * bits [7:3] for family identification.
+> +	 */
+> +	if (FIELD_GET(ADS1299_MASK_ID_FAMILY, val) == ADS1299_ID_FAMILY_EEG) {
+> +		/*
+> +		 * ADS1299 family: channel count from bits [1:0].
+> +		 * 00 -> 4ch, 01 -> 6ch, 10 -> 8ch.
+> +		 */
+> +		priv->is_ads1299 = true;
+> +		indio_dev->num_channels =
+> +			(FIELD_GET(ADS1299_MASK_ID_CHANNELS, val) + 2) * 2;
 
------BEGIN PGP SIGNATURE-----
+Number of channels should come from the new chip info based on the compatible
+string as well.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakQFlgAKCRB4tDGHoIJi
-0gHKAQCT6Z01KfRa6fx77AoqUbJKpU1uIcQnxC9IrjdfytysMgD9FZol0kRCb8w+
-eyMlSSrWnw03mZZzgXqR+mWTkFfxYwo=
-=BvLm
------END PGP SIGNATURE-----
+> +		indio_dev->name = devm_kasprintf(dev, GFP_KERNEL, "ads1299%s",
+> +			indio_dev->num_channels == 4 ? "-4" :
+> +			indio_dev->num_channels == 6 ? "-6" : "");
 
---zUJhvglUFjMqS5hn--
+Generally, we put the chip name in the chip info as well.
+
+> +	} else {
+> +		/* ADS1298 family: channel count from bits [2:0], name from family */
+> +		indio_dev->num_channels = 4 + 2 * (val & ADS1298_MASK_ID_CHANNELS);
+> +		switch (val & ADS1298_MASK_ID_FAMILY) {
+> +		case ADS1298_ID_FAMILY_ADS129X:
+> +			suffix = "";
+> +			break;
+> +		case ADS1298_ID_FAMILY_ADS129XR:
+> +			suffix = "r";
+> +			break;
+> +		default:
+> +			return dev_err_probe(dev, -ENODEV,
+> +					     "Unknown ID: 0x%x\n", val);
+> +		}
+> +		indio_dev->name = devm_kasprintf(dev, GFP_KERNEL, "ads129%u%s",
+> +						 indio_dev->num_channels, suffix);
+>  	}
+> -	indio_dev->name = devm_kasprintf(dev, GFP_KERNEL, "ads129%u%s",
+> -					 indio_dev->num_channels, suffix);
+>  	if (!indio_dev->name)
+>  		return -ENOMEM;
+>  
+> @@ -621,8 +663,9 @@ static int ads1298_init(struct iio_dev *indio_dev)
+>  	if (!priv->reg_vref) {
+>  		/* Enable internal reference */
+>  		val |= ADS1298_MASK_CONFIG3_PWR_REFBUF;
+> -		/* Use 4V VREF when power supply is at least 4.4V */
+> -		if (regulator_get_voltage(priv->reg_avdd) >= 4400000)
+> +		/* ADS1298 only: use 4V VREF when supply is at least 4.4V */
+> +		if (!priv->is_ads1299 &&
+
+And of course use priv->info->is_fixed_internal_ref here too.
+
+> +		    regulator_get_voltage(priv->reg_avdd) >= 4400000)
+>  			val |= ADS1298_MASK_CONFIG3_VREF_4V;
+>  	}
+>  	return regmap_write(priv->regmap, ADS1298_REG_CONFIG3, val);
+> @@ -739,12 +782,18 @@ static int ads1298_probe(struct spi_device *spi)
+>  
+>  static const struct spi_device_id ads1298_id[] = {
+>  	{ "ads1298" },
+> +	{ "ads1299" },
+> +	{ "ads1299-4" },
+> +	{ "ads1299-6" },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(spi, ads1298_id);
+>  
+>  static const struct of_device_id ads1298_of_table[] = {
+>  	{ .compatible = "ti,ads1298" },
+> +	{ .compatible = "ti,ads1299" },
+> +	{ .compatible = "ti,ads1299-4" },
+> +	{ .compatible = "ti,ads1299-6" },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, ads1298_of_table);
+> @@ -760,5 +809,6 @@ static struct spi_driver ads1298_driver = {
+>  module_spi_driver(ads1298_driver);
+>  
+>  MODULE_AUTHOR("Mike Looijmans <mike.looijmans@topic.nl>");
+> -MODULE_DESCRIPTION("TI ADS1298 ADC");
+> +MODULE_AUTHOR("Md Shofiqul Islam <shofiqtest@gmail.com>");
+> +MODULE_DESCRIPTION("TI ADS1298/ADS1299 biopotential ADC");
+>  MODULE_LICENSE("GPL");
+
 
