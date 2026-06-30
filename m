@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-317470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317473-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id irqsGRN2Q2pTYwoAu9opvQ
-	(envelope-from <devicetree+bounces-317470-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:53:55 +0200
+	id pZL/Ln12Q2p6YwoAu9opvQ
+	(envelope-from <devicetree+bounces-317473-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:55:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B026C6E16AA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18F7F6E1700
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:55:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=I7xNWrxw;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317470-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317470-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=HemHFzTc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317473-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317473-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CD98530BBD3B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 07:49:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 44DE3305197D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 07:49:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 067373E2AD6;
-	Tue, 30 Jun 2026 07:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F02853EA960;
+	Tue, 30 Jun 2026 07:49:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA6E3E3DA4
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 07:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343513E928B
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 07:49:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782805743; cv=none; b=ECVkwL4S0eYIQjGD534Vxtn4HfPWOKqiztjHut+Px6iLnlFiBevrmW01iv/QXv2Ybfzlu5M6TvGGKGAYBoxB/OBS9s801jO2XkxP3956E0etpmSrZVaAkJzk1kYOa3ubWIXJxbcfpmXAHM8XHoePuoS7CNBcgsM+zVBHUP7/rVo=
+	t=1782805753; cv=none; b=gAHC1est4USrr8h6zo+6vutGFNYvWbC7Ei4gvOySpPXglqhmz10EnMRz4il81VR0ROmlS1smFlyBJqfYjX3CPc3Ksiblg7FJ7/eZeiO0P/PgpNFLlxKBQlkfqmv7hIcJBfKQxH+BMlrrxOs9bXiEkBEAtZQYScYjy1p+vuHlhmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782805743; c=relaxed/simple;
-	bh=y6ocNgSkfdA76nqYi7hGDzpnjmSBmWUarRvhw+f2qaA=;
+	s=arc-20240116; t=1782805753; c=relaxed/simple;
+	bh=uLOeasSEYWAvpT8ERSE9h3DlJwiheu4obyaLXpGYn9A=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Y+ExgCobdEOP8Kkf87c0rbA3pYDA+G8u1oDL4KDykkSD0KY6dJUd7Xa6IAICzs2TNF2fhIpHNCSpRJJ09+07P7GbFJFQMe1H6DWZF6nEb+ogEIGqTQv5yUEupTd5FmgRlm8B1+q5SkJGWphwIe0umf6mxUfkizA/LHaE6BWVHzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I7xNWrxw; arc=none smtp.client-ip=209.85.214.196
-Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-2c9c9916f75so11245035ad.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 00:49:02 -0700 (PDT)
+	 MIME-Version; b=Lbws3qUKCycqvldvIP2pI6OG1AV87lQctv7Xdm4FFyoQ+IOVSFg+9gVBjPSuDij3pcRSNQJimXQdvjZ59UzpZrWllCEoXMLfuybl2KOkaKJFEaIp/o1cfXGMNWXtqUYmXYujyAHbmZohGACfZNYiBsSDBZgg7OhSwxEQ+9x5zf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HemHFzTc; arc=none smtp.client-ip=209.85.214.195
+Received: by mail-pl1-f195.google.com with SMTP id d9443c01a7336-2c82538b6c0so24615125ad.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 00:49:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782805742; x=1783410542; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1782805751; x=1783410551; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=miEM+ZI1eBAN6H+hUm7y5SHAIdsM2tNi01WsyWumT6E=;
-        b=I7xNWrxwp79gxNCLNtz3ecdTVCz5ZItgGEO0sjA/iSwi2ipBYbvEIHYZN+SuUfjDc8
-         G/3qJ6BBkouE26ojJeYWeQcT9zprm0iFzJSkwLEg+KlQ8NHo79dirNYjKTGU0Zwv4TXP
-         CbXqXr2hcjubvvELM4MNnYus4HBPqYx83thL2YrO2uY7LHm0rWyHAh91/qpOau4tRGFg
-         C5s5W/lpsIvqZmDLnuy/jyhN7AFV98ACNXIdX3XBVz3g3U6KWiTDIZFCav2wI7howfhh
-         ruv/2BCvqVV1xIzj6xtN9Md8WxPkRM0jU8Zn2zZbhy1De9VPSMTevgB9CypeC/EytGU2
-         4mrA==
+        bh=HcszoUDc7316A03Dx3QXGOd8FcU7DWvjuNUEWPnVcI4=;
+        b=HemHFzTcNUZ/pPHqpLvtcF4ByA5v0RCyrdhGArUWA8QQPMhPo2U4Orul5BA3HKEXur
+         OzafsnM6VoM+dw6ryBBjFXDUV5oAU+FuBZAn7ukY8jvWZdRfjB4f0W/gz0jaha/rKlgA
+         R0Dl1nOnxBSLHGUraSo/fiNlQ8+isctG4d/Au/w1patlR+zdrQ4GDVsErla370qm+Btv
+         8NLjayTaU2QbMm6K6b/2e7a9/bs4581Z5TXcGDpt3xu5o3l+A6kPb4TJvO4KV4GjFJdW
+         mcAwhfnW4VyIvDk1klo0GTjFYd/m4rvvSCtQs08VEYpCYjGuwRFtG97QlS18ZYJ8TTKh
+         NutA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782805742; x=1783410542;
+        d=1e100.net; s=20251104; t=1782805751; x=1783410551;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=miEM+ZI1eBAN6H+hUm7y5SHAIdsM2tNi01WsyWumT6E=;
-        b=o25B4k+ZarCXi5X5NNp8JMI8YFRlv3pV3SRCSEjw+PxMv2pnODKPPeKHgeWI6EYKhg
-         Y+6Z7qEbAP4oPUe1F63DC+mfPk3IztH8u9Rv8O92lLiwuWfoWvjPswTPBTc3r4kBcLxl
-         UWW+0mn49/i2mDCLwLIwDu6j/qtFIt1L4CSHYzyzITlX8qJVjZYDmm7kmP5xNS3GTiR5
-         CiIBfwNXi84IMKkE35SuYaowqHMY3sAD/zqiAVspWPS2x13q6jFlEjyd6Vm61XaavFZX
-         GU66IfmoGO9AKy5oNnXEdR4yVueLzO9cfTist4lcxnAsm91ZjPCdTSshIn8lqLTc5Ki+
-         rrvA==
-X-Forwarded-Encrypted: i=1; AHgh+RqwRhvax/K5DhRh3L0hZ4BmVmThYHYB7KPPZnOuEQeScjle4F61vm8EVs7TDDJSQQLD9LsZ/F/Ito/Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHs3SoVKh8uR6QU3+XvfmOyJM9s8AKK4yEnQJ4VFCp0Sve/sEd
-	0GS2GA02R9auboQqqSoG498yQ/1UoXtq8BD68HdQL3A00ngA7qSv1qA/
-X-Gm-Gg: AfdE7cnQTwKm/Z5ApXrypF4sAskx/AFRDJPpNup3mJPlWBybGJm/IVfNiq3qHOjuPz4
-	R4R6vJI0pOfw4bsELD2lO1Gq3mZB5uMeyUpu1cyNdRPifO1YZg50v1USog+qp2VlNhuRl9rWbM+
-	TN9IXTN9TyUVERoYe3FhtlP3uCNZlPXHJm/IN2e7o/ormadtyvggcNfrVsxUH87eNzrpfNVjhF8
-	ex6Is6wjIZcQHr3f38fYpE0Jxoj1QTCm9254Z69lNOLItJC+hMxrkqbSWQtbnQFLv2POXWU6e5A
-	nQ2JgjR1NR2o4VLW0ZWf5MwMKuq0LtxOU6b7ZVWX1WIbRlC5vf+SsviBtgswBKfL8mb2VZi5T17
-	MaghfSmaRaQxRt3NKpG+joKldase5CeyieDc3INyACE51wgH9bqJqrZByWAQYrybl/acOjgZfOf
-	8kYNL2oTXVb5nMWbZfuL7n/RjCow==
-X-Received: by 2002:a17:903:186:b0:2c0:a746:7b16 with SMTP id d9443c01a7336-2ca2d8a616amr19688075ad.22.1782805741701;
-        Tue, 30 Jun 2026 00:49:01 -0700 (PDT)
+        bh=HcszoUDc7316A03Dx3QXGOd8FcU7DWvjuNUEWPnVcI4=;
+        b=FP1wBzcc+L51RU54t5nYDP04JFCoaq8zh0LTynmT9AemzOFk+CXubv+LlABR7YulBq
+         t0uCCYy85aOz2fSOoZ6khkNGyMRU14IU3c4QBV2vWABap9pK2jiAy+aA/BFsbvBuh2vG
+         W7MpOKNUWDJcaTF7lrvOtXzWXiszXLldujI/7IkMJpn0W4pYXQw4NuUS7XNxdNKX2oXE
+         OfNRyPfks1IwvB/3EebrdfygwcZPNOLEVQfSlfCpbrZaYhn3sPro0CdOXxCQg1J+H2WZ
+         4jpYbowR/+Cr+p3hCBH5X2N4ROTY5GoH3wuxXyb0lOaII34RHhRzVI0dShG3dKuiX1gI
+         GIHw==
+X-Forwarded-Encrypted: i=1; AHgh+Rq5a83AUGL2FDUkJVtsSl2EGvX84C2jZXF+xdBg9GJtYRESDvw07JXz0a9lP1LGtJRQueUsImA59II3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOL6b2AX7lbY+voFPI4boFZiZ7mpDvAzfz/NSdMR4UCyPlc8i9
+	HdqX4pDdvSX2ctND0E8O3gDdbFghA5yqA2zvAflKTtW4tepUVAywunOW
+X-Gm-Gg: AfdE7cnwjhZbcvHNn+hmiIeGEFmcBuwme5dMsC52alGklSQhfebCcsFiqEx8PYDAFa6
+	/Cjy7dOzOKTeWQVfvTC3QKVXacMU73FmbxkUa3R2qgMn7J6eJ3nu9TpQBZneh90o11YR29tvNMO
+	ZwHa+C5ccHbfSamtnVPTZc/UVgWaMxDSYApc+TSVLWlagiJClqS84MOKv5rgaXD653rGHXUFnkR
+	h70JgnwJfy9hygd5d3XFuPCAcGnIU8S3UUrK0EgNmvonVJ+/3tXnHQXXF9TK4sFlgF0whj29sS9
+	yKcQqNB1v27hne1T+aENS0fhmRI3Oqp6YOhxH6xqBwLf4STXDgSY7TNyX+vAyNkI+AVHPwfqk+G
+	Vi75x7Ma8omWQRTmp51sYQm0Ll2KjnWXgDJPGdij6lk3kjIvYWazEVCHqa0qi9zJOHXqTrj2nSd
+	8HhxKeF8zQe8awLeq8d3+hs/dcjw==
+X-Received: by 2002:a17:902:c94c:b0:2c0:cb0e:ac3a with SMTP id d9443c01a7336-2ca2e71832cmr21250665ad.23.1782805751208;
+        Tue, 30 Jun 2026 00:49:11 -0700 (PDT)
 Received: from intel.company.local ([210.184.73.204])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ca382a2d3dsm7821045ad.55.2026.06.30.00.48.51
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ca382a2d3dsm7821045ad.55.2026.06.30.00.49.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jun 2026 00:49:01 -0700 (PDT)
+        Tue, 30 Jun 2026 00:49:10 -0700 (PDT)
 From: Wandun Chen <chenwandun1@gmail.com>
 To: chenhuacai@kernel.org,
 	kernel@xen0n.name,
@@ -103,9 +103,9 @@ Cc: catalin.marinas@arm.com,
 	ruirui.yang@linux.dev,
 	m.szyprowski@samsung.com,
 	robin.murphy@arm.com
-Subject: [PATCH v4 09/10] riscv: kdump: exclude non-dumpable reserved memory regions from vmcore
-Date: Tue, 30 Jun 2026 15:47:13 +0800
-Message-ID: <20260630074715.4126796-10-chenwandun1@gmail.com>
+Subject: [PATCH v4 10/10] loongarch: kdump: exclude non-dumpable reserved memory regions from vmcore
+Date: Tue, 30 Jun 2026 15:47:14 +0800
+Message-ID: <20260630074715.4126796-11-chenwandun1@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260630074715.4126796-1-chenwandun1@gmail.com>
 References: <20260630074715.4126796-1-chenwandun1@gmail.com>
@@ -128,7 +128,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS(0.00)[m:chenhuacai@kernel.org,m:kernel@xen0n.name,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:robh@kernel.org,m:saravanak@kernel.org,m:bhe@redhat.com,m:rppt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:loongarch@lists.linux.dev,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:kexec@lists.infradead.org,m:iommu@lists.linux.dev,m:zhaomeijing@lixiang.com,m:catalin.marinas@arm.com,m:will@kernel.org,m:alex@ghiti.fr,m:akpm@linux-foundation.org,m:pasha.tatashin@soleen.com,m:pratyush@kernel.org,m:ruirui.yang@linux.dev,m:m.szyprowski@samsung.com,m:robin.murphy@arm.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-317470-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317473-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -151,49 +151,51 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lixiang.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B026C6E16AA
+X-Rspamd-Queue-Id: 18F7F6E1700
 
 From: Wandun Chen <chenwandun@lixiang.com>
 
-Apply the same non-dumpable reserved memory filtering to RISC-V kdump
-as was done for arm64. Use of_reserved_mem_kdump_exclude() to drop
-flagged regions from the elfcorehdr PT_LOAD segments, and
+Apply the same non-dumpable reserved memory filtering to LoongArch
+kdump as was done for arm64. Use of_reserved_mem_kdump_exclude() to
+drop flagged regions from the elfcorehdr PT_LOAD segments, and
 of_reserved_mem_kdump_nr_ranges() to pre-size the crash_mem array.
 
 Signed-off-by: Wandun Chen <chenwandun@lixiang.com>
 ---
- arch/riscv/kernel/machine_kexec_file.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/loongarch/kernel/machine_kexec_file.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/riscv/kernel/machine_kexec_file.c b/arch/riscv/kernel/machine_kexec_file.c
-index 59d4bbc848a8..25359d583bc3 100644
---- a/arch/riscv/kernel/machine_kexec_file.c
-+++ b/arch/riscv/kernel/machine_kexec_file.c
-@@ -10,6 +10,7 @@
- #include <linux/elf.h>
- #include <linux/slab.h>
- #include <linux/of.h>
-+#include <linux/of_reserved_mem.h>
- #include <linux/libfdt.h>
- #include <linux/types.h>
+diff --git a/arch/loongarch/kernel/machine_kexec_file.c b/arch/loongarch/kernel/machine_kexec_file.c
+index 5584b798ba46..4b918c3d4a28 100644
+--- a/arch/loongarch/kernel/machine_kexec_file.c
++++ b/arch/loongarch/kernel/machine_kexec_file.c
+@@ -14,6 +14,7 @@
+ #include <linux/kernel.h>
+ #include <linux/kexec.h>
  #include <linux/memblock.h>
-@@ -64,6 +65,7 @@ static int prepare_elf_headers(void **addr, unsigned long *sz)
- 
- 	nr_ranges = 1; /* For exclusion of crashkernel region */
- 	walk_system_ram_res(0, -1, &nr_ranges, get_nr_ram_ranges_callback);
++#include <linux/of_reserved_mem.h>
+ #include <linux/slab.h>
+ #include <linux/string.h>
+ #include <linux/types.h>
+@@ -67,6 +68,7 @@ static int prepare_elf_headers(void **addr, unsigned long *sz)
+ 	nr_ranges = 2; /* for exclusion of crashkernel region */
+ 	for_each_mem_range(i, &start, &end)
+ 		nr_ranges++;
 +	nr_ranges += of_reserved_mem_kdump_nr_ranges();
  
  	cmem = kmalloc_flex(*cmem, ranges, nr_ranges);
  	if (!cmem)
-@@ -77,6 +79,8 @@ static int prepare_elf_headers(void **addr, unsigned long *sz)
+@@ -91,6 +93,10 @@ static int prepare_elf_headers(void **addr, unsigned long *sz)
+ 			goto out;
+ 	}
  
- 	/* Exclude crashkernel region */
- 	ret = crash_exclude_mem_range(cmem, crashk_res.start, crashk_res.end);
-+	if (!ret)
-+		ret = of_reserved_mem_kdump_exclude(cmem);
- 	if (!ret)
- 		ret = crash_prepare_elf64_headers(cmem, true, addr, sz);
++	ret = of_reserved_mem_kdump_exclude(cmem);
++	if (ret)
++		goto out;
++
+ 	ret = crash_prepare_elf64_headers(cmem, true, addr, sz);
  
+ out:
 -- 
 2.43.0
 
