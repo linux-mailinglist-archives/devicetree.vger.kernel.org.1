@@ -1,277 +1,178 @@
-Return-Path: <devicetree+bounces-317837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317838-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LaO+CETJQ2qShwoAu9opvQ
-	(envelope-from <devicetree+bounces-317837-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:48:52 +0200
+	id Rk/7DsTJQ2rWhwoAu9opvQ
+	(envelope-from <devicetree+bounces-317838-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:51:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47F76E5099
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:48:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 859AF6E50D2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:50:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=klJIHGzI;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=UE14NZ6O;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317837-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317837-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=B4TW4eew;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317838-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317838-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 149EC309B2CA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:47:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6455130866B2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:48:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38C653537D0;
-	Tue, 30 Jun 2026 13:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01B4E283FD9;
+	Tue, 30 Jun 2026 13:48:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AEE82F549F
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 13:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE30C2609FD
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 13:48:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782827259; cv=none; b=P9JcJXZPo3aG7n2VTzoBGMFz+Pa7KXevTZPZP/UQNLfV2le+Qerq5Bs+tjavDV4SX5YijQfqrpNZfYmng90kyou0oyZ03L8tbGz0hVgWTU21RNw8eIkrONclM0I6hEix4pGXcakUTq4Q9gc61Dbmp81VzDDh/BmfkQctYKtnEmc=
+	t=1782827325; cv=none; b=GRdsaGo9DRORBoR6RWEL1c1gLpSLfOo02LZeFmoZJpuFVwQbkv6iv8/0Z6r2ukyItpm7U93SAmcZw8xRxR52+3N+0TSBOxJV95kIM6aPGoMWlTBkEplDtZgfU+0+VIuPYUxaMtC0EkDRZm/MvFB/C/UCTojrlVSTNhUvb+cbeTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782827259; c=relaxed/simple;
-	bh=uQcFgZ5PTdj0fysLbhqM5+3zbS6y2ntd2SFx87lCYuc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bGi0hRLOITZWDDkSo34iBNGFfVX3FjCZ8qL4cwkjAkuG/Kcj7RuMqkaPZGAx2UluTulx1OEeIbytQFtl7ZXlAbVZPCTfH5gH3kPBEheym+Mac+h2RY8WTcyB4R/d1rjbnnMwd7TPdMAyvykPkR0DxqSrx5gC4mG3un//6hg0vDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=klJIHGzI; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UE14NZ6O; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65U9mto61542131
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 13:47:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	32rvVfYkUGtiT3VzoEyiVTP+jLoTdGjbv7dR7oDUFGY=; b=klJIHGzI+aaf56xY
-	nG5oZcDutRX0s6Gh3v8WoJz/9ES31zfODh0ZxYppQHhQb22Bbwah7EN/0m38uhh3
-	rAPCYuz6Cen1DQUS2cmm0CxGDKt3rLcqrj+rhA2ebUBkMMDz368siRaUGOH329p0
-	/Q4EBo98Pt8lCYn3r8EUuwX6t1xOoVkcqw2FLTdcbXuP35HScwhkxlm8jTnY2BNk
-	JXUs2S3gWYW+3NYwiRA3L/EngiXGRpFWiNYvscHtvOMNVJuDmfrp8z23C3Mn3dav
-	K/TOdCr91d1ejX4Pv27WlhbSAbwcqZnxMgA8qef1vBV+BRzRO66XXG8E+HVJYewh
-	lz0iYg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f44v4jrkj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 13:47:34 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-51a07295d67so13647491cf.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 06:47:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782827253; x=1783432053; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=32rvVfYkUGtiT3VzoEyiVTP+jLoTdGjbv7dR7oDUFGY=;
-        b=UE14NZ6OzqTDYWpjPY0vShxnQkwldqg9lPKy4OgJKDRmXD6bGaczmaPnZ6jmfzISYy
-         JTIcBpEJ/+Gaou5Gs/OUNph3ad1hwzufZ69Frre1LCL/d7pj2j7UmjJj6pUoAfVFLwVS
-         B+jl822C6KKwBZ1nsufIZRObkOiy7sBm5D+cAfh21zVxqz2Wg0Zka//2uQrXntR3eMgl
-         pPwndYSyIL7jTre0gCag/lKIODCuR+LZfpLjkqpapcmxKQDGuhXcl1IYaXQHliL8tmQ5
-         eJRhXjJFqMcF/YX/rl5kV8FY2xLu08opseGZOUNzy3e7zEvEmQn1q3AVbwQHKvXmn0Wy
-         aSCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782827253; x=1783432053;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=32rvVfYkUGtiT3VzoEyiVTP+jLoTdGjbv7dR7oDUFGY=;
-        b=fMSKfttv7ZM7wEw4Y/Wx5MB8p396RVBHRimgI/cMC1WBi6I1pNAr/jADH/tKKmo8lw
-         LzFmyCKCbmZsnz02jetstI1XdAsiukv8A55urT/LodV4HBA6FnrdBzudpuSO3daUIa9k
-         //IsLQZL41as0t/TGJI07c9tR4IB8NpbH2D0oCp2t1/CxSrdvK573eBLBVDIo1+ItTWZ
-         J0iBqSISYkCM5vWoWlm3og6P/OH+onVYNa+2xQs+YkuOTvJ81mxSoMAK3wIedh8O+GQ/
-         fzKlSJ69naO9QBiDE8KwkHFKv5btRRdndcnxnxZhSXYhBJjk2lpue7mC4Otmh8CqPkUr
-         ivGQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/KTINJgOoP5SA0G2YTRoEhc6xT/mjfSap1jiPCAlnrWo5ae2ra0QT9DrXYP5QF2uc207vWLQB+/AqS@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywiso5NdfOwudV/yeKoiEewit6kWuHADkCRe7hOt/d0pPcZbNLS
-	VI7nrM/ieV23J9tTPuN4B/v8cDdd0mZQ+uenE0BWI/ymbq+8TBCeRV0bzN4xEzcbSiBfcnIPBMI
-	o+NqMqkOj2wGCCc4arqoR/lrNFaEwt/qeIpnnzrXhNomb6GuAw7IYYz2aiChCmNr0
-X-Gm-Gg: AfdE7cmGVxTZfHz2ivsoWcvGz7yDP9nCEiP1x4uSMiXIOVbllT+aByrPAipjuxTzcLB
-	ShRx81dzpff4ZMcV0E9mm3EadvUizJbwYx6h0/5hX6fPlzJwU1l+oiy+iS1yNZLRzDXw/j8roFr
-	Tn2mrAmZd6L5K4GmL8aIdun1ELD8mfG0k1ncdaDbHKvQxh7WSAQBGIlf5FBjZKbNOSQ/m+sKDNA
-	1yaE6n089/jwZzEIc6X9G9eF0/+pIN2oQv4OlOnMIP4fIfz20NdBRqGPWg0zysBPo4jYl1y/Qi5
-	XN1PXPxE4UF7f7G3AZj/qHmEIvpHdG5HBv7Frax3ohKx+Gs7XsF0Kvbl+22eIIJQ6lhyo+3M/Gf
-	XBOR3JNiODp7DY567rMWzVvug/mamBLJMmYU=
-X-Received: by 2002:a05:622a:180f:b0:50f:a53b:9d5 with SMTP id d75a77b69052e-51c105fd5eamr33252631cf.2.1782827252140;
-        Tue, 30 Jun 2026 06:47:32 -0700 (PDT)
-X-Received: by 2002:a05:622a:180f:b0:50f:a53b:9d5 with SMTP id d75a77b69052e-51c105fd5eamr33252211cf.2.1782827251549;
-        Tue, 30 Jun 2026 06:47:31 -0700 (PDT)
-Received: from [192.168.120.170] ([178.235.128.140])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c1288f0cc89sm131546966b.36.2026.06.30.06.47.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jun 2026 06:47:30 -0700 (PDT)
-Message-ID: <70a3631f-c687-4bdc-a1b1-7fb123e073c8@oss.qualcomm.com>
-Date: Tue, 30 Jun 2026 15:47:28 +0200
+	s=arc-20240116; t=1782827325; c=relaxed/simple;
+	bh=HZK1rC+TXdSH56mJ48tJAX4Ydk33f0VmdJChNGHQu2E=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=fFM1oWWNRGJWJMVHP8Ria2wI8iGzxiWD4u1A1VCB/kY0NBY5NlP0XGrMOklkO4wrj3pPt1oALQ2u7YY/1dDcZd+Qsdn4SeGjAHYrq2JjrxJF8SHgVFZsdfReuv4oJi6mGnr857waXT1eHKQWTitEPnH+St2N8pQVeTBGZOiJzI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B4TW4eew; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 113081F000E9;
+	Tue, 30 Jun 2026 13:48:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782827324;
+	bh=BOW9nhuhwQ2QWtjxhXj58gSDnVPAgMk8FWORBbZz3Ks=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=B4TW4eewik/WUo7jG0TaZuS5i9ee9wqnGTxEYxapryYzOvBDNV2JdsGXOEKpX12ZM
+	 LsIwGe327XuieX2p2IceY0r9QaT5ZBI5Y3QHXF9BX4LBM8sBEKy2UvMVRDqQ2f3rFP
+	 wi2ST6bM+hT1N2UmFhwSQW/vvlwxn+eacBq3Aj9+3LdM0upNBndLOzHTmg2l26VDI3
+	 YbGOLC50iUvYI1GDGbpNHw+nPFw4S5hPiqkTw1gGDBh7xZKA+KimzU1V2cUs13Zkv6
+	 GNWgjv3+In1Ll42Po9cs8WvL7Z3W8TxuNvRizb2aMsmfl0fcqah7px5mbhPFWOF4Ld
+	 abJn4U954HRjQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 net-next 2/2] dt-bindings: phy: cadence-torrent:
+ Update property values to support 3 clocks
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Gokul Praveen" <g-praveen@ti.com>
+Cc: neil.armstrong@linaro.org, olteanv@gmail.com, devicetree@vger.kernel.org, linux-phy@lists.infradead.org, conor+dt@kernel.org, robh@kernel.org, vkoul@kernel.org
+In-Reply-To: <20260630134324.61085-3-g-praveen@ti.com>
+References: <20260630134324.61085-1-g-praveen@ti.com>
+ <20260630134324.61085-3-g-praveen@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 30 Jun 2026 13:48:43 +0000
+Message-Id: <20260630134844.113081F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] regulator: qcom_usb_vbus: add support for
- qcom,pm4125-vbus-reg
-To: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jishnu.prakash@oss.qualcomm.com, kamal.wadhwa@oss.qualcomm.com
-References: <20260520-add_pm4125-vbus-reg-v1-0-f6d15d7dbbe8@oss.qualcomm.com>
- <20260520-add_pm4125-vbus-reg-v1-2-f6d15d7dbbe8@oss.qualcomm.com>
- <7b47ca4e-dc20-4155-881a-b1849cc000c7@oss.qualcomm.com>
- <20260520112159.o2p7gyfnwowhxgfp@hu-kotarake-hyd.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260520112159.o2p7gyfnwowhxgfp@hu-kotarake-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: 3u7T9U2q9X2rF0h7wzL8IWDeSd_XgVDc
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDEyNyBTYWx0ZWRfX7Lg4QB/fag7Q
- xt2cxTA1QanU06Tix/6D2tyn/QPL0UCmPVDzXnUYFVdqBcHevUMfEMLjuU5MnwRSFGSe9YLKSvl
- oZ53iJH6xjdvlAubU5+pu5vx4kSPh84=
-X-Authority-Analysis: v=2.4 cv=JI0LdcKb c=1 sm=1 tr=0 ts=6a43c8f6 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=EUspDBNiAAAA:8 a=Iub-jLrIGNqVuaaK_7QA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-ORIG-GUID: 3u7T9U2q9X2rF0h7wzL8IWDeSd_XgVDc
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDEyNyBTYWx0ZWRfX0HIJY6KfWtp1
- 7fRAwbjof34PrOdN31FsE6c7X2WozVzr+N3HbTdPJ6jAJEOwm/kDm/oKiLm3UQVl0vq0SlyV2GL
- r/MnGDmFC1DrYaEkKjoH2C2hF59NzqnrtQ6FLVhBCR4O3rlVIl8BNT8RN50lacp0SPm7uxfvcZ4
- JQQcp+WgKa8kVHkcAirKAvOaGprGdLzHEi5jqHCKsqBtFDzBUMuAzOOIGY/NaLxgcYbuEl3gkSC
- rZ1g76BxebJtaeO+1pRjFHW5kByYATI3khszwwf5rwazO109l/FNiE3a4v97JczrZymo76nlvGC
- iKb0zr7TZ6NuhcQeVXEPhrSOTjqnVTu8qJ7J7MZjb/Nf/dy9wtWyfY39YW03VIDvifMkcYb/TPq
- UciF+SElY4c7gTXx4tgLOvy3XVDyLWUs+1pgsi/NCaOG8BzH2JhxzVBoY2UuWOLpG1oqmBMiu9c
- va/mpn1/TbWLnYTX0Pw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-30_03,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 clxscore=1015 impostorscore=0 lowpriorityscore=0
- spamscore=0 bulkscore=0 suspectscore=0 malwarescore=0 phishscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2606300127
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-317837-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rakesh.kota@oss.qualcomm.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:quic_wcheng@quicinc.com,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:jishnu.prakash@oss.qualcomm.com,m:kamal.wadhwa@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317838-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:g-praveen@ti.com,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:devicetree@vger.kernel.org,m:linux-phy@lists.infradead.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:vkoul@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,quicinc.com,vger.kernel.org,oss.qualcomm.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,vger.kernel.org,lists.infradead.org,kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B47F76E5099
+X-Rspamd-Queue-Id: 859AF6E50D2
 
-On 5/20/26 1:21 PM, Rakesh Kota wrote:
-> On Wed, May 20, 2026 at 11:51:49AM +0200, Konrad Dybcio wrote:
->> On 5/20/26 11:07 AM, Rakesh Kota wrote:
->>> The PM4125 PMIC uses a different register layout for USB VBUS control
->>> compared to PM8150B. On PM4125, CMD_OTG is at offset 0x50, OTG_CFG is
->>> at 0x56, and offset 0x52 is a 2-bit VBOOST voltage selector rather than
->>> a current-limit selector.
->>>
->>> Introduce per-compatible regulator descriptor data to accommodate these
->>> differences. This keeps the existing PM8150B current-limit logic intact
->>> while adding a dedicated voltage-selector path for PM4125.
->>>
->>> Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
->>> ---
->>>  drivers/regulator/qcom_usb_vbus-regulator.c | 102 ++++++++++++++++++++++++----
->>>  1 file changed, 88 insertions(+), 14 deletions(-)
->>>
->>> diff --git a/drivers/regulator/qcom_usb_vbus-regulator.c b/drivers/regulator/qcom_usb_vbus-regulator.c
->>> index cd94ed67621fee9f6d7a0327054db0ebab6cc7ee..3d425452a0b35b35c4b454f84eb28e87cc8ba4f8 100644
->>> --- a/drivers/regulator/qcom_usb_vbus-regulator.c
->>> +++ b/drivers/regulator/qcom_usb_vbus-regulator.c
->>> @@ -20,10 +20,35 @@
->>>  #define OTG_CFG				0x53
->>>  #define OTG_EN_SRC_CFG			BIT(1)
->>>  
->>> +#define PM4125_CMD_OTG			0x50
->>
->> This register is named differently
-> Ok, i will update name to PM4125_VBOOST_EN in next version.
->>
->>> +#define PM4125_VBOOST_CFG		0x52
->>> +#define PM4125_VBOOST_CFG_MASK		GENMASK(1, 0)
->>> +#define PM4125_OTG_CFG			0x56
->>
->> And so is this one
-> update name to PM4125_VBOOST_CFG in next version
->>
->>
->>> +#define PM4125_OTG_EN_SRC_CFG          BIT(0)
->>> +
->>> +struct qcom_usb_vbus_reg_data {
->>> +	u16 cmd_otg;
->>> +	u16 otg_cfg;
->>> +	u8  otg_en_src_cfg;
->>> +	u16 csel_reg;
->>> +	u8 csel_mask;
->>> +	const unsigned int *curr_table;
->>> +	unsigned int n_current_limits;
->>> +	u16 vsel_reg;
->>> +	u8 vsel_mask;
->>> +	const unsigned int *volt_table;
->>> +	unsigned int n_voltages;
->>> +	const struct regulator_ops *ops;
->>> +};
->>
->> And because they're so different, keeping them in a single driver starts to
->> look a little odd
-> 
-> You are right, they differ in control mechanism — one uses current
-> control and the other uses voltage control for VBUS in host mode.
-> Since the functional purpose is the same (VBUS regulation in host
-> mode), I felt a single driver made sense to avoid code duplication.
-> 
-> But open to suggestions — should I split this into separate drivers
-> or is there a better way to handle this cleanly?
->>
->>> +
->>>  static const unsigned int curr_table[] = {
->>>  	500000, 1000000, 1500000, 2000000, 2500000, 3000000,
->>>  };
->>
->> And I think there's current-limiting on this PMIC too, except in a differnt
->> peripheral (@1300)
->>
-> The @1300 peripheral is for ICL (Input Current Limit) in device mode
-> charging — not for host mode VBUS regulation.
-> 
-> Could you share the register you're referring to for further clarity?
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The `clock-names` schema definition incorrectly restricts the ar=
+ray to a maximum of 2 items and allows duplicate clock names. While the com=
+mit correctly updates `clocks` to allow `maxItems: 3`, it only modifies the=
+ second element of the `items` array for `clock-names`. In `dt-schema` (bas=
+ed on JSON Schema), defining `items` as an array of schemas implicitly limi=
+ts the maximum number of items to the length of that array (because `additi=
+onalItems` is implicitly false). As a result, a device tree specifying 3 cl=
+ocks will fail `dt_binding_check` validation. Additionally, adding `refclk`=
+ to the second element's `enum` creates a logic error, permitting redundant=
+ sequences such as `clock-names =3D "refclk", "refclk";`.
+--
 
-I think I looked at ICL_OPTIONS (+0x50) and ICL_CFG (+0x52), but yeah,
-it seems like I mistook the two kinds of currents at play.
+commit d737f6b2f91949e839e21f62c39ca9db8f322775
+Author: Gokul Praveen <g-praveen@ti.com>
 
-Konrad
+dt-bindings: phy: cadence-torrent: Update property values to support 3 cloc=
+ks
+
+This commit updates the Cadence Torrent PHY device tree binding to support =
+up
+to 3 clocks. It increases the maxItems of the clocks property and updates t=
+he
+clock-names property.
+
+> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.ya=
+ml b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> index 9af39b33646ac..54fe78da297a2 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> +++ b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> @@ -34,7 +34,7 @@ properties:
+> =20
+>    clocks:
+>      minItems: 1
+> -    maxItems: 2
+> +    maxItems: 3
+>      description:
+>        PHY input reference clocks - refclk (for PLL0) & pll1_refclk (for =
+PLL1).
+
+[ ... ]
+
+> @@ -47,7 +47,7 @@ properties:
+>      minItems: 1
+>      items:
+>        - const: refclk
+> -      - enum: [ pll1_refclk, phy_en_refclk ]
+> +      - enum: [refclk, pll1_refclk, phy_en_refclk ]
+
+[Severity: Medium]
+Will this fail schema validation when a device tree specifies 3 clocks?=20
+
+Because the items sequence for clock-names only defines two elements, it
+implicitly restricts the array to a maximum of 2 items. Even though the clo=
+cks
+property was updated to maxItems: 3 above, the clock-names array is now
+mismatched and will reject 3 items during dt_binding_check.
+
+Also, does this unintentionally allow duplicate clock names? Adding refclk =
+to
+the second element's enum makes it possible to define a redundant sequence
+like clock-names =3D "refclk", "refclk".
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260630134324.6108=
+5-1-g-praveen@ti.com?part=3D2
 
