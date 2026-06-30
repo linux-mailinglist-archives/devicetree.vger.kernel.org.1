@@ -1,192 +1,164 @@
-Return-Path: <devicetree+bounces-317843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317844-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fd5NAcXLQ2oriQoAu9opvQ
-	(envelope-from <devicetree+bounces-317843-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:59:33 +0200
+	id 3ER5B4jKQ2pPiAoAu9opvQ
+	(envelope-from <devicetree+bounces-317844-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:54:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 579C56E5259
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:59:32 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA5C6E5165
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:54:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Vs5eWDcC;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317843-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317843-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=JxGtVFxE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317844-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317844-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D88AD30ACE48
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:53:56 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2402E3030D2B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 13:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3624230567C;
-	Tue, 30 Jun 2026 13:53:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C13234D4D6;
+	Tue, 30 Jun 2026 13:54:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18B7A283FD9
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 13:53:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 171EF2F549F;
+	Tue, 30 Jun 2026 13:54:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782827636; cv=none; b=OgohjxMfSq+rx7+cQSu8b3r/aPrgBEe7ikOf7npNvqS8rvrCwPfmx0QIsS8TIEe2aAjmRnlBZf9+eMw73mmoqWBaLP4M/F93tPZv0uWPAvOIkWrQkUCYM+/pBLySZuEzImQ0d4ubZUG/B7wwcw7cswhJXpaBmQ7/6kw7YTOm5Oo=
+	t=1782827653; cv=none; b=ODOz+oN01ak0GItDPFW/OjYPAeogQw9hdUf/gjbtF+c7naE6Xy5mY7LNdE1f7cFHyJdkdZrolDz4lD6rudMOmjZBMYXKWw6iBF97ugEdXj0aGEHqlbMEWJuh9aWQtDEOicbaUhTVoOi9XS4os/7VVM/A0JgTFMb1JjPft3E1WqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782827636; c=relaxed/simple;
-	bh=C/ENO/XakhAZC18KRnk+dUGOIYwdEJyxgwKgPN7DkiY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=sDNsvKOgYbEtwzb0zoCW8/BQnufQslcW33uSgxVXc9gPbxOeWRcCaryJlzNlMH/SyfMqwkKNhH1aL87fAugX2aL2R29EIsab0jSm3gZha0/CBrtcnF/dVHRJcSWH/Ez8ic4aPCtbDGSv+6HG6nQ2qH5pkOunYH1Hpn6M5q1zrJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vs5eWDcC; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D7F01F000E9;
-	Tue, 30 Jun 2026 13:53:54 +0000 (UTC)
+	s=arc-20240116; t=1782827653; c=relaxed/simple;
+	bh=NxVC72j41uPL+tI1Aj2Q6Xf57UFf9x2HMej7fgmMn5A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=THSnS+vuziKPy1ycHbrYFO2OSXh5msoJFGRS+inMtHrvTg4W7cxvX6Vxc1PRAnxnTbnKuURFTsBkwbab1uHyOno6dspJxMlMZUr94jmzz9PzUun/OMBHI2q7W+oV0wro0BqJHHVGGK694tKFSLe5BclFwm6Dx49f4VjsfHu1/3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JxGtVFxE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0625D1F00A3A;
+	Tue, 30 Jun 2026 13:54:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782827634;
-	bh=qw77gMUEuKKUp+Ik7BNUZvNOL0g9M8dreep+u2XUUmY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Vs5eWDcC+XIOxMUsBorvgUG4xVcjksy4y8asJJVq9B5NCxbR0QrY0NTrhpT0xJuOq
-	 se9KUtVtigVRZA21Df6TzB+pANwWO+wTWlHr8/pgAWktpPGYYo3/LADBQD3IukeN7e
-	 a9hBmGklAWF9hdFpFd7rMyydYhBlQ9XIN8DLDvbe6qsfudqMqVDXvjWen2hgVKnYkE
-	 7xHcv0c6oAA3psmmeoz0oZy5eyvUXqHz484to4+ReONAFKGDq26p7YSAwYT2ijZiVF
-	 qRxJR2QdpYSsepi2FiQ4TcuHbulcxXtPVSq9VByrXtOQoJVs4Rq4C1l2koowCsIa7Q
-	 p2NN8lou6Im+w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 net-next 1/2] arm64: dts: ti: Add PLL1 refclk to
- J784S4 SoC SERDES node
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Gokul Praveen" <g-praveen@ti.com>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, olteanv@gmail.com, vkoul@kernel.org, neil.armstrong@linaro.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260630134324.61085-2-g-praveen@ti.com>
-References: <20260630134324.61085-1-g-praveen@ti.com>
- <20260630134324.61085-2-g-praveen@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 30 Jun 2026 13:53:53 +0000
-Message-Id: <20260630135354.4D7F01F000E9@smtp.kernel.org>
+	s=k20260515; t=1782827651;
+	bh=ENHSujfSW+4v2CmIMIlvxia/sjQrFFZFjN+o8GUkyIY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=JxGtVFxEw8vaMhnYcCm+Cuq5e5W2cCsEJv7juEB5WY3jF7MEuDgDFV5eOxo+/XeFz
+	 ZLv7D8eIpZCd2z14gLGNUzLnGi8UcT+WVI/A/UPlaNoZjtnWaZTRlQ0gPpMNZtmJGy
+	 HgYnLXoRggBGE8lSDrlwb9eyJpsImD8KYjUl4uBOCEdq50OZ/hYpElxnGiXHM4vWaj
+	 UEvTRTvJix5t2my6yHIsHifqnjUm2UUANKAyUUuWYfirY5u/XaBjYVhKgvFEm9azwP
+	 EpgWQM6wMVAggjhqkSlZxs1mhWQq4DDPDhb2h6Ad3HjP0dhI3aTfZsQsFuctlD4MQO
+	 2Rrxlpk9MOMcA==
+Date: Tue, 30 Jun 2026 08:54:10 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-tegra@vger.kernel.org,
+	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+	devicetree@vger.kernel.org,
+	Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	Thierry Reding <treding@nvidia.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, Aksh Garg <a-garg7@ti.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Kevin Xie <kevin.xie@starfivetech.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+Subject: Re: [PATCH v7 1/4] dt-bindings: pci: Strictly distinguish C0 from
+ C1-C5
+Message-ID: <178282764964.2982344.701815323079264876.robh@kernel.org>
+References: <20260617-tegra264-pcie-v7-0-eae7ae964629@nvidia.com>
+ <20260617-tegra264-pcie-v7-1-eae7ae964629@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260617-tegra264-pcie-v7-1-eae7ae964629@nvidia.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317844-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317843-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:g-praveen@ti.com,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:olteanv@gmail.com,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com,kernel.org,linaro.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:thierry.reding@kernel.org,m:kwilczynski@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:jonathanh@nvidia.com,m:thomas.petazzoni@bootlin.com,m:linux-tegra@vger.kernel.org,m:pali@kernel.org,m:devicetree@vger.kernel.org,m:m.karthikeyan@mobiveil.co.in,m:linux-kernel@vger.kernel.org,m:linux-pci@vger.kernel.org,m:treding@nvidia.com,m:mani@kernel.org,m:conor+dt@kernel.org,m:michal.simek@amd.com,m:bhelgaas@google.com,m:a-garg7@ti.com,m:krzk+dt@kernel.org,m:kevin.xie@starfivetech.com,m:lpieralisi@kernel.org,m:thierry.reding@gmail.com,m:Zhiqiang.Hou@nxp.com,m:conor@kernel.org,m:krzk@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,nvidia.com,bootlin.com,vger.kernel.org,mobiveil.co.in,amd.com,google.com,ti.com,starfivetech.com,gmail.com,nxp.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,ti.com:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,nvidia.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 579C56E5259
+X-Rspamd-Queue-Id: AAA5C6E5165
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
 
-New issues:
-- [Low] Adding a third clock to the 'serdes2' node violates the 'phy-cadenc=
-e-torrent.yaml' DT binding. The subsequent binding update in the series is =
-logically incomplete and fails to resolve the validation error.
-- [Low] Missing whitespace after the comma in the 'clock-names' list.
+On Wed, 17 Jun 2026 18:01:28 +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Instead of using the ECAM registers as the first entry, strictly make a
+> distinction between C0 and C1-C5. This is needed because otherwise the
+> unit address doesn't match the first "reg" entry. We also cannot change
+> the ordering of these nodes to follow the ECAM addresses because that
+> would put them outside of their "control bus" hierarchy since the ECAM
+> address space is a global one outside of any of the control busses.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+> Changes in v7:
+> - undo changes suggested by Sashiko, should've trust the dedicated tool
+>   rather than the AI
+> 
+> Changes in v6:
+> - add maxItems as suggested by Sashiko
+> 
+> Changes in v5:
+> - rebase on top of v7.1-rc1, make it into a fix
+> 
+> Changes in v4:
+> - ECAM is outside of the controller's region, so it cannot be the first
+>   reg entry, otherwise we get warnings because it doesn't match the
+>   unit-address, so revert back to oneOf construct
+> 
+> Changes in v2:
+> - move ECAM region first and unify C0 vs. C1-C5
+> - move unevaluatedProperties to right before the examples
+> - add description to clarify the two types of controllers
+> - add examples for C0 and C1-C5
+> ---
+>  .../bindings/pci/nvidia,tegra264-pcie.yaml         | 75 ++++++++++++++--------
+>  1 file changed, 50 insertions(+), 25 deletions(-)
+> 
 
-Pre-existing issues:
-- [High] This problem wasn't introduced by this patch, but the commit fails=
- to comprehensively fix the issue. It adds 'pll1_refclk' to fix multilink c=
-onfiguration for 'serdes2', but ignores identical SERDES nodes ('serdes0', =
-'serdes1', 'serdes4') that share the exact same bug.
---
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-commit c37d528887d49433e9d33970e77ad622c557ad5e
-Author: Gokul Praveen <g-praveen@ti.com>
-
-arm64: dts: ti: Add PLL1 refclk to J784S4 SoC SERDES node
-
-This commit adds the PLL1 refclk to the clocks and clock-names parameters
-for the SERDES2 node. It addresses a multilink configuration failure that
-occurs without PLL1 being present in the clocks list.
-
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot=
-/dts/ti/k3-j784s4-main.dtsi
-> index 78fcd0c40abcf..da8d582574d03 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> @@ -122,8 +122,9 @@ serdes2: serdes@5020000 {
->  			resets =3D <&serdes_wiz2 0>;
->  			reset-names =3D "torrent_reset";
->  			clocks =3D <&serdes_wiz2 TI_WIZ_PLL0_REFCLK>,
-> +				 <&serdes_wiz2 TI_WIZ_PLL1_REFCLK>,
->  				 <&serdes_wiz2 TI_WIZ_PHY_EN_REFCLK>;
-
-[Severity: High]
-This is a pre-existing issue, but does the same fix need to be applied to
-the other identical serdes nodes?
-
-Other nodes like serdes0, serdes1, and serdes4 in
-arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi share the exact sa=
-me
-configuration issue where TI_WIZ_PLL1_REFCLK is in assigned-clocks but abse=
-nt
-from clocks:
-
-			clocks =3D <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
-				 <&serdes_wiz0 TI_WIZ_PHY_EN_REFCLK>;
-			clock-names =3D "refclk", "phy_en_refclk";
-			assigned-clocks =3D <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
-					  <&serdes_wiz0 TI_WIZ_PLL1_REFCLK>,
-					  <&serdes_wiz0 TI_WIZ_REFCLK_DIG>;
-
-Since serdes0 is also configured for multilink (PCIe + USB), will its
-configuration fail without a similar update?
-
-> -			clock-names =3D "refclk", "phy_en_refclk";
-> +			clock-names =3D "refclk","pll1_refclk", "phy_en_refclk";
-
-[Severity: Low]
-Will this addition cause make dtbs_check to fail?
-
-Adding a third item to clock-names exceeds the currently defined items in t=
-he
-phy-cadence-torrent.yaml binding.
-
-Even if a subsequent patch in the series updates the schema by modifying
-maxItems and the enum for the second item, dt-schema enforces
-additionalItems: false for arrays.
-
-Unless a third item definition is explicitly added to the items array in the
-schema, won't validation fail for this node?
-
-[Severity: Low]
-this isn't a bug, but there is a missing space after the first comma.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260630134324.6108=
-5-1-g-praveen@ti.com?part=3D1
 
