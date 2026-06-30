@@ -1,169 +1,209 @@
-Return-Path: <devicetree+bounces-317991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317992-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Q5PLIr77Q2ohmwoAu9opvQ
-	(envelope-from <devicetree+bounces-317991-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:24:14 +0200
+	id R3VJEaj8Q2pimwoAu9opvQ
+	(envelope-from <devicetree+bounces-317992-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:28:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 716766E6E09
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:24:14 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D32136E6E71
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 19:28:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=JY8Te4TD;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317991-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317991-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XoWnQahX;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317992-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-317992-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C9D223082A95
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:23:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 904E430074CB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F40EC3DC4CC;
-	Tue, 30 Jun 2026 17:23:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 653143AA1B5;
+	Tue, 30 Jun 2026 17:24:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 388733DDDD0
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 17:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4105C3DBD44
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 17:24:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782840199; cv=none; b=t1oVzz7XY8AEsDXq3DNA4WVIXwQtToBBvmQ25brbhHDomVxxL6GLc15EO9rNke7cf5HYycHZDmrsJkTuzATQfjKZhBglbmXRiDvN+UlY3ordTyBjs6Gg8IEba0hAT+vNatVjvVzwk+kOEsGNIL9DXHWsx3kjLkpf+YcFADRb5GQ=
+	t=1782840243; cv=none; b=lURLK0bH1vUuIWM6gmYNWVlpIXzyKGWrK/D0n+UetZexFnseku41ILiyT4KZ3ZTcXtT2s5i2RQYHT4C0UAA+uAXEbTHmCDNnwwlQeytFHcuXTwpb8f5ku2mqwnybO1ZmpM9/lOK13Gs9l+MKVBuSttjra6F4CWW5/QaKApB1OA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782840199; c=relaxed/simple;
-	bh=dEPMYOHWcuj/X4YUDH7n5obSn7J2evTceRVwN62/sP0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=hWEACuqqXyeBdQHyBV29ldJYlVcc9geqsxgp6bBHhnKIB+mQHCvPn3MjTR30CP4WV+4vy80Y7kW/OdPZNfDvWoMpfyYmIvcYNB3EXWbrh0PNyXhKRDLw1Bjc/rv2N85VsR1jnMIQm4stykSjEz3ZlZf2SAZ8bZ0HZ5Cdrn+pG2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JY8Te4TD; arc=none smtp.client-ip=209.85.221.169
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-5bbfc48715fso428947e0c.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 10:23:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782840194; x=1783444994; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rSKzFIqWkpqoxJ8SgMjBQdt3/hhUssH132wtiVGeZxQ=;
-        b=JY8Te4TDwqQATLUaHKwlfx00qijydEZKTXJBoAkn/+JXySDXG1AToz3uxiiOVL1G+s
-         lLlw58pMsiSvJ13mzla+PQi6uqRuyYmt/CUJBLc8b/ZSzchR9SdlLV+3wirmh/5rn2uH
-         tIWhHvXZhss7Z/oEPad+MsQvaDD8pMElht3gCiNNS1DV6rwNB0tDjgNEWXdlGVTBvyCh
-         gC02FRpraMpgvHjsuO57rdKsSXDsxhyAD3zlZ1QNLVNtGuOVd06EIyFYULoi9IQHKA/o
-         f2ibjdOxOI9dTkohmIfY1MRREXUNWYM2a9dM3fuTV0jV4tYogGRpd9RzqWzT9d6yD8po
-         liNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782840194; x=1783444994;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rSKzFIqWkpqoxJ8SgMjBQdt3/hhUssH132wtiVGeZxQ=;
-        b=W1kJdR34+72DXy1PJJFqV48DwUJY88FhIsnVB5j46wuQk+8h1/CEoc4EJQkqndFgRf
-         v0mEi3ukM6XMiGmdAfu0vzcIqfLUBGjQq29LXNY9N/hop4Bm+NOIe4C9BOW/36G6GtRN
-         tyioG4UY/zarUGbW/3/nEteBOeb65CIl4MbE1Ht8/JBNYIu94X9k7+MR7VW4MTWOvb+u
-         aA7mq6pXpoCJhcQ4uPd9yPPhV6IwYQVqamBKtV6AeLCaf69c+hb8o2nwRK0cWssfgpTJ
-         d4kyuGTXPKIKsWRaXnWYP4L41l9R4QMHSh3/Uc6dh+Yblpdg769CopszeB1gSxQrKfd6
-         IOTg==
-X-Forwarded-Encrypted: i=1; AHgh+Rr2L0VrICI/5kUmK+eqwHDllgkzSOvD+dopt2lDO26xAQxQiHtRpSvNh7U0uHAPSkQf6aJz0Ghc2WMG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+dBKqfRVJvtG1jL6BTPPc2AzGgKt9lsDydc69+Jn1T4GcXE/u
-	KHWAky3dcKpmwxbwIdOqc9WXxoPaJcbCNhklcvDNl64rwjf9JKeZnXwb
-X-Gm-Gg: AfdE7cmn/3rWDyPHUfTIBdACOsNea4w66MSZmLF1NfiJhAcqs2+jTGYctwWbFIb7C/g
-	zNKkWDfYIhin4y10Og2yq+xDl3TpZpvbbLRiBwa+uxUFCfHJj51VWQR8QRdgwzsZH+A3aE3gJzU
-	uKikTsD56wffJclGpS1RrlgwlCsEuiLL7mnAvnNPY2rR1IiQeRy/vqtV1FcMyL+MunS+Jgp332D
-	eHh8c08JGuV+svcHDzfYSjPFwkXq9yZDT77JaIdb6TH3S77RwFVNdzV/y8B1lajwOiIQ55pD42r
-	KgkvhI7t7f5x4/1dmgYFw5iovniWigM3PS03aQu6lgagfcROSHI4eJb6sXiWmQpOhJJYxkPgiHu
-	KqUntgo+OmPEXrMncziXaHxYxMtXPPQWBgScjqoUidLU1A0rpATGhcDtXgKXEPBAhsS3a3mmF30
-	SRiH4=
-X-Received: by 2002:a05:6122:e46:b0:5bd:ba7e:ccf5 with SMTP id 71dfb90a1353d-5bdc953104amr653300e0c.7.1782840194600;
-        Tue, 30 Jun 2026 10:23:14 -0700 (PDT)
-Received: from localhost ([2800:bf0:82:11a2:7ac4:1f2:947b:2b6])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-96966904ec6sm1200685241.13.2026.06.30.10.23.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jun 2026 10:23:14 -0700 (PDT)
+	s=arc-20240116; t=1782840243; c=relaxed/simple;
+	bh=L1+URms1HeQEH1fMM/xYxvnqMT6fGIph1XX8xsI+fMY=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=uTmIPTTvLoulDCE+XAGo3WE9/62+c7a1a+UiS9wlpkMlMm2gsQ3wwaLxt2kjLr+WwFNCbOxzuAlw7ZfDCf3wMFHomgfN5Zg0+nCJuJF6pbk35my1SxWCJZF60HH3GxQSmfisJv98nP/cnhNrOcqz+DQmWhAdSend6ZZCOhEaWyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XoWnQahX; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6BA11F000E9;
+	Tue, 30 Jun 2026 17:24:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782840241;
+	bh=FdAQo2h4vU+MdU1+MmxV7DhVuEUi6q4VJCjdkPgK3UU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=XoWnQahXif+UXguAsyGg2snmnnxnB4cqGMCAYutcGA+V5Og9KDr5iv/qBAI9Azx9P
+	 1VQH/aVhtS6G6ePAYF35CLkvRAly9WZHLzJ8et5JJWZO3YcGadBDDtkuFJ+JRNeJJq
+	 EFDkHmX6f+i/PYaNltaooJB4rPrF1yrqq/4lY9DETayeN88O0yIVmV425sW7BmjH8l
+	 qM6dhU/CM7Rrt3QeSA318mfy8B3/nXntQA4PvAqgGizGSas3kSuKwl8Q9720EI+LeH
+	 8kuzD3HaZ4foC8KumRwK2iDu2l0ZTtHziD/svXahlbGP6eIEFGzJ0sVR8vdFMfHVQK
+	 WAkx+c0UHlZvw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH net-next v6 03/15] net: ethernet: oa_tc6: Move oa_tc6.c
+ to its own directory
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Selvamani Rajagopal via B4 Relay" <devnull+Selvamani.Rajagopal.onsemi.com@kernel.org>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260629-s2500-mac-phy-support-v6-3-18ce79500371@onsemi.com>
+References: <20260629-s2500-mac-phy-support-v6-0-18ce79500371@onsemi.com>
+ <20260629-s2500-mac-phy-support-v6-3-18ce79500371@onsemi.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 30 Jun 2026 17:24:01 +0000
+Message-Id: <20260630172401.B6BA11F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 30 Jun 2026 12:23:07 -0500
-Message-Id: <DJMK3NCDCHL8.1EHG93D5O7ROZ@gmail.com>
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "David Lechner"
- <dlechner@baylibre.com>, =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- "Andy Shevchenko" <andy@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 5/7] iio: adc: ti-ads1262: Add conversion delay
- support
-From: "Kurt Borja" <kuurtb@gmail.com>
-To: "Jonathan Cameron" <jic23@kernel.org>, "Kurt Borja" <kuurtb@gmail.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260628-ads126x-v2-0-4b1b231325ba@gmail.com>
- <20260628-ads126x-v2-5-4b1b231325ba@gmail.com>
- <20260630015027.3afdfc3a@jic23-huawei>
-In-Reply-To: <20260630015027.3afdfc3a@jic23-huawei>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317991-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[kuurtb@gmail.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jic23@kernel.org,m:kuurtb@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317992-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:devnull+Selvamani.Rajagopal.onsemi.com@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,Selvamani.Rajagopal.onsemi.com,dt];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuurtb@gmail.com,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,onsemi.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto,microchip.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 716766E6E09
+X-Rspamd-Queue-Id: D32136E6E71
 
-On Mon Jun 29, 2026 at 7:50 PM -05, Jonathan Cameron wrote:
-> On Sun, 28 Jun 2026 00:36:06 -0500
-> Kurt Borja <kuurtb@gmail.com> wrote:
->
->> Expose the programmable conversion start delay as a per-channel
->> IIO_CHAN_INFO_CONVDELAY attribute.
-> Coversion delay was always a somewhere weird bit of ABI.
-> What are the delays relative to in this case?
-> Is this a device that does simultaneous sampling?  Pictures
-> suggest otherwise, and convdelay is currently only defined
-> in that case.  We might be able to extend it but it needs
-> some thought.
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [Medium] Kernel module rename from `oa_tc6.ko` to `oa_tc6_mod.ko` breaks =
+ABI.
+- [Low] Unintended removal of the 'if COMPILE_TEST' condition from the Kcon=
+fig prompt.
+- [Low] MAINTAINERS entry update uses a restrictive wildcard pattern that o=
+rphans the directory's Makefile and Kconfig.
+--
 
-The chip has a configurable internal conversion delay to allow for
-external settling effects. See datasheet section 9.4.3 if you'd like a
-bit more details.
+commit 17abade4ed4c6f154b7b7813c44e60fe8fc7040d
+Author: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
 
-But you're right, I should at least also edit the ABI description of
-this attribute. We can postpone this discussion for a future series.
+net: ethernet: oa_tc6: Move oa_tc6.c to its own directory
 
->
-> Jonathan
+This commit moves oa_tc6.c to a new drivers/net/ethernet/oa_tc6 directory.
+It updates Kconfig, Makefile, and MAINTAINERS to support adding future files
+for hardware timestamp and PTP related APIs.
+
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 15011f5752a99..ff1295d37ae21 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20217,7 +20217,7 @@ M:	Parthiban Veerasooran <parthiban.veerasooran@m=
+icrochip.com>
+>  L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/networking/oa-tc6-framework.rst
+> -F:	drivers/net/ethernet/oa_tc6.c
+> +F:	drivers/net/ethernet/oa_tc6/oa_tc6*
+
+[Severity: Low]
+Does this restrictive wildcard pattern orphan the new Makefile and Kconfig
+files?
+
+Since it only matches files starting with oa_tc6, patches modifying those
+build files might not automatically CC the maintainers via get_maintainer.p=
+l.
+
+[ ... ]
+
+> diff --git a/drivers/net/ethernet/oa_tc6/Kconfig b/drivers/net/ethernet/o=
+a_tc6/Kconfig
+> new file mode 100644
+> index 0000000000000..97345f345fb9f
+> --- /dev/null
+> +++ b/drivers/net/ethernet/oa_tc6/Kconfig
+> @@ -0,0 +1,16 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +#
+> +# OA TC6 10BASE-T1x MAC-PHY configuration
+> +#
+> +
+> +config OA_TC6
+> +	tristate "OPEN Alliance TC6 10BASE-T1x MAC-PHY support"
+
+[Severity: Low]
+Was it intentional to drop the if COMPILE_TEST condition from the tristate
+prompt here?
+
+The original config in drivers/net/ethernet/Kconfig had=20
+tristate "..." if COMPILE_TEST, which kept the prompt hidden unless
+COMPILE_TEST was enabled. Dropping it exposes the prompt to any user with
+SPI enabled.
+
+> +	depends on SPI
+> +	select PHYLIB
+
+[ ... ]
+
+> diff --git a/drivers/net/ethernet/oa_tc6/Makefile b/drivers/net/ethernet/=
+oa_tc6/Makefile
+> new file mode 100644
+> index 0000000000000..f24aae852ef27
+> --- /dev/null
+> +++ b/drivers/net/ethernet/oa_tc6/Makefile
+> @@ -0,0 +1,7 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +#
+> +# Makefile for OA TC6 10BASE-T1x MAC-PHY
+> +#
+> +
+> +obj-$(CONFIG_OA_TC6) :=3D oa_tc6_mod.o
+> +oa_tc6_mod-objs :=3D oa_tc6.o
+
+[Severity: Medium]
+Does this change break userspace ABI by implicitly renaming the compiled
+module from oa_tc6.ko to oa_tc6_mod.ko?
+
+Modifying the module name can break external scripts, modprobe configuratio=
+ns,
+and initramfs expectations that rely on the old name.
+
+To fix Kbuild circular dependency warnings while keeping the original module
+name, should the C file be renamed instead (e.g., to oa_tc6_core.c) while
+keeping obj-$(CONFIG_OA_TC6) +=3D oa_tc6.o?
 
 --=20
-Thanks,
- ~ Kurt
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260629-s2500-mac-=
+phy-support-v6-0-18ce79500371@onsemi.com?part=3D3
 
