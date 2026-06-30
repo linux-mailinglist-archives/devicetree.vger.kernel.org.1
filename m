@@ -1,180 +1,160 @@
-Return-Path: <devicetree+bounces-318064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318065-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XcT9G9s9RGq9rAoAu9opvQ
-	(envelope-from <devicetree+bounces-318064-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 00:06:19 +0200
+	id oC3oAq4/RGqDrQoAu9opvQ
+	(envelope-from <devicetree+bounces-318065-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 00:14:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0610D6E8471
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 00:06:19 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B6CB6E8598
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 00:14:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b="Q/Esn+TY";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318064-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318064-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=PJgsHN6y;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318065-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318065-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7DF313047932
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 22:06:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 52D5930D1511
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 22:13:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 645E132AAA7;
-	Tue, 30 Jun 2026 22:06:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C110932BF24;
+	Tue, 30 Jun 2026 22:13:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB40331E82F;
-	Tue, 30 Jun 2026 22:06:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBC7A3242BE
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 22:13:03 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782857164; cv=none; b=gVH9Kh9bfKPFZp5EWP1jjgqOQzmtTa0cU7F+3kE0QFlv0MBU2HgU+p+UhjCxk11IiQ3UpQ2nT2uhNc/MQ0coaklDJKx6+7Se+A5CkkoaqzXC+gxntvLreLpJ3XgXUU/qf8nKwV3bOcD8noNRbG9iSYwhHZuGgxIPosBK6VDwcnA=
+	t=1782857584; cv=none; b=H4NIAR8MOGqdD1N8jQON57riRhM9eWhhAc2tKKGNS/96lC3WffnaUq4LSXlQjsb+GCDPGVMoJLqlzOzTiSvht1LhyoNoQjbTd0p3HNIsgFSqTI5iFIGLm+he1rHh1DNL2cSX8+The+81mTGwzx2rfaP1Gt+KYZURz5hSZHqda/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782857164; c=relaxed/simple;
-	bh=jcLVXZ6J9LDnAuX8C9UUyl1LJIteICftPcbtMybLwbc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=dAmKLEOkmqsHHh6hGZmohAQelTohPlwR7EdQ4vPGegEl4Lvq/LyfDJ1DQeGSxZ3G67c00BNoK+tC903nzPb8k8pox9hbgtu6EVe3YM/QYUJC6ov9awBOTHqPCi8n6RyvX5daCLbJnVyx9kRdFRhnIrq1cqyTWZCqFx7RL2rkAvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Q/Esn+TY; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65UJDc3b2920057;
-	Tue, 30 Jun 2026 22:05:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=MVLf5yOGlF0Qr/w2ariyhwbRiWxtWVXLgjV
-	lJr+nzYg=; b=Q/Esn+TYH7Nn6YXyZQ1V3Vs/2mmO1uc8CYlm+vuJx/AbuXmx7/2
-	ZDuRUwXns/lXpQGN8SJyek1oAxG3pVxvXzlAFZjKbZs510PzMhb6TU6D/SLxMSeL
-	Gy7TmB3TRgCY3LIicya3JlhRTJ7nMQLnfSkZh+dn4FuAJ311TYtqlpatUa4UFPpM
-	3/Yv5x2S4RWaIXJzEJxB2MEnYwr9577v5+2qWVmpx4Hp1HyZOEH/CC7q8vgfCySZ
-	DhlWLRS1PyQKWy5mvQpT72+NuJLmqrFUOWey7Qvl5xLMGiVhbJkP1paev6YWbmg+
-	+inSMblD9bDaYzS/3xMXLAtHeQ8v73nw18A==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f4jvw8us1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jun 2026 22:05:43 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 65UM5eAe003657;
-	Tue, 30 Jun 2026 22:05:40 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4f27kjw6jn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jun 2026 22:05:40 +0000 (GMT)
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 65UM5eWT003649;
-	Tue, 30 Jun 2026 22:05:40 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.101.157])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 65UM5dgA003646
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jun 2026 22:05:40 +0000 (GMT)
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 2342877)
-	id 3A85362B; Wed,  1 Jul 2026 03:35:39 +0530 (+0530)
-From: Nitin Rawat <nitin.rawat@oss.qualcomm.com>
-To: krzk+dt@kernel.org, robh@kernel.org, andersson@kernel.org, mani@kernel.org,
-        alim.akhtar@samsung.com, bvanassche@acm.org, avri.altman@wdc.com,
-        conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-scsi@vger.kernel.org,
-        Nitin Rawat <nitin.rawat@oss.qualcomm.com>
-Subject: [PATCH V1] scsi: ufs: dt-bindings: Document the Maili UFS Controller
-Date: Wed,  1 Jul 2026 03:35:36 +0530
-Message-Id: <20260630220536.3803984-1-nitin.rawat@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1782857584; c=relaxed/simple;
+	bh=a/lxtTDTDg9qHZ1XxJGp6GALUnxVcyilFnlyp8deNr4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eu/9rL1xAsajUlWpIGGUy7EdCt7b6IOL5KCnGMxlwnitSmA2AeO0Zv2WpqhyB/zaWAo0N0lvlluX7cKrFnGUJvG6sxfS4Ab31ViLug8S4bHXFTyK5bDYMN3C0bqmz5AdmbsVWlLW8Hia4w7dVKahQUsoUj+iZFhFxyQf8oRPQZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PJgsHN6y; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83E591F01558
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 22:13:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782857583;
+	bh=HM1j74yODPhJMYhAe8Gysw58b33HB8UlPnD7jYgM3wc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=PJgsHN6yFCy6uM8OzJ5er++rKVozMaAHvyDqrhtYfMPCCxrpB8AXLUA6uGg+5VklC
+	 9duGS1uMgl4p3p5uoQL7TK9MhvxKTa2dKSCMTkS2w2VwjlYEbiWAkQa2L67HL5VVVd
+	 9uvKdyQ3g4QVOBg20tia94Xcv+JC3R0uEMn+QJKcGoYACQdi1ovvRcZqMegBGiFT4p
+	 hLtNn0IurWdCmVibLCpjZx2NvYHdoGJBdwYHxHXG+WkxypEPGGiZsPFfWJoND2Kal+
+	 98zSH13AxZSGRmzDL3hBFy5vxpfe1HN4oOXaZk4ptIHXrsgqLoTMTFxyer7juhoAp7
+	 7YulToC5Pm34w==
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5aeae350e0aso3721530e87.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 15:13:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RoeZaxFoqKG1uDQYLBtTADouCciVWtG60ewWZG7YDd31XDA8n3Lykht+mXtnTrg66VGY++pdTkOeT9S@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyw8i8cxyiRN8bq6Iroont7rpdCy/h+z4U3n9nd6fpwh536JpIY
+	lzB1RQhwhNbROQMTPnGC+ne5/bE2jRky+so/NAU9Ytnb6SdyOloHAfWIl9UvURp8PLV7lbfA9h0
+	a9IF+ZGeSNOVSQJ007kGDRwGhS2xJ/TE=
+X-Received: by 2002:a05:6512:1248:b0:5ae:b2cf:8204 with SMTP id
+ 2adb3069b0e04-5aec10a3841mr657448e87.2.1782857582274; Tue, 30 Jun 2026
+ 15:13:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-ORIG-GUID: vgpb_EijJ1YQtl4DTOwwUQ5uszEZGn3z
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDIxNSBTYWx0ZWRfX43w3TIk5OBCN
- ooDNXQgQwK7ypT9U0YXMQ12U7spI+DwpZK0DZAutzq8h5U0+E2TB2Nw4CjG6IUCp2J2gZpvJCtU
- WoHf3oHFag3H26rzt6yp991f6bl0X4k=
-X-Authority-Analysis: v=2.4 cv=JKgLdcKb c=1 sm=1 tr=0 ts=6a443db7 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8 a=dkR0I6OD3irOzcp_LXMA:9
-X-Proofpoint-GUID: vgpb_EijJ1YQtl4DTOwwUQ5uszEZGn3z
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDIxNSBTYWx0ZWRfX1RrUFYaS+RhY
- DB7/JKdUEKKSxmhB417LRhk9mvE1SrUQ/XfQWHwTcuyytIgKNmmj9HPHy6UiXQH7AtvFO2IbR+b
- rQk4ObQmFTKb3rgz3GRpIiRxsNlHRSUoE+qWuZNRscTvkymY15PcxuDHRlB8C8oq5ZtQ/dW8p7e
- 8TtFhfeONJLSfb8kiRHMBalaNKosRPb86b8kgK2MHAP7bPDTmzfTcFKFqGZEAmXwdxmWPvfx83a
- NHT+BzPMfc28t1u0sBFrONBmkCS5GElaNQdkyoLEjiIY4SbejL89MBGgCFUT62j6MaBc1BedGoB
- yVnvXEFWht70VNg/8uYfyMCDNLaGBdcTSsCPmM5xzSabhocpNnsEJzX2YbX4APEq/5n0e9+2u8O
- TNVJecUQL+kc3bGUo8K+lBgF7mjn4blyFek7zfQk7qpdJKO0K4jDquj57VUMQV7DDIVWtWdiXra
- AULzjz7ZgzljBEYU9xQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-30_05,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 suspectscore=0 clxscore=1011
- malwarescore=0 impostorscore=0 adultscore=0 phishscore=0 spamscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2606300215
+References: <20260630092406.150587-1-manikandan.m@microchip.com> <20260630092406.150587-2-manikandan.m@microchip.com>
+In-Reply-To: <20260630092406.150587-2-manikandan.m@microchip.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Wed, 1 Jul 2026 00:12:47 +0200
+X-Gmail-Original-Message-ID: <CAD++jL=FkEfpz-LW0vmPpZ28fLfGFMWo5E479Mapz55YUxKNAQ@mail.gmail.com>
+X-Gm-Features: AVVi8CcLJOfvOFl8jmVmAP_uzLY_UWoBigmB1_kTp6EN1gm7rCEox0bV8PbTeSw
+Message-ID: <CAD++jL=FkEfpz-LW0vmPpZ28fLfGFMWo5E479Mapz55YUxKNAQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/7] dt-bindings: mtd: jedec,spi-nor: allow the SFDP to
+ be exposed via NVMEM
+To: Manikandan Muralidharan <manikandan.m@microchip.com>
+Cc: pratyush@kernel.org, mwalle@kernel.org, takahiro.kuwano@infineon.com, 
+	miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, srini@kernel.org, 
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+	claudiu.beznea@tuxon.dev, linux@armlinux.org.uk, richardcochran@gmail.com, 
+	arnd@arndb.de, michael@walle.cc, linux-mtd@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-318064-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[nitin.rawat@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318065-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:krzk+dt@kernel.org,m:robh@kernel.org,m:andersson@kernel.org,m:mani@kernel.org,m:alim.akhtar@samsung.com,m:bvanassche@acm.org,m:avri.altman@wdc.com,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:nitin.rawat@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:manikandan.m@microchip.com,m:pratyush@kernel.org,m:mwalle@kernel.org,m:takahiro.kuwano@infineon.com,m:miquel.raynal@bootlin.com,m:richard@nod.at,m:vigneshr@ti.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:srini@kernel.org,m:nicolas.ferre@microchip.com,m:alexandre.belloni@bootlin.com,m:claudiu.beznea@tuxon.dev,m:linux@armlinux.org.uk,m:richardcochran@gmail.com,m:arnd@arndb.de,m:michael@walle.cc,m:linux-mtd@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:netdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,infineon.com,bootlin.com,nod.at,ti.com,microchip.com,tuxon.dev,armlinux.org.uk,gmail.com,arndb.de,walle.cc,lists.infradead.org,vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nitin.rawat@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:email,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0610D6E8471
+X-Rspamd-Queue-Id: 5B6CB6E8598
 
-Document the UFS Controller on Maili SoC.
+Hi Manikandan,
 
-Signed-off-by: Nitin Rawat <nitin.rawat@oss.qualcomm.com>
----
- Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+thanks for your patch!
 
-diff --git a/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
-index b441f0d26081..fea89e522f35 100644
---- a/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
-+++ b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
-@@ -18,6 +18,7 @@ select:
-           - qcom,eliza-ufshc
-           - qcom,hawi-ufshc
-           - qcom,kaanapali-ufshc
-+          - qcom,maili-ufshc
-           - qcom,nord-ufshc
-           - qcom,sm8650-ufshc
-           - qcom,sm8750-ufshc
-@@ -31,6 +32,7 @@ properties:
-           - qcom,eliza-ufshc
-           - qcom,hawi-ufshc
-           - qcom,kaanapali-ufshc
-+          - qcom,maili-ufshc
-           - qcom,nord-ufshc
-           - qcom,sm8650-ufshc
-           - qcom,sm8750-ufshc
---
-2.34.1
+On Tue, Jun 30, 2026 at 11:24=E2=80=AFAM Manikandan Muralidharan
+<manikandan.m@microchip.com> wrote:
 
+> Add an optional "sfdp" child node (compatible "jedec,sfdp") that
+> describes the SFDP as a read-only NVMEM provider via nvmem.yaml, so its
+> contents (e.g. a vendor EUI-48/EUI-64) can be read through NVMEM cells.
+>
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+
+I would expect it to follow nvmem conventions like this, notice
+compatibles specific-to-general with sfdp first:
+
+sfdp {
+    /* NVMEM provided by SFDP */
+    compatible =3D "jedec,sfdp", "nvmem-cells";
+    label =3D "SFDP";
+    read-only;
+    #address-cells =3D <1>;
+    #size-cells =3D <1>;
+
+    mac0: macaddr@0x00 {
+        reg =3D <0x00 0x06>;
+    };
+    mac1: macaddr@0x06 {
+        reg =3D <0x06 0x06>;
+    };
+};
+
+Your example should definitely be more elaborate like this,
+just an opaque sfdp node will not suffice. Maybe a separate
+example?
+
+Yours,
+Linus Walleij
 
