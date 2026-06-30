@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-317426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317427-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qlQ2IHJmQ2qYXwoAu9opvQ
-	(envelope-from <devicetree+bounces-317426-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 08:47:14 +0200
+	id cIgdAZxmQ2qcXwoAu9opvQ
+	(envelope-from <devicetree+bounces-317427-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 08:47:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1BF86E0DDC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 08:47:13 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88BCB6E0DE9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 08:47:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Zo82KfFn;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317426-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317426-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FKjhXOj0;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317427-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317427-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AD101309B2E0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 06:41:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CE30B30059A3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 06:47:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C93367293;
-	Tue, 30 Jun 2026 06:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D47A1392C28;
+	Tue, 30 Jun 2026 06:47:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1383291C10;
-	Tue, 30 Jun 2026 06:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D1EC3822A1;
+	Tue, 30 Jun 2026 06:47:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782801616; cv=none; b=q102Y7x/C/NnuPs0IE7+8FXcOMSNhVUEj9THay1ecz8UqTAbTQqvSuaBS+NIyOIbD92V8R+FkcZ2pvUkGLcK//iEul4fbH3LHRabhjBZNUknYWNxGuSx1G1QExX4vTZkmtEfQxobQYgFtt7Ia2RO3hAEScXGs8SCwAwPTRXnhOE=
+	t=1782802072; cv=none; b=gHwuPfXiYaAXwU7dIMCy7l2AGo9TfZBTJdCX/mEQaxgkRoD1NwomZW7t0keYvlgX+X4AcrDjXE4r48NeLbl36EEWQlNPW6rNwlZV34aKgophRduFCYFaYfC83SERLzNyGySZ4ZXW/WJBEclIBM9SytpOkd+vDA369lp173WtDvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782801616; c=relaxed/simple;
-	bh=tPzUUgKX5I6bopctVswm3qvHLGFdUqAjogaDEX43PGk=;
+	s=arc-20240116; t=1782802072; c=relaxed/simple;
+	bh=rAfjYDmFjO334SlGnUD4ll1Qtgt5OdlU1pHochTedL4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g8aQcy6j4CVyZY4xjmZWl40IOPlPevMo2Ebt/YW6OxqX7b/KN7rfyJHmQv3bujlRSV8gQmGt9rfuIExOE1WLDpqD2ySyMvdHTRG9mT9i7pdsjoWJJOlWcVoFAPRR2x00c6lLDkFn7UTuE3hBcziCGgjKkrDR/w1WlIWrMZL/JQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zo82KfFn; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 387281F000E9;
-	Tue, 30 Jun 2026 06:40:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=O1q4MzvKyRClCnmXUchpn7N4YQbiw9zuEN8AWsUQJlNZHndJ5IvxmZO5eJu9z4oRSQ0zMSng7IyPgiTXQeVHerhNDd9Rzh6/6ZhMh3Fi3zyUGUwCVioZobnyYMEmd7schinHkzOGjdPE69QmOljp/z5hTNqbcnzMqam6aSw4yL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FKjhXOj0; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87DBA1F000E9;
+	Tue, 30 Jun 2026 06:47:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782801612;
-	bh=1zK/FCFxCZYzG1d3MdwSXsiqqSvH2UuFILULEPPXJy4=;
+	s=k20260515; t=1782802069;
+	bh=rAfjYDmFjO334SlGnUD4ll1Qtgt5OdlU1pHochTedL4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Zo82KfFnm91JHEO9rwac1k3/5D5cvqSQmCvj1Q4EebADzTxSiqpGE5nBAo3o2tFqJ
-	 KlsBv8Fk38EmtJilevk3enjxTjq8fc+QIsiYDB7Wq0tFplDDKvyg7mq5CZos4/e/YT
-	 +lNp5bEf4lUZGBzcvhb4VgHRhiLqFtLxOM6tvJ2UROdFvUEuRPPtm8puKfOyhv/Woc
-	 tuti6clWePWEnPsoB8vJAb3bZjBXJSN0pLsQwPSiV8u+rIm9n3fSjx0rv83YE+MlC9
-	 OHR8Rkufpt41k4PsiMXWPkjifxv1npflyHTKy9BGGikfnEv2vLUHU0BV+UqeSBpf/3
-	 CtAzTa0sqA9rQ==
-Date: Tue, 30 Jun 2026 08:40:08 +0200
+	b=FKjhXOj0vpBtzMvc0YE/njE02NLXZE7znhdXGVcvUHGnluCcGoG2ha65kXBMA7F50
+	 MOPzQzrmNHTH9hXQEx/xDPyRECDN1v99ESbs3XamPNxsehSEQUfbcQKimYJBfW7eoQ
+	 +XG133SnxThuzDZCSanH/Bqa7K0jrZp9Nz+41jeDyllTqxiO/0U8wiSY+R6iySNj73
+	 TcILpA5qxNErPZ1LTDhKOfzRrTqgUSJuQen1bmRJOsvUg6lFKXLW/lw5/ZzNzsTHWo
+	 EEWMbM9wQqLeILsyO1EQPXXFQxl9depht3LpRBlcZHn1A98bgeRFEmtLNEy9fISb2a
+	 Alfj9NnubPoVw==
+Date: Tue, 30 Jun 2026 08:47:45 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Neo Chang <YLCHANG2@nuvoton.com>
-Cc: broonie@kernel.org, lgirdwood@gmail.com, perex@perex.cz, 
-	robh@kernel.org, krzk+dt@kernel.org, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, alsa-devel@alsa-project.org, neo.chang70@gmail.com, 
-	kchsu0@nuvoton.com, sjlin0@nuvoton.com
-Subject: Re: [PATCH v5 1/2] ASoC: dt-bindings: nuvoton,nau8360: Add NAU83G60
-Message-ID: <20260630-amusing-striped-urchin-d49c93@quoll>
-References: <20260630021510.821919-1-YLCHANG2@nuvoton.com>
- <20260630021510.821919-2-YLCHANG2@nuvoton.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] spi: dt-bindings: snps,dw-apb-ssi: drop
+ superfluous RZ/N1 entry
+Message-ID: <20260630-dazzling-intrepid-lobster-c83db6@quoll>
+References: <20260626180326.9593-1-wsa+renesas@sang-engineering.com>
+ <20260626180326.9593-2-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,79 +66,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260630021510.821919-2-YLCHANG2@nuvoton.com>
+In-Reply-To: <20260626180326.9593-2-wsa+renesas@sang-engineering.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-4.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-317427-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:wsa+renesas@sang-engineering.com,m:linux-renesas-soc@vger.kernel.org,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:wsa@sang-engineering.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,glider.be,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:YLCHANG2@nuvoton.com,m:broonie@kernel.org,m:lgirdwood@gmail.com,m:perex@perex.cz,m:robh@kernel.org,m:krzk+dt@kernel.org,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:alsa-devel@alsa-project.org,m:neo.chang70@gmail.com,m:kchsu0@nuvoton.com,m:sjlin0@nuvoton.com,m:krzk@kernel.org,m:neochang70@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317426-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,vger.kernel.org,alsa-project.org,nuvoton.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,quoll:mid]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,quoll:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C1BF86E0DDC
+X-Rspamd-Queue-Id: 88BCB6E0DE9
 
-On Tue, Jun 30, 2026 at 10:15:09AM +0800, Neo Chang wrote:
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: mclk
-> +
-> +  firmware-name:
-> +    items:
-> +      - description: |
+On Fri, Jun 26, 2026 at 08:03:22PM +0200, Wolfram Sang wrote:
+> Commit 164c05f03ffa ("spi: Convert DW SPI binding to DT schema") added
+> an RZ/N1 entry which was not in the original txt-file. It doesn't follow
+> the usual "<soc entry>, <soc family entry>" style for Renesas SoCs which
+> was properly added later with commit 029d32a892a8 ("spi: dw-apb-ssi:
 
-Drop |
+Does not matter really. It was added apparently to match the compatibles
+used.
 
-> +          Left DSP core firmware.
-> +          In PBTL mode, the Left firmware is ignored and only the Right is applied.
-> +      - description: Right DSP core firmware.
-> +
-> +  nuvoton,pbtl-enable:
-> +    type: boolean
-> +    description: NAU83G60 supports PBTL mode for mono output.
-> +
-> +  nuvoton,dac-cur-enable:
-> +    type: boolean
-> +    description: |
+> Integrate Renesas RZ/N1 SPI controller"). In that commit, removing the
+> bogus entry was overlooked and is finally done now.
 
-Drop |
+You introduce undocumented ABI or your patchset is non-bisectable. Past
+commit is past history, so not really a reason to introduce new errors
+(and undocumented ABI is considered such).
 
-There is no formartting to preserve and I did not ask to introduce it
-here. I commented in completely different place.
-
-With these two fixed:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Please drop the patch or fix it.
 
 Best regards,
 Krzysztof
