@@ -1,230 +1,204 @@
-Return-Path: <devicetree+bounces-317905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317907-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id P294BbXfQ2pdkwoAu9opvQ
-	(envelope-from <devicetree+bounces-317905-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:24:37 +0200
+	id Ok2kDATgQ2p6kwoAu9opvQ
+	(envelope-from <devicetree+bounces-317907-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:25:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708FF6E5E72
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:24:36 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92FA36E5EA6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:25:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=ld4sIBts;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317905-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-317905-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gl3HVf7s;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317907-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317907-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D3113303B587
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:24:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 86E0F30923B0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E020370AC5;
-	Tue, 30 Jun 2026 15:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95E21370AFF;
+	Tue, 30 Jun 2026 15:24:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC61331EC4
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 15:24:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58FCB370ADD
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 15:24:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782833063; cv=none; b=vFOrarxyDYsRTabi6jji199Jy6pjMjcWbsr3X3u8fDd+Wvvp2rPzHHwmSloJRjCob/fIMn/ThUbXwtjBHAU+mv4fofYQQ8o5XSN7Ml6HQ/piwzVZ5JLVfpJZtyv3oBiMPeUsTbGZaev5IveSE3pMlJrQ378O9LPhwEmsfilqn6w=
+	t=1782833070; cv=none; b=lAbzBYhVHbpBPVlemySOPAR6j1wxybRH29vMhwrk6IFo8G5eChm1zrjkrtcsiwwA24Hrc2R6NdkRunoSfuXuzyoflrwJ6MKCoOP7rH41ZD39NRJp9Thait76FXkZnLvrUtV/eeC9Q+EP7bH6l/X5ry7loLGzWQz2PFm2Tp9Eh7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782833063; c=relaxed/simple;
-	bh=ilwmPRsLFmPgkqbep4PVet62o0txIgMEH0pTIIfUWFE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=II+1pMZdY7z3wdienO/6eNLPM+NBhZgwq6DsOatJrU71i0ILTbyZufLkZszWrtz1qNkmoZQpTtTtTeutPUn5naxmo3G61xGApj/kyrmge82xR3ppCsTGUJ90+T3RnQdPDk+ZHpXE4jfjRTGvg0Nh+ukyPrSST4+p8sFLMCYY1tU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=ld4sIBts; arc=none smtp.client-ip=209.85.210.42
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-7e9ecb1e13cso1192920a34.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 08:24:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1782833060; x=1783437860; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xv8vYlFh+PBuicn2boO4XNNshtTQUIiWhs4Wjc5dQk8=;
-        b=ld4sIBtsp58JIYgeGDjBTnOaDFLR1gNjsWaii2wL3eh7x15PsNcHCO4zvaLE6euAWk
-         rpZkOMGHdr5XXZmckcJkx5wUL6QRLJbG59OFA5dLwhEIqRcIE2GdK4frv4gVrTUb7GaR
-         VI2Lk62jmzmkpXwJ1SaSCIn+XvZVhdyJPCCQq/DgyWRBFw2FwSKpaOz1VExXtJynWxi8
-         xlcCXMKRqQ0ixUCHUXoMwKhUyCkfp/NZKQAN+ypyQgzsebril3+5y4zDXb2VEvbIBvD8
-         1WzKn/+USYj2p57npPdCvmBTVb4geoSTdq7m8cHPiwoYfUEwudd/FqQJvNI0qeVar+eJ
-         2MyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782833060; x=1783437860;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xv8vYlFh+PBuicn2boO4XNNshtTQUIiWhs4Wjc5dQk8=;
-        b=UiO/mlt5BHU00IRAIEY3kCiIaUE1575fm0mAV/sY2lu4R8XgXuD+sKVHI0Pv7fMrwt
-         X5zWnJNJU/DCFoBuMUnyFcAXxWCt6/8SO4P3kAnqcaeFBrLIoEhjOtTAnUaL2eyOTymU
-         QW0HcgYGtwZrBnavWu1RBtfA4NyQfUdX3u33UvL3TZpqAy+Hq8/Qr8RjM5qmIbuFp26D
-         525gxdd8h3RvcrQ5fiXB/nSK5Q3NFzBFJfb1awsISj8ADGrzBikwKb5pxHO/CPfkZBZV
-         7xIEuZ0Xlb4DWgRHeCyiTCWAvp/sx5ETDTkWEEa/WpLY6SmFT8fDAiH5Rf0fjLZUzzmV
-         7qSw==
-X-Forwarded-Encrypted: i=1; AFNElJ944Elj2s6lBRp4OCFMByOHXgGeAp+PiU6W1ZcSC71S7ShWx+NoWquifeBnIjqWj4oXhhklUW1Ye8ha@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkSE3GCe8Ey064Eq/ssD/hhco/Qvdl70vhUmCUHaSjt87SWN1C
-	5Mu2PYH5vZKdCAMzWdd9WlDx7f4NpzL7S5fAA2ndoMwedcmY9mi/ASwYHv5fH1C8xZE=
-X-Gm-Gg: AfdE7ckfb5ZBgvlKXmlfPVPdXptB7oDowF6XcMMJiehvxmgUriiel5nVUruF8dkMScp
-	DNKH5+6t6TC5H93PAwktW4ut9EZJYoYTb/KtURj8nuJZjLEHbv1rF9aKwTc4/vhMGF1eP6sNO1d
-	EO0iEjF4UDXsfaz8xalqE82r4Zh4iXgBESGz3F/pIYBqUXDCZh5AOIWDcqdQ58ZEkwoxyvlelY6
-	5qfzdv8VXie2MxuYnIcIM7fRBpMbXEiCwm0fn67CEn9R0V4fjMygTmH6CbVcC/bNWbevg5mgEAX
-	+KgzH2mS5d/2hg/Kq4OATSC4pvqIFEnWdrqVpnzZFXsEtc5lRUHqZeQw1woQSmEkfiuQ118QzkM
-	EeqZ0nT+blrqh+Ll0Z5PR5ZfvX04T13YgEK+93eCTbEeAltZ9FfH5+bnd6byggUXHgtva2T80HO
-	g2V9e2z5oq6S2dQiY96Z2DXpxzhPz/+/fSYn70Vwzqhj5bWVP/31z2Bh1k7X91zUc=
-X-Received: by 2002:a05:6830:488a:b0:7e6:f482:df36 with SMTP id 46e09a7af769-7e9fbfb81bbmr567069a34.15.1782833060338;
-        Tue, 30 Jun 2026 08:24:20 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:e190:78b2:dd4e:ba94? ([2600:8803:e7e4:500:e190:78b2:dd4e:ba94])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e9ec2ba18esm2689450a34.16.2026.06.30.08.24.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jun 2026 08:24:19 -0700 (PDT)
-Message-ID: <a64fd56f-6e4b-4e19-9804-ce7a96f14973@baylibre.com>
-Date: Tue, 30 Jun 2026 10:24:19 -0500
+	s=arc-20240116; t=1782833070; c=relaxed/simple;
+	bh=hAa4aheuZ4m3d1pqKSRmR0+0VfUdeAQzBD4vTHrRuMc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=bItyphUjz4sLdw89t6tzGf5/Utezgd75XQlk4dSeSkE3w4uXjIPGH2rbny9MbCMosxCzz0UesTmaCT1pzNVTJLOqrXqPv3OE9c8zSg6sG3uVdqiCmx7zwzeSRwAAasga0P5RUpO9EZZP62SDWnD6ITo1jAnorfNSPuQ1fkCPxpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gl3HVf7s; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DBD01F00A3A;
+	Tue, 30 Jun 2026 15:24:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782833069;
+	bh=dFm3ZELVmbdc9+wyTXkIsZEKn25JxBRf2DY9Cdx6pQo=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=gl3HVf7siPkjm/yghX041jwJIfsmN9JN4H0xyhQLpkyGNxsGcEqQJJmmS4Wn+q7nO
+	 RphB6dUstzUwCh7G1xaBwoFXf9EeMti0cJsBY0TmX3jdH3NOhnH+dsHSQ4xOh6TItB
+	 j2uROx4wqHVCS7+UxwQSyjd3UV16W9SC1TwTBBYj1+7NrPWOKq8VzhkX+0BeGgDjKs
+	 DWfcknUawXqjMO9JGTennwXtE7DVT5+BFXROeIBBM/FwZURIdVqIOGX58fdMlu406L
+	 zs9GZnf0O+FSi065y69DBj4op6HIkotdljkMvp9ZsSiHavk4cgeTIFbUDEFfVdd+z6
+	 OTvQEl5O+/a1g==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH net-next v2 3/8] net: phy: add
+ (*notify_phy_attach/detach)() hooks to struct mii_bus
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Markus Stockhausen" <markus.stockhausen@gmx.de>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260629152336.2239826-4-markus.stockhausen@gmx.de>
+References: <20260629152336.2239826-1-markus.stockhausen@gmx.de>
+ <20260629152336.2239826-4-markus.stockhausen@gmx.de>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 30 Jun 2026 15:24:28 +0000
+Message-Id: <20260630152428.7DBD01F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: ti,ads1298: add ADS1299 EEG
- ADC variants
-To: Md Shofiqul Islam <shofiqtest@gmail.com>, linux-iio@vger.kernel.org
-Cc: jic23@kernel.org, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mike.looijmans@topic.nl,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260630140311.1473031-1-shofiqtest@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260630140311.1473031-1-shofiqtest@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317905-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:shofiqtest@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mike.looijmans@topic.nl,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[baylibre.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[baylibre.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-317907-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmx.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:markus.stockhausen@gmx.de,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ti.com:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,baylibre.com:dkim,baylibre.com:mid,baylibre.com:from_mime,devicetree.org:url]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,makrotopia.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 708FF6E5E72
+X-Rspamd-Queue-Id: 92FA36E5EA6
 
-On 6/30/26 9:03 AM, Md Shofiqul Islam wrote:
-> The ADS1299, ADS1299-4, and ADS1299-6 share the same SPI interface
-> and register map as the ADS1298 ECG ADC family but are designed for
-> EEG and biopotential measurement.  Key differences from ADS1298:
-> - PGA gain up to 24x (vs 12x for ADS1298)
-> - Internal reference is always 2.4V (no 4V option)
-> 
-> Add compatible strings and update the vref-supply description to
-> document the ADS1299 reference voltage behaviour.
-> 
-> Signed-off-by: Md Shofiqul Islam <shofiqtest@gmail.com>
-> ---
->  .../bindings/iio/adc/ti,ads1298.yaml          | 31 ++++++++++++++++---
->  1 file changed, 26 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
-> index 71f9f9b745cb..82c5181126df 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
-> @@ -4,11 +4,16 @@
->  $id: http://devicetree.org/schemas/iio/adc/ti,ads1298.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Texas Instruments' ads1298 medical ADC chips
-> +title: Texas Instruments ADS1298/ADS1299 biopotential ADC chips
->  
->  description: |
-> -  Datasheet at: https://www.ti.com/product/ADS1298
-> -  Bindings for this chip aren't complete.
-> +  ADS1298/ADS1298R: 8-channel, 24-bit ECG ADC.
-> +  Datasheet: https://www.ti.com/product/ADS1298
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+
+New issues:
+- [Medium] The `notify_phy_detach` hook can be invoked on an MDIO bus even =
+if `notify_phy_attach` was never called or failed, leading to unbalanced se=
+tup/teardown symmetry.
+
+Pre-existing issues:
+- [High] Calling `phy_attach_direct` on an already attached PHY returns `-E=
+BUSY` but incorrectly executes the `phy_detach` error path, destroying the =
+existing valid attachment.
+--
+
+commit c461faab1a569fa9ec7dc7cc9fc30615fc89408c
+Author: Daniel Golle <daniel@makrotopia.org>
+
+net: phy: add (*notify_phy_attach/detach)() hooks to struct mii_bus
+
+Some MDIO buses require to program PHY polling registers depending on
+the PHY type. Provide two simple hooks in struct mii_bus which are called
+right after a PHY has been attached and just before the PHY is going to be
+detached.
+
+Link: https://github.com/openwrt/openwrt/pull/21515#discussion_r2714069716
+Link: https://lore.kernel.org/netdev/cover.1769053496.git.daniel@makrotopia=
+.org/
+
+> diff --git a/drivers/net/phy/phy_device.c b/drivers/net/phy/phy_device.c
+> index 0615228459ef4..676cbf183350d 100644
+> --- a/drivers/net/phy/phy_device.c
+> +++ b/drivers/net/phy/phy_device.c
+> @@ -1876,6 +1876,12 @@ int phy_attach_direct(struct net_device *dev, stru=
+ct phy_device *phydev,
+>  	if (err)
+>  		goto error;
+> =20
+> +	if (phydev->mdio.bus->notify_phy_attach) {
+> +		err =3D phydev->mdio.bus->notify_phy_attach(phydev);
+> +		if (err)
+> +			goto error;
+
+[Severity: High]
+This is a pre-existing issue, but calling phy_attach_direct() on an already
+attached PHY seems to tear down the existing valid attachment. Earlier in
+this function:
+
+	if (phydev->attached_dev) {
+		dev_err(&dev->dev, "PHY already attached\n");
+		err =3D -EBUSY;
+		goto error;
+	}
+
+Jumping to the error label unconditionally executes phy_detach(), which
+clears phydev->attached_dev (the original owner) and severs the
+dev->phydev link.
+
+Should this path return an error directly without calling phy_detach()?
+
+> +	}
 > +
-> +  ADS1299/ADS1299-4/ADS1299-6: 8/4/6-channel, 24-bit EEG/biopotential ADC.
-> +  Identical SPI interface and register map to the ADS1298 family, but with
-> +  a higher maximum PGA gain (24x vs 12x) and fixed 2.4V internal reference.
-> +  Datasheet: https://www.ti.com/product/ADS1299
->  
->  maintainers:
->    - Mike Looijmans <mike.looijmans@topic.nl>
-> @@ -17,6 +22,9 @@ properties:
->    compatible:
->      enum:
->        - ti,ads1298
-> +      - ti,ads1299
-> +      - ti,ads1299-4
-> +      - ti,ads1299-6
->  
->    reg:
->      maxItems: 1
-> @@ -33,8 +41,10 @@ properties:
->  
->    vref-supply:
->      description:
-> -      Optional reference voltage. If omitted, internal reference is used,
-> -      which is 2.4V when analog supply is below 4.4V, 4V otherwise.
-> +      Optional reference voltage. If omitted, internal reference is used.
-> +      For ADS1298, the internal reference is 2.4V when analog supply is
-> +      below 4.4V, 4V otherwise. For ADS1299, the internal reference is
-> +      always 2.4V.
+>  	phy_resume(phydev);
 
-Not sure the dt-bindings care about the internal reference. It should
-just be a driver implementation detail.
+[ ... ]
 
-So I would just trim this down to:
-
-	Optional reference voltage. If omitted, internal reference is used.
-
->  
->    clocks:
->      description: Optional 2.048 MHz external source clock on CLK pin
-> @@ -75,5 +85,16 @@ examples:
->            spi-max-frequency = <20000000>;
->            spi-cpha;
->          };
+> @@ -1919,6 +1925,9 @@ void phy_detach(struct phy_device *phydev)
+>  	struct module *ndev_owner =3D NULL;
+>  	struct mii_bus *bus;
+> =20
+> +	if (phydev->mdio.bus->notify_phy_detach)
+> +		phydev->mdio.bus->notify_phy_detach(phydev);
 > +
-> +        adc@2 {
-> +          reg = <2>;
-> +          compatible = "ti,ads1299";
-> +          label = "ads1299-1-eeg";
-> +          avdd-supply = <&reg_iso_5v_a>;
-> +          interrupt-parent = <&gpio0>;
-> +          interrupts = <79 IRQ_TYPE_EDGE_FALLING>;
-> +          spi-max-frequency = <20000000>;
-> +          spi-cpha;
-> +        };
 
-Since the chips are nearly identical, not sure a 2nd example is
-particularly useful.
+[Severity: Medium]
+Will notify_phy_detach() be invoked even if notify_phy_attach() was never
+called or failed?
 
->      };
->  ...
+If phy_init_hw() or any other initialization step prior to
+notify_phy_attach() fails in phy_attach_direct(), the code jumps to the
+error label and calls phy_detach(), which now unconditionally executes
+notify_phy_detach().
 
+Could this lead to unbalanced setup/teardown symmetry if a bus driver
+assumes notify_phy_detach() is only called after a successful
+notify_phy_attach()?
+
+>  	if (phydev->devlink) {
+>  		device_link_del(phydev->devlink);
+>  		phydev->devlink =3D NULL;
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260629152336.2239=
+826-1-markus.stockhausen@gmx.de?part=3D3
 
