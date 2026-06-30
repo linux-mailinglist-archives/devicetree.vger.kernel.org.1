@@ -1,275 +1,230 @@
-Return-Path: <devicetree+bounces-317906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317905-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id witzMcXfQ2pikwoAu9opvQ
-	(envelope-from <devicetree+bounces-317906-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:24:53 +0200
+	id P294BbXfQ2pdkwoAu9opvQ
+	(envelope-from <devicetree+bounces-317905-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:24:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61BA16E5E7D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:24:53 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 708FF6E5E72
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 17:24:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=Su4ialLW;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317906-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317906-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=baylibre.com header.s=google header.b=ld4sIBts;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317905-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-317905-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C46D8303EB19
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:24:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D3113303B587
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 15:24:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD18370AE8;
-	Tue, 30 Jun 2026 15:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E020370AC5;
+	Tue, 30 Jun 2026 15:24:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011001.outbound.protection.outlook.com [52.101.70.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 068B0371D07;
-	Tue, 30 Jun 2026 15:24:27 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782833069; cv=fail; b=p1FyguYcUI8AUt46ITW9MZ+9BM3a3PA+7479Tdn1AdOeFtn9fCyVQp8TyphCmSrvZaTmWYw+QiGF1Cah2iHB54BI48/byg9BFZJm2RcufT8HoAyFccDOodz1KuOeBjo5+Yyat8xnrMFeKKyJGXqnub7d12aCBVHVz7b6lKbWA8s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782833069; c=relaxed/simple;
-	bh=srXzvK2ss61xI7KxKtxYXkDcDlmVlD8AXCZHtBWdoQc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=uQy4V5nGzGFpdiWJ7/cakeRo0z1D2exIDcBWAryBWUAWnKOf59wA7IgMavNwUuJ5mlvA0AGH1nvtajfb1n2jcVZAMdH48Dk4K0ClHR0wQtfHv+sb+qp4GyvPDPmZHrT7nD3lxd6d9nx4+4qfdIQhe8MRkiMhyoaZT0lXguhogKs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=Su4ialLW; arc=fail smtp.client-ip=52.101.70.1
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wi+PSKEB3r+2EokGbFxxxdYWhPOl0ve/7cxgdxiL9/4SQKmj+1veiZznxdKV+QNKKSaypdILrkBpId7SDsAN00REyp3cCWyS/h5UwvOYREz0MVngQWY93IMle37Qkgr4DIkcZjqlW3zFBmQFs2tOP7prWfaxezkC8sv2iuoxnvj1YBSG6BLlQRXR9tNt4uRGqZm7YDmU7ivh4cl1rVhEWgQXw6j3MSUIz42xHn5vkbXz9cHKtyY10qs7H1SgWkn2fHK9dlOO5RUiSXQosfDSu1OMgdzPjJEzMMGLG5penscsFesars5/0ZmyYn8ImOZw07ezgpjxeiy/xSFwqN47Zw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yCAXoJSlnUL4H/9dsqX+W+UndEBRf+uXnxNKd6Fp0IM=;
- b=I7yGo6lauaWgKymL29/+yetuTKMZO1xwULrusCJ9iLqZjQh3UkqEtZidU9lQf/5g3EOuq2C9nrttbp+cvfBwHicSB+yl5WCgiR+x+Yi1bqFZEwkulBvskSuh86IcUruxgEDfsJC6xW3W6s8Y4kRgTPPBTR0f9uQxJJ9cj3PC2LmvF808B1CRvIvkKpQfRuL4JFcAcMtebBB2dhc+QNSjeygFLN9Jbr7CJaorLe0oTBqFRSxwCDJW/fhtzJZPGq07BhXoEbKYQpQ+32zegwcU3c2PniC3ZNC7Q3Lyy9beTB47CFnVier7LYwcMeuKt3Hy/xZntLU91+RAEShKSN9y/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yCAXoJSlnUL4H/9dsqX+W+UndEBRf+uXnxNKd6Fp0IM=;
- b=Su4ialLWU/8lorWKa/hnbrAMcIJ4V2mnaQI+Z5UC+sb72Sak4gKFP5fi84KXW2h3SGmSdwY051umPrMvWjrLYtM+a+sVqEMC2E4ehrZyTYfZJKWh5m9HRILnJ2/+BvS42yGEKfUDUoM/plN14tXAptW6kdMKGpVMefYlNj7M5wkWhrUPBHNYf0Xe2/p909d8AsKC94cBVbsnjYMo6ooTFC1xcl3E2th4/9YrUo7pjxgygd5cAiTJOLhCLjmb9qxfE/AFvktqpvIv5QYcNC8LnRpRR+6zNYRbslXVHWMeNZ+u+jnIHAlHgzOd3ubDzngpsE+EDOnDhfSC4t+DI/A9lQ==
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by VI2PR04MB10190.eurprd04.prod.outlook.com (2603:10a6:800:228::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Tue, 30 Jun
- 2026 15:24:22 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0159.007; Tue, 30 Jun 2026
- 15:24:22 +0000
-Date: Tue, 30 Jun 2026 10:24:10 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>
-Cc: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
-	Larisa Grigore <larisa.grigore@nxp.com>, Lee Jones <lee@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Christophe Lizzi <clizzi@redhat.com>, devicetree@vger.kernel.org,
-	Enric Balletbo <eballetb@redhat.com>,
-	Eric Chanudet <echanude@redhat.com>, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Vincent Guittot <vincent.guittot@linaro.org>
-Subject: Re: [PATCH v12 1/6] pinctrl: s32cc: add/fix some comments
-Message-ID: <akPfmrxhjZkpxsDm@SMW015318>
-References: <20260630125403.546375-1-khristineandreea.barbulescu@oss.nxp.com>
- <20260630125403.546375-2-khristineandreea.barbulescu@oss.nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260630125403.546375-2-khristineandreea.barbulescu@oss.nxp.com>
-X-ClientProxiedBy: PH7PR03CA0004.namprd03.prod.outlook.com
- (2603:10b6:510:339::30) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC61331EC4
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 15:24:21 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782833063; cv=none; b=vFOrarxyDYsRTabi6jji199Jy6pjMjcWbsr3X3u8fDd+Wvvp2rPzHHwmSloJRjCob/fIMn/ThUbXwtjBHAU+mv4fofYQQ8o5XSN7Ml6HQ/piwzVZ5JLVfpJZtyv3oBiMPeUsTbGZaev5IveSE3pMlJrQ378O9LPhwEmsfilqn6w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782833063; c=relaxed/simple;
+	bh=ilwmPRsLFmPgkqbep4PVet62o0txIgMEH0pTIIfUWFE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=II+1pMZdY7z3wdienO/6eNLPM+NBhZgwq6DsOatJrU71i0ILTbyZufLkZszWrtz1qNkmoZQpTtTtTeutPUn5naxmo3G61xGApj/kyrmge82xR3ppCsTGUJ90+T3RnQdPDk+ZHpXE4jfjRTGvg0Nh+ukyPrSST4+p8sFLMCYY1tU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=ld4sIBts; arc=none smtp.client-ip=209.85.210.42
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-7e9ecb1e13cso1192920a34.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 08:24:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1782833060; x=1783437860; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xv8vYlFh+PBuicn2boO4XNNshtTQUIiWhs4Wjc5dQk8=;
+        b=ld4sIBtsp58JIYgeGDjBTnOaDFLR1gNjsWaii2wL3eh7x15PsNcHCO4zvaLE6euAWk
+         rpZkOMGHdr5XXZmckcJkx5wUL6QRLJbG59OFA5dLwhEIqRcIE2GdK4frv4gVrTUb7GaR
+         VI2Lk62jmzmkpXwJ1SaSCIn+XvZVhdyJPCCQq/DgyWRBFw2FwSKpaOz1VExXtJynWxi8
+         xlcCXMKRqQ0ixUCHUXoMwKhUyCkfp/NZKQAN+ypyQgzsebril3+5y4zDXb2VEvbIBvD8
+         1WzKn/+USYj2p57npPdCvmBTVb4geoSTdq7m8cHPiwoYfUEwudd/FqQJvNI0qeVar+eJ
+         2MyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782833060; x=1783437860;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xv8vYlFh+PBuicn2boO4XNNshtTQUIiWhs4Wjc5dQk8=;
+        b=UiO/mlt5BHU00IRAIEY3kCiIaUE1575fm0mAV/sY2lu4R8XgXuD+sKVHI0Pv7fMrwt
+         X5zWnJNJU/DCFoBuMUnyFcAXxWCt6/8SO4P3kAnqcaeFBrLIoEhjOtTAnUaL2eyOTymU
+         QW0HcgYGtwZrBnavWu1RBtfA4NyQfUdX3u33UvL3TZpqAy+Hq8/Qr8RjM5qmIbuFp26D
+         525gxdd8h3RvcrQ5fiXB/nSK5Q3NFzBFJfb1awsISj8ADGrzBikwKb5pxHO/CPfkZBZV
+         7xIEuZ0Xlb4DWgRHeCyiTCWAvp/sx5ETDTkWEEa/WpLY6SmFT8fDAiH5Rf0fjLZUzzmV
+         7qSw==
+X-Forwarded-Encrypted: i=1; AFNElJ944Elj2s6lBRp4OCFMByOHXgGeAp+PiU6W1ZcSC71S7ShWx+NoWquifeBnIjqWj4oXhhklUW1Ye8ha@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkSE3GCe8Ey064Eq/ssD/hhco/Qvdl70vhUmCUHaSjt87SWN1C
+	5Mu2PYH5vZKdCAMzWdd9WlDx7f4NpzL7S5fAA2ndoMwedcmY9mi/ASwYHv5fH1C8xZE=
+X-Gm-Gg: AfdE7ckfb5ZBgvlKXmlfPVPdXptB7oDowF6XcMMJiehvxmgUriiel5nVUruF8dkMScp
+	DNKH5+6t6TC5H93PAwktW4ut9EZJYoYTb/KtURj8nuJZjLEHbv1rF9aKwTc4/vhMGF1eP6sNO1d
+	EO0iEjF4UDXsfaz8xalqE82r4Zh4iXgBESGz3F/pIYBqUXDCZh5AOIWDcqdQ58ZEkwoxyvlelY6
+	5qfzdv8VXie2MxuYnIcIM7fRBpMbXEiCwm0fn67CEn9R0V4fjMygTmH6CbVcC/bNWbevg5mgEAX
+	+KgzH2mS5d/2hg/Kq4OATSC4pvqIFEnWdrqVpnzZFXsEtc5lRUHqZeQw1woQSmEkfiuQ118QzkM
+	EeqZ0nT+blrqh+Ll0Z5PR5ZfvX04T13YgEK+93eCTbEeAltZ9FfH5+bnd6byggUXHgtva2T80HO
+	g2V9e2z5oq6S2dQiY96Z2DXpxzhPz/+/fSYn70Vwzqhj5bWVP/31z2Bh1k7X91zUc=
+X-Received: by 2002:a05:6830:488a:b0:7e6:f482:df36 with SMTP id 46e09a7af769-7e9fbfb81bbmr567069a34.15.1782833060338;
+        Tue, 30 Jun 2026 08:24:20 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:e190:78b2:dd4e:ba94? ([2600:8803:e7e4:500:e190:78b2:dd4e:ba94])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e9ec2ba18esm2689450a34.16.2026.06.30.08.24.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jun 2026 08:24:19 -0700 (PDT)
+Message-ID: <a64fd56f-6e4b-4e19-9804-ce7a96f14973@baylibre.com>
+Date: Tue, 30 Jun 2026 10:24:19 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|VI2PR04MB10190:EE_
-X-MS-Office365-Filtering-Correlation-Id: a2cd345f-18f7-4a2b-e90f-08ded6bba974
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|1800799024|19092799006|7416014|366016|23010399003|6133799003|11063799006|4143699003|22082099003|18002099003|56012099006;
-X-Microsoft-Antispam-Message-Info:
- PzffMNF1K5Cpem0ZvwFv/hBWFpSHaIACxrgxQZn6iP+da+s/lRyWjmPP89etcrdG8K1CNx/ioHKJ1U5MtRm3WEtRyDA6U8mojTmsxKt0sbzKnLPTK1gKfcgLMhR/8NJa+5pRuSSYCuJax0VD0igBw3oLDc+4Fxh5YPdVlavsU5JQ4Nfqn7J4OrFxBYK7UbCH/9Q0DlG56Ob2T+OJA0gB3ZK0ODT6Yiwtr52pWIk7KH8dlI3ZRz7qLp4UhdXvmhkuYG87Cbaq43McGcmhLXFOMzo+UmmPCyScMHGltIPQZIp8Rbw+AXyC03Y4ZiWGRAjD4HgwxqlgxTC2omULnb23yNjQqWCVCQsQRnpdQ76h/2Ir1M4bFsdRCQatZPcrfgmQgp1l1D5PD6CW0TIzkFvTVJxaR/cHIG6IbAs92mFcN8dJdziJCLHhot/Mbx1Uosc5Jso48EykFYdQlEbjqNKs/jM+MZLphXNS/9E3kcQUZ9/4gm1MtM5V5FWKqpvdjOykeUKjAyv17AeJBkMFZfrY3X5mb48vqFNbJflU1LCTN7Ff/yTmKKf3U+Lc+A20pdKKq/O6ZY+I2v1XEvR2zs7eiFo6GEZ0S5r0x4afouFbVsYl99uNC39O2fAXA4FrefJYEFGMwCcyx9tYtpBv2gK1rxoxtAyEuL+3eUFjRBp6h6s=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(19092799006)(7416014)(366016)(23010399003)(6133799003)(11063799006)(4143699003)(22082099003)(18002099003)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?XOAC0zaTo6Ghakn8WJ8Z3V3mqRyOqTUDoe5YXJTYDrd9jGVI/pYBUOc3NqsL?=
- =?us-ascii?Q?nprQli95DEqCxzH8VWxEL8yxtjEaTR+H/sTJ2QZPhvtTadaPYh+KXgH5+MPB?=
- =?us-ascii?Q?yI0wqSixKhGLDie51WxSEfXDfYAyXA1M3fDKD0oaX1YGYsTbP6ETVn21M/hw?=
- =?us-ascii?Q?u4qmJdHixOla3pE4CoyidOoBNYvkyu62iBhBZ+egIxxhP4Jc2+Pm95jgMGgD?=
- =?us-ascii?Q?LRbouDmpaokhkgips9F6ZeUUjov3C0HP+7c+wdqbl6czmZQXYOknEUdzz2uf?=
- =?us-ascii?Q?ZWlWwYMPuAFl8j12sJZsqQmhtGNwcfjkQO5b0wxrH9C57IRpKGLD+Q0+zJGj?=
- =?us-ascii?Q?eiusApSUTcOSvb0I0XM+CgnpAOUNpV6W0X+GplMxGOgLkyfmqOj3PCCgHDOT?=
- =?us-ascii?Q?mGHgsaJiHbNgyPSwrpLLRpgQYXtrxd2xH18OxAda8dQF/zkGUpOt02SoID39?=
- =?us-ascii?Q?fIvGlcoWePCzXb5rYcZpbkffzoy6Vm/rEGQmsbl5G40D8o9XFp1PKoGS/sAu?=
- =?us-ascii?Q?LjvANtlDx6LgxUA3lWIM2o16pKs1Ne7JP3uYINz06C6IdQvNSNGT+9xT9jKf?=
- =?us-ascii?Q?dkhguaSBoCKOel7EffQWBHHs/57tbOYFZXLv+kWMEMLfKI5lw+67urS6GGtm?=
- =?us-ascii?Q?FrYdRh5JIlt/besjhklTpp19neJ7jV0a6Dr3toBQUqrEn/aPxSIqycCuKuDX?=
- =?us-ascii?Q?Gwbil39IaFx26ycDyhvF8lVT0ioOTq0S4b/fFtzVXl+yCm/1wbQMkRXK7UxC?=
- =?us-ascii?Q?86q1DWRYWkYvZW16Tx+W/kAKZDt7lfRFMfyOQfdsbD3bR2f/0443Y6fTzYSx?=
- =?us-ascii?Q?sddGD88tYQzHlsYmsJZ9XUXuIUj0kgKyJKyVNOetcMck4vLdlWRImGXkNk1d?=
- =?us-ascii?Q?5ZQ4VQdRXEW8Me505jULWv+Hs8gPgoGy0SlduD0mv6WPJQ8P1ZXrRELVyuGS?=
- =?us-ascii?Q?mjmvG/6ZRJC9xuQE/nr36a4s743O2jXTwNCNXQC75LGjGfW3eD+pM2kF1+XJ?=
- =?us-ascii?Q?Uci2ggyawJC20Bi3r2ENgz4u3LnYtcjZPH7y03eKCAqBmnBi3awQVKdI9l6Q?=
- =?us-ascii?Q?5LqbCvLJLl9BT88zQEYFKVx3pgUHjMnwRr626BCLSxOd2DUfUZzb3PQgri6X?=
- =?us-ascii?Q?SaHw1hYuL6f7tb1ixthC7TMFAaTvj4IXV366nUxtRSyGpv3etn2hBJ56EHZC?=
- =?us-ascii?Q?kkJALHYBVCM22qyGh0JUc0stkHhLGj3IWLP/W4DoOVtlyyuF2HqlDhmuQ7ca?=
- =?us-ascii?Q?mW+bRKPAgWdpfTE8zKaNvyk+hj/xormAXdzugBTSW/+dwlN2XblliKpNZRWh?=
- =?us-ascii?Q?BmHkMpwh5qiv3GKwKs8TZLNdmCK/GPVpHX7yjPJ5QrNNVBeyAPKyi3/cDde/?=
- =?us-ascii?Q?RRddbdWX4ahu1QX3Y+Z3ZrKy6t482uTwNVDNeDfUWmvR6Y3rW60ATjO8SYO/?=
- =?us-ascii?Q?/bD1mFxAUFyZSdEs7j/WM9engL+I4rmD2iYLNYwrpLtkbf39UXNx6vst6YUT?=
- =?us-ascii?Q?ThkbxzAAwWKVEw85e/ZR4Gs8DsnzuKQR5SPlaFv8wy/4Z5mLp2FcV0LrYoWc?=
- =?us-ascii?Q?RefpxGpKnfwxZRzAZF6SF3jJRCCCs57+Dj0+y/DGfJca+pIMWBTXXJXXzQ7c?=
- =?us-ascii?Q?Gh/DU6Pdl2oB17BmvxwCDItcB27QT4zntrANDRRlJp7P7fzjYmPb+AWWHRZN?=
- =?us-ascii?Q?hP0IpwFhLA31GJ9Lw4vKhL8eHURipYgG0ErHwp7s8A5CEOC6ZqHRv3z2VnjR?=
- =?us-ascii?Q?2rqF+j0/DL/dXWE4iHwYRXGrKrQ00uRWcf2WNabB1W8JuCIa2JfG?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a2cd345f-18f7-4a2b-e90f-08ded6bba974
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 15:24:22.7088
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KEuS8Y5xLOHDJ3/hhjtDTf7rlowkZ3Zyk5iLvNqNJLNb+ATTdnLLPYAVUAOHsqZobDhwpnYEvj6iXp/YjJFrqWUpfjhoxEu7SEoYYyFb89tr12GSIGAWPJtX6G1tnWFX
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10190
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: ti,ads1298: add ADS1299 EEG
+ ADC variants
+To: Md Shofiqul Islam <shofiqtest@gmail.com>, linux-iio@vger.kernel.org
+Cc: jic23@kernel.org, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, mike.looijmans@topic.nl,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260630140311.1473031-1-shofiqtest@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260630140311.1473031-1-shofiqtest@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317906-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:khristineandreea.barbulescu@oss.nxp.com,m:linusw@kernel.org,m:brgl@bgdev.pl,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:chester62515@gmail.com,m:mbrugger@suse.com,m:ghennadi.procopciuc@nxp.com,m:larisa.grigore@nxp.com,m:lee@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:festevam@gmail.com,m:aisheng.dong@nxp.com,m:ping.bai@nxp.com,m:gregkh@linuxfoundation.org,m:rafael@kernel.org,m:srini@kernel.org,m:aruizrui@redhat.com,m:clizzi@redhat.com,m:devicetree@vger.kernel.org,m:eballetb@redhat.com,m:echanude@redhat.com,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-gpio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:s32@nxp.com,m:kernel@pengutronix.de,m:vincent.guittot@linaro.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-317905-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:shofiqtest@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mike.looijmans@topic.nl,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[baylibre.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,bgdev.pl,gmail.com,suse.com,nxp.com,pengutronix.de,linuxfoundation.org,redhat.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,linaro.org];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,oss.nxp.com:from_mime,nxp.com:email,NXP1.onmicrosoft.com:dkim,qualcomm.com:email]
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ti.com:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,baylibre.com:dkim,baylibre.com:mid,baylibre.com:from_mime,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 61BA16E5E7D
+X-Rspamd-Queue-Id: 708FF6E5E72
 
-On Tue, Jun 30, 2026 at 02:53:58PM +0200, Khristine Andreea Barbulescu wrote:
-> Add/fix some comments and print statements.
->
-> Reviewed-by: Linus Walleij <linusw@kernel.org>
-> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-> Signed-off-by: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>
+On 6/30/26 9:03 AM, Md Shofiqul Islam wrote:
+> The ADS1299, ADS1299-4, and ADS1299-6 share the same SPI interface
+> and register map as the ADS1298 ECG ADC family but are designed for
+> EEG and biopotential measurement.  Key differences from ADS1298:
+> - PGA gain up to 24x (vs 12x for ADS1298)
+> - Internal reference is always 2.4V (no 4V option)
+> 
+> Add compatible strings and update the vref-supply description to
+> document the ADS1299 reference voltage behaviour.
+> 
+> Signed-off-by: Md Shofiqul Islam <shofiqtest@gmail.com>
 > ---
+>  .../bindings/iio/adc/ti,ads1298.yaml          | 31 ++++++++++++++++---
+>  1 file changed, 26 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
+> index 71f9f9b745cb..82c5181126df 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
+> @@ -4,11 +4,16 @@
+>  $id: http://devicetree.org/schemas/iio/adc/ti,ads1298.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Texas Instruments' ads1298 medical ADC chips
+> +title: Texas Instruments ADS1298/ADS1299 biopotential ADC chips
+>  
+>  description: |
+> -  Datasheet at: https://www.ti.com/product/ADS1298
+> -  Bindings for this chip aren't complete.
+> +  ADS1298/ADS1298R: 8-channel, 24-bit ECG ADC.
+> +  Datasheet: https://www.ti.com/product/ADS1298
+> +
+> +  ADS1299/ADS1299-4/ADS1299-6: 8/4/6-channel, 24-bit EEG/biopotential ADC.
+> +  Identical SPI interface and register map to the ADS1298 family, but with
+> +  a higher maximum PGA gain (24x vs 12x) and fixed 2.4V internal reference.
+> +  Datasheet: https://www.ti.com/product/ADS1299
+>  
+>  maintainers:
+>    - Mike Looijmans <mike.looijmans@topic.nl>
+> @@ -17,6 +22,9 @@ properties:
+>    compatible:
+>      enum:
+>        - ti,ads1298
+> +      - ti,ads1299
+> +      - ti,ads1299-4
+> +      - ti,ads1299-6
+>  
+>    reg:
+>      maxItems: 1
+> @@ -33,8 +41,10 @@ properties:
+>  
+>    vref-supply:
+>      description:
+> -      Optional reference voltage. If omitted, internal reference is used,
+> -      which is 2.4V when analog supply is below 4.4V, 4V otherwise.
+> +      Optional reference voltage. If omitted, internal reference is used.
+> +      For ADS1298, the internal reference is 2.4V when analog supply is
+> +      below 4.4V, 4V otherwise. For ADS1299, the internal reference is
+> +      always 2.4V.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Not sure the dt-bindings care about the internal reference. It should
+just be a driver implementation detail.
 
->  drivers/pinctrl/nxp/pinctrl-s32cc.c | 20 ++++++++++++++------
->  1 file changed, 14 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/pinctrl/nxp/pinctrl-s32cc.c b/drivers/pinctrl/nxp/pinctrl-s32cc.c
-> index 56be6e8d624e..2a32df932d8a 100644
-> --- a/drivers/pinctrl/nxp/pinctrl-s32cc.c
-> +++ b/drivers/pinctrl/nxp/pinctrl-s32cc.c
-> @@ -60,6 +60,12 @@ static u32 get_pin_func(u32 pinmux)
->  	return pinmux & GENMASK(3, 0);
->  }
->
-> +/*
-> + * struct s32_pinctrl_mem_region - memory region for a set of SIUL2 registers
-> + * @map: regmap used for this range
-> + * @pin_range: the pins controlled by these registers
-> + * @name: name of the current range
-> + */
->  struct s32_pinctrl_mem_region {
->  	struct regmap *map;
->  	const struct s32_pin_range *pin_range;
-> @@ -67,7 +73,7 @@ struct s32_pinctrl_mem_region {
->  };
->
->  /*
-> - * Holds pin configuration for GPIO's.
-> + * struct gpio_pin_config - holds pin configuration for GPIO's
->   * @pin_id: Pin ID for this GPIO
->   * @config: Pin settings
->   * @list: Linked list entry for each gpio pin
-> @@ -79,20 +85,22 @@ struct gpio_pin_config {
->  };
->
->  /*
-> - * Pad config save/restore for power suspend/resume.
-> + * struct s32_pinctrl_context - pad config save/restore for suspend/resume
-> + * @pads: saved values for the pards
->   */
->  struct s32_pinctrl_context {
->  	unsigned int *pads;
->  };
->
->  /*
-> + * struct s32_pinctrl - private driver data
->   * @dev: a pointer back to containing device
->   * @pctl: a pointer to the pinctrl device structure
->   * @regions: reserved memory regions with start/end pin
->   * @info: structure containing information about the pin
-> - * @gpio_configs: Saved configurations for GPIO pins
-> - * @gpiop_configs_lock: lock for the `gpio_configs` list
-> - * @s32_pinctrl_context: Configuration saved over system sleep
-> + * @gpio_configs: saved configurations for GPIO pins
-> + * @gpio_configs_lock: lock for the `gpio_configs` list
-> + * @saved_context: configuration saved over system sleep
->   */
->  struct s32_pinctrl {
->  	struct device *dev;
-> @@ -970,7 +978,7 @@ int s32_pinctrl_probe(struct platform_device *pdev,
->  					    ipctl);
->  	if (IS_ERR(ipctl->pctl))
->  		return dev_err_probe(&pdev->dev, PTR_ERR(ipctl->pctl),
-> -				     "could not register s32 pinctrl driver\n");
-> +				     "Could not register s32 pinctrl driver\n");
->
->  #ifdef CONFIG_PM_SLEEP
->  	saved_context = &ipctl->saved_context;
-> --
-> 2.34.1
->
->
+So I would just trim this down to:
+
+	Optional reference voltage. If omitted, internal reference is used.
+
+>  
+>    clocks:
+>      description: Optional 2.048 MHz external source clock on CLK pin
+> @@ -75,5 +85,16 @@ examples:
+>            spi-max-frequency = <20000000>;
+>            spi-cpha;
+>          };
+> +
+> +        adc@2 {
+> +          reg = <2>;
+> +          compatible = "ti,ads1299";
+> +          label = "ads1299-1-eeg";
+> +          avdd-supply = <&reg_iso_5v_a>;
+> +          interrupt-parent = <&gpio0>;
+> +          interrupts = <79 IRQ_TYPE_EDGE_FALLING>;
+> +          spi-max-frequency = <20000000>;
+> +          spi-cpha;
+> +        };
+
+Since the chips are nearly identical, not sure a 2nd example is
+particularly useful.
+
+>      };
+>  ...
+
 
