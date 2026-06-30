@@ -1,687 +1,245 @@
-Return-Path: <devicetree+bounces-317595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317605-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5JaBIvqUQ2qzcgoAu9opvQ
-	(envelope-from <devicetree+bounces-317595-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:05:46 +0200
+	id E+vQKEqTQ2pBcgoAu9opvQ
+	(envelope-from <devicetree+bounces-317605-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:58:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8508A6E29D5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:05:45 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E88D6E28B8
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:58:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Z5I0A4ra;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317595-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-317595-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=fAdX0uey;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=UJy2OeSR;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317605-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-317605-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B95733040B4D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:47:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D900A303C55E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:52:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E0453ED3C7;
-	Tue, 30 Jun 2026 09:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 319373BED69;
+	Tue, 30 Jun 2026 09:52:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1907F3ECBED
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 09:47:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC6743E275E
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 09:52:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782812829; cv=none; b=mN5Q+qMUD4ps49XDTojErtiSYzvvUrhYTzq09/FAKPOt2ewpPDm2i+6IaEpKLwk69R24RIafwRj4lsDi7GZaSp5YP3oMLgmlWI8dkz/ucWphlAjcXnIiV4cJ6pX2K+QlAaUXGvtfHbhZdxzpudIdanJAOecfYoS2f7EYBbuKUEo=
+	t=1782813167; cv=none; b=YYqiAktqyrwp++uJMdJdxmosjBtprmD5qyVKLOHtq0JEDd6rb6uQqENuFU9B56fqxI9GD/YGsto3QrWIr0jfStMZYhK5zDuat2hQ5662DPkndW4+Kqi3umasdXee1qsA1kXiZn441IGVl1t959upCLzB7yYy/+ggaA5qDMo//Sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782812829; c=relaxed/simple;
-	bh=g2toXpPr3TTzoNixhG+9HkIgpIy3Pw46kKCMhnOFy+8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UCiLs/cWUpAJamL/ucfeilom5Rhmik9O7PX/xpFV/xamKkavNGFdKRS6okfPlzuCDx7sYMZN3XDon8SXZNDdZRtesTX6kJ6hdMaDkr8TZYc3Q5ES9pixlI45IVQRCfckjOPKTvjhLV2OYgA2lTfrHJdKPvHJlVdL4XbXJQbeVc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z5I0A4ra; arc=none smtp.client-ip=209.85.221.50
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-472a14c9965so1960650f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:47:06 -0700 (PDT)
+	s=arc-20240116; t=1782813167; c=relaxed/simple;
+	bh=XHVFIYZdq7kDCqEYfKMHnS6JrUs1jlCfBepzpNlvLB8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P+C5B53E5j32f0Hr1kg5RgZLhklsgvAYParw0Rfjl8tTLNo5/SqW1UJm/oRketHJUlgHdyeNCD9xxrzNxOjzHUly6CnEsxqYOkkHi01+0vfUfd8KoUqQAaR+LF3znfAqyNBujv8k8/eUZncW5o7+Qd7lZfw/3iG1ClCAtrbAt24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fAdX0uey; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UJy2OeSR; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65U9n1rE1573374
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 09:52:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hIHyDpjCFFNejxG5BaRizE1VIsC5hN9kk7je03IArLU=; b=fAdX0ueyfz13bzn2
+	6yUJ3bg0/TouZE/4rHKQOVX2Ue+EOxMrSi4XgEC1Qy4+zKrjGIx7ZCts8OUIyc3E
+	jR+fZbFLWAYzhxFQRoH8fW/kb4Ou1xFEaqQhXx7NHbZD1C4bCokGUTu3PUcY8KtQ
+	AI7BFXAD2Ih0xxfAmWD0RuEUoFxtodj8bXnO7pWHIZO5kFAxTzqhgXLml2J52J7X
+	yjJdPCD9aesd3moPDJxk7QAlWZrdNgeaCWFZKV15bBRDLv/5pf9I+QFzbMXe9tGl
+	LPdKFqZcft94PafF+ZL45I0xhw4IJpMAfXLtAVqpcs8Rj5lZj0q+ohihB2+c1tHV
+	U8o6sg==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f46861h1y-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 09:52:44 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-c889d1eebafso5242958a12.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:52:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782812825; x=1783417625; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cFEIqMsV/WZjPG3GiDeWbAAMsV3GPWKXaGBH34SQUa8=;
-        b=Z5I0A4raQMPIkZOWb/7bkPUgedRoZxhZUt7ELente9Zkfxo0TcH3ux/3dd10Vhi+kN
-         PvsqIxxRGhZc7PgNGRYFLaKbCzg4Wqe9QW6kV6MoYPuu5ljjGf2IP8/FMXmyEfio6l3F
-         jHSAHk9PXe8W2umQFI81h9Bm6yMJsPvyi1ev9kSMvbx8mtVKSCRpixi5ba3agqoIze1S
-         fEdI5vHdtdAbHpzgEvEUJ+7ZWv5A4PE/0MN1Xl669+sqiZvLiLQOIAsV+6RgJVYYVuGr
-         abTgXjZdwcCJbg/kq/mB+awNfq3ohOkWr9ZphgPCmdBWFgWWk5ExU0RUVLiuegswKrcu
-         kB1Q==
+        d=oss.qualcomm.com; s=google; t=1782813159; x=1783417959; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hIHyDpjCFFNejxG5BaRizE1VIsC5hN9kk7je03IArLU=;
+        b=UJy2OeSRRefYF5XXlUjN09KBQ0ZQ7e4W09Ij6EGfMoM0LAeQ7OzzNtRD3Jgef9ioza
+         Q9xJ/e/8qKF2ngz8TddSAFCUG9h55MV/lbvSSe+9tyXD8zKd7IkD5czELgTlgYw7ymRB
+         WuJKVFKt0wNGSaFZB9cQz9KmU1bxhzlfeIrWWcpDFuuJTPlyTd20JRv9x1EX0c7pWhHT
+         yrl/xoHWwMxFU29Rb4qXBqzA8fbyo14vRZbvWjUCZg0Tr/sYoc5EcK39siECJv7yRmKH
+         3gUQ4frJpv3T+9Rp9THpWuZtc/Nb6H9JFkNByPF57XE/yNjh29C4FbEYXP/ECGWzUpxi
+         50eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782812825; x=1783417625;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=cFEIqMsV/WZjPG3GiDeWbAAMsV3GPWKXaGBH34SQUa8=;
-        b=r1BE8coyG0677ILvfWdD2ukc0cHnl+kjgkcQtkKTtCJoe2WT/YYjvJg64kl17Kj8L1
-         RBerZiXGp9HU5Y0rPxnYulWY1hvQB024w+LfDqx+aUMOpWUqGvKfLA4R4n4wNRTcQToC
-         k1ZPGiPgZMOW0zKaJVgLVCDG3p3U/KAzVOvgq7TyyW68yPaCCSOtYL84SqF29tYOAH9T
-         1ruKE/1iMxedoeC7+SBao3qDJODAnSSMuYpOghF+YVqziFCbIHs0AQzgaxfwuEpGNe+4
-         95mJQ3Y7opqndcPMvZQGvbKJpgyZhXfMesu7EgbrI0NbPjUqJ+VYCdyJEKPXdmr4A6r3
-         GXXQ==
-X-Forwarded-Encrypted: i=1; AHgh+RobKZF2pvvpaMl/woN3bQH4yPXhBD+wjRcY2e/Yjb46PZqPGNYyY5PIEpA+dydTPjrKVpd3vkP4omQx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxotqVXBkI+c3cPPbhgY/xdqOappvwY2/DIl33RqtEiXZkGpMPD
-	qPZnjITgFMZF/Y0YwpPq5X+4EXGKNixL6+CzZIFdOlH0P7IzuDUJk+5P
-X-Gm-Gg: AfdE7cmVUm13Q2a4aEI9/WUpDaNJq5PazaBmGsIFDDBGUfTWDjy4dKZ5avHKsiZPwqF
-	d3kFlTS0qnKMUSmW90x60ow6DvsTBU+uMTvICZJjt78Y0Ap7U1KqbFiP66lXPTlMa+JNTRi78nT
-	r1d6dzpPCO40L3zelnGI1LyOKYePX3Y2vrHn8MP/dRlRRfASM2uOg3z7S9/6GhPOuzhuboV1MCp
-	KY3Wlpf1RHWfYSDdv/Ktz5UGVjw1SGgJRFLqXd5FuSd1QK48WJlVNzh3yNv7kSJ5eVX3dYoeI0m
-	rAWHZ0vvovxsaLoyg5VRlj/g7qag80tyu0gi86kgmiCOZ/mUOGfTvv8ePDnV3/bAYCXm0ycM5HK
-	b9ptm1/EoilcKclVCJeZH3QQ5mOK28wwS2pgHi6Bz19WBMvBdlIYProZAcIDiDv+/Py+NpKAIHV
-	p1BAT51Ph1D7ekf2IYw1YHO8unOgt9tA5YZs+8aCLNxwa7WRhYE6V38+GP4uIQf5GPpiSGFYiNo
-	YVFFnhCxSFHtK2fSWoxwuTKobfalzhJkxgo
-X-Received: by 2002:a05:6000:440b:b0:473:1706:7f01 with SMTP id ffacd0b85a97d-47552f32951mr2599658f8f.43.1782812825292;
-        Tue, 30 Jun 2026 02:47:05 -0700 (PDT)
-Received: from Lord-Beerus.station (net-93-144-65-248.cust.dsl.teletu.it. [93.144.65.248])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4756778f015sm6552725f8f.31.2026.06.30.02.47.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jun 2026 02:47:04 -0700 (PDT)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Josua Mayer <josua@solid-run.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
-	Maud Spierings <maudspierings@gocontroll.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: [PATCH v1 3/3] arm64: dts: imx8qm-var-som: Add support for Variscite Symphony board
-Date: Tue, 30 Jun 2026 11:46:56 +0200
-Message-ID: <2cdbea18bba7c9e05addd24390e54063216bcf88.1782812572.git.stefano.r@variscite.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1782812572.git.stefano.r@variscite.com>
-References: <cover.1782812572.git.stefano.r@variscite.com>
+        d=1e100.net; s=20251104; t=1782813159; x=1783417959;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hIHyDpjCFFNejxG5BaRizE1VIsC5hN9kk7je03IArLU=;
+        b=H6EFhcL18WbqC4m5TCF3eY38mDIMgSyicKlCzW+BIJO4hNdi2pl83hGIXBFMa3Y8df
+         hqtHqGPW/vB1yiW+5vz82Tgom1NQQ0QCremZp7YWJChiPH55Oekb8hXJWewFkxymeIe9
+         M5fKjQQDjwNecg/NOT9cUfeNVGPXWSDOkmoDFB+tPa0dhiKpJygmOkVRbYnx4OB9mSEQ
+         h0t5b4qHbFXI1ZJzWHzPd7TP/Fz2YVagaZ6rZHIVOJZfy4d6FybqrIqM7Ba951b2Mkhu
+         uw20vT/K1DVrs57UzCgt5m05s1IfRXFf9PYgn7cIYx/0fbQ+RZv00IjXbd5oe6TvPktZ
+         xLRw==
+X-Forwarded-Encrypted: i=1; AFNElJ+oed3MuwZ6g6BQSH/at440JkqJTSPHT4Zdq7SafU5dWx9E548h60x9WcL845OP5JXTfH/SkGAxCjuo@vger.kernel.org
+X-Gm-Message-State: AOJu0YwozX59f79PLhlp85tIhhSGBz4ab1cEpjmHJhEtAuowNJBpxqs7
+	6Qw5ijTnYsAKS/JYrwTesnyai8hNvzMIO7+283S82t0VpcdY1c+MGRiB3Y476ZRTRmtOM6iDYLw
+	pK+kagRzanBpDiDuLbmfN2l071TIBiOv8Us8ZQc/g5fSSu9K/T0ujdQQgtdqjCna7
+X-Gm-Gg: AfdE7ck+oM4avP4m6pgHoqWjSZ3mLBeSK0FTCb108yumPPGH23qd3JVKwJDvLj5C9k2
+	wjN+PyKuc6DaZwiXv1eymcdiEkj9sM9j6Q2JcgeAInJ/d51IQz0cUM+iKq3bGSnMciRssJPERIE
+	6wLi5lcy3h093khLMpxAXovoWjjXfnLuOb2Fa1gZ2rb4dC47HXrK5wMmuamBw5eM0AIBMBQOAmt
+	HmzXsaln7NwXN5ULRjcwdOO6PBJzVop402OkkLKCihvnVAiAEQIXTBFGzfazzpemPWDWxhHzFdT
+	WZCBi8y9QzGF7sV/2XtqclKITNvTy25FOY8RgyK55obJMdWIr83BNJVyhB2MHggFMFNSBXIe/dS
+	sntHNdrkUqmJKmIA65k+0GWjngls7oFmlNfirZhIXvz3h
+X-Received: by 2002:a05:6a20:914f:b0:3af:6704:18ca with SMTP id adf61e73a8af0-3bfc527279fmr2374630637.35.1782813159140;
+        Tue, 30 Jun 2026 02:52:39 -0700 (PDT)
+X-Received: by 2002:a05:6a20:914f:b0:3af:6704:18ca with SMTP id adf61e73a8af0-3bfc527279fmr2374608637.35.1782813158642;
+        Tue, 30 Jun 2026 02:52:38 -0700 (PDT)
+Received: from [10.217.219.87] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-847a03778basm1562456b3a.49.2026.06.30.02.52.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jun 2026 02:52:38 -0700 (PDT)
+Message-ID: <99eaf1d1-fbf9-4336-a13c-ae8ab789cc99@oss.qualcomm.com>
+Date: Tue, 30 Jun 2026 15:22:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] spi: qcom-geni: Add property to force GSI mode
+To: Pengyu Luo <mitltlatltl@gmail.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260614083424.464132-1-mitltlatltl@gmail.com>
+ <20260614083424.464132-2-mitltlatltl@gmail.com>
+ <qwbda435on6rhsbf5o4jqijakanjmnmswnc6g6qsubuqbyvbok@fuoclv6u7tq5>
+ <c29776b4-04b8-4c59-8f1e-d766bf982a2f@oss.qualcomm.com>
+ <CAH2e8h75xeRVvo+jOjRuFaBko5NNCnBX0dawFFsWBaiTwNd4Xw@mail.gmail.com>
+Content-Language: en-US
+From: Mukesh Savaliya <mukesh.savaliya@oss.qualcomm.com>
+In-Reply-To: <CAH2e8h75xeRVvo+jOjRuFaBko5NNCnBX0dawFFsWBaiTwNd4Xw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: asbOrHASPeZYfggrdNNg0y6N6gLWWmEJ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDA4OCBTYWx0ZWRfX602VU6miMdRw
+ OninETaltGfvTi9YPqylHbwrrZ97yJgTi/7VTfR5cf2bSR/kMJ032+jsL18X0T/q4wUPsX6nnFT
+ jY1HXvvhz3lEJFjIO9VCOoRtOP2F6npx9XzBCQ1naz+8RFnPvxaLymTRI2vrtRGGfbY30zvfVJy
+ 2dALaGOHymMdQD+kxXa6DeFVwPvkXXhbzivOLWI7wCdLDyEUDy4cFONSxTXglVfVhM5hPYDGmhV
+ s0pp/A4ELzlbM/qD0OPaLUUuJqBOxOuGPV0s2CDmGm4UszK1hrQ+kQScmtD24wGG4z9Yi2LHy0m
+ CO+kZEqn7XI1e+xF7QDW/fw6K22WgGxN2uADqoVQmoBZHq8jGv1D2Fud1nG5oCY5YzX4hn/QKnL
+ 36/DuqX5C+2EQYPd1q1lPcnSG8Gckw+IE+D3kPs9demy/li++gtEZYO5l3NUXA0Z+mcWz8tI+P7
+ TC05FnpzN7mPxAvuJaw==
+X-Proofpoint-GUID: asbOrHASPeZYfggrdNNg0y6N6gLWWmEJ
+X-Authority-Analysis: v=2.4 cv=FbcHAp+6 c=1 sm=1 tr=0 ts=6a4391ec cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8 a=j4H7mO88qUtPRE6yNQoA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDA4OCBTYWx0ZWRfXy+aKjNIU3DQ7
+ x1jsGEBac9jS5l1D/4kwkVmhlgTp+icAgaEMLN7GqoKQJesIRHC/f61IHbuhhCEFRcZ7LTDlAdc
+ 121XBy0+eAodmBvDLen8PZUdASSkYZY=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-30_03,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 bulkscore=0 adultscore=0 phishscore=0
+ malwarescore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606300088
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-317595-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:daniel.baluta@nxp.com,m:dario.binacchi@amarulasolutions.com,m:josua@solid-run.com,m:alexander.stein@ew.tq-group.com,m:ernest.vanhoecke@toradex.com,m:maudspierings@gocontroll.com,m:francesco.dolcini@toradex.com,m:hvilleneuve@dimonoff.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com,amarulasolutions.com,solid-run.com,ew.tq-group.com,toradex.com,gocontroll.com,dimonoff.com];
+	TAGGED_FROM(0.00)[bounces-317605-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:mitltlatltl@gmail.com,m:dmitry.baryshkov@oss.qualcomm.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:agross@kernel.org,m:andersson@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[mukesh.savaliya@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,qualcomm.com:dkim,qualcomm.com:email];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mukesh.savaliya@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_HAS_DN(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8508A6E29D5
+X-Rspamd-Queue-Id: 7E88D6E28B8
 
-From: Stefano Radaelli <stefano.r@variscite.com>
 
-Add device tree support for the Variscite Symphony carrier board with
-the VAR-SOM-MX8 QuadMax system on module.
 
-The Symphony board includes
-- uSD Card support
-- USB ports and OTG
-- Additional Gigabit Ethernet interface
-- Uart, SPI and I2C interfaces
-- GPIO Expanders
-- RTC module
-- TPM module
-- CAN peripherals
-- PCIE support
+On 6/29/2026 1:33 PM, Pengyu Luo wrote:
+> On Mon, Jun 29, 2026 at 1:36 PM Mukesh Savaliya
+> <mukesh.savaliya@oss.qualcomm.com> wrote:
+>>
+>> Hi Pengyu,
+>>
+>> On 6/15/2026 2:48 AM, Dmitry Baryshkov wrote:
+>>> On Sun, Jun 14, 2026 at 04:34:24PM +0800, Pengyu Luo wrote:
+>>>> Some devices (such as gaokun3) do not disable FIFO mode, causing the
+>>>> driver to fallback to FIFO mode by default. However, these platforms
+>>>> also support GSI mode, which is highly preferred for certain
+>>>> peripherals like SPI touchscreens to improve performance.
+>>>>
+>>>> Introduce the "qcom,force-gsi-mode" device property to hint and force
+>>>> the controller into GSI mode during initialization.
+>> Why to force ? You can directly configure in GSI mode. Note there are
+>> some configuration done prior to Linux bootup too.
+> 
+> Sorry, I don't get it. how? I know there may be a qupfw, but it is
+> impossible for a normal user like me to generate one with GSI
+> preferred.
+> 
+If firmware doesn't program in GSI, you can't have this working in GSI 
+mode, its going to fail (and work with fallback). if it's programmed in 
+GSI, anyway this will run in GSI mode. So why to add extra things 
+without any usage ?
 
-Link: https://variscite.com/carrier-boards/symphony-board/
-Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx8qm-var-som-symphony.dts | 488 ++++++++++++++++++
- 2 files changed, 489 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-var-som-symphony.dts
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 8ddaab127ab9..118674f0ce7e 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -528,6 +528,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qm-apalis-v1.1-ixora-v1.1.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qm-apalis-v1.1-ixora-v1.2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qm-mek.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qm-tqma8qm-mba8x.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8qm-var-som-symphony.dtb
- 
- imx8qm-mek-ov5640-csi0-dtbs := imx8qm-mek.dtb imx8qm-mek-ov5640-csi0.dtbo
- dtb-${CONFIG_ARCH_MXC} += imx8qm-mek-ov5640-csi0.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8qm-var-som-symphony.dts
-new file mode 100644
-index 000000000000..c944c85e1dd7
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-var-som-symphony.dts
-@@ -0,0 +1,488 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Variscite Symphony carrier board for VAR-SOM-MX8 QuadMax
-+ *
-+ * Link: https://variscite.com/carrier-boards/symphony-board/
-+ *
-+ * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include "imx8qm-var-som.dtsi"
-+
-+/ {
-+	model = "Variscite VAR-SOM-MX8 on Symphony evaluation board";
-+	compatible = "variscite,var-som-imx8qm-symphony",
-+		     "variscite,var-som-imx8qm", "fsl,imx8qm";
-+	chosen {
-+		stdout-path = &lpuart0;
-+	};
-+
-+	 gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button-back {
-+			label = "Back";
-+			gpios = <&pca9534 1 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_BACK>;
-+		};
-+
-+		button-home {
-+			label = "Home";
-+			gpios = <&pca9534 2 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_HOME>;
-+		};
-+
-+		button-menu {
-+			label = "Menu";
-+			gpios = <&pca9534 3 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_MENU>;
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		led-hearthbeat {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&pca9534 0 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	reg_fec_phy: regulator-fec-phy {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fec-phy";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-enable-ramp-delay = <20000>;
-+		vin-supply = <&reg_vselect>;
-+		gpio = <&pca9534 7 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reg_usb_otg1_vbus: regulator-usb-otg1-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_otg1_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&lsio_gpio0 18 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "sw-3p3-sd1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_vselect: regulator-vselect {
-+		compatible = "regulator-fixed";
-+		regulator-name = "reg_vselect";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		gpio = <&pca9534 6 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+};
-+
-+&ethphy0 {
-+	leds {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@0 {
-+			reg = <0>;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			function = LED_FUNCTION_LAN;
-+			linux,default-trigger = "netdev";
-+		};
-+
-+		led@1 {
-+			reg = <1>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_LAN;
-+			linux,default-trigger = "netdev";
-+		};
-+	};
-+};
-+
-+&fec1 {
-+	mdio {
-+		ethphy1: ethernet-phy@5 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <5>;
-+			vddio-supply = <&reg_phy_vddio>;
-+			reset-gpios = <&pca9534 5 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <100000>;
-+
-+			leds {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				led@0 {
-+					reg = <0>;
-+					color = <LED_COLOR_ID_YELLOW>;
-+					function = LED_FUNCTION_LAN;
-+					linux,default-trigger = "netdev";
-+				};
-+
-+				led@1 {
-+					reg = <1>;
-+					color = <LED_COLOR_ID_GREEN>;
-+					function = LED_FUNCTION_LAN;
-+					linux,default-trigger = "netdev";
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&fec2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec2>;
-+	/*
-+	 * The required RGMII TX and RX 2ns delays are implemented directly
-+	 * in hardware via passive delay elements on the SOM PCB.
-+	 * No delay configuration is needed in software via PHY driver.
-+	 */
-+	phy-mode = "rgmii";
-+	phy-handle = <&ethphy1>;
-+	phy-supply = <&reg_fec_phy>;
-+	status = "okay";
-+};
-+
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	status = "okay";
-+};
-+
-+&flexcan2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan2>;
-+	status = "okay";
-+};
-+
-+&hsio_phy {
-+	fsl,hsio-cfg = "pciea-pcieb-sata";
-+	fsl,refclk-pad-mode = "input";
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	pca9534: gpio@20 {
-+		compatible = "nxp,pca9534";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pca9534>;
-+		interrupt-parent = <&lsio_gpio1>;
-+		interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	/* USB Type-C Controller */
-+	typec_ptn5150: typec@3d {
-+		compatible = "nxp,ptn5150";
-+		reg = <0x3d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ptn5150>;
-+		interrupt-parent = <&lsio_gpio3>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		port {
-+			typec_dr_sw: endpoint {
-+				remote-endpoint = <&usb3_drd_sw>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c4 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c4>;
-+	status = "okay";
-+
-+	pca6408: gpio@21 {
-+		compatible = "nxp,pcal6408";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		/* RGB_SEL */
-+		lvds-brg-enable-hog {
-+			gpio-hog;
-+			gpios = <7 GPIO_ACTIVE_HIGH>;
-+			output-low;
-+			line-name = "lvds_brg_en";
-+		};
-+	};
-+
-+	st33ktpm2xi2c: tpm@2e {
-+		compatible = "st,st33ktpm2xi2c", "tcg,tpm-tis-i2c";
-+		reg = <0x2e>;
-+		label = "tpm";
-+		reset-gpios = <&pca6408 4 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	/* Capacitive touch */
-+	ft5x06_ts: touchscreen@38 {
-+		compatible = "edt,edt-ft5406";
-+		pinctrl-names = "default";
-+		reg = <0x38>;
-+		pinctrl-0 = <&pinctrl_captouch>;
-+		interrupt-parent = <&lsio_gpio0>;
-+		interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+		wakeup-source;
-+	};
-+
-+	rtc@68 {
-+		compatible = "dallas,ds1337";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&lpspi1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpspi1>;
-+	cs-gpios = <&lsio_gpio3 24 0>;
-+	status = "okay";
-+};
-+
-+/* console */
-+&lpuart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpuart0>;
-+	status = "okay";
-+};
-+
-+/* header */
-+&lpuart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpuart2>;
-+	status = "okay";
-+};
-+
-+&pca9534 {
-+	usb3-signal-route-hog {
-+		gpio-hog;
-+		gpios = <4 GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "usb3_signal_route";
-+	};
-+};
-+
-+&pciea{
-+	phys = <&hsio_phy 0 PHY_TYPE_PCIE 0>;
-+	phy-names = "pcie-phy";
-+	reset-gpio = <&pca6408 1 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&usb3_phy {
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "host";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg1>;
-+	vbus-supply = <&reg_usb_otg1_vbus>;
-+	srp-disable;
-+	hnp-disable;
-+	adp-disable;
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+&usbotg3 {
-+	status = "okay";
-+};
-+
-+&usbotg3_cdns3 {
-+	dr_mode = "otg";
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port {
-+		usb3_drd_sw: endpoint {
-+			remote-endpoint = <&typec_dr_sw>;
-+		};
-+	};
-+};
-+
-+&usbphy1 {
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	bus-width = <4>;
-+	cd-gpios = <&lsio_gpio0 14 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_captouch: captouchgrp {
-+		fsl,pins = <
-+			IMX8QM_GPT1_COMPARE_LSIO_GPIO0_IO19			0x06000021
-+			IMX8QM_GPT0_COMPARE_LSIO_GPIO0_IO16			0x06000021
-+		>;
-+	};
-+
-+	pinctrl_fec2: fec2grp {
-+		fsl,pins = <
-+			IMX8QM_ENET1_RGMII_TX_CTL_CONN_ENET1_RGMII_TX_CTL	0x06000048
-+			IMX8QM_ENET1_RGMII_TXC_CONN_ENET1_RGMII_TXC		0x06000048
-+			IMX8QM_ENET1_RGMII_TXD0_CONN_ENET1_RGMII_TXD0		0x06000048
-+			IMX8QM_ENET1_RGMII_TXD1_CONN_ENET1_RGMII_TXD1		0x06000048
-+			IMX8QM_ENET1_RGMII_TXD2_CONN_ENET1_RGMII_TXD2		0x06000048
-+			IMX8QM_ENET1_RGMII_TXD3_CONN_ENET1_RGMII_TXD3		0x06000048
-+			IMX8QM_ENET1_RGMII_RXC_CONN_ENET1_RGMII_RXC		0x06000048
-+			IMX8QM_ENET1_RGMII_RX_CTL_CONN_ENET1_RGMII_RX_CTL	0x06000048
-+			IMX8QM_ENET1_RGMII_RXD0_CONN_ENET1_RGMII_RXD0		0x06000048
-+			IMX8QM_ENET1_RGMII_RXD1_CONN_ENET1_RGMII_RXD1		0x06000048
-+			IMX8QM_ENET1_RGMII_RXD2_CONN_ENET1_RGMII_RXD2		0x06000048
-+			IMX8QM_ENET1_RGMII_RXD3_CONN_ENET1_RGMII_RXD3		0x06000048
-+		>;
-+	};
-+
-+	pinctrl_flexcan1: flexcan0grp {
-+		fsl,pins = <
-+			IMX8QM_FLEXCAN0_TX_DMA_FLEXCAN0_TX			0x00000021
-+			IMX8QM_FLEXCAN0_RX_DMA_FLEXCAN0_RX			0x00000021
-+		>;
-+	};
-+
-+	pinctrl_flexcan2: flexcan1grp {
-+		fsl,pins = <
-+			IMX8QM_FLEXCAN1_TX_DMA_FLEXCAN1_TX			0x00000021
-+			IMX8QM_FLEXCAN1_RX_DMA_FLEXCAN1_RX			0x00000021
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			IMX8QM_USB_SS3_TC3_DMA_I2C1_SDA				0xc6000020
-+			IMX8QM_USB_SS3_TC1_DMA_I2C1_SCL				0xc6000020
-+		>;
-+	};
-+
-+	pinctrl_i2c4: i2c4grp {
-+		fsl,pins = <
-+			IMX8QM_ENET1_MDC_DMA_I2C4_SCL				0xc6000020
-+			IMX8QM_ENET1_MDIO_DMA_I2C4_SDA				0xc6000020
-+		>;
-+	};
-+
-+	pinctrl_lpspi1: lpspi1grp {
-+		fsl,pins = <
-+			IMX8QM_ADC_IN3_DMA_SPI1_SCK				0x0600004c
-+			IMX8QM_ADC_IN4_DMA_SPI1_SDO				0x0600004c
-+			IMX8QM_ADC_IN5_DMA_SPI1_SDI				0x0600004c
-+			IMX8QM_ADC_IN6_LSIO_GPIO3_IO24				0x00000021
-+		>;
-+	};
-+
-+	pinctrl_lpuart0: lpuart0grp {
-+		fsl,pins = <
-+			IMX8QM_UART0_RX_DMA_UART0_RX				0x06000020
-+			IMX8QM_UART0_TX_DMA_UART0_TX				0x06000020
-+		>;
-+	};
-+
-+	pinctrl_lpuart2: lpuart2grp {
-+		fsl,pins = <
-+			IMX8QM_LVDS0_I2C1_SCL_DMA_UART2_TX			0x06000020
-+			IMX8QM_LVDS0_I2C1_SDA_DMA_UART2_RX			0x06000020
-+		>;
-+	};
-+
-+	pinctrl_pca9534: pca9534grp {
-+		fsl,pins = <
-+			IMX8QM_MIPI_CSI0_MCLK_OUT_LSIO_GPIO1_IO24		0x00000021
-+		>;
-+	};
-+
-+	pinctrl_ptn5150: ptn5150grp {
-+		fsl,pins = <
-+			IMX8QM_SPI2_CS1_LSIO_GPIO3_IO11				0x00000021
-+		>;
-+	};
-+
-+	pinctrl_usbotg1: otg1grp {
-+		fsl,pins = <
-+			IMX8QM_GPT1_CAPTURE_LSIO_GPIO0_IO18			0x06000048
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			IMX8QM_USDHC1_CLK_CONN_USDHC1_CLK			0x06000041
-+			IMX8QM_USDHC1_CMD_CONN_USDHC1_CMD			0x00000021
-+			IMX8QM_USDHC1_DATA0_CONN_USDHC1_DATA0			0x00000021
-+			IMX8QM_USDHC1_DATA1_CONN_USDHC1_DATA1			0x00000021
-+			IMX8QM_USDHC1_DATA2_CONN_USDHC1_DATA2			0x00000021
-+			IMX8QM_USDHC1_DATA3_CONN_USDHC1_DATA3			0x00000021
-+			IMX8QM_USDHC1_VSELECT_CONN_USDHC1_VSELECT		0x00000021
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			IMX8QM_USDHC1_CLK_CONN_USDHC1_CLK			0x06000040
-+			IMX8QM_USDHC1_CMD_CONN_USDHC1_CMD			0x00000020
-+			IMX8QM_USDHC1_DATA0_CONN_USDHC1_DATA0			0x00000020
-+			IMX8QM_USDHC1_DATA1_CONN_USDHC1_DATA1			0x00000020
-+			IMX8QM_USDHC1_DATA2_CONN_USDHC1_DATA2			0x00000020
-+			IMX8QM_USDHC1_DATA3_CONN_USDHC1_DATA3			0x00000020
-+			IMX8QM_USDHC1_VSELECT_CONN_USDHC1_VSELECT		0x00000020
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			IMX8QM_USDHC1_CLK_CONN_USDHC1_CLK			0x06000040
-+			IMX8QM_USDHC1_CMD_CONN_USDHC1_CMD			0x00000020
-+			IMX8QM_USDHC1_DATA0_CONN_USDHC1_DATA0			0x00000020
-+			IMX8QM_USDHC1_DATA1_CONN_USDHC1_DATA1			0x00000020
-+			IMX8QM_USDHC1_DATA2_CONN_USDHC1_DATA2			0x00000020
-+			IMX8QM_USDHC1_DATA3_CONN_USDHC1_DATA3			0x00000020
-+			IMX8QM_USDHC1_VSELECT_CONN_USDHC1_VSELECT		0x00000020
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2-gpiogrp {
-+		fsl,pins = <
-+			IMX8QM_GPT0_CLK_LSIO_GPIO0_IO14				0x00000021
-+		>;
-+	};
-+};
--- 
-2.47.3
+> Best wishes,
+> Pengyu
+> 
+>>>
+>>> Ideally, this should be decided by the SPI controller based on the
+>>> requirements. Another option would be to prefer GSI for all transfers if
+>>> it is available, ignoring the FIFO even if it is not disabled.
+>>>
+>> Yes, it should be decided in advance and configured accordingly for GSI
+>> vs non GSI mode. Because there would be limited set of GSI pipes, which
+>> will actually make must have GSI mode device run with FIFO mode.
+>>
+>> Why don't you decide prior and configure for GSI mode ? We don't need to
+>> change the current logic of deciding FIFO vs GSI.
+>>>>
+>>>> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+>>>> ---
+>>>>    drivers/spi/spi-geni-qcom.c | 7 +++++++
+>>>>    1 file changed, 7 insertions(+)
+>>>>
+>>>
+>>
 
 
