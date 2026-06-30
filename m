@@ -1,87 +1,76 @@
-Return-Path: <devicetree+bounces-317534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317515-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id UJvjMheLQ2qcawoAu9opvQ
-	(envelope-from <devicetree+bounces-317534-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:23:35 +0200
+	id LOEaKNGJQ2q4agoAu9opvQ
+	(envelope-from <devicetree+bounces-317515-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:18:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 435636E218B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1347E6E2072
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:18:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=pMPxdcv8;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317534-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317534-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=lenovo.com header.s=DKIM202306 header.b=FFLITHl7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317515-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317515-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=lenovo.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A749C306EC59
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:21:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F14F73017BF6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:18:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D80B83E834F;
-	Tue, 30 Jun 2026 09:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045DD3612FE;
+	Tue, 30 Jun 2026 09:18:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-00823401.pphosted.com (mx0a-00823401.pphosted.com [148.163.148.104])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72797379EF7;
-	Tue, 30 Jun 2026 09:20:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9788935A3AF;
+	Tue, 30 Jun 2026 09:18:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782811242; cv=none; b=mlz5YlB/NwjQwNRRzraJTj6zOv6QPy8vSkG1lbkioravc5KTZvwgqfxP6DjH7I40Qm4Ei7s/S/OurnogVSaiEksua/+UL3vyC4eJR0H6wpUBT50gCcQPjuqO4jEtqcwr257UbL4UMyvOrkpdytJQnqms65MLNxDM0t/d8CtPUAk=
+	t=1782811085; cv=none; b=XHFcXPSXZU1hWHge9ADtsLRgF/k7Zm5fa0rTu24MTk6EEfzSCe+ff+L/wQOYJMU90q1zRjGGNMLa470SIMPDYfxLK0LBdOI/VgcHYQGRQ4PFBa2Haud4H9z8oPKf1OgMmlaReLcK/FuzGJSJ4eYssSJOZKARfOPQvzCtlrBcWO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782811242; c=relaxed/simple;
-	bh=twqRVVm2jX3j9DQJsBQp/A9ulNIRgckM6uD5x5XeF2Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=POJ1v8egeE2JqAlJP1qwp2z161j9Pn/bDSpEFb98KZTrY7ZA8CO7rL+xqG33G0siAVWSij1OCmdnfvG8UeZaCyq1GD6agq3Y+N8XXF93z2KmIFWc35ZpJ46CQF1YbZQsih6/JtzFP0iCp1TszPePK3Vx2h2qmZFnE63dG9HeAVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pMPxdcv8; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65U6CJ1W1056027;
-	Tue, 30 Jun 2026 09:20:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=zS2NKJX0t2i
-	l32bHO653P1abE866LuOgajP9cd0/NB0=; b=pMPxdcv8JZwxcIWclsSGpWQ4IW9
-	fDTkMGpg2omOGjRFhkDDl78ZcKmajbYxbuOe0i6AqAazjCdyKrhMzO/a5hd0Zu47
-	mGNZBUwK1bJQrg/cg4ROHLQIgrgOzFivXHoVFtbQo5AJxHY32Ys+eUP5Gd8cC8tA
-	WWDhGom15p1+9sYHqJVW6Jh7LJXnuNzQQxlB5vHNXyjvF5+zsas1VJJJ8IVDbpbQ
-	tdyNEdEyjB0fw7uiLZOYaeBhknVU7LG4KqyXk4G+nFB1wmlSFJLkBC7AyF3Tn0dy
-	4pTfazAw/uwVYWm8zRAHZlpVp0MZu5wRcMdJ98VDhVleIWBPcc2RKayY6+w==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f46861c0h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jun 2026 09:20:23 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 65U9KICQ010622;
-	Tue, 30 Jun 2026 09:20:20 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4f27kjmer8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jun 2026 09:20:20 +0000 (GMT)
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 65U9KKxu010737;
-	Tue, 30 Jun 2026 09:20:20 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-pkumpatl-hyd.qualcomm.com [10.147.245.204])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 65U9KKan010727
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jun 2026 09:20:20 +0000 (GMT)
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3914174)
-	id 9ADB563B; Tue, 30 Jun 2026 14:50:16 +0530 (+0530)
-From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-To: Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-Subject: [PATCH v2 7/7] ASoC: qcom: sc8280xp: add TDM hw_params support
-Date: Tue, 30 Jun 2026 14:46:05 +0530
-Message-Id: <20260630091605.4043426-8-prasad.kumpatla@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260630091605.4043426-1-prasad.kumpatla@oss.qualcomm.com>
-References: <20260630091605.4043426-1-prasad.kumpatla@oss.qualcomm.com>
+	s=arc-20240116; t=1782811085; c=relaxed/simple;
+	bh=3s/QOz8k9wxpyJ1u9VK/ZYUNlFaOqOF7AAwXjjZGKcM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oIZDffZWZX2J6efW8hpMwbIYtTxlP2Ke+Djk7vMf5Vz2inK4CHXoTB9vjwL8TWSg5UIiWSlgZJ0SK81fVnAlJSILWN3pIJU+ydT8AAVvlbyNL3z+9wyiX+9FKXFgubPPqXJuJob6wen2WfN9moAYWTIv52qJQrlpb+lUVLrDALA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lenovo.com; spf=pass smtp.mailfrom=lenovo.com; dkim=pass (2048-bit key) header.d=lenovo.com header.i=@lenovo.com header.b=FFLITHl7; arc=none smtp.client-ip=148.163.148.104
+Received: from pps.filterd (m0355085.ppops.net [127.0.0.1])
+	by mx0a-00823401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65U5axL33245166;
+	Tue, 30 Jun 2026 09:17:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lenovo.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=DKIM202306; bh=fPK1aMyjeecWtVzAhwi6nBdLvbBO/WB1Xu
+	J3AQfm6yE=; b=FFLITHl7zGdOqvRmceFMYM/DpfMj4qbDwY9TcVTnBIZ588i+fC
+	J+Atut5JenD0QM0jlAZdGZ/BfOqTH1DN6PAyaOiXdxALhIiyAxiM4miciFTSH0Ra
+	v4jMEVwp1eDZOpGMZwUezUQdWzmvNsSZdlHZ+J5Z2WayHELD0etwKKbB491dA5eo
+	9TtB9Xz5xJaUkC14CvdwEfqqTKwDAWk2AQx/TaA9BD2TzWtEootHcEVgJDNnhU+K
+	hoCvFJ95SaLf1uof3Wwv8X0Depr2KndoL++5qBsYsaSSlp/ciFbEdsM0v45FzVyQ
+	lAjDjRwAyTpYDifJTFO4q1a9lnKrkHT2TAUA==
+Received: from hkglppfpool3.lenovo.com ([103.30.235.220])
+	by mx0a-00823401.pphosted.com (PPS) with ESMTPS id 4f2w1dksmc-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Tue, 30 Jun 2026 09:17:46 +0000 (GMT)
+Received: from shelppfpol2.lenovo.com (unknown [10.122.146.24])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hkglppfpool3.lenovo.com (Postfix) with ESMTPS id 4gqHXq2hKGzDRDtM;
+	Tue, 30 Jun 2026 09:14:51 +0000 (UTC)
+Received: from lenovo.com (unknown [10.119.171.213])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by shelppfpol2.lenovo.com (Postfix) with ESMTPS id 4gqHc81rzDz1Mmw;
+	Tue, 30 Jun 2026 09:17:44 +0000 (UTC)
+From: Jiqi Li <lijq9@lenovo.com>
+To: linux-tegra@vger.kernel.org
+Cc: devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, mperttunen@nvidia.com, jonathanh@nvidia.com,
+        thierry.reding@gmail.com, mpearson-lenovo@squebb.ca,
+        Jiqi Li <lijq9@lenovo.com>
+Subject: [PATCH v2 0/2] Add Lenovo ThinkEdge SE70 carrier board support
+Date: Tue, 30 Jun 2026 17:17:41 +0800
+Message-ID: <20260630091743.657388-1-lijq9@lenovo.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,166 +78,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-ORIG-GUID: aV8BUphHUd0bDSPNh61CdN7Con-P-YpD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDA4MyBTYWx0ZWRfX+ocU+Slcugl8
- aHq9oQYfie1l/XCCffY3F1XD+zpJlS+uZZB8+sUoRFIYw4ys+OUkdkYiD1Fxwa2casVRiwpXO5w
- 82BBfB4Iqk6lGY2mzZa0Vesww8FrI6rv1VxvyQ0VQ0ei61vgJ1ywCoZ1BhFpSImSwY5641UB5c5
- 45Cvc5bF+x59NsOr8h9UYSTPg707eX6bu9b0V0Ik8Eohw5wJgapIIiK86SrhvG+yPba3YD5CtPJ
- 31crGJF+S74KTvwsnyxCOon3p96Ow2r4+PE19QpindY8VhHbujlq52quvtEaVB+ak6Oxkiy/yTE
- 1NZtFkWYxjwTzBcFPvgqhGb5Me1X5wTFGrcI87JjwmVK/5hAdTAR+V2HJWG5/JKYDsK+5aXPrHZ
- DPTFlf+pUcvRnZ3EgrVUJA03mlMBjmjlzlaehNZJ589o79B0cem5NCaGqbGwuWFdGcDCuqQKqir
- D7KSrO/M4ZiGr8MujDw==
-X-Proofpoint-GUID: aV8BUphHUd0bDSPNh61CdN7Con-P-YpD
-X-Authority-Analysis: v=2.4 cv=FbcHAp+6 c=1 sm=1 tr=0 ts=6a438a58 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8 a=QTpijNGdYiuWC2p250EA:9
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDA4MyBTYWx0ZWRfX71SDjSKCEdSL
- 4iCGwZSr8somYR+n5xFyKxMtPGjU5fbwFdHSK1kLFGbI9AybvloIEBUS3fiEQXCUPu2w5+lRVmB
- zRlAIucXD+Y4HvXLDaCxvy8nITho6lk=
+X-Proofpoint-GUID: HN42lFtMqy1fVR2tj0Sf2XNlc5vUcacD
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDA4MyBTYWx0ZWRfX5s+QVsd1Cwc+
+ VIqiYv7uwTdEJfcEY94Y+Bhe98blDF1PEeG+GFbpHo8aTarG2dAiDch/4T5KZrDL0SsZK99xl4D
+ HxiwVabtbq0aE1Ri6L0me/Xnxfvq+qM=
+X-Proofpoint-ORIG-GUID: HN42lFtMqy1fVR2tj0Sf2XNlc5vUcacD
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDA4MyBTYWx0ZWRfX5WcjkbuLVQHs
+ yArS9TqMV9Zj9fZGV9Jpmfj+tDL3xrI5ljga1SbGuEsois/RnMUE1ar5wHVtGe2Q/TLimHDCkAL
+ 8zNSrXRo+kbDGGd/zwWT9w8oa3yaV3m/Gue3SF4QNvZt5hCu4ZlRxZ1lerUgdH4jmOUSsDGWPkQ
+ D/RFqZCsv0RGESqqh8kT2TXv/JtaiODNdETrZu+maIxdG7eXSsRh1yEgylFANf6PWX0Uuaag5qq
+ PuWG15QqsHFbz6f29sHE4OkY0UaRHiy/5DcwMSsgq0skKzSfJhyOeMunwTVxqUT/eTygzVIcaKL
+ qk+u3+POlOAgulIO+7F0+5rq7xYqt35PuOv/wqEYwaWOF0ft1eZ90I0Q41Nfh3hUjCmLoUbM+8Z
+ Ncarrcz5C9FPsK1lWQP0pX2XTQnN2jYGjn234t47n09NhqAeAIEnOPFCZvUTEtsTkGrECOhXqJ2
+ VqMAEOq+iUlElsgGcYA==
+X-Authority-Analysis: v=2.4 cv=Qo9uG1yd c=1 sm=1 tr=0 ts=6a4389ba cx=c_pps
+ a=3okn395cuUlJnlrAQteHYA==:117 a=3okn395cuUlJnlrAQteHYA==:17
+ a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=2RTuljz969oO5usasWGy:22
+ a=ohM_6DErYqYCNn4jCPz8:22 a=1HKclyIHpsRocwtzyY4A:9
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-30_02,2026-06-26_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 bulkscore=0 adultscore=0 phishscore=0
- malwarescore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606300083
+ suspectscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 bulkscore=0 impostorscore=0 phishscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=-20 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2606300083
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
+	DMARC_POLICY_ALLOW(-0.50)[lenovo.com,reject];
+	R_DKIM_ALLOW(-0.20)[lenovo.com:s=DKIM202306];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-317534-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,perex.cz,suse.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:prasad.kumpatla@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,nvidia.com,gmail.com,squebb.ca,lenovo.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[prasad.kumpatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-317515-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-tegra@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh+dt@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mperttunen@nvidia.com,m:jonathanh@nvidia.com,m:thierry.reding@gmail.com,m:mpearson-lenovo@squebb.ca,m:lijq9@lenovo.com,m:robh@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[prasad.kumpatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,vger.kernel.org:from_smtp,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[lenovo.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,lenovo.com:dkim,lenovo.com:mid,lenovo.com:from_mime];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 435636E218B
+X-Rspamd-Queue-Id: 1347E6E2072
 
-Add TDM backend handling to the sc8280xp machine driver.
+This patch set introduces device tree binding and standalone DTS file
+for Lenovo ThinkEdge SE70, a fanless industrial edge gateway powered by
+the NVIDIA Jetson Xavier NX module (P3668-0001) on a custom carrier board.
 
-Use the common QCOM DAI-node TDM helper to parse the standard
-DAI TDM slot properties from backend CPU and codec endpoints. Reuse the
-parsed configuration when programming DAIs so hw_params does not need a
-second DT traversal.
+Patch 1 updates tegra.yaml bindings to add the three-stage compatible
+string matching board + SOM + SoC, following the existing Tegra
+carrier board convention.
 
-Derive the LPASS backend bit clock from the runtime TDM parameters and
-request it through the backend child-clock path using LPAIF_MI2S_BCLK.
+Patch 2 adds the complete carrier board device tree, including:
+- 40-pin expansion header pinmux configuration
+- External Micro SD card slot with dedicated 3.3V regulator
+- I2C bus for 40-pin header
 
-Program codec sysclk in hw_params so codec PLL setup happens before the
-stream is triggered.
+All static device tree checks pass: dtbs compile and dt_binding_check
+complete without errors.
 
-Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
----
- sound/soc/qcom/sc8280xp.c | 59 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+Jiqi Li (2):
+  dt-bindings: arm: tegra: Add lenovo,thinkedge-se70 compatible string
+  arm64: tegra: Add Lenovo ThinkEdge SE70 device tree
 
-diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
-index 1f3afc6d015c..1a385a673f86 100644
---- a/sound/soc/qcom/sc8280xp.c
-+++ b/sound/soc/qcom/sc8280xp.c
-@@ -83,6 +83,63 @@ static inline int sc8280xp_get_bclk_freq(struct snd_pcm_hw_params *params)
- 			    snd_pcm_format_width(params_format(params)));
- }
- 
-+static int sc8280xp_tdm_hw_params(struct snd_pcm_substream *substream,
-+				  struct snd_pcm_hw_params *params)
-+{
-+	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
-+	struct sc8280xp_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
-+	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
-+	struct snd_soc_dai *codec_dai;
-+	struct qcom_snd_tdm_slot_cfg cpu_cfg;
-+	struct qcom_snd_tdm_slot_cfg codec_cfg;
-+	unsigned int bclk_freq;
-+	int ret;
-+	int i;
-+
-+	ret = qcom_snd_get_dai_tdm_slots(rtd, &cpu_cfg, &codec_cfg);
-+	if (ret)
-+		return ret == -EINVAL ? 0 : ret;
-+
-+	if (!cpu_cfg.slots)
-+		return 0;
-+
-+	ret = snd_soc_dai_set_fmt(cpu_dai, SND_SOC_DAIFMT_BP_FP);
-+	if (ret)
-+		return ret;
-+
-+	ret = qcom_snd_apply_dai_tdm_slots_cfg(rtd, &cpu_cfg, &codec_cfg);
-+	if (ret)
-+		return ret;
-+
-+	bclk_freq = snd_soc_tdm_params_to_bclk(params, cpu_cfg.slot_width, cpu_cfg.slots, 1);
-+	if (!bclk_freq)
-+		return -EINVAL;
-+
-+	if (data->snd_soc_common_priv->mi2s_bclk_enable) {
-+		ret = snd_soc_dai_set_sysclk(cpu_dai, LPAIF_MI2S_BCLK, bclk_freq,
-+					     SND_SOC_CLOCK_IN);
-+		if (ret) {
-+			dev_err(rtd->dev, "%s: failed to set cpu sysclk: %d\n",
-+				__func__, ret);
-+			return ret;
-+		}
-+	}
-+
-+	if (data->snd_soc_common_priv->codec_sysclk_set) {
-+		for_each_rtd_codec_dais(rtd, i, codec_dai) {
-+			ret = snd_soc_dai_set_sysclk(codec_dai, 0, bclk_freq,
-+						     SND_SOC_CLOCK_IN);
-+			if (ret) {
-+				dev_err(rtd->dev, "%s: failed to set codec sysclk on %s: %d\n",
-+					__func__, codec_dai->name, ret);
-+				return ret;
-+			}
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int sc8280xp_snd_init(struct snd_soc_pcm_runtime *rtd)
- {
- 	struct sc8280xp_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
-@@ -186,6 +243,8 @@ static int sc8280xp_snd_hw_params(struct snd_pcm_substream *substream,
- 					       0, mclk_freq,
- 					       SND_SOC_CLOCK_IN);
- 		break;
-+	case PRIMARY_TDM_RX_0 ... QUINARY_TDM_TX_7:
-+		return sc8280xp_tdm_hw_params(substream, params);
- 	default:
- 		break;
- 	}
+ .../devicetree/bindings/arm/tegra.yaml        |   5 +
+ arch/arm64/boot/dts/nvidia/Makefile           |   1 +
+ ...ra194-lenovo-thinkedge-se70-baseboard.dtsi | 103 ++++++++++++++++++
+ .../nvidia/tegra194-lenovo-thinkedge-se70.dts |  14 +++
+ 4 files changed, 123 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70-baseboard.dtsi
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
+
 -- 
-2.34.1
+2.43.0
 
 
