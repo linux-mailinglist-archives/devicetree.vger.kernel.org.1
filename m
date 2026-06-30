@@ -1,136 +1,224 @@
-Return-Path: <devicetree+bounces-317612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id w+GmMNmUQ2qicgoAu9opvQ
-	(envelope-from <devicetree+bounces-317612-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:05:13 +0200
+	id NaIgM9GVQ2rccgoAu9opvQ
+	(envelope-from <devicetree+bounces-317614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:09:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 718D56E299C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:05:13 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B916E2A59
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 12:09:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EpPmHs3E;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317612-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317612-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=AfHkWQ+4;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317614-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-317614-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 423C93014352
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 10:04:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CF7BA30136AA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 10:08:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 679C03EB10A;
-	Tue, 30 Jun 2026 10:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731963EBF0C;
+	Tue, 30 Jun 2026 10:08:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 673883E44E0;
-	Tue, 30 Jun 2026 10:04:38 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782813879; cv=none; b=iTHVM1Ba+/DyXVd1dXa0RLogrCMOsDc8xRz45gBGZUQcMRiPuwZk3g/5EO094haDAHl7Xga6v7SC2waAlzr4pYdhwlPeRJd+Hrh+X7Tb2mS/SrPZOzM3Os5zJCus/USXO7lFNQh7ispo2by10GYnDLKegVqZkO8C01NTLJgRWZo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782813879; c=relaxed/simple;
-	bh=09WOWTCw5tDbPOdV7wp/vCgW9f6Fp4w0o02Bo7vUZAY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QwBrnXTKbAwObVMCzqQ6fwPhaW2ikY1mE29TnjV6l1ZaSWSDLUiQjL6oWFhsJjKZj91waa9WUzM+4xEkR6qlcuuEyKb7GHPtAYY22EQlA26qh/3XCdDuSt2LhitcDVyRnOWvGwxhaiFOVtgdhTcX+Yef/DCNo2R92kUBmNWLJ2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EpPmHs3E; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 529761F000E9;
-	Tue, 30 Jun 2026 10:04:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782813878;
-	bh=Z4UJjEnZI2IYJ5pUOsVosDLT9elMsKBFDjcbHBD7kKU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=EpPmHs3E3KdDFMh4Bnn2wtm6nJ9lTEv/lIgf/9sQeG/nw/VENYLifFndX4rAiCjvV
-	 qDzUUQ97ZuQe6Bx5wZUYrQTx9yCfQhurmN/BO3lUylkIqdTT4cWIyejsFxih+TURxT
-	 vG+dpFcG00Xv32kVFzXtHMhVzGaJ5xGHm/Cpno/BsSEl5Nz0O2ihINyjipustybPaa
-	 Fb9Ei5IhzkKcaAFvgYvKKFLU8Dd5E6SO+sRqlAUMvy28EBWLdXm8nVxB2cSuxVfhBE
-	 bTgwNqf/5tCAn0LqzOQSK4TTKWSvnc18hlOjm2AGNoWcC63M/B/N3Ak7LpWNPXzf90
-	 5oXrAURnDlq5g==
-Date: Tue, 30 Jun 2026 12:04:29 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, Sebastian Reichel <sre@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Sudeep Holla <sudeep.holla@kernel.org>, devicetree@vger.kernel.org,
-	sashiko-reviews@lists.linux.dev
-Subject: Re: [PATCH v22 04/13] firmware: psci: Introduce command-based resets
-Message-ID: <akOUrV5BwU9/PuLJ@lpieralisi>
-References: <20260514-arm-psci-system_reset2-vendor-reboots-v22-4-28a5bde07483@oss.qualcomm.com>
- <20260514212353.881AFC2BCB8@smtp.kernel.org>
- <c2bb7a24-e1d0-4308-ab53-208901108a5a@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A01B2BEC2B
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 10:08:22 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782814104; cv=pass; b=LTWo8stSQ1shJdQ2XXtg6objZ4WwmRq1P63Ryf3yVzv3ik/GS2LW7kmFVQfOuq0GE1qHA6lNotanw4KWJMnB908DA912sn+AXboSHWE9Sge0zxt30u6dlbi7vCKX6OrgtL88G298VzszCf7rtJcW8I2ru05BIaqW8XzlqhoHWbs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782814104; c=relaxed/simple;
+	bh=ImIp7ff7R+p3kOeF0z4nxDiC1ZOiuu9W7gXy3BE6q5A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MiKsGjxgyw+JXWrK7la78AxeKR+oVxxnJjnQ0UeA1xRuTdnxzOEg+NWpbqgcv8pISrzfBjb+nPDk3dQsygvSA7UMs2scJI48COKupSLKRgL5YjiBlnimH6s9eWjhWgscU/W87Vm5CuODcAovW8ZRU+oebID7LGNyd9VpY9rxW1g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AfHkWQ+4; arc=pass smtp.client-ip=209.85.128.51
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4924593f45dso55382585e9.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 03:08:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782814101; cv=none;
+        d=google.com; s=arc-20260327;
+        b=mE7hy6/sd3l7d8T7i7UEBrYKJsx+8TNrWlPcpbb5w5h5O3ZZO5eobemXx7e/JhDG3o
+         U4klaX9IQMi5l0a51jbihGini4aNb3cB+PAbjlDd8Znca0hG/VTde/NY+vYDb/qR63oG
+         /LBB4oTM9vECttLsw8jyhKyavjraz1kkI29aEUzC15qS9lQ5XVNvdNnnfyz+bTTjfbsr
+         d7Kv+lfGEDSOi4QXKN9jzGPEQ6l49eHBmB4XBOuq6V9AVe2rgZnO2/JIcV/pjn3Cslxa
+         Z953vErqDC/b9Rurrn6bk3HosR4afjodv4/RZDApsef0bMhTpRQsOgTf+JXM3SzCIvel
+         dfFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=zA254jSg7Mg/pmP5Hvzp8s8/v3sVmr5J11egd6Z5eK0=;
+        fh=BKoYwHocEgMC9XlVQbZ+KTt8mVUYBnOoG8LdhTQp5RE=;
+        b=NG9pqHJc9jmw9d2UTh4340dwUpgaWlztloAlSgSN1QpL70iWgj0oF79TdTdMofoNmN
+         OSTFMwEA40SyHrDIwelfu6hvUcnswgNogteV9D4L0KuAl8HUCy7sgcyWE+JMHQhkqOyv
+         D5IpEzxZ0vQl5SJS6T6HlPE+nnnsQykDsOwTdhRYRgaqxSlcPIG5b+0hUF6sD8OQGBzs
+         Vu7iteb/hwKfkZYdyEwK9gyApUsKPcTFZXu26PE4jLjxVW3pZrtYvwmusIBAuWn9u/0w
+         ADLmPnOZqGsuMTry6e4OdvrR8Rxt2JFaOOua5bH8ElaV2VrStC5FHSzO1GXNcpNTgz+z
+         ofzA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782814101; x=1783418901; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zA254jSg7Mg/pmP5Hvzp8s8/v3sVmr5J11egd6Z5eK0=;
+        b=AfHkWQ+4+dOgoqkmHcQUprrHPh+aL1fDXBe5mbKlRaLrc9EC15+p4PYgkyNs/hG0zA
+         mtqDT9ikZBrEN1hiGrrsl2kVrMk59Gu42IbhF8Ojkj7jwo+obtLOBwJ+dA+0b2/Cfznn
+         orVTdYe/jz7f8ZdB9zvR9+U6lbxAIrgeSHZWmoi4vJ4VLRZ5/R0iuladv/Z0/xUZz6OL
+         gChPiAPkSp+SBGxwfiQkcYpABBVXCsGoxoMRZ95CxEAl5KbdtmUo/lDdMYy7JGpf3xK8
+         +qX+wsF5atgBHUDODLGWRSwD9UvVpQdEFwbVDR3fmQsunkZpmvEqyLoEbGVcDAQmF6tB
+         dQKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782814101; x=1783418901;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=zA254jSg7Mg/pmP5Hvzp8s8/v3sVmr5J11egd6Z5eK0=;
+        b=I1OWj1S4KqfxqDqQvV6syTAgs7tkZXzlF0wxxBu0YhU1KScbdWd6aPaRNy7gIV369O
+         PW694A7qkt7R2SAeUOoNkLtJyzzvAo/bzC5UhO35juBXaT+K2+0l/YYUxyXobb51HCcI
+         dEGjvgqXlf5ceJ3crBCgPEIkrSg2GSNtzlT96S4tbGlptXzvR5N10pnHERXN5/cE1zIO
+         +jTaTnDCsa7DAv6rASMx2hL13ONNzVfMyptScILgydYmc0CldP5Hml71h0V+I07uA1/R
+         C9BK2QtizB2tEgr0R5LQ2iLE8DnQlDQSTbzIetSqFxbrLWB6+N1/e+p7xM5knICUesOD
+         2SQg==
+X-Forwarded-Encrypted: i=1; AFNElJ+QgC3KvkyYnSV8iyynS62GtMEzEVqvO5Acn9Ba8/+zFIB+LN4y9WnjF/A2bPJc/+lt3Y7T2ikFvIm1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxeiyXPJo780yyj3knEucg6yOevJKuE/+rBCEnQf019Zhitej5o
+	g6xigrRSTQX0+h5Q45MAvo9DsvVhxFlKtd2272iQVqCwRt6WRJl10PaRJt1cITDFnT0pAQdttE8
+	nhomh3FvjfxvMOTwe5wn0mkayyFUqHOA=
+X-Gm-Gg: AfdE7cmk9QFv6b7ngt1Tri0QGr2SjDarXqzfM/xOtltduqIioRe0zbbw1a6h7q7x+mB
+	3ppAnWkIMY8upuoaKuvLTT6VBGUUuXoD+z83NZ+BoCSW2RvMV1Wp8ZEiMWPiDZ36mReFBQfPFvi
+	7XALX9RKcybwK248l+5IACoCZfrm8X2nPAefKzZ7fFRzJGez8Acmy9M6kj5rTArOzkHAJAw9ER/
+	uinfCYpV+nZ2tCni2yCtUY6KhXybAB2qp2RympOIenRX5+sRsLwWdqejJggagTBU+D1kUBPHdyE
+	KQjhDCGUYkqeFymxUA2W43e3muC+NLg8Vm1/hPY=
+X-Received: by 2002:a05:600c:4991:b0:493:b730:8d78 with SMTP id
+ 5b1f17b1804b1-493b82c324bmr28731885e9.31.1782814100704; Tue, 30 Jun 2026
+ 03:08:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c2bb7a24-e1d0-4308-ab53-208901108a5a@oss.qualcomm.com>
+References: <20260614083424.464132-1-mitltlatltl@gmail.com>
+ <20260614083424.464132-2-mitltlatltl@gmail.com> <qwbda435on6rhsbf5o4jqijakanjmnmswnc6g6qsubuqbyvbok@fuoclv6u7tq5>
+ <c29776b4-04b8-4c59-8f1e-d766bf982a2f@oss.qualcomm.com> <CAH2e8h75xeRVvo+jOjRuFaBko5NNCnBX0dawFFsWBaiTwNd4Xw@mail.gmail.com>
+ <99eaf1d1-fbf9-4336-a13c-ae8ab789cc99@oss.qualcomm.com>
+In-Reply-To: <99eaf1d1-fbf9-4336-a13c-ae8ab789cc99@oss.qualcomm.com>
+From: Pengyu Luo <mitltlatltl@gmail.com>
+Date: Tue, 30 Jun 2026 18:06:50 +0800
+X-Gm-Features: AVVi8CeXY2XXtKzC05jw7mqBTSZCDFNAWUTECad4JJzZvuIX-tBM3NerKDQFx-Y
+Message-ID: <CAH2e8h6aWW_=pD6JAuFB-VqEZDj9x8gZVh9TdvTCRQakKzm3pA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] spi: qcom-geni: Add property to force GSI mode
+To: Mukesh Savaliya <mukesh.savaliya@oss.qualcomm.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-317612-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:mukesh.savaliya@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:agross@kernel.org,m:andersson@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[lpieralisi@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:shivendra.pratap@oss.qualcomm.com,m:arnd@arndb.de,m:sre@kernel.org,m:mark.rutland@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Souvik.Chakravarty@arm.com,m:brgl@kernel.org,m:sudeep.holla@kernel.org,m:devicetree@vger.kernel.org,m:sashiko-reviews@lists.linux.dev,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-317614-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lpieralisi@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 718D56E299C
+X-Rspamd-Queue-Id: 38B916E2A59
 
-On Wed, Jun 24, 2026 at 02:04:54PM +0530, Shivendra Pratap wrote:
-> 
-> 
-> On 15-05-2026 02:53, sashiko-bot@kernel.org wrote:
-> > - [High] The API illegally truncates the 64-bit PSCI SYSTEM_RESET2 cookie parameter to 32 bits, violating the ARM PSCI specification.
-> 
-> Hi Lorenzo,
-> 
-> Was going through this comment. The patch currently uses a 32 bit cookie.
-> The spec also talks about "SMC64 - uint64 - cookie". Can you please suggest
-> if we should add support for 64 bit cookie here?
+On Tue, Jun 30, 2026 at 5:52=E2=80=AFPM Mukesh Savaliya
+<mukesh.savaliya@oss.qualcomm.com> wrote:
+>
+>
+>
+> On 6/29/2026 1:33 PM, Pengyu Luo wrote:
+> > On Mon, Jun 29, 2026 at 1:36=E2=80=AFPM Mukesh Savaliya
+> > <mukesh.savaliya@oss.qualcomm.com> wrote:
+> >>
+> >> Hi Pengyu,
+> >>
+> >> On 6/15/2026 2:48 AM, Dmitry Baryshkov wrote:
+> >>> On Sun, Jun 14, 2026 at 04:34:24PM +0800, Pengyu Luo wrote:
+> >>>> Some devices (such as gaokun3) do not disable FIFO mode, causing the
+> >>>> driver to fallback to FIFO mode by default. However, these platforms
+> >>>> also support GSI mode, which is highly preferred for certain
+> >>>> peripherals like SPI touchscreens to improve performance.
+> >>>>
+> >>>> Introduce the "qcom,force-gsi-mode" device property to hint and forc=
+e
+> >>>> the controller into GSI mode during initialization.
+> >> Why to force ? You can directly configure in GSI mode. Note there are
+> >> some configuration done prior to Linux bootup too.
+> >
+> > Sorry, I don't get it. how? I know there may be a qupfw, but it is
+> > impossible for a normal user like me to generate one with GSI
+> > preferred.
+> >
+> If firmware doesn't program in GSI, you can't have this working in GSI
+> mode, its going to fail (and work with fallback). if it's programmed in
+> GSI, anyway this will run in GSI mode. So why to add extra things
+> without any usage ?
+>
 
-I am afraid the bot is right, it is not correct to assume that the
-cookie upper 32-bits are always 0 :(
+What I can confirm is that fifo is not disabled on my device, and gsi
+is definitely enabled (under windows, check the register
+SE_GENI_DMA_MODE_EN), forcing the device to enable GSI mode on linux
+works well.
 
-Thanks,
-Lorenzo
+Best wishes,
+Pengyu
 
-> 
-> This will require a re-design for supporting about up-to three 32-bit
-> numbers in reboot-mode framework.
-> 
-> thanks,
-> Shivendra
+> > Best wishes,
+> > Pengyu
+> >
+> >>>
+> >>> Ideally, this should be decided by the SPI controller based on the
+> >>> requirements. Another option would be to prefer GSI for all transfers=
+ if
+> >>> it is available, ignoring the FIFO even if it is not disabled.
+> >>>
+> >> Yes, it should be decided in advance and configured accordingly for GS=
+I
+> >> vs non GSI mode. Because there would be limited set of GSI pipes, whic=
+h
+> >> will actually make must have GSI mode device run with FIFO mode.
+> >>
+> >> Why don't you decide prior and configure for GSI mode ? We don't need =
+to
+> >> change the current logic of deciding FIFO vs GSI.
+> >>>>
+> >>>> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> >>>> ---
+> >>>>    drivers/spi/spi-geni-qcom.c | 7 +++++++
+> >>>>    1 file changed, 7 insertions(+)
+> >>>>
+> >>>
+> >>
+>
 
