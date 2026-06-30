@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-317550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-317552-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jAdZONOOQ2o8bwoAu9opvQ
-	(envelope-from <devicetree+bounces-317550-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:39:31 +0200
+	id J/dHFpiOQ2oabwoAu9opvQ
+	(envelope-from <devicetree+bounces-317552-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:38:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CB0E6E24BE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:39:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6226E24A5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 11:38:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amarulasolutions.com header.s=google header.b=iJaX3JC4;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317550-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317550-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=amarulasolutions.com header.s=google header.b=GoKBifQW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-317552-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-317552-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=amarulasolutions.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0936E30B3009
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:32:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 85B5E306BC54
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jun 2026 09:33:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF0453EE1C7;
-	Tue, 30 Jun 2026 09:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C384028FA;
+	Tue, 30 Jun 2026 09:26:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFC53EE1E2
-	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 09:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF713EDE72
+	for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 09:26:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782811606; cv=none; b=l31jzA0oKf5//OQvVjfRzZIUidPqWhR9/pc/cNn2GwUxyhOdVIP+hv5Ewfq6xTyx6/k+ji3EBCySiVjOWbMJYaMn2N1BrdSWMqFqm83uB7Gs4NA2YugSUEHiF6UJWe7A4GkQPxxE7/5p6qcFFmuSl1iZKILXLiP5MgOBRZ4hJr4=
+	t=1782811609; cv=none; b=Dan6hrOIq1uGCwlDeGEjicaFk/cF5MKWQn9HaW9XRxLUCPHlJ23DArWwyCbPlhq/W9rDoAggf/BI/5V1C6nw0egs1noEiAkTXs1LgCOw1TcYWKP4qUy8vvD7EFoFH6hiYprYCEFG2X+m1bvaSpW/zWBPLmjYUp9sN3QrY7HamYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782811606; c=relaxed/simple;
-	bh=9IgDtyv6yAMUkWsg7RNaWcItxtFHo8kakpm/KHcWfnA=;
+	s=arc-20240116; t=1782811609; c=relaxed/simple;
+	bh=u9m2WwsAUh5Coh/I3NjhlkfL1KrpsMcmoa+vDwMzK1s=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PEmY7tTj2fTn7E6Px55m0Eywxu0YmGLZNBnq/XAClcN9COa1hgpaDvCyE4/4C2xCwvAvIycHDdoS3AxGx/r7CwaGsmh7IQ/a7hobJ3AiXDdb99QEiduPCScUqvYKRA1ne8OSEUoGTds5TBJ1cd7KQHXJ9NBmIxHUsaSS1LzMjuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=iJaX3JC4; arc=none smtp.client-ip=209.85.128.53
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-493bab44440so1788635e9.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:26:44 -0700 (PDT)
+	 MIME-Version; b=QfDnYG+5Ebn6j2Y5ksGGbMzXiyoG8GhxYmFdVYVwxqotwho73h8bNrpq269qmPas+128uF6Z2yifc0uI6F6dIUKEk13mawD4VBOv3w5AhX2nMm1tXRSUVgzSSYQYm1yYbZZIzopORwy4pCotqodlxJzuawILo6VJIDfhsQteuMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=GoKBifQW; arc=none smtp.client-ip=209.85.221.54
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-47122683cf3so1614790f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jun 2026 02:26:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1782811603; x=1783416403; darn=vger.kernel.org;
+        d=amarulasolutions.com; s=google; t=1782811605; x=1783416405; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fAmctwTyX9ptfNTsOcFrY+BzuI2WSByIHEJFFIRpN/Y=;
-        b=iJaX3JC4LJutm/00HHSu26tTXigd0r95IFHzwS4LgUcziG/91IDpMTv7PExbwjyDKe
-         sMh2JcZSHrabwCom3Adv6z3EE/Z+adeOaDiUtyqU+flmTio/FTglorgvAvO05+O6tjPu
-         QQwlN4DgqVJCVz/3GRFKjLJQ0nhJx+cs/DEjk=
+        bh=O50jeHT7n6IfAQOe8+U4Hub9w56VMIy6Werwz+99kvc=;
+        b=GoKBifQWZw7YmCKPx2/5YmC/1Us0MyaThtHR9lvHmNVZpQO/KtwVsfqpNSXQdR0vul
+         V1/z1/lVkW7mA2doDnWbDEOnA0mezxZns9zktotLK9toaFC11HNSqvFyUpfVQmr+BmCD
+         423t8lITCeKPr+nVKyIBmHfvFZE/+jTlzk3Jw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782811603; x=1783416403;
+        d=1e100.net; s=20251104; t=1782811605; x=1783416405;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=fAmctwTyX9ptfNTsOcFrY+BzuI2WSByIHEJFFIRpN/Y=;
-        b=GNGkcByeSQBDsvlsIsdzL84Clj7s/spx8oZvy2HF/kOrzes+oaabWVpAJZG4OeIZAR
-         K9WTr3OYywef3gQ+gKY3t0NN+7Jg9xzhXW8QsEWITIfEZ5uAcPJacIniaK4N0eslfCwV
-         7TDqeWW+KKtETAW48xZNJ0x9DLSdGGssnwMXw5JP1iLmoHN7mmrcXrjT2a/1XjdyRjTh
-         Tf5E8mojn1J2J3rM4vaoCFdit9eRT4yJWvOuPpXRO7UUsO5hhoyfc8cdY4pxK9fVtAJU
-         yNjpuM64f34zbeDyI9m6zGunrXwHinOyFKf4ouUPOXyLSprkQFmLTf54Hzv3ynrdkT6n
-         ylYA==
-X-Forwarded-Encrypted: i=1; AFNElJ/s3vUcKXJ2xv64crtDz59avN6fPXzQ2IvK79+1ESToYDRzLjBYnGRbE0TgOqmZWuhqB+lohx0yGj+F@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNZ9zPscqHQRtjVJIT4qm5+1bKocG8WW1k4G4r75yIoaeT6XuI
-	4lisZAu03cjlApN6KBnvQQkCtvTbnXM7oj9ggztK80uaK9buNBijosLIqg4Iv0dXmTA=
-X-Gm-Gg: AfdE7ck1kN83J0x/v9xHOr79yiQt8WF9C5QQH9agTrmlWPyfJGrHH+glQFOsF5Ka27f
-	WJL9qFMrdBcfiKqKLdYFSGxTb92iwREhy6ooAOpSR6eL7hVkUWDeDxXRvIWJpGquXuJH/aOn6iM
-	Kjw60yHijejB+hp7nx6emz8xLzArjTwrxOho9/OyoUgqwIFgXsIpOpHAYjqzO2ZCWfaZXaWcFb8
-	YY9tKiqBmYXSD/pXi4+cQLvw9JMacUSeLG4wiUpDLAA/FTFpxDzB43an433LvxWxhHyKbiNLwfz
-	2oHohGji8MO201jWhb67//NdVpLmOlp5t4I+qhRbhXqwPxJE051iqvokDQ2ip72stpw7UaxWsXC
-	225mRNx1lmHXdippA2Fc36nOBaGgxzBwdfyXjF3Uu2XMKDwek5ZI12sbmRmeDW79p55FTt0DukS
-	Sv5l+drRnCjwrBcxcmQS+BlMtdO49zkpHFf+kSKoFa3rQjDNwYa99NII48pKJrTDvItBpDCDd1J
-	8rcA7JkNCGy3qb9SEQXheBGzxJ66tcNXwVknnr3BtPwjv4D0/F2alB07zR50TWHVjpKqRpM9mU6
-	C62AmnHWb4rVLA==
-X-Received: by 2002:a05:600c:6088:b0:48a:5f32:62c6 with SMTP id 5b1f17b1804b1-493bc24896cmr14463075e9.11.1782811603595;
-        Tue, 30 Jun 2026 02:26:43 -0700 (PDT)
+        bh=O50jeHT7n6IfAQOe8+U4Hub9w56VMIy6Werwz+99kvc=;
+        b=CS3wU7TUGQUlEy/OGj9owx8I6OZuNL6qA0xNQtZPYjHIjptCV8s8FKVKPvEGUWcM7h
+         rXNOlPFLx9zRagJs+MPmDcBYnaWt2U3+Ae1sXsW7yybD43wd8ODiFvCidrfOLB97crMO
+         DOoVK2xhxEBrJL2T7GtNtw8A2UzfnbGlZjFd2YfD1rUdtOfQNLGDMORyuu8nEDmrrxOc
+         whNa/FeWt/+H1M5KK/qWi1MkE/4sChsnN8wIWv3VFP6/9hxraGH4Fbj2wvoqNLU1Ejdo
+         dRTx0o6SONEJF1te2XkOSL9WLGwFqKu3Kw3RqvokYe8bBb6M6kT0yQKxLyq4fdprT7wy
+         /vyQ==
+X-Forwarded-Encrypted: i=1; AHgh+Rqyo7QSmBoRyt4jxxFUogkNcyOhY1yECdUxPNxDHAhqHw5cQurHnF8SBgSIJgY9MvU/GSZeCcjwHKsA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJy5+G2cG/5y+p9TY/yfMq9n28sGu5rp0aBJ2Hmz50UVC/80qu
+	hM1U//Ba27sTyvOjGf/Ixe4ksgOQxllyLzqqMSxMniDnMh8bzQf28O4Jbp2GQfgIHKs=
+X-Gm-Gg: AfdE7ck9qVPZQx/4tnkmIG6Uc/A3HnfP71UYZ5/QS4cuKoo02yWvXomQbaKjoG4Ge2O
+	sXTBsX7mxSIBoSou9Sr7ZeHujat18+gpgngQHQHWMOdvLweBb3mAG47gH2GuKFrRkmd5iQOpIe8
+	QLR0BtSvKfQ4lJVWCPt9Clz8TpFaUHCM0Td8RephkUhjcLOw14rijK0eMRzINdyxY47TllszeuB
+	Fs/ROSfthoD1SstBODTd908UwBKa8FECAHAJXm8Wpz+4Z6zXu7aX/aad2tLxOMqqu8m1VfCVe3f
+	udIDutnOyWwklf1/guyZvh4XnY1/uaqdE4eOKPtGqhj3P5GNbbRKGJpsW3Qk+lqkFytDiNceM+J
+	dfbxiI3kATPFzSGpngvDUEea5PBivpv6mqjKib1E2zUNoSxUK+VkBthMdxTpNnsekmT/4DowQWa
+	S7nU+Zk1RkgnQOWXx3TisDkehegq7rap8OR8gT2/1Abg9J6BVw3f7K4CK2/P+6j194NGaxphO+K
+	yz+3M/a3/+fk574m5TNZnOjyJLb0mzslJ86scc07Xm9VaOtZUuuYvdQ3LSGr5nYCuziBoQdbGzy
+	IwPCsgS6zP0KKA==
+X-Received: by 2002:a05:6000:2c0e:b0:476:8a:5 with SMTP id ffacd0b85a97d-476008a03b4mr1277965f8f.34.1782811605026;
+        Tue, 30 Jun 2026 02:26:45 -0700 (PDT)
 Received: from dario-ThinkPad-P14s-Gen-5.homenet.telecomitalia.it (host-82-48-44-238.retail.telecomitalia.it. [82.48.44.238])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47567a6f0ddsm5669083f8f.37.2026.06.30.02.26.42
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47567a6f0ddsm5669083f8f.37.2026.06.30.02.26.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jun 2026 02:26:43 -0700 (PDT)
+        Tue, 30 Jun 2026 02:26:44 -0700 (PDT)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: linux-amarula@amarulasolutions.com,
@@ -90,9 +90,9 @@ Cc: linux-amarula@amarulasolutions.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v6 04/16] arm64: dts: st: add SDMMC2 support on stm32mp25
-Date: Tue, 30 Jun 2026 11:24:33 +0200
-Message-ID: <20260630092628.1695560-5-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH v6 05/16] arm64: dts: st: add CAN1 support on stm32mp25
+Date: Tue, 30 Jun 2026 11:24:34 +0200
+Message-ID: <20260630092628.1695560-6-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260630092628.1695560-1-dario.binacchi@amarulasolutions.com>
 References: <20260630092628.1695560-1-dario.binacchi@amarulasolutions.com>
@@ -118,7 +118,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FREEMAIL_CC(0.00)[amarulasolutions.com,engicam.com,foss.st.com,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org,st-md-mailman.stormreply.com];
-	TAGGED_FROM(0.00)[bounces-317550-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-317552-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -137,51 +137,53 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,amarulasolutions.com:dkim,amarulasolutions.com:email,amarulasolutions.com:mid,amarulasolutions.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,amarulasolutions.com:dkim,amarulasolutions.com:email,amarulasolutions.com:mid,amarulasolutions.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7CB0E6E24BE
+X-Rspamd-Queue-Id: EB6226E24A5
 
-The SDMMC2 controller supports SD cards, eMMC memories and SDIO devices.
+The controller is compliant with ISO 11898-1: 2015 (CAN protocol
+specification version 2.0 part A, B) and CAN FD protocol specification
+version 1.0.
 
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
 ---
 
-(no changes since v3)
+(no changes since v2)
 
-Changes in v3:
-- Add power-domains property. Suggested by Sashiko.
+Changes in v2:
+- Add resets property to dts CAN node. Suggested by Sashiko.
 
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 16 ++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp253.dtsi | 16 ++++++++++++++++
  1 file changed, 16 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index ae36d703532c..44938c036e30 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -1668,6 +1668,22 @@ sdmmc1: mmc@48220000 {
- 				status = "disabled";
- 			};
+diff --git a/arch/arm64/boot/dts/st/stm32mp253.dtsi b/arch/arm64/boot/dts/st/stm32mp253.dtsi
+index eeceb086252b..7e82f01fdc10 100644
+--- a/arch/arm64/boot/dts/st/stm32mp253.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp253.dtsi
+@@ -43,6 +43,22 @@ &optee {
+ };
  
-+			sdmmc2: mmc@48230000 {
-+				compatible = "st,stm32mp25-sdmmc2", "arm,pl18x", "arm,primecell";
-+				arm,primecell-periphid = <0x00353180>;
-+				reg = <0x48230000 0x400>, <0x44230800 0x8>;
-+				interrupts = <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&rcc CK_KER_SDMMC2>;
-+				clock-names = "apb_pclk";
-+				resets = <&rcc SDMMC2_R>;
-+				cap-sd-highspeed;
-+				cap-mmc-highspeed;
-+				max-frequency = <120000000>;
-+				access-controllers = <&rifsc 77>;
-+				power-domains = <&CLUSTER_PD>;
-+				status = "disabled";
-+			};
+ &rifsc {
++	m_can1: can@402d0000 {
++		compatible = "bosch,m_can";
++		reg = <0x402d0000 0x400>, <0x40310000 0xd50>;
++		reg-names = "m_can", "message_ram";
++		interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "int0", "int1";
++		clocks = <&rcc CK_BUS_FDCAN>, <&rcc CK_KER_FDCAN>;
++		clock-names = "hclk", "cclk";
++		resets = <&rcc FDCAN_R>;
++		bosch,mram-cfg = <0x0 0 0 32 0 0 2 2>;
++		access-controllers = <&rifsc 56>;
++		power-domains = <&CLUSTER_PD>;
++		status = "disabled";
++	};
 +
- 			ethernet1: ethernet@482c0000 {
- 				compatible = "st,stm32mp25-dwmac", "snps,dwmac-5.20";
- 				reg = <0x482c0000 0x4000>;
+ 	ethernet2: ethernet@482d0000 {
+ 		compatible = "st,stm32mp25-dwmac", "snps,dwmac-5.20";
+ 		reg = <0x482d0000 0x4000>;
 -- 
 2.43.0
 
