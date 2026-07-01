@@ -1,76 +1,80 @@
-Return-Path: <devicetree+bounces-318287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318285-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mE8wKrLZRGpn2AoAu9opvQ
-	(envelope-from <devicetree+bounces-318287-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 11:11:14 +0200
+	id Ln6BDpfZRGpZ2AoAu9opvQ
+	(envelope-from <devicetree+bounces-318285-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 11:10:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20DD86EB7C8
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 11:11:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A77386EB7B8
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 11:10:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lenovo.com header.s=DKIM202306 header.b=Qx9HUgUM;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318287-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318287-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=lenovo.com header.s=DKIM202306 header.b=1eAwUuYz;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318285-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318285-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=reject) header.from=lenovo.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 54E403098958
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 09:07:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1FE7E308BCF7
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 09:07:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 182133FA5FC;
-	Wed,  1 Jul 2026 09:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1BA3F39F1;
+	Wed,  1 Jul 2026 09:06:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-00823401.pphosted.com (mx0b-00823401.pphosted.com [148.163.152.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C31033F7ABC;
-	Wed,  1 Jul 2026 09:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560A43F8236;
+	Wed,  1 Jul 2026 09:06:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782896816; cv=none; b=EYz0Jcjn7cob7oARFA/i6aAsxubDa85499H//rwbcTiyLd+YXDG6yoQfpKXXfJWdW+emiDjbqf/qTOnSoH4YrebaDxPDZE+U8eSi20Lop7WRaRAaeWUsnd4V7PgmddMmF7WwyqHIVOE1q44T6LHiOtmsle+EVhKjjpq6HPedLOE=
+	t=1782896813; cv=none; b=D0RjB+JRzbd3T1KoIwkWG+B5f4j3P5OPSm30rCgeUwxyQzif6LOA+VUr6r+hkrfDBjzeMMBJJtcUPaXHSPoOlWGBBVHd7wpKkErD3IeZvbxb5TW6gGnRspLX/hbIWjqMDuc6rRig/rqkYh3yzVB64nIQetaBg3yoR7o5km9sVzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782896816; c=relaxed/simple;
-	bh=c9AgtkNavzZZ8qkzuCtUIsyqaU8piuUpRM/uY2JQwPw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KKi8yB17eWpZY9g/xbzQt6Ys9OB3lWUehoOsNQRZfQ3c0xo4Ey1Q53sLEOaITE02AKslrnGxxaEMlrR/Cvb4YrUbqHP5B96fGbPjNkTcAhUxTDM2YgElynDDCZqViC5vxdMbNTSeYnW3m8RtLy6s0YcoYX2oeV6wkw08Wa2lR3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lenovo.com; spf=pass smtp.mailfrom=lenovo.com; dkim=pass (2048-bit key) header.d=lenovo.com header.i=@lenovo.com header.b=Qx9HUgUM; arc=none smtp.client-ip=148.163.152.46
-Received: from pps.filterd (m0355092.ppops.net [127.0.0.1])
-	by mx0b-00823401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6618BwEP1883707;
+	s=arc-20240116; t=1782896813; c=relaxed/simple;
+	bh=anZqIdI0f/wNdBtZur7DYyhPAXyOxZm3N70DD3bqVCs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Vlul+1p0CcLnz+O0y+wli+eR+3OeV4UnFVvQvCSK7SUtlAvrhng4YPsrr4pDWC0OmlTw845INq6nxY8ODg3X2Y7apRmB/D/3gkMPhAaGc6akP0m+lfEpK7SHOL2GVFFfeDqwFtoh4Wy5XH6dlj4gYLuAr91f3mMv1i9OnAr9r2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lenovo.com; spf=pass smtp.mailfrom=lenovo.com; dkim=pass (2048-bit key) header.d=lenovo.com header.i=@lenovo.com header.b=1eAwUuYz; arc=none smtp.client-ip=148.163.152.46
+Received: from pps.filterd (m0355091.ppops.net [127.0.0.1])
+	by mx0b-00823401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6618C1cl1872113;
 	Wed, 1 Jul 2026 09:06:43 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lenovo.com; h=cc
-	:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=DKIM202306; bh=QYQs7bMjCq3AxrNO0NEiBAj7S6qssf53o0
-	77myy4Ol0=; b=Qx9HUgUMRfzF3bP0GxOhS/JNBM+WUfWoWgpWoAL7niAZS32AIs
-	D2ewaABXk4arr/kjHkwW6TjTv+vI7q0Kr1X31eX4/e569R05dxdEIFhvfOzhtPYT
-	MGIoTn7R/tcQThctUrfBZbuiIg0HVONvF7bt7ttujzPT2o3E8wLZC3r6f8YHI/pE
-	aU3WYXgV3f0HBkNRwI1/kpDlwWwAjGzJDn8UuXQYm8387P0GpgqTX0ec1U8YE4ml
-	L9qtvapCs79XFx+iDsvSh4ZDWFuLB5xIFlSZa9WR0jR5+FbVcO+I/6H806gn8Ymg
-	NhnUDikc+XjMmHysuPEnnuSGeDV7oK3X37Qw==
-Received: from hkglppfpool1.lenovo.com ([103.30.235.218])
-	by mx0b-00823401.pphosted.com (PPS) with ESMTPS id 4f2vuae78d-1
+	:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=DKIM202306; bh=tJfNhG+Ngb
+	9+E1bv8F6ZJqomPe49hO9dT7CKaDnuxQc=; b=1eAwUuYzdc6XtDFNzIR66VFGf/
+	7rd4JNh3UGizBhHadYU7Ncbz6OCpkkKmIBR9f8M8Yh7jy7jKEBIe+VdX9GF8wOm+
+	JKHS1zX/7aku3MCcVswhTMwQWOhG1XuPFHhheSsId+VI3Ye050P6MEmjRkQZkzQH
+	37wLUL5lDLyZFU4lr2bwkV7+0WGr0+l4j5+J8NwZD3ZY9qrvbzGakJSzJtHPrCFq
+	nsetNwNK4y8AeXraF7w50OAKb+KclW0R/Mm4nBxZiY9z0P2Qbrta51ZqGOgU0NI3
+	sisUQJGba70fb9TfSVLxg2Y7fEU19Sw2iuy+Nd2sSPjHzVmiiEGcn+NCcY/A==
+Received: from hkglppfpool3.lenovo.com ([103.30.235.220])
+	by mx0b-00823401.pphosted.com (PPS) with ESMTPS id 4f2umep8t8-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
 	Wed, 01 Jul 2026 09:06:43 +0000 (GMT)
 Received: from hetlppfpool2.lenovo.com (unknown [10.196.132.72])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by hkglppfpool1.lenovo.com (Postfix) with ESMTPS id 4gqvJw3nc2z9vWhg;
-	Wed,  1 Jul 2026 09:06:40 +0000 (UTC)
+	by hkglppfpool3.lenovo.com (Postfix) with ESMTPS id 4gqvFb4DrbzDRDtm;
+	Wed,  1 Jul 2026 09:03:47 +0000 (UTC)
 Received: from lenovo.com (unknown [10.119.171.213])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by hetlppfpool2.lenovo.com (Postfix) with ESMTPS id 4gqvJw2FBxz18W7cJ;
+	by hetlppfpool2.lenovo.com (Postfix) with ESMTPS id 4gqvJw466Mz18W7cG;
 	Wed,  1 Jul 2026 09:06:40 +0000 (UTC)
 From: Jiqi Li <lijq9@lenovo.com>
 To: linux-tegra@vger.kernel.org
 Cc: devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
         conor+dt@kernel.org, krzk@kernel.org, mperttunen@nvidia.com,
         jonathanh@nvidia.com, thierry.reding@gmail.com,
-        mpearson-lenovo@squebb.ca, Jiqi Li <lijq9@lenovo.com>
-Subject: [PATCH v3 0/2] Add Lenovo ThinkEdge SE70 carrier board support
-Date: Wed,  1 Jul 2026 17:06:37 +0800
-Message-ID: <20260701090639.669524-1-lijq9@lenovo.com>
+        mpearson-lenovo@squebb.ca, Jiqi Li <lijq9@lenovo.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH 1/2] dt-bindings: arm: tegra: Add lenovo,thinkedge-se70 compatible string
+Date: Wed,  1 Jul 2026 17:06:38 +0800
+Message-ID: <20260701090639.669524-2-lijq9@lenovo.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260701090639.669524-1-lijq9@lenovo.com>
+References: <20260701090639.669524-1-lijq9@lenovo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,95 +82,102 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: FkhjAxOY7MAL8vuVDDDuj3dB1NLQrWnv
-X-Authority-Analysis: v=2.4 cv=T7e8ifKQ c=1 sm=1 tr=0 ts=6a44d8a3 cx=c_pps
- a=yIlUyoB/d3ZP/uZUHEUQoQ==:117 a=yIlUyoB/d3ZP/uZUHEUQoQ==:17
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAxMDA5MyBTYWx0ZWRfX0L1C65+Qq0kY
+ UcYy7EPc6g0SBWYo+DYo+iRC5SsCrDH6Mr5xofKMhf3G5alfZgA2LcketdsebEpioU+HIj5/Fjj
+ ctDDv0XpT3eRjGwyHv5m8PcWrwThitw=
+X-Authority-Analysis: v=2.4 cv=feidDUQF c=1 sm=1 tr=0 ts=6a44d8a3 cx=c_pps
+ a=3okn395cuUlJnlrAQteHYA==:117 a=3okn395cuUlJnlrAQteHYA==:17
  a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=2RTuljz969oO5usasWGy:22
- a=rq6KeYSQr_4CDViOXtGD:22 a=1HKclyIHpsRocwtzyY4A:9
-X-Proofpoint-ORIG-GUID: FkhjAxOY7MAL8vuVDDDuj3dB1NLQrWnv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAxMDA5MyBTYWx0ZWRfX1zr3emId9w24
- BKyU+7uPkx+cp+CAM3+pF0GNbEVqyJ93Td5TTEx49yVAdD+uz+mLtkyyDf/QVtAMHdTRYBy3Hn3
- rh6PSIMkTYZkFoYyrEGHySbuV5NiwXsDCi+Z8IQiym7av3ImdSnkaWvDgz22sK3xFr++HvDuDU3
- Vb+dqGpiiWUZuJn2b5/6bYqbZoZzcnfmoQIhdY30LCIvc1+NJ998MNXmAkpXtogWQAv4pdWnMpk
- osB+yAtJkMPqVrGZfBKkEKQdUp7dXFdX7W+KHcbxdWt08P9DIbKYWz1+oZHuy7+U6X2flAEr9jp
- iTWOe58bHzzZoA62r7E/ZXAbtBushUyQgAn76t2zefFmuR7oMQl3yIOz94BzI4o6IKhDRfyaRbv
- QIBWL7x2GneS5LaecqTAaoSmqKSeGjSdoY375TPuoerYutDpvyVlQ+/HhNOIQsOi8iEWlUr3CRn
- xMVsAeBvGp/RbjiNOGw==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAxMDA5MyBTYWx0ZWRfX8enGc0IPAdH5
- PpAbEU2cX00mzV9oWLWfKLBD03thcSpvN2kdmFGPxA13QBNBRHLrhoMvF92smft3g5w+Jt+lZfg
- NkGrLWrGNSj5DyrkKcRXYGPAc7zpSM0=
+ a=faLMhqsB0ZTpFNi-tw5Q:22 a=XYAwZIGsAAAA:8 a=8k6WQxmsAAAA:8
+ a=Qg7IKkRQLkjCXi5ovIEA:9 a=E8ToXWR_bxluHZ7gmE-Z:22
+X-Proofpoint-GUID: 3QddehoINYvVXf2WKPTjO3LvUdktkvxT
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAxMDA5MyBTYWx0ZWRfXyUIhYlfD30rQ
+ LXjClIueeTHV4n94hNSDehHFTbM9kvsKjkILXXAKTtwfbMYw1zjth+F4JMYjrFXBG24F7NDh+TG
+ hkV1ZhVTQyyC7c4nDenpWLpD6eBrwYD1zcXURJ7qAEroxzyRDTHkP2dIBt9vBvPO4TUamL6BeIs
+ 9MgeeNTlGxiWqW+lMJ+yXQZJ0/RIiGWyhfHAum++WO/ias1bZqQslxDpvEzvnF7BhWylYpKNQKS
+ L/q2k9x7Z5UHNT9iWG7ya9zUJlqiJHj8kVTVpUBzz/EOQh1DxRuigHNouFQXPN/LMfiNJ/RxsZF
+ kYHMmcWTgALe+gd6n5io0wPHXTyC6FK31syutY2NWLs6ARhXr2rpUG+AN3lsYsPlF0SC3RRlz41
+ hiLieK2Xb9oszMxKsuM2u3YUlWtaHZKrXsSeQUEglM67NaG7eto+0E/iX2VL+er5K6j3Gdu4AW+
+ SbTXBTRHGSS40wwkjXg==
+X-Proofpoint-ORIG-GUID: 3QddehoINYvVXf2WKPTjO3LvUdktkvxT
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-07-01_02,2026-06-26_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 lowpriorityscore=0 impostorscore=0 adultscore=0
- priorityscore=1501 phishscore=0 suspectscore=0 clxscore=1015 malwarescore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=-20 reason=mlx scancount=1 engine=8.22.0-2606150000
+ bulkscore=0 impostorscore=0 spamscore=0 malwarescore=0 clxscore=1015
+ priorityscore=1501 phishscore=0 suspectscore=0 lowpriorityscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=-20 reason=mlx scancount=1 engine=8.22.0-2606150000
  definitions=main-2607010093
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[lenovo.com,reject];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[lenovo.com:s=DKIM202306];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-318285-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,nvidia.com,gmail.com,squebb.ca,lenovo.com,microchip.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,nvidia.com,gmail.com,squebb.ca,lenovo.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-318287-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-tegra@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh+dt@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:mperttunen@nvidia.com,m:jonathanh@nvidia.com,m:thierry.reding@gmail.com,m:mpearson-lenovo@squebb.ca,m:lijq9@lenovo.com,m:robh@kernel.org,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:linux-tegra@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh+dt@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:mperttunen@nvidia.com,m:jonathanh@nvidia.com,m:thierry.reding@gmail.com,m:mpearson-lenovo@squebb.ca,m:lijq9@lenovo.com,m:conor.dooley@microchip.com,m:robh@kernel.org,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[lijq9@lenovo.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[lenovo.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lenovo.com:dkim,lenovo.com:mid,lenovo.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lenovo.com:dkim,lenovo.com:email,lenovo.com:mid,lenovo.com:from_mime,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 20DD86EB7C8
+X-Rspamd-Queue-Id: A77386EB7B8
 
-This patch set introduces device tree binding and standalone DTS file
-for Lenovo ThinkEdge SE70, a fanless industrial edge gateway powered by
-the NVIDIA Jetson Xavier NX module (P3668-0001) on a custom carrier board.
+Lenovo ThinkEdge SE70 is a fanless industrial edge gateway carrier
+board based on NVIDIA Tegra194 (Xavier NX) SOM.
+Add the corresponding compatible string for device tree validation.
 
-Patch 1 updates tegra.yaml bindings to add the three-stage compatible
-string matching board + SOM + SoC, following the existing Tegra
-carrier board convention.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Jiqi Li <lijq9@lenovo.com>
+---
+Changes in v2:
+- No further modifications, adds Conor's Acked-by tag
 
-Patch 2 adds the complete carrier board device tree, including:
-- 40-pin expansion header pinmux configuration
-- External Micro SD card slot with dedicated 3.3V regulator
-- I2C bus for 40-pin header
+Changes in v3:
+- No further modifications
+---
+ Documentation/devicetree/bindings/arm/tegra.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-All static device tree checks pass: dtbs compile and dt_binding_check
-complete without errors.
-
-Jiqi Li (2):
-  dt-bindings: arm: tegra: Add lenovo,thinkedge-se70 compatible string
-  arm64: tegra: Add Lenovo ThinkEdge SE70 device tree
-
- .../devicetree/bindings/arm/tegra.yaml        |   5 +
- arch/arm64/boot/dts/nvidia/Makefile           |   1 +
- .../nvidia/tegra194-lenovo-thinkedge-se70.dts | 113 ++++++++++++++++++
- 3 files changed, 119 insertions(+)
- create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-lenovo-thinkedge-se70.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
+index 033a63f6c068..a54d0024e636 100644
+--- a/Documentation/devicetree/bindings/arm/tegra.yaml
++++ b/Documentation/devicetree/bindings/arm/tegra.yaml
+@@ -268,6 +268,11 @@ properties:
+         items:
+           - const: nvidia,p3509-0000+p3668-0001
+           - const: nvidia,tegra194
++      - description: Lenovo ThinkEdge SE70
++        items:
++          - const: lenovo,thinkedge-se70
++          - const: nvidia,p3668-0001
++          - const: nvidia,tegra194
+       - items:
+           - const: nvidia,tegra234-vdk
+           - const: nvidia,tegra234
 -- 
 2.43.0
 
