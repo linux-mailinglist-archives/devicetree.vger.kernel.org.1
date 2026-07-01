@@ -1,169 +1,134 @@
-Return-Path: <devicetree+bounces-318611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318640-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0L7qD/EZRWoD7AoAu9opvQ
-	(envelope-from <devicetree+bounces-318611-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:45:21 +0200
+	id 1DYLEn8ZRWrt6woAu9opvQ
+	(envelope-from <devicetree+bounces-318640-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:43:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCAE06EE49C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:45:20 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36EB06EE44A
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:43:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=WwMS5IBn;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318611-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318611-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=collabora.com;
+	dkim=pass header.d=emailprofi.seznam.cz header.s=szn1 header.b=S+BGghOZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318640-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318640-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B421B312C389
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 13:07:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6C39430B3904
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 13:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28F06481254;
-	Wed,  1 Jul 2026 13:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1257A481AA0;
+	Wed,  1 Jul 2026 13:16:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mxb.seznam.cz (mxb.seznam.cz [77.75.78.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD16D21257F
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 13:07:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2620481643;
+	Wed,  1 Jul 2026 13:16:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782911239; cv=none; b=tMHq2H46+NFZ3OJPomK7Ge0x2occVIl8Dck2puTo5QKCuzCGXoJcTukM/S9LIgsq5FeVlr8ZqU6hUZ4KUSnBpW6archya6Uc0Y/OGXjldvFH/8InUMjn21yz9PW5uynCjo3ePXRRy+hGrpGQA7Ap6tP19sf1lD0m5Hz5ntVepIg=
+	t=1782911800; cv=none; b=K63KCQ3r4UcmniYAG4AxHPewToCZ+0hvx4AcF8uI+df0ZyDFaYe5C6nVT8y+SrXeCGXw7uWexFF41hnxoIPwwUQNEBXdplHzZWSlO47hfkDxdTvaoNBqCADu7ehdDOtYxBFRgMbvTEeAJ+G89lbadgcb9o2/LqBtUjbm/GNpa+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782911239; c=relaxed/simple;
-	bh=egO+P7S6yZj5BJWfitgoiKOxhPzV42iE+OehiNwLm2s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pXtO9zizZq/nKSTFuO45KlMUnxFA/cQEfz10PuRNZV+W24KQxBJ8FRdTyd0yq8xJlJ3WalHTP3ScDNDEK77ZsuzrbI4OBB7AhshWF640Z7yVmmlW08uqC0FTnsM/3x9YEAjU4QDdyxrrlYeBW9ChJWg/hTaXhkMBdgVn9/e5Png=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WwMS5IBn; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1782911236;
-	bh=egO+P7S6yZj5BJWfitgoiKOxhPzV42iE+OehiNwLm2s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WwMS5IBngxFJJs/3LwWc49EYO4C7SimfxbyxeN9GQAEZLtqtwk18ZhuBGXcBdp07K
-	 BgoQFcsmgqNBkMdukII1kqMfanABYxDAf2i5K49cAb0gDerEa2jlSbeet4vxGEIuQJ
-	 Xupr0D1WCv+lzdM/vP9l8xLLhTPtpDfhxFSbMm3uRiLbjyKC5CcnOGxm2/7u1efI52
-	 FkJbFrtrSR1C6c5nPU0wBM+joqJTkgvt+601gYjpum3WTxus1KRDvt8/3rmiM0XYVy
-	 b886YntTtHRyIAwGB0DJOS8zHQ0foIqFTxNIApXwgns7xS7OHlNztB6OUS+DBwk7kj
-	 h8nkBfLNaIjwA==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id EC83D17E0909;
-	Wed,  1 Jul 2026 15:07:15 +0200 (CEST)
-Message-ID: <f1a7844c-76dc-4170-84e7-c6116c2f4194@collabora.com>
-Date: Wed, 1 Jul 2026 15:07:15 +0200
+	s=arc-20240116; t=1782911800; c=relaxed/simple;
+	bh=J2Tfr0KuUi9JJbAl5PXWWq9Fi5eRMYMqNrcCwoqL//k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QfbGT73q52bx1fK/TBe3QgPQsabfOyg0xHcfkCAG8m+aXvVFgtJxloyhF+CkVanqYF2+bpcZBTRGKWUjtb1XbZE/Rcy4JbrOcdUR0ns3wCz+LuM29/qFj6CAgYjihdbjFyBlP3ZLIzI1OKqx+KRGcJFjFXsnxb7R2IjWoYvfaeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loebl.cz; spf=none smtp.mailfrom=loebl.cz; dkim=pass (2048-bit key) header.d=emailprofi.seznam.cz header.i=@emailprofi.seznam.cz header.b=S+BGghOZ; arc=none smtp.client-ip=77.75.78.89
+Received: from email.seznam.cz
+	by smtpc-mxb-7dd54556bb-mmpkq
+	(smtpc-mxb-7dd54556bb-mmpkq [2a02:598:64:8a00::1000:90e])
+	id 140260b20f90ed6610e7d930;
+	Wed, 01 Jul 2026 15:16:35 +0200 (CEST)
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=emailprofi.seznam.cz; s=szn1; t=1782911795;
+	bh=xENII8EZaJdwQWpJhr6djRtFKqHREofsbn+6lT7eUXo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding;
+	b=S+BGghOZtlViIN8JzVsWMWdnuf7/QSckbRWvDG7HyVlH26ohSVUKBvulvpf4+RWJk
+	 D3CoOs23Wza7OnAjdCnNSsXm1eSy3kuNfa6qwig8YD21AkVhNZjuNp+h3noXkn9KUN
+	 qkIGYamIf3+v9r3lZw4sZdfNVr6WGcst9BZKoX36c1uajUexY6xs8ivOCI74Mk5bme
+	 RfRFhKo08pETF5DI6HRryxtr4TW8BghqpkspipaGSh3vcjduKYgyDIWklShpQrgiAI
+	 Skdx8aMungoq4sh0KVcyjRKVqIGLBRyTGAU/NPR9qwQeTzP7I+hEkabNy1pfuS2YYI
+	 ZmfQCE7Y9+M6Q==
+Received: from localhost (109-81-118-98.rct.o2.cz [109.81.118.98])
+	by smtpd-relay-f8b496c7c-7h56j (szn-email-smtpd/2.0.76) with ESMTPA
+	id ee0831a5-5829-4d63-afdc-25c2ca5f626b;
+	Wed, 01 Jul 2026 15:13:48 +0200
+From: =?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	=?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
+Subject: [PATCH 0/2] Add support for Si549 programmable clock
+Date: Wed,  1 Jul 2026 15:09:24 +0200
+Message-ID: <20260701130927.3858536-1-pavel@loebl.cz>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/12] dt-bindings: phy: Document MT8195 and MT8196
- DisplayPort PHYs
-To: sashiko-reviews@lists.linux.dev
-Cc: neil.armstrong@linaro.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org,
- dri-devel@lists.freedesktop.org, vkoul@kernel.org, olteanv@gmail.com
-References: <20260701122008.19509-1-angelogioacchino.delregno@collabora.com>
- <20260701122008.19509-2-angelogioacchino.delregno@collabora.com>
- <20260701122755.D031B1F000E9@smtp.kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20260701122755.D031B1F000E9@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_ALLOW(-0.20)[emailprofi.seznam.cz:s=szn1];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linaro.org,lists.infradead.org,vger.kernel.org,kernel.org,lists.freedesktop.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-318611-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:neil.armstrong@linaro.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:vkoul@kernel.org,m:olteanv@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318640-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:pavel@loebl.cz,m:krzk@kernel.org,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DMARC_NA(0.00)[loebl.cz];
+	FORGED_SENDER(0.00)[pavel@loebl.cz,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pavel@loebl.cz,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[emailprofi.seznam.cz:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,emailprofi.seznam.cz:dkim,loebl.cz:mid,loebl.cz:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BCAE06EE49C
+X-Rspamd-Queue-Id: 36EB06EE44A
 
-On 7/1/26 14:27, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Low] The device tree example will fail `make dt_binding_check` validation due to a 64-bit `reg` property at the root level without `#address-cells = <2>` and `#size-cells = <2>`.
+This adds support for Si549 programmable oscillator. It's almost the
+same as already supported Si544, except it uses different internal
+oscillator frequency.
 
-That's not "Low", that should be "High" - failing dt_binding_check validation is
-critical enough here.
+So new compatible strings are added, and driver data is extended
+to carry both maximum output frequency and internal xtal frequency.
 
-Anyway, will allow some time for reviews before fixing that.
 
-> --
-> 
-> commit c7b476cde050e045aaa56bae9dd7ecc7b3d34ced
-> Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> dt-bindings: phy: Document MT8195 and MT8196 DisplayPort PHYs
-> 
-> This adds bindings for the DisplayPort and Embedded DisplayPort PHYs found in
-> the MediaTek MT8195 and MT8196 SoCs. The PHY supports varying impedance
-> calibrations for the signals to reach an optimal EYE signal pattern.
-> 
->> diff --git a/Documentation/devicetree/bindings/phy/mediatek,mt8195-dp-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,mt8195-dp-phy.yaml
->> new file mode 100644
->> index 0000000000000..5847963a7085e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/mediatek,mt8195-dp-phy.yaml
-> 
-> [ ... ]
-> 
->> +examples:
->> +  - |
->> +    phy@1c500000 {
->> +        compatible = "mediatek,mt8195-dp-phy";
->> +        reg = <0 0x1c500000 0 0x2000>;
-> 
-> [Severity: Low]
-> Looking at the examples section in mediatek,mt8195-dp-phy.yaml, will this
-> example pass make dt_binding_check validation? The reg property contains 4
-> cells, but since the example node is at the root level without a parent node
-> explicitly defining #address-cells = <2> and #size-cells = <2>, the dummy
-> root node defaults to 1 for both. This causes the 4 cells to be parsed as 2
-> separate items, which violates the schema's maxItems: 1 constraint.
-> 
->> +        #phy-cells = <0>;
->> +        nvmem-cells = <&edp_glb_bias_trim>, <&edp_clktx_impsel>,
->> +                      <&edp_imp_ln0_pmos>, <&edp_imp_ln0_nmos>,
->> +                      <&edp_imp_ln1_pmos>, <&edp_imp_ln1_nmos>,
->> +                      <&edp_imp_ln2_pmos>, <&edp_imp_ln2_nmos>,
->> +                      <&edp_imp_ln3_pmos>, <&edp_imp_ln3_nmos>;
->> +        nvmem-cell-names = "rbias-trim", "impedance-txclk",
->> +                           "impedance-lane0p", "impedance-lane0n",
->> +                           "impedance-lane1p", "impedance-lane1n",
->> +                           "impedance-lane2p", "impedance-lane2n",
->> +                           "impedance-lane3p", "impedance-lane3n";
->> +    };
-> 
+Pavel Löbl (2):
+  dt-bindings: clock: si544: add si549 compatible
+  clk: si544: add support for si549
+
+ .../bindings/clock/silabs,si544.yaml          |   8 +-
+ drivers/clk/Kconfig                           |   6 +-
+ drivers/clk/clk-si544.c                       | 100 +++++++++++++-----
+ 3 files changed, 84 insertions(+), 30 deletions(-)
+
+-- 
+2.53.0
 
 
