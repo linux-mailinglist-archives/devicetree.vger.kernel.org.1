@@ -1,250 +1,191 @@
-Return-Path: <devicetree+bounces-319327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-324002-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rTAvAxZKRmprNwsAu9opvQ
-	(envelope-from <devicetree+bounces-319327-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:23:02 +0200
+	id DOBDK3foT2pUqAIAu9opvQ
+	(envelope-from <devicetree+bounces-324002-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 20:29:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F6476F69FA
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:23:01 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4477734470
+	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 20:29:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=JWKLBOQv;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319327-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319327-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=echKC+5X;
 	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324002-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324002-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 079A23003819
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 11:23:01 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1EB503006823
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 18:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 703713EEAE9;
-	Thu,  2 Jul 2026 11:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0AD34EA380;
+	Thu,  9 Jul 2026 18:29:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-pj2-f2.google.com (mail-pj2-f2.google.com [74.125.227.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCC383EDACC
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 11:22:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0FC94E377E
+	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 18:28:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782991377; cv=none; b=Vkts5jTijupeJMcDGgXgt0QuFDCFKImPVVIhAgOTVbo0D20Cbvw+7AO9TvjsYGoWyoFajpnt5p5jHNsWEL+CWBHVjHMTX1q0YnSeSdRgzj6p4NMibQmGler1MEgkR9Wg61L0bHa97T9yWFhciPR2fs3u3P/MYlgv95UKOuBmijY=
+	t=1783621740; cv=none; b=BF0Gff4aXxZKZa3qul9qgN5GfcF+GNF63kQllBU6CKhTp7Ec5dhjMF18xkevsEZWyXuzvvwIOfMSqWhIcYj+dpWnplyGtKl95k258AgzZYbdS6NbcHVL+eyH2Dz8cuAOVrPnRoxSFvVhDSMXsS3r54YFzwRTz45Ol4Hk9W0a/Gs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782991377; c=relaxed/simple;
-	bh=BjCZldRmVu7iIL1qiFQiiS2rf7b4kgTkGMTTxWONjr4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GuB6L8usuqTXIS0vB9pTY4Qk6aOrgw8xN+BGf9UkYn0VnKZoLyC07++26Uvx7I7/ITWQ9NmXql8894HGbchz+PHbrVV+lw82wS0NAa+KA0CNlioWarm3OFKvrbxGDNac6mfDrCGHvXTPQj8/zn3riz/oXfJkifHchtEat0JJKSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JWKLBOQv; arc=none smtp.client-ip=209.85.128.44
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-490cf322ed0so11455835e9.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 04:22:55 -0700 (PDT)
+	s=arc-20240116; t=1783621740; c=relaxed/simple;
+	bh=F3880iQjXWhrnjsz5UgW9kwELR4+dgn6tPqZG2gmN40=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=oRESe8U5bmhS/JL1IdlysuWsV2B0PXnLY+/c1A8bijxpPWq8Rc/r+sT/lk68nipa0s/w4ZAFcwOqd/JG7iADRxBx6IU2sChdIUpzM1oR2xf+RKKpoOPyT0qZSqRcl0R/KosHUEHN0P4xcOJPfxNfA3OkazmWqzZdeGYFGNkYYDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=echKC+5X; arc=none smtp.client-ip=74.125.227.130
+Received: by mail-pj2-f2.google.com with SMTP id 98e67ed59e1d1-380feaa05dcso145792a91.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 11:28:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782991374; x=1783596174; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KhhtWV7Ryh6pz9r0SAzNB6C4UPIw4trYcrpHGw3+K5E=;
-        b=JWKLBOQv5td84hv0LK8aQzdZA2lyEh7d9gRVfDeBB8SdxKlt0gnfGWOikEZPu5cY3y
-         EItywlxa6yN8bfbDDYTD5KW7b7IFEU/Im8Ub/ObaE37pM9a3UqgxsFhlNd3CUk0wJQHv
-         XlxxIRe3pjBZP0fWL8KydwRmfzBkRVI8hWJMDKVhONFgrXvnzvGkLhlHMljngpERSCj6
-         1h/0aG9ybpn+3ReLLDjgqUu3XiHd9lQEx/zHQMkjDwlON+F8geXVo9cFaVpm5wPIzQal
-         ik9n8ZbJSBWaQzWvat9vZIImq5Zxf8+0dOAE6FhJkmvghyxSvoVqkGUMonKqmT5ERqGl
-         LG7w==
+        d=gmail.com; s=20251104; t=1783621735; x=1784226535; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id
+         :references:in-reply-to:user-agent:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=RN+4SkO8PJ9d9SXPrFRpz0v6UaMeYjDz8fSXVOFCTUQ=;
+        b=echKC+5X5qoqV5LdJaqQGubY47jm7Zembzmf9K7+sEEa/jSGiN3uWpdGkt0T+WmwvW
+         DTkiOupga53wz/0Nff48YilHcxX8v3vvxOgWtfcNT8t0eAJDze39VGM6u/76qVIhOOTz
+         0tuchl/Zimj0RwsH0BPMZOQoyXYS9oiqzNfEWXp0ykQZj/WNS1dKaiFNVg65RicVazY8
+         K5tVgJR1KULffrnSHW3bT/q/PewsLuEnrmLOWr1HQLd9t9Veela2IwRPw4f4TOkKjmWc
+         /BAmcxxtuW7jGII3slRz8XGALERCP0cWgbeNH0lcGa5pKFMV4MXNcL1FVlqB3dxCbTYb
+         0A3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782991374; x=1783596174;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KhhtWV7Ryh6pz9r0SAzNB6C4UPIw4trYcrpHGw3+K5E=;
-        b=WQbvTS1DnUAEpJhs1hoaC12XyFtmfffqoxmjemDhHyCWklwR1hPAxxFHoEwQiR97wc
-         5/DBSuMWxKrTp/vi1ZIQk/jr1bceIJjwk5wFwLvG3wMZHWeThpvksq22v/2A1rlMVMT5
-         iScFOuSJMsbuSl05NsFoLShPccTy+BkZZjUj7+1A0fZq2EJZkCupifEFSTayf50/8S9a
-         HbRU6Fe2+0yDkglEd9H3G1uIKiy5ns/RpH++BJUEToC59btYX2zG6V+ZI/E1nSzQ8xsm
-         gm4R5vEsNOe+trv813h8NYXbFwn1XkNVf866zOjZNn122JAl2V8akKxYudwTmT60to6v
-         mYqQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8/3j3CG2eqX6Efc97e7n6y2Gv9IByaDmAa9OHU37k+fg6CKV16TtFbo1Sns9ViRNFRC/kgiSqGfWWs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxt7+0oTpoc1/gaI1PjOkNjc5KKIbGSFEIVn2Lj3HXexvUhcsHO
-	OxB5IPA8m62LMNWO5P0li6PKvxqpPdFKCkhA5DX1Jd5/LtWEWAxSVUj1
-X-Gm-Gg: AfdE7cnhooBV5G7zVTqwaO3nYiOUE6+sHJpgoMBT+Jjs5sSYlfwksIQdhuznGujdAyC
-	6rLx9bPHxfPvJaWhnzWX0MnAE1rd4pfiV0rv6qnZ2QJuWGfRcGuXNMydnz7ai7KosXLwD8jU6aj
-	oYML16HwA/xtAfRt5WJfpQuKj3YLaDIXKGZ/yLl/wMyAAMRInl9q+8NPTnvddBeg/NkAn7thK8U
-	GgJE3KR9wE9gcD1hcqcoNTn8tMjfS49DDHbfaFlzVVXeM3wzeGxnC0X8KgTOAF3JhagZAJ1E2H3
-	UcNJ9ckdpq6k15Kk52ZXD31NH19Y1OzIa6FymUfjgFN65ozJ+fxP/Lpv6kID1wJ94Itd6J13oKu
-	woSNWBvT3FLNG2SrwWKDxIo+Rg8luMhOxiH5mGKPkbWKTxs2v2nyErVe160+wRdI4yoL6t22RC6
-	7Tm2NAT7x/6eTG5fu3NTBdtA2ecVRZR9I+UWkAjMFHPu7V9y0FwSktsRnXrqm2y2W6vb8eUPfzd
-	RgJbkRRdyn3nkA=
-X-Received: by 2002:a05:600c:6986:b0:493:bb23:152a with SMTP id 5b1f17b1804b1-493c2baca0cmr76877265e9.34.1782991374089;
-        Thu, 02 Jul 2026 04:22:54 -0700 (PDT)
-Received: from ?IPV6:2001:9e8:f125:6a01:ed38:5886:81fd:d626? ([2001:9e8:f125:6a01:ed38:5886:81fd:d626])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493bfe7427dsm76413895e9.2.2026.07.02.04.22.52
+        d=1e100.net; s=20251104; t=1783621735; x=1784226535;
+        h=content-transfer-encoding:content-type:mime-version:message-id
+         :references:in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=RN+4SkO8PJ9d9SXPrFRpz0v6UaMeYjDz8fSXVOFCTUQ=;
+        b=Fh+6oxKHHucnLcof2/6YtRVfPtCSOGuXrxDvCGgPrWt7FLvarD4AKxJLpxqSkblI60
+         EwiOEkNk9razJqoXOmA8GHFWrHImFHppEiNrUdvq5uclay2qF1tQxM4vbg2E1HbvoE1M
+         3ftG2mNg6fKqh+sdy5xDaBGZmepPQnIcnKpMhEcMuMRSz6cfzMbW1PdZdBxHEhK1ljZn
+         RdosQ7xFgDRwILhrrY5AiDaDTZ9sjovqIV4dYJfyqhL0UCsFGdpKgyPnEo0WMpV4kXKD
+         It4QDUxeZB60lBI8SG53nKIh303aJJLE/58urQOYIl0k49aFWaaX/peOMbsrXgJ99XZZ
+         YPSg==
+X-Forwarded-Encrypted: i=1; AHgh+RrTHIZjeTMqNqxiG+qQMEnqlN6mZMtrfcrQ2k0mO9h24m4SyC4feLmKy633FU3BGp0dSKKXqTq5f1xR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxzx5XFsIfJ8qi1qNRehMgfgw0RGqF5UHU8JErsJw3Q1Ut7TbFC
+	qVgOELhG6TQoKrTEQ3SqIbzP4pO9pQzGRhGBIMocMgqGcfTig95KqeRZ
+X-Gm-Gg: AfdE7ckf8Jzm/v/gzTLhYM1Z0bKWl120wFCDG54elaXOnXAsUEi6qAjmLlqXG5WyXJ7
+	hVzyuMtPfJp7kSJ0w/QonCWDWG3hdNT/eHWA6aVDpktpSVxnVLWZ8gBcKYlKynQjnItiM8RXNpt
+	IbT6rSOwb3jXVBOz+U45p7f8jfuV1jrNhZG5PJ8haHj05l863hQ3ZQOg4i0HgwxCpVrkgv7c9st
+	U6pIuNW7dWY22RMywuDoRujUa4BlcKY7jm9IsAHC1w0Ek05jQto35GT/pJE4xeXXFvSRVs+DG23
+	7pCeLg//8vgAIuaONhRYXpOg4pytSLXme2oAJQN0FPLIuhzS3RmbZMFxEtQCsqBlI2VVfCUPb22
+	s4oC9QmOhj31ZqL0zm0QQ3UI9nlqkAoBfl4mR5QGPOD40OCpnZYpoACAwyafu/TjOKAPG8eSxqT
+	Pb/oxqbvb5O+T1EMaUTfDm1cg=
+X-Received: by 2002:a05:6a21:7482:b0:3a2:f7bd:a9a5 with SMTP id adf61e73a8af0-3c0bcbc0455mr10030942637.38.1783621734601;
+        Thu, 09 Jul 2026 11:28:54 -0700 (PDT)
+Received: from ehlo.thunderbird.net ([150.230.217.250])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ca5af7d5946sm4088600a12.7.2026.07.09.11.28.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jul 2026 04:22:53 -0700 (PDT)
-Message-ID: <5177c53c-3885-410e-8f6c-e40e38677b32@gmail.com>
-Date: Thu, 2 Jul 2026 13:22:52 +0200
+        Thu, 09 Jul 2026 11:28:54 -0700 (PDT)
+Date: Wed, 01 Jul 2026 18:01:30 +0800
+From: Coia Prant <coiaprant@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add graperain
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20260701-sturdy-imported-oryx-dfc12a@quoll>
+References: <20260630153810.3574714-2-coiaprant@gmail.com> <20260630153810.3574714-4-coiaprant@gmail.com> <20260701-sturdy-imported-oryx-dfc12a@quoll>
+Message-ID: <A4CA0393-B348-48A0-B5DB-D1F9098EB37B@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 2/2] net: pse-pd: add Realtek/Broadcom PSE MCU
- driver
-Content-Language: en-US
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Kory Maincent <kory.maincent@bootlin.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Daniel Golle <daniel@makrotopia.org>, =?UTF-8?Q?Bj=C3=B8rn_Mork?=
- <bjorn@mork.no>
-References: <20260630105651.756058-1-jelonek.jonas@gmail.com>
- <20260630105651.756058-3-jelonek.jonas@gmail.com>
- <akYPfkRbEzWFuC6j@pengutronix.de>
-From: Jonas Jelonek <jelonek.jonas@gmail.com>
-In-Reply-To: <akYPfkRbEzWFuC6j@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DATE_IN_PAST(1.00)[200];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-319327-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[jelonekjonas@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:o.rempel@pengutronix.de,m:kory.maincent@bootlin.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:bjorn@mork.no,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-324002-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:dsimic@manjaro.org,m:jonas@kwiboo.se,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jelonekjonas@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[graperain.com:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8F6476F69FA
+X-Rspamd-Queue-Id: D4477734470
 
-Hi Oleksij,
-
-thanks for your review.
-
-On 02.07.26 09:13, Oleksij Rempel wrote:
-> Hi Jonas,
->
-> On Tue, Jun 30, 2026 at 10:56:50AM +0000, Jonas Jelonek wrote:
->> [...]
+On July 1, 2026 3:05:45 PM GMT+08:00, Krzysztof Kozlowski <krzk@kernel=2Eor=
+g> wrote:
+>On Tue, Jun 30, 2026 at 11:38:09PM +0800, Coia Prant wrote:
+>> Add graperain to the vendor prefixes=2E
+>>=20
+>> Link: https://www=2Egraperain=2Ecn/ (China)
+>> Link: https://www=2Egraperain=2Ecom/ (Global)
+>>=20
+>> Signed-off-by: Coia Prant <coiaprant@gmail=2Ecom>
+>> ---
+>>  Documentation/devicetree/bindings/vendor-prefixes=2Eyaml | 2 ++
+>>  1 file changed, 2 insertions(+)
 >>
->> +struct rtpse_mcu_port_config {
->> +	bool enable;
-> in this struct we use only enable, do you plan to wire it somewhere
-> later? I assume you wont to keep it as documentation. May be add some
-> debug traces? And add some comments what do you already know about this
-> fields.
 >
->> +	u8 function_mode;
->> +	u8 detection_type;
->> +	u8 cls_type;
->> +	u8 disconnect_type;
->> +	u8 pair_type;
->> +};
->> +
->> +struct rtpse_mcu_port_ext_config {
-> Same here.
+><form letter>
+>This is a friendly reminder during the review process=2E
 >
->> +	u8 inrush_mode;
->> +	u8 limit_type;
->> +	u8 max_power;
->> +	u8 priority;
->> +	u8 chip_addr;
->> +	u8 channel;
->> +};
+>It looks like you received a tag and forgot to add it=2E
+>
+>If you do not know the process, here is a short explanation:
+>Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>versions of patchset, under or above your Signed-off-by tag, unless
+>patch changed significantly (e=2Eg=2E new properties added to the DT
+>bindings)=2E Tag is "received", when provided in a message replied to you
+>on the mailing list=2E Tools like b4 can help here=2E However, there's no
+>need to repost patches *only* to add the tags=2E The upstream maintainer
+>will do that for tags received on the version they apply=2E
+>
+>Please read:
+>https://elixir=2Ebootlin=2Ecom/linux/v6=2E12-rc3/source/Documentation/pro=
+cess/submitting-patches=2Erst#L577
+>
+>If a tag was not added on purpose, please state in the patch changelog
+>or cover letter why and what changed=2E
+></form letter>
+>
+>Best regards,
+>Krzysztof
+>
 
-This might be good for follow-up patches. Right now, I don't get
-the full complexity of the pse-pd framework so I'll rather keep it
-simple. I see that at least some of this information is reportable,
-though not configurable (yet).
+My apologies! I am quite new to the kernel submission process and=20
+missed picking up the tag from v1=2E=20
 
-I suppose it's preferred to not add unused stuff so I should just
-drop the unused fields and add them later as needed. There isn't
-an urgent need to document it here either, the guide I based my
-driver on is quite available here and there in the web. I haven't
-actually dealt with all those fields close enough, so adding
-half-baked comments about them isn't good either.
+Since I need to spin a v3 anyway to fix the text wrapping issue in=20
+patch 2, I will make sure to include the missing tags and resend the=20
+entire series=2E
 
->> +			break;
->> +		msleep(RTPSE_MCU_BOOT_RETRY_MS);
->> +	} while (time_before(jiffies, deadline));
->> +	if (ret)
->> +		return dev_err_probe(pse->dev, ret, "failed to read MCU info\n");
->> +
->> +	switch (info->device_id) {
->> +	case RTPSE_MCU_DEVICE_ID_RTL8238B:
->> +		pse->chip = &rtl8238b_info;
->> +		break;
->> +	case RTPSE_MCU_DEVICE_ID_RTL8239:
->> +		pse->chip = &rtl8239_info;
->> +		break;
->> +	case RTPSE_MCU_DEVICE_ID_RTL8239C:
->> +		pse->chip = &rtl8239c_info;
->> +		break;
->> +	case RTPSE_MCU_DEVICE_ID_BCM59111:
->> +		pse->chip = &bcm59111_info;
->> +		break;
->> +	case RTPSE_MCU_DEVICE_ID_BCM59121:
->> +		pse->chip = &bcm59121_info;
->> +		break;
->> +	default:
->> +		return dev_err_probe(pse->dev, -EINVAL, "unknown PSE id 0x%x\n",
->> +				     info->device_id);
->> +	}
->> +
->> +	if (!info->max_ports || info->max_ports > RTPSE_MCU_MAX_PORTS)
->> +		return dev_err_probe(pse->dev, -EINVAL,
->> +				     "MCU reports invalid port count %u\n", info->max_ports);
->> +
->> +	ret = rtpse_mcu_get_ext_config(pse, &ext_config);
->> +	if (ret)
->> +		return dev_err_probe(pse->dev, ret, "failed to read MCU ext config\n");
->> +
->> +	dev_info(pse->dev, "%s MCU, %s (id 0x%04x), %u ports across %u PSE chip(s)\n",
->> +		 pse->dialect->mcu_type_str(info->mcu_type), pse->chip->name,
->> +		 info->device_id, info->max_ports, ext_config.num_of_pses);
-> Reduce it to debug level print.
+Thanks for your patience and for pointing this out!
 
-Is there any guideline about what drivers are allowed to print during
-probe? Usually, I'm a fan of at least seeing an immediate sign of life
-from a driver, even in success case. And I also see that from drivers in
-other subsystems, e.g. fan controllers or GPIO expanders.
-
->> +	return 0;
->> +}
->> +
-> Best Regards,
-> Oleksij
-
-I'll address the other points I've not reacted to explicitly in the next
-version then. Same for the low-severity sashiko-nipa issues.
-
-Best regards,
-Jonas
+Best,
+Coia
 
