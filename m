@@ -1,83 +1,88 @@
-Return-Path: <devicetree+bounces-318509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318479-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Vq4EO7wJRWpq5goAu9opvQ
-	(envelope-from <devicetree+bounces-318509-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:36:12 +0200
+	id SnXdKzoIRWrt5QoAu9opvQ
+	(envelope-from <devicetree+bounces-318479-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:29:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59D516ED693
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:36:12 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A0886ED575
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:29:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=bJzAvDJS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318509-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318509-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=UdHzJ3oK;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318479-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318479-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 82077319E7BA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:29:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D11673091A70
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:25:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4575F4D8DB3;
-	Wed,  1 Jul 2026 12:21:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BDC34BC007;
+	Wed,  1 Jul 2026 12:20:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7FB94D8D8D;
-	Wed,  1 Jul 2026 12:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21FBE4ADDBA;
+	Wed,  1 Jul 2026 12:20:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782908496; cv=none; b=VKezoNkedkMWT6rc7/j4S7MreF/N4cqFFYCBeJZNq756ymgRuD8knOO9Ei43EPWfNnsBSgCbRFc5JUtVzhDRBAIwouU+3ZCf8pbye+RSkOQULKvI/wo/U54YchrwwI046xGOv8OsvZk0jVY+Z3SQ3Cn452YmMOwJ2zHZACwxNlk=
+	t=1782908449; cv=none; b=P115m7Eil4LYUaai9uuXQ9R/VuwAZtq6xT+xT2gLc8If19ae/3pO9aYUYvXAY0XaPYrdQTRyVfDWJRTy1ZTPdylfu+BibliToJszyYfEDT8RbK0Rg2mDRvGEGA/r2KBop1sflIeRh3iRohFdA8d6pJHka7iz/HLi4pReJuviD0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782908496; c=relaxed/simple;
-	bh=LTb6GE+VnhpKvWmC2elSxGKkLfj7rLmkfKSulivRPA0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kWT1Nb6LHgGd07akTU514nI3QPv/uV0+y2VWhxtNXbF1HkW42BbwOUxft8qbZuuebWtODoWRss00aZcNo94S+8j+3vnRveuZVEMrCGj/Kk0ewn0aTG3Zwz04x12ryM6FPXri+MdPqQ7lUnYjrnAifwFJ9MxDgl6XQdN9MScoVeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=bJzAvDJS; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1782908449; c=relaxed/simple;
+	bh=m6sJ153mTEtGqqARntkJHomU856d72WMcKy3EMNBfdA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EVnPHh8AwlAWtcLUVh6Z60BDBYqs2R4Q1knMxjwvb8Whmbo8Fe4AzlIX8FpCXMfrgmx6eAfu5D2VhFTx/tic0JAqG2sVozlbJJrJPyQG1mfBkpRMIab4ZRb1jwhPh0k/yGr5pytbF+7T65rGtNGa14oIpovK7AS/1FGe/1NAbT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UdHzJ3oK; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1782908491;
-	bh=LTb6GE+VnhpKvWmC2elSxGKkLfj7rLmkfKSulivRPA0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=bJzAvDJSI1i5vaXwo6xaH5owvcgdnv3wugwLDGKMO/46hyz6n05fk4lc2vCkSFmBI
-	 WXXKnAjgT8S2kgqKGwU6zN7r3vjUupXscvXASUfAdL9rckWuGk7TvC05i3jZkHsiek
-	 3ju2tCreM9YrnpdWlHVlFENnX5FOEsYsmh3iTp+Ab7Kfgc/EC9GWEB9K8k2YcKwTOV
-	 yswKAGNNwBdfP64dyGTRa+H7LmI/W/SYVmqkD4eO94Vp+7GGWGRfGOfkVyn/Roji6c
-	 75ZmGIlMU95gF/shchDqf8zVEQzoYYTG9bOvyhkl6VfZXP7DLKLZHLY1PPfO+U2Ukc
-	 9DqXLRrAw6FYw==
+	s=mail; t=1782908446;
+	bh=m6sJ153mTEtGqqARntkJHomU856d72WMcKy3EMNBfdA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=UdHzJ3oKReCUM8CMjgYobeK2cYD0xqTaw9zVy9oOW3jjlQ8dli3+zy7x6/FrKbNIC
+	 F6DKQVvkx8hl8FMqpY7/7MNEpwFaEVOu+XvIFD13MRWW9hGQ30sRRZf2faShcOZNTP
+	 6uZdv4d2uYiO0PKtTI7QQF58ZuT1hIK1MGl9uqbAPr4h2mFz6FwBjzLtbycO+Xh1Qe
+	 zI2xEsMa1XUDENfAEOWl3tUuFbQr6sczfbOixO6NQ1lJqRZFQcjZNe2TugkBhQw0h3
+	 SEHLwpCkJBG8XMMDbCar3ZE7CT/31SzfVT9rVc9fvOIMmdw6wq2rnVwLvy46dWmMxZ
+	 NoBlTHgqlhLhA==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E1C0B17E0CD4;
-	Wed,  1 Jul 2026 14:21:28 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BC1D817E0857;
+	Wed,  1 Jul 2026 14:20:45 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunkuang.hu@kernel.org
 Cc: p.zabel@pengutronix.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
 	maarten.lankhorst@linux.intel.com,
 	mripard@kernel.org,
 	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
 	matthias.bgg@gmail.com,
 	angelogioacchino.delregno@collabora.com,
+	andi.shyti@kernel.org,
+	djakov@kernel.org,
+	broonie@kernel.org,
+	jitao.shi@mediatek.com,
+	ck.hu@mediatek.com,
 	dri-devel@lists.freedesktop.org,
 	linux-mediatek@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
 	linux-arm-kernel@lists.infradead.org,
 	justin.yeh@mediatek.com,
 	jason-jh.lin@mediatek.com,
 	kernel@collabora.com
-Subject: [PATCH 22/42] drm/mediatek: Create new mtk_dpi_common lib and move mtk_dpi code
+Subject: [PATCH 0/6] MediaTek MMSYS/Mute-X new-style part 1
 Date: Wed,  1 Jul 2026 14:20:37 +0200
-Message-ID: <20260701122057.19648-23-angelogioacchino.delregno@collabora.com>
+Message-ID: <20260701122043.19612-1-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
-References: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,21 +98,21 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,mediatek.com];
-	TAGGED_FROM(0.00)[bounces-318509-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[pengutronix.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,foss.st.com,collabora.com,mediatek.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,st-md-mailman.stormreply.com];
+	TAGGED_FROM(0.00)[bounces-318479-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:andi.shyti@kernel.org,m:djakov@kernel.org,m:broonie@kernel.org,m:jitao.shi@mediatek.com,m:ck.hu@mediatek.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
@@ -115,1548 +120,113 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,mediatek.com:email,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,collabora.com:dkim,collabora.com:mid,collabora.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 59D516ED693
+X-Rspamd-Queue-Id: 7A0886ED575
 
-As a final preparation step for adding support for the MediaTek
-Digital Video Out (DVO) hardware found in newer SoCs, create a
-new mtk_dpi_common library and move common code between the DPI
-and the upcoming DVO in there.
+This series part 1 of a huge restructuring of the entire multimedia
+part of MediaTek SoCs, especially mediatek-drm, and contains only a
+set of changes that don't require any simultaneous updates in the
+mediatek-drm driver.
 
-This change brings no functional differences, as the new file is
-built-in on the mediatek-drm object anyway.
+This adds support for correctly advertising the MediaTek Mute-X IP
+as a source of trigger signals (because that's what it is), hence
+for adding #trigger-source-cells in the Mute-X devicetree node and
+for specifying a Mute-X trigger-source in all of the MTK Display
+Controller components supporting or requiring one, as previously
+it was kind of hacked up as a static array in the Mute-X driver,
+for both MDP and DISP components, which is, well, depending on the
+point of view, actually wrong.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/gpu/drm/mediatek/Makefile         |   1 +
- drivers/gpu/drm/mediatek/mtk_dpi.c        | 654 +---------------------
- drivers/gpu/drm/mediatek/mtk_dpi_common.c | 468 ++++++++++++++++
- drivers/gpu/drm/mediatek/mtk_dpi_common.h | 276 +++++++++
- 4 files changed, 762 insertions(+), 637 deletions(-)
- create mode 100644 drivers/gpu/drm/mediatek/mtk_dpi_common.c
- create mode 100644 drivers/gpu/drm/mediatek/mtk_dpi_common.h
+Moreover, this goes on with the first part for a rework of MediaTek
+MMSYS, which is a requirement for the upcoming huge restructuring
+of the mediatek-drm driver; this starts adding boilerplate required
+for setting up MMSYS entries with decoupling of "component type" to
+"component instance number".
 
-diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek/Makefile
-index f40ad5565716..34a1d4721b70 100644
---- a/drivers/gpu/drm/mediatek/Makefile
-+++ b/drivers/gpu/drm/mediatek/Makefile
-@@ -15,6 +15,7 @@ mediatek-drm-y := mtk_crtc.o \
- 		  mtk_drm_drv.o \
- 		  mtk_drm_legacy.o \
- 		  mtk_dsi.o \
-+		  mtk_dpi_common.o \
- 		  mtk_dpi.o \
- 		  mtk_ethdr.o \
- 		  mtk_mdp_rdma.o \
-diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-index 077e8a42a044..ac972c0a9711 100644
---- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-@@ -2,17 +2,16 @@
- /*
-  * Copyright (c) 2014 MediaTek Inc.
-  * Author: Jie Qiu <jie.qiu@mediatek.com>
-+ *
-+ * Copyright (c) 2026 Collabora Ltd.
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-  */
- 
- #include <linux/bitfield.h>
--#include <linux/clk.h>
- #include <linux/component.h>
- #include <linux/debugfs.h>
--#include <linux/interrupt.h>
- #include <linux/kernel.h>
- #include <linux/media-bus-format.h>
--#include <linux/of.h>
--#include <linux/of_graph.h>
- #include <linux/pinctrl/consumer.h>
- #include <linux/platform_device.h>
- #include <linux/soc/mediatek/mtk-mmsys.h>
-@@ -23,172 +22,12 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
- #include <drm/drm_bridge_connector.h>
--#include <drm/drm_crtc.h>
--#include <drm/drm_edid.h>
- #include <drm/drm_of.h>
--#include <drm/drm_simple_kms_helper.h>
- 
- #include "mtk_ddp_comp.h"
- #include "mtk_disp_drv.h"
-+#include "mtk_dpi_common.h"
- #include "mtk_dpi_regs.h"
--#include "mtk_drm_drv.h"
--
--enum mtk_dpi_out_bit_num {
--	MTK_DPI_OUT_BIT_NUM_8BITS,
--	MTK_DPI_OUT_BIT_NUM_10BITS,
--	MTK_DPI_OUT_BIT_NUM_12BITS,
--	MTK_DPI_OUT_BIT_NUM_16BITS
--};
--
--enum mtk_dpi_out_yc_map {
--	MTK_DPI_OUT_YC_MAP_RGB,
--	MTK_DPI_OUT_YC_MAP_CYCY,
--	MTK_DPI_OUT_YC_MAP_YCYC,
--	MTK_DPI_OUT_YC_MAP_CY,
--	MTK_DPI_OUT_YC_MAP_YC
--};
--
--enum mtk_dpi_out_channel_swap {
--	MTK_DPI_OUT_CHANNEL_SWAP_RGB,
--	MTK_DPI_OUT_CHANNEL_SWAP_GBR,
--	MTK_DPI_OUT_CHANNEL_SWAP_BRG,
--	MTK_DPI_OUT_CHANNEL_SWAP_RBG,
--	MTK_DPI_OUT_CHANNEL_SWAP_GRB,
--	MTK_DPI_OUT_CHANNEL_SWAP_BGR
--};
--
--enum mtk_dpi_out_color_format {
--	MTK_DPI_COLOR_FORMAT_RGB,
--	MTK_DPI_COLOR_FORMAT_YCBCR_422,
--	MTK_DPI_COLOR_FORMAT_YCBCR_444
--};
--
--struct mtk_dpi {
--	struct drm_encoder encoder;
--	struct drm_bridge bridge;
--	struct drm_bridge *next_bridge;
--	struct drm_connector *connector;
--	void __iomem *regs;
--	struct device *dev;
--	struct device *mmsys_dev;
--	struct clk *engine_clk;
--	struct clk *pixel_clk;
--	struct clk *tvd_clk;
--	int irq;
--	struct drm_display_mode mode;
--	const struct mtk_dpi_conf *conf;
--	enum mtk_dpi_out_color_format color_format;
--	enum mtk_dpi_out_yc_map yc_map;
--	enum mtk_dpi_out_bit_num bit_num;
--	enum mtk_dpi_out_channel_swap channel_swap;
--	struct pinctrl *pinctrl;
--	struct pinctrl_state *pins_gpio;
--	struct pinctrl_state *pins_dpi;
--	u32 output_fmt;
--	int refcount;
--};
--
--static inline struct mtk_dpi *bridge_to_dpi(struct drm_bridge *b)
--{
--	return container_of(b, struct mtk_dpi, bridge);
--}
--
--enum mtk_dpi_polarity {
--	MTK_DPI_POLARITY_RISING,
--	MTK_DPI_POLARITY_FALLING,
--};
--
--struct mtk_dpi_polarities {
--	enum mtk_dpi_polarity de_pol;
--	enum mtk_dpi_polarity ck_pol;
--	enum mtk_dpi_polarity hsync_pol;
--	enum mtk_dpi_polarity vsync_pol;
--};
--
--struct mtk_dpi_sync_param {
--	u32 sync_width;
--	u32 front_porch;
--	u32 back_porch;
--	bool shift_half_line;
--};
--
--struct mtk_dpi_sync {
--	struct mtk_dpi_sync_param hsync;
--	struct mtk_dpi_sync_param vsync_l_odd;
--	struct mtk_dpi_sync_param vsync_l_even;
--	struct mtk_dpi_sync_param vsync_r_odd;
--	struct mtk_dpi_sync_param vsync_r_even;
--};
--
--struct mtk_dpi_yc_limit {
--	u16 y_top;
--	u16 y_bottom;
--	u16 c_top;
--	u16 c_bottom;
--};
--
--struct mtk_dpi_factor {
--	u32 clock;
--	u8 factor;
--};
--
--/**
-- * struct mtk_dpi_conf - Configuration of mediatek dpi.
-- * @dpi_factor: SoC-specific pixel clock PLL factor values.
-- * @num_dpi_factor: Number of pixel clock PLL factor values.
-- * @reg_h_fre_con: Register address of frequency control.
-- * @max_clock_khz: Max clock frequency supported for this SoCs in khz units.
-- * @edge_sel_en: Enable of edge selection.
-- * @output_fmts: Array of supported output formats.
-- * @num_output_fmts: Quantity of supported output formats.
-- * @is_ck_de_pol: Support CK/DE polarity.
-- * @swap_input_support: Support input swap function.
-- * @support_direct_pin: IP supports direct connection to dpi panels.
-- * @dimension_mask: Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and VSYNC_PORCH
-- *		    (no shift).
-- * @hvsize_mask: Mask of HSIZE and VSIZE mask (no shift).
-- * @channel_swap_shift: Shift value of channel swap.
-- * @yuv422_en_bit: Enable bit of yuv422.
-- * @csc_enable_bit: Enable bit of CSC.
-- * @input_2p_en_bit: Enable bit for input two pixel per round feature.
-- *		     If present, implies that the feature must be enabled.
-- * @pixels_per_iter: Quantity of transferred pixels per iteration.
-- * @edge_cfg_in_mmsys: If the edge configuration for DPI's output needs to be set in MMSYS.
-- * @clocked_by_hdmi: HDMI IP outputs clock to dpi_pixel_clk input clock, needed
-- *		     for DPI registers access.
-- * @output_1pixel: Enable outputting one pixel per round; if the input is two pixel per
-- *                 round, the DPI hardware will internally transform it to 1T1P.
-- */
--struct mtk_dpi_conf {
--	const struct mtk_dpi_factor *dpi_factor;
--	const u8 num_dpi_factor;
--	u32 reg_h_fre_con;
--	u32 max_clock_khz;
--	bool edge_sel_en;
--	const u32 *output_fmts;
--	u32 num_output_fmts;
--	bool is_ck_de_pol;
--	bool swap_input_support;
--	bool support_direct_pin;
--	u32 dimension_mask;
--	u32 hvsize_mask;
--	u32 channel_swap_shift;
--	u32 yuv422_en_bit;
--	u32 csc_enable_bit;
--	u32 input_2p_en_bit;
--	u32 pixels_per_iter;
--	bool edge_cfg_in_mmsys;
--	bool clocked_by_hdmi;
--	bool output_1pixel;
--};
--
--static void mtk_dpi_mask(struct mtk_dpi *dpi, u32 offset, u32 val, u32 mask)
--{
--	u32 tmp = readl(dpi->regs + offset) & ~mask;
--
--	tmp |= (val & mask);
--	writel(tmp, dpi->regs + offset);
--}
- 
- static void mtk_dpi_test_pattern_en(struct mtk_dpi *dpi, u8 type, bool enable)
- {
-@@ -466,165 +305,6 @@ static void mtk_dpi_dual_edge(struct mtk_dpi *dpi)
- 	}
- }
- 
--static void mtk_dpi_power_off(struct mtk_dpi *dpi)
--{
--	if (WARN_ON(dpi->refcount == 0))
--		return;
--
--	if (--dpi->refcount != 0)
--		return;
--
--	clk_disable_unprepare(dpi->pixel_clk);
--	clk_disable_unprepare(dpi->tvd_clk);
--	clk_disable_unprepare(dpi->engine_clk);
--}
--
--static int mtk_dpi_power_on(struct mtk_dpi *dpi)
--{
--	int ret;
--
--	if (++dpi->refcount != 1)
--		return 0;
--
--	ret = clk_prepare_enable(dpi->engine_clk);
--	if (ret) {
--		dev_err(dpi->dev, "Failed to enable engine clock: %d\n", ret);
--		goto err_refcount;
--	}
--
--	ret = clk_prepare_enable(dpi->tvd_clk);
--	if (ret) {
--		dev_err(dpi->dev, "Failed to enable tvd pll: %d\n", ret);
--		goto err_engine;
--	}
--
--	ret = clk_prepare_enable(dpi->pixel_clk);
--	if (ret) {
--		dev_err(dpi->dev, "Failed to enable pixel clock: %d\n", ret);
--		goto err_pixel;
--	}
--
--	return 0;
--
--err_pixel:
--	clk_disable_unprepare(dpi->tvd_clk);
--err_engine:
--	clk_disable_unprepare(dpi->engine_clk);
--err_refcount:
--	dpi->refcount--;
--	return ret;
--}
--
--static unsigned int mtk_dpi_calculate_factor(struct mtk_dpi *dpi, int mode_clk)
--{
--	const struct mtk_dpi_factor *dpi_factor = dpi->conf->dpi_factor;
--	int i;
--
--	for (i = 0; i < dpi->conf->num_dpi_factor; i++) {
--		if (mode_clk <= dpi_factor[i].clock)
--			return dpi_factor[i].factor;
--	}
--
--	/* If no match try the lowest possible factor */
--	return dpi_factor[dpi->conf->num_dpi_factor - 1].factor;
--}
--
--static void mtk_dpi_set_pixel_clk(struct mtk_dpi *dpi, struct videomode *vm, int mode_clk)
--{
--	unsigned long pll_rate;
--	unsigned int factor;
--
--	/* let pll_rate can fix the valid range of tvdpll (1G~2GHz) */
--	factor = mtk_dpi_calculate_factor(dpi, mode_clk);
--	pll_rate = vm->pixelclock * factor;
--
--	dev_dbg(dpi->dev, "Want PLL %lu Hz, pixel clock %lu Hz\n",
--		pll_rate, vm->pixelclock);
--
--	clk_set_rate(dpi->tvd_clk, pll_rate);
--	pll_rate = clk_get_rate(dpi->tvd_clk);
--
--	/*
--	 * Depending on the IP version, we may output a different amount of
--	 * pixels for each iteration: divide the clock by this number and
--	 * adjust the display porches accordingly.
--	 */
--	vm->pixelclock = pll_rate / factor;
--	vm->pixelclock /= dpi->conf->pixels_per_iter;
--
--	if ((dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_LE) ||
--	    (dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_BE))
--		clk_set_rate(dpi->pixel_clk, vm->pixelclock * 2);
--	else
--		clk_set_rate(dpi->pixel_clk, vm->pixelclock);
--
--	vm->pixelclock = clk_get_rate(dpi->pixel_clk);
--
--	dev_dbg(dpi->dev, "Got  PLL %lu Hz, pixel clock %lu Hz\n",
--		pll_rate, vm->pixelclock);
--}
--
--static int mtk_dpi_set_display_mode(struct mtk_dpi *dpi, struct videomode *vm,
--				    struct mtk_dpi_sync *sync,
--				    struct mtk_dpi_polarities *dpi_pol,
--				    struct mtk_dpi_yc_limit *limit)
--{
--	struct drm_display_mode *mode = &dpi->mode;
--
--	drm_display_mode_to_videomode(mode, vm);
--
--	if (!dpi->conf->clocked_by_hdmi)
--		mtk_dpi_set_pixel_clk(dpi, vm, mode->clock);
--
--	dpi_pol->ck_pol = MTK_DPI_POLARITY_FALLING;
--	dpi_pol->de_pol = MTK_DPI_POLARITY_RISING;
--	dpi_pol->hsync_pol = vm->flags & DISPLAY_FLAGS_HSYNC_HIGH ?
--			    MTK_DPI_POLARITY_FALLING : MTK_DPI_POLARITY_RISING;
--	dpi_pol->vsync_pol = vm->flags & DISPLAY_FLAGS_VSYNC_HIGH ?
--			    MTK_DPI_POLARITY_FALLING : MTK_DPI_POLARITY_RISING;
--
--	/*
--	 * Depending on the IP version, we may output a different amount of
--	 * pixels for each iteration: adjust the display porches accordingly.
--	 */
--	sync->hsync.sync_width = vm->hsync_len / dpi->conf->pixels_per_iter;
--	sync->hsync.back_porch = vm->hback_porch / dpi->conf->pixels_per_iter;
--	sync->hsync.front_porch = vm->hfront_porch / dpi->conf->pixels_per_iter;
--	sync->hsync.shift_half_line = false;
--
--	sync->vsync_l_odd.sync_width = vm->vsync_len;
--	sync->vsync_l_odd.back_porch = vm->vback_porch;
--	sync->vsync_l_odd.front_porch = vm->vfront_porch;
--	sync->vsync_l_odd.shift_half_line = false;
--
--	if (vm->flags & DISPLAY_FLAGS_INTERLACED) {
--		sync->vsync_l_even = sync->vsync_l_odd;
--		sync->vsync_l_even.shift_half_line = true;
--
--		if (mode->flags & DRM_MODE_FLAG_3D_MASK) {
--			sync->vsync_r_odd = sync->vsync_l_odd;
--			sync->vsync_r_even = sync->vsync_l_odd;
--			sync->vsync_r_even.shift_half_line = true;
--		}
--	} else if (mode->flags & DRM_MODE_FLAG_3D_MASK) {
--		sync->vsync_r_odd = sync->vsync_l_odd;
--	}
--
--	if (drm_default_rgb_quant_range(&dpi->mode) == HDMI_QUANTIZATION_RANGE_LIMITED) {
--		limit->y_bottom = 0x10;
--		limit->y_top = 0xfe0;
--		limit->c_bottom = 0x10;
--		limit->c_top = 0xfe0;
--	} else {
--		limit->y_bottom = 0;
--		limit->y_top = 0xfff;
--		limit->c_bottom = 0;
--		limit->c_top = 0xfff;
--	}
--
--	return 0;
--}
--
- static void mtk_dpi_config_hw(struct mtk_dpi *dpi,
- 			      struct videomode *vm, struct mtk_dpi_sync *sync,
- 			      struct mtk_dpi_polarities *dpi_pol,
-@@ -680,143 +360,6 @@ static void mtk_dpi_config_hw(struct mtk_dpi *dpi,
- 	return;
- }
- 
--static u32 *mtk_dpi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
--						      struct drm_bridge_state *bridge_state,
--						      struct drm_crtc_state *crtc_state,
--						      struct drm_connector_state *conn_state,
--						      unsigned int *num_output_fmts)
--{
--	struct mtk_dpi *dpi = bridge_to_dpi(bridge);
--	u32 *output_fmts;
--
--	*num_output_fmts = 0;
--
--	if (!dpi->conf->output_fmts) {
--		dev_err(dpi->dev, "output_fmts should not be null\n");
--		return NULL;
--	}
--
--	output_fmts = kcalloc(dpi->conf->num_output_fmts, sizeof(*output_fmts),
--			     GFP_KERNEL);
--	if (!output_fmts)
--		return NULL;
--
--	*num_output_fmts = dpi->conf->num_output_fmts;
--
--	memcpy(output_fmts, dpi->conf->output_fmts,
--	       sizeof(*output_fmts) * dpi->conf->num_output_fmts);
--
--	return output_fmts;
--}
--
--static u32 *mtk_dpi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
--						     struct drm_bridge_state *bridge_state,
--						     struct drm_crtc_state *crtc_state,
--						     struct drm_connector_state *conn_state,
--						     u32 output_fmt,
--						     unsigned int *num_input_fmts)
--{
--	u32 *input_fmts;
--
--	*num_input_fmts = 0;
--
--	input_fmts = kcalloc(1, sizeof(*input_fmts),
--			     GFP_KERNEL);
--	if (!input_fmts)
--		return NULL;
--
--	*num_input_fmts = 1;
--	input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
--
--	return input_fmts;
--}
--
--static unsigned int mtk_dpi_bus_fmt_bit_num(unsigned int out_bus_format)
--{
--	switch (out_bus_format) {
--	default:
--	case MEDIA_BUS_FMT_RGB888_1X24:
--	case MEDIA_BUS_FMT_BGR888_1X24:
--	case MEDIA_BUS_FMT_RGB888_2X12_LE:
--	case MEDIA_BUS_FMT_RGB888_2X12_BE:
--	case MEDIA_BUS_FMT_YUYV8_1X16:
--	case MEDIA_BUS_FMT_YUV8_1X24:
--		return MTK_DPI_OUT_BIT_NUM_8BITS;
--	case MEDIA_BUS_FMT_RGB101010_1X30:
--	case MEDIA_BUS_FMT_YUYV10_1X20:
--	case MEDIA_BUS_FMT_YUV10_1X30:
--		return MTK_DPI_OUT_BIT_NUM_10BITS;
--	case MEDIA_BUS_FMT_YUYV12_1X24:
--		return MTK_DPI_OUT_BIT_NUM_12BITS;
--	}
--}
--
--static unsigned int mtk_dpi_bus_fmt_channel_swap(unsigned int out_bus_format)
--{
--	switch (out_bus_format) {
--	default:
--	case MEDIA_BUS_FMT_RGB888_1X24:
--	case MEDIA_BUS_FMT_RGB888_2X12_LE:
--	case MEDIA_BUS_FMT_RGB888_2X12_BE:
--	case MEDIA_BUS_FMT_RGB101010_1X30:
--	case MEDIA_BUS_FMT_YUYV8_1X16:
--	case MEDIA_BUS_FMT_YUYV10_1X20:
--	case MEDIA_BUS_FMT_YUYV12_1X24:
--		return MTK_DPI_OUT_CHANNEL_SWAP_RGB;
--	case MEDIA_BUS_FMT_BGR888_1X24:
--	case MEDIA_BUS_FMT_YUV8_1X24:
--	case MEDIA_BUS_FMT_YUV10_1X30:
--		return MTK_DPI_OUT_CHANNEL_SWAP_BGR;
--	}
--}
--
--static unsigned int mtk_dpi_bus_fmt_color_format(unsigned int out_bus_format)
--{
--	switch (out_bus_format) {
--	default:
--	case MEDIA_BUS_FMT_RGB888_1X24:
--	case MEDIA_BUS_FMT_BGR888_1X24:
--	case MEDIA_BUS_FMT_RGB888_2X12_LE:
--	case MEDIA_BUS_FMT_RGB888_2X12_BE:
--	case MEDIA_BUS_FMT_RGB101010_1X30:
--		return MTK_DPI_COLOR_FORMAT_RGB;
--	case MEDIA_BUS_FMT_YUYV8_1X16:
--	case MEDIA_BUS_FMT_YUYV10_1X20:
--	case MEDIA_BUS_FMT_YUYV12_1X24:
--		return MTK_DPI_COLOR_FORMAT_YCBCR_422;
--	case MEDIA_BUS_FMT_YUV8_1X24:
--	case MEDIA_BUS_FMT_YUV10_1X30:
--		return MTK_DPI_COLOR_FORMAT_YCBCR_444;
--	}
--}
--
--static int mtk_dpi_bridge_atomic_check(struct drm_bridge *bridge,
--				       struct drm_bridge_state *bridge_state,
--				       struct drm_crtc_state *crtc_state,
--				       struct drm_connector_state *conn_state)
--{
--	struct mtk_dpi *dpi = bridge_to_dpi(bridge);
--	unsigned int out_bus_format;
--
--	out_bus_format = bridge_state->output_bus_cfg.format;
--
--	if (out_bus_format == MEDIA_BUS_FMT_FIXED)
--		if (dpi->conf->num_output_fmts)
--			out_bus_format = dpi->conf->output_fmts[0];
--
--	dev_dbg(dpi->dev, "input format 0x%04x, output format 0x%04x\n",
--		bridge_state->input_bus_cfg.format,
--		bridge_state->output_bus_cfg.format);
--
--	dpi->output_fmt = out_bus_format;
--	dpi->bit_num = mtk_dpi_bus_fmt_bit_num(out_bus_format);
--	dpi->channel_swap = mtk_dpi_bus_fmt_channel_swap(out_bus_format);
--	dpi->yc_map = MTK_DPI_OUT_YC_MAP_RGB;
--	dpi->color_format = mtk_dpi_bus_fmt_color_format(out_bus_format);
--
--	return 0;
--}
--
- static int mtk_dpi_bridge_attach(struct drm_bridge *bridge,
- 				 struct drm_encoder *encoder,
- 				 enum drm_bridge_attach_flags flags)
-@@ -827,15 +370,6 @@ static int mtk_dpi_bridge_attach(struct drm_bridge *bridge,
- 				 &dpi->bridge, flags);
- }
- 
--static void mtk_dpi_bridge_mode_set(struct drm_bridge *bridge,
--				const struct drm_display_mode *mode,
--				const struct drm_display_mode *adjusted_mode)
--{
--	struct mtk_dpi *dpi = bridge_to_dpi(bridge);
--
--	drm_mode_copy(&dpi->mode, adjusted_mode);
--}
--
- static void mtk_dpi_bridge_disable(struct drm_bridge *bridge)
- {
- 	struct mtk_dpi *dpi = bridge_to_dpi(bridge);
-@@ -895,39 +429,7 @@ static int mtk_dpi_debug_tp_show(struct seq_file *m, void *arg)
- 	en = val & DPI_PAT_EN;
- 	val = FIELD_GET(DPI_PAT_SEL, val);
- 
--	seq_printf(m, "DPI Test Pattern: %s\n", en ? "Enabled" : "Disabled");
--
--	if (en) {
--		seq_printf(m, "Internal pattern %d: ", val);
--		switch (val) {
--		case 0:
--			seq_puts(m, "256 Vertical Gray\n");
--			break;
--		case 1:
--			seq_puts(m, "1024 Vertical Gray\n");
--			break;
--		case 2:
--			seq_puts(m, "256 Horizontal Gray\n");
--			break;
--		case 3:
--			seq_puts(m, "1024 Horizontal Gray\n");
--			break;
--		case 4:
--			seq_puts(m, "Vertical Color bars\n");
--			break;
--		case 6:
--			seq_puts(m, "Frame border\n");
--			break;
--		case 7:
--			seq_puts(m, "Dot moire\n");
--			break;
--		default:
--			seq_puts(m, "Invalid selection\n");
--			break;
--		}
--	}
--
--	return 0;
-+	return mtk_dpi_common_debug_tp_show(m, en, val);
- }
- 
- static ssize_t mtk_dpi_debug_tp_write(struct file *file, const char __user *ubuf,
-@@ -935,23 +437,15 @@ static ssize_t mtk_dpi_debug_tp_write(struct file *file, const char __user *ubuf
- {
- 	struct seq_file *m = file->private_data;
- 	u32 en, type;
--	char buf[6];
--
--	if (!m || !m->private || *offp || len > sizeof(buf) - 1)
--		return -EINVAL;
--
--	memset(buf, 0, sizeof(buf));
--	if (copy_from_user(buf, ubuf, len))
--		return -EFAULT;
-+	ssize_t ret;
- 
--	if (sscanf(buf, "%u %u", &en, &type) != 2)
--		return -EINVAL;
--
--	if (en < 0 || en > 1 || type < 0 || type > 7)
--		return -EINVAL;
-+	/* seq_file and dpi pointers are checked by mtk_dpi_common_debug_tp_write() */
-+	ret = mtk_dpi_common_debug_tp_write(file, ubuf, len, offp, &en, &type);
-+	if (ret < 0)
-+		return ret;
- 
- 	mtk_dpi_test_pattern_en((struct mtk_dpi *)m->private, type, en);
--	return len;
-+	return ret;
- }
- 
- static int mtk_dpi_debug_tp_open(struct inode *inode, struct file *file)
-@@ -1020,56 +514,9 @@ unsigned int mtk_dpi_encoder_index(struct device *dev)
- 	return encoder_index;
- }
- 
--static int mtk_dpi_bind(struct device *dev, struct device *master, void *data)
--{
--	struct mtk_dpi *dpi = dev_get_drvdata(dev);
--	struct drm_device *drm_dev = data;
--	struct mtk_drm_private *priv = drm_dev->dev_private;
--	int ret;
--
--	dpi->mmsys_dev = priv->mmsys_dev;
--	ret = drm_simple_encoder_init(drm_dev, &dpi->encoder,
--				      DRM_MODE_ENCODER_TMDS);
--	if (ret) {
--		dev_err(dev, "Failed to initialize decoder: %d\n", ret);
--		return ret;
--	}
--
--	ret = mtk_find_possible_crtcs(drm_dev, dpi->dev);
--	if (ret < 0)
--		goto err_cleanup;
--	dpi->encoder.possible_crtcs = ret;
--
--	ret = drm_bridge_attach(&dpi->encoder, &dpi->bridge, NULL,
--				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
--	if (ret)
--		goto err_cleanup;
--
--	dpi->connector = drm_bridge_connector_init(drm_dev, &dpi->encoder);
--	if (IS_ERR(dpi->connector)) {
--		dev_err(dev, "Unable to create bridge connector\n");
--		ret = PTR_ERR(dpi->connector);
--		goto err_cleanup;
--	}
--
--	return 0;
--
--err_cleanup:
--	drm_encoder_cleanup(&dpi->encoder);
--	return ret;
--}
--
--static void mtk_dpi_unbind(struct device *dev, struct device *master,
--			   void *data)
--{
--	struct mtk_dpi *dpi = dev_get_drvdata(dev);
--
--	drm_encoder_cleanup(&dpi->encoder);
--}
--
- static const struct component_ops mtk_dpi_component_ops = {
--	.bind = mtk_dpi_bind,
--	.unbind = mtk_dpi_unbind,
-+	.bind = mtk_dpi_common_bind,
-+	.unbind = mtk_dpi_common_unbind,
- };
- 
- static const u32 mt8173_output_fmts[] = {
-@@ -1249,84 +696,16 @@ static const struct mtk_dpi_conf mt8195_dpintf_conf = {
- 
- static int mtk_dpi_probe(struct platform_device *pdev)
- {
--	struct device *dev = &pdev->dev;
- 	struct mtk_dpi *dpi;
- 	int ret;
- 
--	dpi = devm_drm_bridge_alloc(dev, struct mtk_dpi, bridge,
--				    &mtk_dpi_bridge_funcs);
-+	dpi = mtk_dpi_common_probe(pdev, &mtk_dpi_bridge_funcs);
- 	if (IS_ERR(dpi))
- 		return PTR_ERR(dpi);
- 
--	dpi->dev = dev;
--	dpi->conf = (struct mtk_dpi_conf *)of_device_get_match_data(dev);
--	dpi->output_fmt = MEDIA_BUS_FMT_RGB888_1X24;
--
--	dpi->pinctrl = devm_pinctrl_get(&pdev->dev);
--	if (IS_ERR(dpi->pinctrl)) {
--		dpi->pinctrl = NULL;
--		dev_dbg(&pdev->dev, "Cannot find pinctrl!\n");
--	}
--	if (dpi->pinctrl) {
--		dpi->pins_gpio = pinctrl_lookup_state(dpi->pinctrl, "sleep");
--		if (IS_ERR(dpi->pins_gpio)) {
--			dpi->pins_gpio = NULL;
--			dev_dbg(&pdev->dev, "Cannot find pinctrl idle!\n");
--		}
--		if (dpi->pins_gpio)
--			pinctrl_select_state(dpi->pinctrl, dpi->pins_gpio);
--
--		dpi->pins_dpi = pinctrl_lookup_state(dpi->pinctrl, "default");
--		if (IS_ERR(dpi->pins_dpi)) {
--			dpi->pins_dpi = NULL;
--			dev_dbg(&pdev->dev, "Cannot find pinctrl active!\n");
--		}
--	}
--	dpi->regs = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(dpi->regs))
--		return dev_err_probe(dev, PTR_ERR(dpi->regs),
--				     "Failed to ioremap mem resource\n");
--
--	dpi->engine_clk = devm_clk_get(dev, "engine");
--	if (IS_ERR(dpi->engine_clk))
--		return dev_err_probe(dev, PTR_ERR(dpi->engine_clk),
--				     "Failed to get engine clock\n");
--
--	dpi->pixel_clk = devm_clk_get(dev, "pixel");
--	if (IS_ERR(dpi->pixel_clk))
--		return dev_err_probe(dev, PTR_ERR(dpi->pixel_clk),
--				     "Failed to get pixel clock\n");
--
--	dpi->tvd_clk = devm_clk_get(dev, "pll");
--	if (IS_ERR(dpi->tvd_clk))
--		return dev_err_probe(dev, PTR_ERR(dpi->tvd_clk),
--				     "Failed to get tvdpll clock\n");
--
--	dpi->irq = platform_get_irq(pdev, 0);
--	if (dpi->irq < 0)
--		return dpi->irq;
--
--	dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 1, -1);
--	if (IS_ERR(dpi->next_bridge) && PTR_ERR(dpi->next_bridge) == -ENODEV) {
--		/* Old devicetree has only one endpoint */
--		dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 0, 0);
--	}
--	if (IS_ERR(dpi->next_bridge))
--		return dev_err_probe(dpi->dev, PTR_ERR(dpi->next_bridge),
--				     "Failed to get bridge\n");
--
--	platform_set_drvdata(pdev, dpi);
--
--	dpi->bridge.of_node = dev->of_node;
--	dpi->bridge.type = DRM_MODE_CONNECTOR_DPI;
--
--	ret = devm_drm_bridge_add(dev, &dpi->bridge);
--	if (ret)
--		return ret;
--
--	ret = component_add(dev, &mtk_dpi_component_ops);
-+	ret = component_add(&pdev->dev, &mtk_dpi_component_ops);
- 	if (ret)
--		return dev_err_probe(dev, ret, "Failed to add component.\n");
-+		return dev_err_probe(&pdev->dev, ret, "Failed to add component.\n");
- 
- 	return 0;
- }
-@@ -1357,3 +736,4 @@ struct platform_driver mtk_dpi_driver = {
- 		.of_match_table = mtk_dpi_of_ids,
- 	},
- };
-+MODULE_IMPORT_NS("DRM_MTK_DPI");
-diff --git a/drivers/gpu/drm/mediatek/mtk_dpi_common.c b/drivers/gpu/drm/mediatek/mtk_dpi_common.c
-new file mode 100644
-index 000000000000..b9e7b053d278
---- /dev/null
-+++ b/drivers/gpu/drm/mediatek/mtk_dpi_common.c
-@@ -0,0 +1,468 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2014 MediaTek Inc.
-+ * Copyright (c) 2026 Collabora Ltd.
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/debugfs.h>
-+#include <linux/kernel.h>
-+#include <linux/media-bus-format.h>
-+#include <linux/of.h>
-+#include <linux/of_graph.h>
-+#include <linux/pinctrl/consumer.h>
-+#include <linux/platform_device.h>
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_bridge_connector.h>
-+#include <drm/drm_connector.h>
-+#include <drm/drm_edid.h>
-+#include <drm/drm_encoder.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_simple_kms_helper.h>
-+
-+#include "mtk_ddp_comp.h"
-+#include "mtk_dpi_common.h"
-+#include "mtk_drm_drv.h"
-+
-+void mtk_dpi_power_off(struct mtk_dpi *dpi)
-+{
-+	if (WARN_ON(dpi->refcount == 0))
-+		return;
-+
-+	if (--dpi->refcount != 0)
-+		return;
-+
-+	clk_disable_unprepare(dpi->pixel_clk);
-+	clk_disable_unprepare(dpi->tvd_clk);
-+	clk_disable_unprepare(dpi->engine_clk);
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_power_off, "DRM_MTK_DPI");
-+
-+int mtk_dpi_power_on(struct mtk_dpi *dpi)
-+{
-+	int ret;
-+
-+	if (++dpi->refcount != 1)
-+		return 0;
-+
-+	ret = clk_prepare_enable(dpi->engine_clk);
-+	if (ret) {
-+		dev_err(dpi->dev, "Failed to enable engine clock: %d\n", ret);
-+		goto err_refcount;
-+	}
-+
-+	ret = clk_prepare_enable(dpi->tvd_clk);
-+	if (ret) {
-+		dev_err(dpi->dev, "Failed to enable tvd pll: %d\n", ret);
-+		goto err_engine;
-+	}
-+
-+	ret = clk_prepare_enable(dpi->pixel_clk);
-+	if (ret) {
-+		dev_err(dpi->dev, "Failed to enable pixel clock: %d\n", ret);
-+		goto err_pixel;
-+	}
-+
-+	return 0;
-+
-+err_pixel:
-+	clk_disable_unprepare(dpi->tvd_clk);
-+err_engine:
-+	clk_disable_unprepare(dpi->engine_clk);
-+err_refcount:
-+	dpi->refcount--;
-+	return ret;
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_power_on, "DRM_MTK_DPI");
-+
-+static unsigned int mtk_dpi_calculate_factor(struct mtk_dpi *dpi, int mode_clk)
-+{
-+	const struct mtk_dpi_factor *dpi_factor = dpi->conf->dpi_factor;
-+	int i;
-+
-+	for (i = 0; i < dpi->conf->num_dpi_factor; i++) {
-+		if (mode_clk <= dpi_factor[i].clock)
-+			return dpi_factor[i].factor;
-+	}
-+
-+	/* If no match try the lowest possible factor */
-+	return dpi_factor[dpi->conf->num_dpi_factor - 1].factor;
-+}
-+
-+static void mtk_dpi_set_pixel_clk(struct mtk_dpi *dpi, struct videomode *vm, int mode_clk)
-+{
-+	unsigned long pll_rate;
-+	unsigned int factor;
-+
-+	/* let pll_rate can fix the valid range of tvdpll (1G~2GHz) */
-+	factor = mtk_dpi_calculate_factor(dpi, mode_clk);
-+	pll_rate = vm->pixelclock * factor;
-+
-+	dev_dbg(dpi->dev, "Want PLL %lu Hz, pixel clock %lu Hz\n",
-+		pll_rate, vm->pixelclock);
-+
-+	clk_set_rate(dpi->tvd_clk, pll_rate);
-+	pll_rate = clk_get_rate(dpi->tvd_clk);
-+
-+	/*
-+	 * Depending on the IP version, we may output a different amount of
-+	 * pixels for each iteration: divide the clock by this number.
-+	 */
-+	vm->pixelclock = pll_rate / factor;
-+	vm->pixelclock /= dpi->conf->pixels_per_iter;
-+
-+	if ((dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_LE) ||
-+	    (dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_BE))
-+		clk_set_rate(dpi->pixel_clk, vm->pixelclock * 2);
-+	else
-+		clk_set_rate(dpi->pixel_clk, vm->pixelclock);
-+
-+	vm->pixelclock = clk_get_rate(dpi->pixel_clk);
-+
-+	dev_dbg(dpi->dev, "Got PLL %lu Hz, pixel clock %lu Hz\n",
-+		pll_rate, vm->pixelclock);
-+}
-+
-+int mtk_dpi_set_display_mode(struct mtk_dpi *dpi, struct videomode *vm,
-+			     struct mtk_dpi_sync *sync,
-+			     struct mtk_dpi_polarities *dpi_pol,
-+			     struct mtk_dpi_yc_limit *limit)
-+{
-+	struct drm_display_mode *mode = &dpi->mode;
-+
-+	drm_display_mode_to_videomode(mode, vm);
-+
-+	if (!dpi->conf->clocked_by_hdmi)
-+		mtk_dpi_set_pixel_clk(dpi, vm, mode->clock);
-+
-+	dpi_pol->ck_pol = MTK_DPI_POLARITY_FALLING;
-+	dpi_pol->de_pol = MTK_DPI_POLARITY_RISING;
-+	dpi_pol->hsync_pol = vm->flags & DISPLAY_FLAGS_HSYNC_HIGH ?
-+			    MTK_DPI_POLARITY_FALLING : MTK_DPI_POLARITY_RISING;
-+	dpi_pol->vsync_pol = vm->flags & DISPLAY_FLAGS_VSYNC_HIGH ?
-+			    MTK_DPI_POLARITY_FALLING : MTK_DPI_POLARITY_RISING;
-+
-+	/*
-+	 * Depending on the IP version, we may output a different amount of
-+	 * pixels for each iteration: adjust the display porches accordingly.
-+	 */
-+	sync->hsync.sync_width = vm->hsync_len / dpi->conf->pixels_per_iter;
-+	sync->hsync.back_porch = vm->hback_porch / dpi->conf->pixels_per_iter;
-+	sync->hsync.front_porch = vm->hfront_porch / dpi->conf->pixels_per_iter;
-+	sync->hsync.shift_half_line = false;
-+
-+	sync->vsync_l_odd.sync_width = vm->vsync_len;
-+	sync->vsync_l_odd.back_porch = vm->vback_porch;
-+	sync->vsync_l_odd.front_porch = vm->vfront_porch;
-+	sync->vsync_l_odd.shift_half_line = false;
-+
-+	if (vm->flags & DISPLAY_FLAGS_INTERLACED) {
-+		sync->vsync_l_even = sync->vsync_l_odd;
-+		sync->vsync_l_even.shift_half_line = true;
-+
-+		if (mode->flags & DRM_MODE_FLAG_3D_MASK) {
-+			sync->vsync_r_odd = sync->vsync_l_odd;
-+			sync->vsync_r_even = sync->vsync_l_odd;
-+			sync->vsync_r_even.shift_half_line = true;
-+		}
-+	} else if (mode->flags & DRM_MODE_FLAG_3D_MASK) {
-+		sync->vsync_r_odd = sync->vsync_l_odd;
-+	}
-+
-+	if (drm_default_rgb_quant_range(&dpi->mode) == HDMI_QUANTIZATION_RANGE_LIMITED) {
-+		limit->y_bottom = 0x10;
-+		limit->y_top = 0xfe0;
-+		limit->c_bottom = 0x10;
-+		limit->c_top = 0xfe0;
-+	} else {
-+		limit->y_bottom = 0;
-+		limit->y_top = 0xfff;
-+		limit->c_bottom = 0;
-+		limit->c_top = 0xfff;
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_set_display_mode, "DRM_MTK_DPI");
-+
-+u32 *mtk_dpi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-+					      struct drm_bridge_state *bridge_state,
-+					      struct drm_crtc_state *crtc_state,
-+					      struct drm_connector_state *conn_state,
-+					      u32 output_fmt,
-+					      unsigned int *num_input_fmts)
-+{
-+	u32 *input_fmts;
-+
-+	*num_input_fmts = 0;
-+
-+	input_fmts = kcalloc(1, sizeof(*input_fmts), GFP_KERNEL);
-+	if (!input_fmts)
-+		return NULL;
-+
-+	*num_input_fmts = 1;
-+	input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-+
-+	return input_fmts;
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_bridge_atomic_get_input_bus_fmts, "DRM_MTK_DPI");
-+
-+u32 *mtk_dpi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
-+					       struct drm_bridge_state *bridge_state,
-+					       struct drm_crtc_state *crtc_state,
-+					       struct drm_connector_state *conn_state,
-+					       unsigned int *num_output_fmts)
-+{
-+	struct mtk_dpi *dpi = bridge_to_dpi(bridge);
-+	u32 *output_fmts;
-+
-+	*num_output_fmts = 0;
-+
-+	if (!dpi->conf->output_fmts) {
-+		dev_err(dpi->dev, "output_fmts should not be null\n");
-+		return NULL;
-+	}
-+
-+	output_fmts = kcalloc(dpi->conf->num_output_fmts, sizeof(*output_fmts), GFP_KERNEL);
-+	if (!output_fmts)
-+		return NULL;
-+
-+	*num_output_fmts = dpi->conf->num_output_fmts;
-+
-+	memcpy(output_fmts, dpi->conf->output_fmts,
-+	       sizeof(*output_fmts) * dpi->conf->num_output_fmts);
-+
-+	return output_fmts;
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_bridge_atomic_get_output_bus_fmts, "DRM_MTK_DPI");
-+
-+int mtk_dpi_bridge_atomic_check(struct drm_bridge *bridge,
-+				struct drm_bridge_state *bridge_state,
-+				struct drm_crtc_state *crtc_state,
-+				struct drm_connector_state *conn_state)
-+{
-+	unsigned int out_bus_format = bridge_state->output_bus_cfg.format;
-+	struct mtk_dpi *dpi = bridge_to_dpi(bridge);
-+
-+	if (out_bus_format == MEDIA_BUS_FMT_FIXED && dpi->conf->num_output_fmts)
-+		out_bus_format = dpi->conf->output_fmts[0];
-+
-+	dev_dbg(dpi->dev, "input format 0x%04x, output format 0x%04x\n",
-+		bridge_state->input_bus_cfg.format,
-+		bridge_state->output_bus_cfg.format);
-+
-+	dpi->output_fmt = out_bus_format;
-+	dpi->bit_num = mtk_dpi_bus_fmt_bit_num(out_bus_format);
-+	dpi->channel_swap = mtk_dpi_bus_fmt_channel_swap(out_bus_format);
-+	dpi->yc_map = MTK_DPI_OUT_YC_MAP_RGB;
-+	dpi->color_format = mtk_dpi_bus_fmt_color_format(out_bus_format);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_bridge_atomic_check, "DRM_MTK_DPI");
-+
-+void mtk_dpi_bridge_mode_set(struct drm_bridge *bridge,
-+			     const struct drm_display_mode *mode,
-+			     const struct drm_display_mode *adjusted_mode)
-+{
-+	struct mtk_dpi *dpi = bridge_to_dpi(bridge);
-+
-+	drm_mode_copy(&dpi->mode, adjusted_mode);
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_bridge_mode_set, "DRM_MTK_DPI");
-+
-+int mtk_dpi_common_bind(struct device *dev, struct device *master, void *data)
-+{
-+	struct mtk_dpi *dpi = dev_get_drvdata(dev);
-+	struct drm_device *drm_dev = data;
-+	struct mtk_drm_private *priv = drm_dev->dev_private;
-+	int ret;
-+
-+	dpi->mmsys_dev = priv->mmsys_dev;
-+	ret = drm_simple_encoder_init(drm_dev, &dpi->encoder,
-+				      DRM_MODE_ENCODER_TMDS);
-+	if (ret) {
-+		dev_err(dev, "Failed to initialize decoder: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = mtk_find_possible_crtcs(drm_dev, dpi->dev);
-+	if (ret < 0)
-+		goto err_cleanup;
-+	dpi->encoder.possible_crtcs = ret;
-+
-+	ret = drm_bridge_attach(&dpi->encoder, &dpi->bridge, NULL,
-+				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-+	if (ret)
-+		goto err_cleanup;
-+
-+	dpi->connector = drm_bridge_connector_init(drm_dev, &dpi->encoder);
-+	if (IS_ERR(dpi->connector)) {
-+		dev_err(dev, "Unable to create bridge connector\n");
-+		ret = PTR_ERR(dpi->connector);
-+		goto err_cleanup;
-+	}
-+
-+	return 0;
-+
-+err_cleanup:
-+	drm_encoder_cleanup(&dpi->encoder);
-+	return ret;
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_common_bind, "DRM_MTK_DPI");
-+
-+void mtk_dpi_common_unbind(struct device *dev, struct device *master, void *data)
-+{
-+	struct mtk_dpi *dpi = dev_get_drvdata(dev);
-+
-+	drm_encoder_cleanup(&dpi->encoder);
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_common_unbind, "DRM_MTK_DPI");
-+
-+int mtk_dpi_common_debug_tp_show(struct seq_file *m, bool en, u32 sel)
-+{
-+	seq_printf(m, "DPI Test Pattern: %s\n", en ? "Enabled" : "Disabled");
-+
-+	if (en) {
-+		seq_printf(m, "Internal pattern %d: ", sel);
-+
-+		switch (sel) {
-+		case 0:
-+			seq_puts(m, "256 Vertical Gray\n");
-+			break;
-+		case 1:
-+			seq_puts(m, "1024 Vertical Gray\n");
-+			break;
-+		case 2:
-+			seq_puts(m, "256 Horizontal Gray\n");
-+			break;
-+		case 3:
-+			seq_puts(m, "1024 Horizontal Gray\n");
-+			break;
-+		case 4:
-+			seq_puts(m, "Vertical Color bars\n");
-+			break;
-+		case 6:
-+			seq_puts(m, "Frame border\n");
-+			break;
-+		case 7:
-+			seq_puts(m, "Dot moire\n");
-+			break;
-+		default:
-+			seq_puts(m, "Invalid selection\n");
-+			break;
-+		}
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_common_debug_tp_show, "DRM_MTK_DPI");
-+
-+ssize_t mtk_dpi_common_debug_tp_write(struct file *file, const char __user *ubuf,
-+				      size_t len, loff_t *offp, u32 *en, u32 *type)
-+{
-+	struct seq_file *m = file->private_data;
-+	char buf[6];
-+
-+	if (!m || !m->private || *offp || len > sizeof(buf) - 1)
-+		return -EINVAL;
-+
-+	memset(buf, 0, sizeof(buf));
-+	if (copy_from_user(buf, ubuf, len))
-+		return -EFAULT;
-+
-+	if (sscanf(buf, "%u %u", en, type) != 2)
-+		return -EINVAL;
-+
-+	if (*en < 0 || *en > 1 || *type < 0 || *type > 7)
-+		return -EINVAL;
-+
-+	return len;
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_common_debug_tp_write, "DRM_MTK_DPI");
-+
-+struct mtk_dpi *mtk_dpi_common_probe(struct platform_device *pdev,
-+				     const struct drm_bridge_funcs *bridge_funcs)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mtk_dpi *dpi;
-+	int ret;
-+
-+	dpi = devm_drm_bridge_alloc(dev, struct mtk_dpi, bridge, bridge_funcs);
-+	if (IS_ERR(dpi))
-+		return dpi;
-+
-+	dpi->dev = dev;
-+	dpi->conf = (struct mtk_dpi_conf *)of_device_get_match_data(dev);
-+	dpi->output_fmt = MEDIA_BUS_FMT_RGB888_1X24;
-+
-+	dpi->pinctrl = devm_pinctrl_get(dev);
-+	if (IS_ERR_OR_NULL(dpi->pinctrl)) {
-+		dev_dbg(dev, "Cannot find pinctrl!\n");
-+		dpi->pinctrl = NULL;
-+	} else {
-+		dpi->pins_gpio = pinctrl_lookup_state(dpi->pinctrl, "sleep");
-+		if (IS_ERR(dpi->pins_gpio)) {
-+			dpi->pins_gpio = NULL;
-+			dev_dbg(dev, "Cannot find pinctrl idle!\n");
-+		}
-+		if (dpi->pins_gpio)
-+			pinctrl_select_state(dpi->pinctrl, dpi->pins_gpio);
-+
-+		dpi->pins_dpi = pinctrl_lookup_state(dpi->pinctrl, "default");
-+		if (IS_ERR(dpi->pins_dpi)) {
-+			dpi->pins_dpi = NULL;
-+			dev_dbg(dev, "Cannot find pinctrl active!\n");
-+		}
-+	}
-+
-+	dpi->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(dpi->regs))
-+		return dev_err_ptr_probe(dev, PTR_ERR(dpi->regs),
-+					 "Failed to ioremap mem resource\n");
-+
-+	dpi->engine_clk = devm_clk_get(dev, "engine");
-+	if (IS_ERR(dpi->engine_clk))
-+		return dev_err_ptr_probe(dev, PTR_ERR(dpi->engine_clk),
-+					 "Failed to get engine clock\n");
-+
-+	dpi->pixel_clk = devm_clk_get(dev, "pixel");
-+	if (IS_ERR(dpi->pixel_clk))
-+		return dev_err_ptr_probe(dev, PTR_ERR(dpi->pixel_clk),
-+					 "Failed to get pixel clock\n");
-+
-+	dpi->tvd_clk = devm_clk_get(dev, "pll");
-+	if (IS_ERR(dpi->tvd_clk))
-+		return dev_err_ptr_probe(dev, PTR_ERR(dpi->tvd_clk),
-+					 "Failed to get tvdpll clock\n");
-+
-+	dpi->irq = platform_get_irq(pdev, 0);
-+	if (dpi->irq < 0)
-+		return ERR_PTR(dpi->irq);
-+
-+	dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 1, -1);
-+	if (IS_ERR(dpi->next_bridge) && PTR_ERR(dpi->next_bridge) == -ENODEV) {
-+		/* Old devicetree has only one endpoint */
-+		dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 0, 0);
-+	}
-+	if (IS_ERR(dpi->next_bridge))
-+		return dev_err_ptr_probe(dpi->dev, PTR_ERR(dpi->next_bridge),
-+					 "Failed to get bridge\n");
-+
-+	platform_set_drvdata(pdev, dpi);
-+
-+	dpi->bridge.of_node = dev->of_node;
-+	dpi->bridge.type = DRM_MODE_CONNECTOR_DPI;
-+
-+	ret = devm_drm_bridge_add(dev, &dpi->bridge);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return dpi;
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_dpi_common_probe, "DRM_MTK_DPI");
-+
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("MediaTek DPI/DVO Common Library");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/gpu/drm/mediatek/mtk_dpi_common.h b/drivers/gpu/drm/mediatek/mtk_dpi_common.h
-new file mode 100644
-index 000000000000..c5cc26c7900d
---- /dev/null
-+++ b/drivers/gpu/drm/mediatek/mtk_dpi_common.h
-@@ -0,0 +1,276 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Copyright (c) 2026 Collabora Ltd.
-+ *               AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#ifndef _MTK_DPI_COMMON_H
-+#define _MTK_DPI_COMMON_H
-+
-+#include <linux/clk.h>
-+#include <linux/pinctrl/consumer.h>
-+#include <uapi/linux/media-bus-format.h>
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_connector.h>
-+#include <drm/drm_encoder.h>
-+#include <drm/drm_modes.h>
-+#include <video/videomode.h>
-+
-+enum mtk_dpi_out_bit_num {
-+	MTK_DPI_OUT_BIT_NUM_8BITS,
-+	MTK_DPI_OUT_BIT_NUM_10BITS,
-+	MTK_DPI_OUT_BIT_NUM_12BITS,
-+	MTK_DPI_OUT_BIT_NUM_16BITS
-+};
-+
-+enum mtk_dpi_out_yc_map {
-+	MTK_DPI_OUT_YC_MAP_RGB,
-+	MTK_DPI_OUT_YC_MAP_CYCY,
-+	MTK_DPI_OUT_YC_MAP_YCYC,
-+	MTK_DPI_OUT_YC_MAP_CY,
-+	MTK_DPI_OUT_YC_MAP_YC
-+};
-+
-+enum mtk_dpi_out_channel_swap {
-+	MTK_DPI_OUT_CHANNEL_SWAP_RGB,
-+	MTK_DPI_OUT_CHANNEL_SWAP_GBR,
-+	MTK_DPI_OUT_CHANNEL_SWAP_BRG,
-+	MTK_DPI_OUT_CHANNEL_SWAP_RBG,
-+	MTK_DPI_OUT_CHANNEL_SWAP_GRB,
-+	MTK_DPI_OUT_CHANNEL_SWAP_BGR
-+};
-+
-+enum mtk_dpi_out_color_format {
-+	MTK_DPI_COLOR_FORMAT_RGB,
-+	MTK_DPI_COLOR_FORMAT_YCBCR_422,
-+	MTK_DPI_COLOR_FORMAT_YCBCR_444
-+};
-+
-+struct mtk_dpi {
-+	struct drm_encoder encoder;
-+	struct drm_bridge bridge;
-+	struct drm_bridge *next_bridge;
-+	struct drm_connector *connector;
-+	void __iomem *regs;
-+	struct device *dev;
-+	struct device *mmsys_dev;
-+	struct clk *engine_clk;
-+	struct clk *pixel_clk;
-+	struct clk *tvd_clk;
-+	int irq;
-+	struct drm_display_mode mode;
-+	const struct mtk_dpi_conf *conf;
-+	enum mtk_dpi_out_color_format color_format;
-+	enum mtk_dpi_out_yc_map yc_map;
-+	enum mtk_dpi_out_bit_num bit_num;
-+	enum mtk_dpi_out_channel_swap channel_swap;
-+	struct pinctrl *pinctrl;
-+	struct pinctrl_state *pins_gpio;
-+	struct pinctrl_state *pins_dpi;
-+	u32 output_fmt;
-+	s8 refcount;
-+};
-+
-+enum mtk_dpi_polarity {
-+	MTK_DPI_POLARITY_RISING,
-+	MTK_DPI_POLARITY_FALLING,
-+};
-+
-+struct mtk_dpi_polarities {
-+	enum mtk_dpi_polarity de_pol;
-+	enum mtk_dpi_polarity ck_pol;
-+	enum mtk_dpi_polarity hsync_pol;
-+	enum mtk_dpi_polarity vsync_pol;
-+};
-+
-+struct mtk_dpi_sync_param {
-+	u32 sync_width;
-+	u32 front_porch;
-+	u32 back_porch;
-+	bool shift_half_line;
-+};
-+
-+struct mtk_dpi_sync {
-+	struct mtk_dpi_sync_param hsync;
-+	struct mtk_dpi_sync_param vsync_l_odd;
-+	struct mtk_dpi_sync_param vsync_l_even;
-+	struct mtk_dpi_sync_param vsync_r_odd;
-+	struct mtk_dpi_sync_param vsync_r_even;
-+};
-+
-+struct mtk_dpi_yc_limit {
-+	u16 y_top;
-+	u16 y_bottom;
-+	u16 c_top;
-+	u16 c_bottom;
-+};
-+
-+struct mtk_dpi_factor {
-+	u32 clock;
-+	u8 factor;
-+};
-+
-+/**
-+ * struct mtk_dpi_conf - Configuration of MediaTek DPI/DVO
-+ * @dpi_factor: SoC-specific pixel clock PLL factor values.
-+ * @num_dpi_factor: Number of pixel clock PLL factor values.
-+ * @reg_h_fre_con: Register address of frequency control.
-+ * @max_clock_khz: Max clock frequency supported for this SoCs in khz units.
-+ * @edge_sel_en: Enable of edge selection.
-+ * @output_fmts: Array of supported output formats.
-+ * @num_output_fmts: Quantity of supported output formats.
-+ * @is_ck_de_pol: Support CK/DE polarity.
-+ * @swap_input_support: Support input swap function.
-+ * @support_direct_pin: IP supports direct connection to dpi panels.
-+ * @dimension_mask: Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and VSYNC_PORCH
-+ *		    (no shift).
-+ * @hvsize_mask: Mask of HSIZE and VSIZE mask (no shift).
-+ * @channel_swap_shift: Shift value of channel swap.
-+ * @yuv422_en_bit: Enable bit of yuv422.
-+ * @csc_enable_bit: Enable bit of CSC.
-+ * @input_2p_en_bit: Enable bit for input two pixel per round feature.
-+ *		     If present, implies that the feature must be enabled.
-+ * @pixels_per_iter: Quantity of transferred pixels per iteration.
-+ * @edge_cfg_in_mmsys: If the edge configuration for DPI's output needs to be set in MMSYS.
-+ * @clocked_by_hdmi: HDMI IP outputs clock to dpi_pixel_clk input clock, needed
-+ *		     for DPI registers access.
-+ * @output_1pixel: Enable outputting one pixel per round; if the input is two pixel per
-+ *                 round, the DPI hardware will internally transform it to 1T1P.
-+ */
-+struct mtk_dpi_conf {
-+	const struct mtk_dpi_factor *dpi_factor;
-+	const u8 num_dpi_factor;
-+	u32 reg_h_fre_con;
-+	u32 max_clock_khz;
-+	bool edge_sel_en;
-+	const u32 *output_fmts;
-+	u32 num_output_fmts;
-+	bool is_ck_de_pol;
-+	bool swap_input_support;
-+	bool support_direct_pin;
-+	u32 dimension_mask;
-+	u32 hvsize_mask;
-+	u32 channel_swap_shift;
-+	u32 yuv422_en_bit;
-+	u32 csc_enable_bit;
-+	u32 input_2p_en_bit;
-+	u32 pixels_per_iter;
-+	bool edge_cfg_in_mmsys;
-+	bool clocked_by_hdmi;
-+	bool output_1pixel;
-+};
-+
-+static inline struct mtk_dpi *bridge_to_dpi(struct drm_bridge *b)
-+{
-+	return container_of(b, struct mtk_dpi, bridge);
-+}
-+
-+static inline void mtk_dpi_mask(struct mtk_dpi *dpi, u32 offset, u32 val, u32 mask)
-+{
-+	u32 tmp = readl(dpi->regs + offset);
-+
-+	tmp &= ~mask;
-+	tmp |= (val & mask);
-+	writel(tmp, dpi->regs + offset);
-+}
-+
-+static inline enum mtk_dpi_out_bit_num
-+mtk_dpi_bus_fmt_bit_num(unsigned int out_bus_format)
-+{
-+	switch (out_bus_format) {
-+	default:
-+	case MEDIA_BUS_FMT_RGB888_1X24:
-+	case MEDIA_BUS_FMT_BGR888_1X24:
-+	case MEDIA_BUS_FMT_RGB888_2X12_LE:
-+	case MEDIA_BUS_FMT_RGB888_2X12_BE:
-+	case MEDIA_BUS_FMT_YUYV8_1X16:
-+	case MEDIA_BUS_FMT_YUV8_1X24:
-+		return MTK_DPI_OUT_BIT_NUM_8BITS;
-+	case MEDIA_BUS_FMT_RGB101010_1X30:
-+	case MEDIA_BUS_FMT_YUYV10_1X20:
-+	case MEDIA_BUS_FMT_YUV10_1X30:
-+		return MTK_DPI_OUT_BIT_NUM_10BITS;
-+	case MEDIA_BUS_FMT_YUYV12_1X24:
-+		return MTK_DPI_OUT_BIT_NUM_12BITS;
-+	}
-+}
-+
-+static inline enum mtk_dpi_out_channel_swap
-+mtk_dpi_bus_fmt_channel_swap(unsigned int out_bus_format)
-+{
-+	switch (out_bus_format) {
-+	default:
-+	case MEDIA_BUS_FMT_RGB888_1X24:
-+	case MEDIA_BUS_FMT_RGB888_2X12_LE:
-+	case MEDIA_BUS_FMT_RGB888_2X12_BE:
-+	case MEDIA_BUS_FMT_RGB101010_1X30:
-+	case MEDIA_BUS_FMT_YUYV8_1X16:
-+	case MEDIA_BUS_FMT_YUYV10_1X20:
-+	case MEDIA_BUS_FMT_YUYV12_1X24:
-+		return MTK_DPI_OUT_CHANNEL_SWAP_RGB;
-+	case MEDIA_BUS_FMT_BGR888_1X24:
-+	case MEDIA_BUS_FMT_YUV8_1X24:
-+	case MEDIA_BUS_FMT_YUV10_1X30:
-+		return MTK_DPI_OUT_CHANNEL_SWAP_BGR;
-+	}
-+}
-+
-+static inline enum mtk_dpi_out_color_format
-+mtk_dpi_bus_fmt_color_format(unsigned int out_bus_format)
-+{
-+	switch (out_bus_format) {
-+	default:
-+	case MEDIA_BUS_FMT_RGB888_1X24:
-+	case MEDIA_BUS_FMT_BGR888_1X24:
-+	case MEDIA_BUS_FMT_RGB888_2X12_LE:
-+	case MEDIA_BUS_FMT_RGB888_2X12_BE:
-+	case MEDIA_BUS_FMT_RGB101010_1X30:
-+		return MTK_DPI_COLOR_FORMAT_RGB;
-+	case MEDIA_BUS_FMT_YUYV8_1X16:
-+	case MEDIA_BUS_FMT_YUYV10_1X20:
-+	case MEDIA_BUS_FMT_YUYV12_1X24:
-+		return MTK_DPI_COLOR_FORMAT_YCBCR_422;
-+	case MEDIA_BUS_FMT_YUV8_1X24:
-+	case MEDIA_BUS_FMT_YUV10_1X30:
-+		return MTK_DPI_COLOR_FORMAT_YCBCR_444;
-+	}
-+}
-+
-+u32 *mtk_dpi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-+					      struct drm_bridge_state *bridge_state,
-+					      struct drm_crtc_state *crtc_state,
-+					      struct drm_connector_state *conn_state,
-+					      u32 output_fmt,
-+					      unsigned int *num_input_fmts);
-+u32 *mtk_dpi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
-+					       struct drm_bridge_state *bridge_state,
-+					       struct drm_crtc_state *crtc_state,
-+					       struct drm_connector_state *conn_state,
-+					       unsigned int *num_output_fmts);
-+int mtk_dpi_bridge_atomic_check(struct drm_bridge *bridge,
-+				struct drm_bridge_state *bridge_state,
-+				struct drm_crtc_state *crtc_state,
-+				struct drm_connector_state *conn_state);
-+void mtk_dpi_bridge_mode_set(struct drm_bridge *bridge,
-+			     const struct drm_display_mode *mode,
-+			     const struct drm_display_mode *adjusted_mode);
-+
-+int mtk_dpi_common_bind(struct device *dev, struct device *master, void *data);
-+void mtk_dpi_common_unbind(struct device *dev, struct device *master, void *data);
-+
-+void mtk_dpi_power_off(struct mtk_dpi *dpi);
-+int mtk_dpi_power_on(struct mtk_dpi *dpi);
-+int mtk_dpi_set_display_mode(struct mtk_dpi *dpi, struct videomode *vm,
-+			     struct mtk_dpi_sync *sync,
-+			     struct mtk_dpi_polarities *dpi_pol,
-+			     struct mtk_dpi_yc_limit *limit);
-+
-+int mtk_dpi_common_debug_tp_show(struct seq_file *m, bool en, u32 sel);
-+ssize_t mtk_dpi_common_debug_tp_write(struct file *file, const char __user *ubuf,
-+				      size_t len, loff_t *offp, u32 *en, u32 *type);
-+
-+struct mtk_dpi *mtk_dpi_common_probe(struct platform_device *pdev,
-+				     const struct drm_bridge_funcs *bridge_funcs);
-+
-+#endif /* _MTK_DPI_COMMON_H */
+As of now, all of the components in MediaTek DRM, hence also in the
+MMSYS driver, are thrown in a catch-all enumeration that does not
+make any distinction between Type-Instance relationship, and it is
+like so (mock-up names ahead):
+
+DISPLAY_DITHER0
+DISPLAY_DITHER1
+DISPLAY_DSI0
+DISPLAY_DSI1
+
+... and so on.
+
+Since the number of components is now becoming uncontrollably large,
+the catch-all enumeration poses a big issue as the mediatek-drm driver
+is allocating a huge array that will be only half full (optimistically,
+because usually it's way less than half full) and with repeated ops
+assignment for each and every instance of the very same Sub-IP,
+effectively treating every instance of a Sub-IP like it is completely
+different from one another (for example, like DSI0 and DSI1 are as
+different as DITHER0 and DSI1).
+
+This has to change. It had to change months ago, but now it has become
+not only a maintenance burden, but also a... (sorry) big mess.
+
+And well, that... especially looking forward to add support for newer
+SoCs, using even more components in one pipeline, and using different
+and newer components (of new types...), making the catch-all enum to
+grow of another ~20 entries or more.
+
+So, this is PART 1 of this huge restructuring, which will impact many
+drivers, including soc/mediatek's mutex and mmsys, most of drm/mediatek
+and, in the future, also media/mediatek/mtk-mdp3 (and eventually its
+firmwareless implementation which, for components handling, will be
+as complicated as mediatek-drm and, without this restructuring, would
+be yet another boulder).
+
+AngeloGioacchino Del Regno (6):
+  dt-bindings: soc: mediatek: mutex: Improve title and description
+  dt-bindings: soc: mediatek: mutex: Allow #trigger-source-cells
+  dt-bindings: display: mediatek: Allow trigger-sources on relevant HW
+  soc: mediatek: mtk-mutex: Add new functions to add/remove triggers
+  soc: mediatek: mtk-mmsys: Rework routes to specify component ID
+  soc: mediatek: mtk-mmsys: Use MMSYS_ROUTE() in default routing table
+
+ .../display/mediatek/mediatek,aal.yaml        |   3 +
+ .../display/mediatek/mediatek,ccorr.yaml      |   3 +
+ .../display/mediatek/mediatek,color.yaml      |   3 +
+ .../display/mediatek/mediatek,dither.yaml     |   3 +
+ .../display/mediatek/mediatek,dp.yaml         |   3 +
+ .../display/mediatek/mediatek,dpi.yaml        |   3 +
+ .../display/mediatek/mediatek,dsc.yaml        |   3 +
+ .../display/mediatek/mediatek,dsi.yaml        |   3 +
+ .../display/mediatek/mediatek,ethdr.yaml      |   3 +
+ .../display/mediatek/mediatek,gamma.yaml      |   3 +
+ .../display/mediatek/mediatek,merge.yaml      |   3 +
+ .../display/mediatek/mediatek,od.yaml         |   3 +
+ .../display/mediatek/mediatek,ovl-2l.yaml     |   3 +
+ .../display/mediatek/mediatek,ovl.yaml        |   3 +
+ .../display/mediatek/mediatek,padding.yaml    |   3 +
+ .../display/mediatek/mediatek,postmask.yaml   |   3 +
+ .../display/mediatek/mediatek,rdma.yaml       |   3 +
+ .../display/mediatek/mediatek,split.yaml      |   3 +
+ .../display/mediatek/mediatek,ufoe.yaml       |   3 +
+ .../display/mediatek/mediatek,wdma.yaml       |   3 +
+ .../bindings/soc/mediatek/mediatek,mutex.yaml |  21 +-
+ drivers/soc/mediatek/mt6893-mmsys.h           |  34 +-
+ drivers/soc/mediatek/mt8167-mmsys.h           |  21 +-
+ drivers/soc/mediatek/mt8173-mmsys.h           |  28 +-
+ drivers/soc/mediatek/mt8183-mmsys.h           |  14 +-
+ drivers/soc/mediatek/mt8186-mmsys.h           |  22 +-
+ drivers/soc/mediatek/mt8188-mmsys.h           |  78 ++---
+ drivers/soc/mediatek/mt8192-mmsys.h           |  20 +-
+ drivers/soc/mediatek/mt8195-mmsys.h           | 181 +++++------
+ drivers/soc/mediatek/mt8365-mmsys.h           |  20 +-
+ drivers/soc/mediatek/mtk-mmsys.h              | 299 ++++++++----------
+ drivers/soc/mediatek/mtk-mutex.c              |  60 ++++
+ include/linux/soc/mediatek/mtk-mutex.h        |   6 +
+ 33 files changed, 474 insertions(+), 390 deletions(-)
+
 -- 
 2.54.0
 
