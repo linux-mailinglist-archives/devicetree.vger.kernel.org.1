@@ -1,228 +1,155 @@
-Return-Path: <devicetree+bounces-318803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318805-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8NPKJ55DRWqG9goAu9opvQ
-	(envelope-from <devicetree+bounces-318803-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:43:10 +0200
+	id dfUgJDBHRWrQ9woAu9opvQ
+	(envelope-from <devicetree+bounces-318805-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:58:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0E796EFE7A
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:43:09 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 885C36F010A
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:58:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=WzemZ6qS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318803-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318803-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=collabora.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TOTlHssS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318805-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318805-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0B94B30BC2CC
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 16:36:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 61C96300292D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 16:39:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACEE8379C5B;
-	Wed,  1 Jul 2026 16:36:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 449C0371D1F;
+	Wed,  1 Jul 2026 16:39:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BE26376A11;
-	Wed,  1 Jul 2026 16:36:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F94236F8E4;
+	Wed,  1 Jul 2026 16:39:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782923796; cv=none; b=hFfKErw9pN6/RjGJz30SUP2E0tA0gC+0SbiGRxeytXOV52ejWw3fhgPZjcr1gAXavFsoyjYqG2RB1SteDhYw/tl3mvU2mU0E9LgWg2OaDIJtAB88gmwuQokyYOTV0aqpcL35umK6AaOsIfr2AhbU281fVJZ0ydzx3bHro9DqHXE=
+	t=1782923980; cv=none; b=YbEG07uBnrecLENSgU519hKVqihDbzWtn0SOe5HzdWXscoovoEN/uz9uTrBy6uvnShfxNjldwDEI6teDSIBFHUPkd3pATQ/iD4gBVev1Pu0mKEBkLcUJiJ0WXNJHNBUvcnfR98NaZpF+9xrGNv3LARw/4/RHHb5d0ZEXFL4y2JA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782923796; c=relaxed/simple;
-	bh=WWFVikUE4fqMVkwhLGoBQ92sxuWrFOHuL4JcCoQZxDU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mDupisBFWt9bH3kwaviyiKe2dxDs7eUeAO72t6ymmm89/iw1K7hPsGLg7o3zjwmL4ZIAdVtcP5m8bG2anpwNWIqt3skCXWXjPABYJCmTE6PpCQK5jZxzCMbytXsKMXA8v+TSla9z4ojbbzVf0jcEidnhPhd+Babr2NfyMbAevfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WzemZ6qS; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1782923792;
-	bh=WWFVikUE4fqMVkwhLGoBQ92sxuWrFOHuL4JcCoQZxDU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=WzemZ6qSWFoAKiCZ+SVLsasm61F9RIlS18nl9lag5nmnHMgAlBkknxHd5+k49lU04
-	 uYSoJZHvvlutzDF1qxP1FJXnz40mQSkv+1fqFKWXjWFkaODF2KUO0BFFanrSsLyW5v
-	 9Efk4ly56tam/dC6M3/ucyfqoFqLSB32CTcFuLE0YjsDwu6BM3GCrGQtxhg/J3LepJ
-	 LqEwWYAOXY9dA5/9asMkKjF1xtpLozWEA6D4U50pJOncO8RlDbz8BZMQkcN5h80cY0
-	 OJ+1WddtK9YKS+LVVFbjsnwIhDKzjvU0037Ru5jtLIR1EwSVYLATfKCbE87JNksg7c
-	 VcMvDgSqI0U3w==
-Received: from yukiji.home (unknown [100.64.0.131])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6460817E0FAA;
-	Wed,  1 Jul 2026 18:36:31 +0200 (CEST)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Wed, 01 Jul 2026 18:35:22 +0200
-Subject: [PATCH v2 4/4] arm64: dts: mediatek: add Genio 520-EVK board
+	s=arc-20240116; t=1782923980; c=relaxed/simple;
+	bh=gLQxvbQOOLcY/4e+Bw2EjCkQkfwPZzWVFEDv9j/iY/k=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=E3PeruIbGLcviDDCCSQ8BARy8NXiudpT4AdQXL5myZ9IDAFfXDcdH02zNlLnv2xCikdyG7GBFv8/SnfxfZ8znAh1/ltrpzQbwPXqQNFwGjxMc1Bd36zEgXeO9L+nsKW4pRbaPW32O2joRlBzMrHbzUZMBAC8zR+7Z8yU6PDGic0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TOTlHssS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CA6B1F000E9;
+	Wed,  1 Jul 2026 16:39:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782923978;
+	bh=i2S2b9gwlzlrq71xUZnAbbsrQZGU2konPvu0kspaKrc=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject;
+	b=TOTlHssS4K3aSspdhrVxeLftNotWdK7iHpbdaKmIjM4RlIP1tQpKAnW8SMm6VCRat
+	 /39KMMz3+qgUW5Naj0+z7EEn2VMW7tj4PGoQW44+mu/3BS6defuPfg0W5coObmn/WU
+	 AcF1n9KzA0Hh3hEUNDIjrdVU5sm0pegEydrZsMFQl2gRLji8CiW3poGMOtDItqDytl
+	 mUMq3BfN/jtR1F3yM4y/+Nakjjewv7zf3/Y+OU+eWvLkQXAnuXm/4XxVbUz1D7B9DK
+	 coxemdeSqIbktji1xhEiS38VZ8Am6tF49pdaGEb8EIqqpYPs3TCAhXNf8YLCiz+/TI
+	 om/TA0lzfDh9g==
+Date: Wed, 01 Jul 2026 11:39:37 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260701-add-mediatek-genio-520-720-evk-v2-4-19d5da4ef984@collabora.com>
-References: <20260701-add-mediatek-genio-520-720-evk-v2-0-19d5da4ef984@collabora.com>
-In-Reply-To: <20260701-add-mediatek-genio-520-720-evk-v2-0-19d5da4ef984@collabora.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@mediatek.com>
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782923787; l=3368;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=WWFVikUE4fqMVkwhLGoBQ92sxuWrFOHuL4JcCoQZxDU=;
- b=AyZzlOWkRJMa3HLbp/8OXexXv5ih45d8V9nPT8p/3r7A5DKaxzuxi+sobpjaoWofjAc5drCyk
- KPxeZYCwMfVBKcABpnAbx48Rwy5D6NoXkkwFz0KsgpIdeMJUtofqBGH
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, op-tee@lists.trustedfirmware.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org, 
+ Sumit Garg <sumit.garg@kernel.org>, 
+ Jens Wiklander <jens.wiklander@linaro.org>
+To: Xing Loong <xing.xl.loong@gmail.com>
+In-Reply-To: <20260701132514.186953-3-xing.xl.loong@gmail.com>
+References: <20260701132514.186953-1-xing.xl.loong@gmail.com>
+ <20260701132514.186953-3-xing.xl.loong@gmail.com>
+Message-Id: <178292397672.969186.6837238120896509616.robh@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: firmware: add mbedtee,rpc binding
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-318803-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:sean.wang@mediatek.com,m:kernel@collabora.com,m:linux-kernel@vger.kernel.org,m:linux-serial@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:louisalexis.eyraud@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,gmail.com,collabora.com,mediatek.com];
-	FORGED_SENDER(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318805-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:conor+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:op-tee@lists.trustedfirmware.org,m:krzk+dt@kernel.org,m:linux-riscv@lists.infradead.org,m:sumit.garg@kernel.org,m:jens.wiklander@linaro.org,m:xing.xl.loong@gmail.com,m:conor@kernel.org,m:krzk@kernel.org,m:xingxlloong@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C0E796EFE7A
+X-Rspamd-Queue-Id: 885C36F010A
 
-Add devicetree for the basic hardware enablement of the Genio 520-EVK
-board, based on MT8371 SoC.
 
-MT8371 SoC is a variant of MT8189 SoC with the following differences:
-  - Arm Cortex-A78 CPU core maximum frequency (2.2 Ghz for MT8371, 3 Ghz
-  for MT8189).
-  - Arm Mali G57 MC2 GPU core maximum frequency (880 Mhz for MT8371, 1.1
-  Ghz for MT8189)
-  - one ISP engine instead of two
-MT8371 hardware register maps are identical to MT8189.
+On Wed, 01 Jul 2026 21:25:13 +0800, Xing Loong wrote:
+> Add YAML devicetree binding for the MbedTEE Trusted Execution
+> Environment driver.
+> 
+> The binding covers two platform configurations:
+>   - ARM/AArch64 (TrustZone, SMC): two reserved-memory regions
+>     (rpc-t2r-ring and rpc-t2r-shm) plus a GIC SPI edge interrupt
+>     for TEE-to-REE notifications.
+>   - RISC-V (IMSIC): three reserved-memory regions, adding
+>     rpc-r2t-ring for REE-to-TEE command submissions; no interrupts
+>     property (T2R notifications use IMSIC MSI allocated at runtime).
+> 
+> Signed-off-by: Xing Loong <xing.xl.loong@gmail.com>
+> ---
+>  .../bindings/firmware/mbedtee,rpc.yaml        | 221 ++++++++++++++++++
+>  1 file changed, 221 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/firmware/mbedtee,rpc.yaml
+> 
 
-The Genio 520-EVK has following features:
-  - MT8371 SoC
-  - MT6365 PMIC
-  - MT6319 Buck IC
-  - MT6375 Charger IC
-  - 8GB LPDDR5 RAM
-  - 64GB eMMC 5.1
-  - 128GB UFS
-  - 20V DC Jack
-  - USB Type-C Power Adapter
-  - Micro SD card slot
-  - Push Button x 4 (Power, Reset, Download and Home Key)
-  - LED x 3 (System Power, Reset, DC-IN Power)
-  - USB Type-C Connector (USB 3.2) x 2
-  - USB Type-C Connector (USB 2.0) x 1
-  - 3.5mm Earphone Jack x 1 (with Microphone Input)
-  - 3.5mm Line Out Audio Jack x 1
-  - Analog Microphone x 1
-  - Digital Microphone x 2
-  - Gigabit Ethernet with RJ45 connector
-  - DP x 1 (Mode over USB Type-C)
-  - LVDS port x 1
-  - eDP port x 1
-  - UART x2 with serial-to-usb converters and USB Type-C connectors
-  - UART Port x 2 on Pin Header
-  - M.2 Slot x 2
-  - I2C Capacitive Touch Pad
-  - 4-Lane DSI x 1
-  - 4-Data Lane CSI x 2
-  - I2S Pin header
-  - 40-Pin 2.54mm Pin Header x 1
-  - CAN Bus x 1 (RS232 Connector)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
- arch/arm64/boot/dts/mediatek/Makefile              |  1 +
- .../boot/dts/mediatek/mt8371-genio-520-evk.dts     | 32 ++++++++++++++++++++++
- 2 files changed, 33 insertions(+)
+yamllint warnings/errors:
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 5c75ea1ef09a..e6a8109ffbaa 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -168,6 +168,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8370-genio-510-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8370-grinn-genio-510-sbc.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8370-tungsten-smarc.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8371-genio-520-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-genio-1200-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-genio-1200-evk-ufs.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-genio-700-evk.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8371-genio-520-evk.dts b/arch/arm64/boot/dts/mediatek/mt8371-genio-520-evk.dts
-new file mode 100644
-index 000000000000..b4fd343bc08a
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8371-genio-520-evk.dts
-@@ -0,0 +1,32 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (c) 2025 Collabora Ltd.
-+ * Author: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-+ */
-+/dts-v1/;
-+
-+#include "mt8189.dtsi"
-+#include "mt8391-genio-common.dtsi"
-+
-+/*
-+ * MT8371 SoC is a variant of the MT8189 with only one ISP engine
-+ * and lower maximum frequency on the big cores and on the Mali GPU.
-+ */
-+
-+/ {
-+	model = "MediaTek Genio 520 EVK";
-+	compatible = "mediatek,mt8371-evk", "mediatek,mt8371",
-+		     "mediatek,mt8189";
-+};
-+
-+&cpu6 {
-+	cpu-supply = <&mt6319_sid6_vbuck1>;
-+};
-+
-+&cpu7 {
-+	cpu-supply = <&mt6319_sid6_vbuck1>;
-+};
-+
-+&mt6319_sid6 {
-+	status = "okay";
-+};
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/mbedtee,rpc.example.dtb: /: 'compatible' is a required property
+	from schema $id: http://devicetree.org/schemas/root-node.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/mbedtee,rpc.example.dtb: /: 'model' is a required property
+	from schema $id: http://devicetree.org/schemas/root-node.yaml
 
--- 
-2.54.0
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260701132514.186953-3-xing.xl.loong@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
