@@ -1,383 +1,254 @@
-Return-Path: <devicetree+bounces-318638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318612-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EIZLB7IYRWq06woAu9opvQ
-	(envelope-from <devicetree+bounces-318638-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:40:02 +0200
+	id t7EuNCoTRWoP6goAu9opvQ
+	(envelope-from <devicetree+bounces-318612-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:16:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 567446EE394
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:40:01 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 752F46EDF3F
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:16:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=emailprofi.seznam.cz header.s=szn1 header.b=CM74W3cM;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318638-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318638-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=iv1Oi8vp;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=JEci4UhC;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318612-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318612-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D3C873325632
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 13:17:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 751AF3049EDC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 13:09:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FE0048A2C2;
-	Wed,  1 Jul 2026 13:14:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63959481677;
+	Wed,  1 Jul 2026 13:09:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxb.seznam.cz (mxb.seznam.cz [77.75.78.89])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2934A48A2BD;
-	Wed,  1 Jul 2026 13:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ADA7192D8A
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 13:09:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782911670; cv=none; b=HbLcNrJgHAFVVOGcXW90c92mv7QYI929J7FxO7qxmxly7ncXLSqJ/XVk8XTCgyEz+eLHIE+wZ7Gt423uCFTb90AvkPqWictZ2lQLQlEPgSC5nbSwSysbO1OOYvNJjkUSrhG26zNQVPlFsFJL0b4ahWoeBSn4iQg1UqIlbZyX6cQ=
+	t=1782911379; cv=none; b=OPgQvaygW2jh3koLYyo5+6zw8ReZqgKjO2rhUWA0I3QzrXuZoxZczjibhHQ7z4/FmKZa8wMMwok3mXqFNKFlvv32mJtIRXvYFq269WX8H/DTvB3lf3mugpFsQ1w/0095hNPaxgM5uOTR5drD434LCNYqaH8mYChHPmY0Lww7c1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782911670; c=relaxed/simple;
-	bh=wEhqK9ZcRJnUrkfMYETVQwR4TZAKupDVbQ0ATET5Sdk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tVJAZS0kbiwTSnHCwEWRhqo1hfysQqAZLR/o0R7qMcuTMzchzXCu95ejFA32CUyOia/oIj/2R25gVNjsSWTangcsF1D9Tg2sThKds+uNrirZeJw56BSHupWRoBSznePeTKb197kNz5aPsSLz4YjD6MRN5sTnkmfJhJphf8EVdOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loebl.cz; spf=none smtp.mailfrom=loebl.cz; dkim=pass (2048-bit key) header.d=emailprofi.seznam.cz header.i=@emailprofi.seznam.cz header.b=CM74W3cM; arc=none smtp.client-ip=77.75.78.89
-Received: from email.seznam.cz
-	by smtpc-mxb-7dd54556bb-mmpkq
-	(smtpc-mxb-7dd54556bb-mmpkq [2a02:598:64:8a00::1000:90e])
-	id 785bf1b063c97c647cbe4832;
-	Wed, 01 Jul 2026 15:14:17 +0200 (CEST)
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=emailprofi.seznam.cz; s=szn1; t=1782911657;
-	bh=SYYG4nwI5R6Y4AdmHwYZVeNZXWLSDa/AE/TBoB9/nN8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding;
-	b=CM74W3cMdLhtqknUqiYpb4CpXIIwFXYgmAUVwAoxQu4Ok7nu7vP+UyfA9onv/pPxO
-	 RYx3ncYE3IeO6H+7knfKeoaXxAjr2dmqzJzvauYTQGlNlYlIx8j1xukfOY4FE4PVOY
-	 N0PIzLsYaQ0lmd3pDtv1FwbmwD2Y49mL/FlKfIaeHow9BmQ/lQDTi/FngbnVXEjSLD
-	 +11I4rxN2AMBE0h9dbepndHTKLzdacrJ0LBVO3QlCi5h//FV9epDqFXpD/FE0iOY1S
-	 cSKTvrhAajzSHH7XZnalYV1V7YYS6As5gQEZNxltXRO6Lty082/t/ruFHfeY5tpz5U
-	 9svLTzdU9hjVQ==
-Received: from localhost (109-81-118-98.rct.o2.cz [109.81.118.98])
-	by smtpd-relay-f8b496c7c-7h56j (szn-email-smtpd/2.0.76) with ESMTPA
-	id 6421de43-0c1f-4942-a7cc-7782ff9e9ed1;
-	Wed, 01 Jul 2026 15:13:51 +0200
-From: =?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	=?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
-Subject: [PATCH 2/2] clk: si544: add support for si549
-Date: Wed,  1 Jul 2026 15:09:26 +0200
-Message-ID: <20260701130927.3858536-3-pavel@loebl.cz>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260701130927.3858536-1-pavel@loebl.cz>
-References: <20260701130927.3858536-1-pavel@loebl.cz>
+	s=arc-20240116; t=1782911379; c=relaxed/simple;
+	bh=YEagMTZbDFzDpcyW8xwkh7BaPiHT5dfhcaP/2DOM2fk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g2zzjgCNxFNDb+cDxAoaR6uAtA5qxeKF9qmQyzuZjyvAJxo0XZ2D5WFe/CjNE8rKqnTQ4+fXm8ffOFVqglJOGG1wHtFioRL00CJduMplnW5YJ+uGzsoRUHZiRxsF5NpRNySdhJTzvFcMpHt8UAo2Sg4Zpxv7dwcDH8/ttq66R3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iv1Oi8vp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JEci4UhC; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 661AGEUf793729
+	for <devicetree@vger.kernel.org>; Wed, 1 Jul 2026 13:09:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FNMV6F4pocwaw2OlSZLiAo2ckxtv00Hefmll5jlWwg0=; b=iv1Oi8vpq4nli5ml
+	1Q9t81EyDDy7VVZkFid0cYuNfWDu5H07OMGx9T1ewmMItFFPOpeLcxfF7529EhWC
+	vpZiMh0gNo4B4w42RVDngLOOXPr5yIZpQ7orlwhYRMfEPSJWOdwQQHfeQMi7o4qY
+	W7RgrHWLMok30yLU/T1LkcXLJB4gz6imgBS18O3EQthPfdBHJYjbF6iCU70Uz79b
+	sr+1qsrhjET1UGe2yG0h7poaJxB2ATU/Sz6WgL/Gi9pUqJrPXIwtB4cDo1Oqbtgj
+	oBSr8sVSKRcFBGcsJE+xLjepUrMSgL+Yts6WZ2R/xhVrqg4lEBshGQP86awOlSHp
+	BaaLqA==
+Received: from mail-vk1-f198.google.com (mail-vk1-f198.google.com [209.85.221.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f510agq3n-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 13:09:37 +0000 (GMT)
+Received: by mail-vk1-f198.google.com with SMTP id 71dfb90a1353d-5bda959ebcaso13130e0c.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 06:09:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1782911376; x=1783516176; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=FNMV6F4pocwaw2OlSZLiAo2ckxtv00Hefmll5jlWwg0=;
+        b=JEci4UhCoQ6QJQLHw8pdIk/clEgvhZuwivrEh7o5hW+TF08fuEpgBAgo83yz+60fEA
+         E2honA3wxeoSl4PLlPIZCfWxl/VtWAPg+h3P8cHdt3Laq8AmlNuuLVOO2mFPfz0Aylhv
+         4hoIlZALk0gaLJyg0M3T67LiGkTbmH3j7JFKO6En3RVR5/BNdDc8NU4bW/Hyyfb9brXg
+         KPZ4+b2pYgurupuRwWs0gj1ne7kaw9zt+66cFOVDqlTrGGoRhei0lLEkKcW18negAYyK
+         o5fEfYCCctqPnXuZWf+OROOjQ8lT3vjXtkP1Vewp71LNVsCuUSyq8YB+CpXhg1HQ4HE2
+         JZPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782911376; x=1783516176;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=FNMV6F4pocwaw2OlSZLiAo2ckxtv00Hefmll5jlWwg0=;
+        b=nmzeYv9AD49vSgNw9wXpFMYiN6jsxsm5Qom6GOV2vrkZQM8GuQxSfdxeEZ4TevUeTo
+         mMHWwSpPDNdM+XcB5hRjvweaMwvLJ1gOnK/FRCkXJXMtYOV1PTj6teKTf3JAaAGVQNdO
+         3xBUAmDGLniqy01b5kV70xlUxN7EYQo88usv5OA6wOoG4/bhxPsyH5V3kCQPpEBY+Rm0
+         y6XoKXIKsCvHqtF+Yp0L1oeyAMtLPJXhN/buqCXCOMFA8Dhe5vc38x5HfQzItpkh9nh/
+         ebrEncP0rwOfXPVHB9mjcmnxW8Z6fSxkdLqO9W3lVWQVT5LbIqPKEwXyMqq6U73sBpYP
+         jKVg==
+X-Forwarded-Encrypted: i=1; AHgh+RorB1Jv7egHMJ6t95Vm4upvfLbXI5Z8tRVo8xgWojSrIhyWqQ3ecWoXc98/81cpgiHMawa8DwOkNMux@vger.kernel.org
+X-Gm-Message-State: AOJu0YwceSPbb52b2PLcgZQHedtUxv7gqyLpXOd76ANK/siBYiUpqBgE
+	nGkhETd8kIx3SdsfBTu7MW/zAY+EU7DARzNnZaY/xDym5q+Dw9ZFJZDHVdazmtnk0SSz28tv5dS
+	tyAKVGcPByhCojhEPw7dJKmjY16CxNOXiGpkw55DOwVCXhCNfUzVahDVW4ozhU6RO
+X-Gm-Gg: AfdE7ckqIslzfxnqW2uFiCQwT/DUEr6egTkJN36Onn+nkTV6FEjyQvqwQ+LvpswNlPb
+	wXNBsKaOuhgPZZfa1sfH0hiumtkaamTQcGqmERg4N/jEGc/2yhIdyydJVNdEaHOT+4w6KQek/28
+	liZT+ZlwWGROKFLCOxj3zGhzh2GMeRqvU3/xEhoU+TLGaSz/qW0Cn+LjYU77jTav5kqujop4yTh
+	Pa9qShfnCQnaY8mRkd27n9cN/kjzwEGKRGnixKLL7iN5lDapODdeonloKmGCINifL/8KWflhpo4
+	y/q2SZF+DsXVtcpOfR1j+MPZzROLJ/rJMhwp0pSK4GlKigpc1edMr+7E+Sq2pSp1C2rziLFBTI0
+	JF2o+Gk46uzACXa+zTIe8IhKx3usH3Mta36M=
+X-Received: by 2002:a05:6102:5093:b0:631:267d:157b with SMTP id ada2fe7eead31-73daaac8f4cmr185658137.5.1782911376372;
+        Wed, 01 Jul 2026 06:09:36 -0700 (PDT)
+X-Received: by 2002:a05:6102:5093:b0:631:267d:157b with SMTP id ada2fe7eead31-73daaac8f4cmr185631137.5.1782911375950;
+        Wed, 01 Jul 2026 06:09:35 -0700 (PDT)
+Received: from [192.168.120.170] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6987c98927csm2686116a12.30.2026.07.01.06.09.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Jul 2026 06:09:34 -0700 (PDT)
+Message-ID: <12709ff6-bb42-4d3b-9f9d-e327cd8d89cb@oss.qualcomm.com>
+Date: Wed, 1 Jul 2026 15:09:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/5] dt-bindings: arm: coresight-tnoc: Add standalone
+ qcom,coresight-agtnoc compatible
+To: Jie Gan <jie.gan@oss.qualcomm.com>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>,
+        Leo Yan <leo.yan@arm.com>,
+        Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20260701-fix-tracenoc-probe-issue-v4-0-aefab449a470@oss.qualcomm.com>
+ <20260701-fix-tracenoc-probe-issue-v4-1-aefab449a470@oss.qualcomm.com>
+ <20260701-stirring-piculet-of-vastness-a361e5@quoll>
+ <4117c406-0d75-4eb1-842e-1d346b7fbf99@oss.qualcomm.com>
+ <9aa63427-ba41-436d-ab19-a533082d336a@kernel.org>
+ <62ac6887-1551-490b-b42b-2661d7152734@oss.qualcomm.com>
+ <7838f7c3-0f38-4e93-a9c1-88f387e78ca9@oss.qualcomm.com>
+ <d4669b9e-bf07-42dd-95c5-792e358c505e@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <d4669b9e-bf07-42dd-95c5-792e358c505e@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: iAmNKcB4DtC882w7s3A9HZk7maZxJpSs
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAxMDEzNyBTYWx0ZWRfXyXJ7oEN/jkcP
+ RSjrCIKaB2S4y8dL7pB7ACUvMzVKc9GIZzVCPdv5I845H7BlC1Dv+5oJQoMU/udYBX3bxFuff7J
+ G4qavIOGYRKqwqOEQ/QOo1wxzwnQB0JpTDTsH04n0rDccwu24fxNOWKD2WfymwIrKui8668xFD4
+ y1UedPGOnmZ0Oveo+dEy36fwA4ldGedHh3E4H9/rrtgxyij1HL3Qrj5yHIqP724a882EiZ3mViV
+ WXe9GsHrQTga2GvESIkNpx5LlPvPbKKtc//t4uA5D/r6Pqks7Q08daeUUhrRro5sb2gQ5TxuS9b
+ BKMyrvM7hUs0APe/+j/6JPTo+gaHgYLHeXk46uPAepTH424Efw47icNmvXoKIORvYPXvzUT9PVc
+ rLKBOM8hqIFxb+D7v+ulSqzMiHRCtyUDh6ODe3t1Sz4GgAe/COvRCApHKoSGIrrX5uOyz0mhB80
+ 0rerVt3DwPq1Mq9PyTA==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAxMDEzNyBTYWx0ZWRfX+KDu2puGNYWb
+ ilzaGI7G9UDQfdVjEvDPFMygtXQmcPCNW0nLjl515dl/7bM5e6J/Q7g72FNFvTP3dQzekI9j7l6
+ ZjXJ0RvQuFp4J7o4ePp5+KeoxAScIo8=
+X-Authority-Analysis: v=2.4 cv=JpXBas4C c=1 sm=1 tr=0 ts=6a451191 cx=c_pps
+ a=1Os3MKEOqt8YzSjcPV0cFA==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
+ a=EXNCQnpXykppytCkcAYA:9 a=QEXdDO2ut3YA:10 a=hhpmQAJR8DioWGSBphRh:22
+X-Proofpoint-ORIG-GUID: iAmNKcB4DtC882w7s3A9HZk7maZxJpSs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-01_03,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 suspectscore=0 malwarescore=0 impostorscore=0 clxscore=1015
+ spamscore=0 priorityscore=1501 phishscore=0 lowpriorityscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607010137
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_ALLOW(-0.20)[emailprofi.seznam.cz:s=szn1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-318638-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318612-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo];
+	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_RECIPIENTS(0.00)[m:jie.gan@oss.qualcomm.com,m:krzk@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tingwei.zhang@oss.qualcomm.com,m:jingyi.wang@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:suzuki.poulose@arm.com,m:mike.leach@arm.com,m:james.clark@linaro.org,m:leo.yan@arm.com,m:yuanfang.zhang@oss.qualcomm.com,m:abelvesa@kernel.org,m:alexander.shishkin@linux.intel.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:coresight@lists.linaro.org,m:linux-arm-kernel@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:pavel@loebl.cz,m:krzk@kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DMARC_NA(0.00)[loebl.cz];
-	FORGED_SENDER(0.00)[pavel@loebl.cz,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pavel@loebl.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[emailprofi.seznam.cz:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,topic.nl:email,emailprofi.seznam.cz:dkim,loebl.cz:email,loebl.cz:mid,loebl.cz:from_mime]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 567446EE394
+X-Rspamd-Queue-Id: 752F46EDF3F
 
-Add support for Si549, which only differs from Si544 in internal
-oscilator frequency. Si549 also comes in three types A,B and C.
-Each having different maximum output frequency.
+On 7/1/26 2:54 PM, Jie Gan wrote:
+> 
+> 
+> On 7/1/2026 7:02 PM, Konrad Dybcio wrote:
+>> On 7/1/26 9:31 AM, Jie Gan wrote:
+>>>
+>>>
+>>> On 7/1/2026 3:26 PM, Krzysztof Kozlowski wrote:
+>>>> On 01/07/2026 09:16, Jie Gan wrote:
+>>>>>
+>>>>>
+>>>>> On 7/1/2026 2:57 PM, Krzysztof Kozlowski wrote:
+>>>>>> On Wed, Jul 01, 2026 at 09:53:41AM +0800, Jie Gan wrote:
+>>>>>>> The TNOC compatible previously only allowed the two-string AMBA form
+>>>>>>> "qcom,coresight-tnoc", "arm,primecell", which forces the device onto the
+>>>>>>> AMBA bus.
+>>>>>>>
+>>>>>>> Convert the compatible to a oneOf and add a standalone
+>>>>>>> "qcom,coresight-agtnoc" compatible alongside the existing AMBA form. The
+>>>>>>> standalone string carries no "arm,primecell" entry, so the device is
+>>>>>>> created on the platform bus instead of the AMBA bus.
+>>
+>> [...]
+>>
+>>>>> AMBA primecell identification. The purpose of the new compatible is to
+>>>>> clearly distinguish this platform-specific case from the standard
+>>>>> AMBA-based implementation. Or shall I re-use the existing compatible
+>>>>> "qcom,coresight-tnoc" as platform standalone compatible?
+>>>>>
+>>>>> We already have a similar pattern for the interconnect TraceNoC device,
+>>>>> which uses the platform-specific compatible string qcom,coresight-itnoc.
+>>>> I do not see there a fake, duplicated compatible for the same device.
+>>>> Can you elaborate how is that relevant?
+>>>
+>>> Will fix it by removing AMBA related description.
+>>>
+>>> Shall I update the clock name from apb_pclk to apb as a platform device?
+>>
+>> Why?
+> 
+> For the previous platform devices, we got comments to add the clock-name with "apb" instead of "apb_pclk".
+> 
+> Please check the qcom,coresight-ctcu.yaml and qcom,coresight-itnoc.yaml
 
-This patch also fixes maximum frequency of Si544 C. Which should
-be 325MHz according to datasheet.
+Well, if you need to break the bindings already, might as well on
+the grounds of choosing a saner ("clock names shouldn't include _clk")
+name.. Not sure if Krzysztof will like it
 
-Signed-off-by: Pavel Löbl <pavel@loebl.cz>
----
- drivers/clk/Kconfig     |   6 +--
- drivers/clk/clk-si544.c | 100 ++++++++++++++++++++++++++++++----------
- 2 files changed, 78 insertions(+), 28 deletions(-)
-
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 1717ce75a907..159f546a48f0 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -155,12 +155,12 @@ config COMMON_CLK_SI514
- 	  generator.
- 
- config COMMON_CLK_SI544
--	tristate "Clock driver for SiLabs 544 devices"
-+	tristate "Clock driver for SiLabs 544 and compatible devices"
- 	depends on I2C
- 	select REGMAP_I2C
- 	help
--	  This driver supports the Silicon Labs 544 programmable clock
--	  generator.
-+	  This driver supports the Silicon Labs 544/549 programmable clock
-+	  generators.
- 
- config COMMON_CLK_SI570
- 	tristate "Clock driver for SiLabs 570 and compatible devices"
-diff --git a/drivers/clk/clk-si544.c b/drivers/clk/clk-si544.c
-index 09c06ecec1a5..2643546eb940 100644
---- a/drivers/clk/clk-si544.c
-+++ b/drivers/clk/clk-si544.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Driver for Silicon Labs Si544 Programmable Oscillator
-+ * Driver for Silicon Labs Si544/Si549 Programmable Oscillator
-  * Copyright (C) 2018 Topic Embedded Products
-  * Author: Mike Looijmans <mike.looijmans@topic.nl>
-  */
-@@ -40,7 +40,9 @@
- #define SI544_MIN_FREQ	    200000U
- 
- /* Si544 Internal oscillator runs at 55.05 MHz */
--#define FXO		  55050000U
-+#define SI544_XO_FREQ	55050000U
-+/* Si549 Internal oscilator runs at 152.60 MHz */
-+#define SI549_XO_FREQ	152600000U
- 
- /* VCO range is 10.8 .. 12.1 GHz, max depends on speed grade */
- #define FVCO_MIN       10800000000ULL
-@@ -56,11 +58,17 @@
- #define DELTA_M_FRAC_NUM	19
- #define DELTA_M_FRAC_DEN	20000
- 
-+struct si544_clk_desc {
-+	unsigned long max_freq;
-+	unsigned long xo_freq;
-+};
-+
- struct clk_si544 {
-+	const struct si544_clk_desc *desc;
- 	struct clk_hw hw;
- 	struct regmap *regmap;
- 	struct i2c_client *i2c_client;
--	unsigned long  max_freq;
-+	const struct si544_clk_desc *chip_info;
- };
- #define to_clk_si544(_hw)	container_of(_hw, struct clk_si544, hw)
- 
-@@ -79,6 +87,7 @@ struct clk_si544_muldiv {
- 	u16 hs_div;
- 	u8 ls_div_bits;
- 	s32 delta_m;
-+	u32 xo_freq;
- };
- 
- /* Enables or disables the output driver */
-@@ -145,6 +154,8 @@ static int si544_get_muldiv(struct clk_si544 *data,
- 	settings->delta_m = reg[0] << 8 | reg[1] << 16 | reg[2] << 24;
- 	settings->delta_m >>= 8;
- 
-+	settings->xo_freq = data->chip_info->xo_freq;
-+
- 	return 0;
- }
- 
-@@ -193,14 +204,15 @@ static bool is_valid_frequency(const struct clk_si544 *data,
- 	if (frequency < SI544_MIN_FREQ)
- 		return false;
- 
--	return frequency <= data->max_freq;
-+	return frequency <= data->chip_info->max_freq;
- }
- 
- /* Calculate divider settings for a given frequency */
--static int si544_calc_muldiv(struct clk_si544_muldiv *settings,
--	unsigned long frequency)
-+static int si544_calc_muldiv(const struct clk_si544 *data,
-+	struct clk_si544_muldiv *settings, unsigned long frequency)
- {
- 	u64 vco;
-+	u32 fxo = settings->xo_freq;
- 	u32 ls_freq;
- 	u32 tmp;
- 	u8 res;
-@@ -238,13 +250,13 @@ static int si544_calc_muldiv(struct clk_si544_muldiv *settings,
- 	vco = (u64)ls_freq * settings->hs_div;
- 
- 	/* Calculate the integer part of the feedback divider */
--	tmp = do_div(vco, FXO);
-+	tmp = do_div(vco, fxo);
- 	settings->fb_div_int = vco;
- 
- 	/* And the fractional bits using the remainder */
- 	vco = (u64)tmp << 32;
--	vco += FXO / 2; /* Round to nearest multiple */
--	do_div(vco, FXO);
-+	vco += fxo / 2; /* Round to nearest multiple */
-+	do_div(vco, fxo);
- 	settings->fb_div_frac = vco;
- 
- 	/* Reset the frequency adjustment */
-@@ -254,19 +266,20 @@ static int si544_calc_muldiv(struct clk_si544_muldiv *settings,
- }
- 
- /* Calculate resulting frequency given the register settings */
--static unsigned long si544_calc_center_rate(
-+static unsigned long si544_calc_center_rate(const struct clk_si544 *data,
- 		const struct clk_si544_muldiv *settings)
- {
- 	u32 d = settings->hs_div * BIT(settings->ls_div_bits);
-+	u32 fxo = settings->xo_freq;
- 	u64 vco;
- 
- 	/* Calculate VCO from the fractional part */
--	vco = (u64)settings->fb_div_frac * FXO;
--	vco += (FXO / 2);
-+	vco = (u64)settings->fb_div_frac * fxo;
-+	vco += (fxo / 2);
- 	vco >>= 32;
- 
- 	/* Add the integer part of the VCO frequency */
--	vco += (u64)settings->fb_div_int * FXO;
-+	vco += (u64)settings->fb_div_int * fxo;
- 
- 	/* Apply divider to obtain the generated frequency */
- 	do_div(vco, d);
-@@ -274,9 +287,10 @@ static unsigned long si544_calc_center_rate(
- 	return vco;
- }
- 
--static unsigned long si544_calc_rate(const struct clk_si544_muldiv *settings)
-+static unsigned long si544_calc_rate(const struct clk_si544 *data,
-+				const struct clk_si544_muldiv *settings)
- {
--	unsigned long rate = si544_calc_center_rate(settings);
-+	unsigned long rate = si544_calc_center_rate(data, settings);
- 	s64 delta = (s64)rate * (DELTA_M_FRAC_NUM * settings->delta_m);
- 
- 	/*
-@@ -304,7 +318,7 @@ static unsigned long si544_recalc_rate(struct clk_hw *hw,
- 	if (err)
- 		return 0;
- 
--	return si544_calc_rate(&settings);
-+	return si544_calc_rate(data, &settings);
- }
- 
- static int si544_determine_rate(struct clk_hw *hw,
-@@ -356,7 +370,7 @@ static int si544_set_rate(struct clk_hw *hw, unsigned long rate,
- 	if (err)
- 		return err;
- 
--	center = si544_calc_center_rate(&settings);
-+	center = si544_calc_center_rate(data, &settings);
- 	max_delta = si544_max_delta(center);
- 	delta = rate - center;
- 
-@@ -365,7 +379,7 @@ static int si544_set_rate(struct clk_hw *hw, unsigned long rate,
- 					 si544_calc_delta(delta, max_delta));
- 
- 	/* Too big for the delta adjustment, need to reprogram */
--	err = si544_calc_muldiv(&settings, rate);
-+	err = si544_calc_muldiv(data, &settings, rate);
- 	if (err)
- 		return err;
- 
-@@ -446,7 +460,7 @@ static int si544_probe(struct i2c_client *client)
- 	init.num_parents = 0;
- 	data->hw.init = &init;
- 	data->i2c_client = client;
--	data->max_freq = (uintptr_t)i2c_get_match_data(client);
-+	data->chip_info = i2c_get_match_data(client);
- 
- 	if (of_property_read_string(client->dev.of_node, "clock-output-names",
- 			&init.name))
-@@ -478,18 +492,54 @@ static int si544_probe(struct i2c_client *client)
- 	return 0;
- }
- 
-+static const struct si544_clk_desc clk_si544a_info = {
-+	.xo_freq = SI544_XO_FREQ,
-+	.max_freq = 1500000000,
-+};
-+
-+static const struct si544_clk_desc clk_si544b_info = {
-+	.xo_freq = SI544_XO_FREQ,
-+	.max_freq = 800000000,
-+};
-+
-+static const struct si544_clk_desc clk_si544c_info = {
-+	.xo_freq = SI544_XO_FREQ,
-+	.max_freq = 325000000,
-+};
-+
-+static const struct si544_clk_desc clk_si549a_info = {
-+	.xo_freq = SI549_XO_FREQ,
-+	.max_freq = 1500000000,
-+};
-+
-+static const struct si544_clk_desc clk_si549b_info = {
-+	.xo_freq = SI549_XO_FREQ,
-+	.max_freq = 800000000,
-+};
-+
-+static const struct si544_clk_desc clk_si549c_info = {
-+	.xo_freq = SI549_XO_FREQ,
-+	.max_freq = 325000000,
-+};
-+
- static const struct i2c_device_id si544_id[] = {
--	{ "si544a", 1500000000 },
--	{ "si544b", 800000000 },
--	{ "si544c", 350000000 },
-+	{ "si544a", (kernel_ulong_t)&clk_si544a_info },
-+	{ "si544b", (kernel_ulong_t)&clk_si544b_info },
-+	{ "si544c", (kernel_ulong_t)&clk_si544c_info },
-+	{ "si549a", (kernel_ulong_t)&clk_si549a_info },
-+	{ "si549b", (kernel_ulong_t)&clk_si549b_info },
-+	{ "si549c", (kernel_ulong_t)&clk_si549c_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, si544_id);
- 
- static const struct of_device_id clk_si544_of_match[] = {
--	{ .compatible = "silabs,si544a", .data = (void *)1500000000 },
--	{ .compatible = "silabs,si544b", .data = (void *)800000000 },
--	{ .compatible = "silabs,si544c", .data = (void *)350000000 },
-+	{ .compatible = "silabs,si544a", .data = &clk_si544a_info },
-+	{ .compatible = "silabs,si544b", .data = &clk_si544b_info },
-+	{ .compatible = "silabs,si544c", .data = &clk_si544c_info },
-+	{ .compatible = "silabs,si549a", .data = &clk_si549a_info },
-+	{ .compatible = "silabs,si549b", .data = &clk_si549b_info },
-+	{ .compatible = "silabs,si549c", .data = &clk_si549c_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, clk_si544_of_match);
--- 
-2.53.0
-
+Konrad
 
