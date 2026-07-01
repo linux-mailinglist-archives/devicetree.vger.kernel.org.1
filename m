@@ -1,141 +1,176 @@
-Return-Path: <devicetree+bounces-318200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318201-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cKNbLQPERGoo0goAu9opvQ
-	(envelope-from <devicetree+bounces-318200-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:38:43 +0200
+	id IlrhNITERGpY0goAu9opvQ
+	(envelope-from <devicetree+bounces-318201-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:40:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA0B6EABBB
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:38:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C4986EAC30
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:40:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=osN1mJqr;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318200-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318200-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=h6dXafSU;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318201-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318201-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8944C30E7C43
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 07:35:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CDB8B312BDD4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 07:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C38623BCD0B;
-	Wed,  1 Jul 2026 07:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EF423BBFC4;
+	Wed,  1 Jul 2026 07:35:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942483BBFC1
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 07:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 764543BB12A;
+	Wed,  1 Jul 2026 07:35:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782891304; cv=none; b=AxO714jTdv82r8BBwj5tABnkmZfklLMUTbmdsCdmQXWhX1DSACm1B/H3EsJVCcYLHK8QxTMM/fw9k7IJ58JK98L7EyApo19AQdQpK2nqEfhHSX3tRI6yYjyeNaqoTkkjq+rqF1mgWtkj3MsjSRFDVSulK78NSe4HTF56z/etoZ8=
+	t=1782891329; cv=none; b=G7ZN/Y4ypbXqNy/Xhj8ZTNo+IHgL4fHUzTppaZ7oUSPdtjx1YbtLKJtLY3VXZacnmOCeQhPXmqdpoQucf9GGvHUwVPuy+6u5XebtN8bgkKphc+5ceHVj8buKSRuPBE+8yuBFLjMA/wjR4iTaf7B3+F1Ji1qKc3Rpt/Iqh96IR9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782891304; c=relaxed/simple;
-	bh=q0YiS8Sz/V8k9lW4bZPUoCWbVx4FeC5IOmAT6kcx+qM=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cqlV6ZKOqbUrBXCeBneUhejZP1lV5YeWKwnWAyXl+XENaf9jDTvdn7PsBjVkAHWJzWzo6IedvVjGORgtW6OZofRgBS2BPLPqsOhhHrQTH7K2s0r4YphuAO/vlnzEIo4sKUhXSbV3RUVYPNVmtTSPusKRpXwaw+Sn+Elrsxw7/b4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=osN1mJqr; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45B281F00ACA
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 07:35:03 +0000 (UTC)
+	s=arc-20240116; t=1782891329; c=relaxed/simple;
+	bh=aZI7U+7BKjZ+n1K9QeKPUeY9SHGVXloJko2JcFomq+E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KULmUvPXY8umYN11vTh6T0SPibXcrXsxX4tZd+hnQp6GM8A2yih65EYCY0d6I8IKrcm3bvCsje1n5KMNv10UGX1HsxFRhK4v0YqDovxVXYz2QFBH0NEIKE4cnsD55O61FKZlUj6Gd/mMNcLuMJ6VrY2tWo4dbP3LTeOTjIr/MMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h6dXafSU; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ACC11F00A3A;
+	Wed,  1 Jul 2026 07:35:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782891303;
-	bh=q0YiS8Sz/V8k9lW4bZPUoCWbVx4FeC5IOmAT6kcx+qM=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=osN1mJqr1RZWct1H0SP10vjTdJvJWw8XmcpHfptZM2C1XoJhJzLKoq7wAdXeYb1SS
-	 kBeVkZ5xd66Vnqv1Gih/3WRQUp2kubDzTWAQJhs2zo8mr9TEo53KJCosWOlD8oHUAN
-	 YXOOHdhAmJL1y2NPzpybJVpi0kzJ7iaLXK/gWaeuF1z3hpcHeJFabxYsJ8r1ebnIq2
-	 e7h7qH4/7xew+tHknmi6E/Z3sTpHjxoioPkFFLDUn1HQrEoGGytq+a5H2RqHqqKazv
-	 tPJGVpfn0dlradmYxt9dT4C4SuLR6/w4+8FSx3QDNq7mPS6HdAQWPynIcqgvXwh3dq
-	 /V7oNjJhWRuCg==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5aeb5e85378so367709e87.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 00:35:03 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+Rqi4saW6BOjSId10IIzYLdorJxJFT6DjoqdDG3UcziZjYSaYlk4uehCOsJ0EeJw8zWzDw9O3l9z4B8o@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkaEiYn3j8vNfcWupTo8AMqIamOfNZ1WfDKW7WpcA+aV6uVHZY
-	jZqJm8OdiOxFDFj3XdeVhk++fNwQOHLocFJcVg3Yn7XaIW2WrAS1OTRDVpAIHd54bsj68l5NzzM
-	0Ke3jTLPM7Is5BZK3Ta5DGceyHLmqfR8QOKVWYJ5/eQ==
-X-Received: by 2002:a05:6512:6389:b0:5ae:bf17:c4dd with SMTP id
- 2adb3069b0e04-5aec67b8787mr86796e87.37.1782891302052; Wed, 01 Jul 2026
- 00:35:02 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 1 Jul 2026 03:35:00 -0400
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 1 Jul 2026 03:35:00 -0400
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <87pl18qepk.ffs@fw13>
+	s=k20260515; t=1782891326;
+	bh=PWZJoeJoNohkFigQwsvNlPCMXb9v9+Knd2dj3qEQhCg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=h6dXafSUTFStFuOmQ9Hlh8cWTlu/uF8OU2bnz0hnFaE4kQ0BcAsdvY+1s6751nMc9
+	 7LtVFV7eDmbyqrN2lxVQpefZsDQxlNjGB6RQI0aLNt+bxt7rHApl9XJRP/VLixDSpe
+	 YpKdRW8XTGReHDQmywiVDtKebmgNtEh4pQpWw4edbxan8nx/2VBpEK+1VDc/RDgcMI
+	 RuReQhGJRkXvorgYbnezB5fUr/vwb1CtZtEDQQq1d8R73SLaf1v2u98vb6C4sSWKEs
+	 lqksyGJHJZDhQEOwurGU9/7VSZg0t9R2Qma7tWBg5A6qscjF3zRaKTeq49H1oHW75O
+	 ppjneriYIgHpA==
+Date: Wed, 1 Jul 2026 09:35:22 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Markus Probst <markus.probst@posteo.de>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>, 
+	Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: rtc: Add sii,wakealarm-output-pin
+ property for S35390A
+Message-ID: <20260701-bronze-jaguar-of-perfection-028bac@quoll>
+References: <20260630-rtc_s35390a_int1-v1-0-1b2239e16be2@posteo.de>
+ <20260630-rtc_s35390a_int1-v1-1-1b2239e16be2@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260616-hamoa_pdc_v3-v3-0-4d8e1504ea75@oss.qualcomm.com>
- <CAD++jLk5qmiCTebaor1h4MSRX0mM-oKH-CdbZU9SKq=f3aQVug@mail.gmail.com> <87pl18qepk.ffs@fw13>
-Date: Wed, 1 Jul 2026 03:35:00 -0400
-X-Gmail-Original-Message-ID: <CAMRc=Md0qkPi9VPbTj+gD2AXmVPXU8H+t2r26307JN_+A7i7yg@mail.gmail.com>
-X-Gm-Features: AVVi8CdNFV7POuPm-ZopPVy4oNxDsoya-O6ZC1lgLaAzvcjazPY7Oh3MJrnk-2Q
-Message-ID: <CAMRc=Md0qkPi9VPbTj+gD2AXmVPXU8H+t2r26307JN_+A7i7yg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/8] x1e80100: Enable PDC wake GPIOs and deepest idle state
-To: Thomas Gleixner <tglx@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Sneh Mankad <sneh.mankad@oss.qualcomm.com>, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Linus Walleij <linusw@kernel.org>, Maulik Shah <maulik.shah@oss.qualcomm.com>, 
-	Bartosz Golaszewski <brgl@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260630-rtc_s35390a_int1-v1-1-1b2239e16be2@posteo.de>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-318200-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:tglx@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:sneh.mankad@oss.qualcomm.com,m:stephan.gerhold@linaro.org,m:linusw@kernel.org,m:maulik.shah@oss.qualcomm.com,m:brgl@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:markus.probst@posteo.de,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:uwe@kleine-koenig.org,m:andrew@lunn.ch,m:gregory.clement@bootlin.com,m:sebastian.hesselbarth@gmail.com,m:linux-arm-kernel@lists.infradead.org,m:linux-rtc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:sebastianhesselbarth@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318201-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,kleine-koenig.org,lunn.ch,gmail.com,lists.infradead.org,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,posteo.de:email,quoll:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EBA0B6EABBB
+X-Rspamd-Queue-Id: 6C4986EAC30
 
-On Tue, 30 Jun 2026 16:34:47 +0200, Thomas Gleixner <tglx@kernel.org> said:
-> On Tue, Jun 30 2026 at 12:42, Linus Walleij wrote:
->> I don't know what to do with this hurdle of pin control and irqchip patches,
->> luckily it will be Bartosz' problem since he's managing Qualcomm pin
->> controllers now :D
->>
->> I'll be fine with brining the irqchip patches through pin control if an
->> irqchip maintainer ACKs them.
->
-> The irq chip patches are self contained. So once we have a functional
-> version I can apply them on top of rc1, tag the lot and merge it into
-> the irqchip branch. Bartosz can then pull the tag into his branch to
-> apply the rest.
->
->
+On Tue, Jun 30, 2026 at 07:22:21PM +0000, Markus Probst wrote:
+> Synology NAS devices use the output pin for interrupt signal 1 to wake up
+> the system.
+> 
+> Move devicetree bindings for sii,s35390a into its own file.
+> Add sii,wakealarm-output-pin property to enable the use of the output
+> pin for interrupt signal 1 for the wake alarm, which makes it possible to
+> set an wake alarm on Synology NAS devices.
+> 
+> Signed-off-by: Markus Probst <markus.probst@posteo.de>
+> ---
+>  .../devicetree/bindings/rtc/sii,s35390a.yaml       | 54 ++++++++++++++++++++++
+>  .../devicetree/bindings/rtc/trivial-rtc.yaml       |  3 --
+>  MAINTAINERS                                        |  1 +
+>  include/dt-bindings/rtc/s35390a.h                  |  9 ++++
+>  4 files changed, 64 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/sii,s35390a.yaml b/Documentation/devicetree/bindings/rtc/sii,s35390a.yaml
+> new file mode 100644
+> index 000000000000..31a578673870
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/sii,s35390a.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/sii,s35390a.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: S-35390A 2-WIRE REAL-TIME CLOCK
+> +
+> +maintainers:
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Sounds good to me. Thanks.
+This should be someone caring about this hardware.
 
-Bartosz
+> +
+> +description:
+> +  The S-35390A is a CMOS 2-wire real-time clock IC which operates with the
+> +  very low current consumption in the wide range of operation voltage.
+> +
+> +allOf:
+> +  - $ref: rtc.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: sii,s35390a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  sii,wakealarm-output-pin:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2]
+> +    description: |
+> +      The output pin to wake up the system.
+> +      Default will use the output pin for interrupt signal 2.
+> +        <S35390A_OUTPUT_PIN_INT1> : Output pin for interrupt signal 1
+> +        <S35390A_OUTPUT_PIN_INT2> : Output pin for interrupt signal 2
+
+Does that mean device generates the interrupts?
+
+Best regards,
+Krzysztof
+
 
