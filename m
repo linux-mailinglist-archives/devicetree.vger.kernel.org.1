@@ -1,177 +1,126 @@
-Return-Path: <devicetree+bounces-318374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318375-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JskZAqvzRGqr3woAu9opvQ
-	(envelope-from <devicetree+bounces-318374-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:02:03 +0200
+	id kuy0GfbzRGq83woAu9opvQ
+	(envelope-from <devicetree+bounces-318375-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:03:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF816EC7ED
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:02:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 331DC6EC82E
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:03:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=UWxG8p5s;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318374-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318374-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dYSKGnw4;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318375-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318375-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 76111300BC91
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:01:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC8A53056AA8
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:01:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A6E4279FC;
-	Wed,  1 Jul 2026 11:01:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9998F42B738;
+	Wed,  1 Jul 2026 11:01:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F77642B738
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 11:00:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6A8426EC5;
+	Wed,  1 Jul 2026 11:01:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782903663; cv=none; b=Q7JEpWCrbTbDxHIJ0TPWFEqrVxm+L+CPTU5XFIi5LTU2cfz6c5w7z6It9NMwkWg84FMSE6QA8snJgNmv4porRGbJcDs/JWKUMCtU9SAy3HXuFqzKZl0YXNlmD9TIfnGAakRq9Sozg5B2KS7sMTlNlsbX1cf2I1Oj1FJhqOi4Qrg=
+	t=1782903694; cv=none; b=Eg76D/WqbszhNngCHDflJ/NJ9DJBl0W1hohn60k4qeLVLeu/NQj7iVIn7R1/mXdLwh3oVqSNIp3oL+ropLZRJWbiYFnIqulPE0ee1KwF3Sh1ZpQTE/U+rf+SrRRCHlrYOHL2/swgWjxiz/vg9oIyzVlZot9ZRHY8qChUYP07YXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782903663; c=relaxed/simple;
-	bh=UZy0n/01gszj1LovSYaViZ/RBxd5MKpgSyrcZMJ/Kgk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SL/SMK7vI7RDhUp3iL1CiWbN8q0Rr0xBSMKIvFAe6pEWyEGzhyAAcMZODL/lG3iuL9eVUQ8WqouDTEpNxZv7NoiA7MiHmamKQtBQ/AatbMsALbuqT9/KDuRunzxjhu4Dwi9J9TQuSO3GhQ4hbiQUWwxVva/PZKMqpxJr19/3UZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=UWxG8p5s; arc=none smtp.client-ip=194.117.254.33
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=jHv5
-	jf6o0MBfPU0bNEf/sSgaluNexXsyMjiq7q5MTFs=; b=UWxG8p5sAeTl4gF/M64G
-	GI/za0sy9zeCbmwNh8AGmiiYTuaMbAn1fKCef1xHAabmKteJiX9yUYV4lSfsAZZT
-	kjk8Xev6AaIwtD/uOwsA0v1bHWqSp/WFc4ARm+weO0RPZcLkQGDtP/OJLfybaI6d
-	p2UcErIPx4XWSDy8D8xf4OPATL4I0ohgmnLiQHaQ5Et0AXfY0d7/yQjZMYnny3Tb
-	pPJp0xzz6iqecpUFYnp4UImVfb6YISDPmZs7iEKFkc4pLPUX0bWm3vocEV1S8P4Z
-	Bcx9S1LpqlSElb1/8JCFiQWgCErlgF14qK7AYz2Pt9hWPB+Bw/oY5IQz61I/UvtE
-	Nw==
-Received: (qmail 667004 invoked from network); 1 Jul 2026 13:00:51 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 1 Jul 2026 13:00:51 +0200
-X-UD-Smtp-Session: l3s3148p1@FbLPmopV6FZUhsc0
-Date: Wed, 1 Jul 2026 13:00:51 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-rtc@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 07/12] rtc: rzn1: fix alarm range check truncation on
- 32-bit systems
-Message-ID: <akTzY0hQqwAprV4g@shikoro>
-References: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260615154805.1619693-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <ajJ9kNJtrY6DyQ-S@shikoro>
- <CA+V-a8u2wt6623mYjhipOvJPo4va+bXs3qirQewocFr2QmUFhA@mail.gmail.com>
- <ajr1wXCI2U23d1sY@shikoro>
- <CA+V-a8tfb5YFsh-K5F8OOBsuJi0PG72vQ=2PQb2avVNF8-kcrQ@mail.gmail.com>
+	s=arc-20240116; t=1782903694; c=relaxed/simple;
+	bh=ryOZZdoSIg8P2ev+PBokRZ+7Q01YlY/faEWNt/pvbx0=;
+	h=From:Subject:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=gkX0JUPiIdFeOCv6vGBXdmItnWfH0TSO8b2ne4kznQOPQn8flFrZJgHKxB3qJdI9RQBORb2jT9Ts5+2FWY/dy4cgGAionLi6xg3shgPRByDfVVU3v1HTaJH4ygkcuEw1YTbGwSi9ysvyo6pWY2A4KppYNbZB53ZevVPtCLv+QLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dYSKGnw4; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D88E01F000E9;
+	Wed,  1 Jul 2026 11:01:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782903693;
+	bh=ryOZZdoSIg8P2ev+PBokRZ+7Q01YlY/faEWNt/pvbx0=;
+	h=From:Subject:Reply-To:Cc:In-Reply-To:References:Date;
+	b=dYSKGnw4RSXW3fdf3vU0PcDjGmRWXruWcBlchRRUdP7a3lR6O1O4Jcdmg2YlhPUOR
+	 dqY0YlmdxOoe8cPa3MMjn3Ngd8Rj8tTfau/VZtsKAm3DFaYwu7EgHaxk0okL5fB6WW
+	 dQYwkuRTWzVv8FNUgIVdeFaQaFHD/9rlITvVYa96N0qudZoetqaOu3tGIojzk9GtfS
+	 g88aeo3UDKjzTzd1eiahLVR0KwT2QXe4NnCjTJ/n32wNlms4mO6Vp/09O74Wi5CtkY
+	 V/znjfxqsBnx2JHa5FMiV/W+azeYZaZnm2+bOxdKGxsULFOYyYc/gRMCyv9BLHkSo9
+	 xTu4QGwxx8blw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V5 5/7] arm64: dts: imx8mq-evk: Add power supply
+ properties to Root Port node
+Reply-To: sashiko-reviews@lists.linux.dev
+Cc: devicetree@vger.kernel.org, linux-pci@vger.kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260701105234.198987-6-sherry.sun@oss.nxp.com>
+References: <20260701105234.198987-1-sherry.sun@oss.nxp.com>
+ <20260701105234.198987-6-sherry.sun@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 01 Jul 2026 11:01:32 +0000
+Message-Id: <20260701110132.D88E01F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6yLW7/UnYGTOQ+QC"
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8tfb5YFsh-K5F8OOBsuJi0PG72vQ=2PQb2avVNF8-kcrQ@mail.gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_TO(2.00)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[sang-engineering.com];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:miquel.raynal@bootlin.com,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:linux-rtc@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-318375-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:email];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,m:linux-pci@vger.kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-318374-lists,devicetree=lfdr.de,renesas];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,glider.be,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:dkim,sang-engineering.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3AF816EC7ED
+X-Rspamd-Queue-Id: 331DC6EC82E
 
+> From: Sherry Sun <sherry.sun@nxp.com>
+>=20
+> Add the power supply properties to the Root Port child nodes to support
+> the new PCI pwrctrl framework.
+>=20
+> Legacy power supply properties are retained for backward compatibility
+> with existing kernels. New device trees should specify power supplies at
+> the Root Port level to utilize the pwrctrl framework.
+>=20
+> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
 
---6yLW7/UnYGTOQ+QC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Sashiko has reviewed this patch and found no issues. It looks great!
 
-Hi Prabhakar,
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701105234.1989=
+87-1-sherry.sun@oss.nxp.com?part=3D5
 
-So, when I improved this driver back then, 'rtctest' from within the
-kernel was my reference. This test still passes with the current kernel.
-However, setting an alarm one day in the future does not work for me. It
-just stays the old alarm. Without your patch series, that is. So, I
-think this issue should not affect your series. Especially if you can
-set an alarm more than one day in the future (and less than a week, of
-course, because of the HW limit). Can you? I recall I had issues with
-RTC programs compiled against uclibc. Despite I am sure I used a
-glibc-compiled version of the rtc-tools, I need to investigate this. But
-not now, but somewhen. I have to take care of other issues first. Let's
-assume for now that I am the problem.
-
-> I ran some tests for cases #1 and #2, and we see an out-of-range
-> error. By adding a 1-sec leeway when checking the ranges I don't get
-> the out-of-range error. Let me know what you think (I'll create a
-> seprate patch for it).
-
-=46rom a glimpse, I think -ERANGE is correct. Increasing the already
-calculated 'farest' doesn't sound like a good idea to me TBH, unless I
-am missing something.
-
-Happy hacking,
-
-   Wolfram
-
-
---6yLW7/UnYGTOQ+QC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmpE814ACgkQFA3kzBSg
-KbZuQw/9F8vOkvGVvom2XSpAo4p7tOaRGeP4N4aAoV6daZ1amS+Nqy9Bo2Ydd4yz
-Jj1JWxrCXRy8aagau7ITRF0jAQ7Eh+bSo5ZFdK8Iq+6mFozyhAAPUBqqBPHQQMGl
-t021ZcvrBDevjpwuXkoWz0ka18MrleDAiRuN0YPLXtUzq4+oGIrlwCtPgzZpERv4
-rIIv5A1h92HtQVee59fumaPO25w9Wgy7vG3zZkiyhxRSr6DMUUj0c0bDgOlnt4xE
-xIW5qHoLWrN3Lg8DtAfflkMrWPJXNksot+583+33UwyA5fVjkfKhigBCGNapZESu
-cPKQ1BIGnBktKQieQG59XFuDzxTslJhSQ/APxCMbQ+Nj+gl5c8xQZosnmTv+KjuX
-s/vEUtw208jrg+NO5rf2hd8tilRX6OYKRThTC9ml3B6E9x66REu6WcyDGw4WOGOY
-42UB6a0l1+rM6BNz22OclrHiCbrHZavF+9XeeDrIl72wHwsirJNfnkSrNqOrI/KV
-Bja1xsHAnW484NlR+FE1+yxWYaZkWYcRqVvx4QO6CReCvlzkn6WdNtMvtTQGBCfs
-xkkdKLPZAJafMbiLsDHdPxV+lZkx1zW/wmZ84LjLB3/BYPN1CqWjy4jH8hVIFCwN
-S/5F2yikYzWobxgDDYvH19H/XWHq8SfUJ4zqS+GwcqufreyL17M=
-=Nc8W
------END PGP SIGNATURE-----
-
---6yLW7/UnYGTOQ+QC--
 
