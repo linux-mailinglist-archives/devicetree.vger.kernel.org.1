@@ -1,335 +1,213 @@
-Return-Path: <devicetree+bounces-318724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318727-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DhgQEKYrRWq48AoAu9opvQ
-	(envelope-from <devicetree+bounces-318724-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:00:54 +0200
+	id CSFsMfUrRWrK8AoAu9opvQ
+	(envelope-from <devicetree+bounces-318727-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:02:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A8916EF118
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BE8D6EF141
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:02:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=emailprofi.seznam.cz header.s=szn1 header.b=IbjlxOcm;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318724-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318724-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=owKcthBT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318727-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318727-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CB98830570FE
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 14:52:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 37AE13036D59
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 14:54:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61DF435E1CB;
-	Wed,  1 Jul 2026 14:52:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7E8735F16C;
+	Wed,  1 Jul 2026 14:54:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxb.seznam.cz (mxb.seznam.cz [77.75.78.89])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4816235E1B0;
-	Wed,  1 Jul 2026 14:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976F134D90D;
+	Wed,  1 Jul 2026 14:54:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782917529; cv=none; b=LVi0T7uNWwb5D69Xi7JdsVpU4ncjEpBSLTrxxw1DVrDgb0pRB7BVxI+AUFXbtpKMrNCxrMAyQtiFx0wSwQLOKy9hs5CFrizvSnVeQ3WH3+g1dgavp/fEH63lxhhHuJEA31x6vKj3bPtrQD+W4fcYK6RuIjGJZuCTPMqluEwuaPo=
+	t=1782917696; cv=none; b=Iad02pwdUK22XmVMYAwxBdJ8p0BXsT7oRSclBZ9cRQaUGuxKI/eqd9JCEUWRg2YnknAy52dYNPU9dcxigVK4AhzxxmVg00X9F7Fz6+ijwbvub4x04F1DhiVMJ10Wo0nTr/7pSjTI8u8Ly5mzXJ6zOOVvtgY32QLqMAC8H8W9F8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782917529; c=relaxed/simple;
-	bh=M79GvozQKZfPB1EJpICJVa9r+AklpUe3D99k0M6Uy+o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dw1ZdwAHrp9mc9PoffFSR37j0FDI6kmyvitc5x81c6LP51Fuo58H2g2tf85qcJIjvn30LIaXuyPe6ZKmpB3NK9+v6m+UCbAeDBSvM7rGzHbnuwZ8nihWJ9aH91fVPi/at8SPpZVk3jGjPhCFOCFR87Xf/wg6XXbAY4uVqoqqxzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loebl.cz; spf=none smtp.mailfrom=loebl.cz; dkim=pass (2048-bit key) header.d=emailprofi.seznam.cz header.i=@emailprofi.seznam.cz header.b=IbjlxOcm; arc=none smtp.client-ip=77.75.78.89
-Received: from email.seznam.cz
-	by smtpc-mxb-579c757c7c-4fm9l
-	(smtpc-mxb-579c757c7c-4fm9l [2a02:598:128:8a00::1000:908])
-	id 4ac7d07551555da14e2269f7;
-	Wed, 01 Jul 2026 16:51:53 +0200 (CEST)
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=emailprofi.seznam.cz; s=szn1; t=1782917513;
-	bh=O0Qcya2QLwQEux4J7WYYOqbEh3L/fuWTdFmIDjXcR+k=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding;
-	b=IbjlxOcmsRs+oDhx1nzNnt+RivC4MH/nlCKE+M619lJUoaIB2ekMgYDE7Qg1/Jimv
-	 ybGyZ3mTR6AmEOv7TxFlX/v0/Xe8xAHBmcf2NyDiNIar1wJIDGJZiyPuIPC4X6qGpi
-	 1hYIu7yugBUoPWOMRQgEvsdw0mtmECEIExqJYP3PnxxKI1Yh92Q1s0Rfghq90SWMyJ
-	 MH8cUTLN/UG8rXJmz7g8nOfJaXedLDLN/sZdtG0PmVSEEAA3tFE7QylqB//sFz2KYu
-	 V/xYqyrbh9SGimhtM3rdG5zcI2KatKFs4Lk+JNYdV+sRkeXmQD0DgyhteW/T70beYA
-	 cu2+Ra9maEcjA==
-Received: from localhost (109-81-118-98.rct.o2.cz [109.81.118.98])
-	by smtpd-relay-f8b496c7c-c6rvl (szn-email-smtpd/2.0.76) with ESMTPA
-	id 29a8e998-04a4-4daf-a220-0527b7a9d403;
-	Wed, 01 Jul 2026 16:51:48 +0200
-From: =?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	=?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
-Subject: [PATCH v2 2/2] clk: si544: add support for si549
-Date: Wed,  1 Jul 2026 16:51:01 +0200
-Message-ID: <20260701145101.3932655-3-pavel@loebl.cz>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260701145101.3932655-1-pavel@loebl.cz>
-References: <20260701145101.3932655-1-pavel@loebl.cz>
+	s=arc-20240116; t=1782917696; c=relaxed/simple;
+	bh=gOB6MCVt61sAymgIqsQEgtwiydK+N8TrTVRMuQ1j7Ek=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=KJmoVJryYxmCyskPM1JSb7JkVc/dnWX4luZNqHYDBTMeOFWikF27WY6w8gb/ix1R75u7OA3IfRs2QdGyKqqk0vZuyM5EULMQzII+1V5uOEQwgSKRYRkdM1TL7fdhtcjw3StBgZJ45NolyRcanXn96FTrmXfNEac9L03L2ulytys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=owKcthBT; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02B451F000E9;
+	Wed,  1 Jul 2026 14:54:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782917695;
+	bh=SDR3KQw9qtIa5D9+VfKzhnvqQCKPssYPjRfAjZS0Jq0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=owKcthBT8KfImP7ppFbeEpd++V8mdALHFfA1kFZQB895D73tcfNTm371VhfBF0E6d
+	 zxQDHd3EPMflYFkOpIHvuGxRz4SqfQfbrOb/U6dXKjxeu5+GzmOUauY1TfcgFfHzcE
+	 Of567sU5Pnlx8oDGDFYU9OULzzal9sQ09NPUSjM0053NOxOCrg5d5GCmAuETAANXle
+	 mhsCrVKP7ii58UFDYcI9svSnVv7R+3vxcUEtjzXP5bQoTf5gvxnPZ90C9PDnXtsIPF
+	 e7aKC9/blzFN3eeHZp361PDFAMCawu7NH3AMRrTY3D53YxV62WvZCWa4YaLIk9tExS
+	 21o309jBfpDgQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 10/10] rtc: rzn1: Add support for Renesas RZ/T2H and
+ RZ/N2H SoCs
+Reply-To: sashiko-reviews@lists.linux.dev
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: robh@kernel.org, wsa+renesas@sang-engineering.com, linux-rtc@vger.kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, "Alexandre
+ Belloni" <alexandre.belloni@bootlin.com>
+In-Reply-To: <20260701142953.2014895-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260701142953.2014895-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260701142953.2014895-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 01 Jul 2026 14:54:54 +0000
+Message-Id: <20260701145455.02B451F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_ALLOW(-0.20)[emailprofi.seznam.cz:s=szn1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-318724-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-318727-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:robh@kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-rtc@vger.kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:alexandre.belloni@bootlin.com,m:prabhakarcsengg@gmail.com,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:pavel@loebl.cz,m:krzk@kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DMARC_NA(0.00)[loebl.cz];
-	FORGED_SENDER(0.00)[pavel@loebl.cz,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pavel@loebl.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[emailprofi.seznam.cz:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,loebl.cz:email,loebl.cz:mid,loebl.cz:from_mime,topic.nl:email]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,renesas.com:email,vger.kernel.org:from_smtp,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8A8916EF118
+X-Rspamd-Queue-Id: 5BE8D6EF141
 
-Add support for Si549, which only differs from Si544 in internal
-oscilator frequency. Si549 also comes in three types A,B and C.
-Each having different maximum output frequency.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] The driver does not enforce SCMP mode for the new RZ/T2H compatibl=
+e, allowing an unsafe fallback to SUBU mode that accesses the unimplemented=
+ RTCA0SUBU register.
+- [Medium] The driver clears the entire `RZN1_RTC_CTL1` register to disable=
+ interrupts, which inadvertently destroys the state of the RZ/T2H-specific =
+1 Hz output control bit.
+--
 
-This patch also fixes maximum frequency of Si544 C. Which should
-be 325MHz according to datasheet.
+commit a19c5bdab6f846898749c84cf9743ad18017cdd8
+Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: Pavel Löbl <pavel@loebl.cz>
----
- drivers/clk/Kconfig     |  6 +--
- drivers/clk/clk-si544.c | 82 ++++++++++++++++++++++++++++++++---------
- 2 files changed, 68 insertions(+), 20 deletions(-)
+rtc: rzn1: Add support for Renesas RZ/T2H and RZ/N2H SoCs
+   =20
+Add support for the RTC block found on the Renesas RZ/T2H (R9A09G077)
+and RZ/N2H (R9A09G087) SoCs by matching the new
+renesas,r9a09g077-rtc compatible string.
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 1717ce75a907..159f546a48f0 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -155,12 +155,12 @@ config COMMON_CLK_SI514
- 	  generator.
- 
- config COMMON_CLK_SI544
--	tristate "Clock driver for SiLabs 544 devices"
-+	tristate "Clock driver for SiLabs 544 and compatible devices"
- 	depends on I2C
- 	select REGMAP_I2C
- 	help
--	  This driver supports the Silicon Labs 544 programmable clock
--	  generator.
-+	  This driver supports the Silicon Labs 544/549 programmable clock
-+	  generators.
- 
- config COMMON_CLK_SI570
- 	tristate "Clock driver for SiLabs 570 and compatible devices"
-diff --git a/drivers/clk/clk-si544.c b/drivers/clk/clk-si544.c
-index 09c06ecec1a5..b13aeead9c02 100644
---- a/drivers/clk/clk-si544.c
-+++ b/drivers/clk/clk-si544.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Driver for Silicon Labs Si544 Programmable Oscillator
-+ * Driver for Silicon Labs Si544/Si549 Programmable Oscillator
-  * Copyright (C) 2018 Topic Embedded Products
-  * Author: Mike Looijmans <mike.looijmans@topic.nl>
-  */
-@@ -40,7 +40,9 @@
- #define SI544_MIN_FREQ	    200000U
- 
- /* Si544 Internal oscillator runs at 55.05 MHz */
--#define FXO		  55050000U
-+#define SI544_XO_FREQ	55050000U
-+/* Si549 Internal oscilator runs at 152.60 MHz */
-+#define SI549_XO_FREQ	152600000U
- 
- /* VCO range is 10.8 .. 12.1 GHz, max depends on speed grade */
- #define FVCO_MIN       10800000000ULL
-@@ -56,11 +58,16 @@
- #define DELTA_M_FRAC_NUM	19
- #define DELTA_M_FRAC_DEN	20000
- 
-+struct si544_clk_desc {
-+	unsigned long max_freq;
-+	unsigned long xo_freq;
-+};
-+
- struct clk_si544 {
- 	struct clk_hw hw;
- 	struct regmap *regmap;
- 	struct i2c_client *i2c_client;
--	unsigned long  max_freq;
-+	const struct si544_clk_desc *chip_info;
- };
- #define to_clk_si544(_hw)	container_of(_hw, struct clk_si544, hw)
- 
-@@ -79,6 +86,7 @@ struct clk_si544_muldiv {
- 	u16 hs_div;
- 	u8 ls_div_bits;
- 	s32 delta_m;
-+	u32 xo_freq;
- };
- 
- /* Enables or disables the output driver */
-@@ -145,6 +153,8 @@ static int si544_get_muldiv(struct clk_si544 *data,
- 	settings->delta_m = reg[0] << 8 | reg[1] << 16 | reg[2] << 24;
- 	settings->delta_m >>= 8;
- 
-+	settings->xo_freq = data->chip_info->xo_freq;
-+
- 	return 0;
- }
- 
-@@ -193,7 +203,7 @@ static bool is_valid_frequency(const struct clk_si544 *data,
- 	if (frequency < SI544_MIN_FREQ)
- 		return false;
- 
--	return frequency <= data->max_freq;
-+	return frequency <= data->chip_info->max_freq;
- }
- 
- /* Calculate divider settings for a given frequency */
-@@ -201,6 +211,7 @@ static int si544_calc_muldiv(struct clk_si544_muldiv *settings,
- 	unsigned long frequency)
- {
- 	u64 vco;
-+	u32 fxo = settings->xo_freq;
- 	u32 ls_freq;
- 	u32 tmp;
- 	u8 res;
-@@ -238,13 +249,13 @@ static int si544_calc_muldiv(struct clk_si544_muldiv *settings,
- 	vco = (u64)ls_freq * settings->hs_div;
- 
- 	/* Calculate the integer part of the feedback divider */
--	tmp = do_div(vco, FXO);
-+	tmp = do_div(vco, fxo);
- 	settings->fb_div_int = vco;
- 
- 	/* And the fractional bits using the remainder */
- 	vco = (u64)tmp << 32;
--	vco += FXO / 2; /* Round to nearest multiple */
--	do_div(vco, FXO);
-+	vco += fxo / 2; /* Round to nearest multiple */
-+	do_div(vco, fxo);
- 	settings->fb_div_frac = vco;
- 
- 	/* Reset the frequency adjustment */
-@@ -258,15 +269,16 @@ static unsigned long si544_calc_center_rate(
- 		const struct clk_si544_muldiv *settings)
- {
- 	u32 d = settings->hs_div * BIT(settings->ls_div_bits);
-+	u32 fxo = settings->xo_freq;
- 	u64 vco;
- 
- 	/* Calculate VCO from the fractional part */
--	vco = (u64)settings->fb_div_frac * FXO;
--	vco += (FXO / 2);
-+	vco = (u64)settings->fb_div_frac * fxo;
-+	vco += (fxo / 2);
- 	vco >>= 32;
- 
- 	/* Add the integer part of the VCO frequency */
--	vco += (u64)settings->fb_div_int * FXO;
-+	vco += (u64)settings->fb_div_int * fxo;
- 
- 	/* Apply divider to obtain the generated frequency */
- 	do_div(vco, d);
-@@ -446,7 +458,7 @@ static int si544_probe(struct i2c_client *client)
- 	init.num_parents = 0;
- 	data->hw.init = &init;
- 	data->i2c_client = client;
--	data->max_freq = (uintptr_t)i2c_get_match_data(client);
-+	data->chip_info = i2c_get_match_data(client);
- 
- 	if (of_property_read_string(client->dev.of_node, "clock-output-names",
- 			&init.name))
-@@ -478,18 +490,54 @@ static int si544_probe(struct i2c_client *client)
- 	return 0;
- }
- 
-+static const struct si544_clk_desc clk_si544a_info = {
-+	.xo_freq = SI544_XO_FREQ,
-+	.max_freq = 1500000000,
-+};
-+
-+static const struct si544_clk_desc clk_si544b_info = {
-+	.xo_freq = SI544_XO_FREQ,
-+	.max_freq = 800000000,
-+};
-+
-+static const struct si544_clk_desc clk_si544c_info = {
-+	.xo_freq = SI544_XO_FREQ,
-+	.max_freq = 325000000,
-+};
-+
-+static const struct si544_clk_desc clk_si549a_info = {
-+	.xo_freq = SI549_XO_FREQ,
-+	.max_freq = 1500000000,
-+};
-+
-+static const struct si544_clk_desc clk_si549b_info = {
-+	.xo_freq = SI549_XO_FREQ,
-+	.max_freq = 800000000,
-+};
-+
-+static const struct si544_clk_desc clk_si549c_info = {
-+	.xo_freq = SI549_XO_FREQ,
-+	.max_freq = 325000000,
-+};
-+
- static const struct i2c_device_id si544_id[] = {
--	{ "si544a", 1500000000 },
--	{ "si544b", 800000000 },
--	{ "si544c", 350000000 },
-+	{ "si544a", (kernel_ulong_t)&clk_si544a_info },
-+	{ "si544b", (kernel_ulong_t)&clk_si544b_info },
-+	{ "si544c", (kernel_ulong_t)&clk_si544c_info },
-+	{ "si549a", (kernel_ulong_t)&clk_si549a_info },
-+	{ "si549b", (kernel_ulong_t)&clk_si549b_info },
-+	{ "si549c", (kernel_ulong_t)&clk_si549c_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, si544_id);
- 
- static const struct of_device_id clk_si544_of_match[] = {
--	{ .compatible = "silabs,si544a", .data = (void *)1500000000 },
--	{ .compatible = "silabs,si544b", .data = (void *)800000000 },
--	{ .compatible = "silabs,si544c", .data = (void *)350000000 },
-+	{ .compatible = "silabs,si544a", .data = &clk_si544a_info },
-+	{ .compatible = "silabs,si544b", .data = &clk_si544b_info },
-+	{ .compatible = "silabs,si544c", .data = &clk_si544c_info },
-+	{ .compatible = "silabs,si549a", .data = &clk_si549a_info },
-+	{ .compatible = "silabs,si549b", .data = &clk_si549b_info },
-+	{ .compatible = "silabs,si549c", .data = &clk_si549c_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, clk_si544_of_match);
--- 
-2.53.0
+>     These SoCs integrate a closely related variant of the RZ/N1 RTC IP.
+>     Unlike the RZ/N1 implementation, the RZ/T2H and RZ/N2H variants lack
+>     the RTCA0SUBU register. However, this register is not accessed when
+>     operating in SCMP mode using the existing rzn1_rtc_ops_scmp
+>     configuration, allowing the current driver infrastructure to be reused
+>     without modification.
 
+[Severity: High]
+Does the current driver infrastructure guarantee SCMP mode is always used?
+
+If the xtal clock is missing (since devm_clk_get_optional() is used) or
+if its rate is exactly 32768 Hz, scmp_val remains 0:
+
+drivers/rtc/rtc-rzn1.c:rzn1_rtc_probe() {
+	...
+	xtal =3D devm_clk_get_optional(dev, "xtal");
+	if (IS_ERR(xtal)) {
+		...
+	} else if (xtal) {
+		rate =3D clk_get_rate(xtal);
+		...
+		if (rate !=3D 32768)
+			scmp_val =3D RZN1_RTC_CTL0_SLSB_SCMP;
+	}
+	...
+
+This causes the driver to fall back to the SUBU ops:
+
+	if (scmp_val) {
+		writel(rate - 1, rtc->base + RZN1_RTC_SCMP);
+		rtc->rtcdev->ops =3D &rzn1_rtc_ops_scmp;
+	} else {
+		rtc->rtcdev->ops =3D &rzn1_rtc_ops_subu;
+	}
+
+If this happens, the SUBU ops will access the missing RTCA0SUBU register,
+which can trigger a synchronous external abort. Should the driver use OF ma=
+tch
+data to identify variants lacking the SUBU register and explicitly prevent
+assigning rzn1_rtc_ops_subu?
+
+>     The RZ/T2H RTC variant also supports a 1 Hz output signal on the
+>     RTCAT1HZ pin, controlled by the RTCA0CTL1[RTCA01HZE] bit. This bit is
+>     marked as reserved in the RZ/N1 hardware manual, making RZ/T2H a
+>     distinct RTC variant despite its overall compatibility with the RZ/N1
+>     implementation.
+
+[Severity: Medium]
+Will this 1 Hz output signal be inadvertently disabled during probe and rem=
+oval?
+
+During probe and removal, the driver unconditionally clears the entire
+RZN1_RTC_CTL1 register to disable interrupts:
+
+drivers/rtc/rtc-rzn1.c:rzn1_rtc_probe() {
+	...
+	/* Disable all interrupts */
+	writel(0, rtc->base + RZN1_RTC_CTL1);
+	...
+
+If the bootloader or firmware previously configured the 1 Hz output signal,
+won't this unconditional write to 0 destroy that state? Could the driver
+perform a read-modify-write operation to clear only the interrupt enable bi=
+ts
+instead?
+
+> diff --git a/drivers/rtc/rtc-rzn1.c b/drivers/rtc/rtc-rzn1.c
+> index e77b7e7bcd5bd..26a5cde41c6b2 100644
+> --- a/drivers/rtc/rtc-rzn1.c
+> +++ b/drivers/rtc/rtc-rzn1.c
+> @@ -518,6 +518,7 @@ static void rzn1_rtc_remove(struct platform_device *p=
+dev)
+>  }
+> =20
+>  static const struct of_device_id rzn1_rtc_of_match[] =3D {
+> +	{ .compatible	=3D "renesas,r9a09g077-rtc" },
+>  	{ .compatible	=3D "renesas,rzn1-rtc" },
+>  	{},
+>  };
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701142953.2014=
+895-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D10
 
