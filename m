@@ -1,168 +1,204 @@
-Return-Path: <devicetree+bounces-318234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318237-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wxG+JPjRRGqT1QoAu9opvQ
-	(envelope-from <devicetree+bounces-318234-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:38:16 +0200
+	id zd8QIObTRGoS1goAu9opvQ
+	(envelope-from <devicetree+bounces-318237-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:46:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E041A6EB2DE
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:38:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D58766EB3D4
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:46:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Xu8UXhtD;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318234-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318234-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=walle.cc header.s=mail2022082101 header.b=h67gQjQB;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318237-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318237-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=walle.cc;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B9D5830C7002
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:31:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EF8B030DDB2A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9563AE71F;
-	Wed,  1 Jul 2026 08:31:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA3493ED13E;
+	Wed,  1 Jul 2026 08:43:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BCE23446DE
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 08:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D88A3E0251;
+	Wed,  1 Jul 2026 08:43:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782894710; cv=none; b=D/RB9N8DASc4e7hQlsx8u+WoMCx4ji3aEzgg5DF2XgnP7tGbjf4//pN1jYra/jc7Uri4IG2f5JrFPAuPT7CgD/jhtDHNQVCf5fXpbBGCXI1Eft4wdWHu22URcCuRoHG5GSneBo1nPFw9gzO7AoIddxjfHmLCJYag1ajyHYtrsr4=
+	t=1782895435; cv=none; b=JtJPuem2IhR+vWYtMzvmKDZuRzSCHvKgGBeRPAN4YS+hqJx/RgdQU4FBwpO6cgV+3HYW6Gh7ViJH3XYEXyfDBED7OEXJa1eUsvRZ3y+or+WGmSlzdYHCFujE8L7Vo/CvILf1Hx+vZr4RSbFyfSAIjIbqCBCWFywvJm9MoBndaSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782894710; c=relaxed/simple;
-	bh=4oqb5tigzr7j4QjLRdaYGwHCBq364XduzEAFDJboV8g=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=VFgMRjNhPm1+rlV1yztEs1lhlvnRIzyO69Pn/Iug4+bZsdHJ14sngDSLNABC1cZT+NqXhxqMl56TNfVONI9ozFBnn91f0fHJw3yNnK4ApJeK2BkMsBqkVhhSMpaWFM8goiGFRlzoOO3c1HKr7WeqV10wpQTHitEWi4HBrBnt4lE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xu8UXhtD; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F8341F00A3A;
-	Wed,  1 Jul 2026 08:31:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782894709;
-	bh=4oqb5tigzr7j4QjLRdaYGwHCBq364XduzEAFDJboV8g=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Xu8UXhtDkLSr72MUoJXrSYnEakURHb+OXLHGOGOqfopehq0EaSvmltobKb7Bv89D2
-	 Nh4C+FsbUVbae+9UZzovJyFOqq+QMv8PClKNp8YgyL++TbpGoXalqOD2buOaZ6AiF2
-	 Ba4/Mi5LlUX0xERF/fsf3KiFtAo59KzkHwSDSwzGfMTgFoB1XZdbC1fAuzM0ruC9+b
-	 sy8aDVAJk5g6gtLJIUvrmIROZdsk8OCChrHmVynzJd91PZbe7QyU0fHbLu857Vwjj7
-	 QKYR3c/CGhIVmEX7Kh5x2d/H+Ofq4lK93Iq6A/Nyz5goC9VPUFBE04LpBcuRWqawkm
-	 X1doGA/Qp2wcg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V3 2/3] arm64: dts: qcom: monaco-evk: Enable SDHCI for
- SD Card via overlay
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Monish Chunara" <monish.chunara@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260701081715.2580329-3-monish.chunara@oss.qualcomm.com>
-References: <20260701081715.2580329-1-monish.chunara@oss.qualcomm.com>
- <20260701081715.2580329-3-monish.chunara@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 08:31:47 +0000
-Message-Id: <20260701083148.0F8341F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1782895435; c=relaxed/simple;
+	bh=IruFylOlTxcJm5hyyL/eFNS0o3To89PaJ6QDaYNLHrE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=U1uxUj0pOBzpFR5x2gQfcVljOGhO2NJnNEMTKcy9cjPbSw0987Aq3Y4ij1FhfcBgkbGLJ7FcpFa9/D7b33LkDTU9Htyp1hQFRgJrBXTCwhN/xoMSWMkwLVloKHu/A4wFBEp4MGCg3VlLiLi3fYdTS7wUv88k2mrseMzcxhLZIZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=walle.cc; spf=pass smtp.mailfrom=walle.cc; dkim=pass (2048-bit key) header.d=walle.cc header.i=@walle.cc header.b=h67gQjQB; arc=none smtp.client-ip=159.69.201.130
+Received: from localhost (unknown [213.135.10.150])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.3ffe.de (Postfix) with ESMTPSA id 880D35B6;
+	Wed,  1 Jul 2026 10:34:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+	t=1782894878;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=OV8gaPiQO40kpe0vnMtC2nXL8DrZwaWi9384uLF+/CY=;
+	b=h67gQjQBVSxm1zGv4NOn57N9gJTCxMWWp3YcNhFmHdxQHNawukaOxBFeoTLd7xSSsUmHEb
+	QHOO7Rdm6R9+IhDqEV//349b1hxptHCVf1Ld31NKjoCEVG3yZWiCutXBBQIV2AETWkCvG0
+	2cvaUpJLCDQ65E9H4T7Bz3ZxH6x4FUP/Fk5LNDw6NweLNxPVKswcK05bPvhIWZ5hC03CGb
+	zu9OuKTRqyoO5BGXK6QgIby1CRCo3dgJBzS+jDk1gA31fpjROSM1sYk8vN6mvqxzcilIxi
+	5sg1p4WSH4Ikuhd3m7Ug/A13vn7+YhQwohIgElCdJhJ/Z95aXmB3+k3/Z3v1Aw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=7dc42cc06038756823fa21ce147a9856939103d1b021230f1b15a2a59c78;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Wed, 01 Jul 2026 10:34:35 +0200
+Message-Id: <DJN3HIIAY4LE.3MXU9Q2YFSCJJ@walle.cc>
+Subject: Re: [PATCH v4 1/7] dt-bindings: mtd: jedec,spi-nor: allow the SFDP
+ to be exposed via NVMEM
+Cc: <pratyush@kernel.org>, <mwalle@kernel.org>,
+ <takahiro.kuwano@infineon.com>, <miquel.raynal@bootlin.com>,
+ <richard@nod.at>, <vigneshr@ti.com>, <robh@kernel.org>,
+ <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <srini@kernel.org>,
+ <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+ <claudiu.beznea@tuxon.dev>, <linux@armlinux.org.uk>,
+ <richardcochran@gmail.com>, <arnd@arndb.de>,
+ <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <netdev@vger.kernel.org>
+From: "Michael Walle" <michael@walle.cc>
+To: "Linus Walleij" <linusw@kernel.org>, "Manikandan Muralidharan"
+ <manikandan.m@microchip.com>
+X-Mailer: aerc 0.20.0
+References: <20260630092406.150587-1-manikandan.m@microchip.com>
+ <20260630092406.150587-2-manikandan.m@microchip.com>
+ <CAD++jL=FkEfpz-LW0vmPpZ28fLfGFMWo5E479Mapz55YUxKNAQ@mail.gmail.com>
+In-Reply-To: <CAD++jL=FkEfpz-LW0vmPpZ28fLfGFMWo5E479Mapz55YUxKNAQ@mail.gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[walle.cc,quarantine];
+	R_DKIM_ALLOW(-0.20)[walle.cc:s=mail2022082101];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318234-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:monish.chunara@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318237-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[michael@walle.cc,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FORGED_RECIPIENTS(0.00)[m:pratyush@kernel.org,m:mwalle@kernel.org,m:takahiro.kuwano@infineon.com,m:miquel.raynal@bootlin.com,m:richard@nod.at,m:vigneshr@ti.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:srini@kernel.org,m:nicolas.ferre@microchip.com,m:alexandre.belloni@bootlin.com,m:claudiu.beznea@tuxon.dev,m:linux@armlinux.org.uk,m:richardcochran@gmail.com,m:arnd@arndb.de,m:linux-mtd@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:netdev@vger.kernel.org,m:linusw@kernel.org,m:manikandan.m@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[walle.cc:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[michael@walle.cc,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,infineon.com,bootlin.com,nod.at,ti.com,microchip.com,tuxon.dev,armlinux.org.uk,gmail.com,arndb.de,lists.infradead.org,vger.kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,walle.cc:dkim,walle.cc:mid,walle.cc:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E041A6EB2DE
+X-Rspamd-Queue-Id: D58766EB3D4
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] The SD card overlay fails to remove conflicting eMMC properties (`=
-no-sd` and `non-removable`) inherited from the base device tree, rendering =
-the SD controller non-functional.
-- [Medium] The overlay configures 1.8V regulator states and high-speed OPPs=
- for UHS-I, but explicitly disables 1.8V support via `no-1-8-v`, rendering =
-the high-speed configurations unreachable.
---
+--7dc42cc06038756823fa21ce147a9856939103d1b021230f1b15a2a59c78
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Note: The format of this review is altered to provide a free-form summary
-of the findings rather than inline quotes due to recitation restrictions.
+Hi,
 
-commit 8700d2dd7b89a43576ae3f5ad283ea9e832db05a
-Author: Monish Chunara <monish.chunara@oss.qualcomm.com>
+>> Add an optional "sfdp" child node (compatible "jedec,sfdp") that
+>> describes the SFDP as a read-only NVMEM provider via nvmem.yaml, so its
+>> contents (e.g. a vendor EUI-48/EUI-64) can be read through NVMEM cells.
+>>
+>> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+>
+> I would expect it to follow nvmem conventions like this, notice
+> compatibles specific-to-general with sfdp first:
 
-arm64: dts: qcom: monaco-evk: Enable SDHCI for SD Card via overlay
 
-The monaco EVK board supports either eMMC or SD-card, but only one
-can be active at a time. This enables the SDHCI for SD Card support
-via a device tree overlay.
+> sfdp {
+>     /* NVMEM provided by SFDP */
+>     compatible =3D "jedec,sfdp", "nvmem-cells";
+>     label =3D "SFDP";
 
-[Severity: High]
-In arch/arm64/boot/dts/qcom/monaco-evk-sd-card.dtso, the overlay modifies
-the &sdhc_1 node by adding no-mmc and cd-gpios, but it doesn't explicitly
-delete the conflicting properties inherited from the base device tree.
+Isn't using label frowned upon? I wouldn't add that to the example.
 
-Since device tree overlays merge nodes and do not implicitly overwrite
-boolean properties, does this resulting merged node contain both no-sd
-(from the base) and no-mmc (from the overlay)?
+>     read-only;
+>     #address-cells =3D <1>;
+>     #size-cells =3D <1>;
+>
+>     mac0: macaddr@0x00 {
+>         reg =3D <0x00 0x06>;
+>     };
+>     mac1: macaddr@0x06 {
+>         reg =3D <0x06 0x06>;
+>     };
+> };
 
-If both properties are present, will the MMC subsystem set both
-MMC_CAP2_NO_SD and MMC_CAP2_NO_MMC flags and refuse to initialize any
-card? Additionally, won't leaving the non-removable property from the
-base tree intact cause mmc_of_parse() to bypass requesting the newly
-added cd-gpios?
+If I'm correct, this is the old style, see commit bd912c991d2e
+("dt-bindings: nvmem: layouts: add fixed-layout"). So it should
+eventually look like:
 
-Should this overlay explicitly use /delete-property/ no-sd; and=20
-/delete-property/ non-removable; to clear the base configuration?
+sfdp {
+     compatible =3D "jedec,sfdp";
 
-[Severity: Medium]
-Also in arch/arm64/boot/dts/qcom/monaco-evk-sd-card.dtso, the &sdhc_1
-node is configured with the no-1-8-v property. However, the overlay
-configures vreg_sdc with a 1.8V state (states =3D <1800000 1>) and sets up
-sdhc1_opp_table with opp-100000000 and opp-202000000, which correspond
-to SDR50 and SDR104 modes requiring 1.8V.
+     nvmem-layout {
+	     compatible =3D "microchip,sst26vf-sfdp-eui";
+     };
+};
 
-Does setting no-1-8-v force the MMC core to disable UHS capabilities and
-artificially restrict the SD card to 50MHz?
+Which is what patch series will lead to.
 
-If the board genuinely supports 1.8V, should the no-1-8-v property be
-removed? Alternatively, if the board cannot support 1.8V, should the
-unused 1.8V regulator configurations and high-speed OPP additions be
-dropped to avoid contradictory configurations?
+Also I'm not sure if we really need to add the "nvmem-cells" here.
+IIRC in MTD it was there to tell a driver to add an nvmem device to
+an already existing compatible/node.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701081715.2580=
-329-1-monish.chunara@oss.qualcomm.com?part=3D2
+Apart from the MTD case, I've just found qcom,smem-part,yaml which
+has compatible =3D "nvmem-cells".
+
+-michael
+
+> Your example should definitely be more elaborate like this,
+> just an opaque sfdp node will not suffice. Maybe a separate
+> example?
+>
+> Yours,
+> Linus Walleij
+
+
+--7dc42cc06038756823fa21ce147a9856939103d1b021230f1b15a2a59c78
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKcEABMJAC8WIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCakTRGxEcbWljaGFlbEB3
+YWxsZS5jYwAKCRASJzzuPgIf+PesAYCvxlMrRPb3CpBzPYndulCo9xHSs8WFx8GM
+YRvSkp3iZq/ziK9zzw8WIc8dB59hR7gBgJcgQcwu/qH+CFtJvfiWDEH4EWXU3HSR
+2Jx1LkNCSYEaHycVFgiepmorZPwBghbBeA==
+=IjRV
+-----END PGP SIGNATURE-----
+
+--7dc42cc06038756823fa21ce147a9856939103d1b021230f1b15a2a59c78--
 
