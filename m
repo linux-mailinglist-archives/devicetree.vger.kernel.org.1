@@ -1,91 +1,83 @@
-Return-Path: <devicetree+bounces-318483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318513-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id I012HckPRWr76AoAu9opvQ
-	(envelope-from <devicetree+bounces-318483-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:02:01 +0200
+	id 2vZ2NtAQRWps6QoAu9opvQ
+	(envelope-from <devicetree+bounces-318513-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:06:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C42736EDC43
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:02:00 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E27A6EDD4D
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:06:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=J9AwQjsR;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318483-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318483-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=JJI0Vbm+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318513-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318513-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6287B3180E0C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:26:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 10D56314D328
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE0648B36C;
-	Wed,  1 Jul 2026 12:20:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B2DB4D90CD;
+	Wed,  1 Jul 2026 12:21:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFDCD48B361;
-	Wed,  1 Jul 2026 12:20:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A333348C41E;
+	Wed,  1 Jul 2026 12:21:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782908455; cv=none; b=E3vM/jFbD/CB9huzaUsH9SGypaMbKo2DZ977ibH4oQVthpbjkoG4bkf3GWEW1qLDAyuSMY8DnJJ2iHqJT/S6bE6EIHmBPdB1FSbaF5q/8vqIAlp1bUhRlgWwoCwuYP/2Ao4zRnuDyKLaBkpSJ1JYDi6aw7NAycd148oE/AIfqhw=
+	t=1782908503; cv=none; b=H1Mc9yfwOd+JKGNA93fSTEV1QzoEBaYF3dGoBCNePvTkgOcrxBKxaA2m8KsM/bNd1H4i6ifVLoaUV8ZX6Mb/2yjooMDanl+A2dGiabGF0qcVo/aA3ukAoaJsPWHFeyIZxbxVmSKJ3KuF/LC48LKHY9Lh5Cny7gYx1ogMWWQJA5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782908455; c=relaxed/simple;
-	bh=knL125EqyeDrxGL3Ld+yoYxozWxizbjazjQr+Cmfeww=;
+	s=arc-20240116; t=1782908503; c=relaxed/simple;
+	bh=Qeno2l8N+ioUaRPaFlMfs/IlW8Ev+IkQ/70zshGvKsA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Uex8btsnb4s+BKTA8Qem2H/XxihDl/VNqhRRQB1I20O9hxo71qGzduCsSr5QEE462g6Os7M2RxV6GbqOUCfxmZajXdKRSzdAeQhpKYenMpnrV+tmqwAm7gIDBdgRZ7wvh1deKpJ07Y7mkDfX96PlpBb0an8ODm6ZV0TEloyGFow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=J9AwQjsR; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=I12jvTrsMKCnDxPjQMnuRAA8iN/t3XqdjwVLoqyRzpPSxiHK7fA3YoT1fJaesDdGiiE2R9ZmhWyhH+usttBTzZ5Mv1+uQ89WiYLYXpCWw3mOUMKI1pqAoRBLiI+yjp0drljE9cUxe22WB+t0jSNR8QBYYvMGq3CE0N93EDXvuZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JJI0Vbm+; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1782908452;
-	bh=knL125EqyeDrxGL3Ld+yoYxozWxizbjazjQr+Cmfeww=;
+	s=mail; t=1782908499;
+	bh=Qeno2l8N+ioUaRPaFlMfs/IlW8Ev+IkQ/70zshGvKsA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=J9AwQjsRjbU+eOAh5iRR3sAr+iiBXCt944cwy3yqYQeus2HgH1dvBLmfxuvG874Oh
-	 5/rIavH3IYSPgKEvRrreXsWhp4qaj7HKFStCQXj1yCrDSzp3J0C3ttQOHGp7CnqXF1
-	 VLXu8o6BUJsU9egdpFa4o4QWbxLqB9tZMpTLQ48EzQLgJh83r6oo6hvDP45Sp35rxC
-	 4gBjxcp4WqhWOlFS8rT84GHKkGOhgDC8pG3vPbCh0za/C/jcFnmyVucp+Y32HEPT0T
-	 XqZ2WQj9BnpJOPzooTYilY/1+Hc0u+6YGhW2V0Mtx4S03jbFMml41jpCZBMip1p/FU
-	 3G4C5ZxF2hZ2Q==
+	b=JJI0Vbm+ni+r4XX99iWt1MYBNBLbWxOGNpKkfUM0Pfp+DkTOtz8O/yZsLDm4Kfp50
+	 TSjlwbuR47ttnrYVKybxeGS8zNsoSsEb6BuC23cQWO5B5bvuA7AlILRSwk6p2E/Lln
+	 Lsb3g2bg/4RKc1zp3YuLSCL5SXTbu6SiiKd3/jwkMpf9dX/xQn4qz2jf4qCYTo5R8R
+	 cUdbVz0rLkzzUAXl2xV6oepEfOOoV8+0SpK63Hi/xRUUAAqWQzh5OUam5ABR5DtnVD
+	 XYMob+/iziGrb359SePyfi73bZhla7nZXQLgrtPof8TAVOKrV9RjLrNXAbYLGECrPa
+	 azw6NJ37+mTWA==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id EA5E317E0FAA;
-	Wed,  1 Jul 2026 14:20:50 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3174717E1411;
+	Wed,  1 Jul 2026 14:21:38 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunkuang.hu@kernel.org
 Cc: p.zabel@pengutronix.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
 	maarten.lankhorst@linux.intel.com,
 	mripard@kernel.org,
 	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
 	matthias.bgg@gmail.com,
 	angelogioacchino.delregno@collabora.com,
-	andi.shyti@kernel.org,
-	djakov@kernel.org,
-	broonie@kernel.org,
-	jitao.shi@mediatek.com,
-	ck.hu@mediatek.com,
 	dri-devel@lists.freedesktop.org,
 	linux-mediatek@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
 	linux-arm-kernel@lists.infradead.org,
 	justin.yeh@mediatek.com,
 	jason-jh.lin@mediatek.com,
 	kernel@collabora.com
-Subject: [PATCH 4/6] soc: mediatek: mtk-mutex: Add new functions to add/remove triggers
-Date: Wed,  1 Jul 2026 14:20:41 +0200
-Message-ID: <20260701122043.19612-5-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 27/42] drm/mediatek: Add support for Display Layer Blender component
+Date: Wed,  1 Jul 2026 14:20:42 +0200
+Message-ID: <20260701122057.19648-28-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260701122043.19612-1-angelogioacchino.delregno@collabora.com>
-References: <20260701122043.19612-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
+References: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,21 +93,21 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[pengutronix.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,foss.st.com,collabora.com,mediatek.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,st-md-mailman.stormreply.com];
-	TAGGED_FROM(0.00)[bounces-318483-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,mediatek.com];
+	TAGGED_FROM(0.00)[bounces-318513-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:andi.shyti@kernel.org,m:djakov@kernel.org,m:broonie@kernel.org,m:jitao.shi@mediatek.com,m:ck.hu@mediatek.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
@@ -123,140 +115,480 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mediatek.com:email,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C42736EDC43
+X-Rspamd-Queue-Id: 4E27A6EDD4D
 
-Add new mtk_mutex_add_trigger() and mtk_mutex_remove_trigger() to
-replace, in the near future, their older style equivalents such as
-mtk_mutex_add_comp() and mtk_mutex_remove_comp() for the Display
-Controller related MuteX triggers.
+Add support for the Layer Blender hardware component, found in the
+MediaTek Kompanio Ultra MT8196, Genio Pro 5100 MT8894, Dimensity
+9400 MT6991 and others.
 
-The same functions will be used to also replace the Media Data
-Path 3 (MDP3) specific mtk_mutex_write_mod(), unifying the MuteX
-handling across all of the currently supported multimedia-related
-drivers for MediaTek SoCs.
-
-While at it, this also takes into account the upcoming refactoring
-of mtk_mmsys and mediatek-drm, which are about to migrate to a new
-Component "Type -> Hardware ID" mapping, by adding a new function
-parameter "hw_inst_id" to support that.
+This component is responsible for managing blending of single
+layer stages and therefore implements one full layer stage which
+gets completed by an exDMA hardware component.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- drivers/soc/mediatek/mtk-mutex.c       | 60 ++++++++++++++++++++++++++
- include/linux/soc/mediatek/mtk-mutex.h |  6 +++
- 2 files changed, 66 insertions(+)
+ drivers/gpu/drm/mediatek/Makefile           |   1 +
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.c     |  14 +
+ drivers/gpu/drm/mediatek/mtk_disp_blender.c | 318 ++++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h     |  15 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   3 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   1 +
+ include/linux/soc/mediatek/mtk-mmsys.h      |   1 +
+ 7 files changed, 353 insertions(+)
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_blender.c
 
-diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
-index 6ffdcb673ae9..28715b07e668 100644
---- a/drivers/soc/mediatek/mtk-mutex.c
-+++ b/drivers/soc/mediatek/mtk-mutex.c
-@@ -960,6 +960,65 @@ void mtk_mutex_unprepare(struct mtk_mutex *mutex)
- }
- EXPORT_SYMBOL_GPL(mtk_mutex_unprepare);
- 
-+static enum mtk_mutex_sof_id mtk_mutex_get_sof_trig(enum mtk_ddp_comp_type type,
-+						    unsigned int hw_inst_id)
-+{
-+	switch (type) {
-+	case MTK_DISP_DSI:
-+		return MUTEX_SOF_DSI0 + hw_inst_id;
-+	case MTK_DISP_DPI:
-+		return MUTEX_SOF_DPI0 + hw_inst_id;
-+	case MTK_DISP_DP_INTF:
-+		return MUTEX_SOF_DP_INTF0 + hw_inst_id;
-+	default:
-+		break;
-+	}
-+
-+	return DDP_MUTEX_SOF_MAX;
-+}
-+
-+void mtk_mutex_add_trigger(struct mtk_mutex *mutex, enum mtk_ddp_comp_type type,
-+			   unsigned int hw_inst_id, unsigned int mtx_trig_id)
-+{
-+	struct mtk_mutex_ctx *ctx = container_of(mutex, struct mtk_mutex_ctx, mutex[mutex->id]);
-+	enum mtk_mutex_sof_id sof_id = mtk_mutex_get_sof_trig(type, hw_inst_id);
-+	const u32 offset = DISP_REG_MUTEX_MOD(ctx, mtx_trig_id, mutex->id);
-+	u32 val;
-+
-+	if (sof_id < DDP_MUTEX_SOF_MAX) {
-+		const u32 sof_offset = DISP_REG_MUTEX_SOF(ctx->data->mutex_sof_reg, mutex->id);
-+
-+		writel(ctx->data->mutex_sof[sof_id], ctx->regs + sof_offset);
-+		return;
-+	}
-+
-+	val = readl(ctx->regs + offset);
-+	writel(val | BIT(mtx_trig_id % 32), ctx->regs + offset);
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_mutex_add_trigger, "MTK_MUTEX");
-+
-+void mtk_mutex_remove_trigger(struct mtk_mutex *mutex, enum mtk_ddp_comp_type type,
-+			      unsigned int hw_inst_id, unsigned int mtx_trig_id)
-+{
-+	struct mtk_mutex_ctx *ctx = container_of(mutex, struct mtk_mutex_ctx, mutex[mutex->id]);
-+	enum mtk_mutex_sof_id sof_id = mtk_mutex_get_sof_trig(type, hw_inst_id);
-+	const u32 offset = DISP_REG_MUTEX_MOD(ctx, mtx_trig_id, mutex->id);
-+	u32 val;
-+
-+	if (sof_id < DDP_MUTEX_SOF_MAX) {
-+		const u32 sof_offset = DISP_REG_MUTEX_SOF(ctx->data->mutex_sof_reg, mutex->id);
-+
-+		val = readl(ctx->regs + sof_offset);
-+		writel(val & ~ctx->data->mutex_sof[sof_id], ctx->regs + sof_offset);
-+		return;
-+	}
-+
-+	val = readl(ctx->regs + offset);
-+	writel(val & ~BIT(mtx_trig_id % 32), ctx->regs + offset);
-+}
-+EXPORT_SYMBOL_NS_GPL(mtk_mutex_remove_trigger, "MTK_MUTEX");
-+
-+/* TODO: Legacy - Scheduled for removal */
- void mtk_mutex_add_comp(struct mtk_mutex *mutex,
- 			enum mtk_ddp_comp_id id)
- {
-@@ -1011,6 +1070,7 @@ void mtk_mutex_add_comp(struct mtk_mutex *mutex,
- }
- EXPORT_SYMBOL_GPL(mtk_mutex_add_comp);
- 
-+/* TODO: Legacy - Scheduled for removal */
- void mtk_mutex_remove_comp(struct mtk_mutex *mutex,
- 			   enum mtk_ddp_comp_id id)
- {
-diff --git a/include/linux/soc/mediatek/mtk-mutex.h b/include/linux/soc/mediatek/mtk-mutex.h
-index 635218e3ac68..5368206dd62c 100644
---- a/include/linux/soc/mediatek/mtk-mutex.h
-+++ b/include/linux/soc/mediatek/mtk-mutex.h
-@@ -67,16 +67,22 @@ enum mtk_mutex_sof_index {
- 	MUTEX_SOF_IDX_MAX		/* ALWAYS keep at the end */
+diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek/Makefile
+index c48ac3ab08cc..a3c1285e8f33 100644
+--- a/drivers/gpu/drm/mediatek/Makefile
++++ b/drivers/gpu/drm/mediatek/Makefile
+@@ -3,6 +3,7 @@
+ mediatek-drm-y := mtk_crtc.o \
+ 		  mtk_ddp_comp.o \
+ 		  mtk_disp_aal.o \
++		  mtk_disp_blender.o \
+ 		  mtk_disp_ccorr.o \
+ 		  mtk_disp_color.o \
+ 		  mtk_disp_dsc.o \
+diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
+index 8b9228084828..6a312f3ddb09 100644
+--- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
++++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
+@@ -246,6 +246,18 @@ static const struct mtk_ddp_comp_funcs ddp_aal = {
+ 	.stop = mtk_aal_stop,
  };
  
-+enum mtk_ddp_comp_type;
++static const struct mtk_ddp_comp_funcs ddp_blender = {
++	.clk_enable = mtk_blender_clk_enable,
++	.clk_disable = mtk_blender_clk_disable,
++	.config = mtk_blender_config,
++	.start = mtk_blender_start,
++	.stop = mtk_blender_stop,
++	.layer_config = mtk_blender_layer_config,
++	.get_blend_modes = mtk_blender_get_blend_modes,
++	.layerstage_nr = mtk_blender_layerstage_nr,
++	.connect = mtk_blender_connect,
++};
 +
- struct mtk_mutex *mtk_mutex_get(struct device *dev);
- int mtk_mutex_prepare(struct mtk_mutex *mutex);
- void mtk_mutex_add_comp(struct mtk_mutex *mutex,
- 			enum mtk_ddp_comp_id id);
-+void mtk_mutex_add_trigger(struct mtk_mutex *mutex, enum mtk_ddp_comp_type type,
-+			   unsigned int hw_inst_id, unsigned int mtx_trig_id);
- void mtk_mutex_enable(struct mtk_mutex *mutex);
- int mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
- 			     void *pkt);
- void mtk_mutex_disable(struct mtk_mutex *mutex);
- void mtk_mutex_remove_comp(struct mtk_mutex *mutex,
- 			   enum mtk_ddp_comp_id id);
-+void mtk_mutex_remove_trigger(struct mtk_mutex *mutex, enum mtk_ddp_comp_type type,
-+			      unsigned int hw_inst_id, unsigned int mtx_trig_id);
- void mtk_mutex_unprepare(struct mtk_mutex *mutex);
- void mtk_mutex_put(struct mtk_mutex *mutex);
- void mtk_mutex_acquire(struct mtk_mutex *mutex);
+ static const struct mtk_ddp_comp_funcs ddp_ccorr = {
+ 	.clk_enable = mtk_ccorr_clk_enable,
+ 	.clk_disable = mtk_ccorr_clk_disable,
+@@ -416,6 +428,7 @@ static const struct mtk_ddp_comp_funcs ddp_ovl_adaptor = {
+ 
+ static const char * const mtk_ddp_comp_stem[MTK_DDP_COMP_TYPE_MAX] = {
+ 	[MTK_DISP_AAL] = "aal",
++	[MTK_DISP_BLENDER] = "blender",
+ 	[MTK_DISP_BLS] = "bls",
+ 	[MTK_DISP_CCORR] = "ccorr",
+ 	[MTK_DISP_COLOR] = "color",
+@@ -441,6 +454,7 @@ static const char * const mtk_ddp_comp_stem[MTK_DDP_COMP_TYPE_MAX] = {
+ 
+ static const struct mtk_ddp_comp_funcs *mtk_ddp_funcs[MTK_DDP_COMP_TYPE_MAX] = {
+ 	[MTK_DISP_AAL]			= &ddp_aal,
++	[MTK_DISP_BLENDER]		= &ddp_blender,
+ 	[MTK_DISP_BLS]			= NULL,
+ 	[MTK_DISP_CCORR]		= &ddp_ccorr,
+ 	[MTK_DISP_COLOR]		= &ddp_color,
+diff --git a/drivers/gpu/drm/mediatek/mtk_disp_blender.c b/drivers/gpu/drm/mediatek/mtk_disp_blender.c
+new file mode 100644
+index 000000000000..74679b15a26c
+--- /dev/null
++++ b/drivers/gpu/drm/mediatek/mtk_disp_blender.c
+@@ -0,0 +1,318 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (c) 2025 MediaTek Inc.
++ * Copyright (c) 2026 Collabora Ltd.
++ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
++ */
++
++#include <drm/drm_blend.h>
++#include <drm/drm_fourcc.h>
++#include <drm/drm_framebuffer.h>
++#include <linux/clk.h>
++#include <linux/component.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_address.h>
++#include <linux/of_device.h>
++#include <linux/platform_device.h>
++#include <linux/reset.h>
++#include <linux/soc/mediatek/mtk-cmdq.h>
++#include <linux/soc/mediatek/mtk-mmsys.h>
++
++#include "mtk_crtc.h"
++#include "mtk_ddp_comp.h"
++#include "mtk_disp_drv.h"
++#include "mtk_disp_ovl.h"
++#include "mtk_drm_drv.h"
++
++#define DISP_REG_OVL_BLD_DATAPATH_CON		0x010
++#  define OVL_BLD_BGCLR_IN_SEL			BIT(0)
++#  define OVL_BLD_BGCLR_OUT_TO_PROC		BIT(4)
++#  define OVL_BLD_BGCLR_OUT_TO_NEXT_LAYER	BIT(5)
++
++#define DISP_REG_OVL_BLD_EN			0x020
++#  define OVL_BLD_EN				BIT(0)
++#  define OVL_BLD_FORCE_RELAY_MODE		BIT(4)
++#  define OVL_BLD_RELAY_MODE			BIT(5)
++
++#define DISP_REG_OVL_BLD_RST			0x024
++#  define OVL_BLD_RST				BIT(0)
++
++#define DISP_REG_OVL_BLD_SHADOW_CTRL		0x028
++#  define OVL_BLD_BYPASS_SHADOW			BIT(2)
++
++#define DISP_REG_OVL_BLD_ROI_SIZE		0x030
++#define DISP_REG_OVL_BLD_L_EN			0x040
++#  define OVL_BLD_L_EN				BIT(0)
++
++#define DISP_REG_OVL_BLD_OFFSET			0x044
++#define DISP_REG_OVL_BLD_SRC_SIZE		0x048
++#define DISP_REG_OVL_BLD_L0_CLRFMT		0x050
++#  define OVL_BLD_CON_FLD_CLRFMT		GENMASK(3, 0)
++#  define OVL_BLD_CON_CLRFMT_MAN		BIT(4)
++#  define OVL_BLD_CON_FLD_CLRFMT_NB		GENMASK(9, 8)
++#  define OVL_BLD_CON_CLRFMT_NB_10_BIT		BIT(8)
++#  define OVL_BLD_CON_BYTE_SWAP			BIT(16)
++#  define OVL_BLD_CON_RGB_SWAP			BIT(17)
++
++#define DISP_REG_OVL_BLD_BGCLR_CLR		0x104
++#define DISP_REG_OVL_BLD_L_CON2			0x200
++#  define OVL_BLD_L_ALPHA			GENMASK(7, 0)
++#  define OVL_BLD_L_ALPHA_EN			BIT(12)
++
++#define DISP_REG_OVL_BLD_L0_ALPHA_SEL		0x208
++#  define OVL_BLD_L0_CONST			BIT(24)
++
++#define DISP_REG_OVL_BLD_L0_CLR			0x20c
++#  define OVL_BLD_BGCLR_BLACK			0xff000000
++#  define OVL_BLD_BGCLR_RED			0xffff0000
++
++#define BLENDER_MAX_SIZE 8191
++
++struct mtk_disp_blender {
++	void __iomem *regs;
++	struct clk *clk;
++	struct cmdq_client_reg cmdq_reg;
++};
++
++static void mtk_blender_unset_input_bgclr(struct mtk_disp_blender *priv)
++{
++	u32 val;
++
++	val = readl(priv->regs + DISP_REG_OVL_BLD_DATAPATH_CON);
++	val &= ~OVL_BLD_BGCLR_IN_SEL;
++	writel(val, priv->regs + DISP_REG_OVL_BLD_DATAPATH_CON);
++}
++
++void mtk_blender_layer_config(struct device *dev, unsigned int idx,
++			      struct mtk_plane_state *state,
++			      struct cmdq_pkt *cmdq_pkt)
++{
++	struct mtk_disp_blender *priv = dev_get_drvdata(dev);
++	struct mtk_plane_pending_state *pending = &state->pending;
++	u32 alpha, blend_mode, clrfmt, ignore_pixel_alpha;
++
++	/*
++	 * Deselect IN from OVL Background Color if this is the first Blender
++	 * to implicitly select input from exDMA instead.
++	 */
++	if (idx == 0)
++		mtk_blender_unset_input_bgclr(priv);
++
++	if (!pending->enable || pending->height == 0 || pending->width == 0 ||
++	    pending->x > BLENDER_MAX_SIZE || pending->y > BLENDER_MAX_SIZE) {
++		mtk_ddp_write(cmdq_pkt, 0, &priv->cmdq_reg, priv->regs, DISP_REG_OVL_BLD_L_EN);
++		return;
++	}
++
++	mtk_ddp_write(cmdq_pkt,
++		      ((pending->height & GENMASK(15, 0)) << 16) |
++		       (pending->width & GENMASK(15, 0)),
++		      &priv->cmdq_reg, priv->regs, DISP_REG_OVL_BLD_SRC_SIZE);
++	mtk_ddp_write(cmdq_pkt,
++		      ((pending->y & GENMASK(15, 0)) << 16) | (pending->x & GENMASK(15, 0)),
++		      &priv->cmdq_reg, priv->regs, DISP_REG_OVL_BLD_OFFSET);
++
++	blend_mode = mtk_ovl_get_blend_mode(state, MTK_OVL_SUPPORT_BLEND_MODES);
++	clrfmt = mtk_ovl_fmt_convert(pending->format, blend_mode, true, false, 0,
++				     OVL_BLD_CON_CLRFMT_MAN, OVL_BLD_CON_BYTE_SWAP,
++				     OVL_BLD_CON_RGB_SWAP);
++	clrfmt |= mtk_ovl_is_10bit_rgb(pending->format) ? OVL_BLD_CON_CLRFMT_NB_10_BIT : 0;
++	mtk_ddp_write_mask(cmdq_pkt, clrfmt, &priv->cmdq_reg, priv->regs,
++			   DISP_REG_OVL_BLD_L0_CLRFMT, OVL_BLD_CON_CLRFMT_MAN |
++			   OVL_BLD_CON_RGB_SWAP |  OVL_BLD_CON_BYTE_SWAP |
++			   OVL_BLD_CON_FLD_CLRFMT | OVL_BLD_CON_FLD_CLRFMT_NB);
++
++	if (mtk_ovl_is_ignore_pixel_alpha(state, blend_mode))
++		ignore_pixel_alpha = OVL_BLD_L0_CONST;
++	else
++		ignore_pixel_alpha = 0;
++
++	mtk_ddp_write_mask(cmdq_pkt, ignore_pixel_alpha, &priv->cmdq_reg, priv->regs,
++			   DISP_REG_OVL_BLD_L0_ALPHA_SEL, OVL_BLD_L0_CONST);
++
++	alpha = FIELD_PREP(OVL_BLD_L_ALPHA, (state->base.alpha >> 8));
++	alpha |= OVL_BLD_L_ALPHA_EN;
++	mtk_ddp_write_mask(cmdq_pkt, alpha, &priv->cmdq_reg, priv->regs,
++			   DISP_REG_OVL_BLD_L_CON2, OVL_BLD_L_ALPHA_EN | OVL_BLD_L_ALPHA);
++
++	mtk_ddp_write(cmdq_pkt, OVL_BLD_L_EN, &priv->cmdq_reg, priv->regs, DISP_REG_OVL_BLD_L_EN);
++}
++
++unsigned int mtk_blender_layerstage_nr(struct device *dev)
++{
++	return 1;
++}
++
++void mtk_blender_start(struct device *dev)
++{
++	struct mtk_disp_blender *priv = dev_get_drvdata(dev);
++	u32 val;
++
++	/* Bypass shadow registers and enable */
++	val = readl(priv->regs + DISP_REG_OVL_BLD_SHADOW_CTRL);
++	val |= OVL_BLD_BYPASS_SHADOW;
++	writel(val, priv->regs + DISP_REG_OVL_BLD_SHADOW_CTRL);
++
++	val = readl(priv->regs + DISP_REG_OVL_BLD_EN);
++	val |= OVL_BLD_EN;
++	writel(val, priv->regs + DISP_REG_OVL_BLD_EN);
++}
++
++void mtk_blender_stop(struct device *dev)
++{
++	struct mtk_disp_blender *priv = dev_get_drvdata(dev);
++	u32 val;
++
++	/* Disable and reset */
++	val = readl(priv->regs + DISP_REG_OVL_BLD_EN);
++	val = val & ~OVL_BLD_EN;
++	writel(val, priv->regs + DISP_REG_OVL_BLD_EN);
++
++	val = readl(priv->regs + DISP_REG_OVL_BLD_RST);
++	val |= OVL_BLD_RST;
++	writel(val, priv->regs + DISP_REG_OVL_BLD_RST);
++
++	val = readl(priv->regs + DISP_REG_OVL_BLD_RST);
++	val = val & ~OVL_BLD_RST;
++	writel(val, priv->regs + DISP_REG_OVL_BLD_RST);
++}
++
++void mtk_blender_config(struct mtk_ddp_comp *comp, unsigned int w,
++			     unsigned int h, unsigned int vrefresh,
++			     unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
++{
++	struct mtk_disp_blender *priv = dev_get_drvdata(comp->dev);
++	u32 val;
++
++	/* Set ROI for this Blender */
++	val = ((h & GENMASK(15, 0)) << 16) | (w & GENMASK(15, 0));
++	writel(val, priv->regs + DISP_REG_OVL_BLD_ROI_SIZE);
++
++	/*
++	 * Set both background color and constant layer color to Opaque Black
++	 * (ARGB) for eventual Alpha Blending to be effective
++	 */
++	writel(OVL_BLD_BGCLR_BLACK, priv->regs + DISP_REG_OVL_BLD_BGCLR_CLR);
++	writel(OVL_BLD_BGCLR_BLACK, priv->regs + DISP_REG_OVL_BLD_L0_CLR);
++}
++
++void mtk_blender_connect(struct mtk_ddp_comp *comp, struct device *mmsys_dev,
++			      struct mtk_ddp_comp *next)
++{
++	struct mtk_disp_blender *priv = dev_get_drvdata(comp->dev);
++	const u32 mask = OVL_BLD_BGCLR_OUT_TO_PROC |
++			 OVL_BLD_BGCLR_OUT_TO_NEXT_LAYER |
++			 OVL_BLD_BGCLR_IN_SEL;
++	u32 data_path = OVL_BLD_BGCLR_IN_SEL;
++	u32 val;
++
++	/* Usually the next component is either another OUTPROC or an exDMA */
++	if (next->type == MTK_DISP_OUTPROC)
++		data_path |= OVL_BLD_BGCLR_OUT_TO_PROC;
++	else
++		data_path |= OVL_BLD_BGCLR_OUT_TO_NEXT_LAYER;
++
++	val = readl(priv->regs + DISP_REG_OVL_BLD_DATAPATH_CON);
++	val = (val & ~mask) | data_path;
++	writel(val, priv->regs + DISP_REG_OVL_BLD_DATAPATH_CON);
++
++	mtk_mmsys_hw_connect(mmsys_dev,
++			     comp->type, comp->inst_id, next->type, next->inst_id);
++}
++
++int mtk_blender_clk_enable(struct mtk_ddp_comp *comp)
++{
++	struct mtk_disp_blender *priv = dev_get_drvdata(comp->dev);
++
++	return clk_prepare_enable(priv->clk);
++}
++
++void mtk_blender_clk_disable(struct mtk_ddp_comp *comp)
++{
++	struct mtk_disp_blender *priv = dev_get_drvdata(comp->dev);
++
++	clk_disable_unprepare(priv->clk);
++}
++
++u32 mtk_blender_get_blend_modes(struct device *dev)
++{
++	return MTK_OVL_SUPPORT_BLEND_MODES;
++}
++
++static int mtk_blender_bind(struct device *dev, struct device *master,
++				 void *data)
++{
++	return 0;
++}
++
++static void mtk_blender_unbind(struct device *dev, struct device *master, void *data)
++{
++}
++
++static const struct component_ops mtk_disp_blender_component_ops = {
++	.bind	= mtk_blender_bind,
++	.unbind = mtk_blender_unbind,
++};
++
++static int mtk_blender_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct mtk_disp_blender *priv;
++	int ret = 0;
++
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	priv->regs = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(priv->regs))
++		return dev_err_probe(dev, PTR_ERR(priv->regs), "Cannot get reg\n");
++
++	priv->clk = devm_clk_get(dev, NULL);
++	if (IS_ERR(priv->clk))
++		return dev_err_probe(dev, PTR_ERR(priv->clk), "Cannot get clocks\n");
++
++#if IS_REACHABLE(CONFIG_MTK_CMDQ)
++	ret = cmdq_dev_get_client_reg(dev, &priv->cmdq_reg, 0);
++	if (ret)
++		dev_dbg(dev, "No mediatek,gce-client-reg\n");
++#endif
++	platform_set_drvdata(pdev, priv);
++
++	ret = devm_pm_runtime_enable(dev);
++	if (ret)
++		return ret;
++
++	ret = component_add(dev, &mtk_disp_blender_component_ops);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to add component\n");
++
++	return 0;
++}
++
++static void mtk_blender_remove(struct platform_device *pdev)
++{
++	component_del(&pdev->dev, &mtk_disp_blender_component_ops);
++}
++
++static const struct of_device_id mtk_disp_blender_driver_dt_match[] = {
++	{ .compatible = "mediatek,mt8196-disp-blender" },
++	{ /* sentinel */ },
++};
++MODULE_DEVICE_TABLE(of, mtk_disp_blender_driver_dt_match);
++
++struct platform_driver mtk_disp_blender_driver = {
++	.probe		= mtk_blender_probe,
++	.remove		= mtk_blender_remove,
++	.driver		= {
++		.name	= "mediatek-disp-blender",
++		.owner	= THIS_MODULE,
++		.of_match_table = mtk_disp_blender_driver_dt_match,
++	},
++};
++
++MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
++MODULE_AUTHOR("Nancy Lin <nancy.lin@mediatek.com>");
++MODULE_DESCRIPTION("MediaTek Display Controller Layer Blender Driver");
++MODULE_LICENSE("GPL");
+diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
+index 62daf5ade9d1..e834bf17d86c 100644
+--- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
++++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
+@@ -27,6 +27,21 @@ void mtk_aal_gamma_set(struct device *dev, struct drm_crtc_state *state);
+ void mtk_aal_start(struct device *dev);
+ void mtk_aal_stop(struct device *dev);
+ 
++int mtk_blender_clk_enable(struct mtk_ddp_comp *comp);
++void mtk_blender_clk_disable(struct mtk_ddp_comp *comp);
++void mtk_blender_connect(struct mtk_ddp_comp *comp, struct device *mmsys_dev,
++			 struct mtk_ddp_comp *next);
++void mtk_blender_config(struct mtk_ddp_comp *comp, unsigned int w,
++			unsigned int h, unsigned int vrefresh,
++			unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
++u32 mtk_blender_get_blend_modes(struct device *dev);
++void mtk_blender_layer_config(struct device *dev, unsigned int idx,
++				   struct mtk_plane_state *state,
++				   struct cmdq_pkt *cmdq_pkt);
++unsigned int mtk_blender_layerstage_nr(struct device *dev);
++void mtk_blender_start(struct device *dev);
++void mtk_blender_stop(struct device *dev);
++
+ void mtk_ccorr_ctm_set(struct device *dev, struct drm_crtc_state *state);
+ int mtk_ccorr_clk_enable(struct mtk_ddp_comp *comp);
+ void mtk_ccorr_clk_disable(struct mtk_ddp_comp *comp);
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+index ee835ebbc18c..a70392c54bb9 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+@@ -503,6 +503,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
+ 	  .data = (void *)MTK_DISP_AAL},
+ 	{ .compatible = "mediatek,mt8192-disp-aal",
+ 	  .data = (void *)MTK_DISP_AAL},
++	{ .compatible = "mediatek,mt8196-disp-blender",
++	  .data = (void *)MTK_DISP_BLENDER },
+ 	{ .compatible = "mediatek,mt8167-disp-ccorr",
+ 	  .data = (void *)MTK_DISP_CCORR },
+ 	{ .compatible = "mediatek,mt8183-disp-ccorr",
+@@ -1059,6 +1061,7 @@ static struct platform_driver mtk_drm_platform_driver = {
+ 
+ static struct platform_driver * const mtk_drm_drivers[] = {
+ 	&mtk_disp_aal_driver,
++	&mtk_disp_blender_driver,
+ 	&mtk_disp_ccorr_driver,
+ 	&mtk_disp_color_driver,
+ 	&mtk_disp_dsc_driver,
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.h b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
+index 4028268b3cc8..f36888fd7244 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
++++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
+@@ -73,6 +73,7 @@ struct mtk_drm_private {
+ };
+ 
+ extern struct platform_driver mtk_disp_aal_driver;
++extern struct platform_driver mtk_disp_blender_driver;
+ extern struct platform_driver mtk_disp_ccorr_driver;
+ extern struct platform_driver mtk_disp_color_driver;
+ extern struct platform_driver mtk_disp_dsc_driver;
+diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc/mediatek/mtk-mmsys.h
+index 0b3bef392ab8..b32f0c92f040 100644
+--- a/include/linux/soc/mediatek/mtk-mmsys.h
++++ b/include/linux/soc/mediatek/mtk-mmsys.h
+@@ -88,6 +88,7 @@ enum mtk_ddp_comp_type {
+ 	/* DISP Components */
+ 	MTK_DISP_AAL,
+ 	MTK_DISP_BLS,
++	MTK_DISP_BLENDER,
+ 	MTK_DISP_CCORR,
+ 	MTK_DISP_COLOR,
+ 	MTK_DISP_DITHER,
 -- 
 2.54.0
 
