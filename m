@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-318944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318948-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JGVdGcOlRWq4DQsAu9opvQ
-	(envelope-from <devicetree+bounces-318944-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 01:41:55 +0200
+	id eBEKK++kRWptDQsAu9opvQ
+	(envelope-from <devicetree+bounces-318948-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 01:38:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67D146F2678
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 01:41:54 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3B26F25CE
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 01:38:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b="l86FlR/B";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318944-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318944-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=Ni7TxY3W;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318948-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318948-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0009C304078E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 23:37:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0556E307E32F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 23:37:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58FF942E8DA;
-	Wed,  1 Jul 2026 23:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 048F4481258;
+	Wed,  1 Jul 2026 23:36:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7454279F9;
-	Wed,  1 Jul 2026 23:35:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9CD42A799;
+	Wed,  1 Jul 2026 23:35:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782948961; cv=none; b=WMbpb6crQA0iN26Z4RfNA+69ksnlAzaPydaDBlLuzuyLL8+MvPnsSL2gpPnnA09E/4o/NMJQQ8KJ54bHHDaX+6BzW+hPGzCUmhb7AUHp7Du1qg0aapRWJhlGuSncVJqxOSmgJuaJAZiAKTtW3xu95IF08RxktxaxV7o8hO2N8fI=
+	t=1782948961; cv=none; b=pHOiDM5JPEGBhaNNDaDzBww2sMahdwzvgBmyqNdmuvcUzb8g52pf9NI7UZ+TcHjdGOJyranI+kWeKLbL/kDB4wLiLGHuzHdqb9r6ybxIIuPHzjhHnXlouEjD7eO2DBOPlqzFE7y9cStsu4nnkvYMCr3bJBrXk2UcpcrcrS/R99k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1782948961; c=relaxed/simple;
-	bh=myM2kDdC+o9qU/R8uVpBsqVAxMREJkYJoXrUM6Jce8E=;
+	bh=4RuwzAtf5TKGkkh33ZvgbW91Fqbf6UoXltvoPmdTV2I=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZT/NT9aRr5suv7+iSm1Lfo6UQsZoL9gQLL53pF7qXqjE9o0A750Qlg9Wz8hNYehJzRXjMfNfMeM7TP19ausd0z2qrYUylOsjAorjjA2m+2KZbHEd4xa19+QGuwoSS/IUzNNYjvxSYFK5gA39WpX9UV/Tn6f1mrtjzJV/mnqDPPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=l86FlR/B; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=T+I4b0ocIGh+9NatlTtOqVhsgwq+Ra/PpaHBcBQCMpbn7oMJJdoTiL9MxXExwd40McrTbYIfV0Bg2sfuwHs8hz5ArWnrahqEKNPA5BMKXGhACLhbGKX4jkMNNRtAUu4ZblZlFhzY89/DuT3jYO8Fqe/vfRO5AeMAehr4Vdcbdms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ni7TxY3W; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1782948950;
-	bh=myM2kDdC+o9qU/R8uVpBsqVAxMREJkYJoXrUM6Jce8E=;
+	bh=4RuwzAtf5TKGkkh33ZvgbW91Fqbf6UoXltvoPmdTV2I=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=l86FlR/Bi2GDtRDYGqVw3WD4OyyrERDHhIF980zAVf+zasaJ2wD5ovqWzEgKwSXLv
-	 LsQcrAbt9fWMl3xUtm7FgqP6nBdLA9PDZ1eW8BKOyV47Xf9ieVtKQllnTjvmzm681N
-	 rqB7aCeUQ3SPvJLYYQaLjTwl1QC4XjzA7jxvJk+Dlv+g7Hd85ixtMWHC9Wut5rBrYM
-	 QPt8DrZJuewyQW5ZhBkUta0RDmUaMK0jJCzrKaQ6BJZn8HW2zv6HKTnGorw9W11Rtx
-	 +0PzjNY/3q9kYqPeLxUHTofYOAIT9Ha0bFFqj5M3VE+SJkmgEwULKhxK30BDK1ELgF
-	 zxBHaIeuZKu4A==
+	b=Ni7TxY3WL+87gUUA9z1Z5f8DcDdvcMovMxYaK/ASLRb2ZSuyL7Ecv7J7wObTzV+zf
+	 sCemTBs2vCshpQ80SVbVdSuCrnW95mqi0s8PHf4G6YvtMI2vZ0vV+PtlmS9BakzrPJ
+	 j1zODvOGyzDBzFgb761PjO+L9bQYfPDcIUT3I2D9SZYQwA5n2VtbNvKU1JNPEs8+zh
+	 AikKzBd2R1l4GAw3WbFPsp4WZ74NsZ3+Zi1NPd8R+Vb4PEWL+rWDDcbLXN7R7h1rpf
+	 LYeFyMpXOug0R2g831YuuoeBOsuVRfVl+r8T5VEERIS5F25SoX6jsSODr2UJWPZ5sS
+	 1Jid6U4+bWr1Q==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 38C5B17E3602;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 455AE17E361D;
 	Thu,  2 Jul 2026 01:35:50 +0200 (CEST)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id DF10F480079; Thu, 02 Jul 2026 01:35:48 +0200 (CEST)
+	id E08CF48007A; Thu, 02 Jul 2026 01:35:48 +0200 (CEST)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Thu, 02 Jul 2026 01:36:12 +0200
-Subject: [PATCH v9 34/38] phy: rockchip: usbdp: Rename mode to hw_mode
+Date: Thu, 02 Jul 2026 01:36:13 +0200
+Subject: [PATCH v9 35/38] phy: rockchip: usbdp: Simplify power state
+ handling
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260702-rockchip-usbdp-cleanup-v9-34-e31efbb62d2e@collabora.com>
+Message-Id: <20260702-rockchip-usbdp-cleanup-v9-35-e31efbb62d2e@collabora.com>
 References: <20260702-rockchip-usbdp-cleanup-v9-0-e31efbb62d2e@collabora.com>
 In-Reply-To: <20260702-rockchip-usbdp-cleanup-v9-0-e31efbb62d2e@collabora.com>
 To: Vinod Koul <vkoul@kernel.org>, 
@@ -82,21 +83,21 @@ Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>,
  devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
  Sebastian Reichel <sebastian.reichel@collabora.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6709;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6342;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=myM2kDdC+o9qU/R8uVpBsqVAxMREJkYJoXrUM6Jce8E=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGpFpFRnyZXbpi51tAIRAlLhy0cPl/Gy8v32X
- Q9dAwfSfXxN3YkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqRaRUAAoJENju1/PI
- O/qaH9YP/itITf812DSkAla90r9Ht2ZOVCckKgPZcS1dJfbAAeqh2EyQjjfhiUWvroa+V68KYIq
- KIWPCVVMAgbO9ZeMafKebQbLQjjKHN9Udu1kpj1V6G1XxUnAGYEr+pA8dPQjVkXvOhZmyh27PPQ
- 4kcIHJOvg5VBgxAtJLdipbRNTqg+j1LhN4ZeJVTUaTOoeyrqkusiEyrOk/W8EAHzdeqoh2hBBAU
- jrSyf/oJ/m/0UqYXI8joTi+Z/SXQFnQFBooiWkMjdIcKzqznVZShhn5WmjuMTgkcTsFVYp3bBvn
- tK4Mtn3HZcycyZBTtb2NhACIBlErOigVLL7uLgnyyHvmMQw/T08/z+RjUEvJIT8wUkdvmtpQQ9q
- HGwlTbHiz+etvMaFeTNBOddUFrQf5Wp0PCv6H/XgLyFaPNfDPHln6nE52yISmIRdQqNVQVXF0TW
- nUla2Jcis2BBXPutkPUl8OD/TH2y7MkRqV3erme/jC+hzvQk/jO/mwNLJX3lSyatqOYps/eTpeo
- b9D5V4c99GrlBS+ROQhbg7lkOOyEXVvHXnTjZn4Xh8ohVxfzIRn8F7wFpLs4loD3tejH40VtND4
- tKyCI976iV4QlCwZjUrmp2RdJ+E5ClMIZX1gCZYT5vGiNWQ109uC4O7qZbeWsZC+if5oCejd/6O
- EH3u2tG3LeKvJelj58NcnIA==
+ bh=4RuwzAtf5TKGkkh33ZvgbW91Fqbf6UoXltvoPmdTV2I=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGpFpFRa+ou2LkR21OWZwKdVSLxiiOpwQx95q
+ 8e/kJRzey2gKYkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqRaRUAAoJENju1/PI
+ O/qahH4P/3+Rrju4vHg151N1+iO/jfoqvL83xNF73dzSAh6ZBCRb/m6Vv8Qco7x5rjUIFYbCBZS
+ 8Ny2UqcA3K4lWpOku02CwPzLaavXxcP5X5Vi+OZgkBi5dAdpRfED0LF5SycWCsKLBGGsxowl9F0
+ Oq27qPbJzZJ8B3obUk87ulDOtjk3XVRF2EbxO4E8pTqRsGVmUHAp517UmEBqdFDmh7BoxRR0U/R
+ 8XrVUvNUpnb0UnFDZxVDAVWhQvyH9ZSyqgJUeDRTahYsOYEA4zJoktLQuUhLQS4DAhuKapghiRC
+ /nj2kC3OZ4bvC+jKcApcHpIc6a2dfz9TIoyYIpCp9yAjfnyYpBs8i8FkRy22H3yKcNOB730Zdbd
+ hbDvb0Pa9XtzgrjVpUZqEGHMT3qfKYTILoPsqI+OQBGE4A8CrUBi44htl2ACXfMjFSdSXRdVFo9
+ qZAj+ggk/6yyk6y0VqeoHz8iaWxkvVxzrztDJesgpycqp/El+FwGZbj4Edm7IH9TSHZpkxMFVsE
+ ev1xiEj4DVs2YuL803BRxny+iQDHu4X5/JGYMJzir3B4hQ2i4bvBBVtC8hriT797GxdbkuTnlqi
+ xqAcEKsPqplsHMG40U+aD5SIOtheSlNlE03BuA1I1xo0ySNYnzeeqFlzJ7bpeAj/yZ1DcRoBGef
+ NCYSXMLyfmJvIkc7O458lzw==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
@@ -104,14 +105,14 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-318944-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318948-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Thinh.Nguyen@synopsys.com,m:gregkh@linuxfoundation.org,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@gmail.com,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:linux-usb@vger.kernel.org,m:sebastian.reichel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
@@ -119,7 +120,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[rock-chips.com,kernel.org,gmail.com,lists.infradead.org,vger.kernel.org,collabora.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -132,200 +133,221 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 67D146F2678
+X-Rspamd-Queue-Id: 4A3B26F25CE
 
-Rename mode field to hw_mode to make clear that this is the modes
-currently supported by the hardware, but not necessarily requested
-by software. I.e. it is only set by either the USB-C state machine
-or device-tree if the PHY is used in a fixed routing setup.
+Simplify power state handling by introducing sw_mode in addition
+to the hw_mode field, so that the PHY knows about the currently
+supported modes from the hardware perspective, the current modes
+requested by software and the actual hardware status.
 
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/phy/rockchip/phy-rockchip-usbdp.c | 46 +++++++++++++++----------------
- 1 file changed, 23 insertions(+), 23 deletions(-)
+ drivers/phy/rockchip/phy-rockchip-usbdp.c | 117 +++++++++++++-----------------
+ 1 file changed, 49 insertions(+), 68 deletions(-)
 
 diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-index ad594bb3962a..a19b048fb39c 100644
+index a19b048fb39c..51aac07ef9fe 100644
 --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
 +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-@@ -175,7 +175,7 @@ struct rk_udphy {
- 	/* PHY status management */
+@@ -176,7 +176,8 @@ struct rk_udphy {
  	bool flip;
  	bool phy_needs_reinit;
--	u8 mode;
-+	u8 hw_mode; /* modes currently supported by hardware */
- 	u8 status;
+ 	u8 hw_mode; /* modes currently supported by hardware */
+-	u8 status;
++	u8 sw_mode; /* modes currently requested */
++	u8 status; /* current PHY power state */
  
  	/* utilized for USB */
-@@ -585,18 +585,18 @@ static void rk_udphy_dp_lane_enable(struct rk_udphy *udphy, int dp_lanes)
+ 	bool hs; /* flag for high-speed */
+@@ -585,15 +586,6 @@ static void rk_udphy_dp_lane_enable(struct rk_udphy *udphy, int dp_lanes)
  				   CMN_DP_CMN_RSTN, FIELD_PREP(CMN_DP_CMN_RSTN, 0x0));
  }
  
--static void rk_udphy_mode_set(struct rk_udphy *udphy, u8 mode)
-+static void rk_udphy_mode_set(struct rk_udphy *udphy, u8 hw_mode)
+-static void rk_udphy_mode_set(struct rk_udphy *udphy, u8 hw_mode)
+-{
+-	if (udphy->hw_mode == hw_mode)
+-		return;
+-
+-	udphy->phy_needs_reinit = true;
+-	udphy->hw_mode = hw_mode;
+-}
+-
+ static void rk_udphy_set_typec_state(struct rk_udphy *udphy, unsigned long state)
  {
--	if (udphy->mode == mode)
-+	if (udphy->hw_mode == hw_mode)
- 		return;
+ 	u8 hw_mode;
+@@ -627,7 +619,7 @@ static void rk_udphy_set_typec_state(struct rk_udphy *udphy, unsigned long state
+ 		break;
+ 	}
  
- 	udphy->phy_needs_reinit = true;
--	udphy->mode = mode;
+-	rk_udphy_mode_set(udphy, hw_mode);
 +	udphy->hw_mode = hw_mode;
  }
  
- static void rk_udphy_set_typec_state(struct rk_udphy *udphy, unsigned long state)
- {
--	u8 mode;
-+	u8 hw_mode;
- 
- 	switch (state) {
- 	case TYPEC_DP_STATE_C:
-@@ -605,7 +605,7 @@ static void rk_udphy_set_typec_state(struct rk_udphy *udphy, unsigned long state
- 		udphy->lane_mux_sel[1] = PHY_LANE_MUX_DP;
- 		udphy->lane_mux_sel[2] = PHY_LANE_MUX_DP;
- 		udphy->lane_mux_sel[3] = PHY_LANE_MUX_DP;
--		mode = UDPHY_MODE_DP;
-+		hw_mode = UDPHY_MODE_DP;
- 		udphy->dp_lanes = 4;
- 		break;
- 
-@@ -622,12 +622,12 @@ static void rk_udphy_set_typec_state(struct rk_udphy *udphy, unsigned long state
- 			udphy->lane_mux_sel[2] = PHY_LANE_MUX_DP;
- 			udphy->lane_mux_sel[3] = PHY_LANE_MUX_DP;
- 		}
--		mode = UDPHY_MODE_DP_USB;
-+		hw_mode = UDPHY_MODE_DP_USB;
- 		udphy->dp_lanes = 2;
- 		break;
- 	}
- 
--	rk_udphy_mode_set(udphy, mode);
-+	rk_udphy_mode_set(udphy, hw_mode);
+ static void rk_udphy_set_typec_default_mapping(struct rk_udphy *udphy)
+@@ -1023,66 +1015,61 @@ static int rk_udphy_parse_dt(struct rk_udphy *udphy)
+ 	return rk_udphy_reset_init(udphy, dev);
  }
  
- static void rk_udphy_set_typec_default_mapping(struct rk_udphy *udphy)
-@@ -750,7 +750,7 @@ static int rk_udphy_status_check(struct rk_udphy *udphy)
- 	int ret;
- 
- 	/* LCPLL check */
--	if (udphy->mode & UDPHY_MODE_USB) {
-+	if (udphy->hw_mode & UDPHY_MODE_USB) {
- 		ret = regmap_read_poll_timeout(udphy->pma_regmap, CMN_ANA_LCPLL_DONE_OFFSET,
- 					       val, (val & CMN_ANA_LCPLL_AFC_DONE) &&
- 					       (val & CMN_ANA_LCPLL_LOCK_DONE), 200, 100000);
-@@ -785,15 +785,15 @@ static int rk_udphy_init(struct rk_udphy *udphy)
- 	int ret;
- 
- 	dev_dbg(udphy->dev, "reinit PHY with USB=%s and DP=%s (%u lanes) flipped=%s\n",
--		str_enabled_disabled(udphy->mode & UDPHY_MODE_USB),
--		str_enabled_disabled(udphy->mode & UDPHY_MODE_DP),
-+		str_enabled_disabled(udphy->hw_mode & UDPHY_MODE_USB),
-+		str_enabled_disabled(udphy->hw_mode & UDPHY_MODE_DP),
- 		udphy->dp_lanes, str_yes_no(udphy->flip));
- 
- 	rk_udphy_reset_assert_all(udphy);
- 	usleep_range(10000, 11000);
- 
- 	/* enable rx lfps for usb */
--	if (udphy->mode & UDPHY_MODE_USB)
-+	if (udphy->hw_mode & UDPHY_MODE_USB)
- 		rk_udphy_grfreg_write(udphy->udphygrf, &cfg->grfcfg.rx_lfps, true);
- 
- 	/* Step 1: power on pma and deassert apb rstn */
-@@ -830,13 +830,13 @@ static int rk_udphy_init(struct rk_udphy *udphy)
- 			   FIELD_PREP(CMN_DP_LANE_EN_ALL, 0));
- 
- 	/* Step 4: deassert init rstn and wait for 200ns from datasheet */
--	if (udphy->mode & UDPHY_MODE_USB) {
-+	if (udphy->hw_mode & UDPHY_MODE_USB) {
- 		ret = rk_udphy_reset_deassert(udphy, "init");
- 		if (ret)
- 			goto assert_resets;
- 	}
- 
--	if (udphy->mode & UDPHY_MODE_DP) {
-+	if (udphy->hw_mode & UDPHY_MODE_DP) {
- 		regmap_update_bits(udphy->pma_regmap, CMN_DP_RSTN_OFFSET,
- 				   CMN_DP_INIT_RSTN,
- 				   FIELD_PREP(CMN_DP_INIT_RSTN, 0x1));
-@@ -845,7 +845,7 @@ static int rk_udphy_init(struct rk_udphy *udphy)
- 	udelay(1);
- 
- 	/*  Step 5: deassert cmn/lane rstn */
--	if (udphy->mode & UDPHY_MODE_USB) {
-+	if (udphy->hw_mode & UDPHY_MODE_USB) {
- 		ret = rk_udphy_reset_deassert(udphy, "cmn");
- 		if (ret)
- 			goto assert_resets;
-@@ -904,7 +904,7 @@ static int rk_udphy_parse_lane_mux_data(struct rk_udphy *udphy)
- 	num_lanes = device_property_count_u32(udphy->dev, "rockchip,dp-lane-mux");
- 	if (num_lanes < 0) {
- 		dev_dbg(udphy->dev, "no dp-lane-mux, following dp alt mode\n");
--		udphy->mode = UDPHY_MODE_USB;
-+		udphy->hw_mode = UDPHY_MODE_USB;
- 		return 0;
- 	}
- 
-@@ -933,10 +933,10 @@ static int rk_udphy_parse_lane_mux_data(struct rk_udphy *udphy)
- 		}
- 	}
- 
--	udphy->mode = UDPHY_MODE_DP;
-+	udphy->hw_mode = UDPHY_MODE_DP;
- 	udphy->dp_lanes = num_lanes;
- 	if (num_lanes == 1 || num_lanes == 2) {
--		udphy->mode |= UDPHY_MODE_USB;
-+		udphy->hw_mode |= UDPHY_MODE_USB;
- 		udphy->flip = (udphy->lane_mux_sel[0] == PHY_LANE_MUX_DP) ||
- 			      (udphy->lane_mux_sel[1] == PHY_LANE_MUX_DP);
- 	}
-@@ -1027,7 +1027,7 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
+-static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
++static int rk_udphy_update_power_state(struct rk_udphy *udphy)
  {
++	u8 target_mode = udphy->hw_mode & udphy->sw_mode;
  	int ret;
  
--	if (!(udphy->mode & mode)) {
-+	if (!(udphy->hw_mode & mode)) {
- 		dev_info(udphy->dev, "mode 0x%02x is not support\n", mode);
+-	if (!(udphy->hw_mode & mode)) {
+-		dev_info(udphy->dev, "mode 0x%02x is not support\n", mode);
++	if (!udphy->phy_needs_reinit && udphy->status == target_mode)
  		return 0;
+-	}
+ 
+-	if (udphy->status == UDPHY_MODE_NONE) {
+-		phy_notify_reset(udphy->phy_u3, PHY_NOTIFY_PRE_RESET);
++	/*
++	 * Inform DWC3 driver, that we are about to reset the PHY, so that it can
++	 * assert its PIPE reset lines and avoid DWC3 getting into a buggy state.
++	 */
++	phy_notify_reset(udphy->phy_u3, PHY_NOTIFY_PRE_RESET);
+ 
+-		rk_udphy_u3_port_disable(udphy, true);
+-		udelay(10);
++	/*
++	 * Disable USB3 port, which among other things re-routes a DWC3 clock to
++	 * avoid SErrors when the DWC3 registers are accessed while the PHY is
++	 * disabled.
++	 */
++	rk_udphy_u3_port_disable(udphy, true);
++	udelay(10);
+ 
++	if (udphy->status == UDPHY_MODE_NONE) {
++		/* Power up (incl. clocks) */
+ 		ret = rk_udphy_setup(udphy);
+-		if (ret)
++		if (ret) {
++			phy_notify_reset(udphy->phy_u3, PHY_NOTIFY_POST_RESET);
+ 			return ret;
+-
+-		if (!udphy->hs && udphy->hw_mode & UDPHY_MODE_USB)
+-			rk_udphy_u3_port_disable(udphy, false);
+-		udphy->phy_needs_reinit = false;
+-
+-		phy_notify_reset(udphy->phy_u3, PHY_NOTIFY_POST_RESET);
+-	} else if (udphy->phy_needs_reinit) {
+-		phy_notify_reset(udphy->phy_u3, PHY_NOTIFY_PRE_RESET);
+-
+-		rk_udphy_u3_port_disable(udphy, true);
+-		udelay(10);
+-
++		}
++	} else if (target_mode == UDPHY_MODE_NONE) {
++		/* Power down (incl. clocks) */
++		rk_udphy_disable(udphy);
++	} else {
++		/* Mode change => re-init */
+ 		ret = rk_udphy_init(udphy);
+ 		if (ret) {
+ 			phy_notify_reset(udphy->phy_u3, PHY_NOTIFY_POST_RESET);
+ 			return ret;
+ 		}
+-
+-		phy_notify_reset(udphy->phy_u3, PHY_NOTIFY_POST_RESET);
+-
+-		udphy->phy_needs_reinit = false;
  	}
-@@ -1042,7 +1042,7 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
+ 
+-	udphy->status |= mode;
++	/* Ensure USB3 support is enabled when supported and requested */
++	if (!udphy->hs && target_mode & UDPHY_MODE_USB)
++		rk_udphy_u3_port_disable(udphy, false);
+ 
+-	return 0;
+-}
+-
+-static void rk_udphy_power_off(struct rk_udphy *udphy, u8 mode)
+-{
+-	if (!(udphy->hw_mode & mode)) {
+-		dev_info(udphy->dev, "mode 0x%02x is not support\n", mode);
+-		return;
+-	}
+-
+-	if (!udphy->status)
+-		return;
++	/*
++	 * Inform DWC3, that we are done with the reset, so that it can deassert
++	 * its PIPE reset line.
++	 */
++	phy_notify_reset(udphy->phy_u3, PHY_NOTIFY_POST_RESET);
+ 
+-	udphy->status &= ~mode;
++	udphy->status = target_mode;
++	udphy->phy_needs_reinit = false;
+ 
+-	if (udphy->status == UDPHY_MODE_NONE)
+-		rk_udphy_disable(udphy);
++	return 0;
+ }
+ 
+ static int rk_udphy_dp_phy_power_on(struct phy *phy)
+@@ -1091,9 +1078,11 @@ static int rk_udphy_dp_phy_power_on(struct phy *phy)
+ 	int ret;
+ 
+ 	scoped_guard(mutex, &udphy->mutex) {
++		udphy->sw_mode |= UDPHY_MODE_DP;
++
+ 		phy_set_bus_width(phy, udphy->dp_lanes);
+ 
+-		ret = rk_udphy_power_on(udphy, UDPHY_MODE_DP);
++		ret = rk_udphy_update_power_state(udphy);
  		if (ret)
  			return ret;
  
--		if (!udphy->hs && udphy->mode & UDPHY_MODE_USB)
-+		if (!udphy->hs && udphy->hw_mode & UDPHY_MODE_USB)
- 			rk_udphy_u3_port_disable(udphy, false);
- 		udphy->phy_needs_reinit = false;
+@@ -1118,8 +1107,10 @@ static int rk_udphy_dp_phy_power_off(struct phy *phy)
  
-@@ -1071,7 +1071,7 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
- 
- static void rk_udphy_power_off(struct rk_udphy *udphy, u8 mode)
- {
--	if (!(udphy->mode & mode)) {
-+	if (!(udphy->hw_mode & mode)) {
- 		dev_info(udphy->dev, "mode 0x%02x is not support\n", mode);
- 		return;
- 	}
-@@ -1330,7 +1330,7 @@ static int rk_udphy_usb3_phy_init(struct phy *phy)
  	guard(mutex)(&udphy->mutex);
  
- 	/* DP only or high-speed, disable U3 port */
--	if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs) {
-+	if (!(udphy->hw_mode & UDPHY_MODE_USB) || udphy->hs) {
- 		rk_udphy_u3_port_disable(udphy, true);
- 		return 0;
- 	}
-@@ -1345,7 +1345,7 @@ static int rk_udphy_usb3_phy_exit(struct phy *phy)
++	udphy->sw_mode &= ~UDPHY_MODE_DP;
++
+ 	rk_udphy_dp_lane_enable(udphy, 0);
+-	rk_udphy_power_off(udphy, UDPHY_MODE_DP);
++	rk_udphy_update_power_state(udphy);
+ 
+ 	return 0;
+ }
+@@ -1329,13 +1320,9 @@ static int rk_udphy_usb3_phy_init(struct phy *phy)
+ 
  	guard(mutex)(&udphy->mutex);
  
- 	/* DP only or high-speed */
--	if (!(udphy->mode & UDPHY_MODE_USB) || udphy->hs) {
-+	if (!(udphy->hw_mode & UDPHY_MODE_USB) || udphy->hs) {
- 		udphy->status &= ~UDPHY_MODE_USB;
- 		return 0;
- 	}
+-	/* DP only or high-speed, disable U3 port */
+-	if (!(udphy->hw_mode & UDPHY_MODE_USB) || udphy->hs) {
+-		rk_udphy_u3_port_disable(udphy, true);
+-		return 0;
+-	}
++	udphy->sw_mode |= UDPHY_MODE_USB;
+ 
+-	return rk_udphy_power_on(udphy, UDPHY_MODE_USB);
++	return rk_udphy_update_power_state(udphy);
+ }
+ 
+ static int rk_udphy_usb3_phy_exit(struct phy *phy)
+@@ -1344,15 +1331,9 @@ static int rk_udphy_usb3_phy_exit(struct phy *phy)
+ 
+ 	guard(mutex)(&udphy->mutex);
+ 
+-	/* DP only or high-speed */
+-	if (!(udphy->hw_mode & UDPHY_MODE_USB) || udphy->hs) {
+-		udphy->status &= ~UDPHY_MODE_USB;
+-		return 0;
+-	}
++	udphy->sw_mode &= ~UDPHY_MODE_USB;
+ 
+-	rk_udphy_power_off(udphy, UDPHY_MODE_USB);
+-
+-	return 0;
++	return rk_udphy_update_power_state(udphy);
+ }
+ 
+ static const struct phy_ops rk_udphy_usb3_phy_ops = {
 
 -- 
 2.53.0
