@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-318153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318154-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id E1enAkC5RGpMzgoAu9opvQ
-	(envelope-from <devicetree+bounces-318153-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 08:52:48 +0200
+	id dWkoEzq5RGpLzgoAu9opvQ
+	(envelope-from <devicetree+bounces-318154-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 08:52:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B2C6EA592
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 08:52:47 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8FD86EA58F
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 08:52:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Z99ZYzOP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318153-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318153-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XamqQPcS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318154-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318154-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 37B263012CD0
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 06:52:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 327553024B68
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 06:52:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1963B14D5;
-	Wed,  1 Jul 2026 06:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32F043B19D4;
+	Wed,  1 Jul 2026 06:52:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B01C394464
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 06:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B242394464
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 06:52:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782888748; cv=none; b=m3uAOdBKh/i485s0a2Rq7BpImcn6qsj8A6wKW288QeGxhiuqewMSNv7Sp+s1mSjLUPSLKpLIuzLPMgx2KvlXyJ+AUFBPRlhOknfzdzENzEW1jdzJ9fg6jMpvtUI8VqO0Ou9SxntKixCcWm9dXRssc4kp9cVdcTeN1oB5BMEWz38=
+	t=1782888760; cv=none; b=lNSg6R7PDfNCn/Z8DXagbnuOqpOOOtl7e1fTFCIfvQuhANKgHOsMgGfnwy6NdKbe3QrW5viXFcvLsColFE4NKno4SHB7ooecO+lBXINhynJchxaM1Jlvdnm0RcBcj8fIB8vSugTM4iFOVyn9qQHL/0RoCRgZbH/pzdmzrq4Zdmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782888748; c=relaxed/simple;
-	bh=X1CjqdGyh3qN4GmaY9uFJ273JrzfZ38owoQ6ADu1ti0=;
+	s=arc-20240116; t=1782888760; c=relaxed/simple;
+	bh=cdRJHhhaorlopohfnbweSKw/LsxARRMMD75FKnurig8=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Q+baR/sYfk7N3a4cfd6NhUNm/c9ylnQ5Y0qaGtjsWs0qVp/N0ji+oRcnO0Z8TQfL2Q+xInKTZDXQ0yY/Kbw0qTx52LNlWUo7BU/m68rnIIJN/mjdLu/oLT2wOSjpwBUbR4Doy9dbkk8691DEKb7aGxldxHKJkzsuIKm301IVyW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z99ZYzOP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7735D1F00A3D;
-	Wed,  1 Jul 2026 06:52:26 +0000 (UTC)
+	 Message-Id; b=b9I+2pvPr4RuPNIFq9NaXF7o4wzjmDtnZ4QOsswlkVTEbTtWSLuKhaGWWDOXDv7AhpxQNahGDYJQImmZKdR7jVLttlqbAHAzyg2tlVc3bT82G4wGLVUoXdNOjnfB4sMuiEefxR95yCyD8lZnYje2X9GXGq/IiobADFw3OxeB3hU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XamqQPcS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DD671F00A3A;
+	Wed,  1 Jul 2026 06:52:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782888746;
-	bh=Yrd7RfbVXmiusiCIws3v5chow8YghllGfKiaK2hyMII=;
+	s=k20260515; t=1782888758;
+	bh=0ALanpgDRgZ4JRoDVrqVK3LvtFDtWFxJe8hdOk33WU8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Z99ZYzOPoDMc2TqrkaGyRX4g5DHASBRPQCQITy5cY3KQ9JG+PwFc7P1dTloAlU3Qf
-	 MI4Ff54k+SP7rX/Wr/poDSQYTnLPJ7zge+6KseSlClqP9MQJskaZj4Ii52Ien1HC/l
-	 z+K0m8NugpfeHcRiAjcf4SgL4jXsjGYaStMlxqCiVWdx8VfNN7opq9Z7sWKks0BFqE
-	 zHgGk/gQ5kU0D5/LG3lFEXjEeSbKQPPONmzWfPmZXJ6nAOI4qhJSgDQSGzKogXRkfC
-	 8YCQGvfZROwZx+P9z5SaQBUEDxh3kf8UTCKCi7CrwD2P71up6qrregZHKbTSkvJu5K
-	 LftOwIHiDzsVg==
+	b=XamqQPcSSeH35t66bBBctofyLWPnC4EzxV8lbPWdsRWu2haUbA+pR5tQ5Ccegzj0B
+	 uKPL8Oh8o7tdeCJ+yFpke8iAnyMeXZFSe5DYiuMvsZ65KsU+JgyfWEQZeOBefMhKJc
+	 OhCL4YfFj1or5v+eXBlqH1hcWhcqXJhaJar5mBUtPTIvxL0AB9T8oiBcRc41o+KCtm
+	 QtFcpLZmmWnLkQiVSGvQOXfAJfkWLI5XIHtGT6gKBoOXyVLmtkvtoYAnu5AQ6bchJ4
+	 1JKqagpMqKL8/0j6RDjdn/TKSm1ZsiY9/ADO7gBOY3KyN3RTX/a2a6YDzXV6CaZ/i2
+	 LGV+MeNtUHM2A==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 2/3] dt-bindings: iio: dac: Add AD5529R
+Subject: Re: [PATCH v5 3/3] iio: dac: Add AD5529R DAC driver support
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Janani Sunil" <janani.sunil@analog.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260701-ad5529r-driver-v5-2-ed087900e642@analog.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260701-ad5529r-driver-v5-3-ed087900e642@analog.com>
 References: <20260701-ad5529r-driver-v5-0-ed087900e642@analog.com>
- <20260701-ad5529r-driver-v5-2-ed087900e642@analog.com>
+ <20260701-ad5529r-driver-v5-3-ed087900e642@analog.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 06:52:26 +0000
-Message-Id: <20260701065226.7735D1F00A3D@smtp.kernel.org>
+Date: Wed, 01 Jul 2026 06:52:38 +0000
+Message-Id: <20260701065238.8DD671F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,24 +71,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318153-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318154-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:janani.sunil@analog.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:janani.sunil@analog.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -98,84 +98,93 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,analog.com:email,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 02B2C6EA592
+X-Rspamd-Queue-Id: D8FD86EA58F
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] The Device Tree binding incorrectly aggregates up to four separate=
- physical AD5529R chips into a single logical DT node, misplacing the `spi,=
-device-addr` property into individual IIO channel subnodes and extending th=
-e channel `reg` limit to 63.
+- [High] Channels not specified in the device tree are exposed to userspace=
+ but their hardware range is not explicitly configured.
 --
 
-commit 8170de6b140882817db48df2f479428c10fc9dbc
+commit eb86f7024ceca6fa634016d239f7ccfbf35f6a11
 Author: Janani Sunil <janani.sunil@analog.com>
+Date:   Wed Jul 1 06:40:41 2026 +0000
 
-dt-bindings: iio: dac: Add AD5529R
+iio: dac: Add AD5529R DAC driver support
 
-This commit adds Devicetree bindings for the Analog Devices AD5529R, a
-16-channel 12/16-bit high voltage DAC. It includes properties for
-power supplies, PWM, GPIOs, and channel configurations.
+This commit adds support for the Analog Devices AD5529R 16-channel, 12/16-b=
+it
+Digital to Analog Converter. The device communicates over SPI and supports
+per-channel output range configuration.
 
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5529r.yaml b=
-/Documentation/devicetree/bindings/iio/dac/adi,ad5529r.yaml
+> diff --git a/drivers/iio/dac/ad5529r.c b/drivers/iio/dac/ad5529r.c
 > new file mode 100644
-> index 0000000000000..97075b1c919d1
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5529r.yaml
+> +++ b/drivers/iio/dac/ad5529r.c
 [ ... ]
-> +patternProperties:
-> +  "^channel@([0-9a-f]{1,2})$":
-> +    type: object
-> +    description: Child nodes for individual channel configuration
+> +static int ad5529r_parse_channel_ranges(struct device *dev,
+> +					struct ad5529r_state *st)
+> +{
+> +	s32 vals[2];
+> +	int ret, range_idx;
+> +	u32 ch;
 > +
-> +    properties:
-> +      reg:
-> +        description: Channel number.
-> +        minimum: 0
-> +        maximum: 63
+> +	device_for_each_child_node_scoped(dev, child) {
+> +		ret =3D fwnode_property_read_u32(child, "reg", &ch);
+> +		if (ret)
+[ ... ]
+> +		st->output_range_idx[ch] =3D range_idx;
+> +		ret =3D regmap_write(st->regmap_16bit,
+> +				   AD5529R_REG_OUT_RANGE(ch), range_idx);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to configure range for ch %u\n",
+> +					     ch);
+> +	}
+> +
+> +	return 0;
+> +}
+[ ... ]
+> +static int ad5529r_probe(struct spi_device *spi)
+> +{
+[ ... ]
+> +	ret =3D ad5529r_parse_channel_ranges(dev, st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->name =3D st->model_data->model_name;
+> +	indio_dev->info =3D &ad5529r_info;
+> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
+> +	indio_dev->channels =3D st->model_data->channels;
+> +	indio_dev->num_channels =3D st->model_data->num_channels;
 
 [Severity: High]
-Does this topology correctly model the hardware? The AD5529R is a 16-channel
-DAC, but setting the maximum to 63 implies flattening up to four separate
-physical chips into a single logical Device Tree node.
+If a channel is omitted from the device tree during
+ad5529r_parse_channel_ranges(), will it remain uninitialized in hardware
+while still being unconditionally exposed to userspace here?
 
-By aggregating multiple chips into a single node, they are forced to share a
-single reset-gpios, clear-gpios, and interrupts definition. If a board wires
-these physical pins to different SoC GPIOs or interrupts for each chip, it
-would be structurally impossible to describe that hardware using this bindi=
-ng.
+Since ad5529r_parse_channel_ranges() only configures the output range
+registers for channels explicitly defined in the device tree child nodes,
+unlisted channels will retain whatever state the hardware bootloader or res=
+et
+left them in.
+
+The software state for these unlisted channels in st->output_range_idx
+defaults to 0 (AD5529R_RANGE_0V_5V). Could this discrepancy cause unexpected
+high-voltage outputs if userspace writes to these unconfigured hardware
+channels?
 
 > +
-> +      spi,device-addr:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [0, 1, 2, 3]
-> +        description:
-> +          Device address selected by the ID0 and ID1 pins. Up to four AD=
-5529R
-> +          devices can share a single SPI chip select; each device respon=
-ds only
-> +          to transfers whose address bits [13:12] match its configured a=
-ddress.
-
-[Severity: High]
-Should spi,device-addr be defined inside the channel subnode scope?
-
-Since this property represents the physical ID0 and ID1 pins on the chip it=
-self,
-placing it in every single channel subnode seems semantically incorrect and
-redundant. Should the child nodes represent the physical chips (allowing
-per-chip physical properties like spi,device-addr and reset-gpios) rather t=
-han
-flattening all channels across chips into one level?
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-ad5529r-dr=
-iver-v5-0-ed087900e642@analog.com?part=3D2
+iver-v5-0-ed087900e642@analog.com?part=3D3
 
