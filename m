@@ -1,266 +1,175 @@
-Return-Path: <devicetree+bounces-318604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318605-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wBC1K44URWqR6goAu9opvQ
-	(envelope-from <devicetree+bounces-318604-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:22:22 +0200
+	id 1abkIhsXRWpN6woAu9opvQ
+	(envelope-from <devicetree+bounces-318605-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:33:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A078F6EE07C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:22:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E67906EE2A7
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:33:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="h26Qf/2s";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318604-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318604-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=i8SCwyQh;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318605-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318605-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E2C7E3307737
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 13:04:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D1D431F6F13
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 13:04:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124E8481FB4;
-	Wed,  1 Jul 2026 13:01:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE5D748AE34;
+	Wed,  1 Jul 2026 13:01:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6B09441020
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 13:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0CC48AE20;
+	Wed,  1 Jul 2026 13:01:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782910909; cv=none; b=pviHhY1SigA/rPmu0JqsdiYo5FIFnP7HkB5cXLp2/HyLjFQrxKyS77cmBCjNjS3Dt2FhEA042vCIz97MvgYe9tO2xGpNw7Rw37d0ilHg508B2ohnsj0E0OEhlU9Mv5NgdNvNuMZk+K399FhhqT5s7U3uv3excQU/YDEmUrMRi4Y=
+	t=1782910919; cv=none; b=DYl+XolukXmSYM8wc8+w+8yukdhimrfmM1SuX59wZut5lwRZ0tU12PnAGlYV6LJCki3N5O7tv0d3t0Dk707nTWp+5TFz9PB6xtw0NY0lRSZ6pX72LyDvuuxJMytpapUDVC4HBjZPzXOX95CGL0XXn3v83/p6Zx+1WPgthbslI0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782910909; c=relaxed/simple;
-	bh=5MFu3rz0miEMWJNYtmKLqmPZ6nMIHJTbBrxH4Ovxfk0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=gnJ9E7hE8btZBFS8XsDZzSW0uIWtPkFYGih8cgwiXKrhrXxt8q5iPafQIjjQpFXemYKUqOvDJ8kG5qCMVJnkIb9dLG5v3WCT67ngKLkh4iYcJyRsF2YCV31Hrews43z/vXtD5XrdYKm3+jnwyLWggGo3KQcMSqlJFEtmCO2f7xw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h26Qf/2s; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 048FF1F000E9;
-	Wed,  1 Jul 2026 13:01:46 +0000 (UTC)
+	s=arc-20240116; t=1782910919; c=relaxed/simple;
+	bh=jnxZnh5V2zsErqh9R6TXWkelWIbod9lmGFF4LYtgJDc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OsEBDKJX8tNSynfVAVgGjP6WYgNPCvdMpr8ZpFo6/62PrHgM3sALgw3UBesgu4ojkw06SP9+ywT/wfHyPnN4Yau9vVRNgruuDas+an2nqiXH+N4RFhYiZMHMz5Zz+ld8alCYmcowi0DUgpmENmc4BR7I2Ck2E2SEO1ma/lnGDok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i8SCwyQh; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C9F11F000E9;
+	Wed,  1 Jul 2026 13:01:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782910907;
-	bh=/6s17sWw2U7DvJbiMh+7Uzrpjv0Cj2ixXONGdYVjlyk=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=h26Qf/2sie84Kt2Lq5qJm2beqhQV7Hp6ljbhgPu42bsctKhi0fKNWeqFDRWIN0EnC
-	 xvBKg3sORBitLD0cnuto34hmpUD9SGOjcYzzdNm3utFwhvJOMwOiw8SUCZxelpmtb4
-	 70Jr8HaQTrtXVKCb+DkcLa10Dtt66vJVay0nxgo0N6RCdEGNtKKWyGN73uOA4Ccc+w
-	 2qMhK+R95t1Lp0/Ct4n+R/A458X/zYFDjg3MFPPncJlN0tXDKr8KSqVtbjZ1dMkmDY
-	 yTti4iFKWe/vcbmB7HUFWIktZRBGmHpbPAlQmDlNtU1zTIxDHFbVjAmatpPdaPFkXl
-	 STur2eZrh6CMQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 12/12] phy: phy-mtk-dp: Add support for MT8196 eDP PHY
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: vkoul@kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, dri-devel@lists.freedesktop.org
-In-Reply-To: <20260701122008.19509-13-angelogioacchino.delregno@collabora.com>
-References: <20260701122008.19509-1-angelogioacchino.delregno@collabora.com>
- <20260701122008.19509-13-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 13:01:46 +0000
-Message-Id: <20260701130147.048FF1F000E9@smtp.kernel.org>
+	s=k20260515; t=1782910918;
+	bh=xSQsmx4MwF6oqeO3x1f6iZ8pIkIJYGGq6vkgVXhfEIs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=i8SCwyQhVICEaZZJ/Lp98o2+s119rdkjdwIfsz+v3x7mfvCZzQVIGsEvAj9X0l1Dk
+	 FBJejEC86nG5uBNPNuhJ3QvmBxBNGDb5NIVcuY3Yw7vx1VKXdNYUtjebwoBNUk77Ft
+	 vTpL3/bY4JTA0KDlgDLDP3nCRUJ//eXv1Itxtkba0Vpl/03h8JOmPssHq0TikKln7J
+	 Z4hC3HS8vVR19GIJW7+0bovNE8h7r5AmKj5DlMhiSs8xGpa7DhzzSKob0vj6wG/xKv
+	 a6VK22t7YXHmSK3EB0qdMtswtECqe7XABbPBwSX+m5U2RhIC8XQQxQ+n0fFNoNzKLq
+	 DytaDNZ3kcFQg==
+Date: Wed, 1 Jul 2026 14:01:52 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Matti Vaittinen <matti.vaittinen@linux.dev>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-rtc@vger.kernel.org
+Subject: Re: [PATCH 5/8] regulator: bd71828: Support ROHM BD73800
+Message-ID: <bf744d4f-eabe-48e7-92e4-b147b8d79d91@sirena.org.uk>
+References: <cover.1782909323.git.mazziesaccount@gmail.com>
+ <1d00359236272fd1fab0dfbcb9119d2f91aa0d23.1782909323.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jcOo3Xx3B2XL56n0"
+Content-Disposition: inline
+In-Reply-To: <1d00359236272fd1fab0dfbcb9119d2f91aa0d23.1782909323.git.mazziesaccount@gmail.com>
+X-Cookie: Do unto others before they undo you.
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-5.76 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318604-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	URIBL_MULTI_FAIL(0.00)[collabora.com:server fail,sashiko.dev:server fail,vger.kernel.org:server fail,tor.lore.kernel.org:server fail,smtp.kernel.org:server fail,lists.linux.dev:server fail];
+	FORGED_RECIPIENTS(0.00)[m:mazziesaccount@gmail.com,m:matti.vaittinen@fi.rohmeurope.com,m:matti.vaittinen@linux.dev,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:linusw@kernel.org,m:brgl@kernel.org,m:alexandre.belloni@bootlin.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-rtc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:vkoul@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,vger.kernel.org,linaro.org,gmail.com,lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318605-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[fi.rohmeurope.com,linux.dev,kernel.org,gmail.com,baylibre.com,redhat.com,bootlin.com,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,collabora.com:email,smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,sirena.org.uk:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A078F6EE07C
+X-Rspamd-Queue-Id: E67906EE2A7
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
 
-New issues:
-- [High] The MT8196 layout places DP_PHYD_LAN_DRIVING_FORCE at an offset th=
-at is overwritten by a contiguous bulk write to the driving parameters.
+--jcOo3Xx3B2XL56n0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Pre-existing issues:
-- [High] Lane disabling logic incorrectly clears the wrong register bits, l=
-eaving upper lanes powered on and corrupting adjacent lanes.
-- [High] Analog register offsets are mistakenly fetched from the digital re=
-gister array, causing writes to the wrong address.
-- [High] Missing shift for analog calibration parameters passed to regmap_u=
-pdate_bits() zeroes out hardware fields.
---
+On Wed, Jul 01, 2026 at 03:42:35PM +0300, Matti Vaittinen wrote:
+> From: Matti Vaittinen <mazziesaccount@gmail.com>
 
-commit 25701726cdcf8525c87349866f69aa298517187f
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: phy: phy-mtk-dp: Add support for MT8196 eDP PHY
+> +	nproot = of_get_child_by_name(nproot, "regulators");
+> +	if (!nproot) {
+> +		dev_err(dev, "failed to find regulators node\n");
+> +		return -ENODEV;
+> +	}
+> +	for_each_child_of_node(nproot, np) {
+> +		if (of_node_name_eq(np, LDO1_NODE_NAME))
+> +			ldo1_use_high_range = of_property_read_bool(np,
+> +							"rohm,ldo-range-high");
+> +		if (of_node_name_eq(np, LDO3_NODE_NAME))
+> +			ldo3_use_high_range = of_property_read_bool(np,
+> +							"rohm,ldo-range-high");
+> +	}
 
-The MT8196 SoC features an updated PHY IP compared to the older ones, and
-there is one that is specific to Embedded DisplayPort. This patch adds
-support for the eDP PHY found in the MediaTek MT8196 SoC and all of its
-variants.
+Why do we iterate over all nodes rather than doing additional
+of_get_child_by_name()s?
 
-> diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy=
--mtk-dp.c
-> index f067acef222f7..998ac34466678 100644
-> --- a/drivers/phy/mediatek/phy-mtk-dp.c
-> +++ b/drivers/phy/mediatek/phy-mtk-dp.c
+> +	if (ldo1_use_high_range) {
+> +		d[BD73800_LDO1].desc.linear_ranges = bd73800_ldo13_high_volts;
+> +		d[BD73800_LDO1].desc.n_linear_ranges =
+> +					ARRAY_SIZE(bd73800_ldo13_high_volts);
+> +	}
+> +	if (ldo3_use_high_range) {
+> +		d[BD73800_LDO3].desc.linear_ranges = bd73800_ldo13_high_volts;
+> +		d[BD73800_LDO3].desc.n_linear_ranges =
+> +					ARRAY_SIZE(bd73800_ldo13_high_volts);
+> +	}
 
-[ ... ]
+You could just do these updates without the intermediate variables.
 
-> @@ -178,6 +190,11 @@ static const u8 mt8195_phy_dig_lane_regs[DP_PHYD_LAN=
-_MAX] =3D {
->  	[DP_PHYD_LAN_DRIVING_PARAM_0] =3D 0x2c,
->  };
-> =20
-> +static const u8 mt8196_phy_dig_lane_regs[DP_PHYD_LAN_MAX] =3D {
-> +	[DP_PHYD_LAN_DRIVING_FORCE] =3D 0x30,
-> +	[DP_PHYD_LAN_DRIVING_PARAM_0] =3D 0x2c,
-> +};
+--jcOo3Xx3B2XL56n0
+Content-Type: application/pgp-signature; name="signature.asc"
 
-[Severity: High]
-Could this regression corrupt the driving force configuration?
+-----BEGIN PGP SIGNATURE-----
 
-In mtk_dp_phy_set_digital_drv_params(), there is a bulk write of 9 contiguo=
-us
-32-bit registers starting at DP_PHYD_LAN_DRIVING_PARAM_0:
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmpFD78ACgkQJNaLcl1U
+h9CBDAf/dk5xA9JPiqbs7lGosK1R3IusuArR8QLpFeRkO7UbIwwMHxsEiTpllWzW
+gEIuuygVMXAiQ/2K7lt3KwQnEguJnlm3419HhOX7Iuvr5QbXq4Elyf044UvaveHM
+OCU8sANA3BvR+7CfSHWhymoA+e71GnjArm6MiTsh9zU+qNEIgCmMlSBqg9KoI7qn
+uJEjHHrLwfWgOdM2jdSLRvkF7P482F4+yIJYjBeZ4xur4DaYkV1/GI7J7iaTWl0c
+9keWXd0Sb5B33DUC15jCrkXh0qVx0qZ0CENPNOg91cgsy/GE0h0TwgNQSI82NK3Q
+LIr8J90ZTo3udY4NKj6vEl7v/vvGtw==
+=Zag+
+-----END PGP SIGNATURE-----
 
-    ret =3D regmap_bulk_write(dp_phy->regmap,
-                            pdata->off_dig_lane[i] + reg,
-                            pdata->driving_params,
-                            ARRAY_SIZE(pdata->driving_params));
-
-Since the bulk write starts at 0x2c, driving_params[1] will be written to 0=
-x30,
-which overlaps with DP_PHYD_LAN_DRIVING_FORCE.
-
-> +
->  static const u8 mt8195_phy_dig_glb_regs[DP_PHYD_GLOBAL_MAX] =3D {
-
-[ ... ]
-
-> @@ -751,8 +784,39 @@ static const struct mtk_dp_phy_pdata mt8195_dp_phy_d=
-ata =3D {
->  	},
->  };
-> =20
-> +static const struct mtk_dp_phy_pdata mt8196_edp_phy_data =3D {
-> +	.off_ana_glb =3D 0x400,
-> +	.off_ana_lane =3D (const u16[]) { 0x0, 0x100, 0x200, 0x300 },
-> +	.off_dig_glb =3D 0x1400,
-> +	.off_dig_lane =3D (const u16[]) { 0x1000, 0x1100, 0x1200, 0x1300 },
-> +	.regs_ana_glb =3D mt8195_phy_ana_glb_regs,
-> +	.regs_ana_lane =3D mt8195_phy_ana_lane_regs,
-> +	.regs_dig_glb =3D mt8196_phy_dig_glb_regs,
-
-[Severity: High]
-This is a pre-existing issue, but do mtk_dp_phy_power_on() and
-mtk_dp_phy_power_off() fetch analog register offsets using this digital reg=
-ister
-array?
-
-Both functions use the analog enum DP_PHYA_GLB_FORCE_CTRL_1 to access the
-digital array:
-
-    const u8 *regs =3D pdata->regs_dig_glb;
-    ...
-    ret =3D regmap_set_bits(dp_phy->regmap,
-                          pdata->off_ana_glb + regs[DP_PHYA_GLB_FORCE_CTRL_=
-1],
-                          CKM_CKTX0_EN_FORCE_MODE);
-
-Accessing index 4 (DP_PHYA_GLB_FORCE_CTRL_1) of the digital array returns
-DP_PHYD_AUX_RX_CTL (0x40) instead of the intended analog offset (0x34).
-
-Does this overwrite incorrect memory mapped register offsets?
-
-> +	.regs_dig_lane =3D mt8196_phy_dig_lane_regs,
-> +	.mask_dig_tx_ln =3D PHYD_TX_LN_EN_V2,
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does the lane disabling logi=
-c in
-mtk_dp_phy_disable_all_lanes() use this mask incorrectly?
-
-It computes lane_num as a raw index and passes it to field_prep():
-
-    ret =3D regmap_clear_bits(dp_phy->regmap,
-                            pdata->off_dig_glb + regs[DP_PHYD_TX_CTL_0],
-                            field_prep(pdata->mask_dig_tx_ln, lane_num));
-
-Because field_prep() shifts the raw value, passing 3 instead of BIT(3) will
-shift 0b11 into the mask, clearing bits 4 and 5 instead of bit 7 (or bits 0=
- and
-1 instead of bit 3 for V2).
-
-Should this be using BIT(lane_num) instead?
-
-> +	.val_dig_bitrate =3D mt8196_edp_phy_dig_bitrate_val,
-> +	.ana_bias_r =3D 15,
-> +	.ana_cktx_imp =3D 8,
-
-[Severity: High]
-This isn't a bug introduced by this patch, but are these calibration parame=
-ters
-unconditionally cleared to zero in the hardware?
-
-In mtk_dp_phy_set_analog_calibration_params(), these values are passed
-directly to regmap_update_bits():
-
-    ret =3D regmap_update_bits(dp_phy->regmap,
-                             pdata->off_ana_glb + regs_ana_glb[DP_PHYA_GLB_=
-BIAS_GEN_0],
-                             XTP_GLB_BIAS_INT_R_CTRL, pdata->ana_bias_r);
-
-Because regmap_update_bits() expects a pre-shifted value and applies a mask
-(e.g., GENMASK(20, 16)), an unshifted raw value like 15 masked against the =
-upper
-bits yields 0.
-
-Should a macro like FIELD_PREP() be used to properly shift these values into
-place?
-
-> +	.ana_lanes_imp =3D {
-> +		.pmos =3D 8,
-> +		.nmos =3D 8,
-> +	},
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701122008.1950=
-9-1-angelogioacchino.delregno@collabora.com?part=3D12
+--jcOo3Xx3B2XL56n0--
 
