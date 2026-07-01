@@ -1,154 +1,174 @@
-Return-Path: <devicetree+bounces-318747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318749-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lPUYD6Y2RWro8goAu9opvQ
-	(envelope-from <devicetree+bounces-318747-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:47:50 +0200
+	id u4aCA944RWo/8woAu9opvQ
+	(envelope-from <devicetree+bounces-318749-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:57:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAAB36EF5EF
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:47:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 589C36EF6AC
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:57:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=mHpvIqwN;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318747-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318747-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=collabora.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Wxv8oyJm;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318749-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318749-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1B6E9300A7D4
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 15:47:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E7CE5301FF9B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 15:53:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBEEC3B6356;
-	Wed,  1 Jul 2026 15:47:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3D2748C8A8;
+	Wed,  1 Jul 2026 15:53:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EA593655D7;
-	Wed,  1 Jul 2026 15:47:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5A63101C2
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 15:53:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782920862; cv=none; b=taWc4nCy6Uf3Qui21pZaIvzO1fdPvlye6/mE3DjstpeN9t0+AlXsxY5BCPNdApnK8KmiI4+EZQ6sFkYQnPQQWA9IyvsDYQJI7e0g4rNrfPRd3bxXPLXKQwk9OoJY7h0RFny2EQZt1KjUd3SMOn87z+IeKVXwdJiB4rp9BigmWFM=
+	t=1782921218; cv=none; b=JhKBFQPyGiQfeQbqk0J0Hbe7lhx/6aogYz0VJ48OAIlpEocrAPyi3ms5/o44Qnl+Taqg+R4R6i7VUyP7uR8aJFi+gRNnmGwnphnuoAi2OZnQihk53p2dodhnn4D9ICT9TXOWFBHUEmgFuYoQQVxFAmoExI9PRdhMdr5agLAGabk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782920862; c=relaxed/simple;
-	bh=Ky9AIH6/lq3FHpbsWjW7cQtA0kjqF07M4MVwKxOHcRs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gI90PNxs7g0mratJmUXH9mIGLDRotabS3BP7g9wxj3YBQ7Ur4LUK2q5i8SkH8KVtL+vd8DkMhsLp+J8yP7KGlW/tjI+OLSwxSu0QfyWsVjLHnuGzphsKImMM3Gyal943cOaTnQpCauJVis9H2vCAo3QN+nI5znhoY2Jbma6H1wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=mHpvIqwN; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1782920859;
-	bh=Ky9AIH6/lq3FHpbsWjW7cQtA0kjqF07M4MVwKxOHcRs=;
-	h=From:Date:Subject:To:Cc:From;
-	b=mHpvIqwNp84u6/vvEm9g+BG98EFMuN+XKb/mWOpwbdTBqqkoW4jbvWpoqticz77at
-	 tJaBSxNVfU5jTcA1Dqy17ROjbdQR0XdHldSAIWOLdSoxLDm4BtTNZ2fl34Ak6Qy3hi
-	 xtvYsRUi+bmjICiJCukTyrwjy5VzY/c1sXw1WGSmNlERYFCjlR7x1lp8bS8T/Hsjm7
-	 w9w/eaUo/5beDO/ZqtzTUnURFVyvqegw3C4pWlLStn7+tvygo222Pep/zk2+ZPg5j1
-	 H1imdLxDMYAlFoClXT+8W2O3OQPV78xgbfEwfMxEQshAM9ZNrhysQYvVnoNO7dnq4G
-	 9tTShUonVWYPg==
-Received: from yukiji.home (unknown [100.64.0.131])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 093D817E02CB;
-	Wed,  1 Jul 2026 17:47:38 +0200 (CEST)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Wed, 01 Jul 2026 17:47:20 +0200
-Subject: [PATCH] dt-bindings: dma: mediatek,uart-dma: add support for
- MT8189 SoC
+	s=arc-20240116; t=1782921218; c=relaxed/simple;
+	bh=gHoW9k3dTGKJFXX0o0/bJ6XuuZ6pUUQjAI5TE+D+E2Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gRDKKae18XrPI4l+mno7DL/Bi5ifBHI9SGOEOqOkr398LxFqYF/Gd0/Vw2aqkWhg+gltsteFIHYzAHRmNLfG81DTPeiNUdcczqB5/tNK9XmF9PSykQ+2Je0pBQRVqq/GCRMFYs/gOq/RYyxZtkL1ZPofaYQcgKM04UDaU/4sjPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wxv8oyJm; arc=none smtp.client-ip=209.85.221.53
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-4629051c946so623950f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 08:53:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782921216; x=1783526016; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+ci+x4l7rGyX9PL16Opy1ybmCZaX0NHOsnDWtrHzkaw=;
+        b=Wxv8oyJmVfz0kN6BrmtSCL6v3jhFZ+paynrCkQi8oBJhFTR1T1oy5jBS7ttQIP6/VB
+         0e1aZ895pGwYYLdUzX5pRx5lv5E+BsvPAj3wJFHwga8KAymWhXBJlxcQD/D3g7yOL9yM
+         lDWoK/fJUp8egEOB7+TFF6ffk5CaVNZeM/LimdH36h8Yls5MuOHPE9WPX2PobK5yxw6c
+         WlPh/yo3NB8/YoLdMMqVfcM1tDS1mEreIrnE6atb6C1Pe21Wr8sjTXUl/JWPxE43FnJv
+         cstD1RRsx5QNEsMlkybrFHHvN4IZr+RFBwPSjqB+K1/1ZmmM0SZ5y9i5usfg/LuN2O8d
+         RUcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782921216; x=1783526016;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+ci+x4l7rGyX9PL16Opy1ybmCZaX0NHOsnDWtrHzkaw=;
+        b=lvlgKoKD5FG0OqCsrIdho9BXPFJ2+0Pk3pEM2k6MKQVl4483r9i86Ik7zrIa0ruiM7
+         NBc8mh0a8ZYxPOINQDamm92Es6z1j+Els+EAqXnZSEFgTTMT++tLNptCzxe7iaZuWjYj
+         JpJi8IE/k4JXLwA3y382QjGXgcFv3wmwl61x+PtXM9DYKxtK8Q+oEqF7GrEeVHvOQ1KN
+         mlpXHvr+5VIIMd2NoADmYWWJRuhWlhh9QdEmKcxnZ94Tu+GDb1io2WKGYFrhP1/26S5k
+         b38QVOxsU56WUqOXT9l46z6yCLS2lrjutlnC9qrYc/72nOSU9bJ+ASoMLxncmFIBr+5E
+         QjHg==
+X-Forwarded-Encrypted: i=1; AHgh+RpF0TgsoHnlQkmWtg58GKRq5QU8IXwnVXDOoMAqiP6yWaS/VzFQL1DWuu7uRznhkW83wC+1rkWih70D@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3SnSBm9DWJd4nSUHkrrbf3pFlLed6o4zzag46UjJgm8YDFXGH
+	qUYRmgKhYUr9nMm05V37Gx0uMRrp1ySPYQC1X2JV/II2Jm3FWOiWBr3F
+X-Gm-Gg: AfdE7cnzp/JtDZX1tudiqgqiWEGxMTzOENG4BLs0opSVTUT0AgTvmAdkYgt7eCp9SKT
+	CEb5+r8gI6bSDoAvnW2lad73SXtH50tdxglWKBasARPaW8tZeMwtpl/Cu0YuHg/K5fg0B8j2gBI
+	GszpC1TWP+ZFunvlFBGJA2nz4fzcZdAJVP6tGoOL4ivURdVLxLQ6nHgQna5Rm5ic+t0+jypXH1g
+	LjX5dscZu8pCleddPli1RUhi8AoH8XqIFNyA1Onahj5Bc6K2NapoVH1qPTFLo4+5ABb64Rc4Dmn
+	Q7iHj/Cu/y55i0dTEel6ki/siwLCE6w+Gvj1hPOGnSETkxoAbMQDCul/yLPflBhcVolrKYvGAtB
+	TdpmGJKZY8DYm/hAe9m7X9eAdwEeD9NE5Esj3qvADpZMz/CzzG8sayZf2wL654NHgmotcJ4bFjr
+	iBcemqX7W4sZXDkQCcbPD43hAz+/9rCE2MINF1pebDZ3MQWkduqg9+nBU6BVhXUuV3uMxj5wIvD
+	Ja6pfZ3lvP3phY02YKQ+0QT5Q==
+X-Received: by 2002:a05:6000:61e:b0:473:1e79:87e6 with SMTP id ffacd0b85a97d-477437a9a5fmr3750786f8f.3.1782921215516;
+        Wed, 01 Jul 2026 08:53:35 -0700 (PDT)
+Received: from Lord-Beerus.station (net-93-144-65-248.cust.dsl.teletu.it. [93.144.65.248])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-477db3db964sm803715f8f.8.2026.07.01.08.53.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Jul 2026 08:53:35 -0700 (PDT)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Alexander Herfurtner <alexander.h@variscite.com>
+Subject: [PATCH v1 1/1] arm64: dts: imx95-var-dart: wm8904: Add INL1 as DMICDAT1
+Date: Wed,  1 Jul 2026 17:53:08 +0200
+Message-ID: <20260701155308.40612-1-stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260701-mt8189-dt-bindings-uart-dma-v1-1-c7106216a40d@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWNQQ6DIBAAv0L23E3AppT6lcYDyGL3ALaAxsT49
- xI9zhxmdiiUmQr0YodMKxeeUwN1EzB+bJoI2TeGTnZaPqXCWI0yL/QVHSfPaSq42FzRR4vBBO/
- IPDSRgVb4Zgq8nfX3cHGm39Im9ZLgbCEc5xi59iLRVvEc6buE4Tj+p2kPCp4AAAA=
-X-Change-ID: 20260701-mt8189-dt-bindings-uart-dma-f8fdbe856ee8
-To: Sean Wang <sean.wang@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Frank Li <Frank.Li@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Long Cheng <long.cheng@mediatek.com>
-Cc: kernel@collabora.com, dmaengine@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782920858; l=1072;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=Ky9AIH6/lq3FHpbsWjW7cQtA0kjqF07M4MVwKxOHcRs=;
- b=ofMvNwFJxd2WVq31avixKD4TbRj35vFDFtRR0jcj91McrJ+rG7GfQZ47Vwn2QS6H9O8ZGXCOp
- xmk7QNrBj7BBEHNOkJQLU2Oeu5O4fFX1HVyVk6W14l0cMXrxUhzUck5
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sean.wang@mediatek.com,m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:long.cheng@mediatek.com,m:kernel@collabora.com,m:dmaengine@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:louisalexis.eyraud@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-318747-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_TO(0.00)[mediatek.com,kernel.org,gmail.com,collabora.com];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-318749-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:alexander.h@variscite.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,variscite.com:mid,variscite.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EAAB36EF5EF
+X-Rspamd-Queue-Id: 589C36EF6AC
 
-Add the compatible string for the APDMA IP found in MT8189 SoC,
-that supports 35-bits addressing as MT6985 SoC.
+From: Stefano Radaelli <stefano.r@variscite.com>
 
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+On the DART-MX95 platform, INL1/DMICDAT1 is used as the DMIC data line.
+
+Add the wlf,in1l-as-dmicdat1 property to reflect this configuration.
+This enables the internal MUX to switch between the ADC and DMIC as the
+capture input.
+
+Co-developed-by: Alexander Herfurtner <alexander.h@variscite.com>
+Signed-off-by: Alexander Herfurtner <alexander.h@variscite.com>
+Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
- Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/freescale/imx95-var-dart.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
-index 3708518fe7fc..bba20e88a6dc 100644
---- a/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
-@@ -40,6 +40,7 @@ properties:
-       - items:
-           - enum:
-               - mediatek,mt6991-uart-dma
-+              - mediatek,mt8189-uart-dma
-               - mediatek,mt8196-uart-dma
-           - const: mediatek,mt6985-uart-dma
-       - enum:
-
----
-base-commit: ba7c57499e5999aeae8dd4f954eb2600589d80aa
-change-id: 20260701-mt8189-dt-bindings-uart-dma-f8fdbe856ee8
-
-Best regards,
+diff --git a/arch/arm64/boot/dts/freescale/imx95-var-dart.dtsi b/arch/arm64/boot/dts/freescale/imx95-var-dart.dtsi
+index a20fadacaa6d..d43270a1d907 100644
+--- a/arch/arm64/boot/dts/freescale/imx95-var-dart.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx95-var-dart.dtsi
+@@ -158,6 +158,8 @@ wm8904: audio-codec@1a {
+ 				   /bits/ 16 <0x04af 0x324b 0x0010 0x050e>;
+ 		/* GPIO1 = DMIC_CLK, don't touch others */
+ 		wlf,gpio-cfg = <0x0018>, <0xffff>, <0xffff>, <0xffff>;
++		/* DMIC is connected to IN1L */
++		wlf,in1l-as-dmicdat1;
+ 	};
+ };
+ 
 -- 
-Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+2.47.3
 
 
