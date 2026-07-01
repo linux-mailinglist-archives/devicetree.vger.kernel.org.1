@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-318457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318456-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Zh7EFjUHRWqM5QoAu9opvQ
-	(envelope-from <devicetree+bounces-318457-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:25:25 +0200
+	id J0+7NfwIRWon5goAu9opvQ
+	(envelope-from <devicetree+bounces-318456-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:33:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC9966ED489
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:25:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E0F6ED61A
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:33:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=KuWQiqXO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318457-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318457-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=AwzCr+h4;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318456-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318456-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D644B30492E5
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:23:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3B1E631D0AD9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:23:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E7C9495537;
-	Wed,  1 Jul 2026 12:20:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA297495530;
+	Wed,  1 Jul 2026 12:20:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8E1495508;
-	Wed,  1 Jul 2026 12:20:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68A89495517;
+	Wed,  1 Jul 2026 12:20:15 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782908417; cv=none; b=BN7ub6w+GxLJr3pd2kObTno172LqnaNvYd4RnGLXXntWm1p3zOlk1VftYh/v77PG9Z67siVnde02iII8OZs8QcKOsoqKojQBg4I5OYfslvQrdfajiEt3RW46DGw/c/rh6nJQTMfw61r3bvL5cg8avpcckV99EfZi+SR5hkVA04I=
+	t=1782908416; cv=none; b=qs4Bqi5HT+GLbzIM1EWJv594DzkZ379/4kxxi4Fr0Co+ruuT/7MQR5YWZsTKG3i6LS7QVKkmeQPC5HpDWQmDgy56GhekjX4N1Haqj43YRH7THufnbtVJswRAzl8s0hDT1gHeEZDdCXoG+WTsDY0C1tAUOTjqdNYV5qS/NMY0JWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782908417; c=relaxed/simple;
-	bh=WveJIKcSDFtln6moBUm4mMfeMv6Y8I/JiesYCykNM8g=;
+	s=arc-20240116; t=1782908416; c=relaxed/simple;
+	bh=drPuGk1RrigxZ+IaT2E5KeHFHxa9PckPt6j7NykPerI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jFIGTeRqwqgRjF3MFu9wcpgTv7NE+iU2mHDabPqPCOOdJkC+o8rQ6EOw65Wg1HBZhMjcJ9MSYHJLEF4iAvMeHTZiLrizfz0bBfAbBRcdJHuxjJvUmQBSyc1Dd8eRGpimI++yvK1gs1kWH/H3CCFgr1mrjMBvUEGLaSg1Ohl59SY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KuWQiqXO; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=gQBwnnnw+qdktvCw9iuXUjS1FROiZIZ/XmvUMhdDNqeBYjjU0lLWUUxCrzsAvZA44svgKr+2+4xR8ujS7c6r6kp9nN/Unob4OI6vs36iBC7zp/KNNdG4dVW38N1P6oancZXmZ7jVB5gfq7A8grQwxU9dMVQ4NIC2eVZuQZTYFGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AwzCr+h4; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1782908413;
-	bh=WveJIKcSDFtln6moBUm4mMfeMv6Y8I/JiesYCykNM8g=;
+	bh=drPuGk1RrigxZ+IaT2E5KeHFHxa9PckPt6j7NykPerI=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KuWQiqXO3Bo3bL3GfEx3ALn6r1FYE+70kyIXjMrLlJEKwrsXVgFkgXpix7MHSCW+7
-	 1GINPA2qAKDJ9Wq0DD8z8UjczYeYu8sczvDAVgK6MJ2bBJU7thsYXSmPw+rgsvLwVD
-	 3YLUra77S2Lwp9Vk6PfRexipL+2q+/QMJBI6NUjTZ78wU5ioClQTVX1jYsW96qvu18
-	 KeXaGWTfw22bN6vSnub8paTUGwVjLnvA1Fs6s1tPJk+9J3fyqkWgdW7qaaDNPp+WnA
-	 Gr3ATRPJUi5BRRYZBScXN+9psjzSqAcShbfzD1BHlm+i3+bYfeZXIehZnYmG0oG1u0
-	 es5Li1MWMGsFA==
+	b=AwzCr+h4AjkUG7277e+JQ1BirFKqAHFrkvtu6hkXO4nc5pwcIac5HTfk51kaEhxVp
+	 N1k34nfU9MelEha0ESjmGdMlrArC6bVkvLgdPn3otHxKYfvxsQKiKi3t59uVDHPkFX
+	 EwOJrhp1Hs+jLWAeGJMTMPRBUJfOgnQhdpeofw4CKReIm1BUVxI6fj3Vu6gpa9w5ws
+	 OMRhut6WqnzkpsIgueoVtvnB4NY1vqucMCFa3eww1bdhV75jYtVxwJLQuSCSgnB1s4
+	 7VGW+ufkfIb/cszTNSq7lsZKSYiXmX8aa+EwSGM9qyD8awnpPdXAk3OyUUTwe//GIi
+	 Hv7THpEDcG9UQ==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 54C6D17E0D72;
-	Wed,  1 Jul 2026 14:20:12 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3579C17E0F44;
+	Wed,  1 Jul 2026 14:20:13 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunfeng.yun@mediatek.com
 Cc: vkoul@kernel.org,
@@ -70,9 +70,9 @@ Cc: vkoul@kernel.org,
 	linux-kernel@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
 	kernel@collabora.com
-Subject: [PATCH 02/12] phy: phy-mtk-dp: Rename regs to regmap in struct mtk_dp_phy
-Date: Wed,  1 Jul 2026 14:19:58 +0200
-Message-ID: <20260701122008.19509-3-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 03/12] phy: phy-mtk-dp: Allow probing with devicetree match
+Date: Wed,  1 Jul 2026 14:19:59 +0200
+Message-ID: <20260701122008.19509-4-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260701122008.19509-1-angelogioacchino.delregno@collabora.com>
 References: <20260701122008.19509-1-angelogioacchino.delregno@collabora.com>
@@ -91,14 +91,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[kernel.org,linaro.org,gmail.com,collabora.com,pengutronix.de,mediatek.com,lists.infradead.org,vger.kernel.org,lists.freedesktop.org];
-	TAGGED_FROM(0.00)[bounces-318457-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318456-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
@@ -113,90 +113,145 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,vger.kernel.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EC9966ED489
+X-Rspamd-Queue-Id: 36E0F6ED61A
 
-In preparation to perform further cleanups and to extend the
-driver to support more SoCs, rename the `regs` member to `regmap`
-to improve readability, as this is a common name across many
-kernel drivers for a struct regmap.
+Make it possible to decouple the registration of the DisplayPort
+PHY driver from the DisplayPort IP driver by adding a devicetree
+match to probe the PHY, registering an OF PHY provider and this
+device's own MMIO regmap - if, and only if, this PHY driver was
+registered with an OF match.
+
+In order to retain compatibility with older devicetrees that are
+not declaring the DisplayPort PHY as a separate node, the legacy
+code was moved in a `mtk_dp_phy_legacy_probe()` function, which
+gets called if the driver was registered by the DisplayPort one.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- drivers/phy/mediatek/phy-mtk-dp.c | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ drivers/phy/mediatek/phy-mtk-dp.c | 70 ++++++++++++++++++++++++++-----
+ 1 file changed, 60 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy-mtk-dp.c
-index d7024a144335..bf7b3a95e72d 100644
+index bf7b3a95e72d..98e05fe05ce3 100644
 --- a/drivers/phy/mediatek/phy-mtk-dp.c
 +++ b/drivers/phy/mediatek/phy-mtk-dp.c
-@@ -79,7 +79,7 @@
+@@ -79,6 +79,7 @@
  				 XTP_LN_TX_LCTXCP1_SW3_PRE0_DEFAULT)
  
  struct mtk_dp_phy {
--	struct regmap *regs;
-+	struct regmap *regmap;
++	struct device *dev;
+ 	struct regmap *regmap;
  };
  
- static int mtk_dp_phy_init(struct phy *phy)
-@@ -94,13 +94,13 @@ static int mtk_dp_phy_init(struct phy *phy)
- 		DRIVING_PARAM_8_DEFAULT
- 	};
+@@ -160,43 +161,92 @@ static const struct phy_ops mtk_dp_phy_dev_ops = {
+ 	.owner = THIS_MODULE,
+ };
  
--	regmap_bulk_write(dp_phy->regs, MTK_DP_LANE0_DRIVING_PARAM_3,
-+	regmap_bulk_write(dp_phy->regmap, MTK_DP_LANE0_DRIVING_PARAM_3,
- 			  driving_params, ARRAY_SIZE(driving_params));
--	regmap_bulk_write(dp_phy->regs, MTK_DP_LANE1_DRIVING_PARAM_3,
-+	regmap_bulk_write(dp_phy->regmap, MTK_DP_LANE1_DRIVING_PARAM_3,
- 			  driving_params, ARRAY_SIZE(driving_params));
--	regmap_bulk_write(dp_phy->regs, MTK_DP_LANE2_DRIVING_PARAM_3,
-+	regmap_bulk_write(dp_phy->regmap, MTK_DP_LANE2_DRIVING_PARAM_3,
- 			  driving_params, ARRAY_SIZE(driving_params));
--	regmap_bulk_write(dp_phy->regs, MTK_DP_LANE3_DRIVING_PARAM_3,
-+	regmap_bulk_write(dp_phy->regmap, MTK_DP_LANE3_DRIVING_PARAM_3,
- 			  driving_params, ARRAY_SIZE(driving_params));
- 
- 	return 0;
-@@ -131,10 +131,10 @@ static int mtk_dp_phy_configure(struct phy *phy, union phy_configure_opts *opts)
- 			val = BIT_RATE_HBR3;
- 			break;
- 		}
--		regmap_write(dp_phy->regs, MTK_DP_PHY_DIG_BIT_RATE, val);
-+		regmap_write(dp_phy->regmap, MTK_DP_PHY_DIG_BIT_RATE, val);
- 	}
- 
--	regmap_update_bits(dp_phy->regs, MTK_DP_PHY_DIG_PLL_CTL_1,
-+	regmap_update_bits(dp_phy->regmap, MTK_DP_PHY_DIG_PLL_CTL_1,
- 			   TPLL_SSC_EN, opts->dp.ssc ? TPLL_SSC_EN : 0);
- 
- 	return 0;
-@@ -144,10 +144,10 @@ static int mtk_dp_phy_reset(struct phy *phy)
++static int mtk_dp_phy_legacy_probe(struct platform_device *pdev, struct mtk_dp_phy *dp_phy)
++{
++	struct device *dev = &pdev->dev;
++	struct phy *phy;
++
++	dp_phy->regmap = *(struct regmap **)dev->platform_data;
++	if (!dp_phy->regmap)
++		return dev_err_probe(dev, -EINVAL, "No platform data available\n");
++
++	phy = devm_phy_create(dev, NULL, &mtk_dp_phy_dev_ops);
++	if (IS_ERR(phy))
++		return dev_err_probe(dev, PTR_ERR(phy),
++				     "Failed to create DP PHY\n");
++
++	phy_set_drvdata(phy, dp_phy);
++	phy_create_lookup(phy, "dp", dev_name(dev));
++
++	return 0;
++}
++
++static const struct regmap_config mtk_dp_phy_regmap_cfg = {
++	.reg_bits = 32,
++	.val_bits = 32,
++	.reg_stride = 4,
++	.disable_locking = true,
++};
++
+ static int mtk_dp_phy_probe(struct platform_device *pdev)
  {
- 	struct mtk_dp_phy *dp_phy = phy_get_drvdata(phy);
+ 	struct device *dev = &pdev->dev;
++	struct phy_provider *provider;
+ 	struct mtk_dp_phy *dp_phy;
++	void __iomem *base;
+ 	struct phy *phy;
+-	struct regmap *regs;
+-
+-	regs = *(struct regmap **)dev->platform_data;
+-	if (!regs)
+-		return dev_err_probe(dev, -EINVAL,
+-				     "No data passed, requires struct regmap**\n");
  
--	regmap_update_bits(dp_phy->regs, MTK_DP_PHY_DIG_SW_RST,
-+	regmap_update_bits(dp_phy->regmap, MTK_DP_PHY_DIG_SW_RST,
- 			   DP_GLB_SW_RST_PHYD, 0);
- 	usleep_range(50, 200);
--	regmap_update_bits(dp_phy->regs, MTK_DP_PHY_DIG_SW_RST,
-+	regmap_update_bits(dp_phy->regmap, MTK_DP_PHY_DIG_SW_RST,
- 			   DP_GLB_SW_RST_PHYD, 1);
- 
- 	return 0;
-@@ -176,7 +176,7 @@ static int mtk_dp_phy_probe(struct platform_device *pdev)
+ 	dp_phy = devm_kzalloc(dev, sizeof(*dp_phy), GFP_KERNEL);
  	if (!dp_phy)
  		return -ENOMEM;
  
--	dp_phy->regs = regs;
-+	dp_phy->regmap = regs;
+-	dp_phy->regmap = regs;
++	dp_phy->dev = dev;
++
++	/* If there's no devicetree, go for legacy pdev probe */
++	if (!dev->of_node)
++		return mtk_dp_phy_legacy_probe(pdev, dp_phy);
++
++	base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(base))
++		return PTR_ERR(base);
++
++	dp_phy->regmap = devm_regmap_init_mmio(dev, base, &mtk_dp_phy_regmap_cfg);
++	if (IS_ERR(dp_phy->regmap))
++		return PTR_ERR(dp_phy->regmap);
++
  	phy = devm_phy_create(dev, NULL, &mtk_dp_phy_dev_ops);
  	if (IS_ERR(phy))
  		return dev_err_probe(dev, PTR_ERR(phy),
+ 				     "Failed to create DP PHY\n");
+ 
+ 	phy_set_drvdata(phy, dp_phy);
+-	if (!dev->of_node)
+-		phy_create_lookup(phy, "dp", dev_name(dev));
++
++	provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
++	if (IS_ERR(provider))
++		return PTR_ERR(provider);
++
++	pm_runtime_enable(dev);
++	pm_runtime_get_sync(dev);
+ 
+ 	return 0;
+ }
+ 
++static const struct of_device_id mtk_dp_phy_of_match[] = {
++	{ .compatible = "mediatek,mt8195-dp-phy" },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, mtk_dp_phy_of_match);
++
+ static struct platform_driver mtk_dp_phy_driver = {
+ 	.probe = mtk_dp_phy_probe,
+ 	.driver = {
+ 		.name = "mediatek-dp-phy",
++		.of_match_table = mtk_dp_phy_of_match,
+ 	},
+ };
+ module_platform_driver(mtk_dp_phy_driver);
+ 
++MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
+ MODULE_AUTHOR("Markus Schneider-Pargmann <msp@baylibre.com>");
+-MODULE_DESCRIPTION("MediaTek DP PHY Driver");
++MODULE_DESCRIPTION("MediaTek DisplayPort PHY Driver");
+ MODULE_LICENSE("GPL");
 -- 
 2.54.0
 
