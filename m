@@ -1,157 +1,176 @@
-Return-Path: <devicetree+bounces-318382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318380-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1hjrNdj0RGr83woAu9opvQ
-	(envelope-from <devicetree+bounces-318382-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:07:04 +0200
+	id JBmPFp30RGru3woAu9opvQ
+	(envelope-from <devicetree+bounces-318380-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:06:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E3C16EC8EE
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:07:04 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E047A6EC8B4
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:06:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=T7kun4Fs;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318382-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318382-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dA1qXZu+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318380-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318380-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5DCA2304A832
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:05:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 57995301DC4B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE2443634B;
-	Wed,  1 Jul 2026 11:04:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B421416D16;
+	Wed,  1 Jul 2026 11:04:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C6E43DA26
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 11:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1206E3F4830;
+	Wed,  1 Jul 2026 11:04:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782903871; cv=none; b=AD0l1Dmqsu/pZTh+3bcVxJpdPTCMYocli9cfykw7HeVBwwPRXVJ+Gawd1qE69sbp0WBaNeP0tKe4AZRu+heYvArSXpNfU5a5TSsBkkbeH4cC1ydKm6pHQ5iQoLKAUa0wLCc+KCrRhuBA+JjvDYnnDHmP3q1Tk/Uy1CUWti/VWiM=
+	t=1782903864; cv=none; b=hiWL4qRvGFkDksia83dLJHQjtbPyw8qdj5O2SlmFywgGzWkYsydewFT4zW9+x4TyRLlUG00G+iuVMlLA2f3yDSZdhVZxKM2BJOlbelOkleO2AgjyTen0c4D8jR4EFNoBSiIdZ8KRjMt47XloAHIjAKGLHBF72Pz4ElpCbXT43yg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782903871; c=relaxed/simple;
-	bh=GZVdHF4RDDIw1GGyB47+k+m0XFHhbNyNGeWh/pCWjI8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gQrP1iFLpKU/GF5nY6J4mXxoVBufvOUIoMzGPwk+VFUbY2ilxMRGkVfik+riIrG/o9aGlWOgyoEZEy98xCL8mnGNJjRK5WzUMbDi4Ifp+1Inzex9amossEgOsyEQHQPQBlJCuInVCD4pYa8wD9eNjoQKs7qG7yJIIUk/mqz4T2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T7kun4Fs; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBF291F0155D
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 11:04:30 +0000 (UTC)
+	s=arc-20240116; t=1782903864; c=relaxed/simple;
+	bh=3qesG+9F/KdPht7/nQwVxS12U3O+N/hmSshuhQUcJq8=;
+	h=From:Subject:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=cifx1vzxz2TZSSvfyA8qre2lxm0tqfCQ441Rw5Ou8KBURBzFIbVWT5N6zXbQcfllu6OIzNhXzdxJLa+Tz8tfhopU4e6tdzZiN7o5UXKbq+g5nrrRwNvZsGeelJTajyu3N7hPiurX4Jo6Znf5dwiHcTFXmsKj3f4Yg9o3u9fjjr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dA1qXZu+; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 438D01F000E9;
+	Wed,  1 Jul 2026 11:04:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782903870;
-	bh=GZVdHF4RDDIw1GGyB47+k+m0XFHhbNyNGeWh/pCWjI8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=T7kun4FsQTg4nrByttcWF1XbAF9a1nz/xm5VEJGp6Vq6BvL4piRhl7pnpTSZaSsAv
-	 o6vdGU5xtAPraiD6B8Aj1/xzLT/BeVvkRC60esDutv8NozfP303xB30G/dkU11VQby
-	 BCcSNqv7e1MxVhEn3YG/ioapS6k5K4ypOjvOw3wlw9hBJ8M2p0awlpsfBQ0a+O3737
-	 mfv8x7Ua6KnSPEuq53FbqNlRluTh+MLzo8GXEiNL5QA5BSyaGV9alRGPJvugzgZS8X
-	 9x92fFNjHvpI/PYVIpjbqHZ1GQ7hyktFB9uCLU1mJC3CmOHgC5FWsCeEpNTD8BhjUj
-	 3CcMF6KgvliIw==
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5aeb5e85378so579287e87.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 04:04:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RqgesjhggVxqL+bqvCeLZvd66mfCYQKu6s6QKXhdYhBmoYgnyeKbkiKdAb9jxO+PJcqIcTiqV1u+7ax@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUmAfUKKEa41GWp3dcF8xqKGrPxi+jOHf3Xo46xTafgxq60owm
-	s/msIYxwuvaLzPHZmu8/kU0VME2finf0i7QI/g+rCq8nBZdVHGDQR3xkdnlxpvYU+G5lKM/I+3s
-	2QgUO8LWBHQNnZ/Atdm99vTYQhM7eKCI=
-X-Received: by 2002:a05:6512:2457:b0:5ad:abf:1e1a with SMTP id
- 2adb3069b0e04-5aec678e6bcmr286502e87.5.1782903869487; Wed, 01 Jul 2026
- 04:04:29 -0700 (PDT)
+	s=k20260515; t=1782903862;
+	bh=HeoiFVV3lL3hREZrfPDaAqDcMsgmo+oIlOrM1bpGoFo=;
+	h=From:Subject:Reply-To:Cc:In-Reply-To:References:Date;
+	b=dA1qXZu+awCq5reIEzSwSY4jjksyHjSNplRxjpVKaE/pDlW5sCE9HAR5TL2598y8x
+	 JfCC1ycLuUliHbRgRjKJGSJLKlHG/lwp6oCBzHPOkGqkzfZsnYgGYheWcmFUvZ6pan
+	 Zq+Kut9KiV+bp9T+UIDqdHRGAz/UZIkhcK/eRVnODa2Y1xQAOYNi/TARRuOMSQD1e4
+	 1+EFnCczeTNYa0XHs6K4baTgF65VPWZ54GArxWXdojcgIcdQ8GJwWyDLw1tXRh2nk7
+	 /Jz7QyaSDvpDkafInHpt5/UTpPnxPox5jsxm+l7ey+i1oS1XW2BsTjqQS11YASCsZu
+	 S9HDwCu46GIsw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V5 1/7] arm: dts: imx6qdl-sabresd: Add power supply
+ property to Root Port node
+Reply-To: sashiko-reviews@lists.linux.dev
+Cc: imx@lists.linux.dev, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, Frank.Li@kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260701105234.198987-2-sherry.sun@oss.nxp.com>
+References: <20260701105234.198987-1-sherry.sun@oss.nxp.com>
+ <20260701105234.198987-2-sherry.sun@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 01 Jul 2026 11:04:21 +0000
+Message-Id: <20260701110422.438D01F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260622092335.1166876-1-eleanor.lin@realtek.com>
- <20260622092335.1166876-2-eleanor.lin@realtek.com> <CAD++jL=6pqEA0-vs_J57MnhmLmLwrTj7-syOL8E7PLYW-vUBvg@mail.gmail.com>
- <56be68cba7d9461d9a1ec66ed1a1417a@realtek.com>
-In-Reply-To: <56be68cba7d9461d9a1ec66ed1a1417a@realtek.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 1 Jul 2026 13:04:16 +0200
-X-Gmail-Original-Message-ID: <CAD++jL=1mqDetG-+DW_Loj5Ufp_v5DmLN+T9pM_28dAASHHRzA@mail.gmail.com>
-X-Gm-Features: AVVi8Cd5VWiNZ8yCkmPmPqgDgJBXqd110lMfJ3ncCbilkzR-pzDuizM2gwBEdko
-Message-ID: <CAD++jL=1mqDetG-+DW_Loj5Ufp_v5DmLN+T9pM_28dAASHHRzA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: realtek: Add realtek,rtd1625-gpio
-To: =?UTF-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>
-Cc: "brgl@kernel.org" <brgl@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"afaerber@suse.com" <afaerber@suse.com>, "mwalle@kernel.org" <mwalle@kernel.org>, 
-	"andriy.shevchenko@intel.com" <andriy.shevchenko@intel.com>, =?UTF-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-realtek-soc@lists.infradead.org" <linux-realtek-soc@lists.infradead.org>, 
-	=?UTF-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?= <cy.huang@realtek.com>, 
-	=?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= <stanley_chang@realtek.com>, 
-	=?UTF-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MISSING_MIME_VERSION(2.00)[];
+	MISSING_TO(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-318380-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318382-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_RECIPIENTS(0.00)[m:eleanor.lin@realtek.com,m:brgl@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:afaerber@suse.com,m:mwalle@kernel.org,m:andriy.shevchenko@intel.com,m:tychang@realtek.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:james.tai@realtek.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	REPLYTO_DOM_EQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-pci@vger.kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,nxp.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,mail.gmail.com:mid,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4E3C16EC8EE
+X-Rspamd-Queue-Id: E047A6EC8B4
 
-On Wed, Jul 1, 2026 at 12:41=E2=80=AFPM Yu-Chun Lin [=E6=9E=97=E7=A5=90=E5=
-=90=9B]
-<eleanor.lin@realtek.com> wrote:
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-> To clarify the hardware design: this SoC does not use a banked GPIO
-> architecture.
->
-> Each GPIO pin has its own dedicated 32-bit control register that handles
-> both GPIO configuration and interrupt settings (e.g., edge/level enable).
-> The only exception is the interrupt status register, which is grouped int=
-o
-> 32-bit words.
+Pre-existing issues:
+- [High] Missing error check for pwrseq_power_on() in slot_pwrctrl_power_on=
+() leads to potential kernel panic.
+--
 
-Aha, I get it!
+commit 4b51e513820a111cd03554e7f701a9ce808be27b
+Author: Sherry Sun <sherry.sun@nxp.com>
 
-> Since physical GPIO banks do not exist, using a 3-cell <bank offset flags=
->
-> format would misrepresent the hardware. Therefore,
-> keeping #gpio-cells =3D <2> and #interrupt-cells =3D <2> is the most accu=
-rate
-> reflection of the actual silicon.
+arm: dts: imx6qdl-sabresd: Add power supply property to Root Port node
 
-Hmmmm I would argue that the way the interrupts are routed into a
-single 32-bit register for 32 GPIOs would be an argument for using
-#interrupt-cells =3D <3> but it would be confusing to use a mixture of
-2 and 3 cells for GPIOs and interrupts, so I guess 2 is OK for both.
+This commit adds the power supply property to the Root Port child node to
+support the new PCI pwrctrl framework. The legacy power supply property is
+retained for backward compatibility.
 
-Yours,
-Linus Walleij
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi b/arch/arm/bo=
+ot/dts/nxp/imx/imx6qdl-sabresd.dtsi
+> index fe9046c03ddd6..60fe0f973668b 100644
+> --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
+> +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
+> @@ -756,12 +756,14 @@ &pcie {
+>  	pinctrl-0 =3D <&pinctrl_pcie>;
+>  	/* This property is deprecated, use reset-gpios from the Root Port node=
+. */
+>  	reset-gpio =3D <&gpio7 12 GPIO_ACTIVE_LOW>;
+> +	/* This property is deprecated, use power supply from the Root Port nod=
+e. */
+>  	vpcie-supply =3D <&reg_pcie>;
+>  	status =3D "okay";
+>  };
+> =20
+>  &pcie_port0 {
+>  	reset-gpios =3D <&gpio7 12 GPIO_ACTIVE_LOW>;
+> +	vpcie3v3-supply =3D <&reg_pcie>;
+
+[Severity: High]
+This is a pre-existing issue, but does enabling the pwrctrl framework here
+expose a regression where error checks are missing in the core code?
+
+Looking at drivers/pci/pwrctrl/generic.c:slot_pwrctrl_power_on(), it drops
+the error code from pwrseq_power_on() and unconditionally returns 0:
+
+drivers/pci/pwrctrl/generic.c:slot_pwrctrl_power_on() {
+        ...
+        if (slot->pwrseq) {
+                pwrseq_power_on(slot->pwrseq);
+                return 0;
+        }
+        ...
+}
+
+If the power sequencer fails to power on the slot, the PCI subsystem is
+falsely notified that the slot is ready. The PCI core will then enumerate
+the bus and attempt to access the configuration space of the unpowered
+device.=20
+
+On ARM/ARM64 platforms, couldn't accessing unpowered PCIe registers result
+in a synchronous external abort (SError) and an immediate kernel panic?
+
+>  };
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701105234.1989=
+87-1-sherry.sun@oss.nxp.com?part=3D1
 
