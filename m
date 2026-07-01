@@ -1,224 +1,274 @@
-Return-Path: <devicetree+bounces-318261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318270-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jseQMFXVRGqS1goAu9opvQ
-	(envelope-from <devicetree+bounces-318261-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:52:37 +0200
+	id sNhVEI/VRGqn1goAu9opvQ
+	(envelope-from <devicetree+bounces-318270-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:53:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3764D6EB4E4
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:52:37 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB45B6EB502
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:53:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=NzIRLWeC;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318261-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318261-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=ew.tq-group.com header.s=default2602 header.b=WuYHFzTL;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318270-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318270-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ew.tq-group.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 738F73035881
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:49:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2E5C730A4684
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:50:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11D73EFD14;
-	Wed,  1 Jul 2026 08:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043C03EF642;
+	Wed,  1 Jul 2026 08:50:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281983EFD39
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 08:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA4F0182D6;
+	Wed,  1 Jul 2026 08:50:14 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782895722; cv=none; b=eTE2BanXnA9mZrlmuPyLrxE6TNThfrxB9XPcPxKdP2ZT9BpMDkLb7hdnq9+JCr4MKLg5voSIlrV/+izkNLyDN6GJQmgLu+3aMtfNCkzxPYSc2lOOub58dHAmkXsDYwTSJBAECMn/51Z4aSkUr8z7qYbdWUHwfepCWPM7rYXX1fs=
+	t=1782895816; cv=none; b=XiOkddyClHxaIG5WaWcf8Er7MuB+bw3x4Z+3TYib4KX5Wlv3SJEN45fXMAgitKa7tMYNyT1a9TAsCDZTqekXslGaaMb+qCrWfmEzNiwJxlzu9NO78+gy9lPIvLTsGndZyrgcfJptMibKkkV3NdrRWz51CM3G48mGmXGu+v90Hw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782895722; c=relaxed/simple;
-	bh=AJZkLvOfxW0de6r+CyQc5qTyXDoiqp2t4JSLGDtsAk8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mxTE8SyEvGzqiidb/V1cx268Y6iRYj6cy4t/z4uUcyev0GOq5xtGiicNKfPKMK9KXyh6u9+6cMAEbNc6W5Jv9MhZ8v27FSPw3EN5rXRiitH51oArtcsWkFSzJ+hO5oTUhgYISe+LmI5zD8dzgtzHjry4SqvdMsk3Hw7YtXJuptc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NzIRLWeC; arc=none smtp.client-ip=209.85.128.50
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-493c1453de4so2199195e9.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 01:48:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782895719; x=1783500519; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iIY4E2Qv/c4b0j+COVpWSOrsvci+vruq4kKRU7Wts6g=;
-        b=NzIRLWeCBFi9g/P1K8p+/E17+JhwHvGZ6XqZLYRG6Y9HsGiUO9k4zJgNhIDw6zj1r9
-         YsOomHHcLzpQyaAtYtpz83Bcjq1t816A84X1dXfosT+P1CTeP4ikQByodkH/AE4zJnMT
-         5i++y/0aV7EkPc++Y1XogOlMtotXQyELTVv+wHgdZpI+TwjVM9dlQyVrS5hbaFKX2PDm
-         y+G1pv8OQDdoxZLp5TtO9ncU1mrcCawm3aoush+AU8jNvdCuDDCVuFx+4+IzJPODgq6a
-         4ilKxkYGBaz9+EIjCyX0JmjYCeGu+jeA0CaalaF9YIwQ+a/wvGNe3Wsr5I6VxJkkpkiD
-         DXEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782895719; x=1783500519;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iIY4E2Qv/c4b0j+COVpWSOrsvci+vruq4kKRU7Wts6g=;
-        b=bXQaXaAtugVRDWRgmmIi4zeATxStyXcCXtRAkZVnEjyllPYfipQ2TMdfZyFHUvTGol
-         5gZSE8mU/40A24JyUMERhIcT/Abn4wwZkLN0AXZmjWmVPh7X0H+50DbSeD2npHvP4761
-         MNXJAr9LneL5YB0QLY66zi3Ytb9U132tlTMEa+gCcS0HeGGpXbgWoGLQufoz5ICc26vU
-         7VV7hLAZTJn4EPspSO2MfEQQQuqH5ennaDpO8FdUkMSqY+WdDhuFRYcuAslNHNc2QRTf
-         6Ir+yUYwgJuquPubB9YoyQJSoguvh6GaPFBU2ccSKlIA7Nu5brI0f7PWxM0YO4Zd16hy
-         JeDQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/euWg30A9rVtSsM9OwCHAZj/9Txqn8viKbEiSlywzOXWasD3yPGukskAWsc+hSP71paOYM5ABNC12f@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoIfm+dYZ3VKNpXg/LOUJEV0oJDzxSzc8ZcVbnnG4fVSeigyHz
-	Wt4nSPRM5D4iR1pmYIPd/cjENr7sBIFr1s6IeWa2ciBtsSPwpbSK99lnZ664Zw==
-X-Gm-Gg: AfdE7cn8TjGXJLVHCdCGkivm4/0STwKo41+8F43BSiIYkL0Jo4ArrghNnHlmGe0ZelK
-	sLHWfLTqOerqvcdScssuL+JsnzwuLuu/S28gwhCRqKXTaDqvT/QSp2x8Bs54IWz+oOQVJ1bDSIO
-	IahyzgAsWTFlgMXib+VJxkCaApmrPyJDjqgfe51YTsMEYQqyfqjPGmfBHWTUmjFCP7XFCeAmnWn
-	oQ/KkyZWNxWQvPaXK9JFtPZZs8A8oarUgOV/nc8HqN54SU36JpSkJMZr09UO4wUFI6TSxLZCacU
-	a7FBES8XDwPl8SkUnI9TbFCiM2FQlD3lJ1/jL8Uq0Z459yfznS69uATPGd3rmOrI14jNNSkHWHT
-	PFnMUMDm0u6ee17fE1ZZxStTTMf9Dg7kYvSE/SglJEDniMRO9n2M0i3r6Usd1yvSR0BHEL892UL
-	8C+Rhc8tGdjZzpg6Hzm3oKcrdTyIIfOMSI7sciDIA0D3CyoCr5e7FMPYxD5Vp6DbidQLbLw1R80
-	LEfvouqOS3iJygeApzqvniTCLfRksRC
-X-Received: by 2002:a05:600c:4f4a:b0:493:a84a:ec5a with SMTP id 5b1f17b1804b1-493c2b26b38mr13891255e9.12.1782895719252;
-        Wed, 01 Jul 2026 01:48:39 -0700 (PDT)
-Received: from Lord-Beerus.station (net-93-144-65-248.cust.dsl.teletu.it. [93.144.65.248])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-475671d0403sm15802622f8f.29.2026.07.01.01.48.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jul 2026 01:48:38 -0700 (PDT)
-Date: Wed, 1 Jul 2026 10:48:36 +0200
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-To: Frank Li <Frank.li@oss.nxp.com>
-Cc: sashiko-reviews@lists.linux.dev, imx@lists.linux.dev,
-	Frank.Li@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH v5 2/3] arm64: dts: freescale: Add support for Variscite
- DART-MX8M-PLUS
-Message-ID: <akTUZLKogURvYIPx@Lord-Beerus.station>
-References: <85af11e85dbb7cf5097d7c0ee567272ff6e87ec5.1780998600.git.stefano.r@variscite.com>
- <20260609100729.C9FF21F00893@smtp.kernel.org>
- <akKh5XbMS_JjGpPF@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1782895816; c=relaxed/simple;
+	bh=5eilU705tp1cuMmdd9UjB9+ztsF4icFnT7Q7omOKcX4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MRW3XYeS95TX36yMDtXFq3sP2OYz0AkLlHTwmykKoyGWUwB6/hHWhNA85WEUUk12gTRUc/NJZocfOR0Nlbp367hPZqDE2sYjk6bsV7i2RYHFAo5zhhYb0/BDvkK/QrZEK5fs+y7LLwb+yxelKcf4noC2VO9hu3f0A3lzJ2RK4p8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=WuYHFzTL; arc=none smtp.client-ip=188.40.3.216
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Type:MIME-Version:References:
+	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=TcjewTMbKqCfQPM8SSPvtYzOxIR7T++bcwwvFAoDU28=; b=WuYHFzTL08wKntVEtULPAYQxir
+	vzOS1Jz3av5FbNRt4W4NXGj0oZf70+WatQ9wBAuuk8DZkbaIgkaluhvTplB/VrBvhUuVRcquwLpV7
+	wsYvYM30wn5ZcigJfrZkiwRZ874F3G1vhH7avi8rGCz/d892Ttf4We6r4mKm/Le48N4ILiy16PcSA
+	v0d0X7miy06yFZPGIzYBFuzvt70M0PRq39osCcKydhTdkoyCLil5Th2xrK3WEdrHse+G+TrKZElh5
+	x+hTB7pv8OxvpvF/7hWWBJRGzc+RsLj8NX5qlgHZh31WceNsKlDsBfglXKEGniRTyoW4zKAMYbdP+
+	7FH6uCCg==;
+Received: from sslproxy05.your-server.de ([78.46.172.2])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1weqe5-0006gl-0Z;
+	Wed, 01 Jul 2026 10:50:13 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1weqe5-0003ux-28;
+	Wed, 01 Jul 2026 10:50:12 +0200
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: Frank.Li@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
+ wsa+renesas@sang-engineering.com, imx@lists.linux.dev, conor+dt@kernel.org
+Subject: Re: [PATCH v6 1/1] arm64: dts: add tqma9596la-mba95xxca
+Date: Wed, 01 Jul 2026 10:50:11 +0200
+Message-ID: <15795907.O9o76ZdvQC@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20260701084522.5A5301F000E9@smtp.kernel.org>
+References:
+ <20260701082611.3126036-1-alexander.stein@ew.tq-group.com>
+ <20260701084522.5A5301F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <akKh5XbMS_JjGpPF@lizhi-Precision-Tower-5810>
+Content-Type: multipart/signed; boundary="nextPart8879389.DvuYhMxLoT";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Virus-Scanned: Clear (ClamAV 1.4.3/28047/Tue Jun 30 23:29:24 2026)
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-318261-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318270-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Frank.li@oss.nxp.com,m:sashiko-reviews@lists.linux.dev,m:imx@lists.linux.dev,m:Frank.Li@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:Frank.Li@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:imx@lists.linux.dev,m:conor+dt@kernel.org,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_NONE(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tq-group.com:url,tq-group.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ew.tq-group.com:dkim,ew.tq-group.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3764D6EB4E4
+X-Rspamd-Queue-Id: CB45B6EB502
 
-Hi Frank,
+--nextPart8879389.DvuYhMxLoT
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: sashiko-reviews@lists.linux.dev
+Subject: Re: [PATCH v6 1/1] arm64: dts: add tqma9596la-mba95xxca
+Date: Wed, 01 Jul 2026 10:50:11 +0200
+Message-ID: <15795907.O9o76ZdvQC@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20260701084522.5A5301F000E9@smtp.kernel.org>
+MIME-Version: 1.0
 
-On Mon, Jun 29, 2026 at 12:48:37PM -0400, Frank Li wrote:
-> >
-> > > +/* BT module */
-> > > +&uart4 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pinctrl_uart4>, <&pinctrl_bt>;
-> > > +	assigned-clocks = <&clk IMX8MP_CLK_UART4>;
-> > > +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
-> > > +	uart-has-rtscts;
-> > > +	status = "okay";
-> > > +
-> > > +	bluetooth_iw61x: bluetooth {
-> > > +		compatible = "nxp,88w8987-bt";
-> > > +	};
-> >
-> > [Severity: Medium]
-> > The pinctrl_bt group configures GPIO2_IO06 and GPIO2_IO09 as GPIOs and attaches
-> > them to uart4, but this bluetooth_iw61x node does not map these pins to any
-> > properties like device-wakeup-gpios or reset-gpios.
-> 
-> Please check it, look like make sense
+Hi,
 
-This is intentional,
-these pins are not meant to be controlled by the Bluetooth kernel
-driver. They only need to be muxed as GPIOs in the device tree so they
-are not configured with different alternate function, since they are
-handled by our userspace initialization script following the power-on
-rules.
+here some comments about the findings.
 
-This is also consistent with the existing Variscite DTS files, where
-these BT/WBE control pins are only muxed and not mapped to Bluetooth
-driver properties.
+Am Mittwoch, 1. Juli 2026, 10:45:22 CEST schrieb sashiko-bot@kernel.org:
+> Thank you for your contribution! Sashiko AI review found 2 potential issu=
+e(s) to consider:
+> - [High] Hardware components (PWM fan and 10G SFP) remain permanently unp=
+owered due to disabled regulators
+> - [Low] Dead code: Unreferenced `pinctrl_ethphy0` node
+> --
+>=20
+> commit f54617810555494fd6b435aa3ac070a14b264e01
+> Author: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+>=20
+> arm64: dts: add tqma9596la-mba95xxca
+>=20
+> This adds support for TQMa95xxLA modules, designed to be soldered
+> on a carrier board. MBa95xxCA is a carrier reference board / starter kit
+> design. Enable the external accessible PCIe controllers as host, add
+> clocking and reset GPIO.
+>=20
+> > diff --git a/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca.d=
+ts b/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca.dts
+> > new file mode 100644
+> > index 0000000000000..e90f37bbdcd80
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca.dts
+>=20
+> [ ... ]
+>=20
+> > +	reg_3v3a_10g: regulator-3v3a-10g {
+> > +		compatible =3D "regulator-fixed";
+> > +		regulator-name =3D "3V3A_10G";
+> > +		regulator-min-microvolt =3D <3300000>;
+> > +		regulator-max-microvolt =3D <3300000>;
+> > +		gpio =3D <&expander2 15 GPIO_ACTIVE_HIGH>;
+> > +		startup-delay-us =3D <2000>;
+> > +		enable-active-high;
+> > +	};
+>=20
+> [Severity: High]
+> Is this regulator missing a consumer or the regulator-always-on property?
+>=20
+> Since the sfp_xfi node does not have a vcc-supply or vcc link to this
+> regulator, and there is no always-on flag, won't the regulator framework
+> automatically disable it, leaving the 10G SFP module unpowered?
 
-Best Regards,
-Stefano
+XFI is not yet supported upstream, but the regulator is already prepared.
 
-> 
-> >
-> > Will the kernel driver fail to toggle these pins, leaving the chip in an
-> > uncontrolled state? Is it relying on bootloader defaults or userspace sysfs
-> > toggling for these pins?
-> >
-> > > +};
-> >
-> > [ ... ]
-> >
-> > > +	pinctrl_eqos: eqosgrp {
-> > > +		fsl,pins = <
-> > > +			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x2
-> > > +			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x2
-> > > +			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x90
-> > > +			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x90
-> > > +			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x90
-> > > +			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x90
-> > > +			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x90
-> > > +			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x90
-> > > +			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x16
-> > > +			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x16
-> > > +			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x16
-> > > +			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x16
-> > > +			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x16
-> > > +			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x16
-> > > +			MX8MP_IOMUXC_SD2_WP__GPIO2_IO20					0x10
-> >
-> > [Severity: Medium]
-> > The pinctrl_eqos node configures MX8MP_IOMUXC_SD2_WP__GPIO2_IO20 as a GPIO, but
-> > there is no corresponding regulator or driver property that requests this GPIO.
-> >
-> > Could this unnecessarily block GPIO2_IO20 and cause a pin conflict for any
-> > carrier board that attempts to use it (for example, for usdhc2 write protect)?
-> > Was this possibly a copy-paste error from imx8mp-var-som.dtsi?
-> 
-> Look like make sense, are you really use GPIO2_IO20 for eqos?
-> 
-> Frank
-> 
-> >
-> > > +			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11				0x150
-> > > +		>;
+> [ ... ]
+>=20
+> > +	fan_controller: fan-controller@2f {
+> > +		compatible =3D "microchip,emc2301", "microchip,emc2305";
+> > +		reg =3D <0x2f>;
+> > +		#address-cells =3D <1>;
+> > +		#size-cells =3D <0>;
+> > +		#pwm-cells =3D <3>;
+> > +		status =3D "okay";
+> > +
+> > +		fan: fan@0 {
+> > +			reg =3D <0x0>;
+> > +			pwms =3D <&fan_controller 40000 PWM_POLARITY_INVERTED 1>;
+> > +			#cooling-cells =3D <2>;
+> > +			fan-supply =3D <&reg_pwm_fan>;
+> > +		};
+> > +	};
+>=20
+> [Severity: High]
+> Is reg_pwm_fan guaranteed to be enabled to power the cooling fan?
+>=20
+> While it is referenced via fan-supply in the fan@0 node here, the
+> microchip,emc2305 hardware monitor driver does not parse fan-supply or ma=
+nage
+> regulators.=20
+>=20
+> Without regulator-always-on in the reg_pwm_fan node, won't this regulator
+> remain permanently disabled, preventing the fan from operating?
 
-Thank you,
-I will remove this GPIO.
+Indeed the driver is missing regulator support for now.
 
-Best regards,
-Stefano
+> [ ... ]
+>=20
+> > +	/* IRQ pin is AON GPIO, not usable */
+> > +	ethphy0: ethernet-phy@0 {
+> > +		compatible =3D "ethernet-phy-ieee802.3-c22";
+> > +		reg =3D <0>;
+> > +		reset-gpios =3D <&expander3 0 GPIO_ACTIVE_LOW>;
+> > +		reset-assert-us =3D <500000>;
+> > +		reset-deassert-us =3D <50000>;
+> > +		ti,rx-internal-delay =3D <DP83867_RGMIIDCTL_2_50_NS>;
+> > +		ti,tx-internal-delay =3D <DP83867_RGMIIDCTL_2_50_NS>;
+> > +		ti,fifo-depth =3D <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> > +		ti,dp83867-rxctrl-strap-quirk;
+> > +		ti,clk-output-sel =3D <DP83867_CLK_O_SEL_OFF>;
+> > +	};
+>=20
+> [ ... ]
+>=20
+> > +	pinctrl_ethphy0: ethphy0grp {
+> > +		fsl,pins =3D <IMX95_PAD_PDM_BIT_STREAM0__AONMIX_TOP_GPIO1_IO_BIT9		0=
+x1100>;
+> > +	};
+>=20
+> [Severity: Low]
+> Is this pinctrl group missing a reference?
+>=20
+> It defines pin configuration for the ethphy0 IRQ pin, but doesn't seem to=
+ be
+> referenced by the ethphy0 node (e.g., via pinctrl-0) or any other node.
+
+This pad is connected to gpio1 which is under control of the system manager,
+so Cortex-A55 (Linux) has no access to it.
+
+Best regards
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+--nextPart8879389.DvuYhMxLoT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEByESxqszIvkmWRwbaS+g2M0Z/iUFAmpE1MQACgkQaS+g2M0Z
+/iVLWwf/fk8nQFU7ErPNiaXq3faQw6stgzboWoi8uhRqDAJ1+Zz0YOvu8VWjjSdQ
+bENCvALL/2GH1Y4xpQLzSJZYX7811a/jQKCmWl6TgaLwtFFfN38aR2i6Ge/egiYZ
+dIBx2W2rNsodubBLRNQVniPw3aw+ks+c13iJW2/Ykj+uC19pyzYeWGK1gZX6rD0C
+pXzznUVgBWOQ6Jpa4mDvw3oElDr8atu4a/XrURGYeuGV9G0tsPb9iUzGkw4a1xUn
+tyy6z/X1vAwgYx5dZgWZ6AFi5WqhdmDAVHnhYUk158nrX8z1Jj2HKC07/EkcEE6Z
+uxnV6RfwQMzTzmWfQRQPZRBEkutQCA==
+=nc0t
+-----END PGP SIGNATURE-----
+
+--nextPart8879389.DvuYhMxLoT--
+
+
+
 
