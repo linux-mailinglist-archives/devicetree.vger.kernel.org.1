@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-318685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318686-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XEi0BxsnRWqj7woAu9opvQ
-	(envelope-from <devicetree+bounces-318685-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:41:31 +0200
+	id rJDFII0oRWry7woAu9opvQ
+	(envelope-from <devicetree+bounces-318686-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:47:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 140186EEE24
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:41:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EDE46EEF01
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:47:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="XXu1vrz/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318685-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318685-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=R8ZxcfA6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318686-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318686-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BADBC30F836D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 14:26:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 031D330EA297
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 14:26:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF85534D4C9;
-	Wed,  1 Jul 2026 14:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A116B34E777;
+	Wed,  1 Jul 2026 14:23:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9489E342515;
-	Wed,  1 Jul 2026 14:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB6034D3A9;
+	Wed,  1 Jul 2026 14:23:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782915822; cv=none; b=EC3vLWSXLDl4ZBzO4I+WvHLozSPUoe3ieZXquYuzwYFBtBiPNtCjmrZuJIf5uPXj/Xc5PJJlMPwWbNNqXvgbh3qu2kWzpjw1PQizjcPPoKdeiXlzapSAM4xpcQIDVtj2q30bv2CNL1fHFI3yAasKnWAZULQaekWaDz6MtVyM6bA=
+	t=1782915823; cv=none; b=c7jT+knh3eKAS9PuZpP4H2XO0cbjkdhrSN+PAzocu6MLCMsuKcveIbxVPVXijdJR55hJ66lQE9dC1t3AL9b8wz8lYPdvc5kmb4pxo8zZi/eiql5uSYX0KaJlytVyFNhLPbS319sZIpitwxaowWSiKwhMYnn6XoBGIL/4AkOg2n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782915822; c=relaxed/simple;
-	bh=JFpeuXrkah2v1NY2a44knGY5Pn5BiKkdmSQew/oKFEY=;
+	s=arc-20240116; t=1782915823; c=relaxed/simple;
+	bh=TPhossUQ5gqkDXOCH2oee4dlp3nAWFKaKrGZ6A5j5Ks=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=nzTeYZZkJHyXDYiQu1+LIkEaMEE6ZdhcFxN88OHE7RcIQ4tDQkFM98MKZKSLiqKMeMbGq87EJLpWm4fdUUft3ncdb1VDm1UP0dBSwCf37Buq5HuKf++9WjoPMauk35idV5ZvufzBV8zoyeP1hIOluivKYg0ZfUHr81YlZhLRZIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XXu1vrz/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27A6E1F00A3A;
-	Wed,  1 Jul 2026 14:23:41 +0000 (UTC)
+	 Message-Id:Subject; b=eGWm1R7kPpCJltbS4XWhtJ7Ep+5jaz0fGYQfgkjn9eXjVaYPf4tVFSQkdzPmwaVVbQGvweWOv4z/hzxn+YafqJJABJlJrMb7Rb0XJp8LRiFlijb5+2FZ3AxP+yj8eUC7VjihlVFgj2XCXbz8CjGO/ClRgcL7Lgw5Kfqu1JYlLg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R8ZxcfA6; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A7681F000E9;
+	Wed,  1 Jul 2026 14:23:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782915821;
-	bh=vO42L4Nhds/UY8hBhbxFlSZhqARnmHdkd0khHdxgnL0=;
+	s=k20260515; t=1782915822;
+	bh=4WnOHXZX/INC4S31BQeT/b5fl4DW5lZDfWWLUWbCoEg=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject;
-	b=XXu1vrz/uoxgB8k+hjRFdEMGiRBbgvAfLsaS6LP4upp3R/hnCeY3vnun0hH4M2J3i
-	 dnJorz84lT1WlwG30bJ+ymKpIBBPgX/THKqo1G/IGn+G0i9jD9mtPrCy5zuMBKufki
-	 7Euj6/1WB1uKxhMaooav9Nwd7JeFw/b0c7dWGFFrjLVoGxj3Vr0ew492o/QC/xL6hu
-	 4I1UVBHQYrXavbe+zUIgY1FNqn80aLAOicVje1RalWMjqINqGdYtNhCkZ3YnF1EmuY
-	 XUPr+0MA2WRSX7kDTW1AUxs5sQ33qr5PLcZlv+eyVucyz77RCahVgDd8dxmO3IDYQP
-	 xT8QJC5SUGYzQ==
-Date: Wed, 01 Jul 2026 09:23:40 -0500
+	b=R8ZxcfA6TySd3kAUAwcju+kRAXeFc27y05xP9WwOeygl9EY0Vsy0LjTjNC+toVYL2
+	 TjT8znSlLYzwE/uGxxdfhAbLKmKvw4DVfPgQ252n4nWcpz/gTHZSyoLUPEb6L1w5dW
+	 PpJUJTZ/RZF4K5z0fllaxO6+a8lWx+J2D5+/sFOkhBBmI4EJ6FrBKEU9QrfiA9a/w+
+	 kKmv8eZiIDnqAIVYuHVQIAwYu+aEyiAV+nYpCSG4rIFNpGNg9qWTGZFim5QXivoYpA
+	 oYtdCM0Ev6L4jxuiBNIhTxjHS3BqpkHZBd3I5v/wNG7HvDOhNCaCuT+UBO4AzyXGmR
+	 jocUMMEoMwbqw==
+Date: Wed, 01 Jul 2026 09:23:41 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -56,21 +56,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, kernel@collabora.com, airlied@gmail.com, 
- dri-devel@lists.freedesktop.org, mripard@kernel.org, conor+dt@kernel.org, 
- justin.yeh@mediatek.com, devicetree@vger.kernel.org, 
- jason-jh.lin@mediatek.com, linux-arm-kernel@lists.infradead.org, 
- simona@ffwll.ch, chunkuang.hu@kernel.org, tzimmermann@suse.de, 
- linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, 
+Cc: conor+dt@kernel.org, mripard@kernel.org, devicetree@vger.kernel.org, 
  maarten.lankhorst@linux.intel.com, p.zabel@pengutronix.de, 
- krzk+dt@kernel.org
+ krzk+dt@kernel.org, chunkuang.hu@kernel.org, matthias.bgg@gmail.com, 
+ tzimmermann@suse.de, airlied@gmail.com, linux-mediatek@lists.infradead.org, 
+ simona@ffwll.ch, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, kernel@collabora.com, 
+ linux-arm-kernel@lists.infradead.org, jason-jh.lin@mediatek.com, 
+ justin.yeh@mediatek.com
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20260701122057.19648-27-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260701122057.19648-29-angelogioacchino.delregno@collabora.com>
 References: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
- <20260701122057.19648-27-angelogioacchino.delregno@collabora.com>
-Message-Id: <178291581411.4115410.14754664533277420399.robh@kernel.org>
-Subject: Re: [PATCH 26/42] dt-bindings: display: mediatek: Introduce MT8196
- Layer Blender
+ <20260701122057.19648-29-angelogioacchino.delregno@collabora.com>
+Message-Id: <178291581550.4115656.11254665059124480356.robh@kernel.org>
+Subject: Re: [PATCH 28/42] dt-bindings: display: mediatek: Introduce MT8196
+ extended DMA Engine
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -84,12 +84,12 @@ X-Spamd-Result: default: False [-2.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318685-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318686-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[19];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:airlied@gmail.com,m:dri-devel@lists.freedesktop.org,m:mripard@kernel.org,m:conor+dt@kernel.org,m:justin.yeh@mediatek.com,m:devicetree@vger.kernel.org,m:jason-jh.lin@mediatek.com,m:linux-arm-kernel@lists.infradead.org,m:simona@ffwll.ch,m:chunkuang.hu@kernel.org,m:tzimmermann@suse.de,m:linux-mediatek@lists.infradead.org,m:matthias.bgg@gmail.com,m:maarten.lankhorst@linux.intel.com,m:p.zabel@pengutronix.de,m:krzk+dt@kernel.org,m:angelogioacchino.delregno@collabora.com,m:conor@kernel.org,m:matthiasbgg@gmail.com,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:conor+dt@kernel.org,m:mripard@kernel.org,m:devicetree@vger.kernel.org,m:maarten.lankhorst@linux.intel.com,m:p.zabel@pengutronix.de,m:krzk+dt@kernel.org,m:chunkuang.hu@kernel.org,m:matthias.bgg@gmail.com,m:tzimmermann@suse.de,m:airlied@gmail.com,m:linux-mediatek@lists.infradead.org,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:linux-arm-kernel@lists.infradead.org,m:jason-jh.lin@mediatek.com,m:justin.yeh@mediatek.com,m:angelogioacchino.delregno@collabora.com,m:conor@kernel.org,m:krzk@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
@@ -99,28 +99,28 @@ X-Spamd-Result: default: False [-2.66 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,collabora.com,gmail.com,lists.freedesktop.org,kernel.org,mediatek.com,lists.infradead.org,ffwll.ch,suse.de,linux.intel.com,pengutronix.de];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,linux.intel.com,pengutronix.de,gmail.com,suse.de,lists.infradead.org,ffwll.ch,lists.freedesktop.org,collabora.com,mediatek.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,collabora.com:email,devicetree.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 140186EEE24
+X-Rspamd-Queue-Id: 7EDE46EEF01
 
 
-On Wed, 01 Jul 2026 14:20:41 +0200, AngeloGioacchino Del Regno wrote:
-> Add documentation for the Overlay Layer Blender IP found in the
-> newer generation SoCs like MT8196, MT8894, MT6991, and their
+On Wed, 01 Jul 2026 14:20:43 +0200, AngeloGioacchino Del Regno wrote:
+> Add documentation for the extended DMA Engine (exDMA) IP found in
+> the newer generation SoCs like MT8196, MT8894, MT6991, and their
 > variants.
 > 
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../mediatek/mediatek,mt8196-blender.yaml     | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-blender.yaml
+>  .../mediatek/mediatek,mt8196-exdma.yaml       | 104 ++++++++++++++++++
+>  1 file changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-exdma.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -128,21 +128,12 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-blender.yaml: ignoring, error in schema: properties: compatible
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-blender.yaml: properties:compatible: [{'const': 'mediatek,mt8196-disp-blender'}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-blender.yaml: properties:compatible: [{'const': 'mediatek,mt8196-disp-blender'}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-blender.yaml: properties:compatible: [{'const': 'mediatek,mt8196-disp-blender'}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-blender.yaml: properties:compatible: [{'const': 'mediatek,mt8196-disp-blender'}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-blender.yaml: properties:compatible: [{'const': 'mediatek,mt8196-disp-blender'}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-blender.yaml: properties:compatible: [{'const': 'mediatek,mt8196-disp-blender'}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-blender.yaml: properties:compatible: [{'const': 'mediatek,mt8196-disp-blender'}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-blender.yaml: properties:compatible: [{'const': 'mediatek,mt8196-disp-blender'}] is not of type 'object', 'boolean'
-Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-blender.example.dtb: /example-0/blender@328e0000: failed to match any schema with compatible: ['mediatek,mt8196-disp-blender']
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-exdma.yaml: ignoring, error in schema: properties: compatible
+Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-exdma.example.dtb: /example-0/dma-controller@32850000: failed to match any schema with compatible: ['mediatek,mt8196-disp-exdma']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260701122057.19648-27-angelogioacchino.delregno@collabora.com
+See https://patchwork.kernel.org/project/devicetree/patch/20260701122057.19648-29-angelogioacchino.delregno@collabora.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
