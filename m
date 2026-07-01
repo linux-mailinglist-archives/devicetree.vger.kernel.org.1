@@ -1,158 +1,239 @@
-Return-Path: <devicetree+bounces-318912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318903-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0XZZBSKMRWpABwsAu9opvQ
-	(envelope-from <devicetree+bounces-318912-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 23:52:34 +0200
+	id dbp8NC5+RWpzBAsAu9opvQ
+	(envelope-from <devicetree+bounces-318903-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 22:53:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53CE06F1F76
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 23:52:33 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B8D6F1A1F
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 22:53:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=rzoGVCf9;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318912-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318912-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linux.dev;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=tdqDcBvw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318903-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318903-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 88896312976F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 21:47:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 193AE3004421
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 20:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D59123B4E87;
-	Wed,  1 Jul 2026 21:47:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86F1A3A4F31;
+	Wed,  1 Jul 2026 20:52:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com [95.215.58.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E09E386450
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 21:47:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E323815E8;
+	Wed,  1 Jul 2026 20:52:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782942463; cv=none; b=Irqz/Sf+i2C8tU015GctSIkCY/bB3TDGXEI9qgGAzcA0Dnn2Sxlbsvk8SV3XxeVnlUIBZ0euDzev9ncJln+x9THDES1ggCPRR3dlMg28TNgt6Enm5HUoMUKwKUMk1+EagMcKvtaHqJJtUqzgXp2lVmmc2PLOptvy+zoilb5i2Zs=
+	t=1782939176; cv=none; b=JdJcQ0oBj2mxRcRBNBm3hB21NGWIXfhV8uw4a/VVMFKqAx7MEHV1vXb81y4FDoHQEzn8UqlG/iYYwjdfGmqWuL1AGe1JvN5NOWzuSTT90lahmVpCI/RbZ6dy+XvHIj7+TUaacZuTvW2SZ9SsfTWWe+Rx/dP12Gs6LAeQ6+qtQSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782942463; c=relaxed/simple;
-	bh=U1MHLwzs2hVH2Bl+EC1aDM8E/bTMCVplBdWelSXv1rA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=jb7aXxAfCEf9iOXjce2Co2U5PEGeIrkHF2VHDkw7EoZ0CNuGR35j+BRrks5iNiqpMsWi9NVUTcpWMU4aoc3dOAV014FmHTT9X3Rui9ko8qz+Abc3WpfRDQz1LfL+ZjQo4KAIbGjayvz1y+i77yFu7Ry7SQurth97MLl54Gv/Lgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=rzoGVCf9; arc=none smtp.client-ip=95.215.58.170
-Message-ID: <89720193-e8ad-4bb3-b6d2-3253413b18ab@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1782942450;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zfnpZAPYTjU1y1/bwelr25Tajv7sMv4wyV/Tmx+tLN8=;
-	b=rzoGVCf9Acoz9pVzpj75/n7UWOFKgNHVycrnsStv71NID/Qz5Ub0cTx3lcOw5vNVod2J6N
-	TsrOJMMr/45V3a5iN9QYmSE0AT8pNjLNo09jOfmP6GhFin4fHZ8svOooad4TGjqFxRENlu
-	Ic/WX4RdMeR75Zo13tcGVVOEwoSEDrA=
-Date: Wed, 1 Jul 2026 22:47:16 +0100
+	s=arc-20240116; t=1782939176; c=relaxed/simple;
+	bh=zoGOulQF1M2h8Q01GsubA1RgVWr6kNLn78527WuVvX4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PfkzaKcDXXuJhSzQ1ZxuiavkwXXXbBkjj4oLxFbgRMnFrSxbtuHdeZJqUM2CJBspOx780eMtYfSMhBi17kKZE5GXMT0yuutwDgBJSCiG4bGREvQ5Qp3T1buQArgBn3pQEev+7/NaRgQHTt8IY/WIsAjIuCSomtJUJs+27dYAgY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tdqDcBvw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0B0D3C2BCB8;
+	Wed,  1 Jul 2026 20:52:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1782939176;
+	bh=zoGOulQF1M2h8Q01GsubA1RgVWr6kNLn78527WuVvX4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=tdqDcBvwsG4ho9YcfZLXBYpBfB09VA28Y829Dr14qBjmsHYYDTAEGxURLSbCq5CAf
+	 nVn4cyUex0WyNoQ8w8HqfM2mtRvDX1qXebfuPmrxFTo2J1k6HmtHESBYy7DUPVTHMD
+	 hKNTM6rWNSDM3G5R8okIiFmKbWTbWcQkUkJmKr1+1pjBoOVIRyS4jCiZvPyaF6aSvt
+	 HKOYPOYUBHsaySiKMig4qRhBV0EAMkwihP5DEQjuse+sbLfGvgwtLBppcLJ2RqPPaN
+	 pd0sH/dLV0tnGInNcg3txJUN8ByGJeMx7BvCHbMJd7I4aK9kpeQMJydeNk/N+ynq6j
+	 UN7A70dWROjnw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E117CC43458;
+	Wed,  1 Jul 2026 20:52:55 +0000 (UTC)
+From: Cristian Cozzolino via B4 Relay <devnull+cristian_ci.protonmail.com@kernel.org>
+Subject: [PATCH v6 0/4] Enable new features for flipkart-rimob
+Date: Wed, 01 Jul 2026 23:55:53 +0200
+Message-Id: <20260701-rimob-new-features-v6-0-be7d5d1e007f@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next v3 2/3] ptp: Add driver for R-Car Gen4
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "DavidS. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20260701090607.1108208-1-niklas.soderlund+renesas@ragnatech.se>
- <20260701090607.1108208-3-niklas.soderlund+renesas@ragnatech.se>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-In-Reply-To: <20260701090607.1108208-3-niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/23OzWrDMAzA8VcpPs9Dlr/invYeYwfHkVfDEhc7y
+ zZK3n1uYRCYj3+BftKNVSqJKjufbqzQlmrKSwvzdGLh4pd34mlqzRDQgATJS5rzyBf64pH8+lm
+ ocpDWKTVKbxBYW7wWiun7gb6+tb6kuuby87ixifv0jxt63CY4cO8xSAnaYoCXa8lrXmafPp5Dn
+ tnd3PDgiL6DzQlijIMTVilHXUceHBRdRzZnUuNANBg7ke066ujYrqOaA4amGF1QGlzX0QdH9v/
+ RzdExRIUeXRD4z9n3/RczdNSv2QEAAA==
+X-Change-ID: 20260303-rimob-new-features-037944b3a620
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Cristian Cozzolino <cristian_ci@protonmail.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782942968; l=4333;
+ i=cristian_ci@protonmail.com; s=20250620; h=from:subject:message-id;
+ bh=zoGOulQF1M2h8Q01GsubA1RgVWr6kNLn78527WuVvX4=;
+ b=U//qRAjidfOu+8iCd75GDvniNljYnibrSMFyl6RvvelelrWzvAq7r9W9O0irwJ3ebV06ez4zS
+ 4icm3O99nKUAq6Ob9ApVdPOYTvUyjT2xGdMmLPk2hA2GUisl8cfXTwN
+X-Developer-Key: i=cristian_ci@protonmail.com; a=ed25519;
+ pk=xH5IvIPUNHV1Q8R0/pq2CfuVFR/wTiAyuyi6IwedjZY=
+X-Endpoint-Received: by B4 Relay for cristian_ci@protonmail.com/20250620
+ with auth_id=438
+X-Original-From: Cristian Cozzolino <cristian_ci@protonmail.com>
+Reply-To: cristian_ci@protonmail.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:jesszhan0024@gmail.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:~postmarketos/upstreaming@lists.sr.ht,m:phone-devel@vger.kernel.org,m:cristian_ci@protonmail.com,m:konrad.dybcio@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318903-lists,devicetree=lfdr.de,cristian_ci.protonmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318912-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:niklas.soderlund+renesas@ragnatech.se,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:richardcochran@gmail.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:niklas.soderlund@ragnatech.se,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:andrew@lunn.ch,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[ragnatech.se,kernel.org,glider.be,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,vger.kernel.org];
-	FORGED_SENDER(0.00)[vadim.fedorenko@linux.dev,devicetree@vger.kernel.org];
+	FREEMAIL_REPLYTO(0.00)[protonmail.com];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,gmail.com,ffwll.ch,linux.intel.com,suse.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[cristian_ci@protonmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vadim.fedorenko@linux.dev,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt,netdev];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,lists.sr.ht,protonmail.com,oss.qualcomm.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 53CE06F1F76
+X-Rspamd-Queue-Id: F0B8D6F1A1F
 
-On 01/07/2026 10:06, Niklas SÃ¶derlund wrote:
-> Add driver for the gPTP timer found on R-Car Gen4 devices. The timer is
-> system-wide and shared by different Ethernet devices on each Gen4
-> platform. The operation of the timer is however not completely in
-> depended of the systems Ethernet devices.
-> 
->    - On R-Car S4 is gated by the RSWITCH Ethernet module clock.
-> 
->    - On R-Car V4H is gated by the RTSN Ethernet module clock.
-> 
->    - On R-Car V4M is gated by its own module clock, the system have
->      neither RTSN or RSWITCH device. But the module clock is the same as
->      RTSN on V4H and the documentation referees to it as tsn (EtherTSN).
-> 
-> The gPTP device do have its own register space on all three platforms.
-> But on S4 and V4H it will share its clock and reset property with
-> RSWITCH or RTSN, respectively.
-> 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+This series enables a set of miscellaneous features for Billion Capture+ 
+(a handset using the MSM8953 SoC released in 2017):
+- Panel and GPU
+- Touchscreen
+- WiFi + Bluetooth
+- Hall sensor 
 
-[...]
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jessica Zhang <jesszhan0024@gmail.com>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Cc: phone-devel@vger.kernel.org 
 
-> +static int ptp_rcar_gen4_adjfine(struct ptp_clock_info *ptp, long scaled_ppm)
-> +{
-> +	struct ptp_rcar_gen4_priv *priv = ptp_to_priv(ptp);
-> +	s64 addend = priv->default_addend;
-> +	bool neg_adj = scaled_ppm < 0;
-> +	unsigned long flags;
-> +	s64 diff;
-> +
-> +	if (neg_adj)
-> +		scaled_ppm = -scaled_ppm;
-> +	diff = div_s64(addend * scaled_ppm_to_ppb(scaled_ppm), NSEC_PER_SEC);
-> +	addend = neg_adj ? addend - diff : addend + diff;
-> +
-> +	spin_lock_irqsave(&priv->lock, flags);
-> +	iowrite32(addend, priv->base + PTPTIVC0_REG);
+Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
+---
+Changes in v6:
+- Drop applied patches;
+- Pick up tag;
+- Link to v5: https://lore.kernel.org/r/20260331-rimob-new-features-v5-0-5fcf42a29c12@protonmail.com
 
-how are you so sure that addend will always fit into s32? It looks like
-it may go over in some cases, no?
+Changes in v5:
+- Based on dts-coding-style.html ("Nodes without unit addresses shall be
+  ordered alpha-numerically by the node name. For a few node types, they 
+  can be ordered by the main property, e.g. pin configuration states
+  ordered by value of “pins” property."), sort pinctrl states by GPIO 
+  index (Konrad);
+- Pick up tags;
+- Link to v4: https://lore.kernel.org/r/20260327-rimob-new-features-v4-0-06edff9c4509@protonmail.com
 
-> +	spin_unlock_irqrestore(&priv->lock, flags);
-> +
-> +	return 0;
-> +}
+Changes in v4:
+- (patch 1/6): added a new compatible (since it's not possible to
+  identify panel vendor/id), matching user of this device and leaving
+  novatek,nt35532 as fallback (Dmitry);
+- (patch 2/6):
+  - according to bindings changes, make panel driver handling multiple
+    panels paired with NT35532 and use specific compatible/data;
+  - due to changes applied to panel code, remove tag received previously
+    by Dmitry.
+- (patch 3/6): 
+  - use a specific panel compatible, according to bindings changes;
+  - remove 'output-high' property from panel pinctrl, since panel is not
+    reset.
+- Link to v3: https://lore.kernel.org/r/20260321-rimob-new-features-v3-0-d4b8ee867de7@protonmail.com
+
+Changes in v3:
+- (patch 1/6): removed avdd, avee and vci supplies from 'required' properties;
+- (patch 2/6):
+  - removed "select VIDEOMODE_HELPERS" from nt35532 Kconfig entry, since 
+    its functions are not used (but this option is enabled and its code 
+    compiled anyway) by nt35532 panel driver;
+  - pick up tags (Dmitry).
+- (patch 3/6): replaced a506_zap.mdt with a506_zap.mbn firmware name
+  in gpu_zap_shader (Dmitry); 
+- (patch 5/6): pick up tags (Konrad);
+- (patch 6/6): pick up tags (Konrad);
+- Link to v2: https://lore.kernel.org/r/20260318-rimob-new-features-v2-0-c1bf8917449e@protonmail.com
+
+Changes in v2:
+- (patch 1/6): define power supplies in the bindings as per datasheet  
+  and update example;
+- (patch 2/6): add blank lines where required between mipi dsi write
+  sequences in nt35532_on() function and make use of names for mipi dcs
+  commands, instead of hex numbers, to improve readibility (Dmitry); 
+- (patch 3/6): move pinctrl lines ibto panel node and get rid of
+  sleep/reset state, since panel just uses one pinctrl state for
+  default/sleep (Dmitry). Also, update power supplies according to
+  bindings; 
+- (patch 4/6): pick up tags (Konrad,Dmitry);
+- (patch 6/6): squash hall sensor node into gpio-keys (Dmitry);
+- Link to v1: https://lore.kernel.org/r/20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com
+
+---
+Cristian Cozzolino (4):
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable display and GPU
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable WiFi/Bluetooth
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable touchscreen
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable Hall sensor
+
+ .../arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 138 ++++++++++++++++++++-
+ 1 file changed, 137 insertions(+), 1 deletion(-)
+---
+base-commit: be5c93fa674f0fc3c8f359c2143abce6bbb422e6
+change-id: 20260303-rimob-new-features-037944b3a620
+
+Best regards,
+-- 
+Cristian Cozzolino <cristian_ci@protonmail.com>
+
 
 
