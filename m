@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-318249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318245-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wSCNJDbURGoq1goAu9opvQ
-	(envelope-from <devicetree+bounces-318249-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:47:50 +0200
+	id fwyHLB/VRGp51goAu9opvQ
+	(envelope-from <devicetree+bounces-318245-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:51:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31FCE6EB3FD
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:47:50 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CC396EB4AF
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:51:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=viR8aRra;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318249-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318249-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linux.dev header.s=key1 header.b=mGAu0O5p;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318245-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318245-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=linux.dev;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 59BDD3041234
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:47:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A685430FA38B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:47:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D21D3EFFCF;
-	Wed,  1 Jul 2026 08:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA233EDE69;
+	Wed,  1 Jul 2026 08:47:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
+Received: from out-189.mta1.migadu.com (out-189.mta1.migadu.com [95.215.58.189])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 782C43EF0D3
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 08:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B78DB3B19B5
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 08:47:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782895656; cv=none; b=ZGyj8g0tb15UpRauvZzap48ra9NqkZyjqz344aiRPoYuydHasvxp21bkE8vSaYHH1Xrz/AgbZwzvLGir4vDDf6WQVes/+fYg77e+kc+TgctdvAXd6PSWbyKWCO8sS8fMNkdUHv3CrVt0DsWiPqzVPIiz4if1qDbzhm18f9/WTD0=
+	t=1782895649; cv=none; b=pFMF9GPmfzOs/b4cY+nhyS/x/BQ1A8PfhQoBfxRai3TQbeQ1eX2+LQfJZ81Z0ddOa+Kdoh4pjQqT500wQ0KexF9b2NBj8SfQ+a3g1KndoymDkbK/hCxqfCjwSf/QU804/caLbRaMi785gV0XOeb20DwRthoh1lM8gLx8vznTNTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782895656; c=relaxed/simple;
-	bh=9VOnVvzjsZzR8hJplWz7LMgbcZ7QnXk10tohv83NyKA=;
+	s=arc-20240116; t=1782895649; c=relaxed/simple;
+	bh=49sToyKTSjS66TuV/1Gvj6ise9Amt4gQHPByMHgSiiE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=anpJaiWkDnSFre84XlFsOvsDEXwKr+yH5aiyYTd/KCkGcSESMbGZoNlXag7ihR12pTb9b4sEMvjGUciefulhDfcaxS1Vy52/W0fp2HozivgHf7lljIki4evRMVJqEhL0ECcR/Vx1txxHjiy6ehcOFFlEIE/JVmaBHP/IGc5f4Qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=viR8aRra; arc=none smtp.client-ip=91.218.175.183
+	 In-Reply-To:To:Cc; b=HdUClvbRB9uggCkV+IaXUWOsfCAPsBZ5a0FU5l7WYwVl/iLWWAOmMf1Qfbji22YEaKR70PIEaY2VbQYl2a1T6tpafowVhoLJzV5RMVK8IIjnlDXrHJpuffGZ23eOfDEUmvz7btftkwPK3y+2cuf/F+J1Zc0iE7ctLevnPEOG0Pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=mGAu0O5p; arc=none smtp.client-ip=95.215.58.189
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1782895642;
+	t=1782895645;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=9jkYTJZ76o1QfeUeruk/BApgLfDf2mjQsJprrfSgBCQ=;
-	b=viR8aRra2txaWnJTugOoW7+0kM9QWgabNryKjWO2M3CkuQ5Fxi/WApRf8MqOM3omSVqx8U
-	8yq/pM6cTJhEXNkauymsk1cZ7x8YNrpEOb5kfQeKBUV349+tUy0AMs5/15VmmvIgQEAVGe
-	QfG6yuER74q3Tt+b/Qsk/bmlP27zJUI=
+	bh=gg1b4NvG9irnTlONKFumTIckFqfflTt6uFIpf+8fltI=;
+	b=mGAu0O5p3zzJMOJu8qMNFgcSKrgX6osZU3GAoSLRlOMN10orW6+CZfaU9yfENWqMHTFSsP
+	8YFkH7Qt9+3dgkbpQpQdYAn0ouLmDSJtQMJCltLHCnJTEOrwsW4eaaCCpx4LALgw1sHTzt
+	1Qk1rPXD5165bCku5pIxwAFiDvCL690=
 From: Atish Patra <atish.patra@linux.dev>
-Date: Wed, 01 Jul 2026 01:46:49 -0700
-Subject: [PATCH v8 01/22] RISC-V: perf: fix resource cleanup on driver
- probe failure
+Date: Wed, 01 Jul 2026 01:46:50 -0700
+Subject: [PATCH v8 02/22] RISC-V: Add Sxcsrind ISA extension CSR
+ definitions
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,8 +56,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260701-counter_delegation-v8-1-7909f863a645@meta.com>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260701-counter_delegation-v8-2-7909f863a645@meta.com>
 References: <20260701-counter_delegation-v8-0-7909f863a645@meta.com>
 In-Reply-To: <20260701-counter_delegation-v8-0-7909f863a645@meta.com>
 To: Jiri Olsa <jolsa@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
@@ -77,12 +77,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS(0.00)[m:jolsa@kernel.org,m:pjw@kernel.org,m:mark.rutland@arm.com,m:robh@kernel.org,m:anup@brainfault.org,m:namhyung@kernel.org,m:acme@kernel.org,m:krzk+dt@kernel.org,m:atish.patra@linux.dev,m:irogers@google.com,m:will@kernel.org,m:james.clark@linaro.org,m:linux-arm-kernel@lists.infradead.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-318249-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318245-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -101,128 +101,94 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,meta.com:mid,meta.com:email,linux.dev:dkim,linux.dev:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:dkim,linux.dev:from_mime,rivosinc.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,meta.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 31FCE6EB3FD
+X-Rspamd-Queue-Id: 0CC396EB4AF
 
-From: Atish Patra <atishp@meta.com>
+From: Kaiwen Xue <kaiwenx@rivosinc.com>
 
-Sashiko pointed out various UAF and memory leak issues around
-pmu_sbi_device_probe() error paths.
+This adds definitions of new CSRs and bits defined in Sxcsrind ISA
+extension. These CSR enables indirect accesses mechanism to access
+any CSRs in M-, S-, and VS-mode. The range of the select values
+and ireg will be define by the ISA extension using Sxcsrind extension.
 
-If the probe fails, here are list of cleanups needed.
-a. Already registered pmu must be freed
-b. per cpu IRQ must be released
-c. pmu_ctr_list data structure must be freed
-d. cpu hotplug state must be cleaned up only if added.
-
-Fix the resource cleanup by reorganizing the code around probe failure.
-
-Reported-by: Sashiko AI <sashiko-bot@kernel.org>
-Signed-off-by: Atish Patra <atishp@meta.com>
+Signed-off-by: Kaiwen Xue <kaiwenx@rivosinc.com>
+Reviewed-by: Clément Léger <cleger@rivosinc.com>
+Signed-off-by: Atish Patra <atishp@rivosinc.com>
 ---
- drivers/perf/riscv_pmu_sbi.c | 33 +++++++++++++++++++++++++++------
- 1 file changed, 27 insertions(+), 6 deletions(-)
+ arch/riscv/include/asm/csr.h | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.c
-index 385af5e6e6d0..5c8924ce1f38 100644
---- a/drivers/perf/riscv_pmu_sbi.c
-+++ b/drivers/perf/riscv_pmu_sbi.c
-@@ -1220,22 +1220,29 @@ static int pmu_sbi_setup_irqs(struct riscv_pmu *pmu, struct platform_device *pde
- 					  DOMAIN_BUS_ANY);
- 	if (!domain) {
- 		pr_err("Failed to find INTC IRQ root domain\n");
--		return -ENODEV;
-+		ret = -ENODEV;
-+		goto err;
- 	}
+diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
+index 31b8988f4488..b4551a6cf7cb 100644
+--- a/arch/riscv/include/asm/csr.h
++++ b/arch/riscv/include/asm/csr.h
+@@ -347,6 +347,12 @@
+ /* Supervisor-Level Window to Indirectly Accessed Registers (AIA) */
+ #define CSR_SISELECT		0x150
+ #define CSR_SIREG		0x151
++/* Supervisor-Level Window to Indirectly Accessed Registers (Sxcsrind) */
++#define CSR_SIREG2		0x152
++#define CSR_SIREG3		0x153
++#define CSR_SIREG4		0x155
++#define CSR_SIREG5		0x156
++#define CSR_SIREG6		0x157
  
- 	riscv_pmu_irq = irq_create_mapping(domain, riscv_pmu_irq_num);
- 	if (!riscv_pmu_irq) {
- 		pr_err("Failed to map PMU interrupt for node\n");
--		return -ENODEV;
-+		ret = -ENODEV;
-+		goto err;
- 	}
+ /* Supervisor-Level Interrupts (AIA) */
+ #define CSR_STOPEI		0x15c
+@@ -394,6 +400,14 @@
+ /* VS-Level Window to Indirectly Accessed Registers (H-extension with AIA) */
+ #define CSR_VSISELECT		0x250
+ #define CSR_VSIREG		0x251
++/*
++ * VS-Level Window to Indirectly Accessed Registers (H-extension with Sxcsrind)
++ */
++#define CSR_VSIREG2		0x252
++#define CSR_VSIREG3		0x253
++#define CSR_VSIREG4		0x255
++#define CSR_VSIREG5		0x256
++#define CSR_VSIREG6		0x257
  
- 	ret = request_percpu_irq(riscv_pmu_irq, pmu_sbi_ovf_handler, "riscv-pmu", hw_events);
- 	if (ret) {
- 		pr_err("registering percpu irq failed [%d]\n", ret);
--		return ret;
-+		irq_dispose_mapping(riscv_pmu_irq);
-+		riscv_pmu_irq = 0;
-+		goto err;
- 	}
+ /* VS-Level Interrupts (H-extension with AIA) */
+ #define CSR_VSTOPEI		0x25c
+@@ -436,6 +450,12 @@
+ /* Machine-Level Window to Indirectly Accessed Registers (AIA) */
+ #define CSR_MISELECT		0x350
+ #define CSR_MIREG		0x351
++/* Machine-Level Window to Indirectly Accessed Registers (Sxcsrind) */
++#define CSR_MIREG2		0x352
++#define CSR_MIREG3		0x353
++#define CSR_MIREG4		0x355
++#define CSR_MIREG5		0x356
++#define CSR_MIREG6		0x357
  
- 	return 0;
-+err:
-+	riscv_pmu_use_irq = false;
-+	return ret;
- }
- 
- #ifdef CONFIG_CPU_PM
-@@ -1302,7 +1309,8 @@ static void riscv_pmu_destroy(struct riscv_pmu *pmu)
- 		}
- 	}
- 	riscv_pm_pmu_unregister(pmu);
--	cpuhp_state_remove_instance(CPUHP_AP_PERF_RISCV_STARTING, &pmu->node);
-+	if (!hlist_unhashed(&pmu->node))
-+		cpuhp_state_remove_instance(CPUHP_AP_PERF_RISCV_STARTING, &pmu->node);
- }
- 
- static void pmu_sbi_event_init(struct perf_event *event)
-@@ -1424,6 +1432,7 @@ static int pmu_sbi_device_probe(struct platform_device *pdev)
- 	struct riscv_pmu *pmu = NULL;
- 	int ret = -ENODEV;
- 	int num_counters;
-+	bool irq_requested = false;
- 
- 	pr_info("SBI PMU extension is available\n");
- 	pmu = riscv_pmu_alloc();
-@@ -1452,6 +1461,7 @@ static int pmu_sbi_device_probe(struct platform_device *pdev)
- 		pmu->pmu.capabilities |= PERF_PMU_CAP_NO_INTERRUPT;
- 		pmu->pmu.capabilities |= PERF_PMU_CAP_NO_EXCLUDE;
- 	}
-+	irq_requested = (ret == 0);
- 
- 	pmu->pmu.attr_groups = riscv_pmu_attr_groups;
- 	pmu->pmu.parent = &pdev->dev;
-@@ -1470,11 +1480,11 @@ static int pmu_sbi_device_probe(struct platform_device *pdev)
- 
- 	ret = riscv_pm_pmu_register(pmu);
- 	if (ret)
--		goto out_unregister;
-+		goto out_destroy;
- 
- 	ret = perf_pmu_register(&pmu->pmu, "cpu", PERF_TYPE_RAW);
- 	if (ret)
--		goto out_unregister;
-+		goto out_destroy;
- 
- 	/* SBI PMU Snapsphot is only available in SBI v2.0 */
- 	if (sbi_v2_available) {
-@@ -1515,9 +1525,20 @@ static int pmu_sbi_device_probe(struct platform_device *pdev)
- 	return 0;
- 
- out_unregister:
-+	perf_pmu_unregister(&pmu->pmu);
-+
-+out_destroy:
- 	riscv_pmu_destroy(pmu);
-+	if (irq_requested) {
-+		free_percpu_irq(riscv_pmu_irq, pmu->hw_events);
-+		irq_dispose_mapping(riscv_pmu_irq);
-+		riscv_pmu_irq = 0;
-+	}
- 
- out_free:
-+	free_percpu(pmu->hw_events);
-+	kfree(pmu_ctr_list);
-+	pmu_ctr_list = NULL;
- 	kfree(pmu);
- 	return ret;
- }
+ /* Machine-Level Interrupts (AIA) */
+ #define CSR_MTOPEI		0x35c
+@@ -498,6 +518,11 @@
+ # define CSR_IEH		CSR_MIEH
+ # define CSR_ISELECT	CSR_MISELECT
+ # define CSR_IREG	CSR_MIREG
++# define CSR_IREG2	CSR_MIREG2
++# define CSR_IREG3	CSR_MIREG3
++# define CSR_IREG4	CSR_MIREG4
++# define CSR_IREG5	CSR_MIREG5
++# define CSR_IREG6	CSR_MIREG6
+ # define CSR_IPH		CSR_MIPH
+ # define CSR_TOPEI	CSR_MTOPEI
+ # define CSR_TOPI	CSR_MTOPI
+@@ -523,6 +548,11 @@
+ # define CSR_IEH		CSR_SIEH
+ # define CSR_ISELECT	CSR_SISELECT
+ # define CSR_IREG	CSR_SIREG
++# define CSR_IREG2	CSR_SIREG2
++# define CSR_IREG3	CSR_SIREG3
++# define CSR_IREG4	CSR_SIREG4
++# define CSR_IREG5	CSR_SIREG5
++# define CSR_IREG6	CSR_SIREG6
+ # define CSR_IPH		CSR_SIPH
+ # define CSR_TOPEI	CSR_STOPEI
+ # define CSR_TOPI	CSR_STOPI
 
 -- 
 2.53.0-Meta
