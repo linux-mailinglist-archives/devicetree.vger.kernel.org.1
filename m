@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-318475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318492-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Rf1YJOAJRWpz5goAu9opvQ
-	(envelope-from <devicetree+bounces-318475-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:36:48 +0200
+	id MFVlKV8KRWqX5goAu9opvQ
+	(envelope-from <devicetree+bounces-318492-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:38:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134116ED6B6
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:36:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F406ED700
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:38:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=d+Brl2jG;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318475-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318475-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=Am69PpRf;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318492-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318492-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CCDBD30689A7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:25:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 96F76324F496
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA484ADDAB;
-	Wed,  1 Jul 2026 12:20:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F804C6F19;
+	Wed,  1 Jul 2026 12:21:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794C44ADD90;
-	Wed,  1 Jul 2026 12:20:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A944C042F;
+	Wed,  1 Jul 2026 12:21:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782908440; cv=none; b=o/bQzubK+8C32yGdYkWqVPPwYdVZijyX4rzn5jPD6DcZUezCFGCA/iIYVx/5xobE4ANcmGSdm4KVK1XzKlFYyoQWQCFCj1/gM9KTCBjqSPVimZrYxS7R7N2WzaKC8S421C0xubkffpyBLHFA4If6N5xPQNRorupN3QiGW4/FEhg=
+	t=1782908471; cv=none; b=F+mAt/piXOto6V0YnWhGR5V1TUvTfaKWAty11NYufEdzHliZws7c2iuwvPnMvzeEXcRUAfqDblB50xnRd56UOTmjINiatX3OCagofwtlscQvI64zUhLe+8kHJVGoc7GHzYGxksK+WHKtsE43wnDD63SYEVhVa5R6KRcsfjFjyeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782908440; c=relaxed/simple;
-	bh=2D0aTJgmzWJqvGnR/9KkzM/quY9ZK6V/tZuS6gdte3E=;
+	s=arc-20240116; t=1782908471; c=relaxed/simple;
+	bh=ETeDveAi352+eUqFcbUcX+/+P02EOgq/WMfGuTgfLLA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qrWqIBp5bE0l6foXZvfzcA0XT3zjud+W2RyIIN4IAbn3x6AeRW+K1N5uLIjxezlQUgR375DOI/nx5WkRSDjeq1VqMIbszGTk881NiDgKGrblx8xK9NJm/J9sNiRsiEHgPOmjJyy32sGwNPNxD46LLXrdhuK7aUxxgxfE0X6CJm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=d+Brl2jG; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=HDDP/K+lkYr8QlraUhRkqQbxOpq7bGnhdVXq7k903utjKWQLbN73CojxRegUz6Vf42joeOUBFbdQverWDlGMbLPz1dO+UF5f1sEIr2VLNhyuVvuqV4Gt7n1iKt5JOGBzEITy3cxxKYglSSn9JZCtuHAdJrjHg0Q89v71dhT3tcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Am69PpRf; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1782908437;
-	bh=2D0aTJgmzWJqvGnR/9KkzM/quY9ZK6V/tZuS6gdte3E=;
+	s=mail; t=1782908468;
+	bh=ETeDveAi352+eUqFcbUcX+/+P02EOgq/WMfGuTgfLLA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=d+Brl2jGq9m9uvwYzGjjGmzwnHum+t7VA/Vb9i7FFITIItXbSwuRob/SPoJCBN8nM
-	 WFe6PHLe6uF2940W/1M1hvXT4XTAt3UPYobG42CG6sYglxOYL6+lbiVXwmctoBu80f
-	 lb7MdbBoCovorE0fZw6PBo2mH/QLWJDA0VYMUa3Z7Y7eEGdlDmDhE/hB46V8wwKgzT
-	 DkOqvmST6/4Yro2o3JhTXo0kpVE4EAaRtAwuIALZuxWKa980ZTXKcWrrs0mAUhrJiy
-	 9WA7l9mbxhoQgPtVv/ukciTPavMEapmeuF5HAouHWcmBtUi/P/7SEgPc83ciymGrPy
-	 TLC/hc7x3pkvQ==
+	b=Am69PpRfsFz2MPi2M4Ms+txFlBnqtOio1nSVjQSm2YWT9sWTgGxo4xKkoTBjdtDSo
+	 r8SkvyEIuT3gG0E7SutSjdDtbvp6PvPAarW96AKgEt6d1EwXZegJs6DqZOZ/CDvRk9
+	 YiWrv8SS2aLMQhKo07wtSEhGrKcbVwvDqsUhMCIMdeOhX0Qu3slFlDd8ySZeQsI8ok
+	 0g/gibsQPkdaUlK5YuHMj1D/2D8+gx+yeQHcNQmsr+ZxM2t9AyPHBU07hVhvP0fTu2
+	 mXfzr3plkasRO6DbnX7gcz3X42th4b0LD3Ga1SFuQgI0izNiWddIBGk9FgGpE5pPPD
+	 hKrbCHoW+siGA==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2C89E17E15A5;
-	Wed,  1 Jul 2026 14:20:36 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0E86017E15A5;
+	Wed,  1 Jul 2026 14:21:07 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunkuang.hu@kernel.org
 Cc: p.zabel@pengutronix.de,
@@ -64,26 +64,20 @@ Cc: p.zabel@pengutronix.de,
 	conor+dt@kernel.org,
 	matthias.bgg@gmail.com,
 	angelogioacchino.delregno@collabora.com,
-	jitao.shi@mediatek.com,
-	granquet@baylibre.com,
-	rex-bc.chen@mediatek.com,
-	dmitry.osipenko@collabora.com,
-	ck.hu@mediatek.com,
-	amergnat@baylibre.com,
-	justin.yeh@mediatek.com,
-	jason-jh.lin@mediatek.com,
 	dri-devel@lists.freedesktop.org,
 	linux-mediatek@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
+	justin.yeh@mediatek.com,
+	jason-jh.lin@mediatek.com,
 	kernel@collabora.com
-Subject: [PATCH 08/11] drm/mediatek: mtk_dp: Move max link rate to SoC specific data
+Subject: [PATCH 06/42] drm/mediatek: Use hashtable for components discovery and registration
 Date: Wed,  1 Jul 2026 14:20:21 +0200
-Message-ID: <20260701122024.19557-9-angelogioacchino.delregno@collabora.com>
+Message-ID: <20260701122057.19648-7-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260701122024.19557-1-angelogioacchino.delregno@collabora.com>
-References: <20260701122024.19557-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
+References: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,21 +93,21 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,mediatek.com,baylibre.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-318475-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,mediatek.com];
+	TAGGED_FROM(0.00)[bounces-318492-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:jitao.shi@mediatek.com,m:granquet@baylibre.com,m:rex-bc.chen@mediatek.com,m:dmitry.osipenko@collabora.com,m:ck.hu@mediatek.com,m:amergnat@baylibre.com,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
@@ -121,69 +115,390 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 134116ED6B6
+X-Rspamd-Queue-Id: 00F406ED700
 
-In preparation for adding support for the eDP IP found in the
-MT8196 SoC, having a higher supported maximum link rate, move
-this parameter to SoC data instead of statically assigning it
-to the training info during initialization.
+As a preparation for refactoring the concept of hardware component
+identification, search, and final usage, remove the ddp_comp array
+of components and replace it with a hashtable, indexed by ID.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- drivers/gpu/drm/mediatek/mtk_dp.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/mediatek/mtk_crtc.c     | 44 ++++++++++++++++-------
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.c | 48 ++++++++++++++++++-------
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.h | 23 +++++++++++-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c  |  7 ++--
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h  |  2 +-
+ 5 files changed, 94 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-index bf3a4b15f3ec..5272e717bfda 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-@@ -167,6 +167,7 @@ struct mtk_dp_data {
- 	bool audio_supported;
- 	bool audio_pkt_in_hblank_area;
- 	u16 audio_m_div2_bit;
-+	u8 hw_max_link_rate;
- };
+diff --git a/drivers/gpu/drm/mediatek/mtk_crtc.c b/drivers/gpu/drm/mediatek/mtk_crtc.c
+index f39f197057a7..3f4d6ab1bfc2 100644
+--- a/drivers/gpu/drm/mediatek/mtk_crtc.c
++++ b/drivers/gpu/drm/mediatek/mtk_crtc.c
+@@ -725,8 +725,12 @@ static void mtk_crtc_update_output(struct drm_crtc *crtc,
+ 		crtc_state->connectors_changed, encoder_mask, crtc_index);
  
- static const struct mtk_dp_efuse_fmt mt8188_dp_efuse_fmt[MTK_DP_CAL_MAX] = {
-@@ -1481,7 +1482,7 @@ static void mtk_dp_initialize_priv_data(struct mtk_dp *mtk_dp)
+ 	for (i = 0; i < mtk_crtc->num_conn_routes; i++) {
+-		unsigned int comp_id = mtk_crtc->conn_routes[i].route_ddp;
+-		struct mtk_ddp_comp *comp = &priv->ddp_comp[comp_id];
++		const struct mtk_drm_route *conn_route = &mtk_crtc->conn_routes[i];
++		struct mtk_ddp_comp *comp;
++
++		comp = mtk_ddp_comp_find_by_id(&priv->hlist, conn_route->route_ddp);
++		if (!comp)
++			continue;
+ 
+ 		if (comp->encoder_index >= 0 &&
+ 		    (encoder_mask & BIT(comp->encoder_index))) {
+@@ -1028,10 +1032,11 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
  {
- 	bool plugged_in = (mtk_dp->bridge.type == DRM_MODE_CONNECTOR_eDP);
+ 	struct mtk_drm_private *priv = drm_dev->dev_private;
+ 	struct device *dev = drm_dev->dev;
++	struct mtk_ddp_comp *dma_comp;
+ 	struct mtk_crtc *mtk_crtc;
+ 	unsigned int num_comp_planes = 0;
+ 	int ret;
+-	int i;
++	int i, j;
+ 	bool has_ctm = false;
+ 	uint gamma_lut_size = 0;
+ 	struct drm_crtc *tmp;
+@@ -1051,7 +1056,7 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
+ 		struct mtk_ddp_comp *comp;
  
--	mtk_dp->train_info.link_rate = DP_LINK_BW_5_4;
-+	mtk_dp->train_info.link_rate = mtk_dp->data->hw_max_link_rate;
- 	mtk_dp->train_info.lane_count = mtk_dp->max_lanes;
- 	mtk_dp->train_info.cable_plugged_in = plugged_in;
+ 		node = priv->comp_node[comp_id];
+-		comp = &priv->ddp_comp[comp_id];
++		comp = mtk_ddp_comp_find_by_id(&priv->hlist, comp_id);
  
-@@ -3013,6 +3014,7 @@ static const struct mtk_dp_data mt8188_dp_data = {
- 	.audio_supported = true,
- 	.audio_pkt_in_hblank_area = true,
- 	.audio_m_div2_bit = MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
-+	.hw_max_link_rate = DP_LINK_BW_5_4,
+ 		/* Not all drm components have a DTS device node, such as ovl_adaptor,
+ 		 * which is the drm bring up sub driver
+@@ -1063,7 +1068,7 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
+ 			return 0;
+ 		}
+ 
+-		if (!comp->dev) {
++		if (!comp || !comp->dev) {
+ 			dev_err(dev, "Component %pOF not initialized\n", node);
+ 			return -ENODEV;
+ 		}
+@@ -1089,12 +1094,17 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
+ 		return ret;
+ 	}
+ 
+-	for (i = 0; i < mtk_crtc->ddp_comp_nr; i++) {
++	for (i = 0, j = 0; i < mtk_crtc->ddp_comp_nr; i++, j++) {
+ 		unsigned int comp_id = path[i];
+ 		struct mtk_ddp_comp *comp;
+ 
+-		comp = &priv->ddp_comp[comp_id];
+-		mtk_crtc->ddp_comp[i] = comp;
++		comp = mtk_ddp_comp_find_by_id(&priv->hlist, comp_id);
++		if (!comp) {
++			j--;
++			dev_dbg(dev, "Cannot find component %d.\n", comp_id);
++			continue;
++		}
++		mtk_crtc->ddp_comp[j] = comp;
+ 
+ 		if (comp->funcs) {
+ 			if (comp->funcs->gamma_set && comp->funcs->gamma_get_lut_size) {
+@@ -1131,7 +1141,14 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
+ 	 * In the case of ovl_adaptor sub driver, it needs to use the
+ 	 * dma_dev_get function to get representative dma dev.
+ 	 */
+-	mtk_crtc->dma_dev = mtk_ddp_comp_dma_dev_get(&priv->ddp_comp[path[0]]);
++	dma_comp = mtk_ddp_comp_find_by_id(&priv->hlist, path[0]);
++	if (dma_comp == NULL) {
++		dev_err(dev, "Could not find appropriate DMA device!\n");
++		return -EINVAL;
++	}
++
++	mtk_crtc->dma_dev = mtk_ddp_comp_dma_dev_get(dma_comp);
++	dev_dbg(dev, "Using DMA device %pOF\n", mtk_crtc->dma_dev->of_node);
+ 
+ 	ret = mtk_crtc_init(drm_dev, mtk_crtc, crtc_i);
+ 	if (ret < 0)
+@@ -1188,17 +1205,18 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
+ 		for (i = 0; i < num_conn_routes; i++) {
+ 			unsigned int comp_id = conn_routes[i].route_ddp;
+ 			struct device_node *node = priv->comp_node[comp_id];
+-			struct mtk_ddp_comp *comp = &priv->ddp_comp[comp_id];
++			struct mtk_ddp_comp *comp = mtk_ddp_comp_find_by_id(&priv->hlist, comp_id);
+ 
+-			if (!comp->dev) {
++			if (!comp || !comp->dev) {
+ 				dev_dbg(dev, "comp_id:%d, Component %pOF not initialized\n",
+ 					comp_id, node);
+ 				/* mark encoder_index to -1, if route comp device is not enabled */
+-				comp->encoder_index = -1;
++				if (comp)
++					comp->encoder_index = -1;
+ 				continue;
+ 			}
+ 
+-			mtk_ddp_comp_encoder_index_set(&priv->ddp_comp[comp_id]);
++			mtk_ddp_comp_encoder_index_set(comp);
+ 		}
+ 
+ 		mtk_crtc->num_conn_routes = num_conn_routes;
+diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
+index a6c1815ffa39..d716fd9f8a70 100644
+--- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
++++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
+@@ -480,10 +480,24 @@ static const struct mtk_ddp_comp_match mtk_ddp_matches[DDP_COMPONENT_DRM_ID_MAX]
+ 	[DDP_COMPONENT_WDMA1]		= { MTK_DISP_WDMA,		1, &ddp_wdma },
  };
  
- static const struct mtk_dp_data mt8195_edp_data = {
-@@ -3021,6 +3023,7 @@ static const struct mtk_dp_data mt8195_edp_data = {
- 	.efuse_fmt = mt8195_edp_efuse_fmt,
- 	.audio_supported = false,
- 	.audio_m_div2_bit = MT8195_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
-+	.hw_max_link_rate = DP_LINK_BW_5_4,
++static bool mtk_ddp_find_comp_dev_in_table(const struct mtk_drm_comp_list *hlist,
++					   const unsigned int comp_id,
++					   struct device *dev)
++{
++	struct mtk_ddp_comp *ddp_comp;
++
++	hash_for_each_possible(hlist->ddp_list, ddp_comp, lnode, comp_id) {
++		if (ddp_comp->dev == dev)
++			return true;
++	}
++
++	return false;
++}
++
+ static bool mtk_ddp_comp_find(struct device *dev,
+ 			      const unsigned int *path,
+ 			      unsigned int path_len,
+-			      struct mtk_ddp_comp *ddp_comp)
++			      const struct mtk_drm_comp_list *hlist)
+ {
+ 	unsigned int i;
+ 
+@@ -491,7 +505,7 @@ static bool mtk_ddp_comp_find(struct device *dev,
+ 		return false;
+ 
+ 	for (i = 0U; i < path_len; i++)
+-		if (dev == ddp_comp[path[i]].dev)
++		if (mtk_ddp_find_comp_dev_in_table(hlist, path[i], dev))
+ 			return true;
+ 
+ 	return false;
+@@ -500,7 +514,7 @@ static bool mtk_ddp_comp_find(struct device *dev,
+ static int mtk_ddp_comp_find_in_route(struct device *dev,
+ 				      const struct mtk_drm_route *routes,
+ 				      unsigned int num_routes,
+-				      struct mtk_ddp_comp *ddp_comp)
++				      const struct mtk_drm_comp_list *hlist)
+ {
+ 	unsigned int i;
+ 
+@@ -508,7 +522,7 @@ static int mtk_ddp_comp_find_in_route(struct device *dev,
+ 		return -EINVAL;
+ 
+ 	for (i = 0; i < num_routes; i++)
+-		if (dev == ddp_comp[routes[i].route_ddp].dev)
++		if (mtk_ddp_find_comp_dev_in_table(hlist, routes[i].route_ddp, dev))
+ 			return BIT(routes[i].crtc_id);
+ 
+ 	return -ENODEV;
+@@ -566,7 +580,7 @@ int mtk_find_possible_crtcs(struct drm_device *drm, struct device *dev)
+ 					   priv_n->comp_node)) {
+ 			if (mtk_ddp_comp_find(dev, data->main_path,
+ 					      data->main_len,
+-					      priv_n->ddp_comp))
++					      &priv_n->hlist))
+ 				return BIT(i);
+ 			i++;
+ 		}
+@@ -575,7 +589,7 @@ int mtk_find_possible_crtcs(struct drm_device *drm, struct device *dev)
+ 					   priv_n->comp_node)) {
+ 			if (mtk_ddp_comp_find(dev, data->ext_path,
+ 					      data->ext_len,
+-					      priv_n->ddp_comp))
++					      &priv_n->hlist))
+ 				return BIT(i);
+ 			i++;
+ 		}
+@@ -584,7 +598,7 @@ int mtk_find_possible_crtcs(struct drm_device *drm, struct device *dev)
+ 					   priv_n->comp_node)) {
+ 			if (mtk_ddp_comp_find(dev, data->third_path,
+ 					      data->third_len,
+-					      priv_n->ddp_comp))
++					      &priv_n->hlist))
+ 				return BIT(i);
+ 			i++;
+ 		}
+@@ -593,7 +607,7 @@ int mtk_find_possible_crtcs(struct drm_device *drm, struct device *dev)
+ 	ret = mtk_ddp_comp_find_in_route(dev,
+ 					 private->data->conn_routes,
+ 					 private->data->num_conn_routes,
+-					 private->ddp_comp);
++					 &private->hlist);
+ 
+ 	if (ret < 0)
+ 		DRM_INFO("Failed to find comp in ddp table, ret = %d\n", ret);
+@@ -615,10 +629,12 @@ static void mtk_ddp_comp_clk_put(void *_clk)
+ 	clk_put(clk);
+ }
+ 
+-int mtk_ddp_comp_init(struct device *dev, struct device_node *node, struct mtk_ddp_comp *comp,
++int mtk_ddp_comp_init(struct device *dev, struct device_node *node,
++		      struct mtk_drm_comp_list *hlist,
+ 		      unsigned int comp_id)
+ {
+ 	struct platform_device *comp_pdev;
++	struct mtk_ddp_comp *comp;
+ 	enum mtk_ddp_comp_type type;
+ 	struct mtk_ddp_comp_dev *priv;
+ 	int ret;
+@@ -626,6 +642,10 @@ int mtk_ddp_comp_init(struct device *dev, struct device_node *node, struct mtk_d
+ 	if (comp_id >= DDP_COMPONENT_DRM_ID_MAX)
+ 		return -EINVAL;
+ 
++	comp = devm_kzalloc(dev, sizeof(*comp), GFP_KERNEL);
++	if (!comp)
++		return -ENOMEM;
++
+ 	type = mtk_ddp_matches[comp_id].type;
+ 
+ 	comp->id = comp_id;
+@@ -633,8 +653,10 @@ int mtk_ddp_comp_init(struct device *dev, struct device_node *node, struct mtk_d
+ 	/* Not all drm components have a DTS device node, such as ovl_adaptor,
+ 	 * which is the drm bring up sub driver
+ 	 */
+-	if (!node)
+-		return 0;
++	if (!node) {
++		comp->dev = dev;
++		goto end;
++	}
+ 
+ 	comp_pdev = of_find_device_by_node(node);
+ 	if (!comp_pdev) {
+@@ -662,7 +684,7 @@ int mtk_ddp_comp_init(struct device *dev, struct device_node *node, struct mtk_d
+ 	    type == MTK_DISP_DPI ||
+ 	    type == MTK_DISP_DP_INTF ||
+ 	    type == MTK_DISP_DSI)
+-		return 0;
++		goto end;
+ 
+ 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+ 	if (!priv)
+@@ -687,6 +709,8 @@ int mtk_ddp_comp_init(struct device *dev, struct device_node *node, struct mtk_d
+ #endif
+ 
+ 	platform_set_drvdata(comp_pdev, priv);
++end:
++	hash_add(hlist->ddp_list, &comp->lnode, comp->id);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.h b/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
+index bbc66072fe6b..4203eecb2a7b 100644
+--- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
++++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
+@@ -6,6 +6,7 @@
+ #ifndef MTK_DDP_COMP_H
+ #define MTK_DDP_COMP_H
+ 
++#include <linux/hashtable.h>
+ #include <linux/io.h>
+ #include <linux/pm_runtime.h>
+ #include <linux/soc/mediatek/mtk-cmdq.h>
+@@ -24,6 +25,11 @@ struct drm_dsc_config;
+ 
+ struct mtk_ddp_comp;
+ struct cmdq_pkt;
++
++struct mtk_drm_comp_list {
++	DECLARE_HASHTABLE(ddp_list, 8);
++};
++
+ struct mtk_ddp_comp_funcs {
+ 	int (*power_on)(struct device *dev);
+ 	void (*power_off)(struct device *dev);
+@@ -75,6 +81,8 @@ struct mtk_ddp_comp {
+ 	unsigned int id;
+ 	int encoder_index;
+ 	const struct mtk_ddp_comp_funcs *funcs;
++
++	struct hlist_node lnode;
  };
  
- static const struct mtk_dp_data mt8195_dp_data = {
-@@ -3029,6 +3032,7 @@ static const struct mtk_dp_data mt8195_dp_data = {
- 	.efuse_fmt = mt8195_dp_efuse_fmt,
- 	.audio_supported = true,
- 	.audio_m_div2_bit = MT8195_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
-+	.hw_max_link_rate = DP_LINK_BW_5_4,
- };
+ static inline int mtk_ddp_comp_power_on(struct mtk_ddp_comp *comp)
+@@ -331,10 +339,23 @@ static inline void mtk_ddp_comp_encoder_index_set(struct mtk_ddp_comp *comp)
+ 		comp->encoder_index = (int)comp->funcs->encoder_index(comp->dev);
+ }
  
- static const struct of_device_id mtk_dp_of_match[] = {
++static inline struct mtk_ddp_comp
++*mtk_ddp_comp_find_by_id(struct mtk_drm_comp_list *hlist,
++			 const unsigned int id)
++{
++	struct mtk_ddp_comp *ddp_comp;
++
++	hash_for_each_possible(hlist->ddp_list, ddp_comp, lnode, id)
++		return ddp_comp;
++
++	return NULL;
++}
++
+ int mtk_ddp_comp_get_id(struct device_node *node,
+ 			enum mtk_ddp_comp_type comp_type);
+ int mtk_find_possible_crtcs(struct drm_device *drm, struct device *dev);
+-int mtk_ddp_comp_init(struct device *dev, struct device_node *comp_node, struct mtk_ddp_comp *comp,
++int mtk_ddp_comp_init(struct device *dev, struct device_node *node,
++		      struct mtk_drm_comp_list *hlist,
+ 		      unsigned int comp_id);
+ enum mtk_ddp_comp_type mtk_ddp_comp_get_type(unsigned int comp_id);
+ void mtk_ddp_write(struct cmdq_pkt *cmdq_pkt, unsigned int value,
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+index 9c6dfc1e384b..e956e1966b86 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+@@ -1086,6 +1086,8 @@ static int mtk_drm_probe(struct platform_device *pdev)
+ 	if (!mtk_drm_data)
+ 		return -EINVAL;
+ 
++	hash_init(private->hlist.ddp_list);
++
+ 	/* Try to build the display pipeline from devicetree graphs */
+ 	if (of_graph_is_present(phandle)) {
+ 		dev_dbg(dev, "Building display pipeline for MMSYS %u\n",
+@@ -1116,8 +1118,7 @@ static int mtk_drm_probe(struct platform_device *pdev)
+ 							    PLATFORM_DEVID_AUTO,
+ 							    (void *)private->mmsys_dev,
+ 							    sizeof(*private->mmsys_dev));
+-		private->ddp_comp[DDP_COMPONENT_DRM_OVL_ADAPTOR].dev = &ovl_adaptor->dev;
+-		mtk_ddp_comp_init(dev, NULL, &private->ddp_comp[DDP_COMPONENT_DRM_OVL_ADAPTOR],
++		mtk_ddp_comp_init(&ovl_adaptor->dev, NULL, &private->hlist,
+ 				  DDP_COMPONENT_DRM_OVL_ADAPTOR);
+ 		component_match_add(dev, &match, compare_dev, &ovl_adaptor->dev);
+ 	}
+@@ -1185,7 +1186,7 @@ static int mtk_drm_probe(struct platform_device *pdev)
+ 						   node);
+ 		}
+ 
+-		ret = mtk_ddp_comp_init(dev, node, &private->ddp_comp[comp_id], comp_id);
++		ret = mtk_ddp_comp_init(dev, node, &private->hlist, comp_id);
+ 		if (ret) {
+ 			of_node_put(node);
+ 			goto err_node;
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.h b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
+index 8b5c51d93f72..a171126d580e 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
++++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
+@@ -60,8 +60,8 @@ struct mtk_drm_private {
+ 	struct device_node *mutex_node;
+ 	struct device *mutex_dev;
+ 	struct device *mmsys_dev;
++	struct mtk_drm_comp_list hlist;
+ 	struct device_node *comp_node[DDP_COMPONENT_DRM_ID_MAX];
+-	struct mtk_ddp_comp ddp_comp[DDP_COMPONENT_DRM_ID_MAX];
+ 	struct mtk_mmsys_driver_data *data;
+ 	struct drm_atomic_commit *suspend_state;
+ 	unsigned int mbox_index;
 -- 
 2.54.0
 
