@@ -1,197 +1,133 @@
-Return-Path: <devicetree+bounces-318168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318170-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hhs5MIS7RGoAzwoAu9opvQ
-	(envelope-from <devicetree+bounces-318168-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:02:28 +0200
+	id TdhZFE28RGpWzwoAu9opvQ
+	(envelope-from <devicetree+bounces-318170-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:05:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CED16EA6B6
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:02:28 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id F075A6EA785
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:05:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qq.com header.s=s201512 header.b=GreCodbT;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318168-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318168-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=qq.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=DVVj6YqE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318170-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318170-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A7A3530398D5
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 07:02:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BEDBF30581A7
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 07:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73C5F3B47DD;
-	Wed,  1 Jul 2026 07:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F9C368957;
+	Wed,  1 Jul 2026 07:05:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out203-205-221-191.mail.qq.com (out203-205-221-191.mail.qq.com [203.205.221.191])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CBEF3B42F5;
-	Wed,  1 Jul 2026 07:02:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C0B345734;
+	Wed,  1 Jul 2026 07:05:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782889332; cv=none; b=aDeWckwjL2mfksN3qnyjBKcPTLb8Z+qdjzCvqx085GnE9Omwlf2MyXsVswBHhssWfKIqNLKJAJU/s/PHCSvAFVSIAhS95dfvpXy+Sq9FcOhqXJBCXpwf0ei3IyYS3ppScbx9WEafV01Dg0PHBLtEOSxFvLRiQSAUrT80d5zqNZs=
+	t=1782889518; cv=none; b=SJD6lzvSntvSVhICkd5JKhCNgDJD9A+gwb6coYYHGiNcjcPnkb3tJUG2rilAR3dZMN7ue1tcpxIBT83ne1JWMjb7MWG2f6qKbXJD/tuOKtNficwLxPEamXto46kDiESR2eStidOB90BrZIy1+d/dizhlB1cU10PgH2fVrtf08VE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782889332; c=relaxed/simple;
-	bh=PwsROWE7yGdCTjwi8Mr92KDpX4ZuIGdfyE+D4+4eOKQ=;
-	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version; b=bXXKbGneALILThO6CQhPdqvmADf7W63rAvnTJulukbCgLhV0ruXqPO+ZcZvBPQi65nwtowZGPrllG/6dvZZZIzCbOfuD36HDqeR+6I9FSt5c81PAivxT5CkyPuIUev82xbyF+1z3gmtCf4KWdpL/SDxnu6BILgYkk9vS1NVmWUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=GreCodbT; arc=none smtp.client-ip=203.205.221.191
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1782889322; bh=KH9lG3lADyuuhfASdZJ0Hlu8ZLTSCi9nev/mOF2oDdA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=GreCodbT3tcs51qul27qACdJoLrQfH/4FINNYaEpeYT2Fw4LwSe3fFFayY4b0RO3e
-	 ajvmscrbuonXdOfdCpDHFfv2K8Yl1eGhw1dVyanOC2+YeCojI/NLBjEK840VXMTb7B
-	 iKIczzF9Pm2Kq89PODkP4hQ3U0XjEoFvEUgZrySg=
-Received: from localhost.localdomain ([2409:8d20:2a:1b57:9e54:40ff:fe02:3f0f])
-	by newxmesmtplogicsvrszb51-0.qq.com (NewEsmtp) with SMTP
-	id 71832C3; Wed, 01 Jul 2026 15:01:49 +0800
-X-QQ-mid: xmsmtpt1782889319tzlmfzkal
-Message-ID: <tencent_5FD72FB1A997864EA622E17964240006F105@qq.com>
-X-QQ-XMAILINFO: OR5rDBBXAGpMcj2gkvTYRbvGB+SK657gAAT44mPXmteN7yu8QMvy8mYLIjf0+g
-	 1oxanFpbsFRcOObRaHf6AfB9qy7YXCHe/m6fhcgEKmiL/PiooNueSLRoO0iPRsV05jU2RuqWmj7G
-	 r4zm/GMR/bIQN/pF7pfEEPIy9gAjcWrakCKelahdOWvKHF6m0TK71kASS0/OprsGftJdMozDZ3Aj
-	 mXqIC50RFz9u363aHIfJMWx+8BcMV2pdngCWAg90mk/XeaJ8aRTQ1ZyPmUphEgXaKP5/tutLuHK/
-	 4ys1cBTeCsBfhcq4++nByDDJs5BN74aoqX+unDYp2cftrjr0XPZOc+ssfwHrz4BgXOI1EfUZg3Dn
-	 eXR0qig7zDAC5nFsHWncI+fpFC0yptCZT0qbl5/Xn6utzi9eZEHbvuM3QTA6en4LdIUzyBwJLgX+
-	 qogULTCYYipQU9lpnfYkZZ8+9fz6H0zaPwtE7XBxxcAgzEq6+Ghe5qebcD2Lmy7JKYmkaSdZRx1N
-	 f+7vJPC4a+Fbn6wEJHJa4/43yNgIKSlOhaXoFD0ifdB+jwGGCjgyMrq50rUweekX+iECn3wlQBCR
-	 FrZZPxs/bQ/oaokHRk53HgcjvNfOfowK/ujYKZaBSFHKBLWvTN7WFbDV8evHOY9XaRPM76+NsXoo
-	 34bxwa2f/gWObgTIHRl50jqNcrBni6LfnYgpjpwA/t3WiMtUm57msBC1dcmmMQKFPWwFg4VaQDU5
-	 q6elZl4zx7kA9drGa0DBpafB4cbOazCcDIYyGRWuOb0v00ypSL7p/Yl5N2qdYrdkW7HGAtPFcBoW
-	 SfaJxf9RQJiBQaUPKFxCyJFG591WDa3Ozg5Dpx8yNSHS4Wjn8HeTkSbtxZ48M+yyxg51+ghkDoPA
-	 xfb5DklIiBWWTkdf6ZCyfC/rfyk1PmEe5q4D2656UzHWC8pzO9m6JxTYHZybUYaIhqOyjTLI6ZVK
-	 X6v7GiX1Y6Uf26/pYOVUEkgzHXuXyZFnKIIX3Kr7GzXUpF8gSJgclrewpdipytAe5sw4Om5p3NgT
-	 Fr760NysLGGFKOcm/p/2TqwDYkxbz2qAumMLu1V1UcHnNwszGw7UJYRr1YiAVQhU3KmAiWIj6K+h
-	 4zha0lNXeex/9D3sew1RNs+7xxsH4J+xUcefgc
-X-QQ-XMRINFO: MSVp+SPm3vtSI1QTLgDHQqIV1w2oNKDqfg==
-From: 1579567540@qq.com
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	linux-can@vger.kernel.org
-Cc: Vincent Mailhol <mailhol@kernel.org>,
-	kernel@pengutronix.de,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	luch00 <1579567540@qq.com>
-Subject: [PATCH 3/3] arm64: dts: rockchip: add CAN-FD nodes for RK3588
-Date: Wed,  1 Jul 2026 15:01:28 +0800
-X-OQ-MSGID: <20260701070128.2096267-4-1579567540@qq.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260701070128.2096267-1-1579567540@qq.com>
-References: <20260701070128.2096267-1-1579567540@qq.com>
+	s=arc-20240116; t=1782889518; c=relaxed/simple;
+	bh=9ww35R6l447d+RHkaoNW0Hm1lPO5lZ8OZndrydqnn6g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YqTAINwBphFXzuloNnNx4MMwsmFxGvps/4TbhJ/vLQfDx2d4SFsKRB1ComHUqZSLqXxX58+d5wC27XCITNOcgp5BmQ0JgJyLv/+L2BiHI0Pv2zBo5EZA01rDKd6r5YwuS9r/yPP30uf3XCUknfV3mhrzrrMu7GHP84942WQqJKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DVVj6YqE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A0C11F00A3D;
+	Wed,  1 Jul 2026 07:05:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782889517;
+	bh=mia8sxKq83EdbDucERboNXKa1jY/lp3YbI5KEzP21q0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=DVVj6YqEllZle4eLdF5SZgzJoKA8cAAV8lrQxpPrzMwXlJdu9RWxnnNvXoXLJQI+l
+	 GVWmPVFpBBP33BiFrWkJYWWGycb2B9COkuGSfcUxl2reIF6EFqcnuTICdkFEGN7vJx
+	 UiXp+Dk1a7xKLt88rQ+eaAS4VaNysLgWn/2ErzO49Ns/j/SYt/NMBhKLs09iC8+Qq3
+	 D5emPGL3UKrC1+IiYKlmarUklxkoD92+oiZ5VjCmbZaA4qiSoA5JLCLCp9eDuo8ZU6
+	 mgQNgXNrAX84MEZ5E6BsRfO3NXc5iRMXzP0FvTKejLmoTR+Sl3vQNBhmzG5IQ52CPT
+	 QzASCVo+6LsZA==
+Date: Wed, 1 Jul 2026 09:05:13 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Andrew LaMarche <andrewjlamarche@gmail.com>
+Cc: Johannes Berg <johannes@sipsolutions.net>, 
+	Jeff Johnson <jjohnson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, ath12k@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Ernest Van Hoecke <ernestvanhoecke@gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: wireless: ath12k: drop
+ qcom,ath12k-calibration-variant
+Message-ID: <20260701-objective-gay-aardwolf-fcffef@quoll>
+References: <20260630133001.1426824-1-andrewjlamarche@gmail.com>
+ <20260630133001.1426824-2-andrewjlamarche@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260630133001.1426824-2-andrewjlamarche@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qq.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318170-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318168-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mkl@pengutronix.de,m:linux-can@vger.kernel.org,m:mailhol@kernel.org,m:kernel@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:1579567540@qq.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[qq.com];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qq.com:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:andrewjlamarche@gmail.com,m:johannes@sipsolutions.net,m:jjohnson@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-wireless@vger.kernel.org,m:devicetree@vger.kernel.org,m:ath12k@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:ernestvanhoecke@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,sntech.de,vger.kernel.org,lists.infradead.org,qq.com];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[sipsolutions.net,kernel.org,vger.kernel.org,lists.infradead.org,gmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qq.com:dkim,qq.com:email,qq.com:mid,qq.com:from_mime]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4CED16EA6B6
+X-Rspamd-Queue-Id: F075A6EA785
 
-From: luch00 <1579567540@qq.com>
+On Tue, Jun 30, 2026 at 01:30:01PM +0000, Andrew LaMarche wrote:
+> The ath12k-wsi binding documentation describes using the
+> generation-specific qcom,ath12k-calibration-variant binding as well as
+> the generation-agnostic qcom,calibration-variant binding to load
+> board-specific calibration data from the device tree. However, the
+> driver never implemented either of these.
+> 
+> Given that no devices currently supported use
+> qcom,ath12k-calibration-variant and the previous patch implements
+> qcom,calibration-variant, drop the generation-specific version from the
+> binding to prevent future confusion.
+> 
+> Signed-off-by: Andrew LaMarche <andrewjlamarche@gmail.com>
+> ---
+>  .../devicetree/bindings/net/wireless/qcom,ath12k-wsi.yaml  | 7 -------
+>  1 file changed, 7 deletions(-)
 
-Describe the three CAN-FD controllers integrated in RK3588 in the base
-SoC .dtsi.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Add CAN0, CAN1 and CAN2 nodes with their register ranges, interrupts,
-clocks and resets, and keep them disabled by default so board DTS files
-can enable them as needed.
-
-Signed-off-by: luch00 <1579567540@qq.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index fc1fdbfd3..f38cd8bd4 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -2648,6 +2648,45 @@ dmac1: dma-controller@fea30000 {
- 		#dma-cells = <1>;
- 	};
- 
-+	can0: can@fea50000 {
-+		compatible = "rockchip,rk3588v2-canfd";
-+		reg = <0x0 0xfea50000 0x0 0x1000>;
-+		interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru CLK_CAN0>, <&cru PCLK_CAN0>;
-+		clock-names = "baud", "pclk";
-+		resets = <&cru SRST_CAN0>, <&cru SRST_P_CAN0>;
-+		reset-names = "core", "apb";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&can0m0_pins>;
-+		status = "disabled";
-+	};
-+
-+	can1: can@fea60000 {
-+		compatible = "rockchip,rk3588v2-canfd";
-+		reg = <0x0 0xfea60000 0x0 0x1000>;
-+		interrupts = <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru CLK_CAN1>, <&cru PCLK_CAN1>;
-+		clock-names = "baud", "pclk";
-+		resets = <&cru SRST_CAN1>, <&cru SRST_P_CAN1>;
-+		reset-names = "core", "apb";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&can1m0_pins>;
-+		status = "disabled";
-+	};
-+
-+	can2: can@fea70000 {
-+		compatible = "rockchip,rk3588v2-canfd";
-+		reg = <0x0 0xfea70000 0x0 0x1000>;
-+		interrupts = <GIC_SPI 343 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru CLK_CAN2>, <&cru PCLK_CAN2>;
-+		clock-names = "baud", "pclk";
-+		resets = <&cru SRST_CAN2>, <&cru SRST_P_CAN2>;
-+		reset-names = "core", "apb";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&can2m0_pins>;
-+		status = "disabled";
-+	};
-+
- 	i2c1: i2c@fea90000 {
- 		compatible = "rockchip,rk3588-i2c", "rockchip,rk3399-i2c";
- 		reg = <0x0 0xfea90000 0x0 0x1000>;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
