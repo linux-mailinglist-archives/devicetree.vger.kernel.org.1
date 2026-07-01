@@ -1,184 +1,330 @@
-Return-Path: <devicetree+bounces-318661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318664-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hNxoI7EYRWqz6woAu9opvQ
-	(envelope-from <devicetree+bounces-318661-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:40:01 +0200
+	id UPxMAVAfRWqQ7QoAu9opvQ
+	(envelope-from <devicetree+bounces-318664-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:08:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2554D6EE393
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:40:01 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF6426EE84C
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:08:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=eZnYE8sT;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318661-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318661-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=D0TYYJLh;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=HRVwUj6T;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318664-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318664-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 42862301EF45
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 13:34:52 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D71CD3168A33
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 13:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0C248B384;
-	Wed,  1 Jul 2026 13:34:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECB7549219A;
+	Wed,  1 Jul 2026 13:36:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5526175A72
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 13:34:48 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782912891; cv=none; b=SBq4Rp/jCil0YM3GEKWmPIFYvxtxsQ4Nm+NLC0XzLxWr7msTrspDVfWhr05BIwPZeeY3YcFc5zQx+QamcEdS1A26E4Eqg5rLho1NLH5xZkT3eMzi1+CgKBu/2ymxr4J4lXAK3UeFmawb3RVKaXhhsgY3EpmmtpNWA1aU6rSLSOM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782912891; c=relaxed/simple;
-	bh=GD1njX04jq6B2j1X9j0R7tINNuTEpO8pnb9TdGtQPsY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=fUXpvdnyBceHjuf1oE5zHoLVq+DLieTvw9jzFo4xsWikc2Q5Vg7gh2D4B+FhrV5amSdzKECpbHMSWYkaBZB0SS7KLb7ohtza0LKaa4QenikAN/TihRERtcFSTMkBpkYcrBJk+WZA8LMtFxa8ZknigmkWh76qgv90zFVU8bSBfV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eZnYE8sT; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FD141F00A3D;
-	Wed,  1 Jul 2026 13:34:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782912888;
-	bh=7To4ya9/g9neZVkq+m0HqlDhXDRtWb5y20bO5sjaOGM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=eZnYE8sT8icwLOXyHkThYcRgdVfVrE0oJX1rQpZ3ZJFUFLiDk9YgWpYR84XXeiZli
-	 yHLx+u9Vkw08T8XARHyUzFQFpwxYF3pmbULt7eC14GLn/fsuXemPEbxvc/+5xcIpzQ
-	 2CU4YurG6/wikkwpbK3zi5yFoY3UewVOK/b7N0tAgpUHCn4oDxnG2VJGy/5WM28554
-	 sA/7n2jDKN5w+Fy4mcS+bzUgB3I1JGZ4yuZBGHWSADwF+xBMsFs/UQqyW8tlz0IzoG
-	 fPNz0jMkSgiKH7tYtf+B9/AaBpiy0ntzT26Gn/rshj0m7BDVtJ4ErtBuoudxHpb+Iy
-	 jqgNEbovg/Kkw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 08/11] drm/mediatek: mtk_dp: Move max link rate to SoC
- specific data
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org
-In-Reply-To: <20260701122024.19557-9-angelogioacchino.delregno@collabora.com>
-References: <20260701122024.19557-1-angelogioacchino.delregno@collabora.com>
- <20260701122024.19557-9-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 13:34:47 +0000
-Message-Id: <20260701133448.5FD141F00A3D@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D413D4921AD
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 13:36:21 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782912984; cv=pass; b=ZWf71dCsPhgvdFOY7WngvndmkTrOGQi856Qqfc/x2GuEWh0qDOolBWCzCTdbItkPbxk407MLyI8Hca7fr+gTGESeSKz6X59xhciU8F9WFcUoMgu4Wymo5WjiV0OQy1z/gCvfLj2d7+AOC7eHToYwea2A1vNpOHLd+0UyGXFyKmY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782912984; c=relaxed/simple;
+	bh=N+n/R/mlFs2wkRiMkBtopMW3wGbtfZ47UIAhPinzCC0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VVjDzC51gsOjNiDKhzTvQ9lUUnw8WtXa1UF2dsIvxViGu+kc5frEheGQHIZbygFVomhm+xStZXGAjIc9XVSt+Qm284OOPCXWsiuK8P89PVIW8aChKDHBSRElHGE48G+SFM1WQMfc4eb5VErhHQ596IJC3Zf2iyuKj1s2lc9hSeU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=D0TYYJLh; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HRVwUj6T; arc=pass smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 661A8kUo762137
+	for <devicetree@vger.kernel.org>; Wed, 1 Jul 2026 13:36:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ViDlik4RCW62sl/RLk3cKzJ5UtFbYqrOCQjRpG10ly0=; b=D0TYYJLhf1Zwu2jk
+	spVTvuXD1DtrAeoeC2o9zHuxnGi5L2oNStqdVlMFzAka42qve3FCqsZ0imRiSjGS
+	wY7ttgiTuQozDBsloMvMWMZ7rH/qOR9G1lDsmLiF7+3AQRgTZm29mCqmNwGw2zKN
+	vUeqWlghwM2RkTREn3uRhASvg6bSZRMNTxyjChtRcJbcOyj43Bn47PrPRgooNtem
+	izYRe/87MwRcAlgJr+M4KcqpvbGLoJprSrbUKhtWlVLLmIPX48qaTHAE596YlbJv
+	Qs74Yv6HObEi99FocjmPI1rDGZPAdejjSZRzvLFUsQfNCiXq1CiD5iYcCYaKTrC8
+	PAdhXw==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f50sd0vn2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 13:36:20 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-915f6ff639aso126249185a.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 06:36:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782912980; cv=none;
+        d=google.com; s=arc-20260327;
+        b=LxdoEhF1dw29iqfVTSMVco4Sp694lHTX7Gequ1m+BhRDI68LM/LWZs1S7pIYFan0kQ
+         Fs/yq979gBtMJiZnPY4EIgHBFzIP4QvVivoG4kfpyJcQWugYWXsb91/acM8rwp4wfKXq
+         DfbvNqF1Pq7BvXaxxyPEdlNa+uOVGVMkU7J8X6m7XiPfv94AyzEeMPdQL0OkrRty/eXp
+         Z9GAjKZ82hpPHmcjKADe0p9E66i3GIwmJXxJk6iNycM6CKwddoqrGuGpeFNsWgfxZyeO
+         EaZdA3Q9QJrAvpuql3csVpGrtRhxAQZy67ZpBmittiFYw8cGZSipDJyriA4tlPFUTlFW
+         luKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=ViDlik4RCW62sl/RLk3cKzJ5UtFbYqrOCQjRpG10ly0=;
+        fh=N8XHUR+KYf8N4SVrbGKEM/d/qt0nOMzsaYbss3dCB2g=;
+        b=q/gxjWjnTblvZP9yTg8V4W5dUOk/Fad5cM2ScmDpABHgtQrNTSqRaL4vwCkeh1d83Y
+         uRS+IbMDDnxKXwcGaUNK8PfFO3SPoHNym1tldJs0wZpbvnj6AishAwnGDB/pLflCmEH3
+         leM8Z/K18nXN6gv9DjDa6sKAPbsp+jUT2fAfQJgKvrdU/0Ozh7Ax3XdlIypLpk/ikzyH
+         DTXy1bGzRBb3cwf4jWg+fD/NoOYHapPKK8Vf1Rew5kIK7dr1+kBGZNVnxQZMo7xH49u2
+         c3xK0PqoRVc3ZzQFATVhZYlFS1OywBKw3Xmw0xSepXF18MI7nk1j8xEucelleFJIriBk
+         EqRA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1782912980; x=1783517780; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ViDlik4RCW62sl/RLk3cKzJ5UtFbYqrOCQjRpG10ly0=;
+        b=HRVwUj6T1WFzJgHooPCenbepuTuv74haEPIpemts0maavAE/jfQGfddDr1uo7W6DGh
+         eZO0TVkEOlJ4qdgSnxOxgrjvn2LIEM80ctQtYFg3FgZSUteksjeaJszZZpr3Hm+uhe2X
+         Ho2Lhbpx9CoYLh39bsXkraMGTKzjfyxPcI4HRAoQekY5WsYRCzzUd0JZ6RToG2p5aAPV
+         NSri4rD9n3MlGC/Kb206UAvoXv4W7eOO6hqFO9Bn5/041IIrMop8QXhpZlPMbkgqMI57
+         gSIoZ/rDnFVKSPMv5MA1Ugvi2JasMTR/clxSCdpuAoOF10eHQR/1H/15zr9xLsOTrMXQ
+         K8CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782912980; x=1783517780;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ViDlik4RCW62sl/RLk3cKzJ5UtFbYqrOCQjRpG10ly0=;
+        b=Vdzk2hPLR8X32lWwNwHl202UBbtcAacdZnpt9TXJvWlWhik9EXZ6haNN5HsuDDdfiy
+         mfAfHWEQkgg2CmNfWEV5xhK4MQxCAv6123xcB4+ndw8CT4xX1D5Xgf4wIuIIHD5CNEmE
+         2YFwge4quExsGF7+4o7Am6QxkoKixk+t141BVbf85OFvhVnxs99pwD4DnVyGbnJ1Lxf0
+         M9CwlERj+FVtHJ8utmwvCan8XODt1jIvCC1uJRTCu5FpF7hdriGFfvcGUcSAEQmyfUTl
+         JYPqdOPNOOEVVoHD+XFODusWSDFsKQiP7uHfINHHVhuexsStiBgNWY/F/8ZeqJ6hivXc
+         gDDQ==
+X-Forwarded-Encrypted: i=1; AFNElJ85PLkVSyC/0feFzAJ9+e9XsvXwOXFZtZicpW2gkQJstyAPU7CqoxQSAt7Y6AaTip4MiZIEmLLvJGms@vger.kernel.org
+X-Gm-Message-State: AOJu0YxX6bvvHagauHZlaBclYPr9iPIIatFXAkFUZILG81Of+OkaKDHM
+	cEsiooiVFOIFx2b6iEZfQBGg3nZ9pXUUH62FR8qAAZxSHB9pc9JoIJHkNhvm4wHdOrSx87RSKH4
+	vXPTX/rn6Wc+Gqp61nYxMZWIjk98mAFSuATuNtt4dgsFM7SXnFevbrD29A8TK8mRH/rwFoSYEMY
+	fCqtuxicoTUHaya8k/85ZQ1TSxNLavZ5zXL0LeRwE=
+X-Gm-Gg: AfdE7clizoqMV4TTiYm58XgNyy3czFQTzFs6uUAn66KtTANbTmvRFIK98QsGrD/qkhW
+	/PUoCadX9w4DEnqGzusRO80J8PWCHKlmxsmfZfXfMPKfX3OWTey/7iQxzr4AaD7N/rasXxniayA
+	4T5K+x+MzPvv5LgseFTgkAbjvrLd0Df0HtmTP0NG6wv5p3qyO09KDKelzrFphQDIfisH1E6QVSs
+	Fha4R+Lnya0yO5eKIiy9IxOrh9wvXbMJZQ7dKsNW4JmEGhWLWWj533KdmL2FBrou4lTUtnkTViO
+	fjII/+tBhA==
+X-Received: by 2002:a05:620a:28d3:b0:92b:6805:91be with SMTP id af79cd13be357-92e7853d109mr199454585a.70.1782912946581;
+        Wed, 01 Jul 2026 06:35:46 -0700 (PDT)
+X-Received: by 2002:a05:620a:28d3:b0:92b:6805:91be with SMTP id
+ af79cd13be357-92e7853d109mr199161785a.70.1782912918609; Wed, 01 Jul 2026
+ 06:35:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260629-block-as-nvmem-v6-0-f02513dcd46d@oss.qualcomm.com>
+ <20260629-block-as-nvmem-v6-1-f02513dcd46d@oss.qualcomm.com>
+ <20260630180219.GA4139943-robh@kernel.org> <CAFEp6-163adAq8-H_pCzGnq+Fo4jpyKGs6Jv25j3fSpZg3COjQ@mail.gmail.com>
+ <CAL_JsqKFjk-mdaAAOzNB6rFiJbw5gd4eDpRBLQL-4q+uJKnp3g@mail.gmail.com>
+In-Reply-To: <CAL_JsqKFjk-mdaAAOzNB6rFiJbw5gd4eDpRBLQL-4q+uJKnp3g@mail.gmail.com>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Wed, 1 Jul 2026 15:35:07 +0200
+X-Gm-Features: AVVi8CfNT2AJJTgPBXfFVJQmZjW_-a9Isbc3rycVEtJcwbZkpqGBU1gJZohgDaU
+Message-ID: <CAFEp6-20FXTOKQ6EPuR8OUDkqE4JXcUbXaFy7kRFt4fzszPQCA@mail.gmail.com>
+Subject: Re: [PATCH v6 1/9] block: partitions: of: Skip child nodes without
+ reg property
+To: Rob Herring <robh@kernel.org>
+Cc: Ulf Hansson <ulfh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Saravana Kannan <saravanak@kernel.org>,
+        Christian Marangi <ansuelsmth@gmail.com>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-block@vger.kernel.org,
+        linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
+        linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+        daniel@makrotopia.org, stable@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Authority-Analysis: v=2.4 cv=Z+3c2nRA c=1 sm=1 tr=0 ts=6a4517d4 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=yOCtJkima9RkubShWh1s:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=bM2Xkg4KEcMkddnjsM8A:9 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: MixYCG8E93r_SsCb2B0QkyKlrNg0RWW5
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAxMDE0MiBTYWx0ZWRfX2E7dKGZsCyn2
+ 9k+MEoHoB23PbcOBaoOTuCNBnZnJJ4hf55cNps8+hJcAXeGdeYeHbJkbgbOKGbVmVj6whodR9S+
+ ewSw5nKnjydAE8UqXly1TjrosktMsVI=
+X-Proofpoint-GUID: MixYCG8E93r_SsCb2B0QkyKlrNg0RWW5
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAxMDE0MiBTYWx0ZWRfX1Z0dW1fTrOrp
+ avG6yWM68qXN1eaLUnGgRTkLAHo2My6CeerSSATM8f4PPUJ3oWMct8wdlxbXD4PVGCsRNaBkHpj
+ HhkK8TYfuQfK64vCjzNK0nUddGyqDfuv43wehyqKSiyI+Eayq9xSn/wqg3dCR0sykwaJJejRbCF
+ rOHKPvInAQEA45zs3Mi4UPGCgjStSA+Xj07D5YIgyLXo1p7lSat4O1c2dfCqbGRv3HOGsosbQoT
+ W9ZjIoQx4ZhFJDKsDbacNuqNv0Ywb9Wl8Wdzgn0X+XriTtMUUQwEg22t2jfEAWhHUfU2SK+99Y+
+ DKevqsq1SKh7SmasKIDtys6y1a4NB4d6pPNp2fhkq5BiZILtxETNu0sAmThHTitsHFG5dqInJK3
+ xYHQeqLB2FjS/aYhsNXvD5a9vprqlN7UmpL7u2ks7ElVqCr7AJ5+D/eMpyHstN96cMxzfBGXysg
+ qmv2OClg3vDnLjALzYw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-01_03,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 suspectscore=0 adultscore=0 priorityscore=1501 spamscore=0
+ phishscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607010142
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-318661-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,collabora.com:email];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318664-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:ulfh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:axboe@kernel.dk,m:johannes@sipsolutions.net,m:jjohnson@kernel.org,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:quic_bgodavar@quicinc.com,m:quic_rjliao@quicinc.com,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:srini@kernel.org,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:saravanak@kernel.org,m:ansuelsmth@gmail.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-block@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:ath10k@lists.infradead.org,m:linux-bluetooth@vger.kernel.org,m:netdev@vger.kernel.org,m:daniel@makrotopia.org,m:stable@vger.kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com,s:lists@lfdr.
+ de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,kernel.dk,sipsolutions.net,holtmann.org,gmail.com,quicinc.com,davemloft.net,google.com,redhat.com,lunn.ch,armlinux.org.uk,vger.kernel.org,lists.infradead.org,makrotopia.org,oss.qualcomm.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2554D6EE393
+X-Rspamd-Queue-Id: EF6426EE84C
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-
-Pre-existing issues:
-- [High] mode_valid and atomic_get_input_bus_fmts validate display modes ag=
-ainst an unbounded, stale, or uninitialized link rate, bypassing Device Tre=
-e limits and DPCD capabilities.
---
-
-commit 4683d3daece6ab3ba3c7c82ebff7364e878794fb
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Date:   Wed Jul 1 12:20:21 2026 +0000
-
-drm/mediatek: mtk_dp: Move max link rate to SoC specific data
-
-This patch moves the maximum link rate to the SoC specific data structure
-instead of statically assigning it to DP_LINK_BW_5_4 during initialization.
-This prepares the driver for the MT8196 SoC which supports higher link rate=
-s.
-
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek=
-/mtk_dp.c
-> index bf3a4b15f3ec0..5272e717bfda0 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-[ ... ]
-> @@ -1481,7 +1482,7 @@ static void mtk_dp_initialize_priv_data(struct mtk_=
-dp *mtk_dp)
->  {
->  	bool plugged_in =3D (mtk_dp->bridge.type =3D=3D DRM_MODE_CONNECTOR_eDP);
-> =20
-> -	mtk_dp->train_info.link_rate =3D DP_LINK_BW_5_4;
-> +	mtk_dp->train_info.link_rate =3D mtk_dp->data->hw_max_link_rate;
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does setting the link rate
-here cause mode validation to falsely accept unsupported high-bandwidth mod=
-es?
-
-Looking at mtk_dp_bridge_mode_valid() in drivers/gpu/drm/mediatek/mtk_dp.c,
-it calculates available bandwidth using the unnegotiated train_info.link_ra=
-te:
-
-	u32 rate =3D drm_dp_bw_code_to_link_rate(mtk_dp->train_info.link_rate) *
-		   lane_count_min;
-
-A similar calculation occurs in mtk_dp_bridge_atomic_get_input_bus_fmts().
-
-Since train_info.link_rate is initialized here to the SoC's absolute maximum
-(and previously statically to DP_LINK_BW_5_4), it bypasses the board-specif=
-ic
-Device Tree constraint mtk_dp->max_linkrate and the sink capabilities in rx=
-_cap.
-
-When the mode is actually committed, mtk_dp_training() properly limits the
-link rate to mtk_dp->max_linkrate and trains at a lower bandwidth. Won't th=
-is
-leave the hardware unable to sustain the falsely validated high-bandwidth
-display mode, resulting in a blank screen or corrupted output due to bandwi=
-dth
-exhaustion?
-
-Because this patch will introduce even higher initial values for future SoCs
-like MT8196, will this cause a wider range of unsupported modes to be false=
-ly
-validated?
-
->  	mtk_dp->train_info.lane_count =3D mtk_dp->max_lanes;
->  	mtk_dp->train_info.cable_plugged_in =3D plugged_in;
+On Tue, Jun 30, 2026 at 11:46=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
+e:
 >
+> On Tue, Jun 30, 2026 at 2:59=E2=80=AFPM Loic Poulain
+> <loic.poulain@oss.qualcomm.com> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Tue, Jun 30, 2026 at 8:02=E2=80=AFPM Rob Herring <robh@kernel.org> w=
+rote:
+> > >
+> > > On Mon, Jun 29, 2026 at 10:55:20AM +0200, Loic Poulain wrote:
+> > > > Child nodes of a fixed-partitions node are not necessarily partitio=
+n
+> > > > entries, for example an nvmem-layout node has no reg property. The
+> > > > current code passes a NULL reg pointer and uninitialized len to the
+> > > > length check, which can result in a kernel panic or silent failure =
+to
+> > > > register any partitions.
+> > >
+> > > That does not sound right to me. A fixed-partitions node should only =
+be
+> > > defining partitions with address ranges. I would expect a partition n=
+ode
+> > > could be nvmem-layout, but not the whole address range. If you wanted
+> > > the latter, then just do:
+> > >
+> > > partitions {
+> > >   ...
+> > > };
+> > >
+> > > nvmem-layout {
+> > >   ...
+> > > };
+> >
+> > In our case, the nvmem-layout needs to be associated with a specific
+> > eMMC hardware partition, nvmem cells can be a simple sub-range within
+> > the global eMMC, each hardware partition (boot0, boot1, user...)
+> > having its own address spaces.
+> >
+> > That said, your point about not abusing fixed-partitions is valid. I
+> > initially dropped the compatible =3D "fixed-partitions" from the
+> > partitions-boot1 node when it only carries an nvmem-layout and no
+> > actual partition entries, making it a plain named container node. But
+> > it's a bit fragile if we want to support both nvmem-layout and
+> > fixed-partitions.
+> >
+> > Regarding your expectation of a partition node being a nvmem-layout,
+> > do you mean that the nvmem-layout should live under a fixed-partitions
+> > node? Something along these lines:
+> >
+> > partitions-boot1 {
+> >       compatible =3D "fixed-partitions";
+> >       #address-cells =3D <1>;
+> >       #size-cells =3D <1>;
+> >
+> >       nvmem@4400 {
+>
+> partition@4400
+>
+> >           reg =3D <0x4400 0x1000>;
+> >
+> >           nvmem-layout {
+> >               compatible =3D "fixed-layout";
+> >               #address-cells =3D <1>;
+> >               #size-cells =3D <1>;
+> >
+> >               wifi_mac_addr: mac-addr@0 {
+> >                   compatible =3D "mac-base";
+> >                   reg =3D <0x0 0x6>;
+> >                   #nvmem-cell-cells =3D <1>;
+> >               };
+> >       [...]
+>
+> Either this or replacing "fixed-partitions" with "fixed-layout" if you
+> want to make the whole boot1 partition nvmem-layout looks like the
+> right way to me.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701122024.1955=
-7-1-angelogioacchino.delregno@collabora.com?part=3D8
+Well, now I think both approaches make sense. We should support a
+fixed-layout on the entire hw-part/block, while also allowing it
+within individual logical partitions.
+Support for the former would only require a small rework/addition in
+this series (to have the hw boot partition a fixed-layout) . The
+latter could come in a follow-up series, as it would require some
+additional fwnode logic.
+
+>
+> > That makes some sense, this would require extra work for the
+> > emmc/block layer to also associate fwnodes with logical partitions,
+> > not just the whole disk/hw (hw part), Is that the direction you'd like
+> > us to go?
+>
+> Yes.
+>
+> > Also, Note that regardless of which approach we settle on, this
+> > specific fix/patch remains necessary to validate the partition node
+> > and prevent NULL-deref.
+>
+> Fair enough, though the reasoning for it would be different and
+> perhaps should give a warning.
+
+Sure.
+
+Thanks,
+Loic
 
