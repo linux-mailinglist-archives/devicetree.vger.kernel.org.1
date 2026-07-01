@@ -1,224 +1,168 @@
-Return-Path: <devicetree+bounces-318229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318234-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +bn8EovRRGp91QoAu9opvQ
-	(envelope-from <devicetree+bounces-318229-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:36:27 +0200
+	id wxG+JPjRRGqT1QoAu9opvQ
+	(envelope-from <devicetree+bounces-318234-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:38:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9489D6EB2AF
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:36:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E041A6EB2DE
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:38:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318229-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318229-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Xu8UXhtD;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318234-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318234-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 10F1C313CC2D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:30:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B9D5830C7002
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:31:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 362BF3E7BB2;
-	Wed,  1 Jul 2026 08:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9563AE71F;
+	Wed,  1 Jul 2026 08:31:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF5A9351C31
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 08:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BCE23446DE
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 08:31:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782894657; cv=none; b=s92fzN0E2cSLjfTMmVlY4Rv64iMUSALlCdiAyvCl7XHnkNrujAhKXgL0VaQ7VyFMfwO+3GPFsW68lmqMDnJokPMmP5uehC88KhAADkLW85B3vvzECVbMFI7znhtekM/+ZcrW7VsZO+758/d+yfJes9kYszfpSH288tC6jEe/CXg=
+	t=1782894710; cv=none; b=D/RB9N8DASc4e7hQlsx8u+WoMCx4ji3aEzgg5DF2XgnP7tGbjf4//pN1jYra/jc7Uri4IG2f5JrFPAuPT7CgD/jhtDHNQVCf5fXpbBGCXI1Eft4wdWHu22URcCuRoHG5GSneBo1nPFw9gzO7AoIddxjfHmLCJYag1ajyHYtrsr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782894657; c=relaxed/simple;
-	bh=8BTgJY7f8umnygoGx9lArRpKcNsZ5rvai7faGnydFA8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jncMRiNhKhiJY9CQJlSHZDbSVUe5NaHrPwl4OLDQBFyZrfwyIp9jtCuhLGwP8ELGbR8kg3rx6RBui9TgnjB1x/ZaeN/pmD91Iil9qruUM8gUU0sYGb7v99AmRjjgDYQZIwt3TA8bpo6H/faRKlaqaY4IC8xHA2PVAk3y7wsGKUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1weqLE-00051f-WC; Wed, 01 Jul 2026 10:30:45 +0200
-From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Wed, 01 Jul 2026 10:30:23 +0200
-Subject: [PATCH v3 2/2] arm64: dts: imx8mp-skov: support new 7inch panel
- board
+	s=arc-20240116; t=1782894710; c=relaxed/simple;
+	bh=4oqb5tigzr7j4QjLRdaYGwHCBq364XduzEAFDJboV8g=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=VFgMRjNhPm1+rlV1yztEs1lhlvnRIzyO69Pn/Iug4+bZsdHJ14sngDSLNABC1cZT+NqXhxqMl56TNfVONI9ozFBnn91f0fHJw3yNnK4ApJeK2BkMsBqkVhhSMpaWFM8goiGFRlzoOO3c1HKr7WeqV10wpQTHitEWi4HBrBnt4lE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xu8UXhtD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F8341F00A3A;
+	Wed,  1 Jul 2026 08:31:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782894709;
+	bh=4oqb5tigzr7j4QjLRdaYGwHCBq364XduzEAFDJboV8g=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Xu8UXhtDkLSr72MUoJXrSYnEakURHb+OXLHGOGOqfopehq0EaSvmltobKb7Bv89D2
+	 Nh4C+FsbUVbae+9UZzovJyFOqq+QMv8PClKNp8YgyL++TbpGoXalqOD2buOaZ6AiF2
+	 Ba4/Mi5LlUX0xERF/fsf3KiFtAo59KzkHwSDSwzGfMTgFoB1XZdbC1fAuzM0ruC9+b
+	 sy8aDVAJk5g6gtLJIUvrmIROZdsk8OCChrHmVynzJd91PZbe7QyU0fHbLu857Vwjj7
+	 QKYR3c/CGhIVmEX7Kh5x2d/H+Ofq4lK93Iq6A/Nyz5goC9VPUFBE04LpBcuRWqawkm
+	 X1doGA/Qp2wcg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V3 2/3] arm64: dts: qcom: monaco-evk: Enable SDHCI for
+ SD Card via overlay
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Monish Chunara" <monish.chunara@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260701081715.2580329-3-monish.chunara@oss.qualcomm.com>
+References: <20260701081715.2580329-1-monish.chunara@oss.qualcomm.com>
+ <20260701081715.2580329-3-monish.chunara@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 01 Jul 2026 08:31:47 +0000
+Message-Id: <20260701083148.0F8341F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260701-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v3-2-d74f7e3f8293@pengutronix.de>
-References: <20260701-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v3-0-d74f7e3f8293@pengutronix.de>
-In-Reply-To: <20260701-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v3-0-d74f7e3f8293@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Steffen Trumtrar <s.trumtrar@pengutronix.de>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3082;
- i=s.trumtrar@pengutronix.de; h=from:subject:message-id;
- bh=8BTgJY7f8umnygoGx9lArRpKcNsZ5rvai7faGnydFA8=;
- b=owGbwMvMwCUmtVehiCsuTInxtFoSQ5bLBePJNxwvFv5d2t/xM/HWuQrbC3+7F7+adEnbsuvzv
- l1T2Ly+dpSyMIhxMciKKbKoLKzgE/X44Bk5TYQLZg4rE8gQBi5OAZjIrwsM//0vTrYNvV/5g3G3
- RkLtp23XXkuvNJzmfWXnZe3ASrbIA7aMDI/a/91mahY6zD3T4fmCsJ1Jm/iiIq9aF7z3/vCAdau
- nMhcA
-X-Developer-Key: i=s.trumtrar@pengutronix.de; a=openpgp;
- fpr=24A1780E1548F0495996140A1ABD20720A5E5622
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:s.trumtrar@pengutronix.de,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER(0.00)[s.trumtrar@pengutronix.de,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-318229-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[s.trumtrar@pengutronix.de,devicetree@vger.kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318234-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:monish.chunara@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,pengutronix.de:email,pengutronix.de:mid,pengutronix.de:from_mime]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9489D6EB2AF
+X-Rspamd-Queue-Id: E041A6EB2DE
 
-This board is similar to the already upstream
-imx8mp-skov-revc-tian-g07017.dts but uses a different 7" panel with a
-different touch controller.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] The SD card overlay fails to remove conflicting eMMC properties (`=
+no-sd` and `non-removable`) inherited from the base device tree, rendering =
+the SD controller non-functional.
+- [Medium] The overlay configures 1.8V regulator states and high-speed OPPs=
+ for UHS-I, but explicitly disables 1.8V support via `no-1-8-v`, rendering =
+the high-speed configurations unreachable.
+--
 
-Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
----
- arch/arm64/boot/dts/freescale/Makefile             |  1 +
- .../imx8mp-skov-revc-jutouch-jt070tm041.dts        | 79 ++++++++++++++++++++++
- 2 files changed, 80 insertions(+)
+Note: The format of this review is altered to provide a free-form summary
+of the findings rather than inline quotes due to recitation restrictions.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 8ddaab127ab9c..efca29735b2cb 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -435,6 +435,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-mi1010ait-1cp1.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-bd500.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-hdmi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-tian-g07017.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-jutouch-jt070tm041.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-jutouch-jt101tm023.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-toradex-smarc-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-revc-jutouch-jt070tm041.dts b/arch/arm64/boot/dts/freescale/imx8mp-skov-revc-jutouch-jt070tm041.dts
-new file mode 100644
-index 0000000000000..56374f1e67663
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-revc-jutouch-jt070tm041.dts
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+
-+/dts-v1/;
-+
-+#include "imx8mp-skov-reva.dtsi"
-+
-+/ {
-+	model = "SKOV IMX8MP CPU revC - JuTouch JT070TM041";
-+	compatible = "skov,imx8mp-skov-revc-jutouch-jt070tm041", "fsl,imx8mp";
-+
-+	panel {
-+		compatible = "jutouch,jt070tm041";
-+		backlight = <&backlight>;
-+		power-supply = <&reg_tft_vcom>;
-+
-+		port {
-+			in_lvds0: endpoint {
-+				remote-endpoint = <&ldb_lvds_ch0>;
-+			};
-+		};
-+	};
-+};
-+
-+&backlight {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	status = "okay";
-+
-+	touchscreen@2a {
-+		compatible = "eeti,exc81w32";
-+		reg = <0x2a>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_touchscreen>;
-+		interrupts-extended = <&gpio4 28 IRQ_TYPE_LEVEL_LOW>;
-+		reset-gpios = <&gpio4 29 GPIO_ACTIVE_LOW>;
-+		touchscreen-size-x = <1024>;
-+		touchscreen-size-y = <600>;
-+		vdd-supply = <&reg_vdd_3v3>;
-+	};
-+};
-+
-+&lcdif2 {
-+	status = "okay";
-+};
-+
-+&lvds_bridge {
-+	assigned-clocks = <&clk IMX8MP_CLK_MEDIA_LDB>,
-+				 <&clk IMX8MP_VIDEO_PLL1>;
-+	assigned-clock-parents = <&clk IMX8MP_VIDEO_PLL1_OUT>;
-+	/* IMX8MP_VIDEO_PLL1 = IMX8MP_CLK_MEDIA_DISP2_PIX * 2 * 7 */
-+	assigned-clock-rates = <0>, <358400000>;
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			ldb_lvds_ch0: endpoint {
-+				remote-endpoint = <&in_lvds0>;
-+			};
-+		};
-+	};
-+};
-+
-+&pwm4 {
-+	status = "okay";
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+&reg_tft_vcom {
-+	regulator-min-microvolt = <3160000>;
-+	regulator-max-microvolt = <3160000>;
-+	voltage-table = <3160000 73>;
-+	status = "okay";
-+};
+commit 8700d2dd7b89a43576ae3f5ad283ea9e832db05a
+Author: Monish Chunara <monish.chunara@oss.qualcomm.com>
 
--- 
-2.51.0
+arm64: dts: qcom: monaco-evk: Enable SDHCI for SD Card via overlay
 
+The monaco EVK board supports either eMMC or SD-card, but only one
+can be active at a time. This enables the SDHCI for SD Card support
+via a device tree overlay.
+
+[Severity: High]
+In arch/arm64/boot/dts/qcom/monaco-evk-sd-card.dtso, the overlay modifies
+the &sdhc_1 node by adding no-mmc and cd-gpios, but it doesn't explicitly
+delete the conflicting properties inherited from the base device tree.
+
+Since device tree overlays merge nodes and do not implicitly overwrite
+boolean properties, does this resulting merged node contain both no-sd
+(from the base) and no-mmc (from the overlay)?
+
+If both properties are present, will the MMC subsystem set both
+MMC_CAP2_NO_SD and MMC_CAP2_NO_MMC flags and refuse to initialize any
+card? Additionally, won't leaving the non-removable property from the
+base tree intact cause mmc_of_parse() to bypass requesting the newly
+added cd-gpios?
+
+Should this overlay explicitly use /delete-property/ no-sd; and=20
+/delete-property/ non-removable; to clear the base configuration?
+
+[Severity: Medium]
+Also in arch/arm64/boot/dts/qcom/monaco-evk-sd-card.dtso, the &sdhc_1
+node is configured with the no-1-8-v property. However, the overlay
+configures vreg_sdc with a 1.8V state (states =3D <1800000 1>) and sets up
+sdhc1_opp_table with opp-100000000 and opp-202000000, which correspond
+to SDR50 and SDR104 modes requiring 1.8V.
+
+Does setting no-1-8-v force the MMC core to disable UHS capabilities and
+artificially restrict the SD card to 50MHz?
+
+If the board genuinely supports 1.8V, should the no-1-8-v property be
+removed? Alternatively, if the board cannot support 1.8V, should the
+unused 1.8V regulator configurations and high-speed OPP additions be
+dropped to avoid contradictory configurations?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701081715.2580=
+329-1-monish.chunara@oss.qualcomm.com?part=3D2
 
