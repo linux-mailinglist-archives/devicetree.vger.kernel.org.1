@@ -1,126 +1,354 @@
-Return-Path: <devicetree+bounces-318356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318358-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DeegILTyRGop3woAu9opvQ
-	(envelope-from <devicetree+bounces-318356-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:57:56 +0200
+	id xCN2CsryRGox3woAu9opvQ
+	(envelope-from <devicetree+bounces-318358-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:58:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E7026EC703
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:57:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F8656EC718
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:58:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Kw03Nnrf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318356-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318356-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=F5M3egaJ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318358-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318358-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C8D4730034B8
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 10:57:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 40162300348C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 10:58:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73BA9426EB2;
-	Wed,  1 Jul 2026 10:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C1313B47CA;
+	Wed,  1 Jul 2026 10:58:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B13E3EFD37;
-	Wed,  1 Jul 2026 10:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF46C3B5306;
+	Wed,  1 Jul 2026 10:58:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782903469; cv=none; b=W78Jx9kIHJCxULEE0zIWc+0KHiJ0/H7Ez2urnEOZBbPIm3q7M2gvqREIrXD8lW8A8aIqCaH4fMvNksuB0LS3FxPvdB57+fz//Yhr5mVX++TxI/v9u0MuImm8DjzqisL6KetFNMOQ8WCz+wbcTFEwTYMcAvONgStqo4ooje+xsoM=
+	t=1782903491; cv=none; b=VXAzVEkvnVr3WoUrznomALgibrxU4h12r9keVmD+LR839z8WL6CA6LuQN+QTeZ7F1937DItjwLAo/ntv8Csv80Q6aZQvX9AkfDajjOhSbn4PfobXhnYf2x8eSLvNsK6aEtp7dFYfpl9G8z/yPFLX98xrqOxHD4ajlNgTgNo5Yts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782903469; c=relaxed/simple;
-	bh=yWtNQHCZI7apySTTxXuHad5vReJdsRTISEnyKkk2TTw=;
-	h=From:Subject:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=WDqopwBL+zcjYm+BtYaiKW7VkRVXZaIPou7tOWNMxEcN6WNHmpdTMUb2YULOrtPNEJZq8XdP2EJrWlUBRziNd301x5qG1Hm+6R3AN92UESjrsEQe6M4kfo0Sp+9ThNwdbV3l54hIBgrtAsxcHnVHU/HbmnsZTZb5xUyOWQrplb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kw03Nnrf; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F10D51F00A3D;
-	Wed,  1 Jul 2026 10:57:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782903466;
-	bh=yWtNQHCZI7apySTTxXuHad5vReJdsRTISEnyKkk2TTw=;
-	h=From:Subject:Reply-To:Cc:In-Reply-To:References:Date;
-	b=Kw03NnrfiZ3KDexC83Ui7bPIXMRB2TWSyFMJOsHrP6SwoURM7wFsB/v4WjRuan/dj
-	 CkXBOOlPFo16ukMyeKHRmNQZO4wXUxmh7IdrhOHP2ccEjLaF6KpvxQ0kQ4dygmlVyw
-	 hM6HQEMUSoygLhDuG8bSoIHB/RWusyiXnC6kvA/eDvoRsO0dstm8XPLwkIIYdF0U6e
-	 o2nQw/X/ayqub3yeV0a0YXqKpl4XsZJjpQ/ACvqFEtUYV3Pb7wNVe0+1V8SCt5lJTY
-	 nXoapJ6NxitMDnpQC+ZNPQGjzLtDzdJcZN13SJoYx5CLjPXoS6cXxjXuobo7caqXbe
-	 yYd51+Wd8q6yw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V5 6/7] arm64: dts: imx8dxl/qm/qxp: Add power supply
- properties to Root Port node
-Reply-To: sashiko-reviews@lists.linux.dev
-Cc: linux-pci@vger.kernel.org, Frank.Li@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260701105234.198987-7-sherry.sun@oss.nxp.com>
-References: <20260701105234.198987-1-sherry.sun@oss.nxp.com>
- <20260701105234.198987-7-sherry.sun@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 10:57:45 +0000
-Message-Id: <20260701105745.F10D51F00A3D@smtp.kernel.org>
+	s=arc-20240116; t=1782903491; c=relaxed/simple;
+	bh=jB5MepU6CODcLq6EoYCwB4lWaURO/TvhAAGhAG3vxt8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LdmLfVJqbVQvxBX6Oi+v1S2UfZ0uY8hmacIacRBeykDfveJ9efAiF3RcM0jXVDVTapkA5mY4ZA21P07U4G9zCckaqz6JVPTlEHHynVH7+zP194ej2LfLOFPxVTz9TNs+9gcCe00LpAdYm/M4Lj44tB4246RbwLBl4ayqSSMAVgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=F5M3egaJ; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 661A8RoE761248;
+	Wed, 1 Jul 2026 10:58:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=tfFQ1qNgGL2rE1pd1FW8WBl8N3InKUkJH7w
+	HGUxeaS8=; b=F5M3egaJ/PKLTgMQDrrlrRh6PcuGGmMQRZdqHhyQrFomnt7jw97
+	+CRxBHb98RgrJF/37RjvRegMDXEhoWkSbxsvyER4zBKJMb6r1UHqZAgXPhwEjr9O
+	AeFY/mR/L0mkDey7DV+nr28+oDNjoZpOyG4q2tZfIKbvDLhu4diBj60m/B2e8wRl
+	4b+gQTa59EEFrakZxlbK71jrM5IT9c/xGuKoKOqB38Vhb15Zol8DibuII1q+ElmV
+	wxmAWwgCRMy8jlJrRWnRE1XnEIfeziXaeYPJNBXLCiIuR0SE6vE6Hsm2rTSrHhv7
+	+vAFfwia3VB1uLnpNcKSZoy393ZdU9lZVAQ==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f4kgw3ns9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 01 Jul 2026 10:58:06 +0000 (GMT)
+Received: from hu-hgautam-hyd.qualcomm.com (hu-hgautam-hyd.qualcomm.com [10.147.247.91])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 661Aw2J4011886;
+	Wed, 1 Jul 2026 10:58:02 GMT
+From: Harendra Gautam <harendra.gautam@oss.qualcomm.com>
+To: Srinivas Kandagatla <srini@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 00/11] ASoC: qcom: Add QAIF driver for Shikra audio platform
+Date: Wed,  1 Jul 2026 16:27:46 +0530
+Message-Id: <20260701105757.2779738-1-harendra.gautam@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-Authority-Analysis: v=2.4 cv=Co2PtH4D c=1 sm=1 tr=0 ts=6a44f2be cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=eoimf2acIAo5FJnRuUoq:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=2-yV753ltCfSz2TXDvIA:9
+X-Proofpoint-ORIG-GUID: NxTNyK9cnFu9yOaZOpWy16Fx8TqUDPKW
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAxMDExNSBTYWx0ZWRfXyUoLvuxvaBQu
+ pTWiYOsWAmlp4caIp6uUeeqPw8O6M/9nSAEKy7XJbeYAS1zHJRsbd732YPWJamrC6K9vE3W/2Ta
+ cNoRnSB2ztQ8SUAgBOZi772cbr2bRVE=
+X-Proofpoint-GUID: NxTNyK9cnFu9yOaZOpWy16Fx8TqUDPKW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAxMDExNSBTYWx0ZWRfX8/BptatdJIm8
+ FjNdweLXaGWopBvQtpEkORiX5v+zhtkOyXaTxfZYZnit8Hhl4vI/AOIItNZ8j6HgYGSmvkU3Z8r
+ Re6ztq8aYNebWadzzU8BDbHG3iZBPYmqAkojR5gvy0fer74LcgvDdp1akpnYq6D8ACJE+TUs2kv
+ ozKZ/ct/L6t1JzDNwEyWSEHAQZGOGA7O8aa/cpS7BKTZEROrsBOIC++zIsoUxOLnkd5k2gAYxns
+ 3Glt2qLzv3+uo0ud6MWikTSurZhdAcU8w4ULIDoqF3InAe+5HhRxW4XUZsN3wK5cIPeE9RaHH+z
+ qBaJkeB43Jp6pSeg+k5IbKOAvidMpmGIqqqAzOfhWjiaLWKAHYM8ULI2TLbFbEFaLxsVHAae00C
+ IrjSOGD2fsWtWjSZLNVoGuJqbXV2G1kdKjdIPUCw0++HF8gSkeToo/9+3KgYI4YxITyUorJdP9B
+ uzaH5QfMXGhSsnVBVrw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-01_03,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 clxscore=1015 bulkscore=0 suspectscore=0 phishscore=0
+ spamscore=0 lowpriorityscore=0 adultscore=0 impostorscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607010115
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_TO(2.00)[];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-318356-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sashiko.dev:url,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid,lists.linux.dev:replyto];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:linux-pci@vger.kernel.org,m:Frank.Li@kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-318358-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:broonie@kernel.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[harendra.gautam@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[harendra.gautam@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1E7026EC703
+X-Rspamd-Queue-Id: 1F8656EC718
 
-> From: Sherry Sun <sherry.sun@nxp.com>
->=20
-> Add the power supply properties to the Root Port child nodes to support
-> the new PCI pwrctrl framework.
->=20
-> Legacy power supply properties are retained for backward compatibility
-> with existing kernels. New device trees should specify power supplies at
-> the Root Port level to utilize the pwrctrl framework.
->=20
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+This series introduces the Qualcomm Audio Interface (QAIF) driver for
+the Shikra audio platform.
 
-Sashiko has reviewed this patch and found no issues. It looks great!
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701105234.1989=
-87-1-sherry.sun@oss.nxp.com?part=3D6
+Hardware IP Overview
+====================
+QAIF (Qualcomm Audio Interface) is a fully configurable DMA-based audio
+subsystem used to transmit and receive audio data over serial audio
+interfaces (PCM, TDM, MI2S) and to provide a DMA interface for internal
+codec connections. It manages two independent data paths:
+
+  Unified Audio Interface (AIF): Serialises and deserialises PCM audio
+  between system memory and external serial audio peripherals. Each
+  interface supports up to 8 independent data lanes, each configurable
+  as TX (speaker) or RX (mic). All lanes of an interface share a single
+  bit clock and frame sync. The AUD_INTFa hardware block controls the
+  serial protocol -- sync source (master/slave), sync mode (short/long
+  PCM, TDM, MI2S), sync delay and inversion, slot and sample widths,
+  active slot masks, lane enable/direction, mono/stereo mode and
+  full-cycle path support for long chip-to-chip connections.
+
+  Codec DMA Interface (CIF): Provides a parallel DMA interface to the
+  internal Bolero digital codec. The RDDMA path carries playback data
+  to Bolero and the WRDMA path carries capture data from Bolero. Each
+  channel has an INTF_CFG register controlling the active channel enable
+  mask, frame-sync selection, frame-sync delay, frame-sync output gating,
+  dynamic clock gating and 16-bit packing/unpacking.
+
+  DMA Engine: Read DMAs (RDDMA) fetch audio from DDR/TCM/LPM into a
+  shared on-chip SRAM latency buffer (SHRAM) and drain it to the
+  interface. Write DMAs (WRDMA) collect data from the interface into
+  SHRAM and write it to memory. Each DMA channel owns a private SHRAM
+  region. Two QSB master ports (QXM0 and QXM1) provide the memory
+  fabric. Burst sizes of 1/2/4/8/16 beats and up to 4 outstanding
+  transactions per DMA are supported.
+
+  Execution Environments (EE): Resources (DMAs, audio interfaces,
+  interface groups) are partitioned among up to 5 EEs via map registers.
+  Each EE receives an independent interrupt output. The interrupt
+  hierarchy has two levels: a summary register identifies the event class
+  (DMA period, underflow/overflow, error response, AUD_INTF
+  underflow/overflow, group done, rate detector, VFR), and per-resource
+  status registers identify the specific channel and event type.
+
+  Interface Grouping (Bonding): Multiple AIF and CIF interfaces can be
+  bonded into a group to start synchronously and align their DMA period
+  interrupts within half a frame duration using the RDDMA padding feature.
+
+  Rate Detector: Two rate detector blocks measure the frequency of
+  incoming frame sync or word select signals and generate interrupts on
+  rate change, undetected rate or sync timeout.
+
+Block Diagram
+=============
+
+  System Memory (DDR / LPM / TCM)
+  +---------------------------------+
+  |  Circular Buffers (ping-pong)   |
+  +----------+----------+-----------+
+             |          ^
+       64-bit AXI  64-bit AXI
+             |          |
+  +----------v----------+-----------+
+  |        QSB Master Ports         |
+  |  +----------+  +----------+     |
+  |  |   QXM0   |  |   QXM1   |     |
+  |  +----+-----+  +-----+----+     |
+  +-------|--------------|----------+
+          |              |
+  +-------v--------------v----------+
+  |         Shared RAM (SHRAM)       |
+  |  +------------+  +------------+ |
+  |  | QXM0 Read  |  | QXM0 Write | |
+  |  | SHRAM      |  | SHRAM      | |
+  |  +------------+  +------------+ |
+  |  +------------+  +------------+ |
+  |  | QXM1 Read  |  | QXM1 Write | |
+  |  | SHRAM      |  | SHRAM      | |
+  |  +------------+  +------------+ |
+  +---+--------+--------+-------+---+
+      |        |        |       |
+  +---v--+  +--v---+ +--v---+ +-v----+
+  |RDDMA |  |RDDMA | |WRDMA | |WRDMA |
+  | AIF  |  | CIF  | | AIF  | | CIF  |
+  |[0..n]|  |[0..n]| |[0..n]| |[0..n]|
+  +--+---+  +--+---+ +--+---+ +-+----+
+     |         |       ^          ^
+     | TX      | TX    | RX       | RX
+     v         v       |          |
+  +--+--------------------+  +----+----------+
+  |  Unified Audio Intf   |  | Codec DMA     |
+  |  (AIF 0..12)          |  | Interface     |
+  |                       |  | (CIF)         |
+  |  AUD_INTFa block:     |  |               |
+  |  - Serializer (TX)    |  | RDDMA: DDR -> |
+  |  - De-serializer (RX) |  |   internal    |
+  |  - Sync gen/detect    |  |   codec       |
+  |  - Up to 8 data lanes |  | WRDMA: codec  |
+  |  - PCM / TDM / MI2S   |  |   -> DDR      |
+  |  - Near Pad Logic     |  | Up to 16 ch   |
+  +--+--------------------+  +----+----------+
+     |  Lane 0..7 (TX/RX)       |  Parallel bus
+     |  Bit clk + Frame sync    |  + Frame sync
+     v                          v
+  +--+--------+          +------+------+
+  | External  |          | Internal    |
+  | Serial    |          | Digital     |
+  | Peripherals|         | Codec       |
+  | (PCM/TDM/ |          | (Bolero/    |
+  |  MI2S)    |          |  WCD)       |
+  +-----------+          +-------------+
+
+Software Design
+===============
+The driver follows the standard ALSA SoC split:
+
+  qaif-cpu.c: CPU DAI component. Manages clocks, initialises regmap
+  bitfield handles for all DMA and interface control registers, implements
+  DAI ops (startup/shutdown/hw_free/hw_params/trigger) for both AIF and
+  CIF paths, registers an of_xlate_dai_name callback so that sound-dai
+  references using non-sequential DAI IDs resolve correctly, and parses
+  per-interface TDM/MI2S configuration from DT child nodes.
+
+  qaif-platform.c: PCM platform component. Handles DMA buffer allocation
+  (dma_alloc_pages()), PCM ops (open/close/hw_params/prepare/trigger/
+  pointer/mmap/copy), two-level IRQ dispatch with period-elapsed
+  notification, and component suspend/resume across power collapse.
+
+  qaif-shikra.c: Shikra SoC-specific variant descriptor. Provides all
+  register field definitions, DMA-to-DAI index maps, SHRAM geometry,
+  clock names and the DAI driver array. This abstraction keeps the core
+  driver portable across future QAIF integrations.
+
+  qaif.h / qaif-reg.h: Shared data structures, constants and the complete
+  MMIO register address map consumed by both the CPU and platform drivers.
+
+  common.c/h: This series also adds asoc_qcom_of_xlate_dai_name(), a shared
+  helper that resolves a sound-dai phandle argument to a DAI name by
+  searching the component DAI driver array by ID. Both lpass-cpu.c and
+  qaif-cpu.c use thin wrappers around this helper, replacing duplicate
+  private implementations.
+
+The series is split by functionality to aid review -- register map and
+data structures first, then CIF ops, AIF ops, probe infrastructure, PCM
+ops, IRQ handling and finally the Shikra variant glue.
+
+Tested on Shikra with 48 kHz stereo MI2S playback and capture over the
+Audio Interface Zero (AIF0) and Bolero CDC DMA RX/TX paths.
+
+Link to v1:
+  https://lore.kernel.org/lkml/20260605103739.3557573-1-harendra.gautam@oss.qualcomm.com/
+Changes in v2:
+  - Rename YAML file to qcom,qaif-cpu.yaml, add qcom,qaif-cpu compatible
+  - Merge DAI ID header into binding patch, drop _clk suffix from
+    clock-names, add enum constraints, remove status: true (Krzysztof)
+  - Fix dt_binding_check failure in binding example (Rob)
+  - Fix IRQ storm: client status register bitmask missing BIT(16)
+  - Fix race: use test_and_set_bit for DMA bitmap allocation
+  - Fix regmap_config: use non-const with dynamic max_register
+  - Use dev_err_probe() in probe path, sizeof(*var) in kzalloc (Krzysztof)
+  - Add kerneldoc for all EXPORT_SYMBOL_GPL functions (Krzysztof)
+  - Use goto-based error cleanup in pcmops_open()
+  - Move MAINTAINERS entry to last patch (Krzysztof)
+  - Add shared asoc_qcom_of_xlate_dai_name() helper used by lpass-cpu
+    and qaif-cpu
+  - Fix checkpatch --strict warnings and alignment issues
+
+Depends-on: [PATCH 0/4] clk: qcom: Add Audio Core clock controller
+  support on Qualcomm Shikra SoC
+  https://lore.kernel.org/linux-clk/20260605-shikra-audiocorecc-v1-0-7ee6b5f2d928@oss.qualcomm.com/
+
+Harendra Gautam (11):
+  dt-bindings: sound: Add Qualcomm QAIF binding
+  ASoC: qcom: Add QAIF hardware register map
+  ASoC: qcom: Add QAIF shared data structures and variant interface
+  ASoC: qcom: Add QAIF CIF (CDC DMA) DAI ops
+  ASoC: qcom: Add QAIF AIF DAI ops
+  ASoC: qcom: Add generic of_xlate_dai_name helper and use it in
+    lpass-cpu and qaif-cpu
+  ASoC: qcom: Add QAIF regmap, DT parsing and platform init
+  ASoC: qcom: Add QAIF PCM operations
+  ASoC: qcom: Add QAIF IRQ handling, suspend/resume and platform
+    register
+  ASoC: qcom: Add Shikra QAIF support
+  MAINTAINERS: Add Qualcomm QAIF driver entry
+
+ .../devicetree/bindings/sound/qcom,qaif-cpu.yaml   |  358 +++++
+ MAINTAINERS                                   |   10 +
+ include/dt-bindings/sound/qcom,qaif.h         |   89 ++
+ sound/soc/qcom/Kconfig                        |   11 +
+ sound/soc/qcom/Makefile                       |    2 +
+ sound/soc/qcom/common.c                       |   34 +
+ sound/soc/qcom/common.h                       |    5 +
+ sound/soc/qcom/lpass-cpu.c                    |   23 +-
+ sound/soc/qcom/qaif-cpu.c                     | 1610 ++++++++++++++++++++
+ sound/soc/qcom/qaif-platform.c                | 1250 +++++++++++++++
+ sound/soc/qcom/qaif-reg.h                     |  453 ++++++
+ sound/soc/qcom/qaif-shikra.c                  |  556 +++++++
+ sound/soc/qcom/qaif.h                         |  506 ++++++
+ 13 files changed, 4891 insertions(+), 16 deletions(-)
+ create mode 100644 .../devicetree/bindings/sound/qcom,qaif-cpu.yaml
+ create mode 100644 include/dt-bindings/sound/qcom,qaif.h
+ create mode 100644 sound/soc/qcom/qaif-cpu.c
+ create mode 100644 sound/soc/qcom/qaif-platform.c
+ create mode 100644 sound/soc/qcom/qaif-reg.h
+ create mode 100644 sound/soc/qcom/qaif-shikra.c
+ create mode 100644 sound/soc/qcom/qaif.h
+
+base-commit: bebb6ea69b2a793e8c840d7c9c4f18cb1747570f
+prerequisite-change-id: 20260605-shikra-audiocorecc-85efef073474
+prerequisite-patch-id: 591dd358a559fa83d46149f74f80ff0f2a98da7f
+prerequisite-patch-id: 4d40e704139dc4b0ec2529c49f096d86a4e4dc5f
+prerequisite-patch-id: c02813140f0c1c3d783f5643e34ef8e175cb20ea
+prerequisite-patch-id: b9dbd75b7919d7d2dd621194609507ede839b9bf
+-- 
+2.34.1
 
 
