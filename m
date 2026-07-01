@@ -1,171 +1,199 @@
-Return-Path: <devicetree+bounces-318683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318684-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id O+vyAw0lRWoW7woAu9opvQ
-	(envelope-from <devicetree+bounces-318683-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:32:45 +0200
+	id wMvdFDYlRWoa7woAu9opvQ
+	(envelope-from <devicetree+bounces-318684-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:33:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28FB56EEC8D
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:32:44 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B53036EECA0
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:33:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=miYv6y+A;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318683-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318683-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="EzLT8/YB";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318684-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318684-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0671C31C8860
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 14:25:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1969B30FF3BF
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 14:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C52346A0C;
-	Wed,  1 Jul 2026 14:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C86344023;
+	Wed,  1 Jul 2026 14:23:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319112E718F;
-	Wed,  1 Jul 2026 14:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFB0034107D;
+	Wed,  1 Jul 2026 14:23:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782915752; cv=none; b=YD69aW2cP/Fuf9iAsGum+0K0CcgSBNDP4A+k+tXRqrF5MK5rOufE5EoeEcTwaPgswwxtpxfb+3pNtDDK77B35KtTm+P8cObs0DHY17eNClOi8Wlb5e+6kXtEAgpTcJDudOD9hFJBXqX0N/aAVKgBCBtSdHO2DYWo+HxrHvBcBaU=
+	t=1782915821; cv=none; b=Bpc0ZeSlQOaBBSuuN3riSxEp5Gk9z94YmeNLts0n7XAf7bBtaGwzTVyfjqWELBoG0rYUqaa4nJsQDzpV/LwAbNH33lR/uIMKPAtdImdqUwLCfFYT+7sfNf0tin9WoaQxzd9TurPCZq5fid1vktct9y3X7u26PeMkGTu+iEmfmv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782915752; c=relaxed/simple;
-	bh=pUVoqaf3yR2fGL7+sy119A3Wys2CCgPBVAfgLXlvIaU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=siMAdIz3+300Y9fiL0UhB/oYvXqUiUR7L6J9jx3AMTfp8uvz8KukpD9J3AWL3NM6ekHcXfLY89lBSY2iPgSjuXQs5ww1ysj30QDn0+DB8wQFNTMqPuBVGX7yJFFITrzTSiGyxSwOChnHwZ31JZcfJ/e/gKdIouU91NmDKTVU8Ak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=miYv6y+A; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A575F1F000E9;
-	Wed,  1 Jul 2026 14:22:30 +0000 (UTC)
+	s=arc-20240116; t=1782915821; c=relaxed/simple;
+	bh=G21DPj6d4jyJuQ7RytvVaBtfBoiR3J0mPO/wf+30paw=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=UyC6JaEbU9he5DDraLC3JCQFBDZEWGas+3tDNVur2RusntKuEBuzKsY4uCvB3GpKRUVOW6IRp8g2lTRwYLSQ4l84D1NS2fNUgw8D8SIoLmi1AwZBJG4HJCaZzhasL12/Skae002fMgpVa/2rSu61d4Oxjr743LT5CgnLbVxzIEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EzLT8/YB; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 241651F000E9;
+	Wed,  1 Jul 2026 14:23:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782915750;
-	bh=8yTJxssIaLikMoxDEWEoO3zvRFqHjgS1dpCIsoBmQcU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=miYv6y+AIqSQmaZkXYkguOvOnfelmb8XgnPxKZ9u2k7qLf5FPC5jYgCGOOIEEYJtr
-	 5laughCl8tLmcuisVr2bj8aUJW06Dv8A82GsF4JNNdz/SkCbuUY+dM0bki8q93/hNw
-	 fp+Lq0XDY7Fz+P71WR/WTugT25cHrgKft/sXMVKGNhgvXy0BJjAnn+trBByYWId8Qe
-	 8Z4ioVf5DuRHLv4NjP81g9XOgHJftdzGyTYSsg2OIqtV0EicRpFXlfR0gbSmH9tBMq
-	 vI5BiLSdVkY129fTuiZcqrgWekCboVbOzyv7bw5PpBdNpbD9t0L5SmEG0WeO+Qqt1D
-	 7xILLYxKgHbnQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 15/17] riscv: cpufeature: Introduce ISA bases bitmap
- and rva23u64 detection
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Guodong Xu" <docular.xu@gmail.com>
-Cc: kvm@vger.kernel.org, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260701-rva23u64-hwprobe-v2-v5-15-2c61f94a695a@gmail.com>
-References: <20260701-rva23u64-hwprobe-v2-v5-0-2c61f94a695a@gmail.com>
- <20260701-rva23u64-hwprobe-v2-v5-15-2c61f94a695a@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 14:22:29 +0000
-Message-Id: <20260701142230.A575F1F000E9@smtp.kernel.org>
+	s=k20260515; t=1782915820;
+	bh=Ao2e4oml9wyP8ZDiiFp/FwD87zl/XZ7fR7vvHotuJkc=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject;
+	b=EzLT8/YBy4/tcL4Rg0lEVmwQyXjQbxJ/R1A2Rv2piwbsp6FOOAtl/tlWOPCYLZ6+H
+	 iLNiwTVx2u5CU//oPivoXTEYzi0oK7Woa3UHg4MURm9TOb2TK0qzChygYJtdEJ+Eev
+	 TaUJPYtJi03UxekA81CxgjXTqGK8l5rGtvFPBB7BIQbgkgVO+fqrxWVCjTDvMbOmm+
+	 Iqts+D4oaIZgkENj8uXQxN/ki2aLO7JeWT1tYedFtFmiYBNxHxf55GXS0aEWy5VNOe
+	 LbpPao9oFTkAIinQTEGFcZ9hF4mfQXk4SBqFf2XfV4kCOAf+kwQJ/g3sW8kbj2lJPt
+	 y3qLXeLGaJ71A==
+Date: Wed, 01 Jul 2026 09:23:39 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: krzk+dt@kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, p.zabel@pengutronix.de, kernel@collabora.com, 
+ tzimmermann@suse.de, chunkuang.hu@kernel.org, simona@ffwll.ch, 
+ linux-arm-kernel@lists.infradead.org, jason-jh.lin@mediatek.com, 
+ airlied@gmail.com, conor+dt@kernel.org, maarten.lankhorst@linux.intel.com, 
+ linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, 
+ mripard@kernel.org, devicetree@vger.kernel.org, justin.yeh@mediatek.com
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260701122057.19648-24-angelogioacchino.delregno@collabora.com>
+References: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
+ <20260701122057.19648-24-angelogioacchino.delregno@collabora.com>
+Message-Id: <178291581273.4115171.8214844308967079622.robh@kernel.org>
+Subject: Re: [PATCH 23/42] dt-bindings: display: mediatek: Introduce
+ Digital Video Output HW
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:docular.xu@gmail.com,m:kvm@vger.kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:docularxu@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-318683-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318684-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sashiko.dev:url];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:krzk+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:p.zabel@pengutronix.de,m:kernel@collabora.com,m:tzimmermann@suse.de,m:chunkuang.hu@kernel.org,m:simona@ffwll.ch,m:linux-arm-kernel@lists.infradead.org,m:jason-jh.lin@mediatek.com,m:airlied@gmail.com,m:conor+dt@kernel.org,m:maarten.lankhorst@linux.intel.com,m:linux-mediatek@lists.infradead.org,m:matthias.bgg@gmail.com,m:mripard@kernel.org,m:devicetree@vger.kernel.org,m:justin.yeh@mediatek.com,m:angelogioacchino.delregno@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,lists.freedesktop.org,vger.kernel.org,pengutronix.de,collabora.com,suse.de,ffwll.ch,lists.infradead.org,mediatek.com,gmail.com,linux.intel.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,collabora.com:email,vger.kernel.org:from_smtp,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 28FB56EEC8D
+X-Rspamd-Queue-Id: B53036EECA0
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The RVA23U64 base detection wrongly mandates the legacy broad `B=
-` extension superset instead of its required bitmanip constituent extension=
-s (`Zba`, `Zbb`, `Zbs`).
---
 
-commit e73d8757f0ce7270b4b39989368d4e83e5a355fc
-Author: Guodong Xu <docular.xu@gmail.com>
+On Wed, 01 Jul 2026 14:20:38 +0200, AngeloGioacchino Del Regno wrote:
+> Add documentation for the Digital Video Output (DVO) IP found in
+> the newer generation SoCs MT8196, MT8189 and their variants.
+> 
+> This is effectively a more capable block replacing the DisplayPort
+> Interface (DPI/DP_INTF) one found in older SoCs.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../display/mediatek/mediatek,mt8196-dvo.yaml | 142 ++++++++++++++++++
+>  1 file changed, 142 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml
+> 
 
-riscv: cpufeature: Introduce ISA bases bitmap and rva23u64 detection
+My bot found errors running 'make dt_binding_check' on your patch:
 
-This commit introduces a per-hart and host-wide bitmap of conformant ISA
-profile bases, such as IMA and RVA23U64. The bitmap is computed during
-init by riscv_init_isa_bases() and registered as a subsys_initcall.
+yamllint warnings/errors:
 
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
-e.c
-> index 4c3bf813af052..fa8471aef42ee 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml: ignoring, error in schema: properties: compatible
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml: properties:compatible: [{'const': 'mediatek,mt8189-dp-dvo'}, {'const': 'mediatek,mt8189-edp-dvo'}, {'const': 'mediatek,mt8196-edp-dvo'}] is not of type 'object', 'boolean'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml: properties:compatible: [{'const': 'mediatek,mt8189-dp-dvo'}, {'const': 'mediatek,mt8189-edp-dvo'}, {'const': 'mediatek,mt8196-edp-dvo'}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml: properties:compatible: [{'const': 'mediatek,mt8189-dp-dvo'}, {'const': 'mediatek,mt8189-edp-dvo'}, {'const': 'mediatek,mt8196-edp-dvo'}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml: properties:compatible: [{'const': 'mediatek,mt8189-dp-dvo'}, {'const': 'mediatek,mt8189-edp-dvo'}, {'const': 'mediatek,mt8196-edp-dvo'}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml: properties:compatible: [{'const': 'mediatek,mt8189-dp-dvo'}, {'const': 'mediatek,mt8189-edp-dvo'}, {'const': 'mediatek,mt8196-edp-dvo'}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml: properties:compatible: [{'const': 'mediatek,mt8189-dp-dvo'}, {'const': 'mediatek,mt8189-edp-dvo'}, {'const': 'mediatek,mt8196-edp-dvo'}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml: properties:compatible: [{'const': 'mediatek,mt8189-dp-dvo'}, {'const': 'mediatek,mt8189-edp-dvo'}, {'const': 'mediatek,mt8196-edp-dvo'}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml: properties:compatible: [{'const': 'mediatek,mt8189-dp-dvo'}, {'const': 'mediatek,mt8189-edp-dvo'}, {'const': 'mediatek,mt8196-edp-dvo'}] is not of type 'object', 'boolean'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 8, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/doc_validate.py", line 66, in main
+    ret |= check_doc(f)
+           ~~~~~~~~~^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/doc_validate.py", line 37, in check_doc
+    dtsch.check_schema_refs()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 242, in check_schema_refs
+    self._check_schema_refs(resolver, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 212, in _check_schema_refs
+    self._check_schema_refs(resolver, v, parent=k, is_common=is_common,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            has_constraint=has_constraint)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 212, in _check_schema_refs
+    self._check_schema_refs(resolver, v, parent=k, is_common=is_common,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            has_constraint=has_constraint)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 203, in _check_schema_refs
+    ref_sch = resolver.lookup(schema['$ref']).contents
+              ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
+    retrieved = self._registry.get_or_retrieve(uri)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 422, in get_or_retrieve
+    registry = self.crawl()
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 500, in crawl
+    id = resource.id()
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 231, in id
+    id = self._specification.id_of(self.contents)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/jsonschema.py", line 50, in _dollar_id
+    return contents.get("$id")
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.example.dtb: /example-0/dvo@324c0000: failed to match any schema with compatible: ['mediatek,mt8196-edp-dvo']
 
-[ ... ]
+doc reference errors (make refcheckdocs):
 
-> @@ -1304,3 +1307,90 @@ void __init_or_module riscv_cpufeature_patch_func(=
-struct alt_entry *begin,
->  	}
->  }
->  #endif
+See https://patchwork.kernel.org/project/devicetree/patch/20260701122057.19648-24-angelogioacchino.delregno@collabora.com
 
-[ ... ]
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> +	/* RVA23U64 */
-> +
-> +	/* Supm with PMLEN=3D7 */
-> +	if (!riscv_have_user_pmlen(7))
-> +		return;
-> +
-> +	__set_bit(RISCV_ISA_EXT_F, ext_mask);
-> +	__set_bit(RISCV_ISA_EXT_D, ext_mask);
-> +	__set_bit(RISCV_ISA_EXT_C, ext_mask);
-> +	__set_bit(RISCV_ISA_EXT_B, ext_mask);
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-[Severity: Medium]
-Does this incorrectly mandate the legacy broad B extension for RVA23U64?
+pip3 install dtschema --upgrade
 
-If a RISC-V device tree advertises the RVA23U64 constituent bitmanip
-extensions (e.g., zba, zbb, zbs) but omits the legacy unratified 'b'
-string, it appears this check will fail because RISCV_ISA_EXT_B won't be
-synthesized. Should this instead check for the individual constituent
-extensions required by the profile?
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-> +	__set_bit(RISCV_ISA_EXT_ZICSR, ext_mask);
-> +	__set_bit(RISCV_ISA_EXT_ZICNTR, ext_mask);
-> +	__set_bit(RISCV_ISA_EXT_ZIHPM, ext_mask);
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-rva23u64-h=
-wprobe-v2-v5-0-2c61f94a695a@gmail.com?part=3D15
 
