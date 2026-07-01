@@ -1,263 +1,205 @@
-Return-Path: <devicetree+bounces-318227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318232-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tzLwFvLQRGpV1QoAu9opvQ
-	(envelope-from <devicetree+bounces-318227-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:33:54 +0200
+	id 6tj1HnXQRGou1QoAu9opvQ
+	(envelope-from <devicetree+bounces-318232-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:31:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A70A06EB250
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:33:53 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E56766EB1E7
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:31:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=pZzygxqY;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=QcewmHdY;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318227-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318227-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=pUx3yXnP;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318232-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318232-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3F965300F537
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:29:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 519DF30156D5
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D5C3C81B5;
-	Wed,  1 Jul 2026 08:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF523E7BB2;
+	Wed,  1 Jul 2026 08:31:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD50E3B3BE6
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 08:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD9B1DA23;
+	Wed,  1 Jul 2026 08:31:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782894582; cv=none; b=hNEJWKsX22FUSlKQUbxGnsG3wuJnsKiy/kBhTFXwDUxyhgHkHCd9AwsnmGm6GythUZUWsvG9+//NakIsG8kqLvtyGrfr4b2p0dFF0VxqXdjMbbfqmy4PnYpT83vdSSOCKqCUMKC6Qxdb6asWqo3DBRyOvtMq5jqeLIrRx0bQtGk=
+	t=1782894662; cv=none; b=S1n8s86TvfySPSUGYGMTTbH0Tnj+o+TrbAMJIC/9S3v1aKSvy6Vu008bHBOY/p3xDFCl7aVcLt89JmSCaELkwwxPZ2/+lmYewFdeaabnUKvtOe8a4JT8gTZDVGFItBXRzf590JvJ2sY7L7vMw2RqOP5MrZ5HTeJyxL9kd22JMpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782894582; c=relaxed/simple;
-	bh=xBT86zGvncxYuJOgwSvBQD6ugGny046lVMDOyZKRiVM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FGrWOB6qp2cDbx0IYNr4wgepoo2aG8IEBWmrMLH67WMpKEVIhwxA1+YL2/KftN4bXgRnRPIszqS+arZ/QsPUiT0OlHm4nRaHzg/ke+Ilwwm71AB1ek9olRBZQLyjCkmEuz6XcpKh8/EyGkkohmBPR48gxX3DE0NAVp7oJ1KuxsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pZzygxqY; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QcewmHdY; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6618Fr7I495701
-	for <devicetree@vger.kernel.org>; Wed, 1 Jul 2026 08:29:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	R7XZsN+xHgHJAq3PtY1yFAC8D12BW0pun+BLD8eUhwI=; b=pZzygxqY6hE+MJNd
-	CuBOSeqsXfQdy607ME6FQI8bLy7mSEEBYxZc4MAKZYaCccGX3beWx0GiU64FyQ0P
-	ZKDsu/uuRHPo5dVlWwjJbZVaQWpXlXjcKbXd5r5WmJEFx8Ysdnoiq7nUqGGRc0JX
-	MAdm+HFUenhp8WLRGC5yRSeOjAFX2HYCT/BZI2hQWPeputKJzySuwNASw/19EYEZ
-	AUYjVmH2qKm7wczvd3HruHlPWPomWKKeMzIJ3WSUJXrBno8FcSmNN7NxjbHoDcq4
-	O67ZwkIcb9OEZHylQLRMj19qPB/LzRNCJbFPZ+yANS26h7J8prPcfeZLwnvHP1TJ
-	zvAa9g==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f4j99kecm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 08:29:39 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-847902a694cso617537b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 01:29:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782894579; x=1783499379; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=R7XZsN+xHgHJAq3PtY1yFAC8D12BW0pun+BLD8eUhwI=;
-        b=QcewmHdYSK53uPrPa/Ok4jQebNepDkH56AkGb12KJUOR8/NfA6BiRyMTnKho6epG9E
-         GTKfROiLtrNlvbBHu8SlLcEwFguDxJ5flDd7fsyX/5MsSDEOhbCSozTmLOf9GslmF4l2
-         42ZMsWf0WDtjYEMEIl9jNyeQiu2gERVd4ztVz7uxXcfdy6h9DNqsgcLhwAgX3ePH2dEJ
-         6vieiqaBmj//Gyid2+rdGwjrnGzqDh4vyqBIocB1KwXSG2gMbv65z4nZJ4b9Suso9oug
-         /y4WdVzCNm58ASGJP7yb9SEXjNECEkhdhgEjWxfsYPGr5z9CvIVKSD2BYBzIpPF628ck
-         8/FQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782894579; x=1783499379;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R7XZsN+xHgHJAq3PtY1yFAC8D12BW0pun+BLD8eUhwI=;
-        b=L1X0aqQHOWqCXfFLQWiauzIBFMoCFWHPFV3hSSyGOVnoDQ5YiMgIIEZmh3IamkxXgE
-         td7H56gW9meGEVYoqq/2/TmJr4PEfCRuijlHEyHh4YDRfTYwQEv+6blI29QCjeqW3R6E
-         SGEkLCrGGUEIRVOHP1rwwxnCPeuIQhRhGfAwfpCvsvu4nm0f7xs/Dtdra0yTnvlrh7ud
-         0Ys22uKfwYlGc4GpRn2zkPNBTcDe4gT0ljgRgmepoPbY4SVDOotfTsDbyNLpGqOVwxhN
-         CLsekOOpfm5AbaNSQpnKrtPBkOoRT/O7HKXsG5hpR9UbGuS6lWIpQ2FEkW3kjje4Oh7+
-         czGg==
-X-Forwarded-Encrypted: i=1; AHgh+RrPKV8NTY+1XS5L6rZnkk8heRCHsvcWZPcsUK4WAdelKPnPuBM4EDeJRkyEdSwfa72QFOCSSJKF72jF@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtcXqbT+qK+ZZZq0pUYiHIVbqhD/7RQU5INdW+LL/pCVUFS/mP
-	SF6D0K5ad10apq9FudL+mbBDyVPxEPpQo35uHG4/fqdJMvacfQ4qqO5IazWFTXO+6AKXGkSVr2d
-	Qvw/vQDSpJBX/ocyZh75oohJyjnqmOhe5l8rjmXYmm0nPp4FIV5fiK99khcxzBw3j
-X-Gm-Gg: AfdE7cnJoZbOXSw14rurZCMs0244hqR5jQyzQkDaFVcmIxI9Pfra7FSe20/HWbDP9nV
-	fI9ffULd0QoTfISWO1iT2PdAihtf1W5Kqq/HOn5cqKavm7H+3wIAMfC+FVCmp83RUhxXDI4XV5X
-	RikpE2lKCCBgUnkb5lArdlGTszrCsJ3LZi4CbW9xFq6iO2Tlo+5VinUYSxudwKXKUjPvV8ryW81
-	kVxFor57ptNvOc0VZNZnyDgwxhl4hqn4q1h1jS7nLdMq7JXLzegtdO3prEIH0c2WCWLHCRe10SF
-	scWCB7yEjxG2Bjpnc0NcygrkwrycltLhswtoWLl/lf1kldmJL3xd+GK83u9SBORuW0CzsbGhy7Q
-	h09Up4MxLxM7nYIi3XngKYT73fzMqxJmJ7XLFWHcBkWgBaQ==
-X-Received: by 2002:a05:6a00:4c0d:b0:847:968c:a0f1 with SMTP id d2e1a72fcca58-847c08806bdmr634747b3a.43.1782894579217;
-        Wed, 01 Jul 2026 01:29:39 -0700 (PDT)
-X-Received: by 2002:a05:6a00:4c0d:b0:847:968c:a0f1 with SMTP id d2e1a72fcca58-847c08806bdmr634725b3a.43.1782894578723;
-        Wed, 01 Jul 2026 01:29:38 -0700 (PDT)
-Received: from hu-mchunara-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8479fffa4f0sm3602813b3a.19.2026.07.01.01.29.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jul 2026 01:29:38 -0700 (PDT)
-Date: Wed, 1 Jul 2026 13:59:34 +0530
-From: Monish Chunara <monish.chunara@oss.qualcomm.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V2 1/3] arm64: dts: qcom: monaco: Move eMMC CQE support
- from SoC to board DT
-Message-ID: <akTP7jU94kwdFL/O@hu-mchunara-hyd.qualcomm.com>
-References: <20260616130347.3096034-2-monish.chunara@oss.qualcomm.com>
- <20260616131405.448371F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782894662; c=relaxed/simple;
+	bh=EN7+luIk8ttxgrcIn29NeS7w5DT1mqmUEpqgU8cOU4w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fSXHfql2s+UF50TeL91RG8eB8pJ/+r4VE4q55blAvz0qsU6Z799PxvqlvOqKeoDvufecGouDqyYMDZDVRpfiWjEnPK5jG9LkTHXREXwUDEmLb5eJdr13uKkdTwfWP4pvgm+xfqADPPNGfYDvrjp5SM9w+O8eX2IPxIkzz8dXf7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pUx3yXnP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 29B44C2BCC6;
+	Wed,  1 Jul 2026 08:31:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1782894662;
+	bh=EN7+luIk8ttxgrcIn29NeS7w5DT1mqmUEpqgU8cOU4w=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=pUx3yXnPdCTJahJfhmnLb3VfU0fdV9Lv6TH2zYUtBzk8RaG603wE1TjhCn1XY/rLC
+	 30Pv1ubIR4ct97j6IjuWW2r3F+xt8W0+R5BFj51nErTPyUPZ2bVJo5ANHP8LuXiMwa
+	 2DN+WyQzs/XVcX/PulIJvQufVlxtNRyrSksPlei8w5jFDR4kJqrebod5DcAH5yBwLK
+	 UTaBDW2nluW8kPsEKP0X/le1eDAewAnd7F2lGDoFQAV28gCDhA5Ps1L/OfiaIMIuGC
+	 ZnJl2H/pDr64FrUY+ZTZuFz10Gg/bAi7F/J3Ax2hRYFaKb4YUy8h7Ou3djyPpZdloy
+	 kKkUS5S43ieEg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 13070C43458;
+	Wed,  1 Jul 2026 08:31:02 +0000 (UTC)
+From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Subject: [PATCH v6 0/2] clk: amlogic: Add A9 peripherals clock controller
+Date: Wed, 01 Jul 2026 16:30:01 +0800
+Message-Id: <20260701-a9_peripherals-v6-0-9630f39879e5@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260616131405.448371F000E9@smtp.kernel.org>
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAxMDA4NiBTYWx0ZWRfX/Mgmwo+qGlnk
- aL90ox+OD4tRGys+ScvlNlY5UYgK5FSCm9uesOHVT1OPwAL8le39oorjzwCoqkEuEzQGtKpjtsv
- KU7C8XMgH+5RKqENPWx1/fe/o4HmuwI=
-X-Proofpoint-ORIG-GUID: 8Cv3T7ZY9d2CBP32kg9n4krDFSJSthfJ
-X-Proofpoint-GUID: 8Cv3T7ZY9d2CBP32kg9n4krDFSJSthfJ
-X-Authority-Analysis: v=2.4 cv=bNcm5v+Z c=1 sm=1 tr=0 ts=6a44cff3 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=8nJEP1OIZ-IA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=c92rfblmAAAA:8 a=DFnpr0ky8UtvjzgDlIUA:9
- a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10 a=IoOABgeZipijB_acs4fv:22
- a=GvGzcOZaWPEFPQC_NcjD:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAxMDA4NiBTYWx0ZWRfXzs2GR60QP3Ku
- PPF5Ixqzknfu3lkJTkOBzFjdXfNpQW/mA6GKQb3scMJyfGk2jEgxRwYG9y3JgixsOAygdmqYZVN
- fcGvb5TLEkAZBeQBGif1riQEo1WoZt7m58xbqnYLQ8/lp8GLKnL4vlltZxHWVniUXQjS5FFPyD5
- h1uSfT8V1huCt+a38ralZomzQ2PNHnWXHnN939hbqbW2DqmaDG+U3uB2nqggOv+XLvGL7PLDcHN
- c9DCReDr/T8cKuxAOCEA2XVvQfMgLvyuftESRie+cK7OaPoJBce0NwhZskJrF+8BaEf33BIWUp6
- 8y5Y7FH4N8e4QTHUW1Go0FERP0DTziH2NNp/e8ZtZX6PBEFnoaP7qZFmV8LJggtuT8yHk4g7r/a
- php7hU+4ZrNDdmQsMxIl5F96Bbulu+xNDu6+b2verI2xtV86s21km62x5j9KuQ2riGy32pz7N4U
- rX51XRrznFcDLzg3H7g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-07-01_02,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 adultscore=0 clxscore=1015 priorityscore=1501
- suspectscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607010086
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAArQRGoC/3XPTQrCMBAF4KuUrI1M/prWlfcQkTSd2oDakkhRp
+ Hd32lUluHwD7+PNhyWMARM7FB8WcQopDA8K5a5gvnePK/LQUmYSZAklKO7qy0iVscfobolrKTT
+ a2oJpPaPSGLELrxU8nSn3IT2H+F79SS7Xv9QkOXBE0VQenMDSH939NlyD3/vhzhZsUhtAQAYoA
+ lqwzlZQmc6KHNBboMoATUCHQkKLmt6yOWA2gMoXGAIar0HUVoEy+heY5/kLkFdWxXEBAAA=
+X-Change-ID: 20260603-a9_peripherals-4214e79705dc
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Brian Masney <bmasney@redhat.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782894659; l=2893;
+ i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
+ bh=EN7+luIk8ttxgrcIn29NeS7w5DT1mqmUEpqgU8cOU4w=;
+ b=Xw9K4k9bePFl7wxYw4cyAoSwBxvdJXE98gki1lSauw51LcjhFKhZWqVL/NqbLD0zCnuv8t4gU
+ /2+dtstXbAUAPadINiWCjQvsbYrlV3ZYbvw9AQhr0OftCJBiJrSuBtU
+X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
+ pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
+X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
+ auth_id=735
+X-Original-From: Jian Hu <jian.hu@amlogic.com>
+Reply-To: jian.hu@amlogic.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,hu-mchunara-hyd.qualcomm.com:mid,oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318227-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318232-lists,devicetree=lfdr.de,jian.hu.amlogic.com];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:jbrunet@baylibre.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:xianwei.zhao@amlogic.com,m:khilman@baylibre.com,m:martin.blumenstingl@googlemail.com,m:bmasney@redhat.com,m:linux-amlogic@lists.infradead.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:jian.hu@amlogic.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,kernel.org,amlogic.com,googlemail.com,redhat.com];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[monish.chunara@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[monish.chunara@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[jian.hu@amlogic.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amlogic.com:replyto,amlogic.com:email,amlogic.com:mid,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A70A06EB250
+X-Rspamd-Queue-Id: E56766EB1E7
 
-On Tue, Jun 16, 2026 at 01:14:04PM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
-> - [High] Incomplete genericization of `sdhc_1` leaves conflicting eMMC-specific properties in the SoC DT, breaking SD card compatibility.
-> - [Medium] Removing the `supports-cqe` property from the SoC-level `monaco.dtsi` without explicitly adding it back to all eMMC-based boards causes a silent performance regression by disabling Command Queue Engine (CQE) support.
-> --
-> 
-> commit 05fd7920ab031fea94cd493a589a30892353cf08
-> Author: Monish Chunara <monish.chunara@oss.qualcomm.com>
-> 
-> arm64: dts: qcom: monaco: Move eMMC CQE support from SoC to board DT
-> 
-> This commit removes the supports-cqe property from the generic Monaco SoC
-> device tree and moves it to the qcs8300-ride board device tree. The stated
-> goal is to allow SD card compatibility in the base SoC definition, since the
-> Command Queue Engine conflicts with SD card operation.
-> 
-> > diff --git a/arch/arm64/boot/dts/qcom/monaco.dtsi b/arch/arm64/boot/dts/qcom/monaco.dtsi
-> > index 7b1d57460f1e6..e5f316897706b 100644
-> > --- a/arch/arm64/boot/dts/qcom/monaco.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/monaco.dtsi
-> > @@ -4828,7 +4828,6 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> >  			qcom,dll-config = <0x000f64ee>;
-> >  			qcom,ddr-config = <0x80040868>;
-> >  			bus-width = <8>;
-> > -			supports-cqe;
-> 
-> [Severity: Medium]
-> Removing supports-cqe from the SoC DT without adding it back to all
-> eMMC-based boards appears to cause a performance regression by disabling the
-> Command Queue Engine for those boards.
-> 
-> For example, arch/arm64/boot/dts/qcom/monaco-monza-som.dtsi and
-> arch/arm64/boot/dts/qcom/monaco-evk.dts both configure sdhc_1 as an eMMC
-> device (using no-sd and non-removable). Since they rely on the SoC DT for
-> the supports-cqe property, won't omitting it from this patch silently degrade
-> their performance?
-> 
+This series adds Amlogic A9 peripherals clock support,
+including dt-binding and peripherals clock driver.
 
-Update for monaco-monza-som in v3 series - https://lore.kernel.org/all/20260701081715.2580329-1-monish.chunara@oss.qualcomm.com/
+Note that this driver depends on the A9 PLL driver, which is not yet
+upstream. The Meson PLL framework is currently undergoing refactoring,
+and the A9 PLL driver will be submitted as a follow-up series after
+that work has been completed.
 
-For monaco-evk, it is handled via the overlay monaco-evk-emmc.dtso added as part
-of the same patchset.
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+Changes in v6:
+- Rebase onto the latest clk-meson-next.
+- Update Kconfig and Makefile context to apply cleanly.
+- No functional changes.
+- Link to v5: https://lore.kernel.org/r/20260630-a9_peripherals-v5-0-bc4019730354@amlogic.com
 
-> [Severity: High]
-> The commit message states the goal is to ensure the SoC definition remains
-> generic for SD card compatibility by removing supports-cqe. However, does
-> leaving the other eMMC-specific properties in the SoC DT defeat this purpose?
-> 
-> Properties like bus-width = <8>, mmc-hs400-1_8v, mmc-hs400-enhanced-strobe,
-> qcom,dll-config, and qcom,ddr-config remain in the base monaco.dtsi. Since
-> device tree overlays do not automatically delete base boolean properties or
-> override tuning parameters unless explicitly redefined, won't these
-> incorrectly inherit to SD card configurations and cause the MMC core to
-> misconfigure the interface?
-> 
-> Should these properties be moved to the eMMC-specific board files as well?
-> 
+Changes in v5:
+- Include <linux/module.h>.
+- Add missing '0' suffixes to some clocks.
+- Fix typo: "encorder1" -> "encoder1".
+- Fix the parent clock for a9_hdmitx1_pixel.
+- Link to v4: https://lore.kernel.org/r/20260618-a9_peripherals-v4-0-fe120de44e77@amlogic.com
 
-These speed modes are handled in the eMMC driver and won't affect the SD card
-functionality. bus-width is overridden in the platform file to match the SD card
-requirements.
+Changes in v4:
+- Expose channel 3 for gen_clk.
+- Add missing '0' suffixes to somes.
+- Use helper macro for vclk clocks definitions.
+- Drop forward declaration.
+- Drop CLK_HW_INIT* and revert to explicit clock declarations.
+- Fix can clock channel number comment.
+- Rename enc clocks to encoder0/encoder1.
+- Link to v3: https://lore.kernel.org/r/20260610-a9_peripherals-v3-0-d07a78085f71@amlogic.com
 
-> >  			dma-coherent;
-> >  
-> >  			mmc-ddr-1_8v;
-> > diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> > index e9a8553a8d821..3090eba0317ac 100644
-> > --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> > +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> > @@ -719,6 +719,7 @@ &sdhc_1 {
-> >  	vmmc-supply = <&vreg_l8a>;
-> >  	vqmmc-supply = <&vreg_s4a>;
-> >  
-> > +	supports-cqe;
-> >  	non-removable;
-> >  	no-sd;
-> >  	no-sdio;
-> 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20260616130347.3096034-1-monish.chunara@oss.qualcomm.com?part=1
+Changes in v3:
+- Add "depend on A9 pll" instructions in the cover-letter.
+- Move COMPILE_TEST after 'depends on ARM64' reported by sashiko-bot.
+- Fix usb_48m_pre_sel's parent reported by sashiko-bot.
+- Fix gen_div width reported by sashiko-bot.
+- Fix hdmitx1_pixel's parent reported by sashiko-bot.
+- Link to v2: https://lore.kernel.org/r/20260603-a9_peripherals-v2-0-ee1b8c0a1e6c@amlogic.com
+
+Changes in v2:
+- Split the A9 clock driver and send the peripherals clock separately.
+- Add COMPILE_TEST in Kconfig.
+- Drop the 'optional'.
+- Rename apb4 to soc.
+- Sort the header file.
+- Rename hifi to hifi0.
+- Use CLK_HW_INIT_PARENTS_DATA to describe clk_init_data.
+- Use CLK_HW_INIT_HW to describe clk_init_data.
+- Use CLK_HW_INIT_PARENTS_HW to describe clk_init_data.
+- Link to v1: https://lore.kernel.org/all/20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com/
+
+---
+Jian Hu (2):
+      dt-bindings: clock: Add Amlogic A9 peripherals clock controller
+      clk: amlogic: Add A9 peripherals clock controller driver
+
+ .../clock/amlogic,a9-peripherals-clkc.yaml         |  164 ++
+ drivers/clk/meson/Kconfig                          |   15 +
+ drivers/clk/meson/Makefile                         |    1 +
+ drivers/clk/meson/a9-peripherals.c                 | 2089 ++++++++++++++++++++
+ .../clock/amlogic,a9-peripherals-clkc.h            |  351 ++++
+ 5 files changed, 2620 insertions(+)
+---
+base-commit: a1b4c3a63a7e56b98b2eccc3a82b9f31d51c2e35
+change-id: 20260603-a9_peripherals-4214e79705dc
+
+Best regards,
+-- 
+Jian Hu <jian.hu@amlogic.com>
+
+
 
