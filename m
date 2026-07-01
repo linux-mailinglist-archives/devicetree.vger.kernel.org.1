@@ -1,194 +1,200 @@
-Return-Path: <devicetree+bounces-318321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318323-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uA0wILzsRGpW3QoAu9opvQ
-	(envelope-from <devicetree+bounces-318321-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:32:28 +0200
+	id AfG8LLHqRGpz3AoAu9opvQ
+	(envelope-from <devicetree+bounces-318323-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:23:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84B796EC2CC
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:32:27 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08E2A6EC1BF
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:23:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=lkl6wSgd;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318321-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318321-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ktpD3a0G;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318323-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318323-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4A6053016C5C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 10:20:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0E0D83011A49
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 10:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3FA940B6D4;
-	Wed,  1 Jul 2026 10:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F1C3F822C;
+	Wed,  1 Jul 2026 10:23:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C7935201E;
-	Wed,  1 Jul 2026 10:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F01B403151
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 10:23:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782901199; cv=none; b=WEq+ZP7YXs5Rb28WqkZJfAIKtg7r9Od9hLMeMsyQx+PFjXjiUGxHqGyOMcsk3kE7f+uPlWxRqJUHT1/7HdWATWFAsIbKpOqA9fXQXgaUdOvogTN6GQ0v+k+L68hqnrUjYc/8Ysh3qBfEx0+bQ0HFhHgMPu7HsJJYWbFv7UI6Vvc=
+	t=1782901422; cv=none; b=LnVNwlzF/N8RRokdWkqQLkimyjW/TyIYWwtchI2jLgqaxo+Fy4pGriS/kUMIkB03GJi/S/oGlImpMNmMj1A4Ky14AS+1BEQpsSYL7nkas+1kWEurifyB6gJRrfBbg+GgOEGQq/plsu3hrwPJTTUVO8M2kHrwPHLZU3xdIb2f9Ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782901199; c=relaxed/simple;
-	bh=bJIMDg0Kd+BDoCeT4ZU4jOzaRBF26Uz2kFNxhVhTi4E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f6qDSyNWUfBpZRfkeqrAmiqlhqseBx1uyllRfIuG1F2bLBZzdYuTLQ7HRJKPQc8aFG3qown5dRLUNlLNIt7P4+lgPbm2rcGzKUMCEYuTDX6p20tZ1VmyMHZ6+65/8JlRvQIkNTBtxCj/sScX2RSkeh/dd2hMCtOS9zaRMbwN8Nk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lkl6wSgd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 430961F000E9;
-	Wed,  1 Jul 2026 10:19:55 +0000 (UTC)
+	s=arc-20240116; t=1782901422; c=relaxed/simple;
+	bh=0xtJi14Zr6Fb2zwnaRm26ImI73MCZPBC9d1hLJbhjRY=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=jO2oeuxqg9hvU4gGONBJfn1LLeOumOe6x79YnMt8VeHD1Z85/aBnv5K8bpqdCZnkhVxjVKAZimjj/6tBQqZAI0okQhRx5jZJBnoJixxsEIvlFP6lt94OBfIp0CRdJ1obeHN3etZexUB0dv/9fT+8cxcqZM1SmSW0OM6fgdEA9Pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ktpD3a0G; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19B4A1F000E9;
+	Wed,  1 Jul 2026 10:23:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782901198;
-	bh=j6JpGr+0SJkNkvrfPYReM7F3wImBGE4w74H4osrBM+g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=lkl6wSgd1VDf0DzDDhebfpb2rkl+SEWrJRo/CrGSQruDHMUabKLbntUp6V+1AXLUm
-	 HWUy6+rO2vp7vne1p2Kuh5ywK2Lat2q1EMW4dYeiaKgN5XK+/WfZK3gRNoTl/qU5xa
-	 TIkrlJF4orUNiV1cUps8gxaZQI7vHhtPGN5QeTiWXjyLvf8G9HMA84DD5kS0LgxsQQ
-	 7MqiwnqjECqxxvA+mAAorXHlIUZzs3p5NXfbNatWkZ7LywWxpYA4BmebBkb9RH9+GU
-	 7F2VD87KAm9P37wPAvG7XcRKY8rNZKUiFJ8Y+VCQ1N5ILj2bUCJ5yq/YC6agmzWfZ6
-	 TlNMqtjNFeupQ==
-Message-ID: <ff8721fc-bb6f-4cef-a667-2e08d597dc43@kernel.org>
-Date: Wed, 1 Jul 2026 12:19:52 +0200
+	s=k20260515; t=1782901419;
+	bh=5Rsn7FVbdeQAvhYlmCgY+e9t1aFxrmBfQn6YiiR2jB4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=ktpD3a0GzB2y5SIXKELWjEF+chS8CqJeZ0Fnf270GtCgP5LjYDw1tU5/JVIVFQXyR
+	 S6HIKHpF3Z+yNKQFR6axFSnysPW/NgmHKUt6LtEtIYbnjuN6VMGZYfx8gwK9DKTm6i
+	 VGLkAWbI03iziMxaX5LQP8C9XbNFlkd+/M84zjyRuDSnI/69FWKmV/OLpSLkJ80kTy
+	 FCEe+p2y4DQXh3/RUhZSUC/XzAp9Xp8evU6lVxoeqHlGo9GgHpbj5lmKSdKxDj44qd
+	 fXthqUqendb2Am7VCs+r2AxEkMPcJxJPmBUDuhmoE0avuKHj3b0w6hUxwqEK0+tS3N
+	 5u12BsmpBcpFQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: glymur: Add memory-region for audio
+ PD
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Vinayak Katoch" <vinayak.katoch@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260701-glymur-audio-v1-1-2c3862d95a09@oss.qualcomm.com>
+References: <20260701-glymur-audio-v1-1-2c3862d95a09@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 01 Jul 2026 10:23:38 +0000
+Message-Id: <20260701102339.19B4A1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add base HAMOA-IOT-COME board
-To: yuanjiey <yuanjie.yang@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- tingwei.zhang@oss.qualcomm.com
-References: <20260630071022.3256-1-yuanjie.yang@oss.qualcomm.com>
- <20260630071022.3256-3-yuanjie.yang@oss.qualcomm.com>
- <20260701-uptight-piquant-raccoon-abceb4@quoll>
- <akTU-YQkms64qivB@YUANJIEY2.ap.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <akTU-YQkms64qivB@YUANJIEY2.ap.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318321-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:yuanjie.yang@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:tingwei.zhang@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318323-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:vinayak.katoch@oss.qualcomm.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 84B796EC2CC
+X-Rspamd-Queue-Id: 08E2A6EC1BF
 
-On 01/07/2026 10:51, yuanjiey wrote:
-> On Wed, Jul 01, 2026 at 09:29:34AM +0200, Krzysztof Kozlowski wrote:
->> On Tue, Jun 30, 2026 at 03:10:12PM +0800, Yuanjie Yang wrote:
->>> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
->>> ---
->>>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->>>  .../boot/dts/qcom/hamoa-iot-come-sip.dtsi     |   9 ++
->>>  .../boot/dts/qcom/hamoa-iot-come-som.dtsi     |  38 ++++++
->>>  arch/arm64/boot/dts/qcom/hamoa-iot-come.dts   | 108 ++++++++++++++++++
->>>  4 files changed, 156 insertions(+)
->>>  create mode 100644 arch/arm64/boot/dts/qcom/hamoa-iot-come-sip.dtsi
->>>  create mode 100644 arch/arm64/boot/dts/qcom/hamoa-iot-come-som.dtsi
->>>  create mode 100644 arch/arm64/boot/dts/qcom/hamoa-iot-come.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->>> index 6f33c4e2f09c..549287e3eeba 100644
->>> --- a/arch/arm64/boot/dts/qcom/Makefile
->>> +++ b/arch/arm64/boot/dts/qcom/Makefile
->>> @@ -16,6 +16,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8096sg-db820c.dtb
->>>  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
->>>  dtb-$(CONFIG_ARCH_QCOM)	+= eliza-mtp.dtb
->>>  dtb-$(CONFIG_ARCH_QCOM)	+= glymur-crd.dtb
->>> +dtb-$(CONFIG_ARCH_QCOM)	+= hamoa-iot-come.dtb
->>>  dtb-$(CONFIG_ARCH_QCOM)	+= hamoa-iot-evk.dtb
->>>  
->>>  hamoa-iot-evk-el2-dtbs	:= hamoa-iot-evk.dtb x1-el2.dtbo
->>> diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-come-sip.dtsi b/arch/arm64/boot/dts/qcom/hamoa-iot-come-sip.dtsi
->>> new file mode 100644
->>> index 000000000000..935af96c2b85
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-come-sip.dtsi
->>
->> What is the point of this file?
-> 
-> This SiP hardware is effectively the same as the SoM on the Hamoa EVK.
-> It's just called differently on a different board. I want to use this
-> file to include hamoa-iot-som.dtsi header to show this idea.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-You do not need empty file for such purpose.
+New issues:
+- [High] The `adsp-rpc-remote-heap` memory region uses `reusable` without r=
+etaining HLOS access, leading to fatal hypervisor faults due to speculative=
+ execution.
 
-Best regards,
-Krzysztof
+Pre-existing issues:
+- [High] The fastrpc driver does not restore memory ownership to HLOS befor=
+e freeing the remote_heap, causing a fatal XPU violation on memory reuse.
+--
+
+commit 39381f5de37bbf0f0366047bc842de4cb219a1ec
+Author: Vinayak Katoch <vinayak.katoch@oss.qualcomm.com>
+
+arm64: dts: qcom: glymur: Add memory-region for audio PD
+
+Reserve memory region for audio PD dynamic loading and remote heap
+requirements. Add the required VMID list for memory ownership
+transfers.
+
+> diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/q=
+com/glymur.dtsi
+> index 20b49af7298e9..f403f542aa00c 100644
+> --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
+[ ... ]
+> @@ -663,6 +664,14 @@ smem_mem: smem@ffe00000 {
+>  			hwlocks =3D <&tcsr_mutex 3>;
+>  			no-map;
+>  		};
+> +
+> +		adsp_rpc_remote_heap_mem: adsp-rpc-remote-heap {
+> +			compatible =3D "shared-dma-pool";
+> +			alloc-ranges =3D <0x0 0x80000000 0x0 0x80000000>;
+> +			reusable;
+> +			alignment =3D <0x0 0x400000>;
+> +			size =3D <0x0 0x800000>;
+> +		};
+>  	};
+> =20
+>  	smp2p-adsp {
+[ ... ]
+> @@ -3845,6 +3854,9 @@ fastrpc {
+>  					compatible =3D "qcom,glymur-fastrpc", "qcom,kaanapali-fastrpc";
+>  					qcom,glink-channels =3D "fastrpcglink-apps-dsp";
+>  					label =3D "adsp";
+> +					memory-region =3D <&adsp_rpc_remote_heap_mem>;
+> +					qcom,vmids =3D <QCOM_SCM_VMID_LPASS
+> +						      QCOM_SCM_VMID_ADSP_HEAP>;
+
+[Severity: High]
+Since this memory region is defined with the reusable property, it is placed
+in the CMA pool and the kernel's linear mapping. When the fastrpc driver
+allocates this memory and assigns it, it strips QCOM_SCM_VMID_HLOS because =
+it
+is missing from this qcom,vmids array.
+
+Because the pages remain mapped in the kernel's linear mapping, will any
+speculative CPU fetch to these addresses immediately trigger a hypervisor
+protection fault?
+
+Should this region use no-map instead, or should QCOM_SCM_VMID_HLOS be
+included in the qcom,vmids array?
+
+[Severity: High]
+This is a pre-existing issue, but I noticed a related problem in the fastrpc
+driver when handling this remote heap memory.
+
+When the driver frees the remote heap during channel teardown or module
+removal, it returns the buffer to the CMA pool:
+
+drivers/misc/fastrpc.c:fastrpc_rpmsg_remove() {
+        ...
+        if (cctx->remote_heap)
+                fastrpc_buf_free(cctx->remote_heap);
+        ...
+}
+
+Does this free the memory without restoring ownership to QCOM_SCM_VMID_HLOS?
+
+If so, could this cause an XPU/SMMU violation when the CMA allocator
+subsequently reuses these freed pages for another kernel component?
+
+>  					#address-cells =3D <1>;
+>  					#size-cells =3D <0>;
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-glymur-aud=
+io-v1-1-2c3862d95a09@oss.qualcomm.com?part=3D1
 
