@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-318785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318786-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 797eJg4/RWpQ9QoAu9opvQ
-	(envelope-from <devicetree+bounces-318785-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:23:42 +0200
+	id djlwDf0/RWqP9QoAu9opvQ
+	(envelope-from <devicetree+bounces-318786-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:27:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA22F6EFBF3
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BBC96EFC88
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:27:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Wc0vRORD;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318785-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318785-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YQR7NUgi;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318786-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318786-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 36F52314BB47
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 16:16:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 793BA3018D5C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 16:21:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089D9311C2C;
-	Wed,  1 Jul 2026 16:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 462DC3655EC;
+	Wed,  1 Jul 2026 16:21:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F296E23FC41;
-	Wed,  1 Jul 2026 16:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 488601B4F1F;
+	Wed,  1 Jul 2026 16:21:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782922588; cv=none; b=dU6SB7/NfC7Mte6oeHtPtqNswq/EyZAB/LbTPn/7x4WXS8pF/hd8sHM46A3njRYBduSe8injtUMktJ6fF9swV+DNCruij7K2TxIsjh4sI6xi2HpgAwn/QJ3iUSSBGUf53aYoYyQfMUkdicYyiYOOJgj33htIiaD0MrNmlHXt4/I=
+	t=1782922915; cv=none; b=NeyGpTZ5PCzFObeTiLPZBpn8n32nCZaza6jQtfMjODSGfaN5OvM5CgSv6du0iXdYuBfs1MPem/MxrJC5eD64jstv5Z/69SLVNonBypOGPLeK9usCrrH8OoiQl+/SXTGp9c7oFrgSi0MuEGjvcsjwiHBdbUixo7xZnbzT5Ofm780=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782922588; c=relaxed/simple;
-	bh=fNHQ0TSOcHuwr5FQ7QWdZBodpCcY9rc2C+N0JKV1CBQ=;
+	s=arc-20240116; t=1782922915; c=relaxed/simple;
+	bh=IihzCA/spfew84fu8LxSdxSOIvFq2R9ztIcFuF72T3c=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=qPujaXQD8BiO7lMYAt8Oox69ttFb8MZB0tr03o9dNop/dWtycxXTxvzhm4/WpsYvBqYGLSYMGgYIH+o59pESos66UfhPj4akm2ycm4LMBxyViDIoZiEgQ8SLT/8xJTFmSmmJR46pxMGQF9HbsUsb7Gdu8oBKrapNf0MfptWE2Z0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wc0vRORD; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 261AE1F000E9;
-	Wed,  1 Jul 2026 16:16:27 +0000 (UTC)
+	 Message-Id; b=MSk6Ceh5rpOsoj6OArNGXBMWMEqaOoBnAvvKcqLqtBjgMHeX9IUrcF1ijXf92xYwSpG3T8WUgp1jlSTP5auQMI7rVPz2fFC3qALoBRfyNQOLlAgdKZlfN9sVpi8y9s8fqbDn24gU20rsTyxp5X1UzQqTLdilRU+f4up9oAlsr5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YQR7NUgi; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A98C1F000E9;
+	Wed,  1 Jul 2026 16:21:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782922587;
-	bh=ULDk0dKlNaYCc4UU7uCB1fvspUD39sUqTgZWe4uD7Kk=;
+	s=k20260515; t=1782922913;
+	bh=IihzCA/spfew84fu8LxSdxSOIvFq2R9ztIcFuF72T3c=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Wc0vRORD2MCCStZboly9uAHihvzPNd+m5QJiSJSD+lwellSixuAwumOoBjIZQEy7g
-	 H5k2VUzX90W3OyJIpVrRec1pRxd5OH1ruMGNIDhkc/NARcD11i1pY5biDYBvCzCs1K
-	 ff1c8WsiJItmlPvVY9kaDznrxDrwGOMIJrg3fEPLxrsIlqOgbi8RdVOOJIBYTLoBlJ
-	 Xzu1HK7UrtRDE+z1JlvHRoUgXkUT2xdE/m/zJsyyceTrYkoqojKjT8aS6SBMJgwOJ2
-	 b+bakV8+xDWVrrtqv6DnKH8eOfoqx9FGoJmLbfb/iSCvBlfv7ZbX5COhD7G5dMk3Jy
-	 3dHJCPJhuc9Sw==
+	b=YQR7NUgiSLov8xPfOSsQFkANaTrM26+UvztvjnPTuihlohgO+f/00EYo7LTwKWJ1b
+	 fCePu7AyyRsa8Qt5GFOvjeHKOShiqdAeK3pqt+XaLC3Ea/nlLpNcIXwh+4qAg6v9Ot
+	 Jm0f2PbWf1pPfDVFw7cndv3skYhf6EdHi9O2edP3Q1VhHzFT1QLAhrvR4R1/uBUJLt
+	 8VlixF1xqdXFdGSfrIFSfi+ByKsQtOWmRRR2ZVfIOhInAOxjjOwuEeWTpAi8w5U/hl
+	 Y46uwwmKuuwXb1Oo6OOcKDq5GoV2Ifklb4fh+zSqCcWcC0FeqO9mvLOd8uJyoh0YcF
+	 785J/zx6p7g6Q==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 03/11] dt-bindings: gpu: host1x: Document
- memory-regions for NVDEC
+Subject: Re: [PATCH v2 3/3] arm64: dts: monaco-arduino-monza:
+ microcontroller LEDs
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Thierry Reding" <thierry.reding@kernel.org>
-Cc: linux-s390@vger.kernel.org, devicetree@vger.kernel.org, "Vasily Gorbik" <gor@linux.ibm.com>, dri-devel@lists.freedesktop.org, "Alexander
- Gordeev" <agordeev@linux.ibm.com>, robh@kernel.org, "Heiko Carstens" <hca@linux.ibm.com>, conor+dt@kernel.org
-In-Reply-To: <20260701-tegra-vpr-v3-3-d80f7b871bb4@nvidia.com>
-References: <20260701-tegra-vpr-v3-0-d80f7b871bb4@nvidia.com>
- <20260701-tegra-vpr-v3-3-d80f7b871bb4@nvidia.com>
+To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
+Cc: linux-leds@vger.kernel.org, robh@kernel.org, lee@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260701-monza-leds-v2-3-c1be0b472926@oss.qualcomm.com>
+References: <20260701-monza-leds-v2-0-c1be0b472926@oss.qualcomm.com>
+ <20260701-monza-leds-v2-3-c1be0b472926@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 16:16:26 +0000
-Message-Id: <20260701161627.261AE1F000E9@smtp.kernel.org>
+Date: Wed, 01 Jul 2026 16:21:53 +0000
+Message-Id: <20260701162153.8A98C1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,31 +70,31 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-318785-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318786-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,sashiko.dev:url];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:thierry.reding@kernel.org,m:linux-s390@vger.kernel.org,m:devicetree@vger.kernel.org,m:gor@linux.ibm.com,m:dri-devel@lists.freedesktop.org,m:agordeev@linux.ibm.com,m:robh@kernel.org,m:hca@linux.ibm.com,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:linux-leds@vger.kernel.org,m:robh@kernel.org,m:lee@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
@@ -103,43 +102,20 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp,nvidia.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	RCPT_COUNT_FIVE(0.00)[6]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EA22F6EFBF3
+X-Rspamd-Queue-Id: 9BBC96EFC88
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] Typo `maxitems` instead of `maxItems` in device tree binding schema.
---
+> Onboard MCU/STM32 implements a led controller compatible with PCA9635.
+> There are four RGB LEDs controlled via channels 0-2, 3-5, 6-8 and 9-11.
+>=20
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
 
-commit b966754e5a0b2701616e733b8013eb6ace1487ef
-Author: Thierry Reding <treding@nvidia.com>
-
-dt-bindings: gpu: host1x: Document memory-regions for NVDEC
-
-The video protection region is a reserved memory region that can be used
-for secure video playback. NVDEC can access this region to decode images
-into securely.
-
-Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dc.yaml in p=
-roperties.memory-region-names:
-
->   memory-region-names:
->     items:
->       enum: [ framebuffer, protected ]
->     minItems: 1
->     maxitems: 2
-
-[Severity: Low]
-Is this regression a typo with maxitems? Should it be camelCase like
-maxItems?
-
-It looks like the lowercase version either disables maximum length validati=
-on
-for the memory-region-names array or breaks meta-schema evaluation when a
-developer or CI system runs the make dt_binding_check target.
+Sashiko has reviewed this patch and found no issues. It looks great!
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-tegra-vpr-=
-v3-0-d80f7b871bb4@nvidia.com?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-monza-leds=
+-v2-0-c1be0b472926@oss.qualcomm.com?part=3D3
+
 
