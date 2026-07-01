@@ -1,173 +1,139 @@
-Return-Path: <devicetree+bounces-318155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318156-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id i9WXLFy6RGqdzgoAu9opvQ
-	(envelope-from <devicetree+bounces-318155-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 08:57:32 +0200
+	id Q5jSB2C6RGqezgoAu9opvQ
+	(envelope-from <devicetree+bounces-318156-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 08:57:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09E5B6EA5E7
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 08:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E4DA6EA5EA
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 08:57:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=IIrBWkTf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318155-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318155-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=j4v9iG2F;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318156-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318156-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B54A3078C0D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 06:52:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6FEDF30548B6
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 06:53:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1893A3B27EA;
-	Wed,  1 Jul 2026 06:52:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1B63B14CA;
+	Wed,  1 Jul 2026 06:53:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F008C3B19D9
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 06:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8DF0394464;
+	Wed,  1 Jul 2026 06:53:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782888767; cv=none; b=HUDiffWjJ6eskKsLiF4Vheyw6cBwYEcgLuSzUulADpTMOW00T+6A4xlBRn0P2C4olMjeqJ5Nv+N+Q8VBy6uoQktNfpjkEcOmd+aeOmUhq5/hCRjGFHig7+8O1KvCn1g5aNCdj9YmAFDVrD3p6uVXBDMFGrmc4Ma3C3ex61kKsDQ=
+	t=1782888799; cv=none; b=OVQQmyWrRPQfWZcq4oCj23jALwEWzXXiTW3MGIFrdHhOem1AQoH3Ps/DOq1s1WZZTG6H4+mL3bMNvEhdFw+zOnN6+uT7ddvlBWQwPN+6qmVnuAvOFR1cje0K4upL/hzvHIvJj3Ma0nDqXJAcDJ7Sk6J1aPrAN00PUR64zO6ti6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782888767; c=relaxed/simple;
-	bh=HN9Trq46qgpVJBIhWeJlXc/tDDxY9PPtoUqHXN6Omd4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=LDAmVEKF6MTS6upSzeAwRNRKC0ZGSteS3h2E0Q8vlWVBMZPwoarNy4IC2XAesEeJuTq/SFWby/8id7hDgeXs4lG5eCiHFLNQwT00ef5FZihHdIiAKB16nBynZObZn2jdU/tx4Mod0fAxnN1K3v1BiXHg4prioyxMMdhV1PPAyAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IIrBWkTf; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 579BC1F000E9;
-	Wed,  1 Jul 2026 06:52:45 +0000 (UTC)
+	s=arc-20240116; t=1782888799; c=relaxed/simple;
+	bh=gGurYXJfUUqGftMkPGD91QxHXM2O5VPeZQg+fG57YiE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VfmSWBh3ptRvB5n8KvwBphcuUICwrM3L0SXkkSMxX7j8/LrSpstDzvKt8ae3bWuE6ayouBDCfv553eBnP9uoRG9TgJj8Edxt4aUp4Lj64F36nIG+dgyT1D/fjoSqHsyS+IlqKgkoGJSVPkiC5g97aOO5iItcal9074nuOC0/l2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j4v9iG2F; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0383C1F000E9;
+	Wed,  1 Jul 2026 06:53:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782888765;
-	bh=mhhLel6IvW3q8o8hNYIIy/WJyJWZc7jO8v/g2vJcs4k=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=IIrBWkTfJFKdGOAvItnTEyxxcaT3Vf4vd/0xRVTJg3yP9rH+2DQqNDZO5T7Y2VasY
-	 JrxQIUVGgogO4mBGENVblqKCd+l7881gtzIx8Cd5TYzRDVusEPMGHD2ioYAuw4eFVz
-	 rUSc8lZOEgG2+JDyPrQlT840Xv+yAOykvuPsYCEwS44/7FWmxfx4Pvz09CS8N0wCQf
-	 /cLkE6d7ENHKgA4kXGalt6362svT+t1G2eGvM0Q5vTFN04/XyptClEGqi8yPh0LreA
-	 0T4Rnc5zELUlcHgXOpdLDTzKWdBzKlUJfgyRukGjgq8gBnk11tBGwjetJO2vIUlXKc
-	 lrbNvaC+HSC7g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: spi: Add spi,device-addr peripheral
- property
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Janani Sunil" <janani.sunil@analog.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260701-ad5529r-driver-v5-1-ed087900e642@analog.com>
-References: <20260701-ad5529r-driver-v5-0-ed087900e642@analog.com>
- <20260701-ad5529r-driver-v5-1-ed087900e642@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 06:52:44 +0000
-Message-Id: <20260701065245.579BC1F000E9@smtp.kernel.org>
+	s=k20260515; t=1782888798;
+	bh=lZ+udqVIluSYBeOCKXukOv71mZNtvaTQQLcm7V1DnVk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=j4v9iG2FinLdFar0grVOb2kDdfriPOXj/QhlWDM/mMRB1SfBTIBMXisCzuQD5HzJl
+	 5cJUOGONJQvlesk17pZtYfqiwq2i5zv5TBgLu0BtpIGaonS0Bi5CHDzkuP5OMUzdbN
+	 YFnhg9u6qEzRgJwH82rY2fyZWE714Tz/uChTjyQXI3DxBRYyYC3V0baAF6o6+GOLp9
+	 t8MdGh4t/r1WaDIM78tdBllOBTFjxzP2My32MQGH6EMA2lrjh1rMQhp/LzcJBQX4wz
+	 Uu4/jiVpke+gbXzGscXiDc1HRb6dKGxOdixTHUAXUIFLCROUiEZS4X8vUmAG3L6iQx
+	 7O9jKKI4jPTIg==
+Date: Wed, 1 Jul 2026 08:53:15 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Yashas D <y-d@ti.com>
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	luca.ceresoli@bootlin.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, tomi.valkeinen@ideasonboard.com, 
+	dmitry.baryshkov@oss.qualcomm.com, kees@kernel.org, xiqi2@huawei.com, r-ravikumar@ti.com, 
+	sjakhade@cadence.com, yamonkar@cadence.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, u-kumar1@ti.com, devarsht@ti.com, 
+	s-jain1@ti.com, d-mittal@ti.com, b-padhi@ti.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: display/bridge: cdns-mhdp8546: Add
+ no-hpd property to the cadence bridge
+Message-ID: <20260701-red-nautilus-of-masquerade-8fea13@quoll>
+References: <20260630102610.1849902-1-y-d@ti.com>
+ <20260630102610.1849902-2-y-d@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260630102610.1849902-2-y-d@ti.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318155-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:janani.sunil@analog.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:y-d@ti.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tomi.valkeinen@ideasonboard.com,m:dmitry.baryshkov@oss.qualcomm.com,m:kees@kernel.org,m:xiqi2@huawei.com,m:r-ravikumar@ti.com,m:sjakhade@cadence.com,m:yamonkar@cadence.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:u-kumar1@ti.com,m:devarsht@ti.com,m:s-jain1@ti.com,m:d-mittal@ti.com,m:b-padhi@ti.com,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318156-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,bootlin.com,linux.intel.com,suse.de,ffwll.ch,oss.qualcomm.com,huawei.com,ti.com,cadence.com,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,analog.com:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,quoll:mid,ti.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 09E5B6EA5E7
+X-Rspamd-Queue-Id: 8E4DA6EA5EA
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Architectural misplacement of the `spi,device-addr` property and i=
-ncorrect hardware modeling for shared chip selects.
-- [Low] Invalid property name formatting (`spi,device-addr`) causing schema=
- validation failure.
---
+On Tue, Jun 30, 2026 at 03:56:09PM +0530, Yashas D wrote:
+> From: Rahul T R <r-ravikumar@ti.com>
+> 
+> The mhdp bridge can work without its HPD pin hooked up to the connector,
+> but the current bridge driver throws an error when hpd line is not
+> connected to the connector. For such cases, we need an indication for
+> no-hpd, using which we can bypass the hpd detection and instead use the
+> auxiliary channels connected to the DP connector to confirm the
+> connection.
+> So add no-hpd property to the bindings, to disable hpd when not
+> connected or cannot be used for hotplug detection.
 
-commit a13113dfcdf0e6c76170858ecffc2c11d4c536cf
-Author: Janani Sunil <janani.sunil@analog.com>
+Subject prefixes: There is no such file cdns-mhdp8546. I already pointed
+this out at v2. This is a nit, but I do not understand why the same
+feedback has to be repeated third time (v3 also ignored it).
 
-dt-bindings: spi: Add spi,device-addr peripheral property
+Please use subject prefixes matching the subsystem. You can get them for
+example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-Some SPI devices support sharing a single chip select across multiple
-physical chips by encoding a device address in the SPI frame itself.
-Add a generic spi,device-addr property to document this per-peripheral
-address. This property belongs in channel or sub-device nodes of
-peripherals that use this addressing scheme.
+Best regards,
+Krzysztof
 
-> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.y=
-aml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> index 880a9f6245667..3774e80183555 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> @@ -142,6 +142,11 @@ properties:
->      minItems: 2
->      maxItems: 4
-> =20
-> +  spi,device-addr:
-
-[Severity: Low]
-Does this property name pass make dt_binding_check?
-
-Since spi is not a registered vendor in vendor-prefixes.yaml, the comma
-syntax typically causes a validation failure. Should this regression be fix=
-ed
-by using a hyphen instead for a subsystem generic property, such as
-spi-device-addr?
-
-[Severity: High]
-Does this architectural approach correctly model the hardware?
-
-By placing this property in spi-peripheral-props.yaml, it applies to direct
-children of the SPI controller, yet the commit message notes it belongs in
-channel or sub-device nodes.
-
-Standard Device Tree architecture generally models a shared chip select bus=
- as a
-parent node (with #address-cells and #size-cells) and the individual
-chips as child nodes using the standard reg property.
-
-Does using a custom addressing property on sub-channels bypass the standard
-DT bus addressing model?
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Device address used when multiple peripherals share a single chip =
-select.
-> +
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-ad5529r-dr=
-iver-v5-0-ed087900e642@analog.com?part=3D1
 
