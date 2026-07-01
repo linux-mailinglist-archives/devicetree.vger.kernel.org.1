@@ -1,165 +1,199 @@
-Return-Path: <devicetree+bounces-318788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318789-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id q+CRBj4/RWpZ9QoAu9opvQ
-	(envelope-from <devicetree+bounces-318788-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:24:30 +0200
+	id lNQ7ESdERWqh9goAu9opvQ
+	(envelope-from <devicetree+bounces-318789-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:45:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADC946EFC11
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:24:29 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 387096EFEA8
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:45:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SwtQnZ96;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318788-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318788-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kPk1VUgv;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318789-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318789-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2ACB8304EFBA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 16:24:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1D1FA30BFF3D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 16:25:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E227367B7A;
-	Wed,  1 Jul 2026 16:24:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C43CF36DA1B;
+	Wed,  1 Jul 2026 16:25:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291E2366816;
-	Wed,  1 Jul 2026 16:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9D736D51F;
+	Wed,  1 Jul 2026 16:25:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782923067; cv=none; b=RokDcQq4CdTo3l9l72E1Euabb4BFYB+X2MbL2nbuWcBITFb/DGwVGTES1TVBc47UxFUym/63QkpzS5mLtclheHdP9NYOz/daVkDgyDEocyJrk42tTGxqRaXZhgqQ1xe3t2GJrSDhRabVAwC3wUlTv58nQ4sGSuQew9K1hGkOu4Q=
+	t=1782923126; cv=none; b=Vwb3t3XTp/xWZsoihqru+OYibDYtjfuxQP2YTxhBFgnzsnHSzuWACmDYlyI3z0796BhY5SzRQnQhF6oXJleQyu8kCA/Gzp9JQUWNGaaf2xVYkusKTBhdeiBJA3l9otMq+RjnID7FyQnlErfo4Tq/Piat7pjo1YcmHoqB6zyJu/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782923067; c=relaxed/simple;
-	bh=PkQmqwbgSjT5aMMiQj1i8sYD8hdwFPcTFD7ghp7SVAM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=DyIv7L+Snne8kHwgBU4gvnTgtmUQ5jU5qCOrLj8ChSLzXu6g0bVhCFwcpO8tHEJwXHL6+26lxJHcqfVHoalG8+Y9bz+47QgRr6j5GLcjnX2WUSGhqQpPTojEWjxOe2j6RL8yKyNPxQtR9cqfv7qLr3lYdXbSUXm9pPc+vO6N1Lo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SwtQnZ96; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90A061F000E9;
-	Wed,  1 Jul 2026 16:24:25 +0000 (UTC)
+	s=arc-20240116; t=1782923126; c=relaxed/simple;
+	bh=4YYewqLtFt58TyVzsStO08cWygUggMFs82tXYW8e3Rw=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=NvjrwAHa0OAAdGDFyPUgK0URLXW4ZkzY2T/w5Sl6Gh1ROedOD3pkB610oSqznOvNgijlHfSdwzgmHOVtTK4WVPG/BwaL3RzJ14TxZvCwV72Jx49TTQEklHPeacitCsRyz1u+Rd/9uz7d/sOf/w+HSm3qtjRD6ZXIwOkpufN8piA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kPk1VUgv; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4DF71F000E9;
+	Wed,  1 Jul 2026 16:25:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782923065;
-	bh=dQbBlkNyShZgl6jx6OlwULDQXonRARNTYcAllSQ/B9U=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject;
-	b=SwtQnZ96zoZhDDv5bku1HcaOWLPPGhIElTYWLAl7g5ozDyFVuHrDxlCKsxe2tnFK1
-	 84055kA9AfD+vRLgMAx/eq68Bl0h9UTkkY3GDMYVFrt8cQZsrB89h2ETyEuxbobAGg
-	 bTVJz6mmEuAnTH0Z9MKTNzsnN54hwblnw4ewbCAIA6O/tllnvzKpX3UqQjgGjBMdAH
-	 +hikVObjG2l4s3QR1I2P2VtTHWhI+YYD9WBgAwtBn5slQrY845Db3sJx73xcdIm57l
-	 prk40ttbIjtqy8jNtkoBXaQQlkWYWoXV+YDTCWLk8dThdnyvXprJX9y06zxh3sOTxX
-	 MjRr1bENc8HaQ==
-Date: Wed, 01 Jul 2026 11:24:24 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20260515; t=1782923125;
+	bh=zX4SSI8vwfcVuCKAap4u8k1BnTa7W7YOjaBRP5duUgQ=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=kPk1VUgvkQY9D3orvUJZuzvtMF1rm15uMX5YGXFZvcWTgm6FY65AHkSxrGADPBso4
+	 m1Kf+rXPoNjhZME7vtYwCBY0+rHkZ0pZoMObKdmWDnML7sILAGr+XuZ6Lh0J/cdMti
+	 VHhDTeMPhjV0CgNbxmIRFryQBB/gRwQdeRcsYWpP2l7+dd5IwLj28JoDeWbTL2sMju
+	 /RTnTBA+Ob6ilhf9XsyfZcWKG+9iSKE4905gLzKKEClhhwBaYi239xX4L87OmTvxF6
+	 JrYMXBqMIlmC3FdC+1BqnpSsWkr33bY5YrbvAfFmHieSeZn2vxCnop2N2FtmTENSK8
+	 yeb+RPdONo5Fg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: leds: nxp,pca963x: add multicolor
+ LED support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, lee@kernel.org, robh@kernel.org, linux-leds@vger.kernel.org
+In-Reply-To: <20260701-monza-leds-v2-1-c1be0b472926@oss.qualcomm.com>
+References: <20260701-monza-leds-v2-0-c1be0b472926@oss.qualcomm.com>
+ <20260701-monza-leds-v2-1-c1be0b472926@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 01 Jul 2026 16:25:24 +0000
+Message-Id: <20260701162524.B4DF71F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, 
- Richard Cochran <richardcochran@gmail.com>, 
- Chun-Jie Chen <chun-jie.chen@mediatek.com>, netdev@vger.kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Brian Masney <bmasney@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Stephen Boyd <sboyd@kernel.org>, linux-mediatek@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, kernel@collabora.com, 
- Michael Turquette <mturquette@baylibre.com>, 
- Edward-JW Yang <edward-jw.yang@mediatek.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-In-Reply-To: <20260701-mt8189-clocks-system-base-v1-2-2b048feea50a@collabora.com>
-References: <20260701-mt8189-clocks-system-base-v1-0-2b048feea50a@collabora.com>
- <20260701-mt8189-clocks-system-base-v1-2-2b048feea50a@collabora.com>
-Message-Id: <178292306474.849869.14658483953316030995.robh@kernel.org>
-Subject: Re: [PATCH 02/15] dt-bindings: clock: mediatek: regroup MT8188
- dt-bindings into MT8186
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-318789-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318788-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:richardcochran@gmail.com,m:chun-jie.chen@mediatek.com,m:netdev@vger.kernel.org,m:angelogioacchino.delregno@collabora.com,m:bmasney@redhat.com,m:p.zabel@pengutronix.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:sboyd@kernel.org,m:linux-mediatek@lists.infradead.org,m:krzk+dt@kernel.org,m:kernel@collabora.com,m:mturquette@baylibre.com,m:edward-jw.yang@mediatek.com,m:matthias.bgg@gmail.com,m:conor+dt@kernel.org,m:linux-clk@vger.kernel.org,m:louisalexis.eyraud@collabora.com,m:krzk@kernel.org,m:matthiasbgg@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,collabora.com,redhat.com,pengutronix.de,lists.infradead.org,kernel.org,baylibre.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:lee@kernel.org,m:robh@kernel.org,m:linux-leds@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,collabora.com:email]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ADC946EFC11
+X-Rspamd-Queue-Id: 387096EFEA8
 
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] The schema fails to apply hardware channel limits (`reg` maximum=
+s) to the newly added `multi-led` nodes and their nested `led` subnodes.
+- [Medium] The nested `led` subnodes inside `multi-led` do not require the =
+`color` property in the schema, which is strictly required by the driver.
+--
 
-On Wed, 01 Jul 2026 15:11:07 +0200, Louis-Alexis Eyraud wrote:
-> Regroup the MT8188 clock and system clock dt-bindings into MT8186 ones
-> to ease maintainability and have common files for several currently
-> supported SoC or new future ones, that have the same kind of clock
-> controller design.
-> 
-> Note:
-> The `#clock-cells` property is a required property for all compatibles
-> declared in MT8188 clock and system clock dt-bindings but not in MT8186
-> ones.
-> To avoid ABI breakage, conditional blocks to check this requirement
-> for MT8188 compatibles are added, rather than enforcing it for MT8186
-> compatibles.
-> 
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-> ---
->  .../bindings/clock/mediatek,mt8186-clock.yaml      | 82 ++++++++++++++++++-
->  .../bindings/clock/mediatek,mt8186-sys-clock.yaml  | 20 ++++-
->  .../bindings/clock/mediatek,mt8188-clock.yaml      | 93 ----------------------
->  .../bindings/clock/mediatek,mt8188-sys-clock.yaml  | 58 --------------
->  4 files changed, 100 insertions(+), 153 deletions(-)
-> 
+commit 8324e8da2f8fc6d6c98d977c8dcc9ab3eb3a5fcd
+Author: Loic Poulain <loic.poulain@oss.qualcomm.com>
 
-My bot found errors running 'make dt_binding_check' on your patch:
+dt-bindings: leds: nxp,pca963x: add multicolor LED support
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/clock/mediatek,mt8186-clock.yaml:62:1: [warning] too many blank lines (2 > 1) (empty-lines)
+Add support for grouping individual PCA963x channels into a multicolor
+LED by introducing a multi-led@N node pattern. This is necessary to
+model hardware setups where multiple PWM channels drive a single physical
+RGB LED.
 
-dtschema/dtc warnings/errors:
+> diff --git a/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml b/Do=
+cumentation/devicetree/bindings/leds/nxp,pca963x.yaml
+> index 938d0e48fe51b..04b05b8195c18 100644
+> --- a/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
+> +++ b/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
 
-doc reference errors (make refcheckdocs):
+[ ... ]
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260701-mt8189-clocks-system-base-v1-2-2b048feea50a@collabora.com
+> @@ -74,6 +74,39 @@ patternProperties:
+>      required:
+>        - reg
+> =20
+> +  "^multi-led@[0-9a-f]+$":
+> +    type: object
+> +    $ref: leds-class-multicolor.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+[Severity: Medium]
+Does this miss the hardware maximum bounds for the reg property?=20
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+The existing allOf conditional blocks in this schema apply a maximum limit =
+to
+the reg property of top-level led nodes based on the compatible string. How=
+ever,
+those conditionals do not appear to target the new multi-led nodes or their
+nested led subnodes, which would allow device trees with out-of-bounds chan=
+nels
+to silently pass validation.
 
-pip3 install dtschema --upgrade
+> +
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +    patternProperties:
+> +      "^led@[0-9a-f]+$":
+> +        type: object
+> +        $ref: common.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          reg:
+> +            minimum: 0
+> +
+> +        required:
+> +          - reg
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+[Severity: Medium]
+Should color be included in this required list?=20
 
+If the driver unconditionally returns an error when the color property is
+missing for nested sub-LEDs, omitting it from the required list here allows
+incomplete device trees to pass schema validation but fail later at runtime.
+
+> +
+> +    required:
+> +      - reg
+> +      - "#address-cells"
+> +      - "#size-cells"
+> +
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-monza-leds=
+-v2-0-c1be0b472926@oss.qualcomm.com?part=3D1
 
