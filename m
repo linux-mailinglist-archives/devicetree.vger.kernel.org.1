@@ -1,170 +1,139 @@
-Return-Path: <devicetree+bounces-318723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318725-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BfL9JuwqRWqL8AoAu9opvQ
-	(envelope-from <devicetree+bounces-318723-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:57:48 +0200
+	id iCm5FQArRWqR8AoAu9opvQ
+	(envelope-from <devicetree+bounces-318725-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:58:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24B706EF0C6
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:57:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD7336EF0CD
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:58:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UwIgfLHA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318723-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318723-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=emailprofi.seznam.cz header.s=szn1 header.b=g5DL7UV6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318725-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318725-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AF3E03013249
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 14:50:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 485BE3009980
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 14:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC2B35E1B0;
-	Wed,  1 Jul 2026 14:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B35235E1D8;
+	Wed,  1 Jul 2026 14:52:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mxb.seznam.cz (mxb.seznam.cz [77.75.78.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9F0348C5C;
-	Wed,  1 Jul 2026 14:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051E935E1BF;
+	Wed,  1 Jul 2026 14:52:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782917455; cv=none; b=ehxBcwAw/jkbe/2kUJGR1tewxm54W0XTXERn7LULcRDNBS+PF3Q+DaBa6IUnXrqmy9pZUDcBVzy1Gxkp9sEXYJWLA7VlCjTLq3tsCjn21kVJMuZJXzA5G6IYVOe0lWdN3vQSFQ5Cfq+kI5DU3z4paoQhN64qo6BCBHH439H0JbY=
+	t=1782917530; cv=none; b=tiN+wc+4C5GHJyvF/CKSmlzcf46cvip3S2qJwyTqBF6B1N7Dbv1AUMsji2FC6TB9IgZDA45VTwbrFEP0V4+8b3npYjd9ylhLqHZWrOR/abzf6TnkgLSLW0sqHCddU8pftGclxiiIC+eHK+4w0pfDmiUJuZhXpTFA7hau75+gaZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782917455; c=relaxed/simple;
-	bh=MDlHhwvbadiOZHKr1JF3JUzDSAh5NSOcXZOekgyLkYY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=MFR3hrkO8njiMpwpcKoegoFYzTRiKdWAOEQ4vz3UO6n00GxPwl5DX40zYEL1WbgDlYdmJrXsogFygqWfSq3AC2pp9/L2fCR6QHK6GfZMw96FWQrptux6YnwWzAlycPoOet1P+KhVhA2e2dH10b7vud2A6s5aGBvXmIhh5mjHxN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UwIgfLHA; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 757001F000E9;
-	Wed,  1 Jul 2026 14:50:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782917453;
-	bh=4dulwvD55+9wwlESTkQpE/4rzpGt4X57YDRb66/k8w4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=UwIgfLHAhusuK5G/5qODflNM7essgFMbNsqt+xCet5ZI+JU3YpCj2vedRW/5dJ6/z
-	 O508RWR71aRlA+xhM4LXDdI+QG3nUddolMt8rMug4nR1731yRAFV2Qpo9qDmEOEgjD
-	 3RdQzCHm/DGDpZT+Rr8kO2IVMn69CTkieeygHAbmpnRqp8pkkHXS58uEnJA18/VVea
-	 RmUODdpD0+tjdkG/rHkABbSFtLBVbt2gdrIcGmFFzKMzkaVe5VhBeGD85p+9Gbo3AL
-	 f8St9tprZWmiKLqCk1rnjqgv6TsUKMOp/6mSAUcB6p0aZkt0BkzE5jSWB0QWa17HzR
-	 vmZ2UiAhuZl7A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 08/10] rtc: rzn1: Consistently use dev_err_probe()
-Reply-To: sashiko-reviews@lists.linux.dev
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: wsa+renesas@sang-engineering.com, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, "Alexandre
- Belloni" <alexandre.belloni@bootlin.com>
-In-Reply-To: <20260701142953.2014895-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260701142953.2014895-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260701142953.2014895-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 14:50:53 +0000
-Message-Id: <20260701145053.757001F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782917530; c=relaxed/simple;
+	bh=/vca1q8opkBckH2fh34ilm8hmardMelgES/zJfNx0QY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OW9JBEltWvizOAQjQtlrk1X8k8RMn2X8R7eIUe/v0VRUgfBN+/B6oxmnXF1ECLFAJJMv95hEIkB039YAutAjn4b9VsVbvlYvQtto54jhvERtj+UUnR3od+9bUiG5ohFtz+KQW3xEAHrJoL/GVQwr7YFL6AX/dNEE/lg7UCmLsQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loebl.cz; spf=none smtp.mailfrom=loebl.cz; dkim=pass (2048-bit key) header.d=emailprofi.seznam.cz header.i=@emailprofi.seznam.cz header.b=g5DL7UV6; arc=none smtp.client-ip=77.75.78.89
+Received: from email.seznam.cz
+	by smtpc-mxb-7dd54556bb-mmpkq
+	(smtpc-mxb-7dd54556bb-mmpkq [2a02:598:64:8a00::1000:90e])
+	id 4148eec25ada631645ad5740;
+	Wed, 01 Jul 2026 16:51:54 +0200 (CEST)
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=emailprofi.seznam.cz; s=szn1; t=1782917514;
+	bh=chPS+RNkrmXTe3ehJ/BfFYLgi6SC5NP1gcF9y9DGqgM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding;
+	b=g5DL7UV6FPHPCn3HqHbGc6Nh/sepzpVNnNkIKicoh8tNSfDFAYZbWghZxi49h6bi0
+	 p8zBP56bfm/idtkBn9ort878Kel9bJyPjiOTqPuBI+V7Jy75uFHQDD3k9hPn8g/3BM
+	 jOQB8L5vGklzRRRGhXJvTMgMEr9tyqnN3oRXfljLwEX592QOUWfdw8etR/QTprMLDM
+	 U6Pwl0h4ZqkV3catqt0AgqE7qPInshaNM24j7eIzaMBXGqFWEuk3A/yN9eDP68hM0A
+	 VGKnEiAwFkkrgbwn1X+4WqZhHx6/StIKydi32tOHYhChJjPY4FfZaiN5DZK5rx+Ba1
+	 V++b4p22ETKeQ==
+Received: from localhost (109-81-118-98.rct.o2.cz [109.81.118.98])
+	by smtpd-relay-f8b496c7c-jtrnh (szn-email-smtpd/2.0.76) with ESMTPA
+	id 29c0e294-37cd-4f7b-9f50-5acea2c588df;
+	Wed, 01 Jul 2026 16:51:44 +0200
+From: =?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	=?UTF-8?q?Pavel=20L=C3=B6bl?= <pavel@loebl.cz>
+Subject: [PATCH v2 0/2] Add support for Si549 programmable clock
+Date: Wed,  1 Jul 2026 16:50:59 +0200
+Message-ID: <20260701145101.3932655-1-pavel@loebl.cz>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_ALLOW(-0.20)[emailprofi.seznam.cz:s=szn1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-318723-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:wsa+renesas@sang-engineering.com,m:linux-rtc@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:alexandre.belloni@bootlin.com,m:prabhakarcsengg@gmail.com,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318725-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:pavel@loebl.cz,m:krzk@kernel.org,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DMARC_NA(0.00)[loebl.cz];
+	FORGED_SENDER(0.00)[pavel@loebl.cz,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pavel@loebl.cz,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[emailprofi.seznam.cz:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid,renesas.com:email]
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 24B706EF0C6
+X-Rspamd-Queue-Id: AD7336EF0CD
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+This adds support for Si549 programmable oscillator. It's almost the
+same as already supported Si544, except it uses different internal
+oscillator frequency.
 
-Pre-existing issues:
-- [High] Premature pm_runtime_put() in remove callback leads to a potential=
- bus fault or kernel panic due to devres teardown ordering.
---
+So new compatible strings are added, and driver data is extended
+to carry both maximum output frequency and internal xtal frequency.
 
-commit 20388d9c3bb9eb8111711742d828f2997e736384
-Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Changes in v2:
+  Fixed obvious stuff found by Sashiko (extra unused struct member),
+  removing unneeded data argument to calculation functions, xo_freq
+  is now passed in settings struct.
 
-rtc: rzn1: Consistently use dev_err_probe()
 
-This patch updates rzn1_rtc_probe() to use dev_err_probe() when the alarm
-interrupt request fails. This brings the error handling into alignment with
-the rest of the probe function.
+Pavel Löbl (2):
+  dt-bindings: clock: si544: add si549 compatible
+  clk: si544: add support for si549
 
-> diff --git a/drivers/rtc/rtc-rzn1.c b/drivers/rtc/rtc-rzn1.c
-> index 244d0fc70fdad..d990075839c13 100644
-> --- a/drivers/rtc/rtc-rzn1.c
-> +++ b/drivers/rtc/rtc-rzn1.c
-> @@ -471,7 +471,7 @@ static int rzn1_rtc_probe(struct platform_device *pde=
-v)
-> =20
->  	ret =3D devm_request_irq(dev, irq, rzn1_rtc_alarm_irq, 0, "RZN1 RTC Ala=
-rm", rtc);
->  	if (ret) {
-> -		dev_err(dev, "RTC alarm interrupt not available\n");
-> +		dev_err_probe(dev, ret, "RTC alarm interrupt not available\n");
->  		goto dis_runtime_pm;
->  	}
+ .../bindings/clock/silabs,si544.yaml          | 10 ++-
+ drivers/clk/Kconfig                           |  6 +-
+ drivers/clk/clk-si544.c                       | 82 +++++++++++++++----
+ 3 files changed, 75 insertions(+), 23 deletions(-)
 
-[Severity: High]
-This isn't a bug introduced by this patch, but since we are looking at driv=
-er
-error handling and teardown paths, is there a potential use-after-suspend
-issue during device removal?
+-- 
+2.53.0
 
-Since the RTC is registered using devm_rtc_register_device() in
-rzn1_rtc_probe(), it remains registered and accessible to user space until
-the devres teardown runs, which happens after rzn1_rtc_remove() returns.
-
-However, rzn1_rtc_remove() manually drops the runtime PM reference:
-
-drivers/rtc/rtc-rzn1.c:rzn1_rtc_remove() {
-	...
-	/* Disable all interrupts */
-	writel(0, rtc->base + RZN1_RTC_CTL1);
-
-	pm_runtime_put(&pdev->dev);
-}
-
-If a user-space process accesses the RTC device (like reading the time via
-ioctl) precisely during driver unbinding after pm_runtime_put() is called,
-would this access hardware registers while the clock is gated and trigger
-a kernel panic?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701142953.2014=
-895-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D8
 
