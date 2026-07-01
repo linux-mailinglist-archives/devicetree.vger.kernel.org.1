@@ -1,208 +1,262 @@
-Return-Path: <devicetree+bounces-318546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GlSwFMwTRWo76goAu9opvQ
-	(envelope-from <devicetree+bounces-318546-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:19:08 +0200
+	id BDSMDOATRWpI6goAu9opvQ
+	(envelope-from <devicetree+bounces-318549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:19:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B0B66EDFCE
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:19:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A500B6EDFFB
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:19:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=o1GXLvg8;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318546-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318546-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=baylibre.com header.s=google header.b=PCk4eBy+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318549-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318549-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6A0D9328AF2E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:41:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C01AC3293117
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:41:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEDCD48123D;
-	Wed,  1 Jul 2026 12:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493A948165D;
+	Wed,  1 Jul 2026 12:40:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6D0F3B47CB
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 180AE481650
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:40:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782909548; cv=none; b=I8HITP/Q/qguSd621lR3yL/Dgi6N8weQqk8rc9C3FpbKy48+v5fPM6PiXM5BaSaFoegLV8rDf0CIKNjMgkcPR3uZAWrChMzB+WSkfGBR15PzZsOOfkI7abcPOSWfMs9xIqwyoLTFmwcUtSGw7pOXXgj4syH5z14eDtvksqhmbi0=
+	t=1782909650; cv=none; b=mXcU6FyFz9ORNU9UkaJ72KFhrXyQ6ORakLEouFOBgKlBMMCNuBipTQmYqlp9xkywGNSy4v/Pfqj2jx2XVqG0Ys3BlSkQ8at9KnR1GPiUOmzaXHsDUm6BtlclZvfHa9y9C1YrdSZ2GPCsv+KnO128T1GIzqoHsCeHmYkcQAr0nk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782909548; c=relaxed/simple;
-	bh=T4e3jdBkkTGSiBPGC+8gvcbRbMJqivgD2lyYXrt5ATc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=s52c2xHMQN+DcTAI1eo6lUPlGmD6oi6i5T6WWVPDAHEhMDVwBXTPVj4Q78F+EoFaw6qoi87KjBmhqzEfZ5IXVuLSoQzTJzcVDKRtrlEoPHBXmdBcMJ3ZJXpbtMkpjZA7+7BXxz1NJHnqJeMCPwN5miCc3J5kwrVxM+pomRc51TM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1GXLvg8; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D97BD1F000E9;
-	Wed,  1 Jul 2026 12:39:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782909547;
-	bh=KQxD+BDucLd1j70ef6LoNzXEdO8IcXi/OcuAmbgGP9E=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=o1GXLvg8bWxPNq/IZqiGTy+27SX67f/viurF+m0Muguxdf3ovdcWTANQ4bHoZla1M
-	 3xwJuFiZu3mARxdLyFUWraZ4+680Z3GWbdO3vabKtAYmRm5wWQpF21VGzXAHrBFRsd
-	 54OypaoZ7k8xvIESxk3jC0u5JNRAIQYlG6Wcfft3D1HN1SM4QovS/IqafQxbjkIKYI
-	 foC8xTrkcy1Ianndzm2SpeJk8qyekPUPT7btsT3gIzNg0byhmyIC2M31H51qxczxti
-	 LI8EMdjYJnc+GXR88u7EF6cneNVVyVJ0FHZ4+Cz7AmAZZNarM7dlzEYQxz013pB0JK
-	 bRuz2a6mnmxXg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 05/12] phy: phy-mtk-dp: Implement power_on and power_off
- PHY callbacks
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, vkoul@kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, linux-phy@lists.infradead.org
-In-Reply-To: <20260701122008.19509-6-angelogioacchino.delregno@collabora.com>
-References: <20260701122008.19509-1-angelogioacchino.delregno@collabora.com>
- <20260701122008.19509-6-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 12:39:06 +0000
-Message-Id: <20260701123906.D97BD1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782909650; c=relaxed/simple;
+	bh=/QSNh/oJUk3K36diT3vAhwVzwhYSE2dQVz87cYlXnkA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cRe8YPkOEFcMVBwN9A/bW/fpAQuh+udNSr0tIS2NpH/oiTDx7IkpGCIE9Ewnbu2ep8tk5Ndm9j+TKS1nNWMrSJeDxrVkevB4ZLRc6smM5JtQnUOg+YOWGZq+r/N8sIGmAen2HWfqTA+VpXdFh9bm9+1QP5++EAf6eTbqApmVCmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=PCk4eBy+; arc=none smtp.client-ip=209.85.221.50
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-4758bd3731bso504954f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 05:40:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1782909646; x=1783514446; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7gvfiWDDw2ES6TPPr+xJ5WsqSsdwN2ZrtYiQL2rjqRE=;
+        b=PCk4eBy+XmTXzqXoWoVdSpbQXqQM/xA/b/0509EUn8tiHtTL7nJUkEKOgz0MqF29QI
+         SAgCQd0a0touboUWa2a1PVZOkcFJj07pnCGrx0xdUxxpwH76wgAzH7MDykOqV0FMfYni
+         CiTvnQfQL3NLEsXBnqAB8LBQ6YLV1FQbdulEZfDpPtB515cvWcCPJYgMV2SU0SwQJFCK
+         66YdcXXViZsLJ9Yo4R1cwgOdU2Zsu4/WpLSLfbAXGqMRTnmL/ppSo5GH9llwRT+ySvkI
+         nYiJDCV/2AT4cv5ktseJK5aUBZ7HscS+BP1ZB6ReEHmNWhD8Rl/etcgAm+1rxDAMYEIP
+         T6QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782909646; x=1783514446;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7gvfiWDDw2ES6TPPr+xJ5WsqSsdwN2ZrtYiQL2rjqRE=;
+        b=X0MX1xSQQwhp76KTBGzAQVo82AiZPPuKdywLk9Vp5uV/67acQ/Uhh0DU/lbD3HFbHL
+         ZSQDiQTwjQoYHk5SxrTEpynocfsOETnfoY1ra+uqLqYMqb0qlTKVXrISuJ2uU/N0MdQN
+         eUfL3VPQa7q/IO0m/QmmaNZkJDG6OkXTLN0OF2V6CB4mjfNnRGYjj0UwtGa1dYKF2h4L
+         xXW7eJE0sNW3ZhYVlcFWmEhRqHnUM0Js1j2khS2avnsjImP9ZqboKdmgksDL7XlyHn/O
+         i2o8deb/aLgAVffreX19H47um5joHzLj+VPTBokm5HS//1Q10uCJ2wMswPV41Kgsi2zs
+         6BCg==
+X-Forwarded-Encrypted: i=1; AHgh+Rroo7+c1xll24jf6onmS9WTbzA4+zgi7XhERr992LgTfkmYFt5Ady6bb1RxE+BnpyYiTRILhSpKrkyN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0Taa5fP5XorpUmQXYVA3o9zzqnr+rF53rbHipQ6nh0piKqpQT
+	6bGdNvnLEg4SCKDrkMGWyohAepfUGruVfGx0cG76wIYdWGXyLAD+6m6YSOzhxXK9r7w=
+X-Gm-Gg: AfdE7cm7hai5KstUAUu/UM4EmH2aik4tXSXxDCpQ8qIxBrCZzz1uxeTETsheVnnQYYv
+	87ncE3UjLkFeLPniH+khFZJ/UJnNw6UmU87uZzqkV4wdfbpHu2L2PHhV7NndEdmnAPivcLZ4KxJ
+	YTX7V6ULL/8UkYaTbOHXsv63X23iYMbQp+38pL4Lo0neF8WTLyPEiuziRe4vvmwtT2tid2uY4M7
+	sRPWnS8e0sjrhVRN2Ns6yU8PCml67OZKCoyxjkKVzZgcozC+HWxdPGOaHVqg7iS3uelV42CPRZO
+	3FGFaYnK3WQLigWtdEzMv1jgS1tk4vzjBfDUGe52fyCf7E6rekQlkzOnl85yMmBTZ89n34MMz7E
+	jaXYV/WhzpXJ36UiIizr1/wM6n4OOB+uixu52BDRFjdIp5bYET+k2lEhwqbyUFzOAOkIfUNNq1j
+	agrNuQgiR82rvnyNuZL7po
+X-Received: by 2002:a05:6000:4811:b0:473:e954:6abd with SMTP id ffacd0b85a97d-475e005362emr8734001f8f.21.1782909646117;
+        Wed, 01 Jul 2026 05:40:46 -0700 (PDT)
+Received: from localhost ([2001:4090:a246:8638:a73d:f626:6582:90ca])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-475643cd85dsm15966447f8f.15.2026.07.01.05.40.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Jul 2026 05:40:45 -0700 (PDT)
+From: "Markus Schneider-Pargmann (TI)" <msp@baylibre.com>
+Subject: [PATCH v7 00/11] arm64: dts: ti: k3-am62a7-sk: Split r5f memory
+ region
+Date: Wed, 01 Jul 2026 14:39:12 +0200
+Message-Id: <20260701-topic-am62a-ioddr-dt-v6-19-v7-0-e9db8b16821a@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHAKRWoC/33RS27DIBAG4KtErEs1DJhxuuo9qi5ggAapiSNsW
+ Y0i3704XcSqLJb/LL553cUYS46jeDvcRYlzHvNwqYFeDoJP7vIVZQ41CwS0gArkNFwzS3e26GQ
+ eQigyTHK2Uh0lBEekEHoVSFTgWmLKPw/847PmUx6nodwevWa1Vv9YDbrFzkqCVJgiofcGAr57d
+ /vOvsRXHs5ilWfcaAqbGlZNE3viGNl2/Y6mt1rf1HTV2ChDmj1q1juaeWoGj03NVC0xUrCOqdO
+ 8o3VPzYJqat26ad9ZB6hdSnt3s1utPZtdv2Bd8u5IyUf4py3L8gvTFO/LTQIAAA==
+X-Change-ID: 20260210-topic-am62a-ioddr-dt-v6-19-0da7712081d7
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+ Judith Mendez <jm@ti.com>, Daniel Schultz <d.schultz@phytec.de>, 
+ Andrew Davis <afd@ti.com>, Siddharth Vadapalli <s-vadapalli@ti.com>, 
+ Paresh Bhagat <p-bhagat@ti.com>, Bryan Brattlof <bb@ti.com>, 
+ Jai Luthra <jai.luthra@ideasonboard.com>, Devarsh Thakkar <devarsht@ti.com>, 
+ Beleswar Padhi <b-padhi@ti.com>, 
+ Francesco Dolcini <francesco.dolcini@toradex.com>, 
+ Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Sebin Francis <sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>, 
+ Akashdeep Kaur <a-kaur@ti.com>, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ llvm@lists.linux.dev, Hari Nagalla <hnagalla@ti.com>, 
+ "Markus Schneider-Pargmann (TI)" <msp@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4819; i=msp@baylibre.com;
+ h=from:subject:message-id; bh=/QSNh/oJUk3K36diT3vAhwVzwhYSE2dQVz87cYlXnkA=;
+ b=owGbwMvMwCXWejAsc4KoVzDjabUkhixXriLrF8leJpEiuTrS/5YqiSx0XXVpXjOn8Otp4a8+x
+ KZum13SUcrCIMbFICumyNKZGJr2X37nseRFyzbDzGFlAhnCwMUpABNxO8nwh3fq5unzOIvL032b
+ J221mBZ4/kSQ6mlXuU2vgoWary9zWsvwPytA7kLNvtXeLsvM17Sw1MayXsz6wfnKitn2f9PUvZI
+ N7AA=
+X-Developer-Key: i=msp@baylibre.com; a=openpgp;
+ fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:nm@ti.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nathan@kernel.org,m:nick.desaulniers+lkml@gmail.com,m:morbo@google.com,m:justinstitt@google.com,m:jm@ti.com,m:d.schultz@phytec.de,m:afd@ti.com,m:s-vadapalli@ti.com,m:p-bhagat@ti.com,m:bb@ti.com,m:jai.luthra@ideasonboard.com,m:devarsht@ti.com,m:b-padhi@ti.com,m:francesco.dolcini@toradex.com,m:stefano.radaelli21@gmail.com,m:vishalm@ti.com,m:khilman@baylibre.com,m:sebin.francis@ti.com,m:k-willis@ti.com,m:a-kaur@ti.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:llvm@lists.linux.dev,m:hnagalla@ti.com,m:msp@baylibre.com,m:krzk@kernel.org,m:conor@kernel.org,m:nickdesaulniers@gmail.com,m:stefanoradaelli21@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318546-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:linux-phy@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DMARC_NA(0.00)[baylibre.com];
+	FREEMAIL_TO(0.00)[ti.com,kernel.org,gmail.com,google.com,phytec.de,ideasonboard.com,toradex.com];
+	FORGED_SENDER(0.00)[msp@baylibre.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[32];
+	TAGGED_FROM(0.00)[bounces-318549-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.freedesktop.org,linaro.org,gmail.com,lists.infradead.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[msp@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,lkml];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:dkim,baylibre.com:email,baylibre.com:mid,baylibre.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9B0B66EDFCE
+X-Rspamd-Queue-Id: A500B6EDFFB
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] The power_on and power_off callbacks use the digital register layo=
-ut array to look up an analog register offset, causing register operations =
-to modify the wrong hardware offset.
-- [Medium] The error path in `mtk_dp_phy_power_on()` fails to unwind previo=
-usly applied hardware state if a subsequent step fails, leaking power state.
---
+Hi,
 
-commit db1c6c4d46cae7dc24770e2f52553b8292fbfbc9
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Split the firmware memory region in more specific parts so it is better
+described where which information is stored. Specifically the LPM metadata
+region is important as bootloader software like U-Boot has to know where
+that data is to be able to read that data and resume from RAM.
 
-phy: phy-mtk-dp: Implement power_on and power_off PHY callbacks
+The bindings are already applied. The remaining patches use the new
+layout for the platforms that are capable to support IO+DDR. For IO+DDR
+the new layout is necessary as it defines the location of the LPM
+metadata.
 
-Add .power_on() and .power_off() callbacks to mtk_dp_phy_dev_ops
-to be able to call those with phy_power_on() and phy_power_off()
-API in the DisplayPort driver to be able to stop using all of
-those hardcoded register writes in that external driver.
+Additionally the two important devicetree nodes for resuming from IO+DDR
+have the bootph-pre-ram flag added as this data needs to be read before
+the RAM is in use.
 
-> diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy=
--mtk-dp.c
-> index ce33f6812bae6..586e727956332 100644
-> --- a/drivers/phy/mediatek/phy-mtk-dp.c
-> +++ b/drivers/phy/mediatek/phy-mtk-dp.c
+The changes in this series were suggested as part of the IO+DDR u-boot series:
+  https://lore.kernel.org/r/814c211f-a9eb-4311-bb84-165b1a69755f@ti.com
 
-[ ... ]
+Note that concerns about uboot fixup of memory region fixups were
+discussed here:
+  https://lore.kernel.org/r/DJD1Y3G9S1SP.2GHOZ5X4RYJFA@baylibre.com
 
-> @@ -200,6 +236,53 @@ static int mtk_dp_phy_configure(struct phy *phy, uni=
-on phy_configure_opts *opts)
->  	return 0;
->  }
-> =20
-> +static int mtk_dp_phy_power_on(struct phy *phy)
-> +{
-> +	struct mtk_dp_phy *dp_phy =3D phy_get_drvdata(phy);
-> +	const struct mtk_dp_phy_pdata *pdata =3D dp_phy->pdata;
-> +	const u8 *regs =3D pdata->regs_dig_glb;
-> +	int ret;
-> +
-> +	/* Enable AUX Channel with RX De-Glitch and input clock detection */
-> +	ret =3D regmap_write(dp_phy->regmap,
-> +			   pdata->off_dig_glb + regs[DP_PHYD_AUX_RX_CTL],
-> +			   PHYD_DIG_DPAUX_RX_EN |
-> +			   PHYD_DIG_XTP_GLB_CKDET_EN |
-> +			   PHYD_DIG_DPAUX_RX_DEGLITCH_EN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D regmap_clear_bits(dp_phy->regmap,
-> +				pdata->off_ana_glb + regs[DP_PHYA_GLB_FORCE_CTRL_1],
+Best
+Markus
 
-[Severity: High]
-Here regs points to the digital register array pdata->regs_dig_glb, but it =
-is
-being indexed with DP_PHYA_GLB_FORCE_CTRL_1, which is an analog register
-enum. Does this result in reading the wrong offset (fetching the offset for
-DP_PHYD_BIT_RATE instead of DP_PHYA_GLB_FORCE_CTRL_1) and corrupting the
-bitrate configuration?
+Signed-off-by: Markus Schneider-Pargmann (TI) <msp@baylibre.com>
+---
+Changes in v7:
+- Rebase to v7.1-rc1
+- Fix commit messages
+- Link to v6: https://lore.kernel.org/r/20260609-topic-am62a-ioddr-dt-v6-19-v6-0-16afba97fbe0@baylibre.com
 
-> +				CKM_CKTX0_EN_FORCE_MODE);
-> +	if (ret)
-> +		return ret;
+Changes in v6:
+- Added fixes for the length of the wkup_r5fss0_core0_memory_region.
+  Thanks Francesco for pointing that out. am62a firmware is shorter than
+  am62p firmware. I calculated both and fixed all devicetrees using
+  them. All patches have different Fixes tags so I kept them separate.
+- Fixed the length of the split memory layout as well.
+- Removed the double definition of memory regions for the var-som board.
+- Link to v5: https://lore.kernel.org/r/20260601-topic-am62a-ioddr-dt-v6-19-v5-0-3856a023aff2@baylibre.com
 
-[Severity: Medium]
-If regmap_clear_bits() fails here, the function returns the error without
-unwinding the previous successful write to DP_PHYD_AUX_RX_CTL. Since the PHY
-core will not call phy_power_off() if phy_power_on() returns an error, does
-this leave the RX channel and clock detection permanently enabled?
+Changes in v5:
+- Move all changes into k3-am62a/p-ti-ipc-firmware.dtsi
+- Dropped the patch that adds bootph-pre-ram to k3-am62a stuff as it is
+  already present in k3-am62d2-evm.dts and got moved into the
+  firmware.dtsi file which covers am62a as well then.
+- Link to v4: https://lore.kernel.org/r/20260429-topic-am62a-ioddr-dt-v6-19-v4-0-fc27d6ac753c@baylibre.com
 
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_dp_phy_power_off(struct phy *phy)
-> +{
-> +	struct mtk_dp_phy *dp_phy =3D phy_get_drvdata(phy);
-> +	const struct mtk_dp_phy_pdata *pdata =3D dp_phy->pdata;
-> +	const u8 *regs =3D pdata->regs_dig_glb;
-> +	int ret;
-> +
-> +	ret =3D regmap_set_bits(dp_phy->regmap,
-> +				pdata->off_ana_glb + regs[DP_PHYA_GLB_FORCE_CTRL_1],
+Changes in v4:
+- Rebased to v7.1-rc1
+- Dropped all already applied patches that are the bindings and the
+  initial introduction of memory-region-names
+- Link to v3: https://lore.kernel.org/r/20260318-topic-am62a-ioddr-dt-v6-19-v3-0-c41473cb23c3@baylibre.com
 
-[Severity: High]
-Similarly to mtk_dp_phy_power_on(), this uses the digital register array
-regs indexed with the analog enum DP_PHYA_GLB_FORCE_CTRL_1. Should this use
-pdata->regs_ana_glb instead to avoid writing to the wrong hardware offset?
+Changes in v3:
+- Squash the enforcement of the memory-region-names requirement in the
+  patch adding the memory-region-names, as suggested.
+- Link to v2: https://lore.kernel.org/r/20260312-topic-am62a-ioddr-dt-v6-19-v2-0-37cb7ceec658@baylibre.com
 
-> +				CKM_CKTX0_EN_FORCE_MODE);
-> +	if (ret)
-> +		return ret;
+Changes in v2:
+- Make memory-region-names required if memory-region is present
+- Fixup memory-region and memory-region-names conditions. Require either
+  2 or 6 regions for memory-region and memory-region-names
+- Reword and restructure the binding documentation for memory-region and
+  memory-region-names
+- Add memory-region-names to all uses of memory-region
+- Link to v1: https://lore.kernel.org/r/20260303-topic-am62a-ioddr-dt-v6-19-v1-0-12fe72bb40d2@baylibre.com
 
-[ ... ]
+---
+Markus Schneider-Pargmann (TI) (11):
+      arm64: dts: ti: k3-am62a-phycore-som: Fix wkup R5F memory region size
+      arm64: dts: ti: k3-am62d2-evm: Fix wkup R5F memory region size
+      arm64: dts: ti: k3-am62a7-sk: Fix wkup R5F memory region size
+      arm64: dts: ti: k3-am62p-verdin: Fix wkup R5F memory region size
+      arm64: dts: ti: k3-am62p5-sk: Fix wkup R5F memory region size
+      arm64: dts: ti: var-som-am62p: Fix wkup R5F memory region size
+      arm64: dts: ti: k3-am62a-ti-ipc-firmware: Move wkup reserved memory
+      arm64: dts: ti: k3-am62p-ti-ipc-firmware: Move wkup reserved memory
+      arm64: dts: ti: k3-am62a-ti-ipc-firmware: Split r5f memory region
+      arm64: dts: ti: k3-am62p-ti-ipc-firmware: Split r5f memory region
+      arm64: dts: ti: k3-am62p-ti-ipc-firmware: Add r5f nodes to pre-ram bootphase
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701122008.1950=
-9-1-angelogioacchino.delregno@collabora.com?part=3D5
+ arch/arm64/boot/dts/ti/k3-am62a-phycore-som.dtsi   | 12 ------
+ .../boot/dts/ti/k3-am62a-ti-ipc-firmware.dtsi      | 48 +++++++++++++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts            | 12 ------
+ arch/arm64/boot/dts/ti/k3-am62d2-evm.dts           | 17 --------
+ .../boot/dts/ti/k3-am62p-ti-ipc-firmware.dtsi      | 48 +++++++++++++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi        | 12 ------
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts            | 12 ------
+ arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi      | 12 ------
+ 8 files changed, 92 insertions(+), 81 deletions(-)
+---
+base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
+change-id: 20260210-topic-am62a-ioddr-dt-v6-19-0da7712081d7
+
+Best regards,
+-- 
+Markus Schneider-Pargmann (TI) <msp@baylibre.com>
+
 
