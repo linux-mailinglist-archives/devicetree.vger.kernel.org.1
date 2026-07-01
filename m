@@ -1,105 +1,52 @@
-Return-Path: <devicetree+bounces-318244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318246-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MPy8JN3URGpf1goAu9opvQ
-	(envelope-from <devicetree+bounces-318244-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:50:37 +0200
+	id nxXeID3VRGqN1goAu9opvQ
+	(envelope-from <devicetree+bounces-318246-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:52:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1901F6EB483
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:50:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAB106EB4CE
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:52:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=CMC47t7s;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=EkK3EZbQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318244-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318244-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=nwhbKEcp;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318246-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318246-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linux.dev;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BF2EB30E3AC6
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:46:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 59166313D18F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:47:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E883EDE69;
-	Wed,  1 Jul 2026 08:46:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3645C3B9929;
+	Wed,  1 Jul 2026 08:47:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from out-180.mta1.migadu.com (out-180.mta1.migadu.com [95.215.58.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA203E8695
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 08:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449FC3EDE5F
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 08:47:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782895604; cv=none; b=Me4Lze+MbGMhEAQ//t2v1DNLlVy3jnQXrMYOKaE+6fSE2Uj4SRVzJZcJKMUJi230+OesLEcYb7ZihJquEZiy1guiHxzYp6ZE4JqOIZdsWupkbUVVPKMjYflOS32rv6rWhuhOFD1uP7x1zB1LH//eFNQsk7nvwAO+sY10ah/N/Ks=
+	t=1782895652; cv=none; b=g/teVZJYLA3HN4Q2jppWgA7vQEUB/9DzcIvJAbitzf/wLWm8C8mWDOA+7pQMsJMD0ejOKoj3zZ51ru/9HFfuH65YWibR+r6R5nSIX5lqe7/b8+aFfg3MQ9xRNVqXZI1+wQVsija3vy+PPiTjtGDDBWWfzGcV9gz0mFw8fZd35VE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782895604; c=relaxed/simple;
-	bh=GRbWxHCWK5woHSJmqcg4vZ8zKDdAitOAXTLbGcGk20k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AwKTrMFvaNB9JLHictsyoFqfgo4tadf2RQxTizMc4G+a2rIv2ku0bew25ynfFsvgiwU79DwkyIvbk2qKDcNugvvXhROYzf74P0l05BDasOetiqJpfdDrayKkrtahfxQ6z6Ho7tOImK18KVhoiBggWokOnhq7wTA+NDfqSDmqDrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CMC47t7s; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EkK3EZbQ; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6618GEiu497043
-	for <devicetree@vger.kernel.org>; Wed, 1 Jul 2026 08:46:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kTd/R/2EJF/1DHxNw7D2N/60ZnX+FUJkLfb7saHZSjQ=; b=CMC47t7sQVuxQ6B3
-	hC8OA3TwKerLajEDnYVXu4ESqdt7sH6pcKdMySNpfLcH42rMZImeoVkiE/NSZIve
-	wSgwpTyq6E6PJhyBBmzPi1HPbkQZELeVYnj+21O+8EtMQVhXoeqEEu5zal2hFt8J
-	pkyNJNuQrUyKYRd4jSZMY1WH/pI4kfJugc9400mc075bYgzvuZUYAqAW4Ej0UW6A
-	sxgQgmlPda3j03NUK2Pm7ftfPav+kva7BT1zkDikGoCjnpIFiKiVkV1qfrjuSpjP
-	Om+2PivcK4Fl1NJmWucqDUxgoe1SqQTSwAkKbXPiPm2Rv+iORJfyrwtMz7t7gAAM
-	tPShJQ==
-Received: from mail-dy1-f197.google.com (mail-dy1-f197.google.com [74.125.82.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f4jktb715-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 08:46:41 +0000 (GMT)
-Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-30ecfc5dea0so729490eec.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 01:46:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1782895601; x=1783500401; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kTd/R/2EJF/1DHxNw7D2N/60ZnX+FUJkLfb7saHZSjQ=;
-        b=EkK3EZbQMtG09hwHvn9EDIcaXvg+otFd26XVv9vcpdp3b0o1xDVkPoouN29iuYxShs
-         vsXRcXDWDkwaNVa4aB8CVvpgygb8bQVsVTKZPTyqIbkb/g0VIrcDhtRI8Y6N8qs/KcZo
-         rjn0qxLd7IUfQWtIjqV3uYDZ+fY5pJsAfDSkllGBVfaDRFjK4qrcjElQeEof9GzXEjAr
-         /n3m3RqAonR1OWWU7IT19/4a0aUOi5fKNh+TkAlpLop/P03YwAfp/Oh2KqhxH9dmDoA2
-         SBC5w9l85cK0uAYqfJQo4VsMVihLPEmajez6CMzf5OXCy3AOx/BMaJJwrQQqwQM6q0Di
-         z63w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782895601; x=1783500401;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kTd/R/2EJF/1DHxNw7D2N/60ZnX+FUJkLfb7saHZSjQ=;
-        b=G6k92tJJ32T3HyPPwhSAC9rIaK75CF6jD/RgMo74haF2nToufJOoJ0o09lmHbn45RF
-         XI4cZpKGooJsJAJfw+Cy1rEej128r5yeNRtOYZOniYkpWdAg3p+L6P8oG/0Hv5jxoxKH
-         NOmebnTA+PJ4W/G1hQbw0fN8b0UD23w5e/THPX6nfzxEpTTYnL+kAhvFP5/tzMKSM0JT
-         swM6Y8DCL96tutLLR9wKTEnC4E6UdWuSRuBsse7Mz+wuwfIP2i/Lgxvu1oy4BnB8rKoH
-         PaT1A4311ysgGZyVRfH8DeqVKo8u/wD9opIkCqvAhk9bfwFDCVVGSZDx0cCFjcZFEzsG
-         dYsw==
-X-Forwarded-Encrypted: i=1; AHgh+RqIKULiW94Erl0IfCc9tLDfp20GxBd63PNNcbJgt90LyLr1ZjcAUHV2PsfdmYkG7OM43q8vYjMFfU2N@vger.kernel.org
-X-Gm-Message-State: AOJu0YypKOOHLf2qC9YIRda07P0TH1fQGPhdwySUn8BBvMzCKsnMR083
-	w8SL+CEMaTxepLlwVNXkP2CZq4FOKHHtpl3KOurXmQhkyddJGv1DcoRIG9MkemDOTHOIRjwi33C
-	vqFr8QYiZkwphcDsavFnfMgmlNQVLotCwyfQ1+LaH64o/NEiLO5lcLWnGhCCiQoTL
-X-Gm-Gg: AfdE7cm65IvWSy5rSzyi0tjaUtqY1xTM29TxCUwyQaow2jwR3UO3D84EKttM/Tm1vhX
-	brzMwndmCOuQLd6IB0W3GwxN7E4zPaVTdauyf2/RNlM6cZGTkJtokJM+ZeDggRQ/hyppJ0Xu+rv
-	xDKUZmes6yylsmnxxfX6YfCBzBVwcJ/pgoRnqvxPUMFiEeY5mCePAStnCWlzIa59/LKZNHtsJhj
-	ojW8GK9Vi39h+jnblDDDJkiiEDuotq/Uoakjc5bQ2xJKTnzgXLISX+zyDLactPlU7jAuQk/lnS8
-	J/2xa9RurYikSTDRQPEM65ylSivBtspY78YNoeN44ziQWyRv/ODHNT2sz8lZw+0F2FU5YXDDgqN
-	0sSV6OM9/T/KxZ07J22jJiISAY5ONUiYuo2VlD9flg0dOgqLiW47MnZqgtK9cWRiFX+SFiabg3X
-	fSqD2xkJxaM7shI8OgnsUgPXQ74qDz6xYsVjq+e41u
-X-Received: by 2002:a05:7300:2211:b0:30c:536e:3a8a with SMTP id 5a478bee46e88-30eff0534bbmr843573eec.6.1782895600785;
-        Wed, 01 Jul 2026 01:46:40 -0700 (PDT)
-X-Received: by 2002:a05:7300:2211:b0:30c:536e:3a8a with SMTP id 5a478bee46e88-30eff0534bbmr843543eec.6.1782895600255;
-        Wed, 01 Jul 2026 01:46:40 -0700 (PDT)
-Received: from hu-varada-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-30efaadc5bfsm4891524eec.28.2026.07.01.01.46.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jul 2026 01:46:39 -0700 (PDT)
-From: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
-Date: Wed, 01 Jul 2026 14:16:25 +0530
-Subject: [PATCH 2/2] cpufreq: qcom-nvmem: Add IPQ5210 support
+	s=arc-20240116; t=1782895652; c=relaxed/simple;
+	bh=fLH2QKU5/UBhjVHk16EnhzlPvmFKkSlmlpirYLbRGZA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Tkk3W3B6zRSykgF8S6k/sUFwM6zJ6xOkWVJOrM0sSUM18FJTVs7/guTl51nwpgbOSY3Qe3uho2xO2LeHR1jUwH6kP5WU6AUEyD5wsB1Yaq/6VT6xpDiJ87C4RzjLq5cwb/nsj2Y8iWf45oQQZiGexkxGWPjr4+cqXol6u44r8ks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=nwhbKEcp; arc=none smtp.client-ip=95.215.58.180
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1782895638;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=r9s14zxC5RueySdUqmfR8l7je9r+KntR4fPObg88vbI=;
+	b=nwhbKEcpL074b7XI2btKyL9bCyy0P6/LueoaR5oJ6+0OhK2qpEfwAELOGcnm/v9+tkIuyf
+	+Ioxegg9tXSQSpQBvkn4MoO0FNtuN8+V25YsGKq+Jt4ZUQho4LwkbMCV6eQp8v98zZTber
+	/Vv0PZl+KWYAQLD6y6uQUiLO/muwTvA=
+From: Atish Patra <atish.patra@linux.dev>
+Subject: [PATCH v8 00/22] Add Counter delegation ISA extension support
+Date: Wed, 01 Jul 2026 01:46:48 -0700
+Message-Id: <20260701-counter_delegation-v8-0-7909f863a645@meta.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -108,135 +55,258 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260701-cpufreq-v1-2-98656ad20ff3@oss.qualcomm.com>
-References: <20260701-cpufreq-v1-0-98656ad20ff3@oss.qualcomm.com>
-In-Reply-To: <20260701-cpufreq-v1-0-98656ad20ff3@oss.qualcomm.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>, Ilia Lin <ilia.lin@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAxMDA4OSBTYWx0ZWRfX6474vbyoGFQX
- +hN3oCIaIe5wYPkypfDPaCQzQAFXFt19w9v+776t480Sy7IIWULFxQ0mYwQ0/mYb4pcgyGImLfh
- 7DfofBKTV0e2l8GW9TvIvFHXxRgy1Vg=
-X-Proofpoint-GUID: EcLnC6Y9pwIoJgZE5kg1wkXteRhk5mev
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAxMDA4OSBTYWx0ZWRfX2oJxFgy2TuG2
- EEiilqUIMloiqcJfgUu4avzBIabGPaAQLoDoTAW1TubHcYph1IJeda6enI9a1FtnsY2GjmvWhpf
- KLqOpaDSmcyLfLr4Ot2iZrj6RGm2SPfg6TSHj1MjzdPdeYVoLzh0OulIzxbBP44MQ2oUcTOnoLT
- wHpI/+sXJ388HZoVqql6tdYUU+QZr6Y4wHVkoaT8U4RnvKr/yv43K7HhLbLNjOUSZdf0mIv14lc
- ikgtaLqdOsUY27b3zQAF0aUcWI3k0fLDiitD+9sRIU7vBYP4HWDfg01mGzBqFGgYS7o2gOFyCl7
- LB/Us2WpWzEvE9zt3GkFz6G3NVuDG7OGiQzGxNKYo6aCoMEdC1qa0kUCzFaPCsfd8uwa3ljmN+4
- EmP11xgRvqJKN5xTYEeCOJdscZlBFndKbPjghp1b58Qhf0m6BYhxzmh5ILIQXU/pss6EhLhWn8z
- NmumpnsYdMBhNaPQa1w==
-X-Authority-Analysis: v=2.4 cv=R+wz39RX c=1 sm=1 tr=0 ts=6a44d3f1 cx=c_pps
- a=Uww141gWH0fZj/3QKPojxA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=EUspDBNiAAAA:8 a=3tsBT5a87JaRe40zvzIA:9 a=QEXdDO2ut3YA:10
- a=PxkB5W3o20Ba91AHUih5:22
-X-Proofpoint-ORIG-GUID: EcLnC6Y9pwIoJgZE5kg1wkXteRhk5mev
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-07-01_02,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 phishscore=0 priorityscore=1501 impostorscore=0
- adultscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607010089
+X-B4-Tracking: v=1; b=H4sIAPnTRGoC/23QzWrDMAwH8FcpPs/Flj/TU99jjOHYSmNYk2JnZ
+ qPk3ed0lObg419IPwndScYUMZPT4U4SlpjjPNVg3w7Ej266II2hZgIMJDNcUT9/Twumz4BfeHF
+ LbacarBMwWN95T+rgLeEQfx7o+0fNY8zLnH4fOwrfqv8ccMOYMsIehZGSA6ecVjGPt3OKZc5x8
+ kc/X8lmFHjOKca5bJ1RgDJqe2ekD71VvG8oYqeAaSqiKlraTgaDXAfVUORLAdZ8SZHbLUL5wVm
+ LoucNRT8VzTSzTUVXBazqDWDQynXnKy7uJZidANAUTBVY72AIQmoucSes6/oHafZ/zf8BAAA=
+To: Jiri Olsa <jolsa@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>, 
+ Anup Patel <anup@brainfault.org>, Namhyung Kim <namhyung@kernel.org>, 
+ Arnaldo Carvalho de Melo <acme@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Atish Patra <atish.patra@linux.dev>, Ian Rogers <irogers@google.com>, 
+ Will Deacon <will@kernel.org>, James Clark <james.clark@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-perf-users@vger.kernel.org, Conor Dooley <conor@kernel.org>
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:jolsa@kernel.org,m:pjw@kernel.org,m:mark.rutland@arm.com,m:robh@kernel.org,m:anup@brainfault.org,m:namhyung@kernel.org,m:acme@kernel.org,m:krzk+dt@kernel.org,m:atish.patra@linux.dev,m:irogers@google.com,m:will@kernel.org,m:james.clark@linaro.org,m:linux-arm-kernel@lists.infradead.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318246-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318244-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email];
-	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:viresh.kumar@linaro.org,m:ilia.lin@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:varadarajan.narayanan@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[varadarajan.narayanan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[varadarajan.narayanan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1901F6EB483
+X-Rspamd-Queue-Id: CAB106EB4CE
 
-IPQ5210 SoCs expose CPU frequency limits through an eFuse speed bin, and
-the valid CPU OPPs depend on the SoC variant.
+This series adds the counter delegation extension support. It is based on
+very early PoC work done by Kevin Xue and mostly rewritten after that.
+The counter delegation ISA extension(Smcdeleg/Ssccfg) actually depends
+on multiple ISA extensions.
 
-Add IPQ5210 support to the Qualcomm NVMEM cpufreq driver so the supported
-OPPs can be selected at runtime using the eFuse value and the opp-
-supported-hw OPP property. Also block the generic cpufreq-dt platform
-device for IPQ5210 so the NVMEM-based driver is used.
+1. S[m|s]csrind : The indirect CSR extension[1] which defines additional
+   5 ([M|S|VS]IREG2-[M|S|VS]IREG6) register to address size limitation of
+   RISC-V CSR address space.
+2. Smstateen: The stateen bit[60] controls the access to the registers
+   indirectly via the above indirect registers.
+3. Smcdeleg/Ssccfg: The counter delegation extensions[2]
 
-Signed-off-by: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
+The counter delegation extension allows Supervisor mode to program the
+hpmevent and hpmcounters directly without needing the assistance from the
+M-mode via SBI calls. This results in a faster perf profiling and very
+few traps. This extension also introduces a scountinhibit CSR which allows
+to stop/start any counter directly from the S-mode. As the counter
+delegation extension potentially can have more than 100 CSRs, the specification
+leverages the indirect CSR extension to save the precious CSR address range.
+
+Due to the dependency of these extensions, the following extensions must be
+enabled in qemu to use the counter delegation feature in S-mode.
+
+"smstateen=true,sscofpmf=true,ssccfg=true,smcdeleg=true,smcsrind=true,sscsrind=true"
+or Virt machine users can just "max" cpu instead.
+
+When we access the counters directly in S-mode, we also need to solve the
+following problems.
+
+1. Event to counter mapping
+2. Event encoding discovery
+
+The RISC-V ISA doesn't define any standard either for event encoding or the
+event to counter mapping rules. Until now, the SBI PMU implementation relies
+on device tree binding[3] to discover the event to counter mapping in RISC-V
+platform in the firmware. The SBI PMU specification[4] defines event encoding
+for standard perf events as well. Thus, the kernel can query the appropriate
+counter for an given event from the firmware.
+
+However, the kernel doesn't need any firmware interaction for hardware
+counters if counter delegation is available in the hardware. Thus, the driver
+needs to discover the above mappings/encodings by itself without any assistance
+from firmware.
+
+Solution to Problem #1:
+This patch series solves the above problem #1 by extending the perf tool in a
+way so that event json file can specify the counter constraints of each event
+and that can be passed to the driver to choose the best counter for a given
+event.
+
+This series introduces a RISC-V specific event field in "CounterIDMask" in
+event_fields that describes a bitmask of counters supported for a specific eventi.
+This is the similar approach for few other existing properties in the event_fields
+which were used by single architecture as well. The counter constraint bitmap is
+passed to the perf driver via newly introduced "counterid_mask" property set in "config2".
+
+The platform vendor have these three ways to encode/use the platform specific
+events.
+
+1. Directly in driver with appropriate constraints (discouraged due to bloating
+of the driver)
+2. Encode in Json with with CounterIDMask field (preferred as it is contained
+within platform specific json file)
+3. Directly pass counterid_mask at while invoking perf 
+cpu/event=<code>,counterid_mask=<mask>/
+
+The last two patches show cases these use cases and not intended for merging.
+
+Solution to problem #2:
+
+The event encoding can come from the json or commandline as well.
+
+The Qemu patches are available in upstream now.
+
+The Linux kernel patches can be found here:
+https://github.com/atishp04/linux/tree/b4/counter_delegation_v8
+
+[1] https://github.com/riscv/riscv-indirect-csr-access
+[2] https://github.com/riscv/riscv-smcdeleg-ssccfg
+[3] https://www.kernel.org/doc/Documentation/devicetree/bindings/perf/riscv%2Cpmu.yaml
+[4] https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/src/ext-pmu.adoc
+[5] https://lore.kernel.org/qemu-devel/20260625-marchid-v2-1-3821c351028b@gmail.com/
+
+To: Paul Walmsley <pjw@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Will Deacon <will@kernel.org>
+To: Mark Rutland <mark.rutland@arm.com>
+To: Atish Patra <atish.patra@linux.dev>
+To: Anup Patel <anup@brainfault.org>
+To: Arnaldo Carvalho de Melo <acme@kernel.org>
+To: Namhyung Kim <namhyung@kernel.org>
+To: Jiri Olsa <jolsa@kernel.org>
+To: Ian Rogers <irogers@google.com>
+To: James Clark <james.clark@linaro.org>
+Cc: linux-riscv@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-perf-users@vger.kernel.org
+
+Signed-off-by: Atish Patra <atishp@meta.com>
+
+Changes in v8:
+- Fixed few more issues reported by Sashiko. Remaining sashiko reviews are moot.
+- Added support for Qemu ARCH ID 0x42 introduced by the qemu patch[5]  
+- Link to v7: https://lore.kernel.org/r/20260622-counter_delegation-v7-0-0ba2fd34614e@meta.com
+
+Changes in v7:
+- Fixed various issues pointed by Sashiko. 
+- Rebased on top of v7.1
+- Added a separate patch to fix various memory leak issues in probe error path
+- Link to v6: https://lore.kernel.org/r/20260608-counter_delegation-v6-0-285b72ed65a9@meta.com
+
+Changes in v6:
+- Reverted the file name changes as suggested by Will. Now pmu-sbi.c will continue
+  to support both counter delegation and SBI PMU with different function prefixes.
+- No longer depends up old upstream patch for reusing the Counter property to
+  encode event to counter mapping property. It directly uses additional field in
+  json event fields similar to other architectures.
+- Added few test patches (not intended for upstreaming) to show case different
+  possibilities of providing mapping/event encodings.
+- Fixed review comments and miscellenous minor typos/fixes on v5
+- Rebased on top of v7.1-rc6
+
+Changes in v5:
+- Fixed dt_binding_check errors.
+- Added the ISA extension dependancy for counter delegation extensions.
+- Replaced the boolean variables with static key conditional check required at boot time.
+- Miscellaneous minor code restructuring.
+- Link to v4: https://lore.kernel.org/r/20250205-counter_delegation-v4-0-835cfa88e3b1@rivosinc.com
+
+Changes in v4:
+- Added ISA dependencies as per dt schema instead of description.
+- Fixed few compilation issues due to patch reordering in v3.
+- Link to v3: https://lore.kernel.org/r/20250127-counter_delegation-v3-0-64894d7e16d5@rivosinc.com
+
+Changes in v3:
+- Fixed the dtb binding check failures.
+- Inlcuded the fix reported by Rajnesh Kanwal for guest counter overflow.
+- Rearranged the overflow handling more efficiently for better modularity.
+- Link to v2: https://lore.kernel.org/r/20250114-counter_delegation-v2-0-8ba74cdb851b@rivosinc.com
+
+Changes in v2:
+- Dropped architecture specific overrides for event encoding.
+- Dropped hwprobe bits.
+- Added a vendor specific event encoding table to support vendor specific event
+  encoding and counter mapping.
+- Fixed few bugs and cleanup.
+- Link to v1: https://lore.kernel.org/r/20240217005738.3744121-1-atishp@rivosinc.com
+
 ---
- drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
- drivers/cpufreq/qcom-cpufreq-nvmem.c | 8 ++++++++
- 2 files changed, 9 insertions(+)
+Atish Patra (19):
+      RISC-V: perf: fix resource cleanup on driver probe failure
+      RISC-V: Add Sxcsrind ISA extension definition and parsing
+      dt-bindings: riscv: add Sxcsrind ISA extension description
+      RISC-V: Define indirect CSR access helpers
+      RISC-V: Add Smcntrpmf extension parsing
+      dt-bindings: riscv: add Smcntrpmf ISA extension description
+      RISC-V: Add Ssccfg/Smcdeleg ISA extension definition and parsing
+      dt-bindings: riscv: add Counter delegation ISA extensions description
+      RISC-V: perf: Restructure the SBI PMU code
+      RISC-V: perf: Modify the counter discovery mechanism
+      RISC-V: perf: Add a mechanism to defined legacy event encoding
+      RISC-V: perf: Implement supervisor counter delegation support
+      RISC-V: perf: Use config2/vendor table for event to counter mapping
+      RISC-V: perf: Add legacy event encodings via sysfs
+      RISC-V: perf: Add Qemu virt machine events
+      tools/perf: Support event code for arch standard events
+      tools/perf: Add RISC-V CounterIDMask event field
+      TEST(do-not-upstream): fake qemu-virt PMU events for cdeleg counter-mask testing
+      TEST(do-not-upstream): fake qemu vendor JSON + mapfile entry for CounterIDMask path
 
-diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
-index ff1204c666b1..284eece9e230 100644
---- a/drivers/cpufreq/cpufreq-dt-platdev.c
-+++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-@@ -200,6 +200,7 @@ static const struct of_device_id blocklist[] __initconst = {
- 	{ .compatible = "ti,am62l3", },
- 	{ .compatible = "ti,am62p5", },
- 
-+	{ .compatible = "qcom,ipq5210", },
- 	{ .compatible = "qcom,ipq5332", },
- 	{ .compatible = "qcom,ipq5424", },
- 	{ .compatible = "qcom,ipq6018", },
-diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-index e6d28d162442..b2aeda7c564a 100644
---- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
-+++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-@@ -200,6 +200,13 @@ static int qcom_cpufreq_kryo_name_version(struct device *cpu_dev,
- 	case QCOM_ID_IPQ9574:
- 		drv->versions = 1 << (unsigned int)(*speedbin);
- 		break;
-+	case QCOM_ID_IPQ5200:
-+	case QCOM_ID_IPQ5210:
-+	case QCOM_ID_QCF2200:
-+	case QCOM_ID_QCF3200:
-+	case QCOM_ID_QCF3210:
-+		drv->versions = (*speedbin != 0xcd) ? BIT(0) : BIT(1);
-+		break;
- 	case QCOM_ID_IPQ5424:
- 	case QCOM_ID_IPQ5404:
- 		drv->versions = (*speedbin == 0x3b) ? BIT(1) : BIT(0);
-@@ -618,6 +625,7 @@ static const struct of_device_id qcom_cpufreq_match_list[] __initconst __maybe_u
- 	{ .compatible = "qcom,msm8909", .data = &match_data_msm8909 },
- 	{ .compatible = "qcom,msm8996", .data = &match_data_kryo },
- 	{ .compatible = "qcom,qcs404", .data = &match_data_qcs404 },
-+	{ .compatible = "qcom,ipq5210", .data = &match_data_kryo },
- 	{ .compatible = "qcom,ipq5332", .data = &match_data_kryo },
- 	{ .compatible = "qcom,ipq5424", .data = &match_data_kryo },
- 	{ .compatible = "qcom,ipq6018", .data = &match_data_ipq6018 },
+Charlie Jenkins (1):
+      RISC-V: perf: Skip PMU SBI extension when not implemented
 
+Kaiwen Xue (2):
+      RISC-V: Add Sxcsrind ISA extension CSR definitions
+      RISC-V: Add Sscfg extension CSR definition
+
+ .../devicetree/bindings/riscv/extensions.yaml      |   63 ++
+ arch/riscv/include/asm/csr.h                       |   49 +
+ arch/riscv/include/asm/csr_ind.h                   |   41 +
+ arch/riscv/include/asm/hwcap.h                     |    7 +
+ arch/riscv/include/asm/vendorid_list.h             |    6 +
+ arch/riscv/kernel/cpufeature.c                     |   27 +
+ drivers/perf/Kconfig                               |   14 +-
+ drivers/perf/riscv_pmu_sbi.c                       | 1116 ++++++++++++++++----
+ include/linux/perf/riscv_pmu.h                     |    5 +
+ .../perf/pmu-events/arch/riscv/arch-standard.json  |   10 +
+ tools/perf/pmu-events/arch/riscv/mapfile.csv       |    2 +
+ .../pmu-events/arch/riscv/qemu/virt/events.json    |   26 +
+ tools/perf/pmu-events/jevents.py                   |   10 +-
+ 13 files changed, 1167 insertions(+), 209 deletions(-)
+---
+base-commit: 8cd9520d35a6c38db6567e97dd93b1f11f185dc6
+change-id: 20240715-counter_delegation-628a32f8c9cc
+
+Best regards,
 -- 
-2.34.1
+Atish Patra <atishp@meta.com>
 
 
