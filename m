@@ -1,167 +1,161 @@
-Return-Path: <devicetree+bounces-318902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318908-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id m7wrEB5+RWpnBAsAu9opvQ
-	(envelope-from <devicetree+bounces-318902-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 22:52:46 +0200
+	id ndvRNph+RWqQBAsAu9opvQ
+	(envelope-from <devicetree+bounces-318908-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 22:54:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD0E6F1A03
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 22:52:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95D456F1A98
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 22:54:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=ec1fwqbX;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=D5cTYaIh;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318902-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318902-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=mailbox.org;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VgcoBnz1;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318908-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318908-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 59D85300515A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 20:52:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 05063305EFCD
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 20:53:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 305CF39901A;
-	Wed,  1 Jul 2026 20:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC2463A542B;
+	Wed,  1 Jul 2026 20:53:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 861C0224AF2;
-	Wed,  1 Jul 2026 20:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58C236F908;
+	Wed,  1 Jul 2026 20:53:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782939161; cv=none; b=mylvh85PSTq9TELcvR2KzQslQdp6NOxsR2rN52nlc5UdKn4a4S3Fvt1J7j5SR/7+xsd+CdrU6FDktXLt+eiL3PZT+67kziUlfgM1ONxf27/UK0080sEwcMpOdNQuljTwz5EvpKOxb/pTvZKJ6kTQ8vZ+7VbAtTWWQAOokK+xCi0=
+	t=1782939190; cv=none; b=bTGnPhw+zoHVKbFOzYRdKCWwN6RcaRBvVQ636Td1SHQW2TX6I3X1T3/+5MJnFjTTwsVBiIlEL6dOZh8EnhwLukl27rU+Rv2d9v4XoYLoUMRZfNBpiNG9WY0qNugstCcDd4RhEfImQz7dcf90Ivz0nCOVIRcAkyLGq3uwrNSasQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782939161; c=relaxed/simple;
-	bh=x18UYCOnTafTkUw1henYF1Zm3Dti3RwUnI6LNphuT+8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n6uV6UCoFsVv3J8DbrMnFeBKQMIc2sM492+PjVshhfeMrsb9LhjrGqpF1cUpZuE5zBu9c87QKWCDkd3ujdXuLMITwBzacG3M/0BwiH5XFt1M0rLXQm2Y419XSVk4/5j92jG0nKYOOmBjeoWww9sCOoMxFyKYMeZGAjbh08GJF7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ec1fwqbX; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=D5cTYaIh; arc=none smtp.client-ip=80.241.56.171
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4grBzN2zPsz9v0M;
-	Wed,  1 Jul 2026 22:52:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1782939152;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=B0St7A+bM7xpXZZOVB/XPO0PsDqfIv4E00jty33/c8Y=;
-	b=ec1fwqbXQwarcLEaXC8UsjFFr42kwtKI/ZS95BCs5NW7z3V9oPgeA2CdrRcFA0/5zA5xZx
-	a/JerRdN9Mb2Y3WqxtVnqD5GYvfRAZKibc3pGmD8Q4EX/lNh9KFgwPA574ORw8xph6amrU
-	opaWN17gl2DFROMjfQg1BW+R2cICggKF9dXRYBWmdRtapCXFpMeDu5msgd3N0bRucrB089
-	NMZvqCWXqynapGcrdvcC5y+yyc4HodjQb6U25C7hhdxJNyYAbvTi/ZdH8ETOly/IxHsqDJ
-	uAd/1yRX+V8DIzn8bqbTnx4pZFfAWDkhLIE6selrUn4XKb+JdL2vHMs3gpJ/WA==
-Message-ID: <495cb1ae-f11b-4f92-85d4-59b2250db34e@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1782939150;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=B0St7A+bM7xpXZZOVB/XPO0PsDqfIv4E00jty33/c8Y=;
-	b=D5cTYaIh9L6fuPd7PYJvhu3auo30ngDcq+z9g7rp2mzq5wS8APc6fzEIv3EkKdcfRcpup2
-	Xx3cSUaghqnvks8OwsYVpsv86178E6Tp949pL1VWkSGpQ+IbdkZk2PJWTEioYFMkDk7K2G
-	7LTtjm4FCX2/Byb97P4aqHFZoapDaR8mrsjdbLSp3Tx0bBQsGms8NQmMpOPVE74d0K1+N9
-	o7a94nkLEI7wT/mi+K7EGzNvrV/JXDFEANUuvm1YfDiPnVlGBPdwAIKl5mcQ29yDTrJqqm
-	zbjkec22/4SbNy4mE/woiGHekzF90ttuGvuEDTVxV4ZhtPM3yqqf5onX4g1HQg==
-Date: Wed, 1 Jul 2026 22:43:41 +0200
+	s=arc-20240116; t=1782939190; c=relaxed/simple;
+	bh=W1u/u9I7Mdb7Fyk6vKElrcWw59Y/M86Vrm6KeTI1Vuo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=t62LYguCTf4Cv/QIw4qKDTKtcwbMEKjkpKzZxWl+iWhDbtEb/vu2xariUxZ+pvHSMwij/6w+zwqLP/x1CQs15EIci7INKI23jOvEtP7UrHkQ4wHEJ6pB7oEwwrYT4rO6UoDmY2ZybmbPWpWndKe0pA32Mbmcm6QBWEbsrcWSYAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VgcoBnz1; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBBA71F000E9;
+	Wed,  1 Jul 2026 20:52:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782939189;
+	bh=7M91Rv72KHh7M9FZ0CmnYhdPGBP68afS6WXdN8YtNj0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=VgcoBnz10Qa1Gkuzcssprc6joaa//pD6PzIXkCbBvwt/AwdKDdLOxJgee309c3gAG
+	 1PcbEDa7qNFWrrtZHad/wVyaq18HsGxNl0qhx8faWtQGjCnCiuHsJyQJy5vLU9D+UG
+	 KpWxrpXHcB1u3Yn+LWAuAgfp62T6i6QoLcxPx6rqbCGjxqCK95tKHut2saFBaoN+Ib
+	 UDOSCS0Gq+VZGet94hQykwExdOjpdLeY/7EF9WQBN6jpSvUN29SzF/7OKOYoUA/yrS
+	 zAPI/PzLCx3N3uhgKG8scXsZCaehpjDlVsP82DJ3xOYD2MR0jQI0iovi7GiCoFHjHw
+	 SYy1Jnh718mpA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Luca Weiss <luca.weiss@fairphone.com>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Kumar Patro <bibek.patro@oss.qualcomm.com>,
+	Komal Bajaj <komal.bajaj@oss.qualcomm.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: aiqun.yu@oss.qualcomm.com,
+	tingwei.zhang@oss.qualcomm.com,
+	trilok.soni@oss.qualcomm.com,
+	yijie.yang@oss.qualcomm.com,
+	linux-arm-msm@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+	Gokul Krishna Krishnakumar <gokul.krishnakumar@oss.qualcomm.com>,
+	Shawn Guo <shengchao.guo@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: Re: [PATCH v7 0/6] Add binding and driver for Kaanapali SoCCP
+Date: Wed,  1 Jul 2026 15:52:41 -0500
+Message-ID: <178293915913.25903.13824914328733420314.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260623-knp-soccp-v7-0-1ec7bb5c9fec@oss.qualcomm.com>
+References: <20260623-knp-soccp-v7-0-1ec7bb5c9fec@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 1/4] PCI: rcar-gen4: Configure AXIINTC if iMSI-RX not
- used
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Marek Vasut <marek.vasut+renesas@mailbox.org>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: linux-pci@vger.kernel.org, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kwilczynski@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20260618220427.14325-1-marek.vasut+renesas@mailbox.org>
- <20260618220427.14325-2-marek.vasut+renesas@mailbox.org>
- <CAMuHMdV3tyZk8ckL-ihdbVcGV9tQumdntPc_nJB6HXEkZLytfw@mail.gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <CAMuHMdV3tyZk8ckL-ihdbVcGV9tQumdntPc_nJB6HXEkZLytfw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: ub6t7dpfuhwtpwyhgrnpcye9afenpdm9
-X-MBO-RS-ID: c7dec5a8f8a3f8f14ef
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-318902-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:geert@linux-m68k.org,m:marek.vasut+renesas@mailbox.org,m:yoshihiro.shimoda.uh@renesas.com,m:linux-pci@vger.kernel.org,m:kwilczynski@kernel.org,m:bhelgaas@google.com,m:catalin.marinas@arm.com,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:lpieralisi@kernel.org,m:mani@kernel.org,m:maz@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:marek.vasut@mailbox.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318908-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mani@kernel.org,m:luca.weiss@fairphone.com,m:brgl@kernel.org,m:bibek.patro@oss.qualcomm.com,m:komal.bajaj@oss.qualcomm.com,m:konradybcio@kernel.org,m:jingyi.wang@oss.qualcomm.com,m:aiqun.yu@oss.qualcomm.com,m:tingwei.zhang@oss.qualcomm.com,m:trilok.soni@oss.qualcomm.com,m:yijie.yang@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:mukesh.ojha@oss.qualcomm.com,m:gokul.krishnakumar@oss.qualcomm.com,m:shengchao.guo@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:bartosz.golaszewski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mailbox.org:+];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3BD0E6F1A03
+X-Rspamd-Queue-Id: 95D456F1A98
 
-On 6/30/26 8:04 PM, Geert Uytterhoeven wrote:
 
-Hello Geert,
-
->> +static int rcar_gen4_pcie_host_msi_addr(struct dw_pcie_rp *pp, u32 *msi_addr)
->> +{
->> +       struct dw_pcie *dw = to_dw_pcie_from_pp(pp);
->> +       struct device_node *msi_node = NULL;
->> +       struct device *dev = dw->dev;
->> +       struct resource res;
->> +       u64 addr;
->> +       int ret;
->> +
->> +       /*
->> +        * Either the "msi-parent" or the "msi-map" phandle needs to exist
->> +        * to obtain the MSI node.
->> +        */
->> +       of_msi_xlate(dev, &msi_node, 0);
->> +       if (!msi_node)
->> +               return -ENODEV;
+On Tue, 23 Jun 2026 03:05:16 -0700, Jingyi Wang wrote:
+> Add initial support for SoCCP on Qualcomm Kaanapali platform. SoC Control
+> Processor (SoCCP) is loaded by bootloader on Kaanapali. PAS loader will
+> check the state of the subsystem, and set the status "attached". As the
+> interrupts are redefined differently for Kaanapali SoCCP, list for the
+> interrupt properties are moved out of pas-common.
 > 
-> This is not backwards-compatible with existing DTBs.
-> I noticed because PCIe is broken on Gray Hawk Single with R-Car V4M
-> after this series.  Indeed, "[PATCH v2 4/4] arm64: dts: renesas:
-> r8a779g0: Add GICv3 ITS and update PCIe nodes" only covers R-Car V4H,
-> but not R-Car S4-8 and R-Car V4M.
-Thank you for spotting this, and, this code is not supposed to be 
-reached. It turns out, pp->use_imsi_rx is not assigned yet in the .init 
-callback. I hope this is addressed in V3 with a new patch:
+> When we return fail in the rproc attach op, current remoteproc core cannot
+> handle it correctly for further recovery/firmware loading, which should be
+> generic problem shared across all remoteproc drivers that do attach and
+> not mandatory for normal bring up, a separate series is used for resolving
+> this:
+> https://lore.kernel.org/all/20260623-rproc-attach-issue-v3-0-8e24310707ce@oss.qualcomm.com/
+> 
+> [...]
 
-[PATCH v3 1/5] PCI: dwc: Determine whether iMSI is used before calling .init
+Applied, thanks!
+
+[1/6] dt-bindings: remoteproc: qcom: cleanup qcom,adsp.yaml
+      commit: 9698acea9b21937877d7d301883a6c8277a08900
+[2/6] dt-bindings: remoteproc: qcom: move interrupts and interrupt-names list out of pas-common
+      commit: 5eb8427596322c9c51638b906f39acff7c10c963
+[3/6] dt-bindings: remoteproc: qcom: Document pas for SoCCP on Kaanapali and Glymur platforms
+      commit: 8b54bacadc0c17e735ea8cb45e78ff360803a302
+[4/6] dt-bindings: remoteproc: qcom: Document pas for SoCCP on Hawi and Maili SoC
+      commit: f45ec01bae29a96374690fa323b42717e62aa575
+[5/6] remoteproc: qcom: pas: Add late attach support for subsystems
+      commit: 16472c99f4699cb28f2f5f946400ead02f58a15e
+[6/6] remoteproc: qcom_q6v5_pas: Add SoCCP node on Kaanapali
+      commit: 1f9ecae2ec6aa473825d713221d43bae72fcdfe9
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
