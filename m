@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-318553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318555-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yMNAAqQNRWri5woAu9opvQ
-	(envelope-from <devicetree+bounces-318553-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:52:52 +0200
+	id SBq8EX8NRWrZ5woAu9opvQ
+	(envelope-from <devicetree+bounces-318555-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:52:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 963EC6ED9C8
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:52:51 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A4DB6ED9AC
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:52:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=jG3bvZF5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318553-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318553-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=baylibre.com header.s=google header.b=eWp2Ni4u;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318555-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318555-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3204732A2A23
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:41:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 89756307574B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:42:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6AA0481FC0;
-	Wed,  1 Jul 2026 12:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BFD348AE09;
+	Wed,  1 Jul 2026 12:40:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DED0481A98
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D39BB481FBE
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:40:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782909653; cv=none; b=gawDCYWWsd+IGTvku1NF5tB6D22UHujd9qCSHDDd5Tz7M1z1mjhVePYJpMoUBcRfC0ZL6Y7/6M84pnY/FK3dZkchQZMaT9z0YYrnbF8I2iTRyolZWmXjGuE3yPVu1SI53fBJAX9ByoCczEypldg9ojWpLyAFJSQqf03AQW0VHDY=
+	t=1782909656; cv=none; b=Jfcn2+HHbL9bL6GTc54opfv6OIroqaVLTWF+mokL7AxZV/2/dwVUfqiAHwuv92YagfquLNxnqYGgYtYgjKnuI1bQ1y1umD9ii3ei3mDLzcRNzOXJFEoypcoZR1A9PZZ8HHVhtYZF96x2KLEJOtRQ6CNjR4wvDezoeLmWS6QUpAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782909653; c=relaxed/simple;
-	bh=UdYuVybQFPSsAf2RKB3eRhJbIK1t6vhvF1XRjODHB+U=;
+	s=arc-20240116; t=1782909656; c=relaxed/simple;
+	bh=/H8+FLcymjurbPJq5XVqqAaQz7MleqM2bK1XAD+GdZM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IWbSCe2JJsBWY3aLvcW8MwCBG3uoGVoDCp3T6vD+ONw3XR8dPGCN4c1pwPkmcD+axzHnHAQjcowKWSJfkV3Z6Mkyql81k3huNldXYkxqgTX+c/9RxMow31B4J8j80jOcZsEs1UZU8Bnr1Fi3CUdZWSeVjKwrlmlOi6yvn+s8tdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=jG3bvZF5; arc=none smtp.client-ip=209.85.128.47
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-493c2c0b9a8so3255195e9.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 05:40:52 -0700 (PDT)
+	 In-Reply-To:To:Cc; b=i7Nc7+frxJXebkHCOpYZlctvNJ9/UWRNBC6MQZD5K3J6hU5ql5A6jMzz6Y6jTQXYBvYoEMqSKFpKgCy3qF+Y7Rk90fIeVl5yiJhrP7Buv3pYncU9kVACtdJExSeoC7JrHeE7TFQQ4pZBe8bin/OoKDP2kA9XQN2MyS0y5ekVcks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=eWp2Ni4u; arc=none smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-493bb510ce4so4552575e9.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 05:40:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1782909651; x=1783514451; darn=vger.kernel.org;
+        d=baylibre.com; s=google; t=1782909652; x=1783514452; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0l2hO7jjnBbgc4FxNyXYuaniEG5v8NsDWwg8qmCQlzE=;
-        b=jG3bvZF5xvZUIKLz50JR1PSPvt/sGzNQP5nq3aWZKhD6bvVGaBFavGKV4fPqt7bauJ
-         0+U0+Q8EVSmk1nxoSStS5OuEWcAwctCGxJpvulQNVtcSeWL0crfr7xUmrXKTb71D2zWr
-         D+gpvzaSk/ndKRu9xxhChnyf3wateyCtLtBnVJclNXF28hU6CfCM0+uhn35mRldrEz4I
-         E1UuP5zvlVNarZgxWp8Ag+UeOMrUwN8rkTHbMnONe1QwAn7lMrg12m4q7A/N89bBqR30
-         sAL3SrPozNUYikWzT2ireUjhjUXGU52TpgrQm/8iyL7NYJcYq0qV08/V2cSUqtaKXWxm
-         1d0w==
+        bh=vUd8aZYMR6nCW/a4VGgxXJpZ9DjCATYCWh/HUQX1mu8=;
+        b=eWp2Ni4unge+JxhHqWAnSyNQxgGqhZ7vUFmHqx8M68849cNwdJCyesyuoDzb8BVc6Z
+         r43+q6StgMIALCq+RROS+BPGwkj+pQqpVg0Kgjwjs1s/ruslrMYIAPXfmK05ksYH5KmN
+         D7VdfYscl1jzLW7B3vgKC2t+//c6lPf+8EgoIuo8qdXSqVLraB4LKmwPUPXfyt/APdUJ
+         1czRMA6WGMFjKYCI3SOWe6pb8tAPSL9zbQpGTB9pNFHNvwre3mCQkkBr6maTB9EaNgo2
+         bXI/VyxQXKVPrrXUkEtyom/reFEkp0224c6wzoJCFNWkRe3UHay/3hpbtVk/YKvvA5X4
+         w42w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782909651; x=1783514451;
+        d=1e100.net; s=20251104; t=1782909652; x=1783514452;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=0l2hO7jjnBbgc4FxNyXYuaniEG5v8NsDWwg8qmCQlzE=;
-        b=CEq2AxGNC5D8Vf29ndD//zjThKIfjFdQM7DpJ85GkF3CnGXTWgGiYU/rzg+oybQX9N
-         82Ac4HI3LDSQuu6+qgpfORmfrV43qcyIYYo3vh976lFZaeePUq/0+U/5KIAQS3PO5X3A
-         BU9Q9iIjEqpKvVE/oX15dOZC015573F+Uy2TuUcxQzEhnj7eAjWaIxzlelytoKxyIP7Q
-         G+F2XCqpE+/tsHG4/+uyaST4p/ESW6z7kIj5h4oIwn0HG4jRO1Z9FqNlsaYwhYrp3FKl
-         2BKMP75GGoVPs+068tm1HK/UosNL0DhHk9ivYd3s0RyVFYi1oYEn+ix9sf02eLPD7YC4
-         Ca0Q==
-X-Forwarded-Encrypted: i=1; AFNElJ8t+RoplnsLO+WCS4uw6ZN1qjW00J+9lFzjL2pJxN9aljUJfZFYoFYbS2c+DHU/KAMv58R0VEGu0Jka@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/ahy5S2IGRMCEiqVZnVJIk4+C6gp6DZn/j9F6G+MsSWzGvX1p
-	UFJcJ7EYoc7y8yJPv4ildfpukCcrsxBHD9nlvX24pON/3C4VJkojStPJSN4K3YaxDyA=
-X-Gm-Gg: AfdE7clpZo+111HPfY73PA0OEFNOHkmEnDGgYkZuqiGJUzxcGLKeRCr04Qrw+hAJeHP
-	VwHcA0uToIfw907c+WSYfEaP/iKRMbpZ0rP73krHHVPs1dHeulG9xU/5TgiPq9GYtcXedrlEBKF
-	+o7x0U1vGX/sy99BP7S3Pm/HFpCa8z3GekiUdgrVp03+hrkrVgzIuwdZ3Yl0LHSo8mMu49n5Ob2
-	xMmEnKWqfJ4UuNCsAmymQmuLsSsL0TiHgpal9OSzLT12oFra7XFtaw3cWKxz9e/C2u30O5Zanzn
-	l96IGEJ3fOuxRXOEmXhilU+DCdHdjHmIhVGSN2NnPAtWg4WitHs+eVUF2ZnkiOSWBCOIREPVEM5
-	dqVfM4KJr1Ia6p83zvvUj87MdmvWLk1s/mFW9OlE/njlOVrj2Gn8kPDDf/glWkOq36jaFGzfm6S
-	J/pPYRTDZUVg==
-X-Received: by 2002:a05:600d:15a:10b0:492:6f6f:fa42 with SMTP id 5b1f17b1804b1-493c3dfc883mr5371895e9.37.1782909650717;
-        Wed, 01 Jul 2026 05:40:50 -0700 (PDT)
+        bh=vUd8aZYMR6nCW/a4VGgxXJpZ9DjCATYCWh/HUQX1mu8=;
+        b=CZbh9uV51k1pz4T+rqSNOO8FviinOtp2qqqLsywzOqpFUk0A6Jv8ZWYv/3WVCC2YDv
+         twraQsqV574iCDzMFOKZzRpx9iN7NbG69Bz3gWp1qPAtsbrBAk7wBFaudeKngrHfjnZo
+         kEjl5qpi5lK8dB7rKKhndlSu0/XP5yi8GHDLwcbSIZa7cX6Js5hxExaCio5vnQWjclmA
+         2zpNbEHXWDZWS/OkIEdsnBvam/FIMR6z7ypf1Sbvz5S9vJSo7XQBydA84r5uqSYCN0Eo
+         yBOwwffrwzcxkIxTijEPbdBECoayhsea6BhIRHpjqJFJXwE3m4F4FADls5vST5CI/WFD
+         mS4w==
+X-Forwarded-Encrypted: i=1; AFNElJ8/MAY8riZj3rXLP2q4/jYXy25VbmTHe8BSFjZ2PqS++bkwF67PIcsFkXzpIF/vrD2KflxoTutBApcg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnBojIpAcCLGOzKT8CFqz9GIgYCLt6cCiIhBkK05WbZ6wLl2bg
+	rmwrYDlIgb41WGTrZexO+zb0wgr80CeVrWy7/pKy1hYzFWP6avPKaz+w18X1vc3NJ+k=
+X-Gm-Gg: AfdE7cnGuFAZpj4CoxpC+sWrF8bOjNj+5tYrmAPtZ+TSJqyAQdfFS++bmvswA3PJTgl
+	vAWbG388JaanhK/186uqR0v0w/sfQcUpn7BgFit700NmZm0hzU6syqha7Iq/9mr8u/sO8desGC4
+	d0wdj6RY8fjK+A+xZcx1y0543KpGI7oLTV6B9a2dq1gqTf+nvPClgBZ8d38Dx5TlzpykoVb/TXD
+	0j6XU73md9BfWDTndPGUZXn0GQswZkxtNiha8j5Iqrr0N1yfLIzR4Ft9ClL5PKAk4+V/yYRCTWf
+	sd99eDYM09ka0Eg4RG1JDqZebJ/ODEQqIzaWaHCl4HmWr4jwKymBA2mvGFffIKc0nkdaLIsCM6V
+	L0gh3S5v4c4QZDNeMmq7JioEg3sEjs8XOive4PRD44d0Yt+atxPys6pMLJg9mzhpqWC89dYjZNu
+	eLbKmhNiQozw==
+X-Received: by 2002:a05:600c:8217:b0:493:bc88:ddcf with SMTP id 5b1f17b1804b1-493c2b7d9a3mr23202485e9.23.1782909652226;
+        Wed, 01 Jul 2026 05:40:52 -0700 (PDT)
 Received: from localhost ([2001:4090:a246:8638:a73d:f626:6582:90ca])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493be4bfd47sm101422335e9.2.2026.07.01.05.40.50
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493be810c02sm80288265e9.11.2026.07.01.05.40.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jul 2026 05:40:50 -0700 (PDT)
+        Wed, 01 Jul 2026 05:40:51 -0700 (PDT)
 From: "Markus Schneider-Pargmann (TI)" <msp@baylibre.com>
-Date: Wed, 01 Jul 2026 14:39:15 +0200
-Subject: [PATCH v7 03/11] arm64: dts: ti: k3-am62a7-sk: Fix wkup R5F memory
- region size
+Date: Wed, 01 Jul 2026 14:39:16 +0200
+Subject: [PATCH v7 04/11] arm64: dts: ti: k3-am62p-verdin: Fix wkup R5F
+ memory region size
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +88,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260701-topic-am62a-ioddr-dt-v6-19-v7-3-e9db8b16821a@baylibre.com>
+Message-Id: <20260701-topic-am62a-ioddr-dt-v6-19-v7-4-e9db8b16821a@baylibre.com>
 References: <20260701-topic-am62a-ioddr-dt-v6-19-v7-0-e9db8b16821a@baylibre.com>
 In-Reply-To: <20260701-topic-am62a-ioddr-dt-v6-19-v7-0-e9db8b16821a@baylibre.com>
 To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
@@ -111,19 +111,19 @@ Cc: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>,
  llvm@lists.linux.dev, Hari Nagalla <hnagalla@ti.com>, 
  "Markus Schneider-Pargmann (TI)" <msp@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1490; i=msp@baylibre.com;
- h=from:subject:message-id; bh=UdYuVybQFPSsAf2RKB3eRhJbIK1t6vhvF1XRjODHB+U=;
- b=owGbwMvMwCXWejAsc4KoVzDjabUkhixXru7duROEp2t5R1p8Wr4nxuTpxLDWRlPmwv/Rh6R6U
- pvefprfUcrCIMbFICumyNKZGJr2X37nseRFyzbDzGFlAhnCwMUpABN5ZMbwz9Jn6QGWbx4yFV8u
- Zu1pcPYVEXuiHLA5UO+fZfU6jn8REQz/jGskusKMXsTVVzwOm14a3nSXzSK79/avqprbT5feF09
- nBQA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1495; i=msp@baylibre.com;
+ h=from:subject:message-id; bh=/H8+FLcymjurbPJq5XVqqAaQz7MleqM2bK1XAD+GdZM=;
+ b=owGbwMvMwCXWejAsc4KoVzDjabUkhixXrsmaO8KOHNtu/6Oz3l9j+5fWI7q2rOo2byw4Y/+7b
+ enPbVPvKGVhEONikBVTZOlMDE37L7/zWPKiZZth5rAygQxh4OIUgInoRDD8jz9kzMYkF3uKd+Zi
+ 4Y28O69bhSbumfZw4yru0KIHd+ReZzMy3NnoZu0Q9mJBwXoTR46CmMP9La3a+XXeDElHnfa3BLi
+ yAgA=
 X-Developer-Key: i=msp@baylibre.com; a=openpgp;
  fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -135,7 +135,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FREEMAIL_TO(0.00)[ti.com,kernel.org,gmail.com,google.com,phytec.de,ideasonboard.com,toradex.com];
 	FORGED_SENDER(0.00)[msp@baylibre.com,devicetree@vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[32];
-	TAGGED_FROM(0.00)[bounces-318553-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318555-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -149,46 +149,46 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[baylibre.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt,lkml];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:dkim,baylibre.com:email,baylibre.com:mid,baylibre.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,baylibre.com:dkim,baylibre.com:email,baylibre.com:mid,baylibre.com:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 963EC6ED9C8
+X-Rspamd-Queue-Id: 3A4DB6ED9AC
 
-The wkup_r5fss0_core0_memory_region was reserved with only
-0x0f00000 but the MCU SDK linker for the wkup R5F firmware on
-AM62A defines the DM code/data DDR footprint differently:
+The wkup_r5fss0_core0_memory_region was reserved with
+0x01e00000 but the MCU SDK linker for the wkup R5F firmware on
+AM62P defines the DM code/data DDR footprint differently:
 
-    /* DDR for DM R5F code/data [ size 27 MiB + 364 KB ] */
-    DDR                         : ORIGIN = 0x9CAA5000 LENGTH = 0x1B5B000
+    /* DDR for DM R5F code/data [ size 27 MiB + 396 KB ] */
+    DDR                         : ORIGIN = 0x9CAA5000 LENGTH = 0x1B63000
 
-which results in an end at 0x9e600000. For this memory region which
+which results in an end at 0x9e608000. For this memory region which
 starts at 0x9c900000 this means a length of:
 
-    0x9e600000 - 0x9c900000 = 0x1d00000
+    0x9e608000 - 0x9c900000 = 0x1d08000
 
-Link: https://github.com/TexasInstruments/mcupsdk-core-k3/blob/k3_main/examples/drivers/ipc/ipc_rpmsg_echo_linux/am62ax-sk/r5fss0-0_freertos/ti-arm-clang/linker.cmd
-Fixes: 77c29ebe76d8 ("arm64: dts: ti: k3-am62a7-sk: Enable IPC with remote processors")
+Link: https://github.com/TexasInstruments/mcupsdk-core-k3/blob/k3_main/examples/drivers/ipc/ipc_rpmsg_echo_linux/am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/linker.cmd
+Fixes: 87f95ea316ac ("arm64: dts: ti: Add Toradex Verdin AM62P")
 Signed-off-by: Markus Schneider-Pargmann (TI) <msp@baylibre.com>
 ---
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index 821a9705bb7d42091d4ad0e68d8769b49c115bcd..08c73cae26c73993a613372110bfd5611c403846 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -61,7 +61,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@9c800000 {
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
+index 7ee894d59113aa727d41b7ecd6b2bc7e12760823..8a5ff5c457579c7b1be7157d235fd4b4e5c6af11 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
+@@ -170,7 +170,7 @@ wkup_r5fss0_core0_dma_memory_region: memory@9c800000 {
  
  		wkup_r5fss0_core0_memory_region: memory@9c900000 {
  			compatible = "shared-dma-pool";
--			reg = <0x00 0x9c900000 0x00 0xf00000>;
-+			reg = <0x00 0x9c900000 0x00 0x01d00000>;
+-			reg = <0x00 0x9c900000 0x00 0x01e00000>;
++			reg = <0x00 0x9c900000 0x00 0x01d08000>;
  			no-map;
  		};
- 
+ 	};
 
 -- 
 2.53.0
