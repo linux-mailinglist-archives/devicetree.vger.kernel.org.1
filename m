@@ -1,249 +1,228 @@
-Return-Path: <devicetree+bounces-318120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318122-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qj1GFFuLRGqhwgoAu9opvQ
-	(envelope-from <devicetree+bounces-318120-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 05:36:59 +0200
+	id pWwVJFecRGpwxwoAu9opvQ
+	(envelope-from <devicetree+bounces-318122-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 06:49:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4A526E980C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 05:36:58 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 325336E9B8F
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 06:49:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=DznuhNwH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318120-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318120-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=axiado.com header.s=selector1 header.b=fqumFcmh;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318122-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318122-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 72A9A3043FE8
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 03:36:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 05DD33026CB6
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 04:49:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326E4367F3A;
-	Wed,  1 Jul 2026 03:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF813822AE;
+	Wed,  1 Jul 2026 04:49:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11022127.outbound.protection.outlook.com [52.101.53.127])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75EE356755
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 03:36:11 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782876973; cv=none; b=pxh8oAdYBW4Gp4Ml8r4tGkvZI0yrBBbS0bN8atzULJgu9r9G5YHc+59JTwiN8VqtR7FL30NJHmU+ZU4/3Jf9YhIRXTZCmWB2F0cn62zmt4Gh5hN54DdzXBAYTsB869adg4CXkO6ycqnHpoqdFbrzevyZNwFubWDVNpbwSXu1Iz0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782876973; c=relaxed/simple;
-	bh=HwW/1gT/Ot17XMwJRmThhBuXEqR2AetxiAtbfA7souQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=jAVmiBQiwQ1EPzOkui0wtArGEOGEUGMVNAbWR4z2z7q9E2XxeFc4HPNaG9Y2IXZXVq66zvH3l51L/4vCzvUaWQug3KpgunVLmQILvjcn3jJEUieGW3+iuFtFRZQjwCef5fIGQHovm/jO79opusaQndjcDqPO55L0oIDcMY8RvEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DznuhNwH; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72D641F00A3A;
-	Wed,  1 Jul 2026 03:36:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782876971;
-	bh=nOSkdgCuvyVmYx9TjnvojHUKtxWT1PZfRMPFeU/OZds=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=DznuhNwHj4Un3kGH4YwoMuo7JxZyyFaFDnpZcLOke2M1ErFSJ5gFWwRw4VsJs7g7x
-	 cJIjZYsEEiqENWuzcMWCCGSqPZ0/e7NiA/fs5IkkGIe05LlQYByh5TWgFPlc4T4Yl5
-	 KPeP5Z2sko7SOkfFIRiwAC66968BI1R2VOyOjb3jrcph3NBCFJtHlbZMiGBZRaHTsE
-	 NH0wCN81UiOK9C4l6/gLucJx9Dc5HiVxWtlivjg2fBJUjkU8FaRlIbMI+FS/EPSsI7
-	 0/OC+y03ZVrcqmGKiSZ4dmlqYPmfs/JK7f4a5psi+UelP6AkyV+oT4DjwjvoU+e5T2
-	 OHEAbkLYolckA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 3/7] pwm: tegra: Avoid hard-coded max clock frequency
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Mikko Perttunen" <mperttunen@nvidia.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260701-t264-pwm-v6-3-2718f61f411f@nvidia.com>
-References: <20260701-t264-pwm-v6-0-2718f61f411f@nvidia.com>
- <20260701-t264-pwm-v6-3-2718f61f411f@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 03:36:10 +0000
-Message-Id: <20260701033611.72D641F00A3A@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 531792E974D;
+	Wed,  1 Jul 2026 04:49:22 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782881363; cv=fail; b=BLDJM2UPNmK2Nm0/vnEnJ9/Fv9BoyYtpSmWD7MtvQp12c2XPEGueGcuVoeNDQZowYOnhAay+8Ntcsav84B4MOdMy/j26txUl6uJ4s7ZZXpVOQBKt7nYtN38XPHKnTnYhBX9QxdOwc/TlD66USTDBhozSRXlhwXdenKLLMSlkY3s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782881363; c=relaxed/simple;
+	bh=3oLswqHJ47qPB7/wbj4Z8SgdhKo3GxWekig4IIU6/pU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bqCWYCZoNSVihl27D2okvBzLEkx8BpdhkWcEvLl5g06VMspVDY4mVHOvZMSSu146/1wYaraOlQU5Y/Cby/Koe72+PXllqACPP02slI8d18vcV47TJe6Mn/9u10rrOe4eSYS7vxKL4EoSFYECY8AI+5O4vx8IZN4ArJ304GwBY6M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=fqumFcmh; arc=fail smtp.client-ip=52.101.53.127
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=R9RSvtV053JmQcH7Ds8+tz1USuk4pkE/ZId/TtlyPbGysgdA0LvX8/1Cr5Pndf6RedIKBje9qsb4I8lLmqWuPYScP9O43Ca/gedyDFEshbDEDn+CcxlN8JtSUiaojUB+tG31P1ibX20pfbpkrFBoOvwZR7ePASrgbA5QflV6xRYvCaUJJmtL1rtHHBz4Hjbfy/bfqVBGQiLUklZYytEvE8gtDiCRrBferNq3cJAxITq+2RHbRRfknUK6u65I+PbaMmmePyq6PEDGi3aOadUMmCPvQ6HzNuheBSV/bd+KHeGz00mKkkfGQHxH+1WUXFpwJKDU+6eDfDpEV43gcWOytQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PKDyTOh1HbkCP3+STruVPNS+XNkrJCeGrlpHKAv9eD4=;
+ b=bkO4bmtpzixZp2t5GA0co7gNLtNliHVR0qFqp9e2gRkvXXHPudFCigHM7iAPOeTr9swf86sCyZIs80AILB/cQAhWJ2iszp2wR4erdoDjLYaYODbvew3q61R+Vg6EglB6ihycfxFQoG2N+G0gZ7AGG6eob7PPqklkT0qxZnaBAstlWulcDiEllgR8CGxJ+IU7mZ2ciNRieK/eOVeMX2U5Fyb+Pu/DjOfhNvFuTG8KrBh/mNjuTL0pxvrLzt78CJEtPlN/OnKcPePMylaZEuJcD/anlnZ59M+zGK1KymHe4Z9ucWPIJuXLQoiz0fS+SARIW6clTFehFe0awm30hhEPmA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 64.62.143.114) smtp.rcpttodomain=amd.com smtp.mailfrom=axiado.com; dmarc=none
+ action=none header.from=axiado.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PKDyTOh1HbkCP3+STruVPNS+XNkrJCeGrlpHKAv9eD4=;
+ b=fqumFcmhkc+uV1ZD4TPoip197jjdGtp8QER+mgXe5SikELm14CYyoMbBOK0jbVGUH+9m5tqprKwreFf3Ruzbn02Jfj65ykUxCRFg0fi4ioJWinUWUvLABtXANw51mHC/J+UOeqqvy03hlyYliZ/X6z2omMcKBUVDfuZgIzzyz2tKYtaFoDxYy88Swg0BEhGeDb5o8ji8O9IQxhpSQ7wTbZdkJyohSMHhZIKHxWAIJmYIb6NSE7nc+hnGHFhNO4XyM3gamo4vcWZhBt30b4kITianJ+WV902u6+sXEioGHTEwn+jVzv7O580Pxv3QCa7aWSRf4UCGaLPVve8WSKZs0w==
+Received: from SJ0PR03CA0057.namprd03.prod.outlook.com (2603:10b6:a03:33e::32)
+ by CH3PR18MB6051.namprd18.prod.outlook.com (2603:10b6:610:1e4::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Wed, 1 Jul
+ 2026 04:49:17 +0000
+Received: from SJ5PEPF000001CF.namprd05.prod.outlook.com
+ (2603:10b6:a03:33e:cafe::32) by SJ0PR03CA0057.outlook.office365.com
+ (2603:10b6:a03:33e::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Wed, 1
+ Jul 2026 04:49:17 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 64.62.143.114)
+ smtp.mailfrom=axiado.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axiado.com;
+Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
+ designate 64.62.143.114 as permitted sender) receiver=protection.outlook.com;
+ client-ip=64.62.143.114; helo=smtp.corp.axiado.com;
+Received: from smtp.corp.axiado.com (64.62.143.114) by
+ SJ5PEPF000001CF.mail.protection.outlook.com (10.167.242.43) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.6
+ via Frontend Transport; Wed, 1 Jul 2026 04:49:17 +0000
+Received: from [127.0.0.1] (unknown [10.4.1.181])
+	by smtp.corp.axiado.com (Postfix) with ESMTPS id 68BBA4186B58;
+	Tue, 30 Jun 2026 21:46:24 -0700 (PDT)
+From: Swark Yang <syang@axiado.com>
+Subject: [PATCH v3 0/2] i2c: cadence: Add support for Axiado AX3000
+Date: Tue, 30 Jun 2026 21:48:57 -0700
+Message-Id: <20260630-axiado-ax3000-cadence-i2c-support-v3-0-4e217cfe5904@axiado.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADmcRGoC/43OwQ6DIAwG4FcxnMdSQCXbae+x7AAFJoeJAUdcj
+ O8+1MOym6fmb9qvnUmy0dtErtVMos0++dCXIE4VwU71T0u9KZlw4C0wxqiavDKhFAEAFJWxPZY
+ hjjS9hyHEkTbCImNSa5A1Kc4QrfPTduP+KLnzaQzxs53MbO3uegP1AT0zCvQireHOIGipb/vOG
+ cOLrHzmP7I99HDmhURnlIFG1MqpP3JZli8koQi3JgEAAA==
+X-Change-ID: 20260111-axiado-ax3000-cadence-i2c-support-53ec117bb074
+To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ openbmc@lists.ozlabs.org, Swark Yang <syang@axiado.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2690; i=syang@axiado.com;
+ h=from:subject:message-id; bh=3oLswqHJ47qPB7/wbj4Z8SgdhKo3GxWekig4IIU6/pU=;
+ b=owGbwMvMwCHWlWK8+EozbyzjabUkhiyXObbPd/7bxN9q9SakWMio9tGdiPtZR26enClt2/Kvs
+ 4sv5mtzRykLgxgHg6yYIstXnW/5J3O173XuXVkKM4eVCWQIAxenAEzk2mVGhgvO5lebt2RdT/Tp
+ ufi/9umu60pmNoydZ2rqXFbXXhXwfcvwh/uY9oq2D86OcxTMl01vK1CRuVFtwS3moLpY9YL2jcP
+ hbAA=
+X-Developer-Key: i=syang@axiado.com; a=openpgp;
+ fpr=F52CF66FC96D2BDE89BDA9758A6433A3D4830D5D
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CF:EE_|CH3PR18MB6051:EE_
+X-MS-Office365-Filtering-Correlation-Id: bb92f1ca-2b2e-4f70-215a-08ded72c1b5f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|23010399003|1800799024|376014|7416014|36860700016|82310400026|6133799003|18002099003|3023799007|56012099006|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	Xag2qmrjOtf3j8TgESz3h+Vq012iZqUxCp1YXRa8lGPuStmZUKLVII5WHS9XZE2M0qfn4OIEPaPNxWks9akTDDu5vV+hDJ9MxgZgocST0SM+EJH1fRdYI9XnoXpX7IohtU0Q2pPMj6xT6QPez3F0mnmpqmFHcasC904CqOYPfx5rJsQ71uAgRDHvcUme/XPTZiNJqhB77ucZBSwSPJo0Z0Nx0kd6r91uaWfmSdOjBoGyRkA7JVm6pFEpjcaH0pnOuZV6HWctrTD5knkEqpyK+6Uh2RWWlrMUeMp0J/tnrPmSpxBInbXpj/j1jyvtAylBsogm8zUsmUXgjKElPA/YKtsJEiwzmVq45WTHtyBStqsiTJVkaJxfQSsotyo1WEwnjnn/TXqV4zfUpHlO5KTzb4Xt3LSwsn33Hh9v/P0FZQDGo/487LkgfKwPEHLqOLZEHG3NJf4z7cuyp1WxMklyasBIXv9g53V3Vk9Eo8LWR8x9kJZQgQL4d8BD3IeHulJr/B4YGvYtTIepHvKEh37SSMlrr+4H7gFtfAm3eOirZ6snnY0WwR1Cxq0abDQvnEUDKQr00WqEw3lS4J1ngCISTyaEi2hMPZAS2jTnAgRvjmzFwL9/m8uXEpJZSd/UN6oqa7XzO4s8at//284rb/Unm3dTeXb5SBFvIHLiyXncaw1bKCCKbn9DXXNoDQ8XAeQVADurtmf90zrRiOG3Zj/RTA==
+X-Forefront-Antispam-Report:
+	CIP:64.62.143.114;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(376014)(7416014)(36860700016)(82310400026)(6133799003)(18002099003)(3023799007)(56012099006)(13003099007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	z8UXenlNnja5xjZbYOQGBZHSc5XtyGm1kmPXWps2tXCdVNCFPrwgFVvsyn70Z9HQt4DWQoyIbO2XUQKunjyapbDwVCySH0dRZIPdbGZ8Ea/aGAhwReS/qnZO0QoQo0GkvN4BgonmTWue8+Wlzcq6kfnWgJyqxrcJsJBKb0ziwempRKKZkJzbBmQZDiAu2iBp0KHN/kgXlW7lgZLw5nXWpmF75YJoqtMh7afQCk2tXj4xa1MI9M5TyNbszqrz5+CZssWARRugrIqBje1s9dJHwJP9Bq94iGfSmdJ4FO3VcPvW4Q4++BweV35R3tkIbqBqFzH+6U3/KWPltnSUoxL2bdbY2yvCtCgplfECNML9ZRSVFBa2z2Nn83iuSK6jB5vm7quvTqD27VB8B9y5++9N1FL2/wH3IdixXWCqOEBZfKCG4A7r4gjRoszPJiirVLpw
+X-OriginatorOrg: axiado.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2026 04:49:17.0485
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb92f1ca-2b2e-4f70-215a-08ded72c1b5f
+X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[64.62.143.114];Helo=[smtp.corp.axiado.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ5PEPF000001CF.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR18MB6051
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[axiado.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318120-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:mperttunen@nvidia.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318122-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DMARC_NA(0.00)[axiado.com];
+	FORGED_RECIPIENTS(0.00)[m:michal.simek@amd.com,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:openbmc@lists.ozlabs.org,m:syang@axiado.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[syang@axiado.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp];
+	DKIM_TRACE(0.00)[axiado.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[syang@axiado.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,nvidia.com:email,sashiko.dev:url,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A4A526E980C
+X-Rspamd-Queue-Id: 325336E9B8F
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
+This patch series adds support for the Cadence I2C controller
+integrated into the Axiado AX3000 SoC and enables SMBus Quick
+command functionality.
 
-New issues:
-- [High] dev_pm_opp_set_rate(..., ULONG_MAX) causes probe failure when the =
-parent clock's maximum rate exceeds the DT OPP table limits.
-- [High] Dropping the explicit max_frequency cap permanently locks older So=
-Cs (num_channels > 1) to a high clock rate, severely limiting the maximum P=
-WM period.
+The Axiado AX3000 utilizes the Cadence I2C IP core (version r1p14).
+While it is largely compatible with the existing i2c-cadence
+driver logic, the AX3000 hardware specifically supports SMBus Quick
+commands. This feature is currently disabled by default in the
+i2c-cadence driver (masked out from I2C_FUNC_SMBUS_EMUL).
 
-Pre-existing issues:
-- [High] Missing pm_runtime_disable() on probe error paths and in driver re=
-move.
---
+To enable this functionality, this series introduces a new
+platform-specific quirk (CDNS_I2C_ENABLE_SMBUS_QUICK) and 
+uses driver match data for the "axiado,ax3000-i2c" compatible string.
+This allows tools like 'i2cdetect' to properly scan the bus using
+quick write commands.
 
-commit 29d7ce61a02c025b3580d289a189425cd7da22aa
-Author: Yi-Wei Wang <yiweiw@nvidia.com>
+The DT binding update follows the recommended fallback structure,
+referencing the 'cdns,i2c-r1p14' fallback to ensure compatibility with
+older kernels while allowing the new quirk to be enabled on AX3000.
 
-pwm: tegra: Avoid hard-coded max clock frequency
+Patch breakdown:
 
-The patch removes the hard-coded maximum frequency for Tegra PWM SoCs.
-It updates probe to use dev_pm_opp_set_rate with ULONG_MAX to set the clock
-rate based on the parent clock limits from the device tree. It also removes
-the now redundant tegra194_pwm_soc configuration.
+Patch 1: dt-bindings: i2c: cadence: Add Axiado AX3000
+Patch 2: i2c: cadence: Add support for Axiado AX3000
 
-> diff --git a/drivers/pwm/pwm-tegra.c b/drivers/pwm/pwm-tegra.c
-> index f8c5495a56a66..3eef299c51f8e 100644
-> --- a/drivers/pwm/pwm-tegra.c
-> +++ b/drivers/pwm/pwm-tegra.c
-> @@ -59,9 +59,6 @@
-> =20
->  struct tegra_pwm_soc {
->  	unsigned int num_channels;
-> -
-> -	/* Maximum IP frequency for given SoCs */
-> -	unsigned long max_frequency;
->  };
-> =20
->  struct tegra_pwm_chip {
-> @@ -303,7 +300,7 @@ static int tegra_pwm_probe(struct platform_device *pd=
-ev)
->  		return ret;
-> =20
->  	/* Set maximum frequency of the IP */
-> -	ret =3D dev_pm_opp_set_rate(&pdev->dev, pc->soc->max_frequency);
-> +	ret =3D dev_pm_opp_set_rate(&pdev->dev, ULONG_MAX);
+These patches are expected to go via the I2C subsystem tree.
 
-[Severity: High]
-If the parent clock's maximum physical rate exceeds the maximum frequency
-defined in the device tree OPP table, will dev_pm_opp_set_rate() fail here?
+Feedback is welcome.
 
-The OPP core translates ULONG_MAX using clk_round_rate() to find the absolu=
-te
-maximum frequency the parent clock can physically generate. If this is high=
-er
-than the maximum frequency in the OPP table (for example, on Tegra30),
-_find_freq_ceil() might fail to find a valid OPP and return -ERANGE, causing
-the probe to fail.
+Signed-off-by: Swark Yang <syang@axiado.com>
+---
+Changes in v3:
+- Addressed Sashiko AI bot report: Populated adapter quirks with I2C_AQ_NO_ZERO_LEN_READ to safely reject 0-length reads and prevent potential bus hangs.
+- Note on AI review: The bot also reported a pre-existing UAF vulnerability triggered by 0-length reads. Since this v3 patch prevents the core from passing 0-length reads to the driver, this specific trigger path is mitigated for AX3000. Atomic transfer issues are left out of scope for this hardware enablement series.
+- Renamed the quirk macro to CDNS_I2C_ENABLE_SMBUS_QUICK for consistency.
+- Link to v2: https://lore.kernel.org/r/20260611-axiado-ax3000-cadence-i2c-support-v2-0-cfdad0534afa@axiado.com
 
-Also, for older SoCs where num_channels > 1, tegra_pwm_config() does not
-dynamically scale the clock rate.
+Changes in v2:
+- Collected Conor Dooley's Acked-by for Patch 1.
+- No functional code changes (sent primarily as a RESEND to update status).
+- Link to v1: https://lore.kernel.org/r/20260504-axiado-ax3000-cadence-i2c-support-v1-0-97ed2fdc0b7b@axiado.com
 
-drivers/pwm/pwm-tegra.c:tegra_pwm_config() {
-    ...
-    if (pc->soc->num_channels =3D=3D 1) {
-        ...
-        err =3D dev_pm_opp_set_rate(pwmchip_parent(chip), required_clk_rate=
-);
-        ...
-    }
-   =20
-    /* Consider precision in scale_width rate calculation */
-    rate =3D mul_u64_u64_div_u64(pc->clk_rate, period_ns,
-                               (u64)NSEC_PER_SEC * TEGRA_PWM_DEPTH);
-    ...
-    if (rate >> pc->soc->scale_width)
-        return -EINVAL;
-    ...
-}
+---
+Swark Yang (2):
+      dt-bindings: i2c: cadence: Add Axiado AX3000
+      i2c: cadence: Add support for Axiado AX3000
 
-By forcing the clock to its absolute maximum frequency during probe, won't
-these older SoCs be permanently locked to a high clock rate?
+ .../devicetree/bindings/i2c/cdns,i2c-r1p10.yaml    | 10 +++++++---
+ drivers/i2c/busses/i2c-cadence.c                   | 23 ++++++++++++++++++++++
+ 2 files changed, 30 insertions(+), 3 deletions(-)
+---
+base-commit: 63804fed149a6750ffd28610c5c1c98cce6bd377
+change-id: 20260111-axiado-ax3000-cadence-i2c-support-53ec117bb074
 
-With a high fixed clock rate, calculating the divider (rate) for large requ=
-ested
-periods (like 20ms for servos) could exceed the hardware's scale_width limi=
-t,
-causing legitimate config requests to fail with -EINVAL.
+Best regards,
+-- 
+Swark Yang <syang@axiado.com>
 
->  	if (ret < 0) {
->  		dev_err(&pdev->dev, "Failed to set max frequency: %d\n", ret);
->  		goto put_pm;
->  	}
-> @@ -315,10 +312,15 @@ static int tegra_pwm_probe(struct platform_device *=
-pdev)
->  	 * so that PWM period can be calculated more accurately.
->  	 */
->  	pc->clk_rate =3D clk_get_rate(pc->clk);
-> +	if (pc->clk_rate < (1 << TEGRA_PWM_DUTY_WIDTH)) {
-> +		dev_err(&pdev->dev, "clock maximum frequency out of range\n");
-> +		ret =3D -ERANGE;
-> +		goto put_pm;
-
-[Severity: High]
-This is a pre-existing issue, but does this error path leave the runtime PM
-state unbalanced?
-
-The driver calls pm_runtime_enable() earlier in tegra_pwm_probe(), but the =
-error
-handling at the put_pm label (and similarly the tegra_pwm_remove function) =
-only
-calls suspend functions without calling pm_runtime_disable():
-
-drivers/pwm/pwm-tegra.c:tegra_pwm_probe() {
-    ...
-put_pm:
-    pm_runtime_put_sync_suspend(&pdev->dev);
-    pm_runtime_force_suspend(&pdev->dev);
-    return ret;
-}
-
-Could this lead to state corruption or kernel warnings upon module reload or
-device re-bind since the enable is never balanced?
-
-> +	}
-> =20
->  	/* Set minimum limit of PWM period for the IP */
->  	pc->min_period_ns =3D
-> -	    (NSEC_PER_SEC / (pc->soc->max_frequency >> TEGRA_PWM_DUTY_WIDTH)) +=
- 1;
-> +	    (NSEC_PER_SEC / (pc->clk_rate >> TEGRA_PWM_DUTY_WIDTH)) + 1;
-> =20
->  	pc->rst =3D devm_reset_control_get_exclusive(&pdev->dev, "pwm");
->  	if (IS_ERR(pc->rst)) {
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-t264-pwm-v=
-6-0-2718f61f411f@nvidia.com?part=3D3
 
