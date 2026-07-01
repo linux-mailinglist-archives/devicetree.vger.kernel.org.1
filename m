@@ -1,202 +1,256 @@
-Return-Path: <devicetree+bounces-318347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318342-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id a48BHYfxRGre3goAu9opvQ
-	(envelope-from <devicetree+bounces-318347-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:52:55 +0200
+	id q6qwFAvxRGq73goAu9opvQ
+	(envelope-from <devicetree+bounces-318342-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:50:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F8A46EC64B
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:52:55 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33D1D6EC5DC
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:50:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=g+NwqboD;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318347-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318347-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b="Oe0JE0/F";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318342-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318342-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9DE2E3065BFD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 10:51:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F1F1C302495E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 10:50:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CADA742DFEA;
-	Wed,  1 Jul 2026 10:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B90640E8D6;
+	Wed,  1 Jul 2026 10:50:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013026.outbound.protection.outlook.com [40.107.159.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD6142264A8;
-	Wed,  1 Jul 2026 10:51:09 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782903071; cv=none; b=Mk0TZNyLj6+559UoR8lHuvRjhBTrboIgq+Qkbjk2uhfUhHJMdDEG7Att4VSpT83+ex6om2K2SN3QqJfrfwxvBiYGjUk2zQwmc22yC5JXUD66Px1Sj99HD3CZu8T66hZuTlJ4kBScZneoyxnvz3M04qA9BSVe0X6Td4H2rX3LFRs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782903071; c=relaxed/simple;
-	bh=EIwu/8UqdZN9LdJlrgQritUngrduTk//3yaKnASF6jg=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=PPk0dTe0hOuuvV1JBAn+FkswNTAQ9HTU8pN6KbuDi3QI8wT3l8mAVWAwCakyiFpsvRKV5iHxSD6kawmyiz2IscpqmCNo1wfaCworG1a8ufDjJmT1g7we428vmQtAPgrPvN8dFj3rA+h1bxtTeTBPDks2XITBy8tEwyce/CvtJj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g+NwqboD; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8595E1F00ADE;
-	Wed,  1 Jul 2026 10:51:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782903068;
-	bh=2iXR/ImIlInOiMvJB1WEQFV8A/HPkjG7mqIsI1cro04=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=g+NwqboDcpYELy+vf8tOB20t5jWhzGMerYuiOPaUbPF+lhm8bH5zbcoBBGnLPpqNT
-	 DqLUB5pUwmcLC9zyeiYjqOtpsLKkbfS+cwLlozEd9I0UFaksPFNxOf68FUpgH7jFqX
-	 agHyAzmPM5RsxtQk7o42k702nIfUiRrjUDB3senJA94nqm3kb9okxhD5OLSIk9pONo
-	 Q8vtqTUBf/Bt91cXuM+GKCiKsjXFdl1N2ei+FGEqjOD6UBdmuJtZZI1oUhJlhCAdc7
-	 hNWvoXFe12zMmwrRcDmuXgZ77ag9FvhLWUeTFrOa0yuH6XkksI0q4rOEu52dh4Kimw
-	 5Bl6RaqsdMAkA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/2] platform: arm64: lenovo-thinkpad-t14s-ec: Add
- hwmon support for temperatures
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Daniel Lezcano" <daniel.lezcano@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260701103714.22583-2-daniel.lezcano@oss.qualcomm.com>
-References: <20260701103714.22583-1-daniel.lezcano@oss.qualcomm.com>
- <20260701103714.22583-2-daniel.lezcano@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 10:51:07 +0000
-Message-Id: <20260701105108.8595E1F00ADE@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A9B3A543A;
+	Wed,  1 Jul 2026 10:50:40 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1782903042; cv=fail; b=jOLiUy1mzDW4D46HSM+mG94ynIyJpe+bMv+EHnU4YlYUJACv4/nhzvYPSnQYktvw/cXDgdyLnpO97Y6Kj9vvV1fdCF+ixAeMPbHIaxxm5U+cH4Je44JBw1eyTeLK26S9PUXEuU0cjOR4wLeCDe2+uLD9aTcziD79b/Jl5cmZLd8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1782903042; c=relaxed/simple;
+	bh=z2HD9Dog4vXzbMBTervRNz367lcG3SRlbNWZqtynn9E=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=sgZs0l704gPg4lnaayuhrjVdXeNPpSE5Icheg5bAbHbMfHPDr3QNh6nPXCZ+DwbkIoull4CEcGNqqyWzF8EyQ8yP07srdJQUXLuEUrEWQNfQYk/WxC2BinWm+12ZWAPNze9CVeC6xDeXtkkwcVahpi0KEs1D8VWrBkjcKDfNef0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=Oe0JE0/F; arc=fail smtp.client-ip=40.107.159.26
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cwx6fkEBk+90+MamfwRav7nDME/fpY1briI7Qpn0YFDfeXMWEC3Xc7QDltcw8qpIN7TVa7W/GyQDrLzorCczA1Y70iOBBqtxR7I1Nu47N8h6Jl1+9hNf2akG2q44tBvfMewjiAu9GOHCqYiMyo7BFfr5vBzRiZ9VgwCDJ9HTPO6/uVzNlOXIQz/50B78S2pGVyhzs8bJcZ1rnmRC6gylhCf5EkyeVeh9MtchUaoejj5Dzpc8+rMtQpO8rhDePl2VwKIc6trfzqID+18R5VG2y6oUoL7QAbbP05q+dSQsn1BlqLO+8hwMF62mnIE9nQ0mTcMgIjoObWI2vr3BU/ZLDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SS4AKL4j9/K5N4GJ+A+l+DBC/aCVZeLPKC+wOqUJdLA=;
+ b=s8l/qJx/Y6Pk4maHNOa2UW4ausXb+YO3ELVJEYKeacSRBZgBPvZtYnBVRlYNej6ZBpMzmQcuOYbQ3WvRHWcGFEaN7zhmOkZhAetH6j34ChySSb73Itz/S3oBzy8i/tzxORu4alAbZODJYneUjwA/kQgM/+gDTv7JrcfswqzjdwzmBYyfmFtuhlWvGecuRHHAMKw/Wn3iKhYKwm42CB0o6pxB3b26nhi916M7yqeXXlLEs7m4pRO/WGkpD+UkBeWd/5oTuSN9gV5bpE0lfULhhW9k5lHfvBRLq2KOSWtkr0bkpABEgNXltxPjLb5ZdnrbfnrbXmNllaqf0uEzRavwuA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SS4AKL4j9/K5N4GJ+A+l+DBC/aCVZeLPKC+wOqUJdLA=;
+ b=Oe0JE0/Fh8nbcOiQr1CmsbKXOTSZdCsVrl+8CVJPt3IFx4TcD0DmP/jQeeKZ3F7TjHKk+wr5iqn/F5cZnUZmrnKi9vTl4Y7x2ozA5hWlVtBnXNCDPPDku/hc8BZMxfUuKAM7eiEP0Dl01/ds8IpKqSol3LGWd2KmQVnP4pKKj96b3N6BQzn9h6x9wMolgV5UW95DUyoxCvrpx2miCKuP70rNOa/mDReMm8yc+EfSg2IKTduTO5MIY/vFkz7mcagGwlEmIq3Q83S8G1BeXeWHTqZkKFjpGV6Vh5JrO6B4NUU+IwzFEOnntmsj719/pwUNrmlzIWz0RSiIT4i5V9TVBA==
+Received: from VI2PR04MB11276.eurprd04.prod.outlook.com (2603:10a6:800:296::7)
+ by GV1PR04MB10252.eurprd04.prod.outlook.com (2603:10a6:150:1ae::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Wed, 1 Jul 2026
+ 10:50:31 +0000
+Received: from VI2PR04MB11276.eurprd04.prod.outlook.com
+ ([fe80::60d7:a8e5:eb88:9be]) by VI2PR04MB11276.eurprd04.prod.outlook.com
+ ([fe80::60d7:a8e5:eb88:9be%5]) with mapi id 15.21.0181.008; Wed, 1 Jul 2026
+ 10:50:30 +0000
+From: "Sherry Sun (OSS)" <sherry.sun@oss.nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	bhelgaas@google.com,
+	hongxing.zhu@nxp.com,
+	l.stach@pengutronix.de
+Cc: imx@lists.linux.dev,
+	linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	sherry.sun@nxp.com
+Subject: [PATCH V5 0/7]PCI: imx6: Integrate pwrctrl API and update device trees
+Date: Wed,  1 Jul 2026 18:52:27 +0800
+Message-ID: <20260701105234.198987-1-sherry.sun@oss.nxp.com>
+X-Mailer: git-send-email 2.50.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR04CA0015.apcprd04.prod.outlook.com
+ (2603:1096:4:197::21) To VI2PR04MB11276.eurprd04.prod.outlook.com
+ (2603:10a6:800:296::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI2PR04MB11276:EE_|GV1PR04MB10252:EE_
+X-MS-Office365-Filtering-Correlation-Id: 11fd2669-8cc1-4cb0-aea2-08ded75e917b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|23010399003|376014|19092799006|1800799024|366016|921020|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info:
+	Hq968s07hlwg9qRusRLV4LoDhKEPz8Pcg9odLqksPmTvCavF4PBP9D2vzL5OVLP3699VGIE+dhfeZRRu8GbZ1Lnd3VFyBIAoc+CkUawY1IaFVHD/5k94rYv+4mt8zSBXQGWS/3rYtLXiZphf2aVBACUhc6n3nDEUugF3qJtvP1kkZIY9eJpwcS5JgzZ1OtYtpwvuh0DFdFnDW8FBsVHiMxe0WI6RS1KjxZ3a5+eof6mEIFEGYoHXMJ1+pVl039PO0kPnFFXvUUqiAe/n2ELKrSJ7G0DG6VdBEbdJEdlVGewCl3+StUoOFWbL3SNuohNegAYFpUEIhjtRlgYTPW9Ja/8w+3MEe24h8VGNI/lTkLIHFI8LH0qgxuKqK3VcADF2BXWgrHvnT3nLZrR6xopf8xsJDo8yr96M/cyBJ2w2y0oBTb1WZu4OS9Kg3AVMAasTz/8s0bFWQR1OrpZAg7N0mLOEI2RRZKoYLfCJ5CDm8iMLneq3j93kuAJBu+ct+v6aq6mJVhEDyOhvetj640Fh3fO6ScEYW6kGA0/w6n5EsJPO/3s1F8b3QmpvKiUWnRPMtZl903JF+rs6eduxqUBw8hCuIDrJNbAJBzP24+tafAy03NT+3vewdsHoeNz670yEsa/K0l1a+M3N2hI4TmwL6Gs1EwAeGefn0qv6QUVp90gmdoVm8Xw+y2t98TJbuxI8jkCjk7dnzG3JfRdg5saT4A==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI2PR04MB11276.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(23010399003)(376014)(19092799006)(1800799024)(366016)(921020)(18002099003)(56012099006)(11063799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?kiDQ/iYBvbBBwBsNnWt2jJ4UiCUDrYnljQ3zNP7IH4aR3V1W4ewNzk+ffWUh?=
+ =?us-ascii?Q?FYiF+jCClQEglnYgq+CuYe0utk6p2vZPfRbWAcnHdxXMsJMkRgHpF5FPphyb?=
+ =?us-ascii?Q?hvA6oZkDzBUa0iIW9wCcF2a+nRDLYcTJ3G0oAogQUq848A+hxwIOak1/dZWe?=
+ =?us-ascii?Q?e2ap12ca0rm5ObU4HsDB7NSGSLllXux1B/+xrSZ+fleTstgqAZ5eNWc7Q1X/?=
+ =?us-ascii?Q?kH6VAw3FC9A0nHzVJ8S6CpK8KedBWApA+VYkB1Lu/3RvWsu1m5n6kCU83ZfT?=
+ =?us-ascii?Q?MpMCOKMd4cp6079fqGiges7Dq8HMqGoeQ7RIH06jd2sNRo8LIpuoafQYucNP?=
+ =?us-ascii?Q?fp/MTrwWgWGMC0VdtcvcaSmB71iEGV4ssBsZVadjCRQWRX470IKMzu1w5R4X?=
+ =?us-ascii?Q?6zrmvd7P6yvGhAgG/SgXnXd5OK9MI0FF4nKl4sJ8PPk9n4nh00GksvI0yxW7?=
+ =?us-ascii?Q?5BwD5Hv6hwAoCG3XpBy7kGg6acVWwP0MP7NCZUxOAuJ0dq9+UPB/3HRyajC9?=
+ =?us-ascii?Q?8o1Ejx9tl7jBpKux5IS3tbM4avVn98u4rECgZTfq6N0BPE5IE1Zk7XadHAuR?=
+ =?us-ascii?Q?tqYNU/uNSj6H/j9iXdF1hGeby7mUu/4FiBszs6hWIpvmXtgY8L97jLWe6wZT?=
+ =?us-ascii?Q?VWZ2/2o2qL69ph/Nx8vtxtSsk7jGWxpf0r73F64DUFvw+iI6EukYfZ4zdoZq?=
+ =?us-ascii?Q?w08rMokCNSyiE+z7qs83tqwqC+mrJnoOo5Wfu6ZdZa52OJz3CxhEoNd0JLhB?=
+ =?us-ascii?Q?CAlzypn5zwj5zURPK7KaEv9npbFybn7sIy7+74qN7DRmZZ/UdL4trwLiLdI2?=
+ =?us-ascii?Q?8QUNAT0prE/6QNonAxc0lJYdcKIPdV3Usq+V/aM8dKuQVQCUGpfC/LFbWU/U?=
+ =?us-ascii?Q?3S9V074F8bK0Gt6qOT9Swxzb/CX0/zpz7KJg51IoaZN3JkFa6aOgmSVVUoUh?=
+ =?us-ascii?Q?UZxpIwzgbqiUSaZyOlCe/0FAXbiXA87yEbCyPuifDZVARq0i/xOQHdNLMFkh?=
+ =?us-ascii?Q?LiGPTfd/GS8drw9B+cnwnIx2SuKestBKaIqzcTGo+N38wwoo179JXJfuXebg?=
+ =?us-ascii?Q?PHHx0WoYFbvPfXFeXpz4p713YhnxJSRmFhDJEWrBWB6PMNHZqxvTauupyLvC?=
+ =?us-ascii?Q?4N0tOV4VgBoUw6MbYdNvo1uoNBV78hBP5yXggsEa1Q7x9MFFl0ampPAX1kqY?=
+ =?us-ascii?Q?JbYs/WKdGjDQCS77sZJzwlrWigfiSxWueGZteh38vTUvEAMrFnvxTsRp1rpj?=
+ =?us-ascii?Q?QLdLj+X0aFu8nrbqzj8LgsP5bbOlwNK/xANBIe522ciwdXDuUIeOVk4DJTXc?=
+ =?us-ascii?Q?LdTjOacqfc/lAK6WcG/W+bKNQvXLem9d1imbUp9d2EkzvrxHO2P7arFGdKMP?=
+ =?us-ascii?Q?PA7mZEkYrnfmX/ZPZ4k5zw+fowlfDhF49WIWp6RwbUemT8pS3geUtEUFS1TL?=
+ =?us-ascii?Q?XdvH/xbrdVbwYDulBAFsHTfe5N9823G+GQHA9L6ASQX8Qtw0ihkCZAcnwqHu?=
+ =?us-ascii?Q?gobvNXYNIXseIoInyTtyDJi7gaM6KFlf2bw6HGDNtU3953dDaJJwr6KTJvkA?=
+ =?us-ascii?Q?hqFHiogPhDursoP1Zcys4K2gX3lqQL5rkjuhlj2DOncCuk5t/n26TvzOPoDx?=
+ =?us-ascii?Q?NGwIOICd8IF8ITDyUuRWSvcAuhTr3mvq/LcS2AeukuUGT8nl0csL9wqqqAA4?=
+ =?us-ascii?Q?iSbwL/18VhUuynCNOarPJGyZgvgFQJpGMx+HCM9nxRfmiNs13N8hu1REbv5i?=
+ =?us-ascii?Q?zoN08oAiyO3/kf0LOZIHCdrPzvrAH3oYDhR6TZUuvPEOGZiV0QpN?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11fd2669-8cc1-4cb0-aea2-08ded75e917b
+X-MS-Exchange-CrossTenant-AuthSource: VI2PR04MB11276.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2026 10:50:30.8761
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: E3/ZAYMHnu9wOzZOCXyxHR4osW9lLeWbfRHE6udYMjWxpo7TIqQlRGGqNYKUtqpaJMSGLTO73Qdyzj3YzOZFXhmZozbfePkWaSRz5Qqdm2TtsVRc5i41GBpPG027pPdo
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10252
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [3.44 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-318347-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:daniel.lezcano@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318342-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:bhelgaas@google.com,m:hongxing.zhu@nxp.com,m:l.stach@pengutronix.de,m:imx@lists.linux.dev,m:linux-pci@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:sherry.sun@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,google.com];
+	FORGED_SENDER(0.00)[sherry.sun@oss.nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@oss.nxp.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2F8A46EC64B
+X-Rspamd-Queue-Id: 33D1D6EC5DC
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] t14s_ec_hwmon_read() bypasses the regmap lock, allowing concurrent=
- I2C commands to the EC without the required 10ms hardware delay.
-- [Low] The driver unconditionally uses hwmon functions but its Kconfig ent=
-ry does not depend on HWMON, leading to linker errors.
---
+From: Sherry Sun <sherry.sun@nxp.com>
 
-commit 53ea0adbdbb89073fdf3f9621385cdebffccdb5b
-Author: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+This series integrates the PCI pwrctrl framework into the pci-imx6
+driver and updates i.MX EVK board device trees to support it.
 
-platform: arm64: lenovo-thinkpad-t14s-ec: Add hwmon support for temperatures
+Patches 2-8 update device trees for i.MX EVK boards which maintained
+by NXP to move power supply properties from the PCIe controller node
+to the Root Port child node, which is required for pwrctrl framework.
+Affected boards:
+- i.MX6Q/DL SABRESD
+- i.MX6SX SDB
+- i.MX8MM EVK
+- i.MX8MP EVK
+- i.MX8MQ EVK
+- i.MX8DXL/QM/QXP EVK
+- i.MX95 15x15/19x19 EVK
 
-This commit exposes the Lenovo ThinkPad T14s EC environmental sensors throu=
-gh
-the hwmon subsystem. It registers a hwmon device to provide access to six EC
-temperature sensors and exports their labels.
+The driver maintains legacy regulator handling for device trees that
+haven't been updated yet. Both old and new device tree structures are
+supported.
 
-> diff --git a/drivers/platform/arm64/lenovo-thinkpad-t14s.c b/drivers/plat=
-form/arm64/lenovo-thinkpad-t14s.c
-> index 5590302a5694f..c9917a1d2bd7a 100644
-> --- a/drivers/platform/arm64/lenovo-thinkpad-t14s.c
-> +++ b/drivers/platform/arm64/lenovo-thinkpad-t14s.c
-> @@ -11,6 +11,7 @@
->  #include <linux/delay.h>
->  #include <linux/dev_printk.h>
->  #include <linux/err.h>
-> +#include <linux/hwmon.h>
+Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
 
-[Severity: Low]
-The driver now unconditionally uses hwmon functions like
-devm_hwmon_device_register_with_info(), but the Kconfig definition for
-EC_LENOVO_THINKPAD_T14S doesn't appear to depend on HWMON.
+---
+Changes in V5:
+1. Legacy power supply property is retained for backward compatibility
+   in patch 1-6.
 
-Will this cause linker errors if EC_LENOVO_THINKPAD_T14S is built-in while
-HWMON is built as a module or disabled?
+Changes in V4:
+1. Fix the CHECK_DTBS warnings. 
+2. Drop pci-imx6 pwrctrl support patch as it got applied.
 
-[ ... ]
+Changes in V3:
+1. Rebased on top of latest 7.1.0-rc4
 
-> @@ -555,6 +574,113 @@ static irqreturn_t t14s_ec_irq_handler(int irq, voi=
-d *data)
->  	return IRQ_HANDLED;
->  }
-> =20
-[ ... ]
-> +static int t14s_ec_hwmon_read(struct device *dev, enum hwmon_sensor_type=
-s type,
-> +			      u32 attr, int channel, long *val)
-> +{
-> +	struct t14s_ec *ec =3D dev_get_drvdata(dev);
-> +	unsigned int value;
-> +	int ret;
-> +
-> +	switch (type) {
-> +	case hwmon_temp:
-> +		if (attr =3D=3D hwmon_temp_input) {
-> +			ret =3D t14s_ec_read(ec, ec->ec_hwmon.sys_thermx[channel].reg, &value=
-);
+Changes in V2:
+1. After commit 2d8c5098b847 ("PCI/pwrctrl: Do not power off on pwrctrl
+   device removal"), the pwrctrl drivers no longer power off devices
+   during removal. Update pci-imx6 driver's shutdown callback in patch#1
+   to explicitly call pci_pwrctrl_power_off_devices() before 
+   pci_pwrctrl_destroy_devices() to ensure devices are properly powered
+   off.
+---
 
-[Severity: High]
-Does calling t14s_ec_read() directly here bypass the regmap serialization?
+Sherry Sun (7):
+  arm: dts: imx6qdl-sabresd: Add power supply property to Root Port node
+  arm: dts: imx6sx-sdb: Add power supply property to Root Port node
+  arm64: dts: imx8mm-evk: Add power supply property to Root Port node
+  arm64: dts: imx8mp-evk: Add power supply properties to Root Port node
+  arm64: dts: imx8mq-evk: Add power supply properties to Root Port node
+  arm64: dts: imx8dxl/qm/qxp: Add power supply properties to Root Port
+    node
+  arm64: dts: imx95: Move power supply properties to Root Port node
 
-Multiple subsystems (LEDs, keyboard, etc.) use regmap_write/read which seri=
-alize
-access and respect the 10ms delay between EC I2C commands.
+ arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi    | 2 ++
+ arch/arm/boot/dts/nxp/imx/imx6sx-sdb.dtsi         | 2 ++
+ arch/arm64/boot/dts/freescale/imx8dxl-evk.dts     | 3 +++
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi     | 2 ++
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts      | 3 +++
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts      | 3 +++
+ arch/arm64/boot/dts/freescale/imx8qm-mek.dts      | 3 +++
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts     | 3 +++
+ arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts | 4 ++--
+ arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts | 8 ++++----
+ 10 files changed, 27 insertions(+), 6 deletions(-)
 
-Since t14s_ec_read() drops the I2C bus lock before sleeping for 10ms:
 
-drivers/platform/arm64/lenovo-thinkpad-t14s.c:t14s_ec_read() {
-    ...
-out:
-    i2c_unlock_bus(client->adapter, I2C_LOCK_SEGMENT);
-    fsleep(10000);
-    return ret;
-}
+base-commit: be5c93fa674f0fc3c8f359c2143abce6bbb422e6
+-- 
+2.50.1
 
-could a concurrent regmap access acquire the I2C bus lock immediately, issu=
-ing
-a new command to the EC before the hardware-mandated 10ms delay has elapsed?
-
-> +			if (ret)
-> +				return ret;
-> +			*val =3D value * MILLIDEGREE_PER_DEGREE;
-> +
-> +			return 0;
-> +		}
-> +		break;
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701103714.2258=
-3-1-daniel.lezcano@oss.qualcomm.com?part=3D1
 
