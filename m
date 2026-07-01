@@ -1,69 +1,66 @@
-Return-Path: <devicetree+bounces-318836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318837-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nxF7HnJIRWon+AoAu9opvQ
-	(envelope-from <devicetree+bounces-318836-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 19:03:46 +0200
+	id Ur1yMnFKRWqr+AoAu9opvQ
+	(envelope-from <devicetree+bounces-318837-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 19:12:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2775A6F020C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 19:03:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DDED6F0350
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 19:12:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=l0Vzf8l8;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318836-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318836-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bGcLcNfT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318837-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318837-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B60CC3066DFA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 17:03:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5EF2A3075DEE
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 17:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E44237EFE3;
-	Wed,  1 Jul 2026 17:03:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6284537CD48;
+	Wed,  1 Jul 2026 17:04:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DC6F370ADA;
-	Wed,  1 Jul 2026 17:03:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C61A381B0A;
+	Wed,  1 Jul 2026 17:04:05 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782925386; cv=none; b=B1qUzu5bsuaei+tmMCzYfZ9JSN/ay2qBcmqrGxFzwVwxPqk27DfvwfMkRsm2heg26XsDNMTXWyNG3FanTRyc5UAITYxj2N4jZeJwNU6KKh489u9t8rZiGXZiL8kyEo97M2Vys0IPreMY0DCmMgtNGOacLh+R0piaubxv5tm0o9Q=
+	t=1782925446; cv=none; b=WPscg+Uvp9OGuw1ogy38Ow0Xzv9ZxN1jDftBwpJB1WUUEuO7zooGjUqveq8stl+aXt0sPE31ukGfIVLbsZkSbzqp94TXUaJxPJujNqtQ3QXAgwBNJI2l8YVo6d1SKAzblqshbnHTrucj0ALVL3MtsAs5QqiNyT6EsYMRUjUKqbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782925386; c=relaxed/simple;
-	bh=Ayeh5cwlNmAyr6iAkzZDlc0fFc73iNUdsmim0PGnNac=;
+	s=arc-20240116; t=1782925446; c=relaxed/simple;
+	bh=VYRiDD5Iy0yRoaO0lkvXQT4aI16OlIvETD0ylWTOlq4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hwRG+Wzd5dpaB1FHEXkawmHezvHhSmwHgMMaJPGhGilX40ODJkuwVI6Va+/I+eEpb+0G4G4mFi4tcOR2bPpq4M97VWNe9u1ukQRIA0R5S6ZpQ4gLuIRBbU+bK95nxNNhgffytCAe5M/swYqsYYvZW2xUuKnR/G2b0s3qlq+7/6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l0Vzf8l8; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 273321F000E9;
-	Wed,  1 Jul 2026 17:03:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jhkfxl1TtU1wlQL1qeNaEgWoGnFD5uF9mZuqEr7e1TfCBrtzfzLo+GEHpIz43NssAHOapJS9DlpeiLO7rQDg+ra74VcH+vMcp8Fh74Ts2cDt4Oebv2HRFWRL1BXPD8j0SWbiiJ4JXTRRyjVD6+sNnpczq1ZOSCnBuYqZPkUOvpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bGcLcNfT; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FCC81F000E9;
+	Wed,  1 Jul 2026 17:04:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782925385;
-	bh=Ayeh5cwlNmAyr6iAkzZDlc0fFc73iNUdsmim0PGnNac=;
+	s=k20260515; t=1782925445;
+	bh=VYRiDD5Iy0yRoaO0lkvXQT4aI16OlIvETD0ylWTOlq4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=l0Vzf8l8cEYmuVQId4BSIH8RN89lDFObUwiCje2GvWsJ4MMLGTzTbcRGmcEdqccEs
-	 Cr5NPpG5jkJVykGGl3i4Wp/EHLZTZLQSq7rdNtL2V8AEhz/URJZi1BC/D5w/e6mc6E
-	 Xz6xaGcoiOV47avbOF/2NMU93/wxzv427KfClf6T6QdXFSipEf8fYZRbE9XX5i3jsI
-	 pRuZvS4wKVmeZCeZWh5wyhZKhKBi0TY/btg73gQcWoUfaH4GTGC4bb10JYD4jLJa+w
-	 zTEJJ5Opi33oQtxJDY7cjACcGpyLBwTTXWMbFsNKgyZonDCkPYq6TnRfQbGDl245wm
-	 dzhpvKB81U5cA==
-Date: Wed, 1 Jul 2026 18:03:00 +0100
+	b=bGcLcNfTLHxJHGbdy1TAK6T5uJzDc6t5iOIFRyFqa2mEhzGHPONBbKTlLa495bJo8
+	 1R6KEgdWjeGR1323zsB5umuzNttFXGHGftCoi1iW2en4lZq0u0DOdtkZtB4SriMpp3
+	 1ivybLoCT+SmW4V2WOj7e4kYv0mZzoog67CJvab62clJ/cS1OgJZoVxgXS9fi5lgTS
+	 l3iARQMF8YKkOE0HPRZ0c06Wt5As0TPg7ZuhfLag1OBiy3uQug3i148Hl5tOC8mQZu
+	 W4boHneklgKXyRhjdNMVCBmmZRQTp4rjhut3ObKsIcq5DZDEdIc3FC1d9XT0VrS9CH
+	 vTGyNoDGez2sw==
+Date: Wed, 1 Jul 2026 18:04:01 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: Chaotian Jing <chaotian.jing@mediatek.com>,
-	Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wenbin Mei <wenbin.mei@mediatek.com>, kernel@collabora.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: mmc: mtk-sd: Document extra clocks for
- MT8189
-Message-ID: <20260701-baton-hug-877eacff8744@spud>
-References: <20260701-mt8189-mmc-dt-bindings-fix-v1-1-e75f241a275b@collabora.com>
+	Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] spi: dt-bindings: snps,dw-apb-ssi: drop
+ duplicated RZ/N1 entry
+Message-ID: <20260701-bundle-rocking-14216ad464a0@spud>
+References: <20260701131248.4545-4-wsa+renesas@sang-engineering.com>
+ <20260701131248.4545-5-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,9 +68,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mPEXYlg63dNqM9Ep"
+	protocol="application/pgp-signature"; boundary="0FbztNpUHJi8R2hM"
 Content-Disposition: inline
-In-Reply-To: <20260701-mt8189-mmc-dt-bindings-fix-v1-1-e75f241a275b@collabora.com>
+In-Reply-To: <20260701131248.4545-5-wsa+renesas@sang-engineering.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-6.76 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -81,61 +78,55 @@ X-Spamd-Result: default: False [-6.76 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-318836-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_RECIPIENTS(0.00)[m:louisalexis.eyraud@collabora.com,m:chaotian.jing@mediatek.com,m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:wenbin.mei@mediatek.com,m:kernel@collabora.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318837-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:wsa+renesas@sang-engineering.com,m:linux-renesas-soc@vger.kernel.org,m:geert+renesas@glider.be,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:wsa@sang-engineering.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,glider.be,kernel.org,gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[mediatek.com,kernel.org,gmail.com,collabora.com,oss.qualcomm.com,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2775A6F020C
+X-Rspamd-Queue-Id: 1DDED6F0350
 
---mPEXYlg63dNqM9Ep
+--0FbztNpUHJi8R2hM
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Wed, Jul 01, 2026 at 04:44:26PM +0200, Louis-Alexis Eyraud wrote:
-> MT8189 SoC MMC Controller IP has 4 additional clocks.
-
-I think "additional" is slightly confusing wording here, since you go on
-to permit 6 not 11 (the binding already allows 7).
-
-Not a big deak though,
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+pw-bot: changes-requested
+ (by mark)
 
---mPEXYlg63dNqM9Ep
+--0FbztNpUHJi8R2hM
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakVIRAAKCRB4tDGHoIJi
-0m5ZAQDPDgv+aEUBLc5jd7ivTFD5RAfydjyVmNG7sWeRkLuObQEAoWlbrthLLsZz
-3tjdnZ7FRZ4xtWaC8FMotDXsvQhpwgU=
-=2df6
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakVIgQAKCRB4tDGHoIJi
+0kFXAQDlsj4mUWdeSW956sf2mzdL0Iw4t0eHc6HyZ4lAs1b3egD+O8+4Tb1zWA3L
+h2g+Q0SP90pwU+fib/mnGp1AwvMM3gE=
+=yYiu
 -----END PGP SIGNATURE-----
 
---mPEXYlg63dNqM9Ep--
+--0FbztNpUHJi8R2hM--
 
