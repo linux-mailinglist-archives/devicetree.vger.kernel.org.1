@@ -1,159 +1,175 @@
-Return-Path: <devicetree+bounces-318394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318384-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id i8+TOqT2RGp84AoAu9opvQ
-	(envelope-from <devicetree+bounces-318394-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:14:44 +0200
+	id Nm2pBxr4RGoD4QoAu9opvQ
+	(envelope-from <devicetree+bounces-318384-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:20:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 925F16ECA27
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:14:44 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FCEF6ECBBC
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:20:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318394-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318394-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GIuIQLTW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318384-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318384-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 954D6305B3E8
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:13:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 750EC30C98F0
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA72040BCCE;
-	Wed,  1 Jul 2026 11:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDBED43634A;
+	Wed,  1 Jul 2026 11:07:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52BC63B6356;
-	Wed,  1 Jul 2026 11:13:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4D83BA249;
+	Wed,  1 Jul 2026 11:07:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782904387; cv=none; b=PQ2KJAh8EGm+lDlJoyOOUuo1pHFzv+0/b6Jh9QRxp90uiIFwyCM86eOAFb8mlX6M9N1oLbV4Tj8CR45Wngtkdc564R833HqtZ/zEiTQ0Xc1ZpfZI1/D9l6sWh+F/ONU3lzNnLIM3aVWki6PRx98QRenTwpkKCLuTmletaTero4o=
+	t=1782904023; cv=none; b=MuoSDz5zIhepwrnkd84Okbzc4yE9WsXjuB536ASKJ28JdztEoavDL0nq4R/EhPnRZvZ9i+ukuUsmN7loU4D6DSlUuJ/YNQPKo6wMA/VVRMu4YYDzr5HCExeraMzCyNHn9ANm76dseUwUIQaPCPYI7D2lHE854LKoHf7N/T74Qsc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782904387; c=relaxed/simple;
-	bh=lmqv6nwOMIQ1/A6MU3tdd/l8iraWfFOg4UXcDmZWx3Q=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Tba9GsrutolAMYiyhx1zdpjFS9uxZyv1y4rYtqyKsfFGB/9VC/XODoiX9dxmnd6d/6SYN/s5xlO8F+KvLx2AHzoboocOfBHkwJId8HTEPuE06M5i17I+8lX7wcRoWMGn46vxNxjE318vnudf2sR+lrfT3C7Tld7rKTMcssOg8RI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=212.18.0.10
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by mail-out.m-online.net (Postfix) with ESMTP id 4gqxxr4nzTz1sHPn;
-	Wed,  1 Jul 2026 13:05:20 +0200 (CEST)
-Received: from frontend03.mail.m-online.net (unknown [192.168.6.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 4gqxxq4lg4z1sHPX;
-	Wed,  1 Jul 2026 13:05:19 +0200 (CEST)
-Received: from localhost (dynscan3.mnet-online.de [192.168.6.87])
-	by mail.m-online.net (Postfix) with ESMTP id 4gqxxp59v1z1qqlT;
-	Wed,  1 Jul 2026 13:05:18 +0200 (CEST)
-X-Virus-Scanned: amavis at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.6.182])
- by localhost (dynscan3.mail.m-online.net [192.168.6.87]) (amavis, port 10024)
- with ESMTP id tQZ9_tKXpaIT; Wed,  1 Jul 2026 13:05:09 +0200 (CEST)
-X-Auth-Info: Pt4uSQGEyIjPFT3BPFolkb81GA8tMoI4Th+4yeNg3MiwksamljRMriYVf7/YBrTR
-Received: from hawking (unknown [80.255.5.134])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPSA;
-	Wed,  1 Jul 2026 13:05:09 +0200 (CEST)
-From: Andreas Schwab <schwab@linux-m68k.org>
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: "Eric W. Biederman" <ebiederm@xmission.com>,  Deepak Gupta via B4 Relay
- <devnull+debug.rivosinc.com@kernel.org>,  Thomas Gleixner
- <tglx@linutronix.de>,  Ingo Molnar <mingo@redhat.com>,  Borislav Petkov
- <bp@alien8.de>,  Dave Hansen <dave.hansen@linux.intel.com>,
-  x86@kernel.org,  "H. Peter Anvin" <hpa@zytor.com>,  Andrew Morton
- <akpm@linux-foundation.org>,  "Liam R. Howlett" <Liam.Howlett@oracle.com>,
-  Vlastimil Babka <vbabka@suse.cz>,  Lorenzo Stoakes
- <lorenzo.stoakes@oracle.com>,  Paul Walmsley <paul.walmsley@sifive.com>,
-  Palmer Dabbelt <palmer@dabbelt.com>,  Albert Ou <aou@eecs.berkeley.edu>,
-  Conor Dooley <conor@kernel.org>,  Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Arnd Bergmann <arnd@arndb.de>,
-  Christian Brauner <brauner@kernel.org>,  Peter Zijlstra
- <peterz@infradead.org>,  Oleg Nesterov <oleg@redhat.com>,  Kees Cook
- <kees@kernel.org>,  Jonathan Corbet <corbet@lwn.net>,  Shuah Khan
- <shuah@kernel.org>,  Jann Horn <jannh@google.com>,  Conor Dooley
- <conor+dt@kernel.org>,  Miguel Ojeda <ojeda@kernel.org>,  Alex Gaynor
- <alex.gaynor@gmail.com>,  Boqun Feng <boqun.feng@gmail.com>,  Gary Guo
- <gary@garyguo.net>,  =?utf-8?Q?Bj=C3=B6rn?= Roy Baron
- <bjorn3_gh@protonmail.com>,  Andreas
- Hindborg <a.hindborg@kernel.org>,  Alice Ryhl <aliceryhl@google.com>,
-  Trevor Gross <tmgross@umich.edu>,  Benno Lossin <lossin@kernel.org>,
-  linux-kernel@vger.kernel.org,  linux-fsdevel@vger.kernel.org,
-  linux-mm@kvack.org,  linux-riscv@lists.infradead.org,
-  devicetree@vger.kernel.org,  linux-arch@vger.kernel.org,
-  linux-doc@vger.kernel.org,  linux-kselftest@vger.kernel.org,
-  alistair.francis@wdc.com,  richard.henderson@linaro.org,
-  jim.shu@sifive.com,  andybnac@gmail.com,  kito.cheng@sifive.com,
-  charlie@rivosinc.com,  atishp@rivosinc.com,  evan@rivosinc.com,
-  cleger@rivosinc.com,  alexghiti@rivosinc.com,  samitolvanen@google.com,
-  broonie@kernel.org,  rick.p.edgecombe@intel.com,
-  rust-for-linux@vger.kernel.org,  Zong Li <zong.li@sifive.com>
-Subject: Re: [PATCH v23 06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ
- | VM_WRITE
-In-Reply-To: <CAKC1njRapOxS6ibQdCuES1E3aAjsA+yGz4yZ1xJAZHU2vkAm_A@mail.gmail.com>
-	(Deepak Gupta's message of "Tue, 2 Jun 2026 09:19:50 -0700")
-References: <20251112-v5_user_cfi_series-v23-0-b55691eacf4f@rivosinc.com>
-	<20251112-v5_user_cfi_series-v23-6-b55691eacf4f@rivosinc.com>
-	<87jyslndo4.fsf@igel.home>
-	<CAKC1njS=AHu6uHrH4ae8VxcdEbhgiPXYCAoN3F_mnppBd3SwOA@mail.gmail.com>
-	<875x44o9hj.fsf@igel.home>
-	<CAKC1njSn_rtCj8ii876PNQTk0nsCTfWsb4DzdymufHVthh1Rkg@mail.gmail.com>
-	<871peqgp9v.fsf@igel.home>
-	<CAKC1njR+dTdvp+BmLGPtgd8dufiUwBtkQ9a-qinELT_Fmi13sQ@mail.gmail.com>
-	<87wlwif04z.fsf@igel.home>
-	<87tsrli6lt.fsf@email.froward.int.ebiederm.org>
-	<CAKC1njRapOxS6ibQdCuES1E3aAjsA+yGz4yZ1xJAZHU2vkAm_A@mail.gmail.com>
-Date: Wed, 01 Jul 2026 13:05:09 +0200
-Message-ID: <mvm8q7vt1ga.fsf@suse.de>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1782904023; c=relaxed/simple;
+	bh=oSlcK09PdBKIVNq39bqkYR0O6+AzUMdbk+zgIoJP+Xw=;
+	h=From:Subject:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=VZH/BmT+Uk1tkjEnmkRMxbHf/k8jgdYFcODHhgrUBxVj9vdg2XdguqVQF3LK6e+G5eh47KwNrwOmvfhaepmFc0SepdKl9eQpyVYWwDCFLMhVhXEpmryqv4rcaEPJIEUngNU4I0Sv/GVDvU2gXnihQ0+YAwrKZGbaNofCe9fMp+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GIuIQLTW; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E1B81F000E9;
+	Wed,  1 Jul 2026 11:07:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782904020;
+	bh=bNinqsNPFAPvqAYzmqzmK5X9Wv0GpzIpoiogbgAT7xY=;
+	h=From:Subject:Reply-To:Cc:In-Reply-To:References:Date;
+	b=GIuIQLTW7mZhtstjSE6wJrKB53qF3rM+kd4CrBRS9ry6p8zfvezmxFUpnfER9qN2C
+	 KnDJ8la1TzGVb/QtCeHIFJahLACoGE8VhqStzAuTzxHKAI1Q3DZ2Owfq9ggZArQIeb
+	 T+A34JQeLhocpMXNE7lfKWENNmcswMvRkeJASOtn7e2bIE88uB+iPspWvebPWAptaX
+	 FTBla/32K+BOlTb7Mgm7TrMJcbHwlJcq1OAu92PSO+E/Jl6w+InFB6rT1CiignMHrD
+	 5loNtVEGsp2JPBlCV3G96IjJNyYqeW/wf5hj7AEZuBKpHzbsD95f/5Ad4PqZI2TxzQ
+	 fkoBfDJWeqBTA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V5 7/7] arm64: dts: imx95: Move power supply properties
+ to Root Port node
+Reply-To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, devicetree@vger.kernel.org, Frank.Li@kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org, imx@lists.linux.dev
+In-Reply-To: <20260701105234.198987-8-sherry.sun@oss.nxp.com>
+References: <20260701105234.198987-1-sherry.sun@oss.nxp.com>
+ <20260701105234.198987-8-sherry.sun@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 01 Jul 2026 11:06:59 +0000
+Message-Id: <20260701110700.5E1B81F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_TO(2.00)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:debug@rivosinc.com,m:ebiederm@xmission.com,m:devnull+debug.rivosinc.com@kernel.org,m:tglx@linutronix.de,m:mingo@redhat.com,m:bp@alien8.de,m:dave.hansen@linux.intel.com,m:x86@kernel.org,m:hpa@zytor.com,m:akpm@linux-foundation.org,m:Liam.Howlett@oracle.com,m:vbabka@suse.cz,m:lorenzo.stoakes@oracle.com,m:paul.walmsley@sifive.com,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:conor@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:arnd@arndb.de,m:brauner@kernel.org,m:peterz@infradead.org,m:oleg@redhat.com,m:kees@kernel.org,m:corbet@lwn.net,m:shuah@kernel.org,m:jannh@google.com,m:conor+dt@kernel.org,m:ojeda@kernel.org,m:alex.gaynor@gmail.com,m:boqun.feng@gmail.com,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:a.hindborg@kernel.org,m:aliceryhl@google.com,m:tmgross@umich.edu,m:lossin@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:linux-mm@kvack.org,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arch@vger.ker
- nel.org,m:linux-doc@vger.kernel.org,m:linux-kselftest@vger.kernel.org,m:alistair.francis@wdc.com,m:richard.henderson@linaro.org,m:jim.shu@sifive.com,m:andybnac@gmail.com,m:kito.cheng@sifive.com,m:charlie@rivosinc.com,m:atishp@rivosinc.com,m:evan@rivosinc.com,m:cleger@rivosinc.com,m:alexghiti@rivosinc.com,m:samitolvanen@google.com,m:broonie@kernel.org,m:rick.p.edgecombe@intel.com,m:rust-for-linux@vger.kernel.org,m:zong.li@sifive.com,m:devnull@kernel.org,m:krzk@kernel.org,m:alexgaynor@gmail.com,m:boqunfeng@gmail.com,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318394-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318384-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_SENDER(0.00)[schwab@linux-m68k.org,devicetree@vger.kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:linux-pci@vger.kernel.org,m:imx@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[xmission.com,kernel.org,linutronix.de,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,oracle.com,suse.cz,sifive.com,dabbelt.com,eecs.berkeley.edu,arndb.de,infradead.org,lwn.net,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,vger.kernel.org,kvack.org,lists.infradead.org,wdc.com,linaro.org,rivosinc.com,intel.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[schwab@linux-m68k.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_GT_50(0.00)[60];
-	ALIAS_RESOLVED(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linux-m68k.org:from_mime,linux-m68k.org:email,vger.kernel.org:from_smtp];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
+	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,debug.rivosinc.com,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	RCPT_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 925F16ECA27
+X-Rspamd-Queue-Id: 7FCEF6ECBBC
 
-Any news? This is still broken in 7.2-rc1.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The transition to the new PCI pwrctrl framework is incomplete acros=
+s the i.MX95 platform. Several other i.MX95 board definitions were omitted =
+from this migration and still retain the legacy `vpcie-supply` property in =
+the host controller node instead of moving them to the Root Port child node=
+s.
+--
 
--- 
-Andreas Schwab, schwab@linux-m68k.org
-GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
-"And now for something completely different."
+commit b94f7498d750422b57ec34a9401c66058aec3470
+Author: Sherry Sun <sherry.sun@nxp.com>
+
+arm64: dts: imx95: Move power supply properties to Root Port node
+
+Move the power supply properties from the PCIe controller nodes to the
+Root Port child nodes to support the new PCI pwrctrl framework.
+
+> Move the power supply properties from the PCIe controller nodes to the
+> Root Port child nodes to support the new PCI pwrctrl framework.
+>=20
+> Since i.MX95 is the new platform that under development phase, it should
+> be fine to simply move the power supply properties.
+
+[Severity: Low]
+Are there other i.MX95 boards that should be included in this migration?
+
+The transition to the new PCI pwrctrl framework appears incomplete across t=
+he
+i.MX95 platform. Several other i.MX95 board definitions were omitted from t=
+his
+migration and still retain the legacy vpcie-supply property in the host
+controller node instead of moving them to the Root Port child nodes.
+
+For example, arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts retains the
+legacy power supply property in the host controller node:
+
+&pcie0 {
+    ...
+    vpcie-supply =3D <&reg_m2_mkey_pwr>;
+    ...
+};
+
+Similar omissions appear in arch/arm64/boot/dts/freescale/imx95-19x19-frdm-=
+pro.dts:
+
+&pcie0 {
+    ...
+    vpcie-supply =3D <&reg_m2_mkey_1_pwr>;
+    ...
+};
+
+And in arch/arm64/boot/dts/freescale/imx95-19x19-verdin-evk.dts:
+
+&pcie0 {
+    ...
+    vpcie-supply =3D <&reg_pcie0>;
+    ...
+};
+
+Should these boards also be updated to ensure consistent power management
+behavior across the i.MX95 platform and allow future cleanup of the legacy
+code?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701105234.1989=
+87-1-sherry.sun@oss.nxp.com?part=3D7
 
