@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-318541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318542-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id acheAIgKRWqn5goAu9opvQ
-	(envelope-from <devicetree+bounces-318541-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:39:36 +0200
+	id qUQVKPkORWqk6AoAu9opvQ
+	(envelope-from <devicetree+bounces-318542-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:58:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC6D56ED725
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:39:34 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3345E6EDB79
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:58:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=c64zvmkO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318541-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318541-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZnbgQ2v3;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318542-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318542-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C8B313016C04
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:39:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4F8333081759
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:39:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD47948124E;
-	Wed,  1 Jul 2026 12:35:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797A948122A;
+	Wed,  1 Jul 2026 12:35:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A33480DC0
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5632548033C
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:35:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782909326; cv=none; b=qMwjm33JhWY64D42nM4kF5Wg0o4NMsM5mxeOw1uZ8BD5Z+q0V/lktaLPOsbk2K7VxbA9V0xbeiG3LyAaeuHlZHQHxvBrCe+P6onOv2NVx11ZhoHmVrwHvPYWCR4FA23AHZqi+Gsk+zGd8Ywqyw4/kJ7L4+kgfLOP5qA+dVVruvU=
+	t=1782909338; cv=none; b=iAGauCWeG9lZQ0fuDQ2Pqk37Tpdc0xd8CWaA/HV9rZq3E1rkX8HYgApnl8VeiBWUqRtc3QPT331EAJdLcW/MR2Ealj0SoSItN+qDVtIPRgy4KaOaEi76doGmvUISegJzXmwSvYIaOX346pwvW+TwreLLDsbnoi0eee2VzIkOZSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782909326; c=relaxed/simple;
-	bh=m9OcB9+sP/uQGbkn+xZx7F4mwIuGU2pcbKoW5VyCMoI=;
+	s=arc-20240116; t=1782909338; c=relaxed/simple;
+	bh=haAbRtO/X4X3rTwWCe43+yGBv3OIsc8u15LNEuwx/ic=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=lI2sw2lVg4/yzbnmYMJ1WEdvmC0t2i5vOg1gs5p1CmmJjaQSy7aUsV6SfExhYlfH0vYM2sARa5WaTTbv9d+Fxy0upfONuQJ+2DTcXYwRvlUvjOXz3HMhyUrPD5Donuh64tkl11QGFQqodsvlpEXdTEfxo2EgsQYV3hEU1uJRQ24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c64zvmkO; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C959F1F000E9;
-	Wed,  1 Jul 2026 12:35:24 +0000 (UTC)
+	 Message-Id; b=R1Fuz/xazY2wkDbnHGfKyyDY+CKdj1pWYVN+OrdQ1mhx5XlL5yZDNFTB/58EMXpES6BGW8bH1hfy9NMzFnmsia/fH1PnYYwlAXnTflu0/QGoh3D4ql7nvuTK5I6AIBCVNmBHkZNi5Af+J8kIJ8Fu/rGDDCuYfwzRRHy07Ly0uNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZnbgQ2v3; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C5DA1F000E9;
+	Wed,  1 Jul 2026 12:35:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782909325;
-	bh=VWTJccjnCSN4pnaWgUK80qLkclOBKuh5lxZ+qC7qrPc=;
+	s=k20260515; t=1782909336;
+	bh=CJQNdIVi/Q1P74CPDcCp+i08uA+8nWhJngkcnx8r1s0=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=c64zvmkOo6rR2irn4fDdvRHvkujm/1ru+8VGFXnxaHgQ3+0iF/p7b9ea18A8t9BJB
-	 FyJnb/aDObrVYHw2A6erqQWTcBJWaaZMmcBySjXA1fXOQ1D9NfuDif73AIC/6dvVWU
-	 9Z2j1fWkaSOxyK8U8GItyV7zrjjw9htjR49PnQFJ/UjSSWqjnmad3FNBvM7H0ziLXi
-	 L+88uUK1WQwoCObYXDvp1o4isG86yIG/z1jLPDKeYq6XJ+HbKGmJmKgKDxK4vHm22u
-	 TbAZGAkKB2regCFtkHXlQoq1ohQ/FVUMEk4TU9lbZOzdtN+dX+u85dDOW/iviXFHvg
-	 8Oo3ZiNoPFuWQ==
+	b=ZnbgQ2v3lT+qQ8RE3rnxpKNplm6LDhKyyS0bOdfJ+wSgvN5VUNh87jjG6K5p7xsdt
+	 HPrwlv5Y8eitA7X/0pP0E4qmwzxVEDHIdfNPKqleIheBfLaZPDR4W6ly5CI1MkNh8o
+	 Uo4BDxO6fj4Iaeo63Ih3bUBKCj8tBiCztQ0XbNFr1ow6Vg/jX+nRdU1pb9pQvZprPP
+	 dUmbvuhhGU/LJPHxMgUUWf6TIjyynKljYeyA+z6u3GnXqlPae37KyD4ug8bRZXI2qo
+	 t6I9K6ADE/fOwkCrTuy6yEJ4nZy7yBhafyMlMnsu6eNstwJ3Fcc1pSP9Y4XA0W4/6O
+	 57C6/LrFWlwdA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/4] pmdomain: mediatek: Respect PD relationships during
- error cleanup
+Subject: Re: [PATCH 06/12] phy: phy-mtk-dp: Support set_lanes in configure
+ and properly cleanup
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260701121920.19347-3-angelogioacchino.delregno@collabora.com>
-References: <20260701121920.19347-1-angelogioacchino.delregno@collabora.com>
- <20260701121920.19347-3-angelogioacchino.delregno@collabora.com>
+Cc: conor+dt@kernel.org, linux-phy@lists.infradead.org, robh@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, vkoul@kernel.org
+In-Reply-To: <20260701122008.19509-7-angelogioacchino.delregno@collabora.com>
+References: <20260701122008.19509-1-angelogioacchino.delregno@collabora.com>
+ <20260701122008.19509-7-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 12:35:24 +0000
-Message-Id: <20260701123524.C959F1F000E9@smtp.kernel.org>
+Date: Wed, 01 Jul 2026 12:35:35 +0000
+Message-Id: <20260701123536.6C5DA1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,24 +72,25 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318541-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318542-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:linux-phy@lists.infradead.org,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:vkoul@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,lists.freedesktop.org,vger.kernel.org,linaro.org,gmail.com];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -99,68 +100,102 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,collabora.com:email,smtp.kernel.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,collabora.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EC6D56ED725
+X-Rspamd-Queue-Id: 3345E6EDB79
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] The return value of pm_genpd_init() is ignored, which leads to a N=
-ULL pointer dereference crash during error cleanup if initialization fails.
+- [High] Unconditional do-while loop in `mtk_dp_phy_disable_all_lanes` caus=
+es an out-of-bounds bitwise shift and undefined behavior when no lanes are =
+initially enabled.
+- [High] `mtk_dp_phy_disable_all_lanes` passes a bit index instead of a bit=
+mask to `FIELD_PREP`, failing to disable the correct lanes.
 --
 
-commit 356604344a98472f2a371cddf8d5683735700cda
+commit 25cdd51bd1ac4d69a49e77d93a6b1374ba46dd3c
 Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-pmdomain: mediatek: Respect PD relationships during error cleanup
+phy: phy-mtk-dp: Support set_lanes in configure and properly cleanup
 
-This commit allocates a temporary array during probe to track the addition
-order of power domains. If an error occurs, it uses this array to clean up
-the domains in the exact reverse order, avoiding system freezes.
+Add support for enabling a specifically requested number of lanes
+in the .configure() callback and disable all lanes in power off
+and reset callbacks for proper hardware cleanup.
 
-> diff --git a/drivers/pmdomain/mediatek/mtk-pm-domains.c b/drivers/pmdomai=
-n/mediatek/mtk-pm-domains.c
-> index e1cfd42234734..db543d4b1813c 100644
-> --- a/drivers/pmdomain/mediatek/mtk-pm-domains.c
-> +++ b/drivers/pmdomain/mediatek/mtk-pm-domains.c
+> diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy=
+-mtk-dp.c
+> index 586e727956332..a2cd22b9da066 100644
+> --- a/drivers/phy/mediatek/phy-mtk-dp.c
+> +++ b/drivers/phy/mediatek/phy-mtk-dp.c
 [ ... ]
-> @@ -906,6 +907,7 @@ generic_pm_domain *scpsys_add_one_domain(struct scpsy=
-s *scpsys, struct device_no
->  	else
->  		pm_genpd_init(&pd->genpd, NULL, false);
+> @@ -261,6 +267,35 @@ static int mtk_dp_phy_power_on(struct phy *phy)
+>  	return 0;
+>  }
 > =20
-> +	domains_idx[(*num_domains)++] =3D (u8) id;
+> +static int mtk_dp_phy_disable_all_lanes(struct mtk_dp_phy *dp_phy)
+> +{
+> +	const struct mtk_dp_phy_pdata *pdata =3D dp_phy->pdata;
+> +	const u8 *regs =3D pdata->regs_dig_glb;
+> +	int ret;
+> +	u32 val;
+> +
+> +	ret =3D regmap_read(dp_phy->regmap, pdata->off_dig_glb + regs[DP_PHYD_T=
+X_CTL_0], &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Get mask of currently enabled lane */
+> +	val =3D FIELD_GET(PHYD_TX_LN_EN, val);
+> +
+> +	/* Disable all lanes (needs to be done one by one, from last to first) =
+*/
+> +	do {
+> +		u32 lane_num =3D fls(val) - 1;
+> +		val &=3D ~BIT(lane_num);
+                 ^^^^^^^^^^^^^^^^^^^^
 
 [Severity: High]
-This is a pre-existing issue, but does ignoring the return value of
-pm_genpd_init() here lead to a NULL pointer dereference crash during error
-cleanup if initialization fails?
+Does this cause undefined behavior if val is initially 0?
 
-If pm_genpd_init() fails (e.g., due to a memory allocation failure), the do=
-main
-is partially initialized and its gpd_list_node remains zero-initialized.
-Because the error isn't caught, the driver still considers the domain
-successfully added and tracks it in scpsys->domains.
+If the PHY register reports 0 enabled lanes (which can happen after a
+hardware reset or during initial boot), val will be 0. Since this is an
+unconditional do-while loop, fls(0) will return 0, leading to lane_num
+evaluating to UINT_MAX.
 
-Later during probe, if an error triggers the cleanup path,
-scpsys_domain_cleanup() then invokes scpsys_remove_one_domain() ->
-pm_genpd_remove() on this uninitialized domain.
+The subsequent BIT(lane_num) attempt would result in an out-of-bounds
+bitwise shift. Could this be changed to a while loop, or check if val is 0
+before entering the loop?
 
-pm_genpd_remove() unconditionally calls list_del(&genpd->gpd_list_node), wh=
-ich
-attempts to access next->prev on NULL pointers, resulting in a kernel panic.
+> +
+> +		ret =3D regmap_clear_bits(dp_phy->regmap,
+> +					pdata->off_dig_glb + regs[DP_PHYD_TX_CTL_0],
+> +					FIELD_PREP(PHYD_TX_LN_EN, lane_num));
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
->  	scpsys->domains[id] =3D &pd->genpd;
-> =20
->  	return scpsys->pd_data.domains[id];
+[Severity: High]
+Does this clear the correct lanes in the register?
+
+It looks like the bit index lane_num is passed directly to FIELD_PREP here
+instead of the bitmask BIT(lane_num), which was correctly used in
+mtk_dp_phy_configure().
+
+If lane_num is 3, FIELD_PREP(GENMASK(7, 4), 3) will generate 0x30, which
+clears lanes 0 and 1 instead of 0x80 (which would clear lane 3). This seems
+like it might repeatedly attempt to clear the wrong lanes and leave higher
+lanes enabled.
+
+> +		if (ret)
+> +			return ret;
+> +	} while (val);
+> +
+> +	return 0;
+> +}
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701121920.1934=
-7-1-angelogioacchino.delregno@collabora.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701122008.1950=
+9-1-angelogioacchino.delregno@collabora.com?part=3D6
 
