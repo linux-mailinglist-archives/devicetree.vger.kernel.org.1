@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-318542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318543-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qUQVKPkORWqk6AoAu9opvQ
-	(envelope-from <devicetree+bounces-318542-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:58:33 +0200
+	id 1DF1GioTRWoO6goAu9opvQ
+	(envelope-from <devicetree+bounces-318543-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:16:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3345E6EDB79
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:58:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4286EDF3C
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:16:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZnbgQ2v3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318542-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318542-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AbW19r7n;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318543-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318543-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4F8333081759
+	by sea.lore.kernel.org (Postfix) with ESMTP id F212931AAA05
 	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:39:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797A948122A;
-	Wed,  1 Jul 2026 12:35:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D6F3481659;
+	Wed,  1 Jul 2026 12:35:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5632548033C
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:35:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 671D1480DC0
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:35:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782909338; cv=none; b=iAGauCWeG9lZQ0fuDQ2Pqk37Tpdc0xd8CWaA/HV9rZq3E1rkX8HYgApnl8VeiBWUqRtc3QPT331EAJdLcW/MR2Ealj0SoSItN+qDVtIPRgy4KaOaEi76doGmvUISegJzXmwSvYIaOX346pwvW+TwreLLDsbnoi0eee2VzIkOZSM=
+	t=1782909344; cv=none; b=exrp6cRIkzDYFPJKcQierie72ptVRscNS8OF+Xm9keBSV8yuez5aBQDE8Ho+Qc2z3nRectbUK7wO44SDyKpCrqEI6K6cDowTMoFejXv6lKxZHbD4Np1O8AOFo86b/zy9o9DyuUkjuIPlZaRQbJ0PH04LradXUN6E16wRaetpITk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782909338; c=relaxed/simple;
-	bh=haAbRtO/X4X3rTwWCe43+yGBv3OIsc8u15LNEuwx/ic=;
+	s=arc-20240116; t=1782909344; c=relaxed/simple;
+	bh=XiGJpioeX/FXcfQfsSc+O8kBmCS9ikfYNtOYW8vm+ts=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=R1Fuz/xazY2wkDbnHGfKyyDY+CKdj1pWYVN+OrdQ1mhx5XlL5yZDNFTB/58EMXpES6BGW8bH1hfy9NMzFnmsia/fH1PnYYwlAXnTflu0/QGoh3D4ql7nvuTK5I6AIBCVNmBHkZNi5Af+J8kIJ8Fu/rGDDCuYfwzRRHy07Ly0uNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZnbgQ2v3; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C5DA1F000E9;
-	Wed,  1 Jul 2026 12:35:36 +0000 (UTC)
+	 Message-Id; b=iaP6B6r8/TAsa3KEVvQm/dZ12dmJNUzNZ7r9xuQ6DxnqwNQl8xfXDjk9hkL7tL4D9n+23OQ63DalRsF0FAU15XHHJUTTHb3Swg107g5RWi/ehKEYDdiUmuO4tO6Z5jJgVyUKHq9JEhvp19E+Hc75GVnFqzrxXbTiYkRSz9Pnnf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AbW19r7n; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A45DB1F000E9;
+	Wed,  1 Jul 2026 12:35:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782909336;
-	bh=CJQNdIVi/Q1P74CPDcCp+i08uA+8nWhJngkcnx8r1s0=;
+	s=k20260515; t=1782909342;
+	bh=htKuE3oPE33YqvkfTuTlu34HOPzBmE8oCW2LP7RQdRg=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=ZnbgQ2v3lT+qQ8RE3rnxpKNplm6LDhKyyS0bOdfJ+wSgvN5VUNh87jjG6K5p7xsdt
-	 HPrwlv5Y8eitA7X/0pP0E4qmwzxVEDHIdfNPKqleIheBfLaZPDR4W6ly5CI1MkNh8o
-	 Uo4BDxO6fj4Iaeo63Ih3bUBKCj8tBiCztQ0XbNFr1ow6Vg/jX+nRdU1pb9pQvZprPP
-	 dUmbvuhhGU/LJPHxMgUUWf6TIjyynKljYeyA+z6u3GnXqlPae37KyD4ug8bRZXI2qo
-	 t6I9K6ADE/fOwkCrTuy6yEJ4nZy7yBhafyMlMnsu6eNstwJ3Fcc1pSP9Y4XA0W4/6O
-	 57C6/LrFWlwdA==
+	b=AbW19r7nVgI7z6gAKyKTJ6uY16Iy1U7MPASyHiw9/WysJyoHSkU7NK9uLE3SjzVzm
+	 G2d0PjLPrSLW+OknR83W37rYv/ljgeGhFJ53coRr56UvK26nY/t/aF82KN8g88W7Pi
+	 mkDfvbI1Yg6k5fI2/fjEr2D1gIrdFTvwykZlunHqsWa6QZGuR4DGWoSA9i+9ONKGiZ
+	 ILcXr96w9qAL2jSALYXW/39aUA4AydzI7UMkDk91S4wY/F9kRpRxHvdrxUC1f4ezOC
+	 CwShCdaQe1KmHejmInUPAIf1OFcwzFhBENMLXUiysoW1wllheY7mk8evi3a/ktPxle
+	 sfsR5NNgL34qQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 06/12] phy: phy-mtk-dp: Support set_lanes in configure
- and properly cleanup
+Subject: Re: [PATCH 2/7] arm64: dts: mediatek: mt8173: Add and use UART
+ AP_DMA controller
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: conor+dt@kernel.org, linux-phy@lists.infradead.org, robh@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, vkoul@kernel.org
-In-Reply-To: <20260701122008.19509-7-angelogioacchino.delregno@collabora.com>
-References: <20260701122008.19509-1-angelogioacchino.delregno@collabora.com>
- <20260701122008.19509-7-angelogioacchino.delregno@collabora.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260701121929.19374-3-angelogioacchino.delregno@collabora.com>
+References: <20260701121929.19374-1-angelogioacchino.delregno@collabora.com>
+ <20260701121929.19374-3-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 12:35:35 +0000
-Message-Id: <20260701123536.6C5DA1F000E9@smtp.kernel.org>
+Date: Wed, 01 Jul 2026 12:35:42 +0000
+Message-Id: <20260701123542.A45DB1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,25 +72,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318542-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-318543-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:linux-phy@lists.infradead.org,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:vkoul@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,lists.freedesktop.org,vger.kernel.org,linaro.org,gmail.com];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -100,102 +99,70 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,collabora.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto,collabora.com:email,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3345E6EDB79
+X-Rspamd-Queue-Id: AF4286EDF3C
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Unconditional do-while loop in `mtk_dp_phy_disable_all_lanes` caus=
-es an out-of-bounds bitwise shift and undefined behavior when no lanes are =
-initially enabled.
-- [High] `mtk_dp_phy_disable_all_lanes` passes a bit index instead of a bit=
-mask to `FIELD_PREP`, failing to disable the correct lanes.
+- [Medium] Duplicate interrupt assignment (GIC_SPI 100) in the `apdma` node=
+ breaks UART3 RX DMA channel allocation.
 --
 
-commit 25cdd51bd1ac4d69a49e77d93a6b1374ba46dd3c
+commit bbd069e5de2e64963276afa1f5a62fd9508627a3
 Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-phy: phy-mtk-dp: Support set_lanes in configure and properly cleanup
+arm64: dts: mediatek: mt8173: Add and use UART AP_DMA controller
 
-Add support for enabling a specifically requested number of lanes
-in the .configure() callback and disable all lanes in power off
-and reset callbacks for proper hardware cleanup.
+This commit adds the AP_DMA controller to the devicetree for mt8173 and
+assigns the correct transmit and receive DMA channels to each of the four
+UART controllers.
 
-> diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy=
--mtk-dp.c
-> index 586e727956332..a2cd22b9da066 100644
-> --- a/drivers/phy/mediatek/phy-mtk-dp.c
-> +++ b/drivers/phy/mediatek/phy-mtk-dp.c
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8173.dtsi
+> index 78c2ccd5be132..345098359aa58 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
 [ ... ]
-> @@ -261,6 +267,35 @@ static int mtk_dp_phy_power_on(struct phy *phy)
->  	return 0;
->  }
+> @@ -673,6 +673,25 @@ gic: interrupt-controller@10221000 {
+>  				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+>  		};
 > =20
-> +static int mtk_dp_phy_disable_all_lanes(struct mtk_dp_phy *dp_phy)
-> +{
-> +	const struct mtk_dp_phy_pdata *pdata =3D dp_phy->pdata;
-> +	const u8 *regs =3D pdata->regs_dig_glb;
-> +	int ret;
-> +	u32 val;
+> +		apdma: dma-controller@11000300 {
+> +			compatible =3D "mediatek,mt8173-uart-dma", "mediatek,mt6577-uart-dma";
+> +			reg =3D <0 0x11000300 0 0x80>, <0 0x11000380 0 0x80>,
+> +			      <0 0x11000400 0 0x80>, <0 0x11000480 0 0x80>,
+> +			      <0 0x11000500 0 0x80>, <0 0x11000580 0 0x80>,
+> +			      <0 0x11000600 0 0x80>, <0 0x11000680 0 0x80>;
+> +			interrupts =3D <GIC_SPI 95 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 96 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 97 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 98 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 99 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 100 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 101 IRQ_TYPE_LEVEL_LOW>,
+> +				     <GIC_SPI 100 IRQ_TYPE_LEVEL_LOW>;
+[Severity: Medium]
+Is this intentional to reuse GIC_SPI 100 here? The 8th interrupt in this li=
+st
+(for UART3 RX, channel 7) duplicates the 6th interrupt (UART2 RX, channel 5=
+).
+
+If the driver requests these IRQs without IRQF_SHARED, requesting the same
+IRQ again for UART3 RX could fail with -EBUSY and prevent DMA initialization
+for that channel. Should this be GIC_SPI 102 instead?
+
+> +			clocks =3D <&pericfg CLK_PERI_AP_DMA>;
+> +			#dma-cells =3D <1>;
+> +			dma-requests =3D <8>;
+> +		};
 > +
-> +	ret =3D regmap_read(dp_phy->regmap, pdata->off_dig_glb + regs[DP_PHYD_T=
-X_CTL_0], &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Get mask of currently enabled lane */
-> +	val =3D FIELD_GET(PHYD_TX_LN_EN, val);
-> +
-> +	/* Disable all lanes (needs to be done one by one, from last to first) =
-*/
-> +	do {
-> +		u32 lane_num =3D fls(val) - 1;
-> +		val &=3D ~BIT(lane_num);
-                 ^^^^^^^^^^^^^^^^^^^^
-
-[Severity: High]
-Does this cause undefined behavior if val is initially 0?
-
-If the PHY register reports 0 enabled lanes (which can happen after a
-hardware reset or during initial boot), val will be 0. Since this is an
-unconditional do-while loop, fls(0) will return 0, leading to lane_num
-evaluating to UINT_MAX.
-
-The subsequent BIT(lane_num) attempt would result in an out-of-bounds
-bitwise shift. Could this be changed to a while loop, or check if val is 0
-before entering the loop?
-
-> +
-> +		ret =3D regmap_clear_bits(dp_phy->regmap,
-> +					pdata->off_dig_glb + regs[DP_PHYD_TX_CTL_0],
-> +					FIELD_PREP(PHYD_TX_LN_EN, lane_num));
-                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-[Severity: High]
-Does this clear the correct lanes in the register?
-
-It looks like the bit index lane_num is passed directly to FIELD_PREP here
-instead of the bitmask BIT(lane_num), which was correctly used in
-mtk_dp_phy_configure().
-
-If lane_num is 3, FIELD_PREP(GENMASK(7, 4), 3) will generate 0x30, which
-clears lanes 0 and 1 instead of 0x80 (which would clear lane 3). This seems
-like it might repeatedly attempt to clear the wrong lanes and leave higher
-lanes enabled.
-
-> +		if (ret)
-> +			return ret;
-> +	} while (val);
-> +
-> +	return 0;
-> +}
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701122008.1950=
-9-1-angelogioacchino.delregno@collabora.com?part=3D6
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701121929.1937=
+4-1-angelogioacchino.delregno@collabora.com?part=3D2
 
