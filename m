@@ -1,91 +1,83 @@
-Return-Path: <devicetree+bounces-318485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318515-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id aQpcMiAKRWqH5goAu9opvQ
-	(envelope-from <devicetree+bounces-318485-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:37:52 +0200
+	id cuB/COkMRWqo5woAu9opvQ
+	(envelope-from <devicetree+bounces-318515-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:49:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DE476ED6DD
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:37:52 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 898636ED93D
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:49:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=FDRdcObX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318485-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318485-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b="i62zToy/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318515-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318515-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 380FF32372B9
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:26:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 46B9A31B94B1
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:30:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9862B4BCAD1;
-	Wed,  1 Jul 2026 12:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13654D9913;
+	Wed,  1 Jul 2026 12:21:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2C1B4BCACB;
-	Wed,  1 Jul 2026 12:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D594D90C8;
+	Wed,  1 Jul 2026 12:21:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782908459; cv=none; b=mSdEWK/vYlvB2KZSj2sNCxCe+sOknsG6MJ+gUkJtiHUO/q76MgV2omr+nwGSw2NPYu9PvCLzjeKwzq2o5cpkcu1BS3vK6B/C/3H9VnoCI7S/0a5p57durTqJ7yGpSqy2GElW7rZO+AUUcWtfy3P+tiS6la5zHb9c+1KCYWx+9Lo=
+	t=1782908505; cv=none; b=b+g6E4tYznrDzM2XRrzh3F50eoMDNffYJaSh4ru6JbkKy12WbopnDWgrocCdiHsy9tT9kqF4XMfpIsnPV0r5hD59esDR6+emym8KyIMmaJBB/pjtc9SpBa6XU6oQCab8RgRwuuQDUWzKboGkI68u7DAsY8OZVi1K/M9sD3CNrCk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782908459; c=relaxed/simple;
-	bh=MH9rZNYjTexT9/FSQg9LOO/88ptllu4jdjcPjbmJHTI=;
+	s=arc-20240116; t=1782908505; c=relaxed/simple;
+	bh=63XpRCuUyW0iUnioafKVIqZuEnXWAFQrbF5Sxb2G5oc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GQTpIMQNTsbEA7uckjlDek20zF3U58OOlK0fyreGfg5fU9QEui7DlXsg7kB+3dWVIWwy7xlXFdbPOJNEJ1dg6NRkJiNGJsQDIusvqPu2sLqHJX9xe4FPrWdQKhIF8RrJjJY7ge+sWkZScm2HQaiMPOLDcePH3xYaGrX8yQhb4lQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FDRdcObX; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=ByTkbEIF68QXGOtUj9QnQCMM3zXEPhipt7ejZGk+0R8RAMU5AvNdjxTLrqAMxt38ajkYx04A77FSWev3FL6IB6YUVqgE2VkpbwK+5E7wfN8ilnxYEUQer2SMh086I4XedlWVkmw/sflAnV/U1QjD5aI4grTJC3xncZSycJUJ0z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=i62zToy/; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1782908456;
-	bh=MH9rZNYjTexT9/FSQg9LOO/88ptllu4jdjcPjbmJHTI=;
+	s=mail; t=1782908501;
+	bh=63XpRCuUyW0iUnioafKVIqZuEnXWAFQrbF5Sxb2G5oc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FDRdcObXoQGxpSBq5tszZW0ObJHRVfa1cpxLK2fqJaguAl4arNEC8PkiDPWOxEPS2
-	 kPT3nTIPZucvglyTd4QyXT7CRzScrN9bA1pPwRu/SCln3UkIs17qth1mlxI7f/u21h
-	 Yrk2sLk8MfrIVWu5oFcok/amzu4dcbU2IPjodTIyR2FlR6PU+GknNRjvMYgP/nUU+X
-	 M0N97n2pUUBEH+NN4WT+vqAP9vcFBa81t6EvqPShuYnhPLEW9w4qnWiY3UcO6OIDzz
-	 KvAH3judd6aJtkXr0hCd7cc219UNmYi4OhUcJED2BjR85rMn4oKCFnooEAA4544XIe
-	 HRb9uvJB5S/5Q==
+	b=i62zToy/BplLqKl745bZwL2rD4p+c+vf9Rq+xW1pkTE7tqi06xXCjGKSREv3GNfxU
+	 BxJeuKTL3fVbIvncWyfPBIpoqnqyK/SB5bZeqztIe6FNzeCkKI8hxupq0AAIossD6g
+	 AY8MumIyH0HeKXHbl+09Cjp+G60ARfqTXY5fbIIrR9GaxE9nFUY/yDm+We1otPZFRd
+	 hJ17Iq6zUj83EF+aQyVfTCXQrqLN2NmrcPXp5HrKxzuU+TAeweEBv1yT0Uic7pHcgz
+	 X+IYOB1n8KT2mxqEJAJRMA+kSkQxQXeMoxLVUfkXa+/C3rE8cnhg9kU3mIHCypkbyF
+	 Vm0vBTEf/fkrA==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0BBC317E116D;
-	Wed,  1 Jul 2026 14:20:55 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7BDE917E1583;
+	Wed,  1 Jul 2026 14:21:40 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunkuang.hu@kernel.org
 Cc: p.zabel@pengutronix.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
 	maarten.lankhorst@linux.intel.com,
 	mripard@kernel.org,
 	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
 	matthias.bgg@gmail.com,
 	angelogioacchino.delregno@collabora.com,
-	andi.shyti@kernel.org,
-	djakov@kernel.org,
-	broonie@kernel.org,
-	jitao.shi@mediatek.com,
-	ck.hu@mediatek.com,
 	dri-devel@lists.freedesktop.org,
 	linux-mediatek@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
 	linux-arm-kernel@lists.infradead.org,
 	justin.yeh@mediatek.com,
 	jason-jh.lin@mediatek.com,
 	kernel@collabora.com
-Subject: [PATCH 6/6] soc: mediatek: mtk-mmsys: Use MMSYS_ROUTE() in default routing table
-Date: Wed,  1 Jul 2026 14:20:43 +0200
-Message-ID: <20260701122043.19612-7-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 29/42] drm/mediatek: Add support for Display Controller exDMA component
+Date: Wed,  1 Jul 2026 14:20:44 +0200
+Message-ID: <20260701122057.19648-30-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260701122043.19612-1-angelogioacchino.delregno@collabora.com>
-References: <20260701122043.19612-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
+References: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,21 +93,21 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[pengutronix.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,foss.st.com,collabora.com,mediatek.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,st-md-mailman.stormreply.com];
-	TAGGED_FROM(0.00)[bounces-318485-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,mediatek.com];
+	TAGGED_FROM(0.00)[bounces-318515-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:andi.shyti@kernel.org,m:djakov@kernel.org,m:broonie@kernel.org,m:jitao.shi@mediatek.com,m:ck.hu@mediatek.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
@@ -123,316 +115,505 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,vger.kernel.org:from_smtp,mediatek.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6DE476ED6DD
+X-Rspamd-Queue-Id: 898636ED93D
 
-All of the mtk_mmsys_routes tables for all SoCs were converted to
-use the MMSYS_ROUTE() macro but the default one used for MT2701,
-MT2712 and SoCs from that generation was not: convert this one as
-well.
+Add support for the Display Overlay extended DMA engine (exDMA) as
+found in the MediaTek Kompanio Ultra MT8196, Genio Pro 5100 MT8894,
+Dimensity 9400 MT6991 and others.
 
-This brings no functional change.
+This is a DMA engine and its purpose is to configure the Display
+Controller to read data from DRAM and also includes color transfer
+functions to process pixels into a consistent color domain.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- drivers/soc/mediatek/mtk-mmsys.h | 279 +++++++++++++------------------
- 1 file changed, 114 insertions(+), 165 deletions(-)
+ drivers/gpu/drm/mediatek/Makefile         |   1 +
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.c   |  14 +
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h   |  14 +
+ drivers/gpu/drm/mediatek/mtk_disp_exdma.c | 344 ++++++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c    |   3 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h    |   1 +
+ include/linux/soc/mediatek/mtk-mmsys.h    |   1 +
+ 7 files changed, 378 insertions(+)
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_exdma.c
 
-diff --git a/drivers/soc/mediatek/mtk-mmsys.h b/drivers/soc/mediatek/mtk-mmsys.h
-index b37d859b6c14..d534d43aad6f 100644
---- a/drivers/soc/mediatek/mtk-mmsys.h
-+++ b/drivers/soc/mediatek/mtk-mmsys.h
-@@ -157,171 +157,120 @@ struct mtk_mmsys_driver_data {
-  * to an independent table.
-  */
- static const struct mtk_mmsys_routes mmsys_default_routing_table[] = {
--	{
--		DDP_COMPONENT_BLS, DDP_COMPONENT_DSI0,
--		DISP_REG_CONFIG_OUT_SEL, BLS_RDMA1_DSI_DPI_MASK,
--		BLS_TO_DSI_RDMA1_TO_DPI1
--	}, {
--		DDP_COMPONENT_BLS, DDP_COMPONENT_DSI0,
--		DISP_REG_CONFIG_DSI_SEL, DSI_SEL_IN_MASK,
--		DSI_SEL_IN_BLS
--	}, {
--		DDP_COMPONENT_BLS, DDP_COMPONENT_DPI0,
--		DISP_REG_CONFIG_OUT_SEL, BLS_RDMA1_DSI_DPI_MASK,
--		BLS_TO_DPI_RDMA1_TO_DSI
--	}, {
--		DDP_COMPONENT_BLS, DDP_COMPONENT_DPI0,
--		DISP_REG_CONFIG_DSI_SEL, DSI_SEL_IN_MASK,
--		DSI_SEL_IN_RDMA
--	}, {
--		DDP_COMPONENT_BLS, DDP_COMPONENT_DPI0,
--		DISP_REG_CONFIG_DPI_SEL, DPI_SEL_IN_MASK,
--		DPI_SEL_IN_BLS
--	}, {
--		DDP_COMPONENT_GAMMA, DDP_COMPONENT_RDMA1,
--		DISP_REG_CONFIG_DISP_GAMMA_MOUT_EN, GAMMA_MOUT_EN_RDMA1,
--		GAMMA_MOUT_EN_RDMA1
--	}, {
--		DDP_COMPONENT_OD0, DDP_COMPONENT_RDMA0,
--		DISP_REG_CONFIG_DISP_OD_MOUT_EN, OD_MOUT_EN_RDMA0,
--		OD_MOUT_EN_RDMA0
--	}, {
--		DDP_COMPONENT_OD1, DDP_COMPONENT_RDMA1,
--		DISP_REG_CONFIG_DISP_OD_MOUT_EN, OD1_MOUT_EN_RDMA1,
--		OD1_MOUT_EN_RDMA1
--	}, {
--		DDP_COMPONENT_OVL0, DDP_COMPONENT_COLOR0,
--		DISP_REG_CONFIG_DISP_OVL0_MOUT_EN, OVL0_MOUT_EN_COLOR0,
--		OVL0_MOUT_EN_COLOR0
--	}, {
--		DDP_COMPONENT_OVL0, DDP_COMPONENT_COLOR0,
--		DISP_REG_CONFIG_DISP_COLOR0_SEL_IN, COLOR0_SEL_IN_OVL0,
--		COLOR0_SEL_IN_OVL0
--	}, {
--		DDP_COMPONENT_OVL0, DDP_COMPONENT_RDMA0,
--		DISP_REG_CONFIG_DISP_OVL_MOUT_EN, OVL_MOUT_EN_RDMA,
--		OVL_MOUT_EN_RDMA
--	}, {
--		DDP_COMPONENT_OVL1, DDP_COMPONENT_COLOR1,
--		DISP_REG_CONFIG_DISP_OVL1_MOUT_EN, OVL1_MOUT_EN_COLOR1,
--		OVL1_MOUT_EN_COLOR1
--	}, {
--		DDP_COMPONENT_OVL1, DDP_COMPONENT_COLOR1,
--		DISP_REG_CONFIG_DISP_COLOR1_SEL_IN, COLOR1_SEL_IN_OVL1,
--		COLOR1_SEL_IN_OVL1
--	}, {
--		DDP_COMPONENT_RDMA0, DDP_COMPONENT_DPI0,
--		DISP_REG_CONFIG_DISP_RDMA0_SOUT_EN, RDMA0_SOUT_MASK,
--		RDMA0_SOUT_DPI0
--	}, {
--		DDP_COMPONENT_RDMA0, DDP_COMPONENT_DPI1,
--		DISP_REG_CONFIG_DISP_RDMA0_SOUT_EN, RDMA0_SOUT_MASK,
--		RDMA0_SOUT_DPI1
--	}, {
--		DDP_COMPONENT_RDMA0, DDP_COMPONENT_DSI1,
--		DISP_REG_CONFIG_DISP_RDMA0_SOUT_EN, RDMA0_SOUT_MASK,
--		RDMA0_SOUT_DSI1
--	}, {
--		DDP_COMPONENT_RDMA0, DDP_COMPONENT_DSI2,
--		DISP_REG_CONFIG_DISP_RDMA0_SOUT_EN, RDMA0_SOUT_MASK,
--		RDMA0_SOUT_DSI2
--	}, {
--		DDP_COMPONENT_RDMA0, DDP_COMPONENT_DSI3,
--		DISP_REG_CONFIG_DISP_RDMA0_SOUT_EN, RDMA0_SOUT_MASK,
--		RDMA0_SOUT_DSI3
--	}, {
--		DDP_COMPONENT_RDMA1, DDP_COMPONENT_DPI0,
--		DISP_REG_CONFIG_DISP_RDMA1_SOUT_EN, RDMA1_SOUT_MASK,
--		RDMA1_SOUT_DPI0
--	}, {
--		DDP_COMPONENT_RDMA1, DDP_COMPONENT_DPI0,
--		DISP_REG_CONFIG_DPI_SEL_IN, DPI0_SEL_IN_MASK,
--		DPI0_SEL_IN_RDMA1
--	}, {
--		DDP_COMPONENT_RDMA1, DDP_COMPONENT_DPI1,
--		DISP_REG_CONFIG_DISP_RDMA1_SOUT_EN, RDMA1_SOUT_MASK,
--		RDMA1_SOUT_DPI1
--	}, {
--		DDP_COMPONENT_RDMA1, DDP_COMPONENT_DPI1,
--		DISP_REG_CONFIG_DPI_SEL_IN, DPI1_SEL_IN_MASK,
--		DPI1_SEL_IN_RDMA1
--	}, {
--		DDP_COMPONENT_RDMA1, DDP_COMPONENT_DSI0,
--		DISP_REG_CONFIG_DSIE_SEL_IN, DSI0_SEL_IN_MASK,
--		DSI0_SEL_IN_RDMA1
--	}, {
--		DDP_COMPONENT_RDMA1, DDP_COMPONENT_DSI1,
--		DISP_REG_CONFIG_DISP_RDMA1_SOUT_EN, RDMA1_SOUT_MASK,
--		RDMA1_SOUT_DSI1
--	}, {
--		DDP_COMPONENT_RDMA1, DDP_COMPONENT_DSI1,
--		DISP_REG_CONFIG_DSIO_SEL_IN, DSI1_SEL_IN_MASK,
--		DSI1_SEL_IN_RDMA1
--	}, {
--		DDP_COMPONENT_RDMA1, DDP_COMPONENT_DSI2,
--		DISP_REG_CONFIG_DISP_RDMA1_SOUT_EN, RDMA1_SOUT_MASK,
--		RDMA1_SOUT_DSI2
--	}, {
--		DDP_COMPONENT_RDMA1, DDP_COMPONENT_DSI2,
--		DISP_REG_CONFIG_DSIE_SEL_IN, DSI2_SEL_IN_MASK,
--		DSI2_SEL_IN_RDMA1
--	}, {
--		DDP_COMPONENT_RDMA1, DDP_COMPONENT_DSI3,
--		DISP_REG_CONFIG_DISP_RDMA1_SOUT_EN, RDMA1_SOUT_MASK,
--		RDMA1_SOUT_DSI3
--	}, {
--		DDP_COMPONENT_RDMA1, DDP_COMPONENT_DSI3,
--		DISP_REG_CONFIG_DSIO_SEL_IN, DSI3_SEL_IN_MASK,
--		DSI3_SEL_IN_RDMA1
--	}, {
--		DDP_COMPONENT_RDMA2, DDP_COMPONENT_DPI0,
--		DISP_REG_CONFIG_DISP_RDMA2_SOUT, RDMA2_SOUT_MASK,
--		RDMA2_SOUT_DPI0
--	}, {
--		DDP_COMPONENT_RDMA2, DDP_COMPONENT_DPI0,
--		DISP_REG_CONFIG_DPI_SEL_IN, DPI0_SEL_IN_MASK,
--		DPI0_SEL_IN_RDMA2
--	}, {
--		DDP_COMPONENT_RDMA2, DDP_COMPONENT_DPI1,
--		DISP_REG_CONFIG_DISP_RDMA2_SOUT, RDMA2_SOUT_MASK,
--		RDMA2_SOUT_DPI1
--	}, {
--		DDP_COMPONENT_RDMA2, DDP_COMPONENT_DPI1,
--		DISP_REG_CONFIG_DPI_SEL_IN, DPI1_SEL_IN_MASK,
--		DPI1_SEL_IN_RDMA2
--	}, {
--		DDP_COMPONENT_RDMA2, DDP_COMPONENT_DSI0,
--		DISP_REG_CONFIG_DSIE_SEL_IN, DSI0_SEL_IN_MASK,
--		DSI0_SEL_IN_RDMA2
--	}, {
--		DDP_COMPONENT_RDMA2, DDP_COMPONENT_DSI1,
--		DISP_REG_CONFIG_DISP_RDMA2_SOUT, RDMA2_SOUT_MASK,
--		RDMA2_SOUT_DSI1
--	}, {
--		DDP_COMPONENT_RDMA2, DDP_COMPONENT_DSI1,
--		DISP_REG_CONFIG_DSIO_SEL_IN, DSI1_SEL_IN_MASK,
--		DSI1_SEL_IN_RDMA2
--	}, {
--		DDP_COMPONENT_RDMA2, DDP_COMPONENT_DSI2,
--		DISP_REG_CONFIG_DISP_RDMA2_SOUT, RDMA2_SOUT_MASK,
--		RDMA2_SOUT_DSI2
--	}, {
--		DDP_COMPONENT_RDMA2, DDP_COMPONENT_DSI2,
--		DISP_REG_CONFIG_DSIE_SEL_IN, DSI2_SEL_IN_MASK,
--		DSI2_SEL_IN_RDMA2
--	}, {
--		DDP_COMPONENT_RDMA2, DDP_COMPONENT_DSI3,
--		DISP_REG_CONFIG_DISP_RDMA2_SOUT, RDMA2_SOUT_MASK,
--		RDMA2_SOUT_DSI3
--	}, {
--		DDP_COMPONENT_RDMA2, DDP_COMPONENT_DSI3,
--		DISP_REG_CONFIG_DSIO_SEL_IN, DSI3_SEL_IN_MASK,
--		DSI3_SEL_IN_RDMA2
--	}, {
--		DDP_COMPONENT_UFOE, DDP_COMPONENT_DSI0,
--		DISP_REG_CONFIG_DISP_UFOE_MOUT_EN, UFOE_MOUT_EN_DSI0,
--		UFOE_MOUT_EN_DSI0
--	}
-+	MMSYS_ROUTE(BLS, 0, DSI, 0,
-+		    DISP_REG_CONFIG_OUT_SEL, BLS_RDMA1_DSI_DPI_MASK,
-+		    BLS_TO_DSI_RDMA1_TO_DPI1),
-+	MMSYS_ROUTE(BLS, 0, DSI, 0,
-+		    DISP_REG_CONFIG_DSI_SEL, DSI_SEL_IN_MASK,
-+		    DSI_SEL_IN_BLS),
-+	MMSYS_ROUTE(BLS, 0, DPI, 0,
-+		    DISP_REG_CONFIG_OUT_SEL, BLS_RDMA1_DSI_DPI_MASK,
-+		    BLS_TO_DPI_RDMA1_TO_DSI),
-+	MMSYS_ROUTE(BLS, 0, DPI, 0,
-+		    DISP_REG_CONFIG_DSI_SEL, DSI_SEL_IN_MASK,
-+		    DSI_SEL_IN_RDMA),
-+	MMSYS_ROUTE(BLS, 0, DPI, 0,
-+		    DISP_REG_CONFIG_DPI_SEL, DPI_SEL_IN_MASK,
-+		    DPI_SEL_IN_BLS),
-+	MMSYS_ROUTE(GAMMA, 0, RDMA, 1,
-+		    DISP_REG_CONFIG_DISP_GAMMA_MOUT_EN, GAMMA_MOUT_EN_RDMA1,
-+		    GAMMA_MOUT_EN_RDMA1),
-+	MMSYS_ROUTE(OD, 0, RDMA, 0,
-+		    DISP_REG_CONFIG_DISP_OD_MOUT_EN, OD_MOUT_EN_RDMA0,
-+		    OD_MOUT_EN_RDMA0),
-+	MMSYS_ROUTE(OD, 1, RDMA, 1,
-+		    DISP_REG_CONFIG_DISP_OD_MOUT_EN, OD1_MOUT_EN_RDMA1,
-+		    OD1_MOUT_EN_RDMA1),
-+	MMSYS_ROUTE(OVL, 0, COLOR, 0,
-+		    DISP_REG_CONFIG_DISP_OVL0_MOUT_EN, OVL0_MOUT_EN_COLOR0,
-+		    OVL0_MOUT_EN_COLOR0),
-+	MMSYS_ROUTE(OVL, 0, COLOR, 0,
-+		    DISP_REG_CONFIG_DISP_COLOR0_SEL_IN, COLOR0_SEL_IN_OVL0,
-+		    COLOR0_SEL_IN_OVL0),
-+	MMSYS_ROUTE(OVL, 0, RDMA, 0,
-+		    DISP_REG_CONFIG_DISP_OVL_MOUT_EN, OVL_MOUT_EN_RDMA,
-+		    OVL_MOUT_EN_RDMA),
-+	MMSYS_ROUTE(OVL, 1, COLOR, 1,
-+		    DISP_REG_CONFIG_DISP_OVL1_MOUT_EN, OVL1_MOUT_EN_COLOR1,
-+		    OVL1_MOUT_EN_COLOR1),
-+	MMSYS_ROUTE(OVL, 1, COLOR, 1,
-+		    DISP_REG_CONFIG_DISP_COLOR1_SEL_IN, COLOR1_SEL_IN_OVL1,
-+		    COLOR1_SEL_IN_OVL1),
-+	MMSYS_ROUTE(RDMA, 0, DPI, 0,
-+		    DISP_REG_CONFIG_DISP_RDMA0_SOUT_EN, RDMA0_SOUT_MASK,
-+		    RDMA0_SOUT_DPI0),
-+	MMSYS_ROUTE(RDMA, 0, DPI, 1,
-+		    DISP_REG_CONFIG_DISP_RDMA0_SOUT_EN, RDMA0_SOUT_MASK,
-+		    RDMA0_SOUT_DPI1),
-+	MMSYS_ROUTE(RDMA, 0, DSI, 1,
-+		    DISP_REG_CONFIG_DISP_RDMA0_SOUT_EN, RDMA0_SOUT_MASK,
-+		    RDMA0_SOUT_DSI1),
-+	MMSYS_ROUTE(RDMA, 0, DSI, 2,
-+		    DISP_REG_CONFIG_DISP_RDMA0_SOUT_EN, RDMA0_SOUT_MASK,
-+		    RDMA0_SOUT_DSI2),
-+	MMSYS_ROUTE(RDMA, 0, DSI, 3,
-+		    DISP_REG_CONFIG_DISP_RDMA0_SOUT_EN, RDMA0_SOUT_MASK,
-+		    RDMA0_SOUT_DSI3),
-+	MMSYS_ROUTE(RDMA, 1, DPI, 0,
-+		    DISP_REG_CONFIG_DISP_RDMA1_SOUT_EN, RDMA1_SOUT_MASK,
-+		    RDMA1_SOUT_DPI0),
-+	MMSYS_ROUTE(RDMA, 1, DPI, 0,
-+		    DISP_REG_CONFIG_DPI_SEL_IN, DPI0_SEL_IN_MASK,
-+		    DPI0_SEL_IN_RDMA1),
-+	MMSYS_ROUTE(RDMA, 1, DPI, 1,
-+		    DISP_REG_CONFIG_DISP_RDMA1_SOUT_EN, RDMA1_SOUT_MASK,
-+		    RDMA1_SOUT_DPI1),
-+	MMSYS_ROUTE(RDMA, 1, DPI, 1,
-+		    DISP_REG_CONFIG_DPI_SEL_IN, DPI1_SEL_IN_MASK,
-+		    DPI1_SEL_IN_RDMA1),
-+	MMSYS_ROUTE(RDMA, 1, DSI, 0,
-+		    DISP_REG_CONFIG_DSIE_SEL_IN, DSI0_SEL_IN_MASK,
-+		    DSI0_SEL_IN_RDMA1),
-+	MMSYS_ROUTE(RDMA, 1, DSI, 1,
-+		    DISP_REG_CONFIG_DISP_RDMA1_SOUT_EN, RDMA1_SOUT_MASK,
-+		    RDMA1_SOUT_DSI1),
-+	MMSYS_ROUTE(RDMA, 1, DSI, 1,
-+		    DISP_REG_CONFIG_DSIO_SEL_IN, DSI1_SEL_IN_MASK,
-+		    DSI1_SEL_IN_RDMA1),
-+	MMSYS_ROUTE(RDMA, 1, DSI, 2,
-+		    DISP_REG_CONFIG_DISP_RDMA1_SOUT_EN, RDMA1_SOUT_MASK,
-+		    RDMA1_SOUT_DSI2),
-+	MMSYS_ROUTE(RDMA, 1, DSI, 2,
-+		    DISP_REG_CONFIG_DSIE_SEL_IN, DSI2_SEL_IN_MASK,
-+		    DSI2_SEL_IN_RDMA1),
-+	MMSYS_ROUTE(RDMA, 1, DSI, 3,
-+		    DISP_REG_CONFIG_DISP_RDMA1_SOUT_EN, RDMA1_SOUT_MASK,
-+		    RDMA1_SOUT_DSI3),
-+	MMSYS_ROUTE(RDMA, 1, DSI, 3,
-+		    DISP_REG_CONFIG_DSIO_SEL_IN, DSI3_SEL_IN_MASK,
-+		    DSI3_SEL_IN_RDMA1),
-+	MMSYS_ROUTE(RDMA, 2, DPI, 0,
-+		    DISP_REG_CONFIG_DISP_RDMA2_SOUT, RDMA2_SOUT_MASK,
-+		    RDMA2_SOUT_DPI0),
-+	MMSYS_ROUTE(RDMA, 2, DPI, 0,
-+		    DISP_REG_CONFIG_DPI_SEL_IN, DPI0_SEL_IN_MASK,
-+		    DPI0_SEL_IN_RDMA2),
-+	MMSYS_ROUTE(RDMA, 2, DPI, 1,
-+		    DISP_REG_CONFIG_DISP_RDMA2_SOUT, RDMA2_SOUT_MASK,
-+		    RDMA2_SOUT_DPI1),
-+	MMSYS_ROUTE(RDMA, 2, DPI, 1,
-+		    DISP_REG_CONFIG_DPI_SEL_IN, DPI1_SEL_IN_MASK,
-+		    DPI1_SEL_IN_RDMA2),
-+	MMSYS_ROUTE(RDMA, 2, DSI, 0,
-+		    DISP_REG_CONFIG_DSIE_SEL_IN, DSI0_SEL_IN_MASK,
-+		    DSI0_SEL_IN_RDMA2),
-+	MMSYS_ROUTE(RDMA, 2, DSI, 1,
-+		    DISP_REG_CONFIG_DISP_RDMA2_SOUT, RDMA2_SOUT_MASK,
-+		    RDMA2_SOUT_DSI1),
-+	MMSYS_ROUTE(RDMA, 2, DSI, 1,
-+		    DISP_REG_CONFIG_DSIO_SEL_IN, DSI1_SEL_IN_MASK,
-+		    DSI1_SEL_IN_RDMA2),
-+	MMSYS_ROUTE(RDMA, 2, DSI, 2,
-+		    DISP_REG_CONFIG_DISP_RDMA2_SOUT, RDMA2_SOUT_MASK,
-+		    RDMA2_SOUT_DSI2),
-+	MMSYS_ROUTE(RDMA, 2, DSI, 2,
-+		    DISP_REG_CONFIG_DSIE_SEL_IN, DSI2_SEL_IN_MASK,
-+		    DSI2_SEL_IN_RDMA2),
+diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek/Makefile
+index a3c1285e8f33..5506f306a7b6 100644
+--- a/drivers/gpu/drm/mediatek/Makefile
++++ b/drivers/gpu/drm/mediatek/Makefile
+@@ -7,6 +7,7 @@ mediatek-drm-y := mtk_crtc.o \
+ 		  mtk_disp_ccorr.o \
+ 		  mtk_disp_color.o \
+ 		  mtk_disp_dsc.o \
++		  mtk_disp_exdma.o \
+ 		  mtk_disp_gamma.o \
+ 		  mtk_disp_merge.o \
+ 		  mtk_disp_ovl.o \
+diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
+index 6a312f3ddb09..9896420f902d 100644
+--- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
++++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
+@@ -308,6 +308,18 @@ static const struct mtk_ddp_comp_funcs ddp_dvo = {
+ 	.encoder_index = mtk_dvo_encoder_index,
  };
  
- #endif /* __SOC_MEDIATEK_MTK_MMSYS_H */
++static const struct mtk_ddp_comp_funcs ddp_exdma = {
++	.clk_enable = mtk_exdma_clk_enable,
++	.clk_disable = mtk_exdma_clk_disable,
++	.config = mtk_exdma_config,
++	.start = mtk_exdma_start,
++	.stop = mtk_exdma_stop,
++	.layer_config = mtk_exdma_layer_config,
++	.layer_nr = mtk_exdma_layer_nr,
++	.get_formats = mtk_exdma_get_formats,
++	.get_num_formats = mtk_exdma_get_num_formats,
++};
++
+ static const struct mtk_ddp_comp_funcs ddp_gamma = {
+ 	.clk_enable = mtk_gamma_clk_enable,
+ 	.clk_disable = mtk_gamma_clk_disable,
+@@ -434,6 +446,7 @@ static const char * const mtk_ddp_comp_stem[MTK_DDP_COMP_TYPE_MAX] = {
+ 	[MTK_DISP_COLOR] = "color",
+ 	[MTK_DISP_DITHER] = "dither",
+ 	[MTK_DISP_DSC] = "dsc",
++	[MTK_DISP_EXDMA] = "exdma",
+ 	[MTK_DISP_GAMMA] = "gamma",
+ 	[MTK_DISP_MERGE] = "merge",
+ 	[MTK_DISP_MUTEX] = "mutex",
+@@ -460,6 +473,7 @@ static const struct mtk_ddp_comp_funcs *mtk_ddp_funcs[MTK_DDP_COMP_TYPE_MAX] = {
+ 	[MTK_DISP_COLOR]		= &ddp_color,
+ 	[MTK_DISP_DITHER]		= &ddp_dither,
+ 	[MTK_DISP_DSC]			= &ddp_dsc,
++	[MTK_DISP_EXDMA]		= &ddp_exdma,
+ 	[MTK_DISP_GAMMA]		= &ddp_gamma,
+ 	[MTK_DISP_MERGE]		= &ddp_merge,
+ 	[MTK_DISP_OD]			= &ddp_od,
+diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
+index e834bf17d86c..df4357b0954b 100644
+--- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
++++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
+@@ -82,6 +82,20 @@ void mtk_dvo_start(struct device *dev);
+ void mtk_dvo_stop(struct device *dev);
+ unsigned int mtk_dvo_encoder_index(struct device *dev);
+ 
++int mtk_exdma_clk_enable(struct mtk_ddp_comp *comp);
++void mtk_exdma_clk_disable(struct mtk_ddp_comp *comp);
++void mtk_exdma_start(struct device *dev);
++void mtk_exdma_stop(struct device *dev);
++void mtk_exdma_config(struct mtk_ddp_comp *comp, unsigned int w,
++			   unsigned int h, unsigned int vrefresh,
++			   unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
++void mtk_exdma_layer_config(struct device *dev, unsigned int idx,
++				 struct mtk_plane_state *state,
++				 struct cmdq_pkt *cmdq_pkt);
++unsigned int mtk_exdma_layer_nr(struct device *dev, int pipeline_index);
++const u32 *mtk_exdma_get_formats(struct device *dev);
++size_t mtk_exdma_get_num_formats(struct device *dev);
++
+ int mtk_gamma_clk_enable(struct mtk_ddp_comp *comp);
+ void mtk_gamma_clk_disable(struct mtk_ddp_comp *comp);
+ void mtk_gamma_config(struct mtk_ddp_comp *comp, unsigned int w,
+diff --git a/drivers/gpu/drm/mediatek/mtk_disp_exdma.c b/drivers/gpu/drm/mediatek/mtk_disp_exdma.c
+new file mode 100644
+index 000000000000..c06eb85ebc2b
+--- /dev/null
++++ b/drivers/gpu/drm/mediatek/mtk_disp_exdma.c
+@@ -0,0 +1,344 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (c) 2025 MediaTek Inc.
++ * Copyright (c) 2026 Collabora Ltd.
++ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
++ */
++
++#include <drm/drm_blend.h>
++#include <drm/drm_framebuffer.h>
++#include <drm/drm_fourcc.h>
++#include <linux/clk.h>
++#include <linux/component.h>
++#include <linux/module.h>
++#include <linux/of_address.h>
++#include <linux/of_device.h>
++#include <linux/of_platform.h>
++#include <linux/platform_device.h>
++#include <linux/pm_runtime.h>
++#include <linux/soc/mediatek/mtk-cmdq.h>
++
++#include "mtk_disp_drv.h"
++#include "mtk_disp_ovl.h"
++#include "mtk_drm_drv.h"
++
++#define DISP_REG_OVL_EXDMA_EN_CON		0xc
++#  define OVL_EXDMA_OP_8BIT_MODE			BIT(4)
++#  define OVL_EXDMA_HG_FOVL_EXDMA_CK_ON			BIT(8)
++#  define OVL_EXDMA_HF_FOVL_EXDMA_CK_ON			BIT(10)
++#define DISP_REG_OVL_EXDMA_DATAPATH_CON		0x014
++#  define OVL_EXDMA_DATAPATH_CON_LAYER_SMI_ID_EN	BIT(0)
++#  define OVL_EXDMA_DATAPATH_CON_GCLAST_EN		BIT(24)
++#  define OVL_EXDMA_DATAPATH_CON_HDR_GCLAST_EN		BIT(25)
++#define DISP_REG_OVL_EXDMA_EN			0x020
++#  define OVL_EXDMA_EN					BIT(0)
++#  define OVL_EXDMA_FORCE_RELAY_MODE			BIT(4)
++#define DISP_REG_OVL_EXDMA_RST			0x024
++#  define OVL_EXDMA_RST					BIT(0)
++#define DISP_REG_OVL_EXDMA_SRC_CON		0x02c
++#  define OVL_EXDMA_FORCE_CONSTANT_LAYER		BIT(4)
++#define DISP_REG_OVL_EXDMA_ROI_SIZE		0x030
++#define DISP_REG_OVL_EXDMA_L0_EN		0x040
++#  define OVL_EXDMA_L0_EN				BIT(0)
++#  define OVL_EXDMA_L0_SRC				GENMASK(9, 8)
++#  define OVL_EXDMA_L0_SRC_BLENDER			0
++#  define OVL_EXDMA_L0_SRC_COLOR			1
++#  define OVL_EXDMA_L0_SRC_UFOD				2
++#  define OVL_EXDMA_L0_SRC_PQ				3
++#define DISP_REG_OVL_EXDMA_L0_OFFSET		0x044
++#define DISP_REG_OVL_EXDMA_SRC_SIZE		0x048
++#define DISP_REG_OVL_EXDMA_L0_CLRFMT		0x050
++#  define OVL_EXDMA_CON_FLD_CLRFMT			GENMASK(3, 0)
++#  define OVL_EXDMA_CON_CLRFMT_MAN			BIT(4)
++#  define OVL_EXDMA_CON_FLD_CLRFMT_NB			GENMASK(9, 8)
++#  define OVL_EXDMA_CON_CLRFMT_NB_10_BIT		BIT(8)
++#  define OVL_EXDMA_CON_BYTE_SWAP			BIT(16)
++#  define OVL_EXDMA_CON_RGB_SWAP			BIT(17)
++#define DISP_REG_OVL_EXDMA_RDMA0_CTRL		0x100
++#  define OVL_EXDMA_RDMA0_EN				BIT(0)
++#define DISP_REG_OVL_EXDMA_RDMA_BURST_CON1	0x1f4
++#  define OVL_EXDMA_RDMA_BURST_CON1_BURST16_EN		BIT(28)
++#  define OVL_EXDMA_RDMA_BURST_CON1_DDR_EN		BIT(30)
++#  define OVL_EXDMA_RDMA_BURST_CON1_DDR_ACK_EN		BIT(31)
++#define DISP_REG_OVL_EXDMA_DUMMY_REG		0x200
++#  define OVL_EXDMA_EXT_DDR_EN_OPT			BIT(2)
++#  define OVL_EXDMA_FORCE_EXT_DDR_EN			BIT(3)
++#define DISP_REG_OVL_EXDMA_GDRDY_PRD		0x208
++#define DISP_REG_OVL_EXDMA_PITCH_MSB		0x2f0
++#  define OVL_EXDMA_L0_SRC_PITCH_MSB_MASK		GENMASK(3, 0)
++#define DISP_REG_OVL_EXDMA_PITCH		0x2f4
++#  define OVL_EXDMA_L0_CONST_BLD			BIT(28)
++#  define OVL_EXDMA_L0_SRC_PITCH_MASK			GENMASK(15, 0)
++#define DISP_REG_OVL_EXDMA_L0_GUSER_EXT		0x2fc
++#  define OVL_EXDMA_RDMA0_L0_VCSEL			BIT(5)
++#  define OVL_EXDMA_RDMA0_HDR_L0_VCSEL			BIT(21)
++#define DISP_REG_OVL_EXDMA_CON			0x300
++#  define OVL_EXDMA_CON_FLD_INT_MTX_SEL			GENMASK(19, 16)
++#  define OVL_EXDMA_CON_INT_MTX_BT601_TO_RGB		6
++#  define OVL_EXDMA_CON_INT_MTX_BT709_TO_RGB		7
++#  define OVL_EXDMA_CON_INT_MTX_EN			BIT(27)
++#define DISP_REG_OVL_EXDMA_ADDR			0xf40
++#define DISP_REG_OVL_EXDMA_MOUT			0xff0
++#  define OVL_EXDMA_MOUT_OUT_DATA			BIT(0)
++#  define OVL_EXDMA_MOUT_BGCLR_OUT			BIT(1)
++
++#define OVL_EXDMA_MAX_SIZE			(8191)
++
++struct mtk_disp_exdma {
++	void __iomem *regs;
++	struct clk *clk;
++	struct cmdq_client_reg cmdq_reg;
++};
++
++static unsigned int mtk_exdma_color_convert(unsigned int color_encoding)
++{
++	switch (color_encoding) {
++	default:
++	case DRM_COLOR_YCBCR_BT709:
++		return FIELD_PREP_CONST(OVL_EXDMA_CON_FLD_INT_MTX_SEL,
++					OVL_EXDMA_CON_INT_MTX_BT709_TO_RGB);
++	case DRM_COLOR_YCBCR_BT601:
++		return FIELD_PREP_CONST(OVL_EXDMA_CON_FLD_INT_MTX_SEL,
++					OVL_EXDMA_CON_INT_MTX_BT601_TO_RGB);
++	}
++}
++
++void mtk_exdma_start(struct device *dev)
++{
++	struct mtk_disp_exdma *priv = dev_get_drvdata(dev);
++	const u32 val = OVL_EXDMA_DATAPATH_CON_LAYER_SMI_ID_EN |
++			OVL_EXDMA_DATAPATH_CON_HDR_GCLAST_EN |
++			OVL_EXDMA_DATAPATH_CON_GCLAST_EN;
++
++	writel(val, priv->regs + DISP_REG_OVL_EXDMA_DATAPATH_CON);
++	writel(OVL_EXDMA_EN, priv->regs + DISP_REG_OVL_EXDMA_EN);
++}
++
++void mtk_exdma_stop(struct device *dev)
++{
++	struct mtk_disp_exdma *priv = dev_get_drvdata(dev);
++
++	writel(0, priv->regs + DISP_REG_OVL_EXDMA_EN);
++	writel(0, priv->regs + DISP_REG_OVL_EXDMA_DATAPATH_CON);
++	writel(OVL_EXDMA_RST, priv->regs + DISP_REG_OVL_EXDMA_RST);
++	writel(0, priv->regs + DISP_REG_OVL_EXDMA_RST);
++}
++
++void mtk_exdma_layer_config(struct device *dev, unsigned int idx,
++				 struct mtk_plane_state *state,
++				 struct cmdq_pkt *cmdq_pkt)
++{
++	struct mtk_disp_exdma *priv = dev_get_drvdata(dev);
++	struct mtk_plane_pending_state *pending = &state->pending;
++	const struct drm_format_info *fmt_info = drm_format_info(pending->format);
++	const u32 blend_mode = mtk_ovl_get_blend_mode(state, MTK_OVL_SUPPORT_BLEND_MODES);
++	const bool csc_enable = (fmt_info) ? fmt_info->is_yuv : false;
++	u32 val;
++
++	if (!pending->enable || pending->height == 0 || pending->width == 0 ||
++	    pending->x > OVL_EXDMA_MAX_SIZE || pending->y > OVL_EXDMA_MAX_SIZE) {
++		mtk_ddp_write_mask(cmdq_pkt, 0, &priv->cmdq_reg, priv->regs,
++				   DISP_REG_OVL_EXDMA_RDMA0_CTRL, OVL_EXDMA_RDMA0_EN);
++		mtk_ddp_write_mask(cmdq_pkt, 0, &priv->cmdq_reg, priv->regs,
++				   DISP_REG_OVL_EXDMA_L0_EN, OVL_EXDMA_L0_EN);
++		return;
++	}
++
++	/* Set layer Width and Height */
++	val = ((pending->height & GENMASK(15, 0)) << 16) | (pending->width & GENMASK(15, 0));
++	mtk_ddp_write(cmdq_pkt, val, &priv->cmdq_reg,
++		      priv->regs, DISP_REG_OVL_EXDMA_ROI_SIZE);
++
++	mtk_ddp_write(cmdq_pkt, val, &priv->cmdq_reg,
++		      priv->regs, DISP_REG_OVL_EXDMA_SRC_SIZE);
++
++	/* The layer X/Y */
++	mtk_ddp_write(cmdq_pkt,
++		      ((pending->y & GENMASK(15, 0)) << 16) | (pending->x & GENMASK(15, 0)),
++		      &priv->cmdq_reg, priv->regs, DISP_REG_OVL_EXDMA_L0_OFFSET);
++
++	/* The memory address */
++	mtk_ddp_write(cmdq_pkt, pending->addr, &priv->cmdq_reg,
++		      priv->regs, DISP_REG_OVL_EXDMA_ADDR);
++
++	/* ...and the pitch. */
++	val = pending->pitch;
++	if (mtk_ovl_is_ignore_pixel_alpha(state, blend_mode))
++		val |= OVL_EXDMA_L0_CONST_BLD;
++
++	mtk_ddp_write_mask(cmdq_pkt, val, &priv->cmdq_reg, priv->regs, DISP_REG_OVL_EXDMA_PITCH,
++			   OVL_EXDMA_L0_CONST_BLD | OVL_EXDMA_L0_SRC_PITCH_MASK);
++	mtk_ddp_write_mask(cmdq_pkt, pending->pitch >> 16, &priv->cmdq_reg, priv->regs,
++			   DISP_REG_OVL_EXDMA_PITCH_MSB, OVL_EXDMA_L0_SRC_PITCH_MSB_MASK);
++
++	val = mtk_exdma_color_convert(pending->color_encoding);
++	val |= csc_enable ? OVL_EXDMA_CON_INT_MTX_EN : 0;
++	mtk_ddp_write_mask(cmdq_pkt, val, &priv->cmdq_reg, priv->regs, DISP_REG_OVL_EXDMA_CON,
++			   OVL_EXDMA_CON_FLD_INT_MTX_SEL | OVL_EXDMA_CON_INT_MTX_EN);
++
++	val = mtk_ovl_fmt_convert(pending->format, blend_mode, true, false, 0,
++				  OVL_EXDMA_CON_CLRFMT_MAN, OVL_EXDMA_CON_BYTE_SWAP,
++				  OVL_EXDMA_CON_RGB_SWAP);
++	if (mtk_ovl_is_10bit_rgb(pending->format))
++		val |= OVL_EXDMA_CON_CLRFMT_NB_10_BIT;
++	mtk_ddp_write_mask(cmdq_pkt, val, &priv->cmdq_reg, priv->regs,
++			   DISP_REG_OVL_EXDMA_L0_CLRFMT,
++			   OVL_EXDMA_CON_RGB_SWAP | OVL_EXDMA_CON_BYTE_SWAP |
++			   OVL_EXDMA_CON_CLRFMT_MAN | OVL_EXDMA_CON_FLD_CLRFMT |
++			   OVL_EXDMA_CON_FLD_CLRFMT_NB);
++
++	/* Virtual Channel selection */
++	val = OVL_EXDMA_RDMA0_L0_VCSEL;
++	mtk_ddp_write_mask(cmdq_pkt, val, &priv->cmdq_reg, priv->regs,
++			   DISP_REG_OVL_EXDMA_L0_GUSER_EXT, val);
++
++	mtk_ddp_write_mask(cmdq_pkt, OVL_EXDMA_RDMA0_EN, &priv->cmdq_reg, priv->regs,
++			   DISP_REG_OVL_EXDMA_RDMA0_CTRL, OVL_EXDMA_RDMA0_EN);
++	mtk_ddp_write_mask(cmdq_pkt, OVL_EXDMA_L0_EN, &priv->cmdq_reg, priv->regs,
++			   DISP_REG_OVL_EXDMA_L0_EN, OVL_EXDMA_L0_EN);
++}
++
++unsigned int mtk_exdma_layer_nr(struct device *dev, int pipeline_index)
++{
++	return 1;
++}
++
++void mtk_exdma_config(struct mtk_ddp_comp *comp, unsigned int w,
++			   unsigned int h, unsigned int vrefresh,
++			   unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
++{
++	struct mtk_disp_exdma *priv = dev_get_drvdata(comp->dev);
++	unsigned int tmp, val, mask;
++
++	/*
++	 * This configuration enables dynamic power switching mechanism for EXDMA,
++	 * also known as "SRT mode".
++	 * Such configuration allows the system to achieve better power efficiency.
++	 */
++	val = OVL_EXDMA_RDMA_BURST_CON1_BURST16_EN | OVL_EXDMA_RDMA_BURST_CON1_DDR_ACK_EN;
++	mask = OVL_EXDMA_RDMA_BURST_CON1_BURST16_EN | OVL_EXDMA_RDMA_BURST_CON1_DDR_EN |
++	       OVL_EXDMA_RDMA_BURST_CON1_DDR_ACK_EN;
++	tmp = readl(priv->regs + DISP_REG_OVL_EXDMA_RDMA_BURST_CON1);
++	tmp = (tmp & ~mask) | val;
++	writel(tmp, priv->regs + DISP_REG_OVL_EXDMA_RDMA_BURST_CON1);
++
++	/*
++	 * The dummy register is used in the configuration of the EXDMA engine to
++	 * signal ddren_request, and get ddren_ack before accessing the DRAM to
++	 * ensure data transfers occur normally.
++	 */
++	val = OVL_EXDMA_EXT_DDR_EN_OPT | OVL_EXDMA_FORCE_EXT_DDR_EN;
++	writel(val, priv->regs + DISP_REG_OVL_EXDMA_DUMMY_REG);
++	val = OVL_EXDMA_MOUT_BGCLR_OUT;
++	mask = OVL_EXDMA_MOUT_BGCLR_OUT | OVL_EXDMA_MOUT_OUT_DATA;
++	tmp = readl(priv->regs + DISP_REG_OVL_EXDMA_MOUT);
++	tmp = (tmp & ~mask) | val;
++	writel(tmp, priv->regs + DISP_REG_OVL_EXDMA_MOUT);
++	writel(GENMASK(31, 0), priv->regs + DISP_REG_OVL_EXDMA_GDRDY_PRD);
++	val = OVL_EXDMA_HG_FOVL_EXDMA_CK_ON | OVL_EXDMA_HF_FOVL_EXDMA_CK_ON |
++	      OVL_EXDMA_OP_8BIT_MODE;
++	writel(val, priv->regs + DISP_REG_OVL_EXDMA_EN_CON);
++	writel(OVL_EXDMA_RDMA0_L0_VCSEL, priv->regs + DISP_REG_OVL_EXDMA_L0_GUSER_EXT);
++}
++
++const u32 *mtk_exdma_get_formats(struct device *dev)
++{
++	return mt8195_ovl_formats;
++}
++
++size_t mtk_exdma_get_num_formats(struct device *dev)
++{
++	return mt8195_ovl_formats_len;
++}
++
++int mtk_exdma_clk_enable(struct mtk_ddp_comp *comp)
++{
++	struct mtk_disp_exdma *exdma = dev_get_drvdata(comp->dev);
++
++	return clk_prepare_enable(exdma->clk);
++}
++
++void mtk_exdma_clk_disable(struct mtk_ddp_comp *comp)
++{
++	struct mtk_disp_exdma *exdma = dev_get_drvdata(comp->dev);
++
++	clk_disable_unprepare(exdma->clk);
++}
++
++static int mtk_exdma_bind(struct device *dev, struct device *master,
++			       void *data)
++{
++	return 0;
++}
++
++static void mtk_exdma_unbind(struct device *dev, struct device *master,
++				  void *data)
++{
++}
++
++static const struct component_ops mtk_disp_exdma_component_ops = {
++	.bind	= mtk_exdma_bind,
++	.unbind = mtk_exdma_unbind,
++};
++
++static int mtk_disp_exdma_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct mtk_disp_exdma *priv;
++	int ret = 0;
++
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	priv->regs = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(priv->regs))
++		return dev_err_probe(dev, PTR_ERR(priv->regs), "Cannot get reg resource\n");
++
++	priv->clk = devm_clk_get(dev, NULL);
++	if (IS_ERR(priv->clk))
++		return dev_err_probe(dev, PTR_ERR(priv->clk), "Cannot get clocks\n");
++
++#if IS_REACHABLE(CONFIG_MTK_CMDQ)
++	ret = cmdq_dev_get_client_reg(dev, &priv->cmdq_reg, 0);
++	if (ret)
++		dev_dbg(dev, "No mediatek,gce-client-reg\n");
++#endif
++	platform_set_drvdata(pdev, priv);
++
++	ret = devm_pm_runtime_enable(dev);
++	if (ret)
++		return ret;
++
++	ret = component_add(dev, &mtk_disp_exdma_component_ops);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to add component\n");
++
++	return 0;
++}
++
++static void mtk_disp_exdma_remove(struct platform_device *pdev)
++{
++	component_del(&pdev->dev, &mtk_disp_exdma_component_ops);
++}
++
++static const struct of_device_id mtk_disp_exdma_driver_dt_match[] = {
++	{ .compatible = "mediatek,mt8196-disp-exdma", },
++	{ /* sentinel */ },
++};
++MODULE_DEVICE_TABLE(of, mtk_disp_exdma_driver_dt_match);
++
++struct platform_driver mtk_disp_exdma_driver = {
++	.probe = mtk_disp_exdma_probe,
++	.remove = mtk_disp_exdma_remove,
++	.driver = {
++		.name = "mediatek-disp-exdma",
++		.owner = THIS_MODULE,
++		.of_match_table = mtk_disp_exdma_driver_dt_match,
++	},
++};
++
++MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
++MODULE_AUTHOR("Nancy Lin <nancy.lin@mediatek.com>");
++MODULE_DESCRIPTION("MediaTek Display Controller extended DMA Engine (exDMA) Driver");
++MODULE_LICENSE("GPL");
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+index a70392c54bb9..9f1264bb1d5e 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+@@ -523,6 +523,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
+ 	  .data = (void *)MTK_DISP_DITHER },
+ 	{ .compatible = "mediatek,mt8195-disp-dsc",
+ 	  .data = (void *)MTK_DISP_DSC },
++	{ .compatible = "mediatek,mt8196-disp-exdma",
++	  .data = (void *)MTK_DISP_EXDMA },
+ 	{ .compatible = "mediatek,mt8167-disp-gamma",
+ 	  .data = (void *)MTK_DISP_GAMMA, },
+ 	{ .compatible = "mediatek,mt8173-disp-gamma",
+@@ -1065,6 +1067,7 @@ static struct platform_driver * const mtk_drm_drivers[] = {
+ 	&mtk_disp_ccorr_driver,
+ 	&mtk_disp_color_driver,
+ 	&mtk_disp_dsc_driver,
++	&mtk_disp_exdma_driver,
+ 	&mtk_disp_gamma_driver,
+ 	&mtk_disp_merge_driver,
+ 	&mtk_disp_ovl_adaptor_driver,
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.h b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
+index f36888fd7244..4ef61c1e33e3 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
++++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
+@@ -77,6 +77,7 @@ extern struct platform_driver mtk_disp_blender_driver;
+ extern struct platform_driver mtk_disp_ccorr_driver;
+ extern struct platform_driver mtk_disp_color_driver;
+ extern struct platform_driver mtk_disp_dsc_driver;
++extern struct platform_driver mtk_disp_exdma_driver;
+ extern struct platform_driver mtk_disp_gamma_driver;
+ extern struct platform_driver mtk_disp_merge_driver;
+ extern struct platform_driver mtk_disp_ovl_adaptor_driver;
+diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc/mediatek/mtk-mmsys.h
+index b32f0c92f040..d5c082d920c4 100644
+--- a/include/linux/soc/mediatek/mtk-mmsys.h
++++ b/include/linux/soc/mediatek/mtk-mmsys.h
+@@ -94,6 +94,7 @@ enum mtk_ddp_comp_type {
+ 	MTK_DISP_DITHER,
+ 	MTK_DISP_DSC,
+ 	MTK_DISP_ETHDR_MIXER,
++	MTK_DISP_EXDMA,
+ 	MTK_DISP_GAMMA,
+ 	MTK_DISP_MERGE,
+ 	MTK_DISP_MUTEX,
 -- 
 2.54.0
 
