@@ -1,84 +1,86 @@
-Return-Path: <devicetree+bounces-318594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318596-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XlhONtMWRWom6woAu9opvQ
-	(envelope-from <devicetree+bounces-318594-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:32:03 +0200
+	id LpJDAq4QRWpD6QoAu9opvQ
+	(envelope-from <devicetree+bounces-318596-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:05:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED6E16EE239
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:32:02 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB6886EDD13
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:05:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=hL+kHZv9;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318594-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318594-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=cTzS1Vrm;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318596-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318596-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 737FA303C699
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:57:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3E443311B0B6
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:57:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F7064949FA;
-	Wed,  1 Jul 2026 12:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF027495506;
+	Wed,  1 Jul 2026 12:55:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E4A4949E5
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:54:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5649D48BD58
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:55:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782910499; cv=none; b=ExwL8esgWf/mReDG991WZOMSbm7AWgBttf5mwMNXY+EmCdoWRcYoWa1iqxOUslnCWZCz13V1kCEpy8MFFWK+w+ByPpfGIwOeVB+UIXhGpjyOcJYkrd2w4mPDG3gu9+IBie4+9vRu+wHJzdNGE1mqHc0ErRTJ/Tfw+lZWhNU3pW0=
+	t=1782910510; cv=none; b=ig5V4XHGrIIXOF9pzdNwMbdpbWVEi0W/JHOWyn00ghNfe6P2qIMXNXkJz0UcmmhlfqU0hAJoYAAYhW2iTKtyaBq89952wO6ZZEla9fKbRV19jL4tM0fXTMyHI1uEeJAFbOCejatzNpUw3xtVYy/21L23HAhqfkkzHOyoYsw+c5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782910499; c=relaxed/simple;
-	bh=RM5/Jm80n8hic83slp8easkNCPyba3jQD85igQwb558=;
+	s=arc-20240116; t=1782910510; c=relaxed/simple;
+	bh=SVIa4L8k84ckCPyHRMWQbuV12ITePXE/vVAii5SjE4s=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=X2DplH56PMvUY4f+Z0yeo5UvCYfjiI12zU3RNgxdnkKsHaVbV6P3gEY578D51M+CR5+VMpM+VFGoD65fQq/svppIVbUnk97I/NMrzBS886Bei61kM1MP8B/0VSY7iPZz5qA/BDkhxmSSaD8TS2cvghQIY5tunbPtkBZbhf/g1Dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hL+kHZv9; arc=none smtp.client-ip=209.85.210.178
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-8479f1a86ecso344875b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 05:54:58 -0700 (PDT)
+	 In-Reply-To:To:Cc; b=J8aToHdjHbdjULAg1Uov0kteWv6fSHxSn38JiEMXFnk2H5SVN96WGdGWWRKJUn1jjkiqjcAJX1OGQkASYDBOaZDu4kIUMUm4HZqF+10Hn7Rkrl9r8uw10MQdsXhkMsutPxJi/4Jr1yWH1M64KMiIDfqZ4jP7P0OjL1NCkML0av8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cTzS1Vrm; arc=none smtp.client-ip=209.85.210.169
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-8423f236418so309241b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 05:55:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782910498; x=1783515298; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1782910508; x=1783515308; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F4itvwgmIkfoT47xsL7nDKqH8kqk6Z6HU3EjYTAF58M=;
-        b=hL+kHZv9QtNmqmq4shB0EI5/eyhYkO8XTFPmsbD/isNbQaIXt+7joQB2hAvIUmmrMV
-         P9gNKItTxhVvdgtb2DnDSl4wkA8gSyMlyrXO4aFoaF5xCjh1hAdrz/dB4vPlSlt5IwiR
-         AY9LHlqAxBVFfnpMn6Z1z3jI0sCSzg6WzIKxNDdirxFG9ldTAjtCIm+QlwLpadEc0vg1
-         wM0SZ/0aJD8qt+rqzvRuXWCUACNx4IY5zyQLPiphYkNwLBNKFUMZUNyszoxF/m/rxp0D
-         6M+eOdQAFn8NoBdq4ILMl8EUFrBvx5tupTPND7k7ITFdd0a2bjTJv6Aqyxs0mRH50Qi6
-         dIlQ==
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=EroqQiItWF/5lEtz72HFMxBsfBPJ4HAZsMtLOvEmqnc=;
+        b=cTzS1Vrm7CO7mIltOpjaTc3g/KiQDVdSIIGWseSDIzaavDa6oG/X7UCJHOqh9SGbk9
+         CCg5Sipj/3qxWqKUZ1Kn4VQebedt6bE0oX745n5TRJEmNc2XADNO8EGdWe/wLErJ1W2V
+         nsljagUMswVikRnp3u8yrceDsfRBH4+oURkp3+zvyFSMXduX5vm//HlHyqEE8G+iSiwO
+         WvbgEjNBCBKQphzpwknwPy2ijDFhkXu5CErA7f4/Qt5XWcaXA3dRLLckfdbS/OneMUcI
+         ZiuliSi7YcAsnCWcwCtXgprRxFYL/VvWVzR6/ImheD3Z5/uRZXNqVBWjBUStnB2HKOK/
+         1BIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782910498; x=1783515298;
+        d=1e100.net; s=20251104; t=1782910508; x=1783515308;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=F4itvwgmIkfoT47xsL7nDKqH8kqk6Z6HU3EjYTAF58M=;
-        b=F0ZgRvBZq51XK+LfaiVOT0ZW2sBrG2RUdPYQjSe1BZPR6zBH1TE5TejeYjKIlh+QBV
-         7La0V+yldUe3zPLivPayF+GL5/9yMnKIAEAmwHgALgVohIR0dycXgYSn3Sjavx4RS/sS
-         7ECg33aHCaJ95Xfs19WjSs5s99sO/RZBEqE1nGyv3bEWtqnp+gnNWmLheWAE2ugP3Wsw
-         oBGIzKHltvU++5DjX5CHSX71+LiML87Zuxra+5H5xhXJnBBZpFUwPi6UeYvZdEjMCkdG
-         3DQkyuuy5iEfvqRjsZlhmXZighdTTF53Kz/A6ID+hyVVrmHRFaKnj72XcPLrZrEyKGF4
-         VkaQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9uW4PBySNvJjukVmctscP0fFPyzG7BdDnqyU9i19MgEjOHSo59kMJMV7oxojuzMOvaPorn2CdM4OXo@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOPGzUMj7AoVLlzWNCJ5kpawc4dcUotR1QPiPqaW5Ok5lm1Z8Q
-	tn89Qe76l2Zy5QEV1prfBl7N+jamKL4UIH7dUemSR0opaN6/8sX5vYGx
-X-Gm-Gg: AfdE7cnKWqYrgvoU3ejCDX1Bv3xnUMrS15gksWicIWBZpfuSj+8YNFNLBKoui+FxGlA
-	exJXPD2NNnWDCyMyDH3pXrOtp2W2UaF2Dxqn6u6lPnMlsH1ng9pAb0qbtfONwLvQoJPlHL5r0lT
-	kKpPlLRQMa9JipNQJrjtTqjcs5gNDpu4kX9/aq4T1F+xQ+1VEwBwfVamLPhwKwzSZQGGJxdojwi
-	i5i1UYSh8ey2mKw+Xk1HGC/MwNpOZIALdN7bUiuWo+aqRn9RpP77XdGHaTAo7bN9p2lNQUa5Vzx
-	umR67OLFAVvGCjdGA8J3SzUIE4eSx14LlaFwZg5v6e4SFFtK/Id3HtSRcuHn1Lfqz08Lz3qDvOo
-	ig7pdEZ4Ga81nt0KHAxPOfqE2FoG68ZKp+GfT0kcEdKSU5uA+gH/UixxXIDUM8aS/Jp6EmjbfU3
-	/FJtIDtBFu2YrBLrfI4LgM
-X-Received: by 2002:a05:6a00:44c6:b0:845:e105:1e6c with SMTP id d2e1a72fcca58-847c5235e15mr557323b3a.62.1782910497562;
-        Wed, 01 Jul 2026 05:54:57 -0700 (PDT)
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=EroqQiItWF/5lEtz72HFMxBsfBPJ4HAZsMtLOvEmqnc=;
+        b=ehL9GBPu67FwvSyAMapIItbKwcezPifeZ4ztXCy/+51ewb44SyrXxbq2pNzQUjZVYg
+         cy0Uy9YAiOSl/szm9hH0zE0n4FbhNC5gWFhce42awM4SJLTicMOMicZzm714f51EkpMV
+         Cj6RiL505BbFDbjoPwfzjhMGibcxkhee3YZZZGPg1OJthUXyhSw16X8bl2LWCr3R85hG
+         Z4giw8Pf4Br2VSEKW2hMZLIBB86CnYlbgwld04rwdb+TqmhYzjP3r238ofVSyKVNARpu
+         sqDbT7nITT9rMloYQg7AuDj6cP2E0x4wdDYzXi8guWWcbEIrE7UTmBZUtWp6rN6wYKL9
+         dLLQ==
+X-Forwarded-Encrypted: i=1; AHgh+Rq3vj5IxWWcBcAp8yTgNA2a3jJI6qz6SCSgNoEpiTTllSnD72qbIIo+GUcU3/4X8XN/VNxNiJj+B+Ns@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5DKu0CrqXD5ztgJjtsdkP3MPUvPG3TCZqre0jaLZHk7WqbExC
+	X4nta53GCHplsSvNO8sd5gNeM3eYXvoiWVKJWIMasnfJA2UvZd5rI4D0
+X-Gm-Gg: AfdE7cmak16mfMSfdtX6IEJu84xUO036HF0oJAHSJsQUga/Xml2f9H159JWyI8q+mTg
+	+NEUdJTsHiHNhyieEtjCOPNoA7b5sYLFixmIEavemTcf6i0ceKEpFG2zQpDKkEu6jCl0TL4gsTq
+	fm4ZOFLNiSki6KF2LfU9vGlvydKpxcuc1bcLKDNxBnpd8I1x0/81FGsR4JbmplH7OAPVYmJ3omk
+	kfNS8Zvgjlr4g8CLFctDQ5zXxTswtNC1FrNweKEaqD/OjSCDAMgk62wKHikHyE7bBbppQiqdoBA
+	DXMESCfJnFi++oAHjRFAN0/FUnENWxvLnJK1ItpsmDg/ZBreFisTNLUlcth4TCt51Azsts+IzUM
+	nkeOi7uzYOM5A1zCij1uKeiv/lE5JDgwHBgML8lEpyAL2zxbxHAy77s1Cusuw2/KYgGvETCJW7W
+	ipC69Xk1N+dhB6htVl3bm1
+X-Received: by 2002:a05:6a00:4299:b0:845:d274:c024 with SMTP id d2e1a72fcca58-847c51eff2bmr594580b3a.61.1782910507939;
+        Wed, 01 Jul 2026 05:55:07 -0700 (PDT)
 Received: from [127.0.1.1] ([120.244.9.45])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-847a03778basm3999403b3a.49.2026.07.01.05.54.48
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-847a03778basm3999403b3a.49.2026.07.01.05.54.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jul 2026 05:54:57 -0700 (PDT)
+        Wed, 01 Jul 2026 05:55:07 -0700 (PDT)
 From: Guodong Xu <docular.xu@gmail.com>
-Date: Wed, 01 Jul 2026 08:52:27 -0400
-Subject: [PATCH v5 14/17] riscv: Add a getter for user PMLEN support
+Date: Wed, 01 Jul 2026 08:52:28 -0400
+Subject: [PATCH v5 15/17] riscv: cpufeature: Introduce ISA bases bitmap and
+ rva23u64 detection
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260701-rva23u64-hwprobe-v2-v5-14-2c61f94a695a@gmail.com>
+Message-Id: <20260701-rva23u64-hwprobe-v2-v5-15-2c61f94a695a@gmail.com>
 References: <20260701-rva23u64-hwprobe-v2-v5-0-2c61f94a695a@gmail.com>
 In-Reply-To: <20260701-rva23u64-hwprobe-v2-v5-0-2c61f94a695a@gmail.com>
 To: Jonathan Corbet <corbet@lwn.net>, 
@@ -109,12 +111,12 @@ Cc: linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
  spacemit@lists.linux.dev, sophgo@lists.linux.dev, 
  linux-kselftest@vger.kernel.org, Guodong Xu <docular.xu@gmail.com>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1943; i=docular.xu@gmail.com;
- h=from:subject:message-id; bh=LaS0cxSQXBgyR01xQr5M6KNsO7HDlsJSbaq9hq8ofFM=;
- b=owGbwMvMwCXWtEl1Z3CGpCDjabUkhixX3jaJs1we53hUJftu3dk5Y52sfn0Xg+vbEK7Om/tuL
- zAvnjqpo5SFQYyLQVZMkeXw0Zbsra98on2fc/6AmcPKBDKEgYtTACZizMjIcGpvd2B4wjVF7TIX
- h1/fvitwee95mTC3Iqiy4+QF5p0ycxj+aTkoSGYs+z1b+51NUvTHg/+rd8dNWbVvxirV3Wy6Yma
- ZDAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6016; i=docular.xu@gmail.com;
+ h=from:subject:message-id; bh=SVIa4L8k84ckCPyHRMWQbuV12ITePXE/vVAii5SjE4s=;
+ b=owGbwMvMwCXWtEl1Z3CGpCDjabUkhixX3vbKL4XCy56dmdCTfL13h/g5z9/zTESLDzx4rOa37
+ YTe3pDFHaUsDGJcDLJiiiyHj7Zkb33lE+37nPMHzBxWJpAhDFycAjCR4gOMDJts5O7KtM5beqor
+ 6MtRLmZtzvajOpL55t//if5Rm+Tyy5rhn/qeOwf+P8wT5ufQmXriU9G58k/5Z46smxZ3oCUp74S
+ IPBMA
 X-Developer-Key: i=docular.xu@gmail.com; a=openpgp;
  fpr=90B1DC3DF0BD10FD1227BD6344F254AF42F143EE
 X-Rspamd-Action: no action
@@ -122,13 +124,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318594-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318596-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:zong.li@sifive.com,m:debug@rivosinc.com,m:anup@brainfault.org,m:atish.patra@linux.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:unicorn_wang@outlook.com,m:inochiama@gmail.com,m:chen.wang@linux.dev,m:linux-doc@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kvm@vger.kernel.org,m:kvm-riscv@lists.infradead.org,m:paul.walmsley@sifive.com,m:conor@kernel.org,m:jtaubepe@redhat.com,m:thecharlesjenkins@gmail.com,m:andrew.jones@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:spacemit@lists.linux.dev,m:sophgo@lists.linux.dev,m:linux-kselftest@vger.kernel.org,m:docular.xu@gmail.com,m:krzk@kernel.org,m:docularxu@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[docularxu@gmail.com,devicetree@vger.kernel.org];
@@ -148,72 +150,185 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ED6E16EE239
+X-Rspamd-Queue-Id: BB6886EDD13
 
-From: Andrew Jones <andrew.jones@oss.qualcomm.com>
+Introduce a per-hart and host-wide bitmap of conformant ISA "bases"
+(named profile-class sets such as IMA and RVA23U64), computed at init
+time by riscv_init_isa_bases().
 
-Querying whether a given user PMLEN is supported is needed for
-RVA23U64 base detection from outside arch/riscv/kernel/process.c.
-Add riscv_have_user_pmlen() to expose this.
+Register riscv_init_isa_bases() as a subsys_initcall so it executes
+after core_initcall(tagged_addr_init), which probes senvcfg.PMM and
+populates have_user_pmlen_*.  Without that ordering,
+riscv_have_user_pmlen(7) would still return its default false and the
+RVA23U64 detection path would always bail.
 
-Link: https://lore.kernel.org/linux-riscv/rfuwa7a3ebe76udmnwyrssjy7shkkgxntvhwzn6oquysj4tuyp@xzvpylcfhz53/
+Consider this as the cache that subsequent consumers (hwprobe's
+RVA23U64 base behavior bit, /proc/cpuinfo's "isa bases" lines, etc.)
+can read without recomputing. System-wide consistency are ensured.
+
 Signed-off-by: Andrew Jones <andrew.jones@oss.qualcomm.com>
-[Guodong: replace exported booleans with getter per Andrew's suggestion]
 Signed-off-by: Guodong Xu <docular.xu@gmail.com>
 ---
 v5: No change.
-v4: No change.
-v3: No change.
-v2: Add a getter for user PMLEN.
+v4:
+- In riscv_set_isa_base(), reorder those __setbit(RISCV_ISA_EXT_X,m)
+  lines to make them conform to the order they appear in the RVA23 1.0
+  Profile.
+v3:
+- Add a blank line before the subsys_initcall() registration (Andrew).
+- Set the local ext_mask with __set_bit() and test the mandate set with
+  !bitmap_subset() (Sashiko).
+- Require the Zic64b ISA extension in the RVA23U64 mask,
+  instead of open-coded cache block-size check. (New, thoughts from Andrew)
+v2:
+- Implement riscv_init_isa_bases() that runs at system init time,
+  after tagged_addr_init() populates have_user_pmlen_*.
+- Split RVA23S64 placeholder into a future patch.
 ---
- arch/riscv/include/asm/processor.h |  4 ++++
- arch/riscv/kernel/process.c        | 12 ++++++++++++
- 2 files changed, 16 insertions(+)
+ arch/riscv/include/asm/cpufeature.h | 14 ++++++
+ arch/riscv/kernel/cpufeature.c      | 90 +++++++++++++++++++++++++++++++++++++
+ 2 files changed, 104 insertions(+)
 
-diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
-index 812517b2cec13..febf51e127f70 100644
---- a/arch/riscv/include/asm/processor.h
-+++ b/arch/riscv/include/asm/processor.h
-@@ -214,6 +214,10 @@ long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg);
- long get_tagged_addr_ctrl(struct task_struct *task);
- #define SET_TAGGED_ADDR_CTRL(arg)	set_tagged_addr_ctrl(current, arg)
- #define GET_TAGGED_ADDR_CTRL()		get_tagged_addr_ctrl(current)
+diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm/cpufeature.h
+index 739fcc84bf7b2..facc31b2960c6 100644
+--- a/arch/riscv/include/asm/cpufeature.h
++++ b/arch/riscv/include/asm/cpufeature.h
+@@ -25,10 +25,24 @@ struct riscv_cpuinfo {
+ 	unsigned long mimpid;
+ };
+ 
++enum {
++	RISCV_ISA_BASE_IMA,
++	RISCV_ISA_BASE_RVA23U64,
++	RISCV_NR_ISA_BASES,
++};
 +
-+bool riscv_have_user_pmlen(u8 len);
-+#else
-+static inline bool riscv_have_user_pmlen(u8 len) { return false; }
++/**
++ * struct riscv_isainfo - per-hart ISA state
++ * @isa: bitmap of ISA extensions this hart implements
++ * @isa_bases: bitmap of profile bases this hart conforms to
++ */
+ struct riscv_isainfo {
+ 	DECLARE_BITMAP(isa, RISCV_ISA_EXT_MAX);
++	DECLARE_BITMAP(isa_bases, RISCV_NR_ISA_BASES);
+ };
+ 
++extern unsigned long riscv_isa_bases[BITS_TO_LONGS(RISCV_NR_ISA_BASES)];
++
+ DECLARE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
+ 
+ extern const struct seq_operations cpuinfo_op;
+diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+index 4c3bf813af052..fa8471aef42ee 100644
+--- a/arch/riscv/kernel/cpufeature.c
++++ b/arch/riscv/kernel/cpufeature.c
+@@ -41,6 +41,9 @@ unsigned long elf_hwcap __read_mostly;
+ /* Host ISA bitmap */
+ static DECLARE_BITMAP(riscv_isa, RISCV_ISA_EXT_MAX) __read_mostly;
+ 
++/* Host ISA bases bitmap */
++DECLARE_BITMAP(riscv_isa_bases, RISCV_NR_ISA_BASES) __read_mostly;
++
+ /* Per-cpu ISA extensions. */
+ struct riscv_isainfo hart_isa[NR_CPUS];
+ 
+@@ -1304,3 +1307,90 @@ void __init_or_module riscv_cpufeature_patch_func(struct alt_entry *begin,
+ 	}
+ }
  #endif
- 
- #endif /* __ASSEMBLER__ */
-diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-index b2df7f72241a5..5d9cb108a6232 100644
---- a/arch/riscv/kernel/process.c
-+++ b/arch/riscv/kernel/process.c
-@@ -302,6 +302,18 @@ enum {
- static bool have_user_pmlen_7;
- static bool have_user_pmlen_16;
- 
-+bool riscv_have_user_pmlen(u8 len)
++
++/*
++ * Compute the set of profile bases (IMA, RVA23U64, ...) a hart
++ * conforms to, given its resolved ISA bitmap.
++ *
++ * If @isa_bitmap is NULL, the host ISA bitmap (the AND across all harts) is
++ * used.
++ */
++static void riscv_set_isa_bases(unsigned long *bases, const unsigned long *isa_bitmap)
 +{
-+	switch (len) {
-+	case PMLEN_7:
-+		return have_user_pmlen_7;
-+	case PMLEN_16:
-+		return have_user_pmlen_16;
-+	default:
-+		return false;
-+	}
++	const unsigned long *isa = isa_bitmap ? isa_bitmap : riscv_isa;
++	DECLARE_BITMAP(ext_mask, RISCV_ISA_EXT_MAX) = { 0 };
++
++	/* IMA */
++	__set_bit(RISCV_ISA_EXT_I, ext_mask);
++	__set_bit(RISCV_ISA_EXT_M, ext_mask);
++	__set_bit(RISCV_ISA_EXT_A, ext_mask);
++
++	if (!bitmap_subset(ext_mask, isa, RISCV_ISA_EXT_MAX))
++		return;
++
++	set_bit(RISCV_ISA_BASE_IMA, bases);
++
++	/* RVA23U64 */
++
++	/* Supm with PMLEN=7 */
++	if (!riscv_have_user_pmlen(7))
++		return;
++
++	__set_bit(RISCV_ISA_EXT_F, ext_mask);
++	__set_bit(RISCV_ISA_EXT_D, ext_mask);
++	__set_bit(RISCV_ISA_EXT_C, ext_mask);
++	__set_bit(RISCV_ISA_EXT_B, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZICSR, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZICNTR, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZIHPM, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZICCIF, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZICCRSE, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZICCAMOA, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZICCLSM, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZA64RS, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZIHINTPAUSE, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZIC64B, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZICBOM, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZICBOP, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZICBOZ, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZFHMIN, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZKT, ext_mask);
++	__set_bit(RISCV_ISA_EXT_V, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZVFHMIN, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZVBB, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZVKT, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZIHINTNTL, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZICOND, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZIMOP, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZCMOP, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZCB, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZFA, ext_mask);
++	__set_bit(RISCV_ISA_EXT_ZAWRS, ext_mask);
++	__set_bit(RISCV_ISA_EXT_SUPM, ext_mask);
++
++	if (!bitmap_subset(ext_mask, isa, RISCV_ISA_EXT_MAX))
++		return;
++
++	set_bit(RISCV_ISA_BASE_RVA23U64, bases);
 +}
 +
- /*
-  * Control the relaxed ABI allowing tagged user addresses into the kernel.
-  */
++/*
++ * Populate the host ISA bases bitmap (riscv_isa_bases) and each
++ * hart's per-cpu isa_bases.
++ */
++static int __init riscv_init_isa_bases(void)
++{
++	int cpu;
++
++	for_each_possible_cpu(cpu)
++		riscv_set_isa_bases(hart_isa[cpu].isa_bases, hart_isa[cpu].isa);
++
++	riscv_set_isa_bases(riscv_isa_bases, NULL);
++	return 0;
++}
++
++/*
++ * Registered as subsys_initcall so it runs after
++ * core_initcall(tagged_addr_init) populates have_user_pmlen_*.
++ */
++subsys_initcall(riscv_init_isa_bases);
 
 -- 
 2.43.0
