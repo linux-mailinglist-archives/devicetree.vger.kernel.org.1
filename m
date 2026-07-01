@@ -1,192 +1,147 @@
-Return-Path: <devicetree+bounces-318292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318293-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id if8PNkfbRGrP2AoAu9opvQ
-	(envelope-from <devicetree+bounces-318292-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 11:17:59 +0200
+	id 3E19ApzbRGrX2AoAu9opvQ
+	(envelope-from <devicetree+bounces-318293-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 11:19:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F7446EB887
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 11:17:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49E1E6EB89C
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 11:19:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=SxDbNzfB;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318292-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318292-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=IlgN8Sw7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318293-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318293-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 14C86303FDD9
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 09:17:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 16552303D333
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 09:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2FAB3C108E;
-	Wed,  1 Jul 2026 09:17:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA7633B19BA;
+	Wed,  1 Jul 2026 09:19:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84E838656D;
-	Wed,  1 Jul 2026 09:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B912E38656D;
+	Wed,  1 Jul 2026 09:19:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782897473; cv=none; b=baPJLhtPG3tKgJIeILAbWKq7fKreLe+8yp2ypo7rJKiFHnV8oyiG6bCBJr6XV1uxGeml6y6eH47NPKtgAyrTIgRlJINIGNUuUr+6x54VcClFDw0q7u3+n25jugfv5GycKFos6/NAfe8cE3PkvwHn3hf83JcQ/tYOfoSDDykzVa8=
+	t=1782897561; cv=none; b=HrKfahw2vuHubmk2kLEc9D69AzTybrN3B9TzYLi7ykD2YgUzWygPGAFuKNh4QU7NRW4jvffcsRm4It8mDpb3UlkaX2bpEQjA2/DKF2JAsVYz0vF90skw/tZpnbnN1PpLrEk1Thgj8vxhvSfLtVGJa1APQyc3T6pQIE25kcyRq38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782897473; c=relaxed/simple;
-	bh=0Zlxg9qh6oluUCtOpDwy8bKgRYTStOYpmIO6zKZnn28=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mrf7gM6Jgtd0LGmBfECbZ8/vTlPPqxCIdnp3f97LvhJnKeMy9nI0repS14ffytWrDoQwwX+g9bWmR2AbCnOgthPEVCmL5UAXtErQodIAqKRVOR976fEJg9TNFUhSPORkZGblOCrbfP5iG5aECtz16xJcpiP38kI3A+N/LSGySd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SxDbNzfB; arc=none smtp.client-ip=192.198.163.14
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1782897472; x=1814433472;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0Zlxg9qh6oluUCtOpDwy8bKgRYTStOYpmIO6zKZnn28=;
-  b=SxDbNzfB+v8xCXNJYSEEFUPk1PcMpNIhYtcu8LNnlTZdEAJm+5KD9U+X
-   KGb/X93+izS9QR4l561hK+lQYu/v3xBUW0+qXnaCbSNF5uDsIgEI0VgDo
-   oDFwJkBOJ2+JzOZOLE7VMUMiEac92sqilm8rp1tsAbw1Onh0FsPk2pUtz
-   cjRb0R/Aa9UFKSCwfLmPN8s0UjGKHdTTMl1JWkjyn87/G30YJs3P46xLs
-   7fpKfvx9nAC2srxMYM/Dm7rBkQ8k83n4IVQCnqsftgwZzxdYflJdYhryl
-   leHRxM5qx4FdeQqqf92lwK5jr0qL1nPJrzZUbBDr6MHnmWSpXZWZnBrM0
-   w==;
-X-CSE-ConnectionGUID: eQCa+XMlRRCD97zvXkJzsg==
-X-CSE-MsgGUID: k/dadcPrSJqBUsLRIZL6ng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="83679502"
-X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; 
-   d="scan'208";a="83679502"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jul 2026 02:17:51 -0700
-X-CSE-ConnectionGUID: WKxCTkw4S32nQXuttGwI9A==
-X-CSE-MsgGUID: pJkqX2ZYR/il3iMGI09clA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,235,1774335600"; 
-   d="scan'208";a="253156040"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.65])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jul 2026 02:17:47 -0700
-Date: Wed, 1 Jul 2026 12:17:44 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Janani Sunil <janani.sunil@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, Janani Sunil <jan.sun97@gmail.com>,
-	linux-spi@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] iio: dac: Add AD5529R DAC driver support
-Message-ID: <akTbODssLM4UViF9@ashevche-desk.local>
-References: <20260701-ad5529r-driver-v5-0-ed087900e642@analog.com>
- <20260701-ad5529r-driver-v5-3-ed087900e642@analog.com>
+	s=arc-20240116; t=1782897561; c=relaxed/simple;
+	bh=O+WxQEJcPlXHvA5K00jtBGLyDoXDhWTLYNbRqUxjJFI=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=oA8aBJ4fNxAIDlzXlr/nNTZaHxbvZobDuCXi7tths7bAtki4UthAZ2VVtRnHne29YBFgoGHwgX3g9U+oxP4aGV99GL/IzdFb6nIZ34+oTOuk056umMVeunKc1Nkk2cze8Va+hav1gOfUxiestpxk611psW4GbAaHUosezh0soYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IlgN8Sw7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CD3E1F000E9;
+	Wed,  1 Jul 2026 09:19:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782897560;
+	bh=uuwWOO8gIcp9Zj4i7cd94cyG6/9P3iRk4Gw/v7AhFYo=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=IlgN8Sw7RQR2YtkSmDQE4lpHykmigcb1sLi19M3MvTy4q6bdC1iRTIx+PHJb5j+oh
+	 kKUtXSWBKO8mmTZvuUt3fHYX4128m05laoKRSFHY2eluYUMzaF+IaWmkNviYceTRL6
+	 xDouxDmlGJsDqwRxGAhReeFad5cTCVHpz8snEXO7n/+kClMU7jGEP1vEbKrrWPcOyR
+	 pzu/MSSMsXEnWKRY6u095F06/7RT3gcDLNqH2Jn5f/UGXUlsHTMtBu7r7fsJRcSyFP
+	 WcSJGVeHTJfs0SdHxaQlAoaZD/xKf21FdvpDI54G3L/awEF/SbyIANGGxvzf744qp7
+	 vFHiJR53ir+aA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v8 13/22] RISC-V: perf: Add a mechanism to defined
+ legacy event encoding
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Atish Patra" <atish.patra@linux.dev>
+Cc: linux-perf-users@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260701-counter_delegation-v8-13-7909f863a645@meta.com>
+References: <20260701-counter_delegation-v8-0-7909f863a645@meta.com>
+ <20260701-counter_delegation-v8-13-7909f863a645@meta.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 01 Jul 2026 09:19:19 +0000
+Message-Id: <20260701091920.0CD3E1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260701-ad5529r-driver-v5-3-ed087900e642@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-318293-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318292-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:janani.sunil@analog.com,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:broonie@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:jan.sun97@gmail.com,m:linux-spi@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jansun97@gmail.com,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rivosinc.com:email,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:atish.patra@linux.dev,m:linux-perf-users@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ashevche-desk.local:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,intel.com:dkim,intel.com:email,intel.com:from_mime]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7F7446EB887
+X-Rspamd-Queue-Id: 49E1E6EB89C
 
-On Wed, Jul 01, 2026 at 08:40:41AM +0200, Janani Sunil wrote:
-> Add support for AD5529R 16-channel, 12/16 bit Digital to Analog Converter
-> from Analog Devices.
-> 
-> The device communicates over SPI and supports per-channel output range
-> configuration. An optional external 4.096V reference can be used in
-> place of the internal reference.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The fallback log message incorrectly reports 'No default PMU events=
+ found' if a vendor only provides hardware events.
+--
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-A couple of nit-picks below.
+Note: The format of this review is altered to provide a free-form summary
+rather than inline diff quotes due to recitation restrictions.
 
-...
+commit 8db6e371918071f188390a413ded48d85e22f4f9
+Author: Atish Patra <atishp@rivosinc.com>
+   =20
+RISC-V: perf: Add a mechanism to defined legacy event encoding
+   =20
+This commit introduces a framework in the RISC-V PMU driver to support
+vendor-specific legacy event encodings and counter mappings. Platform-speci=
+fic
+events will be added using this framework in later patches.
 
-> +static int ad5529r_find_output_range(const s32 *vals)
-> +{
-> +	for (unsigned int i = 0; i < ARRAY_SIZE(ad5529r_output_ranges_mV); i++) {
-> +		if (vals[0] == ad5529r_output_ranges_mV[i][0] * 1000 &&
-> +		    vals[1] == ad5529r_output_ranges_mV[i][1] * 1000)
+[Severity: Low]
+In the newly added rvpmu_vendor_register_events() function, the fallback lo=
+g=20
+message evaluates if either the hardware event map or the cache event map i=
+s=20
+missing before printing "No default PMU events found".
+   =20
+If a vendor provides a valid hardware event map but leaves the cache event=
+=20
+map as NULL (e.g., if they do not support legacy cache PMU events), won't=20
+this condition incorrectly trigger the fallback log? Does this code need to=
+=20
+use a logical AND instead, or should it evaluate and log hardware and cache=
+=20
+event presence separately to avoid misleading kernel logs?
 
-So, the correct way is to have either defined constant in units.h or while now
-(MICRO / MILLI). So, with a temporary pointer this can be achieved without
-uglifying the code
-
-		... *range = &ad5529r_output_ranges_mV[i];
-
-		if (vals[0] == range[0] * (MICRO / MILLI) &&
-		    vals[1] == range[1] * (MICRO / MILLI))
-
-> +			return i;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-
-...
-
-> +	/*
-> +	 * The datasheet mentions a 4.096V external reference for correct
-> +	 * operation.
-> +	 */
-> +	ret = devm_regulator_get_enable_optional(dev, "vref");
-> +	if (ret == -ENODEV) {
-> +		external_vref = false;
-> +	} else if (ret) {
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to get and enable vref regulator\n");
-> +	} else {
-> +		external_vref = true;
-> +	}
-
-All branches are single statement. No {} are needed.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-counter_de=
+legation-v8-0-7909f863a645@meta.com?part=3D13
 
