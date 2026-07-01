@@ -1,285 +1,250 @@
-Return-Path: <devicetree+bounces-318539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318535-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bggqMIcMRWqA5woAu9opvQ
-	(envelope-from <devicetree+bounces-318539-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:48:07 +0200
+	id me3yArcLRWoi5woAu9opvQ
+	(envelope-from <devicetree+bounces-318535-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:44:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EDF76ED8F5
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:48:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9397E6ED815
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:44:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=vayavyalabs.com header.s=google header.b=BZWl0fQ1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318539-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318539-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=vayavyalabs.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fHwzDOgx;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318535-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318535-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CC9E6307F62B
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:38:37 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 92851309B34B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:36:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77443481A9F;
-	Wed,  1 Jul 2026 12:32:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0785481A98;
+	Wed,  1 Jul 2026 12:30:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com [74.125.82.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EDA5481A8B
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:32:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F3F1481665
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:30:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782909161; cv=none; b=Iw3oaegIH853mI/6v29qTMhdBkeSs6kHAZsWkTBm3g+VYNsqPXpJQokWjA4Zxg+nAP4S7BISo7803lQdvMGA1p78S+nYaKs9WMnYnzlZDMNPDjmOI0ZkEPmpHqebk1owRWYmQ6qjUY+htuSBcZvXwjmyzTvcvSi4PfPJzOOAEvQ=
+	t=1782909005; cv=none; b=jJUExUsyC2+3P0EBd9AgkA5LfDakI3iZM1mQLP9bWCxhL/Zuv8GPu+vmjvQuCqAqkeQdKe1uOZz4mb9v7/bZKc/zJ3wiZDs2dpbCxbIdMpo2YRTRm5Ls1LFKghMZ/3gyfevph0JvWUzfmWKMpAaPNQm5BdWH2F/ieJj7YO3bWek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782909161; c=relaxed/simple;
-	bh=FnbUb2fj7mS8FvtSY2ctYhOyvfQQIyc9xP4UTl5q0N0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Qn4THKB/j+QI5mirVWux1QbehNTHdQu5cgLF5Y6r+9hmiVX8U72sdQL37uBAfQ3fV9vBL00E3DIySQ7fn8Y/NC47vp9pZAeeuqkTOr4Ra3JV8GBsqM6uc2+k9nDr1mR06eMfPAj9sVh+9z54uiHHJVy5yDPTdbPIYnpl7Wy6iMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=BZWl0fQ1; arc=none smtp.client-ip=74.125.82.169
-Received: by mail-dy1-f169.google.com with SMTP id 5a478bee46e88-30ec3dfbcd1so992005eec.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 05:32:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1782909159; x=1783513959; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=/PsSIQ+vvmUu7ZGpNEkF3m3d7FEgCmZo5EF6wbWhukY=;
-        b=BZWl0fQ1WmPWGjgMYwtXbpGIclfyi9M76KZ7DbIclCka53SBKxoprdW6CeEXzk6XOj
-         dAYb5gJtev2BPqh+mfAwYTMq7pT/P52NYz7MkK+eGyniqst2KnVDAECyT3huwf0tEvVr
-         af838+M1g53EWqjgBfmbVOKkBaku8RZVgTlAs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782909159; x=1783513959;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=/PsSIQ+vvmUu7ZGpNEkF3m3d7FEgCmZo5EF6wbWhukY=;
-        b=s8fgwjkgP2tTXo8i07dIGVOw2zFJtUML6JKyMgr0cSTnwNiC9GUudlm6pIGTfNtahv
-         Rn7GY/Gm0WZCxCticMvpQHxaY2e2mDmgzWGP0N+WXNX5VU8yp2tKohcVifEITDtdJLA5
-         AMTNhvNaVkmWBB91rs6G4lz15ZAwjcpfoC3FOAbvTKJ+jropjCcOGCg8go8WS4lcg9WA
-         FQP7AqyMbJSkp1Hv1RmTmQg8rwC/baI9IgXphSpBk+TmB461+/wlJuCtd3oF334h5jhH
-         7ARAzRwl7/WmT6OGVoGzQKCP50N8dQHUYJgD2fbjPDWej+rFGwuzdAATx896U6XczGXl
-         Xj7w==
-X-Forwarded-Encrypted: i=1; AHgh+Rot/mZ+v8ZPzsBKUrkyQrXRp1+r4pTb8dPUsZ5LyFxQdTA971iUfk674SLjzM7q1zcjWu3ycKck5EJ+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUeEA6zGLidRSmaYIfhOHuTJgYBdBJIXbYliLokwZpbJWUlhn5
-	uFGZzYsQQnlmmIYR2YxNJ6Rh7oJr/HvEW7os+4dnblxBmK7Cw8D6mer8jj4QK5CjYfw=
-X-Gm-Gg: AfdE7ck0US61TIS2hyfEyVkfl8bTtv2lfJkI4vEl2luC9qo3/aoalVC9W0crtsmbKn1
-	iyGXMyJ1uyT7rswfExG7txiZZYyNq+C1gsGDwPPyPHi56fRWIaWzMK1uCt1QAsof2tNZwLzDHwZ
-	kAwuNS2W7sdUFzDoKsmFHPBGcT3brP3MCowTv/JO2aNBHvr+ef7mu+GcNXXLZFBM84l83qQGkiu
-	5QRdh3vUjPM5ACwztwWXGnkVReHDD2WKH/75P6MXo+mxC4BMK6u4ohvc0c2vcIqfEeuyqUZdP6/
-	4OJu6j/sa8dLPqa/c28QMOzpF6m8vu1cwt2JXQlDlt8tRewaSjeNZGEmAK/fi9OGjhwSqUYUCQt
-	0iWbwm9gYDzcOXTO5POxuouZDcxJ2lVS6+koZ2rJHjTosnpOY+0x0T+/9t+AjJjVCoIrWt4pqIB
-	PNyAMw89f5+4QfLKiEFyeCEOrX+weGlE/fxPfvxFfh/iaJ15BNnOthSWCqAEoLjhyElB+1Y/PFB
-	1HSJ9D1ZmOvc+4lWKm6RBHqD6AcNt9aHQwnV1JVb8TI3d8qYhkCAVh1
-X-Received: by 2002:a05:7300:3b28:b0:304:bce9:25fa with SMTP id 5a478bee46e88-30f0524f50amr706702eec.4.1782909158919;
-        Wed, 01 Jul 2026 05:32:38 -0700 (PDT)
-Received: from localhost.localdomain ([103.108.57.9])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-30ee2cd21bcsm40776402eec.0.2026.07.01.05.32.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jul 2026 05:32:38 -0700 (PDT)
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-To: linux-crypto@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	herbert@gondor.apana.org.au,
-	robh@kernel.org
-Cc: krzk@kernel.org,
-	conor+dt@kernel.org,
-	Ruud.Derwig@synopsys.com,
-	rbannerm@synopsys.com,
-	manjunath.hadli@vayavyalabs.com,
-	adityak@vayavyalabs.com,
-	navami.telsang@vayavyalabs.com,
-	bhoomikak@vayavyalabs.com,
-	Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Subject: [PATCH v15 4/4] crypto: spacc - Add SPAcc Kconfig and Makefile
-Date: Wed,  1 Jul 2026 17:59:41 +0530
-Message-Id: <20260701122941.2149121-5-pavitrakumarm@vayavyalabs.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260701122941.2149121-1-pavitrakumarm@vayavyalabs.com>
-References: <20260701122941.2149121-1-pavitrakumarm@vayavyalabs.com>
+	s=arc-20240116; t=1782909005; c=relaxed/simple;
+	bh=qC2R9B5pwevwtmupxdX8wEkzy5I3qPUw7O/avmV0ZAw=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ikvpJTEnYcKbuYEU6eZ266+gwP2kBR5recNrEjyP1KYU/+x3Dv/x4DSxqU/ch3d5VI1Dli2R7fAhhn1aXKDjTp2SJJ/K6I/6v1mK9AK1p90Pxl4PhJYaBlbaW1euAnB+bOwnTdi2fGpdmAJKrLOzU299Hxn0vff24ODfh9v519k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fHwzDOgx; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B65211F000E9;
+	Wed,  1 Jul 2026 12:30:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782909004;
+	bh=p/Ltph7WWF2KDaFV2op4D3gJpqRALqGdOM9Gv3W8WeQ=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=fHwzDOgxbOKw/V1SMc/+aZnecLypCRVbcTaY3+V03yNMZd90Zk6V7xzEXVo5YIpdV
+	 y4FfwpeCKFvhFz8+HreE8DMw+CF+fVr9MJB6mqYvVYG0tgIxiVu0ca24S+9LY5hF+x
+	 1rXYXogTKejG8oVVzugfhAyFz087KSrhGKBWLJRyrk5OPxfiBMGshRADyeIdEVmLlF
+	 2c59A7XUigU7yYeAm/FTGgCf2fMLQxePzMvMpqovSwckqH+4iMgprZprNNR3GoiYhb
+	 8N1eErELMv9vr2RVGIbEVmhXM2WkITzhYibFQRum6LxvzRMF3op862J2K9eYcdEjjq
+	 njzk20pc1Zdgg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 03/12] phy: phy-mtk-dp: Allow probing with devicetree
+ match
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
+Cc: neil.armstrong@linaro.org, vkoul@kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, olteanv@gmail.com, robh@kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20260701122008.19509-4-angelogioacchino.delregno@collabora.com>
+References: <20260701122008.19509-1-angelogioacchino.delregno@collabora.com>
+ <20260701122008.19509-4-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 01 Jul 2026 12:30:03 +0000
+Message-Id: <20260701123003.B65211F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[vayavyalabs.com,reject];
-	R_DKIM_ALLOW(-0.20)[vayavyalabs.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[pavitrakumarm@vayavyalabs.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-318539-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318535-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:neil.armstrong@linaro.org,m:vkoul@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:olteanv@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-crypto@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:herbert@gondor.apana.org.au,m:robh@kernel.org,m:krzk@kernel.org,m:conor+dt@kernel.org,m:Ruud.Derwig@synopsys.com,m:rbannerm@synopsys.com,m:manjunath.hadli@vayavyalabs.com,m:adityak@vayavyalabs.com,m:navami.telsang@vayavyalabs.com,m:bhoomikak@vayavyalabs.com,m:pavitrakumarm@vayavyalabs.com,m:conor@kernel.org,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,lists.infradead.org,vger.kernel.org,gmail.com,lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pavitrakumarm@vayavyalabs.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[vayavyalabs.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,synopsys.com:email,vayavyalabs.com:dkim,vayavyalabs.com:email,vayavyalabs.com:mid,vayavyalabs.com:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,lists.linux.dev:replyto,vger.kernel.org:from_smtp,collabora.com:email,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5EDF76ED8F5
+X-Rspamd-Queue-Id: 9397E6ED815
 
-Add Makefile and Kconfig for SPAcc driver.
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
 
-Acked-by: Ross Bannerman <rbannerm@synopsys.com>
-Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
----
- drivers/crypto/Kconfig            |  1 +
- drivers/crypto/Makefile           |  1 +
- drivers/crypto/dwc-spacc/Kconfig  | 83 +++++++++++++++++++++++++++++++
- drivers/crypto/dwc-spacc/Makefile |  8 +++
- 4 files changed, 93 insertions(+)
- create mode 100644 drivers/crypto/dwc-spacc/Kconfig
- create mode 100644 drivers/crypto/dwc-spacc/Makefile
+New issues:
+- [High] The return value of `pm_runtime_get_sync()` is ignored, which can =
+lead to hardware register accesses on an unpowered device.
+- [Medium] Missing `.remove` callback leaves PM runtime enabled and usage c=
+ounter unbalanced on driver unbind.
 
-diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-index 216a00bad5d70..280a0165ddfdf 100644
---- a/drivers/crypto/Kconfig
-+++ b/drivers/crypto/Kconfig
-@@ -742,6 +742,7 @@ config CRYPTO_DEV_BCM_SPU
- 	  ahash, and aead algorithms with the kernel cryptographic API.
-
- source "drivers/crypto/stm32/Kconfig"
-+source "drivers/crypto/dwc-spacc/Kconfig"
-
- config CRYPTO_DEV_SAFEXCEL
- 	tristate "Inside Secure's SafeXcel cryptographic engine driver"
-diff --git a/drivers/crypto/Makefile b/drivers/crypto/Makefile
-index 5a950c7abc393..d463a3f101963 100644
---- a/drivers/crypto/Makefile
-+++ b/drivers/crypto/Makefile
-@@ -41,6 +41,7 @@ obj-$(CONFIG_CRYPTO_DEV_BCM_SPU) += bcm/
- obj-y += inside-secure/
- obj-$(CONFIG_CRYPTO_DEV_ARTPEC6) += axis/
- obj-y += xilinx/
-+obj-y += dwc-spacc/
- obj-y += hisilicon/
- obj-$(CONFIG_CRYPTO_DEV_AMLOGIC_GXL) += amlogic/
- obj-y += intel/
-diff --git a/drivers/crypto/dwc-spacc/Kconfig b/drivers/crypto/dwc-spacc/Kconfig
-new file mode 100644
-index 0000000000000..a9172606d77aa
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Kconfig
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+
-+config CRYPTO_DEV_SPACC
-+	tristate "Support for dwc_spacc Security Protocol Accelerator"
-+	depends on HAS_DMA
-+	select CRYPTO_ENGINE
-+	default n
-+
-+	help
-+	  This enables support for SPAcc Hardware Accelerator.
-+
-+if CRYPTO_DEV_SPACC
-+
-+config CRYPTO_DEV_SPACC_HASH
-+	bool "Enable HASH functionality"
-+	default y
-+	select CRYPTO_HASH
-+	select CRYPTO_SHA1
-+	select CRYPTO_MD5
-+	select CRYPTO_SHA256
-+	select CRYPTO_SHA512
-+	select CRYPTO_HMAC
-+	select CRYPTO_SM3
-+	select CRYPTO_CMAC
-+	select CRYPTO_XCBC
-+	select CRYPTO_AES
-+	select CRYPTO_SM4_GENERIC
-+
-+	help
-+	  Say y to enable Hash functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_AUTODETECT
-+	bool "Enable Autodetect functionality"
-+	default y
-+	help
-+	  Say y to enable Autodetect functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_IO
-+	bool "Enable Trace MMIO reads/writes stats"
-+	default n
-+	help
-+	  Say y to enable Trace MMIO reads/writes stats.
-+	  To Debug and trace IO register read/write oprations.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_DDT
-+	bool "Enable Trace DDT entries stats"
-+	default n
-+	help
-+	  Say y to enable Enable DDT entry stats.
-+	  To Debug and trace DDT opration
-+
-+config CRYPTO_DEV_SPACC_SECURE_MODE
-+	bool "Enable Spacc secure mode stats"
-+	default n
-+	help
-+	  Say y to enable SPAcc secure modes stats.
-+
-+config CRYPTO_DEV_SPACC_PRIORITY
-+	int "VSPACC priority value"
-+	range 0 15
-+	default 1
-+	help
-+	  Default arbitration priority weight for this Virtual SPAcc instance.
-+	  Hardware resets this to 1. Higher values means higher priority.
-+
-+config CRYPTO_DEV_SPACC_INTERNAL_COUNTER
-+	int "SPAcc internal counter value"
-+	range 100000 1048575
-+	default 100000
-+	help
-+	  This value configures a hardware watchdog counter in the SPAcc engine.
-+	  The counter starts ticking when a completed cryptographic job is
-+	  sitting in the STATUS FIFO. If the job remains unprocessed for the
-+	  configured duration, an interrupt is triggered to ensure it is serviced.
-+
-+config CRYPTO_DEV_SPACC_CONFIG_DEBUG
-+	bool "Enable SPAcc debug logs"
-+	default n
-+	help
-+          Say y to enable additional debug prints and diagnostics in the
-+	  SPAcc driver. Disable this for production builds.
-+
-+endif # CRYPTO_DEV_SPACC
-diff --git a/drivers/crypto/dwc-spacc/Makefile b/drivers/crypto/dwc-spacc/Makefile
-new file mode 100644
-index 0000000000000..45d0166dfc8f7
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Makefile
-@@ -0,0 +1,8 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_CRYPTO_DEV_SPACC) += snps-spacc.o
-+snps-spacc-objs = spacc_hal.o spacc_core.o \
-+spacc_manager.o spacc_interrupt.o spacc_device.o
-+
-+ifeq ($(CONFIG_CRYPTO_DEV_SPACC_HASH),y)
-+snps-spacc-objs += spacc_ahash.o
-+endif
+Pre-existing issues:
+- [High] Missing `phy_remove_lookup()` causes a memory leak and a dangling =
+pointer in the global PHY lookup list.
+- [High] Unconditional dereference of `dev->platform_data` before validatin=
+g it.
 --
-2.25.1
 
+commit e3a3844cc6f977665174375e23735f789c04a772
+Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+phy: phy-mtk-dp: Allow probing with devicetree match
+
+This commit introduces a devicetree match table to decouple the DP PHY driv=
+er
+from the DP IP driver. It adds an OF PHY provider and MMIO regmap registrat=
+ion
+for the devicetree case, while maintaining a legacy probe path for older
+devicetrees without a separate PHY node.
+
+> diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy=
+-mtk-dp.c
+> index bf7b3a95e72d2..98e05fe05ce3b 100644
+> --- a/drivers/phy/mediatek/phy-mtk-dp.c
+> +++ b/drivers/phy/mediatek/phy-mtk-dp.c
+
+[ ... ]
+
+> @@ -160,43 +161,92 @@ static const struct phy_ops mtk_dp_phy_dev_ops =3D {
+>  	.owner =3D THIS_MODULE,
+>  };
+> =20
+> +static int mtk_dp_phy_legacy_probe(struct platform_device *pdev, struct =
+mtk_dp_phy *dp_phy)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct phy *phy;
+> +
+> +	dp_phy->regmap =3D *(struct regmap **)dev->platform_data;
+
+[Severity: High]
+This is a pre-existing issue, but does this code unconditionally dereference
+dev->platform_data before verifying it is not NULL?
+
+If the platform device is instantiated without platform data, would this
+dereference cause a kernel panic before the subsequent check for
+!dp_phy->regmap can execute?
+
+> +	if (!dp_phy->regmap)
+> +		return dev_err_probe(dev, -EINVAL, "No platform data available\n");
+> +
+> +	phy =3D devm_phy_create(dev, NULL, &mtk_dp_phy_dev_ops);
+> +	if (IS_ERR(phy))
+> +		return dev_err_probe(dev, PTR_ERR(phy),
+> +				     "Failed to create DP PHY\n");
+> +
+> +	phy_set_drvdata(phy, dp_phy);
+> +	phy_create_lookup(phy, "dp", dev_name(dev));
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does this leak the lookup
+entry and create a dangling pointer?
+
+phy_create_lookup() dynamically allocates a phy_lookup structure and links =
+it
+into the global phys list. Since there is no driver .remove callback calling
+phy_remove_lookup(), when the driver unbinds, the devres-managed phy is fre=
+ed
+while still in the global list, which could cause a use-after-free when oth=
+er
+drivers call phy_find().
+
+> +
+> +	return 0;
+> +}
+> +
+
+[ ... ]
+
+>  static int mtk_dp_phy_probe(struct platform_device *pdev)
+>  {
+
+[ ... ]
+
+> +	provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> +	if (IS_ERR(provider))
+> +		return PTR_ERR(provider);
+> +
+> +	pm_runtime_enable(dev);
+> +	pm_runtime_get_sync(dev);
+
+[Severity: High]
+Is it safe to ignore the return value of pm_runtime_get_sync() here?
+
+If the generic power domain or clock fails to enable, pm_runtime_get_sync()
+will return a negative error code. Without checking this, the PHY provider =
+is
+registered even if the hardware is off, which could lead to a synchronous
+external abort when attempting to write to the MMIO registers later.
+
+> =20
+>  	return 0;
+>  }
+> =20
+> +static const struct of_device_id mtk_dp_phy_of_match[] =3D {
+> +	{ .compatible =3D "mediatek,mt8195-dp-phy" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, mtk_dp_phy_of_match);
+> +
+>  static struct platform_driver mtk_dp_phy_driver =3D {
+>  	.probe =3D mtk_dp_phy_probe,
+>  	.driver =3D {
+>  		.name =3D "mediatek-dp-phy",
+> +		.of_match_table =3D mtk_dp_phy_of_match,
+>  	},
+>  };
+
+[Severity: Medium]
+Does this driver need a .remove callback to clean up the PM runtime state?
+
+Since pm_runtime_enable() and pm_runtime_get_sync() are called in probe
+without devm_ handlers or registered teardown actions, unbinding the driver
+appears to leak the usage counter and leave PM runtime permanently enabled.
+
+>  module_platform_driver(mtk_dp_phy_driver);
+>
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701122008.1950=
+9-1-angelogioacchino.delregno@collabora.com?part=3D3
 
