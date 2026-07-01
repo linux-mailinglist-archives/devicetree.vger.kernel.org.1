@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-318240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318241-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LEAWJnHURGpB1goAu9opvQ
-	(envelope-from <devicetree+bounces-318240-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:48:49 +0200
+	id MCv8BbvTRGoH1goAu9opvQ
+	(envelope-from <devicetree+bounces-318241-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:45:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEDC46EB42E
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:48:48 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE2D6EB3B9
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:45:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=O2MoZLir;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318240-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318240-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ePRPe1Ft;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318241-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318241-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CDC35309110A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:45:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 26BC63012573
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:45:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B7C3B71B0;
-	Wed,  1 Jul 2026 08:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB9A3EEAE5;
+	Wed,  1 Jul 2026 08:45:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DFBB3EA97E;
-	Wed,  1 Jul 2026 08:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 937523EEAC1;
+	Wed,  1 Jul 2026 08:45:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782895502; cv=none; b=L7/gfpLkeOwwh7m+UgMsa1cigZ3lN6wETejzop1ElfderU5aVHlMYdc5SSoz/9QfHs4/IW1ikSl40S6+sXAD4zxf1SdWV7blwngjMET76Tkwb+v67Xc7gllhmQjA/kignrVbFWcx9eETctOJgWNDlZL/PxuOwbj1IGnlVnH8lBc=
+	t=1782895526; cv=none; b=k72rMEGp2dVpTYviqkU8x6QWA1yyS4pBVCsf0VT5jVZuO3ey5W1Z+MCpHEh9B3FxIORZ21FRjUPde/9uOEjtRIr0VHWThIbdobXIvCe9WDZVQYGViciGw9wFGuQ7O5xtSrO9OX0vYOnQF9lfV1DoZFCvfFI5w8h3dVcogNYb0p8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782895502; c=relaxed/simple;
-	bh=GC8QAIxrt0LSwhZktWa2RaSNGPdZzdF5sT9WQCMTBC8=;
+	s=arc-20240116; t=1782895526; c=relaxed/simple;
+	bh=nNf4udYJd9MD5XZuXrbu16Cq6DvSap/ZtG4wMkqHLZY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=O1fuasKfjHc9giCXY0vLyhWHExqfzz2+LbRWRSU8FQ4kH1d9bOoVrzArrClP6TFxqrYu4P/hizxzDxkGzu9sfWf3w7Yv+BpR/obdty/KwZMCw8slXnd4UrNF7gS4UodjXwap1U6ElFE5ejYQ/me/TRjAvCLv+bG0Gd0szvG7ehE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O2MoZLir; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC7351F00A3A;
-	Wed,  1 Jul 2026 08:45:00 +0000 (UTC)
+	 Message-Id; b=dWvkHoGbggqx7aRUEmi5WnG/vaC4uCn82UEQ+kOcOnQVXcKcRLLB8oP4fS5LcYR4aPjNRNrjwR9CZeSx7n1jdCNvzQ+Aisk4Ytv7GvVT0qwIj/IxuBHXR3eeQt9JweISxEdUzcE6s77movaESGrFXAUE0zp5j4gRrdxdSg5/bKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ePRPe1Ft; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A5301F000E9;
+	Wed,  1 Jul 2026 08:45:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782895501;
-	bh=B9O1FfwfOGxuhO1XNaDk5FHpRsvFW/TF2WbDzvyyT9o=;
+	s=k20260515; t=1782895522;
+	bh=fydU5j+nWWe8iQwXeKuFpLLzQmRbVlUJZLCyaDL8nsw=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=O2MoZLirwR/igytQGAbm2goB2KiPZ4YktDBNXQMEwlRpLN6rf1AEDcd0oMT/6KqLi
-	 LxXIRuvz6kTBtEeJq/RedBclMv09gyDOLqlIV6i8J0RAQe1Frc/0sUxxzJkoC8JvSS
-	 RUxrOyOSzn5wEnbXyhfTkMkZcAWv8xd1v/clmbcRATvdBQzVkbRV2ipWxu5W0QEEK8
-	 lWnb6CFB8FpgX4e2qRBTDPg8+/KB01yV0oXEfEV2x8QfHAB1RXwuRzcVmirXUPbScu
-	 Whmf9g8jATEA+hKC4Z9y+XWAA+/uPHNJKtFDRJzbvUkpYEblOY6xCspyHyOSBUWC1L
-	 yt7LYZDf1pEFA==
+	b=ePRPe1FtAckEYhyxJq2tF0EAnnPfU/Ny6x6h+o+2lKVmm5bqClkLg2EwkE2JnUOr1
+	 LtMnuFdgwWFatDz85G8qU2AtB2lAiexDhR7bzPaiUju1QNZmovJ9XRUlUueyt/i6rv
+	 u1CExW0jxCyHf+oM94G/RCGftOGq2qEEOd9GcYHxavx1DlKPhtWIeqbTY0/SoeeEi1
+	 LoVnQREIqgpPNFK9sYvRIFNR/ooNF6vIEBYpkWO5/PYrEMFI+joxWl45qQuOaWq5mH
+	 Og8C4T3ay5mT4zTdzu3vnMTrXPwXmBIw6XD2ryP0Is/DBvhiN7FK+S3m9Wuvpj8JLE
+	 P+563vogYB34w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 2/2] arm64: dts: imx8mp-skov: support new 7inch panel
- board
+Subject: Re: [PATCH v6 1/1] arm64: dts: add tqma9596la-mba95xxca
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Steffen Trumtrar" <s.trumtrar@pengutronix.de>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, Frank.Li@kernel.org, robh@kernel.org
-In-Reply-To: <20260701-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v3-2-d74f7e3f8293@pengutronix.de>
-References: <20260701-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v3-0-d74f7e3f8293@pengutronix.de>
- <20260701-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v3-2-d74f7e3f8293@pengutronix.de>
+To: "Alexander Stein" <alexander.stein@ew.tq-group.com>
+Cc: Frank.Li@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, wsa+renesas@sang-engineering.com, imx@lists.linux.dev, conor+dt@kernel.org
+In-Reply-To: <20260701082611.3126036-1-alexander.stein@ew.tq-group.com>
+References: <20260701082611.3126036-1-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 08:45:00 +0000
-Message-Id: <20260701084500.AC7351F00A3A@smtp.kernel.org>
+Date: Wed, 01 Jul 2026 08:45:22 +0000
+Message-Id: <20260701084522.5A5301F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,126 +70,143 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-318240-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,pengutronix.de:email,sashiko.dev:url,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318241-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:s.trumtrar@pengutronix.de,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:Frank.Li@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:alexander.stein@ew.tq-group.com,m:Frank.Li@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:imx@lists.linux.dev,m:conor+dt@kernel.org,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid,tq-group.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EEDC46EB42E
+X-Rspamd-Queue-Id: 8AE2D6EB3B9
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Low] DT Schema Validation Failure: missing fallback compatible string fo=
-r touchscreen.
-- [Low] Documentation error in LVDS clock calculation comment.
-- [Low] Makefile Ordering Violation.
+- [High] Hardware components (PWM fan and 10G SFP) remain permanently unpow=
+ered due to disabled regulators
+- [Low] Dead code: Unreferenced `pinctrl_ethphy0` node
 --
 
-commit 3b909b83ea0bf98186df799556b414671ad39311
-Author: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+commit f54617810555494fd6b435aa3ac070a14b264e01
+Author: Markus Niebel <Markus.Niebel@ew.tq-group.com>
 
-arm64: dts: imx8mp-skov: support new 7inch panel board
-   =20
-This board is similar to the already upstream
-imx8mp-skov-revc-tian-g07017.dts but uses a different 7" panel with a
-different touch controller.
+arm64: dts: add tqma9596la-mba95xxca
 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts=
-/freescale/Makefile
-> index 8ddaab127ab9c..efca29735b2cb 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
+This adds support for TQMa95xxLA modules, designed to be soldered
+on a carrier board. MBa95xxCA is a carrier reference board / starter kit
+design. Enable the external accessible PCIe controllers as host, add
+clocking and reset GPIO.
 
-[ ... ]
-
-> @@ -435,6 +435,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-skov-revb-mi1010ai=
-t-1cp1.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-skov-revc-bd500.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-skov-revc-hdmi.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-skov-revc-tian-g07017.dtb
-> +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-skov-revc-jutouch-jt070tm041.dtb
-
-[Severity: Low]
-This isn't a bug, but should this new entry be sorted alphabetically?
-Placing jutouch after tian breaks the expected ordering in the Makefile.
-
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-skov-revc-jutouch-jt101tm023.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-toradex-smarc-dev.dtb
-
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-revc-jutouch-jt070=
-tm041.dts b/arch/arm64/boot/dts/freescale/imx8mp-skov-revc-jutouch-jt070tm0=
-41.dts
+> diff --git a/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca.dts=
+ b/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca.dts
 > new file mode 100644
-> index 0000000000000..56374f1e67663
+> index 0000000000000..e90f37bbdcd80
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-revc-jutouch-jt070tm041.d=
-ts
+> +++ b/arch/arm64/boot/dts/freescale/imx95-tqma9596la-mba95xxca.dts
 
 [ ... ]
 
-> +&i2c2 {
-> +	clock-frequency =3D <100000>;
-> +	status =3D "okay";
+> +	reg_3v3a_10g: regulator-3v3a-10g {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "3V3A_10G";
+> +		regulator-min-microvolt =3D <3300000>;
+> +		regulator-max-microvolt =3D <3300000>;
+> +		gpio =3D <&expander2 15 GPIO_ACTIVE_HIGH>;
+> +		startup-delay-us =3D <2000>;
+> +		enable-active-high;
+> +	};
+
+[Severity: High]
+Is this regulator missing a consumer or the regulator-always-on property?
+
+Since the sfp_xfi node does not have a vcc-supply or vcc link to this
+regulator, and there is no always-on flag, won't the regulator framework
+automatically disable it, leaving the 10G SFP module unpowered?
+
+[ ... ]
+
+> +	fan_controller: fan-controller@2f {
+> +		compatible =3D "microchip,emc2301", "microchip,emc2305";
+> +		reg =3D <0x2f>;
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +		#pwm-cells =3D <3>;
+> +		status =3D "okay";
 > +
-> +	touchscreen@2a {
-> +		compatible =3D "eeti,exc81w32";
+> +		fan: fan@0 {
+> +			reg =3D <0x0>;
+> +			pwms =3D <&fan_controller 40000 PWM_POLARITY_INVERTED 1>;
+> +			#cooling-cells =3D <2>;
+> +			fan-supply =3D <&reg_pwm_fan>;
+> +		};
+> +	};
 
-[Severity: Low]
-Does this compatible string also require the fallback string eeti,exc80h84
-to pass dtbs_check validation? The schema for the eeti,exc3000 touchscreen
-typically expects both strings to be present.
+[Severity: High]
+Is reg_pwm_fan guaranteed to be enabled to power the cooling fan?
 
-> +		reg =3D <0x2a>;
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&pinctrl_touchscreen>;
+While it is referenced via fan-supply in the fan@0 node here, the
+microchip,emc2305 hardware monitor driver does not parse fan-supply or mana=
+ge
+regulators.=20
+
+Without regulator-always-on in the reg_pwm_fan node, won't this regulator
+remain permanently disabled, preventing the fan from operating?
 
 [ ... ]
 
-> +&lvds_bridge {
-> +	assigned-clocks =3D <&clk IMX8MP_CLK_MEDIA_LDB>,
-> +				 <&clk IMX8MP_VIDEO_PLL1>;
-> +	assigned-clock-parents =3D <&clk IMX8MP_VIDEO_PLL1_OUT>;
-> +	/* IMX8MP_VIDEO_PLL1 =3D IMX8MP_CLK_MEDIA_DISP2_PIX * 2 * 7 */
+> +	/* IRQ pin is AON GPIO, not usable */
+> +	ethphy0: ethernet-phy@0 {
+> +		compatible =3D "ethernet-phy-ieee802.3-c22";
+> +		reg =3D <0>;
+> +		reset-gpios =3D <&expander3 0 GPIO_ACTIVE_LOW>;
+> +		reset-assert-us =3D <500000>;
+> +		reset-deassert-us =3D <50000>;
+> +		ti,rx-internal-delay =3D <DP83867_RGMIIDCTL_2_50_NS>;
+> +		ti,tx-internal-delay =3D <DP83867_RGMIIDCTL_2_50_NS>;
+> +		ti,fifo-depth =3D <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,dp83867-rxctrl-strap-quirk;
+> +		ti,clk-output-sel =3D <DP83867_CLK_O_SEL_OFF>;
+> +	};
+
+[ ... ]
+
+> +	pinctrl_ethphy0: ethphy0grp {
+> +		fsl,pins =3D <IMX95_PAD_PDM_BIT_STREAM0__AONMIX_TOP_GPIO1_IO_BIT9		0x1=
+100>;
+> +	};
 
 [Severity: Low]
-This isn't a bug, but is the * 2 multiplier in this comment correct?
+Is this pinctrl group missing a reference?
 
-With the single-link pixel clock of 51.2 MHz for this panel and the assigned
-rate of 358400000 Hz, the calculation appears to be exactly 51.2 MHz * 7.
-Including the * 2 multiplier would result in 716.8 MHz instead.
-
-> +	assigned-clock-rates =3D <0>, <358400000>;
-> +	status =3D "okay";
+It defines pin configuration for the ethphy0 IRQ pin, but doesn't seem to be
+referenced by the ethphy0 node (e.g., via pinctrl-0) or any other node.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-v7-0-topic=
--imx8mp-skov-dts-jutouch-7inch-v3-0-d74f7e3f8293@pengutronix.de?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701082611.3126=
+036-1-alexander.stein@ew.tq-group.com?part=3D1
 
