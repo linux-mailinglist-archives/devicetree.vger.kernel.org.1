@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-318535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318540-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id me3yArcLRWoi5woAu9opvQ
-	(envelope-from <devicetree+bounces-318535-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:44:39 +0200
+	id hzxDGOIMRWqg5woAu9opvQ
+	(envelope-from <devicetree+bounces-318540-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:49:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9397E6ED815
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:44:38 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACD9A6ED932
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:49:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fHwzDOgx;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318535-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318535-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GtV9vcWe;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318540-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318540-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 92851309B34B
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:36:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5F7D431968CE
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0785481A98;
-	Wed,  1 Jul 2026 12:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F11481FB3;
+	Wed,  1 Jul 2026 12:32:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F3F1481665
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:30:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D69E481AB2
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:32:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782909005; cv=none; b=jJUExUsyC2+3P0EBd9AgkA5LfDakI3iZM1mQLP9bWCxhL/Zuv8GPu+vmjvQuCqAqkeQdKe1uOZz4mb9v7/bZKc/zJ3wiZDs2dpbCxbIdMpo2YRTRm5Ls1LFKghMZ/3gyfevph0JvWUzfmWKMpAaPNQm5BdWH2F/ieJj7YO3bWek=
+	t=1782909179; cv=none; b=PlCz6TAUl5Ddf0xD75h/ayWjLHoQrKGn+hrIQD8Mn1IcodKs60TRFFiQAQ3EnFpnBNsYCFSI08tvcQNawDtU1ZI0r556en8WX1IVYKAlyJoXEUEYv3iduCC9Cnu8C029HfoUGKxxbErjJu70boJfRu8hmIK45DSYNpxDoDP143U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782909005; c=relaxed/simple;
-	bh=qC2R9B5pwevwtmupxdX8wEkzy5I3qPUw7O/avmV0ZAw=;
+	s=arc-20240116; t=1782909179; c=relaxed/simple;
+	bh=Pl/jaYutAsLOekERsjFqYW4Vc6EzbCUDbOIg698qPwk=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ikvpJTEnYcKbuYEU6eZ266+gwP2kBR5recNrEjyP1KYU/+x3Dv/x4DSxqU/ch3d5VI1Dli2R7fAhhn1aXKDjTp2SJJ/K6I/6v1mK9AK1p90Pxl4PhJYaBlbaW1euAnB+bOwnTdi2fGpdmAJKrLOzU299Hxn0vff24ODfh9v519k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fHwzDOgx; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B65211F000E9;
-	Wed,  1 Jul 2026 12:30:03 +0000 (UTC)
+	 Message-Id; b=ICLttNF9m5kwkMBJRkC+v91RPJROtr1titl0Re1INAw85s6XNskP2r6mQEsOE0JxqaMSPmRnX4vW2JOjd/gEcGjXw5hB6a9nmOyXIpyLLcIh/eRQTWKbCnu1qNtIGHRq/fYBWUhS+JnwK0d6U7hJ/zPkdm+5xifOCHXRp0GUHvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GtV9vcWe; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 264E41F000E9;
+	Wed,  1 Jul 2026 12:32:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782909004;
-	bh=p/Ltph7WWF2KDaFV2op4D3gJpqRALqGdOM9Gv3W8WeQ=;
+	s=k20260515; t=1782909178;
+	bh=8Wqg6vwaB2WZcRomvBZS2whfJdMLY3bMu1eEIH5uhrc=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=fHwzDOgxbOKw/V1SMc/+aZnecLypCRVbcTaY3+V03yNMZd90Zk6V7xzEXVo5YIpdV
-	 y4FfwpeCKFvhFz8+HreE8DMw+CF+fVr9MJB6mqYvVYG0tgIxiVu0ca24S+9LY5hF+x
-	 1rXYXogTKejG8oVVzugfhAyFz087KSrhGKBWLJRyrk5OPxfiBMGshRADyeIdEVmLlF
-	 2c59A7XUigU7yYeAm/FTGgCf2fMLQxePzMvMpqovSwckqH+4iMgprZprNNR3GoiYhb
-	 8N1eErELMv9vr2RVGIbEVmhXM2WkITzhYibFQRum6LxvzRMF3op862J2K9eYcdEjjq
-	 njzk20pc1Zdgg==
+	b=GtV9vcWeJa0Nq6CgkhRbuoYd0UToILJgOt6KFUCQXj249tPrBcwd0SVv6ZIFmXNab
+	 OHydU4ZvDxmvOCYo+qlP2hTrkFAmJHIWcCSn8rOaJKBIDslsFYgCcuY5U3t/g9rPYq
+	 5lIqyvlPsC/BsbLnStMYX4OnCSfWh9iuUy4mp1g/4OjKhapzhQ3YXFFnRIytikXIuD
+	 UGGYsLwrsEGCvR/Mwgo0H4eX0QWLlP9goTLkbzKuLjbQhzUIv6vvHhsEzXAG/T5EK4
+	 zjrBX6h9Ss+dAfqXybFL4cu/58vg9zq3UG2R3FfzA8Ploqoqd5hcf3CyHLMXYxEzue
+	 WuktBJtzqUW/w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 03/12] phy: phy-mtk-dp: Allow probing with devicetree
- match
+Subject: Re: [PATCH 03/11] drm/mediatek: mtk_dp: Fix hdmi codec and phy
+ driver unregistration
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: neil.armstrong@linaro.org, vkoul@kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, olteanv@gmail.com, robh@kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20260701122008.19509-4-angelogioacchino.delregno@collabora.com>
-References: <20260701122008.19509-1-angelogioacchino.delregno@collabora.com>
- <20260701122008.19509-4-angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20260701122024.19557-4-angelogioacchino.delregno@collabora.com>
+References: <20260701122024.19557-1-angelogioacchino.delregno@collabora.com>
+ <20260701122024.19557-4-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 12:30:03 +0000
-Message-Id: <20260701123003.B65211F000E9@smtp.kernel.org>
+Date: Wed, 01 Jul 2026 12:32:57 +0000
+Message-Id: <20260701123258.264E41F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,179 +72,158 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318535-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-318540-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,collabora.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:neil.armstrong@linaro.org,m:vkoul@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:olteanv@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,lists.infradead.org,vger.kernel.org,gmail.com,lists.freedesktop.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,lists.linux.dev:replyto,vger.kernel.org:from_smtp,collabora.com:email,sashiko.dev:url]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9397E6ED815
+X-Rspamd-Queue-Id: ACD9A6ED932
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-
-New issues:
-- [High] The return value of `pm_runtime_get_sync()` is ignored, which can =
-lead to hardware register accesses on an unpowered device.
-- [Medium] Missing `.remove` callback leaves PM runtime enabled and usage c=
-ounter unbalanced on driver unbind.
-
-Pre-existing issues:
-- [High] Missing `phy_remove_lookup()` causes a memory leak and a dangling =
-pointer in the global PHY lookup list.
-- [High] Unconditional dereference of `dev->platform_data` before validatin=
-g it.
+- [High] Double unregister of platform device in error paths causes Use-Aft=
+er-Free
+- [Medium] Incorrect pointer passed to devm_add_action_or_reset causes reso=
+urce leak of audio platform device
 --
 
-commit e3a3844cc6f977665174375e23735f789c04a772
+commit 2bc8391d481088826fa13d96d05225e5c15e6457
 Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-phy: phy-mtk-dp: Allow probing with devicetree match
+drm/mediatek: mtk_dp: Fix hdmi codec and phy driver unregistration
 
-This commit introduces a devicetree match table to decouple the DP PHY driv=
-er
-from the DP IP driver. It adds an OF PHY provider and MMIO regmap registrat=
-ion
-for the devicetree case, while maintaining a legacy probe path for older
-devicetrees without a separate PHY node.
+This commit introduces devm actions to unregister the HDMI Codec and
+DisplayPort PHY platform devices, preventing multiple instantiations
+during probe deferrals.
 
-> diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy=
--mtk-dp.c
-> index bf7b3a95e72d2..98e05fe05ce3b 100644
-> --- a/drivers/phy/mediatek/phy-mtk-dp.c
-> +++ b/drivers/phy/mediatek/phy-mtk-dp.c
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek=
+/mtk_dp.c
+> index eefbc7e0f9c8d..2c738c16dafab 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
 
 [ ... ]
 
-> @@ -160,43 +161,92 @@ static const struct phy_ops mtk_dp_phy_dev_ops =3D {
->  	.owner =3D THIS_MODULE,
->  };
+> @@ -2680,18 +2687,29 @@ static int mtk_dp_register_audio_driver(struct de=
+vice *dev)
+>  		.data =3D mtk_dp,
+>  		.no_capture_mute =3D 1,
+>  	};
+> +	int ret;
 > =20
-> +static int mtk_dp_phy_legacy_probe(struct platform_device *pdev, struct =
-mtk_dp_phy *dp_phy)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct phy *phy;
+>  	mtk_dp->audio_pdev =3D platform_device_register_data(dev,
+>  							   HDMI_CODEC_DRV_NAME,
+>  							   PLATFORM_DEVID_AUTO,
+>  							   &codec_data,
+>  							   sizeof(codec_data));
+> -	return PTR_ERR_OR_ZERO(mtk_dp->audio_pdev);
+> +	if (IS_ERR(mtk_dp->audio_pdev))
+> +		return PTR_ERR(mtk_dp->audio_pdev);
 > +
-> +	dp_phy->regmap =3D *(struct regmap **)dev->platform_data;
-
-[Severity: High]
-This is a pre-existing issue, but does this code unconditionally dereference
-dev->platform_data before verifying it is not NULL?
-
-If the platform device is instantiated without platform data, would this
-dereference cause a kernel panic before the subsequent check for
-!dp_phy->regmap can execute?
-
-> +	if (!dp_phy->regmap)
-> +		return dev_err_probe(dev, -EINVAL, "No platform data available\n");
-> +
-> +	phy =3D devm_phy_create(dev, NULL, &mtk_dp_phy_dev_ops);
-> +	if (IS_ERR(phy))
-> +		return dev_err_probe(dev, PTR_ERR(phy),
-> +				     "Failed to create DP PHY\n");
-> +
-> +	phy_set_drvdata(phy, dp_phy);
-> +	phy_create_lookup(phy, "dp", dev_name(dev));
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does this leak the lookup
-entry and create a dangling pointer?
-
-phy_create_lookup() dynamically allocates a phy_lookup structure and links =
-it
-into the global phys list. Since there is no driver .remove callback calling
-phy_remove_lookup(), when the driver unbinds, the devres-managed phy is fre=
-ed
-while still in the global list, which could cause a use-after-free when oth=
-er
-drivers call phy_find().
-
-> +
-> +	return 0;
-> +}
-> +
-
-[ ... ]
-
->  static int mtk_dp_phy_probe(struct platform_device *pdev)
->  {
-
-[ ... ]
-
-> +	provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +	if (IS_ERR(provider))
-> +		return PTR_ERR(provider);
-> +
-> +	pm_runtime_enable(dev);
-> +	pm_runtime_get_sync(dev);
-
-[Severity: High]
-Is it safe to ignore the return value of pm_runtime_get_sync() here?
-
-If the generic power domain or clock fails to enable, pm_runtime_get_sync()
-will return a negative error code. Without checking this, the PHY provider =
-is
-registered even if the hardware is off, which could lead to a synchronous
-external abort when attempting to write to the MMIO registers later.
-
-> =20
->  	return 0;
->  }
-> =20
-> +static const struct of_device_id mtk_dp_phy_of_match[] =3D {
-> +	{ .compatible =3D "mediatek,mt8195-dp-phy" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, mtk_dp_phy_of_match);
-> +
->  static struct platform_driver mtk_dp_phy_driver =3D {
->  	.probe =3D mtk_dp_phy_probe,
->  	.driver =3D {
->  		.name =3D "mediatek-dp-phy",
-> +		.of_match_table =3D mtk_dp_phy_of_match,
->  	},
->  };
+> +	ret =3D devm_add_action_or_reset(dev, mtk_dp_unregister_pdevs, mtk_dp->=
+phy_dev);
 
 [Severity: Medium]
-Does this driver need a .remove callback to clean up the PM runtime state?
+Is the correct platform device pointer being passed here?
 
-Since pm_runtime_enable() and pm_runtime_get_sync() are called in probe
-without devm_ handlers or registered teardown actions, unbinding the driver
-appears to leak the usage counter and leave PM runtime permanently enabled.
+This registers a cleanup action using mtk_dp->phy_dev rather than the
+newly created mtk_dp->audio_pdev. This will likely leak the audio device on
+probe deferral or driver unbind, and may attempt to unregister the PHY devi=
+ce
+at the wrong time instead.
 
->  module_platform_driver(mtk_dp_phy_driver);
->
+> +	if (ret) {
+> +		platform_device_unregister(mtk_dp->audio_pdev);
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to add codec unregister devm action");
+> +	}
+> +	return 0;
+>  }
+> =20
+>  static int mtk_dp_register_phy(struct mtk_dp *mtk_dp)
+>  {
+>  	struct device *dev =3D mtk_dp->dev;
+> +	int ret;
+> =20
+>  	mtk_dp->phy_dev =3D platform_device_register_data(dev, "mediatek-dp-phy=
+",
+>  							PLATFORM_DEVID_AUTO,
+> @@ -2701,6 +2719,13 @@ static int mtk_dp_register_phy(struct mtk_dp *mtk_=
+dp)
+>  		return dev_err_probe(dev, PTR_ERR(mtk_dp->phy_dev),
+>  				     "Failed to create device mediatek-dp-phy\n");
+> =20
+> +	ret =3D devm_add_action_or_reset(dev, mtk_dp_unregister_pdevs, mtk_dp->=
+phy_dev);
+> +	if (ret) {
+> +		platform_device_unregister(mtk_dp->phy_dev);
+
+[Severity: High]
+Could this cause a use-after-free?
+
+When devm_add_action_or_reset() fails, it automatically executes the cleanup
+action, which calls platform_device_unregister() on mtk_dp->phy_dev. Calling
+platform_device_unregister() a second time here would double-free the devic=
+e.
+
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to add phy unregister devm action");
+> +	}
+> +
+>  	mtk_dp_get_calibration_data(mtk_dp);
+> =20
+>  	mtk_dp->phy =3D devm_phy_get(&mtk_dp->phy_dev->dev, "dp");
+
+[Severity: High]
+Can the error path for devm_phy_get() also trigger a double-free?
+
+Looking at the rest of mtk_dp_register_phy() just below this diff:
+
+mtk_dp_register_phy() {
+    ...
+    mtk_dp->phy =3D devm_phy_get(&mtk_dp->phy_dev->dev, "dp");
+    if (IS_ERR(mtk_dp->phy)) {
+        platform_device_unregister(mtk_dp->phy_dev);
+        return dev_err_probe(dev, PTR_ERR(mtk_dp->phy), "Failed to get phy\=
+n");
+    }
+    ...
+}
+
+Since the devm unregister action was successfully registered above, returni=
+ng
+an error here will trigger the devm unwind loop. That will unregister the
+device a second time after this explicit platform_device_unregister() call.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701122008.1950=
-9-1-angelogioacchino.delregno@collabora.com?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701122024.1955=
+7-1-angelogioacchino.delregno@collabora.com?part=3D3
 
