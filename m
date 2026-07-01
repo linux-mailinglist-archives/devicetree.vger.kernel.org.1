@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-318088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318089-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lnadC0ZxRGqLuwoAu9opvQ
-	(envelope-from <devicetree+bounces-318088-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 03:45:42 +0200
+	id 6NkoDlJxRGqPuwoAu9opvQ
+	(envelope-from <devicetree+bounces-318089-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 03:45:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B8716E9170
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 03:45:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BF3E6E917A
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 03:45:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mcEdo9TA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318088-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318088-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ngZx6fJc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318089-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318089-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B2A8301FD65
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 01:45:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 56D23301FD48
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 01:45:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD022356741;
-	Wed,  1 Jul 2026 01:45:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 956E3356741;
+	Wed,  1 Jul 2026 01:45:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA39623F40D;
-	Wed,  1 Jul 2026 01:45:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83CBD191F91;
+	Wed,  1 Jul 2026 01:45:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782870339; cv=none; b=PBFeDWjdUfrCHpLhgGyZEGauLMMhEqgBm+ycv+YQoEz4I89UdIIpzIHe2vY5LNieGQQz1MDNpychOtvXmzV3f0o4AoHiLCH68b5bXtrGAdOAfDcxboOhK+Cm2nBwjWx4gJASoJwtuWo92BxTCjbTObv5ZIUEd4tAQ5Zqt9SPNdI=
+	t=1782870351; cv=none; b=LKpH7ZDIQbCZ8uGO9qlI4DA9yk4NU6YrlWQxlTNd6zoVWmFnAMQq5R99/z+gJBhmQjTp80eONXMsIn6Gwum3NfXpod2ay0lMVZT/bc9R1b/N11Ji9Qs80YVKJxJJU2Esoo55L0cT1Ok4zqauGUTSECNS9UuAmuUVKzSiMcteBbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782870339; c=relaxed/simple;
+	s=arc-20240116; t=1782870351; c=relaxed/simple;
 	bh=1AeLBQjozVGpARvL89v3o46dr2jO6zMJvZHerW1zbrM=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BTDMQzspoRPoipDDRnQlSooZyUWfoX5bP1Xo4s/3zc8Et+nsHibFdmkGQvmDUth0cFQA+PLmWqNGNblUhvxPampNxN5/u4+Yzuqw4jvup0g65wSMC3TGP7Sz0m8U3iqwHw562+ZNq/tNfjpKbEe3G08MDIn5VEI/6AkuQiEtRV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mcEdo9TA; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8C1B1F000E9;
-	Wed,  1 Jul 2026 01:45:36 +0000 (UTC)
+	 MIME-Version:Content-Type; b=p2rYLGDorzEeFF/Ra/k8jpnsLe7qvn+BEl93gbeEpUB9+f53xOXGzRA23YF39jmVtznrqoLnNMgZ8VarJZXLQK2zlEKdPdtL4uVyQPVaT7GEECyY8Wh5JMPvlavWHx94TCUAIJVPVquynRb/zRuR+DVXlXn01ToLpwW/xhYRHZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ngZx6fJc; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7AC61F000E9;
+	Wed,  1 Jul 2026 01:45:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782870338;
+	s=k20260515; t=1782870350;
 	bh=vS2FCRo1N9v6ZdiYKY8wR+oYYGUC31EvaCyaf5bbLwQ=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=mcEdo9TAFBMoIV5lSGa25ooiWQ8V50ijW65iUHTSiVHQErABu7Nz6/0qtsD6vin/q
-	 jhfCm3H+09gjFZ6GrQBn1xEqqN3r+lhNjBDLFhKnXGiLwon3lN96etiKWuaeetbK5M
-	 dW9ZmGnTPBGbJlyx4LbCE1zWv8aousKq3ASGk53YAIrwNwFs5pv7V4muJtz/dOiaAz
-	 C7AZbOb1y0ZCU1s64FUhVF90NglX8N8Kn3OBjWx5rhoQyR+cYtwaGSvLi80g/72Imv
-	 QHB9XZV91H+HcI/G22CVJHCQCBThQHQveqgFq8QqfZ5Smq/MJEuxYDczP1Gtr3ICBg
-	 qqwH1WvfP1L7A==
-Date: Wed, 1 Jul 2026 02:45:32 +0100
+	b=ngZx6fJc90korLaSesRc5fXUEQdYVY96saS7Sdoy0ukfkgNjOWFhCePCriBcqgxt9
+	 zyDbAGB+SYeBT7P5rdmPoJ3CEJsaoF+c4hUmXkZGNvjN2ZJAgCmoOKraHsiT7EqH5z
+	 ZMIeCLXFgffbw90ETamDvEvKgchELWLkfovLNbU8oDssJswukR4c20FOquGY+WdYJb
+	 4ks4kqwVM1VDuNGZMykpCCEZg600OwObI+WCOb+PjG+WR2cLHhaHyKEHOZqVW5L1og
+	 wPCHYupCBnV5AXE+XUR7vSlWI+53ynh9ECbUlpXhhIJiqbfaXGc2vbvVf0l3h02UMY
+	 AamL/3nDVDShA==
+Date: Wed, 1 Jul 2026 02:45:45 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: Chris Morgan <macroalpha82@gmail.com>
 Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
@@ -82,15 +82,15 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:andriy.shevchenko@intel.com,m:macromorgan@hotmail.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:andriy.shevchenko@intel.com,m:macromorgan@hotmail.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-318088-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318089-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -104,9 +104,9 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,jic23-huawei:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,jic23-huawei:mid,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7B8716E9170
+X-Rspamd-Queue-Id: 8BF3E6E917A
 
 On Fri, 26 Jun 2026 11:12:23 -0500
 Chris Morgan <macroalpha82@gmail.com> wrote:
