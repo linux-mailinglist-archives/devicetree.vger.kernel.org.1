@@ -1,181 +1,175 @@
-Return-Path: <devicetree+bounces-318719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318721-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CjslBZUoRWr07woAu9opvQ
-	(envelope-from <devicetree+bounces-318719-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:47:49 +0200
+	id 2hDeKiUrRWqW8AoAu9opvQ
+	(envelope-from <devicetree+bounces-318721-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:58:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B046EEF06
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:47:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC476EF0D6
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 16:58:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CXKXX1GP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318719-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318719-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318721-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318721-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E7D4E3058D8D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 14:45:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F2A243191C7D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 14:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00C1356744;
-	Wed,  1 Jul 2026 14:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47A6C35E952;
+	Wed,  1 Jul 2026 14:48:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7D3134CFA7;
-	Wed,  1 Jul 2026 14:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B7E35E1C9
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 14:48:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782917145; cv=none; b=tQ9bsjmLhMagDZsRhuwDoOC0/Hhw2rvdGnHiExSsAoCcEvGxC/WuL08cy1Dluch7n8ay0nhncHFMoEk9oGvETc/Xy/J/4NGPHYu1okP4/RNjORroc4YbkerNRNx2IJA7ah8ux9dkT6SoPLvDf+OxRBWfZ1FO+J6857KyuAybbb0=
+	t=1782917290; cv=none; b=kQV0DbqnidYdbqIytCqpkA9f9/Wex+vpiaka/uAs19X2M5CtMlO7Lz630Ao90dXj3iGpIImMa8V9djyFLToYK2f3427LJh2Jnz0fBwW5S87vsvMj1N5l/m6tMToClX0A5tRix4y2yexcGIfGjuXf12Ro6e/HxolUCFE1WcuZzr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782917145; c=relaxed/simple;
-	bh=i7sLoaFtWbfJ2KD2Hb2s9w482185yUyBTbaz2swyLOs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=V+c4/HKhriXCU7+Im/QA+5ZrStjt4Mzhrpn4nNTkqrB7t0vLc5z8sNYlzyyW9i8T430R+U6FTdh0aSCQAJNQ7XLDLnl/ja7LyvjqBKqN7Tu5aF1Vr5Rk0puW0PdGf6O7LBy7CNi85NPwuSy5NmUSkzHK/YwJWDIdENpN2LwC3Kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CXKXX1GP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 044351F000E9;
-	Wed,  1 Jul 2026 14:45:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782917144;
-	bh=RJAtqj6epWQJDyTT7jqbknHjrSFrt5SbHOekV9qbzqU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=CXKXX1GPuhad4kv8hVr3+vZfOT1pyKVtCiQ8RHGsHT3KmGZWizJjtnAIekXpugbgO
-	 0NJ65WzEum3/XfLmz6xhWzR5PLu0s18aTDm6jttzNXGyHXRt90mBdhLierzgmYKoM3
-	 8wAfjjZfEH8QwKUtjGodPYjlToRrcbSft8UhegkWly1w4UU3eIf3WfbFkAXrfHcht4
-	 tHbQI425XUOgRAwv0NGqQ/QJ3gMk56Byh1P4owo85/nsGxp2cpTohoPO51pQcAGp4T
-	 dZ4Qfv7ME9XZgWfZbRl9Mui7cTeUPRJ1XU17bxr+5Bx6Xvj4AFATIOuP9pT+zjvF2N
-	 UNw8N3nJ3e85g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 05/10] rtc: rzn1: Fix alarm range check truncation on
- 32-bit systems
-Reply-To: sashiko-reviews@lists.linux.dev
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: "Alexandre Belloni" <alexandre.belloni@bootlin.com>, conor+dt@kernel.org, wsa+renesas@sang-engineering.com, devicetree@vger.kernel.org, robh@kernel.org, linux-rtc@vger.kernel.org
-In-Reply-To: <20260701142953.2014895-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260701142953.2014895-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260701142953.2014895-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 14:45:43 +0000
-Message-Id: <20260701144544.044351F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782917290; c=relaxed/simple;
+	bh=mbYj/DgxQsH01Bs5jx6IuDvkCh8mMCApKMcE8PUQ/Qo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GKcjFYg3rCdF3Simk/Tcrzq1eeW7+kiF3y0FinoOx9ykPJP6YochWL3egoI6GWbpto6tymrNpMPxl++uawPx2Rp1iMao97X9QNlBrnoQ9/WIymniWZLba6bVBBoiqxOTrsSedpnLlhYMx07tC8FXPPIrP+IGEeMxnUukDb4Nwtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.53
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-966d7738c3bso413905241.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 07:48:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782917288; x=1783522088;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=fn5x9jVdVZoiN333nyZT+iD2lKvbWjTH6VHWdCyr2L4=;
+        b=snqY6o2Hya7lLzhcNza95gru6mrIGKQhQyKcZjd1apMO3xV6n9hZqsocDO8J7PCzNd
+         OAoKNsn8uGMcp4cJSeVz1wa5YUj7Xa1N1Mulq79DwB9EcaIzpK/C1hu6AU2/C97ybc5v
+         p75N/4q7x5OTLANXB5fYErlH5ssyFBGEyR+oKTeESOMCDYhFlM/O9J2pkUBON4vS3krz
+         +DeEHIYJcREUDeG51dPU5GCaP3Wq0SpQ3SMvkEtPXXuA4dS9C26z6lSH9DKJ0JuZic55
+         pk9/dAUxgiSwjdLlkONmF1QVBP11UVbDd7aRtqUEuAXo4TZIKjLkhZXSIAvwobQHZIWj
+         jV9Q==
+X-Forwarded-Encrypted: i=1; AHgh+Ro27RAIQdR0Yu6K+pkupA8+UkqYP9enoy54i1WuibEFGArrl//o711n2h491bYdV9mFgzCi8gmxLHjb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2bN34kuV7pr5XgwAcZ9IfXrrXkLUstZZ5jVJSuuXW/zy5ygwh
+	4MHe3FHAh/22bDb8hr4Ha3FrRUWWEkziSZvW7nrUe5rpH8Z7tYQaJ6m8yTX4bJ39A7c=
+X-Gm-Gg: AfdE7cm2xaKCkPQLb5LjqCrO1d2BQtixN5TrDeooj8IBuaGX1at6DjK5XrXshil3I7j
+	Moh6L2LGX+V53n2HlEFHzM/p4knF/8TRLLuR83crBua6AtV4GTio451FdNoAjB1Ma97c4oobNEi
+	VtHYLTuey8WzLYsMs7eFSuf7+fLTHkYS2v7kzNYa4++ws2L8pFMygoKzR7ki0pp7jJk79NqSofv
+	2hJoJZmNHYNs2Ykn9XnMYjUJViDL+K16oL+SpzWrfRreluvYzCF4oRpAB9W0veeeaGG1/m3gc47
+	jJTsLEEc0CWmZ0bW3j9w1jlsP8ziEp2kOsGiXoWkBPb+gcXTUB8YA0kvSIOO/pWqTFU4t3FuNCo
+	UlA7dWbDKvhRCYM+pYs10sj+fDpu5B1VfbLLYROr5/31zpsj8+yPHUkkQln/E5/OAE9E5tDXIOe
+	MzA9ai60X3+fmeLmIzjc13VGUM4GfvdVHPi9RiumsAZdFXOE0D5Q==
+X-Received: by 2002:a05:6102:4191:b0:737:d2e8:d64b with SMTP id ada2fe7eead31-73dbfaac828mr629755137.20.1782917287948;
+        Wed, 01 Jul 2026 07:48:07 -0700 (PDT)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-96965e91cb7sm2525856241.4.2026.07.01.07.48.07
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Jul 2026 07:48:07 -0700 (PDT)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-96387efc30aso382888241.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 07:48:07 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RpBAo3hgj/zDLD8lWhhhyn6TZw+rfTxUyY+Hl7hAIoV9UOyNG2nfBHJXkwP0rBYz+O3+bgIvXo/nEMd@vger.kernel.org
+X-Received: by 2002:a05:6102:4414:b0:739:4fa1:50aa with SMTP id
+ ada2fe7eead31-73dbf3a292dmr614675137.14.1782917287445; Wed, 01 Jul 2026
+ 07:48:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260602204707.1920839-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260602204707.1920839-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260602204707.1920839-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 1 Jul 2026 16:47:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUCzxRRK8oZvHmHFHCUN2v_kn69_8pzCVrW9RPk9FRA0Q@mail.gmail.com>
+X-Gm-Features: AVVi8CcnXjaDrB2t_UaCpLhZ82qgKt5I5D4N9jNEZBN_xFIuCBoqVp036vPforE
+Message-ID: <CAMuHMdUCzxRRK8oZvHmHFHCUN2v_kn69_8pzCVrW9RPk9FRA0Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable PCIe
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-318719-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:alexandre.belloni@bootlin.com,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:linux-rtc@vger.kernel.org,m:prabhakarcsengg@gmail.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com,renesas.com];
+	TAGGED_FROM(0.00)[bounces-318721-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:magnus.damm@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:magnusdamm@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url,renesas.com:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,renesas.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B7B046EEF06
+X-Rspamd-Queue-Id: 0AC476EF0D6
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+Hi Prabhakar,
 
-Pre-existing issues:
-- [High] Alarm weekday calculation fails when crossing month boundaries, ca=
-using the alarm to be scheduled on the wrong day.
---
+On Tue, 2 Jun 2026 at 22:47, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Enable the PCIE1 slot which is connected to PCIe0 channel.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-commit 461f51253cf0a8326dc4e0cd7278977b7ecc0fbd
-Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Thanks for your patch!
 
-rtc: rzn1: Fix alarm range check truncation on 32-bit systems
+> --- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
 
-This commit resolves the truncation of the alarm and farest timestamps on
-32-bit systems. It achieves this by declaring these variables as time64_t
-and replacing time_after() with a direct signed comparison.
+> @@ -430,6 +442,12 @@ i2c8_pins: i2c8 {
+>                          <RZV2H_PORT_PINMUX(0, 7, 1)>; /* I2C8_SCL */
+>         };
+>
+> +       pcie0_pins: pcie {
 
-> diff --git a/drivers/rtc/rtc-rzn1.c b/drivers/rtc/rtc-rzn1.c
-> index 866ff595188d8..9969bcefede72 100644
-> --- a/drivers/rtc/rtc-rzn1.c
-> +++ b/drivers/rtc/rtc-rzn1.c
+pcie0
 
-[ ... ]
+> +               pins = "PCIE0_RSTOUTB";
+> +               slew-rate = <0>;
+> +               renesas,output-impedance = <2>;
+> +       };
+> +
+>         scif_pins: scif {
+>                 pins = "SCIF_TXD", "SCIF_RXD";
+>                 renesas,output-impedance = <1>;
 
-> @@ -260,8 +261,8 @@ static int rzn1_rtc_set_alarm(struct device *dev, str=
-uct rtc_wkalrm *alrm)
->  {
->  	struct rzn1_rtc *rtc =3D dev_get_drvdata(dev);
->  	struct rtc_time *tm =3D &alrm->time, tm_now;
-> -	unsigned long alarm, farest;
->  	unsigned int days_ahead, wday;
-> +	time64_t alarm, farest;
->  	int ret;
-> =20
->  	ret =3D rzn1_rtc_read_time(dev, &tm_now);
-> @@ -271,7 +272,7 @@ static int rzn1_rtc_set_alarm(struct device *dev, str=
-uct rtc_wkalrm *alrm)
->  	/* We cannot set alarms more than one week ahead */
->  	farest =3D rtc_tm_to_time64(&tm_now) + rtc->rtcdev->alarm_offset_max;
->  	alarm =3D rtc_tm_to_time64(tm);
-> -	if (time_after(alarm, farest))
-> +	if (alarm > farest)
->  		return -ERANGE;
-> =20
->  	/* Convert alarm day into week day */
+The rest LGTM.
 
-[Severity: High]
-This isn't a bug introduced by this patch, but I noticed a pre-existing
-issue in how the weekday is calculated just below this in
-rzn1_rtc_set_alarm().
+Gr{oetje,eeting}s,
 
-When an alarm is set for the following month (for instance, setting an
-alarm for the 1st of next month while today is the 31st), this calculation
-is used:
+                        Geert
 
-	days_ahead =3D tm->tm_mday - tm_now.tm_mday;
-	wday =3D (tm_now.tm_wday + days_ahead) % 7;
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Since this only subtracts the day-of-month, wouldn't crossing a month
-boundary result in a negative value (e.g., 1 - 31 =3D -30), which then
-underflows the unsigned int days_ahead?
-
-This would then result in an incorrect weekday offset being added to the
-current weekday, programming the wrong weekday into the RZN1_RTC_ALW
-register.
-
-Should this logic be updated to safely handle month boundaries?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701142953.2014=
-895-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D5
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
