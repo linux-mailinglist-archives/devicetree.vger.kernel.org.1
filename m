@@ -1,231 +1,294 @@
-Return-Path: <devicetree+bounces-318534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318536-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1+GFMlUMRWpx5woAu9opvQ
-	(envelope-from <devicetree+bounces-318534-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:47:17 +0200
+	id Gt5iBNILRWom5woAu9opvQ
+	(envelope-from <devicetree+bounces-318536-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:45:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D0C96ED8C4
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:47:17 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F0E6ED82B
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:45:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XJfKcoTZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318534-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318534-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=vayavyalabs.com header.s=google header.b=l954fuF1;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318536-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318536-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=vayavyalabs.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8F1933152D1F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:36:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F21BA30A0FEE
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 593B74A13B0;
-	Wed,  1 Jul 2026 12:29:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D97174ADDA5;
+	Wed,  1 Jul 2026 12:31:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f176.google.com (mail-dy1-f176.google.com [74.125.82.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A20F4968F9
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:29:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC2348C40B
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:31:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782908978; cv=none; b=pYifE7tAhuxjK9aLf6HNhStgo3F4L6EP+BrLHcZ48462+cOyZJS4oMWEAW2LN623NS46dSid0xw5+iFq8m6+406Q5t5jfaYX4s0pe/DVqrqeveYMhJhZF3Orcuqoco53FG1A65VNEjzb3me9wdYhTQYSULn/SEUsl0GZRv2F2NY=
+	t=1782909099; cv=none; b=YnpQTquVhh9LyEbU3+F3JrEGJRcT2tDENWQp1KLlgsqcbSx0bYzOosIIp7YBi35cbNa03QE2+KL3IbWpYYNFa1iugEo1lwXW/8cKxpj2PHmZqnQVimxx9Cs1gw1TYs2Uk5Pm4Vmqic1756b2Q5ZutuH2+pCEIEMkPqsmof/5cGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782908978; c=relaxed/simple;
-	bh=v5n9hldjraRE6JheV9CEf2fzm78npHwKLo9KlipNyXc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=foTqi0285OvVPaQhDMTIPbISEVWCpKjsDyKMmak+BxhYuVe4ShSlq4gUL24b+CsxTCaF8PiFXAIh5nFnphoEyWhbbUYESZOUDwTr1CyHPjhcsLhneM6FA6vj6cK78Xu68CeykXOuMiF1PD3+nrcfaAkJhLeplP1vftCmWJP3Lkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJfKcoTZ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58E7B1F000E9;
-	Wed,  1 Jul 2026 12:29:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782908976;
-	bh=iUpFgLeb06YeTcU+DB6rOQqDIVRGSbEfP+/YlJuD05A=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=XJfKcoTZzBb192FAEr9Z2W203f1uirEyWwoZ/tFs15BUFc0z14IXalCCaf1H4w77u
-	 SGh5wAbhl2Zx7NKL/c7LfYlgpTG8VSh3XqP2ZTFoXa4M2nAqplbukTBAf5lTDyzJ1L
-	 wCfhpb9MAXpQIAqX11uzLdQddDE9pMeN3XFR/o78Wt8kZn6V/j3dxRxe1UVrPVh+5v
-	 WvWTLbsNfKabbQJnikcc/NT3bPS0cmr8fbb3WzUVeApzA+xaV6vYKen/fld1axZmVn
-	 hUMQ6OcyYD5/JlcS8TlO/S1IBiI/paZnSO2xOqjN4Lylyl3Yho+u0XzqJDANaxzdh4
-	 3SWlpbS2RkWuQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] phy: mediatek: Add support for MT8196 MIPI DSI PHY
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: olteanv@gmail.com, neil.armstrong@linaro.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org, vkoul@kernel.org, linux-phy@lists.infradead.org, conor+dt@kernel.org
-In-Reply-To: <20260701121943.19430-3-angelogioacchino.delregno@collabora.com>
-References: <20260701121943.19430-1-angelogioacchino.delregno@collabora.com>
- <20260701121943.19430-3-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 12:29:35 +0000
-Message-Id: <20260701122936.58E7B1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782909099; c=relaxed/simple;
+	bh=eFH/sjnt4IEYz5mhll8WepPz7x2qr9e2I1hac3rv1iY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=nn7lyWqAwa/Bp4mrIpUpYogvnBEc29aGsWS/MIdXMl7vpHs/yvpu1tMzyRWWxil+GvW6nCax6vsOevARl455GNgUkgDY+rjBvttYgu4sEo1JAfyPNw9itki/iW6exqBbJ5qOfvbka91FF4vrpRYMI3Fue7fPynqW8ek6gtP3EI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=l954fuF1; arc=none smtp.client-ip=74.125.82.176
+Received: by mail-dy1-f176.google.com with SMTP id 5a478bee46e88-30b9e755555so614587eec.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 05:31:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vayavyalabs.com; s=google; t=1782909097; x=1783513897; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0OJMmZXivl0437Eltoxt1oS/HCivx4gHSaPKhSGtPQo=;
+        b=l954fuF1cBmqZsb8N75YHfaXNFtv1TCUezPLIkubHp7H9Oy7UhZ4nTBGIIbzQRUu0s
+         0T43vKGas/CCnU6R/H9lYWUuQ/zq03zvN2oOPgOqwYC/HXZG/FRaogsxSNA87s3aCoo+
+         g49VQXEjVqfBnfplBgfKBqGt5DDL2Wcg8YxAM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782909097; x=1783513897;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0OJMmZXivl0437Eltoxt1oS/HCivx4gHSaPKhSGtPQo=;
+        b=aaukfbLZdNh5rBg7N1UJ5f9YE1iZv8dlIbni5SXB3j86lXIDYSFIrFyORAUFey6BLN
+         YhPW0LriWasAthGSiGQsYsiHCPibxfFL9pkbnbxVbDS0LshH1P+dGtlmh//QCds3fU1z
+         mZJQq4oWtg/+jRqkUDvTh6wr/rteyFGPo9yZrB+86YJctSz9wk0WDOFfnkMazVNebgp1
+         UwJBXVcbTC8XyiFSzDwo3YyyY0Cgf8GXXST/08HDfORmoIxTkQwgoQM+jAAJK/XEK0Q4
+         n/hsve5LDNHTPYymudwdZT6szIZ5kcgCezh1uDgZ9yNEmdRGXesZ7gpwHq7/sK2l10oy
+         SLhw==
+X-Forwarded-Encrypted: i=1; AHgh+RpdYn5PDdt8L/vMeFvsY89jnP/Wuk7FoRmHzY1Xh5JO/bKzu1Ck5sIB6jQjMAAii4AXg+TZSfsl3Kci@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVI2iwMF14HEP4xRH2ToX4LiCCRaQ2z6FJSeDilXY4rmpvaYqW
+	Gt2L4Zs5LR1Jwf/ND9hB0ppwEGgxD2EPhGvZhRlfdv9WyzzJicF6x5EMNINU9E8t/lA=
+X-Gm-Gg: AfdE7cn/4KYMZEBPcF0mP5ayT1JToueNNfjURXx0Zjx2NbpAxrafdCYxXsJGzCvk2Kk
+	eRbirxnOtmHo6GvQfNG78wIJT05epHc37h6b64Af57Mq7BPOaN2bAKMFrJKef32cPopwGzWEKHc
+	kbY3m8UosfOk3MClTf7S7J9by5AyuCRUA83brLUw8KTeXwZCKWtzGDa0DerESKOejvlYiofY+c4
+	Pkj3bXhge8gXfWJurlM1A1cTFUhgDglzgeE4sH0MHlgWCvyqbF2JtCHWps9rL0vevdXIWEEikuB
+	A8qkHhX2M+rTVJPgJiG9X/5P3jmSD3ZZYy3S7QOBkMidgi6JoOiHu82xqClP/fHboEZO7YKhDR5
+	OnGY3JF+tamVR8KGeBGkuxW2ewhFy+Buxp8ZjR2J4K8QjdikxPVR1bkCGvLQ8CRTM5opd/EWJ3w
+	mL+8LdUCVfKHllKqfUqvsBTNquN/wW0TC7BKPghkXxaRPUD5xZhRo7HCIuO5OBfFDJzn4If9uPv
+	Pt1d4oxPRWrxk8qf8gpx3Cu9WIJoCPeuBUCo6ZWOnnSU9s0B5pq115V
+X-Received: by 2002:a05:693c:2286:b0:30c:d60:a879 with SMTP id 5a478bee46e88-30eff329b8amr1942342eec.35.1782909097097;
+        Wed, 01 Jul 2026 05:31:37 -0700 (PDT)
+Received: from localhost.localdomain ([103.108.57.9])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-30ee2cd21bcsm40776402eec.0.2026.07.01.05.31.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Jul 2026 05:31:36 -0700 (PDT)
+From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+To: linux-crypto@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	herbert@gondor.apana.org.au,
+	robh@kernel.org
+Cc: krzk@kernel.org,
+	conor+dt@kernel.org,
+	Ruud.Derwig@synopsys.com,
+	rbannerm@synopsys.com,
+	manjunath.hadli@vayavyalabs.com,
+	adityak@vayavyalabs.com,
+	navami.telsang@vayavyalabs.com,
+	bhoomikak@vayavyalabs.com,
+	Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+Subject: [PATCH v15 0/4] crypto: spacc - Add SPAcc Crypto Driver
+Date: Wed,  1 Jul 2026 17:59:37 +0530
+Message-Id: <20260701122941.2149121-1-pavitrakumarm@vayavyalabs.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[vayavyalabs.com,reject];
+	R_DKIM_ALLOW(-0.20)[vayavyalabs.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318534-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:olteanv@gmail.com,m:neil.armstrong@linaro.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:vkoul@kernel.org,m:linux-phy@lists.infradead.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[pavitrakumarm@vayavyalabs.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-318536-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,linaro.org,vger.kernel.org,lists.freedesktop.org,kernel.org,lists.infradead.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-crypto@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:herbert@gondor.apana.org.au,m:robh@kernel.org,m:krzk@kernel.org,m:conor+dt@kernel.org,m:Ruud.Derwig@synopsys.com,m:rbannerm@synopsys.com,m:manjunath.hadli@vayavyalabs.com,m:adityak@vayavyalabs.com,m:navami.telsang@vayavyalabs.com,m:bhoomikak@vayavyalabs.com,m:pavitrakumarm@vayavyalabs.com,m:conor@kernel.org,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pavitrakumarm@vayavyalabs.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[vayavyalabs.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,collabora.com:email,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1D0C96ED8C4
+X-Rspamd-Queue-Id: B9F0E6ED82B
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Calling usleep_range() inside a clk_ops->enable callback will trig=
-ger a 'scheduling while atomic' BUG.
-- [Medium] The PLL rate is clamped to a maximum of 1.6 GHz, rendering the n=
-ew high-speed voltage logic for rates >=3D 2.0 GHz completely unreachable.
+Add the driver for SPAcc(Security Protocol Accelerator), which is a
+crypto acceleration IP from Synopsys. The SPAcc supports multiple ciphers,
+hashes and AEAD algorithms with various modes. The driver currently supports
+below
+
+hash:
+- cmac(aes)
+- xcbc(aes)
+- cmac(sm4)
+- xcbc(sm4)
+- hmac(md5)
+- md5
+- hmac(sha1)
+- sha1
+- sha224
+- sha256
+- sha384
+- sha512
+- hmac(sha224)
+- hmac(sha256)
+- hmac(sha384)
+- hmac(sha512)
+- sha3-224
+- sha3-256
+- sha3-384
+- sha3-512
+
+changelog:
+  v1->v2 changes:
+    - Added local_bh_disable() and local_bh_enable() for the below calls.
+      a. for ciphers skcipher_request_complete()
+      b. for aead aead_request_complete()
+      c. for hash ahash_request_complete()
+    - dt-bindings updates
+      a. removed snps,vspacc-priority and made it into config option
+      b. renamed snps,spacc-wdtimer to snps,spacc-internal-counter
+      c. Added description to all properties
+    - Updated corresponding dt-binding changes to code
+
+  v2->v3 changes:
+    - cra_init and cra_exit replaced with init_tfm and exit_tfm for hashes.
+    - removed mutex_lock/unlock for spacc_skcipher_fallback call
+    - dt-bindings updates
+     a. updated SOC related information
+     b. renamed compatible string as per SOC
+   - Updated corresponding dt-binding changes to code
+
+  v3->v4 changes:
+   - removed snps,vspacc-id from the dt-bindings
+   - removed mutex_lock from ciphers
+   - replaced magic numbers with macros
+   - removed sw_fb variable from struct mode_tab and associated code from the
+     hashes
+   - polling code is replaced by wait_event_interruptible
+
+  v4->v5 changes:
+   - Updated to register with the crypto-engine
+   - Used semaphore to manage SPAcc device hardware context pool
+   - This patchset supports Hashes only
+   - Dropping the support for Ciphers and AEADs in this patchset
+   - Added Reviewed-by tag on the Device tree patch since it was reviewed on
+     v4 patch by Krzysztof Kozlowski and Rob Herring (Arm)
+
+  v5->v6 changes:
+   - Removed CRYPTO_DEV_SPACC_CIPHER and CRYPTO_DEV_SPACC_AEAD Kconfig options,
+     since the cipher and aead support is not part of this patchset
+   - Dropped spacc_skcipher.o and spacc_aead.o from Makefile to fix build errors
+     reported by kernel test robot
+   - Added Reported-by and Closes tags as suggested
+
+  v6->v7 changes:
+   - Fixed build error reported by Kernel test robot
+   - Added Reported-by and Closes tags as suggested
+
+  v7->v8 changes:
+   - Fixed misleading comment: Clarified that only HMAC key pre-processing
+     is done in software, while the actual HMAC operation is performed by
+     hardware
+   - Simplified do_shash() function signature by removing unused parameters
+   - Updated all do_shash() call sites to use new simplified signature
+   - Fixed commit message formatting by adding "crypto: spacc - <subject>" to
+     all patches
+   - used __free() for scope based resource management
+
+  v8->v9 changes:
+   - Updated the software fallback implementation to use HASH_FBREQ_ON_STACK
+   - Corrected dynamic allocation of statesize and reqsize in init_tfm
+   - Fixed synchronization issues in the digest request
+
+  v9->v10 changes:
+   - Fixed unused variable warning
+
+  v10->v11 changes:
+   - Removed the redundant crypto_alloc_ahash in the init_tfm function
+   - Removed the redundant crypto_free_ahash in exit_tfm function
+   - Removed the redundant crypto_ahash_setkey call in setkey function
+
+  v11->v12 changes:
+   - Removed do_shash() and switched to lib/crypto API in spacc_hash_setkey
+   - Dropped support for SM3 algorithm
+   - Improved multi-device safety by encapsulating handling within priv
+   - Added memzero_explicit() in sensitive paths
+   - Minor code cleanups and style fixes
+   - Algorithm registration cleanups
+
+  v12->v13 chnages:
+   - Removed all the sleep function from setkey function
+   - Added shash implemntation for aes algorthims
+
+  v13->v14 chnages:
+   -Added fixes based on the reports by Sashiko
+   -Removed the spacc_is_mode_keysize_supported call from do_one_request
+
+  v14->v15 chnages:
+   -Added fixes based on the reports by Sashiko on 19/jun/2026
+   -Fixed styling in the Kconfig
+
+Pavitrakumar Managutte (4):
+  dt-bindings: crypto: Document support for SPAcc
+  crypto: spacc - Add SPAcc ahash support
+  crypto: spacc - Add SPAcc AUTODETECT Support
+  crypto: spacc - Add SPAcc Kconfig and Makefile
+
+ .../bindings/crypto/snps,dwc-spacc.yaml       |   50 +
+ drivers/crypto/Kconfig                        |    1 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/dwc-spacc/Kconfig              |   83 +
+ drivers/crypto/dwc-spacc/Makefile             |    8 +
+ drivers/crypto/dwc-spacc/spacc_ahash.c        |  929 ++++++
+ drivers/crypto/dwc-spacc/spacc_core.c         | 2532 +++++++++++++++++
+ drivers/crypto/dwc-spacc/spacc_core.h         |  853 ++++++
+ drivers/crypto/dwc-spacc/spacc_device.c       |  286 ++
+ drivers/crypto/dwc-spacc/spacc_device.h       |  241 ++
+ drivers/crypto/dwc-spacc/spacc_hal.c          |  371 +++
+ drivers/crypto/dwc-spacc/spacc_hal.h          |  114 +
+ drivers/crypto/dwc-spacc/spacc_interrupt.c    |  328 +++
+ drivers/crypto/dwc-spacc/spacc_manager.c      |  612 ++++
+ 14 files changed, 6409 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
+ create mode 100644 drivers/crypto/dwc-spacc/Kconfig
+ create mode 100644 drivers/crypto/dwc-spacc/Makefile
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_ahash.c
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_core.c
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_core.h
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_device.c
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_device.h
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_hal.c
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_hal.h
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_interrupt.c
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_manager.c
+
+
+base-commit: 6ea0ce3a19f9c37a014099e2b0a46b27fa164564
 --
+2.25.1
 
-commit af99b6688956e76bb38344e38d2af3b56056ec47
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-phy: mediatek: Add support for MT8196 MIPI DSI PHY
-
-Add support for the MIPI DSI PHY found in the MediaTek MT8196 SoC
-and its variants. This initial driver only adds support for basic
-functionality that is necessary to drive MIPI DSI displays as a D-PHY.
-
-> diff --git a/drivers/phy/mediatek/phy-mtk-mipi-dsi-mt8196.c b/drivers/phy=
-/mediatek/phy-mtk-mipi-dsi-mt8196.c
-> new file mode 100644
-> index 0000000000000..273f236fa7e9e
-> --- /dev/null
-> +++ b/drivers/phy/mediatek/phy-mtk-mipi-dsi-mt8196.c
-
-[ ... ]
-
-> +static int mtk_mipi_tx_pll_enable(struct clk_hw *hw)
-> +{
-> +	struct mtk_mipi_tx *mipi_tx =3D mtk_mipi_tx_from_clk_hw(hw);
-> +	void __iomem *base =3D mipi_tx->regs;
-> +	u32 voltage =3D RG_DSI_PRD_REF_MINI;
-> +	u32 pres =3D MIPITX_PRESERVED_MINI;
-> +	unsigned long long pcw_calc;
-> +	unsigned int txdiv, txdiv0;
-> +	u32 pcw;
-> +
-> +	dev_dbg(mipi_tx->dev, "enable: %u bps\n", mipi_tx->data_rate);
-> +
-> +	if (mipi_tx->data_rate >=3D 2000000000) {
-> +		/* Select higher signaling voltage for fast data rates */
-
-[Severity: Medium]
-Will this condition ever be met?
-
-Further down in this patch, mtk_mipi_tx_pll_determine_rate() unconditionally
-clamps the requested rate to a maximum of 1.6 GHz.
-
-Since the framework passes this clamped rate to the set_rate callback, won't
-this high-speed logic for 2.0 GHz become unreachable dead code?
-
-> +		voltage =3D RG_DSI_PRD_REF_DEF;
-> +		pres =3D MIPITX_PRESERVED_DEF;
-> +		txdiv =3D 1;
-> +		txdiv0 =3D 0;
-> +	} else if (mipi_tx->data_rate >=3D 1000000000) {
-
-[ ... ]
-
-> +	mtk_phy_update_field(base + MIPITX_VOLTAGE_SEL, RG_DSI_PRD_REF_SEL, vol=
-tage);
-> +	writel(pres, base + MIPITX_PRESERVED);
-> +
-> +	mtk_phy_set_bits(base + MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
-> +	mtk_phy_clear_bits(base + MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-> +	usleep_range(30, 60);
-
-[Severity: High]
-Is it safe to sleep here?
-
-The Common Clock Framework invokes clk_ops->enable callbacks with the
-enable_lock spinlock held and local interrupts disabled.
-
-Because mtk_mipi_tx_pll_enable() is registered as the .enable callback,
-won't calling usleep_range() here in an atomic context trigger a
-scheduling while atomic BUG?
-
-Should this use udelay() instead, or could this logic be moved to the
-.prepare callback where sleeping is permitted?
-
-> +
-> +	mtk_phy_clear_bits(base + MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
-> +	writel(pcw, base + MIPITX_PLL_CON0);
-> +	mtk_phy_update_field(base + MIPITX_PLL_CON1, RG_DSI_PLL_POSDIV, txdiv0);
-> +	usleep_range(30, 60);
-> +
-> +	mtk_phy_set_bits(base + MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-> +	usleep_range(30, 60);
-> +
-> +	return 0;
-> +}
-
-[ ... ]
-
-> +static int mtk_mipi_tx_pll_determine_rate(struct clk_hw *hw,
-> +					  struct clk_rate_request *req)
-> +{
-> +	req->rate =3D clamp_val(req->rate, 125000000, 1600000000);
-
-[Severity: Medium]
-Is this maximum rate intentional for the MT8196?
-
-This limits the rate to 1.6 GHz, which prevents the 2.0 GHz signaling
-voltage logic in mtk_mipi_tx_pll_enable() from ever executing.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct clk_ops mtk_mipi_tx_pll_ops =3D {
-> +	.enable =3D mtk_mipi_tx_pll_enable,
-> +	.disable =3D mtk_mipi_tx_pll_disable,
-> +	.determine_rate =3D mtk_mipi_tx_pll_determine_rate,
-> +	.set_rate =3D mtk_mipi_tx_pll_set_rate,
-> +	.recalc_rate =3D mtk_mipi_tx_pll_recalc_rate,
-> +};
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701121943.1943=
-0-1-angelogioacchino.delregno@collabora.com?part=3D2
 
