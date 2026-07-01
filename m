@@ -1,144 +1,224 @@
-Return-Path: <devicetree+bounces-318402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318403-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CFt9Mr/4RGot4QoAu9opvQ
-	(envelope-from <devicetree+bounces-318402-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:23:43 +0200
+	id NI7MFvz5RGqF4QoAu9opvQ
+	(envelope-from <devicetree+bounces-318403-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:29:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 166506ECC32
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:23:43 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B096ECD1C
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:28:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HtzKR283;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318402-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318402-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NM9dJxin;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318403-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318403-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 419BE30E8A75
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:19:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0E0A43027B7A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:22:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56B94779B8;
-	Wed,  1 Jul 2026 11:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F37477981;
+	Wed,  1 Jul 2026 11:22:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4A046AECC;
-	Wed,  1 Jul 2026 11:19:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F7403B440F
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 11:22:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782904797; cv=none; b=iGDcYzUCTqD6hjj0rIrS0yisP4nFsWGmF/tm4jDpTtMJERNDiamRM+aJDv5uPXVjp98kJhUKMvI2EDzJRVgKFzL88kh+WByKv34LKq44Wk0LReKXYWS1U+JAxU38HH2yWB1vFk7mgBtoz/nj2EqQP3frOFVQnUqddxuyaH0jzSg=
+	t=1782904925; cv=none; b=uWz0XZifCEqzx+9xJZRzOeJegpyP+6kkSmLwkVlHlm++ATGuzdrigFRKM9tsdQp4V1+ci4acQzwZH4q2eK/HOMc/Pn7XGXzd8kz4N1jwbYS2CqqkxlwpNbcUfiq07zdWdWR/fJaiBb43etiYd5QEJdW3eXa/5Cag3NOVbv+ZYCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782904797; c=relaxed/simple;
-	bh=WohFoISc91VwHJVthJFHvksz+FbLresw6Ebv+AWBTds=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uyFtuvBxTIjCz5DIuVcfERarDhmMJHOkHAD+Y7OfLWhwpaGqf/y1CmKCRKUs5g3pwFSMv5s/iOH3N0mumBACjGO0HfWI9Z6xHc3NnUpkgoG23Vfewdd++FqaIPzs0RqU+ArChZ8uaIJbh8HUFjlb/ZxSOvIVlNuVXepJnVYn9Jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HtzKR283; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B82E21F000E9;
-	Wed,  1 Jul 2026 11:19:51 +0000 (UTC)
+	s=arc-20240116; t=1782904925; c=relaxed/simple;
+	bh=FnQSiboyFhP9bwvbNYbKA+t7x7AsEwOc+1U5/6QQKpw=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=rIWjM4N8Fkq1p93Y9qgCI21JVlmzREoITQEp47xo+GiBaLdcHAIjqwAwBwsz/Yvh3oDaYB2EGrPBIDImLOoYw3vZOqCtmtt61Alj4KS0pGIMVfDGoqq7y3mnhKAv+abphhd+hGt121o3IULwf0x404l5+VBN03LBOBFKqfObrmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NM9dJxin; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C64BD1F000E9;
+	Wed,  1 Jul 2026 11:22:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782904793;
-	bh=WohFoISc91VwHJVthJFHvksz+FbLresw6Ebv+AWBTds=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=HtzKR283CyXohYi2ajZTOUVjEvBiIGjg6NBBp42z6SQvaxZWbOe/kSpctbXhtjHi1
-	 ftmJ/MtqBq1XNSgCi0XtUqDLehM09RP6iDDtZ77XVgCf2AlI+rIvXnyXsL2sJk+5M8
-	 QlzEY9+q38InV6rltIsCG9RCTYuyHhuhu/7rQ2fGF+b6my9BSLljE1ajcRirjcBGy/
-	 /5Omw1bmMgcGHGUBp4SLKzq0CuAsozU7+lltmdFg5CjnhF2lgvUAwc7DjgPRJr3W6t
-	 wiSexxDJFLsAPEJJm4Zo1ogd5gwaON1sybGMwTBO1XDRWl2/PgGo0TnHmHOFQxpjsR
-	 NxquSIq7aqp+w==
-Date: Wed, 1 Jul 2026 12:19:49 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Harendra Gautam <harendra.gautam@oss.qualcomm.com>
-Cc: Srinivas Kandagatla <srini@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 01/11] dt-bindings: sound: qcom,qaif-cpu: Add binding
-Message-ID: <41b2321c-c747-4884-9d35-f4993afe8c58@sirena.org.uk>
+	s=k20260515; t=1782904924;
+	bh=lJ6Ki1SedjvoWMpL6p3aATp2M8whvc90X4I6ejuhrL0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=NM9dJxinzh4Xg725o7nC2D5oe6NacmhB/iuiFSZyln3bL7Eu7nbu4oNXmebqQC2hU
+	 2e8qx53MZR1+qIk37nLJ5TinDEK9/jDOi0h/77boOGUepE53qF08GpSQAPre6Xihrh
+	 GkgSOit4B0hLQvPSiG2tjJ42KoIneZgvyHmUbDGYnAYq5OKrAAFffljR9zvi73CPfm
+	 NpNh7cYqJ9Zujy5MhRnCNwlyQUGHsgSZp2lhb1Xrv7NRpmmIiGqP11qcI2YvBBWXQE
+	 wI0J14Sps/QT35NDSTJ4Yk2hudESPrZG8rBZ9WZpKzdX4+Ha45oWroTNz0bAEd0UMe
+	 SapRdoTlqGuVQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 10/11] ASoC: qcom: Add Shikra QAIF support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Harendra Gautam" <harendra.gautam@oss.qualcomm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260701105757.2779738-11-harendra.gautam@oss.qualcomm.com>
 References: <20260701105757.2779738-1-harendra.gautam@oss.qualcomm.com>
- <20260701105757.2779738-2-harendra.gautam@oss.qualcomm.com>
+ <20260701105757.2779738-11-harendra.gautam@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 01 Jul 2026 11:22:03 +0000
+Message-Id: <20260701112203.C64BD1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4RsKAl5xxvVtPpfD"
-Content-Disposition: inline
-In-Reply-To: <20260701105757.2779738-2-harendra.gautam@oss.qualcomm.com>
-X-Cookie: Do unto others before they undo you.
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.76 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[bounces-318402-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:harendra.gautam@oss.qualcomm.com,m:srini@kernel.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318403-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:harendra.gautam@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto,qualcomm.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 166506ECC32
+X-Rspamd-Queue-Id: 56B096ECD1C
 
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] Missing DAI descriptors for CDC DMA TX (capture), RX2-3, and VA_TX=
+2-3 channels render hardware paths completely inaccessible.
+- [Low] Monolithic module linking prevents addition of future SoC variants =
+without build errors.
+--
 
---4RsKAl5xxvVtPpfD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+commit 8fb121461863147da2f4ca2b57d93d08f040ef59
+Author: Harendra Gautam <harendra.gautam@oss.qualcomm.com>
+Subject: ASoC: qcom: Add Shikra QAIF support
 
-On Wed, Jul 01, 2026 at 04:27:47PM +0530, Harendra Gautam wrote:
-> Add a dt-bindings header for the Qualcomm Audio Interface (QAIF) controller
-> DAI IDs. This provides shared constants for devicetree sound-dai references
-> and QAIF aif-interface reg values instead of using raw numeric IDs.
+This commit adds the Shikra variant data for the Qualcomm Audio Interface
+driver. It introduces register field definitions, DMA mappings, DAI descrip=
+tors,
+and clock configuration. The new variant is hooked up to Kconfig and the qc=
+om
+ASoC Makefile.
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+> diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
+> index 985ce2ae286ba..857bb2a032a2d 100644
+> --- a/sound/soc/qcom/Makefile
+> +++ b/sound/soc/qcom/Makefile
+> @@ -31,6 +31,7 @@ snd-soc-qcom-common-y :=3D common.o
+>  snd-soc-qcom-sdw-y :=3D sdw.o
+>  snd-soc-x1e80100-y :=3D x1e80100.o
+>  snd-soc-qcom-offload-utils-objs :=3D usb_offload_utils.o
+> +snd-soc-qcom-qaif-y :=3D qaif-cpu.o qaif-platform.o qaif-shikra.o
 
---4RsKAl5xxvVtPpfD
-Content-Type: application/pgp-signature; name="signature.asc"
+[ ... ]
 
------BEGIN PGP SIGNATURE-----
+> diff --git a/sound/soc/qcom/qaif-shikra.c b/sound/soc/qcom/qaif-shikra.c
+> new file mode 100644
+> index 0000000000000..6bf32d155f3a1
+> --- /dev/null
+> +++ b/sound/soc/qcom/qaif-shikra.c
+> @@ -0,0 +1,556 @@
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmpE99QACgkQJNaLcl1U
-h9AVtAf7B93muBgJ+hTafM8Lc8StigUL+gs5uAioddtM0eeSbJJNi85pip8kC62M
-zuZF+suH0XQXRpqau7r7YZ98evY1JQ7rAMNi8feUuYjBNYf7bn5dYeWLqM0Irj11
-YoEkaZJ5MWnBeGjEHO2w8woxyX2HuvY4y2YYPxrkl/SzLC16HGnbMr9q9CEBmPAl
-ArzUUxYORsJBarc+K3/wU3RsmlTK5ytAWKs/ONt5NYk/9hQB429u2KHmQkhbTIfV
-pd3eDT3AGdocWQV2woDm6F0XuSZiDvyb4E5/pSEhdOHUsyXuAf3qVUeGE34jFaOa
-fgujhbthX7SjLBr3QOGfwG3LG96v0A==
-=P8AN
------END PGP SIGNATURE-----
+[ ... ]
 
---4RsKAl5xxvVtPpfD--
+> +static const struct qaif_dmaidx_dai_map shikra_cif_tx_dma_dai_map[] =3D {
+> +		{ QAIF_CDC_DMA_TX0 },
+> +		{ QAIF_CDC_DMA_TX1 },
+> +		{ QAIF_CDC_DMA_TX2 },
+> +		{ QAIF_CDC_DMA_TX3 }
+> +};
+> +
+> +static const struct qaif_dmaidx_dai_map shikra_cif_va_dma_dai_map[] =3D {
+> +		{ QAIF_CDC_DMA_VA_TX0 },
+> +		{ QAIF_CDC_DMA_VA_TX1 },
+> +		{ QAIF_CDC_DMA_VA_TX2 },
+> +		{ QAIF_CDC_DMA_VA_TX3 }
+> +};
+
+[ ... ]
+
+> +static struct snd_soc_dai_driver shikra_qaif_cpu_dai_driver[] =3D {
+> +	{
+> +		.id =3D QAIF_MI2S_TDM_AIF0,
+
+[ ... ]
+
+> +	}, {
+> +		.id =3D QAIF_CDC_DMA_VA_TX1,
+> +		.name =3D "CDC DMA VA1",
+> +		.capture =3D {
+> +			.stream_name =3D "DMIC Capture1",
+> +			.formats =3D SNDRV_PCM_FMTBIT_S16,
+> +			.rates =3D SNDRV_PCM_RATE_48000,
+> +			.rate_min	=3D 48000,
+> +			.rate_max	=3D 48000,
+> +			.channels_min	=3D 1,
+> +			.channels_max	=3D 4,
+> +		},
+> +		.ops	=3D &asoc_qcom_qaif_cif_dai_ops,
+> +	},
+> +};
+
+[Severity: High]
+The DMA mapping (shikra_cif_tx_dma_dai_map) specifies all 4 QAIF_CDC_DMA_TX
+channels, but the shikra_qaif_cpu_dai_driver array seems to omit the WCD
+capture (QAIF_CDC_DMA_TX) DAIs entirely. It also only provides 2 out of 4 f=
+or
+the RX and VA_TX DAIs.
+
+Will this cause sound card registration to fail when a machine driver
+attempts to instantiate a PCM capture stream routing through
+QAIF_CDC_DMA_TX0 (or TX1-3)?
+
+[ ... ]
+
+> +static struct platform_driver shikra_qaif_cpu_platform_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "shikra-qaif-cpu",
+> +		.of_match_table =3D shikra_qaif_cpu_device_id,
+> +		.pm =3D &shikra_qaif_pm_ops,
+> +	},
+> +	.probe =3D asoc_qcom_qaif_cpu_platform_probe,
+> +	.remove =3D asoc_qcom_qaif_cpu_platform_remove,
+> +	.shutdown =3D asoc_qcom_qaif_cpu_platform_shutdown,
+> +};
+> +module_platform_driver(shikra_qaif_cpu_platform_driver);
+
+[Severity: Low]
+Because qaif-cpu.o, qaif-platform.o, and qaif-shikra.o are linked into a
+single snd-soc-qcom-qaif.ko module, does using module_platform_driver()
+here inadvertently claim the entire module's init/exit entry points?
+
+Could this lead to build failures due to multiple init_module definitions
+if a future SoC variant is added to snd-soc-qcom-qaif-y and also attempts
+to register a platform driver?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701105757.2779=
+738-1-harendra.gautam@oss.qualcomm.com?part=3D10
 
