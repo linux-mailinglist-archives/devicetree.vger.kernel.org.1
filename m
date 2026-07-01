@@ -1,83 +1,91 @@
-Return-Path: <devicetree+bounces-318512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318482-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id T+ggEgILRWrP5goAu9opvQ
-	(envelope-from <devicetree+bounces-318512-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:41:38 +0200
+	id TBzhIlgIRWr05QoAu9opvQ
+	(envelope-from <devicetree+bounces-318482-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:30:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CD206ED772
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:41:37 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 260456ED594
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:30:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=Y23v5mno;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318512-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318512-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=dHDcqsed;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318482-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318482-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4D923295D29
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:29:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E590F303BEBD
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C02104D90B8;
-	Wed,  1 Jul 2026 12:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E8CE4BCAA9;
+	Wed,  1 Jul 2026 12:20:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702A748C40B;
-	Wed,  1 Jul 2026 12:21:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 215794BC030;
+	Wed,  1 Jul 2026 12:20:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782908501; cv=none; b=aqVHINzQ2Aoq/IvzFc7nr3s48QfOhDcho/dKHbYDb1pQIQ3HMdNQ/LH154RDY5n5YVFvGlNQgPVbj4gtxytZYMAg+I5fbdH8LKs/pJaPfwDPR4j2eMBYmYYNooNEray4LiOG+W0lhGaBS6uTGoP4reVvyk7XDDslru0wvgIKnLU=
+	t=1782908454; cv=none; b=BXyhPzmQDkNF7CrrXInLorG2iYRZ+zZyCiYKh1U7KuQioobtoANxc3Pj3gQDivagM1U7YqE0ktYLebhOdvB8mtF81VFbk7mT+3zrOsTAmgT7DdDd7sVKNAMY28vR+rf3Ea/r4AGAfPChuo6B+BPvqqORrGn6TqCwIzcHOasuSrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782908501; c=relaxed/simple;
-	bh=LQOLS0BAqpnfvkd+qHepkyIsbDDgt+ixh/Wa2TO192c=;
+	s=arc-20240116; t=1782908454; c=relaxed/simple;
+	bh=D8xSYkpIyl50Azpbz1Ovm3/ITMW8MoCD/TiEbkzX/jw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pUQS8H+gTzsUjEFfau1r4CWoFC7bxIniGNpe1lKJ511gdoWG4OfwCO6LVR5UB0mw0w7+w0hyVLS9BY7Jr3/XpDxRoVlD/+kWeHGwlQVlYi/yVfakP5v4pDwMpQK+h4JCwBnOnw5PPRxqmd3pRhjSRZ0Y4UBK34iX2+BjDxiUK8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Y23v5mno; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=M0RLXs3IaCLqeYVDgBfMDfrug2MYOKoXdzbc8uf3aprPQnQM2Qz7gakq0psAG+uTSI8S3RjotEEjl5gsh3VlIJO1rvvWOmXb3vOGonGbLsQmEoCf3jfdXA7CQjek0bpxcCC0AcMtGQyg5PtalEP2ajsZwbOOBlQK9PiXD4nyEKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dHDcqsed; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1782908497;
-	bh=LQOLS0BAqpnfvkd+qHepkyIsbDDgt+ixh/Wa2TO192c=;
+	s=mail; t=1782908450;
+	bh=D8xSYkpIyl50Azpbz1Ovm3/ITMW8MoCD/TiEbkzX/jw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Y23v5mno++vWFtcc5YSugMF74X5yLBhs0fccimw0NUXJAdWG2ClCXrJ7E/h/+HZGN
-	 VUZVqszrQ3RT7+H73S7qzJ8WbA104MrWSD/o1cczICSxq6pAhS1YxVS9WqEqHlwzhG
-	 +FYNJVCRokTIDmUYrBkZiI3e5/fCEISCEfCgPlogcjLwBhyINp5LV49bDIW8oEM5KW
-	 IMF3iJy7bVy6/07Su3w8PxR8Ag11h/A0AqfndTVuidOGkU/3VwlR1Hk43lXxv4EvBA
-	 DkKs9c5aq6niOkT9A9WKUgfIkFzLyNu7T3+HI7Gez5uBPOh74JkkQz/vQf44TDZNPe
-	 xMaReaYCRo1bg==
+	b=dHDcqsedFd/kZVRR/4ve7GtOgmycdE7Op4ya+bnevyvQ4lEMNiPk8jVTkC7ZgK2dB
+	 Qf6PS8wvdQMpISu4N7Kx8hUhWl3ngEECh95NDu7LdsRdiynLKL0Qfx0aOrQxGVv1T+
+	 zg5UmZRT7D0qozy4TVFPr+tGn8uHAAmUH9mzCVCZNVeAok8t+7/XgGIAXdNStFFHWs
+	 DKKPwvTdEDXCGzP/ZUM0aMow6xmbg0NGKwHR37z9LFQ70L5HMa/guK9XMTJb97dGJB
+	 FHcJczU+HF6PBSSTlbF4KoDX3npb9AWdoulnD/x3pxJEVO98UvYOEHRNgCPqNxQfra
+	 RDfs0mhzLLisQ==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1E27F17E0CF4;
-	Wed,  1 Jul 2026 14:21:35 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 54A5817E0CA2;
+	Wed,  1 Jul 2026 14:20:49 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunkuang.hu@kernel.org
 Cc: p.zabel@pengutronix.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
 	maarten.lankhorst@linux.intel.com,
 	mripard@kernel.org,
 	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
 	matthias.bgg@gmail.com,
 	angelogioacchino.delregno@collabora.com,
+	andi.shyti@kernel.org,
+	djakov@kernel.org,
+	broonie@kernel.org,
+	jitao.shi@mediatek.com,
+	ck.hu@mediatek.com,
 	dri-devel@lists.freedesktop.org,
 	linux-mediatek@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
 	linux-arm-kernel@lists.infradead.org,
 	justin.yeh@mediatek.com,
 	jason-jh.lin@mediatek.com,
 	kernel@collabora.com
-Subject: [PATCH 25/42] drm/mediatek: Pass mtk_ddp_comp in clk and config callbacks
+Subject: [PATCH 3/6] dt-bindings: display: mediatek: Allow trigger-sources on relevant HW
 Date: Wed,  1 Jul 2026 14:20:40 +0200
-Message-ID: <20260701122057.19648-26-angelogioacchino.delregno@collabora.com>
+Message-ID: <20260701122043.19612-4-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
-References: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260701122043.19612-1-angelogioacchino.delregno@collabora.com>
+References: <20260701122043.19612-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,21 +101,21 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,mediatek.com];
-	TAGGED_FROM(0.00)[bounces-318512-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[pengutronix.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,foss.st.com,collabora.com,mediatek.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,st-md-mailman.stormreply.com];
+	TAGGED_FROM(0.00)[bounces-318482-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:andi.shyti@kernel.org,m:djakov@kernel.org,m:broonie@kernel.org,m:jitao.shi@mediatek.com,m:ck.hu@mediatek.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
@@ -115,910 +123,324 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9CD206ED772
+X-Rspamd-Queue-Id: 260456ED594
 
-In preparation for adding support for new Display Controller HW
-components found in newer-gen SoCs like MT8196/MT8894, change the
-.clk_enable(), .clk_disable(), and .config() callbacks to pass a
-struct mtk_ddp_comp pointer instead of a struct device, and update
-all of the currently supported components to reflect this change.
+Most of the MediaTek Display Controller hardware sub-IPs need a
+specific (and reserved to them) MuteX trigger.
 
-This is done because some of the new drivers need to track more in
-the status of the actual components, such as indexing for multiple
-stages layer strategy and others.
-
-Despite being a rather big change in terms of lines, this brings
-no functional differences.
+Since now MuteX is a trigger source, allow specifying trigger
+sources in all of the display IPs that support one.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- drivers/gpu/drm/mediatek/mtk_ddp_comp.c       | 22 +++---
- drivers/gpu/drm/mediatek/mtk_ddp_comp.h       | 20 +++---
- drivers/gpu/drm/mediatek/mtk_disp_aal.c       | 12 ++--
- drivers/gpu/drm/mediatek/mtk_disp_ccorr.c     | 12 ++--
- drivers/gpu/drm/mediatek/mtk_disp_color.c     | 12 ++--
- drivers/gpu/drm/mediatek/mtk_disp_drv.h       | 70 +++++++++----------
- drivers/gpu/drm/mediatek/mtk_disp_dsc.c       |  8 +--
- drivers/gpu/drm/mediatek/mtk_disp_gamma.c     | 12 ++--
- drivers/gpu/drm/mediatek/mtk_disp_merge.c     | 18 ++---
- drivers/gpu/drm/mediatek/mtk_disp_ovl.c       | 12 ++--
- .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   | 50 +++++++------
- drivers/gpu/drm/mediatek/mtk_disp_rdma.c      | 12 ++--
- drivers/gpu/drm/mediatek/mtk_disp_wdma.c      | 12 ++--
- drivers/gpu/drm/mediatek/mtk_ethdr.c          | 10 +--
- drivers/gpu/drm/mediatek/mtk_ethdr.h          |  4 +-
- drivers/gpu/drm/mediatek/mtk_mdp_rdma.c       |  8 +--
- drivers/gpu/drm/mediatek/mtk_padding.c        |  8 +--
- 17 files changed, 155 insertions(+), 147 deletions(-)
+ .../devicetree/bindings/display/mediatek/mediatek,aal.yaml     | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,ccorr.yaml   | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,color.yaml   | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,dither.yaml  | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,dp.yaml      | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml     | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,dsc.yaml     | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,dsi.yaml     | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,ethdr.yaml   | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,gamma.yaml   | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,merge.yaml   | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,od.yaml      | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,ovl-2l.yaml  | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,ovl.yaml     | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,padding.yaml | 3 +++
+ .../bindings/display/mediatek/mediatek,postmask.yaml           | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,rdma.yaml    | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,split.yaml   | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,ufoe.yaml    | 3 +++
+ .../devicetree/bindings/display/mediatek/mediatek,wdma.yaml    | 3 +++
+ 20 files changed, 60 insertions(+)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-index f8687f161953..8b9228084828 100644
---- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-@@ -109,16 +109,16 @@ void mtk_ddp_write_mask(struct cmdq_pkt *cmdq_pkt, unsigned int value,
- #endif
- }
- 
--static int mtk_ddp_clk_enable(struct device *dev)
-+static int mtk_ddp_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
-+	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(comp->dev);
- 
- 	return clk_prepare_enable(priv->clk);
- }
- 
--static void mtk_ddp_clk_disable(struct device *dev)
-+static void mtk_ddp_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
-+	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(comp->dev);
- 
- 	clk_disable_unprepare(priv->clk);
- }
-@@ -149,11 +149,11 @@ void mtk_dither_set_common(void __iomem *regs, struct cmdq_client_reg *cmdq_reg,
- 	}
- }
- 
--static void mtk_dither_config(struct device *dev, unsigned int w,
-+static void mtk_dither_config(struct mtk_ddp_comp *comp, unsigned int w,
- 			      unsigned int h, unsigned int vrefresh,
- 			      unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
--	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
-+	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(comp->dev);
- 
- 	mtk_ddp_write(cmdq_pkt, w << 16 | h, &priv->cmdq_reg, priv->regs, DISP_REG_DITHER_SIZE);
- 	mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs,
-@@ -185,15 +185,15 @@ static void mtk_dither_set(struct device *dev, unsigned int bpc,
- 			      DISP_DITHERING, cmdq_pkt);
- }
- 
--static void mtk_od_config(struct device *dev, unsigned int w,
-+static void mtk_od_config(struct mtk_ddp_comp *comp, unsigned int w,
- 			  unsigned int h, unsigned int vrefresh,
- 			  unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
--	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
-+	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(comp->dev);
- 
- 	mtk_ddp_write(cmdq_pkt, w << 16 | h, &priv->cmdq_reg, priv->regs, DISP_REG_OD_SIZE);
- 	mtk_ddp_write(cmdq_pkt, OD_RELAYMODE, &priv->cmdq_reg, priv->regs, DISP_REG_OD_CFG);
--	mtk_dither_set(dev, bpc, DISP_REG_OD_CFG, cmdq_pkt);
-+	mtk_dither_set(comp->dev, bpc, DISP_REG_OD_CFG, cmdq_pkt);
- }
- 
- static void mtk_od_start(struct device *dev)
-@@ -203,11 +203,11 @@ static void mtk_od_start(struct device *dev)
- 	writel(1, priv->regs + DISP_REG_OD_EN);
- }
- 
--static void mtk_postmask_config(struct device *dev, unsigned int w,
-+static void mtk_postmask_config(struct mtk_ddp_comp *comp, unsigned int w,
- 				unsigned int h, unsigned int vrefresh,
- 				unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
--	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
-+	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(comp->dev);
- 
- 	mtk_ddp_write(cmdq_pkt, w << 16 | h, &priv->cmdq_reg, priv->regs,
- 		      DISP_REG_POSTMASK_SIZE);
-diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.h b/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
-index ab9d5e4dfb98..1297db252821 100644
---- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
-+++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
-@@ -36,9 +36,9 @@ struct mtk_drm_comp_list {
- struct mtk_ddp_comp_funcs {
- 	int (*power_on)(struct device *dev);
- 	void (*power_off)(struct device *dev);
--	int (*clk_enable)(struct device *dev);
--	void (*clk_disable)(struct device *dev);
--	void (*config)(struct device *dev, unsigned int w,
-+	int (*clk_enable)(struct mtk_ddp_comp *comp);
-+	void (*clk_disable)(struct mtk_ddp_comp *comp);
-+	void (*config)(struct mtk_ddp_comp *comp, unsigned int w,
- 		       unsigned int h, unsigned int vrefresh,
- 		       unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- 	void (*dsc_setup)(struct device *dev, struct drm_dsc_config *dsc);
-@@ -75,8 +75,8 @@ struct mtk_ddp_comp_funcs {
- 			struct mtk_ddp_comp *next);
- 	void (*disconnect)(struct mtk_ddp_comp *comp, struct device *mmsys_dev,
- 			   struct mtk_ddp_comp *next);
--	void (*add)(struct device *dev, struct mtk_mutex *mutex);
--	void (*remove)(struct device *dev, struct mtk_mutex *mutex);
-+	void (*add)(struct mtk_ddp_comp *comp, struct mtk_mutex *mutex);
-+	void (*remove)(struct mtk_ddp_comp *comp, struct mtk_mutex *mutex);
- 	unsigned int (*encoder_index)(struct device *dev);
- 	enum drm_mode_status (*mode_valid)(struct device *dev, const struct drm_display_mode *mode);
- };
-@@ -113,7 +113,7 @@ static inline void mtk_ddp_comp_power_off(struct mtk_ddp_comp *comp)
- static inline int mtk_ddp_comp_clk_enable(struct mtk_ddp_comp *comp)
- {
- 	if (comp->funcs && comp->funcs->clk_enable)
--		return comp->funcs->clk_enable(comp->dev);
-+		return comp->funcs->clk_enable(comp);
- 
- 	return 0;
- }
-@@ -121,7 +121,7 @@ static inline int mtk_ddp_comp_clk_enable(struct mtk_ddp_comp *comp)
- static inline void mtk_ddp_comp_clk_disable(struct mtk_ddp_comp *comp)
- {
- 	if (comp->funcs && comp->funcs->clk_disable)
--		comp->funcs->clk_disable(comp->dev);
-+		comp->funcs->clk_disable(comp);
- }
- 
- static inline
-@@ -139,7 +139,7 @@ static inline void mtk_ddp_comp_config(struct mtk_ddp_comp *comp,
- 				       struct cmdq_pkt *cmdq_pkt)
- {
- 	if (comp->funcs && comp->funcs->config)
--		comp->funcs->config(comp->dev, w, h, vrefresh, bpc, cmdq_pkt);
-+		comp->funcs->config(comp, w, h, vrefresh, bpc, cmdq_pkt);
- }
- 
- static inline void mtk_ddp_comp_dsc_setup(struct mtk_ddp_comp *comp,
-@@ -314,7 +314,7 @@ static inline bool mtk_ddp_comp_is_afbc_supported(struct mtk_ddp_comp *comp)
- static inline bool mtk_ddp_comp_add(struct mtk_ddp_comp *comp, struct mtk_mutex *mutex)
- {
- 	if (comp->funcs && comp->funcs->add) {
--		comp->funcs->add(comp->dev, mutex);
-+		comp->funcs->add(comp, mutex);
- 		return true;
- 	}
- 	return false;
-@@ -323,7 +323,7 @@ static inline bool mtk_ddp_comp_add(struct mtk_ddp_comp *comp, struct mtk_mutex
- static inline bool mtk_ddp_comp_remove(struct mtk_ddp_comp *comp, struct mtk_mutex *mutex)
- {
- 	if (comp->funcs && comp->funcs->remove) {
--		comp->funcs->remove(comp->dev, mutex);
-+		comp->funcs->remove(comp, mutex);
- 		return true;
- 	}
- 	return false;
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_aal.c b/drivers/gpu/drm/mediatek/mtk_disp_aal.c
-index abc9e5525d03..5199354e7b51 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_aal.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_aal.c
-@@ -50,25 +50,25 @@ struct mtk_disp_aal {
- 	const struct mtk_disp_aal_data *data;
- };
- 
--int mtk_aal_clk_enable(struct device *dev)
-+int mtk_aal_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_aal *aal = dev_get_drvdata(dev);
-+	struct mtk_disp_aal *aal = dev_get_drvdata(comp->dev);
- 
- 	return clk_prepare_enable(aal->clk);
- }
- 
--void mtk_aal_clk_disable(struct device *dev)
-+void mtk_aal_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_aal *aal = dev_get_drvdata(dev);
-+	struct mtk_disp_aal *aal = dev_get_drvdata(comp->dev);
- 
- 	clk_disable_unprepare(aal->clk);
- }
- 
--void mtk_aal_config(struct device *dev, unsigned int w,
-+void mtk_aal_config(struct mtk_ddp_comp *comp, unsigned int w,
- 			   unsigned int h, unsigned int vrefresh,
- 			   unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
--	struct mtk_disp_aal *aal = dev_get_drvdata(dev);
-+	struct mtk_disp_aal *aal = dev_get_drvdata(comp->dev);
- 	u32 sz;
- 
- 	sz = FIELD_PREP(DISP_AAL_SIZE_HSIZE, w);
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c b/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
-index 6d7bf4afa78d..81ce82ba6a9f 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
-@@ -40,25 +40,25 @@ struct mtk_disp_ccorr {
- 	const struct mtk_disp_ccorr_data	*data;
- };
- 
--int mtk_ccorr_clk_enable(struct device *dev)
-+int mtk_ccorr_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_ccorr *ccorr = dev_get_drvdata(dev);
-+	struct mtk_disp_ccorr *ccorr = dev_get_drvdata(comp->dev);
- 
- 	return clk_prepare_enable(ccorr->clk);
- }
- 
--void mtk_ccorr_clk_disable(struct device *dev)
-+void mtk_ccorr_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_ccorr *ccorr = dev_get_drvdata(dev);
-+	struct mtk_disp_ccorr *ccorr = dev_get_drvdata(comp->dev);
- 
- 	clk_disable_unprepare(ccorr->clk);
- }
- 
--void mtk_ccorr_config(struct device *dev, unsigned int w,
-+void mtk_ccorr_config(struct mtk_ddp_comp *comp, unsigned int w,
- 			     unsigned int h, unsigned int vrefresh,
- 			     unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
--	struct mtk_disp_ccorr *ccorr = dev_get_drvdata(dev);
-+	struct mtk_disp_ccorr *ccorr = dev_get_drvdata(comp->dev);
- 
- 	mtk_ddp_write(cmdq_pkt, w << 16 | h, &ccorr->cmdq_reg, ccorr->regs,
- 		      DISP_CCORR_SIZE);
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_color.c b/drivers/gpu/drm/mediatek/mtk_disp_color.c
-index 39c7de4cdcc1..04ae5e528c34 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_color.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_color.c
-@@ -43,25 +43,25 @@ struct mtk_disp_color {
- 	const struct mtk_disp_color_data	*data;
- };
- 
--int mtk_color_clk_enable(struct device *dev)
-+int mtk_color_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_color *color = dev_get_drvdata(dev);
-+	struct mtk_disp_color *color = dev_get_drvdata(comp->dev);
- 
- 	return clk_prepare_enable(color->clk);
- }
- 
--void mtk_color_clk_disable(struct device *dev)
-+void mtk_color_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_color *color = dev_get_drvdata(dev);
-+	struct mtk_disp_color *color = dev_get_drvdata(comp->dev);
- 
- 	clk_disable_unprepare(color->clk);
- }
- 
--void mtk_color_config(struct device *dev, unsigned int w,
-+void mtk_color_config(struct mtk_ddp_comp *comp, unsigned int w,
- 		      unsigned int h, unsigned int vrefresh,
- 		      unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
--	struct mtk_disp_color *color = dev_get_drvdata(dev);
-+	struct mtk_disp_color *color = dev_get_drvdata(comp->dev);
- 
- 	mtk_ddp_write(cmdq_pkt, w, &color->cmdq_reg, color->regs, DISP_COLOR_WIDTH(color));
- 	mtk_ddp_write(cmdq_pkt, h, &color->cmdq_reg, color->regs, DISP_COLOR_HEIGHT(color));
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-index abdce23fab17..62daf5ade9d1 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-@@ -17,9 +17,9 @@
- 
- struct drm_dsc_config;
- 
--int mtk_aal_clk_enable(struct device *dev);
--void mtk_aal_clk_disable(struct device *dev);
--void mtk_aal_config(struct device *dev, unsigned int w,
-+int mtk_aal_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_aal_clk_disable(struct mtk_ddp_comp *comp);
-+void mtk_aal_config(struct mtk_ddp_comp *comp, unsigned int w,
- 		    unsigned int h, unsigned int vrefresh,
- 		    unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- unsigned int mtk_aal_gamma_get_lut_size(struct device *dev);
-@@ -28,18 +28,18 @@ void mtk_aal_start(struct device *dev);
- void mtk_aal_stop(struct device *dev);
- 
- void mtk_ccorr_ctm_set(struct device *dev, struct drm_crtc_state *state);
--int mtk_ccorr_clk_enable(struct device *dev);
--void mtk_ccorr_clk_disable(struct device *dev);
--void mtk_ccorr_config(struct device *dev, unsigned int w,
-+int mtk_ccorr_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_ccorr_clk_disable(struct mtk_ddp_comp *comp);
-+void mtk_ccorr_config(struct mtk_ddp_comp *comp, unsigned int w,
- 		      unsigned int h, unsigned int vrefresh,
- 		      unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- void mtk_ccorr_start(struct device *dev);
- void mtk_ccorr_stop(struct device *dev);
- 
- void mtk_color_bypass_shadow(struct device *dev);
--int mtk_color_clk_enable(struct device *dev);
--void mtk_color_clk_disable(struct device *dev);
--void mtk_color_config(struct device *dev, unsigned int w,
-+int mtk_color_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_color_clk_disable(struct mtk_ddp_comp *comp);
-+void mtk_color_config(struct mtk_ddp_comp *comp, unsigned int w,
- 		      unsigned int h, unsigned int vrefresh,
- 		      unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- void mtk_color_start(struct device *dev);
-@@ -52,8 +52,8 @@ void mtk_dpi_start(struct device *dev);
- void mtk_dpi_stop(struct device *dev);
- unsigned int mtk_dpi_encoder_index(struct device *dev);
- 
--int mtk_dsc_clk_enable(struct device *dev);
--void mtk_dsc_clk_disable(struct device *dev);
-+int mtk_dsc_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_dsc_clk_disable(struct mtk_ddp_comp *comp);
- void mtk_dsc_setup(struct device *dev, struct drm_dsc_config *dsc_cfg);
- void mtk_dsc_start(struct device *dev);
- void mtk_dsc_stop(struct device *dev);
-@@ -67,9 +67,9 @@ void mtk_dvo_start(struct device *dev);
- void mtk_dvo_stop(struct device *dev);
- unsigned int mtk_dvo_encoder_index(struct device *dev);
- 
--int mtk_gamma_clk_enable(struct device *dev);
--void mtk_gamma_clk_disable(struct device *dev);
--void mtk_gamma_config(struct device *dev, unsigned int w,
-+int mtk_gamma_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_gamma_clk_disable(struct mtk_ddp_comp *comp);
-+void mtk_gamma_config(struct mtk_ddp_comp *comp, unsigned int w,
- 		      unsigned int h, unsigned int vrefresh,
- 		      unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- unsigned int mtk_gamma_get_lut_size(struct device *dev);
-@@ -77,9 +77,9 @@ void mtk_gamma_set(struct device *dev, struct drm_crtc_state *state);
- void mtk_gamma_start(struct device *dev);
- void mtk_gamma_stop(struct device *dev);
- 
--int mtk_merge_clk_enable(struct device *dev);
--void mtk_merge_clk_disable(struct device *dev);
--void mtk_merge_config(struct device *dev, unsigned int width,
-+int mtk_merge_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_merge_clk_disable(struct mtk_ddp_comp *comp);
-+void mtk_merge_config(struct mtk_ddp_comp *comp, unsigned int width,
- 		      unsigned int height, unsigned int vrefresh,
- 		      unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- void mtk_merge_start(struct device *dev);
-@@ -95,9 +95,9 @@ enum drm_mode_status mtk_merge_mode_valid(struct device *dev,
- void mtk_ovl_bgclr_in_on(struct device *dev);
- void mtk_ovl_bgclr_in_off(struct device *dev);
- void mtk_ovl_bypass_shadow(struct device *dev);
--int mtk_ovl_clk_enable(struct device *dev);
--void mtk_ovl_clk_disable(struct device *dev);
--void mtk_ovl_config(struct device *dev, unsigned int w,
-+int mtk_ovl_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_ovl_clk_disable(struct mtk_ddp_comp *comp);
-+void mtk_ovl_config(struct mtk_ddp_comp *comp, unsigned int w,
- 		    unsigned int h, unsigned int vrefresh,
- 		    unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- int mtk_ovl_layer_check(struct device *dev, unsigned int idx,
-@@ -124,8 +124,8 @@ const u32 *mtk_ovl_get_formats(struct device *dev);
- size_t mtk_ovl_get_num_formats(struct device *dev);
- bool mtk_ovl_is_afbc_supported(struct device *dev);
- 
--void mtk_ovl_adaptor_add_comp(struct device *dev, struct mtk_mutex *mutex);
--void mtk_ovl_adaptor_remove_comp(struct device *dev, struct mtk_mutex *mutex);
-+void mtk_ovl_adaptor_add_comp(struct mtk_ddp_comp *comp, struct mtk_mutex *mutex);
-+void mtk_ovl_adaptor_remove_comp(struct mtk_ddp_comp *comp, struct mtk_mutex *mutex);
- bool mtk_ovl_adaptor_is_comp_present(struct device_node *node);
- void mtk_ovl_adaptor_connect(struct mtk_ddp_comp *comp, struct device *mmsys_dev,
- 			     struct mtk_ddp_comp *next);
-@@ -133,9 +133,9 @@ void mtk_ovl_adaptor_disconnect(struct mtk_ddp_comp *comp, struct device *mmsys_
- 				struct mtk_ddp_comp *next);
- int mtk_ovl_adaptor_power_on(struct device *dev);
- void mtk_ovl_adaptor_power_off(struct device *dev);
--int mtk_ovl_adaptor_clk_enable(struct device *dev);
--void mtk_ovl_adaptor_clk_disable(struct device *dev);
--void mtk_ovl_adaptor_config(struct device *dev, unsigned int w,
-+int mtk_ovl_adaptor_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_ovl_adaptor_clk_disable(struct mtk_ddp_comp *comp);
-+void mtk_ovl_adaptor_config(struct mtk_ddp_comp *comp, unsigned int w,
- 			    unsigned int h, unsigned int vrefresh,
- 			    unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- void mtk_ovl_adaptor_layer_config(struct device *dev, unsigned int idx,
-@@ -157,9 +157,9 @@ enum drm_mode_status mtk_ovl_adaptor_mode_valid(struct device *dev,
- 						const struct drm_display_mode *mode);
- 
- void mtk_rdma_bypass_shadow(struct device *dev);
--int mtk_rdma_clk_enable(struct device *dev);
--void mtk_rdma_clk_disable(struct device *dev);
--void mtk_rdma_config(struct device *dev, unsigned int width,
-+int mtk_rdma_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_rdma_clk_disable(struct mtk_ddp_comp *comp);
-+void mtk_rdma_config(struct mtk_ddp_comp *comp, unsigned int width,
- 		     unsigned int height, unsigned int vrefresh,
- 		     unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- unsigned int mtk_rdma_layer_nr(struct device *dev, int pipeline_index);
-@@ -179,8 +179,8 @@ size_t mtk_rdma_get_num_formats(struct device *dev);
- 
- int mtk_mdp_rdma_power_on(struct device *dev);
- void mtk_mdp_rdma_power_off(struct device *dev);
--int mtk_mdp_rdma_clk_enable(struct device *dev);
--void mtk_mdp_rdma_clk_disable(struct device *dev);
-+int mtk_mdp_rdma_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_mdp_rdma_clk_disable(struct mtk_ddp_comp *comp);
- void mtk_mdp_rdma_start(struct device *dev, struct cmdq_pkt *cmdq_pkt);
- void mtk_mdp_rdma_stop(struct device *dev, struct cmdq_pkt *cmdq_pkt);
- void mtk_mdp_rdma_config(struct device *dev, struct mtk_mdp_rdma_cfg *cfg,
-@@ -188,9 +188,9 @@ void mtk_mdp_rdma_config(struct device *dev, struct mtk_mdp_rdma_cfg *cfg,
- const u32 *mtk_mdp_rdma_get_formats(struct device *dev);
- size_t mtk_mdp_rdma_get_num_formats(struct device *dev);
- 
--int mtk_wdma_clk_enable(struct device *dev);
--void mtk_wdma_clk_disable(struct device *dev);
--void mtk_wdma_config(struct device *dev, unsigned int width,
-+int mtk_wdma_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_wdma_clk_disable(struct mtk_ddp_comp *comp);
-+void mtk_wdma_config(struct mtk_ddp_comp *comp, unsigned int width,
- 		     unsigned int height, unsigned int vrefresh,
- 		     unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
- unsigned int mtk_wdma_layer_nr(struct device *dev, int pipeline_index);
-@@ -208,8 +208,8 @@ void mtk_wdma_disable_vblank(struct device *dev);
- const u32 *mtk_wdma_get_formats(struct device *dev);
- size_t mtk_wdma_get_num_formats(struct device *dev);
- 
--int mtk_padding_clk_enable(struct device *dev);
--void mtk_padding_clk_disable(struct device *dev);
-+int mtk_padding_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_padding_clk_disable(struct mtk_ddp_comp *comp);
- void mtk_padding_start(struct device *dev);
- void mtk_padding_stop(struct device *dev);
- #endif
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_dsc.c b/drivers/gpu/drm/mediatek/mtk_disp_dsc.c
-index 79b66bd7e5f3..19d2e42861f0 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_dsc.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_dsc.c
-@@ -135,16 +135,16 @@ struct mtk_dsc {
- 	bool dsc_config_done;
- };
- 
--int mtk_dsc_clk_enable(struct device *dev)
-+int mtk_dsc_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_dsc *disp_dsc = dev_get_drvdata(dev);
-+	struct mtk_dsc *disp_dsc = dev_get_drvdata(comp->dev);
- 
- 	return clk_prepare_enable(disp_dsc->clk);
- }
- 
--void mtk_dsc_clk_disable(struct device *dev)
-+void mtk_dsc_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_dsc *disp_dsc = dev_get_drvdata(dev);
-+	struct mtk_dsc *disp_dsc = dev_get_drvdata(comp->dev);
- 
- 	clk_disable_unprepare(disp_dsc->clk);
- }
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-index 8afd15006df2..a30a032e6c35 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-@@ -64,16 +64,16 @@ struct mtk_disp_gamma {
- 	const struct mtk_disp_gamma_data *data;
- };
- 
--int mtk_gamma_clk_enable(struct device *dev)
-+int mtk_gamma_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_gamma *gamma = dev_get_drvdata(dev);
-+	struct mtk_disp_gamma *gamma = dev_get_drvdata(comp->dev);
- 
- 	return clk_prepare_enable(gamma->clk);
- }
- 
--void mtk_gamma_clk_disable(struct device *dev)
-+void mtk_gamma_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_gamma *gamma = dev_get_drvdata(dev);
-+	struct mtk_disp_gamma *gamma = dev_get_drvdata(comp->dev);
- 
- 	clk_disable_unprepare(gamma->clk);
- }
-@@ -206,11 +206,11 @@ void mtk_gamma_set(struct device *dev, struct drm_crtc_state *state)
- 	writel(cfg_val, gamma->regs + DISP_GAMMA_CFG);
- }
- 
--void mtk_gamma_config(struct device *dev, unsigned int w,
-+void mtk_gamma_config(struct mtk_ddp_comp *comp, unsigned int w,
- 		      unsigned int h, unsigned int vrefresh,
- 		      unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
--	struct mtk_disp_gamma *gamma = dev_get_drvdata(dev);
-+	struct mtk_disp_gamma *gamma = dev_get_drvdata(comp->dev);
- 	u32 sz;
- 
- 	sz = FIELD_PREP(DISP_GAMMA_SIZE_HSIZE, w);
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_merge.c b/drivers/gpu/drm/mediatek/mtk_disp_merge.c
-index b174dda091d3..947e5a95947b 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_merge.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_merge.c
-@@ -126,11 +126,11 @@ static void mtk_merge_fifo_setting(struct mtk_disp_merge *priv,
- 			   FLD_PREULTRA_TH_LOW | FLD_PREULTRA_TH_HIGH);
- }
- 
--void mtk_merge_config(struct device *dev, unsigned int w,
-+void mtk_merge_config(struct mtk_ddp_comp *comp, unsigned int w,
- 		      unsigned int h, unsigned int vrefresh,
- 		      unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
--	mtk_merge_advance_config(dev, w, 0, h, vrefresh, bpc, cmdq_pkt);
-+	mtk_merge_advance_config(comp->dev, w, 0, h, vrefresh, bpc, cmdq_pkt);
- }
- 
- void mtk_merge_advance_config(struct device *dev, unsigned int l_w, unsigned int r_w,
-@@ -191,14 +191,14 @@ void mtk_merge_advance_config(struct device *dev, unsigned int l_w, unsigned int
- 			   DISP_REG_MERGE_CFG_12, FLD_CFG_MERGE_MODE);
- }
- 
--int mtk_merge_clk_enable(struct device *dev)
-+int mtk_merge_clk_enable(struct mtk_ddp_comp *comp)
- {
--	int ret = 0;
--	struct mtk_disp_merge *priv = dev_get_drvdata(dev);
-+	struct mtk_disp_merge *priv = dev_get_drvdata(comp->dev);
-+	int ret;
- 
- 	ret = clk_prepare_enable(priv->clk);
- 	if (ret) {
--		dev_err(dev, "merge clk prepare enable failed\n");
-+		dev_err(comp->dev, "merge clk prepare enable failed\n");
- 		return ret;
- 	}
- 
-@@ -207,16 +207,16 @@ int mtk_merge_clk_enable(struct device *dev)
- 		/* should clean up the state of priv->clk */
- 		clk_disable_unprepare(priv->clk);
- 
--		dev_err(dev, "async clk prepare enable failed\n");
-+		dev_err(comp->dev, "async clk prepare enable failed\n");
- 		return ret;
- 	}
- 
- 	return ret;
- }
- 
--void mtk_merge_clk_disable(struct device *dev)
-+void mtk_merge_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_merge *priv = dev_get_drvdata(dev);
-+	struct mtk_disp_merge *priv = dev_get_drvdata(comp->dev);
- 
- 	clk_disable_unprepare(priv->async_clk);
- 	clk_disable_unprepare(priv->clk);
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-index 489a209c4e55..5ceba04a30b1 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-@@ -260,16 +260,16 @@ bool mtk_ovl_is_afbc_supported(struct device *dev)
- 	return ovl->data->supports_afbc;
- }
- 
--int mtk_ovl_clk_enable(struct device *dev)
-+int mtk_ovl_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_ovl *ovl = dev_get_drvdata(dev);
-+	struct mtk_disp_ovl *ovl = dev_get_drvdata(comp->dev);
- 
- 	return clk_prepare_enable(ovl->clk);
- }
- 
--void mtk_ovl_clk_disable(struct device *dev)
-+void mtk_ovl_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_ovl *ovl = dev_get_drvdata(dev);
-+	struct mtk_disp_ovl *ovl = dev_get_drvdata(comp->dev);
- 
- 	clk_disable_unprepare(ovl->clk);
- }
-@@ -327,11 +327,11 @@ static void mtk_ovl_set_bit_depth(struct device *dev, int idx, u32 format,
- 			   OVL_CON_CLRFMT_BIT_DEPTH_MASK(idx));
- }
- 
--void mtk_ovl_config(struct device *dev, unsigned int w,
-+void mtk_ovl_config(struct mtk_ddp_comp *comp, unsigned int w,
- 		    unsigned int h, unsigned int vrefresh,
- 		    unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
--	struct mtk_disp_ovl *ovl = dev_get_drvdata(dev);
-+	struct mtk_disp_ovl *ovl = dev_get_drvdata(comp->dev);
- 
- 	if (w != 0 && h != 0)
- 		mtk_ddp_write_relaxed(cmdq_pkt, h << 16 | w, &ovl->cmdq_reg, ovl->regs,
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-index 225ab87bca71..e0e956ec56a7 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-@@ -208,11 +208,11 @@ void mtk_ovl_adaptor_layer_config(struct device *dev, unsigned int idx,
- 	mtk_ethdr_layer_config(ethdr, idx, state, cmdq_pkt);
- }
- 
--void mtk_ovl_adaptor_config(struct device *dev, unsigned int w,
-+void mtk_ovl_adaptor_config(struct mtk_ddp_comp *comp, unsigned int w,
- 			    unsigned int h, unsigned int vrefresh,
- 			    unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
--	struct mtk_disp_ovl_adaptor *ovl_adaptor = dev_get_drvdata(dev);
-+	struct mtk_disp_ovl_adaptor *ovl_adaptor = dev_get_drvdata(comp->dev);
- 
- 	mtk_ethdr_config(ovl_adaptor->ovl_adaptor_comp[OVL_ADAPTOR_ETHDR0], w, h,
- 			 vrefresh, bpc, cmdq_pkt);
-@@ -306,41 +306,49 @@ void mtk_ovl_adaptor_power_off(struct device *dev)
- 	power_off(dev, OVL_ADAPTOR_ID_MAX);
- }
- 
--int mtk_ovl_adaptor_clk_enable(struct device *dev)
-+int mtk_ovl_adaptor_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_ovl_adaptor *ovl_adaptor = dev_get_drvdata(dev);
--	struct device *comp;
-+	struct mtk_disp_ovl_adaptor *ovl_adaptor = dev_get_drvdata(comp->dev);
- 	int ret;
- 	int i;
- 
- 	for (i = 0; i < OVL_ADAPTOR_ID_MAX; i++) {
--		comp = ovl_adaptor->ovl_adaptor_comp[i];
--		if (!comp || !comp_matches[i].funcs->clk_enable)
-+		struct mtk_ddp_comp adaptor_comp;
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+index 4bbea72b292a..41d60a3d8007 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+@@ -55,6 +55,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
+ 
++  trigger-sources:
++    maxItems: 1
 +
-+		if (!ovl_adaptor->ovl_adaptor_comp[i] ||
-+		    !comp_matches[i].funcs->clk_enable)
- 			continue;
--		ret = comp_matches[i].funcs->clk_enable(comp);
+   clocks:
+     items:
+       - description: AAL Clock
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+index 5c5068128d0c..e148aa57b1b9 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+@@ -47,6 +47,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
+ 
++  trigger-sources:
++    maxItems: 1
 +
-+		adaptor_comp.dev = ovl_adaptor->ovl_adaptor_comp[i];
+   clocks:
+     items:
+       - description: CCORR Clock
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
+index 5564f4063317..7c0985d0f9ea 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
+@@ -57,6 +57,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
+ 
++  trigger-sources:
++    maxItems: 1
 +
-+		ret = comp_matches[i].funcs->clk_enable(&adaptor_comp);
- 		if (ret) {
--			dev_err(dev, "Failed to enable clock %d, err %d\n", i, ret);
-+			dev_err(comp->dev, "Failed to enable clock %d, err %d\n", i, ret);
- 			while (--i >= 0)
--				comp_matches[i].funcs->clk_disable(comp);
-+				comp_matches[i].funcs->clk_disable(&adaptor_comp);
- 			return ret;
- 		}
- 	}
- 	return 0;
- }
+   clocks:
+     items:
+       - description: COLOR Clock
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.yaml
+index 891c95be15b9..85a1746965b9 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.yaml
+@@ -45,6 +45,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
  
--void mtk_ovl_adaptor_clk_disable(struct device *dev)
-+void mtk_ovl_adaptor_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_ovl_adaptor *ovl_adaptor = dev_get_drvdata(dev);
--	struct device *comp;
-+	struct mtk_disp_ovl_adaptor *ovl_adaptor = dev_get_drvdata(comp->dev);
- 	int i;
- 
- 	for (i = 0; i < OVL_ADAPTOR_ID_MAX; i++) {
--		comp = ovl_adaptor->ovl_adaptor_comp[i];
--		if (!comp || !comp_matches[i].funcs->clk_disable)
-+		struct mtk_ddp_comp adaptor_comp;
++  trigger-sources:
++    maxItems: 1
 +
-+		if (!ovl_adaptor->ovl_adaptor_comp[i] ||
-+		    !comp_matches[i].funcs->clk_disable)
- 			continue;
--		comp_matches[i].funcs->clk_disable(comp);
+   clocks:
+     items:
+       - description: DITHER Clock
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+index 3a752a99949a..d8cfac0326ba 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+@@ -42,6 +42,9 @@ properties:
+   power-domains:
+     maxItems: 1
+ 
++  trigger-sources:
++    maxItems: 1
 +
-+		adaptor_comp.dev = ovl_adaptor->ovl_adaptor_comp[i];
+   interrupts:
+     maxItems: 1
+ 
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+index eb4f276e8dc4..f5be6c1e4b0e 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+@@ -109,6 +109,9 @@ properties:
+     items:
+       - const: dpi
+ 
++  trigger-sources:
++    maxItems: 1
 +
-+		comp_matches[i].funcs->clk_disable(&adaptor_comp);
- 		if (i < OVL_ADAPTOR_MERGE0)
--			pm_runtime_put(comp);
-+			pm_runtime_put(adaptor_comp.dev);
- 	}
- }
+ required:
+   - compatible
+   - reg
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml
+index c8b3e86943e4..4863db6aba6e 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml
+@@ -43,6 +43,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
  
-@@ -423,10 +431,10 @@ size_t mtk_ovl_adaptor_get_num_formats(struct device *dev)
- 	return mtk_mdp_rdma_get_num_formats(ovl_adaptor->ovl_adaptor_comp[OVL_ADAPTOR_MDP_RDMA0]);
- }
++  trigger-sources:
++    maxItems: 1
++
+   mediatek,gce-client-reg:
+     description:
+       The register of client driver can be configured by gce with 4 arguments
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
+index b5cdfe0eaca4..a9793b274070 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
+@@ -73,6 +73,9 @@ properties:
+     items:
+       - const: dphy
  
--void mtk_ovl_adaptor_add_comp(struct device *dev, struct mtk_mutex *mutex)
-+void mtk_ovl_adaptor_add_comp(struct mtk_ddp_comp *comp, struct mtk_mutex *mutex)
- {
- 	int i;
--	struct mtk_disp_ovl_adaptor *ovl_adaptor = dev_get_drvdata(dev);
-+	struct mtk_disp_ovl_adaptor *ovl_adaptor = dev_get_drvdata(comp->dev);
++  trigger-sources:
++    maxItems: 1
++
+   port:
+     $ref: /schemas/graph.yaml#/properties/port
+     description:
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.yaml
+index 98db47894eeb..89370690ee71 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.yaml
+@@ -100,6 +100,9 @@ properties:
+       - const: gfx_fe1_async
+       - const: vdo_be_async
  
- 	for (i = 0; i < OVL_ADAPTOR_ID_MAX; i++) {
- 		if (!ovl_adaptor->ovl_adaptor_comp[i])
-@@ -439,10 +447,10 @@ void mtk_ovl_adaptor_add_comp(struct device *dev, struct mtk_mutex *mutex)
- 	}
- }
++  trigger-sources:
++    maxItems: 1
++
+   mediatek,gce-client-reg:
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+     minItems: 1
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
+index ec1054bb06d4..4d06085e6014 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
+@@ -54,6 +54,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
  
--void mtk_ovl_adaptor_remove_comp(struct device *dev, struct mtk_mutex *mutex)
-+void mtk_ovl_adaptor_remove_comp(struct mtk_ddp_comp *comp, struct mtk_mutex *mutex)
- {
- 	int i;
--	struct mtk_disp_ovl_adaptor *ovl_adaptor = dev_get_drvdata(dev);
-+	struct mtk_disp_ovl_adaptor *ovl_adaptor = dev_get_drvdata(comp->dev);
++  trigger-sources:
++    maxItems: 1
++
+   clocks:
+     items:
+       - description: GAMMA Clock
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
+index 3798a25402d3..656df51335b5 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
+@@ -47,6 +47,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
  
- 	for (i = 0; i < OVL_ADAPTOR_ID_MAX; i++) {
- 		if (!ovl_adaptor->ovl_adaptor_comp[i])
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-index dce7a9bc3f11..4b6ecd9bdd5f 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-@@ -157,16 +157,16 @@ size_t mtk_rdma_get_num_formats(struct device *dev)
- 	return rdma->data->num_formats;
- }
++  trigger-sources:
++    maxItems: 1
++
+   clocks:
+     minItems: 1
+     maxItems: 2
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,od.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,od.yaml
+index 930c088a722a..c912ae2493c3 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,od.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,od.yaml
+@@ -60,6 +60,9 @@ properties:
+       - port@0
+       - port@1
  
--int mtk_rdma_clk_enable(struct device *dev)
-+int mtk_rdma_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_rdma *rdma = dev_get_drvdata(dev);
-+	struct mtk_disp_rdma *rdma = dev_get_drvdata(comp->dev);
++  trigger-sources:
++    maxItems: 1
++
+   mediatek,gce-client-reg:
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+     description: describes how to locate the GCE client register
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-2l.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-2l.yaml
+index ac0d924a451b..326223b36112 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-2l.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-2l.yaml
+@@ -40,6 +40,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
  
- 	return clk_prepare_enable(rdma->clk);
- }
++  trigger-sources:
++    maxItems: 1
++
+   clocks:
+     items:
+       - description: OVL-2L Clock
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml
+index 4df5c7b410c6..dc200068d617 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml
+@@ -61,6 +61,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
  
--void mtk_rdma_clk_disable(struct device *dev)
-+void mtk_rdma_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_rdma *rdma = dev_get_drvdata(dev);
-+	struct mtk_disp_rdma *rdma = dev_get_drvdata(comp->dev);
++  trigger-sources:
++    maxItems: 1
++
+   clocks:
+     items:
+       - description: OVL Clock
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+index 86787866ced0..9dac0319dd60 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+@@ -34,6 +34,9 @@ properties:
+   power-domains:
+     maxItems: 1
  
- 	clk_disable_unprepare(rdma->clk);
- }
-@@ -182,13 +182,13 @@ void mtk_rdma_stop(struct device *dev)
- 	rdma_update_bits(dev, DISP_REG_RDMA_GLOBAL_CON, RDMA_ENGINE_EN, 0);
- }
++  trigger-sources:
++    maxItems: 1
++
+   clocks:
+     items:
+       - description: Padding's clocks
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,postmask.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,postmask.yaml
+index fb6fe4742624..caef5194371f 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,postmask.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,postmask.yaml
+@@ -40,6 +40,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
  
--void mtk_rdma_config(struct device *dev, unsigned int width,
-+void mtk_rdma_config(struct mtk_ddp_comp *comp, unsigned int width,
- 		     unsigned int height, unsigned int vrefresh,
- 		     unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
- 	unsigned int threshold;
- 	unsigned int reg;
--	struct mtk_disp_rdma *rdma = dev_get_drvdata(dev);
-+	struct mtk_disp_rdma *rdma = dev_get_drvdata(comp->dev);
- 	u32 rdma_fifo_size;
++  trigger-sources:
++    maxItems: 1
++
+   clocks:
+     items:
+       - description: POSTMASK Clock
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.yaml
+index d914c06640df..13deb7c87ee6 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.yaml
+@@ -60,6 +60,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
  
- 	mtk_ddp_write_mask(cmdq_pkt, width, &rdma->cmdq_reg, rdma->regs,
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_wdma.c b/drivers/gpu/drm/mediatek/mtk_disp_wdma.c
-index 26c80e7e152b..d5ebd3e3d80f 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_wdma.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_wdma.c
-@@ -189,16 +189,16 @@ size_t mtk_wdma_get_num_formats(struct device *dev)
- 	return wdma->data->num_formats;
- }
++  trigger-sources:
++    maxItems: 1
++
+   clocks:
+     items:
+       - description: RDMA Clock
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
+index 4b6ff546757e..7307a50fa30f 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
+@@ -40,6 +40,9 @@ properties:
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
+     maxItems: 1
  
--int mtk_wdma_clk_enable(struct device *dev)
-+int mtk_wdma_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(comp->dev);
++  trigger-sources:
++    maxItems: 1
++
+   mediatek,gce-client-reg:
+     description:
+       The register of display function block to be set by gce. There are 4 arguments,
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ufoe.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ufoe.yaml
+index 036a66ed42e7..31e0863dd815 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ufoe.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ufoe.yaml
+@@ -39,6 +39,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
  
- 	return clk_prepare_enable(wdma->clk);
- }
++  trigger-sources:
++    maxItems: 1
++
+   clocks:
+     items:
+       - description: UFOe Clock
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml
+index c3ed867d058d..3e6b346baa11 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.yaml
+@@ -45,6 +45,9 @@ properties:
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
  
--void mtk_wdma_clk_disable(struct device *dev)
-+void mtk_wdma_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(comp->dev);
- 
- 	clk_disable_unprepare(wdma->clk);
- }
-@@ -214,11 +214,11 @@ void mtk_wdma_stop(struct device *dev)
- 	wdma_update_bits(dev, DISP_REG_WDMA_EN, WDMA_ENGINE_EN, 0);
- }
- 
--void mtk_wdma_config(struct device *dev, unsigned int width,
-+void mtk_wdma_config(struct mtk_ddp_comp *comp, unsigned int width,
- 		     unsigned int height, unsigned int vrefresh,
- 		     unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
- {
--	struct mtk_disp_wdma *wdma = dev_get_drvdata(dev);
-+	struct mtk_disp_wdma *wdma = dev_get_drvdata(comp->dev);
- 
- 	writel(WDMA_FORCE_COMMIT | WDMA_BYPASS_SHADOW,
- 	       wdma->regs + DISP_REG_WDMA_SHADOW_CTRL);
-diff --git a/drivers/gpu/drm/mediatek/mtk_ethdr.c b/drivers/gpu/drm/mediatek/mtk_ethdr.c
-index 96832d0cca37..aa257c3780b6 100644
---- a/drivers/gpu/drm/mediatek/mtk_ethdr.c
-+++ b/drivers/gpu/drm/mediatek/mtk_ethdr.c
-@@ -281,21 +281,21 @@ void mtk_ethdr_stop(struct device *dev)
- 	writel(0, mixer->regs + MIX_RST);
- }
- 
--int mtk_ethdr_clk_enable(struct device *dev)
-+int mtk_ethdr_clk_enable(struct mtk_ddp_comp *comp)
- {
- 	int ret;
--	struct mtk_ethdr *priv = dev_get_drvdata(dev);
-+	struct mtk_ethdr *priv = dev_get_drvdata(comp->dev);
- 
- 	ret = clk_bulk_prepare_enable(ETHDR_CLK_NUM, priv->ethdr_clk);
- 	if (ret)
--		dev_err(dev,
-+		dev_err(comp->dev,
- 			"ethdr_clk prepare enable failed\n");
- 	return ret;
- }
- 
--void mtk_ethdr_clk_disable(struct device *dev)
-+void mtk_ethdr_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_ethdr *priv = dev_get_drvdata(dev);
-+	struct mtk_ethdr *priv = dev_get_drvdata(comp->dev);
- 
- 	clk_bulk_disable_unprepare(ETHDR_CLK_NUM, priv->ethdr_clk);
- }
-diff --git a/drivers/gpu/drm/mediatek/mtk_ethdr.h b/drivers/gpu/drm/mediatek/mtk_ethdr.h
-index a72aeee46829..b81b75a092c1 100644
---- a/drivers/gpu/drm/mediatek/mtk_ethdr.h
-+++ b/drivers/gpu/drm/mediatek/mtk_ethdr.h
-@@ -8,8 +8,8 @@
- 
- void mtk_ethdr_start(struct device *dev);
- void mtk_ethdr_stop(struct device *dev);
--int mtk_ethdr_clk_enable(struct device *dev);
--void mtk_ethdr_clk_disable(struct device *dev);
-+int mtk_ethdr_clk_enable(struct mtk_ddp_comp *comp);
-+void mtk_ethdr_clk_disable(struct mtk_ddp_comp *comp);
- void mtk_ethdr_config(struct device *dev, unsigned int w,
- 		      unsigned int h, unsigned int vrefresh,
- 		      unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
-diff --git a/drivers/gpu/drm/mediatek/mtk_mdp_rdma.c b/drivers/gpu/drm/mediatek/mtk_mdp_rdma.c
-index 7982788ae9df..62cc0abca5f3 100644
---- a/drivers/gpu/drm/mediatek/mtk_mdp_rdma.c
-+++ b/drivers/gpu/drm/mediatek/mtk_mdp_rdma.c
-@@ -258,16 +258,16 @@ void mtk_mdp_rdma_power_off(struct device *dev)
- 	pm_runtime_put(dev);
- }
- 
--int mtk_mdp_rdma_clk_enable(struct device *dev)
-+int mtk_mdp_rdma_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_mdp_rdma *rdma = dev_get_drvdata(dev);
-+	struct mtk_mdp_rdma *rdma = dev_get_drvdata(comp->dev);
- 
- 	return clk_prepare_enable(rdma->clk);
- }
- 
--void mtk_mdp_rdma_clk_disable(struct device *dev)
-+void mtk_mdp_rdma_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_mdp_rdma *rdma = dev_get_drvdata(dev);
-+	struct mtk_mdp_rdma *rdma = dev_get_drvdata(comp->dev);
- 
- 	clk_disable_unprepare(rdma->clk);
- }
-diff --git a/drivers/gpu/drm/mediatek/mtk_padding.c b/drivers/gpu/drm/mediatek/mtk_padding.c
-index b4e3e5a3428b..95183600d150 100644
---- a/drivers/gpu/drm/mediatek/mtk_padding.c
-+++ b/drivers/gpu/drm/mediatek/mtk_padding.c
-@@ -38,16 +38,16 @@ struct mtk_padding {
- 	struct cmdq_client_reg	cmdq_reg;
- };
- 
--int mtk_padding_clk_enable(struct device *dev)
-+int mtk_padding_clk_enable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_padding *padding = dev_get_drvdata(dev);
-+	struct mtk_padding *padding = dev_get_drvdata(comp->dev);
- 
- 	return clk_prepare_enable(padding->clk);
- }
- 
--void mtk_padding_clk_disable(struct device *dev)
-+void mtk_padding_clk_disable(struct mtk_ddp_comp *comp)
- {
--	struct mtk_padding *padding = dev_get_drvdata(dev);
-+	struct mtk_padding *padding = dev_get_drvdata(comp->dev);
- 
- 	clk_disable_unprepare(padding->clk);
- }
++  trigger-sources:
++    maxItems: 1
++
+   clocks:
+     items:
+       - description: WDMA Clock
 -- 
 2.54.0
 
