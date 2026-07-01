@@ -1,204 +1,184 @@
-Return-Path: <devicetree+bounces-318237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318235-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zd8QIObTRGoS1goAu9opvQ
-	(envelope-from <devicetree+bounces-318237-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:46:30 +0200
+	id 7HraIxbSRGqc1QoAu9opvQ
+	(envelope-from <devicetree+bounces-318235-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:38:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58766EB3D4
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:46:29 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF6E6EB2FA
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 10:38:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=walle.cc header.s=mail2022082101 header.b=h67gQjQB;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318237-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318237-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=walle.cc;
+	dkim=pass header.d=collabora.com header.s=mail header.b=gINkERXC;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318235-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318235-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EF8B030DDB2A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:43:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A1D893012CB9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 08:38:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA3493ED13E;
-	Wed,  1 Jul 2026 08:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 250BB3E717C;
+	Wed,  1 Jul 2026 08:38:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D88A3E0251;
-	Wed,  1 Jul 2026 08:43:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BEB13B9929;
+	Wed,  1 Jul 2026 08:38:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782895435; cv=none; b=JtJPuem2IhR+vWYtMzvmKDZuRzSCHvKgGBeRPAN4YS+hqJx/RgdQU4FBwpO6cgV+3HYW6Gh7ViJH3XYEXyfDBED7OEXJa1eUsvRZ3y+or+WGmSlzdYHCFujE8L7Vo/CvILf1Hx+vZr4RSbFyfSAIjIbqCBCWFywvJm9MoBndaSo=
+	t=1782895122; cv=none; b=CFxKYQ0qAOB0O6DA/tgWApqGE8f32mk15ExvENpyn8ikVLAjvIDpeowDgYN2n5TOmSS5RQw4oQs1fRDy98JAy/sjX4II8sBHUj9QwOddiGl51wLSxucLjiVQZxJEyxHagb1ZSjea8JWQtb/s5MINP4C9Oe0IyVPK10VoqitAgJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782895435; c=relaxed/simple;
-	bh=IruFylOlTxcJm5hyyL/eFNS0o3To89PaJ6QDaYNLHrE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=U1uxUj0pOBzpFR5x2gQfcVljOGhO2NJnNEMTKcy9cjPbSw0987Aq3Y4ij1FhfcBgkbGLJ7FcpFa9/D7b33LkDTU9Htyp1hQFRgJrBXTCwhN/xoMSWMkwLVloKHu/A4wFBEp4MGCg3VlLiLi3fYdTS7wUv88k2mrseMzcxhLZIZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=walle.cc; spf=pass smtp.mailfrom=walle.cc; dkim=pass (2048-bit key) header.d=walle.cc header.i=@walle.cc header.b=h67gQjQB; arc=none smtp.client-ip=159.69.201.130
-Received: from localhost (unknown [213.135.10.150])
+	s=arc-20240116; t=1782895122; c=relaxed/simple;
+	bh=naKCm2AE7MiKT2DcwqT2cgOCma8bbUjR3ekPlXMemSE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=XhfbvdqnLO0qCWDrzCEyGFKPaXhew70F1EVUOwErNv0i6L/RvQtttqVFI/RLR79TOqb9xCBmNgDGRuZxZz7xb9IkrP8OWQSr4wIqNokxd4VOoGS5pxwQNyOLkFCcbHXNqtqU+kb+bViKyU4jrWGHeB881JBFRaasVF8AIeuIC4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gINkERXC; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1782895112;
+	bh=naKCm2AE7MiKT2DcwqT2cgOCma8bbUjR3ekPlXMemSE=;
+	h=From:Date:Subject:To:Cc:From;
+	b=gINkERXCikBLW89Y87lnOP+6v1dCnilw7ungWlAedJYPlIduDawPGWPG+WloE9je7
+	 G8togEiidEbm4clFu7exbu67ha3GTSjsW0HSEN2S3QHFPLXb1gQ1iR8fkZciniJara
+	 e+Ptgqd+DVJ0znJDlHJjutJ8j0H2JNz8piLPB65wfEEaQFTLnoLcQ/tyUaYp6Ts0Rj
+	 kJSABXvmqxn2AmKi1J1lOwpxtXkbvRm2kl2BoCtOnWtBsYq+b9cxfomtrE7EnpoAuQ
+	 HK1KuuwR1xwpmNbcGNStQIKNoL+cWLvFQVft/w+Hzh3OkDy4uC+HvbfSrCsEwIdep3
+	 glpP8XSW+ilBQ==
+Received: from yukiji.home (unknown [100.64.0.131])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id 880D35B6;
-	Wed,  1 Jul 2026 10:34:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-	t=1782894878;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=OV8gaPiQO40kpe0vnMtC2nXL8DrZwaWi9384uLF+/CY=;
-	b=h67gQjQBVSxm1zGv4NOn57N9gJTCxMWWp3YcNhFmHdxQHNawukaOxBFeoTLd7xSSsUmHEb
-	QHOO7Rdm6R9+IhDqEV//349b1hxptHCVf1Ld31NKjoCEVG3yZWiCutXBBQIV2AETWkCvG0
-	2cvaUpJLCDQ65E9H4T7Bz3ZxH6x4FUP/Fk5LNDw6NweLNxPVKswcK05bPvhIWZ5hC03CGb
-	zu9OuKTRqyoO5BGXK6QgIby1CRCo3dgJBzS+jDk1gA31fpjROSM1sYk8vN6mvqxzcilIxi
-	5sg1p4WSH4Ikuhd3m7Ug/A13vn7+YhQwohIgElCdJhJ/Z95aXmB3+k3/Z3v1Aw==
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 400DD17E0E1C;
+	Wed,  1 Jul 2026 10:38:32 +0200 (CEST)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Date: Wed, 01 Jul 2026 10:38:21 +0200
+Subject: [PATCH v2] arm64: dts: mediatek: mt6359: use proper compatible for
+ rtc
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=7dc42cc06038756823fa21ce147a9856939103d1b021230f1b15a2a59c78;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Wed, 01 Jul 2026 10:34:35 +0200
-Message-Id: <DJN3HIIAY4LE.3MXU9Q2YFSCJJ@walle.cc>
-Subject: Re: [PATCH v4 1/7] dt-bindings: mtd: jedec,spi-nor: allow the SFDP
- to be exposed via NVMEM
-Cc: <pratyush@kernel.org>, <mwalle@kernel.org>,
- <takahiro.kuwano@infineon.com>, <miquel.raynal@bootlin.com>,
- <richard@nod.at>, <vigneshr@ti.com>, <robh@kernel.org>,
- <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <srini@kernel.org>,
- <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
- <claudiu.beznea@tuxon.dev>, <linux@armlinux.org.uk>,
- <richardcochran@gmail.com>, <arnd@arndb.de>,
- <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <netdev@vger.kernel.org>
-From: "Michael Walle" <michael@walle.cc>
-To: "Linus Walleij" <linusw@kernel.org>, "Manikandan Muralidharan"
- <manikandan.m@microchip.com>
-X-Mailer: aerc 0.20.0
-References: <20260630092406.150587-1-manikandan.m@microchip.com>
- <20260630092406.150587-2-manikandan.m@microchip.com>
- <CAD++jL=FkEfpz-LW0vmPpZ28fLfGFMWo5E479Mapz55YUxKNAQ@mail.gmail.com>
-In-Reply-To: <CAD++jL=FkEfpz-LW0vmPpZ28fLfGFMWo5E479Mapz55YUxKNAQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260701-mediatek-genio-mt6365-cleanup-v2-1-78e3d63b8c05@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WOwQ7CIBBEf6XZs2sQKqGe/A/jgdKtbmxBARuN6
+ b+L1bvHN8nMmxckikwJdtULIk2cOPgCclWBO1t/IuSuMEghtailwZE6tpkueCLPAcesld6iG8j
+ 6+xW16zpTO9WLxkDZuEbq+bHsH45fjnS7F03+htDaROjCOHLeVZ4eGReVVgI+hTOnHOJz+Tdtl
+ sbvSvPnyrRBgbqvlVGmpUb2exeGwbYh2nXxwXGe5zfiNShN/wAAAA==
+X-Change-ID: 20260428-mediatek-genio-mt6365-cleanup-6cdd84c3f098
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782895112; l=2356;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=naKCm2AE7MiKT2DcwqT2cgOCma8bbUjR3ekPlXMemSE=;
+ b=wpW/x97FpY0cRMwaxoQ3gorpZVrPs11uJxeofBcqfxIJBnhyulrIUSTlhWKUgCwBW7lQDdjmO
+ k8pRm1br4zkCwiGkPquoVz1B9CUymnjhdXu5AZIlhj77S4zXwgCFiZH
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[walle.cc,quarantine];
-	R_DKIM_ALLOW(-0.20)[walle.cc:s=mail2022082101];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318237-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[michael@walle.cc,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_RECIPIENTS(0.00)[m:pratyush@kernel.org,m:mwalle@kernel.org,m:takahiro.kuwano@infineon.com,m:miquel.raynal@bootlin.com,m:richard@nod.at,m:vigneshr@ti.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:srini@kernel.org,m:nicolas.ferre@microchip.com,m:alexandre.belloni@bootlin.com,m:claudiu.beznea@tuxon.dev,m:linux@armlinux.org.uk,m:richardcochran@gmail.com,m:arnd@arndb.de,m:linux-mtd@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:netdev@vger.kernel.org,m:linusw@kernel.org,m:manikandan.m@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[walle.cc:+];
+	TAGGED_FROM(0.00)[bounces-318235-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:louisalexis.eyraud@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com];
+	FORGED_SENDER(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michael@walle.cc,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,infineon.com,bootlin.com,nod.at,ti.com,microchip.com,tuxon.dev,armlinux.org.uk,gmail.com,arndb.de,lists.infradead.org,vger.kernel.org];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,walle.cc:dkim,walle.cc:mid,walle.cc:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D58766EB3D4
+X-Rspamd-Queue-Id: CFF6E6EB2FA
 
---7dc42cc06038756823fa21ce147a9856939103d1b021230f1b15a2a59c78
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+The MT6359 PMIC include file uses directly "mediatek,mt6358-rtc"
+compatible string for the rtc subnode, but not its own compatible
+string.
+Now that the "mediatek,mt6359-rtc" compatible is properly declared in
+the dt-bindings, use it with "mediatek,mt6358-rtc" as fallback.
 
-Hi,
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+Several Mediatek and Radxa boards, based on MT8370, MT8390 or MT8395
+SoC, integrate the MT6365 PMIC, that is a MT6359P variant:
+ - Mediatek Genio 1200-EVK
+ - Mediatek Genio 700-EVK
+ - Mediatek Genio 510-EVK
+ - Radxa NIO-12L
+It is compatible with the MT6359 PMIC.
 
->> Add an optional "sfdp" child node (compatible "jedec,sfdp") that
->> describes the SFDP as a read-only NVMEM provider via nvmem.yaml, so its
->> contents (e.g. a vendor EUI-48/EUI-64) can be read through NVMEM cells.
->>
->> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
->
-> I would expect it to follow nvmem conventions like this, notice
-> compatibles specific-to-general with sfdp first:
+But both MT6365 PMIC support and compatibility were never expressed in
+the dt-bindings and there is no MT6365 include file as well.
+So, since these board support was introduced, their devicetrees use the
+mt6359 include file to enable this PMIC support. 
 
+The goal of this series is to clean this support by adding the missing
+compatible strings for this MFD main and subdevices in the dt-bindings,
+and add a include for MT6365 definitions to replace the MT6359 include
+in these board devicetrees and for future ones (like Genio 520/720
+EVKs).
 
-> sfdp {
->     /* NVMEM provided by SFDP */
->     compatible =3D "jedec,sfdp", "nvmem-cells";
->     label =3D "SFDP";
+The series is based on linux-next tree (tag: next-20260630) and has
+been tested on Mediatek Genio 510, 700 and 1200-EVK boards.
+---
+Changes in v2:
+- Rebased over next-20260630 tag
+- Removed already merged patches from series
+- Removed useless regulator label addition from patch
+- Link to v1: https://lore.kernel.org/r/20260429-mediatek-genio-mt6365-cleanup-v1-0-6f43838be92f@collabora.com
+---
+ arch/arm64/boot/dts/mediatek/mt6359.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Isn't using label frowned upon? I wouldn't add that to the example.
+diff --git a/arch/arm64/boot/dts/mediatek/mt6359.dtsi b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
+index a953fb527b69..52fb0f832260 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6359.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
+@@ -287,7 +287,7 @@ mt6359_vsram_others_sshub_ldo: ldo_vsram_others_sshub {
+ 		};
+ 
+ 		mt6359rtc: rtc {
+-			compatible = "mediatek,mt6358-rtc";
++			compatible = "mediatek,mt6359-rtc", "mediatek,mt6358-rtc";
+ 		};
+ 	};
+ };
 
->     read-only;
->     #address-cells =3D <1>;
->     #size-cells =3D <1>;
->
->     mac0: macaddr@0x00 {
->         reg =3D <0x00 0x06>;
->     };
->     mac1: macaddr@0x06 {
->         reg =3D <0x06 0x06>;
->     };
-> };
+---
+base-commit: ba7c57499e5999aeae8dd4f954eb2600589d80aa
+change-id: 20260428-mediatek-genio-mt6365-cleanup-6cdd84c3f098
 
-If I'm correct, this is the old style, see commit bd912c991d2e
-("dt-bindings: nvmem: layouts: add fixed-layout"). So it should
-eventually look like:
+Best regards,
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-sfdp {
-     compatible =3D "jedec,sfdp";
-
-     nvmem-layout {
-	     compatible =3D "microchip,sst26vf-sfdp-eui";
-     };
-};
-
-Which is what patch series will lead to.
-
-Also I'm not sure if we really need to add the "nvmem-cells" here.
-IIRC in MTD it was there to tell a driver to add an nvmem device to
-an already existing compatible/node.
-
-Apart from the MTD case, I've just found qcom,smem-part,yaml which
-has compatible =3D "nvmem-cells".
-
--michael
-
-> Your example should definitely be more elaborate like this,
-> just an opaque sfdp node will not suffice. Maybe a separate
-> example?
->
-> Yours,
-> Linus Walleij
-
-
---7dc42cc06038756823fa21ce147a9856939103d1b021230f1b15a2a59c78
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKcEABMJAC8WIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCakTRGxEcbWljaGFlbEB3
-YWxsZS5jYwAKCRASJzzuPgIf+PesAYCvxlMrRPb3CpBzPYndulCo9xHSs8WFx8GM
-YRvSkp3iZq/ziK9zzw8WIc8dB59hR7gBgJcgQcwu/qH+CFtJvfiWDEH4EWXU3HSR
-2Jx1LkNCSYEaHycVFgiepmorZPwBghbBeA==
-=IjRV
------END PGP SIGNATURE-----
-
---7dc42cc06038756823fa21ce147a9856939103d1b021230f1b15a2a59c78--
 
