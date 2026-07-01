@@ -1,271 +1,187 @@
-Return-Path: <devicetree+bounces-318578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318579-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4UhtEuQQRWpz6QoAu9opvQ
-	(envelope-from <devicetree+bounces-318578-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:06:44 +0200
+	id eCbQIA8RRWp/6QoAu9opvQ
+	(envelope-from <devicetree+bounces-318579-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:07:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A92D06EDD58
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:06:43 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFE4C6EDD72
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:07:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kp1AG33T;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318578-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318578-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=baylibre.com header.s=google header.b=kfXmbI1B;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318579-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318579-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7DEF730960E8
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:50:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EFE6B30C24C0
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F1048166D;
-	Wed,  1 Jul 2026 12:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B1FF481651;
+	Wed,  1 Jul 2026 12:50:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AF6A48166B
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11693480DF1
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:50:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782910220; cv=none; b=I4y6LH/KIV02hA6TD9Ig7QxdZDTkI/o01f8TI2dqu/9ghUTwh7GSszZQn4qL7aELdrlPLc4x1+L+o7zlo7ztvnVH8tnXiNHCXunUA/4nTFMsE1hYk8Pw9n0+4Cj8i5uP2b8ijKfEY8eZSdHksVqErzRhgv3AokxHmzGtM5mY/zM=
+	t=1782910249; cv=none; b=Fhg84x+rU6XgTjCEA2ASubMj3n2/QPlP9JYSOA30P0Ixlnt6octGS5mkCr/MTVDS588Q6azRkdaMav9eezLpsFZmXt4W/dhBjnsAONJ/Ws5zRZzzSaLQ3O1457ddWOH0wR7HXS91VWXK62Duz3vZqFqz9NEofTxRtAusItfpFU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782910220; c=relaxed/simple;
-	bh=w4DvYxS6HnRx4Jq/p9NKCGNXiZSMIzL68Loqqm5xo+E=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=k/ip3BSd3oKC22r7+dgPcTtacE5rpLDrl5bv0btF02F2mo0gbZZbCAhvRYTIhWeHoV3oOPgKzgpbuL5PLhnpbWGVFp/7gEQwTXZ48PouQ9r6HKxmjx2TSORL/DUxg/y7gC0FEn+HQyL0q/24b5c7nSPT1Y0ewjPKsdGm2pSS3Gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kp1AG33T; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E27181F00A3A;
-	Wed,  1 Jul 2026 12:50:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782910219;
-	bh=ogQceqQ808YsZTT5xDvMfw/Hxp/6gRHLqBYleisECB4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=kp1AG33TiMj1MOOaPTrHbySOB1SFehS0ILSJ7TceQ+aea/ThrhP+ELIB8SSAD7/dG
-	 yxiWNflGVKZWYwm4Mza9zuHdhXkhtU0q+Ky3GcmNfhHgIEEx8SH96dIxnKtPr2XJAx
-	 c735uhAP+PJ2ir/8CB5/FLIsd/fub+Q1Xm1OiFFQFiLimb13hBddXFN09jCFqXdbnt
-	 hAHFoXMfqcrtPo5ayIIeYQUvTQsa/ELKgdvk5t10Pw0j/gcBfIHvaJjItJL9Xkmm5X
-	 QcM9uwtwEYwIniG08wz32riltIH8AmYOo99vcYL/OrxG2cQiw1PP36fHZa7LdmvvSR
-	 xUQChCvVXRiHA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 09/12] phy: phy-mtk-dp: Rewrite and document default
- driving param macros
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, dri-devel@lists.freedesktop.org, vkoul@kernel.org, neil.armstrong@linaro.org, conor+dt@kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, olteanv@gmail.com
-In-Reply-To: <20260701122008.19509-10-angelogioacchino.delregno@collabora.com>
-References: <20260701122008.19509-1-angelogioacchino.delregno@collabora.com>
- <20260701122008.19509-10-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 12:50:15 +0000
-Message-Id: <20260701125017.E27181F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1782910249; c=relaxed/simple;
+	bh=3CxgZa80fpwtad1NZVQIKM5jkc/BDhNkyW4UZ8cWOoc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=nW3mcV+V0uKFkgvmFw9M+cTOctsMLxYXEVbQo3kGW0XvC7TdH1iSpxWE3Vu1ksUNJ5E5fqC3rKOk2l8DCnZhbnnD2IdczLDEXD759qLWy1ZCmv7GeYpbKDq1yobbdGaT9ESl5XzSLG5tRN6ej5bibioZDImNA8o73T/l6b/Ixjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=kfXmbI1B; arc=none smtp.client-ip=209.85.128.42
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-493c1950518so3261855e9.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 05:50:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1782910246; x=1783515046; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MErk0SB6y7nvDuzL2sNtUk9wfZP7Spym0Y2C6C35Ids=;
+        b=kfXmbI1B4/uvwVS/mcgcj0kbeBw7Uf66W6YlHlU0KH8kPWnfFLlctUjmxkxC4oOqq9
+         Ef7fzNMyhuzHCuPlOVBuE6L3x3qglsZ4uQABbI7cQOcOjATAAYJFyi5UpELUot+dI6OP
+         vC8l3owr2AZn9y9G8BETF2jCOGHWopJl2SrGQaDyI4E9UlR1vr73YECxc7UEG182x/by
+         NSMouiJcx0YTXV852hPSwXu9dpHrZ9eFv7pVHS1TpRS1hcx7+2MG4dZ9xfcv92fjtO1P
+         e/zM96Nt/YvZRMYF6IHZLOBtRFm3tHnSzuCxy7toXN3/6n6BdKdbYHJXs95ULFKnvoj+
+         0b0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782910246; x=1783515046;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MErk0SB6y7nvDuzL2sNtUk9wfZP7Spym0Y2C6C35Ids=;
+        b=DqWxRZQcEtqHKS8FTmmmRW5s6VI6dXR7N1EWKH+M9OnXFkfYZdbUzeQgDfpgSyfF1t
+         8ms0xD2jAvH+IIKVzVLIJEBQnM2N1rmNboK1FMMzN3TKMJXr+3bHTV+NyMsIGIR8gN1h
+         KzJGl9crygpnQpvQvZHuEBVr3f1CrdnVyuNGHoQUFMtRZvRJYAYDlpkgaWx6P0ZdUcwk
+         fxmY/tD4Rlx7jvhIYTNxaRwmJkaUK6tTa2AQQCC/RmxIqLSffzv8vOMVUziMKdjaWtIe
+         8WGYiqwQoX7JprxNNTl6mmhX3W3ZAoY7miwaQxuE326Iz9lC/x+0jVwSfQU3N1W0q/I6
+         Ewyg==
+X-Forwarded-Encrypted: i=1; AFNElJ/igZwdfzpvQGcCrSDXaSuPU+KIqRuUTu16zG92/CUHIsJFbeadVv3NY3ym2bw+ZW6towBii4XcWLMq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxM7scBJ92iG3Le4iSl7wlP3h4s8u2dVcIY9jUBEMBBVkkAyJKY
+	N0ouDckIhb5jwbHUzmbHrQzdstn6WcVCDk7kXnQEDjE9iTz3/BYXoFX38Xhk3gwpH1k38lP0IlH
+	jIEg7
+X-Gm-Gg: AfdE7cnoNjg1JwGYdBWgK4VYY/em+WOyyCWy3hbUcvoan7B6EUR2TY67ru2qZzEvFXS
+	3OBFEQ1+kfbg8P4/4LfeTcdlkxCS1OY/LP044eqBYHJG+qK1IwUTtwYB7kxBx1HdPhxiZtdYrA7
+	Qa/0ik7SxXrysjjwuyReRuE+c4iVet2HtSqBPch7Cg86ZgvraUv9CjGvXigpMKVQrKTCs3nL9Mi
+	O3MK0E5rsPK5VgpfWsPDvCzyNhfTNvx417EqTPigtrgGRZG8HT3zk9ZeGbRIK/lvjjWAhJhr+Wc
+	utZazclWUo8y8a6XAsM3qIRRDIm+2Jce8k/IJ+lqjCpTDwvivc1JPNSUHYIUEoQxGXTA7VRJlYW
+	aunQZt1SIyH6IPC/i9igE74ZClL1fMb2ayEyekECYNBQWCw3q/HeiABo/xbzOmIFK1Am03DYMCI
+	mRz1FkNoxF
+X-Received: by 2002:a05:600c:3501:b0:492:3fb5:3a17 with SMTP id 5b1f17b1804b1-493c230baabmr23336985e9.2.1782910246414;
+        Wed, 01 Jul 2026 05:50:46 -0700 (PDT)
+Received: from localhost ([2001:4090:a246:8638:9d68:67c1:6cf5:ad2a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493bfe616f5sm34364775e9.1.2026.07.01.05.50.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Jul 2026 05:50:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=9bb7aa0e7bfaf132bd9bdf17c0d5ffceccec2a4b8d712d499eeac40c7796;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Wed, 01 Jul 2026 14:50:38 +0200
+Message-Id: <DJN8XK5EIKU1.3FAVGBD6W2L2B@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: ti: Rename DM firmware reserved memory
+ nodes
+From: "Markus Schneider-Pargmann" <msp@baylibre.com>
+To: "Paresh Bhagat" <p-bhagat@ti.com>, <nm@ti.com>, <vigneshr@ti.com>
+Cc: <praneeth@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+ <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <v-singh1@ti.com>, <bb@ti.com>,
+ <u-kumar1@ti.com>, <anshuld@ti.com>
+X-Mailer: aerc 0.21.0-146-gb5c16ebe1835
+References: <20260630150919.457160-1-p-bhagat@ti.com>
+In-Reply-To: <20260630150919.457160-1-p-bhagat@ti.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MV_CASE(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:p-bhagat@ti.com,m:nm@ti.com,m:vigneshr@ti.com,m:praneeth@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:v-singh1@ti.com,m:bb@ti.com,m:u-kumar1@ti.com,m:anshuld@ti.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318578-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:olteanv@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,lists.freedesktop.org,linaro.org,lists.infradead.org,vger.kernel.org,gmail.com];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318579-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER(0.00)[msp@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[msp@baylibre.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,collabora.com:email]
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,baylibre.com:dkim,baylibre.com:mid,baylibre.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A92D06EDD58
+X-Rspamd-Queue-Id: DFE4C6EDD72
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] The refactoring introduces incorrect integer values for two Displa=
-yPort PHY driving parameters, silently altering the underlying hardware con=
-figuration.
-- [High] Integer underflow and undefined behavior in mtk_dp_phy_disable_all=
-_lanes when no lanes are enabled.
-- [High] Flawed PM runtime initialization, race condition, and unhandled er=
-rors in probe.
-- [Medium] Incorrect endianness conversion by pointer aliasing a u16 as a u=
-8*.
---
+--9bb7aa0e7bfaf132bd9bdf17c0d5ffceccec2a4b8d712d499eeac40c7796
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-commit 3ae397642076d659c70475bdbefbc3286e0e7c1f
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: phy: phy-mtk-dp: Rewrite and document default driving param macros
+Hi Paresh,
 
-This patch uses FIELD_PREP_CONST and adds definitions and macros to build
-the default driving parameters for the PHY. It also adds comments explaining
-what they are supposed to set in the PHY.
+On Tue Jun 30, 2026 at 5:09 PM CEST, Paresh Bhagat wrote:
+> Rename DM reserved memory nodes for K3 devices.
+>
+> Example:
+> memory@xxxxxxxx -> to dm@xxxxxxxx
+>
+> This allows U-Boot to identify and resize these regions using
+> fdt_fixup_reserved_memory() as done for TFA and optee.
 
-> diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy=
--mtk-dp.c
-> index d7024a1443358..1d73a622ef322 100644
-> --- a/drivers/phy/mediatek/phy-mtk-dp.c
-> +++ b/drivers/phy/mediatek/phy-mtk-dp.c
-[ ... ]
-> +/* MT8195: Logic State Change Point (LC TX C) */
-> +#define MT8195_DRIVING_PARAM_3_DEFAULT	BUILD_DRIVING_PARAM_0( 16, 20, 24=
-, 32)
-> +#define MT8195_DRIVING_PARAM_4_DEFAULT	BUILD_DRIVING_PARAM_12(24, 30, 60=
-, 32)
+How will this work for the updated detailed layout bindings that got
+merged here:
 
-[Severity: High]
-Does this unintentionally change the default for SW1_PRE2?
+  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/?id=3D91ddd97e1bb26937a5c15fb51ec8f6b65dbe94b8
 
-The conversion to macros incorrectly alters the sw1_pre2 value. The
-original macro XTP_LN_TX_LCTXC0_SW1_PRE2_DEFAULT was (BIT(18) | BIT(21)),
-which evaluates to 36 (0x24) when shifted. This macro now sets it to
-60 (0x3c).
+This splits up your one memory region into several memory regions. Here
+is one patch that uses that new memory region:
 
-> +#define MT8195_DRIVING_PARAM_5_DEFAULT	BUILD_DRIVING_PARAM_23(8, 48)
+  https://lore.kernel.org/all/20260701-topic-am62a-ioddr-dt-v6-19-v7-9-e9db=
+8b16821a@baylibre.com/
 
-[Severity: High]
-Is there a similar issue with the default for SW2_PRE1?
+This basically breaks up the one memory region into several regions.
+Wouldn't this break the fdt_fixup_reserved_memory() that you are trying
+to merge into u-boot and make this patch unnecessary?
 
-The original value was 40 (0x28), but this is now passing 8 (0x08), which
-drops BIT(5). These altered driving parameters can degrade signal integrity
-and cause connection instability.
+Best
+Markus
 
-[ ... ]
-> +static int mtk_dp_phy_disable_all_lanes(struct mtk_dp_phy *dp_phy)
-> +{
-> +	const struct mtk_dp_phy_pdata *pdata =3D dp_phy->pdata;
-> +	const u8 *regs =3D pdata->regs_dig_glb;
-> +	int ret;
-> +	u32 val;
-> +
-> +	ret =3D regmap_read(dp_phy->regmap, pdata->off_dig_glb + regs[DP_PHYD_T=
-X_CTL_0], &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Get mask of currently enabled lane */
-> +	val =3D FIELD_GET(PHYD_TX_LN_EN, val);
-> +
-> +	/* Disable all lanes (needs to be done one by one, from last to first) =
-*/
-> +	do {
-> +		u32 lane_num =3D fls(val) - 1;
-> +		val &=3D ~BIT(lane_num);
-> +
-> +		ret =3D regmap_clear_bits(dp_phy->regmap,
-> +					pdata->off_dig_glb + regs[DP_PHYD_TX_CTL_0],
-> +					FIELD_PREP(PHYD_TX_LN_EN, lane_num));
-> +		if (ret)
-> +			return ret;
-> +	} while (val);
+--9bb7aa0e7bfaf132bd9bdf17c0d5ffceccec2a4b8d712d499eeac40c7796
+Content-Type: application/pgp-signature; name="signature.asc"
 
-[Severity: High]
-Can this do-while loop execute with val initially at 0?
+-----BEGIN PGP SIGNATURE-----
 
-If the PHY is already fully disabled when this is called, val will be 0.
-The loop blindly executes once, fls(0) returns 0, and lane_num underflows
-to 0xffffffff.
+iKMEABYKAEsWIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCakUNHhsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMiwyLDIRHG1zcEBiYXlsaWJyZS5jb20ACgkQhcFWaZAVSlNa
+9gD/RaHbD4yV3M+ODYbnqHOmPvOHI4Bgvy3v44f5zEBwHesA/1OoQNGICWQsmQsU
+W2DtMnel9cjfAM+hs/vWQ3uB4ZAJ
+=WZES
+-----END PGP SIGNATURE-----
 
-Using ~BIT(0xffffffff) invokes undefined behavior, and passing 0xffffffff
-to FIELD_PREP() extracts unpredictable bits, causing a spurious out-of-boun=
-ds
-register write when clearing the PHY control registers.
-
-> +
-> +	return 0;
-> +}
-[ ... ]
-> +static int mtk_dp_phy_get_one_cal_para(struct device *dev, const char *n=
-ame, u8 max_val)
-> +{
-> +	u16 buf =3D 0;
-> +	int ret;
-> +
-> +	/*
-> +	 * All of the calibrations are always max 8 bits long, but some may
-> +	 * be split between two different 8-bits cells: handle this corner
-> +	 * case by retrying reading as u16.
-> +	 */
-> +	ret =3D nvmem_cell_read_u8(dev, name, (u8 *)&buf);
-
-[Severity: Medium]
-Will this lead to an endianness violation on Big Endian platforms?
-
-Casting a u16 buffer pointer to (u8 *) will cause the single byte to be
-written into the most significant byte of buf instead of the least
-significant byte on Big Endian architectures.
-
-For instance, reading 0x0F would result in buf holding 0x0F00 (3840), which
-would falsely trigger the subsequent if (buf > max_val) validation check.
-
-> +	if (ret)
-> +		ret =3D nvmem_cell_read_u16(dev, name, &buf);
-[ ... ]
-> +static int mtk_dp_phy_probe(struct platform_device *pdev)
-> +{
-[ ... ]
-> +	phy_set_drvdata(phy, dp_phy);
-> +
-> +	provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +	if (IS_ERR(provider))
-> +		return PTR_ERR(provider);
-
-[Severity: High]
-Could registering the provider before enabling PM runtime cause a race cond=
-ition?
-
-Exposing the PHY to consumers here means a consumer could claim the PHY and
-attempt to power it on before pm_runtime_enable() is called below. This
-would return -EACCES and break the consumer initialization.
-
-> +
-> +	pm_runtime_enable(dev);
-> +	pm_runtime_get_sync(dev);
-
-[Severity: High]
-Should the return value of pm_runtime_get_sync(dev) be checked?
-
-Ignoring the return value means the probe silently succeeds even if the
-hardware cannot be powered.
-
-Additionally, this driver lacks a .remove callback. Since
-pm_runtime_get_sync() increases the usage counter without it ever being
-released, and pm_runtime_disable() is never called, unloading the module
-permanently leaks the PM reference and breaks PM runtime for this device.
-
-> +
-> +	return 0;
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701122008.1950=
-9-1-angelogioacchino.delregno@collabora.com?part=3D9
+--9bb7aa0e7bfaf132bd9bdf17c0d5ffceccec2a4b8d712d499eeac40c7796--
 
