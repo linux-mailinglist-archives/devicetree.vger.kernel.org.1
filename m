@@ -1,138 +1,129 @@
-Return-Path: <devicetree+bounces-318165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318162-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dUGBBRK7RGrmzgoAu9opvQ
-	(envelope-from <devicetree+bounces-318165-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:00:34 +0200
+	id NEO6B8W6RGrKzgoAu9opvQ
+	(envelope-from <devicetree+bounces-318162-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 08:59:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5223F6EA676
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:00:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3FC36EA647
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 08:59:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=aspeedtech.com (policy=quarantine);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318165-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318165-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AE55aGPF;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318162-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318162-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3713C3048C36
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 06:59:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0FD95304AC33
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 06:58:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 149DC3B6349;
-	Wed,  1 Jul 2026 06:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49EA83B42EB;
+	Wed,  1 Jul 2026 06:58:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from twmbx01.aspeedtech.com (mail.aspeedtech.com [211.20.114.72])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F42C3B3C0D;
-	Wed,  1 Jul 2026 06:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D3E23B3C05;
+	Wed,  1 Jul 2026 06:58:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782889122; cv=none; b=OkjyfpO3vy4zRnbfoyTa0nREVkYKunyX9MQwwFuFMR+yhI879sJZ2R7KiegWa914esKl4YCdzdca0oDNaWnNxbDaaFXGBEVjfSHceQ/XPdDS7tWk3Jkn4rH+8GYJqfTBtLli5+QgNN1i7XZhjuwWYSk8rJvL7BXtsQJpCy0VqzI=
+	t=1782889117; cv=none; b=tsXfjGfi/I2d90tX3qdLlr5riiNwrLbWlBhXvbPG9PRtAwAlHwK+Jtos9BkIqL/KnKIdHhwMIa9pzz1BS1oyBcad0YYYWNT/eXNzwvCwJWqIt027trkTJkNmnLTKeRiKyOwR9X7823yBOAgjJdty8SfUOGIeBr9wzP8LfOKIC+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782889122; c=relaxed/simple;
-	bh=njRESqLfQG7J4os1F1U/PJtipN00LX9glpTZuXwuxRE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=c2QjhG4tEQHHiRJH3eZY2Ld85vfnvm+NgXaL1EczItChCrr7ug26It3iuXBl3cLqK7j4PjqxAlg7YZc5DWANl6HcRqtGnBu22jIDO05zI+1aLTqnQ45BOOibWWdB71MqhVbC+CoyzrVkejnbBkqeOYLoja7q404NzHX/2vqk1eI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 1 Jul
- 2026 14:58:18 +0800
-Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Wed, 1 Jul 2026 14:58:18 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-Date: Wed, 1 Jul 2026 14:58:19 +0800
-Subject: [PATCH v3 3/3] MAINTAINERS: Add ASPEED USB3 PHY driver
+	s=arc-20240116; t=1782889117; c=relaxed/simple;
+	bh=p96fgqRAxyLtnD2Wkwo5sRb26fDuAJmmu7Z2bDJ02Ao=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QS/v1iDYQ8xt9IyqssTxZi750dBRNfAv1i8JUJ4saiXkpXy3OxZ/o4wl73B8j8IKUxVX0ozqFHcD5NSveno7erR6iFxuXLaRo9nsYRPWuQ7+Yf3sknPSFMrbevDcP0bOQYEVIXwgAGNXc3PKiLEuLlgSOt9jKOqqgLXY21D3fKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AE55aGPF; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 087A51F000E9;
+	Wed,  1 Jul 2026 06:58:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782889116;
+	bh=p96fgqRAxyLtnD2Wkwo5sRb26fDuAJmmu7Z2bDJ02Ao=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=AE55aGPF7Lc8LHUeDYaoFlOLYtJQaCReY63VcdLuGdeUwzZZ7LfBABDb0WsQglAGN
+	 wo2cK5eCAR1OhocVNbQEMOdE1MCCR1MA17rWpNLS1fs9OgzIpFD2TLpQiXf48W3LrT
+	 jN5HDxGbH5AYwrIFGvqFRwPmP8C6KgZVSjrnzeru1Fj+64HfC5hcYm80eb/Uyu6pP1
+	 7dUxAk+ThGQoU3jZlcfLQ7bs9ab7mOSytgsG7BBmFNYAUYRnSxIS2ka+drJO6lz19O
+	 VPUiCfAl2U8DLo8YHCXw4DDPEkLVvgio+aQb4lkAZkyVihlxc9Ie55r1giiLW/pmsk
+	 4+T1kk1Kb2Reg==
+Date: Wed, 1 Jul 2026 08:58:32 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jie Gan <jie.gan@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>, Jingyi Wang <jingyi.wang@oss.qualcomm.com>, 
+	Abel Vesa <abel.vesa@oss.qualcomm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>, 
+	Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>, Abel Vesa <abelvesa@kernel.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 2/5] coresight: tnoc: add AG tnoc standalone
+ compatible to the platform driver
+Message-ID: <20260701-divergent-noisy-hedgehog-af719a@quoll>
+References: <20260701-fix-tracenoc-probe-issue-v4-0-aefab449a470@oss.qualcomm.com>
+ <20260701-fix-tracenoc-probe-issue-v4-2-aefab449a470@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260701-upstream_usb3phy-v3-3-00e12315b6f9@aspeedtech.com>
-References: <20260701-upstream_usb3phy-v3-0-00e12315b6f9@aspeedtech.com>
-In-Reply-To: <20260701-upstream_usb3phy-v3-0-00e12315b6f9@aspeedtech.com>
-To: Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, "Andrew
- Jeffery" <andrew@codeconstruct.com.au>, Philipp Zabel
-	<p.zabel@pengutronix.de>
-CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-kernel@vger.kernel.org>, Ryan Chen <ryan_chen@aspeedtech.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782889098; l=861;
- i=ryan_chen@aspeedtech.com; s=20251126; h=from:subject:message-id;
- bh=njRESqLfQG7J4os1F1U/PJtipN00LX9glpTZuXwuxRE=;
- b=9nDC6roHxfGcpoe43h1qTGG9AwTHok6mjgtTbKiriMRNV5LYvorZCkvRv1RyoRS7m+iQGHzcm
- V8uVk5DQGeSBKe0/CjGZXbG8nfFOos6gvV42A+70KRo+SPXsxdJ0+vv
-X-Developer-Key: i=ryan_chen@aspeedtech.com; a=ed25519;
- pk=Xe73xY6tcnkuRjjbVAB/oU30KdB3FvG4nuJuILj7ZVc=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260701-fix-tracenoc-probe-issue-v4-2-aefab449a470@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-318165-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:p.zabel@pengutronix.de,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-aspeed@lists.ozlabs.org,m:linux-kernel@vger.kernel.org,m:ryan_chen@aspeedtech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_RECIPIENTS(0.00)[m:jie.gan@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tingwei.zhang@oss.qualcomm.com,m:jingyi.wang@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:suzuki.poulose@arm.com,m:mike.leach@arm.com,m:james.clark@linaro.org,m:leo.yan@arm.com,m:yuanfang.zhang@oss.qualcomm.com,m:abelvesa@kernel.org,m:alexander.shishkin@linux.intel.com,m:konrad.dybcio@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:coresight@lists.linaro.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318162-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,ozlabs.org:email,aspeedtech.com:email,aspeedtech.com:mid,aspeedtech.com:from_mime,infradead.org:email]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,quoll:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5223F6EA676
+X-Rspamd-Queue-Id: C3FC36EA647
 
-Add maintainer entry for ASPEED USB3 PHY driver.
+On Wed, Jul 01, 2026 at 09:53:42AM +0800, Jie Gan wrote:
+> The Aggregator TNOC can be described either as an AMBA device using the
+> "qcom,coresight-tnoc", "arm,primecell" compatible or as a standalone
+> platform device using the new "qcom,coresight-agtnoc" compatible. The
+> latter avoids the AMBA bus and the associated peripheral-ID probing.
 
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+So here it is: you added a fake hardware description so the driver can
+avoid some action.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 895a87b571c3..10c08f322618 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4062,6 +4062,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/usb/aspeed,ast2600-udc.yaml
- F:	drivers/usb/gadget/udc/aspeed_udc.c
- 
-+ASPEED USB3 PHY DRIVER
-+M:	Ryan Chen <ryan_chen@aspeedtech.com>
-+L:	linux-aspeed@lists.ozlabs.org (moderated for non-subscribers)
-+L:	linux-phy@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/phy/aspeed,ast2700-usb3-phy.yaml
-+F:	drivers/phy/aspeed/phy-aspeed-usb3.c
-+
- ASPEED VIDEO ENGINE DRIVER
- M:	Eddie James <eajames@linux.ibm.com>
- L:	linux-media@vger.kernel.org
+No, instead fix the drivers. Hardware did not change, thus you should
+not change the bindings.
 
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
