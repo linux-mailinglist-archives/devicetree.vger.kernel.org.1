@@ -1,200 +1,185 @@
-Return-Path: <devicetree+bounces-318730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318732-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id B7rQJb8sRWro8AoAu9opvQ
-	(envelope-from <devicetree+bounces-318730-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:05:35 +0200
+	id JX+1IiMtRWr88AoAu9opvQ
+	(envelope-from <devicetree+bounces-318732-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:07:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ED086EF198
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:05:35 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 280146EF1C8
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 17:07:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Yh7i9q4l;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318730-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318730-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=pcd0PeJh;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318732-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318732-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=mailbox.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 54B6E302737A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 15:05:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C10D7305BD77
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 15:06:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9B33E2773;
-	Wed,  1 Jul 2026 15:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2DC547F2FC;
+	Wed,  1 Jul 2026 15:06:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996B63451CC
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 15:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13FA421F12;
+	Wed,  1 Jul 2026 15:06:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782918329; cv=none; b=gHNtkbJg2LvazaTa0x29zwUbSAYUxSnZi9EpNNweGoPcwNsqDmht97Iz2TNr1qTqQ0WfOvVAE94an4c7KnvDhTSOdvlW07DVFMVrQOx5jTJaNwn1XcsaXVdpbp8NLahD33irWWbaAO+j8G8/Ta0yrXAN9lI213vkHTJyqZJCe58=
+	t=1782918384; cv=none; b=SZTtCaacJfF2yqVkJWyTOvnRVXVYS6xyx7i2CpouB0SV/3kxsL8q9upGvDU8GyfVHwd9pdhAUqRUB2PXyb2xO8a73c/FoAT3yY/JRmQZqOtIjo/0knHVFiUqUOg6eu5PNY+Y61gmjq1QHT7BJ22hK9VGnBLqm4Gr0PwD43if418=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782918329; c=relaxed/simple;
-	bh=JiDKJzHuXulezD2Km6oke/ZQ7KtSNy7rcdgMzCqEFFE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=m9GjwJOai/+uiDbeZYUEB3OoUx+dimLkJvl5FP+n3W9VBUOHHKrhLMIXBnFWUd/jjMMnatDViZGZsOTxmNZnzaxIqkOh7F92BQt5+ZrNkNC4inmXPWUVzd6WQ5d2oe/+6uSwTk5HFxIKZSQmuQ0pQDhUsqEr6MAuBgdW24oKUes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yh7i9q4l; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6DAA1F000E9;
-	Wed,  1 Jul 2026 15:05:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782918326;
-	bh=AdIX5gokl7HvkqnfiN/dAFzirwJk5AUF/GJsvW5jnmU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Yh7i9q4lMU5t0ErV/ojxvfrz319KByZkw29Nf4LeSpAlD4MT5kduN1bqAvgF4M7lI
-	 dZfbgQWI68Y6Xf0Q/BvsEDs/OtLAI2hlsKKE+K875pAAfyV8ltlvs5zI+FHtCmTXm6
-	 dj9UJ4b42ezksyp6BTm2vrJXLt0sXDkAcIBbWOdS3ABkBrusKsORJMtQD9qeBmLWuH
-	 OsqkWa94NlxZK+S4Hj4T+WgRsDD1HrY6koSolGFMedTvDKHNyXBs4TrF6RW0737BCo
-	 4IBXR9GA31eFB8yaQvgg9StlW61Qn/GPH/pnsGA6HwsXXq8kdbdrFMtcdGF0eGansX
-	 5tccSPscx/yWw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/2] clk: si544: add support for si549
-Reply-To: sashiko-reviews@lists.linux.dev
-To: =?utf-8?b?UGF2ZWwgTMO2Ymw=?= <pavel@loebl.cz>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260701145101.3932655-3-pavel@loebl.cz>
-References: <20260701145101.3932655-1-pavel@loebl.cz>
- <20260701145101.3932655-3-pavel@loebl.cz>
-Content-Type: text/plain; charset=utf-8
+	s=arc-20240116; t=1782918384; c=relaxed/simple;
+	bh=7iK4BGNHJy0tB94tmLVRjvi1Oe1FniGBRLtTBxRpX9I=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=AOtI4OI2prGXRxMpFF/LwUjvJqICEcnpJrIoRgSQdKTke0cMBJt/dYJRp+N6mBk0hYmlk7mJPQRTONZBk/j1RHS/qqQpOsABs+1eN24QUqbGztmPut3KDr6fDrqnDw3s8reFnOBJ8iMExW+sUUjPa4zeigwyWxu0HGWvovz1MjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=pcd0PeJh; arc=none smtp.client-ip=80.241.56.172
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4gr3Hr4RnZz9tCX;
+	Wed,  1 Jul 2026 17:06:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1782918376;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7iK4BGNHJy0tB94tmLVRjvi1Oe1FniGBRLtTBxRpX9I=;
+	b=pcd0PeJh7Iv8r/KVTFH5oFdA/lvvSyvuvKi3if55cztI2n/XSqmRdnZKteH85HKKVV85yU
+	j9HVmz2EWbdR6s0CcET0z1vhIRn4hJ25bjWnCJwEuRpc0w/NW+iGM63mTUN/npapcFcSR/
+	fvTXXtkA/gTpkwn7ezESk2MSMTKfcqmvoICSsIiJierSEvXB9xwtVzbElgLSVNcJv+Ritx
+	B8K9i27AJIekT+XY6QmKpjCphMf9LuJwlimFmayP7Cy6geBGJUxhP+KSpU8c/IrGtSWTsI
+	iKUJjdFVYMmR+verObzbMA+hWZMieIpK2Ln1S3xxLh3nAIF0DvnMe971s5Fifw==
+Message-ID: <f6ce9878f3528dd026e6ca8ff56ac773a264e476.camel@mailbox.org>
+Subject: Re: [PATCH v2 02/19] driver core: platform: provide
+ platform_device_set_of_node()
+From: Manuel Ebner <manuelebner@mailbox.org>
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+	driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+ iommu@lists.linux.dev, 	linux-pm@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
+	dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
+	linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org, Bartosz
+ Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Lee Jones
+ <lee@kernel.org>, Thierry Reding	 <thierry.reding@avionic-design.de>,
+ Sebastian Hesselbarth	 <sebastian.hesselbarth@gmail.com>, Andrew Lunn
+ <andrew+netdev@lunn.ch>,  "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Srinivas Kandagatla <srini@kernel.org>, Greg
+ Kroah-Hartman	 <gregkh@linuxfoundation.org>, Vinod Koul <vkoul@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich
+ <dakr@kernel.org>, Rob Herring <robh@kernel.org>,  Saravana Kannan
+ <saravanak@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>, Michael
+ Ellerman	 <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Andi Shyti
+ <andi.shyti@kernel.org>, Andy Shevchenko	
+ <andriy.shevchenko@linux.intel.com>, Joerg Roedel <joro@8bytes.org>, Will
+ Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Doug Berger
+ <opendmb@gmail.com>,  Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list	
+ <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson <ulfh@kernel.org>, 
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team	 <kernel@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, Matthew Brost	 <matthew.brost@intel.com>, Thomas
+ =?ISO-8859-1?Q?Hellstr=F6m?=	 <thomas.hellstrom@linux.intel.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>,  David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>,  Paul
+ Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>,  Maximilian Luz <luzmaximilian@gmail.com>, Hans
+ de Goede <hansg@kernel.org>, Ilpo =?ISO-8859-1?Q?J=E4rvinen?=	
+ <ilpo.jarvinen@linux.intel.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Date: Wed, 01 Jul 2026 17:05:49 +0200
+In-Reply-To: <CAMRc=MdQURjypSn+QjSDJfEiOMC8bbEZmZLgjpt=EquAM1Q1pw@mail.gmail.com>
+References: <20260629-pdev-fwnode-ref-v2-0-8abe2513f96e@oss.qualcomm.com>
+		 <20260629-pdev-fwnode-ref-v2-2-8abe2513f96e@oss.qualcomm.com>
+	 <263f58b418a27a2339fc2478f93234e0208b0ad9.camel@mailbox.org>
+	 <CAMRc=MdQURjypSn+QjSDJfEiOMC8bbEZmZLgjpt=EquAM1Q1pw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 15:05:25 +0000
-Message-Id: <20260701150525.C6DAA1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MBO-RS-META: 37tty84b1zxogwptawjudbroswqcnaqn
+X-MBO-RS-ID: 0ac2dd9424902710d49
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318730-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:pavel@loebl.cz,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-318732-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:brgl@kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-sound@vger.kernel.org,m:driver-core@lists.linux.dev,m:devicetree@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:linux-i2c@vger.kernel.org,m:iommu@lists.linux.dev,m:linux-pm@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-usb@vger.kernel.org,m:linux-mips@vger.kernel.org,m:platform-driver-x86@vger.kernel.org,m:bartosz.golaszewski@oss.qualcomm.com,m:lee@kernel.org,m:thierry.reding@avionic-design.de,m:sebastian.hesselbarth@gmail.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:srini@kernel.org,m:gregkh@linuxfoundation.org,m:vkoul@kernel.org,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:ch
+ leroy@kernel.org,m:andi.shyti@kernel.org,m:andriy.shevchenko@linux.intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:opendmb@gmail.com,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:ulfh@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:peter.chen@kernel.org,m:paul@crapouillou.net,m:b-liu@ti.com,m:p.zabel@pengutronix.de,m:luzmaximilian@gmail.com,m:hansg@kernel.org,m:ilpo.jarvinen@linux.intel.com,m:krzk@kernel.org,m:benh@kernel.crashing.org,m:sebastianhesselbarth@gmail.com,m:andrew@lunn.ch,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[manuelebner@mailbox.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.ozlabs.org,lists.infradead.org,lists.freedesktop.org,oss.qualcomm.com,kernel.org,avionic-design.de,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,linuxfoundation.org,linux.ibm.com,ellerman.id.au,linux.intel.com,8bytes.org,arm.com,broadcom.com,nxp.com,pengutronix.de,intel.com,ffwll.ch,crapouillou.net,ti.com,kernel.crashing.org];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,loebl.cz:email,smtp.kernel.org:mid,sashiko.dev:url]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[65];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[manuelebner@mailbox.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,mailbox.org:dkim,mailbox.org:email,mailbox.org:mid,mailbox.org:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2ED086EF198
+X-Rspamd-Queue-Id: 280146EF1C8
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+On Tue, 2026-06-30 at 09:22 -0400, Bartosz Golaszewski wrote:
+> On Tue, 30 Jun 2026 13:37:54 +0200, Manuel Ebner <manuelebner@mailbox.org=
+> said:
+> > On Mon, 2026-06-29 at 11:12 +0200, Bartosz Golaszewski wrote:
+> > > [...]
+> > >=20
+> > > +/**
+> > > + * platform_device_set_of_node - assign an OF node to device
+> > > + * @pdev: platform device to add the node for
+> > > + * @np: new device node
+> > > + *
+> > > + * Assign an OF node to this platform device. Internally keep track =
+of the
+> > > + * reference count. Devices created with platform_device_alloc() mus=
+t use this
+> > > + * function instead of assigning the node manually.
+> >=20
+> > Doesn't it make sense to add a remark to the kernel doc of platform_dev=
+ice_alloc()?
+> >=20
+> > Thanks
+> > =C2=A0Manuel
+> >=20
+> > > =C2=A0[...]
+> >=20
+>=20
+> Sure, will do in the next iteration.
 
-Pre-existing issues:
-- [High] Unconditional dereference of `client->dev.of_node` during probe fa=
-llback path causes a kernel panic on non-DT systems.
-- [High] Untrusted or unprogrammed hardware input causes a divide-by-zero k=
-ernel panic.
---
+then you can add
+Reviewed-by: Manuel Ebner <manuelebner@mailbox.org>
 
-commit 8414d21feff1150c560a77278d7dec845cbe570f
-Author: Pavel L=C3=B6bl <pavel@loebl.cz>
-
-clk: si544: add support for si549
-
-Add support for Si549, which only differs from Si544 in internal
-oscilator frequency. Si549 also comes in three types A,B and C.
-Each having different maximum output frequency.
-
-This patch also fixes maximum frequency of Si544 C. Which should
-be 325MHz according to datasheet.
-
-> diff --git a/drivers/clk/clk-si544.c b/drivers/clk/clk-si544.c
-> index 09c06ecec1a52..b13aeead9c028 100644
-> --- a/drivers/clk/clk-si544.c
-> +++ b/drivers/clk/clk-si544.c
-
-[ ... ]
-
-> @@ -145,6 +153,8 @@ static int si544_get_muldiv(struct clk_si544 *data,
->  	settings->delta_m =3D reg[0] << 8 | reg[1] << 16 | reg[2] << 24;
->  	settings->delta_m >>=3D 8;
-> =20
-> +	settings->xo_freq =3D data->chip_info->xo_freq;
-> +
->  	return 0;
->  }
-
-[Severity: High]
-This is a pre-existing issue, but I noticed that si544_get_muldiv() reads t=
-he
-high-speed divider (hs_div) directly from the I2C device registers without
-validation.
-
-Could this lead to a division by zero later?
-
-If the hardware is unprogrammed or an I2C device returns zero for these
-registers, settings->hs_div becomes 0. Then, when si544_calc_center_rate() =
-is
-called:
-
-si544_calc_center_rate() {
-	u32 d =3D settings->hs_div * BIT(settings->ls_div_bits);
-	...
-	do_div(vco, d);
-}
-
-d would evaluate to 0, triggering a divide-by-zero kernel panic. Is it worth
-adding a check for hs_div =3D=3D 0 after reading the registers?
-
-[ ... ]
-
-> @@ -446,7 +458,7 @@ static int si544_probe(struct i2c_client *client)
->  	init.num_parents =3D 0;
->  	data->hw.init =3D &init;
->  	data->i2c_client =3D client;
-> -	data->max_freq =3D (uintptr_t)i2c_get_match_data(client);
-> +	data->chip_info =3D i2c_get_match_data(client);
-> =20
->  	if (of_property_read_string(client->dev.of_node, "clock-output-names",
->  			&init.name))
-
-[Severity: High]
-This isn't a bug introduced by this patch, but can this fallback cause a NU=
-LL
-pointer dereference on non-DT systems?
-
-If the driver is instantiated via a mechanism that does not use Device Tree
-(such as sysfs new_device), client->dev.of_node will be NULL.
-
-When of_property_read_string() detects the NULL node, it returns an error,
-which triggers the fallback logic right below this diff:
-
-		init.name =3D client->dev.of_node->name;
-
-This unconditionally dereferences the NULL of_node pointer. Should this code
-check if client->dev.of_node is valid before attempting to use it?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701145101.3932=
-655-1-pavel@loebl.cz?part=3D2
+ Manuel
+>=20
+> Bart
 
