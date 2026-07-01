@@ -1,655 +1,301 @@
-Return-Path: <devicetree+bounces-318799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318802-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PcMAEd1CRWpg9goAu9opvQ
-	(envelope-from <devicetree+bounces-318799-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:39:57 +0200
+	id HHUdO2dDRWp79goAu9opvQ
+	(envelope-from <devicetree+bounces-318802-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:42:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C5E86EFE13
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:39:56 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8377A6EFE50
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 18:42:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TAATed9H;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318799-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318799-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=collabora.com header.s=mail header.b=m5ptSGcj;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318802-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318802-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 156DC3010534
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 16:34:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CA8F130A89EC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 16:36:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66528377039;
-	Wed,  1 Jul 2026 16:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 091463783AE;
+	Wed,  1 Jul 2026 16:36:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FA8F2D1303;
-	Wed,  1 Jul 2026 16:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0CCB374198;
+	Wed,  1 Jul 2026 16:36:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782923675; cv=none; b=bXlu1R6Eaf6HycG3i+TRNPdl2VrxjpVp2s/i3EjhYJpNZasDwX8DyVJF09UfQEXPupgDowzn5eyZz3knk2m0EFRNP8FPt9ayCJVDPqvFC2fg77qytG2w+dk2B7T/fvOqVra2flJkiy5YIIzSYzJXjJaM8YDhhCq2o2AP4zUJonk=
+	t=1782923794; cv=none; b=Z2oPb3ngdzNk4TNr6/QWcwhcfdECIvoznIr2PGzFqCPFnEqTc7vlvo0bKVuQNa2IOge0MJksMDuDoEkh2bTW31NhGFq2dNrzYxBTQx1Q2kQvyN+/hsh9nkpBuOT/TgDBcm1q4ajUGkYUoCRfMy2bb4DaqRFiekX/XMB25VykADs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782923675; c=relaxed/simple;
-	bh=6OR0VXzaHKHsel8gwWPY05AGPVQJ1I33PeXfbGN5Tc0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=h8wvgXqu/oczEY8JX08+XMKc7b5bBJUnWUVdWhRd76RKYtn71+J62HsVAesNSIR15A2KDq0t+uQEcLu8/787OoRP61D5JgBAkAtsm4GFxvX2zJYTzsrODqTP9neVCDYy5Q/zZeKhlng8gxywdAHGCmpzWt/4tA7bt55fGH+NH2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TAATed9H; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 084CE1F000E9;
-	Wed,  1 Jul 2026 16:34:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782923668;
-	bh=BRqenpLcnH+SH1EZEEX1HXHyYR/vz5aIKTkkI+ynyRQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=TAATed9H8cwK7oUiY/weZZMUSQXnaJkwb/YE88hpWVIhj1McCbWGrWoJ4PUPI26nv
-	 +uxaGXuPQUKvSwM4Dg9Z8L0ffu7pTXy0nlu33xAixJQhi2ZKTf38SISQk+8CD5QYlq
-	 lDB6FrJHvUI0D/rqDfPlvrxhifxc4aFLK1l/EamdlDVyq9+jnCMeSMIqHBqeM23hXK
-	 xt2vJO1+Fg7AF2+yPhXmlAn+Bev2xSzcnMlW4PdQKI4FqDOMz5G67k0U+q4svdakF9
-	 nymWQomOCjl2sNlA+VsecH1Rn0sNh560qU+JLsHverJaYXHNXP+wC5NHCLnkpoQhZX
-	 h7djtweWiQBTA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 08/11] dma-buf: heaps: Add support for Tegra VPR
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Thierry Reding" <thierry.reding@kernel.org>
-Cc: devicetree@vger.kernel.org, "Heiko Carstens" <hca@linux.ibm.com>, conor+dt@kernel.org, "Alexander
- Gordeev" <agordeev@linux.ibm.com>, robh@kernel.org, dri-devel@lists.freedesktop.org, linux-s390@vger.kernel.org, "Vasily
- Gorbik" <gor@linux.ibm.com>
-In-Reply-To: <20260701-tegra-vpr-v3-8-d80f7b871bb4@nvidia.com>
-References: <20260701-tegra-vpr-v3-0-d80f7b871bb4@nvidia.com>
- <20260701-tegra-vpr-v3-8-d80f7b871bb4@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 16:34:27 +0000
-Message-Id: <20260701163428.084CE1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782923794; c=relaxed/simple;
+	bh=bH6bKnImCnQPwBBMAabeb7brD+kg4v06+tOq42mnU+w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=M20yNPSKv/ONm2kLpJIB/rbgnsq99/2sq0yzGEke6GYd2tIqv1oFx0gzl2rC8V+s96cK1RzfQlz9F9yZv19di5wZgmYwWzorZea+fQFv7fyI/9Xm+5q//zIcdaed2LDYjgJJmDNgkzPwO4QLtBEFZW/27U4PNzoZRU6X0RKcsvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=m5ptSGcj; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1782923788;
+	bh=bH6bKnImCnQPwBBMAabeb7brD+kg4v06+tOq42mnU+w=;
+	h=From:Subject:Date:To:Cc:From;
+	b=m5ptSGcjQHlo5M/Tj8pnQ69SOed+j4B2gTCrR3YwMqSXaeBcjaMArgsEK+Zc4mbgU
+	 lDviyOfpgvkTDpIYhalFpLS6XaBBnnWHUSmtPjnyw0ZAh91WJyQ2roAv+5a/KTzI1i
+	 dQyYqkZi0k4U84iDCmXGe666/S1UoWgHhkCFMZX2JufkyZY7hXcJmRhL8/v9HNM/GZ
+	 MM5UU1mUQIT09wL3H3GxI/3Hh/cOPapRS7O/uRESIopE4Fhn7fHqOj4lnfNyRq7GoZ
+	 tGJC20EZV3LFCWXoeS5k90Yakj2Y3nSFK/sBHN4NJj7eZVW4odzNNPzsAL2j4lc7m9
+	 MBOdq2217xLqw==
+Received: from yukiji.home (unknown [100.64.0.131])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 54A1517E0521;
+	Wed,  1 Jul 2026 18:36:27 +0200 (CEST)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Subject: [PATCH v2 0/4] Add support for the Mediatek Genio 520-EVK and
+ 720-EVK boards
+Date: Wed, 01 Jul 2026 18:35:18 +0200
+Message-Id: <20260701-add-mediatek-genio-520-720-evk-v2-0-19d5da4ef984@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6WT0YrbMBBFfyX4uWNGkiU5YSn7H2UpY2mciER2a
+ ikh6ZJ/r2K30JSWLeRhHkZiztUdrt6rxFPgVG1W79XE55DCOJRGflpVbkfDliH40lcSpRZCtkD
+ eQ2QfKPMetjyEEbREsKX4vAc0wkhl7do2viqQ48R9uMwCX96WfuJvp6KTl8Oqo8TgxhhD3qwGv
+ mQoWgaNwvt85JRofsVm9TJfWBQQcyvaNbjD6PYJ0jVljjCDzgIQZIdN2zOTRnp14+FA3ThRXUQ
+ +/42phUSNplHa1kLptQABY/7qKO+u9eX0+svuvwHYllJKKFNbi7rMfy/Lu1e95Y/nH0zF6MBn6
+ MLgw7BNUNZ3dyWAre5lI0ha3f2Hqwfo78DkjmVjC1M6bHrsPYnOPsM8usAL0TpLpizEGt08Q8z
+ H3XUh6rZpSXbcKlTPEE80ZfCRFqqzAo0Uhhr0f1LvQd2FlMfpOn+Ms5iT+jMq6qM/MGfQ93bdd
+ JIUEj/yq7fb7fYDjumAUXkDAAA=
+X-Change-ID: 20251128-add-mediatek-genio-520-720-evk-06162377974d
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@mediatek.com>
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
+ linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782923787; l=8588;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=bH6bKnImCnQPwBBMAabeb7brD+kg4v06+tOq42mnU+w=;
+ b=CM3ARkAB7EhzizSnZED97Xmpe6FzooHchBeDeFU7suXqAC17+clbRB9veVQ8oUXUqe9TVhOg4
+ YM9pscbbJVpAG2jEo7TzZwLhsWl8+BGS8UVl1fz0T6OLed3jI9RLXkf
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-318799-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318802-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:sean.wang@mediatek.com,m:kernel@collabora.com,m:linux-kernel@vger.kernel.org,m:linux-serial@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:louisalexis.eyraud@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:thierry.reding@kernel.org,m:devicetree@vger.kernel.org,m:hca@linux.ibm.com,m:conor+dt@kernel.org,m:agordeev@linux.ibm.com,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-s390@vger.kernel.org,m:gor@linux.ibm.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,gmail.com,collabora.com,mediatek.com];
+	FORGED_SENDER(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,nvidia.com:email,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mediatek.com:email,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8C5E86EFE13
+X-Rspamd-Queue-Id: 8377A6EFE50
+
+This patch series adds the support for the Mediatek Genio 520-EVK (based
+on MT8371 SoC) and Mediatek Genio 720-EVK (based on MT8391 SoC).
+
+MT8371 and MT8391 SoC are less powerful variants of MT8189 SoC
+with the following differences:
+  - Arm Cortex-A78 CPU core maximum frequency (2.2 Ghz for MT8371, 2.6
+    Ghz for MT8391, 3 Ghz for MT8189).
+  - Arm Mali G57 MC2 GPU core maximum frequency (880 Mhz for MT8371,
+    1.1 Ghz for MT8189 and MT8391)
+  - ISP engine number (1 for MT8371, 2 for MT8189 and MT8391)
+MT8371 and MT8391 SoC hardware register maps are identical to MT8189.
+
+The Genio 520/720-EVK boards have following features:
+  - MT8371 (or MT8391) SoC
+  - MT6365 PMIC
+  - MT6319 Buck IC
+  - MT6375 Charger IC
+  - 8GB LPDDR5 RAM
+  - 64GB eMMC 5.1
+  - 128GB UFS
+  - 20V DC Jack
+  - USB Type-C Power Adapter
+  - Micro SD card slot
+  - Push Button x 4 (Power, Reset, Download and Home Key)
+  - LED x 3 (System Power, Reset, DC-IN Power)
+  - USB Type-C Connector (USB 3.2) x 2
+  - USB Type-C Connector (USB 2.0) x 1
+  - 3.5mm Earphone Jack x 1 (with Microphone Input)
+  - 3.5mm Line Out Audio Jack x 1
+  - Analog Microphone x 1
+  - Digital Microphone x 2
+  - Gigabit Ethernet with RJ45 connector
+  - DP x 1 (Mode over USB Type-C)
+  - LVDS port x 1
+  - eDP port x 1
+  - UART x2 with serial-to-usb converters and USB Type-C connectors
+  - UART Port x 2 on Pin Header
+  - M.2 Slot x 2
+  - I2C Capacitive Touch Pad
+  - 4-Lane DSI x 1
+  - 4-Data Lane CSI x 2
+  - I2S Pin header
+  - 40-Pin 2.54mm Pin Header x 1
+  - CAN Bus x 1 (RS232 Connector)
+
+The series adds two include files for mt8189 (mt8189.dtsi) and common
+board definitions (mt8391-genio-common.dtsi) and a devicetree file for
+each board.
+In regard to the current MT8189 SoC upstream support and this series
+provides the following basic hardware enablement for:
+  - CPU
+  - system and base clocks (including fhctl support) 
+  - spmi and regulators
+  - power domain controller and all domains (excluding multimedia and
+    graphics related ones)
+  - UART 0/1/2/3 with DMA support
+  - eMMC and SD card
+  - watchdog
+  - timer
+  - efuse and socinfo
+  - auxadc
+  - PCIe controller and Wifi PCIe M.2 module
+
+The series is based on linux-next next-20260630 tag, and the
+following patch series are currently required:
+- MT8189: Add support for system and base clock controllers [1]
+- mt8189: Add pinmux macro header file [2]
+- dt-bindings: timer: mediatek,timer: Add compatible for MT8189 [3]
+- dt-bindings: mmc: mtk-sd: Document extra clocks for MT8189 [4]
+- dt-bindings: mfd: mediatek,mt8195-scpsys: Add support for MT8189 SoC [5]
+- dt-bindings: PCI: mediatek-gen3: Add support for MT8189 SoC [6]
+- dt-bindings: phy: mediatek,tphy: Add support for MT8189 SoC [7]
+- dt-bindings: dma: mediatek,uart-dma: add support for MT8189 SoC [8]
+
+[1] https://lore.kernel.org/linux-mediatek/20260701-mt8189-clocks-system-base-v1-0-2b048feea50a@collabora.com/
+[2] https://lore.kernel.org/linux-mediatek/20251205064357.13591-1-ot_cathy.xu@mediatek.com/
+[3] https://lore.kernel.org/linux-mediatek/20250825033136.7705-1-zhanzhan.ge@mediatek.com/
+[4] https://lore.kernel.org/linux-mediatek/20260701-mt8189-mmc-dt-bindings-fix-v1-1-e75f241a275b@collabora.com/
+[5] https://lore.kernel.org/linux-mediatek/20260701-mt8189-dt-bindings-scpsys-v1-1-2c04f0fda1b7@collabora.com/
+[6] https://lore.kernel.org/linux-mediatek/20260701-mt8189-dt-bindings-pcie-v1-1-7c7a65087654@collabora.com/
+[7] https://lore.kernel.org/linux-mediatek/20260701-mt8189-dt-bindings-tphy-v1-1-5848a2be8303@collabora.com/
+[8] https://lore.kernel.org/linux-mediatek/20260701-mt8189-dt-bindings-uart-dma-v1-1-c7106216a40d@collabora.com/
+
+---
+Changes in v2:
+- Added Acked-by trailers in patchs 1 and 2
+- Reworded patchs 2, 3 and 4 subjects to remove redundant parts
+- Patch 3:
+  - Moved aliases from mt8189.dtsi to mt8391-genio-common.dtsi
+  - Renamed fixed-clock names in mt8189.dtsi
+  - Removed the multimedia and graphics related clock controller nodes
+    and aligned remaining clock-controller compatibles to match the
+    latest mt8189 clock series revision ([1])
+  - Added missing aud_adc_ext fixed clock (used as parent in
+    clk-mt8189-vlpckgen.c)
+  - Removed _clk suffix from all clock controller aliases
+  - Added UART DMA controller node and use
+  - Added PCIE host controller node and use
+  - Added MT8189 powerdomain controller node and SoC power domain
+    definitions (excluding the multimedia and graphics related ones)
+  - Added ARM DSU PMU support with fail status to handle its optional
+    support in firmware/bootloaders.
+  - Added extra clocks in MMC0 and MMC1 nodes, that are now required
+    with latest mt8189 clock series revisions ([1] and [4])
+  - Replaced mt6359.dtsi include by mt6365.dtsi and added the supply
+    definitions and compatible related to this PMIC
+  - Added the MT6319 PMIC supply definitions
+  - Added the MT6319 PMIC definitions and aliases with two different
+    USID and enabled the expected one in Genio 720-EVK devicetree to
+    fix this PMIC not being properly detected on Genio 520-EVK in v1.
+  - Added the needed definitions, pinctrl and regulator to enable wifi
+    module support
+- Enabled the MT6319 PMIC with correct USID in Genio 520-EVK devicetree
+  in patch 4.
+- Link to v1: https://lore.kernel.org/r/20251203-add-mediatek-genio-520-720-evk-v1-0-df794b2a30ae@collabora.com
+
+---
+Louis-Alexis Eyraud (4):
+      dt-bindings: serial: mediatek,uart: Add compatible for MT8189 SoC
+      dt-bindings: arm: mediatek: add Mediatek Genio 520/720-EVK boards
+      arm64: dts: mediatek: add Genio 720-EVK board
+      arm64: dts: mediatek: add Genio 520-EVK board
+
+ .../devicetree/bindings/arm/mediatek.yaml          |  10 +
+ .../devicetree/bindings/serial/mediatek,uart.yaml  |   1 +
+ arch/arm64/boot/dts/mediatek/Makefile              |   2 +
+ arch/arm64/boot/dts/mediatek/mt8189.dtsi           | 920 +++++++++++++++++++++
+ .../boot/dts/mediatek/mt8371-genio-520-evk.dts     |  32 +
+ .../boot/dts/mediatek/mt8391-genio-720-evk.dts     |  27 +
+ .../boot/dts/mediatek/mt8391-genio-common.dtsi     | 673 +++++++++++++++
+ 7 files changed, 1665 insertions(+)
+---
+base-commit: ba7c57499e5999aeae8dd4f954eb2600589d80aa
+change-id: 20251128-add-mediatek-genio-520-720-evk-06162377974d
+prerequisite-message-id: <20260701-mt8189-clocks-system-base-v1-0-2b048feea50a@collabora.com>
+prerequisite-patch-id: 7b1af194800ee6075aeb7933e2b55ac57e1dc5e2
+prerequisite-patch-id: 875e450fd11593714ac2f5de93240c058d4b0a42
+prerequisite-patch-id: b38381973e1d32c5ae8e04aba4673b7221dad2b1
+prerequisite-patch-id: ed4aab90f897ed26c4cbf6f0a5be965c9e9cedd7
+prerequisite-patch-id: 41ea05f49926cab03759da60e03b2d58fd524846
+prerequisite-patch-id: c193828b36c6195aa6c21e8926e61bba4032ed9b
+prerequisite-patch-id: 2c9894cd211e5676f43ebac4a722704c0e127190
+prerequisite-patch-id: a29fd1f809b1ddc581847ba26638882e5ff127e7
+prerequisite-patch-id: 6dffca2ee6a8762d22aece8a319499500ee271cc
+prerequisite-patch-id: 587d2d91b66dcaa59488eece20931b76d8fbd655
+prerequisite-patch-id: 28acddfadf1d24eb54ca107e2b4573a57113ded7
+prerequisite-patch-id: 75658fbbf84ba98c996571253f4cdc0508552d5c
+prerequisite-patch-id: 96cbb979a4b52485e5078472827a165d1d65b418
+prerequisite-patch-id: e924638bcd10aabd9ef6c3c3a2eed6984f9dbac7
+prerequisite-patch-id: 6bb480bbd14445cc515a890db212d5570f0824d4
+prerequisite-message-id: <20251205064357.13591-1-ot_cathy.xu@mediatek.com>
+prerequisite-patch-id: 7f2d960cde2f0e0a307721150e83b7b05b9a60d7
+prerequisite-message-id: <20250825033136.7705-1-zhanzhan.ge@mediatek.com>
+prerequisite-patch-id: 7aeee7d452186b3bc1c11722b7ddb7dfbae7d396
+prerequisite-message-id: <20260701-mt8189-mmc-dt-bindings-fix-v1-1-e75f241a275b@collabora.com>
+prerequisite-patch-id: 3f6f8e5a3005e7ee4a9f082da6842efaae560d4d
+prerequisite-message-id: <20260701-mt8189-dt-bindings-scpsys-v1-1-2c04f0fda1b7@collabora.com>
+prerequisite-patch-id: 8982f7b2776e6cae070c41a48076b5a02c97ef2a
+prerequisite-message-id: <20260701-mt8189-dt-bindings-pcie-v1-1-7c7a65087654@collabora.com>
+prerequisite-patch-id: 8b5cc41be174d3e0768fd43bff843208c0ec200b
+prerequisite-message-id: <20260701-mt8189-dt-bindings-tphy-v1-1-5848a2be8303@collabora.com>
+prerequisite-patch-id: da74129ef4f3ed94555df4f540f44bee2f5f05f9
+prerequisite-message-id: <20260701-mt8189-dt-bindings-uart-dma-v1-1-c7106216a40d@collabora.com>
+prerequisite-patch-id: c5894d7c4c71327f7855869cbd8686d0ea610f3e
+
+Best regards,
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-Thank you for your contribution! Sashiko AI review found 20 potential issue=
-(s) to consider:
-- [High] The driver hijacks global system suspend primitives to implement a=
- hardware-specific memory resize operation, causing race conditions and dea=
-dlocks.
-- [High] Allocated pages are freed using an excessively large size calculat=
-ed via `get_order(size)`, leading to adjacent active memory being mistakenl=
-y cleared.
-- [High] The `vpr->lock` mutex is dynamically allocated but never initializ=
-ed.
-- [High] In the chunk recycle loop, the driver uses the wrong loop variable=
- to clear active and dirty bits, corrupting the chunk bitmap state.
-- [High] Unchecked access to `dev->driver->pm->freeze` causes a kernel pani=
-c if a device has no PM ops.
-- [High] Concurrent modification and traversal of the `vpr->devices` list.
-- [High] Using `phys_to_page()` on `no-map` reserved memory yields invalid =
-page pointers.
-- [High] A race between module initialization and device probing can cause =
-a NULL pointer dereference in `tegra_vpr_device_init`.
-- [High] `tegra_vpr_resize` returns success (0) even if freezing a device f=
-ails and the hardware VPR is never resized, bypassing memory protections.
-- [High] Integer truncation in the `num_pages` calculation allows massive D=
-MA-BUF sizes to be allocated with 0 backing pages, leading to immediate ker=
-nel panics when mapped.
-- [High] CMA memory is released before the VPR hardware firewall is removed.
-- [Medium] The error recovery path in `tegra_vpr_recycle()` fails to restor=
-e the `vpr->active` bitmap.
-- [Medium] Device node pointers are saved without taking reference counts, =
-leading to UAF and a memory leak of the `/reserved-memory` node.
-- [Medium] `tegra_vpr_find_free_region` passes `vpr->num_pages - 1` as the =
-`end_page` boundary, preventing allocation of the last page of the VPR.
-- [Medium] `kmalloc_array` is used to allocate an excessively large page po=
-inter array.
-- [Medium] Active VPR chunks are not deactivated if `dma_buf_export` fails.
-- [Medium] `tegra_vpr_resize` calls `freeze_processes()` but the driver lac=
-ks a `CONFIG_FREEZER` or `CONFIG_PM_SLEEP` dependency.
-- [Medium] Lockless iteration of `vpr->buffers` in debugfs exposes a TOCTOU=
- list corruption race.
-- [Medium] Negative bit shift when `vpr->size` is small, and chunk setup ca=
-n create 0-sized chunks.
-- [Low] Typo in `attach->dev` initialization results in self-assignment of =
-a zero-initialized field.
---
-
-commit 4c286d7ffd5b9cd569447863a311213170bdfb04
-Author: Thierry Reding <treding@nvidia.com>
-Subject: dma-buf: heaps: Add support for Tegra VPR
-
-This commit exposes the Tegra Video-Protection-Region (VPR) as a DMA heap.
-The memory region is dynamically resized by freezing userspace processes and
-allocating/freeing chunks via CMA.
-
-> diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
-> index bb729e91545c4..dd6035598d028 100644
-> --- a/drivers/dma-buf/heaps/Kconfig
-> +++ b/drivers/dma-buf/heaps/Kconfig
-[ ... ]
-> @@ -20,3 +20,10 @@ config DMABUF_HEAPS_CMA
->  	  Choose this option to enable dma-buf CMA heap. This heap is backed
->  	  by the Contiguous Memory Allocator (CMA). If your system has these
->  	  regions, you should say Y here.
-> +
-> +config DMABUF_HEAPS_TEGRA_VPR
-> +	bool "NVIDIA Tegra Video-Protected-Region DMA-BUF Heap"
-> +	depends on DMABUF_HEAPS && DMA_CMA
-
-[Severity: Medium]
-Should DMABUF_HEAPS_TEGRA_VPR depend on CONFIG_FREEZER or CONFIG_PM_SLEEP?
-
-Since vpr->use_freezer is true, if CONFIG_FREEZER is disabled,
-freeze_processes() evaluates to a static inline function returning -ENOSYS.
-This will cause the VPR resize operations to unconditionally fail.
-
-> +	help
-> +	  Choose this option to enable Video-Protected-Region (VPR) support on
-> +	  a range of NVIDIA Tegra devices.
-> diff --git a/drivers/dma-buf/heaps/tegra-vpr.c b/drivers/dma-buf/heaps/te=
-gra-vpr.c
-> new file mode 100644
-> index 0000000000000..918cf66ec222c
-> --- /dev/null
-> +++ b/drivers/dma-buf/heaps/tegra-vpr.c
-[ ... ]
-> +static int tegra_vpr_resize(struct tegra_vpr *vpr)
-> +{
-> +	struct tegra_vpr_device *node;
-> +	phys_addr_t base, size;
-> +	int err, status =3D 0;
-> +
-> +	err =3D tegra_vpr_get_extents(vpr, &base, &size);
-> +	if (err < 0) {
-> +		pr_err("%s(): failed to get VPR extents: %d\n", __func__, err);
-> +		return err;
-> +	}
-> +
-> +	if (vpr->use_freezer) {
-> +		err =3D freeze_processes();
-
-[Severity: High]
-Is it safe to invoke the global task freezer from within a device driver's
-allocation path?
-
-In tegra_vpr_allocate(), mutex_lock(&vpr->lock) is held, which places the
-current task in TASK_UNINTERRUPTIBLE. tegra_vpr_resize() then conditionally
-calls freeze_processes(). If another userspace task is concurrently waiting
-for vpr->lock, it cannot be frozen because it is in an uninterruptible sleep
-state, and the freeze operation will time out and fail.
-
-> +		if (err < 0) {
-> +			pr_err("%s(): failed to freeze processes: %d\n",
-> +			       __func__, err);
-> +			return err;
-> +		}
-> +	}
-> +
-> +	list_for_each_entry(node, &vpr->devices, node) {
-
-[Severity: High]
-Are the vpr->devices list modifications protected against concurrent
-traversal?
-
-tegra_vpr_device_init() and tegra_vpr_device_release() modify the list
-without holding vpr->lock, while this traversal relies on the lock. If a
-device binds or unbinds while a VPR resize is active, the list pointers
-could become corrupted during the traversal.
-
-> +		err =3D pm_generic_freeze(node->dev);
-> +		if (err < 0) {
-> +			pr_err("failed to runtime suspend %s: %d\n",
-> +			       dev_name(node->dev), err);
-> +			goto thaw;
-
-[Severity: High]
-Does this error path inadvertently return success?
-
-The status variable is initialized to 0, and if pm_generic_freeze() fails,
-the code jumps to the thaw label without updating status. The function then
-returns 0, falsely indicating that the hardware VPR was successfully resize=
-d,
-potentially compromising memory protections.
-
-> +		}
-> +	}
-[ ... ]
-> +static int tegra_vpr_find_free_region_in_range(struct tegra_vpr *vpr,
-> +					       unsigned int start_page,
-> +					       unsigned int end_page,
-> +					       unsigned int num_pages,
-> +					       unsigned int align)
-> +{
-> +	unsigned int pos, next =3D ALIGN(start_page, align);
-> +
-> +	/* Scan through aligned positions, trying to allocate at each one */
-> +	for (pos =3D next; pos + num_pages <=3D end_page; pos =3D next) {
-
-[Severity: Medium]
-Could this prevent the allocation of the final page of the VPR?
-
-tegra_vpr_find_free_region() passes vpr->num_pages - 1 as the end_page
-parameter. This loop condition treats end_page as an exclusive boundary.
-If attempting to allocate a buffer right at the end of the VPR, this
-boundary check will evaluate to false and fail the allocation.
-
-> +		next =3D find_next_bit(vpr->bitmap, pos + num_pages, pos);
-[ ... ]
-> +static struct tegra_vpr_buffer *
-> +tegra_vpr_buffer_allocate(struct tegra_vpr *vpr, size_t size)
-> +{
-> +	unsigned int num_pages =3D size >> PAGE_SHIFT;
-
-[Severity: High]
-Can the 64-bit size parameter overflow the 32-bit unsigned int num_pages?
-
-Shifting a massive size by PAGE_SHIFT could result in a value that truncates
-to 0 in num_pages. This would cause kmalloc_array(0) to return ZERO_SIZE_PT=
-R,
-which could lead to an immediate kernel panic when the buffer is later mapp=
-ed.
-
-> +	unsigned int order =3D get_order(size);
-> +	struct tegra_vpr_buffer *buffer;
-> +	unsigned long first, last;
-> +	int pageno, err;
-> +	pgoff_t i;
-[ ... ]
-> +	buffer->pages =3D kmalloc_array(buffer->num_pages,
-> +				      sizeof(*buffer->pages),
-> +				      GFP_KERNEL);
-
-[Severity: Medium]
-Will this order-10 contiguous allocation reliably succeed on a heavily
-utilized system?
-
-If the VPR is sized for multi-gigabyte video frames (e.g., a 2 GiB allocati=
-on
-requires 524,288 pages), kmalloc_array() will require multiple megabytes of
-contiguous physical memory. This is highly likely to fail due to fragmentat=
-ion.
-Would kvmalloc_array() be more appropriate here?
-
-> +	if (!buffer->pages) {
-> +		err =3D -ENOMEM;
-> +		goto free;
-> +	}
-[ ... ]
-> +static void tegra_vpr_buffer_release(struct tegra_vpr_buffer *buffer)
-> +{
-> +	struct tegra_vpr *vpr =3D buffer->vpr;
-> +	struct tegra_vpr_buffer *entry;
-> +	unsigned long first, last;
-> +	unsigned int i;
-[ ... ]
-> +	bitmap_release_region(vpr->bitmap, buffer->pageno, buffer->order);
-
-[Severity: High]
-Does this logic mistakenly clear adjacent active memory?
-
-In tegra_vpr_buffer_allocate(), the allocation sets exactly num_pages bits
-in vpr->bitmap. However, here it clears bits using buffer->order which is
-calculated as get_order(size). Since get_order() rounds up to the next power
-of two, non-power-of-two sizes will cause too many bits to be released
-(e.g., a 5-page allocation sets 5 bits but order 3 clears 8 bits). This cou=
-ld
-mark adjacent pages belonging to other active allocations as free, leading
-to reallocation and data corruption.
-
-> +	list_del(&buffer->list);
-> +	kfree(buffer->pages);
-> +	kfree(buffer);
-[ ... ]
-> +static int tegra_vpr_attach(struct dma_buf *buf,
-> +			    struct dma_buf_attachment *attachment)
-> +{
-> +	struct tegra_vpr_buffer *buffer =3D buf->priv;
-> +	struct tegra_vpr_attachment *attach;
-> +	int err;
-> +
-> +	attach =3D kzalloc_obj(*attach, GFP_KERNEL);
-> +	if (!attach)
-> +		return -ENOMEM;
-> +
-> +	err =3D sg_alloc_table_from_pages(&attach->sgt, buffer->pages,
-> +					buffer->num_pages, 0, buffer->size,
-> +					GFP_KERNEL);
-> +	if (err < 0)
-> +		goto free;
-> +
-> +	attach->dev =3D attach->dev;
-
-[Severity: Low]
-Is this field meant to be initialized from attachment->dev?
-
-As written, it assigns the zero-allocated field back to itself, leaving
-attach->dev uninitialized.
-
-> +	INIT_LIST_HEAD(&attach->list);
-> +	attachment->priv =3D attach;
-[ ... ]
-> +static void tegra_vpr_recycle(struct tegra_vpr *vpr)
-> +{
-> +	DECLARE_BITMAP(dirty, vpr->num_chunks);
-> +	unsigned int i;
-> +	int err;
-> +
-> +	bitmap_zero(dirty, vpr->num_chunks);
-> +
-> +	/*
-> +	 * Deactivate any unused chunks from the bottom...
-> +	 */
-> +	for (i =3D 0; i < vpr->num_chunks; i++) {
-> +		struct tegra_vpr_chunk *chunk =3D &vpr->chunks[i];
-> +
-> +		if (!chunk->active)
-> +			continue;
-> +
-> +		if (chunk->num_buffers > 0)
-> +			break;
-> +
-> +		err =3D tegra_vpr_chunk_deactivate(chunk);
-
-[Severity: High]
-Is the CMA memory released back to the general pool before the VPR hardware
-firewall is removed?
-
-tegra_vpr_chunk_deactivate() immediately calls cma_release(), making the
-memory available to other subsystems. The firewall isn't removed until
-tegra_vpr_resize() is called afterward. Any CPU access to the newly
-re-allocated memory before the firewall is disabled could cause a hardware
-bus error or CPU crash.
-
-> +		if (err < 0)
-> +			pr_err("failed to deactivate chunk #%u\n", i);
-> +		else {
-> +			clear_bit(i, vpr->active);
-> +			set_bit(i, dirty);
-> +		}
-> +	}
-> +
-> +	/*
-> +	 * ... and the top.
-> +	 */
-> +	for (i =3D 0; i < vpr->num_chunks; i++) {
-> +		unsigned int index =3D vpr->num_chunks - i - 1;
-> +		struct tegra_vpr_chunk *chunk =3D &vpr->chunks[index];
-> +
-> +		if (!chunk->active)
-> +			continue;
-> +
-> +		if (chunk->num_buffers > 0)
-> +			break;
-> +
-> +		err =3D tegra_vpr_chunk_deactivate(chunk);
-> +		if (err < 0)
-> +			pr_err("failed to deactivate chunk #%u\n", index);
-> +		else {
-> +			clear_bit(i, vpr->active);
-
-[Severity: High]
-Could this loop corrupt the chunk bitmap state?
-
-The top chunk loop iterates over the chunks from the top down using the
-calculated index (vpr->num_chunks - i - 1), but when modifying the bitmap,
-it clears bit i instead of the calculated index. This could deactivate the
-top chunk in hardware but mark the bottom chunk as inactive in the software
-bitmap.
-
-> +			set_bit(i, dirty);
-> +		}
-> +	}
-[ ... ]
-> +activate:
-> +	for_each_set_bit(i, dirty, vpr->num_chunks) {
-> +		err =3D tegra_vpr_chunk_activate(&vpr->chunks[i]);
-
-[Severity: Medium]
-Should this error recovery path also restore the bit in vpr->active?
-
-If tegra_vpr_resize() fails, the code jumps here and successfully calls
-tegra_vpr_chunk_activate(), but it doesn't set the bit in vpr->active.
-Since the bit was cleared in the deactivation loop, the software state
-will indicate the chunk is free, breaking internal tracking.
-
-> +		if (WARN_ON(err < 0))
-> +			pr_err("failed to activate chunk #%u: %d\n", i, err);
-> +	}
-> +}
-[ ... ]
-> +static struct dma_buf *tegra_vpr_allocate(struct dma_heap *heap,
-> +					  unsigned long len, u32 fd_flags,
-> +					  u64 heap_flags)
-> +{
-> +	struct tegra_vpr *vpr =3D dma_heap_get_drvdata(heap);
-> +	struct tegra_vpr_buffer *buffer, *entry;
-> +	size_t size =3D ALIGN(len, vpr->align);
-> +	DEFINE_DMA_BUF_EXPORT_INFO(export);
-> +	struct dma_buf *buf;
-> +
-> +	mutex_lock(&vpr->lock);
-
-[Severity: High]
-Could the uninitialized vpr->lock cause a system crash?
-
-The tegra_vpr structure is allocated using kzalloc_obj(), which
-zero-initializes the memory, but mutex_init(&vpr->lock) is never called.
-When this function attempts to acquire the lock, it interacts with an
-uninitialized mutex, which can trigger warnings or a kernel panic.
-
-> +
-> +	buffer =3D tegra_vpr_buffer_allocate(vpr, size);
-[ ... ]
-> +	buf =3D dma_buf_export(&export);
-> +	if (IS_ERR(buf))
-> +		tegra_vpr_buffer_release(buffer);
-
-[Severity: Medium]
-Should the active VPR chunks be deactivated if dma_buf_export() fails?
-
-tegra_vpr_buffer_release() decrements the chunk use counts but does not
-deactivate the chunks. A missing call to tegra_vpr_recycle() could mean
-chunks successfully activated during this allocation attempt remain pinned
-in CMA indefinitely.
-
-> +
-> +	mutex_unlock(&vpr->lock);
-> +	return buf;
-> +}
-> +
-> +static void tegra_vpr_debugfs_show_buffers(struct tegra_vpr *vpr,
-> +					   struct seq_file *s)
-> +{
-> +	struct tegra_vpr_buffer *buffer;
-> +	char buf[16];
-> +
-> +	list_for_each_entry(buffer, &vpr->buffers, list) {
-
-[Severity: Medium]
-Is it safe to traverse the shared vpr->buffers list without holding vpr->lo=
-ck?
-
-Concurrent buffer allocations or releases could modify the list pointers
-mid-traversal, potentially causing a kernel panic when reading the debugfs
-node.
-
-> +		string_get_size(buffer->size, 1, STRING_UNITS_2, buf,
-> +				sizeof(buf));
-> +		seq_printf(s, "  %pap-%pap (%s)\n", &buffer->start,
-> +			   &buffer->limit, buf);
-> +
-> +	}
-> +}
-[ ... ]
-> +static int tegra_vpr_setup_chunks(struct tegra_vpr *vpr, const char *nam=
-e)
-> +{
-> +	phys_addr_t start, limit;
-> +	unsigned int order, i;
-> +	size_t max_size;
-> +	int err;
-> +
-> +	/* This seems a reasonable value, so hard-code this for now. */
-> +	vpr->num_chunks =3D 4;
-> +
-> +	vpr->chunks =3D kcalloc(vpr->num_chunks, sizeof(*vpr->chunks),
-> +			      GFP_KERNEL);
-> +	if (!vpr->chunks)
-> +		return -ENOMEM;
-> +
-> +	max_size =3D PAGE_SIZE << (get_order(vpr->size) - ilog2(vpr->num_chunks=
-));
-
-[Severity: Medium]
-Could this bit shift result in a negative shift amount?
-
-If the device tree specifies a small VPR size, get_order(vpr->size) might
-be 0, and subtracting ilog2(vpr->num_chunks) (e.g., 2) would result in -2.
-Shifting PAGE_SIZE by a negative amount causes undefined behavior.
-
-> +	order =3D get_order(vpr->align);
-[ ... ]
-> +static int __init tegra_vpr_add_heap(struct reserved_mem *rmem,
-> +				     struct device_node *np)
-> +{
-> +	struct dma_heap_export_info info =3D {};
-> +	unsigned long first, last;
-> +	struct dma_heap *heap;
-> +	struct tegra_vpr *vpr;
-> +	int err;
-> +
-> +	vpr =3D kzalloc_obj(*vpr, GFP_KERNEL);
-> +	if (!vpr)
-> +		return -ENOMEM;
-> +
-> +	INIT_LIST_HEAD(&vpr->buffers);
-> +	INIT_LIST_HEAD(&vpr->devices);
-> +	vpr->resizable =3D !of_property_read_bool(np, "no-map");
-> +	vpr->use_freezer =3D true;
-> +	vpr->dev_node =3D np;
-
-[Severity: Medium]
-Does this code leak the device node reference?
-
-When storing the child node pointer in vpr->dev_node, should it be acquiring
-a reference with of_node_get()? The scoped loop in tegra_vpr_init() will dr=
-op
-its reference when it finishes, which could leave a dangling pointer here.
-
-> +	vpr->align =3D PAGE_SIZE;
-> +	vpr->base =3D rmem->base;
-> +	vpr->size =3D rmem->size;
-> +
-> +	/* common setup */
-> +	vpr->start_page =3D phys_to_page(vpr->base);
-
-[Severity: High]
-Can phys_to_page() safely be used if the VPR device tree node specifies no-=
-map?
-
-If the memory is removed from the direct mapping, there is no valid struct
-page array associated with it. Calling phys_to_page() here and later
-dereferencing these page pointers in tegra_vpr_attach() via
-sg_alloc_table_from_pages() could cause a system crash.
-
-> +	vpr->num_pages =3D vpr->size >> PAGE_SHIFT;
-[ ... ]
-> +static int __init tegra_vpr_init(void)
-> +{
-> +	const char *compatible =3D "nvidia,tegra-video-protection-region";
-> +	struct device_node *parent;
-> +	struct reserved_mem *rmem;
-> +	int err;
-> +
-> +	parent =3D of_find_node_by_path("/reserved-memory");
-
-[Severity: Medium]
-Does this code leak the device node reference?
-
-of_find_node_by_path() increments the reference count for the
-/reserved-memory node, but there doesn't seem to be a matching of_node_put()
-call.
-
-> +	if (!parent)
-> +		return 0;
-[ ... ]
-> +static int tegra_vpr_device_init(struct reserved_mem *rmem, struct devic=
-e *dev)
-> +{
-> +	struct dma_heap *heap =3D rmem->priv;
-> +	struct tegra_vpr *vpr =3D dma_heap_get_drvdata(heap);
-
-[Severity: High]
-Could a hardware device probing before the module initialization runs cause
-a NULL pointer dereference?
-
-tegra_vpr_rmem_ops is registered early via RESERVEDMEM_OF_DECLARE. If a
-device probes before tegra_vpr_init() executes, tegra_vpr_device_init() will
-be called while rmem->priv is still NULL, causing dma_heap_get_drvdata() to
-dereference a NULL pointer.
-
-> +	struct tegra_vpr_device *node;
-> +
-> +	if (!dev->driver->pm->freeze || !dev->driver->pm->thaw)
-
-[Severity: High]
-Can this unconditionally dereference a NULL pointer?
-
-If the device's driver does not provide PM operations (dev->driver->pm is
-NULL), this check will cause a kernel panic during device probe.
-
-> +		return -EINVAL;
-> +
-> +	node =3D kzalloc_obj(*node, GFP_KERNEL);
-> +	if (!node)
-> +		return -ENOMEM;
-> +
-> +	INIT_LIST_HEAD(&node->node);
-> +	node->dev =3D dev;
-> +
-> +	list_add_tail(&node->node, &vpr->devices);
-> +
-> +	return 0;
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-tegra-vpr-=
-v3-0-d80f7b871bb4@nvidia.com?part=3D8
 
