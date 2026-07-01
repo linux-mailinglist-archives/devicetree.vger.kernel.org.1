@@ -1,274 +1,255 @@
-Return-Path: <devicetree+bounces-318599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318595-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mBdbKHsTRWol6goAu9opvQ
-	(envelope-from <devicetree+bounces-318599-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:17:47 +0200
+	id ydnwAoYSRWrm6QoAu9opvQ
+	(envelope-from <devicetree+bounces-318595-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:13:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93C006EDF80
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:17:46 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6411B6EDE9F
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:13:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=BR4aiH8B;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318599-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318599-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=MtSdEaD6;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=ZEPac8hB;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318595-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318595-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 78A6F30AF90B
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:58:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4E97F30E2911
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:57:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D373A4963AA;
-	Wed,  1 Jul 2026 12:55:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1283494A02;
+	Wed,  1 Jul 2026 12:55:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60388495519
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AE2248B39D
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 12:55:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782910528; cv=none; b=o08NW7oSRkvyDuHs7c5ESC+lLY4sRXsXgIB1Yx6wJRl0o9w4pnmSqmOOTGK5AIxU7Qd/rvezlLnWFk2O6BMUOxZ5+2lTTvY5sEByk4l1pMQSEFBORX/BO0eJ6Efii4xI7honJ/OQMx2dX6TuKvXGJlAUjrxYw1Ip7BZBFvwFOk0=
+	t=1782910502; cv=none; b=XCWRM+A5V0xo0fKqOstV31HRgN+dy8WwaYnDaSJhEeddFJdaXYwQryj78bCCm5Xn8PWT1pnfCOpvXWg2bkH9RhNlMVo03IfejOKTnUkKI3BHnltpRa2Q/0c+Ra5eW41k/8dtG+dDxO6dZ+sVAzjFAkBHEIkE/m3fjy6niVI6MHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782910528; c=relaxed/simple;
-	bh=JS2yG9pDjGwh3KA79+kpc5rS+oVEF7mlXGQkOFvbxFc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tBUGiTAjgsQm+yvRIr1THJeLofEEtk2SutumChFBHjVCqqAKeVi41NQHNxHnKnRfMvx3G/KnREDgZHlgXjBFoYUrWuE3716ZFK0kSYegVcVMQ/gMrs6AwkdK9CkfU/SoQl9u7ZGcND3oYD6/6SqB2UCO475f/CMUYe5uBAeE5aM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BR4aiH8B; arc=none smtp.client-ip=209.85.210.169
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-84783bce476so508577b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 05:55:27 -0700 (PDT)
+	s=arc-20240116; t=1782910502; c=relaxed/simple;
+	bh=74p5OdZcEEGetMQvAyC2B1sZkPILGKwBYM/hhxiO4nE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ra3+EEl7t5xFUaWrK2g5m7OA+jbFLBuooJusEW+F0dy0pa8gyXM1nIvlz8fhDschvgJppYF3J2muHBV/urbaIVdh1FBGXh2U6goHLnEtzb1qv+unpGq2/RthToY01lsPraIfC85IX8quqIGtPYlTCN49uIIUZ7DGflA8i76G2Sk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MtSdEaD6; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZEPac8hB; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 661A8O7Z761381
+	for <devicetree@vger.kernel.org>; Wed, 1 Jul 2026 12:55:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	nhlWz8cCtqL5ox7tNsxAOt2t1RqIW/0rkCL7ft+bkww=; b=MtSdEaD6slx+sUQx
+	jGrKqq9oOpitSm3+7YllihpIWFsbms/IQtzHZpq0YzLf9l+yfGPclBHNT5MsT1XL
+	lN+7julGIpxpbGGQo7NWrz4wsu59XWiamJsG7+6wupLbQNJTUlXE1xxvo8wOo/Sv
+	DvxwW5ocUcHqJmAXGEXdc17uisw03Pg9MNmhZ5K7NpE0peghZkmrFVzPCUiVqUxx
+	kh3tvH6bJ+pLCp4X3ldt5lRaHJxG7TzIT3aGhjmQ42+ooT6VR2TuJty2cYS6MkUu
+	LBkUTNzNLGLq7avLyaVmFnyzwD0cEd22Tix9/5Vv4BxXzjM7AlTNwxsqpLtfdF4V
+	cWeD7w==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f50sd0q13-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 12:55:00 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-84240683a82so647895b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 05:55:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782910527; x=1783515327; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0UYpoyK5fl+7ujxdLva1zphzrbPXeYkLwxH26RQow7w=;
-        b=BR4aiH8BOQQC2xNpBAVnQ9us6xtKwlsSiuxwOCRxI5J21LC7jQduRS/v10pTc3eVdf
-         Javdycerofv65LDjN4/bpn1DXW5x5fuWGcIfghurFf2XyVf59Vfjq2D7sWZ19EygHGHr
-         VTfLIOTWTgfKf6nNduq4U6Knkk7XhSYVK1z+Pv6Rx0DQ649+Y0M6HonulyAxKzsUcwo1
-         BPjDW4/r3EgIOv71Q6DZUu7g6gePUA8rn7tLbzfvOjGUJbjKq+TYK2fsYiJPuFf3R5Pe
-         CaBuD7H6xtilHhpMrnl1q9iSU1W34MjLDOGP3QBMoK8lhFu8JD/PNfuW9fBZbaen5ufq
-         ezzQ==
+        d=oss.qualcomm.com; s=google; t=1782910500; x=1783515300; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nhlWz8cCtqL5ox7tNsxAOt2t1RqIW/0rkCL7ft+bkww=;
+        b=ZEPac8hB71OdogfNBzw6EwZwbHja3MRCYsWzaBcL3sJxc58XwqcdAOmRG/e+bZD6zF
+         9oUwFogrcMBGJeBjpDVK/fzguHhRfuzE9wuxTm2vRKrjkBQSTPTDwG1Cp5oBbN/GVbKH
+         JHpQWaicjTjahXMcUUBoMHMIY18IeJKGfXoey+0jTjN5fzcvUXePyuzgUaLCocJoqq3T
+         /6nlgMF193pnaFsHmS32186FYnWmtDcy2VSrbvveuo9L2+vywpZss+84+aFqRltawPqz
+         FAru0PZNp7JMuwBNxGxND6B38KtGKWRdO0Vx+nElHuz4BDo4LF/85br0+K35ps7k/Eex
+         6OzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782910527; x=1783515327;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0UYpoyK5fl+7ujxdLva1zphzrbPXeYkLwxH26RQow7w=;
-        b=VuQQzhzLW5RaIVwiFIKiRDpwbf95inMWKvHZ+ia3gW/y+hauJNNkTN49Mjd7QIVk0Z
-         M3gZPDgcOQYEcTpIiOjLieM7znubHI4DEzb8B8rcLI+nif+XWtSy0dEy6UXJHCNXzxOs
-         Rb+kQIr0Ogje3Q6QyyBdVRkp/uhLs+KL35fC70s+2S49bhFkEOYWpjlfgyZ7Ldt4CXTW
-         eAvjdLJJmhRq9WfzBpf8QKgwW8L2BeqFuDqQoBeaCQFjiLV14NKqx4gLoA/wp0ZzRE7z
-         0lh6P0MPjJqOGyb6g3coFJh6hOvejgl7t9Ti1WaOGD3cxrOtmKMR7KorTQV6VzQWckt/
-         vpaw==
-X-Forwarded-Encrypted: i=1; AHgh+Rq/PcMvi39Cxw8rrTLRg/c2yfpWYkCbeljSGDFju9nheOs0LPV2xXIfTHUX2RqoLZwUU1borxsjxrLN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQqXF5WaYar61s49X0/VMXD/xou8iwFCB8E5mmtaO27DE8NfuX
-	WQPgFLzQVZmy6nsGFJiGxxNR93nYoq+fIN/CvkelRhIwE089RLwYeO3B
-X-Gm-Gg: AfdE7clRgh2rGcqbH/szUFZAkI+8UnCt4f2mE3N2IkZlpLEsnNt4d5/X5KHsUGmW1GT
-	DJzG4RALUE15Mo7wKlAYM7LGtds4VdL3ClB/UxU7g569/nZKYYK+ZESbh+369oZUmr1s5iL85m0
-	DwDSi2qOLA9XPlP9Oo3bAbhQszPZuC73C4IiKudQloDD7O5lxsJEkZLcjd5fWvJTjxkjpecjB6m
-	CXeE3/qjQrVsDe/XVYfHgCHQ5MlFGTzvhwG+mEFVeRkBYGxJ9Uqqi+v/A33opXcpQCjBHRpFXZ1
-	7VhMifWXWqncB8jwTDDlXLVFS8BIfs8dE1bjAOvbLVH6EJZ+HokmZRA/gEl5IqOlFK1gFmh5+Vy
-	zTMKhHDpDJScLnnLo6iPTxaBzkhGEo2s7NRwk3QVXwckiPATLny9wh6uKcyY8hf3DicGC3wzPGa
-	MaNSKzw1OuZtYB1jwA557o
-X-Received: by 2002:a05:6a00:8d0:b0:847:83bd:6676 with SMTP id d2e1a72fcca58-847c0797314mr1543138b3a.17.1782910526573;
-        Wed, 01 Jul 2026 05:55:26 -0700 (PDT)
-Received: from [127.0.1.1] ([120.244.9.45])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-847a03778basm3999403b3a.49.2026.07.01.05.55.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jul 2026 05:55:26 -0700 (PDT)
-From: Guodong Xu <docular.xu@gmail.com>
-Date: Wed, 01 Jul 2026 08:52:30 -0400
-Subject: [PATCH v5 17/17] riscv: hwprobe: Introduce rva23u64 base behavior
+        d=1e100.net; s=20251104; t=1782910500; x=1783515300;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nhlWz8cCtqL5ox7tNsxAOt2t1RqIW/0rkCL7ft+bkww=;
+        b=XvQFtYKiCB6RQqYjPDDz6UAGdGDY1iosoH/AUBHoKD2kvIgqKzdCLp/66qoB39edEQ
+         r0S9zpFmhleKpZI6Ln+KCY2HPlZTSp65Ps6Y5EE08W8TkHFtktgGSkn0cKsvcXT1Kv4A
+         0aSkrILRsY858nDVLyO5PepewcrODz/YEw2tMpbjHb+4wgCmHJCpEFUzydrteIDgq7o6
+         DSZWWjr2cL9BZNnAbHHOyPDKRN/sUyZTm2oMHXteahwyyrTvnKdjrf1VCJaYoQrcbVH/
+         H8NK13lSxpUebxbjth4UfmWaZGEGUESGH/KAEGg8TVtoiyF8RkCuJLez0VgrGKJVcmC+
+         liQw==
+X-Forwarded-Encrypted: i=1; AHgh+RoppnlzzBTzGFVUYKp0GHEfmyZ+twqJJ3oEZbDq4WTqR5b922DzbY9mRnkJCZzYVYdEJgX7NgChryEU@vger.kernel.org
+X-Gm-Message-State: AOJu0YyR0T+mDVnWglH1igbaiqjxKh9x9TXovKbF1a9tYREAqxzRAMY4
+	Ue2vjX/51BL6OX6dwrP4c1AaxQ+pVNkx0FXnr5XWN5cHnj0rtfQaFLvnvGQ66GDiW9bTycJV0mo
+	gkyz3nWZ4zanDmR8jE2TntxfDSrZ1bnLZHcrjrGxBKbZ8vbq8dbDxrENkwsJnzFR6
+X-Gm-Gg: AfdE7cm1W7nM/EZwkF9+n3iT+k8hYQyWOJZgm4O1J5ap65J+uf1rDV7Yw3ESdCQWGzb
+	6Dh30bWPcHMgXgSOS+odJ3FFEe1gE38xhxmdtIawMRqH9uqTsW1lhj7X+7CEs5C/yTk3TcdszVg
+	FRjpg2ia3e6sRpmpVNaA/l8YJSPzfKFJy+lPLQzHgnoqwrYwQnYRUiA9nhuUEPs2fTCgu34QmIY
+	rBApAjoq63wTDEJHIlTDjJMpcbpC1vMjcaDekCv8qvLMxE4BAP8Y5E9gX42XelKtrnLo0Wetylr
+	Bc3cjpGgwkcCz6mottQW7r3ZFFi40D+xhfU5pWWD5k3VQ95c5j0t4bmWBrQY5xZNuv019x6t8sx
+	C/6SwsZk9eaDzAs4DWkKmVPoyZnYxxmtiXmk2hxiP77X+aR4720lxEeL8tdKcUQeZDWy7UEWLwH
+	c=
+X-Received: by 2002:aa7:9315:0:b0:847:888f:9b0f with SMTP id d2e1a72fcca58-847bf944a63mr1320494b3a.15.1782910499762;
+        Wed, 01 Jul 2026 05:54:59 -0700 (PDT)
+X-Received: by 2002:aa7:9315:0:b0:847:888f:9b0f with SMTP id d2e1a72fcca58-847bf944a63mr1320474b3a.15.1782910499241;
+        Wed, 01 Jul 2026 05:54:59 -0700 (PDT)
+Received: from [10.133.33.29] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-847a02cdfb7sm4008598b3a.39.2026.07.01.05.54.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Jul 2026 05:54:58 -0700 (PDT)
+Message-ID: <d4669b9e-bf07-42dd-95c5-792e358c505e@oss.qualcomm.com>
+Date: Wed, 1 Jul 2026 20:54:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/5] dt-bindings: arm: coresight-tnoc: Add standalone
+ qcom,coresight-agtnoc compatible
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>,
+        Leo Yan <leo.yan@arm.com>,
+        Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20260701-fix-tracenoc-probe-issue-v4-0-aefab449a470@oss.qualcomm.com>
+ <20260701-fix-tracenoc-probe-issue-v4-1-aefab449a470@oss.qualcomm.com>
+ <20260701-stirring-piculet-of-vastness-a361e5@quoll>
+ <4117c406-0d75-4eb1-842e-1d346b7fbf99@oss.qualcomm.com>
+ <9aa63427-ba41-436d-ab19-a533082d336a@kernel.org>
+ <62ac6887-1551-490b-b42b-2661d7152734@oss.qualcomm.com>
+ <7838f7c3-0f38-4e93-a9c1-88f387e78ca9@oss.qualcomm.com>
+Content-Language: en-US
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <7838f7c3-0f38-4e93-a9c1-88f387e78ca9@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260701-rva23u64-hwprobe-v2-v5-17-2c61f94a695a@gmail.com>
-References: <20260701-rva23u64-hwprobe-v2-v5-0-2c61f94a695a@gmail.com>
-In-Reply-To: <20260701-rva23u64-hwprobe-v2-v5-0-2c61f94a695a@gmail.com>
-To: Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Zong Li <zong.li@sifive.com>, 
- Deepak Gupta <debug@rivosinc.com>, Anup Patel <anup@brainfault.org>, 
- Atish Patra <atish.patra@linux.dev>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
- Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
- Chen Wang <chen.wang@linux.dev>
-Cc: linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
- linux-kernel@vger.kernel.org, kvm@vger.kernel.org, 
- kvm-riscv@lists.infradead.org, Paul Walmsley <paul.walmsley@sifive.com>, 
- Conor Dooley <conor@kernel.org>, Jesse Taube <jtaubepe@redhat.com>, 
- Charlie Jenkins <thecharlesjenkins@gmail.com>, 
- Andrew Jones <andrew.jones@oss.qualcomm.com>, devicetree@vger.kernel.org, 
- spacemit@lists.linux.dev, sophgo@lists.linux.dev, 
- linux-kselftest@vger.kernel.org, Guodong Xu <docular.xu@gmail.com>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4859; i=docular.xu@gmail.com;
- h=from:subject:message-id; bh=JS2yG9pDjGwh3KA79+kpc5rS+oVEF7mlXGQkOFvbxFc=;
- b=owGbwMvMwCXWtEl1Z3CGpCDjabUkhixX3vaDBvML16z7O4dpxQF11qYlJadmHrDpqhEv/rXBV
- 9tr7sX4jlIWBjEuBlkxRZbDR1uyt77yifZ9zvkDZg4rE8gQBi5OAZiI4i6G//W2Nn4L07wviPnP
- LdUK7wr5wKn66Jh0oNmqaTU/WmetLGNkuBHhnqF5wDSfY9vegt8vfd7POrRq0kY2Y3mJhecqlh3
- h4gEA
-X-Developer-Key: i=docular.xu@gmail.com; a=openpgp;
- fpr=90B1DC3DF0BD10FD1227BD6344F254AF42F143EE
+X-Authority-Analysis: v=2.4 cv=Z+3c2nRA c=1 sm=1 tr=0 ts=6a450e24 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
+ a=i5S6TmXcA3_pwKZvcRIA:9 a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-ORIG-GUID: 6KITBm4mFWA6X_VOjiRGu7tWwJiV5-x4
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAxMDEzNSBTYWx0ZWRfXxa5RwiedcREp
+ OEF293RM7lmZvSaTtncGcNuCNWdmF2IK/yMnCbmtgBL1CkDjmFGQtPRzOBASmMpb9BhkbMHUYfD
+ s1KIpXopZOnXNO78knC37K3Qjt0t6uk=
+X-Proofpoint-GUID: 6KITBm4mFWA6X_VOjiRGu7tWwJiV5-x4
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAxMDEzNSBTYWx0ZWRfX88Gv9BXbqGD7
+ C/er9g9IsJtOWjMFf1HQUXxQVdfvf1ddEdB+QRlMe32fRAR2KYQiScmEA2lQ3AQfsRJdMcpcDqp
+ Bie3q9sN9b75Cz9DVm6CCwzYw8IRE63J4BO3/JUxFX8+uX4Er71gcxXAwteY2W+bVoP2SnJ0WzV
+ YS/FiFXSDWgx7WKILQ48eXGMgv0H4ZmmYtn/fG4tu1TnwPE5EKQum/EI9rLzPgWknYzZKOdeUPy
+ yFeomyj/KFwETq7+xcjp4N5Va7j+Psa/Bvp6AkBms1I/AYZ05+sigU55EuanN1x7DIYqTdTbsBy
+ CWf2SlWHm12qxHwRScO3k3TSThn5xzy6oc6paaeN63V8YnBPqmva2PIfQMjrA3kALHaDLV9Ptpm
+ /aH5GWIJHIk5LN/G7R9Y8wa/giEVyxjE5UHuFRtXRBEHMdvCukGQrBanX+B4v8ZRHrVzjh9DOIX
+ Pt2stAaR6TLT0kHj1/A==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-01_03,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 suspectscore=0 adultscore=0 priorityscore=1501 spamscore=0
+ phishscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607010135
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318599-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318595-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:zong.li@sifive.com,m:debug@rivosinc.com,m:anup@brainfault.org,m:atish.patra@linux.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:unicorn_wang@outlook.com,m:inochiama@gmail.com,m:chen.wang@linux.dev,m:linux-doc@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kvm@vger.kernel.org,m:kvm-riscv@lists.infradead.org,m:paul.walmsley@sifive.com,m:conor@kernel.org,m:jtaubepe@redhat.com,m:thecharlesjenkins@gmail.com,m:andrew.jones@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:spacemit@lists.linux.dev,m:sophgo@lists.linux.dev,m:linux-kselftest@vger.kernel.org,m:docular.xu@gmail.com,m:krzk@kernel.org,m:docularxu@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[docularxu@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,sifive.com,rivosinc.com,brainfault.org,linux.dev,outlook.com,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[32];
-	FORWARDED(0.00)[lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
+	FORGED_SENDER(0.00)[jie.gan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tingwei.zhang@oss.qualcomm.com,m:jingyi.wang@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:suzuki.poulose@arm.com,m:mike.leach@arm.com,m:james.clark@linaro.org,m:leo.yan@arm.com,m:yuanfang.zhang@oss.qualcomm.com,m:abelvesa@kernel.org,m:alexander.shishkin@linux.intel.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:coresight@lists.linaro.org,m:linux-arm-kernel@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,kernel.org,redhat.com,gmail.com,oss.qualcomm.com,lists.linux.dev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[docularxu@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jie.gan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 93C006EDF80
+X-Rspamd-Queue-Id: 6411B6EDE9F
 
-Provide a hwprobe base-behavior bit so userspace can check RVA23U64
-support in one call.  Without it, a consumer needs five hwprobe
-calls and four prctl calls, which is error-prone to require of every
-caller.  Most software treats RVA23U64 as a new base anyway, so
-expose it directly.
 
-Signed-off-by: Andrew Jones <andrew.jones@oss.qualcomm.com>
-Signed-off-by: Guodong Xu <docular.xu@gmail.com>
----
-v5: No change.
-v4: No change.
-v3: No change.
-v2:
-- Detect RVA23U64 by reading from the cached hart_isa[].isa_bases
-  bitmap populated by riscv_init_isa_bases() at init time, sharing
-  one source of truth with /proc/cpuinfo.
----
- Documentation/arch/riscv/hwprobe.rst               |  8 ++++++++
- arch/riscv/include/uapi/asm/hwprobe.h              |  3 ++-
- arch/riscv/kernel/sys_hwprobe.c                    | 23 +++++++++++++++-------
- tools/testing/selftests/riscv/hwprobe/which-cpus.c |  2 +-
- 4 files changed, 27 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
-index 32a14331eb9de..dc70470093b1b 100644
---- a/Documentation/arch/riscv/hwprobe.rst
-+++ b/Documentation/arch/riscv/hwprobe.rst
-@@ -67,6 +67,14 @@ The following keys are defined:
-       programs (it may still be executed in userspace via a
-       kernel-controlled mechanism such as the vDSO).
- 
-+  * :c:macro:`RISCV_HWPROBE_BASE_BEHAVIOR_RVA23U64`: Support for all mandatory
-+    extensions of RVA23U64, as defined in the RISC-V Profiles specification
-+    starting from commit 0273f3c921b6 ("rva23/rvb23 ratified").
-+
-+    The RVA23U64 base is based upon the IMA base and therefore IMA extension
-+    keys (e.g. :c:macro:`RISCV_HWPROBE_KEY_IMA_EXT_0`:) may be used to probe
-+    optional extensions.
-+
- * :c:macro:`RISCV_HWPROBE_KEY_IMA_EXT_0`: A bitmask containing extensions
-   that are compatible with the :c:macro:`RISCV_HWPROBE_BASE_BEHAVIOR_IMA`:
-   base system behavior.
-diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
-index 36ec8ab470423..50733d3db7633 100644
---- a/arch/riscv/include/uapi/asm/hwprobe.h
-+++ b/arch/riscv/include/uapi/asm/hwprobe.h
-@@ -21,7 +21,8 @@ struct riscv_hwprobe {
- #define RISCV_HWPROBE_KEY_MARCHID	1
- #define RISCV_HWPROBE_KEY_MIMPID	2
- #define RISCV_HWPROBE_KEY_BASE_BEHAVIOR	3
--#define		RISCV_HWPROBE_BASE_BEHAVIOR_IMA	(1 << 0)
-+#define		RISCV_HWPROBE_BASE_BEHAVIOR_IMA		(1 << 0)
-+#define		RISCV_HWPROBE_BASE_BEHAVIOR_RVA23U64	(1 << 1)
- #define RISCV_HWPROBE_KEY_IMA_EXT_0	4
- #define		RISCV_HWPROBE_IMA_FD		(1 << 0)
- #define		RISCV_HWPROBE_IMA_C		(1 << 1)
-diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
-index 3e80e5551ae0d..3f66f2e99d41a 100644
---- a/arch/riscv/kernel/sys_hwprobe.c
-+++ b/arch/riscv/kernel/sys_hwprobe.c
-@@ -226,6 +226,17 @@ static bool hwprobe_ext0_has(const struct cpumask *cpus, u64 ext)
- 	return (pair.value & ext);
- }
- 
-+static bool hwprobe_has_isa_base(const struct cpumask *cpus, unsigned int base)
-+{
-+	int cpu;
-+
-+	for_each_cpu(cpu, cpus) {
-+		if (!test_bit(base, hart_isa[cpu].isa_bases))
-+			return false;
-+	}
-+	return true;
-+}
-+
- #if defined(CONFIG_RISCV_PROBE_UNALIGNED_ACCESS)
- static u64 hwprobe_misaligned(const struct cpumask *cpus)
- {
-@@ -308,14 +319,12 @@ static void hwprobe_one_pair(struct riscv_hwprobe *pair,
- 	case RISCV_HWPROBE_KEY_MIMPID:
- 		hwprobe_arch_id(pair, cpus);
- 		break;
--	/*
--	 * The kernel already assumes that the base single-letter ISA
--	 * extensions are supported on all harts, and only supports the
--	 * IMA base, so just cheat a bit here and tell that to
--	 * userspace.
--	 */
- 	case RISCV_HWPROBE_KEY_BASE_BEHAVIOR:
--		pair->value = RISCV_HWPROBE_BASE_BEHAVIOR_IMA;
-+		pair->value = 0;
-+		if (hwprobe_has_isa_base(cpus, RISCV_ISA_BASE_IMA))
-+			pair->value |= RISCV_HWPROBE_BASE_BEHAVIOR_IMA;
-+		if (hwprobe_has_isa_base(cpus, RISCV_ISA_BASE_RVA23U64))
-+			pair->value |= RISCV_HWPROBE_BASE_BEHAVIOR_RVA23U64;
- 		break;
- 
- 	case RISCV_HWPROBE_KEY_IMA_EXT_0:
-diff --git a/tools/testing/selftests/riscv/hwprobe/which-cpus.c b/tools/testing/selftests/riscv/hwprobe/which-cpus.c
-index 587feb198c049..f8c797b1d0fd9 100644
---- a/tools/testing/selftests/riscv/hwprobe/which-cpus.c
-+++ b/tools/testing/selftests/riscv/hwprobe/which-cpus.c
-@@ -105,7 +105,7 @@ int main(int argc, char **argv)
- 	pairs[0] = (struct riscv_hwprobe){ .key = RISCV_HWPROBE_KEY_BASE_BEHAVIOR, };
- 	rc = riscv_hwprobe(pairs, 1, 0, NULL, 0);
- 	assert(rc == 0 && pairs[0].key == RISCV_HWPROBE_KEY_BASE_BEHAVIOR &&
--	       pairs[0].value == RISCV_HWPROBE_BASE_BEHAVIOR_IMA);
-+	       (pairs[0].value & RISCV_HWPROBE_BASE_BEHAVIOR_IMA));
- 
- 	pairs[0] = (struct riscv_hwprobe){ .key = RISCV_HWPROBE_KEY_IMA_EXT_0, };
- 	rc = riscv_hwprobe(pairs, 1, 0, NULL, 0);
+On 7/1/2026 7:02 PM, Konrad Dybcio wrote:
+> On 7/1/26 9:31 AM, Jie Gan wrote:
+>>
+>>
+>> On 7/1/2026 3:26 PM, Krzysztof Kozlowski wrote:
+>>> On 01/07/2026 09:16, Jie Gan wrote:
+>>>>
+>>>>
+>>>> On 7/1/2026 2:57 PM, Krzysztof Kozlowski wrote:
+>>>>> On Wed, Jul 01, 2026 at 09:53:41AM +0800, Jie Gan wrote:
+>>>>>> The TNOC compatible previously only allowed the two-string AMBA form
+>>>>>> "qcom,coresight-tnoc", "arm,primecell", which forces the device onto the
+>>>>>> AMBA bus.
+>>>>>>
+>>>>>> Convert the compatible to a oneOf and add a standalone
+>>>>>> "qcom,coresight-agtnoc" compatible alongside the existing AMBA form. The
+>>>>>> standalone string carries no "arm,primecell" entry, so the device is
+>>>>>> created on the platform bus instead of the AMBA bus.
+> 
+> [...]
+> 
+>>>> AMBA primecell identification. The purpose of the new compatible is to
+>>>> clearly distinguish this platform-specific case from the standard
+>>>> AMBA-based implementation. Or shall I re-use the existing compatible
+>>>> "qcom,coresight-tnoc" as platform standalone compatible?
+>>>>
+>>>> We already have a similar pattern for the interconnect TraceNoC device,
+>>>> which uses the platform-specific compatible string qcom,coresight-itnoc.
+>>> I do not see there a fake, duplicated compatible for the same device.
+>>> Can you elaborate how is that relevant?
+>>
+>> Will fix it by removing AMBA related description.
+>>
+>> Shall I update the clock name from apb_pclk to apb as a platform device?
+> 
+> Why?
 
--- 
-2.43.0
+For the previous platform devices, we got comments to add the clock-name 
+with "apb" instead of "apb_pclk".
+
+Please check the qcom,coresight-ctcu.yaml and qcom,coresight-itnoc.yaml
+
+Thanks,
+Jie
+
+> 
+> Konrad
 
 
