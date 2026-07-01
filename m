@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-318649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318652-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0pBJLNgWRWon6woAu9opvQ
-	(envelope-from <devicetree+bounces-318649-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:32:08 +0200
+	id QVaNMrAcRWrS7AoAu9opvQ
+	(envelope-from <devicetree+bounces-318652-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:57:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40BA26EE23C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:32:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AD226EE6DC
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:57:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=lIgs1wBi;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318649-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318649-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=kQoEZJgf;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318652-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318652-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8D6CC3031902
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 13:25:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8DCFC3285919
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 13:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89941481254;
-	Wed,  1 Jul 2026 13:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3934035E1CC;
+	Wed,  1 Jul 2026 13:25:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi2-f3.google.com (mail-oi2-f3.google.com [74.125.231.195])
+Received: from mail-oo2-f5.google.com (mail-oo2-f5.google.com [74.125.231.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40152481253
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 13:25:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 743DE481FBC
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 13:25:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782912341; cv=none; b=dBVQ5AlYFrC5qlgd92wTq9nQ6+x7JlVwT4MTXWzUnDcYMu4NslWhVXQEzsJjb/PE16P2Vwy771S6a9SqE6JFjPxgF6rcyUjR2k62s939vLlKwj64dyMuYO38y5Lqp7siFMmKj0qIF+WAIuRJerWnkWd0QTTzn9JFQcHXpgb6s4M=
+	t=1782912356; cv=none; b=es4nFa/mXC1voP/o/YCD4FVeTs84tEhOucO3mcB0KkW9Nf3aTjAVtdDAg6q12piSKKEmr1eKKmIcMmq/D9wbmA1PmYCccPABhbkvaGSWiLwWr3FVM5sM2USRfQBwGc5KYZhby/7cTLcCNphNR/HDUbQdVY1oBvy54m0IIZb21Qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782912341; c=relaxed/simple;
-	bh=yNoLbb0TeKretzaEu3X7NPlkPt7hTaBNJoeGzZ/1W6k=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=K284b3vJRvlQ1ehcVignEMtcKRs+XPyFzqAlv5HnDe8CRBIdCvq0G6jsvv5xujVRFF7i1paJeHitCDlaltnpOxaxEgzdBKL/4eKVZpJf23TnbrTox2/G1yTQ6c/GTOIAtkUkfw8gJVuKq/XODaN9B7QhoN2xbvm1b5Qf02c1bIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lIgs1wBi; arc=none smtp.client-ip=74.125.231.195
-Received: by mail-oi2-f3.google.com with SMTP id 5614622812f47-4893ebdbfbbso128789b6e.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 06:25:40 -0700 (PDT)
+	s=arc-20240116; t=1782912356; c=relaxed/simple;
+	bh=If9Ci2Z4+VVhHu4ohujPOv6EhM9Xxc6Q0kFET/yLWWo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=G8beLZxjKZsOv02gzQ/1IjUAe1fuvxcqrN7zVSkx2KhpvLP4CumjVv5mZdBrRTRT6ZVdBl3xEpK1i/QefbhrCZDnAT8UT6hvlzKL2sAi85qJxem/dxwbIW8q8m+vrqUg1REqGaM6mE2UWPbXtY0FwbT4Cs8glMByZno+VeOXSF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kQoEZJgf; arc=none smtp.client-ip=74.125.231.133
+Received: by mail-oo2-f5.google.com with SMTP id 006d021491bc7-6a308908f2bso54848eaf.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 06:25:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782912339; x=1783517139; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7dk9Opzu24JNP4K9nU0Mr28PXO88jXoMMk5rdIT57/w=;
-        b=lIgs1wBiBWO1v09JQe2qItAmtKycY4pYafho1u2bE37ROUvY7sZaiwaHeJYU8dC505
-         wAHiczIsgAb1hNUbzxyuqD5Rcii+/p1DqQqOkngTeZg9CTYTtGYt1fazC2Vhtc4sdtiY
-         76Kr0DoHlBml3oX4149HH9yGzqZyxZ8pU9+1iKOz4LZ3LGr3L4uELLZS+2rMBCnjwNK0
-         K7kZjrh0VaclKELXGexLnpeARtobk6cFY5DUfTK5AbB2rD6yRGOooAJPrUt307cGm+cP
-         MO0mU3fVpCjaG/sR6HIhUo8J+JzNLA9VvjOysAcBqhhFnFajJCGeJ8kY3G0BYZb8Nr0f
-         CmiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782912339; x=1783517139;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1782912353; x=1783517153; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7dk9Opzu24JNP4K9nU0Mr28PXO88jXoMMk5rdIT57/w=;
-        b=iLsc1+3DL8R4V6dVzIU9fmjViqyaojUqCcx7bNUFANu2bn4+c+BX9+PX1mHxbEDXHu
-         Sbd+xcYh+G3YywNftzuHftC6yVpYCaDLSvbz0x7IVC2nexqxlXzX+oipU6QTCQ1Xecof
-         WsCSny9Kjhu0L+Iu498DL7g74JNcNFCc02bkDBhJEf6834Vr3uTvGvscHTUiO9Aqv11B
-         u48mUX8fhLBJGgom9HL7h4LPRgJ3aHNV20qH1fwQxYEQrLC8R899TLW7fE0lJo6x53ob
-         O5lORIs3VuFXbLPvqeDJrDm9vqHHAs5bM8cKzXroWL5K3uwLLaijcDyExF5dJheprPLm
-         Rjjg==
-X-Forwarded-Encrypted: i=1; AFNElJ/TRL9mcvgf3cJtMABZ/yGZD1Edk7OpAc1CC9SPt8b3OHFd4V/CrU+eixEBWUbodbkrYlreiWgn6jlH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9pWZKjek/G1ceCl5Gw9H/MmSeKISykV/LbzjUUJ7A7pYx9om9
-	Sg7+VKW/ATUY1rvTxB/dCARtpR0EIrbgdqYqv1QjkjzjOCThzbrLIsf0iBo+fho/b13pe4P6
-X-Gm-Gg: AfdE7cn08YNg5P3xGr7Z72UcAktj3ZpOC0xibbFpAFMy7wiaO9HhMLReS/tyzC8595k
-	ntu5EIfmTtEV4g8/zuy3MOe+a33eFHu5TyWaBPAnL4OF4coiOywOiBxPSJPEgIH+uoIRPTYPAMF
-	mpm9KADw2/aSnU/7km9bI7RauTqp0KLmQnDMV6ZGr4eIIWOqs0FxRqmNIrKqyc3h/zLdNma71pt
-	n82lu4FvcLZdvXfxWL+9wEM8ANpvABF3p04sn/6/gaqs7sgbG2z7ewZxlSRLPxybP4BnQAAnTMd
-	cC1e4vTo49957+GWKnZgJTnlgGybOng9U/r6Q2cvmI8QdoJYwk1/gLzhh7PKqm8cPraA8yJNsxS
-	t9N3HdEzMtgaWR+JxJmnHieJPg9sWDVWpkVDGLSCQOMcl4JWeuRO6FRgFlm/1w48jiAeBu9BpIn
-	hvsNh/HkCFKiQhtORuQUm41TrOb2X8Vf2EjTgYbws59HzVrhRPc9/VKp8=
-X-Received: by 2002:a05:6830:348a:b0:7e9:e5df:5ee2 with SMTP id 46e09a7af769-7eb3cedcb83mr899113a34.6.1782912339110;
-        Wed, 01 Jul 2026 06:25:39 -0700 (PDT)
+        bh=P9ly6ZTzLYLZx8yS4TUkxxmSHINnr8BKtUdkBSO+x1w=;
+        b=kQoEZJgftd+JaudroZ9ODk6Y4r/VPd/NsYWxCOYfrDBiLIv27+gBIL8lzye/QGtkOg
+         k5VwcuWXedIJdnADT/Mc2LSjkjZblreQ13rxc/omPuG9EtEWFbj6eVxMjpMjCLDDwtri
+         QVG4onoteEjMmCW4MtNW5EHrAE6cpDo2th0GWOUMSU2jeyFTHMpK6qOqaXZ5KWb2vW0j
+         SBv1zNEyY0E6bT1/Fz9ALOdMXh0j2N6tZrvh8hfsqt+a7d2xo2lZI1Wd6ybmMTbcq8fs
+         CRVmIbX2YHlxgCFbK48fROnuNqKZa/aAkUGEXlpeXZ1wWdWu8ylf0v80B/166xo3bEs2
+         9qFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782912353; x=1783517153;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=P9ly6ZTzLYLZx8yS4TUkxxmSHINnr8BKtUdkBSO+x1w=;
+        b=BOnZKVZmD32PMCqWdNAUdL2igu97sorLaJJs1ejsVDLaX0VM14Qis6P0xWrUJyRksP
+         clVgBzf1XA8KUqKvCaIv9CCInLcHVr/Iv/xXY6Apz2JJM7GaRGTNpXJLgM2i3KQerK2g
+         nE2c0ZMa2UKYgWTrLjeoO49tF8AfrIPHPrpfalocUnabndwMO9pXfC0Ylcfq0s6A8m74
+         tIhdr09kU1e6KlrxG/ezlZgDb9u3gpfrYu7GiVnOsKtZFLRnC6W7HtgNexLzy9eUAF/a
+         ziEUftNHFT+rcqDSD9vHwsZmzuQmRXyGw+tZbVfU9yb546Mhrzo5pEIBVpf7+B6oEdVz
+         BlDA==
+X-Forwarded-Encrypted: i=1; AFNElJ/I14R2fHXYeSSH7YarxUDgNDXWo69AYYxsfO0dzE4+ta6u82SFga3Go23hgIZTDwYx3jaZhwhn4ssR@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRUTHOZHJlOqpAD2553oTWetqP4w5u6dWkwLjIZn/8GLGrV/FJ
+	E2Wfwpzt460rRWiWN35InwEFD1Y80Wp61EE+9xDo0hsILCYHG6lq/3KT
+X-Gm-Gg: AfdE7clSc2ytVnnqpjZjcnZ4qv7e2jGiCnUOsxCxCwZK8AXcl2ycXMRRl2JpeNPPbMO
+	uVar+zg1QGkChj7OCilP3nioiyDdYYstWiUnVevPiPqRpBgiKEwmLPc+2DPGgpPJNrGKmVF8Isn
+	zS7y9xvSQahAAp6jPXEBNJ2vyNCpoKcEIV3W6TivX+W0Vqka6Qsw1cc6vEGh/0AMTb7qlc04DgL
+	nCHpbaE+K5DtV+8tMgyyZnpu5PU0MljAKjXhbQofDWzr6pnwbqp6Iq4sVbznVmxLVI3LzBbY4qR
+	WM4QfDdt4HN6ICt21JyIhTGEHcN4uKq8j8TxjwU8AbcMEbrEZk51EzIORee9CEDirwAbXjvOkk1
+	xykztyM2U5acNnOSGlzBMVZAJeoPgGymv8HSadPtW94SwK6dQWCdTIJtCRS6gf/kclatFo15V8J
+	Gata++EYRk/IgQ9GsJ4mZW4C2eiULCGgO2KFXp8asTMT5LPHBbM+kKzOIkFuLF7OoBDw==
+X-Received: by 2002:a05:6820:4b09:b0:6a1:5756:10d3 with SMTP id 006d021491bc7-6a30d79e230mr365118eaf.22.1782912352999;
+        Wed, 01 Jul 2026 06:25:52 -0700 (PDT)
 Received: from ubuntu24.. (dsl092-249-254.sfo4.dsl.speakeasy.net. [66.92.249.254])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e9ec34f898sm4938144a34.27.2026.07.01.06.25.34
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e9ec34f898sm4938144a34.27.2026.07.01.06.25.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jul 2026 06:25:38 -0700 (PDT)
+        Wed, 01 Jul 2026 06:25:52 -0700 (PDT)
 From: Xing Loong <xing.xl.loong@gmail.com>
 To: Jens Wiklander <jens.wiklander@linaro.org>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -85,10 +87,12 @@ Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Xing Loong <xing.xl.loong@gmail.com>
-Subject: [PATCH 0/3] tee: add MbedTEE driver
-Date: Wed,  1 Jul 2026 21:25:11 +0800
-Message-ID: <20260701132514.186953-1-xing.xl.loong@gmail.com>
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: add mbedtee
+Date: Wed,  1 Jul 2026 21:25:12 +0800
+Message-ID: <20260701132514.186953-2-xing.xl.loong@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260701132514.186953-1-xing.xl.loong@gmail.com>
+References: <20260701132514.186953-1-xing.xl.loong@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,7 +107,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -111,13 +115,13 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FREEMAIL_CC(0.00)[kernel.org,lists.trustedfirmware.org,vger.kernel.org,lists.infradead.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318649-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318652-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:jens.wiklander@linaro.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:sumit.garg@kernel.org,m:op-tee@lists.trustedfirmware.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:xing.xl.loong@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:xingxlloong@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[xingxlloong@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -131,77 +135,31 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 40BA26EE23C
+X-Rspamd-Queue-Id: 2AD226EE6DC
 
-This series adds a Linux TEE driver for MbedTEE, a Trusted
-Execution Environment for embedded systems
-(https://github.com/mbedtee).
+Register the "mbedtee" vendor prefix for the MbedTEE Trusted
+Execution Environment project (https://github.com/mbedtee).
 
-Two RPC transports are provided for systems where platform
-firmware or board configuration has already established the
-REE/TEE separation before Linux boots:
+Signed-off-by: Xing Loong <xing.xl.loong@gmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-  - ARM/ARM64: SMC calls and GIC SPI notifications (TrustZone)
-  - RISC-V: shared-memory ring buffers and IMSIC MSI notifications
-
-The driver implements the TEE subsystem interface (tee_driver_ops)
-and provides GlobalPlatform TEE Client API support, dynamic shared
-memory registration, and tee-supplicant support for REE filesystem
-and RPMB operations.
-
-The series is structured as follows:
-  [1/3] dt-bindings: vendor-prefixes: add mbedtee
-  [2/3] dt-bindings: firmware: add mbedtee,rpc binding
-  [3/3] tee: add MbedTEE driver
-
-Xing Loong (3):
-  dt-bindings: vendor-prefixes: add mbedtee
-  dt-bindings: firmware: add mbedtee,rpc binding
-  tee: add MbedTEE driver
-
- .../bindings/firmware/mbedtee,rpc.yaml        | 221 +++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- Documentation/tee/index.rst                   |   1 +
- Documentation/tee/mbedtee.rst                 | 155 +++++
- MAINTAINERS                                   |   9 +
- drivers/tee/Kconfig                           |   3 +-
- drivers/tee/Makefile                          |   1 +
- drivers/tee/mbedtee/Kconfig                   |  20 +
- drivers/tee/mbedtee/Makefile                  |  11 +
- drivers/tee/mbedtee/core.c                    | 236 +++++++
- drivers/tee/mbedtee/mbedtee_drv.h             | 269 ++++++++
- drivers/tee/mbedtee/mbedtee_msg.h             | 219 +++++++
- drivers/tee/mbedtee/rpc_callee.c              | 609 ++++++++++++++++++
- drivers/tee/mbedtee/rpc_callee_arm.c          |  91 +++
- drivers/tee/mbedtee/rpc_callee_riscv.c        | 203 ++++++
- drivers/tee/mbedtee/rpc_caller.c              | 539 ++++++++++++++++
- drivers/tee/mbedtee/rpc_caller_arm.c          |  66 ++
- drivers/tee/mbedtee/rpc_caller_riscv.c        | 192 ++++++
- drivers/tee/mbedtee/shm_pool.c                | 105 +++
- drivers/tee/mbedtee/shm_pool.h                |  15 +
- drivers/tee/mbedtee/supp.c                    | 310 +++++++++
- include/uapi/linux/tee.h                      |   1 +
- 22 files changed, 3277 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/firmware/mbedtee,rpc.yaml
- create mode 100644 Documentation/tee/mbedtee.rst
- create mode 100644 drivers/tee/mbedtee/Kconfig
- create mode 100644 drivers/tee/mbedtee/Makefile
- create mode 100644 drivers/tee/mbedtee/core.c
- create mode 100644 drivers/tee/mbedtee/mbedtee_drv.h
- create mode 100644 drivers/tee/mbedtee/mbedtee_msg.h
- create mode 100644 drivers/tee/mbedtee/rpc_callee.c
- create mode 100644 drivers/tee/mbedtee/rpc_callee_arm.c
- create mode 100644 drivers/tee/mbedtee/rpc_callee_riscv.c
- create mode 100644 drivers/tee/mbedtee/rpc_caller.c
- create mode 100644 drivers/tee/mbedtee/rpc_caller_arm.c
- create mode 100644 drivers/tee/mbedtee/rpc_caller_riscv.c
- create mode 100644 drivers/tee/mbedtee/shm_pool.c
- create mode 100644 drivers/tee/mbedtee/shm_pool.h
- create mode 100644 drivers/tee/mbedtee/supp.c
-
-base-commit: 03e2778d1f11de9260543f969e9e888a1c2bf830
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 28784d6..fd032a3 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1011,6 +1011,8 @@ patternProperties:
+     description: Maxtor Corporation
+   "^mayqueen,.*":
+     description: Mayqueen Technologies Ltd.
++  "^mbedtee,.*":
++    description: MbedTEE Trusted Execution Environment project
+   "^mbvl,.*":
+     description: Mobiveil Inc.
+   "^mcube,.*":
 -- 
 2.43.0
 
