@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-318923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318920-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OHtlG6mkRWpHDQsAu9opvQ
-	(envelope-from <devicetree+bounces-318923-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 01:37:13 +0200
+	id 8yJeDF+kRWo0DQsAu9opvQ
+	(envelope-from <devicetree+bounces-318920-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 01:35:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3F9E6F2584
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 01:37:12 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F128D6F2546
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 01:35:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=nbzfpwUw;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318923-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318923-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=JopCORWt;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318920-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318920-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 63F023049E37
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 23:36:10 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 09D29300BEAC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 23:35:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70D8C41C303;
-	Wed,  1 Jul 2026 23:35:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4D33EEAC4;
+	Wed,  1 Jul 2026 23:35:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC7253BA249;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F7A3C37B3;
 	Wed,  1 Jul 2026 23:35:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782948953; cv=none; b=jBzf0+2V5adoVPzCsiytAlWB1OpX/xASIB5aDUQujAbwd9cjwfXRj2NFPvTCAyJhRvq4J1pcyL8Avd1A15bvOs8mykH64RYio/y2rQfMJzz4E+HDjLChrkdN/mxL4RxaJlMhM/OmeDAHw0ph+bxqY8lcayBMTzP9q1mo1dYy604=
+	t=1782948952; cv=none; b=ZLbYfe+awNc1o0eCbH/gKy7gkCC11Mp+IPjF3W2ubCNZOmVQdcPnA3742Pu/C57Ilh59erhkOriu6TZIhP1Fszq2vj21UYyMhXZiV24PgEVZmw6sBKtWla0EbZkY1TkCb3JUxLkxlnSKpqVLLb70VwvAxst8G4IIeShwLSj4zDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782948953; c=relaxed/simple;
-	bh=USg1ohYmbXwetA6mCilQyNqt0XA2ZTz/AW7yPMSqQVI=;
+	s=arc-20240116; t=1782948952; c=relaxed/simple;
+	bh=ou2OeHe9NiTPGYgMcRzTUBwKmURTgL5/azZ1wBtlGvM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kHS2kpdct+Ovq8MLPVLYNshzLtmbqyyNxvUOxamnPiILeBj5n1aW0xVEe4bE0SZpoHPCoNpRYATl+s3syn3B+xHI1yj63dKBCgyFSWxlAjLPI8ipTr0IKIHiaiD/vneGPkNDAHoRjrczuEo3JU0/CcmHHseSt0KRus8/wC8Lq3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=nbzfpwUw; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=UaJwCK3HRHFwLkvC5MC2D8KCUeVKPJEwM9BWhsE3dKZL1sDXx/iKMFAY1zZlIjb100aL2GBGEyxWriMmVnDVC+pzKiBU3Ysa0P4hcJrM0OWoWPuysi99DkLpn/qN2RHLOvlhljN3+A/9KduUC5XiRFUqq2kIxgAzRjXmH15rRnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JopCORWt; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1782948949;
-	bh=USg1ohYmbXwetA6mCilQyNqt0XA2ZTz/AW7yPMSqQVI=;
+	bh=ou2OeHe9NiTPGYgMcRzTUBwKmURTgL5/azZ1wBtlGvM=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=nbzfpwUwSWDyqH9ZRNZ9BF2aeAIFQ+h8OT1Kgm9U2zM+SmyvcOULcmGcOiLk/qQAO
-	 TlKtwAluDmd38f/hCkXVlmhuff3L9V9BEUkdqFNnylpcqFC8Do0TbVlyGVgHVkTP3R
-	 hfKFHLBxWO3LlTf/M28ZV+1btLf1IBXmAGu/03TTYxMxq/2DvCE/EhLa08N0tjOZhC
-	 QXAhQX/Q3wquwqzOdAeP0RTehnG+cDQ9690PuQ+xexu4FB7SPRLuiWs22USFeT3LY+
-	 ENu1Dawrd4H+ASE66rQDvnBwBoMshKRUpKQrlDrho8nwFGaBvck8LUGHFOaV/HwOmS
-	 JtSrdW/+4G1Kg==
+	b=JopCORWts1/zBZAshpM5FlhwVl4pX5v5Db4QkTN6TlZbCkMZ0VLNNIpKzAbcGztV3
+	 L51fx3v3suDxc5R86qB4Z4PAx3YG2o965+Q8DAfIYEPNO9aTunF66rie6gDfX1ZRhG
+	 I1rmcfNTSNbTOFhy8wRS68dZZhCuFjI2kBQZHOGaX8f0+urJdEI4Qi5iNLdBRdhBpT
+	 TIh1gQUBnhlw6XCvzaefimI41p/oAvk+xqDL0+cVQSzeW0IpIoKWDougby73SxnPJr
+	 Nvd91IFrWCkaf1zhoC31+wdP5ONRTjAd9ane6S4vTgnzQ+Tb7gq7o790w8GBw3MxiC
+	 /+oIM5cGhRv+w==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 013BA17E0F44;
-	Thu,  2 Jul 2026 01:35:48 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 037AB17E0FAA;
+	Thu,  2 Jul 2026 01:35:49 +0200 (CEST)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id AEFC4480029; Thu, 02 Jul 2026 01:35:48 +0200 (CEST)
+	id B093C48002F; Thu, 02 Jul 2026 01:35:48 +0200 (CEST)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Thu, 02 Jul 2026 01:35:40 +0200
-Subject: [PATCH v9 02/38] phy: rockchip: usbdp: Update mode_change after
- error handling
+Date: Thu, 02 Jul 2026 01:35:41 +0200
+Subject: [PATCH v9 03/38] phy: rockchip: usbdp: Do not lose USB3 PHY status
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +64,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260702-rockchip-usbdp-cleanup-v9-2-e31efbb62d2e@collabora.com>
+Message-Id: <20260702-rockchip-usbdp-cleanup-v9-3-e31efbb62d2e@collabora.com>
 References: <20260702-rockchip-usbdp-cleanup-v9-0-e31efbb62d2e@collabora.com>
 In-Reply-To: <20260702-rockchip-usbdp-cleanup-v9-0-e31efbb62d2e@collabora.com>
 To: Vinod Koul <vkoul@kernel.org>, 
@@ -81,24 +80,23 @@ Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
  linux-kernel@vger.kernel.org, kernel@collabora.com, 
  devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Sashiko <sashiko-bot@kernel.org>
+ Sebastian Reichel <sebastian.reichel@collabora.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1789;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1409;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=USg1ohYmbXwetA6mCilQyNqt0XA2ZTz/AW7yPMSqQVI=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGpFpFMq3VxFSuS4Ma1Lt152t5BdszIUcdWc+
- ZVpFAlNXfsLxIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqRaRTAAoJENju1/PI
- O/qaDikP/3Hp0K7+8dnll+T8WVi8FuI7a6kMEpsc+LUXnFnafyiWNdrq1E0jdkJ7rZeAJb2LI1/
- 3m4BFSQiHoCJeiZbtnK1Jensg4iOO/SgEikMnGWK5jq7wKX2BkNpZ9F/VLjCDGHfBM6sTyjq3dg
- d1DCtQDa5kdDe+W9uCLz1pYwnVs1Z63BSJds+c1dPkFUtS8xphSnQmf1OFiOloIv520dq+Bp0BW
- o0l6eV4qm14UIA81QGtjvF5CK9cI7qKDPP5LxYu2JhLg8E4kaIaY5KEYsmGfkdFH1e0UmEGnigs
- xrGC5T4QDcUQ7VVeeesXoOOtrNy3TpFUJ6LoBkG1ZCTZxGGmhPBUbl8SC8N/amORr0g7PuPBAya
- KKWdnaUdmQSdNbzPhcCo6yhJHIyWxWQhd1gURJdXHXZuXly6PRlr61hrU8Fq3cSobv3juKGFxRo
- WCTPtqBQ7AUd7E3ovD4xmAx44QSY4rpwIBrlOePUOQ84nizlyv48UpYO0CRuTGo55BAkB5DdUnN
- TJ+aMbl71BDoSvL9Owo2qNT9jpe1HpVYievYCvy7i7bWYh+AXflxPoLIN/vERCAs6Tkt56i7sWv
- Qg6Ru/k+hZK/CPQu466cSuDxvGWr091tGm3vv2MjCX3QINsEXNhcVtd1SA3LABsPyGKS20u2ZKq
- 79Bzp69NQ8n3JlYMZ6zwoQA==
+ bh=ou2OeHe9NiTPGYgMcRzTUBwKmURTgL5/azZ1wBtlGvM=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGpFpFPWvCILXhPZhf42ixcVhNrM3hmuvuk7y
+ 691Ps/bIwJBRIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqRaRTAAoJENju1/PI
+ O/qa50IP/1b2y0pmWi1VxXN5PMzVct1/97+k3BAP6RFtVpo2zuqJpShP8iEj9LwGlUbT4BQUyrg
+ lNnydIMFhfER15s5wp/uAf6zRyqGd5vn+nYJIYBM1yHzIyWlxH94aoLoi58Ftuc5VrTfhOexGhd
+ DXvkjKS7u9frTNXv5FdPvlNDc10Wsxjv4Grhbwz9dUUUVUqZuVROn5WzcMT42gO1Ix16moJHDp2
+ EU0POFjg15qchk3AmKC/kKwzq0b+ISfPKM8/i3OXKHq9i6aaKZhLeT3/CZiEz45iPrTicz2c209
+ Bm9PZ0QlFomLNnRUUXtVXmhxA9sI0FpPW2BdEB2u6ZGRCsyaARvug1oTIqSViHhsojvyW8RA2pp
+ Whmua5LjFQixIsGft1KTmWwxi4/XcoSsTQ4MzP+nmH62E8qODeVy15M//Og29F67cWxROiC/P+a
+ 3dx25HIY/B+55YMoTdjcstLJ8Old14xbyregNmR8EmgbTIBQWWT4/DNYRXAoGazCmhEPk/ZwuuB
+ 7TntmV3ilfhyJMXObweukVWZUFX15sg6vAlDQ1F1kFbnu63XLRa60X0OmoKG6YAj0UOkeI2IBgO
+ mCL6EqkEtSYheV74dFsoUhkyKYzQqNJkjJk2C2UCL9Y+9UMWBjzSc6TWxnDdiT7UUEWlxdTZXJ8
+ XlrXialq+wJ4Ee1JNLsEsvA==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
@@ -106,84 +104,69 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	TAGGED_FROM(0.00)[bounces-318923-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Thinh.Nguyen@synopsys.com,m:gregkh@linuxfoundation.org,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@gmail.com,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:linux-usb@vger.kernel.org,m:sebastian.reichel@collabora.com,m:sashiko-bot@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[rock-chips.com,kernel.org,gmail.com,lists.infradead.org,vger.kernel.org,collabora.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[rock-chips.com,kernel.org,gmail.com,lists.infradead.org,vger.kernel.org,collabora.com];
+	TAGGED_FROM(0.00)[bounces-318920-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Thinh.Nguyen@synopsys.com,m:gregkh@linuxfoundation.org,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@gmail.com,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:linux-usb@vger.kernel.org,m:sebastian.reichel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RWL_MAILSPIKE_POSSIBLE(0.00)[104.64.211.4:from];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D3F9E6F2584
+X-Rspamd-Queue-Id: F128D6F2546
 
-If rk_udphy_init() or rk_udphy_setup() fails, the reinit will not be
-tried again. Fix this by only updating the variable after all potential
-errors have been handled.
+By default (i.e. without manually enabling runtime PM) DWC3 requests the
+USB3 PHY once and keeps it enabled all the time. When DisplayPort is
+being requested later on, a mode change is needed. This re-initializes
+the PHY. During re-initialization the status variable has incorrectly
+been cleared, which means the tracking information for USB3 is lost.
 
-Note, that no errors have been seen on real hardware and failures would
-most likely be fatal and require at least a full reboot as the function
-already asserts the PHY reset lines. So this is more of a theoretical
-issue.
+This is not an immediate problem, since the DP side keeps the PHY
+enabled. But once DP is toggled off, the whole PHY will be disabled.
+This is a problem, because the USB side still needs it powered.
+
+Fix things by not clearing the status flags.
 
 Fixes: 2f70bbddeb45 ("phy: rockchip: add usbdp combo phy driver")
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://lore.kernel.org/linux-phy/20260612163835.8D5471F000E9@smtp.kernel.org/
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/phy/rockchip/phy-rockchip-usbdp.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/phy/rockchip/phy-rockchip-usbdp.c | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-index fba35510d88c..a5ffdf7a6e76 100644
+index a5ffdf7a6e76..12dfdd470a78 100644
 --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
 +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-@@ -1000,15 +1000,14 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
- 	}
- 
- 	if (udphy->status == UDPHY_MODE_NONE) {
--		udphy->mode_change = false;
- 		ret = rk_udphy_setup(udphy);
- 		if (ret)
- 			return ret;
- 
- 		if (udphy->mode & UDPHY_MODE_USB)
+@@ -1008,7 +1008,6 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
  			rk_udphy_u3_port_disable(udphy, false);
--	} else if (udphy->mode_change) {
  		udphy->mode_change = false;
-+	} else if (udphy->mode_change) {
- 		udphy->status = UDPHY_MODE_NONE;
+ 	} else if (udphy->mode_change) {
+-		udphy->status = UDPHY_MODE_NONE;
  		if (udphy->mode == UDPHY_MODE_DP)
  			rk_udphy_u3_port_disable(udphy, true);
-@@ -1017,6 +1016,7 @@ static int rk_udphy_power_on(struct rk_udphy *udphy, u8 mode)
- 		ret = rk_udphy_setup(udphy);
- 		if (ret)
- 			return ret;
-+		udphy->mode_change = false;
- 	}
  
- 	udphy->status |= mode;
 
 -- 
 2.53.0
