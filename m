@@ -1,149 +1,205 @@
-Return-Path: <devicetree+bounces-318351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318352-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id d3MpHCjyRGoE3woAu9opvQ
-	(envelope-from <devicetree+bounces-318351-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:55:36 +0200
+	id WyFKH0TyRGoN3woAu9opvQ
+	(envelope-from <devicetree+bounces-318352-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:56:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C45986EC6A6
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:55:35 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 014BD6EC6B0
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 12:56:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=jj9yNpcE;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318351-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318351-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ZgjFkdN5;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318352-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318352-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4C37F3011F23
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 10:54:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4EC9C300B9E3
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 10:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0851442EEDE;
-	Wed,  1 Jul 2026 10:54:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BA8142E00B;
+	Wed,  1 Jul 2026 10:55:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7A693B992E
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 10:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 029DA421A13;
+	Wed,  1 Jul 2026 10:55:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782903249; cv=none; b=jujiS1Nz61xRUFfHgg4d/2HhqJgdJJ0M6AeVVLZleHHxtpPmVhz/CnUYtGIX2dbj0MOMpwFxOS2CnFCPi4wzBVqu3HjlDHlIE8+dUQ3GRLkKqm/sCr+SXvSDOSF4BUXkdXMLzbidMHfILxwd03FYF39naQJN5TPS5msQ6N0g3iQ=
+	t=1782903326; cv=none; b=QcCS8sh/4swluh75QECeyWEWw9Rvs9tQixGfK/215qXyWBJZDurhRv0pq/wmPKxVNP+YiJyCaTfZwT/cVCuj9hulRcKwYbsQVbwB/8/Mn1+aVgAAiVeHu0SLWa4BpIqZ/17orWoOmxCy4/9CoNL174uzjUKAeDWQ/1/srdw9wek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782903249; c=relaxed/simple;
-	bh=KfPLUHbv6VqfMJCkJoMTAP4YFtOSL1LJmXwMk+chWo4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=migJdd35yAVuXK5oeYXpe2ncfxfgDzTl0EynkBtiPcuyJWuQt/bXPEv1jINqf0n1jmqjpmsDj/5pUZ5K3BoR92IdYkyle1fxc8YCeZFPrleqDOrTn/ai/j3xtoLktaM7tThcbJ5zo64yYU3EiwPw+M+RGfuWpGGk3uBzHEOrcL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jj9yNpcE; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E56A1F00ADE
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 10:54:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782903244;
-	bh=3dFhZqVXlPw7AKqdGyCXcF9/T5J+z7jeRJ0PFE89kgg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=jj9yNpcE4V6NcdQD4g05CJvWOH6GRskIlx3Mmm69xy5BxwxpnrT5BqC0gHnRaUFyt
-	 O23edhYADsdZPU+HZKUrz/oCTTvue+X/Sp2hJmpFu2roFbszryTFSeR5HMka7v15M0
-	 piz/7BCnE+I5rarI7mx8TRbeX572MZy+4DIlZ/RUU66TBUrN+Iq/kEMOXU8miLkKR/
-	 QaT0LjyVP4y6A2O8sI1q6SOw1xZHoV69d7p4H5xqnwLeHBVh4QgicvGaOohR+OLjXv
-	 72+VPyRgVlGIGtnMYgbqhMcUS4kG1TMB0E3Vyt8d/L1Qp43iVzWVF/2cfTSmxugvBM
-	 17ZM8I8DSAy/A==
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-39af87c4589so5496891fa.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Jul 2026 03:54:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+Rrpi+YEILgVLRUjhhak0GBy+Z552iq59X9336p13ay7+Yy2yi5quLtZxaWqfriLbmDF45/ma7KP5uMT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYYXOt+Lc4N6nQNzSJ8g5kz7mwYbxHIF4JsjwUVFiaYDN7QgCE
-	6NMQYgr1aG6IUyIlJI7iqUMQGzhM25iQgl7nH1ihHuLUcFvOWGSoyMEpVXnsLDgbXmteARj74Zy
-	23+y5WCxh5UFQCOSmyoPtgJvn7NgkM0U=
-X-Received: by 2002:a05:6512:1043:b0:5ad:67d6:a2d9 with SMTP id
- 2adb3069b0e04-5aec68b453fmr281719e87.39.1782903242946; Wed, 01 Jul 2026
- 03:54:02 -0700 (PDT)
+	s=arc-20240116; t=1782903326; c=relaxed/simple;
+	bh=ZjS6liPi1NdySjNIcGtNItMWzhUoGpTQ0kusW/xwebI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hR7TVhvyIaxz7M79if9E1DZ9uDHw7hjbYb5fcZsyNq4CQpihQFPfSYqpXP94ii8A7ygHJY2XWFqPmnyd9oeZsr+AMprPS0OSpftqMY7A/sJTyxKz38fiXIb1dcqa6g7jnbTfXldxSZixZU8x3F0uFZqlqi6+O5mhpQ3Wa6IEKys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZgjFkdN5; arc=none smtp.client-ip=198.175.65.9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1782903322; x=1814439322;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=ZjS6liPi1NdySjNIcGtNItMWzhUoGpTQ0kusW/xwebI=;
+  b=ZgjFkdN5dnG2WqJqpfN/iHc6GCfvmK8GCgtfPjJ/WuFtlItGq5FXHHrR
+   1w3RhEIz1t9PtaYylQ5sHVrCf6ux7Qr2wpq6AQeC+5yQ0CiIMa12UvRqt
+   oNe3gCKgRSArxw7dRTGI+fRqaU8t44kDgJmc9M0XJfXTkPFzz0kwFrsIp
+   hf9wZDwTgIk6FpfMzHdR/OEo9oagCaVQyqGuwmTxgabccVMgBMoLWAWpN
+   11o7WQX9nZC7LE2bSNhXql7CcEiN/6jtl4haLw3Ire9RnN19YCrjkCzFt
+   x4fcDuz7zNOzqAlDfr1fkBVcDCkIKk+nGh99mOlckHiLPFdwKOHLTvLGf
+   A==;
+X-CSE-ConnectionGUID: rU4yg8+sTiyDHZY4U0ZDzg==
+X-CSE-MsgGUID: jl5hVJ+TQ0u/xA83yeV7qQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="106422865"
+X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; 
+   d="scan'208";a="106422865"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jul 2026 03:55:20 -0700
+X-CSE-ConnectionGUID: ci0GyTkQQvCRryiMH+9o2g==
+X-CSE-MsgGUID: GVB/dza0RKCoTJodXYYUyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; 
+   d="scan'208";a="252114244"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.65])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jul 2026 03:55:14 -0700
+Date: Wed, 1 Jul 2026 13:55:11 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Michael Walle <mwalle@kernel.org>, Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"afaerber@suse.com" <afaerber@suse.com>,
+	"wbg@kernel.org" <wbg@kernel.org>,
+	"mathieu.dubois-briand@bootlin.com" <mathieu.dubois-briand@bootlin.com>,
+	"lars@metafoo.de" <lars@metafoo.de>,
+	"Michael.Hennerich@analog.com" <Michael.Hennerich@analog.com>,
+	"jic23@kernel.org" <jic23@kernel.org>,
+	"nuno.sa@analog.com" <nuno.sa@analog.com>,
+	"andy@kernel.org" <andy@kernel.org>,
+	"dlechner@baylibre.com" <dlechner@baylibre.com>,
+	=?utf-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-realtek-soc@lists.infradead.org" <linux-realtek-soc@lists.infradead.org>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	=?utf-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?= <cy.huang@realtek.com>,
+	Stanley =?utf-8?B?Q2hhbmdb5piM6IKy5b63XQ==?= <stanley_chang@realtek.com>,
+	James Tai =?utf-8?B?W+aItOW/l+WzsF0=?= <james.tai@realtek.com>,
+	Yu-Chun Lin =?utf-8?B?W+ael+elkOWQm10=?= <eleanor.lin@realtek.com>
+Subject: Re: [PATCH v3 2/7] gpio: regmap: add gpio_regmap_get_gpiochip()
+ accessor
+Message-ID: <akTyDzdrt949VnWK@ashevche-desk.local>
+References: <20260512033317.1602537-1-eleanor.lin@realtek.com>
+ <20260512033317.1602537-3-eleanor.lin@realtek.com>
+ <agMM9soiqpG-TRSb@ashevche-desk.local>
+ <adff3a2d21a64d3ea3b408d62157ee1e@realtek.com>
+ <ah92oEavMu4QRn8y@ashevche-desk.local>
+ <CAMRc=MdA24z-tB_D8CTw68Di8e4OVQJ1QH4+rDskFzq=xjJ5BQ@mail.gmail.com>
+ <DJ3QVMZ6XLW9.1M9W541O92QWJ@kernel.org>
+ <CAD++jLncD2ZjH3aedOkGNYP3FyZ=i7Pb0OcKKZKuMOPGNjM_nQ@mail.gmail.com>
+ <DJN3PDTPJ3L6.24P71OQFB6C98@kernel.org>
+ <CAHp75VeTp4eYQ4QBoeH2VyVhUivxNn1CaC9jskmeg-1zTAOYLQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260630092406.150587-1-manikandan.m@microchip.com>
- <20260630092406.150587-2-manikandan.m@microchip.com> <CAD++jL=FkEfpz-LW0vmPpZ28fLfGFMWo5E479Mapz55YUxKNAQ@mail.gmail.com>
- <DJN3HIIAY4LE.3MXU9Q2YFSCJJ@walle.cc>
-In-Reply-To: <DJN3HIIAY4LE.3MXU9Q2YFSCJJ@walle.cc>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 1 Jul 2026 12:53:49 +0200
-X-Gmail-Original-Message-ID: <CAD++jLntmnwU3gAQfDn2nd4CQ_7HY6S_kBguVtZvVT1PktFCPw@mail.gmail.com>
-X-Gm-Features: AVVi8Ce_77SqNNQU5uO1pZpVOGBbpgsRt39tcDkp1nPUZH97o9So0gRgVCLSXDs
-Message-ID: <CAD++jLntmnwU3gAQfDn2nd4CQ_7HY6S_kBguVtZvVT1PktFCPw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/7] dt-bindings: mtd: jedec,spi-nor: allow the SFDP to
- be exposed via NVMEM
-To: Michael Walle <michael@walle.cc>
-Cc: Manikandan Muralidharan <manikandan.m@microchip.com>, pratyush@kernel.org, mwalle@kernel.org, 
-	takahiro.kuwano@infineon.com, miquel.raynal@bootlin.com, richard@nod.at, 
-	vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	srini@kernel.org, nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
-	claudiu.beznea@tuxon.dev, linux@armlinux.org.uk, richardcochran@gmail.com, 
-	arnd@arndb.de, linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VeTp4eYQ4QBoeH2VyVhUivxNn1CaC9jskmeg-1zTAOYLQ@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	TAGGED_FROM(0.00)[bounces-318352-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[27];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318351-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:michael@walle.cc,m:manikandan.m@microchip.com,m:pratyush@kernel.org,m:mwalle@kernel.org,m:takahiro.kuwano@infineon.com,m:miquel.raynal@bootlin.com,m:richard@nod.at,m:vigneshr@ti.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:srini@kernel.org,m:nicolas.ferre@microchip.com,m:alexandre.belloni@bootlin.com,m:claudiu.beznea@tuxon.dev,m:linux@armlinux.org.uk,m:richardcochran@gmail.com,m:arnd@arndb.de,m:linux-mtd@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:netdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[microchip.com,kernel.org,infineon.com,bootlin.com,nod.at,ti.com,tuxon.dev,armlinux.org.uk,gmail.com,arndb.de,lists.infradead.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:andy.shevchenko@gmail.com,m:mwalle@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:afaerber@suse.com,m:wbg@kernel.org,m:mathieu.dubois-briand@bootlin.com,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:dlechner@baylibre.com,m:tychang@realtek.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:linux-iio@vger.kernel.org,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:james.tai@realtek.com,m:eleanor.lin@realtek.com,m:andyshevchenko@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,intel.com:dkim,intel.com:from_mime,ashevche-desk.local:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C45986EC6A6
+X-Rspamd-Queue-Id: 014BD6EC6B0
 
-On Wed, Jul 1, 2026 at 10:34=E2=80=AFAM Michael Walle <michael@walle.cc> wr=
-ote:
+On Wed, Jul 01, 2026 at 01:01:10PM +0300, Andy Shevchenko wrote:
+> On Wed, Jul 1, 2026 at 11:44 AM Michael Walle <mwalle@kernel.org> wrote:
+> > On Fri Jun 19, 2026 at 11:08 PM CEST, Linus Walleij wrote:
+> > > On Mon, Jun 8, 2026 at 4:41 PM Michael Walle <mwalle@kernel.org> wrote:
+> > >
+> > >> >>> Without an accessor like gpio_regmap_get_gpiochip(), we cannot retrieve the
+> > >> >>> gpio_chip instantiated inside gpio-regmap.c to fulfill these requirements in our
+> > >> >>> map() function.
+> > >>
+> > >> Why is gpiochip_irq_reqres() called in the first place? Isn't that
+> > >> only called if the irq handling is set up via gc->irq.chip and not
+> > >> via gpiochip_irqchip_add_domain() like in gpio-regmap?
+> > >
+> > > Not really, the gpiochip_irq_reqres() is called to mark that a
+> > > GPIO line is used for IRQ, so the gpiolib cannot turn this
+> > > GPIO into an output line, gpiod_direction_out() will fail
+> > > on lines used for IRQ. So it's a failsafe.
+> > >
+> > > You can live without it of course, but then you don't get
+> > > this failsafe.
+> >
+> > Thanks for the explanation! So did I make a mistake years ago by
+> > adding the gpiochip_irqchip_add_domain(), see commit 6a45b0e2589f
+> > ("gpiolib: Introduce gpiochip_irqchip_add_domain()")
+> >
+> > As Yu-Chun found, gpiochip_irq_reqres() expect the irq chip data
+> > to be a gpio_chip, which isn't the case (in general) for an
+> > externally allocated domain, is it?
+> 
+> So the whole issue comes from the fact that the IRQ chip is not marked
+> as immutable. For immutable IRQ chips (which all GPIO provides should
+> have) there is no such issue to begin with, id est there is no
+> gpiochip_irq_reqres() callback assigned (and respective _relres).
 
-> If I'm correct, this is the old style, see commit bd912c991d2e
-> ("dt-bindings: nvmem: layouts: add fixed-layout"). So it should
-> eventually look like:
->
-> sfdp {
->      compatible =3D "jedec,sfdp";
-(...)
-> Also I'm not sure if we really need to add the "nvmem-cells" here.
-> IIRC in MTD it was there to tell a driver to add an nvmem device to
-> an already existing compatible/node.
->
-> Apart from the MTD case, I've just found qcom,smem-part,yaml which
-> has compatible =3D "nvmem-cells".
+Ah, for immutable chips we put either custom ones or
+GPIOCHIP_IRQ_RESOURCE_HELPERS which actually refers to those callbacks.
 
-You're right, I was using old information, discard my comments...
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+So, if the domain is external, it should also provide irq_request_resources
+and release callbacks. In the custom case we can wrap gpiochip_reqres_irq()
+and gpiochip_relres_irq() respectively.
 
-I think my comment in the driver to check for the compatible
-instead of the node name is still valid though.
+But we need to have a struct gpio_chip pointer for them. And note, the
+IRQ chip data can be anything in that case, so it's not a requirement.
 
-Yours,
-Linus Walleij
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
