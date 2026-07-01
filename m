@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-318494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318478-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Cw8+GSkQRWoX6QoAu9opvQ
-	(envelope-from <devicetree+bounces-318494-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:03:37 +0200
+	id h6GtKdUJRWpy5goAu9opvQ
+	(envelope-from <devicetree+bounces-318478-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:36:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC4646EDC92
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 15:03:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41C086ED6B1
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 14:36:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=B0ZJz98G;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318494-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318494-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b="oCJSw/o0";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318478-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318478-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8DB8231A8506
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:27:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5BFFD321ED78
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 12:25:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A45A4C77C0;
-	Wed,  1 Jul 2026 12:21:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72284B8DEB;
+	Wed,  1 Jul 2026 12:20:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65AEC481224;
-	Wed,  1 Jul 2026 12:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D95D4ADDBA;
+	Wed,  1 Jul 2026 12:20:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782908473; cv=none; b=u+oQClqJ9/RfzXh9UtwBnWJN2r1TW4QLiLWcfWAkvQ57ZpjBBwbetJTI5ewHSoRl3FNZ+ETB8B6es2iKTWsLb3TGB06FS3mEQL8Iei461SmOH1lMXKsgTysO84Y2iGHLf/NIQinTu2PxN+Xm7tHHdx0tb9PjBS7/71wDBmg9aek=
+	t=1782908444; cv=none; b=Nemo2zWTsH494lqO5D1Zzw1bHApigfFzf4rmc6fn9m4e/58pAuI0ZzUXLOZOeHXe1+hIfmAiBMkIzY6ihPok1l3VJPIt/aeuY1vMJrKsByLij8gon5Q8BbbrCguVI0OHsR4uVoRAXdeSHvh57BOoGZXppLb1lxqQG7T6hLmDu24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782908473; c=relaxed/simple;
-	bh=di/SrTgMBLyWZ1eeV5NF13frht3qVrP/Za067lp9KA4=;
+	s=arc-20240116; t=1782908444; c=relaxed/simple;
+	bh=81GBBUpbjdjDXr0NDYQet5Q9bU5Yyjhgqm78JS+U1hw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ICumeRInolG08YgnTpjvv1lQFXc0CJSrGaAnddDyOLF7IrDdoaHcU4l6q+1uGOdFYwAN0eIhN2KqQ2Hgty4q7d32Arh3+/M7CRv1SAurQIzZXbgLxAXr9s1UD1AgeTpwxUT2fe1Fd+/xWRgf2td7sy/KdsWF5P2d1ZS+yXlww4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=B0ZJz98G; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=gSpsBMpJDmeu4o0t6Ln58334iKmmF4yd74hYXIE+8G1RN2j2GolXDCMCNCvd1Qdb7OfHSfD3Vn99vHtBr5mbU4rRE8ANACg0uWZ3AR6BLjLt48bg3djTFVG26Dj/R0ToIMjysDYBF3/UV7p47YdApdUYzNPJ5H2WidjG7vg0Aw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oCJSw/o0; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1782908470;
-	bh=di/SrTgMBLyWZ1eeV5NF13frht3qVrP/Za067lp9KA4=;
+	s=mail; t=1782908441;
+	bh=81GBBUpbjdjDXr0NDYQet5Q9bU5Yyjhgqm78JS+U1hw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=B0ZJz98GRuOTuxbNJQhIXJR0kOmrBBSEN5EOKNLRrlSj62OFBCT+llY2PX47c7vxq
-	 7NJUpv0JBCaIfsdZDy0Q8pmcIw36RxMJ5mJahozPPUWlnNt216gumLBFBrxr/WH7qf
-	 JRvhIVw4XIc3pVEJJipLyy/hY/njO8+VMFS8ld6VW1PpWjxQvpU/aPTlR7nhRLqF73
-	 Gn7DO83LCCmzNNSY4w5ad+miKl/RYMiRPRvG8mNa8GWW7gx0oxGLgksq8dEYLs22XP
-	 WJrfQ5vLD6jB4CCEv96jHPluAsw0ZStNbcY6v8mzZh6w+o1qu6ZLjjDT6Z0ZbZQIO6
-	 JK0aopaMqxdlw==
+	b=oCJSw/o0r///ZUQmMs1u69z1eYFz8jFgM2klmphNLc41GPGofLcXDLqKD2BQwZjxb
+	 TEVmlzQHdNIj1LHUALdGJ/sFIo/rJ/GR3AioBm+AV8gykQJF6VhB1OILg8NxkKiJBv
+	 5Z0hbrlw9eFDApWuZ39vkuHg5SP2ncPi+fl8fsJO780r612SC/gQMh354UddEmU6Mt
+	 B9CLenkQWTyLALWdXmaLMbXv/mN0MKv83AjENWvX8sQ3+4mNXLVFe4Vzd0xMm+02+i
+	 RuhIZo+eKIRSPjMESuroKtJGTHxoTT0KKjF69z1ucS17BeGklMWdszGFt+Oco5EwSR
+	 sBkmldVTxKKWg==
 Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 40F3E17E35CB;
-	Wed,  1 Jul 2026 14:21:09 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id CBEDD17E0CF4;
+	Wed,  1 Jul 2026 14:20:40 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: chunkuang.hu@kernel.org
 Cc: p.zabel@pengutronix.de,
@@ -64,20 +64,26 @@ Cc: p.zabel@pengutronix.de,
 	conor+dt@kernel.org,
 	matthias.bgg@gmail.com,
 	angelogioacchino.delregno@collabora.com,
+	jitao.shi@mediatek.com,
+	granquet@baylibre.com,
+	rex-bc.chen@mediatek.com,
+	dmitry.osipenko@collabora.com,
+	ck.hu@mediatek.com,
+	amergnat@baylibre.com,
+	justin.yeh@mediatek.com,
+	jason-jh.lin@mediatek.com,
 	dri-devel@lists.freedesktop.org,
 	linux-mediatek@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	justin.yeh@mediatek.com,
-	jason-jh.lin@mediatek.com,
 	kernel@collabora.com
-Subject: [PATCH 08/42] drm/mediatek: De-duplicate internal component checks
-Date: Wed,  1 Jul 2026 14:20:23 +0200
-Message-ID: <20260701122057.19648-9-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 11/11] drm/mediatek: mtk_dp: Clarify XTAL freq and Debounce registers
+Date: Wed,  1 Jul 2026 14:20:24 +0200
+Message-ID: <20260701122024.19557-12-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
-References: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260701122024.19557-1-angelogioacchino.delregno@collabora.com>
+References: <20260701122024.19557-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,15 +105,15 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,mediatek.com];
-	TAGGED_FROM(0.00)[bounces-318494-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,collabora.com,mediatek.com,baylibre.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-318478-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:jitao.shi@mediatek.com,m:granquet@baylibre.com,m:rex-bc.chen@mediatek.com,m:dmitry.osipenko@collabora.com,m:ck.hu@mediatek.com,m:amergnat@baylibre.com,m:justin.yeh@mediatek.com,m:jason-jh.lin@mediatek.com,m:dri-devel@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:kernel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
@@ -119,144 +125,108 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AC4646EDC92
+X-Rspamd-Queue-Id: 41C086ED6B1
 
-Both mtk_ddp_comp and mtk_drm_drv are performing similar checks
-to distinguish components that have an external driver from ones
-that don't - with the exception of mtk_ddp_comp also checking if
-the component is related to a backlight driver.
-
-Create helper functions in the main component management driver
-mtk_ddp_comp, one to check if the currently checked component is
-internal/simple, and one (static, internal to mtk_ddp_comp only)
-to check if it is a backlight related one.
-
-Since the amount of internal/simple components is lower than the
-amount of ones having a specific driver, and since it is expected
-that most of (if not all) of any new hardware support will need a
-specific driver as well, the helpers are doing an inverted check
-compared to what the code was doing before, as both mtk_ddp_comp
-and mtk_drm_drv were checking for external component explicitly,
-while now they're doing the same, but checking if NOT internal.
-
-Also, while at it, for the OVL_ADAPTOR components case, instead
-of checking for MTK_DISP_OVL_ADAPTOR, call the already provided
-mtk_ovl_adaptor_is_comp_present() function to check for this type
-of component.
+Clarify the meaning of the sub-fields in the crystal frequency and
+transmitter interrupt debounce registers, with the only purpose of
+increasing human readability.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- drivers/gpu/drm/mediatek/mtk_ddp_comp.c | 47 ++++++++++++++-----------
- drivers/gpu/drm/mediatek/mtk_ddp_comp.h |  1 +
- drivers/gpu/drm/mediatek/mtk_drm_drv.c  | 16 ++-------
- 3 files changed, 30 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_dp.c     | 35 ++++++++++++++++-----------
+ drivers/gpu/drm/mediatek/mtk_dp_reg.h |  6 +++--
+ 2 files changed, 25 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-index 2ba2123238b3..f7103e20abe5 100644
---- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-@@ -629,6 +629,27 @@ static void mtk_ddp_comp_clk_put(void *_clk)
- 	clk_put(clk);
- }
+diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
+index 605ead7fa9bf..b861a5df9316 100644
+--- a/drivers/gpu/drm/mediatek/mtk_dp.c
++++ b/drivers/gpu/drm/mediatek/mtk_dp.c
+@@ -1204,9 +1204,15 @@ static void mtk_dp_initialize_settings_v2p1(struct mtk_dp *mtk_dp)
  
-+static bool mtk_ddp_comp_is_backlight_comp(enum mtk_ddp_comp_type type)
-+{
-+	return type == MTK_DISP_BLS || type == MTK_DISP_PWM;
-+}
-+
-+bool mtk_ddp_comp_is_internal_comp(enum mtk_ddp_comp_type type)
-+{
-+	switch (type) {
-+	case MTK_DISP_DITHER:
-+	case MTK_DISP_OD:
-+	case MTK_DISP_POSTMASK:
-+	case MTK_DISP_RSZ:
-+	case MTK_DISP_UFOE:
-+		return true;
-+	default:
-+		break;
-+	};
-+
-+	return false;
-+}
-+
- static int mtk_ddp_comp_init_internal_comp(struct device *dev, struct device *comp_dev)
+ static void mtk_dp_initialize_settings(struct mtk_dp *mtk_dp)
  {
- 	struct device_node *comp_node = comp_dev->of_node;
-@@ -700,26 +721,12 @@ int mtk_ddp_comp_init(struct device *dev, struct device_node *node,
- 	if (ret)
- 		return ret;
++	/*
++	 * Set DP XTAL freq to 26MHz and accumulator to 1.
++	 * Valid values for XTAL freq are 12 and 26.
++	 */
+ 	mtk_dp_update_bits(mtk_dp, MTK_DP_TRANS_P0_342C,
+-			   XTAL_FREQ_DP_TRANS_P0_DEFAULT,
+-			   XTAL_FREQ_DP_TRANS_P0_MASK);
++			   FIELD_PREP_CONST(XTAL_FREQ_DP_ACCUM_NUM_MASK, 1) |
++			   FIELD_PREP_CONST(XTAL_FREQ_DP_CLOCK_MHZ_MASK, 26),
++			   XTAL_FREQ_DP_ACCUM_NUM_MASK | XTAL_FREQ_DP_CLOCK_MHZ_MASK);
++
+ 	mtk_dp_update_bits(mtk_dp, MTK_DP_TRANS_P0_3540,
+ 			   FEC_CLOCK_EN_MODE_DP_TRANS_P0,
+ 			   FEC_CLOCK_EN_MODE_DP_TRANS_P0);
+@@ -1248,28 +1254,29 @@ static void mtk_dp_initialize_aux_hpd_detect_settings(struct mtk_dp *mtk_dp)
  
--	if (type == MTK_DISP_AAL ||
--	    type == MTK_DISP_BLS ||
--	    type == MTK_DISP_CCORR ||
--	    type == MTK_DISP_COLOR ||
--	    type == MTK_DISP_DSC ||
--	    type == MTK_DISP_GAMMA ||
--	    type == MTK_DISP_MERGE ||
--	    type == MTK_DISP_OVL ||
--	    type == MTK_DISP_OVL_2L ||
--	    type == MTK_DISP_PWM ||
--	    type == MTK_DISP_RDMA ||
--	    type == MTK_DISP_WDMA ||
--	    type == MTK_DISP_DPI ||
--	    type == MTK_DISP_DP_INTF ||
--	    type == MTK_DISP_DSI)
--		goto end;
+ static void mtk_dp_initialize_hpd_detect_settings(struct mtk_dp *mtk_dp)
+ {
+-	u32 val;
 -
--	ret = mtk_ddp_comp_init_internal_comp(dev, comp->dev);
--	if (ret)
--		return ret;
-+	/* If there's no external driver for this component, allocate and init now */
-+	if (mtk_ddp_comp_is_internal_comp(type) || mtk_ddp_comp_is_backlight_comp(type)) {
-+		ret = mtk_ddp_comp_init_internal_comp(dev, comp->dev);
-+		if (ret)
-+			return ret;
-+	}
- end:
- 	hash_add(hlist->ddp_list, &comp->lnode, comp->id);
+ 	/* Mask AUX TOP interrupt, as this uses transmitter for HPD */
+ 	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_IRQ_MASK,
+ 			   AUX_TOP_IRQ_MSK, AUX_TOP_IRQ_MSK);
  
-diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.h b/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
-index 4203eecb2a7b..58a06add1368 100644
---- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
-+++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
-@@ -351,6 +351,7 @@ static inline struct mtk_ddp_comp
- 	return NULL;
- }
+-	/* Debounce threshold */
++	/* Set Hotplug debounce threshold time: xtal_period * deb_thd */
+ 	mtk_dp_update_bits(mtk_dp, MTK_DP_TRANS_P0_3410,
+ 			   8, HPD_DEB_THD_DP_TRANS_P0_MASK);
  
-+bool mtk_ddp_comp_is_internal_comp(enum mtk_ddp_comp_type type);
- int mtk_ddp_comp_get_id(struct device_node *node,
- 			enum mtk_ddp_comp_type comp_type);
- int mtk_find_possible_crtcs(struct drm_device *drm, struct device *dev);
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index e956e1966b86..18683aee61ff 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -1166,20 +1166,8 @@ static int mtk_drm_probe(struct platform_device *pdev)
- 		 * blocks have separate component platform drivers and initialize their own
- 		 * DDP component structure. The others are initialized here.
- 		 */
--		if (comp_type == MTK_DISP_AAL ||
--		    comp_type == MTK_DISP_CCORR ||
--		    comp_type == MTK_DISP_COLOR ||
--		    comp_type == MTK_DISP_DSC ||
--		    comp_type == MTK_DISP_GAMMA ||
--		    comp_type == MTK_DISP_MERGE ||
--		    comp_type == MTK_DISP_OVL ||
--		    comp_type == MTK_DISP_OVL_2L ||
--		    comp_type == MTK_DISP_OVL_ADAPTOR ||
--		    comp_type == MTK_DISP_RDMA ||
--		    comp_type == MTK_DISP_WDMA ||
--		    comp_type == MTK_DISP_DP_INTF ||
--		    comp_type == MTK_DISP_DPI ||
--		    comp_type == MTK_DISP_DSI) {
-+		if (!mtk_ddp_comp_is_internal_comp(comp_type) &&
-+		    !mtk_ovl_adaptor_is_comp_present(node)) {
- 			dev_info(dev, "Adding component match for %pOF\n",
- 				 node);
- 			drm_of_component_match_add(dev, &match, component_compare_of,
+-	val = (HPD_INT_THD_DP_TRANS_P0_LOWER_500US |
+-	       HPD_INT_THD_DP_TRANS_P0_UPPER_1100US) << 4;
+-	mtk_dp_update_bits(mtk_dp, MTK_DP_TRANS_P0_3410,
+-			   val, HPD_INT_THD_DP_TRANS_P0_MASK);
+-
+ 	/*
+-	 * Connect threshold 1.5ms + 5 x 0.1ms = 2ms
+-	 * Disconnect threshold 1.5ms + 5 x 0.1ms = 2ms
++	 * Set interrupt debounce threshold time
++	 * VAL  |  0     1     2     3  INT_THD
++	 * Low  | 100   300   500   700 uS
++	 * High | 700   900  1100  1300 uS
+ 	 */
+-	val = (5 << 8) | (5 << 12);
+ 	mtk_dp_update_bits(mtk_dp, MTK_DP_TRANS_P0_3410,
+-			   val,
++			   FIELD_PREP_CONST(HPD_INT_LOW_THD_DP_TRANS_P0_MASK, 2) |
++			   FIELD_PREP_CONST(HPD_INT_HIGH_THD_DP_TRANS_P0_MASK, 2),
++			   HPD_INT_THD_DP_TRANS_P0_MASK);
++
++	/* Connection and Disconnection thresholds: 1.5ms + (5 x 0.1) ms = 2ms */
++	mtk_dp_update_bits(mtk_dp, MTK_DP_TRANS_P0_3410,
++			   FIELD_PREP_CONST(HPD_DISC_THD_DP_TRANS_P0_MASK, 5) |
++			   FIELD_PREP_CONST(HPD_CONN_THD_DP_TRANS_P0_MASK, 5),
+ 			   HPD_DISC_THD_DP_TRANS_P0_MASK |
+ 			   HPD_CONN_THD_DP_TRANS_P0_MASK);
+ 	mtk_dp_update_bits(mtk_dp, MTK_DP_TRANS_P0_3430,
+diff --git a/drivers/gpu/drm/mediatek/mtk_dp_reg.h b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+index 9caf743f4fe6..418a2318c656 100644
+--- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
++++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+@@ -253,6 +253,8 @@
+ #define MTK_DP_TRANS_P0_3410				0x1410
+ #define HPD_DEB_THD_DP_TRANS_P0_MASK				GENMASK(3, 0)
+ #define HPD_INT_THD_DP_TRANS_P0_MASK				GENMASK(7, 4)
++#define HPD_INT_HIGH_THD_DP_TRANS_P0_MASK			GENMASK(3, 2)
++#define HPD_INT_LOW_THD_DP_TRANS_P0_MASK			GENMASK(1, 0)
+ #define HPD_INT_THD_DP_TRANS_P0_LOWER_500US			(2 << 4)
+ #define HPD_INT_THD_DP_TRANS_P0_UPPER_1100US			(2 << 6)
+ #define HPD_DISC_THD_DP_TRANS_P0_MASK				GENMASK(11, 8)
+@@ -267,8 +269,8 @@
+ #define IRQ_MASK_DP_TRANS_P0_INT_IRQ				(BIT(3) << 4)
+ #define IRQ_STATUS_DP_TRANS_P0_MASK				GENMASK(15, 12)
+ #define MTK_DP_TRANS_P0_342C				0x142c
+-#define XTAL_FREQ_DP_TRANS_P0_DEFAULT				(BIT(0) | BIT(3) | BIT(5) | BIT(6))
+-#define XTAL_FREQ_DP_TRANS_P0_MASK				GENMASK(7, 0)
++#define XTAL_FREQ_DP_ACCUM_NUM_MASK				GENMASK(1, 0)
++#define XTAL_FREQ_DP_CLOCK_MHZ_MASK				GENMASK(7, 2)
+ #define MTK_DP_TRANS_P0_3430				0x1430
+ #define HPD_INT_THD_ECO_DP_TRANS_P0_MASK			GENMASK(1, 0)
+ #define HPD_INT_THD_ECO_DP_TRANS_P0_HIGH_BOUND_EXT		BIT(1)
 -- 
 2.54.0
 
