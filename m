@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-318170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318171-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TdhZFE28RGpWzwoAu9opvQ
-	(envelope-from <devicetree+bounces-318170-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:05:49 +0200
+	id A/STM7+9RGr4zwoAu9opvQ
+	(envelope-from <devicetree+bounces-318171-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:11:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F075A6EA785
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:05:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D8E6EA85D
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 09:11:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=DVVj6YqE;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318170-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-318170-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="n5R2/nBl";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318171-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-318171-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BEDBF30581A7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 07:05:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 98DBC3049971
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 07:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F9C368957;
-	Wed,  1 Jul 2026 07:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F823B42EE;
+	Wed,  1 Jul 2026 07:05:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C0B345734;
-	Wed,  1 Jul 2026 07:05:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 799193B42C8;
+	Wed,  1 Jul 2026 07:05:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782889518; cv=none; b=SJD6lzvSntvSVhICkd5JKhCNgDJD9A+gwb6coYYHGiNcjcPnkb3tJUG2rilAR3dZMN7ue1tcpxIBT83ne1JWMjb7MWG2f6qKbXJD/tuOKtNficwLxPEamXto46kDiESR2eStidOB90BrZIy1+d/dizhlB1cU10PgH2fVrtf08VE=
+	t=1782889550; cv=none; b=D78xTWiY9Gt6eN3rlYZCxJrieuZlvPj7Kd1xfZTlSWOd0367sDEGc/tKlHHkRAfoqI5gtDOpD7aiGAyEhIyOT20nFQTP5hC/AhzLo3wnxqoKqPu4V0Z8DrcmeghpPdUJdOJt5eT/fQ7yi5i/mqFlunsMkAfK6QSEW0aN6qWIV2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782889518; c=relaxed/simple;
-	bh=9ww35R6l447d+RHkaoNW0Hm1lPO5lZ8OZndrydqnn6g=;
+	s=arc-20240116; t=1782889550; c=relaxed/simple;
+	bh=BQDkF0ET9AepSf1JuiVVjQqjkNWeshJ2rxfpXZYlT4s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YqTAINwBphFXzuloNnNx4MMwsmFxGvps/4TbhJ/vLQfDx2d4SFsKRB1ComHUqZSLqXxX58+d5wC27XCITNOcgp5BmQ0JgJyLv/+L2BiHI0Pv2zBo5EZA01rDKd6r5YwuS9r/yPP30uf3XCUknfV3mhrzrrMu7GHP84942WQqJKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DVVj6YqE; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A0C11F00A3D;
-	Wed,  1 Jul 2026 07:05:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cTXz3jMhp4uuewL9tX1LSqc6HwQuwFLsySdjQyiYHL/fquptbar2Voh2OjlW2SxC8z4C8QM2Gc5vsRTfVybaEcGdygko0umxDAZWVhWZNlF8VUyb7TzkuIaTfKdwqzhZUY/lA/8fkstu3mLednGJHEHAFMqy7Qz9vTGb6A2OZU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n5R2/nBl; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 358041F000E9;
+	Wed,  1 Jul 2026 07:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782889517;
-	bh=mia8sxKq83EdbDucERboNXKa1jY/lp3YbI5KEzP21q0=;
+	s=k20260515; t=1782889549;
+	bh=zrAlCihXAcC59ghuysxR7ERdUdRQ2ao8tvLWADCyLyc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=DVVj6YqEllZle4eLdF5SZgzJoKA8cAAV8lrQxpPrzMwXlJdu9RWxnnNvXoXLJQI+l
-	 GVWmPVFpBBP33BiFrWkJYWWGycb2B9COkuGSfcUxl2reIF6EFqcnuTICdkFEGN7vJx
-	 UiXp+Dk1a7xKLt88rQ+eaAS4VaNysLgWn/2ErzO49Ns/j/SYt/NMBhKLs09iC8+Qq3
-	 D5emPGL3UKrC1+IiYKlmarUklxkoD92+oiZ5VjCmbZaA4qiSoA5JLCLCp9eDuo8ZU6
-	 mgQNgXNrAX84MEZ5E6BsRfO3NXc5iRMXzP0FvTKejLmoTR+Sl3vQNBhmzG5IQ52CPT
-	 QzASCVo+6LsZA==
-Date: Wed, 1 Jul 2026 09:05:13 +0200
+	b=n5R2/nBlCfCHCXjuCLpDJtsz7/SIw7qGduvxvd5fw5Zfl6TnnzPfRivmKTwjvV16w
+	 X/+6te7Wyh+eSaWuKU83dtJiPQ0/FJghYe/7h79Ceju2+slZ7Cm3TygXYBvyLz87+d
+	 yc7OuErLnEHDBIkBN8zDqLuCS1LJmAaij7GT1SHT0pmukbbK2f//+6wUMiCQPCLSCP
+	 y5680erjdCK+ATyrTEoTNpY2CwB6R4ywlQVR3sGBeryYMG0Ua5wo1pqP3EceTKDPe2
+	 ickRjDeybUQNoHNfbmE8cFhIen49xZ+fG9ZfWrG+j3X1BIvlO+O95cEygKPAA9qKa7
+	 8iBfkIbmEQKNA==
+Date: Wed, 1 Jul 2026 09:05:45 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Andrew LaMarche <andrewjlamarche@gmail.com>
-Cc: Johannes Berg <johannes@sipsolutions.net>, 
-	Jeff Johnson <jjohnson@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Coia Prant <coiaprant@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, ath12k@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Ernest Van Hoecke <ernestvanhoecke@gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: wireless: ath12k: drop
- qcom,ath12k-calibration-variant
-Message-ID: <20260701-objective-gay-aardwolf-fcffef@quoll>
-References: <20260630133001.1426824-1-andrewjlamarche@gmail.com>
- <20260630133001.1426824-2-andrewjlamarche@gmail.com>
+	Heiko Stuebner <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>, 
+	Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add graperain
+Message-ID: <20260701-sturdy-imported-oryx-dfc12a@quoll>
+References: <20260630153810.3574714-2-coiaprant@gmail.com>
+ <20260630153810.3574714-4-coiaprant@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +66,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260630133001.1426824-2-andrewjlamarche@gmail.com>
+In-Reply-To: <20260630153810.3574714-4-coiaprant@gmail.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -75,57 +74,70 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-318170-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318171-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:andrewjlamarche@gmail.com,m:johannes@sipsolutions.net,m:jjohnson@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-wireless@vger.kernel.org,m:devicetree@vger.kernel.org,m:ath12k@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:ernestvanhoecke@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:coiaprant@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:dsimic@manjaro.org,m:jonas@kwiboo.se,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[sipsolutions.net,kernel.org,vger.kernel.org,lists.infradead.org,gmail.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,graperain.com:url,quoll:mid,graperain.cn:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F075A6EA785
+X-Rspamd-Queue-Id: 25D8E6EA85D
 
-On Tue, Jun 30, 2026 at 01:30:01PM +0000, Andrew LaMarche wrote:
-> The ath12k-wsi binding documentation describes using the
-> generation-specific qcom,ath12k-calibration-variant binding as well as
-> the generation-agnostic qcom,calibration-variant binding to load
-> board-specific calibration data from the device tree. However, the
-> driver never implemented either of these.
+On Tue, Jun 30, 2026 at 11:38:09PM +0800, Coia Prant wrote:
+> Add graperain to the vendor prefixes.
 > 
-> Given that no devices currently supported use
-> qcom,ath12k-calibration-variant and the previous patch implements
-> qcom,calibration-variant, drop the generation-specific version from the
-> binding to prevent future confusion.
+> Link: https://www.graperain.cn/ (China)
+> Link: https://www.graperain.com/ (Global)
 > 
-> Signed-off-by: Andrew LaMarche <andrewjlamarche@gmail.com>
+> Signed-off-by: Coia Prant <coiaprant@gmail.com>
 > ---
->  .../devicetree/bindings/net/wireless/qcom,ath12k-wsi.yaml  | 7 -------
->  1 file changed, 7 deletions(-)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+<form letter>
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
+
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state in the patch changelog
+or cover letter why and what changed.
+</form letter>
 
 Best regards,
 Krzysztof
