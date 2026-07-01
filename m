@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-318403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318404-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NI7MFvz5RGqF4QoAu9opvQ
-	(envelope-from <devicetree+bounces-318403-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:29:00 +0200
+	id x/loKeL5RGp54QoAu9opvQ
+	(envelope-from <devicetree+bounces-318404-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:28:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56B096ECD1C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:28:59 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 337AF6ECCED
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:28:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NM9dJxin;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318403-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318403-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dHQywz4h;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318404-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-318404-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0E0A43027B7A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:22:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1D033300C9AC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:24:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F37477981;
-	Wed,  1 Jul 2026 11:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493EE4779BC;
+	Wed,  1 Jul 2026 11:24:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F7403B440F
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 11:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B0B4779B3
+	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 11:24:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782904925; cv=none; b=uWz0XZifCEqzx+9xJZRzOeJegpyP+6kkSmLwkVlHlm++ATGuzdrigFRKM9tsdQp4V1+ci4acQzwZH4q2eK/HOMc/Pn7XGXzd8kz4N1jwbYS2CqqkxlwpNbcUfiq07zdWdWR/fJaiBb43etiYd5QEJdW3eXa/5Cag3NOVbv+ZYCc=
+	t=1782905073; cv=none; b=L/6PEo6TcF2t/jdNoQB4fr+/CV63vJKzuPgqkXrxWhHSSsvcWFmW2vLN5PVI0ASgv2uKggGVD1JDTqfk8q4q/2g4EFXOlyZ9k6UMdjjaIxb3w9GcCaObUgoz9tERLwiq7eUHbUD48arMWjogRQ/oJ1NLpjmm6yns/Wma6f3UsPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782904925; c=relaxed/simple;
-	bh=FnQSiboyFhP9bwvbNYbKA+t7x7AsEwOc+1U5/6QQKpw=;
+	s=arc-20240116; t=1782905073; c=relaxed/simple;
+	bh=BuNw6EO4e+GIN0Vc0BEBsNCdKJgkxGvUYz2/GFrmxe4=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=rIWjM4N8Fkq1p93Y9qgCI21JVlmzREoITQEp47xo+GiBaLdcHAIjqwAwBwsz/Yvh3oDaYB2EGrPBIDImLOoYw3vZOqCtmtt61Alj4KS0pGIMVfDGoqq7y3mnhKAv+abphhd+hGt121o3IULwf0x404l5+VBN03LBOBFKqfObrmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NM9dJxin; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C64BD1F000E9;
-	Wed,  1 Jul 2026 11:22:03 +0000 (UTC)
+	 Message-Id; b=rG9ozGtYg8S/j8KeZeMww5mzJ3QZvQ5oJT5PEcvGAl6vQKvvgmOPASWhzjK1wDx80P+kuZCbdXPLxeaw9ffNr8Sw/TIGLsIrnTmkmSVHgjK+XJFL0gwEtQKE/LoFFB5yTiopzWqwmcqmxWyHQ4Td1r6yO915Pc0a9jIZCEcFZCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dHQywz4h; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F6481F00A3A;
+	Wed,  1 Jul 2026 11:24:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782904924;
-	bh=lJ6Ki1SedjvoWMpL6p3aATp2M8whvc90X4I6ejuhrL0=;
+	s=k20260515; t=1782905071;
+	bh=nanPuof1c8ymSBvvlFLauqbhi+CTDhvUl1IyT6FPRyY=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=NM9dJxinzh4Xg725o7nC2D5oe6NacmhB/iuiFSZyln3bL7Eu7nbu4oNXmebqQC2hU
-	 2e8qx53MZR1+qIk37nLJ5TinDEK9/jDOi0h/77boOGUepE53qF08GpSQAPre6Xihrh
-	 GkgSOit4B0hLQvPSiG2tjJ42KoIneZgvyHmUbDGYnAYq5OKrAAFffljR9zvi73CPfm
-	 NpNh7cYqJ9Zujy5MhRnCNwlyQUGHsgSZp2lhb1Xrv7NRpmmIiGqP11qcI2YvBBWXQE
-	 wI0J14Sps/QT35NDSTJ4Yk2hudESPrZG8rBZ9WZpKzdX4+Ha45oWroTNz0bAEd0UMe
-	 SapRdoTlqGuVQ==
+	b=dHQywz4hQKASSkiPLgjGgq3knIjP1bssZsbSAC9ND+j8U5TZ+9ZLYBeWea3mE2t6n
+	 ynK84DGJe1GBxqmAuxfkEB7uN096QcinQjQKH95g7gvKnYQu52mIb/B0OBe43cSNde
+	 Jo1x/KVk96ZESdiEn9Ry+2KWCyrC784wGZGmexFs+GBtQY3OMKdv+Ze9QPcHK7N9Xy
+	 UbNHlpdu02/YN+9cMd+CkR+zw00ffkvyCRRoqbQQ+2/KtrLqMIYaJVB0r4QOi73vFK
+	 0ESQnpDEf6yhVbOoMtOwPRtxAYoaxmTC6Z4EW/9VJdEyweMKSkykMEkzvR7yl9s7X2
+	 5jmWBNs86W5kA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 10/11] ASoC: qcom: Add Shikra QAIF support
+Subject: Re: [PATCH v4 2/2] drm/panel: add Ilitek ILI7807S panel driver
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Harendra Gautam" <harendra.gautam@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260701105757.2779738-11-harendra.gautam@oss.qualcomm.com>
-References: <20260701105757.2779738-1-harendra.gautam@oss.qualcomm.com>
- <20260701105757.2779738-11-harendra.gautam@oss.qualcomm.com>
+To: "Arpit Saini" <arpit.saini@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260701-ili7807s-v4-2-c7d76d4780a5@oss.qualcomm.com>
+References: <20260701-ili7807s-v4-0-c7d76d4780a5@oss.qualcomm.com>
+ <20260701-ili7807s-v4-2-c7d76d4780a5@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 11:22:03 +0000
-Message-Id: <20260701112203.C64BD1F000E9@smtp.kernel.org>
+Date: Wed, 01 Jul 2026 11:24:30 +0000
+Message-Id: <20260701112431.3F6481F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,154 +71,157 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318403-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:harendra.gautam@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-318404-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:arpit.saini@oss.qualcomm.com,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto,qualcomm.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 56B096ECD1C
+X-Rspamd-Queue-Id: 337AF6ECCED
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
-- [High] Missing DAI descriptors for CDC DMA TX (capture), RX2-3, and VA_TX=
-2-3 channels render hardware paths completely inaccessible.
-- [Low] Monolithic module linking prevents addition of future SoC variants =
-without build errors.
+- [High] Conflicting MIPI DCS brightness functions send payload with mismat=
+ched endianness
+- [High] Incorrect devres registration order causes DSI to detach before pa=
+nel teardown
+- [High] Unconditional DSI hardware access in backlight update callback whi=
+le panel is unpowered
+- [Medium] Hardcoded brightness in initialization sequence desynchronizes p=
+hysical and logical state
 --
 
-commit 8fb121461863147da2f4ca2b57d93d08f040ef59
-Author: Harendra Gautam <harendra.gautam@oss.qualcomm.com>
-Subject: ASoC: qcom: Add Shikra QAIF support
+commit 225e11adf3557eed6e400ee38411cadcbb543985
+Author: Arpit Saini <arpit.saini@oss.qualcomm.com>
+Subject: drm/panel: add Ilitek ILI7807S panel driver
 
-This commit adds the Shikra variant data for the Qualcomm Audio Interface
-driver. It introduces register field definitions, DMA mappings, DAI descrip=
-tors,
-and clock configuration. The new variant is hooked up to Kconfig and the qc=
-om
-ASoC Makefile.
+Add a DRM panel driver for the DLC DLC0697 1080x1920@60Hz MIPI DSI panel ba=
+sed
+on the Ilitek ILI7807S display controller.
 
-> diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
-> index 985ce2ae286ba..857bb2a032a2d 100644
-> --- a/sound/soc/qcom/Makefile
-> +++ b/sound/soc/qcom/Makefile
-> @@ -31,6 +31,7 @@ snd-soc-qcom-common-y :=3D common.o
->  snd-soc-qcom-sdw-y :=3D sdw.o
->  snd-soc-x1e80100-y :=3D x1e80100.o
->  snd-soc-qcom-offload-utils-objs :=3D usb_offload_utils.o
-> +snd-soc-qcom-qaif-y :=3D qaif-cpu.o qaif-platform.o qaif-shikra.o
-
-[ ... ]
-
-> diff --git a/sound/soc/qcom/qaif-shikra.c b/sound/soc/qcom/qaif-shikra.c
+> diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili7807s.c b/drivers/gpu/=
+drm/panel/panel-ilitek-ili7807s.c
 > new file mode 100644
-> index 0000000000000..6bf32d155f3a1
 > --- /dev/null
-> +++ b/sound/soc/qcom/qaif-shikra.c
-> @@ -0,0 +1,556 @@
-
+> +++ b/drivers/gpu/drm/panel/panel-ilitek-ili7807s.c
 [ ... ]
-
-> +static const struct qaif_dmaidx_dai_map shikra_cif_tx_dma_dai_map[] =3D {
-> +		{ QAIF_CDC_DMA_TX0 },
-> +		{ QAIF_CDC_DMA_TX1 },
-> +		{ QAIF_CDC_DMA_TX2 },
-> +		{ QAIF_CDC_DMA_TX3 }
-> +};
-> +
-> +static const struct qaif_dmaidx_dai_map shikra_cif_va_dma_dai_map[] =3D {
-> +		{ QAIF_CDC_DMA_VA_TX0 },
-> +		{ QAIF_CDC_DMA_VA_TX1 },
-> +		{ QAIF_CDC_DMA_VA_TX2 },
-> +		{ QAIF_CDC_DMA_VA_TX3 }
-> +};
-
+> +static void dlc0697_init_sequence(struct mipi_dsi_multi_context *dsi_ctx)
+> +{
 [ ... ]
+> +	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xff, 0x78, 0x07, 0x00);
+> +	mipi_dsi_dcs_set_tear_on_multi(dsi_ctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+> +	mipi_dsi_dcs_write_seq_multi(dsi_ctx, MIPI_DCS_SET_CABC_MIN_BRIGHTNESS,=
+ 0x09, 0x99);
+> +	mipi_dsi_dcs_write_seq_multi(dsi_ctx, MIPI_DCS_WRITE_CONTROL_DISPLAY, 0=
+x24);
+> +	mipi_dsi_dcs_write_seq_multi(dsi_ctx, MIPI_DCS_WRITE_POWER_SAVE, 0x01);
+> +	mipi_dsi_dcs_set_display_brightness_multi(dsi_ctx, 0x1fff);
 
-> +static struct snd_soc_dai_driver shikra_qaif_cpu_dai_driver[] =3D {
-> +	{
-> +		.id =3D QAIF_MI2S_TDM_AIF0,
+[Severity: Medium]
+Will hardcoding the brightness to 0x1fff during initialization cause the
+screen to flash at maximum brightness on system resume?
 
-[ ... ]
-
-> +	}, {
-> +		.id =3D QAIF_CDC_DMA_VA_TX1,
-> +		.name =3D "CDC DMA VA1",
-> +		.capture =3D {
-> +			.stream_name =3D "DMIC Capture1",
-> +			.formats =3D SNDRV_PCM_FMTBIT_S16,
-> +			.rates =3D SNDRV_PCM_RATE_48000,
-> +			.rate_min	=3D 48000,
-> +			.rate_max	=3D 48000,
-> +			.channels_min	=3D 1,
-> +			.channels_max	=3D 4,
-> +		},
-> +		.ops	=3D &asoc_qcom_qaif_cif_dai_ops,
-> +	},
-> +};
+The brightness will remain maxed out until the subsequent enable path trigg=
+ers
+a backlight update. Does it make sense to restore the user's configured
+brightness level from the backlight device here instead?
 
 [Severity: High]
-The DMA mapping (shikra_cif_tx_dma_dai_map) specifies all 4 QAIF_CDC_DMA_TX
-channels, but the shikra_qaif_cpu_dai_driver array seems to omit the WCD
-capture (QAIF_CDC_DMA_TX) DAIs entirely. It also only provides 2 out of 4 f=
-or
-the RX and VA_TX DAIs.
+Does the panel hardware expect the 16-bit brightness payload in Little Endi=
+an
+or Big Endian byte order?
 
-Will this cause sound card registration to fail when a machine driver
-attempts to instantiate a PCM capture stream routing through
-QAIF_CDC_DMA_TX0 (or TX1-3)?
+This initialization sequence uses mipi_dsi_dcs_set_display_brightness_multi=
+(),
+which sends a Little Endian payload. However, the backlight update callback
+ili7807s_bl_update_status() uses mipi_dsi_dcs_set_display_brightness_large(=
+),
+which sends a Big Endian payload:
+
+ili7807s_bl_update_status() {
+    ...
+    ret =3D mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
+}
+
+Since these serialize the value with opposite endianness, one of these paths
+might send a corrupted value to the hardware, potentially causing incorrect
+backlight levels or initialization failures.
 
 [ ... ]
+> +static int ili7807s_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi =3D bl_get_data(bl);
+> +	u16 brightness =3D backlight_get_brightness(bl);
+> +	int ret;
+> +
+> +	dsi->mode_flags &=3D ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret =3D mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
 
-> +static struct platform_driver shikra_qaif_cpu_platform_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "shikra-qaif-cpu",
-> +		.of_match_table =3D shikra_qaif_cpu_device_id,
-> +		.pm =3D &shikra_qaif_pm_ops,
-> +	},
-> +	.probe =3D asoc_qcom_qaif_cpu_platform_probe,
-> +	.remove =3D asoc_qcom_qaif_cpu_platform_remove,
-> +	.shutdown =3D asoc_qcom_qaif_cpu_platform_shutdown,
-> +};
-> +module_platform_driver(shikra_qaif_cpu_platform_driver);
+[Severity: High]
+Can a userspace process writing to the backlight sysfs brightness attribute
+cause a DSI host timeout if the panel is currently asleep?
 
-[Severity: Low]
-Because qaif-cpu.o, qaif-platform.o, and qaif-shikra.o are linked into a
-single snd-soc-qcom-qaif.ko module, does using module_platform_driver()
-here inadvertently claim the entire module's init/exit entry points?
+The backlight device is registered in ili7807s_probe() and exposed to users=
+pace
+asynchronously from the display pipeline state. Because ili7807s_bl_update_=
+status()
+transmits DCS commands without checking if the panel is actually powered on
+(for example, by checking a prepared flag), attempting to communicate over =
+the
+DSI bus while unpowered can cause the host controller to wait indefinitely.
 
-Could this lead to build failures due to multiple init_module definitions
-if a future SoC variant is added to snd-soc-qcom-qaif-y and also attempts
-to register a platform driver?
+[ ... ]
+> +static int ili7807s_probe(struct mipi_dsi_device *dsi)
+> +{
+[ ... ]
+> +	ret =3D devm_drm_panel_add(dev, &ctx->panel);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to add panel\n");
+> +
+> +	return devm_mipi_dsi_attach(dev, dsi);
+> +}
+
+[Severity: High]
+Could the devres registration order here cause DSI transmission errors duri=
+ng
+driver unbind?
+
+Since devres actions execute in LIFO order, devm_mipi_dsi_attach() will be
+undone (detaching the DSI device) before devm_drm_panel_add() is undone.
+When the DRM subsystem subsequently tears down the display pipeline and
+invokes the panel's unprepare callback, the DCS commands sent to power down
+the panel will fail because the DSI device is no longer attached to the hos=
+t.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701105757.2779=
-738-1-harendra.gautam@oss.qualcomm.com?part=3D10
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-ili7807s-v=
+4-0-c7d76d4780a5@oss.qualcomm.com?part=3D2
 
