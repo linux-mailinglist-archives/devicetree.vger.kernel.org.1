@@ -1,311 +1,224 @@
-Return-Path: <devicetree+bounces-318393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318397-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8OOJNG35RGpj4QoAu9opvQ
-	(envelope-from <devicetree+bounces-318393-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:26:37 +0200
+	id keeUCx73RGql4AoAu9opvQ
+	(envelope-from <devicetree+bounces-318397-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:16:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4B836ECCC0
-	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:26:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B41316ECA96
+	for <lists+devicetree@lfdr.de>; Wed, 01 Jul 2026 13:16:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="k6G35/uE";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318393-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318393-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=HIk+5ig0;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318397-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318397-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1AE4A3044735
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:12:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3901D307CEF0
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jul 2026 11:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C56D3FBB66;
-	Wed,  1 Jul 2026 11:12:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE01D423A7C;
+	Wed,  1 Jul 2026 11:13:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 435093B7778
-	for <devicetree@vger.kernel.org>; Wed,  1 Jul 2026 11:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 812913B38AA;
+	Wed,  1 Jul 2026 11:13:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782904359; cv=none; b=N6k4XV5K5xu+M+gpV1Py84JM3LQcvopkXMC4CI93wuq2/R/b3a1MY84ugkAsxrLC/4aE5o1+CorQ0ySHecFE7OP6fA5RK9c9RVsTzd1W67TO1C3umsMcvB0hjmzT9Vvu1OHURPjQvXPm+PjYfUNFexzBJLMbvTKBLKtz/s63FEg=
+	t=1782904404; cv=none; b=hWEtsrxig5dcz1lPce9giWhSaeWQ7Jkf/dV+QlmbKh1o8g03WLFovQQP1q5z44smpeOMNwxVjkQikJ3dmaLmbA7k6spEaWbgu89GlUbSN4jXvmUAIAhgNRaTGb0+u6pSfUvw3iR0wx9W7ZeKe+U/5/ctiOhFPpBCqHPEE4qf9gY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782904359; c=relaxed/simple;
-	bh=+kvr8x+pL6vl6t0T7b7pwUv+aMlCHNCzqcz0efA1L1c=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=QyhEg6+Hqshrhmt7EPKolPyJSjvPU0/NFezrSkQNNOqtfg36nW+9gyytyCenDiTYOd8hRg2q+rll63lV4tf7AZ5ReG1chJbmPHNfyEKJHSB9Nfi0Vns0PS8CUjhOHxMMPTXpF5Fw8/LduokKw/oXxXxj1Dg6MLpqa5pYZ20e/90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6G35/uE; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9097D1F00A3A;
-	Wed,  1 Jul 2026 11:12:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782904357;
-	bh=qSHDPi3aK1CgpOdVR1b7aECyT0sYajSoAYPUStATpkY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=k6G35/uEDEsVin7ap12dilSM5pc93/XFbjOlZyAHpTT7CmqEKztQwhTgi4qSFU0JR
-	 DcKb0p1RaMuqwipaH6NwJsLLO5D+jaN1kTBCbipLiZi+ze+5OKhq4sHsidY3oo8JrL
-	 TRkwh1VFSVqTlKaSzjkD9omVYIZyKeKw+MjqnEHoDg2JsK8KmV6DreEekND3BEm4df
-	 a5NnqUefgH8d0lghe/Hf5nDFqLRUN6FRWmg6IOmLLp0yCUrtagrKyxvM+UoMaoX/Y3
-	 XcjPDBg7EimdSqEu7Af+f8+sH6RoYPmOWD15KEe0XBM6xaJDrzhcfvSOgEiuhut7go
-	 ecMS0/W8vZWgg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 08/11] ASoC: qcom: Add QAIF PCM operations
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Harendra Gautam" <harendra.gautam@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260701105757.2779738-9-harendra.gautam@oss.qualcomm.com>
-References: <20260701105757.2779738-1-harendra.gautam@oss.qualcomm.com>
- <20260701105757.2779738-9-harendra.gautam@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 01 Jul 2026 11:12:36 +0000
-Message-Id: <20260701111237.9097D1F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1782904404; c=relaxed/simple;
+	bh=5FrAyB/XyQAjH/KpqVQfvZUYk852wAlTGT371rCbJQI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VTF8MNmFsync5DA1GamOC6js7Kpb81qx+1DH0eOap9dLAdr5fN1mMbP0cNGt7fPmHdCBOpFd5v34kt5wF4fzj8VybM96tpFP6gMwzU3eAXvGRUf+ip9fabxgzp4pb5IXNyhkurI65QKTbEtuynDVBZgtzdlIgkJ6Z+9JFnDErZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HIk+5ig0; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 661A90Af753610;
+	Wed, 1 Jul 2026 11:12:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=dhzeSQip8Gjy3p4Lm10/yF
+	WnFdFOU+tDXO7CBNq76zo=; b=HIk+5ig0YwzADAhR534s27zEFn4sJ9cZi4PGSd
+	apIQt5FUhsgBddBDm+EdZSucB0lxraGbpsG9wZtjI7xxPlfzRISjcuiL9L92aLNd
+	ptraL8U0PdVYSxl5+NWOd7/kXWgg+Jky1WeDvd2eI9YL3lENPgb/b0xJhTyhmitL
+	t5XCTSW36tpYXftPbPidtN9SAv4RPd1FpRBsz06uKqp7+0ZuKUyJq4u/fVPCY75/
+	A1RGCVWXqYK/dqYoniZb0Ay1MgXyq1Rrq9A+h3B2EKnLCapc+arjcUl1EU3dFn06
+	7pa+8ZrCD3FeR7aVZDL++mLmmVoXV+BvTTGRjyfC5FUj4S8A==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f4rsy2cfy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 01 Jul 2026 11:12:55 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 661BCqWs031719;
+	Wed, 1 Jul 2026 11:12:52 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 4f27kk0333-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 01 Jul 2026 11:12:52 +0000 (GMT)
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 661BCpMM031702;
+	Wed, 1 Jul 2026 11:12:51 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-arpisain-hyd.qualcomm.com [10.147.248.17])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 661BCp6b031697
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 01 Jul 2026 11:12:51 +0000 (GMT)
+Received: from hu-arpisain-hyd.qualcomm.com (localhost [127.0.0.1])
+	by hu-devc-hyd-u22-c.qualcomm.com (Postfix) with ESMTP id ACE7F631;
+	Wed,  1 Jul 2026 16:42:50 +0530 (+0530)
+From: Arpit Saini <arpit.saini@oss.qualcomm.com>
+Subject: [PATCH v4 0/2] drm/panel: add support for Ilitek ILI7807S DSI
+ panels
+Date: Wed, 01 Jul 2026 16:42:48 +0530
+Message-Id: <20260701-ili7807s-v4-0-c7d76d4780a5@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADD2RGoC/22NzQ6DIBCEX8VwLgYXf3vqezQ9AGIlUbBgiY3x3
+ Qs2TT30ssnszDezIietkg6dkxVZ6ZVTRgeRnxIkeqbvEqs2aAQESlJmBVaDqmpSOTwxLQcUcpw
+ 5ibllWvQxqeUy408caPQnKzu17BvXW9C9crOxr33SQ/x+2+tfuwdMMKcdERlpeEbgYpxLH082C
+ DOOaTgodnl64CE/8DTwbdvRihTAoG7+8Nu2vQHd6jbfAAEAAA==
+X-Change-ID: 20260615-ili7807s-panel
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: arpit.saini@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ayushi.makhija@oss.qualcomm.com,
+        rajeevny@qti.qualcomm.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782904370; l=2350;
+ i=arpit.saini@oss.qualcomm.com; h=from:subject:message-id;
+ bh=5FrAyB/XyQAjH/KpqVQfvZUYk852wAlTGT371rCbJQI=;
+ b=Vw776Mt+81eIsITAPIuu8eyNmb6W+801G9ZBsK/83NwgtP10Dmam/l0d+5IajvikzwMywfKE7
+ Y7gKplkrA/qBfOwn2yq9M0EdxlxwXljhk54B69Fk6MLcCQAHvBMv8Iv
+X-Developer-Key: i=arpit.saini@oss.qualcomm.com; a=ed25519;
+ pk=OGOh7FGwrnkILHNlcTTABbBMQxxo319duzbTg0YPDAc=
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-GUID: 0KsCgq6Q0jIC-7MS-sl1QVrn-dH6buMN
+X-Authority-Analysis: v=2.4 cv=fLgJG5ae c=1 sm=1 tr=0 ts=6a44f638 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=7NJfoTriyfkdjGHd6h8A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAxMDExOCBTYWx0ZWRfXyLv+0xsG2nii
+ 3VWzuht3SOjImwW4aD/R3fElfmbsMJPUcUw1ZGgPmSH0Rz6iK2vhbsb2mT3Brsg2L9N+8zbZ/Sx
+ qHYopwlN02nVeCjfF8Z0Bmo1ylFW4NHE6hefFrR7YTTZk01DdpHDneRXtx7PGAN/DluBD0Til8f
+ oOk1vGZQkXsz5hRfNJdRb8tfPL0G3njFiwEKv8Nr55lE7VwDVx9eBndMsPs6arXkWZzwsWhwHV6
+ EbLGz9V8GNMdnYh9veRbR4h54xiHZHEPc/0Fz7eIL5HQLIUsyQXL6WXCdQ/yUI4p2TdNkJcUUES
+ QEjLaTtt5MeJQlnEO2337t9sx3R1yZiqYLuuCJ+oWAoJOgxwV46OSSs8UIuvo44MiQwON/OVHdp
+ uJlSonFa7i1lMKiu8T+4tzimAOvbz1FLl8rxl56nf3n7/pIb+m1sMHd0Zt3CRemGsUNIAs5TTcv
+ MIbMF/D3XmSg7+TXHSg==
+X-Proofpoint-ORIG-GUID: 0KsCgq6Q0jIC-7MS-sl1QVrn-dH6buMN
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAxMDExOCBTYWx0ZWRfX96JmCICWrt5M
+ pDt/hvQGZ3omXUwLMALb/qUUu7UKSSP5NcdpKby3CGdy2Y3jA/GQXaUhQFSOH4wB1b+d4noBsUH
+ IQPfRSUosgZLehJYakpmpPUcOqdexRA=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-01_03,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 phishscore=0 malwarescore=0 suspectscore=0 priorityscore=1501
+ bulkscore=0 spamscore=0 adultscore=0 lowpriorityscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607010118
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-318397-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-318393-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:jesszhan0024@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:arpit.saini@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ayushi.makhija@oss.qualcomm.com,m:rajeevny@qti.qualcomm.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[arpit.saini@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:harendra.gautam@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[arpit.saini@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D4B836ECCC0
+X-Rspamd-Queue-Id: B41316ECA96
 
-Thank you for your contribution! Sashiko AI review found 8 potential issue(=
-s) to consider:
-- [High] Setting ALSA DMA buffer type to SNDRV_DMA_TYPE_CONTINUOUS for dma_=
-alloc_coherent() memory breaks mmap cache coherency.
-- [High] qaif_platform_cdc_dma_mmap() uses the wrong device pointer, bypass=
-ing IOMMU translation.
-- [High] The pointer callback returns negative error codes directly, corrup=
-ting the ALSA ring buffer state.
-- [High] The close callback frees the DMA buffer and clears substream point=
-ers without synchronizing against in-flight IRQ handlers.
-- [Medium] Missing ALSA hardware step constraint for period and buffer byte=
-s causes truncated DMA lengths.
-- [Medium] The DMA engine is started before pending interrupts are cleared =
-and enabled, and lacks error rollback.
-- [Medium] Unhandled default case for unsupported dai_id in qaif_platform_p=
-cmops_open() leads to leaked memory and uninitialized stream usage.
-- [Low] Bitwise accumulation of negative error codes in IRQ configuration h=
-elpers corrupts the returned errno.
---
+Add DT bindings and a DRM panel driver for panels based on the Ilitek
+ILI7807S display controller. The first supported panel is the DLC
+DLC0697 1080x1920@60Hz MIPI DSI panel.
 
-commit 58474411dd21afab7ec8d7878e3b69a5a008fbfb
-Author: Harendra Gautam <harendra.gautam@oss.qualcomm.com>
+Changes in v4:
+- Use active-low reset GPIO semantics: define reset-gpios as active-low
+  in DT and use hold=1/drop=0 in the driver (Dmitry Baryshkov)
+- Replace raw DCS writes with proper helpers: mipi_dsi_dcs_set_tear_on_multi(),
+  MIPI_DCS_SET_CABC_MIN_BRIGHTNESS, MIPI_DCS_WRITE_CONTROL_DISPLAY,
+  MIPI_DCS_WRITE_POWER_SAVE (Dmitry Baryshkov)
+- Use mipi_dsi_dcs_set_display_brightness_multi() with 0x1fff initial
+  brightness (Dmitry Baryshkov)
+- Move MIPI_DSI_MODE_LPM to probe(), drop toggling in on()/off()
+  (Dmitry Baryshkov)
+- Express .clock as arithmetic expression for clarity (Dmitry Baryshkov)
+- Update panel physical dimensions width_mm/height_mm (Dmitry Baryshkov)
+- Link to v3: https://lore.kernel.org/r/20260624-ili7807s-v3-0-ddf37052a289@oss.qualcomm.com
 
-ASoC: qcom: Add QAIF PCM operations
-   =20
-Adds PCM operation callbacks for the QAIF platform driver so AIF and CIF
-DAIs can manage the DMA stream lifecycle.
+Changes in v3:
+- Return devm_mipi_dsi_attach() directly (Neil Armstrong)
+- Link to v2: https://lore.kernel.org/all/20260618-ili7807s-v2-0-b3f0c109b102@oss.qualcomm.com/
 
-> diff --git a/sound/soc/qcom/qaif-platform.c b/sound/soc/qcom/qaif-platfor=
-m.c
-> --- a/sound/soc/qcom/qaif-platform.c
-> +++ b/sound/soc/qcom/qaif-platform.c
+Changes in v2:
+- Drop MAINTAINERS entry (Dmitry Baryshkov)
+- Use devm_drm_panel_add() instead of drm_panel_add() to avoid
+  manual drm_panel_remove() in the error path (Dmitry Baryshkov)
+- Rework backlight: call drm_panel_of_backlight() first and fall back
+  to creating a DCS backlight device if panel->backlight is still NULL
+  (Dmitry Baryshkov)
+- Remove backlight-en-gpios from the binding (Dmitry Baryshkov)
+- Fix mode_flags LPM not restored on backlight update error path
+- Link to v1 : https://lore.kernel.org/all/20260518-ili7807s-panel-v1-0-d7b048163b1c@oss.qualcomm.com/
 
-[ ... ]
+---
+Arpit Saini (2):
+      dt-bindings: display: panel: add Ilitek ILI7807S panel controller
+      drm/panel: add Ilitek ILI7807S panel driver
 
-> @@ -291,3 +291,630 @@ static int qaif_platform_pcmops_open(struct snd_soc=
-_component *component,
->  				     struct snd_pcm_substream *substream)
->  {
-[ ... ]
->  	buf =3D &substream->dma_buffer;
->  	buf->dev.dev =3D component->dev;
->  	buf->private_data =3D NULL;
->  	buf->dev.type =3D SNDRV_DMA_TYPE_CONTINUOUS;
-> =20
->  	dma_mem_info =3D qaif_mem_alloc_attach(component,
+ .../bindings/display/panel/ilitek,ili7807s.yaml    |  71 +++++
+ drivers/gpu/drm/panel/Kconfig                      |  12 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-ilitek-ili7807s.c      | 285 +++++++++++++++++++++
+ 4 files changed, 369 insertions(+)
+---
+base-commit: 4e5dfb7c84012007c3c7061126491bbc92d71bf1
+change-id: 20260615-ili7807s-panel
 
-[Severity: High]
-Does setting the buffer type to SNDRV_DMA_TYPE_CONTINUOUS for memory
-allocated via dma_alloc_coherent() break mmap cache coherency in the
-fallback snd_pcm_lib_default_mmap() handler?
+Best regards,
+-- 
+Arpit Saini <arpit.saini@oss.qualcomm.com>
 
-[ ... ]
-
->  	switch (dai_id) {
->  	case QAIF_MI2S_TDM_AIF0 ... QAIF_MI2S_TDM_AIF12:
-[ ... ]
->  	case QAIF_CDC_DMA_RX0 ... QAIF_CDC_DMA_RX9:
-[ ... ]
->  		snd_soc_set_runtime_hwparams(substream, &qaif_platform_cif_hardware);
->  		runtime->dma_bytes =3D qaif_platform_cif_hardware.buffer_bytes_max;
->  		break;
->  	default:
->  		break;
->  	}
-> =20
->  	snd_pcm_set_runtime_buffer(substream, &substream->dma_buffer);
-
-[Severity: Medium]
-Does this unhandled default case leak the allocated dma_mem_info and leave
-the stream data uninitialized instead of returning an error for an
-unsupported dai_id?
-
-[ ... ]
-
->  static int qaif_platform_pcmops_close(struct snd_soc_component *componen=
-t,
->  				      struct snd_pcm_substream *substream)
->  {
-[ ... ]
->  	switch (dai_id) {
->  	case QAIF_MI2S_TDM_AIF0 ... QAIF_MI2S_TDM_AIF12:
->  		drvdata->aif_substream[data->stream_dma_idx] =3D NULL;
->  		qaif_mem_dealloc_detach(component->dev,
->  					drvdata->aif_dma_heap[data->stream_dma_idx]);
->  		drvdata->aif_dma_heap[data->stream_dma_idx] =3D NULL;
->  		break;
-
-[Severity: High]
-Can this free the DMA buffer and clear the substream pointers while an
-in-flight IRQ handler is still executing on another CPU, since there is no
-synchronize_irq() or sync_stop callback used here?
-
-[ ... ]
-
->  static int qaif_platform_pcmops_prepare(struct snd_soc_component *compon=
-ent,
->  					struct snd_pcm_substream *substream)
->  {
-[ ... ]
->  	ret =3D regmap_write(map, QAIF_DMABUFF_REG(v, idx, dir, dai_id),
->  			   (snd_pcm_lib_buffer_bytes(substream) >>
->  			    QAIF_DMA_BYTES_TO_WORDS_SHIFT) - 1);
-
-[Severity: Medium]
-Can this bit-shift truncate the DMA length if userspace requests a buffer
-size that isn't a multiple of 8 bytes, since there is no
-snd_pcm_hw_constraint_step() enforced in qaif_platform_pcmops_open()?
-
-[ ... ]
-
->  static int qaif_platform_irq_enable(struct qaif_drv_data *drvdata,
->  				    int dir,
->  				    enum qaif_irq_type irq_type,
->  				    int idx)
->  {
->  	int ret =3D 0;
-[ ... ]
->  	if (dir =3D=3D SNDRV_PCM_STREAM_PLAYBACK) {
->  		ret |=3D regmap_write_bits(map,
->  					 QAIF_EE_RDDMA_PERIOD_IRQ_EN_REG(v, irq_type),
->  					 val_irqen, val_irqen);
->  		ret |=3D regmap_write_bits(map,
->  					 QAIF_EE_RDDMA_UNDERFLOW_IRQ_EN_REG(v, irq_type),
->  					 val_irqen, val_irqen);
-
-[Severity: Low]
-Does accumulating negative error codes with a bitwise OR corrupt the
-returned errno?
-
-[ ... ]
-
->  static int qaif_platform_pcmops_trigger(struct snd_soc_component *compon=
-ent,
->  					struct snd_pcm_substream *substream,
->  					int cmd)
->  {
-[ ... ]
->  	case SNDRV_PCM_TRIGGER_START:
->  	case SNDRV_PCM_TRIGGER_RESUME:
->  	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
->  		ret =3D regmap_fields_write(dmactl->dma_dyncclk, idx, QAIF_DMACTL_DYNC=
-LK_ON);
->  		if (ret) {
-[ ... ]
->  		}
->  		ret =3D regmap_fields_write(dmactl->enable, idx, QAIF_DMACTL_ENABLE_ON=
-);
->  		if (ret) {
-[ ... ]
->  		}
->  		switch (dai_id) {
->  		case QAIF_MI2S_TDM_AIF0 ... QAIF_MI2S_TDM_AIF12:
->  			ret =3D qaif_platform_irq_clear(drvdata,
->  						      substream->stream,
->  						      QAIF_AIF_IRQ, idx);
-
-[Severity: Medium]
-Does enabling the DMA engine before clearing and enabling interrupts open a
-race window where the first period interrupt can be lost? Also, if the IRQ
-setup fails, should the error path roll back the DMA engine state?
-
-[ ... ]
-
->  static snd_pcm_uframes_t qaif_platform_pcmops_pointer(struct snd_soc_com=
-ponent *component,
->  						      struct snd_pcm_substream *substream)
->  {
-[ ... ]
->  	ret =3D regmap_read(map,
->  			  QAIF_DMABASE_REG(v, idx, dir, dai_id),
->  			  &base_addr);
->  	if (ret) {
->  		dev_err(soc_runtime->dev,
->  			"error reading from rdmabase reg: %d\n", ret);
->  		return ret;
->  	}
-
-[Severity: High]
-Can returning a negative error code from regmap_read() as an unsigned
-snd_pcm_uframes_t corrupt the ALSA ring buffer state?
-
-[ ... ]
-
->  static int qaif_platform_cdc_dma_mmap(struct snd_pcm_substream *substrea=
-m,
->  				      struct vm_area_struct *vma)
->  {
->  	struct snd_pcm_runtime *runtime =3D substream->runtime;
-> =20
->  	return dma_mmap_coherent(substream->pcm->card->dev, vma,
->  				 runtime->dma_area, runtime->dma_addr,
->  				 runtime->dma_bytes);
->  }
-
-[Severity: High]
-Should this use the component device that was used during allocation instead
-of the card device to avoid bypassing IOMMU translation?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701105757.2779=
-738-1-harendra.gautam@oss.qualcomm.com?part=3D8
 
