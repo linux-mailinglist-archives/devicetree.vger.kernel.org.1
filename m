@@ -1,177 +1,229 @@
-Return-Path: <devicetree+bounces-319294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319295-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CwjdCL5JRmpJNwsAu9opvQ
-	(envelope-from <devicetree+bounces-319294-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:21:34 +0200
+	id xVWULgNBRmqLMwsAu9opvQ
+	(envelope-from <devicetree+bounces-319295-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:44:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C7F26F69A6
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:21:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA796F619D
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:44:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=oxEvWzG8;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319294-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319294-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=QbXVTwLD;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=OW+mUJQv;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319295-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319295-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 843EF3023672
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 10:26:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DBA063187BE2
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 10:35:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 807CB420E87;
-	Thu,  2 Jul 2026 10:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7ED7399013;
+	Thu,  2 Jul 2026 10:35:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D9F3C7690
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 10:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5633AC0C1
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 10:35:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782987989; cv=none; b=PHbt8YADVMlKKkOeKGlBZlIrnGwbrtnJ7zxmw6U5IlnvJlPnixfSZSRPz8bdUREmW1c6BoF1YME6TcTSjZiFhe/hAh6Q6FrsDz8UADbDgzfN4ww8+jgma+z9axIh/MquRcUqx3ZAijJg2YOmg/D3cudb4s3XV5gJi1mi02t5dS0=
+	t=1782988530; cv=none; b=HNs3BAdZA+355sQxz4pU0Oc1/AllTkFnZj/i/eD/XS2dy/p0ZMAWFjJE/7l+mlnPz/pH8Q9HhhYqOclOSzadrwTeZoKIjXbblFww1cBgpDorrei1uFm6dUJEfa9w2rVkj+P7lZEijG4KnO0O1WgQfeEdvuPdSpQzCBNccs15RlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782987989; c=relaxed/simple;
-	bh=bWmo7L95P3yw0GeDMotuS62BBzmVyTJ3RfvUk/8fIjg=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=DR6496X3VLaea0hK8X7UEQ9TgkcwgVAGLYnxUfdMSHVVbBgHVBBUNKGG2nHiRW/a8NTEQBrgybhA06shcCO5iU+MPAm9g2pGMFE0+N38pTyMn3oJfYHuHhrh5wo+Zr8XeDLtmKszrsdZq+MC/Ffq9f/VQphwUbZUEsh9MqQe3XI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oxEvWzG8; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B2231F000E9;
-	Thu,  2 Jul 2026 10:26:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782987988;
-	bh=bWmo7L95P3yw0GeDMotuS62BBzmVyTJ3RfvUk/8fIjg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=oxEvWzG8fFxVI66RKoZ5i6mffyjprAGGfnfxfaqqPso7HDRo4g92riBySRwEbP6W1
-	 nqwfysiFRInIQrwf+g8ihkd+9ZPdifcf0L8oLFnqz/NOUsOCVNvtWsvyTJd8Z6PwrW
-	 AxWx+QYkSj7ChoWUYZIU/OgaD7yyUdBE0QlQoqDIzbi3gKHIBF1+ZpEIk4aAX6vPB0
-	 EctR6TQ2jvK7P4C8kSiD8Gl+rt9K49uFopRlm36hdeudBUgfTCCe5luChGGnUYBxR1
-	 VPB0ZsORr2nLsLtGHbCCDTBny3UVQyIvyPfCYguce8c4w24Zt+G3DOfVT/88/lsGb1
-	 o8pxQw29g40Bg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 5/5] phy: airoha: Add support for Airoha AN7581 USB
- PHY
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Christian Marangi" <ansuelsmth@gmail.com>
-Cc: conor+dt@kernel.org, linux-phy@lists.infradead.org, robh@kernel.org, devicetree@vger.kernel.org, vkoul@kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com
-In-Reply-To: <20260702093812.15918-6-ansuelsmth@gmail.com>
-References: <20260702093812.15918-1-ansuelsmth@gmail.com>
- <20260702093812.15918-6-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 02 Jul 2026 10:26:26 +0000
-Message-Id: <20260702102627.0B2231F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782988530; c=relaxed/simple;
+	bh=j0GGMHg1diw/qhZYdIqWwYOIqLRfFgkBKW7hsoCV5Cc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SpcYbtW7ETckfL3bb//MWgbw/DUlCqE28dwuPK2ZC9FLIfXPHDU4pjGk23PDJw/y2wxlPTzjLCuXIXFU9k1/ew3mV5inj5AqSsH9Sca6Az8wbYltsvzcBNf8ze0x6p+NR22OgYuyqzINsa0fBT+dvhHgdF4nFfgvjxzLJh94gY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QbXVTwLD; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OW+mUJQv; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6629nXI44139672
+	for <devicetree@vger.kernel.org>; Thu, 2 Jul 2026 10:35:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DgYb6zsewBl7d28TB+1ifuWz2yIUGyplVmY8SkZ4A10=; b=QbXVTwLDi+dti1oB
+	27At7urc7lkUQF1OYt/0BPgOjwR7wdpmaI9ax6viwpuNEM+thvFGUdgjfyqyWGK2
+	Y6AWUkIUTHM1MS63VeqmZCWtxI5pv/FOgA+xpApwVceTvs1DDy+N0A3bcI6jB+tD
+	7bb3ZkHZxDvnYAg+WheFn683Fvq+0dczq/s2Q0DYdEuVIlPVEKlj0goppnM2RDas
+	3Grf9Xt6XaE0ixfGyq6n0mvbdYmL4GXgkefiUgJcTA8jCRhrQBOhE49jFgm++YB3
+	sSO+c8ZX54u5Rnw22VHSAc0vnX6vBZgOCW/zq1qA2nrTG+I2jfxVEBJOx8RCXcua
+	w/Myyw==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f5npr85gw-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 10:35:24 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-8f0c6ea10e8so4075416d6.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 03:35:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1782988524; x=1783593324; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=DgYb6zsewBl7d28TB+1ifuWz2yIUGyplVmY8SkZ4A10=;
+        b=OW+mUJQvF+Fhncc4PLez2yqF1NdhVW8Z/Fn20qChon/8OFAISX1mw/t51JAmuJ+RHL
+         W1VQqfAxS+HLpWcQQYDJUc5lWIsIew7P7Nu7PrNxOQY0uKRvkMaCwxIye6ytU9dtTGWp
+         /8yMsJKwJW4aHalfpxWxLRadKpduXLRCPGC6cESJAk3IMDIewfvl1xMh/+vXjoxXukit
+         xivqBP9qJOHBmYJzDoW3/XXQj/iDqA1kG3//thiJruIWMIJqtoPvZ2HsId9lwloadfz8
+         hWXTlvSwPg72LGc1k02Xr+uvszwyNWy6pBZNj/WqtbzIAWJXZzmFWhamC9p9IS/XQpej
+         QKbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782988524; x=1783593324;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=DgYb6zsewBl7d28TB+1ifuWz2yIUGyplVmY8SkZ4A10=;
+        b=fpKJNkgLBmNa2GlharNQE5XPnq76Gd/vdbBunnFEmrqaopvlWCaxagnm2dZkfGyNky
+         /Ys+ZAKLFCRAQfoBK6tVyS2j3UOGGzhh3EbrgJTEUqdwpZ5ki6PO8ExwYRS4Sf+t8jRi
+         TNg6vF+jDrTbC12FjYxWAL4VMxUD3iHkNjk4khDHaG+sPyR8DcelzJZFmo/PuF8/e2P+
+         TkUs+vg193mVwdZzUYDjvfGjLtx3iNxoj7IAdZP1d/l/mcinj4ETxI82O7+v1aSGn6PK
+         6oQAVOP3mjFi98R9hXxOC0OasmDDccW7nonHPW5P7mVi92sEJM/W824y//iYgCHhtCRD
+         RZfw==
+X-Forwarded-Encrypted: i=1; AHgh+RoNjAFseKsrHdFlzVLiG4sM2Gi1Uhu8XalM+EhUhzCB4rR86gB9Tv/vMnSm3vJ7UvYR6y2IySkWx1XJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzcAnck9h5Ug6d/39dMJrzc7CvJ0gRJgkiP9AMUGjAflXi6R+l
+	X9fcpOEH4Vc/k0tsvZHgg4EVbtb26q3yRuVCjkTFkuRDcZhxfg+SmYQS/2hIE72VYu40qOccaJt
+	J5i+hKIhtONRExUcBVhCoxH8ubvOH3Mws3FPSMQS/lPzHDxK43MuCCFw5ZSginzvi
+X-Gm-Gg: AfdE7cm9VXfYvDqcdsqAQlPJCGq+viUHVHl5CVsMdrRwg61nvAp28YY6AQqND44OGlC
+	ExYuUHAYgp1hAXykrDyfE/NweJJvK2gP2VoXs8w9xoQwwhCOaDw8ji73hSYFL0KFaRa5plgY4jZ
+	5fspCQ9A8pn3wrpB6Zksmgrg2/lgTF8XMC8/PKsOC5DAyQVBzbphI+bHm2P2SmKJd3I8gzVFJxK
+	vSumLNFxcGZRfupIjhKHneqSsMAiD20GMj5mT/nd6V2mDON9ZWS/raLdwi+Gw6wE4BzjSAtfHQa
+	1cwpWoPUo6LlNEL2RCxC1juH7Ytto/LacdrEeq86KNJWjaYmzBnvo8AtYjBrBqVqq7p4+tUXddj
+	I3libtQxVnRxCcbMhSdQKFomiwdEx2yBqpgI=
+X-Received: by 2002:ad4:5c4b:0:b0:8e8:a3c1:48c6 with SMTP id 6a1803df08f44-8f3c5b017d9mr54477806d6.2.1782988523959;
+        Thu, 02 Jul 2026 03:35:23 -0700 (PDT)
+X-Received: by 2002:ad4:5c4b:0:b0:8e8:a3c1:48c6 with SMTP id 6a1803df08f44-8f3c5b017d9mr54477526d6.2.1782988523574;
+        Thu, 02 Jul 2026 03:35:23 -0700 (PDT)
+Received: from [192.168.120.170] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-698acf2960dsm802383a12.9.2026.07.02.03.35.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jul 2026 03:35:22 -0700 (PDT)
+Message-ID: <9cc33cc1-b7f4-4fd7-9bf7-2ec58283cc4e@oss.qualcomm.com>
+Date: Thu, 2 Jul 2026 12:35:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: qcom:
+ qcs6490-rb3gen2-industrial-mezzanine: Add QCC2072 Bluetooth M.2 overlay
+To: Yepuri Siddu <yepuri.siddu@oss.qualcomm.com>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        Marcel Holtmann
+ <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>
+Cc: quic_mohamull@quicinc.com, quic_hbandi@quicinc.com,
+        rahul.samana@oss.qualcomm.com, harshitha.reddy@oss.qualcomm.com,
+        dishank.garg@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260529180234.3373056-1-yepuri.siddu@oss.qualcomm.com>
+ <8ba8a59c-fb80-45e3-b4b7-0db06614df49@oss.qualcomm.com>
+ <88770279-0c63-4c56-a727-dcebf03c32c5@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <88770279-0c63-4c56-a727-dcebf03c32c5@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: RdOSnkGohfHGUQtF_-ZklmnP-gTjbkvA
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAyMDEwOSBTYWx0ZWRfX9ZpXIYge2kzW
+ YYYh5/Nx+mlM0ZKlv79o7P6oS/vRSb1GUBuBNN3+EEBnaE9N5oIiGy8SkPbR6IJc+wFLu9HF+B1
+ CT1OFnLcnYxoOZgQgvF1S6wAaLe0nDI=
+X-Authority-Analysis: v=2.4 cv=NsvhtcdJ c=1 sm=1 tr=0 ts=6a463eed cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=0LxEN28Ofi49yOki0boA:9 a=QEXdDO2ut3YA:10
+ a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-GUID: RdOSnkGohfHGUQtF_-ZklmnP-gTjbkvA
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAyMDEwOSBTYWx0ZWRfX6IE8NexqRJdZ
+ GTabuuNIOidIeOdUpjHt3AFo0O1pSKNyUOGYjUX11Qb6q7Hwcor+6+h5U2/B3sY+B+FU6qvoEKc
+ S0x58GpkX2IZmPWAvDAsuM9Jz/GXIBjj/o6xItWqDIIbcu0pj6NzJ6sf9Y1EmY4KSAkr7ZhQdVl
+ VABvb7V0aY+IFYuPqGuCNRWCimazT3gNXhhkzQVmTqDath95Xd/7DkqLxGO2IqKMtf2TNv4d42k
+ RxLLnF3a1Rt/10E0KQQbNSUOU/kLweYxZA9vR+LfmBW+3pFMMb3eQmok6n9E34BWYJs2Z24ENGd
+ 0dCVlH9SaaSddI6+aN9jOzPqwq0pdOQ/Ni9X6tXNmrwvtnskJ7eo+rbRi0+FpqVnqdXe5Cq2Znu
+ rKwhI+Ii9TYP18oiZ+EN0lIV1w3h9c8Gkg9A5GhUL7EREUfztVnk9LE37CfnU76thKk2s6UDP7C
+ v4Tbe2vy19kQ2oTUfRg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-02_01,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 lowpriorityscore=0 bulkscore=0 phishscore=0 suspectscore=0
+ malwarescore=0 adultscore=0 clxscore=1015 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607020109
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319294-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:conor+dt@kernel.org,m:linux-phy@lists.infradead.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-319295-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:yepuri.siddu@oss.qualcomm.com,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:quic_bgodavar@quicinc.com,m:quic_rjliao@quicinc.com,m:quic_mohamull@quicinc.com,m:quic_hbandi@quicinc.com,m:rahul.samana@oss.qualcomm.com,m:harshitha.reddy@oss.qualcomm.com,m:dishank.garg@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:luizdentz@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,holtmann.org,gmail.com,quicinc.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,vger.kernel.org,linaro.org,gmail.com];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,smtp.kernel.org:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0C7F26F69A6
+X-Rspamd-Queue-Id: 1AA796F619D
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] Incorrect usage of `regmap_set_bits` with `FIELD_PREP` corrupts mu=
-lti-bit register field
-- [Medium] Missing PHY Lifecycle Management for SerDes PHY
-- [Medium] Computed slew rate calibration value is not clamped, risking sil=
-ent wraparound
---
+On 7/2/26 12:11 PM, Yepuri Siddu wrote:
+> 
+> 
+> On 6/30/2026 5:03 PM, Konrad Dybcio wrote:
+>> On 5/29/26 8:02 PM, Yepuri Siddu wrote:
+>>> Add a DTSO overlay for the M.2 E-key slot on the QCS6490 RB3 Gen2
+>>> industrial mezzanine board when populated with a QCC2072 Bluetooth
+>>> module.
+>>>
+>>> The overlay configures UART4 (gpio16-19) for Bluetooth communication
+>>> at up to 3.2 Mbps. Sleep pin states are defined for all four UART
+>>> lines to minimize power consumption when Bluetooth is inactive. Host
+>>> wakeup is handled via a GPIO interrupt on the RX line (gpio19), and
+>>> SW_CTRL is mapped to gpio86 for power sequencing.
+>>>
+>>> Disable UART7 in the base industrial mezzanine overlay as it is
+>>> not used when the M.2 slot is populated.
+>>>
+>>> Signed-off-by: Yepuri Siddu <yepuri.siddu@oss.qualcomm.com>
+>>> ---
+>>
+>> This seems to be a single, unthreaded message. Please switch to
+>> using the b4 tool for submitting patches - https://b4.docs.kernel.org/
+> 
+> QCC2072 is an M.2 E-key chip. As M.2 Power Sequencing changes are being upstreamed, we will reupdate our existing patches to align with M.2 power sequencing approach.
+> This includes aligning the bindings, DT and also BT driver changes.
 
-Note: The format of this review has been altered to use free-form summaries
-instead of inline diff quoting due to strict recitation restrictions.
+This is a tone-deaf reply to a question I didn't ask.
 
-commit 4d1e2d05354e7c1aad9463afa3c9c7ffd853f726
-Author: Christian Marangi <ansuelsmth@gmail.com>
-phy: airoha: Add support for Airoha AN7581 USB PHY
-
-This commit adds support for the Airoha AN7581 USB PHY driver, which suppor=
-ts
-up to two USB ports. USB 2.0 is always supported, while USB 3.0 requires the
-SerDes port to be configured. It also introduces USB 2.0 slew rate calibrat=
-ion
-using a mandatory monitor clock.
-
-[Severity: Medium]
-In an7581_usb_phy_init() and an7581_usb_phy_power_on(), the driver sets the
-mode of the SerDes PHY but does not call phy_init(), phy_power_on(),
-phy_power_off(), or phy_exit() for the priv->serdes_phy. Is it safe to omit
-these generic PHY lifecycle calls?
-
-Even if the current SerDes PHY driver for this SoC only implements the
-set_mode callback, omitting these lifecycle management functions might cause
-failures if the SerDes PHY driver is updated to require hardware
-initialization, or if this driver is used on a SoC variant where the
-underlying SerDes PHY requires power management to function.
-
-[Severity: High]
-In an7581_usb_phy_u3_init(), regmap_set_bits() is used alongside FIELD_PREP=
-()
-to write a 16-bit value into the AIROHA_USB_PHY_SSUSB_XTAL_TOP_RESERVE
-register. Does this unintentionally leave old bits set in the multi-bit fie=
-ld?
-
-Since regmap_set_bits() performs a bitwise OR and does not clear previously
-set bits like regmap_update_bits() does, any pre-existing overlapping bits
-from hardware defaults or bootloader initialization will remain set. This
-could result in a corrupted XTAL/PLL configuration and cause an unstable
-USB 3.0 clock or probe failures.
-
-[Severity: Medium]
-In an7581_usb_phy_u2_slew_rate_calibration(), the dynamically computed srct=
-rl
-value is passed directly to FIELD_PREP() for the 3-bit
-AIROHA_USB_PHY_USB20_HSTX_SRCTRL field. Could this silently wrap around if
-fm_out is unexpectedly small?
-
-If a transient clock issue causes fm_out to drop below expected values, the
-computed srctrl can exceed the maximum value of 7. Because FIELD_PREP()
-masks the value, an srctrl of 8 would silently wrap around to 0. This would
-convert what should be a maximum slew rate calibration into the minimum
-calibration, risking severe USB 2.0 signal degradation. Should the srctrl
-value be clamped before insertion?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702093812.1591=
-8-1-ansuelsmth@gmail.com?part=3D5
+Konrad
 
