@@ -1,46 +1,47 @@
-Return-Path: <devicetree+bounces-319663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319664-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ajh5DyLnRmpLfQsAu9opvQ
-	(envelope-from <devicetree+bounces-319663-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:33:06 +0200
+	id XbRGNiHnRmpKfQsAu9opvQ
+	(envelope-from <devicetree+bounces-319664-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:33:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE8F76FD36D
+	by mail.lfdr.de (Postfix) with ESMTPS id 66FF36FD36C
 	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:33:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319663-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319663-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319664-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319664-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 41563302A4FE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 22:33:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CB7A4302A9D9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 22:33:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14A773CBE89;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B6123CC32B;
 	Thu,  2 Jul 2026 22:32:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7FD33BCD01
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC403C3C00
 	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 22:32:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783031567; cv=none; b=RmksdZjqFOTiAxwm/uzRsYMdLvkDuiYhfVlF2k2C6XNRCJXP/ojZfkcYAZ79khvfr8VrGAt8GtD9jZI4D0z078VU9uHMDzaxkI2AA46U/rvJW1Fqj9Ct7Zq6nZjeYaq49fD6qp4bfYuqrO33cmeytu6t/Uddl05NTejeoGi79oo=
+	t=1783031568; cv=none; b=rfbLAPmrFhIsIyjWukC3zh7bye/uSNKU58+Zumx8Oi6Z9Ke9eYTklfpO/FmVxQTRtjQTJiK6897Is8LYtoKkA1oGnEtlJZWEw3pF6t1o0qGV10p7MlIWLXg8x/KOa0tRBQr7ch8pAnli/ZOIF6YR+KMpTEF5L0V9sD0W7EGH4IQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783031567; c=relaxed/simple;
-	bh=wzHE1s+2gX2BTWsN80A15vJGvuGnxkYOLrgZhcQZ1X8=;
+	s=arc-20240116; t=1783031568; c=relaxed/simple;
+	bh=5K0k5aqdkRLabwWM9PyDbKqtaIMA4UE2kiFSaDtcBUo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PjTsjf+WzWDadCVCL9ded8FAEsIOhLI0Jl3F0xDmU+JHQoJUdeZF7NsGujhCUDG84o39TDUcP0F9X6lJ+ZZR5kxMACSEGWscoE/SzIDiotXI0uiksz3tMIFwQj5OvNQe1HksaVX0JCeOtKuEnG1/EJXUOtv1+CiFmAumBh1Osoo=
+	 In-Reply-To:To:Cc; b=brP5UtgZJ6pA/jB5wWzHuCYc33nVORpauaOmoIgFAZHTsSFasjyMdMt0n8ZWlt8kacZdDYagmGkjoeJIhAZxZ4ZKOgsh96vXszE6MljAC22g5WAlp1RX9pvewhxSrmexlelvLLeGMQ0h20DuD6q0vgloZnnLj0rfnRer+149Alk=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1wfPxW-00081n-IA; Fri, 03 Jul 2026 00:32:38 +0200
+	id 1wfPxW-00081n-KI; Fri, 03 Jul 2026 00:32:38 +0200
 From: Marco Felsch <m.felsch@pengutronix.de>
-Date: Fri, 03 Jul 2026 00:32:23 +0200
-Subject: [PATCH v7 2/4] dt-bindings: vendor-prefixes: Add TouchNetix AS
+Date: Fri, 03 Jul 2026 00:32:24 +0200
+Subject: [PATCH v7 3/4] dt-bindings: input: Add TouchNetix axiom
+ touchscreen
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,7 +50,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260703-v6-10-topic-touchscreen-axiom-v7-2-0d2a550a7ee8@pengutronix.de>
+Message-Id: <20260703-v6-10-topic-touchscreen-axiom-v7-3-0d2a550a7ee8@pengutronix.de>
 References: <20260703-v6-10-topic-touchscreen-axiom-v7-0-0d2a550a7ee8@pengutronix.de>
 In-Reply-To: <20260703-v6-10-topic-touchscreen-axiom-v7-0-0d2a550a7ee8@pengutronix.de>
 To: andrew.thomas@touchnetix.com, Luis Chamberlain <mcgrof@kernel.org>, 
@@ -91,7 +92,7 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	FORGED_SENDER(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-319663-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319664-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -103,34 +104,90 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,touchnetix.com:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,pengutronix.de:email,pengutronix.de:mid,pengutronix.de:from_mime,bootlin.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,devicetree.org:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,pengutronix.de:email,pengutronix.de:mid,pengutronix.de:from_mime,bootlin.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CE8F76FD36D
+X-Rspamd-Queue-Id: 66FF36FD36C
 
 From: Kamel Bouhara <kamel.bouhara@bootlin.com>
 
-Add vendor prefix for TouchNetix AS (https://www.touchnetix.com/products/).
+Add the TouchNetix axiom I2C touchscreen device tree bindings
+documentation.
 
 Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../input/touchscreen/touchnetix,ax54a.yaml        | 62 ++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 396044f368e7cf0ca1436713ae44f1950259f006..b8450050d7299cea2b5cf6f57fe71f5ead1140c8 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1715,6 +1715,8 @@ patternProperties:
-     description: Toradex AG
-   "^toshiba,.*":
-     description: Toshiba Corporation
-+  "^touchnetix,.*":
-+    description: TouchNetix AS
-   "^toumaz,.*":
-     description: Toumaz
-   "^tpk,.*":
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..d388c41a75dd4d6d6d0e6de0eaef4d493d439a90
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/touchnetix,ax54a.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TouchNetix Axiom series touchscreen controller
++
++maintainers:
++  - Marco Felsch <kernel@pengutronix.de>
++
++allOf:
++  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
++  - $ref: /schemas/input/input.yaml#
++
++properties:
++  compatible:
++    const: touchnetix,ax54a
++
++  reg:
++    enum: [ 0x66, 0x67 ]
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  vdda-supply:
++    description: Analog power supply regulator on VDDA pin
++
++  vddi-supply:
++    description: I/O power supply regulator on VDDI pin
++
++required:
++  - compatible
++  - reg
++  - vdda-supply
++  - vddi-supply
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      touchscreen@66 {
++        compatible = "touchnetix,ax54a";
++        reg = <0x66>;
++        interrupt-parent = <&gpio2>;
++        interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
++        reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
++        vdda-supply = <&vdda_reg>;
++        vddi-supply = <&vddi_reg>;
++        poll-interval = <20>;
++      };
++    };
++...
 
 -- 
 2.47.3
