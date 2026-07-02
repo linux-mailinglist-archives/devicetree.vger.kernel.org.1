@@ -1,221 +1,228 @@
-Return-Path: <devicetree+bounces-319058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319064-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +zmaDDwTRmosJQsAu9opvQ
-	(envelope-from <devicetree+bounces-319058-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 09:29:00 +0200
+	id V0stMx4URmq5JQsAu9opvQ
+	(envelope-from <devicetree+bounces-319064-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 09:32:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C0126F42A4
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 09:28:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 693EB6F4340
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 09:32:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=NT9EfwBM;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319058-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319058-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=mediatek.com header.s=dk header.b=p0Yn+hme;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319064-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319064-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=mediatek.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4E8A93020D5A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 07:25:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CA57C30E5CA0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 07:26:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B03F3537FB;
-	Thu,  2 Jul 2026 07:25:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62ADD3911C5;
+	Thu,  2 Jul 2026 07:26:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D2038B135;
-	Thu,  2 Jul 2026 07:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A4F3909B3;
+	Thu,  2 Jul 2026 07:26:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782977140; cv=none; b=cTI/v9Hf5oV6vr42YWKS/GzlAlbTVV5Iv79s7PARZwOK+dg52rlDeMshA1/TTwL9tLP+PnONdzQWnHE/QbRIvPHiR6zIQTBSOpIXvUrycGEkBCv8//7wG+mGeTRO98izcSrLBChkKL7rq7+6Q4o4abh2PNdl1zCzIry7rMxVUpU=
+	t=1782977195; cv=none; b=Js1vPMh1IW3oSNz5bg7K9nU8VNfy6h1Tg+p/Evw6//hj52a5LCNWinXXEfKedmNxtII9Q3PtCxp7ajTC/0YeAg1bv75mUnxC7tOSZbFdw3xJac8Omu7rk2CmRsTlmNyXmcAGQdHM5s5ZtwgJ++LC72kHHAqdbb4PLROSnIitY8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782977140; c=relaxed/simple;
-	bh=0iiVKVZWDyomns5F+CK/MTgpBarFr0OL/0hjPk+/6E8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ykpneu5nDPqpJAL6nguzzEuYEFh4dUX+0xXsXSdVQpz/zruvOYoDBgvrodkqw0FZNCsG4IB0G2cKkMxw3bSejh/w6T+nJ2gAz5ObozFKuOXy06ScP/8dvKy4lioBM+vR3DPQI8DOeGjCDa9XtdBN8Ti4CbPcwD9yyAIWVqs3uJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NT9EfwBM; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6621KF8p3009445;
-	Thu, 2 Jul 2026 07:25:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=1KgI9KYgIHfDrgS6mLJj5Qx+
-	J6n7/Xh9H91frP5TMXk=; b=NT9EfwBMIFsTkhUcTaoTrZaIh7Te9Kr00UpBhGkB
-	OoSXklIbMbqYIgheYl4WfGLijZQBXkiSeW+mN0AqAoL2AnHS9iI0PRIyQjI02k0D
-	DAmmS5RWg8hl9jtva6IGV6hcFNhOpdg/01jLQ7reOaxZ9vK3fLeCfoQwbZ4uhfAQ
-	2r+2KZWWjj4KTTRIusvSVGprEFDstrOpVzReS1TtOT5dzNpL3LnPakFithPv+cQN
-	nM5kdypDKwb59ckLVBZ/Z22M1zHlvWxsxyLQRJX2UzgRkVedQfaxy/3t8CeMCRHA
-	Mm//NrPgXdeHfApDn3j8e/ur8fa1bIM9oWQ2rCMt6rByKA==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f579rts50-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 Jul 2026 07:25:35 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 6627PWkl003794;
-	Thu, 2 Jul 2026 07:25:32 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4f27kknuc1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 Jul 2026 07:25:32 +0000 (GMT)
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 6627PWNw003786;
-	Thu, 2 Jul 2026 07:25:32 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-kotarake-hyd.qualcomm.com [10.213.97.140])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 6627PWeS003785
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 Jul 2026 07:25:32 +0000 (GMT)
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 2389607)
-	id 6B7D5B2B; Thu,  2 Jul 2026 12:55:31 +0530 (+0530)
-Date: Thu, 2 Jul 2026 12:55:31 +0530
-From: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
-        jishnu.prakash@oss.qualcomm.com, kamal.wadhwa@oss.qualcomm.com
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: Fix pm4125 vbus regulator
- compatible and constraints
-Message-ID: <20260702072531.bs2242bgfcvpuyh7@hu-kotarake-hyd.qualcomm.com>
-References: <20260701-add_pm4125-vbus-reg-v2-0-6bac2bac7131@oss.qualcomm.com>
- <20260701-add_pm4125-vbus-reg-v2-3-6bac2bac7131@oss.qualcomm.com>
- <20260701103457.73E251F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1782977195; c=relaxed/simple;
+	bh=Lm7pVrb1KJdpbwDH67HynKsk6zxgCbXUK0OfXUrzO/4=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Cqvx01CSJAGWIGIwy5ggHdDFg0h18b5iZ2Y+fqqno6hfxxCQcYuqUN/S3u44pUgANEHC2IZNUu0UhsdA+rhxhGKwHYIo7cvptcZcnz0j9zPJUsE1Jr2eOrSR4cjUHbW2QGv5Z+Xf3pH9xC9maDfDn3xzLUBvB6VzIshORttXO/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=p0Yn+hme; arc=none smtp.client-ip=210.61.82.184
+X-UUID: 523019d275e711f18dc8c9802ae25ab1-20260702
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:To:From; bh=3dZdXHriXXZbLLs7yCFWMqhz/lLKAqTC8ZcKUWVy5kE=;
+	b=p0Yn+hme3QNH6qabs5rdWge+PwINXeuHaX8aFPyan2cA7TtFqrFJCQEUkaigqjPiK+LTMnU8UWcsk+d1dggVXA4dFdKpec/MFdcIGSF740xKnrAj45ooyCxtq5HtWD4/dlnenx0eQ9M+vi6Y8up/bfYBdOewcSRHkVMwgvsUZpc=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.17,REQID:39640ac7-cd9a-4a67-b893-6c0a91ea4c42,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:d497b38,CLOUDID:2698b4c4-4062-4a8f-9776-acbccc936972,B
+	ulkID:nil,BulkQuantity:0,SF:102|836|865|888|898,TC:-5,Content:0|15|50|99,E
+	DM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI:0,OSA:0,
+	AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 523019d275e711f18dc8c9802ae25ab1-20260702
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw02.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1885717082; Thu, 02 Jul 2026 15:26:20 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Thu, 2 Jul 2026 15:26:18 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Thu, 2 Jul 2026 15:26:18 +0800
+From: Kyrie Wu <kyrie.wu@mediatek.com>
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+Subject: [PATCH v15 00/12] Enable jpeg enc & dec multi-hardwares for MT8196
+Date: Thu, 2 Jul 2026 15:26:00 +0800
+Message-ID: <20260702072614.10373-1-kyrie.wu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260701103457.73E251F00A3A@smtp.kernel.org>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAyMDA3NCBTYWx0ZWRfXwjL/P5oXaSNW
- TqTisV2CRtR0au+E9aj8OxPn4zMGAKL1O/JSn+rg6fdTgA70KSdAMPXVV4OvkAOwTq9Qgvf3e+m
- hH6vgcctYekBLwFd1k9eXYTzk0wPG1ANI11zqQ5FMB8f0prsvB9jCQBXPogqGmENzPG989zTQpp
- K4sGjXZraDLeXAbVDGWZmxHCu5XUmt25yx66t+55yvUJFrra/87PtEfy66UyfC8PbuW1lBl1dgm
- 5co7Q8nzFe0Bb+6Ugu8Y+7qNczZSNg/fUeBgJ8Fu7wiFS2jBcBpiHcBJMdYq4UEQXKhmWO3jE24
- PWtzOYo1B9ccrl7w5Mk+TOBzl/2cjUamJgcMHDftBbiFP2ZWzd6mIDhzFkXUoXtVoNqYUzTbg5A
- ALcyKs2V/Z5XqoYsOfHlV4MxdpqVAVxf83nD1/NTia6ntU8NNJbquyhbgY4Mv3fZAVaLrw/uYqU
- u6zFVJUvl2kVddB6YAQ==
-X-Authority-Analysis: v=2.4 cv=X8pi7mTe c=1 sm=1 tr=0 ts=6a46126f cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=kj9zAlcOel0A:10 a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=LV1d6kUfYfGFZ_KTQQsA:9 a=CjuIK1q_8ugA:10
-X-Proofpoint-GUID: lu_KQoT83fvN7rQTuekGCn3jfE-n4rFK
-X-Proofpoint-ORIG-GUID: lu_KQoT83fvN7rQTuekGCn3jfE-n4rFK
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAyMDA3NCBTYWx0ZWRfX6o5Ii8rnHl2h
- xhLaJnPu+cnRxFsjbYsPK/MWJ6TWkz8o+j4vWIwRJc9we/9cdSMxa9dzfwf0S3NvGiE1+NoNfrp
- GFHPDK/xoYaFbkyZIzOAEVVAEJpA8IQ=
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-07-02_01,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 clxscore=1015 priorityscore=1501 impostorscore=0 bulkscore=0
- lowpriorityscore=0 suspectscore=0 phishscore=0 malwarescore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607020074
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319058-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:jishnu.prakash@oss.qualcomm.com,m:kamal.wadhwa@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319064-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_TO(0.00)[xs4all.nl,kernel.org,collabora.com,gmail.com,mediatek.com,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[rakesh.kota@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:hverkuil-cisco@xs4all.nl,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:nicolas.dufresne@collabora.com,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:kyrie.wu@mediatek.com,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[kyrie.wu@mediatek.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rakesh.kota@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[kyrie.wu@mediatek.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mediatek.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:dkim,mediatek.com:mid,mediatek.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7C0126F42A4
+X-Rspamd-Queue-Id: 693EB6F4340
 
-On Wed, Jul 01, 2026 at 10:34:56AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> 
-> Pre-existing issues:
-> - [High] The `PM4125_VBOOST_CFG` macro is defined twice in the driver with different values, causing the voltage selector address to be shadowed by the OTG configuration address. This leads to register corruption when applying the new device tree constraints.
-> --
-> 
-> commit ee5aeefd579f49a0fd9de6178216fb53f958a898
-> Author: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-> 
-> arm64: dts: qcom: Fix pm4125 vbus regulator compatible and constraints
->     
-> Remove pm8150b fallback compatible from pm4125_vbus and fix regulator
-> constraints in qrb2210 DTS files to use microvolt instead of
-> microamp.
-> 
-> > diff --git a/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts b/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
-> > --- a/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
-> > +++ b/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
-> [ ... ]
-> > @@ -235,8 +235,8 @@ &mdss_dsi0_phy {
-> >  };
-> >  
-> >  &pm4125_vbus {
-> > -	regulator-min-microamp = <500000>;
-> > -	regulator-max-microamp = <500000>;
-> > +	regulator-min-microvolt = <4250000>;
-> > +	regulator-max-microvolt = <5000000>;
-> 
-> [Severity: High]
-> This is a pre-existing issue, but does adding these voltage constraints now
-> trigger a hardware register corruption in the regulator driver?
-> 
-> Looking at the driver in drivers/regulator/qcom_usb_vbus-regulator.c,
-> PM4125_VBOOST_CFG is defined twice with different values:
-> 
-> drivers/regulator/qcom_usb_vbus-regulator.c:
->     #define PM4125_VBOOST_CFG		0x52
->     #define PM4125_VBOOST_CFG_MASK		GENMASK(1, 0)
->     #define PM4125_VBOOST_CFG		0x56
-> 
-> Because of this shadowing, the pm4125_data struct initializes both .otg_cfg
-> and .vsel_reg to 0x56:
->
-> drivers/regulator/qcom_usb_vbus-regulator.c:
->     .otg_cfg = PM4125_VBOOST_CFG,
->     .otg_en_src_cfg = PM4125_OTG_EN_SRC_CFG,
->     .vsel_reg = PM4125_VBOOST_CFG,
-> 
-> With the new regulator-min-microvolt constraints added by this device tree
-> change, the regulator core will now call .set_voltage_sel on this regulator.
-> 
-> Will this cause the driver to incorrectly write the voltage selector mask
-> to the OTG config register at 0x56 instead of the intended voltage selector
-> register at 0x52, thereby overwriting OTG configuration bits?
-> 
-Yes, you're correct, I will fix in the next patch by splitting the defines:
+This series have the follow changing:
+Firstly fix some bugs, including resolution change handleing, stop
+streaming sw flow, fix buffer layout and clock setting to support multi-hw
+jpeg working and others.
+Secondly add mt8196 jpegdec and jpegenc compatible to support MT8196
+kernel driver.
+Lastly, Add smmu setting to support smmu and iommu at the same time.
 
-#define PM4125_VBOOST_OTG       0x50
-#define PM4125_VBOOST_SEL       0x52
-#define PM4125_VBOOST_CFG_MASK  GENMASK(1, 0)
-#define PM4125_VBOOST_CFG       0x56
+This series has been tested with MT8196 tast test.
+Encoding and decoding worked for this chip.
 
-And updating pm4125_data to use PM4125_VBOOST_SEL for .vsel_reg so
-.set_voltage_sel writes to the correct register.
+Patches 1 fix jpeg hw count setting to support different chips.
+Patches 2 fix jpeg buffer payload setting to handle buffer
+size bug while resolution changed.
+Patches 3 fix jpeg dst buffer layout.
+Patches 4 fix multi-core stop streaming flow
+Patches 5 fix multi-core clk suspend/resume setting
+Patches 6 fix decoding buffer number setting timing issue
+Patches 7 fix decoding resolution change operation
+Patches 8 fix remove buffer operation
+Patches 9-11 Adds jpeg encoder and decoder compatible.
+Patches 12 add jpeg smmu sid setting.
 
-regards
-Rakesh Kota
+---
+Changes compared with v14:
+--Rebased on top of the latest media tree
+
+Changes compared with v13:
+--Rebased on top of the latest media tree
+
+Changes compared with v12:
+--Rebased on top of the latest media tree
+--fix kernel rebot build warnings in patch 5
+
+Changes compared with v11:
+--Rebased on top of the latest media tree
+--Some modifications for patch v11's review comments.
+--add reviewer to commit messages
+
+Changes compared with v10:
+--Rebased on top of the latest media tree
+--add reviewer to commit messages
+
+Changes compared with v9:
+--Rebased on top of the latest media tree
+
+Changes compared with v8:
+--Rebased on top of the latest media tree
+
+Changes compared with v7:
+--Rebased on top of the latest media tree
+
+Changes compared with v6:
+--Rebased on top of the latest media tree
+
+Changes compared with v5:
+--reorder the patches set.
+--fix commit message of patch 1-8.
+
+Changes compared with v4:
+--fix kernel robot build errors for patch 4.
+--add reviewer for patch 1 and patch 2.
+
+Changes compared with v3:
+--change patch subject of jpeg encoder and decoder compatible.
+
+Changes compared with v2:
+--refactor smmu sid setting function interface
+--Some modifications for patch v2's review comments.
+
+Changes compared with v1:
+--refine jpeg dt-bindings for MT8196
+--optimize software code to manage jpeg HW count
+--refactor smmu sid setting function interface
+--Some modifications for patch v1's review comments.
+
+Kyrie Wu (12):
+  media: mediatek: jpeg: fix jpeg cores' amounts setting
+  media: mediatek: jpeg: fix jpeg buffer payload size setting
+  media: mediatek: jpeg: fix buffer structure size and layout
+  media: mediatek: jpeg: Fix buffer completion on multi-core streaming
+    stop
+  media: mediatek: jpeg: Fix multi-core clk suspend and resume setting
+  media: mediatek: jpeg: fix decoding buffer number setting timing issue
+  media: mediatek: jpeg: fix resolution change event handling in decoder
+  media: mediatek: jpeg: fix remove buffer removal timing for multi-core
+  media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgdec
+    compatible
+  media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgenc
+    compatible
+  media: mediatek: jpeg: add jpeg compatible
+  media: mediatek: jpeg: add jpeg smmu sid setting
+
+ .../media/mediatek,mt8195-jpegdec.yaml        |   8 +-
+ .../media/mediatek,mt8195-jpegenc.yaml        |   8 +-
+ .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 153 +++++++++++++-----
+ .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  19 ++-
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  |  90 ++++++++++-
+ .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  |  88 +++++++++-
+ 6 files changed, 310 insertions(+), 56 deletions(-)
+
+-- 
+2.45.2
+
 
