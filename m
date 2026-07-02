@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-319559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319560-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /S+GFLGxRmoabwsAu9opvQ
-	(envelope-from <devicetree+bounces-319559-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 20:45:05 +0200
+	id ezX5E76xRmofbwsAu9opvQ
+	(envelope-from <devicetree+bounces-319560-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 20:45:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C42136FC404
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 20:45:04 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6E146FC41C
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 20:45:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mv15d627;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319559-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319559-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=lq1WHjyM;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319560-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319560-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1CF1E3023E3F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 18:44:56 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B60903024EBB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 18:45:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13C1F365A03;
-	Thu,  2 Jul 2026 18:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F3C2D5C68;
+	Thu,  2 Jul 2026 18:45:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDF8C34D901;
-	Thu,  2 Jul 2026 18:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1986135DD1C;
+	Thu,  2 Jul 2026 18:45:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783017892; cv=none; b=bhEy9UtwdX9L/oJ9y2s3DZNzBsG6h/d/k0pUQEdCXT/AP7hcYMGFUtj0Oj9HxDM3VWQD+6/1gPe75G7QOoqmQNcAYtPfiMba69NNQXQYmVOfnFMhwyK+kQLM+GoEuqETDQN4VTy7f/DaQcEjNKd4K+b+ZhHiGEbWeov8rpODz94=
+	t=1783017910; cv=none; b=T/WCbC7gNgU2PChXBatqGU6JQXEmhgMyhB9N8tXni1m+o3eo3b9rgnlmzMI/0PM67cBA+E2q5zRQ6QFdhjWhx1cFIIidgatah1IIq6l5ry87zGAKhk8CZOq9UTEq621/NE+9qy1G/3nCPwVnqJuEJn6mMaZMcX2xyrhmpT8qqGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783017892; c=relaxed/simple;
-	bh=RlWQKLBpPejSZHZZzN/mxlrqMYq2TV7X1RN6v4yZKnQ=;
+	s=arc-20240116; t=1783017910; c=relaxed/simple;
+	bh=2Z85cQ6uU0GVtAZUpmRXHyd6C4EsGOmLz1XMPvSK4wo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D/WTOv1WgjZ1PmPqenGEL+70vxHXcEhGIh9gCx3jQGz0YMqDfAeWvVxab26sSZYcNtlQ+hVG1WySNkEChJmTCtmoWFZTOsVcmO27kXaqqbYcJjf+5dYt/DvrlYfYQgRIyqxd5tNPDS+g3VijhnKyjacesitr+3PUFh8yuaKED+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mv15d627; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2365B1F000E9;
-	Thu,  2 Jul 2026 18:44:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jy9SNX0vPRwMYrXfF5wjndy94jq/YcKvzngvN47edJ9I4D2lC7l3gocJ81rVGSPg2b51MFUmbqF0EQ6IYg0kXhs7FDH0bAlIa/Dy3VRIXINTW1Uyv1QPUpoITR9tSD27kwhvtnIxQ6ePcnQd1VWkGyhAVeWYpY/JbHX8lWYMoWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lq1WHjyM; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B9C81F000E9;
+	Thu,  2 Jul 2026 18:45:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783017890;
-	bh=RlWQKLBpPejSZHZZzN/mxlrqMYq2TV7X1RN6v4yZKnQ=;
+	s=k20260515; t=1783017908;
+	bh=2Z85cQ6uU0GVtAZUpmRXHyd6C4EsGOmLz1XMPvSK4wo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=mv15d627BMhysj+dOXP1Epessj05M96xpkncn6udtJd28nby1H8MaWbOzU9mPmAmF
-	 DoyFv/BiP0r6RrpTnolEpOTWx3yVNGJ+zXlsGgbiuMlT9urSaFU4VkRzMeg8qJUbno
-	 Zpb7NtzkMd2U+ImaLp5xaHf2sSxAqRKormo0oW+Xzn5vMCKtvL5Wec2aiuX5FrUS4i
-	 H2FDyAjV+6gqbg8UyAKSGvz/Exb1T7nO6FYTRHMy0Jp4x+hArkQRk7rhqFntHOTgfm
-	 AbRkUTSAYZbycHK9S1+Cn+Gq0Qt1gS8VM12khfGIyCFv8FGpesNsd5c+liHJE6aXJ/
-	 opet5GnVwyagQ==
-Date: Thu, 2 Jul 2026 19:44:45 +0100
+	b=lq1WHjyMJAk0Jm7Uv9pgDiSOP6jj32Enc3jeuBZge6AZtSYljC/kgqXGmlpt2Eb0I
+	 ucueQyNOBfKaWND1I7R7mZWs1aXMtNOgtiFz6fxoqfzbWfNff3AjXdOYcRPl9K9xtB
+	 kSK8ANQSv31o6Hnqt05xDCBjf8Elh3vIXhJbk3HRIU+FRYx5x3iCV4F29SuJ1Qw05y
+	 U1viVePIM3pM7DOjA44c+u9aIQlTFVMaYYmETGEmS6JFZlFIFtg0M91SYKoJKicG9u
+	 QqGBwD95vfL8luEeLwkwXg1ifRZZbqdugke7nKWYxfwj171Z2UvkVrkdDaVnvPIvQg
+	 OxYAwsSuBiV9g==
+Date: Thu, 2 Jul 2026 19:45:03 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Jerome Brunet <jbrunet@baylibre.com>
 Cc: Junhui Liu <junhui.liu@pigmoral.tech>,
@@ -60,13 +60,11 @@ Cc: Junhui Liu <junhui.liu@pigmoral.tech>,
 	Stephen Boyd <sboyd@kernel.org>, Maxime Ripard <mripard@kernel.org>,
 	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	Sashiko <sashiko-bot@kernel.org>
-Subject: Re: [PATCH v3 1/8] dt-bindings: rtc: sun6i: no clock-output-names on
- h616/r329
-Message-ID: <20260702-handstand-juggling-108225b4599b@spud>
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3 2/8] dt-bindings: rtc: sun6i: add sun60i-a733 support
+Message-ID: <20260702-upper-gumball-d8bebf96da5d@spud>
 References: <20260702-a733-rtc-v3-0-eb2580374de6@baylibre.com>
- <20260702-a733-rtc-v3-1-eb2580374de6@baylibre.com>
+ <20260702-a733-rtc-v3-2-eb2580374de6@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,9 +72,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="FZulPCrKKJP31cIw"
+	protocol="application/pgp-signature"; boundary="mQHzYtXtpMBTI3Nd"
 Content-Disposition: inline
-In-Reply-To: <20260702-a733-rtc-v3-1-eb2580374de6@baylibre.com>
+In-Reply-To: <20260702-a733-rtc-v3-2-eb2580374de6@baylibre.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-5.26 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -86,7 +84,7 @@ X-Spamd-Result: default: False [-5.26 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -94,10 +92,10 @@ X-Spamd-Result: default: False [-5.26 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_RECIPIENTS(0.00)[m:jbrunet@baylibre.com,m:junhui.liu@pigmoral.tech,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:mripard@kernel.org,m:linux-rtc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-clk@vger.kernel.org,m:sashiko-bot@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_RECIPIENTS(0.00)[m:jbrunet@baylibre.com,m:junhui.liu@pigmoral.tech,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:mripard@kernel.org,m:linux-rtc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-clk@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319559-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319560-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -112,28 +110,28 @@ X-Spamd-Result: default: False [-5.26 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,microchip.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C42136FC404
+X-Rspamd-Queue-Id: D6E146FC41C
 
---FZulPCrKKJP31cIw
+--mQHzYtXtpMBTI3Nd
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---FZulPCrKKJP31cIw
+--mQHzYtXtpMBTI3Nd
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakaxnQAKCRB4tDGHoIJi
-0rzBAP9zhEDgVgJdOXCZal2TY5Vh8abZgA2I4I4i3kMyryX0ZwD/XaiOCZN5gKFk
-aUYY65HjHUxhL5MGWH0r0SJy4Srk0w8=
-=h88k
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakaxrwAKCRB4tDGHoIJi
+0pVnAP4tatAlnoFqSSWR0Dehwd5JIMcYJH+x9gGwkCIsU97H/QD/ZCVMzErs59f2
+PlcGU5fGnv1DYWjhCFiGO+3KWCNFyQ8=
+=r6LU
 -----END PGP SIGNATURE-----
 
---FZulPCrKKJP31cIw--
+--mQHzYtXtpMBTI3Nd--
 
