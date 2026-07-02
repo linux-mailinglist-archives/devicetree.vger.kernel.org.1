@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-319138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319139-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DmVyJ/ciRmpCKgsAu9opvQ
-	(envelope-from <devicetree+bounces-319138-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 10:36:07 +0200
+	id l0gYEKAlRmrQKgsAu9opvQ
+	(envelope-from <devicetree+bounces-319139-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 10:47:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0560F6F4D89
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 10:36:06 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF606F4F2D
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 10:47:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=MjKGydHU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319138-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319138-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=PiF4RbYa;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319139-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-319139-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DD92F302F7C0
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 08:23:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 367A7308D9BB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 08:24:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33FCF426426;
-	Thu,  2 Jul 2026 08:21:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3370427A0A;
+	Thu,  2 Jul 2026 08:23:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2619E3D5C32;
-	Thu,  2 Jul 2026 08:21:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B0394189B2;
+	Thu,  2 Jul 2026 08:23:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782980518; cv=none; b=Bvo6X5MbCIcj6R5bXGwLMvYJ9wUhOFQrWlqgAv8CqSClPL/+mEDcJ3PLEFKCR4GUCJKACPmXtk24lVvJ8ggZQ4iUiCFvzGJdrZUXSngbJZAETmBodpJNV/z9HFwkYMtlvZ6pbT0Ca5OgBoTQ/sQhv8oBb4dQBHj3S4v4R4ENiaQ=
+	t=1782980635; cv=none; b=VlR9WCXlUIiM7YBLWpXyJ+1ebEJ90qPjScUBKlNTAdmoInNRiQSZR8JcSIHqj07010PWfNGwFRl7a2cOMpmX8W5iIwv02ubXantuA9mwsy0wZCDtxp6MtnZlXNUA5BHnZ0Pc8GOFqmCaanzH6nyiasFw13vEyJTr6RnK04mq65A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782980518; c=relaxed/simple;
-	bh=3HISegeDoiIC9nay9d8fLQ0exKiUD5Y6GU8C+loQwxo=;
+	s=arc-20240116; t=1782980635; c=relaxed/simple;
+	bh=7bYHsUXG+FaYYZNg1wJs3IPn7MVk2vRmY/KLPB8trcY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=TVV4ixrQkOcimyi0RCQsg54oXAZRts/Whoc2lvo3WD+WPdPowYrgleGuSl63DKMiIBnQfF/80Im0kkZSk3S1sYcM1LvjnsrCAThRoeVDSff+tKofEmOwOvLqzkHMOE3PXYm14iOaBgFrjO6un6sp4Jod3iiGOyavHvWA490frPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MjKGydHU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D6681F00A3A;
-	Thu,  2 Jul 2026 08:21:56 +0000 (UTC)
+	 Message-Id; b=HroH4A1G2YlFEmRo9nJQ2FrmWATtvF7SZvtPXSfArHMztGBmNHA2DUjCtGbhzKCQOGmSyjKd2SkqPMCvjuypK6xIgx5J9xpUwzR3ALP2K3Nk6IE2XmFiyCOXx6ucd/LbeukRhb4VWixdBjXYnwsULdnRK+2nhFdbDcXmqJN6ahk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PiF4RbYa; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 078A11F000E9;
+	Thu,  2 Jul 2026 08:23:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782980516;
-	bh=3HISegeDoiIC9nay9d8fLQ0exKiUD5Y6GU8C+loQwxo=;
+	s=k20260515; t=1782980634;
+	bh=7bYHsUXG+FaYYZNg1wJs3IPn7MVk2vRmY/KLPB8trcY=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=MjKGydHUozWbdWdO7ZF36vlvQVL8nvLm+8opXT5tDNTG93yY3sTz2PtENQhrJEg5e
-	 VtyoZx9V97eEn4xDN5l+C3X2l9OHjJezo46WswWcq5HUAqgbQwwMZqAR7HMmaFAF8Y
-	 QU/o2yFk1GYOXoC1W7Rg8EZzPPQk+w3L4X//nz11cq/93Vp8WKADYap7lODLc1K5Gt
-	 l0suhbucXscYPhSMwKezgbXDaD4j7jQ15gIMEYveDbvGAGZFFyh12ykvdirFvA48NJ
-	 ToRqD2SZR4hTiCKgseM5wRpD5LrB1qxmvvw7nmZ68gd/MVYHaL2G+R3xqSyruqkoBv
-	 V5oL4i7noPhpg==
+	b=PiF4RbYaDBoEA9LKU5NDa4mSGYKQw8TAf4bBZhdoSjLDLf0cUcyjN0jtquAOpARGQ
+	 D38YCShhtVQnm20HfBtsfUg/WvoCKFaZMVNb+LMG2ybt6T8H9vMe85iW5mc2AFa/i6
+	 cgX0WYlFkXDHmADed0UJlByxzEdduUPirsYcGq9vY8hzLEbXU+cBuOy23dlnlivrem
+	 hm7Dd9FyYhyfLazp2hJmnxgjvgu5ME2RgsBACBhC8zgZqeKIPaOsV1+Pj28eYzvZ65
+	 pEU7Oi6+qq0nZHwXklZdanPZLYju4Srp9Zli/EaPIA+hNZiKsjKFiQv7nXJdl9ktWt
+	 BpYck+SrXrARg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 4/8] clk: sunxi-ng: sun6i-rtc: clean up DT usage
+Subject: Re: [PATCH v3 7/8] clk: sunxi-ng: sun6i-rtc: split main oscillator
+ div and gate.
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Jerome Brunet" <jbrunet@baylibre.com>
-Cc: "Alexandre Belloni" <alexandre.belloni@bootlin.com>, devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, robh@kernel.org, linux-rtc@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260702-a733-rtc-v3-4-eb2580374de6@baylibre.com>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org, linux-sunxi@lists.linux.dev, "Alexandre
+ Belloni" <alexandre.belloni@bootlin.com>, conor+dt@kernel.org
+In-Reply-To: <20260702-a733-rtc-v3-7-eb2580374de6@baylibre.com>
 References: <20260702-a733-rtc-v3-0-eb2580374de6@baylibre.com>
- <20260702-a733-rtc-v3-4-eb2580374de6@baylibre.com>
+ <20260702-a733-rtc-v3-7-eb2580374de6@baylibre.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 02 Jul 2026 08:21:55 +0000
-Message-Id: <20260702082156.5D6681F00A3A@smtp.kernel.org>
+Date: Thu, 02 Jul 2026 08:23:53 +0000
+Message-Id: <20260702082354.078A11F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,61 +72,59 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-319139-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-319138-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jbrunet@baylibre.com,m:alexandre.belloni@bootlin.com,m:devicetree@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:robh@kernel.org,m:linux-rtc@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jbrunet@baylibre.com,m:linux-rtc@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:linux-sunxi@lists.linux.dev,m:alexandre.belloni@bootlin.com,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RWL_MAILSPIKE_POSSIBLE(0.00)[104.64.211.4:from];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto,baylibre.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,baylibre.com:email,sashiko.dev:url,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0560F6F4D89
+X-Rspamd-Queue-Id: 0EF606F4F2D
 
-> With sun6i-rtc compatible devices, the "ext-osc32k" clock input
-> is optional for the devices that support this input (r329 and onward).
+> On the a733 the "osc24M-32k" clock has the same gate bits as the previous=
+ly
+> supported SoC but a different divider implementation.
 >=20
-> Probably preparing for older SoC support, the driver does something funny
-> when parsing DT. It check if "ext-osc32k" is present in the clock-names a=
-nd
-> if it is not, it uses the first clock as "ext-osc32k". This clock will
-> actually be the rtc bus clock so what the driver does is wrong.
+> Instead of a fixed 750 divider, the divider is selected based on the
+> rate of the oscillator. It can be seen as a simple read-only divider.
 >=20
-> At the moment, the driver does not support the older SoCs that would have
-> an external 32k clock provided on index #0 so just remove this quirk.
+> To easily replace the divider part depending the SoC, split the divider
+> and gate into two separate clock entities.
 >=20
-> Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
 Sashiko has reviewed this patch and found no issues. It looks great!
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702-a733-rtc-v=
-3-0-eb2580374de6@baylibre.com?part=3D4
+3-0-eb2580374de6@baylibre.com?part=3D7
 
 
