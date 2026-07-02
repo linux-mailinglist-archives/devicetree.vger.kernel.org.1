@@ -1,184 +1,146 @@
-Return-Path: <devicetree+bounces-319535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319536-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6qkPOd6wRmrabgsAu9opvQ
-	(envelope-from <devicetree+bounces-319535-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 20:41:34 +0200
+	id 2yIRLrOrRmpabQsAu9opvQ
+	(envelope-from <devicetree+bounces-319536-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 20:19:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B946FC35A
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 20:41:34 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2113A6FBEEA
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 20:19:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Boh8qgvP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319535-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319535-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=ideasonboard.com header.s=mail header.b=tPBG9AD5;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319536-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-319536-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=ideasonboard.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 616F131B44AA
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 18:11:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2969E30338B6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 18:19:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57CE63A75A4;
-	Thu,  2 Jul 2026 18:11:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68C483A6EF0;
+	Thu,  2 Jul 2026 18:19:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D66E3A6B71
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 18:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CA0396560;
+	Thu,  2 Jul 2026 18:19:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783015909; cv=none; b=RfDF1qE4Brd9s7kotEI5cqwjXiaBzK1fDqU/JLfBysU7ayWM+uNDXe4DwKhaIkMoa4hdaRazvzfzAgCH84R2CrXIlxiWN+Z0VYxxVYdfQZ32HLJNZIFzRh3OsJEnOhV2sOBOMoD8V0D7n9UeQrAqWK23E4ItOSNgVdtOdJJ3Q/Q=
+	t=1783016367; cv=none; b=IO8sQeAkWHgXwvamvlN/CEjcK5ppeWXyURxEd2p4VF8E3a0YDtzJXgyXCXsXFCdShuWRRpmlzi6+hGinB0mId2VPGQBdfTHGyaW2syInS1/RqfQIbzNAiDLxidweB5fjlePeFW35IRXWBtXxPl9LOflwYyyfcjYVEFOCgLvhMUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783015909; c=relaxed/simple;
-	bh=hwCMbQOiZREN6cIUCJHWWmm1HntdXr3h4PlM+Tbadsg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nHa4YMlplz6WJSTxIKx07TsNbDwMQLaWUhmutkLF1tvnTKUIXuzMMCs18p11Be4IK0dQ1XC1h/hANFBYJN2NvHktDt/7/l9leQ6MLRmVymSSPC5yOXoLP68DH1fSOwvFdM9Y9uwdM4Gb70LaZRnUnRbkAioODMQ0XFK1/M2TC2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Boh8qgvP; arc=none smtp.client-ip=209.85.222.180
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-922ff615c14so175868285a.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 11:11:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783015905; x=1783620705; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=wtCCML4GCtPrAf6qduQMkfSK95cYT1SxvrHR4pZoPOQ=;
-        b=Boh8qgvPRVtyxiQWLHjETETL+CqebcD1iN2UmwYm/bWAL6b8ZjW6Jj7Bs8xd5av9ds
-         DinP93FoXDvSVJ4SPRPluyqRXt9K5N4EmGJqumF2YQYos2EfW0AlQYTybZD1pygMDvbk
-         caK0BjsnDYSUdyss2EybRTxYv5l4JKs3RGZF+w0lMQk4u6Y+p3dw0mYk0NfrP8H6E9V6
-         enob59LsJ1UcAH5qi0IMSMnNlUw7Qi/GvgPJE7lnfSrOE6zmeR4it14nZNeY2QjFj0UQ
-         ApACkaFh1XmFR8xbIqn4xLKsWb6NL2XVIHpMvpXo4t/bHh0psStB+jTgfAnrvsNcK/dl
-         48fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783015905; x=1783620705;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=wtCCML4GCtPrAf6qduQMkfSK95cYT1SxvrHR4pZoPOQ=;
-        b=FYkwdSZAUEWuQn2aF85NDjgAJCrCcvUzol/UgT3578uQojQJ7t2zY3t+EBrsDotZwA
-         mZROo7Sl/AgfebgZL2knH1oIODUljYYK9fwLRfGeaDxdHYaInSu64QLcbh+gB1UCKLef
-         40tB9u59dEr13xulePa8I1uG4hMWha0EauxAlTQgJu0joZd07rHTBbqa+Jdxyc6xtEdB
-         63RkecPokEpzlKfx0VYMFlJCAv2ch+CUwNpgOMq2ho6Ll2lDJgx9Px1ZXC7nPtgVjAsy
-         XwVDgbIuO7fls8zKwjPxB4w2cH+TWWGydwlxnKHOsQuJCL1osaUGZZk8QZG3acAnar2l
-         AS7A==
-X-Forwarded-Encrypted: i=1; AFNElJ9bUnfUqX01cBsdldnzd5vwMAKmLcz9v5pd/u4MiwJZ4Zk0AinnpmVIXBvRKC1apLLZe4FjJVwdGcEG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnE50H1nrpWCWGt9KOv7LVleK8XgpNtLGE2GSm6ADpns/1v7Zi
-	viGnc0gRcdpkObAkLT4pBufZtfQf25kzawGEOlpcQGnnCiZQ8464P4pe
-X-Gm-Gg: AfdE7cmtW3eNaKL9GW9nNNQOl45JygghByoFBvcoZ1ZGIPotcR+xL3cxGZI+sUV2TlX
-	RivIgQVXjCa84/x3hGNc3XBeSUFDb5LP3ZXaRSspYPoeyQRyLha3ndCoIx8nBozcfrF8SnEbzZ1
-	27LWgpdg/MHJlETpOugjhj4+bNH233zAMrYn6oVi6byUaWaO/M105urOkyArnlX1zJWC0gSaILN
-	29ECd4ykvjTPgqgyCPBWO7Gy/0IGVtPl/8+XUH19p8yHirwAiG3uj1eEWiF75b6LLdhx+WhwaZ/
-	TDHkjVa4+fPNgnlsP6SDgavw6IqtGeFEdzY2ayZbhSXi/uX0rQggANyQlGibWfUUoAIp3Q1j2W6
-	57/QabrraTppZpjvNpYtZCQDUSq2wKAA32XWPc/MJcI3dbbDXerLqwNX0qWAR1FqpAqTe5sJxO5
-	I1I8co9ZezhEuI9U4dEJcXHMxSeJpMM1PPlfseJOOwaA/Fn4lwPa7J7Wjeg7QScRi6O2qWk/g=
-X-Received: by 2002:a05:620a:3722:b0:92e:4927:1ffa with SMTP id af79cd13be357-92e7825b2d6mr905846685a.24.1783015904823;
-        Thu, 02 Jul 2026 11:11:44 -0700 (PDT)
-Received: from AMD.home.local (dhcp-9-244-8-156.gobrightspeed.net. [9.244.8.156])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-92e80194291sm274217585a.37.2026.07.02.11.11.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jul 2026 11:11:43 -0700 (PDT)
-From: Enzo Adriano <enzo.adriano.code@gmail.com>
-To: Junhui Liu <junhui.liu@pigmoral.tech>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Brian Masney <bmasney@redhat.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1783016367; c=relaxed/simple;
+	bh=iMO17iTJWoMt5HRqYvRyCxPEU2GVfSbOr9hY4SHBp+A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q38be65v5ys4NBHsqRhSHXp5UWURQLwdy6++xNpT6Avw3CEOIPy1UQqCGCyrPPiB+SkP13ooC/sUvjxS6Yuk/LqYFqzjlJH0T5FjnM+/PIvPhD6cAccIGHu1qZhs81jWlR0l7/4MCG8JxcwcaCSkUHuxlm95EDmjqVybsZHQmAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=tPBG9AD5; arc=none smtp.client-ip=213.167.242.64
+Received: from killaraus.ideasonboard.com (2001-14ba-70f3-e800--a06.rev.dnainternet.fi [IPv6:2001:14ba:70f3:e800::a06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 58B7F22B;
+	Thu,  2 Jul 2026 20:18:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1783016316;
+	bh=iMO17iTJWoMt5HRqYvRyCxPEU2GVfSbOr9hY4SHBp+A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tPBG9AD57PqMUbbV4c8F5rp5Dxrl9hEWI7znN6ivnuTxoP6cW1ENk5f3fXliUt63a
+	 dep90ED20b45Z/eJfJHwHeb7IDRe7zMtvjNtjnQYHegXsWKAzK+0ZABu6pdBr6L4y7
+	 dqc7sSKTDHBcNBd8iRFCrABCrH+2RpnDW3noPK34=
+Date: Thu, 2 Jul 2026 21:19:20 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Frank Li <Frank.li@oss.nxp.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Michael Riesch <michael.riesch@collabora.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Martin Kepplinger-Novakovic <martink@posteo.de>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Purism Kernel Team <kernel@puri.sm>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Richard Cochran <richardcochran@gmail.com>,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 8/8] clk: sunxi-ng: a733: Add reset lines
-Date: Thu,  2 Jul 2026 14:11:40 -0400
-Message-ID: <20260702181140.883070-1-enzo.adriano.code@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260310-a733-clk-v1-8-36b4e9b24457@pigmoral.tech>
-References: <20260310-a733-clk-v1-8-36b4e9b24457@pigmoral.tech>
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	Guoniu Zhou <guoniu.zhou@nxp.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 2/8] media: subdev: Add media_async_register_subdev()
+ helper
+Message-ID: <20260702181920.GJ3534761@killaraus.ideasonboard.com>
+References: <20260702-imx8qxp_pcam-v7-0-b47d9e363400@nxp.com>
+ <20260702-imx8qxp_pcam-v7-2-b47d9e363400@nxp.com>
+ <20260702161519.GI3534761@killaraus.ideasonboard.com>
+ <akapt6v_DBJSAnj0@SMW015318>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <akapt6v_DBJSAnj0@SMW015318>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-319535-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[24];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:junhui.liu@pigmoral.tech,m:andre.przywara@arm.com,m:bmasney@redhat.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:p.zabel@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:richardcochran@gmail.com,m:linux-clk@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319536-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:Frank.li@oss.nxp.com,m:sakari.ailus@linux.intel.com,m:mchehab@kernel.org,m:michael.riesch@collabora.com,m:Frank.Li@nxp.com,m:martink@posteo.de,m:rmfrfs@gmail.com,m:kernel@puri.sm,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:imx@lists.linux.dev,m:guoniu.zhou@nxp.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,collabora.com,nxp.com,posteo.de,gmail.com,puri.sm,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[enzoadrianocode@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[arm.com,redhat.com,baylibre.com,kernel.org,gmail.com,sholland.org,pengutronix.de,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[enzoadrianocode@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ideasonboard.com:dkim,ideasonboard.com:from_mime,killaraus.ideasonboard.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 63B946FC35A
+X-Rspamd-Queue-Id: 2113A6FBEEA
 
-Hi Junhui,
+On Thu, Jul 02, 2026 at 01:11:03PM -0500, Frank Li wrote:
+> On Thu, Jul 02, 2026 at 07:15:19PM +0300, Laurent Pinchart wrote:
+> > Hi Frank,
+> >
+> > Have you missed the comment in v6 ?
+> >
+> > https://lore.kernel.org/all/20260629084654.GB3054459@killaraus.ideasonboard.com/
+> 
+> Sorry, I forget emphased it in change log.
+> 
+> "For the reason stated by Sakari in patch 1/9 (dependency from MC to
+> V4L2), I don't think a "media_async_register_subdev()" function is a
+> good idea."
+> 
+> The reason already NOT existed in v7, I removed v4l2_fwnode_endpoint from
+> media_pad. So MC will not depdent to V4L2.
+> 
+> So this comments is not suit for this version.
 
-Same exercise for the reset map: I compared all 121 entries' offsets
-and bit positions against the public A733 User Manual V0.92. 115 match
-the manual exactly (including the multi-bit GMAC0 entry - 0x141C bits
-16/17 per section 4.1.6.212 - and RST_BUS_SYSDAP at 0x7ac, which is
-what makes the gate offset in patch 7/8 stand out).
+media_async_register_subdev(), with its "media_" prefix, appears part of
+the MC API, but it operates on a subdev. At least the function name
+should be changed in my opinion.
 
-The six that have no register in the public manual, in case you want
-to add provenance notes near them (as already discussed for other
-undocumented IDs in this series):
+-- 
+Regards,
 
-  - RST_BUS_SPI4       { 0x0F2C, BIT(16) }
-  - RST_BUS_SGPIO      { 0x1064, BIT(16) }
-  - RST_BUS_LPC        { 0x1084, BIT(16) }
-  - RST_BUS_GMAC1      { 0x142C, BIT(16) }  [GMAC1 question]
-  - RST_BUS_GMAC1_AXI  { 0x142C, BIT(17) }  [GMAC1 question]
-  - RST_BUS_TCON_LCD2  { 0x1514, BIT(16) } - the manual documents only
-    VO0_TCONLCD0_BGR (0x1504) and VO0_TCONLCD1_BGR (0x150C); there is
-    no TCONLCD2 register set in V0.92
-
-Everything else in the reset map checks out against the manual.
-
-This analysis was done with AI assistance (Claude Code, claude-fable-5)
-and each finding was checked against the cited sources.
-
-Thanks,
-Enzo
+Laurent Pinchart
 
