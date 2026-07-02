@@ -1,191 +1,159 @@
-Return-Path: <devicetree+bounces-324002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319321-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DOBDK3foT2pUqAIAu9opvQ
-	(envelope-from <devicetree+bounces-324002-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 20:29:11 +0200
+	id 5OLoJKVTRmp5QwsAu9opvQ
+	(envelope-from <devicetree+bounces-319321-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 14:03:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4477734470
-	for <lists+devicetree@lfdr.de>; Thu, 09 Jul 2026 20:29:10 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F11BD6F7431
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 14:03:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=echKC+5X;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-324002-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-324002-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AjLV2HrS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319321-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319321-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1EB503006823
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jul 2026 18:29:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D76E730A554B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 11:06:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0AD34EA380;
-	Thu,  9 Jul 2026 18:29:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEE303D9DD0;
+	Thu,  2 Jul 2026 11:06:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj2-f2.google.com (mail-pj2-f2.google.com [74.125.227.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0FC94E377E
-	for <devicetree@vger.kernel.org>; Thu,  9 Jul 2026 18:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D957F3CC9F2
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 11:06:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783621740; cv=none; b=BF0Gff4aXxZKZa3qul9qgN5GfcF+GNF63kQllBU6CKhTp7Ec5dhjMF18xkevsEZWyXuzvvwIOfMSqWhIcYj+dpWnplyGtKl95k258AgzZYbdS6NbcHVL+eyH2Dz8cuAOVrPnRoxSFvVhDSMXsS3r54YFzwRTz45Ol4Hk9W0a/Gs=
+	t=1782990394; cv=none; b=nRpNhDPe5MYkmQyfe0XXeDjU0jMRGfTGdO9+mMzeczS1Iy6lTWaEzQhWeH62wKHeU0kRH+SK9LQ4zCkmaLgBJ8CfqxGY3SLdAeXisrIewIrNoXLViF0KzWtT1l2fnsqkrv4VJ+y7CDdKG6/8fNHZCxJNhfACpQLOsyHT2Ri6C1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783621740; c=relaxed/simple;
-	bh=F3880iQjXWhrnjsz5UgW9kwELR4+dgn6tPqZG2gmN40=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=oRESe8U5bmhS/JL1IdlysuWsV2B0PXnLY+/c1A8bijxpPWq8Rc/r+sT/lk68nipa0s/w4ZAFcwOqd/JG7iADRxBx6IU2sChdIUpzM1oR2xf+RKKpoOPyT0qZSqRcl0R/KosHUEHN0P4xcOJPfxNfA3OkazmWqzZdeGYFGNkYYDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=echKC+5X; arc=none smtp.client-ip=74.125.227.130
-Received: by mail-pj2-f2.google.com with SMTP id 98e67ed59e1d1-380feaa05dcso145792a91.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Jul 2026 11:28:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783621735; x=1784226535; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:mime-version:message-id
-         :references:in-reply-to:user-agent:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=RN+4SkO8PJ9d9SXPrFRpz0v6UaMeYjDz8fSXVOFCTUQ=;
-        b=echKC+5X5qoqV5LdJaqQGubY47jm7Zembzmf9K7+sEEa/jSGiN3uWpdGkt0T+WmwvW
-         DTkiOupga53wz/0Nff48YilHcxX8v3vvxOgWtfcNT8t0eAJDze39VGM6u/76qVIhOOTz
-         0tuchl/Zimj0RwsH0BPMZOQoyXYS9oiqzNfEWXp0ykQZj/WNS1dKaiFNVg65RicVazY8
-         K5tVgJR1KULffrnSHW3bT/q/PewsLuEnrmLOWr1HQLd9t9Veela2IwRPw4f4TOkKjmWc
-         /BAmcxxtuW7jGII3slRz8XGALERCP0cWgbeNH0lcGa5pKFMV4MXNcL1FVlqB3dxCbTYb
-         0A3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783621735; x=1784226535;
-        h=content-transfer-encoding:content-type:mime-version:message-id
-         :references:in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=RN+4SkO8PJ9d9SXPrFRpz0v6UaMeYjDz8fSXVOFCTUQ=;
-        b=Fh+6oxKHHucnLcof2/6YtRVfPtCSOGuXrxDvCGgPrWt7FLvarD4AKxJLpxqSkblI60
-         EwiOEkNk9razJqoXOmA8GHFWrHImFHppEiNrUdvq5uclay2qF1tQxM4vbg2E1HbvoE1M
-         3ftG2mNg6fKqh+sdy5xDaBGZmepPQnIcnKpMhEcMuMRSz6cfzMbW1PdZdBxHEhK1ljZn
-         RdosQ7xFgDRwILhrrY5AiDaDTZ9sjovqIV4dYJfyqhL0UCsFGdpKgyPnEo0WMpV4kXKD
-         It4QDUxeZB60lBI8SG53nKIh303aJJLE/58urQOYIl0k49aFWaaX/peOMbsrXgJ99XZZ
-         YPSg==
-X-Forwarded-Encrypted: i=1; AHgh+RrTHIZjeTMqNqxiG+qQMEnqlN6mZMtrfcrQ2k0mO9h24m4SyC4feLmKy633FU3BGp0dSKKXqTq5f1xR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxzx5XFsIfJ8qi1qNRehMgfgw0RGqF5UHU8JErsJw3Q1Ut7TbFC
-	qVgOELhG6TQoKrTEQ3SqIbzP4pO9pQzGRhGBIMocMgqGcfTig95KqeRZ
-X-Gm-Gg: AfdE7ckf8Jzm/v/gzTLhYM1Z0bKWl120wFCDG54elaXOnXAsUEi6qAjmLlqXG5WyXJ7
-	hVzyuMtPfJp7kSJ0w/QonCWDWG3hdNT/eHWA6aVDpktpSVxnVLWZ8gBcKYlKynQjnItiM8RXNpt
-	IbT6rSOwb3jXVBOz+U45p7f8jfuV1jrNhZG5PJ8haHj05l863hQ3ZQOg4i0HgwxCpVrkgv7c9st
-	U6pIuNW7dWY22RMywuDoRujUa4BlcKY7jm9IsAHC1w0Ek05jQto35GT/pJE4xeXXFvSRVs+DG23
-	7pCeLg//8vgAIuaONhRYXpOg4pytSLXme2oAJQN0FPLIuhzS3RmbZMFxEtQCsqBlI2VVfCUPb22
-	s4oC9QmOhj31ZqL0zm0QQ3UI9nlqkAoBfl4mR5QGPOD40OCpnZYpoACAwyafu/TjOKAPG8eSxqT
-	Pb/oxqbvb5O+T1EMaUTfDm1cg=
-X-Received: by 2002:a05:6a21:7482:b0:3a2:f7bd:a9a5 with SMTP id adf61e73a8af0-3c0bcbc0455mr10030942637.38.1783621734601;
-        Thu, 09 Jul 2026 11:28:54 -0700 (PDT)
-Received: from ehlo.thunderbird.net ([150.230.217.250])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ca5af7d5946sm4088600a12.7.2026.07.09.11.28.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jul 2026 11:28:54 -0700 (PDT)
-Date: Wed, 01 Jul 2026 18:01:30 +0800
-From: Coia Prant <coiaprant@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add graperain
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20260701-sturdy-imported-oryx-dfc12a@quoll>
-References: <20260630153810.3574714-2-coiaprant@gmail.com> <20260630153810.3574714-4-coiaprant@gmail.com> <20260701-sturdy-imported-oryx-dfc12a@quoll>
-Message-ID: <A4CA0393-B348-48A0-B5DB-D1F9098EB37B@gmail.com>
+	s=arc-20240116; t=1782990394; c=relaxed/simple;
+	bh=+3VAEUr9TmVT1YvT5p00nD4iv2QA6Uxa4fZ2paSQQN0=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=fQfYpmEXxvs5cjL+zov63rE6pgpGHFYnJTeUyBghBoXu4yDn7Q2ZD4iiFulfh+duLrhI63C61bg5M0EzotCXzev/1yrfW4NE8TBIxr4NNU/BTlsriTJGdzvm6HwcP2odK2DeSooNHRrRXz8D5aNPXVgQ8+TNkafckAgjFlWgrZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AjLV2HrS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BFF51F000E9;
+	Thu,  2 Jul 2026 11:06:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782990393;
+	bh=bDrH5gewXRkNXXXy41nXJPGdsvc7PAWzwpYNSTvs+6M=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=AjLV2HrSQ31+9xI1x/NUSACz50R2U1YYsmphPoOzKOZKJsRkaNtmxyThcIqY+P1dp
+	 1jHdEoSYXhB1ZWid4T46S+Rqk6aUNK0oZlBAOS44f+eakZAlh8dMfRdzHvLr6oUkKf
+	 anNRJmokF48hBuHpenSm8cdZIQ+NtpdLZBQ+bUt9tNlDOiIizzzR55lT509oyqQsB0
+	 Mr1aEAJCn2xMVf5YbcQB/lOeT86Bmmt1cKBTswjdLxWw6geNwucjw7RSbHneef0+W7
+	 sI9hTvCANX64tsk6Y1pT3M4GaWozq9kjdFFFrJ58+t4acfa1CLJzLBIB0WkchaDCjS
+	 5Z5ZPq3v8QeEg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3] arm64: dts: qcom: qcom6490-idp: Add IPA nodes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Sarat Addepalli" <sarat.addepalli@oss.qualcomm.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260702105509.1360340-1-sarat.addepalli@oss.qualcomm.com>
+References: <2qlpabzpyvjwd2siwkpcdcjq7geyzj5egu732dg775asn2wtbq@tcbj6r5ti2o5>
+ <20260702105509.1360340-1-sarat.addepalli@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 02 Jul 2026 11:06:32 +0000
+Message-Id: <20260702110633.3BFF51F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DATE_IN_PAST(1.00)[200];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-324002-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:dsimic@manjaro.org,m:jonas@kwiboo.se,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[coiaprant@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-319321-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:sarat.addepalli@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[graperain.com:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D4477734470
+X-Rspamd-Queue-Id: F11BD6F7431
 
-On July 1, 2026 3:05:45 PM GMT+08:00, Krzysztof Kozlowski <krzk@kernel=2Eor=
-g> wrote:
->On Tue, Jun 30, 2026 at 11:38:09PM +0800, Coia Prant wrote:
->> Add graperain to the vendor prefixes=2E
->>=20
->> Link: https://www=2Egraperain=2Ecn/ (China)
->> Link: https://www=2Egraperain=2Ecom/ (Global)
->>=20
->> Signed-off-by: Coia Prant <coiaprant@gmail=2Ecom>
->> ---
->>  Documentation/devicetree/bindings/vendor-prefixes=2Eyaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->
-><form letter>
->This is a friendly reminder during the review process=2E
->
->It looks like you received a tag and forgot to add it=2E
->
->If you do not know the process, here is a short explanation:
->Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->versions of patchset, under or above your Signed-off-by tag, unless
->patch changed significantly (e=2Eg=2E new properties added to the DT
->bindings)=2E Tag is "received", when provided in a message replied to you
->on the mailing list=2E Tools like b4 can help here=2E However, there's no
->need to repost patches *only* to add the tags=2E The upstream maintainer
->will do that for tags received on the version they apply=2E
->
->Please read:
->https://elixir=2Ebootlin=2Ecom/linux/v6=2E12-rc3/source/Documentation/pro=
-cess/submitting-patches=2Erst#L577
->
->If a tag was not added on purpose, please state in the patch changelog
->or cover letter why and what changed=2E
-></form letter>
->
->Best regards,
->Krzysztof
->
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Missing `qcom,gsi-loader` and `memory-region` properties in the `&=
+ipa` node cause driver probe to fail.
+--
 
-My apologies! I am quite new to the kernel submission process and=20
-missed picking up the tag from v1=2E=20
+commit 340452b6b574043f9bbb5c7064a4d13788d8709e
+Author: Sarat Addepalli <sarat.addepalli@oss.qualcomm.com>
 
-Since I need to spin a v3 anyway to fix the text wrapping issue in=20
-patch 2, I will make sure to include the missing tags and resend the=20
-entire series=2E
+arm64: dts: qcom: qcom6490-idp: Add IPA nodes
 
-Thanks for your patience and for pointing this out!
+This commit adds the IPA nodes for the Qualcomm qcm6490 board by enabling
+the &ipa node and setting the firmware name in qcm6490-idp.dts.
 
-Best,
-Coia
+Link: https://lore.kernel.org/all/20260517-ipa-loader-v1-0-3c3764c1b4a3@oss=
+.qualcomm.com/
+
+> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/d=
+ts/qcom/qcm6490-idp.dts
+> index bdc02260f902b..d4f96bdd3a90b 100644
+> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> @@ -619,6 +619,11 @@ &gpu_zap_shader {
+>  	firmware-name =3D "qcom/qcm6490/a660_zap.mbn";
+>  };
+> =20
+> +&ipa {
+> +	firmware-name =3D "qcom/qcm6490/ipa_fws.mbn";
+> +	status =3D "okay";
+> +};
+
+[Severity: High]
+Does kodiak.dtsi actually provide the qcom,gsi-loader and memory-region
+properties at this revision?
+
+If they are missing from kodiak.dtsi, the IPA driver defaults to
+IPA_LOADER_SELF (since modem-init is also absent) and requires a memory-reg=
+ion.
+Without it, ipa_probe() in drivers/net/ipa/ipa_main.c will fail with -EINVAL
+when it calls ipa_firmware_load() -> of_reserved_mem_region_to_resource().
+
+Will this cause the IPA driver probe to fail on this board?
+
+> +
+>  &lpass_rx_macro {
+>  	status =3D "okay";
+>  };
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702105509.1360=
+340-1-sarat.addepalli@oss.qualcomm.com?part=3D1
 
