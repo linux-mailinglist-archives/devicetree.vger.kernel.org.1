@@ -1,186 +1,581 @@
-Return-Path: <devicetree+bounces-319320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319322-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7Yc1C7xHRmrENgsAu9opvQ
-	(envelope-from <devicetree+bounces-319320-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:13:00 +0200
+	id F6GsMExIRmrZNgsAu9opvQ
+	(envelope-from <devicetree+bounces-319322-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:15:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C02CE6F6827
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:12:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D69446F686C
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:15:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=k0HR7WU2;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319320-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319320-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=temperror ("DNS error when getting key") header.d=linux.dev header.s=key1 header.b=ShHdLked;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319322-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319322-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=temperror reason="SPF/DKIM temp error" header.from=linux.dev (policy=temperror);
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 95F013051DE7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 11:04:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 560E1300B639
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 11:07:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED443CC9F2;
-	Thu,  2 Jul 2026 11:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E803CC9F2;
+	Thu,  2 Jul 2026 11:07:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E873C9EC2
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 11:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA4943242B8
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 11:07:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782990275; cv=none; b=b45U4w1nlPXQ7tbkhmi9vjZ+7z4YYvnkx8bRa88SEGR+yCDyl7EEERoSeQ9M/OQzlUH1GuROU/H3x7d8GYWcIXTCig7Ur+Mk5VoMcLzQhVBSoDj3wAGK+mUuVNzY6QhYNxSMIj+OAOwUHnFCue0EvsttAKQqY8aOWGWdSwOL0/U=
+	t=1782990477; cv=none; b=p0lS5W1p0Oyuk3kDfgIC5uHAmyMrFnQPxwOgJWXnvME4GHMNkmqe7qCTnmG0sHvChGTz+rVKOGmlNES+01hTelDk/9LamiRkxYTKTIdGT2VW59pPDv30xAgAQjd+CF6a0AHyQvazbnvIsSo0T23o/9ciwboVuXSBOTxM8wc7+UE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782990275; c=relaxed/simple;
-	bh=WOvnAqyd9suiKkPSQRDTLhMYKHvt18IBkdwyyayNtxs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=kM5pOItIqQ9rKIFJYV0mx/lq91Nu0y/CEFllgOIHIA2/TeoEvWIK85pZxkFPUTT8JmjF8u4CN5KzqsiCxnHuuHU+jdByoeXaLHfDOm373KUYMnXVYiDCY841f0mn8bZJyyaG5b8W1C+jvkwgyhUdyewWdWKXRiDOVkIKTqvCrVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k0HR7WU2; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C18AB1F00A3A;
-	Thu,  2 Jul 2026 11:04:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782990274;
-	bh=WOvnAqyd9suiKkPSQRDTLhMYKHvt18IBkdwyyayNtxs=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=k0HR7WU2f4bU2gdySbZFUVAYbtHpMRhl6MBWqRGb3Az3q7k5GWWeL3w1FHfAF1c2K
-	 j3E02La3kP010HCEyoa5Qo24c/PEAL1z9AKGJgoWX9LD/Bo+4JDuHFW6ikhznIxIGE
-	 RFfh8EuICPDoCquc0URR/n66VGwNpw9zJAKTrEIx2bx2jXx7LqB3WfiSMdg5KqNCUr
-	 P+XkuMYDWtIetLn6S89qQT3mZN2jBcG8hq5ybKhrbNEW6rDo+n5NKfGuL67KswU3wc
-	 s1KTQpblcgxCIyVoh97HxsV1FdFcuLmUW6G+29RD2nUOSmagzcai9mUFn0fRTdtOh7
-	 8iohzc19FPmgA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 7/7] thermal/drivers: airoha: Add support for AN7583
- Thermal Sensor
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Christian Marangi" <ansuelsmth@gmail.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260702094846.17325-8-ansuelsmth@gmail.com>
-References: <20260702094846.17325-1-ansuelsmth@gmail.com>
- <20260702094846.17325-8-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 02 Jul 2026 11:04:33 +0000
-Message-Id: <20260702110433.C18AB1F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1782990477; c=relaxed/simple;
+	bh=o1m9M/JFUfT7TSuGV5Bt1WSxNIWjFLdXG8UFWA7w0BE=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=PG25biMhvpD2vMlsiaZ6pL/b/g0RxyiBvOgu0mUx7YrArViW3bvy29CHPjNyhb2ijAxcQD0I6XRxEYN7m8kRRL94sSURrfIoFB4uTdqAMRHLg8VU5KUykSA17g5r+U+13pJfV1TZ4K/DI/dwYxL5cdZcg2u6iHt1VAF5rdZeMj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=ShHdLked; arc=none smtp.client-ip=91.218.175.179
+Date: Thu, 2 Jul 2026 14:07:39 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1782990474; h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+	 content-type:content-type; bh=9ogwjo3FQNfPyMRSaQH/cxCQyqF4UEQyAc9VNNI+d8c=;
+	b=ShHdLkedRMq+cKgV2KZnaoSGDbk0kdZ00QQa6Bv9wv6Y7uNotJNaDJjO4loWaqWmqV0mA4
+	kkz+vTMBxtBVIQPXkysUqKODiFKkkvLKQlImIqovUuRYEa1e9kCugeuwX4Tc2k76s4U2mq
+	KdIQy0ZyA13/vg81r7itPlkgC1VAS5c=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Matti Vaittinen <matti.vaittinen@linux.dev>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Matti Vaittinen <matti.vaittinen@linux.dev>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: regulator: ROHM PMIC state-machine voltages
+Message-ID: <akZGe1CaQFDd3idm@mva-rohm>
+Reply-To: Matti Vaittinen <mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="tO1kyZ9j32SlCKKJ"
+Content-Disposition: inline
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.44 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319320-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-319322-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mazziesaccount@gmail.com,m:matti.vaittinen@fi.rohmeurope.com,m:matti.vaittinen@linux.dev,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[matti.vaittinen@linux.dev,devicetree@vger.kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[gmail.com,fi.rohmeurope.com,linux.dev];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[linux.dev:?];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	ALIAS_RESOLVED(0.00)[];
+	DMARC_DNSFAIL(0.00)[linux.dev : SPF/DKIM temp error,none];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[matti.vaittinen@linux.dev,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	R_DKIM_TEMPFAIL(0.00)[linux.dev:s=key1];
+	HAS_REPLYTO(0.00)[mazziesaccount@gmail.com];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url,vger.kernel.org:from_smtp,linux.dev:from_mime,mva-rohm:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C02CE6F6827
+X-Rspamd-Queue-Id: D69446F686C
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
 
-New issues:
-- [Medium] The AIROHA_THERMAL_MUX_SENSOR regmap field is defined as 2 bits =
-wide, which will silently truncate valid sensor enum values.
-- [Medium] Potential signed integer overflow in temperature calculation.
+--tO1kyZ9j32SlCKKJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Pre-existing issues:
-- [High] Devm registration order causes a Use-After-Free of the thermal zon=
-e if an interrupt fires during driver unbind.
---
+=46rom: Matti Vaittinen <mazziesaccount@gmail.com>
 
-Note: The format of this review has been altered to a free-form summary
-rather than an inline diff review to comply with automated code recitation
-restrictions.
+A few of the ROHM PMICs have a state-machine corrsponding to the SOC
+power-states. Idea is that by changing the PMIC state, all power-outputs
+will be switched to a pre-defined state. As an example, the SOC may use
+a low-power state when system is suspended, and when transitioning  from
+the normal operation to suspend, the PMIC can be told to go to
+SUSPEND-state - which will then switch outputs of all power-rails to
+pre-defined low-power state matching the SOC expectation for SUSPEND.
+In addition to the SUSPEND, there are a few other states as well.
 
-commit 20661087884d15a906fbdeeb53c5ad53bd3cd15e
-Author: Christian Marangi <ansuelsmth@gmail.com>
-Subject: thermal/drivers: airoha: Add support for AN7583 Thermal Sensor
+The voltage values & enable / disable -states matching the SOC
+expectations can be set for the PMIC states using
+rohm,dvs-<state>-voltage -properties. It all started with the BD71837
+supporting this, but over the years these same properties have been used
+for a few other PMICs, and seems like this HW-state machine design is not
+going away.
 
-Summary: This patch adds support for the Airoha AN7583 Thermal driver,
-dropping the PTP_THERMAL subsystem, modifying mux logic, and updating
-the EN7581 code to account for these changes.
+Copying the descriptions and types in each PMIC specific binding, and
+discussing them during the reviews is getting tedious for the reviewers
+and author(s) alike. Furthermore, having separate descriptions makes it
+very easy to add errors, or differing, and even contradicting
+documentation for properties with same name.
 
-[Severity: High]
-This isn't a bug introduced by this patch, but there appears to be a
-pre-existing devres registration order issue that could lead to a
-use-after-free during driver unbind.
+Avoid these issues by using one common file for the common ROHM PMIC
+state-machine definitions and only referencing this from the individual
+PMIC bindings.
 
-In en7581_thermal_probe(), devm_request_threaded_irq() is called to
-request the IRQ early. Later, in airoha_thermal_probe(), the thermal zone is
-registered via devm_thermal_of_zone_register() and assigned to priv->tz.
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Suggested-by: Rob Herring <robh@kernel.org>
 
-Because devres frees resources in the reverse order of allocation, during
-an unbind or module removal, the thermal zone will be unregistered and
-freed first, leaving the IRQ still active. If a hardware thermal interrupt
-fires in this small window, en7581_thermal_irq() will execute and
-dereference priv->tz, which has already been freed.
+---
+This was discussed briefly here:
+https://lore.kernel.org/all/20260701192559.GA1313239-robh@kernel.org/
 
-Should the IRQ registration be moved after the thermal zone registration,
-or perhaps use devm_add_action_or_reset() to ensure safe cleanup ordering?
+I will send this separately from the BD73900 -series to keep the series
+a bit smaller and to allow this to get merged independently. I can
+however send the further revisions in the BD73900 -series if that's
+preferred by reviewers.
+---
+ .../regulator/rohm,bd71815-regulator.yaml     | 27 +++------
+ .../regulator/rohm,bd71828-regulator.yaml     | 20 +------
+ .../regulator/rohm,bd71837-regulator.yaml     | 16 +-----
+ .../regulator/rohm,bd71847-regulator.yaml     | 16 +-----
+ .../regulator/rohm,bd72720-regulator.yaml     | 40 ++-----------
+ .../bindings/regulator/rohm,pmic-states.yaml  | 57 +++++++++++++++++++
+ 6 files changed, 79 insertions(+), 97 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/rohm,pmic-s=
+tates.yaml
 
-[Severity: Medium]
-In an7583_chip_scu_fields, the AIROHA_THERMAL_MUX_SENSOR regmap field is
-defined with LSB 2 and MSB 3, making it exactly 2 bits wide.
+diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd71815-regul=
+ator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd71815-regula=
+tor.yaml
+index cc4ceb32e9d6..68b5e579e2d3 100644
+--- a/Documentation/devicetree/bindings/regulator/rohm,bd71815-regulator.ya=
+ml
++++ b/Documentation/devicetree/bindings/regulator/rohm,bd71815-regulator.ya=
+ml
+@@ -38,7 +38,9 @@ patternProperties:
+     type: object
+     description:
+       Properties for single LDO/BUCK regulator.
+-    $ref: regulator.yaml#
++    allOf:
++      - $ref: regulator.yaml#
++      - $ref: rohm,pmic-states.yaml#
+=20
+     properties:
+       regulator-name:
+@@ -51,15 +53,6 @@ patternProperties:
+         description:
+           GPIO used to control ldo4 state (when ldo4 is controlled by GPIO=
+).
+=20
+-      rohm,dvs-run-voltage:
+-        description:
+-          PMIC "RUN" state voltage in uV when PMIC HW states are used. See
+-          comments below for bucks/LDOs which support this. 0 means
+-          regulator should be disabled at RUN state.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+-        minimum: 0
+-        maximum: 3300000
+-
+       rohm,dvs-snvs-voltage:
+         description:
+           Whether to keep regulator enabled at "SNVS" state or not.
+@@ -71,21 +64,15 @@ patternProperties:
+         minimum: 0
+         maximum: 3300000
+=20
++      rohm,dvs-run-voltage:
++        minimum: 0
++        maximum: 3300000
++
+       rohm,dvs-suspend-voltage:
+-        description:
+-          PMIC "SUSPEND" state voltage in uV when PMIC HW states are used.=
+ See
+-          comments below for bucks/LDOs which support this. 0 means
+-          regulator should be disabled at SUSPEND state.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+       rohm,dvs-lpsr-voltage:
+-        description:
+-          PMIC "LPSR" state voltage in uV when PMIC HW states are used. See
+-          comments below for bucks/LDOs which support this. 0 means
+-          regulator should be disabled at LPSR state.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd71828-regul=
+ator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd71828-regula=
+tor.yaml
+index d898800d6bca..8cba397678a6 100644
+--- a/Documentation/devicetree/bindings/regulator/rohm,bd71828-regulator.ya=
+ml
++++ b/Documentation/devicetree/bindings/regulator/rohm,bd71828-regulator.ya=
+ml
+@@ -40,7 +40,9 @@ patternProperties:
+     type: object
+     description:
+       Properties for single BUCK regulator.
+-    $ref: regulator.yaml#
++    allOf:
++      - $ref: regulator.yaml#
++      - $ref: rohm,pmic-states.yaml#
+=20
+     properties:
+       regulator-name:
+@@ -49,34 +51,18 @@ patternProperties:
+           should be "buck1", ..., "buck7"
+=20
+       rohm,dvs-run-voltage:
+-        description:
+-          PMIC default "RUN" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+       rohm,dvs-idle-voltage:
+-        description:
+-          PMIC default "IDLE" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+       rohm,dvs-suspend-voltage:
+-        description:
+-          PMIC default "SUSPEND" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+       rohm,dvs-lpsr-voltage:
+-        description:
+-          PMIC default "LPSR" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd71837-regul=
+ator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd71837-regula=
+tor.yaml
+index 29b350a4f88a..efb38dd15145 100644
+--- a/Documentation/devicetree/bindings/regulator/rohm,bd71837-regulator.ya=
+ml
++++ b/Documentation/devicetree/bindings/regulator/rohm,bd71837-regulator.ya=
+ml
+@@ -44,7 +44,9 @@ patternProperties:
+=20
+   "^BUCK[1-8]$":
+     type: object
+-    $ref: regulator.yaml#
++    allOf:
++      - $ref: regulator.yaml#
++      - $ref: rohm,pmic-states.yaml#
+     description:
+       Properties for single BUCK regulator.
+=20
+@@ -55,28 +57,16 @@ patternProperties:
+           should be "buck1", ..., "buck8"
+=20
+       rohm,dvs-run-voltage:
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 1300000
+-        description:
+-          PMIC default "RUN" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+=20
+       rohm,dvs-idle-voltage:
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 1300000
+-        description:
+-          PMIC default "IDLE" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+=20
+       rohm,dvs-suspend-voltage:
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 1300000
+-        description:
+-          PMIC default "SUSPEND" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+=20
+         # Supported default DVS states:
+         #
+diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd71847-regul=
+ator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd71847-regula=
+tor.yaml
+index 7ba4ccf723d8..ef6f69be24ae 100644
+--- a/Documentation/devicetree/bindings/regulator/rohm,bd71847-regulator.ya=
+ml
++++ b/Documentation/devicetree/bindings/regulator/rohm,bd71847-regulator.ya=
+ml
+@@ -43,7 +43,9 @@ patternProperties:
+=20
+   "^BUCK[1-6]$":
+     type: object
+-    $ref: regulator.yaml#
++    allOf:
++      - $ref: regulator.yaml#
++      - $ref: rohm,pmic-states.yaml#
+     description:
+       Properties for single BUCK regulator.
+=20
+@@ -54,28 +56,16 @@ patternProperties:
+           should be "buck1", ..., "buck6"
+=20
+       rohm,dvs-run-voltage:
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 1300000
+-        description:
+-          PMIC default "RUN" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+=20
+       rohm,dvs-idle-voltage:
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 1300000
+-        description:
+-          PMIC default "IDLE" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+=20
+       rohm,dvs-suspend-voltage:
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 1300000
+-        description:
+-          PMIC default "SUSPEND" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+=20
+         # Supported default DVS states:
+         #
+diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd72720-regul=
+ator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd72720-regula=
+tor.yaml
+index 5518082129bd..76747bf2bbdd 100644
+--- a/Documentation/devicetree/bindings/regulator/rohm,bd72720-regulator.ya=
+ml
++++ b/Documentation/devicetree/bindings/regulator/rohm,bd72720-regulator.ya=
+ml
+@@ -26,41 +26,27 @@ patternProperties:
+     type: object
+     description:
+       Properties for single LDO regulator.
+-    $ref: regulator.yaml#
++    allOf:
++      - $ref: regulator.yaml#
++      - $ref: rohm,pmic-states.yaml#
+=20
+     properties:
+       regulator-name:
+         pattern: "^ldo([1-9]|1[0-1])$"
+=20
+       rohm,dvs-run-voltage:
+-        description:
+-          PMIC default "RUN" state voltage in uV. See below table for
+-          LDOs which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+       rohm,dvs-idle-voltage:
+-        description:
+-          PMIC default "IDLE" state voltage in uV. See below table for
+-          LDOs which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+       rohm,dvs-suspend-voltage:
+-        description:
+-          PMIC default "SUSPEND" state voltage in uV. See below table for
+-          LDOs which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+       rohm,dvs-lpsr-voltage:
+-        description:
+-          PMIC default "deep-idle" state voltage in uV. See below table for
+-          LDOs which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+@@ -82,7 +68,9 @@ patternProperties:
+     type: object
+     description:
+       Properties for single BUCK regulator.
+-    $ref: regulator.yaml#
++    allOf:
++      - $ref: regulator.yaml#
++      - $ref: rohm,pmic-states.yaml#
+=20
+     properties:
+       regulator-name:
+@@ -97,34 +85,18 @@ patternProperties:
+         maximum: 300000
+=20
+       rohm,dvs-run-voltage:
+-        description:
+-          PMIC default "RUN" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+       rohm,dvs-idle-voltage:
+-        description:
+-          PMIC default "IDLE" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+       rohm,dvs-suspend-voltage:
+-        description:
+-          PMIC default "SUSPEND" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+       rohm,dvs-lpsr-voltage:
+-        description:
+-          PMIC default "deep-idle" state voltage in uV. See below table for
+-          bucks which support this. 0 means disabled.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+         maximum: 3300000
+=20
+diff --git a/Documentation/devicetree/bindings/regulator/rohm,pmic-states.y=
+aml b/Documentation/devicetree/bindings/regulator/rohm,pmic-states.yaml
+new file mode 100644
+index 000000000000..f09f021bdde4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/rohm,pmic-states.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/rohm,pmic-states.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ROHM PMICs' hardware state machine descriptions
++
++maintainers:
++  - Matti Vaittinen <mazziesaccount@gmail.com>
++
++description:
++  Many of the ROHM PMICs have internal state-machine designed to provide
++  correct voltages for different SOC states. In many cases the states and
++  transitions are SOC specific, but ones described here can be found from a
++  few of the different ROHM PMICs.
++
++properties:
++  rohm,dvs-run-voltage:
++    description:
++      PMIC "RUN" state voltage in uV when PMIC HW states are used. 0 means=
+ the
++      regulator should be disabled at RUN state. Some regulators do not su=
+pport
++      setting HW state specific voltage but do support enable/disable cont=
+rol.
++      For them any positive value means the regulator should be enabled wi=
+thout
++      touching the voltage.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  rohm,dvs-suspend-voltage:
++    description:
++      PMIC "SUSPEND" state voltage in uV when PMIC HW states are used. 0 m=
+eans
++      the regulator should be disabled at SUSPEND state. Some regulators d=
+o not
++      support setting HW state specific voltage but do support enable/disa=
+ble
++      control. For them any positive value means the regulator should be
++      enabled without touching the voltage.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  rohm,dvs-idle-voltage:
++    description:
++      PMIC "IDLE" state voltage in uV. 0 means the regulator should be dis=
+abled
++      at IDLE state. Some regulators do not support setting HW state speci=
+fic
++      voltage but do support enable/disable control. For them any positive
++      value means the regulator should be enabled without touching the vol=
+tage.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  rohm,dvs-lpsr-voltage:
++    description:
++      PMIC "LPSR" state voltage in uV when PMIC HW states are used. 0 mean=
+s the
++      regulator should be disabled at LPSR state. Some regulators do not
++      support setting HW state specific voltage but do support enable/disa=
+ble
++      control. For them any positive value means the regulator should be
++      enabled without touching the voltage. Some PMICs' documentation may =
+refer
++      to this state as a "deep-idle state".
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++# The schema is expected to be reference by PMIC schemas, which may introd=
+uce
++# other properties that must be allowed.
++additionalProperties: true
 
-However, the an7583_thermal_adc_mux enum defines sensor indices that go
-up to 6 (e.g., AN7583_CPU_TEMP_SENSOR). While the code currently only
-reads sensor 0, if future or modified code attempts to select sensors 5
-or 6 as provisioned by the newly added arrays, regmap_field_write() will
-silently mask and truncate the value to fit into the 2 bits.
-
-Does the AN7583_MUX_SENSOR register field span more than 2 bits in
-hardware, or are the higher sensor indices handled differently?
-
-[Severity: Medium]
-In an7583_thermal_get_temp(), is there a risk of a signed integer overflow
-during the temperature calculation?
-
-The formula used is:
-*temp =3D (slope * delta_diode * 10) / delta_gain - offset * 10;
-
-Since slope can be up to 8390 (for the CPU sensor), multiplying slope by
-delta_diode and 10 results in 83900 * delta_diode. If the ADC values
-diverge such that delta_diode exceeds around 25,595, the multiplication
-could overflow a 32-bit signed integer before the division by delta_gain
-occurs.
-
-Could this be mitigated by casting to s64 or using mul_u32_u32() if the
-hardware ADC resolution allows for such large delta values?
-
+base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702094846.1732=
-5-1-ansuelsmth@gmail.com?part=3D7
+2.54.0
+
+
+--tO1kyZ9j32SlCKKJ
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmpGRncACgkQeFA3/03a
+ocV8iggAtwCuOvNIqSM7BHg3Sw6/kJZjDCMrw3+VBnA8Z/FCobClDUct6DR/IQvE
+rDSkB+pUrsx9r1QzNz8iLoCaeJiMzpV780SgPPUErAfpub9KKM0sJ1gReHg18p8s
+ZbN+nUdUw3cKcPBZzUQpIR3uRbQ0ZIXEbbCZMI4JR9EhkiHyhl51cUEzhpWX3mMh
+gomSe5J9KwsG+I9KZn91st6dqe0i7g/S2BtzhzJdE7gbDq1dIxc4p+BrGIlV0CV4
+yrCch55JEvauwPPPz29m5824hTKcZRT1wDRDQL1uGEX7iWFJ4ZHPg34AUrwL6BTo
+PNx3ltP3G9JNCgKpwWIlw6Zz3lHTnA==
+=5FDZ
+-----END PGP SIGNATURE-----
+
+--tO1kyZ9j32SlCKKJ--
 
