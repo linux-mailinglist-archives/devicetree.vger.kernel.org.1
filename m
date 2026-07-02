@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-319097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319098-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QBJ4EnQWRmpqJgsAu9opvQ
-	(envelope-from <devicetree+bounces-319097-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 09:42:44 +0200
+	id Q7nUJlQYRmr5JgsAu9opvQ
+	(envelope-from <devicetree+bounces-319098-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 09:50:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD146F44C5
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 09:42:43 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA2046F4630
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 09:50:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="Jb/X5XdU";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319097-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319097-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RE7qpIWD;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319098-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319098-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 569843058190
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 07:38:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D87613008C86
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 07:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EA3F3A48E3;
-	Thu,  2 Jul 2026 07:38:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B2093955E0;
+	Thu,  2 Jul 2026 07:41:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C4C39E162;
-	Thu,  2 Jul 2026 07:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC5613ACA60;
+	Thu,  2 Jul 2026 07:41:21 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782977926; cv=none; b=RvltWdPiH9j1KpLmkUL16whE2XyBZDFcOVi/wvWsk0Kvv2FgD+7Y4u0QrH14jXbCZ6qeUuCsAE4iCRbleKzxDmG+ldjrPCcxWxz3h4nSJ5SQHAj0Apkh/pxF5lFhLrUu+yjk1as79Fq7wLHPIbLgmm/m6WHnD/6CEzLiMuSn8hw=
+	t=1782978084; cv=none; b=X9DHgCrjkFCn++lA4wvnXs+HKbgkyUOngu+sLYcBPAcFTNSc/iU2tZZnE31s1ltwTtL1EWoUA29abJXiZ7FQ6fBZdsV8ltBnFsdoLqJWpJZUA+HU3eea2f0uoZPeXqR1dsaoxO/5PybDmavKmCnBTtl5dNOscXqj0+DggRG9haQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782977926; c=relaxed/simple;
-	bh=B+j7y3V3fRcSijIyXdzsTFHfGaFV9SdTVcC3aT5TovE=;
+	s=arc-20240116; t=1782978084; c=relaxed/simple;
+	bh=Y1lEoXB1q8ODD2dPeFqJs0cT8OUXcE9qfDbAofVEUyg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G++l9QjL2DkUJHuvwY0AWcQYXBJLu/64cHMeZGFIuHuW8QhoM2HyZJecZqF9ST0nOnt/6060lTtalS6/HOKmA4BCkfqmsVBnJmiE2cSL5JlPHroDYz0bw6IgiK2QrBCdo7OcrKAMI5+qA/0go0QHaUZtjnxbUi8JJqsBNh+S5jY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jb/X5XdU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57F301F000E9;
-	Thu,  2 Jul 2026 07:38:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rwvAo9YjudISNc0snIkbjeJIJ5mHYt4Ln33i7gxDzhSYu6XAuZHL9IqSm1ZzluThbgT0ETslOGfgNh5g3gJ0qQQpTc3yOgIfzoYZkfUr+AIQCOh1nNqUJWGMMlg0l2ST7sfIXSWRLJF2xMu+OcAO2LkgcDpUO4YLhLUCsJJQtmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RE7qpIWD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65E7E1F000E9;
+	Thu,  2 Jul 2026 07:41:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782977923;
-	bh=3iImYy89gH1RliWnirUBiV7qgObwtLceJC+1Hq5PgIw=;
+	s=k20260515; t=1782978080;
+	bh=cKqUiiAwoZ18B5OzBlf5xsymkGlzdDRplWzjdRUKEns=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=Jb/X5XdUJBmsmVbLc1H9r1BUgLaavVSOV/22zguUPDoETIqWLJNkenDm8uP0ViWkD
-	 OFjh4emKLP23Gvhe7SGFNuNvRggpgH1jcho7FQgD3GFq2jduug2MNOIAU00lOPUA00
-	 rz/rlimPMdfMlklBYGAcYxDyUpCgj5T+ul/8ydN8Q62mnBu3mRII6VCmwBnAygp+Ip
-	 +MZ8FoWjicfUlEKDJaTB+8fZ41Z3njf4uCWMaHfvzFQFUgBNVLU28OMsPnw1QlKEAs
-	 w/Ae5qBdnJ72i+BiKGEnKsUZhGdxoqzXWf22GE5eFyubz6++rI7oMGoEZpEBM1aOuT
-	 nMWvD82VFehuQ==
-Message-ID: <b0415193-76c8-4b1b-9582-8a4a220eae9f@kernel.org>
-Date: Thu, 2 Jul 2026 09:38:36 +0200
+	b=RE7qpIWDFvo/kbkXhBKnXNzmqeP1VK2Np/NOC2qLWTzvljfC4B/Li1kfU/zKf7I+q
+	 EwCslNpsXmT7dpP36awFLSAzjtLL4i8bqiICcbvXOU2fj/xvmWT9HOi6Rf/LXKvKwN
+	 OkJJsmjb+X4L5oz1IDwNF05sFIM+/FJ4darGhAZeWDaNbbrDzQRbXEe5gXzBoHPd47
+	 WbSVjDDEpINOOnRL9LPrxQuKqCNBbLPuSSAZGHiCKr+KXI5BJ5OsCrFKQJDKCnthbZ
+	 tUv1olcdNycuQcUjCr6AfIcr2UvWH6dytiiqqDQCTlW1pImFKs8FWHsY6tBAtD2IDD
+	 UAy91J9IWupDw==
+Message-ID: <a599eafd-dc72-48d4-80fa-1d24529ce2a7@kernel.org>
+Date: Thu, 2 Jul 2026 09:41:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,18 +55,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 net-next 1/2] dt-bindings: phy: cadence-torrent: Update
- property values to support 3 clocks
-To: Gokul Praveen <g-praveen@ti.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, neil.armstrong@linaro.org, nm@ti.com,
- robh@kernel.org, sjakhade@cadence.com, kristo@kernel.org, vigneshr@ti.com,
- vkoul@kernel.org, yamonkar@cadence.com
-References: <20260701142457.81874-1-g-praveen@ti.com>
- <20260701142457.81874-2-g-praveen@ti.com>
- <20260702-vigilant-tody-of-inquire-ffbede@quoll>
- <f40839d9-445e-4e48-ada9-97feb8e40584@ti.com>
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add Himax HM1092 NIR sensor
+To: Ramshouriesh R <rshouriesh@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Hans Verkuil <hverkuil+cisco@kernel.org>,
+ Bryan O'Donoghue <bod@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260702-hm1092-driver-v2-0-4f9f369d6a48@gmail.com>
+ <20260702-hm1092-driver-v2-1-4f9f369d6a48@gmail.com>
+ <20260702-generous-beaver-of-perception-f2a9bd@quoll>
+ <CAJTcUFR08TXjOeQSxdBhoqHe94+7G_HLSrCN00BB8cHmBgTpZg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,172 +114,77 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <f40839d9-445e-4e48-ada9-97feb8e40584@ti.com>
+In-Reply-To: <CAJTcUFR08TXjOeQSxdBhoqHe94+7G_HLSrCN00BB8cHmBgTpZg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:g-praveen@ti.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-phy@lists.infradead.org,m:neil.armstrong@linaro.org,m:nm@ti.com,m:robh@kernel.org,m:sjakhade@cadence.com,m:kristo@kernel.org,m:vigneshr@ti.com,m:vkoul@kernel.org,m:yamonkar@cadence.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:rshouriesh@gmail.com,m:mchehab@kernel.org,m:sakari.ailus@linux.intel.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hverkuil+cisco@kernel.org,m:bod@kernel.org,m:vladimir.zapolskiy@linaro.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:hverkuil@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-319097-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319098-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,ti.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,bootlin.com:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DDD146F44C5
+X-Rspamd-Queue-Id: AA2046F4630
 
-On 02/07/2026 09:35, Gokul Praveen wrote:
-> Hi Krzystof,
-> 
-> On 02/07/26 11:53, Krzysztof Kozlowski wrote:
->> On Wed, Jul 01, 2026 at 07:54:56PM +0530, Gokul Praveen wrote:
->>> Update maxItems value of "clocks" property to 3 as description of
->>> this parameter already indicates 3 clocks(refclk,pll1_refclk(optional)
->>> and phy_en_refclk(optional)).
->> But what if description is wrong? You need to provide rationale why you
->> are doing it and you cannot use existing code alone as that rationale,
->> because as you pointed out - existing code is not fully correct.
-> 
-> The description is correct because not all device may have 2 input  
-
-I do not see how you proved it in the commit msg.
-
-> reference clocks , hence keeping the requirement of the 2nd reference 
-> clock(pll1_refclk) optional.
-> 
-> Just as a note: phy_en_refclk is an output clock.
-
-output clocks do not go to input clocks property.
-
-> 
-> In those cases the multilink serdes configurations requiring 2 different 
-> input reference clocks will not work due to the limitation of having 
-> only 1 clock.
-> 
-> However, when it comes to devices where 2 different input reference 
-> clocks are supported and a multilink serdes configuration is 
-> needed(where the links require separate reference clocks for each 
-> protocol so as to cater to the  different clocking speed requirements of 
-> these links).
-> 
-> Hence, in this case ,2 different input clocks are needed so as to cater 
-> to 2 different clock speeds.
-> 
-> For eg: In the USXGMII+SGMII multilink serdes configuration which I had 
-> tested, it failed because
-> 
-> USXGMII requires an input clock speed of 156.25 Mhz and SGMII protocol 
-> requires an input clock speed of 100 Mhz.
-> 
-> But, since there was only one input clock(refclk) mentioned in the 
-> clocks and clock-name parameter , this multilink serdes configuration 
-> failed.
-> 
-> Hence, to make it work, the pll1_refclk had to be added which provided a 
-> clock speed of 156.25 Mhz for USXGMI and the refclk provided
-> 
-> a clock speed of 100 Mhz  for SGMII.
-> 
->>> Update the maxItems and items value of "clock-names" property with multiple
->>> combination of clock-names possible since pll1_refclk and phy_en_refclk are
->>> optional clocks.
->> Why? You need to describe why you are doing this, not what you are
->> doing.
-> Sure , Krzysztof, I will be careful about that and prioritize that in 
-> the commit message.
->>> Signed-off-by: Gokul Praveen <g-praveen@ti.com>
->>> ---
->>>   .../bindings/phy/phy-cadence-torrent.yaml        | 16 ++++++++++++----
->>>   1 file changed, 12 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
->>> index 9af39b33646a..96c664d50629 100644
->>> --- a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
->>> @@ -34,7 +34,7 @@ properties:
->>>   
->>>     clocks:
->>>       minItems: 1
->>> -    maxItems: 2
->>> +    maxItems: 3
->>>       description:
->>>         PHY input reference clocks - refclk (for PLL0) & pll1_refclk (for PLL1).
->>>         pll1_refclk is optional and used for multi-protocol configurations requiring
->>> @@ -45,9 +45,17 @@ properties:
->>>   
->>>     clock-names:
->>>       minItems: 1
->>> -    items:
->>> -      - const: refclk
->>> -      - enum: [ pll1_refclk, phy_en_refclk ]
->>> +    maxItems: 3
->> Drop
-> Sure, i will do that Krzysztof.
->>> +    oneOf:
->>> +      - items:
->>> +          - const: refclk
->>> +      - items:
->>> +          - const: refclk
->>> +          - enum: [ pll1_refclk, phy_en_refclk ]
->> Drop these, pointless. You were supposed to grow existing syntax.
+On 02/07/2026 09:30, Ramshouriesh R wrote:
+>> This is a friendly reminder during the review process.
 >>
->>> +      - items:
->>> +          - const: refclk
->>> +          - const: pll1_refclk
->> So here is the enum.
+>> It looks like you received a tag and forgot to add it.
 >>
->>> +          - const: phy_en_refclk
->> And this stays.
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>> versions of patchset, under or above your Signed-off-by tag, unless
+>> patch changed significantly (e.g. new properties added to the DT
+>> bindings). Tag is "received", when provided in a message replied to you
+>> on the mailing list. Tools like b4 can help here. However, there's no
+>> need to repost patches *only* to add the tags. The upstream maintainer
+>> will do that for tags received on the version they apply.
 >>
->> You make changes which do not make the binding better and are not
->> explained in commit msg. Focus on WHY you are doing things and also
->> explain WHY you did such complicated syntax (if you insist on rewriting
->> correct code into something odd we do not expect).
+>> Please read:
+>> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+>>
+>> If a tag was not added on purpose, please state in the patch changelog
+>> or cover letter why and what changed.
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> So, the reason I added the oneOf property is to support the following 
-> combinations because pll1_refclk and phy_en_refclk are optional clocks. 
-> With the earlier enum , only either of pll1_refclk or phy_en_refclk
-> 
-> can be used and both cannot be used at the same time.
-> 
-> Combination 1: refclk
-> 
-> Combination 2 : refclk, pll1_refclk
-> 
-> Combination 3: reclk, phy_en_refclk
-> 
-> Combination 4: refclk, pll1_refclk, phy_en_refclk
-> 
-> 
-> Please feel free to suggest any alternative solution to support these 
-> combinations .
+> I'm adding it in v3 along with changes suggested by sasiko bot.
+> I didn't check my mail or lore earlier before sending v2
 
-I already did. Read the feedback carefully.
+Then why should we check our mailboxes for emails? If you ignore our
+emails and then ask us to do the same work TWICE (!) then probably we
+should ignore your emails as well. Seems logical, no?
 
 Best regards,
 Krzysztof
