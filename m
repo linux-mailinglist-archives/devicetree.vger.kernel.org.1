@@ -1,205 +1,178 @@
-Return-Path: <devicetree+bounces-319364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319366-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rrrqG5FcRmrIRgsAu9opvQ
-	(envelope-from <devicetree+bounces-319364-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 14:41:53 +0200
+	id N4+FE6JcRmrPRgsAu9opvQ
+	(envelope-from <devicetree+bounces-319366-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 14:42:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD0EF6F7C41
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 14:41:52 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 988AF6F7C5D
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 14:42:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OVLGepYd;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319364-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319364-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=linaro.org header.s=google header.b=pFzxUU+x;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319366-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319366-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 037393109684
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 12:24:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 642DA309D204
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 12:24:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3BE547DD6A;
-	Thu,  2 Jul 2026 12:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E4F47DFA7;
+	Thu,  2 Jul 2026 12:24:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A16403EBA
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 12:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07E1403EBA
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 12:24:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782995040; cv=none; b=FsBXbv4uwtdp3U+pi7zM54jyR4PCuZmmv+CYo2FhsqG7u6WMscms/atAxYGNnWaNEFhlkPTPzSZM+RDioQqpAad1A5JVm7JwssbpxWTW5qNMH3ZM6YX4mI98e/ckUXPbIE2Bo+7r83kK2MK7Zo/IZh/TCcZ8HbuumOMm7VGmdn4=
+	t=1782995091; cv=none; b=mHnc+A538i5HdR80XFnXbRVJXmZ492nlz0dSqzMt7ez3i+vUxE/4Da/Y5/79319W8u8TuHsw8NW7Uln7yrgcBDiXucgTcmWWxBaEYOhN85Z/gdPGc7G3Jpr927FFXGTKerkYZklHNWjFKlTGPFJUB+zjzlNSFTX2x4QH/VS6zbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782995040; c=relaxed/simple;
-	bh=u06sXgj0k0EHCrsAIn2j9aJnq7th0FArEGRtErE/5BY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=DLy2/PO/0PHRyf7HNGG3I8siJ52F9OlkfJvCSiOYjWqkrbjtiG5xcLJJ7nOgb/vrHCu0CcV1f1fYyr6dk8NNVMomdChejmeiTo9WyZG5oIbeGFffRNSzVpDToY2+bqfulUEY79b++4576z8P/ZEQg1kvi5Zt6m7wp109tlr/b5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OVLGepYd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FFEE1F000E9;
-	Thu,  2 Jul 2026 12:23:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782995039;
-	bh=qrlDaebj67PK+CaUbNTnFJHqddgXuPGESHf1FdVZsWA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=OVLGepYdev4CXJ6DhhsHk7WV0OtpIFPWDMabhYOBNi/qxltYX20nfsn/pCaaO4xy3
-	 msmtYehM2pvxYE7yiIyAVTXp4s660AYQ69P94Zsw9x8rLf1sP0KCf3ELTi44bY/9Tv
-	 RpbMQoOGt9ez0nvD8mQh4eIPncmjk+FJyVwm3LXthY7hzW22Ybtfzen3xZe5ZLeZk2
-	 E5P/aVllAsRKZbvQu54H9cnOmsKPGcy9GmExKttqdfyVl95QjyZuYrGtsDv+o3ZPHs
-	 QrkvfIHvt1OkzuvVybj/eFUcFXDd34b4mSWw0xZ3wU8UMQIpIS660lSJAHZHv8Nrns
-	 /OLnNfrb1wvYQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/3] soc: apple: Add driver for Apple PMGR misc controls
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Sasha Finkelstein" <k@chaosmail.tech>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260702-pmgr-misc-v1-2-4f075a3a95c1@chaosmail.tech>
-References: <20260702-pmgr-misc-v1-0-4f075a3a95c1@chaosmail.tech>
- <20260702-pmgr-misc-v1-2-4f075a3a95c1@chaosmail.tech>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 02 Jul 2026 12:23:58 +0000
-Message-Id: <20260702122359.0FFEE1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782995091; c=relaxed/simple;
+	bh=7qGuFMvllEpDqWefN8L6UtrRcmDGHxh///3f50FPo8g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hsyerc/Lqn8cwZVl5XMxIdPUIkmmuBvL89RGSBkp64R98/gfR320IzzMscOYCsIP+PJn51SwBnYIVQ12DJHcTHldXxlUKY56PmpX0VfRFxpmr1ysXL+TXQ1CBArbUB1dFNo1yeCRyGhwuNltXjFK8VwswBRpbscSKR2T1beA6DM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pFzxUU+x; arc=none smtp.client-ip=209.85.208.177
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-39b20882a71so2182341fa.3
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 05:24:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1782995088; x=1783599888; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:subject:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=BMunvEvzFx+EKCn/rHllT9/LL7rulR07jvCFBPoEfWQ=;
+        b=pFzxUU+xxyGzb30fYfdjgoZ7w/oDjg635DCp6V+vmrV99k2sze8MlUU8AraGCQbfSr
+         0a6ghzRGwcsx0dUuR0Qs4roZ31yEr5yQxBxmlj7OfXYznyBPRHP38MoVl+BjjhCLucaU
+         S7ceXMUjGLwKMhuQoqfmaCmutf+hvzx0M99kFFWUH9svWQsS7fjBmRcoXzsUEBrUZwF5
+         NzGQHUWkzqwUk3VYCiCom7u3k8Fre1Jc0/73ysfyBtVq1xpPM0WbiI52AygfN8g+gUHr
+         KmBNXCTiP24PsoJMLBQZXO2cs7rg0WCiNSx2G07iHrSaWh6nEhXztYf+iPFo5TItboMx
+         k38A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782995088; x=1783599888;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:subject:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=BMunvEvzFx+EKCn/rHllT9/LL7rulR07jvCFBPoEfWQ=;
+        b=GCIP6alXQeKonN8rWXDZZ8GDlqTb2DRYskgrlaWeGNTGQB6EUtdWuTwuRpKmIb7pa8
+         uOR8Wx8//EZ7PRGFLH7/o7mnqSS+P9L4pcP4W9NXA1gpDXCbYECTeVAM1bPlJR9VzMrO
+         tWi0lFke3rJaeRWP/bkFtFRAGobUczP+ht/RxX8zLqI360OjzzRqC9YlLEtnffz1k5fJ
+         ZwollLFAIkwL+TR1jrByYEFeLw/dDgrW9MQ2TFzUUbhoFcMK5md4Vzt6Vr2gCqdBOjVT
+         mboEQWqjr6sq4vY7eD2KIUYaDP6ZNYVDazJl1JUtpXbwEjCdSstEe6JDI4v1oGKVGUD7
+         N/RQ==
+X-Forwarded-Encrypted: i=1; AHgh+RptjV1x8jTcTLvwfZmkk0V2zBUeOikTsLbeA3B+NU0eDBaxpFIzAYvfljGRqxciBfjh5xoOckxFG2+x@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzkt6vE/oi6Hr7T0Au4bJlE0fZq5iLsJL1HAIzvpKVGjuc7kySu
+	W2mFc6dVdz1Q95gqhpqGl9NBxwMGFpTTwE9EX25EaKxkmQGjkFQY/ANQF5PbvpQ8SQ0=
+X-Gm-Gg: AfdE7cktPGR+byG3TSRCxEcXCH02FDNbrSbZExBohM32i7h2T4FVGl0qxmkK1VtEikN
+	I8U1aHg/mdz3fukkFiyrMtktJiyRwXsSh8urhQgsuXxEUdOYknMtnXcW+4wXarTeqYrSjp/5PJP
+	yFFNyHWdOJcOJfv8nMOTB4UZCHUAq5nLnYG3d5nrNOlMPWN2SOCTr1+YPL8JEuGo2E6ifhv0mmB
+	DsT0YzzwOtjk99T3YrDJEvniITNqcKfwj+9FTmvPz0fX8lkEZs4QWiDiNvES7ZzyJMm/Hxddr5x
+	i4nnJDtqPbdZKhngFdLKLIvRAn4LcZEGT2ND0a+NJ7l7e0gk+1MQnMuN3elcAn+n/W2y1r/kkgk
+	8oZZqT2kitWpSXURNojZW9NENGsG8nG0+WMoVuU9XZUiqE+mIwvZm2XaXR/jNsbqa9TkY1iGc9+
+	2+lxvm/0o6b2ZqoN+FgYfghNMxlNhzjRqZlbvRKUvhgmG5HhXrzqPktYr04vA14FvJ7WE=
+X-Received: by 2002:a2e:be0b:0:b0:393:d08b:2a0c with SMTP id 38308e7fff4ca-39b34034b20mr7388641fa.2.1782995088079;
+        Thu, 02 Jul 2026 05:24:48 -0700 (PDT)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-39b37fe9960sm5868781fa.32.2026.07.02.05.24.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jul 2026 05:24:47 -0700 (PDT)
+Message-ID: <df510ed0-815a-4d72-b7c5-05025d8dbfd6@linaro.org>
+Date: Thu, 2 Jul 2026 15:24:46 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: i2c: og0ve1b: Add OmniVision
+ OG0VA1B camera sensor
+To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260702-og0va1b-v2-0-0071442caa2a@oss.qualcomm.com>
+ <20260702-og0va1b-v2-1-0071442caa2a@oss.qualcomm.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20260702-og0va1b-v2-1-0071442caa2a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319364-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:k@chaosmail.tech,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-319366-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:wenmeng.liu@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sakari.ailus@linux.intel.com,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AD0EF6F7C41
+X-Rspamd-Queue-Id: 988AF6F7C5D
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Incorrect check for devm_platform_ioremap_resource_byname() return=
- value leads to ERR_PTR dereference
-- [High] Missing NULL check for of_device_get_match_data() causes NULL poin=
-ter dereference
---
+Hi Wenmeng,
 
-commit 144dd044ce23e2ad7967536cb164bb8942aedf81
-Author: Hector Martin <marcan@marcan.st>
+thank you for the updates!
 
-soc: apple: Add driver for Apple PMGR misc controls
-   =20
-This commit adds a driver for managing miscellaneous PMGR controls on Apple
-SoCs, implementing fabric and memory controller power state switching on sy=
-stem
-standby/s2idle to save power.
+On 7/2/26 13:52, Wenmeng Liu wrote:
+> The OmniVision OG0VA1B is a monochrome image sensor closely related to
+> the already supported OG0VE1B. It shares the same SCCB control interface,
+> power supplies, clock and MIPI D-PHY description, but differs in its
+> chip ID, register programming and output format.
+> 
+> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+> ---
+>   Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml
+> index bd2f1ae23e6547032361924a6953000bab1129df..ae44ec2fa9035b4e19834888a41987ae9e25118f 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml
+> @@ -21,7 +21,9 @@ allOf:
+>   
+>   properties:
+>     compatible:
+> -    const: ovti,og0ve1b
+> +    enum:
+> +      - ovti,og0va1b
+> +      - ovti,og0ve1b
+>   
+>     reg:
+>       maxItems: 1
+> 
 
-> diff --git a/drivers/soc/apple/apple-pmgr-misc.c b/drivers/soc/apple/appl=
-e-pmgr-misc.c
-> new file mode 100644
-> index 0000000000000..d487a87ecddb0
-> --- /dev/null
-> +++ b/drivers/soc/apple/apple-pmgr-misc.c
-[ ... ]
-> +static bool apple_pmgr_init_device(struct apple_pmgr_misc *misc,
-> +				   const struct apple_pmgr_misc_hw *hw,
-> +				   enum sys_device dev,
-> +				   const char *device_name)
-> +{
-> +	void __iomem *base;
-> +	char name[32];
-> +	u32 val;
-> +
-> +	snprintf(name, sizeof(name), "%s-ps", device_name);
-> +
-> +	base =3D devm_platform_ioremap_resource_byname(
-> +		to_platform_device(misc->dev), name);
-> +	if (!base)
+Since it becomes a shared dt documentation, it will be accepted to get
+a generalised description section also, in any case:
 
-[Severity: High]
-Does this code handle the return value of=20
-devm_platform_ioremap_resource_byname() correctly?
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-The function returns an error pointer on failure, not NULL. A failure here
-would bypass this check and could lead to an ERR_PTR being dereferenced by
-the readl_relaxed() call below.
-
-> +		return false;
-> +
-> +	val =3D readl_relaxed(base + APPLE_CLKGEN_PSTATE);
-> +
-> +	misc->devices[dev].base =3D base;
-> +	misc->devices[dev].active_state =3D
-> +		FIELD_GET(APPLE_CLKGEN_PSTATE_DESIRED, val);
-> +	misc->devices[dev].suspend_state =3D hw->dev_min_ps[dev];
-
-[Severity: High]
-Can hw be NULL here?
-
-If the driver is bound manually via sysfs without a matching device tree no=
-de,
-of_device_get_match_data() in apple_pmgr_misc_probe() below returns NULL. T=
-his
-would lead to a NULL pointer dereference.
-
-> +
-> +	return true;
-> +}
-> +
-> +static int apple_pmgr_misc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	const struct apple_pmgr_misc_hw *hw;
-> +	struct apple_pmgr_misc *misc;
-> +	int ret =3D -ENODEV;
-> +
-> +	misc =3D devm_kzalloc(dev, sizeof(*misc), GFP_KERNEL);
-> +	if (!misc)
-> +		return -ENOMEM;
-> +
-> +	misc->dev =3D dev;
-> +	hw =3D of_device_get_match_data(dev);
-> +
-> +	if (apple_pmgr_init_device(misc, hw, DEV_FABRIC, "fabric"))
-
-[Severity: High]
-Is it possible for hw to be NULL here?
-
-Passing an unchecked hw pointer to apple_pmgr_init_device() causes the
-unconditional dereference of hw->dev_min_ps[dev] shown above.
-
-> +		ret =3D 0;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702-pmgr-misc-=
-v1-0-4f075a3a95c1@chaosmail.tech?part=3D2
+-- 
+Best wishes,
+Vladimir
 
