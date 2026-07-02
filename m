@@ -1,212 +1,187 @@
-Return-Path: <devicetree+bounces-319589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319590-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DmUiBzK8Rmq5cQsAu9opvQ
-	(envelope-from <devicetree+bounces-319589-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:29:54 +0200
+	id 9grzHgO+RmoHcgsAu9opvQ
+	(envelope-from <devicetree+bounces-319590-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:37:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 855146FC88C
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:29:53 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B813D6FC92A
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:37:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=MOnhQbf1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319589-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319589-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dmSH7iJ1;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319590-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319590-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1DD70304B680
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 19:29:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 06DFE301E6EB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 19:31:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29AE638E5FE;
-	Thu,  2 Jul 2026 19:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84EF838D3EE;
+	Thu,  2 Jul 2026 19:30:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 937D23806B8
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 19:29:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6735670830;
+	Thu,  2 Jul 2026 19:30:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783020579; cv=none; b=ZoWXlSPIMpHdulQuKy7ZLp6bn6T5CviRtz3uxn0azIYAeaf/47hyd4uOuw1OHZAS/CWg37UTMiusoobJJwmngKngIbrmsFgFK1WSdHmpjBt+MzCCVQ8KH6kuSbBZhsJ3FFPaBLwdrMEi8bH3VKutEHxm0PPZ02yR/GO88VT10Rk=
+	t=1783020659; cv=none; b=NvGJ26eXMuroP5aOZZJ8VwHKjOmIWrSg19Nh1tMUk4x1oUWOnIL7y8gExNLJmGYcYHPTzwA5OtSNNimVLZe/FXRIiZrK/eXgjHiiASjQ0J+0BDlXHUgF6/rYizeujzqJ0SG6IV0ZG1Q0GX1QG8HDSllWWItE+kWFM9PoCUg2H+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783020579; c=relaxed/simple;
-	bh=UdMJM06ebK67YQ2Mnbs0Jp1/l3ZNaXIh/MKaQ3oYKr4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lyX60fTxBYFZJPPbFLEmM2wzagWy4eovb0HUZyYYWu1FWej6keqooBYfJucw611jH2zkT6QjplP9w7PiHJGcdwy6MMsK2dnnbm8ZMutOgJ+By7ncdipgW7EftmMFQ2yFcosH97vTBmI+J0qY8rMktyGzcZz67py4Hfi9augybYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MOnhQbf1; arc=none smtp.client-ip=209.85.128.53
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-493c733f15aso7451945e9.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 12:29:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783020575; x=1783625375; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=zAwDyBfy9pmItaLqNOcnGFdZ3qhtmyuBm6fxfzFEds4=;
-        b=MOnhQbf1/CqJFRSRzJybl3CWwBroY7cPKOcHx4jCNrtLqHUMyB6ujxtqzQhD4Q4xDh
-         sudlR5oq3V72pp9i+NAt6O2GCCUkUdhSrA3AGe12ObYoXHPiguj9xOgRJ7m17BoLLkVO
-         /F+TD0qhA47QA4NF3Ziw/3TsbzePPCk6tDNX0VYltyakCRYMVig7jUAwZIE67tCxWvvJ
-         3VcdZMQyB793F7+xbGrSL3cMFnO/qVVWUDYuSYjeUTb6CdXMPPSFVHr1Xy1gJXBG1/fM
-         4/MGvCAXEPHeGMgK84h+38rMddq9Ozuv6Y2ITiznjFl7luuxkSUkr9A9HGWRPzREg024
-         In1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783020575; x=1783625375;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zAwDyBfy9pmItaLqNOcnGFdZ3qhtmyuBm6fxfzFEds4=;
-        b=FvKdhq6oSDBYcfWIhtw9GKyfnipdVh9Uv6WYcbpBfj2a8abdmI+NRY/vnCsYQ4jwWZ
-         WZiCW4Vvx5MLm8MZbGiedkyYv/OEyotk7pUhZ8EfY7waegAW9TMisNYn5tvXk8NUVpQe
-         5z9+Z5ZPpVXjUI/gY/cuqiqcA26AhqF6Q26jJiZlXnvMRi9gTG1aeFiioBeSKvALY4cA
-         3SjWGS9kSZanU8P81vXPvVCAXTUj7Cydvg3NkPm+kY1OdZLhzLFCM+KSBCvOvBEN8drP
-         5yiBlCPpaG1talYg93M5eM3st8KQFtaO/dQ9j7/F3LV8SWOveCaQ3Mr1eeOptdJzOxm1
-         lNVw==
-X-Forwarded-Encrypted: i=1; AHgh+RrcFZqJ+ct71PKkMZ7WzOxA4z0iQTwwg66ZcKHmoSjyGiHpXFXGGLyFYwwslAlM+6Spo4fu/2xz52TZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8fZ5pJsH80HfMkuOZYlhR1pWJWc3dD9Ej90bjU9oH0wjT+TQG
-	hS1PU1BdxM/GUMQ2DxLO7Agkhxsd2PpSwjKX6+Kk8B66A06abhVwNjZi
-X-Gm-Gg: AfdE7ck1KzbeKW7ar2nS5zR33V7Y9qsaDdTtJfbh2HTKjeIXVT1XWxAnmNuDl3U4Tsz
-	Q0KabSrE7abPttwS8L4goE2pB6+Pn2/mdOq0clAYwnlIOehtbpMipkdTk4fTBA2MZnTe2BGZ4HD
-	kMvNJnfBI0WUen21rFOaCceYvNztSmKmzLcO7uzOitZ5cSRb/Me7OhzNX+Hy8XoZv4W/hSlPKJY
-	mXLsL9MYCmOEHM2TahQHKGVtb+8dgXsuEzb5q5nij++qse/764LO/ZGMvKYJYyk/4Meye0qkFR3
-	nsUDxrIBQjNoezM/aHxwqI5Q9XP4dPfWveyxErhR6uclVlkE82G9qL25enfjUhr9Hyb7yCVZrzk
-	Kr0MeXiTc9xGKAVJPlCPCLz74IbkQBdisxKBLgDBhcRYzEfH85zK6hhrNtoZkcm/jXJ1bOOII4J
-	AnmIlVq4cJkWd5sAsVPlOzmYkKmvx61WJNwUqtd+Fhs+JPWqfMg2E+HL/xlQY1MtKxopLQEtxm0
-	XeLCaWN
-X-Received: by 2002:adf:ea82:0:b0:475:a4ae:e630 with SMTP id ffacd0b85a97d-4775be03177mr9148509f8f.37.1783020574993;
-        Thu, 02 Jul 2026 12:29:34 -0700 (PDT)
-Received: from [10.128.11.240] (195-23-151-163.net.novis.pt. [195.23.151.163])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-477db3db964sm11113317f8f.8.2026.07.02.12.29.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jul 2026 12:29:33 -0700 (PDT)
-Sender: Julian Braha <julian.braha@gmail.com>
-Message-ID: <d6a56d05-0c6f-49a5-9281-1194b62ab86e@gmail.com>
-Date: Thu, 2 Jul 2026 20:29:32 +0100
+	s=arc-20240116; t=1783020659; c=relaxed/simple;
+	bh=Dn6UWY3mSDJAHfVAcurT+ZUStGtKjhoccn6GkyrX27k=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pQzq4okbR3h/tFjg0NFpRJX+N8NuSlPHX3XWJGCUgFXDXrRE0Ay72fZo5WPnltocBdBWmvuC8RMAUOGGmkS5KZU/nhe6gU4NkGr7c0gnsrRqm/fG9NlzD60IaY2XWpG0FQKvuRCAoUH7UQV+jrZAYA5ghWx4VA7Yu77Qs0jhRb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dmSH7iJ1; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F18F91F000E9;
+	Thu,  2 Jul 2026 19:30:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783020658;
+	bh=I0E6G0wI4aJTTRKSLJz49t69TW7I6ObwdGcPx9DdeTk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=dmSH7iJ1aQcHlqb+K0cs+rKU/0lpBdUZKhrNFMSV2qMeya1XigXENyEsafI+ZB3JE
+	 NCyeTbhCMQtvZ6AbuFv7T4htOOK7ppxMZM6HJOdwtl+ktwicaQWXfs24Zd3rBCHnTr
+	 wRNCV4u7+qze7fQT+TOZcMiYYOVXvS+/mFfgeLZe9I9/NE+vU30zlGTpJ2q/jQSIQy
+	 8huhM8oTtGnDDBfQY2ZbNOE46khQ1uVY9xfn3HMNf0CdXOMnkWQBxDZAw2uYP3c8Uh
+	 qjTqVLm/B4X4Y4T6P7fadQgIyzFabQ6FJLZEfGHSG/SkDrexqP0RnY0S361VEW+fR7
+	 uTjdduKchzlWg==
+Date: Thu, 2 Jul 2026 20:30:51 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chris Hall <c-hall@ti.com>, Patrick Edwards
+ <pedwards@ti.com>, Kurt Borja <kuurtb@gmail.com>, Nguyen Minh Tien
+ <zizuzacker@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/8] dt-bindings: iio: adc: add
+ input-channel-rotation property
+Message-ID: <20260702203051.4d9d702d@jic23-huawei>
+In-Reply-To: <20260702-litigator-commuting-5a3a37a7fb40@spud>
+References: <20260625-iio-adc-ti-ads122c14-v2-0-ceb9b0b561cb@baylibre.com>
+	<20260625-iio-adc-ti-ads122c14-v2-4-ceb9b0b561cb@baylibre.com>
+	<20260626-retinal-thrash-1095940e36ab@spud>
+	<4a2c4c42-69fb-4491-ba77-b858623275ec@baylibre.com>
+	<20260701204133.2b77edab@jic23-huawei>
+	<20260702-litigator-commuting-5a3a37a7fb40@spud>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v6 12/15] onsemi: s2500: Add driver support for
- TS2500 MAC-PHY
-To: Selvamani.Rajagopal@onsemi.com, Andrew Lunn <andrew@lunn.ch>,
- Piergiorgio Beruto <pier.beruto@onsemi.com>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
- Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- Jerry Ray <jerry.ray@microchip.com>
-References: <20260629-s2500-mac-phy-support-v6-0-18ce79500371@onsemi.com>
- <20260629-s2500-mac-phy-support-v6-12-18ce79500371@onsemi.com>
-Content-Language: en-US
-From: Julian Braha <julianbraha@gmail.com>
-In-Reply-To: <20260629-s2500-mac-phy-support-v6-12-18ce79500371@onsemi.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-319589-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Selvamani.Rajagopal@onsemi.com,m:andrew@lunn.ch,m:pier.beruto@onsemi.com,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:parthiban.veerasooran@microchip.com,m:richardcochran@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:jerry.ray@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[onsemi.com,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,microchip.com,lwn.net,linuxfoundation.org];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	TAGGED_FROM(0.00)[bounces-319590-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:c-hall@ti.com,m:pedwards@ti.com,m:kuurtb@gmail.com,m:zizuzacker@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,ti.com,gmail.com,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[jic23-huawei:mid,baylibre.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 855146FC88C
+X-Rspamd-Queue-Id: B813D6FC92A
 
-Hi Selvamani,
+On Thu, 2 Jul 2026 19:58:32 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-On 6/29/26 18:23, Selvamani Rajagopal via B4 Relay wrote:
-> +if NET_VENDOR_ONSEMI
-> +
-> +source "drivers/net/ethernet/onsemi/s2500/Kconfig"
-> +
-> +endif # NET_VENDOR_ONSEMI
-> +
-> diff --git a/drivers/net/ethernet/onsemi/Makefile b/drivers/net/ethernet/onsemi/Makefile
-> new file mode 100644
-> index 000000000000..f3d4eb154313
-> --- /dev/null
-> +++ b/drivers/net/ethernet/onsemi/Makefile
-> @@ -0,0 +1,7 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +# Makefile for the onsemi network device drivers.
-> +#
-> +
-> +obj-$(CONFIG_S2500_MACPHY) += s2500/
-> +
-> diff --git a/drivers/net/ethernet/onsemi/s2500/Kconfig b/drivers/net/ethernet/onsemi/s2500/Kconfig
-> new file mode 100644
-> index 000000000000..f2e8d5d1429d
-> --- /dev/null
-> +++ b/drivers/net/ethernet/onsemi/s2500/Kconfig
-> @@ -0,0 +1,21 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +# onsemi S2500 Driver Support
-> +#
-> +
-> +if NET_VENDOR_ONSEMI
-> +
-> +config S2500_MACPHY
-> +	tristate "S2500 support"
-> +	depends on SPI
-> +	select NCN26000_PHY
-> +	select OA_TC6
-> +	help
-> +	  Support for the onsemi TS2500 MACPHY Ethernet chip.
-> +	  It works under the framework that conform to OPEN Alliance
-> +	  10BASE-T1x Serial Interface specification.
-> +
-> +	  To compile this driver as a module, choose M here. The module will be
-> +	  called s2500.
-> +
-> +endif # NET_VENDOR_ONSEMI
+> On Wed, Jul 01, 2026 at 08:41:33PM +0100, Jonathan Cameron wrote:
+> > On Fri, 26 Jun 2026 13:27:44 -0500
+> > David Lechner <dlechner@baylibre.com> wrote:
+> >   
+> > > On 6/26/26 11:14 AM, Conor Dooley wrote:  
+> > > > On Thu, Jun 25, 2026 at 04:55:06PM -0500, David Lechner (TI) wrote:    
+> > > >> Add a generic input-channel-rotation property to adc.yaml. This is a
+> > > >> feature seen frequently in ADCs that are designed to measure resistive
+> > > >> loads, such as RTDs and strain gauges. Enabling this can reduce offset
+> > > >> errors by swapping the positive and negative input channels on every
+> > > >> other conversion. This can have side-effects in timing and filter
+> > > >> response, so it is not always desirable to enable this feature in some
+> > > >> applications. Therefore, it is best to make this a property that can be
+> > > >> enabled or disabled in the device tree.
+> > > >>
+> > > >> Signed-off-by: David Lechner (TI) <dlechner@baylibre.com>
+> > > >> ---
+> > > >> v2 changes:
+> > > >> * New patch.
+> > > >> ---
+> > > >>  Documentation/devicetree/bindings/iio/adc/adc.yaml | 7 +++++++
+> > > >>  1 file changed, 7 insertions(+)
+> > > >>
+> > > >> diff --git a/Documentation/devicetree/bindings/iio/adc/adc.yaml b/Documentation/devicetree/bindings/iio/adc/adc.yaml
+> > > >> index 9ec1f447b565..3d52c00922c9 100644
+> > > >> --- a/Documentation/devicetree/bindings/iio/adc/adc.yaml
+> > > >> +++ b/Documentation/devicetree/bindings/iio/adc/adc.yaml
+> > > >> @@ -81,6 +81,13 @@ properties:
+> > > >>        ADCs usually allow choosing between internal reference sources or a pair
+> > > >>        of external pins.
+> > > >>  
+> > > >> +  input-channel-rotation:    
+> > > 
+> > > I got some internal feedback after I sent this patch that "chopping" is the
+> > > more common terminology for this feature industry-wide, so in the next revision
+> > > I plan to change it into `input-chopping`.
+> > >   
+> > > >> +    type: boolean
+> > > >> +    description:
+> > > >> +      If set, the positive and negative input channels are allowed to be swapped
+> > > >> +      on every other conversion to reduce offset errors. This is also referred
+> > > >> +      to as "chop" in some datasheets.    
+> > > > 
+> > > > "allowed to be swapped" means that this property says the feature can be
+> > > > used, but userspace may have to be the thing that ultimately turns it
+> > > > on?    
+> > > 
+> > > No, I don't expect a userspace control for it. More like the driver should
+> > > enable it when possible, but a driver doesn't necessarily have to implement
+> > > it and everything will still work, just with less accuracy.  
+> > 
+> > Perhaps we need something in this text to say when it should not be set
+> > in dt?  
+> 
+> I think I would like a wording change from "allowed", to something that
+> is akin to "If set, the hardware supports swapping...". Allows sounds
+> too much like something that should be a userspace control.
 
-S2500_MACPHY still has that duplicate dependency from being inside two
-of these:
-'if NET_VENDOR_ONSEMI..endif'
+I'd be inclined to talk a little more specifically.  What hardware?
+It's the not the ADC that matters for this control, but rather whatever
+is wired up to it. Otherwise agreed.  Maybe "If set, the connected
+circuits are suitable for supporting ..." or something along those lines.
 
-And I already pointed it out on v5:
-https://lore.kernel.org/all/90f84945-e83f-40a8-8d9e-a477c45579e9@gmail.com/
+Thanks,
 
-:(
+Jonathan
 
-- Julian Braha
+
 
