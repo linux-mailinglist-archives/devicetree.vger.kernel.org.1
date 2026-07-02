@@ -1,187 +1,173 @@
-Return-Path: <devicetree+bounces-319590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319591-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9grzHgO+RmoHcgsAu9opvQ
-	(envelope-from <devicetree+bounces-319590-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:37:39 +0200
+	id C+hYHXO+RmokcgsAu9opvQ
+	(envelope-from <devicetree+bounces-319591-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:39:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B813D6FC92A
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:37:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA3A56FC93D
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:39:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dmSH7iJ1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319590-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319590-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=R65Mr14a;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319591-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319591-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 06DFE301E6EB
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 19:31:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E33C310BEBE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 19:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84EF838D3EE;
-	Thu,  2 Jul 2026 19:30:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450443905E4;
+	Thu,  2 Jul 2026 19:32:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6735670830;
-	Thu,  2 Jul 2026 19:30:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2D243749EE
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 19:32:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783020659; cv=none; b=NvGJ26eXMuroP5aOZZJ8VwHKjOmIWrSg19Nh1tMUk4x1oUWOnIL7y8gExNLJmGYcYHPTzwA5OtSNNimVLZe/FXRIiZrK/eXgjHiiASjQ0J+0BDlXHUgF6/rYizeujzqJ0SG6IV0ZG1Q0GX1QG8HDSllWWItE+kWFM9PoCUg2H+s=
+	t=1783020743; cv=none; b=Ovez6oDAU6djMSwE98+Kn9NsG3pdaJ3SR6vuWsVcslLzYPUKirfvpoZY+tTBlRy1YW9tX/75K9mDjD9Q6zfe1jItldXdmrZ8HygqPZMBo2gBAggtvjOTK0bnNzzrTCH/iE5HNU2ZgOHAmFDK2ZM5KsfeheOHy+TeDPzB92nxpmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783020659; c=relaxed/simple;
-	bh=Dn6UWY3mSDJAHfVAcurT+ZUStGtKjhoccn6GkyrX27k=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pQzq4okbR3h/tFjg0NFpRJX+N8NuSlPHX3XWJGCUgFXDXrRE0Ay72fZo5WPnltocBdBWmvuC8RMAUOGGmkS5KZU/nhe6gU4NkGr7c0gnsrRqm/fG9NlzD60IaY2XWpG0FQKvuRCAoUH7UQV+jrZAYA5ghWx4VA7Yu77Qs0jhRb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dmSH7iJ1; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F18F91F000E9;
-	Thu,  2 Jul 2026 19:30:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783020658;
-	bh=I0E6G0wI4aJTTRKSLJz49t69TW7I6ObwdGcPx9DdeTk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=dmSH7iJ1aQcHlqb+K0cs+rKU/0lpBdUZKhrNFMSV2qMeya1XigXENyEsafI+ZB3JE
-	 NCyeTbhCMQtvZ6AbuFv7T4htOOK7ppxMZM6HJOdwtl+ktwicaQWXfs24Zd3rBCHnTr
-	 wRNCV4u7+qze7fQT+TOZcMiYYOVXvS+/mFfgeLZe9I9/NE+vU30zlGTpJ2q/jQSIQy
-	 8huhM8oTtGnDDBfQY2ZbNOE46khQ1uVY9xfn3HMNf0CdXOMnkWQBxDZAw2uYP3c8Uh
-	 qjTqVLm/B4X4Y4T6P7fadQgIyzFabQ6FJLZEfGHSG/SkDrexqP0RnY0S361VEW+fR7
-	 uTjdduKchzlWg==
-Date: Thu, 2 Jul 2026 20:30:51 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chris Hall <c-hall@ti.com>, Patrick Edwards
- <pedwards@ti.com>, Kurt Borja <kuurtb@gmail.com>, Nguyen Minh Tien
- <zizuzacker@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/8] dt-bindings: iio: adc: add
- input-channel-rotation property
-Message-ID: <20260702203051.4d9d702d@jic23-huawei>
-In-Reply-To: <20260702-litigator-commuting-5a3a37a7fb40@spud>
-References: <20260625-iio-adc-ti-ads122c14-v2-0-ceb9b0b561cb@baylibre.com>
-	<20260625-iio-adc-ti-ads122c14-v2-4-ceb9b0b561cb@baylibre.com>
-	<20260626-retinal-thrash-1095940e36ab@spud>
-	<4a2c4c42-69fb-4491-ba77-b858623275ec@baylibre.com>
-	<20260701204133.2b77edab@jic23-huawei>
-	<20260702-litigator-commuting-5a3a37a7fb40@spud>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1783020743; c=relaxed/simple;
+	bh=Y3myU6PC6Y/+0AUV070w4T/IlmTKT4MrSxy6LSocXzY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SoU9EUKurPy61wjjWRDBPTZ5QPcyHTe09XdTBjZfLv3CbQlgqXVwTxE7a3ZVF9XEL+y8fVpFWBtwt5Zen0sWoZa0D0Jd8q9xEIqzAzLPQXVh5r2gcv2m26m0UrfUm/UpR+z7yJOyS8Btup5o02l+BDVNNLccQw8kLwblGJf0FMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R65Mr14a; arc=none smtp.client-ip=209.85.221.44
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-474303f3c72so1398560f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 12:32:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783020739; x=1783625539; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=7qgcEW/wpSAcIIpifYaO2mjjD/biPw57/pk0Dft8EAU=;
+        b=R65Mr14aYPfKyxSUm1zLBhaYQf6Yj6CoLwN/32NCIhC/Rg/tcq/SL5MK5Mhp5NH/qM
+         Tj/3Zgu2h2qpWY3s4yIe/y4GEwa0OeY9ma95KlNIvlWJLVw2/d4nQJzP3OWtSVbDDabM
+         /uz5pwT0bKKt3MWqs9Hi/dM4rfP4UMlYmXUgYDK6vn0uPrs11tNTA3tbzD+f1Sc3vw+f
+         TCZHpXlYl2KQrvUfOxrcDMWek8gNTI9xmNgHc0votNwoKHyHlsCnHzzVNSxXhYZqx3d6
+         xdyWM0EbG6vklvg6p5U4X8axAwUYbgprWUAD/3aK+GaEqFJPGB6QAWgsWxWBaA/ZWVMC
+         +s/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783020739; x=1783625539;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=7qgcEW/wpSAcIIpifYaO2mjjD/biPw57/pk0Dft8EAU=;
+        b=ADS7Gcf4kbMbyMUlZklJBsN8l3dw3UJl0xnfEfqxIn+nQlRVv+R/OK7cSVhPYpqMJs
+         RTyJAijOwarFLenoUC7/uxSFXk61L7yqSDtNz7afynjPhK3EU/kqKsW4sXX8zm0YYG/N
+         l3625P3BLKnwCwFU2mB9bZPzC1zUWik264Al6jzCT/uBcxeDRxVkuvanck3pxPv9uGOm
+         4R/xiWC3y0BgbtBBIVMNRHi6LakDemGERs8Xm6pytcynF3XoIABsq6xU9w9BJt8dBiAn
+         JW0p70/RtX26WhDoeYf3q1Jjk+hjKmrPg2gqdX49Ws4ory4qkO9lRXeHAOWOY21dIX+J
+         WTEQ==
+X-Forwarded-Encrypted: i=1; AHgh+RpPsqxMDBV1Wk6gQn2hJtE4WDkvDQ7fhO3AvnJycnC3Z61L8FSkUOAy4e+u2IzcsMVW28Uw1d2nBxxf@vger.kernel.org
+X-Gm-Message-State: AOJu0YymQtaCXhbFIr8SkK3RSRLFtMUt5StFe/AMmzwpSvIsMH/hl8UG
+	KvT9krEHT5q97jdr8dKFA9aCF+OWEbm4KO4q/P2d8D+ukCTrOVtCAEv1
+X-Gm-Gg: AfdE7cmVtMySAhXYJWVim4yB26jXrd4sZLBEQHYyinvnh4UvOyvDthAFszsMIHwqaPY
+	tCc6gcRpFjzNK9il+aAj2lHQexjoVzqRfzucrahUqc5nVXYRJe8ZCQRvBEUkqyZWpfM9rm7nOqg
+	SSjNDlHjbzWHESU27MUdEHz/NIZabQXGrpMOcGgZwuOTUa+zsKOAqrhWivZQz/UP8EhiDZh44bQ
+	EH4xbXUe2jk5HSwrTEv+txQFCXN0g+HBDOOA1XlX9YaRBYKywTSMOn5NpCeYnhXOpRFgBsPCCuI
+	H2XZcT4TTkRFlnwSZdGhihM9Lnq+OsF44sX/j8ddEVijy6/iY9m7GnEOiRyhrsjQF0gfPuqKCSo
+	sk2HbIBQ3YvBOyjkkKC+OLkGT3TECwUfd2GNyN0YwC3gMoj416nduIay2yB0AnYYbrBCyfH6fIF
+	xowcEKklH+7JkOejQlFMVPuOM1PK369nayaLZ0V2peMCwcNXlC8Lrdu0luR3VlSbUWWFAIdfQZR
+	VjkilnZ
+X-Received: by 2002:adf:e00b:0:20b0:475:3a97:8e47 with SMTP id ffacd0b85a97d-4775918fa48mr8502412f8f.29.1783020738996;
+        Thu, 02 Jul 2026 12:32:18 -0700 (PDT)
+Received: from [10.128.11.240] (195-23-151-163.net.novis.pt. [195.23.151.163])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-477dd94ce4csm12070471f8f.17.2026.07.02.12.32.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jul 2026 12:32:17 -0700 (PDT)
+Sender: Julian Braha <julian.braha@gmail.com>
+Message-ID: <a0cee001-7bca-438a-943b-da28528e7df7@gmail.com>
+Date: Thu, 2 Jul 2026 20:32:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/10] HID: apple: Add DockChannel HID transport driver
+To: michael.reeves077@gmail.com, Sven Peter <sven@kernel.org>,
+ Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>,
+ Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>,
+ "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Jiri Kosina <jikos@kernel.org>,
+ Benjamin Tissoires <bentiss@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ iommu@lists.linux.dev, linux-input@vger.kernel.org
+References: <20260630-apple-mtp-keyboard-final-v1-0-506d936a1707@gmail.com>
+ <20260630-apple-mtp-keyboard-final-v1-8-506d936a1707@gmail.com>
+Content-Language: en-US
+From: Julian Braha <julianbraha@gmail.com>
+In-Reply-To: <20260630-apple-mtp-keyboard-final-v1-8-506d936a1707@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-319590-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319591-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:c-hall@ti.com,m:pedwards@ti.com,m:kuurtb@gmail.com,m:zizuzacker@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:michael.reeves077@gmail.com,m:sven@kernel.org,m:j@jannau.net,m:neal@gompa.dev,m:jassisinghbrar@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:marcan@marcan.st,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:dmitry.torokhov@gmail.com,m:jikos@kernel.org,m:bentiss@kernel.org,m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:iommu@lists.linux.dev,m:linux-input@vger.kernel.org,m:michaelreeves077@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,jannau.net,gompa.dev,marcan.st,8bytes.org,arm.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,ti.com,gmail.com,vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[jic23-huawei:mid,baylibre.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B813D6FC92A
+X-Rspamd-Queue-Id: CA3A56FC93D
 
-On Thu, 2 Jul 2026 19:58:32 +0100
-Conor Dooley <conor@kernel.org> wrote:
+Hi Michael,
 
-> On Wed, Jul 01, 2026 at 08:41:33PM +0100, Jonathan Cameron wrote:
-> > On Fri, 26 Jun 2026 13:27:44 -0500
-> > David Lechner <dlechner@baylibre.com> wrote:
-> >   
-> > > On 6/26/26 11:14 AM, Conor Dooley wrote:  
-> > > > On Thu, Jun 25, 2026 at 04:55:06PM -0500, David Lechner (TI) wrote:    
-> > > >> Add a generic input-channel-rotation property to adc.yaml. This is a
-> > > >> feature seen frequently in ADCs that are designed to measure resistive
-> > > >> loads, such as RTDs and strain gauges. Enabling this can reduce offset
-> > > >> errors by swapping the positive and negative input channels on every
-> > > >> other conversion. This can have side-effects in timing and filter
-> > > >> response, so it is not always desirable to enable this feature in some
-> > > >> applications. Therefore, it is best to make this a property that can be
-> > > >> enabled or disabled in the device tree.
-> > > >>
-> > > >> Signed-off-by: David Lechner (TI) <dlechner@baylibre.com>
-> > > >> ---
-> > > >> v2 changes:
-> > > >> * New patch.
-> > > >> ---
-> > > >>  Documentation/devicetree/bindings/iio/adc/adc.yaml | 7 +++++++
-> > > >>  1 file changed, 7 insertions(+)
-> > > >>
-> > > >> diff --git a/Documentation/devicetree/bindings/iio/adc/adc.yaml b/Documentation/devicetree/bindings/iio/adc/adc.yaml
-> > > >> index 9ec1f447b565..3d52c00922c9 100644
-> > > >> --- a/Documentation/devicetree/bindings/iio/adc/adc.yaml
-> > > >> +++ b/Documentation/devicetree/bindings/iio/adc/adc.yaml
-> > > >> @@ -81,6 +81,13 @@ properties:
-> > > >>        ADCs usually allow choosing between internal reference sources or a pair
-> > > >>        of external pins.
-> > > >>  
-> > > >> +  input-channel-rotation:    
-> > > 
-> > > I got some internal feedback after I sent this patch that "chopping" is the
-> > > more common terminology for this feature industry-wide, so in the next revision
-> > > I plan to change it into `input-chopping`.
-> > >   
-> > > >> +    type: boolean
-> > > >> +    description:
-> > > >> +      If set, the positive and negative input channels are allowed to be swapped
-> > > >> +      on every other conversion to reduce offset errors. This is also referred
-> > > >> +      to as "chop" in some datasheets.    
-> > > > 
-> > > > "allowed to be swapped" means that this property says the feature can be
-> > > > used, but userspace may have to be the thing that ultimately turns it
-> > > > on?    
-> > > 
-> > > No, I don't expect a userspace control for it. More like the driver should
-> > > enable it when possible, but a driver doesn't necessarily have to implement
-> > > it and everything will still work, just with less accuracy.  
-> > 
-> > Perhaps we need something in this text to say when it should not be set
-> > in dt?  
-> 
-> I think I would like a wording change from "allowed", to something that
-> is akin to "If set, the hardware supports swapping...". Allows sounds
-> too much like something that should be a userspace control.
+On 6/30/26 13:54, Michael Reeves via B4 Relay wrote:
+> +source "drivers/hid/dockchannel/Kconfig"
+> +
+>  endif # HID
+>  
 
-I'd be inclined to talk a little more specifically.  What hardware?
-It's the not the ADC that matters for this control, but rather whatever
-is wired up to it. Otherwise agreed.  Maybe "If set, the connected
-circuits are suitable for supporting ..." or something along those lines.
+> +++ b/drivers/hid/dockchannel/Kconfig
+> @@ -0,0 +1,15 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +
+> +config APPLE_DOCKCHANNEL_HID
+> +	tristate "HID over Apple DockChannel"
+> +	depends on APPLE_DOCKCHANNEL
+> +	depends on APPLE_RTKIT
+> +	depends on HID
 
-Thanks,
+APPLE_DOCKCHANNEL_HID has a duplicate dependency on HID,
+since you put the import for this file inside of 'if HID..endif',
+and then also gave it a 'depends on HID'.
 
-Jonathan
-
-
+- Julian Braha
 
