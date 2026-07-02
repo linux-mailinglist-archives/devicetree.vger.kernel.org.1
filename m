@@ -1,157 +1,166 @@
-Return-Path: <devicetree+bounces-319178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319180-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7YacDqUvRmpYLQsAu9opvQ
-	(envelope-from <devicetree+bounces-319178-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:30:13 +0200
+	id rQeHFgIwRmqGLQsAu9opvQ
+	(envelope-from <devicetree+bounces-319180-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:31:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90E556F541E
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:30:12 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3000B6F547A
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:31:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="L/TMudwb";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319178-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319178-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=csWmZYUC;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319180-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319180-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BFE44302773A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:16:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 754713023D84
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:20:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D3583CC323;
-	Thu,  2 Jul 2026 09:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B20EC472771;
+	Thu,  2 Jul 2026 09:20:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75ABB399365;
-	Thu,  2 Jul 2026 09:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFCE13C65F2;
+	Thu,  2 Jul 2026 09:20:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782983789; cv=none; b=NpLLXStXp4liZ/8bkc822loq6wCf9XU9rpaUuwxykwiJytYXgw0fwGFIitzpROtEFo4WfrcOYYJ61iUbCVSiDpeMFvU4imQltyLU3IZc+DbEnDMZ756+4uWVf+1wK/8HuvHoy91DxqPjH8WO2phkHcHpIEkkMN7SssVj8TFZU58=
+	t=1782984005; cv=none; b=HQdXlC/XM74p6u1VAG3YRv30o0PvT3w9DIx7kfkHLA/HTsRNdcvhSeg58Tj5xg/sACyiJFzIxd5mcZM2MeeROGFyNVH2sNfeEwL1BZF5f6g7+QfazIw9CHV78qi3dC2C04VchC1vhcFdqzisnzNri2cD3csb5qvc0fvnFg/0EoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782983789; c=relaxed/simple;
-	bh=1x1Hu3hedgMBwNq7SoCp9xSXmb6NokWC+v5iymNGrrQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=MiTkRHF2l5y8uEM3M7A2zHkQmIzRqmRpO+QdfQfPYEks7G2eD3mBKPifrGQOlOKFl15xoIt8/P78NL0RoOblQ+owvqHRufuncbk6ihcXazann35rle6LbDAwMA7pJalM0M24iTt5Qux+m2HVGJRTMMsdlPCP1j1LQdnEFnQqXI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L/TMudwb; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5B5D1F000E9;
-	Thu,  2 Jul 2026 09:16:27 +0000 (UTC)
+	s=arc-20240116; t=1782984005; c=relaxed/simple;
+	bh=S8HugMjxHFbPNvLg+AAYFwaWDIzsdO1q5qMD3yZa1ic=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cEAcNiscdh08ooM8IVI1gm3Nnm3z34qmbLmS9Nqk++BoAkfTSSE7QQ5bmopQwsGVJhjvbZO2Fyj9It9Qg3IUkIDrLdJ9P+bf7plUvY30qHceF11itzrQs8CP6Lu0Yg6gwSfrMwUd/Zch+Dzu5hpqVf1xaxPGZytXURxF20OAXus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=csWmZYUC; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3179D1F000E9;
+	Thu,  2 Jul 2026 09:19:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782983788;
-	bh=0Noc9bGmhd05/MNkTgzXEBsyrdl7wGq+DgJXxCN9idg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=L/TMudwb1IOYa6OegWtc432S5FrskqU9QVB2YLLzyH0ORyeljSyAEtfDdbHisQn65
-	 WUrW3Kohs43lM5JA67aaKR94SYwQMCgqEsSr4DFY5Kcd6vM1Vuw8hpd4X9yoBvhrgB
-	 wp9q13D/65FEUN73+r4dOwO8OsdDWVXKMVLzNp/iXtOLylM5R/Cjg36vDLof1BDDk/
-	 LVnrr9nnBEariJunqwzIi40DmE/WowKczeF6TOnTB076eNgurHVVA4Fdnx7Grsv/yR
-	 cExuJoDDPz7C9Bb88iuGaAuzDul0ltUzwhwQ75gqi7MVEH7r4q5rYBsWjfvuRn1UsR
-	 nFQRHq/UxDrpg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC] dt-bindings: perf: riscv,pmu: Add
- interrupts-extended property
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Eric Lin" <eric.lin@sifive.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, linux-perf-users@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260702-pmu-dt-property-v1-1-a7a7737afb72@sifive.com>
-References: <20260702-pmu-dt-property-v1-1-a7a7737afb72@sifive.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 02 Jul 2026 09:16:27 +0000
-Message-Id: <20260702091627.C5B5D1F000E9@smtp.kernel.org>
+	s=k20260515; t=1782984004;
+	bh=krb+dDOShP/VdQBJzNgKxbwj/+Edag23SSgoQwI13H8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=csWmZYUC4S9Nl6WrP1bTUNqSv20R6fPVTF+KG1Cmg4Dj4DYI1f3yts+zZ5SFuSxLE
+	 1zPcsdAMtlXsGeuD40TVFAs2oF468naHHJOCp0j/1bFoVDTNF6O7cSdv1QHcUl8cr1
+	 EW6MIUu8XQAwz74SIdBY2YpAOeihb71togX+9u2JNdB6lg2m2cPNh6B+BHirU09w5I
+	 RKwcx2Ycjot9IrFfgVli3rPKjJzw+RV8X3QtfO29MXfAD1a8jPLHvfU0nHbSXEKo7Z
+	 7pwjC3c7iadUtI3cUSa0bj4W+vUlp5rmb1/SIDADt3Q/PVKz8CiTd3VtiiPObNQSHp
+	 ybamgLGQIRuGw==
+Date: Thu, 2 Jul 2026 10:18:47 +0100
+From: Will Deacon <will@kernel.org>
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Sowjanya Komatineni <skomatineni@nvidia.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	Yury Norov <yury.norov@gmail.com>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexander Gordeev <agordeev@linux.ibm.com>,
+	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+	Heiko Carstens <hca@linux.ibm.com>,
+	Vasily Gorbik <gor@linux.ibm.com>,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	Sven Schnelle <svens@linux.ibm.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	David Hildenbrand <david@kernel.org>,
+	Lorenzo Stoakes <ljs@kernel.org>,
+	"Liam R. Howlett" <liam@infradead.org>,
+	Vlastimil Babka <vbabka@kernel.org>,
+	Mike Rapoport <rppt@kernel.org>,
+	Suren Baghdasaryan <surenb@google.com>,
+	Michal Hocko <mhocko@suse.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Brian Starkey <Brian.Starkey@arm.com>,
+	John Stultz <jstultz@google.com>,
+	"T.J. Mercier" <tjmercier@google.com>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-s390@vger.kernel.org, linux-mm@kvack.org,
+	iommu@lists.linux.dev, linaro-mm-sig@lists.linaro.org,
+	linux-trace-kernel@vger.kernel.org,
+	Thierry Reding <treding@nvidia.com>, Chun Ng <chunn@nvidia.com>
+Subject: Re: [PATCH v3 04/11] arm64/mm: Add set_memory_device() and
+ set_memory_normal()
+Message-ID: <akYs91INHMXMTI-t@willie-the-truck>
+References: <20260701-tegra-vpr-v3-0-d80f7b871bb4@nvidia.com>
+ <20260701-tegra-vpr-v3-4-d80f7b871bb4@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260701-tegra-vpr-v3-4-d80f7b871bb4@nvidia.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-319178-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,sifive.com:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:eric.lin@sifive.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319180-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:thierry.reding@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonathanh@nvidia.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:skomatineni@nvidia.com,m:luca.ceresoli@bootlin.com,m:mperttunen@nvidia.com,m:yury.norov@gmail.com,m:linux@rasmusvillemoes.dk,m:linux@armlinux.org.uk,m:agordeev@linux.ibm.com,m:gerald.schaefer@linux.ibm.com,m:hca@linux.ibm.com,m:gor@linux.ibm.com,m:borntraeger@linux.ibm.com,m:svens@linux.ibm.com,m:akpm@linux-foundation.org,m:david@kernel.org,m:ljs@kernel.org,m:liam@infradead.org,m:vbabka@kernel.org,m:rppt@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:m.szyprowski@samsung.com,m:robin.murphy@arm.com,m:sumit.semwal@linaro.org,m:benjamin.gaignard@collabora.com,m:Brian.Starkey@arm.com,m:jstultz@google.com,m:tjmercier@google.com,m:christian.koenig@amd.com,m:rostedt@goodmis.org,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:c
+ atalin.marinas@arm.com,m:thierry.reding@gmail.com,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-media@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-mm@kvack.org,m:iommu@lists.linux.dev,m:linaro-mm-sig@lists.linaro.org,m:linux-trace-kernel@vger.kernel.org,m:treding@nvidia.com,m:chunn@nvidia.com,m:krzk@kernel.org,m:conor@kernel.org,m:yurynorov@gmail.com,m:thierryreding@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[will@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,bootlin.com,rasmusvillemoes.dk,armlinux.org.uk,linux.ibm.com,linux-foundation.org,infradead.org,google.com,suse.com,samsung.com,arm.com,linaro.org,collabora.com,amd.com,goodmis.org,efficios.com,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,kvack.org,lists.linux.dev,lists.linaro.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_GT_50(0.00)[56];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[will@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,willie-the-truck:mid,nvidia.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 90E556F541E
+X-Rspamd-Queue-Id: 3000B6F547A
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Overloading `interrupts-extended` as the sole CPU affinity map f=
-ails when PMU interrupts are optional.
---
+On Wed, Jul 01, 2026 at 06:08:15PM +0200, Thierry Reding wrote:
+> From: Chun Ng <chunn@nvidia.com>
+> 
+> Add helpers to swap PROT_NORMAL and PROT_DEVICE_nGnRnE protection bits
+> on a kernel-linear-map range.
 
-commit c04ae2b471021dd39ca8ccf1e788362245660a9d
-Author: Eric Lin <eric.lin@sifive.com>
+That sounds like a really terrible idea. Why is this necessary and how
+does it interact with things like load_unaligned_zeropad()?
 
-dt-bindings: perf: riscv,pmu: Add interrupts-extended property
+I think you should unmap the memory from the linear map and memremap()
+it instead.
 
-This commit adds the interrupts-extended property to the riscv,pmu binding
-to define the connection between the PMU overflow interrupt and the CPU
-local interrupt controller. It also notes this property is used by software
-to associate a PMU node with a specific CPU on heterogeneous systems.
-
-> diff --git a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml b/Docu=
-mentation/devicetree/bindings/perf/riscv,pmu.yaml
-> --- a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-> +++ b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-> @@ -34,6 +34,13 @@ properties:
->    compatible:
->      const: riscv,pmu
-> =20
-> +  interrupts-extended:
-> +    minItems: 1
-> +    maxItems: 4095
-> +    description:
-> +      Specifies the interrupt-parent and local interrupt index for each =
-CPU's
-> +      PMU counter overflow. Each item points to a riscv,cpu-intc node.
-
-[Severity: Medium]
-Does overloading interrupts-extended as the sole CPU affinity map cause
-failures on systems without PMU interrupts?
-
-If a heterogeneous RISC-V SoC lacks the optional Sscofpmf extension, it
-would omit the interrupts-extended property entirely. Without this property,
-it seems the OS would have no mechanism to determine which PMU node belongs
-to which CPU, potentially breaking perf functionality on such hardware.
-
-Would it be safer to introduce a dedicated affinity property to prevent
-future fragmentation when PMU interrupts are absent?
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702-pmu-dt-pro=
-perty-v1-1-a7a7737afb72@sifive.com?part=3D1
+Will
 
