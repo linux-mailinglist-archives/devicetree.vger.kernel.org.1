@@ -1,311 +1,206 @@
-Return-Path: <devicetree+bounces-319575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319577-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 02EdNau5RmpDcQsAu9opvQ
-	(envelope-from <devicetree+bounces-319575-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:19:07 +0200
+	id pklzDwG6RmpScQsAu9opvQ
+	(envelope-from <devicetree+bounces-319577-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:20:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D74A6FC7C4
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:19:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A7886FC7ED
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:20:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=s3rWPys3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319575-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319575-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=sXdGEjcD;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319577-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319577-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DC24C301904B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 19:07:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C33913045441
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 19:09:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DA5386424;
-	Thu,  2 Jul 2026 19:06:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4563D370D6B;
+	Thu,  2 Jul 2026 19:09:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010023.outbound.protection.outlook.com [52.101.46.23])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8635D382377;
-	Thu,  2 Jul 2026 19:06:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D487037A82C
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 19:09:34 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783019185; cv=fail; b=hNdM6FvQu9MyteKgB4+4oxXlunMXR0P9rdn8sC7+ZLeNJARaTkkAg2vwnXVO0iwr4h1O1intqCPCopqUcOqyu9VxLNIeEqGUiFUr/WcWF6NgriMhcwkrkUbZxFMeNBqesrI47pXucgSPZhxVrBIc2C3D93rwmRqLqUyth/s3mxI=
+	t=1783019376; cv=pass; b=P/Q4AfKpHePAIKq+VPurkEHvwPh3MFIOQHq0alQkEgbCTti8Ov/J9zKh5m4lW73YRZ+8O0xdmKi3AFTm5Bvk/rTWRCALpCnHK0em/RZpxClbqrklWsZKudtUV8HhgwB3e6N9zpRuIj4h9zVv0v2/nzexPsYnGOaYd7iHxInVvCM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783019185; c=relaxed/simple;
-	bh=RzVh9pqGDmo6ZPC3Y5PJ7N2+Kmr318G8wryff3qtPbg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GpLQMoSxiQGe0bsnJWFYPBNSXlvwcN7/Z7N/5ZvgK8cmCuA+tZHZF88w4WlXfKnSe/rS+Tx7J4PXLl6wM4Z/VU8HkQZqKaSkgCXG2orTyyAlwhC5sj9/RZS6bDp+RbZTEL5IBVUwUQUT3xKsNet9pS9TQHnhkK1D8eVda8I7xiU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=s3rWPys3; arc=fail smtp.client-ip=52.101.46.23
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rA2TuvH4ZlipXgfiBNow4mHc8wP6nifcGImom/0Z56Bb9uNANNmzCT8y9wbGZdElFalBeLp3pMKr+llVegSa1HrrC0EnV19Fjw+2vBrUzIDlT/ddVvKop7dxHRu+u7ANTNBrYVXIIttNENkN3DSE/Ch3iyO+JRdQGYg0XX8Ebv/awHKZNEFQh9a6NwxBSEZ0T1bCIm5lhoVMtpaxbcgB56rrsZceJQjaNpX+M9Vy7KrGgu3yGouWxKTWsAGYFb9S9HyT5s/bry4ELsBBm1s+L2hTTKxpqZSl+fuBtTGQqzuAnWkP8V3AWU8Jj+KxqRhmSYa08o42Sq0DprA7OSl4jg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VDwXNA8n+pxgGDT+6nnTUeFQNY+Cwy9CdXGOGpnkhMk=;
- b=k9/jKiLAdLP38PrH2n5URxJyTWmt+qFpwlmz7svJZLTlMx4vmKS9wDodrXWWoa2GWyooa5QSee3vWQqN50ue3VMcOKQPXiOKHQ0byNLo+YSH/7I8RH/NoSGlsoREJEFLvcWvcIE4paL2LjBN7O4Xf0rP0eLlj5mljYcqPgV6IfGantJYN7KObl7zGeOJrkhgS+bIPF3UOjWxjqhYhfdp/WIe6UZrVQ6BuAXi+hL9P1bp9Aljp4QpNhigjAGxCga2TFQJfcX43kRHwzTxAcN6CABEZQTavc1aDFFqXuAoLOF9js0UcFchuJ9X//2BTKmaak94AACCAWgY7Gz/aNqS5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VDwXNA8n+pxgGDT+6nnTUeFQNY+Cwy9CdXGOGpnkhMk=;
- b=s3rWPys3prLHc7EySj3pJtSDwo5fUwUGGIvbe/39XxfKI2K6+MM3QsTM8sVil6uPww/3tWGDx8o0Vt1KiP+kC2E5djMyAZyQ5LWPvmAp5t+oxNPH6H5FeFr3NZZoDl5hFrIaw7E/Os043+FsnxxY5un0oI0spZ0hCAuTTOpB9AU=
-Received: from SJ0PR03CA0108.namprd03.prod.outlook.com (2603:10b6:a03:333::23)
- by IA0PPF9A76BB3A6.namprd12.prod.outlook.com (2603:10b6:20f:fc04::bdc) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.9; Thu, 2 Jul 2026
- 19:06:19 +0000
-Received: from SJ1PEPF00001CE8.namprd03.prod.outlook.com
- (2603:10b6:a03:333:cafe::32) by SJ0PR03CA0108.outlook.office365.com
- (2603:10b6:a03:333::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Thu, 2
- Jul 2026 19:06:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- SJ1PEPF00001CE8.mail.protection.outlook.com (10.167.242.24) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 2 Jul 2026 19:06:19 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 2 Jul
- 2026 14:06:17 -0500
-Received: from xhdradheys41.xilinx.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Thu, 2 Jul 2026 14:06:14 -0500
-From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-To: <gregkh@linuxfoundation.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <heikki.krogerus@linux.intel.com>
-CC: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Radhey Shyam Pandey
-	<radhey.shyam.pandey@amd.com>
-Subject: [PATCH v2 3/3] usb: typec: tipd: add TPS66993 support
-Date: Fri, 3 Jul 2026 00:35:27 +0530
-Message-ID: <20260702190527.1820671-4-radhey.shyam.pandey@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260702190527.1820671-1-radhey.shyam.pandey@amd.com>
-References: <20260702190527.1820671-1-radhey.shyam.pandey@amd.com>
+	s=arc-20240116; t=1783019376; c=relaxed/simple;
+	bh=OC25YlyRx9xYw5QFFMPAEbb3+UJy6xb16cuf97R6i/8=;
+	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=owhdSaK9iR8BOPEi3ezpyZTBXVkUNXZzMqw7mM/pO3ncBQJ+Jx7b1uFZk6hAiioNiAEUhHdyO7fjfDT5Wy7/E6eV68xZuDSi3e5qZ5ancYc/KPkAfBpiYcvFiAyvoMKqUA+ZZHLtZt1I62qmkM7NMKXBKWXasr3rZaXWFnQxQ+s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=sXdGEjcD; arc=pass smtp.client-ip=209.85.208.176
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-39b28814916so19925281fa.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 12:09:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783019373; cv=none;
+        d=google.com; s=arc-20260327;
+        b=RoYh8DrUd7c+AZcqAndqaLOxYl4RVYVabghAcn8D3sHT7SHIOg/Bcu0lqdcGrearyn
+         nq/eHdSPObVVuotssS2rbjggXV+rT6f43wiZVOn7GSfLpoQv7nAgCUl8rNtL4SORyJUn
+         RAYxD/VjYei5MiCZ51RCE6xGFCOlY7Dp/WDjW52ToicC2fdNhCEnw5IdY/gR1LQjKStb
+         JekDiHqUiP35iQt1p7PRH7QfqMOIwv6mIuYn9oYkvbeKYLVD8hwigLqJsCJ2NI56Gyys
+         QPUS+CEg33SdFeJheJjp2VuFnKmWP1cK9IunArZ5WszonU4h5iDDWH+RACKTbEGM/DAA
+         7k+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=EXZROqLJHNx8vqsyDj41zSg6OwYEat4w/wJCCIKwrog=;
+        fh=APwMbNeKjejB60FKE+B8zmUIDmGTi9uzjNqYRNqkaYs=;
+        b=ShwO608lOfyv17XHGuX1phtlOyJGhvvzBbixpgNUTTrOjdAFNxO/QzssMqEmUg6y7X
+         TzROzR3wJwprr14lJAJRbXybsAG6OCLUvSas56L6OGofIbU4wlaohK1Hj0WL3o4HCoPd
+         8wJKn6vFwRktopzAByz2mrDF8We4ihDbFUivcAUd+/0vZohp3l+VKslnb4IF0CTZE6BS
+         /KqEaYIueoIVZiy58ZVqgdH0ZJxXKI2sr9vfCjk9Ys/ZsDsV780gWkIRME78lI7/Dt8g
+         5imozImF+opMVALAASdaE3rfS4T/uZReXvXPCy/XOmtWtWOwDZZWk6Sr3qYaRzYohWOi
+         OwCQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783019373; x=1783624173; darn=vger.kernel.org;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=EXZROqLJHNx8vqsyDj41zSg6OwYEat4w/wJCCIKwrog=;
+        b=sXdGEjcDZImjlwlqlUMQpE2XciklcPpA4EBMBdOJmWvxfYXRMRZ25FNiVgrdIwcyHE
+         QDd04jbMHnk7eDHZK914wIfjFDMPh5/JhwK00WcJvzdy9RQRsL/VnaEINWRbv8dAV9Pe
+         nRHKM7la9uqj1PPKcEEFEdvcWI2ureNTfLijVPOA6O0fDUGGNyiz7K+js3ebfdxFvmWv
+         wScvWmQeixOvN3Z5itat2U5kE1mx9mwo3ve1l6YG5FyupOxgG0nlCxvSq2S29tNOkYqq
+         q3DvM15XzFLxJW1JE6NJoI4QRM+O098i/L8qGROEru9g/4wteN5Y0NuP/bKWqyNMQqPb
+         Qw+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783019373; x=1783624173;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=EXZROqLJHNx8vqsyDj41zSg6OwYEat4w/wJCCIKwrog=;
+        b=jVKLqNm2M685250Cke6Sk9cxWbwI5FFpH9cvBMizITPeQvz8PH9Xf+adarP+jnNjar
+         IqPeX6FAt5WABN86JFYsqiYyEbWsS7Pa/MFdHBKSnIoo/ZnxXDpFESpV87FLDOK+i+nZ
+         +nzi/5PUzhzvTd2zIY+WgDEp57a3MGNpLZDJqe7//MNzGIvUFTAiNcv1sRFloX88yB/q
+         5tSWcV0S7yR+srCjMojT+mOah3Z5cVFVIHnAQh2wn22wWEzb7F0UYYhvl3gsJ0N/5gKy
+         Kbzwf4jigHD1HKfog2eRukTMwQci1CPZRLijAhWC0aM4japZxwUOAxTGRFXqSXvxCDem
+         vxGw==
+X-Gm-Message-State: AOJu0YwB0KsrHwNuoy4NR7z301gaQIrRMvLN9z0Wn+JyVj3ym0lofkXv
+	ZWpyDjJODOemTG3Um9JzRBb6qHRlMQUeElf9aAkQEDMuOnAt3Zmfh14Fmf1XowA60Gw3hW+bups
+	EZxYpEoK5NaSxxEnjQaf9l9EHbxaunoemM1zB
+X-Gm-Gg: AfdE7cmRW6dPJBv4L93N++V/eKF3PmlEb2pQpTGhmeyLo/jIMuPwYhPpiGjkWcIAy4r
+	dV/WdDzS3GQaPLgjIvPCoN7YNPbIFjP0S0K0tbzih8U4pqD9Q+mMTq2ZQbgHOFx+LL3kp69Uk1M
+	x3UHsIzTeEUHw9y8sU70foy1AQBUL10ICOym23ywSH3QSRzkfmIUb5kBUbZZApINCqX76IbWtfC
+	zH1iMYV+YKiEPjzOJR942dEmNyfF65oYKKcgtMTsYosbv0uI9MsyKW4ocizgmc0YU+rxgh09rBt
+	loJtVV0gAy5O39zZ4MoBGjEZXByvKDlKoSwlQ3WJU/P2qbvkoFHNXgrjBz/X
+X-Received: by 2002:a2e:be88:0:b0:399:9436:15c8 with SMTP id
+ 38308e7fff4ca-39b36e37e85mr16121011fa.2.1783019372768; Thu, 02 Jul 2026
+ 12:09:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE8:EE_|IA0PPF9A76BB3A6:EE_
-X-MS-Office365-Filtering-Correlation-Id: c23401d3-feb2-460f-0bd3-08ded86cfff0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|23010399003|376014|82310400026|1800799024|36860700016|18002099003|22082099003|11063799006|56012099006|3023799007;
-X-Microsoft-Antispam-Message-Info:
-	9mQoiAhia/pY5bFzut84T9heCIVt3q+lAT0qQ6y0PnXp4w19/CR5lVHGf6vXqoLfxNWCLNeP658cO2ZVDKZB1nWWKExs3gADvhZVPeJugAdYow6dE9mnMuAw0fkVN25F63P0U6tzRlTNSDiBFbaDoblDuEBjtyq6V4/L9NihvuQgVMgzAMeSbqbuWEf7imOoIQy5y/X+r1y4U7FdOWkpI3J+E3IiTSeDM+iH6u/KTX2N1WOrDaWE2yLyPhTUmFcsUQRoQaDktT0v/iBMBUgEHXHJ6kAdzdfPBhsqKNjvAzJCJjJLtkl+A6TpXilQ/v/79phOFRGyAhT219sPWRe2SSmUilNZBdyXIfe1288Cbehkt27n0EXi3Cr08e2oWrz7MFIEB6sbUsg1DBN+doHdG49uxFnJdoLuqGyS07LqlQx0bWGNO4Lq1WxKajhbUCQyc3izsrnyDjA7KzlB/mO3gQo+n+SHVPWN/XnT+GIIuOxsMxBH6IB4NG+e8rJcybhbGfcLh5A7U7A/WSgek2xK0VHgQDevzNB93jbOg943gHD6ORl1zjqvWXRQZESo6f83BryIIErijZjI7F7LzcH28xpzyYjJgtkZTL/X57eUEmpAI1z2hlDGbEVkS6PziQw+2JT6geDlOmblF+C5RImyUknh7fx6jgKwWaoXzD2YOi+ssQcm/00EfuV1NVSX0UXwU82ILYq/oBZS+J2yCRDs1Q==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(376014)(82310400026)(1800799024)(36860700016)(18002099003)(22082099003)(11063799006)(56012099006)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	zgayBs8d4SiY9BhjpuoZAgS/1vTusVAYb0zGXVcV+nTPa6cN1zTGraBnTe3Y3C5tVS3rfUgw2XgRXDUoEh1o8EHOlkmPvT+4sWaZHd4BzZUPmfpLO3g9MotZvPPm31oIUnNZvJRoOU2CJcFy+cwnldjoKTPMjpWZEVhASlAkn147H0Bj2SMZnYrFrEyj50EdHk5fbEX2oEDE29B/viZ4V6MxOdJJ06RVZqic2kE336+yNyJ2kFXxgB816qhEaoUGIe3qiA3gQ2K37LkNqsvvO7qVKcpRUtQ+N+BjLiPEQBaQYyb5GT5YECp+al01kqlUio5Rqcy+++zWIh73STa3RvS0Bu+pMq8dydYO7qV84Ad5/OUJOzKHZXdZUAiBp0nTfBa71sddGVOe1+6HI3AUqbeVYbvRkJ5sgZyzGm4Xq8zdTlF/P76CpMRhkX64viGW
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2026 19:06:19.3904
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c23401d3-feb2-460f-0bd3-08ded86cfff0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF00001CE8.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PPF9A76BB3A6
+From: Brian Mayer <bleemayer@gmail.com>
+Date: Thu, 2 Jul 2026 16:09:20 -0300
+X-Gm-Features: AVVi8CdEvAr9zBugTIhbInCo1kaOhwZoytfXTRqItuxxgCr33NwvWgbLZiYlGvc
+Message-ID: <CAB3eKoDcp=rVGDpvAHEeVLG3rHFw2E1XXxCe2QaApX0aLkyXyA@mail.gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: add HYM8563 RTC to Radxa CM5 IO board
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="00000000000057899e0655a58c94"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319577-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[radhey.shyam.pandey@amd.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-319575-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heikki.krogerus@linux.intel.com,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:radhey.shyam.pandey@amd.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[radhey.shyam.pandey@amd.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[bleemayer@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ATTACHMENT(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bleemayer@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1D74A6FC7C4
+X-Rspamd-Queue-Id: 8A7886FC7ED
 
-Derive power status from the STATUS register (0x1A) now that TPS66993
-deprecates the Power_Status register (0x3F). Add support for the "APP1"
-mode string. TPS66993 controller is configured in polling mode and only
-type-c flip orientation feature is supported on AMD Versal AI Edge Gen 2
-VEK385 Evaluation Kit.
+--00000000000057899e0655a58c94
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
----
-Changes for v2:
-- New patch to add TPS66993 driver support.
----
- drivers/usb/typec/tipd/core.c | 65 +++++++++++++++++++++++++++++++++--
- 1 file changed, 63 insertions(+), 2 deletions(-)
+Hi kernel team.
 
-diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-index a6cb233a055d..d2394d23a2dc 100644
---- a/drivers/usb/typec/tipd/core.c
-+++ b/drivers/usb/typec/tipd/core.c
-@@ -130,6 +130,7 @@ enum {
- 	TPS_MODE_BIST,
- 	TPS_MODE_DISC,
- 	TPS_MODE_PTCH,
-+	TPS_MODE_APP1,
- };
- 
- static const char *const modes[] = {
-@@ -138,6 +139,7 @@ static const char *const modes[] = {
- 	[TPS_MODE_BIST]	= "BIST",
- 	[TPS_MODE_DISC]	= "DISC",
- 	[TPS_MODE_PTCH] = "PTCH",
-+	[TPS_MODE_APP1]	= "APP1",
- };
- 
- /* Unrecognized commands will be replaced with "!CMD" */
-@@ -631,6 +633,35 @@ static bool tps6598x_read_power_status(struct tps6598x *tps)
- 	return true;
- }
- 
-+/*
-+ * TPS66993 deprecated Power_Status register (0x3F). BC1.2 is not supported
-+ * and the remaining bits are redundant with STATUS register (0x1A).
-+ * Synthesize pwr_status from the already-read STATUS register.
-+ */
-+static bool tps66993_read_power_status(struct tps6598x *tps)
-+{
-+	u16 pwr_status = 0;
-+
-+	/* Same masks as TPS_POWER_STATUS_CONNECTION() / SOURCESINK() / PWROPMODE() in tps6598x.h */
-+	if (tps->status & TPS_STATUS_PLUG_PRESENT)
-+		pwr_status |= FIELD_PREP(TPS_POWER_STATUS_CONNECTION_MASK, 1);
-+
-+	/* SOURCESINK: 1=sink; STATUS.PortRole 1=source, opposite convention */
-+	if (!TPS_STATUS_TO_TYPEC_PORTROLE(tps->status))
-+		pwr_status |= FIELD_PREP(TPS_POWER_STATUS_SOURCESINK_MASK, 1);
-+
-+	if (TPS_STATUS_VBUS_STATUS(tps->status) == TPS_STATUS_VBUS_STATUS_PD)
-+		pwr_status |= FIELD_PREP(TPS_POWER_STATUS_TYPEC_CURRENT_MASK,
-+					 TPS_POWER_STATUS_TYPEC_CURRENT_PD);
-+
-+	tps->pwr_status = pwr_status;
-+
-+	if (tps->data->trace_power_status)
-+		tps->data->trace_power_status(pwr_status);
-+
-+	return true;
-+}
-+
- static void tps6598x_handle_plug_event(struct tps6598x *tps, u32 status)
- {
- 	int ret;
-@@ -1026,6 +1057,8 @@ static irqreturn_t tps6598x_interrupt(int irq, void *data)
- 	if (!tps6598x_read_status(tps, &status))
- 		goto err_unlock;
- 
-+	tps->status = status;
-+
- 	if ((event1[0] | event2[0]) & TPS_REG_INT_POWER_STATUS_UPDATE)
- 		if (!tps->data->read_power_status(tps))
- 			goto err_unlock;
-@@ -1034,9 +1067,15 @@ static irqreturn_t tps6598x_interrupt(int irq, void *data)
- 		if (!tps->data->read_data_status(tps))
- 			goto err_unlock;
- 
--	/* Handle plug insert or removal */
--	if ((event1[0] | event2[0]) & TPS_REG_INT_PLUG_EVENT)
-+	/*
-+	 * Refresh power status before connect - needed for TPS66993 which
-+	 * synthesizes pwr_status from STATUS and never gets POWER_STATUS_UPDATE.
-+	 */
-+	if ((event1[0] | event2[0]) & TPS_REG_INT_PLUG_EVENT) {
-+		if (!tps->data->read_power_status(tps))
-+			goto err_unlock;
- 		tps6598x_handle_plug_event(tps, status);
-+	}
- 
- err_unlock:
- 	mutex_unlock(&tps->lock);
-@@ -1072,6 +1111,7 @@ static int tps6598x_check_mode(struct tps6598x *tps)
- 
- 	switch (ret) {
- 	case TPS_MODE_APP:
-+	case TPS_MODE_APP1:
- 	case TPS_MODE_PTCH:
- 		return ret;
- 	case TPS_MODE_BOOT:
-@@ -1810,6 +1850,8 @@ static int tps6598x_probe(struct i2c_client *client)
- 		goto err_clear_mask;
- 	}
- 
-+	tps->status = status;
-+
- 	/*
- 	 * This fwnode has a "compatible" property, but is never populated as a
- 	 * struct device. Instead we simply parse it to read the properties.
-@@ -2004,6 +2046,24 @@ static const struct tipd_data tps6598x_data = {
- 	.connect = tps6598x_connect,
- };
- 
-+static const struct tipd_data tps66993_data = {
-+	.irq_handler = tps6598x_interrupt,
-+	.irq_mask1 = TPS_REG_INT_DATA_STATUS_UPDATE |
-+		     TPS_REG_INT_PLUG_EVENT,
-+	.tps_struct_size = sizeof(struct tps6598x),
-+	.register_port = tps6598x_register_port,
-+	.unregister_port = tps6598x_unregister_port,
-+	.trace_data_status = trace_tps6598x_data_status,
-+	.trace_power_status = trace_tps6598x_power_status,
-+	.trace_status = trace_tps6598x_status,
-+	.apply_patch = tps6598x_apply_patch,
-+	.init = tps6598x_init,
-+	.read_data_status = tps6598x_read_data_status,
-+	.read_power_status = tps66993_read_power_status,
-+	.reset = tps6598x_reset,
-+	.connect = tps6598x_connect,
-+};
-+
- static const struct tipd_data tps25750_data = {
- 	.irq_handler = tps25750_interrupt,
- 	.irq_mask1 = TPS_REG_INT_POWER_STATUS_UPDATE |
-@@ -2025,6 +2085,7 @@ static const struct tipd_data tps25750_data = {
- 
- static const struct of_device_id tps6598x_of_match[] = {
- 	{ .compatible = "ti,tps6598x", &tps6598x_data},
-+	{ .compatible = "ti,tps66993", &tps66993_data},
- 	{ .compatible = "apple,cd321x", &cd321x_data},
- 	{ .compatible = "ti,tps25750", &tps25750_data},
- 	{}
--- 
-2.43.0
+I was testing building the kernel for my radxa cm5+io shield, and it turns
+out there is no rtc in the DTS, so I got it from the radxa files.
+This is my first email to you, please help me correct it if something is
+off the standards.
 
+The commit attached does the trick. I used AI to assist me in this in
+case you're
+wondering.
+
+Best, Brian
+
+--00000000000057899e0655a58c94
+Content-Type: application/octet-stream; 
+	name="0001-arm64-dts-rockchip-add-HYM8563-RTC-to-Radxa-CM5-IO-b.patch"
+Content-Disposition: attachment; 
+	filename="0001-arm64-dts-rockchip-add-HYM8563-RTC-to-Radxa-CM5-IO-b.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_mr3voroy0>
+X-Attachment-Id: f_mr3voroy0
+
+RnJvbSA4ODQxOTgxMDIxYjVmOTg1MjJhZDQ0ZmU0MGUxMWQwYzBlNzU2NTM0IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBCcmlhbiBNYXllciA8YmxlZW1heWVyQGdtYWlsLmNvbT4KRGF0
+ZTogVGh1LCAyIEp1bCAyMDI2IDE0OjUxOjUxIC0wMzAwClN1YmplY3Q6IFtQQVRDSF0gYXJtNjQ6
+IGR0czogcm9ja2NoaXA6IGFkZCBIWU04NTYzIFJUQyB0byBSYWR4YSBDTTUgSU8gYm9hcmQKClRo
+ZSBSYWR4YSBDTTUgSU8gY2FycmllciBoYXMgYSBIYW95dSBIWU04NTYzIHJlYWwtdGltZSBjbG9j
+ayBvbiBJMkM2IGF0CmFkZHJlc3MgMHg1MSwgd2l0aCBpdHMgaW50ZXJydXB0IGxpbmUgb24gR1BJ
+TzBfQjAgYW5kIGEgQ1IxMjIwIGJhY2t1cApiYXR0ZXJ5IGhvbGRlci4gV2l0aG91dCBhIGRldmlj
+ZSB0cmVlIG5vZGUsIG5vIC9kZXYvcnRjKiBhcHBlYXJzIGV2ZW4Kd2hlbiBDT05GSUdfUlRDX0RS
+Vl9IWU04NTYzIGlzIGVuYWJsZWQuCgpEZXNjcmliZSB0aGUgUlRDLCB3aXJlIHRoZSBpbnRlcnJ1
+cHQgcGluIHdpdGggYSBwdWxsLXVwLCBtYXJrIGl0IGFzIGEKd2FrZXVwIHNvdXJjZSwgYW5kIHBv
+aW50IHRoZSBydGMwIGFsaWFzIGF0IGl0IHNvIFJUQ19IQ1RPU1lTL1NZU1RPSEMgdXNlCnRoZSBl
+eHRlcm5hbCBjbG9jay4gV2lyaW5nIG1hdGNoZXMgUmFkeGEncyBkb3duc3RyZWFtIGJvYXJkIHN1
+cHBvcnQuCgpTaWduZWQtb2ZmLWJ5OiBCcmlhbiBNYXllciA8YmxlZW1heWVyQGdtYWlsLmNvbT4K
+VGVzdGVkLWJ5OiBCcmlhbiBNYXllciA8YmxlZW1heWVyQGdtYWlsLmNvbT4KLS0tCiAuLi4vZHRz
+L3JvY2tjaGlwL3JrMzU4OHMtcmFkeGEtY201LWlvLmR0cyAgICAgfCAxOSArKysrKysrKysrKysr
+KysrKysrCiAxIGZpbGUgY2hhbmdlZCwgMTkgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2Fy
+Y2gvYXJtNjQvYm9vdC9kdHMvcm9ja2NoaXAvcmszNTg4cy1yYWR4YS1jbTUtaW8uZHRzIGIvYXJj
+aC9hcm02NC9ib290L2R0cy9yb2NrY2hpcC9yazM1ODhzLXJhZHhhLWNtNS1pby5kdHMKaW5kZXgg
+YWY0YTliYzAxLi4xYTJjNzI4MzEgMTAwNjQ0Ci0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvcm9j
+a2NoaXAvcmszNTg4cy1yYWR4YS1jbTUtaW8uZHRzCisrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMv
+cm9ja2NoaXAvcmszNTg4cy1yYWR4YS1jbTUtaW8uZHRzCkBAIC0xOSw2ICsxOSw3IEBAIC8gewog
+CWFsaWFzZXMgewogCQlldGhlcm5ldDAgPSAmZ21hYzE7CiAJCW1tYzEgPSAmc2RtbWM7CisJCXJ0
+YzAgPSAmaHltODU2MzsKIAl9OwogCiAJY2hvc2VuIHsKQEAgLTE5OCw2ICsxOTksMTggQEAgdXNi
+YzBfZHBfYWx0bW9kZV9tdXg6IGVuZHBvaW50IHsKIAkJCX07CiAJCX07CiAJfTsKKworCWh5bTg1
+NjM6IHJ0Y0A1MSB7CisJCWNvbXBhdGlibGUgPSAiaGFveXUsaHltODU2MyI7CisJCXJlZyA9IDww
+eDUxPjsKKwkJI2Nsb2NrLWNlbGxzID0gPDA+OworCQljbG9jay1vdXRwdXQtbmFtZXMgPSAiaHlt
+ODU2MyI7CisJCWludGVycnVwdC1wYXJlbnQgPSA8JmdwaW8wPjsKKwkJaW50ZXJydXB0cyA9IDxS
+S19QQjAgSVJRX1RZUEVfTEVWRUxfTE9XPjsKKwkJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsK
+KwkJcGluY3RybC0wID0gPCZydGNfaW50PjsKKwkJd2FrZXVwLXNvdXJjZTsKKwl9OwogfTsKIAog
+JmkyczVfOGNoIHsKQEAgLTIyMSw2ICsyMzQsMTIgQEAgdXNiYzBfaW50OiB1c2JjMC1pbnQgewog
+CQl9OwogCX07CiAKKwloeW04NTYzIHsKKwkJcnRjX2ludDogcnRjLWludCB7CisJCQlyb2NrY2hp
+cCxwaW5zID0gPDAgUktfUEIwIFJLX0ZVTkNfR1BJTyAmcGNmZ19wdWxsX3VwPjsKKwkJfTsKKwl9
+OworCiAJaGRtaSB7CiAJCWhkbWkwX3R4X29uX2g6IGhkbWkwLXR4LW9uLWggewogCQkJcm9ja2No
+aXAscGlucyA9IDw0IFJLX1BCNiBSS19GVU5DX0dQSU8gJnBjZmdfcHVsbF9ub25lPjsKCmJhc2Ut
+Y29tbWl0OiA4NzMyMGJlOWYwZDI0ZmNlNjc2MzFiN2VlZjkxOWYwYjc5YzNlNDVjCi0tIAoyLjU0
+LjAKCg==
+--00000000000057899e0655a58c94--
 
