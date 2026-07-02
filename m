@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-319420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319418-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id T9iRGGNtRmoLUgsAu9opvQ
-	(envelope-from <devicetree+bounces-319420-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 15:53:39 +0200
+	id BErLAERuRmr1UgsAu9opvQ
+	(envelope-from <devicetree+bounces-319418-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 15:57:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C03EC6F8924
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 15:53:38 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 460236F89C1
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 15:57:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kemnade.info header.s=20220719 header.b=IBoJLuN5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319420-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319420-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kemnade.info header.s=20220719 header.b="fN3nHIS/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319418-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319418-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=kemnade.info;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C3D733047E48
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 13:53:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7310D301FFBD
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 13:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 846074ADDB4;
-	Thu,  2 Jul 2026 13:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E71AD496919;
+	Thu,  2 Jul 2026 13:53:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92E164A2E01;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 861244ADD9A;
 	Thu,  2 Jul 2026 13:53:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783000403; cv=none; b=trUCsJZIs+ELRRb+MTfnrdhQhIO994no/SKki1AmlGH48CuG887IQCl9fWs7Spvog6Z1sLp61JaLMhNEfKI58QrJiVRxwGtJ97jH0QRCMlsixgcR7CO3Xe6+3uIa+32/BlKNt4hUkaXhmMNMM4fbRLEt8YNoNTN0urkyahxMdk4=
+	t=1783000400; cv=none; b=L4YyxvfEQFEIRcpPz3Wm3h+ew1W8EaoELxDK7ofyahKnhSKizaqrZNnx/Tp7cXOP73sJ3csgAXPlYszFv7slz+a2v5MhCix8pJcRD/T0w6y0AKNIAuOcvXiITUKcoJUjCkR9G+fELvUGFvjHr+Xfm1y4KKd65M1bDYjltb9rSOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783000403; c=relaxed/simple;
-	bh=+Rv2z64JUVe7fDMTssxAANzbg9IuAfskna7RJrGAWG0=;
+	s=arc-20240116; t=1783000400; c=relaxed/simple;
+	bh=tqYyW/PX6hR7Wv5PgP4YYislXUMPcANlAU7/rHlopZQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=B15LKDL48pfK3b8SmtRbRaKkEr9jIqxYx4o32pNWK9T1VbkAEg9+j1t9A0A6kkhj9IymnaEj9zUFQ7bIh3EYZjIhKeBx6T4KNsxtjn5O3tLQyPqDWynRaegZPxGtIef+MwNlC60HlFHKuDDtamqsulm32LbsHPc6ZMwocsR4S74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=IBoJLuN5; arc=none smtp.client-ip=178.238.236.174
+	 In-Reply-To:To:Cc; b=c02i7/QheMT0NUZ0nXxM75VduU3Ezb7PwY21Oq0hCZAQPDJlTMxrJwqeM9qT+R0RDVMtQZ1mRVU8htD8fklMRCClwGc9+BXMBZk/tHSNKFyDkRcigysl2KOZvKafmpy7rA2hV5KDzbYbqRL72sYRAkedMkImp5jygqffwJlolqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=fN3nHIS/; arc=none smtp.client-ip=178.238.236.174
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=kemnade.info; s=20220719; h=Cc:To:In-Reply-To:References:Subject:From:
 	Reply-To:Content-ID:Content-Description;
-	bh=9CuqPtpgChMhk0+0B9V1dMSVdf3LmZwpa+6ReyOVK1k=; t=1783000397; x=1784209997; 
-	b=IBoJLuN5YHfN7ubXogNGy+hJQntMbG460jkhcss/JKI9FnLIOIDFr2a4ItLxanSzY8aelZIqlR5
-	P/ue0dwFFi1l9p5ohVGRZIy/ZL3noHcbS7C6t85zjB8j22uwIepnPKbAhos3+jVf2NWbV24CwMbsL
-	kfulF3lrg9YpHonAnpCk5avnFpOx3kqF2wmjd6JSuuCJj1yC2Ht53MMQUae4MMvytgVmNTUcuFjY6
-	+OGb2y4zKoGfWWL/zHITRnZSbwuZ4N1rHcGShligueGcbUPGhz1KQmvaJ9BkHAinSDkWjbDmUAS3Z
-	RUqx4hlg9rOukwuQerJeleIBsJ8VAdGpbkjg==;
+	bh=tXulqD9IlD9hS/ExIkyaNUgdGu1Ig3SZNQ96GuHk7fc=; t=1783000397; x=1784209997; 
+	b=fN3nHIS/SA2g9gUfaFiAuuMFre8gXJaCKZMItPg4ePy9ciWI6ZZfoI0oTnkugFHJ7CwGcTNjTss
+	Sg754EssKYoA3CE8TGK92MK9a6sJ9K3sRBsJAlVmuP9AjLw6a7aIQFrlRhedBHOhOf7KuO+iU7G5h
+	VO3INqpcyv+Y62KaVgiLJ0sV0DXgi1qhxpFbFK11d52CnSYEF7y/b20EuSzd720CiwTcbh7m9axX8
+	ycKMs/TZC0yGieN9Bj4B0FaFDUHnxHNLRd4deyXkmZC4mjUvUEoooQ0I8jVawF0r2IZKpmTl9LjMp
+	LP4fFxL9dIC4ERBs4XpYeNwgW5g3rgQeWssA==;
 From: Andreas Kemnade <andreas@kemnade.info>
-Date: Thu, 02 Jul 2026 15:52:43 +0200
-Subject: [PATCH 1/2] ARM: dts: ti/omap: embt2ws: use mulit-led for RGB LED
+Date: Thu, 02 Jul 2026 15:52:44 +0200
+Subject: [PATCH 2/2] arm: omap2plus_defconfig: Enable multi-LED
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,7 +54,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260702-b200multiled-v1-1-c1799ad45c96@kemnade.info>
+Message-Id: <20260702-b200multiled-v1-2-c1799ad45c96@kemnade.info>
 References: <20260702-b200multiled-v1-0-c1799ad45c96@kemnade.info>
 In-Reply-To: <20260702-b200multiled-v1-0-c1799ad45c96@kemnade.info>
 To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
@@ -64,14 +64,14 @@ To: Aaro Koskinen <aaro.koskinen@iki.fi>,
  Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
 Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Andreas Kemnade <andreas@kemnade.info>, Pavel Machek <pavel@ucw.cz>
+ Andreas Kemnade <andreas@kemnade.info>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1396; i=andreas@kemnade.info;
- h=from:subject:message-id; bh=+Rv2z64JUVe7fDMTssxAANzbg9IuAfskna7RJrGAWG0=;
- b=owGbwMvMwCUm/rzkS6lq2x3G02pJDFluubae/jkzKpct3Fkwz2CNABO/g6Drzpd1USfenRD+f
- /XVYVfhjlIWBjEuBlkxRZZf1gpun1Se5QZPjbCHmcPKBDKEgYtTACZybCnDP4Mtmy5Mzn6tu9NO
- tt3VJehgG8evB6FftZOsowMur5wbdZrhf8baS2b3Fi/byB5mavrsgt6H3vbcLQybJdg0dAoeBel
- YsQIA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=901; i=andreas@kemnade.info;
+ h=from:subject:message-id; bh=tqYyW/PX6hR7Wv5PgP4YYislXUMPcANlAU7/rHlopZQ=;
+ b=owGbwMvMwCUm/rzkS6lq2x3G02pJDFluubYzuw099S6vM9cW2mHZnqab+ixH0ezaQ64dHwKku
+ Ddy5EzuKGVhEONikBVTZPllreD2SeVZbvDUCHuYOaxMIEMYuDgFYCIW3xkZnrsV7/gtIl72dv0f
+ vyea7l6rI5UOL52w639V72u2JV+9jjMytBVmnXzTxSJh/YnnX8Wk2t0XfDnu/r10kduiQ7GLs2M
+ iFwA=
 X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
  fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 X-Rspamd-Action: no action
@@ -80,16 +80,16 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kemnade.info,none];
 	R_DKIM_ALLOW(-0.20)[kemnade.info:s=20220719];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319420-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:aaro.koskinen@iki.fi,m:khilman@baylibre.com,m:rogerq@kernel.org,m:tony@atomide.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux@armlinux.org.uk,m:linux-omap@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:andreas@kemnade.info,m:pavel@ucw.cz,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319418-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:aaro.koskinen@iki.fi,m:khilman@baylibre.com,m:rogerq@kernel.org,m:tony@atomide.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux@armlinux.org.uk,m:linux-omap@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:andreas@kemnade.info,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -103,62 +103,40 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,ucw.cz:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C03EC6F8924
+X-Rspamd-Queue-Id: 460236F89C1
 
-The device has one single RGB LED. Explicitly declare it as such
-by combing the LEDs into one.
+Enable drivers needed to use RGB LEDs composed of multiple monochromatic
+LEDs.
 
-Suggested-by: Pavel Machek <pavel@ucw.cz>
 Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 ---
- arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ arch/arm/configs/omap2plus_defconfig | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-index e253e0775ea9..e11d1931c42a 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-+++ b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-@@ -64,6 +64,13 @@ key-lock {
- 		};
- 	};
- 
-+	multi-led {
-+		compatible = "leds-group-multicolor";
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+		leds = <&led_r>, <&led_g>, <&led_b>;
-+	};
-+
- 	cb_v18: regulator-cb-v18 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&cb_v18_pins>;
-@@ -368,19 +375,19 @@ led-controller@66 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		led@0 {
-+		led_g: led@0 {
- 			reg = <0>;
- 			color = <LED_COLOR_ID_GREEN>;
- 			function = LED_FUNCTION_STATUS;
- 		};
- 
--		led@2 {
-+		led_b: led@2 {
- 			reg = <2>;
- 			color = <LED_COLOR_ID_BLUE>;
- 			function = LED_FUNCTION_STATUS;
- 		};
- 
--		led@4 {
-+		led_r: led@4 {
- 			reg = <4>;
- 			color = <LED_COLOR_ID_RED>;
- 			function = LED_FUNCTION_STATUS;
+diff --git a/arch/arm/configs/omap2plus_defconfig b/arch/arm/configs/omap2plus_defconfig
+index ad5ae1636dee..3a4fb59d3fad 100644
+--- a/arch/arm/configs/omap2plus_defconfig
++++ b/arch/arm/configs/omap2plus_defconfig
+@@ -602,6 +602,7 @@ CONFIG_MMC_OMAP_HS=y
+ CONFIG_MMC_SDHCI_OMAP=y
+ CONFIG_NEW_LEDS=y
+ CONFIG_LEDS_CLASS=m
++CONFIG_LEDS_CLASS_MULTICOLOR=m
+ CONFIG_LEDS_CPCAP=m
+ CONFIG_LEDS_LM3532=m
+ CONFIG_LEDS_GPIO=m
+@@ -611,6 +612,7 @@ CONFIG_LEDS_PCA963X=m
+ CONFIG_LEDS_PWM=m
+ CONFIG_LEDS_BD2606MVV=m
+ CONFIG_LEDS_TCA6507=m
++CONFIG_LEDS_GROUP_MULTICOLOR=m
+ CONFIG_LEDS_TRIGGERS=y
+ CONFIG_LEDS_TRIGGER_TIMER=m
+ CONFIG_LEDS_TRIGGER_ONESHOT=m
 
 -- 
 2.47.3
