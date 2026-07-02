@@ -1,211 +1,160 @@
-Return-Path: <devicetree+bounces-319467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319469-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wZzlJN2LRmpEYQsAu9opvQ
-	(envelope-from <devicetree+bounces-319467-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 18:03:41 +0200
+	id Lhe2DC2MRmpkYQsAu9opvQ
+	(envelope-from <devicetree+bounces-319469-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 18:05:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10C26F9DE2
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 18:03:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 881A76F9E26
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 18:05:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Vh2RQhXE;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319467-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319467-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=sntech.de header.s=gloria202408 header.b=PRBdzR5F;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319469-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319469-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=sntech.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 977ED30864D8
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 16:01:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F3F42301AA68
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 16:02:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47D4A30BF69;
-	Thu,  2 Jul 2026 16:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5945330C368;
+	Thu,  2 Jul 2026 16:02:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246CA30C368
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 16:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D76830C16C;
+	Thu,  2 Jul 2026 16:02:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783008091; cv=none; b=vFRMDy5zYGs1olblbBUEHJGXiE065gbVTmH0U+MbP+G8e+nQ+dXrxhQUmTHN5VvdNeuKEj18GZhsW+nSToC9PdmDwinBMJM/M4/mCxoJCL0wf0fv1YJJ6aPq8jhP6t5yKYaY5eTxVem3wfg+aPlCdcIauYuGj5nw1uVh+A4KI1o=
+	t=1783008159; cv=none; b=LMRCXuNHAC3X/6934MWOBRCcxZluzGdnCC7HHEi8WQU0xrGkiG0BN1OOf2yDFQHmk67TCnS86ciDzOoYkRI1zDcxNUd68yMP9TGkbI1OUVRCsK1RAyc0KRbQ914MV90f/gUGKK1qsI19gqR9ULW4+oeOggc2ULMrcwIInQKyejQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783008091; c=relaxed/simple;
-	bh=qGA4M8l5ZCVd40chcDWiFwpxRfiZfKcjDfCRB9Mfv08=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=BtyjKkrdVaVK0Nmc9MLIm5mdS6K+4Wuk22RlgW8fs0KiJEFV/NXwriXzK8BzEY3z0ellvXjqljtO/3zxICaGHSwBCN1O4sSpNj9dYfeFUDdluCtB90F6bSOp+CwUlg9nACZlWB7BQ+1I0fXIB2eH7UfpL52Oabhzlva9SJffM6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vh2RQhXE; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BDFB1F00A3D;
-	Thu,  2 Jul 2026 16:01:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783008089;
-	bh=b7K6Chf/HOxl6nAQ+4BlRwBPOabCj5sXtBJCqkt5yas=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Vh2RQhXEZvTsk1wSkSqVi/HtvvA8tUopIW24Ww249IfF1oVcRyYX8pnJOJckzJJng
-	 a3ej4Jn8X9sw5SlMFlZ1gpjjxLXc98SEz5OKupPhimXmFrGTL720Pj/OcyjZ43tGjt
-	 ETTYRhdkrTgBnM4KYb7QrSlb3JtSODdw53r5d/15O5c6IRdZ2+QazYPDrze0TUe0R7
-	 jsmJ8uMBS1TaPVEuu3ZnQ15wGfTMzy0Lj+sd9q4Q0cwjYdwITlTV9AYvhe02CGZt0K
-	 KqSz/DQxHK4bLdry6qVyF64ek3c1QiOn99LJGySEfraKtf48Dg4PuASNn4EoKnxO/D
-	 jOkKgIb8Ws1cQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 8/9] Bluetooth: qca: Set NVMEM BD address quirks when
- address is invalid
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260701-block-as-nvmem-v7-8-3fe8205ef0a8@oss.qualcomm.com>
-References: <20260701-block-as-nvmem-v7-0-3fe8205ef0a8@oss.qualcomm.com>
- <20260701-block-as-nvmem-v7-8-3fe8205ef0a8@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 02 Jul 2026 16:01:28 +0000
-Message-Id: <20260702160129.7BDFB1F00A3D@smtp.kernel.org>
+	s=arc-20240116; t=1783008159; c=relaxed/simple;
+	bh=Om1A/qUPAE+RvRc9QOCiGXLsDeJqGK2rZLRnc+C2LPU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=J/Rw/DGodzGCsy3VqeTK5NaSVGxAdAdPGXs3o44ECbr5KdVjxCFfz2JUy/7/elxNHTPqZn9nB7b3pLQR1QIEssAX1iB3/TXN3PMOukKPxlz3Zl6uNFAwWjp7kN1BQVp3OiA2mXNFHRqRSLsmDgnhzB9OsjNa3uyUYp+B4LKYt98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=PRBdzR5F; arc=none smtp.client-ip=185.11.138.130
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=Om1A/qUPAE+RvRc9QOCiGXLsDeJqGK2rZLRnc+C2LPU=; b=PRBdzR5FrpwlcK69ZWsZm+uEdL
+	nHKCecM0P3uNqXRCLMZ4e5saOl2fHva7y6aB+iizLxJ5rSNgl5cLsYRc0MP0jZAYG+N+CjwDIgtxL
+	USbLfTdmx6Go5xHgm3Ipn5r7o5/8WqscetSYzfLsvbrSPKvFHmkkKDVmWzlG9b6RaTXch9YGUM1Q3
+	Ur2Z4NKK4n23iEY5JG53LPPskGXXTH1TmsI9rZHpC69Dlef40qlEKq2in+xLCMAfe13uQdC9ZkdSu
+	/l1MX/nAJ99AAxxsxM3aUZKNdzDMiY8kZ94gMFC+yP6rx8IQJFfjZdKMaozCb4Y1ML/fMYOQgbeWa
+	yQ4zqj/Q==;
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+ linux-can <linux-can@vger.kernel.org>, 1579567540@qq.com
+Cc: Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, kernel <kernel@pengutronix.de>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Shengjiu Wang <shengjiu.wang@nxp.com>, Pengpeng Hou <pengpeng@iscas.ac.cn>,
+ Russell King <rmk+kernel@armlinux.org.uk>,
+ Eric Biggers <ebiggers@kernel.org>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Karl Mehltretter <kmehltretter@gmail.com>, Yixun Lan <dlan@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, devicetree <devicetree@vger.kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ linux-rockchip <linux-rockchip@lists.infradead.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>, Cunhao Lu <1579567540@qq.com>,
+ Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject: Re: [PATCH v2 2/4] can: rockchip: add RK3588 CAN support
+Date: Thu, 02 Jul 2026 18:02:25 +0200
+Message-ID: <3527453.usfYGdeWWP@diego>
+In-Reply-To: <tencent_F077D309CDB6CC4802CC086D8009E29BDF06@qq.com>
+References:
+ <20260702140654.2961561-1-1579567540@qq.com>
+ <tencent_F077D309CDB6CC4802CC086D8009E29BDF06@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319467-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:mkl@pengutronix.de,m:linux-can@vger.kernel.org,m:1579567540@qq.com,m:mailhol@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:kernel@pengutronix.de,m:conor+dt@kernel.org,m:dmitry.torokhov@gmail.com,m:shengjiu.wang@nxp.com,m:pengpeng@iscas.ac.cn,m:rmk+kernel@armlinux.org.uk,m:ebiggers@kernel.org,m:mario.limonciello@amd.com,m:kmehltretter@gmail.com,m:dlan@kernel.org,m:sboyd@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:heiko.stuebner@cherry.de,m:krzk@kernel.org,m:conor@kernel.org,m:dmitrytorokhov@gmail.com,m:rmk@armlinux.org.uk,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-319469-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[pengutronix.de,vger.kernel.org,qq.com];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,iscas.ac.cn,armlinux.org.uk,amd.com,vger.kernel.org,lists.infradead.org,qq.com,cherry.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,kernel];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sntech.de:dkim,sntech.de:email,sntech.de:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,diego:mid,qq.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E10C26F9DE2
+X-Rspamd-Queue-Id: 881A76F9E26
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] NVMEM BD_ADDR retrieval does not reject the unprogrammed flash sta=
-te (BDADDR_NONE / FF:FF:FF:FF:FF:FF).
-- [Medium] is_configured() and get_missing_options() fail to consider HCI_Q=
-UIRK_USE_BDADDR_NVMEM when determining if a device is configured.
---
+Am Donnerstag, 2. Juli 2026, 16:06:52 Mitteleurop=C3=A4ische Sommerzeit sch=
+rieb 1579567540@qq.com:
+> From: Cunhao Lu <1579567540@qq.com>
+>=20
+> Add support for the RK3588 CAN controller by introducing a dedicated
+> model ID and OF match entry.
+>=20
+> The block is closely related to the existing RK3568 variants, but it
+> cannot reuse their match data unchanged. In particular, RK3588
+> encodes RX_FIFO_CNT in bits 7:5 instead of 6:4, so the RX path needs
+> SoC-specific handling.
+>=20
+> The RX FIFO count bitfield difference was found by comparing Rockchip's
+> vendor kernel 6.1 CAN support for RK3568 and RK3588. Runtime testing on
+> RK3588 also confirms that bits 7:5 are needed.
+>=20
+> Enable the existing erratum 5 empty-FIFO workaround for RK3588.
+> Heiko reproduced erratum 6 on RK3588, so enable that workaround as
+> well.
+>=20
+> Keep RKCANFD_QUIRK_CANFD_BROKEN enabled for RK3588, so CAN-FD stays
+> disabled for now. Local testing did not reproduce the two known CAN-FD
+> trigger frames that cause Error Interrupts on RK3568 variants. Instead,
+> RK3588 shows a different CAN-FD failure mode: CAN-FD frames without BRS
+> work in this setup, but BRS with a data bitrate different from the
+> nominal bitrate immediately drives the controller bus-off.
+>=20
+> Reported-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+> Link: https://lore.kernel.org/lkml/20260630164336.3444550-4-heiko@sntech.=
+de/
 
-commit 9ecd7dcbdb800bbe76edbfcc8d48e97314e0cafb
-Author: Loic Poulain <loic.poulain@oss.qualcomm.com>
+I think you might want to drop that above. If anything a Co-developed-by
+would be applicable, but from the (small) size of the change, that also
+isn't really necessary for me :-)
 
-Bluetooth: qca: Set NVMEM BD address quirks when address is invalid
-   =20
-When the controller BD address is invalid (zero or default),
-set the NVMEM quirks to allow retrieving the address from a
-'local-bd-address' NVMEM cell. The BD address is often stored
-alongside the WiFi MAC address in big-endian format, so also
-set the big-endian quirk.
 
-> diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
-> index 04ebe290bc784..06cb787b0559f 100644
-> --- a/drivers/bluetooth/btqca.c
-> +++ b/drivers/bluetooth/btqca.c
-> @@ -723,8 +723,11 @@ static int qca_check_bdaddr(struct hci_dev *hdev, co=
-nst struct qca_fw_config *co
->  	}
-> =20
->  	bda =3D (struct hci_rp_read_bd_addr *)skb->data;
-> -	if (!bacmp(&bda->bdaddr, &config->bdaddr))
-> +	if (!bacmp(&bda->bdaddr, &config->bdaddr)) {
->  		hci_set_quirk(hdev, HCI_QUIRK_USE_BDADDR_PROPERTY);
-> +		hci_set_quirk(hdev, HCI_QUIRK_USE_BDADDR_NVMEM);
+> Signed-off-by: Cunhao Lu <1579567540@qq.com>
 
-[Severity: High]
-Does this safely handle devices with an unprogrammed NVMEM cell?
+Tested-by: Heiko Stuebner <heiko@sntech.de>
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-If a device has an unprogrammed flash state (BDADDR_NONE or FF:FF:FF:FF:FF:=
-FF),
-of_get_nvmem_eui48() will retrieve it without rejecting it, because it only
-checks for all-zeroes:
 
-net/core/of_net.c:of_get_nvmem_eui48() {
-	if (len !=3D ETH_ALEN || !memchr_inv(eui48, 0, ETH_ALEN)) {
-		kfree(eui48);
-		return -EINVAL;
-	}
-...
 
-Then hci_dev_get_bd_addr_from_nvmem() will assign this to hdev->public_addr
-without checking against BDADDR_NONE:
 
-net/bluetooth/hci_sync.c:hci_dev_get_bd_addr_from_nvmem() {
-	err =3D of_get_nvmem_eui48(np, "local-bd-address", ba);
-	if (err)
-		return err;
-
-	if (hci_test_quirk(hdev, HCI_QUIRK_BDADDR_NVMEM_BE))
-		baswap(&hdev->public_addr, (bdaddr_t *)ba);
-	else
-		bacpy(&hdev->public_addr, (bdaddr_t *)ba);
-...
-
-Could this result in multiple devices on the network being initialized with=
- a
-broadcast Bluetooth address instead of being marked as unconfigured?
-
-[Severity: Medium]
-Will this quirk be properly evaluated when determining if the device is
-configured?
-
-Currently, the core logic in net/bluetooth/mgmt.c:is_configured() only chec=
-ks
-for HCI_QUIRK_INVALID_BDADDR and HCI_QUIRK_USE_BDADDR_PROPERTY:
-
-	if ((hci_test_quirk(hdev, HCI_QUIRK_INVALID_BDADDR) ||
-	     hci_test_quirk(hdev, HCI_QUIRK_USE_BDADDR_PROPERTY)) &&
-	    !bacmp(&hdev->public_addr, BDADDR_ANY))
-		return false;
-
-Similarly, net/bluetooth/mgmt.c:get_missing_options() omits
-HCI_QUIRK_USE_BDADDR_NVMEM:
-
-	if ((hci_test_quirk(hdev, HCI_QUIRK_INVALID_BDADDR) ||
-	     hci_test_quirk(hdev, HCI_QUIRK_USE_BDADDR_PROPERTY)) &&
-	    !bacmp(&hdev->public_addr, BDADDR_ANY))
-		options |=3D MGMT_OPTION_PUBLIC_ADDRESS;
-
-While the driver sets both HCI_QUIRK_USE_BDADDR_PROPERTY and
-HCI_QUIRK_USE_BDADDR_NVMEM here, does the core logic need an update to hand=
-le
-HCI_QUIRK_USE_BDADDR_NVMEM independently?
-
-> +		hci_set_quirk(hdev, HCI_QUIRK_BDADDR_NVMEM_BE);
-> +	}
-> =20
->  	kfree_skb(skb);
->
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260701-block-as-n=
-vmem-v7-0-3fe8205ef0a8@oss.qualcomm.com?part=3D8
 
