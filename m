@@ -1,46 +1,47 @@
-Return-Path: <devicetree+bounces-319657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319658-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6LYFO/jmRmpHfQsAu9opvQ
-	(envelope-from <devicetree+bounces-319657-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:32:24 +0200
+	id /5PEAKnmRmo4fQsAu9opvQ
+	(envelope-from <devicetree+bounces-319658-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:31:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 346166FD364
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:32:24 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6548C6FD34B
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:31:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319657-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319657-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319658-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-319658-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 289483004C52
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 22:31:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6EDD3302AD8A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 22:31:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CAA3C415E;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 279583C4546;
 	Thu,  2 Jul 2026 22:30:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85FDC3C3456
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 22:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116D83B27E3
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 22:30:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783031407; cv=none; b=Ai5JCKcEXn1+4VbXyHpx6NbY0qByVYYggik5FBSlmI9L57iKbcN1NhxUMt3MxzXP9w75W5z1x93x/2EtbkJYsFR7gy7dkxKxWSU6AkfWEueJFcF4AM2QKBFIsxmtj3W2zNEF0EUl3stZVEHWhdgcFoB5HwzQ4L/GaM0qPpZVfHo=
+	t=1783031408; cv=none; b=BSDHTIoTPTLBfKpCbvXS+t+NrRbf6qE+PYN7GIve2g2gv06QM3ZRsUmvFiJk/UryaN5LMF7oLN87ED9PuXqJX3FI8w86Pq+fD9S3QOTkm6MrN/WyPACWcT3Wf8B9Z6wF52X/t1vQ1JpgN23T8smEbYjLaSAjqfWtt0uX6l6Nujg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783031407; c=relaxed/simple;
-	bh=wzHE1s+2gX2BTWsN80A15vJGvuGnxkYOLrgZhcQZ1X8=;
+	s=arc-20240116; t=1783031408; c=relaxed/simple;
+	bh=5K0k5aqdkRLabwWM9PyDbKqtaIMA4UE2kiFSaDtcBUo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TjsHZHU7CPljrC7HR2X7dDvfExU4rlB6KcBIY2ayWS2RJMcBiOobiTwfsLxtI4/N3SxIlf+NAwySef1afXwkEJ+FOY170FnendWEtY68zwlJts7ANpVCri2p73ECmrfZb/oPlUBxLpx3pfL/XwC9HkbOmvqxZEp07mye1a2tld4=
+	 In-Reply-To:To:Cc; b=R1G3z5iRCoqre3Uf2xh1EKYjI39m8eezH2vyVOc3aJc9XJ0ouZqlvdj25UgWEQ/ots1jhhYU6MXYXVGpdPoFlUcI2CNnc9PdH3MRB+xSHfHEu/Z93TsVtAZRL8Z/2ALv0RZd81g04uAeps3fZfz39Ohn6QsZgwKtN+AMbSqVab8=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1wfPuh-0007oz-Ls; Fri, 03 Jul 2026 00:29:43 +0200
+	id 1wfPuh-0007oz-OC; Fri, 03 Jul 2026 00:29:43 +0200
 From: Marco Felsch <m.felsch@pengutronix.de>
-Date: Fri, 03 Jul 2026 00:29:26 +0200
-Subject: [PATCH v6 2/4] dt-bindings: vendor-prefixes: Add TouchNetix AS
+Date: Fri, 03 Jul 2026 00:29:27 +0200
+Subject: [PATCH v6 3/4] dt-bindings: input: Add TouchNetix axiom
+ touchscreen
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,7 +50,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260703-v6-10-topic-touchscreen-axiom-v6-2-1aa50ba3bc5a@pengutronix.de>
+Message-Id: <20260703-v6-10-topic-touchscreen-axiom-v6-3-1aa50ba3bc5a@pengutronix.de>
 References: <20260703-v6-10-topic-touchscreen-axiom-v6-0-1aa50ba3bc5a@pengutronix.de>
 In-Reply-To: <20260703-v6-10-topic-touchscreen-axiom-v6-0-1aa50ba3bc5a@pengutronix.de>
 To: andrew.thomas@touchnetix.com, Luis Chamberlain <mcgrof@kernel.org>, 
@@ -76,7 +77,7 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -91,7 +92,7 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	FORGED_SENDER(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-319657-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319658-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -101,36 +102,92 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,touchnetix.com:url,pengutronix.de:email,pengutronix.de:mid,pengutronix.de:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linaro.org:email,bootlin.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,linaro.org:email,devicetree.org:url,pengutronix.de:email,pengutronix.de:mid,pengutronix.de:from_mime,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 346166FD364
+X-Rspamd-Queue-Id: 6548C6FD34B
 
 From: Kamel Bouhara <kamel.bouhara@bootlin.com>
 
-Add vendor prefix for TouchNetix AS (https://www.touchnetix.com/products/).
+Add the TouchNetix axiom I2C touchscreen device tree bindings
+documentation.
 
 Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../input/touchscreen/touchnetix,ax54a.yaml        | 62 ++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 396044f368e7cf0ca1436713ae44f1950259f006..b8450050d7299cea2b5cf6f57fe71f5ead1140c8 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1715,6 +1715,8 @@ patternProperties:
-     description: Toradex AG
-   "^toshiba,.*":
-     description: Toshiba Corporation
-+  "^touchnetix,.*":
-+    description: TouchNetix AS
-   "^toumaz,.*":
-     description: Toumaz
-   "^tpk,.*":
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..d388c41a75dd4d6d6d0e6de0eaef4d493d439a90
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/touchnetix,ax54a.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TouchNetix Axiom series touchscreen controller
++
++maintainers:
++  - Marco Felsch <kernel@pengutronix.de>
++
++allOf:
++  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
++  - $ref: /schemas/input/input.yaml#
++
++properties:
++  compatible:
++    const: touchnetix,ax54a
++
++  reg:
++    enum: [ 0x66, 0x67 ]
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  vdda-supply:
++    description: Analog power supply regulator on VDDA pin
++
++  vddi-supply:
++    description: I/O power supply regulator on VDDI pin
++
++required:
++  - compatible
++  - reg
++  - vdda-supply
++  - vddi-supply
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      touchscreen@66 {
++        compatible = "touchnetix,ax54a";
++        reg = <0x66>;
++        interrupt-parent = <&gpio2>;
++        interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
++        reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
++        vdda-supply = <&vdda_reg>;
++        vddi-supply = <&vddi_reg>;
++        poll-interval = <20>;
++      };
++    };
++...
 
 -- 
 2.47.3
