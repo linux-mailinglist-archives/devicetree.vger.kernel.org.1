@@ -1,189 +1,195 @@
-Return-Path: <devicetree+bounces-319201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319187-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id x8MjE1EyRmpULgsAu9opvQ
-	(envelope-from <devicetree+bounces-319201-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:41:37 +0200
+	id RKt6NaswRmq7LQsAu9opvQ
+	(envelope-from <devicetree+bounces-319187-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:34:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84AFC6F5646
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:41:36 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78CBE6F54ED
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:34:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319201-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319201-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linaro.org header.s=google header.b=YQYaexdT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319187-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319187-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A358A30EDB34
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:34:13 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1C57D30039B3
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:28:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE36047D95E;
-	Thu,  2 Jul 2026 09:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BEBE3431F8;
+	Thu,  2 Jul 2026 09:28:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60CAE3CAE93
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB69A420E87
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:28:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782984799; cv=none; b=Bv2Bf1wAu17BpRqjwZT4+kTXskB9ydp/Uuv1IDqWM/bV1ipYyfbtSu7fU0wuY7jT2l48N1/JYAF9sg2ebXVfM4tp17y5ijRZMez9uapbGp/vyWqfHZ5EeUh1LBORWRGEUMk07rHLTOVxnoTtdi/udQ6q/COsyNQRDzO4uuq3wqc=
+	t=1782984521; cv=none; b=nM7wHbmty6MoRlH9xts83aVk4+87S2PfbVHXd636K2mLZDh7VYQSXK1SkJncpsAtPF+Spiwfm6HNPqKAWwAreXxDMtatA+E3iaru00RuABcrx4HkWQQCAGGykHH3KqsLfwA1rSYmWMaTjb3+KvtiEVh3DdDSZ6Aw2xlyCrsb2oc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782984799; c=relaxed/simple;
-	bh=oaHVnd87z43W7j09tTxLlnmC4YG6JXhvjpcX3CpNAuk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OpGtVX1WcAK1UnNvqdCFVj/8Q8i3XW+u3yHNMxFFMsFHrL9XSYTFyu7+3xMHg/2atMPMgF0GQ+58r6PLr4Xl9/LPHI5RI5dhLP1m+FJnymT3PKJdY4gq1BlToyqkn8UTs+dodo0aTw+6hNnMvgjjfBF00F0WcjHO8Fwo7wD3Rao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.179
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-8453427d3f4so1080833b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:33:18 -0700 (PDT)
+	s=arc-20240116; t=1782984521; c=relaxed/simple;
+	bh=ord1rspkjMh6vVxNgvwjzy4OsLQIgtGKKriwINUPMpY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qx/mLDqWTrwD9mvBLHaLvqBacmdJzwxzakNQVx5kZzRFEFHRy553GmDQk69s9SqGu77KH308fBOZhSfRYHrC8VXamhl92M0MsEfvvD6v+om9oLe0vhPxsFK42YmYuItt5ZYyYx+70xUY5JhzeZprSU5ioJqdajlnKWGbtTxA+cc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YQYaexdT; arc=none smtp.client-ip=209.85.208.180
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-39b1593e87bso1467701fa.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:28:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1782984518; x=1783589318; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:subject:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=r0zPwWUyPadxaQfjwDx9HdrEaUrpGJfxmRrHbmv0dro=;
+        b=YQYaexdTUYAtdzI5NH0jhExR8JRDWYN7NKyityvCvkG0CGq6DxVN2TCob1NOX2EF7L
+         UK4+lVhhbwmZf5FlzNs+XXXsBe9GbNIyC1wbjbFp1s7YeFwAbtGB5PooLThWejdQbL2u
+         LNQIiPgQA5PU1719aXuaJSQAJL0xAfr3cheSEWlWIhVMcBJ5zTyd8fm7s+JsSHaHZ7h0
+         DoHo0/y6SbGxwwIjBa7INa1C9dOHxzAjprJPwsLvVN8sCOb/5YHy7Pw/pnx3YAEp4Vky
+         wAJa+89qHOaqArj4awKg0FHgr7gTWAw43ZeJ7PIXflMnkCUNfqNYIBfq6qCjpa4HN2pp
+         /HEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782984797; x=1783589597;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9xiqnp7i51oc7KGFElhrnKuIK1In1osntTe68gEGmGg=;
-        b=fkbdDIU+lMnBQwoBvCmLqLKP0WzsxtgkTk4LQUsmeAlVZwPowTKLRY5EHIGnctgR07
-         //LWQcGTHiOsHnaZhQdhF5dOvXyswqAxrMrBXImHInbY/jFbgstvmGDCBJhfrXWEqct1
-         SLfPifbU4Kkzw48Ow6sq4y5edy0zTAJ9YbHOFpcTd1mSFKlGlZcTRBTpz1W9Si5EqxIg
-         O1+gQrOTz21ibZPVp9Y96zwJhQahnbLva2Y4FmjGBfDlla1YSf7rniqMZzM6cIp2eIik
-         t8eBxN29AEI1+JRqucwBfg8Squke+ujzZSkk5XqJndQFU+1U0k7C7bnuJkcQQ0XVdQJp
-         xQRA==
-X-Forwarded-Encrypted: i=1; AFNElJ/bMQxaNtZrndtDFIh0ulEM0w6mL1TMOM1sIPlfWaEqFwGYUBjVsgHT30b40j69CgtxGPq7jSSc9b5k@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSexG8sEZ0VtOunjH6RFG5f2SyHs1DbkTlDxx2aAUDHt8rpYsd
-	U6Z1tIOgTNhukaKaKxm7FDXLRSaQaNjmV5/MaKFp5y4kQVdU7mkb+KQkDKNktBz4gjk=
-X-Gm-Gg: AfdE7clU3jdw6EPgIVOof7JTd8BXkIxyLVi9tzR4HNcAp9hl/2rvpWwTp1BIjR/JmpW
-	cCwCxnCSpHchfWjJg5KbJCaorkrcno8EhV4z+mxzuJv3XbbFXHCK22hvj+UfJZDTHxA91pNJ3i4
-	QiNJ16uaAVSE7iqzIJrp6EZcBcL9V1UvdDvjUn3W7RE/MTFDKFviZZDbQnnfVN6ILbM29GyK0fW
-	zQE0NnsYyGR4SbuE3RXdZ//6KGas3PoxsY2vUyJujnik7pUc3z5TtOtQFJtSs50YpZPZKNaUBrB
-	0dDDhumb31FK1jWmOwZCxRVxEB7Mg6iI5NddzcwTE1rtWlzWTt6WxKeUlliJXt3yGk1LJP80UWk
-	h5RMQWCdSAjurxAZJPhE4WXkIPDWkY3dg/JkIDYDPRTSKqxeMkrGQWMQMMTtT58v4ZA7asK+o8e
-	kIF+SlJcCLJN7R39Zpc5XP38OhTLpRJgfbUhNmqbmyDTL0TJ+e8bk1FA==
-X-Received: by 2002:a05:6a00:cd2:b0:847:8250:2b31 with SMTP id d2e1a72fcca58-847c0988750mr5192854b3a.38.1782984797277;
-        Thu, 02 Jul 2026 02:33:17 -0700 (PDT)
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com. [209.85.214.175])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-847cb97d96fsm1089102b3a.40.2026.07.02.02.33.16
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20251104; t=1782984518; x=1783589318;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:subject:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=r0zPwWUyPadxaQfjwDx9HdrEaUrpGJfxmRrHbmv0dro=;
+        b=kYLalmAthzf5rjMCrLNU8QhPf10p2UIKPtBWQgq6tuGift3JUyto7YMZrovq70SUWP
+         GEReuxqgnN7ECyeX62Ol4wJNRzy7oLRryput24SNPuDlEVPBLNov03gAE9OcQlW+bpcG
+         M3s+EkJ3J/p5HWZsiDxyts3FXlAeG1wzQkO96vMhFJhKZKYVHNCehrvcTRNG8axk9LXW
+         UJgWqSZpzIAyNwrOp2VMxbz+dNRj2QAL9AZeKOT/3o7AxT75eZK38FPzjcYas2RxqksQ
+         QP2y9mvVTL0vGHCUlt8lRUdAcSKV3pFhsHiNfRhgUou97nKxcLMjw1mbTWNCuyGXOzi/
+         6vbA==
+X-Forwarded-Encrypted: i=1; AHgh+RrSM9RDLjEAdcymADuyGkOPbDhb+eJK5oZg76qzNCbBP5muWnyeGfveTS8FZIq6NXAkrzLr4PAR6Sog@vger.kernel.org
+X-Gm-Message-State: AOJu0YztOHhx9lBBbFSjIG3DFcGmoiy+b62YzKfTW8pFucvYYmCzxUPv
+	yerBKGL+WNbbTJJ8arRLflSaA515Bcp5s8vjyqWc3G50J5sus/o9hSatZO5agXoEs/w=
+X-Gm-Gg: AfdE7cnOBo+cZzA3MGYvMvIIuPvpbwj7zyfcOU2UHsJ6kpbG1Z+uR3q5end0Cq8qQVg
+	pB8W4Fdmk0ogxfJUK5WrqZpvagOTZvReGRuytRO5Y/B+SR7iUyMnVLII+0TsxiWO4xb+dqHX8md
+	iRNxyFxqa19bcAVkls2UEakE2cm8SfqzYm8dcy/7QvL4WTewyD3Thw+EDyEnWJK/H1dlokKhSoa
+	LeD4BBjpX8eHuboFQbpEoGJcwzRtfIk1UYUbJOCFiMQf/kPfodFzgVPxfv1NYMMugD1idB/xCRj
+	C8tuuMWjKy4kQtDX3DGb67VH+7cCy01CAhxhpq9Ew4e91XME0vp6LY0ClVfCsyyY7WRUYOLAESk
+	sUAnJRIdt6KrP6MV5IB0PMAuYJusc/3NBlA67JYxQfmFA6LZws2f9d3pXije7bOI1/b3BH+9fyd
+	kofrxJekImbnq62pbns0TSgpAAhxbxj4LyIjMch60gGsqpY4SRwsWXS95pCjSrnPlxGsM=
+X-Received: by 2002:a2e:be03:0:b0:396:67c6:9338 with SMTP id 38308e7fff4ca-39b33c3891fmr7815541fa.0.1782984517842;
+        Thu, 02 Jul 2026 02:28:37 -0700 (PDT)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-39b38004dbasm4980591fa.40.2026.07.02.02.28.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jul 2026 02:33:17 -0700 (PDT)
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2c9ed0c7fc7so18561635ad.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:33:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RpKajyxBpBz9SPiBOJ/tJyeEI+Y3BZ4VdPK+pP22nGmMDdmp2xlH/PI4aAbtyXdZcXW9hphXB3AnMhw@vger.kernel.org
-X-Received: by 2002:a05:6102:dd4:b0:650:aa33:5dd7 with SMTP id
- ada2fe7eead31-73da8519caamr2375794137.2.1782984487236; Thu, 02 Jul 2026
- 02:28:07 -0700 (PDT)
+        Thu, 02 Jul 2026 02:28:37 -0700 (PDT)
+Message-ID: <b8226ab3-2ff8-42db-8110-7947c59cf343@linaro.org>
+Date: Thu, 2 Jul 2026 12:28:36 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260615-rcar-du-dsc-v5-0-aed1a28610e4@ideasonboard.com> <20260615-rcar-du-dsc-v5-3-aed1a28610e4@ideasonboard.com>
-In-Reply-To: <20260615-rcar-du-dsc-v5-3-aed1a28610e4@ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 2 Jul 2026 11:27:56 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUoR_dUG9gHKpaR_53EcS5gm68=gqF3UE3aNApBZ5Wd_g@mail.gmail.com>
-X-Gm-Features: AVVi8Ccj1J5pvkR0bSkeR64npr1GsYH8otXyCLdk_qEnm1EVAcQxHJFY-QII4Ko
-Message-ID: <CAMuHMdUoR_dUG9gHKpaR_53EcS5gm68=gqF3UE3aNApBZ5Wd_g@mail.gmail.com>
-Subject: Re: [PATCH v5 3/7] drm/rcar-du: dsc: Add rudimentary Renesas R-Car
- V4H DSC driver
-To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bryan O'Donoghue <bod@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260523-x1e-csi2-phy-v8-0-a85668459521@linaro.org>
+ <20260523-x1e-csi2-phy-v8-1-a85668459521@linaro.org>
+ <rpnNMsR9GY8gbynzeBO8Zm61JAOq3ubt6sp0x3WDPPwkMAJzlcofECD1kabN-IUoK6sSwP5P6l28UIZLFCOpjQ==@protonmail.internalid>
+ <dda32577-04e0-4507-acaf-a5694f4f31b3@linaro.org>
+ <7c564df8-5c5a-4b43-806e-5e017e5c51db@kernel.org>
+ <ae3a381b-5697-43ee-bdfd-aaf2d22ceedf@linaro.org>
+ <6b6492a4-7610-4dce-a81c-8dc0387a4061@linaro.org>
+ <1c583e24-09db-4d90-8f32-d3d3961188a0@linaro.org>
+ <3e2e6184-e020-49cc-9a4b-609c05aed846@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <3e2e6184-e020-49cc-9a4b-609c05aed846@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319201-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:tomi.valkeinen+renesas@ideasonboard.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:marek.vasut+renesas@mailbox.org,m:laurent.pinchart+renesas@ideasonboard.com,m:kieran.bingham+renesas@ideasonboard.com,m:p.zabel@pengutronix.de,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:tomi.valkeinen@ideasonboard.com,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,m:marek.vasut@mailbox.org,m:laurent.pinchart@ideasonboard.com,m:kieran.bingham@ideasonboard.com,s:lists@lfd
- r.de];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,mailbox.org,pengutronix.de,vger.kernel.org,lists.freedesktop.org];
+	TAGGED_FROM(0.00)[bounces-319187-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:bryan.odonoghue@linaro.org,m:bod@kernel.org,m:vkoul@kernel.org,m:kishon@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:linux-arm-msm@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,ideasonboard.com:email,mail.gmail.com:mid,mailbox.org:email,linux-m68k.org:from_mime,linux-m68k.org:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,linaro.org:dkim,linaro.org:mid,linaro.org:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 84AFC6F5646
+X-Rspamd-Queue-Id: 78CBE6F54ED
 
-Hi Tomi,
+On 7/2/26 11:46, Bryan O'Donoghue wrote:
+> On 02/07/2026 09:31, Vladimir Zapolskiy wrote:
+>>>>> phy-cells = 1 with CPHY/DPHY specified in the consumer, as was Rob's
+>>>>> suggestion will specify the mode.
+>>>>
+>>>> This cell is just not needed, and unneeded complexity should not be
+>>>> added.
+>>>
+>>> I'm going to stick to Rob's initial guidance on this.
+>>>
+>>> https://lore.kernel.org/linux-media/20250710230846.GA44483-
+>>> robh@kernel.org/
+>>>
+>>
+>> Sure, the discussion will be continued abouve v9 of the series, it's
+>> just a chance to do it now. Rob properly pointed out, that the invented
+>> "phy-type" is not needed at all.
+> 
+> I'll quote here
+> 
+>   >> +  phy-type:
+>   >> +    description: D-PHY or C-PHY mode
+>   >> +    enum: [ 10, 11 ]
+>   >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> 
+>   > Perhaps putting this in phy cells would be better because the consumer
+>   > decides on the mode.
+> 
+> A clear instruction which I'm implementing.
 
-On Mon, 15 Jun 2026 at 15:12, Tomi Valkeinen
-<tomi.valkeinen+renesas@ideasonboard.com> wrote:
->
-> From: Marek Vasut <marek.vasut+renesas@mailbox.org>
->
-> The Renesas DSC Display Stream Compression is a bridge embedded in the
-> Renesas R-Car V4H SoC. The bridge performs VESA DSC encoding of up to
-> 8k or 400 Mpixel/s. Add rudimentary driver, which currently acts as a
-> pass-through bridge and allows DSI1 to be operational on R-Car V4H.
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> [tomi.valkeinen: use bridge->next_bridge, minor changes]
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+It has no contradiction with what I've said above, you have a chance to
+discuss the matter now or at v9 time.
 
-> --- /dev/null
-> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_dsc.c
+>> Ther fact is that the whole placement of the CSIPHY to phy subsystem
+>> looks execessive, since you add a driver for a media device, there will
+>> be nothing PHY driver specific left in the CSIPHY driver but name.
+> No, a block with its own pins, external voltage rails, even its own
+> specific votes to scale individual clocks, is a distinct PHY.
+> 
+> There will be no further CSIPHY init sequences getting buried in CAMSS.
+> It is well past time to dispense with the monolith.
+> 
 
-> +static const struct drm_bridge_funcs rcar_dsc_bridge_ops = {
-> +       .attach = rcar_dsc_attach,
-> +       .atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-> +       .atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-> +       .atomic_reset = drm_atomic_helper_bridge_reset,
-
-As of commit 57acfbe5bbc16624 ("drm/atomic-state-helper: Remove
-drm_atomic_helper_bridge_reset()") in drm-misc/for-linux-next, this
-no longer builds:
-
--       .atomic_reset = drm_atomic_helper_bridge_reset,
-+       .atomic_create_state = drm_atomic_helper_bridge_create_state,
-
-> +       .atomic_enable = rcar_dsc_atomic_enable,
-> +       .atomic_disable = rcar_dsc_atomic_disable,
-> +       .mode_valid = rcar_dsc_bridge_mode_valid,
-> +};
-
-Gr{oetje,eeting}s,
-
-                        Geert
+Again, there is no contradiction with what I've said above, so far there
+is no argument to support CSIPHY driver registration within phy framework.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best wishes,
+Vladimir
 
