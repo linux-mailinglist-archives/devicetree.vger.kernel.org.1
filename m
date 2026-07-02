@@ -1,190 +1,165 @@
-Return-Path: <devicetree+bounces-319165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319160-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Qi6GKBkrRmrlKwsAu9opvQ
-	(envelope-from <devicetree+bounces-319165-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:10:49 +0200
+	id k8nrLacqRmrAKwsAu9opvQ
+	(envelope-from <devicetree+bounces-319160-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:08:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91896F516C
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:10:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D6066F5133
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:08:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=realtek.com header.s=dkim header.b="fxS/b4IN";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319165-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319165-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=realtek.com;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319160-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319160-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9B6BA30293FD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:02:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 62A68300736D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47CA2478E42;
-	Thu,  2 Jul 2026 09:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889F343D513;
+	Thu,  2 Jul 2026 09:01:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F6E477E33;
-	Thu,  2 Jul 2026 09:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9E871FB1;
+	Thu,  2 Jul 2026 09:01:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782982926; cv=none; b=dLtOpVFHd8oE+gtKcHbogZnyATuhF9HemanYb9UpxrkRMIzz3YzZt9MO7hS4zRMI7BMrUqf+2aSCkMDd1PxXSpTjSL2VuPLqoG3XqsCRoklk4FlHSobQ9HdzkWW5f83qdpgLhXp4aXrZ1f4+Tf3koVx+tj6kjDNGu4CkHaTX7Wc=
+	t=1782982906; cv=none; b=BBrybQc/axNu3eciXQ4Pyd0f64kH0kgbFNNQ2HZ0O8NRpEBHd9nn7YfHh6FG0RUNDxCe//0uo0ojYdby1+o+R2zmwC4dvVvkt0C6vE99Cji4rB6vK5OkNv5LjXv6AZTcf6cIreRpTv5CYF+RS14MraW/bpz6QWx9ZiYiJtgApJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782982926; c=relaxed/simple;
-	bh=BQIcBSKLVzYmjAIdt2TMKG87dicoa2mn5W/fMgxsnGw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GKpgQ2zEvT3fFZCx4c+K1+Qfz+MAN9A/WdPWL0mJsgW3ApPd7Yy5e4q3ryG3bhzJcoGUE9p1kuxt6lM44s2FONL1zLY+9rs1T1M4Rt/l/MM+ZVQgm8um4nlto+r3xSFIhU31tpoYIMYpToGtFZLsw+/Y/8RKP1Ezw56Ws65HqpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=fxS/b4IN; arc=none smtp.client-ip=211.75.126.72
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 66291H5x81817137, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1782982877; bh=Eds8QyswXTlnDrDvsr5ORmWya8hWpTklhuTq3QsQfaw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=fxS/b4INAH2nnnozIW5X7tzrnaI10a28ehO/n0+GSFPAdUQOCSqbiINIAxGB9fx8L
-	 TSjaLEfudTznogRVqd7fCo6ts7PWiJB4yW1PsBVnLJfroxMqI3eSyINluO/xVCFway
-	 qokbXY2qD6+gzMXnyFB6tKi/ur55FVQ5vAxLIxCPBI+Th2f6u7cUI1/7KzkpG6cgIb
-	 837QgjMj0tDl1vy8negcK2VroeEBgh4SPAkNJ45TWtZKdHu1o4u0Vr3ZbcQh8MHNSX
-	 vd9tdBQjNza6ebcOrCZQw78IaW3Y6WsK55/mQ+RNhYP+5zqhe0Z3Emy8WOmbs43QJo
-	 duivLdDRbhiwQ==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.29/5.94) with ESMTPS id 66291H5x81817137
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 2 Jul 2026 17:01:17 +0800
-Received: from RTKEXHMBS03.realtek.com.tw (10.21.1.53) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 2 Jul 2026 17:01:17 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS03.realtek.com.tw
- (10.21.1.53) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Thu, 2 Jul 2026 17:01:17 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <linusw@kernel.org>, <brgl@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <afaerber@suse.com>,
-	<mwalle@kernel.org>, <andriy.shevchenko@intel.com>, <tychang@realtek.com>
-CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-realtek-soc@lists.infradead.org>, <cy.huang@realtek.com>,
-	<stanley_chang@realtek.com>, <eleanor.lin@realtek.com>,
-	<james.tai@realtek.com>, Bartosz Golaszewski
-	<bartosz.golaszewski@oss.qualcomm.com>
-Subject: [PATCH v5 4/4] arm64: dts: realtek: Add GPIO support for RTD1625
-Date: Thu, 2 Jul 2026 17:01:15 +0800
-Message-ID: <20260702090115.2564318-5-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260702090115.2564318-1-eleanor.lin@realtek.com>
-References: <20260702090115.2564318-1-eleanor.lin@realtek.com>
+	s=arc-20240116; t=1782982906; c=relaxed/simple;
+	bh=Ci5DBXRn+5kdYcV4syoJ/nlrfafCD6IBrci7rpIgT7k=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=AewDd6Xt2CsL1fi9vgZ1IBQLtJmGZubhwnwGN5uCwdNwM+a1ZZlDflLyFCI87kZ3dzhXI7gMCCwrMo/appy4Ld7nk+vhVEDpR14SZ2IgykFQEe26HKZLTmnV50px5N6BMwhe0vshHq8o0Nm+skUNOu9bATU8+DN0bsDRKgdUinw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.200.13
+Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
+	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id E3D852003DD;
+	Thu, 02 Jul 2026 11:01:34 +0200 (CEST)
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1wfDIc-005iZG-2i;
+	Thu, 02 Jul 2026 11:01:34 +0200
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1wfDIc-000000005AH-3BGi;
+	Thu, 02 Jul 2026 11:01:34 +0200
+Message-ID: <1ef8b2e4ab588aac1dae737541240e698fcf26a7.camel@pengutronix.de>
+Subject: Re: [PATCH RFC v5 05/12] clk: zte: Add Clock registration
+ infrastructure.
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Stefan =?ISO-8859-1?Q?D=F6singer?= <stefandoesinger@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Brian Masney
+ <bmasney@redhat.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Date: Thu, 02 Jul 2026 11:01:34 +0200
+In-Reply-To: <84C4450E-7355-48CD-BCBB-CF619C27EBED@gmail.com>
+References: <20260628-zx29clk-v5-0-79ff044e4192@gmail.com>
+	 <20260628-zx29clk-v5-5-79ff044e4192@gmail.com>
+	 <c59fab242716c80250a66707d7ccaaf243a85aac.camel@pengutronix.de>
+	 <84C4450E-7355-48CD-BCBB-CF619C27EBED@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
-	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-319165-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:brgl@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:afaerber@suse.com,m:mwalle@kernel.org,m:andriy.shevchenko@intel.com,m:tychang@realtek.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:eleanor.lin@realtek.com,m:james.tai@realtek.com,m:bartosz.golaszewski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319160-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_RECIPIENTS(0.00)[m:stefandoesinger@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bmasney@redhat.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,realtek.com:dkim,realtek.com:email,realtek.com:mid,realtek.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,pengutronix.de:mid,pengutronix.de:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E91896F516C
+X-Rspamd-Queue-Id: 1D6066F5133
 
-Add the GPIO node for the Realtek RTD1625 SoC.
+On Di, 2026-06-30 at 11:53 +0300, Stefan D=C3=B6singer wrote:
+> Hi Philipp,
+>=20
+> > Am 30.06.2026 um 11:27 schrieb Philipp Zabel <p.zabel@pengutronix.de>:
+> >=20
+> > I think the MFD driver is unnecessary overhead. Can't you just keep the
+> > reset controllers as auxdev and use of_platform_populate() to create
+> > devices for clock-controller child nodes such as syscon-reboot?
+>=20
+> MFD for top and matrix was the suggestion of Conor:
+>=20
+> https://lore.kernel.org/linux-arm-kernel/20260618-fantasy-estimate-6c52ed=
+bc6890@spud/
+>=20
+> To quote:
+>=20
+> > I think aux bus makes perfect sense when you have a clock/reset
+> > controller, but once you start expanding past that and you have reboot
+> > or hwmon or hwspinlock then mfd starts to make sense.
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
----
-Changes in v5:
-- None.
----
- arch/arm64/boot/dts/realtek/kent.dtsi | 39 +++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+Note how the example Conor gives is introduced with:
 
-diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/realtek/kent.dtsi
-index 8d4293cd4c03..228b82dfdb7a 100644
---- a/arch/arm64/boot/dts/realtek/kent.dtsi
-+++ b/arch/arm64/boot/dts/realtek/kent.dtsi
-@@ -151,6 +151,37 @@ uart0: serial@7800 {
- 				status = "disabled";
- 			};
- 
-+			gpio: gpio@31000 {
-+				compatible = "realtek,rtd1625-iso-gpio";
-+				reg = <0x31000 0x398>;
-+				gpio-controller;
-+				gpio-ranges = <&isom_pinctrl 0 0 2>,
-+					      <&ve4_pinctrl 2 0 6>,
-+					      <&iso_pinctrl 8 0 4>,
-+					      <&ve4_pinctrl 12 6 2>,
-+					      <&main2_pinctrl 14 0 2>,
-+					      <&ve4_pinctrl 16 8 4>,
-+					      <&main2_pinctrl 20 2 3>,
-+					      <&ve4_pinctrl 23 12 3>,
-+					      <&iso_pinctrl 26 4 2>,
-+					      <&isom_pinctrl 28 2 2>,
-+					      <&ve4_pinctrl 30 15 6>,
-+					      <&main2_pinctrl 36 5 6>,
-+					      <&ve4_pinctrl 42 21 3>,
-+					      <&iso_pinctrl 45 6 6>,
-+					      <&ve4_pinctrl 51 24 1>,
-+					      <&iso_pinctrl 52 12 1>,
-+					      <&ve4_pinctrl 53 25 11>,
-+					      <&main2_pinctrl 64 11 28>,
-+					      <&ve4_pinctrl 92 36 2>,
-+					      <&iso_pinctrl 94 13 19>,
-+					      <&iso_pinctrl 128 32 4>,
-+					      <&ve4_pinctrl 132 38 13>,
-+					      <&iso_pinctrl 145 36 19>,
-+					      <&ve4_pinctrl 164 51 2>;
-+				#gpio-cells = <2>;
-+			};
-+
- 			iso_pinctrl: pinctrl@4e000 {
- 				compatible = "realtek,rtd1625-iso-pinctrl";
- 				reg = <0x4e000 0x1a4>;
-@@ -161,6 +192,14 @@ main2_pinctrl: pinctrl@4f200 {
- 				reg = <0x4f200 0x50>;
- 			};
- 
-+			iso_m_gpio: gpio@89100 {
-+				compatible = "realtek,rtd1625-isom-gpio";
-+				reg = <0x89100 0x30>;
-+				gpio-controller;
-+				gpio-ranges = <&isom_pinctrl 0 0 4>;
-+				#gpio-cells = <2>;
-+			};
-+
- 			isom_pinctrl: pinctrl@146200 {
- 				compatible = "realtek,rtd1625-isom-pinctrl";
- 				reg = <0x146200 0x34>;
--- 
-2.43.0
+> > Because I messed up stuff in the past, reset-mpfs.c has both aux bus
+> > and mfd probing in it, [...]
 
+So while, yes, this is possible, I'd like to avoid it if not necessary.
+
+> I can go either way. To me aux vs mfd seems like a distinction without a =
+difference.
+
+I think that's because the main difference doesn't apply here:
+
+MFD comes from aggregate devices where a shared register space
+accessible via a physical bus (which we have) can be partitioned out to
+child devices. Reset controls are often just individual registers or
+even bits scattered around the CRU register space, so we can't make use
+of the MFD framework's IO/IRQ resource partitioning infrastructure at
+all.
+
+Auxiliary devices were introduced to separate functionality of a single
+device into subsystem drivers (which applies here) for devices that are
+not just controlled via direct register access, for example via a
+firmware interface. That's not the case here, we usually can just share
+a regmap.
+
+Either way, I'd prefer the reset driver to not carry more boilerplate
+than actual reset code, so if you can either put all of them into a
+single auxiliary_driver or into a single platform_driver, I would be
+happier.
+
+regards
+Philipp
 
