@@ -1,216 +1,176 @@
-Return-Path: <devicetree+bounces-319323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319326-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8ArKJZVHRmq1NgsAu9opvQ
-	(envelope-from <devicetree+bounces-319323-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:12:21 +0200
+	id w9FvI9xJRmpUNwsAu9opvQ
+	(envelope-from <devicetree+bounces-319326-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:22:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CEB26F67ED
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:12:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A4A66F69BE
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:22:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319323-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319323-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XrCTKMKS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319326-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319326-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BF7763018D33
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 11:12:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C4C3730078B8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 11:20:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BF573E317B;
-	Thu,  2 Jul 2026 11:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 709553ED11D;
+	Thu,  2 Jul 2026 11:20:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de [185.203.200.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D77DD3EAC84;
-	Thu,  2 Jul 2026 11:11:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5CF3B442F
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 11:20:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782990719; cv=none; b=mzmofRbXgnwGXqcwf/laixK6m5PuFW2vfmOktXx/1LdHqDuaObp026EtCcTtb+dFaabUeCUROSRBnvx+ez/So2ScVTImUifxI4EwUkJwiFa9d2wYTNCgWrnRx0iLBljNDUP9LTe6DXydUBgwhowCLkS9GmnUjq/+c/t1H2GGPZs=
+	t=1782991245; cv=none; b=giPFjGLa/t4qYy0+fuG4i9AHUhGQI1mnn1HFW22fz6TSU0HedzHv1p5Ru0cArXJI2A5IHf7/wSxAIW8aat4Lsgcy4KrbXH9Be6YF21Wxc+IBC5nvk5ZetR12Jhxi3iS+K08aXQu3AZd2hzuBoLsgQdvrriz/VmEnTrPN+C24ALw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782990719; c=relaxed/simple;
-	bh=cdJr/kOzbXQE8tDPk0CbR1Qy+r4K+Zj0csh//ZnLIak=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dJbjGijtQYasQ+qxB+/ySfTBck+P+0Df01YvZ7U5xsN7CfjhqOYFj4/7GSN9T6jaUnKrPi8gqN+w8ueCpf5b+u6ahOqAxE7CUydtc+GYCeIR/S7OcAFAwvUIj/Varxgz5JRBTfU8e4C8URth2trB16k46IusK42uUhuKGwCo33Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.200.13
-Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
-	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id C89A0200A6D;
-	Thu, 02 Jul 2026 13:11:47 +0200 (CEST)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1wfFKd-005jUk-2D;
-	Thu, 02 Jul 2026 13:11:47 +0200
-Received: from pengutronix.de (ip-185-104-138-148.ptr.icomera.net [185.104.138.148])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 00F2F55E2E3;
-	Thu, 02 Jul 2026 11:11:44 +0000 (UTC)
-Date: Thu, 2 Jul 2026 13:11:43 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Cunhao Lu <1579567540@qq.com>
-Cc: heiko <heiko@sntech.de>, linux-can <linux-can@vger.kernel.org>, 
-	mailhol <mailhol@kernel.org>, kernel <kernel@pengutronix.de>, robh <robh@kernel.org>, 
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	linux-rockchip <linux-rockchip@lists.infradead.org>, linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/3] can: rockchip: add RK3588 CAN-FD support
-Message-ID: <20260702-accelerated-shoebill-of-elevation-76f536-mkl@pengutronix.de>
-X-AI: stop_reason: "refusal"
-References: <tencent_C422347432620914231601BC882C7E604D08@qq.com>
+	s=arc-20240116; t=1782991245; c=relaxed/simple;
+	bh=Sqw8D9ezrF+3PH75GoDhMjTdZtP6AMaBZDJvAG8uucI=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=PwL2pbIqL617dZ66eANXHnQji7Vypkozhf2kggG8hERrCYPiP4PB3RGV3yEL+hJU9J/ga09UNV104gZ8SiR66uX3gll8Z+QturBpBEcdeIc8S2fmpq/BbXV6d2SYtym8oqIgOrvJXES+07t/GlLSbQs5TG82MjrTxON7FZsEIwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XrCTKMKS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6585A1F000E9;
+	Thu,  2 Jul 2026 11:20:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782991244;
+	bh=rDVpU5hVsxexcZEb9VIKROWXnzpTkE7Yf2aGGMorG3Q=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=XrCTKMKS75Xk3ZnhY+DNB+xxBOcxq3xANCot0zdyG/9Ie5AKRnBlxFy0VfRidG+UM
+	 mMXuXiBfcgS4uvpI16UkVg2y/YYcgOIND+pAa0w0fydKK8BFvsBPn/lnxyBfhvKTO7
+	 8Qhd+AnY6sXdW5RGG3RZdFfCwKHwzlJkJEgsLBC1f2FHsNe8jp8mVrRdK6GkxekJyl
+	 4JEwqvBHzDZdH7zuoBoRnfAzehmDlIIr00pCn7BZxLajqu1bKJbdH3C/92WsmsgTIp
+	 dzLdftl6ME9zPIxFnlnZHNF4TJ9WpqO+Nx32MhXS0M/RJIz4NuejbryBWel5WJ9Vaa
+	 0+JeVtaM107sw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 5/5] arm64: dts: qcom: sm8650-hdk: add SPMI ADC
+ channels and thermal nodes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Neil Armstrong" <neil.armstrong@linaro.org>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260702-topic-sm8x50-adc5-gen3-v5-5-8169953634ad@linaro.org>
+References: <20260702-topic-sm8x50-adc5-gen3-v5-0-8169953634ad@linaro.org>
+ <20260702-topic-sm8x50-adc5-gen3-v5-5-8169953634ad@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 02 Jul 2026 11:20:42 +0000
+Message-Id: <20260702112043.6585A1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="g3juocogafd37lbu"
-Content-Disposition: inline
-In-Reply-To: <tencent_C422347432620914231601BC882C7E604D08@qq.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.06 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319323-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_RECIPIENTS(0.00)[m:1579567540@qq.com,m:heiko@sntech.de,m:linux-can@vger.kernel.org,m:mailhol@kernel.org,m:kernel@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_TO(0.00)[qq.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-319326-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,pengutronix.de:mid,pengutronix.de:url,pengutronix.de:from_mime]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,lists.linux.dev:replyto,sashiko.dev:url,linaro.org:email,vger.kernel.org:from_smtp,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2CEB26F67ED
+X-Rspamd-Queue-Id: 2A4A66F69BE
 
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Low] Device tree compilation fails due to a missing header file and synt=
+ax errors from undefined parameterized macros.
+- [Low] The unit address for the `pm8550ve_die_temp` channel node incorrect=
+ly diverges from its evaluated `reg` property value.
+--
 
---g3juocogafd37lbu
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 2/3] can: rockchip: add RK3588 CAN-FD support
-MIME-Version: 1.0
+commit 566210e29c0d3e21f9b57c08b13ab044688d190b
+Author: Neil Armstrong <neil.armstrong@linaro.org>
 
-On 02.07.2026 17:23:59, Cunhao Lu wrote:
-> Hi Marc,
->
-> > Is the SoC you're using actually a 'v2' silicon revision? At least on
-> > the rk3568 the downstream kernel has code to read the revision.
->
-> The kernel reports the CAN-FD controller as rk3588v2 rev2.2:
->
->   rockchip_canfd fea60000.can can0: Rockchip-CANFD rk3588v2 rev2.2 (errat=
-a 0x0000) found
->   rockchip_canfd fea70000.can can1: Rockchip-CANFD rk3588v2 rev2.2 (errat=
-a 0x0000) found
->
-> Following your earlier feedback, I have changed the v2 series to use
-> rockchip,rk3588-canfd instead of rockchip,rk3588v2-canfd unless we get
-> more information about RK3588 CAN-FD errata and SoC silicon revisions
-> from Rockchip.
->
-> > Compile the latest https://github.com/linux-can/can-utils/ and test:
-> >
-> > $ cangen can0 -I 2 -Li -Di -p 10 -f -g 1 -c32 -b
-> > $ cansequence -rv can1 -f
->
-> I tested with can0 and can1 directly connected. The CAN clock was
-> 200 MHz, and the interfaces were configured as follows:
->
->   ip link set can0 down
->   ip link set can0 type can bitrate 500000 sample-point 0.8 dbitrate 1000=
-000 dsample-point 0.8 fd on
->   ip link set can0 up
->
->   ip link set can1 down
->   ip link set can1 type can bitrate 500000 sample-point 0.8 dbitrate 1000=
-000 dsample-point 0.8 fd on
->   ip link set can1 up
->
-> Without BRS, this test ran for 15 minutes without problems:
->
->   cangen can0 -I 2 -Li -Di -p 10 -f -g 1 -c32
->
-> With BRS enabled:
->
->   cangen can0 -I 2 -Li -Di -p 10 -f -g 1 -c32 -b
->
-> the test only worked when dbitrate was equal to bitrate, for example
-> with both set to 1M. If dbitrate differed from bitrate, the
-> controller went bus-off immediately.
->
-> So my current conclusion is that CAN-FD itself works on RK3588, but the
-> support appears incomplete: using a faster data phase with BRS does not
-> work in my setup.
+arm64: dts: qcom: sm8650-hdk: add SPMI ADC channels and thermal nodes
+   =20
+Add the SPMI ADC channels on the PMK8550 SPMI5 ADC3 for the other PMICS on
+the system. The thermal nodes are sorted by the sensor channel to be
+coherent with the system thermal nodes ordering.
 
-Then CAN-FD is broken. :/
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dt=
+s/qcom/sm8650-hdk.dts
+> index eabc828c05b4c..3a4a27e528c5f 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+> @@ -220,6 +220,92 @@ platform {
+>  		};
+>  	};
+> =20
+> +	thermal-zones {
+> +		skin-thermal {
+> +			thermal-sensors =3D <&pmk8550_vadc ADC5_GEN3_AMUX1_THM_100K_PU(1)>;
 
-Maybe in a later patch we can hack something, to allow working
-configurations.
+[Severity: Low]
+Does this device tree compile successfully with these changes? It appears
+parameterized macros like ADC5_GEN3_AMUX1_THM_100K_PU(1) are being used
+here, as well as ADC5_GEN3_DIE_TEMP(1) later in the patch, without their
+definitions being included.
 
-> This looks different from the issue described by the current
-> RKCANFD_QUIRK_CANFD_BROKEN comment. That quirk is about specific
-> CAN-FD frames triggering Error Interrupt or Error-Warning during
-> reception. In my test the non-BRS CAN-FD frames work, while the failure
-> is tied to using BRS with a data bitrate different from the nominal
-> bitrate, which immediately drives the controller bus-off.
+Could this file be missing a header inclusion (such as qcom-adc5-gen3.h)
+that would prevent a compilation failure during make dtbs?
 
-Can you update the description of the quirk for the rk3588 and add how
-to reproduce it?
+[ ... ]
 
-> Given this result, should I still keep CAN-FD disabled for RK3588, or is
-> it acceptable to enable CAN-FD but document that BRS with a faster data
-> phase is currently not working?
+> +	/* PM8550VS_E Channel nodes */
+> +	channel@403 {
+> +		reg =3D <ADC5_GEN3_DIE_TEMP(4)>;
+> +		label =3D "pm8550vs_e_die_temp";
+> +		qcom,pre-scaling =3D <1 1>;
+> +	};
+> +
+> +	/* PM8550VE Channel nodes */
+> +	channel@503 {
+> +		reg =3D <ADC5_GEN3_DIE_TEMP(PMK8550VE_SID)>;
 
-Please keep it disabled for now.
+[Severity: Low]
+Does this unit address match the evaluated reg property?
 
-regards,
-Marc
+If PMK8550VE_SID evaluates to 8 on this board, the reg property resolves
+to 0x803 instead of 0x503. This mismatch would trigger a unit_address_vs_reg
+warning during dtbs_check validation.
+
+> +		label =3D "pm8550ve_die_temp";
+> +		qcom,pre-scaling =3D <1 1>;
+> +	};
 
 --=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---g3juocogafd37lbu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCakZHbAAKCRDMOmT6rpmt
-0kH7APkB+Ph02O8jbLwNPVHdiuMu717y5tk5YAdnacU9kEQ/+gEAieWkfM/cPVcW
-4Yv+JL1RKIjpy4cM0fRvq9mHrjox3QQ=
-=m2rP
------END PGP SIGNATURE-----
-
---g3juocogafd37lbu--
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702-topic-sm8x=
+50-adc5-gen3-v5-0-8169953634ad@linaro.org?part=3D5
 
