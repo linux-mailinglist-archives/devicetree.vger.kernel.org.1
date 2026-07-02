@@ -1,107 +1,107 @@
-Return-Path: <devicetree+bounces-319206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319203-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id V4C3HmsyRmpiLgsAu9opvQ
-	(envelope-from <devicetree+bounces-319206-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:42:03 +0200
+	id mM/AEDQzRmqZLgsAu9opvQ
+	(envelope-from <devicetree+bounces-319203-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:45:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB62B6F565C
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:42:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ABBA6F56FF
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:45:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b=jNcSSpFL;
-	dkim=pass header.d=ti.com header.s=selector1 header.b=otS6HTO0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319206-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-319206-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=ti.com header.s=proofpoint-05-2026 header.b=GNciXtZy;
+	dkim=pass header.d=ti.com header.s=selector1 header.b=m1FYYSqG;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319203-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319203-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=ti.com;
 	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EE67730FD263
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:34:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B04ED31D7A66
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7B247DF82;
-	Thu,  2 Jul 2026 09:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D02A47DD4F;
+	Thu,  2 Jul 2026 09:33:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0002e601.pphosted.com (mx0b-0002e601.pphosted.com [148.163.154.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997DD47DD65;
-	Thu,  2 Jul 2026 09:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 599DC47D956;
+	Thu,  2 Jul 2026 09:33:22 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782984809; cv=fail; b=uCIiW15v7QUm3zAl9u6qDt7BUdzKC/95hlx3LfoTMsCHLJ+G5FskksBSaO5pQyUfNBb+Vvl6pc0cwbo1orWXKhCq86E42DBIxo2dNoX83gquoOvGT+ZgTuKTNuStquSqS+AWVjxlFGg9yf4RwyK4xuyOuhFZXYVKQBzrmeWFNUM=
+	t=1782984804; cv=fail; b=f6quBJmQrfVqGWO5/oCnUcd8/utL9RwErAFp5MSQYJc9rGEUhttQuIXAO5CkcvuL5QxTWSl4dfHxg9A/R+xPpduHX4guEpTBBkWLJ+2klOufKqQXleuuOItG3Lw8UHSkne3AHNK4HE2v4bxaJVpxc6dAuJOF193KpIFAgXUNuZE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782984809; c=relaxed/simple;
-	bh=hynBnfuzU73z0g8p9HRrl20Mwq5aZhffXr6KwViNTeo=;
+	s=arc-20240116; t=1782984804; c=relaxed/simple;
+	bh=RIQbSwii5WA6BTgNOUnYy1xULBiu/Dw4rArPWjhkOTA=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=m25NXuKgn0QxIv9NBNbhzMwOI/Co3Go67oOcAFckeJOu6GFoyQuCWwI6n1rKPUvXxJfnSgYsXyNJR6z5jUI2UqZpsIp+Bf5NFfkqX3M8OUcLkNSTkrwl8HPDUBtnDA5HhqYl+CKPS6si0Ie6X6qOrhcBwxM6H+fcUM82gd9b/uk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=jNcSSpFL; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=otS6HTO0; arc=fail smtp.client-ip=148.163.154.28
-Received: from pps.filterd (m0374956.ppops.net [127.0.0.1])
-	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66295SFK2028490;
-	Thu, 2 Jul 2026 04:32:54 -0500
+	 MIME-Version:Content-Type; b=lSTJo3tuuf5uhnaSlUMF++0BXC73a4kX+/m1fY5e+owlWy+R3ISH1BTJCh4ee+xuZOmnouTp6AqYwLU2GjoeR60/mRgpv1HcVtp48vmCnlpczgHAfteRP5FSZ62P8cm5XikfiOpJqbcsxV7ZrU8IGc8sm2bYQc7K0WXdpclxRPI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.b=GNciXtZy; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=m1FYYSqG; arc=fail smtp.client-ip=148.163.154.28
+Received: from pps.filterd (m0374955.ppops.net [127.0.0.1])
+	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6628T23R1285542;
+	Thu, 2 Jul 2026 04:33:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
 	:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=
-	proofpoint-05-2026; bh=fsjiWethRlG4rzb1X9BsBbunsLIv28hcJ4BVZt5/G
-	QM=; b=jNcSSpFLZz5dAG5ykwwGqLqoXwyqZejop16JlwtnXBSKWmbxJK9dwpcb3
-	iV6zLZWkLGguGuEOstUatWo3Icg/g3vV8zSaLm9oTnYRRi0ttK4clIYi2WQS7Rwo
-	uzL5d4X3CSkDSeikwVe3uAAUelsGq2opfHVNA6Wah4lRUL+veTzgq1ny4G0BytSN
-	jW7dc2dhg+eVnAQj9R6m1v8ongOfW1DjYrx/idygy+BahUlbgbevZV1z5ES637jm
-	F6fOnj/7AVHv34f6Icd5vwZmEeP6fXAU4pnCZrBNebwTyk9R50uoSP91jl03h7+6
-	pm3iqH9FzpZWNu9lkhlbJvV7GyVnQ==
-Received: from bn1pr04cu002.outbound.protection.outlook.com (mail-eastus2azon11010042.outbound.protection.outlook.com [52.101.56.42])
-	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4f5n23g3v9-1
+	proofpoint-05-2026; bh=lU56bt1IafO6c2cPEFE7TVbu9D4WgkcyF0ebQRClu
+	g0=; b=GNciXtZyqnhL7B/3dcAgXC4zDLV93M0a2Ny063qHx4tqc4H6EAiLnG+2Z
+	AygiEYwYlrqJhfuP6olSE+gLlyEAEhn7LukaYv4dbVJIGRQNxLm0aKHTDUunyG00
+	VbCBIvaLl+CyabrwsZJpiDced5qZ2MPwJ9ScEB1O6EgF1VhHYZX2cV/rY31nv3QE
+	L2sOhxqrEPx7RibJDPpc935nRhn/pD3DbzDUZPp/m0M5FZFdnBJDrJhpSzm5HekB
+	yyf2x/4/DHi71rvnPOVjyUe82Tce80ckdDl5mVUWciF9gy92y6Yj04N3LPmaWVMG
+	nzPEy9Luztd0unLmUetQW/syf3DQA==
+Received: from sn4pr0501cu005.outbound.protection.outlook.com (mail-southcentralusazon11011031.outbound.protection.outlook.com [40.93.194.31])
+	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4f5fvyhtbh-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Thu, 02 Jul 2026 04:32:53 -0500 (CDT)
+	Thu, 02 Jul 2026 04:33:02 -0500 (CDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DL1+2dJGVQ3ShH4KmxLOHi7TbifN3AywZprwQF+y+rY2aU3HxZ0S+nXWGtB2Cn7/cgybe8qznRtgflvrJMR4P8xVgFkVyUlXr4x0T+NszkU6W8cA/0qdeCLgQypXRy8BMPgZXMLbbQrhTDXLPKxNSIjE7cCYG7adN3yCdpRlyJ6cmlkR1KzAoL9xc3ZapQIAC94jZifBsF2QQwnRyvoGKKf8giqNNM5VX1zH4w88s+eivYiXzqTb9BcrrYL8bPvEOnKO8+E8EGx+PWCoBUsjLedxidcRRu3HB99bxk+fSjmDYPFGaXIur0hefrHBPCP47S597rMG3stP6HpwoHX0gA==
+ b=hSyZqr78flvO5KVxzFgqnt78lQjylzWBHTRKPtgqaHziAy34v26E3jsRqMc23vJxOTBOThygmCqDA2gTu+W1OReB1ehzVIDo2ogxwmVrdhoShk+ftCLUpSYkc5DHTlWp6ng8FG/HLJPXY+08asekiWdKG/f+C1bVZmXf5o5SrtiOL4aDZ9h0f0yYECkH3u/Rv8waH2xpl8WMdlEIhavH2eMfLoQJezNC/6P6j+4qI3WFnzpM0W+z4gnubhsKdDZ4batShaqBy8Wgo+Q/AbpANAQvH+CpBjIHCoyBNKuVKci71BByboXvIxKmGgBjqfYT8ZGvXDGMvnH9Y6HgmSd1Bg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fsjiWethRlG4rzb1X9BsBbunsLIv28hcJ4BVZt5/GQM=;
- b=m3NKiinWvzz5kUbHNI5sNP1tldLNIGlKEzlfu1z8CtNyRooN8t0Btr9tq57vEcTGkcS9P3fqbcTPbr8ibM9wFmFNC+VqSCUqBG8JjHkZgj9om/HIAUkELHennDBrO99PN5p2GkAEhiibfiaOIGKh/036KVaplNfLd1J9To26leJE4noOx9VRbIv1AZ2ITBVDiXVHlOSkKW8T4Q1ift0R9DScfZdl+ibihinTb8fAlrPSqS27GbcRMXmeIc09Q5dE6jndTgG2IRAs1u6vtVTOgiVGy/ghet4izm8757VjCAMaf+IngewsCxloBnO6F75GXuLknHctSS/ZB/yIgbUqwg==
+ bh=lU56bt1IafO6c2cPEFE7TVbu9D4WgkcyF0ebQRClug0=;
+ b=saBFTioH8RQnT2QcHWa3OzdghE5CQbz6mQzoaxuo2WcdyCtkItgvgOzwYMk+ZmmhZRFjM2CSAdxgSpTcALTsjWhEENPp9+cbb4Gqu00XMvxeWuBubrqEprHLDX7IdUUn3pz8zRoDjsmjTVpTujVMBnX+iwYjN9oOZNSpeFAxvUICq+TpnuRRBYN2uEvCfPCoTFMc3WEk1y9NcDNj+ASH3RojCzXton4xRQUpzN8FjtZmpWHCwsXgmSs8MnqyxWDfeqJcObBsp0V3BkZqXlxfwmUH3Txc7rF5GezuCuxB95qV/SNaId8Uw8+5w1Ns/gQ1zM+EutmdfAU2mMSEu/iA6Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=lists.linux.dev smtp.mailfrom=ti.com;
+ 198.47.23.195) smtp.rcpttodomain=lists.linux.dev smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fsjiWethRlG4rzb1X9BsBbunsLIv28hcJ4BVZt5/GQM=;
- b=otS6HTO0M5y3U+mWlrwYuis1nftx/PshCv9kvvVZ6YJWZKCiqOCboy3RSX5jV0w5sKx0IBfMGwQS9h1OpuBufes2fsyUXPSC8ADjuyI16IPhp1NGzCrlrcP6ovBVVX05WtHhKeZ9+2cRbfdf3DWFGXrdH6LrWjEkTNK0lUu5e0I=
-Received: from SJ0PR13CA0169.namprd13.prod.outlook.com (2603:10b6:a03:2c7::24)
- by CY8PR10MB6538.namprd10.prod.outlook.com (2603:10b6:930:5a::17) with
+ bh=lU56bt1IafO6c2cPEFE7TVbu9D4WgkcyF0ebQRClug0=;
+ b=m1FYYSqGOvYioLNBWcjruOzFAtXH9lKVEO4b5QVVKHyAgOkDX1R4tWrNFgCY/RR7CSCYVJJSsxtFvgL9Zeid6fMztncro8CV7YMxl3hu+gQiRMIAzY/YGc0W6J+3c0aQ5WjfOeKMCXhaxXuFEwUrPtdHK1d8u0r96T4g2W6F6gI=
+Received: from PH8PR05CA0009.namprd05.prod.outlook.com (2603:10b6:510:2cc::26)
+ by CY5PR10MB6023.namprd10.prod.outlook.com (2603:10b6:930:3d::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Thu, 2 Jul 2026
- 09:32:48 +0000
-Received: from BY1PEPF0001AE1C.namprd04.prod.outlook.com
- (2603:10b6:a03:2c7:cafe::61) by SJ0PR13CA0169.outlook.office365.com
- (2603:10b6:a03:2c7::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Thu, 2 Jul
+ 2026 09:32:58 +0000
+Received: from SA2PEPF00001505.namprd04.prod.outlook.com
+ (2603:10b6:510:2cc:cafe::e) by PH8PR05CA0009.outlook.office365.com
+ (2603:10b6:510:2cc::26) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.3 via Frontend Transport; Thu, 2
- Jul 2026 09:32:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ Jul 2026 09:32:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- BY1PEPF0001AE1C.mail.protection.outlook.com (10.167.242.105) with Microsoft
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SA2PEPF00001505.mail.protection.outlook.com (10.167.242.37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 2 Jul 2026 09:32:48 +0000
-Received: from DLEE210.ent.ti.com (157.170.170.112) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.181.6 via Frontend Transport; Thu, 2 Jul 2026 09:32:57 +0000
+Received: from DLEE206.ent.ti.com (157.170.170.90) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Thu, 2 Jul
- 2026 04:32:47 -0500
-Received: from DLEE213.ent.ti.com (157.170.170.116) by DLEE210.ent.ti.com
- (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 04:32:56 -0500
+Received: from DLEE208.ent.ti.com (157.170.170.97) by DLEE206.ent.ti.com
+ (157.170.170.90) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Thu, 2 Jul
- 2026 04:32:47 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE213.ent.ti.com
- (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 04:32:55 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE208.ent.ti.com
+ (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Thu, 2 Jul 2026 04:32:47 -0500
+ Transport; Thu, 2 Jul 2026 04:32:55 -0500
 Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [10.24.51.219])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6629VYb13611021;
-	Thu, 2 Jul 2026 04:32:40 -0500
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6629VYb23611021;
+	Thu, 2 Jul 2026 04:32:48 -0500
 From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
 To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
         <krzk+dt@kernel.org>, <conor+dt@kernel.org>
@@ -113,9 +113,9 @@ CC: <Frank.Li@nxp.com>, <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <imx@lists.linux.dev>,
         <r-donadkar@ti.com>, <devarsht@ti.com>, <u-kumar1@ti.com>
-Subject: [PATCH 08/18] arm64: dts: ti: k3-j721s2: Add overlay for fusion application daughter board
-Date: Thu, 2 Jul 2026 15:01:13 +0530
-Message-ID: <20260702093123.1048575-9-y-abhilashchandra@ti.com>
+Subject: [PATCH 09/18] arm64: dts: ti: k3-j721e-sk: Add overlay for fusion application daughter board
+Date: Thu, 2 Jul 2026 15:01:14 +0530
+Message-ID: <20260702093123.1048575-10-y-abhilashchandra@ti.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260702093123.1048575-1-y-abhilashchandra@ti.com>
 References: <20260702093123.1048575-1-y-abhilashchandra@ti.com>
@@ -130,59 +130,60 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE1C:EE_|CY8PR10MB6538:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32b4f60b-09ef-4e56-832c-08ded81ce141
+X-MS-TrafficTypeDiagnostic: SA2PEPF00001505:EE_|CY5PR10MB6023:EE_
+X-MS-Office365-Filtering-Correlation-Id: abe897b0-55eb-411f-37a0-08ded81ce6ed
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|23010399003|82310400026|36860700016|1800799024|18002099003|56012099006|3023799007|13003099007|22082099003;
+	BCL:0;ARA:13230040|23010399003|36860700016|1800799024|82310400026|7416014|376014|13003099007|3023799007|56012099006|18002099003|22082099003;
 X-Microsoft-Antispam-Message-Info:
-	umxwpZfZ6gJ6oOZWHOhHmneWa9vGSVb5ID7wrNPBJinP0ReohSpt50Gf9wWOsTbo729N+I00RjvR5q8lYDz438Css1+r94ZtFr6sRMgC6VmP07M88H/GUa6TlbWeuLSsri1dRHeRv1H5Dtzk/YUKelKhUKVZhFqyEZ0fjl0GMLASVZgiEboLtPlFR/ybZjgSM5gzWlCdAIH2dHCiIbYWBrUR7IuqNfxdR30sii+gpwb3lczgfYZL2NrwEedOQAsEtvCD0Ft3M8v6NCefKuXj2USUbM7H6lStOarhjCXfUE8fS/1LV56rTOdM5kZMja/KwU91MwFPhMe+ZxoEV2Oy+utCCCGtAiTK9rAv2/0RfPWG6ZRTJqqPGk0RS7j19GxqGn2Lw0DhcGBGPYpzyqLgddXF/94DSTF427FX+XA1Ux8NAUgzLSIsoRvBr0FukOUexJuJRioM/hzil6yjCN61kNWLGL5UMQ2Dk55ytItLsCNtT4cNjIKvtxb1zVFn1f4i7aSX9NR0brFFFr6yu90+PG0VytirJmfJ/iSRncfHAliaZloOdm/ELroJg5c7A2AS9Z6/X8C+VoEJ56RKHb4mjExqmz5EBUokmlJ5aJHQHIDipW677eNQE85jAC+6BRNoQL7OAkXD5J9S37hFB5nObQ==
+	bdy93a13MedK3gI2hqdmC98U3/cVldssC6NvTVqR0pdEbsnlEuLgQpaJjBdPl8vnP0H8cnt+ftwqK0Sumh2uOTBqSFh0hKuc1xnKeb3mP6ccgg6lWBIPj08dnKuMN1THAPd1+MQQz9uCRjOYp7/vXgLC+uW2Eg/E2+ypG4xUQuYEvJFxV+sC92KK5QpjT44wHZlgfflEEHOJTsjGiIopv312jLmtn334lapaWSjQp3g0BmtBeP1dEG1ibtwuG/CkGII0vMSG57lpE1QRt4S5b0QAPP4xi1WnmgwWWxM9Z9PklX02E3LejNrvbQIdeTROOr32fsgB2gUc35mA/tEiaCqR1qyBrnLNovdNxNX7L2WllV8sutr/1BQgCBI1S9AId7Yk2zwfdVm8pLy9xpNrgSjP9A8dIgWz2TCP/t3HCxK/+8VF9q9Fyfaf4Z26kMKHp1hpRJZsJRB9P7gOCVVMy69j10D6haYESkK0/ulkI+hOxkJ0noYqd3EFGmNXn28JsLEFMPgBaSc1Sx4QDF+oIcI1ZxP9fSm6oVG5Gta2o5C7NLJP3NntQKUofosowhy7jFlgCCd8ytmLxy8AcPWuyZ2t5m+8Hf1sGfLsZpOhYDlzKqN8i7po5O/gV0dIULBYGFwgbM5BHqnzQ2BV7eB7ug==
 X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(82310400026)(36860700016)(1800799024)(18002099003)(56012099006)(3023799007)(13003099007)(22082099003);DIR:OUT;SFP:1101;
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(1800799024)(82310400026)(7416014)(376014)(13003099007)(3023799007)(56012099006)(18002099003)(22082099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	sNInSaaOFDMsOu0Zi7M1tc54oB0qUvMfEFKdEkKwmk2QVyuiQioac+spR6Scp6TjtvRy44SM3cFFTQtpF6I9UTzdP1/v3ZOwYdnWunjcadzX6jxhO6ruOpWShkVPsjvRO4mL/FUrVfYNuEz4ZMJ4joczQEiRVBNe0NRK7jbX01Gyvs02HTIVQiuPzNktBo32rlCHU5hZ1cQbJu6I4vhIbiHLDmBYpa617oEhZRXdje1e+TaSqS1V9k1ZKVlw0YrykEdRUCveKmD1VsZZBnKmRX9XNBHrUcAnCpfILmOCKGPvndyVVXkwHtn8kmmTl8WlCO9vQocpFruKTLUkKRxebnhES5knJTDygTMsxPI9iCk7U2/0tdgdVsO0MLZrJVEHI3z7XJzQICyeLgk9drS5XUoVLCkeSpIQp9JgL0p4AvqJI2YBxo5zNSKpZ6BItM4U
+	NQaH1Ygk+b6RDuqkodOKbvyd8E21UMn5jGLq2T3Ry23XJ63A7KzN3U/5zL0GUremx1SDloZkcUqM0oOFgJWq1uC6NJBSGdw7SjzYrX4vhlCOa8/MbYB0yqeCDO131h4Rg8qcyA2HkBi72tf7RFHZE4mZ3kwSNGdr9YxJL2ahITwZCx2BjebrxhKw6x65SIQ5nUMNte7ExANHG96RpWBOQnGMvnqn59B88ysRxKRkGmmCMxur9U0CZvsOLt4u2fNeOdgI+niOJNEqOChRXQAk7fkZXhXVSePCNhQupB8aAu4hd2jL5QkQ/IZ3JLwOMrsT6RQhH6Zaw8F0hdHsmHI99AXRmo994s4jDhQbEwLrUuLrQKkjrvE86IvpJ+kfJ9k68DJzzmr8VBwCdetBgx5P3a7rnnsiRJxmQ+CrYWYR6bG5DBOAjKL478ai+pAN/bm1
 X-Exchange-RoutingPolicyChecked:
-	hc69eXj6gY44FAqP/SHy2qSltmWQMX8O1vRG6Eze32Q5tfLnU0JFFoJ+MBB2VsfEN/NKvfJNBByq0WVgXWMvld9X2qXVva7ycQ9irwat8+jXPaHUSPnzH4s58qaiHrPGy6gMPi4FtON/Fs2rMzkDP8iQjhk7oZ/j6DGAP95B3/JP9Dh7Ri69X130kQiYFoOpCffvO9y0LYA9IQvwq+09JN3SexphMnUApCO+HRMb5LZMbR3GAVp088LYGkmRezrBA0tx+7N1H2+TCXnDZ7wlHvf76DiuL2H5IH74MVHpl4uOpgZOEM2y6JRSAqlLZrKaFRk50t7dWQOo9NF6AH4gRg==
+	nQKhnGrcHHgYL053KCDWHsQqeQ0ZMKZAGnCtp1Z0kF/G5BKw4G99AHSzbgLrmvRdP+yQFEdBxQp7tM5DRrB2SwAHvaUKd2kEhf3/4CAGiKPCv2PIYLTX4IvGazZtGkLEprDpmcnXWi14bZr5mmsJmmT9Y/V+bKKUjSbrInQZvLPIug1+eRU2dP0PPcMGXFNfE5aOSXNYmBMzRYmSD+7CMI2nzaUD4ndVGVgpjwoekRXBnsei/teEW72lDxtNLuBtmg6S3YsviHMtQBqOOngiHBxvDjCtZZMqTWerrzQOib/H/4bmpf7eDnLE/SS1NuwAfuKtOsmeGo3j9YLTi9nFjA==
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2026 09:32:48.1782
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2026 09:32:57.7461
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32b4f60b-09ef-4e56-832c-08ded81ce141
+X-MS-Exchange-CrossTenant-Network-Message-Id: abe897b0-55eb-411f-37a0-08ded81ce6ed
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	BY1PEPF0001AE1C.namprd04.prod.outlook.com
+	SA2PEPF00001505.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR10MB6538
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAyMDA5OCBTYWx0ZWRfX2S7gC4tHWLyS
- IimiNoPO32hF2hdZzMnMALWLsr7JfEkzjwB9Wi+gd5BHDH1DfEuKANGgj8OYLLmNTZOjTOQsfWH
- Vi3OIjtE0+cbUkso9So2vdMRuDiSiuQ=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAyMDA5OCBTYWx0ZWRfX+jJFuvf1Ypsq
- xQYLfINXTy3HoldoT6gnlQbsyTEG5uEW4jmrbvZk1mY2/LRRc6t5stAiDhFAzCIEe7MQ8gl9acS
- mT1slGSsG1aw5uDAcHEp0kiX8c/FxCCDY/qhqDPfGlNLjS5RF4sfXTbMiqKun21p/Co9uLVXLUo
- nv94JFRRMvwsh3cG5zqHYFIa1WheI7r0TPabLvqXGyb/cdDZucw5ouomQ9xyIlOlF5/GG9rwTBn
- QLktSbCwhDqFNZ5D+NOGzhLY5ig1WLHIxQn5wynzz+0X1ljTC9fvYlWCmGBMonVvI22iqCSWCZp
- XwTn+grtol7esqZSex2S7Yt2upmZshYmilq4oFVkxAFRwnr3OzA+7wuug/M0zbhLSoUyQnTlzgw
- 29UKMG9O/RkJrfmJwMk3NwwO7JnrjY5iEw33Anvh4R3YwfBNYsmkrzsocWz2SnmZxhYUJQkbYLj
- bcXsH8DOsYrunE/tvIQ==
-X-Authority-Analysis: v=2.4 cv=DN+/JSNb c=1 sm=1 tr=0 ts=6a463045 cx=c_pps
- a=cLTib2BoJD1e+Gs0wkBYAA==:117 a=WotqVVQAdb04rnGuttW3Kw==:17
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR10MB6023
+X-Proofpoint-ORIG-GUID: Qii04GQQvCh6cf6ZIzT2SXmxS0tuVa7B
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAyMDA5OCBTYWx0ZWRfX1xqykJYsF2GH
+ HE8euSS/TIYXbDfHS9ZNvvGZFLHo+jkWeLIcHR3oC563gVQ9hFGZkvrfwBMKmTJXgZ+ZdJHfy95
+ cPXIBppeVGV9oC7YJZDMVDGvqSkWQosUoPD8XBBnIwUMs6jLwebBSBLMDakllsHKXadiJrcOxTH
+ OoI4v7HDa0LUozO1Lft/FI5fRJFb1hjeNcViMjWlN7txRmRCm1SXBncA/kZbsR274ITHlHDOhTG
+ QnUaN1BnWc5AXzxavF6ZJdyqIl0qUvdwn4hQIUwMEToD5Z/JTZOQmJyU+KPEp7RWewZYNVGchU7
+ gKO8HpcH2TtP2Wbn0yVTxdgPzUcq9EY99cX+nzvpVxb3SIe+0de+uWjL/jmgQ8NsVTMxhzuUHtJ
+ O+Rvj6DUSVIYz1XR9JtvN44YZ//j/u5Gs/ODWPG8QwrY7JSoTJntTUsRi0dbi+9tXCvSIzAN+wD
+ bsK+dzYSqy7PKARioog==
+X-Proofpoint-GUID: Qii04GQQvCh6cf6ZIzT2SXmxS0tuVa7B
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAyMDA5OCBTYWx0ZWRfX17fxUJJHnxLz
+ KVoxlN1lTAsXfpWMfZCDrC2/mfPu75+SL9X/Xazr2crJXcjk64I2qjBotlIYq1CihjSlTJnFSpf
+ kHx4Ln/mwCmIqNnxEFj06O2VmfjEhqs=
+X-Authority-Analysis: v=2.4 cv=T+q8ifKQ c=1 sm=1 tr=0 ts=6a46304e cx=c_pps
+ a=Kwamffe9LshCGz4O85X6AQ==:117 a=f+v6EHfkeJbVwR46tk4DMg==:17
  a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=RAioF0-LDSMA:10 a=s63m1ICgrNkA:10
  a=V5UXEbMT0ywA:10 a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22
- a=jwouBfj2j3NM8CExmVVE:22 a=iY-8cndAAAAA:8 a=sozttTNsAAAA:8
+ a=fPAWb5peG099m5CrUpKH:22 a=iY-8cndAAAAA:8 a=sozttTNsAAAA:8
  a=6Gx5YW5ajZytYw55i70A:9 a=spcmYsBHvreeK_59bKkA:22
-X-Proofpoint-GUID: NtccXHsZ2yKBwdfl6sYyesXQGZ7c7XfI
-X-Proofpoint-ORIG-GUID: NtccXHsZ2yKBwdfl6sYyesXQGZ7c7XfI
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-07-02_01,2026-06-26_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 malwarescore=0 adultscore=0 impostorscore=0
- clxscore=1015 bulkscore=0 lowpriorityscore=0 spamscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607020098
+ clxscore=1015 malwarescore=0 phishscore=0 adultscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 lowpriorityscore=0 impostorscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2607020098
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -191,14 +192,14 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	R_DKIM_ALLOW(-0.20)[ti.com:s=proofpoint-05-2026,ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org,linux-m68k.org,oss.qualcomm.com,arndb.de,fairphone.com,amd.com,lists.infradead.org,vger.kernel.org,lists.linux.dev,ti.com];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-319206-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319203-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[y-abhilashchandra@ti.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -212,13 +213,13 @@ X-Spamd-Result: default: False [2.84 / 15.00];
 	DKIM_TRACE(0.00)[ti.com:+];
 	TO_DN_NONE(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_COUNT_TWELVE(0.00)[12];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,ti.com:url,ti.com:from_mime,ti.com:dkim,ti.com:email,ti.com:mid,svtronics.com:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ti.com:url,ti.com:from_mime,ti.com:dkim,ti.com:email,ti.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,svtronics.com:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DB62B6F565C
+X-Rspamd-Queue-Id: 9ABBA6F56FF
 
 From: Vaishnav Achath <vaishnav.a@ti.com>
 
@@ -226,9 +227,9 @@ Fusion application daughter board [1] can be used to connect multiple
 FPDLink-III based sensors to TI EVMs. The board has two DS90UB960
 deserializers, each of which aggregates input from up to 4x FPDLink-III
 sensors. Up to 8x sensors can simultaneously stream over the two CSI RX
-ports on J721S2.
+ports on J721E SK.
 
-CSI2RX connectivity on J784S4 and J742S2 is the same as that of J721S2,
+CSI2RX connectivity on AM68-SK and AM69-SK is the same as that of J721E-SK,
 hence the same overlay can be reused.
 
 [1]: https://svtronics.com/product/fusion-application-daughter-board-evm577pfusion-v1-0/?srsltid=AfmBOooMsRAd5ibFOGJaKbjsC3j9-loTPK2wWqsqPq2Adj55g1nPluxX
@@ -236,67 +237,76 @@ hence the same overlay can be reused.
 Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
 Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
 ---
- arch/arm64/boot/dts/ti/Makefile               |   7 +
- .../boot/dts/ti/k3-j721s2-evm-fusion.dtso     | 191 ++++++++++++++++++
- 2 files changed, 198 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-fusion.dtso
+ arch/arm64/boot/dts/ti/Makefile               |  10 +
+ .../dts/ti/k3-j721e-sk-fpdlink-fusion.dtso    | 191 ++++++++++++++++++
+ 2 files changed, 201 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-sk-fpdlink-fusion.dtso
 
 diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 7e2ed5c94e79..79ce2ff38cc3 100644
+index 79ce2ff38cc3..b31bf2f305aa 100644
 --- a/arch/arm64/boot/dts/ti/Makefile
 +++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -160,6 +160,7 @@ k3-am68-phyboard-izar-peb-av-15-dtbs := k3-am68-phyboard-izar.dtb \
- dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board-pcie1-ep.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-fusion.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
- k3-j721s2-evm-dtbs := k3-j721s2-common-proc-board.dtb k3-j721s2-evm-gesi-exp-board.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm.dtb
-@@ -283,6 +284,8 @@ k3-j721e-evm-pcie1-ep-dtbs := k3-j721e-common-proc-board.dtb \
+@@ -148,6 +148,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-ep.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie1-ep.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk-csi2-dual-imx219.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk-fpdlink-fusion.dtbo
+ 
+ # Boards with J721s2 SoC
+ dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar.dtb
+@@ -268,8 +269,12 @@ k3-am68-sk-base-board-csi2-dual-imx219-dtbs := k3-am68-sk-base-board.dtb \
+ 	k3-j721e-sk-csi2-dual-imx219.dtbo
+ k3-am68-sk-base-board-pcie1-ep-dtbs := k3-am68-sk-base-board.dtb \
+ 	k3-am68-sk-base-board-pcie1-ep.dtbo
++k3-am68-sk-fpdlink-fusion-dtbs := k3-am68-sk-base-board.dtb \
++	k3-j721e-sk-fpdlink-fusion.dtbo
+ k3-am69-sk-csi2-dual-imx219-dtbs := k3-am69-sk.dtb \
+ 	k3-j721e-sk-csi2-dual-imx219.dtbo
++k3-am69-sk-fpdlink-fusion-dtbs := k3-am69-sk.dtb \
++	k3-j721e-sk-fpdlink-fusion.dtbo
+ k3-am69-sk-pcie0-ep-dtbs := k3-am69-sk.dtb \
+ 	k3-am69-sk-pcie0-ep.dtbo
+ k3-j7200-evm-pcie1-ep-dtbs := k3-j7200-common-proc-board.dtb \
+@@ -284,6 +289,8 @@ k3-j721e-evm-pcie1-ep-dtbs := k3-j721e-common-proc-board.dtb \
  	k3-j721e-evm-pcie1-ep.dtbo
  k3-j721e-sk-csi2-dual-imx219-dtbs := k3-j721e-sk.dtb \
  	k3-j721e-sk-csi2-dual-imx219.dtbo
-+k3-j721s2-evm-fpdlink-fusion-dtbs := k3-j721s2-evm.dtb \
-+	k3-j721s2-evm-fusion.dtbo
++k3-j721e-sk-fpdlink-fusion-dtbs := k3-j721e-sk.dtb \
++	k3-j721e-sk-fpdlink-fusion.dtbo
+ k3-j721s2-evm-fpdlink-fusion-dtbs := k3-j721s2-evm.dtb \
+ 	k3-j721s2-evm-fusion.dtbo
  k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtbo
- k3-j721s2-evm-usb0-type-a-dtbs := k3-j721s2-common-proc-board.dtb \
-@@ -293,6 +296,8 @@ k3-j722s-evm-csi2-quad-tevi-ov5640-dtbs := k3-j722s-evm.dtb \
- 	k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
- k3-j742s2-evm-usb0-type-a-dtbs := k3-j742s2-evm.dtb \
- 	k3-j784s4-j742s2-evm-usb0-type-a.dtbo
-+k3-j784s4-evm-fpdlink-fusion-dtbs := k3-j784s4-evm.dtb \
-+	k3-j721s2-evm-fusion.dtbo
- k3-j784s4-evm-pcie0-pcie1-ep-dtbs := k3-j784s4-evm.dtb \
- 	k3-j784s4-evm-pcie0-pcie1-ep.dtbo
- k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
-@@ -351,11 +356,13 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+@@ -348,7 +355,9 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+ 	k3-am68-phyboard-izar-peb-av-15.dtb \
+ 	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
+ 	k3-am68-sk-base-board-pcie1-ep.dtb \
++	k3-am68-sk-fpdlink-fusion.dtb \
+ 	k3-am69-sk-csi2-dual-imx219.dtb \
++	k3-am69-sk-fpdlink-fusion.dtb \
+ 	k3-am69-sk-pcie0-ep.dtb \
+ 	k3-j7200-evm-pcie1-ep.dtb \
+ 	k3-j721e-common-proc-board-infotainment.dtb \
+@@ -356,6 +365,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
  	k3-j721e-evm-pcie0-ep.dtb \
  	k3-j721e-evm-pcie1-ep.dtb \
  	k3-j721e-sk-csi2-dual-imx219.dtb \
-+	k3-j721s2-evm-fpdlink-fusion.dtb \
++	k3-j721e-sk-fpdlink-fusion.dtb \
+ 	k3-j721s2-evm-fpdlink-fusion.dtb \
  	k3-j721s2-evm-pcie1-ep.dtb \
  	k3-j721s2-evm-usb0-type-a.dtb \
- 	k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtb \
- 	k3-j722s-evm-csi2-quad-tevi-ov5640.dtb \
- 	k3-j742s2-evm-usb0-type-a.dtb \
-+	k3-j784s4-evm-fpdlink-fusion.dtb \
- 	k3-j784s4-evm-pcie0-pcie1-ep.dtb \
- 	k3-j784s4-evm-quad-port-eth-exp1.dtb \
- 	k3-j784s4-evm-usb0-type-a.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-evm-fusion.dtso b/arch/arm64/boot/dts/ti/k3-j721s2-evm-fusion.dtso
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk-fpdlink-fusion.dtso b/arch/arm64/boot/dts/ti/k3-j721e-sk-fpdlink-fusion.dtso
 new file mode 100644
-index 000000000000..f200cdaa1bab
+index 000000000000..dd82ec3accfe
 --- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-evm-fusion.dtso
++++ b/arch/arm64/boot/dts/ti/k3-j721e-sk-fpdlink-fusion.dtso
 @@ -0,0 +1,191 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * DT Overlay for Fusion (FPD-Link III) board on J721S2 and J784S4 EVM
++ * DT Overlay for Fusion (FPD-Link III) board on J721E SK,
++ * AM68 SK or AM69 SK.
 + * https://svtronics.com/portfolio/evm577pfusion-v1-0-fusion/
 + *
-+ * Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
++ * Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
 + */
 +
 +/dts-v1/;
@@ -313,10 +323,9 @@ index 000000000000..f200cdaa1bab
 +};
 +
 +
-+&main_i2c5 {
++&cam0_i2c {
 +	#address-cells = <1>;
 +	#size-cells = <0>;
-+	status = "okay";
 +
 +	deser@3d {
 +		compatible = "ti,ds90ub960-q1";
@@ -349,7 +358,7 @@ index 000000000000..f200cdaa1bab
 +				status = "disabled";
 +			};
 +
-+			/* CSI-2 TX */
++			/* CSI-2 TX*/
 +			port@4 {
 +				reg = <4>;
 +				ds90ub960_0_csi_out: endpoint {
@@ -374,7 +383,7 @@ index 000000000000..f200cdaa1bab
 +
 +	deser@36 {
 +		compatible = "ti,ds90ub960-q1";
-+		reg = <0x36>;
++		reg       = <0x36>;
 +		clocks = <&clk_fusion_25M_fixed>;
 +		clock-names = "refclk";
 +		i2c-alias-pool = <0x5a 0x5b 0x5c 0x5d 0x5e 0x5f>;
@@ -403,7 +412,7 @@ index 000000000000..f200cdaa1bab
 +				status = "disabled";
 +			};
 +
-+			/* CSI-2 TX */
++			/* CSI-2 TX*/
 +			port@4 {
 +				reg = <4>;
 +				ds90ub960_1_csi_out: endpoint {
