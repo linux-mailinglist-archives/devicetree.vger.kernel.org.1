@@ -1,205 +1,180 @@
-Return-Path: <devicetree+bounces-319238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319247-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Iun9Cf5FRmopNgsAu9opvQ
-	(envelope-from <devicetree+bounces-319238-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:05:34 +0200
+	id wUzxE6A7RmrJMQsAu9opvQ
+	(envelope-from <devicetree+bounces-319247-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:21:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52BAD6F6676
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:05:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A05C86F5CE1
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:21:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SWICG2FU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319238-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-319238-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=FrLPXw+2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319247-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319247-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E53A530B1D2D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:52:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 70CF53190F4C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:54:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CB4B47DD57;
-	Thu,  2 Jul 2026 09:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE1AC4949E7;
+	Thu,  2 Jul 2026 09:48:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 362C43ACF05;
-	Thu,  2 Jul 2026 09:47:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D91CF492187
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:48:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782985670; cv=none; b=Sdalrx4nK+yMBPUF1eoLlTqLswgEg4cjxuHR5aEo9Az0uX9I5JJNIxXZL1QD4AJn8EGxD6aQ29xzfydSNFZ7Jb0leCOzovqUyya1RGRwMzEHaepBiFbP6+Lo2vuvVDRnErb3Zz1Ca55dVtSqkruAup7sQb3i69CNa2U7uiAxNV0=
+	t=1782985737; cv=none; b=N1lM/0o5o142a1FHKIJBAY4oFcYtJ2Rntlg4aoTUj09HP/3IylQvubowG5kj1e5m0EylpkzCPtV+ICU2S6sTrkZZaadaf7qFJRNCPF/OGFjJxHgIncjaCqzNabF55p5Uglt/m14EOyNZ/ECdnA/+j3X6MeL+C9eEvODZSTEAliA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782985670; c=relaxed/simple;
-	bh=AjJDbTyP3urKjXLeR+qIGCW6/CagjQkurRnUx8uBdI4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=eYTJ/gIzAFWzVw4jmCYd93C7bRXZTe4yBBXGytkMdzA5OxflNpuQX8SGwOYpffDqbkjRVaeAScPlEpDNVMWUJlmdUS1ovzlIgWBVSeZqg2W+75eQiTR5B+pNVy8xfmA2uzwb2bcDcOwUJu5azrxwltDsLR0ewuomMe2bhLuJ+Sc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SWICG2FU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45E391F00A3A;
-	Thu,  2 Jul 2026 09:47:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782985669;
-	bh=VjuFZCpSMJdYuZF3CEbPVWL5fxI3F8vKUBr9vSaA1tg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=SWICG2FU2+5Qq8JvMnz6j8kGpzDfVtqRfAAbj9JSSsEbR+x/bTu+oCqUPNNtMDE41
-	 2jzU/vsHNe3bJOPpZNCVrvyBCL4TaeFvU4pmdG6NkUhpuar8gFCHKvn+NSvArG+1Vb
-	 YtjN5o01t1Pu7dPfquXnncMHqUxLZPlDKOkUnV5hxZZB8wjmVESUp3496mntRE1n/l
-	 MfECOrSRDYlcLGZTPQT9+wuyXhVE1nSpL2bY4TT8wbOW1ICUAfFnIFHM+GzN+XouxU
-	 FifDLMsz8ksxupmxRa+zmv/ecZXNpeDvcmfYsZll8mVs4iSco0wl9FImswByMs3tt/
-	 1B/FC+nJV2PxA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 06/18] arm64: dts: ti: k3-j722s-main: Add multiple
- channels for CSI2RX DMA
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Yemike Abhilash Chandra" <y-abhilashchandra@ti.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org
-In-Reply-To: <20260702093123.1048575-7-y-abhilashchandra@ti.com>
-References: <20260702093123.1048575-1-y-abhilashchandra@ti.com>
- <20260702093123.1048575-7-y-abhilashchandra@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 02 Jul 2026 09:47:47 +0000
-Message-Id: <20260702094748.45E391F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1782985737; c=relaxed/simple;
+	bh=pkCjxUxbYUpW9jv+c4F6tj4b65UeVhjHS7fRXUcH0zM=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=bFlcWjejRgFSDzNc0so5hNfr1HxW2Ow6LhaO1I3ESVUYJpvwHlZyslaKkcHjdhZINUyC/uknd6F0yCWDyvaU0jr5Hk19u+APWcHWHzvBwS7HLca1IBs2bdFE5nDVR5sBaveuN2LRqiaqvBqs+xDcKCwYFmjuYJWiQb5KugYJOvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FrLPXw+2; arc=none smtp.client-ip=209.85.128.46
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-493b6f1b14bso7066665e9.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:48:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782985734; x=1783590534; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uM2wzMtkmq9BHHKzQp0hMw4qox0NY1UcxIuI00AEiXA=;
+        b=FrLPXw+2iA4eLaYfYyI3CQdqSLdRH0RUsNzQzm9pSVsgmnYXeJtQaomYowdXaG031m
+         WrY8KO7mJMK6Oa2jhOMyUW0TzhfuMFk3k6g4VLqreLLkRYv50RmUai4/l6cNllURta20
+         6y5j2VCerujl54acjG0IWGD8JnwRCd6bkiEa8TCPeeSdOpmvujVjJ/otYHYu0WU8rLfX
+         bIrgD139sTgyfYN/JqDzyKVKAGslZrGpPk92x3YiQzV16wTn18RtE8AMLhdpKVKbjzeE
+         Mg6B+gL9OcjT1FpAAqwCNggM1x/AAtPTmV9T8jN6NHMj1Ya06AWTZstURXoPcJnZxYKs
+         RWaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782985734; x=1783590534;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uM2wzMtkmq9BHHKzQp0hMw4qox0NY1UcxIuI00AEiXA=;
+        b=AzVF504+YhWqMVVeNQ/2lGjf4rEvSjx+xF+Cx2J3XUiF21Y01xTKf+8+oyc/kPta6x
+         7wI5+jTx7d/Pg8oyknBKkPPOAU0Ak5IcLqVG9kiA92RbzanW14jMXTEBfnCbnmj3a4ep
+         xWsjBEzQARseKOKK21Ob7nMAx5jbtCrYgNEQ8jxtj0ogn0YhIT4SOv2pAp4zQ5c0Nrza
+         edg/cOVGusRYBynWn5dwNyXwGNm5taC39w7IDffvy2iMtBrMzWAJ49H3p/pbOcj8jVv6
+         79ZnMeLC4eRKubsZ69yhFOlihZc/QmwKypUKGXrIKe0/zUj31n7jjWq+0b5nL0OasGEX
+         zfvw==
+X-Forwarded-Encrypted: i=1; AFNElJ+gRnSImcuIKyZ06KwkqfcW4vAYjNZXTi4KgYD1agjN/X+FE0OlGHcsntJ4C53ANDVwLY1RAlV+u8jP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJ6YUw0YlKXSvqpKM2AiUSMtTqQl3VpWnjDCnyyfe0cEDuyljq
+	khEKW0jvpvkqi18i2p3tgxZiRh5fMHQt0iCrW3HnB+gMaV0y3SnuXpl7
+X-Gm-Gg: AfdE7ckLNTBucBStzlCKwm0ZD3e/RL2nVATZEG6BiX0/+LLJGe9uk9fmvkqUyhzt9dG
+	Ap+8HqBJcjJJestgCtvljly0EjLuibH3QrCpZoh2aj49r661E2ZusbkW+bo31UYpImUdWzxFkgI
+	cwl421sm4EN4ffjdOtKNdWyaAk0rlktOZO2UMaLbS1qSRPr/CCiocMuI/0KTbNz22uDnFPsrW1A
+	iUfgUpO/T1qzZ6V745yiuDGzM27UZ1DLRdDvnDKb40DG87Ogd50JNj7XB+Bj9Q4/DuuSnxmvkim
+	XOuENhpaIIZQT/hwaqIOT6FSaCanZR7BhbtprUV7YKD1qpwebkDsAA6K9Gy2sfByugL/kmaOyF2
+	XtqHpFX30xKnqXQJ6ftibIxrHF97ojX0+YT3+y4l9Iv02pKKQgswJApyfDPnJFqSDccbDCS83XF
+	JwmRiOHaK3Xzik9r4KeqLqhZ/eZ+F34abJK4mUkMm2kQfOCRUBkkfrO6pd3PVbeQuRjXdcv5war
+	z730w==
+X-Received: by 2002:a05:600c:8117:b0:490:688b:f9f8 with SMTP id 5b1f17b1804b1-493c2b99aafmr72214935e9.27.1782985734293;
+        Thu, 02 Jul 2026 02:48:54 -0700 (PDT)
+Received: from Ansuel-XPS24.localdomain (host-79-52-250-217.retail.telecomitalia.it. [79.52.250.217])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-477dbe617b1sm7381364f8f.16.2026.07.02.02.48.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jul 2026 02:48:53 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: [PATCH v6 0/7] thermal/drivers: airoha: Add support for AN7583
+Date: Thu,  2 Jul 2026 11:48:28 +0200
+Message-ID: <20260702094846.17325-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319238-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ti.com:email,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:y-abhilashchandra@ti.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-319247-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:ansuelsmth@gmail.com,m:lorenzo@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,intel.com,arm.com,gmail.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RWL_MAILSPIKE_POSSIBLE(0.00)[104.64.211.4:from];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 52BAD6F6676
+X-Rspamd-Queue-Id: A05C86F5CE1
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+This small series implement all the required changes to
+support Airoha AN7583 Thermal Sensor.
 
-Pre-existing issues:
-- [High] DMA channel leak in ti_csi2rx_runtime_resume() on error path.
-- [High] DMA channel leak in ti_csi2rx_probe() on context initialization fa=
-ilure.
---
+The SoC dropped the Monitor subsystem and only provide
+temperature reading. Some generalization was required
+to at least save the common code with also the help of
+reg field API.
 
-commit 93bee806331f1aba1613005a42f8e9a3e3a302f3
-Author: Vaishnav Achath <vaishnav.a@ti.com>
+Changes v6:
+- Add review tag to DT patch
+- Add review tag to fix patch
+- Rebase on top of linux-next
+Changes v5:
+- Fix alpabetical order in Documentation patch
+- Address suggested change by AI Bot
+Changes v4:
+- Rebase on top of linux-next
+Changes v3:
+- Property use chip-scu for thermal sensor
+Changes v2:
+- Update DT schema patch to implement dedicated schema
 
-arm64: dts: ti: k3-j722s-main: Add multiple channels for CSI2RX DMA
+Christian Marangi (7):
+  thermal/drivers: airoha: fix copy paste error on clamp_t low temp
+  thermal/drivers: airoha: fix copy paste error for sen internal
+  thermal/drivers: airoha: Convert to regmap API
+  thermal/drivers: airoha: Generalize probe function
+  thermal/drivers: airoha: Generalize get_thermal_ADC and set_mux
+    function
+  dt-bindings: arm: airoha: Add the chip-scu node for AN7583 SoC
+  thermal/drivers: airoha: Add support for AN7583 Thermal Sensor
 
-This commit adds additional DMA channels to the J721E CSI2RX SHIM layer to
-enable multistream support for CSI2RX. It increases the number of DMA chann=
-els
-per node from one to four.
+ .../bindings/arm/airoha,en7581-chip-scu.yaml  |  14 +
+ drivers/thermal/airoha_thermal.c              | 380 +++++++++++++++---
+ 2 files changed, 327 insertions(+), 67 deletions(-)
 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/=
-dts/ti/k3-j722s-main.dtsi
-> index 5a5b9a1bfd9ea..199c8652bcde2 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> @@ -173,8 +173,9 @@ ti_csi2rx1: ticsi2rx@30122000 {
->  		ranges;
->  		#address-cells =3D <2>;
->  		#size-cells =3D <2>;
-> -		dmas =3D <&main_bcdma_csi 0 0x5100 0>;
-> -		dma-names =3D "rx0";
-> +		dmas =3D <&main_bcdma_csi 0 0x5100 0>, <&main_bcdma_csi 0 0x5101 0>,
-> +		       <&main_bcdma_csi 0 0x5102 0>, <&main_bcdma_csi 0 0x5103 0>;
-> +		dma-names =3D "rx0", "rx1", "rx2", "rx3";
+-- 
+2.53.0
 
-[Severity: High]
-This isn't a bug introduced by this patch, but adding multiple DMA channels
-exposes a dormant hardware DMA channel leak in the CSI2RX driver.
-
-If ti_csi2rx_init_dma() fails for a context where i > 0 during runtime resu=
-me,
-the function returns immediately without releasing the channels requested in
-earlier loop iterations:
-
-j721e-csi2rx.c:ti_csi2rx_runtime_resume() {
-	for (unsigned int i =3D 0; i < csi->num_ctx; i++) {
-		ret =3D ti_csi2rx_init_dma(&csi->ctx[i]);
-		if (ret)
-			return ret;
-	}
-	...
-}
-
-Does this code need an error path to release the successfully requested
-channels when a subsequent iteration fails?
-
-[Severity: High]
-This is a pre-existing issue, but increasing the number of DMA channels here
-also exposes another channel leak in the probe error path.
-
-If ti_csi2rx_init_ctx() fails for a context i > 0, the driver attempts to
-clean up previous contexts:
-
-j721e-csi2rx.c:ti_csi2rx_probe() {
-	for (i =3D 0; i < csi->num_ctx; i++) {
-		csi->ctx[i].idx =3D i;
-		csi->ctx[i].csi =3D csi;
-		ret =3D ti_csi2rx_init_ctx(&csi->ctx[i]);
-		if (ret)
-			goto err_ctx;
-	}
-	...
-}
-
-However, the cleanup skips releasing the channel because the device's PM
-runtime status is still suspended:
-
-j721e-csi2rx.c:ti_csi2rx_cleanup_ctx() {
-	if (!pm_runtime_status_suspended(ctx->csi->dev))
-		dma_release_channel(ctx->dma.chan);
-	...
-}
-
-Since pm_runtime_set_active() hasn't been called yet during early probe, the
-condition prevents dma_release_channel() from being executed. Could this
-permanently leak the previously initialized hardware DMA channels?
-
->  		power-domains =3D <&k3_pds 247 TI_SCI_PD_EXCLUSIVE>;
->  		status =3D "disabled";
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702093123.1048=
-575-1-y-abhilashchandra@ti.com?part=3D6
 
