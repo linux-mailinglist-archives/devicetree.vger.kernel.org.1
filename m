@@ -1,71 +1,67 @@
-Return-Path: <devicetree+bounces-319571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319570-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TysmNIi4RmoCcQsAu9opvQ
-	(envelope-from <devicetree+bounces-319571-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:14:16 +0200
+	id NZAXBl+4Rmr6cAsAu9opvQ
+	(envelope-from <devicetree+bounces-319570-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:13:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A2626FC72F
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:14:16 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 677006FC716
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:13:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sntech.de header.s=gloria202408 header.b=LsfxnjEK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319571-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319571-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=sntech.de header.s=gloria202408 header.b=fJWXkvhs;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319570-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319570-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=sntech.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2B6F530D4209
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 19:06:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D079630BF14C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 19:06:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30E4388873;
-	Thu,  2 Jul 2026 19:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C0738734A;
+	Thu,  2 Jul 2026 19:05:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F82B386426;
-	Thu,  2 Jul 2026 19:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 388F8384CF0;
+	Thu,  2 Jul 2026 19:05:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783019114; cv=none; b=BCxWTUnPMoSL4v5mO+KPMO83q8/AdWa1RxfLr5TT1r5ilPaQodpGJY9scFDjtJpFzG9sbI6tF9z9E5EGfwbarOo7cMDxc3PoDyuxkL1/rKcW40QD1IAQVO6TiWQFOX0t9WLo6BVRxByIj2HPbnZyK3Cr5u7RaGf6XWcuBkMHcTA=
+	t=1783019112; cv=none; b=AZCyZWGOsJRK00Y4IS2Y0lh6YttmzWeYu2KrLHC+zXCDdgOHcgOi8Gv4QHTI5AkSfm0eBBOdJjQNi9auY6qGvrcmrAptv4Fa601fAjrIMGHeMGbT7AWp/89VU6Ds0p6jtHaW04AII3qmV1qkYvxVmFBwHp0d4zzZJMOg0Zbj5Yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783019114; c=relaxed/simple;
-	bh=Nh9E4VW2GnoVPEdX4ZqXN985eAQk/nBhv1kChPSeph0=;
+	s=arc-20240116; t=1783019112; c=relaxed/simple;
+	bh=PBvGKxSN3lubbQ6xO3qbDw3P1qiZKcB0tHw/YPSl8n0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jgpJYik9sFOjJzdXwAudtnWtHfCwgXWPCpn24NCpz9kyGiabb1FOAgw6UpJU3ro4vX3G+jx3aVwNAKqxYcWBditJZZ9hpekRvhQP3+YBbWR5ZsHm5fzwNhed8BoByfha92VpKi/acgVUXnRZRaoz22osaX8mO3AnCRflKSiO0+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=LsfxnjEK; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=J9d7EplyOed1nAhq+aQnqJi/e3LjuV+ebpgrmCTV+CLOsnm49/z+4980eW/RsavjQndH4acJzgLvJW3LmzUqevgfTdFFMMAybC6bRrSV5Qyf55koARD7eDZwGPp6+NdBtFE+Zmzxh0K3HAUH4PJq4mf+QM10Xw35d1Y737wAhBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=fJWXkvhs; arc=none smtp.client-ip=185.11.138.130
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=t0NNRG9w6w6jCTySSfCRM9uqcR86GLmzg5Z0J050DYU=; b=LsfxnjEKjnc97llUKZA01GgdJd
-	dFnlBw7l7/cyde3yav7xw1ZgV/I7vQ7VBnX/NxjAz/cIbvF6F3jDbB3NBeojbS22ZS6I0XPVI6Ux3
-	1b65moljWbK2+G0pczunZ1v3OE0/yT/ERdYmNTd8cXcDSsVDCvQ05cZLffLCVW1ccobviW+3mGvh/
-	6xoTGiP4j2YPEKwTOqHmGaJCdFIuVSZeCHd3UaSWC5mlaO0IlwuADLRUOeuXANg/3qaeom/T/3maN
-	3Q0dXJCQnr+unhryQgoAqGqRw5CA5Vc3m4zDZkddVop5OYEtnom5Q3eBHmfE+1+F4JUONB9nN39Wo
-	kJ9pBXYQ==;
+	bh=qi+og8zzAWmwxBq5244UzdXz2emj9itakwbhrlFY2Rg=; b=fJWXkvhsrFUM/UOKyZLZFZfBVg
+	zCVaQzvT3DI3HJVrg6GGZloSryXaOGLJwnEwzR/J9CjtWNO2Lz2Iihjx+ZgsoI41Ifrd3aIXGHGTV
+	+3+1tqy4VF5cGHS9WJ6w1cLfggdYqUE+8kXJ9TrxixjEx4JU51AHayan0fTn4Jj3mz9pLvNZj4aja
+	i1VxQuT+y76p/zq7ncejlP4w8A7ARadsR1Xi5nRFugBOGXj8guRKVBxg1Qr5Karz3Ve/6+TtmsvFq
+	vQdBB+85KKLuOUubSvkIQC7ZOat9kgZR7azHzl0E+pzPMfdgOdEj5tF9dRs3sBSThqYrr8YNLOH+x
+	7fU+z35w==;
 From: Heiko Stuebner <heiko@sntech.de>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Damon Ding <damon.ding@rock-chips.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+	Quentin Schulz <foss+kernel@0leil.net>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	sebastian.reichel@collabora.com,
-	nicolas.frattaroli@collabora.com,
-	alchark@gmail.com,
-	detlev.casanova@collabora.com,
-	cristian.ciocaltea@collabora.com,
-	michael.riesch@collabora.com,
-	andy.yan@rock-chips.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 0/3] Add eDP support for RK3576
-Date: Thu,  2 Jul 2026 21:04:51 +0200
-Message-ID: <178301901908.3838694.14923342654854634320.b4-ty@sntech.de>
+	linux-kernel@vger.kernel.org,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: fix eMMC reset polarity on PX30 Ringneck
+Date: Thu,  2 Jul 2026 21:04:52 +0200
+Message-ID: <178301901902.3838694.15610180855070263903.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260605022305.3058853-1-damon.ding@rock-chips.com>
-References: <20260605022305.3058853-1-damon.ding@rock-chips.com>
+In-Reply-To: <20260626-ringneck-emmc-polarity-v1-1-90cefe57b316@cherry.de>
+References: <20260626-ringneck-emmc-polarity-v1-1-90cefe57b316@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,59 +76,51 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
 	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319571-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:damon.ding@rock-chips.com,m:heiko@sntech.de,m:sebastian.reichel@collabora.com,m:nicolas.frattaroli@collabora.com,m:alchark@gmail.com,m:detlev.casanova@collabora.com,m:cristian.ciocaltea@collabora.com,m:michael.riesch@collabora.com,m:andy.yan@rock-chips.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319570-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:quentin.schulz@theobroma-systems.com,m:foss+kernel@0leil.net,m:heiko@sntech.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:quentin.schulz@cherry.de,m:stable@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:foss@0leil.net,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[sntech.de:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[sntech.de,collabora.com,gmail.com,rock-chips.com,vger.kernel.org,lists.infradead.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,kernel];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sntech.de:dkim,sntech.de:email,sntech.de:mid,sntech.de:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0A2626FC72F
+X-Rspamd-Queue-Id: 677006FC716
 
 
-On Fri, 05 Jun 2026 10:23:02 +0800, Damon Ding wrote:
-> Picked from:
-> https://lore.kernel.org/all/20260601065100.1103873-1-damon.ding@rock-chips.com/
+On Fri, 26 Jun 2026 16:40:38 +0200, Quentin Schulz wrote:
+> According to the Jedec 5.1 specification, the device is held in reset
+> when RST_n is low, therefore the polarity of the line must be that, as
+> specified in the Device Tree binding (mmc/mmc-pwrseq-emmc.yaml).
 > 
-> Patch 1-2 are to add missing clock "hclk" for RK3588 eDP nodes.
-> Patch 3 is to add the RK3576 eDP node.
-> 
-> Damon Ding (3):
->   arm64: dts: rockchip: Add missing hclk for RK3588 eDP0
->   arm64: dts: rockchip: Add missing hclk for RK3588 eDP1
->   arm64: dts: rockchip: Add eDP node for RK3576
+> Due to the wrong polarity, eMMC devices with RST_n_FUNCTION[162]
+> bitfield [1:0] set to 0x1 (the default is 0x0) will be held in reset
+> forever.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/3] arm64: dts: rockchip: Add missing hclk for RK3588 eDP0
-      commit: 5603ce4f1d470af29e0cc76e36ea99e62fa07151
-[2/3] arm64: dts: rockchip: Add missing hclk for RK3588 eDP1
-      commit: 6f1ed82b7f084c13bffcaa9e2c7acf5bc64b659b
-[3/3] arm64: dts: rockchip: Add eDP node for RK3576
-      commit: 65bdf72f7fda3b1a24bd6f5ea15ce40ec2cc3e0a
+[1/1] arm64: dts: rockchip: fix eMMC reset polarity on PX30 Ringneck
+      commit: 549081d9af61cf046cac15281e9a6ceb9b2592e9
 
 Best regards,
 -- 
