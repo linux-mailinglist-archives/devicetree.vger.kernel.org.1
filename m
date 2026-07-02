@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-319646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319647-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pu91J2vhRmpMfAsAu9opvQ
-	(envelope-from <devicetree+bounces-319646-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:08:43 +0200
+	id +oSmMXfhRmpTfAsAu9opvQ
+	(envelope-from <devicetree+bounces-319647-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:08:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EDEF6FD24A
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:08:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6161F6FD252
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:08:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=DZJeYkNh;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319646-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319646-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=JBJxSZPG;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319647-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319647-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 59DC8303C617
+	by sea.lore.kernel.org (Postfix) with ESMTP id CF7C8304020A
 	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 22:08:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B4653BD22B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E473BED7D;
 	Thu,  2 Jul 2026 22:08:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364263B8930
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A1E43B895D
 	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 22:08:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783030104; cv=none; b=YXjCM84ys6VzoJboVh17LmQNYCv/JcIkc7kVRR65mDvYWmt9YCg4hMOqLs4JfG7pwVl4zutaDArvBes8uNvOQPAqoGMBCk51X83qf2uTNw0AbHdFaKHvQENWcYLBI5NCJlk2X+jtFNdQJk3+epl0Jl4/PDsOaX1fMrRaOxohrHg=
+	t=1783030104; cv=none; b=sB/BBy+z0ej8X9pul35QNRbSPznIQw3a3XOcvd/OsIuB4u9iZFTuZfdFPApvfWTSCV0IaAJvpfcHCj791tuM3MgXTVa3RK4szUx89fYkmBQfHla/oOQQRhyDwz7E+2wS2F4kneMMOFW7hoSO14sSKEqlJP8hsZ/7MMUNg6pp70M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783030104; c=relaxed/simple;
-	bh=ott/e/PsVQ7ftOVMoDZvH/I1/494RVUTk6InVE/vBKQ=;
+	bh=7kThHoU7NfVa2SrQo4njFM/R/gQef5vJsZCKo0knqPU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Zhl9Y7ban5cArzEwlVRHXn6uC6qDBbzFSVxdiT1UURBRV/oVBKvH18uLzUfZn8gZxe+qDLu062HA34PSGJQubwswp1GcjeHQp6TUl964hpJIh0Nnce6b4oV8LEX/i+szPiINzSJ+oA5yjqvxOtCriDq/+nSwrdirhEz66StOAY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DZJeYkNh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E9C45C2BCFF;
+	 In-Reply-To:To:Cc; b=lA48KDlwmGijm1wwqaN1/5ZeZZrNKX1LBqgRSEhp9C5v6OKsZ8XDa8QCokPBm+hci++vEM1OJK1HUpKwB1T1SEpYsWtCGh9k+AeHAb3y7Ux0Yed2ug/GtLrHHQSkyEemVoxW9Zodhwx5MgVf9/h1G40vwST6qXhGH4unvT1XJho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JBJxSZPG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 02DF4C2BCFB;
 	Thu,  2 Jul 2026 22:08:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783030104;
-	bh=ott/e/PsVQ7ftOVMoDZvH/I1/494RVUTk6InVE/vBKQ=;
+	bh=7kThHoU7NfVa2SrQo4njFM/R/gQef5vJsZCKo0knqPU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=DZJeYkNh5/Zqu+LUlcJ9qLgv5Bv5kM2jZXGCvVNN6qSAQbjYLvGyknQwkJWysoSAF
-	 cV21zUOBr1oWcM08vfBlL7nIeBL/dKiZ85K/JcIaBOKbsNpBKjgnsIuPebH0zRnfgM
-	 yuBBp2bO9Kr28uiAZPj0n8SBZPMji65jp0KIJxfmRWvvXOlrftVk0MP1vnFk11i1iH
-	 M4RebIgvMkOZQsLM/0reoaiqrynZxynk6uHcCWISYL+S47mpEgsQq834Gz0dWqtKXU
-	 9EtLPyDEhM8bBGP5aU6is4+zObl6uuroeZ2frMRVdnpI+iDAwSAugP15GNjRVn/kyu
-	 jlZiOCXYRF/bA==
+	b=JBJxSZPG0d7reF9bn82RBCFkm1ikQdVMZMIUQ/C9NxWs3Y9AZevqwmDhCDEy3U6r7
+	 NHgBQx+wk5AqZLveOppc5dwYSsQQhKhbMgwHRsnr4pLxMbO49pQ4Dk3yk5I2pSeiBp
+	 MIjs4nD6pEXgwWo15Q/FASJBqPAxyMSiGQw4gwzYYOuLIf39iIe8Iu6GavCUCY2Ry6
+	 opn0SiqONkMpCyeucS0CJ+Jb584DutugtajZSsPnqTQyJ9pCEPOjTq/CNKJGRTm29h
+	 qzdWoB4nSPfNOO2ZEivAUFqEiKEpsf+hFmS8Q+pCwgIa6+Q+1t4Ki1e1drKWP6Gb98
+	 V81TjYhFRQ6vQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D231AC44502;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E003CC43458;
 	Thu,  2 Jul 2026 22:08:23 +0000 (UTC)
 From: Joachim Eastwood via B4 Relay <devnull+joachim.eastwood.gmail.com@kernel.org>
-Date: Fri, 03 Jul 2026 00:07:19 +0200
-Subject: [PATCH 04/12] arm64: dts: rockchip: rk3588s-nanopi: add missing
- sdmmc cd pinctrl
+Date: Fri, 03 Jul 2026 00:07:20 +0200
+Subject: [PATCH 05/12] arm64: dts: rockchip: rk3588s-nanopi: remove pull up
+ on rtc int pin
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,7 +61,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260703-nanopi-m6-v1-4-8344a1559519@gmail.com>
+Message-Id: <20260703-nanopi-m6-v1-5-8344a1559519@gmail.com>
 References: <20260703-nanopi-m6-v1-0-8344a1559519@gmail.com>
 In-Reply-To: <20260703-nanopi-m6-v1-0-8344a1559519@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -70,11 +70,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, 
  Joachim Eastwood <joachim.eastwood@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783030102; l=1037;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783030102; l=834;
  i=joachim.eastwood@gmail.com; s=20260701; h=from:subject:message-id;
- bh=RwYpiB/RtND/z6LPjHWK2wsSxC8Q0Qs9K3NgIPhkNgo=;
- b=XisTuZZGCV1AVfD+TzkRzyHXLHFHpBImklosu4XKYZv5/Dji/tqIl2PXldu3LKtNebjAStaiP
- eLSoD9/PhqYD/Ji28zIJlxCjd6ItJt3v5tF7laDFKxZK9Wp8k4aOPCG
+ bh=8bK9qjPaJeH5DZSNwTRXo86eIiea6f1QVJhbeEdJZoQ=;
+ b=M5GvjoFyQM7vUcv4AXzMBIyLW12TYwl8mVGascoP4M00Q2BaUYDMtdimfvixcMc8xzO7TkPGJ
+ 7PmAFnjndqCD/ZRy81pvbPOYbFrDWpYQbypzevbLnAgFXq/TWJRJWUI
 X-Developer-Key: i=joachim.eastwood@gmail.com; a=ed25519;
  pk=ZN/8xWtdYaSd5oEfloYSZ1a+/ri0n0VZqjlEeHlbXFU=
 X-Endpoint-Received: by B4 Relay for joachim.eastwood@gmail.com/20260701
@@ -88,12 +88,12 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-319646-lists,devicetree=lfdr.de,joachim.eastwood.gmail.com];
+	TAGGED_FROM(0.00)[bounces-319647-lists,devicetree=lfdr.de,joachim.eastwood.gmail.com];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:joachim.eastwood@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:joachimeastwood@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -116,45 +116,35 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	HAS_REPLYTO(0.00)[joachim.eastwood@gmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3EDEF6FD24A
+X-Rspamd-Queue-Id: 6161F6FD252
 
 From: Joachim Eastwood <joachim.eastwood@gmail.com>
 
-The cd (card detect) pin is used, but not reserved through pinctrl.
+All boards in the RK3588S NanoPi familiy has a pull on the PCB for the
+RTC interrupt pin. So there is no need to enable the pull-up in the SoC.
 
 Signed-off-by: Joachim Eastwood <joachim.eastwood@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
-index d41c49716fa2..a8f32b994b10 100644
+index a8f32b994b10..f3a240b48a2a 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi.dtsi
-@@ -336,6 +336,10 @@ rtc_int: rtc-int {
+@@ -331,7 +331,7 @@ hdmi0_tx_on_h: hdmi0-tx-on-h {
+ 
+ 	hym8563 {
+ 		rtc_int: rtc-int {
+-			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_up>;
++			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
  	};
  
- 	sdmmc {
-+		sdmmc_det_pin: sdmmc-det-pin {
-+			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
- 		sd_s0_pwr: sd-s0-pwr {
- 			rockchip,pins = <4 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
-@@ -407,6 +411,8 @@ &sdmmc {
- 	no-mmc;
- 	no-sdio;
- 	sd-uhs-sdr104;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd &sdmmc_det_pin>;
- 	vmmc-supply = <&vcc_3v3_sd_s0>;
- 	vqmmc-supply = <&vccio_sd_s0>;
- 	status = "okay";
 
 -- 
 2.55.0
