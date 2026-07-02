@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-319282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319280-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WiVuH6tHRmq+NgsAu9opvQ
-	(envelope-from <devicetree+bounces-319282-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:12:43 +0200
+	id c/zUHbRHRmrANgsAu9opvQ
+	(envelope-from <devicetree+bounces-319280-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:12:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C095A6F680F
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:12:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84ED76F6815
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:12:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b="BXpmS/yG";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319282-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-319282-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=pm9RZ7iw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319280-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-319280-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 633EA3302A55
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 10:07:52 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5A94331A8C09
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 10:07:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B98A4A139B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0215F4A138F;
 	Thu,  2 Jul 2026 09:57:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8092249553D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB5D49553A;
 	Thu,  2 Jul 2026 09:57:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782986243; cv=none; b=ea8nxNZtcAaqPboWR3SGEJVwCnq+IOMSkOgJlhMRX9Ao1P1aK+7fVyhVPSNVwUUbis+KajpsKacl21a7MosvkrdfsJLjGrBFUfBFchPjjSE/StBDxbRj/6veZaRQWD4GNIV5J8fLgJVVkhCK4HXktI6Trq7virWnGv0lYQ/qjy8=
+	t=1782986243; cv=none; b=mA1TQUZPYRbJc5vbBHnMlFw0XCzHT7qw62zwKVr8yIH9CjjnBmEfohE5/0Jc/P29ngA/NQZ8j1bUIYGs0Cvr/8NA02kynZoNK5yylVSHaY+eQujuxySYUuoEltvNhacX6F1PoQegm0i7E18+ELg3f27R/Ddkxnfk0w4Rcp1c1cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1782986243; c=relaxed/simple;
-	bh=LgAbB0ZXLnx/BP4AfsepnntHvttapSIZpd8aWCrBwiI=;
+	bh=0i79ZDOBUMf/y7rR7lHOzqHQn+JRQngDYQDzRKcFojw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KevLYFCMmS0pxqyI+mLv9f13ZNsBO0x3eopWFdx83xtgmS++kZjJKjfUKJzlZ2nwd83S/+NQ2QvNj3RxFTFa19kqMPKn06RMsIDg9piBo0rVo0HlOBWBF/OA0cQtjwfF+cNi6jTFS/Mmf5ZtwXlkd8s4HxhRtIK7dpyr/j3p6sk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BXpmS/yG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 227FEC2BCFD;
+	 In-Reply-To:To:Cc; b=ReV8RT7ORHoH/yHxTYkh7X3/GaCk+3ovoflqQeYgbUJdYOlQkk7/oyOv9iJL2zAiXB+sj1K0p7M+xObyvfH6GL72A8nu9oaawxf2D5VLMcKMiAi+otJ1cDKBhhr3hktJY94PexJVtr2Nk/I+Cc1E7zUs5LXQ0pMsHPM1jYXUh/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pm9RZ7iw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2D5BEC2BCFA;
 	Thu,  2 Jul 2026 09:57:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1782986243;
-	bh=LgAbB0ZXLnx/BP4AfsepnntHvttapSIZpd8aWCrBwiI=;
+	bh=0i79ZDOBUMf/y7rR7lHOzqHQn+JRQngDYQDzRKcFojw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=BXpmS/yGKwkIqzJOfCf/Au2SngShBQd9IciENCSqCtKuYC5ezMfGwdglEUnMDOEUs
-	 lz6tLFk1Hq/5DundsZllVx976hQ8uWkj5bL/aLrnf8z2cjidfmxtmk0Py3wL+pBxod
-	 /rETGmc8+Te+3PF+/To7uZzlD4wFpZssO8gL41MkocPbD/0njnryZNaGdsvASoth/b
-	 ebiUa1X1e79hcdh1b2QVu35GqopAlnCkjlPa/NwJ/GqRdRP5rsGMuKjNYkEUp4pyIt
-	 naoi3pNWlij3YYcQ8HpQAI9x0wrayje43P0S/TO7LWJz4E6Zo6r/8daDGb25fHL8Ez
-	 kF9VTPPRZt+sw==
+	b=pm9RZ7iwlGrMYc+QxRGNs0aNJqlmKAp+QU6ATyJkD5YdAZqTKIqSX9lJeH8YwTXJF
+	 XBZ88n/RjpoAi6wPBwGyaOOdRb9ZSOkPOBLB/ZqtxSposD1wblpc4CPQBn8heNU0I+
+	 2CZsuubwwkkPB23CLS1LTVAL07szS+kcwiIVAt7+rIdcpr5FrC++GvkijXzbn07Btv
+	 aWqJLU6S2p/iPQ2hKMBd1wpY4hOyexiDhuN4I/s7NP93EkFuGSzcd2LmX/xNs9kCZ+
+	 5N2JjOQX3TmB0dyIPyhLI8+LrtBz3Bj1cUlNzMWU2jlX+fSDNS/52eBx9bzrI9jV4k
+	 wkx6UAvB3iPSg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0CD17C43458;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B731C43602;
 	Thu,  2 Jul 2026 09:57:23 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Thu, 02 Jul 2026 11:55:59 +0200
-Subject: [PATCH v8 6/8] arm64: dts: amlogic: t7: Add i2c pinctrl node
+Date: Thu, 02 Jul 2026 11:56:00 +0200
+Subject: [PATCH v8 7/8] arm64: dts: amlogic: t7: Add i2c controller node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,7 +60,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260702-add-mcu-fan-khadas-vim4-v8-6-244feee91a36@aliel.fr>
+Message-Id: <20260702-add-mcu-fan-khadas-vim4-v8-7-244feee91a36@aliel.fr>
 References: <20260702-add-mcu-fan-khadas-vim4-v8-0-244feee91a36@aliel.fr>
 In-Reply-To: <20260702-add-mcu-fan-khadas-vim4-v8-0-244feee91a36@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
@@ -78,13 +78,13 @@ Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=892;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1153;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=F350Js/5aqFj9YLCGASaC045elV+sRf2mbU4+Ox2uSQ=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ5ab6d/y22KX5pZZx/+xD4zxULHbaNDAvvjPts0a36s6s
- xx3pcV3lLIwiHExyIopsvTPtTzx7vLRM1/3qKfAzGFlAhnCwMUpABNR+8rI0L6sVjKaLdihm/s9
- ++abL+dPTPv7/Fp9lMy/XUlHwu1XLmf4H/u3nWPZ8UtS3zctDt2stXLbgVyxMr41NyQZhbZ9nLd
- lDRMA
+ bh=ZSNkfEC4FeiA6QucNF9aNhEEdVvV/IVtkbNzZYp3uHA=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ5ab6b+4o/cvzWmWr/yeaPFOoTiVTaj2h7SX6rMs8+Xs8
+ QHuzBM6SlkYxLgYZMUUWfrnWp54d/noma971FNg5rAygQxh4OIUgIkce8PIsH62rPnGszs0ar8t
+ +7Xt5cq5yrPuz3VaFf8kwvPDvOW3NqYyMpw691p5YqRzTHderoDP0if2X4/1rt14NjWuS/QAf8b
+ leG4A
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
@@ -102,7 +102,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-319282-lists,devicetree=lfdr.de,linux-kernel-dev.aliel.fr];
+	TAGGED_FROM(0.00)[bounces-319280-lists,devicetree=lfdr.de,linux-kernel-dev.aliel.fr];
 	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andi.shyti@kernel.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:b.galvani@gmail.com,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:linux-amlogic@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-pm@vger.kernel.org,m:linux-kernel-dev@aliel.fr,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,m:bgalvani@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -113,7 +113,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	HAS_REPLYTO(0.00)[linux-kernel-dev@aliel.fr];
 	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
@@ -123,17 +123,20 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RWL_MAILSPIKE_POSSIBLE(0.00)[104.64.211.4:from];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,linaro.org:email,aliel.fr:replyto,aliel.fr:email,aliel.fr:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C095A6F680F
+X-Rspamd-Queue-Id: 84ED76F6815
 
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-Add the T7 pinctrl used by the Khadas VIM4 for MCU communication.
+Add the T7 i2c controller node used by the Khadas VIM4
+for MCU communication.
+
+Use amlogic,meson-axg-i2c as fallback compatible.
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
@@ -142,26 +145,26 @@ Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
  1 file changed, 10 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 7fe72c94ed623..e96fe10b251a0 100644
+index e96fe10b251a0..560c9dce35266 100644
 --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -376,6 +376,16 @@ mux {
- 					};
- 				};
+@@ -711,6 +711,16 @@ pwm_ao_cd: pwm@60000 {
+ 				status = "disabled";
+ 			};
  
-+				i2c0_ao_d_pins: i2c0-ao-d {
-+					mux {
-+						groups = "i2c0_ao_sck_d",
-+							 "i2c0_ao_sda_d";
-+						function = "i2c0_ao";
-+						bias-disable;
-+						drive-strength-microamp = <3000>;
-+					};
-+				};
++			i2c_m_ao_a: i2c@76000 {
++				compatible = "amlogic,t7-i2c", "amlogic,meson-axg-i2c";
++				reg = <0x0 0x76000 0x0 0x48>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_SYS_I2C_AO_A>;
++				status = "disabled";
++			};
 +
- 				pwm_a_pins: pwm-a {
- 					mux {
- 						groups = "pwm_a";
+ 			sd_emmc_a: mmc@88000 {
+ 				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
+ 				reg = <0x0 0x88000 0x0 0x800>;
 
 -- 
 2.49.0
