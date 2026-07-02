@@ -1,47 +1,46 @@
-Return-Path: <devicetree+bounces-319662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319663-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DseHMvXnRmp2fQsAu9opvQ
-	(envelope-from <devicetree+bounces-319662-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:36:37 +0200
+	id ajh5DyLnRmpLfQsAu9opvQ
+	(envelope-from <devicetree+bounces-319663-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:33:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D88E56FD3D4
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:36:36 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE8F76FD36D
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 00:33:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319662-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319662-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319663-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319663-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4FD54309DCEE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 22:32:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 41563302A4FE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 22:33:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923513C457F;
-	Thu,  2 Jul 2026 22:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14A773CBE89;
+	Thu,  2 Jul 2026 22:32:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF68F3C3BF6
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 22:32:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7FD33BCD01
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 22:32:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783031564; cv=none; b=jHMIIyCxNu2vvXp3LH+WUI/YRleVAAu1ZdYEKIIkfhz31cfAs/cIO73nkbuFkZW59lKmCllKXf3+3NnNzCAsgzU2xjlDzEKyxdN/ch7R8yJQcy3+P9+Kr9OygKnY0jjs6f9FAiBkB0NHY1zc8BjWsU/XdkRebUCPZ55FFAXcO4w=
+	t=1783031567; cv=none; b=RmksdZjqFOTiAxwm/uzRsYMdLvkDuiYhfVlF2k2C6XNRCJXP/ojZfkcYAZ79khvfr8VrGAt8GtD9jZI4D0z078VU9uHMDzaxkI2AA46U/rvJW1Fqj9Ct7Zq6nZjeYaq49fD6qp4bfYuqrO33cmeytu6t/Uddl05NTejeoGi79oo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783031564; c=relaxed/simple;
-	bh=QBVPiLZntn2OgtRozbNIN0eLE84VM0ciMJhKWr14BtU=;
+	s=arc-20240116; t=1783031567; c=relaxed/simple;
+	bh=wzHE1s+2gX2BTWsN80A15vJGvuGnxkYOLrgZhcQZ1X8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=a/2XRCCdBJkdVIULIqSf4EUcC8izL1ghLVONk+EwEsgBWDYcUqow3scz2Lwtx0i3kV9CwTcE8pC0emcpORH2i2j9KAmFvRLzeiNlAOfF8cCtNMkHTO28lEhYFGFr36CzVVDcaIuL0bwrcDc2vf+1i9YABnnLvSn/7bIV+RjG7Ew=
+	 In-Reply-To:To:Cc; b=PjTsjf+WzWDadCVCL9ded8FAEsIOhLI0Jl3F0xDmU+JHQoJUdeZF7NsGujhCUDG84o39TDUcP0F9X6lJ+ZZR5kxMACSEGWscoE/SzIDiotXI0uiksz3tMIFwQj5OvNQe1HksaVX0JCeOtKuEnG1/EJXUOtv1+CiFmAumBh1Osoo=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1wfPxW-00081n-Fr; Fri, 03 Jul 2026 00:32:38 +0200
+	id 1wfPxW-00081n-IA; Fri, 03 Jul 2026 00:32:38 +0200
 From: Marco Felsch <m.felsch@pengutronix.de>
-Date: Fri, 03 Jul 2026 00:32:22 +0200
-Subject: [PATCH v7 1/4] firmware_loader: expand firmware error codes with
- up-to-date error
+Date: Fri, 03 Jul 2026 00:32:23 +0200
+Subject: [PATCH v7 2/4] dt-bindings: vendor-prefixes: Add TouchNetix AS
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +49,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260703-v6-10-topic-touchscreen-axiom-v7-1-0d2a550a7ee8@pengutronix.de>
+Message-Id: <20260703-v6-10-topic-touchscreen-axiom-v7-2-0d2a550a7ee8@pengutronix.de>
 References: <20260703-v6-10-topic-touchscreen-axiom-v7-0-0d2a550a7ee8@pengutronix.de>
 In-Reply-To: <20260703-v6-10-topic-touchscreen-axiom-v7-0-0d2a550a7ee8@pengutronix.de>
 To: andrew.thomas@touchnetix.com, Luis Chamberlain <mcgrof@kernel.org>, 
@@ -66,7 +65,8 @@ To: andrew.thomas@touchnetix.com, Luis Chamberlain <mcgrof@kernel.org>,
  Danilo Krummrich <dakr@kernel.org>, Danilo Krummrich <dakr@kernel.org>
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-input@vger.kernel.org, kernel@pengutronix.de, 
- Marco Felsch <m.felsch@pengutronix.de>
+ Marco Felsch <m.felsch@pengutronix.de>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
 X-Mailer: b4 0.14.2
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
 X-SA-Exim-Mail-From: m.felsch@pengutronix.de
@@ -76,7 +76,7 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -87,11 +87,11 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[touchnetix.com,kernel.org,linux.dev,linuxfoundation.org,linux-foundation.org,gmail.com,bootlin.com,pengutronix.de,bitmath.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FORGED_SENDER(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-319662-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319663-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -101,71 +101,36 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pengutronix.de:email,pengutronix.de:mid,pengutronix.de:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,touchnetix.com:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,pengutronix.de:email,pengutronix.de:mid,pengutronix.de:from_mime,bootlin.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D88E56FD3D4
+X-Rspamd-Queue-Id: CE8F76FD36D
 
-Add FW_UPLOAD_ERR_DUPLICATE to allow drivers to inform the firmware_loader
-framework that the update is not required. This can be the case if the
-user provided firmware matches the current running firmware.
+From: Kamel Bouhara <kamel.bouhara@bootlin.com>
 
-Sync lib/test_firmware.c accordingly.
+Add vendor prefix for TouchNetix AS (https://www.touchnetix.com/products/).
 
-Reviewed-by: Russ Weight <russ.weight@linux.dev>
-Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
+Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
- drivers/base/firmware_loader/sysfs_upload.c | 1 +
- include/linux/firmware.h                    | 2 ++
- lib/test_firmware.c                         | 1 +
- 3 files changed, 4 insertions(+)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
-index efc33294212fd82bb1a8c426d7430ef96c6620b2..82c4b1fedf4cdd0b41fd9acb0cfc1688d726a6fd 100644
---- a/drivers/base/firmware_loader/sysfs_upload.c
-+++ b/drivers/base/firmware_loader/sysfs_upload.c
-@@ -28,6 +28,7 @@ static const char * const fw_upload_err_str[] = {
- 	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
- 	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
- 	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
-+	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
- };
- 
- static const char *fw_upload_progress(struct device *dev,
-diff --git a/include/linux/firmware.h b/include/linux/firmware.h
-index 0fa3b027f02f16ffc4a28d4209c3af9319dd8bea..86a2f010e0c1e833d8456cadf21743b9f86dbde5 100644
---- a/include/linux/firmware.h
-+++ b/include/linux/firmware.h
-@@ -29,6 +29,7 @@ struct firmware {
-  * @FW_UPLOAD_ERR_RW_ERROR: read or write to HW failed, see kernel log
-  * @FW_UPLOAD_ERR_WEAROUT: FLASH device is approaching wear-out, wait & retry
-  * @FW_UPLOAD_ERR_FW_INVALID: invalid firmware file
-+ * @FW_UPLOAD_ERR_DUPLICATE: firmware is already up to date (duplicate)
-  * @FW_UPLOAD_ERR_MAX: Maximum error code marker
-  */
- enum fw_upload_err {
-@@ -41,6 +42,7 @@ enum fw_upload_err {
- 	FW_UPLOAD_ERR_RW_ERROR,
- 	FW_UPLOAD_ERR_WEAROUT,
- 	FW_UPLOAD_ERR_FW_INVALID,
-+	FW_UPLOAD_ERR_DUPLICATE,
- 	FW_UPLOAD_ERR_MAX
- };
- 
-diff --git a/lib/test_firmware.c b/lib/test_firmware.c
-index 7459bba65444d1d153667ab3fc447c375418e938..a822d9641eb4c4db01d9966f76f080ede31027f3 100644
---- a/lib/test_firmware.c
-+++ b/lib/test_firmware.c
-@@ -1134,6 +1134,7 @@ static const char * const fw_upload_err_str[] = {
- 	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
- 	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
- 	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
-+	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
- };
- 
- static void upload_err_inject_error(struct test_firmware_upload *tst,
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 396044f368e7cf0ca1436713ae44f1950259f006..b8450050d7299cea2b5cf6f57fe71f5ead1140c8 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1715,6 +1715,8 @@ patternProperties:
+     description: Toradex AG
+   "^toshiba,.*":
+     description: Toshiba Corporation
++  "^touchnetix,.*":
++    description: TouchNetix AS
+   "^toumaz,.*":
+     description: Toumaz
+   "^tpk,.*":
 
 -- 
 2.47.3
