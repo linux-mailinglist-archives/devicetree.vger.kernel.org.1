@@ -1,324 +1,158 @@
-Return-Path: <devicetree+bounces-319269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319271-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mRv1I+E5RmrTMAsAu9opvQ
-	(envelope-from <devicetree+bounces-319269-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:13:53 +0200
+	id I6MUGKQ5RmquMAsAu9opvQ
+	(envelope-from <devicetree+bounces-319271-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:12:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DD3C6F5B45
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:13:53 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E31346F5B1D
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:12:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=l+yAHKqO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319269-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319269-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="jFr/BDZS";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319271-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319271-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B25F43080CF4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 10:03:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1D009303DCB6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 10:06:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AB474EA36E;
-	Thu,  2 Jul 2026 09:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D9248B372;
+	Thu,  2 Jul 2026 09:54:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC4274EA372
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B330647ECF8
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:54:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782985921; cv=none; b=b3ckNTJbr09DP8ft6WAtUKlm+4ZfuSi3pjaJPAee7sUx84+/i2uph4z1HRWVebxhBy6oDZY0zGdL5zAKvblNFbTFLNq7AAcXz0TowWYVBVrXsB9BiWh/Sr7FiYAzUZIKecdJKVB1SWyWOjtEkrmofCDAbNzaK6CA2K/wVFVvtu0=
+	t=1782986088; cv=none; b=Dbeg8BKvaXHZYm4QRbfCCSX6lMuaGUrvNyWMKSjsDrnlflg0kezqFKwjNJRRWuuoR3/MUicjxBjrmAy+37aN52E9GaYoLRjw9+NUbYjeYLINsTKSzKMTqtY4eB7YemQidnQMkMe07LGsS1lGyJYFdhThsmmjJZt9ZKkjmYB7G/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782985921; c=relaxed/simple;
-	bh=Aa+4CLq/1lEPi+3KENlRBYE/WUmOxjgIgxXkSN2a0b4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qqC0ABVUa/iYAxtECYll6x/CG3j3TSjnElrSM1U4Lax+esv+DCnTIp0CD+gEQ2D2PJAwMxH/ivHvsX9og4x5w+Huhq7hWasXPPwLFBMdyBlVZZ+/SFNOB7yUUDnIS6pf7TLG/gHlnlrJp9yw3HcfG4sf6+DkZLVNegH0jDaF/Gc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l+yAHKqO; arc=none smtp.client-ip=209.85.210.170
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-845b6d9bf39so383630b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:51:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782985919; x=1783590719; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YDRpB2DKaayDiWw9YLXhH5c/W2DOhBpZscwPdMD2aSs=;
-        b=l+yAHKqOBx55NlRBGjnNHDeGxvEXt17mHfuZkapqemGoHchd+3xemhyspeTFf/DkVC
-         bmXqQkfNd6LLQjtbvYEfu+H7HITOtHPUFL86V/RzZmf7GKuHJUz2XmMHevFYA6WQBPj4
-         yC1lLvpKY9rYJuZogLp6An5FabWSczpHSEAEcpR77JHCE/M3lWaXVMCaWRT8hLxwy//v
-         B7Ekv/fc6ABf0ZUQkkkjEU6tw7yULYNMnkqdST+1DFpJtVpcql3h3ZxgTcJK+5YUiLxG
-         ZIa09R5kGRkkhaO4wfQ9qBu91haZz10SI/F9tcDYwzKYLimRHlUaKT5ZrW2L4r7rguDS
-         HO9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782985919; x=1783590719;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YDRpB2DKaayDiWw9YLXhH5c/W2DOhBpZscwPdMD2aSs=;
-        b=Jj+ENBf5dsfxw0VYDeSUai8ntsouI1SjwBrGggyOTEcBEdPccl2d9t+Qql7Hm5C295
-         2vPsCJXo9Ci125/MEQRzDEQzA6/BAsD3hOzbtdzgkddCDnW+z458gpOlu0TxauEUvsF6
-         9K2nyLvVm6Q6CZ7cdKbMAKIaeasBTyaaFKMThqBBBzHqBDEfgGR/0Z1+kF+y72BORaNT
-         IT/ZfVD25t6xvgbAxtKGBaYDODIE8PI8wodFpk/qAHR4KclZH/Pgc6GpqekwDweeK2H3
-         DAqFvqUEobuE3PkMceOolhuWac3Uo0Ak0BdUX8WOkmjLjH3wR3NqzF6s+RSGOT6SvTFv
-         sbpw==
-X-Forwarded-Encrypted: i=1; AFNElJ/n+7EKcjdPyvOBj/YVkHeewh6Q0UxXETfx/Ewa3kgch0XycycaCKnXP8I5Ev3nO6AP44vsDGpp+kdg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwS0UY1QpjWzvWyoRJHJdHd14vwrdPsGKI+9nx3bTVcXTe2VT4Q
-	aSSnQvGOO56+i7L2R2J7+ibifemCJjy4oFiDr2tiEJCvGJRY8xnytp/K
-X-Gm-Gg: AfdE7cnhalKKEhe87EDqduIy9vKDxNHj5Z3gU3wpHmHwrFxFqTPlSl+HFTeXr99iC4g
-	dNKDYo+O3I6UXpK0v6U7+gtUaGaxQjDzq2eiax3OD4q8SCBujPz1ZuzPcsJO/vWJsjn+gympHrD
-	25NYCGUlwihuuQmp4+5kl4NqLWySubc+3p/5hID3d+oMvrmq28mpFhBsx3T/FlOnhfOzTVV0gcK
-	jhmK1FN19i7Ha+49U3i1q09FpycxR3131hZD8KPw15kQa/01E9MiK06//mMLptzJeNVXXxGi3LJ
-	9qSkAvagRPk+pBP4sF9p21FO076HgNnJovkzZqvmjPMK7tIXmj8Xo2vkEADFpA1Q5GrwSgOnu8M
-	Ex+YRgm47xhT1enTpDryuprI84E6nLP3WDRygLDKLS6XeP2HkR4iwo4nCwYAETRfz
-X-Received: by 2002:a05:6a00:13a1:b0:847:8bd0:1b96 with SMTP id d2e1a72fcca58-847bf9d4b0amr4742033b3a.23.1782985918713;
-        Thu, 02 Jul 2026 02:51:58 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-847cb7933e1sm1069821b3a.26.2026.07.02.02.51.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jul 2026 02:51:58 -0700 (PDT)
-Date: Thu, 2 Jul 2026 17:51:28 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen-Yu Yeh <chenyou910331@gmail.com>, unicorn_wang@outlook.com, 
-	inochiama@gmail.com
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Han Gao <rabenda.cn@gmail.com>, 
-	Nutty Liu <liujingqi@lanxincomputing.com>, Longbin Li <looong.bin@gmail.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>, 
-	"open list:SOPHGO DEVICETREES and DRIVERS" <sophgo@lists.linux.dev>, open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] riscv: dts: sophgo: Add Milk-V Duo 256M board
- support
-Message-ID: <akY0kY8yWAU_J3Eu@inochi.infowork>
-References: <20260610121026.1517621-1-chenyou910331@gmail.com>
- <20260610121026.1517621-2-chenyou910331@gmail.com>
- <akXbk7l9bZ_W0GLR@inochi.infowork>
+	s=arc-20240116; t=1782986088; c=relaxed/simple;
+	bh=e/TuqT3odxENflUq4nELweue3ysV9mVZKR6/9T8pVMI=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=b/KcgGSK0IIHrE0KUNfVb70lfHS/VCfOWGCY7Ggep+8BUYfj3RIZzttmji0riP9UHtG3kE+AWISgoOYBxuurL0UKC0ZOtdGOxoeIP3YZycTe2cCyjA57puoqU435lK+valG6Vlol8KgxairrJ5iEQO2MYEAF4Hj9c+2YcdyYRNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jFr/BDZS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1214F1F00A3A;
+	Thu,  2 Jul 2026 09:54:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782986087;
+	bh=ro0zTJboIfGrRuxPQGgkKGLyXmwoOATJUe2tUHEOc3E=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=jFr/BDZSdLoqWm6hw36EvhFoVFrfUrDeIXXO+Z4ntlOlProf9tACD+0UL1jbft8/Z
+	 l1GP29NLAM/3AfhrISONIY1E1gSHMEdggALxY0iJz5c/nIZjohPmI9qijGzST7KqkJ
+	 b+6baoBRXZho9G+SAswulveCE424eKd1yewVpKCuBkFlCKPCVQjDCNHbF+R/yckyIg
+	 RquylLBBk+RXyVfxCCdWgUOjOFh7Nm3NH/viN7H8+piY7EIdcG4NOAjWjlt3/669t8
+	 XIll9xr5YJ+HLos/fDPZSdTsK94zFLQEcfWBKG/ABDYm7YJ+lwewXO29UC74aysI2t
+	 RfHNnCxSyKuMQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v10 2/5] dt-bindings: phy: Add documentation for Airoha
+ AN7581 USB PHY
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Christian Marangi" <ansuelsmth@gmail.com>
+Cc: robh@kernel.org, vkoul@kernel.org, olteanv@gmail.com, neil.armstrong@linaro.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-phy@lists.infradead.org
+In-Reply-To: <20260702093812.15918-3-ansuelsmth@gmail.com>
+References: <20260702093812.15918-1-ansuelsmth@gmail.com>
+ <20260702093812.15918-3-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 02 Jul 2026 09:54:46 +0000
+Message-Id: <20260702095447.1214F1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <akXbk7l9bZ_W0GLR@inochi.infowork>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319269-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:chenyou910331@gmail.com,m:unicorn_wang@outlook.com,m:inochiama@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:rabenda.cn@gmail.com,m:liujingqi@lanxincomputing.com,m:looong.bin@gmail.com,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:sophgo@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:rabendacn@gmail.com,m:looongbin@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[gmail.com,outlook.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-319271-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:robh@kernel.org,m:vkoul@kernel.org,m:olteanv@gmail.com,m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-phy@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,gmail.com,lanxincomputing.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,vger.kernel.org,lists.infradead.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2DD3C6F5B45
+X-Rspamd-Queue-Id: E31346F5B1D
 
-On Thu, Jul 02, 2026 at 11:38:09AM +0800, Inochi Amaoto wrote:
-> On Wed, Jun 10, 2026 at 08:10:10PM +0800, Chen-Yu Yeh wrote:
-> > The Milk-V Duo 256M is a small form factor development board based on
-> > the Sophgo SG2002 SoC.
-> > 
-> > This patch adds basic device tree support for the board, including:
-> > - UART console
-> > - SD/MMC controller
-> > - USB host
-> > - Onboard blue status LED (connected to PWR_GPIO[2] / porte 2)
-> > 
-> 
-> > Tested on actual Milk-V Duo 256M hardware, verified boot to shell and
-> > heartbeat LED functionality.
-> > 
-> 
-> IIRC the led is not controlled by the small core, so the node should
-> be described in the dts.
-> 
-> I see the Sashiko does provide some good question, please check.
-> 
-> > Signed-off-by: Chen-Yu Yeh <chenyou910331@gmail.com>
-> > ---
-> > Changes since v1:
-> > - Removed the leds node because &porte is not yet supported in cv180x.dtsi,
-> >   which would cause a dtc compilation error.
-> > - Retained the &usb node because it is already defined in cv180x.dtsi.
-> > - Cleaned up the trailing blank line in the Makefile.
-> > 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Encoding fixed internal SoC routing in the device tree via the `air=
+oha,usb2-monitor-clk-sel` property.
+--
 
+commit 82d75d6a8695c967604982f45c3db95efe45a784
+Author: Christian Marangi <ansuelsmth@gmail.com>
 
-So why not adding the porte?
+dt-bindings: phy: Add documentation for Airoha AN7581 USB PHY
 
-Regards,
-Inochi
+This commit adds device tree binding documentation for the Airoha AN7581
+USB PHY. It details properties for configuring the always-supported USB 2.0
+mode and the optional USB 3.0 mode, including slew rate calibration and
+Serdes configuration.
 
-> >  arch/riscv/boot/dts/sophgo/Makefile           |   3 +-
-> >  .../boot/dts/sophgo/sg2002-milkv-duo256m.dts  | 108 ++++++++++++++++++
-> >  2 files changed, 110 insertions(+), 1 deletion(-)
-> >  create mode 100644 arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts
-> > 
-> > diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-> > index 6f65526d4193..f9415c30a2c5 100644
-> > --- a/arch/riscv/boot/dts/sophgo/Makefile
-> > +++ b/arch/riscv/boot/dts/sophgo/Makefile
-> > @@ -2,7 +2,8 @@
-> >  dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
-> >  dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
-> >  dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-licheerv-nano-b.dtb
-> > +dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-milkv-duo256m.dtb
-> >  dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
-> >  dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-evb-v1.dtb
-> >  dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-evb-v2.dtb
-> > -dtb-$(CONFIG_ARCH_SOPHGO) += sg2044-sophgo-srd3-10.dtb
-> > +dtb-$(CONFIG_ARCH_SOPHGO) += sg2044-sophgo-srd3-10.dtb
-> > \ No newline at end of file
-> 
-> 
-> Why you change this? Please do not touch unrelated things.
-> 
-> > diff --git a/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts b/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts
-> > new file mode 100644
-> > index 000000000000..4cf441ab3790
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts
-> > @@ -0,0 +1,108 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> 
-> I guess a right copyright is needed for your code.
-> 
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sg2002.dtsi"
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +
-> > +/ {
-> > +	model = "Milk-V Duo 256M";
-> > +	compatible = "milkv,duo256m", "sophgo,sg2002";
-> > +
-> > +	aliases {
-> > +		serial0 = &uart0;
-> > +		serial1 = &uart1;
-> > +		serial2 = &uart2;
-> > +		serial3 = &uart3;
-> > +		serial4 = &uart4;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path = "serial0:115200n8";
-> > +	};
-> > +
-> > +	reserved-memory {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <1>;
-> > +		ranges;
-> > +
-> > +		coprocessor_rtos: region@83f40000 {
-> > +			reg = <0x83f40000 0xc0000>;
-> > +			no-map;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&osc {
-> > +	clock-frequency = <25000000>;
-> > +};
-> > +
-> > +&pinctrl {
-> > +	uart0_cfg: uart0-cfg {
-> > +		uart0-pins {
-> > +			pinmux = <PINMUX(PIN_UART0_TX, 0)>,
-> > +				 <PINMUX(PIN_UART0_RX, 0)>;
-> > +			bias-pull-up;
-> > +			drive-strength-microamp = <10800>;
-> > +			power-source = <3300>;
-> > +		};
-> > +	};
-> > +
-> > +	sdhci0_cfg: sdhci0-cfg {
-> > +		sdhci0-clk-pins {
-> > +			pinmux = <PINMUX(PIN_SD0_CLK, 0)>;
-> > +			bias-pull-up;
-> > +			drive-strength-microamp = <16100>;
-> > +			power-source = <3300>;
-> > +		};
-> > +
-> > +		sdhci0-cmd-pins {
-> > +			pinmux = <PINMUX(PIN_SD0_CMD, 0)>;
-> > +			bias-pull-up;
-> > +			drive-strength-microamp = <10800>;
-> > +			power-source = <3300>;
-> > +		};
-> > +
-> > +		sdhci0-data-pins {
-> > +			pinmux = <PINMUX(PIN_SD0_D0, 0)>,
-> > +				 <PINMUX(PIN_SD0_D1, 0)>,
-> > +				 <PINMUX(PIN_SD0_D2, 0)>,
-> > +				 <PINMUX(PIN_SD0_D3, 0)>;
-> > +			bias-pull-up;
-> > +			drive-strength-microamp = <10800>;
-> > +			power-source = <3300>;
-> > +		};
-> > +
-> > +		sdhci0-cd-pins {
-> > +			pinmux = <PINMUX(PIN_SD0_CD, 0)>;
-> > +			bias-pull-up;
-> > +			drive-strength-microamp = <10800>;
-> > +			power-source = <3300>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&sdhci0 {
-> > +	pinctrl-0 = <&sdhci0_cfg>;
-> > +	pinctrl-names = "default";
-> > +	status = "okay";
-> > +	bus-width = <4>;
-> > +	no-1-8-v;
-> > +	no-mmc;
-> > +	no-sdio;
-> > +	disable-wp;
-> > +};
-> > +
-> > +&uart0 {
-> > +	pinctrl-0 = <&uart0_cfg>;
-> > +	pinctrl-names = "default";
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb {
-> > +	dr_mode = "host";
-> > +	status = "okay";
-> > +};
-> > -- 
-> > 2.43.0
-> > 
+> diff --git a/Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.=
+yaml b/Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
+> new file mode 100644
+> index 0000000000000..f42e3d49a61fd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
+> @@ -0,0 +1,62 @@
+[ ... ]
+> +  reg:
+> +    maxItems: 1
+> +
+> +  airoha,usb2-monitor-clk-sel:
+> +    description: Describe what oscillator across the available 4
+> +      should be selected for USB 2.0 Slew Rate calibration.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3]
+
+[Severity: Low]
+Since the commit message mentions that each port has only one of the 4 moni=
+tor
+clocks actually connected in HW, does this property encode a fixed internal
+SoC routing rather than a board-specific configuration?
+
+Could the driver deduce the correct clock selection internally (for example,
+from the port's register address) instead of requiring a DT property for a
+fixed SoC hardware characteristic?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702093812.1591=
+8-1-ansuelsmth@gmail.com?part=3D2
 
