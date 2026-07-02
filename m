@@ -1,321 +1,228 @@
-Return-Path: <devicetree+bounces-319270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319235-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id d2ZeDShHRmqQNgsAu9opvQ
-	(envelope-from <devicetree+bounces-319270-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:10:32 +0200
+	id 3kBUMqY6RmpvMQsAu9opvQ
+	(envelope-from <devicetree+bounces-319235-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:17:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17EC76F678D
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:10:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2340D6F5BEB
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:17:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=aliel.fr header.s=courrier-s1 header.b=kvFLpalA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319270-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319270-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=aliel.fr;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=mrXvNMbS;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=Yea7G4ld;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319235-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319235-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A399532DE524
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 10:04:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A8F730B5CAC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:52:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70EED4EA37D;
-	Thu,  2 Jul 2026 09:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C89B42B32B;
+	Thu,  2 Jul 2026 09:46:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA42A4E3797;
-	Thu,  2 Jul 2026 09:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F663B442F
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:46:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782985926; cv=none; b=a1r60csJs4VMsSjjuUSS9kBJmyzTPPIjJm2Rpv8cJRkMqPbKHWn0lOF9YQmruWWDZijIefMoVRG2eg6KFvaesnWScMcEVvDXR/RFIFPx7NV6bVDzCLqXQcvBKRSWqKcd+sB6V4xzFDMHdwEBNzoj3mQx/ZeqdJj1RH6Vl3x02hk=
+	t=1782985578; cv=none; b=ZtIq9SnLQwM06/CC3RgoIKcW7342DvNHEq/Os7MxGCbnZzstEhgqVPkx2ZEkCN5PW0r6Ji6/zjrjJD1g++o8Rj7+EGKanz/kbq7kngGE3glhbJbUe23OK/KSJNyAJ7Y7P+AxORDyID8iIfXanTkcrmXanIM0iA671ADufy1ZBAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782985926; c=relaxed/simple;
-	bh=p0sFjWRzjbpxT6lmgqAxIzkvqCsmBHy10xTbeag3hQw=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ijBQumml//4y9CWAbU6zA36WXTPPRUD4u2E/ckNzARz/zjl4esESa410G1edxh6NHj+lzW1ogbuD0T99vMvElLeoZA3OGNfLv5bPzP/bbyyQ5scgyyml3/KGfGOaXf6X819JkKnwQuAI8VfrCK+WDrTw1H2+WtVJD28andhmf48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=kvFLpalA; arc=none smtp.client-ip=65.21.61.41
-Message-ID: <18ca03a9-3876-4a6e-aaa9-2fecb9bef7e6@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1782985563;
-	bh=p0sFjWRzjbpxT6lmgqAxIzkvqCsmBHy10xTbeag3hQw=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=kvFLpalAw/VxiqBUqP3rsMzId96gOHBUtGQPWiXolq9p9/en2OvdQEpEjrXfcoRti
-	 0ld9TUr2IXS6RjAbqS/WXtsxzkl1hkA8NnjNo+Upr1KpCC6TcifgMmEF+m+iA/xzcS
-	 L63fJdydame+xUdRPv+AYkaTWtDSd5xH1qJT2Juc=
-Date: Thu, 2 Jul 2026 11:45:25 +0200
+	s=arc-20240116; t=1782985578; c=relaxed/simple;
+	bh=3kTg9Clc/kX5YvhhLRAxEwnOc1O63N2NGMZM12Uz9RY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ljRQIZwW0/BNNAoQy0+QbV6TFFpDKvX8GiijEBshGkDpG8SMfn8uu/8Ql91hdG7RstJv8/FYD9yNq/bNbyxVm+BaUW+ZBcVZBSkKzodfDZWyREFHYCyKhjP7cvv2w3vJYBThr/NKHzg3hKpHzUXnD+qMO2Fb3vzYLWNflz9v/zA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mrXvNMbS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Yea7G4ld; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6628SEvd3049491
+	for <devicetree@vger.kernel.org>; Thu, 2 Jul 2026 09:46:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zVZnNLH/u8ARJd8RUcFAIiRiGptznjc10KJ4uCgQGko=; b=mrXvNMbSGTLffYn/
+	aU6P1GhRv0C8U6e5JL/bUqxKPs61VcMDYXeJQo7RIvUqjgwiMbPMNXO8yqK92fjj
+	BuFgQS7M2nGdUiKOdJ73dH9fKCFxQvPWLoqpIG+Q2zfzKznollhoDphiwBe8nWcB
+	upgFOj1uIkCm2rDwz1ufHT7IM7ixf2AYVdFls5N7S0VRFoXeCuiuwHH1Y7Wa+B88
+	lPCJz1xtqe32M4I2UoJ6KIK3s5eh62pFdFYvJZxX2lq/IvD4frwUNrl4EfvT4qNx
+	3YzYI3rrueYPHsQpA7lqG5nahR74BKAkTA0IbTLrVl+6r7YyQCY868zm27lFS9Ot
+	vG0IoQ==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f5541v2ja-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 09:46:15 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-847ac21582cso1908914b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:46:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1782985575; x=1783590375; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zVZnNLH/u8ARJd8RUcFAIiRiGptznjc10KJ4uCgQGko=;
+        b=Yea7G4ldrVEYt2ANUUsaT9aLSkjW/CcejQrA3VB62sq+tnV27U+h0j5UroAbqHrtOx
+         pCtbvQj11goG47H3pCSk48Maq8GdUZrSvqZ+m7n1xFNMVFNYFlsqiFm7DK58FvNlfJKi
+         nkoeFRYIY5JV9OItQN4trgfMDYJeMT5qNoeAdIsRvwmsXSCvdL+1fj5yNQVeX05zwy5j
+         LC5NKzzy1bGkY9LWfGxEUl63pFi3IsAIIYNwYiVIA4EsSXEfzydV6uPikeUpd1AttV5C
+         utMxfqexTZf1eleN5b71ROjPWvYoAKws/h7DF0Cs2mxyYhQ6psP0eDNzfm7IIi8QzEyn
+         WHeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782985575; x=1783590375;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zVZnNLH/u8ARJd8RUcFAIiRiGptznjc10KJ4uCgQGko=;
+        b=K9fUNOgWbephjkMz3TxV2mya6EPXHth/VGvfCc+77FHZnic/mpqulAC1XkJprIda2Z
+         c1/WwBrud23CBgtzQ8AqamVxw8nuZtQ+chplrSicJ4mnslnh2TyUeJN4CWLDocQ/o8y3
+         TXZOhzPoCQ8w+h9KA5ZId2mFMgn7tYimIXcOlacqBS+bB1MtaC2zsvCfhNmmqS37jj65
+         WKWXsUmPqEdMFov5Xry+FYMafxS1n9Lix3iMYUPZmKUHyHLT72mTEm1LcK1nBvqNGdOH
+         JKRmGGQr0Yyw+hcI0ZuqgPJmObQKpBPkUr0XXShDRJOilju/sTKMmIeU9qmSb8Bs0oRk
+         2XxQ==
+X-Forwarded-Encrypted: i=1; AHgh+Rq10JVVH5+0bwt3X5WFy59f1yBB6HGMRPAVHadcIINtsHMf+/0SAmn/WHA8YqDzMVhaVvyWVa5DOf3o@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYSwlvhLP7vQxQRqz7+nxpMOoDiIlBq9lOGziSLZfZ5f5jfMGc
+	JbB47A+Uo433XYRRZwqf/DQ2fbWoQVTAFGfseamfKS8UuNtiXhx7BodbczFj0+1wxkjDu+G7Q+r
+	apERAYoT/9euFq/qz/iRllnlObFvuh3pk3wZKC2qzqKZSpJO4u8FUmJh/u+EqrKW0
+X-Gm-Gg: AfdE7clrOIlhn8GyiLp3fZWyfb0TewZqv+QIztmkl8PNEyYyAPez1mnjQjyBrg5aEbX
+	+bWtKscS1n7CQiGtwTe3EVU5qZtNKRSH8fV3n7F5ETRVuMx2rMfQrnvsIL2TvvF9rStJAutLMtv
+	A1yoW+PSXCxRtBc3za9060CkloP4HGZm3KZ18pLInKI4eTdBOKM3KBOnJMlxg20c7UGR/pwY30K
+	tsOSDSjZ8DgbUJRTxnYjHsM32TT4393fND1k5tsyfBs8RViogM5qQTwZDhrppeT8XnCmAO80w9v
+	uOmQ0Lt9/VYEE+iHdm5EN/FEQfl2elxpzFVRMY7BST1a3PyTt0UdVieu4OBpRyoWg/tELWgVzce
+	uIuBvKdyLNry6oiNOQhnCQO8ciUgOyCjkN3tjZFpq
+X-Received: by 2002:a05:6a00:a1f:b0:846:2f3d:6275 with SMTP id d2e1a72fcca58-847c0a03e2fmr5163656b3a.58.1782985574712;
+        Thu, 02 Jul 2026 02:46:14 -0700 (PDT)
+X-Received: by 2002:a05:6a00:a1f:b0:846:2f3d:6275 with SMTP id d2e1a72fcca58-847c0a03e2fmr5163621b3a.58.1782985573855;
+        Thu, 02 Jul 2026 02:46:13 -0700 (PDT)
+Received: from [192.168.1.6] ([182.77.29.27])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-847cb97d96fsm1104140b3a.40.2026.07.02.02.46.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jul 2026 02:46:13 -0700 (PDT)
+Message-ID: <0261818a-0aef-49ca-9884-ffbcf2968b22@oss.qualcomm.com>
+Date: Thu, 2 Jul 2026 15:16:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: linux-kernel-dev@aliel.fr
-Subject: Re: [PATCH v7 4/8] mfd: khadas-mcu: Add support for VIM4 MCU variant
-To: Lee Jones <lee@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Beniamino Galvani <b.galvani@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-pm@vger.kernel.org
-References: <20260603-add-mcu-fan-khadas-vim4-v7-0-594ba8a965d8@aliel.fr>
- <20260603-add-mcu-fan-khadas-vim4-v7-4-594ba8a965d8@aliel.fr>
- <20260611164053.GC1212816@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: Add SD Card support for Glymur SoC
+To: sashiko-reviews@lists.linux.dev
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+References: <20260610111508.3941207-4-mchunara@oss.qualcomm.com>
+ <20260610112607.62D8F1F00898@smtp.kernel.org>
 Content-Language: en-US
-In-Reply-To: <20260611164053.GC1212816@google.com>
+From: Monish Chunara <monish.chunara@oss.qualcomm.com>
+In-Reply-To: <20260610112607.62D8F1F00898@smtp.kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 58J_ZRmZm6Nm47ednf6xn08xFThiLxcC
+X-Proofpoint-ORIG-GUID: 58J_ZRmZm6Nm47ednf6xn08xFThiLxcC
+X-Authority-Analysis: v=2.4 cv=Xbm5Co55 c=1 sm=1 tr=0 ts=6a463367 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=1qKOYMtCOh3zOq8T1Y2cZw==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=E98MCR8XraImtk7OjrgA:9 a=QEXdDO2ut3YA:10
+ a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAyMDEwMCBTYWx0ZWRfX/J8+PgLbyi1n
+ s2qGxIlJGQNXGSY27gSD9aiXOe6GhFN1cut5fk+pC9Ctgeg9VgW3br6KVZ4dPna+llOTqsgqXZZ
+ 9J1kY/82WUXIJzpgmytYy1WVUs83geXKzIXHgyQg1vb5gA/KJpsKuf7olCukXbLEvBKif9eGmk9
+ IZbwW8MfFpu2kq1VkNvrbZwSlPELOI0KAb1OzyHi01XWwm7JqPdXveie6+eYfJ9KT2FT/t+ARSj
+ fNMjJY0WGkmft8Y2SnwP1yilyRyES3aH/XuJCHu0KhcapD2G45QWuSfWGMm5uFxg0xFWcQ00VTw
+ KnktLClRVZ01kTugyhQu3AIuKqvOivbT1f/bu+LIWpAe3hsOaWmUrbJzr71W06TBmFzGe8VIgnH
+ 6LbBah4P76LcMi73SooCINfVZlJ8IKIMd7MhrlQeaigrzvxQ6Em3Vqp4qQhUNP0RSF8oLHVo2Ss
+ kCOobNXnQOzft8gem2Q==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAyMDEwMCBTYWx0ZWRfXzi9mpBZbcLP/
+ DCarkguSvywRMJMX2cO1SkhmvU7ctn2m42dBABV6JCtpQPlESN3NL7XTq8+bHDWTDIf9EeJlNSM
+ FZvwra+5Dniy1P3si2R6WHO9bJHEYjQ=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-02_01,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ adultscore=0 phishscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607020100
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[aliel.fr,quarantine];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319270-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andi.shyti@kernel.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:b.galvani@gmail.com,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:linux-amlogic@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-pm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,m:bgalvani@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aliel.fr:+];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com,lists.infradead.org,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-319235-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid,aliel.fr:from_mime]
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[monish.chunara@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email];
+	MIME_TRACE(0.00)[0:+];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[monish.chunara@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 17EC76F678D
-
-On 6/11/26 6:40 PM, Lee Jones wrote:
-> /* Sashiko Automation: Reviewed (0 Findings) */
-> 
-> On Wed, 03 Jun 2026, Ronald Claveau via B4 Relay wrote:
-> 
->> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
->>
->> Refactor probe() to use per-variant values
->> instead of hardcoded globals.
->>
->> Add dedicated regmap configuration for the VIM4 MCU,
->> with its own volatile/writeable registers.
->>
->> Add the fan control register
->> (0–100 levels vs 0–3 for previous supported boards).
->>
->> Add a new compatible string "khadas,vim4-mcu".
->>
->> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
->> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
->> ---
->>  drivers/mfd/khadas-mcu.c | 115 ++++++++++++++++++++++++++++++++++++++++-------
->>  1 file changed, 99 insertions(+), 16 deletions(-)
->>
->> diff --git a/drivers/mfd/khadas-mcu.c b/drivers/mfd/khadas-mcu.c
->> index ba981a7886921..1bf260729d73b 100644
->> --- a/drivers/mfd/khadas-mcu.c
->> +++ b/drivers/mfd/khadas-mcu.c
->> @@ -75,47 +75,129 @@ static const struct regmap_config khadas_mcu_regmap_config = {
->>  	.cache_type	= REGCACHE_MAPLE,
->>  };
->>  
->> -static struct mfd_cell khadas_mcu_fan_cells[] = {
->> +static const struct khadas_mcu_fan_pdata khadas_mcu_fan_pdata = {
->> +	.fan_reg	= KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
->> +	.max_level	= 3, /* Fan speed: 0 = off, 1 = low, 2 = medium, 3 = high */
-> 
-> Instead of this comment, you could always just define the value(s)?
-> 
-
-I will do that with define.
-
->> +};
->> +
->> +static const struct mfd_cell khadas_mcu_fan_cells[] = {
->>  	/* VIM1/2 Rev13+ and VIM3 only */
->> -	{ .name = "khadas-mcu-fan-ctrl", },
->> +	{
->> +		.name = "khadas-mcu-fan-ctrl",
->> +		.platform_data = &khadas_mcu_fan_pdata,
->> +		.pdata_size    = sizeof(khadas_mcu_fan_pdata),
-> 
-> No need to attempt to align the '=' like this, please.
-> 
-
-I will remove these extra spaces.
-
->> +	},
->>  };
->>  
->> -static struct mfd_cell khadas_mcu_cells[] = {
->> +static const struct mfd_cell khadas_mcu_cells[] = {
->>  	{ .name = "khadas-mcu-user-mem", },
->>  };
->>  
->> +static bool khadas_mcu_vim4_reg_volatile(struct device *dev, unsigned int reg)
->> +{
->> +	switch (reg) {
->> +	case KHADAS_MCU_PWR_OFF_CMD_REG:
->> +	case KHADAS_MCU_VIM4_REST_CONF_REG:
->> +	case KHADAS_MCU_WOL_INIT_START_REG:
->> +	case KHADAS_MCU_VIM4_LED_ON_RAM_REG:
->> +	case KHADAS_MCU_VIM4_FAN_CTRL_REG:
->> +	case KHADAS_MCU_VIM4_WDT_EN_REG:
->> +	case KHADAS_MCU_VIM4_SYS_RST_REG:
->> +		return true;
->> +	default:
->> +		return false;
->> +	}
->> +}
->> +
->> +static bool khadas_mcu_vim4_reg_writeable(struct device *dev, unsigned int reg)
->> +{
->> +	switch (reg) {
->> +	case KHADAS_MCU_VERSION_0_REG:
->> +	case KHADAS_MCU_VERSION_1_REG:
->> +	case KHADAS_MCU_SHUTDOWN_NORMAL_STATUS_REG:
->> +		return false;
->> +	default:
->> +		return true;
->> +	}
->> +}
->> +
->> +static const struct regmap_config khadas_mcu_vim4_regmap_config = {
->> +	.reg_bits	= 8,
->> +	.reg_stride	= 1,
->> +	.val_bits	= 8,
->> +	.max_register	= KHADAS_MCU_VIM4_SYS_RST_REG,
->> +	.volatile_reg	= khadas_mcu_vim4_reg_volatile,
->> +	.writeable_reg	= khadas_mcu_vim4_reg_writeable,
->> +	.cache_type	= REGCACHE_MAPLE,
->> +};
->> +
->> +static const struct khadas_mcu_fan_pdata khadas_vim4_fan_pdata = {
->> +	.fan_reg	= KHADAS_MCU_VIM4_FAN_CTRL_REG,
->> +	.max_level	= 0x64,
->> +};
->> +
->> +static const struct mfd_cell khadas_mcu_vim4_cells[] = {
->> +	{
->> +		.name		= "khadas-mcu-fan-ctrl",
->> +		.platform_data	= &khadas_vim4_fan_pdata,
->> +		.pdata_size	= sizeof(khadas_vim4_fan_pdata),
->> +	},
->> +};
->> +
->>  static int khadas_mcu_probe(struct i2c_client *client)
->>  {
->> +	const struct mfd_cell *cells, *fan_cells;
->> +	const struct regmap_config *regmap_cfg;
->>  	struct device *dev = &client->dev;
->> +	int ncells, nfan_cells, ret;
->>  	struct khadas_mcu *ddata;
->> -	int ret;
->>  
->>  	ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
->>  	if (!ddata)
->>  		return -ENOMEM;
->>  
->> +	switch ((uintptr_t)i2c_get_match_data(client)) {
->> +	case KHADAS_MCU_GENERIC:
->> +		regmap_cfg	= &khadas_mcu_regmap_config;
->> +		cells		= khadas_mcu_cells;
->> +		ncells		= ARRAY_SIZE(khadas_mcu_cells);
->> +		fan_cells	= khadas_mcu_fan_cells;
->> +		nfan_cells	= ARRAY_SIZE(khadas_mcu_fan_cells);
->> +		break;
->> +	case KHADAS_MCU_VIM4:
->> +		regmap_cfg	= &khadas_mcu_vim4_regmap_config;
->> +		cells		= NULL;
->> +		ncells		= 0;
->> +		fan_cells	= khadas_mcu_vim4_cells;
->> +		nfan_cells	= ARRAY_SIZE(khadas_mcu_vim4_cells);
-> 
-> I'm not as offended by this as I thought I would be!
-> 
->> +		break;
->> +	default:
->> +		return -ENODEV;
->> +	}
->> +
->>  	i2c_set_clientdata(client, ddata);
->>  
->>  	ddata->dev = dev;
->>  
->> -	ddata->regmap = devm_regmap_init_i2c(client, &khadas_mcu_regmap_config);
->> +	ddata->regmap = devm_regmap_init_i2c(client, regmap_cfg);
->>  	if (IS_ERR(ddata->regmap)) {
->>  		ret = PTR_ERR(ddata->regmap);
->> -		dev_err(dev, "Failed to allocate register map: %d\n", ret);
->> -		return ret;
->> +		return dev_err_probe(dev, ret, "Failed to allocate register map\n");
->>  	}
->>  
->> -	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
->> -				   khadas_mcu_cells,
->> -				   ARRAY_SIZE(khadas_mcu_cells),
->> -				   NULL, 0, NULL);
->> -	if (ret)
->> -		return ret;
->> +	if (cells && ncells) {
->> +		ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
->> +					   cells,
->> +					   ncells,
->> +					   NULL, 0, NULL);
->> +		if (ret)
->> +			return ret;
->> +	}
->>  
->>  	if (of_property_present(dev->of_node, "#cooling-cells"))
->>  		return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
->> -					    khadas_mcu_fan_cells,
->> -					    ARRAY_SIZE(khadas_mcu_fan_cells),
->> +					    fan_cells,
->> +					    nfan_cells,
->>  					    NULL, 0, NULL);
->>  
->>  	return 0;
->> @@ -123,7 +205,8 @@ static int khadas_mcu_probe(struct i2c_client *client)
->>  
->>  #ifdef CONFIG_OF
->>  static const struct of_device_id khadas_mcu_of_match[] = {
->> -	{ .compatible = "khadas,mcu", },
->> +	{ .compatible = "khadas,mcu", .data = (void *)KHADAS_MCU_GENERIC },
->> +	{ .compatible = "khadas,vim4-mcu", .data = (void *)KHADAS_MCU_VIM4 },
->>  	{},
->>  };
->>  MODULE_DEVICE_TABLE(of, khadas_mcu_of_match);
->>
->> -- 
->> 2.49.0
->>
->>
-> 
+X-Rspamd-Queue-Id: 2340D6F5BEB
 
 
--- 
-Best regards,
-Ronald
+
+On 6/10/2026 4:56 PM, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Medium] Missing `resets` hardware reset property for the `sdhc_2` node
+> --
+> 
+> commit 3328d962d23c195e0ded6a5fa736fc357bc968ef
+> Author: Monish Chunara <monish.chunara@oss.qualcomm.com>
+> 
+> arm64: dts: qcom: Add SD Card support for Glymur SoC
+> 
+> This commit adds support for the SD card on the Glymur SoC and enables
+> the required pinctrl configurations.
+> 
+>> diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+>> index 20b49af7298e9..0989fe39e7ef7 100644
+>> --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> [ ... ]
+>> @@ -3927,6 +3927,57 @@ lpass_ag_noc: interconnect@7e40000 {
+>>  			#interconnect-cells = <2>;
+>>  		};
+>>  
+>> +		sdhc_2: mmc@8804000 {
+>> +			compatible = "qcom,glymur-sdhci", "qcom,sdhci-msm-v5";
+>> +
+> 
+> [Severity: Medium]
+> Should this node include the resets = <&gcc GCC_SDCC2_BCR>; property?
+> 
+> The SDHCI-MSM driver typically uses the core_reset (fetched via the resets
+> device tree property) to explicitly reset the SDHC hardware block during probe,
+> ensuring it is in a clean and known state.
+> 
+> Although the driver requests the reset as optional, omitting it means the
+> kernel cannot reset the controller. Could this lead to unpredictable controller
+> behavior or probe failures if the bootloader leaves the block in an
+> inconsistent state?
+> 
+
+Updated in v2 : https://lore.kernel.org/all/20260702094056.3755467-1-mchunara@oss.qualcomm.com/
+
+Thanks and Regards,
+Monish
+
 
