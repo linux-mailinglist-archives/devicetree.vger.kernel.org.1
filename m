@@ -1,183 +1,146 @@
-Return-Path: <devicetree+bounces-319351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319354-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uBSrF+hZRmqsRQsAu9opvQ
-	(envelope-from <devicetree+bounces-319351-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 14:30:32 +0200
+	id GOUpBuNXRmrERAsAu9opvQ
+	(envelope-from <devicetree+bounces-319354-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 14:21:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4D736F7999
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 14:30:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BFED6F77E7
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 14:21:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="N7yu/WSp";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319351-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319351-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=chaosmail.tech header.s=mail header.b=PvRN39e2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319354-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319354-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=chaosmail.tech;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3840B30E8A07
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 12:06:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9199632207BC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 12:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1B748122D;
-	Thu,  2 Jul 2026 12:02:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A76481AA2;
+	Thu,  2 Jul 2026 12:06:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from chaosmail.tech (chaosmail.tech [77.81.229.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 095F047DD47;
-	Thu,  2 Jul 2026 12:02:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7DC147DFBF;
+	Thu,  2 Jul 2026 12:06:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782993754; cv=none; b=iz1xTrvqzNkvz6ZEOKLLq8GB3XsELVWJGtalBf6VRjMf8WqpxeZI6UmRG8A6INNM7IY9GfV44D6tpYNJXsw1HTHfSCkUJ0ZHpjTr9Lyva2GE6WMXGYroUbwc1K4JiBLLKO4O/uYod3nSodX8l8c2mGVX3cT3L0idB6Y6Agsg08g=
+	t=1782994019; cv=none; b=V347yyYl9de3gT/wtnOnsFLI+tpudkSeZbl4FceloYCg1fvbJGc4iJtzUBHklaiDPlNko+JeVruYwLmS+h7HrjRz2LA4H/qb05syn9oQ9p80crWtyXKE/HVHh7FMfB5mKaKUFKPdTiUbuAXKCwM0y29bvlBV1pgfG4A1Z78AOmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782993754; c=relaxed/simple;
-	bh=Kass8ShLtCG2cBS4Ka4UPuU1HKrZoxA2WVsdRH1GDfo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jN/VaV9ISxHi3aDxB8b0t87QDio4lEfr/Fy+05wIWl83iL0qRMXhVgzjn550mee1qNJTsUjuQyJL2IuFR4SMPfwhHVLb2LCKJKRjI/ODRa0KskCFU+zO3yd2vhVJDq/aDyP7lVqjt4ex4xzqEFLlDgK0N+zuhljLX+EsU3rGOOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N7yu/WSp; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 639F21F000E9;
-	Thu,  2 Jul 2026 12:02:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782993751;
-	bh=XJUsMAYjmWAnU9O7bNhJ//OMZ13Hh1LDu2wdf2fpjto=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=N7yu/WSpsrbUQBhA1/dvGgNOT5ajJsFHvZhouEJj4yIudjK2H5UoZ6oXk7G+oSn4x
-	 /BIJNvqHNnSwrcfCSllGP1RPHKBe2entTebUAcqehuvCDacnFvfAV9NOJECf+XdH3l
-	 bu8d9ao7eOY9xWnklfWMlVXCv0Nzoh47AE+LwMHlF/bMcPDeau/XR1uIFj/GF74NVj
-	 fEiu/3lBiCnPpNjjaCQVx6u6kozBCRl5eDM7WA/y/h6zTNw00XkdZ2V1UqRmr1OfI3
-	 KGS1wWSJ6A5I7EGsyFQply6BzRBKBEN4xxiYtKYO+T1Z+aEwoN2p0fF/rS77Vkc1sj
-	 zdgrWfRazZMtQ==
-From: Sumit Garg <sumit.garg@kernel.org>
-To: andersson@kernel.org,
-	konradybcio@kernel.org
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	linux-media@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	ath12k@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	robin.clark@oss.qualcomm.com,
-	sean@poorly.run,
-	akhilpo@oss.qualcomm.com,
-	lumag@kernel.org,
-	abhinav.kumar@linux.dev,
-	jesszhan0024@gmail.com,
-	marijn.suijten@somainline.org,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	vikash.garodia@oss.qualcomm.com,
-	bod@kernel.org,
-	mchehab@kernel.org,
-	elder@kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	jjohnson@kernel.org,
-	mathieu.poirier@linaro.org,
-	trilokkumar.soni@oss.qualcomm.com,
-	mukesh.ojha@oss.qualcomm.com,
-	pavan.kondeti@oss.qualcomm.com,
-	jorge.ramirez@oss.qualcomm.com,
-	tonyh@qti.qualcomm.com,
-	vignesh.viswanathan@oss.qualcomm.com,
-	srinivas.kandagatla@oss.qualcomm.com,
-	amirreza.zarrabi@oss.qualcomm.com,
-	jenswi@kernel.org,
-	op-tee@lists.trustedfirmware.org,
-	apurupa@qti.qualcomm.com,
-	skare@qti.qualcomm.com,
-	linux-kernel@vger.kernel.org,
-	Sumit Garg <sumit.garg@oss.qualcomm.com>
-Subject: [PATCH v9 14/14] MAINTAINERS: Add maintainer entry for Qualcomm PAS TZ service
-Date: Thu,  2 Jul 2026 17:28:30 +0530
-Message-ID: <20260702115835.167602-15-sumit.garg@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260702115835.167602-1-sumit.garg@kernel.org>
-References: <20260702115835.167602-1-sumit.garg@kernel.org>
+	s=arc-20240116; t=1782994019; c=relaxed/simple;
+	bh=jUlZSi3Y3F/0QuIxjuAl+t+pHRC3h/ygSTf4tVgbRFg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=g4BoE6MY0kLxbFWDJTBW9GTGpJxhLcqnLaoMx8EZOgYMJ6ZIAnhYfEvy2JH2ygGGmcnyqBdr73OYRwmy/uHHun3/tyFgLAsd4GEBPmO9urE1Id+m31xRR3jFBFn5iVPGwhF6Siw69acMMc2jQHxPUGh1nVMeCtrdJzd2zG6d6PM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=chaosmail.tech; spf=pass smtp.mailfrom=chaosmail.tech; dkim=pass (1024-bit key) header.d=chaosmail.tech header.i=@chaosmail.tech header.b=PvRN39e2; arc=none smtp.client-ip=77.81.229.115
+Received: by chaosmail.tech (Postfix) id 347FD1C888A;
+	Thu, 02 Jul 2026 12:06:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chaosmail.tech;
+	s=mail; t=1782994005;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SQNpC2MoYnLQAl/v3dxVQexz4TEZdGqYDZch7PZVNZg=;
+	b=PvRN39e2OtdyoOiqOOVP2E/XParelVBDKN6Tf444vbUXewXfCOBlZnpohD/6T1W3NOmIe5
+	dJjT9qJqYMm5oDZmrOLvAh9YMZkHL3re6DIqUkSHUu9VMy1g2An0m+js2RnSAjbydVV8xM
+	T33OvLIxpDx1AYgRkKBZGHH3NJdd/ac=
+From: Sasha Finkelstein <k@chaosmail.tech>
+Subject: [PATCH 0/3] soc: apple: Add "PMGR misc" power controls driver
+Date: Thu, 02 Jul 2026 14:06:25 +0200
+Message-Id: <20260702-pmgr-misc-v1-0-4f075a3a95c1@chaosmail.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXM0QpAMBSA4VfRubbaViivIhd2HBxltIPU8u6Gy
+ 6/+/ghCgUmgziIEOll49QkmzwCnzo+kuE8Gq22pK23VtoxBLSyoOjLo+sKhxQpSvwUa+PpeTft
+ bDjcT7u8A7vsBoLwa2m0AAAA=
+X-Change-ID: 20260702-pmgr-misc-ae1cbd5bc2c7
+To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
+ Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Sasha Finkelstein <k@chaosmail.tech>, Hector Martin <marcan@marcan.st>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782994005; l=1550;
+ i=k@chaosmail.tech; s=20241124; h=from:subject:message-id;
+ bh=jUlZSi3Y3F/0QuIxjuAl+t+pHRC3h/ygSTf4tVgbRFg=;
+ b=24ErvKIbhJOk782EuxDOBxCg4INtj7JZ+kfwYzPQK38zAqwbYHrJ+KabRgYh7yB2Mirj5Qif0
+ Z2vR12trINkDRcS8Vcb7pzaWD7AtPvbEmZ9fFceWRCi171ACZ57jl1N
+X-Developer-Key: i=k@chaosmail.tech; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[chaosmail.tech,reject];
+	R_DKIM_ALLOW(-0.20)[chaosmail.tech:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:freedreno@lists.freedesktop.org,m:linux-media@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:ath12k@lists.infradead.org,m:linux-remoteproc@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:robin.clark@oss.qualcomm.com,m:sean@poorly.run,m:akhilpo@oss.qualcomm.com,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:jesszhan0024@gmail.com,m:marijn.suijten@somainline.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:vikash.garodia@oss.qualcomm.com,m:bod@kernel.org,m:mchehab@kernel.org,m:elder@kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:jjohnson@kernel.org,m:mathieu.poirier@linaro.org,m:trilokkumar.soni@oss.qualcomm.com,m:mukesh.ojha@oss.qualcomm.com,m:pavan.kondeti@oss.qualcomm.com,m:jorge.ramirez@oss
- .qualcomm.com,m:tonyh@qti.qualcomm.com,m:vignesh.viswanathan@oss.qualcomm.com,m:srinivas.kandagatla@oss.qualcomm.com,m:amirreza.zarrabi@oss.qualcomm.com,m:jenswi@kernel.org,m:op-tee@lists.trustedfirmware.org,m:apurupa@qti.qualcomm.com,m:skare@qti.qualcomm.com,m:linux-kernel@vger.kernel.org,m:sumit.garg@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:andrew@lunn.ch,s:lists@lfdr.de];
-	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[48];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,lists.infradead.org,kernel.org,oss.qualcomm.com,poorly.run,linux.dev,gmail.com,somainline.org,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,linaro.org,qti.qualcomm.com,lists.trustedfirmware.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319351-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-319354-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sven@kernel.org,m:j@jannau.net,m:neal@gompa.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:k@chaosmail.tech,m:marcan@marcan.st,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[k@chaosmail.tech,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[k@chaosmail.tech,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[chaosmail.tech:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,chaosmail.tech:dkim,chaosmail.tech:email,chaosmail.tech:mid,chaosmail.tech:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A4D736F7999
+X-Rspamd-Queue-Id: 9BFED6F77E7
 
-From: Sumit Garg <sumit.garg@oss.qualcomm.com>
+Certain Apple SoCs have additional power state controls that are using
+a separate "misc" mmio interface. Currently this includes the fabric
+and memory controllers on pro/max/ultra SoCs.
 
-Add Sumit Garg as the maintainer for the Qualcomm generic Peripheral
-Authentication Service (PAS) as well as the PAS TEE backend driver.
+This series adds a driver to put those in a low power state when the
+machine enters sleep. The power savings are SoC-dependent and are
+around 1W.
 
-Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
+Signed-off-by: Sasha Finkelstein <k@chaosmail.tech>
 ---
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Hector Martin (1):
+      soc: apple: Add driver for Apple PMGR misc controls
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 15011f5752a9..7847b2a98f90 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22315,6 +22315,15 @@ F:	Documentation/devicetree/bindings/media/*qcom*
- F:	drivers/media/platform/qcom
- F:	include/dt-bindings/media/*qcom*
- 
-+QUALCOMM PAS TZ SERVICE
-+M:	Sumit Garg <sumit.garg@oss.qualcomm.com>
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Maintained
-+F:	drivers/firmware/qcom/qcom_pas.c
-+F:	drivers/firmware/qcom/qcom_pas.h
-+F:	drivers/firmware/qcom/qcom_pas_tee.c
-+F:	include/linux/firmware/qcom/qcom_pas.h
-+
- QUALCOMM SMB CHARGER DRIVER
- M:	Casey Connolly <casey.connolly@linaro.org>
- L:	linux-arm-msm@vger.kernel.org
--- 
-2.53.0
+Sasha Finkelstein (2):
+      dt-bindings: soc: apple: Add bindings for apple PMGR misc controls
+      arm64: dts: apple: Add pmgr-misc nodes to t60xx
+
+ Documentation/devicetree/bindings/soc/apple/apple,t6000-pmgr-misc.yaml |  45 +++++++++++++++++++++++++++
+ MAINTAINERS                                                            |   1 +
+ arch/arm64/boot/dts/apple/t600x-die0.dtsi                              |   7 +++++
+ arch/arm64/boot/dts/apple/t602x-die0.dtsi                              |   7 +++++
+ drivers/soc/apple/Kconfig                                              |  10 ++++++
+ drivers/soc/apple/Makefile                                             |   2 ++
+ drivers/soc/apple/apple-pmgr-misc.c                                    | 177 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 7 files changed, 249 insertions(+)
+---
+base-commit: 59574e5978abfc2ce1c194ea0200eb6fc718d8ce
+change-id: 20260702-pmgr-misc-ae1cbd5bc2c7
+
+Best regards,
+--  
+Sasha Finkelstein <k@chaosmail.tech>
 
 
