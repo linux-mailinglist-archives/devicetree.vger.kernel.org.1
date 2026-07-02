@@ -1,351 +1,483 @@
-Return-Path: <devicetree+bounces-319250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319243-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Pwm1Grc7RmrXMQsAu9opvQ
-	(envelope-from <devicetree+bounces-319250-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:21:43 +0200
+	id ZqfoOcQ6RmqCMQsAu9opvQ
+	(envelope-from <devicetree+bounces-319243-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:17:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E086F5D0D
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:21:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F0786F5C1E
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:17:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="P7UV/XfY";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319250-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319250-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=linaro.org header.s=google header.b=G8gu3O0i;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319243-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319243-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1B1953031EA9
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:54:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 06CC53135DCB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:53:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 143234968F7;
-	Thu,  2 Jul 2026 09:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F0148AE32;
+	Thu,  2 Jul 2026 09:48:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A43B49553A
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B56947ECFE
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:48:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782985742; cv=none; b=eShQSFcfiHSPLWnE8RM9iMsFKlndWpIeO0AfqZucFvFEZHckNvDMSFDScfQV8UL6KDwym6nzfjO4YFM2ildT19yTpiufODTIlzRgN6chtlCPq9xhnNRC3yQl84dZ34EgTf11uEyhzTNvesObfKBnz98LeMvOgwVJvSt0HA4mXrU=
+	t=1782985724; cv=none; b=rubCePf2JA8f+b617D/TiI04pkgcjvPPiNy++Tg4S3UFYyIlGqQBzbbPqQgnhKFinhXhDldEJc0UfcBlQhyE0mW09TU/ZjVgn2mp03W1lpEikjXpLXTjv5XhNf2My/+rt82HhfgkYyr3oT1jzvFjD9+UepkC266TQOv9itV2mLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782985742; c=relaxed/simple;
-	bh=6ky9g4KHbUV3l6SHftocKchWejvDlv/fyysqR2kd4OU=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gEo2rI3isqOiK3MgS1KSg69gOstR2RojLHdZBpD4xkHAZg4TVqu8Y8k5+r1T+94BAh3L+4rDkqUbJXs0zIZfCSafjRJN4ccg+ggvoHkOeF4SvGgjlqVWoPmfO/IlgsNr7C6Pat3Z8QJluodr9HwBomgev0W4WwVMPDBM46HNtnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P7UV/XfY; arc=none smtp.client-ip=209.85.221.52
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-4629051c946so276394f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:48:59 -0700 (PDT)
+	s=arc-20240116; t=1782985724; c=relaxed/simple;
+	bh=sTCOiDdPouMd9Hp7hUc7Jv8w7io+JLjHMvadYa9Zp6Y=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=CyNmjmveTtd3c/5qC+R3VULjEgfEqB1lhV3bcoY3iQ4958WIHdLgJnk2gVVhE9pCTDBxK7EY4OQ6w+v63pKr1mYR4BGvufAvaGws+6hj2qjjZDr36cX06NThaZXXSBAlEKl7yeWwB/scWXS7N0plhw3SoPzo+CliM1uSkmMxTpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G8gu3O0i; arc=none smtp.client-ip=209.85.128.43
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-493c1950518so1951585e9.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:48:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782985738; x=1783590538; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1782985719; x=1783590519; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0e97GBzjavtlOTUp72tsBF2P0b5wNf0hxsRbkXrGaZ4=;
-        b=P7UV/XfY4cFIuaelJPVC0LK9q7hPQBVJdZ4TVUD1Vso3meyFC5VE87NhE0iipYQRen
-         Er7bU8EzvnriZUopaPOtYjVb2q86W9T+Xc3bA725b/OqkfnQUqA5gFfGJUwgb30WYh1s
-         QCF5lRfhGpbEe9ndvFbqe7MWjCb7vZU8BRXwe5/IEetLm6K/UvEPQVrD5jCyX57oebDb
-         Rn+x0gB/MLOEgkIPZK8XiPTJpJDWGUIg6ZUjp1aN6DpK/R71myHP9hVO9HEJwtdFWycS
-         theM8/MibhsNiClX9PNAqhwWDhE3Fwx5UWfjVSpu1PzrXhrlZ/4gwguDEMFzhtWSvaZk
-         69sA==
+        bh=nRgzSQb2zmB8pWFIxx6qvYL4vygtV3dELTMaCNk1AN0=;
+        b=G8gu3O0iptI/ZuwhmZr2F/OyA9LjZNuNyQ9PGPx6m9LxDLcJlFUQwUyg06o0zVdvsD
+         aIxhBtnwq2fP6nxRwZuSH2u+ciAkmNPgiA0hYpLhUwLfEwG67VSKHl6nQGM4y9n0IU5S
+         xzkhqh6B99nSDatoF0tkjo18se1gY9Ch1+hKWQ/t5+q682+D/m7y20XbaEF6B37Ik7V6
+         pNv74X91F/j7nREFIntBIx+4eMBxqyy67Ty+sBRO5YManhGzT5vXCI01Dh5rYuUrRZ5M
+         h1mzBOGiSqkg7BZes1Lo5ADLeZnJ90R7S/R32H8z9PLdV+0ULfWO56IhaapMF2j9PkyC
+         FSGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782985738; x=1783590538;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
+        d=1e100.net; s=20251104; t=1782985719; x=1783590519;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=0e97GBzjavtlOTUp72tsBF2P0b5wNf0hxsRbkXrGaZ4=;
-        b=NzGvi9R2/pbArutX+8X2Jy3Txg8fYvc/7pbv5t7twjt/tPkIpBQRyq44KpHfZBLz74
-         O63HNx4u4bn9vjKZ/TUtpnGYioITgyqBWt4n1bw+SwXz4aU/4K3yKBDmNRRwnepVt/PY
-         kZOZiTfkkvf44LhJ0Y4imC12kqaYaZSbVHhCGGtHRqaNPcEFkyjZjpehbzgd6Fql1F2Q
-         YJyqvDZHe8BEJWNWOJqgOvUD2d8ccRlSoJK5tJNfVzY88ouBKVT3TIh1HKo/aYtciCoP
-         KP8v5Pgc6W2vNeLNZnr5bnGgVJR/rjn7ChoeGli4ZkcJsj9waQHSYJMi405q/GF1KSoC
-         gnvQ==
-X-Forwarded-Encrypted: i=1; AHgh+Rqw6tCHABbg7qaXMoOz2NOCX6lmc38e51uvuDYSspABho33ymNCA7jj7xGmi5CF+5ao54V1fYP5/ZIF@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgpHPpicEL4hyNoHLRcy30GzG1DkKPF+8qKm0Zz0VjSN6k1+BR
-	vLBwCUV12F1vdN1O6NQTfGGv/0TNJjNEIBpsLV7YYpOU7jwjRcWIKHHE
-X-Gm-Gg: AfdE7cn+MCXsScg4WZoDbMl+bkptbvrm9fTnHsisLSU6cIfAHhU7nlbVRdgIajL2rYm
-	4xu5yAkr2ZzrDkIsFsSfxJzc/LrJWMo0SvYUXCsOtJVmMIPCguJAF/mFwC1itBwX18RUVMGxLru
-	RsWVqUJPXpOEXvjEaU3j5gssOXhMxwRrLhtuMuUXzrp1jBiZ+7RatnlmmcPDesQQyEccYxhKwLH
-	LvwlGOflF63ieau6Pp3dbuCmo0rkwLOQXYwlzEVhLFJOKUS4zTLvfTF5B5FVWQntZN8HwTygP2g
-	k7fKcDHgo6guOpIGk9idHDNDDHmH7uXgcLyL7+fZOw6TDlLqSgnraYjn0nl7yTqbNHPFjY8/nNy
-	GuUCTR9jc0cxAnz9s0EmqRZTo7o6JUX73NZhh7eJTOPbq6d7JX98rwV9RUVZ3w+gw2mDQChv018
-	aEvkYGP8iov7grKZ6CGC0Gz7qcoiafm+TB1dRPa3wod7pAiQfpuXO2+wDbYt+nLghyzrQ5QmFbt
-	2+LVKeS1t9SBV2Y
-X-Received: by 2002:a05:6000:4a13:b0:472:e43b:5e8c with SMTP id ffacd0b85a97d-475dff5e567mr13844172f8f.20.1782985738375;
-        Thu, 02 Jul 2026 02:48:58 -0700 (PDT)
-Received: from Ansuel-XPS24.localdomain (host-79-52-250-217.retail.telecomitalia.it. [79.52.250.217])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-477dbe617b1sm7381364f8f.16.2026.07.02.02.48.57
+        bh=nRgzSQb2zmB8pWFIxx6qvYL4vygtV3dELTMaCNk1AN0=;
+        b=mxbUBBcefeooSnsVcZr2MjHTcJcq+JziC9BprFPfdeaesrNiN5rJFppmcSOsEMVvwY
+         68KLuzMA6HPFKH3PQCliXfrH4VEglseCHtINVpoQEY0c8lIPukJmeIrC0BCBWCWCLeYw
+         30feTmkwsXX7y1K18RRmMb7/IAIr0AZJe+a7JuoRPI/vqQnV20Mx+B3MaAhtbEXVjhkZ
+         Ns2CKB5kxiT+SC2Dk0qKGhxusGgB2QOmIHWw5nL2yMo0U7gJb9gLCW77s/p6T7DFP6Dh
+         iZ0HOzMFS8weP2CMtVoq4De3f0ObpQndquUhLJyBygjvDN7Kiye8RNsI78OX5amYKz4B
+         yLtA==
+X-Forwarded-Encrypted: i=1; AHgh+RqopGMDP/gt+tRbcUrZZHHWFB2217RMZvNi1EOmRV+F3EpwPzjTF3YL9gY7COAmZ8pQRG3io/sTm3xm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVjMzyMuTitECHMU5rYSYWiU2LQJEEu7cPNzxsazn+1mKjV8Fi
+	HFPDDsocATloaDN/HAA+8ngmP7TqNQ0GGyeJ7WzRrCqIoJdqM9pUNex4yj6rVZKk2N4=
+X-Gm-Gg: AfdE7clchhJ2kCXxS317eCZDTdYf356bdAGPjS2WToEvWR3RpHJvS/GW5xSaJXzKhxL
+	2Ldd7TM4PHHEk1iIsW2K2xSNNk5jnfFc/ioivhMxLgLe+AjD/4jXndMpUCDn5Unp3Z1CRei5QW2
+	Kr2K5D4AbilUge580dfx2JGWRfG9VNgZCmk+AWC1Z3PTnEFyUrIAAhnsklFGWd5z+0R6KbIkyDW
+	JBQvg/EPgnxkXnf6doFV3GNxDg7O3czfPK76bbbwRRdS8ED3Fv8CDEdkmlLSOoupiCgAmwnIN3T
+	rczev2LH0BSpzNwNvhHLKMNgdwkZ37i0VG2v7qbGDDdpukYwyy+oWBK7z63nzhqaEdc2TEWsgO0
+	5jlFCOIYasMak33bUKpJU9nh9j9wsF5R+fGdW8gGv5y1GV8spJLg0PUeoXBNgCTCYoGY/CtGIBb
+	iIl1cACA9In4Rl8gQEzAxxJQd1I7HuU8Po/PZ8Qyg/M6Jb
+X-Received: by 2002:a05:6000:4612:b0:474:bbbb:bf17 with SMTP id ffacd0b85a97d-47740c35ff3mr7614587f8f.0.1782985718630;
+        Thu, 02 Jul 2026 02:48:38 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-477db8a4a09sm7656816f8f.13.2026.07.02.02.48.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jul 2026 02:48:57 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: [PATCH v6 3/7] thermal/drivers: airoha: Convert to regmap API
-Date: Thu,  2 Jul 2026 11:48:31 +0200
-Message-ID: <20260702094846.17325-4-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260702094846.17325-1-ansuelsmth@gmail.com>
-References: <20260702094846.17325-1-ansuelsmth@gmail.com>
+        Thu, 02 Jul 2026 02:48:38 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Thu, 02 Jul 2026 11:48:32 +0200
+Subject: [PATCH v5 2/5] arm64: dts: qcom: sm8550-qrd: add SPMI ADC channels
+ and thermal nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260702-topic-sm8x50-adc5-gen3-v5-2-8169953634ad@linaro.org>
+References: <20260702-topic-sm8x50-adc5-gen3-v5-0-8169953634ad@linaro.org>
+In-Reply-To: <20260702-topic-sm8x50-adc5-gen3-v5-0-8169953634ad@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7160;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=sTCOiDdPouMd9Hp7hUc7Jv8w7io+JLjHMvadYa9Zp6Y=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBqRjPyPHzcfdTz+rg7t+uEQtpgQVQKLNTTwY+x6a2f
+ 3bgsX/+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCakYz8gAKCRB33NvayMhJ0V6QEA
+ CjN8q8EhuqpB7Gpfzlj1eeyJAv33wqDbTuynkV20JfzVW4b8PB6sGNY55NlJ0p2GZjzUIlapMK14at
+ mQZEQwxMSRaaTDRB2n9LjauNX99S6uRnE+R7B6ZYOJIeKdjvS3W0os1I+gnhsuaCBrsyxMUNOJqTwe
+ MXb/F7sM3YEgpV2OX1UnAQoug0axbkMKJnHfDINWyjf32pOJ0dQHoi/Z7Bt70ZgthyEly3hLyXLlM1
+ 1XER/WcTJFxOOC/jRTtnlalz+86E087X9T2sZCq1XcFfDLK3q7poxKwBNpKT6Kdv4cDBKIwbf+h7NJ
+ 19shOVQCDXYnr5Yvq4zMTyqF6OVoj+1zybK1gUc/ryzze5F8v1Ok7Ik+0gyUfTeJT6fVfJ9KzWGdYP
+ MTnQj8YjQFB9DBYmUN5FZeL37WA3VAF//1MaLOVhsDYeqMgpWjtNNBhiYts5RQt8Xdot84pHdcy6I+
+ j0IZd6Rrp5lsF0KVTjGR40ac4a4OJhwbDKKAPQ8ZIhmLNeaNckt2p327oB5N8M8UNS6y3VFWg8gydj
+ agEVZyKLzCX5/+fNJC9zb457mqrjKAA+VT+ucMlc0+I/wvVZL8rBlk8qzezQM+ytaHljUe+GC4sUnZ
+ 0J6wJsLV/WCTRY9b25jnp93RqMSR6yHnWmYqzF1xk5+O3LCeIZ28mV/Cy6Ng==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319250-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:ansuelsmth@gmail.com,m:lorenzo@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[kernel.org,intel.com,arm.com,gmail.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319243-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:neil.armstrong@linaro.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F3E086F5D0D
+X-Rspamd-Queue-Id: 7F0786F5C1E
 
-In preparation for support of Airoha AN7583, convert the driver to
-regmap API. This is needed as Airoha AN7583 will be based on syscon
-regmap.
+Add the SPMI ADC channels on the PMK8550 SPMI5 ADC3 for the
+other PMICS on the system.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+The thermal nodes are sorted by the sensor channel to be
+coherent with the system thermal nodes ordering.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/thermal/airoha_thermal.c | 77 +++++++++++++++++++-------------
- 1 file changed, 45 insertions(+), 32 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 277 ++++++++++++++++++++++++++++++++
+ 1 file changed, 277 insertions(+)
 
-diff --git a/drivers/thermal/airoha_thermal.c b/drivers/thermal/airoha_thermal.c
-index 829a7327fc40..b63893a8997a 100644
---- a/drivers/thermal/airoha_thermal.c
-+++ b/drivers/thermal/airoha_thermal.c
-@@ -194,7 +194,7 @@
- #define AIROHA_MAX_SAMPLES			6
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+index 2fb2e0be5e4c..6812e45d65e7 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+@@ -205,6 +205,92 @@ platform {
+ 		};
+ 	};
  
- struct airoha_thermal_priv {
--	void __iomem *base;
-+	struct regmap *map;
- 	struct regmap *chip_scu;
- 	struct resource scu_adc_res;
++	thermal-zones {
++		skin-thermal {
++			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX1_THM_100K_PU(1)>;
++
++			trips {
++				trip-point0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		cam-flash-thermal {
++			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX2_THM_100K_PU(1)>;
++
++			trips {
++				trip-point0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		wlan-thermal {
++			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX3_THM_100K_PU(1)>;
++
++			trips {
++				trip-point0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		pa-thermal {
++			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX4_THM_100K_PU(1)>;
++
++			trips {
++				trip-point0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		rear-tof-thermal {
++			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX5_THM_100K_PU(1)>;
++
++			trips {
++				trip-point0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		usb-thermal {
++			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX4_THM_100K_PU(7)>;
++
++			trips {
++				trip-point0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		wls-thermal {
++			thermal-sensors = <&pmk8550_vadc ADC5_GEN3_AMUX6_THM_100K_PU(7)>;
++
++			trips {
++				trip-point0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++	};
++
+ 	vph_pwr: vph-pwr-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vph_pwr";
+@@ -997,27 +1083,218 @@ led@3 {
+ 	};
+ };
  
-@@ -265,8 +265,8 @@ static int airoha_thermal_set_trips(struct thermal_zone_device *tz, int low,
- 			       RAW_TO_TEMP(priv, FIELD_MAX(EN7581_DOUT_TADC_MASK)));
- 
- 		/* We offset the high temp of 1°C to trigger correct event */
--		writel(TEMP_TO_RAW(priv, high) >> 4,
--		       priv->base + EN7581_TEMPOFFSETH);
-+		regmap_write(priv->map, EN7581_TEMPOFFSETH,
-+			     TEMP_TO_RAW(priv, high) >> 4);
- 
- 		enable_monitor = true;
- 	}
-@@ -277,15 +277,15 @@ static int airoha_thermal_set_trips(struct thermal_zone_device *tz, int low,
- 			      RAW_TO_TEMP(priv, FIELD_MAX(EN7581_DOUT_TADC_MASK)));
- 
- 		/* We offset the low temp of 1°C to trigger correct event */
--		writel(TEMP_TO_RAW(priv, low) >> 4,
--		       priv->base + EN7581_TEMPOFFSETL);
-+		regmap_write(priv->map, EN7581_TEMPOFFSETL,
-+			     TEMP_TO_RAW(priv, low) >> 4);
- 
- 		enable_monitor = true;
- 	}
- 
- 	/* Enable sensor 0 monitor after trip are set */
- 	if (enable_monitor)
--		writel(EN7581_SENSE0_EN, priv->base + EN7581_TEMPMONCTL0);
-+		regmap_write(priv->map, EN7581_TEMPMONCTL0, EN7581_SENSE0_EN);
- 
- 	return 0;
- }
-@@ -300,9 +300,9 @@ static irqreturn_t airoha_thermal_irq(int irq, void *data)
- 	struct airoha_thermal_priv *priv = data;
- 	enum thermal_notify_event event;
- 	bool update = false;
--	u32 status;
-+	u32 status = 0;
- 
--	status = readl(priv->base + EN7581_TEMPMONINTSTS);
-+	regmap_read(priv->map, EN7581_TEMPMONINTSTS, &status);
- 	switch (status & (EN7581_HOFSINTSTS0 | EN7581_LOFSINTSTS0)) {
- 	case EN7581_HOFSINTSTS0:
- 		event = THERMAL_TRIP_VIOLATED;
-@@ -318,7 +318,7 @@ static irqreturn_t airoha_thermal_irq(int irq, void *data)
- 	}
- 
- 	/* Reset Interrupt */
--	writel(status, priv->base + EN7581_TEMPMONINTSTS);
-+	regmap_write(priv->map, EN7581_TEMPMONINTSTS, status);
- 
- 	if (update)
- 		thermal_zone_device_update(priv->tz, event);
-@@ -329,18 +329,19 @@ static irqreturn_t airoha_thermal_irq(int irq, void *data)
- static void airoha_thermal_setup_adc_val(struct device *dev,
- 					 struct airoha_thermal_priv *priv)
- {
--	u32 efuse_calib_info, cpu_sensor;
-+	u32 efuse_calib_info = 0;
-+	u32 cpu_sensor = 0;
- 
- 	/* Setup thermal sensor to ADC mode and setup the mux to DIODE1 */
- 	airoha_init_thermal_ADC_mode(priv);
- 	/* sleep 10 ms for ADC to enable */
- 	usleep_range(10 * USEC_PER_MSEC, 11 * USEC_PER_MSEC);
- 
--	efuse_calib_info = readl(priv->base + EN7581_EFUSE_TEMP_OFFSET_REG);
-+	regmap_read(priv->map, EN7581_EFUSE_TEMP_OFFSET_REG, &efuse_calib_info);
- 	if (efuse_calib_info) {
- 		priv->default_offset = FIELD_GET(EN7581_EFUSE_TEMP_OFFSET, efuse_calib_info);
- 		/* Different slope are applied if the sensor is used for CPU or for package */
--		cpu_sensor = readl(priv->base + EN7581_EFUSE_TEMP_CPU_SENSOR_REG);
-+		regmap_read(priv->map, EN7581_EFUSE_TEMP_CPU_SENSOR_REG, &cpu_sensor);
- 		if (cpu_sensor) {
- 			priv->default_slope = EN7581_SLOPE_X100_DIO_DEFAULT;
- 			priv->init_temp = EN7581_INIT_TEMP_FTK_X10;
-@@ -359,8 +360,8 @@ static void airoha_thermal_setup_adc_val(struct device *dev,
- static void airoha_thermal_setup_monitor(struct airoha_thermal_priv *priv)
- {
- 	/* Set measure mode */
--	writel(FIELD_PREP(EN7581_MSRCTL0, EN7581_MSRCTL_6SAMPLE_MAX_MIX_AVG4),
--	       priv->base + EN7581_TEMPMSRCTL0);
-+	regmap_write(priv->map, EN7581_TEMPMSRCTL0,
-+		     FIELD_PREP(EN7581_MSRCTL0, EN7581_MSRCTL_6SAMPLE_MAX_MIX_AVG4));
- 
- 	/*
- 	 * Configure ADC valid reading addr
-@@ -375,15 +376,15 @@ static void airoha_thermal_setup_monitor(struct airoha_thermal_priv *priv)
- 	 * We set valid instead of volt as we don't enable valid/volt
- 	 * split reading and AHB read valid addr in such case.
- 	 */
--	writel(priv->scu_adc_res.start + EN7581_DOUT_TADC,
--	       priv->base + EN7581_TEMPADCVALIDADDR);
-+	regmap_write(priv->map, EN7581_TEMPADCVALIDADDR,
-+		     priv->scu_adc_res.start + EN7581_DOUT_TADC);
- 
- 	/*
- 	 * Configure valid bit on a fake value of bit 16. The ADC outputs
- 	 * max of 2 bytes for voltage.
- 	 */
--	writel(FIELD_PREP(EN7581_ADV_RD_VALID_POS, 16),
--	       priv->base + EN7581_TEMPADCVALIDMASK);
-+	regmap_write(priv->map, EN7581_TEMPADCVALIDMASK,
-+		     FIELD_PREP(EN7581_ADV_RD_VALID_POS, 16));
- 
- 	/*
- 	 * AHB supports max 12 bytes for ADC voltage. Shift the read
-@@ -391,40 +392,52 @@ static void airoha_thermal_setup_monitor(struct airoha_thermal_priv *priv)
- 	 * in the order of half a °C and is acceptable in the context
- 	 * of triggering interrupt in critical condition.
- 	 */
--	writel(FIELD_PREP(EN7581_ADC_VOLTAGE_SHIFT, 4),
--	       priv->base + EN7581_TEMPADCVOLTAGESHIFT);
-+	regmap_write(priv->map, EN7581_TEMPADCVOLTAGESHIFT,
-+		     FIELD_PREP(EN7581_ADC_VOLTAGE_SHIFT, 4));
- 
- 	/* BUS clock is 300MHz counting unit is 3 * 68.64 * 256 = 52.715us */
--	writel(FIELD_PREP(EN7581_PERIOD_UNIT, 3),
--	       priv->base + EN7581_TEMPMONCTL1);
-+	regmap_write(priv->map, EN7581_TEMPMONCTL1,
-+		     FIELD_PREP(EN7581_PERIOD_UNIT, 3));
- 
- 	/*
- 	 * filt interval is 1 * 52.715us = 52.715us,
- 	 * sen interval is 379 * 52.715us = 19.97ms
- 	 */
--	writel(FIELD_PREP(EN7581_FILT_INTERVAL, 1) |
--	       FIELD_PREP(EN7581_SEN_INTERVAL, 379),
--	       priv->base + EN7581_TEMPMONCTL2);
-+	regmap_write(priv->map, EN7581_TEMPMONCTL2,
-+		     FIELD_PREP(EN7581_FILT_INTERVAL, 1) |
-+		     FIELD_PREP(EN7581_SEN_INTERVAL, 379));
- 
- 	/* AHB poll is set to 146 * 68.64 = 10.02us */
--	writel(FIELD_PREP(EN7581_ADC_POLL_INTVL, 146),
--	       priv->base + EN7581_TEMPAHBPOLL);
-+	regmap_write(priv->map, EN7581_TEMPAHBPOLL,
-+		     FIELD_PREP(EN7581_ADC_POLL_INTVL, 146));
- }
- 
-+static const struct regmap_config airoha_thermal_regmap_config = {
-+	.reg_bits		= 32,
-+	.reg_stride		= 4,
-+	.val_bits		= 32,
++&pm8550_temp_alarm {
++	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(1)>;
++	io-channel-names = "thermal";
 +};
 +
- static int airoha_thermal_probe(struct platform_device *pdev)
- {
- 	struct airoha_thermal_priv *priv;
- 	struct device_node *chip_scu_np;
- 	struct device *dev = &pdev->dev;
-+	void __iomem *base;
- 	int irq, ret;
+ &pm8550b_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l15b_1p8>;
+ 	vdd3-supply = <&vreg_l5b_3p1>;
+ };
  
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return -ENOMEM;
- 
--	priv->base = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(priv->base))
--		return PTR_ERR(priv->base);
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
++&pm8550b_temp_alarm {
++	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(7)>;
++	io-channel-names = "thermal";
++};
 +
-+	priv->map = devm_regmap_init_mmio(dev, base,
-+					  &airoha_thermal_regmap_config);
-+	if (IS_ERR(priv->map))
-+		return PTR_ERR(priv->map);
+ &pm8550vs_c {
+ 	status = "okay";
+ };
  
- 	chip_scu_np = of_parse_phandle(dev->of_node, "airoha,chip-scu", 0);
- 	if (!chip_scu_np)
-@@ -462,8 +475,8 @@ static int airoha_thermal_probe(struct platform_device *pdev)
- 	platform_set_drvdata(pdev, priv);
++&pm8550vs_c_temp_alarm {
++	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(2)>;
++	io-channel-names = "thermal";
++};
++
+ &pm8550vs_d {
+ 	status = "okay";
+ };
  
- 	/* Enable LOW and HIGH interrupt */
--	writel(EN7581_HOFSINTEN0 | EN7581_LOFSINTEN0,
--	       priv->base + EN7581_TEMPMONINT);
-+	regmap_write(priv->map, EN7581_TEMPMONINT,
-+		     EN7581_HOFSINTEN0 | EN7581_LOFSINTEN0);
++&pm8550vs_d_temp_alarm {
++	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(3)>;
++	io-channel-names = "thermal";
++};
++
+ &pm8550vs_e {
+ 	status = "okay";
+ };
  
- 	return 0;
- }
++&pm8550vs_e_temp_alarm {
++	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(4)>;
++	io-channel-names = "thermal";
++};
++
+ &pm8550vs_g {
+ 	status = "okay";
+ };
+ 
++&pm8550vs_g_temp_alarm {
++	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(6)>;
++	io-channel-names = "thermal";
++};
++
++&pm8550ve_temp_alarm {
++	io-channels = <&pmk8550_vadc ADC5_GEN3_DIE_TEMP(PMK8550VE_SID)>;
++	io-channel-names = "thermal";
++};
++
++&pmk8550_vadc {
++	/* PM8550 Channel nodes */
++	channel@100 {
++		reg = <ADC5_GEN3_REF_GND(1)>;
++		label = "pm8550_offset_ref";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@101 {
++		reg = <ADC5_GEN3_1P25VREF(1)>;
++		label = "pm8550_vref_1p25";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@103 {
++		reg = <ADC5_GEN3_DIE_TEMP(1)>;
++		label = "pm8550_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@144 {
++		reg = <ADC5_GEN3_AMUX1_THM_100K_PU(1)>;
++		label = "pm8550_msm_therm";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@145 {
++		reg = <ADC5_GEN3_AMUX2_THM_100K_PU(1)>;
++		label = "pm8550_cam_flash_therm";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@146 {
++		reg = <ADC5_GEN3_AMUX3_THM_100K_PU(1)>;
++		label = "pm8550_wlan_therm";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@147 {
++		reg = <ADC5_GEN3_AMUX4_THM_100K_PU(1)>;
++		label = "pm8550_pa_therm_1";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@148 {
++		reg = <ADC5_GEN3_AMUX5_THM_100K_PU(1)>;
++		label = "pm8550_rear_tof_therm";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@18e {
++		reg = <ADC5_GEN3_VPH_PWR(1)>;
++		label = "pm8550_vph_pwr";
++		qcom,pre-scaling = <1 3>;
++	};
++
++	/* PM8550VS_C Channel nodes */
++	channel@203 {
++		reg = <ADC5_GEN3_DIE_TEMP(2)>;
++		label = "pm8550vs_c_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	/* PM8550VS_D Channel nodes */
++	channel@303 {
++		reg = <ADC5_GEN3_DIE_TEMP(3)>;
++		label = "pm8550vs_d_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	/* PM8550VS_E Channel nodes */
++	channel@403 {
++		reg = <ADC5_GEN3_DIE_TEMP(4)>;
++		label = "pm8550vs_e_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	/* PM8550VE Channel nodes */
++	channel@503 {
++		reg = <ADC5_GEN3_DIE_TEMP(PMK8550VE_SID)>;
++		label = "pm8550ve_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	/* PM8550VS_G Channel nodes */
++	channel@603 {
++		reg = <ADC5_GEN3_DIE_TEMP(6)>;
++		label = "pm8550vs_g_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	/* PM8550B Channel nodes */
++	channel@700 {
++		reg = <ADC5_GEN3_REF_GND(7)>;
++		label = "pm8550b_offset_ref";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@701 {
++		reg = <ADC5_GEN3_1P25VREF(7)>;
++		label = "pm8550b_vref_1p25";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@703 {
++		reg = <ADC5_GEN3_DIE_TEMP(7)>;
++		label = "pm8550b_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@747 {
++		reg = <ADC5_GEN3_AMUX4_THM_100K_PU(7)>;
++		label = "pm8550b_usb_therm";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@749 {
++		reg = <ADC5_GEN3_AMUX6_THM_100K_PU(7)>;
++		label = "pm8550b_wls_therm";
++		qcom,ratiometric;
++		/* use the default settle time */
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@78e {
++		reg = <ADC5_GEN3_VPH_PWR(7)>;
++		label = "pm8550b_vph_pwr";
++		qcom,pre-scaling = <1 3>;
++	};
++
++	channel@78f {
++		reg = <ADC5_GEN3_VBAT_SNS_QBG(7)>;
++		label = "pm8550b_vbat_sns_qbg";
++		qcom,pre-scaling = <1 6>;
++	};
++};
++
+ &pon_pwrkey {
+ 	status = "okay";
+ };
+
 -- 
-2.53.0
+2.34.1
 
 
