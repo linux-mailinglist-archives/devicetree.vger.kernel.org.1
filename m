@@ -1,370 +1,532 @@
-Return-Path: <devicetree+bounces-319447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319438-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Sq5ZF+SARmrbXQsAu9opvQ
-	(envelope-from <devicetree+bounces-319447-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 17:16:52 +0200
+	id Iu5WGEeBRmr2XQsAu9opvQ
+	(envelope-from <devicetree+bounces-319438-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 17:18:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2FEE6F94AA
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 17:16:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3CA26F94DF
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 17:18:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=cjdns.fr header.s=dkim header.b=pDCrfVri;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319447-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319447-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=cjdns.fr;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b="Cgb+nrv/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319438-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319438-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A8F92302C1C0
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 15:15:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5101730CD527
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 15:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAFBE353A73;
-	Thu,  2 Jul 2026 15:15:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004DE306B11;
+	Thu,  2 Jul 2026 15:08:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3885353A6F;
-	Thu,  2 Jul 2026 15:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CED92D7DF1;
+	Thu,  2 Jul 2026 15:08:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783005341; cv=none; b=JbmN1ZjipP6c0512YcJdeReN2nQavglOEuG4gHuvxFVOkOtIIZ7VAHTuyd7eW5pCCYY28aorolInaA/TpB7nF4Ms4x2VwUMpqIh5QEgYBlX0L/Cfgsu76wTbybHRj5XhllzylSNQb4yZwh+tSMRTi2ZJIsEaMWEyml3Ivj6Wo+k=
+	t=1783004890; cv=none; b=o97KQaflpnvJuUlo9IKZ6VPzREePAzz4WTk+qVdW6jG5oyAZfNkVKDJlfMQLT7Y7yOQkRs4jxMpn4b1sW2eSpAZwtjUJ0GW0y5foN5zRUXmq3yHzferhlEQhOU3COuYEWxvFTfdGgnwazea7djvGcvEyQAZ/ZJ6dveU1I03TLdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783005341; c=relaxed/simple;
-	bh=64sEJ70pMqIorPYpE4ozxX1HPSdtTnd0AhgORamF6ag=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IVPWc6vGbwsgJ49FlEW4UDkl5Wvf7delsCWAP0bX63WzrYz/WSaBRULO00XdmHIDg/5ArIskAQO1KYefCaDbAdP1Rj8jZmXsO0YU4rl/J4s6Jf28S63tXgEdJ7zSxz5KBAp53KATRIjOCD95KxeM1kk2lgRrEFDmpYgykoEsbMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=pass smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=pDCrfVri; arc=none smtp.client-ip=5.135.140.105
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8E8312EC1F3;
-	Thu,  2 Jul 2026 17:07:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1783004831; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=ScyQhIkjFFeLltD3MMNuyE4Zhyfx9/649xL6SwKi5zo=;
-	b=pDCrfVriwEIfnYuMy77/ILvwXL/l9d/M8D2nkFUHoCQMWcO4fJVVbuu+rmd0PFyGbsnWH/
-	UZ1NeDWiehSTDvfq6AdWhorMNoK9VJ23IKL7fCCn0+HgdjHGhQV07BJ+ZkbGEYYB+IJM9U
-	+xmJJMcruGJ85mA8MCZAABLXnHktyjeapDNrHxQVMCsXxA68DZuXdfUFJ0PRJU/OuS0T/K
-	Z6mocXcSHGoFvifavCNbkrTAObN7uk3C1ko95FFRuVvKLCuLZPvjBcWkjO8BtbqKSwLS88
-	3k9NYb/QGSNhvi/FCTnEikOg+GUyEeYohT/9X3mtqLu+d7mEQUmBe3w6bve+Wg==
-From: Caleb James DeLisle <cjd@cjdns.fr>
-To: linux-pci@vger.kernel.org
-Cc: linux-mips@vger.kernel.org,
-	naseefkm@gmail.com,
-	ryder.lee@mediatek.com,
-	helgaas@kernel.org,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	ansuelsmth@gmail.com,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Caleb James DeLisle <cjd@cjdns.fr>
-Subject: [PATCH v11] PCI: mediatek: Add support for EcoNet EN7528 SoC
-Date: Thu,  2 Jul 2026 15:07:04 +0000
-Message-Id: <20260702150704.265282-1-cjd@cjdns.fr>
+	s=arc-20240116; t=1783004890; c=relaxed/simple;
+	bh=uRXk7IpS0wFu3ywjC32sSrvBhgbyOYWYQsk3/STViQQ=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ZKbcXWVM1xtkLojFCfhgV04iJfG9V4Zkyc53iE3lgaAkG7f07C9bTSqaUSZZTN3vB0o9dVYmIusFOhqcPwDUeFTS6BxkmI8oOXMdbD880w9kmYF8JzKPnvN18NABRMdqUOQeY4IG9U5XjU1Hg4ZsgyPIeeKOsqPiljKlCVS1xEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Cgb+nrv/; arc=none smtp.client-ip=185.171.202.116
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 1E3BAC4FEE3;
+	Thu,  2 Jul 2026 15:08:17 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7C8B75FF03;
+	Thu,  2 Jul 2026 15:08:05 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F2B6C104C9546;
+	Thu,  2 Jul 2026 17:08:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1783004884; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=1F6WcObOnrqVzWCe6S/Ifbf3Oxz0U7OhbfWsObhKvwM=;
+	b=Cgb+nrv/thIirZ882qafwmxhh7CtfuS++fJG7QYKjG4kOJhnLe7LtUlnUvr1Q5rNM8EpJP
+	uvrcGu0WIkD7RMendKazlcQ3S67K+4x8cNTYNV64hrEajOnWVfQspJxjBjAkA4pAPS3wQB
+	gIRoCHNaye50g22c0oJbFrobwtfhzojXLCLMZKjQIqsBSzk4yGOuEqyO/rgiBwZGRkgAS/
+	kc8zJac8o2iaYWSFXcsuc/lhHe8ZaAqo6MaQEaQ2BRF+FgxF00Rhf+HG9P1UveMa0NkqkM
+	TXuSgXwyJSfOT/t8GmAjOQ59o2aHOtsQBpT3ZmC0meoRff8V7vsBCv8O2rULNQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Santhosh Kumar K <s-k6@ti.com>
+Cc: <broonie@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
+  <conor+dt@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
+  <pratyush@kernel.org>,  <mwalle@kernel.org>,
+  <takahiro.kuwano@infineon.com>,  <linux-spi@vger.kernel.org>,
+  <devicetree@vger.kernel.org>,  <linux-kernel@vger.kernel.org>,
+  <linux-mtd@lists.infradead.org>,  <praneeth@ti.com>,  <u-kumar1@ti.com>,
+  <a-dutta@ti.com>
+Subject: Re: [PATCH v4 14/16] mtd: spinand: negotiate optimal PHY operating
+ point before dirmap creation
+In-Reply-To: <20260618073725.84733-15-s-k6@ti.com> (Santhosh Kumar K.'s
+	message of "Thu, 18 Jun 2026 13:07:23 +0530")
+References: <20260618073725.84733-1-s-k6@ti.com>
+	<20260618073725.84733-15-s-k6@ti.com>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Thu, 02 Jul 2026 17:08:00 +0200
+Message-ID: <87pl15pgz3.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-319447-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-pci@vger.kernel.org,m:linux-mips@vger.kernel.org,m:naseefkm@gmail.com,m:ryder.lee@mediatek.com,m:helgaas@kernel.org,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:ansuelsmth@gmail.com,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cjd@cjdns.fr,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-319438-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,kernel.org,collabora.com,lists.infradead.org,cjdns.fr];
-	DKIM_TRACE(0.00)[cjdns.fr:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:s-k6@ti.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:richard@nod.at,m:vigneshr@ti.com,m:pratyush@kernel.org,m:mwalle@kernel.org,m:takahiro.kuwano@infineon.com,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:praneeth@ti.com,m:u-kumar1@ti.com,m:a-dutta@ti.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,bootlin.com:dkim,bootlin.com:mid,bootlin.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E2FEE6F94AA
+X-Rspamd-Queue-Id: C3CA26F94DF
 
-Add support for the PCIe present on the EcoNet EN7528 (and EN751221) SoCs.
+On 18/06/2026 at 13:07:23 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
 
-These SoCs have a mix of Gen1 and Gen2 capable ports, but the Gen2 ports
-require re-training after startup.
+> Dirmap descriptors encode the op template including the operating
+> frequency at creation time, so PHY tuning must complete before dirmaps
+> are created to ensure the validated frequency is embedded in the
+> descriptors from the start.
 
-Co-developed-by: Ahmed Naseef <naseefkm@gmail.com>
-Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
-Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
----
-Rebased on bcabbbd29c53 ("Merge branch 'pci/controller/rzg3s-host'")
-v10: https://lore.kernel.org/linux-mips/20260611082329.243515-1-cjd@cjdns.fr/
----
- drivers/pci/controller/Kconfig         |   2 +-
- drivers/pci/controller/pcie-mediatek.c | 154 +++++++++++++++++++++++++
- 2 files changed, 155 insertions(+), 1 deletion(-)
+Good idea.
 
-diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
-index 2247709ef6d6..8a3a31b2bc12 100644
---- a/drivers/pci/controller/Kconfig
-+++ b/drivers/pci/controller/Kconfig
-@@ -209,7 +209,7 @@ config PCI_MVEBU
- 
- config PCIE_MEDIATEK
- 	tristate "MediaTek PCIe controller"
--	depends on ARCH_AIROHA || ARCH_MEDIATEK || COMPILE_TEST
-+	depends on ARCH_AIROHA || ARCH_MEDIATEK || ECONET || COMPILE_TEST
- 	depends on OF
- 	depends on PCI_MSI
- 	select IRQ_MSI_LIB
-diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-index 8b57c3d75b94..a60d1ae076f8 100644
---- a/drivers/pci/controller/pcie-mediatek.c
-+++ b/drivers/pci/controller/pcie-mediatek.c
-@@ -10,11 +10,13 @@
- #include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/delay.h>
-+#include <linux/errno.h>
- #include <linux/iopoll.h>
- #include <linux/irq.h>
- #include <linux/irqchip/chained_irq.h>
- #include <linux/irqchip/irq-msi-lib.h>
- #include <linux/irqdomain.h>
-+#include <linux/kconfig.h>
- #include <linux/kernel.h>
- #include <linux/mfd/syscon.h>
- #include <linux/msi.h>
-@@ -78,6 +80,7 @@
- 
- #define PCIE_CONF_VEND_ID	0x100
- #define PCIE_CONF_DEVICE_ID	0x102
-+#define PCIE_CONF_REV_CLASS	0x104
- #define PCIE_CONF_CLASS_ID	0x106
- 
- #define PCIE_INT_MASK		0x420
-@@ -90,6 +93,11 @@
- #define MSI_MASK		BIT(23)
- #define MTK_MSI_IRQS_NUM	32
- 
-+#define EN7528_HOST_MODE	0x00804201
-+#define EN7528_LINKUP_REG	0x50
-+#define EN7528_RC0_LINKUP	BIT(1)
-+#define EN7528_RC1_LINKUP	BIT(2)
-+
- #define PCIE_AHB_TRANS_BASE0_L	0x438
- #define PCIE_AHB_TRANS_BASE0_H	0x43c
- #define AHB2PCIE_SIZE(x)	((x) & GENMASK(4, 0))
-@@ -145,12 +153,15 @@ struct mtk_pcie_port;
-  * @MTK_PCIE_FIX_DEVICE_ID: host's device ID needed to be fixed
-  * @MTK_PCIE_NO_MSI: Bridge has no MSI support, and relies on an external block
-  * @MTK_PCIE_SKIP_RSTB: Skip calling RSTB bits on PCIe probe
-+ * @MTK_PCIE_RETRAIN: Retrain link to bridge after startup because some
-+ *                    Gen2-capable devices start as Gen1.
-  */
- enum mtk_pcie_quirks {
- 	MTK_PCIE_FIX_CLASS_ID = BIT(0),
- 	MTK_PCIE_FIX_DEVICE_ID = BIT(1),
- 	MTK_PCIE_NO_MSI = BIT(2),
- 	MTK_PCIE_SKIP_RSTB = BIT(3),
-+	MTK_PCIE_RETRAIN = BIT(4),
- };
- 
- /**
-@@ -756,6 +767,134 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
- 	return 0;
- }
- 
-+static int mtk_pcie_startup_port_en7528(struct mtk_pcie_port *port)
-+{
-+	struct mtk_pcie *pcie = port->pcie;
-+	struct pci_host_bridge *host = pci_host_bridge_from_priv(pcie);
-+	struct resource *mem = NULL;
-+	struct resource_entry *entry;
-+	u32 val, link_mask;
-+	int err;
-+
-+	entry = resource_list_first_type(&host->windows, IORESOURCE_MEM);
-+	if (entry)
-+		mem = entry->res;
-+	if (!mem)
-+		return -EINVAL;
-+
-+	if (!pcie->cfg) {
-+		dev_err(pcie->dev, "EN7528: pciecfg syscon not available\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Assert all reset signals */
-+	writel(0, port->base + PCIE_RST_CTRL);
-+
-+	/*
-+	 * Enable PCIe link down reset, if link status changed from link up to
-+	 * link down, this will reset MAC control registers and configuration
-+	 * space.
-+	 */
-+	writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
-+
-+	msleep(PCIE_T_PVPERL_MS);
-+
-+	/* De-assert PHY, PE, PIPE, MAC and configuration reset */
-+	val = readl(port->base + PCIE_RST_CTRL);
-+	val |= PCIE_PHY_RSTB | PCIE_PERSTB | PCIE_PIPE_SRSTB |
-+	       PCIE_MAC_SRSTB | PCIE_CRSTB;
-+	writel(val, port->base + PCIE_RST_CTRL);
-+
-+	writel(PCIE_CLASS_CODE | PCIE_REVISION_ID,
-+	       port->base + PCIE_CONF_REV_CLASS);
-+	writel(EN7528_HOST_MODE, port->base);
-+
-+	link_mask = (port->slot == 0) ? EN7528_RC0_LINKUP : EN7528_RC1_LINKUP;
-+
-+	/* 100ms timeout value should be enough for Gen1/2 training */
-+	err = regmap_read_poll_timeout(pcie->cfg, EN7528_LINKUP_REG, val,
-+				       !!(val & link_mask), 20,
-+				       PCI_PM_D3COLD_WAIT * USEC_PER_MSEC);
-+	if (err) {
-+		dev_err(pcie->dev, "EN7528: port%d link timeout\n", port->slot);
-+		return -ETIMEDOUT;
-+	}
-+
-+	/* Activate INTx interrupts */
-+	val = readl(port->base + PCIE_INT_MASK);
-+	val &= ~INTX_MASK;
-+	writel(val, port->base + PCIE_INT_MASK);
-+
-+	if (IS_ENABLED(CONFIG_PCI_MSI))
-+		mtk_pcie_enable_msi(port);
-+
-+	/* Set AHB to PCIe translation windows */
-+	val = lower_32_bits(mem->start) |
-+	      AHB2PCIE_SIZE(fls(resource_size(mem)));
-+	writel(val, port->base + PCIE_AHB_TRANS_BASE0_L);
-+
-+	val = upper_32_bits(mem->start);
-+	writel(val, port->base + PCIE_AHB_TRANS_BASE0_H);
-+
-+	writel(WIN_ENABLE, port->base + PCIE_AXI_WINDOW0);
-+
-+	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK))
-+		dev_info(pcie->dev,
-+			 "module not built-in, Gen2 unavailable even if supported\n");
-+
-+	return 0;
-+}
-+
-+/**
-+ * mtk_pcie_retrain - retrain the root bridge link if needed
-+ * @dev: The device, for use in logging
-+ * @host: The host bridge which contains the link
-+ *
-+ * Due to what is likely a hardware bug, some devices (notably EcoNet) start up
-+ * as Gen1, and must be retrained once after initial configuration in order to
-+ * reach Gen2.
-+ *
-+ * These devices always self-identify as Gen2 capable, but sometimes the PHY is
-+ * only capable of Gen1 operation, and sometimes the PCIe card (e.g. wifi) is
-+ * only Gen1 capable. Therefore it is most convenient to retrain every port
-+ * after startup.
-+ */
-+static int mtk_pcie_retrain(struct device *dev, struct pci_host_bridge *host)
-+{
-+	struct pci_dev *rp;
-+	int ret = -ENOENT;
-+	u16 lnksta = 0;
-+	u32 speed;
-+
-+	/* Should already have been warned about during startup_port */
-+	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK))
-+		return 0;
-+
-+	guard(rwsem_read)(&pci_bus_sem);
-+
-+	for_each_pci_bridge(rp, host->bus) {
-+		if (pci_pcie_type(rp) != PCI_EXP_TYPE_ROOT_PORT)
-+			continue;
-+
-+#if IS_BUILTIN(CONFIG_PCIE_MEDIATEK)
-+		ret = pcie_retrain_link(rp, true);
-+#endif
-+
-+		if (ret)
-+			return dev_err_probe(&rp->dev, ret,
-+					     "failed to retrain port\n");
-+
-+		pcie_capability_read_word(rp, PCI_EXP_LNKSTA, &lnksta);
-+		speed = lnksta & PCI_EXP_LNKSTA_CLS;
-+
-+		pci_info(rp, "link retrained, speed %s\n",
-+			 pci_speed_string(pcie_link_speed[speed]));
-+
-+	}
-+
-+	return 0;
-+}
-+
- static void __iomem *mtk_pcie_map_bus(struct pci_bus *bus,
- 				      unsigned int devfn, int where)
- {
-@@ -1169,6 +1308,13 @@ static int mtk_pcie_probe(struct platform_device *pdev)
- 	if (err)
- 		goto put_resources;
- 
-+	/*
-+	 * Ignore error because pci_host_probe() was already called, and in any
-+	 * case it is possible that the port will still work as Gen1.
-+	 */
-+	if (pcie->soc->quirks & MTK_PCIE_RETRAIN)
-+		mtk_pcie_retrain(dev, host);
-+
- 	return 0;
- 
- put_resources:
-@@ -1290,8 +1436,16 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
- 	.quirks = MTK_PCIE_FIX_CLASS_ID | MTK_PCIE_FIX_DEVICE_ID,
- };
- 
-+static const struct mtk_pcie_soc mtk_pcie_soc_en7528 = {
-+	.ops = &mtk_pcie_ops_v2,
-+	.startup = mtk_pcie_startup_port_en7528,
-+	.setup_irq = mtk_pcie_setup_irq,
-+	.quirks = MTK_PCIE_RETRAIN,
-+};
-+
- static const struct of_device_id mtk_pcie_ids[] = {
- 	{ .compatible = "airoha,an7583-pcie", .data = &mtk_pcie_soc_an7583 },
-+	{ .compatible = "econet,en7528-pcie", .data = &mtk_pcie_soc_en7528 },
- 	{ .compatible = "mediatek,mt2701-pcie", .data = &mtk_pcie_soc_v1 },
- 	{ .compatible = "mediatek,mt7623-pcie", .data = &mtk_pcie_soc_v1 },
- 	{ .compatible = "mediatek,mt2712-pcie", .data = &mtk_pcie_soc_mt2712 },
+> Move dirmap creation from spinand_init() to spinand_probe(), after a
+> new spinand_configure_phy()
 
-base-commit: bcabbbd29c53a5b07eff29f8861d045b2c709c26
--- 
-2.39.5
+Fine with the idea, but in the core I would like to avoid TI specific
+naming. We can call this helper spinand_optimize_controller(); for
+instance.
 
+Please, do not use "PHY" in the SPI NAND core, because I find it too TI
+specific and we need generic enough naming so that we can include other
+controller's optimizations in this logic, if ever needed.
+
+> call that negotiates the best available PHY
+> operating point. spinand_configure_phy() tries the pre-selected variant
+> first. If the controller signals that PHY tuning is not applicable for
+> that op, spinand_try_phy_ranked() iterates remaining variants in
+> performance order =E2=80=94 DTR variants first, then SDR variants after
+> switching the bus interface if needed. On full failure the device falls
+> back to the best available non-PHY mode.
+
+Makes sense.
+
+> Add spinand_reset_max_ops() to copy op templates with max_freq zeroed
+
+spinand_reset_max_freq_ops()?
+
+> before each execute_tuning call, enforcing the invariant that a non-zero
+> max_freq only results from a successful tuning.
+>
+> PHY failure is non-fatal; the device operates at the conservative base
+> rate.
+>
+> Signed-off-by: Santhosh Kumar K <s-k6@ti.com>
+> ---
+>  drivers/mtd/nand/spi/core.c | 214 ++++++++++++++++++++++++++++++++++--
+>  include/linux/mtd/spinand.h |  11 ++
+>  2 files changed, 216 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/mtd/nand/spi/core.c b/drivers/mtd/nand/spi/core.c
+> index b678d0534297..5dcfaabaf2cc 100644
+> --- a/drivers/mtd/nand/spi/core.c
+> +++ b/drivers/mtd/nand/spi/core.c
+> @@ -1280,10 +1280,16 @@ static int spinand_create_dirmap(struct spinand_d=
+evice *spinand,
+>  	/* The plane number is passed in MSB just above the column address */
+>  	info.offset =3D plane << fls(nand->memorg.pagesize);
+>=20=20
+> +	/*
+> +	 * Propagate the validated PHY frequency into the dirmap op templates
+> +	 * at construction time.
+> +	 */
+> +
+>  	/* Write descriptor */
+>  	info.length =3D nanddev_page_size(nand) + nanddev_per_page_oobsize(nand=
+);
+>  	info.primary_op_tmpl =3D *spinand->op_templates->update_cache;
+>  	info.primary_op_tmpl.data.ecc =3D enable_ecc;
+> +	info.primary_op_tmpl.max_freq =3D spinand->max_write_op.max_freq;
+>  	desc =3D devm_spi_mem_dirmap_create(&spinand->spimem->spi->dev,
+>  					  spinand->spimem, &info);
+>  	if (IS_ERR(desc))
+> @@ -1294,9 +1300,11 @@ static int spinand_create_dirmap(struct spinand_de=
+vice *spinand,
+>  	/* Read descriptor */
+>  	info.primary_op_tmpl =3D *spinand->op_templates->read_cache;
+>  	info.primary_op_tmpl.data.ecc =3D enable_ecc;
+> +	info.primary_op_tmpl.max_freq =3D spinand->max_read_op.max_freq;
+>  	if (secondary_op) {
+>  		info.secondary_op_tmpl =3D *spinand->op_templates->cont_read_cache;
+>  		info.secondary_op_tmpl.data.ecc =3D enable_ecc;
+> +		info.secondary_op_tmpl.max_freq =3D spinand->max_read_op.max_freq;
+>  	}
+>  	desc =3D spinand_create_rdesc(spinand, &info);
+>  	if (IS_ERR(desc))
+> @@ -1744,6 +1752,17 @@ int spinand_match_and_init(struct spinand_device *=
+spinand,
+>  				spinand->cont_read_possible =3D false;
+>  		}
+>=20=20
+> +		/*
+> +		 * Save the full read variant list (ODTR and SSDR ops) for PHY
+> +		 * tuning iteration. Only saved when all ODTR templates are
+> +		 * valid so spinand_configure_phy() knows ranked fallback is
+> +		 * available.
+> +		 */
+> +		if (spinand->odtr_op_templates.read_cache &&
+> +		    spinand->odtr_op_templates.write_cache &&
+> +		    spinand->odtr_op_templates.update_cache)
+> +			spinand->phy_read_variants =3D info->op_variants.read_cache;
+> +
+>  		return 0;
+>  	}
+>=20=20
+> @@ -1922,7 +1941,6 @@ static int spinand_mtd_suspend(struct mtd_info *mtd)
+>=20=20
+>  static int spinand_init(struct spinand_device *spinand)
+>  {
+> -	struct device *dev =3D &spinand->spimem->spi->dev;
+>  	struct mtd_info *mtd =3D spinand_to_mtd(spinand);
+>  	struct nand_device *nand =3D mtd_to_nanddev(mtd);
+>  	int ret;
+> @@ -2014,14 +2032,6 @@ static int spinand_init(struct spinand_device *spi=
+nand)
+>  	mtd->ecc_step_size =3D nanddev_get_ecc_conf(nand)->step_size;
+>  	mtd->bitflip_threshold =3D DIV_ROUND_UP(mtd->ecc_strength * 3, 4);
+>=20=20
+> -	ret =3D spinand_create_dirmaps(spinand);
+> -	if (ret) {
+> -		dev_err(dev,
+> -			"Failed to create direct mappings for read/write operations (err =3D =
+%d)\n",
+> -			ret);
+> -		goto err_cleanup_ecc_engine;
+> -	}
+> -
+>  	return 0;
+>=20=20
+>  err_cleanup_ecc_engine:
+> @@ -2050,6 +2060,178 @@ static void spinand_cleanup(struct spinand_device=
+ *spinand)
+>  	kfree(spinand->scratchbuf);
+>  }
+>=20=20
+> +/*
+> + * spinand_try_phy_ranked() - Try PHY tuning on variants in performance =
+order.
+> + * @spinand:    SPI NAND device
+> + * @mem:        SPI memory device
+> + * @odtr:       true to iterate ODTR variants, false for SSDR variants
+> + * @tried_mask: bitmask of already-tried variant indices; updated on eac=
+h try
+> + *
+> + * Iterates the full read variant list in descending performance order,
+> + * skipping variants in @tried_mask, and calls execute_tuning on each un=
+til one
+> + * succeeds. The fastest PHY-tunable variant is chosen regardless of whi=
+ch was
+> + * pre-selected at init; ranked iteration finds the best available varia=
+nt
+> + * without re-trying already-attempted ones.
+> + *
+> + * On success, sets spinand->max_read_op and updates the matching
+> + * odtr_op_templates.read_cache or ssdr_op_templates.read_cache.
+> + */
+> +static bool spinand_try_phy_ranked(struct spinand_device *spinand,
+> +				   struct spi_mem *mem, bool odtr,
+> +				   u32 *tried_mask)
+> +{
+> +	const struct spinand_op_variants *variants =3D spinand->phy_read_varian=
+ts;
+> +	const struct spi_mem_op *best;
+> +	int ret;
+> +
+> +	if (!variants)
+> +		return false;
+> +
+> +	while ((best =3D spinand_op_find_best(spinand, variants, odtr,
+> +					    *tried_mask))) {
+
+Ok, now I get the mask.
+
+Why do you care about odtr flag at all? We should just take the fastest
+modes in descending order, I don't really understand why mentioning odtr
+is needed? Maybe your goal is to make a faster loop, taking the fastest
+mode in each case and compare? This should work in most cases, given the
+fact that we tend to order the variants by speed, but they are not
+always in perfect order. I already faced cases where faster modes
+appeared to be down the list because of the game of dummy cycles. But
+that is probably not impacting PHY mode since we are using the fastest
+speed (with only the mode with the maximum number of dummy cycles)
+usable.
+
+So in the end, if you sort ODTR vs. SSDR for optimization reasons, ok.
+
+> +		*tried_mask |=3D BIT(best - variants->ops);
+> +		spinand->max_read_op =3D *best;
+> +		spinand->max_read_op.max_freq =3D 0;
+> +		ret =3D spi_mem_execute_tuning(mem, &spinand->max_read_op,
+> +					     &spinand->max_write_op);
+> +		if (ret && ret !=3D -EOPNOTSUPP)
+> +			dev_warn(&mem->spi->dev, "%s PHY tuning failed: %d\n",
+> +				 odtr ? "ODTR" : "SSDR", ret);
+> +		if (!ret && spinand->max_read_op.max_freq) {
+> +			if (odtr)
+> +				spinand->odtr_op_templates.read_cache =3D best;
+> +			else
+> +				spinand->ssdr_op_templates.read_cache =3D best;
+> +			return true;
+> +		}
+> +	}
+> +	return false;
+> +}
+> +
+> +/*
+> + * spinand_reset_max_ops() - Copy op templates and zero max_freq on both.
+> + * @spinand:    SPI NAND device
+> + * @templates:  op template set to copy from
+> + *
+> + * Called before execute_tuning so max_freq starts at zero; execute_tuni=
+ng sets
+> + * it to the validated clock rate only on success. A non-zero max_freq m=
+eans
+> + * PHY-validated; zero means the base rate applies.
+> + */
+> +static void spinand_reset_max_ops(struct spinand_device *spinand,
+> +				  struct spinand_mem_ops *templates)
+> +{
+> +	spinand->max_read_op =3D *templates->read_cache;
+> +	spinand->max_read_op.max_freq =3D 0;
+> +	spinand->max_write_op =3D *templates->write_cache;
+> +	spinand->max_write_op.max_freq =3D 0;
+> +}
+> +
+> +/*
+> + * spinand_configure_phy() - Negotiate the optimal PHY operating point.
+> + * @spinand:    SPI NAND device
+> + * @mem:        SPI memory device
+> + *
+> + * Tries the pre-selected variant first.  If the controller signals that
+> + * PHY tuning is not applicable for that specific op, iterates all remai=
+ning
+> + * variants in performance order.  For devices that support both DTR and=
+ SDR
+> + * interfaces, DTR variants are tried first; if all fail the device is
+> + * switched to SDR mode and SDR variants are tried.  On full failure the
+> + * device falls back to the best available non-PHY mode.  Devices that
+> + * support only SDR skip the DTR ranked pass entirely.
+> + *
+> + * PHY failure is never fatal.
+> + *
+> + * Note: tried_mask is u32, supporting up to 32 variants total across bo=
+th
+> + * ODTR and SSDR. Flash devices with more than 32 read variants are not
+> + * supported.
+> + */
+> +static void spinand_configure_phy(struct spinand_device *spinand,
+> +				  struct spi_mem *mem)
+> +{
+> +	u32 tried_mask;
+> +	int ret;
+> +
+> +	spinand_reset_max_ops(spinand, spinand->op_templates);
+> +
+> +	ret =3D spi_mem_execute_tuning(mem, &spinand->max_read_op,
+> +				     &spinand->max_write_op);
+> +	if (ret && ret !=3D -EOPNOTSUPP)
+> +		dev_warn(&mem->spi->dev, "Failed to execute PHY tuning: %d\n",
+> +			 ret);
+
+I guess we don't want to warn in this case. You can keep it as a dbg log
+if you want.
+
+> +	/*
+> +	 * Any non-zero return or a set max_freq means we are done (error,
+> +	 * unsupported, or success). Fallback only for the op-specific "skip"
+> +	 * signal: ret =3D=3D 0 with max_freq still 0.
+> +	 */
+> +	if (ret || spinand->max_read_op.max_freq)
+> +		return;
+> +
+> +	if (!mem->spi->post_config_max_speed_hz || spinand->bus_iface =3D=3D SS=
+DR ||
+> +	    !spinand->phy_read_variants)
+> +		return;
+
+Why not moving this earlier? (except the SSDR check) this way we return
+even earlier if the tuning cannot happen.
+
+I am not sure I understand your use of phy_read_variants here. Can it
+really be NULL?
+
+> +	if (WARN_ON(spinand->phy_read_variants->nops > 32))
+> +		return;
+> +
+> +	/* Mark the pre-selected ODTR variant as already tried */
+> +	tried_mask =3D BIT(spinand->odtr_op_templates.read_cache -
+> +			 spinand->phy_read_variants->ops);
+> +
+> +	dev_dbg(&mem->spi->dev,
+> +		"PHY tuning skipped for current op; searching for best PHY variant\n");
+> +
+> +	/* Pass 1: try all remaining ODTR variants in performance order */
+> +	if (spinand_try_phy_ranked(spinand, mem, true, &tried_mask))
+> +		return;
+> +
+> +	/*
+> +	 * Pass 2: switch to SSDR and try all SSDR variants in performance
+> +	 * order.
+> +	 *
+> +	 * Only enter if we actually have SSDR support and a reconfigure
+> +	 * callback.
+
+It is not possible to enable ODTR without the configure callback.
+
+> The hardware is still in ODTR mode here so no
+> +	 * configure_chip call is needed to undo; just set up the ODTR non-PHY
+> +	 * fallback and return.
+> +	 */
+> +	if (!spinand->ssdr_op_templates.read_cache ||
+> +	    !spinand->ssdr_op_templates.write_cache ||
+
+I don't think this is ever possible, is it?
+
+> +	    !spinand->configure_chip)
+> +		goto use_odtr_non_phy;
+
+I don't think we will ever use this path.
+
+> +
+> +	if (spinand->configure_chip(spinand, SSDR))
+> +		goto use_odtr_non_phy;
+
+We should handle chips with no ODTR support. I'm not sure the logic is
+robust enough for them. Have you tried by commenting out the ODTR
+variants of your chip?
+
+> +
+> +	spinand->op_templates =3D &spinand->ssdr_op_templates;
+> +	spinand->bus_iface =3D SSDR;
+> +	spinand->max_write_op =3D *spinand->ssdr_op_templates.write_cache;
+> +	spinand->max_write_op.max_freq =3D 0;
+> +
+> +	/*
+> +	 * Only ODTR variants were candidates in Pass 1; SSDR bit positions
+> +	 * are clear
+> +	 */
+> +	if (spinand_try_phy_ranked(spinand, mem, false, &tried_mask))
+> +		return;
+> +
+> +	/*
+> +	 * All PHY attempts exhausted.  Revert to ODTR for non-PHY DTR
+> +	 * operation.  If revert fails, stay in SSDR =E2=80=94 a mode mismatch
+> +	 * (ODTR op templates on SSDR-mode device) would corrupt data.
+> +	 */
+> +	if (spinand->configure_chip(spinand, ODTR)) {
+> +		dev_warn(&mem->spi->dev,
+> +			 "Failed to revert to ODTR, staying in SSDR non-PHY\n");
+> +		spinand_reset_max_ops(spinand, &spinand->ssdr_op_templates);
+> +		return;
+> +	}
+> +
+> +use_odtr_non_phy:
+> +	spinand->op_templates =3D &spinand->odtr_op_templates;
+> +	spinand->bus_iface =3D ODTR;
+> +	spinand_reset_max_ops(spinand, &spinand->odtr_op_templates);
+> +}
+
+>  static int spinand_probe(struct spi_mem *mem)
+>  {
+>  	struct spinand_device *spinand;
+> @@ -2072,6 +2254,20 @@ static int spinand_probe(struct spi_mem *mem)
+>  	if (ret)
+>  		return ret;
+>=20=20
+> +	/*
+> +	 * Negotiate the best PHY operating point before creating dirmaps so
+> +	 * the validated frequency is available at dirmap construction time.
+> +	 */
+> +	spinand_configure_phy(spinand, mem);
+> +
+> +	ret =3D spinand_create_dirmaps(spinand);
+> +	if (ret) {
+> +		dev_err(&mem->spi->dev,
+> +			"Failed to create direct mappings for read/write operations (err =3D =
+%d)\n",
+> +			ret);
+> +		goto err_spinand_cleanup;
+> +	}
+> +
+>  	ret =3D mtd_device_register(mtd, NULL, 0);
+>  	if (ret)
+>  		goto err_spinand_cleanup;
+> diff --git a/include/linux/mtd/spinand.h b/include/linux/mtd/spinand.h
+> index ec6efcfeef83..50a8319cf11e 100644
+> --- a/include/linux/mtd/spinand.h
+> +++ b/include/linux/mtd/spinand.h
+> @@ -791,8 +791,19 @@ struct spinand_device {
+>  	struct spinand_mem_ops *op_templates;
+>  	enum spinand_bus_interface bus_iface;
+>=20=20
+> +	/*
+> +	 * Full read variant list (ODTR and SSDR ops together), saved when ODTR
+> +	 * templates are valid. Used by spinand_configure_phy() to iterate all
+> +	 * candidates when the pre-selected variant cannot be PHY-tuned.
+> +	 */
+> +	const struct spinand_op_variants *phy_read_variants;
+
+Why do you prefix this pointer name with "phy"? The variants pointed are
+basically all read variants, no more no less. Even though you want to
+use them for PHY tuning purposes, I don't think it is wise to name the
+member here.
+
+> +
+>  	struct spinand_dirmap *dirmaps;
+>=20=20
+> +	/* Persistent op templates updated by execute_tuning with validated spe=
+ed. */
+> +	struct spi_mem_op max_read_op;
+> +	struct spi_mem_op max_write_op;
+> +
+>  	int (*select_target)(struct spinand_device *spinand,
+>  			     unsigned int target);
+>  	unsigned int cur_target;
+
+Thanks,
+Miqu=C3=A8l
 
