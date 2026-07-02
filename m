@@ -1,231 +1,321 @@
-Return-Path: <devicetree+bounces-319234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319270-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zCkNAEc/RmryMgsAu9opvQ
-	(envelope-from <devicetree+bounces-319234-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:36:55 +0200
+	id d2ZeDShHRmqQNgsAu9opvQ
+	(envelope-from <devicetree+bounces-319270-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:10:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817B86F601A
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:36:54 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17EC76F678D
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 13:10:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cZzBFjMd;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319234-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319234-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=aliel.fr header.s=courrier-s1 header.b=kvFLpalA;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319270-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319270-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=aliel.fr;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9967F307E183
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:52:52 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A399532DE524
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 10:04:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F64F3F4118;
-	Thu,  2 Jul 2026 09:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70EED4EA37D;
+	Thu,  2 Jul 2026 09:52:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56AA3E8C67;
-	Thu,  2 Jul 2026 09:45:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA42A4E3797;
+	Thu,  2 Jul 2026 09:52:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782985523; cv=none; b=OvA2xobGD/eCEh7tZBqSevKXnVL4qccMVNQuHhgsdXrDZ0B5R2c7zzuP70J1o+EMluvXivf/Lb/2BD0ayBym4mDnaCLdMVb4X7QGZXR8DbJ06rmC73OgcuqgV5uFnza/iHy9P3MYKa7wLDTJtJd78d2WETtoLbnvHN3t0WaFuMo=
+	t=1782985926; cv=none; b=a1r60csJs4VMsSjjuUSS9kBJmyzTPPIjJm2Rpv8cJRkMqPbKHWn0lOF9YQmruWWDZijIefMoVRG2eg6KFvaesnWScMcEVvDXR/RFIFPx7NV6bVDzCLqXQcvBKRSWqKcd+sB6V4xzFDMHdwEBNzoj3mQx/ZeqdJj1RH6Vl3x02hk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782985523; c=relaxed/simple;
-	bh=FXQ0J1sUaKEYDNwY9Eaio4lIKbY83SkOjHdb2kkmq/4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Q60XvQ2L+OE4+OT4/VdqtKOrhnTZJd4lPVNFP+paBGT59ffjH0yrqL8pi5NYCov3rsXwxgwvbyvuCflW2QakltmwyEXjXfgN/EkysJtIpooMF0VNcaE+NYy+YgTlHi5CP6A/EzXG++pXVgQ4Pak+CK4+q2XvZsbCBoxHqvwWttQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cZzBFjMd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CD0A1F000E9;
-	Thu,  2 Jul 2026 09:45:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782985521;
-	bh=4DzRso8YGT4LeBfgQmKZde/DEc5L2unI6guTuPGWCgM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=cZzBFjMdF/p2CXWnCzuvLucc+w7OSOo3IRkR0NgzsFcqwji4w98XzgJa0L4vTNw1l
-	 KB0BqnuLS50O69WVDWy3e4LiRLEV0d6GKf8eFsA2vE8MSk2IKtYXc8+dZNZZCozLZd
-	 X7za/L4pgOH+93rtd0CQZICEDxRzLRjsFRGzihFBhf4Rquu3KGiFlI/QQ2HL6dei2q
-	 jq8m40v+xAgzu4xcUkxLdG+xnfnqSf7NDHX7Geg2yFUDWxuXKCwgmlVFZ54B+4/Bjm
-	 3yGfcvIhmx4UxgRGKw+TM9MHYngZKDtVH/OzGDBd0eFhl9jlmFp+HZYilgbPDVtbEK
-	 35Gfm1F1pysJw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 08/18] arm64: dts: ti: k3-j721s2: Add overlay for fusion
- application daughter board
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Yemike Abhilash Chandra" <y-abhilashchandra@ti.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev
-In-Reply-To: <20260702093123.1048575-9-y-abhilashchandra@ti.com>
-References: <20260702093123.1048575-1-y-abhilashchandra@ti.com>
- <20260702093123.1048575-9-y-abhilashchandra@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 02 Jul 2026 09:45:20 +0000
-Message-Id: <20260702094521.1CD0A1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1782985926; c=relaxed/simple;
+	bh=p0sFjWRzjbpxT6lmgqAxIzkvqCsmBHy10xTbeag3hQw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=ijBQumml//4y9CWAbU6zA36WXTPPRUD4u2E/ckNzARz/zjl4esESa410G1edxh6NHj+lzW1ogbuD0T99vMvElLeoZA3OGNfLv5bPzP/bbyyQ5scgyyml3/KGfGOaXf6X819JkKnwQuAI8VfrCK+WDrTw1H2+WtVJD28andhmf48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=kvFLpalA; arc=none smtp.client-ip=65.21.61.41
+Message-ID: <18ca03a9-3876-4a6e-aaa9-2fecb9bef7e6@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1782985563;
+	bh=p0sFjWRzjbpxT6lmgqAxIzkvqCsmBHy10xTbeag3hQw=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=kvFLpalAw/VxiqBUqP3rsMzId96gOHBUtGQPWiXolq9p9/en2OvdQEpEjrXfcoRti
+	 0ld9TUr2IXS6RjAbqS/WXtsxzkl1hkA8NnjNo+Upr1KpCC6TcifgMmEF+m+iA/xzcS
+	 L63fJdydame+xUdRPv+AYkaTWtDSd5xH1qJT2Juc=
+Date: Thu, 2 Jul 2026 11:45:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird Beta
+From: linux-kernel-dev@aliel.fr
+Subject: Re: [PATCH v7 4/8] mfd: khadas-mcu: Add support for VIM4 MCU variant
+To: Lee Jones <lee@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Beniamino Galvani <b.galvani@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-pm@vger.kernel.org
+References: <20260603-add-mcu-fan-khadas-vim4-v7-0-594ba8a965d8@aliel.fr>
+ <20260603-add-mcu-fan-khadas-vim4-v7-4-594ba8a965d8@aliel.fr>
+ <20260611164053.GC1212816@google.com>
+Content-Language: en-US
+In-Reply-To: <20260611164053.GC1212816@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[aliel.fr,quarantine];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-319234-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,svtronics.com:url,ti.com:email];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:y-abhilashchandra@ti.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-319270-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andi.shyti@kernel.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:b.galvani@gmail.com,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:linux-amlogic@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-pm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,m:bgalvani@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aliel.fr:+];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com,lists.infradead.org,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid,aliel.fr:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 817B86F601A
+X-Rspamd-Queue-Id: 17EC76F678D
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] The commit message claims the overlay can be reused for J742S2, =
-but the required device tree combination target is missing from the Makefil=
-e.
-- [Low] The `csi2_phy0` endpoint definition is missing the `bus-type =3D <4=
->;` property, while the identical `csi2_phy1` endpoint explicitly defines i=
-t.
---
+On 6/11/26 6:40 PM, Lee Jones wrote:
+> /* Sashiko Automation: Reviewed (0 Findings) */
+> 
+> On Wed, 03 Jun 2026, Ronald Claveau via B4 Relay wrote:
+> 
+>> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>>
+>> Refactor probe() to use per-variant values
+>> instead of hardcoded globals.
+>>
+>> Add dedicated regmap configuration for the VIM4 MCU,
+>> with its own volatile/writeable registers.
+>>
+>> Add the fan control register
+>> (0–100 levels vs 0–3 for previous supported boards).
+>>
+>> Add a new compatible string "khadas,vim4-mcu".
+>>
+>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>> ---
+>>  drivers/mfd/khadas-mcu.c | 115 ++++++++++++++++++++++++++++++++++++++++-------
+>>  1 file changed, 99 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/mfd/khadas-mcu.c b/drivers/mfd/khadas-mcu.c
+>> index ba981a7886921..1bf260729d73b 100644
+>> --- a/drivers/mfd/khadas-mcu.c
+>> +++ b/drivers/mfd/khadas-mcu.c
+>> @@ -75,47 +75,129 @@ static const struct regmap_config khadas_mcu_regmap_config = {
+>>  	.cache_type	= REGCACHE_MAPLE,
+>>  };
+>>  
+>> -static struct mfd_cell khadas_mcu_fan_cells[] = {
+>> +static const struct khadas_mcu_fan_pdata khadas_mcu_fan_pdata = {
+>> +	.fan_reg	= KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
+>> +	.max_level	= 3, /* Fan speed: 0 = off, 1 = low, 2 = medium, 3 = high */
+> 
+> Instead of this comment, you could always just define the value(s)?
+> 
 
-commit 38600625d6a88602aa3dc77a7657b2be15b2c563
-Author: Vaishnav Achath <vaishnav.a@ti.com>
+I will do that with define.
 
-arm64: dts: ti: k3-j721s2: Add overlay for fusion application daughter board
+>> +};
+>> +
+>> +static const struct mfd_cell khadas_mcu_fan_cells[] = {
+>>  	/* VIM1/2 Rev13+ and VIM3 only */
+>> -	{ .name = "khadas-mcu-fan-ctrl", },
+>> +	{
+>> +		.name = "khadas-mcu-fan-ctrl",
+>> +		.platform_data = &khadas_mcu_fan_pdata,
+>> +		.pdata_size    = sizeof(khadas_mcu_fan_pdata),
+> 
+> No need to attempt to align the '=' like this, please.
+> 
 
-This patch adds an overlay for the Fusion application daughter board to
-connect multiple FPDLink-III based sensors to TI EVMs. The commit message
-notes that CSI2RX connectivity on J784S4 and J742S2 is the same as J721S2,
-allowing the overlay to be reused.
+I will remove these extra spaces.
 
-Link: https://svtronics.com/product/fusion-application-daughter-board-evm57=
-7pfusion-v1-0/?srsltid=3DAfmBOooMsRAd5ibFOGJaKbjsC3j9-loTPK2wWqsqPq2Adj55g1=
-nPluxX
+>> +	},
+>>  };
+>>  
+>> -static struct mfd_cell khadas_mcu_cells[] = {
+>> +static const struct mfd_cell khadas_mcu_cells[] = {
+>>  	{ .name = "khadas-mcu-user-mem", },
+>>  };
+>>  
+>> +static bool khadas_mcu_vim4_reg_volatile(struct device *dev, unsigned int reg)
+>> +{
+>> +	switch (reg) {
+>> +	case KHADAS_MCU_PWR_OFF_CMD_REG:
+>> +	case KHADAS_MCU_VIM4_REST_CONF_REG:
+>> +	case KHADAS_MCU_WOL_INIT_START_REG:
+>> +	case KHADAS_MCU_VIM4_LED_ON_RAM_REG:
+>> +	case KHADAS_MCU_VIM4_FAN_CTRL_REG:
+>> +	case KHADAS_MCU_VIM4_WDT_EN_REG:
+>> +	case KHADAS_MCU_VIM4_SYS_RST_REG:
+>> +		return true;
+>> +	default:
+>> +		return false;
+>> +	}
+>> +}
+>> +
+>> +static bool khadas_mcu_vim4_reg_writeable(struct device *dev, unsigned int reg)
+>> +{
+>> +	switch (reg) {
+>> +	case KHADAS_MCU_VERSION_0_REG:
+>> +	case KHADAS_MCU_VERSION_1_REG:
+>> +	case KHADAS_MCU_SHUTDOWN_NORMAL_STATUS_REG:
+>> +		return false;
+>> +	default:
+>> +		return true;
+>> +	}
+>> +}
+>> +
+>> +static const struct regmap_config khadas_mcu_vim4_regmap_config = {
+>> +	.reg_bits	= 8,
+>> +	.reg_stride	= 1,
+>> +	.val_bits	= 8,
+>> +	.max_register	= KHADAS_MCU_VIM4_SYS_RST_REG,
+>> +	.volatile_reg	= khadas_mcu_vim4_reg_volatile,
+>> +	.writeable_reg	= khadas_mcu_vim4_reg_writeable,
+>> +	.cache_type	= REGCACHE_MAPLE,
+>> +};
+>> +
+>> +static const struct khadas_mcu_fan_pdata khadas_vim4_fan_pdata = {
+>> +	.fan_reg	= KHADAS_MCU_VIM4_FAN_CTRL_REG,
+>> +	.max_level	= 0x64,
+>> +};
+>> +
+>> +static const struct mfd_cell khadas_mcu_vim4_cells[] = {
+>> +	{
+>> +		.name		= "khadas-mcu-fan-ctrl",
+>> +		.platform_data	= &khadas_vim4_fan_pdata,
+>> +		.pdata_size	= sizeof(khadas_vim4_fan_pdata),
+>> +	},
+>> +};
+>> +
+>>  static int khadas_mcu_probe(struct i2c_client *client)
+>>  {
+>> +	const struct mfd_cell *cells, *fan_cells;
+>> +	const struct regmap_config *regmap_cfg;
+>>  	struct device *dev = &client->dev;
+>> +	int ncells, nfan_cells, ret;
+>>  	struct khadas_mcu *ddata;
+>> -	int ret;
+>>  
+>>  	ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
+>>  	if (!ddata)
+>>  		return -ENOMEM;
+>>  
+>> +	switch ((uintptr_t)i2c_get_match_data(client)) {
+>> +	case KHADAS_MCU_GENERIC:
+>> +		regmap_cfg	= &khadas_mcu_regmap_config;
+>> +		cells		= khadas_mcu_cells;
+>> +		ncells		= ARRAY_SIZE(khadas_mcu_cells);
+>> +		fan_cells	= khadas_mcu_fan_cells;
+>> +		nfan_cells	= ARRAY_SIZE(khadas_mcu_fan_cells);
+>> +		break;
+>> +	case KHADAS_MCU_VIM4:
+>> +		regmap_cfg	= &khadas_mcu_vim4_regmap_config;
+>> +		cells		= NULL;
+>> +		ncells		= 0;
+>> +		fan_cells	= khadas_mcu_vim4_cells;
+>> +		nfan_cells	= ARRAY_SIZE(khadas_mcu_vim4_cells);
+> 
+> I'm not as offended by this as I thought I would be!
+> 
+>> +		break;
+>> +	default:
+>> +		return -ENODEV;
+>> +	}
+>> +
+>>  	i2c_set_clientdata(client, ddata);
+>>  
+>>  	ddata->dev = dev;
+>>  
+>> -	ddata->regmap = devm_regmap_init_i2c(client, &khadas_mcu_regmap_config);
+>> +	ddata->regmap = devm_regmap_init_i2c(client, regmap_cfg);
+>>  	if (IS_ERR(ddata->regmap)) {
+>>  		ret = PTR_ERR(ddata->regmap);
+>> -		dev_err(dev, "Failed to allocate register map: %d\n", ret);
+>> -		return ret;
+>> +		return dev_err_probe(dev, ret, "Failed to allocate register map\n");
+>>  	}
+>>  
+>> -	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+>> -				   khadas_mcu_cells,
+>> -				   ARRAY_SIZE(khadas_mcu_cells),
+>> -				   NULL, 0, NULL);
+>> -	if (ret)
+>> -		return ret;
+>> +	if (cells && ncells) {
+>> +		ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+>> +					   cells,
+>> +					   ncells,
+>> +					   NULL, 0, NULL);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>>  
+>>  	if (of_property_present(dev->of_node, "#cooling-cells"))
+>>  		return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+>> -					    khadas_mcu_fan_cells,
+>> -					    ARRAY_SIZE(khadas_mcu_fan_cells),
+>> +					    fan_cells,
+>> +					    nfan_cells,
+>>  					    NULL, 0, NULL);
+>>  
+>>  	return 0;
+>> @@ -123,7 +205,8 @@ static int khadas_mcu_probe(struct i2c_client *client)
+>>  
+>>  #ifdef CONFIG_OF
+>>  static const struct of_device_id khadas_mcu_of_match[] = {
+>> -	{ .compatible = "khadas,mcu", },
+>> +	{ .compatible = "khadas,mcu", .data = (void *)KHADAS_MCU_GENERIC },
+>> +	{ .compatible = "khadas,vim4-mcu", .data = (void *)KHADAS_MCU_VIM4 },
+>>  	{},
+>>  };
+>>  MODULE_DEVICE_TABLE(of, khadas_mcu_of_match);
+>>
+>> -- 
+>> 2.49.0
+>>
+>>
+> 
 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Mak=
-efile
-> index 350a8b5ad275c..9dd25a21d738e 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-[ ... ]
-> @@ -333,6 +336,8 @@ k3-j722s-evm-csi2-quad-tevi-ov5640-dtbs :=3D k3-j722s=
--evm.dtb \
->  	k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
->  k3-j742s2-evm-usb0-type-a-dtbs :=3D k3-j742s2-evm.dtb \
->  	k3-j784s4-j742s2-evm-usb0-type-a.dtbo
-> +k3-j784s4-evm-fpdlink-fusion-dtbs :=3D k3-j784s4-evm.dtb \
-> +	k3-j721s2-evm-fusion.dtbo
 
-[Severity: Medium]
-The commit message mentions the overlay can be reused for J742S2, but should
-a build target for k3-j742s2-evm-fpdlink-fusion.dtbs also be added here?
-
->  k3-j784s4-evm-pcie0-pcie1-ep-dtbs :=3D k3-j784s4-evm.dtb \
->  	k3-j784s4-evm-pcie0-pcie1-ep.dtbo
->  k3-j784s4-evm-quad-port-eth-exp1-dtbs :=3D k3-j784s4-evm.dtb \
-[ ... ]
-> @@ -400,11 +405,13 @@ dtb- +=3D k3-am625-beagleplay-csi2-ov5640.dtb \
->  	k3-j721e-evm-pcie0-ep.dtb \
->  	k3-j721e-evm-pcie1-ep.dtb \
->  	k3-j721e-sk-csi2-dual-imx219.dtb \
-> +	k3-j721s2-evm-fpdlink-fusion.dtb \
->  	k3-j721s2-evm-pcie1-ep.dtb \
->  	k3-j721s2-evm-usb0-type-a.dtb \
->  	k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtb \
->  	k3-j722s-evm-csi2-quad-tevi-ov5640.dtb \
->  	k3-j742s2-evm-usb0-type-a.dtb \
-> +	k3-j784s4-evm-fpdlink-fusion.dtb \
-
-[Severity: Medium]
-Does k3-j742s2-evm-fpdlink-fusion.dtb need to be appended to this list so
-the J742S2 combination device tree gets built?
-
->  	k3-j784s4-evm-pcie0-pcie1-ep.dtb \
->  	k3-j784s4-evm-quad-port-eth-exp1.dtb \
->  	k3-j784s4-evm-usb0-type-a.dtb \
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-evm-fusion.dtso b/arch/arm6=
-4/boot/dts/ti/k3-j721s2-evm-fusion.dtso
-> new file mode 100644
-> index 0000000000000..f200cdaa1bab1
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-evm-fusion.dtso
-[ ... ]
-> +&cdns_csi2rx0 {
-> +	ports {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		csi0_port0: port@0 {
-> +			reg =3D <0>;
-> +			status =3D "okay";
-> +
-> +			csi2_phy0: endpoint {
-> +				remote-endpoint =3D <&ds90ub960_0_csi_out>;
-
-[Severity: Low]
-This isn't a bug, but should this endpoint explicitly define bus-type =3D <=
-4>
-to remain consistent with how csi2_phy1 configures it below?
-
-> +				clock-lanes =3D <0>;
-> +				data-lanes =3D <1 2 3 4>;
-> +				link-frequencies =3D /bits/ 64 <800000000>;
-> +
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&cdns_csi2rx1 {
-> +	ports {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		csi1_port0: port@0 {
-> +			reg =3D <0>;
-> +			status =3D "okay";
-> +
-> +			csi2_phy1: endpoint {
-> +				remote-endpoint =3D <&ds90ub960_1_csi_out>;
-> +				bus-type =3D <4>; /* CSI2 DPHY */
-> +				clock-lanes =3D <0>;
-> +				data-lanes =3D <1 2 3 4>;
-> +				link-frequencies =3D /bits/ 64 <800000000>;
-> +			};
-> +		};
-> +	};
-> +};
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702093123.1048=
-575-1-y-abhilashchandra@ti.com?part=3D8
+-- 
+Best regards,
+Ronald
 
