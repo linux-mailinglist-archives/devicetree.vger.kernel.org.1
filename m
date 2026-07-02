@@ -1,179 +1,203 @@
-Return-Path: <devicetree+bounces-319624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319625-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Kuk0BKbQRmpFeAsAu9opvQ
-	(envelope-from <devicetree+bounces-319624-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 22:57:10 +0200
+	id APGICSPURmoweQsAu9opvQ
+	(envelope-from <devicetree+bounces-319625-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 23:12:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F6636FCD85
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 22:57:09 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFCC6FCE17
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 23:12:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cZMVr0bK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319624-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-319624-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=lunn.ch header.s=20171124 header.b=3OJXP7RL;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319625-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319625-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=lunn.ch;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E129330464AC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 20:57:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C87BE303CD39
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 21:09:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63BE387364;
-	Thu,  2 Jul 2026 20:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 563E8364926;
+	Thu,  2 Jul 2026 21:09:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABCE1335564
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 20:57:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F252571A0;
+	Thu,  2 Jul 2026 21:08:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783025825; cv=none; b=KSUO5aJJgLqEFHzwbZfAepJwmQ8+vAiCqkeXm82WYRNP+YGKy43Wnnjp95PgjbedNVexF099EtjRwyMNrNCYzeyul/sd5ii9d+0f4PKuNsxNPsvYlERgTscblGATyQqVKh3JYs8XV7HLnvJ/YQ8HCawhZ7aLFRpvYL4mMEJRLt0=
+	t=1783026541; cv=none; b=YtKjo2cl3yHVMv+WU9WQTbIX4hb13PC3UrZ6ebEUH857EiJX8Q9fDTYLG1NmHiss0PjRd/90HYMy64+IBAN7R0UVZ+1Qkx+Dwmhegk8DCDbslCr3UgJOAEQmz7w0lutYh1ytEEnik4iwc7vDqc96G9T4iiB7qIDlMxvOI8jApTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783025825; c=relaxed/simple;
-	bh=pvDoeewxvA/slTWVKggVd9Afeffpoa7t0rHZclOCvsY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=SMXUpXstTDjVbC/8Ep69Zpk3/ka+GpC4BAQyqQXyzrpNEBz14fSebHTyHkD9oOoRtg2ccR4Dv41qESTuLQjT1FJtD/A4nAcg0m/J8UyMSrYp2X1oh+62oXNR+WGFlnRXSc7uMhiGOUdDAsSyr41+xN6eIXsggy+vF+O1aOIjZ8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cZMVr0bK; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 059411F000E9;
-	Thu,  2 Jul 2026 20:57:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783025824;
-	bh=a+PT4Q0+zJgDy0c6F9EzLbrlKfOcqCIqrgLjGOW2QoY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=cZMVr0bKNwyZ9k2DTlrRTrvcq91+/OMZlvrOJ7oOJjZE1TaE20tocf2gK/+4Up6W8
-	 slpYd+eneKNDRoS965IZ3siMHqXiU/hrnSL6f2w5RRRkp5UyFTLrJADlJ6AkHwBW6d
-	 wIvcNcQa9XzNeo0i/aGsLVz+KNmGGtBqC3lbACgxV3I9ZtuR29PlLL9Tq35X9oIh8g
-	 H2uyMnejE7LzRvfYjEJ4QdXQozFE1mfpLDay/POZeoIOj4O674tWUs1jYHeVX8UmxH
-	 IimKkSBwXXE7q1EvaR1zs2tFTLhGk3A16/JUjGIvN06w+4iv6emROBWY7K23wE3hX4
-	 /oPD5GWealXRA==
-From: sashiko-bot@kernel.org
+	s=arc-20240116; t=1783026541; c=relaxed/simple;
+	bh=4JophHAYan6pShvOawHRd5pLvehfV5UKdWKk7t7kdzo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BrYciUA5Rv5+EDxRkj857s9yXUsXjU5JEXWLsd8T0c/J5Ethd+XAF6GurSOp21C8YPgguP+Icu3wHALlk8B89UxmuWGjArwFmAeJOBgTuyOKMMjF7NG6lCfM/Wunq+CX9Dy3VWwI71Ze44V33x77yBdCsJ4QXDnvI2QUDt1UDDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=3OJXP7RL; arc=none smtp.client-ip=156.67.10.101
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=VsU0GKlpFen3bVJtWCMmvE5FPpCnuu0a3JfblASDukw=; b=3OJXP7RLiMfKVDA9EBfQIOFHkz
+	jS/DJTx6LqCN2l432ngygfgLUogxS7Ko1t035kcDafAQgVRcrTXxsv8/Z5vN/Y7zJTzR8E/QpKu97
+	TmgJVzbEJRMnj1IUGzHOvI9XtaDfydCTx5U3ThojEtVLFGoMwAI2um+GdUeLI1Pnzqlw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wfOeM-00ARGv-DY; Thu, 02 Jul 2026 23:08:46 +0200
+Date: Thu, 2 Jul 2026 23:08:46 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Coia Prant <coiaprant@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v5 3/3] arm64: dts: rockchip: Add devicetree for the
  Graperain G3568 v2
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Coia Prant" <coiaprant@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260702204628.2407308-5-coiaprant@gmail.com>
+Message-ID: <fb1b5c32-9dfb-43b9-85a3-2adff2bc4a66@lunn.ch>
 References: <20260702204628.2407308-2-coiaprant@gmail.com>
  <20260702204628.2407308-5-coiaprant@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 02 Jul 2026 20:57:03 +0000
-Message-Id: <20260702205704.059411F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260702204628.2407308-5-coiaprant@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319624-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-319625-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:coiaprant@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:dsimic@manjaro.org,m:jonas@kwiboo.se,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:coiaprant@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,gov.cooking:url,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,chukouplus.com:url,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:email,lunn.ch:mid,lunn.ch:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6F6636FCD85
+X-Rspamd-Queue-Id: 6CFCC6FCE17
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Incorrect ADC key threshold definitions lead to mapping collisio=
-ns, causing the MENU button to be registered as ESC.
---
-
-commit fe49d935384ac01dd829b914e2d8c0b5c9cffcdb
-Author: Coia Prant <coiaprant@gmail.com>
-
-arm64: dts: rockchip: Add devicetree for the Graperain G3568 v2
-
-This commit introduces devicetree support for the Graperain G3568 v2
-development board. It defines the hardware configuration including networki=
-ng,
-storage, multimedia, and ADC buttons.
-
-Link: https://image.chukouplus.com/upload/C_153/product_file/20211022/6dadd=
-ec9e400458816dd4c57ba807fc3.pdf
-Link: https://blog.gov.cooking/archives/research-graperain-g3568-v2-and-fla=
-sh.html
-
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-graperain-g3568-v2.dts b=
-/arch/arm64/boot/dts/rockchip/rk3568-graperain-g3568-v2.dts
-> new file mode 100644
-> index 0000000000000..9705e1c5a98a9
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-graperain-g3568-v2.dts
-
-[ ... ]
-
-> +	adc-keys {
-> +		compatible =3D "adc-keys";
-> +		io-channels =3D <&saradc 0>;
-> +		io-channel-names =3D "buttons";
-> +		keyup-threshold-microvolt =3D <1800000>;
-> +		poll-interval =3D <100>;
+> +&gmac0 {
+> +	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
+> +	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>;
+> +	assigned-clock-rates = <0>, <125000000>;
+> +	clock_in_out = "output";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&gmac0_miim
+> +		     &gmac0_tx_bus2
+> +		     &gmac0_rx_bus2
+> +		     &gmac0_rgmii_clk
+> +		     &gmac0_rgmii_bus>;
+> +	phy-handle = <&rgmii_phy0>;
+> +	phy-mode = "rgmii-id";
+> +	status = "okay";
+> +};
 > +
-> +		button-esc {
-> +			label =3D "esc";
-> +			linux,code =3D <KEY_ESC>;
-> +			press-threshold-microvolt =3D <1250000>;
-> +		};
+> +&gmac1 {
+> +	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
+> +	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
+> +	assigned-clock-rates = <0>, <125000000>;
+> +	clock_in_out = "output";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&gmac1m1_miim
+> +		     &gmac1m1_tx_bus2
+> +		     &gmac1m1_rx_bus2
+> +		     &gmac1m1_rgmii_clk
+> +		     &gmac1m1_rgmii_bus>;
+> +	phy-handle = <&rgmii_phy1>;
+> +	phy-mode = "rgmii-id";
+> +	status = "okay";
+> +};
+
+> +&mdio0 {
+> +	rgmii_phy0: ethernet-phy@1 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <1>;
+> +		reset-assert-us = <20000>;
+> +		reset-deassert-us = <100000>;
+> +		reset-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_LOW>;
 > +
-> +		button-menu {
-> +			label =3D "menu";
-> +			linux,code =3D <KEY_MENU>;
-> +			press-threshold-microvolt =3D <1600000>;
+> +		leds {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			led@1 {
+> +				reg = <1>;
+> +				color = <LED_COLOR_ID_GREEN>;
+> +				function = LED_FUNCTION_LAN;
+> +				default-state = "keep";
+> +			};
+> +
+> +			led@2 {
+> +				reg = <2>;
+> +				color = <LED_COLOR_ID_AMBER>;
+> +				function = LED_FUNCTION_LAN;
+> +				default-state = "keep";
+> +			};
 > +		};
+> +	};
+> +};
+> +
+> +&mdio1 {
+> +	rgmii_phy1: ethernet-phy@1 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <1>;
+> +		reset-assert-us = <20000>;
+> +		reset-deassert-us = <100000>;
+> +		reset-gpios = <&gpio2 RK_PD1 GPIO_ACTIVE_LOW>;
+> +
+> +		leds {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			led@1 {
+> +				reg = <1>;
+> +				color = <LED_COLOR_ID_GREEN>;
+> +				function = LED_FUNCTION_LAN;
+> +				default-state = "keep";
+> +			};
+> +
+> +			led@2 {
+> +				reg = <2>;
+> +				color = <LED_COLOR_ID_AMBER>;
+> +				function = LED_FUNCTION_LAN;
+> +				default-state = "keep";
+> +			};
+> +		};
+> +	};
+> +};
 
-[Severity: Medium]
-Will this configuration cause the MENU button to be incorrectly registered =
-as
-an ESC button press?
+For these nodes only:
 
-The commit message states the MENU button generates 1400k =C2=B5V and the E=
-SC
-button generates 1100k =C2=B5V. Since the adc-keys driver computes the dist=
-ance to
-all thresholds and selects the closest one, a 1400mV physical signal is
-closer to the ESC threshold (1250mV, a 150mV difference) than the MENU
-threshold (1600mV, a 200mV difference).
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Could these press-threshold-microvolt definitions be adjusted to ensure the
-generated hardware voltage aligns accurately with its intended target?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702204628.2407=
-308-2-coiaprant@gmail.com?part=3D3
+    Andrew
 
