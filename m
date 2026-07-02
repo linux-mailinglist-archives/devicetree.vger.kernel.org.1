@@ -1,171 +1,174 @@
-Return-Path: <devicetree+bounces-319175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319176-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ir2oGcUvRmpjLQsAu9opvQ
-	(envelope-from <devicetree+bounces-319175-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:30:45 +0200
+	id ymR0G8gtRmq4LAsAu9opvQ
+	(envelope-from <devicetree+bounces-319176-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:22:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9B16F5439
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:30:44 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D66EC6F5303
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:22:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SkwwL2r5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319175-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319175-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CkM0BKN2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319176-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-319176-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E6A1B30BDA58
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:09:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F2017307D6E6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0278B47DD75;
-	Thu,  2 Jul 2026 09:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4CDB47D948;
+	Thu,  2 Jul 2026 09:12:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D24F347DD58
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A00D4477E2E
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:12:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782983269; cv=none; b=uWFCz1D+kWcfZ8CEdD8cC9BuBoqgthBdMT1L9oZXIIgIJ4zBF8difNGWcsN1+faM2E8BnH2LjVse9oF+km5WnnHKXHoS6gRUuANDO8OzbeVN5w22KYNYYoBEN9UVC7Hf3X88JvEQpwA7DcefMQ4GscMOcYW1UTbVFDcGW6k+OSw=
+	t=1782983572; cv=none; b=k85cyYn9iTzNpNvYgjPZ9yeF4lX8pqrzJ17z/y/EhskRgMIrvQI8mYOzkYTUm+EuzZaZcDXWVVKhwsEEM5adruONZ3NTNbul+t5k+zCuyOzxwmKkI7qOa7aDx/LgWKiEPzjb5H9n8yuTGuJE+qs2GOFYDRdnNQ06meQRtFN7BFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782983269; c=relaxed/simple;
-	bh=HBkefB7x96oKwGQlLbHmpLtBxzPdAGJ1kHf71RbfxgU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=jduBnR51l/8OnJ1YnhtfrhxzLV+dinVR2nhJIbZlEYui3JPBwIE7nT+sYP+M/3iPbiQ4TetTJhfSksxSbLX3nmdh/KXrCUuVQ79W28zWuZ2cQ9gA6mWirhHLqtkuFaa15os+M2cN/VQu8LSrL2+e4VrPBxtD4pNUBXH9ftFkQFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SkwwL2r5; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2958F1F00A3D;
-	Thu,  2 Jul 2026 09:07:48 +0000 (UTC)
+	s=arc-20240116; t=1782983572; c=relaxed/simple;
+	bh=z3us1EYcPhA08D2V/YJ+nWiOnRiCmeZ4lZeMhncdG0g=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=unQRpnvCrF9PxrREZFJyu3ciZXjrxz385KhcrwI9iJd2R66eEMbHAF4zsGSvIfZnR6bAf7+LVaI3DRBF87kGOniDkhajZbIxOdBg9rPj79VoEAmZWxBOZRMOLr36K4bIRLQANGi4ujmN8hn+hjiKuEHNgHDrpubTFMYM0rxKVLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CkM0BKN2; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B8681F00A3E
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:12:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782983268;
-	bh=sfQJdhwPVhbgBEzXkE4VFdyHCTHzwch5B9PKJQndVC8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=SkwwL2r5og6rnIgfBI20ws6S4k9k61CMC7CeqzNYiBwv6bmPo9ovpxERtmW374D6P
-	 xqJUE7KVpIINkO/hXMRdEq2TFULnyEkej73mM6ehZs+dKs/cWOy/MW/2/pizLCBArm
-	 o7gyGFRbgV8vBbNz2MYv2nXbgSnyDOgsBElvvHCRbGd7NMi8rQXwUO5PArFFnAzQgI
-	 ChDDhyK0cR6+qcgq1ADd7RS4AUw5FQFPyipAMjcGWcnsxjhnr4P/9ONUNy634ZrQh/
-	 iMAbIlnuCoRO2k+Ndc22kc2U98sWgc44y7UMTcP3qIi339MTdaL9C7EDe7tvM8hwI+
-	 yEc93BnT8FOCg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 4/4] arm64: dts: realtek: Add GPIO support for
- RTD1625
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Yu-Chun Lin" <eleanor.lin@realtek.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260702090115.2564318-5-eleanor.lin@realtek.com>
-References: <20260702090115.2564318-1-eleanor.lin@realtek.com>
- <20260702090115.2564318-5-eleanor.lin@realtek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 02 Jul 2026 09:07:47 +0000
-Message-Id: <20260702090748.2958F1F00A3D@smtp.kernel.org>
+	s=k20260515; t=1782983571;
+	bh=z3us1EYcPhA08D2V/YJ+nWiOnRiCmeZ4lZeMhncdG0g=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=CkM0BKN24F+HnXi4WaE+4fAv5Vr7UTY8L9dUWejrdBJF/jPRDOuV//xYqUgtFJazT
+	 yKqnvPZ4Z6zQClmiWicl1ZQIjIBR7wR46f+31rNYfwqn4cQYLWsye7jQCr65Leb+/4
+	 zzgcGpZ2d3pKBzx7dY2dnHBNE29vOmxpqRR3npVJZTkScJEVgs6av6H8IvDPg+MH5r
+	 AVEKQgo74mXWKKBqPyyavnRneQqrcsFo/8XpA4lXns6tLezgzz4pvY5TFk4LEHT+Zv
+	 6K5/hLayKxOm9GehXu/SwzR0dzDugS3Gm9SE14B9ca6fEL8XWopQoPgbmTQhBCuH9a
+	 780RmwAwFHpVg==
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-39b1eb7bd9bso15323151fa.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:12:51 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RohWMdNrSRrafULnqmYVtNMrhCu68S/ElrVKoD/fqAy3l1io0W3o5fDLnDrW7JFAAccH7b5zf3qGV5Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVchaUIufWwF5mjZm/xpDoLnhnK6LfB1IYaCACtpfdgxUI4R9n
+	1QKRVuToe4bCuwOoo7Sm/132RhGknI6yd//PEQDPfRCJbJtW+kro79OmRuRm6O/iFKQf1NN/Ix8
+	meHL5Xhw18j3vpssidxxD3foyO7S8TPoQZS76VoUZ6g==
+X-Received: by 2002:a2e:9c86:0:b0:39b:35bd:e705 with SMTP id
+ 38308e7fff4ca-39b35bdebfemr6340391fa.37.1782983570078; Thu, 02 Jul 2026
+ 02:12:50 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 2 Jul 2026 04:12:46 -0500
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 2 Jul 2026 04:12:46 -0500
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <akOZFIowVvprnAMf@vaman>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260629-qcom-sa8255p-emac-v11-0-1b7fb95b51f9@oss.qualcomm.com>
+ <20260629-qcom-sa8255p-emac-v11-1-1b7fb95b51f9@oss.qualcomm.com>
+ <CAMuHMdXen+E-Ai51aWBa_KV9W8Fz2cQPpT-FG_kQ7akhrrYa_A@mail.gmail.com>
+ <CAMRc=Me3jaZXiXa1sFXr=8Do4sCd+XN1pKTcWC8-0j78SjCkKA@mail.gmail.com>
+ <CAMuHMdVUBgG0EFB16OxHisbxx-sBvDKvBPNZdpyDnmBrnX4ptQ@mail.gmail.com> <akOZFIowVvprnAMf@vaman>
+Date: Thu, 2 Jul 2026 04:12:46 -0500
+X-Gmail-Original-Message-ID: <CAMRc=MfBcOhbj=ETxy2Xz9o_nyzykrEhKAc3jYi6V5_jMZEE3Q@mail.gmail.com>
+X-Gm-Features: AVVi8Cc0cbGsvWIHn6Ltbm1wzcUWjyqAHy25YdAMNK19MIl0j9ziewcxopNMKrw
+Message-ID: <CAMRc=MfBcOhbj=ETxy2Xz9o_nyzykrEhKAc3jYi6V5_jMZEE3Q@mail.gmail.com>
+Subject: Re: [PATCH net-next v11 1/7] dt-bindings: phy: document the serdes
+ PHY on sa8255p
+To: Vinod Koul <vkoul@kernel.org>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Chen-Yu Tsai <wens@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
+	Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
+	Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>, Romain Gantois <romain.gantois@bootlin.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, Radu Rendec <rrendec@redhat.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
+	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	Geert Uytterhoeven <geert@linux-m68k.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[48];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319175-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319176-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:brgl@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:peppe.cavallaro@st.com,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:shawnguo@kernel.org,m:festevam@gmail.com,m:jan.petrous@oss.nxp.com,m:s32@nxp.com,m:mohd.anwar@oss.qualcomm.com,m:romain.gantois@bootlin.com,m:magnus.damm@gmail.com,m:mripard@kernel.org,m:christophe.roullier@foss.st.com,m:rrendec@redhat.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:dfustini@tenstorrent.com,m:linux-sunxi@lists.linux.dev,m:linux-amlogic@list
+ s.infradead.org,m:linux-mips@vger.kernel.org,m:imx@lists.linux.dev,m:linux-renesas-soc@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:sophgo@lists.linux.dev,m:linux-riscv@lists.infradead.org,m:bartosz.golaszewski@linaro.org,m:bartosz.golaszewski@oss.qualcomm.com,m:geert@linux-m68k.org,m:krzk@kernel.org,m:conor@kernel.org,m:andrew@lunn.ch,m:mcoquelinstm32@gmail.com,m:jernejskrabec@gmail.com,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,st.com,linaro.org,baylibre.com,oss.nxp.com,nxp.com,oss.qualcomm.com,bootlin.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,tenstorrent.com,lists.linux.dev,linux-m68k.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,mail.gmail.com:mid];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:eleanor.lin@realtek.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,lists.linux.dev:replyto,realtek.com:email,sashiko.dev:url,smtp.kernel.org:mid]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5D9B16F5439
+X-Rspamd-Queue-Id: D66EC6F5303
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Device Tree mapping conflict where two distinct GPIO controllers=
- claim the exact same pins from the `isom_pinctrl` controller.
---
+On Tue, 30 Jun 2026 12:23:16 +0200, Vinod Koul <vkoul@kernel.org> said:
+> On 29-06-26, 16:51, Geert Uytterhoeven wrote:
+>> > Russell King asked me to put the PHY logic for SCMI pm domains into the PHY
+>> > driver instead of the MAC driver where it was previously. Instead of cramming
+>> > both HLOS and firmware handling into the same driver, I figured it makes more
+>> > sense to have a dedicated, cleaner driver as the two share very little code (if
+>> > any).
+>>
+>> I think you are mixing up DT bindings and driver implementation?
+>
+> Should the bindings change if we have different driver and firmware
+> implementations? Isn't binding supposed to be agnostic of
+> implementations..?
+>
 
-commit ca40dcb33ea07a0408e101ec08ff651fed48479b
-Author: Yu-Chun Lin <eleanor.lin@realtek.com>
+I've thought about it some more and I believe this question is philosophical in
+nature.
 
-arm64: dts: realtek: Add GPIO support for RTD1625
+sa8775p and sa8255p are *the same* hardware. I can flash different firmware on
+the same Lemans Ride board and it becomes one or the other. Yet they are not
+described by the same DTS and the bindings differ as well. I don't see why we
+wouldn't allow the same approach for the this PHY.
 
-This commit adds the GPIO nodes for the Realtek RTD1625 SoC.
-It configures multiple GPIO controllers and establishes their=20
-pin controller mapping ranges.
+We treat it as different HW variant when it's managed by firmware - just like
+we do with the rest of the SoC.
 
-> diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/=
-realtek/kent.dtsi
-> index 8d4293cd4c036..228b82dfdb7ac 100644
-> --- a/arch/arm64/boot/dts/realtek/kent.dtsi
-> +++ b/arch/arm64/boot/dts/realtek/kent.dtsi
-> @@ -151,6 +151,37 @@ uart0: serial@7800 {
->  				status =3D "disabled";
->  			};
-> =20
-> +			gpio: gpio@31000 {
-> +				compatible =3D "realtek,rtd1625-iso-gpio";
-> +				reg =3D <0x31000 0x398>;
-> +				gpio-controller;
-> +				gpio-ranges =3D <&isom_pinctrl 0 0 2>,
-> +					      <&ve4_pinctrl 2 0 6>,
-> +					      <&iso_pinctrl 8 0 4>,
-[ ... ]
-> +					      <&iso_pinctrl 26 4 2>,
-> +					      <&isom_pinctrl 28 2 2>,
-[ ... ]
-> +			iso_m_gpio: gpio@89100 {
-> +				compatible =3D "realtek,rtd1625-isom-gpio";
-> +				reg =3D <0x89100 0x30>;
-> +				gpio-controller;
-> +				gpio-ranges =3D <&isom_pinctrl 0 0 4>;
-
-[Severity: Medium]
-Is it intended for both the gpio@31000 and iso_m_gpio controllers to claim
-the exact same pins from the isom_pinctrl controller?
-
-Looking at gpio@31000, it maps pins 0-1 and 2-3 from isom_pinctrl. Down here
-in iso_m_gpio, the gpio-ranges property identically maps isom_pinctrl pins =
-0,
-1, 2, and 3.
-
-Could this cause unexpected behavior in the pinctrl subsystem? Functions li=
-ke
-pinctrl_find_gpio_range_from_pin() strictly return the first matched range,
-which might silently shadow the other controller's reverse lookups. Also, if
-both controllers attempt to request the same pin via pinctrl_gpio_request(),
-would the second request fail because the pin will be marked as already in-=
-use?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702090115.2564=
-318-1-eleanor.lin@realtek.com?part=3D4
+Bart
 
