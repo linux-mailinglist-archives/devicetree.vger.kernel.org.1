@@ -1,67 +1,64 @@
-Return-Path: <devicetree+bounces-320076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319568-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ja5UOcKlR2qRcwAAu9opvQ
-	(envelope-from <devicetree+bounces-320076-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:06:26 +0200
+	id RggDCb22RmpRcAsAu9opvQ
+	(envelope-from <devicetree+bounces-319568-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:06:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E63037022F8
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:06:25 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C9E6FC636
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:06:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gvTkQJ7k;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320076-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-320076-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=sntech.de header.s=gloria202408 header.b=tzVMbT8l;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319568-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319568-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=sntech.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9C335300B08E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 11:57:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D2DB13040020
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 19:05:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3E183CC7EB;
-	Fri,  3 Jul 2026 11:57:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75BD0386566;
+	Thu,  2 Jul 2026 19:05:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BEF73CAA57;
-	Fri,  3 Jul 2026 11:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C10FE384CEA;
+	Thu,  2 Jul 2026 19:05:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783079823; cv=none; b=FvdhLEvehtqjzEa/KtQyzwjNYYsyxUdjiv7eZ17tuh7wPa05ib502Q7vEbYAo48KN7oL4JXa3fogqCpiaS2t4F0sTr51mfZiRwg3hEFW7Mu1cpgd5yX7nJ++1HHTPqzAukbArF6/XHuy1P37tGItZed2dkXM9zUJfgSZA8vxcpo=
+	t=1783019111; cv=none; b=bhIlNEh3Nwq0p84/X9riXffepPFbSwNksd8C4etl+aP1GzFpwOBdSK0gN554H3sjQTJ9YNS1brBK0rGAQx8ieZqmQuMUbe0RuO27vGiccoXvdc1HuYVI8S1BCBpkXHCQLsg3gSnqFMc7e9vHhGlVo/gSgNyYQ7h+WrlCfIZYrNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783079823; c=relaxed/simple;
-	bh=9fkNopJlziDc4GTqU8dPUBH/Po6TqTsNY6qttFClkFI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=tD0kFsPR6atERhnz1urwZXjVVZO9fdJdFhEcyu40xBiSEd4L/DohpvrOaL3ZRkc7wusI8DjCWtUY4ksF4mlZSKOkTsqNv/QaG0cK/NmWFH8Y1yKKl8YdIVsJbe3MQEnciw6bQSGIMlJGidfB5W2d+xN3QGiJKCaAbLaqkWystVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gvTkQJ7k; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EBB81F000E9;
-	Fri,  3 Jul 2026 11:56:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783079822;
-	bh=sM/2S5Be0jfInrOEmvladGpBvCeTqeQv2zf3HbupS9A=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=gvTkQJ7kZvHVxY28E55ON485YTQRCor/YY5Y3vBm9jPTTnD00HITrIEM27MrKYL2H
-	 tpAWs6ukRLXmVRf843eE4+3/Rtg+x5DI5d8y9UD23hTjS76cRDFawqgm/VlffgWNTJ
-	 UCM+Ga3AU/SMT042VXVjMDF512PI7EzsTRzlKy3XHXXoeA+PiCOVs3kukWDD9qemot
-	 Ukno2TQdwHGmRjlwEvQBo/7EipVOwonKI7vDbzZiU4Fjr/gHjO4TwxIQvESwlxmeO5
-	 fEYBKo6docFl0z+qg+AJ6ANM/RruSqNN/bndKNz/KrTohQ82aBtkhdBSFIMPa+m6+m
-	 hUja+4OJ3cKeA==
-From: Mark Brown <broonie@kernel.org>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Keguang Zhang <keguang.zhang@gmail.com>, 
- Huacai Chen <chenhuacai@kernel.org>, Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, 
- loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
- linux-sound@vger.kernel.org
-In-Reply-To: <cover.1782439646.git.zhoubinbin@loongson.cn>
-References: <cover.1782439646.git.zhoubinbin@loongson.cn>
-Subject: Re: [PATCH v3 0/9] ASoC: Add Loongson-2K0300 I2S controller and
- sound card support
-Message-Id: <178301908251.189993.17039644134468947360.b4-ty@b4>
-Date: Thu, 02 Jul 2026 20:04:42 +0100
+	s=arc-20240116; t=1783019111; c=relaxed/simple;
+	bh=qToBr4ug+3EbYfVYf1VS60e8ezaenLxAN8QUDNbeoV0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cafjc2355jXAcpeGBS4RB6c48tUUi7CMjpPQJKHyji72WQJGnMGyT+KTfYWG9lpG6/CzreGr8qWX8Hn2IZobRLkD5iLwCBPCamzcXFlpMaijlAE8WzyP8Tkw+ABtQ+1TGdhKc5hW1aVBL0kqSBDLW7xgk5eKVaWu2qE3FsGnyWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=tzVMbT8l; arc=none smtp.client-ip=185.11.138.130
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=+Oq1SCAGAkg/fhNyb4Dij2RBKiVngEznFtGkk+Zdb+s=; b=tzVMbT8lbygAzCdhc8BqUypZKW
+	yg5nCOEQKKL/33FmiKBzgAXdOW69t7yuWKEAeZuvOQxGhc4h0t8KtVW6L8xoAy00o0/gs1rSUEu4g
+	sXuSZOMRd82BzkcYMUqJfi62TLAR9HA3bCtl9Fsvh5uwHBifwuUVIqu+xIUPMxTuXGz/wM7wZRJvU
+	kB7TNA8sgRO2KkKf4m4reC97uQJf9O2qMb+0Y2g1JsDWJWYd7aF2fvqavcGvNmq/+gipt39Fdfzih
+	8OiCRoIV2EILJapHv+K0LFkNh6jUniCQzxcsTagsPzzf00wFRYSUh2eAYsM9YAvvzmrXEaO6tG7ta
+	MNWYj1kA==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] arm64: dts: rockchip: Add HINLINK H28K
+Date: Thu,  2 Jul 2026 21:04:49 +0200
+Message-ID: <178301901910.3838694.10638773555392224178.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260610100006.366963-1-amadeus@jmu.edu.cn>
+References: <20260610100006.366963-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,110 +66,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2403; i=broonie@kernel.org;
- h=from:subject:message-id; bh=9fkNopJlziDc4GTqU8dPUBH/Po6TqTsNY6qttFClkFI=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqR6OKGeq1/scVMGYWbom2WY402C26y59J82jg8
- PeNfPULzwmJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCakejigAKCRAk1otyXVSH
- 0GxjB/9IMNImexECK1xw4wWQgbXjs4SKHYXNuqlJfALVe3qJgjuoULdxVxzz74G2+YgJLP/wwr5
- N9uAtm10+qm/TLuKIgtf7nwDpCmLMPjbnD7iTlwCDlz9VlGhwttXJJsMyFx6sYa9/JlazGhs3ta
- D3GC/rAsPRvokuipUTJVdje5fbMtuqQP4LJYCTgJRlsYRUbdBCJc+7LIItMCtuKVNC19ORmI4+n
- SWo+uIePLTJJ7glHn59Eprzt64yqf2EcAwn6AKQ9PWqY1lGETtUpnW7qdhnjWlg4BFIxXpiwn11
- w5lx6rMKKHpeYA5T291B2DrUkqjaLsURpymLKQh9PgK2FzXM
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:zhoubb.aaron@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:keguang.zhang@gmail.com,m:chenhuacai@kernel.org,m:zhoubinbin@loongson.cn,m:kernel@xen0n.name,m:loongarch@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-sound@vger.kernel.org,m:zhoubbaaron@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:keguangzhang@gmail.com,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com,loongson.cn];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-319568-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:amadeus@jmu.edu.cn,m:heiko@sntech.de,m:robh@kernel.org,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-320076-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	HAS_WP_URI(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sntech.de:dkim,sntech.de:email,sntech.de:mid,sntech.de:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E63037022F8
+X-Rspamd-Queue-Id: A7C9E6FC636
 
-On Fri, 26 Jun 2026 10:27:02 +0800, Binbin Zhou wrote:
-> ASoC: Add Loongson-2K0300 I2S controller and sound card support
+
+On Wed, 10 Jun 2026 18:00:04 +0800, Chukun Pan wrote:
+> The HINLINK H28K is a dual-gigabit SBC based on the RK3528 SoC.
 > 
-> Hi all:
+> There is a version that SeeedStudio distributes called LinkStar-H28K.
+> It's no different from the HINLINK H28K. The schematic can be found here:
 > 
-> This series adds ASoC support for the Loongson-2K0300 SoC and its
-> associated development boards, including the CTCISZ Forever Pi and the
-> ATK-DL2K0300B.
+> https://www.hinlink.cn/wp-content/uploads/2024/03/20240428015024130824.pdf
+> https://files.seeedstudio.com/wiki/H28K/Open_source/H28K-SCH.zip
 > 
 > [...]
 
-Applied to
+Applied, thanks!
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.3
+[1/2] dt-bindings: arm: rockchip: Add HINLINK H28K
+      commit: dce1f5a78a4f645ec3fae9b45b1453b989d3fc69
+[2/2] arm64: dts: rockchip: Add HINLINK H28K
+      commit: 145d4af4b204e1fb565a498c6c8f801525cc0a4e
 
-Thanks!
-
-[1/9] ASoC: loongson: Fix error handling in ACPI property parsing
-      https://git.kernel.org/broonie/sound/c/0eb0e3c623ac
-[2/9] ASoC: dt-bindings: loongson,ls2k1000-i2s: Document Loongson-2K0300 compatible
-      https://git.kernel.org/broonie/sound/c/914e95aaec0d
-[3/9] ASoC: loongson: Add Loongson-2K0300 I2S controller support
-      https://git.kernel.org/broonie/sound/c/41ab1f8a0eda
-[4/9] ASoC: dt-bindings: loongson,ls-audio-card: Use common sound card
-      https://git.kernel.org/broonie/sound/c/95133a9ac817
-[5/9] ASoC: dt-bindings: loongson,ls-audio-card: Add ctcisz forever pi compatible
-      https://git.kernel.org/broonie/sound/c/5460b4ddc76a
-[6/9] ASoC: loongson: Add Loongson-2K0300 CTCISZ Forever Pi sound card support
-      https://git.kernel.org/broonie/sound/c/da659805e0b0
-[7/9] ASoC: dt-bindings: loongson,ls-audio-card: Add ATK-DL2K0300B compatible
-      https://git.kernel.org/broonie/sound/c/3ddae79479f6
-[8/9] ASoC: loongson: Add headphone jack detection and DAPM routing
-      https://git.kernel.org/broonie/sound/c/dde4064a4913
-[9/9] ASoC: es8328: Add DAPM routes from MIC inputs to Mic Bias
-      https://git.kernel.org/broonie/sound/c/5f988d622318
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
