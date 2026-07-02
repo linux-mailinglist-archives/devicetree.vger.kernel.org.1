@@ -1,197 +1,157 @@
-Return-Path: <devicetree+bounces-319181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319178-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EVAFDnkxRmoRLgsAu9opvQ
-	(envelope-from <devicetree+bounces-319181-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:38:01 +0200
+	id 7YacDqUvRmpYLQsAu9opvQ
+	(envelope-from <devicetree+bounces-319178-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:30:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 963096F55B0
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:38:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E556F541E
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 11:30:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319181-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319181-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="L/TMudwb";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319178-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319178-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AA032300FED3
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:21:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BFE44302773A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C4342A796;
-	Thu,  2 Jul 2026 09:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D3583CC323;
+	Thu,  2 Jul 2026 09:16:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B208C3C65E0
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75ABB399365;
+	Thu,  2 Jul 2026 09:16:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782984108; cv=none; b=e+yrA5iSEEbjS8Zy+/AmbD+3EtQB/gx2YgNXwC+rq1w3EA6/XZmOEhuF1YNuROVjCZO7cX0FxJUws06EJcdM3iFObunSBiHh4obNwJhbNPS2VVlWhL2vgpZvHxwjQ9XYVCY1+AfRzyOumdyZNcDqZJCHWPRoOa+TtYbDm/tqOaY=
+	t=1782983789; cv=none; b=NpLLXStXp4liZ/8bkc822loq6wCf9XU9rpaUuwxykwiJytYXgw0fwGFIitzpROtEFo4WfrcOYYJ61iUbCVSiDpeMFvU4imQltyLU3IZc+DbEnDMZ756+4uWVf+1wK/8HuvHoy91DxqPjH8WO2phkHcHpIEkkMN7SssVj8TFZU58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782984108; c=relaxed/simple;
-	bh=n9yLVv4ONKzRdpCf8VFwTS/MdDc1G1FjImPOjJ/IqKk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RllDYW7jN1hePmBx3jl2ThewX+bflLjjI/8ZUGX+JXos6xsiRiPsvGE9S19LLSSAGqx/65yVcGvEN9vZ6ZUpsJfa3q2jmdQFZS5YyYVPdpV2Gtus/FKhW0U2/y+jyNJ2uRimlVvWaMaLRXcfWLlIdvWnW0YTp3sxHdv+ICCEkCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.216.52
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-37ffdc718f8so1347247a91.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:21:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782984107; x=1783588907;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w3iqz34neGUxAgVEYrpwzzcpe57aRQt9k5cgKzpkuWc=;
-        b=cC5aAIp8chYOY2lMOihCDS8vueUIRmu5Tgjl5oMgec8CBjnO8q5ZRC4Rt+NEOOx9aS
-         3pMOHiTEE8+bvCNpej1DDaGueQz69k1F9ItGSFvC7omcdH4kbMAnquCaYmsQYeRvsmew
-         98N8iHIXwET1rwU0fWU2tzN02pQr1UxYGwVopNSwMsar/pGq1BCRhNGLC+/a8dmWD1TO
-         vMY4BqwM+ZZqZp3Yea2g3GuoMdLbyZy9G4wuXrjFUISpZRqiFChwPJf+P3xXX9IYea4K
-         3wnX72uC9NJ6+KvZ3X3wyudv8QrdyRCU6gqRlsZKGotpy7Nk6UZPaRtcYACptdaK3tji
-         STAg==
-X-Forwarded-Encrypted: i=1; AHgh+RoBT+7jmkL96se6PqIhq9C/VMYZc4+wTcMFMN5+TBMK+sCCZYF8jy4bxIo83YpoUswmQZDvkEDLnWvt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeKEkNEYpVFvVyHTkspg1c/mnBEOgW/5x+LQDD0W3mst67GGK3
-	SXPkoYEZZyqjOa8NbHuuSyGLdhxgtjUbk9Yk2oP3EART8dn9S0WemuRAAS0QTIjSXSM=
-X-Gm-Gg: AfdE7cknkfpCKeBhDqmgXZu/dVajQX0e0hWwVV7VtSgNK9TPbCe22m7T4qk6WFCERwf
-	fhCwF/1K8Zw172mx3R+7LPWhFSO+A+V/QEIurvB7BAr4+foFeXiRQNUt5bTwZ8qxqE8CZ7DIjBX
-	3/1bEbp9/zVCBCXamhX7JdpH2VqGpyP0ImAUGIKq/M1oNXtPGjwTlRRxdqt/bnLLhl7/eag80Nk
-	Hq27Hh90OEoEaOTpUtChXKObtLTiMf2h0ZoaO0LTVPLPu0YdXNPdNMydOIOGCrYHKcO6dFyGvwN
-	9Uo3Y3iITuhlNe3s6pe5EQ5xEABUn2xglaS7FUJOkDGHa4BzWGiv4NY6l+KQHYEerG/eFVkMvTK
-	No4VTP7C0paD4HKeuJCFF8qbo7cp/ryc13TT59JPbhpqGCmcQ8dJ2qgTaBhnWb3ax0HEODB5XFG
-	q65NTeGX89Ohk/sq7YhOFpr9MMgBJh3QjsCBq+TArxbkW2Nf66aRkWR4fGifgCqhEk
-X-Received: by 2002:a17:90a:d446:b0:37d:f206:a2ac with SMTP id 98e67ed59e1d1-380aa0952b5mr5042121a91.7.1782984106651;
-        Thu, 02 Jul 2026 02:21:46 -0700 (PDT)
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com. [209.85.215.170])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-380e15c3810sm762751a91.3.2026.07.02.02.21.46
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jul 2026 02:21:46 -0700 (PDT)
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-c981c2c37cbso704264a12.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:21:46 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ8Nrb4AEVqvlIYJQXqZPcuowW1/OnkA9EdYGXfDQJe0wridp1naehzFOMXJycPTaU8Ta+NtjSVWkrNo@vger.kernel.org
-X-Received: by 2002:a05:6102:1620:b0:62f:46be:8318 with SMTP id
- ada2fe7eead31-73da7681403mr2525301137.6.1782983793184; Thu, 02 Jul 2026
- 02:16:33 -0700 (PDT)
+	s=arc-20240116; t=1782983789; c=relaxed/simple;
+	bh=1x1Hu3hedgMBwNq7SoCp9xSXmb6NokWC+v5iymNGrrQ=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=MiTkRHF2l5y8uEM3M7A2zHkQmIzRqmRpO+QdfQfPYEks7G2eD3mBKPifrGQOlOKFl15xoIt8/P78NL0RoOblQ+owvqHRufuncbk6ihcXazann35rle6LbDAwMA7pJalM0M24iTt5Qux+m2HVGJRTMMsdlPCP1j1LQdnEFnQqXI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L/TMudwb; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5B5D1F000E9;
+	Thu,  2 Jul 2026 09:16:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782983788;
+	bh=0Noc9bGmhd05/MNkTgzXEBsyrdl7wGq+DgJXxCN9idg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=L/TMudwb1IOYa6OegWtc432S5FrskqU9QVB2YLLzyH0ORyeljSyAEtfDdbHisQn65
+	 WUrW3Kohs43lM5JA67aaKR94SYwQMCgqEsSr4DFY5Kcd6vM1Vuw8hpd4X9yoBvhrgB
+	 wp9q13D/65FEUN73+r4dOwO8OsdDWVXKMVLzNp/iXtOLylM5R/Cjg36vDLof1BDDk/
+	 LVnrr9nnBEariJunqwzIi40DmE/WowKczeF6TOnTB076eNgurHVVA4Fdnx7Grsv/yR
+	 cExuJoDDPz7C9Bb88iuGaAuzDul0ltUzwhwQ75gqi7MVEH7r4q5rYBsWjfvuRn1UsR
+	 nFQRHq/UxDrpg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH RFC] dt-bindings: perf: riscv,pmu: Add
+ interrupts-extended property
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Eric Lin" <eric.lin@sifive.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, linux-perf-users@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260702-pmu-dt-property-v1-1-a7a7737afb72@sifive.com>
+References: <20260702-pmu-dt-property-v1-1-a7a7737afb72@sifive.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 02 Jul 2026 09:16:27 +0000
+Message-Id: <20260702091627.C5B5D1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260629-qcom-sa8255p-emac-v11-0-1b7fb95b51f9@oss.qualcomm.com>
- <20260629-qcom-sa8255p-emac-v11-1-1b7fb95b51f9@oss.qualcomm.com>
- <CAMuHMdXen+E-Ai51aWBa_KV9W8Fz2cQPpT-FG_kQ7akhrrYa_A@mail.gmail.com>
- <CAMRc=Me3jaZXiXa1sFXr=8Do4sCd+XN1pKTcWC8-0j78SjCkKA@mail.gmail.com>
- <CAMuHMdVUBgG0EFB16OxHisbxx-sBvDKvBPNZdpyDnmBrnX4ptQ@mail.gmail.com>
- <akOZFIowVvprnAMf@vaman> <CAMRc=MfBcOhbj=ETxy2Xz9o_nyzykrEhKAc3jYi6V5_jMZEE3Q@mail.gmail.com>
-In-Reply-To: <CAMRc=MfBcOhbj=ETxy2Xz9o_nyzykrEhKAc3jYi6V5_jMZEE3Q@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 2 Jul 2026 11:16:22 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXNG=C=XcioQUEN1M7cQgKhO0AxUyg5X+TWb2rQ3-H3fw@mail.gmail.com>
-X-Gm-Features: AVVi8Cef5-UyxrfN1fWvFDcXcIwIbwhU7f5lsircbKpxY8MZwCT2oXalNKmt_xQ
-Message-ID: <CAMuHMdXNG=C=XcioQUEN1M7cQgKhO0AxUyg5X+TWb2rQ3-H3fw@mail.gmail.com>
-Subject: Re: [PATCH net-next v11 1/7] dt-bindings: phy: document the serdes
- PHY on sa8255p
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Chen-Yu Tsai <wens@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
-	Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>, Romain Gantois <romain.gantois@bootlin.com>, 
-	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
-	Christophe Roullier <christophe.roullier@foss.st.com>, Radu Rendec <rrendec@redhat.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
-	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
-	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
-	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-319178-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319181-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:brgl@kernel.org,m:vkoul@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:peppe.cavallaro@st.com,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:shawnguo@kernel.org,m:festevam@gmail.com,m:jan.petrous@oss.nxp.com,m:s32@nxp.com,m:mohd.anwar@oss.qualcomm.com,m:romain.gantois@bootlin.com,m:magnus.damm@gmail.com,m:mripard@kernel.org,m:christophe.roullier@foss.st.com,m:rrendec@redhat.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:dfustini@tenstorrent.com,m:linux-sunxi@lists.linux.dev,m:linux-amlogic@list
- s.infradead.org,m:linux-mips@vger.kernel.org,m:imx@lists.linux.dev,m:linux-renesas-soc@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:sophgo@lists.linux.dev,m:linux-riscv@lists.infradead.org,m:bartosz.golaszewski@linaro.org,m:bartosz.golaszewski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:andrew@lunn.ch,m:mcoquelinstm32@gmail.com,m:jernejskrabec@gmail.com,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[47];
-	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,st.com,linaro.org,baylibre.com,oss.nxp.com,nxp.com,oss.qualcomm.com,bootlin.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,tenstorrent.com,lists.linux.dev];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,sifive.com:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:eric.lin@sifive.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linux-m68k.org:from_mime,linux-m68k.org:email]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 963096F55B0
+X-Rspamd-Queue-Id: 90E556F541E
 
-Hi Bartosz,
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Overloading `interrupts-extended` as the sole CPU affinity map f=
+ails when PMU interrupts are optional.
+--
 
-On Thu, 2 Jul 2026 at 11:12, Bartosz Golaszewski <brgl@kernel.org> wrote:
-> On Tue, 30 Jun 2026 12:23:16 +0200, Vinod Koul <vkoul@kernel.org> said:
-> > On 29-06-26, 16:51, Geert Uytterhoeven wrote:
-> >> > Russell King asked me to put the PHY logic for SCMI pm domains into the PHY
-> >> > driver instead of the MAC driver where it was previously. Instead of cramming
-> >> > both HLOS and firmware handling into the same driver, I figured it makes more
-> >> > sense to have a dedicated, cleaner driver as the two share very little code (if
-> >> > any).
-> >>
-> >> I think you are mixing up DT bindings and driver implementation?
-> >
-> > Should the bindings change if we have different driver and firmware
-> > implementations? Isn't binding supposed to be agnostic of
-> > implementations..?
->
-> I've thought about it some more and I believe this question is philosophical in
-> nature.
->
-> sa8775p and sa8255p are *the same* hardware. I can flash different firmware on
-> the same Lemans Ride board and it becomes one or the other. Yet they are not
-> described by the same DTS and the bindings differ as well. I don't see why we
-> wouldn't allow the same approach for the this PHY.
->
-> We treat it as different HW variant when it's managed by firmware - just like
-> we do with the rest of the SoC.
+commit c04ae2b471021dd39ca8ccf1e788362245660a9d
+Author: Eric Lin <eric.lin@sifive.com>
 
-DT describes hardware, not software policy.
+dt-bindings: perf: riscv,pmu: Add interrupts-extended property
 
-Gr{oetje,eeting}s,
+This commit adds the interrupts-extended property to the riscv,pmu binding
+to define the connection between the PMU overflow interrupt and the CPU
+local interrupt controller. It also notes this property is used by software
+to associate a PMU node with a specific CPU on heterogeneous systems.
 
-                        Geert
+> diff --git a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml b/Docu=
+mentation/devicetree/bindings/perf/riscv,pmu.yaml
+> --- a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+> +++ b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+> @@ -34,6 +34,13 @@ properties:
+>    compatible:
+>      const: riscv,pmu
+> =20
+> +  interrupts-extended:
+> +    minItems: 1
+> +    maxItems: 4095
+> +    description:
+> +      Specifies the interrupt-parent and local interrupt index for each =
+CPU's
+> +      PMU counter overflow. Each item points to a riscv,cpu-intc node.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+[Severity: Medium]
+Does overloading interrupts-extended as the sole CPU affinity map cause
+failures on systems without PMU interrupts?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+If a heterogeneous RISC-V SoC lacks the optional Sscofpmf extension, it
+would omit the interrupts-extended property entirely. Without this property,
+it seems the OS would have no mechanism to determine which PMU node belongs
+to which CPU, potentially breaking perf functionality on such hardware.
+
+Would it be safer to introduce a dedicated affinity property to prevent
+future fragmentation when PMU interrupts are absent?
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702-pmu-dt-pro=
+perty-v1-1-a7a7737afb72@sifive.com?part=3D1
 
