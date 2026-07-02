@@ -1,175 +1,217 @@
-Return-Path: <devicetree+bounces-319249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319241-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tisqHIU6RmpmMQsAu9opvQ
-	(envelope-from <devicetree+bounces-319249-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:16:37 +0200
+	id fGY3KHY7Rmq8MQsAu9opvQ
+	(envelope-from <devicetree+bounces-319241-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:20:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACE6A6F5BD3
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:16:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3D8F6F5CC7
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:20:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=JDYKeQFK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319249-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-319249-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=linaro.org header.s=google header.b=a1zfGfnZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319241-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319241-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9CCBF30B6ACA
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:54:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4BD60311D57F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 09:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4D44963B9;
-	Thu,  2 Jul 2026 09:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E980647DFB4;
+	Thu,  2 Jul 2026 09:48:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE623495511
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:48:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E712447F2C6
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 09:48:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782985740; cv=none; b=W0F+HKZYPqaAHY+v/vduOABFDDwo684oeqePp2PhaL8NCNtYFAfSy659H9aDdS1czOaBYiC1LCsKL7DrDAjcmBR9Z8ynbwUCwkNBeMvRnK9TpCONWVyKNqjNBowfYg9n7x0D0ebkk7rQB8b4Ai4aDNudM5AH6bmAWOjtsZGoYVI=
+	t=1782985722; cv=none; b=hO41+wHeAXDHhCVfsOtNKv1tIxcOSTdHmBMNaMa6vwPs/rPo4vaNYQI7PLfxLzM1WMQR3MwhTwIadKup8v7r52ntUHIJwE2U/gDmlNbIOqW/eQm5fNh19y1EKOJ/DEQweImCY4O9isaEUOaamqZ1M9ce/ytvfaoZr8yIt0dCANY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782985740; c=relaxed/simple;
-	bh=q2RoOMzcj0veePsMkspohWrUIvTiV2RGzC3oQwNbiEg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mOUPcq/u8VFfrCzgLCTaQWteet+thjhqQvL+IZGYHMO0Ca7YVIrxOrRSsCcnLrpvWlgClJ8YuiK0Tz12w0usGQJrZDjWq+SA40F+KT9gLjhXr/hQjjE94ytH8XRQewwBwVoEI6LRiqptrBnuDvaMTiDg8rwiqYzJIg0oW1Fik1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JDYKeQFK; arc=none smtp.client-ip=209.85.221.44
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-47122683cf3so1190009f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:48:58 -0700 (PDT)
+	s=arc-20240116; t=1782985722; c=relaxed/simple;
+	bh=Vh1RRcTefgGlGwMM3sWSxsMTJV2LWf4YqOpbDDrXFCc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DmpZWuxCKnxyHrMMCTCrXOv3Zg/xwdtEMl8Wb4+4O6Zx52IMXtuxcoXnwhS/YnUrpYbALHCxw241TrCBGbsKQX8lsF3LY3Jc1iMdZfR361xueHkM+1JpK31rwqkm9exCnA0ed/6mCaCWROzDlxBndiIn+OoHFcsG+9BqgiWPdzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a1zfGfnZ; arc=none smtp.client-ip=209.85.221.51
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-474560436c3so1475973f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 02:48:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782985737; x=1783590537; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zX32mNUoHx/o/ajYaMNh117WhqsQfOxAKwbmb4jDyT0=;
-        b=JDYKeQFKEj3DkRllkn8Wq0aO4oOTWTPY7slJjGFblOSWEjQiIU11Omh0aIAGnLLhA/
-         dIwelOfW2qNZgMZXlaO0xd+DQQQgPrtcPkNEizxaL/Mqc228b1Lq4VUQq13nMLI4ocAN
-         5WCSFtBqsftUcAN7jnr46sYyeNxifg0shH+fQQwkqmE1R6HxtlFQmQ70VSKz1Sbr5U8I
-         EcDJoUElVoij71tklE5BpI3u+1LfDPcg4Orok9wiIbatHsgGIsJF8pIkC2GWI77WWc/b
-         8hRahPQS2zClYALejfP44GLitQxfyOwdu9nBLvaCr3auvPR2VJlTPEG3E9FhljUUTTcb
-         ATlg==
+        d=linaro.org; s=google; t=1782985717; x=1783590517; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kN4Ek61pglGfbk7aWausofDUuCtDymbVtSXWqrPaons=;
+        b=a1zfGfnZTuPiLQlom7pCPz64vW8qJGAxw/qJ5ufbQrBo8NwLORNOKdHfPclMJAD9Pf
+         d3Id8peiXJZKZx4fn4oacRJSL4FaERQ/0WdaaQ00ysnZrV3tcDFRTcoTui+E1eFIgznK
+         rVUgajH4UjdgFdIwhoCOVBiAPqgt7/iaapcUews2MOM6Sj6Hnm6y2O/FKOGwFnWRqoM4
+         B8QPRWwnYpaZYBJo/0U/2Bllrj6mJQY1pGPNgNImUXpa+Q//GeKb6dyB4y2bnPLwAnQX
+         NdXZc3cxwMxbREFhqJGI+cE2YUc/nGZZ6LfZ1Z4tKca+pGit01um365s7t0roY2EItyo
+         XqAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782985737; x=1783590537;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=zX32mNUoHx/o/ajYaMNh117WhqsQfOxAKwbmb4jDyT0=;
-        b=F1ATNxxL7b+xWzXa7IpoHSp2baVCpBqAuvlRiZOByVAlWMEHwDn7xk8jdtSipN9wpn
-         Ul/M7I3CEp2EDYY+kVL72txLKiiV3CGmqXDd7nN6t0cT3xDQsP5E+dOuwwWzQqEkwUeN
-         DW8hB3cZ04CwnkgtjEMsZ1EzUk1Sxs3ItiJQ9kd2HYL2R9cvd1tiVykXYUXzyxnalIzZ
-         abzd+I4iVBCn4g0HfMBaRrTDa8Htdg8r7fOd7xZaXis9yXo2X+ycX+tP9cYqNsPPwZ9E
-         i7dE2ysynTNPycYVEAW0cIliSnKLEN859j6K3aBKC5nOUGRM2e+z5DH1CAvgjdkxb3TR
-         JSkA==
-X-Forwarded-Encrypted: i=1; AHgh+Rr9h7i3GyQ/TX8cTZ9DiYsyoeWljnDeHv7GjnfrpNXTjRtijXr4VBkIxhDhjohYnU99HVoCLrDDsQGj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXJ8/Ivhq/T29879EWEx6OX/gTNSy7WbW/N+3Abe8aVBNy+Q4R
-	0wsx7mRqis+/p6PhSBmEd5TnI9tl57mpR8Shd8KP7PdoMBWN/xfLPh1Q
-X-Gm-Gg: AfdE7ckQfwvve093uk98LRy1DA4aLHaKn2oHaDDkNE7hGa6sOgtkPJ1lGeXQcQj9qcp
-	pZ9D70UmSK3d10QMMCxpWdW5vQfYhKeJWw/gM1x/3ahUfzHv9jLB3m6BmMml+fVwdLOTfV9yRKK
-	o8y1fkb1hZhpdHOkm4JK6bUP5qmlF020HLK/aMgcbUMcCnRpUF4qA5cRz/QTDhHZP0Z/1UHNLZE
-	Nq3nG0X8ZVIaOI6zNHwszYhZFdJK9mhvax/Mw0ui0Jo7Aw1iEPQvIVOfXxAn1PH1zY6lOl3sEJD
-	ytBZ4cq4q7+J95S0KM40eD9Z6yOdx8jSWcJTLI/GRRtKjXiMdpgGmMsXtGSHme/LPzAt1t1/N7P
-	uW2KswtwE5lm//LKzXhgL2G8VZuj7YiANOAqx6D9Bnh8ISbzhD/3u/d5gb0Z+q/lqDToAbYvU/J
-	TYw3eYRZSS1S2fWX0yNzDXCAY0nCAr9lV0JMW0ehnsWZ6mJpiIPEFy01KGmqPIOOpk/hDdcjn5Q
-	g99Jw==
-X-Received: by 2002:a05:6000:2309:b0:46e:550a:4d2b with SMTP id ffacd0b85a97d-4775a100b67mr7689307f8f.30.1782985737015;
-        Thu, 02 Jul 2026 02:48:57 -0700 (PDT)
-Received: from Ansuel-XPS24.localdomain (host-79-52-250-217.retail.telecomitalia.it. [79.52.250.217])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-477dbe617b1sm7381364f8f.16.2026.07.02.02.48.55
+        d=1e100.net; s=20251104; t=1782985717; x=1783590517;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kN4Ek61pglGfbk7aWausofDUuCtDymbVtSXWqrPaons=;
+        b=lJ9KLYWXNzTZ/gbo9xqpP3ru0zxi38ugVt32iaaJel2yN1vfU5Mu+1psexcf4li9j0
+         hBk7Z7Hwl3kV7iW4W7FC+MUKs+QZfi8HYakwl1NXxJ+7W2OFZHcOTSeOKWjufr6+N9md
+         QlIVDRaDB6DZtllYvUYA4reJNczpciF73V0afhZbIkEN+xLgoWN/mA7rT4M7R+mg6ljV
+         4Hi7Expb91XaQGd2hLUec94A/G4R8UZhXfFfVKn4COpX04WAZyuEUA63bEAroBQ3SQ+Q
+         N4hTdwQmhAPgW5KrabglfRSrtAiqkM73r9W/g633AhQd5MnMK5Odg1A1h3GJjSFoYm++
+         3KJw==
+X-Forwarded-Encrypted: i=1; AHgh+Rr4ptwO8IftRTn+eRdu1E+6ButcBzlPqeeHVuM6uJLrsyWZdLKHDRbCu7DTsX5T78JU9LiKYyj5jkbh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6UKuUe2O7IgiKzDqHztTBleO/SD0wHO6SP4DoPtb9OZmC9RIj
+	KWXli4Z3yN3OhPXiVFxsz0OvOmERsJcSly9HxQIBYESIS6hl/Bx7vHCBz97D84Nr+jM=
+X-Gm-Gg: AfdE7clLpU9yRBx3GF3wcQ77fIr5DUgzk57WTPOgxPwoH6L/KbEgOMd/+4kxOi/g7ho
+	kVYZ6l1Sq0tOb1gAAwly8L0+ZrQfl2Gv9+h8qOwEvF8GrdgCYEFELXE6tgzQd+KuH4li9Y20uzg
+	UIdZc5JPDea0P5evKERX9sbyxMfYINr4Y50z2BjL+vkBx6Q/M6pMUuzvjR10ruqNZGA6bab/bQh
+	tIs+fwgasCQddIq5XDWgWxEikL9MfUmlgkb1BLK9VwHIEjf00BDsQZRL66xZ17ubOZ1mFE0rnUb
+	qqDocM/7Pk+pr+NpJleKvXg4MH3/eELNymqipfKMaxlTAlfMbP5oxmgx8aQJ3uagBVD/GSYulyt
+	rM5htPEx/uSG0eXm2XUxOBN8KDleywkLCP901cVHLZbJAuyJ9hiQTPtZ9UtO11DIeWVL0g5yKT7
+	YO6dJe+Cg4HtkqqrnKKBXQzSZRxAHb1NYl3A==
+X-Received: by 2002:a5d:44ca:0:b0:46f:f12b:e457 with SMTP id ffacd0b85a97d-477af7daf8dmr5284625f8f.21.1782985717092;
+        Thu, 02 Jul 2026 02:48:37 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-477db8a4a09sm7656816f8f.13.2026.07.02.02.48.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jul 2026 02:48:56 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Cc: Wayen Yan <win847@gmail.com>
-Subject: [PATCH v6 2/7] thermal/drivers: airoha: fix copy paste error for sen internal
-Date: Thu,  2 Jul 2026 11:48:30 +0200
-Message-ID: <20260702094846.17325-3-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260702094846.17325-1-ansuelsmth@gmail.com>
-References: <20260702094846.17325-1-ansuelsmth@gmail.com>
+        Thu, 02 Jul 2026 02:48:36 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v5 0/5] arm64: dts: qcom: sm8[56]50: add PMIC5 Gen3 ADC
+ channels
+Date: Thu, 02 Jul 2026 11:48:30 +0200
+Message-Id: <20260702-topic-sm8x50-adc5-gen3-v5-0-8169953634ad@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO8zRmoC/4XRyW7DIBAG4FexOJeI1dsp71FVEcvgUNUmBWKli
+ vLuxfEhqSKrx0HD98PMFSWIHhLqqyuKMPvkw1QK+VYhc1TTANjbUiNGWE0Ea3AOJ29wGtuLJFh
+ ZI/EAE8dgXSectpxLjcrlUwTnL3f4/WOt01l/gsmLtnQcfcoh/tyTZ7r0/RsyU0xwqxriGt0R1
+ cj9l59UDLsQB7SkzOzhSCI2HVYcaQwRtgZjFXlx+MOpqdx0eHEYrRXTRdPt63vEs7P9L1EcoVz
+ HJG04dfSPc1vHF+H7XNaT15kirRJgE8bR576amx1Fzyvrq3WWfI05LDEHm7ErR4JKCcBkz4p9+
+ wWKy+MvAgIAAA==
+X-Change-ID: 20260427-topic-sm8x50-adc5-gen3-edf94fbd335b
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2595;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=Vh1RRcTefgGlGwMM3sWSxsMTJV2LWf4YqOpbDDrXFCc=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBqRjPxs4CLUhyHvg9sXRzfQmChrBuUUER5ETybl1mk
+ db8kJsmJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCakYz8QAKCRB33NvayMhJ0Wi1EA
+ CC0H+NwbsxMupjEAm3uI+SHtejnoIaS7Ui9OAXLOHfdSAko5cWst9Qrxbj54ZY6HwLqj4hD1IocJ3o
+ dqZqUTSeB6lkyG47L+dxq56KAoJCzcRhXA9tyFkdS2uHC93PhVjbZsbMi58/PmbiH0/pi9y5DFnAoB
+ InjoLpueCDhUB2dVkYKsdOF2wE4sneng9Rk3Rz7TfkEWebQ5yRYBjV59m9CBj5wGL1OMyM9GkfHuew
+ bXAIXFDHVJdo2tc/K7EADFZTJ3hfc3ghvAWRyljN6burorUPDBkcrHBxV1EsAYQhytOvVyMmMqGDAK
+ IIgTqNsqpkxHBpD6d61IuO8wMWsHkdYddFCrVqk38wofXSz8/reMjdGeo+GsyZRMK/eZ4DrAlGFr9Y
+ 3jGE4aafc1V1Mbigo0XGjHR7SLgzIvCXdxAQH2S1oo0775I7faWyRICGcycCKWGKUif6DrJZzvMvTJ
+ Md6xNZu7dKvk6yLpqv9h0WQu+AHbJq/TNTlKWA1SCuRAjIak2eKG9EKV0OmIg+NstMJfjbBWr1ywMD
+ V8s6+0LfIUFQxNBSX5XAUVk2iEBCk1C3nRytVgO6kmrKwrV6Q/J43fpT8ikis1/ol5+ag0SsCaACTP
+ rO8v02+NBz0WHUelMpS8MgG5s75WDge0C+atujCnP8jucyOBT83JfvqtKOCQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-319249-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:ansuelsmth@gmail.com,m:lorenzo@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:win847@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-319241-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:neil.armstrong@linaro.org,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,intel.com,arm.com,gmail.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RWL_MAILSPIKE_POSSIBLE(0.00)[104.64.211.4:from];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,msgid.link:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ACE6A6F5BD3
+X-Rspamd-Queue-Id: F3D8F6F5CC7
 
-In airoha_thermal_setup_monitor there is a copy paste error on configuring
-the internval for temp monitor. Fix the error and use the correct mask for
-the sen interval for the EN7581_TEMPMONCTL2 register.
+Now the bindings and driver was merged for the SPMI PMIC5 Gen3 ADC
+found on the PMK8550 which allow reading ADC data on the PMK8550
+and other PMICs on the system.
 
-Fixes: 42de37f40e1b ("thermal/drivers: Add support for Airoha EN7581 thermal sensor")
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-Reviewed-by: Wayen Yan <win847@gmail.com>
+Add the SPMI ADC channels on the PMK8550 SPMI5 ADC3 for the
+other PMICS on the system.
+
+Depends on:
+- https://lore.kernel.org/all/20260614-adc5_gen3_dt-v2-1-32ec576c5865@oss.qualcomm.com/
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/thermal/airoha_thermal.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v5:
+- Reorder adc node, move interrupts and use -extended
+- rename active-config0 to trip-point0
+- Link to v4: https://patch.msgid.link/20260617-topic-sm8x50-adc5-gen3-v4-0-4af9251731f1@linaro.org
 
-diff --git a/drivers/thermal/airoha_thermal.c b/drivers/thermal/airoha_thermal.c
-index 439aa011b75c..829a7327fc40 100644
---- a/drivers/thermal/airoha_thermal.c
-+++ b/drivers/thermal/airoha_thermal.c
-@@ -403,7 +403,7 @@ static void airoha_thermal_setup_monitor(struct airoha_thermal_priv *priv)
- 	 * sen interval is 379 * 52.715us = 19.97ms
- 	 */
- 	writel(FIELD_PREP(EN7581_FILT_INTERVAL, 1) |
--	       FIELD_PREP(EN7581_FILT_INTERVAL, 379),
-+	       FIELD_PREP(EN7581_SEN_INTERVAL, 379),
- 	       priv->base + EN7581_TEMPMONCTL2);
- 
- 	/* AHB poll is set to 146 * 68.64 = 10.02us */
--- 
-2.53.0
+Changes in v4:
+- Rebase on https://lore.kernel.org/all/20260614-adc5_gen3_dt-v2-0-32ec576c5865@oss.qualcomm.com/
+- Change all defines
+- Reorder nodes
+- Link to v3: https://patch.msgid.link/20260615-topic-sm8x50-adc5-gen3-v3-0-216a2b5ccb85@linaro.org
+
+Changes in v3:
+- Added note about nodes ordering in commit message
+- Rebased on next
+- Link to v2: https://patch.msgid.link/20260504-topic-sm8x50-adc5-gen3-v2-0-5cc04d6ecda0@linaro.org
+
+Changes in v2:
+- Removed stray line from patch 2, added review tag
+- Added missing header file
+- Link to v1: https://patch.msgid.link/20260427-topic-sm8x50-adc5-gen3-v1-0-8a70f7b90a75@linaro.org
+
+---
+Neil Armstrong (5):
+      arm64: dts: qcom: pmk8550: add VADC node
+      arm64: dts: qcom: sm8550-qrd: add SPMI ADC channels and thermal nodes
+      arm64: dts: qcom: sm8550-hdk: add SPMI ADC channels and thermal nodes
+      arm64: dts: qcom: sm8650-qrd: add SPMI ADC channels and thermal nodes
+      arm64: dts: qcom: sm8650-hdk: add SPMI ADC channels and thermal nodes
+
+ arch/arm64/boot/dts/qcom/pmk8550.dtsi   |  30 ++++
+ arch/arm64/boot/dts/qcom/sm8550-hdk.dts | 277 ++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 277 ++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 277 ++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 277 ++++++++++++++++++++++++++++++++
+ 5 files changed, 1138 insertions(+)
+---
+base-commit: b3f94b2b3f3e51ab880a51fc6510e1dafba654ed
+change-id: 20260427-topic-sm8x50-adc5-gen3-edf94fbd335b
+prerequisite-change-id: 20260430-adc5_gen3_dt-f0434155ee25:2
+prerequisite-patch-id: 42a8f026b28f4f1edf4932ce99a86ced84c4cc41
+prerequisite-patch-id: b370a1d9b3c61a0031e10db2aa9c7779e0a26e14
+prerequisite-patch-id: 179d8932fff0aef7eb84bb7e731597f8333f4427
+prerequisite-patch-id: 2a2e07499d57f0497c7ce757b2d74077ae4a843a
+
+Best regards,
+--  
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
