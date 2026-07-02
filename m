@@ -1,135 +1,261 @@
-Return-Path: <devicetree+bounces-318968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-318969-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ol4SKhSsRWrfDgsAu9opvQ
-	(envelope-from <devicetree+bounces-318968-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 02:08:52 +0200
+	id LVIPE/qrRWrcDgsAu9opvQ
+	(envelope-from <devicetree+bounces-318969-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 02:08:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2EC06F2905
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 02:08:51 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 450936F28FD
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 02:08:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iqSQWqrA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318968-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-318968-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Y0OQjxel;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-318969-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-318969-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DF98C304E6EF
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 00:07:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4F0C33008C84
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 00:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E0C2BD02;
-	Thu,  2 Jul 2026 00:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164AF171AF;
+	Thu,  2 Jul 2026 00:08:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5331625;
-	Thu,  2 Jul 2026 00:07:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D42BB171BB
+	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 00:08:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782950878; cv=none; b=rSCbbYbFoUpQ1Pp+CAg7RaeEgFBgyzkhrwlDCUfodi3HOoAWOH3L4hkAOW32uiJtsWC/xYPJbEDaAgkT513nebrzFCt1cknGr2+PB6+kgKSbZ4GEk/Jr6mWSFqfmDsD0GIb4nOYg1bJ+KOkYssStlu00a4P1068h3B892yZCCZc=
+	t=1782950900; cv=none; b=uuZ5qw7BeiNNP3ICFSwZvs2DqyxouENgF3q1TKN4riK9IAKro5UCA5aU4bqus5kWEd4XegpKux1CD8Ev8i+gABNcFPW9j8MJR+1UDPkA7eC/Swt/S1+cbuWXxkDhbx5rHDHQMy22eemnyfYasmRTEYKjtzId7w/NFhoK64HpKAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1782950878; c=relaxed/simple;
-	bh=bzxdzUIS5NV6E9ULD5j6j263CwKQY3bOG6VVfIV1MxE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CAnf6Gd6mVEVKWS4QkQmT3nLDH59G1XFxycsz+oJaPh50sY4lFF7cv0xvGoiLi9BNQkJKZsqxcgGApdOpj8XeLuAwnXmqYQ804fEeW2RiG3ctDcdrU+9fziviO4awg5ZSMjzVmCQSqEiV5NUPo0cHSYOilTIIuMu/jL00UTh9/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iqSQWqrA; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84CD21F000E9;
-	Thu,  2 Jul 2026 00:07:55 +0000 (UTC)
+	s=arc-20240116; t=1782950900; c=relaxed/simple;
+	bh=qb38VjVoODqvESl1s8BcKqEAJXvlZxRbDLMW5f+MUds=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=meF3Ak3YEVfJkY9OiriU/EMWI9aS67cwFMDs57yiL338dKQm/Z4lNCQCyRUXEeAKlQw/VSD0KS2FyZk2Dafmp8do23T7nXPBepBYp94/HSqCO6JiwN0Sizd8/vsQrDjNj5c0/yVgBDSCGs+EOx8JtPNg493xZLfiIHe58hnkfiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y0OQjxel; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB59D1F000E9;
+	Thu,  2 Jul 2026 00:08:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782950877;
-	bh=USZvbHL/5lmXp/Rgdix7obUtc+zRhWFoC46JUXvjxEs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=iqSQWqrAeCMsMASgWXdtxARlmJLI2pDpwhkEGxVE/absAHGMAMee/90yLXywmXNhv
-	 feNappUwQMwPf5QBfPFT7fKDtkaaGR2ZD3bSKdd52DyyuNxmr8LFApv/NjQbg7oMnl
-	 kzl0+Cssz5sGXAnqsVN8PFghYxQk/rD1ONM1YAivCSq27VjE8OJXetL6UetJUTPEcU
-	 Dway0nT0ZS7K7uaRajSa/2M5wfpwMiBoYKg95DwG3VwV3jMDn2zmFC/8lg8ff461VB
-	 kIt0MOAfHfSS7szNo46aaWig6Wt5JCK6gtWYi6jpi1FJo/uOqzfxTA3m0dwotXwk0C
-	 SNdzRlcfK5yFw==
-Date: Thu, 2 Jul 2026 01:07:50 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Salih Erim <salih.erim@amd.com>
-Cc: <andy@kernel.org>, <dlechner@baylibre.com>, <nuno.sa@analog.com>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <conall.ogriofa@amd.com>, <michal.simek@amd.com>,
- <sai.krishna.potthuri@amd.com>, <linux@roeck-us.net>,
- <erimsalih@gmail.com>, <git@amd.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v12 0/5] iio: adc: add Versal SysMon driver
-Message-ID: <20260702010750.5156f461@jic23-huawei>
-In-Reply-To: <20260624143722.4047649-1-salih.erim@amd.com>
-References: <20260624143722.4047649-1-salih.erim@amd.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20260515; t=1782950898;
+	bh=M/5ysJp42pvE6B0FFEBLRvGvS9MPo32gqnlRpeduy24=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Y0OQjxeldP6FuuAOGFDhMctqyhHVzbuCRedQ9cMyRD6FSRlIx6g2+q9QE5xAGoVVm
+	 z/O6VtqCKQSmfgxznHPXHkn6+KKuEMW2wu2JMn7vjQCeuAVqECQ/tSio4nqIzWqlM3
+	 Iuybffum5cFpFvIN6gUWOC8BOOPruf7E1AhncrX2sD3sDNxvpzVfJGO8rcIcJyfdNL
+	 BbeDHBNHPT2/WFCyammun+PyV7hECYsejKUBS/Q9sg64nO8b4E0WpcmyMqpgf4MLS2
+	 XkQgZA+b1AX/KKw7+5QMXRad5Urg9kXzX69nnrFwfH5MEeYnwLwqtJNKAv3Idt556R
+	 Mf9BhdnHg+PbA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v9 32/38] usb: dwc3: core: support PHY reset
+ notifications
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
+Cc: neil.armstrong@linaro.org, linux-phy@lists.infradead.org, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, olteanv@gmail.com, vkoul@kernel.org
+In-Reply-To: <20260702-rockchip-usbdp-cleanup-v9-32-e31efbb62d2e@collabora.com>
+References: <20260702-rockchip-usbdp-cleanup-v9-0-e31efbb62d2e@collabora.com>
+ <20260702-rockchip-usbdp-cleanup-v9-32-e31efbb62d2e@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 02 Jul 2026 00:08:17 +0000
+Message-Id: <20260702000817.EB59D1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-318968-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-318969-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:salih.erim@amd.com,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:sai.krishna.potthuri@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:git@amd.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:neil.armstrong@linaro.org,m:linux-phy@lists.infradead.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:olteanv@gmail.com,m:vkoul@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[linaro.org,lists.infradead.org,kernel.org,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[jic23-huawei:mid,amd.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	RWL_MAILSPIKE_POSSIBLE(0.00)[104.64.211.4:from];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,collabora.com:email,sashiko.dev:url,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F2EC06F2905
+X-Rspamd-Queue-Id: 450936F28FD
 
-On Wed, 24 Jun 2026 15:37:17 +0100
-Salih Erim <salih.erim@amd.com> wrote:
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
+- [High] The PHY reset notifier checks `pm_runtime_suspended()` without sec=
+uring a PM reference, which can cause a kernel crash if the DWC3 controller=
+ suspends concurrently.
+- [High] Unsynchronized modification of the `phy_reset_in_progress` bitfiel=
+d causes a data race that can corrupt adjacent bitfields in `struct dwc3`, =
+including PM state flags like `suspended`.
+- [High] The PHY reset notifier incorrectly treats a per-port PHY reset as =
+a global event, applying soft reset to all USB3 ports and using a single gl=
+obal state flag, breaking multi-port controllers.
+- [High] The notifier performs read-modify-write operations on `DWC3_GUSB3P=
+IPECTL` without acquiring the DWC3 spinlock, leading to register state corr=
+uption.
+--
 
-> This series adds a new IIO driver for the AMD/Xilinx Versal System
-> Monitor (SysMon), providing on-chip voltage and temperature monitoring.
-> 
-> The Versal SysMon measures up to 160 supply voltages and reads up to
-> 64 temperature satellites distributed across the SoC. The hardware
-> also provides aggregated device temperature registers: the current
-> max and min across all active satellites, and peak/trough values
-> recorded since last hardware reset. The device can be accessed via
-> memory-mapped I/O or via an I2C interface.
-> 
-> The driver is split into a bus-agnostic core module using the regmap
-> API, an MMIO platform driver, and an I2C driver. This allows the
-> same IIO logic to be shared across different bus transports.
-> 
-> Note: Sai Krishna Potthuri is added as co-maintainer and will be
-> actively taking over the upstream maintenance of this driver going
-> forward. Please direct any future review feedback to him.
+commit e7db10d74b0389657368c887d592e9b830ec1fac
+Author: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Series applied to the testing branch of iio.git.
+usb: dwc3: core: support PHY reset notifications
 
-Thanks,
+This adds handling for the new PHY framework reset notifications to assert
+PHYSOFTRST within the DWC3 controller before the external PHY resets. This
+prevents the DWC3 from interfering with PHY reinitialization and avoids
+LCPLL lock failures on Rockchip platforms.
 
-Jonathan
+> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+> --- a/drivers/usb/dwc3/core.h
+> +++ b/drivers/usb/dwc3/core.h
+[ ... ]
+> @@ -1430,6 +1430,7 @@ struct dwc3 {
+>  	unsigned		wakeup_configured:1;
+>  	unsigned		suspended:1;
+>  	unsigned		susphy_state:1;
+> +	unsigned		phy_reset_in_progress:1;
+
+[Severity: High]
+Can modifying this locklessly corrupt the adjacent bitfield flags?
+
+Since phy_reset_in_progress shares a memory word with suspended and
+susphy_state, a concurrent modification to those PM state flags could be
+overwritten during the non-atomic read-modify-write of this bitfield.
+
+> =20
+>  	u16			imod_interval;
+
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+[ ... ]
+> @@ -886,10 +886,86 @@ static int dwc3_phy_init(struct dwc3 *dwc)
+>  	return ret;
+>  }
+> =20
+> +static int dwc3_usb3_phy_notify(struct notifier_block *nb,
+> +				unsigned long action, void *data)
+> +{
+> +	struct dwc3 *dwc =3D container_of(nb, struct dwc3_phy_nb, nb)->dwc;
+> +	int i;
+> +
+> +	switch (action) {
+> +	case PHY_NOTIFY_PRE_RESET:
+> +		/*
+> +		 * If the controller is already suspended (e.g. runtime PM),
+> +		 * there is no internal state to clean up.
+> +		 */
+> +		if (pm_runtime_suspended(dwc->dev))
+> +			return NOTIFY_OK;
+
+[Severity: High]
+Does this check protect against the device suspending immediately after?
+
+If pm_runtime_suspended() returns false, the controller could still
+asynchronously suspend before PHY_NOTIFY_POST_RESET occurs.
+
+Should this acquire a reference via pm_runtime_get_if_active() to prevent
+the device clocks from being gated while the reset is in progress?
+
+> +
+> +		dwc->phy_reset_in_progress =3D true;
+> +
+> +		/*
+> +		 * Assert USB3 PHY soft reset within DWC3 before the external
+> +		 * PHY resets. This disconnects the PIPE interface, preventing
+> +		 * the DWC3 from interfering with PHY reinitialization and
+> +		 * avoiding LCPLL lock failures.
+> +		 */
+> +		for (i =3D 0; i < dwc->num_usb3_ports; i++) {
+
+[Severity: High]
+Does this unintentionally disrupt all ports on a multi-port controller?
+
+The notifier block identifies the specific dwc3_phy_nb (and implicitly the
+port) that triggered the event, but this loops over all num_usb3_ports and
+asserts soft reset on all of them.
+
+Overlapping resets on different ports might also clobber the shared
+dwc->phy_reset_in_progress flag, dropping connections on ports that did
+not trigger the notification.
+
+> +			u32 reg =3D dwc3_readl(dwc, DWC3_GUSB3PIPECTL(i));
+> +
+> +			reg |=3D DWC3_GUSB3PIPECTL_PHYSOFTRST;
+> +			dwc3_writel(dwc, DWC3_GUSB3PIPECTL(i), reg);
+
+[Severity: High]
+Can this lockless read-modify-write corrupt DWC3_GUSB3PIPECTL?
+
+This modifies the register without holding dwc->lock.
+
+If this races with PM transitions running dwc3_enable_susphy(), which also
+modifies this register, could one of the register updates be lost?
+
+> +		}
+> +		break;
+> +
+> +	case PHY_NOTIFY_POST_RESET:
+> +		if (!dwc->phy_reset_in_progress)
+> +			return NOTIFY_OK;
+> +
+> +		dwc->phy_reset_in_progress =3D false;
+> +
+> +		/*
+> +		 * Deassert PHY soft reset and reconfigure the PIPE interface
+> +		 * settings after PHY reinitialization.
+> +		 */
+> +		for (i =3D 0; i < dwc->num_usb3_ports; i++) {
+> +			u32 reg =3D dwc3_readl(dwc, DWC3_GUSB3PIPECTL(i));
+
+[Severity: High]
+If the device suspended asynchronously between PRE_RESET and POST_RESET,
+could accessing this hardware register cause a synchronous external abort?
+
+Since phy_reset_in_progress is true, this path executes unconditionally
+even if the controller's clocks are now disabled.
+
+> +
+> +			reg &=3D ~DWC3_GUSB3PIPECTL_PHYSOFTRST;
+> +			dwc3_writel(dwc, DWC3_GUSB3PIPECTL(i), reg);
+> +		}
+> +		break;
+> +	}
+> +
+> +	return NOTIFY_OK;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702-rockchip-u=
+sbdp-cleanup-v9-0-e31efbb62d2e@collabora.com?part=3D32
 
