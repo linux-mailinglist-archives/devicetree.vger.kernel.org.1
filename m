@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-319279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319278-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id AaNvJsw6RmqIMQsAu9opvQ
-	(envelope-from <devicetree+bounces-319279-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:17:48 +0200
+	id xAZyIY1BRmqyMwsAu9opvQ
+	(envelope-from <devicetree+bounces-319278-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:46:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5443C6F5C34
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:17:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D3B56F6224
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 12:46:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=COVKx5wQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319279-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319279-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=Gu4O+j74;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319278-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-319278-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9BF8D32F4B77
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 10:07:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B09B631DC9F0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 10:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DDA54963C7;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 989E24963C4;
 	Thu,  2 Jul 2026 09:57:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5439D495523;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542A5495522;
 	Thu,  2 Jul 2026 09:57:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1782986243; cv=none; b=WL1RX2i12tW9bgghkqboYu+jxuf1SURQbC/nRi+XUoCMZaEdTaUVXUXaxkymBdaZNAUGCbeHjyYKxWVQXXNreOfcl9lEWk4hHSEpDY4RbmEsQiV9bgMIbj/WNjqYhnydNUju3GqtKFrbk9nXDCeb054ajqVMpJ08KkHFYr5j64Y=
+	t=1782986243; cv=none; b=AIqr7wSUCUx/fqvMP9feZp17YEQAYCuMhBr+dZ3RY2QXKgqQqr7FwVH+5aV34zTB8urxmi8/pqE4wG85stB2k1wf5rFS8Tu4nySDiY0cfJr+sZmkNuqFVZ9FDdTczdHGlMPh2taWXqHV/IMnVsTqEoSBKuZeQE2MTbTH1bUpvio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1782986243; c=relaxed/simple;
-	bh=s+oHyWDZzLbBnj8OuFd9lF7Ytt8JqU1hi9/yv03fVKE=;
+	bh=sPdBTp6yGUxuKXVpv4/pPddMVKj17TUKqM81c+EVoKc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aBsfTPl8WRVCjHDD8jNmGDDEBiFbU7lT0Dh4KBBA4mKQzaLZeb2hNFI8jkvUAC72PH1Da+nKBc+96uBQETWnNBV/IeiuLFSTzzPe4nvsk8OcwgIuzfrEJKy21Tx3fj+WG2rN/EivaThUPSwMHq8AgAefBdp56b3V5kpjHYftZcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=COVKx5wQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0310DC2BCF5;
+	 In-Reply-To:To:Cc; b=upcbyRN9kKRphc1+tD9t5sp/2TDgUWoV/A2C06tq3b2GVuoqia+vqwearxrinV10BqkTu6RryBsmKxHlOKqhEKrFZnSeiSRz+UJuWR17Ok8fzgaaNzhz8KRj70SYqhRQjXhew344RTGaBTAiEUFl15N5ZcJgpZqKS0wZUJH6ya8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gu4O+j74; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0E254C4AF0D;
 	Thu,  2 Jul 2026 09:57:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1782986243;
-	bh=s+oHyWDZzLbBnj8OuFd9lF7Ytt8JqU1hi9/yv03fVKE=;
+	bh=sPdBTp6yGUxuKXVpv4/pPddMVKj17TUKqM81c+EVoKc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=COVKx5wQb+StEj7TqgSz07EXj45F5fLixil3TinXrdKnVGnqz/TR7QEYBeGIcKtPN
-	 a31SzvNXyE9cTBU08cBVrioTLHqEl5/rvooq5KTHTFn28nDVII/yXIt1ZfMcDxf30F
-	 Pjc1Yd1HP0diT7eZ472YvkAfz/HRbnFfs0OInw0csOsLwH0GtgrUP0nfzUYJLd3ZZ2
-	 H1WLIB4721iGDy+2fUZx4zVhkppM+aDmzDXocjeFyU7QOq2xr3I/EBFTR3mqiVNR2l
-	 Vvc7fCPVedYlmsdD//z0btoXGcyGLN40RHKLiCkvmFGH2tYH573Eda3/Tu6RfPSUY1
-	 P/nWbaZbEn+qw==
+	b=Gu4O+j74qDv1LmuK5fXinoRNZBBmP1nfETxbglYigDI5dy1MAkLdkYUSCqrau2Tii
+	 L9+8JoiHPV1ipA/PeAfhtM6UEZClVMyLqLMvbuhh18aoIp4FNZ8JRxbZQLC+xS9eRD
+	 bzoki9EKsxcl4v1emUuy/h7tD7UThkg6xX2fH3d3Zz79tL0eOw4Y8WET1ivaTqspKE
+	 ut0XaZyA7Tsszl3EANV9aI2lMtkc4jT4vVAQA+lGWU5NgT6Mjtj9oQLyZsvgVGNRDK
+	 H31dkmYvMbXs07Ytug157+slNgR+uc9WHk/hhbzckfNy1V9qKrP9LAXmp321B6Dfvx
+	 XhnrLIM/xqvGw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D68DFC43327;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4606C44502;
 	Thu,  2 Jul 2026 09:57:22 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Thu, 02 Jul 2026 11:55:56 +0200
-Subject: [PATCH v8 3/8] mfd: khadas-mcu: Add per-variant configuration
- infrastructure and VIM4 support
+Date: Thu, 02 Jul 2026 11:55:57 +0200
+Subject: [PATCH v8 4/8] mfd: khadas-mcu: Add support for VIM4 MCU variant
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,8 +59,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260702-add-mcu-fan-khadas-vim4-v8-3-244feee91a36@aliel.fr>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260702-add-mcu-fan-khadas-vim4-v8-4-244feee91a36@aliel.fr>
 References: <20260702-add-mcu-fan-khadas-vim4-v8-0-244feee91a36@aliel.fr>
 In-Reply-To: <20260702-add-mcu-fan-khadas-vim4-v8-0-244feee91a36@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
@@ -79,13 +78,13 @@ Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1697;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5599;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=V4o6dWy7ikMDkJA0YYsEmYbq9MismeNwAHAJSdqrVEU=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ5ab6U93xrQtwUeUtfLfR/vP3KWmNLk/OzfnDLvgHclzl
- Vz285d1lLIwiHExyIopsvTPtTzx7vLRM1/3qKfAzGFlAhnCwMUpABMpUGRkuMvt1bm4QpHl2Zx6
- 16aaU3J9WYuWtCdfNdn3yTP2xM9gT4b/YbyW+dVq1p1604PNdVNO/XwcmjxN8404R9mqpgyVtYq
- cAA==
+ bh=QvhTcJKgRDVJSqzub3GPP49FeuQA92Jq2f2X41Eli+Y=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ5ab6e/pl79Nq438NOng+6mq+6yjLrlFJB/YH3Rz+V83s
+ fdhM+/adJSyMIhxMciKKbL0z7U88e7y0TNf96inwMxhZQIZwsDFKQATueHA8M+q+O07t+dO0d4L
+ 1q3oWSsT22IQ5zDPMWvW/W2rlDXj331jZGhT/fr8QSDDdNP1F/qDfp5jv9X+fH2Twi7vBQmlRrq
+ 3k1gB
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
@@ -99,12 +98,12 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319279-lists,devicetree=lfdr.de,linux-kernel-dev.aliel.fr];
+	TAGGED_FROM(0.00)[bounces-319278-lists,devicetree=lfdr.de,linux-kernel-dev.aliel.fr];
 	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andi.shyti@kernel.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:b.galvani@gmail.com,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:linux-amlogic@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-pm@vger.kernel.org,m:linux-kernel-dev@aliel.fr,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,m:bgalvani@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -114,7 +113,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	HAS_REPLYTO(0.00)[linux-kernel-dev@aliel.fr];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -123,67 +122,202 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,linaro.org:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,aliel.fr:replyto,aliel.fr:email,aliel.fr:mid]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linaro.org:email,vger.kernel.org:from_smtp,aliel.fr:replyto,aliel.fr:email,aliel.fr:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5443C6F5C34
+X-Rspamd-Queue-Id: 3D3B56F6224
 
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-Some values change per variant, add the structure to manage it.
+Refactor probe() to use per-variant values
+instead of hardcoded globals.
 
-Add an enum khadas_mcu_type used as value to match.
+Add dedicated regmap configuration for the VIM4 MCU,
+with its own volatile/writeable registers.
 
-Also introduce khadas_mcu_fan_pdata to pass fan register address and
-maximum level to the fan sub-driver, removing the hardcoded constants.
+Add the fan control register
+(0–100 levels vs 0–3 for previous supported boards).
+
+Add a new compatible string "khadas,vim4-mcu".
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- include/linux/mfd/khadas-mcu.h | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/mfd/khadas-mcu.c | 118 ++++++++++++++++++++++++++++++++++++++++-------
+ 1 file changed, 102 insertions(+), 16 deletions(-)
 
-diff --git a/include/linux/mfd/khadas-mcu.h b/include/linux/mfd/khadas-mcu.h
-index a99ba2ed0e4e0..471a31787cce2 100644
---- a/include/linux/mfd/khadas-mcu.h
-+++ b/include/linux/mfd/khadas-mcu.h
-@@ -70,6 +70,13 @@
- #define KHADAS_MCU_WOL_INIT_START_REG		0x87 /* WO */
- #define KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG	0x88 /* WO */
+diff --git a/drivers/mfd/khadas-mcu.c b/drivers/mfd/khadas-mcu.c
+index ba981a7886921..d2ca7deda45c6 100644
+--- a/drivers/mfd/khadas-mcu.c
++++ b/drivers/mfd/khadas-mcu.c
+@@ -13,6 +13,9 @@
+ #include <linux/module.h>
+ #include <linux/regmap.h>
  
-+/* VIM4 specific registers */
-+#define KHADAS_MCU_VIM4_REST_CONF_REG		0x2c /* WO - reset EEPROM */
-+#define KHADAS_MCU_VIM4_LED_ON_RAM_REG		0x89 /* WO - LED volatile */
-+#define KHADAS_MCU_VIM4_FAN_CTRL_REG		0x8a /* WO */
-+#define KHADAS_MCU_VIM4_WDT_EN_REG		0x8b /* WO */
-+#define KHADAS_MCU_VIM4_SYS_RST_REG		0x91 /* WO */
++#define KHADAS_MCU_FAN_LEVEL_MAX 3
++#define KHADAS_MCU_VIM4_FAN_LEVEL_MAX 0x64
 +
- enum {
- 	KHADAS_BOARD_VIM1 = 0x1,
- 	KHADAS_BOARD_VIM2,
-@@ -88,4 +95,19 @@ struct khadas_mcu {
- 	struct regmap *regmap;
+ static bool khadas_mcu_reg_volatile(struct device *dev, unsigned int reg)
+ {
+ 	if (reg >= KHADAS_MCU_USER_DATA_0_REG &&
+@@ -75,47 +78,129 @@ static const struct regmap_config khadas_mcu_regmap_config = {
+ 	.cache_type	= REGCACHE_MAPLE,
  };
  
-+/**
-+ * struct khadas_mcu_fan_pdata - fan sub-driver configuration
-+ * @fan_reg: register address to write the fan level
-+ * @max_level: maximum fan level
-+ */
-+struct khadas_mcu_fan_pdata {
-+	unsigned int fan_reg;
-+	unsigned int max_level;
+-static struct mfd_cell khadas_mcu_fan_cells[] = {
++static const struct khadas_mcu_fan_pdata khadas_mcu_fan_pdata = {
++	.fan_reg	= KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
++	.max_level	= KHADAS_MCU_FAN_LEVEL_MAX,
 +};
 +
-+enum khadas_mcu_type {
-+	KHADAS_MCU_GENERIC, /* VIM1/2/3, Edge, Edge-V */
-+	KHADAS_MCU_VIM4,
++static const struct mfd_cell khadas_mcu_fan_cells[] = {
+ 	/* VIM1/2 Rev13+ and VIM3 only */
+-	{ .name = "khadas-mcu-fan-ctrl", },
++	{
++		.name = "khadas-mcu-fan-ctrl",
++		.platform_data = &khadas_mcu_fan_pdata,
++		.pdata_size = sizeof(khadas_mcu_fan_pdata),
++	},
+ };
+ 
+-static struct mfd_cell khadas_mcu_cells[] = {
++static const struct mfd_cell khadas_mcu_cells[] = {
+ 	{ .name = "khadas-mcu-user-mem", },
+ };
+ 
++static bool khadas_mcu_vim4_reg_volatile(struct device *dev, unsigned int reg)
++{
++	switch (reg) {
++	case KHADAS_MCU_PWR_OFF_CMD_REG:
++	case KHADAS_MCU_VIM4_REST_CONF_REG:
++	case KHADAS_MCU_WOL_INIT_START_REG:
++	case KHADAS_MCU_VIM4_LED_ON_RAM_REG:
++	case KHADAS_MCU_VIM4_FAN_CTRL_REG:
++	case KHADAS_MCU_VIM4_WDT_EN_REG:
++	case KHADAS_MCU_VIM4_SYS_RST_REG:
++		return true;
++	default:
++		return false;
++	}
++}
++
++static bool khadas_mcu_vim4_reg_writeable(struct device *dev, unsigned int reg)
++{
++	switch (reg) {
++	case KHADAS_MCU_VERSION_0_REG:
++	case KHADAS_MCU_VERSION_1_REG:
++	case KHADAS_MCU_SHUTDOWN_NORMAL_STATUS_REG:
++		return false;
++	default:
++		return true;
++	}
++}
++
++static const struct regmap_config khadas_mcu_vim4_regmap_config = {
++	.reg_bits	= 8,
++	.reg_stride	= 1,
++	.val_bits	= 8,
++	.max_register	= KHADAS_MCU_VIM4_SYS_RST_REG,
++	.volatile_reg	= khadas_mcu_vim4_reg_volatile,
++	.writeable_reg	= khadas_mcu_vim4_reg_writeable,
++	.cache_type	= REGCACHE_MAPLE,
 +};
 +
- #endif /* MFD_KHADAS_MCU_H */
++static const struct khadas_mcu_fan_pdata khadas_vim4_fan_pdata = {
++	.fan_reg	= KHADAS_MCU_VIM4_FAN_CTRL_REG,
++	.max_level	= KHADAS_MCU_VIM4_FAN_LEVEL_MAX,
++};
++
++static const struct mfd_cell khadas_mcu_vim4_cells[] = {
++	{
++		.name		= "khadas-mcu-fan-ctrl",
++		.platform_data	= &khadas_vim4_fan_pdata,
++		.pdata_size	= sizeof(khadas_vim4_fan_pdata),
++	},
++};
++
+ static int khadas_mcu_probe(struct i2c_client *client)
+ {
++	const struct mfd_cell *cells, *fan_cells;
++	const struct regmap_config *regmap_cfg;
+ 	struct device *dev = &client->dev;
++	int ncells, nfan_cells, ret;
+ 	struct khadas_mcu *ddata;
+-	int ret;
+ 
+ 	ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
+ 	if (!ddata)
+ 		return -ENOMEM;
+ 
++	switch ((uintptr_t)i2c_get_match_data(client)) {
++	case KHADAS_MCU_GENERIC:
++		regmap_cfg	= &khadas_mcu_regmap_config;
++		cells		= khadas_mcu_cells;
++		ncells		= ARRAY_SIZE(khadas_mcu_cells);
++		fan_cells	= khadas_mcu_fan_cells;
++		nfan_cells	= ARRAY_SIZE(khadas_mcu_fan_cells);
++		break;
++	case KHADAS_MCU_VIM4:
++		regmap_cfg	= &khadas_mcu_vim4_regmap_config;
++		cells		= NULL;
++		ncells		= 0;
++		fan_cells	= khadas_mcu_vim4_cells;
++		nfan_cells	= ARRAY_SIZE(khadas_mcu_vim4_cells);
++		break;
++	default:
++		return -ENODEV;
++	}
++
+ 	i2c_set_clientdata(client, ddata);
+ 
+ 	ddata->dev = dev;
+ 
+-	ddata->regmap = devm_regmap_init_i2c(client, &khadas_mcu_regmap_config);
++	ddata->regmap = devm_regmap_init_i2c(client, regmap_cfg);
+ 	if (IS_ERR(ddata->regmap)) {
+ 		ret = PTR_ERR(ddata->regmap);
+-		dev_err(dev, "Failed to allocate register map: %d\n", ret);
+-		return ret;
++		return dev_err_probe(dev, ret, "Failed to allocate register map\n");
+ 	}
+ 
+-	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+-				   khadas_mcu_cells,
+-				   ARRAY_SIZE(khadas_mcu_cells),
+-				   NULL, 0, NULL);
+-	if (ret)
+-		return ret;
++	if (cells && ncells) {
++		ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
++					   cells,
++					   ncells,
++					   NULL, 0, NULL);
++		if (ret)
++			return ret;
++	}
+ 
+ 	if (of_property_present(dev->of_node, "#cooling-cells"))
+ 		return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+-					    khadas_mcu_fan_cells,
+-					    ARRAY_SIZE(khadas_mcu_fan_cells),
++					    fan_cells,
++					    nfan_cells,
+ 					    NULL, 0, NULL);
+ 
+ 	return 0;
+@@ -123,7 +208,8 @@ static int khadas_mcu_probe(struct i2c_client *client)
+ 
+ #ifdef CONFIG_OF
+ static const struct of_device_id khadas_mcu_of_match[] = {
+-	{ .compatible = "khadas,mcu", },
++	{ .compatible = "khadas,mcu", .data = (void *)KHADAS_MCU_GENERIC },
++	{ .compatible = "khadas,vim4-mcu", .data = (void *)KHADAS_MCU_VIM4 },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, khadas_mcu_of_match);
 
 -- 
 2.49.0
