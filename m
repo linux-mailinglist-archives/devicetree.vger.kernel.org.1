@@ -1,200 +1,243 @@
-Return-Path: <devicetree+bounces-319626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319628-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id toB0Dx7XRmrReQsAu9opvQ
-	(envelope-from <devicetree+bounces-319626-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 23:24:46 +0200
+	id dBQKLe3bRmrVegsAu9opvQ
+	(envelope-from <devicetree+bounces-319628-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 23:45:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D62F6FCEF2
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 23:24:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A676FD03F
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 23:45:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ideasonboard.com header.s=mail header.b=IBPp5alA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319626-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319626-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=ideasonboard.com;
+	dkim=pass header.d=analog.com header.s=DKIM header.b=e8UgX8xM;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319628-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319628-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=analog.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A1BB6300D7BC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 21:24:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6026B30011AF
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 21:45:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E953911A8;
-	Thu,  2 Jul 2026 21:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B193AA1BB;
+	Thu,  2 Jul 2026 21:45:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9645B1A6835;
-	Thu,  2 Jul 2026 21:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B850F3AA9F4;
+	Thu,  2 Jul 2026 21:45:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783027470; cv=none; b=A2Mv4EcTRB7HsAaaSj68poHsb9NEZ2zfbY7zI/yk/RCtc/4N7KYIOHlAamexUW3qsO+b1hJmhqYjbDdaYVOnWtcC1fi97ovThI+AW6rX3JHMQsXSs6dN0ykUKWlDa0T7EHLithF0sw0MkWGxHPTltBdMgEuxyHg0+SgKvrSQM14=
+	t=1783028710; cv=none; b=uxzOBXCoEGiWhnJMv3b8gvxsc/imoTtddQKF4omRQzTiUop7Ilx41jzrj5VmAnn5FIdPYvG0NkHIqBZazsQVo6QDqv5NKe/6hHV64htVA1NPEk0eZzwE6U4O1sxIVUq6hCNDrejbzZg9mc0ULVl35HTdb/MvRARayAombitcsQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783027470; c=relaxed/simple;
-	bh=7h8p5JymaPl6j2G50UYplFLnTLxP1bHA5e/xdPIdqPo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SdcL/J8I56gmd7m1M+Z/7OkoqjNsZfwesxkpIZ8K5fsYDe5MUneSAGR8BFp9b+AS8vJB0rM+RKXrrkbwtcEfkvIlc/VUDDyU5wHI6Vr+Syc0LZmkdNfNHOMnFyHLgtqJfVM8/NaXVZNKbEUhy9EWZT/J+eZ6XFEvdg719rgy0kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IBPp5alA; arc=none smtp.client-ip=213.167.242.64
-Received: from killaraus.ideasonboard.com (2001-14ba-70f3-e800--a06.rev.dnainternet.fi [IPv6:2001:14ba:70f3:e800::a06])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8EEE3517;
-	Thu,  2 Jul 2026 23:23:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1783027419;
-	bh=7h8p5JymaPl6j2G50UYplFLnTLxP1bHA5e/xdPIdqPo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IBPp5alAe2KGTmJ2fOV0p9hAaIyV+xM2eG0an2/7GOgZRazZE1wqoU6V32WJnZEmn
-	 d68yhWXdD95YPckw68EKGX0RM6wZ5emQgqlWkai+pL35nMYeF6jvjxECVM1hkeHEGV
-	 gBdsxA5V7Tsp4EpIfEyp7C1pvH9o9yszsdLpZQ4Y=
-Date: Fri, 3 Jul 2026 00:24:23 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 4/7] drm/rcar-du: dsi: Support DSC in the pipeline
-Message-ID: <20260702212423.GA3662157@killaraus.ideasonboard.com>
-References: <20260615-rcar-du-dsc-v5-0-aed1a28610e4@ideasonboard.com>
- <20260615-rcar-du-dsc-v5-4-aed1a28610e4@ideasonboard.com>
+	s=arc-20240116; t=1783028710; c=relaxed/simple;
+	bh=Mrb5GbMY5Ka5xRiV+ziIFs3WG6Ux4X0VvmytwKnL4Jc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XzdS7DIxWaJZYny/I4MXcH5W8LdGdCSJa197Hot4LrKMxKGRr8tmgVuh5u0BJoHgKAdWMR6sozeCvXnYp51dmXD/bTBJgupRa0NVlesun6nDIwLdj1QgzeNRtxG/vh8nhS0oI9+jYYLKyZjUVr6C+hl8MECOf/uH6tVKBSybXes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=e8UgX8xM; arc=none smtp.client-ip=148.163.135.77
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 662IrQji3096189;
+	Thu, 2 Jul 2026 17:45:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=mI7dYz7s1WwM+pF0JFZHe2XPr0b
+	gMfh4LWN5M92krsg=; b=e8UgX8xMbZlrJNMxiO61IweYt8XtqpLmWSc3vYSANmq
+	ZvSwjFsqVmlghGsRrYE1dKM+p//ZM8Hwa5fOQj4bXN3j0ravE+Xw0jgWyVm10o4I
+	cKLmSxa+xU5dlLlMdp7mZpeNdFKSvMpHac9qceVBrX6yaawdZq8vgPfj/C/RwmYr
+	E72z8apmHwiOA+zpMrEUFCCNY5NlLCqT7DKVc2gUA3Ay30ILbyB8y+t7lemJGf5v
+	wLpzH7IVdE5Lt0i+8/JMt+oSVx6oXnZ98NpzCYp6iTE+dsETxjJqfN/pZP7Z4JDk
+	2Yf10DPldogsal6+SX+xqltMNz/WVQxEmIS0BVkZIWg==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4f5gd2cev4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 02 Jul 2026 17:45:03 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 662Lj2dm051706
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 2 Jul 2026 17:45:02 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Thu, 2 Jul
+ 2026 17:45:02 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Thu, 2 Jul 2026 17:45:02 -0400
+Received: from work.maxim-ic.internal ([10.66.6.191])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 662LinPa007702;
+	Thu, 2 Jul 2026 17:44:52 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <jic23@kernel.org>, <nuno.sa@analog.com>, <Michael.Hennerich@analog.com>,
+        <dlechner@baylibre.com>, <andy@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <julianbraha@gmail.com>,
+        <marcelo.schmitt1@gmail.com>
+Subject: [PATCH v5 0/4] iio: adc: Add support for LTC2378 and similar ADCs
+Date: Thu, 2 Jul 2026 18:44:41 -0300
+Message-ID: <cover.1783028033.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260615-rcar-du-dsc-v5-4-aed1a28610e4@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: B6tOEC_gN4FcYNlHHE0mgIEwvl7FO4ci
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAyMDIyNyBTYWx0ZWRfX/qUNNH2gRJSx
+ HluizPJioFDaNAoxXHOezyIj1JsVYDDJ91UIX+hNszBKE+RXtwVjKt5hTFZ384RtpLZCKZ+vilA
+ AyuN4+bVyPqCF+9ySlC7Sw5NFduj+o0RATWTwJVBSnn++uqo11osCItQJXNZ7VqSO7B/FPLFymh
+ wkK60r73lzh24ejGo9cGtl/eYxQxgxeUpkUX1+JYUvV4RwluX3GFi+JLMmp36Xo7rMobXAVwfIK
+ YhVt838UGvv0b9xH4sagVNJicrs6hoG1yVLrCutj5p5nGu/OWTFssc8Lwn0CLrTyAw385H+yCHz
+ as7PCPZJBco9G4dMKTkBtMv/SGkmqueZ6FNGIa4fZmTPev2pwC5B7mDyNRLrWRTQpK1xMRadUQE
+ 9MmseNpe4l8LwOpZd1mkpzXoWJ8zV/qM3komKJu0VgTVLPxWtPS4oZzKnAyCVTvi2XYbZtVunWs
+ ZRS//LZ05KfGSsrDs+A==
+X-Authority-Analysis: v=2.4 cv=D7B37PRj c=1 sm=1 tr=0 ts=6a46dbdf cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
+ a=N--XFCr6TIEc_64PeIT2:22 a=gAnH3GRIAAAA:8 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8
+ a=lDpQXWjbwPG5MlIezxMA:9
+X-Proofpoint-ORIG-GUID: B6tOEC_gN4FcYNlHHE0mgIEwvl7FO4ci
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAyMDIyNyBTYWx0ZWRfX6S7I6HI3sMin
+ ypvTUk8fNgGmjT9zDrzrzPW1g+KPwu+dumeP3VZ6EhjaEQiClCPadJeHpC1yuXPFT6GXF40xTso
+ G3pN39KWDovHTinWAvBEh0bv6RvgmpdyRBuoXMbzBzA2i3Exjzxs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-02_03,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 phishscore=0 spamscore=0 lowpriorityscore=0
+ priorityscore=1501 bulkscore=0 malwarescore=0 clxscore=1015 adultscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2607020227
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319626-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:tomi.valkeinen+renesas@ideasonboard.com,m:geert+renesas@glider.be,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:marek.vasut+renesas@mailbox.org,m:kieran.bingham+renesas@ideasonboard.com,m:p.zabel@pengutronix.de,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:tomi.valkeinen@ideasonboard.com,m:geert@glider.be,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,m:marek.vasut@mailbox.org,m:kieran.bingham@ideasonboard.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FREEMAIL_CC(0.00)[glider.be,baylibre.com,kernel.org,intel.com,linaro.org,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,mailbox.org,ideasonboard.com,pengutronix.de,vger.kernel.org,lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:julianbraha@gmail.com,m:marcelo.schmitt1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:marceloschmitt1@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,gmail.com];
+	FORGED_SENDER(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-319628-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[analog.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_NONE(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,killaraus.ideasonboard.com:mid]
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3D62F6FCEF2
+X-Rspamd-Queue-Id: 78A676FD03F
 
-Hi Tomi,
+This patch series adds support for LTC2378 and similar low noise, low power,
+high speed, successive approximation register (SAR) ADCs. These ADCs are similar
+among each other, varying mainly on the amount of precision bits, maximum sample
+rate, and input configuration (either fully differential or pseudo-differential).
 
-Thank you for the patch.
+Patch 1 adds device tree documentation for LTC2378.
 
-On Mon, Jun 15, 2026 at 04:11:57PM +0300, Tomi Valkeinen wrote:
-> Enabling DSI clocks on rcar-du needs some tricks as the DU dot clock is
-> provided by the DSI. Thus, we call rcar_mipi_dsi_pclk_enable() from the
-> crtc, when enabling the crtc.
-> 
-> With DSC (added in upcoming patch) in the pipeline, between the DU and
-> the DSI, the above call path is broken as the crtc tries to call
-> rcar_mipi_dsi_pclk_enable() on the DSC.
-> 
-> To solve this problem, make sure we store the DSI bridge to the
-> rcdu->dsi[] array, instead of the first bridge in the DSI pipeline
-> (which can be DCS), by checking the bridge's bridge->type.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> ---
->  drivers/gpu/drm/renesas/rcar-du/rcar_du_encoder.c | 18 ++++++++++++++++--
->  drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c   |  1 +
->  2 files changed, 17 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_encoder.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_encoder.c
-> index db2088529b48..ac85838ab3b8 100644
-> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_encoder.c
-> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_encoder.c
-> @@ -89,9 +89,23 @@ int rcar_du_encoder_init(struct rcar_du_device *rcdu,
->  				drm_bridge_get(bridge);
->  
->  		if (output == RCAR_DU_OUTPUT_DSI0 ||
-> -		    output == RCAR_DU_OUTPUT_DSI1)
-> +		    output == RCAR_DU_OUTPUT_DSI1) {
-> +			struct drm_bridge *dsi_bridge;
-> +
-> +			/*
-> +			 * When we have a DSC block between the DU and the DSI,
-> +			 * the "bridge" points to the DSC. Detect the DSC by looking
-> +			 * at the bridge type, and skip the DSC if the bridge is not
-> +			 * the DSI bridge.
-> +			 */
-> +
-> +			dsi_bridge = bridge->type == DRM_MODE_CONNECTOR_DSI ?
-> +						     bridge :
-> +						     bridge->next_bridge;
+Patch 2 enables single-shot sample read with a GPIO connected to the LTC2378 CNV pin.
 
-The indentation looks weird.
+Patch 3 enables high-speed data captures with SPI offloading.
+The setup is similar to AD4030, with a specialized PWM generator being used both
+for SPI offload triggering and conversion start signaling.
 
-			dsi_bridge = bridge->type == DRM_MODE_CONNECTOR_DSI
-				   ? bridge : bridge->next_bridge;
+Patch 4 enables running buffered data captures without SPI offloading.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Even though these parts are somewhat similar to AD4000, the wiring configuration
+for LTC parts is different as well as the available HDL for high speed sample
+rate mode. Because of that, I propose creating a new device driver for
+supporting LTC2378-like devices.
 
-> +
->  			rcdu->dsi[output - RCAR_DU_OUTPUT_DSI0] =
-> -				drm_bridge_get(bridge);
-> +				drm_bridge_get(dsi_bridge);
-> +		}
->  	}
->  
->  	/*
-> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c b/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c
-> index aaafee1c060b..f429f03a380c 100644
-> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c
-> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c
-> @@ -957,6 +957,7 @@ static int rcar_mipi_dsi_host_attach(struct mipi_dsi_host *host,
->  
->  	/* Initialize the DRM bridge. */
->  	dsi->bridge.of_node = dsi->dev->of_node;
-> +	dsi->bridge.type = DRM_MODE_CONNECTOR_DSI;
->  	drm_bridge_add(&dsi->bridge);
->  
->  	return 0;
+Specifications can be found at:
+https://www.analog.com/media/en/technical-documentation/data-sheets/233818fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236416fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236418f.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236716fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236718f.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236816f.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236818f.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/236918fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237016fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237616fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237618fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237620fb.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237716fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237718fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237720fb.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237816fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237818fa.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237820fb.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/237918fb.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/238016fb.pdf
 
+Previous submissions:
+  v4: https://lore.kernel.org/linux-iio/cover.1782397418.git.marcelo.schmitt@analog.com/
+  v3: https://lore.kernel.org/linux-iio/cover.1781661028.git.marcelo.schmitt@analog.com/
+  v2: https://lore.kernel.org/linux-iio/cover.1779976379.git.marcelo.schmitt@analog.com/
+  v1: https://lore.kernel.org/linux-iio/cover.1779117444.git.marcelo.schmitt1@gmail.com/
+
+Change log v4 -> v5:
+[DT]
+- LTC2338 is slightly different from LTC2378 and, because of that, software
+  can't really handle those the same way. No longer setting fallback for LTC2338.
+[IIO]
+- Took internal reference buffer amplification into account.
+- Added checks for PWM parameters after both CNV and Offload trigger PWMs
+  have been configured.
+- Return EDOM instead of EIO when failing to achieve a specific PWM configuration.
+- Set single-read transfer bits_per_word so the SPI subsystem re-arranges data
+  to CPU endianness, enabling us to reuse offload_chan specifications for
+  single-shot reads.
+- Replaced open-coded check by in_range().
+- Used conventional loop count decrement pattern instead of count increment.
+- Renamed max_sample_rate_hz -> max_sample_rate_Hz.
+- Dropped error message on devm_iio_triggered_buffer_setup() fail.
+- A few other minor codestyle improvements.
+
+Hopefully, this new version shall tackle all concerns and issues raised both by
+human reviewers and sashiko.
+
+
+With best regards,
+Marcelo
+
+
+Marcelo Schmitt (4):
+  dt-bindings: iio: adc: Add ltc2378
+  iio: adc: ltc2378: Add support for LTC2378-20 and similar ADCs
+  iio: adc: ltc2378: Enable high-speed data capture
+  iio: adc: ltc2378: Enable triggered buffer data capture
+
+ .../bindings/iio/adc/adi,ltc2378.yaml         | 184 ++++
+ MAINTAINERS                                   |   8 +
+ drivers/iio/adc/Kconfig                       |  19 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ltc2378.c                     | 802 ++++++++++++++++++
+ 5 files changed, 1014 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
+ create mode 100644 drivers/iio/adc/ltc2378.c
+
+
+base-commit: cc746297b23e89bd5df9f91f3a0ca209e8991763
 -- 
-Regards,
+2.53.0
 
-Laurent Pinchart
 
