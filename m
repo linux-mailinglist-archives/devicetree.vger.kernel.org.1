@@ -1,173 +1,131 @@
-Return-Path: <devicetree+bounces-319591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319592-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id C+hYHXO+RmokcgsAu9opvQ
-	(envelope-from <devicetree+bounces-319591-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:39:31 +0200
+	id pbnnC3u9RmrtcQsAu9opvQ
+	(envelope-from <devicetree+bounces-319592-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:35:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3A56FC93D
-	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:39:30 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 953BB6FC8D4
+	for <lists+devicetree@lfdr.de>; Thu, 02 Jul 2026 21:35:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=R65Mr14a;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319591-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319591-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=chaosmail.tech header.s=mail header.b=TliEX+k5;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319592-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319592-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=chaosmail.tech;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8E33C310BEBE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 19:32:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0EDBC3024E61
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jul 2026 19:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450443905E4;
-	Thu,  2 Jul 2026 19:32:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 773E3390218;
+	Thu,  2 Jul 2026 19:35:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from chaosmail.tech (chaosmail.tech [77.81.229.115])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2D243749EE
-	for <devicetree@vger.kernel.org>; Thu,  2 Jul 2026 19:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5EB38F621;
+	Thu,  2 Jul 2026 19:35:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783020743; cv=none; b=Ovez6oDAU6djMSwE98+Kn9NsG3pdaJ3SR6vuWsVcslLzYPUKirfvpoZY+tTBlRy1YW9tX/75K9mDjD9Q6zfe1jItldXdmrZ8HygqPZMBo2gBAggtvjOTK0bnNzzrTCH/iE5HNU2ZgOHAmFDK2ZM5KsfeheOHy+TeDPzB92nxpmo=
+	t=1783020920; cv=none; b=aII8iEHj8Ck7JE4snYtypXvWSx3Zh+Y2532fLhkFsucEoen8TcXmTCy9cHXeRPTmETC+sMDnb/3ojUDN2yDAXfi7ZleXMZvsqTsyqXrrq4wCZWN4nt/ARXTXicJaf1zvC8byRWsTvbQ89eNBsjapDstvKlxforjA9tSpsvApqBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783020743; c=relaxed/simple;
-	bh=Y3myU6PC6Y/+0AUV070w4T/IlmTKT4MrSxy6LSocXzY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SoU9EUKurPy61wjjWRDBPTZ5QPcyHTe09XdTBjZfLv3CbQlgqXVwTxE7a3ZVF9XEL+y8fVpFWBtwt5Zen0sWoZa0D0Jd8q9xEIqzAzLPQXVh5r2gcv2m26m0UrfUm/UpR+z7yJOyS8Btup5o02l+BDVNNLccQw8kLwblGJf0FMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R65Mr14a; arc=none smtp.client-ip=209.85.221.44
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-474303f3c72so1398560f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 12:32:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783020739; x=1783625539; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=7qgcEW/wpSAcIIpifYaO2mjjD/biPw57/pk0Dft8EAU=;
-        b=R65Mr14aYPfKyxSUm1zLBhaYQf6Yj6CoLwN/32NCIhC/Rg/tcq/SL5MK5Mhp5NH/qM
-         Tj/3Zgu2h2qpWY3s4yIe/y4GEwa0OeY9ma95KlNIvlWJLVw2/d4nQJzP3OWtSVbDDabM
-         /uz5pwT0bKKt3MWqs9Hi/dM4rfP4UMlYmXUgYDK6vn0uPrs11tNTA3tbzD+f1Sc3vw+f
-         TCZHpXlYl2KQrvUfOxrcDMWek8gNTI9xmNgHc0votNwoKHyHlsCnHzzVNSxXhYZqx3d6
-         xdyWM0EbG6vklvg6p5U4X8axAwUYbgprWUAD/3aK+GaEqFJPGB6QAWgsWxWBaA/ZWVMC
-         +s/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783020739; x=1783625539;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=7qgcEW/wpSAcIIpifYaO2mjjD/biPw57/pk0Dft8EAU=;
-        b=ADS7Gcf4kbMbyMUlZklJBsN8l3dw3UJl0xnfEfqxIn+nQlRVv+R/OK7cSVhPYpqMJs
-         RTyJAijOwarFLenoUC7/uxSFXk61L7yqSDtNz7afynjPhK3EU/kqKsW4sXX8zm0YYG/N
-         l3625P3BLKnwCwFU2mB9bZPzC1zUWik264Al6jzCT/uBcxeDRxVkuvanck3pxPv9uGOm
-         4R/xiWC3y0BgbtBBIVMNRHi6LakDemGERs8Xm6pytcynF3XoIABsq6xU9w9BJt8dBiAn
-         JW0p70/RtX26WhDoeYf3q1Jjk+hjKmrPg2gqdX49Ws4ory4qkO9lRXeHAOWOY21dIX+J
-         WTEQ==
-X-Forwarded-Encrypted: i=1; AHgh+RpPsqxMDBV1Wk6gQn2hJtE4WDkvDQ7fhO3AvnJycnC3Z61L8FSkUOAy4e+u2IzcsMVW28Uw1d2nBxxf@vger.kernel.org
-X-Gm-Message-State: AOJu0YymQtaCXhbFIr8SkK3RSRLFtMUt5StFe/AMmzwpSvIsMH/hl8UG
-	KvT9krEHT5q97jdr8dKFA9aCF+OWEbm4KO4q/P2d8D+ukCTrOVtCAEv1
-X-Gm-Gg: AfdE7cmVtMySAhXYJWVim4yB26jXrd4sZLBEQHYyinvnh4UvOyvDthAFszsMIHwqaPY
-	tCc6gcRpFjzNK9il+aAj2lHQexjoVzqRfzucrahUqc5nVXYRJe8ZCQRvBEUkqyZWpfM9rm7nOqg
-	SSjNDlHjbzWHESU27MUdEHz/NIZabQXGrpMOcGgZwuOTUa+zsKOAqrhWivZQz/UP8EhiDZh44bQ
-	EH4xbXUe2jk5HSwrTEv+txQFCXN0g+HBDOOA1XlX9YaRBYKywTSMOn5NpCeYnhXOpRFgBsPCCuI
-	H2XZcT4TTkRFlnwSZdGhihM9Lnq+OsF44sX/j8ddEVijy6/iY9m7GnEOiRyhrsjQF0gfPuqKCSo
-	sk2HbIBQ3YvBOyjkkKC+OLkGT3TECwUfd2GNyN0YwC3gMoj416nduIay2yB0AnYYbrBCyfH6fIF
-	xowcEKklH+7JkOejQlFMVPuOM1PK369nayaLZ0V2peMCwcNXlC8Lrdu0luR3VlSbUWWFAIdfQZR
-	VjkilnZ
-X-Received: by 2002:adf:e00b:0:20b0:475:3a97:8e47 with SMTP id ffacd0b85a97d-4775918fa48mr8502412f8f.29.1783020738996;
-        Thu, 02 Jul 2026 12:32:18 -0700 (PDT)
-Received: from [10.128.11.240] (195-23-151-163.net.novis.pt. [195.23.151.163])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-477dd94ce4csm12070471f8f.17.2026.07.02.12.32.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jul 2026 12:32:17 -0700 (PDT)
-Sender: Julian Braha <julian.braha@gmail.com>
-Message-ID: <a0cee001-7bca-438a-943b-da28528e7df7@gmail.com>
-Date: Thu, 2 Jul 2026 20:32:16 +0100
+	s=arc-20240116; t=1783020920; c=relaxed/simple;
+	bh=Kj18O54fK1pbDk2eoxrRJzyCFomk/x4UshRjF1lmSjI=;
+	h=Content-Type:MIME-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=LwooR3RvdKnvVt6LbPYG+g39eznHCblhB3JJtIHq1pR/5AEuRC4uZG0tCoypO1TsTa0smAbhCRTz84LH2e3eK1NTUbSlPVoj+MPmzx9dXbRpJn/jbuvWT4M7FcUfCrgSxZrf13RcSH+G/Nm3OYfSA+vbNE7eJBl2BnSCV8+dfiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=chaosmail.tech; spf=pass smtp.mailfrom=chaosmail.tech; dkim=pass (1024-bit key) header.d=chaosmail.tech header.i=@chaosmail.tech header.b=TliEX+k5; arc=none smtp.client-ip=77.81.229.115
+Received: by chaosmail.tech (Postfix) id C7EB21C888A;
+	Thu, 02 Jul 2026 19:35:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chaosmail.tech;
+	s=mail; t=1783020916;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Kj18O54fK1pbDk2eoxrRJzyCFomk/x4UshRjF1lmSjI=;
+	b=TliEX+k5ea3vKtsVz0nJMU/ZYYQuehaNekOASgLfittsbS+fidYCkYblpCH5eQa9+hvMki
+	t5EFWBF+dIIqls2s8jeCCzcOl9GzYdGttmSyrDyY7LSzqMShJnemV1wrzPC/loe9WcvhG2
+	rMs3IrWYjRAVmw7Fq7AEYQVlxbPxUE0=
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/10] HID: apple: Add DockChannel HID transport driver
-To: michael.reeves077@gmail.com, Sven Peter <sven@kernel.org>,
- Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>,
- Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>,
- "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Jiri Kosina <jikos@kernel.org>,
- Benjamin Tissoires <bentiss@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- iommu@lists.linux.dev, linux-input@vger.kernel.org
-References: <20260630-apple-mtp-keyboard-final-v1-0-506d936a1707@gmail.com>
- <20260630-apple-mtp-keyboard-final-v1-8-506d936a1707@gmail.com>
-Content-Language: en-US
-From: Julian Braha <julianbraha@gmail.com>
-In-Reply-To: <20260630-apple-mtp-keyboard-final-v1-8-506d936a1707@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 1/3] dt-bindings: soc: apple: Add bindings for apple PMGR
+ misc controls
+From: Sasha Finkelstein <k@chaosmail.tech>
+In-Reply-To: <20260702-kitchen-census-d79e1abb9f36@spud>
+Date: Thu, 2 Jul 2026 21:35:05 +0200
+Cc: Sven Peter <sven@kernel.org>,
+ Janne Grunau <j@jannau.net>,
+ Neal Gompa <neal@gompa.dev>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 Content-Transfer-Encoding: 7bit
+Message-Id: <3B16D291-0C5D-489A-B8F7-60ECCB85141E@chaosmail.tech>
+References: <20260702-pmgr-misc-v1-0-4f075a3a95c1@chaosmail.tech>
+ <20260702-pmgr-misc-v1-1-4f075a3a95c1@chaosmail.tech>
+ <20260702-kitchen-census-d79e1abb9f36@spud>
+To: Conor Dooley <conor@kernel.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[chaosmail.tech,reject];
+	R_DKIM_ALLOW(-0.20)[chaosmail.tech:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-319591-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:michael.reeves077@gmail.com,m:sven@kernel.org,m:j@jannau.net,m:neal@gompa.dev,m:jassisinghbrar@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:marcan@marcan.st,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:dmitry.torokhov@gmail.com,m:jikos@kernel.org,m:bentiss@kernel.org,m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:iommu@lists.linux.dev,m:linux-input@vger.kernel.org,m:michaelreeves077@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,jannau.net,gompa.dev,marcan.st,8bytes.org,arm.com];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-319592-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[k@chaosmail.tech,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:sven@kernel.org,m:j@jannau.net,m:neal@gompa.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[chaosmail.tech:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[k@chaosmail.tech,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,chaosmail.tech:dkim,chaosmail.tech:mid,chaosmail.tech:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CA3A56FC93D
+X-Rspamd-Queue-Id: 953BB6FC8D4
 
-Hi Michael,
+On Jul 2, 2026, at 21:18, Conor Dooley <conor@kernel.org> wrote:
+> Are t6000 and t6020 the "certain Apple SoCs"? I assume so. The bit about
+> "existing SoCs" is confusing in a binding (although it would be ok in the
+> commit message), because you run into language semantics that imply that
+> this sentence is about devices to the ones you're addressing here. I
+> think you can just do s/. On existing SoCs//. And add an s to the final
+> "state" to make it "states".
 
-On 6/30/26 13:54, Michael Reeves via B4 Relay wrote:
-> +source "drivers/hid/dockchannel/Kconfig"
-> +
->  endif # HID
->  
+t600{0,1,2}, t602{0,1,2}, t603{1,2,4} (no upstream DT for those yet)
+It is kind of a long list, with most t6xxx ones on it.
 
-> +++ b/drivers/hid/dockchannel/Kconfig
-> @@ -0,0 +1,15 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +
-> +config APPLE_DOCKCHANNEL_HID
-> +	tristate "HID over Apple DockChannel"
-> +	depends on APPLE_DOCKCHANNEL
-> +	depends on APPLE_RTKIT
-> +	depends on HID
+> "dcs" means memory controller then?
 
-APPLE_DOCKCHANNEL_HID has a duplicate dependency on HID,
-since you put the import for this file inside of 'if HID..endif',
-and then also gave it a 'depends on HID'.
+It is memory controller related, unclear if this covers the entire
+controller or a subset of it. The name comes from Apple device trees
+and macos kernel logs
 
-- Julian Braha
 
