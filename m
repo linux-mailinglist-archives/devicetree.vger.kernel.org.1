@@ -1,163 +1,232 @@
-Return-Path: <devicetree+bounces-319731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319733-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Q1fGDCkgR2ogTgAAu9opvQ
-	(envelope-from <devicetree+bounces-319731-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 04:36:25 +0200
+	id /8SaNQglR2q/TgAAu9opvQ
+	(envelope-from <devicetree+bounces-319733-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 04:57:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7BB36FDF70
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 04:36:24 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8AAF6FE04A
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 04:57:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qq.com header.s=s201512 header.b=GSIGmCO8;
-	dmarc=pass (policy=quarantine) header.from=qq.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319731-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319731-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=RBS5G8Ci;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319733-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-319733-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EBEA03027353
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 02:36:22 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0A4DA300E148
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 02:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 415BE26CE2C;
-	Fri,  3 Jul 2026 02:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3669264A97;
+	Fri,  3 Jul 2026 02:57:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from xmbghk7.mail.qq.com (xmbghk7.mail.qq.com [43.163.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF2A2367D9
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 02:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B295D241CB7
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 02:57:03 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783046179; cv=none; b=azejJCmCd/mj73TqJeWRpDTpCKY5jDwsXFOXFLyvIsZ09Yh1rYJyOvBCqYlImqMZf3SyagCrmjgZOtZex7ZT/sh9rtzrJ8+4jS0lkxxUJHsuRpnJir2S+ZBUB4FA+9BnbvvwCCyC/g7RB791eunQDYMRL/HIpv9p2Q01VJXMkBA=
+	t=1783047425; cv=none; b=TvSjdagjGb80Vz+MmdY/HmRpehu7FY1Z1d4HLpIO4624dpMdhkWvB4F5+NWa7UP2bnWmWVwwCqA0Smkbl9Jwcl9a4oZmVCYw5Idkm/pw/eN8c/mpO/nK0du+ugukDyTdXAGDcZ5+8IKjObAMuiWs/Ngmad9aQOcc0J/jlqy727Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783046179; c=relaxed/simple;
-	bh=DX+szNrz7DTLcMXoXNU6DNJcfUI4KfQcHuk1pG+QKxw=;
-	h=Message-ID:From:Date:Subject:MIME-Version:Content-Type:References:
-	 In-Reply-To:To:Cc; b=vDld4+HOsRea9YRbisfBbaogRh7F5+h+NNtSfxSbEfJzH3vnabq4VAiUksuyLJzBFtKEZ8t0+pdR2QwrckaWH7cI13edoTjS6w+ga76z8zfFSgwgd4CJn0ShoDApb8RUZiomkyJOd69pzf8H8F+yPZPc95A1TH19hY42/N9BVHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=GSIGmCO8; arc=none smtp.client-ip=43.163.128.44
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1783046169; bh=L3LDk1ob8lSeDF4p3l0ihZVgutygUEgJnbVoCOXhudc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=GSIGmCO8NrFD01myEZK7Vo3+ONYV7j1M37+dBwVrKuHytVvyQonhwgGK1pgjUX9uv
-	 HNYqj2xOgOfrHAkpORV4PAwcIGbewqLkKZHbEl4tKAiUMd7XzlRhiFLerqxYuEPBQT
-	 D0UXkCc2ImU5mrhRzCKdPZkg9SXOUCT4/S6jyxt8=
-Received: from ubuntu2204.localdomain ([218.4.149.66])
-	by newxmesmtplogicsvrszb51-0.qq.com (NewEsmtp) with SMTP
-	id 8F90EEF9; Fri, 03 Jul 2026 10:35:57 +0800
-X-QQ-mid: xmsmtpt1783046165tfo4bxydx
-Message-ID: <tencent_3FF37E324D5F34D332BF096C2341017F8808@qq.com>
-X-QQ-XMAILINFO: N/WmRbclY25GcbFfHdsLffU7Siw2ZiY/P2ORHWlQiVIR1pAkU8CRL1iOj6uwkh
-	 w7256vShoYbcC/jg8Srd4eppUn+BEeKw49YWU5j0aYBGCBqYYNsmIoayh8MK4RRNu61PT5eHzQPf
-	 5aADoAhNlP8Cwf85aDvGhj209TL/mVmn6LOK4kWDROncpYUXojFwQRBcUWgvgmGngyQkVzj3oiFK
-	 EIylRzFQGQRbmn3IJajE0cL+mmWq4Zyjcg3a9xPjwtTHrBg81Uy3BKYKpLRgJqJZoku0H5q0o6IO
-	 fxhe50xZJ3kzga0+V4i0JfeEytZK4q/0U5DjTVkMmvYBhD+43wzNJzCWjghRGKOz+muMZfZ6K5JT
-	 +50Tfkob7N5MDQ+x1DhvxS4Y2+r8XtUsyUMC9jOyD2t3WJgrVkrHtS6eRFYGHm5vFrgKGkg42f/m
-	 qYpVK7rcZSh74HvJa1Cp0hlm3SSnghe2U0saeIGQAsLUjnovzT7beHkKqgagi5/ESKPFm7ZU5O5h
-	 xHGwEgF6coPM2H1nla03ilBHMMlMO9jrPU7kfUHXNul3P5X+dA0tiWX2YIpq3sTfNkWWiZcqb5Ko
-	 6hKzWWkYaXpL7lP2fR0CLzsq+lYg1QfSDth4uhuuWfNbSGnbrG5ZDqiQG94013Wbh6NNf6hPHiYg
-	 lucrSf+zfxOC0eJPgxHPE6yxOjOGGyi1oOLLH/QSCOPnuQJrF1XErNNUwFSNuKbZ6PQ85434zK0z
-	 7skNl2slV8BSlrX3cPQJgThLEVKMv4BkB6xo2016ug1iwTDQH8oepk2yC4ReEX3t5MwUbm56W70E
-	 TJjrA8eTdO22zy8dtffehF1oSHBkqVaEa7rpceaUkwbE3c62X2DL1m/EuPPkraZ289OEZeS8MtKo
-	 E5U/E9xbhAQrjHxAe4qS5mrXbL3OwSobTGtQ+xaIUQ3IACRwedBTv25cOvkj0Xay3IUvuKhg1UJW
-	 kLhVRA+pGRf4j9rPDUbm2Yl48ZvF5c/3zOUIcVb0oSSXtw13/d0ZE+9yuwhDhdRStoam9AT0eJNt
-	 UvBiKjdpbABAzIy3dRx9LpnXCAfOkZtvnwmFNrncFQaoab+W74VAE1m9X0ScOSABdrGBQVoNySPs
-	 Y2tDzBa0GeJFbKx2oxrKybZBbIpQK6VBF7AfxT
-X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
-From: Cunhao Lu <1579567540@qq.com>
-Date: Fri, 03 Jul 2026 10:35:43 +0800
-Subject: [PATCH v3 4/4] arm64: dts: rockchip: Enable CAN controller on
- RK3588-Tiger-Haikou
+	s=arc-20240116; t=1783047425; c=relaxed/simple;
+	bh=IsERjZASmoVoV1lYOdhQ8tqxvr21ky0zobJZ277IM2A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L9nQQEoHaXNBz6V1dWECBSKC3B86Z2w4npOW5RxLEEcdjf5JKkdLrnLx8TaYWaAOoQkT/1237mFnNev1IGrY8aZQu1xxcqjkqgN99H9cYE06csiwTRPnQIPAXR7zSqV8JyX8xWyf4XtsTnDbzd8IwaQdbhYsmvMugVzkEp5IHQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RBS5G8Ci; arc=none smtp.client-ip=209.85.215.179
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-c95d0a54ea5so71510a12.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 19:57:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783047423; x=1783652223; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JlV3zJ5RwhKne2jUh8CcjrZlF2RdUTEpohrGS1TCb5w=;
+        b=RBS5G8CillKqu/Cpoawv+Lt+EExiFWvpLQqd9w7AkzDXUcYPw2ON4uBj1+Gw4QTv+D
+         FYkSWTJoncNVo1EQupI2P47mEdk03XpiHX5aOWpmRJbsVMImOD11l7j5VGmPoR2fc3/+
+         ShfdlpYm46TruxBMoaDQJr1MYmyZErKcXdte7L7VObvNo0n9PcNPBR2TR+oSAsqn+bOq
+         xGnmtYR7p2RdPoaaRLOik7Liyog3mysD50uO5lsj8PdWf/QDh42fWPDhgYhMW7oTGhJx
+         HYTJB1GqgBF5rcvA/5JtQdEgBRjrH3G26brkNRSucceDN/Gs6RCK64ys5mbPyr/nO4yl
+         JpxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783047423; x=1783652223;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JlV3zJ5RwhKne2jUh8CcjrZlF2RdUTEpohrGS1TCb5w=;
+        b=TwdR2URHNotxecCZSufDD2O0MHLyjWt05l1Rwpg5+0onVq6pDsDwptl884Pb5m09so
+         uhPrB1+2ly6Et48ryUy5WzW09LiF34P/mEoG5D5gkJbijUXUqk4kgXkbGDuJAZSOGcW5
+         vHjIWpvWSttYOtz5+6E5rWhVhXl8ynbw87AIR6/aAtqKp8TAx2G3rjPOU7nGRT1hckES
+         AimTri/Xqkdczyei2W2L/2xAz4r91P4UJ5wkeMCuPuxeGZTX2Rl7+xtN6k3eiUXhjP/s
+         2Gtwyzlf4+DqwkMzMk37u59qcd2HT7bLEMVKi6VqR40Dvh6N7HoVmmqd3GMo8UxYB7gZ
+         905Q==
+X-Forwarded-Encrypted: i=1; AFNElJ+C7HGTIYTUZzqS5BpzWnMfffpvwPM5UWOsSUliu9pSYRlhfDFaG7Z589mFi6QWKTUy4JHrqMXbW9Tf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxejbFrkAxPTleijPyBLW4LArpLU++n5fioJn6eAnmuLtT8mFPi
+	tqG2dUG9Q342QJ6Q7/D4eITkBpbs1Oo08OVT3KB5g0fTuvRnVTVnstvv
+X-Gm-Gg: AfdE7cl4MsMFUn1xhkmPv/ZkAzs3QkUXbwSdlURnptgX6qNd8N/s3JUdW/DJj8zsb3K
+	6qsJbKPSDOl1LiSGI9KvL/2ud3oDxqJ8eGuO+h0WrFYkDzU5/dIniUhM67l4uGykWNRkVVqb3cL
+	+IoNqRxeI9xwL0f3qzO5+f0fSsUwMKTR5h6BnOGFwcSv5txDyly0kdGMKmJPBy1URnGrUDD33nE
+	a7GbHA6I18v2WXSpj/ngOs7YTyNF3fnUnA7tRkie6FtWwfEoz7pdFI+xRLPYgijdQ7axuGWQuZf
+	tTbrGIxDmKUwrZT9L2cvqYbfr1K3b+zJITLkJ1t8cwzTpwShQKnD7s9vRBSjheYgUIfgkzIuG5n
+	t80sDbd6mV8MLIONFKynetaDXfAM7pG+OYt3/qCzIMgkNJLaiOA6V4zWi11ib6TH2m6Q4E3Nnoc
+	gculDQIrl+2JzpBTZlmf4NBcfGVk9mPeQntehgA54dyj2WKwn68ah7v0p9D+k=
+X-Received: by 2002:a05:6a21:4516:b0:398:9379:d04d with SMTP id adf61e73a8af0-3bfed22ecacmr9856159637.24.1783047422829;
+        Thu, 02 Jul 2026 19:57:02 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:1b3:a800:5116:5334:8739:4661:fde2])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13b3c7fa65asm14645620c88.6.2026.07.02.19.56.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jul 2026 19:57:02 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Fabio Estevam <festevam@nabladev.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Fix rk3588s-roc-pc audio description
+Date: Thu,  2 Jul 2026 23:56:48 -0300
+Message-ID: <20260703025648.180135-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-OQ-MSGID: <20260703-master-v3-4-6d56de6fd2f3@qq.com>
-References: <20260703-master-v3-0-6d56de6fd2f3@qq.com>
-In-Reply-To: <20260703-master-v3-0-6d56de6fd2f3@qq.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>, kernel@pengutronix.de, 
- Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Cunhao Lu <1579567540@qq.com>, 
- Heiko Stuebner <heiko.stuebner@cherry.de>
-X-Mailer: b4 0.15.2
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qq.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:mkl@pengutronix.de,m:kernel@pengutronix.de,m:mailhol@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:linux-can@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:1579567540@qq.com,m:heiko.stuebner@cherry.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319733-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:festevam@nabladev.com,m:stable@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[qq.com];
-	TAGGED_FROM(0.00)[bounces-319731-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qq.com:+];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,qq.com,cherry.de];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RWL_MAILSPIKE_POSSIBLE(0.00)[104.64.211.4:from];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qq.com:from_mime,qq.com:email,qq.com:mid,qq.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A7BB36FDF70
+X-Rspamd-Queue-Id: C8AAF6FE04A
 
-From: Heiko Stuebner <heiko.stuebner@cherry.de>
+From: Fabio Estevam <festevam@nabladev.com>
 
-CAN0 is piped through the Q7-connector to the CAN-Header on the Haikou
-base-board, so enable support for it there.
+The rk3588s-roc-pc ES8388 codec is connected to the i2s0_8ch audio
+interface.  Use the matching I2S0 MCLK output for the codec clock
+instead of I2S1.
 
-At least on RK3588-Tiger, the CAN clocks default to 99MHz, limiting
-usable CAN bitrates without skew. Errata documentation mentions
-300MHz as the default frequency on RK3568, so replicate this here
-to allow more bitrates.
+Using the I2S1 MCLK can leave the ALSA PCM running while the codec has
+no usable master clock for the active audio path, resulting in silent
+headphone output.
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-Signed-off-by: Cunhao Lu <1579567540@qq.com>
+Also make the CPU DAI provide bitclock and frame clock.  This matches
+the active Rockchip I2S controller side and avoids relying on the codec
+to drive the bus clocks.
+
+Route the headphone output to LOUT2 and ROUT2, matching the old 5.10
+BSP device tree.  LOUT1 and ROUT1 are used for the speaker route there,
+so using them for the headphone widget can leave the headphone jack
+silent even while the ALSA path is active.
+
+The old BSP also used hp-con-gpio on GPIO1_A4.  Model that GPIO as a
+simple audio amplifier so DAPM enables the headphone connection when the
+headphone path is active.
+
+Cc: stable@vger.kernel.org
+Fixes: 7f9509791507 ("arm64: dts: rockchip: add DTs for Firefly ROC-RK3588S-PC")
+Signed-off-by: Fabio Estevam <festevam@nabladev.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../boot/dts/rockchip/rk3588s-roc-pc.dts      | 23 +++++++++++++------
+ 1 file changed, 16 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts b/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts
-index 873fbeb8daa1..6273e695b039 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts
-@@ -155,6 +155,12 @@ vddd_audio_1v6: regulator-vddd-audio-1v6 {
- 	};
- };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
+index d534d662c40f..99853880aaac 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
+@@ -23,16 +23,19 @@ analog-sound {
+ 		compatible = "simple-audio-card";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hp_detect>;
++		simple-audio-card,aux-devs = <&headphones_amp>;
+ 		simple-audio-card,name = "rockchip,es8388";
+-		simple-audio-card,bitclock-master = <&masterdai>;
++		simple-audio-card,bitclock-master = <&cpudai>;
+ 		simple-audio-card,format = "i2s";
+-		simple-audio-card,frame-master = <&masterdai>;
++		simple-audio-card,frame-master = <&cpudai>;
+ 		simple-audio-card,hp-det-gpios = <&gpio1 RK_PA6 GPIO_ACTIVE_LOW>;
+ 		simple-audio-card,mclk-fs = <256>;
+ 		simple-audio-card,pin-switches = "Headphones";
+ 		simple-audio-card,routing =
+-			"Headphones", "LOUT1",
+-			"Headphones", "ROUT1",
++			"Headphones", "Headphone Amp OUTL",
++			"Headphones", "Headphone Amp OUTR",
++			"Headphone Amp INL", "LOUT2",
++			"Headphone Amp INR", "ROUT2",
+ 			"LINPUT1", "Microphone Jack",
+ 			"RINPUT1", "Microphone Jack",
+ 			"LINPUT2", "Onboard Microphone",
+@@ -47,11 +50,17 @@ masterdai: simple-audio-card,codec {
+ 			system-clock-frequency = <12288000>;
+ 		};
  
-+&can0 {
-+	assigned-clocks = <&cru CLK_CAN0>;
-+	assigned-clock-rates = <300000000>;
-+	status = "okay";
-+};
+-		simple-audio-card,cpu {
++		cpudai: simple-audio-card,cpu {
+ 			sound-dai = <&i2s0_8ch>;
+ 		};
+ 	};
+ 
++	headphones_amp: audio-amplifier-headphones {
++		compatible = "simple-audio-amplifier";
++		enable-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_HIGH>;
++		sound-name-prefix = "Headphone Amp";
++	};
 +
- &combphy2_psu {
- 	status = "okay";
- };
-
+ 	chosen {
+ 		stdout-path = "serial2:1500000n8";
+ 	};
+@@ -327,12 +336,12 @@ &i2c3 {
+ 	es8388: audio-codec@11 {
+ 		compatible = "everest,es8388", "everest,es8328";
+ 		reg = <0x11>;
+-		clocks = <&cru I2S1_8CH_MCLKOUT>;
++		clocks = <&cru I2S0_8CH_MCLKOUT>;
+ 		AVDD-supply = <&vcc_3v3_s0>;
+ 		DVDD-supply = <&vcc_1v8_s0>;
+ 		HPVDD-supply = <&vcc_3v3_s0>;
+ 		PVDD-supply = <&vcc_3v3_s0>;
+-		assigned-clocks = <&cru I2S1_8CH_MCLKOUT>;
++		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
+ 		assigned-clock-rates = <12288000>;
+ 		#sound-dai-cells = <0>;
+ 	};
 -- 
-2.34.1
+2.43.0
 
 
