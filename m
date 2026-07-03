@@ -1,125 +1,123 @@
-Return-Path: <devicetree+bounces-320148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320150-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6SBSBeu5R2r3eAAAu9opvQ
-	(envelope-from <devicetree+bounces-320148-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 15:32:27 +0200
+	id jtpaCwa5R2qzeAAAu9opvQ
+	(envelope-from <devicetree+bounces-320150-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 15:28:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95633702E52
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 15:32:26 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD45E702DC3
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 15:28:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chromium.org header.s=google header.b=grWpVETA;
+	dkim=pass header.d=chromium.org header.s=google header.b=KJrt8HfN;
 	dmarc=pass (policy=none) header.from=chromium.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320148-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320148-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320150-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320150-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A5E023079A2A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 13:20:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A32E13038A91
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 13:26:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 481493D7D7F;
-	Fri,  3 Jul 2026 13:20:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34D8A3D7A07;
+	Fri,  3 Jul 2026 13:26:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
+Received: from mail-yx1-f47.google.com (mail-yx1-f47.google.com [74.125.224.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583AC3D6484
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 13:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480623D7D7F
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 13:26:08 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783084817; cv=pass; b=j3u+vIEPX7wdrmzK8BgMRv/9QR8n6hdxqLwi6qsCrrkyDIIvVetbkA7caVY4h5wNuCq7LvhGm1HMYYsNk8FjpemlDc5BXuI5cFAfQkYtWfIuK6oRFmI9bAb0BikIQQdpTUBUhoAPS9JjbCdXuQURLqfePwKFjd6T4sjkeNghrpc=
+	t=1783085170; cv=pass; b=jCtgyiEydSTk9E4OlfQufDORe0n5u56N5koYvV3fX2Ua6diYKdOA3BH6jnW53P5kYJ7WG28u1pzdTBKiP5wQmqcUhqKcgj/05oFDhSGyM6drsuj3e7dUBfTiysgbABoGnI1+UnvhkzFkg4lbCc9H+OKRzUVINbUHqITuUxTgqjM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783084817; c=relaxed/simple;
-	bh=BQD5gv36YoN9ZGBbl8CZ1ceMTLNRoJhvy7PP72AjYTM=;
+	s=arc-20240116; t=1783085170; c=relaxed/simple;
+	bh=P4zhLhFMp7O4gmnRm5uDgMPugvo8rGAGH9W/oNg9Rsc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pJLfb/VIBqaBK4JN8/pNbe8Qr0Z4ZpUkP61l1vM7MKWja7rvNL4L++fG9jgw9m6AyVuGqdFoqCSeaQ1xnDfQrK1ktv1O9SmFX6Ph7ffrWtRSj0osjfUvtw8alX1oR1iJb/OF3AI/T2X48F+HI4lmQ9ZgyVDH87PLw1gqOk4fuUU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=grWpVETA; arc=pass smtp.client-ip=74.125.224.42
-Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-664c535f1a0so762243d50.1
-        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 06:20:15 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783084814; cv=none;
+	 To:Cc:Content-Type; b=q95s6ja7ZB8SGSx92IAmZQ8IxUr0zeVNHdIV+2huIhAVXRm8XmS2g2E8VPLHNHtbANJnQZXyHzm8JNaeu0Xwby6HpgdyGaXV0EwwFsMCQej15prXiGMziEN1/XUudZeOwJWF6C7p0gOaLwL/KgALhI3Ebe/yurFeYqsngxAsvNE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=KJrt8HfN; arc=pass smtp.client-ip=74.125.224.47
+Received: by mail-yx1-f47.google.com with SMTP id 956f58d0204a3-664d35b4777so659805d50.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 06:26:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783085167; cv=none;
         d=google.com; s=arc-20260327;
-        b=b4tbXX9m68snthq4uJKPlKoUpMAapGB0hmu68AOAUEmvfUxD5Y34gwfxKwQHz/uwQJ
-         2tu2SXM0vcYJfiYNACpQF30itgIF7qVmAc1lz1xh1agHTfCeTjaF+Q6LAGtNIHRr7PGZ
-         b0OPFbFgMOiFTpFkf755l04HjOIUw0eqgN2hT7X4hthIU73etPkX0f3vYSp+HdkmfuB5
-         CJMlAbMKtYhkQAtEFHiEI24CGhdFto324nqzWAs8fEjsphybcETQSBCrKZreTFPen6MH
-         YZOIpNGe79iZxL/FZXfFOc2WJoq2uNPZfgX/lKDjUvngNsLY/FmlZN9vRTgSy5axFa3n
-         Wt4g==
+        b=JvWR9c4iuD0PU/y36kUps4YRI7FglURDdewQ4wiADWuAcypmlSebYaoo4VgdUVMESW
+         dUZlp25e+Cr6DCfIV6PeE1iDTLDW2UU6nsG8O7U+wOkB9GGcdek+lpDdl3HcToaI5KLN
+         qZ469Yeskvhw7r3b/TszVjKHyTR+6wP5uTzPQTs4s/VKIkKJl8DJC01SDmxbEFcjD7Bo
+         prA2hBTsk6o9AbQx8EngGYIzFPug/NAM3Dr5agwBMl/1NfNDl04DsrAZXIB7oZ4nT5lx
+         UQRhEfrvF8ZT3KnjramDtYvQTmKSRBQX7xLOiS6bM+QzaLcQHPhBeDhy0dwrTKO1rjoa
+         A9Uw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=BQD5gv36YoN9ZGBbl8CZ1ceMTLNRoJhvy7PP72AjYTM=;
-        fh=cwzQ9gCJDpCY5S5bHSY93IwTV4xaNoTQhfpEeqjnBkM=;
-        b=k/kmyryEbm+fn/Kp8fsfaZTMDfCQZy1L2nVH8DtuHABXXSPKlgXZIt8Q0eugJ5aY/M
-         m5gRNb5bchNPOzU9h3I784YMSnA92xHdRUd/aXtNjBVN2Tvk3kNOJYxEKDN6vFZbHZCz
-         5i7bg6asZkw5G0sd64wEuQaikfblseqFCWXsgWCaScILkDkdGX601ECaAybGWhjQP7+S
-         sH0EOJbuLL+2l/JWlKRnUz1sgmgXLpQp6fw5opbVAmajC+HvJwu8k5zVgg8qqSxgrd+b
-         Jgzn/T5GQ31zSkxFME0kRpwcJMkVYs/VuBQYVV7Vm3vOAATAtNo5lkxyy6xAmZni8biy
-         iHQg==;
+        bh=P4zhLhFMp7O4gmnRm5uDgMPugvo8rGAGH9W/oNg9Rsc=;
+        fh=MJLO7yXTVXbU/XTONd/kUwXYwJnuDOFhtZkGmpjm7tQ=;
+        b=ZfLCP/LN1noAZ4ljEPy4D2QmtW6/XLoafjhS9IvG/oPcQLq2hQQNmY3zntSwNmCSSh
+         KGSABDU+W515gPlWyxWc30W2elkF/xDm0eoVCFPDqsBdxYYl7DT6bn+LwTqNrkx5SlNb
+         PUAdUIw4tlTH7OlJ129u7G7rmemjEY5Jv1rBa92jm99W0FpTtyT0uckCUAeDvVc8Mf9A
+         CsaZ795ezm+MTeBjvR/L0a9TYbpPXsMGIep5J/O/r3BXaNql72AL0a60Gc9vISJ/IcQV
+         V55hrcjufXKSoXRJg47bm5xq8yJBIzE/cuzIDyQgMcLi2x72b6Lxz6UVkc3j1GgcNNL+
+         /Mhg==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1783084814; x=1783689614; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1783085167; x=1783689967; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BQD5gv36YoN9ZGBbl8CZ1ceMTLNRoJhvy7PP72AjYTM=;
-        b=grWpVETAw3jDMmUy3XPnUGOjR8BcA4jyfVk14MFE953+F1914LoGY5rwA3Ge8NZuIE
-         7GcRD4+VXwKna3rqHOPliBMs5HWA4GJVOYeQwRl48oHFyGMaDoiBQQ4jxnh2KgTL19Mu
-         DTB/K71gdvc4rjOGt/blrp0IXyUNL2x51yQPs=
+        bh=P4zhLhFMp7O4gmnRm5uDgMPugvo8rGAGH9W/oNg9Rsc=;
+        b=KJrt8HfNHAIjRwl1rngsaRwQF/9FG/CBUQfLIs6l/S0TOIfaVompOtGsf8X3bPYz2D
+         RpHkamXeIR2v+GJi9wvXvM4EG3fqa1ExPuTLfmCtACLkWQ1SQRgq8Jnf8+Y6no5X9ShD
+         3ZnIRWkysCQxSmaWU1XoTY7M6QhPv0auFgUNY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783084814; x=1783689614;
+        d=1e100.net; s=20251104; t=1783085167; x=1783689967;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=BQD5gv36YoN9ZGBbl8CZ1ceMTLNRoJhvy7PP72AjYTM=;
-        b=TxlPhAUFeOTWJTpfPhblSpjmTnbBcr5HwLteafqrmeh+Jvy6t6UBZESlCjCcTjRULC
-         DLKXCVgL4mWwXUNfRnl7WY8bVZQB827DKJLB7IEfVilJzVCZBIACOOCZ5TotxYqHpqYe
-         n0CEBZA0aOmYZISnMv1Q+zJri4GqirCKGhPZcE1X673qJJqFEVj/jJlO9hIA2hRE7l0S
-         LlF92H2kCUpsilx7wT1JiYgWOPlQLMaG55aXSLDgw9JMlxOOeTSlD9Pb6qiuZQ/QcG40
-         fNNBe2v7042J+exk8qHyZJw7C5oN3YrpL9TlP/Rk+VzcCfpfWYNTeuUqQVYs57QsGz8v
-         aIMQ==
-X-Forwarded-Encrypted: i=1; AHgh+Rry33nxj/hGOkBNxapIlNoJm8IIQo7/x9S0vWc1pM1LhB+AJbvEjEBWpyMTm3gbfQb/ErLFW7fMdPWK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzxkc1C6nCxd6fY22zCWcnIf9R/peNQnwSYjx2hrq29/vQ9+Oge
-	ri0wLtOYQ2ENEmJoJuoY/wKdP4RrBl56GlWn+pc5xI/D7z1ic02sRnGTRaifV4mDLSerKi1Nr3t
-	tewdqudTRZ9l6Zh0ioM776hB22JSiwMhVR3L+B195
-X-Gm-Gg: AfdE7ckYzmTDcgxNDLTvUKUZes6JKL+UU1plY7cnf6Q5eBjHjabSMPuBQHqzRJRFKqa
-	3jbdrrb2kxX80ortts1uRJtvXnAHINprGmAaunvYzMNCizr6m+rCsaLTo3JLmhH/HuNNy8cpPZy
-	ejSn10sqVpcxJz1858liab0UcAO7wBlt79SlBNj/9CTtjvZRDBpGrsKzrvoaWGApcszuuc9O833
-	48ClHILOrPDUtJo1LLiGMmFZcM1eVEDOJPCmtpWcppJq8TfCcBhY9iXs06SC237WCmldce0W0fY
-	uM7hDZIxd6/F7UBmOtmXCbuIbU0=
-X-Received: by 2002:a05:690e:418a:b0:664:ae6a:e9a5 with SMTP id
- 956f58d0204a3-66521d54781mr9923763d50.75.1783084814296; Fri, 03 Jul 2026
- 06:20:14 -0700 (PDT)
+        bh=P4zhLhFMp7O4gmnRm5uDgMPugvo8rGAGH9W/oNg9Rsc=;
+        b=gI27pL9CtthM2xuPiwzIrDLDW9Fp7md+kGWtsMWsTGuHmrbGWk/Foowx46XinZofVh
+         OdiYx6Xz9SNmGnIhA871somRbe00YElchvbgHQYJbfNO/Z5WQDj+6Alhpbd8X4McOTwC
+         fl5iv0KnGQBdlFtb+9gBH62TfpOG+6UjGzutosZMmjR9JxQ8GlcdUVuJM6yNsAgYYkF2
+         d0eY2yBpPiqyabqHPJMfeZgNO+x9B39i5LV+jZ389HXNIJNIstaAoz5dAcY7JANmKpYq
+         KFLUgWUmn/zSmqGwHgMUOSjb0/yvvzADI8k4JWTXz0DKbAEq9H7WPUh+0+i+JST24lnu
+         sVxg==
+X-Forwarded-Encrypted: i=1; AHgh+RpwYWTAnTnvY5TQFpNzCVy0iWACZ7L3PBPNmEbxRT4BH3vyQj/gHby4dzWOAwM/Y0eytoImWkzC7okQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTFjlBxy3qGCYSA6swluQCJgiyl3pr/Kgx/VtGGD5ClBQs3yf+
+	IirB2N/XaCiFpIBSYD2at8dqd4dnTMd+dnV1lmYufrSs3tyvpvlHxpJ/OP9VfqK5AXSVAeCUKrw
+	M9oZPHK6ZdTNXB9MyZN+v0JSb2XNcY2P94B/yEPNI
+X-Gm-Gg: AfdE7cmV+BpKcm/DRijTss0H0MeWRH+afOiHoIxYin8X8cccujtemIR8r5IoBc1uTSy
+	xS5uyGeCKqwbkCdg5+joByiCzPGVSBxN0vPGf06u64E4Kt5aNGErPOeacIIGILeCt0A/lKZ6Etr
+	E105zRShAkU6MixRe/17zyBiEpVp9Iy7Fu665F7j/Wlu+9mNRASpUVVMge1yllWGZl7jsCMhp48
+	SrDgmPhDfXPn32DhjO/ZgTjbRs2chRZ2erh7K3ufwmph7hgjdwmdyB+Ft+aOf/Sk6MIdCQsuTIb
+	Ad1yvUkdv3SJQqfXco4E1UyEkU0wiDy+hx/klA==
+X-Received: by 2002:a05:690e:480f:b0:664:fc22:36cd with SMTP id
+ 956f58d0204a3-66521ad34dcmr7426372d50.43.1783085167252; Fri, 03 Jul 2026
+ 06:26:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260703110317.1283411-1-wenst@chromium.org> <20260703110317.1283411-9-wenst@chromium.org>
- <CAMRc=MdMhr6qAnAtUePbuBbsH=3MzRC+BrL5GssbNTwGjp_ayA@mail.gmail.com>
- <CAGXv+5GHFnMj3qr5BcpLCQk25rWYOgnMKUX079ScELs4uqEdVg@mail.gmail.com> <CAMRc=Mdoj204dTwVMeqFwsVt3f4JJUJtk93VL2hDgh7+C60eqw@mail.gmail.com>
-In-Reply-To: <CAMRc=Mdoj204dTwVMeqFwsVt3f4JJUJtk93VL2hDgh7+C60eqw@mail.gmail.com>
+References: <20260703110317.1283411-1-wenst@chromium.org> <20260703110317.1283411-6-wenst@chromium.org>
+ <akeyxn390mVmYo83@ashevche-desk.local>
+In-Reply-To: <akeyxn390mVmYo83@ashevche-desk.local>
 From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 3 Jul 2026 21:20:03 +0800
-X-Gm-Features: AVVi8Ccxmi-jSFxGKDTUuToCDHyjKIoBrT_lajnjop8tp06Df09KPZI8Is_qoIU
-Message-ID: <CAGXv+5GH3navtUC-V--dJOEjqiDtOauXf_TKxzdQ_T+bK_v9gA@mail.gmail.com>
-Subject: Re: [PATCH v3 08/13] usb: hub: Power on connected M.2 E-key
- connectors with power sequencing API
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: linux-acpi@vger.kernel.org, driver-core@lists.linux.dev, 
-	linux-pm@vger.kernel.org, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Manivannan Sadhasivam <mani@kernel.org>, Alan Stern <stern@rowland.harvard.edu>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
+Date: Fri, 3 Jul 2026 21:25:56 +0800
+X-Gm-Features: AVVi8CePOG6OpnrlSpGFhkpL2GOtwCFUk_NB8IIc5qFTOLO5i-BW3OK69XKCfdo
+Message-ID: <CAGXv+5G3ETTGbgjWJCbQjn9yvRamx4GHPxjWPgmy_aXWUxm0iQ@mail.gmail.com>
+Subject: Re: [PATCH v3 05/13] usb: hub: Associate port@ fwnode with USB port device
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Bartosz Golaszewski <brgl@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Daniel Scally <djrscally@gmail.com>, 
 	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
 	Sakari Ailus <sakari.ailus@linux.intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
 	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-acpi@vger.kernel.org, 
+	driver-core@lists.linux.dev, linux-pm@vger.kernel.org, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Manivannan Sadhasivam <mani@kernel.org>, 
+	Alan Stern <stern@rowland.harvard.edu>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
@@ -128,12 +126,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
 	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:brgl@kernel.org,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:stern@rowland.harvard.edu,m:gregkh@linuxfoundation.org,m:andriy.shevchenko@linux.intel.com,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-320148-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@linux.intel.com,m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:stern@rowland.harvard.edu,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320150-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -148,44 +146,39 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,kernel.org,rowland.harvard.edu,linuxfoundation.org,linux.intel.com,gmail.com,collabora.com];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,gmail.com,linux.intel.com,kernel.org,collabora.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,rowland.harvard.edu];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,chromium.org:from_mime,chromium.org:email,chromium.org:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,chromium.org:from_mime,chromium.org:dkim,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 95633702E52
+X-Rspamd-Queue-Id: DD45E702DC3
 
-On Fri, Jul 3, 2026 at 9:16=E2=80=AFPM Bartosz Golaszewski <brgl@kernel.org=
-> wrote:
+On Fri, Jul 3, 2026 at 9:02=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
 >
-> On Fri, 3 Jul 2026 14:58:56 +0200, Chen-Yu Tsai <wenst@chromium.org> said=
-:
-> > On Fri, Jul 3, 2026 at 8:41=E2=80=AFPM Bartosz Golaszewski <brgl@kernel=
-.org> wrote:
-> >>
-> >> So this is only needed to not have to track the state in a separate fi=
-eld?
+> On Fri, Jul 03, 2026 at 07:03:06PM +0800, Chen-Yu Tsai wrote:
+> > When a USB hub port is connected to a connector in a firmware node
+> > graph, the port itself has a node in the graph.
 > >
-> > Correct. Reading the field is not the problem. Updating it is, as the
-> > fields are packed bitfields, and Sashiko suggested that locking would
-> > be needed, though it may have been for the peer port, which has since
-> > been removed.
+> > Associate the port's firmware node with the USB port's device,
+> > usb_port::dev. This is used in later changes for the M.2 slot power
+> > sequencing provider to match against the requesting port.
 > >
+> > To avoid potential conflicts with ACPI firmware nodes and then causing
+> > power management issues, only assign the firmware node if the hub's
+> > firmware node is not an ACPI firmware node.
 >
-> I'm not sure if it is. The user controlls the handle. We could argue, it'=
-s up
-> to them to provide synchroniztion. We only assign the target and pwrseq f=
-ields
-> once in pwrseq_match_device() and only change the powered_on field later =
-with
-> pwrseq_power_on/off(). Unless the user does something weird, we should be
-> alright. Maybe a small note in the kernel doc would be in order.
+> Now I'm more confident that it does not mess up with ACPI case.
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-I was refering to the status bitfields in |struct usb_port|. As you already
-explained I think the pwrseq stuff is fine.
+Thank you and Bartosz for the reviews.
+
+FTR Sashiko pointed out that this is likely leaking a fwnode reference.
+I will add a fwnode_handle_put() call to usb_hub_remove_port_device()
+in the next version.
 
 
 ChenYu
