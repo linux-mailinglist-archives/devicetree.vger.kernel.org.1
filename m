@@ -1,278 +1,426 @@
-Return-Path: <devicetree+bounces-320352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320327-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ftMnF0kTSGpPmAAAu9opvQ
-	(envelope-from <devicetree+bounces-320352-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 21:53:45 +0200
+	id kjh1OSMRSGpjlgAAu9opvQ
+	(envelope-from <devicetree+bounces-320327-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 21:44:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16CA07056A9
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 21:53:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5954A70535C
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 21:44:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=TXRWzJJ2;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="dcMQ/Sx0";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320352-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320352-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linux.dev header.s=key1 header.b=dXM1TfMJ;
+	dmarc=pass (policy=none) header.from=linux.dev;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320327-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320327-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C5E063036E98
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 19:52:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D2189304C35C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 19:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCB60346771;
-	Fri,  3 Jul 2026 19:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548B7331A61;
+	Fri,  3 Jul 2026 19:43:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E47340412
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 19:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 593F63090D7
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 19:43:14 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783108343; cv=none; b=i/8NBN7aBUaSgzTAyKH4adH/aKvFX3a3dSKv3Vci3SmOxQxDj1FfD1kRho350zq5B6ZIqomXxEbfqXY1DhkfYT0sEYf+LMxwNzUJJ2tUqqui/zQ6iTmxdCXpmE0vSo4M6fpI+jQNJnpD9h63Nyfmy00FOmr/UbpzljsuNX8R0vA=
+	t=1783107796; cv=none; b=Hxf3QdIm/FJjufllJ4Kx6vdGoxfCKm5o5kbzbYAG5YZLjU02G+eHovwN6D7qCZgKi2OXpAJDD//XXprhqSxZtOwFFM2st0s4bTL+UjFubtq1Aj1jMq0Vd7g7Vo4tLaGcye62APR8OzXyoz87tJNbRf7c3RzRes6wGQvkrXGmUA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783108343; c=relaxed/simple;
-	bh=b5DaqUyZwpxJhafGz+w2hjXXpbF23SXpR4b1wtVV3dc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=F1FYzA4VuZeZcobn391TbaFK0WCLR2/JGw5lm71aTJzo5y6B92GLYV2f5MrjawghfkxMoKRIiB4yb+wZEtqUAIVOs0lCtq47FTdJD0bhtDwpFrChRYz3HOWuThZpfY+005OXibWbyh/RcuzcM4hPlVJUWns9cl9BDBYKawDrbiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TXRWzJJ2; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dcMQ/Sx0; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 663HiOEV676040
-	for <devicetree@vger.kernel.org>; Fri, 3 Jul 2026 19:52:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=DVazRrG0aSx
-	Y8WYlC8x0UHgHkIRBJsYN5YFcXqpwEZE=; b=TXRWzJJ2mDiAw8ndD7aCyMTUf3i
-	qUwQeZ18wqKRvWYaRG7r+U4Zxk17QhXrKV+uyNMifJqDY+dgJJQUE1PxEVafitbL
-	/sq5Mw3Xx8o/4twkp24WyE+09HMdwsGNbm1kb8tfUe4hThZERMz+wvsZtyy92Lwb
-	nrBIctgsjjqOJkLu+zd2LD45dyuWrZ/mPnBa/MBW3qg8dEJJgHe+i4VpsMo3vRop
-	HEkWuF2pAHHoEiQK1DLWavNEjRrtWZLcXJ1zYzjPtBxzPlLbgbJNPMNInXMxnGEF
-	qThiaYPMZK+b3IqAmA49y6rMxQqQcVfei0p5lzYtDgpnoThnuaLpXxDP8BQ==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f6dkkh9vy-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 19:52:20 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-381e93bfcacso677755a91.2
-        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 12:52:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783108339; x=1783713139; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DVazRrG0aSxY8WYlC8x0UHgHkIRBJsYN5YFcXqpwEZE=;
-        b=dcMQ/Sx0vMm0aGeDS2I5FuZKK6U4obveArvfSD8Sa1vGmL1QKKPTYGVte9cH9k56OX
-         q+ipeHsJDrScNLQJdrLiuDJLt4VUWD/PEB2WPJ8S3x6BxwrE7bdzvypAvTxqRblM4/+Z
-         h9Ww/nYiuLQkHND0Cl9VeKRw73lNXCoZ9lbC0SwLf0BVIz1wPQmUSB+LcC4D5m2C6AAv
-         /yHweKMcW0cxNpRsq4Bt1V3237PgTe0Ue5LgQZUqfNS+DXjxgHCVQrX1T+/M9yrYD4W1
-         Vyu353ffLEb4A+8vr+yBDhZbh8tm6wqtVW0LU95Hdj3Qv5Rk/2lcE+yjeo/ixDlrLYgv
-         Uczg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783108339; x=1783713139;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=DVazRrG0aSxY8WYlC8x0UHgHkIRBJsYN5YFcXqpwEZE=;
-        b=HMgGhpoboQOZrIbY2f0LKtmxESsg8FuLQBk3jnULI66vGF4jrySe8UtYz70eXh1stR
-         +ah2j7OPb+BQbK2iVr4EIV2Mg5shhBVCbKkYwpiq995qkoD+PsEHYgEKz05YzY3LMLAF
-         qqrR6933rK/t/pugUquAH0Du5MZd6ZxmkIfCrHe6RAGCY6UrFa21+K4nKPGhD6ZIa2+R
-         5nsQPfTIj3xEGhF2bFiZOPhSGT+tM7tGWqcH8TuuBCo6qZhcEmBGGob+tU715cYvpS05
-         b609agjN+ye5onUgHdi8f6heM2hvUaSJvSnuSxP1AGy7aWCqcBAZ1q277h53bwAiWlBr
-         uuAQ==
-X-Forwarded-Encrypted: i=1; AHgh+RoBJ91mDhTABgfx1Ti5PeEgPgIS+q/Hzc+I0EtUSOq0eayxSvp5ydyO23sqAXAj1wbGHPhygyxpyASh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0j833MsZPcPBJqBacAmGlNtPzWJLYiD+NtXJ12xFKzj9BybxO
-	jNZUi5wAC+w9NMJBzoXdbsamAlrd253jySzPAMOsmtdklvW7OLIXeRVVJ6ZJ5K2Y7zfFRLHfx9q
-	nvXMACgNme2SPu8YEAjQP2AcTEzGfsg7lG6vGeOwtqAT5slckr68aRINZw/j5Jjbm
-X-Gm-Gg: AfdE7cmdLbaBTncx5Pp91CHtSr2cesWt/jAAAIpXN8d9WDGefhl+CmQOwNepDX9qPxy
-	GUJG27yJKk/DqTQgIH/VRov8UiIuLUJ1n/sKMeEMh/RGR4XyeoisqEP00V+zmLoYReHI2EPMzwZ
-	QrI21XL8rHaefnMLFTiVJueHIJTliX0gnGIw2zJroLtTeDIJlusHrQOcFar9omDz/jR5Bvdorys
-	LU21q6+fgo1MFfk0J67zXoYLS73PqFoOBmxlmsMkWuGkDgBPQiaexshVwRwMBMGZ+tNeJBjst0s
-	wB6IJJeEkeegG8wbLu7402Rq6lIEKLit1kFei/GTD9jsqv7noSI34y51W88p+HGgydxEvcqsv+e
-	3AEjFOD1vsljzfEuxXIbOyDH2on2TDTKGw5TKqw==
-X-Received: by 2002:a17:90b:2d07:b0:37e:1bc4:b6ae with SMTP id 98e67ed59e1d1-382808b20c0mr790749a91.8.1783108339139;
-        Fri, 03 Jul 2026 12:52:19 -0700 (PDT)
-X-Received: by 2002:a17:90b:2d07:b0:37e:1bc4:b6ae with SMTP id 98e67ed59e1d1-382808b20c0mr790679a91.8.1783108338648;
-        Fri, 03 Jul 2026 12:52:18 -0700 (PDT)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-30f290b6bc2sm10065845eec.27.2026.07.03.12.51.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jul 2026 12:52:18 -0700 (PDT)
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@codeconstruct.com.au>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
-        Paul Kocialkowski <paulk@sys-base.io>,
-        Linus Walleij <linusw@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Alexey Brodkin <abrodkin@synopsys.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Michal Simek <michal.simek@amd.com>,
-        Daniel Scally <dan.scally@ideasonboard.com>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Eddie James <eajames@linux.ibm.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Joseph Liu <kwliu@nuvoton.com>, Marvin Lin <kflin@nuvoton.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Thierry Reding <thierry.reding@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Srinivas Kandagatla <srini@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ge Gordon <gordon.ge@bst.ai>, Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
-        Saravana Kannan <saravanak@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Peter Chen <peter.chen@cixtech.com>,
-        Fugang Duan <fugang.duan@cixtech.com>
-Cc: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
-        BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-        Vijendar Mukunda <Vijendar.Mukunda@amd.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-aspeed@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-media@vger.kernel.org,
-        openbmc@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
-        kernel@collabora.com, linux-tegra@vger.kernel.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, linux-staging@lists.linux.dev,
-        linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        imx@lists.linux.dev, sound-open-firmware@alsa-project.org,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Subject: [PATCH 32/42] drm: aspeed: Use devm_of_reserved_mem_device_init()
-Date: Sat,  4 Jul 2026 01:08:45 +0530
-Message-ID: <20260703193855.110619-33-mukesh.ojha@oss.qualcomm.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260703193855.110619-1-mukesh.ojha@oss.qualcomm.com>
-References: <20260703193855.110619-1-mukesh.ojha@oss.qualcomm.com>
+	s=arc-20240116; t=1783107796; c=relaxed/simple;
+	bh=b0GF0Br8yanUhjxYGdPnTvzJRVaR6Wg2hft+j3NEYfY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=IC9Ro2vikZrJ2USUwBU/VmuaEVbZj8m/7Fxg8sqZnZ8mSiYphkLgbPuVTEFe8hWFvonBZYLIuUnR/lyRMwZW17MJM7A8W9MPhH0EPseSdbq817rO9s9znLVeJ4V7emz/B7SoyJCsBi7hFLg6ZW2VvgLAT+y0c1dZW2JYSbgAdH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=dXM1TfMJ; arc=none smtp.client-ip=91.218.175.184
+Message-ID: <9878f042f424bfbd7fab24175298224b58e87779.camel@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1783107782;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uZO1sX8QbjOMl063nzq/2Es6qmjh1VUaSD7dIek0KBs=;
+	b=dXM1TfMJOVV+eFjwie5jESveDPenwpqM1E7utBLzbiEQTaQhNaoaqs07WIfWpV2C+ocdH7
+	IlL5uV/56J4tlCQ7kfUHeWIXFXsJ1hwrtIQB6JQqTpqSaI6ZhMplJKdpvG0yZCkntDkVwT
+	+0/okuDEhvwcTdOh9q6aDRa6tiRSW7Y=
+Subject: Re: [PATCH v1 2/2] iio: adc: add MAX40080 current-sense amplifier
+ driver
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Siratul Islam <siratul.islam@linux.dev>
+To: Stefan Popa <stefan.popa@analog.com>, Jonathan Cameron <jic23@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+	 <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	 <conor+dt@kernel.org>, Ciprian Hegbeli <ciprian.hegbeli@analog.com>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Date: Sat, 04 Jul 2026 01:42:39 +0600
+In-Reply-To: <20260703102941.1141341-3-stefan.popa@analog.com>
+References: <20260703102941.1141341-1-stefan.popa@analog.com>
+	 <20260703102941.1141341-3-stefan.popa@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAzMDIwMCBTYWx0ZWRfX4XyPPN+QsU3b
- bDF0r1J8LiPDINCi2SYRQiV42CAc0zZbyrWtET4vLwRAFelsE9ppLn3WQTibEN8vM/BB/siH+yk
- +6jQpuRZ/RFKE0adSW3r1/klFOJyC1w2n3PEsWMmdHla4dzO1yjaJmUlam9Wl5ZR9bBI50Dlxch
- f2vGSu+49aOlH5Jmu3vdfLmUAwTLRjYK3GDk9jfRx0/25gpJdndEhTeZH3dGY9en6ySt7H+D0fa
- MKzBf7sqB8+Sr1LJXcDXX3clDWPs7/2iRiyGm6i3MBjsrSDGkQFa8GFxx/2CwTsGUpA1toPFIgD
- fz8bh/nl1m9JqmkVm8wE+AV43r5UQgpROVE1ZRmYI1efZ2q4u4WJSLLRlaZ8rqEZ9sw8ByB5Xag
- hc196PL0LhbB1pVrQl7SiuwqaBz5Qjev2BrEZ1K7J9I0Hl8xOcUFwGOUb7ZgvDQUNzSX3j9J163
- vP0kPAIqnAgNGcCHRSw==
-X-Authority-Analysis: v=2.4 cv=LeUMLDfi c=1 sm=1 tr=0 ts=6a4812f4 cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
- a=YxFYfaw6DuWYmsw8bRUA:9 a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-ORIG-GUID: aie5HCdMTBwV-oefOdEOw03_f675wJRr
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAzMDIwMCBTYWx0ZWRfX7YSsyQrxHCJQ
- aaSCyvjbxXLrw1nsV57aKiRFvL69wIuKJCumRyyXPS5RwPy83kCAXgODMEXbRDdqYnwRjLH6h/A
- r1eJRziGOfM+14/OSrO5tMIBTfO4JMo=
-X-Proofpoint-GUID: aie5HCdMTBwV-oefOdEOw03_f675wJRr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-07-03_03,2026-07-03_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
- suspectscore=0 bulkscore=0 impostorscore=0 priorityscore=1501 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607030200
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:stefan.popa@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ciprian.hegbeli@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[siratul.islam@linux.dev,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-320327-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,bstai.top,gmail.com,pengutronix.de,linux.intel.com,linux.dev,amd.com,cixtech.com,vger.kernel.org,lists.freedesktop.org,lists.ozlabs.org,lists.infradead.org,lists.linux.dev,collabora.com,alsa-project.org];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[mukesh.ojha@oss.qualcomm.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-320352-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:liviu.dudau@arm.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:paul@crapouillou.net,m:anitha.chrisanthus@intel.com,m:paulk@sys-base.io,m:linusw@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:abrodkin@synopsys.com,m:laurent.pinchart@ideasonboard.com,m:tomi.valkeinen@ideasonboard.com,m:michal.simek@amd.com,m:dan.scally@ideasonboard.com,m:jacopo.mondi@ideasonboard.com,m:mchehab@kernel.org,m:eajames@linux.ibm.com,m:tiffany.lin@mediatek.com,m:andrew-ct.chen@mediatek.com,m:yunfei.dong@mediatek.com,m:minghsiu.tsai@mediatek.com,m:houlong.wei@mediatek.com,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:kwliu@nuvoton.com,m:kflin@nuvoton.com,m:dmitry.osipenko@collabora.com,m:krzk@kernel.org,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:srin
- i@kernel.org,m:arnd@arndb.de,m:gregkh@linuxfoundation.org,m:gordon.ge@bst.ai,m:adrian.hunter@intel.com,m:ulfh@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:mathieu.poirier@linaro.org,m:perex@perex.cz,m:tiwai@suse.com,m:shengjiu.wang@gmail.com,m:Xiubo.Lee@gmail.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:peter.ujfalusi@linux.intel.com,m:yung-chuan.liao@linux.intel.com,m:daniel.baluta@nxp.com,m:orsonzhai@gmail.com,m:baolin.wang@linux.alibaba.com,m:peter.chen@cixtech.com,m:fugang.duan@cixtech.com,m:ekansh.gupta@oss.qualcomm.com,m:bst-upstream@bstai.top,m:festevam@gmail.com,m:nicoleotsuka@gmail.com,m:kernel@pengutronix.de,m:kai.vehmanen@linux.intel.com,m:pierre-louis.bossart@linux.dev,m:Vijendar.Mukunda@amd.com,m:zhang.lyra@gmail.com,m:cix-kernel-upstream@cixtech.com,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-aspeed@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.or
- g,m:linux-mips@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:linux-media@vger.kernel.org,m:openbmc@lists.ozlabs.org,m:linux-mediatek@lists.infradead.org,m:kernel@collabora.com,m:linux-tegra@vger.kernel.org,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-sound@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:imx@lists.linux.dev,m:sound-open-firmware@alsa-project.org,m:mukesh.ojha@oss.qualcomm.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,arm.com,linux.intel.com,suse.de,gmail.com,ffwll.ch,jms.id.au,codeconstruct.com.au,crapouillou.net,intel.com,sys-base.io,sholland.org,synopsys.com,ideasonboard.com,amd.com,linux.ibm.com,mediatek.com,collabora.com,nuvoton.com,nvidia.com,arndb.de,linuxfoundation.org,bst.ai,linaro.org,perex.cz,suse.com,nxp.com,pengutronix.de,linux.alibaba.com,cixtech.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:email,qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mukesh.ojha@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCPT_COUNT_GT_50(0.00)[93];
+	FROM_NEQ_ENVFROM(0.00)[siratul.islam@linux.dev,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,analog.com:url,analog.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux.dev:from_mime,linux.dev:dkim,linux.dev:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 16CA07056A9
+X-Rspamd-Queue-Id: 5954A70535C
 
-Use the devres-managed devm_of_reserved_mem_device_init() to ensure
-the reserved memory region is released on device removal, fixing a
-missing cleanup in the original code.
+On Fri, 2026-07-03 at 13:29 +0300, Stefan Popa wrote:
+> The MAX40080 is a bidirectional current-sense amplifier with an
+> integrated 12-bit ADC and an I2C/SMBus interface. It measures the
+> voltage across an external shunt resistor and the input bus voltage,
+> storing the results in an internal FIFO.
+>=20
+>=20
+Hi! I already looked at Andy's review and decided to add a few more stuff.
+...
+> =C2=A0
+> +MAXIM MAX40080 CURRENT SENSE AMPLIFIER DRIVER
+> +M:	Ciprian Hegbeli <ciprian.hegbeli@analog.com>
+> +M:	Stefan Popa <stefan.popa@analog.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Supported
+> +W:	https://ez.analog.com/linux-software-drivers
+> +F:	Documentation/devicetree/bindings/iio/adc/maxim,max40080.yaml
+The Maintainer entry for binding should be in the binding patch,
+> +F:	drivers/iio/adc/max40080.c
+With the driver entry added in this patch.
+> +
+...
++ array_size.h
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/i2c.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/math64.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/property.h>
+> +#include <linux/unaligned.h>
+> +#include <linux/units.h>
+> +
+> +#include <linux/iio/iio.h>
+> +
+> +#define MAX40080_REG_CFG		0x00
+> +#define=C2=A0 MAX40080_MODE_MSK		GENMASK(2, 0)
+> +#define=C2=A0 MAX40080_PEC_EN_MSK		BIT(5)
+> +#define=C2=A0 MAX40080_RANGE_MSK		BIT(6)
+> +#define=C2=A0 MAX40080_FILTER_MSK		GENMASK(14, 12)
+Should be one space after #define, like the first one.
+> +
+> +#define MAX40080_REG_FIFO_CFG		0x0A
+Here too
+> +#define=C2=A0 MAX40080_STORE_IV_MSK		GENMASK(1, 0)
+> +
+> +#define MAX40080_REG_IV			0x10
+> +/* Current is a 13-bit two's-complement value (magnitude + sign bit). */
+> +#define=C2=A0 MAX40080_IV_I_MSK		GENMASK(12, 0)
+> +#define=C2=A0 MAX40080_IV_I_SIGN_BIT		12
+> +#define=C2=A0 MAX40080_IV_V_MAG_MSK		GENMASK(27, 16)
+> +#define=C2=A0 MAX40080_IV_VALID_MSK		BIT(31)
+> +
+> +/* CFG.mode field */
+> +#define MAX40080_STDBY_MODE		0x00
+> +#define MAX40080_SINGLE_MODE		0x02	/* one conversion per Quick Command *=
+/
+> +
+> +/* FIFO_CFG.store_iv field */
+> +#define MAX40080_STORE_I_V		0x02
+> +
+> +#define MAX40080_ADC_RES		4096
+> +#define MAX40080_INTER_VREF_MV		1250
+> +#define MAX40080_V_BUFF_GAIN		30
+Maybe sort by value? just a nit.
+> +#define MAX40080_CSA_50MV_GAIN		25
+> +#define MAX40080_CSA_10MV_GAIN		125
+> +
+> +/*
+> + * The RANGE field (CFG bit 6) selects one of two current-sense full-sca=
+le
+> + * ranges (the MAX40080 supports exactly two: +/-50 mV and +/-10 mV). Or=
+dered
+> + * so that the array index equals the RANGE field value: index 0 =3D 50 =
+mV range
+> + * (gain 25 V/V), index 1 =3D 10 mV range (gain 125 V/V).
+> + */
+> +static const int max40080_csa_gain[] =3D {
+> +	MAX40080_CSA_50MV_GAIN, MAX40080_CSA_10MV_GAIN,
+Maybe 1 item per line since it's a macro?=20
+> +};
+> +
+> +#define MAX40080_NUM_RANGES	ARRAY_SIZE(max40080_csa_gain)
+> +
+> +struct max40080_state {
+> +	struct i2c_client *client;
+> +	/* Serializes read-modify-write access to the CFG register. */
+> +	struct mutex lock;
+> +	u32 shunt_resistor_uohm;
+> +	/*
+> +	 * Precomputed current scale (mA per code) for each RANGE setting, as
+> +	 * {integer, nano} pairs for IIO_VAL_INT_PLUS_NANO. The range is
+> +	 * selected by writing the corresponding scale.
+> +	 */
+> +	int current_scale[MAX40080_NUM_RANGES][2];
+> +};
+> +
+> +static const int max40080_oversampling_avail[] =3D { 1, 8, 16, 32, 64, 1=
+28 };
+> +
+> +static int max40080_update_bits(struct max40080_state *st, u8 reg,
+> +				u16 mask, u16 val)
+This can fit in 1 line.
+static int max40080_update_bits(struct max40080_state *st, u8 reg, u16 mask=
+, u16 val)
 
-Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
----
- drivers/gpu/drm/aspeed/aspeed_gfx_drv.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-index d4577663a1f0..2c7e54fc35d9 100644
---- a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-+++ b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-@@ -168,7 +168,7 @@ static int aspeed_gfx_load(struct drm_device *drm)
- 		}
- 	}
- 
--	ret = of_reserved_mem_device_init(drm->dev);
-+	ret = devm_of_reserved_mem_device_init(drm->dev);
- 	if (ret) {
- 		dev_err(&pdev->dev,
- 			"failed to initialize reserved mem: %d\n", ret);
--- 
-2.53.0
-
+> +{
+> +	int ret;
+> +	int tmp;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+...
+> + */
+> +static int max40080_read_iv_once(struct max40080_state *st, u32 *iv)
+> +{
+> +	u8 buf[4];
+> +	int ret;
+> +
+> +	ret =3D i2c_smbus_read_i2c_block_data(st->client, MAX40080_REG_IV,
+> +					=C2=A0=C2=A0=C2=A0 sizeof(buf), buf);
+This also fits in 1 line but it would go 92 cols, so not sure which one is =
+preferred.
+> +	if (ret < 0)
+> +		return ret;
+> +	if (ret !=3D sizeof(buf))
+> +		return -EIO;
+> +
+> +	*iv =3D get_unaligned_le32(buf);
+> +
+> +	return 0;
+> +}
+> +
+>=20
+...
+> +
+> +static int max40080_get_current(struct max40080_state *st, int *val)
+> +{
+> +	u32 iv;
+> +	int ret;
+> +
+> +	ret =3D max40080_read_iv(st, &iv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val =3D sign_extend32(FIELD_GET(MAX40080_IV_I_MSK, iv),
+> +			=C2=A0=C2=A0=C2=A0=C2=A0 MAX40080_IV_I_SIGN_BIT);
+This can also be 1 line if you are going for that.
+> +
+> +	return 0;
+> +}
+> +
+> +static int max40080_get_voltage(struct max40080_state *st, int *val)
+> +{
+> +	u32 iv;
+> +	int ret;
+> +
+> +	ret =3D max40080_read_iv(st, &iv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val =3D FIELD_GET(MAX40080_IV_V_MAG_MSK, iv);
+> +
+> +	return 0;
+> +}
+> +
+> +static int max40080_get_range(struct max40080_state *st, unsigned int *r=
+ange)
+> +{
+> +	int tmp;
+> +
+> +	tmp =3D i2c_smbus_read_word_data(st->client, MAX40080_REG_CFG);
+I think tmp can be initialized, since it is only assigned once.
+> +	if (tmp < 0)
+> +		return tmp;
+> +
+> +	*range =3D FIELD_GET(MAX40080_RANGE_MSK, tmp);
+> +
+> +	return 0;
+> +}
+> +
+...
+> +
+> +/*
+> + * The FILTER field selects digital averaging of N consecutive conversio=
+ns
+> + * (no averaging, 8, 16, 32, 64 or 128), which maps directly to the IIO
+> + * oversampling ratio. Averaging reduces the effective output data rate =
+by the
+> + * same factor; the conversion rate itself is set by the separate ADC_RA=
+TE
+> + * field.
+> + */
+> +static int max40080_get_oversampling_ratio(struct max40080_state *st, in=
+t *val)
+> +{
+> +	int tmp;
+> +	u8 filter;
+Reverse xmas tree.
++ u8 filter;
++ int tmp;
+While you are at it, and since you are already using u8, tmp can be s32.
+> +
+> +	tmp =3D i2c_smbus_read_word_data(st->client, MAX40080_REG_CFG);
+> +	if (tmp < 0)
+> +		return tmp;
+> +
+> +	filter =3D FIELD_GET(MAX40080_FILTER_MSK, tmp);
+> +	*val =3D (filter =3D=3D 0) ? 1 : (8 << (filter - 1));
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * max40080_oversampling_avail[] is ordered so that its index is the FIL=
+TER
+> + * field value (index 0 =3D no averaging, index 1 =3D 8x, ...). Return t=
+hat index
+> + * for an exact match, or -EINVAL for a value that is not on the list.
+> + */
+> +static int max40080_oversampling_to_filter(int val)
+> +{
+> +	int i;
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(max40080_oversampling_avail); i++)
+> +		if (max40080_oversampling_avail[i] =3D=3D val)
+> +			return i;
+Since this for is multiline, it could use scope, {}.
+> +
+> +	return -EINVAL;
+> +}
+> +
+...
+> +}
+> +
+> +static int max40080_read_avail(struct iio_dev *indio_dev,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_chan_spec const *chan=
+,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const int **vals, int *type, int=
+ *length,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 long info)
+> +{
+> +	struct max40080_state *st =3D iio_priv(indio_dev);
+> +
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_SCALE:
+> +		if (chan->type !=3D IIO_CURRENT)
+> +			return -EINVAL;
+> +
+> +		*vals =3D (int *)st->current_scale;
+> +		*length =3D MAX40080_NUM_RANGES * 2;
+> +		*type =3D IIO_VAL_INT_PLUS_NANO;
+I think a space between the assignments and the return would read better. P=
+ersonal preference. Your call.
+> +		return IIO_AVAIL_LIST;
+> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> +		*vals =3D max40080_oversampling_avail;
+> +		*length =3D ARRAY_SIZE(max40080_oversampling_avail);
+> +		*type =3D IIO_VAL_INT;
+> +		return IIO_AVAIL_LIST;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int max40080_reg_access(struct iio_dev *indio_dev,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int reg,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int write_val,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int *read_val)
+> +{
+> +	struct max40080_state *st =3D iio_priv(indio_dev);
+> +
+> +	if (read_val) {
+> +		int val =3D i2c_smbus_read_word_data(st->client, reg);
+> +
+> +		if (val < 0)
+> +			return val;
+> +		*read_val =3D val;
+Here too.
+> +		return 0;
+> +	}
+> +
+> +	return i2c_smbus_write_word_data(st->client, reg, write_val);
+> +}
+...
+>=20
+> +}
+> +
+> +static const struct i2c_device_id max40080_i2c_ids[] =3D {
+> +	{ "max40080" },
+.name =3D "max40080"
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, max40080_i2c_ids);
+> +
+> +static const struct of_device_id max40080_of_match[] =3D {
+> +	{ .compatible =3D "maxim,max40080" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, max40080_of_match);
+> +
+> +static struct i2c_driver max40080_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "max40080",
+> +		.of_match_table =3D max40080_of_match,
+> +	},
+> +	.probe =3D max40080_probe,
+> +	.id_table =3D max40080_i2c_ids,
+> +};
+> +module_i2c_driver(max40080_driver);
+> +
+> +MODULE_AUTHOR("Ciprian Hegbeli <ciprian.hegbeli@analog.com>");
+> +MODULE_AUTHOR("Stefan Popa <stefan.popa@analog.com>");
+> +MODULE_DESCRIPTION("Analog Devices MAX40080 current-sense amplifier driv=
+er");
+> +MODULE_LICENSE("GPL");
 
