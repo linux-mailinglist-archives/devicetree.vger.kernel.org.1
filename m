@@ -1,199 +1,200 @@
-Return-Path: <devicetree+bounces-319781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319783-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XsEzOeFHR2pIVQAAu9opvQ
-	(envelope-from <devicetree+bounces-319781-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 07:25:53 +0200
+	id rKC9GB5IR2pYVQAAu9opvQ
+	(envelope-from <devicetree+bounces-319783-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 07:26:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 226956FEB51
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 07:25:53 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7EE56FEB69
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 07:26:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="m/qgbaSS";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319781-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319781-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=KXJ4pZkR;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319783-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319783-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D8D0F304DC98
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 05:24:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 624333037D5E
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 05:24:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54B1F359A91;
-	Fri,  3 Jul 2026 05:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 903A535AC33;
+	Fri,  3 Jul 2026 05:24:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D6834EEF7
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 05:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9C2034846A
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 05:24:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783056236; cv=none; b=nOEBH+LS84tIxnVOTC49fXn/BZJcMBWG/DVMFjYzFUwDqb8FmqWtXMsquDUTcbVmt19AECmJYXJfTW6oNzkSn5sV2X3I69QafdSQhT49GlhSGIP0CgKUG05TfwNtpEo+d/xX7tflBlEFZcOjg1zj5Ai0/sKcHpmH6+Uv4J/rPNc=
+	t=1783056284; cv=none; b=oQiluSZYZkieuJN+/48xTaBxyNROCnK2W//Q4bM/HkbbXScZO6uP+hp8XihC/d+9DZvMxARDxpzN4HtOx4EInzVEU0+TrC74YDtKuVxGHNI/Hl5qm6yREYusQeMGz9lq9IY8r3P8HnGiAQ9XmtieRtSk3SDR/241WzZGTmy/Dh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783056236; c=relaxed/simple;
-	bh=ZrjK2202G+GfcYFhxLb2Gbqgxf3wdGa8kFBxBLr6m4U=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=bvwni9WRaJQvK0uhhK48c9QUz1N5Zcp1Q4TPOyI/cdWbJEFVVTVc0vy9PcINl5VyakSMhhxvUf9a5kCuPTValf1t3ZDKPmRJCTjDTWNruqDQBXye8VoXC91C7a9lBWYTgxf8EPlHO3y7lW6UxC1LUrWHMrmHw2AihgGGwRsl+Aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m/qgbaSS; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01ED81F000E9;
-	Fri,  3 Jul 2026 05:23:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783056228;
-	bh=UpduVNAMHNfJwzzJU4q7KolVISMneI2wkIkKKoTlSj4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=m/qgbaSSVmPlKOhy2GzgElu1WCp1+lqHf8Q3I7ynz7zKbM8uRHFGavPnQ3HLpEGq+
-	 RZynXqbyY2N8mtW5mj96NIvN84iJvGar98khJzJwd/6Uli5x3ou+knitPUwLmLOa3o
-	 gCWW5IOds2K6J0sgG4r900Ye+BWCdjJGdt09i+gPHTtmGiKCiKsluG5MRwPWQwimZn
-	 2RXMTCCLS5/pvcUK1y4VYm73U04OU2xKJ/PUP0Y73uWLOUVDPUmPKbCqcvvvothZDE
-	 BTIlewAQP4yOwGpBZMCjVWELYQ54zs0Z5JvDe8o70vxqZE0c27Vv9ob7FypasKmjMg
-	 xDT5QGXa+Rhcw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 05/10] remoteproc: qcom_q6v5_pas: enable QMI TMD
- cooling support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Gaurav Kohli" <gaurav.kohli@oss.qualcomm.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260703-qmi-tmd-v4-5-3882189c1f83@oss.qualcomm.com>
-References: <20260703-qmi-tmd-v4-0-3882189c1f83@oss.qualcomm.com>
- <20260703-qmi-tmd-v4-5-3882189c1f83@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 03 Jul 2026 05:23:47 +0000
-Message-Id: <20260703052348.01ED81F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783056284; c=relaxed/simple;
+	bh=pVm9pS+PVo1sWY7zlCDKGAP+Y0EYCctZHYBMrpl/GZw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tvz47KoiSGOizUe9HMoBUhCHcXzQJlY3JWGAU6NX7iP1QQgdvOfRPrBPvKcG8OIcaWZjZKIfeF6sl5pDkphybZ/9pbx3Ox1fCVZFsL+zBafhHZ8/g43fHHLZ4CoFD96UtdQlSGYH+eWryccERL3DZBtfVDfTXxks8EijiIbTW68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KXJ4pZkR; arc=none smtp.client-ip=209.85.167.170
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-497deab2d66so140275b6e.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 22:24:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783056273; x=1783661073; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ku3ZZ8L4tk4M+xljq5uIH94V1Fi9oyEnYUJ16WQL16A=;
+        b=KXJ4pZkRaWMoCDVsHoj7F+5BU+SKV1XiAXTHMgr1/EWdolktKmWF1LSM8xlg2nWQKR
+         eVySg5h2jsIpESxZ45VId3YPfPcSYNhF4yzO7BRhpsNromS69c0xiliPF6nWYl+0ryd4
+         OSloI+O+LZOrVxX3Tr40bX56ZbjZRWyu42G9oq6UgUKjvPd6tdG4NcHjKZIWTThiz6kg
+         eohHoZClM+JOTQoYJvAmKdT1s2wR7hk5RgpbPmElLqX/r7efOafuSUakKYsKBWe8m5pi
+         oBvoav1sNKlPcIhLupQAfY71WLp1aWXkFZZosD3V0bqRvYldfrEkxQZaVD9m8DMq7BOK
+         i7Xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783056273; x=1783661073;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ku3ZZ8L4tk4M+xljq5uIH94V1Fi9oyEnYUJ16WQL16A=;
+        b=Y3mxpASD3dVsAavScv41Okhq8HDBrySay6KqJLPUX5RxzZF/xetNyt6ondLPOf61Tp
+         +C3HAiq8wlUxzvhtQ6bRkTB7vXSCk5bZ9UyO4lolITY7y7AMKvY7zy2xJa1n5nNTstdb
+         GyTWLffMMUK52QvpF4q0SE9DynFvPd9ArgBUrzSQHicZLrf0XB5py8ieyklGJgsOdqdF
+         4RTeGnVgI1InGc5phyM7pyaMHDJFUd+da8KrKTB4Y7BhL+r9syBXJzcEbSEqbyo6y4fO
+         tjjtSJkf/JwzTv7AYfrPvdcD2nPUePmYvZ9LO38Rfioe2nqUxbk2PmqYAc+DlUyvnYp6
+         8ZVw==
+X-Forwarded-Encrypted: i=1; AFNElJ9w0znohN3GjsT5ydO8QMa9xLktRqw9Fab6+Mr4bUDDG6O5zFIEEWcX1E8G12B3wB90mWyVgnpE047X@vger.kernel.org
+X-Gm-Message-State: AOJu0YxziRWFwkjqCj3gKGHsAp2ivpHHU0ALiSrHjwQZAP2sMiTDcmEc
+	HRqDayHNOG4Ah0WjvQBw8hv+oW1o4ffTFmnD1OBi1YxX+oM/8w6q/RnJ
+X-Gm-Gg: AfdE7clBcPkz/CieyRjlBphRq4zGQcOWqm6zoQlq7o0E9cTxLnkEIGYiaGRtMt4fMFD
+	fOOvc5qCuboDg2eYg41GXmR6Y2OFL8UfGZMukeo3b3oAdIbDLmRdn0YvyFz6nAA8YB3ZVVHwuWm
+	ZK7IgZN4b0UxWTQyEmplnCjCCm41E5n8v0EkOQpKZFkk2QkFnCgyIb7DN0Kx3wwWaoqvIIh4c+n
+	rR5uNEspDMPXihpbR+wGOw6s28J3OqEyI2RFe9JYvMx2dYp1ofnZVEk/YVLO3FaJWZOmrb/mwFm
+	qAsXx0hFfSCgznJ7xmHQdcccr2CPYlviF3FY4YrxguXMrTJmp1Mq75qRS2nLXwCgGOCEzcjd9tD
+	P/LQYahFj8M/LbAXGcEm9J0HSyvEI7YTI0sj1WHmTgaoCZt/QfDlV4Z6YX+75I4C/STPqeywa7u
+	6/45nKzh5JrCURM6/V5i8q
+X-Received: by 2002:a05:6808:17aa:b0:496:6b1:cc7f with SMTP id 5614622812f47-497e1bec6ebmr2160066b6e.3.1783056273105;
+        Thu, 02 Jul 2026 22:24:33 -0700 (PDT)
+Received: from gmail.com ([2600:1702:56e9:4b40:ff21:65e6:6e3:5b43])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-497d1b77a11sm3272472b6e.17.2026.07.02.22.24.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jul 2026 22:24:31 -0700 (PDT)
+Date: Fri, 3 Jul 2026 00:24:28 -0500
+From: Akash Sukhavasi <akash.sukhavasi@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
+	Andrew Lunn <andrew@lunn.ch>, linux-tegra@vger.kernel.org, linux-input@vger.kernel.org, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Thierry Reding <thierry.reding@kernel.org>, linux-media@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Jakub Kicinski <kuba@kernel.org>, 
+	Vladimir Oltean <olteanv@gmail.com>, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Eric Dumazet <edumazet@google.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>, 
+	netdev@vger.kernel.org, Shuah Khan <skhan@linuxfoundation.org>, 
+	Russell King <linux@armlinux.org.uk>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v2 4/4] dt-bindings: input: remove obsolete
+ matrix-keymap.txt
+Message-ID: <akdFQ3j6fDW4cVIp@gmail.com>
+References: <20260603-b4-remove-redirect-stubs-v2-0-c8c19876ab64@gmail.com>
+ <20260603-b4-remove-redirect-stubs-v2-4-c8c19876ab64@gmail.com>
+ <178052559618.2296868.8781332297681333925.robh@kernel.org>
+ <aiSK6_n4ZnB_KRd8@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aiSK6_n4ZnB_KRd8@google.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-319783-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319781-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:gaurav.kohli@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.torokhov@gmail.com,m:robh@kernel.org,m:lee@kernel.org,m:conor+dt@kernel.org,m:davem@davemloft.net,m:andrew@lunn.ch,m:linux-tegra@vger.kernel.org,m:linux-input@vger.kernel.org,m:mchehab@kernel.org,m:hkallweit1@gmail.com,m:thierry.reding@kernel.org,m:linux-media@vger.kernel.org,m:krzk+dt@kernel.org,m:kuba@kernel.org,m:olteanv@gmail.com,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:edumazet@google.com,m:jonathanh@nvidia.com,m:horms@kernel.org,m:devicetree@vger.kernel.org,m:pabeni@redhat.com,m:netdev@vger.kernel.org,m:skhan@linuxfoundation.org,m:linux@armlinux.org.uk,m:corbet@lwn.net,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[akashsukhavasi@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,davemloft.net,lunn.ch,vger.kernel.org,gmail.com,google.com,nvidia.com,redhat.com,linuxfoundation.org,armlinux.org.uk,lwn.net];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akashsukhavasi@gmail.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,qualcomm.com:email,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 226956FEB51
+X-Rspamd-Queue-Id: D7EE56FEB69
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Critical] Incorrect teardown order in `qmi_tmd_exit()` can lead to a Use=
--After-Free if `svc_arrive_work` is queued concurrently.
-- [High] Failure in `thermal_of_cooling_device_register()` leaves an `ERR_P=
-TR` in `tmd->cdev`, leading to a kernel panic during cleanup in `qmi_tmd_un=
-register()`.
---
+On Sat, Jun 06, 2026 at 02:03:43PM -0700, Dmitry Torokhov wrote:
+> On Wed, Jun 03, 2026 at 05:26:38PM -0500, Rob Herring (Arm) wrote:
+> > 
+> > On Wed, 03 Jun 2026 15:42:21 -0500, Akash Sukhavasi wrote:
+> > > matrix-keymap.txt has been a single-line redirect to
+> > > matrix-keymap.yaml since commit 639d6eda3b80 ("dt-bindings: input:
+> > > Convert matrix-keymap to json-schema"), which introduced the .yaml
+> > > schema and reduced the .txt to a stub in the same change. The .yaml
+> > > has the same filename in the same directory, making this redirect
+> > > unnecessary for discoverability.
+> > > 
+> > > Eight instances across six files still reference matrix-keymap.txt,
+> > > forcing readers through an extra hop to reach the .yaml. The stub has
+> > > not been touched since June 2020. Update all references across input
+> > > and mfd binding documentation to point directly to matrix-keymap.yaml
+> > > and remove the stub.
+> > > 
+> > > Signed-off-by: Akash Sukhavasi <akash.sukhavasi@gmail.com>
+> > > ---
+> > > v2:
+> > > - Patch 4/4: corrected commit message (eight references in six files,
+> > >   not eight files), Sashiko review.
+> > >   https://sashiko.dev/#/patchset/20260529052246.4934-1-akash.sukhavasi@gmail.com?part=4
+> > > 
+> > > v1: https://lore.kernel.org/all/20260529052246.4934-5-akash.sukhavasi@gmail.com/
+> > > ---
+> > >  Documentation/devicetree/bindings/input/brcm,bcm-keypad.txt    | 2 +-
+> > >  Documentation/devicetree/bindings/input/clps711x-keypad.txt    | 2 +-
+> > >  Documentation/devicetree/bindings/input/matrix-keymap.txt      | 1 -
+> > >  Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt | 2 +-
+> > >  Documentation/devicetree/bindings/input/pxa27x-keypad.txt      | 2 +-
+> > >  Documentation/devicetree/bindings/input/st-keyscan.txt         | 2 +-
+> > >  Documentation/devicetree/bindings/mfd/tc3589x.txt              | 6 +++---
+> > >  7 files changed, 8 insertions(+), 9 deletions(-)
+> > > 
+> > 
+> > Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> > 
+> 
+> Lee, could you please ack for MFD piece and I can take it through input?
+> 
+> Thanks.
+> 
+> -- 
+> Dmitry
 
-commit 117e89cf6f52e4949e2dfdf865b41f6db55c4ceb
-Author: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+Friendly ping on this as well. Rob's Acked-by has been on v2 since
+June 3, patch still applies cleanly.
 
-remoteproc: qcom_q6v5_pas: enable QMI TMD cooling support
-
-Enable Thermal Mitigation Device (TMD) support for PAS-managed CDSP and
-modem remote processors on platforms that expose the QMI TMD service.
-This provides the mapping between DT cooling indices and QMI TMD names,
-allowing remoteproc nodes to act as cooling devices in the thermal
-framework.
-
-> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom=
-_q6v5_pas.c
-> index a4756a449e64b..e2cce4efec253 100644
-> --- a/drivers/remoteproc/qcom_q6v5_pas.c
-> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
-
-[ ... ]
-
-> @@ -1141,6 +1150,9 @@ static const struct qcom_pas_data sa8775p_cdsp0_res=
-ource =3D {
->  	.ssr_name =3D "cdsp",
->  	.sysmon_name =3D "cdsp",
->  	.ssctl_id =3D 0x17,
-> +	.tmd_instance_id =3D 0x43,
-> +	.tmd_name =3D cdsp_tmd_name,
-> +	.num_tmd =3D ARRAY_SIZE(cdsp_tmd_name),
-
-[Severity: High]
-Could enabling TMD here expose a kernel panic during cleanup?
-
-In drivers/soc/qcom/qmi_tmd.c:qmi_tmd_register(), if
-thermal_of_cooling_device_register() fails, it returns an ERR_PTR which is
-stored in tmd->cdev without being cleared:
-
-qmi_tmd_register()
-	tmd->cdev =3D thermal_of_cooling_device_register(dev->of_node, index,
-						       label, tmd, &qmi_tmd_cooling_ops);
-	if (IS_ERR(tmd->cdev))
-		return PTR_ERR(tmd->cdev);
-
-Later during error rollback or driver unbind, qmi_tmd_unregister() bypasses=
- the
-NULL check and unconditionally dereferences the error pointer:
-
-qmi_tmd_unregister()
-	if (!tmd->cdev)
-		continue;
-
-	thermal_cooling_device_unregister(tmd->cdev);
-
-Can passing this ERR_PTR to thermal_cooling_device_unregister() lead to a
-panic?
-
-[Severity: Critical]
-Is there a use-after-free regression introduced when enabling this feature?
-
-In drivers/soc/qcom/qmi_tmd.c:qmi_tmd_exit(), the teardown order cancels
-the work before releasing the QMI handle:
-
-qmi_tmd_exit()
-	cancel_work_sync(&qmi_tmd_cli->svc_arrive_work);
-	qmi_handle_release(&qmi_tmd_cli->handle);
-
-Since the QMI RX worker thread is not stopped until qmi_handle_release()
-executes, a NEW_SERVER message arriving in this window can trigger
-qmi_tmd_new_server() and re-queue the work:
-
-qmi_tmd_new_server()
-	queue_work(system_highpri_wq, &qmi_tmd_cli->svc_arrive_work);
-
-Once qmi_tmd_exit() returns, the qmi_tmd_cli structure is freed, but the
-pending work may execute later. Can this concurrent queueing cause a
-use-after-free on qmi_tmd_cli?
-
->  };
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260703-qmi-tmd-v4=
--0-3882189c1f83@oss.qualcomm.com?part=3D5
+-- 
+Thanks,
+Akash
 
