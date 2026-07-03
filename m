@@ -1,145 +1,146 @@
-Return-Path: <devicetree+bounces-320108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320105-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Y3ErGUSrR2r9dAAAu9opvQ
-	(envelope-from <devicetree+bounces-320108-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:29:56 +0200
+	id h/V+Ki+qR2q3dAAAu9opvQ
+	(envelope-from <devicetree+bounces-320105-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:25:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748847025CE
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:29:55 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A271E702529
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:25:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=AtJZgW0b;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320108-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320108-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=intel.com header.s=Intel header.b=RfUcXudw;
+	dmarc=pass (policy=none) header.from=intel.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320105-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-320105-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A6C4B3004D3A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 12:29:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DD8B930015A3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 12:25:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38C443D1ABD;
-	Fri,  3 Jul 2026 12:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C1FC3C5552;
+	Fri,  3 Jul 2026 12:25:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865473CCFAE
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 12:29:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D80432AAA0;
+	Fri,  3 Jul 2026 12:25:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783081749; cv=none; b=p7BAFcw3SYnHinru4xicCO6RxMWs3Joywmi1bfRWrt6Bb5ZX05oUYj/YobCTDds7xkTSLaD1VuKiPde2g8u+HPi0EBKvVi3ZV5A/BKhaLLiVFjYRxYDIM1VcwjZSeSbgbXw18JMFxXp2Xlw2vu4AAFsGvHuSq8SDJXvbgSg5ZSI=
+	t=1783081513; cv=none; b=adev5HtwgEhAr55HEFJcfp+wh+9E0OYsUMhr7agWcnZdgvSBp7vjyZ/pazgSehXeZkprahsOvMpyXMd6i8VlnWq06pewWpjTfjWj92RJNpvC+IzHJhGzk9FnmGhMrPbt6QlTn/t952JcQMCkwY9kXKVWFlXIHDiXjd+/BrhBces=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783081749; c=relaxed/simple;
-	bh=3XErzmFomReex+cqqDTCDX7Zj24XI05YTKHxfHkfJgY=;
+	s=arc-20240116; t=1783081513; c=relaxed/simple;
+	bh=e1nuJFUrHXMqYPp1Om3pEOEhsrVbohkdZMw63EKJXbo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ARUPOIYF5emq8BQvjpGsPoU0b3JYQ7yQbTgCnIVWUwKt5WzPLLcSmmMW1e0Dz9wzU64XAiE0IwECkRRwrGQgLd4w+/c8QRX4ssZIDLgAJVF8vY5DXF34TOx9C/38O3waFC4O0Z/sFVpum/oCwgOtQMFExAfsra9k5RQ/TllumEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=AtJZgW0b; arc=none smtp.client-ip=194.117.254.33
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=3XEr
-	zmFomReex+cqqDTCDX7Zj24XI05YTKHxfHkfJgY=; b=AtJZgW0baIQRZm8YFpq7
-	/5RWSh/EEjvz+1o5meQq2eRT+M60xKQNrgjy6o3UlVfQnJ+BPFmmXKAphzDCNne/
-	+WSNfrtmvpz903avvZG62y8wFTLwWJ4/AfE9HZexIz4t86uosyimplL8eM/LjvrX
-	mvUiUXh9oNfww5aQsHJ/Bzsd97gk82h0kYSLcfSJcT+0jrocmu70oikqLx4AE9A8
-	YewEOL+OlTbK1urIW+wyvA+1p86SqLp6VdAX0RUy5+jYs9hKV9FteT38rb9U3bCv
-	ptR80+Gm2vrmbJ/qwU1SoY8yNJRF81OwG1IF8+TNlgDZTHLlKKGz9fc+gvUBBtCc
-	lw==
-Received: (qmail 1514229 invoked from network); 3 Jul 2026 14:22:21 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 3 Jul 2026 14:22:21 +0200
-X-UD-Smtp-Session: l3s3148p1@zkbo+bNVnUxtKjD6
-Date: Fri, 3 Jul 2026 14:22:19 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-spi@vger.kernel.org,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v5 0/2] spi: dt-bindings: snps,dw-apb-ssi: updates for
- RZ/N1D
-Message-ID: <akepe9TXn07NrkE1@shikoro>
-References: <20260701131248.4545-4-wsa+renesas@sang-engineering.com>
- <364d2f57-db58-4ba1-a12c-025233fe35c0@sirena.org.uk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JVAlKcx6R4Rs9h3ZOqcPlo7nZgKXi1R+l6HYD4ib0hHbWBuK83UXsLBYBUsIMsQPP2xqLlwpMOqmVpGxwYK3Z9fiIeP2mAsTjjwPEWjm5UAL5adhKgpj1HNb19T/0EAWiuHq6Zn8HsgvDbh17A24P9Oyh4y2cLETx4V3JDtHpTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RfUcXudw; arc=none smtp.client-ip=198.175.65.16
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1783081511; x=1814617511;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=e1nuJFUrHXMqYPp1Om3pEOEhsrVbohkdZMw63EKJXbo=;
+  b=RfUcXudwyw1TZKEg3M4kOMinWmBjMedi+7twg2tqnU6vwZFZBfwGM+nz
+   3iWZqGc7NvkTZUH4I/nLADEmL8pRLqRmkTtFH/MBKJRTUqio23cENtBox
+   lKBn1xIYhnPnJDW4IByHo58HNL6yMNofhGU4iRvSWWQ7t0II/2P3i4TZP
+   +knL6cK8+SYe+wSPtvDHX0hiJW3NriMW49wrQj+znwNXyhjFdOlFgaLVc
+   nleVFQ566V5291lByEhEFsIt1x9V5t8A2by+DMpn/7wMrXcNAfe3cfODf
+   tDyJDUi+5bLsncZmBIBNdxWhBb6pbtTufUJT5HMbeXqRWGXyCSG7Qawzx
+   g==;
+X-CSE-ConnectionGUID: V2M6UINaTB+ZowNXs3d66Q==
+X-CSE-MsgGUID: xPXd5qUXRnKCPINFJpvOSw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="84025596"
+X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; 
+   d="scan'208";a="84025596"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2026 05:25:10 -0700
+X-CSE-ConnectionGUID: iNPxtoVzTEKEebHT+8Duaw==
+X-CSE-MsgGUID: p06MYZFKTeShTzSljCHreQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,145,1779174000"; 
+   d="scan'208";a="255020015"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.80])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2026 05:25:07 -0700
+Date: Fri, 3 Jul 2026 15:25:05 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux@analog.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 3/6] iio: dac: ad3530r: Convert sw_ldac_trig_reg to a
+ function pointer
+Message-ID: <akeqIffrdSE4bZO-@ashevche-desk.local>
+References: <20260703-iio-ad3532r-support-v4-0-69d9a336f4e8@analog.com>
+ <20260703-iio-ad3532r-support-v4-3-69d9a336f4e8@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hG9EEbx0Ob4UoHPd"
-Content-Disposition: inline
-In-Reply-To: <364d2f57-db58-4ba1-a12c-025233fe35c0@sirena.org.uk>
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	MAILLIST(-0.15)[generic];
-	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[sang-engineering.com];
-	TAGGED_FROM(0.00)[bounces-320108-lists,devicetree=lfdr.de,renesas];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_RECIPIENTS(0.00)[m:broonie@kernel.org,m:linux-renesas-soc@vger.kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:linux-spi@vger.kernel.org,m:magnus.damm@gmail.com,m:robh@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,glider.be,gmail.com];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,shikoro:mid]
-X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 748847025CE
-
-
---hG9EEbx0Ob4UoHPd
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20260703-iio-ad3532r-support-v4-3-69d9a336f4e8@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-5.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320105-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:kimseer.paller@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:Michael.Hennerich@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux@analog.com,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,intel.com:from_mime,intel.com:email,intel.com:dkim,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Server: lfdr
+X-Rspamd-Queue-Id: A271E702529
+
+On Fri, Jul 03, 2026 at 06:10:08PM +0800, Kim Seer Paller wrote:
+> The software LDAC trigger register is stored in the chip_info table as a
+> fixed register address. Devices with a multi-bank register architecture
+> select the trigger register based on the channel being updated, which a
+> single static address cannot express.
+> 
+> Convert sw_ldac_trig_reg into a function pointer that returns the
+> trigger register for a given channel, mirroring the input_ch_reg
+> callback.
+
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-> This doesn't apply against current code, please check and resend.
-
-Looks like you already applied the previous patch series one day before?
-Sorry, I can't find or recall being notified of this. Anyhow, patches
-are upstream now, so case closed. Thank you!
-
-
---hG9EEbx0Ob4UoHPd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmpHqXcACgkQFA3kzBSg
-KbY+2g//a7vwyNZqUB8NIBpuGwN+dmP15atYIcp5VZvVOH/0/XMo2OBAhleo8qqD
-Hjq4KX0jpAB+EoA6ejShYRoDYQOHR7HGFm3eq2eJesyjnRxMAzq0whBboaDiw7Dg
-Tx8BA6sbf26pTLaC+rErSwCzkp9NRnwXl5IZyDoMRoAA4b2hs1afMrGQdle7wESR
-6sBrwmmGj1w7MSb7+4ll4qFixegrOfdItkQJFGBjfb75RBC4Ibvz9hwpiEK7Guf0
-A4fuC+m/Fls8ucl23WbOr3ijJKr97nxAOzYDdP1qbyNEASipgrTCm2ME9kZiLQ+H
-94nn75z3/ysx5JVBpzfv8kV7jE0QNFB7g8j3dWGn0krd0yL7XtuRfwmxyiWMGnfD
-Xe149I9FVHsJE2fwsm0Ipq1YdDCleMvEB6yjgx3dkRoPbCbX/509LISNojWyCK4K
-Swj36WKSiD4+Clkwbl3kx14+9aP8Wuc3mIUSoBZn1X6E+dp3UWKCwnINBqB7Abz0
-pVZDQxjGtrHT7kDbGsmICdBzWKKFxfDm2JZnZ76IBa/zl89zP5gMuZsZqB/4bgi/
-38I8iKAjnwxa1w5JyBuaY0E1c0fZomdggo5qiC0B1Br+9+wIcbQtWzM6zyi5Exsc
-chp/LAkPVbN8a4rnDs/4RVqegxJIIEG9/XA6GyQCYadHRJrF71w=
-=gWLp
------END PGP SIGNATURE-----
-
---hG9EEbx0Ob4UoHPd--
 
