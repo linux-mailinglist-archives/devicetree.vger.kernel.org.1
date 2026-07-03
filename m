@@ -1,186 +1,135 @@
-Return-Path: <devicetree+bounces-319812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319813-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id y+r5JxJbR2qKWwAAu9opvQ
-	(envelope-from <devicetree+bounces-319812-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:47:46 +0200
+	id x1fLBl9bR2qcWwAAu9opvQ
+	(envelope-from <devicetree+bounces-319813-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:49:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7688D6FF32E
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:47:46 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B154F6FF350
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:49:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nliXxKvq;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="gr/DdCED";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319812-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319812-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319813-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-319813-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6507B303480E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 06:47:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C767C3029C18
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 06:48:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 862653876BE;
-	Fri,  3 Jul 2026 06:46:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC9F385D9F;
+	Fri,  3 Jul 2026 06:48:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1917388393
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 06:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE6963876A1;
+	Fri,  3 Jul 2026 06:47:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783061203; cv=none; b=GTZ78cuReODC5YXBDmk7y6k48nJAdPUEmM20mUTKgl9peAL5edX0W5C/exfGXocndYZp8LlJrWKMiGDNHMUIauD6tGjbd0QDwkbTDtm4FIZovKl2yBs6qW0jZCrKTjmGVB/XZSbtDtnlGjO924FbW9aCZB+YP4ZBeGMZJGY0Hx0=
+	t=1783061281; cv=none; b=GYvLylWcFSkYaOjUDlVFZm61KKhMvAzJHr8b+oUV6WZzHxK0aBEiFft1sJpCeXi0Yp+RaHyi6JCP5C3xe3lWurdAUdLqz6oTwIGWXcS75+DgdSY+vKyb8qwusadr4tW3QgxJ0L+m6KYGCNPGuiIdQfowhKTYAf4GtDWmCng8USg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783061203; c=relaxed/simple;
-	bh=l/RoFV6tiBGBQvdegP1gU8yoo8NcGZVo6iR2wntNxsM=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=tI0Bh1gBD364aFAVsDJKl5Rgg1Uxb8K6Bx6tv2j2INSOXR37HkqUGvNo09+t0tfeQEskG3xVR0PTSs+BthZMqpuJERHzVKKxRc019DDXsv6Fd8c0eB/dFTzAcRt4s436gwwyWQPqV7f3MADFVzg1CiyuZXYY/d3N7KbVvJ4KolI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nliXxKvq; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D1091F000E9;
-	Fri,  3 Jul 2026 06:46:40 +0000 (UTC)
+	s=arc-20240116; t=1783061281; c=relaxed/simple;
+	bh=EyOz9gg1C4sV0+3WpWIz+Lf7QvWT6ZAZLPJEbwxGQ3U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=clqXGbXvFkjCKACUIRCthUcoWY2sNf/70N+t4oLWG+Mf6gS3jHv7jt3LWKYCjnuOCoPeckWw/Oso5T7l1CkqZj8aYfM7xQWpDaws4C8OF6wR/sgPQbjvjoMcVjrC8rp//6UCK3kl9rfANIvN1OARJsD0qeK+mget7CQMdFC++TI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gr/DdCED; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ED581F000E9;
+	Fri,  3 Jul 2026 06:47:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783061200;
-	bh=JS67qwNWmyeaADcNPb7efkVRJ8FQVYcDdjFDCyR45Mw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=nliXxKvqKfSUd+hsAbwSVnUF3y595yHyh1ZKGW9g0xnGChVcs8slZ2xsKYbJg6r2b
-	 B0ga2j11xoeRNtIzB5dhy4mu6nukNymNLj08fYZix3Yqn+g0UJYIqI53TA6alVs2p+
-	 wWpIIZUYX4b8g2MOpmfjF147e37/aM1QIjlA4dE0O6kIwqwoNSH8AivH1XPcNhGRFe
-	 65F3EZIKJPaqukPjpNJjgueZbupEVfzt8tJ1bCN3Ou0xNhZByApgGc9KIsLjiOolLV
-	 ivRqot2BtjJ8g02DCo2m3OekslQtZ3BQ7A6E2yYhqcNbTEukTl8esSpOwMtThokx/3
-	 jJK7NmfZqBklw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v8 9/9] net: dsa: lan9645x: add port statistics
-Reply-To: sashiko-reviews@lists.linux.dev
-To: =?utf-8?b?SmVucyBFbWlsIFNjaHVseiDDmHN0ZXJnYWFyZA==?= <jensemil.schulzostergaard@microchip.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260702-dsa_lan9645x_switch_driver_base-v8-9-90228d8bba58@microchip.com>
-References: <20260702-dsa_lan9645x_switch_driver_base-v8-0-90228d8bba58@microchip.com>
- <20260702-dsa_lan9645x_switch_driver_base-v8-9-90228d8bba58@microchip.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 03 Jul 2026 06:46:40 +0000
-Message-Id: <20260703064640.6D1091F000E9@smtp.kernel.org>
+	s=k20260515; t=1783061277;
+	bh=Cp3nH/XuIMoiIpAb5TPVkBKID8l1rVRQ5+nNPwgAmWA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=gr/DdCEDFqw0a2XWo5YrWm+7l5/fvehobRxn4cvKnWXlztheZ9FuIFweqCUAFV1UK
+	 7Hz1/yCTc+AwCamVZdDtslCKULrKLCbZj/0Q9KhB1MhiLIMBY6ZvZxXUaFd6HwgMvx
+	 tr36Uak10QiQwTpsrJqkSIT+voeirRODelyIrjRg0wkm9Ofjq2uss/3R2jNKt9vsL1
+	 pTUozmxTvusWoMFsOavQs4LwtJc45O9F2UzomAoepz+yTQvbzkBnUTE5MVWb1ILRRx
+	 SxVHkxJex8Cp1iK55PQYvCrZr2f/iWxAnAjQmk4pErIz61BSadYwN+vrCif7bpjy1G
+	 zAIGBdYDIS1RQ==
+Date: Fri, 3 Jul 2026 08:47:52 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	jishnu.prakash@oss.qualcomm.com, kamal.wadhwa@oss.qualcomm.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: regulator: qcom,usb-vbus-regulator:
+ add qcom,pm4125-vbus-reg
+Message-ID: <20260703-quantum-quartz-grasshopper-13ccf3@quoll>
+References: <20260701-add_pm4125-vbus-reg-v2-0-6bac2bac7131@oss.qualcomm.com>
+ <20260701-add_pm4125-vbus-reg-v2-1-6bac2bac7131@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260701-add_pm4125-vbus-reg-v2-1-6bac2bac7131@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319812-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:jensemil.schulzostergaard@microchip.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:rakesh.kota@oss.qualcomm.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:quic_wcheng@quicinc.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:jishnu.prakash@oss.qualcomm.com,m:kamal.wadhwa@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-319813-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,quicinc.com,vger.kernel.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,quoll:mid,qualcomm.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7688D6FF32E
+X-Rspamd-Queue-Id: B154F6FF350
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Potential spinlock deadlock due to using `spin_lock()` instead of =
-`spin_lock_bh()` in process context, while the same lock is acquired in ato=
-mic (softirq) context.
---
+On Wed, Jul 01, 2026 at 03:58:03PM +0530, Rakesh Kota wrote:
+> The pm4125 PMIC uses a different USB VBUS register layout than pm8150b.
+> It uses a 2-bit VBOOST voltage selector supporting output voltages of
+> 4.25 V, 4.5 V, 4.75 V and 5.0 V, instead of a current-limit selector.
+> 
+> Move qcom,pm4125-vbus-reg from the pm8150b fallback items list into the
+> standalone enum since the driver handles it with its own match-data and
+> register layout.
+> 
+> Make regulator-min/max-microamp conditional so they are only required
+> for current-limit variants (pm8150b, pm6150, pm7250b, pmi632). Add an
+> if/then condition for qcom,pm4125-vbus-reg requiring regulator-min/
+> max-microvolt instead, and update the pm4125 example accordingly.
+> 
+> Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+> ---
+>  .../regulator/qcom,usb-vbus-regulator.yaml         | 50 +++++++++++++++++++---
+>  1 file changed, 45 insertions(+), 5 deletions(-)
 
-commit 38990de22bba61840a039693f5868e79590d8503
-Author: Jens Emil Schulz =C3=98stergaard <jensemil.schulzostergaard@microch=
-ip.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-net: dsa: lan9645x: add port statistics
+Best regards,
+Krzysztof
 
-Add statistics support for the port counters. Chip registers are 32 bit,
-so this unit is responsible maintaining a 64bit software cache, and
-updating it frequently to handle overflows in hardware.
-
-> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_stats.c b/driver=
-s/net/dsa/microchip/lan9645x/lan9645x_stats.c
-> new file mode 100644
-> index 0000000000000..e38f510eb8f66
-> --- /dev/null
-> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_stats.c
-
-[ ... ]
-
-> +static void __lan9645x_stats_view_idx_update(struct lan9645x *lan9645x,
-> +					     enum lan9645x_view_stat_type vtype,
-> +					     int idx)
-> +{
-> +	struct lan9645x_stats *s =3D lan9645x->stats;
-> +
-> +	lockdep_assert_held(&s->hw_lock);
-> +
-> +	if (!__lan9645x_stats_view_idx_hw_read(lan9645x, vtype, idx)) {
-> +		spin_lock(&s->sw_lock);
-
-[Severity: High]
-Can this deadlock if a softirq interrupts the process-context lock holder?
-
-The periodic workqueue (which calls __lan9645x_stats_view_idx_update) and
-ethtool callbacks acquire sw_lock using plain spin_lock(). Since plain
-spin_lock() does not disable softirqs, the process can be preempted while
-holding the lock.
-
-> +		__lan9645x_stats_view_idx_transfer(lan9645x, vtype, idx);
-> +		spin_unlock(&s->sw_lock);
-> +	}
-> +}
-
-[ ... ]
-
-> +/* Called in atomic context */
-> +void lan9645x_stats_get_stats64(struct lan9645x *lan9645x, int port,
-> +				struct rtnl_link_stats64 *stats)
-> +{
-> +	struct lan9645x_stats *s =3D lan9645x->stats;
-> +	u64 *c;
-> +
-> +	c =3D STAT_COUNTERS(lan9645x, LAN9645X_STAT_PORTS, port);
-> +
-> +	spin_lock(&s->sw_lock);
-
-[Severity: High]
-If lan9645x_stats_get_stats64() runs in softirq context as the comment
-implies, would it spin forever attempting to acquire sw_lock if it
-interrupted the process-context thread holding the same lock?
-
-Should the process-context accessors use spin_lock_bh() instead to prevent
-this?
-
-> +
-> +	stats->rx_bytes =3D c[SCNT_RX_OCT] + c[SCNT_RX_PMAC_OCT];
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260702-dsa_lan964=
-5x_switch_driver_base-v8-0-90228d8bba58@microchip.com?part=3D9
 
