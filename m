@@ -1,245 +1,134 @@
-Return-Path: <devicetree+bounces-320213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320217-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zc+1GGDNR2osfgAAu9opvQ
-	(envelope-from <devicetree+bounces-320213-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:55:28 +0200
+	id D6r8BgTNR2oNfgAAu9opvQ
+	(envelope-from <devicetree+bounces-320217-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:53:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12F83703A52
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:55:28 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 255547039FA
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:53:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.com header.s=google header.b="e+7lz/PP";
-	dmarc=pass (policy=quarantine) header.from=suse.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320213-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320213-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qq.com header.s=s201512 header.b=RFUvHBE4;
+	dmarc=pass (policy=quarantine) header.from=qq.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320217-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-320217-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AEF2930BDFB5
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 14:48:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AF7D43001A63
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 14:53:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEA0A32E729;
-	Fri,  3 Jul 2026 14:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE1AD3DB632;
+	Fri,  3 Jul 2026 14:53:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out203-205-221-191.mail.qq.com (out203-205-221-191.mail.qq.com [203.205.221.191])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA77C375F69
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 14:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838CC2749DF;
+	Fri,  3 Jul 2026 14:53:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783090134; cv=none; b=OoZzOYP/UzhtNXdGLJGy/Jhcclu9QtEsyt+uj9S1tRn0F9MxcvUfV9qAfBfRSD5TU/nXRNos/Q+3/iklSXn7lWoJAqTACbOxUUHCnVMQty2ZFHg7CO/RsBkgWFERRZiurwxmREmCfHdmwKS/noGp/Y4H008NY9EVBcjO5ynfgBA=
+	t=1783090425; cv=none; b=dThQD53PJZwq3IlQFLzaOcjkEuUpe2oaV5g3UfEIiXwva0dCInUe1NTl2zJTN0PeVbdio2qaiTWW02ZBaBj2A/sdZefDnU9/tKvYxvxiqXEeUETes+DK/LSRfG9Lu9Ipj+he+J0xTfxCwGy/wEVTKMkAc+d94uz9kRF3cl/d7aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783090134; c=relaxed/simple;
-	bh=HqK0apG2WBVp9keeHQN4EfAdivjOtfyBmEcKP8064hw=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=riRQIpcselYotoLBdJr7x1aHKzADeDkZvljjPEuRGuEKB9irJ/CtHpsaDMTPBsaL63zFn0+28om6Qv2/xJCwZD8cm/sAFnxFlPh4Xkdb3tJU9EeTKb1I0/6h8icWS4603wnnCtHuwLG2Y8Kty5ZB6DW5I5hs/tzzpLePhVcr018=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=e+7lz/PP; arc=none smtp.client-ip=209.85.128.53
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-490cf3000f0so5798275e9.1
-        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 07:48:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1783090131; x=1783694931; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RtbeAb4anjju2Gg5Hr2svmQH8LAj1CgUb05x/8fx3ZI=;
-        b=e+7lz/PPnTzecXOAHSvZyU3R8gflwVZHQobEZRvjqS0VJt1OD2OxEdy7uypE1VSXhW
-         Wo2KlJRzSCCadbsZ3g6xor/zF/CAXgJy6mmpT3K1jfMsg8F79YWpFcfLzyeZzCUsqyAv
-         Z38B0wbs9LazAhImGpTwxhyrRbFe+rB6YqhnWSPxRIwvZ6bxF6qt9zg6794DgkVcD8GA
-         2QwPxfSpHgUdlj55ugttafXDrD1xYpkTFOjhBZqJZtQDe+jOxlrDvErQrG0kxvvBIxxJ
-         L7A0zCVWI1NwbNMbs4zpW+/VO1jsEH50fgePG27cYspi5SJLTDHDEESLHvoSWn3LNgj3
-         +ruQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783090131; x=1783694931;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RtbeAb4anjju2Gg5Hr2svmQH8LAj1CgUb05x/8fx3ZI=;
-        b=qnZBrPJPoQTL11eeSXogx3cyt9ly/Mvtsm8Ma0ZYckSEb7z9RWKEhAUzD4v+U1xlpu
-         38PiB++PFHZD0ZnVzhlhRdZdrWuojAkDw97HxXfhSJtSACVyH6hzD3ipQOW+/HzllxoX
-         ESUrMwx2FSs+g6u3o5wwtJOnJ7V9UOYi8gOppuvboM54PVog/vuIfsSiBi96vJdry5PF
-         76nxtpeNeKp4zVfMR4TLxH77frQEUcn1VyQbfPhfcSG7u2yxIVqYIAU+WK9/11ZAHDwN
-         glZK/1zmB0R3PhxCgYezLcpzCho+NNPjpSbw+9TczVzlfGU1s1GiAyoXWJZkMToPZxwN
-         wy3w==
-X-Forwarded-Encrypted: i=1; AFNElJ+lBlhJrEyku9QrMlGy6zqXvzV0xHxPRArtwP/WKSQ7kLBxGubsvMfTVqTa18lTb7uG3ROI9kj7x+rH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4lBxEeptTWnCi7SBvfTprmxThsGhKw5IWXmztoaHouany4xlN
-	YAdcnGl1hpglBK4DBvKLOyUk3Qauqd2uyglTPGmLIhdTPdgbE9WQxGU9Z4vcat7BXxs=
-X-Gm-Gg: AfdE7ck2FqyqreoyOHvyLY+hele6RG8eXRxdAO2LSJK+24HyR/42vlt/DtnqXFtqUCM
-	v6tgeMVWkLm0PQn1apr/CpyGHgJ9l3fhgx3j5FZ3TC2HNp2GMtpR5N8BnJBVyR48u0X1rTjZbbH
-	V/kELHzFax6H10uRTYjviJTq5K/6xYvXx3Uc+p3f9A47FaBW7n2N3SKNXairHp7sj1R08e6ngr3
-	wHBrUkqT1oyCPc4mOq51srB2iQ+tn4kYYrQ38RKKUJhoXJ9pfJQM7sWpmDP6Dm1sMPZi0mIHA3M
-	q6Vy80qU0gwlnf8SvB/P0rHIs14CkmVM5tz3QGpdcUeJwRnoqxWm54Z5qf3m2bWbeqUjDkqimDO
-	bIDUOhwWG5wyuuuXftaQoBtooKZCV0oudqq9TCT2ZPOCUSjQriZzMEq5s14JxvPRwW6ZAIW5aBc
-	Z5YqsgHzxJEzQ=
-X-Received: by 2002:a05:600c:34c5:b0:493:bc4a:e7d3 with SMTP id 5b1f17b1804b1-493d0f4efa6mr1735385e9.39.1783090131280;
-        Fri, 03 Jul 2026 07:48:51 -0700 (PDT)
-Received: from localhost ([195.94.145.62])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493c637568dsm149767675e9.4.2026.07.03.07.48.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jul 2026 07:48:50 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Fri, 3 Jul 2026 16:52:17 +0200
-To: Sean Young <sean@mess.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-pwm@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Stanimir Varbanov <svarbanov@suse.de>, mbrugger@suse.com
-Subject: Re: [PATCH v5 2/3] pwm: rp1: Add RP1 PWM controller driver
-Message-ID: <akfMoQfzmEEiH9VC@apocalypse>
-References: <cover.1780670224.git.andrea.porta@suse.com>
- <f8dd46a553351adaf9d29fbba9f98e803b672fe7.1780670224.git.andrea.porta@suse.com>
- <aiwX2YWVJnDNTNiu@extorris.mess.org>
+	s=arc-20240116; t=1783090425; c=relaxed/simple;
+	bh=CS+Gi0WzooNXpSduprgHt/xrr1DtrJS76eULUS0BXDQ=;
+	h=From:To:Cc:Subject:Mime-Version:Content-Type:Date:Message-ID:
+	 References:In-Reply-To; b=jPPxQkpT3LpzsioEPN2iTcPOLVJHvQUhxxl7v4QZiauddAsChZh52v/mFafwFt5bEBCsP8ucmlKhVEtr46F6s+T9th0+MqKoF76XAIw8FunK16O3gNauxoUfVeDZRioWMKyAy8DzdJpTsvElN5IGGWCWO3pXOfjPYMFUwUL2KbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=RFUvHBE4; arc=none smtp.client-ip=203.205.221.191
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1783090414; bh=CS+Gi0WzooNXpSduprgHt/xrr1DtrJS76eULUS0BXDQ=;
+	h=From:To:Cc:Subject:Date:References:In-Reply-To;
+	b=RFUvHBE4N9iYueVnB+VpEFRtFe/ziWz9QNBZKs9PSqkdgFeWYniZfXlLnBcmr46Db
+	 NJofz0P4wpKmvBTQvKJhqfF8UWLI0wSZXLCEL1FxsfNDivvEZ3AxzDuqokiP1TwDCB
+	 Op5nGHm7nRJHg7D98g5E2g1lo235DRO3f0XaG7Ng=
+X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
+X-QQ-XMAILINFO: OImhmUSEbAWcT2IHWW/hjuPTBpK4RrQqRf2cBNo/s1dnpGT3F5w5IHksEzAmKP
+	 6ZFzYKPMq4B8CxWmN6Uj23da3mQ7AFQqyLRF7jWMIM0F6SEmWPhxipgperIpZlGtuWCHd7xIBiwPp
+	 JM8wwprDpf2Re5QKhuDnd/ay+Au+T4tKL+NcvuZrhSWXWbkqVKhff1X2Ts/LRF3T0SA3GE7juYFxS
+	 9ZSHzuOLgTv5YloTkoeNB0LFvDWEUz4D1POnNUfPEjmHKKRUViR/TkpzYTgvexR3Fp8bJN9SCchf5
+	 U60no2JyJCtDSW366HdHi+JwAA/1Bn4DGhixWVijxhZAcdcgZe98o+59fP0wxP765ME/xy7VkSza6
+	 Xu7MXSFfxqP4JoMGkXYoVcC42Cn53vYWfojqS9cp7je2dnXwLtlMuREsPpn3eeyRBnsESGgsswhos
+	 q1uAHYwqTpVjXHfFZ2YYXCnGweh5eIbwzmbg8HvW2oCsNwPuubRWrIaHerftu45klQVJ+nWpduhUF
+	 /KS34Tep6B10qqgjECkPp6zWiLR1JmHYQP0cRF36Sovdzvgqfc0ChNnCb5inE9Z7s2ZtIyBfXCIzR
+	 B0/Jqp/p0+cGkJpOwxb9N46KcD+1pEmCVBbe1luZJb0yVZSbg9QyIn6IkQOWyTWrDvRRXjSvETk9x
+	 DM+drrBchaPXqFik96c/Eqc7erMELDBHwApMdW/Zl1Y6YSGRJdXp0bldK2HUF2boaM6TaeIVy5r9t
+	 d/MrRoOIZ/XrzTGhSxcva5pihBOjHoHX0VU0F6Z22ZxvViFsPiszZXCoDGZ/QrMyKKJmb20Y72SDI
+	 yyFh1c9NN41u1yMZzyq3JwvX74FGHJL3xQxRRG+4jKPlPVmWqcNNeG6vy36OPtKkDtTivJ4jXx+YB
+	 hrpoBXWB1kdUZJKNLUetSs6xz7evYwIvWkhgoCEX1gyJ2iHLVqOJegRRGV3LrntBGtcoav8QOFWvh
+	 dK4FNW5WGkKrSpr83gkyegxLQglNfToc4ij2eke8fC93fBsOzCHxiZodRjwfNbXdBmYcORAS/ZauM
+	 bfRAR3Y3JO+2vQp0RYg1Zpz+Tcj5YHezR6TCb/jItwJgGGSk=
+From: "=?utf-8?B?Q3VuaGFvIEx1?=" <1579567540@qq.com>
+To: "=?utf-8?B?UXVlbnRpbiBTY2h1bHo=?=" <quentin.schulz@cherry.de>, "=?utf-8?B?TWFyYyBLbGVpbmUtQnVkZGU=?=" <mkl@pengutronix.de>, "=?utf-8?B?a2VybmVs?=" <kernel@pengutronix.de>, "=?utf-8?B?VmluY2VudCBNYWlsaG9s?=" <mailhol@kernel.org>, "=?utf-8?B?Um9iIEhlcnJpbmc=?=" <robh@kernel.org>, "=?utf-8?B?S3J6eXN6dG9mIEtvemxvd3NraQ==?=" <krzk+dt@kernel.org>, "=?utf-8?B?Q29ub3IgRG9vbGV5?=" <conor+dt@kernel.org>, "=?utf-8?B?SGVpa28gU3R1ZWJuZXI=?=" <heiko@sntech.de>
+Cc: "=?utf-8?B?bGludXgtY2Fu?=" <linux-can@vger.kernel.org>, "=?utf-8?B?ZGV2aWNldHJlZQ==?=" <devicetree@vger.kernel.org>, "=?utf-8?B?bGludXgtYXJtLWtlcm5lbA==?=" <linux-arm-kernel@lists.infradead.org>, "=?utf-8?B?bGludXgtcm9ja2NoaXA=?=" <linux-rockchip@lists.infradead.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?SGVpa28gU3R1ZWJuZXI=?=" <heiko.stuebner@cherry.de>
+Subject: Re: [PATCH v4 3/4] arm64: dts: rockchip: add CAN-FD nodes for RK3588
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aiwX2YWVJnDNTNiu@extorris.mess.org>
+Mime-Version: 1.0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: base64
+Date: Fri, 3 Jul 2026 22:53:32 +0800
+X-Priority: 3
+Message-ID: <tencent_6D8030C4363FF6A6191A0C19F384BE91BE07@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+References: <20260703-master-v4-0-47d40bbf5fda@qq.com>
+ <tencent_48121342466E02301067FDB89BEA68886509@qq.com>
+	<8c5be502-c520-42f5-9f2b-c49c04e99f6a@cherry.de>
+In-Reply-To: <8c5be502-c520-42f5-9f2b-c49c04e99f6a@cherry.de>
+X-QQ-mid: xmsezb41-0t1783090412tldcxqjes
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [1.44 / 15.00];
+	TO_EXCESS_BASE64(1.50)[];
+	CC_EXCESS_BASE64(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[qq.com,quarantine];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-320213-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sean@mess.org,m:andrea.porta@suse.com,m:ukleinek@kernel.org,m:linux-pwm@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:naush@raspberrypi.com,m:svarbanov@suse.de,m:mbrugger@suse.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
+	TO_DN_ALL(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:quentin.schulz@cherry.de,m:mkl@pengutronix.de,m:kernel@pengutronix.de,m:mailhol@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:linux-can@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:heiko.stuebner@cherry.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320217-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[qq.com:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[suse.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
+	HAS_X_PRIO_THREE(0.00)[3];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[qq.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:from_mime,suse.com:dkim,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,apocalypse:mid,raspberrypi.com:email]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_EXCESS_BASE64(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qq.com:from_mime,qq.com:dkim,qq.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 12F83703A52
+X-Rspamd-Queue-Id: 255547039FA
 
-Hi Sean,
+SGkgUXVlbnRpbiwKCgo+wqA+wqBEZXNjcmliZcKgdGhlwqB0aHJlZcKgQ0FOLUZEwqBjb250
+cm9sbGVyc8KgaW50ZWdyYXRlZMKgaW7CoFJLMzU4OMKgaW7CoHRoZcKgYmFzZQo+wqA+wqBT
+b0PCoC5kdHNpLgo+wqA+Cj7CoD7CoEFkZMKgQ0FOMCzCoENBTjHCoGFuZMKgQ0FOMsKgbm9k
+ZXPCoHdpdGjCoHRoZWlywqByZWdpc3RlcsKgcmFuZ2VzLMKgaW50ZXJydXB0cywKPsKgPsKg
+Y2xvY2tzwqBhbmTCoHJlc2V0cyzCoGFuZMKga2VlcMKgdGhlbcKgZGlzYWJsZWTCoGJ5wqBk
+ZWZhdWx0wqBzb8KgYm9hcmTCoERUU8KgZmlsZXMKPsKgPsKgY2FuwqBlbmFibGXCoHRoZW3C
+oGFzwqBuZWVkZWQuCj4KPsKgUmV2aWV3ZWQtYnk6wqBRdWVudGluwqBTY2h1bHrCoDxxdWVu
+dGluLnNjaHVsekBjaGVycnkuZGU+CgpUaGFua3MgZm9yIHRoZSByZXZpZXcgYW5kIGZvciB0
+aGUgUmV2aWV3ZWQtYnkgdGFnLgoKQmVzdCByZWdhcmRzLApDdW5oYW8=
 
-On 15:29 Fri 12 Jun     , Sean Young wrote:
-> On Fri, Jun 12, 2026 at 04:01:27PM +0200, Andrea della Porta wrote:
-> > From: Naushir Patuck <naush@raspberrypi.com>
-> > 
-> > The Raspberry Pi RP1 southbridge features an embedded PWM
-> > controller with 4 output channels, alongside an RPM interface
-> > to read the fan speed on the Raspberry Pi 5.
-> > 
-> > Add the supporting driver.
-> > 
-
-<...snip...>
-> 
-> I don't understand the point of the clk_enabled field. If the probe
-> function succeeds, then clk_enabled = true. It is set to false during
-> suspend, but after suspend the only thing which can follow is resume,
-> I think. In resume, we set it in to true again unconditionally. So
-> it is always true, no?
-
-It's true unless enabling the clock again in rp1_pwm_resume() will fail.
-That will trap the unbalanced condition mentioned by Uwe in:
-https://lore.kernel.org/all/adiW1tBC8Imd14LD@monoceros/
-
-> 
-> > +};
-> > +
-> > +struct rp1_pwm_waveform {
-> > +	u32 period_ticks;
-> > +	u32 duty_ticks;
-> > +	bool enabled;
-> > +	bool inverted_polarity;
-> > +};
-> > +
-
-<...snip...>
-
-> > +
-> > +	/*
-> > +	 * The period is limited to U32_MAX, and it will be decremented by one later
-> > +	 * to allow 100% duty cycle.
-> > +	 */
-> > +	if (period_ticks > U32_MAX) {
-> > +		period_ticks = U32_MAX;
-> > +	} else if (period_ticks < 2) {
-> > +		period_ticks = 2;
-> > +		ret = 1;
-> > +	}
-> 
-> period_ticks = clamp(period_ticks, 2, U32_MAX);
-> 
-> Although that misses out the `ret = 1;` which I am not sure about anyway.
-
-But we need that ret = 1 to announce that values have been rounded.
-
-> 
-> > +
-> > +	duty_ticks = mul_u64_u64_div_u64(wf->duty_length_ns, clk_rate, NSEC_PER_SEC);
-> > +	duty_ticks = min(duty_ticks, period_ticks);
-> > +	offset_ticks = mul_u64_u64_div_u64(wf->duty_offset_ns, clk_rate, NSEC_PER_SEC);
-> > +	if (offset_ticks >= period_ticks)
-> > +		offset_ticks %= period_ticks;
-> > +	if (duty_ticks && offset_ticks &&
-> > +		ret = dev_err_probe(dev, -EINVAL, "Clock rate > 1 GHz is not supported\n");
-
-<...snip...>
-
-> > +		goto err_disable_clk;
-> > +	}
-> > +	rp1->clk_rate = clk_rate;
-> > +
-> > +	chip->ops = &rp1_pwm_ops;
-> 
-> Can we add the following please:
-> 
-> 	 chip->atomic = true; 
-> 
-> This means that the pwm can be controlled from atomic context (not process
-> context) using pwm_apply_atomic(). This is very helpful for the pwm-ir-tx
-> driver, which produces a much more faithful IR signal in atomic context.
-> 
-> Using pwm for infrared tx is much nicer than using gpio which bit bangs
-> the IR signal and holds the CPU with interrupts disabled for upto one second.
-> 
-> As far as I can see there is no sleeping code in these code paths, so we
-> should be fine.
-
-Sure, added.
-
-Many thanks,
-Andrea
-
-> 
-> Thanks,
-> 
-> Sean
->
-
-<...snip...>
 
