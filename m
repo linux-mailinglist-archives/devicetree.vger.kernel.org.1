@@ -1,122 +1,266 @@
-Return-Path: <devicetree+bounces-320198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320199-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nARZLEbHR2qUfAAAu9opvQ
-	(envelope-from <devicetree+bounces-320198-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:29:26 +0200
+	id YH6LNGnIR2ryfAAAu9opvQ
+	(envelope-from <devicetree+bounces-320199-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:34:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D445703695
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:29:26 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDC05703734
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:34:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chaosmail.tech header.s=mail header.b=TU+tJkDB;
-	dmarc=pass (policy=reject) header.from=chaosmail.tech;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320198-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320198-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=COglTmmj;
+	dmarc=pass (policy=reject) header.from=bootlin.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320199-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-320199-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C04D73014680
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 14:27:01 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6E0B2301021C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 14:28:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89043C98BE;
-	Fri,  3 Jul 2026 14:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AECF3E5564;
+	Fri,  3 Jul 2026 14:28:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from chaosmail.tech (chaosmail.tech [77.81.229.115])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993CB3E1235;
-	Fri,  3 Jul 2026 14:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86BB83E5A17
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 14:28:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783088819; cv=none; b=CFDtomG1B875UFVNQVriXzVfi09dXo4mLlagV1F6Yf7PDYaSbcrzV4RSODyQRWYYt7R+/SIKCFrRd8o1VxojsHNeuajhV3qCo1MBMp84uMHFOj1Ji2pfud7XXPCQ+Dv1o84lc58cWoQZXVVWhHcVaYZMFdiJ6QZOzz8BQfRJsMo=
+	t=1783088896; cv=none; b=luLNxSkksB+1C7bhl9LoGsQ/rcBomsFvpemcfbPQ4zqF0dEYTdTmL4aLv52vnY4c64d+/dknU08wtvprEU0rblMw3Xi0mwExZehIWiEmBN/ClRsjRkUrLw5Vu1Slrt3XIPs1qYLwTe5jE8jnmBvalKbCruYrmpKZdeSEe8/EubA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783088819; c=relaxed/simple;
-	bh=eUnlE9+0l8fJKoLTHs0qb/oMYwfGR8LWWl2uZHjushc=;
-	h=Content-Type:MIME-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=mjnhf21lbKFzzAnLTMwk6ozVCka9Mc/mTB6A/M1jYyrIL6wz8HFnW8npIHJEuhI2tDy+SlrKEz/9zu343ere+IgneRca/aTiiXuxbw5SihE7dW6hsslAqzoGGL5Wg3u3plNgjtNSv5rLuQO4N39WhhUPst350OQpz45j0WjBA84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=chaosmail.tech; spf=pass smtp.mailfrom=chaosmail.tech; dkim=pass (1024-bit key) header.d=chaosmail.tech header.i=@chaosmail.tech header.b=TU+tJkDB; arc=none smtp.client-ip=77.81.229.115
-Received: by chaosmail.tech (Postfix) id E47031CC21E;
-	Fri, 03 Jul 2026 14:26:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chaosmail.tech;
-	s=mail; t=1783088814;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wKuBmxQ8JnReynxOFnIhAbMgNLWozbwQA/XogGS5Wg0=;
-	b=TU+tJkDB8A+jF6w/GXb8peZBii67lRfq1fEtlzuSt6mglAZbbU23DaZiCXxZQl/KGU7SGr
-	Ix0bQX9x99yQ5wJH6oPtozF49LXN1rhCvgs28k3bekzPY75tv+GSYsT/dKd8lBJ9Hx6yIO
-	dEBy7ydKaLP40tT+f8XXgrq7FXrVbD4=
-Content-Type: text/plain;
-	charset=us-ascii
+	s=arc-20240116; t=1783088896; c=relaxed/simple;
+	bh=ITrbvsm0G/Pv3ujrq2Szij0qYf7HygBokH53s7KoMok=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=Sd0qZZ98UGVkVOw2VKkAAO1zyf1sDGnzbcyQCVPnqWnxAk7KLXPH3+ylY48RmesmkYWoMGW7MtM8fYQQ3wd0HZyhxsZGQwIvRgpHapuK2iOiXCjldHJSzd7Z003DrYLa+S95CsTbvMoRWBfRx9k1fPpIKfPnLBnj2OKSTDDbf2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=COglTmmj; arc=none smtp.client-ip=185.171.202.116
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id E1A6BC49F58;
+	Fri,  3 Jul 2026 14:28:20 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1637D60300;
+	Fri,  3 Jul 2026 14:28:09 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BBE16104C952E;
+	Fri,  3 Jul 2026 16:28:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1783088888; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=FWZEXxxoOOd2vkIKZNPsTFkOcP9YZMV5eBktDgGvjGk=;
+	b=COglTmmjEndgEfeTc6lee+3w9LIPbjrp1K7WmZG8rhp7D/O7fj0BL646cN0RzkoHI4s5Ao
+	3Yfz5WbbHfY+8mhTbMaaGWVrbNfFSrwe9Bq4x8m+JfoIfGcfmeyMG8VqoEOC30rxMGHpD6
+	x9APSMfzgfhZU2m47Ekj8Ix5uu5rPizJlsv3Rn8iCu/alIAZmF6wgrjv9R7fWKjcbS9g4q
+	sY5hCc/BWpQqzUzy4ZXnxDcNgGlRuWc5xoVfs0PvDyqZL+Nh6xXGorvPfDTHTjqWHotMHn
+	WmoqKskpKTQ/JsoEqfFOEwHhJNuQqMDVwk5gNxChT1ekVf+3//2xro2NeSdgug==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/3] soc: apple: Add driver for Apple PMGR misc
- controls
-From: Sasha Finkelstein <k@chaosmail.tech>
-In-Reply-To: <3e7a26e0-5ba5-4440-acd1-ac9547e1d403@kernel.org>
-Date: Fri, 3 Jul 2026 16:26:43 +0200
-Cc: asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>,
- Janne Grunau <j@jannau.net>,
- Hector Martin <marcan@marcan.st>,
- Neal Gompa <neal@gompa.dev>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Content-Transfer-Encoding: 7bit
-Message-Id: <4A1676D4-8B60-40E4-8E21-59DF4657BEC6@chaosmail.tech>
-References: <20260703-pmgr-misc-v2-0-4b26ba10c5a4@chaosmail.tech>
- <20260703-pmgr-misc-v2-2-4b26ba10c5a4@chaosmail.tech>
- <3e7a26e0-5ba5-4440-acd1-ac9547e1d403@kernel.org>
-To: Sven Peter <sven@kernel.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 03 Jul 2026 16:28:06 +0200
+Message-Id: <DJP09A8O5CHS.1KVKCP45QSMDH@bootlin.com>
+Cc: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>, <robh@kernel.org>
+Subject: Re: [PATCH 08/12] soc: fsl: qe: Convert to generic IRQ chip
+From: "Paul Louvel" <paul.louvel@bootlin.com>
+To: <sashiko-reviews@lists.linux.dev>, "Paul Louvel"
+ <paul.louvel@bootlin.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260703-qe-pic-gpios-v1-0-6c3e706e27dc@bootlin.com>
+ <20260703-qe-pic-gpios-v1-8-6c3e706e27dc@bootlin.com>
+ <20260703134516.ECD1A1F000E9@smtp.kernel.org>
+In-Reply-To: <20260703134516.ECD1A1F000E9@smtp.kernel.org>
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[chaosmail.tech,reject];
-	R_DKIM_ALLOW(-0.20)[chaosmail.tech:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320198-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[k@chaosmail.tech,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor+dt@kernel.org,m:j@jannau.net,m:marcan@marcan.st,m:neal@gompa.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:sven@kernel.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[chaosmail.tech:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[paul.louvel@bootlin.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[k@chaosmail.tech,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-320199-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:sashiko-reviews@lists.linux.dev,m:paul.louvel@bootlin.com,m:conor@kernel.org,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[paul.louvel@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,chaosmail.tech:from_mime,chaosmail.tech:dkim,chaosmail.tech:mid,vger.kernel.org:from_smtp]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,bootlin.com:from_mime,bootlin.com:url,bootlin.com:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1D445703695
+X-Rspamd-Queue-Id: CDC05703734
 
-On Jul 3, 2026, at 16:19, Sven Peter <sven@kernel.org> wrote:
-> 
-> Do we know what 7 means here? would be nice to also have that #defined
+On Fri Jul 3, 2026 at 3:45 PM CEST, sashiko-bot wrote:
+> Thank you for your contribution! Sashiko AI review found 3 potential issu=
+e(s) to consider:
+>
+> New issues:
+> - [High] Incorrect hwirq calculation in `qepic_cascade()` maps bit indice=
+s [0..31] to hwirqs [32..1] instead of [31..0], causing out-of-bounds mappi=
+ng and shifting all IRQs by one.
+> - [High] Race condition on probe: The chained interrupt handler is regist=
+ered before `data->gc` is initialized, causing a NULL pointer dereference i=
+f an interrupt fires early.
+>
+> Pre-existing issues:
+> - [High] The IRQ mask, unmask, and set_type callbacks use lockless read-m=
+odify-write operations on shared registers, leading to data races.
+> --
+>
+> commit 39268a559b43e95ee6bcd43807086719d4997f6e
+> Author: Paul Louvel <paul.louvel@bootlin.com>
+>
+> soc: fsl: qe: Convert to generic IRQ chip
+>
+> The generic IRQ chip framework is available to handle IRQ chips. Using
+> this framework for the QE interrupt controller allows to simplify the
+> driver. Indeed, the framework internally handles operations coded
+> directly in the driver.
+>
+>> diff --git a/drivers/soc/fsl/qe/qe_ports_ic.c b/drivers/soc/fsl/qe/qe_po=
+rts_ic.c
+>> index c8b73b0aa2334..d022aa224f6d6 100644
+>> --- a/drivers/soc/fsl/qe/qe_ports_ic.c
+>> +++ b/drivers/soc/fsl/qe/qe_ports_ic.c
+>> @@ -20,63 +20,65 @@ struct qepic_data {
+>>  	void __iomem *reg;
+>>  	struct irq_domain *host;
+>>  	int irq;
+>> +	struct irq_chip_generic *gc;
+>>  };
+>> =20
+>>  static void qepic_mask(struct irq_data *d)
+>>  {
+>> -	struct qepic_data *data =3D irq_data_get_irq_chip_data(d);
+>> +	struct irq_chip_generic *gc =3D irq_data_get_irq_chip_data(d);
+>> +	struct irq_chip_type *ct =3D irq_data_get_chip_type(d);
+>> =20
+>> -	clrbits32(data->reg + CEPIMR, 1 << (31 - irqd_to_hwirq(d)));
+>> +	clrbits32(gc->reg_base + ct->regs.mask, d->mask);
+>>  }
+>
+> [Severity: High]
+> This is a pre-existing issue, but does this lockless read-modify-write
+> operation cause data races?
+>
+> The qepic_mask(), qepic_unmask(), and qepic_set_type() callbacks use
+> clrbits32() and setbits32() on shared registers without a shared controll=
+er
+> lock. If multiple CPUs modify different IRQs concurrently, could updates =
+to
+> the shared mask or type registers be lost?
+>
+> [ ... ]
+>
+>>  static void qepic_cascade(struct irq_desc *desc)
+>>  {
+>>  	struct qepic_data *data =3D irq_desc_get_handler_data(desc);
+>> +	struct irq_chip_type *ct =3D data->gc->chip_types;
+>>  	struct irq_chip *chip =3D irq_desc_get_chip(desc);
+>>  	unsigned long event, bit;
+>> =20
+>>  	chained_irq_enter(chip, desc);
+>> =20
+>> -	event =3D in_be32(data->reg + CEPIER);
+>> +	event =3D in_be32(data->gc->reg_base + ct->regs.eoi);
+>>  	if (!event) {
+>>  		handle_bad_irq(desc);
+>>  		goto out;
+>>  	}
+>
+> [Severity: High]
+> Could the hwirq calculation in qepic_cascade() be incorrect?
+>
+> When an interrupt fires, the trailing loop (using for_each_set_bit) yield=
+s a
+> 0-based bit index, but generic_handle_domain_irq() evaluates the hwirq us=
+ing
+> "32 - bit".
+>
+> For example, if bit 0 is set, it maps to hwirq 32, which exceeds the doma=
+in's
+> hwirq_max of 32 and leaves all IRQs shifted out of bounds. Does this need=
+ to
+> be "31 - bit" to correctly map bit indices [0..31] to hwirqs [31..0]?
+>
+> [ ... ]
+>
 
-We do not. Probably a way to pick a clock multiplier or something
-similar. On t600x, setting it too low results in other blocks failing
-to power up after sleep.
+Valid point.
+
+>> @@ -125,14 +158,16 @@ static int qepic_probe(struct platform_device *pde=
+v)
+>>  	if (data->irq < 0)
+>>  		return data->irq;
+>> =20
+>> -	data->host =3D irq_domain_create_linear(dev_fwnode(dev), 32, &qepic_ho=
+st_ops, data);
+>> -	if (!data->host)
+>> -		return -ENODEV;
+>> +	data->host =3D devm_irq_domain_instantiate(dev, &d_info);
+>> +	if (IS_ERR(data->host))
+>> +		return PTR_ERR(data->host);
+>> =20
+>> -	irq_set_chained_handler_and_data(data->irq, qepic_cascade, data);
+>> -
+>> -	return devm_add_action_or_reset(dev, qepic_remove, data);
+>> +	data->gc =3D irq_get_domain_generic_chip(data->host, 0);
+>> +	if (!data->gc)
+>> +		return -ENODEV;
+>> +	data->gc->reg_base =3D data->reg;
+>> =20
+>> +	return 0;
+>>  }
+>
+> [Severity: High]
+> Can this probe sequence trigger a NULL pointer dereference?
+>
+> When devm_irq_domain_instantiate() is called, it triggers the init callba=
+ck
+> qepic_domain_init(), which registers the chained handler and unmasks the
+> parent interrupt:
+>
+> qepic_domain_init()
+>     irq_set_chained_handler_and_data(data->parent_irq, qepic_cascade, dat=
+a);
+>
+> If an interrupt is pending and fires immediately, qepic_cascade() will
+> execute and attempt to dereference data->gc->reg_base. However, data->gc =
+is
+> not initialized until irq_get_domain_generic_chip() is called after the
+> domain instantiation returns.
+>
+> Could this cause a crash if a pending interrupt is triggered during probe=
+?
+
+Valid point.
+
+
+
+
+--=20
+Paul Louvel, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
