@@ -1,154 +1,205 @@
-Return-Path: <devicetree+bounces-319946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319948-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TJ0HApZ6R2ohZAAAu9opvQ
-	(envelope-from <devicetree+bounces-319946-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:02:14 +0200
+	id lqssCPB6R2pkZAAAu9opvQ
+	(envelope-from <devicetree+bounces-319948-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:03:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 243B470066B
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:02:13 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5792B7006C7
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:03:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YCto8EmN;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319946-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319946-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linux.spacemit.com header.s=mxsw2412 header.b=rXf6EsKh;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319948-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-319948-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3B5FC30393C2
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 09:00:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7792330338B9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 09:01:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5397389E02;
-	Fri,  3 Jul 2026 09:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EADB3921F0;
+	Fri,  3 Jul 2026 09:01:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE5A038888E;
-	Fri,  3 Jul 2026 09:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB8A38E12B;
+	Fri,  3 Jul 2026 09:01:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783069252; cv=none; b=OYUBiKB+XC51PnbHKw05TQ/x1Rbto9Xq4j7fyGqgGpvURM0HnPB9ArFVxliFA32qBCsCAD9J1pWDfqUhPETE8URrIwdtLjYSuPnvXLvVi7JLk+g6fxOvOBVJLN+XXWVcxHBYGpOYJtVple52K9lveRMZKvfVndU86TrbNV26LGQ=
+	t=1783069282; cv=none; b=YBywZZJdFWl5+PC8z7VwWuh6/XvwFUpQ+YvnPAQDtaT8CV2M4lyXEqJryWUeHhZHEjHt42L4Ql6BqowicweJE854pGbV0APXofRZusKKjsPVcIJ2vkXrbcb3VeHaf9p2fQo99mVHHEMMGs+VyMJ4aV5xM9yEdiCgL83sObmxbPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783069252; c=relaxed/simple;
-	bh=tdOlXp1vDONftqxfu295xMIvJ+7AhFdAxUSnxAEthPE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=oOkgNYUP8quGJ5bJP6mBHhtbiVL+fikZI8WXGk4vOFALtqPyS+y6/GC5WYaBT5N1u5kVLV3Mh2oKioAb/iWSUlG6YeuQT2ZM6Pt+KRm+phgrfWiYgMeJ7S5lQZ7Sd7JVNKC9kk5DgZVrsh+gj/Bk2nfHwta7kHD8XmB4hSDVbKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCto8EmN; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1E0A1F00A3A;
-	Fri,  3 Jul 2026 09:00:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783069251;
-	bh=tdOlXp1vDONftqxfu295xMIvJ+7AhFdAxUSnxAEthPE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=YCto8EmNz41upJ5qOzhHUGrD5Iu3qnytr8KsbKECkZjCVsWvyvtkfIGyipo1jdhw7
-	 ebgP7rtAQT4nlaWJlYEKX2aKf4J1EQ6GS1mJ2GfcvQGgTZ8X883WSa28+r0ioIfli+
-	 6rkjZ6LQNw4AGA+glmNNCSSAJRcbZsWWXlWIdaWsul1Y3aQoh9P8HBX7YSyqT7FioS
-	 gXU54TfxuCxe53uTCVUczQeR+a9Dypb5mFg7kGEIeQJLMAi1k6kiwmVXpHPM6nxwNu
-	 xMjXHKgDPb05UP+AguXLFRywsWOIoLhygb9pYpN0EFpaeAJWqeOVCionz2r3hN7YgT
-	 xGjk0hL/ZeGxA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v1 10/15] arm64: dts: imx8mn-var-som-symphony: Add TPM2
- support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Stefano Radaelli" <stefano.radaelli21@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, robh@kernel.org, Frank.Li@kernel.org
-In-Reply-To: <fb9bfa8584a608e9ba8179b2749593bc23c040ea.1783067947.git.stefano.r@variscite.com>
-References: <cover.1783067947.git.stefano.r@variscite.com>
- <fb9bfa8584a608e9ba8179b2749593bc23c040ea.1783067947.git.stefano.r@variscite.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 03 Jul 2026 09:00:50 +0000
-Message-Id: <20260703090050.F1E0A1F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1783069282; c=relaxed/simple;
+	bh=RrrmauAQf4cZMagioBXyLu9xRexizpcZ1MKEVQk0U0E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rNkgyr/Va/bOLyFv23zyu1D+vEqe2VN4gUk7DxeYRUe7VuydJSwWMJVNrogX6LhJ2CLqG729FyJtRdU7WW6YB51ltxsgU+VIXpXuJwejc7sSBjzqg3ZCQobysFOfjP1Q70sTuXna9ga4e5gL/zCU/pmnT4g4v0E8wL/v2VdsLKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=rXf6EsKh; arc=none smtp.client-ip=54.206.34.216
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1783069258;
+	bh=ACCEUgrf7Rylr7BySb8msq185wHVdSwdN7rECIYWapc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=rXf6EsKhnRNRwEDTiMGCIzJnkKHBwIIBK0VEtl79Q5Nv5C95Z5duGqffJL+IZ2auV
+	 WtMo4/dQqmBciVLb95kbyRVjAUNTtRi9KhqmmIP6hgeCGDtXJwH693XNF2USmyI9kk
+	 F55b5VGoCAuBfnOOFDNAQK++7VTUfvQFJ5GadYCI=
+X-QQ-mid: esmtpsz19t1783069256t01806f06
+X-QQ-Originating-IP: n1xI3+mPy6w337/zDxtCYOgr7wkg4ok/SuMAWtj5fe4=
+Received: from [127.0.0.1] ( [120.237.158.181])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 03 Jul 2026 17:00:52 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 12710147850900718341
+Message-ID: <4A32964890BBF288+37eaa5a2-eaff-49c4-8501-2b02736f3584@linux.spacemit.com>
+Date: Fri, 3 Jul 2026 17:00:51 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 02/12] rvtrace: Initial implementation of driver
+ framework
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: anup.patel@oss.qualcomm.com, adrian.hunter@intel.com, alex@ghiti.fr,
+ alexander.shishkin@linux.intel.com, andrew.jones@oss.qualcomm.com,
+ anup@brainfault.org, atish.patra@linux.dev, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, irogers@google.com, jolsa@kernel.org,
+ krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, mark.rutland@arm.com,
+ mayuresh.chitale@oss.qualcomm.com, mchitale@gmail.com, mingo@redhat.com,
+ namhyung@kernel.org, palmer@dabbelt.com, peterz@infradead.org,
+ pjw@kernel.org, robh@kernel.org, sunilvl@oss.qualcomm.com
+References: <20260429125135.1983498-3-anup.patel@oss.qualcomm.com>
+ <BDD9553502347B02+ee3069d3-eb04-4a37-b364-107cf8d0653c@linux.spacemit.com>
+ <2026070316-surgery-unneeded-bceb@gregkh>
+ <138BCDE3F4A1D624+2488a822-cf77-4155-8492-b8a1c47d5589@linux.spacemit.com>
+ <2026070300-submitter-humbly-833a@gregkh>
+From: Zane Leung <liangzhen@linux.spacemit.com>
+In-Reply-To: <2026070300-submitter-humbly-833a@gregkh>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz6b-0
+X-QQ-XMAILINFO: Mjc5Shoq7MT/4EGhXsKs4qSg404ndkgjzrqJlGv9tFS3je0PoKRUwqF6
+	WhBJEk0aH+T/bKcPJ5jzK2PDUS2Xf9ZXUq65Qd2cZaJ23yFO1An1rLKOPEMct0dzwZjhAbf
+	uYdfnZbr9bW2iKvKv1Pk4uO5vHjVDFgS+xaBZFP4+rVyAKhIY8u4zbaTld254ed7dTEHP8V
+	KTEyX9izSLXfo5eRdXmoZE5WdbvY92P09NpDT5f7WrRLalbeoZpuK3noLX7ogXJzOBWAtXj
+	WzhfoaM4vb4YxkoLto2WpRY1HsP4cIpONfK7r6PYMpFVeBosqnVZBlY0p+F61HIx7ZrWtJj
+	vEgVrfGO5pNg/94E5iGvkfOf+PnY/XOYsZj0xIy5VUXQQAn33LoukgFONR8XOSxaRNoYjxK
+	7OAHMDyg7gJq7SIyEDVq9FTPc5wMJDaB2zLf9SRB2lHF6LDW8JgAQRgzOPWHDSnby3zY0rK
+	ZPFOCUO5yugBk/jmooST9q/W29LQdIiX28wTjZ7CJdPfLVIi9ZHMWcK9OmEJUZaiDqGlals
+	9nrNfIuNrGuFTQtbD2iuP4JTB6IUlCftVqtZKtfZC8LyG4V9+eV932HwWa1LIiq57XHRgXm
+	/jNZq6rE1UwVU/odEmp9vf6pMr3TZs171FNkwlUHWaybK5W/AdEwhYAFc2rhqYH1GpZ9NU9
+	uU0DQUjAYDMdUrwahG+Nvrr6QGJ+RKhIBltJjR3Ee8R4Tl4oizt4um2kibja2ymoWUTBuTj
+	zlEcLicTmQcLuk9Ktv78ESVXM29OqiXr72tHcGbIntZa2p6G18lmsp1jLlJJkQWGoFBf9v0
+	CqPKIPwzuGz0iw+Qe/gUrslJfWwyNUppfnhRTgR9lcOGml03GHsK5a5I3bVLIUZgbWqdTH4
+	bzfXYx8aw1xJxCp+kVDJkDnu6gMYswRd5P4zUfh0iOy0BOCz5N7Vzt2AsG8fN2dYlndlGWQ
+	gW3xdGr1JHhRwfZd5wvll6vz69hfDFROn6dYyIHpUoYBmOKAIANI1bSPjsp6Ou4KwGRrkRl
+	262ydHOO0pu/xGhGvXo7CB+QCMyTI9TwOekFE/gABx/cgrD2LPZwGp00q7qW73dKYcviqpL
+	L2jnoR2jKkiuYTF473mw06SkbreR6H5sW+7bGHyRHVTVz5v4FVThx5QuWIa53pJJTHwkGXY
+	FrN1neJ5U0Y5eYtYh/yUUwTtWlbtbrH2YOmoksKxh0ol3xE=
+X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
+X-QQ-RECHKSPAM: 0
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319946-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:anup.patel@oss.qualcomm.com,m:adrian.hunter@intel.com,m:alex@ghiti.fr,m:alexander.shishkin@linux.intel.com,m:andrew.jones@oss.qualcomm.com,m:anup@brainfault.org,m:atish.patra@linux.dev,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:irogers@google.com,m:jolsa@kernel.org,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:mark.rutland@arm.com,m:mayuresh.chitale@oss.qualcomm.com,m:mchitale@gmail.com,m:mingo@redhat.com,m:namhyung@kernel.org,m:palmer@dabbelt.com,m:peterz@infradead.org,m:pjw@kernel.org,m:robh@kernel.org,m:sunilvl@oss.qualcomm.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:stefano.radaelli21@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:Frank.Li@kernel.org,m:stefanoradaelli21@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	DMARC_NA(0.00)[spacemit.com];
+	FORGED_SENDER(0.00)[liangzhen@linux.spacemit.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto,variscite.com:email,sashiko.dev:url,smtp.kernel.org:mid];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-319948-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[liangzhen@linux.spacemit.com,devicetree@vger.kernel.org];
+	FORGED_MUA_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,intel.com,ghiti.fr,linux.intel.com,brainfault.org,linux.dev,kernel.org,vger.kernel.org,google.com,lists.infradead.org,arm.com,gmail.com,redhat.com,dabbelt.com,infradead.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	DKIM_TRACE(0.00)[linux.spacemit.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,riscv.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 243B470066B
+X-Rspamd-Queue-Id: 5792B7006C7
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Incomplete hardware initialization for the TPM device due to mis=
-sing `reset-gpios` driver handling.
---
 
-Note: The format of this review is altered and does not include direct quot=
-es=20
-of the patch code due to recitation restrictions. I am providing a free-for=
-m=20
-summary of the review findings instead.
+On 7/3/2026 3:41 PM, Greg KH wrote:
+> On Fri, Jul 03, 2026 at 03:32:50PM +0800, Zane Leung wrote:
+>> On 7/3/2026 1:41 PM, Greg KH wrote:
+>>> On Thu, Jul 02, 2026 at 04:19:53PM +0800, Zane Leung wrote:
+>>>> Hi, 
+>>>>
+>>>> Based on the current framework, I am concerned about how to support RISC-V ATB and reuse the Coresight component (ETB/tmc/TPIU) in the future.
+>>> That is very vague.  Please provide specific examples.
+>> According to the /trace control interface/ [1] spec: "The ATB Bridge allows sending RISC-V trace to Arm CoreSight 
+>>
+>> infrastructure (instead of RISC-V compliant sink defined in this document) as an ATB initiator. ATB Bridge is not 
+>>
+>> needed for RISC-V only systems."
+>>
+>> For ATB Bridge, read trace using Coresight components (ETB/TMC/TPIU),  so we need also ARM coresight driver in
+>> RISC-V trace systems. Current framework seems to only be applicable to RISC-V only systems, and does not support
+>> ATB and  ARM coresight use case like the K3 (K3 SoC contains RISC-V Encoder, Funnel, ATB, CoreSight Funnel, and 
+>>
+>> CoreSight TMC components). For more discussion, please refer to [2].
+>>
+>>
+>> [1]: https://docs.riscv.org/reference/trace-control-interface/v1.0/tci_system_overview.html#atb-bridge
+>> [2]: https://lore.kernel.org/all/20260414034153.3272485-1-liangzhen@linux.spacemit.com/
+> So, what specifically does this mean?  Please provide review comments
+> for the code itself.
 
-commit 752fc746ff7ba94f6473f1446bfe64ae3aa4003c
-Author: Stefano Radaelli <stefano.r@variscite.com>
-Subject: arm64: dts: imx8mn-var-som-symphony: Add TPM2 support
+The issue I pointed out is not about specific lines of code, but about the entire Riscv trace driver registration and building a path from source ->
+sink did not take into account the application of arm_comesight. the current patch set assumes a rigid, homogeneous RISC-V-only topology.
 
-This commit adds support for the ST33K TPM2 device on the VAR-SOM Symphony=
-=20
-carrier board. It introduces device tree nodes for the ST33K TPM2 connected=
-=20
-over I2C and a PCA6408 GPIO expander intended to control the TPM reset sign=
-al.
+Specifically, if we have ARM coresight components, how can we reuse them like, funnel (drivers/hwtracing/coresight/coresight-funnel.c) , 
 
-[Severity: Medium]
-In the newly added st33ktpm2xi2c node, there is a reset-gpios property
-referencing pin 4 of the pca6408 GPIO expander. Will this actually bring
-the TPM out of reset during boot?
+TMC (drivers/hwtracing/coresight/coresight-funnel.c) , TPIU (drivers/hwtracing/coresight/coresight-tpiu.c) and so on based on the current
 
-Looking at the tpm_tis_i2c driver, it does not appear to contain code to
-request and drive the reset-gpios property.
+framework.
 
-Furthermore, the pca6408 node does not declare a gpio-hog to statically
-configure the pin state. This implies the GPIO expander pin will default to=
- a
-high-impedance input when the kernel boots.
 
-Unless the board has a hardware pull-up resistor or the bootloader
-specifically configures this pin as an active output before handing off to
-Linux, won't the TPM remain held in reset and fail to probe?
+>
+> We write code for stuff we have now, today.  If future needs change, we
+> change the code to handle that then.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1783067947.gi=
-t.stefano.r@variscite.com?part=3D10
+I believe that if the basic framework for RISC-V does not consider compatibility with ARM Coresight, once the framework is fixed, there will be greater resistance to future modifications. 
+
+> The only problem is with user/kernel apis, those need to be nailed down
+> so that they don't change.  I can't tell here if you are only referring
+> to the in-kernel stuff, or user/kernel apis, sorry.
+>
+> thanks,
+>
+> greg k-h
+
+
+I believe that RISC-V tracing is coresight-alike, where have encoders/funnel/sink/bridge+coresight_comp. 
+I think we should abstract some of CoreSight's core logic so that it can Both coresight and rvtrace can be reused.
+General logic for building paths from source -> Sink and perf_pmu should be universal in coresight/rvtrace and 
+
+future architectures. 
+
+
+thanks,
+
+Zane
+
 
