@@ -1,218 +1,156 @@
-Return-Path: <devicetree+bounces-320266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320268-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rJrxEBrrR2pHhgAAu9opvQ
-	(envelope-from <devicetree+bounces-320266-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 19:02:18 +0200
+	id EqobEyftR2rjhgAAu9opvQ
+	(envelope-from <devicetree+bounces-320268-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 19:11:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2BD670479E
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 19:02:17 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E87704929
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 19:11:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.com header.s=google header.b=SrIT9wos;
-	dmarc=pass (policy=quarantine) header.from=suse.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320266-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-320266-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="RBHB2g/e";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320268-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320268-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 457A63030EAD
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 17:02:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D80B13010B8B
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 17:10:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9148030D3F8;
-	Fri,  3 Jul 2026 17:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA92F30C150;
+	Fri,  3 Jul 2026 17:09:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B4330C15B
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 17:02:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CD5B305E28
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 17:09:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783098132; cv=none; b=Le14T/eODzo6QvvR/f4qvquhSPG1wUhOyIrkkho5MZnpQ+LIlplDc9/Au70Y9ydTVEen7ZVcubtXzjp+UHrPN63AkRrPD0aanbaK3UsC2o+XtFb7kcm/V4qGJGdae3724uTyHyH8GV2nqO1PbuVahk2sV5scs9pj1Z+fdLS/nNw=
+	t=1783098599; cv=none; b=mytaNxCQdjvEMj4iDeDXDFv1yjWWeOsrqOtRPPX8fJnkKy2YUIIIQuv2tNPqD4xBkd1vKJMrXjbgc+mnm3i1dgG+IvXB9wLNZy076uoOB4nogNyU7GU/ajRIMGV/X4ShktSrq0xE/mYbs8XMM98k+p4rT9VQz08sBVK4i/XDGGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783098132; c=relaxed/simple;
-	bh=NyT3bvkYhBzVis/qc4NVpDUc0HxiHbXcgKHaKLAMasY=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LHocyyAYFSHifcrjAAEhCLFMzgpRePEo1AbsyIt9ix8xKblqJV/BfhS5xwTctIiY0VK4tCNbZkYIPg3Ihyhwh/UyQVOskPQwJA2n49CftlAJsIrOU89e7YqxiXDGHRCyKMZ+NfG7JhoSZ6yBY/0ayzfMplcARoUn7L+B9rLjq2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=SrIT9wos; arc=none smtp.client-ip=209.85.128.42
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-493bfe9f886so4256805e9.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 10:02:10 -0700 (PDT)
+	s=arc-20240116; t=1783098599; c=relaxed/simple;
+	bh=emGfKnmIZb6rCs8OZKzdZXrwFmAuQEq6nMNa9HGSfnk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zx7C3nyo7/t6cV9/VdddMmNgINqc16QtB9WVMJToonLqaDbxcdxUnZktb00l91dZ3aMkeh09a/YaPbsevmrN/w74q9AWeSjSdAnK5nPLsL+rBHTuuu8hcS8puXW8mRgqouW35tnQHGwsFxWijoslEY3+FWIhsalhKsgmnw7j0Rs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RBHB2g/e; arc=none smtp.client-ip=209.85.128.48
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-493be1b9682so6601515e9.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 10:09:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1783098129; x=1783702929; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RUWg5GWqhMeDrgGwJjMhc1B+7LHRy8TQo04xcORPTAE=;
-        b=SrIT9woscH72pWMFOd2U7HIlNZGqY9utg3/f0SLrqxePz2tAIqPZ5Be1TwmVrNcKb4
-         QRJyf5Bw/rsY3OeZbZ/AhgqLQ4d/I6DIaDVzHGciHFwfgWwGg2hxCz0zCGNG2Pc1ZLYy
-         OR8tPoYyekzvHjhf5TR8CEy5jbqf7ZK3I9on6z02f0Bn/69updId2LdYpti2wFMJ/heV
-         WM3nmvje+QQ0dUQy9W03RvMsk3NC6rPFCaTXY/5LWRAUuANsCnWYIw9YylQd09jZMWr0
-         ABvne6NlypDWDj6jBhf+vTSZqj6JkmE5u9dwOHXppVOJ3E1ELMnpOIXSdPLEuDLD+B52
-         YWeA==
+        d=gmail.com; s=20251104; t=1783098597; x=1783703397; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=BVVBWacKQnUKHRJ/kNMwnkPuIh3dvCLwl9oDeRFKEKI=;
+        b=RBHB2g/e6ijufvET+gxYBqY51EkljKeCzobdWq//vxzxbADtOt1DHtWiD1jn62kxeh
+         jg/sH1hNIXd2mcTRz8ZNnxRBcWrVOgZVpzjPNBCGTLXUI0C0AcdmCQ7s0hdNxeI3FNby
+         j00JDfMXgQ4JADKOWr4kttn0twUAdl5Inpza4aSS+FGSJGcVBhqnXiD1k2ZbK/QjrM9Z
+         5kBAsToJ5naREClrrcd9whva+qBwOpS8ehAulz5Gy4sHLyCP+JrcRF5QkeCwYlL9+gb+
+         OGf0r4YVxAur1xQNYJwVrUhYZD33y7F3UnOmmd08vOrko9GurdPZCkC5Ewu/WFT9lbhi
+         XohQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783098129; x=1783702929;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=RUWg5GWqhMeDrgGwJjMhc1B+7LHRy8TQo04xcORPTAE=;
-        b=ePJlxHvQbwf1xLyvlqmJyLCYhVzJo2zMjv/jRFuOauhMZZzmbUJ/l8WESr4UDfzKuB
-         PMzauKWCrgKBBYWOr46hrgpLlkLdOzQ+1v1PV3bAyWUfjEWyRNc7ZyhF2uKrCKuHaWVC
-         DfA82FtcJmXw8uOFEAEO/yTrYyN9nnF8uzcxGTxr86fLw+LMCSZjwaGYlD+v9f4v0rcg
-         fYJxxYbx5jEUzinDL0WYXIu9ndhgZZZy+J3KDfT/cnc/2V2s6UwKdIXJVvLqmHHC9cJm
-         d4vceZtevsiQ42PwNKRL9EPLHQRaVr0WF716Ush7tQ6FRq4c+c1NCHBR91yDZJUWifgE
-         J0YA==
-X-Forwarded-Encrypted: i=1; AFNElJ9xNcq1Aq13vRAVAo7kPurdaVp5U7s0jFs15PpMjqRtlSrOC3BupzEvf2wgyC+Jy63VQSwWTpY4nT4d@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxx2BSvn3a5gNPNlrjo64SHaGB06GYXjOIUDTjsBTeXG1BizG1f
-	BZQePM7YBCBy6hyM4oKOKRPg4l992FfurlR2kl1asxmBqXf4lJgLLr3Lv3z6T73Ii4Y=
-X-Gm-Gg: AfdE7ckzls1oT9Z+Q02+seY0NYzewq6dEIp7lKS4NQJNpbZx9g/VQG649xZ/GL00JWx
-	Xlku0FfwOhvqdSpnNNe6IkYv8ozWgWIzzcAXuU+wup2dvdvaLNi7LiU4TQ8dDANAvuf12eDJ32/
-	md0+f/TAZNgKvJB1ps72umuJ9BLCeWnstgz6z/zmqgIYGYbt17EO+GtdCLbIXkEWIAA9Cp2Ize4
-	ucS5HNlbpRssIqDgAHr3KrMR8OSBEEzmO206gizqGmMqBTIn5SGX+cmNF7n86nCxdASsUYC8Uaa
-	K0xPtw9IQa5kqkppDAdCTYhXalcbCkCOuzbqyAl4B0SsjUX3vNd9Mj2K4SCC5XsZeQdYa8A82AI
-	91ww4vs1Uyp4KJfxLzcrB0Yx5J7ynPVP1gkwZkFg47W19mWVS5X25HryEBr9bkb6TDjrxoFbrxj
-	w63uZvfEn2Yy8=
-X-Received: by 2002:a05:600c:358b:b0:492:3da4:81ef with SMTP id 5b1f17b1804b1-493d11f13d7mr1621605e9.18.1783098129262;
-        Fri, 03 Jul 2026 10:02:09 -0700 (PDT)
-Received: from localhost ([195.94.145.62])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493c63ba971sm225754325e9.13.2026.07.03.10.02.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jul 2026 10:02:08 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	linux-pwm@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Stanimir Varbanov <svarbanov@suse.de>,
-	mbrugger@suse.com,
-	Sean Young <sean@mess.org>,
-	Julian Braha <julianbraha@gmail.com>
-Subject: [PATCH v6 3/3] arm64: dts: broadcom: rpi-5: Add RP1 PWM node
-Date: Fri,  3 Jul 2026 19:05:26 +0200
-Message-ID: <300b6fb4ba2c9399297b4bd85cbb3bc14f08f6b7.1783097764.git.andrea.porta@suse.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <cover.1783097764.git.andrea.porta@suse.com>
-References: <cover.1783097764.git.andrea.porta@suse.com>
+        d=1e100.net; s=20251104; t=1783098597; x=1783703397;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BVVBWacKQnUKHRJ/kNMwnkPuIh3dvCLwl9oDeRFKEKI=;
+        b=Rqub/D/CJdnOmg9mmZRIng/5nRhQa76PhVx95cUAjogIcPAK9OeTCuAKoLPvkJBe69
+         OIk/FOg4wu9MPjjQ4D0Tb1TiRDa4QaA7gs7WDEieqAPZjEIuMHrLLJCC9pxcXT+A6YXU
+         xxVgXGqgp+k8vasMIXisCgDQBtR0Sm+zdbiqeXJcGUS9tv73AMBI8ZHDSR0iXDHqH665
+         b1WNej+4/KUk2OWifbmCbfwtbd5X5H1+NC1S70TGBGTYI0IMtQBq3lXZZnUiDoUBT0Vd
+         lkqd/yAhqQY6d71r/Ixm1SEPz15hmsODJBPJH/RsOBM6EVr/DNvXAD7e2IZPrq+4F5Qn
+         LzQw==
+X-Forwarded-Encrypted: i=1; AFNElJ94z+61nk8NQvNtbHggbg1GfNCFdkHmRMcu0snUXYiSWg5kAcovgESqe44WhFpIh6nB4gQ/5WXEYJ+b@vger.kernel.org
+X-Gm-Message-State: AOJu0YztFRkE3N2ylSGkOzEv9WfmEjLtc7tZVInP5TwgCow7i/h5hzhE
+	7RxTVega3PI07MqrWxKMgF96hP5109ohFSUE3l+kQBMi9RbWhjfTfoym
+X-Gm-Gg: AfdE7cmGke6lVNx+Wx4AxFY1k1S+Gu8cU9B+Lc/vkiz4Wl4TZMj70EUd4v+myckEiFC
+	M728LabukdOAoIqqI+7H7i6wWJUI5UmXTh6Rn7w5TuC0s19R54gNW1K3Q4L1SRq6ye+ipkuj+CW
+	FxQsLKmzsubTxqpCv+39A8Z9AisJCtqLvRsBSP4jtjGBI1uoiNIUom1fNsdpthgn3V0KoiIXa5c
+	gBfMSM1M45W9Dmn1WyBCgKVvFr38J0n1JL1dfphcCtifxXoXuZv69o/dppLOA9bmv6GhKIp8l3w
+	Fqx8zhPT4fWCEWuuKXeCeGkT69Fef0WCkyyFdWFiK0vX5435nIE1Xj1xpc/GVSwdIk1uy/ScG4A
+	drtNaEbKY7ZDIcZFY+UR7K7aM9ASXA0aPY6KbmzmvvvGz8Mo/icBYoMGHlaBmUjEKZbciRP1Bnw
+	gUHv9a1j7em3Hqc0jaNSxcGtlAs9R+vk3QkILReDYJsTymtjoHpNkKEhq3G3nSON462tRRKXWv8
+	pvv5Cm+
+X-Received: by 2002:a05:600c:6087:b0:492:58d6:2565 with SMTP id 5b1f17b1804b1-493d11f2920mr1870605e9.25.1783098596625;
+        Fri, 03 Jul 2026 10:09:56 -0700 (PDT)
+Received: from [10.128.11.240] (195-23-151-163.net.novis.pt. [195.23.151.163])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47a9de1d91bsm919323f8f.4.2026.07.03.10.09.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Jul 2026 10:09:56 -0700 (PDT)
+Sender: Julian Braha <julian.braha@gmail.com>
+Message-ID: <297d28ae-78ff-4a15-a4a8-0de6a9e2cfa5@gmail.com>
+Date: Fri, 3 Jul 2026 18:09:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/7] media: qcom: camss: Switch on ICP and BPS as make
+ options
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ Bryan O'Donoghue <bod@kernel.org>
+References: <20260703-qcom-laptops-v6-18-rc4-camss-icp-bps-ipe-icp-boots-stats-b4-v1-0-595df9e67790@kernel.org>
+ <20260703-qcom-laptops-v6-18-rc4-camss-icp-bps-ipe-icp-boots-stats-b4-v1-6-595df9e67790@kernel.org>
+Content-Language: en-US
+From: Julian Braha <julianbraha@gmail.com>
+In-Reply-To: <20260703-qcom-laptops-v6-18-rc4-camss-icp-bps-ipe-icp-boots-stats-b4-v1-6-595df9e67790@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320266-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,vger.kernel.org,broadcom.com,suse.com,lists.infradead.org,raspberrypi.com,suse.de,mess.org,gmail.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:ukleinek@kernel.org,m:linux-pwm@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:andrea.porta@suse.com,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:naush@raspberrypi.com,m:svarbanov@suse.de,m:mbrugger@suse.com,m:sean@mess.org,m:julianbraha@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:bryan.odonoghue@linaro.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:rfoss@kernel.org,m:todor.too@gmail.com,m:vladimir.zapolskiy@linaro.org,m:mchehab@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:bod@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:todortoo@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320268-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[suse.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,suse.com:from_mime,suse.com:email,suse.com:mid,suse.com:dkim,vger.kernel.org:from_smtp,suse.de:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F2BD670479E
+X-Rspamd-Queue-Id: A7E87704929
 
-From: Stanimir Varbanov <svarbanov@suse.de>
+Hi Bryan,
 
-The RP1 chipset used on the Raspberry Pi 5 features an integrated
-PWM controller to drive the cooling fan.
+On 7/3/26 16:51, Bryan O'Donoghue wrote:
+> +	  be called camss-icp, camss-ipe, and camss-bps, respecitvely.
 
-Add the corresponding DT node for this PWM controller.
+Small thing: typo in your kconfig help text.
 
-Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-Co-developed-by: Andrea della Porta <andrea.porta@suse.com>
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
----
- arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts | 12 ++++++++++++
- arch/arm64/boot/dts/broadcom/rp1-common.dtsi     |  9 +++++++++
- 2 files changed, 21 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-index 0fc57e72632ed..748be8f1ee9e2 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-@@ -64,6 +64,12 @@ phy1: ethernet-phy@1 {
- };
- 
- &rp1_gpio {
-+	fan_pwm_default_state: fan-pwm-default-state {
-+		function = "pwm1";
-+		pins = "gpio45";
-+		bias-pull-down;
-+	};
-+
- 	usb_vbus_default_state: usb-vbus-default-state {
- 		function = "vbus1";
- 		groups = "vbus1";
-@@ -94,6 +100,12 @@ &rp1_i2c6 {
- 	pinctrl-names = "default";
- };
- 
-+&rp1_pwm1 {
-+	pinctrl-0 = <&fan_pwm_default_state>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &rp1_usb0 {
- 	pinctrl-0 = <&usb_vbus_default_state>;
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/broadcom/rp1-common.dtsi b/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
-index 16f5359395835..df4c2d09c8d34 100644
---- a/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
-@@ -99,7 +99,16 @@ rp1_i2c6: i2c@40088000 {
- 		clocks = <&rp1_clocks RP1_CLK_SYS>;
- 		i2c-scl-rising-time-ns = <65>;
- 		i2c-scl-falling-time-ns = <100>;
-+		status = "disabled";
-+	};
- 
-+	rp1_pwm1: pwm@4009c000 {
-+		compatible = "raspberrypi,rp1-pwm";
-+		reg = <0x00 0x4009c000  0x0 0x100>;
-+		clocks = <&rp1_clocks RP1_CLK_PWM1>;
-+		assigned-clocks = <&rp1_clocks RP1_CLK_PWM1>;
-+		assigned-clock-rates = <50000000>;
-+		#pwm-cells = <3>;
- 		status = "disabled";
- 	};
- 
--- 
-2.35.3
-
+- Julian Braha
 
