@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-319917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319918-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wpapOAN2R2phYgAAu9opvQ
-	(envelope-from <devicetree+bounces-319917-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:42:43 +0200
+	id FhasIs15R2q/YwAAu9opvQ
+	(envelope-from <devicetree+bounces-319918-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:58:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9800270035B
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:42:43 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 804947005C1
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:58:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=MpmmgJRH;
+	dkim=pass header.d=linaro.org header.s=google header.b=dzZz2YBX;
 	dmarc=pass (policy=none) header.from=linaro.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319917-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319917-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319918-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319918-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B74D63012556
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 08:42:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E59A130921C4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 08:42:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36986377EB8;
-	Fri,  3 Jul 2026 08:42:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69AB337A827;
+	Fri,  3 Jul 2026 08:42:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E57C377EC5
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 08:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8633793B8
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 08:42:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783068147; cv=none; b=rZf2MWXSNdbwYOn7IIUFWuld3MTy4ueHzm+tVwpL8zPxTZjtVRFAuKgmyWkuocJxEmKBoYqHneIcDhewJk4mAwMvAKaM2JE1DK5KTpO12nVy2JTP3sN5UnxpREk5hs12EUFFaDpI6BBdWvG3Uub0DiXYlCO4z+8vHU6tdj7PmQw=
+	t=1783068150; cv=none; b=Y1R0Z/9QFgdtWvP736A/OCn22ZNgn3g5bB+d/nXh3caNxyKViGtufJZFZCWwu6vIvdHo++44HgcUrxDEPe4F1QIIvJJgImbeRdXhEkcaNi5BKp/1plE7y6zdu1HsChu+QTuUFeISSWW18RzRyr/D2z72YsJuI9I3Wa4Yw+nR/xU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783068147; c=relaxed/simple;
-	bh=6NeXfTk2TuTHIcLkZnXM6fT9nU7cgAhHXMrsjr44GZQ=;
+	s=arc-20240116; t=1783068150; c=relaxed/simple;
+	bh=x+hF6cksfI3/bvnsU93PkG7h4HttSPYkRpLHTklFAIM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=dnTE9n7jepmpTllPk4nlmwJ/TLQWNQyejq88R53/ln50DDNkdbluKnoEyjgvBsTMlOWBMK/VyNj3x6ND6z0JQu28xmhQL5hZa9WbZlA9xUnoypft5Lai5LEcjQV6BI/BYqsYl82hkg5dbCI8cu7/J+4ysxJ5q83SgtNI5QDVrHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MpmmgJRH; arc=none smtp.client-ip=209.85.128.47
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-493c2c0b9a8so2353965e9.1
-        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 01:42:23 -0700 (PDT)
+	 MIME-Version:Content-Type; b=M1v3ejvLc/LlUcnWBCLXf5qS/1QMICjfU/jkz6o4f1lKMLHKcZYWC5sjt3kMrYBMrTqGbCf5vyHqfbKDlHHlpzrKtsoG7WUk1xc5eLf01ul2hT/z6sRrumEkZJMqNKOWUlmFTgSpSevUYn7dwZ9MahuoZbwr0MJs112e94Dbi1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dzZz2YBX; arc=none smtp.client-ip=209.85.128.44
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-493c52cde9eso3107025e9.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 01:42:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1783068142; x=1783672942; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1783068143; x=1783672943; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=d5y/LlnctUnWczLr55nRli7oZ/AlDp7FE9PGkSlaB9s=;
-        b=MpmmgJRHXRSs6annUZ+qrMFEsQMEEWEq3TYbAudDBNjanaZRSRlGS/u1Vevk5v0LVI
-         z/L28PBGilT4oOtpm3V+s10zIPBIwFZJUAd4Nf5LohBB7Ud6aQ/pv+CU65p3QIGNbkth
-         WAkiCXbrIpF2tRvPiENxlyA8CmfgwFvSpt0yXWbN5F03h6XWWg6BX9r8sdKdq3KlWa7g
-         fQ3kZyHVCVDJS3HGtjRS/moYx+PZfR6WAwke6ktq59OABpYocfozYP/rCXbKLdI/tztY
-         tKgU9JtthqLYHTPLipwB5SAsL8pgfhpMvHMQrleEpKOE/EOLIqd4who63BU59JiOZMgi
-         7d8Q==
+        bh=rMSN/w8D8c3Ml2NelVlRwSQRShVwiaFWi/GCztB5J24=;
+        b=dzZz2YBXlc8gg0yRe3EtMSku6hPMdwgYSbiQpZz9WxI7C7WfAC3jdbzcgrO5bmtDnE
+         5SN9GDsoC7vWfrU6lfV5F0r0NlSGUMOWunKaaYJ3j8boyvwQ9cFzzQoKzly1w9fH0/tK
+         2TrW9e1nSmY4RIKc6Z7wBNkukelyycNZeZMAzDOI3EuAUElGGrZVRPwXNKdJ76IEQI2F
+         Um8UYuG7SOk12idi4QvdzOx+GhsCmli2NDVwvC1taU8oA8I+oYncL0VkXedtRUwGAf3P
+         lPbWdq3d9Y0giq5lucWXxhU87qfwTn3PKSrXX9zgZ1TftmS7q/+hBFAJ37YTK96aGvBU
+         ZcXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783068142; x=1783672942;
+        d=1e100.net; s=20251104; t=1783068143; x=1783672943;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=d5y/LlnctUnWczLr55nRli7oZ/AlDp7FE9PGkSlaB9s=;
-        b=jSr4E/gcM3+lgzJo0P0UHyKSqLnawzFiHb6e3+Sb8+Lg+kObCpzoePw7lvzSsSFbJp
-         VDdzY3hSnDap42z221QWrJicNBongM0HDq1NBF6tOOyYSnROx21yZ/HXAR4vzSxYycjZ
-         YuFutc8DJqBBo04Qj5uvEvTzPngAoSwOxYOQKX/huo80G8XAKBHb/TBwRYz08m2X8zzd
-         R7hK/NdJrcbAzZsYMl4FWUd6M5yooXG1M6JVuhUKR04FI02aKnmpoHn1NAkcTuNi038G
-         OIRhDuRtigjB8sMnj/fWZSN8xpYlpd5fqdzgaD7Ov9Xh4R+uJdhcn6T5c+zKuBpSnqIu
-         xLoQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/OZ5MwFVO/DMf1KSJD5v1bN36QkVTkZJbWG3LQ4nGJsbZFxj04QFwPzQcZlUHtq9sjbToZ8YtNvuVW@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpHdFHGBQZSTgjX/2bGnVjsEId1XnzbwUv0qUzdGqavJVwcAbO
-	rfMahyasBVC+gTc8UXT4lr33QDT6R9bf/M2JG51sqS8RTGEi0DrdLXLK7NOsZOCAVdnPoOGxPhG
-	4EF34
-X-Gm-Gg: AfdE7clQoH0QWl24uyqFLLzM8b83+8V+0SDZwbfh1QDlktEQoCkU6rrgxcNUEmN/kxA
-	fWf7o2HiYAxyyM7ikdWlPqk4azjVbApbjA2bbbohH2uyR+KWjpaGowIU3oPBlCv68FsNUcZrq+d
-	tChJ5z7M0WG1YkUnLnM4WJnDdJOhAY0T5xi7thefTT9+47Vb9ql7/sbW4oaceDi84ONyCSCM6ln
-	7Iq/S1nR9aAvJlGzotplFvnUcIfcNasx/UGCsUchj8TEFlcA0UG/B9Q1UNPS7N12LacUklnzGpO
-	MvYSIfRRWMhoyqbR5vBd1MGy5MRUHFGxxdHLIcaRfXspimK7o0ISo6J3Sz0oVpVHbgZypKWbxgO
-	2yTWTi+D0LR4P3Xi1jRu4MBUlXJ5MwHUXYtjFIaTK63KbA3Ojyfa7Ymg6csiQ71WJzDAsloD1zY
-	tKP2JOUDFk2JEQqqYnGNgL39ce38xdJkHEhw==
-X-Received: by 2002:a05:600c:705:b0:493:b962:4abe with SMTP id 5b1f17b1804b1-493c3dfacf0mr84107845e9.36.1783068142021;
-        Fri, 03 Jul 2026 01:42:22 -0700 (PDT)
+        bh=rMSN/w8D8c3Ml2NelVlRwSQRShVwiaFWi/GCztB5J24=;
+        b=UaoJzPVRrLgBk23aez6x5DECXmGcd0QQvuUNkfZlBXXbVvqEuqy9HQmaNoUXvkUkCZ
+         znvoUfsjxse45zxa6fO65tR6abOXmA2ya1YJSLBphsw7NC0m8zVCd/KBuYb4EPnmpoJn
+         gQ4T0ZwIEl2oTeuBC7Uw0yuZxt1DImmd9PheZd6W15vYP0TATS/XB0fOVqwtcRjo1eEP
+         rq151ng+AhsWMAx1aYN4Txnss1dtG3jJOsluRxyHsfvNzy6wu4KAsHhk/ZCnmEbdgKtq
+         tr9ugpqide2ZRyOgpf6UnA650+NudyoH+CkV8Y3qfvKNpoBWm5rmOM3vE/G1Nc9vokVJ
+         P3+g==
+X-Forwarded-Encrypted: i=1; AFNElJ8re1B9wcU4C8kZgMpYkWjiCkVYygp2B6+aLOnbtqeztm1yB0kZ4+RAdj/D5+eBGMCmEcT02eZoorst@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx52HoP5I80fcOz6A7F8RtX/J64IVv61Y0HW+U79HeEcWvCvhrT
+	5bpuUkFN4oqIOntccxS+9iH7KlEOPRzmrxsxhXEqw4Sv5Z7qHtV57NTmzhnbvMNKGtg=
+X-Gm-Gg: AfdE7ck9UMcgUrplY+gZzL3ZmoAWILK+Huxg90Etbes4Q6JSyHXBKmooXFksxARbxYW
+	m7lkilqQgd25bl+JQIXzXz+ECPGSps14u7EQB04AimqrRUd+d19T1bJLpXahUIonbh7ew0KGW2T
+	gZ0nMZvStk6KYU5QGWw1qwRRAwoTLL4oLoYBY5rSiBQrwGqNJZK7Ee2Ms95aazDpfcnF8je+w7E
+	j8h0/P9UZbhIxPG9Z2m7e+/PWK+G0E9x1QZywDdPpOak7y3Hvkdsfrl5j7cLu2L4EvZd4f/pTr3
+	afituxWDxYiQHPic/978NPdhU05Uo3LhiZk5dM9vm/xeeG4ANOAuUGBg9w/CQJLzKYIP4Pru7pK
+	zwuMu8IUNtspxx4rSvYuj2hKuYRIPUlq6R+UzEg/tlzOpZJK0UOHdSTiudBKUhXLHN0OCtFzmF3
+	y/311zFNNVDf0VcyFRPU+v0YPAv/Yo+6wZVg==
+X-Received: by 2002:a05:600d:8649:10b0:492:6eff:7d02 with SMTP id 5b1f17b1804b1-493c2b974bamr115602665e9.30.1783068143284;
+        Fri, 03 Jul 2026 01:42:23 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493ccdab27dsm30001575e9.4.2026.07.03.01.42.20
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493ccdab27dsm30001575e9.4.2026.07.03.01.42.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jul 2026 01:42:21 -0700 (PDT)
+        Fri, 03 Jul 2026 01:42:22 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Jessica Zhang <jesszhan0024@gmail.com>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -84,19 +83,17 @@ To: Jessica Zhang <jesszhan0024@gmail.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Conor Dooley <conor.dooley@microchip.com>, KancyJoe <kancy2333@outlook.com>
-In-Reply-To: <20260522-topic-sm8650-ayaneo-pocket-s2-r63419-v6-0-16edddda9951@linaro.org>
-References: <20260522-topic-sm8650-ayaneo-pocket-s2-r63419-v6-0-16edddda9951@linaro.org>
-Subject: Re: [PATCH v6 0/2] drm: panel: support the R63419 based dual-DSI
- video mode Display Panels
-Message-Id: <178306814096.3165305.17752151699717315900.b4-ty@b4>
-Date: Fri, 03 Jul 2026 10:42:20 +0200
+ Arpit Saini <arpit.saini@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ ayushi.makhija@oss.qualcomm.com, rajeevny@qti.qualcomm.com, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260701-ili7807s-v4-0-c7d76d4780a5@oss.qualcomm.com>
+References: <20260701-ili7807s-v4-0-c7d76d4780a5@oss.qualcomm.com>
+Subject: Re: [PATCH v4 0/2] drm/panel: add support for Ilitek ILI7807S DSI
+ panels
+Message-Id: <178306814218.3165305.10784888600083150493.b4-ty@b4>
+Date: Fri, 03 Jul 2026 10:42:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -113,49 +110,65 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-319917-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319918-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,glider.be,linaro.org];
+	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,oss.qualcomm.com];
 	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_RECIPIENTS(0.00)[m:jesszhan0024@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:neil.armstrong@linaro.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:conor.dooley@microchip.com,m:kancy2333@outlook.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:jesszhan0024@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:arpit.saini@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ayushi.makhija@oss.qualcomm.com,m:rajeevny@qti.qualcomm.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,oss.qualcomm.com,microchip.com,outlook.com];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,gitlab.freedesktop.org:url,linaro.org:from_mime,linaro.org:dkim,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:from_mime,linaro.org:dkim,gitlab.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9800270035B
+X-Rspamd-Queue-Id: 804947005C1
 
 Hi,
 
-On Fri, 22 May 2026 14:51:23 +0200, Neil Armstrong wrote:
-> Add support for the Renesas 63419 based dual-DSI video mode
-> Display Panels found in the Ayaneo gaming handled devices.
+On Wed, 01 Jul 2026 16:42:48 +0530, Arpit Saini wrote:
+> Add DT bindings and a DRM panel driver for panels based on the Ilitek
+> ILI7807S display controller. The first supported panel is the DLC
+> DLC0697 1080x1920@60Hz MIPI DSI panel.
+> 
+> Changes in v4:
+> - Use active-low reset GPIO semantics: define reset-gpios as active-low
+>   in DT and use hold=1/drop=0 in the driver (Dmitry Baryshkov)
+> - Replace raw DCS writes with proper helpers: mipi_dsi_dcs_set_tear_on_multi(),
+>   MIPI_DCS_SET_CABC_MIN_BRIGHTNESS, MIPI_DCS_WRITE_CONTROL_DISPLAY,
+>   MIPI_DCS_WRITE_POWER_SAVE (Dmitry Baryshkov)
+> - Use mipi_dsi_dcs_set_display_brightness_multi() with 0x1fff initial
+>   brightness (Dmitry Baryshkov)
+> - Move MIPI_DSI_MODE_LPM to probe(), drop toggling in on()/off()
+>   (Dmitry Baryshkov)
+> - Express .clock as arithmetic expression for clarity (Dmitry Baryshkov)
+> - Update panel physical dimensions width_mm/height_mm (Dmitry Baryshkov)
+> - Link to v3: https://lore.kernel.org/r/20260624-ili7807s-v3-0-ddf37052a289@oss.qualcomm.com
+> 
+> [...]
 
 Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-[1/2] dt-bindings: display: panel: document the Renesas R63419 based dual-DSI video mode Display Panels
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/9c04ecc893f07d001e484e6c420af19a970f755c
-[2/2] drm: panel: add support for the Renesas R63419 based dual-DSI video mode Display Panels
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/1190fc8d7b8a9cebea8dcbd2e544e43990ae81d0
+[1/2] dt-bindings: display: panel: add Ilitek ILI7807S panel controller
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/447a76a99e242fd04eaea33ecd9a6d73992e49a0
+[2/2] drm/panel: add Ilitek ILI7807S panel driver
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/dd7ec83f456734de8efc115eac671e5add82777a
 
 -- 
 Neil
