@@ -1,168 +1,191 @@
-Return-Path: <devicetree+bounces-320012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320014-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JfAzM0GOR2qkbAAAu9opvQ
-	(envelope-from <devicetree+bounces-320012-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 12:26:09 +0200
+	id 7I3kBtmQR2olbQAAu9opvQ
+	(envelope-from <devicetree+bounces-320014-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 12:37:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 615F7701318
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 12:26:09 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69AEF70146A
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 12:37:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=eDcEzzZT;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320012-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-320012-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=analog.com header.s=DKIM header.b=FgXeDFdL;
+	dmarc=pass (policy=quarantine) header.from=analog.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320014-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320014-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D18A3302AF70
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 10:24:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 88811302AC1C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 10:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67913B8BDB;
-	Fri,  3 Jul 2026 10:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 294923B9DA7;
+	Fri,  3 Jul 2026 10:30:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20DD53B7B91
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 10:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96CA63BB671;
+	Fri,  3 Jul 2026 10:30:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783074206; cv=none; b=jP6ffJWVFgdOuSLk2EsFRTQlBUut3+GkdVLI9PDa4aJut853CpYMzikoKpN6NnFN1lCg9MZxnoZbIGPnijqfRkWitw6xCryVoXtg/OfDOung7/JeLZMPOGnqRXMLtj3Vdq98CNsJXqKDCzFu01UKOnM4iZxPd1ynfcw0gISZWrc=
+	t=1783074621; cv=none; b=Xbd2Vcnh/A/91pjHSPr8YEL8p4wywIH6ioQkmMFYgIwDIwf8ZP/eQMgG1gkMZYTie7Zhzgjw3fRXtTzZrmJRPOFnMfjVvryXcSXgdZZ/0XlQNph1ozTDPsKL2kBvnCpyjriQDgdPKL+bHnDCHQViOPAOzCE8R8Ul/QAsB1NMIGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783074206; c=relaxed/simple;
-	bh=f3UD53QA++4gf/j8StYZwjebBR6id0nxpbS1ZRGMd/k=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=OyDSygd1orGMy+AB2bMot/aEGGFPOIXg84kBVCaaH5NS3bNr3gsmgJxNuHM6dVwtaxT1LxTnBWiwyLaPENXV9gNCbs6tEO8kQJiv+c1mxNpYr8YpaUSe1EUsgSoYU101cKQRpG0EW/ZNPtblaKb7LutoYyz/jsQdBWs6PonZQPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eDcEzzZT; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A096F1F000E9;
-	Fri,  3 Jul 2026 10:23:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783074204;
-	bh=U9pxc6lX1FrYwUS/7AXcDjWsHF2OclLB8U2SfgVkzsE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=eDcEzzZT29NNvFURgarFLspsZ3a5wGzPZxx/kignmJKHeqotwm8r54WaCtai4renG
-	 wCRKEPtc8JhRzf3G0z+smiuRqFob43mF/wiNs1QsVDjJJhV2A9qeZYEwpr7nBAGMGy
-	 BYKZgFw6d/jfUOJjpGcW3+2xcPXnzmTn0SrTupRUVVKNz403GsE54a7hWL8dO+Mw9m
-	 grUiEqWPYhhDM0J7XRqCycYzsvB0mjniOtmqEPf+lskdIRDtPyWmWu+vfGh1h9tpKG
-	 lYErVMgw2AeVt0ynsSJF9wp38DKVjjGhLYJsjNEQ/4AQ8/izk08UnIYPP18D0LGTS0
-	 fTI2o7fAQjfyA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 3/6] iio: dac: ad3530r: Convert sw_ldac_trig_reg to a
- function pointer
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Kim Seer Paller" <kimseer.paller@analog.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260703-iio-ad3532r-support-v4-3-69d9a336f4e8@analog.com>
-References: <20260703-iio-ad3532r-support-v4-0-69d9a336f4e8@analog.com>
- <20260703-iio-ad3532r-support-v4-3-69d9a336f4e8@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 03 Jul 2026 10:23:23 +0000
-Message-Id: <20260703102323.A096F1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783074621; c=relaxed/simple;
+	bh=3GQqdOPoPivj+Ck8+ngkS0l798UXERywJkMkJAz3q6M=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ppLQNkkp3+z6/OB+GtLhYH/7NwXHYVXRTRTHWwWC0Rb/NLrWvIp2XGXzuyqk4B+HA9jtiJos5rAOcRCpGrzTZ2jlmFJ/1pKAe188zBwfhHQ6RV4LuRUJUUgKWPQBP4Gyq7+7tVsbJI32PtpRYxvDFEP9UJtc2CbPkCfjR2JE5sA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=FgXeDFdL; arc=none smtp.client-ip=148.163.135.77
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6635vrqD370739;
+	Fri, 3 Jul 2026 06:30:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=njsch5x3TVYB3665IfEalYahiFQ
+	wA6VpTPXJJnklDWM=; b=FgXeDFdLKMi7C4ykEtVNY/2VYJek1Ap1vdq4lOjkhwl
+	NzuYNYgmHiq20V61CxlRCLpPDmmATOuy9ze8SydCxSOjiLNV8ZNF9Su/sQchz/o9
+	UrkgOf7Kdve5NmegixCnKRlC1EeWCrWOj0HxjWjswIJ7WbSMy3FbVLnfBtdVZ8Ds
+	f1yb0yLkjcezn3Nl78ud0oJYzG3wXMsS5H5+uMcibromnczZNH71wjLETKmKYSmT
+	ZMjtXocxYNcGUMWX1vmgGasroAq+rDCrmRZKZMyJjvkX9a5IlXKuP5RpNbu4lKWw
+	O/Y7e+yhzWyZE+s0TQvyMEf+apQ1Tql3N+ACTti2dEg==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4f648x9rts-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 03 Jul 2026 06:30:15 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 663AUEIB012191
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 3 Jul 2026 06:30:14 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Fri, 3 Jul
+ 2026 06:30:14 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Fri, 3 Jul 2026 06:30:13 -0400
+Received: from HYB-JRXo5UEs61B.ad.analog.com ([10.66.6.190])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 663AU1SK025379;
+	Fri, 3 Jul 2026 06:30:03 -0400
+From: Stefan Popa <stefan.popa@analog.com>
+To: Jonathan Cameron <jic23@kernel.org>
+CC: David Lechner <dlechner@baylibre.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?=
+	<nuno.sa@analog.com>,
+        Andy Shevchenko <andy@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Ciprian Hegbeli <ciprian.hegbeli@analog.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Stefan Popa <stefan.popa@analog.com>
+Subject: [PATCH v1 0/2] iio: adc: add MAX40080 current-sense amplifier driver
+Date: Fri, 3 Jul 2026 13:29:30 +0300
+Message-ID: <20260703102941.1141341-1-stefan.popa@analog.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: o2rJLDvYEEHB05sT1M4hvWKjlbd4eTbQ
+X-Proofpoint-GUID: o2rJLDvYEEHB05sT1M4hvWKjlbd4eTbQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAzMDEwMSBTYWx0ZWRfXzHPDMDCHtjq1
+ zV10bi6liqx3M7fAhQk2e0tSLRlqSRfbDGZmHeV1PBt+02Jynl14s2t7m4RNjYWEWdtEY9XnjrU
+ /aZysZoD2jh6f/IANoLcyanBbilM0u+nRFDrY+FMWiX1nT3rjiBEm4ufjsaMfdUxGqF74AKyFQA
+ /fmyUGFFGcvdWzrKkV5cDYeKhfywcjyuc/Un18PEFoVV2eutGiTJvT3jlBkhtqjG2FTRG/5FU7N
+ wxGOiXFkQHvpxtc56KuY9o9b6H5JTP4AiHG55qtTTD/DrGXwodYvIFit564PKg9K8lskn/WsbNP
+ AK4l+fP5fKtPd9XGjl5FIdEvle/hNtrBvNiJ5jZIKQeQWRbMQZxg16DF9WMbkp1koKaECGruGIx
+ sFZAGTa34VxE3tSCIqUDRc9AEflgp/gSHL9KpOHCTu7MpBip84fMsL9kxboORmylAnEBWYsCzcN
+ WaOUM2dV/e75eE5/ocw==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAzMDEwMSBTYWx0ZWRfXwlVjPRbUPUeb
+ FMsNuQ26Nc2dCnawHIQXDOmggRvqpaFLHx0ZB+NOBG69QWH5xPPY4HlBFRf5VYRLu4igEzS/wOH
+ 9NTK5jkCWNDg+HHVuJYQg4lp5zkppU86oBj958VyubtFDW9Vi+LW
+X-Authority-Analysis: v=2.4 cv=Au3eGu9P c=1 sm=1 tr=0 ts=6a478f37 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
+ a=uXIjobp8t2wMuQ0fPvqm:22 a=OGqDcEpPKfH9cPnAXqQA:9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-03_02,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 suspectscore=0 adultscore=0 priorityscore=1501 phishscore=0
+ bulkscore=0 clxscore=1011 impostorscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607030101
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-320014-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320012-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:kimseer.paller@analog.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[stefan.popa@analog.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ciprian.hegbeli@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:stefan.popa@analog.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[stefan.popa@analog.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[analog.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:from_mime,analog.com:dkim,analog.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,analog.com:email,sashiko.dev:url]
+	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 615F7701318
+X-Rspamd-Queue-Id: 69AEF70146A
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+This series adds support for the Maxim MAX40080, a bidirectional
+current-sense amplifier with an integrated 12-bit ADC and an I2C/SMBus
+interface. It measures the voltage across an external shunt resistor and
+the input bus voltage.
 
-Pre-existing issues:
-- [High] Writing to the highest channel (channel 7 on AD3530/R, channel 15 =
-on AD3532/R) fails with -EINVAL because max_register excludes the second by=
-te of the 16-bit DAC value.
---
+The driver operates in direct (INDIO_DIRECT_MODE) mode. Each raw read
+triggers a single on-demand conversion (SMBus Quick Command) and reads
+back the matched current/voltage pair, so results are always fresh. It
+exposes the current and voltage channels with raw and scale attributes,
+a configurable oversampling (digital averaging) ratio, and PEC-protected
+register access. The two selectable current-sense ranges are exposed
+through scale/scale_available (the range is chosen by writing the
+desired scale); the current scale is derived from the
+shunt-resistor-micro-ohms device-tree property.
 
-commit 744847f13949cc21f1d21acc0a27b2cff1da3ef3
-Author: Kim Seer Paller <kimseer.paller@analog.com>
+Continuous FIFO buffering, threshold events and the alert interrupt are
+intentionally left out of this initial submission and may be added
+later.
 
-iio: dac: ad3530r: Convert sw_ldac_trig_reg to a function pointer
+Tested on hardware with four MAX40080 devices on an I2C bus.
 
-This commit converts the sw_ldac_trig_reg fixed register address into a
-function pointer that returns the trigger register for a given channel.
-This supports multi-bank register architectures where the trigger
-register depends on the channel being updated.
+Patch 1 adds the device-tree binding; patch 2 adds the driver.
 
-> diff --git a/drivers/iio/dac/ad3530r.c b/drivers/iio/dac/ad3530r.c
-> index 9d4545e2c9b33..7841546f0c07b 100644
-> --- a/drivers/iio/dac/ad3530r.c
-> +++ b/drivers/iio/dac/ad3530r.c
+Stefan Popa (2):
+  dt-bindings: iio: adc: add maxim,max40080
+  iio: adc: add MAX40080 current-sense amplifier driver
 
-[ ... ]
+ .../bindings/iio/adc/maxim,max40080.yaml      |  55 ++
+ MAINTAINERS                                   |   9 +
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/max40080.c                    | 587 ++++++++++++++++++
+ 5 files changed, 663 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/maxim,max40080.yaml
+ create mode 100644 drivers/iio/adc/max40080.c
 
-> @@ -215,7 +225,7 @@ static int ad3530r_dac_write(struct ad3530r_state *st=
-, unsigned int chan,
->  	if (st->ldac_gpio)
->  		return ad3530r_trigger_hw_ldac(st->ldac_gpio);
-> =20
-> -	return regmap_set_bits(st->regmap, st->chip_info->sw_ldac_trig_reg,
-> +	return regmap_set_bits(st->regmap, st->chip_info->sw_ldac_trig_reg(chan=
-),
->  			       AD3530R_SLD_TRIG_A);
->  }
+-- 
+2.51.0
 
-[Severity: High]
-This is a pre-existing issue, but looking at ad3530r_dac_write(), the
-function writes a 16-bit value using regmap_bulk_write() just before
-triggering the LDAC:
-
-	ret =3D regmap_bulk_write(st->regmap, st->chip_info->input_ch_reg(chan),
-				&st->buf, sizeof(st->buf));
-
-When writing to the highest channel (channel 7 for AD3530/R, or channel 15
-for AD3532/R), the base register address is calculated as 0xF9 or 0x30F9.
-Because the DAC value is 2 bytes and val_bits is 8, regmap will try to
-write to both 0xF9 and 0xFA (or 0x30F9 and 0x30FA).
-
-However, AD3530R_MAX_REG_ADDR is defined as 0xF9 and AD3532R_MAX_REG_ADDR
-is defined as 0x30F9. Does this cause writes to the highest channel to
-unconditionally fail with -EINVAL since the second byte's address exceeds
-the max_register limit?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260703-iio-ad3532=
-r-support-v4-0-69d9a336f4e8@analog.com?part=3D3
 
