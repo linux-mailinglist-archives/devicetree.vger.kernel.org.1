@@ -1,134 +1,195 @@
-Return-Path: <devicetree+bounces-320217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320216-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id D6r8BgTNR2oNfgAAu9opvQ
-	(envelope-from <devicetree+bounces-320217-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:53:56 +0200
+	id urE9MInOR2pifgAAu9opvQ
+	(envelope-from <devicetree+bounces-320216-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 17:00:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255547039FA
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:53:54 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D08703AC3
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 17:00:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qq.com header.s=s201512 header.b=RFUvHBE4;
-	dmarc=pass (policy=quarantine) header.from=qq.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320217-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-320217-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XWI9fwFk;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320216-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320216-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AF7D43001A63
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 14:53:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E8F930097DA
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 14:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE1AD3DB632;
-	Fri,  3 Jul 2026 14:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D088E35AC20;
+	Fri,  3 Jul 2026 14:53:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out203-205-221-191.mail.qq.com (out203-205-221-191.mail.qq.com [203.205.221.191])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838CC2749DF;
-	Fri,  3 Jul 2026 14:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7583236453
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 14:53:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783090425; cv=none; b=dThQD53PJZwq3IlQFLzaOcjkEuUpe2oaV5g3UfEIiXwva0dCInUe1NTl2zJTN0PeVbdio2qaiTWW02ZBaBj2A/sdZefDnU9/tKvYxvxiqXEeUETes+DK/LSRfG9Lu9Ipj+he+J0xTfxCwGy/wEVTKMkAc+d94uz9kRF3cl/d7aw=
+	t=1783090422; cv=none; b=OtSuyC0NtGn+ep8CKOL3p++KEb9C4RHHFYTdxtajlKW3h/6qZGXP5li9IYBhH7XhRjeMP2s/U8hiGr/iHmxCtf4eW6uTF8GobgrDcfRSAo6ygXqXVE25ymM0Z6mUTgforJ0uiKvfXqMGcOzF5dFVkomdwjpIb7oMrlPGFbZ46ps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783090425; c=relaxed/simple;
-	bh=CS+Gi0WzooNXpSduprgHt/xrr1DtrJS76eULUS0BXDQ=;
-	h=From:To:Cc:Subject:Mime-Version:Content-Type:Date:Message-ID:
-	 References:In-Reply-To; b=jPPxQkpT3LpzsioEPN2iTcPOLVJHvQUhxxl7v4QZiauddAsChZh52v/mFafwFt5bEBCsP8ucmlKhVEtr46F6s+T9th0+MqKoF76XAIw8FunK16O3gNauxoUfVeDZRioWMKyAy8DzdJpTsvElN5IGGWCWO3pXOfjPYMFUwUL2KbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=RFUvHBE4; arc=none smtp.client-ip=203.205.221.191
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1783090414; bh=CS+Gi0WzooNXpSduprgHt/xrr1DtrJS76eULUS0BXDQ=;
-	h=From:To:Cc:Subject:Date:References:In-Reply-To;
-	b=RFUvHBE4N9iYueVnB+VpEFRtFe/ziWz9QNBZKs9PSqkdgFeWYniZfXlLnBcmr46Db
-	 NJofz0P4wpKmvBTQvKJhqfF8UWLI0wSZXLCEL1FxsfNDivvEZ3AxzDuqokiP1TwDCB
-	 Op5nGHm7nRJHg7D98g5E2g1lo235DRO3f0XaG7Ng=
-X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
-X-QQ-XMAILINFO: OImhmUSEbAWcT2IHWW/hjuPTBpK4RrQqRf2cBNo/s1dnpGT3F5w5IHksEzAmKP
-	 6ZFzYKPMq4B8CxWmN6Uj23da3mQ7AFQqyLRF7jWMIM0F6SEmWPhxipgperIpZlGtuWCHd7xIBiwPp
-	 JM8wwprDpf2Re5QKhuDnd/ay+Au+T4tKL+NcvuZrhSWXWbkqVKhff1X2Ts/LRF3T0SA3GE7juYFxS
-	 9ZSHzuOLgTv5YloTkoeNB0LFvDWEUz4D1POnNUfPEjmHKKRUViR/TkpzYTgvexR3Fp8bJN9SCchf5
-	 U60no2JyJCtDSW366HdHi+JwAA/1Bn4DGhixWVijxhZAcdcgZe98o+59fP0wxP765ME/xy7VkSza6
-	 Xu7MXSFfxqP4JoMGkXYoVcC42Cn53vYWfojqS9cp7je2dnXwLtlMuREsPpn3eeyRBnsESGgsswhos
-	 q1uAHYwqTpVjXHfFZ2YYXCnGweh5eIbwzmbg8HvW2oCsNwPuubRWrIaHerftu45klQVJ+nWpduhUF
-	 /KS34Tep6B10qqgjECkPp6zWiLR1JmHYQP0cRF36Sovdzvgqfc0ChNnCb5inE9Z7s2ZtIyBfXCIzR
-	 B0/Jqp/p0+cGkJpOwxb9N46KcD+1pEmCVBbe1luZJb0yVZSbg9QyIn6IkQOWyTWrDvRRXjSvETk9x
-	 DM+drrBchaPXqFik96c/Eqc7erMELDBHwApMdW/Zl1Y6YSGRJdXp0bldK2HUF2boaM6TaeIVy5r9t
-	 d/MrRoOIZ/XrzTGhSxcva5pihBOjHoHX0VU0F6Z22ZxvViFsPiszZXCoDGZ/QrMyKKJmb20Y72SDI
-	 yyFh1c9NN41u1yMZzyq3JwvX74FGHJL3xQxRRG+4jKPlPVmWqcNNeG6vy36OPtKkDtTivJ4jXx+YB
-	 hrpoBXWB1kdUZJKNLUetSs6xz7evYwIvWkhgoCEX1gyJ2iHLVqOJegRRGV3LrntBGtcoav8QOFWvh
-	 dK4FNW5WGkKrSpr83gkyegxLQglNfToc4ij2eke8fC93fBsOzCHxiZodRjwfNbXdBmYcORAS/ZauM
-	 bfRAR3Y3JO+2vQp0RYg1Zpz+Tcj5YHezR6TCb/jItwJgGGSk=
-From: "=?utf-8?B?Q3VuaGFvIEx1?=" <1579567540@qq.com>
-To: "=?utf-8?B?UXVlbnRpbiBTY2h1bHo=?=" <quentin.schulz@cherry.de>, "=?utf-8?B?TWFyYyBLbGVpbmUtQnVkZGU=?=" <mkl@pengutronix.de>, "=?utf-8?B?a2VybmVs?=" <kernel@pengutronix.de>, "=?utf-8?B?VmluY2VudCBNYWlsaG9s?=" <mailhol@kernel.org>, "=?utf-8?B?Um9iIEhlcnJpbmc=?=" <robh@kernel.org>, "=?utf-8?B?S3J6eXN6dG9mIEtvemxvd3NraQ==?=" <krzk+dt@kernel.org>, "=?utf-8?B?Q29ub3IgRG9vbGV5?=" <conor+dt@kernel.org>, "=?utf-8?B?SGVpa28gU3R1ZWJuZXI=?=" <heiko@sntech.de>
-Cc: "=?utf-8?B?bGludXgtY2Fu?=" <linux-can@vger.kernel.org>, "=?utf-8?B?ZGV2aWNldHJlZQ==?=" <devicetree@vger.kernel.org>, "=?utf-8?B?bGludXgtYXJtLWtlcm5lbA==?=" <linux-arm-kernel@lists.infradead.org>, "=?utf-8?B?bGludXgtcm9ja2NoaXA=?=" <linux-rockchip@lists.infradead.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?SGVpa28gU3R1ZWJuZXI=?=" <heiko.stuebner@cherry.de>
-Subject: Re: [PATCH v4 3/4] arm64: dts: rockchip: add CAN-FD nodes for RK3588
+	s=arc-20240116; t=1783090422; c=relaxed/simple;
+	bh=2VbvTLATUBRyOkcMD2H6c8IiWnOuQi7FFAGq7urUUpo=;
+	h=From:Subject:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=kpVO84dvxKNuzFRbkKbmHz3BcCvbbEbcw1qJMV8F5ngjkIYqZpoZFie7GCaj9GDERT34RWbeNsAp1M1BY2OMsaQpXVuMBNrpRjncNAndXZEZ5vrriOnKGnsYV2w8WxLmtoPyudfsLDvYIRJr0+sILd/pXaOWHQSvw0dVwD4+9bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XWI9fwFk; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0542F1F000E9;
+	Fri,  3 Jul 2026 14:53:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783090421;
+	bh=Y7oNG6rsWk6v+8ZtKEjS4cxQBJxFYFRWFmn4DVo1HY8=;
+	h=From:Subject:Reply-To:Cc:In-Reply-To:References:Date;
+	b=XWI9fwFkgMuoHQluSoZkPo84qVFOM0/6dnmuuo6qhmBj1HK41jG3fpF1sqZk3ZS9V
+	 msPjvja/HD04PVdKOVXcvqXJ00S7eT2ypex87BiqMYhrsm75zTi3gDa2vI3bQT1OAj
+	 W/XmPEBJOZBLeZVZBqn+bav/8XXZqSG72kDIP8FE/61S5fsU83QFnr8sotFblXrNMF
+	 X8O9MGnym29kT1aSY0ch/SI1MKL4917YLPvEu+mHLaIihYz5vVqff2W3zpTebtvHq9
+	 5dLZBeSSzrUolg1SXvigePc51ey05HtrEPlw6tYvQmXLSVxQZ/e11seAsjJlxXNnOr
+	 uXVei0mHDWd0g==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 2/6] arm64: dts: ti: k3-j7200-ti-ipc-firmware:
+ Reserve memory for LPM metadata
+Reply-To: sashiko-reviews@lists.linux.dev
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260703143717.177362-3-richard.genoud@bootlin.com>
+References: <20260703143717.177362-1-richard.genoud@bootlin.com>
+ <20260703143717.177362-3-richard.genoud@bootlin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 03 Jul 2026 14:53:40 +0000
+Message-Id: <20260703145341.0542F1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
-Date: Fri, 3 Jul 2026 22:53:32 +0800
-X-Priority: 3
-Message-ID: <tencent_6D8030C4363FF6A6191A0C19F384BE91BE07@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-References: <20260703-master-v4-0-47d40bbf5fda@qq.com>
- <tencent_48121342466E02301067FDB89BEA68886509@qq.com>
-	<8c5be502-c520-42f5-9f2b-c49c04e99f6a@cherry.de>
-In-Reply-To: <8c5be502-c520-42f5-9f2b-c49c04e99f6a@cherry.de>
-X-QQ-mid: xmsezb41-0t1783090412tldcxqjes
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.44 / 15.00];
-	TO_EXCESS_BASE64(1.50)[];
-	CC_EXCESS_BASE64(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	MISSING_TO(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qq.com,quarantine];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_ALL(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_RECIPIENTS(0.00)[m:quentin.schulz@cherry.de,m:mkl@pengutronix.de,m:kernel@pengutronix.de,m:mailhol@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:linux-can@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:heiko.stuebner@cherry.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320217-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320216-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qq.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[qq.com];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FROM_EXCESS_BASE64(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qq.com:from_mime,qq.com:dkim,qq.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,ti.com:url,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:email,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 255547039FA
+X-Rspamd-Queue-Id: 20D08703AC3
 
-SGkgUXVlbnRpbiwKCgo+wqA+wqBEZXNjcmliZcKgdGhlwqB0aHJlZcKgQ0FOLUZEwqBjb250
-cm9sbGVyc8KgaW50ZWdyYXRlZMKgaW7CoFJLMzU4OMKgaW7CoHRoZcKgYmFzZQo+wqA+wqBT
-b0PCoC5kdHNpLgo+wqA+Cj7CoD7CoEFkZMKgQ0FOMCzCoENBTjHCoGFuZMKgQ0FOMsKgbm9k
-ZXPCoHdpdGjCoHRoZWlywqByZWdpc3RlcsKgcmFuZ2VzLMKgaW50ZXJydXB0cywKPsKgPsKg
-Y2xvY2tzwqBhbmTCoHJlc2V0cyzCoGFuZMKga2VlcMKgdGhlbcKgZGlzYWJsZWTCoGJ5wqBk
-ZWZhdWx0wqBzb8KgYm9hcmTCoERUU8KgZmlsZXMKPsKgPsKgY2FuwqBlbmFibGXCoHRoZW3C
-oGFzwqBuZWVkZWQuCj4KPsKgUmV2aWV3ZWQtYnk6wqBRdWVudGluwqBTY2h1bHrCoDxxdWVu
-dGluLnNjaHVsekBjaGVycnkuZGU+CgpUaGFua3MgZm9yIHRoZSByZXZpZXcgYW5kIGZvciB0
-aGUgUmV2aWV3ZWQtYnkgdGFnLgoKQmVzdCByZWdhcmRzLApDdW5oYW8=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Critical] Adding a firewalled memory region to the K3 remoteproc's memor=
+y-region array causes Linux to inadvertently map it as Normal Write-Combini=
+ng memory, leading to fatal asynchronous SErrors due to speculative reads, =
+and exposing it to the remoteproc ELF loader.
+- [High] Retaining `mcu_r5fss0_core0` in the SPL device tree without its re=
+ferenced memory regions will result in dangling phandles.
+--
 
+commit 6ba9ae95cd26c22916ced48472c89d3b231e698a
+Author: Richard Genoud (TI) <richard.genoud@bootlin.com>
+
+arm64: dts: ti: k3-j7200-ti-ipc-firmware: Reserve memory for LPM metadata
+
+Declare a carveout memory region to store LPM metadata on J7200. For
+Jacinto devices, this memory region is needed for saving ATF context
+and the certificate information of ATF and OPTEE and DM image.
+
+Link: https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/lpm.html#=
+lpm-msg-lpm-save-addr
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi b/arch/=
+arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
+> index d65f68c7d4321..a6043970715ac 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
+
+[ ... ]
+
+> @@ -99,8 +105,10 @@ &mcu_r5fss0 {
+>  &mcu_r5fss0_core0 {
+>  	mboxes =3D <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
+>  	memory-region =3D <&mcu_r5fss0_core0_dma_memory_region>,
+> -			<&mcu_r5fss0_core0_memory_region>;
+> -	memory-region-names =3D "dma", "firmware";
+> +			<&mcu_r5fss0_core0_memory_region>,
+> +			<&lpm_memory_region>;
+
+[Severity: Critical]
+Will appending this firewalled memory region to the memory-region array cau=
+se
+fatal asynchronous SErrors due to speculative reads?
+
+Looking at k3_reserved_mem_init() in drivers/remoteproc/ti_k3_common.c,
+the remoteproc driver unconditionally maps all memory-region entries starti=
+ng
+from index 1:
+
+drivers/remoteproc/ti_k3_common.c:k3_reserved_mem_init() {
+    ...
+    kproc->rmem[i].cpu_addr =3D devm_ioremap_resource_wc(dev, &res);
+    ...
+}
+
+Since the lpm_memory_region is hardware-firewalled and only accessible by
+TIFS, mapping it as Write-Combining (Normal Non-Cacheable) memory permits t=
+he
+ARM64 CPU to perform speculative instruction and data fetches against it.
+
+Could these speculative accesses trigger bus errors from the interconnect,
+resulting in fatal asynchronous SErrors that panic the kernel during device
+probe?
+
+> +	memory-region-names =3D "dma", "firmware", "lpm-metadata";
+> +	bootph-pre-ram;
+
+[Severity: High]
+Will adding bootph-pre-ram here result in dangling phandles in the SPL
+device tree?
+
+Because bootph-pre-ram was added to mcu_r5fss0_core0 and lpm_memory_region,
+but not to the existing mcu_r5fss0_core0_dma_memory_region and
+mcu_r5fss0_core0_memory_region nodes, the SPL build tool (fdtgrep) will
+strip the unannotated dma and firmware memory nodes.
+
+Might this cause the U-Boot remoteproc driver to fail during parsing or
+crash when attempting to resume the R5F core from retention due to the
+missing references?
+
+>  	status =3D "okay";
+>  };
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260703143717.1773=
+62-1-richard.genoud@bootlin.com?part=3D2
 
