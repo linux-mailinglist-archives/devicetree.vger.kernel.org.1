@@ -1,241 +1,248 @@
-Return-Path: <devicetree+bounces-320174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320178-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id AdB7Bb6/R2qwegAAu9opvQ
-	(envelope-from <devicetree+bounces-320174-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 15:57:18 +0200
+	id vjRtJW7AR2ryegAAu9opvQ
+	(envelope-from <devicetree+bounces-320178-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:00:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BA7F703277
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 15:57:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D69287032FB
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:00:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bL8CiVjM;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320174-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-320174-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=Z3c7nV1P;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=YG86y5To;
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320178-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320178-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E47F7300C383
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 13:45:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E99C530F5457
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 13:46:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16AD13D4119;
-	Fri,  3 Jul 2026 13:45:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 217F63D9559;
+	Fri,  3 Jul 2026 13:45:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C053D5C2C
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 13:45:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40DDD3DDDC1
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 13:45:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783086319; cv=none; b=KcSBZ+o/O/OCss1vYqNfnYbBO5+io/tQvnis+kdlw0iv5pINWgMjuxOopEX/4/fPgK2bWasfMWu4N9sMq6EJJZUi0kX+VLf2aZOYbb5oPymPihTkhSjcZcX6AXFvPeaj36374RoU5Pq9x4tMKC0Ruu/zTU3s7ryAKYt29yoJGQA=
+	t=1783086334; cv=none; b=VK/GzUiRTHpH/mnRQ8W2VDNFcQxY8ORg7+awHqxikziQd6vqeQekC3Hc9C/XZ6Al5uw989YnGovxxcR6z5tl7uM1+bAQ127hPXShLj8eFrNLAh8E765XpcV9iEQmWhz/ZrXHIrgObe3xKrQYwGPC82neeOdIWNXnLmxCB5unLR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783086319; c=relaxed/simple;
-	bh=Eed7PcfjAFodpMZeCqFZd05mN/8mYnW9dGq57fRkdvQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=NJdNNozM/16i8pZkQq1+C+ywb0nCWCzcLdRdrrY3T2C89VVwkhxzpnvGeZp/HknxAag5zrUWi0Rvo8DAkymQbWa2qRBwlW8HiIArZTp3FcJbLjUcRB2YcgMlVrT/IEqMEzPeQeYFwQDr0X5wMbb0dfJdTzpaFvkpOodVwsgwK9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bL8CiVjM; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECD1A1F000E9;
-	Fri,  3 Jul 2026 13:45:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783086317;
-	bh=cBQl74WOtGP5Fs5G5wqCz6eBiT52oKz7aTTD3gyINuU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=bL8CiVjMMOvwjxtsyCPL3UImsp2ObRMfLpd9Vig3lVabMCJLvH0BuTqwwlRuqgj7V
-	 MDIPdsDNElJQ3od/b8PoKnYZsaPe40tMK6SBMWLJWbD/3mQarki8dSCMPIe73OuWHB
-	 g+11y8gEI24DaIc6S9yxZ4RZI6LoLNOPhwpkJM/rPR3H+MZu3GC4Vj8kw3+bYyCSB4
-	 rKj1mnku3sYrb4YjLFkdV9chs0/Ncrm07F/T10gaSrfXspDdJhylvMsJkrycNuZ+SV
-	 RO1SkDh1B5j1109xuMVd4BGg0wXpWIF/i5y7X5CNb2vpFgfzmIuXqLTeYpaZCAFk3m
-	 AbG5jaOv5Uvew==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 08/12] soc: fsl: qe: Convert to generic IRQ chip
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Paul Louvel" <paul.louvel@bootlin.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260703-qe-pic-gpios-v1-8-6c3e706e27dc@bootlin.com>
-References: <20260703-qe-pic-gpios-v1-0-6c3e706e27dc@bootlin.com>
- <20260703-qe-pic-gpios-v1-8-6c3e706e27dc@bootlin.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 03 Jul 2026 13:45:16 +0000
-Message-Id: <20260703134516.ECD1A1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783086334; c=relaxed/simple;
+	bh=zkO7UGTBhc0abSbmAA7xbPJx3KQa3FMC3+fWJRmAgxA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=K02a7hmeS0EeNN4YjqBp6XQQlPkuD/eXmxAMW+hjyLGc2RJERYIwwrNpxJ3mt0iNLC3CuTCFq999BZuuIf2sbQe2nrly/cH1UATmhHuuNFZrNskc5TApOzGZxv1FUN8VSJPAzWzPGNupaUBaOrQfVqzFIFhBnSJxXSZhnrj4uZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Z3c7nV1P; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YG86y5To; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 663D16iN053890
+	for <devicetree@vger.kernel.org>; Fri, 3 Jul 2026 13:45:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	AwhIzMOLwD/T1MG78AEfie5XOqWGm9fdRJaKy1+95/o=; b=Z3c7nV1PTRoHjP9Y
+	N8NDqCV0gtQJFr0W6O1wUDef4OW1eTa7rUWJcI+L3YuZPAYrKIcWudhVKzTJqrJZ
+	eb8HX8BJlDfPhqHG2jSC/hXQilE0PXXKmZ/EXQukwgOqzO7ShYU5tnZ9sGpb5/lD
+	7nQTCQR4TcNLAguTL9DWCbTEh0LP/73+RhvONYTPVoYavquvmBeDzrHwrI6hcJqC
+	GmOV22R4aAteWaxzLt8ZOebOd031WA5/81BkzbBNFt/yQnXsvV37lXp+vd7Dc9me
+	M/Bixtazx6p0hww+H1DWI4pq7M76d95uIY0eGBfVH2w/mfeJPD8nzdIBx4LRNVld
+	RJCFBQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f6dkkg4qu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 13:45:31 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-92e82060977so66127685a.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 06:45:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783086331; x=1783691131; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AwhIzMOLwD/T1MG78AEfie5XOqWGm9fdRJaKy1+95/o=;
+        b=YG86y5To+FO2Rv/VMacw7djrQ/2lb8pPNYpBbtK4IEjIK8N3JHJ5JXQlA1eTK1SNuO
+         7NQzEY58U9JJmpZcQqipAVNQKGdWr5JaOEZkfu48PKhB6xW5Sc6ICmMrITEzK0KHrZbK
+         RpRpZBM/4E/gbCXt+c80sxg/yQKn9VhFc0LUWPHJKMQFo1DtINl2Wt2bL0DVj5KXMfpq
+         HtwducqowYCKv+repivOuhGH//2k5c4C6ufuQzu+AD7vFmaWYbjY21xDyV7kKeKl8V/U
+         uC1syAzQ9gVEbsYDBhYpf4K3hf1OiVrphM3yMaUSGBcAGxAfac0rA6xGMKMaZ3vWGVTE
+         JqQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783086331; x=1783691131;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=AwhIzMOLwD/T1MG78AEfie5XOqWGm9fdRJaKy1+95/o=;
+        b=V8LwztNHVy1kSkggxp9dDAiMIIRUVE3PbT8y7NZJN34ei86JlEGTwUhsZqy26cxyj1
+         pdoLcrhTVjn+md6m3RWHmgR178gUWcvIEvfeNDnt7j/s6XoqrkdiRTxEvLc8jSO5uSmU
+         JhB6KYAxsoiY1OW0lPk1BD/uVHdnhIG+9hdxiBX2VgP3jfW8ELm3Wayt86ztOLpfebVK
+         bzDDozMuefeBUuO4l31jj3Nc/zGugW3E5lQJ8MR7Au31j9re/afIDEqpcutmBtUKfxEq
+         kANKYNgei1FIVfUhfhhPfnDXg9s/Bmus89E39FQtsd8PHNQ4tBodgolQzwVfaeela76P
+         2Yyg==
+X-Forwarded-Encrypted: i=1; AFNElJ9uDXDOwmaDGDzskqGuJMgoEfv+mvi45mqEGzL1BtdzA2+dSuwrjnzkud2jFw7QArvnaWDQ2xwfQwz7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxv24v75KfH9MamoKJxhwtlwH9cWuBSYHK+f/lfzfqGzTvlhOys
+	cZW9DUvgZaIhUs2c7+lqQ2znE/qXVQTNG13iTkqgG6AvBFpflL5c3RVYXd8wZl9c4WNb8nN7n/M
+	sw0dp/tZgUg4Fmkwiw0L3RYLkeg3tOYT5crt0PRQD7bJS69wdQiq1FNbWpnLJlmlI
+X-Gm-Gg: AfdE7cmVZ8wSinNvu/2jdKOBKOyacdp2dF03WIVY5iqWxyxLrH0wbD0F5wPLB+Ay3CD
+	DluMtZ3S9LMgUhY7TjURi42U5QcuM4tUiVX13R4ReglE0QfTI87Cz6xZ1MAXuIi+72qJKSdhoqz
+	oXXJX5S2VopqtciaRXp0FiAOJt8cUGOMCkaYOwLBeux1GJS1PjrRabA6lJZOz7NUjRzB4CvghqP
+	o+NmaZra6/ZszfDapXg0qg46Od6ImfDmJbP+lvCswRC/kLGIiLEmKzIZnG3kQLL8EiyfVpP1s+f
+	CZqmyfFVSeW7P8H7Dp1/wKTZDcXn/pzM1eJIczcFt0MPQcB5CFMEqjd92mFU12ZRchSNf+82b49
+	mSuaUCKMVEjUibomjMOfV9RPsu4ez5TiS4bJBVV8RcEKG14Meb3Q4miYQPLTPMVG+fBy3l3kZsu
+	eZZUZdMIZu3iBT5lBu8e1Z0ceReQXY0RLhFuGMJj3DYi19Ct32EEUtPykUirCQ6+k=
+X-Received: by 2002:a05:620a:7007:b0:916:5f5:de22 with SMTP id af79cd13be357-92e8b29ea54mr485347485a.12.1783086330556;
+        Fri, 03 Jul 2026 06:45:30 -0700 (PDT)
+X-Received: by 2002:a05:620a:7007:b0:916:5f5:de22 with SMTP id af79cd13be357-92e8b29ea54mr485340685a.12.1783086329977;
+        Fri, 03 Jul 2026 06:45:29 -0700 (PDT)
+Received: from QCOM-eG0v1AUPpu.na.qualcomm.com ([2a01:e0a:830:450:809d:5d56:19d9:ff8b])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c12b6059e4csm286135466b.1.2026.07.03.06.45.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jul 2026 06:45:29 -0700 (PDT)
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Fri, 03 Jul 2026 15:45:17 +0200
+Subject: [PATCH v8 4/9] nvmem: layouts: Support fixed-layout as the nvmem
+ device node itself
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260703-block-as-nvmem-v8-4-98ae32bfc49a@oss.qualcomm.com>
+References: <20260703-block-as-nvmem-v8-0-98ae32bfc49a@oss.qualcomm.com>
+In-Reply-To: <20260703-block-as-nvmem-v8-0-98ae32bfc49a@oss.qualcomm.com>
+To: Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Saravana Kannan <saravanak@kernel.org>,
+        Christian Marangi <ansuelsmth@gmail.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-wireless@vger.kernel.org,
+        ath10k@lists.infradead.org, linux-bluetooth@vger.kernel.org,
+        netdev@vger.kernel.org, daniel@makrotopia.org,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAzMDEzNSBTYWx0ZWRfXzNMRK5aHBUrK
+ hEtq9bA36YvtDgwSWne/RXrPr/pl/5d7jcHCSR4GOxQsNCn1vs43iv6UdWaN03ikyeW7/rr6XPe
+ rz0q34+kNSYg/k/fhMuOSclFsMWacpE8NpS9ZQGxwruEBAJ8YqK2XGGqgjhWZ5Wn8KvlkAOltBB
+ cEapc3Wc9+5/8999aWqRCUpTQENZFenwx8cK+YbthPZIgjSEzwqMGAwso/au+Ei3GD7kyp9F968
+ cYATbMh1jf/EbGJVFkUqkRDZfkL17m9WRBQgZRtwmTvec8uL8cux3D0ahrUSKltFHVYbuA9Quk1
+ PZ3cLRHJIGZzw9samD0JOBuY4UkQKfUsrnW+GFsdzlrXMGzPeaWaJjgosPVOcINtsIiImm5fjHS
+ NcluPTpZgmkBDDKJdVCAODxXnLwW9CwyixoClOlq7rmyHz7BKYCvMvNR7xTCGI/srAzdxWGXX2y
+ Dv/Cb2438zATnQRPPDg==
+X-Authority-Analysis: v=2.4 cv=LeUMLDfi c=1 sm=1 tr=0 ts=6a47bcfb cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
+ a=4SYEPDBQci7QR0ImIkAA:9 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: zrU5pbpdbtC2XeTF2LJSTeHTGSwSs7MH
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAzMDEzNSBTYWx0ZWRfX4WlA0x6t7+n4
+ bJKUxYNF/tcNzxKB8G5B9O+HJTNlWXOz8J7tOhFpAawDW5+0BqrHVumTZ4YHj2TjRw/8QEbN5aO
+ S+U6wTmzDOKgXxlNqGJcMViTNZ0SJ9w=
+X-Proofpoint-GUID: zrU5pbpdbtC2XeTF2LJSTeHTGSwSs7MH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-03_02,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
+ suspectscore=0 bulkscore=0 impostorscore=0 priorityscore=1501 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607030135
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320174-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:paul.louvel@bootlin.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320178-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[36];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,kernel.dk,sipsolutions.net,holtmann.org,gmail.com,quicinc.com,davemloft.net,google.com,redhat.com,lunn.ch,armlinux.org.uk];
+	FORGED_RECIPIENTS(0.00)[m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:axboe@kernel.dk,m:johannes@sipsolutions.net,m:jjohnson@kernel.org,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:quic_bgodavar@quicinc.com,m:quic_rjliao@quicinc.com,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:srini@kernel.org,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:saravanak@kernel.org,m:ansuelsmth@gmail.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-block@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:ath10k@lists.infradead.org,m:linux-bluetooth@vger.kernel.org,m:netdev@vger.kernel.org,m:daniel@makrotopia.org,m:loic.poulain@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,vger.kernel.org:from_smtp];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,bootlin.com:email,smtp.kernel.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lists.linux.dev:replyto,vger.kernel.org:from_smtp]
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0BA7F703277
+X-Rspamd-Queue-Id: D69287032FB
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
+of_nvmem_layout_get_container() only looks for a child node named
+"nvmem-layout" to locate the cell definitions. This does not cover
+providers whose device tree node is itself the fixed-layout container,
+such as an eMMC boot partition block device whose fwnode points directly
+at a "fixed-layout" compatible partitions node.
 
-New issues:
-- [High] Incorrect hwirq calculation in `qepic_cascade()` maps bit indices =
-[0..31] to hwirqs [32..1] instead of [31..0], causing out-of-bounds mapping=
- and shifting all IRQs by one.
-- [High] Race condition on probe: The chained interrupt handler is register=
-ed before `data->gc` is initialized, causing a NULL pointer dereference if =
-an interrupt fires early.
+When no "nvmem-layout" child is present, fall back to returning the nvmem
+device node itself if it is compatible with "fixed-layout", so that its
+cells are parsed by nvmem_add_cells_from_fixed_layout().
 
-Pre-existing issues:
-- [High] The IRQ mask, unmask, and set_type callbacks use lockless read-mod=
-ify-write operations on shared registers, leading to data races.
---
+Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+---
+ drivers/nvmem/layouts.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-commit 39268a559b43e95ee6bcd43807086719d4997f6e
-Author: Paul Louvel <paul.louvel@bootlin.com>
+diff --git a/drivers/nvmem/layouts.c b/drivers/nvmem/layouts.c
+index b90584e1b99eab4217cbe7ec48373e18a7caf0dc..efa631ce7283bdd6c8ecda75915911b5e3a33c99 100644
+--- a/drivers/nvmem/layouts.c
++++ b/drivers/nvmem/layouts.c
+@@ -167,7 +167,18 @@ static int nvmem_layout_bus_populate(struct nvmem_device *nvmem,
+ 
+ struct device_node *of_nvmem_layout_get_container(struct nvmem_device *nvmem)
+ {
+-	return of_get_child_by_name(nvmem->dev.of_node, "nvmem-layout");
++	struct device_node *np;
++
++	/* Search for nvmem-layout child */
++	np = of_get_child_by_name(nvmem->dev.of_node, "nvmem-layout");
++	if (np)
++		return np;
++
++	/* The nvmem of_node is itself a fixed-layout node */
++	if (of_device_is_compatible(nvmem->dev.of_node, "fixed-layout"))
++		return of_node_get(nvmem->dev.of_node);
++
++	return NULL;
+ }
+ EXPORT_SYMBOL_GPL(of_nvmem_layout_get_container);
+ 
 
-soc: fsl: qe: Convert to generic IRQ chip
+-- 
+2.34.1
 
-The generic IRQ chip framework is available to handle IRQ chips. Using
-this framework for the QE interrupt controller allows to simplify the
-driver. Indeed, the framework internally handles operations coded
-directly in the driver.
-
-> diff --git a/drivers/soc/fsl/qe/qe_ports_ic.c b/drivers/soc/fsl/qe/qe_por=
-ts_ic.c
-> index c8b73b0aa2334..d022aa224f6d6 100644
-> --- a/drivers/soc/fsl/qe/qe_ports_ic.c
-> +++ b/drivers/soc/fsl/qe/qe_ports_ic.c
-> @@ -20,63 +20,65 @@ struct qepic_data {
->  	void __iomem *reg;
->  	struct irq_domain *host;
->  	int irq;
-> +	struct irq_chip_generic *gc;
->  };
-> =20
->  static void qepic_mask(struct irq_data *d)
->  {
-> -	struct qepic_data *data =3D irq_data_get_irq_chip_data(d);
-> +	struct irq_chip_generic *gc =3D irq_data_get_irq_chip_data(d);
-> +	struct irq_chip_type *ct =3D irq_data_get_chip_type(d);
-> =20
-> -	clrbits32(data->reg + CEPIMR, 1 << (31 - irqd_to_hwirq(d)));
-> +	clrbits32(gc->reg_base + ct->regs.mask, d->mask);
->  }
-
-[Severity: High]
-This is a pre-existing issue, but does this lockless read-modify-write
-operation cause data races?
-
-The qepic_mask(), qepic_unmask(), and qepic_set_type() callbacks use
-clrbits32() and setbits32() on shared registers without a shared controller
-lock. If multiple CPUs modify different IRQs concurrently, could updates to
-the shared mask or type registers be lost?
-
-[ ... ]
-
->  static void qepic_cascade(struct irq_desc *desc)
->  {
->  	struct qepic_data *data =3D irq_desc_get_handler_data(desc);
-> +	struct irq_chip_type *ct =3D data->gc->chip_types;
->  	struct irq_chip *chip =3D irq_desc_get_chip(desc);
->  	unsigned long event, bit;
-> =20
->  	chained_irq_enter(chip, desc);
-> =20
-> -	event =3D in_be32(data->reg + CEPIER);
-> +	event =3D in_be32(data->gc->reg_base + ct->regs.eoi);
->  	if (!event) {
->  		handle_bad_irq(desc);
->  		goto out;
->  	}
-
-[Severity: High]
-Could the hwirq calculation in qepic_cascade() be incorrect?
-
-When an interrupt fires, the trailing loop (using for_each_set_bit) yields a
-0-based bit index, but generic_handle_domain_irq() evaluates the hwirq using
-"32 - bit".
-
-For example, if bit 0 is set, it maps to hwirq 32, which exceeds the domain=
-'s
-hwirq_max of 32 and leaves all IRQs shifted out of bounds. Does this need to
-be "31 - bit" to correctly map bit indices [0..31] to hwirqs [31..0]?
-
-[ ... ]
-
-> @@ -125,14 +158,16 @@ static int qepic_probe(struct platform_device *pdev)
->  	if (data->irq < 0)
->  		return data->irq;
-> =20
-> -	data->host =3D irq_domain_create_linear(dev_fwnode(dev), 32, &qepic_hos=
-t_ops, data);
-> -	if (!data->host)
-> -		return -ENODEV;
-> +	data->host =3D devm_irq_domain_instantiate(dev, &d_info);
-> +	if (IS_ERR(data->host))
-> +		return PTR_ERR(data->host);
-> =20
-> -	irq_set_chained_handler_and_data(data->irq, qepic_cascade, data);
-> -
-> -	return devm_add_action_or_reset(dev, qepic_remove, data);
-> +	data->gc =3D irq_get_domain_generic_chip(data->host, 0);
-> +	if (!data->gc)
-> +		return -ENODEV;
-> +	data->gc->reg_base =3D data->reg;
-> =20
-> +	return 0;
->  }
-
-[Severity: High]
-Can this probe sequence trigger a NULL pointer dereference?
-
-When devm_irq_domain_instantiate() is called, it triggers the init callback
-qepic_domain_init(), which registers the chained handler and unmasks the
-parent interrupt:
-
-qepic_domain_init()
-    irq_set_chained_handler_and_data(data->parent_irq, qepic_cascade, data);
-
-If an interrupt is pending and fires immediately, qepic_cascade() will
-execute and attempt to dereference data->gc->reg_base. However, data->gc is
-not initialized until irq_get_domain_generic_chip() is called after the
-domain instantiation returns.
-
-Could this cause a crash if a pending interrupt is triggered during probe?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260703-qe-pic-gpi=
-os-v1-0-6c3e706e27dc@bootlin.com?part=3D8
 
