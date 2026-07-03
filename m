@@ -1,73 +1,99 @@
-Return-Path: <devicetree+bounces-320023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319920-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +iKoE1CWR2q3bgAAu9opvQ
-	(envelope-from <devicetree+bounces-320023-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 13:00:32 +0200
+	id ho3gE5x6R2omZAAAu9opvQ
+	(envelope-from <devicetree+bounces-319920-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:02:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7549C7018BB
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 13:00:31 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A811700676
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:02:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=psihoexpert.ro header.s=dynu header.b=T4uzixyY;
-	dmarc=fail reason="SPF not aligned (strict)" header.from=psihoexpert.ro (policy=none);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320023-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320023-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=B8RJDw9Z;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319920-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-319920-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 308C93069C86
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 10:49:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AD7123033016
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 08:46:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E1CF3BCD20;
-	Fri,  3 Jul 2026 10:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFD8B37BE74;
+	Fri,  3 Jul 2026 08:46:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.wiredblade.com (mx1.wiredblade.com [72.51.58.35])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD14A3C1082
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 10:48:26 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783075708; cv=fail; b=VQW0Ot0K83NvynZA2VfR5bWhhJz2J4IsRQ3HYIbRnjoKlLXY51npFSC4dwH4QNyQdDwsKmjIJIzrEoqK2lORHfRq/s7+YiZFHRh0vX0iz4qkgMQm4foDkKSGYyUFC3VKd9X8uczLkr1zwOYHgH9JicwteT30D2vql9XM/ZZYauA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783075708; c=relaxed/simple;
-	bh=pAeTYzgwrIma4T0EmfQBPjqpQmrfwT/lwP3uZKi7OOM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pJA5Q16E14AOWs6h6cSjBI+GD1qKoTLeasa9VInfM+Mg3vylC3eLRM9WOfq66pKeBOh+jzMc+eDalSlrD1vncoO3msMYhvUlO+Ng/NrV8z+/aIRcmFHVfMGwU/HfqsP7OVBuEr8IRov1lWcW70BJhfhe64HGLcjQBP1dwfCPb+A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=psihoexpert.ro; spf=pass smtp.mailfrom=psihoexpert.ro; dkim=fail (2048-bit key) header.d=psihoexpert.ro header.i=@psihoexpert.ro header.b=T4uzixyY reason="signature verification failed"; arc=fail smtp.client-ip=72.51.58.35
-DKIM-Signature: v=1; a=rsa-sha256; d=psihoexpert.ro; s=dynu;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
-	bh=JCV7TNmivDrKZTMMPq5ptyzKo/jd7S9u7SuQSkaTGPw=;
-	b=T4uzixyYfCnse4p2tvAV6lMAiSXmHIHSRpFuWYDiYoLniKYKEarVqVSwDKqeT0AsuZO5IByVyCECcFoPuESatWe9erfIiPe28fXy7XjZegzHAdqgJ04AQVQBtg8mDFz4B8zxJP7QT4tGq2UVY3qDbwRmNOmkH9lOD+QO+Sl8Njdc6hvJsWLz90ISoT64kZ3JJJ1xScveCUeNcMdJcHS4LF0dZK1j589F/cjNaSz09xqUVfG9GfvTeX+XVY
-	Z/kUpGJ9XlAE5mEwaFKs9R5/gvr9ZPF7qKBDuxXAR9l7Ur9o+PhRtrB1W5HudByZKY/aR4XT44VCCp7Dur6XHMqot4JA==
-ARC-Seal: i=1; a=rsa-sha256; cv=none;
-	d=dynu.com; s=mail;
-	b=jxqRA+VDt4OTk0p6mSf3Cf+Lj2yA8HJ+T4t+NbirS9OKEFgshoG8aDCJ9WZVrFJY/G6fSWvoS3F7lpnmDV/whDOKgHwsYBJdWQXUMJpJ2YCOMwIoRBE8c1rUPezWmXvhoSvUg5q0i7cMcprnkCK8QmtgM7/bVFKguUmn2guoZZiq26GaG+Rhx3xjcdo+NpYBRt/Yr/4BO+2t6JyuMnbR5oTG7dhHcrBnSze0YkCBY/5nKN6hGn1AL1/fua
-	KfVgbtV2NkH5qEm9fpsrETuklEmWvEWvunpHPAhaFRcI7HbZlubsUWgU4Rl4IUc3t4/tMwcAToYwrwVko2bsuzMHEXMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=dynu.com; s=mail;
-	h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
-	bh=JCV7TNmivDrKZTMMPq5ptyzKo/jd7S9u7SuQSkaTGPw=;
-	b=zCCJW9uEB0eyIvYt5zFgISFo/snqX7bbCx3NUwi/PBqGld/mQj3mrej+hPPFCiU0iihab5JtqD1rCBn/wJr0XCoBIWzr9LwiFkVipm4pm1M+wR30E/c7iAaAIg3zC0EB5pjyAXKMYC8PaipVP6GG1sOXp1c7CTtpa4rTVaayWHFspUZ+ouaRvmuQ0BCJ7b5OwLc5R+ZH5HEDHeSrLoWNfy/xZ66OumPhhxca+eCt3ltHtgn8E4FNYhoVzR
-	TWvJP9vWSZpqSFakNYT/EB1LDcyv3CG71Dz+Qa287rbhfAL9vfkVymczBn9GS0LmtpdiybwzgzFQTfZJiM/V8+2Z5WRQ==
-ARC-Authentication-Results: i=1; mx.dynu.com;
-	dkim=none;
-	dmarc=fail
-Received: from TkB (188-24-192-94.rdsnet.ro [188.24.192.94])
-	by mx1.wiredblade.com with ESMTPSA
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256)
-	; Fri, 3 Jul 2026 08:47:14 +0000
-X-Original-Rcpt-To: m95d+git@psihoexpert.ro
-From: Marius Dinu <m95d+git@psihoexpert.ro>
-To: linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: Heiko Stuebner <heiko@sntech.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8CAF37D10A
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 08:46:09 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783068372; cv=none; b=RK0qnx/YKF/XXkMOe+n9pYsew2h+Grld+3KxORYToS7GvejA9DbaEJDhAoPQBW78laZ/X/MQabumlIWbXpMGW5BGstJ6X46SAgb2mT9qu6PJ8WfNguHnVlo1XzIGeL6/1NvWOwelEf3Z3DI7RoptHfcAdbYrJckNmK5CSypczx4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783068372; c=relaxed/simple;
+	bh=AbM2+PdwzaPJmfFBoOmafSUHXuSAXw6gY/hyZryufoQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QAoDFSlzv6iZEZvLDtZgA5nW4fnxyFBIq+yMa2XIADUhHqyLuPzseIxprACclbaDI5AQDens8oNsYDhUmEarPRxOW+szVRZX0pYbkNkT4YQa4fp1HWqAJbbPWgbLo4LAs8eiVL0lpUlabDm3cTjwsAaQkMAvugmvwAWOsdBm/XI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B8RJDw9Z; arc=none smtp.client-ip=209.85.128.42
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-493be1b9682so2340775e9.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 01:46:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783068367; x=1783673167; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rym+87Q6pp8Q6AfXc414r5kgP+DO4WPCOFxK7p7VbcA=;
+        b=B8RJDw9ZaStdp3cVgblb4pd7qLV7QVQZtt6XU6DiTv0JiBHz0R3Hv6ogtbghkVBEhD
+         Zf9a8eWJ7an4+4DMqzddHdGB1+1CNpKdeH/q8627nLADnjZEQ+8utgcA0CD4cGBqCXfh
+         mC+ZdBlqp/FVAq9/xRPrYElHsmh+gwtfHJtPPpPlOUaOkpq6nrmRj467vaYt2vsFDNoD
+         xcFFadN3FOoqfS4+VZGC9H6GYtsvHQhhaxSHcLXXOuQ4gsxKrxLhJDJyEJbIpuzeNUcC
+         xJJ2vQKi/V6AMIu/8EDLGpKttb6TWG5oYYcVSQRsj3HJKf0EhzM9GaSa/RC7ptG/tAvG
+         3dyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783068367; x=1783673167;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rym+87Q6pp8Q6AfXc414r5kgP+DO4WPCOFxK7p7VbcA=;
+        b=DoV2eoQsp68zvyM2r2UOLsB5fYs6QPt1oY53VswyzCW9yZqjKnhuXwF0POMbghAl5F
+         lgwFO1d0jpvovdH+tqutp2uHaCAdY5hZc2jTpj22+rdGnHguXt/y9caRi6zn/qpA8n3l
+         nXFSxRBKsM0+gOBvdre+CWcMlplAcabUWBFFUgvF0hoaa6PX1DeMzWG2mXG0XEjNlyoL
+         x2m3EVrtuY1ecL5FFb0n5fwM2gdZ31GJDA4A6j7Z01PtAMR93iAHMGMj+BtCtC4XbqoK
+         Cyf2MWEGbgadsqlKZIX5ZIREK3b45oXkrtzrpjsJ1gHqYAnH/jD1mmB1mlqK6AzRqcha
+         XYLw==
+X-Forwarded-Encrypted: i=1; AFNElJ8y/b/Vxz6eWAKDyParqN5gdQcTxT4BIdmVnpsNBXG+7V+SbK53Jzo3zwtBeT9nSYsO9uVfSGiJc/td@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwyLDInnOvzaGXJ1FJ0thfu4G9c8FWTkW62pdrZ2O3+EyEdG3I
+	b0qzzbmq72BCAGTmHWu9cSyIIzaglMRMZl6aYR/pLD0k2VLwOiMTSzv7
+X-Gm-Gg: AfdE7cmFsQVnZtg1x8YRquiW2XFz0JXmItRyDk1R7FdQ6h+JKfUhqi7ZQGb3QYKAf9q
+	aGjMN3/nTInLl3LjjBQhWraaB330Gh921sgXap3E37L0bFFFEkqPzUXlgd11kh45nkYZPD4mS1H
+	GeETv1qNFTZax5VweIJmN0kxDTYDs2q5XsP7zYSEmJe/IyNIu0XwSNqTLbXf8LhhB7khaZ4eB58
+	0CYlLTMG2WR1bI//6KUiwDhKzZwvHjKCeLUrWNYEV8dPyQFPT8q7ObP0s46f391JlO6a/hd3Wgr
+	Jh+6nSW/iPYYZqLwm9YnE4kYck7FAHxyWAWjnZ9whPk7fvcUn0ZyaOIKPIHFPyeLAHQg8xWAyS4
+	Dah1oIrCeCvLcB2+qlfcRc26IJIuvHNL09SrOq1D69xi/FXMfbd3MLBdAKZSdr1ukYi6LzLuAdH
+	bMaIZh85E0FZYtC1dqXPxVl5ct3Qy5hUHgaktpIhJTa/KLZxNTWGb8RHsGn7gcMAH+LonQiGe6R
+	+vWdYODZDj4Ovw9274rdUjSww==
+X-Received: by 2002:a05:600c:34d6:b0:493:c6ed:a044 with SMTP id 5b1f17b1804b1-493c6eda218mr71854355e9.34.1783068366968;
+        Fri, 03 Jul 2026 01:46:06 -0700 (PDT)
+Received: from Lord-Beerus.station (net-93-144-65-248.cust.dsl.teletu.it. [93.144.65.248])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493cfb6f199sm6335505e9.3.2026.07.03.01.46.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jul 2026 01:46:06 -0700 (PDT)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marius Dinu <m95d+git@psihoexpert.ro>
-Subject: [PATCH] arm: dts: rk3288-tinker: add eeprom node
-Date: Fri,  3 Jul 2026 11:44:53 +0300
-Message-ID: <20260703084645.7001-1-m95d+git@psihoexpert.ro>
-X-Mailer: git-send-email 2.53.0
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH v1 00/15] arm64: dts: freescale: imx8mn-var-som: Align SOM and Symphony DTSs
+Date: Fri,  3 Jul 2026 10:45:47 +0200
+Message-ID: <cover.1783067947.git.stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,68 +102,97 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.64 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[psihoexpert.ro:s=dynu];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[psihoexpert.ro : SPF not aligned (strict),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-320023-lists,devicetree=lfdr.de,git];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-319920-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[m95d@psihoexpert.ro,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:m95d+git@psihoexpert.ro,m:krzk@kernel.org,m:conor@kernel.org,m:m95d@psihoexpert.ro,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[psihoexpert.ro:-];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m95d@psihoexpert.ro,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[variscite.com,nxp.com,pengutronix.de,gmail.com,kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,git];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	RWL_MAILSPIKE_POSSIBLE(0.00)[104.64.211.4:from];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[variscite.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7549C7018BB
+X-Rspamd-Queue-Id: 6A811700676
 
-This board contains an EEPROM that holds the CPU serial number and ethernet
-MAC. It is used by U-boot when configured to use upstream device tree from
-Linux kernel.
+This series aligns the i.MX8MN VAR-SOM and VAR-SOM Symphony device
+trees with the latest hardware revisions.
 
-Signed-off-by: Marius Dinu <m95d+git@psihoexpert.ro>
----
- arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+As the i.MX8MN device tree hierarchy closely mirrors the i.MX8MM one,
+this series applies the same alignment already accepted for the i.MX8MM
+platform, ensuring a consistent hardware description across both
+families.
 
-diff --git a/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi b/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
-index 8e27a20f2845..7e16022c7d9e 100644
---- a/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
-@@ -344,6 +344,11 @@ regulator-state-mem {
- 
- &i2c2 {
- 	status = "okay";
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c08";
-+		reg = <0x50>;
-+	};
- };
- 
- &i2c5 {
+The update consolidates the device tree descriptions to better reflect
+the actual hardware partitioning between the SOM and the carrier board.
+Nodes describing peripherals physically present on the SOM are kept in
+the SOM dtsi, while carrier-specific components are described in the
+corresponding carrier dts.
+
+The changes were tested on the latest VAR-SOM and Symphony hardware
+revision.
+
+Stefano Radaelli (15):
+  arm64: dts: freescale: imx8mn-var-som: Move UART4 description to
+    Symphony
+  arm64: dts: freescale: imx8mn-var-som: move SD card support to
+    Symphony
+  arm64: dts: freescale: imx8mn-var-som: Align fsl,pins tables
+  arm64: dts: freescale: imx8mn-var-som: Update FEC support with
+    MaxLinear PHY
+  arm64: dts: freescale: imx8mn-var-som: Add support for WM8904 audio
+    codec
+  arm64: dts: freescale: imx8mn-var-som: Add MCP251xFD CAN controller
+  arm64: dts: freescale: imx8mn-var-som: Rework WiFi/BT and add legacy
+    dts
+  arm64: dts: freescale: imx8mn-var-som: drop duplicate USB OTG node
+  arm64: dts: freescale: imx8mn-var-som: enable FlexSPI interface
+  arm64: dts: imx8mn-var-som-symphony: Add TPM2 support
+  arm64: dts: imx8mn-var-som-symphony: Enable I2C4
+  arm64: dts: imx8mn-var-som-symphony: add wakeup sources
+  arm64: dts: imx8mn-var-som-symphony: keep RGB_SEL low
+  arm64: dts: imx8mn-var-som-symphony: enable PWM1
+  arm64: dts: imx8mn-var-som-symphony: Disable internal RTC
+
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../imx8mn-var-som-symphony-legacy.dts        |  19 +
+ .../dts/freescale/imx8mn-var-som-symphony.dts | 162 +++++++-
+ .../imx8mn-var-som-wifi-brcm-legacy.dtsi      |  12 +
+ .../imx8mn-var-som-wifi-bt-iw61x.dtsi         |  45 +++
+ .../boot/dts/freescale/imx8mn-var-som.dtsi    | 364 ++++++++++--------
+ 6 files changed, 446 insertions(+), 157 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony-legacy.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-var-som-wifi-brcm-legacy.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-var-som-wifi-bt-iw61x.dtsi
+
+
+base-commit: d0c222c2e2ce577d801bdf129dc6c078f29e22df
 -- 
-2.53.0
+2.47.3
 
 
