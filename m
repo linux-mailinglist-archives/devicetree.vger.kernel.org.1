@@ -1,191 +1,242 @@
-Return-Path: <devicetree+bounces-319958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319960-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qaj6JDOAR2qiZgAAu9opvQ
-	(envelope-from <devicetree+bounces-319958-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:26:11 +0200
+	id vmwdG2aAR2rXZgAAu9opvQ
+	(envelope-from <devicetree+bounces-319960-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:27:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A29C7009DD
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:26:10 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0C34700A00
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:27:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dJ5ZZl+k;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319958-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319958-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=ideasonboard.com header.s=mail header.b=XBKI8vdQ;
+	dmarc=pass (policy=none) header.from=ideasonboard.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319960-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319960-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5AFA8300BE8A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 09:17:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D8EA8303CE15
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 09:20:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60AC33AFD1D;
-	Fri,  3 Jul 2026 09:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E7563B2FFF;
+	Fri,  3 Jul 2026 09:20:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503BA38B7D6;
-	Fri,  3 Jul 2026 09:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4AA23B3891;
+	Fri,  3 Jul 2026 09:20:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783070266; cv=none; b=E/ac+vxLcx/8yX9X6Ob0DrqiORu8YgUafItsQ8Udz5abCrHeFeue/zBnLFlZNAvOPVHkuPJyPd15drB/WWnm07A85/E4k0fJtbg4lsIIm9jFrqeSmxw/4IBhuPmr540IMTlwt2enDMWCGDEjS6sAIvH9L2IzLb7haSCVASfd4po=
+	t=1783070428; cv=none; b=LZwhyPr6rPI0MkQIVNWYNyEEOZh2QWCfN1I5iFq/b270JMgS5rq0OEwlhCYnq+2pyXpJTSo/nmZ/X4ffBkUaE9ZExqKwwZZZigds9lboIaIs05/NfRvF1dMqZsgckFGY7tl1r98Ytt4qcad4zWMyQTfePp18R4G/I+cLR6Cvkio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783070266; c=relaxed/simple;
-	bh=ih7ytT8KoG0gVBuOmXWyP3MSFZEnK8Px3Y/aGGip/Go=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LjUTqx2hFT9gHiyRDeI5uvxQbaBxJzVCAm4fGcniwtQTDtIwiiRRdFaBG5w13pS7p4VYUxdPtKfBgqCSltq9jTnfbeZ4eJhzmh823383nEcqpxvl8KbX3cEkoTSPY2wAHbUvAGrGbsv+7xF8sAMfbv45WhzQcMvG3MYkSEynCXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dJ5ZZl+k; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 321601F000E9;
-	Fri,  3 Jul 2026 09:17:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783070265;
-	bh=4kJ0NpLhE/egqXjyj2i5Ld+EMykwk9Al4WjVklxardU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=dJ5ZZl+kdjFYVzY7EtnpCqJMRjVjwnEY2ipum3mRnmb+N+Xzz6s/TtWabp1lLNid+
-	 D5wiaftUOKw85Mqtv5DbDAn7I9FnwjQfloV844DPFceCV5fnBpn3MOCC0+pN7vEulE
-	 3b0A5f12/N5pAxxXw8KEfM9S3xIoUcN4i/Jp3q6OBr3CKs20mfHPJD/XCxFfadEvxw
-	 DuYoOXvmbnYnHpbSWtCar1gfa32EPunwzhuxczhPHr9FMxZ4r67odH8Y1AktTDrnr7
-	 1PwzJnOHqUoDHuEtj9bSUfuwNH+Cz5dF43wLlHiIZcy2kiJMMI+dakePqD+hO/E8lc
-	 ZMlzmwmvrJd7A==
-Message-ID: <342b6f7f-8070-4135-a885-a6f1b0a485b4@kernel.org>
-Date: Fri, 3 Jul 2026 11:17:38 +0200
+	s=arc-20240116; t=1783070428; c=relaxed/simple;
+	bh=udHr5yr1SWlMFmwwE9tpkLf9yzuIASsogxWKzvn8c+E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tWsk4nUZv3N7fl12z1cA/CRGIam7UXy7e21FNVVRRaNCv+XhIWzp58BjzfJW03FRcC7yB/Jv9CBZMqJo0xUv83vz1F4ZC0lK6GeiLqgE/pLci/lxgPyUjOFFqqF/yRWslGhpgzLkGEoD31dtLggMHspYoPLn7hIfvsnOP4e09YQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=XBKI8vdQ; arc=none smtp.client-ip=213.167.242.64
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c68:8a87:d565:effa:ccf8:a720])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AA084DF3;
+	Fri,  3 Jul 2026 11:19:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1783070371;
+	bh=udHr5yr1SWlMFmwwE9tpkLf9yzuIASsogxWKzvn8c+E=;
+	h=From:Subject:Date:To:Cc:From;
+	b=XBKI8vdQe5Z2N70j7ZGW02fcftSGyVNRNOWnY32SEAvcnzyyyyjVONBuR5toiiBhV
+	 fmYlWh3Rs1U4Nd/xfeAOUWFJWUVgWHZaMQ73/Z/YL6J7gtvPEEIRN4mJrBP7dqRWYX
+	 mys0YzOsbUvWICw2BNDlkdcOpNtijW9Xl8a8kHjM=
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Subject: [PATCH v5 0/2] media: Add bindings and driver for Sony IMX678
+Date: Fri, 03 Jul 2026 14:49:15 +0530
+Message-Id: <20260703-imx678-v5-0-0523dbed0dad@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] arm64: defconfig: Enable ILI7807S DSI panel driver
-To: Nabige Aala <nabige.aala@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, arpit.saini@oss.qualcomm.com,
- mohit.dsor@oss.qualcomm.com
-References: <20260627-shikra-dt-changes-v1-0-449a402673d0@oss.qualcomm.com>
- <20260627-shikra-dt-changes-v1-3-449a402673d0@oss.qualcomm.com>
- <cfb45d95-7bf1-47dc-96f2-2ea4e9be9e70@kernel.org>
- <580d67aa-9a5f-4fd0-ad15-f57865b79477@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <580d67aa-9a5f-4fd0-ad15-f57865b79477@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XQzU4DIRQF4FeZsBbDP0xXvodxAdyLZTEdhXFS0
+ /TdvW2TsYl2eYDvJJwT69gqdrYbTqzhWnudDxTs08DyPh7ekVegzJRQTlipeZ2Ozgdus4yIY5a
+ QC6PHHw1LPV6LXt8o72tf5vZ97V3l5fRPxSq54FqUbEeNEEp8qYCxz4c0xwbPeZ7YpWlV99ptW
+ pE2wZqYnQRX0gOt77QSm9akQ7JldN6Z4PCBNr+a/KYNaRvQ+uy8NBr+0efbKA0/v2jU5bYMS7E
+ jp/upLrsB6OdoCsYRgi5CpwguARRdokKrzCi99yYoKjv/AGwCBgOpAQAA
+X-Change-ID: 20260513-imx678-5c1aee9c1dcf
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: Lachlan Michael <Lachlan.Michael@sony.com>, 
+ Ryuichi Tadano <Ryuichi.Tadano@sony.com>, 
+ Kengo Hayasaka <Kengo.Hayasaka@sony.com>, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Jai Luthra <jai.luthra@ideasonboard.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4794;
+ i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
+ bh=udHr5yr1SWlMFmwwE9tpkLf9yzuIASsogxWKzvn8c+E=;
+ b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBqR369BPSGio4nL9N+HaT70ArvDvMwEqD+QY4G5
+ K7W0QpoacSJAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCakd+vQAKCRBD3pH5JJpx
+ RYaaD/wKj018Jqp5urjxTQaesaxhNiW7Avr9eKMCRv6+QptATAflMSMGbxZdzz+NOxnbweWXDP2
+ KmtcO30tjrBTq4HK8w1BlaxHXJgs5V3QSCFZ499925/0yqn1ISXXKj/49Ryq/hPRjdrPGCFiGLk
+ yv5LNtRA6KUUReZqptY+c4WX7ljCqq+I2MVdOEzt2ssP2MV7R6Y5brITGzu/HjdghAKwgIhlQOs
+ lf+aSeltNPo8CPiL+PhWyTF2QrjWL3rbTjzZb0epNXsI7B9/jytKVNkXyNIzUrrrmjaPvaRxIWh
+ MiMIzZOrEUVT5fBB0XmgK5Mds1y8i+X7l9JL9Eo5XLA7fiGNx2M9YkemPit+7GIW0C/LK+i3BYF
+ U2McuzAHGDGE1D2jNwTJBRbKvr9oDFkWEhpMFJqPkKR+OdP2enZCq/ypzCTS2UMgWIjA/rnKnRL
+ x7yXH+VME+XAm0PsAKGPqnz67lg5P6F+3C/f4GH9mV0XJZmtuWV2E3c3Zurw6w+qdTEp+GeQp2F
+ Hpj3jiHbygIBTDbiwNS3QxLZFjQhODaysSurG0XmnzlcuGvydt5NcsSvvYjY7Zw6LHg8AHDZD7x
+ ouXl0ZmJNnV5ZW2zUb0oKc3z5fsO8L7vXQ31058ZNwWSxsnnRTlahrwYDx0htC4QSTm8Hxe56UO
+ QOgk1hH7eAyoj/w==
+X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319958-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:nabige.aala@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:arpit.saini@oss.qualcomm.com,m:mohit.dsor@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319960-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sakari.ailus@linux.intel.com,m:laurent.pinchart@ideasonboard.com,m:kieran.bingham@ideasonboard.com,m:Lachlan.Michael@sony.com,m:Ryuichi.Tadano@sony.com,m:Kengo.Hayasaka@sony.com,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jai.luthra@ideasonboard.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[jai.luthra@ideasonboard.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[jai.luthra@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ideasonboard.com:from_mime,ideasonboard.com:email,ideasonboard.com:mid,ideasonboard.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8A29C7009DD
+X-Rspamd-Queue-Id: E0C34700A00
 
-On 03/07/2026 11:10, Nabige Aala wrote:
-> 
-> On 6/28/2026 2:14 PM, Krzysztof Kozlowski wrote:
->> On 27/06/2026 12:01, Nabige Aala wrote:
->>> From: Arpit Saini <arpit.saini@oss.qualcomm.com>
->>>
->>> Enable the ILI7807S 1080x1920 video-mode DSI panel driver as a module,
->>> used on the Shikra board.
->> So that's a v4, no changelog, tags ignored, comments not responded and
->> also ignored.
->>
->> You got yourself one NAK, now second:
->>
->> NAK
->>
->> Address the comments before you send the next version.
->>
->> Best regards,
->> Krzysztof
-> 
-> Hi Krzysztof,
-> 
-> 
-> Regarding your initial comment "Does Samsung Shikra CQM EVK have it? I 
-> guess no."
-> I checked internally and found that there is no Samsung specific Shikra 
-> board. Shikra (CQS and CQM) boards have this panel and i am upstreaming 
-> for the same boards.
-> 
-> I hope this clarifies the concern. Please let me know if you have any 
-> further questions.
+Hi,
 
-I don't know what does it refer to. Please follow mailing list style of
-discussions.
+This series adds dt-bindings and a basic V4L2 driver for Sony IMX678
+camera sensor.
+
+More details about the sensor and features supported in the driver are
+in the relevant patches.
+
+Support for binning and cropping has been dropped from this series, in
+favor of implementing it with the new raw sensor model proposed by
+Sakari. [1]
+
+I have a WIP branch [2] that uses the new raw sensor model to implement
+the following features for this sensor driver:
+
+- Internal pads
+- Streams
+- Generic raw formats
+- Embedded line data
+- Configurable analogue crop
+- Configurable binning mode
+- RAW10 output
+
+[1]: https://lore.kernel.org/all/20260409201501.975242-1-sakari.ailus@linux.intel.com/
+[2]: https://github.com/jailuthra/linux/commits/imx678-meta
+
+Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+---
+Changes in v5:
+- Rebase on v7.2-rc1
+- Drop note about the fallback name in the bindings commit message
+- Drop unnecessary code like set_pad_format() or set_framing_limits(),
+those will be added later when we use them for cropping and binning
+- Explicitly set format in init_state()
+- No need to track rpm_in_use flag, so drop it
+- Drop SUBDEV_FL_HAS_EVENTS flag
+- Drop unused format parameter from program_window()
+- Use container_of_const()
+- Add missing media-bus-format.h header
+- Cleanup comments
+- Link to v4: https://lore.kernel.org/r/20260605-imx678-v4-0-58e57c67143d@ideasonboard.com
+
+Changes in v4:
+- Drop support for freely-configurable resolution through cropping and binning
+- Expect both specific and generic device name in device tree compatible
+- Reduce analogue gain maximum to 100 (30dB) as the gain register
+  includes digital gain from 101 (30.3dB) -> 240 (72dB)
+- Minor bug fixes and cleanups following review comments from Sakari,
+  Tarang on v3
+- Link to v3: https://lore.kernel.org/r/20260520-imx678-v3-0-8b5f9676486e@ideasonboard.com
+
+Changes in v3:
+- Use `reset-gpios`, mentioning the sensor XCLR acts like RESETN, instead of `xclr-gpios`
+- Update minimum crop width and height according to the PIX_[HV]WIDTH
+  register limits
+- Expect the user to first select a crop rectangle using S_SELECTION,
+  and then choose one of two sizes (non-binned or binned) in S_FMT. This
+  matches what IMX296 already does, simplifying the selection logic
+  quite a bit.
+- Enumerate only the frame sizes possible for the current crop rectangle
+  in ENUM_FRAMESIZES
+- Link to v2: https://lore.kernel.org/r/20260516-imx678-v2-0-4854ac61d6fb@ideasonboard.com
+
+Changes in v2:
+PATCH 1:
+    - Add per-variant compatibles for mono and colour, alongside the
+      generic fallback, so the variant can be declared without powering
+      the sensor at probe.
+    - Rename reset GPIO to xclr as that's what it's called in the
+      datasheet, and how it behaves.
+    - Reference the generic video interface devices schema and switch to
+      unevaluatedProperties.
+    - Drop "link-frequencies: true"
+    - Drop the T: entry for media.git from MAINTAINERS.
+PATCH 2:
+    - Treat the pixel rate as a fixed sensor property rather than deriving
+      it from link frequency and bit depth. Removes the iclk<->pixel
+      conversion helpers, instead using a fixed 8x ratio.
+    - Express HBLANK in pixels with a step of 8.
+    - Make VBLANK step = 2 and rewrite the exposure register when VBLANK
+      changes, so the effective exposure does not silently shift.
+    - Fix power sequencing: hold the sensor in reset until power_on, add the
+      missing post-reset delay, and disable the clock before the regulators
+      on power_off.
+    - Drop the "common regs written" flag, program them in power_on.
+    - Add variant match data and cross-check the register-reported type
+      against DT; rename detect() to identify_model().
+    - Use v4l2_link_freq_to_bitmap() and expose the full link frequency menu
+      with the configured one as the selected RO option.
+    - Drop unused includes and defines, misc cleanups
+    - Kconfig: depend on OF_GPIO
+- Link to v1: https://lore.kernel.org/r/20260513-imx678-v1-0-30fc593ed8fa@ideasonboard.com
+
+---
+Jai Luthra (2):
+      dt-bindings: media: i2c: Add Sony IMX678
+      media: i2c: imx678: Add driver for Sony IMX678
+
+ .../devicetree/bindings/media/i2c/sony,imx678.yaml |  130 ++
+ MAINTAINERS                                        |    7 +
+ drivers/media/i2c/Kconfig                          |   11 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/imx678.c                         | 1446 ++++++++++++++++++++
+ 5 files changed, 1595 insertions(+)
+---
+base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
+change-id: 20260513-imx678-5c1aee9c1dcf
 
 Best regards,
-Krzysztof
+-- 
+Jai Luthra <jai.luthra@ideasonboard.com>
+
 
