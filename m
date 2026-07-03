@@ -1,80 +1,79 @@
-Return-Path: <devicetree+bounces-319831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319833-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id u962InpcR2rzWwAAu9opvQ
-	(envelope-from <devicetree+bounces-319831-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:53:46 +0200
+	id RT9uB6tdR2pkXAAAu9opvQ
+	(envelope-from <devicetree+bounces-319833-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:58:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 525236FF412
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:53:46 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5FCA6FF4EA
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:58:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amarulasolutions.com header.s=google header.b=YX0BNBtE;
+	dkim=pass header.d=amarulasolutions.com header.s=google header.b=frU8INfO;
 	dmarc=pass (policy=none) header.from=amarulasolutions.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319831-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319831-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319833-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-319833-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8FEC3303F1C8
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 06:53:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id ADD8C30699F1
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 06:53:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF8D3914E1;
-	Fri,  3 Jul 2026 06:52:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E81D8388E42;
+	Fri,  3 Jul 2026 06:52:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 660803876CF
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 06:52:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5AB38B154
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 06:52:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783061540; cv=none; b=i6ALNH2zRh+h334OFlTQV2mD4FJ0aNEpDhcucGEbJnYxhjnfuK9nNCnvPdMPTS0CD0v+Uf4wsw9JvAlMtBEXPacUnY9wlipYqApGhjMWVUsQ/QhKNfsWIb2EQ4PMjko5nDAgow+c7sRlB0/sco4exI632GviAP0JACbErvyoLoE=
+	t=1783061551; cv=none; b=pmrDwBWf71jSpL7zTPQ6TG/Pxa/NHeRjXiS4CdHxcYHvHV1K2rM0NID5H3kmZg8dLJHjqBleYzOyFJzcB9jkGHYSc+gquHbE3+NZRJKJE409bUXgy/HQt6CGS/PEkfj+MO8mtEdpvc80ecOHSx0Ljlckgaw2krAced9LUxeiwZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783061540; c=relaxed/simple;
-	bh=aj2uH9b/bfRzOkvrPYZ2176FA4QkmEK3VTNxofNEdQg=;
+	s=arc-20240116; t=1783061551; c=relaxed/simple;
+	bh=R7p0EC1MJExELMNko6n8EU7bwP08zWcgCr3KfDmFr5g=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bP2o9qqTAoe1MP0cjljkaP4bokBT22QHvg8ttLy/yT7uCBIGjyJVArUcfWac/9/vnz7eSj0cCCvUtFmnXR9CP53sn42gxTgH/cAjFBdOziD7hZykM3kfHd5Amk3+wVyzkc9yLjdxWKX8XyxAKP+p4zt5ptIY9UDwvqklHwcMvms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=YX0BNBtE; arc=none smtp.client-ip=209.85.218.46
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-c12c22d0f86so30892866b.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 23:52:19 -0700 (PDT)
+	 MIME-Version; b=NpFRE09avaiWqbtm1KRGbZSQ0PGdz6Xsu59xpB/+fM3V2C7BuMlp+HdaU+G36cFq5BzGUqlTTOehS1PRpuZBuFLrDXBLy1+eADMbwTd27wI/PdB3acAb1kBko7AAjiatzeG/6iwkmNwY2uvjzwFs6GRThxT2RZ7q61AYBQCuLZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=frU8INfO; arc=none smtp.client-ip=209.85.208.51
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-6983d3dae7aso2211938a12.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Jul 2026 23:52:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1783061538; x=1783666338; darn=vger.kernel.org;
+        d=amarulasolutions.com; s=google; t=1783061549; x=1783666349; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=W4P3RDq+QoFIrungFJ6qmguRlrjE9G4sn4ESNQyuys8=;
-        b=YX0BNBtEtR75Qdcj954cCjkwmvG4dQlSlr1BDyaW8xf4Ypu5vjDX0BVfpL1ClfD+Xd
-         axW16Do20avB8BrLY8gePvNFqdoQozsP4mfe6Y/F3AklGqiFUzXCVgU3zMoT+hKwQe1a
-         uaWkAn/HsXkMV1uL/YBwd0v2BLKLOFUc6tMxM=
+        bh=ehG0wNhXC7EZrYAkm3RwKsx8ZO4vZ8QiozKkc4jo0Cw=;
+        b=frU8INfOOBqtNk76AuGC735bYWL6OmxuzrPHwwFzhTrkd2Xsl0tFuK8sQQ8UMMIrgD
+         DhpWpMMTWixUuiz7zuN0FpOQlDQF05Xpeaewup8d+1eDeSHdt3zGRXVAUIGW5CqxkkZe
+         L+pUOLje8qYpBgeTOgoIwQhd599g9QYaQNVek=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783061538; x=1783666338;
+        d=1e100.net; s=20251104; t=1783061549; x=1783666349;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=W4P3RDq+QoFIrungFJ6qmguRlrjE9G4sn4ESNQyuys8=;
-        b=XJwDkc8WnfusEyOKOYDSW5QZvtiHoW+3ONIKIo2foPfFpjLkOJ56vSX78khfdeSP0R
-         A8H7JSinVSOlZl1gxLUCikGg7SNjsKXabp8WgRNmm6x+AatLluxtZMS2zeOzPu4jDwfg
-         ZS7ywYKDIjGP6bFLTC0NspLaCmWyVXa0nlz3x6NzIOEc3tDxnT6sEazsJ1WQhHqzKVIP
-         Q/DFM+jIHoiZJrDGcHiZz60qbQs+ADnvR5JCdq0M/g82ggwHeutrEpLbYFWTR0ffQu5+
-         3nK2L82YwH8oYsIf8t3gAfkYSUgvQBLLKJz79iq3HShITlgpZyq/UyOi/feQHkaQajdP
-         9xSA==
-X-Forwarded-Encrypted: i=1; AHgh+RqwmWmJH3dB1gqJhU/OHAmMV0nwTv5Ty/W+2CanTnrG8XLb1glj9/R7cxX6Ze2MTk6tFqK4teXEThlx@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywo30J2P/rJ/7NGhTCcquNZlF9SWIfIdvYuY1vdg/BlDSpyk5SX
-	kCpBgsngr46w0qm0icMYg/+jEgztg4VzVhi/ZIAQi89Kh97dpS6hM+LDP0yM94dUqgIMhry1wWR
-	H1N4/duo=
-X-Gm-Gg: AfdE7cls90EAAVZTtaXYjMRzBcJGH+7OyIrWHIRkC6F/S12XcyrWPL+ohmi6cqtRHxR
-	UdO5CtCidDzTz0IRmlM9MvsacSLYmMIYT6gxh6RZ/FCjP3FmZGRHF8k6ZiXWLaszkM4lrAtOMcF
-	LGssRVRYN7a1UezRS9FjXJMqHhp6dw44Fc1gIvVEHbvhc4QLvb5xqNjsiRgCq1r39oFKE8rc1rq
-	OiUa2alPxvEFQ4wDpKK5sqhgwKffkQ0wKWydLL7SF4pRCR8MWVNpY01M9CrjHU8/BH/OoD5UyY6
-	pnpOlaEIBk+As9R5WeoXQHyfXiscGIpXvJpOxOMp1dZsQlCyOzROWjBgIV/6TjiQN24CK+hCGJ6
-	Dqwhyd2PKPzZM9YtSZuqWoKIbngT13FPiWJ7nFIz2fFlA2cZL7IbviuyNC8rhTRCyNsoSPDje6w
-	lrrxcnys1Eb11PwiJMWuq5EgbYOt4NmZu6ks2KiSoBYqrBU2R/QEhptslGpomdPdzuks4pRAzoR
-	1fi5no1isBQ3RFLufTUOw==
-X-Received: by 2002:a17:907:808:b0:c12:9bee:3b86 with SMTP id a640c23a62f3a-c12c9de19cfmr147004466b.4.1783061537641;
-        Thu, 02 Jul 2026 23:52:17 -0700 (PDT)
+        bh=ehG0wNhXC7EZrYAkm3RwKsx8ZO4vZ8QiozKkc4jo0Cw=;
+        b=qNbNc7Mx9Mt/vASxLuTxltV3ts3igwjsT3kZaVEqpxNVh65I4NwNAyPKmpFbU8UaxB
+         UIsi47iWPI4jIu3wuGu8LgfexO+w3oBLTEUfkwkQou+dipZVpCuebVvVvWsqboGcWrTF
+         Ess14GmWAMMwFCk1ib7cUyARlqrAWM/5b5fvHIlAKtx1j2cvkwtazDlWCxpY2hJRoX1C
+         1wwORn0qurHekCLv6tLOMyQTTcZvykJ9r1xZZnjaa7y2ZFE/CFbF0QLOMwvhWkHx8KWj
+         XrPlW8QeZYqH2pJZ8QmfyeYsZDu8uDF+CVeTg2HfSvVXWTWhQsrJYNbLMkLyFpEwmRc7
+         nSAw==
+X-Forwarded-Encrypted: i=1; AHgh+RoXpBypNYVw2PFIUyimyxwd6dfFpXYXo/COH4pAdqc+pQjqpNmm0pHhPaE5G7m6Pi5kCx2f7Qik7Rju@vger.kernel.org
+X-Gm-Message-State: AOJu0YztwsTsDAShZFDLNPbnNubzhoxWNbjP1NNROWdAvHwtEL5MY4fH
+	5p5OO02naqBYDHSpxARfhQ0yZrxQBDQwRuDVzgIGkvUAqeMW7s+tuLtAu+jzWTiwK+c=
+X-Gm-Gg: AfdE7clafQ2DL+v5KTOGoXRdGxVjAJYMLOJffJ4YJt7IharZOW54++dmjMM4P31JJPK
+	5dG4PIOef72UKe7v7AYftByFAfbaHz5SRfvjuSuodelAf42hZePR4eH8qEa1coLbJVzhI1MGPwK
+	yVqM18GzVUZEk9IXmtA8Vf06PhisVWOppetOH1quYYIw8yFWgTRKfXckTN2Xibe7bjqT6Z6akXE
+	znAfj8ObUvYDzi3L8gge03qjicu+8YuCfZkjDXUCD/0rGxUFjFIxWmYkQIRI6BIDfOY0svSjKgF
+	nlDy8XKTRdw0DOUe6sUlJh+4j9hJvP8URCP8YIFlrUeNKoAxJ9p5ttoEdiRe0h9DRq9kqDCWTYd
+	vieBLPZA9qmxCa9hmbUnlftPzTh1+vXL4ZsupJOV3/OpfuLTzXnZPW77qYB045wD27/a04gZk1P
+	um2C9cPCtwAnb1sadsCr66OufEazn6Y1lJd4ILhXmuv6+tz3Op+4yeYNY59ca+Ro2a10x1B+fv8
+	Cr1+y3STYI=
+X-Received: by 2002:a17:907:a394:b0:c12:5ac7:b346 with SMTP id a640c23a62f3a-c12c9fb521fmr113023766b.21.1783061539868;
+        Thu, 02 Jul 2026 23:52:19 -0700 (PDT)
 Received: from dario-ThinkPad-P14s-Gen-5.. ([2.196.43.95])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c12b62c4695sm235462866b.44.2026.07.02.23.52.15
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c12b62c4695sm235462866b.44.2026.07.02.23.52.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jul 2026 23:52:16 -0700 (PDT)
+        Thu, 02 Jul 2026 23:52:18 -0700 (PDT)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: michael@amarulasolutions.com,
@@ -90,9 +89,9 @@ Cc: michael@amarulasolutions.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v7 13/16] arm64: dts: st: add usart1 pins for stm32mp25
-Date: Fri,  3 Jul 2026 08:49:03 +0200
-Message-ID: <20260703065110.1433283-14-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH v7 14/16] arm64: dts: st: support Engicam MicroGEA-STM32MP257 SoM
+Date: Fri,  3 Jul 2026 08:49:04 +0200
+Message-ID: <20260703065110.1433283-15-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260703065110.1433283-1-dario.binacchi@amarulasolutions.com>
 References: <20260703065110.1433283-1-dario.binacchi@amarulasolutions.com>
@@ -111,14 +110,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amarulasolutions.com,none];
 	R_DKIM_ALLOW(-0.20)[amarulasolutions.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FREEMAIL_CC(0.00)[amarulasolutions.com,engicam.com,foss.st.com,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org,st-md-mailman.stormreply.com];
-	TAGGED_FROM(0.00)[bounces-319831-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319833-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -133,68 +132,117 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[amarulasolutions.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,amarulasolutions.com:from_mime,amarulasolutions.com:email,amarulasolutions.com:mid,amarulasolutions.com:dkim,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,st.com:url,amarulasolutions.com:from_mime,amarulasolutions.com:email,amarulasolutions.com:mid,amarulasolutions.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 525236FF412
+X-Rspamd-Queue-Id: B5FCA6FF4EA
 
-Add the usart1 pins used on MicroGEA-STM32MP257-RMM board.
+Support Engicam MicroGEA-STM32MP257 SoM with:
 
+ - 8 GB eMMC Flash
+ - 2 GB LPDDR4 DRAM
+
+The SoM also provides an Ethernet MAC, but Ethernet support is not
+enabled at this stage due to a known silicon limitation documented in
+[1].
+
+This corresponds to section 2.21.2 ("ETH1 RMII mode could have CRC
+errors"), where CRC errors may occur in ETH1 RMII direct mode when
+directly connected to I/Os.
+
+The workaround requires use of the Ethernet switch (ETHSW), which
+introduces additional DT bindings and topology complexity. This is
+intended to be addressed in a separate patch series.
+
+[1] https://www.st.com/resource/en/errata_sheet/es0598-stm32mp23xx25xx-device-errata-stmicroelectronics.pdf
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+
 ---
 
-(no changes since v1)
+(no changes since v4)
 
- arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Changes in v4:
+- Drop inclusion of stm32mp25xf.dtsi, we are using stm32mp257d.
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-index 4e570e2e5157..d515e44832d7 100644
---- a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-@@ -766,6 +766,39 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
-+	usart1_pins_b: usart1-1 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('B', 8, AF6)>; /* USART1_TX */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('B', 10, AF6)>; /* USART1_RX */
-+			bias-disable;
-+		};
-+	};
+Changes in v3:
+- Fix a typo in the URL
+
+ .../dts/st/stm32mp257-engicam-microgea.dtsi   | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
+
+diff --git a/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
+new file mode 100644
+index 000000000000..5b4287e86def
+--- /dev/null
++++ b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
+@@ -0,0 +1,63 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2026 Amarula Solutions, Dario Binacchi <dario.binacchi@amarulasolutions.com>
++ * Copyright (C) 2026 Engicam srl
++ */
 +
-+	/omit-if-no-ref/
-+	usart1_idle_pins_b: usart1-idle-1 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('B', 8, ANALOG)>; /* USART1_TX */
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('B', 10, AF6)>; /* USART1_RX */
-+			bias-disable;
-+		};
-+	};
++/dts-v1/;
 +
-+	/omit-if-no-ref/
-+	usart1_sleep_pins_b: usart1-sleep-1 {
-+		pins {
-+			pinmux = <STM32_PINMUX('B', 8, ANALOG)>, /* USART1_TX */
-+				 <STM32_PINMUX('B', 10, ANALOG)>; /* USART1_RX */
-+		};
-+	};
++#include <dt-bindings/regulator/st,stm32mp25-regulator.h>
++#include "stm32mp257.dtsi"
++#include "stm32mp25-pinctrl.dtsi"
++#include "stm32mp25xxai-pinctrl.dtsi"
 +
- 	/omit-if-no-ref/
- 	usart2_pins_a: usart2-0 {
- 		pins1 {
++/ {
++	model = "Engicam MicroGEA STM32MP257 SoM";
++	compatible = "engicam,microgea-stm32mp257", "st,stm32mp257";
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x0 0x80000000 0x0 0x80000000>;
++	};
++};
++
++&scmi_regu {
++	scmi_vddio1: regulator@0 {
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++	scmi_vddcore: regulator@b {
++		reg = <VOLTD_SCMI_STPMIC2_BUCK2>;
++		regulator-name = "vddcore";
++	};
++	scmi_v1v8: regulator@e {
++		reg = <VOLTD_SCMI_STPMIC2_BUCK5>;
++		regulator-name = "v1v8";
++	};
++	scmi_v3v3: regulator@10 {
++		reg = <VOLTD_SCMI_STPMIC2_BUCK7>;
++		regulator-name = "v3v3";
++	};
++	scmi_vdd3v3_usb: regulator@14 {
++		reg = <VOLTD_SCMI_STPMIC2_LDO4>;
++		regulator-name = "vdd3v3_usb";
++	};
++};
++
++/* eMMC */
++&sdmmc2 {
++	pinctrl-names = "default", "opendrain", "sleep";
++	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_a>;
++	pinctrl-1 = <&sdmmc2_b4_od_pins_a &sdmmc2_d47_pins_a>;
++	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_a>;
++	non-removable;
++	no-sd;
++	no-sdio;
++	st,neg-edge;
++	bus-width = <8>;
++	vmmc-supply = <&scmi_v3v3>;
++	vqmmc-supply = <&scmi_vddio2>;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++	status = "okay";
++};
 -- 
 2.43.0
 
