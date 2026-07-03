@@ -1,242 +1,143 @@
-Return-Path: <devicetree+bounces-319706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319707-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MQQxDXYRR2qpSwAAu9opvQ
-	(envelope-from <devicetree+bounces-319706-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 03:33:42 +0200
+	id 8EHyOXsVR2pVTAAAu9opvQ
+	(envelope-from <devicetree+bounces-319707-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 03:50:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D996FDBA2
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 03:33:41 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76CFE6FDCC8
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 03:50:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HVZDDHpC;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319706-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319706-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319707-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319707-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0F0DE302D0A4
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 01:33:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E7D8A300615A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 01:50:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B941A704B;
-	Fri,  3 Jul 2026 01:33:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 523AF233721;
+	Fri,  3 Jul 2026 01:50:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D971D6BB;
-	Fri,  3 Jul 2026 01:33:38 +0000 (UTC)
+Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30B61A6816
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 01:50:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783042419; cv=none; b=b8ZZVXOwe5oAMj86qNb/5B/c55yISBxQehgl0xxgHu+PEysOCdALC/MGz5ePDdSg0U5UDfeBCGVaYMhsP+IKaMGhJeVpf5KGjSznQ6Q3P+lbZjF/CuqafeDhriDsuczu+Z1AlPQERDJD7g4LgMTlVcc64DPi23dVDUEvvhHOCuo=
+	t=1783043449; cv=none; b=lpsx4B5C+O6RgssYL8xgjwst8/McvzbnVC7QMvBhUdYhMCNKWfGldSIqLCRbuOG3YuSrBXks9mVtyuSQwOprKXN3MZDTJ3y9T0TBboOWNz+eM2OWOcJx5aecse06yYNWNElN/3sgnG7HOPR+p3T9OGhFYnYHEaOd/WAyI7ZDRqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783042419; c=relaxed/simple;
-	bh=t7p6dISSVB8lnZVanH8fynJR/7IRvjvGfqNSvKTAhI4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hdNSxe/SNhJOuFEPgcJChqSz/ae1pg7Xze9eOFSHFaPtrY2igCoC+NGBknC8ER2Ci2+XXyz2wLsYx26yHZsHM+hjJtbLzca7BbBnMuNA9RBiZwnflJ6iHytDrqAWqjvwC+rlLmCEl3hBi11fw2neI70L1JAFREr3SRZTa/Kw7gQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HVZDDHpC; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 572951F000E9;
-	Fri,  3 Jul 2026 01:33:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783042417;
-	bh=z1UJKnDhUjSBpg0SZM4+JMff/Bf70BA3nzIrzGyoKKw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=HVZDDHpCKI4pCgTI9pT+GuZNj74Hyg0B8SAIbW/bmS/iaMjHVooyN4tn5vU9ECGKC
-	 C0hQIYuDAV8FiIOOeg/I2hVvEGeasHdti4sYkNohMiPeuBBKWBeuymKeYUSv4qLRTL
-	 HymV57vyiTYmZMbewyRJ2eDlAxsEt88JCID+SklxRz9e08RzdsZmM6lUSGzoXdC+mR
-	 TL48O54mUgZO9C0oguqFJ80OQ+iZRD19TpvgdTNCmJ3t87Af4LdAAyNLMAGjfUgsLK
-	 ZDvfbhFY1Xz+zwb/d6OxRT0Ud07Ph6akvxmk1DCK6K/GN9KB3VA+ncEIa1m3wx8eDn
-	 zKSSbsEVfp3JQ==
-Date: Fri, 3 Jul 2026 02:33:30 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar via B4 Relay
- <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp
- Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, Shuah
- Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>, "Gustavo A.
- R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH v6 07/16] iio: core: add hierarchical channel
- relationships
-Message-ID: <20260703023330.45916b4e@jic23-huawei>
-In-Reply-To: <20260618-ad9910-iio-driver-v6-7-79125ffbe430@analog.com>
-References: <20260618-ad9910-iio-driver-v6-0-79125ffbe430@analog.com>
-	<20260618-ad9910-iio-driver-v6-7-79125ffbe430@analog.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1783043449; c=relaxed/simple;
+	bh=lmAqZhL8QCdehwLCHoufegfJomn7yDKioG8ZT5KJbIQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=JDiu2r8INnLSMOieNlMogqjyxtX32W7RctpHG8vN/+RZ5RrWZLm/Fn5kyjJGpiv+ScVDDhNZIozXs8Pe87X93yeOme2J1ToasLvSWDPvVW2mwVV4r99gn7C4FR02AsCwG9C2g+s/0umnaoY+KZexr2Rv4Dn3r7FuZTrmIZ83OCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
+Received: from lizhi2$eswincomputing.com ( [10.11.96.26] ) by
+ ajax-webmail-app1 (Coremail) ; Fri, 3 Jul 2026 09:50:36 +0800 (GMT+08:00)
+Date: Fri, 3 Jul 2026 09:50:36 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: =?UTF-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
+To: "Andrew Lunn" <andrew@lunn.ch>
+Cc: sashiko-reviews@lists.linux.dev, conor+dt@kernel.org, robh@kernel.org,
+	devicetree@vger.kernel.org, "Min Lin" <linmin@eswincomputing.com>
+Subject: Re: Re: Re: [PATCH net-next v9 6/6] riscv: dts: eswin:
+ eic7700-hifive-premier-p550: enable Ethernet controller
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <58532b95-bb74-4d87-acae-e67b41dd7d57@lunn.ch>
+References: <20260630063123.1118-1-lizhi2@eswincomputing.com>
+ <20260630063445.1226-1-lizhi2@eswincomputing.com>
+ <20260701063512.9ED051F000E9@smtp.kernel.org>
+ <5de09a24.a11e.19f2207d7d2.Coremail.lizhi2@eswincomputing.com>
+ <58532b95-bb74-4d87-acae-e67b41dd7d57@lunn.ch>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Message-ID: <f21ffca.a15e.19f25abaea6.Coremail.lizhi2@eswincomputing.com>
+X-Coremail-Locale: en_US
+X-CM-TRANSID:TAJkCgBnCXNtFUdqIDIxAA--.11249W
+X-CM-SenderInfo: xol2xx2s6h245lqf0zpsxwx03jof0z/1tbiAQERDGpGkqQZhAABsb
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:devnull+rodrigo.alencar.analog.com@kernel.org,m:rodrigo.alencar@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:devnull@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DMARC_NA(0.00)[eswincomputing.com];
 	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:andrew@lunn.ch,m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linmin@eswincomputing.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[lizhi2@eswincomputing.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-319707-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-319706-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	FROM_NEQ_ENVFROM(0.00)[lizhi2@eswincomputing.com,devicetree@vger.kernel.org];
+	HAS_X_PRIO_THREE(0.00)[3];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,jic23-huawei:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linux.dev:email,vger.kernel.org:from_smtp,eswincomputing.com:from_mime,eswincomputing.com:email,eswincomputing.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 76D996FDBA2
+X-Rspamd-Queue-Id: 76CFE6FDCC8
 
-On Thu, 18 Jun 2026 14:27:23 +0100
-Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
-
-> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> 
-> Add parent-child relationship between iio channels by creating a parent
-> pointer field in iio_chan_spec struct and exposing a sysfs attribute that
-> returns the parent channel label.
-> 
-> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-Generally I like this.  A couple of trivial suggestions inline.
-
-Jonathan
-
-> ---
->  drivers/iio/industrialio-core.c | 44 +++++++++++++++++++++++++++++++++++++++++
->  include/linux/iio/iio.h         |  5 +++++
->  2 files changed, 49 insertions(+)
-> 
-> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-> index 9373006235c8..3d12269f26f4 100644
-> --- a/drivers/iio/industrialio-core.c
-> +++ b/drivers/iio/industrialio-core.c
-> @@ -854,6 +854,21 @@ static ssize_t iio_read_channel_label(struct device *dev,
->  					 to_iio_dev_attr(attr)->c, buf);
->  }
->  
-> +static ssize_t iio_read_channel_parent(struct device *dev,
-> +				       struct device_attribute *attr,
-> +				       char *buf)
-> +{
-> +	const struct iio_chan_spec *parent = to_iio_dev_attr(attr)->c->parent;
-> +	int len;
-> +
-> +	len = __iio_chan_prefix_emit(parent, IIO_SEPARATE, buf, PAGE_SIZE - 1);
-> +	if (len < 0)
-> +		return len;
-> +
-> +	buf[len - 1] = '\n'; /* replace underscore termination with newline */
-
-That's irritating.  Can we instead make __iio_chan_prefix_emit() not include the _ ?
-That might mean a wrapper to just do the last bit of logic in there.
-
-
-> +	return len;
-> +}
-> +
->  static ssize_t iio_read_channel_info(struct device *dev,
->  				     struct device_attribute *attr,
->  				     char *buf)
-> @@ -1263,6 +1278,30 @@ static int iio_device_add_channel_label(struct iio_dev *indio_dev,
->  	return 1;
->  }
->  
-> +static int iio_device_add_channel_parent(struct iio_dev *indio_dev,
-> +					 struct iio_chan_spec const *chan)
-> +{
-> +	struct iio_dev_opaque *iio_dev_opaque = to_iio_dev_opaque(indio_dev);
-> +	int ret;
-> +
-> +	if (!chan->parent)
-> +		return 0;
-> +
-> +	ret = __iio_add_chan_devattr("parent",
-> +				     chan,
-> +				     &iio_read_channel_parent,
-> +				     NULL,
-> +				     0,
-> +				     IIO_SEPARATE,
-> +				     &indio_dev->dev,
-> +				     NULL,
-> +				     &iio_dev_opaque->channel_attr_list);
-
-Probably younger me style, but can we group a few of those into logical
-sets to reduce the number of lines?
-
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 1;
-
-Hmm. Can we make it explicit this is about an attr in the function name.
-I think that would make the positive return more something we might expect
-than something that sounds like it is adding something non countable.
-
-> +}
-> +
->  static int iio_device_add_info_mask_type(struct iio_dev *indio_dev,
->  					 struct iio_chan_spec const *chan,
->  					 enum iio_shared_by shared_by,
-> @@ -1401,6 +1440,11 @@ static int iio_device_add_channel_sysfs(struct iio_dev *indio_dev,
->  		return ret;
->  	attrcount += ret;
->  
-> +	ret = iio_device_add_channel_parent(indio_dev, chan);
-> +	if (ret < 0)
-> +		return ret;
-> +	attrcount += ret;
-> +
->  	if (chan->ext_info) {
->  		unsigned int i = 0;
->  
-> diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
-> index 1c7d12af22da..9470ab8eb726 100644
-> --- a/include/linux/iio/iio.h
-> +++ b/include/linux/iio/iio.h
-> @@ -264,6 +264,10 @@ struct iio_scan_type {
->   * @ext_info:		Array of extended info attributes for this channel.
->   *			The array is NULL terminated, the last element should
->   *			have its name field set to NULL.
-> + * @parent:		Optional pointer to the parent channel spec for
-> + *			hierarchical channel relationships. When set, a read-only
-> + *			"parent" sysfs attribute is created containing the
-> + *			parent channel's sysfs name prefix (e.g. "in_voltage0").
->   * @extend_name:	Allows labeling of channel attributes with an
->   *			informative name. Note this has no effect codes etc,
->   *			unlike modifiers.
-> @@ -309,6 +313,7 @@ struct iio_chan_spec {
->  	const struct iio_event_spec *event_spec;
->  	unsigned int		num_event_specs;
->  	const struct iio_chan_spec_ext_info *ext_info;
-> +	const struct iio_chan_spec *parent;
->  	const char		*extend_name;
->  	const char		*datasheet_name;
->  	unsigned int		modified:1;
-> 
-
+CgoKPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2VzLS0tLS0KPiBGcm9tOiAiQW5kcmV3IEx1bm4iIDxh
+bmRyZXdAbHVubi5jaD4KPiBTZW5kIHRpbWU6VGh1cnNkYXksIDAyLzA3LzIwMjYgMjE6MjI6MzQK
+PiBUbzog5p2O5b+XIDxsaXpoaTJAZXN3aW5jb21wdXRpbmcuY29tPgo+IENjOiBzYXNoaWtvLXJl
+dmlld3NAbGlzdHMubGludXguZGV2LCBjb25vcitkdEBrZXJuZWwub3JnLCByb2JoQGtlcm5lbC5v
+cmcsIGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnLCAiTWluIExpbiIgPGxpbm1pbkBlc3dpbmNv
+bXB1dGluZy5jb20+Cj4gU3ViamVjdDogUmU6IFJlOiBbUEFUQ0ggbmV0LW5leHQgdjkgNi82XSBy
+aXNjdjogZHRzOiBlc3dpbjogZWljNzcwMC1oaWZpdmUtcHJlbWllci1wNTUwOiBlbmFibGUgRXRo
+ZXJuZXQgY29udHJvbGxlcgo+IAo+ID4gSGkgQW5kcmV3LAo+ID4gCj4gPiBPbmUgcXVlc3Rpb24g
+YmVmb3JlIEkgcHJlcGFyZSB0aGUgbmV4dCByZXZpc2lvbi4KPiA+IAo+ID4gQXMgZGlzY3Vzc2Vk
+IHByZXZpb3VzbHksIHRoZSBEVFMgcGF0Y2ggd2FzIGluY2x1ZGVkIG9ubHkgdG8gcHJvdmlkZSB0
+aGUgb3ZlcmFsbAo+ID4gRXRoZXJuZXQgZGVzaWduIGNvbnRleHQgZHVyaW5nIHRoZSByZXZpZXcg
+b2YgdGhlIGJpbmRpbmcgYW5kIGRyaXZlciBwYXRjaGVzOgo+ID4gCj4gPiBodHRwczovL2xvcmUu
+a2VybmVsLm9yZy9sa21sLzY0YmY2YjQwLWI5NDctNGZmYS04ZDQ4LTRkNjM0MTkzMTMyN0BsdW5u
+LmNoLwo+ID4gCj4gPiBGb3IgdGhlIG5leHQgcmV2aXNpb24sIHdvdWxkIGl0IGJlIGFjY2VwdGFi
+bGUgdG8gZHJvcCB0aGUgRFRTIHBhdGNoIGZyb20gdGhpcwo+ID4gc2VyaWVzIGFuZCBwb3N0IG9u
+bHkgdGhlIGJpbmRpbmcgYW5kIGRyaXZlciBwYXRjaGVzPyBUaGUgY29tcGxldGUgRFRTCj4gPiBl
+bmFibGVtZW50IGlzIHBsYW5uZWQgdG8gYmUgc3VibWl0dGVkIGxhdGVyIGFzIGEgc2VwYXJhdGUg
+c2VyaWVzIGFmdGVyIHRoZQo+ID4gYmluZGluZyBhbmQgZHJpdmVyIGhhdmUgYmVlbiBtZXJnZWQu
+Cj4gCj4gV2hhdCBub3JtYWxseSBoYXBwZW5zIGlzIHRoYXQgSSBnaXZlIGFuIEFja2VkLWJ5OiBv
+ciBhIFJldmlld2VkLWJ5Ogo+IGZvciB0aGUgRFQgcGF0Y2gsIGFuZCB5b3Ugc3VibWl0IGl0IGZv
+ciBtZXJnaW5nIHZpYSB0aGUgRFQgTWFpbnRhaW5lci4KPiBFdmVyeXRoaW5nIHRoZW4gbWVldHMg
+dXAgaW4gbGludXgtbmV4dC4KPiAKPiBXaHkgZG8geW91IG5lZWQgdG8gZG8gdGhpcyBsYXRlcj8g
+V2h5IG5vdCBub3c/Cj4gCgpUaGVyZSBpcyBhbiBhbm90aGVyIHNlcGVyYXRlIERUIHBhdGNoIHNl
+cmllcwpbaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjYwNjE1MTIyMDE2LjExMTAyMDYt
+MS1waW5rZXNoLnZhZ2hlbGFAZWluZm9jaGlwcy5jb20vXQp3aGljaCBpcyB1bmRlciByZXZpZXcu
+Ckl0IGFsc28gaW50cm9kdWNlcyBEVCBub2RlcyBmb3IgcmVzZXQsIGNsb2NrLCBwaW5jdHJsLCBI
+U1AgcG93ZXIgZG9tYWluLgoKVGhlcmVmb3JlLCBvdXIgcGxhbm5lZCBzdGVwcyBhcmUgYXMgZm9s
+bG93czoKMS4gSW4gdGhlIG5leHQgbmV0LW5leHQgdjEw4oCLIHBhdGNoIHNlcmllcywgZHJvcCB0
+aGUgRFRTIHBhdGNoZXMsIGFuZCBzdWJtaXQgb25seQogICB0aGUgYmluZGluZ3MgYW5kIGRyaXZl
+ci4KMi4gV2FpdCBmb3IgUGlua2VzaOKAmXMgRFQgcGF0Y2ggc2VyaWVz4oCLIHRvIGJlIG1lcmdl
+ZC4KMy4gT25jZSB0aGUgSFNQQ1JHIHBhdGNoIHNlcmllc+KAiwogICBbaHR0cHM6Ly9sb3JlLmtl
+cm5lbC5vcmcvYWxsLzIwMjYwNjA1MDYwNzMwLjE2MDUtMS1kb25neHV5YW5nQGVzd2luY29tcHV0
+aW5nLmNvbS9dCiAgIGlzIG1lcmdlZCwgc3VibWl0IGEgbmV3IERUIHBhdGNoIHNlcmllc+KAiyB0
+byBleHRlbmQgRVNXSU4gRUlDNzcwMCBTb0Mgc3VwcG9ydOKAiwogICBmb3IgYWxsIEhTUCBtb2R1
+bGVz4oCUaW5jbHVkaW5nIFVTQiwgZU1NQywgU0QsIGFuZCBFdGhlcm5ldCwgc2luY2UgdGhleSBh
+cmUgYWxsCiAgIHVuZGVyIHRoZSBIU1AgYnVzIG5vZGUgZXZlbnRob3VnaCBldGhlcm5ldCBkb2Vz
+ZSBub3QgZGVwZW5kIG9uIEhTUENSRyBwYXRjaC4K
 
