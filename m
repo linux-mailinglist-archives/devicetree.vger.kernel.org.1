@@ -1,163 +1,143 @@
-Return-Path: <devicetree+bounces-319919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320023-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hzrPDyt5R2plYwAAu9opvQ
-	(envelope-from <devicetree+bounces-319919-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:56:11 +0200
+	id +iKoE1CWR2q3bgAAu9opvQ
+	(envelope-from <devicetree+bounces-320023-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 13:00:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37F74700568
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:56:10 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7549C7018BB
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 13:00:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=trRlDV5X;
-	dmarc=pass (policy=none) header.from=linaro.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319919-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319919-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=fail ("headers rsa verify failed") header.d=psihoexpert.ro header.s=dynu header.b=T4uzixyY;
+	dmarc=fail reason="SPF not aligned (strict)" header.from=psihoexpert.ro (policy=none);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320023-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320023-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F3D20308F25D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 08:42:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 308C93069C86
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 10:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD5037A486;
-	Fri,  3 Jul 2026 08:42:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E1CF3BCD20;
+	Fri,  3 Jul 2026 10:48:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mx1.wiredblade.com (mx1.wiredblade.com [72.51.58.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E7D23793CE
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 08:42:27 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783068150; cv=none; b=LmAlxgkVpFTrNVEDWl/RRNPxOtDH9PgS7foTPayjoSimLS8YofJrq8gMPxB+5aMsPcdSIf38TG8d3MrbPzjv/gcQJ9Opk+WSdZeP0mEAPb+OM0KkTd5UuogNvfMUVpnwQizH26tgrhAOVnfxIoxqkuy6dt1Mu0J8gYihuRDNsXg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783068150; c=relaxed/simple;
-	bh=+YCmrkr62ImlHnOn240RCni/4FJZ9LXyVf7QtvrN5Tg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=DFJp6MG5IAUDmBdapyOZk2MznZo5sv4lNOdqdYjmWIBgxSQWg8dRy4wftx6KuVjuW4rZ1Qt58wi2/4+Rf5T4xeWuT87/a9v20ZwztMP1RJCSBSX/33wRtRPD7zNho5AopBVxDrmQTFKy40B5CbGs4mQJyuWheCxMcKQZVYtLD/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=trRlDV5X; arc=none smtp.client-ip=209.85.128.53
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-493bc8fda98so2892035e9.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 01:42:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1783068145; x=1783672945; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E2BvWoVYKkcPj1zcFMdBoaWfsieqjtxdGGOhjIbmmoc=;
-        b=trRlDV5Xy7d8q4OnPQeoc5aJAdbXaGFqZRQCQx3mja/pAHBFAJGdJppLsrOdxQyubD
-         f4YiL5Kd5izSn6VvcwUrTMxUpCBjFkAdr2wKhyOE6bI3cHNP23fuXHqfkMMc26+PhMNg
-         M+SdVRM1zHxMv9RQlsIGz88CPTB1omkyjXEI14Q56EP4k67fr9G/PkFjUF6+c+vVgfUU
-         +TM8F1/k5uPEvzezZ4DLSkaBHI//q0JUkHYKvmhEBt5JWEpfRQl861B2NkgXZttfAA3Y
-         tMIM4NsSd91O6NR3dNyp+PAI3NkZBwGVGoyjSdhGvRUgiaBKFjD7hBg/a/xDq9l4HWRP
-         Eb6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783068145; x=1783672945;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=E2BvWoVYKkcPj1zcFMdBoaWfsieqjtxdGGOhjIbmmoc=;
-        b=f02iHjKqVaEpwZdAAX/dAQb0j6J+P6qdJR7LYNAgxMknoigCoGX22pTQe7r8hgQvyk
-         8vzNsy0xncisk3k35nlg/0OdUd3T+8XJdwNdICmLCCmt3Jye54T/00B2PEtXfNp9n/ZI
-         6vKHRtgSJfx7ASCwSrfxJircBDoPOnskPwM96VW0GiLJRCzYN69mnWUGwgWGuRjd2as5
-         5kAy8QIZWqwmpqIBLq412HsHms4b0c0UGI5pVuJiBuQYKoZXiuaL+mjUy/aTwiKlBKXc
-         06bYrD8xyuqJ2hacruTBrlfTOmW7sbRm4x6c9VDRo96Tedk9lOsAo33MyLh2zSP22xwZ
-         Lyjw==
-X-Forwarded-Encrypted: i=1; AFNElJ/nRmNZuZyHHl/IVY0cW/bqTlEWZztbp73Gt7APT2WvcrYBj0L/vshsa7dTFZX/cTqVwdMtkVIOMFNx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkxNDYJQVeFVcYa5/8+UYEeQZBgT8x9A2T4Wu6ngty7GfcDOe1
-	bHB/5SNp4LZlGTJNTe/zYBDopd6vsKtv9IW2TmlUm4HKf4GX4bGAqohrAQ6QUJ7TrUE=
-X-Gm-Gg: AfdE7cnP8JubHx6WBnUZRVERuc8H0NE8HP7lLCCDpvVwDnEQuAVWNOsEUuSOZL4eHJ5
-	D84eDF/T2vacA6YGZhTNtr2Qw7uns1P67uPWYe9NHWC9tp+Z5Q14+cynbYDMd5IfEFTWVd4YR2t
-	dLexYFibXbZ9a1mrg/lKQmoCizr+PN5pX6PR7keqwzgzBqie5+7MBl4M3ogbVu/2BBLzYhlaUMk
-	/AuTryn690rNm3BpiFiL9IUCvyPNOPlEV72Eya1bZLzgV3LromRmtHMtRbtFAFebOvsIWjYE6YY
-	SkF1Zbk9EuvmMppIg5pDYzpRFOS2hHVKjc/9BMIwIPaRfhoU4i3bA1UPHxI8SwPB878IEB2+pfu
-	W4ZP267FmshOltm7zBFcfep9KjPyYLl0HWjrtSQA0aCRmMTifBuM0IKs5XO5I6L4ieCaufiEV3r
-	iAnedsjm7/2UytMiCu1VA02gb49P11sNewuQ==
-X-Received: by 2002:a05:600c:64c6:b0:493:c337:db18 with SMTP id 5b1f17b1804b1-493c3e135a9mr113800625e9.16.1783068144642;
-        Fri, 03 Jul 2026 01:42:24 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493ccdab27dsm30001575e9.4.2026.07.03.01.42.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jul 2026 01:42:24 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Jessica Zhang <jesszhan0024@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Doug Anderson <dianders@chromium.org>, 
- Conor Dooley <conor.dooley@microchip.com>, KancyJoe <kancy2333@outlook.com>
-In-Reply-To: <20260625-topic-sm8650-ayaneo-pocket-s2-r63419-v8-0-8570e692143e@linaro.org>
-References: <20260625-topic-sm8650-ayaneo-pocket-s2-r63419-v8-0-8570e692143e@linaro.org>
-Subject: Re: [PATCH v8 0/2] drm: panel: support the R63419 based dual-DSI
- video mode Display Panels
-Message-Id: <178306814343.3165305.11547200028737735771.b4-ty@b4>
-Date: Fri, 03 Jul 2026 10:42:23 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD14A3C1082
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 10:48:26 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783075708; cv=fail; b=VQW0Ot0K83NvynZA2VfR5bWhhJz2J4IsRQ3HYIbRnjoKlLXY51npFSC4dwH4QNyQdDwsKmjIJIzrEoqK2lORHfRq/s7+YiZFHRh0vX0iz4qkgMQm4foDkKSGYyUFC3VKd9X8uczLkr1zwOYHgH9JicwteT30D2vql9XM/ZZYauA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783075708; c=relaxed/simple;
+	bh=pAeTYzgwrIma4T0EmfQBPjqpQmrfwT/lwP3uZKi7OOM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pJA5Q16E14AOWs6h6cSjBI+GD1qKoTLeasa9VInfM+Mg3vylC3eLRM9WOfq66pKeBOh+jzMc+eDalSlrD1vncoO3msMYhvUlO+Ng/NrV8z+/aIRcmFHVfMGwU/HfqsP7OVBuEr8IRov1lWcW70BJhfhe64HGLcjQBP1dwfCPb+A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=psihoexpert.ro; spf=pass smtp.mailfrom=psihoexpert.ro; dkim=fail (2048-bit key) header.d=psihoexpert.ro header.i=@psihoexpert.ro header.b=T4uzixyY reason="signature verification failed"; arc=fail smtp.client-ip=72.51.58.35
+DKIM-Signature: v=1; a=rsa-sha256; d=psihoexpert.ro; s=dynu;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
+	bh=JCV7TNmivDrKZTMMPq5ptyzKo/jd7S9u7SuQSkaTGPw=;
+	b=T4uzixyYfCnse4p2tvAV6lMAiSXmHIHSRpFuWYDiYoLniKYKEarVqVSwDKqeT0AsuZO5IByVyCECcFoPuESatWe9erfIiPe28fXy7XjZegzHAdqgJ04AQVQBtg8mDFz4B8zxJP7QT4tGq2UVY3qDbwRmNOmkH9lOD+QO+Sl8Njdc6hvJsWLz90ISoT64kZ3JJJ1xScveCUeNcMdJcHS4LF0dZK1j589F/cjNaSz09xqUVfG9GfvTeX+XVY
+	Z/kUpGJ9XlAE5mEwaFKs9R5/gvr9ZPF7qKBDuxXAR9l7Ur9o+PhRtrB1W5HudByZKY/aR4XT44VCCp7Dur6XHMqot4JA==
+ARC-Seal: i=1; a=rsa-sha256; cv=none;
+	d=dynu.com; s=mail;
+	b=jxqRA+VDt4OTk0p6mSf3Cf+Lj2yA8HJ+T4t+NbirS9OKEFgshoG8aDCJ9WZVrFJY/G6fSWvoS3F7lpnmDV/whDOKgHwsYBJdWQXUMJpJ2YCOMwIoRBE8c1rUPezWmXvhoSvUg5q0i7cMcprnkCK8QmtgM7/bVFKguUmn2guoZZiq26GaG+Rhx3xjcdo+NpYBRt/Yr/4BO+2t6JyuMnbR5oTG7dhHcrBnSze0YkCBY/5nKN6hGn1AL1/fua
+	KfVgbtV2NkH5qEm9fpsrETuklEmWvEWvunpHPAhaFRcI7HbZlubsUWgU4Rl4IUc3t4/tMwcAToYwrwVko2bsuzMHEXMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=dynu.com; s=mail;
+	h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
+	bh=JCV7TNmivDrKZTMMPq5ptyzKo/jd7S9u7SuQSkaTGPw=;
+	b=zCCJW9uEB0eyIvYt5zFgISFo/snqX7bbCx3NUwi/PBqGld/mQj3mrej+hPPFCiU0iihab5JtqD1rCBn/wJr0XCoBIWzr9LwiFkVipm4pm1M+wR30E/c7iAaAIg3zC0EB5pjyAXKMYC8PaipVP6GG1sOXp1c7CTtpa4rTVaayWHFspUZ+ouaRvmuQ0BCJ7b5OwLc5R+ZH5HEDHeSrLoWNfy/xZ66OumPhhxca+eCt3ltHtgn8E4FNYhoVzR
+	TWvJP9vWSZpqSFakNYT/EB1LDcyv3CG71Dz+Qa287rbhfAL9vfkVymczBn9GS0LmtpdiybwzgzFQTfZJiM/V8+2Z5WRQ==
+ARC-Authentication-Results: i=1; mx.dynu.com;
+	dkim=none;
+	dmarc=fail
+Received: from TkB (188-24-192-94.rdsnet.ro [188.24.192.94])
+	by mx1.wiredblade.com with ESMTPSA
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256)
+	; Fri, 3 Jul 2026 08:47:14 +0000
+X-Original-Rcpt-To: m95d+git@psihoexpert.ro
+From: Marius Dinu <m95d+git@psihoexpert.ro>
+To: linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marius Dinu <m95d+git@psihoexpert.ro>
+Subject: [PATCH] arm: dts: rk3288-tinker: add eeprom node
+Date: Fri,  3 Jul 2026 11:44:53 +0300
+Message-ID: <20260703084645.7001-1-m95d+git@psihoexpert.ro>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15.1
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [3.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_REJECT(1.00)[psihoexpert.ro:s=dynu];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[psihoexpert.ro : SPF not aligned (strict),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-319919-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,glider.be,linaro.org];
-	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FORGED_RECIPIENTS(0.00)[m:jesszhan0024@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:neil.armstrong@linaro.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:dianders@chromium.org,m:conor.dooley@microchip.com,m:kancy2333@outlook.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320023-lists,devicetree=lfdr.de,git];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,oss.qualcomm.com,chromium.org,microchip.com,outlook.com];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[m95d@psihoexpert.ro,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:m95d+git@psihoexpert.ro,m:krzk@kernel.org,m:conor@kernel.org,m:m95d@psihoexpert.ro,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[psihoexpert.ro:-];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m95d@psihoexpert.ro,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,linaro.org:from_mime,linaro.org:dkim,gitlab.freedesktop.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt,git];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 37F74700568
+X-Rspamd-Queue-Id: 7549C7018BB
 
-Hi,
+This board contains an EEPROM that holds the CPU serial number and ethernet
+MAC. It is used by U-boot when configured to use upstream device tree from
+Linux kernel.
 
-On Thu, 25 Jun 2026 11:29:06 +0200, Neil Armstrong wrote:
-> Add support for the Renesas 63419 based dual-DSI video mode
-> Display Panels found in the Ayaneo gaming handled devices.
+Signed-off-by: Marius Dinu <m95d+git@psihoexpert.ro>
+---
+ arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
-
-[1/2] dt-bindings: display: panel: document the Renesas R63419 based dual-DSI video mode Display Panels
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/9c04ecc893f07d001e484e6c420af19a970f755c
-[2/2] drm: panel: add support for the Renesas R63419 based dual-DSI video mode Display Panels
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/1190fc8d7b8a9cebea8dcbd2e544e43990ae81d0
-
+diff --git a/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi b/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
+index 8e27a20f2845..7e16022c7d9e 100644
+--- a/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
+@@ -344,6 +344,11 @@ regulator-state-mem {
+ 
+ &i2c2 {
+ 	status = "okay";
++
++	eeprom@50 {
++		compatible = "atmel,24c08";
++		reg = <0x50>;
++	};
+ };
+ 
+ &i2c5 {
 -- 
-Neil
+2.53.0
 
 
