@@ -1,161 +1,191 @@
-Return-Path: <devicetree+bounces-320126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320129-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yvV8JO6yR2rSdgAAu9opvQ
-	(envelope-from <devicetree+bounces-320126-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 15:02:38 +0200
+	id NvvEEQGvR2rodQAAu9opvQ
+	(envelope-from <devicetree+bounces-320129-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:45:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8095702A24
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 15:02:37 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 200007027C4
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:45:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chaosmail.tech header.s=mail header.b=nna0ZAbg;
-	dmarc=pass (policy=reject) header.from=chaosmail.tech;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320126-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320126-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kafx6H3s;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320129-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320129-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2DF143094ECF
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 12:44:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A66C03030F0A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 12:45:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD8423CFF73;
-	Fri,  3 Jul 2026 12:44:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 987E13CF1ED;
+	Fri,  3 Jul 2026 12:44:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from chaosmail.tech (chaosmail.tech [77.81.229.115])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C1B36897E;
-	Fri,  3 Jul 2026 12:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AAEA34041E;
+	Fri,  3 Jul 2026 12:44:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783082679; cv=none; b=O3c9BJOTPiHR/q8TFR6YAm3Pe0AjD++X1c2CF9JGBfNrJ6TBQUzs6sMg9DOhBAzLrdUR0ksRKx8EvmVj5K2NzFwEl2QfgqT5nE2f1CZcosEGrsk/4Xy1kpF53fU7FQWKWX1rQLsMGV8duaqr4U0WlGowHtbcUKEOqdRt0qqXwsU=
+	t=1783082689; cv=none; b=KMz6Gg19noKMqIikx7semi9l3oNdJ5Jl4b6Eka/7Tbf24HrgpLAVb3X/UBjQDgMB2JNe10g5xqRyOMSSukuqieUdk6kZVcNbTNQJB1XSkeUhNRT2p05z5gRyzGi3s+N1SvvWg41U5VGvHkkTFiti+EK6igGqskzUffWXCbAQ4Ww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783082679; c=relaxed/simple;
-	bh=y/nTCCubfQIHxjED5Vxzczov4TsOcbe98Fn/E9FqjtI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PW2KxDktuCJ1OAHCI8AaHHpLz6B2tU2d70JFepUSNYsS+0ryu9xD36oGDpEb+gNcspnHFUTSYCzoh3xz3bCfbNjXUyDXsRIwY4L3+kdepnjaDvUYmiF1nrBnTt9Dc1k/y6zNg5JAbDliSCyuM3rYhCY6StjXBHBT3CY3TLSDOw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=chaosmail.tech; spf=pass smtp.mailfrom=chaosmail.tech; dkim=pass (1024-bit key) header.d=chaosmail.tech header.i=@chaosmail.tech header.b=nna0ZAbg; arc=none smtp.client-ip=77.81.229.115
-Received: by chaosmail.tech (Postfix) id 7C8601CC222;
-	Fri, 03 Jul 2026 12:44:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chaosmail.tech;
-	s=mail; t=1783082671;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rTQPPhDVeTbGbJ1qfR9lTcAhGLsRnezT+O5gDJeLhT4=;
-	b=nna0ZAbgfE+raie1SEfLKDyU1rZAk2SWuar1szhT9MXZtCV/rnnR774F91hbKNJDVaqP9u
-	Xcx1m6W+YkXgIA/TtSneOwkxrrXyS290mOz50iyJhg4/4uUbyrJ5uDpTWxlsP9n1uaABKw
-	BPSg+7hHoGQFwTYOK8vcleF9QappsC8=
-From: Sasha Finkelstein <k@chaosmail.tech>
-Date: Fri, 03 Jul 2026 14:44:13 +0200
-Subject: [PATCH v2 3/3] arm64: dts: apple: Add pmgr-misc nodes to t60xx
+	s=arc-20240116; t=1783082689; c=relaxed/simple;
+	bh=b/WWAPYdRAjKErf0Eu7ZRh2UjM2MygsTpmXF+WndGzE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p8IFxk+kOS/X8CQDbKBaJ1e5CJ/YMWORJCAuXenGoyir7j+FbMCsUO8OdErSzrR6EVbEFxZvYj/N0mnspBGYvmZwc0ScBwsM+RZOaJJPhUTWPc2L1PdlQl20+gENW93xK504kS5j+/b84eJhgFcyCYHtzPZ6g1EWXMaEv8buJv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kafx6H3s; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 462C51F000E9;
+	Fri,  3 Jul 2026 12:44:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783082688;
+	bh=BBDSXJplzut526vw//w0ovqRNPrNaoNvABnT0V7Jts8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=kafx6H3se9JnIJCJzSSqdrVMxZ4SceV6FHYnKgaPo5VVgfTFajAT91h/PSoTlzV6U
+	 k2AOUFkFMfuJ0LL2YcP6Sc9m7cKme+LWW1TGpHF9f+XeS57L6nh27kkonOmMcZWhkN
+	 3iDg62JXqpfvT2QhTGw4QQ2Oi4YYpEMis2dnKtT92Niws0ly+GEu9E1IoYHN7dS7Gj
+	 3jdX8jIJxjGw/rlrt6fDU7hi42kVMv81H26bUqgB+1EVNhueHb1Fh8/W++BfqVNwI8
+	 RMF7Jv59tDEMARo5jBRa3IgWWFcjiqtNwaoYgJu2y62zxNqMyw77sHt4JuyP/n7R+r
+	 o3p07xJHya24A==
+Message-ID: <579360fe-9276-4d5b-9da3-e479ab8e5e37@kernel.org>
+Date: Fri, 3 Jul 2026 14:44:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] remoteproc: qcom: pas: add needs_tzmem flag to
+ force shmbridge creation
+To: Ananthu C V <ananthu.cv@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
+References: <20260703-glymur-soccp-v4-0-b706c4c9b3e2@oss.qualcomm.com>
+ <20260703-glymur-soccp-v4-1-b706c4c9b3e2@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <20260703-glymur-soccp-v4-1-b706c4c9b3e2@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260703-pmgr-misc-v2-3-4b26ba10c5a4@chaosmail.tech>
-References: <20260703-pmgr-misc-v2-0-4b26ba10c5a4@chaosmail.tech>
-In-Reply-To: <20260703-pmgr-misc-v2-0-4b26ba10c5a4@chaosmail.tech>
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
- Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Sasha Finkelstein <k@chaosmail.tech>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783082668; l=1610;
- i=k@chaosmail.tech; s=20241124; h=from:subject:message-id;
- bh=y/nTCCubfQIHxjED5Vxzczov4TsOcbe98Fn/E9FqjtI=;
- b=NcUH7DaXmKG24ycJYKmxrayyvP32EBz/OBB2MJk3hgPnmt3IsTokCyRAZE7Z/CntY3mXDpMja
- /5TS8hw6kTbDSVyfkdXRuxU2iIPTl64WgrUNAh4B3+Mis3J0cDAIKd8
-X-Developer-Key: i=k@chaosmail.tech; a=ed25519;
- pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[chaosmail.tech,reject];
-	R_DKIM_ALLOW(-0.20)[chaosmail.tech:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-320129-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320126-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[k@chaosmail.tech,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:sven@kernel.org,m:j@jannau.net,m:neal@gompa.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:k@chaosmail.tech,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ananthu.cv@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mathieu.poirier@linaro.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[chaosmail.tech:+];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[k@chaosmail.tech,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,chaosmail.tech:from_mime,chaosmail.tech:email,chaosmail.tech:mid,chaosmail.tech:dkim,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E8095702A24
+X-Rspamd-Queue-Id: 200007027C4
 
-Adds the PMGR misc control nodes for M1/2 Pro/Max/Ultra series devices.
+On 03/07/2026 14:31, Ananthu C V wrote:
+> Most Qualcomm platforms feature Gunyah hypervisor, which typically
+> handles Stage 2 IOMMU configuration. Additionally, SHM bridge setup
+> is required to enable memory protection for both remoteproc metadata
+> and its memory regions. When the aforementioned hypervisor is absent,
+> the operating system must perform these configurations instead. We've
+> been relying on the iommu property being present for this, but for
+> remoteprocs that are already running like SoCCP the mappings are already
+> in place, and any attempt to recreate them while active would lead to smmu
+> faults and a non-functional remoteproc. Fix this by adding a needs_tzmem
+> flag which ensures tzmem and SHM bridge setup is performed independent to
+> the iommu property being present.
 
-Signed-off-by: Sasha Finkelstein <k@chaosmail.tech>
----
- arch/arm64/boot/dts/apple/t600x-die0.dtsi | 7 +++++++
- arch/arm64/boot/dts/apple/t602x-die0.dtsi | 7 +++++++
- 2 files changed, 14 insertions(+)
+Looks awfully like LLM written and considering obvious problem, this
+feels vibe coded.
 
-diff --git a/arch/arm64/boot/dts/apple/t600x-die0.dtsi b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-index f715b19efd16..3271d234b483 100644
---- a/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-@@ -24,6 +24,13 @@ aic: interrupt-controller@28e100000 {
- 		power-domains = <&ps_aic>;
- 	};
- 
-+	pmgr_misc: power-management@28e20c000 {
-+		compatible = "apple,t6000-pmgr-misc";
-+		reg = <0x2 0x8e20c000 0 0x400>,
-+			<0x2 0x8e20c800 0 0x400>;
-+		reg-names = "fabric-ps", "dcs-ps";
-+	};
-+
- 	smc: smc@290400000 {
- 		compatible = "apple,t6000-smc", "apple,smc";
- 		reg = <0x2 0x90400000 0x0 0x4000>,
-diff --git a/arch/arm64/boot/dts/apple/t602x-die0.dtsi b/arch/arm64/boot/dts/apple/t602x-die0.dtsi
-index 8622ddea7b44..121f2cf75915 100644
---- a/arch/arm64/boot/dts/apple/t602x-die0.dtsi
-+++ b/arch/arm64/boot/dts/apple/t602x-die0.dtsi
-@@ -23,6 +23,13 @@ aic: interrupt-controller@28e100000 {
- 		power-domains = <&ps_aic>;
- 	};
- 
-+	pmgr_misc: power-management@28e20c000 {
-+		compatible = "apple,t6020-pmgr-misc";
-+		reg = <0x2 0x8e20c000 0 0x400>,
-+			<0x2 0x8e20c400 0 0x400>;
-+		reg-names = "fabric-ps", "dcs-ps";
-+	};
-+
- 	nub_spmi0: spmi@29e114000 {
- 		compatible = "apple,t6020-spmi", "apple,t8103-spmi";
- 		reg = <0x2 0x9e114000 0x0 0x100>;
+According to current docs YOU SHOULD add vibe-coding tag to the commit
+when doing that.
 
--- 
-2.55.0
+>  static const struct of_device_id qcom_pas_of_match[] = {
+>  	{ .compatible = "qcom,eliza-adsp-pas", .data = &sm8550_adsp_resource },
+> +	{ .compatible = "qcom,glymur-soccp-pas", .data = &glymur_soccp_resource },
 
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
+
+>  	{ .compatible = "qcom,kaanapali-soccp-pas", .data = &kaanapali_soccp_resource },
+>  	{ .compatible = "qcom,milos-adsp-pas", .data = &sm8550_adsp_resource },
+>  	{ .compatible = "qcom,milos-cdsp-pas", .data = &milos_cdsp_resource },
+> 
+
+
+Best regards,
+Krzysztof
 
