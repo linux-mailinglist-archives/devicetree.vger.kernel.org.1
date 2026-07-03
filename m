@@ -1,164 +1,126 @@
-Return-Path: <devicetree+bounces-319886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319888-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WoEuJU1uR2q7YAAAu9opvQ
-	(envelope-from <devicetree+bounces-319886-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:09:49 +0200
+	id MyFVJqtvR2oBYQAAu9opvQ
+	(envelope-from <devicetree+bounces-319888-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:15:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE2B06FFE92
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:09:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1AA06FFF64
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:15:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qq.com header.s=s201512 header.b=CJkK6acF;
-	dmarc=pass (policy=quarantine) header.from=qq.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319886-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-319886-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=IWoGWMat;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319888-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319888-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3A18C3123561
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 08:02:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 23BB6312A47D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 08:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B80374A11;
-	Fri,  3 Jul 2026 08:01:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A31EB372696;
+	Fri,  3 Jul 2026 08:01:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from xmbghk7.mail.qq.com (xmbghk7.mail.qq.com [43.163.128.50])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB6D372B4F;
-	Fri,  3 Jul 2026 08:01:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B934377EA7;
+	Fri,  3 Jul 2026 08:01:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783065712; cv=none; b=qK+KkpYebu9oAT4cN01eGktvoFrQAKOr0vQbrcRFQ3ZGPaSyBOcrSLHoA+jC2WXfoJ65dek7HFL0oabFBGSW+WR9MOV5JjuppYKP5va4gjPY4y7uLTMx/YICN6mGotmMuCEJUc6g4P0Flw8DL8EKKOzfH6YMihJcfWbt8PIeKpQ=
+	t=1783065716; cv=none; b=Vmn/aN7iL1MARhicQF/T1d5d3szzIT+zAoS/Acv5t2dpAv9HOFv52ztsWOV7Q0ssilQMC2FmUbukrbKuIO0dFFqLdS0DxJ65dko/PP26FE+7uNqletfD2oZwm9RsVrQwvufUKDIrLxycGFG3RLCyit2Sstz+GO5/eFhSl8dbpUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783065712; c=relaxed/simple;
-	bh=DX+szNrz7DTLcMXoXNU6DNJcfUI4KfQcHuk1pG+QKxw=;
-	h=Message-ID:From:Date:Subject:MIME-Version:Content-Type:References:
-	 In-Reply-To:To:Cc; b=TQ8FAS8GJiACCwVS+IoeSJctM9m+izR1nGRJ/lZDqG1f3PAZo8LWOSCgT3Vy00uTRx9+YccEcKTF2YAW8Cob060bxdX0ojIZiW7i6TmSLU0oNihncqoG0+LZlYWp9lAR1k6/l4L37FADid1skoOUy5TiDgM6NFsYWclF9uWSBBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=CJkK6acF; arc=none smtp.client-ip=43.163.128.50
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1783065708; bh=L3LDk1ob8lSeDF4p3l0ihZVgutygUEgJnbVoCOXhudc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=CJkK6acFoXnX1g4vVLV7fnFp+2GXjTG7P2Qg+s//tKFrB9bFtpPCQvJgflRsZWYg4
-	 SlzQ48vo6w0DSEhkonQ/8L89kdZjXg/0cQ35/rC+xn9c0QPJbKF2QzsVQGw7R6qCOG
-	 TRoHFSFCUU8/OXsVAEECkPu6jlPITRwJlMeJFeng=
-Received: from ubuntu2204.localdomain ([218.4.149.66])
-	by newxmesmtplogicsvrsza73-0.qq.com (NewEsmtp) with SMTP
-	id 6622C6D; Fri, 03 Jul 2026 16:01:38 +0800
-X-QQ-mid: xmsmtpt1783065705t0731270v
-Message-ID: <tencent_F79E849B11AF805A4401BF9F263B1A469907@qq.com>
-X-QQ-XMAILINFO: OVgMLYsdica2Wz0L0+6ObtYbjk6wIdyR5Wos+YJH6r63OA5+Uza/FQzt2opDAe
-	 ntbf42XNICyNsU+n+lax6FnTNI1u3IjGgcywXwXNzrQOO8FffjvjYuzzTV87BjI7L578uRguwFlk
-	 JTai/U0UFg6v/PuJpy0XNhHJziBKNISsy0Y/QOvceKUQuwJKaMM/9b5m3bwdAG9Jt6khp0tmNmnN
-	 nlBdCW2Jl58dajDsGG/0UzYD5/3cbTCRZ+QoO4aZc6ypSryk7X1taaJISqN8lZ3ICsuDi9k3A5Mw
-	 KG5GxbvS/UjsmJ4FxHMPTcG/6419XHUdHyzq3EjaSANXRnxt58GwBe10PgMJ8KFEdtN4otNirq7S
-	 Ko6ftKajQQUxcTCkVFyOLI9pUCN76AriLXlFvMyTi1OACj6FhS7f/Pth18xhcdRvDWtQ01tGED8Y
-	 YIYm8NhOywA9ALphT3cAabS+R19ETEXcyPE2CXM+2eiZ+SXUwiR+aaV4EobW1K+qUXjxObmKE/Ux
-	 GCyy/Dm5rMz05jrae6jCUui2bwFFlhvBa3z6a2U3yL1yq+KF8gC/A4gx4dKCtY3v5wWWfdSGzwPG
-	 4mDFoQcZtTak5LQIZtxFkRg1yZ+Dvbrs7ZO9y4Z+HVhIWZFvTHTYai0SG/09j5Ob6RWnQr5fiJBX
-	 K+RYyEidMSbcr/n78Bjc6AAg7sqgklwjQpnAXU6BxiNadlgmBlMdcwraHnS3Mpz0WZz/nVpZwXXq
-	 yIQRx0Isk+gHsVEzvvgWpDwnUx57peNhxSBETomveJfoZddCXUbOGgAKo/DtZh4vBukIRFsxt4bF
-	 f4nbOeUbHy2Vliwg0YMB0wzBa/v1q+uJXQ6GK4oUoRTrBS5OI1/6AfkXp75EzCPDpzsXtUCR+WK4
-	 it2EDTqDPdMjydh6WPfJkhzFUy+wUb8q+TBYaGrLGqsFIqPj2AtdpMrotDC6B589XORsaFzExunw
-	 2kFG/sULQNm4dAy3ROQsgEfZ/PjDnXFnBccultOl5GiR4ABDIbUzyWHmEpGyuVW+XRBUI+5QUJCU
-	 XjoBZ4w29KR432sMUcUMRMYwxmLKqB/eVfyMQavvJ4siOL+glVObEypRj0RY22aoeIE4wEoA0pTw
-	 vvuHdoygroDWN6xribPtRHD7BOQJR+vPd/tyc9tbCOwF2CNC/Vlzmrrx2miygPmFtlsKvk4Y5KXt
-	 XjzTrQmoSklY9ixjbeDsLDlADu
-X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
-From: Cunhao Lu <1579567540@qq.com>
-Date: Fri, 03 Jul 2026 16:01:29 +0800
-Subject: [PATCH v4 4/4] arm64: dts: rockchip: Enable CAN controller on
- RK3588-Tiger-Haikou
+	s=arc-20240116; t=1783065716; c=relaxed/simple;
+	bh=UXiDKmuYOMfhFcWtxBBj2JF1cSEdNZGUCMFWxjWkWVM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bgpzw8sLtVGDNWv6pzhagSeTQAXG18DIHHVF1FexBOBTOO2SJMYSvYlW0UjoNJwS9ch/ioI0xWrOFRXTm8BLud5fxX2qVizXgjEJReECed+AzlUW4mRrtu75FQyJJoGLslspg+YC/y/eRz3s1WdVDurtqMIuXcLhp5PemhhQZcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IWoGWMat; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C54A01F00A3F;
+	Fri,  3 Jul 2026 08:01:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783065715;
+	bh=tHSR40BSJEjXogpbgoRNtUmX9ocgOZObmswLHfCZhCU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=IWoGWMatctxsGF7rx3pcK3h70bTxMvKI4xxdFq2pZl2iEmeX4Lb6ciDsWkRQqh+qc
+	 uiGJjJGa4Hxfkx9vfzqNx8vWkpdSG00Ijk4ygHeJdDgOLnukNYBvNskJq9cfMH7484
+	 zar9xU+ypVOy0uqu/A7z+VldSXyTdb2WM7csWVwu8vqkSKGd1qY0BBsj7RI1Yg3S3N
+	 38+vIeglQjWQ16eAPq1n0IQzKHV4el5ecFmJXl/QzQp13UGy4yN++Zm0NuofGj3i6j
+	 gAxTEI9qBiU4xZKDtpaGKaD0I9k5nel+PXWphEvN87I3xFPxp6tWOa71gnlKw1PK9G
+	 6UtNPiJAGUQhw==
+Date: Fri, 3 Jul 2026 09:01:49 +0100
+From: Lee Jones <lee@kernel.org>
+To: Junjie Cao <junjie.cao@linux.dev>
+Cc: Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	caojunjie650@gmail.com
+Subject: Re: [PATCH] MAINTAINERS: update my email address for the AW99706
+ backlight driver
+Message-ID: <20260703080149.GF2108533@google.com>
+References: <20260701133533.32585-1-junjie.cao@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-OQ-MSGID: <20260703-master-v4-4-47d40bbf5fda@qq.com>
-References: <20260703-master-v4-0-47d40bbf5fda@qq.com>
-In-Reply-To: <20260703-master-v4-0-47d40bbf5fda@qq.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>, kernel@pengutronix.de, 
- Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Cunhao Lu <1579567540@qq.com>, 
- Heiko Stuebner <heiko.stuebner@cherry.de>
-X-Mailer: b4 0.15.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260701133533.32585-1-junjie.cao@linux.dev>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qq.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:mkl@pengutronix.de,m:kernel@pengutronix.de,m:mailhol@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:linux-can@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:1579567540@qq.com,m:heiko.stuebner@cherry.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319888-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[qq.com];
-	TAGGED_FROM(0.00)[bounces-319886-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,lists.freedesktop.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:junjie.cao@linux.dev,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:caojunjie650@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qq.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,qq.com,cherry.de];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qq.com:from_mime,qq.com:email,qq.com:mid,qq.com:dkim,cherry.de:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BE2B06FFE92
+X-Rspamd-Queue-Id: F1AA06FFF64
 
-From: Heiko Stuebner <heiko.stuebner@cherry.de>
+On Wed, 01 Jul 2026, Junjie Cao wrote:
 
-CAN0 is piped through the Q7-connector to the CAN-Header on the Haikou
-base-board, so enable support for it there.
+> Switch my maintainer entry for the Awinic AW99706 WLED backlight
+> driver from my personal Gmail address to junjie.cao@linux.dev.
+> 
+> Update both MAINTAINERS and the device-tree binding maintainers field.
+> 
+> Signed-off-by: Junjie Cao <junjie.cao@linux.dev>
+> ---
+>  .../devicetree/bindings/leds/backlight/awinic,aw99706.yaml      | 2 +-
+>  MAINTAINERS                                                     | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 
-At least on RK3588-Tiger, the CAN clocks default to 99MHz, limiting
-usable CAN bitrates without skew. Errata documentation mentions
-300MHz as the default frequency on RK3568, so replicate this here
-to allow more bitrates.
-
-Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-Signed-off-by: Cunhao Lu <1579567540@qq.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts b/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts
-index 873fbeb8daa1..6273e695b039 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts
-@@ -155,6 +155,12 @@ vddd_audio_1v6: regulator-vddd-audio-1v6 {
- 	};
- };
- 
-+&can0 {
-+	assigned-clocks = <&cru CLK_CAN0>;
-+	assigned-clock-rates = <300000000>;
-+	status = "okay";
-+};
-+
- &combphy2_psu {
- 	status = "okay";
- };
+Doesn't apply.  Please rebase onto -next or for-leds-next.
 
 -- 
-2.34.1
-
+Lee Jones
 
