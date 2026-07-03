@@ -1,515 +1,163 @@
-Return-Path: <devicetree+bounces-320006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319999-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fAU0DnGMR2rOawAAu9opvQ
-	(envelope-from <devicetree+bounces-320006-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 12:18:25 +0200
+	id wX7dImiLR2ozawAAu9opvQ
+	(envelope-from <devicetree+bounces-319999-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 12:14:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DECA7011BA
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 12:18:24 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FA907010F8
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 12:14:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=analog.com header.s=DKIM header.b=0y1ldSgx;
-	dmarc=pass (policy=quarantine) header.from=analog.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320006-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320006-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=HKxugvqm;
+	dmarc=pass (policy=reject) header.from=bootlin.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319999-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319999-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1199B3042C64
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 10:12:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C097F3006783
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 10:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D14303C278B;
-	Fri,  3 Jul 2026 10:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6479D3B14DB;
+	Fri,  3 Jul 2026 10:10:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C393B961E;
-	Fri,  3 Jul 2026 10:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C84378814;
+	Fri,  3 Jul 2026 10:10:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783073466; cv=none; b=KLpXsswqn6mWfHLNkzQxeJzmvSdcNpHOqVI2NpXq3OtK3EM+EMExw+Gbblq1/fUU6y/Yeyxq/vnrLYTILX/dfJZ0Fhbg+DB9NkZt0tpysJim+ZpHiIzeIKwPefPVKYlREukMR1AmRHkY6jXcaCIyLiXuSEZthUO40GMdKFSfNWA=
+	t=1783073444; cv=none; b=DptdwG9czl16GYm+zBW9CCVM1DYLeuQXrJyJ3ZxBxbNbqs3eNOEb0GO77NtRM/X8BQD7fhSmz5XXqv+CLGnFW4o2Qx1J8vcGRtb4C5Q+uhsBCzob0NImZXU+VSttxmHHGiMoQJPvm/rkqHCv64VegxRCYLdOJN2fV8hkzqFRwQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783073466; c=relaxed/simple;
-	bh=GWsO/v9JskIXlk+AFoF3cyKj4qEJn+JxEWkRJOREjXI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=I0V8iRRlaP0xykVdCVmGPaOy/cnhKoJ9xiSX75oFche+EF2HLWr63kVaipepQQMDdhIfqA752aZ/o6oUUqr2SI6sE0+0G6ta5nl9eK6JmmUsNsp7gzLua1kbgWowf9jc3GQv8Cs2SxzqGcroqdWnAMnrjz0kn8/oFDlHTZf5qeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=0y1ldSgx; arc=none smtp.client-ip=148.163.135.77
-Received: from pps.filterd (m0516787.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6635w1sP310348;
-	Fri, 3 Jul 2026 06:11:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=8OUsb
-	ophrxl0yzeA3OFmaK5JZMaIfP5S+I7tfA5Gn7o=; b=0y1ldSgxvf6ejvXwi39SL
-	yRa95kpVfTMBqDy//CYH016JkRruL1UevvaRC3HTJo2mPB+45/Fussw1x3mUuHu5
-	TukAt0LzR1IbU6tbCEBsolPV3zA3GYZDnItQL4BwGP5uE96qwUWzQnfNdhejXjpB
-	/9Zy8CJ3Hp4kxXSvSE03FtUOgKUHUQzuzjQqICUgdsdccleiTVhGsfQ0LiTEIXat
-	9smuV7giSdDslV9Ycqq6/bGvnNB/XRdyq8NhclCO6OrzZjARfZ3zODXDYaTywwm/
-	L0+1bg1+I+CwS9brSyL4+MI+6DEw1ngRkQhmBS1nPEy30B1x2hF/dkht0i5FI04W
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4f658j1ebn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 03 Jul 2026 06:11:01 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 663AB0GC011033
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 3 Jul 2026 06:11:00 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 3 Jul 2026 06:10:59 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 3 Jul 2026 06:10:59 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 3 Jul 2026 06:10:59 -0400
-Received: from analog.ad.analog.com ([10.66.6.192])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 663AAOlK024695;
-	Fri, 3 Jul 2026 06:10:54 -0400
-From: Kim Seer Paller <kimseer.paller@analog.com>
-Date: Fri, 3 Jul 2026 18:10:11 +0800
-Subject: [PATCH v4 6/6] iio: dac: ad3530r: Add support for AD3532R/AD3532
+	s=arc-20240116; t=1783073444; c=relaxed/simple;
+	bh=KUxpJqYYa0VhNofPWE55WEfT0pzSsC+tc3Iw1yJfJ80=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=cgalOGqzCGKPhRoVCRyHsEU5fu9btq6lQjbp01IAqDV4LJ2ppOONGVd5unruShzenVimrxwT11TAtEbCfnxbCFyOvirK5wbivl/uYrkGRzXnlrFtzNwlPYO8alJ+kE1lpTpyXmTogq5xcEd0ppTTt0kC4F+4X8k4+HLuq08IBoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=HKxugvqm; arc=none smtp.client-ip=185.246.84.56
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 7F4141A0DFC;
+	Fri,  3 Jul 2026 10:10:40 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 50ABA60300;
+	Fri,  3 Jul 2026 10:10:40 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EAB20104C8399;
+	Fri,  3 Jul 2026 12:10:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1783073438; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=KUxpJqYYa0VhNofPWE55WEfT0pzSsC+tc3Iw1yJfJ80=;
+	b=HKxugvqmlXpYp00MdUMi8LdjB/ut+8I3zFW6xoA9fpxouy34H7l4QeEH1BXYeBOE7FxOE9
+	NjQNxmrt6ulvJwxDl30gHKLWJVYbXabaScEloreVGrP+rikqz0/W84cCWMSgkEV6pEPH35
+	YSkiOVtvZQmbC5WBMXXMIgbrS71E0PZqMzeP+NCrWcFcX93tadIRVjAQ8A9tfIXM1jxKaI
+	SuX6hqE52+3qO6W2bu5QjqYnXPsI0GwvUwtlbNS6AaqWB2b7Uy3ZgKjnQYUoT9jbq9quM1
+	lf/0rDB21QVeASXPQ/PTNk8FNmD5by4w2OLHa48KLXakvZE970v99pA5YSpuJg==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Manikandan.M@microchip.com,  krzk@kernel.org,  pratyush@kernel.org,
+  mwalle@kernel.org,  takahiro.kuwano@infineon.com,  richard@nod.at,
+  vigneshr@ti.com,  krzk+dt@kernel.org,  conor+dt@kernel.org,
+  srini@kernel.org,  Nicolas.Ferre@microchip.com,
+  alexandre.belloni@bootlin.com,  claudiu.beznea@tuxon.dev,
+  linux@armlinux.org.uk,  richardcochran@gmail.com,  linusw@kernel.org,
+  arnd@arndb.de,  michael@walle.cc,  linux-mtd@lists.infradead.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  netdev@vger.kernel.org
+Subject: Re: [PATCH v4 1/7] dt-bindings: mtd: jedec,spi-nor: allow the SFDP
+ to be exposed via NVMEM
+In-Reply-To: <20260702163723.GA227454-robh@kernel.org> (Rob Herring's message
+	of "Thu, 2 Jul 2026 11:37:23 -0500")
+References: <20260630092406.150587-1-manikandan.m@microchip.com>
+	<20260630092406.150587-2-manikandan.m@microchip.com>
+	<20260702-utopian-termite-of-perfection-f1f3ec@quoll>
+	<860213fd-6a4b-42d4-a8f7-7308e070f09e@microchip.com>
+	<20260702163723.GA227454-robh@kernel.org>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Fri, 03 Jul 2026 12:10:32 +0200
+Message-ID: <8733y0penb.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260703-iio-ad3532r-support-v4-6-69d9a336f4e8@analog.com>
-References: <20260703-iio-ad3532r-support-v4-0-69d9a336f4e8@analog.com>
-In-Reply-To: <20260703-iio-ad3532r-support-v4-0-69d9a336f4e8@analog.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-        David Lechner
-	<dlechner@baylibre.com>,
-        =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-        "Andy
- Shevchenko" <andy@kernel.org>,
-        Michael Hennerich
-	<Michael.Hennerich@analog.com>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux@analog.com>, <devicetree@vger.kernel.org>,
-        Kim Seer Paller
-	<kimseer.paller@analog.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783073424; l=11614;
- i=kimseer.paller@analog.com; s=20250213; h=from:subject:message-id;
- bh=GWsO/v9JskIXlk+AFoF3cyKj4qEJn+JxEWkRJOREjXI=;
- b=sskJO+Lxu1LNWt7DI7A6xPktvXAZh7S87aJjpmrU/BMakkPMqNR9AM54OSuj6MfnyLYMXPNH8
- 8sdGUvePXf8DoDbFI8wATvLIAvfHq/QOJq3ydYZvASfIPPMfzlzSMkv
-X-Developer-Key: i=kimseer.paller@analog.com; a=ed25519;
- pk=SPXIwGLg4GFKUNfuAavY+YhSDsx+Q+NwGLceiKwm8Ac=
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=eMsjSnp1 c=1 sm=1 tr=0 ts=6a478ab5 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=0sLvza09kfJOxVLZPwjg:22 a=OmVn7CZJonkx5R5zMQLL:22 a=gAnH3GRIAAAA:8
- a=rXpk_OhqMBYg6QXpCkAA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: vc7KyTnyJS9-5pLITwxThZX1qsKbcjuz
-X-Proofpoint-ORIG-GUID: vc7KyTnyJS9-5pLITwxThZX1qsKbcjuz
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAzMDA5OCBTYWx0ZWRfX7bA0Lz92CoD+
- sO8rjtGnYsA28mUCUIkBHCAZNTvIrO+X48gJthb9D55ZVkoFTYPsAEfj8YjW90WaY0KN5SdTJzW
- jsJdUbL7EhSCH1v/yk2PqrOYFMsJu5EGAQfAcnHikk0ZI8V4QkMhH9cUDutSp9DL3cgfgFKL2A2
- /IghVH9MrPmycs6E3mtr9GARRl1bgFQWLl05NpsoWV++gsZxCns3XW3uGgWCDSkJbrIKid/cUvV
- NW3X+nlgUgxpNqgDxgCDWIglI+ZDbAIhw+DElqwVSEGF/cBDAUaewiv9KRNQJJqspo3I2ViDNhQ
- jfAeh0LOQbQ1vToD4m0hWY162jfMkGYo7RVwfjDKltq+qY/ng7rjWE1oFPELUot2eqaBB4wjky6
- OmRPPNAovevflmAqMeQh2ZkVKZ+MXVydlOqm6QeIG4a8KgeXoNgvIeMKwFZ43XfBe4PEGG2bm7K
- 2zeBNcsEGIEjUeiWtrQ==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAzMDA5OCBTYWx0ZWRfX5f9L2O7Zo+y3
- APIWnn//TQlLoZzkrXOvwoz5DKkiCU40xAJ3l/vfDmmN7ShXvfIHJHHP5MfbAdSU2chVWsxVcL9
- 8ljewSfkEd9giVkqI0n8S2RNVzQVITzhT7eS/9UU+a6VEmQEI3z+
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-07-03_02,2026-06-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 spamscore=0 priorityscore=1501
- impostorscore=0 malwarescore=0 suspectscore=0 adultscore=0 bulkscore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2607030098
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-319999-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320006-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:Michael.Hennerich@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux@analog.com,m:devicetree@vger.kernel.org,m:kimseer.paller@analog.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:from_mime,analog.com:email,analog.com:mid,analog.com:dkim,vger.kernel.org:from_smtp];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER(0.00)[kimseer.paller@analog.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:Manikandan.M@microchip.com,m:krzk@kernel.org,m:pratyush@kernel.org,m:mwalle@kernel.org,m:takahiro.kuwano@infineon.com,m:richard@nod.at,m:vigneshr@ti.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:srini@kernel.org,m:Nicolas.Ferre@microchip.com,m:alexandre.belloni@bootlin.com,m:claudiu.beznea@tuxon.dev,m:linux@armlinux.org.uk,m:richardcochran@gmail.com,m:linusw@kernel.org,m:arnd@arndb.de,m:michael@walle.cc,m:linux-mtd@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:netdev@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[microchip.com,kernel.org,infineon.com,nod.at,ti.com,bootlin.com,tuxon.dev,armlinux.org.uk,gmail.com,arndb.de,walle.cc,lists.infradead.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[analog.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kimseer.paller@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:from_mime,bootlin.com:dkim,bootlin.com:mid,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9DECA7011BA
+X-Rspamd-Queue-Id: 1FA907010F8
 
-The AD3532R/AD3532 is a 16-channel, 16-bit voltage output DAC. It shares
-similar functionality with AD3530R but splits its registers into two
-banks: bank 0 at 0x10xx for channels 0-7 and bank 1 at 0x30xx for
-channels 8-15. The input, LDAC trigger and operating-mode registers are
-therefore selected per bank.
+On 02/07/2026 at 11:37:23 -05, Rob Herring <robh@kernel.org> wrote:
 
-Add the AD3532R register map, channel specs, per-bank register arrays, a
-dedicated powerdown handler and its own regmap_config, reusing the
-table-driven helpers for the shared configuration steps.
+> On Thu, Jul 02, 2026 at 06:55:15AM +0000, Manikandan.M@microchip.com wrot=
+e:
+>> Hi Krzysztof,
+>>=20
+>> On 7/2/26 11:46 AM, Krzysztof Kozlowski wrote:
+>> > EXTERNAL EMAIL: Do not click links or open attachments unless you know=
+ the content is safe
+>> >=20
+>> > On Tue, Jun 30, 2026 at 02:54:00PM +0530, Manikandan Muralidharan wrot=
+e:
+>> >> Add an optional "sfdp" child node (compatible "jedec,sfdp") that
+>> >> describes the SFDP as a read-only NVMEM provider via nvmem.yaml, so i=
+ts
+>> >=20
+>> > What is SFDP?
+>> >=20
+>> SFDP is the Serial Flash Discoverable Parameters -- a JEDEC-standardised
+>> (JESD216) read-only parameter table present in most SPI NOR flashes, the=
+=20
+>> table contents provide basic information about the flash. There are=20
+>> standard tables which are specified by the JEDEC standard and there are=
+=20
+>> vendor tables.
+>
+> Is SFDP present or not discoverable? Or we have a table of discoverable=20
+> parameters that itself is not discoverable.
 
-Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
----
- drivers/iio/dac/Kconfig   |   7 +-
- drivers/iio/dac/ad3530r.c | 189 +++++++++++++++++++++++++++++++++++++++++++++-
- 2 files changed, 192 insertions(+), 4 deletions(-)
+SFDP is almost always there. I don't think there are any non SFDP chips
+manufactured today (?). The thing is, even if we don't need to define it
+in DT, we might need to point to it in order to extract eg. a unique ID
+or a MAC address through the NVMEM interface.
 
-diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
-index ebf7144f922a..17529509da9d 100644
---- a/drivers/iio/dac/Kconfig
-+++ b/drivers/iio/dac/Kconfig
-@@ -11,8 +11,11 @@ config AD3530R
- 	depends on SPI
- 	select REGMAP_SPI
- 	help
--	  Say yes here to build support for Analog Devices AD3530R, AD3531R
--	  Digital to Analog Converter.
-+	  Say yes here to build support for the following Analog Devices
-+	  Digital to Analog Converters:
-+	  - AD3530/AD3530R (8-channel)
-+	  - AD3531/AD3531R (4-channel)
-+	  - AD3532/AD3532R (16-channel)
- 
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called ad3530r.
-diff --git a/drivers/iio/dac/ad3530r.c b/drivers/iio/dac/ad3530r.c
-index be63eb819c93..23426b20f9aa 100644
---- a/drivers/iio/dac/ad3530r.c
-+++ b/drivers/iio/dac/ad3530r.c
-@@ -2,6 +2,7 @@
- /*
-  * AD3530R/AD3530 8-channel, 16-bit Voltage Output DAC Driver
-  * AD3531R/AD3531 4-channel, 16-bit Voltage Output DAC Driver
-+ * AD3532R/AD3532 16-channel, 16-bit Voltage Output DAC Driver
-  *
-  * Copyright 2025 Analog Devices Inc.
-  */
-@@ -39,6 +40,25 @@
- #define AD3531R_SW_LDAC_TRIG_A			0xDD
- #define AD3531R_INPUT_CH			0xE3
- 
-+/* AD3532R/AD3532 bank 0 registers (channels 0-7) */
-+#define AD3532R_INTERFACE_CONFIG_A_0		0x1000
-+#define AD3532R_OUTPUT_OPERATING_MODE_0		0x1020
-+#define AD3532R_OUTPUT_OPERATING_MODE_1		0x1021
-+#define AD3532R_OUTPUT_CONTROL_0		0x102A
-+#define AD3532R_REFERENCE_CONTROL_0		0x103C
-+#define AD3532R_SW_LDAC_TRIG_0			0x10E5
-+#define AD3532R_INPUT_CH_0			0x10EB
-+
-+/* AD3532R/AD3532 bank 1 registers (channels 8-15) */
-+#define AD3532R_INTERFACE_CONFIG_A_1		0x3000
-+#define AD3532R_OUTPUT_OPERATING_MODE_2		0x3020
-+#define AD3532R_OUTPUT_OPERATING_MODE_3		0x3021
-+#define AD3532R_OUTPUT_CONTROL_1		0x302A
-+#define AD3532R_REFERENCE_CONTROL_1		0x303C
-+#define AD3532R_SW_LDAC_TRIG_1			0x30E5
-+#define AD3532R_INPUT_CH_1			0x30EB
-+#define AD3532R_MAX_REG_ADDR			0x30F9
-+
- #define AD3530R_SLD_TRIG_A			BIT(7)
- #define AD3530R_OUTPUT_CONTROL_RANGE		BIT(2)
- #define AD3530R_REFERENCE_CONTROL_SEL		BIT(0)
-@@ -50,8 +70,10 @@
- #define AD3530R_LDAC_PULSE_US			100
- 
- #define AD3530R_DAC_MAX_VAL			GENMASK(15, 0)
--#define AD3530R_MAX_CHANNELS			8
-+#define AD3530R_CH_PER_REG			4
-+#define AD3530R_CH_PER_BANK			8
- #define AD3531R_MAX_CHANNELS			4
-+#define AD3532R_MAX_CHANNELS			16
- 
- enum ad3530r_mode {
- 	AD3530R_NORMAL_OP,
-@@ -85,7 +107,7 @@ struct ad3530r_state {
- 	struct regmap *regmap;
- 	/* lock to protect against multiple access to the device and shared data */
- 	struct mutex lock;
--	struct ad3530r_chan chan[AD3530R_MAX_CHANNELS];
-+	struct ad3530r_chan chan[AD3532R_MAX_CHANNELS];
- 	const struct ad3530r_chip_info *chip_info;
- 	struct gpio_desc *ldac_gpio;
- 	int vref_mV;
-@@ -106,6 +128,14 @@ static int ad3531r_input_ch_reg(unsigned int channel)
- 	return 2 * channel + AD3531R_INPUT_CH;
- }
- 
-+static int ad3532r_input_ch_reg(unsigned int channel)
-+{
-+	unsigned int bank = channel / AD3530R_CH_PER_BANK;
-+	unsigned int local_ch = channel % AD3530R_CH_PER_BANK;
-+
-+	return 2 * local_ch + (bank ? AD3532R_INPUT_CH_1 : AD3532R_INPUT_CH_0);
-+}
-+
- static const char * const ad3530r_powerdown_modes[] = {
- 	"1kohm_to_gnd",
- 	"7.7kohm_to_gnd",
-@@ -118,6 +148,12 @@ static const char * const ad3531r_powerdown_modes[] = {
- 	"16kohm_to_gnd",
- };
- 
-+static const char * const ad3532r_powerdown_modes[] = {
-+	"1kohm_to_gnd",
-+	"10kohm_to_gnd",
-+	"three_state",
-+};
-+
- static int ad3530r_get_powerdown_mode(struct iio_dev *indio_dev,
- 				      const struct iio_chan_spec *chan)
- {
-@@ -153,6 +189,13 @@ static const struct iio_enum ad3531r_powerdown_mode_enum = {
- 	.set = ad3530r_set_powerdown_mode,
- };
- 
-+static const struct iio_enum ad3532r_powerdown_mode_enum = {
-+	.items = ad3532r_powerdown_modes,
-+	.num_items = ARRAY_SIZE(ad3532r_powerdown_modes),
-+	.get = ad3530r_get_powerdown_mode,
-+	.set = ad3530r_set_powerdown_mode,
-+};
-+
- static ssize_t ad3530r_get_dac_powerdown(struct iio_dev *indio_dev,
- 					 uintptr_t private,
- 					 const struct iio_chan_spec *chan,
-@@ -197,6 +240,45 @@ static ssize_t ad3530r_set_dac_powerdown(struct iio_dev *indio_dev,
- 	return len;
- }
- 
-+static ssize_t ad3532r_set_dac_powerdown(struct iio_dev *indio_dev,
-+					 uintptr_t private,
-+					 const struct iio_chan_spec *chan,
-+					 const char *buf, size_t len)
-+{
-+	struct ad3530r_state *st = iio_priv(indio_dev);
-+	unsigned int bank, local_ch, reg_in_bank, ch_in_reg;
-+	unsigned int reg, mask, val;
-+	bool powerdown;
-+	int ret;
-+
-+	ret = kstrtobool(buf, &powerdown);
-+	if (ret)
-+		return ret;
-+
-+	bank = chan->channel / AD3530R_CH_PER_BANK;
-+	local_ch = chan->channel % AD3530R_CH_PER_BANK;
-+	reg_in_bank = local_ch / AD3530R_CH_PER_REG;
-+	ch_in_reg = local_ch % AD3530R_CH_PER_REG;
-+
-+	reg = reg_in_bank + (bank ? AD3532R_OUTPUT_OPERATING_MODE_2 :
-+				    AD3532R_OUTPUT_OPERATING_MODE_0);
-+	mask = AD3530R_OP_MODE_CHAN_MSK(ch_in_reg);
-+
-+	guard(mutex)(&st->lock);
-+	if (powerdown) {
-+		val = field_prep(mask, st->chan[chan->channel].powerdown_mode);
-+		ret = regmap_update_bits(st->regmap, reg, mask, val);
-+	} else {
-+		ret = regmap_clear_bits(st->regmap, reg, mask);
-+	}
-+	if (ret)
-+		return ret;
-+
-+	st->chan[chan->channel].powerdown = powerdown;
-+
-+	return len;
-+}
-+
- static int ad3530r_trigger_sw_ldac_reg(unsigned int channel)
- {
- 	return AD3530R_SW_LDAC_TRIG_A;
-@@ -207,6 +289,13 @@ static int ad3531r_trigger_sw_ldac_reg(unsigned int channel)
- 	return AD3531R_SW_LDAC_TRIG_A;
- }
- 
-+static int ad3532r_trigger_sw_ldac_reg(unsigned int channel)
-+{
-+	unsigned int bank = channel / AD3530R_CH_PER_BANK;
-+
-+	return bank ? AD3532R_SW_LDAC_TRIG_1 : AD3532R_SW_LDAC_TRIG_0;
-+}
-+
- static int ad3530r_trigger_hw_ldac(struct gpio_desc *ldac_gpio)
- {
- 	gpiod_set_value_cansleep(ldac_gpio, 1);
-@@ -319,6 +408,19 @@ static const struct iio_chan_spec_ext_info ad3531r_ext_info[] = {
- 	{ }
- };
- 
-+static const struct iio_chan_spec_ext_info ad3532r_ext_info[] = {
-+	{
-+		.name = "powerdown",
-+		.shared = IIO_SEPARATE,
-+		.read = ad3530r_get_dac_powerdown,
-+		.write = ad3532r_set_dac_powerdown,
-+	},
-+	IIO_ENUM("powerdown_mode", IIO_SEPARATE, &ad3532r_powerdown_mode_enum),
-+	IIO_ENUM_AVAILABLE("powerdown_mode", IIO_SHARED_BY_TYPE,
-+			   &ad3532r_powerdown_mode_enum),
-+	{ }
-+};
-+
- #define AD3530R_CHAN(_chan, _ext_info)				\
- {								\
- 	.type = IIO_VOLTAGE,					\
-@@ -348,6 +450,25 @@ static const struct iio_chan_spec ad3531r_channels[] = {
- 	AD3530R_CHAN(3, ad3531r_ext_info),
- };
- 
-+static const struct iio_chan_spec ad3532r_channels[] = {
-+	AD3530R_CHAN(0, ad3532r_ext_info),
-+	AD3530R_CHAN(1, ad3532r_ext_info),
-+	AD3530R_CHAN(2, ad3532r_ext_info),
-+	AD3530R_CHAN(3, ad3532r_ext_info),
-+	AD3530R_CHAN(4, ad3532r_ext_info),
-+	AD3530R_CHAN(5, ad3532r_ext_info),
-+	AD3530R_CHAN(6, ad3532r_ext_info),
-+	AD3530R_CHAN(7, ad3532r_ext_info),
-+	AD3530R_CHAN(8, ad3532r_ext_info),
-+	AD3530R_CHAN(9, ad3532r_ext_info),
-+	AD3530R_CHAN(10, ad3532r_ext_info),
-+	AD3530R_CHAN(11, ad3532r_ext_info),
-+	AD3530R_CHAN(12, ad3532r_ext_info),
-+	AD3530R_CHAN(13, ad3532r_ext_info),
-+	AD3530R_CHAN(14, ad3532r_ext_info),
-+	AD3530R_CHAN(15, ad3532r_ext_info),
-+};
-+
- static const unsigned int ad3530r_if_config[] = {
- 	AD3530R_INTERFACE_CONFIG_A,
- };
-@@ -369,12 +490,40 @@ static const unsigned int ad3531r_op_mode[] = {
- 	AD3530R_OUTPUT_OPERATING_MODE_0,
- };
- 
-+static const unsigned int ad3532r_if_config[] = {
-+	AD3532R_INTERFACE_CONFIG_A_0,
-+	AD3532R_INTERFACE_CONFIG_A_1,
-+};
-+
-+static const unsigned int ad3532r_out_ctrl[] = {
-+	AD3532R_OUTPUT_CONTROL_0,
-+	AD3532R_OUTPUT_CONTROL_1,
-+};
-+
-+static const unsigned int ad3532r_ref_ctrl[] = {
-+	AD3532R_REFERENCE_CONTROL_0,
-+	AD3532R_REFERENCE_CONTROL_1,
-+};
-+
-+static const unsigned int ad3532r_op_mode[] = {
-+	AD3532R_OUTPUT_OPERATING_MODE_0,
-+	AD3532R_OUTPUT_OPERATING_MODE_1,
-+	AD3532R_OUTPUT_OPERATING_MODE_2,
-+	AD3532R_OUTPUT_OPERATING_MODE_3,
-+};
-+
- static const struct regmap_config ad3530r_regmap_config = {
- 	.reg_bits = 16,
- 	.val_bits = 8,
- 	.max_register = AD3530R_MAX_REG_ADDR,
- };
- 
-+static const struct regmap_config ad3532r_regmap_config = {
-+	.reg_bits = 16,
-+	.val_bits = 8,
-+	.max_register = AD3532R_MAX_REG_ADDR,
-+};
-+
- static const struct ad3530r_chip_info ad3530_chip = {
- 	.name = "ad3530",
- 	.channels = ad3530r_channels,
-@@ -439,6 +588,38 @@ static const struct ad3530r_chip_info ad3531r_chip = {
- 	.internal_ref_support = true,
- };
- 
-+static const struct ad3530r_chip_info ad3532_chip = {
-+	.name = "ad3532",
-+	.channels = ad3532r_channels,
-+	.regmap_config = &ad3532r_regmap_config,
-+	.num_channels = ARRAY_SIZE(ad3532r_channels),
-+	.sw_ldac_trig_reg = ad3532r_trigger_sw_ldac_reg,
-+	.input_ch_reg = ad3532r_input_ch_reg,
-+	.interface_config_a = ad3532r_if_config,
-+	.output_control = ad3532r_out_ctrl,
-+	.reference_control = ad3532r_ref_ctrl,
-+	.op_mode = ad3532r_op_mode,
-+	.num_banks = ARRAY_SIZE(ad3532r_if_config),
-+	.num_op_mode_regs = ARRAY_SIZE(ad3532r_op_mode),
-+	.internal_ref_support = false,
-+};
-+
-+static const struct ad3530r_chip_info ad3532r_chip = {
-+	.name = "ad3532r",
-+	.channels = ad3532r_channels,
-+	.regmap_config = &ad3532r_regmap_config,
-+	.num_channels = ARRAY_SIZE(ad3532r_channels),
-+	.sw_ldac_trig_reg = ad3532r_trigger_sw_ldac_reg,
-+	.input_ch_reg = ad3532r_input_ch_reg,
-+	.interface_config_a = ad3532r_if_config,
-+	.output_control = ad3532r_out_ctrl,
-+	.reference_control = ad3532r_ref_ctrl,
-+	.op_mode = ad3532r_op_mode,
-+	.num_banks = ARRAY_SIZE(ad3532r_if_config),
-+	.num_op_mode_regs = ARRAY_SIZE(ad3532r_op_mode),
-+	.internal_ref_support = true,
-+};
-+
- static int ad3530r_set_reg_bank_bits(const struct ad3530r_state *st,
- 				     const unsigned int *regs,
- 				     unsigned int num_regs,
-@@ -610,6 +791,8 @@ static const struct spi_device_id ad3530r_id[] = {
- 	{ .name = "ad3530r", .driver_data = (kernel_ulong_t)&ad3530r_chip },
- 	{ .name = "ad3531", .driver_data = (kernel_ulong_t)&ad3531_chip },
- 	{ .name = "ad3531r", .driver_data = (kernel_ulong_t)&ad3531r_chip },
-+	{ .name = "ad3532", .driver_data = (kernel_ulong_t)&ad3532_chip },
-+	{ .name = "ad3532r", .driver_data = (kernel_ulong_t)&ad3532r_chip },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, ad3530r_id);
-@@ -619,6 +802,8 @@ static const struct of_device_id ad3530r_of_match[] = {
- 	{ .compatible = "adi,ad3530r", .data = &ad3530r_chip },
- 	{ .compatible = "adi,ad3531", .data = &ad3531_chip },
- 	{ .compatible = "adi,ad3531r", .data = &ad3531r_chip },
-+	{ .compatible = "adi,ad3532", .data = &ad3532_chip },
-+	{ .compatible = "adi,ad3532r", .data = &ad3532r_chip },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ad3530r_of_match);
+SFDP is split into several sub-tables, the first one is mandatory, but
+then there are optional tables which can be discovered dynamically.
 
--- 
-2.34.1
-
+Thanks,
+Miqu=C3=A8l
 
