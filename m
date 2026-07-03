@@ -1,191 +1,122 @@
-Return-Path: <devicetree+bounces-320197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320198-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DawBIfDHR2rCfAAAu9opvQ
-	(envelope-from <devicetree+bounces-320197-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:32:16 +0200
+	id nARZLEbHR2qUfAAAu9opvQ
+	(envelope-from <devicetree+bounces-320198-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:29:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 664C27036E0
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:32:15 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D445703695
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 16:29:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sntech.de header.s=gloria202408 header.b=TPLyRFDV;
-	dmarc=pass (policy=quarantine) header.from=sntech.de;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320197-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320197-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=chaosmail.tech header.s=mail header.b=TU+tJkDB;
+	dmarc=pass (policy=reject) header.from=chaosmail.tech;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320198-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320198-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 501CE30334CC
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 14:23:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C04D73014680
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 14:27:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C7B23E0C4C;
-	Fri,  3 Jul 2026 14:23:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89043C98BE;
+	Fri,  3 Jul 2026 14:27:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from chaosmail.tech (chaosmail.tech [77.81.229.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4D23CB8F0;
-	Fri,  3 Jul 2026 14:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993CB3E1235;
+	Fri,  3 Jul 2026 14:26:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783088625; cv=none; b=d+BYRaSuzNyoKL1swdbyOy25z0dhEs/JzZXYdXn+pgMtEMmqjhwhaRe+VWHGrvUYacE1iZ7Py3OtF0mNRPkeqYV68buuRoWgfJ9wMwkwzwSLdEWJI2miIhOZuAZNEEMgRSnJYXwiyf//HjRl6+RvqY2qUyhX96jYNh7jJoF5mGA=
+	t=1783088819; cv=none; b=CFDtomG1B875UFVNQVriXzVfi09dXo4mLlagV1F6Yf7PDYaSbcrzV4RSODyQRWYYt7R+/SIKCFrRd8o1VxojsHNeuajhV3qCo1MBMp84uMHFOj1Ji2pfud7XXPCQ+Dv1o84lc58cWoQZXVVWhHcVaYZMFdiJ6QZOzz8BQfRJsMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783088625; c=relaxed/simple;
-	bh=6wIbRy2Zdm8ebG9nOt2I/vQJTjjJO0MMn6scd/YZzwc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tXaUNjFA7l1JJnUoqGydno8cxy4+6DhdXse6NE5y64ToUMju5C5yFS0l1sd9eQh5sjgEiWzuxBVHGUvj6r7kkLHxWjMJYcF32d5bnml+yHvYVNl/9at+8h0WQ46t3I7r45wuXGFamvXGJNexp6N7IOsnhijgNNgGGn5yzg87KmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=TPLyRFDV; arc=none smtp.client-ip=185.11.138.130
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=1lCH77eIOkpyT6UD6CNZ7GGsrspDZ0kqeiwmNw7g46I=; b=TPLyRFDV5oqX2oLuzs2c7r4tay
-	CsE76Bq2bIY/IcZOm78Rj0OUPdsOmW/E9AL0oHE2vGBwCCUqRJcsCspd6RWCkl1FjrzE2yP8VjD5c
-	o69aPl5YR/YB2/DP5acrfQX5WgAfQRCgG5hUs+PQ0JPOIFbH20tsG4BMCh3Wtdwe/bDwna5fkYl6X
-	614NQpT8M06EOrbiSrzhf0Q/XhQycxO4Z8DIPHrXqSu/UCI9OjhdcEJqEf+TEfU95qDXwehdI/KDi
-	WE1Of/5DDRF1pKFiqava9nEWMeJm1Mf4HrwFgoHnT1E/Qxs3G/ag/VLsvkz1bQyWEloSNWnjEjX1H
-	oVkrIpwA==;
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Cunhao Lu <1579567540@qq.com>, Marc Kleine-Budde <mkl@pengutronix.de>,
- kernel@pengutronix.de, Vincent Mailhol <mailhol@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Quentin Schulz <quentin.schulz@cherry.de>
-Cc: linux-can@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject:
- Re: [PATCH v4 4/4] arm64: dts: rockchip: Enable CAN controller on
- RK3588-Tiger-Haikou
-Date: Fri, 03 Jul 2026 16:23:22 +0200
-Message-ID: <3078012.2VHbPRQshP@diego>
-In-Reply-To: <e03fcd5c-de56-4f39-90c2-3ba0636a1cca@cherry.de>
-References:
- <20260703-master-v4-0-47d40bbf5fda@qq.com>
- <tencent_F79E849B11AF805A4401BF9F263B1A469907@qq.com>
- <e03fcd5c-de56-4f39-90c2-3ba0636a1cca@cherry.de>
+	s=arc-20240116; t=1783088819; c=relaxed/simple;
+	bh=eUnlE9+0l8fJKoLTHs0qb/oMYwfGR8LWWl2uZHjushc=;
+	h=Content-Type:MIME-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=mjnhf21lbKFzzAnLTMwk6ozVCka9Mc/mTB6A/M1jYyrIL6wz8HFnW8npIHJEuhI2tDy+SlrKEz/9zu343ere+IgneRca/aTiiXuxbw5SihE7dW6hsslAqzoGGL5Wg3u3plNgjtNSv5rLuQO4N39WhhUPst350OQpz45j0WjBA84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=chaosmail.tech; spf=pass smtp.mailfrom=chaosmail.tech; dkim=pass (1024-bit key) header.d=chaosmail.tech header.i=@chaosmail.tech header.b=TU+tJkDB; arc=none smtp.client-ip=77.81.229.115
+Received: by chaosmail.tech (Postfix) id E47031CC21E;
+	Fri, 03 Jul 2026 14:26:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chaosmail.tech;
+	s=mail; t=1783088814;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wKuBmxQ8JnReynxOFnIhAbMgNLWozbwQA/XogGS5Wg0=;
+	b=TU+tJkDB8A+jF6w/GXb8peZBii67lRfq1fEtlzuSt6mglAZbbU23DaZiCXxZQl/KGU7SGr
+	Ix0bQX9x99yQ5wJH6oPtozF49LXN1rhCvgs28k3bekzPY75tv+GSYsT/dKd8lBJ9Hx6yIO
+	dEBy7ydKaLP40tT+f8XXgrq7FXrVbD4=
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Subject: Re: [PATCH v2 2/3] soc: apple: Add driver for Apple PMGR misc
+ controls
+From: Sasha Finkelstein <k@chaosmail.tech>
+In-Reply-To: <3e7a26e0-5ba5-4440-acd1-ac9547e1d403@kernel.org>
+Date: Fri, 3 Jul 2026 16:26:43 +0200
+Cc: asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Janne Grunau <j@jannau.net>,
+ Hector Martin <marcan@marcan.st>,
+ Neal Gompa <neal@gompa.dev>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Content-Transfer-Encoding: 7bit
+Message-Id: <4A1676D4-8B60-40E4-8E21-59DF4657BEC6@chaosmail.tech>
+References: <20260703-pmgr-misc-v2-0-4b26ba10c5a4@chaosmail.tech>
+ <20260703-pmgr-misc-v2-2-4b26ba10c5a4@chaosmail.tech>
+ <3e7a26e0-5ba5-4440-acd1-ac9547e1d403@kernel.org>
+To: Sven Peter <sven@kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
+	DMARC_POLICY_ALLOW(-0.50)[chaosmail.tech,reject];
+	R_DKIM_ALLOW(-0.20)[chaosmail.tech:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:1579567540@qq.com,m:mkl@pengutronix.de,m:kernel@pengutronix.de,m:mailhol@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:quentin.schulz@cherry.de,m:linux-can@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:heiko.stuebner@cherry.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_TO(0.00)[qq.com,pengutronix.de,kernel.org,cherry.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[sntech.de:+];
+	TAGGED_FROM(0.00)[bounces-320198-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[k@chaosmail.tech,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor+dt@kernel.org,m:j@jannau.net,m:marcan@marcan.st,m:neal@gompa.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:sven@kernel.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[chaosmail.tech:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-320197-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[k@chaosmail.tech,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sntech.de:from_mime,sntech.de:dkim,vger.kernel.org:from_smtp,qq.com:email,cherry.de:email,diego:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,chaosmail.tech:from_mime,chaosmail.tech:dkim,chaosmail.tech:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 664C27036E0
+X-Rspamd-Queue-Id: 1D445703695
 
-Am Freitag, 3. Juli 2026, 16:05:18 Mitteleurop=C3=A4ische Sommerzeit schrie=
-b Quentin Schulz:
-> Hi Heiko, Cunhao,
->=20
-> On 7/3/26 10:01 AM, Cunhao Lu wrote:
-> > From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> >=20
-> > CAN0 is piped through the Q7-connector to the CAN-Header on the Haikou
-> > base-board, so enable support for it there.
-> >=20
-> > At least on RK3588-Tiger, the CAN clocks default to 99MHz, limiting
-> > usable CAN bitrates without skew. Errata documentation mentions
-> > 300MHz as the default frequency on RK3568, so replicate this here
-> > to allow more bitrates.
-> >=20
-> > Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-> > Signed-off-by: Cunhao Lu <1579567540@qq.com>
-> > ---
-> >   arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts | 6 ++++++
-> >   1 file changed, 6 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts b/arc=
-h/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts
-> > index 873fbeb8daa1..6273e695b039 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts
-> > @@ -155,6 +155,12 @@ vddd_audio_1v6: regulator-vddd-audio-1v6 {
-> >   	};
-> >   };
-> >  =20
-> > +&can0 {
-> > +	assigned-clocks =3D <&cru CLK_CAN0>;
-> > +	assigned-clock-rates =3D <300000000>;
->=20
-> Why is this not SoC-specific? We are only routing the signal from the=20
-> SoC after all.
+On Jul 3, 2026, at 16:19, Sven Peter <sven@kernel.org> wrote:
+> 
+> Do we know what 7 means here? would be nice to also have that #defined
 
-My main reason was that I have no clue what a reasonable controller
-frequency is. The default on Tiger on boot  is 99MHz, which causes
-problems with accurate rates.
-
-Similarly the controller has issues with low clock rates (erratum 5 if
-I'm not mistaken) and ther Mark wrote that at 300MHz the issue is less
-visible. So I took that frequency, but have no clue what the "right"
-frequency is.
-
-Similarly, only Renesas socs seem to set their can frequency in the DT
-and that to 40MHz.
-
-In the Rockchip vendor-kernel I've seen rates to set to 150MHz, 200MHz
-(or left alone) on a board-level
-
-rk3568-ok3568c.dts even sets both 150MHZ AND 200MHz depending
-on the CAN controller (200 for can0+1, 150 for can2) .
-
-This does suggest the usable frequency being specific to the board-design.
-
-
-> If it cannot be put into rk3588-base.dtsi for some reason and is=20
-> product-specific... Why is this in the baseboard DTS and not in the SoM=20
-> DTSI? I would like to avoid our customers to have to copy things over if=
-=20
-> they should just work on their baseboard too if they don't do crazy=20
-> things there.
-
-We can of course move the clk-rate to the tiger.dtsi.
-(This should not affect the rest of the series, as I'll be applying the
-dts patches anyway)
-
-
-Heiko
-
-
-> I'll try to find time to test the three CAN controllers on RK3588 Jaguar=
-=20
-> with the CAN1-CAN2-UART4 Mezzanine adapter board and will contribute an=20
-> overlay for that if it goes well. I don't have a CAN-FD adapter though=20
-> but I hope they reused the exact same IP for the three controllers in=20
-> the SoC :)
-
-
-
+We do not. Probably a way to pick a clock multiplier or something
+similar. On t600x, setting it too low results in other blocks failing
+to power up after sleep.
 
 
