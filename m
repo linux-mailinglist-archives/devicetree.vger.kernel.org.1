@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-320039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320040-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8WgsMuqYR2pxbwAAu9opvQ
-	(envelope-from <devicetree+bounces-320039-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 13:11:38 +0200
+	id JoaXJTqZR2qdbwAAu9opvQ
+	(envelope-from <devicetree+bounces-320040-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 13:12:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84D7F701A80
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 13:11:38 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2354C701AEF
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 13:12:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chromium.org header.s=google header.b=RD5HGHTh;
+	dkim=pass header.d=chromium.org header.s=google header.b=aFXd5Ru4;
 	dmarc=pass (policy=none) header.from=chromium.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320039-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320039-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320040-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320040-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 430A130B9CA4
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 11:05:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 775C930C49FA
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 11:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B90583C1970;
-	Fri,  3 Jul 2026 11:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07D43C13E2;
+	Fri,  3 Jul 2026 11:04:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117783C345C
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 11:04:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044CD3C13EC
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 11:04:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783076645; cv=none; b=jdHhrzeqSpV05Ye+YfL0erdHllKeAFHljvnAMD6DknEbQc6qHrM2u4WOeSwmodsku/v+EcrWJ/ElawQsJhRRz3wflMtJnaUBQvNbcWoLskSLsQn5xV5pXrjcESRUANt6iH56fUU7G4jW6ESdITo6/Qm3fiki67ii4fCYu2C+zKk=
+	t=1783076648; cv=none; b=qAe/VVZ5Y82ldR3PQoNXtDpdi6maiYB8bb7Tj9ufA3vzWK61eVppl+15ffr/5IlxqQ+hBcIOZNlMa9zB0pmGK1lQyNEtlgakvMcVKvsqlI4ljwrPn3YeKUmN3hQYIQt0EEBUolO3aZdwrjssm6w+3GX7bp4dmlsEZBKb4dkc76w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783076645; c=relaxed/simple;
-	bh=w4vzxOXOy9hhvavKl72p+0ZNQOP9ilFm/bOhh+IgREQ=;
+	s=arc-20240116; t=1783076648; c=relaxed/simple;
+	bh=Ehair4xlEOEVG9n56g7F/U1Ctqv22xVg25JWee2T8eM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NE9b3ITKghskWTcF+GZWIPX6iRfiJEHMBYZnLbZcgmE8n9OBAelc4DkzzpYmEoZGlgMYP1UGn0Ljr/MmPoqpFqJWvcsskUkTlm54GFAksNhOQvaKQZjOatxfWpTpWTXwNvZWgI5/G25R3mNQfC7hKUlysa/MHEtptFuk4uz/J/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RD5HGHTh; arc=none smtp.client-ip=209.85.214.170
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2c99672293cso5075595ad.2
-        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 04:04:00 -0700 (PDT)
+	 MIME-Version; b=FuYRocZYiAFEoU5FeCGiySv8brs+JTMhGZBUnibcxCv9cJexCW5E/F8OYGWeFEfzrx/Xx67DjfYjrPE1MxMHoHa735s14ICddXzwhG9hYj857P1ropwU3nQfLBWr74FooLSNuEtW5VaJ/w8zt6+7kV6vYJpGuczH4loKtiyv6zM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=aFXd5Ru4; arc=none smtp.client-ip=209.85.214.171
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2caced6038eso5208335ad.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 04:04:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1783076639; x=1783681439; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1783076643; x=1783681443; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gIxmxw1Kc/t3Umgh8QydrzRuQr9VX/i5qTBJkOJPnng=;
-        b=RD5HGHThJyE0lLrJ7vdOQemo+OjFzSm2KDwovhjH/5l8yGPX/Xb9hcDY6AQXJu3rHf
-         Bta0XHTSwZJVdAGXrWOMy2uVCLCLWgcZ5vEpk/lR7p42hubZXPPbIsY2Hk+nDOnZsa2f
-         Ns6SuFrCK64nEC3hhnAOIMCdJL0up7qwgkuJg=
+        bh=MmjAmBgdOsKJbX+6/19rw/i6brSOy5m1SV+UDGvM0u0=;
+        b=aFXd5Ru4nZwNJCWfXd5nfuzcw3QEFtuUZS2I7Be8I168yxum4q/Sk06c2vfFJ1lNFQ
+         c8cjde3EnvehXuu4ftLvcHqxlH722JTH5F9O2KXYkr80hn7ZmYw+PMti3tlXpXdYPxX1
+         OZnhovcWxCWrz/1MtnXyVc40F/wUoXCi1MTzw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783076639; x=1783681439;
+        d=1e100.net; s=20251104; t=1783076643; x=1783681443;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=gIxmxw1Kc/t3Umgh8QydrzRuQr9VX/i5qTBJkOJPnng=;
-        b=Hvb3Ecox2cslJevu1iqRJCwGPQORje0pPUiUz73pcATbTJfe5IYpXjXb8EjiA3nYdF
-         ewyKBD5bPfqj/4ZUerDcn7Y1q8CEj78b6bKwQ56iJJrYETF1FWEIRCtn+o+4wC+jmnty
-         bBLK87WTRNPTlwdb9Gj/+xOcJkODAZ05/FHAPGJsCkskJnbCl4+qa9mQJQfdfp1FhOf/
-         u0O8rMsniiAPQtXhfIdzygqZRv595aAUFBMRrdPptpea/m2784lfcsz1zZd9oFaNjbug
-         mej6HrFKBMVE1icw/ouVzTQtUHqyHr+W3exVKMR3geHx3sdQJshcOrTuGv84amBKuUBu
-         kwTw==
-X-Forwarded-Encrypted: i=1; AHgh+RresZPO2fCq3iH3Lf0n0AQEIWdb7G6UkQDs5sRZGbSHHTgLC7jLpaLw8AEteRmBr4o+y8pYRHPXLaym@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJjNWS1INw8RL1Nd5rt9mg5RgyaShSn5Eo8zACZe7CzCBSvaCV
-	dCUlwsZxIWdo8XCgfYVX8a5UsIQKGJYGyPcKS38U6FCLxD+ExnR/T+1Gn8SsmSyfnw==
-X-Gm-Gg: AfdE7cld7Xrn+cZhGMdHJAgkG4fgrLEeYAvoX6mq19yqCwIV0UISBw1YVJg8SrPuAJt
-	0TDuZ9Gj+EYfFbhvrLFVTBX91iLtNklNWmD5fFFrw2ZSkoDYdMBmkjJi42TjSiInHHYJuEI4+2O
-	KctoFeexajS2pNNv4WsLkwl6dg/TLk31d2x9CysBT4R+RTBBaIG229hwqAd8jnE4eHtA1k3D7qF
-	XqADeTtlVR/7s1QfrWfgVSbabvwwXolGfKth7i/tvVG05RfBP6pTLcioU7se3hg+/+s1WHbv6Yw
-	rbNcxcu+1uERfxBxinvd8okTx8/VBi3N0O7b78vkZrYDMInH4Q8NEwfXpTRY5yTzCmdP9PdZ4lJ
-	UO2d+c1wihlZicviB89TeaHVFpVfQV0ahI6QkVlzRTpqz8YrjOVvsbDxzQ9X3uAsJh0MKF3Ks31
-	xNgU+OB9vMgJDjW8SGmh4jzsqPpV5lth2leCF6KBxej3JAkOFwgAQ9LmSWqa+WktSZWjiJCA==
-X-Received: by 2002:a17:902:e5c4:b0:2ca:d874:c6de with SMTP id d9443c01a7336-2cad874c884mr19763035ad.26.1783076639217;
-        Fri, 03 Jul 2026 04:03:59 -0700 (PDT)
+        bh=MmjAmBgdOsKJbX+6/19rw/i6brSOy5m1SV+UDGvM0u0=;
+        b=No9KBIrmcwABRdmCpexwFkjb2uojgF7SM7aWaAzvm6570UjDzPsPCC3d/F7eCTesPX
+         jI3QJTC5RjaQNnJ+jkSlvDC3t6e3hThOUYbUA+KAq7vTfXvwmHDe/kcoH0nMpqNJNARP
+         1ZoYt58Lj89xsgfTFlKOs1rYEX84Ob7/1II8m8hzxe+/oDf1/RQ+KAQrde+yGB53HJme
+         mQluScLn+wkVQoPUwe8Zs2tMq8/WAfkiSIhNga5amAssmHLKsEMQREZQ2HhFe5m1NKgC
+         Ysaduzg3PktSe1HqbZxlO/3/t93FPT/0kkLQ/Qc7ZUfNjhudYK1kmFSJopj7CMteWGRw
+         NESQ==
+X-Forwarded-Encrypted: i=1; AHgh+Rqqse77X8jZK5GlUFGBvOWrBb9istVB+QOIfXA24tcrjiuLQTzy0g0spEqtiyI6F7NuNP+2YSrJQd1U@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzpbwt9iwVdXPXu91/uG+D+d0YlXW94KHcePG1Rl7JFpl7Ti2jX
+	T0faUbq1ATj1tIikYht4AZqpmw5J6RP01T6++aJM2mLQWIjnISxl6PmK8m/6GD84hA==
+X-Gm-Gg: AfdE7cn87B7t3Hk0E+z1n2iZrbwrjPOskvHb6q/U3VcZp60/bmXrtWo9UJOqnnyq5IM
+	CPPE0knxo1930mucB5elKlpk0R3kX0MkYadGV2b2FiXTysHEFq7UHqtaWN6qmSy91sIRBlD5S0m
+	5f8Fo39tHnmDuIKOaO+0tlLQ+sUwUX18Bvzzx/H7zj8q5FwCK9OFcK+1KtnvdFp+jq9AwS9MrCt
+	iUWiz+Dorgjl++b8B/2O6sr5eaA3Hv1QG1wgcVMNNCbVgVphbVXt7ym2JPsiEF5hcUlgAR0U4x3
+	dt963o+ruhleHbwHw+svsTWC99oapcjPeSXDZWYM6ueZSq/TMn3piMSB6IFWXVnyiVmmxzVxvzv
+	SloxtQN10jh9QtK56pjt05af3lMlIMlTParNodOKTleXZi/f1BfQUETrf5+mPFqsvzEex1EH0VO
+	hXJ0YBZCTsb9NATbopXNSAUDe/T9HR7FH6yIR4WMyqNAhHNtIOTTKYSzxOCuYwqxyLDsILBw==
+X-Received: by 2002:a17:902:dac9:b0:2c9:b90b:8448 with SMTP id d9443c01a7336-2cacb1c1486mr42131975ad.27.1783076643387;
+        Fri, 03 Jul 2026 04:04:03 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:7bc5:6c83:76cd:cbd6])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2cad6f25e15sm7785315ad.13.2026.07.03.04.03.55
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2cad6f25e15sm7785315ad.13.2026.07.03.04.03.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jul 2026 04:03:58 -0700 (PDT)
+        Fri, 03 Jul 2026 04:04:02 -0700 (PDT)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Bartosz Golaszewski <brgl@kernel.org>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -97,10 +97,11 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Manivannan Sadhasivam <mani@kernel.org>,
-	Alan Stern <stern@rowland.harvard.edu>
-Subject: [PATCH v3 05/13] usb: hub: Associate port@ fwnode with USB port device
-Date: Fri,  3 Jul 2026 19:03:06 +0800
-Message-ID: <20260703110317.1283411-6-wenst@chromium.org>
+	Alan Stern <stern@rowland.harvard.edu>,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: [PATCH v3 06/13] usb: hub: Pass |struct usb_port*| to usb_port_is_power_on()
+Date: Fri,  3 Jul 2026 19:03:07 +0800
+Message-ID: <20260703110317.1283411-7-wenst@chromium.org>
 X-Mailer: git-send-email 2.55.0.rc0.799.gd6f94ed593-goog
 In-Reply-To: <20260703110317.1283411-1-wenst@chromium.org>
 References: <20260703110317.1283411-1-wenst@chromium.org>
@@ -119,16 +120,16 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
 	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-320039-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	TAGGED_FROM(0.00)[bounces-320040-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FREEMAIL_TO(0.00)[kernel.org,linuxfoundation.org,linux.intel.com,gmail.com,collabora.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:andriy.shevchenko@linux.intel.com,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:wenst@chromium.org,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:stern@rowland.harvard.edu,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:andriy.shevchenko@linux.intel.com,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:wenst@chromium.org,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:stern@rowland.harvard.edu,m:bartosz.golaszewski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
@@ -141,59 +142,112 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[chromium.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:from_mime,chromium.org:email,chromium.org:mid,chromium.org:dkim,intel.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:from_mime,chromium.org:email,chromium.org:mid,chromium.org:dkim,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 84D7F701A80
+X-Rspamd-Queue-Id: 2354C701AEF
 
-When a USB hub port is connected to a connector in a firmware node
-graph, the port itself has a node in the graph.
+usb_port_is_power_on() currently takes |struct usb_hub*|, but only needs
+it to tell if the hub/port is SuperSpeed or not.
 
-Associate the port's firmware node with the USB port's device,
-usb_port::dev. This is used in later changes for the M.2 slot power
-sequencing provider to match against the requesting port.
+In a subsequent change, usb_port_is_power_on() needs access to a pwrseq
+state tracking field in |struct usb_port|. Either structure can be used
+to identify whether a port/hub is SuperSpeed or not, as the field in
+|struct usb_port| is inherited from the hub:
 
-To avoid potential conflicts with ACPI firmware nodes and then causing
-power management issues, only assign the firmware node if the hub's
-firmware node is not an ACPI firmware node.
+    port->is_superspeed = hub_is_superspeed(hub)
 
+Replace usb_port_is_power_on()'s |struct usb_hub*| parameter with
+|struct usb_port*| so a subsequent change can use it.
+
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
-Changes since v2:
-- Skip assignment if hub firmware node is ACPI node
+ drivers/usb/core/hub.c  | 11 ++++++-----
+ drivers/usb/core/hub.h  |  2 +-
+ drivers/usb/core/port.c |  2 +-
+ 3 files changed, 8 insertions(+), 7 deletions(-)
 
- drivers/usb/core/port.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
+diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
+index fe10d72ef39d..da0a4cc8e15a 100644
+--- a/drivers/usb/core/hub.c
++++ b/drivers/usb/core/hub.c
+@@ -3240,11 +3240,11 @@ static bool hub_port_stop_enumerate(struct usb_hub *hub, int port1, int retries)
+ }
+ 
+ /* Check if a port is power on */
+-int usb_port_is_power_on(struct usb_hub *hub, unsigned int portstatus)
++int usb_port_is_power_on(struct usb_port *port, unsigned int portstatus)
+ {
+ 	int ret = 0;
+ 
+-	if (hub_is_superspeed(hub->hdev)) {
++	if (port->is_superspeed) {
+ 		if (portstatus & USB_SS_PORT_STAT_POWER)
+ 			ret = 1;
+ 	} else {
+@@ -3306,7 +3306,7 @@ static int check_port_resume_type(struct usb_device *udev,
+ 	}
+ 	/* Is the device still present? */
+ 	else if (status || port_is_suspended(hub, portstatus) ||
+-			!usb_port_is_power_on(hub, portstatus)) {
++			!usb_port_is_power_on(port_dev, portstatus)) {
+ 		if (status >= 0)
+ 			status = -ENODEV;
+ 	} else if (!(portstatus & USB_PORT_STAT_CONNECTION)) {
+@@ -3748,12 +3748,13 @@ static int wait_for_connected(struct usb_device *udev,
+ 		struct usb_hub *hub, int port1,
+ 		u16 *portchange, u16 *portstatus)
+ {
++	struct usb_port *port_dev = hub->ports[port1 - 1];
+ 	int status = 0, delay_ms = 0;
+ 
+ 	while (delay_ms < 2000) {
+ 		if (status || *portstatus & USB_PORT_STAT_CONNECTION)
+ 			break;
+-		if (!usb_port_is_power_on(hub, *portstatus)) {
++		if (!usb_port_is_power_on(port_dev, *portstatus)) {
+ 			status = -ENODEV;
+ 			break;
+ 		}
+@@ -5449,7 +5450,7 @@ static void hub_port_connect(struct usb_hub *hub, int port1, u16 portstatus,
+ 		 * but only if the port isn't owned by someone else.
+ 		 */
+ 		if (hub_is_port_power_switchable(hub)
+-				&& !usb_port_is_power_on(hub, portstatus)
++				&& !usb_port_is_power_on(port_dev, portstatus)
+ 				&& !port_dev->port_owner)
+ 			set_port_feature(hdev, port1, USB_PORT_FEAT_POWER);
+ 
+diff --git a/drivers/usb/core/hub.h b/drivers/usb/core/hub.h
+index 9ebc5ef54a32..b65d9192379d 100644
+--- a/drivers/usb/core/hub.h
++++ b/drivers/usb/core/hub.h
+@@ -138,7 +138,7 @@ extern int usb_clear_port_feature(struct usb_device *hdev,
+ 		int port1, int feature);
+ extern int usb_hub_port_status(struct usb_hub *hub, int port1,
+ 		u16 *status, u16 *change);
+-extern int usb_port_is_power_on(struct usb_hub *hub, unsigned int portstatus);
++extern int usb_port_is_power_on(struct usb_port *port, unsigned int portstatus);
+ 
+ static inline bool hub_is_port_power_switchable(struct usb_hub *hub)
+ {
 diff --git a/drivers/usb/core/port.c b/drivers/usb/core/port.c
-index b1364f0c384c..1088776ef750 100644
+index 1088776ef750..77dbf51f1760 100644
 --- a/drivers/usb/core/port.c
 +++ b/drivers/usb/core/port.c
-@@ -7,6 +7,7 @@
-  * Author: Lan Tianyu <tianyu.lan@intel.com>
-  */
+@@ -98,7 +98,7 @@ static ssize_t disable_show(struct device *dev,
+ 	}
  
-+#include <linux/acpi.h>
- #include <linux/kstrtox.h>
- #include <linux/slab.h>
- #include <linux/string_choices.h>
-@@ -780,6 +781,13 @@ int usb_hub_create_port_device(struct usb_hub *hub, int port1)
- 	port_dev->dev.driver = &usb_port_driver;
- 	dev_set_name(&port_dev->dev, "%s-port%d", dev_name(&hub->hdev->dev),
- 			port1);
-+	/*
-+	 * ACPI FW nodes are associated later when device_register() happens.
-+	 * Skip assigning one here to avoid potential conflicts.
-+	 */
-+	if (!is_acpi_node(dev_fwnode(&hdev->dev)))
-+		device_set_node(&port_dev->dev,
-+				fwnode_graph_get_port_by_id(dev_fwnode(&hdev->dev), port1));
- 	mutex_init(&port_dev->status_lock);
- 	retval = device_register(&port_dev->dev);
- 	if (retval) {
+ 	usb_hub_port_status(hub, port1, &portstatus, &unused);
+-	disabled = !usb_port_is_power_on(hub, portstatus);
++	disabled = !usb_port_is_power_on(port_dev, portstatus);
+ 
+  out_hdev_lock:
+ 	usb_unlock_device(hdev);
 -- 
 2.55.0.rc0.799.gd6f94ed593-goog
 
