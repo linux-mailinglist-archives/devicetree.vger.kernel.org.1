@@ -1,202 +1,198 @@
-Return-Path: <devicetree+bounces-320267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320263-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wV2EAorrR2pmhgAAu9opvQ
-	(envelope-from <devicetree+bounces-320267-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 19:04:10 +0200
+	id yyLUBRTrR2pBhgAAu9opvQ
+	(envelope-from <devicetree+bounces-320263-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 19:02:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F762704803
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 19:04:09 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D11B704790
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 19:02:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="eCUn/T8i";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320267-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-320267-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=suse.com header.s=google header.b="JtqtdeH/";
+	dmarc=pass (policy=quarantine) header.from=suse.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320263-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320263-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 09E76301B800
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 17:04:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C28B3012266
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 17:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59778263F5D;
-	Fri,  3 Jul 2026 17:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 895A72472B8;
+	Fri,  3 Jul 2026 17:02:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A1A1D9A5F
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 17:04:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EE571C2AA
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 17:02:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783098246; cv=none; b=Uw8V27Z+VB8fuuBg0CnCKnHVGZ7dF6mb0LBlclYpBhGa5a2RHyvQTx++aYx2vgc6Z/pLRIPib797dVnyol0BiCen6Inor9G4Mlp3QO1aR/O5c9R72mdVYWCdRpe/v6JE8KX+/4T1dNfGDSNGLKJz4aq+b+utE03QidY7eHM3yuM=
+	t=1783098129; cv=none; b=udUryCycCycd27TDcRjE8c7H69cwl0OqwkHVxIBFvKH2r96Yv5nS/qZz532k/zfIPx1rOC0JJPCaQaavrtZJXWJHezDt3KtmvEnnbL/JDCvT5mBC1QzWzZ3pyFAUEBBykafh2aCRzw/fjHh3VNP3qxNYIRgcxsi6FbD1JEIzO9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783098246; c=relaxed/simple;
-	bh=xfVxg6gl5w+u7tV6leMRJg88uDbrZR+IfArPfW8E5/8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NZBMeXWboadjDZCvkL+YuDtGZ2p77CXMrWbkomK7gnnhNa7G4WlnjuHUBDpDfh7Rol8Af7MSBpRMFax7YVnMMtCNGYP+nBFIBK+RsZXovp3oHszwiLEhxxAPq1CFh68p3efG7xRL3xFiJgNQaGjF4xLoyTb9HkdHdY3OB8z6KrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eCUn/T8i; arc=none smtp.client-ip=209.85.210.43
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7e9f69ee6f4so594735a34.2
-        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 10:04:04 -0700 (PDT)
+	s=arc-20240116; t=1783098129; c=relaxed/simple;
+	bh=JJntkUC9rBut4Ox3VlLSu6avviUJ1OqJzK+qpFIyVRg=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=Mnp5MVcGhe1O05y1Nys8hxqKEI6ga/AroWsK9o8N5Hsb671Uw5uJT3Mn4Ju9gHcGz+JUm6J6ZQIz1+JtUcGT7/ZE3TlSWGaCYWlu6/I558/nKkLe+TC+domga1MiXfN16/iY+TVRDC0fFbEGzEf1exDY3Dpc2uGR0oZdO4oE+as=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=JtqtdeH/; arc=none smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-493b27c7451so18173375e9.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 10:02:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783098244; x=1783703044; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Dmaz70Zg8+nbLWCKBtz/pZ0mkbLi/T/8RKd4bWX5wQs=;
-        b=eCUn/T8i+nUhnmBbIaXGoCrMjMcwxuPIEPKdoN/ryD0hGyeiFdm4he9hehPIOirGLw
-         igfsJbvHXbNLz5lz38nhkHIiYNLIthb7xBs9FlHTBVw/axNUqLX7/xIHppw+W8lna+db
-         H2ePAkmj1IW1PVtFF5g437w3H+CqBa2D4QN3DBPoj0Pffz4he3NKCJtZ2mQG4OaAsevU
-         FCflTZoLWR6+GUpp/dajMeqAHYc1O8HJ4z7HXglTBaUWSvdBXxgp+1w/pM0dgTHeO+c0
-         ES1TdYYd1u9ukidgREwXYNWbpHr/WAq9ZoSu+PPW3D09TtNoup6pm9nSiF2lBGrSZEue
-         l+Yw==
+        d=suse.com; s=google; t=1783098125; x=1783702925; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=q/1K0BV/G7Gec3azOultr+oMUL4gfypJwfwS0OJxpVY=;
+        b=JtqtdeH/3/Zw1T9WgVatOVDLfv5RmS4eyNm2nTweAFP3qH63Rykzd5Ips/R+JcoVDg
+         cBl1BjmJlOSCwLwYAS3VvteW0q8qVfSNYyY6f4NzyXszgP8JMoQjhm/LsNhbBc8+8/4A
+         zAix9djFdduiaDoN5LVb9J3M6F7nb42xOR1abnHwQYq6s+vWdsLfHrL0TljpBN5I+2xp
+         Xn6dQyxhOvjkpum60g3YE40hQNJcn7uag7uT+2mEEYxqUVFBCkWDPnX5BaPXkXCMzHhP
+         lWQ/J4jpH0cMW+FARYddzOk74w9QwMz6Z7e9nH8sFyGsxnQuKGlEEa+JrPyPlyh+eNaU
+         Q25Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783098244; x=1783703044;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=Dmaz70Zg8+nbLWCKBtz/pZ0mkbLi/T/8RKd4bWX5wQs=;
-        b=ojcb52JKsWSgH9KoZHkeSm8Ghyt8Uaa4N+8L41qWyo30lx0u9L9ljAETIyPqxReLCn
-         3jWFBOi2V3avhlP17zyuqbwDL4fYmrH50V+Nu4wvxfv+IiZHJhPQ5iqMWGObV9zC/FeP
-         y+nM5c7UCPxaMTGSPi8KZnsZmFCibfY/H9+ZRI2N8YKYm/ot0coTXeYXnY2gmqxmkgZ8
-         2qAlVmXUjjHhtrrKLF20lOnAvjrUNANtPodq6mflL9ntS+LsGLXdyEO04IzP4OfCGy80
-         31RxlPTb5ClBkLCpbpqn0tJUo7uOW25D5ydnPzeeQOVmDReeqsMh5E+Sq+pdz26HFcne
-         qaAw==
-X-Forwarded-Encrypted: i=1; AFNElJ+72Sr1kSvcYiza7QaX7eNuns3AsUkM68Ir9erRANf3Cg+mG9MCyUm1IP7w5XhD2/5Q6nlFNpwuh72x@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVrX5ARwTSDKki6f4at7LL8TV0oQI8URnH+HBMu5rql8qrl2+d
-	HKZVofxvJUHDPEZw7VS96fhYj+JbBlCnwyel77I+ymmvJYGGFiy06Giz
-X-Gm-Gg: AfdE7clqn7nsLfpj7GHn2VgX5353A/yRuWffg4VLbQ4Q6ntXdnYZCAfOmye0UDJmkEJ
-	oyuu+Pt3uLt5542oW5eDjcNJ8pTtbPJv7CgVh2MTkUs1C64hVqVWI2aaMsMrUu0B6RGiDnYTc19
-	O2SrXnGGGU4RmqOGYiViveOI+sS6ednED+ATuiRu1cWCjFKs8uijm00pcnbGc606G+VAzZYyWIN
-	xxDMFagPRvDJ3oZbQJ/uJp/Ul37z31AD0RoUaeQ44EgCQYTUy4FluugvxQSlRe3S3g0wYz3vfJS
-	BopTDDCb6hU4fJn1mK/tZfGQY5xqJZMq5VzGiRjCtKyInwZaM34OBOvsuoLLNKWvGcuZX6ASM32
-	oEORjiDy7qQ0sHvkeNSsZo6/brVq/WIKHY1jFd3s51JGkvuByqQ+hatAPTcf2OAuDvhtgS54nMO
-	E4W+JPL8dKrCF/AkEWNqbv3w==
-X-Received: by 2002:a05:6830:838d:b0:7eb:3af8:8c1a with SMTP id 46e09a7af769-7eb7fda9ef3mr199373a34.9.1783098243743;
-        Fri, 03 Jul 2026 10:04:03 -0700 (PDT)
-Received: from localhost ([2804:30c:1618:8400:e838:86ad:21d4:de00])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7eb54534789sm5378744a34.26.2026.07.03.10.04.02
+        d=1e100.net; s=20251104; t=1783098125; x=1783702925;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q/1K0BV/G7Gec3azOultr+oMUL4gfypJwfwS0OJxpVY=;
+        b=jyKbCSqYUrVmBl2BD7R+guNmqhkIM/rL8mNtE0lXvDBE+ujBWC46rhT35lqGyInQE3
+         EGU5xOKxJjxfhNSHbdifvFEP+sJaYe1kgB8QXR0pDYPW9oYpMmKXUKW0+1kQJOE1gDMs
+         DttFl8fKHpggAlfRQxMHICSRtQw+pK49pI9dhfbiVVjLNf+O2EIM9HzsoioyXrpFiAg5
+         SHmjvw0KPERzK79s56av/p151bmYyJc77Uyit6l6kEmaV3SLvikMkJnz3G06oyGd/roJ
+         n3oT/9Sy8V/Cn/QP79SIyq4BCl8gXeo4oBUu23YHQhWY/Z+yVhfLczgwAxA2I6hdoRI2
+         pUDA==
+X-Forwarded-Encrypted: i=1; AFNElJ8Eb5kRCYEeYH6sVizhwd74dGZ/wRB73P8hF4hiM5BXHYNz4mw2RnkZO9CWeoTr42lzwHj5Rupm9M+k@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZA+G1rQMWhpXDpiodHRL5n4Jno/CWbiDjlhJxMlq7B7KHWKRg
+	hDOvMoRHvfRwGi5zF1tT0isOfsS9scJljq7vx+v3OxzlWJcvBMg9c2u7AulZuPsQpXc=
+X-Gm-Gg: AfdE7clrEcj0Y+1ZLnIuT31PIZnh5RwSOZBg67OWu2eFeKEOGWkfY6D4EW4n55V6RE9
+	D7F+3kpy+Ejo0WOtqp5Le/jg9RhjG2aSlnKS6/Fa39TzzbTH2kbGd6UcherYXRDFk5CrHYApdZm
+	K+bSaCMYXKCF/U0zqIvmXSQ0FcKa1fEoh8N389iAm9WGQChGd4v73Nbw9BR4u/WBSZfQM8J0AGn
+	n37/OirVaJ8M8QtwyGq0MqAMDycD9UImYp0mliwRIoPXQStzxFkSwHUqaB4GK4fnbBvSMf1B0DI
+	wldsbudhM6kybc6QtHKpCpXM8X+N2+4+tT1pMKtRIHtWuK1/JgzBOhDh/7RcPNVn8cm2q/OtpfI
+	txbHfq96yHEJKezCR+wC0pBr06ZecHfYQ/cmBGI49F+aSkPehs0n36KSjNFYmWXNbSCCsotYpGQ
+	2/qEg1vMQKO7c=
+X-Received: by 2002:a05:600c:6287:b0:490:af63:2cb1 with SMTP id 5b1f17b1804b1-493d128b6e3mr24185e9.7.1783098125539;
+        Fri, 03 Jul 2026 10:02:05 -0700 (PDT)
+Received: from localhost ([195.94.145.62])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493c63172fesm252158015e9.0.2026.07.03.10.02.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jul 2026 10:04:02 -0700 (PDT)
-Date: Fri, 3 Jul 2026 14:04:51 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, robh@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v5 1/4] dt-bindings: iio: adc: Add ltc2378
-Message-ID: <akfrs7OtamEIoVxE@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1783028033.git.marcelo.schmitt@analog.com>
- <fa15b8fe33541fa2e8c7a3f124b2482872fdcf26.1783028033.git.marcelo.schmitt@analog.com>
- <20260702215235.517FC1F000E9@smtp.kernel.org>
+        Fri, 03 Jul 2026 10:02:05 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	linux-pwm@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Stanimir Varbanov <svarbanov@suse.de>,
+	mbrugger@suse.com,
+	Sean Young <sean@mess.org>,
+	Julian Braha <julianbraha@gmail.com>
+Subject: [PATCH v6 0/3] Add RP1 PWM controller support
+Date: Fri,  3 Jul 2026 19:05:23 +0200
+Message-ID: <cover.1783097764.git.andrea.porta@suse.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260702215235.517FC1F000E9@smtp.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-320267-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:marcelo.schmitt@analog.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-iio@vger.kernel.org,m:marcelo.schmitt1@gmail.com,m:conor@kernel.org,m:marceloschmitt1@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[analog.com,kernel.org,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320263-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,vger.kernel.org,broadcom.com,suse.com,lists.infradead.org,raspberrypi.com,suse.de,mess.org,gmail.com];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ukleinek@kernel.org,m:linux-pwm@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:andrea.porta@suse.com,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:naush@raspberrypi.com,m:svarbanov@suse.de,m:mbrugger@suse.com,m:sean@mess.org,m:julianbraha@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marceloschmitt1@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[suse.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sashiko.dev:url,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,suse.com:from_mime,suse.com:dkim,suse.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8F762704803
+X-Rspamd-Queue-Id: 8D11B704790
 
-On 07/02, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Low] Compatible strings with required fallbacks are incorrectly allowed as standalone strings.
-> --
-> 
-> commit fff47614872c95c6a481f63da8b14dfcedd0bb53
-> Author: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> 
-> dt-bindings: iio: adc: Add ltc2378
-> 
-> Document how to describe LTC2378-20 and similar ADCs in device tree.
-> 
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
-> > new file mode 100644
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
-> [ ... ]
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      # Single compatible string match.
-> > +      - enum:
-> > +          - adi,ltc2338-18
-> > +          - adi,ltc2364-16
-> > +          - adi,ltc2364-18
-> > +          - adi,ltc2367-16
-> > +          - adi,ltc2367-18
-> > +          - adi,ltc2368-16
-> > +          - adi,ltc2368-18
-> > +          - adi,ltc2369-18
-> > +          - adi,ltc2370-16
-> 
-> [Severity: Low]
-> Does this standalone enum allow devices that should require a fallback
-> to pass schema validation with only a single compatible string?
-> 
-> Because parts like "adi,ltc2370-16" and "adi,ltc2367-16" are listed here in
-> the single enum match, a device tree node specifying only
-> compatible = "adi,ltc2370-16" will satisfy this block and successfully pass
-> schema validation.
-> 
-> This seems to bypass the fallback requirements defined below in the items
-> blocks:
-> 
-> [ ... ]
-> > +      # Low sample rate fallback for 16-bit unipolar sensors.
-> > +      - items:
-> > +          - enum:
-> > +              - adi,ltc2370-16 # 2 MSPS
-> > +              - adi,ltc2368-16 # 1 MSPS
-> > +              - adi,ltc2367-16 # 500 kSPS
-> > +          - const: adi,ltc2364-16 # fallback (250 kSPS)
-> 
-> Should the parts that require a fallback be removed from the single
-> compatible string enum so the schema correctly enforces the fallback?
+This patchset adds support for the PWM controller found on the
+Raspberry Pi RP1 southbridge. This is necessary to operate the
+cooling fan connected to one of the PWM channels.
 
-Why? Should users be prevented to specify a single specific compatible string?
+The tachometer pin for the fan speed is managed by the firmware 
+running on the RP1's M-core. It uses the PHASE2 register
+to report the RPM, which is then exported by this driver via
+syscon registers. A subsequent patch will add a new device
+and driver to read the RPM and export this value via hwmon.
+ 
+Subsequent patches will also add the CPU thermal zone, which
+acts as a consumer of the PWM device.
 
-> 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/cover.1783028033.git.marcelo.schmitt@analog.com?part=1
+Best regards,
+Andrea
+
+CHANGES in V6:
+
+- dt-bindings: added Andrea and Stanimir as maintiners, Naushir if
+  you want to be dropped from the maintainer list, please just give
+  me a shout
+- dt-bindings: added dmas properties in case the driver will support
+  that in the future
+- _tohw(): fetch the actual polarity in the disable case to avoid
+  potential glitch due to garbage data in the passed-in param
+- _tohw(): fixed a compilation error on 32 bit target due to missing
+  64 bit divider helper function
+- _fromhw(): division by clk_rate explicitly cast to 32 bit for the
+  divisor
+- _fromhw(): fixed an unsigned underflow in ticks calculation
+- set the atomic flag to allow calling from atomic context
+
+
+Naushir Patuck (2):
+  dt-bindings: pwm: Add Raspberry Pi RP1 PWM controller
+  pwm: rp1: Add RP1 PWM controller driver
+
+Stanimir Varbanov (1):
+  arm64: dts: broadcom: rpi-5: Add RP1 PWM node
+
+ .../bindings/pwm/raspberrypi,rp1-pwm.yaml     |  66 +++
+ .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |  12 +
+ arch/arm64/boot/dts/broadcom/rp1-common.dtsi  |   9 +
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rp1.c                         | 435 ++++++++++++++++++
+ 6 files changed, 532 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/raspberrypi,rp1-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-rp1.c
+
+-- 
+2.35.3
+
 
