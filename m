@@ -1,182 +1,313 @@
-Return-Path: <devicetree+bounces-319739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319740-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3cjtBdwuR2o8UAAAu9opvQ
-	(envelope-from <devicetree+bounces-319739-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 05:39:08 +0200
+	id nEXONXU4R2qmUQAAu9opvQ
+	(envelope-from <devicetree+bounces-319740-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 06:20:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 648346FE3DA
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 05:39:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D3036FE633
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 06:20:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=Nvidia.com header.s=selector2 header.b=RGLchBdd;
-	dmarc=pass (policy=reject) header.from=nvidia.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319739-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319739-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=analog.com header.s=DKIM header.b=m6ExuBt+;
+	dmarc=pass (policy=quarantine) header.from=analog.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319740-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319740-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B8EFC3019193
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 03:36:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 94F17307E696
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 04:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F7113168EB;
-	Fri,  3 Jul 2026 03:36:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53C6322533;
+	Fri,  3 Jul 2026 04:11:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010014.outbound.protection.outlook.com [52.101.61.14])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0577D319848;
-	Fri,  3 Jul 2026 03:35:55 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783049763; cv=fail; b=r94Pjd1mAXODLbnZ+tFoOio5wDP8c9XAXvCVPU4DiuqxThM9sM9vqcv7gy3S+xDLR49LPrt/q8D6wL9kq5hanLjxAXOSSDAI4qjbtDuGxN+ptVljBXMwJFASb8jWSiKWmZW+VoTpYMsBe46RhhtWxcGV/RIxmLYHCUVy120+k1A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783049763; c=relaxed/simple;
-	bh=oljSYm54xnsmUbPHme0Vamq4799ZBbCONZsK4olCCqg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Qg8u11NUeLBErNE2bvc/c+50NusM++OF9hQ0sgjMGVBApFRgz00tI40dT1YV78onW5mDfr428yn9guVNo9P9hpToKRM5z7ScgplwEHgHuz0WlzbiUxARbi7APzG/TS6M3+Ed8F02vQtWugHCMbujZyoB+dbZcAvOnFSI1HnqrRI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=RGLchBdd; arc=fail smtp.client-ip=52.101.61.14
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EqB8BFbD6eRplA64AxI+ggRHt1XMdYNfU8dQ76d7Ph7ikfjMSYO3hsIpGlXsfS0hj7iNwGrCJNhw0vSgB4Ep9pEtnSb0QbL6OHKpA8RojPMblV3qOcBeF9bFm44LHW7tFcfXOwTUKP74kqGxwjvLF2ghThVPT4FeSHgUlU7bWk6/Tv6CZOuiR3UUQkM74D1790v9xWlAFY58mcfGLWzRn4FnEv+mA1IDnweMJn1AI6j8bDEKnndhzXRZ8ZsFVDmZUYVJyfJYTuK/YC8C8KivK9hV6pVcXVHcoMDDVezglxWZkhxBpAOAI5ePw5krPXzMGVcVRdP+QYpOLEkEdivXUQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oljSYm54xnsmUbPHme0Vamq4799ZBbCONZsK4olCCqg=;
- b=NQ9FkHDYJTz3FsAk4FlFw2ezfOfeWN8gtIWX4ydhpxvbXxF4tz17z/nddanwCHs9v9YicrRY8hse3iCRo4e19ox4h1LGZ33QuFpEEu/wqRslF57Umqvn7NsLUVuNJlcLoCfJdtcARLjLw9+zFL/1YYuvVebLVjcDiZQPXiOuzcHMebTHqHnoh+IPP/yBPSg6O9XuT0AKuYe7/AcGoUciN3T2Yf2dr39SFYLe2M9dM3NMFsrtepamL5i5v8QYmIN25IG4o8lP/4lGoe14XKdv3PkRI1b6KCtzN3BRntEn979rAmkreStnQ1BwG/PUpxqhlRxnmb1O7PQ+36gUGzscyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=lunn.ch smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oljSYm54xnsmUbPHme0Vamq4799ZBbCONZsK4olCCqg=;
- b=RGLchBddhMN0BkE7W0mP0K25loGeykIYc10vg4iKQ1pSbAkPrNGtAqsZyCyHU+kjAIdgsIbHiWToUXPjfex2YOOHskAdMiIA3wOvHaonUERNyaw3FARJRuY03TdGh/PFnZJnLwVKsH5Rx3mrMr5ev3oXsPTkxTIjDbwrxjQgB8vXw8+1muP7g6dyprUViXrmDrD2fUapbK/DDvoem/LxyL+i0K02B6v3KmIwrkANTtBQw7Ns6YoPd8oNXpx5pNhFOfv60Fb7OXnok7evEQm1Rj3hiys+4V+BF1StCdbP+tViva/ycN0iHc6y3QJbcDC4NehKm7+aFwCEV3drGPcvKA==
-Received: from DS1PR06CA0003.namprd06.prod.outlook.com (2603:10b6:8:458::10)
- by PH8PR12MB7184.namprd12.prod.outlook.com (2603:10b6:510:227::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Fri, 3 Jul
- 2026 03:35:46 +0000
-Received: from DS3PEPF0000C37E.namprd04.prod.outlook.com
- (2603:10b6:8:458:cafe::22) by DS1PR06CA0003.outlook.office365.com
- (2603:10b6:8:458::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.11 via Frontend Transport; Fri, 3
- Jul 2026 03:35:46 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- DS3PEPF0000C37E.mail.protection.outlook.com (10.167.23.8) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Fri, 3 Jul 2026 03:35:45 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 2 Jul
- 2026 20:35:30 -0700
-Received: from nvidia.com (10.126.231.37) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 2 Jul
- 2026 20:35:28 -0700
-From: Jacky Huang <jackyhuang@nvidia.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Jacky Huang <jackyhuang@nvidia.com>, Andrew Jeffery
-	<andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add NVIDIA VR-NVL BMC
-Date: Fri, 3 Jul 2026 12:31:23 +0900
-Message-ID: <20260703033401.2195572-1-jackyhuang@nvidia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <c43899a8-3d6a-4c94-b0c2-33c00a830610@lunn.ch>
-References: <20260702165524.2168091-1-jackyhuang@nvidia.com> <20260702165524.2168091-3-jackyhuang@nvidia.com> <c43899a8-3d6a-4c94-b0c2-33c00a830610@lunn.ch>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D968313E3F;
+	Fri,  3 Jul 2026 04:11:34 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783051909; cv=none; b=W+LkmwutR5gtX6ViOXmH3uv4BHsciZRI5ZFG/KTLbuVIdq1BziTuAVmdr/GW5UAp4VltSmYMkpB4WArqgyAY1jXXjqA6ciZQKGyGVK94diUt8BKF84pBJAav7fCvXo9r3eZx0mCG9wSjIYHm08nRc+A2+iSmbSmbI7pNwpF9ymg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783051909; c=relaxed/simple;
+	bh=brKjRG+WNja+mowgPnAZeObFAnO91v6aMFrxbUG0B80=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=RSfQp+CLpd9uGo8wjajY703wQtoZlMqDOg+rWek0BkkVIE8bQSe6BDZdFireenaee96Wm5wlj9DzNkQwMSXkTM0UICp/2yWr8mE8FQQ5+7J453Mfczi0eXGfVB9kazvVnnfuTUEsYcIkVE2KMxXOaqydqqViB68gouYtPGYXLGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=m6ExuBt+; arc=none smtp.client-ip=148.163.135.77
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6632O1EE4122747;
+	Fri, 3 Jul 2026 00:11:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=hDjRXoTzDLDXO/JI/kaUOzqyUQc
+	dKlsg5SclI9hY02c=; b=m6ExuBt+MKVo4yGZWTTrSPmyQbfWREeYfqWdmSU3DHY
+	b2mFUWsU6rr55GyQx6w/wXjrL+k5m4NetTeOftTAlQV/sU8/SKJ3RkoZ3veax+QP
+	tePWw9OAtFLJro+GESAbGOhELQQTNepnIXNq7lG+nkdxAtSD8qPsUTn670Gy38rU
+	F8soRqj4REybvEwdZTusRPh/v233YAbp6NCPsQALgM1AJeL+gyFNQfa2bzP6oOzw
+	BrW3c6yVx1EnDTBsBSvnL7+L513zYXyMFwzpveKGvdHSYsXfcxTvCTMOeJZQutVb
+	xC4kktauQIDZ88yY9Ms/I0Dvm6cXeS7Eno3rms+8WEg==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4f648x8fvq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 03 Jul 2026 00:11:30 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 6634BTKa048647
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 3 Jul 2026 00:11:29 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Fri, 3 Jul
+ 2026 00:11:29 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Fri, 3 Jul 2026 00:11:29 -0400
+Received: from HYB-7P5GeKnsiiX.ad.analog.com (HYB-7P5GeKnsiiX.ad.analog.com [10.118.4.70])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 6634BGVd028664;
+	Fri, 3 Jul 2026 00:11:19 -0400
+From: Edelweise Escala <edelweise.escala@analog.com>
+Subject: [PATCH v12 0/2] Add Support for LTC3220 18 Channel LED Driver
+Date: Fri, 3 Jul 2026 12:10:49 +0800
+Message-ID: <20260703-ltc3220-driver-v12-0-d4f0da2985e2@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37E:EE_|PH8PR12MB7184:EE_
-X-MS-Office365-Filtering-Correlation-Id: d83ff7be-cf88-4cc0-26cd-08ded8b42b0f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700016|1800799024|23010399003|376014|7416014|11063799006|56012099006|4143699003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	TSlaOx36X/PLQ/YphRpY3Bbk4tw3ItCikDuuTzZW77YC+/7CQzd6MxlbQSaDmhGQtp8Eoh+nOl1n8YmPF3ZIxQBrRSXA/iOJF8+ohB/7wipVn687m66Zy3cRBEjMB48xcF0ZEOUBGhfUpBYgv3xmw9BfP2D4ggPevNWRkWMoHsejkzra7/dy2W03+LW/qwSfSCl1tiN7tc/xOFY4syr77uI4FTmb80StX2Gogm9BXoD5RLzti1k2oyTBuiiMSRbWzBufJJCzgIX0zXaV1RWgPH8TAWdp3KCnNgpd5yPVI/E7sBxn/y4N72Cv58tN1TuqkkQa7K55s59uR3SCUL8fHYjEQNE8hNBKe1wOQyQKb+FAkzF+dx29l3XCiIPuD6Q5Fl+3+Q3NQPak4Y5o1QE6RrMfjw6pAUCxFB283CMh04CooV3JA+II41qb0mEdA/4X5UNcazBRn8KuouzdJnIdToxcC0qGOzReMmjnoZr4jI5G9eOHFxpWKh7tm3JR5wFpEgYSVL2bEtEkWcWrh2/RhRFasj1IqD/Gu5COuAMNqtdjiCjQwitnxyar8aKqpu49oq5dMX9X6jTOO8q53mYykGSmIz7IOjO9tEdrHMMQEzCU38wZr8dCRBrqxKRxCL8AcxkKlTrhDT3rAiLkGwU5kjQ7aL7iptxRDiGLpurBrTg1OErITePhFSqHi9c4hN0ocC4kdmVQ3GXgcoTeCwbV2w==
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(1800799024)(23010399003)(376014)(7416014)(11063799006)(56012099006)(4143699003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	+Kkr5ewHeL3nVNKQe+7Xqs8iu0ntZQBJef914QrK9H3zQnLmZ+9P6d4gtSetAXE4u2ND57uhLHvhiPqkwMFFXi9tBOOze112ZbDx4Uv+9696RnTY/fftmOgPbZiLEt7MX+SaYgQSZtgmlsJ/N9R4EcFQES6vw2tQP1AtYFEnos3KTNkmLxNhW9XDTemNS8tAiT+wnwPVexwS8VqJtTQCdoL5+N/gOgrs7mx9LjIi6dwu5xxo8OcLv7/Hygk9cL7WE5JeRJSiqUpVzo/06RtPXKlujP7DvO0nR975yBnlHAHHWa6W0r9GOLqnm/nc6W0QCvn7lmkM2m24dIJs1LqcJimzxmvszJ9pDVPq1HNHcxMIhzmGecjizRl4UWVbt3E66ZtlqvQ3DgpoRXo5DSsq9It8ZHLeJtMjUvLekxkFxLDinWA/uzrTf32LGyNqSYan
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2026 03:35:45.9640
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d83ff7be-cf88-4cc0-26cd-08ded8b42b0f
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS3PEPF0000C37E.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7184
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEk2R2oC/33SzU7DMAwH8FeZciYodhIn4cR7IA5pPrZIY0XtV
+ IGmvTvpLisYONrW728ffBFzmVqZxdPuIqaytLmNp14APuxEOsTTvsiWe0OgQlKgSB7PSSMqmae
+ 2lEnWEAdKKWQoRnT0PpXaPm6JL6+9PrT5PE6ftwULrN0/oxaQSjrdZ5kqkAnP8RSP4/4xjW9iz
+ Vpw4wGZx+6zMlpZX5PJlXm98d399Lr7WioBlmRqjMybref3m+6TDRYcKkpomLf/e9s9WIxaleD
+ j4JinuzfgmKfVe7DOOyg5Z+bd3VvlmXfdq6oCDtGaipp5v/EQmPfdF3AOEjitK78/bDzy/aF7C
+ saqmhB0GpgHdQ8gsPyB+v0yAFnC5L0NnifANuGXF1x/kIqFnINLJdO3hOv1+gW0nLnTMgMAAA=
+ =
+X-Change-ID: 20260106-ltc3220-driver-f9ab6cc9d1e4
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Edelweise Escala
+	<edelweise.escala@analog.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783051877; l=6081;
+ i=edelweise.escala@analog.com; s=20260106; h=from:subject:message-id;
+ bh=brKjRG+WNja+mowgPnAZeObFAnO91v6aMFrxbUG0B80=;
+ b=PndlDPTm1ivdOxjZ38UsPr0H9WbLYgFZOLMY9yfIRt5YxE4VlLs0ylGbsfUQ8DmlWAF1g0xAP
+ thnyFua1JFvAh6OUHpnLVOKJ1cqxZ7hhnJmrzmsw1E0VsRlqyT94Sfc
+X-Developer-Key: i=edelweise.escala@analog.com; a=ed25519;
+ pk=lf5HLFe8ZeQjXZgkBkFMK+u9qH5/tqZhCIushTKduNQ=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: i0TJBR0rL2RtzTUCf-HUgKl55o-adlgL
+X-Proofpoint-GUID: i0TJBR0rL2RtzTUCf-HUgKl55o-adlgL
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzAzMDAzNyBTYWx0ZWRfX4yHSV8+Un/wj
+ MQLsh1UFOd7P0ktIPo+xg2lQvYiipZVxXMGiIu1UhoNMdHSM9ifvWtl1lhvElDc5GlJ0+7Rp/G9
+ ttJUU5/jfk+oFMbhD5BUl4iOKxHoo0W9m3Ql5x0cZ9+Sl6GJ8RCGc37ea99em6Js1snC/5i81nl
+ aI0UeE9Jt5FRnxMDGlY/ndWXFPmtRgcuMVCtJM9kFRsSfT5bgojm8rMvhRHTVa9yvsxve6+Qvh7
+ 3SZplnY7Mjc7SYp9dYQ6tHesOx3p2NBOtWQQE1kMdD+r9gDn21mN/AySLlNsdX8xwCzNzFVt14W
+ /iLNj03fK4/x+/9QM4LJKmzwJ3dlGapMjdyjnFaNeHbgQWmfUisd1CT4J7+pvfsTuTOkcdsEcbC
+ XQjWqIECkiIjnDaHs46eL5UgUT6j8nQ0TZiPQUf0+hh2tJJsNm4j/3mq8YGOBqnqEQPaHPp4V8k
+ ixX+g33kOHjcVJEQrcw==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzAzMDAzNyBTYWx0ZWRfXzEr2bwO1VVAq
+ MTXiHpOS9D2nBiuafksYM0t02/L8wcBu55SrMF3O3rstddvBs9/kzW7B0qL0gvbHzDXGgCsCKwA
+ SXcnwSZhyKFdsnE64MYK8rRVqR2FHZ4RbyjpGC5fUEzXToGLAiRf
+X-Authority-Analysis: v=2.4 cv=Au3eGu9P c=1 sm=1 tr=0 ts=6a473672 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=0sLvza09kfJOxVLZPwjg:22 a=uXIjobp8t2wMuQ0fPvqm:22 a=VwQbUJbxAAAA:8
+ a=gAnH3GRIAAAA:8 a=XYAwZIGsAAAA:8 a=YW0pZW7c8enfyxFeK4YA:9 a=QEXdDO2ut3YA:10
+ a=E8ToXWR_bxluHZ7gmE-Z:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-03_01,2026-06-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 suspectscore=0 adultscore=0 priorityscore=1501 phishscore=0
+ bulkscore=0 clxscore=1015 impostorscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607030037
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.16 / 15.00];
-	WHITELIST_DMARC(-7.00)[nvidia.com:D:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:andrew@lunn.ch,m:jackyhuang@nvidia.com,m:andrew@codeconstruct.com.au,m:joel@jms.id.au,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-aspeed@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[jackyhuang@nvidia.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-319739-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jackyhuang@nvidia.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	TAGGED_FROM(0.00)[bounces-319740-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:edelweise.escala@analog.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[edelweise.escala@analog.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[analog.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[edelweise.escala@analog.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 648346FE3DA
+X-Rspamd-Queue-Id: 5D3036FE633
 
-On Thu, Jul 02, 2026 at 07:16:29PM +0200, Andrew Lunn wrote:
-> No change required, just a comment. The strapping should not
-> matter. All Linux PHY drivers should configure the PHY based on
-> phy-mode, replacing the strapping settings. There have been cases
-> where the strapping is wrong...
+The LTC3220/LTC3220-1 is a multi-display LED driver, which contains a
+high-efficiency, low-noise charge pump to provide power to up to
+18 LED current sources. The LEDs are individually configurable to
+64-step linear brightness control, blinking and gradation control
+via 2-wire I2C interface. The blinking and gradation configuration
+is shared across all LED.
 
-Good to know, thanks for the explanation.
+LTC3220 has a quick write function which allows changing the brightness
+on all LEDS simultaneously when the brightness is changed on led 1.
+For this leds are aggregated in the device tree and on probe we check
+if led-sources exist to enable quick write.
+We would like to know if this approach is alright?
+Another way we might want to know is, is it alright to just make a
+virtual led for the quick write function. Changing brightness on
+the virtual led will change the brightness for all.
 
-> For these nodes only:
->
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: Edelweise Escala <edelweise.escala@analog.com>
+---
+Changes in v12:
+- Add mutex when changing brightness
+- Add regcache_mark_dirty on suspend
+- Move aggreagted led moe hardware setting after validations
+- Add clamps when changing brightness on various modes
+- Link to v11: https://lore.kernel.org/linux-leds/20260616-ltc3220-driver-v11-0-6e51dd97ced6@analog.com
 
-Thanks for the review and the Reviewed by, much appreciated.
+Changes in v11:
+- Add guards to check for double reg
+- Add led_classdev_suspend/resume
+- Return -EOPNOTSUPP for repeat request not 1
+- Single write instead of write+read for blink
+- Link to v10: https://lore.kernel.org/r/20260615-ltc3220-driver-v10-0-916562c88598@analog.com
 
-Jacky
+Changes in v10:
+- Remove volatile reg
+- Add regacache_sync on resume
+- Add delays on reset
+- Remove early return and let software rset even if there is reset
+- Set to max brightness before blink
+- Two pass validation approach to avoid premature sysfs exposure
+- Use pointer arithmetic for container_of
+- Remove unused macros
+- Add missing property header
+- Link to v9: https://lore.kernel.org/r/20260528-ltc3220-driver-v9-0-69450fc213cb@analog.com
+
+Changes in v9:
+- Add address-cells and size-cells in required
+- Restrict to reg 1 if led-sources is present
+- Make set brightness only change brighntess for nomal mode,
+  blink and gradation is now handled only in its respective triggers.
+- Fix blink to change mode on blink set
+- Make pattern clear only change brightness and not change gradation
+  mode so it won't affect other leds.
+- Add checks if ever there is duplicate reg in the bindings.
+- Add REGMAP_I2C on Kconfig
+- Rebase on Latest next
+- Link to v8: https://lore.kernel.org/r/20260519-ltc3220-driver-v8-0-e1771c1733f7@analog.com
+
+Changes in v8:
+- Add '>' on descriptions with multiple paragraph
+- Change led registers to hex
+- Change cache type to REGCACHE_FLAT_S
+- Link to v7: https://lore.kernel.org/r/20260508-ltc3220-driver-v7-0-0f092ba54f23@analog.com
+
+Changes in v7:
+- Add cahcetype on regmap
+- Dropped struct ltc3220_state *ltc3220_state and use container_of()
+- Rename ltc3220_state to ltc3220
+- Dropped functions only used once and used inline instead.
+- Loop variable changes
+- Consistent decalaration for container_of
+- Tabbing fixes
+- Link to v6: https://lore.kernel.org/r/20260417-ltc3220-driver-v6-0-18157871eddd@analog.com
+
+Changes in v6:
+- Fix commit message
+- Add manufacturer on Kconfig and improve description
+- Rearrange register map and bitmask and improve naming
+- Use regmap, also use update bits of regmap to avoid unnecessary
+  structs
+- Alignment and spacing fixes
+- Use Define for magic naumbers
+- Fix blink calculation
+- Add comments on aggregated LED
+- Fix variable name to something more understandable like i to led_index
+- Link to v5: https://lore.kernel.org/r/20260126-ltc3220-driver-v5-0-152a30e98ab7@analog.com
+
+Changes in v5:
+- Missed rename on bindings filename in MAINTAINERS file
+- Link to v4: https://lore.kernel.org/linux-leds/20260126-ltc3220-driver-v4-0-c59517206c24@analog.com
+
+Changes in v4:
+- Rename leds-ltc3220.yaml to adi,ltc3220.yaml
+- Add Reviewed-by: Conor Dooley <conor.dooley@microchip.com> on
+  adi,ltc3220.yaml
+Other V1 comments I think already addressed
+- Subject commit message was already changed to match hardware
+- Fixed wrapping after description
+- Dropped "Bindings for" in descriptions and improved description to match hardware
+- Dropped adi,ltc3220-1
+- Dropped redundant description on reset-gpios
+- Dropped adi,force-cpo-level
+- Dropped adi,quick-write in favor of aggregated LED
+- Used consistent quotes ^led@([1-9]|1[0-8])$
+- Fixed wrapping on error messages
+
+- Link to v3: https://lore.kernel.org/r/20260120-ltc3220-driver-v3-0-fef612ec4faa@analog.com
+
+Changes in v3:
+- Dropped quick-write on bindings and added aggregated led instead.
+- Add aggregated led example.
+- Modify quick write to check if there is aggregated led, if there is
+  aggregated led enable quick write.
+- Use DEFINE_SIMPLE_DEV_PM_OPS instead of SIMPLE_DEV_PM_OPS.
+- Link to v2: https://lore.kernel.org/r/20260112-ltc3220-driver-v2-0-d043058fc4df@analog.com
+
+Changes in v2:
+leds-ltc3220.yaml changes
+- Fix wrapping on description
+- Improve description and commit messge to describe hardware
+- Drop ltc3220-1
+- Drop charge pump
+ltc3220.c changes
+- Fix wrapping
+- Drop ltc3220-1
+- Drop devname_mandatory
+- Link to v1: https://lore.kernel.org/r/20260106-ltc3220-driver-v1-0-73601d6f1649@analog.com
+
+---
+Edelweise Escala (2):
+      dt-bindings: leds: Add LTC3220 18 channel LED Driver
+      leds: ltc3220: Add Support for LTC3220 18 channel LED Driver
+
+ .../devicetree/bindings/leds/adi,ltc3220.yaml      | 131 +++++
+ MAINTAINERS                                        |   8 +
+ drivers/leds/Kconfig                               |  13 +
+ drivers/leds/Makefile                              |   1 +
+ drivers/leds/leds-ltc3220.c                        | 557 +++++++++++++++++++++
+ 5 files changed, 710 insertions(+)
+---
+base-commit: 25025253476a64c186592d952c27f24bc3490e42
+change-id: 20260106-ltc3220-driver-f9ab6cc9d1e4
+
+Best regards,
+-- 
+Edelweise Escala <edelweise.escala@analog.com>
+
 
