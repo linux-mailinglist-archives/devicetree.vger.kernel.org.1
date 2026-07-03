@@ -1,182 +1,261 @@
-Return-Path: <devicetree+bounces-320075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320077-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JgPFIlClR2p0cwAAu9opvQ
-	(envelope-from <devicetree+bounces-320075-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:04:32 +0200
+	id ArZCL22nR2oYdAAAu9opvQ
+	(envelope-from <devicetree+bounces-320077-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:13:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBD477022A2
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:04:31 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B42797023FE
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 14:13:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chromium.org header.s=google header.b=cvjdqbMK;
-	dmarc=pass (policy=none) header.from=chromium.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320075-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320075-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=brainfault-org.20251104.gappssmtp.com header.s=20251104 header.b="NiCBiH/B";
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320077-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320077-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 707A4303CD3C
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 11:57:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D89C43002509
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 12:02:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C12D3CDBD6;
-	Fri,  3 Jul 2026 11:56:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C880E3B42F3;
+	Fri,  3 Jul 2026 12:02:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479563CC315
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 11:56:37 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783079798; cv=none; b=OcN19a1TjN5B5Lxy1tFokyl88MuYnuVkHWbRTqZDdIGss6a3H6AvlAbWuij4rCs+u4GFVlEO8/WAzC9DAxI17gnVA20ol/UPpBhr6ykSaS7+JtlKhNh9vBoFmweLxJvo84BuzAiKCXyVEGDBEZcV3VRS8jLlTVd9vaKUfOc6h2Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783079798; c=relaxed/simple;
-	bh=df+Oxwu59Tqkfv1QyLsVXk0WC83aGGx+cVeZR7rfgTc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ui+om6l1c1DCgqucCMr5R+WNOcSA9uUXBheU/DyOPMigUrpnzKI/uk5c5LClsOU5m+6lYa8XyW4KF28clM7CRpCJ9yYDQThLwwueLTwq7tcqqshGkph9JPjwhz3zeq9wJxDYFWsjbLyeU6RtU9UmsZwngUe1obIoJ6fhey7SRZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=cvjdqbMK; arc=none smtp.client-ip=209.85.216.48
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-37ff8e0ad0fso489071a91.2
-        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 04:56:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01DA9346AE8
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 12:02:06 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783080128; cv=pass; b=OJLllWzt8nY8EDi0MztfQWQZtewyGG0Wwlw8RLWsk4OTJkiJ9hp7kdUmg/9HKntIuOSunmChTjiAtIBQ41H40rSDdVuFG5FzAtMXneBMakFk22/AxuUiQ34aSs7h63/x9ApVZhROAKWUpiu8JbHOlXy4HhY4UjaiF+SaFhvq4Do=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783080128; c=relaxed/simple;
+	bh=SiZpwxNeV81OB5dUi2Jt9w+Gkx5HRWsxqL1aTClVneY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=T/jXsvUWet9NtrOMqq7AOvdoXM0fewlupYyRDJjPaZMtC08RC48kM7uolpC3yTwIjC6YsW54BtdGr3vnsVfGnly/M2rR0+b/acRJVJvLb/gOM8FTXyhoPxDG6unO/veD4a52XK2C4xU1yVdne25sCC2zuA8np1RvOS0kE12gR5I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20251104.gappssmtp.com header.i=@brainfault-org.20251104.gappssmtp.com header.b=NiCBiH/B; arc=pass smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-493bfe9f886so2680965e9.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 05:02:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783080125; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Zi7wyfp39z0S/sIGXCoLtDhZBSM6rjS9FeLroVhWg0/VHBn58k7bvnYwlEWHrvXDMQ
+         QyemcLQ5t2r9eu0hiUNlmFapFg9X5GA5QO1CWPoIaLOJVkVKfuhaO8SRm4dFdMYDdCFH
+         wsHiA4bUPTCv51SjXq6UqPJJ1GvuUYis6MZ0bJn5WgYUoERtYf+htHDWcbKVCyC3X4FA
+         smLP6/SrnLDgLzeK0iKsHIOV084mh3F0N+eihiWKfl4H3LsScmY1Qe3YyiediuAKozpW
+         oo751rDmy6A+vjuk4yUAIRp2wcfX99NZYwHkeHscDsa0QM3QI/joYvlixwtmrodgErWw
+         PgWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=bwDyQXTlq+/xEQtBMjWLe7Se3wIpqNvnPc/TahNVe6E=;
+        fh=GwPoXXn8tppGBFG4FpDXVHfgZYL7gZ+slQi4mV+GpeA=;
+        b=frPDo9pBKuGuUf5U6Ph6U5g0p6EDS7oDHwmJgiMboApVOeDGffmCQq8fMPF00iZR7w
+         gnspnaI6vTTIVCx/sd0M7qBu04YQYvS3dxZYNtklfm0tk9Y2y+hrg3PLB+3aW/yBYtnP
+         j/+lvccrfBi1GgK+lc/y6s21aUTsaHwO6WWRHFYgJpvKh8OCTYwpJ+AhzKFLFH/Rod3F
+         ZeF/jC2Pl2EX0kXCYPPin7qa70eZdcdePJYkosxYh6DeN5Icut1xM9aaE19BRnJDGsd9
+         ZuvlHRwTR8BDuZ4GOc9lhG5iEB4oid+Dr7KBEv8bJ+brRhLw+pNlmpF8KfpUbqgOCO0Y
+         6EyA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1783079796; x=1783684596; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=brainfault-org.20251104.gappssmtp.com; s=20251104; t=1783080125; x=1783684925; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+wQQi5qAJUnUkHX1saOq3zIx6e8dXlHzf8E6xF+VOzM=;
-        b=cvjdqbMKx81gRQXJnVcSuvVfcJjglCzgnvtA8W/kTXYzZraJKM3EvtzK6IHAqz035x
-         p6Q1M0zOE8wqFb44Ouv3Js+2FUY+/XnpbkSgJ0ORRt1pI5CqG4jpDeyJnhZzHYWRrPhk
-         jcsdOXNzQXg/GwkKjMzjy9zGapKYBFzH/7c7g=
+        bh=bwDyQXTlq+/xEQtBMjWLe7Se3wIpqNvnPc/TahNVe6E=;
+        b=NiCBiH/B259yFSGcdjT8VNG0//8lIx2Pc/XyimGP5VOO7BCNS87B1afEhBGAeMy/pW
+         Vo4yrXcZkxB0/WUUI9+lJVkJ6/4+mnVcbnsAFAWIwN4rZd4BU8jCIMfbRvwpsZMi6MQk
+         2jyznnfB48dzIX50mHa3yb9f+kQIzWgwCgBc5ZlQLaG+Zl2537rT6TFT/B8TjHufM7KY
+         W00DR6YY+h0f3Hsodp75bvTpcDmE5awDK/7NRxwlTiygl/WeVB167wKcKgNzt1a33eSb
+         gnJ2D7mARXdI5dADc9iv2u2rE7AJ9SXgGjLej7S8d5nfKVubyKyj3nSUNQcAFvKHxE3n
+         E+uA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783079796; x=1783684596;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20251104; t=1783080125; x=1783684925;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=+wQQi5qAJUnUkHX1saOq3zIx6e8dXlHzf8E6xF+VOzM=;
-        b=Q3JP7cd7fXrikQaCCk+By5QbF4FWDg4OASHP/oKba5qDp9TdtVExVdDNxPfHt8e3g8
-         At26BMHiCeX4ReQ88CP647C7Iq6vxIQ92rOLX6N21+KnOIrcsdBTLBHJuKtxDOwmf1n8
-         pWmC8AtJm6uw7fGE0d1zswZKNT97Be2YrpYK1Frqu2euOSGV4/ej1I8Ou1eC11MHYPmm
-         zxYLrUfcqNHCffwXQUi/CEsk3CiC/0RYUU16wSLCCPXlZ8YdrTqHDfOQ1BcbnogW6VL4
-         azovCAnoi43VNGAryohCRZw9juNFD30K1G7na6figpSJ7In5208exiHdlr8TX5nSjIjk
-         anBA==
-X-Forwarded-Encrypted: i=1; AFNElJ++/3xpX4VlTm5K5nTmtyp4Wa3Us98FHn1/QHqvJN50DDxKRhErC7cATFpFjER24wTL1nnMzijejw2F@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6wwqrEiI5KjilRVP55W24ChYgdXd5Sc88Eqi0gNeg02EpwtxV
-	i0w21hEQe0yRkBALJORlSaoi4InAm2m/ikS8+/YSb6gBJpHMHl+FSaPIMIhW9Ilv6wZVRwLTsQ5
-	qED0=
-X-Gm-Gg: AfdE7cl2RDU/btrWOEqZedsc1wTu86nyeGe3QPqdw9G51VA19giq680XVlgAlenHOv+
-	sUSeJzVSQhAGimdCZtvVd5xHUVT94rhGi39yKNhGjvmhUL4JV9KvcaD28CHYIV/9ySrhjo0OGp4
-	SRe5hT0gASiFsNbJNpnBGcHUQv7aP1mzUks2bmYfvwtrBPG8dlBY6w9YYQD++KNcfczY1ez6LVs
-	Z4KhrrJ5vA1jZe6BJB7eOlu7eF0VB8zosv2zq25RkDpLoPTuxLrpghKOzjg1r10kjxTl+ypnEDa
-	158brzh0XC8XsplmJ+tpvcwb5pN7X2YK574OeJuv4p9fqx153MuCmPc05PpHYz+FxeIt+hynFy3
-	TtlRv8X/5WXNGUaw7751IQs56vougvz0AaZFTt+lNOnk/qNY1hgBmipVlGIvVej8vn8nOsaXEQb
-	0TVH01DlNv6wv/tQrq+N8R/N9uNNVkk/Guu85kb+EemSchbQJIo1gNO8Q7JC2xxOV4zW+wiqrWf
-	VFVxymb
-X-Received: by 2002:a05:6a21:b88:b0:3bf:6222:2e7e with SMTP id adf61e73a8af0-3bfed0e254cmr11946730637.4.1783079795734;
-        Fri, 03 Jul 2026 04:56:35 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:7bc5:6c83:76cd:cbd6])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c9e8bd30ca5sm2569540a12.0.2026.07.03.04.56.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jul 2026 04:56:35 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Jiri Kosina <jikos@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	chrome-platform@lists.linux.dev,
-	linux-input@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	stable+noautosel@kernel.org
-Subject: [PATCH v2 7/7] arm64: dts: mediatek: mt8192-asurada-spherion: Add Synaptics trackpad's supply
-Date: Fri,  3 Jul 2026 19:56:00 +0800
-Message-ID: <20260703115601.1323491-8-wenst@chromium.org>
-X-Mailer: git-send-email 2.55.0.rc0.799.gd6f94ed593-goog
-In-Reply-To: <20260703115601.1323491-1-wenst@chromium.org>
-References: <20260703115601.1323491-1-wenst@chromium.org>
+        bh=bwDyQXTlq+/xEQtBMjWLe7Se3wIpqNvnPc/TahNVe6E=;
+        b=JhEuB90u0Kg7f4TEaMY53n81xh6njbI+Ic1LJAyI0CZetAtEqQ/TFu5f8EityCXBV/
+         qinSeFoWNiM6JjEbU37oNGEqdcRelC7NJZ6syUIfz/VzPQuM1yKkYiYd7zWZxtssNzh2
+         XUnzGWbP86qWuVl64ZkC3CrCp+9iU24yoo4naL4pmGMkIcBwLaRAggfN4S6XbvxOAVJ1
+         La1GFxzGcAn9Eb+1DVYSn/ZZFaZH1HjAxuYmCsX5mMT8QCF8csjEkI/Z7DxvgrNzmJf0
+         eEAsiFiq72/z+TeI7layFz54Zof+S/KTgARlf9Bw4fsz7DeUogLSswVA2xtiRJA6v08F
+         pUSg==
+X-Forwarded-Encrypted: i=1; AFNElJ8ZSVWFa+8/SyZXTwvAbyS4sArrBiqtElEzr7fDQ7y6CFhIsWwacGqbTTKM2lL4X9Bj+L6BkdRXxl/h@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLbRq7AF4RYTZHYApDL0omHX/Si3l32A+19ZNNY6wQnhUTOoN2
+	4hkFRj3J+yJeb8zcLBOS2sNgU6yhT+iVtwNZ4PbqTMAjRUbPh26ae3rxGzm/mk/2dG6g+a4nW1X
+	Ccj9BhG2iziorOnX8mjl5lAPtXPUDy/daR99FozfxeA==
+X-Gm-Gg: AfdE7cmXCW23qSiZHpFKkR7dEVRWs1m6Uux+MlOb388vKPhMWgkZ5JzpyTr1qGGIkGj
+	6ezpGETIZzI4rglz/rh1Bdp9JXX1pz0Y/D74KRm7kFWm2kgDy29+97hQ997AVpH4k405+wrcqTg
+	vBktVOQffRXgqoVBmOyxnfwIlOPUAfFk1h3nRAY4mBZwI0a7vwQLoWhD3i4VtHJKGU72EQRlOaO
+	/Qb9gJoWB5BMBcyWE7tBmcbi8zmLq09AF/RVXd40EIp5XXjgXDWJDGMnMhWfaFS5geoAj+UBGFp
+	9cFo8HRZ2rx0fQh477lVKYOhgYvWgsq+1CVT1jKnXLlNWRQNh+oGj4HvT2r4z4xGS2B5Trebg89
+	yTIZQBet/pTg609nUgcJxN39KZg==
+X-Received: by 2002:a05:600c:1988:b0:493:c84c:2b57 with SMTP id
+ 5b1f17b1804b1-493c84c2bf1mr66489165e9.29.1783080124943; Fri, 03 Jul 2026
+ 05:02:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260429125135.1983498-3-anup.patel@oss.qualcomm.com>
+ <BDD9553502347B02+ee3069d3-eb04-4a37-b364-107cf8d0653c@linux.spacemit.com>
+ <2026070316-surgery-unneeded-bceb@gregkh> <138BCDE3F4A1D624+2488a822-cf77-4155-8492-b8a1c47d5589@linux.spacemit.com>
+ <2026070300-submitter-humbly-833a@gregkh> <4A32964890BBF288+37eaa5a2-eaff-49c4-8501-2b02736f3584@linux.spacemit.com>
+In-Reply-To: <4A32964890BBF288+37eaa5a2-eaff-49c4-8501-2b02736f3584@linux.spacemit.com>
+From: Anup Patel <anup@brainfault.org>
+Date: Fri, 3 Jul 2026 17:31:53 +0530
+X-Gm-Features: AVVi8CcR6CoUoZAzLjAFLHFIn-Btp_hgZON7-FmGe_V0DS8PdhVFU56m1idXpx0
+Message-ID: <CAAhSdy2sfwaBQVif_N_Gk3yMs+0kqO-_PsDTicSNZW_Pez6Lbg@mail.gmail.com>
+Subject: Re: [PATCH v4 02/12] rvtrace: Initial implementation of driver framework
+To: Zane Leung <liangzhen@linux.spacemit.com>
+Cc: Greg KH <gregkh@linuxfoundation.org>, anup.patel@oss.qualcomm.com, 
+	adrian.hunter@intel.com, alex@ghiti.fr, alexander.shishkin@linux.intel.com, 
+	andrew.jones@oss.qualcomm.com, atish.patra@linux.dev, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, irogers@google.com, jolsa@kernel.org, 
+	krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, mark.rutland@arm.com, 
+	mayuresh.chitale@oss.qualcomm.com, mchitale@gmail.com, mingo@redhat.com, 
+	namhyung@kernel.org, palmer@dabbelt.com, peterz@infradead.org, pjw@kernel.org, 
+	robh@kernel.org, sunilvl@oss.qualcomm.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	R_DKIM_ALLOW(-0.20)[brainfault-org.20251104.gappssmtp.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-320075-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_TO(0.00)[gmail.com,collabora.com,chromium.org,kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:liangzhen@linux.spacemit.com,m:gregkh@linuxfoundation.org,m:anup.patel@oss.qualcomm.com,m:adrian.hunter@intel.com,m:alex@ghiti.fr,m:alexander.shishkin@linux.intel.com,m:andrew.jones@oss.qualcomm.com,m:atish.patra@linux.dev,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:irogers@google.com,m:jolsa@kernel.org,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:mark.rutland@arm.com,m:mayuresh.chitale@oss.qualcomm.com,m:mchitale@gmail.com,m:mingo@redhat.com,m:namhyung@kernel.org,m:palmer@dabbelt.com,m:peterz@infradead.org,m:pjw@kernel.org,m:robh@kernel.org,m:sunilvl@oss.qualcomm.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:bleung@chromium.org,m:tzungbi@kernel.org,m:dmitry.torokhov@gmail.com,m:jikos@kernel.org,m:andi.shyti@kernel.org,m:wenst@chromium.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:chrome-platform@lists.linux.dev,m:linux-input@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:stable+noautosel@kernel.org,m:matthiasbgg@gmail.com,m:dmitrytorokhov@gmail.com,m:stable@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[anup@brainfault.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-320077-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	DMARC_NA(0.00)[brainfault.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[brainfault-org.20251104.gappssmtp.com:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,noautosel];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,chromium.org:from_mime,chromium.org:email,chromium.org:mid,chromium.org:dkim,vger.kernel.org:from_smtp]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[anup@brainfault.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,oss.qualcomm.com,intel.com,ghiti.fr,linux.intel.com,linux.dev,kernel.org,vger.kernel.org,google.com,lists.infradead.org,arm.com,gmail.com,redhat.com,dabbelt.com,infradead.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,brainfault-org.20251104.gappssmtp.com:dkim,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DBD477022A2
+X-Rspamd-Queue-Id: B42797023FE
 
-The Synaptics trackpad, like the Elan trackpad option, is fed from the
-system 3.3V power rail. Add it to the trackpad device node.
+On Fri, Jul 3, 2026 at 2:31=E2=80=AFPM Zane Leung <liangzhen@linux.spacemit=
+.com> wrote:
+>
+>
+> On 7/3/2026 3:41 PM, Greg KH wrote:
+> > On Fri, Jul 03, 2026 at 03:32:50PM +0800, Zane Leung wrote:
+> >> On 7/3/2026 1:41 PM, Greg KH wrote:
+> >>> On Thu, Jul 02, 2026 at 04:19:53PM +0800, Zane Leung wrote:
+> >>>> Hi,
+> >>>>
+> >>>> Based on the current framework, I am concerned about how to support =
+RISC-V ATB and reuse the Coresight component (ETB/tmc/TPIU) in the future.
+> >>> That is very vague.  Please provide specific examples.
+> >> According to the /trace control interface/ [1] spec: "The ATB Bridge a=
+llows sending RISC-V trace to Arm CoreSight
+> >>
+> >> infrastructure (instead of RISC-V compliant sink defined in this docum=
+ent) as an ATB initiator. ATB Bridge is not
+> >>
+> >> needed for RISC-V only systems."
+> >>
+> >> For ATB Bridge, read trace using Coresight components (ETB/TMC/TPIU), =
+ so we need also ARM coresight driver in
+> >> RISC-V trace systems. Current framework seems to only be applicable to=
+ RISC-V only systems, and does not support
+> >> ATB and  ARM coresight use case like the K3 (K3 SoC contains RISC-V En=
+coder, Funnel, ATB, CoreSight Funnel, and
+> >>
+> >> CoreSight TMC components). For more discussion, please refer to [2].
+> >>
+> >>
+> >> [1]: https://docs.riscv.org/reference/trace-control-interface/v1.0/tci=
+_system_overview.html#atb-bridge
+> >> [2]: https://lore.kernel.org/all/20260414034153.3272485-1-liangzhen@li=
+nux.spacemit.com/
+> > So, what specifically does this mean?  Please provide review comments
+> > for the code itself.
+>
+> The issue I pointed out is not about specific lines of code, but about th=
+e entire Riscv trace driver registration and building a path from source ->
+> sink did not take into account the application of arm_comesight. the curr=
+ent patch set assumes a rigid, homogeneous RISC-V-only topology.
+>
+> Specifically, if we have ARM coresight components, how can we reuse them =
+like, funnel (drivers/hwtracing/coresight/coresight-funnel.c) ,
+>
+> TMC (drivers/hwtracing/coresight/coresight-funnel.c) , TPIU (drivers/hwtr=
+acing/coresight/coresight-tpiu.c) and so on based on the current
+>
+> framework.
+>
+>
+> >
+> > We write code for stuff we have now, today.  If future needs change, we
+> > change the code to handle that then.
+>
+> I believe that if the basic framework for RISC-V does not consider compat=
+ibility with ARM Coresight, once the framework is fixed, there will be grea=
+ter resistance to future modifications.
+>
+> > The only problem is with user/kernel apis, those need to be nailed down
+> > so that they don't change.  I can't tell here if you are only referring
+> > to the in-kernel stuff, or user/kernel apis, sorry.
+> >
+> > thanks,
+> >
+> > greg k-h
+>
+>
+> I believe that RISC-V tracing is coresight-alike, where have encoders/fun=
+nel/sink/bridge+coresight_comp.
 
-Also add the correct post-power-on delay, even though in practice it is
-not required. The Synaptics trackpad requires 100ms after power-on (or
-deasserting the reset, whichever comes later) to fully initialize. The
-power is always on and the reset pin is not routed out, so the
-implementation could try skipping the delay.
+I think you are over simplifying the comparison. At high-level only
+the topology of components is similar between RISC-V and ARM but the
+individual components have greater architecture influnce. In fact, we
+upcoming RISC-V self-hosted trace under development where both encoder
+and ramsink are programmed via CPU CSRs.
 
-Cc: <stable+noautosel@kernel.org> # Without driver changes only lengthens probe time
-Fixes: 925ebc0cd55c ("arm64: dts: mt8192-asurada-spherion: Add Synaptics trackpad support")
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
-I think this shouldn't be backported, as backporting it without the
-driver enhancements just delays the trackpad probing with no real
-gains.
----
- arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts | 2 ++
- 1 file changed, 2 insertions(+)
+The only thing which can be shared is a common trace framework (which
+is very small part of this series) but the component drivers, driver
+probing, perf driver etc will be highly architecture specific.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-index 163960f58db5..147a8e9a3a71 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-@@ -90,6 +90,8 @@ trackpad@2c {
- 		hid-descr-addr = <0x20>;
- 		interrupts-extended = <&pio 15 IRQ_TYPE_LEVEL_LOW>;
- 		wakeup-source;
-+		vdd-supply = <&pp3300_u>;
-+		post-power-on-delay-ms = <100>;
- 		status = "fail-needs-probe";
- 	};
- };
--- 
-2.55.0.rc0.799.gd6f94ed593-goog
+> I think we should abstract some of CoreSight's core logic so that it can =
+Both coresight and rvtrace can be reused.
+> General logic for building paths from source -> Sink and perf_pmu should =
+be universal in coresight/rvtrace and
 
+My suggestion is to take current rvtrace framework (which is minimal
+enough) and create a simple "gtrace" framework (aka generic trace
+driver framework) which can be enabled by multiple architectures. The
+RISC-V trace drivers can be the first ones to adopt this "gtrace"
+framework. As separate series, the ARM coresight component drivers
+gradually updated to support "gtrace" framework. This way only
+required stuff will be shared will be brought under the common
+"gtrace" framework.
+
+I will update this series as-per above suggestion if there is no objection.
+
+Regards,
+Anup
 
