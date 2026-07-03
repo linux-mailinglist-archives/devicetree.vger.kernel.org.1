@@ -1,217 +1,167 @@
-Return-Path: <devicetree+bounces-319976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319978-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id r1W5CQWFR2r+ZwAAu9opvQ
-	(envelope-from <devicetree+bounces-319976-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:46:45 +0200
+	id Z1ZRGyWFR2oOaAAAu9opvQ
+	(envelope-from <devicetree+bounces-319978-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:47:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC83700C8C
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:46:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF178700CB7
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 11:47:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=fairphone.com header.s=fair header.b=GQA4xqTn;
-	dmarc=pass (policy=quarantine) header.from=fairphone.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319976-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319976-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=C9D7+C5Q;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319978-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319978-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2AD63302B6DB
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 09:41:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 17B3A300B117
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 09:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D25B3B389A;
-	Fri,  3 Jul 2026 09:40:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75A463B27CC;
+	Fri,  3 Jul 2026 09:43:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 554973B3C17
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 09:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5926F3ADB98;
+	Fri,  3 Jul 2026 09:43:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783071640; cv=none; b=PZq/XeFBixJ//DiYVbAATTuGQ9TEjm0s3k2F1z7xDe/sazH+q27LKvJts7Nm7eVr3GFuCzJx1RG0C3JIOXJKMrM2eaYhv1HybbVKi3Y2DQRQEaW7R5TZ53xSCRxko/6hIyoOrRy9ceQfM6GDIsyMl6Cd0BcnMSxxzUBtW7JOvpY=
+	t=1783071801; cv=none; b=eoeMWn+EeW/LeVbr84iMDKjEgo2/++2ZQL64LSn4VAior3/FxqXXR+9IwN2VyEoyzPkEZMolPrCHukhDcqbjPyDkHQYbfGdlHiM98NjxG7DpaplWmBqngWOSSgBjI88+8AZkHo7igf8SDK8CTHTLU1wCNyR4xJ44sNzZK5jASt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783071640; c=relaxed/simple;
-	bh=Hspl+mbeRJE8hJkCAm/QgT5mMB+rSBNdrMJ0iv+GN7c=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=BhuObDPjOaHJVYG19DHj3RorNKXYKYacx8NceVrPuZAC1gSO4cR4/JrY4x5H9Nl3yfWyqqdKnqBW6qT3CJ/QD15xMOmx7XBuQPJaLpW2irsWtKHwoKzYKhYdaCSviG+dSX6oiHacfIp6EWTL3+7IVvXfqVfnL1Pcf0Pq2umiGi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=GQA4xqTn; arc=none smtp.client-ip=209.85.208.52
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-691c5776f95so693852a12.3
-        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 02:40:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1783071637; x=1783676437; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uNqqVjohsqY8yTYTK5W8wByaWx6IeZeY7y7Iq0rzlDE=;
-        b=GQA4xqTnFkpzDPCIRgb5oRLjafe008dwoncaTQsxIF+qyGj2znNJ901FOsvrBYh13+
-         j3Nch7FIIeIRSmxp1blPUr6thFcIf5UuxYUdoWN1Ktjye0R4uw9zcEaNvktd0pD88FEI
-         Edqaz6fCsVMdyWwWxqzspR49fh7xrZi9NEtir8ehGVMl7XN33l70gN2s3bB81+FMHlR9
-         BdUYvnfMgPOzbsd7jUm8+xZ+rT64N1C4mQYB3kMLHhgTe9NmRyhJJpztlDhlhtEAgZoa
-         2zSVxupAias1Z/jzMc3XbFaQpMkD0D3ME+/OUnRLICdhshyqmJhtl3eWlMZkhbycz5M2
-         u6mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783071637; x=1783676437;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uNqqVjohsqY8yTYTK5W8wByaWx6IeZeY7y7Iq0rzlDE=;
-        b=cryeJDRhoUxqsz2bDFgTSgE3bpeYO5P5koMRz17Dlb011GgLOz8iMJ+mkHY0mBJw9z
-         kU6DYzvtXodA0DS+nXA3rKGyKGg9teT1sMjuT2bEvhUnmqzwRI42LM9bQw/CZG9W9yM4
-         xBNLXvHMntoXMqH8WpJqqdmHo9hsfRCqVisSFHi0NoEn7LXDhuekaqpanaUCZuaVIa3l
-         BFVykuxt9BhBUS3ow0F/wP0xqR0POjBRb4ZOcQJS4ic+o8qEFUllqbUCu26Ppuwubvdy
-         j4rgAAnXjEDhVwLkCI06K9xITT3beSz4BOw18V1vjY3svcCw/veZ9JKbc8egndQ9SKAG
-         zZNw==
-X-Forwarded-Encrypted: i=1; AHgh+Rpb0SRo5Em0GV++x6LSxH+3KPvtfqh7+cCCD0ILLA8GyNrPMLlgVuQZuboF37zu4bLhttDZTyFMv+Vs@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgOIW3VlAmxkL+L0lv0ch+y9OA7+nSLMRjDrGIcgGQJzbEiMeL
-	d3NJuO9Nu0+UDNjL2OuEGorZe8NcCavTi7g9IlHMq5w+MdaCxgm05UzLJl8kYrEunek=
-X-Gm-Gg: AfdE7cnhvEC9btFhgDITMDPweZ8L/SvGwg4+beJ0ln3r4lKK2lqiQm+9200o/0yS0AV
-	gDXVrb3J2bg6wP4MZxiNOV9+9YeLa+1HhpQhb/trQx6Ag7RyqO2FYdjwnKk/MCtx+Ooj8GjyyiM
-	68zstx1vm0oBA9QRMsHScHl4Y8B+Hbe+KW/v5gxAP74Hi2+9qPD2VOj5uIsB4u10GyLC+9vLFR5
-	tfu2tKC0FVKF+sGf8NAJkg2gqPpMR8m8MD3mQjDxX4zu6SNrzAD3V97M61jK9e2TXXo+M/BYlSz
-	zUovR7efwYsOavCeoAjaoPlAsRtGzztAc7tt+czNh2IWLhMAd1BpOphy5gurWavpb2AqiOag+r1
-	K5MEMaBXFWEYA8jl6c+IRAwbmpmnuiazq/sGxDSE+J+MmqEVJfRXjPBRCmGwrSu51BZHTYvkHaq
-	4kzJhZhHVm4ePv8K+7VREjoXwqrLMuefhpJE5ELzH+bzJjOZyVW/Y48+/s7w==
-X-Received: by 2002:a05:6402:444a:b0:698:3b7c:7e42 with SMTP id 4fb4d7f45d1cf-6989f3ad97amr4246456a12.34.1783071636657;
-        Fri, 03 Jul 2026 02:40:36 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-698ad100004sm2179433a12.18.2026.07.03.02.40.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Jul 2026 02:40:36 -0700 (PDT)
+	s=arc-20240116; t=1783071801; c=relaxed/simple;
+	bh=VReNymzo98m7Fji3HDXDZ67V0GqnFqJYQX18Kxdj35k=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=V0PgD/aZj5P6ASoAc8UrC/CbG739aYxX1Xl3h2ZixDadnIYtx0MlUjoTfi3tjO3czw9SCaZPa9uad4DknTOdpP33iG4N0EfL+ERPW8XRYh+MbfPv45sW+XYMTOl5cW2Hnd3qtbif+nflmjJOdPDly+mdYFsRnha95y4xGDwXobM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C9D7+C5Q; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A4711F00A3A;
+	Fri,  3 Jul 2026 09:43:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783071799;
+	bh=Jl/LNX0F9c5ZLakltcdxkRYciVZAqidRH+eUQNM3t2s=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=C9D7+C5Q0gdfl7m1VND10s22intgyJT3XKAN5kYdO7kL73GTDOwJ07LLmRW7PTGo3
+	 VuIc3B4pB5Kd2Pe6zqvT0nQAqhufTgiAVt9dBuPgW2b8CXfuZs+fJUaDatfPjdc6Ae
+	 dhi7jYRLUfGyXSynFyKiHDGNlizp20A4aXwQxQxkGSnkhdlYsg1b0rR0H0MkxI4zVC
+	 QLgbV48qSBbz5kIJHncusJ4IM0y3FvhkUdfE5N3MlYePRfsQzuz3mAal5FYXOOgNmV
+	 z4ioTcAU9v94PJpLh6iiCxTaLsx8mHaLD63VXpWGExklA3P+ItS+u1hI2W7AaMQ9CJ
+	 zwMP7vo3Bn1Bg==
+From: Mike Rapoport <rppt@kernel.org>
+To: akpm@linux-foundation.org,
+	Andy Lutomirski <luto@kernel.org>,
+	Borislav Petkov <bp@alien8.de>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Sang-Heon Jeon <ekffu200098@gmail.com>
+Cc: Mike Rapoport <rppt@kernel.org>,
+	linux-mm@kvack.org,
+	devicetree@vger.kernel.org,
+	driver-core@lists.linux.dev,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Len Brown <lenb@kernel.org>,
+	linux-acpi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	loongarch@lists.linux.dev,
+	WANG Xuerui <kernel@xen0n.name>,
+	x86@kernel.org
+Subject: Re: [PATCH v2 0/9] treewide, numa_memblks: remove redundant work during NUMA init
+Date: Fri,  3 Jul 2026 12:43:09 +0300
+Message-ID: <178306815065.2173096.9480193260074524906.b4-ty@b4>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260703041329.2797584-1-ekffu200098@gmail.com>
+References: <20260703041329.2797584-1-ekffu200098@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 03 Jul 2026 11:40:35 +0200
-Message-Id: <DJOU552LDYD1.96KUPV8JI0B5@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Luca Weiss" <luca.weiss@fairphone.com>, "Srinivas Kandagatla"
- <srini@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
- <broonie@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai"
- <tiwai@suse.com>, "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- <cros-qcom-dts-watchers@chromium.org>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-sound@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH RFC 0/2] Correctly use TX macro v9.4 for SC7280 / Kodiak
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260526-sc7280-tx-macro-v1-0-1aad6900fec0@fairphone.com>
-In-Reply-To: <20260526-sc7280-tx-macro-v1-0-1aad6900fec0@fairphone.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319976-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:luca.weiss@fairphone.com,m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:cros-qcom-dts-watchers@chromium.org,m:~postmarketos/upstreaming@lists.sr.ht,m:phone-devel@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[fairphone.com,kernel.org,gmail.com,perex.cz,suse.com,chromium.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:akpm@linux-foundation.org,m:luto@kernel.org,m:bp@alien8.de,m:dakr@kernel.org,m:dave.hansen@linux.intel.com,m:gregkh@linuxfoundation.org,m:chenhuacai@kernel.org,m:mingo@redhat.com,m:peterz@infradead.org,m:rafael@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:tglx@kernel.org,m:ekffu200098@gmail.com,m:rppt@kernel.org,m:linux-mm@kvack.org,m:devicetree@vger.kernel.org,m:driver-core@lists.linux.dev,m:hpa@zytor.com,m:lenb@kernel.org,m:linux-acpi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:loongarch@lists.linux.dev,m:kernel@xen0n.name,m:x86@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[linux-foundation.org,kernel.org,alien8.de,linux.intel.com,linuxfoundation.org,redhat.com,infradead.org,gmail.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[fairphone.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	FORGED_SENDER(0.00)[rppt@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rppt@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-319978-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,fairphone.com:from_mime,fairphone.com:email,fairphone.com:mid,fairphone.com:dkim]
+	TAGGED_RCPT(0.00)[devicetree];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3BC83700C8C
+X-Rspamd-Queue-Id: BF178700CB7
 
-Hi all,
+On Fri,  3 Jul 2026 13:13:20 +0900, Sang-Heon Jeon wrote:
+> Every existing numa_add_memblk() caller passes a valid node id and
+> separately marks that node in numa_nodes_parsed with node_set(). In
+> addition, numa_nodemask_from_meminfo() recomputes the same "nodes that own
+> memory" set from numa_meminfo, which numa_nodes_parsed already contains.
+> 
+> This redundancy implicitly depends on the callers' node_set(). So, before
+> removing the redundancy, make numa_add_memblk() set the node in
+> numa_nodes_parsed explicitly. Then remove the per-caller node_set() and
+> numa_nodemask_from_meminfo().
+> 
+> [...]
 
-On Tue May 26, 2026 at 5:29 PM CEST, Luca Weiss wrote:
-> With the v9 data, that sc7280 is mistakenly using, the controls will
-> have completely wrong names and using wrong code paths that do not apply
-> to TX macro v9.4.
->
-> This is an RFC to get some feedback how to continue.
->
-> 1. We update the "qcom,sc7280-lpass-tx-macro" compatible to 9.4, break
->    unchanged dtbs (the sources are updated in this series) and break UCM
->    until it's updated.
->
-> 2. We add a new compatible "qcom,sc7280-lpass-tx-macro-fixed" - name is
->    just a suggestion ;) - and make sure existing boards with audio keep
->    using the old "broken" compatible. This should be completely
->    backwards compatible, since we keep the existing compatible working
->    as-is.
->
-> 3. We add some dt flag "qcom,use-correct-tx-macro-version;" and handle
->    the rest similar to option 2, by opting in boards to the updated
->    behavior.
->
-> 4. We keep everything the same. We know it's wrong, both the
->    audio-routing in dtb and the controls in UCM have incorrect names,
->    but it's working apparently.
->
-> Please let me know your thoughts.
+Applied to numa_memblks-redundant-work branch of memblock.git tree, thanks!
 
-Any feedback on this series? I'd appreciate it!
+[1/9] mm: numa_memblks: set numa_nodes_parsed in numa_add_memblk()
+      commit: abdbd8329281f40afd381346410d6d43604af82c
+[2/9] ACPI: NUMA: remove redundant numa_nodes_parsed node_set()
+      commit: 7cbdade40fb8f440c13ccd7a02d104bf32285187
+[3/9] of/numa: remove redundant numa_nodes_parsed node_set()
+      commit: 3b1e5d902dfa832e4b175cb1f5a000236d45ceb5
+[4/9] x86/numa: remove redundant numa_nodes_parsed node_set()
+      commit: 63fa742bae02f0d2ffe95ff540a51837815abc5c
+[5/9] arch_numa: remove redundant numa_nodes_parsed node_set()
+      commit: 8b9cecbdc78c5a6cfaaf3b00ce7ebe05cf5417e7
+[6/9] LoongArch: remove redundant numa_nodes_parsed node_set()
+      commit: 3aeac07c5b1c3399487f4b38182f8cfbc3dbbd53
+[7/9] mm: numa_memblks: remove redundant numa_nodemask_from_meminfo()
+      commit: a9bafc1832d2db97813069823821ed333b8ecda6
+[8/9] arch_numa: remove redundant node_possible_map assignment
+      commit: f5a77a50a14dffb659ee8f550c824f8280e37fce
+[9/9] mm: numa_memblks: use numa_add_reserved_memblk() in numa_cleanup_meminfo()
+      commit: e55424c84afd48aa2f0f761ae0c006128ef541cf
 
-Regards
-Luca
+tree: https://git.kernel.org/pub/scm/linux/kernel/git/rppt/memblock
+branch: numa_memblks-redundant-work
 
->
-> As a bit of a note where I'm coming from, I'm working on microphone
-> bringup for qcm6490-fairphone-fp5 where so far we've been using
-> qcom,sm8450-lpass-tx-macro to get the correct control names. I've tried
-> reverting to sc7280-lpass-tx-macro, updating audio-routing in dts and
-> UCM to the v9.0 names and it does seem that microphone (AMIC1) is
-> working with that, but I'm not particularly happy about leaving the
-> wrong control names everywhere, so I'm happy to try and untangle this
-> situation.
->
-> I'm also not sure where this v9.x actually comes from, maybe I'm lacking
-> some documentation, downstream kernel only refers to Bolero v1.x and
-> v2.x so these seems to be a completely different versioning system.
->
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
-> Luca Weiss (2):
->       ASoC: codecs: lpass-tx-macro: Use correct config for sc7280
->       arm64: dts: qcom: kodiak: Fix up LPASS TX macro v9.4 control names
->
->  arch/arm64/boot/dts/qcom/qcm6490-idp.dts           |  2 +-
->  .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     |  2 +-
->  arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts         | 22 +++++++++++-----=
-------
->  .../dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi   | 22 +++++++++++-----=
-------
->  .../dts/qcom/sc7280-herobrine-villager-r1.dtsi     | 22 +++++++++++-----=
-------
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           | 22 +++++++++++-----=
-------
->  sound/soc/codecs/lpass-tx-macro.c                  |  9 ++-------
->  7 files changed, 48 insertions(+), 53 deletions(-)
-> ---
-> base-commit: 550604d6c9b9efc8d068aff94dc301694a7afdee
-> change-id: 20260526-sc7280-tx-macro-1179d786af1f
->
-> Best regards,
-> -- =20
-> Luca Weiss <luca.weiss@fairphone.com>
+--
+Sincerely yours,
+Mike.
 
 
