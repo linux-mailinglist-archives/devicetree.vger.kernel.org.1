@@ -1,141 +1,174 @@
-Return-Path: <devicetree+bounces-320279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320280-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pz1sCiD7R2rZiQAAu9opvQ
-	(envelope-from <devicetree+bounces-320279-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 20:10:40 +0200
+	id A5LdNxv8R2osigAAu9opvQ
+	(envelope-from <devicetree+bounces-320280-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 20:14:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E83704C6D
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 20:10:39 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EF2E704D00
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 20:14:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=I19Du1Fw;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320279-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-320279-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ra4xy5wv;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320280-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320280-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 66534303EB21
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 18:10:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EFE7030317EE
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 18:10:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 925AA3126B9;
-	Fri,  3 Jul 2026 18:09:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20EAF31354C;
+	Fri,  3 Jul 2026 18:09:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6204731064B;
-	Fri,  3 Jul 2026 18:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D69530B53A
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 18:09:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783102165; cv=none; b=Vz6vZxVNeI+8o6/NDcT8Iw+DuAxTvLnXleHwG0ToZjZLcO+FvAWJwwaxgCg4N6+9UcyrB9kj4uiV4OM8i/2R3zAX6Pq2xVzHW2lsh8lmT2y46XwGJmQZrK4srzx7nnv32K4u61y8ursIr7o5Ek/V3aYarMn012da22lY5l6GUHI=
+	t=1783102194; cv=none; b=riEy8xrpLAhUkfoijscCHSQC2HKeo7LOhlp51sQiVYGhP+aJPP7q/7JbPGfXOhKKwcZdgyR3leFdWZkIBmaWA86/KWRzT2ZfAk3a1gPCyH27MqDuoWt/d6XY0IE4i4FWmdKSnd9ih/cXn2wFd60Iba7hny0ZLdFIklp+z7w8haQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783102165; c=relaxed/simple;
-	bh=yNA/4HKAUUc0vxBuSIvnW8HtCeJPKyqgojGJ2iyx/fE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M7W7jEkT4OP6RvRRC4pyaXB+0Q7KYBvYiVIxg50toQ10/raVHD1BZJ0JSLH6eRN7YEjEkXaBrRIecG4nXVDgiD3Ht7OYjpnJVDszRBX8Ikkinn8hB6DoE1A86UVQVTHNrxelpEtS7FRekH6kB+uHrSaZ5cPk0vnV/CBWbf0t8OM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I19Du1Fw; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDAB61F000E9;
-	Fri,  3 Jul 2026 18:09:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783102164;
-	bh=Gt1g2jGABpVjMdY1s+MJCjyBjm5LGxSMGoVhyMP1AGQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=I19Du1FwDB2Llf3gWLIuHPsDVsFO4mUY4KeLxA/YCmtIxQOPyBIcStJLtFMWdea6L
-	 Npb2EwMrm5ysOfoamdIxIQl9W4izy8AuhCsIYu+t+Vq5ktTkE7ASJ//xroMibsn7zG
-	 mNe7ADxP5Y3IdCER5QaDICms0DIey2wJbz/7MXp9e8evZGZzDkZt4meqRpspl3x7wY
-	 aGzO4BY/xGPvjwCU9AZtHd8skoptWt4vuj65wN44akjalVEaKkiEyZ6azORcR5dwff
-	 kB/LzJeHS+qap8ULdKfVyhg2Xlkl48yYUX6nsuEzXhDg60aphYXDohdGxbYyEDgD80
-	 yn6v7SQDBI1/g==
-Date: Fri, 3 Jul 2026 19:09:20 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar via B4 Relay
- <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp
- Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, Shuah
- Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>, "Gustavo A.
- R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH v6 13/16] iio: frequency: ad9910: add output shift
- keying support
-Message-ID: <20260703190920.27adb87c@jic23-huawei>
-In-Reply-To: <20260618-ad9910-iio-driver-v6-13-79125ffbe430@analog.com>
-References: <20260618-ad9910-iio-driver-v6-0-79125ffbe430@analog.com>
-	<20260618-ad9910-iio-driver-v6-13-79125ffbe430@analog.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1783102194; c=relaxed/simple;
+	bh=tgraSq/9gwcx1TlvQJClsEB9nYR8gJqZ8hIiRgK1PwI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t2VzATi1MqFsQ34QLXhRWg5iRBSuV4ufqRsUQ2ji8zjy5TF9YqwjqulVrCQ2NlpmDUpVaRjVx3o2PeNWFxYkF1N3erALe7xhjCkrp5+WHOm1s/h7Jd1E3K0lzeYmmHCFOoFCYh7nxLrF3GMlvrY6j0wvqcPh5Wq0zpP4hz/Lff8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ra4xy5wv; arc=none smtp.client-ip=209.85.128.41
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-490cf3000f0so7495185e9.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 11:09:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783102190; x=1783706990; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=v0DdjgoNvkE0UKI8hOQQ2MWCAbcQBGlfDeboRpCm0gA=;
+        b=ra4xy5wvOi/TPR2Z34MK32O/ruNxzV+1v6h5iMDy1P1Fn3UGUdPZM2687Pony5MH/s
+         WLLI7YRHTn4SPDcZsIu7rwolyAPhKocKplLXYQIeCbqypXDo9Bgn9zyBZg+AYgdPS3c1
+         aC0uv6QHm9h7b6sKySLAA0Ho1VbwhCEAwnI9dTQ4gsjtlUt+MTijdQasxwuPvJmyQaOV
+         k9IObRwH0OUTZ17q3WKTOsLRgxAQMxGvzdvs/u9wU4so5i/GhP1eYPxkJggBq5exxNCC
+         umrd9HSyTHQypGHWdLak08XO0Qr3hi3XOCH5195z4JS1UN6UInIl2mW0V978DqbgDTOT
+         D3vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783102190; x=1783706990;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=v0DdjgoNvkE0UKI8hOQQ2MWCAbcQBGlfDeboRpCm0gA=;
+        b=X/3t1fD5JTcbE9qkc7ONCJLNaETwdZ15iaDjl/y6vj0hR/V5oqj0NbPJBsZyIRpzvT
+         Bg2HWWaj3/GNM2fdONC/ngStJ/zMB5zMlC810htsU7pIu1xrRa4D8mCy+wvYrUExo+UK
+         XcxXohR3ulLlf3kGD+MGi9djc0H7Xw2/6EL4/BYf3ZYPQOYDpW+ZlUIQg/crBB8WJ5Dh
+         DQM3pwBENY8F77Jtj35gnMwVb8ShqICPpP5Isn0u8JBxB4kX1bQndPc0U9W1Ex9I8oM6
+         wiyeWV5cWTFMdpQ18DYMZpRX/6ltbN184MMOuU0ahjfagmP2cPgpdi6Y3ZpbyMbAxxZW
+         BBXg==
+X-Forwarded-Encrypted: i=1; AFNElJ+N3PaAYypSlP2sKlOI1ooHynAyOKiLi9cfxxkZDX0VjppfmUFlnF57dZicVYjcdSFjsfCxBKlYC4sv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzL6fPDV0y9z/0ZKgpGVIUfDebpgxC7KlcHCwro2sXISKCuzpTD
+	3hQumMdkedXvsUg9Y5ZcNI6955X4TiXlWOWr92arT+gIRW3AAaKnOXFw
+X-Gm-Gg: AfdE7cmcdIuiHzhT/hYmGAndmr4/Av1pIzQTrpoNSA1uAbtm2s8NOsFgfDzv9KWJ3Cg
+	vYA4l7zK6Hxy81cpfE52aTZFgOG8OXeYYSTyl3Zrw+6sBxZsL3ec9ljp0tzW+ynI1ev/gz5hIAc
+	4jCB3bS1wyz1zZmLNS0rapnaPWI3EoIjbRTxlwpERFCE0sTxvimfOFteFMS1zbEgTzbtaZcXTqk
+	1hDDW59Kcix2hZGPYVHeXrgHsll5K5CZ3Usl3pxkS3B0gDPbeTvp+kPRcWPk4wUSQElMdLNiNv7
+	VpJJvgIwhvrrDDr891I/ZG+eJxoZfd8oYHB4O1Lt6BfXnFp0mqtzQ9pFDXvHJv59sOnFE58vJJr
+	Sfk0sWdZZkgFQolAgIcdJzpBXVd3tYui4WsEy70vXgznFDVy7e7QPwnigKw3wOnFJWHiCfWkKbq
+	qdnNK78lSq9muGOGQ5p2v6A5gwcGtM/4tq/xErl8l8ELwp3r8THATK9yrRBhkpRceVJoe7zGcIj
+	Qk/8hVF
+X-Received: by 2002:a05:600c:314f:b0:493:b2c1:b2f9 with SMTP id 5b1f17b1804b1-493d11cf274mr4122605e9.8.1783102190297;
+        Fri, 03 Jul 2026 11:09:50 -0700 (PDT)
+Received: from [10.128.11.240] (195-23-151-163.net.novis.pt. [195.23.151.163])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa0f214d2sm1044214f8f.33.2026.07.03.11.09.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Jul 2026 11:09:49 -0700 (PDT)
+Sender: Julian Braha <julian.braha@gmail.com>
+Message-ID: <8a418031-4bfc-4212-a7e7-0d88aa4621c7@gmail.com>
+Date: Fri, 3 Jul 2026 19:09:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 03/10] soc: qcom: Add QMI TMD support for remote
+ thermal mitigation
+To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>,
+ Amit Kucheria <amit.kucheria@oss.qualcomm.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-hardening@vger.kernel.org,
+ Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
+ Casey Connolly <casey.connolly@linaro.org>
+References: <20260703-qmi-tmd-v4-0-3882189c1f83@oss.qualcomm.com>
+ <20260703-qmi-tmd-v4-3-3882189c1f83@oss.qualcomm.com>
+Content-Language: en-US
+From: Julian Braha <julianbraha@gmail.com>
+In-Reply-To: <20260703-qmi-tmd-v4-3-3882189c1f83@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:devnull+rodrigo.alencar.analog.com@kernel.org,m:rodrigo.alencar@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:devnull@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320280-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:gaurav.kohli@oss.qualcomm.com,m:andersson@kernel.org,m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:daniel.lezcano@oss.qualcomm.com,m:amit.kucheria@oss.qualcomm.com,m:mani@kernel.org,m:konradybcio@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:cros-qcom-dts-watchers@chromium.org,m:linux-arm-msm@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:manaf.pallikunhi@oss.qualcomm.com,m:casey.connolly@linaro.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-320279-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B9E83704C6D
+X-Rspamd-Queue-Id: 1EF2E704D00
 
-On Thu, 18 Jun 2026 14:27:29 +0100
-Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
+Hi all,
 
-> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> 
-> Add OSK channel with amplitude envelope control capabilities:
-> - OSK enable/disable via IIO_CHAN_INFO_ENABLE;
-> - Amplitude ramp rate control via IIO_CHAN_INFO_SAMP_FREQ;
-> - Amplitude scale factor readback via IIO_CHAN_INFO_RAW (ASF register);
-> - Automatic OSK step size configurable through the raw_roc extended
->   attribute, which allows for selectable step sizes in raw units:
-> 	- 0: no step, means manual mode (NOT pin controlled)
-> 	- 1: I_FS / 2^14 step, automatic mode (pin controlled)
-> 	- 2: 2 I_FS / 2^14 step, automatic mode (pin controlled)
-> 	- 4: 4 I_FS /2^14 step, automatic mode (pin controlled)
+On 7/3/26 06:03, Gaurav Kohli wrote:
+> +config QCOM_QMI_TMD
+> +	bool "Qualcomm remote subsystem TMD" if COMPILE_TEST
+> +	depends on ARCH_QCOM
+> +	select QCOM_QMI_HELPERS
+> +	help
+> +	  This enables Qualcomm Messaging Interface (QMI) based Thermal Mitigation
+> +	  Device (TMD) support for Qualcomm remote subsystems. It manages
+> +	  TMD messaging and handles QMI communication with remote processors
+> +	  to exchange mitigation state and apply thermal mitigation requests.
+> +
 
-Trivial but good to tidy up formatting. Space after /
+QCOM_QMI_TMD can trigger an unmet dependency and build failure due to
+selecting QCOM_QMI_HELPERS, without ensuring NET is enabled:
 
-> 	- 8: 8 I_FS /2^14 step, automatic mode (pin controlled)
-> 	- 16383: I_FS step (max), manual mode (pin controlled)
-> 
-> The ASF register is initialized with a default amplitude ramp rate during
-> device setup to ensure valid readback.
-> 
-> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+WARNING: unmet direct dependencies detected for QCOM_QMI_HELPERS
+  Depends on [n]: NET [=n]
+  Selected by [y]:
+  - QCOM_QMI_TMD [=y] && ARCH_QCOM [=y]
 
+- Julian Braha
 
