@@ -1,335 +1,196 @@
-Return-Path: <devicetree+bounces-320314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320316-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PNdBB7kASGowjAAAu9opvQ
-	(envelope-from <devicetree+bounces-320314-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 20:34:33 +0200
+	id oj18JmULSGqakgAAu9opvQ
+	(envelope-from <devicetree+bounces-320316-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 21:20:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA0C704F58
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 20:34:32 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADBC0705145
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 21:20:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Hh7LE2Bx;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320314-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320314-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=Nvidia.com header.s=selector2 header.b=NQKioJ6w;
+	dmarc=pass (policy=reject) header.from=nvidia.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320316-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320316-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E790F30547EE
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 18:31:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BD405303DCBF
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 19:19:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 709302F9D89;
-	Fri,  3 Jul 2026 18:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA3632ED21;
+	Fri,  3 Jul 2026 19:19:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010005.outbound.protection.outlook.com [52.101.201.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23E28211A09;
-	Fri,  3 Jul 2026 18:31:03 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783103465; cv=none; b=ke0lzUYj3q+V4a8rpcXiDguVgbcvBAL5IZZck6qs4YLaOpBarPqvq+uSiGlka1677Po2ZJtSUwmUYXus44SIhLgTVBeQnjtw4ty+qFBxG8AIHRLhdhVquaICA2Pdyx/L4BuAoG3ZNIwXvlAsMMkynyGKLn0U0gggBxfnaKvbcYs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783103465; c=relaxed/simple;
-	bh=yhdnVhATfUwD1M3Ikk0EG9oJWo47ExKIa5EBNyHKoiA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mNJMdQv1m3COBTFkQpGfyyRm4g9C26TlJMtps8oTv1xApHoVHM0dO3byXLQXnvenrm82sTFWYV9jeuWpdDEZoj0U6FBJDH9JQ9jNFNEXTv9GRdo8XnkNLZf3mNpvi/g7RL0aj008zfWce2cu+zkLrQDrUwVR7ErlgbZ4xVgv5cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hh7LE2Bx; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E874B1F000E9;
-	Fri,  3 Jul 2026 18:31:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783103463;
-	bh=KN5gnCrTvXlQKADtvfFNfjZWzryi8/4lXgAOtCX+ku8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=Hh7LE2BxsISAzUMxnMRULUY6kWlb20xxmjlyKM50W1ZgFaRK1dDZ5/Z1Zi1M4mnWJ
-	 SZFMTPwH8by+yiGQQb98T/Te5OMVPHKS9932Tn2aZuQZp1py9dcSVPXOZ5dUsAlRNq
-	 u2ANd4HGKHel/vm4hqFSoK4fnZuQ5k6s1b+IVEQfmq3TL/lXmDsAhPWCH5jDYhiE1f
-	 S+y1i6J2i/5pkiGQLJey7u1sxahFR+TdWwF45UXxSnJ/4iJ8VyH8rVhHw766gerB4+
-	 BCXe1ogJFIFhssFCnLJQzP6N3rdfJBLbC/b8sySgiMo/JK60EtYJh2zI84ghLlzVe/
-	 yaAkoCs8n1a3Q==
-Date: Fri, 3 Jul 2026 19:30:59 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar via B4 Relay
- <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp
- Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, Shuah
- Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>, "Gustavo A.
- R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH v6 16/16] docs: iio: add documentation for ad9910 driver
-Message-ID: <20260703193059.4deda617@jic23-huawei>
-In-Reply-To: <20260618-ad9910-iio-driver-v6-16-79125ffbe430@analog.com>
-References: <20260618-ad9910-iio-driver-v6-0-79125ffbe430@analog.com>
-	<20260618-ad9910-iio-driver-v6-16-79125ffbe430@analog.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4E5332BF51;
+	Fri,  3 Jul 2026 19:19:30 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783106372; cv=fail; b=Zc1f6uUzZLXsSTnpnPNrFx6Hhgag7Y1ve/c2jKBXvmff23xCHAlfdfPopz4VPegT8tA92E06EusXmpsj7pAR3hpev6Jq1rQuIfV8WsGt8obXlY5TD+CL3G5Q2MxTnIw95SOcxdtjcZmMRTIok7q3x/EooYV0C/dlFYzMYICd3F4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783106372; c=relaxed/simple;
+	bh=FCpZMMa0OVgbvgOUdgFCBBG+u4dqHcKbm+kl/vb0nWs=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=il9QvUYNDEC+SgrUZ6gJ5w0b0WbpLkJnz1XwdnSw43atSgdY/2JbZt+HvtJhrW3C3XEPZlR+VyOVYM1hzE+Ji34QvIwVsOmAwsM8CBzGGTMIk58A9iVE8Ww9ClPYwC3u4F6LEKBNdt6Vq1B/o3ouk/e5N5hhG0rmzU4+MwRpNgI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=NQKioJ6w; arc=fail smtp.client-ip=52.101.201.5
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jaCsoVEVwsmpN63QHj1bvjUCe44JABlH6QAw94SKBt6x1wJoLiCVWYTHQTlK2xSmI973zUU/L3tfhNpxEMrhLuG7krI0fEDAQn1Otf+Xay2iv+HZgQFHawrFxc6stFHxZAXQaXeYz/4cJRe6DhYa9o5vu6pfiTrouAPFaKUi/XfHrWvC2a1Ec999OqXX/oFpcNRUhvvyWsBg3y1O1Ek2qfl+UQ+/kLzjg5Z3WuoIkQJWvqtIYTFzmfXeDbR2QxQWcdIICOwMeTKuIGIt3g+uPT2DXIRbQuGUMH7JK3Fdvy8rldB28eGVbA1JOmQNht/sn1Q7fxpZcfXwJ41z5Sy33A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FCpZMMa0OVgbvgOUdgFCBBG+u4dqHcKbm+kl/vb0nWs=;
+ b=sECDTfAf3WyU5YRx7dYMhTVJh9j7ieAOq3lZLfFEc0dhCf2NA3cev0wz0Ys7sNURuwsCHGLuITs2CDaQydG+9RefVp0ZMAYTZvABPPHOylDPoFsy0ShfMzQHMgjwkrAVSpQI5YinZOTMBth4jWOOBQuvEhQksF3yZqAGYSo+W6sbHVXdqZ+ph10r+yNS7luAV1Qn4B0vTrdzg/bVRAjACoCbPMVfPJnZIzhqIPHxvMCtLzXNuM7GxntvIOIDRJHeRB30pGMElXbq6GcEQY7kdHp/9qkDKkAQLxft16QzmVvYK15efEc0qG6SVlzoWfK8klRmjpT+qI9Kb3PJcL8xSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=lists.linux.dev smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FCpZMMa0OVgbvgOUdgFCBBG+u4dqHcKbm+kl/vb0nWs=;
+ b=NQKioJ6wVh5ygHJG+VifoXcrctwuTkHg+b/G9JjTccPFyaNMZtiaVA6XV8XR5jzkwBC1Z25esUzaxNTJuDvEHADTp5te99LfnRoX7TBnRHA9bKrjfoEnrGERfA35RJ0u/z9ehKawcAODumt/eUWSIchnRIS+DNfkIzyx8mVZcFAmMTh9O69EvEq6dFQ4W2YC/0YyHR+GHrNfhUAbtoYELlnwOPeCCflqLF3HHpfFjhdEqjVaulKMjpIR0g0TFippvLZ+gn1CjZSVM3P+Vy4XomMl8ywlTdtZnZPOUvGbhlpISZhp4+QHOfTVKyC8UZH2Hj2fccHBzNCgKF65BeN0cA==
+Received: from BN0PR04CA0094.namprd04.prod.outlook.com (2603:10b6:408:ec::9)
+ by DS0PR12MB9447.namprd12.prod.outlook.com (2603:10b6:8:1b4::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Fri, 3 Jul
+ 2026 19:19:23 +0000
+Received: from BN1PEPF0000468B.namprd05.prod.outlook.com
+ (2603:10b6:408:ec:cafe::ab) by BN0PR04CA0094.outlook.office365.com
+ (2603:10b6:408:ec::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Fri, 3
+ Jul 2026 19:19:23 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ BN1PEPF0000468B.mail.protection.outlook.com (10.167.243.136) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Fri, 3 Jul 2026 19:19:22 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 3 Jul
+ 2026 12:19:14 -0700
+Received: from nvidia.com (10.126.231.37) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 3 Jul
+ 2026 12:19:12 -0700
+From: Jacky Huang <jackyhuang@nvidia.com>
+To: <sashiko-reviews@lists.linux.dev>
+CC: Jacky Huang <jackyhuang@nvidia.com>, Andrew Jeffery
+	<andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-aspeed@lists.ozlabs.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add NVIDIA VR-NVL BMC
+Date: Sat, 4 Jul 2026 04:15:35 +0900
+Message-ID: <20260703191604.2238473-1-jackyhuang@nvidia.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260702171315.921CF1F000E9@smtp.kernel.org>
+References: <20260702165524.2168091-1-jackyhuang@nvidia.com> <20260702165524.2168091-3-jackyhuang@nvidia.com> <20260702171315.921CF1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN1PEPF0000468B:EE_|DS0PR12MB9447:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90950387-dc3c-4cfd-4a25-08ded937fd5e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|23010399003|1800799024|82310400026|36860700016|4143699003|11063799006|22082099003|56012099006|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info:
+	PmdU3gEpfg61ICveKgwWAZUNcfIPnDu41YdVdiGgBMPBPsWzyxwCZlpsDBOJR8NfRdpYgHAVJMPrle1urLURIuH+dpKphs1jwmGy2OoGoVG8PCUqdhLuItsN+zAggmgWobHunBssv0g7bpH8xU4aK5BlfdtPg5PgZDvXd9mbg+ZNfKbBeAPKuut8+OAXgykOeQwL8Ztfx3QrgcbvRUNzjeKm1927e0XekChVI1wadn35ecdDz+uB14iwB7RbM4SRsyEns+CEue4GPnBVm47KSvjE2JGxxrxga6DIYe78dPKmPVr+gVXOOlGrzulXhQt4rPHAzt1Fp+HLBMVW+fmbL8dqsSRNCM9h2sXXkQJhlYJR0S/VtdNSFya8nl55LzxkrmyAJQNkkVXIR6thpTWPoyvJde5ZRqX6eodHwPk/3n+TSCv3klOboEv3cBFa2dkNrJrSpTawgx9J94lXS0yK77scwyWP0x+2yQAgsKolktnxOklodcMA2OwGAvEFBO4R977iBaoWjw1vhtYzkrO8nONdQ2FAsATN02l/NyNmq2PNHBHcn9lKienGafU8T3JYM1Pyrt4CdzKGrmakd9llwCsuQXW0+FhwZxWLMFKyEcNDvV3q8izeuo4eBDqvXEMQmYgJY7K3SusBYoGGQOlqrYLTySf2WqrnJQUdEA5oLiVG23zhsiWswvX0hD0qJbPdH6m/TA0XEbhw3lmhwo9Ynw==
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(7416014)(23010399003)(1800799024)(82310400026)(36860700016)(4143699003)(11063799006)(22082099003)(56012099006)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	43T0Sf77Wb8Nc2qWZPVk0dp2RGnTgpgU0jq3p3xVPJZ1mi3SsUdyQH8f0QbOXTNjwpw3XqQ+dW4xZwHKw9UPLTPgiAUx2P/oeQ+17yCnxgb5e5yR6jqsxBX3DJEh9zKMxSqv30W1FSS6fxTn0ZHKZA9VkxCRkKygP4OYYm0a7Gsvu8mQYjvDo9FaKEdl45afMEFoxwbxYaXC/W86DKTXeaJWeE6j0+0D3DeNxZKkoQ2CdqcWoTrHqvuxKU7AJakS4ujEyzOOnuG39RtnfXuZetQNg3zHl/xJY1TFs7hAcvGNOIKs/wq2cEFWdHGsUvEQStgYYm/q2J19/+o5TRIf3cTIkoQ5EV6EX3TODIX0sOolV5nJwPYwEk/sYQPYQh6aCO6sGMjvS7xwtqFZpHoduv8IhXAOm1bm5RR7rklCus7N4iBA/Ou3SARg2QgWnVOT
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2026 19:19:22.8523
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90950387-dc3c-4cfd-4a25-08ded937fd5e
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN1PEPF0000468B.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9447
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-4.16 / 15.00];
+	WHITELIST_DMARC(-7.00)[nvidia.com:D:+];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:devnull+rodrigo.alencar.analog.com@kernel.org,m:rodrigo.alencar@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:devnull@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:jackyhuang@nvidia.com,m:andrew@codeconstruct.com.au,m:joel@jms.id.au,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-aspeed@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-320314-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	FORGED_SENDER(0.00)[jackyhuang@nvidia.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320316-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,jic23-huawei:mid,vger.kernel.org:from_smtp,analog.com:email]
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jackyhuang@nvidia.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,nvidia.com:from_mime,Nvidia.com:dkim,vger.kernel.org:from_smtp];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7AA0C704F58
+X-Rspamd-Queue-Id: ADBC0705145
 
-On Thu, 18 Jun 2026 14:27:32 +0100
-Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org=
-> wrote:
+On Thu, Jul 02, 2026 at 05:13:13PM +0000, sashiko-bot@kernel.org wrote:
+> [Severity: High]
+> Since cp2112 devices expose a single HID interface, the kernel's
+> usb_of_has_combined_node() assigns the parent device node to the interface
+> and skips subnodes.
+>
+> Should these properties be placed directly on the device node, similar to
+> how cp2112c is configured in this same file?
+>
+> [Severity: High]
+> Is this interface subnode for cp2112b susceptible to the same OF node
+> combining regression mentioned above?
 
-> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
->=20
-> Add documentation for the AD9910 DDS IIO driver, which describes channels,
-> DDS modes, attributes and ABI usage examples.
->=20
-> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> ---
->  Documentation/iio/ad9910.rst | 759 +++++++++++++++++++++++++++++++++++++=
-++++++
->  Documentation/iio/index.rst  |   1 +
->  MAINTAINERS                  |   1 +
->  3 files changed, 761 insertions(+)
->=20
-> diff --git a/Documentation/iio/ad9910.rst b/Documentation/iio/ad9910.rst
-> new file mode 100644
-> index 000000000000..113521fead3e
-> --- /dev/null
-> +Single Tone mode
-> +----------------
-> +
-> +Single tone is the baseline operating mode. The ``profileY`` channels
-> +provide enable, frequency, phase and amplitude control:
-> +
-> +.. flat-table::
-> +   :header-rows: 1
-> +
-> +   * - Attribute
-> +     - Unit
-> +     - Description
-> +
-> +   * - ``en``
-> +     - boolean (0 or 1)
-> +     - Enable/disable profile Y. Only one profile can be active at a
-> +       time. When enabling a profile it disables the current active prof=
-ile.
-> +       Disabling an active profile brings the device to a powered down s=
-tate.
-> +
-> +   * - ``frequency``
-> +     - Hz
-> +     - Output frequency. Range :math:`[0, f_{SYSCLK}/2)`. Stored in the
+cp2112a and cp2112b are NVIDIA composite devices that expose 3 USB
+interfaces, so usb_of_has_combined_node() returns false and interface@1 is
+used.
 
-Probably spaces around the / for consistency.
+> [Severity: Low]
+> An I2C device at address 0x75 is typically a PCA9539.
 
-> +       profile's frequency tuning word (FTW).
-> +
-> +   * - ``phase``
-> +     - rad
-> +     - Phase offset. Range :math:`[0, 2\pi)`. Stored in the profile's ph=
-ase
-> +       offset word (POW).
-> +
-> +   * - ``raw``
-> +     - integer
-> +     - Amplitude scale factor code. Range :math:`[0, 16383]`. Stored in =
-the
-> +       profile's amplitude scale factor (ASF) register. The physical out=
-put
-> +       amplitude is ``raw * scale`` where ``scale`` is read from the ``p=
-hy``
-> +       channel.
+This is a PCA9539. Will fix the compatible to nxp,pca9539.
 
-...
+> [Severity: Low]
+> An address of 0x38 typically corresponds to a PCA9554A.
 
-> +Digital ramp generator (DRG)
-> +----------------------------
-> +
-> +The DRG produces linear frequency, phase or amplitude sweeps using dedic=
-ated
-> +hardware. The active ramp target (destination) is selected by enabling t=
-he
-> +corresponding typed channel at channel number 130:
-> +
-> +- ``out_frequency130`` (label ``drg_frequency``) =E2=80=94 ramp targets =
-frequency
-> +- ``out_phase130`` (label ``drg_phase``) =E2=80=94 ramp targets phase
-> +- ``out_altcurrent130`` (label ``drg_amplitude``) =E2=80=94 ramp targets=
- amplitude
-> +
-> +Writing ``en=3D1`` to one of these channels enables the DRG and switches=
- its
-> +destination. Writing ``en=3D0`` disables the DRG if the channel is the c=
-urrent
-> +active destination; writing to an already-inactive destination is a no-o=
-p.
-> +
-> +Each destination channel also exposes a read-only ``scale`` attribute
-> +reporting the physical quantity per ramp register LSB, which allows conv=
-erting
-> +raw limit codes to physical values.
-> +
-> +The two ramp channels ``out_altcurrent131`` (``drg_rising``) and
-> +``out_altcurrent132`` (``drg_falling``) configure ascending and descendi=
-ng
-> +ramp parameters independently.
-> +
-> +Destination channel attributes
-> +^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> +
-> +.. flat-table::
-> +   :header-rows: 1
-> +
-> +   * - Attribute
-> +     - Unit
-> +     - Description
-> +
-> +   * - ``en``
-> +     - boolean
-> +     - Enable the DRG with this channel as the active destination. Only =
-one
-> +       destination can be active at a time.
-> +
-> +   * - ``scale``
-> +     - Hz/LSB, rad/LSB or mA/LSB
-> +     - Read-only. Physical quantity per raw units. Multiply a ramp
-> +       rising/falling channel ``raw`` value by this scale to get the phy=
-sical
-> +       ramp target.
-> +
-> +Ramp channel attributes
-> +^^^^^^^^^^^^^^^^^^^^^^^
-> +
-> +.. flat-table::
-> +   :header-rows: 1
-> +
-> +   * - Attribute
-> +     - Unit
-> +     - Description
-> +
-> +   * - ``dwell_en``
-> +     - boolean
-> +     - Enable dwell at the ramp limit. When disabled, the ramp
-> +       auto-transitions at this limit without waiting for the DRCTL pin.
-> +       Disabling both creates a bidirectional continuous ramp (triangular
-> +       pattern). Other combinations create single-shot ramps at the DRCTL
-> +       pin transition.
-> +
-> +   * - ``raw``
-> +     - integer (64-bit)
-> +     - Ramp limit expressed as a raw DRG register code in
-> +       :math:`[0, 2^{32}-1]`. The physical value is ``raw * scale`` where
-> +       ``scale`` is read from the active destination channel.
-> +
-> +   * - ``sampling_frequency``
-> +     - Hz
-> +     - Ramp clock rate. Controlled by an integer divider; the written va=
-lue
-> +       is adjusted to the nearest supported rate.
-> +
-> +   * - ``raw_roc``
-> +     - /s
-> +     - Rate of change. Number of register codes advanced per second, com=
-puted
-> +       from the hardware step size and the current ramp clock. Writing
-> +       requires ``sampling_frequency`` to be configured first.
-> +
-> +Usage examples
-> +^^^^^^^^^^^^^^
-> +
-> +Configure a frequency sweep from 40 MHz to 60 MHz with a rate of change =
-of
-> +25 GHz/s:
-> +
-> +.. code-block:: bash
-> +
-> +  # Disable dwell on both limits for a bidirectional continuous ramp
-> +  echo 0 > /sys/bus/iio/devices/iio\:device0/out_altcurrent131_dwell_en
-> +  echo 0 > /sys/bus/iio/devices/iio\:device0/out_altcurrent132_dwell_en
-> +
-> +  # Set ramp rate at 250 MHz
-> +  echo 250000000 > /sys/bus/iio/devices/iio\:device0/out_altcurrent131_s=
-ampling_frequency
-> +  echo 250000000 > /sys/bus/iio/devices/iio\:device0/out_altcurrent132_s=
-ampling_frequency
-> +
-> +  # read the frequency scale to convert physical values to raw units
-> +  cat /sys/bus/iio/devices/iio\:device0/out_frequency130_scale
-> +  0.232830643650
-> +
-> +  # 40 MHz / 0.232830643650 =3D 171798692
-> +  echo 171798692 > /sys/bus/iio/devices/iio\:device0/out_altcurrent131_r=
-aw
-> +  # 60 MHz / 0.232830643650 =3D 257698038
-> +  echo 257698038 > /sys/bus/iio/devices/iio\:device0/out_altcurrent132_r=
-aw
+The kernel has no nxp,pca9554a compatible, so nxp,pca9554 is used.
 
-Why is this writing frequencies to altcurrent channels? Shouldn't this be t=
-he
-frequency ones?
-
-> +
-> +  # 25 GHz/s / 0.232830643650 =3D 107374182402
-> +  echo 107374182402 > /sys/bus/iio/devices/iio\:device0/out_altcurrent13=
-1_raw_roc
-> +  echo 107374182402 > /sys/bus/iio/devices/iio\:device0/out_altcurrent13=
-2_raw_roc
-> +
-> +  # Enable the DRG with frequency as the destination
-> +  echo 1 > /sys/bus/iio/devices/iio\:device0/out_frequency130_en
-> +
-> +RAM mode
-> +--------
-
-...
-
-
-
-> +
-> +.. code-block:: bash
-> +
-> +  echo 1 > /sys/bus/iio/devices/iio\:device0/out_altcurrent100_powerdown
-> \ No newline at end of file
-Tidy that up.
-
-Thanks,
-
-Jonathan
+Jacky
 
