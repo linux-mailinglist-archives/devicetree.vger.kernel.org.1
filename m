@@ -1,426 +1,492 @@
-Return-Path: <devicetree+bounces-320327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320338-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kjh1OSMRSGpjlgAAu9opvQ
-	(envelope-from <devicetree+bounces-320327-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 21:44:35 +0200
+	id F8ebCOMSSGoAmAAAu9opvQ
+	(envelope-from <devicetree+bounces-320338-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 21:52:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5954A70535C
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 21:44:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BC2970560B
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 21:52:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=dXM1TfMJ;
-	dmarc=pass (policy=none) header.from=linux.dev;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320327-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320327-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="TKHN7I/F";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320338-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320338-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D2189304C35C
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 19:43:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8CEA2304C121
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 19:47:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548B7331A61;
-	Fri,  3 Jul 2026 19:43:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E2F30C15B;
+	Fri,  3 Jul 2026 19:47:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 593F63090D7
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 19:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC7D92F9984
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 19:47:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783107796; cv=none; b=Hxf3QdIm/FJjufllJ4Kx6vdGoxfCKm5o5kbzbYAG5YZLjU02G+eHovwN6D7qCZgKi2OXpAJDD//XXprhqSxZtOwFFM2st0s4bTL+UjFubtq1Aj1jMq0Vd7g7Vo4tLaGcye62APR8OzXyoz87tJNbRf7c3RzRes6wGQvkrXGmUA0=
+	t=1783108047; cv=none; b=u8mp9ODVmqY2QlgHXOG2FXbB+vgECU+Md/+XOBRlHu5AqeJo6yRQu/mQzN6SD3UtL+e9M7bxp3jUqGwetbLcoobhtpMsIssrysG/HpCa84yeA7CN4umwYIGBo5SGLhNMOcnnXCX0rD6NAMiVvL7xswZBwFNwGHRCZNslOqAMkQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783107796; c=relaxed/simple;
-	bh=b0GF0Br8yanUhjxYGdPnTvzJRVaR6Wg2hft+j3NEYfY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=IC9Ro2vikZrJ2USUwBU/VmuaEVbZj8m/7Fxg8sqZnZ8mSiYphkLgbPuVTEFe8hWFvonBZYLIuUnR/lyRMwZW17MJM7A8W9MPhH0EPseSdbq817rO9s9znLVeJ4V7emz/B7SoyJCsBi7hFLg6ZW2VvgLAT+y0c1dZW2JYSbgAdH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=dXM1TfMJ; arc=none smtp.client-ip=91.218.175.184
-Message-ID: <9878f042f424bfbd7fab24175298224b58e87779.camel@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1783107782;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=uZO1sX8QbjOMl063nzq/2Es6qmjh1VUaSD7dIek0KBs=;
-	b=dXM1TfMJOVV+eFjwie5jESveDPenwpqM1E7utBLzbiEQTaQhNaoaqs07WIfWpV2C+ocdH7
-	IlL5uV/56J4tlCQ7kfUHeWIXFXsJ1hwrtIQB6JQqTpqSaI6ZhMplJKdpvG0yZCkntDkVwT
-	+0/okuDEhvwcTdOh9q6aDRa6tiRSW7Y=
-Subject: Re: [PATCH v1 2/2] iio: adc: add MAX40080 current-sense amplifier
- driver
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Siratul Islam <siratul.islam@linux.dev>
-To: Stefan Popa <stefan.popa@analog.com>, Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=
-	 <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	 <conor+dt@kernel.org>, Ciprian Hegbeli <ciprian.hegbeli@analog.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Sat, 04 Jul 2026 01:42:39 +0600
-In-Reply-To: <20260703102941.1141341-3-stefan.popa@analog.com>
-References: <20260703102941.1141341-1-stefan.popa@analog.com>
-	 <20260703102941.1141341-3-stefan.popa@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+	s=arc-20240116; t=1783108047; c=relaxed/simple;
+	bh=JywPUznc3rh0JaFquAeszYTCK5IN1onVd5dhHGu0sC8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DORbzkz8cXT6C+RttaBjLH2K50PmATe0HQ7NUYqkBxEVEY8pkU63gTIKpuGSTQoIhWDSS/GV0ILQRr0G95+8O7BWSrmlLEfeWb1ObBryeTGVAF2m2WpB7UM8nxzwwg/CtUMZK7w0Wwzx02ghDbNc76iHzLCePKR5JASajJi78wo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TKHN7I/F; arc=none smtp.client-ip=209.85.128.174
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-8114a4542b2so12760797b3.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Jul 2026 12:47:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783108044; x=1783712844; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=NcHQd/8XSBa7MNTS4wISQ1H39Zw3/ARkiAwQE2EKLP0=;
+        b=TKHN7I/FRPuR/tZLQngJokwwKy1k7oNlQxL4LiBPL7KRCxIg5fJJwKEFi96uhKH2f7
+         E9o7TUDYbhoqBGWoR7ABs06NJZ2jBBRpCHwzYj0/AEnd6sb7vK9qZLbRddr2t6rlpscl
+         8CyH1Kfy6RLR9Qy+QcSHoZf8rWB7SlR4XTrChBMwn4ZKW/7LGdWdDZE+DHkZ//lZ4sPc
+         okSWn4fo+cLPKNXQQwX5LG7x4dCwXyprpWG0bsdG3qz5e11P0f6wB+ToTPvURb2G+U2x
+         aikPnuUAbRrMr2z+IDItEUeXz0/zA7afefJpIXbMFIoam5Lc4vvAYbAOCTNTqk6Foe89
+         KFMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783108044; x=1783712844;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=NcHQd/8XSBa7MNTS4wISQ1H39Zw3/ARkiAwQE2EKLP0=;
+        b=JOXKpTJKKwxeU8Rjt0hfFmy7CFTfzIxCxBA6ao5D4m5ERxU8HISnrAQrrGs0pi5aJ5
+         IGtCKtCP0wpjBkqaP4ZN85oRv7yP0HFcH2q0owu9rhXkrb5c0H+QFqbZDyDdqFnm8m5R
+         8ei5TzGLxJxp5P0cMG6STdjhRNJ9oPgSdpEl9DABLfiRgGzzcFXZ8cofQ9iConURoy+y
+         6649EYXuhO64hDVALPJx7Q7d6r6pRJnVQNlxQmFeO9ObpzB+zZsdN8wI2iku1BskeVFH
+         +4aRHgQ9DzTyBZvk1ceLyL0C4hAL+ecYIk90ovjjhZ2RKM+FxcFEuMKCzJdUgFrRNfal
+         zJrA==
+X-Forwarded-Encrypted: i=1; AHgh+RrcMrFRWRTrrvCvAVktY/GFeAtsFGcdBsQpoTzz1K9BAONfMWTAtzKQ3wN/LvTC+VTDCgZoHDBkN9I5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWP1Ywje8siSnX55k9jMbAPKltODRcA0f3jcGCHdSNKqo+OlXl
+	/b1e/BBMLLHdt6Bf02nH1PUWhy/3RFH1kqjfzN86KGqoe/C9HrcJi/vh
+X-Gm-Gg: AfdE7clVRgapEEUcsYKVDqbQD7kyKCfClXKQg/5T9I7CQBLKkXXe20aDURn2LaeMzDF
+	HsFt8CH1v9aiI3rgBidhZH7IFsL6gwkbTWkYbBBQAgVQKbK+0wYlW97AwAX+f8m479cWEkGbNYd
+	2WqUGuJraPgEl74znH0xMpGV4tE3j3Moe9mv+JYO93xHZ6vWC6edQobt+W11qeHu3EhJURKULEM
+	eDGK4PBAuyzxRInEckP3bITLDavOjQs9eaAAuFEoeS0RwD63OHFEqtmf+6fZZaS3qkQZ+yqVNbj
+	1tUj+hwoUxiqmCq+fBT9AmA2iKVxlW9bC2AIwdgfLCEHE2H678oPb3/z5JBksc5ObS40YrBPF8P
+	4mCxudzvvG3wqwocMgHLNXwHcDZMdbqrIFsqNEZ6XwJea1Gbi0tHACLEdZPWoCH9D8HW6NkZ7nK
+	hCQUBFBX+d98Jp1ioZZoZfW3NWrjfeRfrlZhavryEU3JTvHw5h3g==
+X-Received: by 2002:a05:690c:9c09:b0:80b:de5d:bfc7 with SMTP id 00721157ae682-8173a4dcf05mr6515877b3.54.1783108043369;
+        Fri, 03 Jul 2026 12:47:23 -0700 (PDT)
+Received: from suesslenovo ([24.176.128.175])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-817212bd978sm2590887b3.37.2026.07.03.12.47.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jul 2026 12:47:22 -0700 (PDT)
+Date: Fri, 3 Jul 2026 15:47:21 -0400
+From: Justin Suess <utilityemal77@gmail.com>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Sean Young <sean@mess.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Ripard <mripard@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, Sashiko <sashiko-bot@kernel.org>
+Subject: Re: [PATCH 2/4] media: rc: sunxi-cir: add support for the A523
+Message-ID: <akgKeqUhWWThWKco@suesslenovo>
+References: <20260702214750.3428694-1-utilityemal77@gmail.com>
+ <20260702214750.3428694-3-utilityemal77@gmail.com>
+ <309f6601-2358-4a2d-9696-0849d69ade52@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <309f6601-2358-4a2d-9696-0849d69ade52@arm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-320338-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:stefan.popa@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ciprian.hegbeli@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[siratul.islam@linux.dev,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-320327-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER(0.00)[utilityemal77@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:andre.przywara@arm.com,m:sean@mess.org,m:mchehab@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mripard@kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:sashiko-bot@kernel.org,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[mess.org,kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[siratul.islam@linux.dev,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,analog.com:url,analog.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux.dev:from_mime,linux.dev:dkim,linux.dev:mid]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[utilityemal77@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suesslenovo:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5954A70535C
+X-Rspamd-Queue-Id: 6BC2970560B
 
-On Fri, 2026-07-03 at 13:29 +0300, Stefan Popa wrote:
-> The MAX40080 is a bidirectional current-sense amplifier with an
-> integrated 12-bit ADC and an I2C/SMBus interface. It measures the
-> voltage across an external shunt resistor and the input bus voltage,
-> storing the results in an internal FIFO.
->=20
->=20
-Hi! I already looked at Andy's review and decided to add a few more stuff.
-...
-> =C2=A0
-> +MAXIM MAX40080 CURRENT SENSE AMPLIFIER DRIVER
-> +M:	Ciprian Hegbeli <ciprian.hegbeli@analog.com>
-> +M:	Stefan Popa <stefan.popa@analog.com>
-> +L:	linux-iio@vger.kernel.org
-> +S:	Supported
-> +W:	https://ez.analog.com/linux-software-drivers
-> +F:	Documentation/devicetree/bindings/iio/adc/maxim,max40080.yaml
-The Maintainer entry for binding should be in the binding patch,
-> +F:	drivers/iio/adc/max40080.c
-With the driver entry added in this patch.
-> +
-...
-+ array_size.h
-> +#include <linux/bitfield.h>
-> +#include <linux/bitops.h>
-> +#include <linux/cleanup.h>
-> +#include <linux/i2c.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/math64.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/property.h>
-> +#include <linux/unaligned.h>
-> +#include <linux/units.h>
-> +
-> +#include <linux/iio/iio.h>
-> +
-> +#define MAX40080_REG_CFG		0x00
-> +#define=C2=A0 MAX40080_MODE_MSK		GENMASK(2, 0)
-> +#define=C2=A0 MAX40080_PEC_EN_MSK		BIT(5)
-> +#define=C2=A0 MAX40080_RANGE_MSK		BIT(6)
-> +#define=C2=A0 MAX40080_FILTER_MSK		GENMASK(14, 12)
-Should be one space after #define, like the first one.
-> +
-> +#define MAX40080_REG_FIFO_CFG		0x0A
-Here too
-> +#define=C2=A0 MAX40080_STORE_IV_MSK		GENMASK(1, 0)
-> +
-> +#define MAX40080_REG_IV			0x10
-> +/* Current is a 13-bit two's-complement value (magnitude + sign bit). */
-> +#define=C2=A0 MAX40080_IV_I_MSK		GENMASK(12, 0)
-> +#define=C2=A0 MAX40080_IV_I_SIGN_BIT		12
-> +#define=C2=A0 MAX40080_IV_V_MAG_MSK		GENMASK(27, 16)
-> +#define=C2=A0 MAX40080_IV_VALID_MSK		BIT(31)
-> +
-> +/* CFG.mode field */
-> +#define MAX40080_STDBY_MODE		0x00
-> +#define MAX40080_SINGLE_MODE		0x02	/* one conversion per Quick Command *=
-/
-> +
-> +/* FIFO_CFG.store_iv field */
-> +#define MAX40080_STORE_I_V		0x02
-> +
-> +#define MAX40080_ADC_RES		4096
-> +#define MAX40080_INTER_VREF_MV		1250
-> +#define MAX40080_V_BUFF_GAIN		30
-Maybe sort by value? just a nit.
-> +#define MAX40080_CSA_50MV_GAIN		25
-> +#define MAX40080_CSA_10MV_GAIN		125
-> +
-> +/*
-> + * The RANGE field (CFG bit 6) selects one of two current-sense full-sca=
-le
-> + * ranges (the MAX40080 supports exactly two: +/-50 mV and +/-10 mV). Or=
-dered
-> + * so that the array index equals the RANGE field value: index 0 =3D 50 =
-mV range
-> + * (gain 25 V/V), index 1 =3D 10 mV range (gain 125 V/V).
-> + */
-> +static const int max40080_csa_gain[] =3D {
-> +	MAX40080_CSA_50MV_GAIN, MAX40080_CSA_10MV_GAIN,
-Maybe 1 item per line since it's a macro?=20
-> +};
-> +
-> +#define MAX40080_NUM_RANGES	ARRAY_SIZE(max40080_csa_gain)
-> +
-> +struct max40080_state {
-> +	struct i2c_client *client;
-> +	/* Serializes read-modify-write access to the CFG register. */
-> +	struct mutex lock;
-> +	u32 shunt_resistor_uohm;
-> +	/*
-> +	 * Precomputed current scale (mA per code) for each RANGE setting, as
-> +	 * {integer, nano} pairs for IIO_VAL_INT_PLUS_NANO. The range is
-> +	 * selected by writing the corresponding scale.
-> +	 */
-> +	int current_scale[MAX40080_NUM_RANGES][2];
-> +};
-> +
-> +static const int max40080_oversampling_avail[] =3D { 1, 8, 16, 32, 64, 1=
-28 };
-> +
-> +static int max40080_update_bits(struct max40080_state *st, u8 reg,
-> +				u16 mask, u16 val)
-This can fit in 1 line.
-static int max40080_update_bits(struct max40080_state *st, u8 reg, u16 mask=
-, u16 val)
+On Fri, Jul 03, 2026 at 11:11:59AM +0200, Andre Przywara wrote:
+> On Thu,  2 Jul 2026 17:47:48 -0400
+> Justin Suess <utilityemal77@gmail.com> wrote:
+> 
+> Hi Justin,
+> 
+> many thanks for sending this!
+> 
+> > The A523 (sun55i) has a newer revision of the CIR receiver IP. Two
+> > register fields that do not exist on older SoCs must be programmed
+> > for reception to work:
+> > 
+> >  - CTL bits [7:6] select which pulse polarities are captured into the
+> >    RX FIFO. The reset value of 0 captures nothing, so program "both
+> >    pulse" mode, which captures regardless of header polarity.
+> 
+> Are you sure about that? The manual says that *both* the 0b00 (reset
+> default) and 0b01 values capture both edges, and actually the H6, A133
+> and H616 have the same bits, and it apparently works there.
+>
+No, actually. I literally just live dumped the registers on the vendor
+kernel, (my android tv came pre-rooted for some reason) and interpreted
+the purpose from the BSP source.
 
-> +{
-> +	int ret;
-> +	int tmp;
-> +
-> +	guard(mutex)(&st->lock);
-> +
-...
-> + */
-> +static int max40080_read_iv_once(struct max40080_state *st, u32 *iv)
-> +{
-> +	u8 buf[4];
-> +	int ret;
-> +
-> +	ret =3D i2c_smbus_read_i2c_block_data(st->client, MAX40080_REG_IV,
-> +					=C2=A0=C2=A0=C2=A0 sizeof(buf), buf);
-This also fits in 1 line but it would go 92 cols, so not sure which one is =
-preferred.
-> +	if (ret < 0)
-> +		return ret;
-> +	if (ret !=3D sizeof(buf))
-> +		return -EIO;
-> +
-> +	*iv =3D get_unaligned_le32(buf);
-> +
-> +	return 0;
-> +}
-> +
->=20
-...
-> +
-> +static int max40080_get_current(struct max40080_state *st, int *val)
-> +{
-> +	u32 iv;
-> +	int ret;
-> +
-> +	ret =3D max40080_read_iv(st, &iv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val =3D sign_extend32(FIELD_GET(MAX40080_IV_I_MSK, iv),
-> +			=C2=A0=C2=A0=C2=A0=C2=A0 MAX40080_IV_I_SIGN_BIT);
-This can also be 1 line if you are going for that.
-> +
-> +	return 0;
-> +}
-> +
-> +static int max40080_get_voltage(struct max40080_state *st, int *val)
-> +{
-> +	u32 iv;
-> +	int ret;
-> +
-> +	ret =3D max40080_read_iv(st, &iv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val =3D FIELD_GET(MAX40080_IV_V_MAG_MSK, iv);
-> +
-> +	return 0;
-> +}
-> +
-> +static int max40080_get_range(struct max40080_state *st, unsigned int *r=
-ange)
-> +{
-> +	int tmp;
-> +
-> +	tmp =3D i2c_smbus_read_word_data(st->client, MAX40080_REG_CFG);
-I think tmp can be initialized, since it is only assigned once.
-> +	if (tmp < 0)
-> +		return tmp;
-> +
-> +	*range =3D FIELD_GET(MAX40080_RANGE_MSK, tmp);
-> +
-> +	return 0;
-> +}
-> +
-...
-> +
-> +/*
-> + * The FILTER field selects digital averaging of N consecutive conversio=
-ns
-> + * (no averaging, 8, 16, 32, 64 or 128), which maps directly to the IIO
-> + * oversampling ratio. Averaging reduces the effective output data rate =
-by the
-> + * same factor; the conversion rate itself is set by the separate ADC_RA=
-TE
-> + * field.
-> + */
-> +static int max40080_get_oversampling_ratio(struct max40080_state *st, in=
-t *val)
-> +{
-> +	int tmp;
-> +	u8 filter;
-Reverse xmas tree.
-+ u8 filter;
-+ int tmp;
-While you are at it, and since you are already using u8, tmp can be s32.
-> +
-> +	tmp =3D i2c_smbus_read_word_data(st->client, MAX40080_REG_CFG);
-> +	if (tmp < 0)
-> +		return tmp;
-> +
-> +	filter =3D FIELD_GET(MAX40080_FILTER_MSK, tmp);
-> +	*val =3D (filter =3D=3D 0) ? 1 : (8 << (filter - 1));
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * max40080_oversampling_avail[] is ordered so that its index is the FIL=
-TER
-> + * field value (index 0 =3D no averaging, index 1 =3D 8x, ...). Return t=
-hat index
-> + * for an exact match, or -EINVAL for a value that is not on the list.
-> + */
-> +static int max40080_oversampling_to_filter(int val)
-> +{
-> +	int i;
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(max40080_oversampling_avail); i++)
-> +		if (max40080_oversampling_avail[i] =3D=3D val)
-> +			return i;
-Since this for is multiline, it could use scope, {}.
-> +
-> +	return -EINVAL;
-> +}
-> +
-...
-> +}
-> +
-> +static int max40080_read_avail(struct iio_dev *indio_dev,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_chan_spec const *chan=
-,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const int **vals, int *type, int=
- *length,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 long info)
-> +{
-> +	struct max40080_state *st =3D iio_priv(indio_dev);
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		if (chan->type !=3D IIO_CURRENT)
-> +			return -EINVAL;
-> +
-> +		*vals =3D (int *)st->current_scale;
-> +		*length =3D MAX40080_NUM_RANGES * 2;
-> +		*type =3D IIO_VAL_INT_PLUS_NANO;
-I think a space between the assignments and the return would read better. P=
-ersonal preference. Your call.
-> +		return IIO_AVAIL_LIST;
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		*vals =3D max40080_oversampling_avail;
-> +		*length =3D ARRAY_SIZE(max40080_oversampling_avail);
-> +		*type =3D IIO_VAL_INT;
-> +		return IIO_AVAIL_LIST;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int max40080_reg_access(struct iio_dev *indio_dev,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int reg,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int write_val,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int *read_val)
-> +{
-> +	struct max40080_state *st =3D iio_priv(indio_dev);
-> +
-> +	if (read_val) {
-> +		int val =3D i2c_smbus_read_word_data(st->client, reg);
-> +
-> +		if (val < 0)
-> +			return val;
-> +		*read_val =3D val;
-Here too.
-> +		return 0;
-> +	}
-> +
-> +	return i2c_smbus_write_word_data(st->client, reg, write_val);
-> +}
-...
->=20
-> +}
-> +
-> +static const struct i2c_device_id max40080_i2c_ids[] =3D {
-> +	{ "max40080" },
-.name =3D "max40080"
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, max40080_i2c_ids);
-> +
-> +static const struct of_device_id max40080_of_match[] =3D {
-> +	{ .compatible =3D "maxim,max40080" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, max40080_of_match);
-> +
-> +static struct i2c_driver max40080_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "max40080",
-> +		.of_match_table =3D max40080_of_match,
-> +	},
-> +	.probe =3D max40080_probe,
-> +	.id_table =3D max40080_i2c_ids,
-> +};
-> +module_i2c_driver(max40080_driver);
-> +
-> +MODULE_AUTHOR("Ciprian Hegbeli <ciprian.hegbeli@analog.com>");
-> +MODULE_AUTHOR("Stefan Popa <stefan.popa@analog.com>");
-> +MODULE_DESCRIPTION("Analog Devices MAX40080 current-sense amplifier driv=
-er");
-> +MODULE_LICENSE("GPL");
+I am actually unaware there was such a manual. If you could point me to
+it that'd be great.
+> I don't see those bits documented in the A64 (and earlier), but haven't
+> checked yet whether they exist there regardless or have an effect.
+> So I think we should force those bits either to 0 or to 1, depending on how
+> those bits behave on A64 and before, and how compatible this is with H6,
+> A133, H616. I will try to run some experiments on the weekend.
+>
+Appreciate it!
+
+I'll wait for the results of that experiment, I don't feel confident
+enough that I wouldn't break things by even forcing the register to zero
+without hardware to test on. So I preserved the existing behavior for the non
+X98qpro+ board to be safe.
+
+> >  - SPLCFG (the sample configuration register) bits [1:0] select the
+> >    sample clock as a division of the module clock, replacing the
+> >    fixed module clock / 64 sample rate of the older IP.
+> 
+> That's not fully correct: even the A20(!) has these two bits, actually
+> there is a third bit, held in bit 24 (because reasons). All those bits
+> reset to 0, which is encoded as /64, so this is where the rate comes
+> from. And sunxi_ir_probe() sets the IR clock to 8MHz, which should end
+> up as 24MHz / 3, on all chips, including the A523.
+> 
+> So what is going on here? Is the manual wrong, about those bits, or the
+> clock sources?
+> Can you point to the BSP sources, if you used those?
+>
+
+Actually I relied on a script running sunxi-dump on the vendor
+kernel and dumping the registers for an initial implementation.
+
+It didn't work, and I was getting stuck. (probably my sampling script
+didn't dump the registers fast enough and didn't include all of the ones
+needed).
+
+Then I found https://github.com/chainsx/linux-sun55iw3-vendor
+
+And saw this
+
+  #define IR_SAMPLE_DEV		(0x2 << 0)	/* 24MHz/256 =93750Hz (~10.7us)*/
+
+for the clock rate.
+
+And then this one:
+
+  #define IR_BOTH_PULSE		(0x1 << 6)
+
+As and saw it being used as the pulse polarity.
+
+(above are in bsp/drivers/ir-rx/sunxi-ir-rx.c)
+
+And figured to give this one a try because everything I tried before
+messing with the existing constants in mainline failed, and this was
+the primary construct that didn't match up with mainline. 
+
+Those two things were enough to get it working perfectly on my hardware.
+
+So this is more based on "this is what worked on the hardware" + a
+cursory read of the vendor source than based on any hardware technical
+document or manual... I should have been more upfront about that.
+
+So please point me to this manual and I can revise and figure out WHY
+this works and improve this patch series. 
+
+> >    module clock / 256, which together with the 24 MHz module clock
+> 
+> Why is the A523 mod clock set to 24 MHz? You seem to do this in the DT,
+> overriding the 8MHz default? The driver clearly has a clk_set_rate() call
+> with that default 8MHz as an argument, and I don't think we should deviate
+> from that, unless there are good reasons. The sample clock should be more of
+> a driver/subsystem decision, not a a device one.
+> 
+
+See above. This is just what worked on the hardware, and what the vendor
+set. And it worked so I sent it. I didn't have access to the manual...
+
+but agreed this needs justification and not just a handwaving "works on
+my machine".
+
+> >    used on the A523 gives a 10.7 μs sample period, close to the 8 μs
+> >    of the previous 8 MHz / 64 configuration, and keeps the default
+> >    125 ms idle timeout representable in the 8-bit idle threshold
+> 
+> This is some good info that helps people understand the reasoning behind
+> those timing values. Please put this in a comment near the top of the file.
+> But actually: how does this compute? With an 8us sample clock period, the
+> 8-bit ATHR field only covers 2 ms. And I don't see us setting the ATHC bit
+> to bump this by 128.
+> 
+I'll include it and anything else I can glean from your testing, and if
+you can point me to the manual.
+
+Thanks for the swift review, sorry should have made more obvious up
+front this was a "tweaking until it works" implementation, not a ground
+up spec based implementation.
+
+> Cheers,
+> Andre
+> 
+> >    field.
+> > 
+> > Parameterize the sample divisor in the resolution/timeout
+> > calculations, which older SoCs keep at the fixed 64, and add the
+> > A523 quirks and compatible.
+> > 
+> > Signed-off-by: Justin Suess <utilityemal77@gmail.com>
+> > ---
+> >  drivers/media/rc/sunxi-cir.c | 76 ++++++++++++++++++++++++++++++------
+> >  1 file changed, 63 insertions(+), 13 deletions(-)
+> > 
+> > diff --git a/drivers/media/rc/sunxi-cir.c b/drivers/media/rc/sunxi-cir.c
+> > index cb4c56bf0752..82ada9dc0347 100644
+> > --- a/drivers/media/rc/sunxi-cir.c
+> > +++ b/drivers/media/rc/sunxi-cir.c
+> > @@ -31,6 +31,11 @@
+> >  /* CIR mode */
+> >  #define REG_CTL_MD			(BIT(4) | BIT(5))
+> > +/* Pulse mode selector (bits [7:6]) */
+> > +#define REG_CTL_PMD(m)			((m) << 6)
+> > +/* Capture both pulse polarities */
+> > +#define REG_CTL_PMD_BOTH		REG_CTL_PMD(1)
+> > +
+> >  /* Rx Config */
+> >  #define SUNXI_IR_RXCTL_REG    0x10
+> >  /* Pulse Polarity Invert flag */
+> > @@ -66,6 +71,13 @@
+> >  /* IR Sample Config */
+> >  #define SUNXI_IR_CIR_REG      0x34
+> > +/*
+> > + * Sample clock divider select (bits [1:0]), present on newer IP revisions
+> > + * (e.g. sun55i). Selects the sample clock as a fraction of the module clock;
+> > + * must be programmed for the sampler to run. Older SoCs lack the field and
+> > + * use a fixed module-clock/64 sample rate, so they leave it 0.
+> > + */
+> > +#define REG_CIR_SDIV(val)    ((val) & GENMASK(1, 0))
+> >  /* CIR_REG register noise threshold */
+> >  #define REG_CIR_NTHR(val)    (((val) << 2) & (GENMASK(7, 2)))
+> >  /* CIR_REG register idle threshold */
+> > @@ -73,6 +85,8 @@
+> >  /* Required frequency for IR0 or IR1 clock in CIR mode (default) */
+> >  #define SUNXI_IR_BASE_CLK     8000000
+> > +/* Default sample clock divisor: module clock / 64 (legacy fixed rate) */
+> > +#define SUNXI_IR_SAMPLE_DIV   64
+> >  /* Noise threshold in samples  */
+> >  #define SUNXI_IR_RXNOISE      1
+> > @@ -81,10 +95,18 @@
+> >   *
+> >   * @has_reset: SoC needs reset deasserted.
+> >   * @fifo_size: size of the fifo.
+> > + * @both_pulse: program the CTRL pulse-mode field (newer IP revisions).
+> 
+> As mentioned above, those bits exist in earlier IP as well. Typically
+> non-implemented bits in Allwinner IP as RES0, so I think we can program them
+> unconditionally (and should on H6/A133/H616) and don't need a quirks flag.
+> 
+Yeah, probably just setting them to zero is *fine* for the non-a523
+hardware, but I didn't want to send patches for hardware I can't test.
+
+Last thing I want to do is make someones TV remote stop working.
+
+If your experiments reveal forcing zero is OK, than I'll default to
+that.
+
+> > + * @sample_div_sel: value for the SPLCFG sample-clock divider field (0 on
+> > + *		    legacy SoCs that lack the field).
+> 
+> Same here: those bits exist back to the A20, even. And their meaning didn't
+> change, if I see this correctly. So no quirk needed, instead we should
+> program them explicitly to the value we want (probably 0).
+> 
+Sounds good
+> > + * @sample_divisor: module-clock divisor that yields the sample clock; matches
+> > + *		    @sample_div_sel on newer IP, or the fixed /64 on legacy SoCs.
+> 
+> That looks odd: why do we have that value in the first place? Following the
+> things I mention above, the divisor shouldn't be different on the A523. And
+> also, I think we should just do the math in the driver, and calculate the
+> divisor, based on some timing requirement. Which could be something like:
+> aim for a clock period of 8us. Though all the parameters seem to be stable:
+> the 24 MHz OSC input, the dividers in the mod clock, and the post dividers
+> in register 0x34. So there wouldn't be much of a calculation, really. But I
+> still think the driver can figure this out itself, and doesn't need explicit
+> telling of a divisor.
+> 
+This is just what worked for me; and what the vendor did. But you're
+right, we shouldn't trust it if the quality of the bsp code is anything
+to go off of.
+
+> So I think we would need a separate patch to fix up driver operation before
+> A523. Then the A523 bits should go on top of this. And maybe make this two
+> patches, one for the edge sample bits, one for the clock calculation.
+> 
+Easy enough. I'll wait on your experiments, please send whatever you
+found here while I prepare the seperate patches, and I'll adjust before
+resending (no rush on the results, all I'd need is you forcing the
+register to zero and verifying it works)
+
+(and please if you could drop me this manual, would have saved me a lot of time!
+I couldn't find it anywhere!)
+
+Justin
+> Cheers,
+> Andre
+> 
+> >   */
+> >  struct sunxi_ir_quirks {
+> >  	bool		has_reset;
+> >  	int		fifo_size;
+> > +	bool		both_pulse;
+> > +	u8		sample_div_sel;
+> > +	u32		sample_divisor;
+> >  };
+> >  struct sunxi_ir {
+> > @@ -92,6 +114,9 @@ struct sunxi_ir {
+> >  	void __iomem    *base;
+> >  	int             irq;
+> >  	int		fifo_size;
+> > +	bool		both_pulse;
+> > +	u8		sample_div_sel;
+> > +	u32		sample_divisor;
+> >  	struct clk      *clk;
+> >  	struct clk      *apb_clk;
+> >  	struct reset_control *rst;
+> > @@ -140,17 +165,19 @@ static irqreturn_t sunxi_ir_irq(int irqno, void *dev_id)
+> >  }
+> >  /* Convert idle threshold to usec */
+> > -static unsigned int sunxi_ithr_to_usec(unsigned int base_clk, unsigned int ithr)
+> > +static unsigned int sunxi_ithr_to_usec(unsigned int base_clk, unsigned int div,
+> > +				       unsigned int ithr)
+> >  {
+> >  	return DIV_ROUND_CLOSEST(USEC_PER_SEC * (ithr + 1),
+> > -				 base_clk / (128 * 64));
+> > +				 base_clk / (128 * div));
+> >  }
+> >  /* Convert usec to idle threshold */
+> > -static unsigned int sunxi_usec_to_ithr(unsigned int base_clk, unsigned int usec)
+> > +static unsigned int sunxi_usec_to_ithr(unsigned int base_clk, unsigned int div,
+> > +				       unsigned int usec)
+> >  {
+> >  	/* make sure we don't end up with a timeout less than requested */
+> > -	return DIV_ROUND_UP((base_clk / (128 * 64)) * usec,  USEC_PER_SEC) - 1;
+> > +	return DIV_ROUND_UP((base_clk / (128 * div)) * usec,  USEC_PER_SEC) - 1;
+> >  }
+> >  static int sunxi_ir_set_timeout(struct rc_dev *rc_dev, unsigned int timeout)
+> > @@ -158,15 +185,17 @@ static int sunxi_ir_set_timeout(struct rc_dev *rc_dev, unsigned int timeout)
+> >  	struct sunxi_ir *ir = rc_dev->priv;
+> >  	unsigned int base_clk = clk_get_rate(ir->clk);
+> > -	unsigned int ithr = sunxi_usec_to_ithr(base_clk, timeout);
+> > +	unsigned int ithr = sunxi_usec_to_ithr(base_clk, ir->sample_divisor,
+> > +					       timeout);
+> >  	dev_dbg(rc_dev->dev.parent, "setting idle threshold to %u\n", ithr);
+> > -	/* Set noise threshold and idle threshold */
+> > -	writel(REG_CIR_NTHR(SUNXI_IR_RXNOISE) | REG_CIR_ITHR(ithr),
+> > +	/* Set sample clock divider, noise threshold and idle threshold */
+> > +	writel(REG_CIR_SDIV(ir->sample_div_sel) |
+> > +	       REG_CIR_NTHR(SUNXI_IR_RXNOISE) | REG_CIR_ITHR(ithr),
+> >  	       ir->base + SUNXI_IR_CIR_REG);
+> > -	rc_dev->timeout = sunxi_ithr_to_usec(base_clk, ithr);
+> > +	rc_dev->timeout = sunxi_ithr_to_usec(base_clk, ir->sample_divisor, ithr);
+> >  	return 0;
+> >  }
+> > @@ -193,8 +222,14 @@ static int sunxi_ir_hw_init(struct device *dev)
+> >  		goto exit_disable_apb_clk;
+> >  	}
+> > -	/* Enable CIR Mode */
+> > -	writel(REG_CTL_MD, ir->base + SUNXI_IR_CTL_REG);
+> > +	/*
+> > +	 * Enable CIR Mode. On newer IP revisions the pulse-mode field must
+> > +	 * also be set, otherwise no pulses are captured into the RX FIFO.
+> > +	 */
+> > +	tmp = REG_CTL_MD;
+> > +	if (ir->both_pulse)
+> > +		tmp |= REG_CTL_PMD_BOTH;
+> > +	writel(tmp, ir->base + SUNXI_IR_CTL_REG);
+> >  	/* Set noise threshold and idle threshold */
+> >  	sunxi_ir_set_timeout(ir->rc, ir->rc->timeout);
+> > @@ -271,6 +306,9 @@ static int sunxi_ir_probe(struct platform_device *pdev)
+> >  	}
+> >  	ir->fifo_size = quirks->fifo_size;
+> > +	ir->both_pulse = quirks->both_pulse;
+> > +	ir->sample_div_sel = quirks->sample_div_sel;
+> > +	ir->sample_divisor = quirks->sample_divisor ?: SUNXI_IR_SAMPLE_DIV;
+> >  	/* Clock */
+> >  	ir->apb_clk = devm_clk_get(dev, "apb");
+> > @@ -325,10 +363,10 @@ static int sunxi_ir_probe(struct platform_device *pdev)
+> >  	ir->rc->dev.parent = dev;
+> >  	ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
+> >  	/* Frequency after IR internal divider with sample period in us */
+> > -	ir->rc->rx_resolution = (USEC_PER_SEC / (b_clk_freq / 64));
+> > +	ir->rc->rx_resolution = (USEC_PER_SEC / (b_clk_freq / ir->sample_divisor));
+> >  	ir->rc->timeout = IR_DEFAULT_TIMEOUT;
+> > -	ir->rc->min_timeout = sunxi_ithr_to_usec(b_clk_freq, 0);
+> > -	ir->rc->max_timeout = sunxi_ithr_to_usec(b_clk_freq, 255);
+> > +	ir->rc->min_timeout = sunxi_ithr_to_usec(b_clk_freq, ir->sample_divisor, 0);
+> > +	ir->rc->max_timeout = sunxi_ithr_to_usec(b_clk_freq, ir->sample_divisor, 255);
+> >  	ir->rc->s_timeout = sunxi_ir_set_timeout;
+> >  	ir->rc->driver_name = SUNXI_IR_DEV;
+> > @@ -395,6 +433,14 @@ static const struct sunxi_ir_quirks sun6i_a31_ir_quirks = {
+> >  	.fifo_size = 64,
+> >  };
+> > +static const struct sunxi_ir_quirks sun55i_a523_ir_quirks = {
+> > +	.has_reset = true,
+> > +	.fifo_size = 64,
+> > +	.both_pulse = true,
+> > +	.sample_div_sel = 2,	/* sample clock = module clock / 256 */
+> > +	.sample_divisor = 256,
+> > +};
+> > +
+> >  static const struct of_device_id sunxi_ir_match[] = {
+> >  	{
+> >  		.compatible = "allwinner,sun4i-a10-ir",
+> > @@ -408,6 +454,10 @@ static const struct of_device_id sunxi_ir_match[] = {
+> >  		.compatible = "allwinner,sun6i-a31-ir",
+> >  		.data = &sun6i_a31_ir_quirks,
+> >  	},
+> > +	{
+> > +		.compatible = "allwinner,sun55i-a523-ir",
+> > +		.data = &sun55i_a523_ir_quirks,
+> > +	},
+> >  	{}
+> >  };
+> >  MODULE_DEVICE_TABLE(of, sunxi_ir_match);
+> 
 
