@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-319776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319778-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HOpCIT1KR2oaVgAAu9opvQ
-	(envelope-from <devicetree+bounces-319776-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 07:35:57 +0200
+	id 23scKl5GR2q7VAAAu9opvQ
+	(envelope-from <devicetree+bounces-319778-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 07:19:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 800156FEC33
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 07:35:56 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1490D6FEA4D
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 07:19:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=K0GSA79z;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RJVBfx3D;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319776-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319776-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319778-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-319778-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 94F9D301E4E3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 05:18:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CB13F3024A28
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 05:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA5D53559D6;
-	Fri,  3 Jul 2026 05:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 720FE35B633;
+	Fri,  3 Jul 2026 05:18:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900EB2EEE9E
-	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 05:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796E8353A90
+	for <devicetree@vger.kernel.org>; Fri,  3 Jul 2026 05:18:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783055869; cv=none; b=XsImwyJy8+DA7LP5qluFdsFw/LZP72z6SKF9b6RVzXIH2bMfrlUc0PmVlWR+YHJIdpL6SLVKg2fbPJDX/UZajBepkwZveqySaq5QujNqrn5Bguw3aQINshK0VBu9EAYvi1tzlfQkPcMGkctrss157YWKUMiw2SDQlcbvTDFKetE=
+	t=1783055894; cv=none; b=VSXpvCmw3DGOheswhJbxaA/c6oCr+Ijpf55DqmbqG4GnqAZZKGVDxnEr0JMwnGzzyEdDO1E4bY2Bxe1zjslg3icUEApY0cL64phMVbyFLoKaEa5uAlI6VABa/GVUa+2twdw6hobBiqPa/dbtBv/HjoSwcLytCr29GyT0jfp5NQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783055869; c=relaxed/simple;
-	bh=TA5sKNW/hIcoF0tNyQI0NN0pqggzFgP4tvrxh1efEvc=;
+	s=arc-20240116; t=1783055894; c=relaxed/simple;
+	bh=/ZV0czfIS9daMssmPcd3BR2gSRKnpT1tYsuMU7qxotY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=nqtJpnKbFFH+Af+LRQ7SeLdtgWZ978Rju27F3oMKj1KchZQDUqxdjkKhXhZChVGFSPQM8+syOla+uVtBbKVfPS6vCZbsnizktAcJPszcR8siJe3RM4RZMi9V1+/XE3Vjx865rUa5epwAIS9oDQdNEIYgSn9zwH1BXRfPBapF/AU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K0GSA79z; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A28901F000E9;
-	Fri,  3 Jul 2026 05:17:42 +0000 (UTC)
+	 Message-Id; b=uJEyPEGzkUQspQH1W6X1h88i6Z26X/AEPYGBpE7Ej3jmvrSy1gyeYlf6kxwiChVNSubaJoA2EOna5JGfpmsAqiCmBzm2DpVOAx9kNBB0nkq+zR07IqjKkrwATp7RXeHf6MxIfXwXwgmVGcPArtULbd3JGY4iVzBzUnuUnUWSlZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RJVBfx3D; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B4191F000E9;
+	Fri,  3 Jul 2026 05:18:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783055863;
-	bh=wLmk3C/BBwNAIj5lU+rNhvS6Um/mdE5rXBz9qxbH9Kc=;
+	s=k20260515; t=1783055884;
+	bh=2x6zde3ZmldJpBgbCteGWdLJiJ0PTxoIsZ8v2ZEyDP4=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=K0GSA79zj6eZe7jnkA1YDVsWC1/TQ0h3Ye5QZCe8IWqI0Z+BjkgLlqAhsPzpq68F+
-	 0UeYrPTCAHHRJYIhxTqgG4LdkZm6haxv/DzF5+1fBiMHAEQLW1CaKxfu20V4DvffyK
-	 2nt/5fZoVmx6KQCFMFbOYTU9rdQYYyyFpg6qU96A1YHODMccBm+q+57bnR5I6UUIdI
-	 WPGl7Ykp6wwRgRxst/viRKVnRKOe/Gx5+YlEe4HIFvP7GaddYsqNNtU4Z0iTG+Eo9N
-	 qU/ucwgi/RUYpSVw0aGDmmtkqZXNLdAfCQiiBvpa3MVTdfp+VlwE8kFTQ5kfgXJBwf
-	 sZdDd+FZ2bJxA==
+	b=RJVBfx3DU04lLzuqKm+QIXMNN4WfgjKqApqDuGvjfZ1ub82Z92cJrDTaHCKAjPcmC
+	 fIZQeQ7t12aI/OiVDoDpnsbEy6GJ50vI7Az7DeAMv75ZOOYBXDiOWLT6jD4H1/bCyi
+	 XRioP3DecIRVSV5Ly+pHAnvE3pmjSydk8hGCS9wxWy1xaPWUOU9bM4uPg/SigsZFSP
+	 T550Q9Zoocq1Hn0uVjOwmk+BSKZocRddKDSacqCSwn6Mpipci0WVBcHaFoCCGCNB3H
+	 T3LF5Cwq7At01zPOZyTWLTVMjJ075QRZ9orLNk+KZEmj1f6EJwNnSsOYMH+QBwvQ4L
+	 0KqoRgtFY20xg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 03/10] soc: qcom: Add QMI TMD support for remote
- thermal mitigation
+Subject: Re: [PATCH v4 07/10] arm64: dts: qcom: lemans: Enable CDSP cooling
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Gaurav Kohli" <gaurav.kohli@oss.qualcomm.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260703-qmi-tmd-v4-3-3882189c1f83@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260703-qmi-tmd-v4-7-3882189c1f83@oss.qualcomm.com>
 References: <20260703-qmi-tmd-v4-0-3882189c1f83@oss.qualcomm.com>
- <20260703-qmi-tmd-v4-3-3882189c1f83@oss.qualcomm.com>
+ <20260703-qmi-tmd-v4-7-3882189c1f83@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 03 Jul 2026 05:17:42 +0000
-Message-Id: <20260703051742.A28901F000E9@smtp.kernel.org>
+Date: Fri, 03 Jul 2026 05:18:03 +0000
+Message-Id: <20260703051804.6B4191F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,17 +71,17 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319776-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319778-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:gaurav.kohli@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:gaurav.kohli@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -99,246 +98,149 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid,linaro.org:email,lists.linux.dev:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 800156FEC33
+X-Rspamd-Queue-Id: 1490D6FEA4D
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Improper teardown sequence in qmi_tmd_exit() creates multiple Use-=
-After-Free vulnerabilities.
-- [High] Failure to clear tmd->cdev on registration error causes a kernel p=
-anic during unregistration.
-- [Medium] Time-Of-Check to Time-Of-Use race in qmi_tmd_register() silently=
- drops requested thermal mitigation state.
-- [Medium] Size mismatch between mitigation_device_list_len field and QMI e=
-lement descriptor causes incorrect decoding on big-endian systems.
-- [Low] Missing NET dependency inheritance in Kconfig causes unmet dependen=
-cy warnings and potential build failures.
-- [Low] Mixing goto-based error handling with __free() and scoped_guard() c=
-leanup helpers violates strict cleanup rules.
+- [High] Missing NULL reset of tmd->cdev on registration failure causes inv=
+alid pointer dereference during unregistration and breaks subsequent regist=
+rations.
+- [High] Destroying the QMI handle before unregistering the thermal cooling=
+ devices introduces a race condition with userspace resulting in a Use-Afte=
+r-Free.
 --
 
-commit f78be8814546ffe0023b5b8c2d56a90a684efe2d
-Author: Casey Connolly <casey.connolly@linaro.org>
+commit 68055a14c90dc23e8743fc49a13b0805f601355b
+Author: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+Subject: arm64: dts: qcom: lemans: Enable CDSP cooling
 
-soc: qcom: Add QMI TMD support for remote thermal mitigation
-   =20
-Add support for Qualcomm Messaging Interface (QMI) based Thermal Mitigation
-Device (TMD) cooling devices provided by remote subsystems.
+This commit sets up CDSP cooling for both instances in the lemans device tr=
+ee.
+It configures the cooling maps and cooling devices to throttle the CDSP whe=
+n it
+reaches 105=C2=B0C.
 
-> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-> index 2caadbbcf8307..44c2b533b494f 100644
-> --- a/drivers/soc/qcom/Kconfig
-> +++ b/drivers/soc/qcom/Kconfig
+> diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/q=
+com/lemans.dtsi
+> index 353a6e6fd3acb..89fa25e9d3c6d 100644
+> --- a/arch/arm64/boot/dts/qcom/lemans.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
 [ ... ]
-> @@ -128,6 +128,16 @@ config QCOM_QMI_HELPERS
->  	tristate
->  	depends on NET
+> @@ -8764,7 +8769,7 @@ nsp-0-0-0-thermal {
+>  			thermal-sensors =3D <&tsens2 5>;
 > =20
-> +config QCOM_QMI_TMD
-> +	bool "Qualcomm remote subsystem TMD" if COMPILE_TEST
-> +	depends on ARCH_QCOM
-> +	select QCOM_QMI_HELPERS
-
-[Severity: Low]
-Does this config need to inherit the NET dependency?
-
-QCOM_QMI_HELPERS depends on NET, so selecting it without a NET dependency c=
-an
-cause unmet dependency warnings and build failures if COMPILE_TEST is set a=
-nd
-NET is disabled.
-
-> +	help
-> +	  This enables Qualcomm Messaging Interface (QMI) based Thermal Mitigat=
-ion
-> +	  Device (TMD) support for Qualcomm remote subsystems. It manages
-
-> diff --git a/drivers/soc/qcom/qmi_tmd.c b/drivers/soc/qcom/qmi_tmd.c
-> new file mode 100644
-> --- /dev/null
-> +++ b/drivers/soc/qcom/qmi_tmd.c
-[ ... ]
-> +struct tmd_get_dev_list_resp {
-> +	struct qmi_response_type_v01 resp;
-> +	u8 mitigation_device_list_valid;
-> +	u32 mitigation_device_list_len;
-> +	struct tmd_dev_list
-> +		mitigation_device_list[QMI_TMD_DEV_LIST_MAX];
-> +};
+>  			trips {
+> -				trip-point0 {
+> +				nsp_0_0_0_alert0: trip-point0 {
+>  					temperature =3D <105000>;
+>  					hysteresis =3D <5000>;
+>  					type =3D "passive";
+> @@ -8776,6 +8781,14 @@ trip-point1 {
+>  					type =3D "passive";
+>  				};
+>  			};
 > +
-> +static const struct qmi_elem_info tmd_get_dev_list_resp_ei[] =3D {
-[ ... ]
-> +	{
-> +		.data_type =3D QMI_DATA_LEN,
-> +		.elem_len =3D 1,
-> +		.elem_size =3D sizeof(uint8_t),
-> +		.array_type =3D NO_ARRAY,
-> +		.tlv_type =3D 0x10,
-> +		.offset =3D offsetof(struct tmd_get_dev_list_resp,
-> +				   mitigation_device_list_len),
-> +	},
-
-[Severity: Medium]
-Is this element size correct for the target field?
-
-The struct defines mitigation_device_list_len as a u32, but the QMI definit=
-ion
-specifies sizeof(uint8_t).
-
-On big-endian systems, writing 1 byte to the start of a u32 field populates
-the most significant byte, resulting in a massively inflated length value. =
-The
-loop in qmi_tmd_svc_arrive() would then read out of bounds.
-
-[ ... ]
-> +static int qmi_tmd_register(struct qmi_tmd_client *qmi_tmd_cli,
-> +			    const char *label, u8 max_state)
-> +{
-[ ... ]
-> +found:
-> +	tmd->max_state =3D max_state;
-> +
-> +	/*
-> +	 * If the cooling device already exists then the QMI service went away =
-and
-> +	 * came back. So just make sure the current cooling device state is
-> +	 * reflected on the remote side and then return.
-> +	 */
-> +	if (tmd->cdev)
-> +		return qmi_tmd_send_state_request(tmd, tmd->cur_state);
-
-[Severity: Medium]
-Can this race with qmi_tmd_set_cur_state() and send a stale state to the DS=
-P?
-
-qmi_tmd_register() locklessly reads tmd->cur_state here. If a thermal
-governor concurrently calls qmi_tmd_set_cur_state() which updates the
-requested state, qmi_tmd_register() might read the old state before acquiri=
-ng
-the mutex in qmi_tmd_send_state_request().
-
-This could result in sending the stale state to the DSP, overriding the
-active mitigation.
-
-> +
-> +	tmd->cdev =3D thermal_of_cooling_device_register(dev->of_node, index,
-> +						       label, tmd, &qmi_tmd_cooling_ops);
-> +	if (IS_ERR(tmd->cdev))
-> +		return PTR_ERR(tmd->cdev);
+> +			cooling-maps {
+> +				map0 {
+> +					trip =3D <&nsp_0_0_0_alert0>;
+> +					cooling-device =3D <&remoteproc_cdsp0 QCOM_CDSP_TMD_CDSP_SW
+> +							 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
 
 [Severity: High]
-Should tmd->cdev be set to NULL here on failure?
+Does enabling this cooling device expose a regression involving an invalid
+pointer dereference in qmi_tmd_register()?
 
-If thermal_of_cooling_device_register() fails, it returns an ERR_PTR.
-Leaving the error pointer in tmd->cdev causes issues during teardown.
+If thermal_of_cooling_device_register() fails, tmd->cdev holds an ERR_PTR:
 
-> +
-> +	return 0;
-> +}
-> +
-> +static void qmi_tmd_unregister(struct qmi_tmd_client *qmi_tmd_cli)
-> +{
-> +	struct qmi_tmd *tmd;
-> +	int index;
-> +
-> +	for (index =3D 0; index < qmi_tmd_cli->num_tmds; index++) {
-> +		tmd =3D &qmi_tmd_cli->tmds[index];
-> +
-> +		if (!tmd->cdev)
-> +			continue;
-> +
-> +		thermal_cooling_device_unregister(tmd->cdev);
+drivers/soc/qcom/qmi_tmd.c:qmi_tmd_register() {
+    ...
+	tmd->cdev =3D thermal_of_cooling_device_register(dev->of_node, index,
+						       label, tmd, &qmi_tmd_cooling_ops);
+	if (IS_ERR(tmd->cdev))
+		return PTR_ERR(tmd->cdev);
+    ...
+}
 
-[Severity: High]
-Can this dereference an error pointer and crash?
+Because tmd->cdev is not reset to NULL, qmi_tmd_unregister() will pass this
+ERR_PTR to thermal_cooling_device_unregister(), which expects a valid
+pointer or NULL:
 
-Because qmi_tmd_register() leaves an ERR_PTR in tmd->cdev on failure, the
-if (!tmd->cdev) check evaluates to false. thermal_cooling_device_unregister=
-()
-will then attempt to dereference the error pointer.
+drivers/soc/qcom/qmi_tmd.c:qmi_tmd_unregister() {
+    ...
+		if (!tmd->cdev)
+			continue;
 
-> +		tmd->cdev =3D NULL;
-> +	}
-> +}
-> +
-> +static void qmi_tmd_svc_arrive(struct work_struct *work)
-> +{
-> +	struct qmi_tmd_client *qmi_tmd_cli =3D
-> +		container_of(work, struct qmi_tmd_client, svc_arrive_work);
-> +
-> +	struct tmd_get_dev_list_req req =3D { 0 };
-> +	struct tmd_get_dev_list_resp *resp __free(kfree) =3D NULL;
-> +	int ret, i;
-> +	struct qmi_txn txn;
-> +
-> +	resp =3D kzalloc_obj(*resp, GFP_KERNEL);
-> +	if (!resp) {
-> +		ret =3D -ENOMEM;
-> +		goto out;
-> +	}
-> +
-> +	scoped_guard(mutex, &qmi_tmd_cli->mutex) {
-> +		ret =3D qmi_txn_init(&qmi_tmd_cli->handle, &txn,
-> +				   tmd_get_dev_list_resp_ei, resp);
-> +		if (ret < 0)
-> +			goto out;
+		thermal_cooling_device_unregister(tmd->cdev);
+    ...
+}
 
-[Severity: Low]
-This isn't a bug, but does this function mix goto-based error handling with
-__free() and scoped_guard() cleanup helpers?
+Will this cause a kernel panic when the thermal core dereferences the
+invalid pointer?
 
-According to the cleanup guidelines in include/linux/cleanup.h, mixing goto
-and cleanup helpers in the same function can create confusing ownership
-semantics. It is recommended to convert all resources to scope-based
-cleanup, or convert none of them.
+Additionally, if the QMI service restarts, would a stale error pointer
+silently skip registration entirely?
 
 [ ... ]
-> +void qmi_tmd_exit(struct qmi_tmd_client *qmi_tmd_cli)
-> +{
-> +	if (!qmi_tmd_cli)
-> +		return;
+> @@ -8784,7 +8797,7 @@ nsp-0-1-0-thermal {
+>  			thermal-sensors =3D <&tsens2 6>;
+> =20
+>  			trips {
+> -				trip-point0 {
+> +				nsp_0_1_0_alert0: trip-point0 {
+>  					temperature =3D <105000>;
+>  					hysteresis =3D <5000>;
+>  					type =3D "passive";
+> @@ -8796,6 +8809,14 @@ trip-point1 {
+>  					type =3D "passive";
+>  				};
+>  			};
 > +
-> +	cancel_work_sync(&qmi_tmd_cli->svc_arrive_work);
-> +	qmi_handle_release(&qmi_tmd_cli->handle);
-> +	qmi_tmd_unregister(qmi_tmd_cli);
-> +
-> +	scoped_guard(mutex, &qmi_tmd_cli->mutex)
-> +		qmi_tmd_cli->connection_active =3D false;
-> +}
+> +			cooling-maps {
+> +				map0 {
+> +					trip =3D <&nsp_0_1_0_alert0>;
+> +					cooling-device =3D <&remoteproc_cdsp0 QCOM_CDSP_TMD_CDSP_SW
+> +							 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
 
 [Severity: High]
-Does this teardown sequence create multiple use-after-free conditions?
+Could exposing these cooling devices to userspace trigger a use-after-free
+regression during teardown?
 
-First, if svc_arrive_work is cancelled before qmi_handle_release() is calle=
-d,
-an incoming server event can immediately re-queue the work via
-qmi_tmd_new_server() since the QMI socket is still active. When the device
-unbinds, qmi_tmd_cli is freed, and the workqueue will execute on the freed
-structure.
+In qmi_tmd_exit(), the QMI handle is released before the cooling devices
+are unregistered:
 
-Second, qmi_handle_release() destroys the QMI handle (including the txns ID=
-R)
-before the thermal cooling devices are unregistered and before
-connection_active is set to false. During this window, a concurrent sysfs
-write could invoke qmi_tmd_send_state_request(), see
-connection_active =3D=3D true, and attempt to use the destroyed IDR:
+drivers/soc/qcom/qmi_tmd.c:qmi_tmd_exit() {
+    ...
+	qmi_handle_release(&qmi_tmd_cli->handle);
+	qmi_tmd_unregister(qmi_tmd_cli);
 
-Sysfs thread:
-qmi_tmd_send_state_request()
-   if (!qmi_tmd_cli->connection_active) // Still true!
-   ret =3D qmi_txn_init(&qmi_tmd_cli->handle, ...) // UAF on txns IDR
+	scoped_guard(mutex, &qmi_tmd_cli->mutex)
+		qmi_tmd_cli->connection_active =3D false;
+    ...
+}
 
-Should this sequence clear connection_active and unregister the thermal
-devices first, then release the QMI handle, and finally cancel the workqueu=
-e?
+If a concurrent write to the thermal sysfs node invokes
+qmi_tmd_set_cur_state() -> qmi_tmd_send_state_request() before the cooling
+device is unregistered, the connection_active flag is still true.
+
+Would this cause qmi_txn_init() and qmi_send_request() to operate on the
+already destroyed qmi_tmd_cli->handle?
+
+Should qmi_tmd_unregister() be called before releasing the QMI handle to
+ensure pending sysfs operations are safely quiesced?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260703-qmi-tmd-v4=
--0-3882189c1f83@oss.qualcomm.com?part=3D3
+-0-3882189c1f83@oss.qualcomm.com?part=3D7
 
