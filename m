@@ -1,290 +1,219 @@
-Return-Path: <devicetree+bounces-319882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319884-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id b2WrBTVuR2q1YAAAu9opvQ
-	(envelope-from <devicetree+bounces-319882-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:09:25 +0200
+	id UXixHEVxR2o4YQAAu9opvQ
+	(envelope-from <devicetree+bounces-319884-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:22:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD806FFE78
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:09:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB29C700012
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 10:22:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gF2rbx1p;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319882-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-319882-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qq.com header.s=s201512 header.b=Roe86d27;
+	dmarc=pass (policy=quarantine) header.from=qq.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319884-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-319884-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E539E3045A8F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 08:00:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 74C44303EF59
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 08:01:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4850B3769F6;
-	Fri,  3 Jul 2026 08:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E455E370D55;
+	Fri,  3 Jul 2026 08:01:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from xmbghk7.mail.qq.com (xmbghk7.mail.qq.com [43.163.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB94A371D15;
-	Fri,  3 Jul 2026 08:00:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 611813603D5;
+	Fri,  3 Jul 2026 08:01:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783065629; cv=none; b=nbPoIdxYkObCroxtqAePWbTCjILhIxRUmjQFqlvpOR07ct+CX24MnLlafpPtZP75aYC7F08fflt5yoAth8jJ/BPmXCP8PaoWUDlPayQ/XfYNw12x4bw0J1vKiE9eDq7BgXWAjo/3p/VkjOPxDf0HC2SyF8ZLBdZW045/96FNqNc=
+	t=1783065706; cv=none; b=BPOGHxz+utZiD3AYH5HmsMovKT1eUhul1yCMBYFy+AiPoL9RDQqEp0gAzXYytsWr3ZVtcpfaEfm3A7cxA4id7oK9/4fOI2aoKovyDiE2Uag8T45q1TvzBiCDVPs6N+rFpEoZQ3g4W55zpJYkJmiEoKIaz6ZL17pBxMr4jJ119Zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783065629; c=relaxed/simple;
-	bh=g4JQuhHD/RK6GHrhnwml/L/+nYMSlIjvihkKG4F2kk4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZcyYWGtHvE4k5YB59HcW//bqvdnESLX9egooHOqIdLzSiKhMpKYqB39ujyn1x9x3+nGRGWzgvChroV8WZralYiue9Wvn3ZLj6ch7KgjPrVmbLc3QW7hw8mtX2ryhgfdvAQGQh3Nw8fexNB9B6Kk1bVL653F2LG5DPH/NZPL7op0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gF2rbx1p; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D01171F000E9;
-	Fri,  3 Jul 2026 08:00:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783065627;
-	bh=N6cvB6ilYfXF9Z+EldI441PSyI9lUhF0hrtl69qJt7g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=gF2rbx1ppjqa9+2qsNeLPi+Dr2B6uYU5jU8z5gb2wDPgIeKuRlItYFkeO0++ERkLy
-	 WPvyzPIjbipYpLrP67Ua4EXeUGGJAARcis1cpcHOZ7OgxypilI6yvDTW/4Os0pCDTR
-	 Z7GmHDUQMB7BLPxVBNMicUYmFuqzJF9mbFZU+6XCsunk4+/GlRX7snOL6wXVMWrnE5
-	 YWq6SdeWTqgCc8LOAZ9uRPf43Ho1otnVSXVTUDl4WKTMh60V2Wrn2HJ60Jy3GJ+43u
-	 Wi1jX8hHDHYsBtIgrVL7mAbyxfChNsCoFG0jZBO4T3eCLC05Ig28n1JXtNZtyECWN7
-	 aKPO4wDGwEZ+A==
-Date: Fri, 3 Jul 2026 01:00:25 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Fenghua Yu <fenghuay@nvidia.com>
-Cc: Adrien Ricciardi <aricciardi@baylibre.com>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Atish Kumar Patra <atishp@rivosinc.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Babu Moger <babu.moger@amd.com>, Ben Horgan <ben.horgan@arm.com>,
-	Borislav Petkov <bp@alien8.de>, Chen Pei <cp0613@linux.alibaba.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	Dave Martin <Dave.Martin@arm.com>,
-	Gong Shuai <gong.shuai@sanechips.com.cn>,
-	Gong Shuai <gsh517@gmail.com>, guo.wenjia23@zte.com.cn,
-	James Morse <james.morse@arm.com>,
-	Kornel =?utf-8?Q?Dul=C4=99ba?= <mindal@semihalf.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, liu.qingtao2@zte.com.cn,
-	Liu Zhiwei <zhiwei_liu@linux.alibaba.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
-	Peter Newman <peternewman@google.com>,
-	Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>,
-	Reinette Chatre <reinette.chatre@intel.com>,
-	Rob Herring <robh@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-	Tony Luck <tony.luck@intel.com>,
-	Vasudevan Srinivasan <vasu@rivosinc.com>,
-	Ved Shanbhogue <ved@rivosinc.com>, Weiwei Li <liwei1518@gmail.com>,
-	yunhui cui <cuiyunhui@bytedance.com>, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, x86@kernel.org,
-	devicetree@vger.kernel.org, linux-rt-devel@lists.linux.dev,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 5/8] riscv_cbqri: resctrl: Add cache allocation via
- capacity block mask
-Message-ID: <akdsGZm8e9w5idhn@x1>
-References: <20260628-dfustini-atl-sc-cbqri-dt-v3-0-c9c1342fe3cf@kernel.org>
- <20260628-dfustini-atl-sc-cbqri-dt-v3-5-c9c1342fe3cf@kernel.org>
- <473da771-b711-457b-b9ad-491fee111b16@nvidia.com>
+	s=arc-20240116; t=1783065706; c=relaxed/simple;
+	bh=mHRtawpZnMD5jwnhrokE1/6hmG2DPeDa8q0KvSPZDgw=;
+	h=Message-ID:From:Subject:Date:MIME-Version:Content-Type:To:Cc; b=Ho+H4ey8amjM048ruC8vFgB/wswo1nKvCSEwOAWNple7Id6fZbMjSdHtmSLc9reuD9zjNsPcgZRjQW6Ohxf/PS/kROt9i2I5tMQhR9paAgHOuVX7rftGXqv2GDVIXTtdobnpqTwsW8KrUytZ0LkpFvT6Mopo+1KpjKerSiQEfg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=Roe86d27; arc=none smtp.client-ip=43.163.128.47
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1783065701; bh=GquEjNpz7LLp5fa0G7ONBtCOsxLa8pv39v8AkakdZAk=;
+	h=From:Subject:Date:To:Cc;
+	b=Roe86d270+YLZGJmFvhfkgsPZJCbabRJkZkREyJBSmSJoHNhRqq3GIq8uz+Ggy/b6
+	 O2BnzB1oKCMCBM/5Dac/iPd8Z8hd9b1Kl90+xD2otb6yXVo5xBdhb4ZgLQ8UCTHou8
+	 51SZYRaiEYfwefl+aYzssZ0p+SADCAjguQXaTiq8=
+Received: from ubuntu2204.localdomain ([218.4.149.66])
+	by newxmesmtplogicsvrsza73-0.qq.com (NewEsmtp) with SMTP
+	id 6622C6D; Fri, 03 Jul 2026 16:01:38 +0800
+X-QQ-mid: xmsmtpt1783065698tdnsng46b
+Message-ID: <tencent_42B49B0E68A8659A13EC46A402E41133FC09@qq.com>
+X-QQ-XMAILINFO: M07Ulnfy3VHK8G1moattDV+yMJgDKhR+EsB7PDHBWj61nfSZpJDu2TmnHt/tVC
+	 vqlkQC4qsgCpv13Ww85I55Xo9QcvcJTNxsy4YDjLwjUHzQNndYG8/EPaqRh2GBxwwOLVwGZOiiLb
+	 BRjJy2WjIld1cI5kJlGXwTXd3Gkmy0xAV9TyMt99dP/7ITUcXLgDtFAIkdqr/6J2fbt1YuLcpIy3
+	 gsZLLZVmKPgpR5zP3Uao4XyqoA2WIdnjhtioLPyY/jLW7fzw9vyonmfAlM7CQyrG6u/j6/SO8kWp
+	 IqkR7SBx3vqZegHm4Y46U6Y2l4IoZUUjsHHxd+2UrhPVvF6Wejtw2MHJviHSsobOke1D8qbP40zc
+	 uniLUchfifVT53hTPHH7etZlntIAf5m3r2jlHFRYUswSWnwIED91LHwXD/U7xGzzWgfNZgRIAspJ
+	 fWrxMwt5TdhErbiE1oExCVzl2w6iMxR+5ejSMn6wKp1w5IPNc0uGdclrvHlvAWGrizIprAVjPJ7z
+	 3idxPcv89jseOswZsskDVVr9ZFG/t+tdqETDRSwY6okh1S0Lp5/zg8acTsIsdNYvsQbhxQpeSPMF
+	 +bcSr08ZsmiuLvfUeEDpy0WnEcUSnna9wDKGBngMTKB7cxDHZZO4Ags9aGf/VDbEIY1Pxe6C5Q6a
+	 i41vu2+mi1zRrk50FatWa9RicUn0hK44S7GIFk9BxhUhLsuljT1gzuleO+aZaK2FkX1OSiEfzIXs
+	 GvN4U6WbXVQ8ny9QF+ZUxfYMILoZDyTJqo8NqGJTVPvAJhy7E5XgTT8ZyzGX1EIGV/gxHWVgdj6F
+	 edZzf7hebwJkccNDGQfUnX4QrdCvPCzPLOWrgiS68gx0DW6F524p97KW/jmh5pdTE9UtKr4LrmQ2
+	 qpZenaa514WXSEyU8WSKc1wkQM8H5gh3Icwb/1tUPKoZkyvF3sB1AsfnoB+0fQ3kkNnC7Yl5DyWP
+	 2l8uQAS2sdfKnTD7/WdwgQd9+/yHfjJOWdQ3QMwbdhKhELqPgc/xNH3j3+KAuLUVZEUTgCO7Bd+H
+	 tTp9G+i/nJy37AiD6t0n7IDPi4h4VL3av6D3HUq6bAMxMEuwGb+ULdrmLioBg1uK4LnWYhijNgED
+	 uQ3br8IoViGvWyS2b5OOBeVSQQcbB8e7l6u+lECVubIDBCoewlth/jFdTbVw==
+X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
+From: Cunhao Lu <1579567540@qq.com>
+Subject: [PATCH v4 0/4] can: rockchip: add RK3588 CAN support
+Date: Fri, 03 Jul 2026 16:01:25 +0800
+X-OQ-MSGID: <20260703-master-v4-0-47d40bbf5fda@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <473da771-b711-457b-b9ad-491fee111b16@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFVsR2oC/zWNQQ7CIBQFr9L8tRgCFqsr72G6oPCxmLRYQKJpu
+ LtQ0+Uk8+atENBbDHBtVvCYbLBuLnA6NKBGOT+QWF0YGGWCnikjkwwRPelUywbsLkxyA0V+eTT
+ 2s4Xu/Z/De3iiinVdjdGG6Px3e0q8enuU79HECSVCt0KjMJoZfluWo3IT9DnnH/9V6iSrAAAA
+X-Change-ID: 20260702-master-8c52be892a3f
+To: Marc Kleine-Budde <mkl@pengutronix.de>, kernel@pengutronix.de, 
+ Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Cunhao Lu <1579567540@qq.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Heiko Stuebner <heiko.stuebner@cherry.de>
+X-Mailer: b4 0.15.2
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[qq.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[40];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:fenghuay@nvidia.com,m:aricciardi@baylibre.com,m:alex@ghiti.fr,m:atishp@rivosinc.com,m:atish.patra@linux.dev,m:babu.moger@amd.com,m:ben.horgan@arm.com,m:bp@alien8.de,m:cp0613@linux.alibaba.com,m:conor.dooley@microchip.com,m:conor+dt@kernel.org,m:dave.hansen@linux.intel.com,m:Dave.Martin@arm.com,m:gong.shuai@sanechips.com.cn,m:gsh517@gmail.com,m:guo.wenjia23@zte.com.cn,m:james.morse@arm.com,m:mindal@semihalf.com,m:krzk+dt@kernel.org,m:liu.qingtao2@zte.com.cn,m:zhiwei_liu@linux.alibaba.com,m:palmer@dabbelt.com,m:pjw@kernel.org,m:peternewman@google.com,m:rkrcmar@ventanamicro.com,m:reinette.chatre@intel.com,m:robh@kernel.org,m:samuel.holland@sifive.com,m:bigeasy@linutronix.de,m:tony.luck@intel.com,m:vasu@rivosinc.com,m:ved@rivosinc.com,m:liwei1518@gmail.com,m:cuiyunhui@bytedance.com,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:x86@kernel.org,m:devicetree@vger.kernel.org,m:linux-rt-devel@lists.linux.dev,m:linux-doc@vger.kernel.org,m:conor@ke
- rnel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mkl@pengutronix.de,m:kernel@pengutronix.de,m:mailhol@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:linux-can@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:1579567540@qq.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:heiko.stuebner@cherry.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319882-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[qq.com];
+	TAGGED_FROM(0.00)[bounces-319884-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[qq.com:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[baylibre.com,ghiti.fr,rivosinc.com,linux.dev,amd.com,arm.com,alien8.de,linux.alibaba.com,microchip.com,kernel.org,linux.intel.com,sanechips.com.cn,gmail.com,zte.com.cn,semihalf.com,dabbelt.com,google.com,ventanamicro.com,intel.com,sifive.com,linutronix.de,bytedance.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,qq.com,oss.qualcomm.com,cherry.de];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre.com:email]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,msgid.link:url,qq.com:from_mime,qq.com:email,qq.com:mid,qq.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6FD806FFE78
+X-Rspamd-Queue-Id: BB29C700012
 
-On Wed, Jul 01, 2026 at 01:18:41PM -0700, Fenghua Yu wrote:
-> Hi, Drew,
+Add support for the RK3588 CAN controller.
 
-Hi, thanks for reviewing.
+RK3588 integrates three CAN-FD controllers that are closely related to
+the existing Rockchip CAN-FD IP already supported in the kernel. The
+RK3588 variant is not fully compatible with RK3568v2 because the RX
+FIFO count register field has a different layout.
 
-> Could you please change my email address to my NVIDIA email
-> fenghuay@nvidia.com?
+This series therefore:
 
-No problem.
+- extends the existing Rockchip CAN-FD binding with the
+  rockchip,rk3588-canfd compatible
+- adds a dedicated RK3588 match entry and devtype in the driver
+- describes the three CAN controller nodes in rk3588-base.dtsi
+- enables CAN on the RK3588 Tiger Haikou board
 
-> On 6/28/26 14:18, Drew Fustini wrote:
-> > Wire CBQRI capacity controllers into resctrl as RDT_RESOURCE_L2 and
-> > RDT_RESOURCE_L3 schemata.
-> > 
-> > Mismatched CC caps at the same cache level are treated as a fatal
-> > configuration error since fs/resctrl exposes a single per-rid cap
-> > set. Domains are created lazily in the cpuhp online callback so
-> > cpu_mask reflects only currently online CPUs.
-> > 
-> > Assisted-by: Claude:claude-opus-4-7
-> > Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
-> > Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
-> > Signed-off-by: Drew Fustini <fustini@kernel.org>
-> > ---
-> >   MAINTAINERS                      |   2 +
-> >   arch/riscv/include/asm/resctrl.h | 147 ++++++++
-> >   drivers/resctrl/Kconfig          |   4 +
-> >   drivers/resctrl/Makefile         |   1 +
-> >   drivers/resctrl/cbqri_resctrl.c  | 787 +++++++++++++++++++++++++++++++++++++++
-> >   5 files changed, 941 insertions(+)
-> [SNIP]
-> 
-> > +/*
-> > + * Walk cbqri_controllers and pick one capacity controller (CC) per cache
-> > + * level (L2/L3) to back the corresponding RDT_RESOURCE_L*. When more than
-> > + * one CC sits at the same level (e.g. one per socket), they must agree on
-> > + * rcid_count / ncblks / alloc_capable. A mismatch is fatal because resctrl
-> > + * exposes a single set of caps per rid. The first matching controller wins.
-> > + */
-> > +static int cbqri_resctrl_pick_caches(void)
-> > +{
-> > +	struct cbqri_controller *ctrl;
-> > +	int ret = 0;
-> > +
-> > +	mutex_lock(&cbqri_controllers_lock);
-> 
-> Is it better to change mutex_lock()/mutex_unlock() to
->  guard(mutex)(&cbqri_controllers_lock)?
-> 
-> 1. This code is simpler and can avoid potential missing unlock issue.
-> 2. This matches mpam code.
+RK3588 encodes RX_FIFO_CNT in bits 7:5 instead of 6:4. This
+difference was found by comparing Rockchip's vendor kernel 6.1 CAN
+support for RK3568 and RK3588, and was also confirmed by runtime
+testing.
 
-Good point, I will switch cbqri_controllers_lock lock/unlock to
-guard(mutex).
+RK3588 uses the existing erratum 5 empty-FIFO workaround. Based on
+Heiko's testing, v2 also enables the erratum 6 workaround for extended
+frames being transmitted as standard frames.
 
-> 
-> > +
-> > +	list_for_each_entry(ctrl, &cbqri_controllers, list) {
-> > +		struct cbqri_resctrl_res *cbqri_res;
-> > +		int rid;
-> > +
-> > +		if (ctrl->type != CBQRI_CONTROLLER_TYPE_CAPACITY)
-> > +			continue;
-> > +		if (!ctrl->alloc_capable)
-> > +			continue;
-> > +
-> > +		rid = cbqri_cache_level_to_rid(ctrl->cache.cache_level);
-> > +		if (rid < 0) {
-> > +			pr_info("skipping controller at unsupported cache level %u\n",
-> > +				ctrl->cache.cache_level);
-> > +			continue;
-> > +		}
-> > +
-> > +		cbqri_res = &cbqri_resctrl_resources[rid];
-> > +		if (cbqri_res->ctrl) {
-> > +			/*
-> > +			 * CCs at the same cache level must agree on every cap
-> > +			 * resctrl exposes globally. Reject mismatches at pick
-> > +			 * time so the inconsistency is visible at boot.
-> > +			 */
-> > +			if (cbqri_res->ctrl->rcid_count != ctrl->rcid_count ||
-> > +			    cbqri_res->ctrl->cc.ncblks != ctrl->cc.ncblks ||
-> > +			    cbqri_res->ctrl->cc.supports_alloc_at_code !=
-> > +				    ctrl->cc.supports_alloc_at_code ||
-> > +			    cbqri_res->ctrl->alloc_capable != ctrl->alloc_capable) {
-> > +				pr_err("L%d controllers have mismatched capabilities\n",
-> > +				       ctrl->cache.cache_level);
-> > +				ret = -EINVAL;
-> > +				break;
-> 
-> Is it possible to support cbqri on both L2 and L3 on the same machine?
-> Failure on one controller will stop picking another other controller here.
-> 
-> If both L2 and L3 can be supported on the same machine, does it make sense
-> to pr_err() (fatal for this controller) and continue to go to the next
-> controller? So failure on L2 won't impact L3?
-> 
-> If that's the case, does it make sense not to return error for
-> pick_caches()? So pick_caches() failure is not fatal?
+CAN-FD is enabled for RK3588. The BRS bus-off issue seen in earlier
+testing was caused by the transmit delay compensation setting. With
+RKCANFD_REG_TRANSMIT_DELAY_COMPENSATION programmed to 0 on RK3588,
+CAN-FD with BRS works in local testing.
 
-Yes, both L2 and L3 can be present at once, and you're right that this
-approach was too strict. I will change it so that it drops only the
-offending cache level. I will make pick_caches() clear that rid so it is
-not exposed and continue to the next controller. It no longer returns an
-error, so an L2 mismatch leaves L3, and any future QoS feature untouched.
+Tested on an embedfire,rk3588-lubancat-5io board with can0/can1
+directly connected, no other device on the bus, 60 Ohm bus
+termination, and a 300 MHz CAN clock. The test used 500 kbit/s
+arbitration bitrate and 1, 3 and 5 Mbit/s data bitrates. The 5 Mbit/s
+data phase test ran for 15 minutes with:
 
-[..]
-> > +static int cbqri_attach_cpu_to_all_ctrls(unsigned int cpu)
-> > +{
-> > +	struct cbqri_controller *ctrl;
-> > +	int err = 0;
-> > +
-> > +	lockdep_assert_held(&cbqri_domain_list_lock);
-> > +
-> > +	/*
-> > +	 * Hold cbqri_controllers_lock across the walk so a controller
-> > +	 * registered after boot cannot corrupt it. The register path takes
-> > +	 * it as a leaf and never cbqri_domain_list_lock, so this nesting
-> > +	 * cannot invert.
-> > +	 */
-> > +	mutex_lock(&cbqri_controllers_lock);
-> 
-> guard(mutex)(&cbqri_controllers_lock)?
+  ip link set can0 type can bitrate 500000 sample-point 0.8 dbitrate 5000000 dsample-point 0.8 fd on berr-reporting on
+  ip link set can1 type can bitrate 500000 sample-point 0.8 dbitrate 5000000 dsample-point 0.8 fd on berr-reporting on
+  cangen can0 -I 2 -Li -Di -p 10 -f -g 1 -c32 -b
+  cansequence -rv can1 -f
 
-Ack.
+The receiver reported continuous sequence wrap-around messages up to
+sequence wrap around (37219). Both interfaces reported 9528377 packets
+and 150667356 bytes, with 0 bus-errors, 0 error-warn, 0 error-pass and
+0 bus-off events.
 
-> > +static int cbqri_resctrl_setup(void)
-> > +{
-> > +	int rid;
-> > +	int err;
-> > +
-> > +	for (rid = 0; rid < RDT_NUM_RESOURCES; rid++)
-> > +		cbqri_resctrl_resources[rid].resctrl_res.rid = rid;
-> > +
-> > +	err = cbqri_resctrl_pick_caches();
-> > +	if (err)
-> > +		return err;
-> 
-> Failure in pick_caches() will abort any future cbqri features e.g. memory bw
-> allocation/monitoring. Is it possible to ignore the pick_caches() failure
-> and continue to setup other cbqri features? Failed caches won't impact other
-> QoS features, right?
+Signed-off-by: Cunhao Lu <1579567540@qq.com>
+---
+v3 -> v4:
+- disable TDC on RK3588 by programming
+  RKCANFD_REG_TRANSMIT_DELAY_COMPENSATION to 0
+- drop RKCANFD_QUIRK_CANFD_BROKEN for RK3588 and enable CAN-FD support
+- document successful RK3588 CAN-FD/BRS testing at 500 kbit/s
+  arbitration bitrate and 1, 3 and 5 Mbit/s data bitrates
+- collect Krzysztof's Acked-by tag for the binding patch
+- Link to v3: https://patch.msgid.link/20260703-master-v3-0-6d56de6fd2f3@qq.com
+v2 -> v3:
+- Move the Changelog below ---
+- Collect Heiko's Reviewed-by and the driver patch Tested-by tag
+- Use Co-developed-by for Heiko's RK3588 contributions and add his
+  Signed-off-by
+v1 -> v2:
+- use real author name
+- fold the single-compatible entries into an enum, as suggested by Krzysztof
+- enable the erratum 6 workaround for RK3588 based on Heiko's testing
+- add Heiko's RK3588 Tiger Haikou CAN enablement patch
+- keep RKCANFD_QUIRK_CANFD_BROKEN enabled for RK3588 so CAN-FD stays disabled
+- document the RK3588 CAN-FD/BRS bus-off failure mode
 
-You're right, and this is the same change as the L2/L3 mismatch above. I
-will drop the error return from pick_caches() so that a cache problem can
-no longer abort setup or block other QoS features. Cache capacity and
-memory bandwidth are separate controller types that will be picked
-independently, so a failed cache will not gate bandwidth alloc/mon when
-those land. The only early return I will keep is the -ENODEV for when
-nothing at all is exposable.
+---
+Cunhao Lu (3):
+      dt-bindings: can: rockchip: add rk3588 CAN-FD compatible
+      can: rockchip: add RK3588 CAN support
+      arm64: dts: rockchip: add CAN-FD nodes for RK3588
 
-Thanks,
-Drew
+Heiko Stuebner (1):
+      arm64: dts: rockchip: Enable CAN controller on RK3588-Tiger-Haikou
+
+ .../bindings/net/can/rockchip,rk3568v2-canfd.yaml  |  4 ++-
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      | 39 ++++++++++++++++++++++
+ .../boot/dts/rockchip/rk3588-tiger-haikou.dts      |  6 ++++
+ drivers/net/can/rockchip/rockchip_canfd-core.c     | 17 ++++++++++
+ drivers/net/can/rockchip/rockchip_canfd-rx.c       |  5 ++-
+ drivers/net/can/rockchip/rockchip_canfd.h          | 14 +++++++-
+ 6 files changed, 82 insertions(+), 3 deletions(-)
+---
+base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
+change-id: 20260702-master-8c52be892a3f
+
+Best regards,
+--  
+Cunhao Lu <1579567540@qq.com>
+
 
