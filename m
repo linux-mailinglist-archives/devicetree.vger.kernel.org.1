@@ -1,136 +1,173 @@
-Return-Path: <devicetree+bounces-319814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-319816-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rsOONIpbR2qsWwAAu9opvQ
-	(envelope-from <devicetree+bounces-319814-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:49:46 +0200
+	id v2bqHzBcR2rdWwAAu9opvQ
+	(envelope-from <devicetree+bounces-319816-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:52:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A7B16FF357
-	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:49:46 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED6BC6FF3DE
+	for <lists+devicetree@lfdr.de>; Fri, 03 Jul 2026 08:52:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qq.com header.s=s201512 header.b=kvUuuDkK;
-	dmarc=pass (policy=quarantine) header.from=qq.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319814-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319814-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="I7Na/6Vq";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-319816-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-319816-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DD19830054C1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 06:49:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B7BDC304F420
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jul 2026 06:51:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADB933806B4;
-	Fri,  3 Jul 2026 06:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32EE6386553;
+	Fri,  3 Jul 2026 06:51:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out203-205-221-205.mail.qq.com (out203-205-221-205.mail.qq.com [203.205.221.205])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD3C1F94F;
-	Fri,  3 Jul 2026 06:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA2D8282F18;
+	Fri,  3 Jul 2026 06:51:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783061383; cv=none; b=OPHsmqzfYrxLgQPBN1CAqftFim6JrAhFgtuFOUkhJzirsbmq6Tsuuaq+tETOKXEnokBjy1zeZM7zm7XpGGlxG5zskRiQWVIJe4Tpm0WM+S+MtWJGaHlxrii5ZM6A4s7qUV9tTlZ2XvaAibDo2fQefN2vrOwhFboDj3sTbFrwPiE=
+	t=1783061494; cv=none; b=CIsxLN1DBuTALtHO5sfCkDJb4WSdjngtacvgInnMKJPBjj4JWJq7PwJ6sAsZsNMO0JTQ65HwuGfttqvuhKwnkDaiRga2I8+PygFY0ISC+k50NGleoAgEUi8dGjxw3KcIFhCryvo2Tl4XXQCUNf4ZB0esemf6H7HvT/jncl3j+kg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783061383; c=relaxed/simple;
-	bh=Qv1kwRVPne2QFB3ONtm+QRoyPApM0HbetYISv2n4VLw=;
-	h=From:To:Cc:Subject:Mime-Version:Content-Type:Date:Message-ID:
-	 References:In-Reply-To; b=aDmdLhpBtsIzJu3uhd4dg1vJpRNbPO9C0ln4nSTxQ2MLZ1sLhhQmgWcY+DrApds9fYX/8my5ovTdufOxJsmtl0IOLAd+36ldLg2d3V4AfqFFSeATRtBWsjMl7yECK9gpDLugZbaCqLytBksmnAuSixz0Tlu1r6i/CiiR/qzcfOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=kvUuuDkK; arc=none smtp.client-ip=203.205.221.205
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1783061377; bh=Qv1kwRVPne2QFB3ONtm+QRoyPApM0HbetYISv2n4VLw=;
-	h=From:To:Cc:Subject:Date:References:In-Reply-To;
-	b=kvUuuDkKdzTrkPPO1YPK9DXkjA4NuEuyzkwQuj8K0IZwuyjVQzvb+83Ej0G4F5txT
-	 rWSla6W2W/0Yg7tgi0MSZbucQFxi2jUqQwWr0HHzaICkr42ZxgAQ7NrMlkfP93MOGy
-	 ytFokcv7bozfGmDfm4a0BgqW7ddebbQTw52Ah9Gk=
-X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
-X-QQ-XMAILINFO: NkQGnmzToUyFLGGtLNE6QEPHM00sgpR9dNAuu4hfh6sERgH6gk4Tonpk04ALFS
-	 HtjVpORe/iBRufuyFzPu5nHHeRVELJVboNLswoK5HE5TdRkrdniQExTX9ckxEDRSCUjcV/Rnof9Pa
-	 xgyIoM8IEBYYOPOwKEgH1S9ILeAOKdvETpxmfZvEZfFcPDmgDHva1WvDBkrzZe8sRDF0ZNaqjYHN6
-	 c6McCT1CU75io6M/hUMavvtv3pXYZgNp/J3/CO5LXQYvXs7c+CIr/V1Q8UnM7ApcnZ359JIjlqqMW
-	 xo/mh7IW+f4rmxM3mf5QKLheAQEbv73PDcdp//DhNpLyp6v45O8FZ7aOZa4rnJQF4/zgxZEVmtWqv
-	 vTRZJ/sL1V+H/XwIP7ix7kY76UcuR99lnYDDktPDFvW+lazcgjoD3FRavOnRGfdZWB2FMz/HWupFb
-	 tQZ274RK+uwmLn1+cr2fVNEsFtOPcGhL60N6GfmbogQbaJBDV80aKcLoqPspE/b7xBgHJPLRknyj+
-	 YhwDJokHTjCs1JbrULSJCYQVlhnvKjqdmKGDCu32mwTrXbKMu/RlFL4fEn0xFYSvNmFINWjjd9WGI
-	 pWRDjImr08Pu+0i5K26SbTRJLKstMNY3OLuGyngE1H50yWje9f5AoSZ8ZbHw8Y6s/NTIuYs2E01cb
-	 e06aeBk56bPzL9W+4XBLWMPys+GLc7JTXBpav1F24LlgAwz9OoknJtxj0EBolisb9nLCppWvKYo6w
-	 CP6woF8jVw/ak4JdOQwLCRmQNAXpxNm0/HhPciclGgk01qMEWBn0gyfGrlMVa49yG7k4vZWJ+UsGM
-	 WnchtsJQSaJyeydhNP+7w5CQOJl3GvKf7dhoSiivo7n03Gb+f5+smJti73b6XCRoOlHEE2OYrMsdD
-	 V9yNelAEWtAM+qnfTTUpX9xWeakHte6zbUatoViEIC+tVUXUjlS36batqB68RnuKygFqOWxCQ1oID
-	 otWG/pH9lB4KmMsi5Dut/0CRo85CcnxFVtZOOOu7IK3ESqc+nVs9R5dP8mk0o5qf1TxrZkfPGwe5S
-	 GPX3nXV01/hx2uBToFEj0mnu5aWon/ZONAGbZBfLcCIRPclg=
-From: "=?utf-8?B?Q3VuaGFvIEx1?=" <1579567540@qq.com>
-To: "=?utf-8?B?S3J6eXN6dG9mIEtvemxvd3NraQ==?=" <krzk@kernel.org>
-Cc: "=?utf-8?B?TWFyYyBLbGVpbmUtQnVkZGU=?=" <mkl@pengutronix.de>, "=?utf-8?B?a2VybmVs?=" <kernel@pengutronix.de>, "=?utf-8?B?VmluY2VudCBNYWlsaG9s?=" <mailhol@kernel.org>, "=?utf-8?B?Um9iIEhlcnJpbmc=?=" <robh@kernel.org>, "=?utf-8?B?S3J6eXN6dG9mIEtvemxvd3NraQ==?=" <krzk+dt@kernel.org>, "=?utf-8?B?Q29ub3IgRG9vbGV5?=" <conor+dt@kernel.org>, "=?utf-8?B?SGVpa28gU3R1ZWJuZXI=?=" <heiko@sntech.de>, "=?utf-8?B?bGludXgtY2Fu?=" <linux-can@vger.kernel.org>, "=?utf-8?B?ZGV2aWNldHJlZQ==?=" <devicetree@vger.kernel.org>, "=?utf-8?B?bGludXgtYXJtLWtlcm5lbA==?=" <linux-arm-kernel@lists.infradead.org>, "=?utf-8?B?bGludXgtcm9ja2NoaXA=?=" <linux-rockchip@lists.infradead.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/4] dt-bindings: can: rockchip: add rk3588 CAN-FD compatible
+	s=arc-20240116; t=1783061494; c=relaxed/simple;
+	bh=VyBwtiwEieSiIIGma2mDQI0QVyOxWGwCHI21AN1y5wM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dbnhx0tzCNcWCZxDpFUDPdVfMbKISqi/QsHdfXED/n6pgZP0xezgP+GAuh1by+5t8hFCaKdMyXBKwcjh1DI09GLFWijQTq9zJxl3kS6vhkXs0cNiL4Bvt4JJNf5lWX8CgHaaQs6TqCoQmwvTTMvhgi4TphD2FpGak0fPjdqMzi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I7Na/6Vq; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 306C31F00A3F;
+	Fri,  3 Jul 2026 06:51:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783061492;
+	bh=t+IcM7mmiTmoh28YJxL6FUZ0PgcEuIvhrm5jZ5vcolI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=I7Na/6Vqws4y7tOz0+uPfwk6zFUa+43bNDWH2tbbizoa29y5PZs9SnHFomLnKhROD
+	 O+qVzgqRvKPWI9zfPUNsxUfeRMz1pofeqi1m22j+NNYE23dh6i0TDHYftiqYJxA7eP
+	 Zk7fhrTw5mXyV1FhxhwnQ7Gd7Z4eH79h7mjSUXAGUefmBsCNJSXy8xDifl11TsbazB
+	 I4NW7rlkY00wzrGNIuesentthOXEx5IseSzYN25ikyFS6k3tcKj6gzV1lBi1xsYDRn
+	 V5JeiOYOxBgNkl9pEGe+u11GgEbAhQKaUDC/P4mjpf7xonhK9ZErgvXfzdM+W6eu07
+	 Fas+yUSMTQVEA==
+Date: Fri, 3 Jul 2026 08:51:27 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Harshal Dev <harshal.dev@oss.qualcomm.com>, 
+	Vinod Koul <vkoul@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.Li@kernel.org>, Andy Gross <agross@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: crypto: qcom,inline-crypto-engine:
+ Fix legacy/new SoC strictness split
+Message-ID: <20260703-nice-beetle-of-efficiency-eafad3@quoll>
+References: <20260702-b4-shikra_crypto_changse-v2-0-66173f2f28b3@qti.qualcomm.com>
+ <20260702-b4-shikra_crypto_changse-v2-1-66173f2f28b3@qti.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
-Date: Fri, 3 Jul 2026 14:49:35 +0800
-X-Priority: 3
-Message-ID: <tencent_EE004447BFA326179A1419A784CC91B48007@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-References: <20260703-master-v3-0-6d56de6fd2f3@qq.com>
- <tencent_3E31CBEFAE0986665A26322171642BC00B05@qq.com>
-	<20260703-truthful-aardwolf-of-spirit-b6bafc@quoll>
-In-Reply-To: <20260703-truthful-aardwolf-of-spirit-b6bafc@quoll>
-X-QQ-mid: xmsezb41-0t1783061375tpzojrz7q
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260702-b4-shikra_crypto_changse-v2-1-66173f2f28b3@qti.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.44 / 15.00];
-	TO_EXCESS_BASE64(1.50)[];
-	CC_EXCESS_BASE64(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qq.com,quarantine];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_ALL(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_RECIPIENTS(0.00)[m:kuldeep.singh@oss.qualcomm.com,m:herbert@gondor.apana.org.au,m:davem@davemloft.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:harshal.dev@oss.qualcomm.com,m:vkoul@kernel.org,m:brgl@kernel.org,m:konradybcio@kernel.org,m:Frank.Li@kernel.org,m:agross@kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:mkl@pengutronix.de,m:kernel@pengutronix.de,m:mailhol@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:linux-can@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-319814-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-319816-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qq.com:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[1579567540@qq.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[qq.com];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FROM_EXCESS_BASE64(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qq.com:from_mime,qq.com:email,qq.com:mid,qq.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,vger.kernel.org:from_smtp,sntech.de:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,quoll:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6A7B16FF357
+X-Rspamd-Queue-Id: ED6BC6FF3DE
 
-SGkgS3J6eXN6dG9mLAoKPsKgPsKgQWRkwqBhwqBkZWRpY2F0ZWTCoHJvY2tjaGlwLHJrMzU4
-OC1jYW5mZMKgY29tcGF0aWJsZcKgdG/CoGRlc2NyaWJlwqB0aGlzCj7CoD7CoHZhcmlhbnQu
-wqBEb8Kgbm90wqB1c2XCoHJvY2tjaGlwLHJrMzU2OHYyLWNhbmZkwqBhc8KgYcKgZmFsbGJh
-Y2sswqBiZWNhdXNlwqB0aGF0Cj7CoD7CoHdvdWxkwqBkZXNjcmliZcKgYcKgcmVnaXN0ZXLC
-oGxheW91dMKgdGhhdMKgZG9lc8Kgbm90wqBtYXRjaMKgdGhlwqBoYXJkd2FyZS4KPsKgPgo+
-wqA+wqBTaWduZWQtb2ZmLWJ5OsKgQ3VuaGFvwqBMdcKgPDE1Nzk1Njc1NDBAcXEuY29tPgo+
-wqA+wqBSZXZpZXdlZC1ieTrCoEhlaWtvwqBTdHVlYm5lcsKgPGhlaWtvQHNudGVjaC5kZT4K
-PsKgPsKgLS0tCj4KPsKgQWNrZWQtYnk6wqBLcnp5c3p0b2bCoEtvemxvd3NracKgPGtyenlz
-enRvZi5rb3psb3dza2lAb3NzLnF1YWxjb21tLmNvbT4KClRoYW5rcyBmb3IgdGhlIGFjay4g
-SSB3aWxsIGFkZCB5b3VyIEFja2VkLWJ5IHRhZyB0byB0aGUgYmluZGluZyBwYXRjaAppbiB2
-NC4KCkJlc3QgcmVnYXJkcywKQ3VuaGFv
+On Thu, Jul 02, 2026 at 01:47:11AM +0530, Kuldeep Singh wrote:
+> Couple of already merged SoCs describe ICE as single clock historically
+> which are recently updated with mandatory 2 clocks.
+> 
+> Keep only the known legacy compatibles flexible, and make strict
+> validation default(of power-domains and 2 clocks) for all other Soc
+> compatibles.
+> 
+> This ensures old DTs are valid while ensuring any new SoC (not in the
+> legacy allowlist) must follow latest requirements by default.
+> 
+> Fixes: e27264daac7d ("dt-bindings: crypto: qcom,ice: Fix missing power-domain and iface clk")
+
+Please drop, original codeo was correct, no bug to fix.
+
+> Signed-off-by: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
+> ---
+>  .../bindings/crypto/qcom,inline-crypto-engine.yaml | 23 ++++++++++++++++------
+>  1 file changed, 17 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> index db895c50e2d2..4f3689a24410 100644
+> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> @@ -55,14 +55,25 @@ required:
+>  
+>  additionalProperties: false
+>  
+> +# Do not extend the list.
+> +# Legacy SoCs are allowed for single clock.
+> +# New SoCs must provide both clocks and power domains.
+>  allOf:
+>    - if:
+> -      properties:
+> -        compatible:
+> -          contains:
+> -            enum:
+> -              - qcom,eliza-inline-crypto-engine
+> -              - qcom,milos-inline-crypto-engine
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              enum:
+> +                - qcom,kaanapali-inline-crypto-engine
+
+Your change is not equivalent in relation to hawi. Please make it
+explicit in commit msg - all devices which are fixed by this.
+
+> +                - qcom,qcs8300-inline-crypto-engine
+> +                - qcom,sa8775p-inline-crypto-engine
+> +                - qcom,sc7180-inline-crypto-engine
+> +                - qcom,sc7280-inline-crypto-engine
+> +                - qcom,sm8450-inline-crypto-engine
+> +                - qcom,sm8550-inline-crypto-engine
+> +                - qcom,sm8650-inline-crypto-engine
+> +                - qcom,sm8750-inline-crypto-engine
+
+Best regards,
+Krzysztof
 
 
