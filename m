@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-320453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320454-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hj6zHwvGSGratgAAu9opvQ
-	(envelope-from <devicetree+bounces-320453-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 10:36:27 +0200
+	id yNQsC3TGSGrstgAAu9opvQ
+	(envelope-from <devicetree+bounces-320454-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 10:38:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC22C7071D3
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 10:36:26 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A41A57071E2
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 10:38:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hDIJmxVd;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dNiQpkoF;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320453-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320453-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320454-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-320454-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D37BD3006B6C
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 08:35:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0392B30054C3
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 08:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC6238F240;
-	Sat,  4 Jul 2026 08:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E179F397323;
+	Sat,  4 Jul 2026 08:38:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E4F03264CB;
-	Sat,  4 Jul 2026 08:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D082B2F1FDE;
+	Sat,  4 Jul 2026 08:38:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783154111; cv=none; b=bAlyQlWM3gd54QMcku88r5z4kfGRlH4bTBWLxy7eLntVlFcmTlFZfeJiIGofLZFg/disfCSf1csNSZitKhCqiAjNOzXWCBCnaS3NEpmu73G+qokAC1xdbqxoOAmtcNRye21+qsS5C7UQY5AaNOwrzUuKOISVqetcT5dB0X9nRZM=
+	t=1783154288; cv=none; b=Wi+257nJwsgRtOj3za9nAgO5H6WFPh4lX3gGp58Pg5wVw8R9OuODIOYYElMVe4IHWQV5bJ/8Xjt3MG75XpTgd3rXjnvNmdCvsWEkcrL0+/WM9Zsh2hUqcPvc9IRpekTMynaSbMaPmj1zwNOnpFd2WtwfIsGNlGHHWB/ZTi1sJnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783154111; c=relaxed/simple;
-	bh=jRMvTshMSFYbREqTCfD1Q7jueUhY46bykYtPR7nveu4=;
+	s=arc-20240116; t=1783154288; c=relaxed/simple;
+	bh=NL4LfJOLRarXOdemigXNoyY6JW/H03SUe5/w89b+qpo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qvw1kmCdqBnoDmPSUs/jvTIjAkU3T+auoc2SF7ugGJuqN7M0O2BaTXg7GR0Sh6IaCdks/vNB3ZgavgXsSrEp+zFBHWvYgspP7tfnRhp+/QQRmQmfS0+XY4dsoX8BpWA/LcgxGpEVvK9PVTqt72Dd4mAyVSrn6SrAOc/JHKfv+fI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hDIJmxVd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37BBC1F000E9;
-	Sat,  4 Jul 2026 08:35:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eTHGshlN659NS98RI6S1+Dbm7cOrZfxeIhUhYpNMswPJkWzlH02hq01IZpjpUd4PCquPOz1WnbCcrcsR5XvoTE57ZyRcF+S1qPZD3wQy+Ee8NJL37XPHHfGnrYBb6MBnwRyotflxN82OMQPNtq+ulVsg3id3hoWoi3iNMs0PV3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dNiQpkoF; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD8E01F000E9;
+	Sat,  4 Jul 2026 08:37:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783154109;
-	bh=CKUugtOm1OlpT8XBvygInagoA0+wflgB0eAdKOCZarY=;
+	s=k20260515; t=1783154287;
+	bh=xAsASuuRLAwLyZhXp5gdhk/Oh2/01zF6Q+8Tymjl8lY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=hDIJmxVdhvN9fPFPojiWm85GIGaHgrgPyXPJdkSHSYIEvL3Qp3Q9z8XIOhb45cwkQ
-	 hAMnzHGjMJswuFTriVUmWOYXf+mUvF4O+wvIDV+lW7Y2Ilkbmv4NFd2TYLnZsBWjx6
-	 t0K6IsR5qNa8iyaJlpCEsyO0s6LSkpQz2+8ivPtdqPZITiNOTB7PTDUKH9SQZ3vTmU
-	 tmeoY1jbDqKDUocXh9eRFKXFB/pcpB079kX8FIkIST9j8Ux1+WFuGJ+Uus6JKrfQJ7
-	 qSNLnEF7xCygarmsPDMutlXCONPcQCI+mHDJq0JM99Q2QwEtmyRZbFYYq2/ICqH/Rk
-	 fTeuP9wvcjk8w==
-Message-ID: <b7ddfb42-75c6-4882-b4e0-ab22436fd657@kernel.org>
-Date: Sat, 4 Jul 2026 10:35:01 +0200
+	b=dNiQpkoF3jVu0ZqU4ICCe1WIFEgfqtUE7XtgQjIE/zhB/fV47dbWrJ+5MWg5FnNy/
+	 0fKaZwOa251Iy1Fqx4a9roDRjZcqLDsWLxnwu8ekbvknay+z1YkV03R8h5g8mT0/n/
+	 DiEPCL8araUq5CY84tTd8nX/RlCUVOfBmXSvh7JqPhKm2G7fPn6JBt7lzcodVXelo/
+	 fhr25K4+6VugGQhO7atB4xTvBqwApKwes9Q8YmhEDVjy3Gql3dirb2yZR3rYKwAL4F
+	 OuTxaaHIpAmnOBssxWGNdCyI78XY3yedPauIiHMEgZECDwBF12mK4aehuydAsE6llu
+	 oadrJb0kr2KMw==
+Message-ID: <95251d7b-fcdb-40cf-aedd-a60773eb3136@kernel.org>
+Date: Sat, 4 Jul 2026 10:37:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,20 +55,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 01/12] dt-bindings: soc: zte: Add zx297520v3 top clock
- and reset bindings
-To: =?UTF-8?Q?Stefan_D=C3=B6singer?= <stefandoesinger@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 5/6] dt-bindings: dma: qcom,bam-dma: Increase iommus
+ maxItems to seven
+To: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Brian Masney <bmasney@redhat.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20260702-zx29clk-v6-0-377b704f80c4@gmail.com>
- <20260702-zx29clk-v6-1-377b704f80c4@gmail.com>
- <387ff0d7-256e-4b18-b864-37a0ec3c9d9d@kernel.org>
- <az-AzRTTT8qfUWysHYig6Q@gmail.com>
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Harshal Dev <harshal.dev@oss.qualcomm.com>, Vinod Koul <vkoul@kernel.org>,
+ Bartosz Golaszewski <brgl@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+ Andy Gross <agross@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dmaengine@vger.kernel.org
+References: <20260702-b4-shikra_crypto_changse-v2-0-66173f2f28b3@qti.qualcomm.com>
+ <20260702-b4-shikra_crypto_changse-v2-5-66173f2f28b3@qti.qualcomm.com>
+ <20260703-steadfast-greedy-seagull-ad32ab@quoll>
+ <e53f9b7d-66f1-4922-ab20-f6e66015c912@oss.qualcomm.com>
+ <0b182566-2a54-4e31-9a1e-40bdbb0f4a65@oss.qualcomm.com>
+ <bb8f2283-93b6-4ea7-ada0-875778c89b3a@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,69 +122,79 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <az-AzRTTT8qfUWysHYig6Q@gmail.com>
+In-Reply-To: <bb8f2283-93b6-4ea7-ada0-875778c89b3a@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:stefandoesinger@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:bmasney@redhat.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_TO(0.00)[gmail.com,baylibre.com,kernel.org,pengutronix.de,redhat.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320454-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:kuldeep.singh@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:herbert@gondor.apana.org.au,m:davem@davemloft.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:harshal.dev@oss.qualcomm.com,m:vkoul@kernel.org,m:brgl@kernel.org,m:konradybcio@kernel.org,m:Frank.Li@kernel.org,m:agross@kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-320453-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CC22C7071D3
+X-Rspamd-Queue-Id: A41A57071E2
 
-On 03/07/2026 19:20, Stefan Dösinger wrote:
-> Am Freitag, 3. Juli 2026, 09:26:43 Ostafrikanische Zeit schrieb Krzysztof 
-> Kozlowski:
+On 03/07/2026 11:01, Kuldeep Singh wrote:
 > 
->> Also, this cannot be placed in soc. Clock and reset controllers DO NOT
->> go to the soc directory. Place in it clocks.
 > 
-> Even when they contain other functionality like hwlock, usb phy and reboot? 
-> Here is the previous discussion that made me move it to soc:
+> On 03-07-2026 14:27, Konrad Dybcio wrote:
+>> On 7/3/26 10:38 AM, Kuldeep Singh wrote:
+>>> On 03-07-2026 12:24, Krzysztof Kozlowski wrote:
+>>>> On Thu, Jul 02, 2026 at 01:47:15AM +0530, Kuldeep Singh wrote:
+>>>>> Upcoming Shikra BAM DMA uses 7 IOMMU entries and not 6, so increase the
+>>>>> `iommus` maxItems constraint.
+>>>>>
+>>>>> Fix below error:
+>>>>> dma-controller@1b04000 (qcom,bam-v1.7.4): iommus: [[25, 132, 17], [25,
+>>>>
+>>>> There is no dma-controller@1b04000 in DTS. Please drop all the warnings
+>>>> which do not exist.
+>>>
+>>> Kindly check patch 6/6, it is introducing bam node with 7iommus which IP
+>>> describes and hence, updated bindings before to accustom this which also
+>>> helps in avoiding rob's dt-schema bot error.
+>>
+>> Krzysztof is saying that the error doesn't exist in the tree (because
+>> the offending DTS hunk is not merged), so you shouldn't claim this fixes
+>> an error, rather that Shikra simply needs it
 > 
-> https://lore.kernel.org/linux-arm-kernel/20260621-plywood-straddle-b01f0c45f27c@spud/
-> 
-> Likewise, what about the node name: syscon@ or clock-controller@ ? Conor 
-> advised me to go with syscon@
+> In previous patchset, krzysztof ask was to add error in commit log and
+> hence updated that.
+> Maybe some misunderstanding!
 
-You called the device node clock-controller. The title also says it is
-clock controller. The description also says that it is clock controller
-(and reset, but that is irrelevant here). Your commit subject also calls
-it "clock"
+From that answer you should have understood there are no warnings to be
+fixed, no warnings to be mentioned, so that commit msg should have been
+fixed.
 
-What sort of answer you expect from us? In all possible places you call
-it clock controller.
+Solution is not to add fake warnings in such case, like you did here.
 
 Best regards,
 Krzysztof
