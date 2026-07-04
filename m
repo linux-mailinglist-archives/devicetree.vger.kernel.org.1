@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-320495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320496-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FhLUFKZBSWrazgAAu9opvQ
-	(envelope-from <devicetree+bounces-320495-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 19:23:50 +0200
+	id ibGNDbhCSWoXzwAAu9opvQ
+	(envelope-from <devicetree+bounces-320496-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 19:28:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE9D770811F
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 19:23:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B83A170817E
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 19:28:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=amrtktlX;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NHuQbh8o;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320495-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-320495-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320496-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320496-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4A584300826B
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 17:23:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 292053008C32
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 17:28:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60BC835839E;
-	Sat,  4 Jul 2026 17:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ABBB2D3ED1;
+	Sat,  4 Jul 2026 17:28:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DEBD25B099;
-	Sat,  4 Jul 2026 17:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F25125B099;
+	Sat,  4 Jul 2026 17:28:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783185826; cv=none; b=DWZadMcZ8qdjQElEQ47EYEYxa7QK8LgN+8o7zEfxCxF6pgxcXmyb8SvX70rPAp+WEHH/xfYnsvsVu1Du1U3I4WnxVcUwm0Bwj77KYuKOd0V50eXw09NXAuAMo86XLKEizYRckVmFLKT1KNCZarznUkfsBRalVh8VF0Kp/8D2Szk=
+	t=1783186099; cv=none; b=oZ30tiyP/1oWdxbJBpuRZRpX1JcwVae9ys+NSm42en8WhhslYvfxesH0ZDzlaeMuyBrFzibeU7Pc7n+fwHIaWoncjYvBpUqHltM/RvMmOtXeUYhH1+vkdzYSK83s9DmqmWeMEb+tcS1VbNEcCwYrHA+HitMRijY49ZYBKkNrmGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783185826; c=relaxed/simple;
-	bh=SWlZvLVQP9+7LfgEmg88sju8QcHkThhSKotVvGJqKMo=;
+	s=arc-20240116; t=1783186099; c=relaxed/simple;
+	bh=i0q1YvEA27JtG9KC3amUzRBMaQkjb2z/v9vzPrwvpgY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=bSEaz7LR6Y/JF2Zd7eaU2il/aKCD4SOyNHMXj6ZXFazH5rU0Rb5uIvBh5OjUs0ft91FiJji4xdiIGLRckbyL8+1SEqtILXRhZdb+PVAzD+lfGSLWpKBAoTV9sEqd8DZPFoDvYByw3gbjlOMDtC0v2/V1aacHdGRyIowlgsvMfZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=amrtktlX; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 803D51F000E9;
-	Sat,  4 Jul 2026 17:23:44 +0000 (UTC)
+	 Message-Id; b=OZVvcpdbnNdxaksgOlz8Q7sajVArGo4sQdU2j9MM8DP+U5p28JK9EOMl3CMhjlgs8a20rqVLoKbE4NK2Un1ZeROg9Ox0JqkmZuUBNV0w4Bvwt5Qd3f46w92xK1KJM77UWT+tE1Y8EivOFgsspHyDt/x1wwTNwWI9OFUo/2Lkuug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NHuQbh8o; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B39321F00A3A;
+	Sat,  4 Jul 2026 17:28:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783185824;
-	bh=Uu6InqSBrnGcz758/qTlwqNEsqEMs8+n2NNTcLML8d8=;
+	s=k20260515; t=1783186098;
+	bh=6jLj/QrSj5Ts/ysaTuFp9eUdXIbUNY4VTfgHwRWB+Pc=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=amrtktlXRb9nWqZKO1PG4eZjyIBsV3W1+3Vx+P0HBunDtrXh1cHGjIZI3+jq1xTo2
-	 cE14NYgLKgqflViGK7uxArAq2/QaQ1cq76KjH32wae8eMyDzodYudMOZ718dlFE4al
-	 ooXOACI0uUbB724YWv9ZtQ8uZ91eeh/W4Ee27JgpPlGdwYzvNUxLIu/WrsXd19b5Fo
-	 /vLRV+ddWuTa5vgaQyU6TCPoqSTwRXIUvKOsgNHNmBeiETsBlxWn+mTt+6PgkzuHvO
-	 nhOZ4mhJOgOvrcTX0KsarWQ3nqDbJVO5NGjdArkgwAkRHpuTLolOwi9+kBMHHlPBqM
-	 FvJQMRrb925Ig==
+	b=NHuQbh8oWIso44w2hC3pmve1SmSrrBPzXLg43NpUcpY9zeq01bQQEDt3Vi293pmdl
+	 +YWv8hqiE0BFKVDuDaWlXx6FtZ8DuPfHty6ZTpiEwU8kvxzLtM7n3KSUBCElCg2uUv
+	 3dBoCglGUt+begtbeaBtbWSvsT9+iu+2PpOmyLPPYXjyrJhp63ZegsF4j+smxkhzUp
+	 SFvRAi9yJG4AE8nanfd44ybdPMvNNQQIxSTrltvGxWX4DJhKdLtxI7NQx6jzSOu+EW
+	 66//ebTN1p7NjuHrsfZLpjo6/94/P65S3gqlLWXc9ioTUjA03nVkfA4gCU/VZfLs1+
+	 x9tHRuiG4dKZg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 1/5] dt-bindings: thermal: sun8i: Add A523 THS0/1
- controllers
+Subject: Re: [PATCH v5 3/5] thermal/drivers/sun8i: get calibration data from
+ two nvmem cells
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Mikhail Kalashnikov" <iuncuim@gmail.com>
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260704171411.1413349-2-iuncuim@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260704171411.1413349-4-iuncuim@gmail.com>
 References: <20260704171411.1413349-1-iuncuim@gmail.com>
- <20260704171411.1413349-2-iuncuim@gmail.com>
+ <20260704171411.1413349-4-iuncuim@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 04 Jul 2026 17:23:44 +0000
-Message-Id: <20260704172344.803D51F000E9@smtp.kernel.org>
+Date: Sat, 04 Jul 2026 17:28:17 +0000
+Message-Id: <20260704172817.B39321F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,25 +72,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	URIBL_MULTI_FAIL(0.00)[sto.lore.kernel.org:server fail,lists.linux.dev:server fail,smtp.kernel.org:server fail,vger.kernel.org:server fail,sashiko.dev:server fail];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320495-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320496-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:iuncuim@gmail.com,m:linux-sunxi@lists.linux.dev,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:iuncuim@gmail.com,m:linux-sunxi@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TO_DN_SOME(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
@@ -100,94 +99,107 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CE9D770811F
+X-Rspamd-Queue-Id: B83A170817E
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Low] The fallback `else` branch fails to explicitly restrict `nvmem-cell=
--names` to `maxItems: 1` for legacy devices.
-- [Low] The `clocks: minItems: 2` constraint in the new `allOf` block for A=
-523 devices is redundant.
+- [High] Missing or empty 'nvmem-cell-names' property causes an uncondition=
+al NULL pointer dereference in the calibration callback.
+- [Medium] The newly introduced A523 calibration function accesses fixed in=
+dices of the dynamically sized caldata array without validating callen.
 --
 
-commit 3b55695ed8b61c3a70dec40b0b70e9958c234bfc
+commit 385d056a66304901aadb5675fbf878e2aae0cfc7
 Author: Mikhail Kalashnikov <iuncuim@gmail.com>
 
-dt-bindings: thermal: sun8i: Add A523 THS0/1 controllers
+thermal/drivers/sun8i: get calibration data from two nvmem cells
 
-This commit adds device tree binding descriptions for the thermal sensors
-in the A523 processor. It updates the schema to require an additional
-clock for these variants and supports split calibration data across two
-nvmem cells.
+This commit updates the sun8i thermal driver to support reading calibration
+data from multiple nvmem cells by iterating over nvmem-cell-names. It appen=
+ds
+the data from each cell into a single dynamically allocated buffer which is
+passed to the calibration callbacks. This provides the ability to support t=
+he
+A523 processor which has calibration data split across two cells.
 
-> diff --git a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a8=
-3t-ths.yaml b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83=
-t-ths.yaml
-> index 3e61689f6dd41..6f5b2f3b94f80 100644
-> --- a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.=
-yaml
-> +++ b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.=
-yaml
+> diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/sun8i_ther=
+mal.c
+> index df0c269708ea7..3bdd62aa8bdf1 100644
+> --- a/drivers/thermal/sun8i_thermal.c
+> +++ b/drivers/thermal/sun8i_thermal.c
+> @@ -301,43 +301,65 @@ static int sun50i_h6_ths_calibrate(struct ths_devic=
+e *tmdev,
+> =20
+>  static int sun8i_ths_calibrate(struct ths_device *tmdev)
+>  {
+> -	struct nvmem_cell *calcell;
+> +	struct nvmem_cell *calcell =3D NULL;
+>  	struct device *dev =3D tmdev->dev;
+> -	u16 *caldata;
+> -	size_t callen;
+> +	struct device_node *np =3D dev_of_node(dev);
+> +	struct property *prop;
+> +	const char *cellname;
+> +	u8 *caldata =3D NULL;
+> +	size_t callen =3D 0;
+>  	int ret =3D 0;
+> =20
+> -	calcell =3D nvmem_cell_get(dev, "calibration");
+> -	if (IS_ERR(calcell)) {
 
 [ ... ]
 
-> @@ -132,6 +140,29 @@ allOf:
->          - clock-names
->          - resets
+> +		memcpy(caldata + callen, caldatapart, len);
+> +		callen +=3D len;
+> +		kfree(caldatapart);
+>  	}
 > =20
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - allwinner,sun55i-a523-ths0
-> +              - allwinner,sun55i-a523-ths1
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
+> -	tmdev->chip->calibrate(tmdev, caldata, callen);
+> +	tmdev->chip->calibrate(tmdev, (u16 *)caldata, callen);
 
-[Severity: Low]
-Is this constraint redundant? The first allOf block in this file checks
-for single-clock devices and its else branch already applies minItems: 2
-for clocks and clock-names to all other devices. Since the A523 variant
-is not in that single-clock list, shouldn't it already be constrained to
-2 clocks?
+[Severity: High]
+If the nvmem-cell-names property is missing from the device tree, the
+of_property_for_each_string() loop is bypassed entirely and caldata remains
+NULL.
 
-> +        nvmem-cells:
-> +          minItems: 2
-> +        nvmem-cell-names:
-> +          minItems: 2
-> +    else:
-> +      properties:
-> +        nvmem-cells:
-> +          maxItems: 1
-> +        nvmem-cell-names:
-> +          items:
-> +            - const: calibration
+Does this unconditionally pass a NULL pointer to the backend calibration
+callback?
 
-[Severity: Low]
-Does this else block also need to specify maxItems: 1 for
-nvmem-cell-names?
+Backend callbacks like sun8i_h3_ths_calibrate() dereference the array direc=
+tly:
 
-Redefining items as a tuple only validates the specified elements but
-does not restrict the total array length. Without maxItems: 1, legacy
-device trees could erroneously define two nvmem-cell-names and still
-pass validation.
+	if (!caldata[0] || callen < 2 * tmdev->chip->sensor_num)
+		return -EINVAL;
 
-> +
->  required:
->    - compatible
->    - reg
+If the device tree does not contain calibration nvmem cells, this will caus=
+e a
+kernel panic on boot.
+
+
+[Severity: Medium]
+For the A523 processor, does sun55i_a523_ths_calibrate() validate that call=
+en
+is large enough before accessing the array?
+
+Looking at sun55i_a523_ths_calibrate() which was recently introduced:
+
+		if (tmdev->chip->sensor_num =3D=3D 1) {
+			sensor_reg =3D ((caldata[5] >> 8) | (caldata[6] << 8)) & TEMP_CALIB_MASK;
+		} else {
+
+It accesses elements up to caldata[6] without verifying that callen covers =
+it.
+If a device tree defines nvmem cells that yield less than 14 bytes of data,
+will these lookups read out of bounds?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260704171411.1413=
-349-1-iuncuim@gmail.com?part=3D1
+349-1-iuncuim@gmail.com?part=3D3
 
