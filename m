@@ -1,310 +1,230 @@
-Return-Path: <devicetree+bounces-320429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320430-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lyXQLnu5SGoktAAAu9opvQ
-	(envelope-from <devicetree+bounces-320429-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 09:42:51 +0200
+	id ROI/Fpy6SGpUtAAAu9opvQ
+	(envelope-from <devicetree+bounces-320430-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 09:47:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18183706FB7
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 09:42:51 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB0D706FF4
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 09:47:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=pfkEtWfM;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320429-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320429-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=derLkDQc;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320430-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320430-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B14DB304DFE3
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 07:39:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F400B302C7AE
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 07:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205A5399361;
-	Sat,  4 Jul 2026 07:39:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC619280018;
+	Sat,  4 Jul 2026 07:47:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A4B39C019
-	for <devicetree@vger.kernel.org>; Sat,  4 Jul 2026 07:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15CE2DEA64
+	for <devicetree@vger.kernel.org>; Sat,  4 Jul 2026 07:47:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783150779; cv=none; b=YSLcPSuxDE/9veNYkuEvWuWTvBbQGDJ+x3ej8KKgQkCbm6nwa/AOtHAABS3pDcHMfFyt9OUwkXBVAJZDOGIo2rXb0xqnEft6bQxMqq4VJrVB5s4ARHO97cWmdytZDEut0gDcgp2zhksV2AYsPUGc138W5xLMBVqYgvY36V7w9z0=
+	t=1783151251; cv=none; b=k7ettVMwODhVxm7wcpEePmHKUNLz7NJAc+8QrihmHHu69pDY177Hk7B6/orBV1V9aP5sb/ZNqdZgalfn6HYpk+izYhoWD2i1tguJXSNExh0wZXGLkcxBHbF7C5AXkShC2WTBmAvCn5KtCYR5H4BvUDhvA65hhLgmc+0l7M7mmCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783150779; c=relaxed/simple;
-	bh=b4iUr65hHHCVaSWsSZyZa4GjL3PiNleLinM59ZwAh08=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pWkrk40VMe6aCl4Lnr4WmdkUiIuMjloqD7qiUqNyfTEH/ESRcgaDynXBANMa3BcHmIh18stxjkeeRbhBaqSly+MRs81VVUlDTpHg+fEFfU5tu7zlePBXO4YiwsUTM0V9LfB5JeMzUsJg1dRSqIuAOqG1pASAxDLAFWsP6rdwPhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pfkEtWfM; arc=none smtp.client-ip=209.85.128.50
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-493c52cde9eso12816045e9.3
-        for <devicetree@vger.kernel.org>; Sat, 04 Jul 2026 00:39:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783150763; x=1783755563; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OzRzJB6u7MYAPuTB3vZnPlGmNDCrN8auNwAuOBFkv0c=;
-        b=pfkEtWfMdWOZ4rgCiLjwkzLdw9CwciDYT9ggt3HuEpmidlqDOqQkEad+ZDTtmKUA3/
-         SvLay/yqTBRIwHpkxkVTLrmgUInhGKvaMw+k2IzYfo+j4Njh0o31cL7LG8xVNJt6RiE9
-         M26cLLOUH8VrbL4Xi5mnULrb0STBC5wuPw0zs8y6Q7ceN8tRovCf1/xiCQxn6vu9fxlU
-         uJWfEKkpKccImwIdRazm2T7Fsb5dzIWmui5MLQEiW1w6ubsesPr9Uv+Df0xCjWV+oe/Y
-         7xE/Ff+UnmeuZfQCeRmt+PAL4VZGXcXwbO/Y0s8ysPyTXKjBoI0MTth0CqKTB5Yei2B2
-         IntQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783150763; x=1783755563;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=OzRzJB6u7MYAPuTB3vZnPlGmNDCrN8auNwAuOBFkv0c=;
-        b=TMVpaGRQtFPy4/56J0oG1DErY+WtF0IMM3sQHi5tR0q7eN19WUpbE4T2mHICbaiq6A
-         5GUp5+IS2v82GYMsAmbgN6ZVZMTxGS2VsHI3B88LjFdzgf5mZh2jS6rrw/qlapIWCjlK
-         +Ph9wbm99bI6NPsSt11kjLw4v2lhJEkckTouOLDUUMdX3yJxWK2ALGmD0TdNdUmhnK2s
-         9sosWlS2uOECZYL6GKyyj9HD+xaflQs09d4mOkEXgwrNTvS+86Jog5b+coYSj7bOOUxs
-         OPfdCaJyPibE9/7G7iL/xlbd6RN2m9QwNlLaMPwGZEGQoyueY7N7I6TWpwqG576MuoBh
-         /9KQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+iPowzxQlczyTOFk+bPRy5mb0MueaNUesKku8W0A5FoYmTtwwpe8ZFKkHXcB2KbvTacn1HSlA5kggp@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTvpNFUrRmLbqUV+kocdtv30rvtkMOAwWea0vU0cdbj4i48WlB
-	qaDelk+Yvu+QTOJCkWEc31K6iytmUYttZ6jbKfWwGpSsSCO/L+j2lDWL
-X-Gm-Gg: AfdE7cnwptM2OXaXJoEcqz6WNcExGd/BU0uBMdDjQS+Oqyzac/uf0MFbiaCv/uolfQf
-	vX6o3X0+XcUaEqot3yM+hZbR2EVu7FPXs2O7HcXN5wJ1RhXh9II54hvar0QbWTinxh5/WoWQ77m
-	rqR895ooouXFkiNTUsQc3aSsO7JUzQYv9Y5b8lnh3Aia6WjzDI34iZr6ja5iw+92V+gomIcu3SU
-	KKrz75r3wVk86zH4LRS/owK+aMarenAovzhjTt7CkBs5wbPqef/oqtegX1xwbd/+M8nwJaRiXeL
-	onoccsJI9l95i9dAApIc633CQ0zXCbgaJe4EIkkuYeWlEwQE5OtqgLQBmiNhRucjn9kfj36ZDjk
-	kvaUMACA2HC+cvJ1tXvM1hEkeBj4p1XLY9ICFNYyOjajXIg9Ff57KheCdi6GjLIKLd1wPJQDAA0
-	HvlPonehZZGb7l0fy511krXCkPKoXZMaHAxw==
-X-Received: by 2002:a05:600c:314f:b0:493:b2c1:b2f9 with SMTP id 5b1f17b1804b1-493d11cf274mr24679345e9.8.1783150762899;
-        Sat, 04 Jul 2026 00:39:22 -0700 (PDT)
-Received: from localhost.localdomain ([95.43.220.235])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47a9de1e736sm6565488f8f.7.2026.07.04.00.39.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jul 2026 00:39:22 -0700 (PDT)
-From: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-Subject: [PATCH 5/5] phy: cpcap-usb: add extcon support
-Date: Sat,  4 Jul 2026 10:38:43 +0300
-Message-Id: <20260704073843.1750458-6-ivo.g.dimitrov.75@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260704073843.1750458-1-ivo.g.dimitrov.75@gmail.com>
+	s=arc-20240116; t=1783151251; c=relaxed/simple;
+	bh=0OATkkDWp9veuMDYpSUmeH+tWw1ome6OjiD0dqc70dk=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Yw7XTtx+A9FrQmRGf9AxGERiCthLBkmy8tKlWfHnh+POY4e/eWhT/LfBHdBAHhpphn+aCBjoqQ2K/nkmCdjxxcz2+gbTSrp18BgdO3AX9gciz1kDb3SviYJHMmMTmti1m8kDRwJ4rX7ooAVJIzWC/dvP9T74NHKVSbT7a49Gffs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=derLkDQc; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D29E81F000E9;
+	Sat,  4 Jul 2026 07:47:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783151245;
+	bh=2ZlEqYHlxV635tgf86j0RXWU9JLveQzZciEPDdxrRgU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=derLkDQcX3up4lcF0amOaw2dRwnFFwSM+51AOCTEiTlnVr3uh9FLi+wNkjZQp1Zi+
+	 L/nkfEGp6F8HlUxlZ3GvQS1tyjg9WHyvnK47eqOwSqn8FgqCEKzSMhoaOxx+uBE24H
+	 O/K+oO0CSAtM1TStLhEeelEye2VcbX3pSTEHoDDd6AAXJtgC8SJTEtI6kFKh+yZveF
+	 kJ7ZK0i1szl7s+5XyjzWZjjJqUYe2Y38XkbrCnvIz4/FZEOwUuFc0NBn5hynNzRjDD
+	 lJE1NZtBKi3vtLCfM/TteGtkWJxvE2rRW6WzBObGNLuBrAVbZJE9ZOpZQs8hkbVbz8
+	 ym0/toJAzjoQg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 3/5] dt-bindings: phy: motorola,cpcap-usb: replace se1
+ interrupt with chrg_det
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Ivaylo Dimitrov" <ivo.g.dimitrov.75@gmail.com>
+Cc: vkoul@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, linux-phy@lists.infradead.org, olteanv@gmail.com, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260704073843.1750458-4-ivo.g.dimitrov.75@gmail.com>
 References: <20260704073843.1750458-1-ivo.g.dimitrov.75@gmail.com>
+ <20260704073843.1750458-4-ivo.g.dimitrov.75@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 04 Jul 2026 07:47:24 +0000
+Message-Id: <20260704074724.D29E81F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-320429-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:aaro.koskinen@iki.fi,m:andreas@kemnade.info,m:khilman@baylibre.com,m:rogerq@kernel.org,m:tony@atomide.com,m:linusw@kernel.org,m:brgl@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:ivo.g.dimitrov.75@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:ivogdimitrov75@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[ivogdimitrov75@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ivogdimitrov75@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320430-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ivo.g.dimitrov.75@gmail.com,m:vkoul@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:linux-phy@lists.infradead.org,m:olteanv@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:ivogdimitrov75@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,lists.infradead.org,gmail.com,vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 18183706FB7
+X-Rspamd-Queue-Id: ACB0D706FF4
 
-Register an Extcon device and report the detected cable state.
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
 
-The driver already determines the type of cable attached during USB cable
-detection. Export the detected state through the Extcon framework so
-other drivers can consume it using a standard kernel interface.
+New issues:
+- [Critical] Device Tree ABI breakage: replacing 'se1' interrupt with 'chrg=
+_det' breaks probe on older DTBs.
+- [Medium] Global SysRq state is permanently disabled on error paths.
 
-Signed-off-by: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
----
- drivers/phy/motorola/phy-cpcap-usb.c | 68 ++++++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
+Pre-existing issues:
+- [High] Race condition in driver removal allows the threaded IRQ handler t=
+o schedule work on freed memory (Use-After-Free).
+--
 
-diff --git a/drivers/phy/motorola/phy-cpcap-usb.c b/drivers/phy/motorola/phy-cpcap-usb.c
-index 3be2b3afaaf4..8978a95c1c19 100644
---- a/drivers/phy/motorola/phy-cpcap-usb.c
-+++ b/drivers/phy/motorola/phy-cpcap-usb.c
-@@ -12,6 +12,7 @@
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/err.h>
-+#include <linux/extcon-provider.h>
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/of.h>
-@@ -123,6 +124,7 @@ struct cpcap_phy_ddata {
- 	struct regmap *reg;
- 	struct device *dev;
- 	struct usb_phy phy;
-+	struct extcon_dev *edev;
- 	struct delayed_work detect_work;
- 	struct pinctrl *pins;
- 	struct pinctrl_state *pins_ulpi;
-@@ -134,12 +136,23 @@ struct cpcap_phy_ddata {
- 	struct regulator *vusb;
- 	atomic_t active;
- 	enum cpcap_mode mode;
-+	int cable;
- };
- 
- static bool cpcap_enable_uart;
- module_param_named(enable_uart, cpcap_enable_uart, bool, 0644);
- MODULE_PARM_DESC(enable_uart,
- 		 "Enable UART on the USB connector while idle (increases power consumption)");
-+
-+/* List of detectable cables */
-+static const unsigned int cpcap_extcon_cables[] = {
-+	EXTCON_USB,
-+	EXTCON_USB_HOST,
-+	EXTCON_CHG_USB_SDP,
-+	EXTCON_CHG_USB_DCP,
-+	EXTCON_NONE,
-+};
-+
- static bool cpcap_usb_vbus_valid(struct cpcap_phy_ddata *ddata)
- {
- 	int error, value = 0;
-@@ -226,6 +239,43 @@ static void cpcap_usb_try_musb_mailbox(struct cpcap_phy_ddata *ddata,
- 		__func__, error);
- }
- 
-+static void cpcap_usb_set_extcon(struct cpcap_phy_ddata *ddata)
-+{
-+	int cable;
-+
-+	switch (ddata->mode) {
-+	case CPCAP_CHARGER:
-+		cable = EXTCON_CHG_USB_DCP;
-+		break;
-+	case CPCAP_USB:
-+		cable = EXTCON_CHG_USB_SDP;
-+		break;
-+	case CPCAP_USB_HOST:
-+	case CPCAP_DOCK:
-+		cable = EXTCON_USB_HOST;
-+		break;
-+	case CPCAP_IDLE:
-+		cable = EXTCON_NONE;
-+		break;
-+	}
-+
-+	if (cable == ddata->cable)
-+		return;
-+
-+	if (ddata->cable == EXTCON_CHG_USB_SDP)
-+		extcon_set_state(ddata->edev, EXTCON_USB, false);
-+	else if (cable == EXTCON_CHG_USB_SDP)
-+		extcon_set_state(ddata->edev, EXTCON_USB, true);
-+
-+	if (ddata->cable != EXTCON_NONE)
-+		extcon_set_state_sync(ddata->edev, ddata->cable, false);
-+
-+	if (cable != EXTCON_NONE)
-+		extcon_set_state_sync(ddata->edev, cable, true);
-+
-+	ddata->cable = cable;
-+}
-+
- static void cpcap_usb_detect(struct work_struct *work)
- {
- 	struct cpcap_phy_ddata *ddata;
-@@ -276,6 +326,7 @@ static void cpcap_usb_detect(struct work_struct *work)
- 			goto out_err;
- 
- 		cpcap_usb_try_musb_mailbox(ddata, MUSB_ID_GROUND);
-+		cpcap_usb_set_extcon(ddata);
- 
- 		/*
- 		 * Force check state again after musb has reoriented,
-@@ -306,6 +357,8 @@ static void cpcap_usb_detect(struct work_struct *work)
- 		if (error)
- 			goto out_err;
- 
-+		cpcap_usb_set_extcon(ddata);
-+
- 		return;
- 	}
- 
-@@ -343,6 +396,8 @@ static void cpcap_usb_detect(struct work_struct *work)
- 		if (ddata->mode == CPCAP_USB)
- 			cpcap_usb_try_musb_mailbox(ddata, MUSB_VBUS_VALID);
- 
-+		cpcap_usb_set_extcon(ddata);
-+
- 		return;
- 	}
- 
-@@ -356,6 +411,8 @@ static void cpcap_usb_detect(struct work_struct *work)
- 	if (error)
- 		goto out_err;
- 
-+	cpcap_usb_set_extcon(ddata);
-+
- 	return;
- 
- out_err:
-@@ -781,11 +838,22 @@ static int cpcap_usb_phy_probe(struct platform_device *pdev)
- 	if (!otg)
- 		return -ENOMEM;
- 
-+	ddata->edev = devm_extcon_dev_allocate(&pdev->dev, cpcap_extcon_cables);
-+	if (IS_ERR(ddata->edev)) {
-+		return dev_err_probe(&pdev->dev, PTR_ERR(ddata->edev),
-+				     "failed to allocate extcon device\n");
-+	}
-+
-+	error = devm_extcon_dev_register(&pdev->dev, ddata->edev);
-+	if (error < 0)
-+		return error;
-+
- 	ddata->dev = &pdev->dev;
- 	ddata->phy.dev = ddata->dev;
- 	ddata->phy.label = "cpcap_usb_phy";
- 	ddata->phy.otg = otg;
- 	ddata->phy.type = USB_PHY_TYPE_USB2;
-+	ddata->cable = EXTCON_NONE;
- 	otg->set_host = cpcap_usb_phy_set_host;
- 	otg->set_peripheral = cpcap_usb_phy_set_peripheral;
- 	otg->usb_phy = &ddata->phy;
--- 
-2.25.1
+commit d7b2a51c3f82ebdb2f326313f13ddf2d3edde1a7
+Author: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
 
+dt-bindings: phy: motorola,cpcap-usb: replace se1 interrupt with chrg_det
+
+The CPCAP USB PHY driver uses the CPCAP charger detection interrupt for DCP
+detection rather than the SE1 interrupt. This commit updates the binding and
+example DTS to use the corresponding "chrg_det" interrupt name.
+
+> diff --git a/Documentation/devicetree/bindings/phy/motorola,cpcap-usb-phy=
+.yaml b/Documentation/devicetree/bindings/phy/motorola,cpcap-usb-phy.yaml
+> index dd345cbd0a0b4..d54cf7fbf11a7 100644
+> --- a/Documentation/devicetree/bindings/phy/motorola,cpcap-usb-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/motorola,cpcap-usb-phy.yaml
+> @@ -27,7 +27,7 @@ properties:
+>        - description: vbusvld interrupt
+>        - description: sessvld interrupt
+>        - description: sessend interrupt
+> -      - description: se1 interrupt
+> +      - description: charger detection interrupt
+>        - description: dm interrupt
+>        - description: dp interrupt
+> =20
+> @@ -40,7 +40,7 @@ properties:
+>        - const: vbusvld
+>        - const: sessvld
+>        - const: sessend
+> -      - const: se1
+> +      - const: chrg_det
+
+[Severity: Critical]
+Does replacing 'se1' with 'chrg_det' break probe for older device trees?
+
+Since cpcap_usb_init_irq() in drivers/phy/motorola/phy-cpcap-usb.c fails the
+probe if an expected interrupt is not found, updating the binding to require
+'chrg_det' instead of 'se1' means booting a new kernel with an older DTB
+(which only provides 'se1') could fail to probe the USB PHY.
+
+>        - const: dm
+>        - const: dp
+> =20
+
+[ ... ]
+
+While reviewing this, I noticed a few other regressions in
+drivers/phy/motorola/phy-cpcap-usb.c:
+
+[Severity: Medium]
+Can this error path in cpcap_usb_set_idle_mode() leave the global SysRq sta=
+te
+permanently disabled?
+
+drivers/phy/motorola/phy-cpcap-usb.c:cpcap_usb_set_idle_mode() {
+    ...
+    sysrq =3D sysrq_mask();
+    if (sysrq & 1)
+        sysrq_toggle_support(sysrq & ~1);
+    ...
+out_err:
+    dev_err(ddata->dev, "%s failed with %i\n", __func__, error);
+
+    return error;
+}
+
+If an error occurs (e.g., during pinctrl_select_state), the function jumps =
+to
+out_err and returns without calling sysrq_toggle_support(sysrq) to restore =
+it.
+
+
+[Severity: High]
+This is a pre-existing issue, but could there be a race condition during
+driver removal that allows the threaded IRQ handler to schedule work on fre=
+ed
+memory?
+
+During driver removal, cpcap_usb_phy_remove() cancels the work without
+disabling the IRQ first:
+
+drivers/phy/motorola/phy-cpcap-usb.c:cpcap_usb_phy_remove() {
+    ...
+    atomic_set(&ddata->active, 0);
+    ...
+    cancel_delayed_work_sync(&ddata->detect_work);
+    regulator_disable(ddata->vusb);
+}
+
+Concurrently, if an IRQ fires and cpcap_phy_irq_thread() checks 'active' but
+is preempted before scheduling the work:
+
+drivers/phy/motorola/phy-cpcap-usb.c:cpcap_phy_irq_thread() {
+    ...
+    if (!atomic_read(&ddata->active))
+        return IRQ_NONE;
+
+    schedule_delayed_work(&ddata->detect_work, msecs_to_jiffies(1));
+    ...
+}
+
+Could the IRQ thread resume after cancel_delayed_work_sync() has completed,
+scheduling the delayed work on a freed 'ddata' object?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260704073843.1750=
+458-1-ivo.g.dimitrov.75@gmail.com?part=3D3
 
