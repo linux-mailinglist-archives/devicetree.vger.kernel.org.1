@@ -1,110 +1,104 @@
-Return-Path: <devicetree+bounces-320458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320460-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cU6xHLbTSGoXuQAAu9opvQ
-	(envelope-from <devicetree+bounces-320458-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 11:34:46 +0200
+	id n+2qEULUSGpFuQAAu9opvQ
+	(envelope-from <devicetree+bounces-320460-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 11:37:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C9E870742A
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 11:34:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF7B7074A0
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 11:37:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=C7HHe5Uk;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=lnQY0cfo;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320458-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320458-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320460-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320460-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1CBA2301953F
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 09:34:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 951EB303AF05
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 09:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A2ED3A59A2;
-	Sat,  4 Jul 2026 09:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C88D3A8FF6;
+	Sat,  4 Jul 2026 09:34:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 715D039D3DA
-	for <devicetree@vger.kernel.org>; Sat,  4 Jul 2026 09:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486D43A59A3
+	for <devicetree@vger.kernel.org>; Sat,  4 Jul 2026 09:34:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783157679; cv=none; b=uk+iUBJ9wsJcNj/zZROAQcjH0gY5T01C8o9KM9tsnl+fCim18QaOg0s2PbHApEyxf8o+aBFAK3tp8K6BJAiwbgEyPIbGk4iQNMnQww/2pH+o8q9/nBO6VjBp672En7Cm+vnMDR3tGRAmDUBEp5YvfMQwUYngpIaxFViMnoBzawI=
+	t=1783157683; cv=none; b=P5+3vAHG8pTeHrhi80YYxdM3hHKecnFebHj66f1t6VIs9EZVJu+kjaeXuESbUDCzgKlg5Th3YVGoqryZ/J8Pxu47Q21bviK0S4aFHlqeC2X7yvdZXS4tT0WcWgaArq92YI9BU1QmPkG08Usqf1G7DSXodaKO5w1vSXNx69OpqIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783157679; c=relaxed/simple;
-	bh=9CkOkak3NtkBlSf4MxiSsL+TiDBp8RZoVM1VYImOVkQ=;
+	s=arc-20240116; t=1783157683; c=relaxed/simple;
+	bh=BbYLJhEgdSoWZo4IzbOnYd4Pb5An1UxlxVaJpXJ+EQw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kcutNmbbyrCZhaw7Lp1UyPmlvQ662ff55faVhvQ6qsDrXieEKA3Ir6wEV+38z05UDuOOOo07uLajkWOefg0xvPZQOa/NClxqms9sudh/XT6X4TFiDUCInY7xEKcjNP9/FsFjuoWRppD8R/P778eMM2EFBUw1EjuUGPWt464nlNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C7HHe5Uk; arc=none smtp.client-ip=209.85.128.45
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-493bf73ec2aso7545315e9.2
-        for <devicetree@vger.kernel.org>; Sat, 04 Jul 2026 02:34:37 -0700 (PDT)
+	 MIME-Version; b=YZnfBUq2oaj3Lb9SpoPSem72vG/f03woxpDN344SWohsoIZPqEsWifmsqCK9HIvmEzEXDcexnEkSDwv3UtqBE0Vj06zGS+qdodlhe1ha/r+sXTrW6iHe/bmUKvs4WA86IgQ+mOPuNncdXPyKl9PuvXw4F0gTOVBLNUdOle6oBH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lnQY0cfo; arc=none smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-493c2c0b9a8so11496525e9.1
+        for <devicetree@vger.kernel.org>; Sat, 04 Jul 2026 02:34:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783157676; x=1783762476; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1783157680; x=1783762480; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lXSXtsaOb98EsKaQXza0t57The+nbXRGOe9BEUF2+xM=;
-        b=C7HHe5Uk/L8vTpiOIlHVfqF4vAprVf3dmUqbxhipKCZLxbcwPGah6DoLNfBQVefjC3
-         9jH95OdnqO8oVnQb4zePfypK87DZ9B8zHzt46t+ZUxVvSHMtVd+lF0vIm3Rt+6LWimBQ
-         SHubVaYgUIpla85LznfdZoYOy02LhYxNpkDE9A5yvY9jgbqxK+Qm1douVvVXwQ8270RT
-         5ox9WHfOkyYcngd5eyQeaUvJYczka46gRAcoLFaQURL0PVBxUe6jBZx1pck3JBCCFpvH
-         cy+BrSGChS2ugWPHdvYYs95BVsr8d5mouQxu+MiZ8dNH5fF92EmmH7bFGYHX6JA/EYKj
-         0xlw==
+         :message-id:reply-to:content-type;
+        bh=q9vf76BqIuQO+oLK9NNkHBXuVK+BkmRkVD8Sg2pJCJU=;
+        b=lnQY0cfoq832O6rCLuYXLvIQxmp2dw0ewrB6hGbGoWBQ5vucAViErqwssm+vevGLkT
+         KZXyTuqLQ0wAEXhVMbpfPh6aNxUy8+kUo08g0R0TgaNvc1jWSJakuBaQ0airSDxW3HAA
+         yi5dYMS6T1wtQyEwP+UWEi7hSXphSmFxMrPwX574orZObT7FPmic91GzE2SUWk4R4LH8
+         NENHxXlDnh4tlXcfOmTZ3waWkozqPMmhucV+Kz1MARdAs3vMuqFnW2giXXp4Yc7GZUtZ
+         17awrmn+GBE81NEq4P0jLnp4rS/TjNZCcwOSv2um/vJdeZbco3w1u58vCZQITx20UxIZ
+         yW3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783157676; x=1783762476;
+        d=1e100.net; s=20251104; t=1783157680; x=1783762480;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=lXSXtsaOb98EsKaQXza0t57The+nbXRGOe9BEUF2+xM=;
-        b=eyFdu89kqzEMJ5i7F8jsS8zk+HMX1ICw75rRFwfLAosWYW3AM6S16VDZMEkAmM19/h
-         JxhK+bDd5PmIDMRCZreeNoSQFgF1NkUM2ZYwmaXDASsHQUvKWIW6uBDkr+W7t/JZrhG6
-         BkStSUeJrVDIujXY0dal681Y8KzzJoZc8ELYT/oQAODrqXCXSnHgqDfwS/vFzBDMXbQL
-         EK4P+tFRx4vnWOKmYMlggL8d/EwGfsoJwSCcXytQ9UafMmHFOAXXBpYbiycfJpit7BX+
-         cGnOlzY2b6N1Y5X5gNG/AescPzUsnOCIYrd3Osd9N46qh/jfbEDsPwzfA2eYFRFk1LFl
-         K9yQ==
-X-Forwarded-Encrypted: i=1; AFNElJ97vtPVyhYedlgkdUu5KChO+kGAaLVRTbShy7bYduQMomWfFNEDmSjUHj6hl+FNNVf+Af19kPYKau8D@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrkD702Nu8RdR+Qc8pPsyjD7/p1anLHzSn+jHKVQU4KKaGAGW2
-	3k+WBfRQ1YugqvvPlKCvU0oB/gb9nZkO6HABJ4a88tRjepjBGzPcO1Am
-X-Gm-Gg: AfdE7ck6F1RIm7Cwf6hruiLfv6HngC+l14FlY3CYpDdCDiaz64RPyoSZP2AJ4yzMZ1s
-	CxgaNPc3wuaPRnNMr4W7T+2aVi0CsohLtbaVMX/AD20ClOasPo4exlizF/9hTwqnE+BC2CNAlaQ
-	OZAF3cSnNidIt0mUxvL8msagw+TuCgnjJTDpQ8/WRXlCp24Vfa/SHLKNNDFiOx3GPGhdfamVmCf
-	5rqEeQRwUWoSEqf2DOC+FNGmy/Eq8RUUGBm1QCBTNr1LcM7L66FClbR6X6CuIlt1eJjx5+VBNBi
-	t4/hw7x8oqo6NyCM2CDj3EcpEtB4JGr0ppZX6bYlBBV2+fdMnSKyiu7VS6GPg5vtjAqAdcYIX/I
-	6owqXJNlEsuJWGWF1iXM8Go2yB0KJcIARyXthF7YrJQn6/nlH0xAiakVrADuo2Ct4IfPhtTVrVC
-	YPA4axfDqdtPsvxrM8P4uL
-X-Received: by 2002:a05:600c:d7:b0:492:437a:a653 with SMTP id 5b1f17b1804b1-493d11f7b3cmr19319105e9.26.1783157675922;
-        Sat, 04 Jul 2026 02:34:35 -0700 (PDT)
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=q9vf76BqIuQO+oLK9NNkHBXuVK+BkmRkVD8Sg2pJCJU=;
+        b=EqgtnnOBd951cjWX/eDFUYeZZ06FuV8UsDx0jh+YIfOHQ8XFP78BEgu/RjENuJ7IgZ
+         qvZ/3Z7CCKgkMO1Qo5E+yhEFMzFiimuyXG4+ZmjxK8Lg3OusXvQy23jxhaAcHCUYNZWw
+         iBuqNApjEz5rB+YaOKStUzmg3xSPdLonHRIRLUFrBADUnNxXlV6dMOsU+v0FyAmkz6Uz
+         B3XpZGqtB315CpF+cuUvdTrZKCyzRtFH2LN9L2PGCssp8H//6tOsUweemi3r6Pqw7xI0
+         lkM+2KDQSpK5brceKa03LekwV8Tb4EQETP5RoHmT8Il9J6pPzrZUHtezmXr1QmYAhKKo
+         FcBQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/arfOzekPro6XhFsvpsZ1qqF5p+uJZcH5tPWapRUJNNk+OR7vB5MFwo2ysu36XXnRpHisUnEniTc2P@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrQaT4wLkFskxkpjnWXsw4jHp0Q474Z3RGXDRDNFfBFMwkLBYE
+	T3P+4sydApUu56sHfQ/oWmJHIy169OMuA4vIRvL9j0id1BGdS1PbsbcF
+X-Gm-Gg: AfdE7ckMIiCgyWyyV4aUe+gBdvIO1DVnKitcWe40BU/jotENx5BwwU7C1bNc0dW3C1R
+	ART915y6UiJhPM0ulRTpQveZw4kBJk/NDJAear0nxbksg6qlxPen5LuyKA5mAwhSogMhpYMpgM9
+	8ZlbMfRLBP9pXhV88D5lPOUvDbAX62pongszkIL5D0OsFezXNcmMx8xaAiq4MwK+NbuF1SLy4+5
+	DzvDmWgomKtoeEi/k+m0SnSc4V9hVMeIBsHpOmbCnv2EKXVnFXTwLm6y+sd2XC65h47KcSRshij
+	HjhphJwPK7+3EdBQY3gMEzCAZJIz19iQgHhycxNY5YVrg9hJSSYtEY5Mp8Q04ZMCGEReeD0zWzz
+	GTE9Pwfn9nKNfLq3hn45Ex7inByYQdxotf4PfVdfvsTwivMwpPXgEy18ZlAmuuL0A7Z1DVVnquy
+	kn04c+N3nI5dV0vRjhzZQC
+X-Received: by 2002:a05:600c:3515:b0:493:c42e:5be0 with SMTP id 5b1f17b1804b1-493d11894f7mr32349275e9.0.1783157679621;
+        Sat, 04 Jul 2026 02:34:39 -0700 (PDT)
 Received: from biju.lan ([2a00:23c4:a702:d301:8c5b:5b11:f6a5:9bc9])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493cce040b4sm153180235e9.10.2026.07.04.02.34.35
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493cce040b4sm153180235e9.10.2026.07.04.02.34.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jul 2026 02:34:35 -0700 (PDT)
+        Sat, 04 Jul 2026 02:34:39 -0700 (PDT)
 From: Biju <biju.das.au@gmail.com>
 X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
+To: Biju Das <biju.das.jz@bp.renesas.com>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
 	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
 	dri-devel@lists.freedesktop.org,
+	linux-renesas-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
 	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 01/16] dt-bindings: display: bridge: renesas,dsi: Document RZ/G3L
-Date: Sat,  4 Jul 2026 10:34:11 +0100
-Message-ID: <20260704093433.273672-2-biju.das.jz@bp.renesas.com>
+Subject: [PATCH 07/16] dt-bindings: display: renesas,rzg2l-du: Document RZ/G3L SoC
+Date: Sat,  4 Jul 2026 10:34:17 +0100
+Message-ID: <20260704093433.273672-8-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260704093433.273672-1-biju.das.jz@bp.renesas.com>
 References: <20260704093433.273672-1-biju.das.jz@bp.renesas.com>
@@ -116,90 +110,136 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_TO(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320458-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:biju.das.jz@bp.renesas.com,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:biju.das.au@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:jernejskrabec@gmail.com,m:bijudasau@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320460-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:biju.das.jz@bp.renesas.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:laurent.pinchart+renesas@ideasonboard.com,m:dri-devel@lists.freedesktop.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:biju.das.au@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:laurent.pinchart@ideasonboard.com,m:bijudasau@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[bp.renesas.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,glider.be];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,gmail.com,ffwll.ch,linux.intel.com,suse.de,glider.be];
-	FREEMAIL_CC(0.00)[bp.renesas.com,ideasonboard.com,kwiboo.se,gmail.com,bootlin.com,lists.freedesktop.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[ideasonboard.com,lists.freedesktop.org,vger.kernel.org,bp.renesas.com,gmail.com];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,bp.renesas.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1C9E870742A
+X-Rspamd-Queue-Id: CFF7B7074A0
 
 From: Biju Das <biju.das.jz@bp.renesas.com>
 
-The RZ/G3L DSI IP is similar to the RZ/G2L but has different global PHY
-timings and also the PLLCLK is ungateble clock. Add the compatible
-string "renesas,r9a08g046-mipi-dsi" to handle these difference for the
-Renesas RZ/G3L SoC. The power to DSI region is controlled by SYSC block.
-Document renesas,sysc-pwrrdy property to handle the power control.
+The DU block on the RZ/G3L SoC is identical to the one found on the RZ/G2L
+SoC. However, it supports the DSI, DPI, and LVDS interfaces, while the
+RZ/G2L supports only the DSI and DPI interfaces.
+
+Due to this difference, a SoC-specific compatible string,
+'renesas,r9a08g046-du', is added for the RZ/G3L SoC.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- .../bindings/display/bridge/renesas,dsi.yaml      | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ .../bindings/display/renesas,rzg2l-du.yaml    | 27 +++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-index c20625b8425e..b114ac3b111a 100644
---- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-@@ -28,6 +28,7 @@ properties:
-           - const: renesas,r9a09g057-mipi-dsi
- 
+diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+index 7c84a9ecc7a7..65368649fe77 100644
+--- a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
++++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+@@ -20,6 +20,7 @@ properties:
        - enum:
-+          - renesas,r9a08g046-mipi-dsi # RZ/G3L
-           - renesas,r9a09g057-mipi-dsi # RZ/V2H(P)
+           - renesas,r9a07g043u-du # RZ/G2UL
+           - renesas,r9a07g044-du # RZ/G2{L,LC}
++          - renesas,r9a08g046-du # RZ/G3L
+           - renesas,r9a09g057-du # RZ/V2H(P)
+           - renesas,r9a09g077-du # RZ/T2H
+       - items:
+@@ -65,7 +66,7 @@ properties:
+       model-dependent. Each port shall have a single endpoint.
  
-   reg:
-@@ -108,6 +109,20 @@ properties:
-   power-domains:
-     maxItems: 1
+     patternProperties:
+-      "^port@[0-1]$":
++      "^port@[0-2]$":
+         $ref: /schemas/graph.yaml#/properties/port
+         unevaluatedProperties: false
  
-+  renesas,sysc-pwrrdy:
-+    description:
-+      The system controller PWRRDY indicates to the DSI region, if the power
-+      supply is ready. PWRRDY needs to be set during power-on before applying
-+      any other settings. It also needs to be set before powering off the DSI.
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description:
-+              System controller phandle required by DSI driver to set
-+              PWRRDY
-+          - description: Register offset associated with PWRRDY
-+          - description: Register bitmask associated with PWRRDY
+@@ -88,7 +89,6 @@ required:
+   - clocks
+   - clock-names
+   - power-domains
+-  - ports
+   - renesas,vsps
+ 
+ additionalProperties: false
+@@ -108,6 +108,7 @@ allOf:
+             port@0:
+               description: DPI
+             port@1: false
++            port@2: false
+ 
+           required:
+             - port@0
+@@ -124,10 +125,31 @@ allOf:
+               description: DSI
+             port@1:
+               description: DPI
++            port@2: false
+ 
+           required:
+             - port@0
+             - port@1
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,r9a08g046-du
++    then:
++      properties:
++        port:
++          properties:
++            endpoint@0:
++              description: DSI
++            endpoint@1:
++              description: DPI
++            endpoint@2:
++              description: LVDS
 +
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
++          required:
++            - port@0
++            - port@1
++            - port@2
+   - if:
+       properties:
+         compatible:
+@@ -140,6 +162,7 @@ allOf:
+             port@0:
+               description: DSI
+             port@1: false
++            port@2: false
  
+           required:
+             - port@0
 -- 
 2.43.0
 
