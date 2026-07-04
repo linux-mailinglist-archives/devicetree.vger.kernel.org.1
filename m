@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-320424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320426-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 28qoOLO4SGroswAAu9opvQ
-	(envelope-from <devicetree+bounces-320424-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 09:39:31 +0200
+	id DZmxJzS5SGoRtAAAu9opvQ
+	(envelope-from <devicetree+bounces-320426-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 09:41:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84D6F706F4C
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 09:39:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14657706F8E
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 09:41:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="ErK/Q5cD";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=gcLvoWZn;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320424-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-320424-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320426-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320426-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F37D9301A456
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 07:39:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 450733046FD6
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 07:39:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC46B391845;
-	Sat,  4 Jul 2026 07:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CD6B39060C;
+	Sat,  4 Jul 2026 07:39:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10EAE2FFDD6
-	for <devicetree@vger.kernel.org>; Sat,  4 Jul 2026 07:39:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D872339185C
+	for <devicetree@vger.kernel.org>; Sat,  4 Jul 2026 07:39:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783150765; cv=none; b=Gttm3PWJHH3+uBrAvUjmHGkfALrkdZqdk56yyNYIBXx3OfRmYNuwspezU4R9UP/naK6QHgHsHFblhSW2FK+KaL6YyDTNrnADoNmnEA8CLQ8uY2ipA5d8zAwtuzFaTfP8/zSgNbk0Jh22YALJOfv7t8pGQd0ETwl0OutPppfeDxA=
+	t=1783150773; cv=none; b=E9YPALRwAlVc8hJc5v5CrGDZOgisd3qikdHv+UVnFvR7BcjjTvPoobuJLpVjjb8SQxxLIzY1WGG/O1iB+YWl2hzYZ1myM/rj9GQJeN6Cemw2Vk5C4POjVUayub+eiQHGv7jzjsR5wXQBCyx2CC6OqMysq09OVVfXieny+Do2iS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783150765; c=relaxed/simple;
-	bh=Vjk92yj5SDGwYHyFOT9M2fcaGNwel5+hRD7zUCCZF0w=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hoLZ1VzzoiUZaxFqM6XR84r4Sln69PfdHIsEQOjvPZPuJIHbPXS9gEhe9ho0WtPMPWTx3RdhF5ZhbYfxccpSdVV0aWG+b+DfVE6jn+uXjevLcwU6eH5kArJDCuK/x5qL8dAqBMHrNyNun02lgRR0xSyIG2AsV39cOu6x7uFc+CI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ErK/Q5cD; arc=none smtp.client-ip=209.85.128.46
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-493b7612475so11534885e9.3
-        for <devicetree@vger.kernel.org>; Sat, 04 Jul 2026 00:39:17 -0700 (PDT)
+	s=arc-20240116; t=1783150773; c=relaxed/simple;
+	bh=Zy71/fJ74FRfR9wQcyuWyoy8vYdmBl8U1Rx2deFcctA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=nUFD1fp5pR8XcrT9sCWKGCdYltCrdOZuCU5CQAdmrOLxzUg/+bJcRZLOuSa5GpePuaGTQp7IWU4DeuD2yHktM3SNQUufOb6ApzMFIJpwbRlfz8yPzYyP19T0E7I/W7JaXGCNyDpc1IxPbnTmhB2Ai6Bs4EvRbGrIbA8da6qK/Y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gcLvoWZn; arc=none smtp.client-ip=209.85.221.47
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-476d8e647e9so1158769f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 04 Jul 2026 00:39:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783150755; x=1783755555; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DVufXZv3C9nTTbjjeAadD32Z+/uBgkpYSXQtGIeK46U=;
-        b=ErK/Q5cDjePjjQ+3jJbWHqKVm2FdbCH8kCT1T6dAr8EfQxd0yNy0NWz8ATR6cH2x8w
-         oTKbiEPe2ZruITE+0vY3nHSJQ097nL23HQklI04UgA4/AVAP1uJ6W/AGGPcyq2PAl+EH
-         0VeWHfegRPJ+81ogUs5tM272IppDRoC/yrVbcV6NY9Bmp0XGo5PU3gAO0AFGSQybiWJM
-         JLIubHiBPyOD8nRL5hNFbiP7mEqloJffr/Y16sJLqr4meANOICUlrEh/+Jm5X2mYGBxl
-         Wh3/Huqp7ReU+QlEPSLjFLUF1y0YjgXent1EKgMtt/lVuAw7aqZuAsmmd38dmcWLsnnZ
-         k23A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783150755; x=1783755555;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1783150757; x=1783755557; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DVufXZv3C9nTTbjjeAadD32Z+/uBgkpYSXQtGIeK46U=;
-        b=J2iKIoaT9yALJAuAifz3bJgxopJV9/qYbI/y5O0GiLtSaU79icL+lcPq6WkCID/12g
-         gW6n8mppniFFuIuat1wo6fWfhEFn+U1W9hgjypq0v5WwkW1KAvVKLIrbAXQdW76Jr1C8
-         dJnAgdhjGAw2baoZ/Tb9m1qtLBGq+nOePiP4D0ZSiGOiZbu6/yvHNRg3HwUhO/cUtkWm
-         eiHH8frbMZmLfHNmeii5stjnXoS9e/0iVhifKr7TbPxMC0HJ17ID6FY0GzraSP8DVX3c
-         VH4eSVgotfvZMU2YgsIpcaKIhmX3Rc9CpUG4vpMDldC2Di1x+26KEVWN56jE6dxHFzCy
-         iseg==
-X-Forwarded-Encrypted: i=1; AFNElJ+4IPaAiMFhFm9yNiDp3QOB6Adzo5LanCQD7vGOSbg6Dkd0Ixhygzp5AmXv7e8D/B8q/WXYThzd+3dL@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXNu3JlY/ShYzmlw7mB4io7FXYasyRfQ0ZeTOtEcTQvsb26Q/z
-	yIBP585BORN86dKqEVzyYE7G1IQeIdqDjbX9cFmSHkmIJKHiCPxyFZNr
-X-Gm-Gg: AfdE7cnuuFAgQ2HXzhH6fSR5or2rKqQe5eGNF65kTNWAS191upmNeEYduCTyeFQnsyr
-	czPUgdpr31r/PGUIDjqcDuwFOPqMe0RidwW5yjn9uKlpKJSl+UrHB6xw6GK8/KbaziLjHvXO8N6
-	pR6/tO/KVpx2TtPOOWUERTFBWUvDTKIK1a5QcvmMpDZBrF6oY/UphU8zlfHCrS5qZZ0tETxwiUr
-	wO3d/bItGNz0lu+oGUjQ6osSzg7TH759RNczuslKpuDQlZiXpoDWeuQFtEw/6GcFuMfov+m3G7P
-	RYur7Uu2kevTYwl7y6cMRe1HtEflMS2Jwfsw1ZeQXbO61LLS2GlzZ8FHwckRPmicWG3FKNie4FC
-	AxAwUlpFh1q37KbtE4vzzyuBzBzj+lvl9YGmIux/VVbml3gmeWxCogLWAhXkFSMpXmFMNjFySoE
-	gxdohkOQVJ6mTebq2sKUfpCItKEzI1+YPvgQ==
-X-Received: by 2002:a05:600c:c166:b0:492:63c3:8eeb with SMTP id 5b1f17b1804b1-493d11fe04cmr24840475e9.35.1783150755151;
-        Sat, 04 Jul 2026 00:39:15 -0700 (PDT)
+        bh=bI47Dpz0RBIpr5k7Gwsk0lZ7yNT7k5Nfr3De7ezpTc0=;
+        b=gcLvoWZnA8//jfq4fnf7YN1picdvuNsL1yvJaetALPyyebcjtolT40+p2iJYjOvsmq
+         FtZ+6BzQl1FJ85gNVkyCBeAgten25ynRxFqDFCoeHqfS8wLWYrgyw0dpVzDlBckGRNL9
+         Ua9sK3cwYpNi62Z0NMRVHupbpM2pe5SgI405RE0p/5hG6ULjj3MDIxMNCfo5S2HBgIBz
+         g5ayx60l3kl2A7xQb8pEQbWUm8MwPb9zxDpU9/XNTHjwl6Qy4x554Vg1YfS4hx8eM6fb
+         FzMRV6CE4nfDx54BGlpX5RjXYtfXfEVkiPmVmZoI3wqwWNYa1fLzOPtIJve5dv3BrNZx
+         LOwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783150757; x=1783755557;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=bI47Dpz0RBIpr5k7Gwsk0lZ7yNT7k5Nfr3De7ezpTc0=;
+        b=L0LoUX9+kFBKr7xgOtOFsrI1k0Q8aIfsonVyO/YUoloyJleFllq0bfgcYLIaUquCoq
+         ziyFP7dKbe3G4KJTxIxkTJKXyLu5G7M2sIXPnUe2LQCEkzaB6c+a3IRkg9tbNpfVCJOH
+         JKphAbtW01nvZ+ZxbGm+Y1YnPZij8Aqdo4nPhbh9E0TxlMsYlgcWDvBkxZCP8NgG8DBg
+         6aE9VPPXNVqpz3LrgcI/A75YGh1KdTNwChDbjywMbIPFuL6So5xv5SxngjNuoZAxJZrv
+         vTY8jfAm1xaMzb01aFyNqqNXMTOatqymI06hLQRPAlRaMO0NKSjvJHKGfmzJS/5K41V9
+         L+wg==
+X-Forwarded-Encrypted: i=1; AHgh+RoqJozpRqX+Vlcpdb0URmroNd0ZI7ISvg0W22PoCCEpgGxRWQw7sp3I1jLBv46w3YGQagpH68gWDaQv@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywm9IawX39mo7A5FYbGL8N1H+lvWcA94R2qBu+Gjs2cUk3pFbRG
+	l7Al5IMlSYPZsDSv07oWL9pt2hnBEzJ+tmuqHaB0tpPUoiO9l4iaT7DjFnGF77xZ
+X-Gm-Gg: AfdE7cnwCUgDyCTXlycF9piXzGzW4TN8htmW1YWBOW0Q0aHS7EsleylpoTByZJip38C
+	eAkIywoeUtxZDo6VDLiDwUJuFJaHM8bUZnWMKhsto3AYXeZDlxBCfqequldbm12ZHHJiGO0Re0Q
+	K6dXdfzxvPXfEP6rTG1PujpPfewAEO2811LmBQloUXXwP08AGEx70EK1ADcOFmD55OynFzdeR09
+	EIvcIPiP7zEHImsvsv5EcmxkshhbnLf+c+gzQBSD5kSIIw59x0bb6QVUeEHQRiQ6KnK0jIW8Dos
+	6OumPdtecjp7/Gzd7DWTrZQCRvx8hKotIgEvFRr+NSZINrDMRwtz92ksX4PaWOyMSgPLzErjR7S
+	PXFdvo5BCWPGiDCvzAVvV/OYEx/LESsTtBDZTwnw6jKgnL/nLxjpDo37r7HgTu5IUlBbMpBET8I
+	yG5IDaU8GMY5hWZKWFzQ98P5FvZiV3YlvLmw==
+X-Received: by 2002:a5d:588b:0:b0:471:2631:9d7e with SMTP id ffacd0b85a97d-47aacab5251mr2777565f8f.27.1783150756651;
+        Sat, 04 Jul 2026 00:39:16 -0700 (PDT)
 Received: from localhost.localdomain ([95.43.220.235])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47a9de1e736sm6565488f8f.7.2026.07.04.00.39.13
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47a9de1e736sm6565488f8f.7.2026.07.04.00.39.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jul 2026 00:39:14 -0700 (PDT)
+        Sat, 04 Jul 2026 00:39:16 -0700 (PDT)
 From: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
 To: Vinod Koul <vkoul@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -91,12 +93,13 @@ Cc: linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-omap@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-Subject: [PATCH 0/5] phy: cpcap-usb: improve charger detection and export cable state
-Date: Sat,  4 Jul 2026 10:38:38 +0300
-Message-Id: <20260704073843.1750458-1-ivo.g.dimitrov.75@gmail.com>
+	linux-gpio@vger.kernel.org
+Subject: [PATCH 1/5] phy: cpcap-usb: Prevent line glitches from triggering sysrq
+Date: Sat,  4 Jul 2026 10:38:39 +0300
+Message-Id: <20260704073843.1750458-2-ivo.g.dimitrov.75@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260704073843.1750458-1-ivo.g.dimitrov.75@gmail.com>
+References: <20260704073843.1750458-1-ivo.g.dimitrov.75@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,74 +114,83 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-320424-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:aaro.koskinen@iki.fi,m:andreas@kemnade.info,m:khilman@baylibre.com,m:rogerq@kernel.org,m:tony@atomide.com,m:linusw@kernel.org,m:brgl@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:ivo.g.dimitrov.75@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:ivogdimitrov75@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[ivogdimitrov75@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-320426-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:aaro.koskinen@iki.fi,m:andreas@kemnade.info,m:khilman@baylibre.com,m:rogerq@kernel.org,m:tony@atomide.com,m:linusw@kernel.org,m:brgl@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ivogdimitrov75@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[ivogdimitrov75@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ivogdimitrov75@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,atomide.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 84D6F706F4C
+X-Rspamd-Queue-Id: 14657706F8E
 
-The Motorola CPCAP USB PHY contains the hardware state machine used for
-USB cable detection. Besides distinguishing USB peripheral and host
-connections, it can also detect dedicated charging ports (DCP).
+From: Tony Lindgren <tony@atomide.com>
 
-This series starts with a prerequisite fix from Tony Lindgren to prevent
-spurious SysRq events when switching between USB and UART modes. It then
-adds DCP detection support to the CPCAP USB PHY, updates the Device Tree
-binding and corresponding mapphone Device Tree to use the charger
-detection interrupt, and finally exports the detected cable state through
-the Extcon framework.
+We can get random sysrq events on switching from USB to debug serial
+port mode unless is temporarily disable sysrq for the mode changes.
 
-The existing driver already interprets the CPCAP USB detection state
-machine to determine the attached cable type. This series extends that
-logic to distinguish DCP connections and exposes the detected cable state
-through Extcon using a standard kernel interface. It also makes the idle
-UART mode optional, allowing the PHY to remain in its default USB
-detection configuration unless UART support is explicitly requested.
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ drivers/phy/motorola/phy-cpcap-usb.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-The series has been tested on Motorola Droid 4 hardware.
-
-Ivaylo Dimitrov (4):
-  phy: cpcap-usb: add DCP detection and make UART idle mode optional
-  dt-bindings: phy: motorola,cpcap-usb: replace se1 interrupt with
-    chrg_det
-  ARM: dts: ti: cpcap-mapphone: use charger detection interrupt for
-    CPCAP USB PHY
-  phy: cpcap-usb: add extcon support
-
-Tony Lindgren (1):
-  phy: cpcap-usb: Prevent line glitches from triggering sysrq
-
- .../bindings/phy/motorola,cpcap-usb-phy.yaml  |   8 +-
- .../dts/ti/omap/motorola-cpcap-mapphone.dtsi  |   4 +-
- drivers/phy/motorola/phy-cpcap-usb.c          | 312 +++++++++++++++---
- 3 files changed, 274 insertions(+), 50 deletions(-)
-
+diff --git a/drivers/phy/motorola/phy-cpcap-usb.c b/drivers/phy/motorola/phy-cpcap-usb.c
+index 7cb020dd3423..c6cc8fce6940 100644
+--- a/drivers/phy/motorola/phy-cpcap-usb.c
++++ b/drivers/phy/motorola/phy-cpcap-usb.c
+@@ -20,6 +20,7 @@
+ #include <linux/platform_device.h>
+ #include <linux/regmap.h>
+ #include <linux/slab.h>
++#include <linux/sysrq.h>
+ 
+ #include <linux/gpio/consumer.h>
+ #include <linux/mfd/motorola-cpcap.h>
+@@ -413,7 +414,12 @@ static int cpcap_usb_gpio_set_mode(struct cpcap_phy_ddata *ddata,
+ 
+ static int cpcap_usb_set_uart_mode(struct cpcap_phy_ddata *ddata)
+ {
+-	int error;
++	int sysrq, error;
++
++	/* Disable sysrq to prevent random sysrq events on line glitches */
++	sysrq = sysrq_mask();
++	if (sysrq & 1)
++		sysrq_toggle_support(sysrq & ~1);
+ 
+ 	/* Disable lines to prevent glitches from waking up mdm6600 */
+ 	error = cpcap_usb_gpio_set_mode(ddata, CPCAP_UNKNOWN_DISABLED);
+@@ -448,6 +454,9 @@ static int cpcap_usb_set_uart_mode(struct cpcap_phy_ddata *ddata)
+ 	if (error)
+ 		goto out_err;
+ 
++	if (sysrq & 1)
++		sysrq_toggle_support(sysrq);
++
+ 	return 0;
+ 
+ out_err:
 -- 
 2.25.1
 
