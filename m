@@ -1,206 +1,163 @@
-Return-Path: <devicetree+bounces-320482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320484-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0+MmKJUhSWpfygAAu9opvQ
-	(envelope-from <devicetree+bounces-320482-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 17:07:01 +0200
+	id WFotOMcjSWqyygAAu9opvQ
+	(envelope-from <devicetree+bounces-320484-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 17:16:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15397707CA9
-	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 17:07:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7832D707D00
+	for <lists+devicetree@lfdr.de>; Sat, 04 Jul 2026 17:16:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ixit.cz header.s=dkim header.b=GNXDJf9w;
-	dmarc=pass (policy=quarantine) header.from=ixit.cz;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320482-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320482-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b="Ng5NxX/B";
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=DwjZMeli;
+	dmarc=pass (policy=reject) header.from=mailbox.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320484-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320484-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CC3E63012C41
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 15:06:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 68661301052C
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jul 2026 15:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1480C284880;
-	Sat,  4 Jul 2026 15:06:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9FC356766;
+	Sat,  4 Jul 2026 15:16:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5526318CBE1;
-	Sat,  4 Jul 2026 15:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 817B9354AEB;
+	Sat,  4 Jul 2026 15:15:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783177619; cv=none; b=VaQGdPyeNIPn3Bz3CTuuEPikKtKowdthm3hr2iIdASxa/hVZdQkmIjvyIEeJkxQSniOjYwaSrcyAyYRtoa3Ao9Y3htn2K9evpHrZtpY1bwBmvtptzMkW/VUJy++WJvXkwr7Ehl3xKuDQ34UYdxNR6Sj3ku4dvJf1FSJOT33TRFI=
+	t=1783178162; cv=none; b=i1v5JESW0yNiAaEBimDyi6ilLRoC8orN8kzt9Kb99eQmYEgqwd878XIR5ZNbkNQ8tsUGPIoyakYdHp3cM5u0RynFW3abX3edfjz1Bj3NgO1vyOu2J0Yx9CCKa57/sNiU9rdVVhCtB+LEGSzMi4XUM/h2HzESUuiLEQkuXUgmGsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783177619; c=relaxed/simple;
-	bh=Z9l9EfRDenyYxHcM+BCBaqaiRrKlyyyYDV58SrskrA8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tMTHGzc8IUWz8adZRS7UilNgEcv0MV0H4jCHN86VOm4DXMJE/OfIYIWh9e45Mh7Q81bPjLfBvxa2vZtbn+TPVD3XxCt9evz5CeNubEUUyjPa3NMrERiE5nVm8coIocoxBiibgrQIsgROP4uWOEk0u9NxepB9sRDGtBAiqxdf+Q0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=GNXDJf9w; arc=none smtp.client-ip=185.100.197.86
-Received: from [172.20.10.2] (78-80-20-180.customers.tmcz.cz [78.80.20.180])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	s=arc-20240116; t=1783178162; c=relaxed/simple;
+	bh=t2XSViw8g5I44hw5ZTRZV1GsnGHC+PyrbVWH/ARCbF0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AjgYPdr4TD/76P+9R8HBuO/y6/qr21Gppy79Uae57b+KSMeUFGzcNyxU8IF74F4COj/oPeVAvXXQUrG11GlT0qcrXX6D17GYGj0jTuIu9fjrCN1FSCyCEG5KeFmQL20fTf6M+gRB0TK0I7UPtF5eK6jYNWixG4f22zGvcMg4Ork=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Ng5NxX/B; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=DwjZMeli; arc=none smtp.client-ip=80.241.56.151
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA512)
 	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 533325341B78;
-	Sat, 04 Jul 2026 17:06:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1783177610;
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4gsvM83ms4z8txS;
+	Sat, 04 Jul 2026 17:15:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1783178132;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=YchiOn0aIhurw2DMYPSvRHYrkDyW/1Rfmj7bTE1YKUI=;
-	b=GNXDJf9wNS36qP5xkPoszwq3xtJthZbo5JN99nfrNmSxY7Szp0o9AGE0qNE0Ms33V6qnY0
-	eQuNgPWK2cc4scdH1Y09GHVJe9aE+b40gwMmzIAtMC3VpGhjsA7hEqb/klMXFNUK3nN8dR
-	fdwzPvt+ezt/6Ce8cRYkc/yyC2LT5g4=
-Message-ID: <d63230b5-2665-4d32-9587-e47846821555@ixit.cz>
-Date: Sat, 4 Jul 2026 17:06:48 +0200
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=aVYDH2vqPaP3hCMKt4dvygtRtrkfJZDruGx3t8+yqIM=;
+	b=Ng5NxX/BvIYtJluodO+sFdbdB2csvQRAscJ4WJIg2ESMmL5wYADHwRKcrmoirKfLI1PxSD
+	Wtt/x9vNoVkKQsIfzNjAyBAbtLr2gehU2xoKdWJjSv1MKUSmKwEp1cEi1CckCKy0pA0J3y
+	EpLtefXwhZ3ndQggk8KfDR+kTl9P+TzBqZMynMv2nKO3pgRaH6cr2cHllNdV5AuZCyNOlD
+	aHEZ+qwZtgxhTxcSNX1YRtsZ6HHiACu5ZYI00tbtvd8df9yur4GidMdqduyyd4owwk4Kmr
+	hyLe8zRgvsjFwsiZzwMgZGc+KxKToa4K/5USVkhHpPVdekewFOMwqljYSWH3tg==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1783178131;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=aVYDH2vqPaP3hCMKt4dvygtRtrkfJZDruGx3t8+yqIM=;
+	b=DwjZMeliuo1H8LN0LWZza6vDO8cD/iBGhsOEUx/sggB6Qk6C7CUwjlwW28LD5KzvdAofgh
+	JiFSJv48bJYExHjwqtmk/9MEi0FeQaBiQf4z0XfpXpV9SlG92wbw53lnCSHdlNcXMxrxfD
+	zVzHLaOo360+72GmntVuMF1T2zL1HLk3+m8Cf5zrVRmK/NZ77Js2896wE5+ZjnATFAOMTF
+	n3aQw78Xn3VhERrAUGE6WziYFka1cpjzsYXZ2hohSJYOryxbd1/uBlmpid4QCxktOTC0i+
+	ZWHKF0i39yV+d7qWdAH3fPX+SPfFfjfhR9/eYsoVc2EL315fauCF/C4njp5mlA==
+To: linux-gpio@vger.kernel.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: gpio: renesas,rcar-gpio: Document R-Car X5H (R8A78000) support
+Date: Sat,  4 Jul 2026 17:13:46 +0200
+Message-ID: <20260704151521.211335-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sdm845-oneplus: Update
- compatible to include model
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- phone-devel@vger.kernel.org, Vincent Huang <vincent.huang@tw.synaptics.com>,
- "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20260523-synaptics-rmi4-dt-v2-0-0645122babdc@ixit.cz>
- <20260523-synaptics-rmi4-dt-v2-2-0645122babdc@ixit.cz>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20260523-synaptics-rmi4-dt-v2-2-0645122babdc@ixit.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: fku6tys71wipxjjc8waxta3i6nk5wqwj
+X-MBO-RS-ID: 63f46f6472a1d86063a
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320482-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:phone-devel@vger.kernel.org,m:vincent.huang@tw.synaptics.com,m:Jason@zx2c4.com,m:krzk+dt@kernel.org,m:dmitry.torokhov@gmail.com,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk@kernel.org,m:matthias.schiffer@ew.tq-group.com,m:konrad.dybcio@oss.qualcomm.com,m:conor+dt@kernel.org,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,tw.synaptics.com,zx2c4.com,kernel.org,gmail.com,ew.tq-group.com,oss.qualcomm.com];
+	TAGGED_FROM(0.00)[bounces-320484-lists,devicetree=lfdr.de,renesas];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-gpio@vger.kernel.org,m:marek.vasut+renesas@mailbox.org,m:brgl@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:marek.vasut@mailbox.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[mailbox.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ixit.cz:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ixit.cz:from_mime,ixit.cz:email,ixit.cz:mid,ixit.cz:dkim,qualcomm.com:email,vger.kernel.org:from_smtp]
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,mailbox.org:from_mime,mailbox.org:email,mailbox.org:mid,mailbox.org:dkim,glider.be:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 15397707CA9
+X-Rspamd-Queue-Id: 7832D707D00
 
-On 23/05/2026 11:45, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
-> 
-> We know the driver is reporting s3706b, introduce the compatible so we
-> can more easily introduce quirks for weird touchscreen replacements in
-> followup series.
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+Document support for the GPIO controller blocks in the
+Renesas R-Car X5H (R8A78000) SoC.
 
-Bjorn,
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Bartosz Golaszewski <brgl@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Linus Walleij <linusw@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-gpio@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ .../devicetree/bindings/gpio/renesas,rcar-gpio.yaml          | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-please pick me $subj, counterpart got in (or if u want I can resend).
+diff --git a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
+index d32e103a64aac..95f5175c7a9da 100644
+--- a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
+@@ -56,6 +56,11 @@ properties:
+               - renesas,gpio-r8a779h0     # R-Car V4M
+           - const: renesas,rcar-gen4-gpio # R-Car Gen4
+ 
++      - items:
++          - enum:
++              - renesas,gpio-r8a78000     # R-Car X5H
++          - const: renesas,rcar-gen5-gpio # R-Car Gen5
++
+   reg:
+     maxItems: 1
+ 
+-- 
+2.53.0
 
-David
-> ---
->   arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index 6b7378cf4d493..148164d456a5a 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -475,17 +475,17 @@ bq27441_fg: bq27441-battery@55 {
->   	};
->   };
->   
->   &i2c12 {
->   	status = "okay";
->   	clock-frequency = <400000>;
->   
->   	synaptics-rmi4-i2c@20 {
-> -		compatible = "syna,rmi4-i2c";
-> +		compatible = "syna,rmi4-s3706b", "syna,rmi4-i2c";
->   		reg = <0x20>;
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		interrupts-extended = <&tlmm 125 IRQ_TYPE_EDGE_FALLING>;
->   
->   		pinctrl-names = "default";
->   		pinctrl-0 = <&ts_default_pins>;
->   
-> 
 
