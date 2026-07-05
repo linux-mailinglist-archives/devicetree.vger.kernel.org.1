@@ -1,67 +1,65 @@
-Return-Path: <devicetree+bounces-320656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320657-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /carI/9rSmo8CwEAu9opvQ
-	(envelope-from <devicetree+bounces-320656-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 16:36:47 +0200
+	id 2ux0JCRsSmpJCwEAu9opvQ
+	(envelope-from <devicetree+bounces-320657-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 16:37:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2EF170A511
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 16:36:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D52B870A52C
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 16:37:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nEr2sd3z;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BiPzLdKZ;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320656-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320656-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320657-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320657-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ECB97300D44F
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 14:36:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 29898300D149
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 14:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1EBE353A96;
-	Sun,  5 Jul 2026 14:36:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96AC037269A;
+	Sun,  5 Jul 2026 14:37:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC323233938;
-	Sun,  5 Jul 2026 14:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855B534751F;
+	Sun,  5 Jul 2026 14:37:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783262202; cv=none; b=WI5L3zRXLw2e2u1S7QzTxcQKwjSHN6U/pxRgLo/VhWMFyzBm7T1kGnjkA9hGhPzWwnoIUbgkgaTXWushKVkjOWDz2qQsPy1Vr4ZYHlZ0P3oMO/pIMqqNlQ+osNEeuuqTwhsiuJGGRNf5HYN2ziN6sM0OEvBXtGWQms/8jLyHgyQ=
+	t=1783262225; cv=none; b=e/5LtRTTsFLdfrnoUOYbI4yKQPI48e1qzdpFX4XXVTvaEyq4hkopzYrelxtCxSNTYy30ejE7+kLTcHkiop22h9M+1R78eKianrtWWyl9fT9W48frxr593dqFqRPnTcYWyJeSJjNBal+7xAUkcYqXnMKqzpqSOxXHWC6jxvhJd3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783262202; c=relaxed/simple;
-	bh=eJ6cc+1shGQjpddnIvz+Ep+PRkYa0ZhICnQlhVxew0I=;
+	s=arc-20240116; t=1783262225; c=relaxed/simple;
+	bh=/n0iZgwvMMvJYTgHg3uWx8SFFqUQFjH+kTb7bwf1+qc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VaAB5071gQnfqGMsBasBon9Pl+uak2bJfgJsPPxi5nYbdPsRk0B/yN6GPCyZnxr0Ijdrei3gopMQlMWdHrrLL3m3r+c5ekyKv0C1LagtD4TngiIwc2V0EenZhlrznpB8pE24FfIaRLsxfFibWySJ5phY0/2CR0fPY5kZTA2FgnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nEr2sd3z; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECF6C1F00A3F;
-	Sun,  5 Jul 2026 14:36:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DPfd1qeDXAoFpfF9alCCQx/mEYrvNqdTdS2Yy7q5REbFED8jEgpvhGAz6I8Mox/oDEiyzwvGLMGCwWe5lNvW+2TOPDyIabQ9nOP+RwMIZZaBipMAvGs1lPePD2oDZN2H5j5OKtrxQoNclLkYhWv93Q39jrdNJQWFpn1nF+ekXn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BiPzLdKZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 540751F000E9;
+	Sun,  5 Jul 2026 14:37:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783262201;
-	bh=+IDjOgvMZgIQmetcLrnnpwM1F1TovTt/ay9+vlVBx9E=;
+	s=k20260515; t=1783262224;
+	bh=/n0iZgwvMMvJYTgHg3uWx8SFFqUQFjH+kTb7bwf1+qc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=nEr2sd3zLoF5/BTzOLBehR/gZ+XtkN9iD2D+uHFYFKG+UJ8K2j71ODrygr5sKy1lt
-	 z6ypXkTjFi7ksiVdP8bZ+BVjdG6v4esdT+yxndNyuobZod8lFBSztQNdTY3UNrIU8Y
-	 pV2yvpW5IqOTPNbBpROMAO1tbomLeCMkWZFzQHBsoHV9f2diuB9dQsTDe6sP44OIBw
-	 yItLWDbAmkotsklsKX23AZU+vJi2NTkcLqLFC/NjlmMRXuyFLnvxXn4Rcfixk/ni7k
-	 78jEKGPmD/E5Unr6XRU8NKGnuC1pqIbvSe5aEcAwIR76cm8/2r1NifxZTg4zTYDiA4
-	 RqzPoE8N5RUtA==
-Date: Sun, 5 Jul 2026 15:36:35 +0100
+	b=BiPzLdKZdJXaFjMd/36b3CWSju9jrDzw2wqDyd7EQTIcrUQ1RERX6qqXuQawag3rQ
+	 ad0g73LJ4qDEr+6J93JZOFMwt0Zv2P3YXtg2A5y6xmraOt47k1DId76W/jSIYVXttV
+	 9lPUWu2MquyCygal4omyKZuT3LJy1IwJIt9xVGn2lzSS8AOBTKyaJt9pCO2+nPvRhF
+	 2brMWYxCKwsdRCHCXnnQMQou+9eBcrcvw9f6uqs234CAmyudfWUMCcQD9F+GoeJkjz
+	 WQ3wB/n6JT8J7cj8gy1o8Z82/I8j8H/jzQk4j64Hyt1l4mLJwaL8UqYRrrNrqgFQZC
+	 AUMca7FskURAA==
+Date: Sun, 5 Jul 2026 15:37:00 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Tomer Maimon <tmaimon77@gmail.com>
-Cc: andrew@codeconstruct.com.au, wim@linux-watchdog.org, linux@roeck-us.net,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	openbmc@lists.ozlabs.org, linux-watchdog@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, avifishman70@gmail.com,
-	tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
-	benjaminfair@google.com, corbet@lwn.net, skhan@linuxfoundation.org,
-	joel@jms.id.au
-Subject: Re: [PATCH v3 1/3] dt-bindings: watchdog: npcm: add GCR syscon
- property
-Message-ID: <20260705-gruffly-curing-ae3ab1044a94@spud>
-References: <20260705140100.1543486-1-tmaimon77@gmail.com>
- <20260705140100.1543486-2-tmaimon77@gmail.com>
+To: LemonFan-maker <2254650260@qq.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add EmbedFire LubanCat 4
+ board
+Message-ID: <20260705-palatable-hardening-48f73a84244c@spud>
+References: <20260705135014.1004166-1-2254650260@qq.com>
+ <tencent_B1442A024A02EFD704ECC0F098F663588209@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,9 +67,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="UuJ/2UbYFy531ONn"
+	protocol="application/pgp-signature"; boundary="/ti5bnEJPwTc9Dbk"
 Content-Disposition: inline
-In-Reply-To: <20260705140100.1543486-2-tmaimon77@gmail.com>
+In-Reply-To: <tencent_B1442A024A02EFD704ECC0F098F663588209@qq.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-5.26 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -81,99 +79,54 @@ X-Spamd-Result: default: False [-5.26 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:tmaimon77@gmail.com,m:andrew@codeconstruct.com.au,m:wim@linux-watchdog.org,m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:openbmc@lists.ozlabs.org,m:linux-watchdog@vger.kernel.org,m:linux-doc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:joel@jms.id.au,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320657-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[qq.com];
 	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:2254650260@qq.com,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-320656-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[codeconstruct.com.au,linux-watchdog.org,roeck-us.net,kernel.org,lists.ozlabs.org,vger.kernel.org,gmail.com,google.com,lwn.net,linuxfoundation.org,jms.id.au];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,spud:mid,vger.kernel.org:from_smtp,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B2EF170A511
+X-Rspamd-Queue-Id: D52B870A52C
 
---UuJ/2UbYFy531ONn
+--/ti5bnEJPwTc9Dbk
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jul 05, 2026 at 05:00:58PM +0300, Tomer Maimon wrote:
-> NPCM750 and NPCM845 latch watchdog reset indications in the SoC
-> GCR block rather than in the watchdog block itself.
->=20
-> Add the optional nuvoton,sysgcr phandle so watchdog nodes can
-> reference the shared GCR reset-status registers that hold those
-> latched watchdog reset indications.
->=20
-> This is needed by the following reset-status support, which reads
-> those latches and reports watchdog-caused resets through bootstatus.
->=20
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-Since the 450 doesn't support this, please make it conditional.
-pw-bot: changes-requested
-
-Thanks,
-Conor.
-
-> ---
->  .../devicetree/bindings/watchdog/nuvoton,npcm750-wdt.yaml   | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-w=
-dt.yaml b/Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-wdt.ya=
-ml
-> index 7aa30f5b5c49..99c225f166db 100644
-> --- a/Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-wdt.yaml
-> @@ -40,6 +40,12 @@ properties:
->    clock-frequency:
->      description: Frequency in Hz of the clock that drives the NPCM timer.
-> =20
-> +  nuvoton,sysgcr:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      a phandle to access the GCR reset-status registers that latch
-> +      watchdog reset indications on NPCM750 and NPCM845.
-> +
->  required:
->    - compatible
->    - reg
-> --=20
-> 2.34.1
->=20
-
---UuJ/2UbYFy531ONn
+--/ti5bnEJPwTc9Dbk
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakpr8AAKCRB4tDGHoIJi
-0jzXAP9V+LH1kp6iYX1iEVWw/AAWNuNW+o54gflPkE8U5Q8X3AD+I57wifDzW5ES
-KiTAcjkS45d13+QxSzYtdn2yBkuizg0=
-=coSg
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakpsDAAKCRB4tDGHoIJi
+0iGqAQCvtfivGWBaOn7wqk13VTJq5xxA6BvfZpSk2fXTfVhU9AEA5DnRo276nhA4
+0gqQQTjPt/J3WwLd0nQ8fm3so2a0hQI=
+=51pf
 -----END PGP SIGNATURE-----
 
---UuJ/2UbYFy531ONn--
+--/ti5bnEJPwTc9Dbk--
 
