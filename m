@@ -1,172 +1,256 @@
-Return-Path: <devicetree+bounces-320647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320650-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FE5iLQNkSmo1CQEAu9opvQ
-	(envelope-from <devicetree+bounces-320647-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 16:02:43 +0200
+	id 6XzPKo9kSmpfCQEAu9opvQ
+	(envelope-from <devicetree+bounces-320650-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 16:05:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07EF470A365
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 16:02:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4509770A39E
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 16:05:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gbvwUkJW;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320647-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320647-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=KTdxycbU;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320650-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320650-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A56B8302BDEE
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 14:01:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0B3F73040942
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 14:01:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C2133815CC;
-	Sun,  5 Jul 2026 14:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D24F63815CC;
+	Sun,  5 Jul 2026 14:01:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 084503815DB
-	for <devicetree@vger.kernel.org>; Sun,  5 Jul 2026 14:00:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E30380FEB
+	for <devicetree@vger.kernel.org>; Sun,  5 Jul 2026 14:01:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783260060; cv=none; b=Hj1pWa3Q08dkjliwizJROc/z64Mu/bcwPD4+Ysr6ypFaRYvFsL/fedGb7RdlqqavGqXU6JtIu2EHk1ceWRseLk6GqhCzqcLyhW4yosLO8gs4xpPBItaMfBwkiGjSG2LugaBlfxIc0YICpcqzoZD0l2E08Fov69kCNO6pHLjKrms=
+	t=1783260074; cv=none; b=WvBiJIAFKo2mPClR3jdoIZwv6yGfr3Vz3r+r6XdtGBXcQOJqymIUOCbZjC7OkMmPNrr+q0WaNBN2af28/nU1Pe3Bv3n03oLR2VridfDZi/gO4GazmOfTbsf5vuSK+EwTZn/TDi4Q96iVAi+igdECI+qOwwUlF7J2vQhJvQ2Qvm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783260060; c=relaxed/simple;
-	bh=k14XuxHIxj+omGG5Ik0+Ij5ld0x8B24ZiWi3QN2r9mM=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=BcRuATSamfgdiuFRy3KmooBp/Ix9u3AZ1JFnvWt7pORDUAbzJ9JQwhfiYw49Zt3xaz09Nl4K9cyeuO/vG4pcBAHDitmb2fjlT5t1x2Z+GJFtq9QzjoXCkCVZiaxXi67bVkX+4XJfqQaNv7DpdKoul7o1ayyPmOM96KuNw2p+O4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gbvwUkJW; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D43E1F000E9;
-	Sun,  5 Jul 2026 14:00:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783260058;
-	bh=4VZNzfJU0IyxySdYvJ5boZijibGScPpmE+AX5GSBPh0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=gbvwUkJWv6+H1ZSOc/I4XtldRH7MN52MkYCG85ohvwAHahim8qBzgYHbo5ZU5ctH8
-	 bTKcngpnnGpxYa5ME6CXm2neLP7rrY4Ch2oqXcsLus8npbVsy+5DWnsiq8BGo0xSj0
-	 4/3Cg82QqQEwTnt7VeJXgmCKxOr5BuapCZzwcbeNFr1b+VYqRFzXZ145RshlFILCwR
-	 QqCzprxKSJXm3qX5MvL9nKtX7zFEp1to1Xjkt5ldnKIkb7IZ/CtGs9I3pYb6x3L9cn
-	 SpAUBfUJwTGkvGzLS+CCJSoAEfup9UzU9GaXhKTOKJuS9oM85R7/yBoqhYKRoQKMKa
-	 TDhUXQXy8bXHA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add EmbedFire LubanCat 4
- board
-Reply-To: sashiko-reviews@lists.linux.dev
-To: LemonFan-maker <2254650260@qq.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <tencent_6D311DC5F405B157049538DD5B080082A10A@qq.com>
-References: <20260705135014.1004166-1-2254650260@qq.com>
- <tencent_6D311DC5F405B157049538DD5B080082A10A@qq.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sun, 05 Jul 2026 14:00:58 +0000
-Message-Id: <20260705140058.8D43E1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783260074; c=relaxed/simple;
+	bh=04e/Vb8TzD7k0lpyz3v8T9K3xjbwU9F9Cf26pX1gqJ8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=LusRsRyfG6tFmZ2fiRi9YCSTCMW/9PbOuBZW+KCTM9tt/d0CazfBNSNTb690O+iaiU5GmjZ/cxCRJdfPROaOIZTUVp5wXhbzAX7/qX1lAXClb0k3pEjfep8y2e4OT6/VqsfQvu4ga0PrV8qasixSVuE1k7zBtfM0PBHQHxjGhq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KTdxycbU; arc=none smtp.client-ip=209.85.128.44
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-493c19bad03so18693645e9.2
+        for <devicetree@vger.kernel.org>; Sun, 05 Jul 2026 07:01:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783260072; x=1783864872; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r+Rc67BgTH3+EnF6kyABEC4BScrr4lbwf75koOQCx0Q=;
+        b=KTdxycbUKcy/R8RquV/zQ8XRFnOLkVXXNp/4iz0H6hk1DvbWdDCQG7CMBAU9AG/Yyp
+         JjuswuJc4GMdeRMm2xxXHVF2n7IzZXY7FJqsixMzRwA5mmkoPhATWOCEgjLsv85ltEbp
+         xpSY2Rm1wRIWWfNDhWCedwPTDJRYgJyxg/U+CWqU5KpPJq5+cA9CsN+s1gkt+xCoLGWG
+         pscs5z+GA0aEr9xB+UlJQQ/lItvv6KfoArZU6aj0C47GfNr6IGr55uMn2L+63T2sXV3P
+         P4ZqQgcBcNSn1kcq+lvB9l8n2Y3uwa7kDst3ExYjepXw1henrWtXi1X6UjGeqiT/qkOx
+         6h0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783260072; x=1783864872;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=r+Rc67BgTH3+EnF6kyABEC4BScrr4lbwf75koOQCx0Q=;
+        b=lyjQadlJoxn2iJz6ucKqdIv+8H+K5n1IRqYpPAHwaq7QgpB5+QnbUKAMiHFs7P5L0H
+         k2oABbjTZ4P2Bwv0mAiQx2BV5v2JLgo1zytWXRt+sghT/qrIkeM4Er6TmdwiJJFP/cPZ
+         8GA86Pf+malwC+cA9GEmdQreWO//7pMJqLOxBl4k2xyf/0cEME55fJGZw6JIdrdZR4nM
+         xrngPkOJophYkZgp6QAQ8bZCVsHHc+7aPemEeJ4jZjuth5ycC8b43E8GbH95bKmzYuuY
+         I9O+28igQr4Q0oMCs+C58PQItHk66Da/v9fioZicm1TkJ6llPiPKxjQyFxvubSm6oHwz
+         gSWA==
+X-Forwarded-Encrypted: i=1; AFNElJ+H9GVbC92v9bZ+jPVUse+v9Ygoo0+1sdMupZx8fjnEyEkKGqlKCeRctxzXXoIq3HB5OrAsiNKq+wac@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfmMNfB88jdBEOI1CUJJSl+zjjvZRFplErRV9PbOPQwThlJpNi
+	VSXgYDWOri8VhO/3kLMX9Z3kJLGPV64qA71R7YMyXNIeC1qsqK7tKymg
+X-Gm-Gg: AfdE7cl3WH/0Pfnut87WpACoGXFHjcvIRzb4eQbCOJKGO87xSRirFi7bvb/1I8NyHi9
+	vo3qIzACYBgCXHp6zAxlG8xUmI2uI1kJNv56LAkjCMHURoKIL6wXEwNxq9q+B2auIYeZie3o3cF
+	pxhgnBOIUUGkjV7b/mvJmYBte2U0sq7zIWwMLEOJfeZ/xe/AFUtIFlbtLioNf88rcMlkFWuVO/Y
+	ujupYEb01PazZx1wg94FBMpdaUUMIABuvg/nTKQsRFkHnOM/lrKHpLIE1TENKnJtc4/TAfCOgsx
+	UVwOhDQFNug+9e/vUlkiPOO+R1IjsLDM7WqfH0zxEeUxzOfM27dtcbcD3ZNAI4tuzgBM4L/iBc0
+	eBDWOTIyIWEEuk3VW37tdLrcI+lt2sxEzZ5Q66baBcDcdjCtzNsuMUN6QWXzvsKk+C3RyObYsyo
+	wc9hGxwtZ5+kk/wX6byBX2F7Y=
+X-Received: by 2002:a05:600c:13d6:b0:493:b771:ddf9 with SMTP id 5b1f17b1804b1-493d11d076amr45112645e9.1.1783260071622;
+        Sun, 05 Jul 2026 07:01:11 -0700 (PDT)
+Received: from taln60.nuvoton.co.il ([212.199.177.18])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493cce040b4sm275911115e9.10.2026.07.05.07.01.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jul 2026 07:01:10 -0700 (PDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: andrew@codeconstruct.com.au,
+	wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: openbmc@lists.ozlabs.org,
+	linux-watchdog@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	avifishman70@gmail.com,
+	tmaimon77@gmail.com,
+	tali.perry1@gmail.com,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com,
+	corbet@lwn.net,
+	skhan@linuxfoundation.org,
+	joel@jms.id.au
+Subject: [PATCH v3 2/3] docs: watchdog: npcm: Add reset status description
+Date: Sun,  5 Jul 2026 17:00:59 +0300
+Message-Id: <20260705140100.1543486-3-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260705140100.1543486-1-tmaimon77@gmail.com>
+References: <20260705140100.1543486-1-tmaimon77@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320647-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[qq.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:2254650260@qq.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[lists.ozlabs.org,vger.kernel.org,gmail.com,google.com,lwn.net,linuxfoundation.org,jms.id.au];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320650-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:wim@linux-watchdog.org,m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:openbmc@lists.ozlabs.org,m:linux-watchdog@vger.kernel.org,m:linux-doc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tmaimon77@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:joel@jms.id.au,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,qq.com:email,sashiko.dev:url]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 07EF470A365
+X-Rspamd-Queue-Id: 4509770A39E
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Contradiction between physical PCB RX delay and RGMII PHY mode s=
-etting, risking Gigabit Ethernet instability.
---
+Add documentation describing how the NPCM watchdog driver reports reset
+causes through bootstatus on NPCM750 and NPCM845 systems.
 
-commit a30ca0bb9560e6ed7ecdf88333f509d579374640
-Author: LemonFan-maker <2254650260@qq.com>
+Document the reset flag mapping, the watchdog instance mapping for
+WDIOF_CARDRESET, and the NPCM750/NPCM845 latch handling. Also mention
+sysfs bootstatus reporting when watchdog sysfs support is enabled.
 
-arm64: dts: rockchip: Add EmbedFire LubanCat 4 board
+Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+---
+ Documentation/watchdog/index.rst    |  1 +
+ Documentation/watchdog/npcm_wdt.rst | 71 +++++++++++++++++++++++++++++
+ 2 files changed, 72 insertions(+)
+ create mode 100644 Documentation/watchdog/npcm_wdt.rst
 
-This commit adds basic device tree support for the EmbedFire LubanCat 4,
-a single board computer based on the Rockchip RK3588S SoC. The enabled
-peripherals allow the board to boot via serial, eMMC, or SD card, and
-provide networking over Gigabit Ethernet.
+diff --git a/Documentation/watchdog/index.rst b/Documentation/watchdog/index.rst
+index dbc702b31a43..eb9e76275fa0 100644
+--- a/Documentation/watchdog/index.rst
++++ b/Documentation/watchdog/index.rst
+@@ -25,4 +25,5 @@ Driver specific
+     hpwdt
+     ics-wdt
+     mlx-wdt
++    npcm_wdt
+     pcwd-watchdog
+diff --git a/Documentation/watchdog/npcm_wdt.rst b/Documentation/watchdog/npcm_wdt.rst
+new file mode 100644
+index 000000000000..cdc45ade9e0d
+--- /dev/null
++++ b/Documentation/watchdog/npcm_wdt.rst
+@@ -0,0 +1,71 @@
++.. SPDX-License-Identifier: GPL-2.0
++
++=============
++NPCM Watchdog
++=============
++
++The NPCM watchdog driver can report reset-cause information on
++``nuvoton,npcm750-wdt`` and ``nuvoton,npcm845-wdt`` systems.
++
++Userspace can read the latched reset cause through
++``WDIOC_GETBOOTSTATUS``. When ``CONFIG_WATCHDOG_SYSFS`` is enabled, the
++same value is also visible through ``/sys/class/watchdog/watchdogN/bootstatus``.
++
++The mapping is fixed in the driver. It exposes the SoC reset indications
++through the generic watchdog bootstatus flags and is not configurable from
++Device Tree.
++
++.. list-table:: Reset-cause mapping
++   :header-rows: 1
++
++   * - Platform
++     - Reset indication
++     - Bootstatus flag
++     - Reported meaning
++   * - NPCM750 and NPCM845
++     - ``PORST``
++     - ``WDIOF_OVERHEAT``
++     - power-on reset
++   * - NPCM750 and NPCM845
++     - ``CORST``
++     - ``WDIOF_FANFAULT``
++     - core reset
++   * - NPCM750 and NPCM845
++     - ``SWR1RST``
++     - ``WDIOF_EXTERN1``
++     - software reset source 1
++   * - NPCM750 and NPCM845
++     - ``SWR2RST``
++     - ``WDIOF_EXTERN2``
++     - software reset source 2
++   * - NPCM750 and NPCM845
++     - ``SWR3RST``
++     - ``WDIOF_POWERUNDER``
++     - software reset source 3
++   * - NPCM750
++     - ``SWR4RST``
++     - ``WDIOF_POWEROVER``
++     - software reset source 4
++   * - NPCM845
++     - ``TIP reset`` (``INTCR2[25]``)
++     - ``WDIOF_POWEROVER``
++     - TIP reset
++
++``WDIOF_CARDRESET`` is reported only for the watchdog instance whose own
++reset-status bit is latched. On systems with three watchdog instances, this
++maps ``WD0RST``, ``WD1RST``, and ``WD2RST`` to ``watchdog0``, ``watchdog1``,
++and ``watchdog2`` respectively.
++
++The driver may report ``WDIOF_CARDRESET`` together with one or more of the
++reset-cause flags listed above.
++
++On NPCM750, the driver samples ``RESSR``. When reset bits are still latched,
++it clears them and stores the sampled value in ``SCRPAD2`` so later watchdog
++probes can report the same boot-time state.
++
++On NPCM845, the driver samples ``INTCR2``. When reset bits are still latched,
++it clears them and stores the sampled value in ``SCRPAD10`` so later watchdog
++probes can report the same boot-time state.
++
++The WPCM450 watchdog continues to operate without this reset-indication
++mapping.
+-- 
+2.34.1
 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-lubancat-4.dts b/arch/a=
-rm64/boot/dts/rockchip/rk3588s-lubancat-4.dts
-> new file mode 100644
-> index 0000000000000..f8c78df4a14ba
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-lubancat-4.dts
-
-[ ... ]
-
-> +&gmac1 {
-> +	clock_in_out =3D "output";
-> +	phy-handle =3D <&rgmii_phy1>;
-> +	/* The board has 1.5ns delays on RX lines; TX delay is provided by the =
-MAC. */
-> +	phy-mode =3D "rgmii-rxid";
-
-[Severity: Medium]
-Is this phy-mode setting correct given the board's physical delay?
-
-The comment states the board already provides 1.5ns of physical delay on the
-RX lines. However, setting phy-mode to "rgmii-rxid" explicitly instructs the
-PHY to add its own internal RX delay (typically ~2.0ns).
-
-A total RX delay of ~3.5ns within a 4ns RGMII data window might shift the
-clock edge out of the safe sampling region, which can cause packet loss
-or link failure at Gigabit speeds.
-
-Could you clarify if the comment about the board is outdated, or if a
-different phy-mode (like "rgmii" or "rgmii-txid") was intended here?
-
-> +	pinctrl-0 =3D <&gmac1_miim
-> +		     &gmac1_tx_bus2
-> +		     &gmac1_rx_bus2
-> +		     &gmac1_rgmii_clk
-> +		     &gmac1_rgmii_bus>;
-> +	pinctrl-names =3D "default";
-> +	tx_delay =3D <0x1b>;
-> +	status =3D "okay";
-> +};
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260705135014.1004=
-166-1-2254650260@qq.com?part=3D2
 
