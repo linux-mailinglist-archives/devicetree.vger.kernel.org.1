@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-320671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320672-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TVcAIXR7SmqlDwEAu9opvQ
-	(envelope-from <devicetree+bounces-320671-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 17:42:44 +0200
+	id bxaqJJd7SmqwDwEAu9opvQ
+	(envelope-from <devicetree+bounces-320672-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 17:43:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDF9670A7A9
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 17:42:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D634170A7B3
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 17:43:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=G9qJAark;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kR2oV5Oc;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320671-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320671-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320672-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320672-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 96543300AB03
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 15:42:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CF984300C017
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 15:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9061C357D08;
-	Sun,  5 Jul 2026 15:42:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 327D23815D5;
+	Sun,  5 Jul 2026 15:42:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85355433E71;
-	Sun,  5 Jul 2026 15:42:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E65B3546CB;
+	Sun,  5 Jul 2026 15:42:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783266160; cv=none; b=NFRGOyzQZqfNCAa2vC77/EMHqfBmjguaTnf0oEad4/7/HqEP1ocrkwTQr9LmueCUbwpX6jL1bbq4+i+irdfNZ9S8Jw3eNUX+vhQowRzkRqGkDfipDxZ8lwuSf8Lndowzy6OD+o+gWXXrCKFICjR+Z8sJPToaou21LLp3XsXj8YQ=
+	t=1783266179; cv=none; b=tevysTvNlTTookXpJqR1gUDF5FV3Kxmiw/OSh5EnVZ4AiekIeRAMkDYCm0sb5jqa7mhBi/Osa2yzPh281HZS9fI58IiyxTC6JA2mARYsqOZGkQ1K/uqVwMN7ZdZPPTuLsLmaaoN2KHQ/KsWBUWC+rbeXH5h13pvAqqdMMCVzS50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783266160; c=relaxed/simple;
-	bh=NrNDIfAHHXT3S66vsUdWTbxrZiVC/jmBZuzurGDuGp0=;
+	s=arc-20240116; t=1783266179; c=relaxed/simple;
+	bh=U3hV6A85vjXMLRaHTQyJEWP6HtoxhUb0Pc9P0P7CtlE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fGZKKweQMg4/Tqc9CsB4XoPfuFOJ5nYqfVFngZJWckWSCxqeiwytUnQ8nkv3rkoRjgW1NHmntxWkZjVucP2zQkeqHc355Ll0xuCpyFvtLxKXXsK62dcviUqS/yj85m8M82iCMVC5Z+UXPX+GqKmTvPSY+LM3pF2ue6n0wr8ECRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G9qJAark; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E2141F000E9;
-	Sun,  5 Jul 2026 15:42:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YTlJBBaAbN47vHaRCOpPLdqANQmqRKN3XY7/8QWYRZ7OoBBgbSm1h8GsXgWve4WXHFNRpS0OapV+Vt3IPlpehTtg4Hno+JYolqQxrW8/s9wTHhcn2zUUSQKhP9NO36p1Z3BNiUt7+ve7Ty0ElSUUyjYjA1cHplNOFzwnfyhIAcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kR2oV5Oc; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AF7E1F00A3D;
+	Sun,  5 Jul 2026 15:42:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783266159;
-	bh=NrNDIfAHHXT3S66vsUdWTbxrZiVC/jmBZuzurGDuGp0=;
+	s=k20260515; t=1783266177;
+	bh=LjIAdYuXfiWreIqRnseKBgc0+93iXo3vEDudfmu3/nU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=G9qJAark9D7p0hniMStO1bCaQhtn6oXca0FxU0o22okYqO290pXjQYrePZum/IXom
-	 cRmYFeWmvCjUoqsPujCRkTwaSO0vrPxS3DRegqrvG81jU2Bbzz0knh0ggdhxVIi+q4
-	 n7SZjDqa7Kci9i2J0iJoF9cdibEPJLwsOLk8rjgboCaJR5E+MiOuY8klq8gGXP267l
-	 VWko4sbWVF/QNgfKIYSdaMBtbgLZSrrX+ZmBSth/kHWCe6FAKdIUpsLXv25UH/GGfh
-	 St0o49GVMd7Crm5be85RZpjVaaqrNiKvgfC750fkchpNkxufE0CxYp7StUOtS+UOi+
-	 4XxFYQb6wlQvA==
-Message-ID: <d7607a98-f5e1-417f-ad64-d0029c9de662@kernel.org>
-Date: Sun, 5 Jul 2026 17:42:31 +0200
+	b=kR2oV5Ocdr09naVs7nPG2ZVmZm2QF2hils1UThK7wCdpPbjVN11iwb3riUKLxeSEu
+	 aEyPr979zct6MJoiUI1xrxkZ2aWjUJtldJaXQRoLZFB6fbd37Ie8R+ZdP8B9Gg/Od3
+	 Mc+S2eD4Z7AXdLHNJyTMgIsOfNfmRdG7Ouo+k8hNaW6S97n2Mr5FThjRIPlsVgvbSZ
+	 59WZUTnozXZkvB+5L0cY0fDMWEyXuSw83PakEwIiBvcutZW0hcaKLOLJOskJRxqovs
+	 1ZEYjGhQrHahMhgP9CkGuSlB+QGy9oQ7JR7IiDwhOde/MlORWbsB/mphArPhuNxak+
+	 9SN/H9Sr4+H4A==
+Message-ID: <34bd8c26-0f66-4cea-bf5e-8e2d1a457860@kernel.org>
+Date: Sun, 5 Jul 2026 17:42:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,7 +64,7 @@ Cc: David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
  Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
  linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260705085308.8819-2-avermoal@gmail.com>
+References: <20260705063415.33076-1-avermoal@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,7 +110,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20260705085308.8819-2-avermoal@gmail.com>
+In-Reply-To: <20260705063415.33076-1-avermoal@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
@@ -119,7 +119,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -134,7 +134,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-320671-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320672-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -145,22 +145,19 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CDF9670A7A9
+X-Rspamd-Queue-Id: D634170A7B3
 
-On 05/07/2026 10:53, Avermoal wrote:
+On 05/07/2026 08:34, Avermoal wrote:
 > Convert the Xilinx XADC binding documentation from .txt to YAML format.
 > This conversion is part of the ongoing effort to migrate all DT bindings
 > to a machine-verifiable schema.
+> 
 
-Sorry, but what effort exactly? Where is this effort documented? Do you
-have a mentor if this is some sort of mentorship effort?
-
-And if this is ongoing effort then don't duplicate:
-https://lore.kernel.org/all/?q=dfn%3Axilinx-xadc.txt
+Don't duplicate.
 
 Best regards,
 Krzysztof
