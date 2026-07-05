@@ -1,67 +1,68 @@
-Return-Path: <devicetree+bounces-320642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320643-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hGinJxxeSmqhBwEAu9opvQ
-	(envelope-from <devicetree+bounces-320642-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 15:37:32 +0200
+	id 2iCRONxfSmrvBwEAu9opvQ
+	(envelope-from <devicetree+bounces-320643-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 15:45:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF5A70A208
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 15:37:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C80370A231
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 15:45:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=cyberchaos.dev header.s=mail header.b=nWptLh0a;
+	dkim=pass header.d=cyberchaos.dev header.s=mail header.b=sOIZbYIF;
 	dmarc=pass (policy=reject) header.from=cyberchaos.dev;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320642-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320642-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320643-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320643-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AE75030015B5
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 13:37:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 57A9E300BDB1
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 13:44:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA4737883E;
-	Sun,  5 Jul 2026 13:37:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 869E337FF5B;
+	Sun,  5 Jul 2026 13:44:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.cyberchaos.dev (mail.cyberchaos.dev [195.39.247.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C805C357D18;
-	Sun,  5 Jul 2026 13:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50FA537DE9D;
+	Sun,  5 Jul 2026 13:44:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783258647; cv=none; b=k5VZ9yTRViDeYGDZU2VjeQF9GZutHaFBcZ8gDdyc08vxsviAYFS643BoPzegpkmwaeTXQFpCaDG8h6ifzTEjAXqRyHmHQCypwT3Swog0fDS4JigM3Zn02GHgYwHhNsG1G/Sz4Vd3POxWmjVGeLrj7g9suQSmGwuU5V27Tb3AJBU=
+	t=1783259097; cv=none; b=hjyqokCl+fAaMBCHnL3RjuJhH6P9rBF/1C0J5ZUUguvqgp+8c67dS6HHU7Y4O/Ox6G05mnmxsJR5BYWTilryAEcKCMneL7yvpuVRiC2dgaV4ynQMzV5in3Isr3nM/JZMLadszq4hyNikCVcuX+Fgf6xOO6t8UR9PfHKX6utr98A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783258647; c=relaxed/simple;
-	bh=zqN2OMm0K35sMFmZfZpV+QFwwecgcLUaEOtKw2kW+bI=;
+	s=arc-20240116; t=1783259097; c=relaxed/simple;
+	bh=QY+6SuFq9pvYzlSwRTSIY5NiTd9xneHei3mgY5TAmz0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gEdPeMSk9EqQZO0sMCUh4Fj0hknUO1PTkfrY4Lo9qCQvYbmkvouxn7uZES+fDhXIdeAQgYn5u1bfUvZ/KmxioV5f/0izTjeW2IEobXKoCtKr6eq7e2ffx/yJYV3XJ+es8tq8qhcVfa+m+iAq8kw38v6o6wmolhgEC1I7SEmjJYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=cyberchaos.dev; spf=pass smtp.mailfrom=cyberchaos.dev; dkim=pass (1024-bit key) header.d=cyberchaos.dev header.i=@cyberchaos.dev header.b=nWptLh0a; arc=none smtp.client-ip=195.39.247.168
-Message-ID: <0ee8e9e0-caac-4c66-867e-d4631364c00e@cyberchaos.dev>
+	 In-Reply-To:Content-Type; b=o+0FLYsCV3x4CvAy1qWSpPKcg7Xj8qy+Oum9MFYdC0HukDhKmiHtc3P6K0W+c+kxl1VRqECFtOOWFyFOTcRN3u3K7wqy6Nd1rQiEwpx4/WSFKjq+9JzdjoUyjYL/Lxl2V6OozCz+xl9IoFsIyPsevDyFaKtALZi/wALUkTER6AM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=cyberchaos.dev; spf=pass smtp.mailfrom=cyberchaos.dev; dkim=pass (1024-bit key) header.d=cyberchaos.dev header.i=@cyberchaos.dev header.b=sOIZbYIF; arc=none smtp.client-ip=195.39.247.168
+Message-ID: <0df7860e-a3c9-466c-8003-f751d48b5465@cyberchaos.dev>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cyberchaos.dev;
-	s=mail; t=1783258644;
+	s=mail; t=1783259093;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=CGz+eK3e+AZefL+2NF3Mp77pcoAh0Uj9lh2ohwJgCho=;
-	b=nWptLh0auQrsITOTZjkj3ZTZZm17wTBROCcPJAkrOQ+CGpWheUb5EzZ5UXIV3LhqrHC5vT
-	vRLkKPM5QrmW/z6L7Za31Fxyuoga3HqKvcUn5ZsALG0WYEtvDCRtYgx61m1fW7hEM4FKpa
-	NVUz/KCbqLP64oNbRJnGzcUiUkQcjg8=
-Date: Sun, 5 Jul 2026 15:37:23 +0200
+	bh=U3SH4Fc8GRkJNGIuSVNSHqcQJgONWwp41Z6E55XKFFc=;
+	b=sOIZbYIFGckCBR6J4qYtPkNx2lEzfgR0JiJyIJo6grofQ3gi3058JKig9L+ZnCYJKS2E8V
+	pd//lLEdfetx8fBzv7YT3Z+iYrmpOO5coivQrUSYuG3aUkn+cQ6vK0zzvvSQCPXPYa1fcR
+	OSv0L59LGg1tyi3oF8mMCCSY/1C1P8g=
+Date: Sun, 5 Jul 2026 15:44:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 09/10] dt-bindings: arm: apple: Add M4 based devices
+Subject: Re: [PATCH 10/10] arm64: dts: apple: Add minimal t8132 (M4) device
+ trees
 To: sashiko-reviews@lists.linux.dev, Yureka Lilian <yureka@cyberchaos.dev>
-Cc: conor+dt@kernel.org, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
+ linux-watchdog@vger.kernel.org
 References: <20260705-apple-m4-initial-devicetrees-v1-0-e5655ee56523@cyberchaos.dev>
- <20260705-apple-m4-initial-devicetrees-v1-9-e5655ee56523@cyberchaos.dev>
- <20260705132819.9CA9C1F000E9@smtp.kernel.org>
+ <20260705-apple-m4-initial-devicetrees-v1-10-e5655ee56523@cyberchaos.dev>
+ <20260705132808.82D2B1F000E9@smtp.kernel.org>
 Content-Language: en-US
 From: Yureka Lilian <yureka@cyberchaos.dev>
-In-Reply-To: <20260705132819.9CA9C1F000E9@smtp.kernel.org>
+In-Reply-To: <20260705132808.82D2B1F000E9@smtp.kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
@@ -70,13 +71,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[cyberchaos.dev,reject];
 	R_DKIM_ALLOW(-0.20)[cyberchaos.dev:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320642-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:yureka@cyberchaos.dev,m:conor+dt@kernel.org,m:linux-watchdog@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320643-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:yureka@cyberchaos.dev,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:linux-watchdog@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[yureka@cyberchaos.dev,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -95,66 +96,91 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,cyberchaos.dev:from_mime,cyberchaos.dev:email,cyberchaos.dev:mid,cyberchaos.dev:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9EF5A70A208
-
+X-Rspamd-Queue-Id: 3C80370A231
 
 On 7/5/26 15:28, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
-> - [Low] The top-level text description block in the binding was not updated to list the new M4 devices.
-> - [Low] The inline comments for the newly added M4 MacBook Air models incorrectly label them as 'M3'.
+> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
+> - [Medium] The `aic` node has a mismatched unit address and overlapping memory regions in its `reg` property.
+> - [Low] The `model` property for the MacBook Air (13-inch) erroneously declares the year as 2024 instead of 2025.
+> - [Low] `t8132` device trees are incorrectly placed at the very top of the `Makefile`, breaking the chronological sorting order.
 > --
 >
-> commit 2d1ae3586bee901cafa8ffc62c9df52d3acdcf89
+> commit 281d92c4ca5eb8a2224c6bb0b9116c7518b422d1
 > Author: Yureka Lilian <yureka@cyberchaos.dev>
 >
-> dt-bindings: arm: apple: Add M4 based devices
+> arm64: dts: apple: Add minimal t8132 (M4) device trees
 >
-> This commit adds compatible strings for Apple M4-based devices. It introduces
-> the apple,t8132 SoC and associated platforms like the new MacBook Pro, iMac,
-> MacBook Air, and Mac mini.
+> This commit adds minimal device trees for a series of new Apple M4 devices,
+> including MacBook Pros, MacBook Airs, iMacs, and the Mac mini. The device
+> trees are limited to essential components like CPU cores, interrupts, and
+> serial, allowing a basic boot. It also notes that SMP support currently
+> remains unreliable.
 >
-> Looking at the top-level description block in this file:
->
-> Documentation/devicetree/bindings/arm/apple.yaml:
->    Devices based on the "M3" SoC:
->
->    - MacBook Air (13-inch, M3, 2024)
->    - MacBook Air (15-inch, M3, 2024)
->    - MacBook Pro (14-inch, M3, 2023)
->    - iMac (24-inch, M3, 2023)
->
->    Devices based on the "M1 Pro", "M1 Max" and "M1 Ultra" SoCs:
->
+>> diff --git a/arch/arm64/boot/dts/apple/Makefile b/arch/arm64/boot/dts/apple/Makefile
+>> index 6fc3349a58428..181bd0e289653 100644
+>> --- a/arch/arm64/boot/dts/apple/Makefile
+>> +++ b/arch/arm64/boot/dts/apple/Makefile
+>> @@ -1,4 +1,10 @@
+>>   # SPDX-License-Identifier: GPL-2.0
+>> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j604.dtb
+>> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j623.dtb
+>> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j624.dtb
+>> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j713.dtb
+>> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j715.dtb
+>> +dtb-$(CONFIG_ARCH_APPLE) += t8132-j773g.dtb
+>>   dtb-$(CONFIG_ARCH_APPLE) += s5l8960x-j71.dtb
 > [Severity: Low]
-> Should the new M4 devices be added to this top-level description block to
-> keep the documentation in sync with the schema definition below?
+> This isn't a bug, but should these new t8132 device trees be appended
+> to the bottom of the list rather than prepended at the top, to maintain
+> chronological sorting order in the Makefile?
+I had this at the top to make rebasing easier, but for the upstream 
+version it should be at the bottom. Changed locally.
 >
+> [ ... ]
 >
->> diff --git a/Documentation/devicetree/bindings/arm/apple.yaml b/Documentation/devicetree/bindings/arm/apple.yaml
->> index e49403c73f9d2..3262292252d25 100644
->> --- a/Documentation/devicetree/bindings/arm/apple.yaml
->> +++ b/Documentation/devicetree/bindings/arm/apple.yaml
->> @@ -315,6 +315,18 @@ properties:
->>             - const: apple,t8122
->>             - const: apple,arm-platform
->>   
->> +      - description: Apple M4 SoC based platforms
->> +        items:
->> +          - enum:
->> +              - apple,j604  # MacBook Pro (14-inch, M4, 2024)
->> +              - apple,j623  # iMac (24-inch, 2x USB-C, M4, 2024)
->> +              - apple,j624  # iMac (24-inch, 4x USB-C, M4, 2024)
->> +              - apple,j713  # MacBook Air (13-inch, M3, 2025)
->> +              - apple,j715  # MacBook Air (15-inch, M3, 2025)
+>> diff --git a/arch/arm64/boot/dts/apple/t8132-j713.dts b/arch/arm64/boot/dts/apple/t8132-j713.dts
+>> index 0000000000000..b1f779c37d5fe
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/apple/t8132-j713.dts
+> [ ... ]
+>> +/ {
+>> +	compatible = "apple,j713", "apple,t8132", "apple,arm-platform";
+>> +	model = "Apple MacBook Air (13-inch, M4, 2024)";
 > [Severity: Low]
-> Are these inline comments correct, or should they say M4 instead of M3 for
-> the new 2025 MacBook Air models?
-This is indeed a typo and I have applied the fix locally for v2.
+> This isn't a bug, but does the model string contain a typo? The header
+> comment for this file identifies the target as a 2025 model, but the model
+> string exposes 2024 to userspace.
+Typo. Fixed for v2.
 >
->> +              - apple,j773g # Mac mini (M4, 2024)
->> +          - const: apple,t8132
->> +          - const: apple,arm-platform
+> [ ... ]
+>
+>> diff --git a/arch/arm64/boot/dts/apple/t8132.dtsi b/arch/arm64/boot/dts/apple/t8132.dtsi
+>> index 0000000000000..715980b5c7de4
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/apple/t8132.dtsi
+> [ ... ]
+>> +		aic: interrupt-controller@381180000 {
+>> +			compatible = "apple,t8132-aic3", "apple,t8122-aic3";
+>> +			#interrupt-cells = <3>;
+>> +			interrupt-controller;
+>> +			reg = <0x00000003 0x81000000 0x00000000 0x1cc000>,
+>> +			      <0x00000003 0x81040000 0x00000000 0x4000>;
+> [Severity: Medium]
+> Is the base address and memory region mapping for aic intentional?
+>
+> The node defines a unit address of @381180000, but the reg property specifies
+> a base of 0x81000000 (translating to 0x381000000). Also, the first memory
+> region of size 0x1cc000 completely overlaps the second region starting at
+> 0x81040000.
+>
+> Could this typo in the physical address map explain the unreliable smp boot
+> behavior mentioned in the commit message?
+
+I believe the core and event regs overlapping is correct. The same 
+overlap exists in t8122, and also in downstream Asahi t6030/t6031 dts.
+
+>
 
