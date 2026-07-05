@@ -1,376 +1,149 @@
-Return-Path: <devicetree+bounces-320680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320685-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BiPYAQqISmqmEQEAu9opvQ
-	(envelope-from <devicetree+bounces-320680-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 18:36:26 +0200
+	id gVJpOx+JSmraEQEAu9opvQ
+	(envelope-from <devicetree+bounces-320685-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 18:41:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34DA670A920
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 18:36:25 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F6FC70A968
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 18:41:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmx.de header.s=s31663417 header.b=HOurTTLV;
-	dmarc=pass (policy=quarantine) header.from=gmx.de;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320680-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-320680-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=NN+S6nba;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320685-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320685-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E2EC93009390
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 16:36:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 60DBE30162A7
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 16:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CFF92E7374;
-	Sun,  5 Jul 2026 16:36:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE0F2F90C9;
+	Sun,  5 Jul 2026 16:40:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DDD22F7F0A;
-	Sun,  5 Jul 2026 16:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC23F268690
+	for <devicetree@vger.kernel.org>; Sun,  5 Jul 2026 16:40:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783269372; cv=none; b=If7TJfwVHUlj5dT/tm6qzFfoQFX3yKp57hWH8kyrgF9FTRKLo8FMLV8Vhk9rh+suLW6fMVqlVA1ALvEn9vyxFrusM+qguir41yhN3vRARnfa7J62zrUktE509wnd3dguZ1/n5x0Oy0MaiKyiAYMyTi3o3qv5hFGjBskVQBIJgGQ=
+	t=1783269659; cv=none; b=eUuu3keCWVDoq1YhUm1WKT17JrwM2qQCbqeVgYpT6kS0PglrpbeMOQ4ft3XcG2nZID57xPSEOjh0gOKAyf68A+wGnfEwIXqoKzBtUCH7AoEB/EPUQOHsjZTPlLe1VOcu5QZ5xjiHqLjz0LtLh66p+XxkR94chT/61Jv9TneGKkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783269372; c=relaxed/simple;
-	bh=5abXDP3yVP7yNDDa5VzyTqKqGcMcsuyq+tDfR118G24=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qN/zpifCkK4eb8Gp7xySWcroV1bg8hrtrVL3umwy3jLHjb1HRP0NJUGrXa6GhEo2Z9l0xu3Jmxi2do+Z5bzther25J2uGDadJ2E9et1jNYekWOiaUdwvNty+Yz6m9Fh18sIoI1KFqF9mQkBtqiHsYNehUjToNfXA5incSLLolTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=HOurTTLV; arc=none smtp.client-ip=212.227.17.20
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1783269350; x=1783874150;
-	i=markus.stockhausen@gmx.de;
-	bh=FFAVr/uv3Uw/X9S+nLlvusfkerBH+eJFXYfOfRQ3XR0=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
-	 References:MIME-Version:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=HOurTTLVYpQKn149Zw/k7xvZIIW9fOUL3VZIYXdFWfIE+cWz7uw1bRENXUVJvzDA
-	 LH8C8gu2ymWt6Hn/v64flttgEm3sUrI/xNkiiOcWzsDAz1d3x8jwbXnl5gZWDURl0
-	 ZffYuqyBlGp7nmNV1x2RR9ckmaxZQQaxrvKSzYhezxf98amD81Pdjt0i3K8sZrRpu
-	 JQ2ghUW7yHB2rbddpwM8EDcXvkFxW0PRaDwZUuETEqucjBOFH1U7/wl2BqI8g1T45
-	 jtBJHdqmS2GdrngcBAkfnszurbNmqYEn/vo2z9pUfVVDjR8bH08E3+Hni+sKA99Vq
-	 4ZhoDI11ttYJgxscNw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MFKKX-1wrkUB0aZl-00Gpkz; Sun, 05
- Jul 2026 18:35:50 +0200
-From: Markus Stockhausen <markus.stockhausen@gmx.de>
-To: andrew@lunn.ch,
-	hkallweit1@gmail.com,
-	linux@armlinux.org.uk,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	netdev@vger.kernel.org,
-	chris.packham@alliedtelesis.co.nz,
-	daniel@makrotopia.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org
-Cc: Markus Stockhausen <markus.stockhausen@gmx.de>
-Subject: [PATCH net-next v3 8/8] net: mdio: realtek-rtl9300: Add support for RTL839x
-Date: Sun,  5 Jul 2026 18:35:32 +0200
-Message-ID: <20260705163532.2853959-9-markus.stockhausen@gmx.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260705163532.2853959-1-markus.stockhausen@gmx.de>
-References: <20260705163532.2853959-1-markus.stockhausen@gmx.de>
+	s=arc-20240116; t=1783269659; c=relaxed/simple;
+	bh=d0jQ5UQ7pVAffeh9AMk0K/rauKiYjN4OlHj7yKZ/PEs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BGCSCFdjj6eRZK+ZIFvS5oQQeiNeXnAWtUPreBVw8JGnhjrYasJObVg569BhMdc6rYvkYyckTWYHX5AxHu80Kq86GXXmZW/I1AIZnAthiXTDHSPu8X5Wy8eRcegcKbxifcgqs8zbJlVOHk1V3u+JVdnPJ+LRJ+eVNq/qYugm0Dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=NN+S6nba; arc=none smtp.client-ip=194.117.254.33
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=d0jQ
+	5UQ7pVAffeh9AMk0K/rauKiYjN4OlHj7yKZ/PEs=; b=NN+S6nbaCWqRcijr/f1y
+	Uqi3jTAiN+aIUpvzc45wnULUdCUvs2hW723IGhJogJTyejCx6UDfWUbnSPxSpT0y
+	yDw4KX470zUM96mJKJEw3KD/JnZQsbi3IseGwhy5pQCQlsOydP8+eB4YXeY0G/c8
+	qHa9W6zJouwudBtbnF74zEf0zPLE62s+sS5tk1fn+xT0tqeaOjouy3W1hgX9b/pF
+	NKq0r7lG4aK2cyonVSN1G11drXLfgxIZexiEInKc/TLHtzG15KyspIuokNVdq7WO
+	nTJrLEOEsVK8JSHiM6qlbCWrkNcCSklQBvY9xsE7wXLtZZbNxPbcZASBNSTXi7RC
+	+w==
+Received: (qmail 2288731 invoked from network); 5 Jul 2026 18:40:55 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Jul 2026 18:40:55 +0200
+X-UD-Smtp-Session: l3s3148p1@lxRS0t9Vf3dtKjFj
+Date: Sun, 5 Jul 2026 18:40:54 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] i2c: qcom-slave: Add driver for Qualcomm I2C
+ slave controller
+Message-ID: <akqJFgL_NZorf9Qz@shikoro>
+References: <20260628-i2c-qcom-slave-v1-0-8b0a5c01f9f6@oss.qualcomm.com>
+ <20260628-i2c-qcom-slave-v1-2-8b0a5c01f9f6@oss.qualcomm.com>
+ <akp4_Sfjs4RrEXQR@baldur>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:nlcs1PjTh52RIfOvFcYWNrFmK/AknA5mXl0GX504wLEhRILLJf+
- 9t5thDMVLyUH2FuyNCge1wgzyouqf3UjSPxzJErq1B6URdUZOc7CKcSsb7+CDHP9GsYZHnz
- Pc6Jd45X1kI1ZdIiw5uOn5dqxXNd534EEaPTwY2c6cKca2K1onD3BBolchULntXqHPPw3wy
- 3VqAuGkkD7leiifeB2riA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:dUwbOtDfA6M=;NX3J+Z6xh8S2+vc9SlKgXS6KX9v
- YcOac4kXR+BTFzvW2HmBPZ8c2XQMAY/sZt7zirrVFbFuOMEpVNSaKysDbfCpoHlKtn0IMImjQ
- HkAMefguAerTrkZR+EOhIheZNol01IvJkGQv4YwKfVUPBFABahkhe+7pWt15RBpk2RVPnwCIk
- 31/IGbHjsqyhCf58EPbpIAykM7UmyyxmOit38/Uptx1+/xlxgxxGtpf+QL9meBcyVT19iMYUB
- C1sYVpSQLFcmuFYcGWSQ6d4Sy3Di+pTdHzWAD0WbGzPFWZXOuTW7Q9EVh4X/CqcbT0Z8rwtrG
- Zmx8VVcq6/FTacC9ADqBvszhjJK0WlGK/JEpicOTKmyLHuPPyJUqz/dwSJxyrRiVWwgeBTTPp
- csvHuxQobpOFYms4Y2ZPuIj1K2e82zTwF8C53DkYTczUeRXCXKp85Qw0ECRidUTJUrJUIZbO/
- paVzQZaGjD1HwBAeBiZI6qr1quAwWdg2+gbLizRQUmM9nEOEZO9FCIcHDm46ubVWLsjX/KJJW
- 8wYSC9KHCiM4+wLMxk9jyXfTnPkShY6ndJ4EhOlYTvwVOdUypOxHdt09J1tsio/PX1y+Wsj3D
- Io32Ipt21VTmi4s+hq92qaoE7/H+Uh+tbGReb9CrheHTh8geG8hS/ndC+7ogH9Gd5Wc6qIC2K
- 2QrVMMSUqFi30QkCuD8FgWGFr205FIGOidON6qipVHDq9fG+QF83jUsxjPCXQ9CWRYgeUn3b7
- dNLx8gMMWgMq4biRb/8McO2JOC1+f5Uq5QkfQFrXNlP3cyv4e9TFr3VhUp8xP8L+Yjk9kQhwQ
- OJv1KGN74wN3J3IPiD5DeM/pdoMOA+Z1LD13WtykADjWtuJZzGhC/SAjSr29mIBD5YFfoWMK5
- RpX+Wd13uKjAmRJe1zI9eSqid/GTJXULoylO5HwLyVbHqpT3qgkxVGkTzfrGVB+827hgcARSE
- S1eUlwXU+SGcLclLKbN2Ix1I65RAAMTM8cB9rL2bXmfk/0KnYU/0/gBsu4OTYtr+O1lbApGyH
- KRKSKI50j4Fea3fIIRYihZIlu9zCesiR/qYXTFfZyLzI19TNPlRr4IDjQscBolK/mJ7HEly3j
- QtdmJkKR3AfBEYzc3j74n9bFse9vIqoPgrz4uKqSWaRz+dBlXaKusURv4NsuLYRYBfvdaA62+
- 0WtGjgZ6xl8N9MngLAQcwbab6pfTugvX5p0nLiOjEr3atLDq+0sfkfloR+3IHwMncOKvcBCUv
- Im7NbT57SLL3wMLulur2ggEiZn3f5An3WnoGjpB0QkBqSzndK0ScVLVFIT3VxcHy2rWyJLt0b
- uJzTD0zSM4JnAcf2rZvLzxBXbg/bZk9yndlvq0denSjtxq01XKmyauBsf6THbkJUY5FKTfslt
- yMNWDQmj8S8xGiS9vCLYTQdy7rxjIaAejQTEP7UVnzfi4zkWTyyIWoUECfs3JXyd3k0ggb4MV
- h0ocHN2+nhTpo4R7wkUFTqXuKa5rM6gSG7AoK7pCU4HjNYSGYALRyEmwXdWHeQnD4891eb9+M
- m9d+huHkeE2P0+qbtGSfkUWeFj8s5Hp/AapuBOrZQMHiCPY2E39vXkiSj8OzXdg+9soNL8wyP
- qvW/8uOqHWdTA6Q3rKStRIZzqjCGVFzDZovueKXAuwcPQorzsqA4atGsE9AKc9fUYXC8sp69d
- Xz0T+gLZ3jw8On8WMMZm4y4tHRtRK3ZPE++8luBdbrYynkVDIng5xaFlKD/rgvrtqJyjieG39
- +gEY8O2fP8vLRYqhE7CWZ06I4khKveQB+uSnOciwEEjuTNCgLMdfwiZq9LIu0zQlK/9ppe49V
- 6Ju1fqz1KAR9m1gF5RamlCsTUh0CO/bm6ieALtYnglKQR8ZMT+PgnfMvvQOg/zRG3/IVpUvZQ
- TopIp+GTh6eStpPrzq6l3byDX/d7h1CbEv28tqKfJg2lyLSlCwVqLUohpgvhlXrS83YUtJ9tQ
- +sL00vZtEKdcIzcKc1o8PgPhVzuElaotq7ga9A5JZ8cYza0l4rotRwfHoIDZz+UTOduufMOhT
- y7mV/GFLGu8fUeYpPejZAmo92GnQDzuKKUUWxtReQ08tAoNYnIKZkh2AgKMutkR9SnQ5aoscN
- /cz22tBW2cfbCk02PkHYcaGYUOOQgDZ1Cg5Thjx1bmfpOMXglIQUxnVGq7zd/PWGRCcKxJI8c
- cW5rxk8UsU4UEbLv8hPf885DpDNCv4MP4A7aEtZa+QSan7POEIPOHiR+9oSD0zxyARTCLnJ9+
- fL4eEmALLsRmBSt8qwMt7RQfg2IhdQgrifDHUcoTjxg2mNLmKo3dz2Zt7DoHQ53jFvTT+65NC
- stUGULdp/226KZIzRcU4W9Xuj0QQMMZ4H79RhI4r/7pgKWPeTXVsI7rwkHH8mpF2Sp8eL35ml
- 2SXg6DxxoJzNbWeGeDNQPJcl2jtSe5pky/nF2IOnr11F/LV0ebwYSKFwJN0bREezBdStDBQxI
- yOF0M6XLcldi6Kr81D5Nvhboj6YWFxIuYk5endNKRmWvTrBXlmjbA58OSL4MII4U6AIQGnVCm
- WRwVueO/cGS9kmGj0kHkYfhZFuejM910r2QlSjvCnkep0eR1iEwvTofMwMf8hSkZ+YF++X85L
- jPpCvjn4PqBpVf7ZI9lhbI06iwiXGX9j/RpeJToCoLr2Oz/S4PuCqtU/mKYJhd9AwNS2TzR7k
- zER2gv2pcLULWWwVvQdGbBmsZOOf3HRbV0iM91SqHClrzp5ndAA1spkYxlk8/rDRLGGfPgzV7
- u70eTeGTS/3AEOnS4kBM3dKPJtwuXeg8PwBme3egqLb7S4N9YnmN5xyGPz1Dsobeik+/foHEC
- arVpNUBJfRYi5l9cqOBJ4B77YYO6KfZgMN5p7a0XQCGf/QEN2+ofLnOmTIdEQOQ6LN6Ql2R0L
- BpJUwmEX1ewYblY9iuklrNQr8uwAgI/QPglV62ZGbTYwf7/fE0oOa1PU5wxa3qKFl9oxXtH/k
- fCLuygddgc9zrtKfGYpgFpzkm63RvytPKp3bYJTR0j6Eby+offUnlvURPONZWR902ZSjsUnX2
- 1fthW5FQuFSLWxTk/YpYfDSupnbdCcJ2YcLSt5ez5Ry5nFjJWVEOHlst+Yqu+Cg+q1oCdnVPU
- 8yEHouYTs69Up6cmFLkCfXmVuo18V07gxzr85EDgx3SPfLD5KACsBICK5utMa4P19FWRh8UUE
- ZRG3e4SC7NcQ4QpnBGV675CLc+Polj23KD8QblQslFU5t+y7jBrfm9K4TbH36bsd8qKJrym8m
- 3TEpxKkBUyygWPR1/4cxH+6lCZ7ysBf/lMZg/qUDtCE9To3I5OBWnyIGk3ILPx8egu0Hsgf4D
- 75GnJIM0ZnW+Cv3lAVXBixLZd9wna3Zf0G7Vc1KaUCefvEL2IUMZpx/iswtKopVapONeCEFeC
- N/NdOwLmRLJT1cFT6R+qtpqUmWg/QECkS9TBBwsCmSAvgaxqeibjx6JAj7q2E1/GtprWlKHP2
- eU8BL3uE5pnLXIEs2A4cPKmZtO4Pn0ee2hAykFkdhUG7kZpb+F+Vzkp8j3EkjAAMxeJOQwFv9
- ff3kEpY+y9R0Nq6qAStY0T+UBdomcMhLFmmUuyPqfFmRnQwOQ1kbVKL79QToVVUclY2ZtZwMD
- 70uOf8I8lUYmA77VIDvkmYje5Q1cUQCWCZPBo0N+Xrx9W8NjPAmYij0XXxWz2WtFsWDmT9Xd9
- tv81EzvUST7xtEZIUEnfR63axeRbF14DSV3CtdpqjjpxBFwvnXI36Y9O0/S3N0QqAyjxxpEGf
- khvbQEQ8HghEBwB7odEOpfu+wjA0thTbvxJuvRIBkXQ3Y/bCXTP+KgcCmpYlqNkHdofGPJWdY
- 4e8Ulm2Ii0CBMQ0BP5d8/VQFwWdKT5SIPTTgkh8bRiWp1oPGQ22qLok7gIp+147Ho5kGRNQJq
- /T0jXhb/AtYGLtpxCUEJeX4HuqBSzHYVkH87GT1Lm+1xgUqFJdiovkWMAMH6tIqybT5WEfdy+
- ojsE8w2JJZ0g4WzQajl9kUm+3Zt7Y5Gd2nOBECSY0LBJ/NDBlmjwpcjkBheHfLLhipB6H/yKc
- 8bL8yJc/1dkTg7F45A1VpU1iwLIe75XeXM9nVsbFxUo10L3vYtzq4U1PdS5BL0D9zja+Z9udI
- 4VLVUfXjVi12SFiXbJTqPVOknS9gG1TH5u+2oeogm+XCs7/K2dFi9Qouc+z+7Bs03UXQ8bBbD
- R8kpBXHHL9+ZOiVhVBGdA36RmMwL7uvOz6yhBXz1+49BK9E3KbrpMGSc7AozdZmNgGDCDzYG1
- bfgtwE9YadkXFW77eWNFkjkrXUEtm+KoBuWv2oZCytPMvDZ1C4wmyi6BDD8FAzr10HzguNIWX
- LSNVRAeebCzOYkChOeTNRyDwld9PkXtg527GqrtL/xm4jr57k/2ke0r7NUU4CMzvPEGrRWzc9
- JfqF05JDxTl/q1wWbQHyOY9UYSik1giML+iAICnSsawgf6Yl1A5THo00bqUCie6pGhtNm3joH
- TVdDasxquMnjIqiGmyG4NwIXH7eCijKC5u4UaE+Z9JLKu3rHILJBh0YB5VBfFb3nWv6sJ0V6V
- NSuQOKBn/sVwAuN98l3tYRFhAfEKpRfkJjJtei0XVEmaZWzrp//88gOsnyE1LWsHnmjPKVQ3Z
- z1itaHx5R809OL4kaGjClGweE8pyr85f4CAGXJGEdMqhqSMMws0w/HuColdn5JEI19fM5MnQ4
- hfejPWgXZml+DyaAwfTFxlXRO7mosHWG+lfJ6njr3KoELjEaX/35SS/nyvaig9ddkOl3mMGIy
- xtpdY6LucbHaX+eUeniLfaNFxCtlFpzcD3c1zVwz0gtKeS9rjKTXTA749gm3ixxb90GM0JWBS
- p4X35uzO+yxOtmiZD7Ahd+Gx3mQwIFZD84pjWC9X7vLDNfq2N4Kxiw90e1ok8De/7opnhRYyH
- zokd93oriQM/vXFZbBhcktqznU4NEpIXOTxIRQ3SUxRCE7Mx104TsVYX/kYV/3qLFb8O4/Bd+
- Xu1FE+QgylW1znQraate1Yd7h8KPfYpDM1QSARyybCJdwUMmdLFFhSNbxzJpZB/sYv6Z/CZ4X
- 9tfDBN6zQWsWdcv5p5UGVu3GJExmW7SiE95pEclLGA57RGpfbXz4eYZZHdWpttVZqIMtKLk+G
- lEc0R/ZyixYU7sXBBbsVuczaRzlgtIG2D9fPLj8+BSQPDLgXRye+W9jQNPUs77pXUAfXKLUud
- BxwsPlcMBSTR/O6xv1IlBIEptFt98MV/EWvFSf6YKaGS7yewxA5Ju3nqMnWq9FFjR8RAMUWs5
- IA9wsCNWV8tJQVCmQeM0v9GRdpYJTzwcISfh+tQRsSv3tN+TyCLjlKUagH+DHDwAPyC8ncUX9
- TBfELnEDi2Pnl+w21WiR1z4XulQMyCxbptHfbngauVNZ2sfugE1R9k3aZCNaWJUIrDlvsjt4Q
- kMChO3vl3tzr5gvI8hD9ePHSG/7+e+cP8gZOg+MLjBJmWaNU03Vgp5rVcBIEA++aAp8Vrjy8x
- Ol5Kg9DVhoIRw21VY5BhckK+wZqczkOuiob0czuOy7N72AuKrXgUZ1QHkCF7leU8xIb3jkYWS
- PQ5cJjQ8gzq+I+i13Qkq54x1tp/vOzHh/nN2NJa2ZMtY5Z/6GICvqNQm2RhKo2do1aNxjw==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="WffVVY5Ay9uyhsdF"
+Content-Disposition: inline
+In-Reply-To: <akp4_Sfjs4RrEXQR@baldur>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-3.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:netdev@vger.kernel.org,m:chris.packham@alliedtelesis.co.nz,m:daniel@makrotopia.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:markus.stockhausen@gmx.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,alliedtelesis.co.nz,makrotopia.org];
-	FORGED_SENDER(0.00)[markus.stockhausen@gmx.de,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmx.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-320680-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmx.de];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[sang-engineering.com];
+	TAGGED_FROM(0.00)[bounces-320685-lists,devicetree=lfdr.de,renesas];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:viken.dadhaniya@oss.qualcomm.com,m:mukesh.savaliya@oss.qualcomm.com,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[markus.stockhausen@gmx.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[gmx.de:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:from_mime,gmx.de:email,gmx.de:mid,gmx.de:dkim,vger.kernel.org:from_smtp]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sang-engineering.com:from_mime,sang-engineering.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 34DA670A920
+X-Rspamd-Queue-Id: 5F6FC70A968
 
-The MDIO driver has been prepared for multiple device support. Add all
-required bits for the RTL839x (aka cypress) series. This is straightforwar=
-d
-but some things are worth mentioning.
 
-- The device has a lot in common with the RTL931x series. 8192 (Realtek)
-  pages and 7 MMIO registers
-- There are two SMI buses for 1G PHYs. Neither the bus nor address map
-  registers exist.
-- The hardware has not much to configure. So the setup_controller()
-  function is not needed.
-- c22 read/write functions must be called with PARK_PAGE =3D 0. Keep code
-  clean and avoid setting it to zero, matching the behavior of the RTL9310
-  logic.
+--WffVVY5Ay9uyhsdF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
-=2D--
- drivers/net/mdio/mdio-realtek-rtl9300.c | 102 ++++++++++++++++++++++++
- 1 file changed, 102 insertions(+)
 
-diff --git a/drivers/net/mdio/mdio-realtek-rtl9300.c b/drivers/net/mdio/md=
-io-realtek-rtl9300.c
-index e7c811614fd6..d797d8f01c66 100644
-=2D-- a/drivers/net/mdio/mdio-realtek-rtl9300.c
-+++ b/drivers/net/mdio/mdio-realtek-rtl9300.c
-@@ -141,6 +141,28 @@
- #define RTL8380_SMI_POLL_CTRL			0xa17c
- #define RTL8380_SMI_PORT0_5_ADDR_CTRL		0xa1c8
-=20
-+#define RTL8390_NUM_BUSES			2
-+#define RTL8390_NUM_PAGES			8192
-+#define RTL8390_NUM_PORTS			52
-+#define RTL8390_BCAST_PHYID_CTRL		0x03ec
-+#define RTL8390_PHYREG_ACCESS_CTRL		0x03dc
-+#define   RTL8390_PHY_CTRL_REG_ADDR		GENMASK(9, 5)
-+#define   RTL8390_PHY_CTRL_MAIN_PAGE		GENMASK(22, 10)
-+#define   RTL8390_PHY_CTRL_FAIL			BIT(1)
-+#define   RTL8390_PHY_CTRL_WRITE		BIT(3)
-+#define   RTL8390_PHY_CTRL_READ			0
-+#define   RTL8390_PHY_CTRL_TYPE_C45		BIT(2)
-+#define   RTL8390_PHY_CTRL_TYPE_C22		0
-+#define RTL8390_PHYREG_CTRL			0x03e0
-+#define   RTL8390_PHY_CTRL_EXT_PAGE		GENMASK(8, 0)
-+#define RTL8390_PHYREG_DATA_CTRL		0x03f0
-+#define   RTL8390_PHY_CTRL_INDATA		GENMASK(31, 16)
-+#define   RTL8390_PHY_CTRL_DATA			GENMASK(15, 0)
-+#define RTL8390_PHYREG_MMD_CTRL			0x03f4
-+#define RTL8390_PHYREG_PORT_CTRL_LOW		0x03e4
-+#define RTL8390_PHYREG_PORT_CTRL_HIGH		0x03e8
-+#define RTL8390_SMI_PORT_POLLING_CTRL		0x03fc
-+
- #define RTL9300_NUM_BUSES			4
- #define RTL9300_NUM_PAGES			4096
- #define RTL9300_NUM_PORTS			28
-@@ -423,6 +445,62 @@ static int otto_emdio_8380_write_c45(struct mii_bus *=
-bus, int port,
- 	return otto_emdio_write_cmd(bus, RTL8380_PHY_CTRL_TYPE_C45, &cmd_data);
- }
-=20
-+static int otto_emdio_8390_read_c22(struct mii_bus *bus, int port, int re=
-gnum, u32 *value)
-+{
-+	struct otto_emdio_priv *priv =3D otto_emdio_bus_to_priv(bus);
-+	struct otto_emdio_cmd_regs cmd_data =3D {
-+		.c22_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_REG_ADDR, regnum) |
-+				  FIELD_PREP(RTL8390_PHY_CTRL_MAIN_PAGE, priv->page[port]),
-+		.ext_page	=3D FIELD_PREP(RTL8390_PHY_CTRL_EXT_PAGE, 0x1ff),
-+		.io_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_INDATA, port),
-+	};
-+
-+	return otto_emdio_read_cmd(bus, RTL8390_PHY_CTRL_TYPE_C22, &cmd_data,
-+				   RTL8390_PHY_CTRL_DATA, value);
-+}
-+
-+static int otto_emdio_8390_write_c22(struct mii_bus *bus, int port, int r=
-egnum, u16 value)
-+{
-+	struct otto_emdio_priv *priv =3D otto_emdio_bus_to_priv(bus);
-+	struct otto_emdio_cmd_regs cmd_data =3D {
-+		.c22_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_REG_ADDR, regnum) |
-+				  FIELD_PREP(RTL8390_PHY_CTRL_MAIN_PAGE, priv->page[port]),
-+		.ext_page	=3D FIELD_PREP(RTL8390_PHY_CTRL_EXT_PAGE, 0x1ff),
-+		.io_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_INDATA, value),
-+		.port_mask_high	=3D (u32)(BIT_ULL(port) >> 32),
-+		.port_mask_low	=3D (u32)(BIT_ULL(port)),
-+	};
-+
-+	return otto_emdio_write_cmd(bus, RTL8390_PHY_CTRL_TYPE_C22, &cmd_data);
-+}
-+
-+static int otto_emdio_8390_read_c45(struct mii_bus *bus, int port,
-+				    int dev_addr, int regnum, u32 *value)
-+{
-+	struct otto_emdio_cmd_regs cmd_data =3D {
-+		.c45_data	=3D FIELD_PREP(PHY_CTRL_MMD_DEVAD, dev_addr) |
-+				  FIELD_PREP(PHY_CTRL_MMD_REG, regnum),
-+		.io_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_INDATA, port),
-+	};
-+
-+	return otto_emdio_read_cmd(bus, RTL8390_PHY_CTRL_TYPE_C45, &cmd_data,
-+				   RTL8390_PHY_CTRL_DATA, value);
-+}
-+
-+static int otto_emdio_8390_write_c45(struct mii_bus *bus, int port,
-+				     int dev_addr, int regnum, u16 value)
-+{
-+	struct otto_emdio_cmd_regs cmd_data =3D {
-+		.c45_data	=3D FIELD_PREP(PHY_CTRL_MMD_DEVAD, dev_addr) |
-+				  FIELD_PREP(PHY_CTRL_MMD_REG, regnum),
-+		.io_data	=3D FIELD_PREP(RTL8390_PHY_CTRL_INDATA, value),
-+		.port_mask_high	=3D (u32)(BIT_ULL(port) >> 32),
-+		.port_mask_low	=3D (u32)(BIT_ULL(port)),
-+	};
-+
-+	return otto_emdio_write_cmd(bus, RTL8390_PHY_CTRL_TYPE_C45, &cmd_data);
-+}
-+
- static int otto_emdio_9300_read_c22(struct mii_bus *bus, int port, int re=
-gnum, u32 *value)
- {
- 	struct otto_emdio_priv *priv =3D otto_emdio_bus_to_priv(bus);
-@@ -969,6 +1047,29 @@ static const struct otto_emdio_info otto_emdio_8380_=
-info =3D {
- 	.write_c45 =3D otto_emdio_8380_write_c45,
- };
-=20
-+static const struct otto_emdio_info otto_emdio_8390_info =3D {
-+	.cmd_fail =3D RTL8390_PHY_CTRL_FAIL,
-+	.cmd_read =3D RTL8390_PHY_CTRL_READ,
-+	.cmd_write =3D RTL8390_PHY_CTRL_WRITE,
-+	.cmd_regs =3D {
-+		.broadcast =3D RTL8390_BCAST_PHYID_CTRL,
-+		.c22_data =3D RTL8390_PHYREG_ACCESS_CTRL,
-+		.c45_data =3D RTL8390_PHYREG_MMD_CTRL,
-+		.ext_page =3D RTL8390_PHYREG_CTRL,
-+		.io_data =3D RTL8390_PHYREG_DATA_CTRL,
-+		.port_mask_low =3D RTL8390_PHYREG_PORT_CTRL_LOW,
-+		.port_mask_high =3D RTL8390_PHYREG_PORT_CTRL_HIGH,
-+	},
-+	.num_buses =3D RTL8390_NUM_BUSES,
-+	.num_pages =3D RTL8390_NUM_PAGES,
-+	.num_ports =3D RTL8390_NUM_PORTS,
-+	.poll_ctrl =3D RTL8390_SMI_PORT_POLLING_CTRL,
-+	.read_c22 =3D otto_emdio_8390_read_c22,
-+	.read_c45 =3D otto_emdio_8390_read_c45,
-+	.write_c22 =3D otto_emdio_8390_write_c22,
-+	.write_c45 =3D otto_emdio_8390_write_c45,
-+};
-+
- static const struct otto_emdio_info otto_emdio_9300_info =3D {
- 	.addr_map_base =3D RTL9300_SMI_PORT0_5_ADDR_CTRL,
- 	.bus_map_base =3D RTL9300_SMI_PORT0_15_POLLING_SEL,
-@@ -1020,6 +1121,7 @@ static const struct otto_emdio_info otto_emdio_9310_=
-info =3D {
-=20
- static const struct of_device_id otto_emdio_ids[] =3D {
- 	{ .compatible =3D "realtek,rtl8380-mdio", .data =3D &otto_emdio_8380_inf=
-o },
-+	{ .compatible =3D "realtek,rtl8391-mdio", .data =3D &otto_emdio_8390_inf=
-o },
- 	{ .compatible =3D "realtek,rtl9301-mdio", .data =3D &otto_emdio_9300_inf=
-o },
- 	{ .compatible =3D "realtek,rtl9311-mdio", .data =3D &otto_emdio_9310_inf=
-o },
- 	{}
-=2D-=20
-2.54.0
+> I don't think you read Documentation/i2c/slave-interface.rst. To me this
+> looks like a i2c "master", that is being abused to serve the role of a
+> slave; which of course implies that you have a non-standard slave device
+> implementation working with this.
 
+True that. The driver does not use the core infrastructure for target
+devices. Sorry, this is not upstreamable this way.
+
+
+--WffVVY5Ay9uyhsdF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmpKiRIACgkQFA3kzBSg
+KbYL4hAAi937hhuBp81WCLEQe92D0lMDhIgtr3NJkcWMrfeHgzZDEEd2Xz8U1Y9b
+Cviw2GAfS7VGY6QIbPCvSF+ExfztCyWbH6gcpKmxadWQcoOPY5KwP8lUL7kGrD7n
+x8VFtZDPEkBoUR4jxX/uKK8LUY8zBCXciJgfuc2QV5zsXMEyB1Nx7m/yYJ6kD8yX
+EwkCjVV5WeiIQB9ZBgQQSeYri1b7TGnru4wYGTs+2htP175jBXTPPnjQrvwNd6K0
+WvLPSWE7DlmKK9taFIDF4quEWY4Vr4ePiHsxE+3zP1EUgxUjnSQmmuYtxF6wOtvl
+pY6R58jcM7gEyptmIZ3lTC/DMIxb7F6mwIkctSse9ZZI/w2q/XMjBQrYCVDkHoqS
+9NtgeailHPc4HExSVOTFeU9yiQ1i0sFI4zbBDQorcr5J3tir7AjWIaxT9S3DAKqu
+5Q/FNCeBJK/22rUssfviJH9FCWAb0LIURjVUUezGb6EojuOHFAkJWmKRgX5OuJz1
+ugYfQ4dQYGzRs5S+L2GZt5mDSSMCi7jWv8Tp3350ZSOqiNah288z9md3bhE9nbWm
+AaaKVH8dgf06gFA6R9tYh52aFRGvm96l25byxakxgV5cMppfWWDYE7I0Yd99oRGV
+ZSp/k/0j4RBXhtqD2ISo77AVB2iv5Ut4ASTlF9gJ8scGGjotZgQ=
+=i3x0
+-----END PGP SIGNATURE-----
+
+--WffVVY5Ay9uyhsdF--
 
