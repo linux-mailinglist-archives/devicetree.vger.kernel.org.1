@@ -1,185 +1,137 @@
-Return-Path: <devicetree+bounces-320663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320664-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 81+xNZtySmpGDQEAu9opvQ
-	(envelope-from <devicetree+bounces-320663-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 17:04:59 +0200
+	id mfP8Dkx0SmqoDQEAu9opvQ
+	(envelope-from <devicetree+bounces-320664-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 17:12:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E6E970A6A3
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 17:04:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8003E70A6B3
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 17:12:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=XHarapyu;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320663-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320663-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=lunn.ch header.s=20171124 header.b=gmFGAFXz;
+	dmarc=pass (policy=none) header.from=lunn.ch;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320664-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320664-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 44EF0301F59D
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 15:04:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2465B3008201
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 15:12:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0008538B7BB;
-	Sun,  5 Jul 2026 15:04:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C5DC380FFF;
+	Sun,  5 Jul 2026 15:12:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C31338B14B
-	for <devicetree@vger.kernel.org>; Sun,  5 Jul 2026 15:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E404D2DFF3F;
+	Sun,  5 Jul 2026 15:12:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783263848; cv=none; b=eNIRjRq9MluzE/glxVMqWUKOpa41bdz5BEb0M/80JfW1uPvNmMQv8P7c4I1EVYcLtZhSDt8fd8Y4l4rYs+W3Q5Ujkp1FklbVIymyPoNxMuqeY9ioLd43cLIXlqKVYJ5X1Y2lT06iAb1bGWe1hHkIwnZAlfF/HDRW1HttcCdmZpI=
+	t=1783264329; cv=none; b=n6h/LFhzVC2ixB9PWrLRRnZive44TwlcPtEeM6bBcKLTmEP3Su7jLKLuKCorNxipn0m6YiMm9AbWz5PvLZK6iWiDiYj4ejlYkMMJLW+RyBEkpBMQwRPYcull+pZleByGwrcyUIZ51hRAxB2QTJ9NgmNomXfl5lX4B1uaM4ZNH8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783263848; c=relaxed/simple;
-	bh=xDmpCCfiVsMSNDriEdlqzNwOZLcxeATB0tFwGgiZPfU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rSX4ot2vUTE3jM72+KN0cZRr7RhwRt8zwRQ8A3e9vOCeCHAU8f5ruiyHQ1mDOs4np2eJlW8RVZpTDghDcFywgvvpPzkHNindY1qD3cAr4Cz61dAoEnt04MIA1lIpLwukrjyPkAdvdd5/pD232ytagqB9AVeP71VPtXNkMN6NG2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XHarapyu; arc=none smtp.client-ip=209.85.161.49
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-6a149bfb2a8so887238eaf.2
-        for <devicetree@vger.kernel.org>; Sun, 05 Jul 2026 08:04:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783263846; x=1783868646; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QVH3mXWR+NE3Ci3wEZjPa2qoxNuA5tsUKMUk1a/4Mig=;
-        b=XHarapyuegf+P3PhsIIBQecbSDbtgsfNyY4FwrcWyR4lZ8606DFF7Q9tsN6Z9WhVSd
-         RO6tnuxtWjALFxM0WODXzUR4G4qJSwT6q/Btt9Cld2EFNwBTyufcmg0wjbVV2chB8TvM
-         raV4qclSUS7aSHRfbeEsXz1i5IpyJHCPAFKSXwVEIQ1Sy5E+sgx/bngfz3SHZ81hpX7H
-         J0fYW8ob4v/9H6RHTspzezbEv9hGYEECPAtRVOygs4zOdJadkSfHUICP1I8pQM1boBc8
-         hmmYWIKt8eV2U9ua3wq8euZt5CzL3j6u394th43qPaEOWgkJoAuvC0Tow21zvuE9zY/s
-         VKAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783263846; x=1783868646;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=QVH3mXWR+NE3Ci3wEZjPa2qoxNuA5tsUKMUk1a/4Mig=;
-        b=KW899OyzV0IivmFayHbPq/7cZ8ASNGfbxYJIHah6opE8SdMKB0gKT42QuNDCILeU74
-         cAzNKhlNpR1mo23AUZSYGBvxnFthl/rfgPOF6TIbQTl6lScjnYONzrO+Rb0V76xLD3Ec
-         b19LSvOjhnD3YQZq6EahdTmmkL5Ky2mzDnfGCndQS8CajpunZY6nioa8b4wfiKYsAYYy
-         YClZfSuqmmaDXqkfDDiTHYpUB6ronuxGcMyyEcf335iDixWKVTliOqikfEWa8KPsopOa
-         aLVDYLmMe30Dfje57rO2USy+9GFz+pI3cQNRjxEWLPCxq18IUkxeOUrk2ecSq2Gb6frd
-         spUA==
-X-Forwarded-Encrypted: i=1; AFNElJ9ObKxjhi+KunhKu7X0uiQFu/RA1TIobtiX92rs87EkxwImc8F6zqXgRi1ksonvZ3TLcyOQTvnddA/g@vger.kernel.org
-X-Gm-Message-State: AOJu0YylTXCjGPZjDAE7938n8QmbYAzzkmPVOreQMIlYLzDZ8S5Iylnt
-	D8FBaBxREIhT5TyPgeHn1Bp7cuIvDytfX8gXJNhGM0wUs0DikIgdNP8M
-X-Gm-Gg: AfdE7cmbjIR5iv4rwOEqoCie5iSiJNdTn1Ww0mf3b/fv0Nn1N+xVkymFHvRh8GvuNsQ
-	qstz/3WUTQ5DFO7bGgU/Y6PZ5ZwkAkxXbW+pwptq8mvnuYwmC56MDxUD0gXBSj/vLbEz5Ghq/tV
-	71WmMrJI6ik2sXRmnpqQrJVEtupBQZY89MdH1ooE2Bga7iyMDHQ6socAM4B6/GgmOrnTzal+Ad4
-	2xzQ6cXWTVo+OmjOVXMYiExh9U3nhbHy56D32iByft+VPY7EinkgQE6tpgOk9O0xoKtb59RTjto
-	dUZm3frctcTunq7zxsqdxOsbEYbl4DUuOaTQ/AvONO7jhCjAs83iV43YNBe60JJBtTPilPsWFgr
-	il0VVABzpCfW1NQLYY84xstYOhhMByjE3q7WJ7L5h7yrLOGunLkr55oV3N3Sl65kpWkQo5JP97S
-	1IlfgcFIgnYyRx1F9ExoBsQcnMVbcMQI28WGtnq0BduA==
-X-Received: by 2002:a05:6820:3096:b0:6a1:7cce:a3a6 with SMTP id 006d021491bc7-6a32f5a9c42mr3716595eaf.54.1783263843948;
-        Sun, 05 Jul 2026 08:04:03 -0700 (PDT)
-Received: from linuxescape (23-88-128-2.fttp.usinternet.com. [23.88.128.2])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-6a310375f67sm7263111eaf.9.2026.07.05.08.04.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jul 2026 08:04:03 -0700 (PDT)
-Date: Sun, 5 Jul 2026 10:04:00 -0500
-From: Maxwell Doose <m32285159@gmail.com>
-To: Avermoal <avermoal@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michal
- Simek <michal.simek@amd.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: adc: convert Xilinx XADC bindings to
- YAML
-Message-ID: <20260705100400.402a91a2@linuxescape>
-In-Reply-To: <20260705085308.8819-2-avermoal@gmail.com>
-References: <20260705085308.8819-2-avermoal@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1783264329; c=relaxed/simple;
+	bh=rk/843IBjfhEUMim3dhuVJUnX4Cy7h4Jpe4Rt97Huvk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dtiQX2FBBSWvfPnjd0mTgcKOMlgPIM2WjExlLeyStCVS51LjKur60YB/FLCfJKauD2eCq9qMKIPK4o9WbXuoQKnxUjfgROlv6neCrSfwKUSvkeKHgHVDHCCBWlu13v2DOAs4m7P3Svt1VgM45WWjGOzOVCrtadX7JCY4iIZ4wnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=gmFGAFXz; arc=none smtp.client-ip=156.67.10.101
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=HptUES/0sfPU3Gkj8T4/h/5gi9Cj/ZvB7ArF8RxIxNg=; b=gmFGAFXzeorkLhLgDBMjGel4Ae
+	4cMuKTf4Yzd94nkLb1gY11bD1CFBzXBUGnud0NGEg1hyxgbPlPcd1wsVVAVZEwod9VypYE+St30AQ
+	IMhcNUnJOgNg7IQvwFzIkvC0TWwt+v67R2qZsGPK6mHOodtlFFWWUUSsQBDyJ8EZt5LM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wgOVi-00AqXH-1s; Sun, 05 Jul 2026 17:11:58 +0200
+Date: Sun, 5 Jul 2026 17:11:58 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: LemonFan-maker <2254650260@qq.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add EmbedFire LubanCat 4 board
+Message-ID: <1ac2d0f4-e027-4633-9d34-2709cb3e43ec@lunn.ch>
+References: <20260705135014.1004166-1-2254650260@qq.com>
+ <tencent_6D311DC5F405B157049538DD5B080082A10A@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <tencent_6D311DC5F405B157049538DD5B080082A10A@qq.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:avermoal@gmail.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:michal.simek@amd.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320664-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[qq.com];
+	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-320663-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS(0.00)[m:2254650260@qq.com,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linuxescape:mid,vger.kernel.org:from_smtp]
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:from_mime,lunn.ch:dkim,lunn.ch:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7E6E970A6A3
+X-Rspamd-Queue-Id: 8003E70A6B3
 
-Hi there,
+> +&gmac1 {
+> +	clock_in_out = "output";
+> +	phy-handle = <&rgmii_phy1>;
+> +	/* The board has 1.5ns delays on RX lines; TX delay is provided by the MAC. */
 
-Firstly, please wait around 24hrs before sending a new version and
-additionally mark it with [PATCH vX] (where X is the version of the
-patch you're sending, which in this case appears to be 2).
+That is pretty unusual. How is this RX delay done?
 
-On Sun,  5 Jul 2026 14:53:08 +0600
-Avermoal <avermoal@gmail.com> wrote:
+> +	phy-mode = "rgmii-rxid";
+> +	pinctrl-0 = <&gmac1_miim
+> +		     &gmac1_tx_bus2
+> +		     &gmac1_rx_bus2
+> +		     &gmac1_rgmii_clk
+> +		     &gmac1_rgmii_bus>;
+> +	pinctrl-names = "default";
+> +	tx_delay = <0x1b>;
 
-> Convert the Xilinx XADC binding documentation from .txt to YAML format.
-> This conversion is part of the ongoing effort to migrate all DT bindings
-> to a machine-verifiable schema.
-> 
-> The new xilinx-xadc.yaml file was created from the original .txt and
-> includes all necessary properties, descriptions, and examples. The
-> conversion also fixes a minor typo in the 'xlnx,channels' property name.
-> 
-> Signed-off-by: Avermoal <avermoal@gmail.com>
+please take a read of:
 
-Sign off with your real name (or a known identity) to comply with the
-DCO.
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L287
 
-> ---
->  .../bindings/iio/adc/xilinx-xadc.txt          | 141 -------------
->  .../bindings/iio/adc/xilinx-xadc.yaml         | 186 ++++++++++++++++++
->  2 files changed, 186 insertions(+), 141 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/xilinx-xadc.yaml
-> 
-[snip]
-> -- 
->
-> Changes in v2:
-> - Fix conditional requirement for xlnx,external-mux-channel (add
-> if/required block)
-> - Correct reg type in child nodes (use maxItems: 1 instead of items)
-> - Make #address-cells and #size-cells required under xlnx,channels
+Ideally, you want to the PHY adding the delay, not the MAC. 99% of
+rockchip boards get this wrong, they have phy-mode 'rgmii', and
+{tx|rx}_delay properties. And i tell developers to swap to 'rgmii-id'
+and remove the delay properties.
 
-Also put this at the top under the ---, it's very difficult to scroll
-all the way down here to read it.
+With the PCB adding some delays, you board is slightly
+different. Please drop the tx_delay and adjust the phy-mode so the PHY
+adds the delay.
 
--- 
-best regards,
-max
+	Andrew
 
