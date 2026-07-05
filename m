@@ -1,149 +1,171 @@
-Return-Path: <devicetree+bounces-320685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320686-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gVJpOx+JSmraEQEAu9opvQ
-	(envelope-from <devicetree+bounces-320685-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 18:41:04 +0200
+	id ciDULwGNSmqMEgEAu9opvQ
+	(envelope-from <devicetree+bounces-320686-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 18:57:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F6FC70A968
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 18:41:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DF4C70AA29
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 18:57:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=NN+S6nba;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320685-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320685-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=gDZeRDNx;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320686-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320686-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 60DBE30162A7
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 16:41:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1F0A3300B9B7
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 16:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE0F2F90C9;
-	Sun,  5 Jul 2026 16:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 203772FE060;
+	Sun,  5 Jul 2026 16:57:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC23F268690
-	for <devicetree@vger.kernel.org>; Sun,  5 Jul 2026 16:40:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DAD82FC01B
+	for <devicetree@vger.kernel.org>; Sun,  5 Jul 2026 16:57:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783269659; cv=none; b=eUuu3keCWVDoq1YhUm1WKT17JrwM2qQCbqeVgYpT6kS0PglrpbeMOQ4ft3XcG2nZID57xPSEOjh0gOKAyf68A+wGnfEwIXqoKzBtUCH7AoEB/EPUQOHsjZTPlLe1VOcu5QZ5xjiHqLjz0LtLh66p+XxkR94chT/61Jv9TneGKkY=
+	t=1783270653; cv=none; b=e6E2iq2o0YjFy+AOj059vdDjp110s2E8Wz/3gq9U25dDTrNTEjFXlBW9LBnBUSyh1aYR6mHXyCAg1nBngySvrnw3U5ioI8VmaW7VL0OmLQMV7/4DG3l77iDePdIxscQuM7TS86d7neRzyUY2XvuMCvO/EyWZWMvdnqSDQe04duU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783269659; c=relaxed/simple;
-	bh=d0jQ5UQ7pVAffeh9AMk0K/rauKiYjN4OlHj7yKZ/PEs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BGCSCFdjj6eRZK+ZIFvS5oQQeiNeXnAWtUPreBVw8JGnhjrYasJObVg569BhMdc6rYvkYyckTWYHX5AxHu80Kq86GXXmZW/I1AIZnAthiXTDHSPu8X5Wy8eRcegcKbxifcgqs8zbJlVOHk1V3u+JVdnPJ+LRJ+eVNq/qYugm0Dc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=NN+S6nba; arc=none smtp.client-ip=194.117.254.33
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=d0jQ
-	5UQ7pVAffeh9AMk0K/rauKiYjN4OlHj7yKZ/PEs=; b=NN+S6nbaCWqRcijr/f1y
-	Uqi3jTAiN+aIUpvzc45wnULUdCUvs2hW723IGhJogJTyejCx6UDfWUbnSPxSpT0y
-	yDw4KX470zUM96mJKJEw3KD/JnZQsbi3IseGwhy5pQCQlsOydP8+eB4YXeY0G/c8
-	qHa9W6zJouwudBtbnF74zEf0zPLE62s+sS5tk1fn+xT0tqeaOjouy3W1hgX9b/pF
-	NKq0r7lG4aK2cyonVSN1G11drXLfgxIZexiEInKc/TLHtzG15KyspIuokNVdq7WO
-	nTJrLEOEsVK8JSHiM6qlbCWrkNcCSklQBvY9xsE7wXLtZZbNxPbcZASBNSTXi7RC
-	+w==
-Received: (qmail 2288731 invoked from network); 5 Jul 2026 18:40:55 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Jul 2026 18:40:55 +0200
-X-UD-Smtp-Session: l3s3148p1@lxRS0t9Vf3dtKjFj
-Date: Sun, 5 Jul 2026 18:40:54 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
-	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	s=arc-20240116; t=1783270653; c=relaxed/simple;
+	bh=P3Ks4mocpdIEXUivuFMkzFbV286Z/TWBxR+6eAPxe6s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=q14OQiycQF/04cpcaEkmVobQFmAdWpf4hNCBNC4CHCFNW+DNVoJ7Oix4agxrKPo9KxQTJXo1UvHIxavwHAO43qvD1GEi1LBAAQf63nEEueNGxIkMRWc7zBpkKSj65CBzuX9wjtRVTG6jqC9e/PyHgr2C1uWDK4Rgztgvf2VPFvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gDZeRDNx; arc=none smtp.client-ip=209.85.128.48
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-493b27c7451so28958805e9.0
+        for <devicetree@vger.kernel.org>; Sun, 05 Jul 2026 09:57:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783270650; x=1783875450; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P3Ks4mocpdIEXUivuFMkzFbV286Z/TWBxR+6eAPxe6s=;
+        b=gDZeRDNxDFZOE6TNPzBNHeGmvNoo9fJTM0voyDlRuuk8gfwZvnfWTZMN1Ze8+mfaTL
+         oLRcTObQrnDCemv8WoT0gjd4jWml0MTTMSqKTTf1t4cmoq/6SZYuCkN1pQgs457OkVuU
+         pqyyarnw8N04oFblFGdvd4ghSq0AD5M8swRAprnW8LgkNdbhe5kg+Xt2vhZEjbhw9w5m
+         5TGWfbqMcuoEBVgMKdUJrOOxT2UYJQGf4UfB4v+neHUo1d+NHTmc3ASOTPVKZvhKZKt/
+         1tpnCEhbRIKkSILvKSQi6QSvSl9XHCSuC0x9opRTJ9csAcJiR3opmO4gbCTtFm1DWdXG
+         olYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783270650; x=1783875450;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=P3Ks4mocpdIEXUivuFMkzFbV286Z/TWBxR+6eAPxe6s=;
+        b=e8YhwrjVcB6jb0ysjZY2eXbJKVyhe/jnpucdjPDHdpoDXfGikwvC3qgQZxH4frOpcq
+         EHPqq+YyZAkgxfTO7ZFT7VRce34IMLBQ+jloKDu6gQWnq7+lwgAjIbQWTHeI/TO352dA
+         tc+YxQPCXr6N6ANoSXemqLLVmv5NTyeCFJMvx1bRyZXZZldg8P7II7V9GSeLI+GfWR8w
+         a5Zch/FJac5t7+6bjsvCBiVc7mxIYogPyktPJzcO5v5hpaJNm+xqm+DDdjCgxflbAKmo
+         SUE4KNZO/MrWeGw0p3B6gz/6xe4Uh4R+ozjfrzPMJLR9BhjsDy86fjOiJ7EAkRB24hey
+         726w==
+X-Forwarded-Encrypted: i=1; AHgh+RqGiUSA2dyWM0nMwezgC9sXce4zEzSuBr5KONdSe0dDRgeuv/Zja1KbxRsDH7VsyGw3pr+gUtRP9oQ7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMBOpvLUi3y0vU/IxC2NooXqRwZgaOOunwxzJoFMhoG+m5/5D1
+	BqGSTVLoVQbM4YmiVQ7hNweOXDw5ryE8if3Pe/YPKnJaxIrR16bKnDyL
+X-Gm-Gg: AfdE7cmXy11mYzgSKgH906Nnf3trBVDjqjOOTadvNYhYHxFMjNc7C8O+qEeM7LZnndQ
+	qEswG130/GdSwNssqAnfoxMx4ddzzzKyglLLs09nTbbBUuQQey37B2yVz5yh4oR8nG6G7CvKD61
+	Iq3Ke9XC7y9bbUH6nfyvrg4fhSdKjW/GqOcio0SX+PRBoPgfmuqW6a/fxxCz8La1lkrvkvHaa3F
+	vx19qTXA5Fb65LGRm5zznQz8UTq2IJopbHUYtBM/2WHhDozOw8pAdEMTU75GVeehKt4aHfqVTzC
+	Hkg2UtLIJZWryW7kqIEdp7OxJschSSV1dduYxNHbwcVX2VXwh9fZZHcJz5BCOwwIgN7cvewygHB
+	DyeKiNSeqIkgEl2IGR3Uq8gsxvvVd/YbQfyIW6pvJKLQPNXlRrNjtGL160tn96Hr2sbd7R2/6Hh
+	oGEdfuk0MKQ1cJaDRl
+X-Received: by 2002:a05:600c:46c4:b0:493:bee0:4360 with SMTP id 5b1f17b1804b1-493d159b8fdmr65120135e9.17.1783270649788;
+        Sun, 05 Jul 2026 09:57:29 -0700 (PDT)
+Received: from avermoal ([185.13.176.155])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493cce12c40sm363764965e9.13.2026.07.05.09.57.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jul 2026 09:57:29 -0700 (PDT)
+From: Mikhail Lukianchikov <avermoal@gmail.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] i2c: qcom-slave: Add driver for Qualcomm I2C
- slave controller
-Message-ID: <akqJFgL_NZorf9Qz@shikoro>
-References: <20260628-i2c-qcom-slave-v1-0-8b0a5c01f9f6@oss.qualcomm.com>
- <20260628-i2c-qcom-slave-v1-2-8b0a5c01f9f6@oss.qualcomm.com>
- <akp4_Sfjs4RrEXQR@baldur>
+Subject: Re: [PATCH] dt-bindings: iio: adc: convert Xilinx XADC bindings to YAML
+Date: Sun,  5 Jul 2026 22:56:20 +0600
+Message-ID: <20260705165620.9818-1-avermoal@gmail.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <d7607a98-f5e1-417f-ad64-d0029c9de662@kernel.org>
+References: <d7607a98-f5e1-417f-ad64-d0029c9de662@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WffVVY5Ay9uyhsdF"
-Content-Disposition: inline
-In-Reply-To: <akp4_Sfjs4RrEXQR@baldur>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-320686-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[avermoal@gmail.com,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[sang-engineering.com];
-	TAGGED_FROM(0.00)[bounces-320685-lists,devicetree=lfdr.de,renesas];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:viken.dadhaniya@oss.qualcomm.com,m:mukesh.savaliya@oss.qualcomm.com,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:krzk+dt@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:michal.simek@amd.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[avermoal@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sang-engineering.com:from_mime,sang-engineering.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5F6FC70A968
+X-Rspamd-Queue-Id: 2DF4C70AA29
 
+>> Convert the Xilinx XADC binding documentation from .txt to YAML format.
+>> This conversion is part of the ongoing effort to migrate all DT bindings
+>> to a machine-verifiable schema.
+>
+>Sorry, but what effort exactly? Where is this effort documented? Do you
+>have a mentor if this is some sort of mentorship effort?
+>
+>And if this is ongoing effort then don't duplicate:
+>https://lore.kernel.org/all/?q=dfn%3Axilinx-xadc.txt
 
---WffVVY5Ay9uyhsdF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hello Krzyszof,
 
+Thank you for feedback.
 
-> I don't think you read Documentation/i2c/slave-interface.rst. To me this
-> looks like a i2c "master", that is being abused to serve the role of a
-> slave; which of course implies that you have a non-standard slave device
-> implementation working with this.
+I'm the newbie at Linux kernel developers community,
+and sorry for my mistakes in sending commits.
 
-True that. The driver does not use the core infrastructure for target
-devices. Sorry, this is not upstreamable this way.
+I'll answer your questions.
+I am not part of any official mentorship program,
+I just decided to try to contribute to the development of the Linux kernel.
+Yes, it's a ongoing effort, and to be honest, this effort is the general
+community initiative to convert all DT bindings from .txt to .yaml. I didn't know that work
+on this file was already underway.
 
+Tell me, should I continue working in this case?
 
---WffVVY5Ay9uyhsdF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmpKiRIACgkQFA3kzBSg
-KbYL4hAAi937hhuBp81WCLEQe92D0lMDhIgtr3NJkcWMrfeHgzZDEEd2Xz8U1Y9b
-Cviw2GAfS7VGY6QIbPCvSF+ExfztCyWbH6gcpKmxadWQcoOPY5KwP8lUL7kGrD7n
-x8VFtZDPEkBoUR4jxX/uKK8LUY8zBCXciJgfuc2QV5zsXMEyB1Nx7m/yYJ6kD8yX
-EwkCjVV5WeiIQB9ZBgQQSeYri1b7TGnru4wYGTs+2htP175jBXTPPnjQrvwNd6K0
-WvLPSWE7DlmKK9taFIDF4quEWY4Vr4ePiHsxE+3zP1EUgxUjnSQmmuYtxF6wOtvl
-pY6R58jcM7gEyptmIZ3lTC/DMIxb7F6mwIkctSse9ZZI/w2q/XMjBQrYCVDkHoqS
-9NtgeailHPc4HExSVOTFeU9yiQ1i0sFI4zbBDQorcr5J3tir7AjWIaxT9S3DAKqu
-5Q/FNCeBJK/22rUssfviJH9FCWAb0LIURjVUUezGb6EojuOHFAkJWmKRgX5OuJz1
-ugYfQ4dQYGzRs5S+L2GZt5mDSSMCi7jWv8Tp3350ZSOqiNah288z9md3bhE9nbWm
-AaaKVH8dgf06gFA6R9tYh52aFRGvm96l25byxakxgV5cMppfWWDYE7I0Yd99oRGV
-ZSp/k/0j4RBXhtqD2ISo77AVB2iv5Ut4ASTlF9gJ8scGGjotZgQ=
-=i3x0
------END PGP SIGNATURE-----
-
---WffVVY5Ay9uyhsdF--
+Best regards
+Mikhail
 
