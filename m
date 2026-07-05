@@ -1,123 +1,156 @@
-Return-Path: <devicetree+bounces-320772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320773-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id J6Y1CFbHSmoLHgEAu9opvQ
-	(envelope-from <devicetree+bounces-320772-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 23:06:30 +0200
+	id PtZoND7OSmpbHwEAu9opvQ
+	(envelope-from <devicetree+bounces-320773-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 23:35:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC47570B6F8
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 23:06:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27B3570B79D
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 23:35:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FxtOuucq;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320772-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320772-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=ideasonboard.com header.s=mail header.b=X814jWdJ;
+	dmarc=pass (policy=none) header.from=ideasonboard.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320773-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320773-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8B0223002E02
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 21:00:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D7AE330071CC
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 21:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C3D3BADA5;
-	Sun,  5 Jul 2026 20:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 047D42DC792;
+	Sun,  5 Jul 2026 21:35:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A3493B9D98;
-	Sun,  5 Jul 2026 20:58:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159AF78C9C;
+	Sun,  5 Jul 2026 21:35:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783285114; cv=none; b=SPTdSA1dsj00yNEPDT0UB5x++vLTMcDzyNSVj6QF7GwmtDdK87xd4U+JUhxrh/cwtn2W9pvZn4TpjSZB9H1Sybw30Sfyal4LAb5JTKSX+Euy646GjvAxnC/0aNA6/paF97iU6yw0trZ613Tp57s+kvNzd9bnphjHpDUavXIJiX8=
+	t=1783287355; cv=none; b=hQGvYUj8MA6yT+mVd3UYozlC7raXbNtfKnWZAxbDqx9CWElzx6lsEmB7XocLXy04yZrAwPcFzpq+kq9msyCNwncrp2knypjRobfYjwaRdw8hsnjIatQSS8jxoq0sLD2avP4j5zJHaOB8qYrP+rV5shokypbgwA7Niytmqn5fmcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783285114; c=relaxed/simple;
-	bh=aM8ZxywwvfruV4ryRtRLQIgKsDkpqHVak/UvMNubB0I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H/hEOGREC1o7DMLCwpMma54277HMA1a62fyRuM0MgozuebpNDHXrja8fVObvJhFiy+o/Hoomsye3FBRKUg0Bo7KZ61GxcKFr3WWH245Oz6eaQrL/jhdXHNDjh2jmIajoevUSuVb/7XYvKhMoV/9UVbMrnfUval3uUwqNRPnYQpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FxtOuucq; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F6C11F00ACA;
-	Sun,  5 Jul 2026 20:58:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783285113;
-	bh=w+2OqMxstGJNcYgfW4oAkhrXcXYrGOCxcTLCEuwprR4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=FxtOuucqtmybDVla9sB9DFqWYRJZOAIKvUBn7YjEqgpYPXillQW647woLckQ9Qd7u
-	 Qz26DwhUYmV+ZMJEybCgAMrxiVei6lGCB0loB7CqTsHtmGdKO2/hSniiV3xgi3zpED
-	 M3iCq5tpBdhm/6u2/4MqjljjAJGr0OAKZUQAx1wuauVON3iKGzPgzhHZOYCPS3aojp
-	 +fTxxx+K9vfs6HkLpy+ExBQCp/n3R1nOoG3Wg6zeCfYU+yiUutgml40RgJdYuzZwXW
-	 CVDtPvx8XHRbDcJ8pFaBLos0zRpSZQ+FemD5V4E1/ICfS1vrsgnZU7CEXwC5QZ+xfr
-	 gt9Y4zcJJQLxg==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Cc: konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Loic Poulain <loic.poulain@oss.qualcomm.com>
-Subject: Re: [PATCH] arm64: dts: qcom: Add Display Port audio on Arduino Monza
-Date: Sun,  5 Jul 2026 15:58:06 -0500
-Message-ID: <178328508289.1157743.16998094017049759939.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260522100026.94760-1-srinivas.kandagatla@oss.qualcomm.com>
-References: <20260522100026.94760-1-srinivas.kandagatla@oss.qualcomm.com>
+	s=arc-20240116; t=1783287355; c=relaxed/simple;
+	bh=9Ys2LdiWk6aqBxpSgpVgyMXpSZ8BTD7IUi+YmaWkyIs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GBZYaI4aDOZ59rPv6xODdFFh4kmJ8DaZKnkl3EbNFxooAx/4lN8tzTAe9Cu5eNidzzQiHJLpg9ZIvmb7uBKCNZJ+agxCmK71Gjix9s4FOByz5WY1SLXtjeUfKA/k9eAOfYkb3MlovT+4spAFpQqqlH0oEoBGlgYDRsxWVdDNpBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=X814jWdJ; arc=none smtp.client-ip=213.167.242.64
+Received: from killaraus.ideasonboard.com (2001-14ba-70f3-e800--a06.rev.dnainternet.fi [IPv6:2001:14ba:70f3:e800::a06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6F2E034;
+	Sun,  5 Jul 2026 23:34:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1783287296;
+	bh=9Ys2LdiWk6aqBxpSgpVgyMXpSZ8BTD7IUi+YmaWkyIs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=X814jWdJhUUpE63XxgX8y9vpQAxAHYEzk67c00sJ6GPe693n0yAU5c7vleLKRJADx
+	 UTRc9VB8GyJDXhBnrKo0aH0BlNd3RSxC7KVjTaQCpbqeYk2v6dm50yu/D2XX3tfrmJ
+	 IEO0lF/7Xb1ZscX5GLSsvE73mfSolG0xkxhu/pyY=
+From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+To: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Cc: Thuan Nguyen <thuan.nguyen-hong@banvien.com.vn>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 0/4] drm: bridge: display-connector: Support hardcoding EDID for VGA
+Date: Mon,  6 Jul 2026 00:35:38 +0300
+Message-ID: <20260705213542.28987-1-laurent.pinchart+renesas@ideasonboard.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320772-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:srinivas.kandagatla@oss.qualcomm.com,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:loic.poulain@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-320773-lists,devicetree=lfdr.de,renesas];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[banvien.com.vn,linux.intel.com,kernel.org,suse.de,glider.be,gmail.com,intel.com,linaro.org,kwiboo.se,bootlin.com,vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:thuan.nguyen-hong@banvien.com.vn,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:linux-renesas-soc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:from_mime,ideasonboard.com:dkim,ideasonboard.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DC47570B6F8
+X-Rspamd-Queue-Id: 27B3570B79D
+
+Hello,
+
+In a normal use case, the VGA DDC lines are used to read EDID from the
+display. On some systems where the connector is internal to the device
+and the VGA display is always present, the DDC lines may not be
+connected, making display detection and EDID retrieval impossible.
+
+This patch series adds the ability to hardcode EDID in the device tree
+for VGA connectors on such systems. Patch 1/4 extends the vga-connector
+DT bindings with an "edid" property. Patch 2/4 is a drive-by fix for a
+resource leak in the display-connector driver, and patch 3/4 implements
+support for the "edid" property in the driver.
+
+I have tested this on a Renesas Salvator-XS M3N development board. The
+board has an external VGA connector, but does not conenct the DDC lines,
+exhibiting the problem that this series addresses. Patch 4/4
+demonstrates how to set EDID in the device tree, for the VGA monitor I
+used in my test environment. It is not meant to be merged as the display
+is not internal to the device in this case.
+
+Laurent Pinchart (4):
+  dt-bindings: display: vga-connector: Allow hardcoding EDID
+  drm/bridge: display-connector: Fix I2C adapter resource leak
+  drm/bridge: display-connector: Support hardcoded EDID for VGA
+    connectors
+  [DNI] arm64: dts: renesas: salvator: Add overlay for Dell P1911 VGA
+    display
+
+ .../display/connector/vga-connector.yaml      | 15 +++++++
+ arch/arm64/boot/dts/renesas/Makefile          |  2 +
+ .../dts/renesas/salvator-vga-dell-p1911.dtso  | 21 ++++++++++
+ drivers/gpu/drm/bridge/display-connector.c    | 42 ++++++++++++++++---
+ 4 files changed, 75 insertions(+), 5 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/salvator-vga-dell-p1911.dtso
 
 
-On Fri, 22 May 2026 10:00:26 +0000, Srinivas Kandagatla wrote:
-> Add support for Display port Audio on Arduino VENTUNO-Q board.
-> 
-> 
-
-Applied, thanks!
-
-[1/1] arm64: dts: qcom: Add Display Port audio on Arduino Monza
-      commit: f9665fc0681c1a0edc03be9900ba3f318fe3c5bd
-
-Best regards,
+base-commit: 44d19b8a7548aa25cbc6ebd5f27e958f7142c36b
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Regards,
+
+Laurent Pinchart
+
 
