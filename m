@@ -1,169 +1,142 @@
-Return-Path: <devicetree+bounces-320757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320758-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id vkxZL5bCSmr+HAEAu9opvQ
-	(envelope-from <devicetree+bounces-320757-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 22:46:14 +0200
+	id GmrgHYrGSmrkHQEAu9opvQ
+	(envelope-from <devicetree+bounces-320758-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 23:03:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D67B970B58E
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 22:46:13 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D860A70B66E
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 23:03:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=lL230xXc;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320757-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320757-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LRi1Owkn;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320758-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320758-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3C9BA30063AF
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 20:46:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E4C1630583FC
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 20:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 948CA2F8E99;
-	Sun,  5 Jul 2026 20:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356BF3A7195;
+	Sun,  5 Jul 2026 20:58:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B32718BBAE;
-	Sun,  5 Jul 2026 20:46:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1112C3A6EEC;
+	Sun,  5 Jul 2026 20:58:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783284371; cv=none; b=j95zySKmMz1rlMiDKaqTdCFiJpF5Ppa4WpmFq3nz19rp6XSmO1AVdJzuYYc8wyj3pG3eYo5PWffOdQmko8jHuVJ2i+B2BqYjfAndIpDNwa5tknPtIcUz81wbIQkG/FchlT5IIzgt5MiiwEgtLZKV4nD0p3Db3egiSXnMT3KC2q0=
+	t=1783285093; cv=none; b=dqwoMGxL5FFYQ1rjaRMTUqju6TcxOW9mwhgTABBd1i+E25qu4+9xAQnT5SgJUHGfTKC0KqDMdn83nJdVZKVosKh2VvKtyqV5FVfIvejB/UQOYVRWJRHCYrwnesvVkH/mwsA4ld4t975wwyHvlhJ4eD/c1q9KR0Ivhb08L2mADJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783284371; c=relaxed/simple;
-	bh=OaQusKv3rXYsBNCL7bbmIiPHTJUbxK+t+RRHDhKEW9Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mJLCrCjHxaVs/bfns+MqI8RX96qBSmjFdeZV3YWzhXt0MTY4iXSDz4Yy2jLPWq3tAAAWzTwqD/f+As4v8mqr8hsqFNuWR+MG1EH0etEQ0CJO30GpQ9lqmXV6dTRWnPO+2xAd+W+XjLnAadjTj8IvpkaNom2f1x4hu1r5++163Ok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=lL230xXc; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783284368;
-	bh=OaQusKv3rXYsBNCL7bbmIiPHTJUbxK+t+RRHDhKEW9Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lL230xXckdYvbMdcv6VvPfggSMJt4NKuO+UichDEAFAiEOXbiKsWUP7Cq4EuSPr+n
-	 zt6n2WmBg+/z95DyxHqpc0Cm7kZqJEPz1bQSlMPCPbdFIZJVKypLfV5g1m0yeOvK74
-	 mYZaKU5LaRRtbJyIt8ONOpFk4LV7eiywCjFQC4TGYKHUV+SY+wlDd7YwzL9ODHKjQL
-	 DzJF68rnwWrFaDw8YkIGRnmzzhOwyRjoW0EEyQDEgmbUt+q8lA8XQpcie0x8XinT1X
-	 kkzZTDknZ2VF9gFMDb150EY1SbsJq8gYG0zQC+5+tVLfpQPymDbv89e8NVfyRMDHzq
-	 IqMTxsmxqsxUA==
-Received: from [100.64.0.241] (unknown [100.64.0.241])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 28E3917E0177;
-	Sun, 05 Jul 2026 22:46:07 +0200 (CEST)
-Message-ID: <c8242f5c-ec74-489e-b378-f225ec3a0135@collabora.com>
-Date: Sun, 5 Jul 2026 23:46:06 +0300
+	s=arc-20240116; t=1783285093; c=relaxed/simple;
+	bh=fPLjtqTdfUwvKv45UkaXvC5ZiYor7iKNrdtWIDVWnaE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TFl0GjLQZ5tUFQinBjV6/6u/GR/r7gxyp6uS9Uq8jNnOmR78JMe/B2ahTsRZg2CZNDaT8lNptrJLGO6NT1H8aqYULLHUm20U5ybz6cTPsvU290TcuVAwhvny0rvf6oxieA3QywNLUMGdVjw7E0e8RVSj55kjZ94pgALNpzwGG5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LRi1Owkn; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 968E81F00A3A;
+	Sun,  5 Jul 2026 20:58:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783285091;
+	bh=bt3Qq+H8uaYIqm5V40DzeXFpBOHpi7xmdNGZHdJuHUg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=LRi1Owkn0mw/4PFM1S+RyPv8Wm+vBTfqw3RKki6DMEMhcdMNeh8bb6cabdQRlmPw9
+	 R12FDSJvUOKg+LmrVGs/5cx3CnGMdKWGUqdLvgIytkNR80GdmhcPl01JG7AwUHtmPj
+	 0fqRmaip9/2R2iR5g4gwG+o/IXovdZPV8p8nWRAJojFksOT8QaCEEkBnWJSkf03Q+j
+	 zftgYbiOOdYfoy77CQPnD24qx+wk+YPWaY+8xR+aMixgT0B/gzKdhcbIoEI2Kxbu0t
+	 VNdOkbNcLFFqtII0RW7fhgp1wVxfE7EsyKoWMZOO4MX1cTnQvFj/KgQSTonYv1UOC2
+	 ZTa3FzfXFwR2Q==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Messier <alex@me.ssier.org>
+Cc: Luca Weiss <luca@lucaweiss.eu>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	linux-leds@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 0/4] Describe more hardware of the HTC One (M8)
+Date: Sun,  5 Jul 2026 15:57:50 -0500
+Message-ID: <178328508264.1157743.6203884354809743670.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260406-m8-dts-additions-v2-0-c4c4bd50af48@me.ssier.org>
+References: <20260406-m8-dts-additions-v2-0-c4c4bd50af48@me.ssier.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/9] drm/rockchip: vop2: Reset AXI and DCLK to improve
- robustness
-To: Diederik de Haas <diederik@cknow-tech.com>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: kernel@collabora.com, Andy Yan <andyshrk@163.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260617-dw-hdmi-qp-yuv-v1-0-a665cfd06d7d@collabora.com>
- <20260617-dw-hdmi-qp-yuv-v1-2-a665cfd06d7d@collabora.com>
- <DJQO8Q4J2LDP.1G8I4FVF6J7TK@cknow-tech.com>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <DJQO8Q4J2LDP.1G8I4FVF6J7TK@cknow-tech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-320757-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[cknow-tech.com,rock-chips.com,sntech.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,bootlin.com];
-	FORGED_SENDER(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FORGED_RECIPIENTS(0.00)[m:diederik@cknow-tech.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:kernel@collabora.com,m:andyshrk@163.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320758-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:alex@me.ssier.org,m:luca@lucaweiss.eu,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:~postmarketos/upstreaming@lists.sr.ht,m:phone-devel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:lee@kernel.org,m:pavel@kernel.org,m:linux-leds@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[collabora.com,163.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:dkim,collabora.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D67B970B58E
+X-Rspamd-Queue-Id: D860A70B66E
 
-Hi Diederik,
 
-On 7/5/26 4:28 PM, Diederik de Haas wrote:
-> Hi Cristian,
+On Mon, 06 Apr 2026 01:16:56 -0400, Alexandre Messier wrote:
+> Add hardware description for these parts of the HTC One (M8):
 > 
-> On Wed Jun 17, 2026 at 8:52 PM CEST, Cristian Ciocaltea wrote:
->> Assert the AXI reset in the CRTC disable path, and the VP DCLK reset in
->> the enable path.
->>
->> These resets are intended to leave the hardware in a clean state for the
->> next use, helping recover from exceptions such as IOMMU page faults, as
->> well as to prevent random display output glitches, such as a blank
->> image, observed when switching modes that also change the color format,
->> e.g. from RGB to YUV420 and vice versa.
->>
->> For now this seems to affect only the RK3588, hence the resets are
->> optional and will be provided in the device tree for this SoC only.
+>  - Notification LEDs
+>  - Bluetooth
+>  - NFC
+>  - Touchscreen
 > 
-> Why do you think it only effect RK3588? 
+> [...]
 
-My findings are exclusively in the context of validating YUV support for DW HDMI
-QP, hence targeting RK3588 and RK3576.  Since RK3576 didn't exhibit any
-anomalies, I concluded the resets are needed just for RK3588.
+Applied, thanks!
 
-> I reported about my RK3568 test here:
-> https://lore.kernel.org/linux-rockchip/DFRU6ODDM71P.3NQGLRK8IVDUY@cknow-tech.com/
-> "I then went on to try LibreELEC's builds. The artifacts I (sometimes)
-> saw, were gone :-D OTOH, I did get several major issues 'in return',
-> like rk_iommu Page fault resulting in a black screen and the only way to
-> 'recover' from it, was a reboot."
-> 
-> And I reported some more test results here:
-> https://forum.libreelec.tv/thread/29953-le13-testing-for-rk3288-rk3328-rk3399-rk3566-rk3568-rk3576-rk3588/?postID=204691#post204691
-> 
-> That seems to me a (strong) indication it also affects RK3566/RK3568?
+[1/4] ARM: dts: qcom: msm8974pro-htc-m8: add status LEDs
+      commit: c11865aa07e8a1b1b3c50b995f7175312a4045a8
+[2/4] ARM: dts: qcom: msm8974pro-htc-m8: add NFC support
+      commit: 858e8a50ba0c0c9caa45f25dfbbb8b6bb26154b0
+[3/4] ARM: dts: qcom: msm8974pro-htc-m8: add Bluetooth pins
+      commit: 132a69d4092737d35470adc0f9c89fc68caf6288
+[4/4] ARM: dts: qcom: msm8974pro-htc-m8: add touchscreen
+      commit: 811a24b0ec0c3ec74dbe324c390b75a2b92571ea
 
-If coincidentally this helps improve the reliability of some of the older SoCs
-as well, the resets can easily be added to the corresponding DTs and submitted
-as a follow-up series.
-
-Cristian
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
