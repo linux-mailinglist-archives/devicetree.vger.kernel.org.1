@@ -1,223 +1,191 @@
-Return-Path: <devicetree+bounces-320588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320590-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GtUYCrItSmpY/AAAu9opvQ
-	(envelope-from <devicetree+bounces-320588-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 12:10:58 +0200
+	id 0YyTNEAuSmp4/AAAu9opvQ
+	(envelope-from <devicetree+bounces-320590-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 12:13:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C892709B00
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 12:10:57 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20A23709B4A
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 12:13:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=pm.me header.s=protonmail3 header.b=RUuC69ju;
-	dmarc=pass (policy=quarantine) header.from=pm.me;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320588-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320588-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Ff1qHjLG;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320590-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320590-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9D11F300B74C
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 10:10:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 046E6300E3BD
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 10:11:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D2B938B7D7;
-	Sun,  5 Jul 2026 10:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8444938F658;
+	Sun,  5 Jul 2026 10:11:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4316.protonmail.ch (mail-4316.protonmail.ch [185.70.43.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CABC1367B94;
-	Sun,  5 Jul 2026 10:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D07FB37DEBA
+	for <devicetree@vger.kernel.org>; Sun,  5 Jul 2026 10:11:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783246250; cv=none; b=osWl86GqMhkdxA8V51w5WC8hLMW05vZy620MVLgeO6kP3gvjl/p+ypa5rIhoetX4tzIVG3eb2DE3oMsX12q+0cVkpw11EyG8EBYYm53alFvlhTMlOy5TIB3v8iaMA6nKG93P/goTiB6ihBY8bPtFc+oW3FJkHy6wR5XRnmxr7Co=
+	t=1783246284; cv=none; b=XtjEEWdIKTe+4QhWnoRMjxHINYEDmJzCBlsLaCFokYtkrSrw64LFEBekr9IhtjFpym4+PtiL81cja1+aVBPFskTNWHU1FNUDTr8S+Aq6gWnVGaIXtzrE8ZBAMYqZBAfyAu3M1fNX8hxCXGQXV/v7oIpqiwfmhw+NivJOtt5TWxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783246250; c=relaxed/simple;
-	bh=fkVUfMl2OP5FqZEeUHk8kmXxpc9Qy6TEWizcllfQXA8=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J6ruyKORz0/Frvh6dw83Yf6oxrPs2TyWjyTE7GQLXv58+Ou1lR5iNDxSEfeK4rKoA6F+Lsqc5BEhpC8xuHhlm/qEuSk/0k7nc8jvWGxlmf7JIBuOlnxWB/eXSzZrvac8HaN2GvGqAMxnu20IyciyzayxWp4rlL5Ggw256OzejHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=RUuC69ju; arc=none smtp.client-ip=185.70.43.16
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1783246246; x=1783505446;
-	bh=l30IVtLlztHLbVWWCNa71bHo8I21Tiqk6JX+hxBQZ84=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=RUuC69juTLM+uFOQSNP+7V2LVVzMkELIeZPE7X9SnGKWrd1yeGmKbpulK+hPHvf9u
-	 LGMgc5fywgw8ckGahemnWdxPd9d4dzL/aQwi9fQq+2A+obw2ZtvMwn6g2a72HgaY4y
-	 XF/bAopn18n84dkTJPSFmOJAmF3ZO3NfHz6TXdtLxKL9j9KDvUW1SvgwBNP+2BNvf7
-	 fxjv361OEJ8alIHj+0eJBcBzHlZbXRGHoBcM81r/x3k4iKtHCkHH4rtTn8vIL1jFxv
-	 iGj4ZualNyoooCv4kuF8vDzDv+Lp3F97N4ziKnpCIDofyQG8zf0LTjz3D4sXU/2AfB
-	 SlN48LTVjyajw==
-Date: Sun, 05 Jul 2026 10:10:43 +0000
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>, Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, Abhinav Kumar <abhinav.kumar@linux.dev>, Bryan O'Donoghue <bod@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alexander Koskovich <akoskovich@pm.me>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-From: Alexander Koskovich <akoskovich@pm.me>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v3 3/3] arm64: dts: qcom: milos: Add Iris VPU v2.0
-Message-ID: <20260705-milos-iris-v3-3-8c1353530f24@pm.me>
-In-Reply-To: <20260705-milos-iris-v3-0-8c1353530f24@pm.me>
-References: <20260705-milos-iris-v3-0-8c1353530f24@pm.me>
-Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: f7b94ba0fa5599cdf05390f742708b44db4405e5
+	s=arc-20240116; t=1783246284; c=relaxed/simple;
+	bh=1+urWhTzQMUH0oiAjedVIldEW714w2feNRJ/RVDNWTw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tGUeaYcTxOiHkB3NVG0y+eEG5QBkx8OuvLR/Jbz+j4py0YZ0Thqv2AAs8FpMqEU4op+3j4vWdRJKGjdoDe5IHL7jzseMnDdgPt4YwP0qfqaN+LfTnHHg0DAE3NbNPxXHmW5IeVtmAgsajor442tr5EuStMSeiwaZyXVVdu8WoCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ff1qHjLG; arc=none smtp.client-ip=209.85.128.44
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-493d92b7db3so791135e9.2
+        for <devicetree@vger.kernel.org>; Sun, 05 Jul 2026 03:11:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783246281; x=1783851081; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KosFoYH7JPzJbGxiLDLiAcfUT9wevKTSADbKnE7NxIU=;
+        b=Ff1qHjLGsmFKCgVdZOH+PEgrUAHHONaG+X8cOYDTZWd1IIvjCqj0nMr8FVE2Lh5B5c
+         Hn9JAfvq6tkblvQR3gbbonHpaSCsUsK76QVYWj87PXTbx2QfmySMwm7F6E/cxqTkUMxQ
+         RLDB0Tk0JRoGU2cteJt0TImzAMpfNd27K4eOI8RDom1oBg9YnkfICxDXBcFH8J3brmZH
+         sZBJtd7YtubI7LyeMWmakotpABKpYCCVX8Bx/IrKeT0uqqi7CunO1lAcd2DAfYCZVg3g
+         M8ssymFrwr9Hs0GBL9cngdSHnJxEF+FTw3EDcwy37TdX7PKbCSRs5tIEuonKAlnz0NMi
+         0EZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783246281; x=1783851081;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KosFoYH7JPzJbGxiLDLiAcfUT9wevKTSADbKnE7NxIU=;
+        b=RO8/NbuK+X/iGwa/U6aRDEw8zmbcgJ+o1jDm3ebRPEem9DbuU4lfEef5/2Ru23Xklq
+         CIvHT516nqdIRgQn2WHi8HjRUgvDKYGNExtjgYkiNKHIzrx16akoKxJxOHmJS2d9qEcR
+         ubZ3Hfm1jPuf9+2w49fhjHF35z5Cc8IGTcHqEes5uDZEqkVOlguJueJMlBDgViNcdd0A
+         WXK0kiEwDqkjgt1H9CHp8Gw0KfAXbk0fxSLXS4fBSCWuIQW7335VkuoARkST5draj9Xm
+         OnQns+3RvNIeKlb+8XNnpyepd/r5c/7kXMS1NqliH4qhNm1rjfmRXAUfy7BAm2csCF+T
+         3Mbw==
+X-Forwarded-Encrypted: i=1; AFNElJ+0S8weyqicU5xoNPdOyZ4WXauHdd3D+0Z3ZQMybvGzJxEqkn28T4zSGHnUsVcb9cQXlIOeJPSw5gVh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxV9QrKHhy6zooYYcfqJOix2hZQM7ouqv6JI037x4El+9l/glsn
+	cHaVWhK4SqvOXYiOmgzkuKZPmQmPRLWUH4FokHxKWzOKTFlx9Q5djN43P4dIzZeN
+X-Gm-Gg: AfdE7cknDufx/IvinriNZCcFuQA0DDbi+R/x0qr2cT8mhS093xiTyAdXiu+giqlBsrc
+	0eUeJf75zpTY4nsYkfeOUuA6kENwFzTcw6dKaC5QL7rdGcZGgSSO/lTdVGvdO2yASH81Fls9ZPb
+	M8lmbItqdJjp5imOSGwpDyDxhyZ6yMy4sWs/XDeVyUBLhgqrMbaqggd439wLy69tHfmbbh84SBc
+	grgnFJiYMWnBlpJLcuqhhsDRiTPSQYM+g+P4fya1q6uU52dVNVcsJikS1oxIvxcKjEeWtFoS1p+
+	Q5Jb2k/GxyfdXT24W/j3MDOEcf5kS+WCWrEziur+Uvs2Pygn4aIA8usKO+PfsCmU9ceLkGBCWPl
+	lo/jD16TpuW/vr0EcgD8l00wbqf61CgLBmUsfRkejpt8YH2JgHfwc3EhNn4kfXD9GNwQJlRdMcE
+	UuOZFJrPEogXO/L+bhDjkBw53KrBTiMl7iCw==
+X-Received: by 2002:a05:600c:3493:b0:493:d115:d835 with SMTP id 5b1f17b1804b1-493d22abbd8mr58420125e9.8.1783246281032;
+        Sun, 05 Jul 2026 03:11:21 -0700 (PDT)
+Received: from localhost.localdomain ([95.43.220.235])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493c637bbcfsm261382715e9.6.2026.07.05.03.11.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jul 2026 03:11:20 -0700 (PDT)
+From: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>
+Cc: linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+Subject: [PATCH v3 0/4] phy: cpcap-usb: improve charger detection and export cable state
+Date: Sun,  5 Jul 2026 13:11:01 +0300
+Message-Id: <20260705101105.1798069-1-ivo.g.dimitrov.75@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
-	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320588-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:vikash.garodia@oss.qualcomm.com,m:dikshita.agarwal@oss.qualcomm.com,m:abhinav.kumar@linux.dev,m:bod@kernel.org,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:akoskovich@pm.me,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-media@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-320590-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:aaro.koskinen@iki.fi,m:andreas@kemnade.info,m:khilman@baylibre.com,m:rogerq@kernel.org,m:tony@atomide.com,m:linusw@kernel.org,m:brgl@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:ivo.g.dimitrov.75@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:ivogdimitrov75@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[ivogdimitrov75@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[pm.me:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ivogdimitrov75@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pm.me:from_mime,pm.me:email,pm.me:mid,pm.me:dkim]
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7C892709B00
+X-Rspamd-Queue-Id: 20A23709B4A
 
-Add devicetree nodes for the Iris codec (VPU 2.0) found on the Milos
-platform.
+The Motorola CPCAP USB PHY contains the hardware state machine used for
+USB cable detection. Besides distinguishing USB peripheral and host
+connections, it can also detect dedicated charging ports (DCP).
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
----
- arch/arm64/boot/dts/qcom/milos.dtsi | 85 +++++++++++++++++++++++++++++++++=
-++++
- 1 file changed, 85 insertions(+)
+This series updates the Device Tree binding and corresponding mapphone
+Device Tree to use the charger detection interrupt, adds DCP detection
+support to the CPCAP USB PHY and finally exports the detected cable state
+through the Extcon framework.
 
-diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom=
-/milos.dtsi
-index 64c493b82733..cf361476a859 100644
---- a/arch/arm64/boot/dts/qcom/milos.dtsi
-+++ b/arch/arm64/boot/dts/qcom/milos.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/clock/qcom,milos-dispcc.h>
- #include <dt-bindings/clock/qcom,milos-gcc.h>
- #include <dt-bindings/clock/qcom,milos-gpucc.h>
-+#include <dt-bindings/clock/qcom,milos-videocc.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,sm8650-tcsr.h>
- #include <dt-bindings/dma/qcom-gpi.h>
-@@ -1883,6 +1884,90 @@ usb_1_dwc3_hs: endpoint {
- =09=09=09};
- =09=09};
-=20
-+=09=09iris: video-codec@aa00000 {
-+=09=09=09compatible =3D "qcom,milos-iris";
-+=09=09=09reg =3D <0x0 0x0aa00000 0x0 0xf0000>;
-+
-+=09=09=09interrupts =3D <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+=09=09=09power-domains =3D <&videocc VIDEO_CC_MVS0C_GDSC>,
-+=09=09=09=09=09<&videocc VIDEO_CC_MVS0_GDSC>,
-+=09=09=09=09=09<&rpmhpd RPMHPD_CX>,
-+=09=09=09=09=09<&rpmhpd RPMHPD_MX>;
-+=09=09=09power-domain-names =3D "venus",
-+=09=09=09=09=09     "vcodec0",
-+=09=09=09=09=09     "cx",
-+=09=09=09=09=09     "mx";
-+
-+=09=09=09operating-points-v2 =3D <&iris_opp_table>;
-+
-+=09=09=09clocks =3D <&gcc GCC_VIDEO_AXI0_CLK>,
-+=09=09=09=09 <&videocc VIDEO_CC_MVS0C_CLK>,
-+=09=09=09=09 <&videocc VIDEO_CC_MVS0_CLK>;
-+=09=09=09clock-names =3D "iface",
-+=09=09=09=09      "core",
-+=09=09=09=09      "vcodec0_core";
-+
-+=09=09=09interconnects =3D <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE=
-_ONLY
-+=09=09=09=09=09 &cnoc_cfg SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
-+=09=09=09=09=09<&mmss_noc MASTER_VIDEO QCOM_ICC_TAG_ALWAYS
-+=09=09=09=09=09 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+=09=09=09interconnect-names =3D "cpu-cfg",
-+=09=09=09=09=09     "video-mem";
-+
-+=09=09=09memory-region =3D <&video_mem>;
-+
-+=09=09=09resets =3D <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
-+=09=09=09=09 <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
-+=09=09=09reset-names =3D "bus",
-+=09=09=09=09      "core";
-+
-+=09=09=09iommus =3D <&apps_smmu 0x1960 0>,
-+=09=09=09=09 <&apps_smmu 0x1967 0>;
-+
-+=09=09=09dma-coherent;
-+
-+=09=09=09/*
-+=09=09=09 * IRIS firmware is signed by vendors, only enable on
-+=09=09=09 * boards where the proper signed firmware is available.
-+=09=09=09 */
-+=09=09=09status =3D "disabled";
-+
-+=09=09=09iris_opp_table: opp-table {
-+=09=09=09=09compatible =3D "operating-points-v2";
-+
-+=09=09=09=09opp-240000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <240000000>;
-+=09=09=09=09=09required-opps =3D <&rpmhpd_opp_low_svs>,
-+=09=09=09=09=09=09=09<&rpmhpd_opp_svs>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-338000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <338000000>;
-+=09=09=09=09=09required-opps =3D <&rpmhpd_opp_svs>,
-+=09=09=09=09=09=09=09<&rpmhpd_opp_svs>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-366000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <366000000>;
-+=09=09=09=09=09required-opps =3D <&rpmhpd_opp_svs_l1>,
-+=09=09=09=09=09=09=09<&rpmhpd_opp_svs>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-444000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <444000000>;
-+=09=09=09=09=09required-opps =3D <&rpmhpd_opp_nom>,
-+=09=09=09=09=09=09=09<&rpmhpd_opp_svs_l1>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-552000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <552000000>;
-+=09=09=09=09=09required-opps =3D <&rpmhpd_opp_turbo>,
-+=09=09=09=09=09=09=09<&rpmhpd_opp_nom>;
-+=09=09=09=09};
-+=09=09=09};
-+=09=09};
-+
- =09=09videocc: clock-controller@aaf0000 {
- =09=09=09compatible =3D "qcom,milos-videocc";
- =09=09=09reg =3D <0x0 0x0aaf0000 0x0 0x10000>;
+The existing driver already interprets the CPCAP USB detection state
+machine to determine the attached cable type. This series extends that
+logic to distinguish DCP connections and exposes the detected cable state
+through Extcon using a standard kernel interface. It also makes the idle
+UART mode optional, allowing the PHY to remain in its default USB
+detection configuration unless UART support is explicitly requested.
 
---=20
-2.53.0
+The series has been tested on Motorola Droid 4 hardware.
 
+Changes in v3:
+- Drop "phy: cpcap-usb: Prevent line glitches from triggering sysrq"
+- Fix DT schema interrupts order
+- Fix boot cable detection
+
+Changes in v2:
+- add chrg_det interrupt instead of replacing se1
+- Fix remove() race by cancelling detect_work before hardware teardown
+- Restore SysRq state on all error paths
+- Introduce CPCAP_UNKNOWN initial mode
+- Snapshot enable_uart module parameter
+
+Ivaylo Dimitrov (4):
+  dt-bindings: phy: motorola,cpcap-usb: add chrg_det interrupt
+  ARM: dts: ti: cpcap-mapphone: use charger detection interrupt for
+    CPCAP USB PHY
+  phy: cpcap-usb: add DCP detection and make UART idle mode optional
+  phy: cpcap-usb: add extcon support
+
+ .../bindings/phy/motorola,cpcap-usb-phy.yaml  |   6 +-
+ .../dts/ti/omap/motorola-cpcap-mapphone.dtsi  |   6 +-
+ drivers/phy/motorola/phy-cpcap-usb.c          | 320 +++++++++++++++---
+ 3 files changed, 279 insertions(+), 53 deletions(-)
+
+-- 
+2.39.5
 
 
