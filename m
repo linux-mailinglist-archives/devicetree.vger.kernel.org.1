@@ -1,210 +1,308 @@
-Return-Path: <devicetree+bounces-320725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320721-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bg/aIm+zSmpuGQEAu9opvQ
-	(envelope-from <devicetree+bounces-320725-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 21:41:35 +0200
+	id 9pbUEiKzSmo2GQEAu9opvQ
+	(envelope-from <devicetree+bounces-320721-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 21:40:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AEF970B0BD
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 21:41:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFBF270B02E
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 21:40:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=BbBSGLsA;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=NoxJN4Rt;
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320725-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320725-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=JDg2C3GT;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320721-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320721-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 91CCD301CCFB
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 19:40:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 646F7300B118
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 19:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B623A4520;
-	Sun,  5 Jul 2026 19:40:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DC00376A16;
+	Sun,  5 Jul 2026 19:40:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E46A2D3733
-	for <devicetree@vger.kernel.org>; Sun,  5 Jul 2026 19:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4941736BCE8
+	for <devicetree@vger.kernel.org>; Sun,  5 Jul 2026 19:40:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783280443; cv=none; b=cmm8fz9G0icV4PB8fhzZVFsrdoG3F2wnonTP/4uEhKO3hx4wVkPUvTvu5EaptWW+N/XkYOrzUySEyzzzIWPlsXsgxD/r/jCFKkhoD3CmJjauVe1pZg0wxef7eMSMvIDIERMqPaX+pfiKra6gt/zP5ikopccRg/XZsuG6hyosfa8=
+	t=1783280413; cv=none; b=CVjcGhXJWPzsqpL9yzbGfAXHG4SfBy3q1+TUPNX1Lll7Dor/JzTrzIR+Uu+NU5F4KewjsKAU7BbYNQ6eF1CfrXb0qWcPxuykhh1aPfZO2hK31T2IkanJGN3iYdzr7WKAlaq/s8XYEx1U9GQpNcnIEh8EuCm0wxJ/Nfp0ChvjDzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783280443; c=relaxed/simple;
-	bh=gFgKgEu5qajbHpLEFwwgM/A3QPsBxXRqQi+CF+ZFu9I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ru7X8nwNVg7ATlJPMnY2RUXwyU8VaifJyGw/0VFxu9S3NufS5gKATz1D5UJ+lcPpKKZrCAOF0+ZNOEO2h1ZuNkMKzOkm7rB9sSdZr+UM8tSi+Q8RZnnfDNjxHpYsxQFHH6+uc+W4lJU1gliZmzR5KNCIqxTZlyK1esZT/xaltn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BbBSGLsA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NoxJN4Rt; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 665HhZC02351641
-	for <devicetree@vger.kernel.org>; Sun, 5 Jul 2026 19:40:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=WZiFjnWLtnN
-	smK5dA/42zGQp+sVNdR8iWt1Gg293cw0=; b=BbBSGLsAqnWOATGTpRNCO1gHtgn
-	+/zw/8wXZTNlV0J3BkwSreM5wcmTjEIf/OTa3q53G3k+GmVKk2WvAcGb1Ew8Q+8E
-	QrpYExNDDivaknI9UzYxo3JTDkbOWqzrVRq+0pWix+SzBwl+OC9alMamMCk86nPx
-	bmTcN5MVq2c1dhjwDSCMvlPP+5gNlCOpgfXdThV6SMKQM+0ZTQPkQ4Udmvt+mimB
-	/CiyDPPnOPppMy7keT4n98UkPZmn2g6GcpUmf3hrAlfVAqeyUVB9oeO42PhzzgZB
-	p0LNoVgtCvusL9jOPJlKPYe4pVrl4XUBs3oqCO5q6awivbcuGKDA559+r1g==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f6s4sudu7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 05 Jul 2026 19:40:40 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-37fca5f21b1so3305756a91.0
-        for <devicetree@vger.kernel.org>; Sun, 05 Jul 2026 12:40:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783280440; x=1783885240; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WZiFjnWLtnNsmK5dA/42zGQp+sVNdR8iWt1Gg293cw0=;
-        b=NoxJN4Rt0aOyL7o/soh8i2SoA/DEONsrberzO0bgtDpIxKm4z/lvYJyyuYPsU7nrvl
-         UGaZT3gpclOlEnkSQlnF/Tql6RI/ZplF6ErLqAKiqecsb4EMqlEW9A8X6/iEj/4vT/Sf
-         betVQCio6gqp1w6vEu0b4B2RH323fEtyy8FJwu7Kb2H3VXuCW5LETIGhbPMvxokfHt3Z
-         kgM2yt/rM9NWPCeeomBV8VYyhChC4xr4DoXl250mpb45G9avOTKitS37y2jXnLJ70lFu
-         cnsCHXPS5gMX0trVIV7fFaiyoTMJONNT25UUUY9+VsqI+G4vX+tuVUR+4nL0Kp2Mfp4M
-         I2Rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783280440; x=1783885240;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=WZiFjnWLtnNsmK5dA/42zGQp+sVNdR8iWt1Gg293cw0=;
-        b=KzEJIdnC/9dUs1ctam1cOnbD+rRg+F7QsGqYNBGLEAwS8hFK+1npWM/dikPnMwatI0
-         IW9QFqbJvT6yqNXEUFVbyBNFUmf4o3Dv9RgO1wdM2XpqQouFPCRhsBSficD8SO/2IbVA
-         LsoHXKDD2W2DnwUQ3dbmBNcYuicJ8bICvI+PPHAaGgvlaIsGZWbjQ5/hRHZx7J6XIa6A
-         +yluZRHFTyoookiP3I4+BpBLu84+4bVr/7Uv2hpAq5KoRm56MqbtxR9k6N6ldFSO/SNL
-         vgboEnkFTgSjRgtwG0kT9GLKPjut9dlfN2NbuLSk5U8zryZxl4dXFOfUBskE33/23kXW
-         EMTA==
-X-Gm-Message-State: AOJu0YzxdJPF4ZdA/47bR2uPkxN6G0+meKUnz5Q+yJ0lDckj2xQhlNcC
-	1BAF/yZxzkZkZLGOlXtr60asc8LQ/IM0OpOnocX9qbXv0/DGBOWiHfh859NI5O3KizI4iD5Stg5
-	JNqkStXwbToL4buihS55O9DRrmPg2+nXvw3c6yZzpyBNfSeHI5g9HXaBx5UvlVtPjYjXsQmk6
-X-Gm-Gg: AfdE7cmUXTp4f9k54iBWKUCXx0nfaZDtK5QfgD+cGOUTtA8Giug75d4T6//bLWVSKOR
-	K8C4R/tMAUH3IxdZBJgSHOA+G7QkH4s6Gkzx53YWgUshgrtyKYIpxETxYjUgAOx6P6NtMSF2KpK
-	juLMGiAjhuU+fjtF2Q7ypsookc3YkLzLu7cUD8ATt9r1HyFE8o0zkoOIskudeHnHtlJAPurIpz6
-	hJOjD9GEyNBfSGGuHwGKE2jfLgrLfwn4bx9Hgqjxl3+P2BM30X4gg+flHQUSdG57VpozoVV4mdl
-	/ym2b3/mjZ3UzJlP2WqibTe+QpCwbMr7zVXrINhv7mrI6yZOH2OW9AkkkoK4xbJOtMgYIKm56RK
-	98Flz7sie/QC6D4mK57I7QB/iLln637P0oEuqNA==
-X-Received: by 2002:a17:902:d591:b0:2bd:5ae4:26d1 with SMTP id d9443c01a7336-2cacb06f287mr116872265ad.17.1783280439589;
-        Sun, 05 Jul 2026 12:40:39 -0700 (PDT)
-X-Received: by 2002:a17:902:d591:b0:2bd:5ae4:26d1 with SMTP id d9443c01a7336-2cacb06f287mr116871975ad.17.1783280439045;
-        Sun, 05 Jul 2026 12:40:39 -0700 (PDT)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13b3c7fa566sm40573417c88.4.2026.07.05.12.40.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jul 2026 12:40:38 -0700 (PDT)
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, linux-sound@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-sunxi@lists.linux.dev,
-        linux-tegra@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org, sound-open-firmware@alsa-project.org
-Cc: Konrad Dybcio <konradybcio@kernel.org>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Subject: [PATCH 34/42] ASoC: mediatek: mt8173: Use devm_of_reserved_mem_device_init()
-Date: Mon,  6 Jul 2026 01:10:10 +0530
-Message-ID: <20260705194019.2565498-2-mukesh.ojha@oss.qualcomm.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260703193855.110619-1-mukesh.ojha@oss.qualcomm.com>
-References: <20260703193855.110619-1-mukesh.ojha@oss.qualcomm.com>
+	s=arc-20240116; t=1783280413; c=relaxed/simple;
+	bh=Tw9UCbnAkeM71yp5HkNOr20BRA8WYpO3Avuf1EMPB08=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=lemhnGZI+82fdPWBeIsQxNK9uPkFPSII8Ligp7qnFBlt8VjQxEMGOMLo6RZf2bRDN3aB1vqluDKTKe6h1IxDQqxLtQsXtsqp/MO4k3nBFP6TSWztp/cQHKXuVUpBMWJwiic0P6HaPMn/swtm4i2RZyk68Yz59Im0FS58JtPWDXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JDg2C3GT; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC7D31F00A3A;
+	Sun,  5 Jul 2026 19:40:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783280411;
+	bh=yOEylEmbaKFUX1hkNpSViBIgyEoEJGKRhCUJ98QSDeE=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=JDg2C3GTqeUKg4ivxwMSVFVXJwbc+O//7Ce0E/3ipTEBzfUmlfZCfDos4e4nAONuA
+	 2ggCZTmRsNoEnPYsfZjMCFa7t/L6tDXEkAz8GNgs1hdoRkLsrxRAWJ1Zk8MIt5lEoV
+	 YOtxtTeUbgHy/8oj5QSgXuor7lDTj+UYBicMtwJiuLMEs4TKFYPuy86BLiKNcxB+RX
+	 CzDEFegYVeCBT7XZxjnJFx/h5S4ff9til6fBsiMSiCkQ7uFMSGVcOtgjy3FxnZrRUM
+	 mNwh1AgTCS/YqwKqXIDtnCS5lUUYg3KcosVv2z0u7E7TKEu1O/0qgLJ/DLBnTs/rho
+	 VUh2rd9YzoXYQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH net-next v7 4/5] net: dsa: microchip: Support Microchip
+ KSZ8995XA / KS8995XA
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Linus Walleij" <linusw@kernel.org>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260704-ks8995-to-ksz8-v7-4-2af0eaa545a8@kernel.org>
+References: <20260704-ks8995-to-ksz8-v7-0-2af0eaa545a8@kernel.org>
+ <20260704-ks8995-to-ksz8-v7-4-2af0eaa545a8@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sun, 05 Jul 2026 19:40:10 +0000
+Message-Id: <20260705194011.AC7D31F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA1MDIxMiBTYWx0ZWRfX6gaopB4hzuoz
- vCuYZ2eTeKqYlPaxpdQQHbU1yOrSz/hU7BHD0Ee5fh1gclr72oOlBavINN4ODdywY7XwQLhEmJf
- gckHsmfeoRzlKrETuI/A/HQfYuyxAtE=
-X-Proofpoint-ORIG-GUID: SFas7dG69Pg7Bmtg9GqjP8bj0-GKSgvf
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA1MDIxMiBTYWx0ZWRfX5IwFKtn7wE7C
- gv96usT9nNuD+rQ/Pd+OmrnTWQWabF8joaqXyfvJzSh+/U74hwg5Lt8lU+qsBq8XjR4DZEwX73S
- IsaKybrTLYDIHnmcSCMX9gpHtVlVStSLk2xCgh0ErJlnm+0SGthzt1T4cBPLbKPH/EvpGi3koff
- MC+fCRr6/uCidM2vnM4czQDNsyh0GevctS5/K0rWOQ+3yhSSnG9WKG2nkwngXjx1HPKWrsI0MrR
- Kyj1f+IlV3mATMn1ap/HU4y1AkOSWFvhyWeF4TuvCUQezuQGU44qqamm+RdxrYft1ijDaSzPk1P
- h8dykg1dEMO5uieK3evXkXeyxAUoToYmp0CkW4lAu39LJ1K91lW75Jh8vqIlPfdwEqa0cOud40a
- kOmkT3NePPuidiAIBQXPu/DaoWaXrqUlASTHuArnk8BlzR0KNb2p8ADL3WYAAnQjBRzG1LdReEX
- AnACfoLqxzc2buUMLDw==
-X-Proofpoint-GUID: SFas7dG69Pg7Bmtg9GqjP8bj0-GKSgvf
-X-Authority-Analysis: v=2.4 cv=ZfQt8MVA c=1 sm=1 tr=0 ts=6a4ab338 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=EUspDBNiAAAA:8
- a=2-kJ_DxirqQsj2pPc2sA:9 a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-07-05_01,2026-07-03_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 impostorscore=0 adultscore=0 phishscore=0
- priorityscore=1501 clxscore=1015 suspectscore=0 malwarescore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607050212
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[mukesh.ojha@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	TAGGED_FROM(0.00)[bounces-320725-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:linux-aspeed@lists.ozlabs.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-mmc@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-sunxi@lists.linux.dev,m:linux-tegra@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:openbmc@lists.ozlabs.org,m:sound-open-firmware@alsa-project.org,m:konradybcio@kernel.org,m:mukesh.ojha@oss.qualcomm.com,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320721-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mukesh.ojha@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1AEF970B0BD
+X-Rspamd-Queue-Id: DFBF270B02E
 
-Use the devres-managed devm_of_reserved_mem_device_init() to ensure
-the reserved memory region is released on device removal, fixing a
-missing cleanup in the original code.
+Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+s) to consider:
 
-Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
----
- sound/soc/mediatek/mt8173/mt8173-afe-pcm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+New issues:
+- [Critical] Uninitialized Stack Variables Corrupt Hardware Registers
+- [Critical] MAC Header Corruption on Receive via Misuse of skb_vlan_untag
+- [High] Incorrect Register Polarity for MTU Configuration on KSZ8995XA
+- [High] Loss of VLAN Tags and Broken 802.1AD Routing on Egress
+- [High] Hardware PVID Leaks into Host Network Stack for Untagged Packets
+- [High] Invalid PHY Soft Reset on CPU Port Targets Reserved/MAC Registers
 
-diff --git a/sound/soc/mediatek/mt8173/mt8173-afe-pcm.c b/sound/soc/mediatek/mt8173/mt8173-afe-pcm.c
-index 69cadc91c97f..0424d79bc9b0 100644
---- a/sound/soc/mediatek/mt8173/mt8173-afe-pcm.c
-+++ b/sound/soc/mediatek/mt8173/mt8173-afe-pcm.c
-@@ -1072,7 +1072,7 @@ static int mt8173_afe_pcm_dev_probe(struct platform_device *pdev)
- 
- 	afe->dev = dev;
- 
--	ret = of_reserved_mem_device_init(dev);
-+	ret = devm_of_reserved_mem_device_init(dev);
- 	if (ret) {
- 		dev_info(dev, "no reserved memory found, pre-allocating buffers instead\n");
- 		afe->preallocate_buffers = true;
--- 
-2.53.0
+Pre-existing issues:
+- [High] SPI Device Tree Flags Discarded by Unconditional Mode Overwrite
+--
 
+commit 0676ac96adf5e00a23c99f1617beebb88d95ead0
+Author: Linus Walleij <linusw@kernel.org>
+Subject: net: dsa: microchip: Support Microchip KSZ8995XA / KS8995XA
+
+This adds support for the Microchip KSZ8995XA also known as the Micrel
+KS8995XA switch to the KSZ driver. It includes specific register
+definitions, switch operations, and compatibility configurations.
+
+> diff --git a/drivers/net/dsa/microchip/Kconfig b/drivers/net/dsa/microchi=
+p/Kconfig
+> index c71d3fd5dfeb8..75c9b2114afd3 100644
+> --- a/drivers/net/dsa/microchip/Kconfig
+> +++ b/drivers/net/dsa/microchip/Kconfig
+> @@ -2,6 +2,7 @@
+>  menuconfig NET_DSA_MICROCHIP_KSZ_COMMON
+>  	tristate "Microchip KSZ8XXX/KSZ9XXX/LAN937X series switch support"
+>  	depends on NET_DSA
+> +	select NET_DSA_TAG_KS8995
+
+[Severity: Critical]
+Looking at ks8995_rcv() in net/dsa/tag_ks8995.c which this config enables,
+it calls skb_vlan_untag(skb). At this point, the DSA core has pulled the
+Ethernet MAC header, so skb->data points to the MAC destination address,
+not the VLAN header.
+
+Does this unconditionally read the MAC destination address as a VLAN header,
+extract a garbage TCI, and pull 4 bytes, stripping half the MAC address?
+
+[Severity: High]
+Also looking at ks8995_xmit() in net/dsa/tag_ks8995.c, if the packet has an
+802.1Q payload tag, the driver overwrites its TPID with the DSA routing tag
+via hdr->h_vlan_proto =3D KS8995M_STPID(portmask).
+
+Since the switch is configured with PORT_REMOVE_TAG on external ports, will
+this cause it to strip this single tag on egress and transmit the packet
+untagged, resulting in a loss of 802.1Q VLAN tags?
+
+[ ... ]
+
+> diff --git a/drivers/net/dsa/microchip/ksz8.c b/drivers/net/dsa/microchip=
+/ksz8.c
+> index 586916570a841..03a5981a6315c 100644
+> --- a/drivers/net/dsa/microchip/ksz8.c
+> +++ b/drivers/net/dsa/microchip/ksz8.c
+> @@ -137,7 +138,17 @@ static int ksz8_pme_pwrite8(struct ksz_device *dev, =
+int port, int offset, u8 dat
+> =20
+>  static int ksz8_reset_switch(struct ksz_device *dev)
+>  {
+> -	if (ksz_is_ksz88x3(dev)) {
+> +	if (ksz_is_ksz8995xa(dev)) {
+> +		unsigned int port;
+> +
+> +		/* The KSZ8995XA switch itself cannot be reset by software, but
+> +		 * often boot loaders have fun with ports, so reset them. This
+> +		 * reset bit is self-clearing.
+> +		 */
+> +		for (port =3D 0; port < dev->info->port_cnt; port++)
+> +			ksz_port_cfg(dev, port, REG_PORT_STATUS_3,
+> +				     PORT_PHY_SOFT_RESET, true);
+
+[Severity: High]
+This loop in ksz8_reset_switch() iterates over all ports, including the
+CPU port which lacks an internal PHY. Could writing PORT_PHY_SOFT_RESET to
+REG_PORT_STATUS_3 (0x0F) on the CPU port target reserved or MAC control
+registers and cause hardware initialization failures?
+
+> +	} else if (ksz_is_ksz88x3(dev)) {
+>  		/* reset switch */
+>  		ksz_cfg(dev, KSZ8863_REG_SW_RESET,
+>  			KSZ8863_GLOBAL_SOFTWARE_RESET | KSZ8863_PCS_RESET, true);
+
+[ ... ]
+
+> @@ -161,8 +172,14 @@ static int ksz8_reset_switch(struct ksz_device *dev)
+>  static int ksz8863_change_mtu(struct ksz_device *dev, int frame_size)
+>  {
+>  	u8 ctrl2 =3D 0;
+> +	unsigned int legalsz;
+> +
+> +	if (ksz_is_ksz8995xa(dev))
+> +		legalsz =3D KSZ8995XA_LEGAL_PACKET_SIZE;
+> +	else
+> +		legalsz =3D KSZ8_LEGAL_PACKET_SIZE;
+> =20
+> -	if (frame_size <=3D KSZ8_LEGAL_PACKET_SIZE)
+> +	if (frame_size <=3D legalsz)
+>  		ctrl2 |=3D KSZ8863_LEGAL_PACKET_ENABLE;
+
+[Severity: High]
+Does ksz8863_change_mtu() apply inverted BIT(1) logic for MTU limits on the
+KSZ8995XA?
+
+For small MTUs 1522 bytes or less, the driver sets BIT(1) of REG_SW_CTRL_2.
+On the KSZ8863 this enables the size limit, but on KSZ8995XA, BIT(1)
+represents SW_LEGAL_PACKET_DISABLE and disables the limit. Could this cause
+valid packets to be dropped while huge packets bypass the size limit?
+
+[ ... ]
+
+> @@ -242,6 +260,10 @@ static int ksz8_port_queue_split(struct ksz_device *=
+dev, int port, int queues)
+>  		mask_2q =3D KSZ8873_PORT_2QUEUE_SPLIT_EN;
+>  		reg_4q =3D P1CR1;
+>  		reg_2q =3D P1CR1 + 1;
+> +	} else if (ksz_is_ksz8995xa(dev)) {
+> +		/* This switch has no 4way split support */
+> +		mask_2q =3D KSZ8795_PORT_2QUEUE_SPLIT_EN;
+> +		reg_2q =3D REG_PORT_CTRL_0;
+>  	} else {
+>  		mask_4q =3D KSZ8795_PORT_4QUEUE_SPLIT_EN;
+>  		mask_2q =3D KSZ8795_PORT_2QUEUE_SPLIT_EN;
+
+[Severity: Critical]
+When ksz_is_ksz8995xa(dev) is true in ksz8_port_queue_split(), do we use
+uninitialized reg_4q and mask_4q variables?
+
+The function unconditionally passes them to ksz_prmw8() later on. Could this
+perform a read-modify-write on a garbage I/O register address using a
+garbage mask?
+
+[ ... ]
+
+> @@ -2061,13 +2126,17 @@ static int ksz8_setup(struct dsa_switch *ds)
+>  	struct ksz_port *p;
+>  	const u16 *regs;
+>  	int i, ret;
+> +	u8 val;
+> =20
+>  	regs =3D dev->info->regs;
+> =20
+> -	dev->vlan_cache =3D devm_kcalloc(dev->dev, sizeof(struct vlan_table),
+> -				       dev->info->num_vlans, GFP_KERNEL);
+> -	if (!dev->vlan_cache)
+> -		return -ENOMEM;
+> +	/* KSZ8995XA has no SW controlled VLAN handling */
+> +	if (!ksz_is_ksz8995xa(dev)) {
+> +		dev->vlan_cache =3D devm_kcalloc(dev->dev, sizeof(struct vlan_table),
+> +					       dev->info->num_vlans, GFP_KERNEL);
+> +		if (!dev->vlan_cache)
+> +			return -ENOMEM;
+> +	}
+
+[Severity: High]
+By skipping VLAN initialization here in ksz8_setup(), the hardware PVID is
+never cleared to 0.
+
+In net/dsa/tag_ks8995.c, ks8995_rcv() uses a check for !skb->vlan_tci to
+identify originally untagged packets. Does this mean the switch will insert
+its non-zero hardware default PVID into untagged packets, causing them to be
+erroneously presented to the network stack as 802.1Q VLAN tagged packets?
+
+[ ... ]
+
+> diff --git a/drivers/net/dsa/microchip/ksz_spi.c b/drivers/net/dsa/microc=
+hip/ksz_spi.c
+> index 77aecac324667..2c55014246e5f 100644
+> --- a/drivers/net/dsa/microchip/ksz_spi.c
+> +++ b/drivers/net/dsa/microchip/ksz_spi.c
+> @@ -185,7 +186,10 @@ static int ksz_spi_probe(struct spi_device *spi)
+>  		dev->pdata =3D spi->dev.platform_data;
+> =20
+>  	/* setup spi */
+> -	spi->mode =3D SPI_MODE_3;
+> +	if (chip->chip_id =3D=3D KSZ8995XA_CHIP_ID)
+> +		spi->mode =3D SPI_MODE_0;
+> +	else
+> +		spi->mode =3D SPI_MODE_3;
+>  	ret =3D spi_setup(spi);
+>  	if (ret)
+>  		return ret;
+
+[Severity: High]
+This is a pre-existing issue, but by unconditionally assigning spi->mode
+here in ksz_spi_probe(), does it discard all SPI bus flags configured by
+the SPI subsystem based on Device Tree properties (such as spi-cs-high
+or spi-3wire)?
+
+This could break SPI communication on boards requiring non-default
+polarities or phases.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260704-ks8995-to-=
+ksz8-v7-0-2af0eaa545a8@kernel.org?part=3D4
 
