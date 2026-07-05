@@ -1,53 +1,55 @@
-Return-Path: <devicetree+bounces-320567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320570-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GEtYN8QTSmqE+AAAu9opvQ
-	(envelope-from <devicetree+bounces-320567-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 10:20:20 +0200
+	id tgX7IO4TSmqP+AAAu9opvQ
+	(envelope-from <devicetree+bounces-320570-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 10:21:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B6327096AE
-	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 10:20:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1AE47096BF
+	for <lists+devicetree@lfdr.de>; Sun, 05 Jul 2026 10:21:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chaosmail.tech header.s=mail header.b=KQIf+CAZ;
+	dkim=pass header.d=chaosmail.tech header.s=mail header.b=rNPxMRq3;
 	dmarc=pass (policy=reject) header.from=chaosmail.tech;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320567-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320567-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320570-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320570-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D69B63007CB8
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 08:16:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 90033302C939
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jul 2026 08:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06C236E460;
-	Sun,  5 Jul 2026 08:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBB136F415;
+	Sun,  5 Jul 2026 08:16:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from chaosmail.tech (chaosmail.tech [77.81.229.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3ED336A360;
-	Sun,  5 Jul 2026 08:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3199B36C0CE;
+	Sun,  5 Jul 2026 08:16:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783239408; cv=none; b=f2xMjXdBiyksWT+UJfGH5V/UOGRZv3cRcGf28j3KhOnhLDCYM86sArr8b9g/1hwnrY0QzSWlk5ZTCYU2VdDzhAoYclDDCF+ycGFFTbBdHQVpPBr03esMXHSzf4qZY45pmtYkCO2jYhRVq0denY7WexvlaE3VUeoiabfcbXdKcQo=
+	t=1783239409; cv=none; b=kymReDoZ2NpjnPy0Oq2D0zaonoY7gIZ7apHtVFpQl7Rcko+u2hEFowhnm59onPzPfsVfScPDD8I2DSdUrW2fTYPa5KFXjOwP/ArN/NtsgF7ekdpz+7pEANe1FBu9R82JvdRTozi8wWmeggclcZ842sv1X09dx42xaBAPiq2RpTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783239408; c=relaxed/simple;
-	bh=e9CoEDwG1cbuQpb5x6xSuH1axeei/ZWdFetHF10wjzw=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MTAkgciC7PQDXWLXjA0oFkGMafNlPI7xXkNVQaUyUdtOcGGJgxatyaY8NP2A0gdjN/pHEBOZshooFUYt4lTDj0jNH21N0fMKgo4l6w4vc1dHyvDHTQi/1UGgeDT5yp6iXv1ZAZCI+YZFA+0enMeQ5zYemGk4QDjH7btUNQomFZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=chaosmail.tech; spf=pass smtp.mailfrom=chaosmail.tech; dkim=pass (1024-bit key) header.d=chaosmail.tech header.i=@chaosmail.tech header.b=KQIf+CAZ; arc=none smtp.client-ip=77.81.229.115
-Received: by chaosmail.tech (Postfix) id 9EDFC1CC21F;
-	Sun, 05 Jul 2026 08:16:37 +0000 (UTC)
+	s=arc-20240116; t=1783239409; c=relaxed/simple;
+	bh=P24n1VnjIAcMi/bOzGDdsOVAqL1wKs/zn7VIp+SXEA0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=WG0AvkK8GAKkVUWhsAHEzr+rgTsjBUNuni5R2hSM2GCH3qtyS6THs8AA0qrfBjQxyiAZWVXWPUFmzYS0/CVOHFEQjOlHXlohiBRBgy1b8/3wDNrIDPsxz/aCSLmD8/P/XVOpZKoYUl9RkkRLhFZACgiamClkxJmSJH52SmEH8Ms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=chaosmail.tech; spf=pass smtp.mailfrom=chaosmail.tech; dkim=pass (1024-bit key) header.d=chaosmail.tech header.i=@chaosmail.tech header.b=rNPxMRq3; arc=none smtp.client-ip=77.81.229.115
+Received: by chaosmail.tech (Postfix) id 6A2B71CC220;
+	Sun, 05 Jul 2026 08:16:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chaosmail.tech;
-	s=mail; t=1783239398;
+	s=mail; t=1783239399;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=pDLQdHX5gTGLk/qcwUj+BnQvTh2X825nYYdv1sm68gE=;
-	b=KQIf+CAZQgI6mEIjvqCmqeZF5EZhfYn7NN+F/meU5c8aKwoehil0dFMYAhcFy4NOb+IKh9
-	6Sgt4AfMXK33gzOU+QiHhrZwrd5OS6CgyDJUnkVwxe2g0JZhJIHRV4nqfIXZl63fglHPWA
-	+MTI9agFqYOGw88gsbDzPkHTQKwH+DE=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FY5V3ybuTyP3BCRlKYUCOlT9nQq4kQeCRIYQZC7cP8A=;
+	b=rNPxMRq37Gd5Jk+HFJ18Ai2gtJZXgxNd5DLMGUbQaqmV5spNOEE29KqHrJwRsu/YgGKF9D
+	YmzmDLZN5kSHUNZ+tti1zIlczbVvw8QkBbldI8UXh3rtKFcPGPQJc3It+VHOoC8gBZOUIT
+	qZQ5TDiQwplpFR2tbKohmMEnnEWZZYo=
 From: Sasha Finkelstein <k@chaosmail.tech>
-Subject: [PATCH v3 0/3] soc: apple: Add "PMGR misc" power controls driver
-Date: Sun, 05 Jul 2026 10:16:29 +0200
-Message-Id: <20260705-pmgr-misc-v3-0-51b75fed6f73@chaosmail.tech>
+Date: Sun, 05 Jul 2026 10:16:30 +0200
+Subject: [PATCH v3 1/3] dt-bindings: soc: apple: Add Apple PMGR misc
+ controls
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,11 +58,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22OzQ6CMBAGX4X0bE1bKERPvofx0C4LrJGftNhoC
- O9uixcSPX7JzOwuzKMj9OycLcxhIE/jEEd+yBh0ZmiRUx03U0KVohKKT33reE8euEEJttYWFFQ
- s8pPDhl5b63r7bv+0d4Q5BRLRkZ9H996OBZm4f90gueBFIyptcnPSIC/xk9H3hh7HGaFjKR7UX
- s/3ukq6VaU1UoA2xY++rusHe0iBjPgAAAA=
-X-Change-ID: 20260702-pmgr-misc-ae1cbd5bc2c7
+Message-Id: <20260705-pmgr-misc-v3-1-51b75fed6f73@chaosmail.tech>
+References: <20260705-pmgr-misc-v3-0-51b75fed6f73@chaosmail.tech>
+In-Reply-To: <20260705-pmgr-misc-v3-0-51b75fed6f73@chaosmail.tech>
 To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
  Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -68,12 +68,12 @@ To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
 Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Sasha Finkelstein <k@chaosmail.tech>, 
- Conor Dooley <conor.dooley@microchip.com>, Hector Martin <marcan@marcan.st>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783239397; l=1926;
+ Conor Dooley <conor.dooley@microchip.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783239397; l=2590;
  i=k@chaosmail.tech; s=20241124; h=from:subject:message-id;
- bh=e9CoEDwG1cbuQpb5x6xSuH1axeei/ZWdFetHF10wjzw=;
- b=jKItj/3tDyZFn57sHoVKW4ElnRhTcuHnatqYe3oFAnkxL9uFJo8h5ghENN7SPn+8kJ4Fzhxge
- dEssGlepPjQBonZ1R45SUGLF0O4PxztxG8ey+LAXNxAX2XlUb3CEqMI
+ bh=P24n1VnjIAcMi/bOzGDdsOVAqL1wKs/zn7VIp+SXEA0=;
+ b=f3FzkoBSxFnmOl7AZ/a6oqgJaBjg6PUUGT37JaMOMChlcglgwqrKx2e0aj1PAvce/Qef+rT7I
+ mNnFr+4ejaaBqDNhUCDcpGZvmhVRKI9vGDdPV9mE0CzrfH2DtkXsL+X
 X-Developer-Key: i=k@chaosmail.tech; a=ed25519;
  pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
 X-Rspamd-Action: no action
@@ -82,16 +82,16 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[chaosmail.tech,reject];
 	R_DKIM_ALLOW(-0.20)[chaosmail.tech:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320567-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:sven@kernel.org,m:j@jannau.net,m:neal@gompa.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:k@chaosmail.tech,m:conor.dooley@microchip.com,m:marcan@marcan.st,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320570-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sven@kernel.org,m:j@jannau.net,m:neal@gompa.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:k@chaosmail.tech,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[k@chaosmail.tech,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -107,54 +107,87 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chaosmail.tech:from_mime,chaosmail.tech:email,chaosmail.tech:mid,chaosmail.tech:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,msgid.link:url]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[chaosmail.tech:from_mime,chaosmail.tech:email,chaosmail.tech:mid,chaosmail.tech:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,devicetree.org:url,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3B6327096AE
+X-Rspamd-Queue-Id: F1AE47096BF
 
-Certain Apple SoCs have additional power state controls that are using
-a separate "misc" mmio interface. Currently this includes the fabric
-and memory controllers on pro/max/ultra SoCs.
+Certain Apple SoCs include additional PMGR power states that are
+controlled via a different "misc" control block. On existing SoCs, this
+includes the fabric and memory controller state.
 
-This series adds a driver to put those in a low power state when the
-machine enters sleep. The power savings are SoC-dependent and are
-around 1W.
-
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Sasha Finkelstein <k@chaosmail.tech>
 ---
-Changes in v3:
-- Remove ability to probe only one control, it is not used anyway
-- Allow building as module
-- Style fixes
-- Link to v2: https://patch.msgid.link/20260703-pmgr-misc-v2-0-4b26ba10c5a4@chaosmail.tech
+ Documentation/devicetree/bindings/soc/apple/apple,t6000-pmgr-misc.yaml | 45 +++++++++++++++++++++++++++++++++++++++++++++
+ MAINTAINERS                                                            |  1 +
+ 2 files changed, 46 insertions(+)
 
-Changes in v2:
-- Error handling fixes
-- Reword binding description
-- Link to v1: https://patch.msgid.link/20260702-pmgr-misc-v1-0-4f075a3a95c1@chaosmail.tech
+diff --git a/Documentation/devicetree/bindings/soc/apple/apple,t6000-pmgr-misc.yaml b/Documentation/devicetree/bindings/soc/apple/apple,t6000-pmgr-misc.yaml
+new file mode 100644
+index 000000000000..588100222f89
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/apple/apple,t6000-pmgr-misc.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/apple/apple,t6000-pmgr-misc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Apple SoC PMGR Misc Power States
++
++maintainers:
++  - Sasha Finkelstein <k@chaosmail.tech>
++
++description: |
++  Certain Apple SoCs include additional PMGR power states that are controlled
++  via a different "misc" control block. This includes the fabric and memory
++  controller states.
++
++properties:
++  compatible:
++    enum:
++      - apple,t6000-pmgr-misc
++      - apple,t6020-pmgr-misc
++
++  reg:
++    maxItems: 2
++
++  reg-names:
++    items:
++      - const: fabric-ps
++      - const: dcs-ps
++
++required:
++  - compatible
++  - reg
++  - reg-names
++
++additionalProperties: false
++
++examples:
++  - |
++    power-management@8e20c000 {
++        compatible = "apple,t6000-pmgr-misc";
++        reg = <0x8e20c000 0x400>,
++              <0x8e20c800 0x400>;
++        reg-names = "fabric-ps", "dcs-ps";
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 15011f5752a9..5a29bb86499f 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2607,6 +2607,7 @@ F:	Documentation/devicetree/bindings/power/apple*
+ F:	Documentation/devicetree/bindings/power/reset/apple,smc-reboot.yaml
+ F:	Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
+ F:	Documentation/devicetree/bindings/rtc/apple,smc-rtc.yaml
++F:	Documentation/devicetree/bindings/soc/apple/apple,t6000-pmgr-misc.yaml
+ F:	Documentation/devicetree/bindings/spi/apple,spi.yaml
+ F:	Documentation/devicetree/bindings/spmi/apple,spmi.yaml
+ F:	Documentation/devicetree/bindings/usb/apple,dwc3.yaml
 
----
-Hector Martin (1):
-      soc: apple: Add driver for Apple PMGR misc controls
-
-Sasha Finkelstein (2):
-      dt-bindings: soc: apple: Add Apple PMGR misc controls
-      arm64: dts: apple: Add pmgr-misc nodes to t60xx
-
- Documentation/devicetree/bindings/soc/apple/apple,t6000-pmgr-misc.yaml |  45 +++++++++++++++++++++++++++
- MAINTAINERS                                                            |   1 +
- arch/arm64/boot/dts/apple/t600x-die0.dtsi                              |   7 +++++
- arch/arm64/boot/dts/apple/t602x-die0.dtsi                              |   7 +++++
- drivers/soc/apple/Kconfig                                              |  10 ++++++
- drivers/soc/apple/Makefile                                             |   2 ++
- drivers/soc/apple/apple-pmgr-misc.c                                    | 181 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 7 files changed, 253 insertions(+)
----
-base-commit: e5d9690657844a2645a518cdf838206f6daf513e
-change-id: 20260702-pmgr-misc-ae1cbd5bc2c7
-
-Best regards,
---  
-Sasha Finkelstein <k@chaosmail.tech>
+-- 
+2.55.0
 
 
