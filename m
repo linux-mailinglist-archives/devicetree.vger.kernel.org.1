@@ -1,287 +1,125 @@
-Return-Path: <devicetree+bounces-321138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321137-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 29GqDE+gS2oAXQEAu9opvQ
-	(envelope-from <devicetree+bounces-321138-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:32:15 +0200
+	id UtMcFwW0S2o1YwEAu9opvQ
+	(envelope-from <devicetree+bounces-321137-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 15:56:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22F107108BD
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:32:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D08C871190A
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 15:56:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SxWIaI4l;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=blCV9upD;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321138-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-321138-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321137-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321137-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 20F983037C29
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 12:17:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 241ED34BC231
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 12:17:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C0C426408;
-	Mon,  6 Jul 2026 12:17:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F4020424665;
+	Mon,  6 Jul 2026 12:17:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADAFC4252BD;
-	Mon,  6 Jul 2026 12:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98C241F7CD;
+	Mon,  6 Jul 2026 12:17:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783340270; cv=none; b=PZ37gIPlWjh8MxMWImcDKEj8uibF/xRBZYwNxoNM1TP0NACrCN9qNenwhw8j5FMSi4Ab4Fj8NM0bqQyvOI8sZMi2sKAYIQ2Yz5/DbZ1oiMp2znHR07xVvC0K/qBj1TtIdzNmwAM7Xt2AyxAH1ydn9H4//A2SIHgQWJvcJ22FaeI=
+	t=1783340250; cv=none; b=mc7n1KyrhaLRtbGzlKCnQLT10kVIw0PWQzNEPRhUWO7rqmaOiX626Ud7pUXAHkoSSVHrzUKPxh33Ol3l0f/82GM9k9CQnUqzYgZafsa1+etc4H0Upd3xkY2azG/ho3kDhEWK5MI5+foH0dSbaDI16lvLpzeuUT/Ypl3JJBGvHgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783340270; c=relaxed/simple;
-	bh=84TtUv3R1XOpb9UxevytZgOBwDl2Vh2ZS8n56h4r5Ow=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kLnwkjJRX9ndVt/RPAhxYcseyrFACdD8VJjywBglR8Cl1O8flztOn/Vhd/lDjb+RQ/zJvGwn1KUaWMapmCsPkRTeLfhM+gV8GoZuCLdZmnkPLpKfNdveTJ3KHK2PuoYddiWRHkfiaolnBsokODGIZ5tLXgRQuuQbGy5zVmRcBtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SxWIaI4l; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 774691F000E9;
-	Mon,  6 Jul 2026 12:17:26 +0000 (UTC)
+	s=arc-20240116; t=1783340250; c=relaxed/simple;
+	bh=0nskR7GDIgxvdgeUxgmYubgNNNCP30wq9nwJyf5IBds=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Rx437pyhwp2DKFhxRkuQlxCqJBBt/JK/r6ZTL7mpR2DVTyLGGgFbyS9HwfpUrdAD+IoMGanmo4w62T54FTeM+ZaoL4FeZ7ZetGbDVsH7EygNREwXJp+s5UuI3dt34TqkNDBhAg3oTv0jWRCP5QN1CyMEw9AhSwY8JgMRhirTp4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=blCV9upD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F1241F00A3A;
+	Mon,  6 Jul 2026 12:17:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783340262;
-	bh=84TtUv3R1XOpb9UxevytZgOBwDl2Vh2ZS8n56h4r5Ow=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=SxWIaI4l0Wv1pa+MTjMSyW4ZXRR98NCEvytP9NUjPxeTHfKlkdsX4RQgYPla72+PI
-	 Fsjs0tx83IRHYIkG+oK7HTFcNde329XtL1MYCPCnw/GtShFVyfpVhrx/9Sd4LVy5Va
-	 jgbjsEQ9li0Oyu1yMwrwGbc95bS5IYnU0SMApmQV19FOk1f/ZIq/QvHu9nuRPcTDCA
-	 KrEUrR9j0MhZ/j35UzJRUaDkoLfra8bnz3OpZPI4F/87BT4VMsRgoR77PwAVxUK3NW
-	 xLu+mDvK/x4PsrSlKdiItdr+UbD+rocdUN7rtQultlc6JXpZOA1hZs1aTpn94IUPRG
-	 iBSVMnGPSM09w==
-Date: Mon, 6 Jul 2026 13:17:23 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Linus Walleij <linusw@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Alexey Brodkin <abrodkin@synopsys.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Eddie James <eajames@linux.ibm.com>,
-	Tiffany Lin <tiffany.lin@mediatek.com>,
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-	Yunfei Dong <yunfei.dong@mediatek.com>,
-	Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-	Houlong Wei <houlong.wei@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Joseph Liu <kwliu@nuvoton.com>, Marvin Lin <kflin@nuvoton.com>,
-	Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Ge Gordon <gordon.ge@bst.ai>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Shengjiu Wang <shengjiu.wang@gmail.com>,
-	Xiubo Li <Xiubo.Lee@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Peter Chen <peter.chen@cixtech.com>,
-	Fugang Duan <fugang.duan@cixtech.com>,
-	Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
-	BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
-	Fabio Estevam <festevam@gmail.com>,
-	Nicolin Chen <nicoleotsuka@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-	Vijendar Mukunda <Vijendar.Mukunda@amd.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-aspeed@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-media@vger.kernel.org,
-	openbmc@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
-	kernel@collabora.com, linux-tegra@vger.kernel.org,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org, linux-staging@lists.linux.dev,
-	linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	imx@lists.linux.dev, sound-open-firmware@alsa-project.org
-Subject: Re: [PATCH 27/42] ASoC: mediatek: mt8183: Use
- devm_of_reserved_mem_device_init()
-Message-ID: <e0c0d4f5-533e-4625-b8ff-f2178e54a7f8@sirena.org.uk>
-Mail-Followup-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Linus Walleij <linusw@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Alexey Brodkin <abrodkin@synopsys.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Eddie James <eajames@linux.ibm.com>,
-	Tiffany Lin <tiffany.lin@mediatek.com>,
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-	Yunfei Dong <yunfei.dong@mediatek.com>,
-	Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-	Houlong Wei <houlong.wei@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Joseph Liu <kwliu@nuvoton.com>, Marvin Lin <kflin@nuvoton.com>,
-	Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Ge Gordon <gordon.ge@bst.ai>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Shengjiu Wang <shengjiu.wang@gmail.com>,
-	Xiubo Li <Xiubo.Lee@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Peter Chen <peter.chen@cixtech.com>,
-	Fugang Duan <fugang.duan@cixtech.com>,
-	Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
-	BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
-	Fabio Estevam <festevam@gmail.com>,
-	Nicolin Chen <nicoleotsuka@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-	Vijendar Mukunda <Vijendar.Mukunda@amd.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-aspeed@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-media@vger.kernel.org,
-	openbmc@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
-	kernel@collabora.com, linux-tegra@vger.kernel.org,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org, linux-staging@lists.linux.dev,
-	linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	imx@lists.linux.dev, sound-open-firmware@alsa-project.org
-References: <20260703193855.110619-1-mukesh.ojha@oss.qualcomm.com>
- <20260703193855.110619-28-mukesh.ojha@oss.qualcomm.com>
+	s=k20260515; t=1783340249;
+	bh=57LMw+CKpYgHb0dlcpXBJ814pjZ9QY7mvbPGM3p69pY=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=blCV9upDdpZjnrvTCKuy5ZYx9VuMfq+iO/JzlE+4EvsIbF8oG3WeoLYKdz08I/TpF
+	 puGLsdzlmrg/XFY4lHVDPXsq4/+H7fRIhgzTeEdBtaFfIltyXlZDai0oSMCy6szbfh
+	 7NLZoh2oVFMYz5bfdF12CJLZeCgHrDled4kMaxK+JXDS2t1T1TrAvPvQtNb7sQxx+P
+	 M8gcTI3AdCYRn8Xb/8Owv4TZwhQtn2A2E6ogdq7kAwPGrxQ7cGrOzxS0CDCUKN1VHK
+	 bjQDrPYm6/X5qYq1XwTzZwUIFgO70qYbIew/QtXrmgOjFLcs9s3Iu5HbJtKIIAK1vg
+	 wati4ooOwa0Yg==
+Message-ID: <76e21440-6ac8-4484-bada-da8e89ab086a@kernel.org>
+Date: Mon, 6 Jul 2026 07:17:28 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gI2mM3XhbyEs6RmR"
-Content-Disposition: inline
-In-Reply-To: <20260703193855.110619-28-mukesh.ojha@oss.qualcomm.com>
-X-Cookie: Did I do an INCORRECT THING??
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: intel: arria10: Correct indentation
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260706101913.341540-2-krzysztof.kozlowski@oss.qualcomm.com>
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20260706101913.341540-2-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.76 / 15.00];
+X-Spamd-Result: default: False [-5.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,arm.com,linux.intel.com,suse.de,gmail.com,ffwll.ch,jms.id.au,codeconstruct.com.au,crapouillou.net,intel.com,sys-base.io,sholland.org,synopsys.com,ideasonboard.com,amd.com,linux.ibm.com,mediatek.com,collabora.com,nuvoton.com,nvidia.com,arndb.de,linuxfoundation.org,bst.ai,linaro.org,perex.cz,suse.com,nxp.com,pengutronix.de,linux.alibaba.com,cixtech.com,oss.qualcomm.com,bstai.top,linux.dev,vger.kernel.org,lists.freedesktop.org,lists.ozlabs.org,lists.infradead.org,lists.linux.dev,alsa-project.org];
+	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321138-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[dinguyen@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mukesh.ojha@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:liviu.dudau@arm.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:paul@crapouillou.net,m:anitha.chrisanthus@intel.com,m:paulk@sys-base.io,m:linusw@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:abrodkin@synopsys.com,m:laurent.pinchart@ideasonboard.com,m:tomi.valkeinen@ideasonboard.com,m:michal.simek@amd.com,m:dan.scally@ideasonboard.com,m:jacopo.mondi@ideasonboard.com,m:mchehab@kernel.org,m:eajames@linux.ibm.com,m:tiffany.lin@mediatek.com,m:andrew-ct.chen@mediatek.com,m:yunfei.dong@mediatek.com,m:minghsiu.tsai@mediatek.com,m:houlong.wei@mediatek.com,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:kwliu@nuvoton.com,m:kflin@nuvoton.com,m:dmitry.osipenko@collabora.com,m:krzk@kernel.org,m:thierry.reding@kernel.or
- g,m:jonathanh@nvidia.com,m:srini@kernel.org,m:arnd@arndb.de,m:gregkh@linuxfoundation.org,m:gordon.ge@bst.ai,m:adrian.hunter@intel.com,m:ulfh@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:mathieu.poirier@linaro.org,m:perex@perex.cz,m:tiwai@suse.com,m:shengjiu.wang@gmail.com,m:Xiubo.Lee@gmail.com,m:lgirdwood@gmail.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:peter.ujfalusi@linux.intel.com,m:yung-chuan.liao@linux.intel.com,m:daniel.baluta@nxp.com,m:orsonzhai@gmail.com,m:baolin.wang@linux.alibaba.com,m:peter.chen@cixtech.com,m:fugang.duan@cixtech.com,m:ekansh.gupta@oss.qualcomm.com,m:bst-upstream@bstai.top,m:festevam@gmail.com,m:nicoleotsuka@gmail.com,m:kernel@pengutronix.de,m:kai.vehmanen@linux.intel.com,m:pierre-louis.bossart@linux.dev,m:Vijendar.Mukunda@amd.com,m:zhang.lyra@gmail.com,m:cix-kernel-upstream@cixtech.com,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-aspeed@lists.ozlabs.org,m:linux-arm-kernel@lists.in
- fradead.org,m:linux-mips@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:linux-media@vger.kernel.org,m:openbmc@lists.ozlabs.org,m:linux-mediatek@lists.infradead.org,m:kernel@collabora.com,m:linux-tegra@vger.kernel.org,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-sound@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:imx@lists.linux.dev,m:sound-open-firmware@alsa-project.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[92];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
 	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-321137-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dinguyen@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sirena.org.uk:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 22F107108BD
+X-Rspamd-Queue-Id: D08C871190A
 
 
---gI2mM3XhbyEs6RmR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Sat, Jul 04, 2026 at 01:08:40AM +0530, Mukesh Ojha wrote:
-> Replace the hand-rolled devm wrapper (mt8183_afe_release_reserved_mem +
-> devm_add_action_or_reset) with the standard
-> devm_of_reserved_mem_device_init(), letting the device resource manager
-> handle cleanup automatically.
+On 7/6/26 05:19, Krzysztof Kozlowski wrote:
+> Correct spaces or mix of tabs+spaces into proper tab-indented lines.
+> No functional impact (same DTB).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
+> ---
+> 
+> Ongoing bigger work for all bindings and DTS with built-in checker (dt-check-style).
+> ---
+>   arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Acked-by: Mark Brown <broonie@kernel.org>
+Applied!
 
---gI2mM3XhbyEs6RmR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmpLnNMACgkQJNaLcl1U
-h9DskQf9GhXzp9vEAYGZ4jdAHHof/S2RusXTeAwjV2KA+N3cPIrKmiBoRNlgJE6R
-k3Wyw/t4gLCe3h6z2QdkUxrHmSo4zwRULrIKMwL8gVp5COfs5IkPPcABUyIHeFCO
-aSUyfbcTEmebIHqnQpa3HlBa3afU4eelK4h7RXbrkb0DrK/9jxpZt+bPg1U0NvIu
-V/c0+Te+i2jhvxQzH+QpW6Mmz2BzENNfLFfy74GMZsq9Gv77D20Oe4sM+R8H5EVz
-ush1RoAVB4FpNWLggTInczXux3L+bSkpXkID816GHQtk23ihZOBfC6EHyrcSfs3Y
-MAk5DdJ76RisJ0bm0BpxgMTpFqlfgw==
-=6M5Z
------END PGP SIGNATURE-----
-
---gI2mM3XhbyEs6RmR--
+Thanks,
+Dinh
 
