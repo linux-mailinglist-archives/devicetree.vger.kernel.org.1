@@ -1,73 +1,101 @@
-Return-Path: <devicetree+bounces-321028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321030-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8sxAOyOJS2obVAEAu9opvQ
-	(envelope-from <devicetree+bounces-321028-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:53:23 +0200
+	id 53PpFZ+ZS2o1WQEAu9opvQ
+	(envelope-from <devicetree+bounces-321030-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:03:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F7DE70F81B
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:53:23 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9918071038B
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:03:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ideasonboard.com header.s=mail header.b="l/eOddAd";
-	dmarc=pass (policy=none) header.from=ideasonboard.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321028-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321028-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=m7HKNewx;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321030-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321030-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 356EA3049518
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:03:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A560A38AE0FA
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:03:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D51A41229E;
-	Mon,  6 Jul 2026 09:45:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27C348C405;
+	Mon,  6 Jul 2026 09:46:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FCB11CEAC2;
-	Mon,  6 Jul 2026 09:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98418477E4B
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 09:46:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783331131; cv=none; b=H27ib+Z3ETWGqVLEACXC0RLp9s7ZasjwhMo0BHwPnouhpvzdIn1bXBsMMDr8q3EGPUJ6VnHxLK/Ch8rwQL/WMBmL8osMAgeurh7WKdZz95sP1FDg1Dfq4tj76qfM5c2c0jEvR0ulQV+iS/pezbt4qj2Lf3K3zuPcyDIWVviiaTI=
+	t=1783331166; cv=none; b=JJu7LgjyHpYLBhtyWFYu/wCbbkrkzpbDX6jT65brWR0Z7zPEqs+lZMD1nnXdujB75lk14/k+pzL3aaFKfs86tGANDsk0P6I3I920K83pEZfu5p21iCJJNlvBRKqWLVET9IAiN7cZK0Z/dEeyXQr/xqlzBDrOmM9BoB25WAmB6GI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783331131; c=relaxed/simple;
-	bh=M8pn+QlLLysMqwQcLRLoz0lnTqJieKWaHHlj88GmCQ8=;
+	s=arc-20240116; t=1783331166; c=relaxed/simple;
+	bh=zDw0ABLub0kgFm+IA9IE6NYszy3Pq95vEScWSA+dnhs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n0Wnc40/8YPIyLAT44nkbgmkU3555sMyp96DG/5zbT4inAiciAF2EJiNbVG0IhAA8cum+YWyCkBMid4jDLO42ftsj31K4vTt0nU7cP8ljDqyBvMyBWJEIBzGJAi561uGdOkdOwnu5ySixPB5yAiWixlNwrLB4ZlAlC3F5ZA75Tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=l/eOddAd; arc=none smtp.client-ip=213.167.242.64
-Received: from killaraus.ideasonboard.com (2001-14ba-70f3-e800--a06.rev.dnainternet.fi [IPv6:2001:14ba:70f3:e800::a06])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 32794524;
-	Mon,  6 Jul 2026 11:44:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1783331076;
-	bh=M8pn+QlLLysMqwQcLRLoz0lnTqJieKWaHHlj88GmCQ8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l/eOddAdOyPtNffoM9mczj3RP1ic6Gc38MwtOFPIqRqPlvgsz5EZ3KhnYEmFxlt4x
-	 Erd5fCEETscm3HdL3RkU3IXF8ojzNtcr4Wb54IYIP/WHSRLfeu9t2EktMSK9ffVfcB
-	 JXzIy1OGkvxejhGV8z5E1kNRrtzNjshDa0x3qWLA=
-Date: Mon, 6 Jul 2026 12:45:22 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	Thuan Nguyen <thuan.nguyen-hong@banvien.com.vn>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: display: vga-connector: Allow
- hardcoding EDID
-Message-ID: <20260706094522.GA42740@killaraus.ideasonboard.com>
-References: <20260705213542.28987-1-laurent.pinchart+renesas@ideasonboard.com>
- <20260705213542.28987-2-laurent.pinchart+renesas@ideasonboard.com>
- <20260706-capable-beaver-of-excellence-a3cf10@houat>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LsqyfmXF0VWmZObSRP29DRzQ34MJakMnHIlO7EEmm26WHAn2kZB7Cgq85tLcGD92/nAWFVSL5MEOkNxKfp1AGdpdDUggOFbJusj8rhouyHN2mzgkRrov5BWOsZPSHWup8mBfXYc+IbZTtu2lb1lA0Hk0N9fGslTWQTyqm9knJlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m7HKNewx; arc=none smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-493c486f012so11419795e9.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 02:45:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783331158; x=1783935958; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=/ujYMuu1OWSnbiAmz8ZNXJGcWE93aVNWAdKELmlJkJw=;
+        b=m7HKNewxSSGBmTzR2gmUA2UURsCEGjhjxl1YFk1AshqSNelnllxGkY9DWE9k73czMD
+         XfdGaggCpBHapMRsd5bsQVOcypEYJE5tmIqjfTIJdZK/d4rs89r8JnmFoKCFYC3osd1c
+         K0zPADhcB6719Lnm1TKCturvMyH+4pQsm706814f8lj5Tt7fhyOzcYcAueVPGNvFJDjx
+         wPlNlDpkKwoNJ6lgj3huhQmXXSaYtG/MkvcXP4zEt/KmXiIk0VJf3HtrV+OEswkN2Y+V
+         cf/Jm5wOQ1P7aR9H84U45ytMcquN66X2OtAfjIh5qS2Rm+sj/apFuRa5gHoCQhI/TC7Q
+         JyJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783331158; x=1783935958;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=/ujYMuu1OWSnbiAmz8ZNXJGcWE93aVNWAdKELmlJkJw=;
+        b=ZSIPK9cuzhpKQebVwAe6qIaNcarTs1lCrR12+rThuSDclXy876lVGVvPw6nlRMxe1+
+         3pspLQowXgFGkTnWV8Iv6JHysamaHVcPAPTwHyb/gLyAmrdj3wJpO7jAs7WNPIqqO4eB
+         OC5OGsLsM4Hy6xzqf2F1dYW1qaFO2ILus4+63ZLv6dbX8RDrZ7UaOMK+kUDsaG5ELKPR
+         bT+u61CESAB+UzBK21JZfnQ82HgWzwa5vYbElFlE13zTDjYUUazok5AsgcrQIQSQpxq4
+         eibyTilx6uburghGkEhdw61StWUStvuKkR0VfCS9Dk7w6i2QD0qInj0HuP67TrUZwqyB
+         a0Og==
+X-Forwarded-Encrypted: i=1; AHgh+Rp/K5wZE97R7R8hR40vmTOZk02/kMAUeM97w1yais02A3iaR32HlzAvwBjsKrEEJKn5DELkR1rJYXXO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyjfoq6klHAZ6Gtb8rmg6fOnyOa/Cu/erFwJ14MwOU+O6wiBZQ9
+	BBPTcfnDXNRopiYYnoGgsX5XDFwYUiZ2JDnP5c35OzZ+zWgwuFnERrhx
+X-Gm-Gg: AfdE7clttnLFNFcHLJrcwjUXdwzeM7IPHouZ4ewu5SBII67mKhAmQ/JBRqMmlUrD0S2
+	1j40W6n6lBvLl6Ld8ROE9TjuMy4svDftuJWWieuycmFW5RpiRHZaBU6s1WNsGWaoN1o3sI3rWsm
+	HGJLTMFdg0gj3Fh36Rfrd03huKEhXozVOJ828sokNYBkCJrqh5jjLbnZJgKRWNtJGvF9HrJCsRh
+	nhGaLxZfsWtErG8EXPw+TC0bUs4h7AcwAPUdWmtqF5YLSBi7JLqGpHkqnGG6w9jWW1X6ellUhKs
+	kLVT1zEPVf46qJdL6J4DbsShC5HI5HWOWRbe+VV2evSJuZoJE8xvRQ45BF1KRnrLS0yMt634oOK
+	lHX6ZNKXKbuZnJwWhg5nYCkQ2sZRIfhzA2JVOq3pXCn4Wa010AuvF/N05qYJSi+XT283WNcOOjd
+	fj/ZTj
+X-Received: by 2002:a05:600c:848c:b0:493:c862:3f2d with SMTP id 5b1f17b1804b1-493d11d3bf6mr110310105e9.5.1783331158069;
+        Mon, 06 Jul 2026 02:45:58 -0700 (PDT)
+Received: from nsa ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493c637bc21sm645014455e9.7.2026.07.06.02.45.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jul 2026 02:45:57 -0700 (PDT)
+Date: Mon, 6 Jul 2026 10:47:02 +0100
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>, rodrigo.alencar@analog.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
+	Shuah Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH v6 12/16] iio: frequency: ad9910: add RAM mode support
+Message-ID: <akt3i_YxG-jF3IdJ@nsa>
+References: <20260618-ad9910-iio-driver-v6-0-79125ffbe430@analog.com>
+ <20260618-ad9910-iio-driver-v6-12-79125ffbe430@analog.com>
+ <20260703040544.08a8ea5e@jic23-huawei>
+ <ake_YWfvVC9RQ3wu@nsa>
+ <1493eed5-5bb8-4a2c-8f2d-8b4bc5dde157@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,89 +104,233 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260706-capable-beaver-of-excellence-a3cf10@houat>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1493eed5-5bb8-4a2c-8f2d-8b4bc5dde157@baylibre.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-321030-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321028-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:thuan.nguyen-hong@banvien.com.vn,m:maarten.lankhorst@linux.intel.com,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:linux-renesas-soc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,banvien.com.vn,linux.intel.com,suse.de,kernel.org,glider.be,gmail.com,intel.com,linaro.org,kwiboo.se,bootlin.com];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:dlechner@baylibre.com,m:jic23@kernel.org,m:devnull+rodrigo.alencar.analog.com@kernel.org,m:rodrigo.alencar@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:devnull@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[killaraus.ideasonboard.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,ideasonboard.com:from_mime,ideasonboard.com:email,ideasonboard.com:dkim]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email,nsa:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3F7DE70F81B
+X-Rspamd-Queue-Id: 9918071038B
 
-Hi Maxime,
-
-On Mon, Jul 06, 2026 at 10:52:32AM +0200, Maxime Ripard wrote:
-> On Mon, Jul 06, 2026 at 12:35:39AM +0300, Laurent Pinchart wrote:
-> > Since DDC version 2, introduced in 1996, VGA monitors have exposed EDID
-> > data over an I2C bus. The bus is also used to detect the presence of a
-> > connected monitor by trying to read the EDID data.
+On Sat, Jul 04, 2026 at 11:50:35AM -0500, David Lechner wrote:
+> On 7/3/26 9:09 AM, Nuno Sá wrote:
+> > On Fri, Jul 03, 2026 at 04:05:44AM +0100, Jonathan Cameron wrote:
+> >> On Thu, 18 Jun 2026 14:27:28 +0100
+> >> Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
+> >>
+> >>> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> >>>
+> >>> Add RAM control channel, which includes:
+> >>> - RAM data loading via firmware upload interface;
+> >>> - Per-profile configuration and DDS core parameter destination as firmware
+> >>>   metadata;
+> >>> - Profile switching relying on profile channels;
+> >>> - Sampling frequency control of the active profile;
+> >>> - ram-enable-aware read/write paths that redirect single tone
+> >>>   frequency/phase/amplitude access through reg_profile cache when RAM is
+> >>>   active;
+> >>>
+> >>> When RAM is enabled, the DDS profile parameters (frequency, phase,
+> >>> amplitude) for the single tone mode are sourced from a shadow register
+> >>> cache (reg_profile[]) since the profile registers are repurposed for RAM
+> >>> control.
+> >>>
+> >>> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> >>
+> >>> diff --git a/drivers/iio/frequency/ad9910.c b/drivers/iio/frequency/ad9910.c
+> >>> index 3fe97aa887c3..c4e179dda715 100644
+> >>> --- a/drivers/iio/frequency/ad9910.c
+> >>> +++ b/drivers/iio/frequency/ad9910.c
+> >>
+> >>> +static enum fw_upload_err ad9910_ram_fwu_write(struct fw_upload *fw_upload,
+> >>> +					       const u8 *data, u32 offset,
+> >>> +					       u32 size, u32 *written)
+> >>> +{
+> >>> +	const struct ad9910_ram_fw *fw_data = (const struct ad9910_ram_fw *)data;
+> >>> +	struct ad9910_state *st = fw_upload->dd_handle;
+> >>> +	int ret, ret2, idx, wcount;
+> >>> +	u64 tmp64, backup;
+> >>> +
+> >>> +	if (offset != 0)
+> >>> +		return FW_UPLOAD_ERR_INVALID_SIZE;
+> >>> +
+> >>> +	guard(mutex)(&st->lock);
+> >>> +
+> >>> +	if (st->ram_fwu_cancel)
+> >>> +		return FW_UPLOAD_ERR_CANCELED;
+> >>> +
+> >>> +	if (AD9910_RAM_ENABLED(st))
+> >>> +		return FW_UPLOAD_ERR_HW_ERROR;
+> >>> +
+> >>> +	for (idx = 0; idx < AD9910_NUM_PROFILES; idx++)
+> >>> +		st->reg_profile[idx] = get_unaligned_be64(&fw_data->profiles[idx]) |
+> >>> +				       AD9910_PROFILE_RAM_OPEN_MSK;
+> >>> +
+> >>> +	ret = ad9910_reg32_update(st, AD9910_REG_CFR1,
+> >>> +				  AD9910_CFR1_RAM_PLAYBACK_DEST_MSK |
+> >>> +				  AD9910_CFR1_INT_PROFILE_CTL_MSK,
+> >>> +				  get_unaligned_be32(&fw_data->cfr1), true);
+> >>> +	if (ret)
+> >>> +		return FW_UPLOAD_ERR_RW_ERROR;
+> >>> +
+> >>> +	wcount = get_unaligned_be16(&fw_data->wcount);
+> >>> +	if (!wcount) {
+> >>> +		*written = size;
+> >>> +		return FW_UPLOAD_ERR_NONE; /* nothing else to write */
+> >>> +	}
+> >>> +
+> >>> +	ret = ad9910_profile_set(st, st->profile);
+> >>> +	if (ret)
+> >>> +		return FW_UPLOAD_ERR_HW_ERROR;
+> >>> +
+> >>> +	/* backup profile register and update it with required address range */
+> >>> +	backup = st->reg[AD9910_REG_PROFILE(st->profile)].val64;
+> >>> +	tmp64 = AD9910_PROFILE_RAM_STEP_RATE_MSK |
+> >>> +		FIELD_PREP(AD9910_PROFILE_RAM_START_ADDR_MSK, 0) |
+> >>> +		FIELD_PREP(AD9910_PROFILE_RAM_END_ADDR_MSK, wcount - 1);
+> >>> +	ret = ad9910_reg64_write(st, AD9910_REG_PROFILE(st->profile), tmp64, true);
+> >>> +	if (ret)
+> >>> +		return FW_UPLOAD_ERR_RW_ERROR;
+> >>> +
+> >>> +	memcpy(&st->tx_buf[1], fw_data->words, wcount * AD9910_RAM_WORD_SIZE);
+> >>> +
+> >>> +	/* write ram data and restore profile register */
+> >>> +	ret = ad9910_spi_write(st, AD9910_REG_RAM,
+> >>> +			       wcount * AD9910_RAM_WORD_SIZE, false);
+> >>> +	ret2 = ad9910_reg64_write(st, AD9910_REG_PROFILE(st->profile), backup, true);
+> >>> +	if (ret || ret2)
+> >>> +		return FW_UPLOAD_ERR_RW_ERROR;
+> >>> +
+> >>> +	*written = size;
+> >>
+> >> I'd like a blank line here. Mostly to make that 'good' return more obvious.
+> >>
+> >>> +	return FW_UPLOAD_ERR_NONE;
+> >>> +}
+> >>
+> >>>  
+> >>> +static inline void ad9910_debugfs_init(struct ad9910_state *st,
+> >>> +				       struct iio_dev *indio_dev)
+> >>> +{
+> >>> +	struct dentry *d = iio_get_debugfs_dentry(indio_dev);
+> >>> +	char buf[64];
+> >>> +
+> >>> +	/*
+> >>> +	 * symlinks are created here so iio userspace tools can refer to them
+> >>> +	 * as debug attributes.
+> >>
+> >> Maybe worth a reference to appropriate ABI doc here (even if it is introduced
+> >> in a later patch)
 > > 
-> > Some devices where the VGA display is integrated in the device and
-> > always connected do not connect the DDC pins. Some development boards,
-> > such as the Renesas M3N Salvator-XS, also do not connect the DDC pins.
+> > I'm not so sure about these links. I mean, I definitely agree we should
+> > make it easy for userspace tools like libiio to be able to handle
+> > these kind of attributes but using debugfs is questionable to me. Pretty
+> > much because this is not a debug thing. It is a real setting for the
+> > driver so ideally we would be able to control it (using the existent
+> > tools) without enforcing one to mount debugfs (I know that most of the
+> > times it's always mounted but still feels wrong to tie "real
+> > functionality" to debugfs). 
 > > 
-> > To support those, add the ability to provide hardcoded EDID data in the
-> > device tree. This is mutually exclusive with specifying a DDC bus, and
-> > can only be done when the VGA display is guaranteed to be always
-> > connected.
+> > Having said the above, some suggestions:
 > > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > 1. Make the iio_dev the parent so that the attr name is just "ram" and
+> > it will be a subdir /sys/bus/iio/iio:deviceN/ram/.
+> > 2. Propose a new helper for the firmware_loader code so we can get
+> > struct device from struct fw_upload then we can easily create a sysfs
+> > symlink.
+> > 3. Name the attr as dev_name(iio_dev):attr so that it becomes
+> > iio:deviceN:attr_name.
+> > 
+> > Now that I think about it, 2. does not make much sense when compared to
+> > 1. And If I'm not missing anything both 1. and 3. can be sanely parsable
+> > from userspace (being 3. maybe a bit more reliable). And yes, both require
+> > user space tools (in this case libiio) to support a new type of
+> > attribute (firmware) but that is another problem.
 > 
-> This feels redundant with the EDID firmware loading mechanism we have in
-> KMS already. It should at least be mentioned why we would need to set it
-> in the device tree at all.
+> I would say that udev should be used to find the firmware device from
+> userspace rather than creating symlinks. And you probably don't even
+> need udev if you already have the `iio-device:<ID>` value. The path
 
-Very good question.
+Just one note. If you mean <ID> as the attr name the above will fail for
+multiple instances of the same device. That's is why a proposed
+dev_name(iio_dev) which I think it should reliable be iio:deviceN. 
 
-I assume you're talking about CONFIG_DRM_LOAD_EDID_FIRMWARE, as the
-debugfs override_edid feature isn't meant for production. If there are
-other relevant mechanisms I'm not aware of, please let me know.
+I guess N might change so anyone hardcoding it might have surprises. But
+properly done and we have a sane way to match the above with anything on
+/sys/class/firmware/iio:deviceN:<attr>/
 
-In the use case at hand, the VGA display is an integral part of the
-device, the same way an LVDS or DSI panel would be. Using
-CONFIG_DRM_LOAD_EDID_FIRMWARE, the manufacturer would need to set the
-drm.edid_firmware command line parameter, and provide EDID as a file in
-/lib/firmware/ (possibly in an initramfs). Beside the complexity, and
-the fact it won't be very friendly to people who run a different
-userspace on the device, I think EDID counts in this case as system
-description, the same way we support specifying panel timings in device
-tree.
+> is always going to be `/sys/class/firmware/iio-device:<ID>:ram/`. It
+> seems like the same amount of work for usespace to computer the path
+> either way, so might as well keep it simple and leave out the symlink
+> stuff.
 
-Does this make sense ? If so, I'll update the commit message accordingly
-in v2.
+Yes, at least for libiio, `iio:deviceN` is already what we call the
+device ID so we can match fw attrs against it and everything after the
+last ':' is treated as the attr_name. 
 
--- 
-Regards,
+We just need to keep in mind that if a second user of this stuff pops
+up, we should add a new helper to enforce the ABI.
 
-Laurent Pinchart
+- Nuno Sá
+> 
+> > 
+> > - Nuno Sá
+> >>
+> >>> +	 */
+> >>> +	snprintf(buf, sizeof(buf), "/sys/class/firmware/%s/loading", st->ram_fwu_name);
+> >>> +	debugfs_create_symlink("ram_loading", d, buf);
+> >>> +
+> >>> +	snprintf(buf, sizeof(buf), "/sys/class/firmware/%s/data", st->ram_fwu_name);
+> >>> +	debugfs_create_symlink("ram_data", d, buf);
+> >>> +}
+> >>> +
+> >>>  static int ad9910_probe(struct spi_device *spi)
+> >>>  {
+> >>>  	static const char * const supplies[] = {
+> >>> @@ -1561,7 +1876,25 @@ static int ad9910_probe(struct spi_device *spi)
+> >> ...
+> >>
+> >>> +	ad9910_debugfs_init(st, indio_dev);
+> >>
+> >> Blank line preferred before a simple return like this one.
+> >>
+> >>> +	return 0;
+> >>>  }
+> >>>  
+> >>>  static const struct spi_device_id ad9910_id[] = {
+> >>>
+> >>
+> 
 
