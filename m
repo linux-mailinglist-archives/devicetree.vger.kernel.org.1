@@ -1,197 +1,178 @@
-Return-Path: <devicetree+bounces-321048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321049-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2VDuNE+cS2qtWwEAu9opvQ
-	(envelope-from <devicetree+bounces-321048-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:15:11 +0200
+	id th9AATKAS2rYSQEAu9opvQ
+	(envelope-from <devicetree+bounces-321049-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:15:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28AEB7105FC
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:15:11 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C9AC70EFED
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:15:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chromium.org header.s=google header.b=W8gWe78Y;
-	dmarc=pass (policy=none) header.from=chromium.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321048-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321048-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cufcBLBt;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321049-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321049-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D1A103586CDE
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:13:44 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 542EC301D76F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A6E541D4DF;
-	Mon,  6 Jul 2026 10:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB14C442112;
+	Mon,  6 Jul 2026 10:09:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f46.google.com (mail-yx1-f46.google.com [74.125.224.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 692523546F6
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 10:09:06 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783332547; cv=pass; b=EwF2hN2wAIy6B8o/2eNbqgy3S9IceZFOjieSIk30wEQMxZBgl3+wkhUGUdZgc60bXEbyUv1oc9kyH/3hICd5mIi9U4zTwP4F3HhpSjimiSrf4v7fVgYlZvBuLlg7VLRJS6UosQnTfXAuJDPf9kAczvpW+QxgfPea6cbTyBfbQ48=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783332547; c=relaxed/simple;
-	bh=IFML3rF9djtar7SwsjcOXZQUh4NL6BJakKNcU6x9ydY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f/rn7DXudDc/4r7flR8GWkqaeC5GZTyg7N9b4CUAiTDeDDkN2vtcpReDOV+aEM7ui9Ffbpn9SaK7SDavaBmas47WEUz7o0JZnUt2a3hDJZZJ2XkP2Et8uURy/6tTS07Qq8GTl9qt8o+I6cQY+RmOSLqTlNtGcE9LR9paScIbpjQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=W8gWe78Y; arc=pass smtp.client-ip=74.125.224.46
-Received: by mail-yx1-f46.google.com with SMTP id 956f58d0204a3-664b3831a20so4008958d50.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 03:09:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783332545; cv=none;
-        d=google.com; s=arc-20260327;
-        b=OlQuOhvn2na4A886t8COMCKewHhvSgo5vvCDGY8qlI0IioINMUrNw6LNf5N/UCSD2N
-         Q3Ole53USwfUYBGU9F51j1vPHvhYmhHEaLWNrtvuBAFxEqrf4P8P7rj3y2CMxY0shbID
-         mveElBJHqKb8h8NEIkVgG/H1E0Ijka2Ku3GhLmPH5jCkolpOcL67//IO1uiH/ncXN2Bj
-         eCQSssVVgG5QzvANZjRZfwNsptluL6STWuHSf2P0rCTX0Eoa0w8ACwUNOwvTKcPzVCHU
-         bThmQB779vfQlPLcyIa5n6agvefWzchyKkBWW3l1J5iOifT5hbkwvUB9cEpaFky4F6Ky
-         ROLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=1ZFMxJ4WY9L/AhejN1XNCOeUtwifJmbyAtlJAOc91pM=;
-        fh=k52ZlyhU6/38VjKVpHk6LQxZdcaOJF31C91MYZC1bxM=;
-        b=eDBnjNqBRel+odF5cSy1xNHioxwi4Tu8jr4eMwfW9UDjQGQYkuC/yT4mycszk3iBtK
-         eJpbXzETbBoIzjpeLGxM0hBcN9yjwq4ZhqeOsvuQM6KYkiO821OUmmcg0+OSDbwGVYlw
-         EkVz+DxilR7PsI0mZrIzflTeyaPgC/XCDoTvpQMFMTsVbWKF7xmLuM0fYJBqOxvI1Lu/
-         d8ETQ0RMntkffEhEmArdFvD6fdXCFP81zdcxRfA/Wa5ydp7cqHOQZJ6H3zZdf00Ne5m+
-         j+e9wrRK50OFC7xGrwFIma+oKJeHgrwNS1Na26rtZ2c785gAZyu8dhQ5T/YPnA+cGvrg
-         vcaQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1783332545; x=1783937345; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1ZFMxJ4WY9L/AhejN1XNCOeUtwifJmbyAtlJAOc91pM=;
-        b=W8gWe78YrA1pTi5GDFMAUKQe0D2iKHK0Vguck/qLEYSo3O+R+m9ayYRo4WZx26FsAp
-         35DA2NHhnJ7m6fHEN/ix4oylhpJxi81jfNRT5ytbLsrmJVaATVuC0pEIXRxLGgiFryKo
-         WO9E9sa9ijZQbodstMFeBvql79r4HSdJwAE+4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783332545; x=1783937345;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=1ZFMxJ4WY9L/AhejN1XNCOeUtwifJmbyAtlJAOc91pM=;
-        b=USdHkEynsgwiFn2lLOldBVg1aNwxcCqHuRkmzsB3DB0brsoGLJAi6/pc9IIN3SAgMu
-         fnf9wK2qqNHY4tK+0psehM2veaYTgDesieckDB+y2rMsYpsQqhVxDQBtEAFu75JdOsSP
-         yb8y22yRTlQ7rgkzAv6gx6aA6Q5XoNpTBtsdGGHlyCjhVMy+B7vCeTOPWZvkMjPDYqED
-         mD+YT1KyOgIZZEvqbxloCAlMXdmWv62GZZdKdYI0hhRGKnhRzhStOwdcDsfcC/WNgNyG
-         cH3Z/YYt2oIPuEg0CB7B4ExXCvxHnJ1WDdz8NzCCP8i6vXTB/bSZc+2hBsXqUfuOecQK
-         2wdw==
-X-Forwarded-Encrypted: i=1; AHgh+Rp5j49LMUeZUxv9FL/Eswh3O059udMZ5iOffbbC5Mv66D1BdQiLkpLuugfEkmmnYM9uk601IPGMJHJc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3h8IFeREpP5yghhqUuMj9aECPP5GfGJUccKJvYfy8fs3l+D8D
-	ChpXUNAQ//oJybBRtBIQ29S99W3pXbfFdl927TVykIMrdQmJQeK4LxIaawM4/w3CNIDH4Bme8C9
-	//dhQSUgjI0a44MDeMRyTvSPh5MfE6IeyluIN1QEa
-X-Gm-Gg: AfdE7cm4ua5bUnlgBh3GFIQlJ/Z2yZwe76iuffZhZ2S5d1j5mhID4yS5IpbG0f/3zZ8
-	VNSizlRHEsCTAevUZCfwuxAfEjEK6h+Sg9YAi+Px5g13Ul/n7Sklk3+tPun0VxzZWai+y7D1CMY
-	5hJBN9nIX5BJzp47HOd3/olyLQ+beyP79I9uhjEWqeKQ5/EuaKG0BdQeOz1ardPCrfnxzV4Kzl7
-	ZZV+2JbxaG7Fkz9gwVwRDDOwwkumnN/scJO2sQp1bCXfYVtQw/J6oZL5kYHjTXE5Ap2w6SL984I
-	bvEHzUCVneK+GSdUV6k/ovhujAw=
-X-Received: by 2002:a05:690e:120c:b0:652:5567:b3ec with SMTP id
- 956f58d0204a3-66652e2416cmr8660052d50.37.1783332545405; Mon, 06 Jul 2026
- 03:09:05 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA50442100;
+	Mon,  6 Jul 2026 10:09:49 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783332590; cv=none; b=bfLi6qdTUXtZoXpYwYsE4KVd/cDyC3zK9YsP/DSR35XtrTDhVXGmjzZTD3+C292yj3jrXEyATkAVILVRuyz3r47oxVGi0fpfnd93KlWrxHP+mPrRcVaijC1gyIWPpS2bEFIMRGWvlGUXlLhBS7ldJ3g6jiIEwY4D5fsShjhkYLw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783332590; c=relaxed/simple;
+	bh=VVJ72efO/ecrpVpGStmneA5Zct5Ppsu3pJ+te3UUKUc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=d73BR+YLIf8AHXSMQfbvcGH2nZIghzzEu5CywwCzz9z4KBuaoHMa/H3rN+mN5/Zh1qjmS7lSC7k99gbJfpovpEXv8Pm4btMNmHyzAm5olJSOHJHKsiKWw3utqlK1FtSVEP1BePb9QMb5PF6TR70vd8b4wSMbp0wICg3Fi9H04Ew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cufcBLBt; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDA391F000E9;
+	Mon,  6 Jul 2026 10:09:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783332589;
+	bh=rA2xl8M38053qoAVrxeI5gnS2rBkRzkBmrD7Wjrybao=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=cufcBLBtLfNm1IHo/915Pg/CqBizUwP2hdI6kS5AnW8CEQY8/p5eIxHqmsXMVEfNj
+	 wBXWH6BDKU5MTE0ct4xN19QtLrC9EGoYG/tzdKv/rudICEcVesPq9rRyQ6xHRGIV7R
+	 +OHWYzEMATXUxIbk0tPpboXg/BXHxdjWXVQrp3iRhSVpXZq+e0AXg/snHt0vZYezq+
+	 vR6m1qpNGOlcPY2BmEobCiciC+wJzNZ3eLSKVA1wDOjZdvTI40pyNQbW1dw2swos2B
+	 a2fAUzAYfkJmiKWrT+STbX5d9oHpYl0JdkYoLjHA3bQaRsHLM9BWrbdI5Z5XNEI0+l
+	 f1v/pK2xQpcYA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 05/15] arm64: dts: freescale: imx8mn-var-som: Add
+ support for WM8904 audio codec
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Stefano Radaelli" <stefano.radaelli21@gmail.com>
+Cc: Frank.Li@kernel.org, imx@lists.linux.dev, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <4487a350b0e4667816c3fe62e9fd6df2696c18cf.1783330236.git.stefano.r@variscite.com>
+References: <cover.1783330236.git.stefano.r@variscite.com>
+ <4487a350b0e4667816c3fe62e9fd6df2696c18cf.1783330236.git.stefano.r@variscite.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 06 Jul 2026 10:09:47 +0000
+Message-Id: <20260706100948.DDA391F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260703115601.1323491-1-wenst@chromium.org> <20260703115601.1323491-2-wenst@chromium.org>
- <akmZOC_J2ZTl4zLX@google.com>
-In-Reply-To: <akmZOC_J2ZTl4zLX@google.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 6 Jul 2026 18:08:54 +0800
-X-Gm-Features: AVVi8CdednA09-ELXrMS4uc6xSUtulA0xKkThvjfCvkhmpOamhA7IkBdQY8wb_E
-Message-ID: <CAGXv+5H_SXO0DtN9wjrXyAvuzG+CkYh2-4eMg=biOSsFV=E1=Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] Input: elan_i2c - Wait for initialization after
- enabling regulator supply
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
-	Andi Shyti <andi.shyti@kernel.org>, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	chrome-platform@lists.linux.dev, linux-input@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.torokhov@gmail.com,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:bleung@chromium.org,m:tzungbi@kernel.org,m:jikos@kernel.org,m:andi.shyti@kernel.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:chrome-platform@lists.linux.dev,m:linux-input@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmitrytorokhov@gmail.com,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-321049-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:stefano.radaelli21@gmail.com,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:stefanoradaelli21@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	TO_DN_SOME(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-321048-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,collabora.com,chromium.org,kernel.org,lists.infradead.org,vger.kernel.org,lists.linux.dev];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,chromium.org:from_mime,chromium.org:dkim]
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 28AEB7105FC
+X-Rspamd-Queue-Id: 8C9AC70EFED
 
-On Sun, Jul 5, 2026 at 7:44=E2=80=AFAM Dmitry Torokhov
-<dmitry.torokhov@gmail.com> wrote:
->
-> Hi Chen-Yu,
->
-> On Fri, Jul 03, 2026 at 07:55:54PM +0800, Chen-Yu Tsai wrote:
-> > Elan trackpad controllers require some delay after enabling power to
-> > the controller for the hardware and firmware to initialize:
-> >
-> >   - 2ms for hardware initialization
-> >   - 100ms for firmware initialization
-> >
-> > Until then, the hardware will not respond to I2C transfers. This was
-> > observed on the MT8173 Chromebooks after the regulator supply for the
-> > trackpad was changed to "not always on".
-> >
-> > Add proper delays after regulator_enable() calls. To avoid impacting
-> > the boot time of existing devices that have the power rails always on,
-> > skip the delay if the regulator supply was already enabled. In this
-> > case the regulator is either always on, was on by default at power up,
-> > or was left on by some other driver, such as the I2C OF component
-> > prober. Either way the controller has had ample time to initialize.
->
-> Unfortunately we do not know that [it had ample time]. For this code be
-> reliable we need to record the time at which given regulator was turned
-> on and then execute/adjust the delay as needed. Until we have it we need
-> to assume the regulator was enabled at the time of regulator_enable()
-> call.
->
-> I am not concerned with increased boot time too much given the driver is
-> set up for asynchronous probing.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The `simple-audio-card,routing` property maps `Microphone Jack` =
+to `IN1L` and `IN1R` but omits the connection to the `MICBIAS` supply, whic=
+h will leave standard electret microphones unpowered.
+--
 
-I'm a bit confused since you raised the issue for ACPI platforms that don't
-go through the regulator API. Now you're saying it's not a big issue?
+commit 78e4da0f71f2e53ae4312cbe5ceecb0f6f2345db
+Author: Stefano Radaelli <stefano.r@variscite.com>
 
-Either way I will add some new regulator consumer APIs to handle this.
-This needs to be in the regulator core to prevent race conditions, such
-as when one thread deems the delay is enough just when another disables
-the regulator.
+arm64: dts: freescale: imx8mn-var-som: Add support for WM8904 audio codec
 
+This commit adds support for the WM8904 audio codec on the VAR-SOM-MX8MN bo=
+ard.
+It configures the device on the I2C bus, enables the SAI peripheral, and ad=
+ds a
+simple-audio-card sound node to expose the sound card to the system.
 
-ChenYu
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm=
+64/boot/dts/freescale/imx8mn-var-som.dtsi
+> index 09146ab763858..e2e04ad2fbb65 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+
+[ ... ]
+
+> @@ -42,6 +50,34 @@ reg_phy_vddio: regulator-phy-vddio {
+>  		regulator-min-microvolt =3D <1800000>;
+>  		regulator-max-microvolt =3D <1800000>;
+>  	};
+> +
+> +	sound {
+> +		compatible =3D "simple-audio-card";
+> +		simple-audio-card,bitclock-master =3D <&codec_dai>;
+> +		simple-audio-card,format =3D "i2s";
+> +		simple-audio-card,frame-master =3D <&codec_dai>;
+> +		simple-audio-card,mclk-fs =3D <256>;
+> +		simple-audio-card,name =3D "wm8904-audio";
+> +		simple-audio-card,routing =3D
+> +			"Headphone Jack", "HPOUTL",
+> +			"Headphone Jack", "HPOUTR",
+> +			"IN2L", "Line In Jack",
+> +			"IN2R", "Line In Jack",
+> +			"IN1L", "Microphone Jack",
+> +			"IN1R", "Microphone Jack";
+[Severity: Medium]
+Will standard electret microphones remain unpowered with this routing?
+
+The routing maps "Microphone Jack" to "IN1L" and "IN1R", but omits a link to
+the "MICBIAS" supply (e.g., "Microphone Jack", "MICBIAS"). Because "MICBIAS"
+is defined as a DAPM supply widget in the codec driver, DAPM will not enable
+it unless it has an explicit routing link connecting it to the active audio
+path. This could leave the microphone without its required bias voltage when
+recording.
+
+> +		simple-audio-card,widgets =3D
+> +			"Microphone", "Microphone Jack",
+> +			"Headphone", "Headphone Jack",
+> +			"Line", "Line In Jack";
+> +
+> +		codec_dai: simple-audio-card,codec {
+> +			sound-dai =3D <&wm8904>;
+> +		};
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1783330236.gi=
+t.stefano.r@variscite.com?part=3D5
 
