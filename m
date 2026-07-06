@@ -1,305 +1,362 @@
-Return-Path: <devicetree+bounces-321382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321384-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mHTXByvxS2qcdQEAu9opvQ
-	(envelope-from <devicetree+bounces-321382-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:17:15 +0200
+	id 31pFLhzbS2oFbgEAu9opvQ
+	(envelope-from <devicetree+bounces-321384-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:43:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8AD0714624
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:17:14 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 295967136F0
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:43:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=BcbDZ7jC;
-	dmarc=pass (policy=reject) header.from=bootlin.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321382-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321382-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b="Tk/31WvD";
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=VDbSvW8h;
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321384-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-321384-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8B506303F7C6
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:14:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0691030F0074
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3577140D571;
-	Mon,  6 Jul 2026 16:14:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A569426EAE;
+	Mon,  6 Jul 2026 16:14:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 517CA382371;
-	Mon,  6 Jul 2026 16:13:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71F07382F1F
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 16:14:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783354440; cv=none; b=ViC8VlC4uhyRzxBppOt19y7uCFrCAy+yqUWK8nr5QDzn1rf0Nexu2nOd5L+vdIOhGMJQj9aDwCcTY70tipd1UGWSabdM1d/5wJQqPoej6JfshBw2AltlzJwR0Mt4FSMj2dcx0qmAAvF7ggwrmjLH+RSpl0Tl76AF8eG2PznlyyU=
+	t=1783354480; cv=none; b=ZceyRyCafLNGMQbf9TfGobpGeljpMIOxKfWjvdB3gKTXS9AvLVJjx2BH4lp8vuFooyA52RtwONBXMlFaSzoqHLj6+5R/+QNirwc0BLNGdKm/aHRrSyxNRDNHcGyr8w8Vd5usW3zHlw/rU8CsET+dAOJrwEsb6pA7JhV0hSkGZGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783354440; c=relaxed/simple;
-	bh=fSkiMpVUEYl3XEopipwR05J7PwTHPUwofPO4hOYN9Gs=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=NmTFc9HnbfDi03AMrtfUxje1IrjqBQlkuvZHDxFyWvBCw9gJMUG885yUuZhyllaEsicbH4aOhsPckvHgMHW886y9nbxIaWCErs5fsvTOeDQMbUdSUp9EM/FoLpA5KrBDK9eWMk54lAN+E7qGSQ0zgW07Cm6sdLsTH69cgqRSUdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BcbDZ7jC; arc=none smtp.client-ip=185.171.202.116
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id C1695C8EC7D;
-	Mon,  6 Jul 2026 16:14:08 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9139E601A2;
-	Mon,  6 Jul 2026 16:13:55 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5CC9D11BC0389;
-	Mon,  6 Jul 2026 18:13:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1783354434; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=fSkiMpVUEYl3XEopipwR05J7PwTHPUwofPO4hOYN9Gs=;
-	b=BcbDZ7jCRDzTLgEyTmzujpQpst13yNJWuoy1LH0y4GbTMIyi67opMNuEsqqW9C2XLf72BR
-	a34XJaYDfm3GgnUJYsgMVEoheV+AJ+fjew2fHKidHgGeFDwJhBKzNe1lqMPNTlpRSazQzK
-	+Rpv8FdoLPjlgmyjEZYiFocJ7KZM7pun7pZMTlo41NnXkV6/xiNptIcT9BB4880f7iruec
-	tcr44yik6ItLzgC7U4Odey8SJ5WbJbnJKQ34Fqi9JJBDeP8Fk7SFQ8G+CUF3u42LPDb+PY
-	R5fNMi+7Uv5phwpv9yYDbUTr5x4blfzKzhm2AJnyqKUHRVH6f5sNoK0MB6hc0w==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,  Richard Weinberger
- <richard@nod.at>,  Vignesh Raghavendra <vigneshr@ti.com>,  Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  linux-mtd@lists.infradead.org,
-  linux-arm-msm@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/4] mtd: rawnand: qcom: Add MDM9607
-In-Reply-To: <spaihty2s3zfj7jsv63ex7elf3bwz3bbak5ubageusatdgiodd@qh5gfhhh5ppo>
-	(Manivannan Sadhasivam's message of "Mon, 6 Jul 2026 18:00:39 +0200")
-References: <20260608-qcom-nandc-mdm9607-v1-0-4639a0492274@linaro.org>
-	<4kdjxrn3bxg7rhkdovidxv2b2f6evnknng7gjtbz7pahyqaakh@qkgxaz6xlav2>
-	<akult0UUSSwKQ8F5@linaro.org> <875x2smf39.fsf@bootlin.com>
-	<akus-hN7-yf4Y6XU@linaro.org>
-	<v4wc36d5slcbq6vsubrpzdoz6x7iq2t2xxlg7onak7fq3bcpjz@kxoqbvi734pp>
-	<87y0foji2a.fsf@bootlin.com>
-	<spaihty2s3zfj7jsv63ex7elf3bwz3bbak5ubageusatdgiodd@qh5gfhhh5ppo>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Mon, 06 Jul 2026 18:13:50 +0200
-Message-ID: <878q7ojdtt.fsf@bootlin.com>
+	s=arc-20240116; t=1783354480; c=relaxed/simple;
+	bh=20HwkMC9gwkEM2VZHp9aUv9EBzJvaY9vztOC/M8OIjw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Td1qwjE5qFS6HZQoYfMe6+A8n/Vq3imX6HTXnsepqoIAc52uXI08jGKrAQLnEkytx2G7Tqg7n1Q2c/ZKuNkjGAvqFoP46h+h1LpQ+zoMsFUBHOgepPkcBSeuBA8OCygGsLwzGPHPSxemtK/wDAJI1r3PNYODVzRiJ7zPU8gzQq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Tk/31WvD; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VDbSvW8h; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 666FF63M982438
+	for <devicetree@vger.kernel.org>; Mon, 6 Jul 2026 16:14:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=GIdzVAZfEz/3bVoeE9ZzBHSMtW0QCEGCoyc
+	XI4YxZv4=; b=Tk/31WvDhlds2Tm4DaWGQqfzeVq4CvW3m1G1vWX63KHm8hJeGA0
+	T3jW7Ac63ZmhlauWZTjcKVtsgz0eS5qEJztdhS6W0sZtQhD04+P6g/SZRaIYAF+d
+	o/m3GIQssWHVTjtjXeEhXOQYdVrLc4D2RGUV7hcAB0H9yI+jx5OQI1YoEyOSJ78s
+	FNjNXIVxytAOKngE/0FesoavlqpVyeLVB0LEy61hC7Yyjrj/ZIrYFMMl+Pf3bved
+	YswfBv6/Pz+AAsLBbAH3dW1YGvQ2ZK+mhAv2dFZr9a7MSBRpA8HoSONFYYuthORJ
+	6SuH1nabpBqtJ87fB7X9IMbeyjBY/BiD3hw==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f89qphtuh-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 16:14:38 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2cae134ab3aso55333645ad.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 09:14:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783354477; x=1783959277; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GIdzVAZfEz/3bVoeE9ZzBHSMtW0QCEGCoycXI4YxZv4=;
+        b=VDbSvW8h8hOARmIUSreVd1SYTBFwrWL+MZ+MIx96WaVpyM8E6PxqLzLp5qJTgb3fr/
+         yt9MYHsmYVBVB0HCZEGfkiBbge5asC20ff9LDGqeoX9OwRrprNbCZI9do3HN7BHqwdPq
+         SS3Tf+y0XV7HlzHcVIQUALYf+38614ZtDzna0z00SvlpJAL5I2clgMKI8v4qdGyScrHP
+         G3mbwXkXqCQln67ix6nd1+ivmSYy32WSgxC7zLCvnN9n06FAwXrWAUSVlvZ8K9sxYPxK
+         pxEre+14rJ1FlZCCWZRTjxZmmoMyJpmi4we4aPRY/VjLQ4u88Xpd3vJ7Yn6+qn/1kfV1
+         mIKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783354477; x=1783959277;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GIdzVAZfEz/3bVoeE9ZzBHSMtW0QCEGCoycXI4YxZv4=;
+        b=d0mcotvFiJqtB16/VzMVnE6n5U0r8Dc31quM1tbMHNtB72GFyIGm9oMOMrFOH7SICe
+         HeoghGMm2KpaPTcXe4J0kEZPfAS3N460Uy/yysenuZg+WdvzBcfwx9jL3fi5uzQPtn4+
+         DF9oNiNiY9yy1Yq9IHoOAQZf6TcPrE9AeoZnV6AYZlivVpFXxLDNgDVxtqW7dUn/AkKA
+         OPnTfGK05T+RFiLtv6i8BMJythQeWp8QrN0n8b+JaqbTn4L5pXVpldZRh/xlqDnrj4Hz
+         l3RovO7yzmphFhttoTrzVpgpSl0nKzqyxCviMYRAdhDtbZT2TG4aQA1BwBwx4v3j7fsr
+         Rqxg==
+X-Forwarded-Encrypted: i=1; AHgh+RpWKQO0GxUZmlmGJD4T91ZhKcz4e/q06NWYdEpx+DGCpPrURldI91nNMHDE57oTEy0TsxU3Dz8svFsz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2mbEdi/pGjG2fcBS9Azp7EZumhu84ioPODy8ykwZ5l/pLcQ6k
+	iSOMn+Ckk8prD7VaSUKQKd3lEODGlGwaWeODeKk3XCoPcVrvzx4hZ+TjaR5K+Ine0Kgadtc7K3y
+	SyXM6woQpnExfFJMu3Tqe51n+5ZpJYd0MwR+VTvexpNgsEREkGVKktef0tQ5mmj8W
+X-Gm-Gg: AfdE7cnNRjkWFtoIGqHY7lNKwvBEvF5vmhFrVfqUCCi3FLyG1+Rcu+aOq5dVH3DFYiJ
+	z1filvKb0nZy7bJbYssiRBwZ2NY5LQa3bMSWggvAjTXndJapm9lCDengKXXCzUGBxUsUymCnEk8
+	HnNZ5jCwHxFhq14r4GFmtPfztFk7nR+77PsPgU5icZskV2vfLIuJPhcC4+1+p5vxz/E2GRKj/aH
+	sRD7GUlivRrsgolqJaSV76L6JnP2tsOX8jMCREXthaJ5tI3Q/CP0WLxfLihI3aMu6QIW8a8l92E
+	mD2KsZHRekMg0ejk7rNQms6o6b64njsOVqfc+ubkduxIZtna2LhZz1sCwOxtIspn8sbo7XTN8BK
+	za1qYmJTxyAmW6vvdGB1SPjBRv0gUWddi6ZAxng==
+X-Received: by 2002:a17:902:d4cb:b0:2cc:9473:9799 with SMTP id d9443c01a7336-2ccbe71f6abmr13213615ad.17.1783354477151;
+        Mon, 06 Jul 2026 09:14:37 -0700 (PDT)
+X-Received: by 2002:a17:902:d4cb:b0:2cc:9473:9799 with SMTP id d9443c01a7336-2ccbe71f6abmr13212965ad.17.1783354476316;
+        Mon, 06 Jul 2026 09:14:36 -0700 (PDT)
+Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13b3c85bde6sm86083468c88.9.2026.07.06.09.14.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jul 2026 09:14:35 -0700 (PDT)
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Sumit Garg <sumit.garg@oss.qualcomm.com>
+Subject: [PATCH v9] arm64: dts: qcom: kodiak: Add EL2 overlay
+Date: Mon,  6 Jul 2026 21:44:28 +0530
+Message-ID: <20260706161428.3764398-1-mukesh.ojha@oss.qualcomm.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=c6qbhx9l c=1 sm=1 tr=0 ts=6a4bd46e cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=EUspDBNiAAAA:8
+ a=VwQbUJbxAAAA:8 a=OmtaVqwek3-yi6n--wEA:9 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-ORIG-GUID: NWgbs3DbMNHJTeQ5XZDKrUgInvrGtsEK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA2MDE2NSBTYWx0ZWRfX2VNh6hDdaFpR
+ +RTl4qkIf6hDW/q/ucxUppwCPya6lBclHloZmsh5Z8mPRZLeRjNjsXoHm3QSM6yUyryLgNXQDOf
+ bKZY5TfmEff4dLTmdtT6I2ijrhLNpWtJDHv0ZZ78w6+WiJLa92lr5OZf+L87F5h9JV4Fefm1jYV
+ HeWVZ4jhrjVCtjzhc5lK8rFBkT45e533kFYH7kwI1+0Wdq3+oz/Fye9dFnCd4UlgEdGzoUo8IxC
+ P3ppvOhzmgSlkTR2tydPdaAyFdwThWz720ZtDMvBvd8SDrKJ1oPp81Ok0kEcfyncE8TepmBQWuR
+ c9gmo6qhkGomj8lVnPNSsg6j25ff1382TbtrytxxNOh4tImcfHfqJwMhg2FsQJVmH+ktC6E6wi5
+ C8E/UFg4WbwZzJ9+ORzGpUUHihv9A6+knVqNdW4+VXJL3OCEi2AMn+yTDx/0D5MtF39G3M+ONM3
+ z6aE9otfoWO7wqGyTsg==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA2MDE2NSBTYWx0ZWRfXxrl6fvm0KInA
+ 7odSkR5CibWaQD5jYoQC4SOAiHv49uQo2JSmbyPOesiEf8IKYyGsWyiyL0JQcI1mT9ol7AMuKuA
+ uDW/nMby6uizBuWUtsZnxMDuMBBnvWU=
+X-Proofpoint-GUID: NWgbs3DbMNHJTeQ5XZDKrUgInvrGtsEK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-06_02,2026-07-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 impostorscore=0 phishscore=0 adultscore=0
+ lowpriorityscore=0 priorityscore=1501 clxscore=1015 spamscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2607060165
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-321382-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mani@kernel.org,m:stephan.gerhold@linaro.org,m:richard@nod.at,m:vigneshr@ti.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-mtd@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-321384-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:mukesh.ojha@oss.qualcomm.com,m:sumit.garg@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[mukesh.ojha@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[mukesh.ojha@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:url,qualcomm.com:dkim];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,bootlin.com:from_mime,bootlin.com:dkim,bootlin.com:mid,linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A8AD0714624
+X-Rspamd-Queue-Id: 295967136F0
 
-On 06/07/2026 at 18:00:39 +02, Manivannan Sadhasivam <mani@kernel.org> wrot=
-e:
+All the existing Kodiak board variants run the Gunyah hypervisor, which
+means Linux can only boot at EL1 on those devices. It is possible to
+boot Linux at EL2 on these devices [1].
 
-> On Mon, Jul 06, 2026 at 04:42:21PM +0200, Miquel Raynal wrote:
->> On 06/07/2026 at 16:19:04 +02, Manivannan Sadhasivam <mani@kernel.org> w=
-rote:
->>=20
->> > On Mon, Jul 06, 2026 at 03:26:18PM +0200, Stephan Gerhold wrote:
->> >> On Mon, Jul 06, 2026 at 03:18:18PM +0200, Miquel Raynal wrote:
->> >> > On 06/07/2026 at 14:55:26 +02, Stephan Gerhold <stephan.gerhold@lin=
-aro.org> wrote:
->> >> > > On Mon, Jun 29, 2026 at 05:46:57PM +0200, Manivannan Sadhasivam w=
-rote:
->> >> > >> On Mon, Jun 08, 2026 at 03:20:21PM +0200, Stephan Gerhold wrote:
->> >> > >> > MDM9607 has QPIC v1.5 that supports the OP_PAGE_READ_ONFI_READ=
- command, but
->> >> > >> > is missing the rest of the hardware changes in QPIC v2. There =
-is also only
->> >> > >> > a single clock that can be controlled using the RPM firmware. =
-Document and
->> >> > >> > add the new qcom,mdm9607-nand compatible for this setup.
->> >> > >> >=20
->> >> > >> > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
->> >> > >>=20
->> >> > >> You could ammend patch 1's commit message with the information I=
- shared in the
->> >> > >> reply. But nevertheless:
->> >> > >>=20
->> >> > >> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
->> >> > >>=20
->> >> > >
->> >> > > Do you want me to resend the series with patch 1 commit message
->> >> > > adjusted? There were no other changes requested as far as I can t=
-ell.
->> >> >=20
->> >> > I was mostly waiting for answers on my questions from the DT binding
->> >> > maintainers, but I understand they must be too loaded at the moment.
->> >> >=20
->> >> > > I think the current commit message there is fine, especially if y=
-ou add
->> >> > > the Link: tag during applying. The extra context will be there.
->> >> > >
->> >> > > If you want me to resend, I would just replace the second paragra=
-ph in
->> >> > > patch 1 with the following:
->> >> > >
->> >> > > ---
->> >> > > On MDM9607 and other recent SoCs, the QPIC hardware requires 3 cl=
-ocks
->> >> > > (ahb, core, aon). However, the access to these clocks is restrict=
-ed to
->> >> > > the RPM firmware that controls the shared power resources for the=
- whole
->> >> > > SoC. The clocks cannot be controlled separately, there is only a =
-single
->> >> > > RPM_SMD_QPIC_CLK clock that implicitly enables all of the 3 clock=
-s.
->> >> > > The only exception to this are some IPQ* SoC that are not using R=
-PM,
->> >> > > there the clocks are directly controlled by the kernel via the cl=
-ock
->> >> > > controller (GCC). Require only one clock in the dt-bindings for M=
-DM9607
->> >> > > to avoid having to define dummy clock entries.
->> >> >=20
->> >> > I am sorry but this is still incorrect. You don't have to define 2 =
-dummy
->> >> > clocks. You would have to define 3 times the same clock (and that's=
- not
->> >> > a problem). I have been working on the concept of clock nexus which
->> >> > may solve this kind of issue in a rather elegant way but that's not
->> >> > ready yet.
->> >> >=20
->> >> > In my opinion the binding that you want to push (a single clock) is
->> >> > wrong, but since I've been explaining this for several weeks alread=
-y,
->> >> > please at least fix the commit message and I will take it as you wa=
-nt.
->> >> >=20
->> >>=20
->> >> Thanks for your feedback!
->> >>=20
->> >> Either way works for me personally, but now we have a conflict between
->> >> your requested changes and the feedback from Mani, who maintains this
->> >> driver. :-)
->> >>=20
->> >> @Mani: Would you also be fine with defining all 3 clocks in the DT
->> >> ("ahb", "core", "aon") and then assigning the RPM_SMD_QPIC_CLK to all=
- of
->> >> them?
->> >>=20
->> >
->> > AFAIU, devicetree binding should describe the "OS view of the
->> > hardware", not the
->>=20
->> Like Geert pointed out in the below thread, I am equally surprised by
->> this shift but I guess SoC complexity requires adaptations.
->>=20
->> > hardware itself. We have many predecents to this rule. One of them is =
-the SCMI
->> > based resource control in Qcom Automotive SoCs, where clocks/regulator=
-s to
->> > individual IPs are controlled by the SCMI server and OS just sees a si=
-ngle SCMI
->> > power-domain for the IP. So we only describe the SCMI power-domain in =
-the
->> > binding and not the physical clocks/regulators received by the IP in h=
-ardware.
->> >
->> > We had a recent discussion around the same topic and you can see the r=
-eply from
->> > Krzk here: https://lore.kernel.org/all/c83ca485-1e2e-46ba-bd15-1168aa8=
-955d3@kernel.org
->> >
->> > So here also, the hardware receives 3 clocks physically, but OS cannot=
- control
->> > all 3 of them, but just a single clock from RPMh which controls the 3 =
-real
->> > clocks. Moreover, assigning the same clock to 3 different clock source=
-s doesn't
->> > accurately describe the hardware either, because those 3 clocks operat=
-e on
->> > different frequencies
->>=20
->> Ah, this is a point that was missing to my understanding. You actually
->> have three *different* clocks, and you control all of them through some
->> kind of firmware proxy called RPMh with a single handle. So basically
->> the kernel just enables one clock and the firmware enables/configures
->> two other clocks differently automatically. Is that it? Feels like you
->> almost need a power domain here.
->>=20
->
-> RPMh indeed provides power-domains, but those serve a different purpose t=
-han
-> the clocks provided by it. RPMh power-domains represent an internal block=
- that
-> aggregates votes from different clients like OS, Co-processor etc... and
-> controls power to various IPs inside the SoC. Likewise, RPMh also aggrega=
-tes
-> clock votes from various clients inside the SoC and controls clock inputs=
- to
-> various IP blocks.
->
-> So both are not the same here.
->
->> > and if the driver queries the frequency of
->> > RPM_SMD_QPIC_CLK, it would just return the same frequency. This is whe=
-re the
->> > dummy clock comes handy as it atleast provides a valid clock frequency=
- to the
->> > driver. But I'm not advocating for its usage here anymore.
->> >
->> > Hence IMO, assigning the same RPM_SMD_QPIC_CLK to all 3 clocks is not =
-the right
->> > approach and we should be assigning a single RPM_SMD_QPIC_CLK to
->> > 'core' clk.
->>=20
->> You said using three times the same clock would be wrong because we
->> would get three times the same rate whereas in practice it's wrong. This
->> means the OS has access to these clocks somehow,
->
-> No, there is no way the OS can access these 3 clocks individually on the =
-RPMh
-> enabled platforms. But the OS indeed has access to these 3 clocks on non-=
-RPMh
-> platforms like the older IPQ ones.
->
->> so if we need to
->> describe what the OS sees of the hardware, as you say, defining a single
->> clock is incomplete.
->>=20
->> Again, I am not totally opposed to the single clock idea if you all feel
->> like this is the way forward. Yet, it sounds a bit hackish.
->>=20
->
-> I don't see it as a hackish representation, but rather a proper one becau=
-se, OS
-> only sees a single clock for the NAND controller.
+When running under Gunyah, remote processor firmware IOMMU streams are
+controlled by Gunyah. Without Gunyah, the IOMMU is managed by the
+consumer of the DeviceTree. Describe the firmware streams for each
+remote processor in the EL2 overlay.
 
-Ok then, I'll go for the new 'not the hardware but what the OS has
-access to' motto. I'll wait for v2 with the commit log updated then.
+Add an EL2-specific DT overlay and apply it to Kodiak IoT variant devices
+to create -el2.dtb for each alongside the standard dtb.
 
-Thanks,
-Miqu=C3=A8l
+Note that modem and media subsystems are not yet supported due to
+missing support are not there. For GPU to work, zap shader is
+disabled. In EL2 mode the kernel owns the hardware watchdog,
+which is enabled here. For WiFi, the wlan_ce_mem and wlan_fw_mem
+regions are needed by the WCN6750 firmware.
+
+Remove the erroneous deletion of wlan_ce_mem from qcm6490-idp.dts
+and qcs6490-rb3gen2.dts as this is device memory and should be
+present even for EL1 configurations, whether or not the
+underlying OS uses it.
+
+[1] https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-4/boot-developer-touchpoints.html#uefi
+
+Co-developed-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
+Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
+Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+---
+Changes in v9: https://lore.kernel.org/lkml/20260624063952.2242702-1-mukesh.ojha@oss.qualcomm.com/
+ - Remove reserve memory change of adding copy engine device
+    memory back in el2  overlay file instead do not remove
+     wpss ce device memory from el1 configurations for idp 
+     or rb3gen2 device tree. [Miaoqing ]
+
+Changes in v8: https://lore.kernel.org/lkml/20260522115936.201208-2-sumit.garg@kernel.org/  
+ - Added a wpss copy engine memory similar to chrome for Wifi to work.
+ - WPSS does not have firmware Stream, so that was removed.
+ - Added wifi streams similar to chrome for wifi to work.
+ - Removed this patch from Generic Pas patch series, can be followed
+   separately.
+ - Moved Sumit as co-author as part of modification done to the patch
+   in the past.
+ - Added some more kodiak's board variants in the makefile.
+
+Changes in v1-v7:
+ - mpss was disabled and will be enabled once the dependencies patches
+  get merged.
+
+ arch/arm64/boot/dts/qcom/Makefile            | 12 ++++++
+ arch/arm64/boot/dts/qcom/kodiak-el2.dtso     | 41 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts     |  2 -
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts |  2 -
+ 4 files changed, 53 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/kodiak-el2.dtso
+
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 1c857bd7991b..22076579a50f 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -164,7 +164,11 @@ purwa-iot-evk-el2-dtbs	:= purwa-iot-evk.dtb x1-el2.dtbo
+ 
+ dtb-$(CONFIG_ARCH_QCOM)	+= purwa-iot-evk-el2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-fairphone-fp5.dtb
++
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp.dtb
++qcm6490-idp-el2-dtbs := qcm6490-idp.dtb kodiak-el2.dtbo
++dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp-el2.dtb
++
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-particle-tachyon.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+@@ -176,12 +180,20 @@ qcs615-ride-el2-dtbs := qcs615-ride.dtb talos-el2.dtbo
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs615-ride-el2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-radxa-dragon-q6a.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
++qcs6490-rb3gen2-el2-dtbs := qcs6490-rb3gen2.dtb kodiak-el2.dtbo
++dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-el2.dtb
+ 
+ qcs6490-rb3gen2-vision-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2-vision-mezzanine.dtbo
+ qcs6490-rb3gen2-industrial-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2-industrial-mezzanine.dtbo
+ 
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine.dtb
++qcs6490-rb3gen2-industrial-mezzanine-el2-dtbs := qcs6490-rb3gen2-industrial-mezzanine.dtb kodiak-el2.dtbo
++dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine-el2.dtb
++
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-vision-mezzanine.dtb
++qcs6490-rb3gen2-vision-mezzanine-el2-dtbs := qcs6490-rb3gen2-vision-mezzanine.dtb kodiak-el2.dtbo
++dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-vision-mezzanine-el2.dtb
++
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-thundercomm-minipc-g1iot.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-thundercomm-rubikpi3.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
+diff --git a/arch/arm64/boot/dts/qcom/kodiak-el2.dtso b/arch/arm64/boot/dts/qcom/kodiak-el2.dtso
+new file mode 100644
+index 000000000000..37a906218d17
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/kodiak-el2.dtso
+@@ -0,0 +1,41 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++ *
++ * Kodiak specific modifications required to boot in EL2.
++ */
++
++/dts-v1/;
++/plugin/;
++
++&gpu_zap_shader {
++	status = "disabled";
++};
++
++&remoteproc_adsp {
++	iommus = <&apps_smmu 0x1800 0x0>;
++};
++
++&remoteproc_cdsp {
++	iommus = <&apps_smmu 0x11a0 0x0400>;
++};
++
++&remoteproc_mpss {
++	status = "disabled";
++};
++
++&venus {
++	status = "disabled";
++};
++
++&watchdog {
++	status = "okay";
++};
++
++&wifi {
++	status = "okay";
++
++	wifi-firmware {
++		iommus = <&apps_smmu 0x1c02 0x1>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+index bdc02260f902..6ab1bbdc0a62 100644
+--- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
++++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+@@ -25,7 +25,6 @@
+ /delete-node/ &adsp_mem;
+ /delete-node/ &cdsp_mem;
+ /delete-node/ &video_mem;
+-/delete-node/ &wlan_ce_mem;
+ /delete-node/ &wpss_mem;
+ /delete-node/ &xbl_mem;
+ 
+@@ -1148,7 +1147,6 @@ &usb_1_qmpphy {
+ };
+ 
+ &wifi {
+-	memory-region = <&wlan_fw_mem>;
+ 	qcom,calibration-variant = "Qualcomm_qcm6490idp";
+ 
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index 9c24802e476e..c3eaa196a473 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -26,7 +26,6 @@
+ /delete-node/ &adsp_mem;
+ /delete-node/ &cdsp_mem;
+ /delete-node/ &video_mem;
+-/delete-node/ &wlan_ce_mem;
+ /delete-node/ &wpss_mem;
+ /delete-node/ &xbl_mem;
+ 
+@@ -1464,7 +1463,6 @@ &venus {
+ };
+ 
+ &wifi {
+-	memory-region = <&wlan_fw_mem>;
+ 	qcom,calibration-variant = "Qualcomm_rb3gen2";
+ 
+ 	status = "okay";
+-- 
+2.53.0
+
 
