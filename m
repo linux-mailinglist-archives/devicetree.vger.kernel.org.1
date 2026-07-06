@@ -1,206 +1,137 @@
-Return-Path: <devicetree+bounces-321392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321393-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Wp00Fr3xS2rhdQEAu9opvQ
-	(envelope-from <devicetree+bounces-321392-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:19:41 +0200
+	id EdYCHsPZS2qqbQEAu9opvQ
+	(envelope-from <devicetree+bounces-321393-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:37:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E5D97146A8
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:19:40 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A7127135D9
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:37:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=j2+u9F0r;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=oXFMh8Su;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321392-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321392-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321393-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321393-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5058631698A0
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:36:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9420530058F4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A85E432BFE;
-	Mon,  6 Jul 2026 16:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81E0F434E31;
+	Mon,  6 Jul 2026 16:36:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 497264314AE
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 16:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 606A4433BC8;
+	Mon,  6 Jul 2026 16:36:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783355792; cv=none; b=L7S472PITsEjAHqZ92gHeRlsRLHjn5q/iK4HgLfRdpdV+kdOlx4z5HR8u7CZkuwW/TeLqmKrGEiU0pvKy45K4GD17LNnuHLQ7LeRZWT4UrVKyYAYTgaznW1doeLwUcjv2b6vNET3Dl1SdsEXXW2cxEEuG3huGqL01W7DdZTqTIQ=
+	t=1783355816; cv=none; b=SfpTplNJRSI5cfapHGba3lVJcejphU9+V+9oxGNMIA0rlVfxZWTnCPhFGJpAZqn7ERIS/od7E3dN+/2uc7mRC0XbEzDlbmDPeQF9agViRVnKxFH2952ZuKBINWfzbR8sWz77XhX3jdJctpDICNW+grLcnlULMBe3wfT+T6XxpyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783355792; c=relaxed/simple;
-	bh=0+1BymtRMtn1X/GZgOD/VKIMikSumxE45c1zFpo6LVg=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=TmVtWS9i1pbxhRSoWX5GHmemmKmQyJrnMjNRCgjAiTv0tzlAE0onCeVQNfgDokEiuzBcEAxv5F/yEp4zGtyRLzShX0WNfk9NHUz9JU3LFkGaskGRuo8b8lTmScAM8u67Vgohf6w9KDt2IfEtATr3E8HcnovyRmxoAdA4f+PA/WM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j2+u9F0r; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A39DD1F000E9;
-	Mon,  6 Jul 2026 16:36:29 +0000 (UTC)
+	s=arc-20240116; t=1783355816; c=relaxed/simple;
+	bh=aQ155oMS1aP+sJU1cZKSwbFH910mTtNPsrItaY8zzSY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IVy2+hLZOlCpwYMqwsrTIhVsaiJ2y6gMhifkm76h/1XDp7CV/dcYOsW2MkxEwJUUL5a8XO1C7pk/D3wcrCBCbY3nlPox8zi6K8+cFIT4mcIOZHFA3tiHSVLgsyDHnuTbjSJfsaor6IFUHUV/H91fz8uznybNFwTc46mhKGocc/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oXFMh8Su; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98BD71F000E9;
+	Mon,  6 Jul 2026 16:36:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783355790;
-	bh=lKhlGkjgZI/IiOrEomS3s3fgwTH9htR50SGG9oIyZOU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=j2+u9F0r1drdK/y/r9E7uAKF7EbdBjWyhp5Spd/WJAFWMl8zLOGXW5Jr8Xn1RNBq+
-	 PAX9iG8NWzxFLNNkBvD5tf6Ln3m5Ys/jkS8opXrfPiWLf+fxXkfBuOyy7gyNXEh8JM
-	 3mGyItXtC4OGTV9FLxV8o17+gF0vSs5npVwnqCt6sn2iB5u7s94ts1mL0JJuMR+HlP
-	 VUBizG6bQEahi9F3IGXuk+PYVgsD0NkYB57/BO9z0shNZcudJP/ZIKKXUMkHsqJEKD
-	 SmqiGGVDoewUCEytx0jUGrvFnsktOLxjH28Z9vKnDWVcwL7wHrUUWEGbFXes28cPW7
-	 qjJmmRmUP1wrA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v3 4/8] net: mdio: realtek-rtl9300: Configure
- hardware polling during probing
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Markus Stockhausen" <markus.stockhausen@gmx.de>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260705163532.2853959-5-markus.stockhausen@gmx.de>
-References: <20260705163532.2853959-1-markus.stockhausen@gmx.de>
- <20260705163532.2853959-5-markus.stockhausen@gmx.de>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 06 Jul 2026 16:36:28 +0000
-Message-Id: <20260706163630.A39DD1F000E9@smtp.kernel.org>
+	s=k20260515; t=1783355815;
+	bh=zCwhz7SYOBzlCyq63S3QzaXZnIA6AhTV8JUT7OVdLRI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=oXFMh8SuHX6p8AYT4D45ZGncYnMZ8zgmBtiO0fs6l3A+K/J7wbMNs1XuDjNlcw6Ol
+	 hQrJok8zs4BTv03w1DVwFFjDlvET/xTX3yIIWjjrV2PnN5Kqg1H7XUQbT0B77E4UZR
+	 olAfo1CmXXTr0nxInCItcU9UxxtlJ7sqMrdsM+WAeLvUGL/JWK2KeCy5LkwYRDB+7n
+	 G/EQyWYj3v+ALcs+1b/uo6umqo9tIbH9Jcgt8fmeXiRfMiGPpAAUVFys/0rqTM/U7D
+	 cFacpwcDjISVcoQoZswHZuTidL36gyYMFnFotMMTcoHGX5JZNOeF4r/vG5CxLZFqAF
+	 33f18wXKuct7g==
+Date: Mon, 6 Jul 2026 18:36:45 +0200
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Vivek Pernamitta <vivek.pernamitta@oss.qualcomm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: pci: qcom,hawi-pcie: Add Maili PCIe
+ compatible
+Message-ID: <yntj62kr7tixc7capwdr6xhv2zpisfrjg62bwftgiuujf4fzt5@cjdrkglo4dv5>
+References: <20260703-vdev_maili_dt_bindings-v1-0-c9df0916cd5e@oss.qualcomm.com>
+ <20260703-vdev_maili_dt_bindings-v1-1-c9df0916cd5e@oss.qualcomm.com>
+ <20260706-pastoral-okapi-of-reading-e5bdb3@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260706-pastoral-okapi-of-reading-e5bdb3@quoll>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321392-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:vivek.pernamitta@oss.qualcomm.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:robh@kernel.org,m:bhelgaas@google.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:linux-arm-msm@vger.kernel.org,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-phy@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmx.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:markus.stockhausen@gmx.de,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321393-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,gmx.de:email,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cjdrkglo4dv5:mid,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8E5D97146A8
+X-Rspamd-Queue-Id: 0A7127135D9
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Data race due to unprotected lockless read of `priv->phy_poll`.
---
+On Mon, Jul 06, 2026 at 08:46:41AM +0200, Krzysztof Kozlowski wrote:
+> On Fri, Jul 03, 2026 at 05:38:40PM +0530, Vivek Pernamitta wrote:
+> > Add qcom,maili-pcie as a compatible string that falls back to
+> > qcom,hawi-pcie, as the Maili SoC reuses the Hawi PCIe controller IP.
+> > 
+> > The Maili SoC is a derivative of Hawi and shares the same PCIe
+> > controller architecture, allowing reuse of the existing Hawi PCIe
+> > DT bindings.
+> > 
+> > Signed-off-by: Vivek Pernamitta <vivek.pernamitta@oss.qualcomm.com>
+> > ---
+> > Dependencies:
+> > - PCI: qcom: Add PCIe support for upcoming Hawi SoC
+> >   https://lore.kernel.org/all/20260625-hawi-pcie-v4-0-1a578603cd86@oss.qualcomm.com/
+> 
+> Squash the patches then.
+> 
 
-commit 5dc09b6df4d4ed1cb80ef56b8de6e9aa03870333
-Author: Markus Stockhausen <markus.stockhausen@gmx.de>
+But these are two independent SoC additions, isn't it?
 
-net: mdio: realtek-rtl9300: Configure hardware polling during probing
+- Mani
 
-This commit synchronizes kernel and hardware polling for Realtek Otto switc=
-hes
-by disabling polling for all ports on start and managing it per-PHY during
-attach and detach. This prevents hardware polling from interfering with
-complex configuration sequences or firmware loading.
-
-Link: https://github.com/openwrt/openwrt/blob/main/target/linux/realtek/fil=
-es-6.18/drivers/net/mdio/mdio-realtek-otto.c#L818
-Link: https://lore.kernel.org/netdev/680696024a8648535ce6dee771fe4de67802e0=
-e8.1769053496.git.daniel@makrotopia.org/
-
-> diff --git a/drivers/net/mdio/mdio-realtek-rtl9300.c b/drivers/net/mdio/m=
-dio-realtek-rtl9300.c
-> index 562f9c7f2895d..c36244cd9a66e 100644
-> --- a/drivers/net/mdio/mdio-realtek-rtl9300.c
-> +++ b/drivers/net/mdio/mdio-realtek-rtl9300.c
-
-[ ... ]
-
-> @@ -576,6 +588,47 @@ static int otto_emdio_9310_setup_controller(struct o=
-tto_emdio_priv *priv)
->  	return 0;
->  }
-> =20
-> +static int otto_emdio_notify_phy_attach(struct phy_device *phydev)
-> +{
-> +	struct otto_emdio_priv *priv =3D otto_emdio_bus_to_priv(phydev->mdio.bu=
-s);
-> +	int port =3D otto_emdio_phy_to_port(phydev->mdio.bus, phydev->mdio.addr=
-);
-> +	int ret;
-> +
-> +	if (port < 0)
-> +		return port;
-> +
-> +	if (test_bit(port, priv->phy_poll))
-> +		return 0;
-
-[Severity: Medium]
-Could this lockless read of priv->phy_poll result in a data race?
-
-While this test_bit() is lockless, the updates in the guarded sections below
-use the non-atomic __set_bit() and __clear_bit(). If multiple PHYs on the
-same MDIO bus are attached or detached concurrently, the plain
-read-modify-write from __set_bit() or __clear_bit() on the same word could
-race with this read, causing KCSAN warnings and undefined behavior.
-
-Should this test_bit() check be moved inside the scoped_guard() block, which
-safely supports early returns?
-
-> +
-> +	scoped_guard(mutex, &priv->lock) {
-> +		ret =3D otto_emdio_set_port_polling(priv, port, true);
-> +		if (!ret)
-> +			__set_bit(port, priv->phy_poll);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static void otto_emdio_notify_phy_detach(struct phy_device *phydev)
-> +{
-> +	struct otto_emdio_priv *priv =3D otto_emdio_bus_to_priv(phydev->mdio.bu=
-s);
-> +	int port =3D otto_emdio_phy_to_port(phydev->mdio.bus, phydev->mdio.addr=
-);
-> +	struct mii_bus *bus =3D phydev->mdio.bus;
-> +	int ret;
-> +
-> +	if (port < 0)
-> +		return;
-> +
-> +	scoped_guard(mutex, &priv->lock) {
-> +		ret =3D otto_emdio_set_port_polling(priv, port, false);
-> +		if (!ret)
-> +			__clear_bit(port, priv->phy_poll);
-> +	}
-> +=09
-> +	if (ret)
-> +		dev_err(bus->parent, "failed to disable polling for port %d\n", port);
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260705163532.2853=
-959-1-markus.stockhausen@gmx.de?part=3D4
+-- 
+மணிவண்ணன் சதாசிவம்
 
