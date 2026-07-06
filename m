@@ -1,265 +1,169 @@
-Return-Path: <devicetree+bounces-321541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321543-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id o6S7N9gJTGrNfAEAu9opvQ
-	(envelope-from <devicetree+bounces-321541-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 22:02:32 +0200
+	id HBt1ApQKTGoHfQEAu9opvQ
+	(envelope-from <devicetree+bounces-321543-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 22:05:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E9857153E7
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 22:02:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A97E715465
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 22:05:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chromium.org header.s=google header.b=fNLvQr75;
-	dmarc=pass (policy=none) header.from=chromium.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321541-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-321541-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=redhat.com header.s=mimecast20190719 header.b=Kvt8liAe;
+	dkim=pass header.d=redhat.com header.s=google header.b="NUYs/FIZ";
+	dmarc=pass (policy=quarantine) header.from=redhat.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321543-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-321543-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9BD89306A3BC
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 20:00:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 893B1303AF8B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 20:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3503DCDB5;
-	Mon,  6 Jul 2026 19:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899EE3D8911;
+	Mon,  6 Jul 2026 20:04:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 324E93D891A
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 19:59:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8A3828852E
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 20:04:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783367987; cv=none; b=YfSSliI8EH2+UZihm+mmz2jyIdA2CTke+6yyCh53ubzAJuTiPCt8VCA3l1N4alPGQ9hgSZLdXYvHdGmwVySrLUB7mIO8tN7cT8TdhztSsmN4/ySpDI/nZglQX7smv5PhBrqCf8ogQm7nrpgHVnWNW+LhbJw0jOXFXVVAyOXgoAk=
+	t=1783368266; cv=none; b=V6VFceXkDSMd8t3gAJzq8DcxRyJ2TfiCRkzz/8okEEI46trkj2fSzM6dhnbTSzAsjAPHHmFpoxDKvqvVoyseKJU9/mJU8G52tI0OMjYk0s3fccndR/bu1dTXnyw82kpxqj9oJ0IFsHCTkcI/1kFLbBeKdoIyKPFDYrNcuthJztY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783367987; c=relaxed/simple;
-	bh=gS65853yWXLovTrWd/3f8yjHdKSfUqFB81hVxi/mS5g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UbCMloZo3D/5OL7t2EKLICbJsY4VIS/Hi59dIrFRfUEsGufT37Tea/hS7gbuFzenL+zWNvR7UNkenYkipdTK61NDT96ZWUurBvkHPM90uB/xtZV9uXy91xVqm8A2p2J08U7NiUpi22DHco1L/TOMj41FikXQ3Di3F3OY+GBG5qU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=fNLvQr75; arc=none smtp.client-ip=209.85.210.50
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-7e9ecb1e13cso3024639a34.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 12:59:42 -0700 (PDT)
+	s=arc-20240116; t=1783368266; c=relaxed/simple;
+	bh=cs2yBHOX5oyI2jRYpGq6JzwexFF3gKQEOOrC7alrvCo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cVM0HyajrJhdbfJhlJIS1mxXeejpnxINP2YGqPJoXrexCIMjuL6a0KOTU6GBd5RbJnoNRWmgBIbDUAk3+p4kkuqit3nxbk+G/JIMpBKkAJvOmc+pLHcLnYF7m12QdfE+3r76V0PbB0FfHCu7RWJfEQHUT/+tsAtrhA+kPkLS8WY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Kvt8liAe; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=NUYs/FIZ; arc=none smtp.client-ip=170.10.129.124
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1783368263;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5wdjn2ILuT01gLTBdftJHP++YDd3DzxJNeXyKRqGWZY=;
+	b=Kvt8liAeILEy7FnbVWyKuz87v6OwHewA18KO8LQ+dBvpQtpXi5SxeKOO2J+xEY5agAKMIv
+	RkeYnm8ymslZxN+lMICk97F8jFJvK9bgIsMfIHnd1BHXk7FuiLAbk4LkDSb7uS4mLfUM00
+	O6k8c/SFdwVtT6/ikXc8hNYo2U6okD0=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-425-b_PZV5YePUKw7GvYOfMKww-1; Mon, 06 Jul 2026 16:04:22 -0400
+X-MC-Unique: b_PZV5YePUKw7GvYOfMKww-1
+X-Mimecast-MFC-AGG-ID: b_PZV5YePUKw7GvYOfMKww_1783368262
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-91ed0e140c5so623146685a.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 13:04:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1783367980; x=1783972780; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0OrIWzKlthBSIE9zhLtGuPFvJioePjr2EjSPr8Ts66c=;
-        b=fNLvQr75Dw/h/yQ+9aFeW7yGWq4E7nSc2urJTrmJVKyHLg4qyfKx7Ab8CHOFGGf6LI
-         VkPzKqiQ2a85e8LXz0BtPx6onLisbQtGeh62dwf23Lv0jmrZHIBZbOsYJJ0x1loXhQsJ
-         guXytEFjqR6juAQUyojgKj7UKztBe4QUw9s/Q=
+        d=redhat.com; s=google; t=1783368262; x=1783973062; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5wdjn2ILuT01gLTBdftJHP++YDd3DzxJNeXyKRqGWZY=;
+        b=NUYs/FIZoIRlhjDUyWK9tv/cibyR0Le/uqLaeRoB0Fss7hKYybW88GMOu9OV255uO/
+         6Vd/X3HDv257kc/ifv43a5luF4d7ihzyQh+qWITyvX7/jGpt8/wT4+nlmcMGYFhQ9Orx
+         ZUiflCyXouAVjWgQIW6VOUkuYgm6HtReB95cDd8IKUI9MMIKV1SHxzwJrdOFlUt1+iRx
+         jlfSmi47wz3wuAcE4s2SowSzva2QeB5x8WpEevFwOdHGyLAwnJkyIGBScyWVSXHtPO/w
+         etBvoKDasforr7Q/JT9KINotmFZzBBpgWFo3VZJX/rH6Q/uIUd5EOrUi0jAmBNHUatf2
+         hZkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783367980; x=1783972780;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0OrIWzKlthBSIE9zhLtGuPFvJioePjr2EjSPr8Ts66c=;
-        b=X5dCsEldrObjbbWYNUzBMIHMg1YyZih5IbjxLX22lgBv8smEWzIFNdETeweTD6yz1f
-         08u5M8z04hCDvzVQGnc+AANkWdALB36VZfd52Vb5wQ7fgObapDt+ufHWl+oc5kMWfHJp
-         CsF+Sggth6gewScDRcE4tebENunwjXw5P36deas/+qcjtpcbLk9JGAP0aVSOWS4roPFx
-         rbWPXqTCfQltFQQ6QA8wuE6f5GbWUNb9DnEb7zxx4TMHUsXTDHF+I9XqKajR8aNnhOy7
-         B8NpIUFtqEFm/O/IiyuJ0ppMtFJd41LQpFuOSlea44QxVBWM+pAICXwVABmxMn2dVyl+
-         e4+Q==
-X-Forwarded-Encrypted: i=1; AFNElJ/BrAO739RqP9eUE/f7AqkHPb1bHjQ9M0xGYTKI2NYHarZN0fqo3l+lZvSWhJbjAxTWv27OwIaXCtbd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyzPQtgmne2cKBET3VNGlaH2PbH+/3PuWlCd0NdKFUIMC0Bt7p
-	GOJQMfVzc/k9JASoItiUHEJ2m+jApJcxiQihgpCxbPW4kRQBqnOGdoh2YFGDhObmDg==
-X-Gm-Gg: AfdE7ckVH7EGgpjtGy47ycl2GwOtIybm5/Ye28h2o3bJ4wL91cGWP4NP0UsvF9th2rz
-	GKoOloI/olc+Sls/syH9Gmsjh1djTW1gQVurgrRwTBpcaKG7EPuZWLcWOgPxkuQ+88cJ938lKRf
-	n4A38OEHRWKMk+vuk2e/LSX3M6fmQ646cd6Sh0U8EGHqGMim2YP3cwrzg/sg/HYL5C2Y4N8psgG
-	l7brTIyyp0bVsknCYFFr+OZL4RLdkU+kvwmX8IPH16FFRsciGqznpQ6LbYMxRyNZLR2TdSj0Q5W
-	odE05iXz0cVfNv8Ri1SBE0Q5173NV2nWsvutejcvj32fVQAhPpvMRviltsYhx+VSu842Xj3CW9d
-	8vjECUZO5REoXO0IOe0s1TRmk4eZJ6u+k/JzC++woBth8r6gU/LrgV52plfquPUHYn7Cty7bbx1
-	iNsfKvwtY=
-X-Received: by 2002:a05:6830:6ae8:b0:7e9:b4d0:5399 with SMTP id 46e09a7af769-7ebb239a3femr1194548a34.26.1783367980231;
-        Mon, 06 Jul 2026 12:59:40 -0700 (PDT)
-Received: from chromium.org ([174.51.25.52])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7eb542d017csm12161834a34.8.2026.07.06.12.59.38
+        d=1e100.net; s=20251104; t=1783368262; x=1783973062;
+        h=user-agent:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5wdjn2ILuT01gLTBdftJHP++YDd3DzxJNeXyKRqGWZY=;
+        b=XFNMaBxsZC7qOTHI/ZnvejRczHVJqWa5jKPgdSISaXdxGqiCw6v1ZvuQiXn65QRVdj
+         FxUgodwyAoVNpBX5v4HkzzxbkIKVvQJwxXUW4PRoSNB9cKa0eGxn9lS1W/68tqj2YpIb
+         LAPOqjUZsqafQrHCvyVSg8DNUyqztieg0g4/soEZ+yG2CWvIltHBJ+YUHBO6oYr5DPyY
+         phROeOhgJi4ROZV9klTsXvfZLfN5QiZZi4U9vshGmq6DeoDjppF46NZSN5l2GbsfNJEB
+         KWB++fiiGZc1kIDWlXSLwttfP7RzMPz4cu8gw0T8LN9v7vFj04dhCs6diymgX8h7ZWQL
+         z7Aw==
+X-Forwarded-Encrypted: i=1; AHgh+RqqV2J03of7G0o4LRvm8WJSFSbCFiQckbM2el56GZkiGPAkh64RCuBwOS0rGOaFQvbVyq4nyex8eHjD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+6b7JK2pEnz960sw9EXzzSaQiX4LiPNz/rJ2Jyp1YyVtgqHkZ
+	EbpIE38shYZltAfcVI0gr3VsFpO4vMJ3BXbxQNcDLnXQ76ZoaZh9gGSi0CXLzOG3UXRxTsHQnVI
+	VK0fUJkRtG6nM8YPxoWdpkGIUObdCCDKZimWII39jfgI0EQiT1DClZKZuk5sBx6Y=
+X-Gm-Gg: AfdE7ckpA1zyg0AO/QMQEvf1wIUtQ1NnGVTcfNilCW+JKIfkNCp2NmGUEguyrRZAucr
+	c6tHrBr0PpZVBXqpLB4Kr5nlVFgj1epe/hQBTc1Qdk1ESQMBhONqJsL+lVF2/JcqZA9+WVX9Pcn
+	I+jmuFf0LPAQ0pHYxfx1cWEAJg7cdoFpBnno7ex50HDnDjNt97r1odPbMmxvgay+lTYJgnkBMof
+	ptBPzk0RsvVC6GLkQM38Y4qtlC5tUjipoih+PzOW5C+jO8zJpM3ebD2eV7/NJnW9jvL/r0CNdBV
+	HBy2TcZmU1olvO6PbwyhjvjMMLZLsE6fSsfssd8M/FIt/6D0wSb8hUD4SvZ+ooQnYNoO8eP/UCg
+	H1Ehr2hUEhnzeurKmqoBVtV+olPxB7WacAld83EHkNQFTrw==
+X-Received: by 2002:a05:620a:2954:b0:92b:6805:9191 with SMTP id af79cd13be357-92ebb5dc455mr291579085a.73.1783368261928;
+        Mon, 06 Jul 2026 13:04:21 -0700 (PDT)
+X-Received: by 2002:a05:620a:2954:b0:92b:6805:9191 with SMTP id af79cd13be357-92ebb5dc455mr291574585a.73.1783368261495;
+        Mon, 06 Jul 2026 13:04:21 -0700 (PDT)
+Received: from redhat.com (c-73-183-53-213.hsd1.pa.comcast.net. [73.183.53.213])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-92e90b7fc3asm982333385a.9.2026.07.06.13.04.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 12:59:39 -0700 (PDT)
-From: Simon Glass <sjg@chromium.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@nabladev.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Simon Glass <sjg@chromium.org>,
-	Albert Aribaud <albert.u.boot@aribaud.net>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jeffy Chen <jeffy.chen@rock-chips.com>,
+        Mon, 06 Jul 2026 13:04:20 -0700 (PDT)
+Date: Mon, 6 Jul 2026 16:04:18 -0400
+From: Brian Masney <bmasney@redhat.com>
+To: Pavel =?iso-8859-1?Q?L=F6bl?= <pavel@loebl.cz>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	huang lin <hl@rock-chips.com>,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 12/12] ARM: dts: rockchip: Add Luckfox Pico Mini B
-Date: Mon,  6 Jul 2026 13:58:08 -0600
-Message-ID: <20260706195818.3906949-13-sjg@chromium.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260706195818.3906949-1-sjg@chromium.org>
-References: <20260706195818.3906949-1-sjg@chromium.org>
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] clk: si544: add support for si549
+Message-ID: <akwKQgdNEO0Z_Gp4@redhat.com>
+References: <20260701145101.3932655-1-pavel@loebl.cz>
+ <20260701145101.3932655-3-pavel@loebl.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260701145101.3932655-3-pavel@loebl.cz>
+User-Agent: Mutt/2.3.2 (2026-04-26)
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[sjg@chromium.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-321541-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:heiko@sntech.de,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:festevam@nabladev.com,m:linux-arm-kernel@lists.infradead.org,m:sjg@chromium.org,m:albert.u.boot@aribaud.net,m:conor+dt@kernel.org,m:jeffy.chen@rock-chips.com,m:krzk+dt@kernel.org,m:robh@kernel.org,m:hl@rock-chips.com,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sjg@chromium.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-321543-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:pavel@loebl.cz,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,chromium.org:from_mime,chromium.org:email,chromium.org:mid,chromium.org:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,loebl.cz:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4E9857153E7
+X-Rspamd-Queue-Id: 6A97E715465
 
-Add the devicetree for the Luckfox Pico Mini B, a small board using
-the Rockchip RV1103 with 64MB of in-package DDR2, a 128MB Winbond SPI
-NAND and a microSD slot. The console is on UART2.
+On Wed, Jul 01, 2026 at 04:51:01PM +0200, Pavel Löbl wrote:
+> Add support for Si549, which only differs from Si544 in internal
+> oscilator frequency. Si549 also comes in three types A,B and C.
+> Each having different maximum output frequency.
+> 
+> This patch also fixes maximum frequency of Si544 C. Which should
+> be 325MHz according to datasheet.
+> 
+> Signed-off-by: Pavel Löbl <pavel@loebl.cz>
 
-Signed-off-by: Simon Glass <sjg@chromium.org>
----
-
- arch/arm/boot/dts/rockchip/Makefile           |  1 +
- .../rockchip/rv1103-luckfox-pico-mini-b.dts   | 93 +++++++++++++++++++
- 2 files changed, 94 insertions(+)
- create mode 100644 arch/arm/boot/dts/rockchip/rv1103-luckfox-pico-mini-b.dts
-
-diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
-index d0154fd7ff24..62a2ed96dd9b 100644
---- a/arch/arm/boot/dts/rockchip/Makefile
-+++ b/arch/arm/boot/dts/rockchip/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_ROCKCHIP) += \
-+	rv1103-luckfox-pico-mini-b.dtb \
- 	rv1103b-omega4-evb.dtb \
- 	rv1108-elgin-r1.dtb \
- 	rv1108-evb.dtb \
-diff --git a/arch/arm/boot/dts/rockchip/rv1103-luckfox-pico-mini-b.dts b/arch/arm/boot/dts/rockchip/rv1103-luckfox-pico-mini-b.dts
-new file mode 100644
-index 000000000000..287dbf1307e8
---- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rv1103-luckfox-pico-mini-b.dts
-@@ -0,0 +1,93 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2023 Luckfox Electronics Co., Ltd
-+ */
-+
-+/dts-v1/;
-+
-+#include "rv1103.dtsi"
-+
-+/ {
-+	model = "Luckfox Pico Mini B";
-+	compatible = "luckfox,pico-mini-b", "rockchip,rv1103";
-+
-+	aliases {
-+		mmc0 = &sdmmc;
-+		serial2 = &uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x00000000 0x04000000>;
-+	};
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc0_clk &sdmmc0_cmd &sdmmc0_det &sdmmc0_bus4>;
-+	status = "okay";
-+};
-+
-+&sfc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&fspi_pins &fspi_cs0>;
-+	status = "okay";
-+
-+	spi_nand: flash@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		spi-max-frequency = <75000000>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <1>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "env";
-+				reg = <0x00000000 0x00040000>;
-+			};
-+
-+			partition@40000 {
-+				label = "idblock";
-+				reg = <0x00040000 0x00100000>;
-+				read-only;
-+			};
-+
-+			partition@140000 {
-+				label = "uboot";
-+				reg = <0x00140000 0x00100000>;
-+				read-only;
-+			};
-+
-+			partition@240000 {
-+				label = "boot";
-+				reg = <0x00240000 0x00800000>;
-+			};
-+
-+			partition@a40000 {
-+				label = "ubi";
-+				reg = <0x00a40000 0x075c0000>;
-+			};
-+		};
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2m1_xfer>;
-+	status = "okay";
-+};
-+
-+&wdt {
-+	status = "okay";
-+};
--- 
-2.43.0
+Reviewed-by: Brian Masney <bmasney@redhat.com>
 
 
