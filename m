@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-321111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321113-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5SNrCb6qS2rdYAEAu9opvQ
-	(envelope-from <devicetree+bounces-321111-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 15:16:46 +0200
+	id 3g0VFqWQS2p2VgEAu9opvQ
+	(envelope-from <devicetree+bounces-321113-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:25:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9465C711217
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 15:16:45 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2535370FCFD
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:25:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=YyrSrSMf;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="WBBpq4/9";
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321111-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321111-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321113-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-321113-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9841C337BFC7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 11:25:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AB329301A11A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 11:25:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E5441DEEA;
-	Mon,  6 Jul 2026 11:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BFD641F7D3;
+	Mon,  6 Jul 2026 11:24:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B543FE677
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 11:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542A9414A37
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 11:24:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783337087; cv=none; b=SjE2hdaTo5+NHSnrd7IxcJ3FgYCK8ZUmU+AwkmbZ9z1H7new+813R6b8hVHf6ng+FxL5IK+YJePFw/EHHVM3kaIC2O9BkNSuVVrBNLjxXo5ds/315DU5yCJ3scwczRPx3sOtRHbKgLjry8FkufOdHCDtoeTRkV1qoBbXvlG+e60=
+	t=1783337090; cv=none; b=XZQhrrDKrJjomndPxaSIeb7UJ3n3tRmojy+ExpUUZlq0in+9uOhCmMeMQf6rwcm50d9C1lnXaPAE/83LH/qQmKBLwynf/r+9bwIQXqzUfsYaQM/V5m7+7g1JZRjbSlgU+Z8lor7FtA1oamJM3KZstg3+2uPyMWJRPU5ThpC2jww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783337087; c=relaxed/simple;
-	bh=IoLwpj0Oc/wRXTWhdV0K7RGU0OItAbdA41jadgeYGW0=;
+	s=arc-20240116; t=1783337090; c=relaxed/simple;
+	bh=UmfJxJ8nhIHyUkERVrzBBo1YhOLLDzXmiqnhuCB/hWI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eghNK92fP6Nm++1vTGbLp0sOkBsjZrDIQ0s+YvhX1I0gwgo+LTyNE3rhgZwVpfEc6SnnXrZDgRJQAHQFXuNaXj/Yh99KZ0K5h//W3cg+8fz6ZLPfFO5tL9MKTlnQifSms1IDQ5eVfDfy/Aq0bsZ2KuzG573wNPNaoRJ5GVAVcOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YyrSrSMf; arc=none smtp.client-ip=209.85.128.42
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-493b61b52b6so19872655e9.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 04:24:45 -0700 (PDT)
+	 MIME-Version; b=ar1cXKYHsHh+LPOqwFHjUIaxzM8CAUz5+7dxsDp4bnuLGNmRPIpz5dODclsvJZqBoLxCQsVhgsAGi22XvE8rbwbIXDUnSjeih2rs1KM5Td+TFfYaOx6oralcxMli8/PO24cMQxFWm7XdYaxcqGtlTfeqRZQKmhwfRNvJP//defw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WBBpq4/9; arc=none smtp.client-ip=209.85.128.44
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4938d5f86f3so18737345e9.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 04:24:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783337084; x=1783941884; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1783337085; x=1783941885; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=F3wXm3ZFK3RS/54OX3WM5P3/OSQWApUo1TE0TM+meZ4=;
-        b=YyrSrSMfmNHrzy6a4ZYcJr2v47iZyD7T0MhwdsmQ+U7L+k/cE5/VPiXYEBd7rNqPNh
-         F9YkXJ/PXejFdOqmDDcGRLHZNisi87VtEuNGjT7GbdI2XkFKYjnGPcciUXMwZxYU3A3C
-         olncUft8+/BHf7fq3blLk9cJ8MOoYkO/F5Hkg8dQYM50zL7sT5sSLOAPjj4QpLAnlr6F
-         cZUNafymFwyFQo/natgBKtka0Ce/+j+pkoeAJ4Ubpj4JD8BUw701g1LKYZl/xUgcnpub
-         0UmlVRqEb/X+bwS8eO4orXi6X8GNvQFnOYBw8Bd0bPD4m2pQZJ6XI/bKbwMcA/+kb1EM
-         90xA==
+         :message-id:reply-to;
+        bh=RmK9K2DaO6tNCCapIEUZmp/TbdlsdPw4vmN3f60Soh8=;
+        b=WBBpq4/9i7e7/GdOaqtA0/yjXTaiAGTURt9SyXu1PKaOrJ6wcLyQax4cE7GZyK60Lz
+         SM3+nFqjmc6110Dqup1600vBt9CU0Latuklp43JdPdsoV+n2xuM34pz5DS8vW7/h2J4R
+         J7r2pUFSLUoI4MxJw6aB2PpSiJ2jTBmHj2UcDkQouvQUd+hN8fO0BP+0oidErK1DpTyJ
+         x1a2z/YTcsD9tudSrHahJrc4G5FUdLoQYlBQtcBm1PlTmWcF3e4whR+J8tsiVCyP2DYd
+         TBDHrEbmwPyGjxxBbIpzsieDBS5nDkr3SavhU7sXe/LCY2WUA/2mSnvTRpjO3LBxo4zv
+         DHpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783337084; x=1783941884;
+        d=1e100.net; s=20251104; t=1783337085; x=1783941885;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=F3wXm3ZFK3RS/54OX3WM5P3/OSQWApUo1TE0TM+meZ4=;
-        b=A/rVs4Ba+Hy+momFD1VWiBi78mA85c5kJ+BdJMglNm7TxpgQ6UmOPdOAVLFnyW5nG/
-         07NOrs3gfKSPA5YL60Wt8YOmjqOakrtQkzKMa7FE1NPW141ITIB+0sb1jhu30hW0rDib
-         PI+WJmn1CBDPRUwooYlEUeQXfbn9gn1Bh3sKiqa9xlBgbHrGJHYNzpMTr26SlS5m/gJw
-         /QGnVIbxxfS/XiSgDFfv9N8iUHfG25dqBjt7g2di5TK6eX8zqAWjKDhYNJAfvSpCjRaO
-         VGV3f6QMPEhClYlTOdc4uOl1+5QDdYkG4jjzbhxlofIQU9hyP9l0tIjSc1yR4Z5gP3Tp
-         xrOQ==
-X-Forwarded-Encrypted: i=1; AHgh+RrmuY4GE5o1/e7QzzJcxhmc9bi1EWTEAIxQ+T+cxfX1RISiyLTzxEoXg6e3mJ+5oWhulsmG8ktIjeBO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9uZ3gT/myOzn74jI58TiSyYz61a8VlsyitNjf/QHwWlg7+PkA
-	ND5YzJS4VdaxoWWTSG2LVujkqayn3A7OEB12Fcm2ZIPeqioJEyHVUpt2
-X-Gm-Gg: AfdE7cmw86qg0Dfs82ZpCFHnrWpKSPhF5X0r9LS8bg/14z+CjDJR7NmeyvxTHDNFynI
-	Gjd/nOKTJsTigYJ+Y4t1kwxB3yuszy0PrvpvM3ONGFWf1Ms/cTRgmv34NLwieg3XNQQHMAgrDtC
-	faHyzhloC5efyFiT7J/8ry97A2EOId6EFTXkIXUZMu/WR+ImOcQiCma0PEEBMjx2WLPZlCg4rFP
-	vhRWDT35k0AzUDZHZ5pzOfyp5/VdK9GwPEDRHg68ZxWtfDTNRWXeS3vplGk65E74hel/dvHHK11
-	dsU+FdULRVrXAHZCzH9p+XM9PrU6G1QbXalNmccPUi0aq4sp83qrHUwf04Nx01IM5Vk5YUWlc97
-	U9DPueony20lUCA/grBUVWlFnmMFBoR5yCDfPK17viGy3wFvtJpM8XP1kIgWbJG3386/kNDxpT1
-	ln3rdw9trqC3unr9E=
-X-Received: by 2002:a05:600c:6692:b0:493:ca3a:d738 with SMTP id 5b1f17b1804b1-493df055a84mr415e9.7.1783337083731;
-        Mon, 06 Jul 2026 04:24:43 -0700 (PDT)
+         :to:cc:subject:date:message-id:reply-to;
+        bh=RmK9K2DaO6tNCCapIEUZmp/TbdlsdPw4vmN3f60Soh8=;
+        b=ZuqccxQeeN0V53FSyfJzimRp5B02IUOjEd0P1MwSpATFAzpFtwtaAqQdRrorOpCMmq
+         2W1aIOUg61fRfabrmH9lt8zxyJKf2K7MyeAJpK6Srd4UzSePucvM6em4FUi4pyxqYFh0
+         MArnZgSqTz8K5tI00ZsInR5SECBZks0OHyREl8KphYqafvLDzSh4exIy7ex5fZTndK5y
+         Jjy/zm6HynpZyGyZVf7t1bzemPZWeF5uI306Vh/s6B44fxhO2OkEMNYfyR8Q0Cp1yD0K
+         nowLxo/+n2dPKXyNjlNJtivXE7fYSKvCZJr98MnrFb5NVmypPnlgtYgUqx3klsmzSUsp
+         jf7Q==
+X-Forwarded-Encrypted: i=1; AHgh+RqIHoIEysreXPWrhZpZmitAnxThijzArN/V02E2ejoIqm5cU9BhOYc71tZVQxNqAAxA52zmYrp256UK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxb5GQBzQ+Vmt6f0KMOUIfELaRARdu6v6QWgMcONB1a8E7UAox9
+	8V54MTsUTbxE2bxINEoHbPYKCaRm2qQ9mjPBPh3/B00oIzmTXOyNuyrY
+X-Gm-Gg: AfdE7clZQ2RD2WtDJoHG5+Jmf+A47/BO6amhLN++zv/cngWeR2CX45Fx9rhWGbNUSQU
+	ZaMcqb7hr0fywLAYW+IQK1xvSvpqUn3bw82Ef6r7FZwysEEal8McvZaiy4deigr46YXwbuzNk/Q
+	xh2SLPd9oT68Buxq2ewhWA3TAxm4HzTYOh+jOKBJRQKPp0bxg4q/m4D5k1kKR37WSLKJVcM/INj
+	FLpS8Fc1VB4oviz6JFxn1SzVVy5NJKieSMZIxb+Oxg6npnw9IqYL6tdOwH2/a+aLbdmiV2vCwR+
+	WvDYYMWFXET0IoATkzlofwQwwdQFVoQFpTjsZIx6mj4np2n+aP7c5JxDO5RRDFWGSTL+1+bouKW
+	c/zKro+b/08/i25XA86c6SgstxuRdiloA4YyYaYMkIhpjSqSXld3BvIsJPxKRIXdc972jGE4e9O
+	VU5e7mDhkoo34rXI0=
+X-Received: by 2002:a05:600c:8b12:b0:493:b698:9247 with SMTP id 5b1f17b1804b1-493dececcd3mr2531445e9.14.1783337084583;
+        Mon, 06 Jul 2026 04:24:44 -0700 (PDT)
 Received: from builder ([2001:9e8:f13c:d516:be24:11ff:fe30:5d85])
         by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493ccdab27dsm258903245e9.4.2026.07.06.04.24.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 04:24:43 -0700 (PDT)
+        Mon, 06 Jul 2026 04:24:44 -0700 (PDT)
 From: Jonas Jelonek <jelonek.jonas@gmail.com>
 To: Oleksij Rempel <o.rempel@pengutronix.de>,
 	Kory Maincent <kory.maincent@bootlin.com>,
@@ -93,9 +93,9 @@ Cc: netdev@vger.kernel.org,
 	Daniel Golle <daniel@makrotopia.org>,
 	=?UTF-8?q?Bj=C3=B8rn=20Mork?= <bjorn@mork.no>,
 	Jonas Jelonek <jelonek.jonas@gmail.com>
-Subject: [PATCH net-next v5 3/4] net: pse-pd: realtek-pse-mcu: add I2C transport
-Date: Mon,  6 Jul 2026 11:24:23 +0000
-Message-ID: <20260706112425.3149226-4-jelonek.jonas@gmail.com>
+Subject: [PATCH net-next v5 4/4] net: pse-pd: realtek-pse-mcu: add UART transport
+Date: Mon,  6 Jul 2026 11:24:24 +0000
+Message-ID: <20260706112425.3149226-5-jelonek.jonas@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260706112425.3149226-1-jelonek.jonas@gmail.com>
 References: <20260706112425.3149226-1-jelonek.jonas@gmail.com>
@@ -113,13 +113,13 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-321111-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321113-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:o.rempel@pengutronix.de,m:kory.maincent@bootlin.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:bjorn@mork.no,m:jelonek.jonas@gmail.com,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:jelonekjonas@gmail.com,s:lists@lfdr.de];
@@ -127,7 +127,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FORGED_SENDER(0.00)[jelonekjonas@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[vger.kernel.org,makrotopia.org,mork.no,gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -141,230 +141,221 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9465C711217
+X-Rspamd-Queue-Id: 2535370FCFD
 
-Add the I2C/SMBus transport for the Realtek/Broadcom PSE MCU core. It
-registers the MCU on an I2C bus and provides the send/recv callbacks the
-core uses to exchange the 12-byte frames.
+Add the serdev (UART) transport for the Realtek/Broadcom PSE MCU core. It
+registers the MCU as a serdev device and provides the send/recv callbacks
+the core uses to exchange the 12-byte frames, receiving asynchronously via
+the serdev receive_buf callback.
 
-The MCU firmware expects one of two framings on the I2C bus, selected per
-board via the "realtek,i2c-protocol" property: "smbus" (reads carry a
-leading command byte and a repeated start) or "i2c" (bare block writes and
-reads). The property is required for the Realtek dialect; the Broadcom
-dialect and boards that omit it default to SMBus framing.
+The baud rate defaults to 19200 and can be overridden per board with the
+"current-speed" property.
 
 Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
 ---
- drivers/net/pse-pd/Kconfig               |  11 ++
- drivers/net/pse-pd/Makefile              |   1 +
- drivers/net/pse-pd/realtek-pse-mcu-i2c.c | 163 +++++++++++++++++++++++
- 3 files changed, 175 insertions(+)
- create mode 100644 drivers/net/pse-pd/realtek-pse-mcu-i2c.c
+ drivers/net/pse-pd/Kconfig                |  11 ++
+ drivers/net/pse-pd/Makefile               |   1 +
+ drivers/net/pse-pd/realtek-pse-mcu-uart.c | 156 ++++++++++++++++++++++
+ 3 files changed, 168 insertions(+)
+ create mode 100644 drivers/net/pse-pd/realtek-pse-mcu-uart.c
 
 diff --git a/drivers/net/pse-pd/Kconfig b/drivers/net/pse-pd/Kconfig
-index 626f47b8acd7..7074d6733ff3 100644
+index 7074d6733ff3..23e44dde3dbf 100644
 --- a/drivers/net/pse-pd/Kconfig
 +++ b/drivers/net/pse-pd/Kconfig
-@@ -19,6 +19,17 @@ config PSE_REALTEK_MCU
- 	  Shared core for the Realtek/Broadcom PSE MCU driver. This is
- 	  selected automatically by the transport options below.
+@@ -30,6 +30,17 @@ config PSE_REALTEK_MCU_I2C
+ 	  PSE silicon is not accessed directly. To compile this driver as a
+ 	  module, choose M here: the module will be called realtek-pse-mcu-i2c.
  
-+config PSE_REALTEK_MCU_I2C
-+	tristate "Realtek/Broadcom PSE MCU driver (I2C transport)"
-+	depends on I2C
++config PSE_REALTEK_MCU_UART
++	tristate "Realtek/Broadcom PSE MCU driver (UART transport)"
++	depends on SERIAL_DEV_BUS
 +	select PSE_REALTEK_MCU
 +	help
 +	  Driver for the microcontroller (MCU) that fronts the PSE
 +	  hardware on switches with Realtek or Broadcom PSE chips, attached
-+	  via I2C/SMBus. The MCU exposes a message-based protocol; the actual
-+	  PSE silicon is not accessed directly. To compile this driver as a
-+	  module, choose M here: the module will be called realtek-pse-mcu-i2c.
++	  via UART. The MCU exposes a message-based protocol; the actual PSE
++	  silicon is not accessed directly. To compile this driver as a
++	  module, choose M here: the module will be called realtek-pse-mcu-uart.
 +
  config PSE_REGULATOR
  	tristate "Regulator based PSE controller"
  	help
 diff --git a/drivers/net/pse-pd/Makefile b/drivers/net/pse-pd/Makefile
-index bf35e2a5b110..ef869bba5ed9 100644
+index ef869bba5ed9..9cca5900fe34 100644
 --- a/drivers/net/pse-pd/Makefile
 +++ b/drivers/net/pse-pd/Makefile
-@@ -4,6 +4,7 @@
- obj-$(CONFIG_PSE_CONTROLLER) += pse_core.o
+@@ -5,6 +5,7 @@ obj-$(CONFIG_PSE_CONTROLLER) += pse_core.o
  
  obj-$(CONFIG_PSE_REALTEK_MCU) += realtek-pse-mcu-core.o
-+obj-$(CONFIG_PSE_REALTEK_MCU_I2C) += realtek-pse-mcu-i2c.o
+ obj-$(CONFIG_PSE_REALTEK_MCU_I2C) += realtek-pse-mcu-i2c.o
++obj-$(CONFIG_PSE_REALTEK_MCU_UART) += realtek-pse-mcu-uart.o
  obj-$(CONFIG_PSE_REGULATOR) += pse_regulator.o
  obj-$(CONFIG_PSE_PD692X0) += pd692x0.o
  obj-$(CONFIG_PSE_SI3474) += si3474.o
-diff --git a/drivers/net/pse-pd/realtek-pse-mcu-i2c.c b/drivers/net/pse-pd/realtek-pse-mcu-i2c.c
+diff --git a/drivers/net/pse-pd/realtek-pse-mcu-uart.c b/drivers/net/pse-pd/realtek-pse-mcu-uart.c
 new file mode 100644
-index 000000000000..6e6e3645c509
+index 000000000000..ef04e0d92963
 --- /dev/null
-+++ b/drivers/net/pse-pd/realtek-pse-mcu-i2c.c
-@@ -0,0 +1,163 @@
++++ b/drivers/net/pse-pd/realtek-pse-mcu-uart.c
+@@ -0,0 +1,156 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later
 +
++#include <linux/cleanup.h>
++#include <linux/completion.h>
 +#include <linux/delay.h>
-+#include <linux/i2c.h>
 +#include <linux/module.h>
 +#include <linux/of.h>
 +#include <linux/pse-pd/pse.h>
++#include <linux/serdev.h>
++#include <linux/spinlock.h>
++#include <linux/string.h>
 +
 +#include "realtek-pse-mcu.h"
 +
++#define RTPSE_MCU_UART_BAUD_DEFAULT	19200
++#define RTPSE_MCU_UART_TX_TIMEOUT	msecs_to_jiffies(100)
++#define RTPSE_MCU_UART_RX_TIMEOUT	msecs_to_jiffies(RTPSE_MCU_RESPONSE_MAX_MS)
++
++struct rtpse_mcu_uart {
++	struct rtpse_mcu_ctrl pse;
++	struct serdev_device *serdev;
++	struct completion rx_done;
++	spinlock_t rx_lock;		/* protects rx_buf and rx_len */
++	size_t rx_len;
++	u8 rx_buf[RTPSE_MCU_MSG_SIZE];
++};
++
++#define to_rtpse_mcu_uart(p)  container_of(p, struct rtpse_mcu_uart, pse)
++
 +/*
-+ * The core has already waited RTPSE_MCU_RESPONSE_MS before calling us, so
-+ * the response is normally ready on the very first read. For commands the
-+ * MCU produces more slowly, keep polling at the typical response cadence
-+ * up to the worst-case ceiling.
++ * No framing is done here: a glitched frame costs one transaction, then
++ * the next _send re-frames from rx_len 0. Resync works by returning count
++ * (not take), dropping any overflow so serdev keeps no leftover to bleed
++ * into the next frame.
 + */
-+#define RTPSE_MCU_I2C_RETRY_MS	RTPSE_MCU_RESPONSE_MS
-+#define RTPSE_MCU_I2C_MAX_TRIES	(RTPSE_MCU_RESPONSE_MAX_MS / RTPSE_MCU_I2C_RETRY_MS)
-+
-+static int rtpse_mcu_i2c_smbus_send(struct rtpse_mcu_ctrl *pse, const struct rtpse_mcu_msg *req)
++static size_t rtpse_mcu_uart_receive(struct serdev_device *serdev,
++				     const u8 *buf, size_t count)
 +{
-+	struct i2c_client *client = to_i2c_client(pse->dev);
++	struct rtpse_mcu_uart *ctx = serdev_device_get_drvdata(serdev);
++	size_t take;
 +
-+	/* Send opcode as SMBus command byte; remaining 11 bytes as block data */
-+	return i2c_smbus_write_i2c_block_data(client, req->opcode, RTPSE_MCU_MSG_SIZE - 1,
-+					      (u8 *)req + 1);
-+}
-+
-+static int rtpse_mcu_i2c_smbus_recv(struct rtpse_mcu_ctrl *pse, const struct rtpse_mcu_msg *req,
-+				    struct rtpse_mcu_msg *resp)
-+{
-+	struct i2c_client *client = to_i2c_client(pse->dev);
-+	int tries, ret;
-+
-+	for (tries = 0; tries < RTPSE_MCU_I2C_MAX_TRIES; tries++) {
-+		if (tries > 0)
-+			msleep(RTPSE_MCU_I2C_RETRY_MS);
-+
-+		/* MCU needs 0x00 as command byte for read */
-+		ret = i2c_smbus_read_i2c_block_data(client, 0x00,
-+						    RTPSE_MCU_MSG_SIZE,
-+						    (u8 *)resp);
-+		if (ret < 0)
-+			return ret;
-+		if (ret == RTPSE_MCU_MSG_SIZE && rtpse_mcu_resp_is_final(req, resp))
-+			return 0;
++	scoped_guard(spinlock_irqsave, &ctx->rx_lock) {
++		take = min(count, sizeof(ctx->rx_buf) - ctx->rx_len);
++		if (take) {
++			memcpy(ctx->rx_buf + ctx->rx_len, buf, take);
++			ctx->rx_len += take;
++			if (ctx->rx_len == sizeof(ctx->rx_buf))
++				complete(&ctx->rx_done);
++		}
 +	}
 +
-+	return -ETIMEDOUT;
++	/* consume all to avoid desync/misalignment */
++	return count;
 +}
 +
-+static const struct rtpse_mcu_transport_ops rtpse_mcu_i2c_smbus_ops = {
-+	.send = rtpse_mcu_i2c_smbus_send,
-+	.recv = rtpse_mcu_i2c_smbus_recv,
++static const struct serdev_device_ops rtpse_mcu_uart_serdev_ops = {
++	.receive_buf = rtpse_mcu_uart_receive,
++	.write_wakeup = serdev_device_write_wakeup,
 +};
 +
-+static int rtpse_mcu_i2c_native_send(struct rtpse_mcu_ctrl *pse, const struct rtpse_mcu_msg *req)
++static int rtpse_mcu_uart_send(struct rtpse_mcu_ctrl *pse, const struct rtpse_mcu_msg *req)
 +{
-+	struct i2c_client *client = to_i2c_client(pse->dev);
-+	int ret;
++	struct rtpse_mcu_uart *ctx = to_rtpse_mcu_uart(pse);
++	int written;
 +
-+	ret = i2c_master_send(client, (const u8 *)req, RTPSE_MCU_MSG_SIZE);
-+	if (ret < 0)
-+		return ret;
-+	return ret == RTPSE_MCU_MSG_SIZE ? 0 : -EIO;
-+}
-+
-+static int rtpse_mcu_i2c_native_recv(struct rtpse_mcu_ctrl *pse, const struct rtpse_mcu_msg *req,
-+				     struct rtpse_mcu_msg *resp)
-+{
-+	struct i2c_client *client = to_i2c_client(pse->dev);
-+	int tries, ret;
-+
-+	for (tries = 0; tries < RTPSE_MCU_I2C_MAX_TRIES; tries++) {
-+		if (tries > 0)
-+			msleep(RTPSE_MCU_I2C_RETRY_MS);
-+
-+		ret = i2c_master_recv(client, (u8 *)resp, RTPSE_MCU_MSG_SIZE);
-+		if (ret < 0)
-+			return ret;
-+		if (ret == RTPSE_MCU_MSG_SIZE && rtpse_mcu_resp_is_final(req, resp))
-+			return 0;
++	/* clear any leftover rx state before transmitting */
++	scoped_guard(spinlock_irqsave, &ctx->rx_lock) {
++		reinit_completion(&ctx->rx_done);
++		ctx->rx_len = 0;
 +	}
 +
-+	return -ETIMEDOUT;
++	written = serdev_device_write(ctx->serdev, (const u8 *)req, sizeof(*req),
++				      RTPSE_MCU_UART_TX_TIMEOUT);
++	if (written < 0)
++		return written;
++	if (written != sizeof(*req))
++		return -EIO;
++
++	return 0;
 +}
 +
-+static const struct rtpse_mcu_transport_ops rtpse_mcu_i2c_native_ops = {
-+	.send = rtpse_mcu_i2c_native_send,
-+	.recv = rtpse_mcu_i2c_native_recv,
++static int rtpse_mcu_uart_recv(struct rtpse_mcu_ctrl *pse,
++			       const struct rtpse_mcu_msg *req,
++			       struct rtpse_mcu_msg *resp)
++{
++	struct rtpse_mcu_uart *ctx = to_rtpse_mcu_uart(pse);
++
++	if (!wait_for_completion_timeout(&ctx->rx_done, RTPSE_MCU_UART_RX_TIMEOUT))
++		return -ETIMEDOUT;
++
++	scoped_guard(spinlock_irqsave, &ctx->rx_lock) {
++		if (ctx->rx_len != sizeof(*resp))
++			return -EIO;
++
++		memcpy(resp, ctx->rx_buf, sizeof(*resp));
++	}
++	return 0;
++}
++
++static const struct rtpse_mcu_transport_ops rtpse_mcu_uart_transport_ops = {
++	.send = rtpse_mcu_uart_send,
++	.recv = rtpse_mcu_uart_recv,
 +};
 +
-+static int rtpse_mcu_i2c_probe(struct i2c_client *client)
++static int rtpse_mcu_uart_probe(struct serdev_device *serdev)
 +{
-+	struct device *dev = &client->dev;
-+	const struct rtpse_mcu_match_data *match;
-+	struct rtpse_mcu_ctrl *pse;
-+	bool use_native = false;
++	u32 speed = RTPSE_MCU_UART_BAUD_DEFAULT;
++	struct device *dev = &serdev->dev;
++	struct rtpse_mcu_uart *ctx;
 +	int ret;
 +
-+	match = device_get_match_data(dev);
-+	if (!match)
-+		return dev_err_probe(dev, -ENODEV, "missing match data\n");
-+
-+	if (rtpse_mcu_needs_i2c_proto(match)) {
-+		const char *proto;
-+
-+		ret = device_property_read_string(dev, "realtek,i2c-protocol", &proto);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "missing required \"realtek,i2c-protocol\" property\n");
-+
-+		if (!strcmp(proto, "i2c"))
-+			use_native = true;
-+		else if (!strcmp(proto, "smbus"))
-+			use_native = false;
-+		else
-+			return dev_err_probe(dev, -EINVAL,
-+					     "unknown realtek,i2c-protocol \"%s\"\n", proto);
-+	}
-+
-+	if (use_native) {
-+		if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
-+			return dev_err_probe(dev, -EOPNOTSUPP,
-+				"plain-I2C MCU protocol requires I2C-capable adapter\n");
-+	} else {
-+		if (!i2c_check_functionality(client->adapter,
-+					     I2C_FUNC_SMBUS_WRITE_I2C_BLOCK |
-+					     I2C_FUNC_SMBUS_READ_I2C_BLOCK))
-+			return dev_err_probe(dev, -EOPNOTSUPP,
-+				"SMBus MCU protocol requires SMBus I2C-block support\n");
-+	}
-+
-+	pse = devm_kzalloc(dev, sizeof(*pse), GFP_KERNEL);
-+	if (!pse)
++	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
++	if (!ctx)
 +		return -ENOMEM;
 +
-+	pse->dev = dev;
-+	pse->pcdev.owner = THIS_MODULE;
-+	pse->transport = use_native ? &rtpse_mcu_i2c_native_ops : &rtpse_mcu_i2c_smbus_ops;
++	ctx->serdev = serdev;
++	ctx->pse.dev = dev;
++	ctx->pse.pcdev.owner = THIS_MODULE;
++	ctx->pse.transport = &rtpse_mcu_uart_transport_ops;
++	init_completion(&ctx->rx_done);
++	spin_lock_init(&ctx->rx_lock);
 +
-+	return rtpse_mcu_register(pse);
++	serdev_device_set_drvdata(serdev, ctx);
++	serdev_device_set_client_ops(serdev, &rtpse_mcu_uart_serdev_ops);
++
++	ret = devm_serdev_device_open(dev, serdev);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to open serdev\n");
++
++	fwnode_property_read_u32(dev_fwnode(dev), "current-speed", &speed);
++	serdev_device_set_baudrate(serdev, speed);
++	serdev_device_set_flow_control(serdev, false);
++	serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
++
++	return rtpse_mcu_register(&ctx->pse);
 +}
 +
-+static const struct of_device_id rtpse_mcu_i2c_of_match[] = {
++static const struct of_device_id rtpse_mcu_uart_of_match[] = {
 +	{ .compatible = "realtek,pse-mcu-rtk", .data = &rtpse_mcu_rtk_data },
 +	{ .compatible = "realtek,pse-mcu-brcm", .data = &rtpse_mcu_brcm_data },
 +	{ /* sentinel */ }
 +};
-+MODULE_DEVICE_TABLE(of, rtpse_mcu_i2c_of_match);
++MODULE_DEVICE_TABLE(of, rtpse_mcu_uart_of_match);
 +
-+static struct i2c_driver rtpse_mcu_i2c_driver = {
++static struct serdev_device_driver rtpse_mcu_uart_driver = {
 +	.driver = {
-+		.name		= "realtek-pse-mcu-i2c",
-+		.of_match_table	= rtpse_mcu_i2c_of_match,
++		.name = "realtek-pse-mcu-uart",
++		.of_match_table = rtpse_mcu_uart_of_match,
 +	},
-+	.probe		= rtpse_mcu_i2c_probe,
++	.probe  = rtpse_mcu_uart_probe,
 +};
-+module_i2c_driver(rtpse_mcu_i2c_driver);
++module_serdev_device_driver(rtpse_mcu_uart_driver);
 +
 +MODULE_AUTHOR("Jonas Jelonek <jelonek.jonas@gmail.com>");
-+MODULE_DESCRIPTION("Realtek/Broadcom PSE MCU driver (I2C transport)");
++MODULE_DESCRIPTION("Realtek/Broadcom PSE MCU driver (UART transport)");
 +MODULE_LICENSE("GPL");
 -- 
 2.51.0
