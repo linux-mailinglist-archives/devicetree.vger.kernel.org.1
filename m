@@ -1,157 +1,190 @@
-Return-Path: <devicetree+bounces-320915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320916-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id d0Q0JUFtS2rbRAEAu9opvQ
-	(envelope-from <devicetree+bounces-320915-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:54:25 +0200
+	id nZ6UEAhqS2oYRAEAu9opvQ
+	(envelope-from <devicetree+bounces-320916-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:40:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3BE570E537
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:54:24 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 094A770E355
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:40:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mqHL8jRy;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320915-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320915-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320916-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320916-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 054E23250770
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 08:16:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 04F8D303B09E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 08:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AABE1A3165;
-	Mon,  6 Jul 2026 08:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BF9E3B27C6;
+	Mon,  6 Jul 2026 08:16:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B217238E8C2
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 08:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1FAC37BE7F
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 08:16:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783325790; cv=none; b=qPz55DVesYaewi3UzWmdnDppzVVLH6vs5Wg0HnB57mdnny0ElA6lEEUvYT3F+pB41lcLDYrSBHJhRZ9mGHk2LxXArMFsz6w2CAdyd9UksibD/m8LBAdM2r7ZhFUxUuvP8tCUWMO/fZoCsA/ResEwN7J45hPr0kbujAlIol6TqMA=
+	t=1783325806; cv=none; b=V/MivtYi469xAjJG7XsgSpVMe7B1VCYt4vhn81lpcIC+u9hyjOlkRMC044MwTnRObjOntP9RWYWUo2XEqJh1iQrgQrsA1GHiYGM47iD+wjplcqOha79gIkhH04foVxFcVAPFqUU5f+U63JhCT2c/pogQ4pmUAnFFJQg3jaitaOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783325790; c=relaxed/simple;
-	bh=7By+TedtKbm6J+CxXElrbh3EPfmKOCWIM+fgrujbOrc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=lhyQzZfW/8ZghB2oxajL35OePToI5JifMraRAWc3ErhySSruV2RVZf5T9YquJC9rXnfTuLxxzgggC17RIwUPU3PGH7r5cfH/ouwYAxbZqlFjg7MAsYZT3ZMHRQfsfpY7qjdX5qsf+ahbWKenlrQChUa7B39LDkjCRfyadubrUOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mqHL8jRy; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AAFB1F000E9;
-	Mon,  6 Jul 2026 08:16:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783325783;
-	bh=0cJ1/FfpMd5Fu1oekl++RqCpdeMBo7Tt8abIgXICNAE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=mqHL8jRyoUMhLPnnYVzXlinvkAN20jFlORITu4HWM/EXeBuuetcQFR+Ddo2RCMRx1
-	 yX6ohz6xcscXwXnxLxY55vh3jnMT90gs3TlP/vlxzwqJkVvHJmUPy/SxtgEvK6dqJ2
-	 6gCd5eTxwP7l1rnB1QBzawcg6totVhT4cvA8I+YqertyhYhxXo/DjJZL35RqVL3jCI
-	 pZyegF+ypoWnXXv6zOe0ajPL6G8q1k9DK0N33nif7eqgU+ahZlaQVK2s0QgjbADA6f
-	 VcENBrm1nobeDE//T6inMJ7QWrxVKA0k4jE7XpohCDUnJ3CgUTq9AAcmoTS+YJbXJM
-	 tesPubuMqJPRw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/8] riscv: dts: eswin: add clock generator for
- EIC7700 SoC
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Pinkesh Vaghela" <pinkesh.vaghela@einfochips.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260706081055.1126275-3-pinkesh.vaghela@einfochips.com>
-References: <20260706081055.1126275-1-pinkesh.vaghela@einfochips.com>
- <20260706081055.1126275-3-pinkesh.vaghela@einfochips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 06 Jul 2026 08:16:22 +0000
-Message-Id: <20260706081623.5AAFB1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783325806; c=relaxed/simple;
+	bh=KJatOBmAq352QrXFVmfzjgc8bnC88IRW7JAIsO6hyz4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HHtXhGnpzTdd2UyClxZTE8z5jHgiNb74Sd/302I2J/vf/gv10jsogAYptVv0unb4ij7h9J3Ohv6CUxgbK7DonOqu7LywEMX/ZSF7RjDhVKNFG7USDjXx7TQE5q9U10i2MoMDNkPYV5mYvFgicZ3gDAo71orrLTtF6SBMqcc5oeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-5bbc717c52aso749079e0c.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 01:16:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783325796; x=1783930596;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=dbFPkCHMyK2cMipYCshkg+R5wrSHUFxUQ6/ZQ0r9elE=;
+        b=noEt9a1KVo6jrZi2xtBL1a0ZtpoLAd4fWyhNeN0v5SbMe+CwI4r9VjpR+M251r8wHP
+         VygN5FGLJ92uJcw1F26jIKsY7HGM/vcVHAkYErqw3iNd3SsiEuOsm/mZa8WDLwan2hfu
+         GQFPVli/5exyPoc73ESpTxDrkzG6fFxnVDDlscnZ3NNM60ysjVNnBAEYUk4AUNI+0W8R
+         Z/iqoMRboI/7PCFU9Rqf/iVuH6yQpwsRFywxVlkUYMqoRScrygEXSb77z/t6KHrg/Zw1
+         9MwHnmGGdbqQxSeAdz54bTxJjLI1+zT4a1+U5GjrcfUotzLl3gqljNOLQD6AVIibI9ay
+         SfBA==
+X-Forwarded-Encrypted: i=1; AHgh+Roaknr7/633+zCxQdFV4/cFqGpOS/1Pj1DCiTDA9IfCe/XOYpcYkQd8hKksI6WoT1XjI/hRQeB/j5Px@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzc7Q1PF31zHxQKyvK+cicTkCVBTYK30uZEJmDL8Bnn+N7OGT1x
+	EMFryoTBc5TSVe2gmXzAfx85W6VZDQEGz/OzD4asixnj39Vw0HvGYJ/Mtyp1s+RO
+X-Gm-Gg: AfdE7cl53ZA5AbDAHXbEDc92MnEWhWXClST1NxadD0idJBd/QoxtbS4AzFiFwzqRAzs
+	4v0g11Es+xsabKmUsfJ1pbfYWwIbWQer0tbPLsepXTayhsTvqpz2EKjW7mTumK2uwL5zPUaVWq4
+	3GaSIEHTQd+2G4SJye8TJ7SK563Nb8pZoEGUHq+tFqBYyQcQky/tH4TS3dEQjXel9U8ct8zvL1C
+	jTE3n6x2vaPZtlAN8ymJojdbC1l3YereLw+qCgM+RFEUgnSggwcJwoW8pS/3xpPrc4qjIneufgq
+	n5qrqiMlmjCGBMlRybJv+v16wjTOGE+ntTZOcrk3wJ9/DgdXTaaTShpO9kP2UDTeQprzb05zfPV
+	zti/BSe8LX5SHCKjrECJsefZz/lII7QCj6roiP1z7PvZET58D9XnGpr96yyQxFjoQpbDZqLjYv/
+	IMdUseXCJ7xlkTiTgNWHjXKyYGI+GCqrY7DzjxX8TDFvyMQk/3ui4B2g==
+X-Received: by 2002:a05:6122:6d15:b0:5be:2177:70b3 with SMTP id 71dfb90a1353d-5be21777e9amr1915426e0c.10.1783325796092;
+        Mon, 06 Jul 2026 01:16:36 -0700 (PDT)
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5be02c74ca8sm4421329e0c.15.2026.07.06.01.16.35
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jul 2026 01:16:35 -0700 (PDT)
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5bdff8c02b2so725612e0c.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 01:16:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RqnkKvoWfNyBk48s1SkXrTdfH+D57Tc3PkCIRV7l9aqDiuMda2zpHGnquXaqsuYqP1Z3qsAZdAKWoKZ@vger.kernel.org
+X-Received: by 2002:a05:6122:550:b0:59c:b1f7:4df3 with SMTP id
+ 71dfb90a1353d-5be102ec434mr2809370e0c.12.1783325795169; Mon, 06 Jul 2026
+ 01:16:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260705213542.28987-1-laurent.pinchart+renesas@ideasonboard.com> <20260705213542.28987-5-laurent.pinchart+renesas@ideasonboard.com>
+In-Reply-To: <20260705213542.28987-5-laurent.pinchart+renesas@ideasonboard.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 6 Jul 2026 10:16:22 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVtK2qKHLWfyWYaPx1cYgmF0jtzh3CAPrJ4QbZ0VxypXA@mail.gmail.com>
+X-Gm-Features: AVVi8CfGdsdm5FTOvhTH4n31WpQq9-pZfeJYTHCuuEYLuLxyLezJUgX-zWbA-go
+Message-ID: <CAMuHMdVtK2qKHLWfyWYaPx1cYgmF0jtzh3CAPrJ4QbZ0VxypXA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] [DNI] arm64: dts: renesas: salvator: Add overlay for
+ Dell P1911 VGA display
+To: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	Thuan Nguyen <thuan.nguyen-hong@banvien.com.vn>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320915-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:pinkesh.vaghela@einfochips.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320916-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:laurent.pinchart+renesas@ideasonboard.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:thuan.nguyen-hong@banvien.com.vn,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:linux-renesas-soc@vger.kernel.org,m:laurent.pinchart@ideasonboard.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,banvien.com.vn,linux.intel.com,kernel.org,suse.de,glider.be,gmail.com,intel.com,linaro.org,kwiboo.se,bootlin.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,einfochips.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto]
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,mail.gmail.com:mid,ideasonboard.com:email,linux-m68k.org:from_mime,linux-m68k.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D3BE570E537
+X-Rspamd-Queue-Id: 094A770E355
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The fixed-clock node in the SoC .dtsi is named 'clock-24m' but omit=
-s the 'clock-frequency' property, deferring it to the board-specific .dts.
---
+Hi Laurent,
 
-commit 5bc9617a8cdce75f4ec3cb72e9a91cca1ea64a55
-Author: Pritesh Patel <pritesh.patel@einfochips.com>
+On Sun, 5 Jul 2026 at 23:35, Laurent Pinchart
+<laurent.pinchart+renesas@ideasonboard.com> wrote:
+> Add an overlay that hardcodes the EDID of the Dell P1911 VGA display
+> connector to the VGA port of the Salvator board. This is meant to test
+> EDID hardcoding and should not be merged upstream.
+>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-riscv: dts: eswin: add clock generator for EIC7700 SoC
-   =20
-Add clock generator node for EIC7700 SoC. HiFive Premier P550 boards have
-24MHz crystal oscillator to provide the input clock.
+Thanks for your patch!
 
-> diff --git a/arch/riscv/boot/dts/eswin/eic7700.dtsi b/arch/riscv/boot/dts=
-/eswin/eic7700.dtsi
-> index 430a210f01e66..af9e40d8739ad 100644
-> --- a/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> +++ b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-[ ... ]
-> @@ -203,6 +204,11 @@ pmu {
->  				<0x00000000 0x0000000f 0xfffffffc 0x000000ff 0x00000078>;
->  	};
-> =20
-> +	clock_24m: clock-24m {
-> +		compatible =3D "fixed-clock";
-> +		#clock-cells =3D <0>;
-> +	};
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/salvator-vga-dell-p1911.dtso
+
+I know this is not meant to be applied, but nothing below is
+Salvator-specific (except for the comment).  Hence this can be applied
+to any "vga" connector, and I'd rather drop the "salvator-"-prefix
+from the file name.
+
+> @@ -0,0 +1,21 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Device Tree overlay for the Dell P1911 monitor connected to VGA port of a
+> + * Salvator-X or Salvator-XS board
+> + *
+> + * Copyright 2026 Ideas on Board Oy
+> + */
 > +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +&{/vga} {
+> +       edid = [00 ff ff ff ff ff ff 00 10 ac 74 a0 55 4b 55 30
+> +               2b 14 01 03 80 29 1a 78 ee ee 95 a3 54 4c 99 26
+> +               0f 50 54 bf ef 80 95 00 71 4f 81 80 95 0f 81 00
+> +               01 01 01 01 01 01 9a 29 a0 d0 51 84 22 30 50 98
+> +               36 00 98 ff 10 00 00 1c 00 00 00 ff 00 31 57 4b
+> +               4a 56 30 41 4b 30 55 4b 55 0a 00 00 00 fc 00 44
+> +               45 4c 4c 20 50 31 39 31 31 0a 20 20 00 00 00 fd
+> +               00 38 4b 1e 53 0e 00 0a 20 20 20 20 20 20 00 ba];
+> +};
 
-[Severity: Low]
-Does this node naming and structure make sense if the frequency can vary per
-board?
+Gr{oetje,eeting}s,
 
-If the oscillator frequency can vary per board, shouldn't the node name in =
-the
-eic7700.dtsi file be generic like 'oscillator' rather than hardcoding
-'clock-24m'?
+                        Geert
 
-Conversely, if the frequency is strictly fixed at 24MHz for all EIC7700
-implementations, shouldn't clock-frequency =3D <24000000>; be defined direc=
-tly
-here in the .dtsi to prevent boilerplate duplication across board files?
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706081055.1126=
-275-1-pinkesh.vaghela@einfochips.com?part=3D2
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
