@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-320945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320944-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZclKAPt1S2pSRwEAu9opvQ
-	(envelope-from <devicetree+bounces-320945-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:31:39 +0200
+	id z5GXEvd1S2pORwEAu9opvQ
+	(envelope-from <devicetree+bounces-320944-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:31:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DFDB70E9FF
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:31:38 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C935970E9FC
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:31:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="f/decfxW";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ETgfHzT2;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320945-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320945-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320944-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320944-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2CFBD30D81F7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:14:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 77970302F745
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D8B44CA280;
-	Mon,  6 Jul 2026 08:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAD24D2EC1;
+	Mon,  6 Jul 2026 08:59:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90D2496911
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 08:59:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25FF4414DC0
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 08:59:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783328390; cv=none; b=FLTC7RXEr3KGzthNU2d31QyWQc1p1a5QaaL/QtT6GTE1kqr9itHWV/m7/DCrR1Nj7jqZKkqIg/uG41cbmRtKgcGqiBC5sQn7LEcLtgKTRg/mytdAMppWPR/XgA6Lhb28LpCm8Hr6zLjThg9ilywAL/fHY87V0/vL4QUq5PU06E0=
+	t=1783328388; cv=none; b=EvZ8HBoWdVSvcq4IQiGcKivK4wZRwCOCFaCit8OFu+T4FbIM3zLU5alLGRt3whMoPJoW5n+94jo4Gv5UeRWlZnh7UQUC80OfXK0od1aRPxUXoZ2HmNYaJAosLBcg/yRNpD46u3jA4o5FwRC5cAuotHn4CSJPfrPD0Ih7a6mfhuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783328390; c=relaxed/simple;
-	bh=84TlhVev8rUK1ncgBVcP95zbFIm9zQfwLG6G6MGA3eU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mVAE3qgepDgO0yQF1T0IXPmhf6Ak70vspntgvkFLRa2idHclwkAMNuUDSKjJSaCLxvyQ1FqFM2iVRJ6wkaa60bmmlY37ADpnBvJWlNsBM6CD8eHwxCHMfoDBDzmALMmVHCSBWneLww6XRkZm1irbqoV92q56BZpXgCayD+7X2kE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f/decfxW; arc=none smtp.client-ip=209.85.128.50
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-493c55d5c7aso26460995e9.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 01:59:39 -0700 (PDT)
+	s=arc-20240116; t=1783328388; c=relaxed/simple;
+	bh=lN4zj4MvJL5vRMUQDfnKsygDhznFdbRWqhABjnvF3Mo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=FRFYNG67GxMbnkUE16YP7Aj3PrIBK7T12wSEHWFNFptjaT8OAfVxIUC8B434VaYub6F4aP+SwtpIC4exKOc9XWSo/PmZylFGjJ7YOyZaZWTANEKrVdGkTpY9+n7HgFBajbXNezc9r8VXqAOkEEygTVkI+C5INDDJTftq59Miovk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ETgfHzT2; arc=none smtp.client-ip=209.85.221.51
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-47c6e9a694bso679391f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 01:59:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783328374; x=1783933174; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SUZdzN1imA/XO4AzlFsnR4xyfXg3pa9yNdaZHzUuTaA=;
-        b=f/decfxW0JVIctIUrAu4OEE4ObYC2lYXww2JJSSHK1hSKckJkBW3A++EVDT2/KuoGT
-         NCUdbEGpv3nPXEN4UmfDO90PUAOC0brDZ/5eDA45I3zmlBwfDwrCexjkykGRwNBc14ZN
-         ActcAR4PvKENYrrwyttpay3afnUXgIG6dUU0D5mU2GBeERQ73Nq7X8TTtao5bf3EUHJi
-         ZlIvob5yTiLo3tUJNNhqL4tc58ISLb5ZbNEdq0o4RRiPQpt4KQhxD23E4JuQY8yFA10e
-         s9RWxWfO/+HT7HeII65BsTK6TQNqCi7medRtAvVErBQlCIxUdD140tWlnmbBdqIhPcnS
-         +7Wg==
+        d=gmail.com; s=20251104; t=1783328377; x=1783933177; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=woPbO4ESQWmCn63yRn0+bfEqf8QWClAoKN7AeheENlM=;
+        b=ETgfHzT2gCv6rhrH8uw25QEPExH64wPY1bkeBK8hlN9hvBlbcjjfBqlKGOimsn0MkH
+         NkAE3DofOzVpqOgAQdPV6IvG2OWWiYxVY4BhlRNPtato+zcUz83vqSobmclNxJye6sKW
+         qW+0/wvMxX6BxKiHk8xW8nPsTHUN9TTHvM9/ejP1713EzBrq8pR2RP5MLa7KLXnyeVVp
+         zA117vzoY3ik+g3EM9T7P+SF62NjbUbn1r/ky6616hSv/0D+SRCPURkZyP5Wb5USPncj
+         M3PHAs7y+qwhfFkJ1UuVcWsTzp4ZYyPS+0aI9dr4LhIl4PWEfFV9FFDk/ZDrrcfekx6A
+         dt1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783328374; x=1783933174;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SUZdzN1imA/XO4AzlFsnR4xyfXg3pa9yNdaZHzUuTaA=;
-        b=MKfJXFWeo+NuqibQmIh/swJQeZHoaM78aA1/fwUKAeXo3QjJ0HyvOMw0KH4TgcX90C
-         b/DkxytdNkLKD3kNNpxBVstzwIvc748AMrH265yFAasVEQ2aO0T//SGr+E6IUbdHbWId
-         RgfY1WYjOh0XFDKMNpbv712YqErQL5NVxZJMuVT597TX9imQNGRYZFUSuKvXj9lMe5db
-         0nyDB+gu04ox9u1Vm/hfUwQNfVJ+RXodlb2h/RfihPE6fnhj+xpE6r5t8fBCRHYeJOke
-         rSDm/1OiwiAn4FKhiR4kC2JPRy+ursgX9otvhoMDVlkim8DeH/dKnHlxM5hrIkq0uzts
-         /fkw==
-X-Forwarded-Encrypted: i=1; AHgh+RqIQtCIFapn6DagCg/+9F8QZw5LBB0n5HAaoOUt7XIbJ17RXmawDGQ1Ak64uDE88OlJLmjz+/2ggViM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwS1x0jS2Nwh8Q+u+49TQmUN5c6APBGVAgVQgJxCnMVsmXSC04i
-	5GrrhhlVHLTe4UfrXVNzt5ndWjMNRMesOQ641DSJCr3+fqbgt3OyFuHj
-X-Gm-Gg: AfdE7cm8ypSqlVs82Z+YPHIKiRJiFhINHIB6unsL1gjUdeyJAFAIcL/JwfhlZf3ktUD
-	wcSC4Ww4PwhjGP9yERL6Cpr1S/1L4WQBxidPdlYYUDepNhdpdsx/MxAocnt7aMjsRMVHq9EbtFQ
-	4qpbkwluVvvWG/SdqGFWz3IemA7c0/j6Ak43cscd+OK4fyuXp1aXDwj6Wp3XXNyNBXw/2qxFRgo
-	5S02cEgqQQ8VAV8u1P1eKTEKdqa9JuFHYAknxCEPXl2RApIGOIVq9EuUulKnKUO/jbRUo7NFCyo
-	QZwiskrhPCdeHB/wZcvki31LO0j+Obpo2kCa28PsIlyKwvYyFTSjjZgHWjsjMkbw75CHAWigrXm
-	kX+E08mf6cL9TLzKFByw7y3ptGfTmNRarOfrImr2BjE1yecH1OUmGuLRDBeNR/1nE4PfkU/enhI
-	sa1er03km4lMO2oIGqHFpklzPEG52kmZfYNQ1v2NcX1w+nJkrwkmmCYbA=
-X-Received: by 2002:a05:600c:3f16:b0:493:be36:94b3 with SMTP id 5b1f17b1804b1-493d11d9d5emr108665125e9.13.1783328373537;
-        Mon, 06 Jul 2026 01:59:33 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1783328377; x=1783933177;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=woPbO4ESQWmCn63yRn0+bfEqf8QWClAoKN7AeheENlM=;
+        b=T6cot4X8YC4xEH0b4iKPGXe1/PaPrM9qH+JdykjJOqPxq16CTrQGLyfsD3Xdl9LwI0
+         wVwyi/ciKKograF3IwGvghJz/fdXxmvpdXZa2BODkcso+AARgAi8xjdfc/GuHStxBBX1
+         D76lbJg5b28QZ73VRIAI4JmIlijT3NTPU0SOtXnHCj9MPCFFpQzJZMHSGI+2T9r6kVNB
+         Eh0A5s5dTUX6eYLPda3PJH8XwxOGrKpvVCPeAU4WT9kBe2Lk7kYtMOf2TOWAIc1qNbVt
+         ZPNGJDqrQaQU4n5wBob9Mrwge7igI3GsqXo2M+9JTE7EivbW/QD7SC0bkSAhAwt1DGHj
+         GI4w==
+X-Forwarded-Encrypted: i=1; AHgh+RoJSwxo13S68GBUABg3UeqaAepNgMtSY2j0dxxrbW+F5f92IiKCtaqLW3fGW1zze85EQXvAhTxcAmgn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrOvdDsTyhgJyWwgKzMd6099WjmQW2iS4NRZwQTc8S8BIBStGL
+	z3b8wagNdTvN21S8RVTCsZEX9Yu0qTkPk/Vs1IuBJCw9Z4BIqSE2FWUQ
+X-Gm-Gg: AfdE7cmpxKXkmQVT0sIfMbU6/5VCAke1hBRPPq7oOmF0FV/kd8ca5lAsmVUOrKMBgFX
+	TVwcfwNRBOtMU7X7CZMUuYichwU7u5FoZ5rrBYG684urKMJTTDalLHu8a/WMbEElebW7HbkRBJf
+	ICb6CHVV+uHl/JbL/wmnBVoO44cEjzEEIsvceZVM8//Z3Rduo5dBdNHfr7halgahgkITOVjNXAn
+	d0aP/2bj21K+vR3W6Dz+C+9EE6cxwt+WYui292joObQ1Kb8xyqb+yJnwZTrACURXcJ/Oe0GBgPI
+	ID23nSmCy1sbfLZgOpTPBfaBHTJudVW3Z0/b7WZxqh5cL10CRQ8UveOSQ0wqxR+W2o9JlFf9a54
+	U4g0tWyVVtq/I7etGhtVh42ZrF8K17oUiFMYbzjcdepfSpBJvGoyc9pfe11QpSPM1m8U/CKrMM/
+	UemY1up/H9wiDmmvl1G3fkSsbolcdDdkUWvYcRKJmC6QYDT5r+6nREd+k=
+X-Received: by 2002:a05:6000:4283:b0:475:94e1:29d2 with SMTP id ffacd0b85a97d-47aa92c0791mr10520695f8f.2.1783328376008;
+        Mon, 06 Jul 2026 01:59:36 -0700 (PDT)
 Received: from localhost.localdomain ([188.26.50.173])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-47aa039ae44sm22314373f8f.23.2026.07.06.01.59.32
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-47aa039ae44sm22314373f8f.23.2026.07.06.01.59.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 01:59:33 -0700 (PDT)
+        Mon, 06 Jul 2026 01:59:35 -0700 (PDT)
 From: Eduard Bostina <egbostina@gmail.com>
 To: Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
@@ -86,10 +88,12 @@ Cc: daniel.baluta@nxp.com,
 	simona.toaca@nxp.com,
 	goledhruva@gmail.com,
 	m-chawdhry@ti.com
-Subject: [PATCH v2 0/5] dt-bindings: soc: ti: Convert OMAP DSP and IVA to DT schema
-Date: Mon,  6 Jul 2026 08:59:12 +0000
-Message-ID: <20260706085917.835875-1-egbostina@gmail.com>
+Subject: [PATCH v2 1/5] dt-bindings: soc: ti: Convert DSP to DT schema
+Date: Mon,  6 Jul 2026 08:59:13 +0000
+Message-ID: <20260706085917.835875-2-egbostina@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260706085917.835875-1-egbostina@gmail.com>
+References: <20260706085917.835875-1-egbostina@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,13 +108,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER(0.00)[egbostina@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[nxp.com,gmail.com,ti.com];
-	TAGGED_FROM(0.00)[bounces-320945-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320944-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:egbostina@gmail.com,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:broonie@kernel.org,m:robh@kernel.org,m:daniel.baluta@nxp.com,m:simona.toaca@nxp.com,m:goledhruva@gmail.com,m:m-chawdhry@ti.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
@@ -118,7 +122,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_TO(0.00)[kernel.org,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -132,44 +136,81 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9DFDB70E9FF
+X-Rspamd-Queue-Id: C935970E9FC
 
-This series converts the Texas Instruments DSP and IVA
-Device Tree bindings from text format to DT schema.
+Convert the Texas Instruments DSP bindings to DT schema.
 
-These conversions are grouped together because the IVA schema explicitly 
-depends on the DSP schema. The DSP is defined as a child node within the
-IVA subsystem.
+During the conversion, the following updates were made:
+- Moved the binding to bindings/soc/ti/
 
-Changes in v2:
-- Expanded from a 2 patch to a 5 patch series.
-- Moved both the DSP and IVA binding files from bindings/arm/omap/ 
-  to bindings/soc/ti/
-- Patches 1 and 3: 1:1 conversions of the old txt files.
-- Patches 2 and 4: Make 'ti,hwmods' optional to fix dtbs_check warnings. 
-  Reasoning described in the commit messages.
-- Patch 5: Documents the DSP child node in the IVA schema to fix 
-  dtbs_check warnings. Reasoning described in the commit message.
-
-Eduard Bostina (5):
-  dt-bindings: soc: ti: Convert DSP to DT schema
-  dt-bindings: soc: ti: omap-dsp: Make ti,hwmods optional
-  dt-bindings: soc: ti: Convert IVA to DT schema
-  dt-bindings: soc: ti: omap-iva: Make ti,hwmods optional
-  dt-bindings: soc: ti: omap-iva: Document DSP child node
-
- .../devicetree/bindings/arm/omap/dsp.txt      | 14 ------
- .../devicetree/bindings/arm/omap/iva.txt      | 19 --------
- .../devicetree/bindings/soc/ti/ti,iva.yaml    | 48 +++++++++++++++++++
- .../bindings/soc/ti/ti,omap3-c64.yaml         | 31 ++++++++++++
- 4 files changed, 79 insertions(+), 33 deletions(-)
+Signed-off-by: Eduard Bostina <egbostina@gmail.com>
+---
+ .../devicetree/bindings/arm/omap/dsp.txt      | 14 --------
+ .../bindings/soc/ti/ti,omap3-c64.yaml         | 32 +++++++++++++++++++
+ 2 files changed, 32 insertions(+), 14 deletions(-)
  delete mode 100644 Documentation/devicetree/bindings/arm/omap/dsp.txt
- delete mode 100644 Documentation/devicetree/bindings/arm/omap/iva.txt
- create mode 100644 Documentation/devicetree/bindings/soc/ti/ti,iva.yaml
  create mode 100644 Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml
 
+diff --git a/Documentation/devicetree/bindings/arm/omap/dsp.txt b/Documentation/devicetree/bindings/arm/omap/dsp.txt
+deleted file mode 100644
+index d3830a32ce08..000000000000
+--- a/Documentation/devicetree/bindings/arm/omap/dsp.txt
++++ /dev/null
+@@ -1,14 +0,0 @@
+-* TI - DSP (Digital Signal Processor)
+-
+-TI DSP included in OMAP SoC
+-
+-Required properties:
+-- compatible : Should be "ti,omap3-c64" for OMAP3 & 4
+-- ti,hwmods: "dsp"
+-
+-Examples:
+-
+-dsp {
+-    compatible = "ti,omap3-c64";
+-    ti,hwmods = "dsp";
+-};
+diff --git a/Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml b/Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml
+new file mode 100644
+index 000000000000..a97e163c890a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml
+@@ -0,0 +1,32 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/ti/ti,omap3-c64.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments DSP (Digital Signal Processor)
++
++maintainers:
++  - Eduard Bostina <egbostina@gmail.com>
++
++properties:
++  compatible:
++    const: ti,omap3-c64
++
++  ti,hwmods:
++    description: Name of the hwmod associated to the dsp
++    $ref: /schemas/types.yaml#/definitions/string
++    const: dsp
++
++required:
++  - compatible
++  - ti,hwmods
++
++additionalProperties: false
++
++examples:
++  - |
++    dsp {
++        compatible = "ti,omap3-c64";
++        ti,hwmods = "dsp";
++    };
 -- 
 2.43.0
 
