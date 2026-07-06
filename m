@@ -1,169 +1,205 @@
-Return-Path: <devicetree+bounces-320956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320958-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YdECOqB1S2o6RwEAu9opvQ
-	(envelope-from <devicetree+bounces-320956-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:30:08 +0200
+	id zZQxO9yRS2rGVgEAu9opvQ
+	(envelope-from <devicetree+bounces-320958-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:30:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D88D70E9C1
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:30:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96B5770FDA4
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:30:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ew.tq-group.com header.s=default2602 header.b=N297H0sp;
-	dmarc=pass (policy=quarantine) header.from=ew.tq-group.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320956-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320956-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Q4ff8QAL;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320958-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320958-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 070A1313333B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:23:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 88968353C122
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A29C342F6F7;
-	Mon,  6 Jul 2026 09:13:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5030D44D01E;
+	Mon,  6 Jul 2026 09:15:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com [209.85.210.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A0CC395AE4;
-	Mon,  6 Jul 2026 09:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D773B421EFB
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 09:15:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783329184; cv=none; b=RKj76ItEru9VAnKx1sSwOqXrzoc4dKFcjgKcCVL/6flKpmqpCJrKwv+fbOu+ks13/JHQ0+h+EBPnYHkBIxoTv4F3SCqidwaeBNY31F6qLZa62CMImuETiWtWv8WEWethwJ0pdrIvFl43OU5kjzd6XRrVokTdjCzF+myxso8JVBs=
+	t=1783329308; cv=none; b=jkuvfaes0E6TVreVeUM0PxHxzKzYHEhKsWm5H50AxQJyS4XNwbe77ttKEwuR9P3kD7L+08Navq9tIOmv63LjE5qj+TH7Gv4H6lvnJyaf0BqqDclH0e95ylmh6vpXGNhTcqsJZjK33HL86sragaMhRzNWymz4WW1xwxCHlD6FdL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783329184; c=relaxed/simple;
-	bh=kyKAqrfBpAMalqUUWqSonf+vKi0Gr76Bh7Zx64z3zdQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ug9N5JgvdZV/jVXTuEtGAjSUZqjIJDUzWssChf1aGm+ZDDq6JfaL2KbKz6RTGVb98VbCdu6SiF5SnpGI7gQhGg9yULg8miu/hZMg1aFsBMz5MR4S2PblhOro02+fhLzBrH9HjO5nFm8pb9JCNd8OK7P4KZvqLXZgK0F5PYt+ctQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=N297H0sp; arc=none smtp.client-ip=188.40.3.216
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=qNAsnotxftUfGXVK2u7PJAcBWXU14/kbDwsx6iUzL1I=; b=N297H0splvpO8ehUTpt3fczHUv
-	7z6UPrNsUOuFFrXrCQzG8f9R471RUJvzAMsAsjdGpQGzPThOXO8HCr2mVZ4Uaitrgzrw+TXTofSpe
-	vW9JSjeH92q+m+A8ADBy7DDpPw4v/dFQNrJ5LZdrup53d8dWfHEEwScHpG9j8zraCsEJSnbRRaXKS
-	Qwbu5CQctu5efwTtBm2VzzrURJRVwxn14YG2VMXbvs01GJHri+pHNJC0fuSPXW+Iu1SFH+lwrnr8w
-	bhnTdXKMwWKiVRNmyOh6pUHr2OF2HlgvaceIWs3pT2DdNVrQkOAVgkgVGVyIY3NbBtuK8H+PFJvRT
-	MDYl5FBA==;
-Received: from sslproxy03.your-server.de ([88.198.220.132])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <nora.schiffer@ew.tq-group.com>)
-	id 1wgfNe-000G0z-2R;
-	Mon, 06 Jul 2026 11:12:46 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <nora.schiffer@ew.tq-group.com>)
-	id 1wgfNd-00068Q-2b;
-	Mon, 06 Jul 2026 11:12:46 +0200
-Message-ID: <aeb6db3f0ee00ea9d360dc081e07b9f529da8095.camel@ew.tq-group.com>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am642-tqma64xxl-mbax4xxl: add
- icssg1 ti,pa-stats
-From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
- linux@ew.tq-group.com, Alexander Feilke <Alexander.Feilke@ew.tq-group.com>
-Date: Mon, 06 Jul 2026 11:12:45 +0200
-In-Reply-To: <5b0f5d24de0ccb0884b33d358eb034a88fe4f8f9.1782723206.git.nora.schiffer@ew.tq-group.com>
-References: 
-	<eea90f48c139901397d65487a87b64bf1744587b.1782723206.git.nora.schiffer@ew.tq-group.com>
-	 <5b0f5d24de0ccb0884b33d358eb034a88fe4f8f9.1782723206.git.nora.schiffer@ew.tq-group.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3-0ubuntu1.1 
+	s=arc-20240116; t=1783329308; c=relaxed/simple;
+	bh=cLIYaTp8BMdNpvmeNN9IHEGffrelsNbt22peLlfH/xI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TyfkveYa4WURseohmst9rpa7SnoVr7vglV5vfUlfKPfIJTQhJEE2JO81TN/UMTLb1iZvTSuRsmVJG5aC/cM+LuqlszTtrTNon31KQVpPMpB4EPZ+1n5obU1yP/YH1INnrcptwHcLAHO1STF7iEWnjpHpxdtsIzapQMC49s6X0qk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q4ff8QAL; arc=none smtp.client-ip=209.85.210.195
+Received: by mail-pf1-f195.google.com with SMTP id d2e1a72fcca58-8478cc93299so3054768b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 02:14:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783329296; x=1783934096; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lr2T/VNgeTFspDjmoHod2aovQh7y4rJk7xKdeAYkRu0=;
+        b=Q4ff8QALec9+WokpaavK5eeOuyn0r/RiKH7EFM2+n4nDACmr8DjrmitAlb7TUYax9Y
+         P4iulO7RAi9gKgt1bZrpn//mPH9jhInGCyyR6xgGTMm29KZ6EDSucyjcGvE9EdCNm5Fq
+         gaVHjYQYKf5KWwqQAhV0Rwq9moWpATbICt9PsL6GkGOLG9dN3RBKmq1pxsBQGBupo2DG
+         wswZQ8hN9KDGkNm2KS2yQW+uy8GeYd3K/XiMlX1fD7pDxIMaYd+T5wOKp/khG8vIjd91
+         kyW5+vTAhWV5F3I7NaGKn99OUdwQuAhjmoqrrKHdDKnv//gTDwpDM666MQ0DmD6fNbtZ
+         pHiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783329296; x=1783934096;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lr2T/VNgeTFspDjmoHod2aovQh7y4rJk7xKdeAYkRu0=;
+        b=pWzsJxJ0/mx8743Dtk3105sZ4rrR70Dz/Z3I94PRS+rwQY2DUQFZB+q3b+m7316VMy
+         AVLstEBPNKJAXLZSfXnjf4+DHhxjEENvyxvOht2IyJQ2yRtNY7schFfHYURcoPJYU3wO
+         NCS/vjIh9akzsQpXCDOP+SHZd0H2A6EFml/FbTVaFdNOrCcN1WgI+PP9RTDWLoeYjrh1
+         WRTy7SvnQDvfnJpflxC2xIaK5vlDVM3WCrRGbjAcmSU1q1dWxQS5+KCaIsJscu4uDcwt
+         vH6R+7EsX1DamyngRV48U4dO4Ci4mjbecXc36uMq939AubUZn36vR9UYn6zOsG6B2mYh
+         uifQ==
+X-Gm-Message-State: AOJu0YxO0cd7wWiU/DzRBE5Pcsz44QCfMwhl1siFls/wuP2KVbZJFMG8
+	gSCr64Mse/Kb+qyU+M/NurKBeZO9jeu0eh/Wipte+0DXMYUTKB1D2FII
+X-Gm-Gg: AfdE7clRthgXmvDI9WIu17Jy0iE2nvN49LaoT1mf5IT6Sex9pd32HDnsdv/ARc7YMXW
+	CZRu5uk3Y2KEaokIdMLSuARkEzOj6yU5HGln8r//Mt9BBdWlAuzH1o/9xCL2cX1rZ8Kb7dHKR3U
+	hXcrSiu4xfBbRRNI6xGVm4fJEJ+cHxN07VLguC6++M3J5a2J6NTmH7b2sDtLSzDxJ+OrHjhmNIV
+	Xqzo2cabONAsl1IczjLi2IKcbiZWZ/9rqjGUuac1vH9f2yxdIj2qIJG+Qq3g6JUMRXs4PskyIXz
+	e/CGG7DFcxz4WWIqY/pEFFGgpSQHpv/Zg9BhZ2OFwHnnJdkd14ioPE/jcL59tkMIeUpCYvw8SHX
+	DkbrVWDKHbp0llmqdJEu1klyTUSOM4wJdfmIFPyDmxGd+6CPRNv/YuHeHyjmpJhmgzUzsCrT8na
+	SKycUDJT9TNQA4uaVj+DhVfMqB
+X-Received: by 2002:a05:6a00:928f:b0:842:80c5:c420 with SMTP id d2e1a72fcca58-847f6ef68camr8193652b3a.40.1783329295132;
+        Mon, 06 Jul 2026 02:14:55 -0700 (PDT)
+Received: from [192.168.1.101] ([218.194.36.79])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-847f6db29d1sm3445963b3a.53.2026.07.06.02.14.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jul 2026 02:14:54 -0700 (PDT)
+From: Yanan He <grumpycat921013@gmail.com>
+Subject: [PATCH v2 0/5] ARM: rockchip: rv1126: Add support for Alientek
+ ATK-DLRV1126
+Date: Mon, 06 Jul 2026 17:14:40 +0800
+Message-Id: <20260706-rv1126-alientek-dlrv1126-v2-0-ff3176ca362b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Virus-Scanned: Clear (ClamAV 1.4.3/28052/Mon Jul  6 08:24:35 2026)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDIzMDM0ML3aIyQ0MjM93EnMzUvJLUbN2UHKhIiqVJYlJKcpqFqYWBElB7QVF
+ qWmYF2OjoWAi/uDQpKzW5BGSeUm0tAHxpGmR8AAAA
+X-Change-ID: 20260618-rv1126-alientek-dlrv1126-d94abdcf8580
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ David Wu <david.wu@rock-chips.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Frank <Frank.Sae@motor-comm.com>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ Yanan He <grumpycat921013@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783329286; l=2237;
+ i=grumpycat921013@gmail.com; s=20260618; h=from:subject:message-id;
+ bh=cLIYaTp8BMdNpvmeNN9IHEGffrelsNbt22peLlfH/xI=;
+ b=n9ZjERAhzjx2V7crs7HJzpo3tqAmQ8t8NqGgffNufU3uJAKs2gRa4YnXgybLrwGB6BscbMpTf
+ 6R7McTRg+88CmER536i37fi+k30MyFTlhzIpbLcmMPD4KH0VhdznWAN
+X-Developer-Key: i=grumpycat921013@gmail.com; a=ed25519;
+ pk=oWrY8KwXIunZWlYBV76NG2A3V4p1bJ+aD45Mr56ErTw=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320958-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320956-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nora.schiffer@ew.tq-group.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:nm@ti.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux@ew.tq-group.com,m:Alexander.Feilke@ew.tq-group.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[nora.schiffer@ew.tq-group.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:david.wu@rock-chips.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:Frank.Sae@motor-comm.com,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:netdev@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:grumpycat921013@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[grumpycat921013@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[kernel.org,sntech.de,lunn.ch,davemloft.net,google.com,redhat.com,rock-chips.com,gmail.com,foss.st.com,motor-comm.com,armlinux.org.uk];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,st-md-mailman.stormreply.com,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[grumpycat921013@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3D88D70E9C1
+X-Rspamd-Queue-Id: 96B5770FDA4
 
-On Mon, 2026-06-29 at 10:55 +0200, Nora Schiffer wrote:
-> From: Alexander Feilke <Alexander.Feilke@ew.tq-group.com>
->=20
-> Add missing ti,pa-stats syscon phandle, which the icssg-prueth driver
-> warns about very noisily since commit 550ee90ac61c
-> ("net: ti: icssg-prueth: Add support for PA Stats").
+The ATK-DLRV1126 board consists of a CLRV1126F core module and a
+DLRV1126 carrier board. The core module contains the Rockchip RV1126
+SoC, eMMC and RK809 PMIC. The carrier board provides Gigabit Ethernet,
+SD card, AP6212 WiFi and Bluetooth, PCF8563 RTC, ADC keys, GPIO LEDs and
+audio connectors.
 
-We realized that while the code change is desirable, the "very noisily" par=
-t of
-the description is not accurate with current mainline kernels - only a sing=
-le
-"icssg-prueth icssg1-eth: couldn't get ti,pa-stats syscon regmap" message i=
-s
-printed. We'll send a v2 with an updated commit message.
+This series adds the Alientek vendor prefix and board compatible, updates
+the Motorcomm PHY driver to consume an optional external PHY reference
+clock, adds missing RV1126 SoC description pieces, and finally adds the
+CLRV1126F core module and DLRV1126 carrier board device trees.
 
-Best,
-Nora
+The board was tested with Ethernet/NFS boot, eMMC, SD card, SDIO WiFi
+enumeration, Bluetooth LE scanning, RTC, ADC keys, GPIO LEDs and RK809
+audio card registration.
 
+Changes in v2:
+- Model CLK_GMAC_ETHERNET_OUT as an external PHY clock consumed by the
+  YT8531 PHY instead of keeping it alive from dwmac-rk.
+- Add optional clock enable support to the YT8531 path in the Motorcomm
+  PHY driver.
+- Use phy-mode = "rgmii-id" for the Alientek DLRV1126 GMAC.
+- Keep the PHY reference clock in the ethernet-phy node, following the
+  rk3588-tiger.dtsi pattern.
 
->=20
-> Signed-off-by: Alexander Feilke <Alexander.Feilke@ew.tq-group.com>
-> [Nora Schiffer: edited commit description]
-> Signed-off-by: Nora Schiffer <nora.schiffer@ew.tq-group.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts b/arc=
-h/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-> index 46be6824dd163..b9e52d8bc8524 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-> @@ -110,6 +110,7 @@ icssg1_eth: icssg1-eth {
->  		ti,mii-g-rt =3D <&icssg1_mii_g_rt>;
->  		ti,mii-rt =3D <&icssg1_mii_rt>;
->  		ti,iep =3D <&icssg1_iep0>,  <&icssg1_iep1>;
-> +		ti,pa-stats =3D <&icssg1_pa_stats>;
-> =20
->  		ethernet-ports {
->  			#address-cells =3D <1>;
+Signed-off-by: Yanan He <grumpycat921013@gmail.com>
+---
+Yanan He (5):
+      dt-bindings: vendor-prefixes: add alientek
+      dt-bindings: arm: rockchip: Add Alientek DLRV1126
+      net: phy: motorcomm: Enable optional clock for YT8531
+      ARM: dts: rockchip: Add RV1126 I2C5
+      ARM: dts: rockchip: Add Alientek DLRV1126
 
---=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-https://www.tq-group.com/
+ .../devicetree/bindings/arm/rockchip.yaml          |   7 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm/boot/dts/rockchip/Makefile                |   1 +
+ .../dts/rockchip/rv1126-alientek-clrv1126f.dtsi    | 277 +++++++++++++++++++++
+ .../boot/dts/rockchip/rv1126-alientek-dlrv1126.dts | 256 +++++++++++++++++++
+ arch/arm/boot/dts/rockchip/rv1126-pinctrl.dtsi     |  10 +
+ arch/arm/boot/dts/rockchip/rv1126.dtsi             |  15 ++
+ drivers/net/phy/motorcomm.c                        |   7 +
+ 8 files changed, 575 insertions(+)
+---
+base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
+change-id: 20260618-rv1126-alientek-dlrv1126-d94abdcf8580
+
+Best regards,
+--  
+Yanan He <grumpycat921013@gmail.com>
+
 
