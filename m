@@ -1,212 +1,361 @@
-Return-Path: <devicetree+bounces-320870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320875-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tFKsD41hS2riQQEAu9opvQ
-	(envelope-from <devicetree+bounces-320870-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:04:29 +0200
+	id RDDUB2xcS2pvQAEAu9opvQ
+	(envelope-from <devicetree+bounces-320875-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:42:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEDF470DE2F
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:04:28 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22AC170DB4F
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:42:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nnStbO09;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320870-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320870-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=oW2GRq2I;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=DRjjCKjZ;
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320875-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320875-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2528B31DEDC8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 07:21:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9D69B3010CFE
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 07:22:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A01D33DDDC3;
-	Mon,  6 Jul 2026 07:10:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E253E5A30;
+	Mon,  6 Jul 2026 07:11:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0153DEFFC
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 07:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDCB13AFB1A
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 07:11:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783321819; cv=none; b=O3txneaGaOTTWIhL7uA7TXwqguyHUh1O/hJj6yHgKumM2eM1hOrC4jeclvlBWS/sPe0mp/hgK0zfdwbPzuEPelzBIH27gU7W02kkAY+S1DWv8RornZAQg8gE6LwPx67pd/fvrzzejetdozzN2CQh5qftBy0xMnoutC56Z9qeT8E=
+	t=1783321899; cv=none; b=o1W/Ee6dCaPOkoHLjXuWgJ63XcrkSFK/o+ia7ns9K+72+R8uqiryFO9PC+oOCEI2AYMsDM7ulj0EIH6zphXk8q3frP75i+e/VWC8pzDO4KSfzz9UtZSDGrG1HXNO32vYhJBgisaAktHcUqCbQ/ujPsat4yk2RaWnoPQGRc/zvO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783321819; c=relaxed/simple;
-	bh=m2looZavVDzvf6Ng4crnoc6oa9X/YUou4ixhSd9J0kI=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=NPJiBoZxCk9oF4TwXbo/gjybM/8BB7RppBpwbkNRZfdWmRPIHUcw/8zY0WlGF9sgemymtCDSdYpnYj0cw6aBcWiVmyfbm8tka1RNnflj0DpLR/lqQC7KNkd8V30y70wIeq1CbmwjMEEL6i7BhJiAMBknc2AQHwbHhBUfHGMirUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nnStbO09; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D18571F000E9;
-	Mon,  6 Jul 2026 07:10:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783321806;
-	bh=fQHr1+E8V+uuA2cAuX9jkfgEq0W13PVjhuZluJhwYtk=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=nnStbO09juAUHpLVoHauPE1cdPR7baBcTiddq5KWD3CU6zp99CFbHI2uhoGC+gaAO
-	 bxk1D+dfuGx6jlZLKQqbB4FsAqDUCJBXrZNt7z0/XNEd3suASdlokpHq1ssQLP3Xxa
-	 Nkzql9DOFygJEUzI1ZiitKLSUKpgh/kIGODTwY/58MUWc3eOYWxm1JNjQXpwFfSZyD
-	 ePGC3g1VEVsQ49liN1jMn8YmzlhKm4KU0SYePbmMy2xLsMmoPRJ0gDlXyKbkQGuyoI
-	 5ScrrbL477X0mTkg6Wkb+nT5b+G6JSxQcJfQwe2fqbnR3eCxsNNaDISLci7NsfC+wX
-	 4UGsML42zY4gg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: Use hyphen in node names
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260706-dts-qcom-style-checker-v1-1-16ce82a2bcfd@oss.qualcomm.com>
-References: <20260706-dts-qcom-style-checker-v1-0-16ce82a2bcfd@oss.qualcomm.com>
- <20260706-dts-qcom-style-checker-v1-1-16ce82a2bcfd@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 06 Jul 2026 07:10:05 +0000
-Message-Id: <20260706071005.D18571F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783321899; c=relaxed/simple;
+	bh=r1jwcyxr5Dt3ECzt6tKAgLMIjDYT8uuPD5cATFscYPc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ZHoTIcJqKmDIt5jfabx2oQKbGwwt4po0pt7b4vzK1FftOGZpB4vwq3GAzJIK4IZS0Z/GA9zBgpT/HibFfSa7/s7s012FEp19f98uucTPhH25juJC15gbO7W4RhL8CeeLCg8uyGYtTAxg88UxOYeF7MBdq2+wM6zp0CiOwVGxkM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oW2GRq2I; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DRjjCKjZ; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66641drc3402319
+	for <devicetree@vger.kernel.org>; Mon, 6 Jul 2026 07:11:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=J74KsC5QU9N7JkW3KRj+XSHfFO4dRMv8Liw
+	gGdvHfPE=; b=oW2GRq2IzvD72W577JBoe17OxOKTr5esnC58wwGNV02DZaUZ1Sj
+	II5a4WYriE/McnSS1+jcIHvXyy1O+C36UZtx1qDEiKBvJMHUhs5PnzPnfqYhXnks
+	xRP+lDevqwoCbVVI5Eghz7c10ykXTGnBiuW7VVvQG3nccT32S/7e9/09wQR0yI+n
+	5ScV9a9s3+oSEddgKMr4aRm44BqM77YWMNdlfNEgpbtmqGjvon/AYWrYgXxvgW4t
+	BwrSMX56/b8bx4PMMOEMqmhssNT0tQcO3QIOmY/ERUc8PhaRSyXo1EexrhQqESov
+	qOKkYmBOeDZj/Q82k3D0DAgTr8p1N0LxNuQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f6ubgmtb3-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 07:11:22 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-92158791d14so252086485a.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 00:11:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783321877; x=1783926677; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=J74KsC5QU9N7JkW3KRj+XSHfFO4dRMv8LiwgGdvHfPE=;
+        b=DRjjCKjZBe4yeV1ubryyfWtwhRD2a7o8lO0S85IIbZzF5q26jPOpBBF+mWQisWias5
+         MiW6P7f5Nkf0jDCpTRJ/z0u/edI/G+DrEMjuCeIQQzUAEqd/bUV5L2Mk8O/vOblemxNg
+         HLFvnjmHPH64H8if1ndsNCiyjjJp5O/BLEAim9ZxQfbJNlGbRzWO92wf7OoirEjvBIDr
+         9qu62BZKUidi9ZQEOnj71/eX1n+5/THXe+imX3G8sEVaTTSJXCZzb89NPiRTII8RqAer
+         vAGoh8P2TFvQiJPzbD1OPFYXAzmOTGnuArSUHrGaaxwxE1ppKbDykG5JUBtKgIYmDnIo
+         t1wQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783321877; x=1783926677;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=J74KsC5QU9N7JkW3KRj+XSHfFO4dRMv8LiwgGdvHfPE=;
+        b=Wed3IqC9df+LXbDKC8KgWjC5RcPRtU5DIpakUJ4u0FHBiagrkd4OQGYLACnm3bOKR9
+         Rfqv1bg/FLRmDrHhQ3ee0cKeeIE3w5YlYVeQtOhO1fAaGeIt2xnGHT2yx2gELF/tnBom
+         F1M2wTVe9XPiAtUYZYHdoFax2mAFtW8Vtv+/xgOHSEKPIoYMyzDe1sn3aw7a3FFOIN7h
+         Jb19miA6wZXUjTfTN1f4WxeMFpT2tCWr8Kesk71rA6r561RBFNQcf4hbKU0IZsn64A2i
+         SueyHKeyVck36PpZHUxzdrUDea7q4M/xBFhvtrg+6qNB77SNXdJVPTi0lIVX8+OTIEWZ
+         chgQ==
+X-Forwarded-Encrypted: i=1; AHgh+RqPP7k3gulsDzvLZB1s1hoj9EaCemkEP2X2cufsklAAkVdbDq7W6UO2uRux3O1N8kqhzFpqnqkqY/hk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2lV9n8h0mGdqNzuFzdxdULXkilYeh/uknB+gyZ4CClxE4XqI6
+	uXORec4LdwvNgJDhPn+GidoF+f7mB4Lfq1K1ZC/8YWvdYh5Ubgll4vPJLkiloId8vIAUbHEp67K
+	bH7sgd853sj7h7jkpTv1IwQH64ztDo/F4tpKFJafWpxekG0wUmOvJmaE/OVlFLjYK
+X-Gm-Gg: AfdE7clxTR7X4FxLG4cJRI9Jyaa+cLB6AL7ZI07d21dzZ0PR1pXS7Fo6Oy6sC0QeiAl
+	VoN6avO5JwiG9dkvCIneTchMl+3I7HmxlL/N7U8aGeNoye+naBLXnheVSVkTqkR0nxMCPDx4DiL
+	JV+APKxTfn+v1DxsA5pRVhFTR42Ejv2fwTI53qBmPtO+ppmf0ti5qvManu7Fp1weQiED5Hk8Qlb
+	XTTH0odMLeuhdB0m0ZSjOkOo09DxkDGhFyPgO2bBSyT5LN2qeqmm2wTDnJmun4vuStSm1wxe54n
+	CyAeqoh5k92UPeWXWSoZfT4JxmWxZ/9AIGbdQ2gTRQ+Fz1kROHsvqOmOxBewqI6S7Fwyn87J1aO
+	iR4zB5kloubDcit2m8J+ilF4RcrSljPc3Atg=
+X-Received: by 2002:a05:620a:28c6:b0:92b:7420:bd7b with SMTP id af79cd13be357-92e9a529a23mr1371422385a.66.1783321877294;
+        Mon, 06 Jul 2026 00:11:17 -0700 (PDT)
+X-Received: by 2002:a05:620a:28c6:b0:92b:7420:bd7b with SMTP id af79cd13be357-92e9a529a23mr1371419385a.66.1783321876806;
+        Mon, 06 Jul 2026 00:11:16 -0700 (PDT)
+Received: from lin-0772.qualcomm.com ([212.136.9.4])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c12b62f3b40sm674673866b.56.2026.07.06.00.11.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jul 2026 00:11:15 -0700 (PDT)
+From: Atanas Filipov <atanas.filipov@oss.qualcomm.com>
+To: linux-media@vger.kernel.org
+Cc: bryan.odonoghue@linaro.org, vladimir.zapolskiy@linaro.org,
+        loic.poulain@oss.qualcomm.com, mchehab@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+        konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Atanas Filipov <atanas.filipov@oss.qualcomm.com>
+Subject: [PATCH v4 0/5] Add Qualcomm JPEG V4L2 encoder for SM8250
+Date: Mon,  6 Jul 2026 10:11:08 +0300
+Message-Id: <20260706071113.383215-1-atanas.filipov@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA2MDA3MCBTYWx0ZWRfX8ybWMz/HjKT7
+ j9ZhTm87XdbLANQpCsO62CUAnxEQMK2z5Cz6H3hMxKXwpQh0dupZtnltjNgmWRjeocPpXZ7IwTV
+ Pn9/jzZKyWQTEQC/RWLEdt9eBFQgUVc=
+X-Proofpoint-ORIG-GUID: IonuqX_f3HsJuJnFYMCgoRVvwMgKX5MX
+X-Proofpoint-GUID: IonuqX_f3HsJuJnFYMCgoRVvwMgKX5MX
+X-Authority-Analysis: v=2.4 cv=FJwrAeos c=1 sm=1 tr=0 ts=6a4b551a cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=dNlqnMcrdpbb+gQrTujlOQ==:17
+ a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=xq3W2uTSAAAA:8
+ a=KKAkSRfTAAAA:8 a=fvEfv-lMOMBzJYUFIVYA:9 a=NFOGd7dJGGMPyQGDc5-O:22
+ a=P5L7wpMTXyg1GfFA3Gwx:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA2MDA3MCBTYWx0ZWRfX9D1bt7uxNlkp
+ nH8esN2zWKzpaDI5vnx8Eh5vD88Yri+akzDUem+bHt9pcWKqQ5f+8IYbbMghee2B9Ga3/hkHE3W
+ 3BcwLTblqM8w3lEt3HENNmJooFU7u9QLeecoUStMImRj/AG6BxPPdbbF0HJFZPIsnmiXQ8crCzB
+ eiQBNwReS7XDhp7nx3uMRJuVTn5keFGHQDLgeCIj7/H9x7ppA4oCcUh6y43//LyRmp1puZXww5j
+ L/dDxzahauI9yoIvgfBo+PmcFxCkzQbAzgy4G71R1MCloYC87a1pOl199hCgPgYvH4ioetqvHlD
+ lpZpwfxUlqGAbtdxHQOEYu6R02T1991r/HudP74fzTNcpLEu9V3jz9b6bYEUmu+WrvcGNX3wwWN
+ m0Bz4z3ebuA3HorhMjTznET6YN/PVf3G2+EyN6ew1X6bqU1iuf8dWLEr7AHLrtHOSjICTos9KYq
+ bPhs5vSdTTafCa0XdkQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-05_02,2026-07-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 adultscore=0 priorityscore=1501 bulkscore=0 suspectscore=0
+ lowpriorityscore=0 clxscore=1015 spamscore=0 malwarescore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607060070
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-320875-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320870-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-media@vger.kernel.org,m:bryan.odonoghue@linaro.org,m:vladimir.zapolskiy@linaro.org,m:loic.poulain@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:atanas.filipov@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER(0.00)[atanas.filipov@oss.qualcomm.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[atanas.filipov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,linuxtv.org:url,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AEDF470DE2F
+X-Rspamd-Queue-Id: 22AC170DB4F
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Renaming the `splash_region` node to `splash` violates an explicit=
- bootloader ABI, breaking continuous splash screen and display handover.
-- [Medium] The commit modifies node names beyond simply replacing underscor=
-es with hyphens, introducing a mismatch between the commit message and the =
-actual changes.
---
+This series adds support for the Qualcomm JPEG V4L2 mem2mem encoder on SM8250.
 
-commit f5e94b2fb05705d86098917e535c3beb4b025cf6
-Author: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+The goal is to upstream a standards-based JPEG encode path using the V4L2 M2M
+framework, with DT-described hardware resources and SoC DTS integration.
 
-arm64: dts: qcom: Use hyphen in node names
+The JPEG encoder is part of the Camera SubSystem (CAMSS) and is described as a
+child node of the CAMSS block, allowing of_platform_populate() in camss_probe()
+to register and probe it automatically.
 
-This commit renames several device tree nodes to use hyphens instead of
-underscores to align with DTS coding style. The commit message notes this
-should be safe since node names are not considered an ABI.
+Dependencies:
+- Patch 1/5 is related to bod's work queued in patchwork:
+  https://patchwork.linuxtv.org/project/linux-media/patch/20260326-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v11-4-5b93415be6dd@linaro.org/
 
->     DTS coding style prefers hyphens instead of underscores in the node
->     names.  Change should be safe, because node names are not considered =
-an
->     ABI.
+Supported compatibles:
+- qcom,sm8250-jenc
 
-[Severity: High]
-Is it accurate that node names are never considered an ABI? In some cases,
-firmware components like ABL rely on exact node names for hardware handover.
+Driver scope and design choices:
+- uses the standard V4L2 mem2mem + vb2 workflow
+- maps runtime resources from DT (clocks/interconnects/iommu/etc.)
 
-[Severity: Medium]
-The commit message claims to only replace underscores with hyphens in node
-names, but the patch also alters prefixes and adds new "-regulator" suffixes
-that go beyond the stated scope.
+Functional validation:
+- tested with v4l2-ctl and GStreamer (v4l2jpegenc)
+- V4L2 compliance test (v4l2-compliance) passed
 
-[ ... ]
+Note: The handling of shared camera subsystem resources (power domains,
+interconnects) for child IP blocks is still an open design question.
+We have followed the established SM8250 pattern for now and would
+welcome guidance from maintainers on the preferred approach.
 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-sdx65-mtp.dts b/arch/arm/boot/dt=
-s/qcom/qcom-sdx65-mtp.dts
-> index 07c10c84eefa1..2c0590617ac46 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-sdx65-mtp.dts
-> +++ b/arch/arm/boot/dts/qcom/qcom-sdx65-mtp.dts
-> @@ -55,7 +55,7 @@ vph_pwr: vph-pwr-regulator {
->  		regulator-max-microvolt =3D <3700000>;
->  	};
-> =20
-> -	vreg_bob_3p3: pmx65_bob {
-> +	vreg_bob_3p3: pmx65-bob-regulator {
-                      ^^^^^^^^^^^^^^^^^^^
-[Severity: Medium]
-This node was renamed by appending a completely new "-regulator" suffix not
-mentioned in the commit message. Is this intentional?
+Changes since v3:
 
->  		compatible =3D "regulator-fixed";
->  		regulator-name =3D "vreg_bob_3p3";
->  		regulator-min-microvolt =3D <3300000>;
+  CAMSS binding (dt-bindings: media: qcom,sm8250-camss):
+  - Added as new patch 2/5; allows #address-cells, #size-cells, ranges,
+    and child nodes using unevaluatedProperties: false so that dtbs_check
+    validates child nodes against their own schema without requiring the
+    parent binding to enumerate each child type explicitly.
 
-[ ... ]
+  Binding (dt-bindings: media: qcom,jpeg-encoder):
+  - Dropped soc and camss wrapper nodes from example. (Dmitry)
+  - Removed opp-level from all OPP table entries. (Dmitry)
 
-> diff --git a/arch/arm64/boot/dts/qcom/lemans-evk-camera.dtso b/arch/arm64=
-/boot/dts/qcom/lemans-evk-camera.dtso
-> index 4600d5441cce4..a4c6d39cf7778 100644
-> --- a/arch/arm64/boot/dts/qcom/lemans-evk-camera.dtso
-> +++ b/arch/arm64/boot/dts/qcom/lemans-evk-camera.dtso
-> @@ -14,7 +14,7 @@
->  #include <dt-bindings/gpio/gpio.h>
-> =20
->  &{/} {
-> -	vreg_cam1_1p8: vreg_cam1_1p8 {
-> +	vreg_cam1_1p8: cam1-1p8-regulator {
-                       ^^^^^^^^^^^^^^^^^^
-[Severity: Medium]
-The node prefix and suffix were arbitrarily altered here, going beyond a
-simple underscore replacement. Could the commit message be updated to
-reflect these additional naming changes?
+  CAMSS (media: qcom: camss):
+  - Replaced patch 1/4 with Bryan O'Donoghue's original upstream commit. (Vladimir, bod)
 
->  		compatible =3D "regulator-fixed";
->  		regulator-name =3D "vreg_cam1_1p8";
->  		startup-delay-us =3D <10000>;
+  Driver (media: qcom: jpeg):
+  - Cleaned up driver patch commit. (bod)
+  - Removed redundant "Provides" section from Kconfig help. (Dmitry)
+  - Removed unneeded headers from qcom_jenc_defs.h. (Dmitry)
+  - Moved V4L2_CID_QCOM_JPEG_* defines to v4l2-controls.h. (Dmitry)
+  - Removed perf level and clock frequency constants. (Dmitry)
+  - Replaced register mask enum with direct mask constants. (Dmitry)
+  - Replaced manual clock scaling with dev_pm_opp_set_opp(). (Dmitry)
+  - Fixed clock teardown order in PM suspend. (Dmitry)
+  - Removed ICC management from driver. (Dmitry)
+  - Switched to _DEFINE_DEV_PM_OPS for PM operations. (Dmitry)
+  - Replaced kzalloc_obj() with devm_kzalloc() in probe. (Dmitry)
+  - Added IRQF_NO_AUTOEN to defer IRQ until hardware is acquired. (Dmitry)
+  - Used devm_add_action_or_reset() for v4l2_device_unregister cleanup. (Dmitry)
+  - Moved generic JPEG marker defines to include/media/jpeg.h. (Dmitry)
+  - Reused v4l2-jpeg reference Huffman tables in header generation. (Dmitry)
+  - Added usage examples to the driver commit log. (bod)
+  - Added baseline performance measurements table. (bod)
 
-[ ... ]
+  DTS (arm64: dts: qcom: sm8250):
+  - Restored camss interconnect-names to original values.
+  - Removed icp-mnoc interconnect from jpeg-encoder node. (bod)
+  - Added #address-cells, #size-cells and ranges before status. (Dmitry)
+  - Padded jpeg-encoder reg address to 8 digits: 0x0ac53000. (Dmitry)
+  - Removed TITAN_TOP_GDSC power-domain from jpeg-encoder sub-node. (Dmitry)
+  - Removed duplicate iommus entry. (Dmitry)
+  - Used ICC defines instead of 0 in interconnects. (Dmitry)
 
-> diff --git a/arch/arm64/boot/dts/qcom/milos-nothing-asteroids.dts b/arch/=
-arm64/boot/dts/qcom/milos-nothing-asteroids.dts
-> index 7393978926e44..0796d9dbe1582 100644
-> --- a/arch/arm64/boot/dts/qcom/milos-nothing-asteroids.dts
-> +++ b/arch/arm64/boot/dts/qcom/milos-nothing-asteroids.dts
-> @@ -136,7 +136,7 @@ ramoops@81f20000 {
->  		 * ABL is powering down display and controller if this node is
->  		 * not named exactly "splash_region".
->  		 */
-> -		splash_region@e3940000 {
-> +		splash@e3940000 {
-                ^^^^^^^^^^^^^^^
-[Severity: High]
-Does renaming "splash_region" to "splash" violate the explicit bootloader
-ABI documented in the comment directly above?
+Changes since v2:
 
-The ABL bootloader parses the device tree to find the memory region node
-named exactly "splash_region". Changing this name could cause the lookup
-to fail and inadvertently power down the display hardware during the
-bootloader-to-kernel transition.
+  Binding (dt-bindings: media: qcom,jpeg-encoder):
+  - IOMMU stream IDs documented in binding description. (bod)
+  - Dropped "Properties documented:" section from commit message. (krzk)
+  - Dropped clocks minItems constraint. (krzk)
+  - Renamed clock-names to match hardware signal names. (krzk)
+  - Renamed interconnect-names to reflect path topology. (krzk, Dmitry)
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706-dts-qcom-s=
-tyle-checker-v1-0-16ce82a2bcfd@oss.qualcomm.com?part=3D1
+  DTS (arm64: dts: qcom: sm8250):
+  - Removed cell-index; use lowercase hex, no 0x0 padding. (Dmitry)
+  - Moved jpeg-encoder node into the camss block as a child node. (bod)
+  - MMCX power domain not added to jpeg-encoder; on SM8250 MMCX is
+    voted by camcc, not by individual IP blocks. (bod, kept as-is)
+
+  CAMSS (media: qcom: camss):
+  - Added of_platform_populate() in camss_probe() to register child
+    platform devices; no conflicts with existing CAMSS resource
+    management observed. (bod)
+
+  Driver (media: qcom: jpeg):
+  - Sort obj-y entries alphabetically in qcom/Makefile. (krzk)
+  - Use devm_mutex_init() instead of mutex_init(). (Frank Li)
+  - Check return value of devm_mutex_init(). (Frank Li)
+  - Kept return value check on dma_set_mask_and_coherent(); consistent
+    with upstream media driver practice. (Frank Li, kept as-is)
+
+Changes since v1:
+
+  Binding (dt-bindings: media: qcom,jpeg-encoder):
+  - Removed qcm6490 and sm8550 compatible strings; this series is SM8250
+    only.
+  - Fixed clock-names block in the binding example.
+  - Added operating-points-v2 property documentation.
+  - Fixed reg in the example to use the correct 2-cell (64-bit) format
+    matching the sm8250 soc node address/size cells.
+  - Dropped reg-names: with a single reg entry it is unnecessary.
+  - Removed description literal block scalar (|).
+  - Dropped _clk suffix from clock-names.
+  - Added iommus description in the properties section with
+    minItems/maxItems constraints.
+
+  Driver (media: qcom: jpeg):
+  - Trimmed hardware register map and definitions.
+  - Migrated to devm_clk_bulk_get_all() replacing per-SoC named clock
+    arrays.
+  - Migrated to the OPP framework for core clock rate and performance
+    level management.
+  - Switched to devm_platform_ioremap_resource(pdev, 0).
+  - Switched to RUNTIME_PM_OPS() and SYSTEM_SLEEP_PM_OPS() macros.
+  - platform_set_drvdata() moved to immediately after allocation.
+  - .pm uses pm_ptr().
+
+Known limitations:
+- scaling is not supported
+- width and height must be aligned to 16 pixels
+
+
+Atanas Filipov (4):
+  dt-bindings: media: qcom,sm8250-camss: allow JPEG encoder child node
+  dt-bindings: media: qcom: Add JPEG encoder binding
+  arm64: dts: qcom: sm8250: Add JPEG encoder node
+  media: qcom: jpeg: Add Qualcomm JPEG V4L2 encoder
+
+Bryan O'Donoghue (1):
+  media: qcom: camss: Populate CAMSS child devices via DT
+
+ .../bindings/media/qcom,jpeg-encoder.yaml     |  146 ++
+ .../bindings/media/qcom,sm8250-camss.yaml     |   10 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |   81 +
+ drivers/media/platform/qcom/Kconfig           |    1 +
+ drivers/media/platform/qcom/Makefile          |    1 +
+ drivers/media/platform/qcom/camss/camss.c     |    3 +
+ drivers/media/platform/qcom/jpeg/Kconfig      |   15 +
+ drivers/media/platform/qcom/jpeg/Makefile     |    9 +
+ .../media/platform/qcom/jpeg/qcom_jenc_defs.h |   37 +
+ .../media/platform/qcom/jpeg/qcom_jenc_dev.c  |  314 ++++
+ .../media/platform/qcom/jpeg/qcom_jenc_dev.h  |  109 ++
+ .../media/platform/qcom/jpeg/qcom_jenc_hdr.c  |  331 ++++
+ .../media/platform/qcom/jpeg/qcom_jenc_hdr.h  |  119 ++
+ .../media/platform/qcom/jpeg/qcom_jenc_ops.c  | 1625 +++++++++++++++++
+ .../media/platform/qcom/jpeg/qcom_jenc_ops.h  |   52 +
+ .../media/platform/qcom/jpeg/qcom_jenc_res.c  |   15 +
+ .../media/platform/qcom/jpeg/qcom_jenc_res.h  |   19 +
+ .../qcom/jpeg/qcom_jenc_v420_hw_info.h        |  410 +++++
+ .../media/platform/qcom/jpeg/qcom_jenc_v4l2.c | 1154 ++++++++++++
+ .../media/platform/qcom/jpeg/qcom_jenc_v4l2.h |   23 +
+ include/media/jpeg.h                          |   33 +
+ include/uapi/linux/v4l2-controls.h            |   21 +
+ 22 files changed, 4527 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,jpeg-encoder.yaml
+ create mode 100644 drivers/media/platform/qcom/jpeg/Kconfig
+ create mode 100644 drivers/media/platform/qcom/jpeg/Makefile
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_defs.h
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_dev.c
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_dev.h
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_hdr.c
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_hdr.h
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_ops.c
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_ops.h
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_res.c
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_res.h
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_v420_hw_info.h
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_v4l2.c
+ create mode 100644 drivers/media/platform/qcom/jpeg/qcom_jenc_v4l2.h
+
+
+base-commit: 8d6dbbbe3ba62de0a63e962ee004afb848c8e3ac
+-- 
+2.34.1
+
 
