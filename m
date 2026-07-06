@@ -1,163 +1,155 @@
-Return-Path: <devicetree+bounces-321088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321089-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Rik5JvqIS2oNVAEAu9opvQ
-	(envelope-from <devicetree+bounces-321088-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:52:42 +0200
+	id 24EgMHmgS2oRXQEAu9opvQ
+	(envelope-from <devicetree+bounces-321089-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:32:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85BC270F809
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:52:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67B9F7108EA
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:32:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HWbn3NfG;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="KV4wPO/l";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321088-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-321088-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321089-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321089-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AD3A0318715A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:31:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 47CCF303E2F3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:33:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5993B2248AF;
-	Mon,  6 Jul 2026 10:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1910360EE4;
+	Mon,  6 Jul 2026 10:33:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A0A3542D4
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 10:31:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5F66389115;
+	Mon,  6 Jul 2026 10:33:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783333872; cv=none; b=ryOCI5+NpmqGzuvALZM3LcXbmJRpfxi6434UpbXCXkglJGMZ/5x4eIjlfW1UhW7H8CrEZLGtWrp4hQJNQsl3qEFvr7ZxVmttM25bDOJ/tTk2dhUQUoUcWURsZSx8MY1JAXmyViIZgi+GhS9zQrS5KbXN6mbX9kD6qY/0aHFDYyI=
+	t=1783334003; cv=none; b=f5MoedQrcyzfYvN8ZhyXCy1W6T60cW19w1PG0QyU60OT6Ns4gMS4RryDROeMN9XQqvzYJTtX4AH/suEPPqgn8Uz2rum6KHOE27rwLFSwZLG24QwgVdYHjqU/H1Y0Wa/F0e86NxplT4Tu0C8UkOuGeXDxp6PXUkc/2CzZR9OeHsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783333872; c=relaxed/simple;
-	bh=xAzcZXHZvXfralRCRIC73T8RqYiucmRK4PJ8vUt9gsU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=sxep6HamNhVj66gZNn7HQgLn/5zzR8pXtGIy8TLt5/AOtdGsnl7ePpioxEvqU7ogjS88CbcNX79y2OmBixPhNqNJEUJQ4zJBCQ2vYsnVKB3egldYPqIph36XQsIFuYkMIvw98o92nt/UuRt8Sw6zUclKkqCwLaZYQ2bmlVRPwyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HWbn3NfG; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31D891F00A3D;
-	Mon,  6 Jul 2026 10:31:10 +0000 (UTC)
+	s=arc-20240116; t=1783334003; c=relaxed/simple;
+	bh=aUmAMuZshk/vGhRHPkoY5uIQ21ykG3+oFzJ6+qzChF0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TejxG/q2HSHrx515Mc43a2v4hsgWyLfyU6wHnOAGzI96IR6cwBgQ07u/jPRO2Wu0Bck25JzkFYz7TX1XUUR1IZXwIPhH3Kim54RDO74QxNRL7K4+F3ZT4PFlS7ntexxXLcyILX6x9VlE5hCKkr7tFy0SgfhJuihhWKn5nPeWyhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KV4wPO/l; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 171271F000E9;
+	Mon,  6 Jul 2026 10:33:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783333870;
-	bh=lwaZFgVOx/Rn1E6DVGSq4enErdjIv110WDbWDDujH4Q=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=HWbn3NfGsQaZ8VXv/GyD/yF+IzmO9uWnLVMIWZaG2hS27WL6tnhQaVTZnHX5SSKiT
-	 im7dDFUzRLMjaXwNYEvFyng0JrCGX4J8Glrsr0yjNnmIpOb9WD72fMlDKrAGJOMoN1
-	 OcGwvTgLQTJ18+c1kW8IlnRMBWnZETh9TxToWJNlwcYnQA36au2nIqOCsgg53j5lQz
-	 MOg+zYKF+Gvmg79lIal4V58vYqvSB/+7Izonc5t00MJU7a6W5VUg/TUtSwriwnAou1
-	 KUIDiGl15j3dp1igYN4gSCQ5cIIXIUXvsuT1W5Q0Zg+9V3CTwaNqErQYaW6YrB5PJ3
-	 QOzB04igdnatA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/2] dtc: dt-check-style: Allow space-aligning
- indentation in DTS
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260706102421.343639-4-krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260706102421.343639-3-krzysztof.kozlowski@oss.qualcomm.com>
- <20260706102421.343639-4-krzysztof.kozlowski@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 06 Jul 2026 10:31:09 +0000
-Message-Id: <20260706103110.31D891F00A3D@smtp.kernel.org>
+	s=k20260515; t=1783334002;
+	bh=t25qHMlDNnh6C/Tw3ZIkerSb4sQ88yhV2t+isWLtyXg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=KV4wPO/lIdDhMMx2OeP7Xzyjo5h9OK+KGeqmHhjWNyu4fzwZHizgtfIO0cjKljdHf
+	 /TlmkQ9qj+7sY4jGW5K6ZgyhZRPW/h+TQwp9g2atGUUHViYjblUBzp9kZz+WEfDgrx
+	 WQ9WPFg7IKO6mvchG+PhCRqh4A1EdtZs8Gq6pTy49p4gYt09wMiyG9+6TO3HdjcAa3
+	 7mDXwztjEJDR2yVXURvjMnthYqtWp3LWYpllC35ikLa1nhCmQIRteO+j//Yyz5GjS/
+	 7/zA1sSyF43HIEyBCEi6zbMgSRXOAOYV7BhYTjdRD41SWe3A4yO4FoS0VW+2d4Y6CF
+	 b0saWgmDI96og==
+Date: Mon, 6 Jul 2026 12:33:07 +0200
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: eliza-evk: Add PCIe1 with TC9563
+ PCIe switch
+Message-ID: <pdzsy4vlwayotjqawcu5b6atf3g6hs6o7knttvxpyefufggs5z@tavxdidtjscy>
+References: <20260703-eliza_evk-v1-0-7624440bd76d@oss.qualcomm.com>
+ <20260703-eliza_evk-v1-2-7624440bd76d@oss.qualcomm.com>
+ <7ce4844c-8025-48e5-a1fc-4d1cf9f7917d@oss.qualcomm.com>
+ <b5a6a0a4-4c7e-4fcd-96eb-54041c29ccba@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b5a6a0a4-4c7e-4fcd-96eb-54041c29ccba@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-4.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:krishna.chundru@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:brgl@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pci@vger.kernel.org,m:linux-pm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321088-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321089-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,tavxdidtjscy:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 85BC270F809
+X-Rspamd-Queue-Id: 67B9F7108EA
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The use of `re.match()` instead of `re.search()` or the `in` operat=
-or causes the script to only detect a space followed by a tab if it occurs =
-at the very beginning of the indentation string.
---
+On Mon, Jul 06, 2026 at 10:52:27AM +0530, Krishna Chaitanya Chundru wrote:
+> 
+> 
+> On 7/3/2026 8:39 PM, Konrad Dybcio wrote:
+> > On 7/3/26 2:38 PM, Krishna Chaitanya Chundru wrote:
+> >> The Eliza EVK board connects PCIe1 (8GT/s x2) to a Toshiba TC9563
+> >> PCIe switch. Enable PCIe1 and its QMP PHY nodes.
+> >>
+> >> TC9563 uses I2C (at address 0x77 on I2C4) for its management interface.
+> >>
+> >> Override the base iommu-map with the expanded set covering all the
+> >> switch's downstream ports (0x1400-0x1408 SID range).
+> >>
+> >> The TC9563 RESX# and PERST# are OR-ed internally to assert reset on the
+> >> switch. Use TC9563 RESX# pin via a TLMM GPIO and skip wiring PERST#
+> >> from the PCIe controller.
+> >>
+> >> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> >> ---
+> > [...]
+> >
+> >> +&pcie1 {
+> >> +	pinctrl-names = "default";
+> >> +	pinctrl-0 = <&pcie1_default_state>;
+> > flipped order
+> >
+> > [...]
+> >
+> >> +&pcie1port0 {
+> > This port should also get the compatible
+> for pcie1 it is not required, only for m.2 connector we need the compatible.
+> 
 
-commit b4c995f24f81e6a677f411361809325fa7fa3599
-Author: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+There is no harm in adding the compatible property, even though it is not
+strictly required. As konrad mentioned, if someone creates a board that makes
+use of this instance, then we'd need a separate patch for adding the compatible.
 
-dtc: dt-check-style: Allow space-aligning indentation in DTS
+Let's make sure we add the compatible for all Root Port nodes in SoC dtsi.
 
-DTS often have spaces after tabs in indentation for aligning continued
-lines of comments or list properties, thus allow such cases to avoid
-many false positives. What we can easily detect is a space followed by
-tab or too many spaces (more than alignment).
+- Mani
 
-> diff --git a/scripts/dtc/dt-check-style b/scripts/dtc/dt-check-style
-> index 34e0f7e2a57a4..e49b7446a2f72 100755
-> --- a/scripts/dtc/dt-check-style
-> +++ b/scripts/dtc/dt-check-style
-> @@ -359,14 +359,17 @@ def check_tab_in_yaml_example(ctx):
-> =20
-> =20
->  def check_mixed_indent_chars(ctx):
-> -    """Indent must be all-spaces or all-tabs, never mixed on one line."""
-> +    """Indent must be all-tabs, except for aligning indentation (comments
-> +    or continued lines)."""
->      for dl in ctx.lines:
->          if not dl.indent_str:
->              continue
->          if dl.linetype =3D=3D LineType.PREPROCESSOR:
->              continue
-> -        if ' ' in dl.indent_str and '\t' in dl.indent_str:
-> +        if re.match(r' \t', dl.indent_str):
-
-[Severity: Low]
-Because Python's re.match() enforces an implicit string-start anchor, does
-this condition in check_mixed_indent_chars() fail to detect mixed
-indentation if a space precedes a tab but doesn't occur at the very
-beginning of the line?
-
-For example, an indentation sequence like tab-space-tab would be ignored.
-Would re.search() or checking ' \t' in dl.indent_str be more effective here?
-
->              yield (dl.lineno, 'mixed tabs and spaces in indent')
-> +        if dl.indent_str.count(' ') > 7:
-> +            yield (dl.lineno, 'too many space characters in indent (more=
- than 7)')
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706102421.3436=
-39-3-krzysztof.kozlowski@oss.qualcomm.com?part=3D2
+-- 
+மணிவண்ணன் சதாசிவம்
 
