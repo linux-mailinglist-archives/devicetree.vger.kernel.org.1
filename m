@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-320947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320946-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZjK5EJ10S2r1RgEAu9opvQ
-	(envelope-from <devicetree+bounces-320947-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:25:49 +0200
+	id NEi+AV57S2qkSAEAu9opvQ
+	(envelope-from <devicetree+bounces-320946-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:54:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D291B70E951
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:25:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 519FF70ED03
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:54:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=dBMgyw5i;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Bz+Qf5PA;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320947-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320947-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320946-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320946-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0D1603095019
+	by sea.lore.kernel.org (Postfix) with ESMTP id F08CA33E7001
 	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:14:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034D74D2EC9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3D94D2ECB;
 	Mon,  6 Jul 2026 08:59:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC6C3BB66C
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 08:59:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 721BF42B75A
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 08:59:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783328391; cv=none; b=qokdtGOnDGd8q5lODVpR0BR2vhuLSNF4+pdLoxKe5bha43JKGfnXVvDs6qDtfTuO0SYOIe/adkl0ZDFNkP1Df5YpZTuSuzFq16WWMM4lKdWmttbU5Wv2IH4RKj7cp5gAcXCa2qZ0FadAsfv8YXtYQznmyxx4t5oGRBaTi0/Nqbw=
+	t=1783328391; cv=none; b=QwcyNeGkhYu10Od7d9m4l1xcw3XCNqWSuz/RiY2iBHOq6OuKDe0TNwMcwNSz/4kRBwnanfUXmeSH5NluwlohwvY28jJoGfr4eU/0d3wHKZ6MHZjUdXdoe567g3Q/OprGjdEbnrmKx3PSDjkW6hoa8Ayk5mNkW1A5DwOeH+X+Hk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1783328391; c=relaxed/simple;
-	bh=oGRIGZFPt9oa1ooXvjGRLIlrHTPHd8OZnJZAYil/EvY=;
+	bh=Vw0ZDbIdyX7wN5WBU2vgqjTXhB38dKH6zpGgWAAPSMs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fCyobHdPsiOBxLs1uyZMwzaRF4eYHqhWaoW5tshLA2s+d7mJ9nqST1dm9ZQeO9I0uFqmn4ySmwHnpHMoDf9K8GLAkGjZDy5uoIBYIV1Gn07gensrWPFooJJbIe7JMO+q6g3XShBDU2ZmrsVtkjy/2eaoxTmhRYeJksGoLw22Sbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dBMgyw5i; arc=none smtp.client-ip=209.85.221.44
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-474303f3c72so1592858f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 01:59:40 -0700 (PDT)
+	 MIME-Version; b=qflTJyGlYyMcNjHLb1Jy/nU/jox3Q+VmRyqYesrStkF2VdvKx3zQPVq1O45VVk6QTfnzLkwgONC11RZc3Whvy88m2y73dDNU6OQNpfnJWwNViMXyIdOMxiqP1z9ELsXyp0HZnTSiTTgY4SVImVGYlVuAdvxbSsEBNiuw1+u2WbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bz+Qf5PA; arc=none smtp.client-ip=209.85.128.42
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-493c7902f47so15880935e9.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 01:59:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783328378; x=1783933178; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1783328379; x=1783933179; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Lu4o0vMyMTghgzXqIzEekqpdjiKzmBMwkS6JVXHiiNM=;
-        b=dBMgyw5iRGElTpzeS01QygOMxsODy3f3rOLTHWWQqHNHrXFMB37COxhnxf2rzQ1vPi
-         cDFr0f3kJhxq5eOmZ347Utkc4n9jsko/CNI2GOB6BJaMozJmwHYtGYfW0eDLGpyJkrSz
-         hj7pGwStL0d7klvcqN4dBTKm1IPONKxGQ44woe7l0AX171ZeMka7g4zeM1Mktp0TER5d
-         NNZlmaqbhNR47ZaxomdP5P6kTyeext9bMtGdHh4GHnLBVDUW/Ix4dcN20g/46G5s+0xQ
-         EvX263gnnu01On7cPHYhN6HB2McPMuzaBSp8TBRNOyr/rjeOFBOtODi7A52WbmnLfqZZ
-         lpcQ==
+        bh=+M4UZmhZB6hL6eBpbZaV0FmU4Q8YxlLtTX/b/nBeOzs=;
+        b=Bz+Qf5PAHg2uhx09r/Pojmw/FTEVZVZGA2jC9LG4vMcc98DhKOv3M5doANKwvh8jnw
+         VsnL6QNS6qsoU50tB7QcP58uZ8oT3OVBUUXIeTgYum3eA4HMsFToLmjXuFPCfcV+cqQK
+         n6WA8DlEreEcpEnbShgAoj0004xHir94a/6YSXvb1kv/xgbCCPQ+6H5AL93YkhLgv/lV
+         Znm7APPJEhkIvqvJwNTDTClQYh4GqisuPGHMgVjef09Dyga6hbjv2C0aO7E8MlRQWj+L
+         /iedHHybzvBfHsMa6n4suDdZ22ltQdiEpOSXcboBgyPeDv1IA7CBxaIDbmzDzpqdUlOz
+         TfPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783328378; x=1783933178;
+        d=1e100.net; s=20251104; t=1783328379; x=1783933179;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Lu4o0vMyMTghgzXqIzEekqpdjiKzmBMwkS6JVXHiiNM=;
-        b=nk2FTCmjCs5t9Slebr5S7OhLc5JqlYReV+HctKLABzr1g5xKWeyHlyU8nxKgmDrKoC
-         GIxfRB4Av7kGL3LkoRCi9kuvoGJonylgxQkiWMGsZUr+ErdIg7a7ms7nxYyxFQ947s/J
-         k7kc9O9R3w+0Y1OsG38kXYGLPGY7Ca9KFqnFVmFOVMyeuxLa9t7McTDG5KfDLdeDC5Kh
-         fEBNT1R2TBETkZLKS8OSJ7jJb3Ul9BP2xYim9W7/vB2K+Zmbq13/QWcuTn2xb1k5AbIH
-         1gPVVDRvxpaHaRZzsRwhZVpvW2K8czMbH8+zdsOuLixgcRtc+OILqZsy3orX+qmZJg92
-         +pcg==
-X-Forwarded-Encrypted: i=1; AHgh+Rp1cjprPgMNl/7Ig0PrZn3fnLk249lNE0nqYQIp+471R1RsAZ//QoohddQLwpTX8SlLcYeXwKQAe4lp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyW+xwHkEeEYOW87TZWsu9N1+RH7tQTVpYQlPFAdFQvisO+xKOB
-	g943wt5WThwQAuRG+qP1R6SYUxl3r/l8zWWBGsM/7I+4SaDoXXCC+lRT
-X-Gm-Gg: AfdE7cnNeULfcJLb3fGYgdOk6vHd8wYZMehBjvd384ifJkIS35SUZJdRtCXMTzZ66gP
-	lSW9ITMPGEPWPDY+m5pBwvkVVDaTTIVZOgd5FDCeUyqXHr8t4rMa6o9cpRBA/ky7VXghf7aI1TT
-	xaWVPouTYilllvRXJSHMUDFpLTUeQyIYRsvTvyms+4MpnFQwg2EpB/KZl3jSN3XKB3mFDO+lggs
-	Id9myuW9GrWjV4KhLppiw+GYpPmhJPXPqOgGylQjmTshXY/LClimPMSlrYiGuO/+X7aG8OPa3lR
-	5AnWm3wuTUXFy7xhgDddPZiKjGUUPNvQuSLOBf970NqLLgr/9LxW7FjqcIf60OXKjZMxK5eXcYi
-	G3qzvPvd4U5lnKS1smu5VCMu1Pq/pMzOakpBM+vmk5mKC87tKrR8jH1cSA7rBjXJFG1xa12/tIT
-	/bp6+J9WB2R4KIICpDdhveNvUGtPN1lyXXg8e+IlAUb/YfHltriXsKlRk=
-X-Received: by 2002:a05:6000:4698:b0:475:36a:8c97 with SMTP id ffacd0b85a97d-47aab76f017mr7729353f8f.45.1783328377651;
-        Mon, 06 Jul 2026 01:59:37 -0700 (PDT)
+        bh=+M4UZmhZB6hL6eBpbZaV0FmU4Q8YxlLtTX/b/nBeOzs=;
+        b=bfriUQ+Pw015GdekgAOiQAwT54gcupk+B+Sp1xxd1uBuHUyYUDFbeOpmaVSqgGJsdg
+         z7/I3peMNa6tgKOOskelOcM8xpwHXn/Bn1nBIUYkBEIfjM4cVHyywG6sGA/VOzxvGHJX
+         50+NWZG3uihpjm3AllY5Scn6BuUiYb43KKOQWcBrSD+jSsNjE6BSkwWbJLCiAFZ0gG5o
+         jUn/aS+H9qjSUXr663gFclANkjRNCDD/5IvHsc/B9Qao8s+/g8yTuBk/0BwDGDzqrcZk
+         ymqKCfQnxVZDLRPKPpBl0fNrG1op5TnL/RUjM4ZjUhu1ANKgXDvCjIj05gcwShGRurx9
+         dhGA==
+X-Forwarded-Encrypted: i=1; AHgh+RowQgqHeP4YwoKVdwVUaIaFAGaWJoyQ+xAl8oyDPdzKrnEk8TapVwFKRxI8mw4zZ1SuXXHuDq28/IPg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMNwyxiJSbS7AiSGmLVPllPuU4rc1VDk7+t0epghBf7qcJmR9d
+	Jn+Y4o9oZB9jlGSV/ZhNrxpKKj10D/KLpofdtAWIYi2vkMkIq04qRbgm
+X-Gm-Gg: AfdE7ckE2RFdJs/i56Whh88uzuCvsH3c7UObDbV6CLbWaSU0gMtV0/l40EVltRX30TQ
+	tNoH+UWGPPYiPPvP1VfyuxNXbvZW5IDf0rMgfdCXR0NwRlaP0Ib0weWjLJqa4Yn2pfOWMivUGdL
+	NHboco7ugIS4j+tCv4giI92w0s7ILLpYarrndsw6jv5H9MCxNdQq+AQk8y5UUY5DwOANjwf5P9q
+	Fg3RrcSExkOf6A5aC6pwzIZL73LqetYKQV1fQFI9Bx1lVJ+LsOHdDnVjpgcp/2xwAY+raYJN3vu
+	xXWLQ5UQBKCYsiNT7SiK5CpDMEaDGeve1jYRJt1JDR1EutaKhSWVFvzhae9Md81sOrQAJ4HOSmM
+	vAUExCQQ6hxLEsvQgyzXdNsUXl4pkCMypm5ME18OaP9jVloq88E5TPLYXoiFdrqY6FReHEe2sYf
+	hbt05+sjll0SNF51IH2KbOJbMQZRz00Bxg+3y2ZGtk53LpnDvIkcA49Hg=
+X-Received: by 2002:a05:600c:3113:b0:493:b03c:5650 with SMTP id 5b1f17b1804b1-493d9156d45mr42366355e9.19.1783328378888;
+        Mon, 06 Jul 2026 01:59:38 -0700 (PDT)
 Received: from localhost.localdomain ([188.26.50.173])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-47aa039ae44sm22314373f8f.23.2026.07.06.01.59.36
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-47aa039ae44sm22314373f8f.23.2026.07.06.01.59.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 01:59:37 -0700 (PDT)
+        Mon, 06 Jul 2026 01:59:38 -0700 (PDT)
 From: Eduard Bostina <egbostina@gmail.com>
 To: Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
@@ -88,9 +88,9 @@ Cc: daniel.baluta@nxp.com,
 	simona.toaca@nxp.com,
 	goledhruva@gmail.com,
 	m-chawdhry@ti.com
-Subject: [PATCH v2 2/5] dt-bindings: soc: ti: omap-dsp: Make ti,hwmods optional
-Date: Mon,  6 Jul 2026 08:59:14 +0000
-Message-ID: <20260706085917.835875-3-egbostina@gmail.com>
+Subject: [PATCH v2 3/5] dt-bindings: soc: ti: Convert IVA to DT schema
+Date: Mon,  6 Jul 2026 08:59:15 +0000
+Message-ID: <20260706085917.835875-4-egbostina@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260706085917.835875-1-egbostina@gmail.com>
 References: <20260706085917.835875-1-egbostina@gmail.com>
@@ -108,13 +108,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER(0.00)[egbostina@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[nxp.com,gmail.com,ti.com];
-	TAGGED_FROM(0.00)[bounces-320947-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320946-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:egbostina@gmail.com,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:broonie@kernel.org,m:robh@kernel.org,m:daniel.baluta@nxp.com,m:simona.toaca@nxp.com,m:goledhruva@gmail.com,m:m-chawdhry@ti.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
@@ -122,7 +122,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_TO(0.00)[kernel.org,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -136,35 +136,92 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D291B70E951
+X-Rspamd-Queue-Id: 519FF70ED03
 
-Make the 'ti,hwmods' property optional to resolve dtbs_check warnings,
-as several in-tree device trees currently omit it.
+Convert the Texas Instruments IVA bindings to DT schema.
 
-A review of the ti-sysc driver (drivers/bus/ti-sysc.c)
-shows that the property is not strictly required for probing. The driver
-only reads it to populate the 'ddata->legacy_mode' flag. If the property
-is absent, the probe sequence continues normally without error.
+During the conversion, the following updates were made:
+- Moved the binding to bindings/soc/ti/
+- Removed 'ti,iva' from the example as it is undocumented and
+  unused.
 
 Signed-off-by: Eduard Bostina <egbostina@gmail.com>
 ---
- Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml | 1 -
- 1 file changed, 1 deletion(-)
+ .../devicetree/bindings/arm/omap/iva.txt      | 19 ----------
+ .../devicetree/bindings/soc/ti/ti,iva.yaml    | 36 +++++++++++++++++++
+ 2 files changed, 36 insertions(+), 19 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/omap/iva.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/ti/ti,iva.yaml
 
-diff --git a/Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml b/Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml
-index a97e163c890a..09d0ebf2cb13 100644
---- a/Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml
-+++ b/Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml
-@@ -20,7 +20,6 @@ properties:
- 
- required:
-   - compatible
--  - ti,hwmods
- 
- additionalProperties: false
- 
+diff --git a/Documentation/devicetree/bindings/arm/omap/iva.txt b/Documentation/devicetree/bindings/arm/omap/iva.txt
+deleted file mode 100644
+index 6d6295171358..000000000000
+--- a/Documentation/devicetree/bindings/arm/omap/iva.txt
++++ /dev/null
+@@ -1,19 +0,0 @@
+-* TI - IVA (Imaging and Video Accelerator) subsystem
+-
+-The IVA contain various audio, video or imaging HW accelerator
+-depending of the version.
+-
+-Required properties:
+-- compatible : Should be:
+-  - "ti,ivahd" for OMAP4
+-  - "ti,iva2.2" for OMAP3
+-  - "ti,iva2.1" for OMAP2430
+-  - "ti,iva1" for OMAP2420
+-- ti,hwmods: "iva"
+-
+-Examples:
+-
+-iva {
+-    compatible = "ti,ivahd", "ti,iva";
+-    ti,hwmods = "iva";
+-};
+diff --git a/Documentation/devicetree/bindings/soc/ti/ti,iva.yaml b/Documentation/devicetree/bindings/soc/ti/ti,iva.yaml
+new file mode 100644
+index 000000000000..5724b8367a15
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/ti/ti,iva.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/ti/ti,iva.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments IVA (Imaging and Video Accelerator)
++
++maintainers:
++  - Eduard Bostina <egbostina@gmail.com>
++
++properties:
++  compatible:
++    enum:
++      - ti,iva1
++      - ti,iva2.1
++      - ti,iva2.2
++      - ti,ivahd
++
++  ti,hwmods:
++    description: Name of the hwmod associated to the iva
++    $ref: /schemas/types.yaml#/definitions/string
++    const: iva
++
++required:
++  - compatible
++  - ti,hwmods
++
++additionalProperties: false
++
++examples:
++  - |
++    iva {
++        compatible = "ti,ivahd";
++        ti,hwmods = "iva";
++    };
 -- 
 2.43.0
 
