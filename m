@@ -1,224 +1,160 @@
-Return-Path: <devicetree+bounces-321363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321364-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fjnNAPjYS2p+bQEAu9opvQ
-	(envelope-from <devicetree+bounces-321363-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:34:00 +0200
+	id 7RxINKDbS2ovbgEAu9opvQ
+	(envelope-from <devicetree+bounces-321364-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:45:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DBB1713564
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:33:59 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B99E5713765
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:45:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=GU0hNyiQ;
-	dmarc=pass (policy=none) header.from=linaro.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321363-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321363-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=O1IPnkpg;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321364-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321364-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B190B308E3DC
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 15:58:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8A477310990E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 15:59:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C4CD431480;
-	Mon,  6 Jul 2026 15:58:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41FCD42A144;
+	Mon,  6 Jul 2026 15:59:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60AE430CF2
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 15:58:00 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783353482; cv=pass; b=Gsy1+Zvj7iD9Bjf8pyuCz3vNppm5dPMIpBZw1C7XPBsdF2odFQSgTyS6a6BkaSCz+BUujItlSrs+rQwmYZDxpzw3aqNOaHlUw62+Zt57xqmsPPaU0VXYLWSYHPtWLfNjZC6HKXou6RaME+xV6Fnsma7DTWnNj0T8ZbJ6cp5+EH0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783353482; c=relaxed/simple;
-	bh=gCs9HokUb+6ZMGzRlYcfJL9jBr5oqoU0ENUXdBhbWys=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ojyw+quajAA0GN2053xp2YpWOrBRBShVK9QLsubbaaxsIrUj2krD4BTOXh55OwLbtA44R1KQ68rhJ7nEX1jIfqiIzv+cO+Et3XyfTq2CCh0wDV0b4RsXS17TsYO6Qu0pD5WtuSmfMGnY6E1Kd+lSANCB8RWvjnlZo+xh72L3els=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GU0hNyiQ; arc=pass smtp.client-ip=209.85.218.47
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-c126f9c9567so384960466b.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 08:58:00 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783353479; cv=none;
-        d=google.com; s=arc-20260327;
-        b=YQK7WL6iLdkd2qsOeNnYG0835cgJKJeG5Sny6y/L3msGDg46+taVYGFaxEOaSt+l0a
-         a7/47wiaSFneNoehe0TehBwa+YtMrbvJGJ/53+QibRqnfuJkRcQ3zMYnwqIhnEL3+pWh
-         48fCkFbzWtFgel+mpMiiXvNvfUa1Ozw0d0bis4nEAiMeiItrAcA0aUTocC8i19iFR808
-         LnxRD0NapTVHiGm1AnaSPsGIGtAuOhVnRMSnNTlproecLRZKd5YHgiZIIX3CjDtuhruu
-         h97tN939X5+Kv+PR9dDnrX4lHkWgcTPh9n7wFq1TTSTQmpYlWcP1O99wn8kbcPnSZFRU
-         f5Tg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=lGxnHQcUvM+Wk9iuDAhV9iKJOnzCJXCRMoquKntthQc=;
-        fh=7fuUHUgcblDEK+YDixn/xzLTjLLUlN7gIF59E4wUdWk=;
-        b=Tg/Dp3bSpa8K1OOUlB9cpmdqXm0S1t82SfvPqXmgjXh2iWgDIQ4hrhYPuW+sTWnidy
-         dsq6GcDYZklhUoOz3IdWHPIFMVyIgRWoRfnn2BiWpfXUBOBKA5GjUYqAEuBX83CtKesD
-         eB3q3HmePeEDDAtoN+T33XK2t/FsTA+Bz0sUc4u67egMC5NrfXojjmerUEfgUcGF/o4w
-         H4XzS/GkB26eLcUkoR5sPzF9Fr0R8ZUCATMIm6eXCKT5aNZzaWLe9FGBwo6KlGLDdVBd
-         xpB1EbScsiQxLJUIUCR99O47ZCIGhz4tmnFJm2dngCLzKAmLxY7WGgw3ToRtpG+9t8LU
-         aQoA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1783353479; x=1783958279; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lGxnHQcUvM+Wk9iuDAhV9iKJOnzCJXCRMoquKntthQc=;
-        b=GU0hNyiQhfhvtxPMVodlt+AWTaFQiCebzodjl+FprxUO9EkdYfpWlsbzU498Q6AjiO
-         i9qajWQEi2IYs9FjakI4FF1H8D1CARiHOUz3SQNAsUIJmg2ZVRhcXprA/HyS44+w7wU7
-         wXF+htRBoJcS/voWzXEFnzVHFJgGOraswyDjF27NqrB86bnHzznNG7JFYS261uUmEvuj
-         wuw5remDY8vHZOgLo+MgiCMz3zUd+EKuWyX8AYDP0AwyBDS6AroY5+WMgR3xD5BS0S3o
-         YUZayqlQTCx/jgMF6ntI1YQMRcCM7DjcUT8MXYGL/SoxvWpyxB28zc81Iu9uH3CZKLq9
-         FQSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783353479; x=1783958279;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=lGxnHQcUvM+Wk9iuDAhV9iKJOnzCJXCRMoquKntthQc=;
-        b=DN4mgYSA9Dikj5KGJdiJ8lpZlhL9ERAgUqiIj+k0dLRH+R0EDWWlCC7tPddjj/HDd0
-         atj45hNyIdAZ/FeCrpp0VuPFHsyHXC4wcVmIv/8COrs7fkjrv2eCQYcD8Ser1rvstVuw
-         4n2a7nJIP9KPz1peemSk4agKLUMH0MX/Xe4ybCBLVQwNCuo6Q8G76K0xXNY5KCBkAyXd
-         HD/UQiTXFdN6hFFCaKtY2DngbNqyCReds5weRvW/VHQJjI1atok80IJ+E6DmfwQxK9tV
-         dBKrRqZ1FIK6Jl5MsB7tHCXQtugYBYFKR0Uxz4tg+AEqb546l+CABhYBa+7RlY+Uq3+M
-         XkVA==
-X-Forwarded-Encrypted: i=1; AHgh+Rq1JHPXO2+0lbzRWwEOTm5apzWxkYwv6RMlzEwiQwLn5gMv6VA5nKwOdsburCXz/Xryo/C1JgPkio20@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy93q1Gv/nP5IPY0/uODkiAZLnl7DRXn5SshiJeO5WPJdvT739F
-	y0llb5+dYijvQung3STAtKrbO6IZIZV6KL6cmShD2DGSl7ouCmCT3DfWa59L2hhJB5hXPYNwwfS
-	vC3eH8QJepqc+KXNtQ6NIapNMQNtzctl1mZLx2t6YLg==
-X-Gm-Gg: AfdE7ckLTT/3UJ/QqOw+2JdIfnd1BNpRmT9gjL8TlSFVUpVcX5pGFbg0dqiY6/1W4ue
-	k68V4sTcSng7jDUTXalkQAWhYpw5PeTbXj36MrM5mJ6ZIBNDiU3XBarBLyY2CGyZPHKXtcwlMkW
-	A9fNJHo0Mz93jNDvM3EOsWs9Ky9SQtSPIGMisNbpUkqxno3I9aRvsKeulAzQIAKZm6z0xyYQmcU
-	KpiP7kXPcZ7yiQsvTaJlBDBxaOyqIGWPEQdtmsVz/uS+919eQ981kajp2ttvEiuENAAOPMuUCDj
-	lJJ58xkc5jH4HyBxqfVVRGN2tCmc
-X-Received: by 2002:a17:906:3ce:b0:c12:992b:16d4 with SMTP id
- a640c23a62f3a-c15a68cf56fmr47982566b.41.1783353478105; Mon, 06 Jul 2026
- 08:57:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7F2C399348
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 15:59:04 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783353546; cv=none; b=lGA7cc8Ax+5hRCuB+XYIPIxGPo/aVbz48+wpXqeyU8p9yYdUfPTQxWVv3qBNOp9gMgWNxEnntMavm2VbhipOfZOZI1RkVc+lMHCPzpkpEyyTOcwlgSw/Q9epDUllE5QL7zYodR37tKg7JCytHJ20NcfLY+qzxIJ1D12gixaKgEY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783353546; c=relaxed/simple;
+	bh=BLESi/Vhd/heeXYo8MYxDa67U4i7kjvAse+ziJHEycg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=BgL8LVlJjTuuNgoKtOP7XjbG3Bs5/J2FlEH6uNNX4P+Azuqcv71xVxi105jaEn2SVAJYz07rVUEiOt+AIZJJqL7vdUD2XMeR7tyMWtxnmQrzyjvW1CMW/8PF/YWp8ijnruKHpfNaXoiOXl7RFD1Tl0pVM7HUanyl/Io+XUfNW0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O1IPnkpg; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9827E1F000E9;
+	Mon,  6 Jul 2026 15:59:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783353543;
+	bh=T+YVQj0OZYMCDuz+jgMoooUl+wT1KOROE0BH991Qq5c=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=O1IPnkpgF3yZspl6fTzU9MtI9PVFjv4EFKytjeliAMJeai9YN6wMZ8S1JY4VBpNQd
+	 +hTsXSaTWWa8HAcZMmxdyrKoQcBjNwz5NFuJm5hC4VXUS/xQXy8wQTvQMyyxqedb2H
+	 PvK3ScjIzvP4I+Ib3XSHdR27d/8DLg5wlbd07w0FX5HXu7fSut0IfNuPlaSaUMctE5
+	 NkjG2+4CClTO7m3qK8MezC3gE8pnmhWVIpyHQyElLvVMBRm02eNaA5KkTYVj+4l/1N
+	 3/ns3V1ry+oM4B5Gn2f7WM657y6zvVxGi5a+blPEH8dmt9SviR56wmx6RCqHAezsKA
+	 WHsSLo4CbbvTw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 1/6] dtc: dt-check-style: Narrow disallowing of tab
+ in DTS only to YAML
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260706-dts-style-checker-v3-1-03ffacff9226@oss.qualcomm.com>
+References: <20260706-dts-style-checker-v3-0-03ffacff9226@oss.qualcomm.com>
+ <20260706-dts-style-checker-v3-1-03ffacff9226@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 06 Jul 2026 15:59:03 +0000
+Message-Id: <20260706155903.9827E1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260625155432.815185-1-shenwei.wang@oss.nxp.com> <PAXPR04MB91855056638F0028BCC5F9EF89F12@PAXPR04MB9185.eurprd04.prod.outlook.com>
-In-Reply-To: <PAXPR04MB91855056638F0028BCC5F9EF89F12@PAXPR04MB9185.eurprd04.prod.outlook.com>
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-Date: Mon, 6 Jul 2026 09:57:47 -0600
-X-Gm-Features: AVVi8CfCK8RZVsOnom89zz62dC_eh8WB0dnPwnnTYPsAfwJakdAft3ffWaiSkNg
-Message-ID: <CANLsYkxmf=QfNUe=BLrrP7kBtZKq2Z1BkQDLnzmcQsW-kYzTPQ@mail.gmail.com>
-Subject: Re: [PATCH v14 0/5] Enable Remote GPIO over RPMSG on i.MX Platform
-To: "Shenwei Wang (OSS)" <shenwei.wang@oss.nxp.com>
-Cc: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Frank Li <frank.li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shuah Khan <skhan@linuxfoundation.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Shenwei Wang <shenwei.wang@nxp.com>, Peng Fan <peng.fan@nxp.com>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, 
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>, 
-	Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, "b-padhi@ti.com" <b-padhi@ti.com>, 
-	Andrew Lunn <andrew@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-321363-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FORGED_RECIPIENTS(0.00)[m:shenwei.wang@oss.nxp.com,m:linusw@kernel.org,m:brgl@kernel.org,m:corbet@lwn.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:frank.li@nxp.com,m:s.hauer@pengutronix.de,m:skhan@linuxfoundation.org,m:linux-gpio@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shenwei.wang@nxp.com,m:peng.fan@nxp.com,m:devicetree@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-imx@nxp.com,m:arnaud.pouliquen@foss.st.com,m:b-padhi@ti.com,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[mathieu.poirier@linaro.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,lwn.net,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,foss.st.com,ti.com,lunn.ch];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-321364-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mathieu.poirier@linaro.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6DBB1713564
+X-Rspamd-Queue-Id: B99E5713765
 
-On Mon, 6 Jul 2026 at 09:40, Shenwei Wang (OSS)
-<shenwei.wang@oss.nxp.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Shenwei Wang (OSS)
-> > Sent: Thursday, June 25, 2026 10:55 AM
-> > To: Linus Walleij <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel=
-.org>;
-> > Jonathan Corbet <corbet@lwn.net>; Rob Herring <robh@kernel.org>; Krzysz=
-tof
-> > Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Bjo=
-rn
-> > Andersson <andersson@kernel.org>; Mathieu Poirier
-> > <mathieu.poirier@linaro.org>; Frank Li <frank.li@nxp.com>; Sascha Hauer
-> > <s.hauer@pengutronix.de>
-> > Cc: Shuah Khan <skhan@linuxfoundation.org>; linux-gpio@vger.kernel.org;=
- linux-
-> > doc@vger.kernel.org; linux-kernel@vger.kernel.org; Pengutronix Kernel T=
-eam
-> > <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; Shenwei
-> > Wang <shenwei.wang@nxp.com>; Peng Fan <peng.fan@nxp.com>;
-> > devicetree@vger.kernel.org; linux-remoteproc@vger.kernel.org;
-> > imx@lists.linux.dev; linux-arm-kernel@lists.infradead.org; dl-linux-imx=
- <linux-
-> > imx@nxp.com>; Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>; b-
-> > padhi@ti.com; Andrew Lunn <andrew@lunn.ch>
-> > Subject: [PATCH v14 0/5] Enable Remote GPIO over RPMSG on i.MX Platform
-> >
-> > From: Shenwei Wang <shenwei.wang@nxp.com>
-> >
-> > Support the remote devices on the remote processor via the RPMSG bus on=
- i.MX
-> > platform.
-> >
-> > Changes in v14:
-> >  - Update gpio-rpmsg.rst per Mathieu=E2=80=99s feedback.
->
-> Hi Mathieu,
->
-> Could you please let me know if you have any further comments on this ver=
-sion?
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The commit renames the function `check_tab_in_dts` to `check_tab_in=
+_yaml_example` to resolve confusion, but fails to update the user-facing ru=
+le name `'tab-in-dts'`. This introduces an inconsistency between the intern=
+al function name and the rule string.
+--
 
-I intend to review your patches but other people's work is ahead of yours.
+commit 9c825da9bb864c8e87cb2f6ad98274fc217a08b7
+Author: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
->
-> Thanks,
-> Shenwei
->
-> >  - Align the rpmsg-gpio driver with the revised gpio-rpmsg.rst.
-> >  - Modify rpmsg-core to enable prefix-based matching of RPMSG device ID=
-s.
-> >
-> > Changes in v13:
-> >  - drop the support for legacy NXP firmware.
-> >  - remove the fixed_up hooks from the rpmsg gpio driver.
-> >  - code cleanup.
-> >
->
+dtc: dt-check-style: Narrow disallowing of tab in DTS only to YAML
+   =20
+This commit narrows the scope of the tab-in-dts style check to only apply=20
+to YAML files. It renames the internal checking function to avoid confusion=
+=20
+since regular DTS files do allow tabs.
+
+> diff --git a/scripts/dtc/dt-check-style b/scripts/dtc/dt-check-style
+> index 2d5723d41ea39..34e0f7e2a57a4 100755
+> --- a/scripts/dtc/dt-check-style
+> +++ b/scripts/dtc/dt-check-style
+
+[ ... ]
+
+> @@ -929,7 +929,7 @@ RULES =3D [
+>           check_trailing_whitespace),
+>      Rule('tab-in-dts', 'relaxed',
+
+[Severity: Low]
+Should the user-facing rule name 'tab-in-dts' be updated here as well?=20
+
+Since this string is printed in warnings when a tab is found in a YAML exam=
+ple,=20
+leaving it as 'tab-in-dts' might still cause the same confusion this patch =
+aims=20
+to resolve. Changing it to something like 'tab-in-yaml' might better align =
+with=20
+the new function name.
+
+>           'YAML examples may not contain tab characters',
+> -         check_tab_in_dts, applies_to=3D('yaml',)),
+> +         check_tab_in_yaml_example, applies_to=3D('yaml',)),
+>      Rule('mixed-indent-chars', 'relaxed',
+>           'indent must not mix tabs and spaces',
+>           check_mixed_indent_chars),
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706-dts-style-=
+checker-v3-0-03ffacff9226@oss.qualcomm.com?part=3D1
 
