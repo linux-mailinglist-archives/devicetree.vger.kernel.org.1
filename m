@@ -1,191 +1,224 @@
-Return-Path: <devicetree+bounces-320809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320812-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xIuGJF0WS2ojLwEAu9opvQ
-	(envelope-from <devicetree+bounces-320809-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 04:43:41 +0200
+	id iq6WKC4fS2p1MAEAu9opvQ
+	(envelope-from <devicetree+bounces-320812-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 05:21:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D966E70C2FB
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 04:43:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0996370C4C4
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 05:21:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b="TW4c/3oh";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320809-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320809-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=gHmuGCLY;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=WMHFEmfJ;
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320812-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320812-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C34F3008D35
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 02:43:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC199300878D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 03:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F9C3A9854;
-	Mon,  6 Jul 2026 02:43:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A4C3AD501;
+	Mon,  6 Jul 2026 03:21:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2773A7D91;
-	Mon,  6 Jul 2026 02:43:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F6C3ACEE8
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 03:21:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783305810; cv=none; b=u4bVvr1hMFVH2B7+hrodBNkoxvpvimSjl8rRges6IIBR9UVz4WNy4a7YYfKf6EzPttlCILa9DYedWKdbt4IbrO77Ybz+1oki3TnYYkRBYfAnNB5Dvwcr8s52rNTT1p/ZZ/MbqaldkxndraolpnBt005QV0q6cIq1pfuDYaEGXlA=
+	t=1783308064; cv=none; b=AN6UhEH6r/p/u8SnFDZay2pO8qG7SIDUUF28AF+/puLn5DItQ5RP/DzyWPd1wtd7rNdOyR381N0ARfxygp+e0CXojfHukAdtTj4t5im3wlrYpx56nQ5nj9fLmbPSnJMtRf0lWCmPjFaZ4lnVE8Az+ETN2wYMDjXxan9rqaKLOtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783305810; c=relaxed/simple;
-	bh=BP3Iyfs6C5UPNFRIIV/0n+AQzmZGr/qNrx/ZTsVwliI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fxqf2Rjpwai8Z8fctxBYwUDmgW8li1vF3s4fHFCpDva5Om8pFuq32mYENcylMDdxNCT/NwygaLy2QM4J3TbKgXgkZ+vNLKE0pSYLjRPAtJTHUKZMYm5kFVDM6orLQu3ObO7tZwAkw25VmunO3M2a4hbeJgMQMl10F9CuwVw8b58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TW4c/3oh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A2E06C2BCB8;
-	Mon,  6 Jul 2026 02:43:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1783305810;
-	bh=BP3Iyfs6C5UPNFRIIV/0n+AQzmZGr/qNrx/ZTsVwliI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=TW4c/3ohfU5NQEsuq/Ly/Vhkk0eX7+9PB2+7YgYVopVq/23pRYgb3Q/q7gBYIdb8Y
-	 3b/4tKHONRt4Ru0mUv+f1QFGUk5DOWUUHiZkQeW0E5UN57BKO3njSgMQhgBPCoQ7WU
-	 XUoK9iOVk9uXHYWmBalGJ0fI/9yDUjQwGTG9sHqHokdHt58aHKFuwEPUnHyflYONpg
-	 ribWNmYZy6KJq2YBvOFBI07ScjThZFM3LgUM+PU4nq+WixT3euLkeAOMiONe8/6Gt7
-	 6/0ustOxEykTUwj3XBM/JF512sY34it630JMJFhH/3ZtqBHv638i0E1PK2CWD7ixFL
-	 jya+PeX+xpyGQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 83D75C44501;
-	Mon,  6 Jul 2026 02:43:30 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Mon, 06 Jul 2026 02:43:28 +0000
-Subject: [PATCH 2/2] arm64: dts: amlogic: a9: Add IR controller support
+	s=arc-20240116; t=1783308064; c=relaxed/simple;
+	bh=Plon+k1ptMC43wXIzK+E3enat2n/BRnkToi0cHLDPaU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SqIxOZ3/kQI9f550t3Z1laFxer8HSLRs4sqq2yiI/djtblZP5EQIMajyjh8jSV9sKvpglSSN2ney06t9+A7gqoVW4zeHZQQhtapH+vgzVwKBSSmrwNBpuXORV89wyIIC59AZrwKoyEoCbWhIam5g2tAGvPohBVJLzJ7iHaDqD2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gHmuGCLY; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WMHFEmfJ; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 665LxXE42716361
+	for <devicetree@vger.kernel.org>; Mon, 6 Jul 2026 03:21:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=vLaX8Moxxos/n9tNRNhn6IzL
+	amMyiQ5H7q2UWMNWees=; b=gHmuGCLYWsdIgzQ2elBnA8MOUviMYzZ2SXykis0H
+	GTCQae6YOYVzAS981IYPu9siHAeldp2JeNVSrmJ0e7kiyxVFZEmCL1vtVhnHK5dV
+	nPQIyr1bm1CBIzHIGLhx92dm1X5l0hFVE+DU3LixqVevpY8vPz/8TzCdbHLIh/P3
+	X553my89J3P7du2RocH2hKaiS740XDylIdxi4UUC2krE7tqf6ACPtMaCg5jgMqeN
+	DKlgVBt38R5vIrz7u/4ecj0iBhhG5gYW5g0mfgBMk0FwgR30gYUHw6CSxCcHVjkX
+	Kquu0/95F5hprjaST92exq9eZ0NaxZKXRt26dgCuXmozMw==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f6txem1nt-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 03:21:02 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2cc77a6943eso47119545ad.0
+        for <devicetree@vger.kernel.org>; Sun, 05 Jul 2026 20:21:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783308061; x=1783912861; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=vLaX8Moxxos/n9tNRNhn6IzLamMyiQ5H7q2UWMNWees=;
+        b=WMHFEmfJUasiUn5aOJBjRy8q+h5VAQblba14cq6b5EcfK+zEIdSg1/8gyrEUrqkosr
+         SRxnRqep8+FjBht0MCHpD2KceNMVYKQYMNJU4ARBcdfdnigCGlDVKcHo7QBfoYanxDL7
+         1ztRlRDguO5DH6tjBf6FmdgQCzXiB7fyZqqxpCq8e9sZtQ4U5IKA4w8jQFg1K4nQzz2o
+         8/l0UsXs3v57YZtXI1j3A/NK9Fjs7eeT2OyIEAT3UbLTTSC6Dt2Y8TeR790bEdTJjDhu
+         nciw4jn1Z5PsL+d2sukHTqSzBfY/Virr0ZIlduUoF4vp7wPJFUrnBTF/bo2+yDuOW3Vw
+         2ZIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783308061; x=1783912861;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=vLaX8Moxxos/n9tNRNhn6IzLamMyiQ5H7q2UWMNWees=;
+        b=dWyPu12Vp5iFn9IL2eHOPpOV9n6btdFrXt+2tG8Ig4Xf5Wb0k9yQOksiv2uo8GooxX
+         WOHBsLhFwjGxRAp5a+2NgcnkMsKxrRLaEUfQ1Oou4JxBcXB9wqPhA7r+rFdDTViA7+P3
+         Jkr35UrU6+l63Ze63CZxJAIuXPft+zX9SCrzSZGynM5WFdcEM0WDZJzv2d95+gAPOniE
+         6FLPYpRS8pl+K3ioN6bemLUPnXRy5DSGMr34d1afVs1CaTF6rIuvK8/sR6r0sIk9vZXN
+         shwFhmmQITshr1BGIXgSxAbgni2XgjDbnCchqK8zJhXe1XBY5afpob06DUSTVTyaeTUY
+         PwhA==
+X-Forwarded-Encrypted: i=1; AHgh+RrBfz0bCMIp2v89UZ+PbdGHB7vSUbgGGoJoCp+i3SG+Z6OQWutiUPEsNUE1/rTK/I5IjXpiOEhv1d3E@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+fJTiyFKWriHA2RZiMvL5mfkkZz1dl/Biz+HA6TaANTJzi0QR
+	6ewKTrJUkEOMcVRgvitaWocDbLZl+dw9WT6DlHmGKLuBkG2UvI+QEdeuYQsxRaXJYxIvpuSbcxf
+	7Ps9F42/V4KLG80JdMd59z7B6VUwy85ghylGYbtnlkQ3Q1ZO+R5guFmkT/6XuLR1v
+X-Gm-Gg: AfdE7ckWKIwvvTca1FxV1qdlpHICjDlPsc2qG0Z82hazn9p/WUgotHaXXQsfPElbDy7
+	n2b5CNDlGIE/FikeQyv01gXSEaMFwAsbov4Ymh5U/92sn2nKkHEEmJHiFZDoubsr2v6VQj8beOy
+	5UoTzoyJ7RoQ/WYvSiCctvUz8eHxFmujo2B/LtfQoDDwX2/1E0IzohAEm4sscyBG6sKzkyi6SHu
+	H3EPUPFocYxcJTQbSn1VXalWvCqWCaULVmHHITmXqNU5yCnHsWPYb1DHJYEP0HlnosYMy7to7Ii
+	V6AMvy1FkDxzeiJlhVOoe1CT6UGI/Jdo54uT6Gtw6tvUXkrku5swKTIw4teiVif+fKiFpNrMMVn
+	lh+mYKUOjhmzJnydDElVvaC2vNHweLRzqdtTW2ASHxiUjwumHMYtVqFOSeA==
+X-Received: by 2002:a17:903:b8f:b0:2c9:97a9:2097 with SMTP id d9443c01a7336-2cbb9efe254mr90495965ad.43.1783308061395;
+        Sun, 05 Jul 2026 20:21:01 -0700 (PDT)
+X-Received: by 2002:a17:903:b8f:b0:2c9:97a9:2097 with SMTP id d9443c01a7336-2cbb9efe254mr90495655ad.43.1783308060898;
+        Sun, 05 Jul 2026 20:21:00 -0700 (PDT)
+Received: from hu-qianyu-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13b3c7ef5b3sm63915229c88.1.2026.07.05.20.21.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jul 2026 20:21:00 -0700 (PDT)
+Date: Sun, 5 Jul 2026 20:20:58 -0700
+From: Qiang Yu <qiang.yu@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, krishna.chundru@oss.qualcomm.com
+Subject: Re: [PATCH v7 1/7] dt-bindings: clock: qcom: Move glymur TCSR to own
+ binding
+Message-ID: <aksfGiIWxW1RUTfx@hu-qianyu-lv.qualcomm.com>
+References: <20260702-tcsr_qref_0702-v7-0-776f2811b7af@oss.qualcomm.com>
+ <20260702-tcsr_qref_0702-v7-1-776f2811b7af@oss.qualcomm.com>
+ <20260703-godlike-artificial-coyote-3e9ba9@quoll>
+ <akeoHGv905FTOiy9@hu-qianyu-lv.qualcomm.com>
+ <6d23a482-4d5c-4444-a533-d89a4602a4dc@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260706-a9-ir-v1-2-4f082ca8aaf1@amlogic.com>
-References: <20260706-a9-ir-v1-0-4f082ca8aaf1@amlogic.com>
-In-Reply-To: <20260706-a9-ir-v1-0-4f082ca8aaf1@amlogic.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783305808; l=1999;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=zFrCQ/4LL7v8cXwBeBaMK1lFT/U3mMj2TYJXY49GEuE=;
- b=rFxorohK+9RKciBUQ5U2kSjVGHirLUr10V6m8Y0NbHAsF/lOl8FTZriVfx0+1BNsI7fxPqsMj
- q0YwkUEM0A6AKT3DPhAqeHIY8Ka6J7IRoQjUG/USTxdaDKIIUZP5Dlh
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6d23a482-4d5c-4444-a533-d89a4602a4dc@kernel.org>
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA2MDAzMCBTYWx0ZWRfX/v7KDwAgydY+
+ iI4d4UfPPQFik+5vwWLH5tRJXmNOrTYKU42jokL4PypyHy6qPSamykFsyFHpSAYSoBPqykFp5h/
+ 6jBziYrNwoYSzBWvzqtza5OSZ/htFMA=
+X-Proofpoint-GUID: 0dvlpn4-jYEj6gQUgmScSbmDUj5n9hlS
+X-Proofpoint-ORIG-GUID: 0dvlpn4-jYEj6gQUgmScSbmDUj5n9hlS
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA2MDAzMCBTYWx0ZWRfXwtyO+H2BabsJ
+ 9sDXmL+XmXeXao1k/JxkqMtHTL/A4sygkeYzlUUYQPCzs/EFDZJRWfTypIo13lnPJ6Xkr6lxkqt
+ MnyTWiIstIwGUmWndxNtURXwJg566DqbAfEAghpa3aoMQ2t5tId70imuwkOPOG+V787/oEXk7PS
+ +K+Hsp9/RgopOtW8PwVlfVFVpeNIi9mismn4aUuh7ODZfBWo/QIaVNTuibmwCUE+C3CfTn6+3N3
+ xErmJYfWTsZPcS/UD7vRXA/OWBL1eUk28jz3eXwcfnoiI8F0Eb2XV9YKwFsye4+LNE6xL6EarE7
+ 2MP6f3ZqYrS/MCUKjm3kuLc0X20yURfDKMfzyYVu0sprcV9/9Txuy13VykxKPNn/x5qSc0YzCaa
+ E1rWyJ647VKGy+6ouGICxCL5tSX8O7dbhzzUdy8P2NlTaKhRkGgMu7Gg3nK6KmLfifgJ2N0E5r9
+ M+MoyiKzHnPwX1UwXYw==
+X-Authority-Analysis: v=2.4 cv=HLLz0Itv c=1 sm=1 tr=0 ts=6a4b1f1e cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=kj9zAlcOel0A:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=EUspDBNiAAAA:8 a=0RteJoaA5KIU4r5rSwwA:9 a=CjuIK1q_8ugA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-05_02,2026-07-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 priorityscore=1501 clxscore=1015 suspectscore=0 impostorscore=0
+ phishscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607060030
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-320812-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320809-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
-	FORGED_RECIPIENTS(0.00)[m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-amlogic@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:xianwei.zhao@amlogic.com,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,baylibre.com,googlemail.com];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,hu-qianyu-lv.qualcomm.com:mid];
+	FORGED_SENDER(0.00)[qiang.yu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:taniya.das@oss.qualcomm.com,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krishna.chundru@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[qiang.yu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D966E70C2FB
+X-Rspamd-Queue-Id: 0996370C4C4
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Fri, Jul 03, 2026 at 04:50:27PM +0200, Krzysztof Kozlowski wrote:
+> On 03/07/2026 14:16, Qiang Yu wrote:
+> > On Fri, Jul 03, 2026 at 07:58:00AM +0200, Krzysztof Kozlowski wrote:
+> >> On Thu, Jul 02, 2026 at 12:36:11AM -0700, Qiang Yu wrote:
+> >>> The QREF block supplies reference clocks to PCIe PHYs and requires
+> >>> dedicated LDO supplies to operate. The digital control interface for QREF
+> >>> (clkref_en registers) resides in TCSR on glymur. Since QREF has no
+> >>> dedicated DT node of its own, these supply properties are placed in the
+> >>> TCSR node which acts as the control interface for QREF.
+> >>>
+> >>> Add a dedicated binding file for qcom,glymur-tcsr and document the supply
+> >>> properties. As this binding will grow to cover more SoCs, mark the
+> >>> required supplies per compatible using an allOf/if/then conditional.
+> >>>
+> >>> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> >>
+> >> So you dropped the tag because? Where is the explanation?
+> >>
+> > Sorry for the confusion. The patch was substantially reworked in v7
+> > based on your v6 review comments on patch 2: the compatible was changed
+> > from const to an enum, and the allOf/if/then block was moved into this
+> > patch upfront. Since the diff changed significantly from what you
+> > reviewed, I dropped the tag rather than carry it forward silently.
+> 
+> Dropping tag is fine, but what do the submitting patches say when you
+> drop someone's tag?
+>
+Understood. As per Dcumentation/process/submitting-patches.rst, The
+removal should have been explained after the '---' separator of the patch.
 
-Add the IR controller node for the Amlogic A9 SoC and describe the
-corresponding remote input pin configuration.
-
-Enable the IR controller on the Amlogic A9 A311Y3 BY401 board with the
-proper pinctrl setting.
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts |  6 ++++++
- arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi             | 14 ++++++++++++++
- 2 files changed, 20 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-index a6b380ca47a5..044d1e8e086c 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-@@ -38,3 +38,9 @@ secmon_reserved: secmon@5000000 {
- &uart_b {
- 	status = "okay";
- };
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_pins>;
-+	pinctrl-names = "default";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-index b0e0fadeed82..72d1cc88c9e6 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-@@ -241,6 +241,13 @@ test_n: gpio@c0 {
- 					#gpio-cells = <2>;
- 					gpio-ranges = <&aobus_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
- 				};
-+
-+				func-ir-in {
-+					remote_pins: group-remote-pins {
-+						pinmux = <AML_PINMUX(AMLOGIC_GPIO_D, 5, 1)>;
-+						bias-disable;
-+					};
-+				};
- 			};
- 
- 			gpio_ao_intc: interrupt-controller@4080 {
-@@ -254,6 +261,13 @@ gpio_ao_intc: interrupt-controller@4080 {
- 					394 395 396 397 398 399 400 401 402 403>;
- 			};
- 
-+			ir: ir@14080 {
-+				compatible = "amlogic,a9-ir", "amlogic,meson-s4-ir";
-+				reg = <0x0 0x14080 0x0 0x30>;
-+				interrupts = <GIC_SPI 413 IRQ_TYPE_EDGE_RISING>;
-+				status = "disabled";
-+			};
-+
- 			uart_b: serial@1e000 {
- 				compatible = "amlogic,a9-uart",
- 					     "amlogic,meson-s4-uart";
-
--- 
-2.52.0
-
-
+- Qiang Yu
 
