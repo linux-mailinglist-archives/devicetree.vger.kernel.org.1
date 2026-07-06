@@ -1,166 +1,351 @@
-Return-Path: <devicetree+bounces-321464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321225-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id q4zTDoT/S2p/eQEAu9opvQ
-	(envelope-from <devicetree+bounces-321464-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 21:18:28 +0200
+	id hqHgGC6zS2r8YgEAu9opvQ
+	(envelope-from <devicetree+bounces-321225-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 15:52:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FDD7714DEC
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 21:18:27 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E86271185D
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 15:52:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=d+SowUpk;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AYNPXADb;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321464-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321464-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321225-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321225-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8A5373693D4B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 17:54:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 76ADF306EDA8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 13:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0A13BF673;
-	Mon,  6 Jul 2026 17:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2945527FD4B;
+	Mon,  6 Jul 2026 13:33:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C032F3B7B6E;
-	Mon,  6 Jul 2026 17:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC0C230D403
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 13:33:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783360490; cv=none; b=UQ2Y3Ce3PE4SP5bkm0SgLmvjDUp9DPfDZOgpz4eXDvrUT7j09W4BD1NIJDn9xr0UAERnnH+wKgfsS90zwN/ExcG/lZRW5VfVFaRSFEr4msbh58L0lpLFddLCPG1ryCZqGla2oP75/2sveaCiqMIx3iRUEiGwhdi95BlL+/tK5Bs=
+	t=1783344838; cv=none; b=FOGiX0IOrlTPZVrxmlsGMVxh9Oaac3cBJRDdu+5Lp2V5VATqhT1HLroXS9vd7NCd/vvLJBA5JaN99KpTumAK7FzAQ+qTG3PNBySoijSfn9hmKHbCf8CJ2kpfspN7mwBJgI7MnsfD6JyITbb0pJwok1K+mhQTflq6i5FUSk59j5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783360490; c=relaxed/simple;
-	bh=20+eIpYLQSEkasLN3R4K4LhCfAn3EElc1aXK34PGfeM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=jidOBc9UoumF13PewRxL2eaiTdf5gt3mo9xE1fq+h0vFgfnfLyLQChx/QTNXRO5amvwALAUt26pls3CYCzpsgtvSlae67cFeKn0lqYgVqCJnIaPeGyYr3HmKtwvxraDRMwyoFUcXyLjXUmxV9oVd9h4oc2Vni15oP4JwOw3Oqu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d+SowUpk; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEDD71F01569;
-	Mon,  6 Jul 2026 17:54:45 +0000 (UTC)
+	s=arc-20240116; t=1783344838; c=relaxed/simple;
+	bh=b+N2ltO9hfYIVw7XE/WKtBsmL93m/K/hmF71syk0xhQ=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=HupqeGnz9BQMJGKqmi4bJ/q1gFW7p+d18Tsolgf2QTmF7MS84yQFUKg8sU1oI13uX5JLMFADTS78JhlmJVHE/9pnNZhmZbOF9Uwv62hEBErCpg843fFwssSfOU17U3zoJwEOMfzAazRm0MNQAXEtifIq4rAqtGg5FGZIadYqvC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AYNPXADb; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 728A71F000E9;
+	Mon,  6 Jul 2026 13:33:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783360489;
-	bh=WQINCmnczmAlni3GXGy8eyJvLGXu82H8ol03Ze+9DPQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=d+SowUpkIckwSko0YKcO/7h8I7BEfWGtKBC5KjvFT5cRUp6OBPvdJdVab5lnvowKj
-	 DlqRhcjVKtx53YNaL8BpzVeePuaQ4ld5EuN5nnKmbefojpGcSNm4rfqAPfjX/wYqi2
-	 TLAP2Jqin67JGzA5VGNK0N0owyxeu+J0/ACty1YJ0TzBCOHWvKgmDgK7f91hwetlUd
-	 EpJ3xHd3e3tYaTfHubQe/jZcUh2scdrhBpyYSwfDfaQnRaNqufToDT3Z8Nsc8a79hw
-	 /g9ysRF6xWra+R72Ma/mtVH3gKWfFGBuHKMTIQWlupp3Lzw4CKgCUp0IUzescGxi6d
-	 KPrSQ8GiBCsHQ==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- bjorn.andersson@oss.qualcomm.com, 
- Praveen Talari <praveen.talari@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- mukesh.savaliya@oss.qualcomm.com, aniket.randive@oss.qualcomm.com, 
- chandana.chiluveru@oss.qualcomm.com, jyothi.seerapu@oss.qualcomm.com, 
- chiluka.harish@oss.qualcomm.com, Nikunj Kela <quic_nkela@quicinc.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20260618-enable-spi-on-sa8255p-v4-0-f5b5067e7e1e@oss.qualcomm.com>
-References: <20260618-enable-spi-on-sa8255p-v4-0-f5b5067e7e1e@oss.qualcomm.com>
-Subject: Re: [PATCH v4 0/4] Enable SPI on SA8255p Qualcomm platforms
-Message-Id: <178334469140.57168.9206112685644722158.b4-ty@b4>
-Date: Mon, 06 Jul 2026 14:31:31 +0100
+	s=k20260515; t=1783344836;
+	bh=k4iogVNN7CpE6+4wuDYK2+5KXzNHfH9ZA9btD58E+H4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=AYNPXADb5FDBziV/fyTdpZMBNIgAoq3Zk9dqxDRhcAvS0K4OOzMpkU2cEFScCphzi
+	 WWVRrqe/VdGBgvXfYKYULJHUji+2huvK8Xl81d1nMCzIx50LZtF+xv8oLogeGQSGyW
+	 qyTfY0jnKmgfeIQ0Jiy1hkGnE8HZs2sMSpYelgIzXweHC4Nmhw75iQQBWWXcC8V4Zf
+	 JO9psOIudoqrQYpETJOzc3Pz56lQUYEMjF7Ii9nKUCnkot85CMoJzwX2vkE2eODqlf
+	 rZjWsEryK5Zfi8xd/Fdl+PzqaWpw8VW/ZC0I8zhvod9fkfqt67PbUPj2vFe8DqhS/r
+	 xI7svs+1zIH4A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 2/3] ASoC: qcom: q6apm-lpass-dais: Add MI2S clock
+ control
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Mohammad Rafi Shaik" <mohammad.rafi.shaik@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260706132009.1496321-3-mohammad.rafi.shaik@oss.qualcomm.com>
+References: <20260706132009.1496321-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20260706132009.1496321-3-mohammad.rafi.shaik@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 06 Jul 2026 13:33:56 +0000
+Message-Id: <20260706133356.728A71F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1727; i=broonie@kernel.org;
- h=from:subject:message-id; bh=20+eIpYLQSEkasLN3R4K4LhCfAn3EElc1aXK34PGfeM=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqS+vkp7Hwe2DcANos0VzJEAuUiq58voaX7Qrrz
- 2Gwn2pl7dKJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCakvr5AAKCRAk1otyXVSH
- 0H2vB/0XE/VDIGahCwreeQoAESuuFUyTXzXlkZK9p/cL3bdPKDPscjPNq1IFOGr/mIG6t9hBfyv
- MfGnm5jKJOgYu2WLpxmo893eqVp59K1JAcHHUQQIGXuHeQDpiePFc3pWGOP1HxRrRTOSc7JTdNj
- h/HUsMzXKz5I75qbEhx95ai02j6qbWGmGd1Rw0h8OvLPAtKFufrLqv2YZcuYx2lWq8iAr3uYip5
- u2Gt4awEk16NW80fkvGCAr1Rv9Umgsqzl7bRDQpvwf6Fao3O/OYiS1ywOWS2rvBuqNy+lrOx7Ks
- RuCsADX0AQ8fZIGQhXgJOpqWLzg4UT1INA7XofedaPfvVPSz
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:bjorn.andersson@oss.qualcomm.com,m:praveen.talari@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:mukesh.savaliya@oss.qualcomm.com,m:aniket.randive@oss.qualcomm.com,m:chandana.chiluveru@oss.qualcomm.com,m:jyothi.seerapu@oss.qualcomm.com,m:chiluka.harish@oss.qualcomm.com,m:quic_nkela@quicinc.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-321225-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:mohammad.rafi.shaik@oss.qualcomm.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-321464-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8FDD7714DEC
+X-Rspamd-Queue-Id: 9E86271185D
 
-On Thu, 18 Jun 2026 14:36:38 +0530, Praveen Talari wrote:
-> Enable SPI on SA8255p Qualcomm platforms
-> 
-> The Qualcomm automotive SA8255p SoC relies on firmware to configure
-> platform resources, including clocks, interconnects and TLMM.
-> The driver requests resources operations over SCMI using power
-> and performance protocols.
-> 
-> [...]
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] Clock references acquired via of_clk_get_by_name() are leaked on e=
+arly probe error returns, driver component registration failure, and driver=
+ unbind.
+- [High] q6i2s_set_sysclk() silently ignores frequency updates if the clock=
+ is already enabled, preventing ALSA stream reconfiguration.
+- [High] MI2S clocks are disabled before the DSP graph is safely stopped du=
+ring DAI shutdown, which can cause hardware lockups.
+--
 
-Applied to
+commit 194ae39f86b1dc7d38cb5e3de67fcbfe435cfeea
+Author: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.3
+ASoC: qcom: q6apm-lpass-dais: Add MI2S clock control
 
-Thanks!
+This commit adds support for MI2S clock control within the q6apm-lpass
+DAIs, handling MCLK, BCLK, and ECLK via the DAI .set_sysclk callback.
+It allows per-port clock configuration and proper enable/disable
+during startup and shutdown.
 
-[1/4] spi: dt-bindings: describe SA8255p
-      https://git.kernel.org/broonie/spi/c/59841dc5f6ae
-[2/4] spi: qcom-geni: Use geni_se_resources_init() for resource initialization
-      https://git.kernel.org/broonie/spi/c/647277240b36
-[3/4] spi: qcom-geni: Use resources helper APIs in runtime PM functions
-      https://git.kernel.org/broonie/spi/c/059e41aab4c8
-[4/4] spi: qcom-geni: Enable SPI on SA8255p Qualcomm platforms
-      https://git.kernel.org/broonie/spi/c/b3e1d0948ca9
+> diff --git a/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c b/sound/soc/qcom/qds=
+p6/q6apm-lpass-dais.c
+> index 006b283484d9e..461e655265060 100644
+> --- a/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
+> +++ b/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
+[ ... ]
+> @@ -251,6 +262,73 @@ static int q6apm_lpass_dai_startup(struct snd_pcm_su=
+bstream *substream, struct s
+>  	return 0;
+>  }
+> =20
+> +static int q6i2s_dai_startup(struct snd_pcm_substream *substream, struct=
+ snd_soc_dai *dai)
+> +{
+> +	return q6apm_lpass_dai_startup(substream, dai);
+> +}
+> +
+> +static void q6i2s_lpass_dai_shutdown(struct snd_pcm_substream *substream=
+, struct snd_soc_dai *dai)
+> +{
+> +	struct q6apm_lpass_dai_data *dai_data =3D dev_get_drvdata(dai->dev);
+> +
+> +	if (dai_data->priv[dai->id].mclk_enabled) {
+> +		clk_disable_unprepare(dai_data->priv[dai->id].mclk);
+> +		dai_data->priv[dai->id].mclk_enabled =3D false;
+> +	}
+> +
+> +	if (dai_data->priv[dai->id].bclk_enabled) {
+> +		clk_disable_unprepare(dai_data->priv[dai->id].bclk);
+> +		dai_data->priv[dai->id].bclk_enabled =3D false;
+> +	}
+> +
+> +	if (dai_data->priv[dai->id].eclk_enabled) {
+> +		clk_disable_unprepare(dai_data->priv[dai->id].eclk);
+> +		dai_data->priv[dai->id].eclk_enabled =3D false;
+> +	}
+> +	q6apm_lpass_dai_shutdown(substream, dai);
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+[Severity: High]
+Does this code disable the physical MI2S clocks before stopping the DSP gra=
+ph?
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Since q6apm_lpass_dai_shutdown() sends the stop command to the DSP, disabli=
+ng
+the clocks first could violate hardware teardown requirements and cause
+hardware lockups while the DSP is still actively streaming.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Should the clocks be disabled only after the DSP graph has been completely
+stopped?
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> +}
+> +
+> +static int q6i2s_set_sysclk(struct snd_soc_dai *dai, int clk_id, unsigne=
+d int freq, int dir)
+> +{
+> +	struct q6apm_lpass_dai_data *dai_data =3D dev_get_drvdata(dai->dev);
+> +	struct clk *sysclk =3D NULL;
+> +	bool *enabled =3D NULL;
+> +	int ret =3D 0;
+> +
+> +	switch (clk_id) {
+> +	case LPAIF_MI2S_MCLK:
+> +		sysclk =3D dai_data->priv[dai->id].mclk;
+> +		enabled =3D &dai_data->priv[dai->id].mclk_enabled;
+> +		break;
+> +	case LPAIF_MI2S_BCLK:
+> +		sysclk =3D dai_data->priv[dai->id].bclk;
+> +		enabled =3D &dai_data->priv[dai->id].bclk_enabled;
+> +		break;
+> +	case LPAIF_MI2S_ECLK:
+> +		sysclk =3D dai_data->priv[dai->id].eclk;
+> +		enabled =3D &dai_data->priv[dai->id].eclk_enabled;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (sysclk) {
+> +		if (*enabled)
+> +			return 0;
 
-Thanks,
-Mark
+[Severity: High]
+Can this prevent ALSA from reconfiguring the sample rate?
 
+The ALSA framework can call set_sysclk() multiple times for a stream, such =
+as
+to dynamically reconfigure the rate. Because this early return ignores
+frequency updates if the clock is already enabled, the physical clock may
+remain at its initial rate and cause audio distortion.
+
+> +
+> +		clk_set_rate(sysclk, freq);
+> +		ret =3D clk_prepare_enable(sysclk);
+> +		if (ret) {
+> +			dev_err(dai->dev, "Error, Unable to prepare (%d) sysclk\n", clk_id);
+> +			return ret;
+> +		}
+[ ... ]
+> @@ -297,6 +376,73 @@ static const struct snd_soc_component_driver q6apm_l=
+pass_dai_component =3D {
+>  	.remove_order   =3D SND_SOC_COMP_ORDER_FIRST,
+>  };
+> =20
+> +static int of_q6apm_parse_dai_data(struct device *dev,
+> +				   struct q6apm_lpass_dai_data *data)
+> +{
+> +	int ret;
+> +
+> +	for_each_child_of_node_scoped(dev->of_node, node) {
+> +		struct q6apm_dai_priv_data *priv;
+> +		int id;
+> +
+> +		ret =3D of_property_read_u32(node, "reg", &id);
+> +		if (ret || id < 0 || id >=3D APM_PORT_MAX) {
+> +			dev_err(dev, "valid dai id not found:%d\n", ret);
+> +			continue;
+> +		}
+> +
+> +		switch (id) {
+> +		/* MI2S specific properties */
+> +		case PRIMARY_MI2S_RX ... QUATERNARY_MI2S_TX:
+> +		case QUINARY_MI2S_RX ... QUINARY_MI2S_TX:
+> +		case SENARY_MI2S_RX ... SENARY_MI2S_TX:
+> +			priv =3D &data->priv[id];
+> +			priv->mclk =3D of_clk_get_by_name(node, "mclk");
+> +			if (IS_ERR(priv->mclk)) {
+> +				if (PTR_ERR(priv->mclk) =3D=3D -EPROBE_DEFER)
+> +					return dev_err_probe(dev, PTR_ERR(priv->mclk),
+> +							     "unable to get mi2s mclk\n");
+> +				priv->mclk =3D NULL;
+> +			}
+> +
+> +			priv->bclk =3D of_clk_get_by_name(node, "bclk");
+> +			if (IS_ERR(priv->bclk)) {
+> +				if (PTR_ERR(priv->bclk) =3D=3D -EPROBE_DEFER) {
+> +					if (priv->mclk) {
+> +						clk_put(priv->mclk);
+> +						priv->mclk =3D NULL;
+> +					}
+> +					return dev_err_probe(dev, PTR_ERR(priv->bclk),
+> +							     "unable to get mi2s bclk\n");
+> +				}
+> +				priv->bclk =3D NULL;
+> +			}
+> +
+> +			priv->eclk =3D of_clk_get_by_name(node, "eclk");
+> +			if (IS_ERR(priv->eclk)) {
+> +				if (PTR_ERR(priv->eclk) =3D=3D -EPROBE_DEFER) {
+> +					if (priv->mclk) {
+> +						clk_put(priv->mclk);
+> +						priv->mclk =3D NULL;
+> +					}
+> +					if (priv->bclk) {
+> +						clk_put(priv->bclk);
+> +						priv->bclk =3D NULL;
+> +					}
+> +					return dev_err_probe(dev, PTR_ERR(priv->eclk),
+> +							     "unable to get mi2s eclk\n");
+
+[Severity: High]
+Does this leak clock references acquired in previous iterations of the loop?
+
+When a clock lookup returns -EPROBE_DEFER, the current code properly cleans=
+ up
+clocks for the current node, but it returns without cleaning up clocks acqu=
+ired
+for any previous child nodes. Since probe deferrals can occur multiple time=
+s,
+this could accumulate leaks over time.
+
+> +				}
+> +				priv->eclk =3D NULL;
+> +			}
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int q6apm_lpass_dai_dev_probe(struct platform_device *pdev)
+>  {
+>  	struct q6dsp_audio_port_dai_driver_config cfg;
+> @@ -304,12 +450,16 @@ static int q6apm_lpass_dai_dev_probe(struct platfor=
+m_device *pdev)
+>  	struct snd_soc_dai_driver *dais;
+>  	struct device *dev =3D &pdev->dev;
+>  	int num_dais;
+> +	int ret;
+> =20
+>  	dai_data =3D devm_kzalloc(dev, sizeof(*dai_data), GFP_KERNEL);
+>  	if (!dai_data)
+>  		return -ENOMEM;
+> =20
+>  	dev_set_drvdata(dev, dai_data);
+> +	ret =3D of_q6apm_parse_dai_data(dev, dai_data);
+> +	if (ret)
+> +		return ret;
+> =20
+>  	memset(&cfg, 0, sizeof(cfg));
+>  	cfg.q6i2s_ops =3D &q6i2s_ops;
+
+[Severity: High]
+If devm_snd_soc_register_component() fails later in this function, are the
+manually acquired clocks leaked?
+
+There seems to be no error handling path or devres action to call clk_put()
+for the clocks acquired in of_q6apm_parse_dai_data(), leaving them permanen=
+tly
+leaked on registration failure.
+
+Additionally, since q6apm_lpass_dai_platform_driver lacks a .remove callbac=
+k,
+does this also guarantee that all acquired clocks leak during device unbind?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706132009.1496=
+321-1-mohammad.rafi.shaik@oss.qualcomm.com?part=3D2
 
