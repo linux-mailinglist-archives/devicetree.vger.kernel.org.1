@@ -1,130 +1,166 @@
-Return-Path: <devicetree+bounces-321599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322087-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6GXGAEIsTGoEhQEAu9opvQ
-	(envelope-from <devicetree+bounces-321599-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 00:29:22 +0200
+	id UVFaDaIJTWrrtwEAu9opvQ
+	(envelope-from <devicetree+bounces-322087-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:13:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58D81715F37
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 00:29:21 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C2CC71C6A7
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:13:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=G1CpuDRr;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nNpiS+1d;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321599-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-321599-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322087-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322087-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5E0B230254FF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 22:29:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5BE863004049
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 13:59:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DABC3BBFD7;
-	Mon,  6 Jul 2026 22:29:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5329422558;
+	Tue,  7 Jul 2026 13:59:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54E225782D;
-	Mon,  6 Jul 2026 22:29:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A7F3F7A8C;
+	Tue,  7 Jul 2026 13:58:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783376957; cv=none; b=RHi5K2LOyd/hqnbdyvguPs1l9Ay6JEicP9IEPh666TLEfilDNpE4jxDQkwEPW/vZKiKRiDxnLIXRCtKgcGa/KR8azT8amh81zjrTGnC7zyFJN9zHm7IKo9Gy57Z90vPn7VSYjOXTEGpGAFEbxxTQiq+lJYjtEb469Fg60S1GwQA=
+	t=1783432740; cv=none; b=iJHgI8RYVE/ap/Yfea/vzV6hWO+Byw3e4PZCvWbP7UBeWRF0eiSp+zzK3JBgDIVGIb6mUsA1ZXGVocVmS0jBNjToyqZEXYCBHsvKN6jhM5YuKnlNg1Lkz/ylughTcSLbb/TUt3o4WQMvo23rf1ifBKZ26DX8o6mWofUvWp7bHCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783376957; c=relaxed/simple;
-	bh=RNYHsdS28HPuySSWvP1Yyr5i9l6ITmxkysSASJfZwD0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eUzMG0++WkJG1I4oyJdaL8JTw3bUVkVskn5ysR4Ha55KEKZJ02W3K68XA5+1D31D6Rsdxs3hZJWpFj/V8U4vPF/+piYVPcA+i5caLdMTGqtGaqv/9IqOZcjVyP98uXpizqzesBJ/cvRIG5ac7PSTKWLy14W8lIX0PRM4KGHm7ao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G1CpuDRr; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4CBD1F000E9;
-	Mon,  6 Jul 2026 22:29:14 +0000 (UTC)
+	s=arc-20240116; t=1783432740; c=relaxed/simple;
+	bh=NZCEngLTWsZ+TXaW6jF9FMyVJxaddTCAY7oFCkqId/c=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=k8rTeZXy/uyRCBRp0mFVcSgT7K1x3fgfQvWkhAQJ0SqlA2RBGxZptczMaNK4AC7Ihox1toP/v20rw4TE5jcPc9fO5lFdlZ0xt4RWPD0FKNTneleZYN7JZ7vX4ZFdXIKNaupve1IzGn1mw1Nc+T6FDXwv2jdJVb2AafKCxmf6lOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nNpiS+1d; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 487E21F000E9;
+	Tue,  7 Jul 2026 13:58:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783376955;
-	bh=NIKhsdKujmUyo5f1I8e0key9LsLGYc70ehoq2AKl2uE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=G1CpuDRrdmcEC3wEPp2EVGqS3HOURCh2yKP14x2Er3LIpE0Tkc0mbAgDMaBJN5W0X
-	 181F/jwiOAN1KUKl7d8Tt9eqaXftQp+0szy8NqHpE4ZGAN+l6ygxC6pQRp6QD4Qi9b
-	 PD+cjXv5G0p1b4RhnU3thcwBP/tAEKulVNe+MkjBA+OskiUYP4gz5Af3sxvILh5i9y
-	 NSaJwEybJx+Cmcj73mmLNBb+CZKxXIwmgW3FpsZ9uRWTaj3E2yosi1DEV/TEJrrTx1
-	 sRsIQcEh/TffxG3kOyZY+Vh0qjdF+17MokOULQIjZKL+OkpTJomQieKfasUeuzHmUS
-	 qgxzLhRCrca0A==
-Date: Mon, 6 Jul 2026 22:29:13 +0000
-From: Yixun Lan <dlan@kernel.org>
-To: Guodong Xu <docular.xu@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v4] riscv: dts: spacemit: Use symbolic PDMA request
- numbers on K1
-Message-ID: <20260706222913-GKD35811@kernel.org>
-References: <20260620-b4-k1-pdma-req-macros-v4-1-3cf77d0bd0d6@gmail.com>
+	s=k20260515; t=1783432739;
+	bh=ZM3ysQE0T98txfx0FZctBpN8zPmp9t396+2XL3tlSyI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=nNpiS+1dRpffEb4hmrYsXa0bm2dwjtdBSmZIx8h1cfRQwWF9rp+XjEtikEMJsbuFh
+	 1anKY/7eT6ae3zx0RUOVCVLP1q57MnwIx3WFjdt8Ep0dSVIVhEkIq0tw1L25U1vUJ0
+	 itLRzDv9jUL8H0WsAUSRPXJL8NIPpoXd6+Bc2iEpo7supSdzveSodMtPPf4cRa9kJD
+	 ThvpuHVLLMz+1vHcPghgykkzcEPBO8FZQX8U32xl+rkhnAS9MMEf2iRjPJCER6hmAS
+	 DLMBO7XVTKES8QF39YfBP3YFfwhdxlGumtbRUNrqdmUCme741zMpmZskBj1mGzIGtd
+	 mPcD2BmAA7ETQ==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Bryan O'Donoghue <bod@kernel.org>, 
+ Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, jishnu.prakash@oss.qualcomm.com, 
+ kamal.wadhwa@oss.qualcomm.com, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260706-add_pm4125-vbus-reg-v3-0-999d78a87b81@oss.qualcomm.com>
+References: <20260706-add_pm4125-vbus-reg-v3-0-999d78a87b81@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v3 0/4] regulator: qcom_usb_vbus: add pm4125
+ VBUS regulator support
+Message-Id: <178337731408.411051.8794219210214073166.b4-ty@b4>
+Date: Mon, 06 Jul 2026 23:35:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260620-b4-k1-pdma-req-macros-v4-1-3cf77d0bd0d6@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1639; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=NZCEngLTWsZ+TXaW6jF9FMyVJxaddTCAY7oFCkqId/c=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqTQYfNXR1Xj0Yu06mDyNmsIz7bncwKp1hTYbEW
+ J9bV8QoFi2JATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCak0GHwAKCRAk1otyXVSH
+ 0M6IB/4sRw9SSc+Buh8nMdoC+b+GFmkiBFRwby5AKErHSGHqz7Lt/YNyRdJiJI1GqTVN2aRA7AD
+ bHawrPYsN6OgG2QmYcVZmMTnSMUv6vuDl1tjvtbvDxPJc6uw/ofJc/OwqjB8+tZ2u+l+6/JnFIa
+ 0jZFZhbC2yQVUYxpgU/ukrNlAytwKO1/KgupO60vumDcXBLeQvtCsQSX0tCloF8ZNpdOEyvP4/x
+ Oa5q9IDnmcysA9wn/rF4NgIIZZgGjE1gnMvWNmqVPzHIrXZFzCBiuawho9cLkv+mcybUDoZiGhL
+ 1cojbdcI+F8w69Dv8vlYEempBx5BZh6vzNyYO1vsnyTRUOUA
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:quic_wcheng@quicinc.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:bod@kernel.org,m:rakesh.kota@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:jishnu.prakash@oss.qualcomm.com,m:kamal.wadhwa@oss.qualcomm.com,m:krzk@kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-321599-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,quicinc.com,oss.qualcomm.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:docular.xu@gmail.com,m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:docularxu@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-322087-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 58D81715F37
+X-Rspamd-Queue-Id: 6C2CC71C6A7
 
-On 01:07 Sat 20 Jun     , Guodong Xu wrote:
-> The PDMA request numbers (DRQ) are fixed values specific to the SoC from
-> a hardware perspective. The detailed definition can be found in K1 User
-> Manual [1], Chapter 9.4.3 DMA Connectivity & Assignments. Add a DTS
-> header file to define the symbolic names for the DRQs of non-secure DMA
-> peripherals.
+On Mon, 06 Jul 2026 18:01:04 +0530, Rakesh Kota wrote:
+> regulator: qcom_usb_vbus: add pm4125 VBUS regulator support
 > 
-> Convert the K1 SPI3 node to these macros.
+> Add support for PM4125 USB VBUS regulator. Unlike PM8150B which uses
+> a current-limit selector, PM4125 uses a 2-bit VBOOST voltage selector
+> supporting 4.25 V, 4.5 V, 4.75 V and 5.0 V output.
 > 
-> Link: https://www.spacemit.com/community/document/info?lang=en&nodepath=hardware/key_stone/k1/k1_docs/k1_usermanual/9.Top_System.md [1]
-> Signed-off-by: Guodong Xu <docular.xu@gmail.com>
-Thanks
+> 
+> [...]
 
-Reviewed-by: Yixun Lan <dlan@kernel.org>
+Applied to
 
--- 
-Yixun Lan (dlan)
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.3
+
+Thanks!
+
+[1/4] dt-bindings: regulator: qcom,usb-vbus-regulator: add qcom,pm4125-vbus-reg
+      https://git.kernel.org/broonie/sound/c/a58d2e5e1c04
+[2/4] regulator: qcom_usb_vbus: add register abstraction and PM8150B support
+      https://git.kernel.org/broonie/sound/c/56cb4a0e8e71
+[3/4] regulator: qcom_usb_vbus: add support for qcom,pm4125-vbus-reg
+      https://git.kernel.org/broonie/sound/c/d37664f99ef9
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
