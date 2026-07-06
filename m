@@ -1,182 +1,192 @@
-Return-Path: <devicetree+bounces-321164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321161-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GCy2IGWmS2p0XwEAu9opvQ
-	(envelope-from <devicetree+bounces-321164-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:58:13 +0200
+	id ZXDFMCihS2pUXQEAu9opvQ
+	(envelope-from <devicetree+bounces-321161-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:35:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 859C7710E37
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:58:12 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61EE87109A2
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:35:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=uB6RGujH;
-	dmarc=pass (policy=none) header.from=linaro.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321164-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321164-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=eC4njPGY;
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321161-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321161-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DBC4F303D970
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 12:38:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8075D3008D6D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 12:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D88B42A140;
-	Mon,  6 Jul 2026 12:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 982E442A780;
+	Mon,  6 Jul 2026 12:35:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013051.outbound.protection.outlook.com [52.101.72.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E3903FE35F
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 12:38:52 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783341533; cv=none; b=YfhO1PWSDOhIxyE7AESvI388OxBHVtNiy0dd6drztNhsWDKFw1UHYYZu4NV0K7ypjCGgFR65/EthQydcbHNUxrvvvwNFu9EwHgWdxnTxK64DxjZYkRmGKnbCejemU2qEmphfgkSEpvpuQ9VPbsxy75s6/Xrw+bNP2mbz/amu3fM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783341533; c=relaxed/simple;
-	bh=ZB9qw/FoktltYDTtZmKGAiHusi7djsQuc9QrlOagD8s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C7guNc68yfeuiYuTCPsgLEQJXTkmg/Kf/3WRzMBM2cvGdsTQbZQ5T1/+b9d3pBCfAXuATV7zYtWdq9n2Gt4gPXZkDfiZlR5bf00MggsmOWwpuhqp3SbLaF63huREXG1xmJrm/5owNxi5MrvS894dQeGlC8AwtCUVdLCKGd4/9fQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uB6RGujH; arc=none smtp.client-ip=209.85.218.50
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-c127ec4447cso381775966b.2
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 05:38:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1783341531; x=1783946331; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0R72pD2mExeKC5AJxZ73S5fYO6zCf9Lqx8bTZyttVKQ=;
-        b=uB6RGujHOqaoyr1ZQLJR8lNbPuqVYIMxKuNZHXqZjk8NZlCUYDMJUnCAbLcbSQeIa/
-         o8ks4Tl4cjn0P+nwbfJtzhN7AQ/5SeNYMeI+BdgiyZoqRbC1h+QpxyPK800bwOASTHdt
-         3Uem8zZIdN/vUAyoyz36ZisCSR3bLl9uw3IZB/a5/abNqk6eV5NJuwvKtaZk4EjZ9heY
-         ZxRSeg1o9sXDycgx258mz3coZFEDMQ+3xuS698RHR6LYjsOn4+Ikco75SBgKnnF8pxGv
-         LDmE6lco517tZYZWL2m0gJfPJur9XNbHTAIZDWSCgYjwZ5TLhkXt3iGPhi+hiJCHvg67
-         XDrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783341531; x=1783946331;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0R72pD2mExeKC5AJxZ73S5fYO6zCf9Lqx8bTZyttVKQ=;
-        b=KmS4jrd5LgzNWrDpygNlzNlFTIaZtEhRqnaIGXoygEILwOZ6jIEXLYGgj0q0Ewh3TH
-         oPsR0HWlX504bbYi8yw034iPm1mOxI9Qy7EH5q5VoZokWqyYTYdY+wkgv0GIEt8hLFEQ
-         Lr3e6/ZHhFwoc8K99+G1PbpyEXBbfQVehcNOK5adGGudUFwvt3PVKIUICbjD3GSZcQCg
-         0Wyian9ZiftyQ2+2f5tcRgolRUu33sF+hUbVF1Ny3fwVIuAYhox+vHKp0BZc6mBzCDUg
-         DQfsB+Aj16110AR8sBHzw+iG0tKntmW5OtfZkEYAjYSB1R7Lf4qNIamXiKG1sCy1WD24
-         nyDg==
-X-Forwarded-Encrypted: i=1; AHgh+RqV+vjXFbL8RD+rEr1+noDsKgDvqV2UDV2qtK+RbPdeFoBnUkDoZIzvrZD6c6prw30+2ui0mn9e5Cke@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqK9kt/QJc4hBwf8chNQMqbsJDabVCYCnLgNpWuyCQrzaL5mLl
-	y34ng/Ip/fxRE4miqGZlPcqk1piEptWhsl8BfyOPmq2vueHUp2HZbjHcukP59boSlqsWYalq8Vw
-	dGNkk
-X-Gm-Gg: AfdE7ckkbgMpYcTProvX9Dy6XnvHSdgz+hvBbH16C6Bb72DiksUjamdd6PWIZSVIbnk
-	1izjIDPyHJsgR8DQTK/K3axHl8rHhUrRmdiITCrfuGcCul9fuSYf45oj2rMBOyKFz/EZAfpR6gE
-	4VbqPEj4/uWadTHVIzLduuZhO9MQWFqgEV4IPXjQGqcl3KkUARGMqm84PEXG/6ep0wIsVcGm6gS
-	H9Gb0RAbuiFW2ldwJp8LdUn6X+W1F34/Ks/5dUWikZlYYMKERFUdZnCSA0oXDIHVWz+ecrA9sTx
-	E6ILZfsl2tQ6g4jkc7FjuhCc5Uz9WwlOUL/ETBSCrL5vCI5yRxg89U0iH+fUHS2hvkN2r/3ssE9
-	UXLiJ0gac6EFK5zPg1BA8QvAGEvGno9QWcLfSWfyeX5kHt0fFiLjq6RDco0hI1ZZ3aFpb88loyE
-	ILbaX/d3ugpgQyQZjlqH5DSrQabw==
-X-Received: by 2002:a17:906:3199:b0:c12:8c27:e2de with SMTP id a640c23a62f3a-c15a67c0b70mr18101966b.42.1783341530615;
-        Mon, 06 Jul 2026 05:38:50 -0700 (PDT)
-Received: from [192.168.0.101] ([109.77.44.220])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-69a19d9d1c7sm4068863a12.20.2026.07.06.05.38.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jul 2026 05:38:50 -0700 (PDT)
-Message-ID: <bf24e5b9-3407-4e81-a458-f365b89867ed@linaro.org>
-Date: Mon, 6 Jul 2026 13:38:49 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEDF842CAE3;
+	Mon,  6 Jul 2026 12:35:33 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783341335; cv=fail; b=JWz/uRlU55LAVxBW1zB9BO3UbFLZyZ16Xb4efxO8OE83fXGXTZGNn2Uj0KO1mk3kN2wy+ZuE1b2PC/6g5i+hfQJY5qCNTDT/a6JlnDGQ5yDhG3bAhU8ihvn3clNp+302cLCpvHLugtnZofBn64LGGBFrmgDTrhR++qSLed5lZJI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783341335; c=relaxed/simple;
+	bh=5Rm4SxUfj8pBjcusUkkz8ePP45hcIPdoEJ6//QRi9+w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=pfEiLoZuWlWsxtlRXdfN0gGE4ij52a3UNtpqJUmk1L+Xrg6DK9Ly9jW09dqN7u8HL1N3G5BpcBUNzaqrkNMdOOYLeLVlNVMrgdT8C07voGkEEh4gLzzKsAHuGF82plLnmUsO9qvtJ21P1ZSlC4S/gd3bjBxPNATjhZ87oFD+oCo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=eC4njPGY; arc=fail smtp.client-ip=52.101.72.51
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CPvk7ces9TrdaBpvoXyaardcrpftGD4ktQfrf0pttIXAusk9KZrAyXw/bFLKcYFbzX8Sc6OpjDXgzfTG4xz2FdzRAcHCTDXO6EnzpJoxTCPgdA4jXb99pGEMsRLDRX5EylhD3gRMy0Gj8+mu14MWLXASxqqvEPxUkjkfQuYjUBhXLfke8Dfg3ULnF8oaAwUeV6ydj5sdQIkJYaSM360+3l5omPSCgkrwxfLgZ7maZn+zNsvhkeoVX/Pp2YTkZ8iyMOVhdkhfcN1dHzpH45OL0C445FoRcSKCmIu4zpN7i09Wn3akhihIEkkh6SpXFo+vdNoE9CL0MvcuOcPJ/FMRaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5Rm4SxUfj8pBjcusUkkz8ePP45hcIPdoEJ6//QRi9+w=;
+ b=kr8pleqUKL7qNxupgqizo7ax6tLn3IoensmKTpqfC7svAMi0tzZG6ZRwCk33q3lAL74eMC4kwNFoaROOkXVTBQudVv/LkLMX6xde6ECQa/ybG+ev/cW68DK7N5iNYpjixzLQ7AWKIRGRjMu2IIohrdxRW0bmqmmBRH7M+FGmdZbDy7hVwQcWjkLa9UP6r09YuwIzW2cMeVHjt9znoIoPL+My4VKv1/6QxCdpMbvnVmOtKpiOfY1e4DshCJk5Sj6X2jJ1gKWBxv6RyiOj/2uVf2/VEFtvjFjJi6mYSLgT8leaefs77eSSwkkoWTfZrPP+VP11CBRFHfFEoo4sramdzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5Rm4SxUfj8pBjcusUkkz8ePP45hcIPdoEJ6//QRi9+w=;
+ b=eC4njPGY7QAMFgA+gBLD1aLQJgrhg786qhWirOS4QkwQwhyb/p0jWmX+qsyXoDSatOTMEiCs+p9iQaR11A+vGUN+EWYEthzSSfx39OZqgbtGmbLId3SnY05QFv0heLd9B2IeGor3cX9sDa6qKUfEz0LUh7KWXI3Wkmg6dn1m8W13vBhYibMc/SeO8yWVplHV1A+Su5H8MAlF7NjmUwDuFFgZcI7dwkr6VUrbrhnFuDVEvch7fLx4Mnh52MO5PonwiNsalwiZ0R9JYbHv4LS4BXFT7QqACYL7ZDl5qZ42e5Na2zAEjo9BT8p9K03RJICBBkZ1fTYIZH3+VC4IaqP00w==
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
+ by PAXPR04MB8576.eurprd04.prod.outlook.com (2603:10a6:102:217::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.13; Mon, 6 Jul
+ 2026 12:35:30 +0000
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9%3]) with mapi id 15.21.0181.012; Mon, 6 Jul 2026
+ 12:35:29 +0000
+Date: Mon, 6 Jul 2026 20:38:57 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 15/15] arm64: dts: imx8mn-var-som-symphony: Disable
+ internal RTC
+Message-ID: <akuh4UQQigRhn1QA@shlinux89>
+References: <cover.1783330236.git.stefano.r@variscite.com>
+ <7a31f7ecc4fbe9ea009dc7c5f611105daa989c7f.1783330236.git.stefano.r@variscite.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7a31f7ecc4fbe9ea009dc7c5f611105daa989c7f.1783330236.git.stefano.r@variscite.com>
+X-ClientProxiedBy: MA5P287CA0307.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:21e::10) To AM8PR04MB7874.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24d::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] media: qcom: camss: Populate CAMSS child devices
- via DT
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Atanas Filipov <atanas.filipov@oss.qualcomm.com>, linux-media@vger.kernel.org
-Cc: vladimir.zapolskiy@linaro.org, loic.poulain@oss.qualcomm.com,
- mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260706071113.383215-1-atanas.filipov@oss.qualcomm.com>
- <20260706071113.383215-2-atanas.filipov@oss.qualcomm.com>
- <389ff33a-b319-4f2e-9410-8ae962f2e844@kernel.org>
- <8871f6d6-6102-49bd-9758-faebbd9fa19c@linaro.org>
- <612730a9-8d5a-4c3f-8e04-6a248258e51a@kernel.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <612730a9-8d5a-4c3f-8e04-6a248258e51a@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|PAXPR04MB8576:EE_
+X-MS-Office365-Filtering-Correlation-Id: 48ab742e-24d8-46b3-c0ac-08dedb5b106f
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|7416014|376014|1800799024|19092799006|23010399003|11063799006|4143699003|56012099006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+ MYx7/NhxBSa0y6LIFHg4v5EHlEchctgJo982xAJSA/goTlqp1uqOXFK8sKjE8qG9d5NhWdoJ1AC6ia84/erkz7e03CRxyAkvZLboUFNIFSt2QuNQ+ioClJqDcfaQwHYMa9AyExJB2A4PIFy9TGFDnEzXhpKb+ZCHg77l6YdvGmhKpzTdOiVXNk6uep2/AaRjXG9u/ac+w5KSuKYof8GRRt/UXEj2BCAADnDvkQp8mXnIaPD3vRGkLYDBIdub3+XW0lvBEazoYgjmbVdr4kD9opD30g5ooDsxGPhG27D0lSa/WPc5G/Ggru1KJLNOulu62HRpH+PuDJOGbrBiB7pSvuNXy/a56BEBWLG3i/jRVgJuyFi38asFhfEDZpUeMst7a2BVTTKcK+EeGM8MdSy1Q3RfqnpiW0Z3w8UnEt8AOB2aBEo9qPKAOhcm8Lmxigce3ymoRPO/7Y0fc0HHprzKJyXFwKuVhwxC6QEZHd4rodyeD85CuDZKx2XKu28OCbatFfojijPj1wH5PiAZJQqwUe5WU0uqhzAaYarTLUKxK9HpA6Cbs7+vFIDqeo1jqQbOGL/pp0MVbKlUcqw6iIsXZeYaZgWAWLsWZws9cj5KyhQ4CL8oRdW1isnR+P1BrhDi1wuZ4O3weNZ6JUMHtNpdKNgiZMjRbUDOaMqUGLFmN38=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(19092799006)(23010399003)(11063799006)(4143699003)(56012099006)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?1N2RFryDF/+D8vFYHCiHOt/MGkfp5R8HMe9SD+EZraW4kZa9eFhBPMcchmM/?=
+ =?us-ascii?Q?vxNnUwLl2Wzu2N9j5+4cRga9wn4/KqkOkntfVOb6iXW0XDlSPjWry0KqPKJR?=
+ =?us-ascii?Q?CKX6vfjuUnsrMpEnw5h3royBsaI77U+7FZuFruqWoK5PEYx38iDjHo1q4ymD?=
+ =?us-ascii?Q?Bu8glj7Ep0B8hYw5sExL3HEBg82wRljw1m0CU81i99RgHVFaBJTubdjFVsDb?=
+ =?us-ascii?Q?clK184Ou8jCY/xxVfXRAT+c+YZYwQx8ACV7RjGUkWu5fjTtLenpg3qFT2YDc?=
+ =?us-ascii?Q?rpF8p6TkYpsmLRB0VRA2Vtq+H/gnrcW0Wv8ZKI4HM7NV7T7161EfM1I9ocbZ?=
+ =?us-ascii?Q?vL0CfnsFmeTRKUfjELGF7LBlfCJZ/rPQlgQM0SOfSo7DDrjgnxGl2S9x/J8E?=
+ =?us-ascii?Q?uXN09G38rIZQlshkRiArCw+9FG4NFDpW7vkBTq+cuGjONmzeyA+5cljZFjpz?=
+ =?us-ascii?Q?VUSyrQNd1BilxhwlIB0AQff/u20poQwTxMSDQ8fpmfVMkj4g701Aio+XlfBo?=
+ =?us-ascii?Q?tVyrQdTs/Pz/MQKVlMpiBC11HOrlhyrVtWFrFqgco5987y2UDS6Cj7YAMSLn?=
+ =?us-ascii?Q?0QBeForXwh1Vatv3qmcRU/z/AK0GSQhyQnX5quYT/5IR26NlrrrSXdL+3APO?=
+ =?us-ascii?Q?pJsvv4s5jqmMhQGPspYc5hz5pXo5JUmDiBWqV/pB1TZAMV9jYpbcemrm1xBM?=
+ =?us-ascii?Q?/1dO1BJ1LISM09yZFgCLE+TfpJtS3Na66V4n4RT297fLmXcU+vx6rkwX7f4Q?=
+ =?us-ascii?Q?RBsHZrPBPTczHSOSBFPI6kKIwkd84O6gkjTmAJLlxh5HEs759q4kKdDBjJoG?=
+ =?us-ascii?Q?meqhtcbzBjjgTSrwHOOXsVqZM7ybaNGWUGad7QqFj8mf/thJT72WMrtwmcYm?=
+ =?us-ascii?Q?NQK29CjLV8MLN1jh5fmQxouJtuS+iBArC973zlYhQsKtcOf6F888YykHtPEr?=
+ =?us-ascii?Q?tYhte7rgLIBnH3cO9AhO0HZPb8OvkAATTtqGavsdHaDOzpFepDtrdEIxarHB?=
+ =?us-ascii?Q?p3bFi0iDMRMfueyU85ntf46nG7Kn2RYBjWEXe92+2HyIls7VZ1rotU5pHmaJ?=
+ =?us-ascii?Q?gP5miJm/V3u1z3QaJ7mE6z5OtGPesHz7xeAKEpA09adrQe6m9jwnCwE2L+I0?=
+ =?us-ascii?Q?0pLsN8CIO19+9tmIQpUYMtvpWWTdXdCkHEcbp6eqao05ukgiJeo29jYzDNRl?=
+ =?us-ascii?Q?z2BcWVJKiPOETW5lQl7yYtk/kAptqt3Tjyx10H3PJUc6TFajcTo848kbXK6B?=
+ =?us-ascii?Q?2/VlPnsDMIFezEBuVGKCnPwwJb2PVO0HwzRIDySq6XIlYLsU/wgcGVhO8/yK?=
+ =?us-ascii?Q?N0wIYOGHkUrbehAPjhaBHUT6pkf1f385Oi/RzLpDU9L5o/mXZYvoqKCz9oOC?=
+ =?us-ascii?Q?vxjVOizrfWzP00Y3regi2L9+C+1uwVsMB28nP65ZbJmaY3jYCL5dqlhKa9Pd?=
+ =?us-ascii?Q?hfyVHiu6udFNilVREqGAZadnA6iW7LuSZLBl7b7mIvxxePvWztTk7LKpYIdh?=
+ =?us-ascii?Q?tDYpp4ltraXnUnRiMDOWWK8J6iA5YjA5eXpF/sK3sdNCUJnTLuB0uiA1pp8H?=
+ =?us-ascii?Q?s1wPYi55vzOdG+kqyHNJ1j9BMw4cCIbfE+TTZNQ7ta1tvbDPww9vIEo6+0FB?=
+ =?us-ascii?Q?tvW6i03p5rYWCXnNwn34JF/rZXo5XfbZsQ2i9KF5Al+A9r3weMEoxaVbyJqg?=
+ =?us-ascii?Q?nJdeaX5AKVCi0NtQ4CbV7tgL56Wk79aH/McPqNK8dVGLTvTG+6ZPs/vSsjrj?=
+ =?us-ascii?Q?AzqZUBZyev0/ch4c7rb4yQsTaM3Jt4aSq67azGPW8kywzM3af6tr?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48ab742e-24d8-46b3-c0ac-08dedb5b106f
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 12:35:29.8539
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FyTQhTD986zEojZgWDIu4q94epO5EGo4bdcROUHxFA2XfrfbrMQ0rJzSvSusqJsFPAmczu57iqfm4SftGmJej8JOF2vlvvneVPnUkefZk4xR1O1tI/Wk8MIuRr6EafRW
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8576
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+X-Spamd-Result: default: False [2.44 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-321164-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:stefano.radaelli21@gmail.com,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:stefanoradaelli21@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321161-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:atanas.filipov@oss.qualcomm.com,m:linux-media@vger.kernel.org,m:vladimir.zapolskiy@linaro.org,m:loic.poulain@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,nxp.com,pengutronix.de,gmail.com,kernel.org];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:from_mime,linaro.org:email,linaro.org:mid,linaro.org:dkim]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,nxp.com:email,variscite.com:email,shlinux89:mid,NXP1.onmicrosoft.com:dkim,oss.nxp.com:from_mime,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 859C7710E37
+X-Rspamd-Queue-Id: 61EE87109A2
 
-On 06/07/2026 13:36, Krzysztof Kozlowski wrote:
-> On 06/07/2026 14:27, Bryan O'Donoghue wrote:
->> On 06/07/2026 13:09, Krzysztof Kozlowski wrote:
->>> On 06/07/2026 09:11, Atanas Filipov wrote:
->>>> From: Bryan O'Donoghue<bryan.odonoghue@linaro.org>
->>>>
->>>> Use devm_of_platform_populate() so that child nodes declared under the
->>>> CAMSS device tree node (e.g. OPE) are automatically instantiated as
->>>> platform devices. This is required now that CAMSS is modelled as a
->>>> simple-bus and ISP blocks such as OPE are described as child nodes.
->>> I do not understand this rationale. How is this required now? Are
->>> existing DTS broken and do not work? Then this needs to be explained.
->> Required is wrong, true. Existing DT is not broken no.
->>
->> Should read something like:
->>
->> "Use devm_of_platform_populate() so that child nodes declared under the
->> CAMSS device tree node (e.g. OPE) are automatically instantiated as
->> platform devices."
-> This patch then makes no sense before the binding defines such children.
-> 
-> If you carry this patch outside of this work, you do not need to keep
-> the Nacked-by tag. Only constant ignoring of review here is the reason
-> of Nacked-by.
-> 
-> However if you carry this patch separately, you still need to fix the
-> lack of sense of doing this at this point.
-> 
-> Best regards,
-> Krzysztof
+On Mon, Jul 06, 2026 at 11:34:45AM +0200, Stefano Radaelli wrote:
+>From: Stefano Radaelli <stefano.r@variscite.com>
+>
+>Disable the internal SNVS RTC on the Symphony carrier board and use the
+>external DS1337 RTC instead.
+>
+>Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 
-No I agree. It only makes sense to propose this patch after adding a DT 
-that cares about it.
-
-The ordering here doesn't make sense.
-
----
-bod
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
 
