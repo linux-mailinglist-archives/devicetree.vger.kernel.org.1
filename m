@@ -1,183 +1,234 @@
-Return-Path: <devicetree+bounces-321368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321369-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jTDrHKDvS2opdQEAu9opvQ
-	(envelope-from <devicetree+bounces-321368-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:10:40 +0200
+	id 2uZ8MKnvS2otdQEAu9opvQ
+	(envelope-from <devicetree+bounces-321369-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:10:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE324714524
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A11714534
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:10:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ideasonboard.com header.s=mail header.b=gqvl818r;
-	dmarc=pass (policy=none) header.from=ideasonboard.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321368-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321368-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=T45CDG2O;
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321369-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321369-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2FECF305542B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:02:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 94686317EDB3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:03:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 568E83264F2;
-	Mon,  6 Jul 2026 16:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D44939EF20;
+	Mon,  6 Jul 2026 16:03:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012062.outbound.protection.outlook.com [52.101.66.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB7F31F9BA;
-	Mon,  6 Jul 2026 16:02:50 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783353772; cv=none; b=JCX3vafj9z0jPqyInZE1d+beextMdpPV+a2tnmzV5KIsYtzyZTGFQSCd4eZ5ldOaKzZYIeqs7x4xOiOicpIftDLrXjrpuluW3oD+8xz9OPYBxDoJEKEGEnhecjFy922wnRCO4afMxbijeeO5PawfhpVxCfZRnQeMY5m77ZqzSQE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783353772; c=relaxed/simple;
-	bh=i8nf4O2WsIEE/n0S6fpBF1M5knrAG/jCBg9Deoxto/g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mphzjaYMq0QzhsIJnyWTyV8E9QT1+gqUZPU5bwRHWCIRAZBp3GtAbczOA5hPlcuJJNIE1/jA+Ye5DnZXPeS2hhNcB1FhmS5ea4HWLN4/5L+cUoSDt0vFN2yCSvX4Kn3mrssmwxCZOyw0QhCvIbJcwIZNjJKUFkFvukYaN0T6Exs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=gqvl818r; arc=none smtp.client-ip=213.167.242.64
-Received: from killaraus.ideasonboard.com (2001-14ba-70f3-e800--a06.rev.dnainternet.fi [IPv6:2001:14ba:70f3:e800::a06])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 87983838;
-	Mon,  6 Jul 2026 18:01:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1783353716;
-	bh=i8nf4O2WsIEE/n0S6fpBF1M5knrAG/jCBg9Deoxto/g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gqvl818rEpx0lnDUiRHq56bBrBsKS5t0JACNhhFJMKIaFgOPv9L7D8f2hhAD5DqgO
-	 pO3LPdjvI5DXRHsXH3yigetnhZPdZQprn8TzXrLhLwLouugdFVDbJeX3d//aAUAEiq
-	 Enwsb7eaJcpspMTh6pMmWMJHFYlF7WKmJMqHRh28=
-Date: Mon, 6 Jul 2026 19:02:43 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	Thuan Nguyen <thuan.nguyen-hong@banvien.com.vn>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97CF9378828;
+	Mon,  6 Jul 2026 16:03:00 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783353783; cv=fail; b=qOsbdiqC7SBKuvwdLMRrKd79SdU03FW7KjEopTEV7crcPX+ECD3vLzpt0V0MoKjSP/7Slq1xCPqhkntoGhrIRcPS6lRxNR0hn7rDi0c3THsExjVxQ8ocyjZm3r83fFaCEAkUAx8+bfHB1olSNWOZmi26re5U8lJZTEABpKrKkow=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783353783; c=relaxed/simple;
+	bh=YuWi21sTKDpUyLaH5OWVuHGNpSvgirXmEHPkWTrmNDg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=dIZskUvTphNAW8+kd26jcxulEepr0Ym3Wu0NO+QwMTB7eXAZX0jDAhdyLT+EOVozzjRqVY7AGCzy2wlebG5bdYADNHkFRuU/pViJNx46Xjnc/KJanKUhbkQBGnP5+mQ88aSiv4GgKITQ7nqkw2V0AZPR8Cnjwymh4v3pAJ81FFw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=T45CDG2O; arc=fail smtp.client-ip=52.101.66.62
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rIllTXcPFX/ccQt776M6bRaSnGnsd1yTg8XT6btYmNlH50QghCShCUaugYT1TlXnrhjWo+BFD56hIe/7Wk0ObAM8aeDHS7PZ2FHDudZoO7sKk8PHHvVz0f1DTrUMg2QLtYAKOj8UBXbLTEtxUh3k6lJfGqFOqabKwXUwuRmOKWi82O31BLvpWE3CjhnV8sQDTPtOUs/2y/7pHFgl6yWI8LdZRuglXMe8eeQzeDVKLhgux/xYmx8XQ0IgyAotTo7byQu8i9YvIt7LWuZu7HEdW127a4tvc0q9VB9LRnotSF5RfpLVV0ZV3afTLUFBWWSJU96Rd3Qr2VjDwlF3gfUWDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vZ0mEzOD2mXgFU+AtZV63450tePvHjwEooqg73zOlcg=;
+ b=jgNL9qz40Gjc6UyJl7Dpab6LtBz0xeJlVNsDAGefiKfKyWAgoVTkXh5+yMfGUqHegG+lMPTmwopmzyZ/e6C9Zke3x8kZKN/IjtzoO5cZmE3x+1+cl7ErK2dMoWrg4OeZaS/G+fNKofLdTq/M2gGrBIGUsb+SSTOC6sOAIlVxv3kJW9TkTsC70YEhhGWQxqqDWnd/hu3wWyse0IpQPUbe+RVu/VkVBpRI6uFJr/th3zuX0R4M6NfsR0fge1IBWfl5PuvrBYQVQ80ZFNeor5SMccEdT/Qn6JWx5Lq3gQIusKariT7EibZS2yqLsRiS2ZbY3JxP/LB6m4wthZ2H5mTSUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vZ0mEzOD2mXgFU+AtZV63450tePvHjwEooqg73zOlcg=;
+ b=T45CDG2OeRdu9/XTmBXPGLr/CPOxFeNpkII8LEiw95+inspPOti5dy6nIJlID3f8FJuo+GoDERvbEeqBedJ1Tb67bpUEzrOdPhEwryeOZhh6W0Bi36fH/QGfGJlnORGanuhATiYxffWDQudvR/ccLrfdNc8IxyI/R97hHZwB3gIfnEacx9gcIE1W9p/8qSlgj1Rcd85ycau4gk8ecbTL4ISwlKDJs55WDBjRZO90FfSAidUHu0PdSjS4CZx/daVDk+SbfrZ/SoocV8gX+YXF+9sZrxP3SD37hBlx8raWrlS1x+gUUnO5L1Bw8JGTAjDhb5HayzV5UD8+ybXnxxZVjw==
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
+ by MI3PR04MB12634.eurprd04.prod.outlook.com (2603:10a6:290:81::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Mon, 6 Jul
+ 2026 16:02:56 +0000
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0159.007; Mon, 6 Jul 2026
+ 16:02:56 +0000
+From: Frank.Li@oss.nxp.com
+To: Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: display: vga-connector: Allow
- hardcoding EDID
-Message-ID: <20260706160243.GB106045@killaraus.ideasonboard.com>
-References: <20260705213542.28987-1-laurent.pinchart+renesas@ideasonboard.com>
- <20260705213542.28987-2-laurent.pinchart+renesas@ideasonboard.com>
- <20260706-capable-beaver-of-excellence-a3cf10@houat>
- <20260706094522.GA42740@killaraus.ideasonboard.com>
- <20260706-fancy-perch-of-satiation-0c220e@houat>
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+	Larisa Grigore <larisa.grigore@nxp.com>,
+	Lee Jones <lee@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Jacky Bai <ping.bai@nxp.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Christophe Lizzi <clizzi@redhat.com>,
+	devicetree@vger.kernel.org,
+	Enric Balletbo <eballetb@redhat.com>,
+	Eric Chanudet <echanude@redhat.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Vincent Guittot <vincent.guittot@linaro.org>
+Subject: Re: (subset) [PATCH v12 0/6] gpio: siul2-s32g2: add initial GPIO driver
+Date: Mon,  6 Jul 2026 12:02:49 -0400
+Message-ID: <178335371557.1392931.14354994026196868913.b4-ty@b4>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260630125403.546375-1-khristineandreea.barbulescu@oss.nxp.com>
+References: <20260630125403.546375-1-khristineandreea.barbulescu@oss.nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PH7P220CA0007.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:326::13) To GV2PR04MB11799.eurprd04.prod.outlook.com
+ (2603:10a6:150:2cf::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260706-fancy-perch-of-satiation-0c220e@houat>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|MI3PR04MB12634:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31fd6bbb-3596-4ffb-0d4e-08dedb780af3
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|7416014|1800799024|366016|376014|19092799006|23010399003|11063799006|56012099006|22082099003|18002099003|921020;
+X-Microsoft-Antispam-Message-Info:
+ bjaWjv8IOUcXrk0Su9izWm3JN3wDz/Ye8ceL7A5BFyZkTIKmmw62/6UTufn+189JWewLj8xTBmbpRDGiBSyJgt2JDf2K8JwotWKeB7h6RVtMbf3rO9sk1rIUw8RP4h+WbcL1YAc9VuxPosRNBr8Mj6txAB9ZUTAGX5uIRC9BkhGw7vWDONrNtZCSVupc1yTqXH0B487R6UZSWq+4Im1eQeAEjrdsR4YHfVI8LckfuwGLmErHJtyCbE0w8mSi4b65tRTpfmJ55vjGSVZl+qvqIstWOuelY4BWlOhGZExc5nzaFaKp3SSCz7JpK2+Q/Q4FWVAs8j94BgtBinFW9xz4LyrF20xwPZPR6rp6aVvBcwxyTL7Q0W8u1HXk8fiQNOV/99KETyF/8RSg/PjlV84cpddTIF/HgaTzoMLnNjpMKCSp2cUD6lE4tNF+eA48LSpgS8GFGnho0xg/XO92om1BfaUR4vMnkeViBb1UTHt6laBQ+tzaWeaRZod5xyoeKgS7pRnie7Lh8uCuzcbmFZOzZc6oeXU5CSWgwFEYXyswBHKVIytljcI2olpq7tMnlFo2WYlgezlZSE2U5NwCRR9MDN+WvT8N1Km2qK7CWBQCnpay488RO4NGyQV5hp2oaPuQDfApS1orsX6KKdwbYjXpGXCCiT03FY2NPpVKHogMqbgacRZXPxSsoUBpncb3M/JxR18eLJzKGgw1vUZGqZXdeg==
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(366016)(376014)(19092799006)(23010399003)(11063799006)(56012099006)(22082099003)(18002099003)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?NTN6b2tIY2JVMVJrYkxIL2U2WVpLWVJhMlZRcXZCRDB5cEpmM2F0c1lVTGIw?=
+ =?utf-8?B?NTM5TytBd3FNL0JwbmZ5VUNJNnAxaWZyZDdsM0ZtY3BxdkpNU09iKytNQlRX?=
+ =?utf-8?B?ZWs5QWpRRkxvZXZIa241QUduNEVDcThWUlJWeVNJaDZpZ296MUtZaHpUc2FP?=
+ =?utf-8?B?RDlNblBIcms3cm5UMTE2UFhJWUY3czd4SVhqRk5qYzJQemtvbDJoeGdZNm9G?=
+ =?utf-8?B?ZmNNM1FiK2xkamVXOFJ0VmdqTHlrRXAwNEwzVnBVSDZ6d2dPN3BnRFdISEZt?=
+ =?utf-8?B?Y0N1YjZ6WlFhUHlRamFFNXMwRm8vZyt0S1B4NStqcG83YVpqZzR3N3piNUNV?=
+ =?utf-8?B?MTJwLzA5ZVNha1dXWnpsazNEQThvcjV3WjJBU0YwK1R4cC9RT1c5LzdPWTJj?=
+ =?utf-8?B?UndWYVM4dzR2VUVDR2FvMFp2V3YyYmdiZ2ZyTFVmd1k1SXErWUNUa2RKQXNw?=
+ =?utf-8?B?M1RKMVFkUUlqeUY2bktjWnBuTlk3K0pBWVJFSkwzMm92cWtEdkoveXNKYzZI?=
+ =?utf-8?B?ZGExVytBRzVnQ1Q3S0FJWUZ5emd0aTlWbEpGempRUG5YYjNVRDNVYU9URW5Z?=
+ =?utf-8?B?aGs1VGVXUUtzZ3ZPTXorazVmblp3TWx0MlNWamt3QlNNd2l1aytjdmdEZ0ZY?=
+ =?utf-8?B?TmkvaHJGR2F1WlRXZ3dzVWxSYzFNYkh3bjUrWE41Y1pJd2M5QTdZbFFldVhU?=
+ =?utf-8?B?MU13R1liUFpoa0NCY1FvYUZpZjFjOE0zZ2FTWWswcVpoSXhUU054ZWx5cmIr?=
+ =?utf-8?B?dXRsaFp3dE5VcVA1VEF2T09ieHFpYTR6UjZ2WnZnUzJjZjQ3anNBUElGb1g2?=
+ =?utf-8?B?eVJMWWNudFp4RE5STHZCdXJtUGFBOWw5YXNDVCtVVS9EVXkvclNwVDNRUW0w?=
+ =?utf-8?B?THI3cmp0RU5kOUMrTTdTTVJKbys0endLTFQxY3BMeHFUdWhXZVI3d3BETkpy?=
+ =?utf-8?B?NHJLaWw5K1krNjNmU001VUkrWUZhRXEvRktiMTV1MkFFYmtBUDJRd3NSVE9a?=
+ =?utf-8?B?a2V3TnkrVjJWUEJZOTQ0WmlLdlBTaXNId2xPR3FxajgvV3N1Lzc1ZkkxNEUr?=
+ =?utf-8?B?Q3NZL1c2dlJQZjN3RGtMM1pONWJzeSt2aWFxZHFxaE1mY2pMQnlyYytGRWov?=
+ =?utf-8?B?MVBaeE1CT2FlR21HV1JrK1VpOTBzQjVuekNURkZkejQrUEdJazFIWUM0WTJH?=
+ =?utf-8?B?NHRkQ1UwT0dvTTIxNlN3WDdsM1N2WVlieFc2L1FFS2VJdVFMdjhvbFRkQzZT?=
+ =?utf-8?B?bGowV09CN0tCZXIxYzRmczBSMjhqaE5FK05CNFluWVpDVkZJd0RmUFVjTkhM?=
+ =?utf-8?B?TWtnYUxTdlBhR09lSlMyQjJIbHdlSkdCWENQVnR6ejlKQ1hhYUV3WVRrREVj?=
+ =?utf-8?B?azU2OW14eXpBd2NZOG9PYURpcURLcnNacXJ5MDNtSEdBNFhGSlFkQkZ0VGxv?=
+ =?utf-8?B?QTRHTkU4OXlBSXkyZWsrbzlId3lBTUxZVjg3U2kwZTdnYUxPVmVvZmRMbWM2?=
+ =?utf-8?B?UUZySVRqTmhuSlZyN2phWmpPcDZ5SmhFdTlBSFQwVjduR1VINko3bVFVUWV5?=
+ =?utf-8?B?ZkpVK1JDdmFBbHFGekNsUk8wdFd1SmtRRExtTENVUXQwdWtoWm1jSXpOV2Z4?=
+ =?utf-8?B?VE9mWnp0cjlXY3F4SWhJZ0k4cXZtN1ZKTmN0eE9HbWxoU2gxMThRWEk0emJp?=
+ =?utf-8?B?WTM3UVBoRzd5ZWJhRS9JRHhXM3BlVGZ2Mk9wUm9mcy8zcCsxaW4zeUpVanQx?=
+ =?utf-8?B?NnltZ3dlSVk2YW5BL0wwMHNrQjZXNjV6NjNLMFJSN2c2K00xay9Dd2xiMExP?=
+ =?utf-8?B?Q1hsRkRId1p3SHY2Wk1zWjdqYTlubS9JWnZVK1krbkV3Wk0vT2JXVDZiaWVt?=
+ =?utf-8?B?emY1SmxSR2R0UEJyM2MrR0dZMi9aaUdJa3Y5aXdLeEpqSmFlUkFNSHZ5QU5v?=
+ =?utf-8?B?OUhqYThCQU1Fd2VrUFlZL3k1YlREU3daWmxXbDE5RFdJK2dCcXl6UCtIRGFT?=
+ =?utf-8?B?VFJzenVyYlBXK0RpYnpPb0FqSFNaaWt1MmF5cEpuSHlJeDZ4NzdPWmRaRnR1?=
+ =?utf-8?B?UFhORlFTanpTNjkyalhORHVnOTdJZitpMGlMbktKSUpDN3Vzb1hPcUZSK0pp?=
+ =?utf-8?B?a3JsZ0xORDNwQ2FKSzVFQkhOQ2s4Ly9ZaVlwY2xPOFliKzNWUkFCa29BNWtP?=
+ =?utf-8?B?d29WN2VYZW5kSDVmb1o2Zk40amZRcUErbzIyR3BvZCtoZGxxY1FvakREY3VU?=
+ =?utf-8?B?aDNTdkhZaWlzek8yZHpLMk9aeVRwTjZhNUZhMUw4UldUb2szV3RVOUNRK002?=
+ =?utf-8?B?ekpXVEQydyt5SlJ4OVNwUkFvZzhZNGZmZUtCOG95OWNIQzdkYXN0VU03TWRs?=
+ =?utf-8?Q?P0VSmb0YEAgmSV2CKVD74SoEWKhN39E7WPGfQ?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31fd6bbb-3596-4ffb-0d4e-08dedb780af3
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 16:02:56.4263
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RBFdFppkrECkmnFDZfJEOSe3bM86w5wUtEeju7qX5R4IvzO+AKDchmbwkIDuTPf03KRA9gF3HQih02nPZ5z9ww3rrzTloDJi3ZlDUva6gN2hF1DakjE8Trn56Z2alKv4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MI3PR04MB12634
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:brgl@bgdev.pl,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:chester62515@gmail.com,m:mbrugger@suse.com,m:ghennadi.procopciuc@nxp.com,m:larisa.grigore@nxp.com,m:lee@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:festevam@gmail.com,m:aisheng.dong@nxp.com,m:ping.bai@nxp.com,m:gregkh@linuxfoundation.org,m:rafael@kernel.org,m:srini@kernel.org,m:khristineandreea.barbulescu@oss.nxp.com,m:Frank.Li@nxp.com,m:aruizrui@redhat.com,m:clizzi@redhat.com,m:devicetree@vger.kernel.org,m:eballetb@redhat.com,m:echanude@redhat.com,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-gpio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:s32@nxp.com,m:kernel@pengutronix.de,m:vincent.guittot@linaro.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321368-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:thuan.nguyen-hong@banvien.com.vn,m:maarten.lankhorst@linux.intel.com,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:linux-renesas-soc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,banvien.com.vn,linux.intel.com,suse.de,kernel.org,glider.be,gmail.com,intel.com,linaro.org,kwiboo.se,bootlin.com];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[Frank.Li@oss.nxp.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[32];
+	FREEMAIL_TO(0.00)[kernel.org,bgdev.pl,gmail.com,suse.com,nxp.com,pengutronix.de,linuxfoundation.org,oss.nxp.com];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	TAGGED_FROM(0.00)[bounces-321369-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[Frank.Li@oss.nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.nxp.com:from_mime,NXP1.onmicrosoft.com:dkim,nxp.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BE324714524
+X-Rspamd-Queue-Id: 29A11714534
 
-On Mon, Jul 06, 2026 at 05:40:30PM +0200, Maxime Ripard wrote:
-> On Mon, Jul 06, 2026 at 12:45:22PM +0300, Laurent Pinchart wrote:
-> > On Mon, Jul 06, 2026 at 10:52:32AM +0200, Maxime Ripard wrote:
-> > > On Mon, Jul 06, 2026 at 12:35:39AM +0300, Laurent Pinchart wrote:
-> > > > Since DDC version 2, introduced in 1996, VGA monitors have exposed EDID
-> > > > data over an I2C bus. The bus is also used to detect the presence of a
-> > > > connected monitor by trying to read the EDID data.
-> > > > 
-> > > > Some devices where the VGA display is integrated in the device and
-> > > > always connected do not connect the DDC pins. Some development boards,
-> > > > such as the Renesas M3N Salvator-XS, also do not connect the DDC pins.
-> > > > 
-> > > > To support those, add the ability to provide hardcoded EDID data in the
-> > > > device tree. This is mutually exclusive with specifying a DDC bus, and
-> > > > can only be done when the VGA display is guaranteed to be always
-> > > > connected.
-> > > > 
-> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > > 
-> > > This feels redundant with the EDID firmware loading mechanism we have in
-> > > KMS already. It should at least be mentioned why we would need to set it
-> > > in the device tree at all.
-> > 
-> > Very good question.
-> > 
-> > I assume you're talking about CONFIG_DRM_LOAD_EDID_FIRMWARE, as the
-> > debugfs override_edid feature isn't meant for production. If there are
-> > other relevant mechanisms I'm not aware of, please let me know.
+From: Frank Li <Frank.Li@nxp.com>
+
+
+On Tue, 30 Jun 2026 14:53:57 +0200, Khristine Andreea Barbulescu wrote:
+> This patch series adds support for basic GPIO
+> operations using gpio-regmap.
 > 
-> No, that's indeed what I meant.
+> There are two SIUL2 hardware modules: SIUL2_0 and SIUL2_1.
+> However, this driver exports both as a single GPIO driver.
+> This is because the interrupt registers are located only
+> in SIUL2_1, even for GPIOs that are part of SIUL2_0.
 > 
-> > In the use case at hand, the VGA display is an integral part of the
-> > device, the same way an LVDS or DSI panel would be. Using
-> > CONFIG_DRM_LOAD_EDID_FIRMWARE, the manufacturer would need to set the
-> > drm.edid_firmware command line parameter, and provide EDID as a file in
-> > /lib/firmware/ (possibly in an initramfs). Beside the complexity, and
-> > the fact it won't be very friendly to people who run a different
-> > userspace on the device, I think EDID counts in this case as system
-> > description, the same way we support specifying panel timings in device
-> > tree.
-> 
-> It's *some* hardware description, but you have no idea whether it's
-> actually the hardware you're running from. What would be in that EDID
-> anyway?
+> [...]
 
-It would be the EDID corresponding to the connected display :-) I see it
-as identical to how a user of the simple panel driver is responsible for
-listing the timings corresponding to the hardware in the device tree.
+Applied, thanks!
 
-> There's another alternative we've used several times already, in
-> simple-bridge for example: just register any VESA mode up to a given
-> resolution:
-> https://elixir.bootlin.com/linux/v7.1.2/source/drivers/gpu/drm/bridge/simple-bridge.c#L66
+[6/6] arm64: dts: s32g: describe GPIO and EIRQ resources in SIUL2 pinctrl node
+      commit: 5e7e00f811fb1808352a22d18e20aa8026c6d73c
 
-I don't see how that would help. The goal is to provide the kernel with
-the data corresponding to the display integrated in the device.
-
-> I guess it's what you would do with that EDID anyway?
-
+Best regards,
 -- 
-Regards,
-
-Laurent Pinchart
+Frank Li <Frank.Li@nxp.com>
 
