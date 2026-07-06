@@ -1,156 +1,164 @@
-Return-Path: <devicetree+bounces-321595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321596-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RHJPISIqTGqRhAEAu9opvQ
-	(envelope-from <devicetree+bounces-321595-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 00:20:18 +0200
+	id uDJqLbQqTGq6hAEAu9opvQ
+	(envelope-from <devicetree+bounces-321596-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 00:22:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1DEF715ED4
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 00:20:17 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 350EF715EDC
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 00:22:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kgqVSPzo;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321595-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321595-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321596-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-321596-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4EAFA3035829
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 22:20:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2EB5F30237E3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 22:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E22399369;
-	Mon,  6 Jul 2026 22:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147553F825C;
+	Mon,  6 Jul 2026 22:22:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from MTA-08-4.privateemail.com (mta-08-4.privateemail.com [198.54.122.147])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CE1D1FF7C5
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 22:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22E91FF7C5;
+	Mon,  6 Jul 2026 22:22:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783376411; cv=none; b=Vx2T2QV6a2uFKtiA6QgORzMY4lkzM0ygVF2N2z3enXfiZRmvJlGR3yakZB+IsasaU5QKVze352OhW4/gIE5oYwMY4Bg6LcqbPscUMzfGvNWAnVL7KSC3pkGk6BG9+IVOXQUrwW7A0r48hGioOjuWamY0Yk2sOZyB//suffsU9Ng=
+	t=1783376562; cv=none; b=uAkM9W/Oz0GaM8F5cCTlED9rNZm/k0eWsDwYg7tObp8hIPmoBfbWcoHj3fSmn5ibT2jvox02+ITOLZItEFw5MOBiCQsiI15ReBNjyQJnuSCODSrnODO0DmdbURZOneT9J82pJ0W0GA+ZNnInr2X+Hij6wmxD2pfNuxR5wUgThEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783376411; c=relaxed/simple;
-	bh=yofMlI6UDenr2gvnYPWrmLL8iI4qkpbN97SBYVOd+hY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=q7sDRyKVSGEpl4AsqOz/1MFrJKmnQIQLhCzY9rIm6guRex9ARZZ5yicPo9XgP1LpBGAh6SwG/83wRpqXAQLvzT8D1ufoPMnN7VAQryhzPqi9m1xD3OpK5cUj02ZyqnAey2OW6xAJTtJFTmVAu37Tbujb2ygAB8Msr+T+GprY9Sk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kgqVSPzo; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E13571F000E9;
-	Mon,  6 Jul 2026 22:20:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783376410;
-	bh=+w/07/TtMao6nKX8q7+CBPtoQmV5Lcp4b68JV3hlwTA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=kgqVSPzoo+d33oOUgld+cVkYfrBqp/gAzQ11uMsmDPqvQYk/kFOe2NURxoEVqRmQK
-	 WRow6YbKEMsydYz/+DfapbcgktjGsnQgXNtYZm3SgoajlhSacf3BDnL6UL1p0BwT5E
-	 VjCWy/G6cuomD/c4NQLdSuuCSFPSdim3idML6WPP0lr94FSkgn9ER3w1Z7xkeolIM8
-	 KokRuVGogp9b4Z+xnR8WoDuVVkLJ2iVxUr6s3OLeFNKzwB0NF6GfkAOrfSzu9eBgfd
-	 6d8bv3PeAQdwAz6YAXpzLwmGErkvD9fkP09WGXh5qVzqRO3bKIG64HWAAYDYY9itFq
-	 +dICmDpB6IA3w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/3] media: iris: Add support for Milos (VPU v2.0)
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Alexander Koskovich" <akoskovich@pm.me>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260706-milos-iris-v4-2-119cbe0a7262@pm.me>
-References: <20260706-milos-iris-v4-0-119cbe0a7262@pm.me>
- <20260706-milos-iris-v4-2-119cbe0a7262@pm.me>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 06 Jul 2026 22:20:09 +0000
-Message-Id: <20260706222009.E13571F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783376562; c=relaxed/simple;
+	bh=50IfJsqbSziDTQGOghMsfX/YJEkQsD59smdfs3Dwjjk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=f6AnQ3TABcwv37hjgYpmm4KbHj/xS3uibSRpG3F5ilsCYWRKZPlUVJNC5wwGg1vWa2twOCLLrh5bMXXaMPUvti//Dq8FhZppyNRgmSYheNlruPiUqI2FCcGqbeCC/0DOxDWuJyDHdIbumc6HYijFZzuIIeJKe4j8DNfUBLJgaqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=catcrafts.net; spf=pass smtp.mailfrom=catcrafts.net; arc=none smtp.client-ip=198.54.122.147
+Received: from mail.privateemail.com (K8S-PROD-WORKER-10 [87.215.145.39])
+	by mta-08.privateemail.com (Postfix) with ESMTPA id 4gvJkc59Tmz3hhTH;
+	Mon,  6 Jul 2026 18:22:16 -0400 (EDT)
+From: Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>
+To: Srinivas Kandagatla <srini@kernel.org>
+Cc: Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>,
+	Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Luca Weiss <luca.weiss@fairphone.com>,
+	Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] ASoC: dt-bindings: add the Qualcomm WCD9378 audio codec
+Date: Tue,  7 Jul 2026 00:22:08 +0200
+Message-ID: <20260706222209.180391-1-jorijnvdgraaf@catcrafts.net>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <958c9287-b606-497b-9de5-e73984b0f70b@kernel.org>
+References: <20260706192229.144137-1-jorijnvdgraaf@catcrafts.net> <20260706192229.144137-3-jorijnvdgraaf@catcrafts.net> <958c9287-b606-497b-9de5-e73984b0f70b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321595-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:akoskovich@pm.me,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-321596-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[catcrafts.net];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[jorijnvdgraaf@catcrafts.net,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:jorijnvdgraaf@catcrafts.net,m:broonie@kernel.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:luca.weiss@fairphone.com,m:mohammad.rafi.shaik@oss.qualcomm.com,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[catcrafts.net,kernel.org,gmail.com,fairphone.com,oss.qualcomm.com,perex.cz,suse.com,vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jorijnvdgraaf@catcrafts.net,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pm.me:email,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C1DEF715ED4
+X-Rspamd-Queue-Id: 350EF715EDC
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The devicetree compatible string uses the internal codename 'milos'=
- instead of the SoC name, violating DT naming conventions.
---
+On Mon, 6 Jul 2026 22:17:56 +0100, Srinivas Kandagatla wrote:
+>> +properties:
+>> +  compatible:
+>> +    const: sdw20217011000
+>
+> Interestingly this same codec with same compatible is wiredup
+> differently on compute devices like Glymur but only with one slave,
+> rather than tx and rx. This is how the codec works in SDCA mode.
+>
+> So these binding would need some room to accommodate those changes.
 
---- Patch [2]: [PATCH v4 2/3] media: iris: Add support for Milos (VPU v2.0)=
- ---
-commit 70c032abc00c4a3de218f6fa34ded1b140a7719c
-Author: Alexander Koskovich <akoskovich@pm.me>
+Good to know, thanks - the Fairphone 6 uses the split RX/TX wiring
+throughout, so the single-slave SDCA presentation wasn't on my radar.
 
-media: iris: Add support for Milos (VPU v2.0)
+For v2 I would reword both binding descriptions so the split wiring is
+one of two presentations of the chip rather than the only one, keeping
+the port-mapping properties optional, so a single-slave node with neither
+property still validates against this schema. The parent
+qcom,wcd9378-codec binding then documents the split wiring only
+(presumably SDCA mode has no parent node aggregating two slaves).
 
-This commit adds support for the Milos Iris codec. It targets the variant
-found on the SM7635-AB which has half of its pipes disabled.
+Given the single-driver exploration you mentioned on patch 3/3, I'll
+keep v2 minimal on this point (reworded descriptions, mappings
+optional). If the Glymur wiring turns out to need more room
+reserved here, happy to shape it so the compute devicetrees don't need a
+binding rework later.
 
-> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/medi=
-a/platform/qcom/iris/iris_probe.c
-> index c2dcb50a27824..353cda58514c2 100644
-> --- a/drivers/media/platform/qcom/iris/iris_probe.c
-> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
-> @@ -360,6 +360,10 @@ static const struct dev_pm_ops iris_pm_ops =3D {
->  };
-> =20
->  static const struct of_device_id iris_dt_match[] =3D {
-> +	{
-> +		.compatible =3D "qcom,milos-iris",
+>> +  qcom,tx-channel-mapping:
+>
+> Do you need these channel mapping(both tx and rx), are they different to
+> what slave ch-map is?
 
-[Severity: Low]
-This isn't a bug, but should the compatible string in iris_dt_match[] use t=
-he
-SoC identifier (e.g., "qcom,sm7635-iris") instead of the internal codename
-"milos"?=20
+They only remap the master-side channel masks; the slave-side channel
+map is fixed in the driver. Both properties were inherited from
+qcom,wcd937x-sdw.yaml, and the Fairphone 6 doesn't use them (the
+defaults match the downstream tx_swr_ch_map). So not needed today -
+v2 will drop both properties and the driver parsing for them; the
+qcom,pm4125-sdw.yaml binding likewise documents no channel mapping
+(though that driver still carries the parsing). They can come back
+with a board that actually needs the remap. (Dropping
+the parsing also removes the static ch_info mutation the bot review
+flagged, superseding the devm-copy fix promised in that triage.)
 
-Using codenames violates standard devicetree naming conventions for Qualcomm
-blocks and creates a non-standard ABI that is difficult to deprecate once
-merged.
+>> +    items:
+>> +      enum:
+>> +        - 1  # WCD9378_SWRM_CH1
+>> +        - 2  # WCD9378_SWRM_CH2
+>> +        - 3  # WCD9378_SWRM_CH3
+>> +        - 4  # WCD9378_SWRM_CH4
+>
+> What is this enum imply? channel mask? or ch-index?
 
-> +		.data =3D &milos_data,
-> +	},
->  	{
->  		.compatible =3D "qcom,qcs8300-iris",
->  		.data =3D &qcs8300_data,
+A 1-based master channel index; the driver converts it to a bit mask
+(BIT(index - 1)). Same semantics as wcd937x-sdw, and moot in v2 with
+the properties gone.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706-milos-iris=
--v4-0-119cbe0a7262@pm.me?part=3D2
+Thanks,
+Jorijn
 
