@@ -1,68 +1,67 @@
-Return-Path: <devicetree+bounces-321399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321405-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id l6ApC2reS2r6bgEAu9opvQ
-	(envelope-from <devicetree+bounces-321399-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:57:14 +0200
+	id L2AsBFHgS2qRbwEAu9opvQ
+	(envelope-from <devicetree+bounces-321405-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 19:05:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99A6713964
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:57:13 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C88D713A9B
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 19:05:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fHs40R6G;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NtQ6dmxq;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321399-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321399-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321405-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-321405-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BB05F3014A5B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:56:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 040C7305CEC0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:57:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F43434E2A;
-	Mon,  6 Jul 2026 16:56:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 829C1435AA1;
+	Mon,  6 Jul 2026 16:57:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13882434E42;
-	Mon,  6 Jul 2026 16:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 529BE435A9B;
+	Mon,  6 Jul 2026 16:57:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783357007; cv=none; b=Ix+2rK+DSBGkVXfOscMRkWHtiD+LH2khwmxSTF3on3dyup2BomkAluxHgAeUFGyNzUErd6Pc62aO2C05uuiVEItYPSyIEI3klxThpHq0dmh4omOZKpGq45LXpt6IdXrW8SEzVCN8KwRZqwZD3qcX0h1ldK1xdO8oqYtpaTHbotc=
+	t=1783357038; cv=none; b=kgV0jM8GLz31JnKuRSFHY7jjLK3hHTcKOoX39trY5XgJEOHYZv99jxLNarsjz/NS+4/GvPGOoQuO3DdnjaLhxsXigQ74IFcLwpu91EBJT/BeFdBWq9HQV1t5VSfjB1T+7nAQt1rL4OAXv401I8VEzJyEJ4N90tGFP5apdDoPRz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783357007; c=relaxed/simple;
-	bh=IkavAcNEz0PfF07O5rjSVXWtxZ/qVex1flxHuikSL0M=;
+	s=arc-20240116; t=1783357038; c=relaxed/simple;
+	bh=CV9D6fJM5vfq9UhvyjVV+ncTZTIz/gR5q15lfevzvkg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RuvHCIgJuByUPnemLTU+QEvCFFvRMFo3ieVtu6z5M7hl2ZsZrazrVCTL6YPh0699RSbQU3VaTBWmH9Q6zHZD1bTPJKGfIH6oC4/OcOva36ZYbI0wp2l8kZ9DPATY2CSbHLxYsPqAtqj+vcJ4OvqSJ1O5Q3NmOBhOzbxf/aRlU1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fHs40R6G; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 297951F000E9;
-	Mon,  6 Jul 2026 16:56:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ptp0x/XhJ+DivKBO8AAuBKelgxp0d+SJqw6wO1vK7sNl7nILIi8HHNBlwh/bpWNAz3fXDyrYz1fKF95WbnVXHFzY2Tz1S+qSLWRRrzlF391fo+SXbhrTOAJOy82MFCPftL0/wDQFsqb47SNIktWKfF7I09dH9rCz36ZD5LTxmqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NtQ6dmxq; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B3AE1F00AC4;
+	Mon,  6 Jul 2026 16:57:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783357004;
-	bh=8Zb7HmMSNT0dYjvG51xeECDrIe9PtU2siXTvPJaZIg4=;
+	s=k20260515; t=1783357032;
+	bh=CV9D6fJM5vfq9UhvyjVV+ncTZTIz/gR5q15lfevzvkg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=fHs40R6GdHgXM0M1t2EyjomJ/OwN6IwGJ1f3Wc+kjNscP0u7Eu75pHVwSaiOPLYFs
-	 u/DxzwpQ9Ugf4dcPrI4ILJ2vV8gDh+Do7I/CUwHqAkRKW1ygSxx2a0YQDKXm1d/nr8
-	 yI8cy4iVIPpYX/cqA8D4gKDCJSeRJKMEz0UpgnbD8dI5a8zbF4wgaJHXdKRSYL7fre
-	 lrW6OBrv+43jseu8WZDNkk2C3dJYUMK8/jaNVRC2uFUeEkOy80H1LiHwwuoGRBrrXH
-	 XI1FzEr8n/c8uCfsXef1vwtbBGGDditNcxEJFWrHEvdcrd+B3nkERUsqHq6VvnsL9c
-	 NlRdxgDgm2lxg==
-Date: Mon, 6 Jul 2026 17:56:40 +0100
+	b=NtQ6dmxq8WhA0sy36y+sGDdk9I9AEeOuqedIPC/gWAu0i9lNTY46g5VDDP7gQpw1e
+	 FmLSJSJcoYCWd/Fy0Lu3RAM5Rvw5Mfl7urBdBIzwgEP5rflOkIA8l1TMbGmuXYCM6i
+	 ux8LZ5vQ0Itf2dT3kaS8726/BYkDd11DUEp7nEEDleZC3arz+hZtuVlaKLKKW1vvIx
+	 +geNUP3mW6Mb8nBlx4ffSOsGftSphyj5WPO1OiQ3Ksa7w5RO63ft7tU6hC/0d4nbdL
+	 miPrwYTp+d+ytcdo/+2YzXCMNcgIqj0ZzaK4Ah6mpfF+EBcPII2pcFH92xa/o9BAYL
+	 X+Hq3h7R6+bAQ==
+Date: Mon, 6 Jul 2026 17:57:06 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: leds: nxp,pca963x: add multicolor
- LED support
-Message-ID: <20260706-account-harsh-093c6354bca5@spud>
-References: <20260706-monza-leds-v3-0-37ea8c988363@oss.qualcomm.com>
- <20260706-monza-leds-v3-2-37ea8c988363@oss.qualcomm.com>
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: andrew@codeconstruct.com.au, wim@linux-watchdog.org, linux@roeck-us.net,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	openbmc@lists.ozlabs.org, linux-watchdog@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, avifishman70@gmail.com,
+	tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+	benjaminfair@google.com, corbet@lwn.net, skhan@linuxfoundation.org,
+	joel@jms.id.au
+Subject: Re: [PATCH v4 1/3] dt-bindings: watchdog: npcm: add GCR syscon
+ property
+Message-ID: <20260706-conjure-reptilian-616a34467c90@spud>
+References: <20260706144828.3517631-1-tmaimon77@gmail.com>
+ <20260706144828.3517631-2-tmaimon77@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,9 +69,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="/p782kKd6CXzkAlU"
+	protocol="application/pgp-signature"; boundary="m6LAigrkJlf45dSi"
 Content-Disposition: inline
-In-Reply-To: <20260706-monza-leds-v3-2-37ea8c988363@oss.qualcomm.com>
+In-Reply-To: <20260706144828.3517631-2-tmaimon77@gmail.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-5.26 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -82,235 +81,55 @@ X-Spamd-Result: default: False [-5.26 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:tmaimon77@gmail.com,m:andrew@codeconstruct.com.au,m:wim@linux-watchdog.org,m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:openbmc@lists.ozlabs.org,m:linux-watchdog@vger.kernel.org,m:linux-doc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:joel@jms.id.au,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:lee@kernel.org,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:laurent.pinchart@ideasonboard.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-321399-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-321405-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[codeconstruct.com.au,linux-watchdog.org,roeck-us.net,kernel.org,lists.ozlabs.org,vger.kernel.org,gmail.com,google.com,lwn.net,linuxfoundation.org,jms.id.au];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,spud:mid]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B99A6713964
+X-Rspamd-Queue-Id: 6C88D713A9B
 
---/p782kKd6CXzkAlU
+--m6LAigrkJlf45dSi
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 06, 2026 at 05:49:56PM +0200, Loic Poulain wrote:
-> Add support for grouping individual PCA963x channels into a multicolor
-> LED by introducing a multi-led@N node pattern. This follows the
-> convention established by other multicolor LED drivers such as
-> kinetic,ktd202x.
->=20
-> This is necessary to support and model hardware setups where multiple
-> PWM channels drive a single physical RGB LED.
->=20
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/leds/nxp,pca963x.yaml      | 104 +++++++++++++++=
-+++++-
->  1 file changed, 101 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml b/Do=
-cumentation/devicetree/bindings/leds/nxp,pca963x.yaml
-> index 4034139e3f770a1035208490a9436bdc33387279..dccdb1d9421199a51cac5c7f3=
-f7da503caa35622 100644
-> --- a/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
-> +++ b/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
-> @@ -74,6 +74,40 @@ patternProperties:
->      required:
->        - reg
-> =20
-> +  "^multi-led@[0-9a-f]+$":
-> +    type: object
-> +    $ref: leds-class-multicolor.yaml#
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-I still don't understand this, minimum zero is literally useless since
-this cannot be negative.
-If anything, you should be constraining the maximum value. Remember,
-outside of conditional sections the maximum permitted values should be
-defined. Conditional sections should just narrow the constraints.
-
-Same below.
-pw-bot: changes-requested
-
-> +
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      "^led@[0-9a-f]+$":
-> +        type: object
-> +        $ref: common.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          reg:
-> +            minimum: 0
-> +
-> +        required:
-> +          - reg
-> +          - color
-> +
-> +    required:
-> +      - reg
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +
->  allOf:
->    - if:
->        properties:
-> @@ -84,10 +118,16 @@ allOf:
->                - nxp,pca9633
->      then:
->        patternProperties:
-> -        "^led@[0-9a-f]+$":
-> +        "^.*led@[0-9a-f]+$":
->            properties:
->              reg:
->                maximum: 3
-> +        "^multi-led@[0-9a-f]+$":
-> +          patternProperties:
-> +            "^led@[0-9a-f]+$":
-> +              properties:
-> +                reg:
-> +                  maximum: 3
->    - if:
->        properties:
->          compatible:
-> @@ -96,16 +136,28 @@ allOf:
->                - nxp,pca9634
->      then:
->        patternProperties:
-> -        "^led@[0-9a-f]+$":
-> +        "^.*led@[0-9a-f]+$":
->            properties:
->              reg:
->                maximum: 7
-> +        "^multi-led@[0-9a-f]+$":
-> +          patternProperties:
-> +            "^led@[0-9a-f]+$":
-> +              properties:
-> +                reg:
-> +                  maximum: 7
->      else:
->        patternProperties:
-> -        "^led@[0-9a-f]+$":
-> +        "^.*led@[0-9a-f]+$":
->            properties:
->              reg:
->                maximum: 15
-> +        "^multi-led@[0-9a-f]+$":
-> +          patternProperties:
-> +            "^led@[0-9a-f]+$":
-> +              properties:
-> +                reg:
-> +                  maximum: 15
-
-Is this 15 the maximum for all devices?
-If so, why does your regex permit values greater than 15?
-
-Cheers,
-Conor.
-
-> =20
->  additionalProperties: false
-> =20
-> @@ -149,4 +201,50 @@ examples:
->          };
->      };
-> =20
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        led-controller@62 {
-> +            compatible =3D "nxp,pca9633";
-> +            reg =3D <0x62>;
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            /* Three channels controlling one RGB LED */
-> +            multi-led@0 {
-> +                    reg =3D <0>;
-> +                    color =3D <LED_COLOR_ID_RGB>;
-> +                    function =3D LED_FUNCTION_STATUS;
-> +                    #address-cells =3D <1>;
-> +                    #size-cells =3D <0>;
-> +
-> +                    led@0 {
-> +                            reg =3D <0>;
-> +                            color =3D <LED_COLOR_ID_RED>;
-> +                    };
-> +
-> +                    led@1 {
-> +                            reg =3D <1>;
-> +                            color =3D <LED_COLOR_ID_GREEN>;
-> +                    };
-> +
-> +                    led@2 {
-> +                            reg =3D <2>;
-> +                            color =3D <LED_COLOR_ID_BLUE>;
-> +                    };
-> +            };
-> +
-> +            /* Remaining channel used as a plain white LED */
-> +            led@3 {
-> +                    reg =3D <3>;
-> +                    color =3D <LED_COLOR_ID_WHITE>;
-> +                    function =3D LED_FUNCTION_STATUS;
-> +            };
-> +        };
-> +    };
-> +
->  ...
->=20
-> --=20
-> 2.34.1
->=20
-
---/p782kKd6CXzkAlU
+--m6LAigrkJlf45dSi
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakveRwAKCRB4tDGHoIJi
-0tc+AQD1xWa8YoKk5j+v3k7ziF0N2XUvIIXdj8pFG+U/UqsfqQD/d+BCU2t5T76N
-T+yLT7v74sTvfECiMylgSuB9LSoS9go=
-=dyQW
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakveYgAKCRB4tDGHoIJi
+0nw2AQCCSIgI/DvjYrlSHivtEkbwp491JIgduD4sSQx+rkYfJAEA0JOpdp1n27CZ
+DSb+D92qQ0NSkgIqyW8oQcGHySK4yQY=
+=bWTG
 -----END PGP SIGNATURE-----
 
---/p782kKd6CXzkAlU--
+--m6LAigrkJlf45dSi--
 
