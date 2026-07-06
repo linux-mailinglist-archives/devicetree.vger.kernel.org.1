@@ -1,149 +1,196 @@
-Return-Path: <devicetree+bounces-320853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320854-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Vs8FHm5VS2ozPgEAu9opvQ
-	(envelope-from <devicetree+bounces-320853-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:12:46 +0200
+	id Qu+/NFtYS2oNPwEAu9opvQ
+	(envelope-from <devicetree+bounces-320854-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:25:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E93070D583
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:12:45 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D76570D7F4
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:25:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=aNpwPhaQ;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WpNeD7OW;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320853-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-320853-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320854-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-320854-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 29A13301DE8F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 07:06:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D6156301C6FC
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 07:07:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39CEA47CC79;
-	Mon,  6 Jul 2026 06:48:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A3D547F2D5;
+	Mon,  6 Jul 2026 06:48:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 166A43D1CA8;
-	Mon,  6 Jul 2026 06:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE383CC7FB
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 06:48:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783320525; cv=none; b=Qfvq/+EVqQfWEj+HA3F2OfvYF6TmaegQfrH+DX6M+FIB9G3dtPOl2vMP0Nq2nWxv1Lx9trCi8KmNg/wLielqLFwSoISb3V0l2kmbkO2Ql43p0/oIa4/v/n77SEOpWYOFzYGPCCq9NhB48Xwrf7j7Q+im1VZCVnNkGwTyQsPR8ls=
+	t=1783320532; cv=none; b=EDK5hsLhosjFCvEx6DZhD+008d1BnUsQX0IJlw4QaqjfxVOZ3ylS98NbmwMWX81GllHBlUzvDeZglSRbdH5hJU+AMDuHZggUluT6v3LdybfH6UtG7p8Ik9mwDoGD2FYA/Hjf6jSKNcH5G6wXQw114DNT8HdkmGm5T6A6oZiyBDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783320525; c=relaxed/simple;
-	bh=a4hhhi3byI4t4BHiNCXXjlWZRC0mR3inuzTqhlW1Hjg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZQoyPnEQ/8aymAApOF2CgqWO0kOYsR9svZEzpQAK0IdoOr92IZzHgQ39ntu+zptXMJsfqxKcTpPBI4dYhycMti7OmbaTh3MgE+PRD2sEtxfOvlYNW0X4i/+AD3WnVzaibYSjIR5lnyuSiiWV3Ry7JMCexJcDLWxmkijTwUHoSvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aNpwPhaQ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A5F31F000E9;
-	Mon,  6 Jul 2026 06:48:36 +0000 (UTC)
+	s=arc-20240116; t=1783320532; c=relaxed/simple;
+	bh=3ZvwNeP8h8HGtApyFDz4G8wHqG6nsDcCVCGjDdyYh+g=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=O43+72UWVLcx71D4Byr6pufnTKCQNuYs50DfAh3COHTpWh0ugnWUjE+74bX1evGOTgX2LqEvODNJ4p27/5gsCpRRSIc6P5rEcfSihLj31f4K02hFx+y/Ymzu2IFxMEfqNgWd2zQ7vGTI3yS8ahfSHJv6bDBewbodhNHQ+EX2ngM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WpNeD7OW; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E769D1F00A3A;
+	Mon,  6 Jul 2026 06:48:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783320517;
-	bh=FyC6uLd4SG/eFVU0+S/jOwpK4vgRdKg92Yml7ndQ0uQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=aNpwPhaQw9RIwCkkdYM+Niad6l8inxvBTg0uE6F6r3bChE4b981OUFGWu1hzEQi4D
-	 QtjyaZ0fsHh8nyTQd0PBJTpZa9R57N7+sV0jGHJTosRn+vuYgLLhF7jDDyCi5YrmYw
-	 QAwj9EupMCxF4iKQxwo4eEmOSHweRJkgbmt0XHpZB4UvlTEFv7WvJWRCP/WtV/s0gu
-	 m/5p0g9xtzBXKcpMnrMhT/IhJC4OOMgSSvBfdaNm6RDmZrZ/pnYyqTt2gY7+gRghSN
-	 Zgo+d6oli8+2zZuQsiQ1QZ9M87MezP1ngGMO1lGmTvuTM51nlx+IVB4UUwYIjCRwYR
-	 Fi0hf5vrgKTWw==
-Date: Mon, 6 Jul 2026 08:48:34 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Paul Louvel <paul.louvel@bootlin.com>
-Cc: Qiang Zhao <qiang.zhao@nxp.com>, 
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Madhavan Srinivasan <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>, 
-	Nicholas Piggin <npiggin@gmail.com>, linuxppc-dev@lists.ozlabs.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 03/12] dt-bindings: soc: fsl: qe: Convert QE GPIO to DT
- schema
-Message-ID: <20260706-piquant-arboreal-panda-b810f2@quoll>
-References: <20260703-qe-pic-gpios-v1-0-6c3e706e27dc@bootlin.com>
- <20260703-qe-pic-gpios-v1-3-6c3e706e27dc@bootlin.com>
+	s=k20260515; t=1783320524;
+	bh=2zGNSEqrGzqxs7zY0T+Ibd8yQuS06Oxt4q0wT+CKDL8=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=WpNeD7OWgq7midtEKmD8h+RJRXu8cC8Je+9HX46clPGKr2UuB+D0FM+B+RtgWnXHj
+	 RB+nhK/yyLQ3gIOCtY0dHjzbE0O7joyaBKzwQzU3t2pCf8LhGf+kRHTrsuk7ufPrJp
+	 ucE99w3TEq2VT0z1W98cPpXWRWkjchNklqWGQ4M9+ux1POqvEwk15ZFKGzMajh8kjp
+	 nxcrpqXJvzNjGiO8LCxw74pzwCJKrPlAcbfmEJX/7WdPGf3fNTJdBoXEtkse3Cp8Xg
+	 ZpDDpNicNSROJNzrqkIvdQPDhjSGSDs9nhfX93frJsP2Aid+PqKouSEY6bmxHS9Euu
+	 +i2zhEULvhslw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: axiado: Add initial support for
+ AX3005 SoC and eval board
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Swark Yang" <syang@axiado.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260705-upstream-axiado-ax3005-upstream-v2-2-2dfbd1448f81@axiado.com>
+References: <20260705-upstream-axiado-ax3005-upstream-v2-0-2dfbd1448f81@axiado.com>
+ <20260705-upstream-axiado-ax3005-upstream-v2-2-2dfbd1448f81@axiado.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 06 Jul 2026 06:48:43 +0000
+Message-Id: <20260706064843.E769D1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260703-qe-pic-gpios-v1-3-6c3e706e27dc@bootlin.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:paul.louvel@bootlin.com,m:qiang.zhao@nxp.com,m:chleroy@kernel.org,m:tglx@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:linuxppc-dev@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:thomas.petazzoni@bootlin.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320853-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320854-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:syang@axiado.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[nxp.com,kernel.org,linux.ibm.com,ellerman.id.au,gmail.com,lists.ozlabs.org,lists.infradead.org,vger.kernel.org,bootlin.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,quoll:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,axiado.com:email,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5E93070D583
+X-Rspamd-Queue-Id: 7D76570D7F4
 
-On Fri, Jul 03, 2026 at 03:30:11PM +0200, Paul Louvel wrote:
-> diff --git a/Documentation/devicetree/bindings/gpio/fsl,mpc8323-qe-pario-bank.yaml b/Documentation/devicetree/bindings/gpio/fsl,mpc8323-qe-pario-bank.yaml
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] Shared `cpu-release-addr` across secondary CPUs violates arm64 spi=
+n-table semantics and causes SMP boot panics.
+- [Low] The `gic500` node contains address translation properties without a=
+ny child nodes, causing dtbs_check schema warnings.
+--
+
+commit 98da4ec387872dcf54e685ea2615453187fb1582
+Author: Swark Yang <syang@axiado.com>
+
+arm64: dts: axiado: Add initial support for AX3005 SoC and eval board
+   =20
+Add initial device tree support for the AX3005 SoC and its evaluation
+board. The AX3005 is a multi-core SoC featuring 4 Cortex-A53 cores, and
+this adds the CPUs, timer, GPIO, UART, I2C, I3C, SPI and USB controllers.
+
+> diff --git a/arch/arm64/boot/dts/axiado/ax3005.dtsi b/arch/arm64/boot/dts=
+/axiado/ax3005.dtsi
 > new file mode 100644
-> index 000000000000..1af99339ff40
+> index 0000000000000..c3c66634d7774
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/fsl,mpc8323-qe-pario-bank.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/fsl,mpc8323-qe-pario-bank.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/arch/arm64/boot/dts/axiado/ax3005.dtsi
+[ ... ]
+> +	cpus {
+> +		#address-cells =3D <2>;
+> +		#size-cells =3D <0>;
 > +
-> +title: Freescale QUICC Engine Parallel I/O (QE PARIO) GPIO Bank
+> +		cpu0: cpu@0 {
+> +			compatible =3D "arm,cortex-a53";
+> +			device_type =3D "cpu";
+> +			reg =3D <0x0 0x0>;
+> +			enable-method =3D "spin-table";
+> +			cpu-release-addr =3D <0x0 0x80002fa0>;
+[ ... ]
+> +		cpu1: cpu@1 {
+> +			compatible =3D "arm,cortex-a53";
+> +			device_type =3D "cpu";
+> +			reg =3D <0x0 0x1>;
+> +			enable-method =3D "spin-table";
+> +			cpu-release-addr =3D <0x0 0x80002fa0>;
+
+[Severity: High]
+Since all secondary CPUs share this exact same release address, won't they
+all wake up simultaneously on the first sev() instruction broadcast?
+
+The standard arm64 spin-table implementation expects a unique release
+address per CPU. If multiple CPUs wake concurrently and branch to
+secondary_startup(), won't they race to use the single secondary_data
+context and corrupt the stack?
+
+If the AX3005 platform specification mandates a shared address, does this
+platform need a custom enable-method or PSCI instead of spin-table?
+
+[ ... ]
+> +	soc {
+> +		compatible =3D "simple-bus";
+> +		#address-cells =3D <2>;
+> +		#size-cells =3D <2>;
+> +		interrupt-parent =3D <&gic500>;
+> +		ranges;
 > +
-> +maintainers:
-> +  - Christophe Leroy <christophe.leroy@csgroup.eu>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - fsl,mpc8360-qe-pario-bank
-> +              - fsl,mpc8569-qe-pario-bank
+> +		gic500: interrupt-controller@40400000 {
+> +			compatible =3D "arm,gic-v3";
+> +			reg =3D <0x0 0x40400000 0x0 0x10000>,
+> +			      <0x0 0x40500000 0x0 0xc0000>;
+> +			ranges;
+> +			#interrupt-cells =3D <3>;
+> +			interrupt-controller;
+> +			#address-cells =3D <2>;
+> +			#size-cells =3D <2>;
 
-None of these were in the old binding. You need to mention and
-explain (WHY) the changes you are doing to the binding during the
-conversion.
+[Severity: Low]
+Are these bus translation properties necessary here?
 
-> +          - const: fsl,mpc8323-qe-pario-bank
-> +      - const: fsl,mpc8323-qe-pario-bank
+Since the gic500 node has no child nodes (like an ITS subnode), including
+ranges, #address-cells, and #size-cells will trigger dtbs_check schema
+warnings for arm,gic-v3.
 
-Best regards,
-Krzysztof
+> +			interrupts =3D <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+> +			#redistributor-regions =3D <1>;
+> +		};
 
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260705-upstream-a=
+xiado-ax3005-upstream-v2-0-2dfbd1448f81@axiado.com?part=3D2
 
