@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-320944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320947-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id z5GXEvd1S2pORwEAu9opvQ
-	(envelope-from <devicetree+bounces-320944-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:31:35 +0200
+	id ZjK5EJ10S2r1RgEAu9opvQ
+	(envelope-from <devicetree+bounces-320947-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:25:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C935970E9FC
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D291B70E951
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 11:25:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=ETgfHzT2;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=dBMgyw5i;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320944-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320944-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320947-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320947-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 77970302F745
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:14:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0D1603095019
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:14:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAD24D2EC1;
-	Mon,  6 Jul 2026 08:59:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034D74D2EC9;
+	Mon,  6 Jul 2026 08:59:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25FF4414DC0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC6C3BB66C
 	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 08:59:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783328388; cv=none; b=EvZ8HBoWdVSvcq4IQiGcKivK4wZRwCOCFaCit8OFu+T4FbIM3zLU5alLGRt3whMoPJoW5n+94jo4Gv5UeRWlZnh7UQUC80OfXK0od1aRPxUXoZ2HmNYaJAosLBcg/yRNpD46u3jA4o5FwRC5cAuotHn4CSJPfrPD0Ih7a6mfhuw=
+	t=1783328391; cv=none; b=qokdtGOnDGd8q5lODVpR0BR2vhuLSNF4+pdLoxKe5bha43JKGfnXVvDs6qDtfTuO0SYOIe/adkl0ZDFNkP1Df5YpZTuSuzFq16WWMM4lKdWmttbU5Wv2IH4RKj7cp5gAcXCa2qZ0FadAsfv8YXtYQznmyxx4t5oGRBaTi0/Nqbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783328388; c=relaxed/simple;
-	bh=lN4zj4MvJL5vRMUQDfnKsygDhznFdbRWqhABjnvF3Mo=;
+	s=arc-20240116; t=1783328391; c=relaxed/simple;
+	bh=oGRIGZFPt9oa1ooXvjGRLIlrHTPHd8OZnJZAYil/EvY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FRFYNG67GxMbnkUE16YP7Aj3PrIBK7T12wSEHWFNFptjaT8OAfVxIUC8B434VaYub6F4aP+SwtpIC4exKOc9XWSo/PmZylFGjJ7YOyZaZWTANEKrVdGkTpY9+n7HgFBajbXNezc9r8VXqAOkEEygTVkI+C5INDDJTftq59Miovk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ETgfHzT2; arc=none smtp.client-ip=209.85.221.51
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-47c6e9a694bso679391f8f.1
+	 MIME-Version; b=fCyobHdPsiOBxLs1uyZMwzaRF4eYHqhWaoW5tshLA2s+d7mJ9nqST1dm9ZQeO9I0uFqmn4ySmwHnpHMoDf9K8GLAkGjZDy5uoIBYIV1Gn07gensrWPFooJJbIe7JMO+q6g3XShBDU2ZmrsVtkjy/2eaoxTmhRYeJksGoLw22Sbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dBMgyw5i; arc=none smtp.client-ip=209.85.221.44
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-474303f3c72so1592858f8f.0
         for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 01:59:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783328377; x=1783933177; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1783328378; x=1783933178; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=woPbO4ESQWmCn63yRn0+bfEqf8QWClAoKN7AeheENlM=;
-        b=ETgfHzT2gCv6rhrH8uw25QEPExH64wPY1bkeBK8hlN9hvBlbcjjfBqlKGOimsn0MkH
-         NkAE3DofOzVpqOgAQdPV6IvG2OWWiYxVY4BhlRNPtato+zcUz83vqSobmclNxJye6sKW
-         qW+0/wvMxX6BxKiHk8xW8nPsTHUN9TTHvM9/ejP1713EzBrq8pR2RP5MLa7KLXnyeVVp
-         zA117vzoY3ik+g3EM9T7P+SF62NjbUbn1r/ky6616hSv/0D+SRCPURkZyP5Wb5USPncj
-         M3PHAs7y+qwhfFkJ1UuVcWsTzp4ZYyPS+0aI9dr4LhIl4PWEfFV9FFDk/ZDrrcfekx6A
-         dt1Q==
+         :message-id:reply-to;
+        bh=Lu4o0vMyMTghgzXqIzEekqpdjiKzmBMwkS6JVXHiiNM=;
+        b=dBMgyw5iRGElTpzeS01QygOMxsODy3f3rOLTHWWQqHNHrXFMB37COxhnxf2rzQ1vPi
+         cDFr0f3kJhxq5eOmZ347Utkc4n9jsko/CNI2GOB6BJaMozJmwHYtGYfW0eDLGpyJkrSz
+         hj7pGwStL0d7klvcqN4dBTKm1IPONKxGQ44woe7l0AX171ZeMka7g4zeM1Mktp0TER5d
+         NNZlmaqbhNR47ZaxomdP5P6kTyeext9bMtGdHh4GHnLBVDUW/Ix4dcN20g/46G5s+0xQ
+         EvX263gnnu01On7cPHYhN6HB2McPMuzaBSp8TBRNOyr/rjeOFBOtODi7A52WbmnLfqZZ
+         lpcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783328377; x=1783933177;
+        d=1e100.net; s=20251104; t=1783328378; x=1783933178;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=woPbO4ESQWmCn63yRn0+bfEqf8QWClAoKN7AeheENlM=;
-        b=T6cot4X8YC4xEH0b4iKPGXe1/PaPrM9qH+JdykjJOqPxq16CTrQGLyfsD3Xdl9LwI0
-         wVwyi/ciKKograF3IwGvghJz/fdXxmvpdXZa2BODkcso+AARgAi8xjdfc/GuHStxBBX1
-         D76lbJg5b28QZ73VRIAI4JmIlijT3NTPU0SOtXnHCj9MPCFFpQzJZMHSGI+2T9r6kVNB
-         Eh0A5s5dTUX6eYLPda3PJH8XwxOGrKpvVCPeAU4WT9kBe2Lk7kYtMOf2TOWAIc1qNbVt
-         ZPNGJDqrQaQU4n5wBob9Mrwge7igI3GsqXo2M+9JTE7EivbW/QD7SC0bkSAhAwt1DGHj
-         GI4w==
-X-Forwarded-Encrypted: i=1; AHgh+RoJSwxo13S68GBUABg3UeqaAepNgMtSY2j0dxxrbW+F5f92IiKCtaqLW3fGW1zze85EQXvAhTxcAmgn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrOvdDsTyhgJyWwgKzMd6099WjmQW2iS4NRZwQTc8S8BIBStGL
-	z3b8wagNdTvN21S8RVTCsZEX9Yu0qTkPk/Vs1IuBJCw9Z4BIqSE2FWUQ
-X-Gm-Gg: AfdE7cmpxKXkmQVT0sIfMbU6/5VCAke1hBRPPq7oOmF0FV/kd8ca5lAsmVUOrKMBgFX
-	TVwcfwNRBOtMU7X7CZMUuYichwU7u5FoZ5rrBYG684urKMJTTDalLHu8a/WMbEElebW7HbkRBJf
-	ICb6CHVV+uHl/JbL/wmnBVoO44cEjzEEIsvceZVM8//Z3Rduo5dBdNHfr7halgahgkITOVjNXAn
-	d0aP/2bj21K+vR3W6Dz+C+9EE6cxwt+WYui292joObQ1Kb8xyqb+yJnwZTrACURXcJ/Oe0GBgPI
-	ID23nSmCy1sbfLZgOpTPBfaBHTJudVW3Z0/b7WZxqh5cL10CRQ8UveOSQ0wqxR+W2o9JlFf9a54
-	U4g0tWyVVtq/I7etGhtVh42ZrF8K17oUiFMYbzjcdepfSpBJvGoyc9pfe11QpSPM1m8U/CKrMM/
-	UemY1up/H9wiDmmvl1G3fkSsbolcdDdkUWvYcRKJmC6QYDT5r+6nREd+k=
-X-Received: by 2002:a05:6000:4283:b0:475:94e1:29d2 with SMTP id ffacd0b85a97d-47aa92c0791mr10520695f8f.2.1783328376008;
-        Mon, 06 Jul 2026 01:59:36 -0700 (PDT)
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Lu4o0vMyMTghgzXqIzEekqpdjiKzmBMwkS6JVXHiiNM=;
+        b=nk2FTCmjCs5t9Slebr5S7OhLc5JqlYReV+HctKLABzr1g5xKWeyHlyU8nxKgmDrKoC
+         GIxfRB4Av7kGL3LkoRCi9kuvoGJonylgxQkiWMGsZUr+ErdIg7a7ms7nxYyxFQ947s/J
+         k7kc9O9R3w+0Y1OsG38kXYGLPGY7Ca9KFqnFVmFOVMyeuxLa9t7McTDG5KfDLdeDC5Kh
+         fEBNT1R2TBETkZLKS8OSJ7jJb3Ul9BP2xYim9W7/vB2K+Zmbq13/QWcuTn2xb1k5AbIH
+         1gPVVDRvxpaHaRZzsRwhZVpvW2K8czMbH8+zdsOuLixgcRtc+OILqZsy3orX+qmZJg92
+         +pcg==
+X-Forwarded-Encrypted: i=1; AHgh+Rp1cjprPgMNl/7Ig0PrZn3fnLk249lNE0nqYQIp+471R1RsAZ//QoohddQLwpTX8SlLcYeXwKQAe4lp@vger.kernel.org
+X-Gm-Message-State: AOJu0YyW+xwHkEeEYOW87TZWsu9N1+RH7tQTVpYQlPFAdFQvisO+xKOB
+	g943wt5WThwQAuRG+qP1R6SYUxl3r/l8zWWBGsM/7I+4SaDoXXCC+lRT
+X-Gm-Gg: AfdE7cnNeULfcJLb3fGYgdOk6vHd8wYZMehBjvd384ifJkIS35SUZJdRtCXMTzZ66gP
+	lSW9ITMPGEPWPDY+m5pBwvkVVDaTTIVZOgd5FDCeUyqXHr8t4rMa6o9cpRBA/ky7VXghf7aI1TT
+	xaWVPouTYilllvRXJSHMUDFpLTUeQyIYRsvTvyms+4MpnFQwg2EpB/KZl3jSN3XKB3mFDO+lggs
+	Id9myuW9GrWjV4KhLppiw+GYpPmhJPXPqOgGylQjmTshXY/LClimPMSlrYiGuO/+X7aG8OPa3lR
+	5AnWm3wuTUXFy7xhgDddPZiKjGUUPNvQuSLOBf970NqLLgr/9LxW7FjqcIf60OXKjZMxK5eXcYi
+	G3qzvPvd4U5lnKS1smu5VCMu1Pq/pMzOakpBM+vmk5mKC87tKrR8jH1cSA7rBjXJFG1xa12/tIT
+	/bp6+J9WB2R4KIICpDdhveNvUGtPN1lyXXg8e+IlAUb/YfHltriXsKlRk=
+X-Received: by 2002:a05:6000:4698:b0:475:36a:8c97 with SMTP id ffacd0b85a97d-47aab76f017mr7729353f8f.45.1783328377651;
+        Mon, 06 Jul 2026 01:59:37 -0700 (PDT)
 Received: from localhost.localdomain ([188.26.50.173])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-47aa039ae44sm22314373f8f.23.2026.07.06.01.59.34
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-47aa039ae44sm22314373f8f.23.2026.07.06.01.59.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 01:59:35 -0700 (PDT)
+        Mon, 06 Jul 2026 01:59:37 -0700 (PDT)
 From: Eduard Bostina <egbostina@gmail.com>
 To: Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
@@ -88,9 +88,9 @@ Cc: daniel.baluta@nxp.com,
 	simona.toaca@nxp.com,
 	goledhruva@gmail.com,
 	m-chawdhry@ti.com
-Subject: [PATCH v2 1/5] dt-bindings: soc: ti: Convert DSP to DT schema
-Date: Mon,  6 Jul 2026 08:59:13 +0000
-Message-ID: <20260706085917.835875-2-egbostina@gmail.com>
+Subject: [PATCH v2 2/5] dt-bindings: soc: ti: omap-dsp: Make ti,hwmods optional
+Date: Mon,  6 Jul 2026 08:59:14 +0000
+Message-ID: <20260706085917.835875-3-egbostina@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260706085917.835875-1-egbostina@gmail.com>
 References: <20260706085917.835875-1-egbostina@gmail.com>
@@ -114,7 +114,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER(0.00)[egbostina@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[nxp.com,gmail.com,ti.com];
-	TAGGED_FROM(0.00)[bounces-320944-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320947-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:egbostina@gmail.com,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:broonie@kernel.org,m:robh@kernel.org,m:daniel.baluta@nxp.com,m:simona.toaca@nxp.com,m:goledhruva@gmail.com,m:m-chawdhry@ti.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
@@ -136,81 +136,35 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C935970E9FC
+X-Rspamd-Queue-Id: D291B70E951
 
-Convert the Texas Instruments DSP bindings to DT schema.
+Make the 'ti,hwmods' property optional to resolve dtbs_check warnings,
+as several in-tree device trees currently omit it.
 
-During the conversion, the following updates were made:
-- Moved the binding to bindings/soc/ti/
+A review of the ti-sysc driver (drivers/bus/ti-sysc.c)
+shows that the property is not strictly required for probing. The driver
+only reads it to populate the 'ddata->legacy_mode' flag. If the property
+is absent, the probe sequence continues normally without error.
 
 Signed-off-by: Eduard Bostina <egbostina@gmail.com>
 ---
- .../devicetree/bindings/arm/omap/dsp.txt      | 14 --------
- .../bindings/soc/ti/ti,omap3-c64.yaml         | 32 +++++++++++++++++++
- 2 files changed, 32 insertions(+), 14 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/omap/dsp.txt
- create mode 100644 Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml
+ Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/omap/dsp.txt b/Documentation/devicetree/bindings/arm/omap/dsp.txt
-deleted file mode 100644
-index d3830a32ce08..000000000000
---- a/Documentation/devicetree/bindings/arm/omap/dsp.txt
-+++ /dev/null
-@@ -1,14 +0,0 @@
--* TI - DSP (Digital Signal Processor)
--
--TI DSP included in OMAP SoC
--
--Required properties:
--- compatible : Should be "ti,omap3-c64" for OMAP3 & 4
--- ti,hwmods: "dsp"
--
--Examples:
--
--dsp {
--    compatible = "ti,omap3-c64";
--    ti,hwmods = "dsp";
--};
 diff --git a/Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml b/Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml
-new file mode 100644
-index 000000000000..a97e163c890a
---- /dev/null
+index a97e163c890a..09d0ebf2cb13 100644
+--- a/Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml
 +++ b/Documentation/devicetree/bindings/soc/ti/ti,omap3-c64.yaml
-@@ -0,0 +1,32 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/ti/ti,omap3-c64.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments DSP (Digital Signal Processor)
-+
-+maintainers:
-+  - Eduard Bostina <egbostina@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: ti,omap3-c64
-+
-+  ti,hwmods:
-+    description: Name of the hwmod associated to the dsp
-+    $ref: /schemas/types.yaml#/definitions/string
-+    const: dsp
-+
-+required:
-+  - compatible
-+  - ti,hwmods
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dsp {
-+        compatible = "ti,omap3-c64";
-+        ti,hwmods = "dsp";
-+    };
+@@ -20,7 +20,6 @@ properties:
+ 
+ required:
+   - compatible
+-  - ti,hwmods
+ 
+ additionalProperties: false
+ 
 -- 
 2.43.0
 
