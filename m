@@ -1,243 +1,231 @@
-Return-Path: <devicetree+bounces-321302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321319-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MoeaHv3HS2qVaAEAu9opvQ
-	(envelope-from <devicetree+bounces-321302-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 17:21:33 +0200
+	id pZxbGxHJS2rpaAEAu9opvQ
+	(envelope-from <devicetree+bounces-321319-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 17:26:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 136067127F0
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 17:21:33 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2330C7128EB
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 17:26:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("body hash did not verify") header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=RAPjuOxx;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=nxp.com (policy=none);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321302-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321302-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=collabora.com header.s=zohomail header.b=ImgA1Hj8;
+	dmarc=pass (policy=none) header.from=collabora.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321319-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-321319-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8CDD430479A9
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 15:00:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 336D8326E013
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 15:05:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67FD3750BD;
-	Mon,  6 Jul 2026 15:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48DD53A0B1D;
+	Mon,  6 Jul 2026 15:03:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013061.outbound.protection.outlook.com [52.101.72.61])
+Received: from sender4-op-o11.zoho.com (sender4-op-o11.zoho.com [136.143.188.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24827306486
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 15:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1F9E381EA3;
+	Mon,  6 Jul 2026 15:03:14 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783350019; cv=fail; b=Bikql6LBF8xn1upnsBGRpsa75jfvJ1yO/QIDzonBW3+5XNa8AYTMbIn9pGqw8+zdFac3dfc5alEI/8F2YmKnTMTx3L/JdB35CbYuNY5tOOESuygW3J07JF3juU9aCB+lR/ndIobb7/0/gjbrxgAC824zh7TWKyPEFESx7HHVNkU=
+	t=1783350196; cv=pass; b=b+81d4HB/pVY4aUY2280ncZjGcKjCV9drPv1/L7XMxdmP6moNGqJQgLys24QdZoQmn0ESUClaC+T88/Rwbt4SB72jSaR8V8gu8FjY+PD1sn4xKRsNsCtKrZIccnMP9Y4SrWZ8hGzVc2zNeugMle1EdTii0hKWmlYS3iqi98tieA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783350019; c=relaxed/simple;
-	bh=xt+mS5/x+IreER96Q8xDnOUYEj2EFeSghgMY4uTbo04=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=m1lhPh6PrmD1loMaKTJMgnMNHDoh0kZ6n8wcgJnJ3K/IdBcg0+RjBhzcMlr06e2iKz+7rSiM3d+e36IYAW2lLE0UI/7qKeQvyPHP+wwtsA1GwRx6HjtLUU5dLNFhHOg4NnZFOb9Q8EECymtZaIPNNyy/q7/QfAzEz/+gp7XoeCc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=fail (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=RAPjuOxx reason="signature verification failed"; arc=fail smtp.client-ip=52.101.72.61
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YmBKpB4u+HR8nFC2CJ6t6lUAWDgAsKmahFYCGCtM2TJOA+5YNENv5mOWfFy2J9ZtxRG1ySKeRsblUesXszOEW3/HS0NEHzUpxODBu2VnhZoanJiMz+eTk6ZX3+g/DTUANLnoyazq1HefIBnDJEWoadCj/GrvIsAp+Bz3NhkMxHG1uKLNYPv1p1SiwVMHLFlXMJ4FRoC2rYkJCAkFL5gGIyqIAWymE00dtu6a2IYW41JV7je5pOWaTYZ4V5PUBvleLpPQ9nlyBrYywW0CHvG0IfpUzzTi5tKuT1fmMgv8dAJH0igX3T0P5nXwKQk/Je1DaYDF2lq/G8+tvziwxm2S3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Stq6w+W1OSYtvKRrHTtOVkJu2rt1RsKUe+rNgS5xfUY=;
- b=hf1rf/0Ax9Qu6mvO+HkGZq/zNlDFDH2Pd6o+TjMQPchSpV5qS280m7aumD7pKfYdirpqmt7yRp5DmMqUcnniMZFzo+xeK2wgSVVXlqHgrd3PTPjmPEOgRHZshInXlapJWkeCp/SzkAUesxjuKSuEKS6MRWWJTaHMYyP+G8en7JXIeFLH82tOIstAj+vjC7nQcXoepcmWMwMsnhginTxuctZMO6PmbsUD/IBvdLnSBYsmGUKZCDinOEeB61fy0epVqp/d3cmM8WF1shpuMkih0nQC4Pd6+92lI4Haytw6zJO7cSNCJ+BEU0b/XuWI2RIu7uDRRPlGqk8Iyo3QjHapyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Stq6w+W1OSYtvKRrHTtOVkJu2rt1RsKUe+rNgS5xfUY=;
- b=RAPjuOxxCWjrOY4K7pmela+h5cBfL2pgk3WoquVJnpr713eNhaWabCNTl6xIlQnMyQck4F0jQTiccMm7541If3hM8O7hizNoWoW215nmpNBbCHVWIbKRGeTzFNs/q1BHuU4BOvbdXC38oxGHWfbS77TWm4KVfzl1uEzSd/OKhhycHDLOlVPCjsl/vZ54RW6KnAbSA672qg9bN+1YG+DkhyR3JqY7dPuupj5G2f12Kk0ueb0osL4VuOlIEIz71ZL0PHHsfXpaB/1CTZb4LGPHLSaPGyNtZDl6ysK+8XpoD0JdwfNTb8vlV37ML4PPWeTGaa0Qd2bt2Shvvzh5EeiR6g==
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by VI2PR04MB10165.eurprd04.prod.outlook.com (2603:10a6:800:22b::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Mon, 6 Jul
- 2026 15:00:10 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0159.007; Mon, 6 Jul 2026
- 15:00:10 +0000
-Date: Mon, 6 Jul 2026 10:00:01 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: Stefano Radaelli <stefano.radaelli21@gmail.com>, Frank.Li@kernel.org,
-	imx@lists.linux.dev, robh@kernel.org, devicetree@vger.kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH v2 05/15] arm64: dts: freescale: imx8mn-var-som: Add
- support for WM8904 audio codec
-Message-ID: <akvC8UV5N6Tpk0_h@SMW015318>
-References: <cover.1783330236.git.stefano.r@variscite.com>
- <4487a350b0e4667816c3fe62e9fd6df2696c18cf.1783330236.git.stefano.r@variscite.com>
- <20260706100948.DDA391F000E9@smtp.kernel.org>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260706100948.DDA391F000E9@smtp.kernel.org>
-X-ClientProxiedBy: SA0PR11CA0029.namprd11.prod.outlook.com
- (2603:10b6:806:d3::34) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+	s=arc-20240116; t=1783350196; c=relaxed/simple;
+	bh=Lu9wLxVbs/Lk9+t6I1rSrNmYpbDMa4qMMSV45NFfKlI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I3Co5jkJ62iOIFjdgX5tkRQzXxpjr1fFYvg6phzny1oFZI1PtGHVUMgPI06r5gZDAw3ttjhs36NacXfL9q4ciAOea509wnnZDmaVpeTqAgZ7O8hAhq6ZRT85UggHSIOFD9jJ+CWqXvenUNDWTC4di+9uoeXuWr1h0JsMHnMVI4A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=ImgA1Hj8; arc=pass smtp.client-ip=136.143.188.11
+ARC-Seal: i=1; a=rsa-sha256; t=1783350034; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=ShBwgIB9Tp0j2ieVFNXD2nNlBvkYSrZX6KL3AeDB+tfLOnE+7CHZu5rN/HP3/wiA65AfS2awNfBnLG6v3KttLERp5k37uX5cTjLkGlHu1epQC0tpKbiWTjw2bmWO4R3cJ9Bceq/UN4MGpiO+12hQk2boeKqRMVN9X9phSckbKF0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1783350034; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=3XwyWTIrA/V6J7edt1EVqOvQjuCfvvAm71aap9OvOCI=; 
+	b=aUIQNdoKYFXhqBqNhsY+F02CkGve6EXcuTScFbe5OHL/WHUKXk+LgtUumBUdfOodPJNOea5bCjHJ9ycCR0cPvohjbCewZV5P129fWS7uy+uA2tTiwdLdX3wI3zpXyvb7h2kq1Re2lQrUV6CFisZwObNuwW+4qzyVdb787O027/g=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1783350034;
+	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=3XwyWTIrA/V6J7edt1EVqOvQjuCfvvAm71aap9OvOCI=;
+	b=ImgA1Hj80B9JHQg2Jp0iR3Hfkzuv+c1ZmjHHLY5vXEEHJlu3rx/mY5cc4HVAWJDf
+	QREjGnw/uNA5JcHG0nEUz0PUvTE/0uKgXtwmj8p0wIRVC2fcF+pZOIvPjdNL8NnCNrh
+	RgJCMxLw7XsRX8tO1eirdxvjf97IRGDZQzh4oCj8=
+Received: by mx.zohomail.com with SMTPS id 1783350031182921.1240379629376;
+	Mon, 6 Jul 2026 08:00:31 -0700 (PDT)
+Message-ID: <3541fb84-81ce-4415-8027-38aa611834ae@collabora.com>
+Date: Mon, 6 Jul 2026 18:00:09 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|VI2PR04MB10165:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9b01e9cf-f444-470b-ecfd-08dedb6f4662
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|1800799024|19092799006|23010399003|6133799003|20046099003|4143699003|11063799006|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	UTaAf/qV4kQtU5yfExit/9l08suz+XZ0AsEoMTVPX13s2f7PoO7/tFFa+nH80nNfBfortFMSIE/bzbhCVNB7/7HlkJJyoyoCy2YhDGyn1aih6mSjloZirF/FvFBSpnmUpaYBP/JS6RIRFR9WywKIFezAedp8Jhxo+HgiJuLELx4l25zaKJ0wqp2IekR5BPsokfs1VblYTu9rY/lZt0/S7sjHQIvZ9w6+3xdE8A9gbrm49vCMRoFAZzaFLUd9A/4+RsGIiS2k5uIFETPxW2Y5hzDqv89+H+gfa+X5n/4ECeW3b7aQlxdDwvevjXKGpGo8Zi1Yx7bDN/w8h2IuBGuZ2nkZaxK9hxoaOdiuiSyOHqAMQzblAkCWv+mzROg/8TCvlXNauI4BFiEE0hFa5vHgNwEF6OfI5/3pidtwyi7MA+ov0BooGRCL6gh7+CVFllZypj0cI1IefitqMsGvTqsEdv/FHbAtPMRs3brusArT+87a0ePNALI06D+iJk9Onp8m19VBDaEyryZRr4ipUwrFEUfAFSk3SBGayh67RiRgP6kSDpO2DtmVjwo0w7zWmVZFRIPsMVnnBCYqoSygty8APfY7jN93OKZE0ZPTv8XYs4Q=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(19092799006)(23010399003)(6133799003)(20046099003)(4143699003)(11063799006)(56012099006)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?iso-8859-1?Q?ypJc24CsKFjeQIbNTYeboeSX7FjTuzQNF/H5uYzKwHkarfjJ/6PexM/YoU?=
- =?iso-8859-1?Q?+jLUKFS/yt+4PRqX1ryUwIC+5LX23k38Yj1DvzKItiUPCQDGmbOAjnQ4sr?=
- =?iso-8859-1?Q?p7dCJlot6v7lnyXl2M3NfsYlwFO/BlWJcGhxr+PFBGWKusBMtGHT/fLPvC?=
- =?iso-8859-1?Q?f5h7g+2wlx1gJhSdugPmSJNgPHCJNN2/j6WFHwgNV3Icc/eBb594nqQ+SP?=
- =?iso-8859-1?Q?dkT08hiRRsMmH2N2qXVLpZxXY7D3z1B1oivrxCfV2zUMLautUy57sh6gkG?=
- =?iso-8859-1?Q?akKEdMVat2K/jazMXXx4czuRhbJqJJ9l0NebfESVaqtAggYKQvilvRiXtH?=
- =?iso-8859-1?Q?MCyPRfJvN0CkliHBxVBqqgqJQILFHTqNDHPoRNOs5T/pG8nxUS46pujfZe?=
- =?iso-8859-1?Q?BXts5A71J4360Q3RlKUnxkLvWNjFMJ+uwl0v64ljxIDGAzb6ySOaDeGn4P?=
- =?iso-8859-1?Q?iHYsaV9cUfTu1/QuGtn6NYEDkJ+z9Ajjh1bZ2q278rL1fa5YsA7xFyUHx6?=
- =?iso-8859-1?Q?KTlxG1OVlDgOz/XnekRqTQLh7Nkb5WymW2QjbxWNVhkbpY4ZXIKrERMH0B?=
- =?iso-8859-1?Q?20l9EQ8zP8yQOolBnddiecpF7u5E8MRBEWwX7CsK3y8m4/Bx9gc/42zxWV?=
- =?iso-8859-1?Q?+nTypcfknJOsYwUYeHWP79Z/YXTC42BZqH1crMUaITUN98IwhbyGbGuwAG?=
- =?iso-8859-1?Q?y8+BYzRGZLwE5iIelh8gY6QuVKKGMpveR3inASk+PuH2vR7tVV9aDJuY+9?=
- =?iso-8859-1?Q?H6JAW2Bqz/LLST2en2pc9vzEL2cGW9CIIRL0spawgQfjezb6OVND+Pbr/t?=
- =?iso-8859-1?Q?EMGmGdpPqehjlkfaH+mRSvxMq4hfoqUTAFmHxMuSQg5VhSj6b8IwD4l2lW?=
- =?iso-8859-1?Q?IBpEZf87ptIXnowwp5gi01lYwxKF7/81VTdA9sxpoW4Rmy1XE3lZR2HChp?=
- =?iso-8859-1?Q?a6V9IrArX3w084qPL+vYf/eagSUK/yE9dOQej8Lt+YBFF5f1VXaFs1jycD?=
- =?iso-8859-1?Q?CgSGJjOxL74RGZSiR7KV0j+Vhsj6TWcRyjf966J5SdL76tIxJlEOl3Hael?=
- =?iso-8859-1?Q?xttaHilu9NZUERplT6Ss1pgErahrQGOWvvT2depEiuFcYLMHIzWlGGlryq?=
- =?iso-8859-1?Q?iG6b1DliwPo6zSRH7nP02qOvgQ6l1OwyMVk/nUFSf2PE3vOoAe5eCYILMK?=
- =?iso-8859-1?Q?HX/giZuXT1l+venPGRi8vc5Mp7H4sx0imvDN2+rYdgg2NbOSynVsl0la+w?=
- =?iso-8859-1?Q?xGnX9hvIFHTv+FfTIrytuYGXqdu2qjUEfmd/0lL6VxYI2Q7fpjhHGtw7oz?=
- =?iso-8859-1?Q?vs2wZltrEWD0l015ppgxWEu20HROaJi1QNYS7TOioAAyAIQVJvorcs2BGI?=
- =?iso-8859-1?Q?hnmXLxe2tJK8NRElgJTIbnRqgN3QmNryx3lEusQct2yPu/9CjBNctvMuyI?=
- =?iso-8859-1?Q?TqSngNs1CmgU2IWLDWi0Cv4kTXQwkvPiGWaI75zFKl313EsM2Eo1WYIItL?=
- =?iso-8859-1?Q?6RoGYKlnrYcAxAiGN0CEhJ1AsuY+DN4bpVgeAMCWBKuijKHYAnmsUABATx?=
- =?iso-8859-1?Q?R6Dnp6Qv7Foq7jyD3zSTDADiM2m6UtGdO2aM8EFgrqldqJQls7bAKcJL9K?=
- =?iso-8859-1?Q?zaHbTjjEQbwCx7JfF02QMdsjE+S5yzoFzCwzbHoz2oM2akKntDqa63eoy2?=
- =?iso-8859-1?Q?QbspzPVdOSjgXG8P1k14Az3mKogBnT/nH1vreqCTyt56x5TtwhpQnSeq29?=
- =?iso-8859-1?Q?wtZFO52EKkCqq+xAwKuDJ+XuDbESxuvqxnCYmz1d9ZaARsx6Wt2mzDjG/Q?=
- =?iso-8859-1?Q?Ys2ZfFhHvPLSeXmFMxvlAw+/XFARgwP5AXpZAbDJUwvBrWEZa4Xg?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b01e9cf-f444-470b-ecfd-08dedb6f4662
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 15:00:10.6004
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Iu9V8D/dYSgfOtHAfaUZGNJXI383vPF0Aqgk/bvOLNTdMjEOTITAMzOnDWf+2Zup1TINlq09IFojDNc5FK9W4IMXcNgftabmI9auaOpfFk6wNC62KArYt2dPopPi2jVn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10165
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/42] media: synopsys: hdmirx: Use
+ devm_of_reserved_mem_device_init()
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Paul Cercueil <paul@crapouillou.net>,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Paul Kocialkowski <paulk@sys-base.io>, Linus Walleij <linusw@kernel.org>,
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Alexey Brodkin
+ <abrodkin@synopsys.com>, Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Michal Simek <michal.simek@amd.com>,
+ Daniel Scally <dan.scally@ideasonboard.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Eddie James <eajames@linux.ibm.com>, Tiffany Lin <tiffany.lin@mediatek.com>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Yunfei Dong <yunfei.dong@mediatek.com>,
+ Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+ Houlong Wei <houlong.wei@mediatek.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Joseph Liu <kwliu@nuvoton.com>, Marvin Lin <kflin@nuvoton.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Ge Gordon
+ <gordon.ge@bst.ai>, Adrian Hunter <adrian.hunter@intel.com>,
+ Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+ Bard Liao <yung-chuan.liao@linux.intel.com>,
+ Daniel Baluta <daniel.baluta@nxp.com>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Peter Chen <peter.chen@cixtech.com>, Fugang Duan <fugang.duan@cixtech.com>
+Cc: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
+ BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
+ Fabio Estevam <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+ Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+ Vijendar Mukunda <Vijendar.Mukunda@amd.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>,
+ CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-aspeed@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, linux-media@vger.kernel.org,
+ openbmc@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com, linux-tegra@vger.kernel.org,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ imx@lists.linux.dev, sound-open-firmware@alsa-project.org
+References: <20260703193855.110619-1-mukesh.ojha@oss.qualcomm.com>
+ <20260703193855.110619-7-mukesh.ojha@oss.qualcomm.com>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20260703193855.110619-7-mukesh.ojha@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.14 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_DKIM_REJECT(1.00)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321302-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321319-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,arm.com,linux.intel.com,suse.de,gmail.com,ffwll.ch,jms.id.au,codeconstruct.com.au,crapouillou.net,intel.com,sys-base.io,sholland.org,synopsys.com,ideasonboard.com,amd.com,linux.ibm.com,mediatek.com,collabora.com,nuvoton.com,nvidia.com,arndb.de,linuxfoundation.org,bst.ai,linaro.org,perex.cz,suse.com,nxp.com,pengutronix.de,linux.alibaba.com,cixtech.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:stefano.radaelli21@gmail.com,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:stefanoradaelli21@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mukesh.ojha@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:liviu.dudau@arm.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:paul@crapouillou.net,m:anitha.chrisanthus@intel.com,m:paulk@sys-base.io,m:linusw@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:abrodkin@synopsys.com,m:laurent.pinchart@ideasonboard.com,m:tomi.valkeinen@ideasonboard.com,m:michal.simek@amd.com,m:dan.scally@ideasonboard.com,m:jacopo.mondi@ideasonboard.com,m:mchehab@kernel.org,m:eajames@linux.ibm.com,m:tiffany.lin@mediatek.com,m:andrew-ct.chen@mediatek.com,m:yunfei.dong@mediatek.com,m:minghsiu.tsai@mediatek.com,m:houlong.wei@mediatek.com,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:kwliu@nuvoton.com,m:kflin@nuvoton.com,m:krzk@kernel.org,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:srini
+ @kernel.org,m:arnd@arndb.de,m:gregkh@linuxfoundation.org,m:gordon.ge@bst.ai,m:adrian.hunter@intel.com,m:ulfh@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:mathieu.poirier@linaro.org,m:perex@perex.cz,m:tiwai@suse.com,m:shengjiu.wang@gmail.com,m:Xiubo.Lee@gmail.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:peter.ujfalusi@linux.intel.com,m:yung-chuan.liao@linux.intel.com,m:daniel.baluta@nxp.com,m:orsonzhai@gmail.com,m:baolin.wang@linux.alibaba.com,m:peter.chen@cixtech.com,m:fugang.duan@cixtech.com,m:ekansh.gupta@oss.qualcomm.com,m:bst-upstream@bstai.top,m:festevam@gmail.com,m:nicoleotsuka@gmail.com,m:kernel@pengutronix.de,m:kai.vehmanen@linux.intel.com,m:pierre-louis.bossart@linux.dev,m:Vijendar.Mukunda@amd.com,m:zhang.lyra@gmail.com,m:cix-kernel-upstream@cixtech.com,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-aspeed@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org
+ ,m:linux-mips@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:linux-media@vger.kernel.org,m:openbmc@lists.ozlabs.org,m:linux-mediatek@lists.infradead.org,m:kernel@collabora.com,m:linux-tegra@vger.kernel.org,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-sound@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:imx@lists.linux.dev,m:sound-open-firmware@alsa-project.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[dmitry.osipenko@collabora.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,lists.linux.dev,vger.kernel.org];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,bstai.top,gmail.com,pengutronix.de,linux.intel.com,linux.dev,amd.com,cixtech.com,vger.kernel.org,lists.freedesktop.org,lists.ozlabs.org,lists.infradead.org,lists.linux.dev,collabora.com,alsa-project.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_GT_50(0.00)[92];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:-];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.osipenko@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url,SMW015318:mid,oss.nxp.com:from_mime]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 136067127F0
+X-Rspamd-Queue-Id: 2330C7128EB
 
-On Mon, Jul 06, 2026 at 10:09:47AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] The `simple-audio-card,routing` property maps `Microphone Jack` to `IN1L` and `IN1R` but omits the connection to the `MICBIAS` supply, which will leave standard electret microphones unpowered.
-> --
->
-> commit 78e4da0f71f2e53ae4312cbe5ceecb0f6f2345db
-> Author: Stefano Radaelli <stefano.r@variscite.com>
->
-> arm64: dts: freescale: imx8mn-var-som: Add support for WM8904 audio codec
->
-> This commit adds support for the WM8904 audio codec on the VAR-SOM-MX8MN board.
-> It configures the device on the I2C bus, enables the SAI peripheral, and adds a
-> simple-audio-card sound node to expose the sound card to the system.
->
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-> > index 09146ab763858..e2e04ad2fbb65 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
->
-> [ ... ]
->
-> > @@ -42,6 +50,34 @@ reg_phy_vddio: regulator-phy-vddio {
-> >  		regulator-min-microvolt = <1800000>;
-> >  		regulator-max-microvolt = <1800000>;
-> >  	};
-> > +
-> > +	sound {
-> > +		compatible = "simple-audio-card";
-> > +		simple-audio-card,bitclock-master = <&codec_dai>;
-> > +		simple-audio-card,format = "i2s";
-> > +		simple-audio-card,frame-master = <&codec_dai>;
-> > +		simple-audio-card,mclk-fs = <256>;
-> > +		simple-audio-card,name = "wm8904-audio";
-> > +		simple-audio-card,routing =
-> > +			"Headphone Jack", "HPOUTL",
-> > +			"Headphone Jack", "HPOUTR",
-> > +			"IN2L", "Line In Jack",
-> > +			"IN2R", "Line In Jack",
-> > +			"IN1L", "Microphone Jack",
-> > +			"IN1R", "Microphone Jack";
-> [Severity: Medium]
-> Will standard electret microphones remain unpowered with this routing?
->
-> The routing maps "Microphone Jack" to "IN1L" and "IN1R", but omits a link to
-> the "MICBIAS" supply (e.g., "Microphone Jack", "MICBIAS"). Because "MICBIAS"
-> is defined as a DAPM supply widget in the codec driver, DAPM will not enable
-> it unless it has an explicit routing link connecting it to the active audio
-> path. This could leave the microphone without its required bias voltage when
-> recording.
+On 7/3/26 22:38, Mukesh Ojha wrote:
+> Replace the hand-rolled devm_hdmirx_of_reserved_mem_device_release()
+> devres action with devm_of_reserved_mem_device_init(), which handles the
+> cleanup automatically. This removes both the wrapper function and the
+> devm_add_action_or_reset() call.
+> 
+> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+> ---
+>  .../media/platform/synopsys/hdmirx/snps_hdmirx.c | 16 ++--------------
+>  1 file changed, 2 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c b/drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c
+> index 25f8ca0d6d94..7c6acc6d7e88 100644
+> --- a/drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c
+> +++ b/drivers/media/platform/synopsys/hdmirx/snps_hdmirx.c
+> @@ -2265,11 +2265,6 @@ static const struct hdmirx_cec_ops hdmirx_cec_ops = {
+>  	.read = hdmirx_readl,
+>  };
+>  
+> -static void devm_hdmirx_of_reserved_mem_device_release(void *dev)
+> -{
+> -	of_reserved_mem_device_release(dev);
+> -}
+> -
+>  static int hdmirx_parse_dt(struct snps_hdmirx_dev *hdmirx_dev)
+>  {
+>  	struct device *dev = hdmirx_dev->dev;
+> @@ -2316,16 +2311,9 @@ static int hdmirx_parse_dt(struct snps_hdmirx_dev *hdmirx_dev)
+>  	if (!device_property_read_bool(dev, "hpd-is-active-low"))
+>  		hdmirx_dev->hpd_trigger_level_high = true;
+>  
+> -	ret = of_reserved_mem_device_init(dev);
+> -	if (ret) {
+> +	ret = devm_of_reserved_mem_device_init(dev);
+> +	if (ret)
+>  		dev_warn(dev, "no reserved memory for HDMIRX, use default CMA\n");
+> -	} else {
+> -		ret = devm_add_action_or_reset(dev,
+> -					       devm_hdmirx_of_reserved_mem_device_release,
+> -					       dev);
+> -		if (ret)
+> -			return ret;
+> -	}
+>  
+>  	return 0;
+>  }
 
-Is this true?
+Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
 
-Frank
-
->
-> > +		simple-audio-card,widgets =
-> > +			"Microphone", "Microphone Jack",
-> > +			"Headphone", "Headphone Jack",
-> > +			"Line", "Line In Jack";
-> > +
-> > +		codec_dai: simple-audio-card,codec {
-> > +			sound-dai = <&wm8904>;
-> > +		};
->
-> --
-> Sashiko AI review · https://sashiko.dev/#/patchset/cover.1783330236.git.stefano.r@variscite.com?part=5
+-- 
+Best regards,
+Dmitry
 
