@@ -1,72 +1,65 @@
-Return-Path: <devicetree+bounces-320862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320863-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QECuJKZiS2oiQgEAu9opvQ
-	(envelope-from <devicetree+bounces-320862-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:09:10 +0200
+	id 9tD4IBtZS2o/PwEAu9opvQ
+	(envelope-from <devicetree+bounces-320863-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:28:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8794570DED2
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:09:09 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 777F470D884
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:28:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Kpry7HAx;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=oL0ztYX+;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320862-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-320862-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320863-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320863-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E8C4F3033D4E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 07:13:10 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C62473035030
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 07:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5693C3EFFD6;
-	Mon,  6 Jul 2026 06:57:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1BAE3DDDDA;
+	Mon,  6 Jul 2026 06:59:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 466C73EFD36;
-	Mon,  6 Jul 2026 06:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 962703ED11D;
+	Mon,  6 Jul 2026 06:59:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783321050; cv=none; b=pQY8CIMZeNEf0hCgz2iCA6zSnJ82CzWOyPuZYK6xScf0d2QQOAhnUm6ej1CGPbrMly/KJrdkX4Zfhc2pr08ykUzKon3GqVg6YjXAZIeXxk1tbGktvLW2HGf2nVaEishQZH81oDBiri4o31KfWELKjLF2LUS26PXkYjbuwPjRWb8=
+	t=1783321171; cv=none; b=cHcd87+kLH56dTlxX7j8tPSpyNL5MQ/yDW2yGiJIwvvqPc7HxY5+r0Phdlh4/Yddew0bZaUUCNO+aRRsdf7+HlLbI/4/AB0tcDahBXtIdYxdBRSODxNc9P/XMgtpkyGF2u/1tZNsPdKnDY5lJDBNsnYBA+nkr7eufwr770fMkbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783321050; c=relaxed/simple;
-	bh=GBnJ/HGn063WC0vwh1cPovUlxJPS3BsBDjn5dNWiSBY=;
+	s=arc-20240116; t=1783321171; c=relaxed/simple;
+	bh=M97KqKFg5q1siZteL2hVdqd3nKwNKH7S0Qhj/K+5i0Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYgY2q92pKPqA9D6xa6fvX5mQfl4YWJqTZKH4n0YlRnlxqAur88M2bVGz5Rq2g0M8i1hshEAOt7G7qxUASTP5aUuYaFLq55NVFYF4t1fK3+XUOHaO7XIeijLP356ZNU3pOV3D1Nhvqhii5iiZMHdHFp/qSeR/Cjlrv8htdnx5SI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kpry7HAx; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A6CE1F000E9;
-	Mon,  6 Jul 2026 06:57:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YqeGCbKq9Y5vddByT+ZjeLXwerCkjdNfUCtqLtTG26aKHZtuIEgf+tWeEUIlN5DHarxXZ1dABWFye7i8a0Rk+l2Z3fU2sKqUzZxoq90VYG+DHLGCa6vuGGDP9fIIaI8pFSfyFnbs+NMQ1EBNjXw7L9W4GTPvfKrfKLpjSQal8H8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oL0ztYX+; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E4BA1F000E9;
+	Mon,  6 Jul 2026 06:59:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783321037;
-	bh=IED6QZNQ0APBb2RT+lZieni4CjI0wDzgvUKFq8gCmw0=;
+	s=k20260515; t=1783321158;
+	bh=y+lATJnRQ7o/rbZhmJ9nDyBRy1H+M8W2CRQDVnlKZxk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Kpry7HAxYLJsH0ML10AxcMpo8KxAyeapJlQMnPgDFWzIbZH/IyYsGX/Jj/Bpb6iPD
-	 Ziaw8VqdWNEuZEhsltRuIeVVRYzoNMX33u3oIjvMHufuOfIhqTq4dfcd9tBhgsjnni
-	 CJUYqKnLZgdhYIZoLUaYz9GHNPCUMH1ARtay3rHOC1ZsRgTnrkoOTsFeMqUX/JuYw6
-	 TbomheDZUMqTjhi3+bu/Yn8UmPoRdtJW0y5Tfcs2Wxagni8AsEyfDERXnaNY5UzHHI
-	 bU+OGc6qo0OrhxGDxB7SMTUZ0Lhy2rIsHKM9JEs5yHBDyi7SGKwPmASlXTT8S3qo4A
-	 vIITuQM52GChQ==
-Date: Mon, 6 Jul 2026 08:57:13 +0200
+	b=oL0ztYX+YNmtoYG/oyXLUbewaxBWatkFUwLtGfQ86IxklFQhTfIx26NBKNAS+OrrX
+	 JP1c2umXnXGYQFDiE4fl9s5alDIRS0YuDD+GO/Op/k+MOoWQswTLgAvYD/vCkCkPri
+	 oB3nLJmWKBMxGBqVmUObu9kNh/r1AHQJD5g2quRDfhhjJEU5mzVr2a9rlj//nto0Eh
+	 RMxhojNjZ+hNQ1Wmo0lkcDxVIi3V7b/KxQUJmsE729kB8D98CCqJFwAf/Z1uiFXFB3
+	 9vRX7wE8ZxPWVIy/vvABsFwe1jBDjqMLDIWpygLllZzlfrfHK0k1eX4sUuUZwOhCV2
+	 97XS0lIkljExg==
+Date: Mon, 6 Jul 2026 08:59:13 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	"Joerg Roedel (AMD)" <joro@8bytes.org>, Puranam V G Tejaswi <puranam.tejaswi@oss.qualcomm.com>, 
-	Abel Vesa <abel.vesa@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev
-Subject: Re: [PATCH 5/8] dt-bindings: display/msm: Document Adreno 722 GPU
- and GMU
-Message-ID: <20260706-attractive-flawless-otter-fdc7d7@quoll>
-References: <20260705-eliza-gpu-v1-0-c9f1354dbd29@oss.qualcomm.com>
- <20260705-eliza-gpu-v1-5-c9f1354dbd29@oss.qualcomm.com>
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: media: meson6-ir: Add Amlogic A9 IR
+ compatible
+Message-ID: <20260706-quantum-celadon-tench-c2f28d@quoll>
+References: <20260706-a9-ir-v1-0-4f082ca8aaf1@amlogic.com>
+ <20260706-a9-ir-v1-1-4f082ca8aaf1@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260705-eliza-gpu-v1-5-c9f1354dbd29@oss.qualcomm.com>
+In-Reply-To: <20260706-a9-ir-v1-1-4f082ca8aaf1@amlogic.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -84,18 +77,18 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:akhilpo@oss.qualcomm.com,m:robin.clark@oss.qualcomm.com,m:sean@poorly.run,m:konradybcio@kernel.org,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:jesszhan0024@gmail.com,m:marijn.suijten@somainline.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:will@kernel.org,m:robin.murphy@arm.com,m:joro@8bytes.org,m:puranam.tejaswi@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:freedreno@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:iommu@lists.linux.dev,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:xianwei.zhao@amlogic.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-amlogic@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320862-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320863-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -104,37 +97,29 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,poorly.run,kernel.org,linux.dev,gmail.com,somainline.org,ffwll.ch,linux.intel.com,suse.de,arm.com,8bytes.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,baylibre.com,googlemail.com,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,qualcomm.com:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8794570DED2
+X-Rspamd-Queue-Id: 777F470D884
 
-On Sun, Jul 05, 2026 at 01:44:20PM +0530, Akhil P Oommen wrote:
-> From: Puranam V G Tejaswi <puranam.tejaswi@oss.qualcomm.com>
+On Mon, Jul 06, 2026 at 02:43:27AM +0000, Xianwei Zhao wrote:
+> Document the Amlogic A9 IR controller compatible string. The A9 IR
+> controller shares the same implementation as the Meson S4 IR block,
+> so add "amlogic,a9-ir" with "amlogic,meson-s4-ir" as the fallback
+> compatible.
 > 
-> Adreno 722 found in Eliza chipset belongs to the A7x Gen1 family. It is
-> derived from A730 and shares the same IP-level configurations: HWCG
-> registers, protected registers, GBIF CX registers and gmu_cgc_mode.
-> Major differences include lower cache/core counts, 1MB GMEM, no
-> Concurrent Binning & LPAC support. Some of the peripheral blocks like
-> RSCC are from A740 that resulted in updates to RSC layout.
-> 
-> Update the dt-binding docs to document this GPU and GMU.
-> 
-> Signed-off-by: Puranam V G Tejaswi <puranam.tejaswi@oss.qualcomm.com>
-> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->  Documentation/devicetree/bindings/display/msm/gmu.yaml | 1 +
->  Documentation/devicetree/bindings/display/msm/gpu.yaml | 1 +
->  2 files changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/media/amlogic,meson6-ir.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
