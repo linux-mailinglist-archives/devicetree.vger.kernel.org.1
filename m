@@ -1,358 +1,124 @@
-Return-Path: <devicetree+bounces-321359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321356-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5+kVEXjYS2pSbQEAu9opvQ
-	(envelope-from <devicetree+bounces-321359-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:31:52 +0200
+	id 0TbDI6LaS2rqbQEAu9opvQ
+	(envelope-from <devicetree+bounces-321356-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:41:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A02917134EA
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:31:51 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2B31713696
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:41:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=VnewVroP;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=OfHUMsS3;
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321359-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321359-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hxtQqKUf;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321356-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-321356-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 01FBC39F7583
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 15:54:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A1D9E30F5677
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 15:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A72E743148F;
-	Mon,  6 Jul 2026 15:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E294A42F711;
+	Mon,  6 Jul 2026 15:54:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF75430CE7
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 15:54:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA22B42CB0E;
+	Mon,  6 Jul 2026 15:54:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783353247; cv=none; b=c+jrHuduAP7k6V9aWWSOTSAOg8t1DRwIeQ4FvZDySc5/WM37otnSDbQYulo0k1NjL+At7OIV0tXNM6N7MQTHWEfnRyWKTuOu2bkTAYWTGLdL2DlCt7ml0CrzO4aAelbKw/5+c56Nkcx56PJa+7e7KZ/NNG6JCjOULUHbw1DshSM=
+	t=1783353242; cv=none; b=tZO93jqgDwdELu5fm+aaGqOFTbwZ3CJjJt6C6kgX+LeD0F+joQc6rHorERhDv04DdfVq5LPdJ5O+qdM+oNKcAXjXia8aKuYhgsQ0cI/7cIs+aPAf7VMzhHvJKfQgXXsTAX/sp5bqUxKzDXP3DhfnEWRBMrPNeQXhIGc5g83cwAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783353247; c=relaxed/simple;
-	bh=E1s0pXJdNHaHwZ9OleuVgGDZ9lbuEsZmEavlB9ekfnQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Zjv+socxd2JqQ+JQygeiMN0/VN+Mhx5QlABvW0/PF1f08mV1WbnL6DXzyA6A3wBby582lnqbQvwvwVQ9KD0hx/bZRojd0kKmuGRRTndilhAePJPOCYjqx1Ndz8NbbE0yyV7rVCTJmHPOFEEmpF3NugKcJlBp0lIUYwWwwctXpRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VnewVroP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OfHUMsS3; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 666FFDSR972291
-	for <devicetree@vger.kernel.org>; Mon, 6 Jul 2026 15:54:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	n9DCYiVE/wbcIEEHkcBM4Or6y0w8uA8Kl4lJfQu60dU=; b=VnewVroP7g0CsXwa
-	CdUVHLcyyoWT9Qy3C9FL47BP41uW3w61cceJrkSGgsGOIWsztyjG9Ca1JVguW33i
-	j38mnDLwrfIvW7Fm1k5O6W5x2N5sqSnmSPy8JIQV0ItkjsXnsW36qlAkfMnDziI6
-	Sd9MHSOcZxe6i16e0PwW1sybUdrzZk0bIULLhUrb9zVA5PciXY+rl+OhuVmlCxva
-	cbtEqB+lOov3QGieB75tIQEwMXNQd7dsTpdQ7K0UDoLY2TkX2puqA381n4xbwqk5
-	IIIYCgknEsHwJ529dkfEVkf4stbV/P7jgJzhBM/1KBJ4xDymnZOk0bN3yl4uEeTs
-	cGwzPw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f8a3r1jpc-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 15:54:05 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-915f6ff639aso576996885a.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 08:54:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783353244; x=1783958044; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=n9DCYiVE/wbcIEEHkcBM4Or6y0w8uA8Kl4lJfQu60dU=;
-        b=OfHUMsS3Qh43OIFvvvxO+acL8vbVl5/QvKn6zV6lc3qQbGRmtU50oGuKMVkVJKZqvY
-         ph3kROqdZr43wSA3beN8LuQYSPevPBKHxUWzCcshQpkK3o2gHjGZLyg3oQ4KRMaSFnIt
-         TXFh/KC7Xk4bXJ6ONBbI1+Hd3CoTbxvLRloLwN/T8CE5BqeULIMq9M7je7XMD4Pftq2K
-         ML6jSzYRCGb76hRoA/I8p5L8lc/5a2FqY2lTxL4RZbxmT+DZI6k2AkLzUpw0UzMYz7d6
-         gDX8Yaxq/PALp9Al4SU9U6QJQ2vahZtZG7nej9wNS6ZfH1/z4rDc6sM7/E9i9gDu8Jch
-         8dMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783353244; x=1783958044;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=n9DCYiVE/wbcIEEHkcBM4Or6y0w8uA8Kl4lJfQu60dU=;
-        b=q4VpNRd0p5C0POJBe61Rm/ytsjV1+qVc8RJ34qY/yq0wJYqvUILYHiFKdXy4Cekk9W
-         qy00fS9fPEpxCr3xoCpodBhQcSJUqwVIGJL3eDedIeiQcfrj3Sf1ymQdrZgCbbYBDlZk
-         T4IsaWOIK5htdoLORE3ixYybNyfLA/+dHgHYlJovcCDm48TfrsBm3Su981DLfytwOwAD
-         7BZZ1Oka+T+4iXpcWJDm5puSJmgbfR4msrraTk/NG4ZU1fq6p8rId06Xc8R5GwajU6w2
-         JKcW5T+UwqcRsiDqPKea15yw134BVqOGxoThIAFCzYGwxy5ktpLdRrmrzjZ9DkSAKfdY
-         UD2Q==
-X-Gm-Message-State: AOJu0YwpqaFshyME95LBP4svtx8A5u2NT7yK/SwbUfxpgFLwACQB/B9h
-	qAZ10SMrixXyV78h4dRIlk74iAm15gfUpeuNBzmvwZHwy2rQtEcYccBhx8MiPxTq2mvFMPvJcdD
-	4shlaSIp81519I5O8YMbAOgIHVPWUjuGUGB7x1EfymRw/4rvl72rZrnAyerCJZVaHPIGDr+YU
-X-Gm-Gg: AfdE7cmWUg4G2btU69IMnwVNuLBXbMxVMtheiiH1XE1byvu0tXmF/fEt0/j55jC9YHB
-	L4XOltQl8wkH0LXFDOH/FejNlPeFBmPtKf63x9C0riUezuDir+Oinhilicyile3V69XvruhRGLc
-	RmB3v/njs/gQinfsCWziS7pMOLt9yF6rsGxFZk4w/j0OrqGLifC3lc4DMPKgulMU4UWieoeXOJB
-	TbfipPzo1mx7OjdMMg61WCn05Uduqm3/h9uQNFowzIlJ5cMZWNLO9eXFxu2SCBIvqNYiZmi5z3/
-	r7guE8VkGGjT/pMBXPZ8FNIiewt6I271CQ0CstNuG0toYLE2EA0IaJCXsotefDqOEEzyM9XuCbG
-	/Xqvf6fiZc/La/7KeFXMlU7CDMJdUfUDh2ww=
-X-Received: by 2002:a05:620a:45ab:b0:92b:6805:91b7 with SMTP id af79cd13be357-92ebb5ab797mr172435885a.63.1783353244467;
-        Mon, 06 Jul 2026 08:54:04 -0700 (PDT)
-X-Received: by 2002:a05:620a:45ab:b0:92b:6805:91b7 with SMTP id af79cd13be357-92ebb5ab797mr172428185a.63.1783353243873;
-        Mon, 06 Jul 2026 08:54:03 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.223.174])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa0a55be4sm23174169f8f.31.2026.07.06.08.54.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 08:54:02 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Mon, 06 Jul 2026 17:53:45 +0200
-Subject: [PATCH v3 6/6] dtc: dt-check-style: Handle properly DTC-style
- includes
+	s=arc-20240116; t=1783353242; c=relaxed/simple;
+	bh=Mv7nxjYQ6BqAIoIBOF+fU1A/fyFoR+yW+jyJnsn2oik=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=cpZ9PQ5OIRLKKxTKdTOr7NECvwIsW9Q1nrEKMnshMeb2eatqeJMU4SkMjkFm4DjU8lIsm2pOUTI3K820A++EQaSOErZdzbglbcs9hKg341f8B/D7DuOEkZhY1883Vb4GzlrOpktJG37JuEat04BJcCMw9/tKx+rzYNLxsgaB0bQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hxtQqKUf; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 021DC1F00A3F;
+	Mon,  6 Jul 2026 15:54:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783353241;
+	bh=Mv7nxjYQ6BqAIoIBOF+fU1A/fyFoR+yW+jyJnsn2oik=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=hxtQqKUfnlULzYT7m1k0oaEzCMr9Wm5rKDEVDfVhP3DpK0y4aA+sqsecJUzF5K0IE
+	 Sxq8BK21rr9wnTM/3bsav0ytF1t3nKxwncsguFwELZDTmfTlacJayFbX5LWvL9p7ff
+	 XDaKxxEmyuDlq37iCtApunYIUDqVEyfT/wHuJkRUCH5yRxqlkFGxwSarJiW5msPKwp
+	 yfQjcZijo1TwehJDQ4RqstYcFNfR+TvNUwdqhSYC9cIumSdNFTYnr+a1pbzMx+uufR
+	 gGfVjud2PEW8rGhEfRoF2G4/KjC8GMp8o8kxJyo/c+61zgicv9xR1JMXw0MuMXzKMf
+	 JIj/CeplhgwmQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: leds: nxp,pca963x: fix reg maximum
+ for pca9635
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, linux-leds@vger.kernel.org, conor+dt@kernel.org, lee@kernel.org, robh@kernel.org
+In-Reply-To: <20260706-monza-leds-v3-1-37ea8c988363@oss.qualcomm.com>
+References: <20260706-monza-leds-v3-0-37ea8c988363@oss.qualcomm.com>
+ <20260706-monza-leds-v3-1-37ea8c988363@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 06 Jul 2026 15:54:00 +0000
+Message-Id: <20260706155401.021DC1F00A3F@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260706-dts-style-checker-v3-6-03ffacff9226@oss.qualcomm.com>
-References: <20260706-dts-style-checker-v3-0-03ffacff9226@oss.qualcomm.com>
-In-Reply-To: <20260706-dts-style-checker-v3-0-03ffacff9226@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Test User <test@example.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Daniel Golle <daniel@makrotopia.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4332;
- i=krzysztof.kozlowski@oss.qualcomm.com; h=from:subject:message-id;
- bh=E1s0pXJdNHaHwZ9OleuVgGDZ9lbuEsZmEavlB9ekfnQ=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBqS8+LNUjsfTp+aa8lgvMdH5G9RoZwbc/6+tlUU
- B9mZ8FlIz2JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCakvPiwAKCRDBN2bmhouD
- 102AD/477iv5ZVoZ7hZCetzreIsTGB7FsXzRho09/4MUVl4jxyNfdFiEJPv6LcKUeqTYrgmljNd
- CO0p2U4iBOcijB3dfXkZmx1jmLfAafbASTVpQW34opqOcYZyMdelJ/3l6bfy1AZJyXZMfpqesjA
- sGqMPkcDhwwJ4+b00wKJdwNbJVV1JQlHdQoCPgkIClLffdH9bfTj6N3wKTlc2vkseAk8Cde3g5n
- ErXtj3E1acmCWXQBh+SuZRtsr32VxKIYDiNC7YDWolzSCW9NRC6tLBFsN2ufpS9YdLnYQXel7ZU
- BiJHhH0kN49sp39SWAnmjLZlhc9PSyOBnucOkv1la7G/MI52TS3K9ZtP79KWTdd5M1bZPTn119O
- uAbNq3eYRRRuqLl69nHJSOpk9wku6wSuej3ccFxmbqISnJTmGp5KDg4tRL6vBP/IGvBsILT75zd
- ehZKrDKB3PMlJhC70XNwGtXOiNMzqlqK0keih+sl6BiIOqSlsk0ogZCAu7Zu35K6vIR2YEsXReu
- SFazbLC1JFnXmUFYglXzjnJLUMIrhGlpQFL8Cx0fQtY0M3ZTHEvwa58DOxEP1NMNJ6msj6pXdeM
- lrzZcMvgrksMIACRbl4qo9VQx1DICm8BEytWov8zfmod7K/XHVIgPcU+DUb6Uapk3xd4cx8itMv
- TqVnHZH7xWJnUTw==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA2MDE2MSBTYWx0ZWRfX6aaJ8j2eGrVg
- 5mn3Fr5owVMp/YiCAPyFvzNmk3QHPRrRZWwI4cbGSJ3kv4YtK1LSltTA/k6zt6e04TE1nsuoah1
- kiuamYKoexknfZ9d1ZF4Ilk2dhZbkfhSDhh+hsDBgqVaP+WIKznpQIlR54ePCVxf7ODaF63m/mi
- ys/EtKgG6GQlJAqlyPPKgIJJBOaIdUO+Ry9NMktEdJzEgWRyJeUGOf87XHJoUbr705o2FDqgL8V
- 9rq3pFLTfqJu6LqI5tcsBWCiEvVxVEMBGYWuNifH2GvsXg5KhaqnY6+dZmD4M44dMoyXpK1tSss
- 238oSgHtr3L8Y2sAn7rT3QWonWeubmyublvwnSQnpb7w0jAMIROVU6Vk579l8AJK8qf9KwEOglQ
- dpIgvBPaNqvMvPHxUPPzybz6LLqsIqfA9czxI+tsII6n3eAbgXyCPIpYRSzN19B+qAGYvgSUpFs
- TiRxYMz0t0jaQxtRP8A==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA2MDE2MSBTYWx0ZWRfX6d+eoFNVnG/L
- Br4EZxYdEGx/Fg21vAEMtxG2JbxCiD2c7490ZFAidcRGOLcfzHUtnw4rc8uvo7ZdmIIqj5GE6cB
- ijNrxwed+rbUIgVUCIAarT3GwwzKSns=
-X-Proofpoint-GUID: Qvs9Ec5evligkVlaAyV9CDNCLv9wbOc0
-X-Proofpoint-ORIG-GUID: Qvs9Ec5evligkVlaAyV9CDNCLv9wbOc0
-X-Authority-Analysis: v=2.4 cv=OKcXGyaB c=1 sm=1 tr=0 ts=6a4bcf9d cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=N6niishs+lR9UBL1FN3Qrw==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=EUspDBNiAAAA:8 a=0y9rCkXEhHseLPfnHlwA:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-06_02,2026-07-06_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 malwarescore=0 clxscore=1015 suspectscore=0
- spamscore=0 phishscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607060161
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-321356-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321359-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:saravanak@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:test@example.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:linux-leds@vger.kernel.org,m:conor+dt@kernel.org,m:lee@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A02917134EA
+X-Rspamd-Queue-Id: F2B31713696
 
-dt-check-style was not properly handling DTC directives (starting with
-'/', e.g. /dts-v1/ or /include/), thus a few DTS files had false
-positive like:
+> The pca9635 supports 16 LED channels, unlike the pca9634 which only
+> supports 8. The allOf conditional grouped both chips under a single
+> else branch capping reg at a maximum of 7.
+>=20
+> Give pca9634 its own if/then block and let pca9635 fall through the
+> else branch with the correct maximum of 15.
+>=20
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
 
-  apm/apm-merlin.dts:1: [indent-unit-dts] indent unit must be 1 tab in DTS, got '\t\t'
+Sashiko has reviewed this patch and found no issues. It looks great!
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
----
-
-Changes in v3:
-New patch
----
- scripts/dtc/dt-check-style                         | 11 ++++--
- scripts/dtc/dt-style-selftest/good/dts-dtc.dts     | 20 +++++++++++
- .../dt-style-selftest/good/dts-preprocessor.dts    | 20 +++++++++++
- scripts/dtc/dt-style-selftest/good/soc.dtsi        | 40 ++++++++++++++++++++++
- 4 files changed, 89 insertions(+), 2 deletions(-)
-
-diff --git a/scripts/dtc/dt-check-style b/scripts/dtc/dt-check-style
-index 3c1aa9e28347..b8ba6dbee86d 100755
---- a/scripts/dtc/dt-check-style
-+++ b/scripts/dtc/dt-check-style
-@@ -49,6 +49,9 @@ re_cpp_directive = re.compile(
-     r'^#\s*(include|define|undef|ifdef|ifndef|if|else|elif|endif|'
-     r'pragma|error|warning)\b')
- 
-+re_dtc_directive = re.compile(
-+    r'^/(dts-v1|include)/[;\s]')
-+
- # label: name@addr {  -- label and addr optional; name can be "/"
- # Per the DT spec a node name may start with a digit (e.g. 1wire@...).
- # The address part is captured loosely (any non-space, non-brace run) so
-@@ -66,7 +69,11 @@ re_ref_node = re.compile(
- 
- def is_preprocessor(stripped):
-     """Tell C preprocessor directives apart from DTS '#'-prefixed props."""
--    return re_cpp_directive.match(stripped) is not None
-+    if re_cpp_directive.match(stripped) is not None:
-+        return True
-+    if re_dtc_directive.match(stripped) is not None:
-+        return True
-+    return False
- 
- 
- class DtsLine:
-@@ -178,7 +185,7 @@ def classify_lines(text):
-             out.append(dl)
-             continue
- 
--        if stripped.startswith('#') and is_preprocessor(stripped):
-+        if (stripped.startswith('#') or stripped.startswith('/')) and is_preprocessor(stripped):
-             dl = DtsLine(i, raw, LineType.PREPROCESSOR,
-                          indent_str, stripped)
-             dl.depth = depth
-diff --git a/scripts/dtc/dt-style-selftest/good/dts-dtc.dts b/scripts/dtc/dt-style-selftest/good/dts-dtc.dts
-new file mode 100644
-index 000000000000..4f249e9406c7
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/good/dts-dtc.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/*
-+ * Test fixture: dtc directive
-+ */
-+
-+/dts-v1/;
-+
-+/include/ "soc.dtsi"
-+
-+/ {
-+	compatible = "example,test-board";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	leds {
-+		led-0 {
-+			compatible = "example,led";
-+		};
-+	};
-+};
-diff --git a/scripts/dtc/dt-style-selftest/good/dts-preprocessor.dts b/scripts/dtc/dt-style-selftest/good/dts-preprocessor.dts
-new file mode 100644
-index 000000000000..86cfd33086ee
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/good/dts-preprocessor.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/*
-+ * Test fixture: preprocessor directive
-+ */
-+
-+/dts-v1/;
-+
-+#include "soc.dtsi"
-+
-+/ {
-+	compatible = "example,test-board";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	leds {
-+		led-0 {
-+			compatible = "example,led";
-+		};
-+	};
-+};
-diff --git a/scripts/dtc/dt-style-selftest/good/soc.dtsi b/scripts/dtc/dt-style-selftest/good/soc.dtsi
-new file mode 100644
-index 000000000000..af7477cb8e3d
---- /dev/null
-+++ b/scripts/dtc/dt-style-selftest/good/soc.dtsi
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	memory@a0000000 {
-+		device_type = "memory";
-+		reg = <0x0 0xa0000000 0x0 0x0>;
-+	};
-+
-+	pmu {
-+		compatible = "example,pmu";
-+	};
-+
-+	soc@0 {
-+		compatible = "simple-bus";
-+		ranges = <0 0 0 0xc0000000>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		interrupt-controller@10000 {
-+			compatible = "example,intc";
-+			reg = <0x10000 0x1000>;
-+			interrupts = <1 2 3>,
-+				     <4 5 6>,
-+				     <7 8 9>;
-+		};
-+
-+		serial@20000 {
-+			compatible = "example,serial";
-+			reg = <0x20000 0x1000>;
-+		};
-+
-+		serial@30000 {
-+			compatible = "example,serial";
-+			reg = <0x30000 0x1000>;
-+		};
-+	};
-+};
-
--- 
-2.53.0
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706-monza-leds=
+-v3-0-37ea8c988363@oss.qualcomm.com?part=3D1
 
 
