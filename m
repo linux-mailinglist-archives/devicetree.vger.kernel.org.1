@@ -1,203 +1,144 @@
-Return-Path: <devicetree+bounces-321268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321269-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rGBoCwfLS2psaQEAu9opvQ
-	(envelope-from <devicetree+bounces-321268-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 17:34:31 +0200
+	id JXfJLbfES2rjZwEAu9opvQ
+	(envelope-from <devicetree+bounces-321269-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 17:07:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 971C0712A56
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 17:34:30 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C39771260A
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 17:07:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=MCCi5Zmt;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LAH3SsBa;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321268-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321268-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321269-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-321269-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B9AF3599D4E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 14:21:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C471032CCB7A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 14:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906133F413B;
-	Mon,  6 Jul 2026 14:19:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD29379C27;
+	Mon,  6 Jul 2026 14:20:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ABC1379EF0;
-	Mon,  6 Jul 2026 14:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C0C37883C
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 14:20:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783347555; cv=none; b=e/1igL3Cbq4Wygd9J/GK3RGnrMSbIX1YFu1/D4ByEGqbDjRtaD6p71xQmZLqeNoaFSckUe4ruNRnb9Hh1g9rpKps0uGkYtBgQScOXNVDYolEpDwywPdmholgvLAUkC6Lx/u9eSgnDyiZMOGSOGKNEWHyFhhMCHVjgjZQqGG89Tc=
+	t=1783347637; cv=none; b=YT4t03wGeos9pZs00x58VfTNY0U6WnkBIkSlUBg4n/tFPe8jvlyJHo8KoNr9gT+HlR+aXPdrcQ5pV/Wr336w48z8UEnv1bg0eyZhg2b2ZjHEHeFhlSZkxc1SdPL03ZJpF5Vfg73GBBHH42vPtvZ7WxSb3dgrxkeBZpLqnJWrFw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783347555; c=relaxed/simple;
-	bh=FNvBu/SGlgmtBWX+IP3/owcrnZ52tIHgFpnwy+jfLPE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UUjp/YjdEtl3ky94amnN61JVxvJjixF/CI8rgXWYn0esfGJQK/5SJx6CyoRvI/gTvtoNLNcOLciodtIRBMeCdx7B4MRGahFOvCFVwGtd9FTiuSxLAsPXRU5JIcaSjocOHf98g3PaThZDA1CNqgQeh3ap0/IpFnvbb690xqrKEVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MCCi5Zmt; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAE6C1F000E9;
-	Mon,  6 Jul 2026 14:19:09 +0000 (UTC)
+	s=arc-20240116; t=1783347637; c=relaxed/simple;
+	bh=xzJjPofCJ08uKrBiHTPsrh4Lv1iPpv0ZP+YOYwjbVAs=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=dgCRPmyCScBxUCURjFuFWJtFkRRDxqsawTM+xgFS+hQGTXlDEJ8Nf2j8ZV2nDEFWNxYB/26so10V9prUxgQO5UpoDAB5XBTBZ/j7Cq3l7PyJ4cdss/LelMKKYfC7jEGL3JuYSDzW7BPhwMC1JgHGC1chkoesXkdXJj4CBD9YUD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LAH3SsBa; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 864841F00A3D;
+	Mon,  6 Jul 2026 14:20:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783347553;
-	bh=mSQGYf1wIcLWiE+3fh68hTcZOuZaxhAvbB4DHw85q/o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=MCCi5ZmtpWENqe2Y+8JEZ9VZWwNfvJEhHqjk41Yrwk6GAj+rb8HVJoK9PbVDPprZn
-	 3qGIpwDZUmAfbvwsKnKTUrEMLBfuQF6p7/wiqOP+ITfygDUnT3wQ0rkGQ2LR+pSRvK
-	 Py3aoLrFRJqED06ilkm67BGELccqkx3bYkddzPQeAeEZI+tKOf5GjuQg+7SVgb5bA5
-	 IH3c6+/NDc3Mp0+8is7kPjBjLdV+MGmJ4DbVLYfVD4jqbfFjCZiBB1uo7q4q/vuu1b
-	 P8zGxPJf5vsdO62PxD/3Sdqw3QtlYBRLWGx/pUrbRLKMCF/vxoGr6imSBc625/zmfg
-	 Vlkw2Z8HpwJcQ==
-Date: Mon, 6 Jul 2026 16:19:04 +0200
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/4] mtd: rawnand: qcom: Add MDM9607
-Message-ID: <v4wc36d5slcbq6vsubrpzdoz6x7iq2t2xxlg7onak7fq3bcpjz@kxoqbvi734pp>
-References: <20260608-qcom-nandc-mdm9607-v1-0-4639a0492274@linaro.org>
- <4kdjxrn3bxg7rhkdovidxv2b2f6evnknng7gjtbz7pahyqaakh@qkgxaz6xlav2>
- <akult0UUSSwKQ8F5@linaro.org>
- <875x2smf39.fsf@bootlin.com>
- <akus-hN7-yf4Y6XU@linaro.org>
+	s=k20260515; t=1783347636;
+	bh=KHKGSQn1oj1mN1nEMqv8pOsvs1NasCEjNQBGYoSdTPA=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=LAH3SsBaUch/Sdt/bm+ySbLRS+Xe0F3D1WpL+Lve6B9aLT26Up0iHWDXM8eBlSHH4
+	 OgFj6q7p9evMUHrz4wD88dYz8cdAok5bW0jVuUmVWMuDS9mAmzHKDPzmu2/zMA2mfz
+	 MlkBQ2NLO+FGd0f0/8rwBdL2tlQqITKkX95oHlulWBfmpIsmilzMaGckXfAhMc0aR5
+	 7gCHnrl1mtjCKTpSWnUeCNy4DusWmHpiLx1YKBHKy3csqnba4pT0m+m4BdFcs4VmjM
+	 Yc+V1ofn7YDPnP28VE6d99gjLXwYG+dRI9C2WeY+6L9rwzhz6tB1Rwo5sSbZVXOXH7
+	 Ov9JxbQ9UIKCg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V3 4/4] arm64: dts: qcom: Enable SD card for Glymur CRD
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Monish Chunara" <monish.chunara@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260706141346.4180348-5-mchunara@oss.qualcomm.com>
+References: <20260706141346.4180348-1-mchunara@oss.qualcomm.com>
+ <20260706141346.4180348-5-mchunara@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 06 Jul 2026 14:20:35 +0000
+Message-Id: <20260706142035.864841F00A3D@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <akus-hN7-yf4Y6XU@linaro.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321268-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:stephan.gerhold@linaro.org,m:miquel.raynal@bootlin.com,m:richard@nod.at,m:vigneshr@ti.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-mtd@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-321269-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:monish.chunara@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,kxoqbvi734pp:mid,vger.kernel.org:from_smtp]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 971C0712A56
+X-Rspamd-Queue-Id: 1C39771260A
 
-On Mon, Jul 06, 2026 at 03:26:18PM +0200, Stephan Gerhold wrote:
-> On Mon, Jul 06, 2026 at 03:18:18PM +0200, Miquel Raynal wrote:
-> > On 06/07/2026 at 14:55:26 +02, Stephan Gerhold <stephan.gerhold@linaro.org> wrote:
-> > > On Mon, Jun 29, 2026 at 05:46:57PM +0200, Manivannan Sadhasivam wrote:
-> > >> On Mon, Jun 08, 2026 at 03:20:21PM +0200, Stephan Gerhold wrote:
-> > >> > MDM9607 has QPIC v1.5 that supports the OP_PAGE_READ_ONFI_READ command, but
-> > >> > is missing the rest of the hardware changes in QPIC v2. There is also only
-> > >> > a single clock that can be controlled using the RPM firmware. Document and
-> > >> > add the new qcom,mdm9607-nand compatible for this setup.
-> > >> > 
-> > >> > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> > >> 
-> > >> You could ammend patch 1's commit message with the information I shared in the
-> > >> reply. But nevertheless:
-> > >> 
-> > >> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-> > >> 
-> > >
-> > > Do you want me to resend the series with patch 1 commit message
-> > > adjusted? There were no other changes requested as far as I can tell.
-> > 
-> > I was mostly waiting for answers on my questions from the DT binding
-> > maintainers, but I understand they must be too loaded at the moment.
-> > 
-> > > I think the current commit message there is fine, especially if you add
-> > > the Link: tag during applying. The extra context will be there.
-> > >
-> > > If you want me to resend, I would just replace the second paragraph in
-> > > patch 1 with the following:
-> > >
-> > > ---
-> > > On MDM9607 and other recent SoCs, the QPIC hardware requires 3 clocks
-> > > (ahb, core, aon). However, the access to these clocks is restricted to
-> > > the RPM firmware that controls the shared power resources for the whole
-> > > SoC. The clocks cannot be controlled separately, there is only a single
-> > > RPM_SMD_QPIC_CLK clock that implicitly enables all of the 3 clocks.
-> > > The only exception to this are some IPQ* SoC that are not using RPM,
-> > > there the clocks are directly controlled by the kernel via the clock
-> > > controller (GCC). Require only one clock in the dt-bindings for MDM9607
-> > > to avoid having to define dummy clock entries.
-> > 
-> > I am sorry but this is still incorrect. You don't have to define 2 dummy
-> > clocks. You would have to define 3 times the same clock (and that's not
-> > a problem). I have been working on the concept of clock nexus which
-> > may solve this kind of issue in a rather elegant way but that's not
-> > ready yet.
-> > 
-> > In my opinion the binding that you want to push (a single clock) is
-> > wrong, but since I've been explaining this for several weeks already,
-> > please at least fix the commit message and I will take it as you want.
-> > 
-> 
-> Thanks for your feedback!
-> 
-> Either way works for me personally, but now we have a conflict between
-> your requested changes and the feedback from Mani, who maintains this
-> driver. :-)
-> 
-> @Mani: Would you also be fine with defining all 3 clocks in the DT
-> ("ahb", "core", "aon") and then assigning the RPM_SMD_QPIC_CLK to all of
-> them?
-> 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] A trailing blank line was added at the end of the file.
+--
 
-AFAIU, devicetree binding should describe the "OS view of the hardware", not the
-hardware itself. We have many predecents to this rule. One of them is the SCMI
-based resource control in Qcom Automotive SoCs, where clocks/regulators to
-individual IPs are controlled by the SCMI server and OS just sees a single SCMI
-power-domain for the IP. So we only describe the SCMI power-domain in the
-binding and not the physical clocks/regulators received by the IP in hardware.
+commit 6ff53b628acc8752d158af919047602ffbc82460
+Author: Monish Chunara <monish.chunara@oss.qualcomm.com>
 
-We had a recent discussion around the same topic and you can see the reply from
-Krzk here: https://lore.kernel.org/all/c83ca485-1e2e-46ba-bd15-1168aa8955d3@kernel.org
+arm64: dts: qcom: Enable SD card for Glymur CRD
 
-So here also, the hardware receives 3 clocks physically, but OS cannot control
-all 3 of them, but just a single clock from RPMh which controls the 3 real
-clocks. Moreover, assigning the same clock to 3 different clock sources doesn't
-accurately describe the hardware either, because those 3 clocks operate on
-different frequencies and if the driver queries the frequency of
-RPM_SMD_QPIC_CLK, it would just return the same frequency. This is where the
-dummy clock comes handy as it atleast provides a valid clock frequency to the
-driver. But I'm not advocating for its usage here anymore.
+This commit enables the SD card for the Glymur CRD platform by configuring
+the vmmc/vqmmc regulators and setting up gpio-based card detection.
 
-Hence IMO, assigning the same RPM_SMD_QPIC_CLK to all 3 clocks is not the right
-approach and we should be assigning a single RPM_SMD_QPIC_CLK to 'core' clk.
+> diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dt=
+s/qcom/glymur-crd.dts
+> index c98dfb3941fa3..48407e47aaca2 100644
+> --- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
 
-@krzk: Can you share your opinion?
+[ ... ]
 
-- Mani
+> @@ -427,3 +450,4 @@ &usb_mp_qmpphy1 {
+> =20
+>  	status =3D "okay";
+>  };
+> +
 
--- 
-மணிவண்ணன் சதாசிவம்
+[Severity: Low]
+This isn't a bug, but it looks like a trailing blank line was added at the
+end of the file here. Should this be removed to keep standard coding style
+and avoid warnings from tools like git diff --check?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706141346.4180=
+348-1-mchunara@oss.qualcomm.com?part=3D4
 
