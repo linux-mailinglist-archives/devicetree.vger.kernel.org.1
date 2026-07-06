@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-321001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321003-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ShCXHK+WS2phWAEAu9opvQ
-	(envelope-from <devicetree+bounces-321001-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:51:11 +0200
+	id /dNIBKWDS2rsSgEAu9opvQ
+	(envelope-from <devicetree+bounces-321003-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:29:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC24B710181
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:51:10 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 579D970F2FE
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:29:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=an3JLmni;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=bJaJlDES;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321001-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321001-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321003-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321003-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E780033A9533
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:50:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D12DF30BBD1D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:51:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A344302E1;
-	Mon,  6 Jul 2026 09:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2CCA4E3795;
+	Mon,  6 Jul 2026 09:35:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B95B4E3790
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 09:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02DF44302F8
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 09:35:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783330507; cv=none; b=dLbUKACDhkDmNyXMb9Co4MfL1kt5aoCn+0O6e35gbHZhyJda1IFciwofRW9nFUVchA654IFFAbTiDcZcLYHa1ixX6Y21scDfcFPxX0yKCeeIwRRCfbZXgu+cZGZeyFhCWzekIAXXuAN+bh/9uaIgY/ZlTAnsk+JMuquD2Dezys0=
+	t=1783330510; cv=none; b=mX5d7kZ579uQ1zuBtsghP0VapdI1jRhF2XeMCPR+UZj3TPFgUqiNm59GZmoCzgoQUUm58NCnwHLIOQmKUQx3xtxuaM1oW7YqrNUWYMkW3w+aP74mmm0m+JVP9JCw4eXzwgDO63B3yAVueN1y16HQ7BJn8siVFcnL0deiHx3kXRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783330507; c=relaxed/simple;
-	bh=YxfzF4NLpxTdbwnrEpFDJDgVz9m0arHwW0oHfP/qPtI=;
+	s=arc-20240116; t=1783330510; c=relaxed/simple;
+	bh=azFMDunEsAeZS7lsKgLMHZ5TSgtywquodFmaXPUTAGw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rYuzFf03R52ykL/MUJ7hpChYEMx8TUTFUF8Sxtfz+pzTRDJiNX3dyluesrJ4rBvQDrWzESlY1BtZG/qOlDEWkD2Zs0F/SjhCbShEfrJ2j6Hdke9hEEUHWyJrncMxRi3hPF1kfoV9PkaFdVFUMYECiU5BsrT2JMlbKcEVogN3fkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=an3JLmni; arc=none smtp.client-ip=209.85.128.45
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-493bab44440so14490585e9.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 02:35:03 -0700 (PDT)
+	 MIME-Version; b=eouKBiZ8dOITJEqvV0ZXfWBldkVh4PyDRJbUHwnVbSu24pa97dWbkebEj44g6J6v/iVcmuQ4aaVSiH3krSvV/cecV+WvLysP39X5XyrxzyuEVKlnJAO/ojN5BguW7NTfVXlMDSVisABju+ZvRorOQS2gUGTJ3Sazyv9iQ4uWIgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bJaJlDES; arc=none smtp.client-ip=209.85.128.44
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-493c2c0b9a8so25266395e9.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 02:35:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783330501; x=1783935301; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1783330502; x=1783935302; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gChBujE50o+E2TRUNjFqwotu6HuQ7YJSYME1WfOxq9A=;
-        b=an3JLmnikiByIGDR+fnm8YRRhoG9SxdG9caba51K65QOAMJXAgfqkoKWXcs0wMwtyC
-         LNYUo7UN3zfggCvo46bopSOnxXxxn1lLqnmE5Wo/asHVk50QnsWKGY1onvuKi0DOySqc
-         qJCrGzceN7idfeMw4eO6GNpju8tRl5ud2x9MLtGs6OJYs6jmqhbI+rKH3gQ5Qxswx1zM
-         SsCN+OBXVU8PDjpOr+E/YcwCMa2tGPhpUb/xmXW6TPffr9Feh2mFw0lN3HzkkVFjAPxA
-         1LipPwbAke6QvEfcLG0PK/Mu/IVhsvEEiZdRjR17gBld5AyNDS2leZztzmJK5SxGJfMF
-         Xxug==
+         :message-id:reply-to:content-type;
+        bh=S4URuhOSsv1qbc8AjA0mUMbgajYr+DySa1kGTUK9qwU=;
+        b=bJaJlDESlyaDudZI1Ba/WHb97jRVK29LiJ3eYaU0KqsDzK+lD9IcqGQ51TVn3WLvZu
+         iyU/8W9r6ifhTDvjorSKMTzIAgAZhhN7XXLLVorK9GIt8/ZH6sdxHq155TpsaFuVMdEn
+         MZtvyKa3CB8dmqqRGwMk40P4t/DR1tNsIu/uaE13lpV4omaLHMEJEBWOmJ9u0z8IwmbX
+         ZlEyppdG8lLZ8dHnIclpdMm5dyp+R+C0CoQQgmu906RD+NAAg0kqB7Kc0mdWPRCzewfc
+         VsbAXjnEc9YboLfJH4f5U5+RGNpHhCRe4iawAY6dtvd1pxXPVbjzpoct38RL3nfyUDu8
+         fr4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783330501; x=1783935301;
+        d=1e100.net; s=20251104; t=1783330502; x=1783935302;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gChBujE50o+E2TRUNjFqwotu6HuQ7YJSYME1WfOxq9A=;
-        b=ihN8/raCb7f/6BMfgXdYEbLkx0riETpITOiJQiKYqYXiMPP//k7HGp/yff0A0HoD9J
-         oaXQ/vpkZYDt6vAr6cJu3rSUkWfrOXzFhjRWwr4QK7VQmyIUQVeAr+ceOr/gAI1JwaLL
-         71wyKF7vEd/JilvVdR8i42UYRpZdFIrJofLWACo06o21hZ4nNEsA2aKuy/D7aL3bhQho
-         Bm/+5HQb4Aba2t00eQ2va5Fonsi4i3uCEZAzc9yjnxtlKKoyGUHLXeJYO+EiM5ourRbn
-         p/lfmDhK3U1ebJuAfum61gLWMmtbmn2AAMzf+1mgtX+HQ7LY9qH0CTdOdFhkoiQirsNJ
-         OnMQ==
-X-Forwarded-Encrypted: i=1; AHgh+RpqcSNP+R0NiCuVmqQf4CdgW6EfrO/ByowbfETiqq4SKEMLxWjcwtvVZ45ZCX5h80GVdVLi3/NAx2kZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzp7lflBGa6gKRTSgJbSTiruPpcji3USV0Gc8Imx3p05Y/oA1G0
-	WUwbCD6IlCikI62o1utCKTYFv/97n6nRiuzaH+1OyfWDBmmrQrZ1HLdI
-X-Gm-Gg: AfdE7cno6qJGtNY3OYyZsTlFRbqwY0VIwceLHE0Gf+ZpfM5ZjwsVAw/KOK3f4LjNbax
-	ddDCNu/UOFZ3dA7vsScvepWNIsBD1K3aNtX0t8Hr09j1GNagKCK0uU8DTLSyn+lk/cjG4uTNhrG
-	26Bx6z1TPdSi0kkVym6j5HAweLCcK4XGYg73eQnCuRTCopBMux/cOWyOHtqyObgdMGw+UgNaJ6b
-	4bAWbfsv3yiPlg65PTO1+CjZxtLxqqC28CQVK5zq9bSsLMfopYAztVZSoDsFh0Gwcrz/lPsnL/m
-	ylZzF5C5nK68wR9XXOhJdSwqe6l3EukVGtRCSCB2ttPwav+ZwUQWEwGlRyGR2kjHUnhjLqj3XjJ
-	PMRf5HlwJsqYIKgG1MBJGWVMCKDmOnXBTAVDJ67F7tdgWQ/1pRNTe5Z6nWVcNTynORmRIATAZ4l
-	HXLZtxioXkzgaFrxT05M/k8lo2JA5NrMAQ4YHPTCbUqyAMEFTAm9DLogqWUzWlibaNYSxJccujx
-	JESmNgbD0/qtAjtNXbt7Gk1NQ==
-X-Received: by 2002:a05:600c:1d0d:b0:490:5000:917 with SMTP id 5b1f17b1804b1-493d127f020mr90286025e9.1.1783330501114;
-        Mon, 06 Jul 2026 02:35:01 -0700 (PDT)
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=S4URuhOSsv1qbc8AjA0mUMbgajYr+DySa1kGTUK9qwU=;
+        b=Cz5Ok9Q5qSpI6uc0cCCSw5HbHJptqkHVgM/gW3btLBPNaoveR8zRY1hHz7+MPBdeug
+         1L5rg61cPj14Gk3W7CQzU+hax2OJYbxzsIXHdy2IHCVIN68SPyeB1GoXfdBTdxgY6j1+
+         vsIV3J55a7ucwFeQmKMrOS+NMYZqqvM2Goqih5TCB+wukNwumr74nojWNjPNqPMo4t8a
+         XgA+QOV5IPNw3caYT3PE0/B1uD4lQecerrZTddd7TR37eMabFAtUPmyZGyVnlxxjSXav
+         5fbzXugV/AadvAsGp7rWdrbufWnG2FZDCiOiuqLFqP/XKx91jL7Qf8VgPQCGIHVT81K2
+         ALeg==
+X-Forwarded-Encrypted: i=1; AHgh+RqrH3Yac1qZ79Z7BCJj9PCP9++WI1odDcnzZ9qM6PWUG8VLsMOuPwOC2ANXWKbGH5uosMsd06DjpFGl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSlRpYsuFQt578vIyOVO3nL+IIxDD8LM/kHDjq+AJaGz1DEaHV
+	2KPhxuHZyyPf1MzTM9pvRBbuOlz9QdJ58sI49HZEEQSqKg1oTB+r5op2
+X-Gm-Gg: AfdE7ckndq3OSZy3D/kd9WlGCSxeBznwuUkhaT7Ohj1NEhZHfZU7J/PWhKdA4sTa8u8
+	63SeLFkNTOdKEUVTrHiolz0WmZEy+XGQDPfEg3Q8Wrv6Kr1x92WW+N10Yq49ZESI2pyTBeOQ4LW
+	I4PzyP5AnycZxyit0LaVUP5xm7xMLhBSkO0h1koL4IyNbI6hED648V4nMuEcx06XyaslwWXpDDU
+	NfxtBv2tCnEVB8pAvqtA5ACPDo87InabMz1PCxZGhk53UkysIBlwVH8xE680HZyK2T7rNFxbhRS
+	bWKDNimpmOpNPGcDQnvbi4pnKLh7jrU6jgKy8XNVhOMKRcIK2GFWLs1U2wHIeB0z8BwByQ1Nc0u
+	zJi14PRdOx3hgVl5TlmCq4eMGqNZNAlKFXy6PiV0T3+y6IxF8q6YU+eMwNqLRC8EH0KjLGZEhSg
+	rtkrs0QdBqeCdffKJzLuBJiZqvO0LlnkzHmh/ewhsLWF+MLJzFKW4A/1j4Lt8Q67zjwgnVRwdAJ
+	Tx/PBISXxyy5T+SRynhf/GpWg==
+X-Received: by 2002:a05:600c:8715:b0:493:de4b:de17 with SMTP id 5b1f17b1804b1-493de4bde72mr8048525e9.14.1783330502365;
+        Mon, 06 Jul 2026 02:35:02 -0700 (PDT)
 Received: from Lord-Beerus.station (net-93-144-65-248.cust.dsl.teletu.it. [93.144.65.248])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493c6375764sm314379715e9.5.2026.07.06.02.35.00
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493c6375764sm314379715e9.5.2026.07.06.02.35.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 02:35:00 -0700 (PDT)
+        Mon, 06 Jul 2026 02:35:01 -0700 (PDT)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: linux-kernel@vger.kernel.org,
@@ -92,9 +92,9 @@ Cc: pierluigi.p@variscite.com,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v2 09/15] arm64: dts: freescale: imx8mn-var-som: enable FlexSPI interface
-Date: Mon,  6 Jul 2026 11:34:39 +0200
-Message-ID: <4cb1d292b7899c72cbdaea212dcefc04e6705dda.1783330236.git.stefano.r@variscite.com>
+Subject: [PATCH v2 10/15] arm64: dts: imx8mn-var-som-symphony: Add TPM2 support
+Date: Mon,  6 Jul 2026 11:34:40 +0200
+Message-ID: <7cd17d03fa70ee1f5fd5986fbb0e8a39ad7b4fbe.1783330236.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1783330236.git.stefano.r@variscite.com>
 References: <cover.1783330236.git.stefano.r@variscite.com>
@@ -112,14 +112,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-321001-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321003-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
@@ -135,62 +135,56 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,variscite.com:mid,variscite.com:email,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,variscite.com:mid,variscite.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DC24B710181
+X-Rspamd-Queue-Id: 579D970F2FE
 
 From: Stefano Radaelli <stefano.r@variscite.com>
 
-Enable the FlexSPI controller on the VAR-SOM-MX8MN and add the
-corresponding pin multiplexing configuration.
+Add support for the TPM2 device on the VAR-SOM Symphony carrier board.
+
+The ST33K TPM2 is connected over I2C, and A PCA6408 GPIO expander is
+used to control the reset signal required to release the TPM from reset.
+
+Add the PCA6408 GPIO expander and the ST33K TPM2 device node.
 
 Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
 v1->v2:
  - 
 
- .../boot/dts/freescale/imx8mn-var-som.dtsi      | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ .../boot/dts/freescale/imx8mn-var-som-symphony.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-index 7a4c7455a162..0bc9fb44069e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-@@ -176,6 +176,12 @@ ethphy: ethernet-phy@4 {
- 	};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
+index 53130b521b5b..7d016ed5e911 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
+@@ -160,6 +160,20 @@ typec1_dr_sw: endpoint {
  };
  
-+&flexspi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexspi0>;
-+	status = "okay";
-+};
-+
- &i2c1 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-@@ -454,6 +460,17 @@ MX8MN_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x120
- 		>;
- 	};
- 
-+	pinctrl_flexspi0: flexspi0grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_NAND_ALE_QSPI_A_SCLK		0x1c4
-+			MX8MN_IOMUXC_NAND_CE0_B_QSPI_A_SS0_B		0x84
-+			MX8MN_IOMUXC_NAND_DATA00_QSPI_A_DATA0		0x84
-+			MX8MN_IOMUXC_NAND_DATA01_QSPI_A_DATA1		0x84
-+			MX8MN_IOMUXC_NAND_DATA02_QSPI_A_DATA2		0x84
-+			MX8MN_IOMUXC_NAND_DATA03_QSPI_A_DATA3		0x84
-+		>;
+ &i2c3 {
++	pca6408: gpio@21 {
++		compatible = "nxp,pcal6408";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
 +	};
 +
- 	pinctrl_i2c1: i2c1grp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_I2C1_SCL_I2C1_SCL			0x400001c3
++	st33ktpm2xi2c: tpm@2e {
++		compatible = "st,st33ktpm2xi2c", "tcg,tpm-tis-i2c";
++		reg = <0x2e>;
++		label = "tpm";
++		reset-gpios = <&pca6408 4 GPIO_ACTIVE_LOW>;
++	};
++
+ 	/* Capacitive touch controller */
+ 	ft5x06_ts: touchscreen@38 {
+ 		compatible = "edt,edt-ft5406";
 -- 
 2.47.3
 
