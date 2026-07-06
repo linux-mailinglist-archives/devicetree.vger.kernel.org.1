@@ -1,162 +1,221 @@
-Return-Path: <devicetree+bounces-321040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321041-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oSroNQeKS2pVVAEAu9opvQ
-	(envelope-from <devicetree+bounces-321040-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:57:11 +0200
+	id vSj0H/eBS2pkSgEAu9opvQ
+	(envelope-from <devicetree+bounces-321041-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:22:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6356D70F8B3
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:57:11 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E8670F198
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:22:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=oOshVJ1q;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321040-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321040-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=XLRY5U+j;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=Vt3I5l8P;
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321041-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-321041-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8358B33043BB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:07:07 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B6793309DEF3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:10:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C24F40D57C;
-	Mon,  6 Jul 2026 09:59:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B104C3FF1B8;
+	Mon,  6 Jul 2026 10:03:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA3293F9A11;
-	Mon,  6 Jul 2026 09:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63D2C2BEC43
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 10:03:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783331978; cv=none; b=K0jAShCMgAJNbgsgzF6lI7ehUPkD7UuVwBIehKvkyXs/3JKI+QVJ6OrqU+AOIHzt2n26BQULYqbyVAgHFUhyYFrWbMG2mOk/u/CxTG4tQno1n72p0LSCWxOXwa5Wym0LfR3ToW5i29WgTcxc6HlGVPAfBv31g7hRsdRhlANLK1k=
+	t=1783332205; cv=none; b=pllj7QQkBfdMa1yW6V7xhyy5mn+dRX/ZxSo+ruZZyVJ7yIadlhGagCms1/5afSRrS3uH7ZsuycvMKE3yYNIrxlBnVpt0Sq+kd0prnkbP4hTDtWJBFmXvJgQtjexfvyOTMSeSAiQ4Mm4ZE72vs5H24Jn+qEQzojgXk2PDna6RZHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783331978; c=relaxed/simple;
-	bh=++0GBKleTfV6ePyyUDYXEuXYbfm0CzyWy9dEfAvmNCM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YbgTscn5oK9P7vYEWspMC3Vpci2+aDs4ERY2DAEyPV9gglC3SmQnu2zYS4K/Osrct4ENtXrs7Gmhi2PmN/00v9w1AtlbyE7L+2lewYko2O4JsnxT5bPhoP592OrvAOV1FVv1qYlItaw3j76h0fr3NlRu5LpaZfqa2AeWwVvOtXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oOshVJ1q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 47687C2BCFA;
-	Mon,  6 Jul 2026 09:59:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1783331978;
-	bh=++0GBKleTfV6ePyyUDYXEuXYbfm0CzyWy9dEfAvmNCM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=oOshVJ1q2vOYfoIlReT0dBLpJJvvfpaIChKz8OCpoQ3IBxwRHc3SxLFg2Q6D0depN
-	 IYGPD03Z4NA1KyQ19FySrX1KBG5YrFqNZngQxDXC4oV6u9C9PtexLG8AzbwPzHi6W/
-	 lI4qJzTP3qAX1VsPKnchheXUNtWBokM8hJBgAvqTZEVYxFlk9idmaiMBlQlV9p9PDL
-	 LvgI/7OPasBhCyX+UhVnYNVl4YNmxz0nQUO5MRkLaoycDo3lJVJHDABy2sx4aD7FvG
-	 hMfHTe0c/oEQfkLgpw9LbdjXkQduN4cte1mcuU5k9otyO6pvzVKRPsiiUmBfzVupRX
-	 pMAoDK9hfWNJQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C225C43602;
-	Mon,  6 Jul 2026 09:59:38 +0000 (UTC)
-From: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>
-Date: Mon, 06 Jul 2026 17:58:51 +0800
-Subject: [PATCH v2 3/3] PCI: ultrarisc: allow DP1000 driver to build as
- module
+	s=arc-20240116; t=1783332205; c=relaxed/simple;
+	bh=j7I9FJXLK61qC3Hc6JfeOMWvZiX9lNEoPUMZtvCSydQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aG1D091V1ao7Vk4n6aq9BuKmrvZAVIT5l+QoEB0tXfL2ix0LtS4WgYxgCTghdrRX8vKEnSwYVgAN1+a5V+xSWc6Ux0yZP7TRJMCCPJVOKk9y230O7Btxofa8sHx0Kyd7bFoY1cyZ2Z2s/V8vGNmzldrTgOTDWjxkan2reQxrq6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XLRY5U+j; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Vt3I5l8P; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66693vHe4151609
+	for <devicetree@vger.kernel.org>; Mon, 6 Jul 2026 10:03:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6y5xA/sY0H8rxmBY7v6P2nx5v5uK8DJodTOynLPQvqQ=; b=XLRY5U+jtsVRq1B0
+	KE0axftAWwNHaWcA7gqtBQpcVJS4j2maia0uusa1hjL16uiH9/WzFe1o3F0nHIe7
+	J/qAzLVUGnk+5pcUQEKcAN7VDRcjKkhvW7UlnxD5VAlRq5hI9VetT/pN3ryhge/H
+	MBkQYTK0CLh/tMsV2KJRCT//dptysD1AEw3koHNVTAR8YgRer0UFUDEurke7TjtG
+	o8gBP/zKd8mfTf0Pwu2eSh11qhtxDU1NMQ9uHhIOLr3XNSQgvXshhdrblRMcOzzA
+	wSfdaVSL0Mym2x/bSIolJip9woP2DXsotTtqaDWf0nBNrvIUeTkEP1QILqs2BFh3
+	0dZNqA==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f88hs8gd1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 10:03:23 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-51c15c77619so6624651cf.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 03:03:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783332203; x=1783937003; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=6y5xA/sY0H8rxmBY7v6P2nx5v5uK8DJodTOynLPQvqQ=;
+        b=Vt3I5l8Pr9XGQVP+uQkwA2gT3+YIEAe5eGjj4itCWp1Aoj/5yioXD4g9/zcODjVgWJ
+         nIiVjgLhk1jwmCn+sOkfG1PmntsCaeHM120kn3Ki7tpVcMJ5VC6OO1/ghYrna+dhAnGT
+         hzYNET2bBbBArF0qT6ONp07x9gRB72a0Kc7xybMARC1ArrGtuMHF+e3fVy8B47RWBJoU
+         rAO62daCMlMdWRO5//yKjYRcrKaWQoJI1JnenaB5SC190zLD/5pW9OOTLIKN0rKcxC60
+         lH29GFxeyScFH13RFrWpZS4LaIcBM6oGJKmj7OoT8oQuAbdMG88qx5e3+1R732i29reo
+         O/AA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783332203; x=1783937003;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=6y5xA/sY0H8rxmBY7v6P2nx5v5uK8DJodTOynLPQvqQ=;
+        b=n1nU4ZADKltBtf+1KCxYT47f1ahXY4JIW7RZ1RiEd8DwkkvQb67UaBaco3FyKlBF+7
+         NNCKqrsP+EPIDPBVjR8MbB0GA13ymRCLzZx61I2MmWnznFg0gjg4ibHU+EM9MAk6TwE+
+         Rzyi3mpOKs2b4ElTPkPSiLkSQewK1v1ySrYO3TfhmJJqyY/D9z+RXSels2AL9UsBQyv9
+         kz/qsAPZrXTAhV/RUOwCRezJtWSmpoH2unREP+cUj+JrepJi0Pvc3bJpM9md4LFGQOrU
+         OoUIS61GkaLuD4SfXIQj2pT00Hg/xFOEoH0FRhDcjK26M1oGfwhQJqcXdTSmF7awf6ny
+         rxJg==
+X-Forwarded-Encrypted: i=1; AHgh+RoT1TSGWMNckZwrOR1Ws9DSP9hgpqI0qpAYuhCAB+JG9nRTcyX82U6S4n4shjJr0m2UDhBYJR5rhX5x@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiojZ1OVrHJ107dphu+ldUvTkXUCKdFDM9PUrWLa7LER+ytupN
+	I3mrBukPBTExf2YpcRQY/O0W500Mh9RJDW4AeRACGMOfFiuJ52TrE6XehMQHjY/evnbCLdx0m0k
+	isj/04LkzFlx6lvRom6woZ/zbbJpxaHA/FPFko7/8hgsEjpywneii3LUsRoQgmD4J
+X-Gm-Gg: AfdE7cmvohOc9ZTe3S/S5cLQupwPNKK8MBvB1BEkfo+eq1+ssI2t76RjF0u2R7eBbAy
+	FAGnni1QisKwt0//FmSG2MxpuE2Fg5FCoFCWHCeQT/Fma0KxVdzRFDweooJSmmhkAeoDbxf91rL
+	1uvQuT6xYT2UW5anb4DvPYW6LxlAu35bKg06z+8xFD8f1exPIshX2NHbS7e4NxANboHfpk5YaRG
+	1J7NVvRO4ZF3FoV9tbyuJ8ScbbQz/VymYVPiUaUq9bNIF7MK1sGdGyIoHuO6Q52HFCpiIR7hh7i
+	iRzc2BhTm7Uqd5oiowN42mI9WVydr2Q7M5JeZaMPXuW4tGGbQTgidoI5dcTKBoaAL4v7m7nnhPR
+	nxsnJXjMUYFADVsxUrmapwtJnh4ikv3oLay0=
+X-Received: by 2002:ac8:5910:0:b0:51a:8c9c:7f58 with SMTP id d75a77b69052e-51c4bf4718fmr85762191cf.11.1783332202799;
+        Mon, 06 Jul 2026 03:03:22 -0700 (PDT)
+X-Received: by 2002:ac8:5910:0:b0:51a:8c9c:7f58 with SMTP id d75a77b69052e-51c4bf4718fmr85760251cf.11.1783332198567;
+        Mon, 06 Jul 2026 03:03:18 -0700 (PDT)
+Received: from [192.168.120.193] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c12b6099911sm706130566b.24.2026.07.06.03.03.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jul 2026 03:03:17 -0700 (PDT)
+Message-ID: <8a3cc857-0b1c-4bd5-a5ce-a564823ca614@oss.qualcomm.com>
+Date: Mon, 6 Jul 2026 12:03:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: shikra-cqm-evk: Enable display
+ and add ili7807s panel
+To: Nabige Aala <nabige.aala@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Arpit Saini <arpit.saini@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260706-shikra-dt-changes-v2-0-56fcd1659ea4@oss.qualcomm.com>
+ <20260706-shikra-dt-changes-v2-2-56fcd1659ea4@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260706-shikra-dt-changes-v2-2-56fcd1659ea4@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260706-ultrarisc-pci-clk-v2-3-2f3fb6fba66b@ultrarisc.com>
-References: <20260706-ultrarisc-pci-clk-v2-0-2f3fb6fba66b@ultrarisc.com>
-In-Reply-To: <20260706-ultrarisc-pci-clk-v2-0-2f3fb6fba66b@ultrarisc.com>
-To: Xincheng Zhang <zhangxincheng@ultrarisc.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Jia Wang <wangjia@ultrarisc.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783331975; l=1255;
- i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
- bh=Tis/JJyXExoBJp3CwIeeec8uXLx/jp/sC+yiinpaepI=;
- b=aL9+qmOJDB07rLN9IJHnnPHgX/+ZZ7+1+m+87dLW8NcDO1rB/bi2esZnu8AUHTNyNrf46xSuf
- Rfjb3B8Q3bRClC1f2IoZ3u3212T5Utgx7E6V+FgyyIl6bikCE5nNHI/
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
-X-Endpoint-Received: by B4 Relay for wangjia@ultrarisc.com/20260515 with
- auth_id=779
-X-Original-From: Jia Wang <wangjia@ultrarisc.com>
-Reply-To: wangjia@ultrarisc.com
+X-Proofpoint-ORIG-GUID: xmGc8rbCyNrKYbKE1AF_ueAvD9Ube29p
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA2MDEwMSBTYWx0ZWRfX2kPtPsxw/ET8
+ uWwoIdyLh6dT6QRpk/qdVa3L/SWrwJcCpzuqdfIbZ43PDJTEVn9LJmYGUa1CkoZx6kr4CWUtEyM
+ MXW3B5C9FVG2prN5QUhoq3H106K1mpuE7gJmQLPhC82m/+ZyqTo1WSnSXNpzZUNtyckJu1Mx5Uv
+ wQFfbo6cgl/ey/oh84Mr0Zex2VPN3tA8t0jUk+jpV6kNIupjqoSSlKEXUyy/uySgGAB8zMqBTac
+ kAe1CEzvxLbBPhg+k5eGFPMX079GzHGUE3IyGpaaVewvlvzCOEVCzXOqKNCP5aYjCXO14/x/x/f
+ s62L30eIyrYpOxtFYODjSZVzqc6ZUcK5v58Jnt+hM6UmRauut2IgGPeTbhHo0eUpi1VYet5mr++
+ 0iMPaxLRtYwSCRoHAnUtrwpDXgyiFPJJhQwTdlp8LQ3HzpFtyCHaBFahPP+wtmM/5wtfmC6S0O3
+ Cib00lK+NUdRzLGk7RQ==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA2MDEwMSBTYWx0ZWRfXzcHbXt03gViM
+ R3wcpwMdsTTgOnRRZtNFqsLKjwdPLIZkLlqIUNZsPJNko66mPTDFrK+wC895WBs4kzEumNtr0qY
+ owFtKFA6ygKu6KiSFMGfRJD817OZ9Hw=
+X-Authority-Analysis: v=2.4 cv=XIwAjwhE c=1 sm=1 tr=0 ts=6a4b7d6b cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=Jq6lAVB8MRYJtmNLQKsA:9 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-GUID: xmGc8rbCyNrKYbKE1AF_ueAvD9Ube29p
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-07-06_01,2026-07-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 bulkscore=0 priorityscore=1501 impostorscore=0
+ malwarescore=0 lowpriorityscore=0 spamscore=0 phishscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607060101
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_MATCH_TO(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:zhangxincheng@ultrarisc.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:bhelgaas@google.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:wangjia@ultrarisc.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DOM_EQ_TO_DOM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-321040-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[wangjia@ultrarisc.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321041-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:nabige.aala@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:arpit.saini@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ultrarisc.com:replyto,ultrarisc.com:mid,ultrarisc.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6356D70F8B3
+X-Rspamd-Queue-Id: 78E8670F198
 
-From: Jia Wang <wangjia@ultrarisc.com>
+On 7/6/26 8:04 AM, Nabige Aala wrote:
+> From: Arpit Saini <arpit.saini@oss.qualcomm.com>
+> 
+> Enable the Qualcomm Shikra MDSS display subsystem on the Shikra CQM EVK
+> board and add the DLC0697 MIPI DSI display panel node. Pin pm4125_l5
+> to 1.232V with regulator-allow-set-load for DSI PHY PLL stability.
+> 
+> Signed-off-by: Arpit Saini <arpit.saini@oss.qualcomm.com>
+> Signed-off-by: Nabige Aala <nabige.aala@oss.qualcomm.com>
+> ---
 
-CONFIG_PCIE_ULTRARISC is a tristate option, so the driver can be selected
-as a module when COMPILE_TEST or platform configuration allows it.  Using
-builtin_platform_driver() leaves the module build without the module
-init/exit plumbing and causes modpost failures for the generated .ko.
+[...]
 
-Use module_platform_driver() so the driver works for both module and
-built-in builds while keeping the existing tristate Kconfig entry.
+> +	panel_bl_en: panel-bl-en-state {
+> +		pins = "gpio91";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +		output-high;
+> +	};
+> +
+> +	panel_bl_en_suspend: panel-bl-en-suspend-state {
+> +		pins = "gpio91";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +		output-low;
+> +	};
 
-Fixes: 5fc35740c3b3 ("PCI: ultrarisc: Add UltraRISC DP1000 PCIe Root Complex driver")
-Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
----
- drivers/pci/controller/dwc/pcie-ultrarisc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+output-foo isn't necessary, the panel driver will assert it as
+necessary
 
-diff --git a/drivers/pci/controller/dwc/pcie-ultrarisc.c b/drivers/pci/controller/dwc/pcie-ultrarisc.c
-index 6ed244770d53..5d226e529b77 100644
---- a/drivers/pci/controller/dwc/pcie-ultrarisc.c
-+++ b/drivers/pci/controller/dwc/pcie-ultrarisc.c
-@@ -225,7 +225,7 @@ static struct platform_driver ultrarisc_pcie_driver = {
- 	},
- 	.probe = ultrarisc_pcie_probe,
- };
--builtin_platform_driver(ultrarisc_pcie_driver);
-+module_platform_driver(ultrarisc_pcie_driver);
- 
- MODULE_DESCRIPTION("UltraRISC DP1000 DWC PCIe host controller");
- MODULE_LICENSE("GPL");
-
--- 
-2.34.1
-
-
+Konrad
 
