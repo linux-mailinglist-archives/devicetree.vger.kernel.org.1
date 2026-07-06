@@ -1,74 +1,73 @@
-Return-Path: <devicetree+bounces-321408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321409-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6OSgImXhS2rgbwEAu9opvQ
-	(envelope-from <devicetree+bounces-321408-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 19:09:57 +0200
+	id msH7Iaf3S2o9dwEAu9opvQ
+	(envelope-from <devicetree+bounces-321409-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:44:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 300FE713B23
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 19:09:57 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6C20714A06
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:44:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="Tthd+//5";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=isNEjTTR;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321408-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-321408-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321409-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321409-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 638EB303BB8F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:59:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 80EF134518A6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0966D435ABA;
-	Mon,  6 Jul 2026 16:59:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726D4395AF7;
+	Mon,  6 Jul 2026 16:59:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A72B8434E44;
-	Mon,  6 Jul 2026 16:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6378A39B4BC;
+	Mon,  6 Jul 2026 16:59:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783357169; cv=none; b=Wnpgsejvu2w4N95Lo2zC2MxRzgVIyXKwdMgUDkVlmSsLfr9pPfwJWfYTWf1W/I/S0fUJZtzGqZNV8ByEIpzy/RdQ1czYfM3+gWM1f+46HWuZn7iYnGGIVfnhOG00+hvO9wLpJ5EjX1T+IvSEN/JwT35K57bncQm3CBbfDFANt/M=
+	t=1783357194; cv=none; b=mWXwo0C9HoK8DKubzGgKJ4EfrkN2l5TD1pzLjgnKVt/Ia1f+U8ZcjHSbBVJ4VacaTJDm6NO/x8v8Z3Xu33C3df23YWqrqT/20qo6LOKopEOKRi+yRgoRf/O5E+gQ1+83UJ2AsR+xKr8w2GDOugePlNCR49fCbJpTGhMNfiiCRcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783357169; c=relaxed/simple;
-	bh=Eij9NN45WHadIIGng5xyGjgH3Ez+ECAyMwLT2E7r2vI=;
+	s=arc-20240116; t=1783357194; c=relaxed/simple;
+	bh=yCvrY1Qlzegussb8UyfbT2bAtd1gtr2pkvURLSHLCjU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X4OkinEwPeCVtkRIWuQFT7kVwXKtv1Uri0tQZTNKSSHgp4dDb/n4KwNuisZH9uAAwGPtmTakvxk7cm/sRsYNxbdUl4zNdyD0YOZe2ViyogRcaMqrWILJNacwiPb7i2DvZ7yean673nUBvYklle7I/iHRVjno57Zh9D7Sf5SRxN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tthd+//5; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B62F1F000E9;
-	Mon,  6 Jul 2026 16:59:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FLTfkNlEDPws4+PS8fmzvrivy6S9A8sop6dd67X1wWsQlmXwDCAsEXBdcVJ3NjEF6P4wA/fYbZQ+Gf1ZXOpWVVBcu/Jx+QTZKnQaE61tmzu6aFw+/pEy3YQOaAicD97rdsCyCtRApJG3XSYfVYF3TzqMaFZ/AfiZBl6QBscD1zA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=isNEjTTR; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D2071F000E9;
+	Mon,  6 Jul 2026 16:59:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783357166;
-	bh=Eij9NN45WHadIIGng5xyGjgH3Ez+ECAyMwLT2E7r2vI=;
+	s=k20260515; t=1783357193;
+	bh=yCvrY1Qlzegussb8UyfbT2bAtd1gtr2pkvURLSHLCjU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Tthd+//5QgLILAIfB0QHO6lE41MLDOU/r3L8hwfmH0olc6rLxrZWLnodbJtvF+3hL
-	 lONKGvsrpCVW3fdUlriEmaNn8iByl6R0iXdB+hj1fU15bvNoyptacRs999/J+HSXah
-	 w73yTP5yQgp0NnP5ztPs9VdXKZMtNVqmROruFsOsGT6lwFdsBZl3Ynr3l7rHdOqGxy
-	 9AzO3IqKXO/jFN+mvfjrHxq/hpNrzyM3zB5zRCriy5XL66kQVb3WLnMWpghWYF2hWY
-	 mUfMXPS6uVqb80iy/ZlLi1V1eKSBWccVAZTUvW+ZL0fPVRYb+WHFJbiIPGwfLetQp8
-	 pNdFaNyn/iMtw==
-Date: Mon, 6 Jul 2026 17:59:20 +0100
+	b=isNEjTTR8a167Vcf7bhOm0cEoDaqZkP/TY4jerlztUHGg0IIFOX1DbHCCUiniN5ov
+	 rZ7pXqfRT9DCsyvoiHNTczdG3MnQxTlBaf+MvSMit3x/xq0MKCDqxjojVvhholAOSn
+	 BHSbX05rpn5HAjjOq0vTfPWQ0l3CE2pvsYu4Wv5bbHNiwzBXzs0dzwiwoENkh1ZluV
+	 zCKWdrcf9q5FzQygCROw8TarLZpYd7wfvJKIm0BoQp39utWYkSVJz5u2Z/GhwhHoiy
+	 mETCrnauAY7LprWptjWPd33HAk8f81O5luPxUSEqI++xcr6KZLFcW1iOxSYVVYNcM5
+	 W1tK1lx3/oK8g==
+Date: Mon, 6 Jul 2026 17:59:47 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Yanan He <grumpycat921013@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	David Wu <david.wu@rock-chips.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Frank <Frank.Sae@motor-comm.com>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 2/5] dt-bindings: arm: rockchip: Add Alientek DLRV1126
-Message-ID: <20260706-quickness-paradox-2ddd7328fa86@spud>
-References: <20260706-rv1126-alientek-dlrv1126-v2-0-ff3176ca362b@gmail.com>
- <20260706-rv1126-alientek-dlrv1126-v2-2-ff3176ca362b@gmail.com>
+To: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Min Lin <linmin@eswincomputing.com>,
+	Yulin Lu <luyulin@eswincomputing.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Darshan Prajapati <darshan.prajapati@einfochips.com>,
+	Pritesh Patel <pritesh.patel@einfochips.com>
+Subject: Re: [PATCH v2 6/8] dt-bindings: i2c: dw: add ESWIN EIC7700 SoC I2C
+ controller
+Message-ID: <20260706-shelving-dominion-2e2bfdd1dcbb@spud>
+References: <20260706081055.1126275-1-pinkesh.vaghela@einfochips.com>
+ <20260706081055.1126275-7-pinkesh.vaghela@einfochips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,9 +75,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="U1flhJ3EtlV9yrdK"
+	protocol="application/pgp-signature"; boundary="l9ox9MgWlzK4N9Ub"
 Content-Disposition: inline
-In-Reply-To: <20260706-rv1126-alientek-dlrv1126-v2-2-ff3176ca362b@gmail.com>
+In-Reply-To: <20260706081055.1126275-7-pinkesh.vaghela@einfochips.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-5.26 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -88,55 +87,53 @@ X-Spamd-Result: default: False [-5.26 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:grumpycat921013@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:david.wu@rock-chips.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:Frank.Sae@motor-comm.com,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:netdev@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FORGED_RECIPIENTS(0.00)[m:pinkesh.vaghela@einfochips.com,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:andi.shyti@kernel.org,m:mika.westerberg@linux.intel.com,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linmin@eswincomputing.com,m:luyulin@eswincomputing.com,m:samuel.holland@sifive.com,m:darshan.prajapati@einfochips.com,m:pritesh.patel@einfochips.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-321408-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-321409-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,sntech.de,lunn.ch,davemloft.net,google.com,redhat.com,rock-chips.com,gmail.com,foss.st.com,motor-comm.com,armlinux.org.uk,vger.kernel.org,lists.infradead.org,st-md-mailman.stormreply.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,microchip.com:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,spud:mid,microchip.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 300FE713B23
+X-Rspamd-Queue-Id: E6C20714A06
 
---U1flhJ3EtlV9yrdK
+--l9ox9MgWlzK4N9Ub
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---U1flhJ3EtlV9yrdK
+--l9ox9MgWlzK4N9Ub
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakve5wAKCRB4tDGHoIJi
-0klkAQDRoPqv3BY5GD0PHqXAy86oOarOTHzm12zfsS7VHsKg2gEAwSFbwlMYUfLW
-PYYq6cTfP88NVHtb4MWFRQaHkvWc+Qs=
-=5jfH
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakvfAwAKCRB4tDGHoIJi
+0tKRAQCDQ+rJRscgm58ML3Ivf1nzA/E7knQkY0nZL1PKbQIGIgD/QJ74B3qqakGq
+bNq9+rE9wRWp+lBkYr5TW8Att9nN2gk=
+=n4AJ
 -----END PGP SIGNATURE-----
 
---U1flhJ3EtlV9yrdK--
+--l9ox9MgWlzK4N9Ub--
 
