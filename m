@@ -1,333 +1,124 @@
-Return-Path: <devicetree+bounces-321396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321397-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YyOKI/H1S2r4dgEAu9opvQ
-	(envelope-from <devicetree+bounces-321396-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:37:37 +0200
+	id eOC5GgDfS2oqbwEAu9opvQ
+	(envelope-from <devicetree+bounces-321397-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:59:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BC6D71494F
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:37:37 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E77D87139DB
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:59:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QmN0xgzG;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dDXU7toP;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321396-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321396-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321397-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321397-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1537732231AA
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:47:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C5A733023E03
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:51:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440AB3C1F45;
-	Mon,  6 Jul 2026 16:47:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34072423785;
+	Mon,  6 Jul 2026 16:51:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DFDA433BA5
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 16:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3F1424668;
+	Mon,  6 Jul 2026 16:51:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783356468; cv=none; b=cowNSxF5IocyuOVq2DifVJUGWT2ltW+CvlNwWYJiMwShOafnaWkIMpUeWSGlt7AZWb4/63KN2uk4IH2bV1aoS1dDJXxK/IsH5EOB+GTPizvFba0CLx67Eewh253xgqyrCtK9Z2/kBHaW2/ANYvDn/P3QIlB/jHYXG9KTqiBUi0A=
+	t=1783356718; cv=none; b=KIE82bcwS5+vh/s7rwM8EWWtSbpW8Gg0hNcqSfXf9IguBfJb+CxuWc0hqZegnBE9HTZ9D5CHOI2d6mbbwEjmPIMrAutudyWwQ02f0xsGtAlHSCLUfOvNU4N1xK8YoO1swp+5Vl2x6Sei40VdV29Tm8iEwM2Osi6Ptg+NrD2P1bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783356468; c=relaxed/simple;
-	bh=R+o8YtHgJXSHgO5eq7i1Q8n7rZuYFQCp5qW/KIOcLKE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bhNDEm//Lnnuqn4ibr9wskCmurkbDbG6TQXS9Xv6IGKdZ790koHMYM63X0wHUMLrO/wJwLSp3PZ7FP3wBLk/17FpII20gSPwza89FL7ItS5rHjTBeuRI/hZ95yhaiEA3zChp5Oa2D/VEwPGEdpEuQKH2+9mjj8RKu5F/Gjc19kE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QmN0xgzG; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BD0B1F00A3D
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 16:47:45 +0000 (UTC)
+	s=arc-20240116; t=1783356718; c=relaxed/simple;
+	bh=9ddNOu1jB+wf1AVPUmj7NR0ecwDXYHP4itHv2YHqwWY=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Gne8Edt1LizssdsJ29+qODpYQMgfgkj6yr5Y6aDK/pvhEAWO++7skT1YsZ2Q4t/JC2BO/3s8tPNj+XisuvUo/x//2tarIRXwRbsbsUmyyIUIbkvPnz/CJQ6GBR42Nb386j4FN6MMaywWwBQEUGcDeM9Pc/9b1bos8lffL+aAGrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dDXU7toP; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1BB81F000E9;
+	Mon,  6 Jul 2026 16:51:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783356465;
-	bh=LB2/p+oWL4RCfKiVWgBz4FzWrGlF5lzHpnv1b38gamw=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
-	b=QmN0xgzGzQ+V0jLldCISuCSfKjJIAhVQGbwgK/x7q8s0S+B4d1sytLyrP18xGpJ6f
-	 PDWIyLHJjvr6jXOZOOI6wnOq5P6hyBaiM1AaL1B7I0jgo+GADFe/L5XY7UHGRNpS5M
-	 MJr+lF+9uWI/154nJIJrRzwHdKrkZrhVA2ZOJF2Cr/qaIdhNnlbDMvEoVgE+iSQqop
-	 1eRmkB3QZfNZ9OU7O/iAB+JnEYfK3KgYO6XmCNFrtTi8DCGunqKCRD3wu3nX+UH7Fj
-	 1iVjR23hsmbkiZCH8axJAB6CKx1I3KzGP0gjUgVn7Js+DrcNWgLzG4+JTfOuLPDDFx
-	 WkBtuhs0kktPQ==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-39b03d41976so27423831fa.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 09:47:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RqWUhZsMX87VPEl+6nP4SxtChJUZsRWWoXwoWEeiWmkifUAYOqj8hkbmWp0YUBeVEhEvNOOBlzEYUte@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLrbXZiT6j+xoxh0y20q0aFXTGr1eFncUQyFPHgR87hKcltftU
-	yJwJDG7I1oOP19jGw05c/J6LCeapI9v7PxPKogv9SnE1kSDkpoHyr2oDL9DepOb4gfUHVmY9YUv
-	zwkWCpMYPsIpW2WmH0AtqcwvPd7It8qU=
-X-Received: by 2002:a05:651c:549:b0:39b:5a79:ebdf with SMTP id
- 38308e7fff4ca-39c5ffcf5a0mr3892111fa.20.1783356463703; Mon, 06 Jul 2026
- 09:47:43 -0700 (PDT)
+	s=k20260515; t=1783356716;
+	bh=o7fFB3vRviS+SAq8MySgtijtTpItKoaFOog02r7EO7A=;
+	h=From:To:In-Reply-To:References:Subject:Date;
+	b=dDXU7toPgKIuALtUfdJzUkg/X3+XXOCKb8BmFZIGaf9SExJ3O5MX87fW2cIKMu7JG
+	 19iQqLA65DYi+8wtkbRoWjW9YifvpZ4ZGA1riUGFVhGWRaEkBh84i7XhX2DWXtI99u
+	 Ea2ycWGpc1M7vpfSEAXfI2UuRi6jQMkmhqda+0iYBUBwCu9S4XSDvuynQ+erx4cYb6
+	 E98vP9owXf7td7SyRNtLaaNPOWFAgC3rkhn72QPQoz/O7sjSaocAJnMl2FG+nUiOYp
+	 SCsO/Lv+IvobC33YyMuvjIi+z9igAK7mGgxpmsM6u0zSorotNAL169vmjaUA5KrlBB
+	 c6x8Yk993s/PA==
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260706101951.341727-2-krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260706101951.341727-2-krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH] ARM: dts: allwinner: sun8i-h3: Correct indentation
+Message-Id: <178335671460.3965045.10345566187999207328.b4-ty@kernel.org>
+Date: Tue, 07 Jul 2026 00:51:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260706-a733-rtc-v4-0-f330728db3d3@baylibre.com> <20260706-a733-rtc-v4-9-f330728db3d3@baylibre.com>
-In-Reply-To: <20260706-a733-rtc-v4-9-f330728db3d3@baylibre.com>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 7 Jul 2026 00:47:30 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67AXz=TPzNFnRMS9-vweL+6g5T57dwwYCdorwdi8HWcjA@mail.gmail.com>
-X-Gm-Features: AVVi8CdByrsX-9_IhDg4o1yi7VabBipaYBE9WpxkiCIMPZgcujnRc2dyQoLeBWQ
-Message-ID: <CAGb2v67AXz=TPzNFnRMS9-vweL+6g5T57dwwYCdorwdi8HWcjA@mail.gmail.com>
-Subject: Re: [PATCH v4 9/9] clk: sunxi-ng: sun6i-rtc: add a733 support
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Junhui Liu <junhui.liu@pigmoral.tech>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Maxime Ripard <mripard@kernel.org>, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-321396-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321397-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jbrunet@baylibre.com,m:junhui.liu@pigmoral.tech,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:mripard@kernel.org,m:linux-rtc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-clk@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,oss.qualcomm.com];
 	FORGED_SENDER(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[pigmoral.tech,bootlin.com,kernel.org,gmail.com,sholland.org,baylibre.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[wens@kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0BC6D71494F
+X-Rspamd-Queue-Id: E77D87139DB
 
-On Mon, Jul 6, 2026 at 5:32=E2=80=AFPM Jerome Brunet <jbrunet@baylibre.com>=
- wrote:
->
-> Add support for the sun60i a733 CCU RTC.
->
-> Compared to the a523, this SoC has a different input oscillator divider
-> which auto-detects the oscillator rate and select a divider to provide
-> a fixed 32768Hz clock. It also provides several phy reference clocks
-> with dedicated clock gates.
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/clk/sunxi-ng/ccu-sun6i-rtc.c | 73 ++++++++++++++++++++++++++++++=
-++++--
->  drivers/clk/sunxi-ng/ccu-sun6i-rtc.h |  2 +-
->  2 files changed, 71 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/clk/sunxi-ng/ccu-sun6i-rtc.c b/drivers/clk/sunxi-ng/=
-ccu-sun6i-rtc.c
-> index 25dd87e78eb7..6b71bbd80255 100644
-> --- a/drivers/clk/sunxi-ng/ccu-sun6i-rtc.c
-> +++ b/drivers/clk/sunxi-ng/ccu-sun6i-rtc.c
-> @@ -44,9 +44,13 @@
->  #define DCXO_CTRL_REG                  0x160
->  #define DCXO_CTRL_CLK16M_RC_EN         BIT(0)
->
-> +#define DCXO_GATING_REG                        0x16c
-> +
->  struct sun6i_rtc_match_data {
->         bool                            have_ext_osc32k         : 1;
->         bool                            have_iosc_calibration   : 1;
-> +       bool                            have_dcxo_status        : 1;
-> +       bool                            have_phy_ref_gates      : 1;
->         bool                            rtc_32k_single_parent   : 1;
->         const struct clk_parent_data    *osc32k_fanout_parents;
->         u8                              osc32k_fanout_nparents;
-> @@ -213,7 +217,12 @@ static struct ccu_mux osc32k_clk =3D {
->         },
->  };
->
-> -/* This falls back to the global name for fwnodes without a named refere=
-nce. */
-> +/*
-> + * This falls back to the global name for fwnodes without a named refere=
-nce.
-> + * NOTE: osc24M name might be misleading the oscillator could also be a =
-26MHz
-> + * or a 19.2MHz one starting with the a733. The original name is kept an=
-yway
-> + * in case anything is relying on it.
-> + */
->  static const struct clk_parent_data osc24M[] =3D {
->         { .fw_name =3D "hosc", .name =3D "osc24M" }
->  };
-> @@ -227,8 +236,28 @@ static struct clk_fixed_factor osc24M_32k_div_clk =
-=3D {
->                                             0),
->  };
->
-> -static SUNXI_CCU_GATE_HW(osc24M_32k_clk, "osc24M-32k", &osc24M_32k_div_c=
-lk.hw,
-> -                        LOSC_OUT_GATING_REG, BIT(16), 0);
-> +static struct clk_div_table osc24M_32k_div_a733_table[] =3D {
-> +       { .val =3D 0, .div =3D 732 },
-> +       { .val =3D 1, .div =3D 586 },
-> +       { .val =3D 2, .div =3D 793 },
-> +       { .val =3D 3, .div =3D 732 },
-> +       { /* Sentinel */ },
-> +};
-> +
-> +static struct ccu_div osc24M_32k_div_a733_clk =3D {
-> +       .enable =3D BIT(1),
-> +       .div    =3D _SUNXI_CCU_DIV_TABLE(14, 2, osc24M_32k_div_a733_table=
-),
-> +       .common =3D {
-> +               .reg            =3D DCXO_CTRL_REG,
-> +               .hw.init        =3D CLK_HW_INIT_PARENTS_DATA("osc24M-32k-=
-div",
-> +                                                          osc24M,
-> +                                                          &ccu_rodiv_ops=
-,
-> +                                                          0),
-> +       },
-> +};
-> +
-> +static SUNXI_CCU_GATE(osc24M_32k_clk, "osc24M-32k", "osc24M-32k-div",
+On Mon, 06 Jul 2026 12:19:52 +0200, Krzysztof Kozlowski wrote:
+> Correct spaces or mix of tabs+spaces into proper tab-indented lines.
+> No functional impact (same DTB).
+> 
+> 
 
-I'm not a big fan of using global clock parent names, especially when we
-can have proper struct clk_hw pointer references. However in this case
-it seems unavoidable without making a huge mess.
+Applied to sunxi/dt-for-7.3 in sunxi, thanks!
 
-> +                     LOSC_OUT_GATING_REG, BIT(16), 0);
->
->  static const struct clk_hw *rtc_32k_parents[] =3D {
->         &osc32k_clk.common.hw,
-> @@ -267,6 +296,15 @@ static struct ccu_mux osc32k_fanout_clk =3D {
->         },
->  };
->
-> +static SUNXI_CCU_GATE_FW(hosc_serdes1_clk, "hosc-serdes1", "hosc",
-> +                     DCXO_GATING_REG, BIT(5), 0);
-> +static SUNXI_CCU_GATE_FW(hosc_serdes0_clk, "hosc-serdes0", "hosc",
-> +                     DCXO_GATING_REG, BIT(4), 0);
-> +static SUNXI_CCU_GATE_FW(hosc_hdmi_clk, "hosc-hdmi", "hosc",
-> +                     DCXO_GATING_REG, BIT(1), 0);
-> +static SUNXI_CCU_GATE_FW(hosc_ufs_clk, "hosc-ufs", "hosc",
-> +                     DCXO_GATING_REG, BIT(0), 0);
-> +
->  static struct ccu_common *sun6i_rtc_ccu_clks[] =3D {
->         &iosc_clk,
->         &iosc_32k_clk,
-> @@ -275,6 +313,11 @@ static struct ccu_common *sun6i_rtc_ccu_clks[] =3D {
->         &osc24M_32k_clk.common,
->         &rtc_32k_clk.common,
->         &osc32k_fanout_clk.common,
-> +       &osc24M_32k_div_a733_clk.common,
-> +       &hosc_serdes1_clk.common,
-> +       &hosc_serdes0_clk.common,
-> +       &hosc_hdmi_clk.common,
-> +       &hosc_ufs_clk.common,
->  };
->
->  static struct clk_hw_onecell_data sun6i_rtc_ccu_hw_clks =3D {
-> @@ -288,6 +331,10 @@ static struct clk_hw_onecell_data sun6i_rtc_ccu_hw_c=
-lks =3D {
->                 [CLK_OSC24M_32K]        =3D &osc24M_32k_clk.common.hw,
->                 [CLK_RTC_32K]           =3D &rtc_32k_clk.common.hw,
->                 [CLK_OSC24M_32K_DIV]    =3D &osc24M_32k_div_clk.hw,
-> +               [CLK_HOSC_UFS]          =3D &hosc_ufs_clk.common.hw,
-> +               [CLK_HOSC_HDMI]         =3D &hosc_hdmi_clk.common.hw,
-> +               [CLK_HOSC_SERDES0]      =3D &hosc_serdes0_clk.common.hw,
-> +               [CLK_HOSC_SERDES1]      =3D &hosc_serdes1_clk.common.hw,
->         },
->  };
->
-> @@ -330,6 +377,15 @@ static const struct sun6i_rtc_match_data sun55i_a523=
-_rtc_ccu_data =3D {
->         .osc32k_fanout_nparents =3D ARRAY_SIZE(sun50i_r329_osc32k_fanout_=
-parents),
->  };
->
-> +static const struct sun6i_rtc_match_data sun60i_a733_rtc_ccu_data =3D {
-> +       .have_ext_osc32k        =3D true,
-> +       .have_iosc_calibration  =3D true,
-> +       .have_dcxo_status       =3D true,
-> +       .have_phy_ref_gates     =3D true,
-> +       .osc32k_fanout_parents  =3D sun50i_r329_osc32k_fanout_parents,
-> +       .osc32k_fanout_nparents =3D ARRAY_SIZE(sun50i_r329_osc32k_fanout_=
-parents),
-> +};
-> +
->  static const struct of_device_id sun6i_rtc_ccu_match[] =3D {
->         {
->                 .compatible     =3D "allwinner,sun50i-h616-rtc",
-> @@ -343,6 +399,10 @@ static const struct of_device_id sun6i_rtc_ccu_match=
-[] =3D {
->                 .compatible     =3D "allwinner,sun55i-a523-rtc",
->                 .data           =3D &sun55i_a523_rtc_ccu_data,
->         },
-> +       {
-> +               .compatible     =3D "allwinner,sun60i-a733-rtc",
-> +               .data           =3D &sun60i_a733_rtc_ccu_data,
-> +       },
->         {},
->  };
->  MODULE_DEVICE_TABLE(of, sun6i_rtc_ccu_match);
-> @@ -375,6 +435,13 @@ int sun6i_rtc_ccu_probe(struct device *dev, void __i=
-omem *reg)
->         osc32k_fanout_init_data.parent_data =3D data->osc32k_fanout_paren=
-ts;
->         osc32k_fanout_init_data.num_parents =3D data->osc32k_fanout_npare=
-nts;
->
-> +       if (data->have_dcxo_status)
-> +               sun6i_rtc_ccu_hw_clks.hws[CLK_OSC24M_32K_DIV] =3D
-> +                       &osc24M_32k_div_a733_clk.common.hw;
-> +
-> +       if (!data->have_phy_ref_gates)
-> +               sun6i_rtc_ccu_hw_clks.num =3D CLK_OSC24M_32K_DIV + 1;
+[1/1] ARM: dts: allwinner: sun8i-h3: Correct indentation
+      https://git.kernel.org/sunxi/linux/c/5ede58393a70
 
-Maybe keep the old CLK_NUMBER macro and call the new one CLK_NUMBER_A733?
-The point is to not directly use a random macro + 1 here.
+Best regards,
+-- 
+Chen-Yu Tsai <wens@kernel.org>
 
-Otherwise,
-
-Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
-
-> +
->         return devm_sunxi_ccu_probe(dev, reg, &sun6i_rtc_ccu_desc);
->  }
->
-> diff --git a/drivers/clk/sunxi-ng/ccu-sun6i-rtc.h b/drivers/clk/sunxi-ng/=
-ccu-sun6i-rtc.h
-> index ab7b92b47f59..4f4f4cb00f1d 100644
-> --- a/drivers/clk/sunxi-ng/ccu-sun6i-rtc.h
-> +++ b/drivers/clk/sunxi-ng/ccu-sun6i-rtc.h
-> @@ -11,6 +11,6 @@
->  #define CLK_RTC_32K            6
->  #define CLK_OSC24M_32K_DIV     7
->
-> -#define CLK_NUMBER             (CLK_OSC24M_32K_DIV + 1)
-> +#define CLK_NUMBER             (CLK_HOSC_SERDES1 + 1)
->
->  #endif /* _CCU_SUN6I_RTC_H */
->
-> --
-> 2.47.3
->
 
