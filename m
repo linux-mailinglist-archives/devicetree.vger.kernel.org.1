@@ -1,130 +1,211 @@
-Return-Path: <devicetree+bounces-321033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321036-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZQaKNAuIS2pCUwEAu9opvQ
-	(envelope-from <devicetree+bounces-321033-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:48:43 +0200
+	id UwDHDMmIS2r3UwEAu9opvQ
+	(envelope-from <devicetree+bounces-321036-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:51:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29FE170F75A
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B7070F7DB
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:51:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AWsnFWEU;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321033-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321033-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=baylibre.com header.s=google header.b=aTea8ABu;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321036-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321036-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 829AA3257EF6
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:04:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7E10438FEED3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:06:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB3323FD14D;
-	Mon,  6 Jul 2026 09:49:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0440D3FD147;
+	Mon,  6 Jul 2026 09:57:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89B33C1088;
-	Mon,  6 Jul 2026 09:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66458423771
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 09:57:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783331361; cv=none; b=Y6rGlp7/OuHNwNPeHu22n5is80/j+hLuHNKRdECXMUgdks4YojPrhqZLxRyd4dh8JeQDOByUW/6R9WxTq9liOpp+eig0NmrrMu2KfKEFtyuqzd48tsYWFbR+VHONpPs2woVz1/XdEy4dgZfud/rPBBmjLI4kAEN7qWS+cLZptxM=
+	t=1783331847; cv=none; b=uONZvugLVUwqENE99XTNgiGsfX0NWyhiu0wVzONeengZK/EYc6W+xyIFX7pmLbccgnMGBZKEHbPB4RVOMT2VXwICzgv22fGuExpyZNkBzEg7jmEuy1TJGTR9WVOm+lIGqoCSjdl8IX4A5zC1jdZoy2lOsho5wOY2FO0XWHV9Brw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783331361; c=relaxed/simple;
-	bh=+b9hs0d2F7m4ZhEJ9RX0uLHqnZOXcTScH2nR7J8L+x4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=MoX9NH7obi87zBMBlVQ1eUJuPKZV3a8LB8H25HdsCjrL8pUSk9uORJst7jJPXohXBFKmyEzoRT02DG5nHTDbPxzD3nTFM5FyDTNRZjtxOUnTbziU/JhnNL6uu8HNVyZufDKDYe5bAGAF8PjvCDpB6jYPU+gj5Dc+UqTUN5O4+NQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AWsnFWEU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 993361F000E9;
-	Mon,  6 Jul 2026 09:49:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783331358;
-	bh=+b9hs0d2F7m4ZhEJ9RX0uLHqnZOXcTScH2nR7J8L+x4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=AWsnFWEUbvo/QlFTPCJEFq7gpQP+rzhBk4LnGiYRHX58Itsp/7v0u84HmGPgZcD3w
-	 e1n/kvACcj1pLda9OBbXaxy8glYPRDnW3h72KDZC8gMeBg2Q8lQwVOtxUnSnG8HCMG
-	 Ag8Bn66+2QK0CFzGJb8CheR2iLhrbAeaTY9OH67pK2ykwsOug1WhnUAK3ALeWeeLMI
-	 2+RK8eR7OR7fdXnZaPGq63xwvxZOosO3L3tqaA9TVaQ0M91V09Hsy7gzcq+89sX/2O
-	 p5mBw/bogfegNpwbMtJzliSLRy+SavlV/OU+v/4bvYNn6nX35WkLwcaiC2fbhzH6dI
-	 /1dl+jBiT+UJg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 4/9] clk: sunxi-ng: sun6i-rtc: clean up DT usage
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jerome Brunet" <jbrunet@baylibre.com>
-Cc: conor+dt@kernel.org, "Alexandre Belloni" <alexandre.belloni@bootlin.com>, linux-rtc@vger.kernel.org, robh@kernel.org, linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
-In-Reply-To: <20260706-a733-rtc-v4-4-f330728db3d3@baylibre.com>
-References: <20260706-a733-rtc-v4-0-f330728db3d3@baylibre.com>
- <20260706-a733-rtc-v4-4-f330728db3d3@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 06 Jul 2026 09:49:17 +0000
-Message-Id: <20260706094917.993361F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783331847; c=relaxed/simple;
+	bh=nes5Ub0CVzx3uPNgKUdF8tABxjL0sxWA9i2pa2yoepw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Lc2SGAe2SzLQmaUKxOITwbaWwcdleHE4fULOO/lbFlp2SJknnSy8UXG3nKSXTpF1n1CZOg5lvMYXvKOOdQBaMnWRF+nkxm3dsVpT+6ln9F8uwxop8jelk178bJ4t0WDF6C6Gm9hWuY3BGwcSd9yBe1Qe1uM5u3HlSXFNwhWYY3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=aTea8ABu; arc=none smtp.client-ip=209.85.160.177
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-51c2808dbc3so16767591cf.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 02:57:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1783331842; x=1783936642; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VeGmm6QMVZmwdVqoSMin3z7nkFa/KfiO/8uXP9FSNB8=;
+        b=aTea8ABuBrfF9rsApj0si8ieVdGF6X+jhyRQEXRe7dR6P52HWrDstHBUmdRWo4PG7+
+         AC3rxZtzONdDeqV7zW66i9+QljEnjO7ti8c8/Sf8iHSlX4G9NMM4XhXkA96P+1Yyfy5M
+         rMnLtNg4MnZ6+MUqc+zRwj7IFevd5M3gnO3Vva+1FDuEyHbF0iVo84to8HfsrLkoZ/SJ
+         jyun/QoS8gSy83sD8tmg9vBkT+PnQPnNJjV3+YTtw7xywk7T88UYbzA3Pd/FkfmiPT2W
+         OSp6+B80GF2z+aovhnvcochKamZqACA0FhPhDq5QvS5gaUEjAMHcAunQ389j15p72HJD
+         fu1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783331842; x=1783936642;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VeGmm6QMVZmwdVqoSMin3z7nkFa/KfiO/8uXP9FSNB8=;
+        b=Yly/W/fetXIP6Xt9ao0pFN7n+DBiNqE1+FozWHYd78dgNNwphd6eiOVtOknjTAuu2y
+         uzIsx+4a3Smb/n4CjXfCX6yNsaLU2hBe6ELRJp3pabcgPeO03nAop7qKF3cFnuni/794
+         FhlRMdZvVk7Msl0J7qLKSGyqDgwhU294o9UOjMBgtAdtcZk6Z2k8cKYPI6nZrIzX3WD/
+         ODmJt9Ktn+N2P9JRZUsFsjzBiRvJshPm77tYgrQ1+UQ1Z0dtwzdNvk/zOlaDmG3OvfZV
+         6XL1Bv+pwniNRtdONyOt+13A7Qc7fW0WtPeLkl+kzmMJ8AgKD8LIq4pZHa5zuQN7Ksku
+         Lqdg==
+X-Forwarded-Encrypted: i=1; AHgh+RrbbzzZYL4llFFcX2yBOkdICcAjGoOlqKQPhhfdfFK94+3QDqQjdZPFU02wx1qrTlLgfrf/hXLwv43U@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxRADZ5u7E0PIAQz8eq8reS8CS0taMunDLcmi4Pp9vqMZSgF4W
+	VvUWuVFzrqZ11k+mG3eNNYNO27Adl4GyiYd76Z/bwbjJEt4lgFXS0KcBTJ93rvu7qOM=
+X-Gm-Gg: AfdE7clhof832IBQ/rKhDNqeA7smqE70SFGzOlnS9aDAQ8lbSLvuFIxE4qnw6YbfAfd
+	OMXRE3BR5yOtCMN5Ng0gioay9AvSqR4PKVqS3rFJFhxDeDc7dAbgnIJtwnB2tQfeP5PzS2HaSDc
+	Gw869JPMI9mLv5CWcl9DkVSwFOOOqN/XgVhzSv8cBDZpNP5IrFno1hQbwCnhDbXba9ks6B967wp
+	+MMbuhPWEaCtr4u+iPQv0KeMkOr5BiMp1kLnNC0xeSE2susQL3BPIFK0wm3w2Tmsj3B1l1BCgoB
+	2PczOd09h3UKDeBYl69KJQZh0HlsuaDfx7iEbXJA7pRQl1BDo7fdKpuWX00tlkDdrQ1zmLT3F64
+	QLiDTj5gI8P7qxtwg1QhhckKd1MmMJETeCbJy2NT9T3gfwuOFQgV6bf7/7XcYwROZPfa5CslOKb
+	K0VzgL4RUsWYIUSxaNR0lsQg==
+X-Received: by 2002:a05:622a:6f17:20b0:51c:7bd:2c6f with SMTP id d75a77b69052e-51c4c1f65b7mr72917671cf.8.1783331841685;
+        Mon, 06 Jul 2026 02:57:21 -0700 (PDT)
+Received: from macbook ([62.182.99.136])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-51c41db4fb5sm83880041cf.25.2026.07.06.02.57.19
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Mon, 06 Jul 2026 02:57:21 -0700 (PDT)
+From: Carlo Caione <ccaione@baylibre.com>
+To: robh@kernel.org,
+	saravanak@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Carlo Caione <ccaione@baylibre.com>
+Subject: [PATCH] of/address: Fix NULL bus dereference in of_pci_range_parser_one()
+Date: Mon,  6 Jul 2026 11:55:57 +0200
+Message-ID: <20260706095651.48839-1-ccaione@baylibre.com>
+X-Mailer: git-send-email 2.55.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321033-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jbrunet@baylibre.com,m:conor+dt@kernel.org,m:alexandre.belloni@bootlin.com,m:linux-rtc@vger.kernel.org,m:robh@kernel.org,m:linux-sunxi@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-321036-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:saravanak@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ccaione@baylibre.com,s:lists@lfdr.de];
+	DMARC_NA(0.00)[baylibre.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[ccaione@baylibre.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ccaione@baylibre.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,baylibre.com:from_mime,baylibre.com:email,baylibre.com:mid,baylibre.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 29FE170F75A
+X-Rspamd-Queue-Id: 70B7070F7DB
 
-> With sun6i-rtc compatible devices, the "ext-osc32k" clock input
-> is optional for the devices that support this input (r329 and onward).
->=20
-> Probably preparing for older SoC support, the driver does something funny
-> when parsing DT. It check if "ext-osc32k" is present in the clock-names a=
-nd
-> if it is not, it uses the first clock as "ext-osc32k". This clock will
-> actually be the rtc bus clock so what the driver does is wrong.
->=20
-> At the moment, the driver does not support the older SoCs that would have
-> an external 32k clock provided on index #0 so just remove this quirk.
->=20
-> Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+The bus matching rework made of_match_bus() return NULL for nodes
+with ranges/dma-ranges but no local #address-cells. parser_init()
+stored that NULL bus, and the range iterator later dereferenced it.
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+Reject such nodes in parser_init(), leaving an explicit empty iterator
+for callers that ignore the init return. Keep the DMA limit walk guarded
+by a non-empty dma-ranges property, and only clamp the limit when at
+least one complete range was parsed.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706-a733-rtc-v=
-4-0-f330728db3d3@baylibre.com?part=3D4
+Fixes: 64ee3cf096ac ("of/address: Rework bus matching to avoid warnings")
+Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+---
+ drivers/of/address.c | 21 +++++++++++++++------
+ 1 file changed, 15 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index cf4aab11e9b1..b57b1adbad44 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -753,6 +753,7 @@ EXPORT_SYMBOL(of_property_read_reg);
+ static int parser_init(struct of_pci_range_parser *parser,
+ 			struct device_node *node, const char *name)
+ {
++	const __be32 *range;
+ 	int rlen;
+ 
+ 	parser->node = node;
+@@ -761,12 +762,18 @@ static int parser_init(struct of_pci_range_parser *parser,
+ 	parser->ns = of_bus_n_size_cells(node);
+ 	parser->dma = !strcmp(name, "dma-ranges");
+ 	parser->bus = of_match_bus(node);
++	parser->range = NULL;
++	parser->end = NULL;
+ 
+-	parser->range = of_get_property(node, name, &rlen);
+-	if (parser->range == NULL)
++	range = of_get_property(node, name, &rlen);
++	if (!range)
+ 		return -ENOENT;
+ 
+-	parser->end = parser->range + rlen / sizeof(__be32);
++	if (!parser->bus)
++		return -EINVAL;
++
++	parser->range = range;
++	parser->end = range + rlen / sizeof(__be32);
+ 
+ 	return 0;
+ }
+@@ -792,7 +799,7 @@ struct of_pci_range *of_pci_range_parser_one(struct of_pci_range_parser *parser,
+ 	int na = parser->na;
+ 	int ns = parser->ns;
+ 	int np = parser->pna + na + ns;
+-	int busflag_na = parser->bus->flag_cells;
++	int busflag_na;
+ 
+ 	if (!range)
+ 		return NULL;
+@@ -800,6 +807,8 @@ struct of_pci_range *of_pci_range_parser_one(struct of_pci_range_parser *parser,
+ 	if (!parser->range || parser->range + np > parser->end)
+ 		return NULL;
+ 
++	busflag_na = parser->bus->flag_cells;
++
+ 	range->flags = parser->bus->get_flags(parser->range);
+ 
+ 	range->bus_addr = of_read_number(parser->range + busflag_na, na - busflag_na);
+@@ -976,8 +985,8 @@ phys_addr_t __init of_dma_get_max_cpu_address(struct device_node *np)
+ 		np = of_root;
+ 
+ 	ranges = of_get_property(np, "dma-ranges", &len);
+-	if (ranges && len) {
+-		of_dma_range_parser_init(&parser, np);
++	if (ranges && len && !of_dma_range_parser_init(&parser, np) &&
++	    of_range_count(&parser)) {
+ 		for_each_of_range(&parser, &range)
+ 			if (range.cpu_addr + range.size > cpu_end)
+ 				cpu_end = range.cpu_addr + range.size - 1;
+-- 
+2.55.0
 
 
