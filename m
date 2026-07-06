@@ -1,202 +1,170 @@
-Return-Path: <devicetree+bounces-320902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320908-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CInZNCFsS2qYRAEAu9opvQ
-	(envelope-from <devicetree+bounces-320902-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:49:37 +0200
+	id 4AxqNLBsS2q3RAEAu9opvQ
+	(envelope-from <devicetree+bounces-320908-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:52:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C22D70E4A5
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:49:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 413D370E4E5
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:52:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320902-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320902-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=einfochips.com header.s=NAESA-Selector1 header.b=kTVoD+hW;
+	dmarc=pass (policy=reject) header.from=einfochips.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320908-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320908-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ECEC83042582
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 08:09:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A29EC3127A66
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 08:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1883DD87A;
-	Mon,  6 Jul 2026 08:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD5E3EFD0F;
+	Mon,  6 Jul 2026 08:12:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from naesa05.arrow.com (naesa05.arrow.com [216.150.161.26])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2F393DEADB
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 08:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E588639A812;
+	Mon,  6 Jul 2026 08:12:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783325358; cv=none; b=k0tg8fESa/+NToIEU+BMxKMiUwgR2Se7rE0vVbdEt44C+3mQTcDYSdqI01D/Hs/A6hbkmvvOxP5PVr1Z8k5emU0BbMW51lJ9pS1dkwJ833RsbFh0Eura8Sa4eogzkyPMPTtFbPqA+NGOG70v8Qy/NID7C0UGk1dzm50P7jX1nEQ=
+	t=1783325535; cv=none; b=Bk6YE94Ehra+xFdT64f3Nb2y1kUFa4lNGrTmfGSTG1W4uoHqNlHs1GfDU52EXypPBNXTdXlEf4Zh76EkewYVt5tgjrgR0Ltx0LpyahWVLqwEQjFbn1/Evt57VUkV/MFbC4K403DtpJRxJb8SbrShqMmCLfGuLZEngZXPXUTdEJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783325358; c=relaxed/simple;
-	bh=glp/HdZjPID3k9JwT/K76pg9j++zO7I3Rw77qWLA6Kg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=N3O8jELnlQBvvkEhDzrSWd/yj06EE24o2oc2bi3Q1j5+SIwbeLyyt6C/TTPVBxU4d8EkkNbloiHvU224GvZ0zH3Jv7Ab76boc9Ny53GJJd309/70MDQ5zMDg3zDKb7ws1OujHwhmlbOUw9WlrHT/xZR5LXrGTZftYjk29C1Z/OI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.44
-Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-736eea06c3eso751599137.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 01:09:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783325351; x=1783930151;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qf9yz7bHOmjN0sKgSDCZJBffOCMRQyGOU+wzNPd/KAs=;
-        b=lSTHjGhtHoDgR6uiWsUE4A4F4Q67tO0FGING3fja+PMMkwGaigkEprubnGQaMk2I93
-         hGcsc7nCh50masTlKEjOXZ54df+o/6Ksy+NO+aB9KDepxKghcDct674TB4m/U641SMzB
-         vvanbEy5hulPU7PgjSRzSL32SHLPTd3nG64jaQi6qFOQSfMLpt1mCTDNiTzpEC/6zrSb
-         1nQ9by8VE0UJt/RmCou1vVxsmIemKnDa162XyN67xmeYIsO9C7MRWkqdz5ugaDbSU+Vp
-         F6mxvorHJERp2L9srbAA3RM1I59kNrwPnP39GEtBS4y9SaWU8H3TJvM0njKpkAsXuUkz
-         xDcw==
-X-Forwarded-Encrypted: i=1; AHgh+RrYRU6hooe5u0+4kqbFV0I3Af2lul3WqufiiAu+k7oN8hIq5P2Bp+1/LsVeP3js4dVXWotOmnIKlZhV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEH01FO55CeSA4sX4nfvS0yq9BgRnTG1j/LFGW+Lrpe7y5W83B
-	QpzpLXkLhcFEEXb4yfAuonxSBDKZTlnWQwG/gUSkOeUS//6ZGHvsNz97VS5s7iMh
-X-Gm-Gg: AfdE7ck/w7/oR49UoVsAulUaHwha+9gUUpFxNbD82O7KQsWyKQCjud1Fx127EQ2qClv
-	qIcMWKi55p5mafa1TRngFXR5fpWUY0xA8WVrA25IHdXyFs1tVUu+TcKGJi1IQPaVnq/VOX4eRCt
-	5yNMYNtApEz3pxSrKsaS4D77m0RJNI1SHQQSnKRnsy6LjdKEU6pRUpm+nLR/fqvoVilrjO3UOYA
-	YTxkbJH0GGZc3L79dvvdUSMrJzKObQ4HIqaX/Ia8VPBKdpNVCkHFyqfLvrWZalmOxu6usApexW5
-	mI3RlNztTqss27Bz6zHOsTDGt8SYnwo0fAL2Jq0HkuQG4mEbtjAr1fgGBSUmMzNSYn22W2WPsL4
-	vyHU5Ox+FuxGvAS/aW2FiYNLEle670OuIrVFe9OgcQaQrx10dhohfvc0+kc5zz2EV3m3oQaJeUE
-	ikhwqCFE+p5OOv70pg5tim5hF/uZ0TiN892AuhM6Y62Nzn9ofQ/H/8GIz0JltY
-X-Received: by 2002:a05:6102:2c8c:b0:738:8022:d74c with SMTP id ada2fe7eead31-7427e7fa3a8mr2676624137.15.1783325351356;
-        Mon, 06 Jul 2026 01:09:11 -0700 (PDT)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-969838bb88asm4709117241.4.2026.07.06.01.09.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jul 2026 01:09:10 -0700 (PDT)
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-738bcf9a573so728906137.2
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 01:09:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RoxCmvu7ok9frMwZGd5i01JdfIosnELUhANjiYAUpJWIVNWjEYY3lWCkEW6r2LdhItrBC6ZZDhanTZW@vger.kernel.org
-X-Received: by 2002:a05:6102:32cd:b0:73a:2195:4386 with SMTP id
- ada2fe7eead31-7427f05af6fmr3257389137.24.1783325349869; Mon, 06 Jul 2026
- 01:09:09 -0700 (PDT)
+	s=arc-20240116; t=1783325535; c=relaxed/simple;
+	bh=pw0vj+IpR76LWh+hrLVLHyzI3AzgtdkykGqp6E1Y7Xc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=UjcAtF5S18Kch05UlxWp92D3CWlxyzzlCq2zOcvagDvTjUEk6CRFYpW2Qc9FoPF2Zl3L2Y2AiCnmg60Eo8NhkBFc25OT91k8wgVDDVacKBeut7t9XhjgL1kimf+A0TjFbsvcY7EVbfdBs+1KUTpGFNnxiu8prmYeNWX7k+v4JZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=einfochips.com; spf=pass smtp.mailfrom=einfochips.com; dkim=pass (2048-bit key) header.d=einfochips.com header.i=@einfochips.com header.b=kTVoD+hW; arc=none smtp.client-ip=216.150.161.26
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=einfochips.com; i=@einfochips.com; l=1762; q=dns/txt;
+  s=NAESA-Selector1; t=1783325532; x=1814861532;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=DsT3k1JxGiBxu8sTPdmZdN71lJZTeiOhorI0VrVBI4Q=;
+  b=kTVoD+hWTU2Gi37oH5kdwZkmM2DWNKX4df53NpEOWhD70SKByw9S0zoB
+   FpPI7aR4ksnSJJUDxFUJBTNohQ4KiQIbajEmKb1ASZzFvvQGpXbOyM6oD
+   XuNniWpD+VGxV1255YYzGpvyASl0FFUtEpcgwFV3XNvS16nyGN9MHjVYM
+   OBd/AcWbUN5froU0s98QXdPnR20SAk+8/JtNft6QgDkwA3V1CB2jArle+
+   dtuKk68rcLivJ9wXNPgvaxBe+maElU0pTAaw5wfcNkMbdbvPpNBhJWiHV
+   LboMqbpE8znDeO8EUFzgO9d6QmgIxe+X9kLEejtPHwfpSAuEDzecctz5U
+   w==;
+X-CSE-ConnectionGUID: cOMtjOruTUSRlcdRNeXm3w==
+X-CSE-MsgGUID: LCxTXXzCS26HvEadZL00sw==
+X-IronPort-AV: E=Sophos;i="6.25,149,1779170400"; 
+   d="scan'208";a="57540289"
+Received: from unknown (HELO eicahmirelay01.einfochips.com) ([10.100.49.50])
+  by naesa05out.arrow.com with ESMTP; 06 Jul 2026 02:10:57 -0600
+Received: from AHMCPU1888.localdomain ([172.25.5.100]) by eicahmirelay01.einfochips.com with Microsoft SMTPSVC(10.0.20348.1);
+	 Mon, 6 Jul 2026 13:40:55 +0530
+From: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
+To: Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Min Lin <linmin@eswincomputing.com>
+Cc: Yulin Lu <luyulin@eswincomputing.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Darshan Prajapati <darshan.prajapati@einfochips.com>,
+	Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>,
+	Pritesh Patel <pritesh.patel@einfochips.com>
+Subject: [PATCH v2 0/8] riscv: eswin: eic7700: Add support for clocks, resets, pinctrl, HSP bus, I2C and watchdog
+Date: Mon,  6 Jul 2026 13:40:47 +0530
+Message-Id: <20260706081055.1126275-1-pinkesh.vaghela@einfochips.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260705213542.28987-1-laurent.pinchart+renesas@ideasonboard.com> <20260705213542.28987-2-laurent.pinchart+renesas@ideasonboard.com>
-In-Reply-To: <20260705213542.28987-2-laurent.pinchart+renesas@ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 6 Jul 2026 10:08:57 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUCqTQ0fWDyHJkU=0gzFe88r0hsSk9tsgfQUZq4TRcAoQ@mail.gmail.com>
-X-Gm-Features: AVVi8CeGulURzBLLfkjFzqZ7MqehawY40QKBoJDeR4KrDLoVwstpoZpBrt3N2ag
-Message-ID: <CAMuHMdUCqTQ0fWDyHJkU=0gzFe88r0hsSk9tsgfQUZq4TRcAoQ@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: display: vga-connector: Allow hardcoding EDID
-To: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	Thuan Nguyen <thuan.nguyen-hong@banvien.com.vn>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 06 Jul 2026 08:10:55.0812 (UTC) FILETIME=[F85EB840:01DD0D1E]
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[einfochips.com,reject];
+	R_DKIM_ALLOW(-0.20)[einfochips.com:s=NAESA-Selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320902-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:laurent.pinchart+renesas@ideasonboard.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:thuan.nguyen-hong@banvien.com.vn,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:linux-renesas-soc@vger.kernel.org,m:laurent.pinchart@ideasonboard.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,banvien.com.vn,linux.intel.com,kernel.org,suse.de,glider.be,gmail.com,intel.com,linaro.org,kwiboo.se,bootlin.com];
+	TAGGED_FROM(0.00)[bounces-320908-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[pinkesh.vaghela@einfochips.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:andi.shyti@kernel.org,m:mika.westerberg@linux.intel.com,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linmin@eswincomputing.com,m:luyulin@eswincomputing.com,m:samuel.holland@sifive.com,m:darshan.prajapati@einfochips.com,m:pinkesh.vaghela@einfochips.com,m:pritesh.patel@einfochips.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pinkesh.vaghela@einfochips.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[einfochips.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux-m68k.org:from_mime,linux-m68k.org:email,mail.gmail.com:mid,vger.kernel.org:from_smtp,ideasonboard.com:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,einfochips.com:from_mime,einfochips.com:dkim,einfochips.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2C22D70E4A5
+X-Rspamd-Queue-Id: 413D370E4E5
 
-Hi Laurent,
+Changes in v2:
+- Rebased the patches to kernel v7.2-rc2
+- Updated dts file
+  - Changed "xtal" to "clock_24m".
+  - Changed the node name from "vcc1v8" to "regulator-vcc1v8".
+  - Changed the node names from "pac1934" to "adc" and "ina226" to
+    "power-sensor".
+- Updated eic7700.dtsi file
+  - Changed the label from "xtal" to "clock_24m".
+  - Changed the label from "hsp_power_domain" to "hsp".
+  - Added soc-specific compatible string for all i2c controllers.
+- Updated pinctrl.dtsi file
+  - Corrected the function of rgmii0, rgmii1, and the i2s pin groups.
+- Added "Acked-by" tag of "Conor Dooley" for Patch 4.
+- Updated the commit message for Patch 5.
+- Added patch(#6) that introduces ESWIN specific compatible string
+  "eswin,eic7700-i2c" in snps,designware-i2c.yaml file.
+- Link to v1: https://lore.kernel.org/lkml/20260615122016.1110206-1-pinkesh.vaghela@einfochips.com/
 
-On Sun, 5 Jul 2026 at 23:35, Laurent Pinchart
-<laurent.pinchart+renesas@ideasonboard.com> wrote:
-> Since DDC version 2, introduced in 1996, VGA monitors have exposed EDID
-> data over an I2C bus. The bus is also used to detect the presence of a
-> connected monitor by trying to read the EDID data.
->
-> Some devices where the VGA display is integrated in the device and
-> always connected do not connect the DDC pins. Some development boards,
-> such as the Renesas M3N Salvator-XS, also do not connect the DDC pins.
->
-> To support those, add the ability to provide hardcoded EDID data in the
-> device tree. This is mutually exclusive with specifying a DDC bus, and
-> can only be done when the VGA display is guaranteed to be always
-> connected.
->
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Pinkesh Vaghela (2):
+  dt-bindings: mfd: syscon: add ESWIN EIC7700 compatible
+  riscv: dts: eswin: add hsp bus node
 
-Thanks for your patch!
+Pritesh Patel (5):
+  riscv: dts: eswin: add reset generator for EIC7700 SoC
+  riscv: dts: eswin: add clock generator for EIC7700 SoC
+  dt-bindings: i2c: dw: add ESWIN EIC7700 SoC I2C controller
+  riscv: dts: eswin: add I2C controller support
+  riscv: dts: eswin: add watchdog support
 
-> --- a/Documentation/devicetree/bindings/display/connector/vga-connector.yaml
-> +++ b/Documentation/devicetree/bindings/display/connector/vga-connector.yaml
-> @@ -19,10 +19,25 @@ properties:
->      description: phandle link to the I2C controller used for DDC EDID probing
->      $ref: /schemas/types.yaml#/definitions/phandle
->
-> +  edid:
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    description:
-> +      When the DDC signals are not wired to the connector, and the connected
-> +      display is not removable, this property is used to supply a binary EDID
-> +      blob for the display.
-> +
->    port:
->      $ref: /schemas/graph.yaml#/properties/port
->      description: Connection to controller providing VGA signals
->
-> +allOf:
-> +  - if:
-> +      required:
-> +        - ddc-i2c-bus
-> +    then:
-> +      properties:
-> +        edid: false
-> +
+Yulin Lu (1):
+  riscv: dts: eswin: eic7700: add pinctrl support
 
-What if the DDC signals are wired to the connector on the provider side,
-but not on the consumer side?
-A DT overlay describing the consumer device can add an edid property,
-but it cannot delete the ddc-i2c-bus property in the base DTB.
-
->  required:
->    - compatible
->    - port
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/i2c/snps,designware-i2c.yaml     |   1 +
+ .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+ .../dts/eswin/eic7700-hifive-premier-p550.dts | 182 ++++
+ .../riscv/boot/dts/eswin/eic7700-pinctrl.dtsi | 888 ++++++++++++++++++
+ arch/riscv/boot/dts/eswin/eic7700.dtsi        | 234 +++++
+ 5 files changed, 1307 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
