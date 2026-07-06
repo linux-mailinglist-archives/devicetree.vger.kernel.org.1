@@ -1,190 +1,225 @@
-Return-Path: <devicetree+bounces-320916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320917-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nZ6UEAhqS2oYRAEAu9opvQ
-	(envelope-from <devicetree+bounces-320916-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:40:40 +0200
+	id bOF/MAZrS2pbRAEAu9opvQ
+	(envelope-from <devicetree+bounces-320917-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:44:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 094A770E355
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6ACB70E412
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:44:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320916-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320916-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GNiSlbWG;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320917-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320917-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 04F8D303B09E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 08:16:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D4E3E30653FF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 08:22:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BF9E3B27C6;
-	Mon,  6 Jul 2026 08:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE833F412B;
+	Mon,  6 Jul 2026 08:22:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1FAC37BE7F
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 08:16:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D01395AF1
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 08:22:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783325806; cv=none; b=V/MivtYi469xAjJG7XsgSpVMe7B1VCYt4vhn81lpcIC+u9hyjOlkRMC044MwTnRObjOntP9RWYWUo2XEqJh1iQrgQrsA1GHiYGM47iD+wjplcqOha79gIkhH04foVxFcVAPFqUU5f+U63JhCT2c/pogQ4pmUAnFFJQg3jaitaOg=
+	t=1783326174; cv=none; b=pEQDHVKncP90ob0WT3clB+2ha5OPfam0Gqwdtd/UliS5XEcSrizhd3nCugJ7e4NuscP053PdbZIKKjV3JxE14g2uL1EXyv3QdkZzVNVM1lxD85OINNt0fKulDzWDblJWRf45fBVu3Rtp0/ASVbyU5L5kqbDYZk+S4/Px+F9FN48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783325806; c=relaxed/simple;
-	bh=KJatOBmAq352QrXFVmfzjgc8bnC88IRW7JAIsO6hyz4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HHtXhGnpzTdd2UyClxZTE8z5jHgiNb74Sd/302I2J/vf/gv10jsogAYptVv0unb4ij7h9J3Ohv6CUxgbK7DonOqu7LywEMX/ZSF7RjDhVKNFG7USDjXx7TQE5q9U10i2MoMDNkPYV5mYvFgicZ3gDAo71orrLTtF6SBMqcc5oeo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-5bbc717c52aso749079e0c.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 01:16:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783325796; x=1783930596;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=dbFPkCHMyK2cMipYCshkg+R5wrSHUFxUQ6/ZQ0r9elE=;
-        b=noEt9a1KVo6jrZi2xtBL1a0ZtpoLAd4fWyhNeN0v5SbMe+CwI4r9VjpR+M251r8wHP
-         VygN5FGLJ92uJcw1F26jIKsY7HGM/vcVHAkYErqw3iNd3SsiEuOsm/mZa8WDLwan2hfu
-         GQFPVli/5exyPoc73ESpTxDrkzG6fFxnVDDlscnZ3NNM60ysjVNnBAEYUk4AUNI+0W8R
-         Z/iqoMRboI/7PCFU9Rqf/iVuH6yQpwsRFywxVlkUYMqoRScrygEXSb77z/t6KHrg/Zw1
-         9MwHnmGGdbqQxSeAdz54bTxJjLI1+zT4a1+U5GjrcfUotzLl3gqljNOLQD6AVIibI9ay
-         SfBA==
-X-Forwarded-Encrypted: i=1; AHgh+Roaknr7/633+zCxQdFV4/cFqGpOS/1Pj1DCiTDA9IfCe/XOYpcYkQd8hKksI6WoT1XjI/hRQeB/j5Px@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzc7Q1PF31zHxQKyvK+cicTkCVBTYK30uZEJmDL8Bnn+N7OGT1x
-	EMFryoTBc5TSVe2gmXzAfx85W6VZDQEGz/OzD4asixnj39Vw0HvGYJ/Mtyp1s+RO
-X-Gm-Gg: AfdE7cl53ZA5AbDAHXbEDc92MnEWhWXClST1NxadD0idJBd/QoxtbS4AzFiFwzqRAzs
-	4v0g11Es+xsabKmUsfJ1pbfYWwIbWQer0tbPLsepXTayhsTvqpz2EKjW7mTumK2uwL5zPUaVWq4
-	3GaSIEHTQd+2G4SJye8TJ7SK563Nb8pZoEGUHq+tFqBYyQcQky/tH4TS3dEQjXel9U8ct8zvL1C
-	jTE3n6x2vaPZtlAN8ymJojdbC1l3YereLw+qCgM+RFEUgnSggwcJwoW8pS/3xpPrc4qjIneufgq
-	n5qrqiMlmjCGBMlRybJv+v16wjTOGE+ntTZOcrk3wJ9/DgdXTaaTShpO9kP2UDTeQprzb05zfPV
-	zti/BSe8LX5SHCKjrECJsefZz/lII7QCj6roiP1z7PvZET58D9XnGpr96yyQxFjoQpbDZqLjYv/
-	IMdUseXCJ7xlkTiTgNWHjXKyYGI+GCqrY7DzjxX8TDFvyMQk/3ui4B2g==
-X-Received: by 2002:a05:6122:6d15:b0:5be:2177:70b3 with SMTP id 71dfb90a1353d-5be21777e9amr1915426e0c.10.1783325796092;
-        Mon, 06 Jul 2026 01:16:36 -0700 (PDT)
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5be02c74ca8sm4421329e0c.15.2026.07.06.01.16.35
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jul 2026 01:16:35 -0700 (PDT)
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5bdff8c02b2so725612e0c.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 01:16:35 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RqnkKvoWfNyBk48s1SkXrTdfH+D57Tc3PkCIRV7l9aqDiuMda2zpHGnquXaqsuYqP1Z3qsAZdAKWoKZ@vger.kernel.org
-X-Received: by 2002:a05:6122:550:b0:59c:b1f7:4df3 with SMTP id
- 71dfb90a1353d-5be102ec434mr2809370e0c.12.1783325795169; Mon, 06 Jul 2026
- 01:16:35 -0700 (PDT)
+	s=arc-20240116; t=1783326174; c=relaxed/simple;
+	bh=Z45fnCeYiqgbNtqv2FhepjB1EC6A5GgOg0KG3+1Q4pE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=B+J24CJtE0VHQli4veuw7PJFlMnSWChslePGleQeqdTR1eGvUoca9W9nCh9spWNMGUsEX/ZKUJSLaeVe/8x8YQbYevo8ObbTHwUB8aBOLNtabl1MHYAZoiBRclI9548JGmQ/4OEOCDe8UoJCaa4LABOx3P28OFtbT5VPE/dod2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GNiSlbWG; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8C891F000E9;
+	Mon,  6 Jul 2026 08:22:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783326159;
+	bh=moPErxptzMoFitn4NCYWOwu7PQBkbJROla6/+YkgVVo=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=GNiSlbWGx9vZxeFVLlNwctHw9YSkGjZAgmUCNEdw4CmHsQQ696wy/jAi7x2rOaRyI
+	 0+ftiTBPm3ihli2Qiq6cE2kxNCBl5CaQETl5p+C4Grflurk7L+6VJCbQfKDJlETKA9
+	 jvxBI4j2ZcdUBF32OGBt456ZzhaKAScumzOZsMqRNVOO93qOtou56ruCjq/LMcobi3
+	 J5b7Nk9dZM/vuIes8dCYRBxY2eg9Eec5Eb6GC0/+pJAV8Qu5a245cTU9vaSjoosmvZ
+	 RHnXkfEfkKViv9AfE2+67eZ7hzf+EPHvugI5MpjDDB60RLX5zC3N6wy8YdKFTus6JG
+	 +/E6eBgTEwJ2Q==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 8/8] riscv: dts: eswin: add watchdog support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Pinkesh Vaghela" <pinkesh.vaghela@einfochips.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260706081055.1126275-9-pinkesh.vaghela@einfochips.com>
+References: <20260706081055.1126275-1-pinkesh.vaghela@einfochips.com>
+ <20260706081055.1126275-9-pinkesh.vaghela@einfochips.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 06 Jul 2026 08:22:38 +0000
+Message-Id: <20260706082238.C8C891F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260705213542.28987-1-laurent.pinchart+renesas@ideasonboard.com> <20260705213542.28987-5-laurent.pinchart+renesas@ideasonboard.com>
-In-Reply-To: <20260705213542.28987-5-laurent.pinchart+renesas@ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 6 Jul 2026 10:16:22 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVtK2qKHLWfyWYaPx1cYgmF0jtzh3CAPrJ4QbZ0VxypXA@mail.gmail.com>
-X-Gm-Features: AVVi8CfGdsdm5FTOvhTH4n31WpQq9-pZfeJYTHCuuEYLuLxyLezJUgX-zWbA-go
-Message-ID: <CAMuHMdVtK2qKHLWfyWYaPx1cYgmF0jtzh3CAPrJ4QbZ0VxypXA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] [DNI] arm64: dts: renesas: salvator: Add overlay for
- Dell P1911 VGA display
-To: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	Thuan Nguyen <thuan.nguyen-hong@banvien.com.vn>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320916-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:laurent.pinchart+renesas@ideasonboard.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:thuan.nguyen-hong@banvien.com.vn,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:linux-renesas-soc@vger.kernel.org,m:laurent.pinchart@ideasonboard.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,banvien.com.vn,linux.intel.com,kernel.org,suse.de,glider.be,gmail.com,intel.com,linaro.org,kwiboo.se,bootlin.com];
-	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320917-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:pinkesh.vaghela@einfochips.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,mail.gmail.com:mid,ideasonboard.com:email,linux-m68k.org:from_mime,linux-m68k.org:email]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,einfochips.com:email,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 094A770E355
+X-Rspamd-Queue-Id: B6ACB70E412
 
-Hi Laurent,
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] Incorrect mapping of the APB clock (PCLK) to the timer reference c=
+lock (tclk), omitting the actual reference clock.
+- [Low] Missing space after the '=3D' sign in the 'clocks' properties.
+--
 
-On Sun, 5 Jul 2026 at 23:35, Laurent Pinchart
-<laurent.pinchart+renesas@ideasonboard.com> wrote:
-> Add an overlay that hardcodes the EDID of the Dell P1911 VGA display
-> connector to the VGA port of the Salvator board. This is meant to test
-> EDID hardcoding and should not be merged upstream.
->
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+commit e654cdc83801a14778ef2783efed381807629c6f
+Author: Pritesh Patel <pritesh.patel@einfochips.com>
 
-Thanks for your patch!
+riscv: dts: eswin: add watchdog support
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/salvator-vga-dell-p1911.dtso
+This commit adds watchdog nodes for the ESWIN EIC7700 SoC and enables them
+for the HiFive Premier P550 board.
 
-I know this is not meant to be applied, but nothing below is
-Salvator-specific (except for the comment).  Hence this can be applied
-to any "vga" connector, and I'd rather drop the "salvator-"-prefix
-from the file name.
+[ ... ]
 
-> @@ -0,0 +1,21 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree overlay for the Dell P1911 monitor connected to VGA port of a
-> + * Salvator-X or Salvator-XS board
-> + *
-> + * Copyright 2026 Ideas on Board Oy
-> + */
+> diff --git a/arch/riscv/boot/dts/eswin/eic7700.dtsi b/arch/riscv/boot/dts=
+/eswin/eic7700.dtsi
+> index 6d328befc623d..d079bb337ecbb 100644
+> --- a/arch/riscv/boot/dts/eswin/eic7700.dtsi
+> +++ b/arch/riscv/boot/dts/eswin/eic7700.dtsi
+> @@ -265,6 +265,46 @@ hsp_sp_csr: hsp-sp-top-csr@50440000 {
+>  			};
+>  		};
+> =20
+> +		wdt0: watchdog@50800000 {
+> +			compatible =3D "snps,dw-wdt";
+> +			reg =3D <0x0 0x50800000 0x0 0x4000>;
+> +			interrupts =3D <87>;
+> +			clocks =3D<&clk EIC7700_CLK_GATE_LSP_WDT0_PCLK>;
+                                ^^^^
+
+[Severity: Low]
+This isn't a bug, but there appears to be a missing space after the '=3D' s=
+ign.
+
+> +			clock-names =3D "tclk";
+
+[Severity: High]
+Are we assigning the APB clock (PCLK) to the timer reference clock (tclk)
+while omitting the actual reference clock (NOC_WDREF)?
+
+The snps,dw-wdt driver retrieves tclk to determine the frequency for TOP
+calculations and to enable the clock. Because EIC7700_CLK_GATE_LSP_WDT0_PCLK
+is assigned to tclk here instead of the explicit watchdog reference clock
+(EIC7700_CLK_GATE_NOC_WDREF), the driver might calculate timeouts using the
+wrong rate and fail to enable NOC_WDREF entirely.
+
+> +			resets =3D <&reset EIC7700_RESET_WDT0>;
+> +			status =3D "disabled";
+> +		};
 > +
-> +/dts-v1/;
-> +/plugin/;
+> +		wdt1: watchdog@50804000 {
+> +			compatible =3D "snps,dw-wdt";
+> +			reg =3D <0x0 0x50804000 0x0 0x4000>;
+> +			interrupts =3D <88>;
+> +			clocks =3D<&clk EIC7700_CLK_GATE_LSP_WDT1_PCLK>;
+                                ^^^^
+
+[Severity: Low]
+This isn't a bug, but there is a missing space after the '=3D' sign here as
+well.
+
+> +			clock-names =3D "tclk";
+
+[Severity: High]
+Could this result in similar incorrect timeout calculations for wdt1 due to
+omitting NOC_WDREF?
+
+> +			resets =3D <&reset EIC7700_RESET_WDT1>;
+> +			status =3D "disabled";
+> +		};
 > +
-> +&{/vga} {
-> +       edid = [00 ff ff ff ff ff ff 00 10 ac 74 a0 55 4b 55 30
-> +               2b 14 01 03 80 29 1a 78 ee ee 95 a3 54 4c 99 26
-> +               0f 50 54 bf ef 80 95 00 71 4f 81 80 95 0f 81 00
-> +               01 01 01 01 01 01 9a 29 a0 d0 51 84 22 30 50 98
-> +               36 00 98 ff 10 00 00 1c 00 00 00 ff 00 31 57 4b
-> +               4a 56 30 41 4b 30 55 4b 55 0a 00 00 00 fc 00 44
-> +               45 4c 4c 20 50 31 39 31 31 0a 20 20 00 00 00 fd
-> +               00 38 4b 1e 53 0e 00 0a 20 20 20 20 20 20 00 ba];
-> +};
+> +		wdt2: watchdog@50808000 {
+> +			compatible =3D "snps,dw-wdt";
+> +			reg =3D <0x0 0x50808000 0x0 0x4000>;
+> +			interrupts =3D <89>;
+> +			clocks =3D<&clk EIC7700_CLK_GATE_LSP_WDT2_PCLK>;
+                                ^^^^
 
-Gr{oetje,eeting}s,
+[Severity: Low]
+This isn't a bug, but there is a missing space after the '=3D' sign.
 
-                        Geert
+> +			clock-names =3D "tclk";
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+[Severity: High]
+Does this node also need NOC_WDREF to avoid incorrect timeout calculations?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +			resets =3D <&reset EIC7700_RESET_WDT2>;
+> +			status =3D "disabled";
+> +		};
+> +
+> +		wdt3: watchdog@5080c000 {
+> +			compatible =3D "snps,dw-wdt";
+> +			reg =3D <0x0 0x5080c000 0x0 0x4000>;
+> +			interrupts =3D <90>;
+> +			clocks =3D<&clk EIC7700_CLK_GATE_LSP_WDT3_PCLK>;
+                                ^^^^
+
+[Severity: Low]
+This isn't a bug, but there is a missing space after the '=3D' sign.
+
+> +			clock-names =3D "tclk";
+
+[Severity: High]
+Is the explicit watchdog reference clock (NOC_WDREF) missing for wdt3 as
+well?
+
+> +			resets =3D <&reset EIC7700_RESET_WDT3>;
+> +			status =3D "disabled";
+> +		};
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706081055.1126=
+275-1-pinkesh.vaghela@einfochips.com?part=3D8
 
