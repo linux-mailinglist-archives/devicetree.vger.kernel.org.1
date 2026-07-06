@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-320999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321002-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BGMEOKSWS2o8WAEAu9opvQ
-	(envelope-from <devicetree+bounces-320999-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:51:00 +0200
+	id JYB9KLaWS2plWAEAu9opvQ
+	(envelope-from <devicetree+bounces-321002-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:51:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B33710170
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:51:00 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F2F171018B
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:51:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=iabLTM6Y;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=nkp7Kbd3;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320999-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-320999-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321002-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321002-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D7B0932711B1
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:50:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AAB8333AA377
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:51:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B37EC4302ED;
-	Mon,  6 Jul 2026 09:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EDBF4302E9;
+	Mon,  6 Jul 2026 09:35:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DB283AFB1A
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 09:35:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0BFD4F7991
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 09:35:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783330506; cv=none; b=PPrnVqvq5FOisytoDFHuMfzW4VmVJPH6d4YTdUsbM/639/Bwe+O/4I4COLflAcrR7NlQ39COLY8snChzgKgyGMNg1/g1fi37OfsthKhqZdDSMkWxw5Kt84fM664uo6Zdqm0PqtrgqtwCfUfUbLdaHrBh4A6K8RnJrZL7isWT2YQ=
+	t=1783330508; cv=none; b=Fhi4GunJxyQh4UDOwT24yKBI8WGtXIzG+hfbFdbtiibA6EnggEQFVb2yW8EKI0j9vXhICNSb9dxK5nU5jgER77LZUwvuxtQsIW6Si7/yfJNwc098X6UQWJvEYaOrYfhxraN0RBOWYNGSrqy5YkJQyJNBcLydSvRzm5ZTq55oNBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783330506; c=relaxed/simple;
-	bh=6i4Yn4bFzEH/lHxseFhMeKNm4n5MNZlEFyGK/wtiRes=;
+	s=arc-20240116; t=1783330508; c=relaxed/simple;
+	bh=BSoZzBqEeloYctNTcEnE5HNwheDgAkV8kpFCbDHhNn4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=g3OCBktgt4mzBexlGElBwrfFyA8deO5sVBWtT7l0anOIpRrdCLrYB56s7hy1EE9mrp/grFcD9Khffv0mmOeZsSNYsypEVRyzyo7b5IiUjwhlD66OttcICwNSOdbh3yDahnX+Chhv0/ZprAlMITrPHeABWI6LDxyeRVZXqvSTjjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iabLTM6Y; arc=none smtp.client-ip=209.85.128.42
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-493c733f15aso28580035e9.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 02:35:01 -0700 (PDT)
+	 MIME-Version; b=TwAhuMPHMFuikrJcnLC2NaqcaKBXpmQI663uAEBPuPtDnskin96O2L8MP7G3jN8d/IVQfAxrFVAsV4bB6M2WNArbKYVj422l2BI2pdrbyPCnR6aB1owWhZE+v8Y6wvd3b0iGI+7TYLJ+1qfsz3RJL3Vqzc3EWNk1w8Br2xKxlBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nkp7Kbd3; arc=none smtp.client-ip=209.85.128.41
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-493d92b7db3so10828155e9.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 02:35:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783330499; x=1783935299; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1783330500; x=1783935300; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kxIkFKzQqrcKn3oguOv50rHYhjrSArtOObsXYJxnkfw=;
-        b=iabLTM6YXBJO52CDj0XAlaHWQZHaxgsB01oT3Cyh/aAxtC5s1zGzjd1AvvFoVkeQyH
-         0d88j16dvy1sdzLjrFGEP2u118QcfdhFQ05UQ8oinxHdreFznZ6rREYIqUvrwShqHe3P
-         DxCBz5ru5P8kdUiI+LBkQhQ4qjEXH6j5h2jaq5VqhvQV/T9avSLRalTOX5X6OJY1p0NZ
-         eb4g624AbD4SblGtwkcpW29QOx1U5uYyraz8pnI5JdrXyzcmYDQ1WclFoLkLLasN6Yzf
-         NKusITvyEpkV5Yfb26rwXMElewPV3w3S0ikOzP5nvB1IfuvJXcoPAoNSG7QurntGxgNL
-         lr4w==
+         :message-id:reply-to:content-type;
+        bh=x5OUaRVSK9v3Or+26Jr9fP4R8ZWbrsc7QBpjXQ57SjM=;
+        b=nkp7Kbd3R5C0vbfJmbWmcPe8CHMs3j2SZCazQpFXbG3njjAOqUT96CUGNxkhDJKDHC
+         DOi/P1+/9kp406BQbsKM/fDVGcZR1gP0COZDCB4W7dKZJGh30mi3RDXnG1ai3xUyvif4
+         ISS4r+s3ah8IRVn+xTAOnjCwC/o4Y2MYftUd0yzrAfDPdSVlA6k8mSk7Mk18AO5YpAr5
+         Q9LGM7ZYg/XWcl3rbG3y+Oahq1lj9gN6LxyXNjbjTf4R/OCOxoGFpmqhLqbSl5WF5tVt
+         Tt9OJf/r4RZi1dARZo0WrF/KaYRBw3dj9pPS4Am1O/IIFNxjG235nD3SuvVnMrS9lVQj
+         zGTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783330499; x=1783935299;
+        d=1e100.net; s=20251104; t=1783330500; x=1783935300;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=kxIkFKzQqrcKn3oguOv50rHYhjrSArtOObsXYJxnkfw=;
-        b=RNChkVVUQUTBVv5A5GGtHdhm6cHilgI6KR4WGazmpv2foJjxMDTEHuN5UgdcxVEQ0K
-         0LgWAEyDag7FVy5cR97x2ndN7tarh4IJTxDdGy+46Zed+H0gnyFLD2oLXV7Mov2uioOX
-         Y7MpF571X+tbClX1BydXt0b/vB6JeRyhLm5M3AGyEY2xArKzUzqWHaZkQSR7j8zGEet6
-         ZM0M0VVzL4pNjxpgge3QZCEoRS9eCQg5e2sC75uH3H8OX3MiJafLmURrgXIUtiWQ3Ug5
-         vPlqEsDmpoHodycMzk8d1d6BLIbitMwJ9U6EE0U5/h796YqjaeyzW3Q9GUy8r6RXW43C
-         oIHQ==
-X-Forwarded-Encrypted: i=1; AHgh+RoWZq9WCr5ys/g1aZDHdfe8lEW1lBdV1pKBySLcVafCPntrymqC8WN7RcjSjoe3TaCMBSZh0PgRijWv@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCLfdvnHaEk6RupunqjGZGt1UZ7PoBQ9j6uepgQSfohL3Pogvp
-	La1OWIjihqQgfNH4shte0OnsDaqB+b35t2/gzkNaVmrNtppn4/UCvE0I
-X-Gm-Gg: AfdE7cmZvqU9LCQU7rbUqFLB1MgRSv/6JVLKgv9FgrwMyoh0Gy5b8HLIA5HJFAq7k0T
-	uS420vjoFMNlFQ48oW/89NLg5Tsmwc5eQzxZAeePR98pYrwMtjVcQWn8ZW3VkN8Bzj5+2lli/rD
-	ch2zzZvu1duZrDF4SpkvA8SFF3kcH2lXwqGFb3xYnm48HiXNrUKF5gIB1EnKBO+jKo0qWZRwVXm
-	lUAc6mlXGfjivqPW2JNt6ICz7B6fMXZ/RGDIIP4dNbxWs2bUo5U404PwHMENdQFlxKrDb/9qDW5
-	x2sWSjrWpy12fnxRAUR1bIybZ3yFNyoYIWl4hVBaMMwC5MwDQs/Xz5BVuSOFCrzIa2N4Jhl3pIB
-	EYr34TuC+z0D08umr4lgUnRdKcvUDGd4VgxmtqsM0vJY1LOxBExV2lPqyeExnfKm5kiVq0Uv1lW
-	u3kUR4IqoI184TUNyjktf5pkRIW+4pZUOf/p/OwA/sm9uuyuRRxKYUaicEnYnMU2H62FqlFjdTk
-	/q4X/u6t/dhJijnfxrrf6oefg==
-X-Received: by 2002:a05:600c:3f0a:b0:492:4a50:41fe with SMTP id 5b1f17b1804b1-493d11f05a3mr108614835e9.22.1783330498855;
-        Mon, 06 Jul 2026 02:34:58 -0700 (PDT)
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=x5OUaRVSK9v3Or+26Jr9fP4R8ZWbrsc7QBpjXQ57SjM=;
+        b=cdZZrnZFy/igxF2IO6xyBPSxo3GjzptWnHQXwTWvJgazM1jwZQ96BelJCFsP1diLzN
+         D2cfgAgXcmM1ERke168VjjBQnHWzjJ8QYIaYIvhbi5hZ19nA7iVRmowMuXlqwUPcA59A
+         23LmSqoeRkgkgkN6/yCPwRYZBxzkGqWJeZwTzDgXj4eFbdVzt74gQyBCZM/Yg/mho26/
+         6rNPBxNkNzxf5ydMEz6wtnTILdhs/W9a296cvHKZfyp3ZpgtiR506ljUsRdL8pioq1Zq
+         etO5HWFork1XF8LHirznHdgwuZS0UZ740d26ShSHiypzcSWwJPQaJU8zwPioaDJekBuh
+         paNA==
+X-Forwarded-Encrypted: i=1; AHgh+RpUHUFtqUJR43lQeFz1v+5CkloT5yqafYTTFPJfZ7XdVikF80S+Iu5JWhJ82YWMsaz4R6iTRFLWKWI3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuiIANfT9T85W4bK1w85+0GUxbENhQMpbtM3tcC7UIFPbBaWzm
+	gYCIAXU7JrvWzUBhl6OxfQplWpxOgTx3V6MQECZpbJikYZEzbPwUA2w0
+X-Gm-Gg: AfdE7cnknERDL992PjhqZMEmfrOOXJqiIr6x1S091wSg4btMzMUVjJZJQdzmwKzOooc
+	hKlupG+HQ/QDsiv+SCyOqBhPYaRvLxY5SNmL7S6ySh41KtX54+9tC1WuDA1u2xVh00OWD9fg688
+	niD9WM6wC2Z3qbU9rwyzCOkqCeZRHO2DpEdrYBgr/thIWYU7bFNQP3/42Uuv1sPj/Fv8O6JLRYZ
+	2jGDIBPGr2+FDS3yyIHzOEs6dLHdDWX9rp+i38PS7iPazFM4Zal9KmrlNdM0/Ned2WOjXMLrvgC
+	elYo3J6AXEdDRMNkgVT9gHq8TC+51WS/ngKrHVdJS44RIQuz5XyiaE5UH+QFmLySiWvfszyvLCj
+	rRRR2GnE1hdYA2gYTGMr8HV696QPsvRVrrzYc81j4xI0HF/vB1QSeg+1wCDhSPsCsoflI3FWfv0
+	xxO0VIa1BJ+Cy3nNm2fSa9azT4riYxy5uHmkxSDbldAGRnpeOtp3aMVwkLEWfHyCqeecUvH/UrG
+	MFt4fsyMEozl2i+j9DTk0kwPA==
+X-Received: by 2002:a05:600c:4ece:b0:493:a438:7f98 with SMTP id 5b1f17b1804b1-493d11f030emr111490185e9.18.1783330500022;
+        Mon, 06 Jul 2026 02:35:00 -0700 (PDT)
 Received: from Lord-Beerus.station (net-93-144-65-248.cust.dsl.teletu.it. [93.144.65.248])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493c6375764sm314379715e9.5.2026.07.06.02.34.57
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493c6375764sm314379715e9.5.2026.07.06.02.34.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 02:34:58 -0700 (PDT)
+        Mon, 06 Jul 2026 02:34:59 -0700 (PDT)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: linux-kernel@vger.kernel.org,
@@ -92,9 +92,9 @@ Cc: pierluigi.p@variscite.com,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v2 07/15] arm64: dts: freescale: imx8mn-var-som: Rework WiFi/BT and add legacy dts
-Date: Mon,  6 Jul 2026 11:34:37 +0200
-Message-ID: <ecf72149729d31be30e6f5bcc1cc53a5321a124d.1783330236.git.stefano.r@variscite.com>
+Subject: [PATCH v2 08/15] arm64: dts: freescale: imx8mn-var-som: drop duplicate USB OTG node
+Date: Mon,  6 Jul 2026 11:34:38 +0200
+Message-ID: <c9696914817c7e9290de7c1d9f588632e700f478.1783330236.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1783330236.git.stefano.r@variscite.com>
 References: <cover.1783330236.git.stefano.r@variscite.com>
@@ -112,14 +112,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-320999-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321002-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
@@ -135,220 +135,48 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,variscite.com:mid,variscite.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 63B33710170
+X-Rspamd-Queue-Id: 3F2F171018B
 
 From: Stefano Radaelli <stefano.r@variscite.com>
 
-The VAR-SOM-MX8MN currently integrates the NXP IW61x wireless module,
-providing WiFi over SDIO and Bluetooth over UART.
+The VAR-SOM-MX8MN module does not provide an onboard USB connector.
 
-Move the wireless module configuration out of the base
-imx8mn-var-som.dtsi and provide dedicated variant includes.
-The IW61x configuration is moved to imx8mn-var-som-wifi-bt-iw61x.dtsi
-and used by the Symphony evaluation board device tree.
-
-A separate imx8mn-var-som-wifi-brcm-legacy.dtsi include is added to keep
-the configuration for the legacy Broadcom SDIO WiFi module used on
-earlier SOM revisions.
-
-To preserve compatibility with older SOM revisions, add a separate
-imx8mn-var-som-symphony-legacy.dtb, which disables the IW61x setup and
-applies the Broadcom-specific configuration.
-
-The Broadcom-based SOM revision is no longer in production, but support
-is kept for existing users.
-
-This keeps the VAR-SOM-MX8MN support aligned with the existing
-VAR-SOM-MX8MM implementation.
+The complete USB OTG description, including the Type-C role switch
+configuration, is already provided by the Symphony carrier board device
+tree. Remove the duplicate USB OTG node from the SOM dtsi to avoid
+describing the same hardware in two places.
 
 Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
 v1->v2:
  - 
 
- arch/arm64/boot/dts/freescale/Makefile        |  1 +
- .../boot/dts/freescale/imx8mn-rve-gateway.dts |  1 +
- .../imx8mn-var-som-symphony-legacy.dts        | 19 ++++++++
- .../dts/freescale/imx8mn-var-som-symphony.dts |  1 +
- .../imx8mn-var-som-wifi-brcm-legacy.dtsi      | 19 ++++++++
- .../imx8mn-var-som-wifi-bt-iw61x.dtsi         | 46 +++++++++++++++++++
- .../boot/dts/freescale/imx8mn-var-som.dtsi    |  8 ----
- 7 files changed, 87 insertions(+), 8 deletions(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony-legacy.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-var-som-wifi-brcm-legacy.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-var-som-wifi-bt-iw61x.dtsi
+ arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 430085123b4e..bdd3818d6e79 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -206,6 +206,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-solidsense-n8-compact.dtb
- DTC_FLAGS_imx8mn-solidsense-n8-compact += -@
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony-legacy.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
- 
- imx8mn-vhip4-evalboard-v1-overlay-ksz8794-dtbs := imx8mn-vhip4-evalboard-v1.dtb \
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-index 056ea2f9e963..d9981d9a7362 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/usb/pd.h>
- #include "imx8mn-var-som.dtsi"
-+#include "imx8mn-var-som-wifi-brcm-legacy.dtsi"
- 
- / {
- 	model = "RVE gateway";
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony-legacy.dts b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony-legacy.dts
-new file mode 100644
-index 000000000000..5998ebcef474
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony-legacy.dts
-@@ -0,0 +1,19 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2026 Variscite Ltd.
-+ */
-+
-+#include "imx8mn-var-som-symphony.dts"
-+#include "imx8mn-var-som-wifi-brcm-legacy.dtsi"
-+
-+&bluetooth_iw61x {
-+	status = "disabled";
-+};
-+
-+&iw61x_pwrseq {
-+	status = "disabled";
-+};
-+
-+&usdhc1 {
-+	/delete-property/ mmc-pwrseq;
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-index 520aff23e587..53130b521b5b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-@@ -11,6 +11,7 @@
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/usb/pd.h>
- #include "imx8mn-var-som.dtsi"
-+#include "imx8mn-var-som-wifi-bt-iw61x.dtsi"
- 
- / {
- 	model = "Variscite VAR-SOM-MX8MN Symphony evaluation board";
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-wifi-brcm-legacy.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som-wifi-brcm-legacy.dtsi
-new file mode 100644
-index 000000000000..9ca2038943d4
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-wifi-brcm-legacy.dtsi
-@@ -0,0 +1,19 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2026 Variscite Ltd.
-+ */
-+
-+/* WIFI */
-+&usdhc1 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-wifi-bt-iw61x.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som-wifi-bt-iw61x.dtsi
-new file mode 100644
-index 000000000000..9ec341ed57d3
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-wifi-bt-iw61x.dtsi
-@@ -0,0 +1,46 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2026 Variscite Ltd.
-+ */
-+
-+/ {
-+	iw61x_pwrseq: wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		post-power-on-delay-ms = <100>;
-+		power-off-delay-us = <10000>;
-+		reset-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>, /* WIFI_RESET */
-+			      <&gpio2 20 GPIO_ACTIVE_LOW>; /* WIFI_PWR_EN */
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-0 = <&pinctrl_uart2>, <&pinctrl_bt>;
-+
-+	bluetooth_iw61x: bluetooth {
-+		compatible = "nxp,88w8987-bt";
-+	};
-+};
-+
-+/* WIFI */
-+&usdhc1 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc1>, <&pinctrl_wifi>;
-+	pinctrl-1 = <&pinctrl_usdhc1_100mhz>, <&pinctrl_wifi>;
-+	pinctrl-2 = <&pinctrl_usdhc1_200mhz>, <&pinctrl_wifi>;
-+	mmc-pwrseq = <&iw61x_pwrseq>;
-+};
-+
-+&iomuxc {
-+	pinctrl_bt: bluetoothgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SD1_DATA4_GPIO2_IO6	0xc1
-+		>;
-+	};
-+
-+	pinctrl_wifi: wifigrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SD2_WP_GPIO2_IO20		0x140
-+			MX8MN_IOMUXC_SD1_RESET_B_GPIO2_IO10	0xc1
-+		>;
-+	};
-+};
 diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-index ac22dd3e6542..5d8cd8c13633 100644
+index 5d8cd8c13633..7a4c7455a162 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-@@ -371,10 +371,7 @@ &usbotg1 {
+@@ -365,12 +365,6 @@ &uart2 {
  	status = "okay";
  };
  
--/* WIFI */
+-&usbotg1 {
+-	dr_mode = "otg";
+-	usb-role-switch;
+-	status = "okay";
+-};
+-
  &usdhc1 {
--	#address-cells = <1>;
--	#size-cells = <0>;
  	pinctrl-names = "default", "state_100mhz", "state_200mhz";
  	pinctrl-0 = <&pinctrl_usdhc1>;
- 	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-@@ -383,11 +380,6 @@ &usdhc1 {
- 	non-removable;
- 	keep-power-in-suspend;
- 	status = "okay";
--
--	brcmf: wifi@1 {
--		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
--	};
- };
- 
- /* eMMC */
 -- 
 2.47.3
 
