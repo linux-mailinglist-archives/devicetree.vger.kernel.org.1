@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-321509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321510-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Z2/8FjUPTGqIfgEAu9opvQ
-	(envelope-from <devicetree+bounces-321509-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 22:25:25 +0200
+	id lvbiIf8CTGrPegEAu9opvQ
+	(envelope-from <devicetree+bounces-321510-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 21:33:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C67BB715692
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 22:25:24 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DA76715020
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 21:33:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=dqOPz9W1;
+	dkim=pass header.d=collabora.com header.s=mail header.b=S94KRAQn;
 	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321509-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321509-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321510-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-321510-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2E8E0321ACF2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 19:32:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EFAB730131A8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 19:32:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB2833066D;
-	Mon,  6 Jul 2026 19:32:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A3B331EDF;
+	Mon,  6 Jul 2026 19:32:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E0531F983;
-	Mon,  6 Jul 2026 19:32:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 447733242D9;
+	Mon,  6 Jul 2026 19:32:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783366358; cv=none; b=RVPI5wUNkXi74TyzGU2n7vc8G0WnRJw37W/v0RlSG9bfy4szD+Fhz0kXhxQYVodMr3Wn+8VQ+1p2PiuJr2ddbzOmNZcErs8JaY1OFa1NlVTUwqZlZkbaCGX6QX0ChjjVfzQ1zkLt8NVbHBVWlug3WHebY77fn7ncAjIT+04PE1k=
+	t=1783366359; cv=none; b=oyprkpFPH6aAnLMXB0MTSpmvAqeWiLSIA9nR98oN1/MxcqEae3GasfjTpqTBNsNjJWiM3DYH3VoyYKLqdCxFAq+X6mBHWZbdxTSlWxMXeJN3IU0FnAKOm8Qtn9KmsyoZwavMvkj/sidTpu86VI6LdawWH1j1xH+4iLrJnhkO/K4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783366358; c=relaxed/simple;
-	bh=eHslvtqPnc4NHsClcTr1gZEz4RVgZKR3riEDM+wtDyI=;
+	s=arc-20240116; t=1783366359; c=relaxed/simple;
+	bh=swh/JeIMm9ReiTXix+vwRFJ6g6E243o3S3Lb9kHImP0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EFU3TnC1w58KlPY4vaHarUz6K6lcpqpXGA8RKos1ivOWfOTVLtrghLoj0om0C+C0f232WBStODQAjPva1RVKKcKG7nM5HW5HHTerJppnWqa/3X9PaB/pGvAnagXbG7pUgliuq1y936G6I3wefU1kZpaE2zmyETgXEJzVJvtR4Ks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dqOPz9W1; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=frV6LpnInfykxkdgQQ+DLvJLS2t6XsemGCi1Q0VnI5mbssY7bqKpT7CQijU1CPmYKSYRtGaL5bDtI1NLVrIPapotgfzDDPFHnpl9AnpZTTV1T9rgS/D+0kKDjizADDtyi3JwKGy87LWcvBSIlrHBZ3VIKPl5W0i5W3kIaNcuGiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=S94KRAQn; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1783366355;
-	bh=eHslvtqPnc4NHsClcTr1gZEz4RVgZKR3riEDM+wtDyI=;
+	bh=swh/JeIMm9ReiTXix+vwRFJ6g6E243o3S3Lb9kHImP0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=dqOPz9W10UKm7NB1TWxSRm7+QkPYoJPakzCllbieHJS8Z/lkmKnwUxUFul1HurkRS
-	 4aRTy9+hK8I7+p9lnIFOGC5rLzzEIvkYvxX8l6xeQ05Jurlg3H7Yfv4MEBgCOsVEpe
-	 auXwMok840oRicHPvP5CM/tZUVYaqphvIA2qt3mx/MysYnCHOD2mBLC6bPMHjmptoA
-	 GzkWqr4qg/ai0fhBtoOGpS1zN3IjcQDcT70QVkkAYjc8cmSIQPXNylxu6e7CvybI/B
-	 nORmdZWc7PmckMDH2YbjsJoHrVr/hGMocwgLKFvtwBn0LCAOf+Dh6zom3O4ygfCpC5
-	 erI8/ik5Wp0/Q==
+	b=S94KRAQnx+P/IMzPSi84I0nsyTi5dIUy7gVJe2rsiaLwlO87GiJPVX5jn4tE0gsAx
+	 A7LSep9DOuTCsd1s0c0Gt+1CSd3ZWXbkDePyYjY+onBTF9znFdFeGGfxIkwFJahAVi
+	 BQLkNRZwAO0BpqZWpUlJLxQdO5gm/WF07T/cwi6pgkB7FnkFaCjRh8V/yraubn5y67
+	 CK3DmnUVcIGJ24knWi+ysFTZWW1khx5GcQJvpl52F5DS3jlLOeaFJsrfGCVygQ+o1y
+	 d0BOzrEWwmX/ppXG/i8MNL8Kl5iyM91s4iEDscZafAzlG1jIp2G8sxbkug8Ol9b8yu
+	 kp0p6D9hyCwHA==
 Received: from localhost (unknown [100.64.0.241])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E7BFD17E0DE6;
-	Mon, 06 Jul 2026 21:32:34 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9CA5017E0DFB;
+	Mon, 06 Jul 2026 21:32:35 +0200 (CEST)
 From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Mon, 06 Jul 2026 22:32:14 +0300
-Subject: [PATCH v2 02/13] drm/rockchip: vop2: Fix resource leak on
- vop2_enable() error path
+Date: Mon, 06 Jul 2026 22:32:15 +0300
+Subject: [PATCH v2 03/13] drm/rockchip: vop2: Balance state on
+ atomic_enable error paths
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260706-dw-hdmi-qp-yuv-v2-2-b91beb33dedf@collabora.com>
+Message-Id: <20260706-dw-hdmi-qp-yuv-v2-3-b91beb33dedf@collabora.com>
 References: <20260706-dw-hdmi-qp-yuv-v2-0-b91beb33dedf@collabora.com>
 In-Reply-To: <20260706-dw-hdmi-qp-yuv-v2-0-b91beb33dedf@collabora.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
@@ -90,7 +90,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -98,7 +98,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:kernel@collabora.com,m:andyshrk@163.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:sashiko-bot@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,bootlin.com];
-	TAGGED_FROM(0.00)[bounces-321509-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321510-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[27];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
@@ -117,120 +117,145 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C67BB715692
+X-Rspamd-Queue-Id: 6DA76715020
 
-vop2_enable() returns void, so callers cannot tell whether powering up
-the VOP2 succeeded.
+vop2_crtc_atomic_enable() prepares vp->dclk and, for the first CRTC,
+calls vop2_enable(), incrementing the shared vop2->enable_count before
+programming VOP2 registers.  Two later failure points return early with
+only vop2_unlock(), leaking the dclk prepare, the enable_count
+increment, and the core clocks / PM runtime reference from
+vop2_enable().
 
-Additionally, if rockchip_drm_dma_attach_device() fails, vop2_enable()
-returns without disabling the core clocks or dropping the runtime PM
-reference taken earlier, leaking both.
+Since the disable path decrements enable_count unconditionally, the
+leaked increment skews the count, causing an underflow or premature
+shutdown of core clocks and PM runtime while another CRTC is active.
 
-Make vop2_enable() return int and unwind all resources on every failure
-path.  As disabling the core clocks is also needed in vop2_disable(),
-factor it out into a local helper used by both.
+Cleaning up on the enable error paths alone is insufficient, however.
+A CRTC whose atomic_enable() bailed is still committed as active, so
+vop2_crtc_atomic_disable() still runs its full teardown, releasing the
+same dclk prepare and enable_count a second time - underflowing both
+counts and, where vop2_enable() ran, touching VOP registers with core
+clocks gated.
+
+Fix this by reverting exactly what was set up on failure, and track the
+per-VP bring-up state so atomic_disable() skips teardown when
+atomic_enable() never completed.
 
 Fixes: 604be85547ce ("drm/rockchip: Add VOP2 driver")
 Reported-by: Sashiko <sashiko-bot@kernel.org>
 Closes: https://lore.kernel.org/all/20260623202043.8BFE21F000E9@smtp.kernel.org/
 Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 ---
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 39 +++++++++++++++++++---------
- 1 file changed, 27 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 34 +++++++++++++++++++++-------
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  6 +++++
+ 2 files changed, 32 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index 4cce3e336f5b..e11dc8c7f78b 100644
+index e11dc8c7f78b..c2328b35466d 100644
 --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
 +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -860,6 +860,13 @@ static int vop2_core_clks_prepare_enable(struct vop2 *vop2)
- 	return ret;
- }
+@@ -1033,6 +1033,9 @@ static void vop2_crtc_atomic_disable(struct drm_crtc *crtc,
  
-+static void vop2_core_clks_disable_unprepare(struct vop2 *vop2)
-+{
-+	clk_disable_unprepare(vop2->pclk);
-+	clk_disable_unprepare(vop2->aclk);
-+	clk_disable_unprepare(vop2->hclk);
-+}
+ 	vop2_lock(vop2);
+ 
++	if (!vp->enabled)
++		goto out_unlock;
 +
- static void rk3588_vop2_power_domain_enable_all(struct vop2 *vop2)
- {
- 	u32 pd;
-@@ -871,7 +878,7 @@ static void rk3588_vop2_power_domain_enable_all(struct vop2 *vop2)
- 	vop2_writel(vop2, RK3588_SYS_PD_CTRL, pd);
- }
+ 	old_crtc_state = drm_atomic_get_old_crtc_state(state, crtc);
+ 	drm_atomic_helper_disable_planes_on_crtc(old_crtc_state, false);
  
--static void vop2_enable(struct vop2 *vop2)
-+static int vop2_enable(struct vop2 *vop2)
- {
- 	int ret;
- 	u32 version;
-@@ -879,25 +886,24 @@ static void vop2_enable(struct vop2 *vop2)
- 	ret = pm_runtime_resume_and_get(vop2->dev);
- 	if (ret < 0) {
- 		drm_err(vop2->drm, "failed to get pm runtime: %d\n", ret);
--		return;
-+		return ret;
+@@ -1063,11 +1066,14 @@ static void vop2_crtc_atomic_disable(struct drm_crtc *crtc,
+ 
+ 	clk_disable_unprepare(vp->dclk);
+ 
++	vp->enabled = false;
++
+ 	vop2->enable_count--;
+ 
+ 	if (!vop2->enable_count)
+ 		vop2_disable(vop2);
+ 
++out_unlock:
+ 	vop2_unlock(vop2);
+ 
+ 	if (crtc->state->event && !crtc->state->active) {
+@@ -1803,8 +1809,11 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+ 		return;
  	}
  
- 	ret = vop2_core_clks_prepare_enable(vop2);
--	if (ret) {
--		pm_runtime_put_sync(vop2->dev);
+-	if (!vop2->enable_count)
+-		vop2_enable(vop2);
++	if (!vop2->enable_count) {
++		ret = vop2_enable(vop2);
++		if (ret)
++			goto err_unprepare_dclk;
++	}
+ 
+ 	vop2->enable_count++;
+ 
+@@ -1831,10 +1840,8 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+ 		clock = vop2->ops->setup_intf_mux(vp, rkencoder->crtc_endpoint_id, polflags);
+ 	}
+ 
+-	if (!clock) {
+-		vop2_unlock(vop2);
 -		return;
 -	}
-+	if (ret)
-+		goto err_put_pm;
++	if (!clock)
++		goto err_put_enable_count;
  
- 	ret = rockchip_drm_dma_attach_device(vop2->drm, vop2->dev);
- 	if (ret) {
--		drm_err(vop2->drm, "failed to attach dma mapping, %d\n", ret);
--		return;
-+		drm_err(vop2->drm, "failed to attach dma mapping: %d\n", ret);
-+		goto err_disable_clks;
- 	}
+ 	if (vcstate->output_mode == ROCKCHIP_OUT_MODE_AAAA &&
+ 	    !(vp_data->feature & VOP2_VP_FEATURE_OUTPUT_10BIT))
+@@ -1852,8 +1859,7 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+ 		default:
+ 			drm_err(vop2->drm, "Unknown DRM_MODE_CONNECTOR %d\n",
+ 				vcstate->output_type);
+-			vop2_unlock(vop2);
+-			return;
++			goto err_put_enable_count;
+ 		}
+ 	else
+ 		out_mode = vcstate->output_mode;
+@@ -1965,6 +1971,18 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
  
- 	version = vop2_readl(vop2, RK3568_VERSION_INFO);
- 	if (version != vop2->version) {
- 		drm_err(vop2->drm, "Hardware version(0x%08x) mismatch\n", version);
--		return;
-+		ret = -EINVAL;
-+		goto err_detach_dma;
- 	}
+ 	drm_crtc_vblank_on(crtc);
  
- 	/*
-@@ -932,6 +938,17 @@ static void vop2_enable(struct vop2 *vop2)
- 		    VOP2_INT_BUS_ERRPR << 16 | VOP2_INT_BUS_ERRPR);
- 	vop2_writel(vop2, RK3568_SYS1_INT_EN,
- 		    VOP2_INT_BUS_ERRPR << 16 | VOP2_INT_BUS_ERRPR);
++	vp->enabled = true;
 +
-+	return 0;
++	vop2_unlock(vop2);
 +
-+err_detach_dma:
-+	rockchip_drm_dma_detach_device(vop2->drm, vop2->dev);
-+err_disable_clks:
-+	vop2_core_clks_disable_unprepare(vop2);
-+err_put_pm:
-+	pm_runtime_put_sync(vop2->dev);
++	return;
 +
-+	return ret;
++err_put_enable_count:
++	if (!--vop2->enable_count)
++		vop2_disable(vop2);
++
++err_unprepare_dclk:
++	clk_disable_unprepare(vp->dclk);
+ 	vop2_unlock(vop2);
  }
  
- static void vop2_disable(struct vop2 *vop2)
-@@ -942,9 +959,7 @@ static void vop2_disable(struct vop2 *vop2)
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+index ffcb39c130aa..b209b2d5b96d 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+@@ -243,6 +243,12 @@ struct vop2_video_port {
  
- 	regcache_drop_region(vop2->map, 0, vop2_regmap_config.max_register);
+ 	struct completion dsp_hold_completion;
  
--	clk_disable_unprepare(vop2->pclk);
--	clk_disable_unprepare(vop2->aclk);
--	clk_disable_unprepare(vop2->hclk);
-+	vop2_core_clks_disable_unprepare(vop2);
- }
- 
- static bool vop2_vp_dsp_lut_is_enabled(struct vop2_video_port *vp)
++	/**
++	 * @enabled: CRTC fully brought up by atomic_enable(); allows
++	 * atomic_disable() to skip teardown after a failed enable.
++	 */
++	bool enabled;
++
+ 	/**
+ 	 * @win_mask: Bitmask of windows attached to the video port;
+ 	 */
 
 -- 
 2.54.0
