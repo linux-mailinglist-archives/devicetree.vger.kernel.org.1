@@ -1,251 +1,198 @@
-Return-Path: <devicetree+bounces-321199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321195-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id IxYJE8W/S2qNZgEAu9opvQ
-	(envelope-from <devicetree+bounces-321199-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 16:46:29 +0200
+	id s1T/H2OyS2rLYgEAu9opvQ
+	(envelope-from <devicetree+bounces-321195-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 15:49:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9543371228C
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 16:46:28 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D0D77117C4
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 15:49:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nG9BOKVt;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321199-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321199-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=QgLepE99;
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321195-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321195-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2D95B368BA06
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 13:09:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1612C3064613
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 13:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E223D3DDB0E;
-	Mon,  6 Jul 2026 13:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5097635836B;
+	Mon,  6 Jul 2026 13:06:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011067.outbound.protection.outlook.com [52.101.70.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EAE1409132
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 13:09:44 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783343385; cv=none; b=ZueXe6zDYZHf9WHw2hB0SqqxNZoCrX/NcdcCwjqTdVLxOaVRmpTK3UB0XxzO+iBfRE8SFrQJ76fMYzeym39iVYiK9RjrOJGFFP+7rLHUA1sKpzlyhevygis6iA+BSl+SkAyLglLkmlijtyF8BnfTxTGmtqkF/TmbJArxnsTgdXo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783343385; c=relaxed/simple;
-	bh=m6vNbfcTFMDJTCUe+imERKqcuZmnxBqvDavG7Tef+eM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Bkw8PFF0WTreJBa1uSQVONWpaihdprnMk7L2wQ3jE/NzEK0MpFJ4rue1f9k2RIUcfMWjRt4t6iElHmxmqh6wq+WcvjwKR0gP0RUfscSnRA8yjMqP9cVaAqy9JoAuY/sIw5+DF+nydwKHSN+9/tj8QCl6Fspl3TRkJiLavs2r+yM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nG9BOKVt; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 886D31F00A3A
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 13:09:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783343384;
-	bh=oSBhOhh94uibX703mDFvpSfIFzkXKtVz7iv2dM/6XNU=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
-	b=nG9BOKVtFvHTtF5EG1uWQ+KEaKnEW2OB6MxagwctBUYuw2VZak6lsUmDit5WozB2c
-	 jfdOmhi76mPrVgDpXK5qgaAmTime2Rv3oUBZYqtRz2iSz7OSl2TA73l7/ueYCX/r38
-	 jZrkf/keykU5REK2ovdAg7UKfXewQAMxSXH9HZwE52/Q3Nt8Bka6ixH4I6ma1SCk7p
-	 ThxUmWqcUqUlD4n4Q1csU2ZSaCX5sY/RoXZl1VEnBBxBnrk8pWv9ihEUf3uCtP95pX
-	 hL2iNrucKM57cXsVR8cyClSJYhui99/f4TwwOHXYOpDDQcQHRNy3MAb/N97ozsG2zU
-	 BQTz/E8kXiQEw==
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5aebd77cbb4so2534790e87.2
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 06:09:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RqC3tQCDxlTrWOc8BT2Tpf24vqsQpTPp9o2EcBiVtGBbrnHpIzEY5XAkzPKDkUuPr1lOTOvl3EoFVAu@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPKkMqbhZIKRfUNEZF8vKjOQEaoTz3tBAoTTNQzuovLstTAsk4
-	RJaom/KVQqHTxYcImLAAt0m73f2fz1uXtG+sju0FCSk5NGsVve+klM9Ap4uucExY3KlIyaZWze7
-	AaSSbW1V9y5VbK1ploPexLA66NZ6Yegk=
-X-Received: by 2002:a05:6512:61a:b0:5ae:9b04:dbb0 with SMTP id
- 2adb3069b0e04-5b007bbcfffmr78794e87.0.1783343381196; Mon, 06 Jul 2026
- 06:09:41 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB97B3655E4;
+	Mon,  6 Jul 2026 13:06:08 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783343170; cv=fail; b=jQu6j3tvPBetBEd8+aKeYFbhHB0ISKo28qSc4yltXJAsK6pjM+XjamNuFkANYiq5o03g5nyzFcUvRKMWuvsy1IkDTwkiqCLfAXbJ7WTSrFwalaDPho8w0EkLUDECuZ1kYtHLFpAw/81zShSBFta8F9LmY8B2LYKkQwV8jnABOno=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783343170; c=relaxed/simple;
+	bh=Bg1AwOYGE1FdBiigxq/uhPkmnma5T7XZrPOC3uokbD8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=oGSMyUobZv1nsin1cTsmfU9arGEkQnN6iPCccY5AV5BIhFoa8tsEndWW6vsyZFqP5D0Wm8iFQKPR7i1AR9aLW54LwyEmSg/FFYi/579uc3TVTKgnPwoNcUZqK/+BSAecxccM0yRwpn/q/mhkBUnwbH2q+npXJrWUltEbxQ1Nc8A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=QgLepE99; arc=fail smtp.client-ip=52.101.70.67
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V0TC0s06e6Rb7aR2dzQFuJf6dVik7YMTKy3/xILIpDVag6C2SgaEoo19/2zVYRgLbODT79wH6ZDVKXWIr27/UoxFn6jaxJIzqCW8izUmNT9xDiwAQSsIT3A0tybmjh2Z/sUdChFlLTlGRp2Uo7Vj6Rol/zWJTFOE1Ro63Z9W6JJpVPrHUg/IurtiyOkz8sAISuzSmLZSI+mhcxNYZvjkRil4hlnpxkibyOGpnO8FQs4n2dddYNEFYhgO7cFxkgp1Us3BS7cHl3TtNfLmuh7V/L0f9amFjIryuLbTZfBZnOv7BGDOy5sNsIunG4IgkiSU5R/2ulW1HkvJvLt0FBx/tw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=O5/L25n9FP+m+oT1N+VydWdWyhGTVg8wr3a4U7gYKPk=;
+ b=W435UzJWzp6PsJyxGWf0pBpFh6BzRjEpSEMOfR4oa/dCSHGU20O3MGeolZT/V4bMIYZpJDO3ANkyKuHZAv3HDauYrNTl+TcchjAzqqB19+KFRgYJafAZ2lafRG7D9bg4/9RnszzpDNk+6jTY7juCm4tmV0LQtfi75Lhof+OXg12LG6lhnrFhDHoDLLLdWbmjFcpnAUTri/MvHKJe5hsti3SYsMRdVs3RaQtzKEXvYM+NgsI9/SR4Nyjp4deBp3/OX28besO0QMl3jDomwVQ2czEJXuKyn4GP7iCNqeIgaBV7nAT0ZN0TLIsM664YiAwIHuYSUTdD68Y4n8p3xDbAPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O5/L25n9FP+m+oT1N+VydWdWyhGTVg8wr3a4U7gYKPk=;
+ b=QgLepE99saw+SoGr67vqvyJjKPm2NR2D7ivk9Q2kuQESQeeWRtNxp176GgXUXVeTu0lMMHG0Gnto33gWpRXnsWh0cISTArnxod7jstJTCD2Zpfvo61uX+jDOfGqpdUXE018irWnxFD1M9o4ophdJJIm4Ycd2fBxe1TgdwZYSXbIRYW3vEYLwsWK/FmzT0jmhsFMUQD6PYC/yOZ0Py0h2nuWeV8i/gWUJHcFtGZ52JoOpdZCFo6bc340qjVx0kKYdIci4Fth2J93TBRxtU5UwKjTm/sXzMsTH2KeXdONyimgDNKYD6N2+4Lv0Muure/whqZEpeSjorgZ/ftP3gydygQ==
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
+ by AMDPR04MB11553.eurprd04.prod.outlook.com (2603:10a6:20b:719::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Mon, 6 Jul
+ 2026 13:06:05 +0000
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9%3]) with mapi id 15.21.0181.012; Mon, 6 Jul 2026
+ 13:06:05 +0000
+Date: Mon, 6 Jul 2026 21:09:33 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 3/3] arm64: dts: imx8mp-skov: support new 7inch panel
+ board
+Message-ID: <akupDXc1QA4uKfR6@shlinux89>
+References: <20260706-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v4-0-dfc0c8827c02@pengutronix.de>
+ <20260706-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v4-3-dfc0c8827c02@pengutronix.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260706-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v4-3-dfc0c8827c02@pengutronix.de>
+X-ClientProxiedBy: MA5PR01CA0081.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1ad::10) To AM8PR04MB7874.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24d::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260706-a733-rtc-v4-0-f330728db3d3@baylibre.com>
- <20260706-a733-rtc-v4-6-f330728db3d3@baylibre.com> <20260706100635.E5DC61F000E9@smtp.kernel.org>
- <1jv7asguqu.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jv7asguqu.fsf@starbuckisacylon.baylibre.com>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Mon, 6 Jul 2026 21:09:29 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67zgADhe+PG4UJke0r-1eQrXKhZ9PbqWfY9JNZ8cBxMeA@mail.gmail.com>
-X-Gm-Features: AVVi8CfXtsQWXmbgCdreOulPhQzwv9AjubtuzL3ZucIy6oiHmmXq6hOpzzZI_Bk
-Message-ID: <CAGb2v67zgADhe+PG4UJke0r-1eQrXKhZ9PbqWfY9JNZ8cBxMeA@mail.gmail.com>
-Subject: Re: [PATCH v4 6/9] clk: sunxi-ng: div: add read-only operation support
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: sashiko-bot@kernel.org, sashiko-reviews@lists.linux.dev, 
-	conor+dt@kernel.org, robh@kernel.org, linux-rtc@vger.kernel.org, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, devicetree@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|AMDPR04MB11553:EE_
+X-MS-Office365-Filtering-Correlation-Id: eeccc581-9595-4210-17e6-08dedb5f56a3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|23010399003|1800799024|19092799006|366016|56012099006|18002099003|11063799006|4143699003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+	udsP5fwK/oHWKVp94Uw7vrOEAT7l6SmhzNtdB8LbSyDqIZ+qRJA2Or2R18SLbv1NKDgLRUZpZ3HWnkLiMr860AuWKlvG2LXV6/KBKfjvBR6V8Su27HcPQJBHPc56ZRXvjWe/te2xUZTe0D06q0XeLAdkF2ViSoSVnlFhdemrOAhBiSd7q/XjgwFxA5i0gnyPjvG/duzC95F2VLd4DJG30lCUr0ojTjj4VXw17aQuE4uhbYw46Vkxn8AX5z6++PqWtJbEQl9A23pVrly6ZAtWwOjqEsPyE1Lj1lisqrVjjZSOkcVA7cDEx7BQYhA4i8LH3mcd5cmMTF6hqkiwPZUYL4zj0XtTi0SjsJQy02pu7VKuB8nb7KiL/82PPtX5Y/3vhQP0Ls/rQLY6y/fPzHcwRMmcvmsiDm+bHLyX98jPaGeL5PLyb+pTmnE8LmadDISbc/UsxM/8vxeNThx3ifcZNX8l28a48Of/w28GDKglU5fYjOGOpmKK8tLay7ArVVKBLgltpQzTIZ+FizqTHVn20VgkVKV/XnAmWnvs4jgU1eSnwWWh5wvnIUV0wLia2UMzpvkFNirrwyrxTgKJxQoYDkjaCta+rR4mCas+jbE2+N071P+5MxM+f9MyhP52d1YqOiI+dl6ataKAMETGYzSq2hbqIzH9KsMqwuAG24RFUOE=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(1800799024)(19092799006)(366016)(56012099006)(18002099003)(11063799006)(4143699003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?o0j9AmEmlOkeQ34AjAx8OGI9TlLtq9PglfGSuuYEQaNMlvv7xWjzOux+gXAJ?=
+ =?us-ascii?Q?RYDJYziVZG0YsFvCdAyyQ35EBe+xOUJsG4ZmUPPjHPh0VhjPR2dR9aZ7HuEm?=
+ =?us-ascii?Q?6pUCSh20fUONXvjOz1Dx4QVP/VzbGuELdRrUkQ4kGfhgI9yzIfh+enlvIKtz?=
+ =?us-ascii?Q?WY7UziYc6+X9RFf64YD5WEm0Q+kimDf2arDGg4uo9xSulQrBRYtiPF6+aIYf?=
+ =?us-ascii?Q?MiQbFkyqJpjXQY0aUOQFTFPy/AkJKNxK/6ool3UMo1boo3FPWh4c8KjjVFKg?=
+ =?us-ascii?Q?3wmQa8g5svPIqZFCpI/+gU5IqfNzGHbVOycDqmv3GWRDwwgaIEhHFaHRSWK1?=
+ =?us-ascii?Q?/QRBKS8stDFk+TeMTADK3K30wHT6dZl0ndWJL75e/eJ5/BkfdTnJLeIwJOyt?=
+ =?us-ascii?Q?CwwnS2M8gjdP3RCQph6OGKTjcNk3RA0DYxEN8bpFs1O5JMEOVMqxBlpJgT+U?=
+ =?us-ascii?Q?jRUWEwmFJXC4WfD2BqQoVuYp0WizTbS0vm6N5e1BN12C5ekxICet+OHzCAuz?=
+ =?us-ascii?Q?STauTYenYbbmKkFf84nIhT1F2Fe2zUtdMbQwRIpfRhaqNaLsmEb7mFGPhagN?=
+ =?us-ascii?Q?p4b+zD1P87ApF3SpUoARf+wjs66hk+i5NJ146IrzVwUnQGllxwivr89WRf3+?=
+ =?us-ascii?Q?1dSK8L/xx2E6r3HJETUXypFsdU3NZysiXlpZCt0lZsLEKmg0koRlrC0GXnH5?=
+ =?us-ascii?Q?+2cY8LQEb4NYCWyzQDAI1Jtjbu7xl7dxT9cr+kLAZbXzsQYCRJgR3E9tP8q4?=
+ =?us-ascii?Q?TtcJ55/soNKKt6nUTdP8oY66YVoslYPZ4CTFMF/IxAz7FR8E5VCHUeZVUnVa?=
+ =?us-ascii?Q?rc9vVe+7jb4TBIGRsH5U6uwJkaEqWs9mcTCkpo2y1oKpxW0/zBIpOwGrmqCf?=
+ =?us-ascii?Q?MmMaqsE7CYUTtrfx5mu8L3SXbVYLsNsIezEYc8e589xegvo5f0+9g476dlg0?=
+ =?us-ascii?Q?0QJRp+z/unVMy3YS6r/ZcgPHkLTEjnEWv+jf6fOtkbcnm7VWuj5wzO0hWRds?=
+ =?us-ascii?Q?z4LiUkzsrDMUtNlZEKtVj2BFzVnrH1vn9japQ9fOcRz+T43/E6DLGwZhBSfY?=
+ =?us-ascii?Q?jEjudYoWhUptiZJBxGRZnWTVvyjpPgQTidI/7GotuHZvrb5hP0F2q33Wa3mK?=
+ =?us-ascii?Q?bhHBQrDYb1I76fDiu1RPbfwYtMEE50JS1z5jcywYHQRlFfU4zMYIPDU9ZNjR?=
+ =?us-ascii?Q?OqFKwJHnNYe+tkD1Xk74dcEtRvVRM/4e78JZ2/6NeAlkV6iitHCCTRzmdjzw?=
+ =?us-ascii?Q?tHyJ7djyrZMD3+lea11Z2bSarOfoa2oiTSXREfb/rWKxb85ryFVh/keS6zcg?=
+ =?us-ascii?Q?9/aMnu+p+5y3TK+2SLT9fbDZNTt40imb6X/9s2G/YzLNY1Ejs5gyBomD5CQJ?=
+ =?us-ascii?Q?5q+e+d80xhii9nyQzLcpVRygY9+PSHFmW61IikHKMWTB4MUsd/bX/39ZDRKF?=
+ =?us-ascii?Q?LreogndUX4KB4kvJoC06nNZYmqjnBBKKZYHAvn32rVAa6BAFMttTGXxJQEf5?=
+ =?us-ascii?Q?DygRpDlaNeu9g5QllzkMP7WZ8P8gi9mfAfYAiVD7wBdPJ+oFhcZByY9BSxZs?=
+ =?us-ascii?Q?3VzVwk/G+RBmKdIsaacP7gyKQNOXcKB9VghGBsugfkHH+UFGpjmrXWoE5cBy?=
+ =?us-ascii?Q?78LOIGQsb+LTencMHRJrIb2v+QRVhAOHNxKGTdogJ9aFRk/p+nJ3gO52JCz+?=
+ =?us-ascii?Q?jRgC1q/nRi9hKWHrfdFXF2H0e4ILHL/lp9TNfJ+DkiMqPYot8bt/cJB8Q4jw?=
+ =?us-ascii?Q?9e0albDFB4EK7O0WRGWALR5MiYIFhuB1Ht4dC+9qwc1+GOkG1+71?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eeccc581-9595-4210-17e6-08dedb5f56a3
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 13:06:05.6218
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: b+kgQaEDjPQBrggB5YlzINR5yRUgopNYD8HkHbBGJiwOT+XKGqq23n1ejH9bw3YpVzccv8dnBYNs/hbwnIf7GTNVTFJztv0TsyqRG5+V2Cb4dLqkdDo4pxdJFXQ69fTa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMDPR04MB11553
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321199-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-321195-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jbrunet@baylibre.com,m:sashiko-bot@kernel.org,m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:robh@kernel.org,m:linux-rtc@vger.kernel.org,m:alexandre.belloni@bootlin.com,m:devicetree@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[wens@kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:s.trumtrar@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,oss.nxp.com:from_mime,NXP1.onmicrosoft.com:dkim,shlinux89:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9543371228C
+X-Rspamd-Queue-Id: 7D0D77117C4
 
-On Mon, Jul 6, 2026 at 8:36=E2=80=AFPM Jerome Brunet <jbrunet@baylibre.com>=
- wrote:
+On Mon, Jul 06, 2026 at 09:17:57AM +0200, Steffen Trumtrar wrote:
+>This board is similar to the already upstream
+>imx8mp-skov-revc-tian-g07017.dts but uses a different 7" panel with a
+>different touch controller.
 >
-> On lun. 06 juil. 2026 at 10:06, sashiko-bot@kernel.org wrote:
->
-> > Thank you for your contribution! Sashiko AI review found 1 potential is=
-sue(s) to consider:
-> > - [Medium] Inconsistent rate calculation between `determine_rate` and `=
-recalc_rate` due to division order.
-> > --
-> >
-> > commit 39f872462c04ad724c3624b152234160de56a47e
-> > Author: Jerome Brunet <jbrunet@baylibre.com>
-> >
-> > clk: sunxi-ng: div: add read-only operation support
-> >
-> > Add support for sunxi-ng read-only dividers. This will be
-> > useful to the a733 oscillator detection logic.
-> >
-> >> diff --git a/drivers/clk/sunxi-ng/ccu_div.c b/drivers/clk/sunxi-ng/ccu=
-_div.c
-> >> index 62d680ccb524b..d1c8c7baa12dc 100644
-> >> --- a/drivers/clk/sunxi-ng/ccu_div.c
-> >> +++ b/drivers/clk/sunxi-ng/ccu_div.c
-> > [ ... ]
-> >> @@ -84,6 +84,36 @@ static int ccu_div_determine_rate(struct clk_hw *hw=
-,
-> >>                                           req, ccu_div_determine_rate_=
-helper, cd);
-> >>  }
-> >>
-> >> +static int ccu_rodiv_determine_rate(struct clk_hw *hw,
-> >> +                                struct clk_rate_request *req)
-> >> +{
-> >> +    struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> >> +    unsigned long val;
-> >> +    u32 reg;
-> >> +    int ret;
-> >> +
-> >> +    reg =3D readl(cd->common.base + cd->common.reg);
-> >> +    val =3D reg >> cd->div.shift;
-> >> +    val &=3D (1 << cd->div.width) - 1;
-> >> +
-> >> +    req->rate =3D ccu_mux_helper_unapply_prediv(&cd->common, &cd->mux=
-, -1,
-> >> +                                              req->rate);
-> >> +
-> >> +    if (cd->common.features & CCU_FEATURE_FIXED_POSTDIV)
-> >> +            req->rate *=3D cd->fixed_post_div;
-> >> +
-> >> +    ret =3D divider_ro_determine_rate(hw, req, cd->div.table,
-> >> +                                    cd->div.width, cd->div.flags, val=
-);
-> >> +
-> >> +    if (cd->common.features & CCU_FEATURE_FIXED_POSTDIV)
-> >> +            req->rate /=3D cd->fixed_post_div;
-> >> +
-> >> +    req->rate =3D ccu_mux_helper_apply_prediv(&cd->common, &cd->mux, =
--1,
-> >> +                                            req->rate);
-> >
-> > [Severity: Medium]
-> > Will this division order cause inconsistent rate calculations compared =
-to
-> > ccu_div_recalc_rate()?
-> >
-> > The divider_ro_determine_rate() helper applies DIV_ROUND_UP() to the un=
-adjusted
-> > parent rate, and then this function divides that result by fixed_post_d=
-iv and
-> > prediv.
-> >
-> > However, ccu_div_recalc_rate() applies prediv to the parent rate first,=
- then
-> > calculates the divider rate, and finally divides by fixed_post_div.
-> >
-> > Since the Common Clock Framework requires determine_rate and recalc_rat=
-e to be
-> > mathematically consistent, could this discrepancy cause rate mismatches=
- or
-> > warnings for clocks using a pre-divider or fixed post-divider?
->
-> I think the RO side is correct and RW one is not.
->
-> The RO part correctly walk back the tree by un-applying the predivider
-> so, whatever CCF does with the parent rate value will be correct.
->
-> The RW part query the parent rate then applies the prediv. This
-> will be thrown away when/if clk_divider_bestdiv() calls
-> clk_hw_round_rate() on the parent. If that happens, the subsequent
-> un-apply of the prediv would make the matter even worse. So (if I
-> understand all this correctly) this case does not happen yet, otherwise
-> we would have noticed, and it can be fixed separately.
+>Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+>---
+> arch/arm64/boot/dts/freescale/Makefile             |  1 +
+> .../imx8mp-skov-revc-jutouch-jt070tm041.dts        | 79 ++++++++++++++++++++++
 
-Looking at the history, ccu_div_determine_rate_helper() used to be
-ccu_div_round_rate(), so it wouldn't have tried all the parents. Looks
-like I missed this when looking at the conversion patches back in
-January.
+Sorry to jump in at v4.
 
-The fix is easy though: just reimplement divider_round_rate_parent().
-Somehow we did this already for the multiplier but not the divider.
+Compared with imx8mp-skov-revc-tian-g07017.dts, the differences are mainly
+in panel and touch.
 
-BTW, would it make sense to implement ccu_rodiv_determine_rate() using
-ccu_mux_helper_determine_rate() as well? That would make both RW and RW
-consistent, but it would mean another rewrite for you ...
+Have ever considered using overlay?
 
-> Side Note: I've not followed the sunxi history behind all those
-> prediv/postdiv but I find them a bit confusing. It seems like inserting
-> some fixed factor clocks in the clock trees would accomplish the same
-> thing while simplifying mux/divider quite a lot by droping these quirks ?
-
-I think the whole idea was that we didn't want all those extra intermediate
-clocks. If you look at drivers/clk/sunxi/ you can see that we came from a
-one device node per clock design, which was messy and bloated. The second
-try ended up being the "one clock per useful hardware clock unit" design
-you see now..
-
-And we somehow tied the list of clks to the exported list of clks,
-which probably made it worse for adding intermediates.
-
-> Side Note #2: I feel that while sashiko is pointing out valid things but =
-we
-> are slowly getting off topic and down the rabbit hole with it ...
-
-Yeah. That's the downside of Sashiko.
-
-
-Thanks
-ChenYu
+Regards
+Peng
 
