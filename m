@@ -1,731 +1,188 @@
-Return-Path: <devicetree+bounces-320964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320962-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jYFKNMh8S2r2SAEAu9opvQ
-	(envelope-from <devicetree+bounces-320964-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:00:40 +0200
+	id g/HVM6N8S2rsSAEAu9opvQ
+	(envelope-from <devicetree+bounces-320962-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:00:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7431A70EDA4
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:00:40 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D5B370ED86
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:00:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="k/76VcVt";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320964-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320964-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=ixit.cz header.s=dkim header.b=b73rt3BD;
+	dmarc=pass (policy=quarantine) header.from=ixit.cz;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320962-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-320962-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B68A1302BFFA
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:28:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C615A30F1EBB
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7823FA5CE;
-	Mon,  6 Jul 2026 09:15:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9CA24C6F09;
+	Mon,  6 Jul 2026 09:15:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com [209.85.210.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ixit.cz (ixit.cz [185.100.197.86])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740CA42E8DF
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 09:15:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 020F74252D3;
+	Mon,  6 Jul 2026 09:15:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783329349; cv=none; b=fqGbIPlAmMrGkiQr5RAtAmY7p6dvWD7KJ3vVSeBNzctfrEp2LoI89TjWJkoxZ6XQ0nzFxjuI7i/PX8eBxkBLPa7S2Jj5/LYE+8S3oGya+fcuArtL6Bzjl5yr0ZYzs9XSi3Jjz3Mz48491bWppl9nhYTon78g2EZY2bt17K5vFlw=
+	t=1783329335; cv=none; b=WmbU4qBZV0UDy6xDkca7QHYz1SPIK54otkaE8hnTRwLJyWHi/60Y7wgDML7k8/D+1/C+0LsEfXKafUr83QTnxpk698K8MbDG0rCyRD4FWiIL2AW+Vsbx+gTthLyCqMZNw+suGesWQFUCjfsWDoaDiRIMQGBG3TeOOAbizMoiZaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783329349; c=relaxed/simple;
-	bh=w51C3jUGo0plRKZPEIY2q/QIfCYShiCTzByZYsRM06A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AIADgRi2sjruc2JJY/nd4YmxCY45ZVnvvtOTH7yr71GQ+NO5JzQf2EkM+1LIaqr8hwnGKS6kyUZja2l8bXhPTMY9UHc91VYEU6v8RZQ9WCHylJcDXGdWBxLY/On0RgcX9pZ0XoC7nuVrRTOTv056V7HIRVOdBqlCrH/Eh21qGWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k/76VcVt; arc=none smtp.client-ip=209.85.210.196
-Received: by mail-pf1-f196.google.com with SMTP id d2e1a72fcca58-84536ecfc5bso2791456b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 02:15:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783329339; x=1783934139; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JZ9Bilh0A71vas6RzcJ04y0kMrdOjby17tdvsBQOzSw=;
-        b=k/76VcVt5ilJyemyOV9JfvqG+YBhSHn4wD0fyit7C3jw7niM4HehC9qSy9oq3r81ub
-         uWNCbXZ/lx1V9PC40ww31SHPEOSasQIFeYezx1mRAcq5iENw4UMbnnBwedw+/l+LOecB
-         ig+GGZ0pkhQn/HgrXfRbJcMMv92wzKOwe8V6SPALjzWdA5hxrgcNFVdgKaad5wjNhjQX
-         Qaa9S2BzObTU3S6qsXePVT6Jp0gRoo9pRopg7x3iSJbkNEiVV/uFS5xsIIf9pL8bD/MZ
-         0eSNcV7Ili87rHhfe3tOtUsVCLcO2jd+lttRX9UoDPPTzPq6BJUatCyNnO3TVHkHra31
-         Ej3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783329339; x=1783934139;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=JZ9Bilh0A71vas6RzcJ04y0kMrdOjby17tdvsBQOzSw=;
-        b=cFqBQjrvu6T+IvnJV+YjD+jiD2WzuF5MJw8hBAM/w/wFc7s01Pm9GAIFTS1Wpmvybs
-         9eyGli0LYpB/dSM0wLiq2K15gdWYo30VXfbNC1jzcLVP7j9PQn5un3QxCMv1n6JTk7F1
-         ownJ4N90S7EQunjyHM+ekAid1TzMIy+MkRqzR22oAP/TwzmRVeekWOEieuAVtdc9Zhpz
-         2+MuwyAkkaRqS7n4XvsIkcwpeql4o18/RpkIOTa7KP2AJEIlAs3pB1tcp4hMXuziErF5
-         3L0uVl5dQJLLXhn4isdLbdqtKPcjC5h0KCXnHO6RLkuY80fviJ9i2dESRMGZEXCGJG6k
-         91xg==
-X-Gm-Message-State: AOJu0Yw7ySw5g3qrhLR+jRKuFOF3irpo32LLBkNZ2smz6bLiwuqTCrej
-	DBJW11BABRXRbjb0ZTUkxFwtbxtLWBiPeiPl7nzZqI7A1mVu8Sqs1SMn
-X-Gm-Gg: AfdE7cnmNGuM3XZdDrpxmCPN/oSenmhTtlsTrcQ2lwI5rrDNrE5qajOfV8Q8A3Yfoop
-	1f3NI3Y4Gqmg5843kFOSkj2keTmsDqijMwPhJ99DkpKlJgJs/I8qXwfc1aCb1qGt8SzfccX0LmO
-	wE/FgyQ7NC2fAoO8FbJwXzgU47zYTfEb3cbpxf/YD7uIxKmZChBvNSIYS6QAv7v9uUsVs+Uewcx
-	6vKX/yltj0tu2xyt1DbA6yM18TViIdrLBbriSuUnY3/SzGr+72Un72y/9dGSgHR01mkLr+G+mHJ
-	Jg2rmaZaitDAyEQyN6l3iTQNB+LT6p1zl6Zkmi7LWY5DPsL0zfUXBvx3dFsYOES+cAerTZ13y8T
-	WVBL/3R+0q6Hp24/3K2Tk40RrPhgaZhlVOYSqyjOr7EX/PQifkkXL0PdZ7TgIWTQ0p4fBGbRn0B
-	aHUQDqz14dj+IuI/TrRbQ61SSp
-X-Received: by 2002:a05:6a00:4c11:b0:847:7f65:7674 with SMTP id d2e1a72fcca58-847f6f5255amr7889988b3a.44.1783329338392;
-        Mon, 06 Jul 2026 02:15:38 -0700 (PDT)
-Received: from [192.168.1.101] ([218.194.36.79])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-847f6db29d1sm3445963b3a.53.2026.07.06.02.15.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 02:15:37 -0700 (PDT)
-From: Yanan He <grumpycat921013@gmail.com>
-Date: Mon, 06 Jul 2026 17:14:45 +0800
-Subject: [PATCH v2 5/5] ARM: dts: rockchip: Add Alientek DLRV1126
+	s=arc-20240116; t=1783329335; c=relaxed/simple;
+	bh=0hS8vw7MNSF4HOyaeNLcycdWRgFtm2Vd8D4R8NZbuyE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FcYUyJkNqACx9ua31Q897+KD2pylI0ncQy8jze8AXKf2T1UOWoaUatex74AlbHE36rCWapEGsoLD8TNbg2BiE6K5e0lqrwcLTHehp3/DV0lCmnttOPR+kOw25HvTAcABXpbhnPKCmLbiJ4HsAgkPOOMgzEoc+4D4b16W3v2fAP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=b73rt3BD; arc=none smtp.client-ip=185.100.197.86
+Received: from [172.20.10.2] (78-80-16-106.customers.tmcz.cz [78.80.16.106])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 5F30A534071E;
+	Mon, 06 Jul 2026 11:15:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1783329321;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=OpymYWCMeOw0pSw3wVZrb6qM4nRKD+tybJpcb6YiwcI=;
+	b=b73rt3BDhJUcgcso25zAz9ZQNupBXcn9+NTev7icQ4zItktQVIEqeVUP20QnRkDSJZaUfr
+	dEla340i1RzUpgLndBKHNd5p/LfHR2l9RPTIGqyArPMqqcQy7SbixGB8rvY5T5hjZ5z3TD
+	YS71dhoZAWKdXWyYFUwz40eU+dQZdUk=
+Message-ID: <f71e9b9b-a023-4d07-a6ca-58714ee22d06@ixit.cz>
+Date: Mon, 6 Jul 2026 11:15:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 2/6] ASoC: qcom: sdm845: use DSP_A format for TDM
+ codec DAIs
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, David Rhodes <david.rhodes@cirrus.com>,
+ Richard Fitzgerald <rf@opensource.cirrus.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ David Rhodes <drhodes@opensource.cirrus.com>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
+ devicetree@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20260705-pixel3-audio-v1-0-3b66f33859f1@ixit.cz>
+ <20260705-pixel3-audio-v1-2-3b66f33859f1@ixit.cz>
+ <15493c41-51ec-47f1-be1f-d211a970e487@oss.qualcomm.com>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <15493c41-51ec-47f1-be1f-d211a970e487@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260706-rv1126-alientek-dlrv1126-v2-5-ff3176ca362b@gmail.com>
-References: <20260706-rv1126-alientek-dlrv1126-v2-0-ff3176ca362b@gmail.com>
-In-Reply-To: <20260706-rv1126-alientek-dlrv1126-v2-0-ff3176ca362b@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- David Wu <david.wu@rock-chips.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Frank <Frank.Sae@motor-comm.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- Yanan He <grumpycat921013@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783329287; l=14558;
- i=grumpycat921013@gmail.com; s=20260618; h=from:subject:message-id;
- bh=w51C3jUGo0plRKZPEIY2q/QIfCYShiCTzByZYsRM06A=;
- b=Nm+U2/03qdUxBPUR1JAZJhmNp7jqMUdvdDJhwsj30p6OQow9ad6tYXE6/9pbcCMp9L7tnK9XT
- K3MLyaXpUOAAJUwq2fPNUqTOZ1FxhEPiBdw0oB6wiGwZ4CkZBebWEwf
-X-Developer-Key: i=grumpycat921013@gmail.com; a=ed25519;
- pk=oWrY8KwXIunZWlYBV76NG2A3V4p1bJ+aD45Mr56ErTw=
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
+	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-320964-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320962-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:david.rhodes@cirrus.com,m:rf@opensource.cirrus.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:drhodes@opensource.cirrus.com,m:conor+dt@kernel.org,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:patches@opensource.cirrus.com,m:devicetree@vger.kernel.org,m:phone-devel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:david.wu@rock-chips.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:Frank.Sae@motor-comm.com,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:netdev@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:grumpycat921013@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[grumpycat921013@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[kernel.org,sntech.de,lunn.ch,davemloft.net,google.com,redhat.com,rock-chips.com,gmail.com,foss.st.com,motor-comm.com,armlinux.org.uk];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com,perex.cz,suse.com,cirrus.com,opensource.cirrus.com];
+	FORGED_SENDER(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,st-md-mailman.stormreply.com,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[grumpycat921013@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ixit.cz:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7431A70EDA4
+X-Rspamd-Queue-Id: 3D5B370ED86
 
-The board consists of a CLRV1126F core module and a DLRV1126 carrier
-board. The core module contains the RV1126 SoC, eMMC and RK809 PMIC,
-while the carrier board provides Ethernet, SD card, AP6212 WiFi and
-Bluetooth, PCF8563 RTC, ADC keys, GPIO LEDs and audio connectors.
+On 06/07/2026 10:33, Konrad Dybcio wrote:
+> On 7/5/26 10:06 PM, David Heidelberg via B4 Relay wrote:
+>> From: David Heidelberg <david@ixit.cz>
+>>
+>> Before the DSP_B only worked because the only close-to-mainline consumer
+>> cs35l36 codec was patched to map both DSP_A and DSP_B to the same
+>> hardware register value (asp_fmt = 0), which is inherently DSP_A timing.
+>> Use the right codec (DSP_A) which works as expected.
+>>
+>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>> ---
+> 
+> Fixes?
+> 
 
-The board has been tested with Ethernet/NFS boot, eMMC, SD card, SDIO
-WiFi enumeration, Bluetooth LE scanning, RTC, ADC keys, GPIO LEDs and
-RK809 audio card registration.
+I was thinking about it, but I don't see any mainline consumer of TDM within the 
+sdm845 arch.
 
-Signed-off-by: Yanan He <grumpycat921013@gmail.com>
----
- arch/arm/boot/dts/rockchip/Makefile                |   1 +
- .../dts/rockchip/rv1126-alientek-clrv1126f.dtsi    | 277 +++++++++++++++++++++
- .../boot/dts/rockchip/rv1126-alientek-dlrv1126.dts | 256 +++++++++++++++++++
- 3 files changed, 534 insertions(+)
+If you think it make sense, I'll mark it.
 
-diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
-index d0154fd7ff24..e9f9e0ac3bfd 100644
---- a/arch/arm/boot/dts/rockchip/Makefile
-+++ b/arch/arm/boot/dts/rockchip/Makefile
-@@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rv1108-evb.dtb \
- 	rv1109-relfor-saib.dtb \
- 	rv1109-sonoff-ihost.dtb \
-+	rv1126-alientek-dlrv1126.dtb \
- 	rv1126-edgeble-neu2-io.dtb \
- 	rv1126-sonoff-ihost.dtb \
- 	rk3036-evb.dtb \
-diff --git a/arch/arm/boot/dts/rockchip/rv1126-alientek-clrv1126f.dtsi b/arch/arm/boot/dts/rockchip/rv1126-alientek-clrv1126f.dtsi
-new file mode 100644
-index 000000000000..9bee424b1797
---- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rv1126-alientek-clrv1126f.dtsi
-@@ -0,0 +1,277 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2026 Yanan He <grumpycat921013@gmail.com>
-+ */
-+
-+#include "rv1126.dtsi"
-+
-+/ {
-+	compatible = "alientek,clrv1126f", "rockchip,rv1126";
-+
-+	aliases {
-+		mmc0 = &emmc;
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&emmc {
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&emmc_bus8 &emmc_cmd &emmc_clk &emmc_rstnout>;
-+	rockchip,default-sample-phase = <90>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	rk809: pmic@20 {
-+		compatible = "rockchip,rk809";
-+		reg = <0x20>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PB1 IRQ_TYPE_LEVEL_LOW>;
-+		#clock-cells = <1>;
-+		#sound-dai-cells = <0>;
-+		clock-output-names = "rk808-clkout1", "rk808-clkout2";
-+		clock-names = "mclk";
-+		clocks = <&cru MCLK_I2S0_TX_OUT2IO>;
-+		assigned-clocks = <&cru MCLK_I2S0_TX_OUT2IO>;
-+		assigned-clock-parents = <&cru MCLK_I2S0_TX>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_int_l>;
-+		rockchip,system-power-controller;
-+		wakeup-source;
-+
-+		vcc1-supply = <&vcc5v0_sys>;
-+		vcc2-supply = <&vcc5v0_sys>;
-+		vcc3-supply = <&vcc5v0_sys>;
-+		vcc4-supply = <&vcc5v0_sys>;
-+		vcc5-supply = <&vcc_buck5>;
-+		vcc6-supply = <&vcc_buck5>;
-+		vcc7-supply = <&vcc5v0_sys>;
-+		vcc8-supply = <&vcc3v3_sys>;
-+		vcc9-supply = <&vcc5v0_sys>;
-+
-+		regulators {
-+			vdd_npu_vepu: DCDC_REG1 {
-+				regulator-name = "vdd_npu_vepu";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-initial-mode = <0x2>;
-+				regulator-min-microvolt = <650000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <6001>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_arm: DCDC_REG2 {
-+				regulator-name = "vdd_arm";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-initial-mode = <0x2>;
-+				regulator-min-microvolt = <725000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-ramp-delay = <6001>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_ddr: DCDC_REG3 {
-+				regulator-name = "vcc_ddr";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-initial-mode = <0x2>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc3v3_sys: DCDC_REG4 {
-+				regulator-name = "vcc3v3_sys";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-initial-mode = <0x2>;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vcc_buck5: DCDC_REG5 {
-+				regulator-name = "vcc_buck5";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <2200000>;
-+				regulator-max-microvolt = <2200000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <2200000>;
-+				};
-+			};
-+
-+			vcc_0v8: LDO_REG1 {
-+				regulator-name = "vcc_0v8";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <800000>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc1v8_pmu: LDO_REG2 {
-+				regulator-name = "vcc1v8_pmu";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vdd0v8_pmu: LDO_REG3 {
-+				regulator-name = "vcc0v8_pmu";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <800000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <800000>;
-+				};
-+			};
-+
-+			vcc_1v8: LDO_REG4 {
-+				regulator-name = "vcc_1v8";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vcc_dovdd: LDO_REG5 {
-+				regulator-name = "vcc_dovdd";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_dvdd: LDO_REG6 {
-+				regulator-name = "vcc_dvdd";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_avdd: LDO_REG7 {
-+				regulator-name = "vcc_avdd";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vccio_sd: LDO_REG8 {
-+				regulator-name = "vccio_sd";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc3v3_sd: LDO_REG9 {
-+				regulator-name = "vcc3v3_sd";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_5v0: SWITCH_REG1 {
-+				regulator-name = "vcc_5v0";
-+			};
-+
-+			vcc_3v3: SWITCH_REG2 {
-+				regulator-name = "vcc_3v3";
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	pmic {
-+		pmic_int_l: pmic-int-l {
-+			rockchip,pins = <0 RK_PB1 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+};
-+
-+&pmu_io_domains {
-+	pmuio0-supply = <&vcc3v3_sys>;
-+	pmuio1-supply = <&vcc3v3_sys>;
-+	vccio1-supply = <&vcc_1v8>;
-+	vccio2-supply = <&vccio_sd>;
-+	vccio3-supply = <&vcc_1v8>;
-+	vccio4-supply = <&vcc_3v3>;
-+	vccio5-supply = <&vcc_3v3>;
-+	vccio6-supply = <&vcc_3v3>;
-+	vccio7-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&saradc {
-+	vref-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&wdt {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/rockchip/rv1126-alientek-dlrv1126.dts b/arch/arm/boot/dts/rockchip/rv1126-alientek-dlrv1126.dts
-new file mode 100644
-index 000000000000..33c6c74d08b9
---- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rv1126-alientek-dlrv1126.dts
-@@ -0,0 +1,256 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2026 Yanan He <grumpycat921013@gmail.com>
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/input/input.h>
-+#include "rv1126-alientek-clrv1126f.dtsi"
-+
-+/ {
-+	model = "Alientek ATK-DLRV1126";
-+	compatible = "alientek,dlrv1126", "alientek,clrv1126f", "rockchip,rv1126";
-+
-+	aliases {
-+		ethernet0 = &gmac;
-+		mmc1 = &sdio;
-+		mmc2 = &sdmmc;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 0>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1800000>;
-+		poll-interval = <100>;
-+
-+		button-esc {
-+			label = "esc";
-+			linux,code = <KEY_ESC>;
-+			press-threshold-microvolt = <0>;
-+		};
-+
-+		button-right {
-+			label = "right";
-+			linux,code = <KEY_RIGHT>;
-+			press-threshold-microvolt = <400781>;
-+		};
-+
-+		button-left {
-+			label = "left";
-+			linux,code = <KEY_LEFT>;
-+			press-threshold-microvolt = <801562>;
-+		};
-+
-+		button-menu {
-+			label = "menu";
-+			linux,code = <KEY_MENU>;
-+			press-threshold-microvolt = <1198828>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "sys-led";
-+			gpios = <&gpio3 RK_PD4 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			default-state = "on";
-+		};
-+
-+		led-1 {
-+			label = "user-led";
-+			gpios = <&gpio3 RK_PD6 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "none";
-+			default-state = "on";
-+		};
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,name = "Analog RK809";
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,widgets =
-+			"Speaker", "Speaker",
-+			"Headphone", "Headphones",
-+			"Microphone", "Mic Jack";
-+		simple-audio-card,routing =
-+			"Speaker", "SPKO",
-+			"Headphones", "HPOL",
-+			"Headphones", "HPOR",
-+			"MICL", "Mic Jack";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&i2s0>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&rk809>;
-+		};
-+	};
-+
-+	vcc5v0_sys: regulator-vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	sdio_pwrseq: pwrseq-sdio {
-+		compatible = "mmc-pwrseq-simple";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_enable_h>;
-+		reset-gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>;
-+		post-power-on-delay-ms = <200>;
-+		power-off-delay-us = <20000>;
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	pcf8563: rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+		#clock-cells = <0>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PD0 IRQ_TYPE_LEVEL_LOW>;
-+		clock-output-names = "xin32k";
-+	};
-+};
-+
-+&gmac {
-+	phy-mode = "rgmii-id";
-+	clock_in_out = "input";
-+	assigned-clocks = <&cru CLK_GMAC_SRC>, <&cru CLK_GMAC_TX_RX>,
-+			  <&cru CLK_GMAC_ETHERNET_OUT>;
-+	assigned-clock-parents = <&cru CLK_GMAC_SRC_M1>,
-+				 <&cru RGMII_MODE_CLK>;
-+	assigned-clock-rates = <125000000>, <0>, <25000000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rgmiim1_miim &rgmiim1_bus2 &rgmiim1_bus4
-+		     &clk_out_ethernetm1_pins>;
-+	phy-handle = <&phy>;
-+	status = "okay";
-+};
-+
-+&mdio {
-+	phy: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x1>;
-+		clocks = <&cru CLK_GMAC_ETHERNET_OUT>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&eth_phy_rst>;
-+		reset-gpios = <&gpio3 RK_PA0 GPIO_ACTIVE_LOW>;
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+	};
-+};
-+
-+&pinctrl {
-+	ethernet {
-+		eth_phy_rst: eth-phy-rst {
-+			rockchip,pins = <3 RK_PA0 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	bt {
-+		bt_enable: bt-enable {
-+			rockchip,pins = <0 RK_PA7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		bt_wake_dev: bt-wake-dev {
-+			rockchip,pins = <1 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		bt_wake_host: bt-wake-host {
-+			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	wifi {
-+		wifi_enable_h: wifi-enable-h {
-+			rockchip,pins = <0 RK_PA6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&sdio {
-+	bus-width = <4>;
-+	cap-sdio-irq;
-+	keep-power-in-suspend;
-+	max-frequency = <25000000>;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc1_clk &sdmmc1_cmd &sdmmc1_bus4>;
-+	rockchip,default-sample-phase = <90>;
-+	vmmc-supply = <&vcc3v3_sd>;
-+	vqmmc-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	card-detect-delay = <200>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc0_clk &sdmmc0_cmd &sdmmc0_bus4 &sdmmc0_det>;
-+	rockchip,default-sample-phase = <90>;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc3v3_sd>;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_xfer &uart0_ctsn &uart0_rtsn>;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43430a1-bt";
-+		shutdown-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_HIGH>;
-+		device-wakeup-gpios = <&gpio1 RK_PD1 GPIO_ACTIVE_HIGH>;
-+		clocks = <&rk809 1>;
-+		clock-names = "lpo";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA5 IRQ_TYPE_EDGE_RISING>;
-+		interrupt-names = "host-wakeup";
-+		max-speed = <115200>;
-+		vbat-supply = <&vcc_3v3>;
-+		vddio-supply = <&vcc_1v8>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_enable>, <&bt_wake_dev>, <&bt_wake_host>;
-+	};
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&i2s0 {
-+	rockchip,trcm-sync-tx-only;
-+	rockchip,i2s-rx-route = <3 1 2 0>;
-+	rockchip,i2s-tx-route = <0 1 2 3>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s0m0_sclk_tx>,
-+		    <&i2s0m0_mclk>,
-+		    <&i2s0m0_lrck_tx>,
-+		    <&i2s0m0_sdo0>,
-+		    <&i2s0m0_sdo1_sdi3>;
-+	status = "okay";
-+};
+David
 
--- 
-2.54.0
-
+> Konrad
 
