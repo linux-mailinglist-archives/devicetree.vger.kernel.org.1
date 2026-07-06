@@ -1,226 +1,316 @@
-Return-Path: <devicetree+bounces-321407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321399-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4/YlEGP3S2o1dwEAu9opvQ
-	(envelope-from <devicetree+bounces-321407-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:43:47 +0200
+	id l6ApC2reS2r6bgEAu9opvQ
+	(envelope-from <devicetree+bounces-321399-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:57:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C9217149F2
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:43:46 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B99A6713964
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:57:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=Xc2Q1tBd;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=ZP80XTXt;
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321407-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321407-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fHs40R6G;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321399-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321399-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D443933BA745
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:58:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BB05F3014A5B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 16:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84EB743B6FD;
-	Mon,  6 Jul 2026 16:57:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F43434E2A;
+	Mon,  6 Jul 2026 16:56:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1DC43B6C3
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 16:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13882434E42;
+	Mon,  6 Jul 2026 16:56:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783357042; cv=none; b=MXrsmalzufgA6RQbaDd1DkMiCYyD8qVTcMDDOYHuBIXC5+JTU5t5iRCw4sRsfv0X8HCQz5SzGmufYpPJA8rhICLG8yLY6t/OIizvHFNzo/JBtcxpf/cg54g6IPmyGltwaga0oXzj/ER75HWmsAWP4zsaGFgiI4O3RuvbmsIvX38=
+	t=1783357007; cv=none; b=Ix+2rK+DSBGkVXfOscMRkWHtiD+LH2khwmxSTF3on3dyup2BomkAluxHgAeUFGyNzUErd6Pc62aO2C05uuiVEItYPSyIEI3klxThpHq0dmh4omOZKpGq45LXpt6IdXrW8SEzVCN8KwRZqwZD3qcX0h1ldK1xdO8oqYtpaTHbotc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783357042; c=relaxed/simple;
-	bh=wbPY7V/FOl4cQCe5O2DtEsw3MYaK7JiEV4us8ye3x1w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=u3fBahG1IAEjG1MKhd72pAiAJg6H9IgDSL3P1V/UczNUxh7rtlQQfZR9yiQfx1dkZRotlCBhXdE2+Q5p4cgunG7CTRvTY8mmo50gJE1OpGpEnaN556RXOEc9OvQSo/8gzewhU2sLwsL20fVTkSlpEDgaNq9iy4Ie32FEJO2Iq18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Xc2Q1tBd; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZP80XTXt; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 666FF0tY825599
-	for <devicetree@vger.kernel.org>; Mon, 6 Jul 2026 16:57:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LlsyewBqxauWJCEQm7ANRaFSqV4fDdt46wPdk71U6iw=; b=Xc2Q1tBd4ObuSVGv
-	Z2uWuZG/ah0C0okCAzSaWsmYSqLXRHVShTyuVimtessLLVDQSDdBC0m+yRsrdsAZ
-	Cr5UW7Ltudr9r0M+T191BnRUs5vhxUD49HLonGX2zfl62+emnRDaxycOqYHLeVcb
-	wc+Hv71lQ8Fp1QXhlSykLaFSUdyNxvcr0sn0C/RSYIscZwrkh46LUbveP83M2jZg
-	HSI47RDxtqeFGMJ/WHZSap7RjmktmAUgCN9hrZMqy5K+KFVh1DJ5l3pDVLvRc3pn
-	CSajoF9i6Jbk+rd5c5DXVl1UtTMI5zNr/4CUjAxiBaPbI9Ubn90FAI+kjjvoWIy0
-	Er+8Pw==
-Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f88t8aah4-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 16:57:19 +0000 (GMT)
-Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-c98a4ded1d7so2931984a12.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 09:57:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783357039; x=1783961839; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LlsyewBqxauWJCEQm7ANRaFSqV4fDdt46wPdk71U6iw=;
-        b=ZP80XTXt4+puUqpSajBPpKLshRyk3JL97/wyimS4LjVJqHlyFFA9gnbItoAiiIwnjy
-         JuidT9OtC+nAagJsm/EldKGvzoI16eGnwfFwcY4q8GfYHvHS3iNzC5asJRFVkCDa6MJZ
-         gA0mMiIPNLqdFwGlG54JB8tu6xsSi1fRll8mDWANTSDKC05VHMNkgdubUCObx1eZ90B6
-         tC01RiG8oLCR0x435Di7OE4qKM/fl/A3uAfVBbYtGfpTva5TzhhyfOHFCkTwapz8ouIE
-         sZT7q8MNAbdiEAgninUV5vMYEKAB19zpGD0qIfoFwqlv5GxCAnyAX0ooxvzf6ITYqKCO
-         HN7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783357039; x=1783961839;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=LlsyewBqxauWJCEQm7ANRaFSqV4fDdt46wPdk71U6iw=;
-        b=ZyEaIhff+Ah4GLy/6OUNbepQEIpF48eA9uLyseykH4BMB1YvvPrJb/Xx/9ziutgaFB
-         NCVzFKHjS3m3osVSvBRRusBrigRO70Enq+wzBgHUuBkMe+LPC7bEPh1tVMsg/pKFsIF5
-         CfeBaBGvm9nJ0CGpPdXyb60EDesz5FD20jxMo+oDa6lU6bLuiEkanHg3BL/fIQzUnJR7
-         uThlXPFQK2m0ZHm/7MI93FYMrB8mlRPntZNRhTUy3RkKkGGVt73STDMWqa4eJJ05IcwT
-         T+erBHHKAUf51IISaaQLPDW8qVjgIGI2Azb4JSWwqNjATgeOzdxXfJD14zm6ut+J4oJK
-         Dzlw==
-X-Forwarded-Encrypted: i=1; AHgh+RrM2gYHYce4OqRwp+fqa/XgCKipRT/nxmqOWX/lCLwFstUyZaO5vVHRl1p8ZPCVSrmstjXhYuaRqxSH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlXbbrYrG3B9NzATKKAjVMFRD4oFLxLSDX9PKc3sQLKyB+hDB6
-	mG0mRxioNqQvl/8xf2qmG9fOriAsENZk3YhlMIg1Ke4AWi91K3QQSUtBE8ejsT+1UWd0UC7eKiQ
-	dXEOoQiY1VHJyjCupa+REwenzC9AQs+EiNz27jOej4fKTFkWf4+FXpuGrIv9seoWWsnceeTBA
-X-Gm-Gg: AfdE7cntnkg33N61KT8cnCE05/JOnAmasEoXVlMMoDxl5SPB3Xv9RTFWs0ILw91T6RQ
-	GH/Omzza2WdQFGYofKbR27XSNZ6aETZp0Gvk4+K/5OEp5L7ZfVRPLqNonvhA42fnj9fCnakOSJ3
-	LGIP20ZUR/G81heP3EvMKa7vmQGK/jSq5ZLv2I8fjVgyMaNp7zapgUaFdFu8Ou5BJFXSDhjlRwV
-	dUOjrSo2Q6oL8AyuKZMjrhvIhSHu18Z/nLqSv6sEDpmO+HNieYXjuxuqfdv2AdcxS+1Oo8t9mOF
-	brILFe5EBWhjPviZ2eBHD0054UO3rwjDj+wp0b2HdNkZsDMGbHqHO68kClDg2QdNXUZ55sXYcnV
-	BaGsoig+TETIZy508WS/I7mCJdsFOL01tbh8iF5N6jA==
-X-Received: by 2002:a05:6a21:118:b0:3bf:6222:2e7e with SMTP id adf61e73a8af0-3c08ed0f40fmr1869367637.4.1783357039220;
-        Mon, 06 Jul 2026 09:57:19 -0700 (PDT)
-X-Received: by 2002:a05:6a21:118:b0:3bf:6222:2e7e with SMTP id adf61e73a8af0-3c08ed0f40fmr1869330637.4.1783357038743;
-        Mon, 06 Jul 2026 09:57:18 -0700 (PDT)
-Received: from hu-bibekkum-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c9e8eb0efc8sm6960604a12.5.2026.07.06.09.57.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 09:57:18 -0700 (PDT)
-From: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-Date: Mon, 06 Jul 2026 22:26:39 +0530
-Subject: [PATCH v3 6/6] arm64: dts: qcom: talos: Add GEM_NOC interconnect
- for adreno SMMU
+	s=arc-20240116; t=1783357007; c=relaxed/simple;
+	bh=IkavAcNEz0PfF07O5rjSVXWtxZ/qVex1flxHuikSL0M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RuvHCIgJuByUPnemLTU+QEvCFFvRMFo3ieVtu6z5M7hl2ZsZrazrVCTL6YPh0699RSbQU3VaTBWmH9Q6zHZD1bTPJKGfIH6oC4/OcOva36ZYbI0wp2l8kZ9DPATY2CSbHLxYsPqAtqj+vcJ4OvqSJ1O5Q3NmOBhOzbxf/aRlU1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fHs40R6G; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 297951F000E9;
+	Mon,  6 Jul 2026 16:56:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783357004;
+	bh=8Zb7HmMSNT0dYjvG51xeECDrIe9PtU2siXTvPJaZIg4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=fHs40R6GdHgXM0M1t2EyjomJ/OwN6IwGJ1f3Wc+kjNscP0u7Eu75pHVwSaiOPLYFs
+	 u/DxzwpQ9Ugf4dcPrI4ILJ2vV8gDh+Do7I/CUwHqAkRKW1ygSxx2a0YQDKXm1d/nr8
+	 yI8cy4iVIPpYX/cqA8D4gKDCJSeRJKMEz0UpgnbD8dI5a8zbF4wgaJHXdKRSYL7fre
+	 lrW6OBrv+43jseu8WZDNkk2C3dJYUMK8/jaNVRC2uFUeEkOy80H1LiHwwuoGRBrrXH
+	 XI1FzEr8n/c8uCfsXef1vwtbBGGDditNcxEJFWrHEvdcrd+B3nkERUsqHq6VvnsL9c
+	 NlRdxgDgm2lxg==
+Date: Mon, 6 Jul 2026 17:56:40 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] dt-bindings: leds: nxp,pca963x: add multicolor
+ LED support
+Message-ID: <20260706-account-harsh-093c6354bca5@spud>
+References: <20260706-monza-leds-v3-0-37ea8c988363@oss.qualcomm.com>
+ <20260706-monza-leds-v3-2-37ea8c988363@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260706-smmu_interconnect_addition-v3-6-afdca0125a65@oss.qualcomm.com>
-References: <20260706-smmu_interconnect_addition-v3-0-afdca0125a65@oss.qualcomm.com>
-In-Reply-To: <20260706-smmu_interconnect_addition-v3-0-afdca0125a65@oss.qualcomm.com>
-To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>
-Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783357002; l=992;
- i=bibek.patro@oss.qualcomm.com; s=20260617; h=from:subject:message-id;
- bh=wbPY7V/FOl4cQCe5O2DtEsw3MYaK7JiEV4us8ye3x1w=;
- b=uIp4SJQdb1agf7l0A1zJf93Xn7ky6npMpVlZAoLLOlESlUMOfaywlUkQrpjdFuhJvffGiF/zC
- Wp42e5jaL2MBLNqPZ4dOCIwPH4FLxkvnx1FF0fFlDAOxJ32l0G6R0YQ
-X-Developer-Key: i=bibek.patro@oss.qualcomm.com; a=ed25519;
- pk=DkrbE5dhskZJmBAKR5LygWRsAydEOSN+T0/YxNYxDLM=
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA2MDE3MCBTYWx0ZWRfX5pWY6byQ0l5c
- kNQSsQ1HWFeJP9i0CEsjV6g8U194ALTCLhNhbZYCu0OAYZJwM0xxMOfoMhEESZgbuSmbRkWz638
- CEc6tAhpCM22nCljPerbHxrnpu9KeBA=
-X-Proofpoint-GUID: gKTPbdxXcEgl6IbgD1wD5L1zjIIi56iD
-X-Authority-Analysis: v=2.4 cv=C6zZDwP+ c=1 sm=1 tr=0 ts=6a4bde6f cx=c_pps
- a=rz3CxIlbcmazkYymdCej/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=EUspDBNiAAAA:8 a=rfUXoPsZI_F71NZxNB8A:9 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10
- a=bFCP_H2QrGi7Okbo017w:22
-X-Proofpoint-ORIG-GUID: gKTPbdxXcEgl6IbgD1wD5L1zjIIi56iD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA2MDE3MCBTYWx0ZWRfX96j/5WePwxkH
- wHzsUqH3ApTME7B1gs+CvGhEFxPAho6qkekgtpBhx0T2aPEk7B5kzcuqulzAhPHpWsab7D31uKp
- w+KjLkKCxuUqaqOf7d0dhcAkjN04oh+d+uxYhiQ5roABZejEFJITdoz2nPKBo+OcMYLJ4qfgHpw
- xZcgRoGpS2ZbaZbH7/ArcE11qZ+jhCqK6CXkYGn+LSMxWFi/kEZvzQqv9uGywhlkF1czA7aMa9I
- 3TR1rZQ30/4geU6QtUMWK5p6Ekgm4yBVPoBnBB1CKFfqop9gi53q4yIzIjwdnz5kk+mhNV5HIY0
- b5nFbo6LfryBLJHjMvFs8+CMGPK2r3nD0SP3Jnn8Xh5L9+z1CM0AnS+02t69AiJicaJJvH+rnE+
- uPxm4X15dXTOCLUGVGmpSzpzsGEvDClnZUVDUrMS7L0yYGbtYFJUItspUy1yioEhLc5bHv4NkFa
- v7nFpFDQKHukrx3DCVw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-06_02,2026-07-06_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 clxscore=1015 spamscore=0 adultscore=0
- bulkscore=0 priorityscore=1501 lowpriorityscore=0 suspectscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2607060170
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/p782kKd6CXzkAlU"
+Content-Disposition: inline
+In-Reply-To: <20260706-monza-leds-v3-2-37ea8c988363@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-5.26 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-321407-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:email,qualcomm.com:dkim];
-	FORGED_SENDER(0.00)[bibek.patro@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_RECIPIENTS(0.00)[m:will@kernel.org,m:robin.murphy@arm.com,m:joro@8bytes.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robin.clark@oss.qualcomm.com,m:linux-arm-kernel@lists.infradead.org,m:iommu@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:bibek.patro@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:lee@kernel.org,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:laurent.pinchart@ideasonboard.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bibek.patro@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-321399-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,spud:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8C9217149F2
+X-Rspamd-Queue-Id: B99A6713964
 
-On Talos platforms, the Adreno SMMU requires a bandwidth vote on
-the GEM_NOC path (MASTER_GPU_TCU -> SLAVE_EBI1) before its registers
-are accessible. Without this vote, the SMMU may become unreachable,
-leading to intermittent probe failures and runtime issues.
+--/p782kKd6CXzkAlU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Add the required interconnect to ensure reliable register access.
+On Mon, Jul 06, 2026 at 05:49:56PM +0200, Loic Poulain wrote:
+> Add support for grouping individual PCA963x channels into a multicolor
+> LED by introducing a multi-led@N node pattern. This follows the
+> convention established by other multicolor LED drivers such as
+> kinetic,ktd202x.
+>=20
+> This is necessary to support and model hardware setups where multiple
+> PWM channels drive a single physical RGB LED.
+>=20
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/leds/nxp,pca963x.yaml      | 104 +++++++++++++++=
++++++-
+>  1 file changed, 101 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml b/Do=
+cumentation/devicetree/bindings/leds/nxp,pca963x.yaml
+> index 4034139e3f770a1035208490a9436bdc33387279..dccdb1d9421199a51cac5c7f3=
+f7da503caa35622 100644
+> --- a/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
+> +++ b/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
+> @@ -74,6 +74,40 @@ patternProperties:
+>      required:
+>        - reg
+> =20
+> +  "^multi-led@[0-9a-f]+$":
+> +    type: object
+> +    $ref: leds-class-multicolor.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
 
-Signed-off-by: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/talos.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+I still don't understand this, minimum zero is literally useless since
+this cannot be negative.
+If anything, you should be constraining the maximum value. Remember,
+outside of conditional sections the maximum permitted values should be
+defined. Conditional sections should just narrow the constraints.
 
-diff --git a/arch/arm64/boot/dts/qcom/talos.dtsi b/arch/arm64/boot/dts/qcom/talos.dtsi
-index e506a16c9070..ec7f2c78ad18 100644
---- a/arch/arm64/boot/dts/qcom/talos.dtsi
-+++ b/arch/arm64/boot/dts/qcom/talos.dtsi
-@@ -2090,6 +2090,8 @@ adreno_smmu: iommu@50a0000 {
- 				      "iface";
- 			power-domains = <&gpucc CX_GDSC>;
- 			dma-coherent;
-+			interconnects = <&gem_noc MASTER_GPU_TCU QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 		};
- 
- 		stm@6002000 {
+Same below.
+pw-bot: changes-requested
 
--- 
-2.34.1
+> +
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +    patternProperties:
+> +      "^led@[0-9a-f]+$":
+> +        type: object
+> +        $ref: common.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          reg:
+> +            minimum: 0
+> +
+> +        required:
+> +          - reg
+> +          - color
+> +
+> +    required:
+> +      - reg
+> +      - "#address-cells"
+> +      - "#size-cells"
+> +
+>  allOf:
+>    - if:
+>        properties:
+> @@ -84,10 +118,16 @@ allOf:
+>                - nxp,pca9633
+>      then:
+>        patternProperties:
+> -        "^led@[0-9a-f]+$":
+> +        "^.*led@[0-9a-f]+$":
+>            properties:
+>              reg:
+>                maximum: 3
+> +        "^multi-led@[0-9a-f]+$":
+> +          patternProperties:
+> +            "^led@[0-9a-f]+$":
+> +              properties:
+> +                reg:
+> +                  maximum: 3
+>    - if:
+>        properties:
+>          compatible:
+> @@ -96,16 +136,28 @@ allOf:
+>                - nxp,pca9634
+>      then:
+>        patternProperties:
+> -        "^led@[0-9a-f]+$":
+> +        "^.*led@[0-9a-f]+$":
+>            properties:
+>              reg:
+>                maximum: 7
+> +        "^multi-led@[0-9a-f]+$":
+> +          patternProperties:
+> +            "^led@[0-9a-f]+$":
+> +              properties:
+> +                reg:
+> +                  maximum: 7
+>      else:
+>        patternProperties:
+> -        "^led@[0-9a-f]+$":
+> +        "^.*led@[0-9a-f]+$":
+>            properties:
+>              reg:
+>                maximum: 15
+> +        "^multi-led@[0-9a-f]+$":
+> +          patternProperties:
+> +            "^led@[0-9a-f]+$":
+> +              properties:
+> +                reg:
+> +                  maximum: 15
 
+Is this 15 the maximum for all devices?
+If so, why does your regex permit values greater than 15?
+
+Cheers,
+Conor.
+
+> =20
+>  additionalProperties: false
+> =20
+> @@ -149,4 +201,50 @@ examples:
+>          };
+>      };
+> =20
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        led-controller@62 {
+> +            compatible =3D "nxp,pca9633";
+> +            reg =3D <0x62>;
+> +            #address-cells =3D <1>;
+> +            #size-cells =3D <0>;
+> +
+> +            /* Three channels controlling one RGB LED */
+> +            multi-led@0 {
+> +                    reg =3D <0>;
+> +                    color =3D <LED_COLOR_ID_RGB>;
+> +                    function =3D LED_FUNCTION_STATUS;
+> +                    #address-cells =3D <1>;
+> +                    #size-cells =3D <0>;
+> +
+> +                    led@0 {
+> +                            reg =3D <0>;
+> +                            color =3D <LED_COLOR_ID_RED>;
+> +                    };
+> +
+> +                    led@1 {
+> +                            reg =3D <1>;
+> +                            color =3D <LED_COLOR_ID_GREEN>;
+> +                    };
+> +
+> +                    led@2 {
+> +                            reg =3D <2>;
+> +                            color =3D <LED_COLOR_ID_BLUE>;
+> +                    };
+> +            };
+> +
+> +            /* Remaining channel used as a plain white LED */
+> +            led@3 {
+> +                    reg =3D <3>;
+> +                    color =3D <LED_COLOR_ID_WHITE>;
+> +                    function =3D LED_FUNCTION_STATUS;
+> +            };
+> +        };
+> +    };
+> +
+>  ...
+>=20
+> --=20
+> 2.34.1
+>=20
+
+--/p782kKd6CXzkAlU
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCakveRwAKCRB4tDGHoIJi
+0tc+AQD1xWa8YoKk5j+v3k7ziF0N2XUvIIXdj8pFG+U/UqsfqQD/d+BCU2t5T76N
+T+yLT7v74sTvfECiMylgSuB9LSoS9go=
+=dyQW
+-----END PGP SIGNATURE-----
+
+--/p782kKd6CXzkAlU--
 
