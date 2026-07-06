@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-321004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321007-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id b5UCJamDS2rvSgEAu9opvQ
-	(envelope-from <devicetree+bounces-321004-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:30:01 +0200
+	id yXVVGNCWS2puWAEAu9opvQ
+	(envelope-from <devicetree+bounces-321007-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:51:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1577470F30B
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:30:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA3577101A6
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 13:51:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=jtAKC8Me;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XXIrHTBc;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321004-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321004-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321007-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321007-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B64193110B68
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:51:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 61FF133F04A2
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 09:51:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2CF64EA360;
-	Mon,  6 Jul 2026 09:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72DB430315;
+	Mon,  6 Jul 2026 09:35:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F398D4302F6
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 09:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40BBB430314
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 09:35:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783330510; cv=none; b=WsB2CA2iowb12nNnWQRqZHLFMX+aur1XbcamTyQjTFSc2evXNC2VQ9jBS43J0CZA+FM4ld47jB9ot1Vs9QT5rwEtslnGLScoFdfdDGUhJLmcgMsSws7ScbK/WAncDUeyvmyKtFEhLaTO8E7Wqcs219p/HURmd0ZoAVXYg06KWBM=
+	t=1783330514; cv=none; b=utuQgWhrcNzN7A25kh5xwVql9S739d+qPRednKST2Xc1sKOXKqSv7gdVHezyDGUcmBRXSvR9P0IfloA554j6XJT+SPCzshTwJbersgzOujlqSYfNELUKeAjwat/7Pl3n19Ss2L+FcdeGG2IX1F3IOZew/PZPhs2wDzE8b/cExEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783330510; c=relaxed/simple;
-	bh=djI+rGgHxeyFLVfHf/xW2MhVP8M5sDcU2LY5zoiSlp0=;
+	s=arc-20240116; t=1783330514; c=relaxed/simple;
+	bh=7WN54U2QmWBYjmzIh7xFRoxzzdn3vndoXYM27XhvjdU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Wss5AlPIH/Tcl7sclIPGMZHUxUGC+R6+3ca0zuy1Nk4H+/r8l0WAE/h8Srv2fBV8/V/bH/KCXkOGkZHvI+TX4VM/GpCCnfbAjtu8RwsFSMXs6lSc8InYawRPdUhczaouLFA3SUZbwOD2dMav8vrI/TLMcCMbCcIPd8driMI+4/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jtAKC8Me; arc=none smtp.client-ip=209.85.128.50
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-493bb510ce4so20856485e9.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 02:35:06 -0700 (PDT)
+	 MIME-Version; b=lWJyYrmTknS2pdV8g1/MMA+LT+CHgt6hKM/mS5GqJKsP4RDCvIueCHPdfqBCiFKIAGGYjbAd7S5mkKlPYoCGhU/f64yXHqjrtYbVjkCnxraT5rpPm0BZlNCHLtJYJ90jNYF745+0UE0B9CcWU3M7no4GfPZrzxERc5XYzCyaLNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XXIrHTBc; arc=none smtp.client-ip=209.85.128.45
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-493ae59eca6so20133895e9.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 02:35:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783330504; x=1783935304; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1783330505; x=1783935305; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZvZ9w1IWzzy3Hwyn8ZlFCJ5TENdJ/Z16HfTQd+G5DTg=;
-        b=jtAKC8MeYduFtA0nGOw+mOHgwN944z/hY10/R2qdB3C6d7LiCg4ZTcf+Sk2b4C1faO
-         3jvl5ihzdTvcUvtLZJwYVHD5tXXA1OwaK4n5bLs/bgxXE0Q7uZErkmgUIJkUozInYqwB
-         weD0K4HXVk5PMBgYrpQKkU0muGeBYzfVNNICMNcOcVkPtq/xtRGNTLjypTIp9wEeAgui
-         sRO++RIX2UALnw9SyB/hVsHPxh/UIxWW4XxzogiKz7Nol117lE0uH7D3GkE5tUijru0q
-         KDNa7DmhgzwEC/evgykYkBBdMVgdjRoKDZYZCPlOKf9Fzg0chNjJwixl40ZPmDIFHz+j
-         hZVA==
+         :message-id:reply-to:content-type;
+        bh=Yx4FBJmHhIhPwgpgVHtFQpg4a59/aBHMExozfwUf+P0=;
+        b=XXIrHTBcQ3eIlwdUjTZ/+nY23PNq/LTzC+wfHYMitGEjJg1nrF7KsMaeVBFbMWYktU
+         0u1Alw6vZq/KIe8w/4DWQFzUj+bPuBuCa/QPkvIPUY4Lz1EsDO8ccxQhBD3dxNfdOBZV
+         ICtJSa6c1SCRKPVteEEyZ8nU8bkWYZFTQ87MP5MBSxsL3Yeut+dbxTRusK1Pnf8lSHDK
+         BcuKR6iITHSv8nVyn/fqXY/wY53HkiclpG+C+9qyVFML4XYeXEt/nQru/BETnT2BuFoe
+         7jI4dEPhLTaqnTvEvjuTXFKJVSM9dKbQ0MgKVjhq4UN7NG1IWHtZzxuL2RQWlqS6GzPk
+         mYWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783330504; x=1783935304;
+        d=1e100.net; s=20251104; t=1783330505; x=1783935305;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ZvZ9w1IWzzy3Hwyn8ZlFCJ5TENdJ/Z16HfTQd+G5DTg=;
-        b=cpcrfuXaPVCuZNX8trG++3DDzQJkY9Zbm0wDsOYdjuw5feP69VvAUoAzvxvMl9SKbn
-         rBlWk56Flw/4xjSqFXrRt4L14cEW4h4FQodMmPdv2ECA3R+6AwlAHcOiGgC6Z0ie/szL
-         32mdojwMDKhZHP60T31SG0nqP7Xed5/J8rxLJ/kQKkSjIX+RlLzrSfQU/nUw8S8AAPqd
-         s8veFXlDtKeFYgOvLbDVdYPHoizj2g8ow57ALLwsW6MoUWTyAAHpCcMIhw1K65YQsoXt
-         SYci1crS8MjcKuyss+rqsETiwfv/2L/yikCGniOSeSTmsRAvjsEdCaAzzC5speRsFCHI
-         ZMqQ==
-X-Forwarded-Encrypted: i=1; AHgh+Rob6Js/YMX+oi1voy2EWcYUa00ag57E0Yw1C+U8kDRK8RFWbvgvEZMcR0IhbmqVSeVsC417CMPOejma@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzlb9UKqT64alAXY2Zb5efY1zoMuO8xe2FKWAdsQRxk5YV/cIJY
-	9o2qSnnIvz/Xmh8XSd77N9TdGmwCOVVf0LqmKDqOMqMThp4ByHpeR4gE
-X-Gm-Gg: AfdE7cmoVcuP7HP17QQjz811w4R44ArzhbfEFLDANVzonVpYV8OHvBRJpZfnYugz+db
-	plpSJVUPzRKO2Mr2e+AzC6+QpxunI0J3KZd3t+7w6/722WYXH+Etx+aqxSLRu117WO/DzjQM1Ml
-	IBRehrhNkHKbtwj6FiYyu38XCPcDPhAKoodHxJrLBEHGDPARBUbHodPXZFXwOIchHOUbbHYOvGK
-	XOpAHGrX0r2jytfDArOWT7+N0NXS0DLG6BPpU3eoXDPyIS+/wfbGzE3fgsUesELij2BKGwpLs8e
-	9iAoF+97bZLG6CNu5LEotRhhKM4fbUNs+mXdQgesvYOitj6V9ZqFyVqJAAcplPlB5m24+1Gmep4
-	L+IKRxJwBffKfASs2BKN5AII7idlrmKVBXmuXf+DwpjQPb4DtgKOcZUnx4HT8hTTuL9LZvDiqyq
-	BTbTG6TRceBet3SVRnC161gsgU1FP+v41yPRqWvlu77oS3s6BWePneC9lHkEjQfQfvV5Xld33dR
-	kAqOi8iab4lMB7UutcCe1mRYQ==
-X-Received: by 2002:a05:600c:4e8a:b0:493:a960:a0bf with SMTP id 5b1f17b1804b1-493d11f3296mr116847075e9.21.1783330503423;
-        Mon, 06 Jul 2026 02:35:03 -0700 (PDT)
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Yx4FBJmHhIhPwgpgVHtFQpg4a59/aBHMExozfwUf+P0=;
+        b=XOLLbLuui0Eb2vNAeKSlWUEnGsMtoVqPvvKquIrJsWys1SzyhY4PAo+EU87/di+gCT
+         LQ+DL0WJk0hMyXBI/IxZ05TgNWZP58Tfbce7AX+PIaDsrRzlhuh1vCWDy1nWwlOiYZp1
+         3aCyUUZns9bnITOx017S1BKxPygP05lUNnsdDmurrtNiKvsCNJphIjCYUeLDWJhjTilT
+         mBPkPuoAvzEL97y2HGwxSDTk9M4ANt2Atn4MGWt/HUJsgDAxE1L8IyrgzQ2uFje4k5Fq
+         5rKbdnIfjVvMXVaRiyC++p9W0Hs9fOnS4k4rrwC2fsTQhpsFWk81W8bv9xc/sA20eg1P
+         teKA==
+X-Forwarded-Encrypted: i=1; AHgh+Rp2Tq1gx/qIbNvrKWhyWHabZXl7w3lJK953lgNDVeq+5B/vlTnPMn653uS/GsiPvz4h6bAP72Hz0qSp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzvON1WV7ZkCDeMptfXLQZbAdsu4V7S6LZbUyq33WNbVS73v1j
+	YO8xGI5TVKK+MevAM/MtZMPlq/iKdKW+UVCX0kGfXYG1kOaTkaMaDwp2
+X-Gm-Gg: AfdE7cn32W6WXO4+hyaL6bZM82Mb0pnEZKkJrLOlKeQvOhi7KvLra12mjXqCTLeBCa8
+	cxLYBRvi6fLQIWb6moBBC06FQNQbRJ+kgqFIzKA7nggOo2t/5ZwwwJf5JDJEK9usPtC+ddsh/zu
+	X3NKLdduK/jBnuDTC7J84liDHJ41iLj5pkfuKZDdufTtMAFqp6Fn5x2oZd1YXmRZfZbWreTeCpy
+	5fTjQQAQ4RxQfW/brk3CFiHEgsrDpgKYu0/tKEwzEQ3iAafqdLxhft1WtbCjMCjwrtnW62VXTXK
+	xp4cWxG+RRs5ncHUE4IfjRy3TJeXy75vo1bFF5Mof7XMC90echYAO3cRW+Jo14QUm24A8pYwssa
+	djhX4fYjba9Bw2mk/WWl1ayeV5w78w8Jvrdzhrp+kyHtNbQsJchVnG6OesJBjk+LEfYDW06RGsz
+	b1eBq9ap1a8UkVW/5CrP1JQ1Gzl7PraKc6ry7Sl84j1h7z5AldifPD7U8U1+/0qU/VbBM06h5+C
+	a+L2p25wW7z3Ub5cvb3nFHz2g==
+X-Received: by 2002:a05:600c:81c5:b0:493:bd4f:510 with SMTP id 5b1f17b1804b1-493d11f02f3mr97319415e9.19.1783330504569;
+        Mon, 06 Jul 2026 02:35:04 -0700 (PDT)
 Received: from Lord-Beerus.station (net-93-144-65-248.cust.dsl.teletu.it. [93.144.65.248])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493c6375764sm314379715e9.5.2026.07.06.02.35.02
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493c6375764sm314379715e9.5.2026.07.06.02.35.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 02:35:03 -0700 (PDT)
+        Mon, 06 Jul 2026 02:35:04 -0700 (PDT)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: linux-kernel@vger.kernel.org,
@@ -92,9 +92,9 @@ Cc: pierluigi.p@variscite.com,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v2 11/15] arm64: dts: imx8mn-var-som-symphony: Enable I2C4
-Date: Mon,  6 Jul 2026 11:34:41 +0200
-Message-ID: <94b2e50c4f11be384161eb8fdfc82a5c1d7ebc4c.1783330236.git.stefano.r@variscite.com>
+Subject: [PATCH v2 12/15] arm64: dts: imx8mn-var-som-symphony: add wakeup sources
+Date: Mon,  6 Jul 2026 11:34:42 +0200
+Message-ID: <af94dbb605a1c18f2cd2d1f86813c0c6e84eaedd.1783330236.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1783330236.git.stefano.r@variscite.com>
 References: <cover.1783330236.git.stefano.r@variscite.com>
@@ -112,14 +112,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-321004-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321007-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
@@ -135,69 +135,61 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,variscite.com:mid,variscite.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,variscite.com:mid,variscite.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1577470F30B
+X-Rspamd-Queue-Id: CA3577101A6
 
 From: Stefano Radaelli <stefano.r@variscite.com>
 
-Enable I2C4 on the Symphony carrier and add pinctrl configuration,
-including GPIO-based bus recovery support.
+Mark the Symphony carrier board GPIO keys and capacitive touchscreen as
+wakeup sources.
 
 Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
 v1->v2:
  - 
 
- .../dts/freescale/imx8mn-var-som-symphony.dts | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-index 7d016ed5e911..4898018f030c 100644
+index 4898018f030c..c98dca8e7889 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
 +++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-@@ -195,6 +195,16 @@ rtc@68 {
- 	};
- };
+@@ -40,18 +40,21 @@ key-back {
+ 			label = "Back";
+ 			gpios = <&pca9534 1 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_BACK>;
++			wakeup-source;
+ 		};
  
-+&i2c4 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c4>;
-+	pinctrl-1 = <&pinctrl_i2c4_gpio>;
-+	scl-gpios = <&gpio5 20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+};
-+
- /* Header */
- &uart1 {
- 	pinctrl-names = "default";
-@@ -262,6 +272,20 @@ MX8MN_IOMUXC_I2C2_SDA_I2C2_SDA		0x400001c3
- 		>;
+ 		key-home {
+ 			label = "Home";
+ 			gpios = <&pca9534 2 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_HOME>;
++			wakeup-source;
+ 		};
+ 
+ 		key-menu {
+ 			label = "Menu";
+ 			gpios = <&pca9534 3 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_MENU>;
++			wakeup-source;
+ 		};
  	};
  
-+	pinctrl_i2c4_gpio: i2c4gpiogrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_I2C4_SCL_GPIO5_IO20	0x1c3
-+			MX8MN_IOMUXC_I2C4_SDA_GPIO5_IO21	0x1c3
-+		>;
-+	};
-+
-+	pinctrl_i2c4: i2c4grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_I2C4_SCL_I2C4_SCL		0x400001c3
-+			MX8MN_IOMUXC_I2C4_SDA_I2C4_SDA		0x400001c3
-+		>;
-+	};
-+
- 	pinctrl_pca9534: pca9534grp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_GPIO1_IO07_GPIO1_IO7	0x16
+@@ -187,6 +190,7 @@ ft5x06_ts: touchscreen@38 {
+ 		touchscreen-size-y = <480>;
+ 		touchscreen-inverted-x;
+ 		touchscreen-inverted-y;
++		wakeup-source;
+ 	};
+ 
+ 	rtc@68 {
 -- 
 2.47.3
 
