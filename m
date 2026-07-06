@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-321356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321360-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0TbDI6LaS2rqbQEAu9opvQ
-	(envelope-from <devicetree+bounces-321356-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:41:06 +0200
+	id ItaEMantS2pvdAEAu9opvQ
+	(envelope-from <devicetree+bounces-321360-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:02:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B31713696
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:41:05 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 251637143A5
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 20:02:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hxtQqKUf;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Qd1zCb6i;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321356-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-321356-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321360-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321360-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A1D9E30F5677
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 15:54:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 71FD53388628
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 15:55:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E294A42F711;
-	Mon,  6 Jul 2026 15:54:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C3983B443F;
+	Mon,  6 Jul 2026 15:54:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA22B42CB0E;
-	Mon,  6 Jul 2026 15:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6F12F7F1D;
+	Mon,  6 Jul 2026 15:54:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783353242; cv=none; b=tZO93jqgDwdELu5fm+aaGqOFTbwZ3CJjJt6C6kgX+LeD0F+joQc6rHorERhDv04DdfVq5LPdJ5O+qdM+oNKcAXjXia8aKuYhgsQ0cI/7cIs+aPAf7VMzhHvJKfQgXXsTAX/sp5bqUxKzDXP3DhfnEWRBMrPNeQXhIGc5g83cwAk=
+	t=1783353285; cv=none; b=qa2gF+Qdayy00YLwZrMKEru1TF/TIMgGgdcwdpnfvdK/VnpIxi7XwWsATLTmZMDZHvORU0TjPA82I1JjeP/dpOeowAIXVOZUmPFFf6ounssbieQkVoeM9P2ZFmRcvrhhQBkQmfF++cWMjhEK+jDDcua8vqbTfOwtPrvA11tNOaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783353242; c=relaxed/simple;
-	bh=Mv7nxjYQ6BqAIoIBOF+fU1A/fyFoR+yW+jyJnsn2oik=;
+	s=arc-20240116; t=1783353285; c=relaxed/simple;
+	bh=y/wnLTRNpeQajux61WDDzgy9qXiop+DYmWp2W2gqeoc=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=cpZ9PQ5OIRLKKxTKdTOr7NECvwIsW9Q1nrEKMnshMeb2eatqeJMU4SkMjkFm4DjU8lIsm2pOUTI3K820A++EQaSOErZdzbglbcs9hKg341f8B/D7DuOEkZhY1883Vb4GzlrOpktJG37JuEat04BJcCMw9/tKx+rzYNLxsgaB0bQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hxtQqKUf; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 021DC1F00A3F;
-	Mon,  6 Jul 2026 15:54:00 +0000 (UTC)
+	 Message-Id; b=ccLA9yoFqmsy/1UhC7q76R6vq7Psqn4Ida2WUllIEoya7Er6Tg0rLDEOQ8nSuw0TwHzg3PnMmkG2RKH8RYLQmHyxlXVc0CxOX56oa8yR7/fb3uu/IpSDMPgm+8bQgMcIdJ0G84eSsg+WDMeVYusgaarutEBYCoz7XbViYObDNGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qd1zCb6i; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49D541F00A3A;
+	Mon,  6 Jul 2026 15:54:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783353241;
-	bh=Mv7nxjYQ6BqAIoIBOF+fU1A/fyFoR+yW+jyJnsn2oik=;
+	s=k20260515; t=1783353282;
+	bh=y/wnLTRNpeQajux61WDDzgy9qXiop+DYmWp2W2gqeoc=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hxtQqKUfnlULzYT7m1k0oaEzCMr9Wm5rKDEVDfVhP3DpK0y4aA+sqsecJUzF5K0IE
-	 Sxq8BK21rr9wnTM/3bsav0ytF1t3nKxwncsguFwELZDTmfTlacJayFbX5LWvL9p7ff
-	 XDaKxxEmyuDlq37iCtApunYIUDqVEyfT/wHuJkRUCH5yRxqlkFGxwSarJiW5msPKwp
-	 yfQjcZijo1TwehJDQ4RqstYcFNfR+TvNUwdqhSYC9cIumSdNFTYnr+a1pbzMx+uufR
-	 gGfVjud2PEW8rGhEfRoF2G4/KjC8GMp8o8kxJyo/c+61zgicv9xR1JMXw0MuMXzKMf
-	 JIj/CeplhgwmQ==
+	b=Qd1zCb6ijtHZWiexGwWF77RhQ5VwFbKC4z4hDMPoCn1YROtWT3UBr6yw4Ew/keWbh
+	 +mPgdRCE9JMWm2Xh2D/MEeghOvI81cZ/5gjDgqJjeCTcSuAs/EgDNdETV34G1IUHab
+	 oTbEB6WS3nKC0i+yIwZkf0Rjpjumg0czxSfnVAMFfy8XMbqkfLTP146TAS+L2BWQ46
+	 GKrrFObIHZkMpinpdMIzKfr/MJHjdL7vUpoK3J13qLnQ8H2vccQ9/FPSr92YmBc41d
+	 iMk6HUofGOBUyNFPqrMf7Tey1Hijo0KspWbKENJdIx8KF8sSlvpe8i+AJWf4BXc5HX
+	 hDbpmxYfJQr0A==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: leds: nxp,pca963x: fix reg maximum
- for pca9635
+Subject: Re: [PATCH v3 2/4] dt-bindings: leds: nxp,pca963x: add multicolor
+ LED support
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-leds@vger.kernel.org, conor+dt@kernel.org, lee@kernel.org, robh@kernel.org
-In-Reply-To: <20260706-monza-leds-v3-1-37ea8c988363@oss.qualcomm.com>
+Cc: robh@kernel.org, linux-leds@vger.kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, lee@kernel.org
+In-Reply-To: <20260706-monza-leds-v3-2-37ea8c988363@oss.qualcomm.com>
 References: <20260706-monza-leds-v3-0-37ea8c988363@oss.qualcomm.com>
- <20260706-monza-leds-v3-1-37ea8c988363@oss.qualcomm.com>
+ <20260706-monza-leds-v3-2-37ea8c988363@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 06 Jul 2026 15:54:00 +0000
-Message-Id: <20260706155401.021DC1F00A3F@smtp.kernel.org>
+Date: Mon, 06 Jul 2026 15:54:41 +0000
+Message-Id: <20260706155442.49D541F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,18 +71,18 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-321356-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321360-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,qualcomm.com:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:linux-leds@vger.kernel.org,m:conor+dt@kernel.org,m:lee@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:robh@kernel.org,m:linux-leds@vger.kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:lee@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -96,7 +96,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCPT_COUNT_FIVE(0.00)[6];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -104,14 +104,15 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F2B31713696
+X-Rspamd-Queue-Id: 251637143A5
 
-> The pca9635 supports 16 LED channels, unlike the pca9634 which only
-> supports 8. The allOf conditional grouped both chips under a single
-> else branch capping reg at a maximum of 7.
+> Add support for grouping individual PCA963x channels into a multicolor
+> LED by introducing a multi-led@N node pattern. This follows the
+> convention established by other multicolor LED drivers such as
+> kinetic,ktd202x.
 >=20
-> Give pca9634 its own if/then block and let pca9635 fall through the
-> else branch with the correct maximum of 15.
+> This is necessary to support and model hardware setups where multiple
+> PWM channels drive a single physical RGB LED.
 >=20
 > Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
 
@@ -119,6 +120,6 @@ Sashiko has reviewed this patch and found no issues. It looks great!
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706-monza-leds=
--v3-0-37ea8c988363@oss.qualcomm.com?part=3D1
+-v3-0-37ea8c988363@oss.qualcomm.com?part=3D2
 
 
