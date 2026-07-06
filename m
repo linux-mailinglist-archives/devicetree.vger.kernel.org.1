@@ -1,116 +1,122 @@
-Return-Path: <devicetree+bounces-320894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320895-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wgQmGhpcS2pAQAEAu9opvQ
-	(envelope-from <devicetree+bounces-320894-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:41:14 +0200
+	id D2+/NV5nS2pmQwEAu9opvQ
+	(envelope-from <devicetree+bounces-320895-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:29:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1207270DADB
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:41:14 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29B3170E19B
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:29:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=xbOdLygW;
-	dmarc=pass (policy=none) header.from=linux.dev;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320894-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320894-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=h152Xv1c;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320895-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-320895-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 877C830285FB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 07:37:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D7A79310DF40
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 07:37:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D6134A3AB;
-	Mon,  6 Jul 2026 07:34:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF4503DC856;
+	Mon,  6 Jul 2026 07:35:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-173.mta1.migadu.com (out-173.mta1.migadu.com [95.215.58.173])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 261B83CE48F;
-	Mon,  6 Jul 2026 07:34:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BCD83126DF;
+	Mon,  6 Jul 2026 07:35:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783323264; cv=none; b=rnEgzXxe2E9hg8deZwit1i/uE6XfX1AvP3iS3rcCu9RV04RXxkq0eGgfqF6obIqg+JLgCgCOXfLYT19bVsOmjyYbMWB0pZC7ol3pIXn3gDs1yPOVGgCKVI0d+vbzIoBrKlXhZB2PtDcVA+INnzS7IKc3I1BrWcwJldrGnm431Vw=
+	t=1783323325; cv=none; b=eCHOriGg5ggTeeLBRUG56aGPspdaFytvEPOQdRWJPSWEk2Bck2Zy2urxnxb+bExgCOF72QS+Z4PzCdh9J1ZsbAjBCZv81hYZeBkHYgfGofnR1uM8pex1nq8J9Uhbv1PJtScvGWnx4xpHrpaF/39BaNXGrOT/XIvsFOLaKrmbRck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783323264; c=relaxed/simple;
-	bh=u8KWHRxWTkjK/J4zbGo9m7m63tq3R8/mZw6k/tPvy8o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CLXVhGzRpxkGQPoy6C0pLScC3DkdJ6FI5JZ3yYJsdustiv2Hq8OuiAKa9lprUZTUY9/QqcpZTlHpocqwaX+CsErSRgxZr7T8B63QPIOQo2Yz/d9r75iwjMXBH4rcc3e1Z112lQthO9v1vp7NBDeeUtoP4PcRnZRJhSJ7ZVlnSdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=xbOdLygW; arc=none smtp.client-ip=95.215.58.173
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1783323248;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tt5w7FHENYGSmUnLysArHs7fpiW1RbH2kKIfrTPwZN0=;
-	b=xbOdLygWLbvY+igbSWp7n3fp3UsfDs2b3F9HnUpn45E90k0zC1Uzi1Na4inpXzulBhPk7L
-	+rla/XvyvEb9j7j5KUr3K2/9mJwb2qzGiX7QPXoBAp5vnsy/9tlCwnBIxMWB1sqU9X1Hpu
-	Nop8smXRT3XPA9ktxWAHtE4h2nb4E6Y=
-From: Junjie Cao <junjie.cao@linux.dev>
-To: Lee Jones <lee@kernel.org>
-Cc: junjie.cao@linux.dev,
-	Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] MAINTAINERS: update my email address for the AW99706 backlight driver
-Date: Mon,  6 Jul 2026 15:33:53 +0800
-Message-ID: <20260706073358.1038452-1-junjie.cao@linux.dev>
-In-Reply-To: <20260703080149.GF2108533@google.com>
-References: <20260701133533.32585-1-junjie.cao@linux.dev> <20260703080149.GF2108533@google.com>
+	s=arc-20240116; t=1783323325; c=relaxed/simple;
+	bh=1VKGll8VO7q01/u+rSZ+/ZBVXEteUob5QpHa0DFBAYE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=du7g1QCQdSrPw8BPQ7JtRElW7QP1j56duiJPjpSAPbZ/so21O/Qf9fNeW7UR6JpGY10rPSS6E9W44b/zQry/ByPv4oKeGKlbovUm9WugZ21IjTQZweJVJ5E/aK0KSvHN9wEwz/NI2+UtKvINsW46skSepWFHqEleWO23uVUAJGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h152Xv1c; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE07E1F00A3A;
+	Mon,  6 Jul 2026 07:35:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783323317;
+	bh=1VKGll8VO7q01/u+rSZ+/ZBVXEteUob5QpHa0DFBAYE=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=h152Xv1c9JnC7ZCYhL0We4s2tV2ZYo7OBn6zlfHoygP9aMXxe4XWzKsN7bMyys8r0
+	 30fI2b7aStcYWwjVLxrLJjNTB4zX2+0v9z+iFyD3mlTFm1HgsGXyJOGLDvaTbICtLP
+	 zwlu5xbbdU+oKaG2emZVYZGkst23hdq1wf6izMKItDk4+wdoCw/u3BvrK4jA4xgRHP
+	 hv3ZWcVp48dhhqLAb84vDJDAhl9JCBmFaBTU8XEDFgbeBx/SO/lNzAryiejLyAFDt9
+	 bYibfj9gWDd9lHiIYnB3glcUMdqEIJsUB/FIQXnjQUaXOTM/YY77h4fvSEYtKBVDql
+	 FaztXIHN+JDSA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2] MAINTAINERS: update my email address for the AW99706
+ backlight driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Junjie Cao" <junjie.cao@linux.dev>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, lee@kernel.org, robh@kernel.org, linux-leds@vger.kernel.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20260706073307.1038430-1-junjie.cao@linux.dev>
+References: <20260706073307.1038430-1-junjie.cao@linux.dev>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 06 Jul 2026 07:35:16 +0000
+Message-Id: <20260706073516.BE07E1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-320894-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linux.dev,kernel.org,gmail.com,lists.freedesktop.org,vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[junjie.cao@linux.dev,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:junjie.cao@linux.dev,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-320895-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:junjie.cao@linux.dev,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:lee@kernel.org,m:robh@kernel.org,m:linux-leds@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[junjie.cao@linux.dev,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,linux.dev:from_mime,linux.dev:dkim,linux.dev:mid]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,linux.dev:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1207270DADB
+X-Rspamd-Queue-Id: 29B3170E19B
 
-On Fri, 03 Jul 2026, Lee Jones wrote:
-> Doesn't apply.  Please rebase onto -next or for-leds-next.
+> Switch my maintainer entry for the Awinic AW99706 WLED backlight
+> driver from my personal Gmail address to junjie.cao@linux.dev.
+>=20
+> Update both MAINTAINERS and the device-tree binding maintainers field.
+>=20
+> Signed-off-by: Junjie Cao <junjie.cao@linux.dev>
 
-My apologies. V2 (rebased on latest linux-next) sent.
+Sashiko has reviewed this patch and found no issues. It looks great!
 
-Junjie
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706073307.1038=
+430-1-junjie.cao@linux.dev?part=3D1
+
 
