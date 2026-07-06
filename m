@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-321259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321260-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GNFiKU3BS2rwZgEAu9opvQ
-	(envelope-from <devicetree+bounces-321259-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 16:53:01 +0200
+	id CITDBvvXS2ombQEAu9opvQ
+	(envelope-from <devicetree+bounces-321260-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:29:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93739712389
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 16:53:00 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E6E713475
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 18:29:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=BemTA9d+;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321259-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321259-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linaro.org header.s=google header.b=MA+Tf+UY;
+	dmarc=pass (policy=none) header.from=linaro.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321260-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321260-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 95ACA301E4DD
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 14:10:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B29A633A7BF0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 14:13:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA079378D94;
-	Mon,  6 Jul 2026 14:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3601741611D;
+	Mon,  6 Jul 2026 14:12:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FF5E376BEA
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 14:10:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCF03911AB
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 14:12:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783347027; cv=none; b=ffUpIO8a3NtN2OPJEfkiyg+lxNy+T9Pqjpc3VVKn6ISmPio3yWRD65E/CLIDNJ9zZdhT1PYAhWljN3qFLgbzlQTjl/msBg7VAzvIzHFIin5D2ywuzvf0RqLnU3k928ojkCVZJDVYE4u7rMmbBx8lvYdITggvpe8GE245ZrcfOgQ=
+	t=1783347131; cv=none; b=PHHTc1WUAtH5+FL67jII1C8tELhHAWggLSfyDlUtPKKcWLWEMpzNQhtkvUJF0Z/zw7vr98KjtGOLLFYxxB9mGPwW+k2r+fCmfJPV5O4XSsL44+lgAKTXOghPj323qrziOmEnfcdroQYbkP3Qm4JvSdZ2FVUYyPUDYiRrEwDZY2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783347027; c=relaxed/simple;
-	bh=YOsYyrc/bitTU9Vwq6vnx2DmxDDwMmLL4M4U3a7xGto=;
+	s=arc-20240116; t=1783347131; c=relaxed/simple;
+	bh=AUKedEW8L364I8JPQAlKye3yP1O85tY325vvcI429kg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QEDWpm/nP8zsbtW4ec2q4nofSEaZc+pcDlgXSa3qZDqhKTvPg5fE+bJJ56MutZSfim9Yc790abN5ctSaWiS4sxIO3VEMOYidAnzkMxzGenYvngEmgKj5lvb/VRdiPT1f8y3ENfharGRCmdueoBGxNNbfKdxQLh+o8K2XgTLFrgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=BemTA9d+; arc=none smtp.client-ip=209.85.160.43
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-4472500e25fso1316992fac.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 07:10:25 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=ZB4st4vhqmpoUX+7xUvwGxD/hzz1P4WUWImcll39O4mJcVcKTVW5STMwPzbpODsLEgz/Yk+KD1l/B9Rly4kMeX/9LK8kFF5J9T1qta79aQfKQUFk/9ggYm2etReLYkROIEhNGGbzDIrEHan5sf8Nk4rChWCHvPCkADFCcmErnww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MA+Tf+UY; arc=none smtp.client-ip=209.85.128.45
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-493c2b3dc8bso21467005e9.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 07:12:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1783347024; x=1783951824; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=linaro.org; s=google; t=1783347126; x=1783951926; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8Q13oMYkW312woQm68JTsMT/EHUSwSrALmbtYHd4pkc=;
-        b=BemTA9d+p0hVaw+VZWUV9RDD8Tmrcy8wb0aKRfBZYWTL+6d+v9nTaMMF/+R1Iorf61
-         vS1c9imyQ34K6uPtXHR9XTuVOSuWwzWd1BxzqQR65Nmn5Z14MWn8d9RMn2iStcZ4WoKO
-         pK0i8QoEQrZGkrdeZ9nLReGOzL52FS3Q8pqAdZiAlASXXy8v/cMApyNrDzW6RC+Tm4KC
-         4JWGl0Ln/0QHxLwfEABPd7e3KtkvviPRTd1pcnPEyT50oGLHoUNr1CBr4wWUFolqQUoq
-         XDoSq8LnY7Kt8sSATQgPi8lcNBFjQhsTlDmLTnMMA1yx3wSX/PTIXgHPZCYOLEwmwPKm
-         XQRw==
+        bh=SRglC65mYb/1PKnmY3GPB+Y//IKYaoRtYD9DfcwlSuc=;
+        b=MA+Tf+UYpjIp5PwnmckYY7d65jEoi6xAkwBfJEDSFfM7S0DeC1DSCJnqYtPfxFWpK7
+         SaW37deSkncxbWk4Vjiy0TX3EVCkZaypDiNF3OV7Z0uC1JxtpzQv7VdkdqFXk+yKuKZg
+         sWo2+opfDfCtNmEqmukrcKYZWj0zfHdMUlHftTiwPTZSP3tLVkRYxObUDCypYNMJC8b0
+         NHP8iwxXSKdy4TgU8SZOPUrDEWwrhIZiwIDTcY0CePmwqtguer0l2lzA5DG/xVlKGc8e
+         T0yvlpOczcurrmZJtiApFTLgS5X8aYFgthqxcoCOu3UrBEv4hTFR0evrRCoL649V7g9F
+         BzdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783347024; x=1783951824;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20251104; t=1783347126; x=1783951926;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8Q13oMYkW312woQm68JTsMT/EHUSwSrALmbtYHd4pkc=;
-        b=s3lxOAYJ2chixlyimlkK/enpPY6+gqrHOR4avK204aawAX6qQwBrLC1u2Gh4N3kLQc
-         JIlPTYvB8xFzVxh4b/DgO7VY0R6cR0CtVR888MFbACZiPjzqhaCP4IMlPr6C/SI6dIwA
-         gT+di0/d4NFSj2ExhtvSX0EtrRtWLjXkvxZN4WPhO97mRHQkyQCU0F8Irj2vyzQpF/eS
-         oZcOaYI7OUbjVS6Rl5cU7DDJjg3oijlKQGOMNt3PNtX9QB8FsLI+FI3LTbwep5naIM4d
-         gRzNdg9E0QP74uSAyLr5o/EVKetlHcJUZE6XGda8eZ92nCTGbWJYZcgl9BRTZ9fp7ZFN
-         mHig==
-X-Forwarded-Encrypted: i=1; AFNElJ8kGuC1ET36PNDzSnNw8lt8pkX6czATD+bEvI4L41OrUiO9LrWBbaIzt5/X1xAJB26QgOdYkDdS+Obo@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhyPDZmhHMQvt/CHVq8d2mov+rq9g8/pmRHgzM60uLos4Hgrsl
-	swFBkglyPiyEqQnDovmrbd5PCOTYxZXcd72Pw3KK/lWb5e27YqsR5Uwt+AZXqYqGJ1s=
-X-Gm-Gg: AfdE7ckqIk3oVxEGboPrXOE3UEPbfgYxQXro1ZwdQm18YSNkbKk3au/lBACSsMQFqQy
-	i0asC1YgSx2yrWQ1oPu2eEf9TQZtFpu0ysB9jDQ9IeoQPJeS8yh7gl8qfjKTh06kWqdUt1VvwE5
-	dfu7a4LnGbHbQJGdGfQBqhOzMa0eQjrzH/iGb0+3p8fAJtXJiMwqyLOXZpnDrJjw/qE6HoNpvrH
-	ziHje6LjZ0liuNtv+cJUtorRvfi96hubOY8v7WCZOL/l/72Z6g3l8vwbq5plrBPX9XXBX882xid
-	zG6oROk/72NbhhewIaDtXzAh5oRVsz0jfU77nPid1yCsyeectuzk4qIzcUL+ZAPRNO0QSn7hEyE
-	YmTB8l7MFyF1cP77dGwRSVcsSKvHX1oKiD1tGBijronp9Q9irKO4CHKG3BmY3vLYpX1PVrMTlS+
-	TV2CSZDgGIeQBb7bt4lMIopWzSZynvxxhw1KmWy/kdJD3/Oh3/bJvoR8Fl+GeZqE0=
-X-Received: by 2002:a05:6871:820a:b0:43b:58a4:cc33 with SMTP id 586e51a60fabf-451065bccf8mr348850fac.22.1783347024487;
-        Mon, 06 Jul 2026 07:10:24 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:a38a:a0af:ed1d:5c77? ([2600:8803:e7e4:500:a38a:a0af:ed1d:5c77])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-44cfb6691d1sm10542741fac.17.2026.07.06.07.10.22
+        bh=SRglC65mYb/1PKnmY3GPB+Y//IKYaoRtYD9DfcwlSuc=;
+        b=Xo6LQt4a9bTGGU9D/4JUp1kxPB3aZvi3ylyvIGgzmbkXZnaZL3ZYVxw/ODeNcFn3jT
+         uIOFBL/H0GM51vEjlovhITZXN1MnXFZfKUf1h162mVaavwm7qHk/8huRGhksrzpWiOVJ
+         ZDGxEpSm1dipTxl7l3gcZ7hBgd6HGdQ41k/x7W3OKpDXFdhs2Vqz57sWiyt6KbSWuOg0
+         QV5+ESCcUyBu4F8i80XaK/LK5xgdQMn0ZvMNdd4zCI5iUToGiM3V2wOaUNcDun0565Ug
+         nO/Pq6DRz2RGtYHoW+4AYxwPlY6IVZC+0HauvAcFz7R9ZM+TkyFhTUzwoRsmfafo1mn7
+         yBhw==
+X-Forwarded-Encrypted: i=1; AHgh+Rqs88vaCPsz9Ehp4Ikm4FznGjO66sH/Z8byfLtvcFGQqCunV8KZIeDUSKXhb0wSwghotH8lpzC0TBMK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyswOM+EJk0e9Gqdt/W7yY9DS2/05ah+8CUcXJdqKhavbFTK7W/
+	5y9CPSWirN3eTGNh6qZxwmDvmKGdDpDRPpWV+Icv2OMJ6Pe6I3GOXgdxp7GXK5mdFLY=
+X-Gm-Gg: AfdE7cmBRF9RVYHfuAEhvcuXdXMAiHQKYbQAs6YXfNntVHWIn4kEF6ooe3v8ZQOx4Rd
+	XHscxxjth1FbjlO54/l4BUE+vCTRwt3X2JF/+/PnLT2ltyhqYKhXSz2iW6o5tFpN++yBFAVIB4l
+	gU3TC82rZRPia0DxmL1SMiMC1eSTnl7agtrurnrIXRreBy07Xy4imjQNZZMsfgP72WvakpTAwBt
+	xNdWjeDgvVgFObW0/jAKclxj2jO0639CafhAq0tyuwxb1wMuNhhkRPe7OJd3dB2IBuwGvnFB66u
+	tzPb4/RcUqYZzt6BXoAGl8R5FF6CiZTibENbbN/dgsl9EE8WnZCOpJp0fa2vSMWWkYdOXCLvtRX
+	pfqYe9QYaydZsoIy8qn47uei6CmmuvwJOLsDGr/LwktYKE6VhnnZOcyBpntTUoghMsbb4oMLIGl
+	y3UCDFEo2yYjOJAsI51ZRGs5vH+w==
+X-Received: by 2002:a05:600c:4747:b0:493:be3e:cc3 with SMTP id 5b1f17b1804b1-493df093146mr8495275e9.21.1783347125751;
+        Mon, 06 Jul 2026 07:12:05 -0700 (PDT)
+Received: from [192.168.0.101] ([109.77.44.220])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47a9e4d83bdsm25651263f8f.13.2026.07.06.07.12.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jul 2026 07:10:22 -0700 (PDT)
-Message-ID: <2d84950f-c56a-48f5-ab7c-c7b7ccb3b28d@baylibre.com>
-Date: Mon, 6 Jul 2026 09:10:21 -0500
+        Mon, 06 Jul 2026 07:12:05 -0700 (PDT)
+Message-ID: <f3d148cc-496d-4301-af45-51d8921d7798@linaro.org>
+Date: Mon, 6 Jul 2026 15:12:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,158 +86,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 12/16] iio: frequency: ad9910: add RAM mode support
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
- Rodrigo Alencar via B4 Relay
- <devnull+rodrigo.alencar.analog.com@kernel.org>, rodrigo.alencar@analog.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-hardening@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>
-References: <20260618-ad9910-iio-driver-v6-0-79125ffbe430@analog.com>
- <20260618-ad9910-iio-driver-v6-12-79125ffbe430@analog.com>
- <20260703040544.08a8ea5e@jic23-huawei> <ake_YWfvVC9RQ3wu@nsa>
- <1493eed5-5bb8-4a2c-8f2d-8b4bc5dde157@baylibre.com> <akt3i_YxG-jF3IdJ@nsa>
+Subject: Re: [PATCH v4 0/5] Add Qualcomm JPEG V4L2 encoder for SM8250
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Atanas Filipov <atanas.filipov@oss.qualcomm.com>, linux-media@vger.kernel.org
+Cc: loic.poulain@oss.qualcomm.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+ konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260706071113.383215-1-atanas.filipov@oss.qualcomm.com>
+ <68e59764-5a10-4abc-849c-14ea2d9ef76e@linaro.org>
+ <d74d7839-d126-427a-b151-ca895a27a83e@linaro.org>
+ <437d1eb0-4495-406a-9501-b0515cfa3151@linaro.org>
+ <e04cb9dc-76dd-4fa8-92f4-be002bf7ee8b@linaro.org>
+ <8116c54e-4050-4e9d-b236-59d74846bd57@linaro.org>
+ <48c3ce6b-1e2a-457c-93b2-8fbc0912dc20@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <akt3i_YxG-jF3IdJ@nsa>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <48c3ce6b-1e2a-457c-93b2-8fbc0912dc20@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-321260-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:vladimir.zapolskiy@linaro.org,m:atanas.filipov@oss.qualcomm.com,m:linux-media@vger.kernel.org,m:loic.poulain@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:noname.nuno@gmail.com,m:jic23@kernel.org,m:devnull+rodrigo.alencar.analog.com@kernel.org,m:rodrigo.alencar@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:nonamenuno@gmail.com,m:devnull@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DMARC_NA(0.00)[baylibre.com];
-	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-321259-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_SENDER(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre.com:+];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:from_mime,linaro.org:dkim,linaro.org:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 93739712389
+X-Rspamd-Queue-Id: 79E6E713475
 
-On 7/6/26 4:47 AM, Nuno Sá wrote:
-> On Sat, Jul 04, 2026 at 11:50:35AM -0500, David Lechner wrote:
->> On 7/3/26 9:09 AM, Nuno Sá wrote:
->>> On Fri, Jul 03, 2026 at 04:05:44AM +0100, Jonathan Cameron wrote:
->>>> On Thu, 18 Jun 2026 14:27:28 +0100
->>>> Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
->>>>
->>>>> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
->>>>>
-
-..
-
->>>>> +static inline void ad9910_debugfs_init(struct ad9910_state *st,
->>>>> +				       struct iio_dev *indio_dev)
->>>>> +{
->>>>> +	struct dentry *d = iio_get_debugfs_dentry(indio_dev);
->>>>> +	char buf[64];
->>>>> +
->>>>> +	/*
->>>>> +	 * symlinks are created here so iio userspace tools can refer to them
->>>>> +	 * as debug attributes.
->>>>
->>>> Maybe worth a reference to appropriate ABI doc here (even if it is introduced
->>>> in a later patch)
->>>
->>> I'm not so sure about these links. I mean, I definitely agree we should
->>> make it easy for userspace tools like libiio to be able to handle
->>> these kind of attributes but using debugfs is questionable to me. Pretty
->>> much because this is not a debug thing. It is a real setting for the
->>> driver so ideally we would be able to control it (using the existent
->>> tools) without enforcing one to mount debugfs (I know that most of the
->>> times it's always mounted but still feels wrong to tie "real
->>> functionality" to debugfs). 
->>>
->>> Having said the above, some suggestions:
->>>
->>> 1. Make the iio_dev the parent so that the attr name is just "ram" and
->>> it will be a subdir /sys/bus/iio/iio:deviceN/ram/.
->>> 2. Propose a new helper for the firmware_loader code so we can get
->>> struct device from struct fw_upload then we can easily create a sysfs
->>> symlink.
->>> 3. Name the attr as dev_name(iio_dev):attr so that it becomes
->>> iio:deviceN:attr_name.
->>>
->>> Now that I think about it, 2. does not make much sense when compared to
->>> 1. And If I'm not missing anything both 1. and 3. can be sanely parsable
->>> from userspace (being 3. maybe a bit more reliable). And yes, both require
->>> user space tools (in this case libiio) to support a new type of
->>> attribute (firmware) but that is another problem.
+On 06/07/2026 14:57, Vladimir Zapolskiy wrote:
+>> This debate is going nowhere. Check the downstream you don't need the
+>> docs titan_top_gdsc is provided by CAMCC.
 >>
->> I would say that udev should be used to find the firmware device from
->> userspace rather than creating symlinks. And you probably don't even
->> need udev if you already have the `iio-device:<ID>` value. The path
 > 
-> Just one note. If you mean <ID> as the attr name the above will fail for
-> multiple instances of the same device. That's is why a proposed
-> dev_name(iio_dev) which I think it should reliable be iio:deviceN. 
+> There is no debate, since my arguments are not debated so far... Why?
 
-My <ID> is the same as your N. It looks like I just had a typo of
-an extra : in there.
+An odd claim, since this is the fourth ? level of email reply.
 
+> And at the same time you didn't provide any support to have N identical
+> spread hardware property descriptions instead of the single one.
 > 
-> I guess N might change so anyone hardcoding it might have surprises. But
+> What is a good enough reason to prefer complexity over simplicity?
 
-That is why I mentioned udev.
+I'm not sure I parse your here. The core fact is there is no "thing" in 
+the CAMSS block that can be modelled as a provider to JPEG in lieu of 
+TITAN_TOP_GDSC.
 
-> properly done and we have a sane way to match the above with anything on
-> /sys/class/firmware/iio:deviceN:<attr>/
-> 
->> is always going to be `/sys/class/firmware/iio-device:<ID>:ram/`. It
->> seems like the same amount of work for usespace to computer the path
->> either way, so might as well keep it simple and leave out the symlink
->> stuff.
-> 
-> Yes, at least for libiio, `iio:deviceN` is already what we call the
-> device ID so we can match fw attrs against it and everything after the
-> last ':' is treated as the attr_name. 
-> 
-> We just need to keep in mind that if a second user of this stuff pops
-> up, we should add a new helper to enforce the ABI.
-> 
-> - Nuno Sá
->>
->>>
->>> - Nuno Sá
->>>>
->>>>> +	 */
->>>>> +	snprintf(buf, sizeof(buf), "/sys/class/firmware/%s/loading", st->ram_fwu_name);
->>>>> +	debugfs_create_symlink("ram_loading", d, buf);
->>>>> +
->>>>> +	snprintf(buf, sizeof(buf), "/sys/class/firmware/%s/data", st->ram_fwu_name);
->>>>> +	debugfs_create_symlink("ram_data", d, buf);
->>>>> +}
->>>>> +
+That GDSC is provided by CAMCC not by any other silicon block. So 
+omitting power-domains for individual nodes is incorrect. Best practice 
+and in fact the _only_ practice that can work is to list power-domains, 
+interconnects in the individual nodes themselves as - I've pointed out 
+multiple times now - those blocks have to ramp clocks and scale voltages 
+dependent on their particular use cases.
+
+---
+bod
 
