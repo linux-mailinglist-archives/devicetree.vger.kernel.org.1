@@ -1,153 +1,190 @@
-Return-Path: <devicetree+bounces-321078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321079-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0JjoIxuCS2prSgEAu9opvQ
-	(envelope-from <devicetree+bounces-321078-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:23:23 +0200
+	id Otl9CoqIS2reUwEAu9opvQ
+	(envelope-from <devicetree+bounces-321079-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:50:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135D570F1B2
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:23:23 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 081E670F7AC
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 12:50:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=UyfE2W+F;
-	dmarc=pass (policy=none) header.from=linaro.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321078-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321078-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mCUGbsdk;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321079-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321079-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4195E3014376
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:23:22 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9154C301BA59
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:24:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED18302140;
-	Mon,  6 Jul 2026 10:23:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 263CD44213E;
+	Mon,  6 Jul 2026 10:24:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97382236E0
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 10:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01705442107
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 10:24:10 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783333399; cv=none; b=mh1kACw7t7LzzGeMNyUeO8js5mL5qNbwt5kibfECkxCi5PKIu9uaAr2WHcGeWX/wt1EQjoUkaWKh+S2RvjEac2mVLMkv4SBs2QhnFSLuf+ce7AmjTb6gk0PBRyhwLFB8juVqilGO2bDGegF8wbmwdCoEed1pxenEyKyok1AGIqE=
+	t=1783333452; cv=none; b=m3Ndrrvp0AxWC4oUPpUCGd8bzWlcdITZxvO5ScpxXfnXZBvEUT5Z18uIhA4KkLPJQFxys0fUwr7LUjx3dih5dKIQzIgFTzzIG0HiDv5GHlCkd74o47mo+eHYwvpBZnTmKIIX8M3JCjUichff3A6R1rCRDSa9Wmy0ol8xfnpRL4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783333399; c=relaxed/simple;
-	bh=Iqy3tyoDUG5thE5lCg9oMEFEo35/Eoz6TYzbbn1DjHI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gELRl/B2VGG3dldAomLBvnnhY/e401jEIDVyD2gQAyoIXHmGCbcMZMky2YG9sUdejSJrGykgZg81VLUCXvxuaP99G9xiprTIA9HgB5DYFbbpgrS49DYcD2BUjlEpk39spKn18ibx4FovKSmpTIWzLAV3dvtrcxHTUxoz/xfUz5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UyfE2W+F; arc=none smtp.client-ip=209.85.214.179
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2cad225673bso23261295ad.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 03:23:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1783333398; x=1783938198; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EL79Y50FRAVxmnnlJsIkErdepD3FvDl+N7VCboCkaKM=;
-        b=UyfE2W+FVy3700E6ggIVqKpn/bvPEEuTnyzkHzdOMfcOvofG2osod8apNfpTT90OGE
-         LVsJwuVROTYXH6wR8glwfeE44wn31+TZqluxVUg2wWyQIqPjTldwdqT3U19Ghh8XyO/r
-         CbbQ+ch8EfIr+E22QEWWw4OyT1K+ZTstsboacvXZsk7fBSxZv2jauUyynUWC8/tv812z
-         MTjXA+tMbDnNsBU2U1T7YydxTQOFXsQWhmzPEnMUYI97jpIu0L9H+lWKQKRp/llzbzNc
-         JYFzRkNydQgsorntHnB7Bb+yzSu3AyBOGzHJbaScXvXOongdp0LBVDJmfddzc7i5Mgel
-         yUtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783333398; x=1783938198;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EL79Y50FRAVxmnnlJsIkErdepD3FvDl+N7VCboCkaKM=;
-        b=puHP+X09ql6hPUDcGtW2aR88QB1h3X+VtXB37IHNNVykJjxdMH3H2iyDyZiB8MFqe2
-         vsNgdr2V3ySCh4VpPxyC1LTAZQ1ptl8jhJwaDZAKK+2goalVRqtw9k7xqOxERmmI51Wx
-         Tc3tQbpr1d6JWRcj0aMJN4cMkby6RwODyuagNGuxZN2/v1It53wJQ3/t4ZDPfW1CmvmG
-         2TtO+KncmP88agxSG5WD7s1sZSxBlkK8XSi1J2lr2G9Uq0LuRIMj3ywYRJ2H+AV4+6hF
-         DNXwtSn2oBWjcHXCl/nxJbd2q01Kzx8gWqdtjpjhPuJaz/nXRpc1xEWCtgo1FkaraCoC
-         g2Mw==
-X-Forwarded-Encrypted: i=1; AHgh+RqA7pya7jPANa/TO1ZH7167KuYM+rx5uCAMfzFaN2zG/IfgCCYzYI4PLwUiP4xZZFXEEC0zGgOTCOba@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfWO4UBQjiPfR8XaQuMSncDLuHopuGhm97NE1zgOPd/O2Che4w
-	nHLQq/6n+uZaLYSKiMvUEqnxSaXhB+e1A4XstcLJyjCADQ0DYyYLS/JkZF+pRA8wawA=
-X-Gm-Gg: AfdE7cld81t3l/o8LNc+Ya0h9RBukxhEvSjLQa3JRHsumUJWTsqFy254cIfN5CEuX8R
-	cGl//FSA9U4jmx5Co6h1AKCBRdcy2iIEYCrvHuh/jTa+gY4qbYbYUPFb6f2L1DKFugYB5g8vK2T
-	LBnKZpNzsKklgPlF7gmYbOVa1d5332ncBhFua7e6OPilnfBID3E40gnx6jYLYHXtfbH/wKL8uTc
-	uppzImH/FMI7P6lT75dFmcy+GTHtiuvFxsMR0zcQPabr2fW4GrhEvgNUbpuuTW9LatLvlX0c26I
-	9oUrqx5FWyRIdMvloVpScPvLN8id/HaCnASsB2zZhjNFd5AUh5FBWCvDhe+yx4fJZa6y51Pw+xh
-	VicpdCIcnNwp7V57GS4DxNCnQZeWeBO1ogcC0agoNZgYNAJPkf7XzUAWJvhs7D8uDnHtVLIOcOF
-	lKQ6JNnOGib1hu9Nox1dK2Eq0=
-X-Received: by 2002:a17:902:ea0c:b0:2ca:329:3d96 with SMTP id d9443c01a7336-2cb97e432afmr89665045ad.3.1783333397781;
-        Mon, 06 Jul 2026 03:23:17 -0700 (PDT)
-Received: from localhost ([122.172.82.94])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-13b3ececfe4sm61161044c88.8.2026.07.06.03.23.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 03:23:16 -0700 (PDT)
-Date: Mon, 6 Jul 2026 15:53:13 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Viresh Kumar <vireshk@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, linux-arm-kernel@lists.infradead.org, soc@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ARM: dts: st: spear: Correct indentation
-Message-ID: <gbafvant4c4cw5gw5pxrwpjjueroj557i2dor3p53z3jodqimz@cbiztajpiex3>
-References: <20260706101823.341230-3-krzysztof.kozlowski@oss.qualcomm.com>
+	s=arc-20240116; t=1783333452; c=relaxed/simple;
+	bh=MDDWKzU7bVITlTeJ+MTNbamKyFsrkVGf5W5/4Rl3Mko=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=MuLL0UhJZOOZyIauN+AZuIMWHTgP2VdduXO0vXSQ2kPjOy1EFNUp8Ge4Qe8vayPwUduiRp+TQLqwi//CRombhvkRMDrJgN1Cc9t3+O7yG5zfI7xOSApQlObEGdTGehTOvTb9MVEsfTqrhzRGy+MuhBUFrcZDkn1YU7ZD9AkUdMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mCUGbsdk; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 465171F000E9;
+	Mon,  6 Jul 2026 10:24:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783333450;
+	bh=DJbhMIGX2V09Y30VEGMlPKNg7Rfg+45P3hRiH5KjFY0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=mCUGbsdksaFJRMWswyS7ecijpTu8KCBLOCDOb4mAuupX34pGcibpIIhGeKY7sQ/oQ
+	 SR/fHdzlBddEMgQ+s62unIFL3FrQU4rc3rqSMPXIDVxMUcEJP0ySP8+uRwTdoz2UrX
+	 /9A3VE5m1VKboynKtquaMKu5ERqV2BWM6ipmiKu90Cm8UYM0UegycvzWFo0VqzVVYi
+	 O1Q30Tv+KY9uUDuKgXD2XEwOGSA8PjwfI/dVrEeAnHk0M9VgtBy3icLfsAcWLvlklh
+	 /4Ce3w5Z6uRYRy3oeeK+tzD3TRu5PF3EVuA2sff8F/UYJvJmR4apr4g1L1NsIrFJZL
+	 46Iht6e9wqPfw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: Add NVIDIA VR-NVL BMC
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jacky Huang" <jackyhuang@nvidia.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260706101526.2556226-3-jackyhuang@nvidia.com>
+References: <20260706101526.2556226-1-jackyhuang@nvidia.com>
+ <20260706101526.2556226-3-jackyhuang@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 06 Jul 2026 10:24:09 +0000
+Message-Id: <20260706102410.465171F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260706101823.341230-3-krzysztof.kozlowski@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-321078-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:vireshk@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:soc@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[viresh.kumar@linaro.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[viresh.kumar@linaro.org,devicetree@vger.kernel.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-321079-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:jackyhuang@nvidia.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,vger.kernel.org:from_smtp,linaro.org:from_mime,linaro.org:email,linaro.org:dkim,cbiztajpiex3:mid]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,nvidia.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 135D570F1B2
+X-Rspamd-Queue-Id: 081E670F7AC
 
-On 06-07-26, 12:18, Krzysztof Kozlowski wrote:
-> Correct spaces or mix of tabs+spaces into proper tab-indented lines.
-> No functional impact (same DTB).
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> 
-> ---
-> 
-> Ongoing bigger work for all bindings and DTS with built-in checker (dt-check-style).
-> ---
->  arch/arm/boot/dts/st/spear1340-evb.dts | 2 +-
->  arch/arm/boot/dts/st/spear320.dtsi     | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] The cp2112a and cp2112b USB devices are incorrectly modeled as int=
+erface nodes, preventing their device tree properties from being applied.
+--
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+commit 19bf252306e94b75647bff8b12082b57f05638b9
+Author: Jacky Huang <jackyhuang@nvidia.com>
 
--- 
-viresh
+ARM: dts: aspeed: Add NVIDIA VR-NVL BMC
+
+This commit adds the device tree for the Aspeed AST2600 BMC for NVIDIA's
+Vera Rubin NVL compute platform.
+
+Link: https://lore.kernel.org/all/20260629105202.1417679-1-jackyhuang@nvidi=
+a.com/
+
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-vr-nvl-bmc.dts b/=
+arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-vr-nvl-bmc.dts
+> new file mode 100644
+> index 0000000000000..5d17450e4869e
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-vr-nvl-bmc.dts
+
+[ ... ]
+
+> +				device@1 {
+> +					reg =3D <1>;
+> +					#address-cells =3D <2>;
+> +					#size-cells =3D <0>;
+> +
+> +					cp2112a: interface@1 {
+> +						reg =3D <1 1>;
+> +						gpio-controller;
+> +						#gpio-cells =3D <2>;
+> +						interrupt-controller;
+> +						#interrupt-cells =3D <2>;
+> +					};
+> +				};
+
+[Severity: High]
+Does this incorrectly nest cp2112a inside an interface@1 node?
+
+The CP2112 is a single-interface USB Class 0 device. According to the USB
+device tree bindings and the kernel's usb_of_has_combined_node() logic,
+shouldn't this be defined as a standalone device node directly on device@1,
+similar to how cp2112c and cp2112g are defined?
+
+By nesting cp2112a inside interface@1 with reg =3D <1 1> (specifying interf=
+ace
+1 when the CP2112 only has interface 0), it seems the USB subsystem will
+fail to match the OF node to the device. Could this cause the
+gpio-controller and interrupt-controller properties to be ignored?
+
+[ ... ]
+
+> +				device@1 {
+> +					reg =3D <1>;
+> +					#address-cells =3D <2>;
+> +					#size-cells =3D <0>;
+> +
+> +					cp2112b: interface@1 {
+> +						reg =3D <1 1>;
+> +						gpio-controller;
+> +						#gpio-cells =3D <2>;
+> +						interrupt-controller;
+> +						#interrupt-cells =3D <2>;
+> +					};
+> +				};
+
+[Severity: High]
+Are the properties for cp2112b also incorrectly nested in an interface@1
+child node here?
+
+Similar to cp2112a above, defining this inside an interface node rather than
+directly on device@1 could prevent the USB core from attaching the OF nodes
+to the instantiated devices, silently breaking GPIO and interrupt control.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706101526.2556=
+226-1-jackyhuang@nvidia.com?part=3D2
 
