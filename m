@@ -1,46 +1,47 @@
-Return-Path: <devicetree+bounces-320882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-320884-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MhHoBd1iS2ovQgEAu9opvQ
-	(envelope-from <devicetree+bounces-320882-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:10:05 +0200
+	id XfzSOK9YS2onPwEAu9opvQ
+	(envelope-from <devicetree+bounces-320884-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:26:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9747970DEF1
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 10:10:04 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 554C070D83B
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 09:26:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320882-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-320882-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-320884-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-320884-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 32D043253800
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 07:25:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 99CD4301ABB4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 07:26:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9002C3F44C8;
-	Mon,  6 Jul 2026 07:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 320F83F6618;
+	Mon,  6 Jul 2026 07:18:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 599143F54B0
-	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 07:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0457C343D75
+	for <devicetree@vger.kernel.org>; Mon,  6 Jul 2026 07:18:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783322328; cv=none; b=Tu8q5gyKI7x7CD5/fFmPiNm4/iCpuJsnyud5ZB5Z8DU4JJwmSzC/t+2lPU16hIlfAEfJjyHDlL1fLBMTsqYtGqKvC/d+gm4LCGvUHQ9SOXbh+9ZocMBvwh+gYhNRgMGznIlNCmWXk6yrVltsQ1NgaGzpemlPksH1tiA/YCE8oJU=
+	t=1783322332; cv=none; b=fD3LA2UI37OCvSJAn7omhyOq9IlbGjvKC/8REXVGEiVYhj52ScN3poJsD97sw4OiMgp6CEurCmq7IAA7JAHs8vvxTTbzIZcWR3+LguK5P7fr+XeTeGMtYS7/mV1eK6sD0RjTOkfIsOqHFbnlMfmLvR7BKjgqzOxGiYwHy0MXbus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783322328; c=relaxed/simple;
-	bh=wQKESMrFfIsdJApQUUQVBX9ydRXn0z+ypmdY0HIYG6E=;
+	s=arc-20240116; t=1783322332; c=relaxed/simple;
+	bh=0bHIk5+ImTsGewg7R1XVocIILZI/5N1pVnWb+VuaLVM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uErfAwqmqdUuwNz4FMQwOYxm3zA+1LnvuLKmBz9WBwUi7SvRC14Mm+uKYaEokmowyLPix6khoUAsprUaSC9DJZv14uN9KFCqw7A+AmPTP8WCp/X/vxk/B+zGyK7H61DMso4H0zgTY5diXR3a7C/ZjS7+/BqhPQ7P+nYWFSkvw1c=
+	 In-Reply-To:To:Cc; b=RYV5cHDL12ipXylqtzEcUWpIk3Oi4LiHeOJ92gKi0nwZPw0NWzJtNPvVqJB5GrzfWtWgZsSlWWn05JAsbnsVlATyKtQ/Yl0yuFAW1+HsvzDlpRpb1cnccBfrGmqL9po80dk53Xk1/ZiHIbRIJi6sGvjyi8QlLzXCj2SNfbkYB+U=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1wgdam-0002vc-4d; Mon, 06 Jul 2026 09:18:12 +0200
+	id 1wgdam-0002vc-Fx; Mon, 06 Jul 2026 09:18:12 +0200
 From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Mon, 06 Jul 2026 09:17:55 +0200
-Subject: [PATCH v4 1/3] arm64: dts: freescale: imx8mp: fix sort order
+Date: Mon, 06 Jul 2026 09:17:56 +0200
+Subject: [PATCH v4 2/3] dt-bindings: arm: fsl: add compatible for new Skov
+ I.MX8MP variant
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,7 +50,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260706-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v4-1-dfc0c8827c02@pengutronix.de>
+Message-Id: <20260706-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v4-2-dfc0c8827c02@pengutronix.de>
 References: <20260706-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v4-0-dfc0c8827c02@pengutronix.de>
 In-Reply-To: <20260706-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v4-0-dfc0c8827c02@pengutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -59,15 +60,16 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Fabio Estevam <festevam@gmail.com>
 Cc: Steffen Trumtrar <s.trumtrar@pengutronix.de>, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1163;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1348;
  i=s.trumtrar@pengutronix.de; h=from:subject:message-id;
- bh=wQKESMrFfIsdJApQUUQVBX9ydRXn0z+ypmdY0HIYG6E=;
- b=owGbwMvMwCUmtVehiCsuTInxtFoSQ5Z32KbJqw64LfMIbJty76xl4t2tTTIT9E1W6kaUBfl8z
- uB7HOndUcrCIMbFICumyKKysIJP1OODZ+Q0ES6YOaxMIEMYuDgFYCLxIgz/M3WPd+/fveq3RsLl
- FYqfdh52YV9rzrfAmOvgjJBeJ74QDobfrPvdUhdeDtP9e8bjaa1jVkpw7fnf+o87La712dyP28j
- MDQA=
+ bh=0bHIk5+ImTsGewg7R1XVocIILZI/5N1pVnWb+VuaLVM=;
+ b=owGbwMvMwCUmtVehiCsuTInxtFoSQ5Z32KaJP7+Z71BdNN2xhdvnaKpDpU2fx4eXz1hV9Dl+X
+ L17mEmvo5SFQYyLQVZMkUVlYQWfqMcHz8hpIlwwc1iZQIYwcHEKwESEVjMy/Co5fflMv86PqR7m
+ JdcdLeVKjbSF0uONG57O/iJw4WrfYkaGT5y2szf2n3NvPX9yzdqSH9N6fFv5/288f/7cZtOanxl
+ tfAA=
 X-Developer-Key: i=s.trumtrar@pengutronix.de; a=openpgp;
  fpr=24A1780E1548F0495996140A1ABD20720A5E5622
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
@@ -78,22 +80,22 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
 	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:s.trumtrar@pengutronix.de,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:s.trumtrar@pengutronix.de,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER(0.00)[s.trumtrar@pengutronix.de,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-320882-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-320884-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -103,36 +105,33 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,pengutronix.de:from_mime,pengutronix.de:email,pengutronix.de:mid,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:from_mime,pengutronix.de:email,pengutronix.de:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9747970DEF1
+X-Rspamd-Queue-Id: 554C070D83B
 
-The imx8mp-skov-revc-jutouch should be alphabetically before the
-imx8mp-skov-revc-tian variant.
-
-Sort the entries in the correct order.
+In preparation for adding a new device tree variant with a different 7"
+panel, describe the DT compatible in the binding.
 
 Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/arm64/boot/dts/freescale/Makefile | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 8ddaab127ab9c..b46f452f4b988 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -434,8 +434,8 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-lt6.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-mi1010ait-1cp1.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-bd500.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-hdmi.dtb
--dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-tian-g07017.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-jutouch-jt101tm023.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-tian-g07017.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-toradex-smarc-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mp-ras314.dtb
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 86876311ec59a..402f140fb5170 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1147,6 +1147,7 @@ properties:
+               - skov,imx8mp-skov-revb-mi1010ait-1cp1 # SKOV i.MX8MP climate control with 10.1" panel
+               - skov,imx8mp-skov-revc-hdmi # SKOV i.MX8MP climate control without panel
+               - skov,imx8mp-skov-revc-bd500 # SKOV i.MX8MP climate control with LED frontplate
++              - skov,imx8mp-skov-revc-jutouch-jt070tm041 # SKOV i.MX8MP climate control with 7" JuTouch panel
+               - skov,imx8mp-skov-revc-jutouch-jt101tm023 # SKOV i.MX8MP climate control with 10" JuTouch panel
+               - skov,imx8mp-skov-revc-tian-g07017 # SKOV i.MX8MP climate control with 7" panel
+               - ultratronik,imx8mp-ultra-mach-sbc # Ultratronik SBC i.MX8MP based board
 
 -- 
 2.51.0
