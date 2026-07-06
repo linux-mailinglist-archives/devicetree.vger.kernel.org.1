@@ -1,130 +1,191 @@
-Return-Path: <devicetree+bounces-321035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321039-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sG5hL2aaS2pgWQEAu9opvQ
-	(envelope-from <devicetree+bounces-321035-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:07:02 +0200
+	id 2Y5aJIeaS2ppWQEAu9opvQ
+	(envelope-from <devicetree+bounces-321039-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:07:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1D27103E9
-	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:07:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3C5E710409
+	for <lists+devicetree@lfdr.de>; Mon, 06 Jul 2026 14:07:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZDFven0v;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=iLmOrzh8;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321035-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321035-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321039-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321039-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2EE723509598
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:06:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A1B1A354ED4B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jul 2026 10:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99D8B434E5F;
-	Mon,  6 Jul 2026 09:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF7541D4DF;
+	Mon,  6 Jul 2026 09:59:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E14C434E59;
-	Mon,  6 Jul 2026 09:56:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADAE33CBE66;
+	Mon,  6 Jul 2026 09:59:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783331781; cv=none; b=h+yFkLZoOWe58uhnB2AuCgHPZJDWeqrbZtx3Jry4EwVGgX2jdToyRm53YQjBvzykDlBs2gRogzFMTIE7L0+THCl/YBc4QtFffWaJnhpmKc9vcvVf1pqKVhTrfiThlrZMUmTrsbSwHpZkT4m8RRApcqCXqu9wxCnpSqUmBfSMoGs=
+	t=1783331978; cv=none; b=TxzShDlTiDFWZvzjSg1wmjjh3ajaotXRbVxe4nxWBB8X37d9IBDMNju+ghKOzU2un1PLMmwbkrgc3iM+UiM8gz6NtqzlQoTaGYEr5KMKaYfoeM3fXT2zhXVgNqGK1j64tZB6Kn9lh4ReYuJVKle519Ksa4+E8mZC0A2mtACOjUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783331781; c=relaxed/simple;
-	bh=lxbYUXc2GuYjJVgEeQ3Otgs6BHLF9/cttk3cowAA7h4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=II4/so3xmh6s7GYXQaJI7a78YfPSPRawJ2naBaeUt+WyV2L4fcjBt+snzoKBSDXupvwtqzpt5NNUhEiLvz+WiKjKoGnUqUWpUcYjluF/jguYAEjfTgM/Wxp30J2tpX+uF1h+wqXbZqxcz07SH7KJsooOMUmXKm3qsh1+/mB2XV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZDFven0v; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBA151F000E9;
-	Mon,  6 Jul 2026 09:56:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783331778;
-	bh=lxbYUXc2GuYjJVgEeQ3Otgs6BHLF9/cttk3cowAA7h4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=ZDFven0vCU5HBacKtsK4Wsh2d7vqxrPBT5w5IxkjmCTFCs9j5bed7J05mSjGgimm6
-	 LSoOZyWPFt+PieXsf0K2u3aMQYMOMx+QNSKd3OHHG86kYNY3wQjtJkWMbki/P4qOEQ
-	 3Ttk/TXO5kQjCpNCrDfoTEHxqz1Ut3PRl/xh3iEqsMN7NsEAQe7f7GMuI/CLnzLZpL
-	 uQgVeOIBqjs/RXBIcUjx2Y8tAnDhOcJFIlQaHyXtLjBHPjs8VTU5LyepEPWEKyNGVj
-	 pzof65YV6PIvtFbsirymrMFASs5g17pBRyKaTtg+x9hcbqDyQn+jPBuMO4VMXneGYT
-	 mj2pgV8Ufy8Hw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 5/9] clk: sunxi-ng: sun6i-rtc: Add feature bit for
- IOSC calibration
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jerome Brunet" <jbrunet@baylibre.com>
-Cc: robh@kernel.org, linux-sunxi@lists.linux.dev, linux-rtc@vger.kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, "Alexandre
- Belloni" <alexandre.belloni@bootlin.com>
-In-Reply-To: <20260706-a733-rtc-v4-5-f330728db3d3@baylibre.com>
-References: <20260706-a733-rtc-v4-0-f330728db3d3@baylibre.com>
- <20260706-a733-rtc-v4-5-f330728db3d3@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 06 Jul 2026 09:56:16 +0000
-Message-Id: <20260706095617.BBA151F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783331978; c=relaxed/simple;
+	bh=ARa8ZnsgdLdg/iKhWkG3xGMLOPSSmk89NzD5EyIWAbs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Y2RM0cl9skAi23UyK+wUXxXkOCBd+2GZXN7frq7qyprhQcjwx7u/C+stRYOgFSEviuRkmmmghbj5WB7z7KoODDHRGUBSZlrCkt1E1TjlVSwwYT89Ly9PtKLlJqs5UMbikmI25J9h5choBe0yfSnJj1PpoFSYliPbeGDm+nDfsrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iLmOrzh8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 149AAC2BCB8;
+	Mon,  6 Jul 2026 09:59:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1783331978;
+	bh=ARa8ZnsgdLdg/iKhWkG3xGMLOPSSmk89NzD5EyIWAbs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=iLmOrzh8fGnSQHM6W6roI4fnzHfk7thBQJApT09bhlz8eeWjlujYsbEA/pAIPX4GU
+	 iGPJKSQHKDOmKFSoDk+hrimdRq3g2ul/fNWyH3+gsgiO1ZPD0ycIJJ6sw9NRNhYBR3
+	 fk6v974sRjsj1Ml9JC1BomFRe78FH/FBGcw2836BPbQxTHg2kWJ6Ny9MnSlnuhlirZ
+	 OCpu5St6Dvw/vW4d39KkEJLg1JsSvwCi1WRv86YS4xsT/gY+JlJM0vlD0zjmPKKBw1
+	 i25CmoazoT6VurhZ35ZBHgwfAsos41eQE+2vRc5+L2NKlvp3Hj2W306zKJz98OuIrO
+	 EyMPYghxSmCVg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0077CC43458;
+	Mon,  6 Jul 2026 09:59:38 +0000 (UTC)
+From: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>
+Subject: [PATCH v2 0/3] PCI: ultrarisc: Add DP1000 PCIe clock support
+Date: Mon, 06 Jul 2026 17:58:48 +0800
+Message-Id: <20260706-ultrarisc-pci-clk-v2-0-2f3fb6fba66b@ultrarisc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFh8S2oC/22NSw6CQBAFr0J67ZiZQUFceQ/DomkaaeWXGSAaw
+ t0FNK5cVlKv3gSenbCHczCB41G8tM0CdhcAldjcWEm+MFhtIx2ZWA1V79CJJ9WRKKoeCskk+hB
+ jYRhh2XWOC3luzWv6YT9kd6Z+Da1GKb5v3Ws7Hc3qffs2+dMfjdLqyBiG+lTkmIWXn7OntoZ0n
+ uc3Ou1X98gAAAA=
+X-Change-ID: 20260617-ultrarisc-pci-clk-ac19047af1ea
+To: Xincheng Zhang <zhangxincheng@ultrarisc.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Jia Wang <wangjia@ultrarisc.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783331975; l=2442;
+ i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
+ bh=ARa8ZnsgdLdg/iKhWkG3xGMLOPSSmk89NzD5EyIWAbs=;
+ b=5liZG14Wgp0p6+iNL2dfhOlq6P6dQowxxxSHIu4uQK7sAy+VOk6RH3YDFH1wPKB8Plnr7O4FC
+ 3a2I2ilLYHRDGPIhmxh3pOgEYtGo1yt8PmKN9lHEGe87CgUq3CjCl8o
+X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
+ pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
+X-Endpoint-Received: by B4 Relay for wangjia@ultrarisc.com/20260515 with
+ auth_id=779
+X-Original-From: Jia Wang <wangjia@ultrarisc.com>
+Reply-To: wangjia@ultrarisc.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_MATCH_TO(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:zhangxincheng@ultrarisc.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:bhelgaas@google.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:wangjia@ultrarisc.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321035-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jbrunet@baylibre.com,m:robh@kernel.org,m:linux-sunxi@lists.linux.dev,m:linux-rtc@vger.kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:alexandre.belloni@bootlin.com,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_EQ_TO_DOM(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-321039-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[wangjia@ultrarisc.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,baylibre.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,pigmoral.tech:email,sashiko.dev:url]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DA1D27103E9
+X-Rspamd-Queue-Id: E3C5E710409
 
-> From: Junhui Liu <junhui.liu@pigmoral.tech>
->=20
-> The sun6i-rtc CCU driver currently uses a global static variable to
-> denote whether calibration is supported, which makes IOSC operations
-> tightly coupled to this file.
->=20
-> Convert this into a feature bit to decouple the logic. This allows the
-> IOSC clock code to be moved into a shared module for reuse by other SoCs.
->=20
-> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
-> Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Add clock handling for the UltraRISC DP1000 DesignWare PCIe host
+controller.
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+The DP1000 PCIe controller depends on three input clocks: core, dbi, and
+aux. The driver accesses DBI registers during host initialization, so the
+clocks must be enabled before the controller registers are touched.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706-a733-rtc-v=
-4-0-f330728db3d3@baylibre.com?part=3D5
+This series documents the required clocks in the device tree binding,
+enables the core, dbi, and aux clocks before DesignWare host
+initialization, and keeps them managed across probe failure, detach, and
+system suspend/resume. It also switches the driver to
+module_platform_driver() so the existing tristate Kconfig option builds
+correctly as a module.
+
+Testing:
+- Build and module build tested with ARCH=riscv.
+- Boot tested on UltraRISC DP1000.
+- Validated the PCIe binding with dt_binding_check and dtbs_check.
+
+Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
+---
+Changes in v2:
+- Add Fixes and Acked-by tags to the binding patch.
+- Add a Fixes tag to the driver clock handling patch.
+- Fix the suspend/resume clock handling so clocks are disabled only after a
+  successful suspend and kept enabled on resume failure.
+- Add a module build fix by switching to module_platform_driver().
+- Link to v1: https://patch.msgid.link/20260629-ultrarisc-pci-clk-v1-0-5ea3308fdab3@ultrarisc.com
+
+To: Xincheng Zhang <zhangxincheng@ultrarisc.com>
+To: Jia Wang <wangjia@ultrarisc.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Krzysztof Wilczyński <kwilczynski@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Bjorn Helgaas <bhelgaas@google.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: linux-pci@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+---
+Jia Wang (3):
+      dt-bindings: pci: ultrarisc: add required DP1000 PCIe clocks
+      PCI: ultrarisc: get and enable DP1000 PCIe clocks
+      PCI: ultrarisc: allow DP1000 driver to build as module
+
+ .../bindings/pci/ultrarisc,dp1000-pcie.yaml        | 16 +++++
+ drivers/pci/controller/dwc/pcie-ultrarisc.c        | 70 +++++++++++++++++++---
+ 2 files changed, 79 insertions(+), 7 deletions(-)
+---
+base-commit: dc59e4fea9d83f03bad6bddf3fa2e52491777482
+change-id: 20260617-ultrarisc-pci-clk-ac19047af1ea
+
+Best regards,
+--  
+Jia Wang <wangjia@ultrarisc.com>
+
 
 
