@@ -1,142 +1,221 @@
-Return-Path: <devicetree+bounces-322211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322212-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TuhaE3EjTWrDvgEAu9opvQ
-	(envelope-from <devicetree+bounces-322211-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:04:01 +0200
+	id Q+T5BxQkTWoBvwEAu9opvQ
+	(envelope-from <devicetree+bounces-322212-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:06:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCEC971DA17
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:04:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5928471DA9E
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:06:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UFw4Yemr;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VCiVWpHf;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322211-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322211-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322212-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322212-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3700B30065F6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 16:04:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5C1BD30566B8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 16:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB48E431491;
-	Tue,  7 Jul 2026 16:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0FFF432BD2;
+	Tue,  7 Jul 2026 16:03:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83AFC4314A4;
-	Tue,  7 Jul 2026 16:03:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87E12431E50
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 16:03:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783440236; cv=none; b=D40ji24XCf6bBmwysv3qSkHHP7oX71HM6nBw19keZs7Yp7JIhi17a31Y01xf9QJUOL+kG6YeW0ArIFCDF3tSbeVvYZR2ZDWGbDfAeoZBmZ5lcHZwJmDInxx5JqwG8ZwFAvyPnIKtZWNiWWRWooL4U+h4B3gcIhM/7sP7ICBtvno=
+	t=1783440238; cv=none; b=XTN8UOCu3Xs/gCcgeDg9vSLTjR23lGE8Zq3oH6kDIXO9F/xn9xhUH4K7fZoH+Gs/hfxzLTaKHK3q0LaZsi0kVjYHKUMhUHFKb1sywpWb/w7aAT9QaA9Co8vOh19hG7eC+1RU2AbH6IKskO3YS9sFkIwtvJT3mgawU7cpyW9R/CI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783440236; c=relaxed/simple;
-	bh=NPipGy9Lj0MVUNU2Z4ZRCKxuiH483jCxlUTMGCmfGdk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iSU6k/nqozYys7ktPRT28PWR3U4hC26+ndSWUsuTylHZKNUQ1zvl5Wy705AGHEn9PWPHW8G5wwfU+AaB58IKvfvmiS7r0o5Gl07P84opokrw6PxrBK28U4k6S1QyMgTWkFbMiNgXMORcAQ554Vz/PwBxlOl9UA6JZ1yNVFG1uPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UFw4Yemr; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08EC71F000E9;
-	Tue,  7 Jul 2026 16:03:54 +0000 (UTC)
+	s=arc-20240116; t=1783440238; c=relaxed/simple;
+	bh=3ubmPGmTvJWcVOQtm28+wla/W0tpfYLtuZfrQKAZN8E=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=jYNjld70BiTRE59iWupJe+5lJ4Fbq2M86dUf5W9cT9xn4DQMUXE76OZzTGBJhu5CE2FNwuiX9Qry7pYT7wypombieb5j8f6RWRM7D4pw+IH1WPX7vaqlDtqJnMt7/YinDw5O4neDtnMfWJwDkrHoxWJMOW25rIEF5ZXmCorLGo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VCiVWpHf; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D22321F000E9;
+	Tue,  7 Jul 2026 16:03:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783440235;
-	bh=VzanBIl/P1H1nynYPysN7FmIsOykUSWG68SMsrzYXo0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=UFw4YemrE7yinlV44MlFnSxAJEvDkYWSz39aqURr3Pw93VpYqhat+Zr3Fpv/t1XRl
-	 Cnki21bX11ijKnpEjr180jxDHaGknJ/t5H2omZrMqA51fBpuI9h44YxYtYTbiGfcYP
-	 8r6+QswzKmaJ0KWKltlwKhpAJzsf/5lXVFSPNoQu/MLi8Fxwa4XbQNfz+4lLIu0vng
-	 HoilOj7ZAWXnH3xLtbDPE30xpbCXl8/4LmXkEDiyFlK5OzXXDi6RvB+PI8a0vdBckb
-	 KBBLdy0Pkj2F8Uzl5aweyNouhoO5IF8rHU0efLtDMSIQu7IkpTZHsW7uYoONDeYC0G
-	 y4QAJvEKVFz2A==
-Date: Tue, 7 Jul 2026 11:03:54 -0500
-From: Rob Herring <robh@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Hrushiraj Gandhi <hrushirajg23@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/2] arm64: dts: rockchip: add Vicharak Axon board
- support
-Message-ID: <20260707160354.GB3176120-robh@kernel.org>
-References: <20260608060940.52549-1-hrushirajg23@gmail.com>
- <178301901903.3838694.3276523670393868229.b4-ty@sntech.de>
+	s=k20260515; t=1783440237;
+	bh=1RK/+oLFm7CJC0cfU5xLjI11OdM/Hz5v5vnIbkPsQ8M=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=VCiVWpHfEEkeVSx1TtM+RZuZeidryVWyFhtWrLRrIHyhYG+OdwFTuNkFb4gJ8P0Tl
+	 QpxM2nmG0DczhMzBUuZZ2NAfW9AU8GbrY+t/XKHCNRSDSOp4649o2piw9AUoaRDlA9
+	 MGiWMq0O4eqQrgVc7LxmxIRs/MFeg45wA3ggVO3AV5oboOp3wo62Kx+GtRtyyKB0MO
+	 x6aaG5Bv77BMRFHbBZ1baWiuDwRxns4+FqFSb/mydjS+gMNu5NiE2/owiD54ui02Gi
+	 EkhO5OO3tF+UPvGhegpMbH13ESQN12/KcP1/3dQJC3gMAdfVNAEm1WFresNLMZr1oU
+	 ezUxu7YRIkefQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 08/12] phy: phy-mtk-dp: Add support for digital and
+ analog calibration
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
+Cc: conor+dt@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, robh@kernel.org, vkoul@kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, linux-phy@lists.infradead.org
+In-Reply-To: <20260707154245.198361-9-angelogioacchino.delregno@collabora.com>
+References: <20260707154245.198361-1-angelogioacchino.delregno@collabora.com>
+ <20260707154245.198361-9-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 07 Jul 2026 16:03:56 +0000
+Message-Id: <20260707160356.D22321F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <178301901903.3838694.3276523670393868229.b4-ty@sntech.de>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-322211-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:heiko@sntech.de,m:hrushirajg23@gmail.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322212-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:linux-phy@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,lists.freedesktop.org,vger.kernel.org,linaro.org,gmail.com,lists.infradead.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sashiko.dev:url,collabora.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BCEC971DA17
+X-Rspamd-Queue-Id: 5928471DA9E
 
-On Thu, Jul 02, 2026 at 09:04:55PM +0200, Heiko Stuebner wrote:
-> 
-> On Mon, 08 Jun 2026 11:39:38 +0530, Hrushiraj Gandhi wrote:
-> > This series adds initial device tree support for the Vicharak Axon
-> > single-board computer, which is based on the Rockchip RK3588 SoC.
-> > 
-> > The Vicharak Axon is a feature-rich SBC targeting developer and embedded
-> > use cases. It ships with:
-> > 
-> >   - Rockchip RK3588 (4x Cortex-A76 + 4x Cortex-A55)
-> >   - RK806 PMIC providing all SoC power domains
-> >   - eMMC 5.1 (on-board) and microSD slot
-> >   - Gigabit Ethernet via RGMII (RTL8211F)
-> >   - Dual HDMI 2.1 output and one HDMI 2.0 input (receiver)
-> >   - PCIe 3.0 x4 and two PCIe 2.0 slots
-> >   - SATA 3.0
-> >   - USB 2.0 host ports (EHCI/OHCI)
-> >   - NXP PCA9554 I/O expander for status LEDs
-> >   - Haoyu HYM8563 RTC
-> > 
-> > [...]
-> 
-> Applied, thanks!
-> 
-> [1/2] dt-bindings: arm: rockchip: add Vicharak Axon board
->       commit: e0008b108aaf8c5aa22930b2ceadf8f894562acb
-> [2/2] arm64: dts: rockchip: add Vicharak Axon board
->       commit: e08c3389c78dbefd31a57df8807cf57ef6f3c9b1
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-Both have issues and should be dropped.
+New issues:
+- [Medium] Unconditional `dev_err` logging in `mtk_dp_phy_get_one_cal_para(=
+)` causes log spam for expected fallback cases (missing eFuses) and probe d=
+eferrals.
 
-Rob
+Pre-existing issues:
+- [High] Unconditional dereference of `dev->platform_data` in legacy probe =
+before validating it is non-NULL.
+--
+
+--- Patch [8]: [PATCH v3 08/12] phy: phy-mtk-dp: Add support for digital an=
+d analog calibration ---
+commit 637b7b00f751ea110c4b395e4e951eecc2ab535e
+Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+phy: phy-mtk-dp: Add support for digital and analog calibration
+
+Add support for reading the calibration values from eFuse: if
+present, write those - otherwise, rely on the defaults from
+SoC-specific data. This also adds support for writing the calibration
+values for the analog part of the PHY.
+
+> diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy=
+-mtk-dp.c
+> index c87e9fa710a40..f59a415b401c5 100644
+> --- a/drivers/phy/mediatek/phy-mtk-dp.c
+> +++ b/drivers/phy/mediatek/phy-mtk-dp.c
+[ ... ]
+> @@ -422,6 +541,111 @@ static const struct phy_ops mtk_dp_phy_dev_ops =3D {
+>  	.owner =3D THIS_MODULE,
+>  };
+> =20
+> +static void mtk_dp_phy_get_default_cal_data(struct mtk_dp_phy *dp_phy)
+[ ... ]
+> +static int mtk_dp_phy_get_one_cal_para(struct device *dev, const char *n=
+ame, u8 max_val)
+> +{
+> +	u8 buf_byte;
+> +	u16 buf;
+> +	int ret;
+> +
+> +	/*
+> +	 * All of the calibrations are always max 8 bits long, but some may
+> +	 * be split between two different 8-bits cells: handle this corner
+> +	 * case by retrying reading as u16.
+> +	 */
+> +	ret =3D nvmem_cell_read_u8(dev, name, &buf_byte);
+> +	if (ret)
+> +		ret =3D nvmem_cell_read_u16(dev, name, &buf);
+> +	else
+> +		buf =3D buf_byte;
+> +
+> +	if (ret) {
+> +		dev_err(dev, "Cannot get calibration data for %s: %d\n", name, ret);
+> +		return ret;
+> +	};
+
+[Severity: Medium]
+Will this unconditionally log an error when calibration data is intentional=
+ly
+omitted or when the nvmem provider returns -EPROBE_DEFER?
+
+If the calibration data is missing, nvmem_cell_read_u8() returns -ENOENT,
+which is later handled gracefully by the caller by falling back to defaults.
+However, printing dev_err() here will cause log spam and false-positive
+errors in dmesg. Could this be silenced for -ENOENT and -EPROBE_DEFER cases?
+
+> +
+> +	if (buf =3D=3D 0) {
+[ ... ]
+> @@ -453,6 +677,13 @@ static int mtk_dp_phy_legacy_probe(struct platform_d=
+evice *pdev, struct mtk_dp_p
+>  				     "Failed to create DP PHY\n");
+> =20
+>  	phy_set_drvdata(phy, dp_phy);
+
+[Severity: High]
+This is a pre-existing issue, but earlier in mtk_dp_phy_legacy_probe(),
+does the code unconditionally dereference dev->platform_data before checking
+if it is NULL?
+
+drivers/phy/mediatek/phy-mtk-dp.c:mtk_dp_phy_legacy_probe() {
+    ...
+	dp_phy->regmap =3D *(struct regmap **)dev->platform_data;
+	if (!dp_phy->regmap)
+		return dev_err_probe(dev, -EINVAL, "No platform data available\n");
+    ...
+}
+
+If the platform device is instantiated without platform data,
+*(struct regmap **)NULL results in an immediate kernel panic, making the
+subsequent check dead code.
+
+> +
+> +	/*
+> +	 * Set default calibration data before exposing the PHY.
+> +	 * For legacy probe, mtk_dp will set calibrations from eFuse, if found.
+> +	 */
+> +	mtk_dp_phy_get_default_cal_data(dp_phy);
+> +
+>  	ret =3D phy_create_lookup(phy, "dp", dev_name(dev));
+>  	if (ret)
+>  		return ret;
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707154245.1983=
+61-1-angelogioacchino.delregno@collabora.com?part=3D8
 
