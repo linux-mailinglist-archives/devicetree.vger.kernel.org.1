@@ -1,158 +1,363 @@
-Return-Path: <devicetree+bounces-321867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321869-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3KkAH+rETGrIpQEAu9opvQ
-	(envelope-from <devicetree+bounces-321867-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 11:20:42 +0200
+	id UrttLNfFTGoQpgEAu9opvQ
+	(envelope-from <devicetree+bounces-321869-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 11:24:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDC50719ABA
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 11:20:41 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02781719B7D
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 11:24:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=huawei.com header.s=dkim header.b=CetOCQdF;
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=hisilicon.com (policy=quarantine);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321867-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-321867-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=k2CayWgQ;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=bRQsKiBS;
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321869-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321869-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 27B3E30B5B20
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 09:13:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7DFA43039FAD
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 09:14:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5CA33909B5;
-	Tue,  7 Jul 2026 09:13:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C29390C9F;
+	Tue,  7 Jul 2026 09:14:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from canpmsgout06.his.huawei.com (canpmsgout06.his.huawei.com [113.46.200.221])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2804B2882C5;
-	Tue,  7 Jul 2026 09:13:26 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783415608; cv=none; b=ZwzpIgR1x7lqbc/OiMs7c5+NJNCQbL4aSZc5mQH90NdUL5Xp9JmgO45a3CETNMx5pHBkVft4FRHSk4ZgHpWizSO8xOEWK2vnMkpVwj6MPKHCXS9nXrRv0HT79bxZMHDU1haa9zeWqC6dvAzxLppibXvYOs/yrGaaPF7lDy/sOZo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783415608; c=relaxed/simple;
-	bh=eFECJNugRKZbuL6n1U9lqwBREck9LY3aB0HHjAcbHMw=;
-	h=Message-ID:Date:From:MIME-Version:To:Subject:References:
-	 In-Reply-To:Content-Type; b=TX71mXzHivgqTAX+anzDBZMP4zGdz7ku2ot/CpcZp+NeJDVecAF+Y2Dhvmjow8ggeP3wEvHpzRi2Fjdlx559ogFnyIm+tjipc9TcAgfpruNYOXizf/LKDMiGij+rleBxD1jmGssH7e9W/TImCQBZ2LbFtXmrLsv02bAhZw8ielk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=CetOCQdF; arc=none smtp.client-ip=113.46.200.221
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=aSekE6dvDeDQvelifwwcLmL8oUBRYHW/qRvmMWTd8K4=;
-	b=CetOCQdFLf5hS4eNAV/98ZiKXKBd981ByPNc+SE0+7EnCqcIoMxOCf+ylYODrZsr3R99Z1g4d
-	kElsizsa7U4jMmAbcNN0jgCHoSp5JaUzW2lxSxoqqXllw4GggXlO3G8Y/J0+lLYqQSoITA/WkYH
-	UqYQ3jb3MWaf7YU5KG4ex0g=
-Received: from mail.maildlp.com (unknown [172.19.162.223])
-	by canpmsgout06.his.huawei.com (SkyGuard) with ESMTPS id 4gvZzH2CTBzRhRF;
-	Tue,  7 Jul 2026 17:04:11 +0800 (CST)
-Received: from dggemv705-chm.china.huawei.com (unknown [10.3.19.32])
-	by mail.maildlp.com (Postfix) with ESMTPS id 6CCA440561;
-	Tue,  7 Jul 2026 17:13:23 +0800 (CST)
-Received: from kwepemq100003.china.huawei.com (7.202.195.72) by
- dggemv705-chm.china.huawei.com (10.3.19.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Tue, 7 Jul 2026 17:13:23 +0800
-Received: from [10.67.113.213] (10.67.113.213) by
- kwepemq100003.china.huawei.com (7.202.195.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Tue, 7 Jul 2026 17:13:22 +0800
-Message-ID: <6A4CC332.3000906@hisilicon.com>
-Date: Tue, 7 Jul 2026 17:13:22 +0800
-From: Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC3A2F8EA5
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 09:14:23 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783415666; cv=pass; b=Z6Vn0+fPfz3Uu2b8QcAryEdMqNkiMJmkf+bxEXnMAiBz11Xp9BZdOOaoTT4o++CIQB3RWAYka0SiAv1VFe4n57eoP3LMpo4zEIe9BaOvx2uwob9aObS9+pHE8SxyeJpElxectOMxVoFFrpdRhqMlXTs50vfn6FWJwF9cigUpoHU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783415666; c=relaxed/simple;
+	bh=tId6bX+sfVblETA9h7jW1T52GCPIi9+Oqbw/3POIA/0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Fl/UtEbXp+ikycydi16WMekzFDt0xf6XghzuB5kgJZ8LZARcgeLWuc+CQbLy+MkR/DunrutSsLM5hJYvRiSPTIbVjysG91P30PkxzGlML1IbdL6Xbqo6tHpepxL9p5/6Y348s1HPjUOEZnaf5lzbb5igfePnM5Nle6n2LPfOH/k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k2CayWgQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bRQsKiBS; arc=pass smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6678EFUQ3231484
+	for <devicetree@vger.kernel.org>; Tue, 7 Jul 2026 09:14:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pu/T3O5IFYIVcL/NKBgCksHrYTwl+ICEoKPHOSRHwDI=; b=k2CayWgQ9+eFsDZN
+	dLJAaNE/s5IHgx3dicq5hpFCeEUpvXrRFa43+MSueA137TE5WdAt9yIPM1hHIv6W
+	PYx/ScLFu4fQ4GAy5NV/NSeQ5ybHlBrMjxtd5OAlJRAy6svBwmZpjqaZKialOVOC
+	OFDLQnj+0mIJKYU40Cp/j73wr6BmMzERSCC4k3kw+LJZoYpukHaoNXFcp73lVMHN
+	jDByRKHPfOnsUpUh3t9nTBir8FYZinQ12/71lYvN2Qp7PICF1Y1TOzpadp+X7cdq
+	vJET/n5FqtrqWGccj4jNDvCWv6YXJGJZ7jXk5yI8kq5iLsPAedV8MmoTQYDOpD1a
+	1Y/IEA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f8qj79nhe-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 09:14:22 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-92e61b38eddso712570685a.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 02:14:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783415662; cv=none;
+        d=google.com; s=arc-20260327;
+        b=gmv9gA7kyd4SkjTLRREwxSE5lf/NPBAhoum2wXIvq5O28DQy2P7Rd2BG0WR7PDK6qe
+         byBxegBXqZf3tH351lAkfHN3fmASYO/nw6ARlabb4ChJ/GbiEgU/CoIrCCtqt9Xfx+Xg
+         htyE1nE75oz7NGCJ6Ccx991cNqU24u6yinCjopjMfaWZLF0PvwiSdEYqFpTSeHtEBDGj
+         7FlAGy/ibDwf5sSTwwTRXQd8UX3zjWshZCeYnzC3IV+JEuTGmF1bF3mUJXwRolH5RfuF
+         8NYlQysWepF1zQeZdsTvMJffMsG10ctpB400vLy2vs9xCMcpF99zFwjV9X8xX++T/LiJ
+         FSfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=pu/T3O5IFYIVcL/NKBgCksHrYTwl+ICEoKPHOSRHwDI=;
+        fh=9hd3KOPUkoXZ0YWfUCsmWMgG6YZRgUcJ/4GHZw9dofI=;
+        b=r8zjhrpbajIbMYfQcnNdr6r6duqLxeTrpDh23EgibKccajvjJhc/cpZB/uvHBFls8K
+         z4VUYx0lx0weS5GOA8h9rVxFhoWM91PwCamujwZJZ4il6fBqhMntlJoKS+EySigGc5A1
+         SC1ET1ZWFot1mO68IvXcwinmXDcLXc2jBPucydwCaFyuvIYCzPwYFV3IFWog6F/UBtN1
+         tAcfV9wrjhUubEnkepjpbMwG1F7ubPRdw1VQLZKLYDihwYg5FqxBG1n1sKQXdYHGDc7Q
+         oDO8sOdg55Ghg8kgpFWf3s6cSejJcLrczPfmp8OR5oOfWyRU1FN6Vbf2POHxFXcXHMlA
+         FI1Q==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1783415662; x=1784020462; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pu/T3O5IFYIVcL/NKBgCksHrYTwl+ICEoKPHOSRHwDI=;
+        b=bRQsKiBS5xGF01cbFrmL+CU9JHe1A0cM9jSj49rAB9mh8aLD7ZSSENZ+wRHojAs7Qu
+         1fX4UDDoNScN9T1cTiXO87mOCjmiPKLI0vt/1vNszSnxbSVzWWzV3QKX80PBfuMmNJef
+         8R2HYI4IKW9qNSgEuOxwV2wPXqZyDAbRApJEUwKnwlcXf91HSXWb+B6NeXXPzECQwBeI
+         aNOKCUL00B/K9NeBWnL42AlKgPQTyXuNXzDR4Nr3ZBy/jKR0HUQK3J3lUHYI3cCcn/n0
+         9KXi5zuiMiWRkNqfbaG0gInpQPlx5PX8l90BWh6u2khS0CqRRtxaFuoi7+H4toK3lTOU
+         fDnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783415662; x=1784020462;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=pu/T3O5IFYIVcL/NKBgCksHrYTwl+ICEoKPHOSRHwDI=;
+        b=b+uX6Vx+u98xALuxDlyTKz0X8s2wlG8u0LlacNOKQL7Fo1RiiYSUMO7Hzc+RIS1uH7
+         nN5Ypi7rSVvyySDs00nmnzAWRbDVMObnezBY3avh0ogeMnmJP9TPGVF6vJ+vRuMbxR4b
+         mGWJYKnPBMufTO9cY8JBh5OMqVQN8SdAC4VL5iavrSbmau06vNaRbJMeQqDlpjfnrCoU
+         AQiR7Lk6uJe3V8HnLd4Rxl4XGenbjEC8yC6JfZo5IQX8XZneG466Jk5Hwtt233M9KX7q
+         bd9WIPoiSKrP2NVM6g2f9GK9TyVo93mo7siqppVTxganv6HJpXzpzjUoh5F3h3FZoqUU
+         ugNA==
+X-Forwarded-Encrypted: i=1; AHgh+RpFZVdU5K/Hv0nKd5tpNNpZDdMvQSztwdk3j+Ycs8XWyXpxONc1MHryzudjw5q6hyPxTR/LRdSbsE3e@vger.kernel.org
+X-Gm-Message-State: AOJu0YylhjfIrX5HdLcrhGNi9KvehLltzjwuLilZCNmdgeDhapL/4Hfz
+	tJ0Pf2X8PVj9RT0Wfzewh5UH8nhB8nCz1uqEXI6oW5lTa3j7Nz+rXTeNoISgPY/blh3+QZCYHHI
+	PrPUWQ2bf3Yo2Q+7I5pwUP5yrfx8ak0nE2N19So/iIi1EVorw0gM7tGDJA5vbgFC744hz708B5S
+	ARdSwGFPM3s07LvMcu+OO5XWVWFfKAE/J8gJxah7Y=
+X-Gm-Gg: AfdE7cl0YUTelSu2elgS5VRqi8v+b1DA0PAnhBEBPg8qtKqSThAV/TG3TTxE1v36ENb
+	zP2fVW8tKrXHLp1CvJwozJrv52d0NXOZCM6FHPdxi2+6zvI4vEpDTD/iq/butOxYUFJff93FWTi
+	cGUXwIeKNHdj7vfwLbeAE4jIvFFp+gvOMgJODjErqFBTVtcGjJs2ur8bd/QQzBsln49y06FTQLY
+	/pHPxcQGk7xsPu0jQFy6SoNHgwF/0PdwRF4SI7TUzL9LzQk1tPm4dGtI1HqAaCMZRmxQb/eMtZw
+	L86OasGl2C8=
+X-Received: by 2002:a05:620a:17ab:b0:92b:8c84:3e61 with SMTP id af79cd13be357-92ebb4b43aamr520578685a.3.1783415661764;
+        Tue, 07 Jul 2026 02:14:21 -0700 (PDT)
+X-Received: by 2002:a05:620a:17ab:b0:92b:8c84:3e61 with SMTP id
+ af79cd13be357-92ebb4b43aamr520574385a.3.1783415661343; Tue, 07 Jul 2026
+ 02:14:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<xuwei5@hisilicon.com>
-Subject: Re: [PATCH] arm64: dts: hisilicon: Correct indentation
-References: <20260706093500.273922-2-krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20260706093500.273922-2-krzysztof.kozlowski@oss.qualcomm.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
- kwepemq100003.china.huawei.com (7.202.195.72)
+References: <20260702-monza-wireless-v2-0-7b56e2a6a6d4@oss.qualcomm.com>
+ <20260702-monza-wireless-v2-3-7b56e2a6a6d4@oss.qualcomm.com>
+ <43re752djujsh2kiyvjlkpmztxsh4atg6472qhir4lgay24zbo@mtlkn2xc2ors>
+ <rxt4n6vuscu33mrw24af72lb3s6urqfpkhtia44yfo4j7wtu6o@3xp57owekrgj>
+ <u5ieok3hgjcf74sxjdzv6xurmlbve46xa3imgfnom4hpjarmxa@fna5daqpyk3r>
+ <zat6uuvh7jwfxajvqtif6d67osf6h5b2vxig3bmuch76btpdkj@bfxjj7kk5fjk>
+ <ynhos7h4x3kbqbio2gkigoo5rqbwogrzihkylxv5pqjtqpqmnq@rlyjaiopx74a> <l4qycbmz2zaroe5rreuop4dx7ugfcx37hfaketvn43trdpaept@jyx65agqznq4>
+In-Reply-To: <l4qycbmz2zaroe5rreuop4dx7ugfcx37hfaketvn43trdpaept@jyx65agqznq4>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Tue, 7 Jul 2026 11:14:10 +0200
+X-Gm-Features: AVVi8CduE2Nonq5P1YApvPwl-pxo6P4sEIM2US1PAw61u8B5ymQBuhJPdhfD7bE
+Message-ID: <CAFEp6-0AA-hTy=3KaRNEJ+kF0otGLTGTujvWJqhT2dHDj94E4w@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] Bluetooth: hci_qca: Support QCA2066 on M.2
+ connector via pwrseq
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-ORIG-GUID: WnEPrejlBdOE_n5Jr-PUB9gZU0xgdrYR
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA3MDA4OSBTYWx0ZWRfX6cPlwI9DWrNA
+ nKtEi+pT7gxMg2beOuB2XGc3Dii7WyGbrcFTVX2Uag7xqEI0YrbcohIdEDRAgJ2nKu10BzsXuUs
+ 8hS5HqmEetJDPWzj0bN+WUJwEwRB/Y//4JHeqvf0REcvPKSgT+rENf1uR6MzDofzRyAE/bIt2UL
+ ik85Dsf2fDHGKkXeQgOxdmkh60uvLq6CitdTTL5stQYwHITIm9pKXcqspENIrdQcciF9RYR7Dk1
+ 6KT7QNKBP3F87y8Vg0ASZizT+As93JIkIajBoDBlPxhF22R4oIUwW+kEBJabJJOBAMs13/4rx+O
+ lslXs2RehS1ZnojZIvm3hbc5JictHfg7jqYy702FNwQSc8YkHjXCee8GDl1ijYtG8bBBKygGQ8L
+ biFFn/im1AqK2FxjavmFFd9SF0aAvCEAN4152aAgbWC6vvPPbPD4YEllQeItCLymWzO6Pk+L8uS
+ gSk+RXlKALQoDg4phSg==
+X-Authority-Analysis: v=2.4 cv=PIM/P/qC c=1 sm=1 tr=0 ts=6a4cc36e cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=_glEPmIy2e8OvE2BGh3C:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=CFFC92ghu-o7u9NOV88A:9 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA3MDA4OSBTYWx0ZWRfX24FK5c7GgVUy
+ 1ekNY2dQuCCns+nrDsAaFG+SFI2+NH6C197fk+8HMx+BghuQzsd91Xfin60IDEAQD8V2Uq7HzUm
+ NGK9eJwJD8Js7IaDZB7WJYDX4xtETBM=
+X-Proofpoint-GUID: WnEPrejlBdOE_n5Jr-PUB9gZU0xgdrYR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-07_02,2026-07-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 clxscore=1015 impostorscore=0 malwarescore=0 adultscore=0
+ phishscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607070089
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_QUARANTINE(1.50)[hisilicon.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),quarantine];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[huawei.com:+];
-	TAGGED_FROM(0.00)[bounces-321867-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,huawei.com:dkim];
-	FORGED_SENDER(0.00)[xuwei5@hisilicon.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-321869-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:xuwei5@hisilicon.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mani@kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-pci@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:devicetree@vger.kernel.org,m:manivannan.sadhasivam@oss.qualcomm.com,m:luizdentz@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xuwei5@hisilicon.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,holtmann.org,gmail.com,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,qualcomm.com:dkim,mail.gmail.com:mid,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EDC50719ABA
+X-Rspamd-Queue-Id: 02781719B7D
 
-Hi Krzysztof,
+On Mon, Jul 6, 2026 at 8:44=E2=80=AFAM Manivannan Sadhasivam <mani@kernel.o=
+rg> wrote:
+>
+> On Sat, Jul 04, 2026 at 03:11:13AM +0300, Dmitry Baryshkov wrote:
+> > On Thu, Jul 02, 2026 at 05:08:56PM +0200, Manivannan Sadhasivam wrote:
+> > > On Thu, Jul 02, 2026 at 05:34:31PM +0300, Dmitry Baryshkov wrote:
+> > > > On Thu, Jul 02, 2026 at 04:17:43PM +0200, Manivannan Sadhasivam wro=
+te:
+> > > > > On Thu, Jul 02, 2026 at 03:14:49PM +0300, Dmitry Baryshkov wrote:
+> > > > > > On Thu, Jul 02, 2026 at 12:46:15PM +0200, Loic Poulain wrote:
+> > > > > > > For QCA2066 (and other QCA chips) on M.2 connectors, the UART=
+ enable
+> > > > > > > is controlled by the W_DISABLE2# signal managed by the pcie-m=
+2 power
+> > > > > > > sequencer rather than a dedicated BT enable GPIO.
+> > > > > > >
+> > > > > > > When the serdev controller has an OF graph (indicating it is =
+connected
+> > > > > > > to an M.2 connector), acquire the 'uart' pwrseq target from t=
+he
+> > > > > > > connector's power sequencer and use it to control BT power in=
+stead of
+> > > > > > > the bt-enable GPIO.
+> > > > > > >
+> > > > > > > Also allocate bt_power unconditionally for all SOC types sinc=
+e the
+> > > > > >
+> > > > > > Can we just fold it into the main struct?
+> > > > > >
+> > > > > > > pwrseq path is independent of the SOC type switch.
+> > > > > > >
+> > > > > > > Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> > > > > > > ---
+> > > > > > >  drivers/bluetooth/hci_qca.c | 81 ++++++++++++++++++++++++---=
+------------------
+> > > > > > >  1 file changed, 43 insertions(+), 38 deletions(-)
+> > > > > > > @@ -2387,6 +2390,35 @@ static int qca_init_regulators(struct =
+qca_power *qca,
+> > > > > > >     return 0;
+> > > > > > >  }
+> > > > > > >
+> > > > > > > +/*
+> > > > > > > + * Acquire the M.2 connector power sequencer.
+> > > > > > > + *
+> > > > > > > + * An OF graph link on the serdev controller is only present=
+ when the BT
+> > > > > > > + * device is attached through an M.2 Key E connector. In tha=
+t case the UART
+> > > > > > > + * enable (W_DISABLE2#) is driven by the pcie-m2 power seque=
+ncer instead of a
+> > > > > > > + * dedicated BT enable GPIO, so grab the "uart" pwrseq targe=
+t from it.
+> > > > > > > + *
+> > > > > > > + * Returns 0 if no M.2 connector is present (nothing to do),=
+ a negative errno
+> > > > > > > + * on error, otherwise 0 with qcadev->bt_power->pwrseq popul=
+ated.
+> > > > > > > + */
+> > > > > > > +static int qca_serdev_get_m2_pwrseq(struct qca_serdev *qcade=
+v, bool *bt_en_available)
+> > > > > > > +{
+> > > > > > > +   struct serdev_device *serdev =3D qcadev->serdev_hu.serdev=
+;
+> > > > > > > +   struct device *dev;
+> > > > > > > +
+> > > > > > > +   if (!of_graph_is_present(dev_of_node(&serdev->ctrl->dev))=
+)
+> > > > > > > +           return 0;
+> > > > > > > +
+> > > > > > > +   qcadev->bt_power->pwrseq =3D devm_pwrseq_get(&serdev->ctr=
+l->dev, "uart");
+> > > > > > > +   if (IS_ERR(qcadev->bt_power->pwrseq))
+> > > > > > > +           return PTR_ERR(qcadev->bt_power->pwrseq);
+> > > > > > > +
+> > > > > > > +   dev =3D pwrseq_to_device(qcadev->bt_power->pwrseq);
+> > > > > > > +   *bt_en_available =3D device_property_present(dev, "w-disa=
+ble2-gpios");
+> > > > > >
+> > > > > > I think here you are looking into the exact details of the othe=
+r of the
+> > > > > > graph. There might be other devices on that side, while the cod=
+e now
+> > > > > > assumes M.2. Or, consider having an M.2 controller which handle=
+s
+> > > > > > W_DISABLE2# internally rather than through the GPIO.
+> > > > > >
+> > > > >
+> > > > > This code only deals with M.2 connector in specific, so I'm not s=
+ure why we need
+> > > > > to worry about *other* kind of devices. Let's worry about them wh=
+en they show up
+> > > > > (with graph interface ofc).
+> > > >
+> > > > I don't think we want to go through the drivers using M.2 connector=
+s in
+> > > > such a case. In the end, the contract should be that there is a pow=
+er
+> > > > sequencer on the other side of the graph, but the specifics of the
+> > > > connector should be abstracted out. Do you know, if in the x86 worl=
+d the
+> > > > W_DISABLE2# is a GPIO or is controleed by the hub.
+> > > >
+> > >
+> > > I tried to abstract out, but Bartosz didn't want pwrctrl APIs to do t=
+hat level
+> > > of abstraction as pwrctrl APIs should be generic and should not be bi=
+nd to a
+> > > specific connector and exposing its internals.
+> > >
+> > > That's why we ended up having pwrctrl core exposing the 'struct dev' =
+using
+> > > pwrseq_to_device() and letting the consumer extracting whatever infor=
+mation it
+> > > needs.
+> >
+> > Do we have other ways to control M.2? For example on the x86 systems,
+> > are those signals controlled via GPIOs (or GPIO-like registers) or are
+> > they controlled separately by something like M.2 controller? Or do you
+> > have an idea about other non-x86 systems?
+> >
+>
+> Thre is no OS-visible M.2 power control in ACPI systems. ACPI defines PRx
+> objects to control power to the PCI devices based on the D-state and the =
+OS just
+> evaluates the _ON/_OFF methods of the respective objects.
+>
+> So this API is not going to be useful on non-DT systems where the BT_EN G=
+PIO
+> handling is abstracted away. And also on platforms where BT_EN is not con=
+trolled
+> by GPIOs. But I haven't seen DT platforms handling BT_EN (or W_DISABLE2#)
+> signal in a non-GPIO way.
+>
+> I too prefer an API to query whether the connector supports BT_EN or not,=
+ but
+> I'm not sure how to come up with a generic pwrseq API which also satisfie=
+s the
+> requirement. If you have any suggestions, please let me know!
+>
+> FWIW, I tried adding pwrseq_is_fixed() API [1] earlier, which was turned =
+down by
+> Bartosz.
 
-On 2026/7/6 17:35, Krzysztof Kozlowski wrote:
-> Correct spaces or mix of tabs+spaces into proper tab-indented lines.
-> No functional impact (same DTB).
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/hisilicon/hip05.dtsi | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip05.dtsi b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-> index d0912ca5f237..2d376b3d30dd 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-> @@ -236,13 +236,13 @@ cluster3_l2: l2-cache3 {
->  
->  	gic: interrupt-controller@8d000000 {
->  		compatible = "arm,gic-v3";
-> -                #interrupt-cells = <3>;
-> -                #address-cells = <2>;
-> -                #size-cells = <2>;
-> -                ranges;
-> -                interrupt-controller;
-> -                #redistributor-regions = <1>;
-> -                redistributor-stride = <0x0 0x30000>;
-> +		#interrupt-cells = <3>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +		interrupt-controller;
-> +		#redistributor-regions = <1>;
-> +		redistributor-stride = <0x0 0x30000>;
->  		reg = <0x0 0x8d000000 0 0x10000>,	/* GICD */
->  		      <0x0 0x8d100000 0 0x300000>,	/* GICR */
->  		      <0x0 0xfe000000 0 0x10000>,	/* GICC */
-> 
+So, I'll submit a new version incorporating Dmitry's request to fold
+bt_power into the main structure.
+However, what should we do about the powerseq point? Should we keep it as i=
+t is?
 
-Applied to the HiSilicon arm64 dt tree.
-Thanks!
-
-Best Regards,
-Wei
+Regards,
+Loic
 
