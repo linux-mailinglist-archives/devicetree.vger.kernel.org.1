@@ -1,208 +1,205 @@
-Return-Path: <devicetree+bounces-322023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322024-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fTadC/z5TGqiswEAu9opvQ
-	(envelope-from <devicetree+bounces-322023-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:07:08 +0200
+	id lGYMKhb7TGrOswEAu9opvQ
+	(envelope-from <devicetree+bounces-322024-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:11:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A584071BAFB
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:07:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FAE771BB81
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:11:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=JGUU9pe7;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322023-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322023-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bt1UMHum;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322024-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322024-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3618D3179777
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 13:00:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9B694302E910
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 13:06:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6D883F86E0;
-	Tue,  7 Jul 2026 13:00:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA72414A05;
+	Tue,  7 Jul 2026 13:06:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9244E414A33
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 13:00:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0B183F99ED
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 13:06:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783429239; cv=none; b=NL5vX3/unyhfyMDmahn2l1STsVVGU+y6/bMfAavGuBZO8CfqpwlmI3sknknD3MQ1aJ1p6oDw1WMA4WYcJgHIkGyFQNJu3fuwh/lsIlvVSQwoAwfc8rJ8llPwlJZ8C5B8AQnQUYxaF+Mud5YhcWv2QFiA8hfPM26qy4r9vnHtBcU=
+	t=1783429610; cv=none; b=k2CQdBBWRpGf9ELV9Nuzqwdo+MRlLBx3x/xKOxMcM2x9G8AjgNUKjMWDR2d96hUomARiQwxlneywV3Xbz3v4lQ+WgMp9+N4xUuvcRJ0T/1hn0B974agXu4lIysZegx26oDhIG+7hgxRz6hqYE/1erxPIvNduxIiALIvvjePVg8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783429239; c=relaxed/simple;
-	bh=Uf5wdHbvLT8glBukS87Z5XtjDjsk3W7uGIPm/Abkx0M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rtz7Pcgzunizxq8taU+MmBbwqwzRoL0qNQ2+1EmHEbz9yY5f8IwhV76X6ueRQKK0WV197HryFb4f1iaBFoJtbMIlfhWSqG2C+b9peEJgo4l3B+gcQdzWMvz9CTqMJc4FgZs2Fe9ktZ6iJdbPaMMBoL84UxLd4nnarkZUggIXoNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JGUU9pe7; arc=none smtp.client-ip=209.85.210.173
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-8478a25f268so3196362b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 06:00:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783429238; x=1784034038; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=EjSN27vhCfpwDogooT1C63qE/61HtdzQ904BFc54Umw=;
-        b=JGUU9pe7tqmFu4bKpDaWEkgiuI0RaTjOWtHk/Ssufm38R3INQd40UrzrA9EhX9DL9w
-         QPrqm6/Ghqt5tb88+mCXgpD+EjPoitLBeWnZT4XMaNblrSyL5cmDB2PtjzMRzqFzK9cS
-         uj+1SfZIOOBXmsk4g1q6ebHW83FmCSsh8Zq/5Hz0OShYP8GnW6WSWkS7tuNrzn87+82H
-         H67NZoSR97DI+A8JgX8HhYvdmRNJxAwkcNaJMSmWtotT9Wh3gknSlY2D9b3cN9AoaVCG
-         zdURVkHYKNS9PhJrfM0ze82Si50/ZCUeRCByOHSsWH0tOxzptZolmTP672fKP4i3UTfo
-         DOMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783429238; x=1784034038;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=EjSN27vhCfpwDogooT1C63qE/61HtdzQ904BFc54Umw=;
-        b=quVzV9DP847iQ2B9jjlm6aopWetV3FJZpt4a4fq/g67NlRyz3Fsg4PPVBJRAFClFtm
-         s13xFGKVEbOj07ePbVi/+R57D7KMpRFYiNdBkEB8HM0TECTxz15uxq0Ommpno+wcVWcZ
-         PkBnB3UHKPuDOrzOD4cmiQCP8anQAhko4LsxqR7DH6xlvKQy+COTQf5WsQoqRKkhcSQc
-         bMo7/hmgN+yFnbgi4PLKwoIh/kPiPHV2hgPTyG6VKlbUiGxPN+qJboqgLrIfAimGy3O6
-         iLTkRgFfFW50vUzmeMAEy1s1AzI3MHvzu3jKIfrl3l5fxfHvFIBJH9kK/UBosFo5+2j+
-         8xVg==
-X-Forwarded-Encrypted: i=1; AHgh+RqSgZIrBcxeol0senKp1lplTEzo3QmkjYOnkJqzWiv/wG3O/dyahIoDMOUwT7ugFt96HetiOvXtsjpM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvAmwZiK9hHYK5Zb4TcF2L56shoPREaY0vxgHOHqTtSQ7A6jud
-	i1DWQlpi17d1VEO2tkFwf6C/nhKN6Z3YhErMb8NfJzY6mYpB854WmT6y
-X-Gm-Gg: AfdE7cmHs+sR8HMNhZy3stCZWrXlaj3fHCTw230JaaoxCvjuT/LzFOLY0LIbKGEPtd+
-	4zUgR05obCEAydn4mAWASJxbttvNipzHXf6cciEgtSGBQJnvTr3ED/pbu7kqMI/kij5tCQFPRen
-	0oZLD1eyfMa1SzdsIUjHefkTakcdaImwsaAXfwVQgxFo7FVljwcqxbIgBqccsI9jRtvSpz1dC4R
-	RUCiYS/a6mYd0wNZOYEtUgep/1vx4Dfr37nS3nc4cw/szb6EBOg9P9Qo09YyTwDCtDe0hOYa2Fk
-	mjd/Bv8fHsKs1O8Wf9UyZCVNOVCm+/JBWPFlRk471jXBKKPwV2F52+FXrzGrkt1uUxmss8UNtmH
-	7A/sNgFshIIYnuoN9E0w96Msi7Ew05BQSS48LMnNG4+rEaqzqFQTgF+ZZkm5D/BWHC4B0QavMi3
-	elO+bJPrWUZW1qV2pYXVjolmzTInQvxsPQDLVUqYmAH66BIiy9ffcmud94mhBg5Tz/jymAHlDn7
-	nhD4hwaFlgFk0ZgJZEo+Hk=
-X-Received: by 2002:a05:6a00:2195:b0:848:2f74:d8d3 with SMTP id d2e1a72fcca58-8482f74dc06mr2504483b3a.68.1783429237597;
-        Tue, 07 Jul 2026 06:00:37 -0700 (PDT)
-Received: from [192.168.0.101] ([202.179.95.46])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ca5af7d5b95sm1010719a12.3.2026.07.07.06.00.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Jul 2026 06:00:37 -0700 (PDT)
-Message-ID: <1b5ff53e-53fd-4600-97d8-7ba34d139e5e@gmail.com>
-Date: Tue, 7 Jul 2026 18:30:31 +0530
+	s=arc-20240116; t=1783429610; c=relaxed/simple;
+	bh=ROBuOxK4hKNyNrYVb3j8ZCvCOQmubb1DE4EtTr9sbv8=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=U5RVfa6gXaMywBYKYCxnsywt5fvJidsGyPj/e3+lyRHFQSPAwBq8cTlFQVnZa/u0WpiThpeSWQwRFjbyziRC7WaoN/s3m8JFG1MHsabJF9YpvIXhUYZoXMt2TDkzyrVexTTEfzJJLKrsibFX15Pii2V4+BhV9ncVkXJCPfsJF7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bt1UMHum; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C16921F000E9;
+	Tue,  7 Jul 2026 13:06:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783429609;
+	bh=rziCclHQVYK8+rCetnG1ROiV23yr/xXCyqtuljaBAZE=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=bt1UMHumXxJMpHnoJx8XTnxiCVAy/BJeLaEWZgS5d1UwUB8IthhQX+IGMO34y6GQq
+	 mTZGkuO6G/8xsVqjgWXKREKI4uHsn7j56ltSXFkv+EW6P2xt+jrnaPp7uzog4wlST6
+	 YL0t/PslABBlR/GWTLwYj07bmY6x9vDwwW6mL/0IHcYFiGtroxcTPHYMXCrjp8u2kc
+	 azfJPHu+8HxSUtIn94ocKFcYGij2RWuGC9Z7rbOoDBmdGW9d8u47xw72reaZp+9a17
+	 +BI4qk3NG4DkIPRqA7k4BSzvJ9tSWTt724ByyHBLY5CChJwes08QPIjA9uKA4/qQWR
+	 73lRTu7+/r/ow==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v16 4/4] crypto: spacc - Add SPAcc Kconfig and Makefile
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Pavitrakumar Managutte" <pavitrakumarm@vayavyalabs.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260707125311.2398031-5-pavitrakumarm@vayavyalabs.com>
+References: <20260707125311.2398031-1-pavitrakumarm@vayavyalabs.com>
+ <20260707125311.2398031-5-pavitrakumarm@vayavyalabs.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 07 Jul 2026 13:06:48 +0000
+Message-Id: <20260707130648.C16921F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: leds: bcm6358: Convert to DT schema
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: lee@kernel.org, pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jonas.gorski@gmail.com, noltari@gmail.com,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, me@brighamcampbell.com,
- linux-kernel-mentees@lists.linux.dev, skhan@linuxfoundation.org
-References: <20260609181731.1379846-1-ninadnaik07@gmail.com>
- <20260610-gifted-zebra-of-reward-2ab6c7@quoll>
-Content-Language: en-US
-From: Ninad Naik <ninadnaik07@gmail.com>
-In-Reply-To: <20260610-gifted-zebra-of-reward-2ab6c7@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322023-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:lee@kernel.org,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonas.gorski@gmail.com,m:noltari@gmail.com,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:me@brighamcampbell.com,m:linux-kernel-mentees@lists.linux.dev,m:skhan@linuxfoundation.org,m:conor@kernel.org,m:jonasgorski@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[ninadnaik07@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,brighamcampbell.com,lists.linux.dev,linuxfoundation.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322024-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ninadnaik07@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:pavitrakumarm@vayavyalabs.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vayavyalabs.com:email,sashiko.dev:url,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A584071BAFB
+X-Rspamd-Queue-Id: 0FAE771BB81
 
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [Medium] Hardware tuning and instance configuration parameters are hardco=
+ded as compile-time Kconfig options.
+- [Medium] Boolean Kconfig option `CRYPTO_DEV_SPACC_HASH` unconditionally s=
+elects tristate algorithms, causing kernel bloat.
+- [Low] Unused dependency on `CRYPTO_SM3` selected by `CRYPTO_DEV_SPACC_HAS=
+H`.
+--
 
-On 10/06/26 2:09 pm, Krzysztof Kozlowski wrote:
-> On Tue, Jun 09, 2026 at 11:47:01PM +0530, Ninad Naik wrote:
->> +maintainers:
->> +  - Álvaro Fernández Rojas <noltari@gmail.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: brcm,bcm6358-leds
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 0
->> +
->> +  brcm,clk-div:
->> +    description: SCK signal divider.
->> +    default: 1
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [1, 2, 4, 8]
->> +
->> +  brcm,clk-dat-low:
->> +    description: Makes clock and data signals active low.
->> +    type: boolean
->> +
->> +patternProperties:
->> +  "^led@(0|1?[0-9a-f])$":
-> "0" is already in "[0-9a-f]".
-Thanks for pointing out. I will remove the redundant 0.
->
->> +    type: object
->> +    $ref: common.yaml#
->> +    description: Each LED is represented as a sub-node of
->> +      this device.
->> +
->> +    properties:
->> +      reg:
->> +        description: LED pin number (0 to 31).
->> +        maxItems: 1
->> +
->> +      label: true
->> +
->> +      default-state: true
->> +
->> +      linux,default-trigger: true
->> +
->> +      active-low: true
-> Drop all four above and switch to unevaluatedProperties: false.
-> unevaluatedProperties should be also placed after $ref: common.yaml for
-> example.
+--- Patch [4]: [PATCH v16 4/4] crypto: spacc - Add SPAcc Kconfig and Makefi=
+le ---
+commit cd06e4262110289b96679278cd22ee6ebd1683fa
+Author: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
 
-I explicitly listed those properties and used additionalProperties: 
-false based on Conor's feedback in v1, but now I agree that relying on 
-common.yaml with unevaluatedProperties: false is a cleaner and more 
-modern approach. I will drop the explicit properties in v3.
+crypto: spacc - Add SPAcc Kconfig and Makefile
 
+Add Makefile and Kconfig for SPAcc driver.
 
-Thanks,
+> diff --git a/drivers/crypto/dwc-spacc/Kconfig b/drivers/crypto/dwc-spacc/=
+Kconfig
+> new file mode 100644
+> index 0000000000000..a9172606d77aa
+> --- /dev/null
+> +++ b/drivers/crypto/dwc-spacc/Kconfig
 
-Ninad Naik
+[ ... ]
 
+> +if CRYPTO_DEV_SPACC
+> +
+> +config CRYPTO_DEV_SPACC_HASH
+> +	bool "Enable HASH functionality"
+> +	default y
+> +	select CRYPTO_HASH
+> +	select CRYPTO_SHA1
+> +	select CRYPTO_MD5
+> +	select CRYPTO_SHA256
+> +	select CRYPTO_SHA512
+> +	select CRYPTO_HMAC
+> +	select CRYPTO_SM3
+
+[Severity: Low]
+Does this driver actually require CRYPTO_SM3? The spacc_ahash.c frontend do=
+es
+not appear to include sm3 or hmac(sm3) in its supported hashes, nor does it
+seem to use the algorithm for software fallbacks during key preparation.
+
+> +	select CRYPTO_CMAC
+> +	select CRYPTO_XCBC
+> +	select CRYPTO_AES
+> +	select CRYPTO_SM4_GENERIC
+
+[Severity: Medium]
+Since CRYPTO_DEV_SPACC_HASH is a bool, if CRYPTO_DEV_SPACC is built as a
+module (=3Dm), won't these selects evaluate to =3Dy? This would force all t=
+hese
+core crypto algorithms to be statically compiled into the vmlinux image,
+which might unnecessarily bloat the kernel size for users expecting them
+to remain as modules.
+
+[ ... ]
+
+> +config CRYPTO_DEV_SPACC_PRIORITY
+> +	int "VSPACC priority value"
+> +	range 0 15
+> +	default 1
+> +	help
+> +	  Default arbitration priority weight for this Virtual SPAcc instance.
+> +	  Hardware resets this to 1. Higher values means higher priority.
+> +
+> +config CRYPTO_DEV_SPACC_INTERNAL_COUNTER
+> +	int "SPAcc internal counter value"
+> +	range 100000 1048575
+> +	default 100000
+> +	help
+> +	  This value configures a hardware watchdog counter in the SPAcc engine.
+> +	  The counter starts ticking when a completed cryptographic job is
+> +	  sitting in the STATUS FIFO. If the job remains unprocessed for the
+> +	  configured duration, an interrupt is triggered to ensure it is servic=
+ed.
+
+[Severity: Medium]
+Are these hardware tuning parameters appropriate for compile-time Kconfig
+options?
+
+In a multiplatform kernel, statically defining the virtual instance arbitra=
+tion
+priority and watchdog timeout forces all devices using this kernel binary to
+share the exact same configuration.
+
+Could these parameters be passed dynamically at runtime via Device Tree,
+ACPI, or module parameters to support per-board flexibility?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707125311.2398=
+031-1-pavitrakumarm@vayavyalabs.com?part=3D4
 
