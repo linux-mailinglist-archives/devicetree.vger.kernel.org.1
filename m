@@ -1,356 +1,167 @@
-Return-Path: <devicetree+bounces-322297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Nt6aLudDTWonxgEAu9opvQ
-	(envelope-from <devicetree+bounces-322297-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 20:22:31 +0200
+	id zRmsF0xETWo4xgEAu9opvQ
+	(envelope-from <devicetree+bounces-322298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 20:24:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A688071E9C1
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 20:22:30 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5295D71E9F2
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 20:24:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b="Y+/sj0Mj";
-	dmarc=pass (policy=none) header.from=intel.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322297-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322297-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=sntech.de header.s=gloria202408 header.b=CGltUv6A;
+	dmarc=pass (policy=quarantine) header.from=sntech.de;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322298-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322298-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 719E73004C9D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 18:22:26 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 734FA3004617
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 18:24:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26A9343C7D6;
-	Tue,  7 Jul 2026 18:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D75D43D4EC;
+	Tue,  7 Jul 2026 18:24:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C26712EB5A6;
-	Tue,  7 Jul 2026 18:22:21 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783448544; cv=fail; b=rcFYpNhSTdwsAPBRykmcPcvV5BygPCMK/x11XMRSnexMI1p/htgpka968bGs2S7CHQO5aYEBP0MVp4nxU2AEcP9GnYya1k/WRF+I9Q+k7d4iJVe8q0hl00PE5S/dJDEhlyM9AsJhX2HiBEEa4E/D3DhcBpsQimiwoXE9RJgX2dI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783448544; c=relaxed/simple;
-	bh=9FHZOqY17Li9O4LPsJRYmty37uUozqvEB17ykHUx8is=;
-	h=Message-ID:Date:Subject:From:To:CC:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Foj7HWxbuag8oq523yRhX75CNGnisyS9xpMTgPDeScFZi3rMmvNPxIHZAAspBAouE64CqlZM2ievo7nTgnimeivkh67VulG9hkcEeeyu/5Vq6uhhYOEHSukdv0H38q49Gl/IP1uqmbKiLygmYPgpGabA/zvkeX+midDhTFH8es8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Y+/sj0Mj; arc=fail smtp.client-ip=198.175.65.16
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1783448542; x=1814984542;
-  h=message-id:date:subject:from:to:cc:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=9FHZOqY17Li9O4LPsJRYmty37uUozqvEB17ykHUx8is=;
-  b=Y+/sj0Mjv5WQWYPn9UVjU63ypzwDTwcvsgjuuaC/Fs5aMPagLfwElD14
-   GOMxCYju6mnFyeEPf0amq2v7xcxYqlqc+uXEBJ3fztokbB09TPnx0vGqS
-   K/jj1b8chnuH14wFgJzOB80pZ0UNNtb/V7UYoKzYvBXFl0ad8lIJ5B7yZ
-   rKd7M0ouWLwLmJ3HlT651qqhjpTp0cBmoYUlkuKKXZ80HwGLQa9jQ+7cJ
-   fvXrK0GFC3Z+kS8PdE5VBUEqQV+UVvV4VrbNgEQdRziEXvg80ep7p8qnj
-   XP6Y8sE97VqChE5anxoZE+GaugiBYZb10NNX/WDEGtrTTToAWv4byCySC
-   Q==;
-X-CSE-ConnectionGUID: j+WDvZpETNGFj80t7xB9oQ==
-X-CSE-MsgGUID: +yL3x4yDRi6ZuCQqgybKeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84298501"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; 
-   d="scan'208";a="84298501"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2026 11:22:21 -0700
-X-CSE-ConnectionGUID: cm5xMTuyRIqqpB7Ir0oLCA==
-X-CSE-MsgGUID: 68OrFSOlSXKGu7KUrr1Uwg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; 
-   d="scan'208";a="278441764"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2026 11:22:20 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 7 Jul 2026 11:22:19 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Tue, 7 Jul 2026 11:22:19 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.36) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 7 Jul 2026 11:22:19 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ktm27RkP+yv7KvUsOiG9y17PneXjc44roMDAjkbNg1pSouuQSZEOrt1z0as3xT3+8JW7vQ04hJTGjrSMHaP0qixcP7DigWVL4wwn/b39v/1F0O9fStXG9HYLNRd88fNlAtZ32Qj5SNrO9/cFTGK8uH3R16/ykWH+9pKSxxz8AdL6t0PZshDVwZK5vCzoob45UUAFuz+CXKIYq9D720NMTLUBWKBK7eer4kMOhdVgSw+GEaIWxS43DsyeuKsZcgd/iVFftaz6uyKTh9XAIzYB+U9OXLOUeCRGvtEiZPoa5Wr2L7HwLcLVU9zQt5LyzsC7JgtGngr+KcH7+uP0HcFBcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PBVhMD68JaY0bIaMfJYY5C3He9Er08VFvm0KuPnZZPc=;
- b=WwV0DbRoL2+ciXjbLYstOD5+T04Q0fDs5hwkq4va+NnjOfbJBwY+R7e8FzmWy7Ix1K5r3ttyOCF6RHSddcUY/cbe54y7RJuURAwn3ej+al1Zft9pC4kHX1reBlS0Gdw43heoKtSIvkqTvCwk/IrXHoqbgZolhdClhqdwKfDYSBEBRiwy5aI9boI7NoTQ4GRsfOFww9dMrvWvWHIlsT6axDBBRogMOOW7SHvsNIqTmDCtxnDeB+Vx9dQr5GRKIQT0WldufoMHH2i2Gi3+/sr1YraiSKEJ0L/RXyX1j6q2gqJUpOmz/LQ+BR4frErOJmdGNQYlyRf0YOD1efGD1FdHaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ2PR11MB8370.namprd11.prod.outlook.com (2603:10b6:a03:540::20)
- by CH3PR11MB7938.namprd11.prod.outlook.com (2603:10b6:610:12f::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Tue, 7 Jul 2026
- 18:22:14 +0000
-Received: from SJ2PR11MB8370.namprd11.prod.outlook.com
- ([fe80::b6cf:ce77:3cdf:7cc]) by SJ2PR11MB8370.namprd11.prod.outlook.com
- ([fe80::b6cf:ce77:3cdf:7cc%5]) with mapi id 15.21.0159.018; Tue, 7 Jul 2026
- 18:22:14 +0000
-Message-ID: <70c9d487-93e9-417a-8b2e-bd04f5e413fe@intel.com>
-Date: Tue, 7 Jul 2026 11:22:10 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 8/8] riscv_cbqri: Add CBQRI capacity allocation
- platform driver
-From: Reinette Chatre <reinette.chatre@intel.com>
-To: Drew Fustini <fustini@kernel.org>, Adrien Ricciardi
-	<aricciardi@baylibre.com>, Alexandre Ghiti <alex@ghiti.fr>, Atish Kumar Patra
-	<atishp@rivosinc.com>, Atish Patra <atish.patra@linux.dev>, Babu Moger
-	<babu.moger@amd.com>, Ben Horgan <ben.horgan@arm.com>, Borislav Petkov
-	<bp@alien8.de>, Chen Pei <cp0613@linux.alibaba.com>, Conor Dooley
-	<conor.dooley@microchip.com>, Conor Dooley <conor+dt@kernel.org>, Dave Hansen
-	<dave.hansen@linux.intel.com>, Dave Martin <Dave.Martin@arm.com>, Fenghua Yu
-	<fenghua.yu@intel.com>, Gong Shuai <gong.shuai@sanechips.com.cn>, Gong Shuai
-	<gsh517@gmail.com>, <guo.wenjia23@zte.com.cn>, James Morse
-	<james.morse@arm.com>, =?UTF-8?Q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, <liu.qingtao2@zte.com.cn>, "Liu
- Zhiwei" <zhiwei_liu@linux.alibaba.com>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <pjw@kernel.org>, Peter Newman <peternewman@google.com>,
-	=?UTF-8?B?UmFkaW0gS3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>, Rob Herring
-	<robh@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, "Sebastian
- Andrzej Siewior" <bigeasy@linutronix.de>, Tony Luck <tony.luck@intel.com>,
-	Vasudevan Srinivasan <vasu@rivosinc.com>, Ved Shanbhogue <ved@rivosinc.com>,
-	Weiwei Li <liwei1518@gmail.com>, yunhui cui <cuiyunhui@bytedance.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<x86@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-rt-devel@lists.linux.dev>, <linux-doc@vger.kernel.org>
-References: <20260628-dfustini-atl-sc-cbqri-dt-v3-0-c9c1342fe3cf@kernel.org>
- <20260628-dfustini-atl-sc-cbqri-dt-v3-8-c9c1342fe3cf@kernel.org>
- <ec899c62-35e3-47c1-8d42-47eff084d30f@intel.com>
-Content-Language: en-US
-In-Reply-To: <ec899c62-35e3-47c1-8d42-47eff084d30f@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR04CA0109.namprd04.prod.outlook.com
- (2603:10b6:303:83::24) To SJ2PR11MB8370.namprd11.prod.outlook.com
- (2603:10b6:a03:540::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E613A3D668F;
+	Tue,  7 Jul 2026 18:24:02 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783448646; cv=none; b=DbajfAQvtYjgqXJbaJuxuRnZrfx//KsDCqzsEiex+GksLGNU5L9s2Bw3tTTdaxFKf8XFcEs4h/Nt/N7uUvOMMRl3KwwJn9WdPdI22sDPisxo8IbMG47QkK6g/S0UDSLqPt4N9lm6jOXSRNX7ykSxrg7/Wfvb+yGxV4Lr6hiVLgY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783448646; c=relaxed/simple;
+	bh=xQz/1de1fhdSsAQcRz1bIbjMT8tJONoMz2GIjS8HZQg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lLyF+dkShqGbS+KSIz0BWCfBCDAVOPUvOs19rBGoSK2iHspe1mKdKknL6EDHjesMjzY24MJqKedpkB5Fq0FwQc0838izauCCjH+nkKnTfelrumsRZt9m9sppKQDKiGnitrEYyt/O+6vXZbBvBtDuT+Mk30zn+FlJIDUr8irgIdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=CGltUv6A; arc=none smtp.client-ip=185.11.138.130
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=9JLJ0FpKM3qj52tf+7FbBXdfMaILfM/b7TzkNMXuLMs=; b=CGltUv6A8vNWyR6tnpsfe2ZOCQ
+	JsAUW8Wrl8Jf6IDsfJvhIElhExWMpJ/Z/8WxZq5M/BwokI+6YCXoLZnwQzy0tJIEMX5AVoFVcAWml
+	suUNS8GcSbCu+pd/KrNtbYBThifK89bbiGtIoSiKifux/D54RU999mk60Dh9Ujgv+gH6ZJQ7+STlE
+	4jXjFZT3GSEnJwLEtDjDrNGMdZBBjJpb/4NI6T3V4nz9WK16fMb0Ys3Dm/LnwElUMW09UZWl+teC6
+	U8S7EjJOwr0pjZHRAxncYs6FBeirD8AV7F6ABn6pXAEP1XuvC8EQ0pkRnjqgHn42p8hOBxaWNcVxE
+	SCcwBPiw==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Hrushiraj Gandhi <hrushirajg23@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v7 0/2] arm64: dts: rockchip: add Vicharak Axon board support
+Date: Tue, 07 Jul 2026 20:23:47 +0200
+Message-ID: <14045151.uLZWGnKmhe@phil>
+In-Reply-To: <20260707160354.GB3176120-robh@kernel.org>
+References:
+ <20260608060940.52549-1-hrushirajg23@gmail.com>
+ <178301901903.3838694.3276523670393868229.b4-ty@sntech.de>
+ <20260707160354.GB3176120-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR11MB8370:EE_|CH3PR11MB7938:EE_
-X-MS-Office365-Filtering-Correlation-Id: 69788268-825e-4000-0b5e-08dedc54ab83
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|23010399003|376014|1800799024|366016|18002099003|56012099006|11063799006|4143699003|921020|22082099003;
-X-Microsoft-Antispam-Message-Info: EPIlEWgMh4JeOC+eaDL8OdXjcRSDz2cmsbSXgs7tA3+YvPb5Smhj/1owfN0b499/44zLbwXVAd2MYO0cQfQ0AmehnoafathBWUchUEWt9PzEzvOTIhOWysEZ0aEdJ8tbgZHqphvpVi0f3FgbrnhwHda49Fw3L1Tn19NceklRJH4FNzBJxJa+WAsXECHBfAohh0vnuHw9pHkKXd/RqKD+sXykeyzPESNr5l6OcEuFlvAIdKN7a5aHbedggT3dKGoP0XcYxI0B2VxANNBzK8KsCtobztz/MiKlkkFLRGYXVTw2K8wSQp5V/xPmPF9LowNMYHX619gYnWKrdGEtPacOdbsU5PJlKCAoxcd1GT+Eu+MYCKAWz6REWl7Sa2G+lwN4c6sA/NPN+95aAxaYl3bS/N7JjfhQwNLtkTpUAITs/GHYM67Xo7sUdxesDf5IWp07IKNymyMJv4plMIOJmvJVJdbOF2BLlIJP5zfXOvn4/O9V4TC4E1MikBUKlICyTh4a/8jyRUcA+aVRp/KxlH3smk/FAzF26SjP4LdlUVboTuQXbWNmlmVXsXN2WWlBrL818JYjMY37km7vUVrARL3Q0TGAdCu/YxJ5eYdozXS2rjNQbZtxNe/9PVjDYBVFQe1r8UYhWvkZE7Hfjdi01rhdti6ZSDcUPKBhgeL/0/2k/DVkViaoaQ4pWs8ShIXskfjDvpQm2B68wYQlIqmf7IRQfg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR11MB8370.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(23010399003)(376014)(1800799024)(366016)(18002099003)(56012099006)(11063799006)(4143699003)(921020)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dlJneW9hSnRza0FzSFdHcStTTS9EZ1Q1ZTkyQTM2eXRWdnJaNkpUV2ZKZllV?=
- =?utf-8?B?SWJoTWN1R1JqRGtmVXhpek52YTdsTmtiV2xBRmV0a1F6Y3B3cVU3MTEwWTl0?=
- =?utf-8?B?Q0ZuNGtDK0ZQVDhlaDZoRlpRU1NUS0JySTBqeFZ6VkthQXNwZ0QvSWFjRVVC?=
- =?utf-8?B?TFczdy9mTGx4aXZaTklyTGZ3ZkNpcnZWZ2F0Q3hnYktaTUl2eHVTUndWMVZJ?=
- =?utf-8?B?dzlDNjFvN25xRUx5WVNFUjFQM1dTZkNnK3dYbkRDR1crZmQ3NnpIeERpZXFI?=
- =?utf-8?B?K0ZNSkdVcmpUTGpWb2JCdEhpMUVEQmdybE5RaGUrUFROSHFueEdKK09paWNs?=
- =?utf-8?B?YnpMRVhzTzRqeVFkNEpncTFUN3lUaDdWV3RHVXByL1lmRTZwYzBTbU5FclNm?=
- =?utf-8?B?S1A0YUtoRkpNd1lCUlhKMllCR2tFamRuT1BhVXRnVkRHckdtQUhvYzNYclNR?=
- =?utf-8?B?NUZUOTVXdk16ZHpGZG9EYStkYW8vSUZLR0JSQ2pzM0tDMEt6NHp2V1BuTjB6?=
- =?utf-8?B?YlE0N2F5RHZiS3ZXUi9jcEtYb1lweEFSbmFmT2wycEtzMWJLamRQa1lWc2ll?=
- =?utf-8?B?TDdxWUtmUjBJUDRaN2FGbTVBL0d3cWgyQWJCRDNaWXltZ1dITkVRS1hleWdR?=
- =?utf-8?B?ZHEvc2c4dENac3BQSjJPSTRUZFkzWk90V09VQzhvbkk2WmFZVXdnWFNSSlRo?=
- =?utf-8?B?VWtkdmNzNmpPZW1QYzB1TlNKYUVsRk5mdEcyRlBaUEloWkNvS3RreWVBVXUr?=
- =?utf-8?B?UWNUU1ZINTR1WlJDUWsweU1HMjBYRlBaV1RKTGk5em42OE1VRzM0cDF3aCtx?=
- =?utf-8?B?QUxoTktDODluU2xjSWdjYzV6VCtzTUJEZXcwRS9EWHp2M3U1SFJvNkswZ3JS?=
- =?utf-8?B?WFp4QTlZZzFobjNlSEkrUVRkZlpkNytDcXhRNnJuTDZIRzdRRzJ5dVhZN2xE?=
- =?utf-8?B?T2cwYlBUR1h0R01IQ0FKcmRZbGNuMVUwa2xydStvM0x1bElhQWc4VjRvaGFV?=
- =?utf-8?B?c3pGeDJmYkF2VERhZmRvMFJzeU1DbnFwbVlSUlZXWTdJTXdSeDRLRXpUSE9z?=
- =?utf-8?B?TnFSZVZrRkhHSjREV2xST0RodHhOY3p1RGVrWXJhSDArOEdQelpjRXg5eWJJ?=
- =?utf-8?B?aVdQQmlRTmU0MUFNaTlrcFRPNEJuYU9lSlNMQjVsaDJndnpKZ3hGRjA0RDZx?=
- =?utf-8?B?aW9tZk5oYVAySitORXhNK3NjQlBjNlU1MDM2NUx5clp0S0hOWk1JVzJROWRO?=
- =?utf-8?B?S0NDclVKRWVsWDdXZjhydnNPMkJDV3BTNFZuYlhsV2cxWDJtaVJnT1RnVlpV?=
- =?utf-8?B?NnRaaUFBSFhCcW9Leng2aEMyK0Y2RWRScFpCa2EvWTlLYURuWnROUDZyUDlL?=
- =?utf-8?B?bWNSdEEvZkN3V3c3OStiTmsvSjdNQVR4OFBxZzV0L0ZBRlNPQ2NXQmZGeWRq?=
- =?utf-8?B?dkVIK1FQYkFtRjFxRzFNYjljR1dYaHFCbDk5cnZjUXZSY2Z4TThUTE1IL2VV?=
- =?utf-8?B?Kys1T1lzNXlLTXBqVDc2V1p3UkJ0SmhRMVpEUDB4SzllYnZ4WCtQTHhJRldX?=
- =?utf-8?B?VzlXSEJvNXRKL2dGbEFxTzd4RVFHUndDaU5KenZYa3E5VUZqS1NNRFZZMEcv?=
- =?utf-8?B?RE1uenFhZ2cweWVMNEd2RTRxUGZSbk93T2lVdkhET3NsQXdXYjI0NDVyZFBM?=
- =?utf-8?B?U284NURrdHRnbWtyQnVWc1NlK2QrUE5KVXZETnBJNDdvdXhvYXl3K3hhcWg3?=
- =?utf-8?B?Vi92bE50QnJ5NGdBdlFBdEhvMDhTYWFPa1dacjcwTTBYekwrYW12M3pWWmR5?=
- =?utf-8?B?d3Y0cHZYM0dRM2t1VVd2cXhxMDZCSE8vUE52TlpMTnBLb1QzQjJUWmx5UURV?=
- =?utf-8?B?WGpNYklUeGQ0UnNRcy93RjFSTnFtY2FMcmtRcmZhUHBLRHFRckR6WXU4aFZP?=
- =?utf-8?B?eXMwVlUzNktEbGRSOUNONlczYmZkQ3k4Ui8vWDd0R1BjVXB1b0tucVE2aS9L?=
- =?utf-8?B?elhUdkN2RGdKU3BBM2RCZ3BtbzVNcTBneHh4elUrU0d2dlF4cFpkWm9KUUlB?=
- =?utf-8?B?TVQybWsvYXNSbVlJbERHTDlVYkFRZ1IxamJNNVl5emFEUGEzWjhrdWFSOWtI?=
- =?utf-8?B?RHdQTnVBQnM5WTRJNExUSG4yY1lZZDQ4bzhzVXZpOUpERlhGUUw0QUpOWjBz?=
- =?utf-8?B?ODNOclZabCtmMms3aUJlcjRSSFpLc1JRMGdUaHhDTDVqWFhLK1M0NkJ0TjdV?=
- =?utf-8?B?YXU3WnRpWnJvYUdjeUpqRlozMnROUlJ2UVdhdWNWeVZ4UUgrbUFMaU5BOE1J?=
- =?utf-8?B?TDR6czhmMDBWOGVEbG9HUURUc0g3b1VOSDR3L1V6Tmo5NnJtQVA0UXltZGlq?=
- =?utf-8?Q?3NwBEC9/UFiJbUtU=3D?=
-X-Exchange-RoutingPolicyChecked: Rq0klJVNVnDDHarGLZmByV0yrTyUgiSq6wACPME+Q8OTqeaeblPSzjNHpk5woR91p/jtD5IxsVjLJH47TqoBALTaX8+K6U7AcN+lmAeUkpppnELzOTSHqV/Zp8Ksx/Zekm3xgXCScNgfY9hNloLOjg7qGbWhxtKiYerjz75iDGs2PXEqzw0whMecQhBL1wOjEFfd6VLnf+12kEwIRQNhuPPliJ3O4uSHGZG3a8EhJzrp0BhYLUfSsOobRdpkoBQbzdlPdtVNijtwTPJIugIJibsilQ+R1t7m4qWTZRDlUIfC0BB4byDihXl7RR0FSHZln7TAH/S3tBEnKVfXOMOV2g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 69788268-825e-4000-0b5e-08dedc54ab83
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR11MB8370.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 18:22:14.7411
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5P6ibp9WviG1RF2iJGjl1HXie1Ljjdffsib/KZkhjYAWCrjeMNuu9Xaads0Z0hkZblivjwsvshNUT7roJ4hfzHHS1rRCkO325XrAre7STMg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7938
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-322298-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322297-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:hrushirajg23@gmail.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,ghiti.fr,rivosinc.com,linux.dev,amd.com,arm.com,alien8.de,linux.alibaba.com,microchip.com,linux.intel.com,intel.com,sanechips.com.cn,gmail.com,zte.com.cn,semihalf.com,dabbelt.com,google.com,ventanamicro.com,sifive.com,linutronix.de,bytedance.com];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:fustini@kernel.org,m:aricciardi@baylibre.com,m:alex@ghiti.fr,m:atishp@rivosinc.com,m:atish.patra@linux.dev,m:babu.moger@amd.com,m:ben.horgan@arm.com,m:bp@alien8.de,m:cp0613@linux.alibaba.com,m:conor.dooley@microchip.com,m:conor+dt@kernel.org,m:dave.hansen@linux.intel.com,m:Dave.Martin@arm.com,m:fenghua.yu@intel.com,m:gong.shuai@sanechips.com.cn,m:gsh517@gmail.com,m:guo.wenjia23@zte.com.cn,m:james.morse@arm.com,m:mindal@semihalf.com,m:krzk+dt@kernel.org,m:liu.qingtao2@zte.com.cn,m:zhiwei_liu@linux.alibaba.com,m:palmer@dabbelt.com,m:pjw@kernel.org,m:peternewman@google.com,m:rkrcmar@ventanamicro.com,m:robh@kernel.org,m:samuel.holland@sifive.com,m:bigeasy@linutronix.de,m:tony.luck@intel.com,m:vasu@rivosinc.com,m:ved@rivosinc.com,m:liwei1518@gmail.com,m:cuiyunhui@bytedance.com,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:x86@kernel.org,m:devicetree@vger.kernel.org,m:linux-rt-devel@lists.linux.dev,m:linux-doc@vger.kernel.org,m:conor@kernel.o
- rg,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[reinette.chatre@intel.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[40];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,intel.com:from_mime,intel.com:dkim,intel.com:mid];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[reinette.chatre@intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A688071E9C1
+X-Rspamd-Queue-Id: 5295D71E9F2
 
-Hi Drew,
+Am Dienstag, 7. Juli 2026, 18:03:54 Mitteleurop=C3=A4ische Sommerzeit schri=
+eb Rob Herring:
+> On Thu, Jul 02, 2026 at 09:04:55PM +0200, Heiko Stuebner wrote:
+> >=20
+> > On Mon, 08 Jun 2026 11:39:38 +0530, Hrushiraj Gandhi wrote:
+> > > This series adds initial device tree support for the Vicharak Axon
+> > > single-board computer, which is based on the Rockchip RK3588 SoC.
+> > >=20
+> > > The Vicharak Axon is a feature-rich SBC targeting developer and embed=
+ded
+> > > use cases. It ships with:
+> > >=20
+> > >   - Rockchip RK3588 (4x Cortex-A76 + 4x Cortex-A55)
+> > >   - RK806 PMIC providing all SoC power domains
+> > >   - eMMC 5.1 (on-board) and microSD slot
+> > >   - Gigabit Ethernet via RGMII (RTL8211F)
+> > >   - Dual HDMI 2.1 output and one HDMI 2.0 input (receiver)
+> > >   - PCIe 3.0 x4 and two PCIe 2.0 slots
+> > >   - SATA 3.0
+> > >   - USB 2.0 host ports (EHCI/OHCI)
+> > >   - NXP PCA9554 I/O expander for status LEDs
+> > >   - Haoyu HYM8563 RTC
+> > >=20
+> > > [...]
+> >=20
+> > Applied, thanks!
+> >=20
+> > [1/2] dt-bindings: arm: rockchip: add Vicharak Axon board
+> >       commit: e0008b108aaf8c5aa22930b2ceadf8f894562acb
+> > [2/2] arm64: dts: rockchip: add Vicharak Axon board
+> >       commit: e08c3389c78dbefd31a57df8807cf57ef6f3c9b1
+>=20
+> Both have issues and should be dropped.
 
-Apologies, my reply ended up in the wrong version of this series. Please consider this as a reply to v4.
-ok with me if you respond in v4.
+I've dropped both the Axon as well as the Vaaman2 board from the
+same vendor now.
 
-Reinette
+The whole thing is confusing.
 
-On 7/7/26 11:18 AM, Reinette Chatre wrote:
-> Hi Drew,
-> 
-> On 6/28/26 2:18 PM, Drew Fustini wrote:
-> 
-> ...> diff --git a/drivers/resctrl/cbqri_capacity.c b/drivers/resctrl/cbqri_capacity.c
->> new file mode 100644
->> index 000000000000..2172432eb328
->> --- /dev/null
->> +++ b/drivers/resctrl/cbqri_capacity.c
-> 
-> ...
-> 
->> +static int cbqri_capacity_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct cbqri_controller_info info = {};
->> +	struct device_node *cache_np;
->> +	cpumask_var_t cpu_mask;
->> +	struct resource *res;
->> +	u32 rcid_count, cache_level;
->> +	int cache_id, cpu, ret;
->> +
->> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +	if (!res)
->> +		return -EINVAL;
->> +
->> +	ret = of_property_read_u32(dev->of_node, "riscv,cbqri-rcid", &rcid_count);
->> +	if (ret) {
->> +		dev_err(dev, "missing riscv,cbqri-rcid\n");
->> +		return ret;
->> +	}
->> +
->> +	cache_np = of_parse_phandle(dev->of_node, "riscv,cbqri-cache", 0);
->> +	if (!cache_np) {
->> +		dev_err(dev, "missing riscv,cbqri-cache phandle\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	ret = of_property_read_u32(cache_np, "cache-level", &cache_level);
->> +	if (ret) {
->> +		dev_err(dev, "%pOF: missing cache-level\n", cache_np);
->> +		goto out_put;
->> +	}
->> +
->> +	if (!zalloc_cpumask_var(&cpu_mask, GFP_KERNEL)) {
->> +		ret = -ENOMEM;
->> +		goto out_put;
->> +	}
->> +
->> +	/*
->> +	 * Associate the controller with its cache instance via
->> +	 * cacheinfo. The matching cache provides the cache id and the
->> +	 * set of harts that share the cache.
->> +	 */
->> +	cache_id = -1;
->> +	cpus_read_lock();
->> +	for_each_online_cpu(cpu) {
->> +		struct cacheinfo *ci = get_cpu_cacheinfo_level(cpu, cache_level);
->> +
->> +		if (ci && ci->fw_token == cache_np) {
->> +			cache_id = ci->id;
->> +			cpumask_copy(cpu_mask, &ci->shared_cpu_map);
-> 
-> The way I understand cacheinfo::shared_cpu_map is that it only contains the online
-> CPUs that share the cache with this CPU and if the CPU is offline then shared_cpu_map
-> only contains the CPU self.
-> 
-> It is thus not clear to me that this handles all the possible CPU online vs offline
-> scenarios. For example, if all or some CPUs of a domain are offline during cbqri_capacity_probe()
-> and then come online later. It is not clear to me whether cbqri_controller_info::cache_id,
-> cbqri_controller::cache_controller::cache_id, or cbqri_controller::cache_controller::cpu_mask
-> are needed. Could the cache ID associated with a CPU at the time it comes online to dynamically
-> associate it with the resctrl domain that is indexed by the cache ID? This may simplify a couple
-> of flows.
-> 
->> +			break;
->> +		}
->> +	}
->> +	cpus_read_unlock();
->> +
->> +	if (cache_id < 0) {
->> +		dev_err(dev, "%pOF: no online hart reports an L%u cache for this node\n",
->> +			cache_np, cache_level);
->> +		ret = -ENODEV;
->> +		goto out_free;
->> +	}
->> +
->> +	info.type = CBQRI_CONTROLLER_TYPE_CAPACITY;
->> +	info.addr = res->start;
->> +	info.size = resource_size(res);
->> +	info.rcid_count = rcid_count;
->> +	info.cache_id = cache_id;
->> +
->> +	ret = riscv_cbqri_register_cc_dt(&info, cache_level, cpu_mask);
->> +	if (ret) {
->> +		dev_err(dev, "failed to register capacity controller: %d\n", ret);
->> +		goto out_free;
->> +	}
->> +
->> +	dev_info(dev, "registered L%u capacity controller at %pa (cache_id=%d, rcid=%u)\n",
->> +		 cache_level, &info.addr, cache_id, rcid_count);
->> +
->> +out_free:
->> +	free_cpumask_var(cpu_mask);
->> +out_put:
->> +	of_node_put(cache_np);
->> +	return ret;
->> +}
-> Reinette
-> 
+I should've caught the pinctrl issue, and do remember running a dtbscheck
+on at least one Vcharak board - but that must have been the Vaaman2 board
+because there the pmic fullfills the binding (and general setup of other
+rk3588 boards).
+
+The vendor-prefix is missing indeed. I found earlier versions of the
+version-avalanche had it, up until v6 [0] . Though I haven't figured out
+yet why it was lost.
+
+Hence I dropped both boards.
+
+
+Hrushiraj: please start anew with both boards.
+
+But include all the tags you received in previous versions.
+
+
+Heiko
+
+
+[0] https://lore.kernel.org/linux-rockchip/20260601162143.170030-2-hrushira=
+jg23@gmail.com/
+
 
 
