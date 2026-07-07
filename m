@@ -1,168 +1,286 @@
-Return-Path: <devicetree+bounces-321979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321980-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id V6L8Fs3mTGorrwEAu9opvQ
-	(envelope-from <devicetree+bounces-321979-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:45:17 +0200
+	id 5pmELsjoTGrCrwEAu9opvQ
+	(envelope-from <devicetree+bounces-321980-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:53:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A36171B12F
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:45:17 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B210871B1F1
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:53:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="TOgoKv/V";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=V0KP2JH6;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321979-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321979-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321980-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321980-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A9938301EF71
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 11:45:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D4AAA300BC83
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 11:46:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E393FA5F1;
-	Tue,  7 Jul 2026 11:45:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7721D3FADF6;
+	Tue,  7 Jul 2026 11:46:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06FF63F9A10;
-	Tue,  7 Jul 2026 11:45:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB5C3E0C5C;
+	Tue,  7 Jul 2026 11:46:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783424716; cv=none; b=jd9JnHptceLvcck/WBpiOLUej0brncSoHRKOdWiHGZJgkYHVD2gCSHOFh0JddOCKPbw4eA5lz3xQ+o/bOhTfpNMok0Xj0/Thpb5bKnmZ5dawCQISwU+WvvrA8dsARd62BBpDnGDgMgE56KnJRSFfYDKerN5nKy1Uo1LHGPaL9Fk=
+	t=1783424810; cv=none; b=kfOcYxfHzcSm/1ev7t9tfslg+6QZs9l72JZ6ry7KbsG0+2YTtOOx1Lnl/adCUg3sjvSoEXOYAng+Fy6zUV1dKClEc/QREjsQ/i0n+Bo+Lp/oCbBq64pHoZMwjb0T/yOpAKG03VJQIKOPGnPsYh2Jgkvn1jCLgiej3QmB0jJcPjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783424716; c=relaxed/simple;
-	bh=Rcj7tpE+mh68LXObaJGUV7PrzAyUZ4bWS7hX/v5/gIk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=stTvR+BOX0+gncA2XpRiKiTrdnPiSIPR/R085kKTKGvrJ78x8mlwKYqUjOBVSpQwOD+tFVoP7rzaE09dJpDBi5jkfL8XOMFaK38MeTYWgwAT59O273mKf68eUAXwdD9FjxnehRs4uctl0pfyrueo+9Qm57g6GztBfid2H3lclrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TOgoKv/V; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 132801F00A3A;
-	Tue,  7 Jul 2026 11:45:10 +0000 (UTC)
+	s=arc-20240116; t=1783424810; c=relaxed/simple;
+	bh=VzVtc5g3QcquYUQMR5pAoFYAIpomHpJ1yphYoXyI/4U=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=HiTh6fPQDyb6GO/juuBNvCE2CYiFqR9dEsl7rVTIteteRGz7SOtmPNv+BM5ApN3FnieK3WD0zKCIIbnyqXrbQchDyyREOBX0oys+RWz5l7yksVaQGTPb2jMnX7Uf6DxmmuJiadGEv36T1Zc9VBDHCVhkyhp+s8iIary/EoqSiqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V0KP2JH6; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60A091F000E9;
+	Tue,  7 Jul 2026 11:46:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783424714;
-	bh=1mrl1wwjCISCNEpoo1wLxTiv4fJVeg4myWskOh5QdCQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=TOgoKv/Vx4qZdoV//5qONh8l9rmMGBYEn7hyG2izTYxNKJi8OexVr3cVCU84u5rgL
-	 ilX+XNtsO70I6zoMesIQeU/JqbuL2fWOAUBAK0WskvDup7rElWS5Lou2PyM1jzspwN
-	 BozZsHxdyEmdMkw1pdU1JKwUZX96AnwNfHAxPiqbPvfHPExN2Aarw4YLITIl2yTYcw
-	 UWtNl+twccxQXPsLEqMOhr9xxyMHp+yh7+IK5wy6dSCXJJ/mhGzcrXUo+59pkohXZ7
-	 A/dMCZtVCdTnFiyHau47pdtGcjn8mNlU9Hv887ak+4LI9y9fuQX8AGu76hiitMjz5F
-	 8w5e3qAdpSSOQ==
-Message-ID: <d1161919-b6ee-4736-81c8-0297b7900969@kernel.org>
-Date: Tue, 7 Jul 2026 13:45:07 +0200
+	s=k20260515; t=1783424808;
+	bh=geI2G7Fz6/HzFMjDFhj2ueCOBJMqwY/reUO1vVILSBI=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=V0KP2JH6gamCY1Sa/Q6Gozf56bPHwJQMUFXRKXTSSf5UJZsdWq2mc19TPGi+K/h+4
+	 T3d3YfVlemnxsq3K3ybIUhbPss+zSyPqUgZrz5sCPxBTdceAsbgVpV0AxKPWQAO7+1
+	 J9ugHt8vyHQBoU4ipyuQPvaMEfdC2NHnIa2d0zRsAhNhAllT22KfXGLD3DaEZ+AwSD
+	 cNo0V61+zTb4OWibEbd8YqOyKbMd+vNUK3E/4exXoXq4WJyk+FoOuJfydGHmwZYPpQ
+	 XreS9E0rmdmQxm+tR4LVkWSP2+7faNu29Pk8BbHYvvTQDSgnQrRcNFMZCoayJ7wHPd
+	 ynqpiFmCeJixQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v12] PCI: Add support for PCIe WAKE# interrupt
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Krishna Chaitanya Chundru" <krishna.chundru@oss.qualcomm.com>
+Cc: linux-pci@vger.kernel.org, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260707-wakeirq_support-v12-1-b4453f5bcc97@oss.qualcomm.com>
+References: <20260707-wakeirq_support-v12-1-b4453f5bcc97@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 07 Jul 2026 11:46:47 +0000
+Message-Id: <20260707114648.60A091F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/2] dt-bindings: iio: health: add adi,max86150
-To: Md Shofiqul Islam <shofiqtest@gmail.com>, linux-iio@vger.kernel.org
-Cc: jic23@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andriy.shevchenko@intel.com,
- u.kleine-koenig@baylibre.com, joshua.crofts1@gmail.com
-References: <20260707112714.2261727-2-shofiqtest@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20260707112714.2261727-2-shofiqtest@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321979-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321980-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:shofiqtest@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andriy.shevchenko@intel.com,m:u.kleine-koenig@baylibre.com,m:joshua.crofts1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:joshuacrofts1@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,intel.com,baylibre.com,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:krishna.chundru@oss.qualcomm.com,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3A36171B12F
+X-Rspamd-Queue-Id: B210871B1F1
 
-On 07/07/2026 13:27, Md Shofiqul Islam wrote:
-> Add Device Tree binding schema for the Analog Devices MAX86150
-> integrated ECG and PPG biosensor.
-> 
-> The device exposes two PPG channels (Red LED and IR LED) and one ECG
-> channel over I2C, with a 32-entry hardware FIFO and an active-low
-> interrupt.
-> 
-> Signed-off-by: Md Shofiqul Islam <shofiqtest@gmail.com>
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+s) to consider:
+- [High] Exclusive allocation of a shared WAKE# GPIO breaks wakeup capabili=
+ty for remaining devices if the first device is hot-removed.
+- [High] The IRQ trigger type is configured after requesting the wake IRQ, =
+causing the request to fail on irqchips requiring a trigger type.
+- [High] Incorrect resource lifecycle check in `pci_remove_of_wake_gpio()` =
+causes GPIO and IRQ leaks if the OF node is detached.
+- [Medium] Unconditional system wakeup enablement bypasses standard PCI PM =
+policy.
+- [Medium] Unchecked return value of `device_init_wakeup()` can leave the d=
+evice in a half-configured state.
+--
 
-Please slow down. Now two versions sent within one hour. Before also
-posting multiple times per day.
+--- Patch [1]: [PATCH v12] PCI: Add support for PCIe WAKE# interrupt ---
+commit 788f29e12a6c04e2d11d2db4e00c40903e8d0022
+Author: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Subject: PCI: Add support for PCIe WAKE# interrupt
 
-One version per 24h..
+This commit adds support for the PCIe WAKE# mechanism in the PCI core.
+It searches for a WAKE# GPIO described in the device tree for the endpoint
+or bridge, registers a dedicated wake IRQ, and handles waking the device
+from low power states to an active state.
 
-Best regards,
-Krzysztof
+Link: https://lore.kernel.org/all/20250515090517.3506772-1-krishna.chundru@=
+oss.qualcomm.com/
+Link: https://github.com/devicetree-org/dt-schema/pull/170
+
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index 8b18c4ba845cf..5df6b11cdf9f9 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+
+[ ... ]
+
+> @@ -586,6 +588,82 @@ int of_irq_parse_and_map_pci(const struct pci_dev *d=
+ev, u8 slot, u8 pin)
+>  	return irq_create_of_mapping(&oirq);
+>  }
+>  EXPORT_SYMBOL_GPL(of_irq_parse_and_map_pci);
+> +
+> +static void pci_configure_wake_irq(struct pci_dev *pdev, struct gpio_des=
+c *wake)
+> +{
+> +	int ret, wake_irq, irq_type;
+> +
+> +	wake_irq =3D gpiod_to_irq(wake);
+> +	if (wake_irq < 0) {
+> +		pci_err(pdev, "Failed to get wake irq: %d\n", wake_irq);
+> +		return;
+> +	}
+> +
+
+[ ... ]
+
+> +	ret =3D dev_pm_set_dedicated_wake_irq(&pdev->dev, wake_irq);
+> +	if (ret < 0) {
+> +		pci_err(pdev, "Failed to set WAKE# IRQ: %d\n", ret);
+> +		return;
+> +	}
+> +
+> +	irq_type =3D gpiod_is_active_low(wake) ? IRQ_TYPE_LEVEL_LOW :
+> +						IRQ_TYPE_LEVEL_HIGH;
+> +	ret =3D irq_set_irq_type(wake_irq, irq_type);
+
+[Severity: High]
+Does this attempt to configure the IRQ trigger type too late?
+
+If the irqchip requires a valid trigger type during IRQ allocation,
+calling dev_pm_set_dedicated_wake_irq() before irq_set_irq_type() will fail.
+This is because dev_pm_set_dedicated_wake_irq() calls request_threaded_irq()
+without IRQF_TRIGGER_MASK flags, resulting in an -EINVAL return.
+
+Should the trigger type be configured before requesting the wake IRQ?
+
+> +	if (ret < 0) {
+> +		dev_pm_clear_wake_irq(&pdev->dev);
+> +		pci_err(pdev, "Failed to set irq_type: %d\n", ret);
+> +		return;
+> +	}
+> +
+> +	device_init_wakeup(&pdev->dev, true);
+
+[Severity: Medium]
+Does unconditionally enabling system wakeup here bypass standard PCI power
+management policy?
+
+Standard PCI policy, as seen in pci_pm_init(), makes devices wakeup-capable
+but leaves the enablement decision to user-space. Setting this to true
+unconditionally might lead to unexpected battery drain or spurious wakeups.
+
+[Severity: Medium]
+What happens if device_init_wakeup() fails?
+
+If it returns an error such as -ENOMEM when allocating the wakeup source,
+dev->power.should_wakeup remains false. This leaves the device with a
+dedicated wake IRQ requested but system wakeup disabled.
+
+The PM core will then never enable the wake IRQ via
+dev_pm_enable_wake_irq_check() during system suspend.
+
+Should this check the return value and unroll the wake IRQ registration on
+failure?
+
+> +}
+> +
+> +void pci_configure_of_wake_gpio(struct pci_dev *dev)
+> +{
+> +	struct device_node *dn =3D pci_device_to_OF_node(dev);
+> +	struct gpio_desc *gpio;
+> +
+> +	if (!dn && !dev->wake)
+> +		return;
+> +	/*
+> +	 * fwnode_gpiod_get() may fail with -EBUSY (e.g. shared WAKE#), but the
+> +	 * actual WAKE# trigger from the device would still work and the host
+> +	 * controller driver will enable power to the topology.
+> +	 *
+> +	 * -EPROBE_DEFER cannot be propagated here since pci_device_add() has no
+> +	 *  retry mechanism.
+> +	 */
+> +	gpio =3D fwnode_gpiod_get(of_fwnode_handle(dn), "wake", GPIOD_IN, NULL);
+
+[Severity: High]
+How does this exclusive GPIO acquisition handle hot-removal of shared wake
+lines?
+
+If multiple PCI devices share a WAKE# GPIO in the device tree,
+fwnode_gpiod_get() grants exclusive access to the first probed device.
+Subsequent devices receive -EBUSY and skip wake IRQ setup.
+
+If the first device is later hot-removed or unbound,
+pci_remove_of_wake_gpio() frees the GPIO and deregisters the wake IRQ.
+
+This leaves the remaining active devices with no wake IRQ registered and
+no way to acquire it, breaking their ability to wake the system.
+
+Can this be handled to avoid permanent loss of wakeup capability for the
+remaining devices?
+
+> +	if (!IS_ERR(gpio)) {
+> +		dev->wake =3D gpio;
+> +		pci_configure_wake_irq(dev, gpio);
+> +	}
+> +}
+> +
+> +void pci_remove_of_wake_gpio(struct pci_dev *dev)
+> +{
+> +	struct device_node *dn =3D pci_device_to_OF_node(dev);
+> +
+> +	if (!dn)
+> +		return;
+
+[Severity: High]
+Does checking the OF node pointer here cause resource leaks if the node
+is detached?
+
+During device teardown, pci_stop_dev() executes before pci_destroy_dev().
+If the device's OF node was dynamically created (common in PCI hotplug with
+device tree overlays), pci_stop_dev() calls of_pci_remove_node(), which
+clears dev->dev.of_node.
+
+When pci_destroy_dev() later calls pci_remove_of_wake_gpio(), this early
+return will bypass the gpiod_put() and dev_pm_clear_wake_irq() calls because
+the OF node was already cleared.
+
+Should this check for the presence of the resource itself via
+if (!dev->wake) instead of the OF node pointer?
+
+> +
+> +	device_init_wakeup(&dev->dev, false);
+> +	dev_pm_clear_wake_irq(&dev->dev);
+> +	gpiod_put(dev->wake);
+> +	dev->wake =3D NULL;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707-wakeirq_su=
+pport-v12-1-b4453f5bcc97@oss.qualcomm.com?part=3D1
 
