@@ -1,241 +1,176 @@
-Return-Path: <devicetree+bounces-321685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321687-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Tt6SC6J7TGqylAEAu9opvQ
-	(envelope-from <devicetree+bounces-321685-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 06:08:02 +0200
+	id vFf1N8t9TGr+lAEAu9opvQ
+	(envelope-from <devicetree+bounces-321687-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 06:17:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C72F7172CB
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 06:08:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5093271731C
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 06:17:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=infradead.org header.s=bombadil.20210309 header.b=ZGmnpZJ1;
-	dmarc=pass (policy=none) header.from=infradead.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321685-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321685-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VtW3Xkr+;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321687-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321687-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8212F301BEDC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 04:08:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 50DA7301C6DC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 04:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355D630566F;
-	Tue,  7 Jul 2026 04:07:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D4321EE01A;
+	Tue,  7 Jul 2026 04:17:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E50C2E0938;
-	Tue,  7 Jul 2026 04:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B3519B5B1
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 04:17:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783397278; cv=none; b=QBLKd7hywBnxKlcizWuyqEVnwtN31q6XgKgWRsMCaOv6tan5s2MNUb3u/YAgCCjKJMNsMXFKdhQ3kYCzIe9TKVkEnBQNWO37t3Wfl7Kc9+xIosIR4WMh+T5Mm9pmp7GevXBJPfhSU8QeQg9OPVGGENWT715U/GfLPfXlT7jDf4M=
+	t=1783397833; cv=none; b=b63AXNj+hm6IfIy270U2B8f2sXiTt7KR0gDmGxcizdQanFllVHEVa792apvLW9wXFmlAkvli3kN/PQVUgfhvMGBXcTlcuFOhp8P6kJlOur9q+J+/wZaqpdBepQbsmGhcQObrqZh949fP+RfH4b/moj3qlKi86zndVWSzgRALxE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783397278; c=relaxed/simple;
-	bh=Mnm+QDM18jaBTnITZ8LhUvY8UH/uLkw8ljECX+Rp3Fc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r+qtIA7yzetLs+VHxjS9o3ZPZTnImeKZTwQLKudZOCSu81L0k/2RAa0c7o2UM7Q5VQ/YBk36+wf0bpwuhI7GD0z6pdZbjCfUzN/txWBPq7stf3Xfw5UVsst9WYtxmey6MErySKo1CCX5HuCE5ikxloR/7GN0x5XSqNRrBo3tWDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=pass smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=ZGmnpZJ1; arc=none smtp.client-ip=198.137.202.133
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=/uUqvGVDn84bGWFIJxMYn8XYjtsG+6tV2VQh01XaWJ0=; b=ZGmnpZJ1BzF6Y29UwYPTMK1EuW
-	jxwxhtVNvdmPPWiqAwdQYPT2QkcadWid073IGOlQ7yWsGs6JEZHuEZ3gGjC+pRbyq54nJ3kcjU1fv
-	89ukb59XWzDqGTFF+SNxL6h1HL70nERuP9Aloy+8IFPvlQNFjQSt7vzThlhvtwISp7Xcqb9KvlgcP
-	Np62EmuDKEJlGhvKzGtFEzwaGdaVpP/v1Ix4hsWLFzJtj6bHnLkWuYrV0nFjMEz4cVQ4jX5+bWZeM
-	iJ9GZFGIVGys7kae+thMNO8+43bIrLZy1bacYEs5X9RRFhbKR0VVbZqQS268PWTDavbO5o7OEiuF1
-	E5X5FLxQ==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
-	by bombadil.infradead.org with esmtpsa (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wgx68-0000000E3Hm-0Jlr;
-	Tue, 07 Jul 2026 04:07:52 +0000
-Message-ID: <42c9f129-2609-40ab-913c-56ebf9aeda1a@infradead.org>
-Date: Mon, 6 Jul 2026 21:07:51 -0700
+	s=arc-20240116; t=1783397833; c=relaxed/simple;
+	bh=dgtl+0EX7UxdiBYVPJoQjxoElMXb9xO+Sw/kkUla0j4=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=PkWCp4cWFOjruQWKplSoI+SQRlYhee48sOH/rH90YirkGqhYyw6sjrBvx7UhNjLqphMFXB6XTReDjtpiWb0UFRJRxbJSOzF1MZHpXeLiY9b47ah5JTYOBAmzHJEY+TyXTWt0bSflOZ9vHZALdIU7EYwIY/3HP2YmplLWtxVYq+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VtW3Xkr+; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F7351F000E9;
+	Tue,  7 Jul 2026 04:17:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783397831;
+	bh=YlIOHWQGj8LSp98kq9vPuvVRJp2E5/gRNz6i0vWYCEs=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=VtW3Xkr+xcY+ZPMw9h2xmMMDaJVkmJDIkvJfgvMzfpK5VEXbu+Dl7aUvq3f+h36La
+	 1A38E+MwGsBUPagV4F/dOJ7TrS47A5dOvKOAXLMKxSJS5mb5nppnAoliSqN/TWJVgU
+	 og4L1eEW6MtFleVUMhUGIXSq1+lfOw32YmtKp1PYaxV0fQ7z4oNYz/HyPcFlGB5E77
+	 9vGrGJ6i8DMbssBMqE2eurk8+iWY+NvDE9ZMbjry8y3Hd1jaMVsvKmjQystMKBcqX5
+	 yH1NPn3fy4zQprUBKrrTimv9Nz4g21vkq1+po9BENa5hK7tnypFFthIMLITEk0NEE/
+	 yKJ23srUEk8Ow==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 3/5] drm/bridge: analogix_dp: Restore mandatory
+ samsung DP DT properties
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Damon Ding" <damon.ding@rock-chips.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org
+In-Reply-To: <20260707040613.1992841-4-damon.ding@rock-chips.com>
+References: <20260707040613.1992841-1-damon.ding@rock-chips.com>
+ <20260707040613.1992841-4-damon.ding@rock-chips.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 07 Jul 2026 04:17:10 +0000
+Message-Id: <20260707041711.4F7351F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/5] Documentation: iio: add Open Sensor Fusion driver
- overview
-To: Jinseob Kim <kimjinseob88@gmail.com>, Jonathan Cameron
- <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@intel.com>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260707014525.1015-1-kimjinseob88@gmail.com>
- <20260707014525.1015-3-kimjinseob88@gmail.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20260707014525.1015-3-kimjinseob88@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[infradead.org,none];
-	R_DKIM_ALLOW(-0.20)[infradead.org:s=bombadil.20210309];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-321685-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:kimjinseob88@gmail.com,m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:andriy.shevchenko@intel.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	FORGED_SENDER(0.00)[rdunlap@infradead.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-321687-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lists.linux.dev:replyto,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:damon.ding@rock-chips.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[infradead.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,infradead.org:from_mime,infradead.org:email,infradead.org:mid,infradead.org:dkim]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7C72F7172CB
+X-Rspamd-Queue-Id: 5093271731C
 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Critical] Failing probe when deprecated DT properties are missing breaks=
+ DT ABI and prevents their deprecation.
+--
 
+--- Patch [3]: [PATCH v6 3/5] drm/bridge: analogix_dp: Restore mandatory sa=
+msung DP DT properties ---
+commit b573dba50acc6087122ffa4a65680322f4d004f8
+Author: Damon Ding <damon.ding@rock-chips.com>
 
-On 7/6/26 6:45 PM, Jinseob Kim wrote:
-> Document the Linux IIO mapping for Open Sensor Fusion devices.
-> 
-> The overview explains that sensor channels are discovered at runtime
-> from mandatory capability reports. It also documents that OSF0 is a
-> wire-format detail and that protocol_major and protocol_minor carry
-> protocol compatibility information.
-> 
-> Signed-off-by: Jinseob Kim <kimjinseob88@gmail.com>
+drm/bridge: analogix_dp: Restore mandatory samsung DP DT properties
 
+This commit reverts a change that made the samsung,link-rate and
+samsung,lane-count properties optional for Exynos DP. It adds error checking
+to fail the probe early if these properties are missing, aiming to prevent
+link training failures caused by zero values.
 
-Tested-by: Randy Dunlap <rdunlap@infradead.org> # docs build
-Thanks.
+> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers=
+/gpu/drm/bridge/analogix/analogix_dp_core.c
+> index 8cf6b73bceac0..293d8adfe9856 100644
+> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+[ ... ]
+> @@ -1258,10 +1259,14 @@ static int analogix_dp_dt_parse_pdata(struct anal=
+ogix_dp_device *dp)
+>  		 * NOTE: those property parseing code is used for
+>  		 * providing backward compatibility for samsung platform.
+>  		 */
+> -		of_property_read_u32(dp_node, "samsung,link-rate",
+> -				     &video_info->max_link_rate);
+> -		of_property_read_u32(dp_node, "samsung,lane-count",
+> -				     &video_info->max_lane_count);
+> +		if (of_property_read_u32(dp_node, "samsung,link-rate", &val))
+> +			return dev_err_probe(dp->dev, -EINVAL,
+> +					     "Failed to get samsung,link-rate\n");
 
-> ---
->  Documentation/iio/index.rst              |  1 +
->  Documentation/iio/open-sensor-fusion.rst | 72 ++++++++++++++++++++++++
->  MAINTAINERS                              |  1 +
->  3 files changed, 74 insertions(+)
->  create mode 100644 Documentation/iio/open-sensor-fusion.rst
-> 
-> diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-> index ba3e609c6..2713ec5e0 100644
-> --- a/Documentation/iio/index.rst
-> +++ b/Documentation/iio/index.rst
-> @@ -38,4 +38,5 @@ Industrial I/O Kernel Drivers
->     adxl345
->     bno055
->     ep93xx_adc
-> +   open-sensor-fusion
->     opt4060
-> diff --git a/Documentation/iio/open-sensor-fusion.rst b/Documentation/iio/open-sensor-fusion.rst
-> new file mode 100644
-> index 000000000..c28886f3b
-> --- /dev/null
-> +++ b/Documentation/iio/open-sensor-fusion.rst
-> @@ -0,0 +1,72 @@
-> +.. SPDX-License-Identifier: GPL-2.0-only
-> +
-> +Open Sensor Fusion
-> +==================
-> +
-> +Open Sensor Fusion is a sensor aggregation hub interface. The Linux IIO driver
-> +receives OSF protocol frames from an attached device and registers matching IIO
-> +devices for the sensor classes supported by the driver. The actual sensor
-> +channels are discovered at runtime from mandatory OSF capability reports.
-> +
-> +This document is a driver-facing overview for the Linux IIO mapping. The full
-> +wire protocol, firmware behavior, and hardware model details belong in the Open
-> +Sensor Fusion project documentation.
-> +
-> +Device Model
-> +------------
-> +
-> +An OSF device sends binary frames from the device to the host. Devices using the
-> +``opensensorfusion,osf`` compatible are expected to provide
-> +``CAPABILITY_REPORT`` messages so the host can discover which sensor streams are
-> +available. Device Tree describes the attached OSF sensor aggregation hub; it does
-> +not enumerate the individual sensors discovered at runtime.
-> +
-> +The currently supported Linux subset exposes:
-> +
-> +* accelerometer samples as ``IIO_ACCEL`` X/Y/Z channels,
-> +* gyroscope samples as ``IIO_ANGL_VEL`` X/Y/Z channels,
-> +* magnetometer samples as ``IIO_MAGN`` X/Y/Z channels, and
-> +* temperature samples as ``IIO_TEMP``.
-> +
-> +Protocol Scope
-> +---------------
-> +
-> +The driver supports OSF protocol major version 0 for the IIO receive path.
-> +The current wire magic is ``OSF0``; that string is a wire-format detail and is
-> +not the Linux driver identity. Device Tree keeps the generic
-> +``opensensorfusion,osf`` compatible rather than naming a product such as OSF
-> +GREEN or a wire magic value.
-> +
-> +Protocol versioning is carried by the ``protocol_major`` and ``protocol_minor``
-> +fields at fixed offsets in the OSF frame header. The driver currently
-> +supports ``protocol_major`` 0. ``protocol_minor`` changes within major version
-> +0 are intended to remain backward-compatible within the fixed header layout.
-> +Incompatible wire-format changes require a new ``protocol_major``. A future
-> +device that cannot expose compatible version discovery through that fixed
-> +header layout would need a different Device Tree compatible.
-> +
-> +The Linux driver handles device-to-host frames for:
-> +
-> +* ``SENSOR_SAMPLE`` buffered and direct-mode sample data,
-> +* ``CAPABILITY_REPORT`` based IIO device registration, and
-> +* ``DEVICE_STATUS`` cache updates.
-> +
-> +Vendor-private message types are ignored. Command transport, calibration
-> +control ABI, fusion output ABI, and runtime capability removal are outside the
-> +Linux IIO receive path.
-> +
-> +Timestamps
-> +----------
-> +
-> +OSF frames include a device-side ``timestamp_us`` field. Buffered IIO samples use
-> +an IIO timestamp captured on the host when samples are pushed to IIO buffers.
-> +The driver does not correlate the device timestamp with the host IIO
-> +clock.
-> +
-> +Compatibility Notes
-> +-------------------
-> +
-> +The project protocol documentation should define the compatibility rules for
-> +reserved fields, optional flags, and trailing extension data. Until those rules
-> +are finalized, the Linux decoder keeps conservative bounds checks around the
-> +currently supported message layouts.
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e4df9d8dc..17c80b55b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20015,6 +20015,7 @@ OPEN SENSOR FUSION
->  M:	Jinseob Kim <kimjinseob88@gmail.com>
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/iio/opensensorfusion,osf.yaml
-> +F:	Documentation/iio/open-sensor-fusion.rst
->  K:	opensensorfusion
->  
->  OPENCOMPUTE PTP CLOCK DRIVER
+[Severity: Critical]
+Does failing the probe when this property is missing break the DT ABI?
 
--- 
-~Randy
+Since samsung,link-rate is a deprecated property, a modern schema-compliant
+Device Tree might intentionally omit it. If a system boots with such a DT,
+this check will fail the probe with -EINVAL and disable the display.
+
+Could the driver instead fall back to hardware maximums or sensible defaults
+when the deprecated property is absent, rather than returning an error?
+
+> +		video_info->max_link_rate =3D val;
+> +		if (of_property_read_u32(dp_node, "samsung,lane-count", &val))
+> +			return dev_err_probe(dp->dev, -EINVAL,
+> +					     "Failed to get samsung,lane-count\n");
+
+[Severity: Critical]
+Does making samsung,lane-count mandatory similarly break backward compatibi=
+lity
+for valid Device Trees that have intentionally omitted this deprecated prop=
+erty?
+
+> +		video_info->max_lane_count =3D val;
+>  		break;
+>  	}
+>
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707040613.1992=
+841-1-damon.ding@rock-chips.com?part=3D3
 
