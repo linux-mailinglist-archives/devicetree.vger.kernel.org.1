@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-322055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322056-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dClqC77/TGoMtQEAu9opvQ
-	(envelope-from <devicetree+bounces-322055-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:31:42 +0200
+	id T+HNIY//TGr+tAEAu9opvQ
+	(envelope-from <devicetree+bounces-322056-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:30:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BBDF71BF03
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:31:41 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1809B71BECC
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 15:30:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GbbrUXeU;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ezdrps5t;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322055-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322055-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322056-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322056-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 57102316874A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 13:25:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8BB5830DA76B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 13:25:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3FDC41A76E;
-	Tue,  7 Jul 2026 13:25:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D050D41B366;
+	Tue,  7 Jul 2026 13:25:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934AE3FADF6;
-	Tue,  7 Jul 2026 13:25:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ECAA4189C5;
+	Tue,  7 Jul 2026 13:25:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783430709; cv=none; b=mgPLZHeg2lX5HkFUv7S5bj4yzSomsXTmGGMG8QJ6Tj+L/0OPJhKxn2FSqhgEAGqmaw1uVW1GBl3aV6LOp2D+HMV7rfy/EGSD4BrMRFs1Y3NJUcOmRASD//y4rsJIfZ+bSQA2HxEPYuY8shTyZyQQIGMZCA4OrGKqDV65uUQnNfQ=
+	t=1783430710; cv=none; b=bjAgR6wVqkD99JEFR21zSQfCkgfZkcw2xhOYHvNI4PHvutDUlVGo+bIlRqBIhDF4WaoS+bQ2/bykjtXKwaV7E8XnEn1cM7rE90nMDW3N0LBPUhAmbAF3GlwJGXp66dAO39F3YzEz9YpwJuLyJhZtzBNarorbOcR23FNonqY4hfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783430709; c=relaxed/simple;
-	bh=HmZ94qK61PEAudCnvJmh5eY4NTcDxkVDw0FZWy8z+Gw=;
+	s=arc-20240116; t=1783430710; c=relaxed/simple;
+	bh=EleOnnZBM+dhfixq6r7HFdUJR63bJmvSqZ0s17iL/Ls=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=rm86atGicHPfHpDNf+fPuOAIoGRqKIvnzDkKyuX/iwZIKX7cNfETJdIeYvY4fO+kFn7lSc+a58hFgVbRS0Ry+Pmfvw6eGs0a41LZXwBNHZob4CV2QjrFAsP7FPv8AEPO3aWqGoULnwU5xYfnI9XWb/3vQPfqz0agW4rlvlbsG6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GbbrUXeU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F163E1F00A3A;
-	Tue,  7 Jul 2026 13:25:07 +0000 (UTC)
+	 Message-Id; b=SPyCeBM6MBtzkgmkQeJ1uCnntr+SXo0HCW2OVKq0zJFPoqLIOlzOsMm3MgiK0JojPG0xzYYqVH+CJ5gNi6S5k3L9fgyMpm+G1W1WTNKIsqhVyGmvKZzvrYPEAEyu5fSc1Mf98bfutHDF4Tc73oaqSPTQO4vA9NyUu0t6mdgQ7QM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ezdrps5t; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06B361F000E9;
+	Tue,  7 Jul 2026 13:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783430708;
-	bh=HmZ94qK61PEAudCnvJmh5eY4NTcDxkVDw0FZWy8z+Gw=;
+	s=k20260515; t=1783430709;
+	bh=sRTsZByg3jigN6FqrDwzd3A6GFnHFsVi5eGWHjMDrJ4=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=GbbrUXeUh3T40x8CYijabCI9guhMaqxyqhKCXVMGnRAWxkITAle8EfeSwMC+M9IFi
-	 PHp3HDztxSyQU6lB+pbZOiciw+L08XPLbhpESXY2/JrF9r1blI2EWFlzzASRtMlghv
-	 dh0rkx+ll7Q+Ne23CQEa0SE7GkPG22vO7BHagrbm8WxaX+YkWpL2GFIDc2+kIehzzK
-	 5V9zjXz9NqI3RJcqbQb2HLXe+8NeTVJ03WSHfB8aB9To6FGkxvcBOHTSlNIzfPdf4R
-	 W7r1i58YTdto2DtgbMAL6+zQeFlXK9nZfqV0Bf0ZaB7Tl20e2xOcZvALbGCHIbwAmq
-	 rEwuX36dD1pNw==
+	b=ezdrps5t0qJIGAcRzSumhAkuU01eJSeJuBJnO4UghsHoqNwV4KISXfbgRVxsM9ITL
+	 QwOkB4lhFC+zaQWP8qUkoTYwwMMMpJ2C5uIduHqPguFElwcgWiN1M8m5GeGkjb+2Mp
+	 br//pVzcdQ2bMSsdavvV1d/Z+XAte0bKrWdO7wLyM16J+DTO/fj/Qjlo8BaDVDc84u
+	 aWdUizfEf5y7+UmZMx4a0/Kp4H6TX7tXMpdz8kJs4u/RzBVDGZhjS0aXp5/8GyAgEh
+	 WLn/kv5QuTmlj4AiIZyiNL9qKcr+l4Y65wlGh/fo9wEEO9YZPxEQY0Z/oIejkhIp70
+	 n8gB8cBHM+KJQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 19/20] reset: rzg2l: use
- platform_device_set_of_node_from_dev()
+Subject: Re: [PATCH v3 20/20] driver core: platform: count references to all
+ kinds of firmware nodes
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Bartosz Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Frank.Li@kernel.org, dri-devel@lists.freedesktop.org, conor+dt@kernel.org, imx@lists.linux.dev, robh@kernel.org, mfd@lists.linux.dev, lee@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260706-pdev-fwnode-ref-v3-19-1ff028e33779@oss.qualcomm.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, imx@lists.linux.dev, lee@kernel.org, Frank.Li@kernel.org, mfd@lists.linux.dev, conor+dt@kernel.org
+In-Reply-To: <20260706-pdev-fwnode-ref-v3-20-1ff028e33779@oss.qualcomm.com>
 References: <20260706-pdev-fwnode-ref-v3-0-1ff028e33779@oss.qualcomm.com>
- <20260706-pdev-fwnode-ref-v3-19-1ff028e33779@oss.qualcomm.com>
+ <20260706-pdev-fwnode-ref-v3-20-1ff028e33779@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 07 Jul 2026 13:25:07 +0000
-Message-Id: <20260707132507.F163E1F00A3A@smtp.kernel.org>
+Date: Tue, 07 Jul 2026 13:25:08 +0000
+Message-Id: <20260707132509.06B361F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,18 +72,18 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322055-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322056-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:bartosz.golaszewski@oss.qualcomm.com,m:Frank.Li@kernel.org,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:mfd@lists.linux.dev,m:lee@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:bartosz.golaszewski@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:imx@lists.linux.dev,m:lee@kernel.org,m:Frank.Li@kernel.org,m:mfd@lists.linux.dev,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -97,28 +97,67 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,qualcomm.com:email,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,vger.kernel.org:from_smtp,pengutronix.de:email,lists.linux.dev:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,qualcomm.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8BBDF71BF03
+X-Rspamd-Queue-Id: 1809B71BECC
 
-> Ahead of reworking the reference counting logic for platform devices,
-> encapsulate the assignment of the OF node from another device for
-> dynamically allocated platform devices with the provided helper.
->=20
-> Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] OF node reference leak for dynamically allocated platform devices =
+due to incomplete tree-wide conversion.
+--
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+commit 50bc78e1d223d4a9addf4cc0c3c1d384a104d5a6
+Author: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+
+driver core: platform: count references to all kinds of firmware nodes
+
+When using platform_device_register_full(), we currently only increase
+the reference count of the OF node associated with a platform device. We
+symmetrically decrease it in platform_device_release(). With all users in
+tree now converted to using provided platform device helpers for
+assigning OF and firmware nodes, we can now switch to counting references
+of all kinds of firmware nodes.
+
+> diff --git a/drivers/base/platform.c b/drivers/base/platform.c
+> index 9357942d0c79b..a71015f1d9153 100644
+> --- a/drivers/base/platform.c
+> +++ b/drivers/base/platform.c
+> @@ -599,7 +599,7 @@ static void platform_device_release(struct device *de=
+v)
+>  	struct platform_object *pa =3D container_of(dev, struct platform_object,
+>  						  pdev.dev);
+> =20
+> -	of_node_put(pa->pdev.dev.of_node);
+> +	fwnode_handle_put(pa->pdev.dev.fwnode);
+
+[Severity: High]
+Does this code leak the device_node for drivers that haven't been fully
+converted to the platform device helpers?
+
+The commit message mentions that all in-tree users are converted, but there
+appear to be some unconverted drivers still using device_set_of_node_from_d=
+ev
+on dynamically allocated platform devices.
+
+For example, in drivers/usb/host/fsl-mph-dr-of.c:fsl_usb2_device_register():
+	device_set_of_node_from_dev(&pdev->dev, &ofdev->dev);
+
+And in drivers/usb/musb/musb_dsps.c:dsps_create_musb_pdev():
+	device_set_of_node_from_dev(&musb->dev, &parent->dev);
+
+Since device_set_of_node_from_dev() sets and increments dev->of_node without
+setting dev->fwnode, won't fwnode_handle_put(NULL) do nothing and permanent=
+ly
+leak the OF node reference when these devices are released?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706-pdev-fwnod=
-e-ref-v3-0-1ff028e33779@oss.qualcomm.com?part=3D19
-
+e-ref-v3-0-1ff028e33779@oss.qualcomm.com?part=3D20
 
