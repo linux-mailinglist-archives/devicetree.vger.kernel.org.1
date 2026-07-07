@@ -1,141 +1,446 @@
-Return-Path: <devicetree+bounces-322360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322359-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id s+LJMAVuTWq2zwEAu9opvQ
-	(envelope-from <devicetree+bounces-322360-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 23:22:13 +0200
+	id EXJHM7BsTWpMzwEAu9opvQ
+	(envelope-from <devicetree+bounces-322359-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 23:16:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D95071FBCF
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 23:22:13 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 334A671FB22
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 23:16:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=nic.cz header.s=default header.b=eUqwuUDy;
-	dmarc=pass (policy=reject) header.from=nic.cz;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322360-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322360-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=bQNp3CB4;
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322359-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322359-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3C6A03050A60
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 21:18:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 351B830117BA
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 21:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD0A340260;
-	Tue,  7 Jul 2026 21:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 818A22727E2;
+	Tue,  7 Jul 2026 21:16:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.nic.cz (mail.nic.cz [217.31.204.67])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011047.outbound.protection.outlook.com [40.107.130.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B7D8331ED4
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 21:18:15 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783459096; cv=none; b=sLaaNeLppPsi8inzrzoOtptGLi6BBUebf6fbZe3v2V/JNZF/8uEmKF2aYOtekwhd/zBB+eZcmz7kUeNXZdbMNuwCKRktBEF3r6cpKUlW5I1niTcIdjrXeyhw5kUNuAmr1DqSXsTzs+UnJsfcDsSOEWYuMjV1ROsKXspbnoOeuZc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783459096; c=relaxed/simple;
-	bh=yxrolRGXwJlUdx6oC/k5Rv6p45cyOZtvvdNQ1o234bY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TL5uIfEBlXqchJPLm12Rrdh0wVRdRqUU/f7oBuQoyQHzSPwve7ZbzlN6fathoFC9sea+5xk+nuFt/2LX7VPfvbuuLK/2j2LcRtqm7NSPP+eCuY7UUT5oiZfYVvHVuuwQH/3RfMQhQYslJIoopjOrEYFGLQTqnUWOXv2loqXEt2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nic.cz; spf=pass smtp.mailfrom=nic.cz; dkim=pass (1024-bit key) header.d=nic.cz header.i=@nic.cz header.b=eUqwuUDy; arc=none smtp.client-ip=217.31.204.67
-Received: from sil.horo (n1-65-243.nat.suchdol.net [89.22.65.243])
-	by mail.nic.cz (Postfix) with ESMTPSA id 85DD41C061A;
-	Tue,  7 Jul 2026 23:08:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nic.cz; s=default;
-	t=1783458512;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=+9xNDgwRjoYynAhldZbYuclfEP/ZyuKBV2opsp2eP7s=;
-	b=eUqwuUDyhoIdF5E54+lKVoeiRidwSl/ZSwD/nrlWr5gToBFyqD08PVFAzp3sXVyGHvVDvs
-	hGvzLjrBfO6cCe+ixkmkWIVj0tfysgZaw7aqyIuzoPqBsWhzAfWQZW0VtGKCUHHrWMF3RB
-	gsuwcsF4Bhzr9L9ZShiyG0QA0ke1OLk=
-From: =?UTF-8?q?Tom=C3=A1=C5=A1=20Macholda?= <tomas.macholda@nic.cz>
-To: Gregory Clement <gregory.clement@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Cc: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	=?UTF-8?q?Tom=C3=A1=C5=A1=20Macholda?= <tomas.macholda@nic.cz>
-Subject: [PATCH mvebu-dt64] arm64: dts: turris-mox: fix usb3 phys
-Date: Tue,  7 Jul 2026 23:08:29 +0200
-Message-ID: <20260707210830.3708-1-tomas.macholda@nic.cz>
-X-Mailer: git-send-email 2.53.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 969BE42A80;
+	Tue,  7 Jul 2026 21:16:28 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1783458990; cv=fail; b=NedL9FJ1uu3VNyrbynjgbSyi5O1q6Va2PUpmVtHKZcMqvQl6QE6QG6tQ4RhtMc+s2CvagWKLXsqbQtFRgcXgMweKQNdDBaJ0VuZV5al6SehO+Kt+Ugax960QdO1OBZadAyjaF6EBkXf9Se+zpdQe0ng6n03Rsow8kiKanNUt3LI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1783458990; c=relaxed/simple;
+	bh=zRUhrEg4zritCA6lczZHyfqE5filPp3qn24QDVoSf6Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=OP23iBBY/4Di9/U1wuEA581O5fEFRrteKAjt1T5za4bDX79S8o1rIbqe7nUKLd2lwTqCDgCV/DVgmR2oQmuqQyC/3/69vUTj1SCcly1rTru9zzsxfkX74/2SYjJH8M8oDtFe1by01M8ngSXtV0t+VHB/OWLwvuVzSc36044h/qs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=bQNp3CB4; arc=fail smtp.client-ip=40.107.130.47
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UJn3qKYkOdT3aKBfjU8BArSNqNBihe8DO/Mm3nVSaFZzIvp7hVCtFgxsXMtZEDrzuKGgNul/xr46NsJXPIg20jm4kazTOAbsvXrEVVSjuo7CyirEjJ7ZKJCfTPddFVBySwZ/4C5uWauptIGNOmOh0b+l6+OCfNCRMuI7JAei+VT9SfgfKhhn5rG0q4Sf7loq9YJtjoUxLcd3eP6UL/EoKJTx5cOLdgbKzsXjLF6lyYdOFbo/pkz01c9f9pakXHmrwFPyuUNsEshcWzw1u4PTHY7c4ONSSO+jklImsK4KkwUoAWQJAbJWwfcbCFTpwtj+U2+jwEFzEU+LWIR6l0Lj3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RFvMePG8Oh+Lrkprz4/C5WyBmkpKf8UIf0Tqy/dQaXE=;
+ b=XGHJx7lBpw4Pso4pU/2gXai7/5hEkCuBN2sGmWffpxLU86jm3vi6r/0sRe2xGIlTVGs5+oAlGmBXmg7gz3s3AfwN1MFHzJNxe5745zbaW2LZexFJLytuD3kl/yH/I2Qird2NWrjWRdRIsh+WsrpdnsznAqp3k5SzuIi9byvsvOWAyy1Z435J7wUM2MCg+ZHMOwOGW+pAhtCAnL5Pg85zQUfpdxOcUbCPIr7PTqWjN4gWybUUZNDmS+x921GTG1HVHj5rlGtwwFVYSigm2m7S+jABYPIOitVVSVXmTlYwgBPzxZk4whFyNvNY57sm1PQtwFdwYYmIn1poM4OsHBMWYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RFvMePG8Oh+Lrkprz4/C5WyBmkpKf8UIf0Tqy/dQaXE=;
+ b=bQNp3CB4GZTVUTN+0nrVV/vOYxbz+de/XBAKxm/8PFedEg5vFKEKNMAtiK/QM3h9gmYuOLAK9nP2NiGFwudI8YULKcyORVvwA73trPi7OXxgc6cjhbyA2bAQtH9KMB4aY4f5J/RI1OG36ONgeYE28PeE4EQgVjBWFmU+7gXSTs6PaWeVyXuZ4RaokiiUVD6LJbKJPylOP8JdW0eX37L2o1PhHYpRRQssy8ISc7Mp1b2I1CzknRj+ebA9e2yk/7zYrEMwVj8v+hsP3wKsyqNfCWI5fF6FSNcbopkkLhMnvrKlnxrWpUsXYFXx64368zwJ8bQ8wYgn+j3QlNkB2s6TyQ==
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
+ by VI0PR04MB11573.eurprd04.prod.outlook.com (2603:10a6:800:2fe::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.11; Tue, 7 Jul
+ 2026 21:16:23 +0000
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0159.007; Tue, 7 Jul 2026
+ 21:16:23 +0000
+From: Frank.Li@oss.nxp.com
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.li@kernel.org>,
+	linux-kernel@vger.kernel.org (open list:VOLTAGE AND CURRENT REGULATOR FRAMEWORK),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+Cc: imx@lists.linux.dev,
+	Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH 1/1] regulator: dt-bindings: Convert ltc3589.txt to yaml format
+Date: Tue,  7 Jul 2026 17:16:09 -0400
+Message-ID: <20260707211612.2757349-1-Frank.Li@oss.nxp.com>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PH8PR02CA0031.namprd02.prod.outlook.com
+ (2603:10b6:510:2da::7) To GV2PR04MB11799.eurprd04.prod.outlook.com
+ (2603:10a6:150:2cf::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spamd-Bar: +++
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|VI0PR04MB11573:EE_
+X-MS-Office365-Filtering-Correlation-Id: 299f1745-c997-41aa-c638-08dedc6cff44
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|19092799006|23010399003|11063799006|56012099006|3023799007|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info:
+	65ctWZjnPdDDIT6Acs/7e4RKUBdnFjQ6De7UqKH0UxoZtoKrTyE5IJwLt5a/7YcwfBNU2t4JFJgREK39Oir8o/UsXS0uuwu3MKVlq1i5nTJLDg/g1WKETy4W2b4jv5oQ0XvmlVt/dPnGKp1Ttg8D/P/2KXi6o383fR5DHxufg1vtFI1hdnJ18abMU4xyrslU5lZUDkY7BVopD5x01EtCAt3tewngch5SXWsiNAIJLDRX/1SwKrPBr3p+nCuoDr79uUpW3J3XCK23U61YZT2dh/PPn3zmAi2r9XaSrwCBZ+8pLgqvSqboC1s+Z0uKTEAMFa2ABPnMbGw1kWhnOC9Dm1G6HzzsTvNBwtTexkptXWWe+QcMWK611QHwBydVPz0Dse2uB2rHXrZJrXfDfChNlqtWzHU/Rw661R5t8wZO1ERfoQH7e58s2Sm1GTZR8CxvQSQ+Upqn24oh+gCmRHmuObvwrp2x23hJla+48vuLMvG4HYAfYKahm2As0uqHs4nEzvK5LiEvoD+5iHRGSDE+aFKg2YvbqUxpucwmMRsw5QukaIYyFK876gMlCGRnfWgXKmUPR2ISf7adWSCDkIAUqqKbVaFHH534RYIk+yYgXZo=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(19092799006)(23010399003)(11063799006)(56012099006)(3023799007)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?XZXLj1GNfv/GlAWeyzwQEv2+5zA9YDLgxfyfwrbtL3Oe7WOWJFzTuaNtL7/u?=
+ =?us-ascii?Q?Uu3j3kowBLzHVxB17l3Grmp0q54tUas7LV1RoEbeKJRuCtsLQVTOIK8wjrXJ?=
+ =?us-ascii?Q?aqmDHz+cSPFig/Sn8MJA9G0kBfRX3/vkfgSFeEcrgKYDjr1RnjpIZwlWE0Z5?=
+ =?us-ascii?Q?nGHcxz8LEUjmqdBzpN+dgbZFt5LlAqw15aixUn9aRoahPlfAT2zDG16IWmUB?=
+ =?us-ascii?Q?3DaOQd+NaXPWL1yV9LR6mhN3BIxix4wCeA6Leuhd5HfTx40ok9uSUNk11vbK?=
+ =?us-ascii?Q?Gu8vxalTXOFxnnykaLF5QNOaPuJWmQHuGZ/9W8n0vs6cxHFfbIp7uOGZzXUu?=
+ =?us-ascii?Q?z1t9KbP5Oi9vNACCgTjqQTUUQluRoeNbd1xRHVSZUOJjG6XVZpwMr23J9xpv?=
+ =?us-ascii?Q?HjGOPjKfAkx1ZLnLZL3xhIso6MCuTaj/7BsdbANOoBoUa7XzrH5lv/vVkHCu?=
+ =?us-ascii?Q?6oCxrwfIaffYTi65RQdAdIEAnEI1ZYWnEpJfvE6J0tnLVsPUi919PboCGoVn?=
+ =?us-ascii?Q?dKuY5RKH0ehyg61WULPmLpHOTmo3qyD8S7k2cjwDZVkVLLmUUAftQE1lWRkZ?=
+ =?us-ascii?Q?WSPFV/zfflTUpA1pHoGGU6O/e1raN6h5xNj4J9ATpRny9Y6E8tgLYLSNgHQd?=
+ =?us-ascii?Q?boG9avcebfI/QY2sR5oZiOnc4AqZ/lHUt+5vqVlRcFDaANwnWbHv+zX6o/MW?=
+ =?us-ascii?Q?nkiMJMJNkVbUDBVYH5TBkj9BDZZW+xgsHYqsv4wxFG2SoDixXDxSUeuSoEIv?=
+ =?us-ascii?Q?HyIMN1BgZL8+HeOI3aV1LYYZGXj1KyPr1tof9XyRWm3lmn+oysC7gsOU8WYv?=
+ =?us-ascii?Q?bJPsiiijR1X8REx+SDndfFlVA9h+7ppK3G36oSNdFssqbJ8xKo1Gt/V81ynf?=
+ =?us-ascii?Q?tXTIJl85jc8j27c6QK75dnyI8I3lqeEegYQByHiGmjfeQo3MkxTDDqRoyR3w?=
+ =?us-ascii?Q?OgOdF84TEevutXaXh/uXdgjC7iFQBCLoG7mtvC8bMIQoQuuqtYh9rXLFzHLs?=
+ =?us-ascii?Q?Jmbe2AwCOVnMtrj2cCsADIjEaFfB2GCnpMjwikbFm6i/LFoukcyG3j948RA/?=
+ =?us-ascii?Q?8PN4bKqSvoLSkltjy9cXGhIcd/7neL27TuqGxsKiqnI0udgCukI3psNVDVAI?=
+ =?us-ascii?Q?2M3pH3JHtGov/HBE4ElPu+2YTb6S/A48hchvt7KaE1Fv88vxJk0RGnfoQSyf?=
+ =?us-ascii?Q?oowX5FexQiTPN2gOyhibDUn53TX4PbA4gyyQCdAxETLskOAhbNJpsM69gwGv?=
+ =?us-ascii?Q?vFwxPHDHqoG+kLKDeNxHtaVIS5RwDUn5DnH3X6m3AUIp9kpi91J/kC6x0eF0?=
+ =?us-ascii?Q?CaUPJdmC+qYsO65B2Ix+IiblwBF1EV86vm+mMRwSKVpBrnUb3iwT+1qbG5Py?=
+ =?us-ascii?Q?eFjKQN2sjtqRI8KAlycaScCNUkqYRZQVEIf0YtjvOeA5MKVO48hafi3d/94z?=
+ =?us-ascii?Q?GEpJ28wHam316YrK4TjNLKNXmV69M9qwYns7e/AMpokxV2AevaMmuVKFjGsX?=
+ =?us-ascii?Q?1x2eh23rTJq9L0LNcyTkH5l6kVgjUe26FVrZPekGoEUR5Qyr758/yomRIYu5?=
+ =?us-ascii?Q?h77nfCBvov5Viey/stQQVhoNQ8LGjSGHQDmvQdJd0D2ifJdQJHbYSiQ2OB+T?=
+ =?us-ascii?Q?TYpsfg81h8VlXKNUD3D5nDN9KaEsfiCwDyOraizAkKIgGnM4UOLuhbudJmtV?=
+ =?us-ascii?Q?8NJMoynqoVk6fsp+972XBIWXy4Es8kZ1peAyOWM4Xs7in6CaM8nCS4yXtvhW?=
+ =?us-ascii?Q?jVudWt73RLfyD0OmwL4Qw0duI5BSjZ8=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 299f1745-c997-41aa-c638-08dedc6cff44
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 21:16:23.5010
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nhr1IgJ8G4a/qqrSm/dMhzpYy8KWuIEfp+oYwpYaplDmaZg0GY/yVdvDgsrQiyHGuqx2/zC9Hf3WvDkH4qJW90YZae6R2HY1wvTcp7yfzC/P50hES01gOmY1C0Whgvj8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB11573
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.11 / 15.00];
+X-Spamd-Result: default: False [3.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MIXED_CHARSET(0.77)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[nic.cz,reject];
-	R_DKIM_ALLOW(-0.20)[nic.cz:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322360-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[bootlin.com,lunn.ch,gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:gregory.clement@bootlin.com,m:andrew@lunn.ch,m:sebastian.hesselbarth@gmail.com,m:kabel@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:tomas.macholda@nic.cz,m:sebastianhesselbarth@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-322359-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.li@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:Frank.Li@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[tomas.macholda@nic.cz,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,vger.kernel.org];
+	FORGED_SENDER(0.00)[Frank.Li@oss.nxp.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tomas.macholda@nic.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nic.cz:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[devicetree];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.Li@oss.nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email,oss.nxp.com:mid,oss.nxp.com:from_mime,NXP1.onmicrosoft.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1D95071FBCF
+X-Rspamd-Queue-Id: 334A671FB22
 
-After commit 00e6d608fe80b0f6 ("arm64: dts: marvell: armada-37xx: swap
-PHYs' order in USB3 controller node") swapped USB3 PHY order, USB
-initialization breaks on Turris MOX.
+From: Frank Li <Frank.Li@nxp.com>
 
-This regression was exposed by commit 91ddf6f722084383 ("phy: marvell:
-mvebu-a3700-utmi: fix incorrect USB2_PHY_CTRL register access") which
-made USB2 devices not work at all.
+Convert ltc3589.txt to yaml format.
 
-Fix the issue by explicitly adding all USB3 PHYs and PHY names to
-Turris MOX device-tree.
-
-Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
-Signed-off-by: Tomáš Macholda <tomas.macholda@nic.cz>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
- arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../bindings/regulator/lltc,ltc3589.yaml      | 143 ++++++++++++++++++
+ .../devicetree/bindings/regulator/ltc3589.txt |  99 ------------
+ 2 files changed, 143 insertions(+), 99 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/lltc,ltc3589.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/ltc3589.txt
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-index f4d73c8b1a6d..bd00e7df87c6 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-@@ -290,7 +290,8 @@ connector {
- 
- &usb3 {
- 	status = "okay";
--	phys = <&comphy2 0>;
-+	phys = <&usb2_utmi_otg_phy>, <&comphy2 0>;
-+	phy-names = "usb2-phy", "usb3-phy";
- };
- 
- &mdio {
+diff --git a/Documentation/devicetree/bindings/regulator/lltc,ltc3589.yaml b/Documentation/devicetree/bindings/regulator/lltc,ltc3589.yaml
+new file mode 100644
+index 0000000000000..3bf44fbe321bc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/lltc,ltc3589.yaml
+@@ -0,0 +1,143 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/lltc,ltc3589.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Linear Technology LTC3589 PMIC
++
++maintainers:
++  - Frank Li <Frank.li@kernel.org>
++
++description:
++  Linear Technology LTC3589, LTC3589-1 and LTC3589-2 are PMICs
++  containing three buck regulators, one boost regulator and four
++  LDO regulators.
++
++properties:
++  compatible:
++    enum:
++      - lltc,ltc3589
++      - lltc,ltc3589-1
++      - lltc,ltc3589-2
++
++  reg:
++    maxItems: 1
++
++  regulators:
++    type: object
++    additionalProperties: false
++
++    patternProperties:
++      "^(sw1|sw2|sw3|bb-out|ldo1|ldo2)$":
++        type: object
++        unevaluatedProperties: false
++        $ref: regulator.yaml#
++
++        properties:
++          lltc,fb-voltage-divider:
++            description:
++              Feedback voltage divider resistor values (R1, R2) in ohms.
++              Regulators sw1, sw2, sw3, and ldo2 can regulate the feedback
++              reference from 0.3625 V to 0.75 V in 12.5 mV steps. The output
++              voltage thus ranges between 0.3625 * (1 + R1/R2) V and
++              0.75 * (1 + R1/R2) V. Regulators bb-out and ldo1 have a fixed
++              0.8 V reference and thus output 0.8 * (1 + R1/R2) V. The ldo3
++              regulator is fixed to 1.8 V on LTC3589 and to 2.8 V on
++              LTC3589-1,2. The ldo4 regulator can output between 1.8 V and
++              3.3 V on LTC3589 and between 1.2 V and 3.2 V on LTC3589-1,2 in
++              four steps. The ldo1 standby regulator can not be disabled and
++              thus should have the regulator-always-on property set.
++            $ref: /schemas/types.yaml#/definitions/uint32-array
++            items:
++              - description: R1 in ohms
++              - description: R2 in ohms.
++
++      "^(ldo3|ldo4)$":
++        type: object
++        unevaluatedProperties: false
++        $ref: regulator.yaml#
++
++required:
++  - compatible
++  - reg
++  - regulators
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pmic@34 {
++            compatible = "lltc,ltc3589-1";
++            reg = <0x34>;
++
++            regulators {
++                sw1 {
++                    regulator-min-microvolt = <591930>;
++                    regulator-max-microvolt = <1224671>;
++                    lltc,fb-voltage-divider = <100000 158000>;
++                    regulator-ramp-delay = <7000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                sw2 {
++                    regulator-min-microvolt = <704123>;
++                    regulator-max-microvolt = <1456803>;
++                    lltc,fb-voltage-divider = <180000 191000>;
++                    regulator-ramp-delay = <7000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                sw3 {
++                    regulator-min-microvolt = <1341250>;
++                    regulator-max-microvolt = <2775000>;
++                    lltc,fb-voltage-divider = <270000 100000>;
++                    regulator-ramp-delay = <7000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                bb-out {
++                    regulator-min-microvolt = <3387341>;
++                    regulator-max-microvolt = <3387341>;
++                    lltc,fb-voltage-divider = <511000 158000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                ldo1 {
++                    regulator-min-microvolt = <1306329>;
++                    regulator-max-microvolt = <1306329>;
++                    lltc,fb-voltage-divider = <100000 158000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                ldo2 {
++                    regulator-min-microvolt = <704123>;
++                    regulator-max-microvolt = <1456806>;
++                    lltc,fb-voltage-divider = <180000 191000>;
++                    regulator-ramp-delay = <7000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                ldo3 {
++                    regulator-min-microvolt = <2800000>;
++                    regulator-max-microvolt = <2800000>;
++                    regulator-boot-on;
++                };
++
++                ldo4 {
++                    regulator-min-microvolt = <1200000>;
++                    regulator-max-microvolt = <3200000>;
++                };
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/regulator/ltc3589.txt b/Documentation/devicetree/bindings/regulator/ltc3589.txt
+deleted file mode 100644
+index 8010530361465..0000000000000
+--- a/Documentation/devicetree/bindings/regulator/ltc3589.txt
++++ /dev/null
+@@ -1,99 +0,0 @@
+-Linear Technology LTC3589, LTC3589-1, and LTC3589-2 8-output regulators
+-
+-Required properties:
+-- compatible: "lltc,ltc3589", "lltc,ltc3589-1" or "lltc,ltc3589-2"
+-- reg: I2C slave address
+-
+-Required child node:
+-- regulators: Contains eight regulator child nodes sw1, sw2, sw3, bb-out,
+-  ldo1, ldo2, ldo3, and ldo4, specifying the initialization data as
+-  documented in Documentation/devicetree/bindings/regulator/regulator.txt.
+-
+-Each regulator is defined using the standard binding for regulators. The
+-nodes for sw1, sw2, sw3, bb-out, ldo1, and ldo2 additionally need to specify
+-the resistor values of their external feedback voltage dividers:
+-
+-Required properties (not on ldo3, ldo4):
+-- lltc,fb-voltage-divider: An array of two integers containing the resistor
+-  values R1 and R2 of the feedback voltage divider in ohms.
+-
+-Regulators sw1, sw2, sw3, and ldo2 can regulate the feedback reference from
+-0.3625 V to 0.75 V in 12.5 mV steps. The output voltage thus ranges between
+-0.3625 * (1 + R1/R2) V and 0.75 * (1 + R1/R2) V. Regulators bb-out and ldo1
+-have a fixed 0.8 V reference and thus output 0.8 * (1 + R1/R2) V. The ldo3
+-regulator is fixed to 1.8 V on LTC3589 and to 2.8 V on LTC3589-1,2. The ldo4
+-regulator can output between 1.8 V and 3.3 V on LTC3589 and between 1.2 V
+-and 3.2 V on LTC3589-1,2 in four steps. The ldo1 standby regulator can not
+-be disabled and thus should have the regulator-always-on property set.
+-
+-Example:
+-
+-	ltc3589: pmic@34 {
+-		compatible = "lltc,ltc3589-1";
+-		reg = <0x34>;
+-
+-		regulators {
+-			sw1_reg: sw1 {
+-				regulator-min-microvolt = <591930>;
+-				regulator-max-microvolt = <1224671>;
+-				lltc,fb-voltage-divider = <100000 158000>;
+-				regulator-ramp-delay = <7000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-
+-			sw2_reg: sw2 {
+-				regulator-min-microvolt = <704123>;
+-				regulator-max-microvolt = <1456803>;
+-				lltc,fb-voltage-divider = <180000 191000>;
+-				regulator-ramp-delay = <7000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-
+-			sw3_reg: sw3 {
+-				regulator-min-microvolt = <1341250>;
+-				regulator-max-microvolt = <2775000>;
+-				lltc,fb-voltage-divider = <270000 100000>;
+-				regulator-ramp-delay = <7000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-
+-			bb_out_reg: bb-out {
+-				regulator-min-microvolt = <3387341>;
+-				regulator-max-microvolt = <3387341>;
+-				lltc,fb-voltage-divider = <511000 158000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-
+-			ldo1_reg: ldo1 {
+-				regulator-min-microvolt = <1306329>;
+-				regulator-max-microvolt = <1306329>;
+-				lltc,fb-voltage-divider = <100000 158000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-
+-			ldo2_reg: ldo2 {
+-				regulator-min-microvolt = <704123>;
+-				regulator-max-microvolt = <1456806>;
+-				lltc,fb-voltage-divider = <180000 191000>;
+-				regulator-ramp-delay = <7000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-
+-			ldo3_reg: ldo3 {
+-				regulator-min-microvolt = <2800000>;
+-				regulator-max-microvolt = <2800000>;
+-				regulator-boot-on;
+-			};
+-
+-			ldo4_reg: ldo4 {
+-				regulator-min-microvolt = <1200000>;
+-				regulator-max-microvolt = <3200000>;
+-			};
+-		};
+-	};
 -- 
-2.54.0
+2.43.0
 
 
