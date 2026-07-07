@@ -1,243 +1,132 @@
-Return-Path: <devicetree+bounces-322217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322218-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BSTVOeQmTWp6vwEAu9opvQ
-	(envelope-from <devicetree+bounces-322217-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:18:44 +0200
+	id st9mDhIlTWo1vwEAu9opvQ
+	(envelope-from <devicetree+bounces-322218-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:10:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEF6771DC00
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:18:43 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0C9271DB31
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:10:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AXrH+MGu;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=jk9WV1lS;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322217-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322217-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322218-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322218-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C591C3004D9C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 16:08:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 34070301548B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 16:08:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E579342B328;
-	Tue,  7 Jul 2026 16:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD484314B0;
+	Tue,  7 Jul 2026 16:08:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A797B33291F
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 16:08:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A983DC4A0;
+	Tue,  7 Jul 2026 16:08:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783440525; cv=none; b=bxfo6BVQ3qH7dScajVvt43sV4J/em/v519ULH6B8v30RNZXl2FawhuQqJwrOe53H8/MWEcphb7wuMAiSb/gL6s040cy1zq93KuF9Iv5b6udBoZ3wQsSsajaCh9k3sUnu4kehhutttzkitoglalBYGbhNyqo8xuPNLZXte3pnT1Q=
+	t=1783440534; cv=none; b=s62LW5rNo1hZDyNRrVIfLUwVvsSYMQ9bUkVt/JoF9CwvxpiUS3NB680EkByCUOU744R0hh9uDwsH4TTZrR3HzRdMsDH+tQ6KCyDXGVGzUUJkCx3GtlNhskiCns7XYWFf46b4dtbGKU/J34QFPU9lGn3aYVLn0uOxmY+inYprw6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783440525; c=relaxed/simple;
-	bh=ws2+ohvrTmOigQi/iiBGcj7E4O9EyMxVtV0c/hJzzS4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=c7RSNobAgXMKqJ6UFE1waqvXbdnJaM1WQ/XOMM5uETyCLdxZfSYE/tv0whlJeUIqzEz+KFJiYqDhOlYimdYGg1cOAAYe8SwmphWPQ1VepxAHJGS7ZlRgmDiO4HO0LCaoxmqWmAkdHX8gT+YRYl1Xb6M6iveHashoB++gczE0X/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AXrH+MGu; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBCF81F000E9;
-	Tue,  7 Jul 2026 16:08:43 +0000 (UTC)
+	s=arc-20240116; t=1783440534; c=relaxed/simple;
+	bh=xtHMEG1TCejI8D4pEoh7MRQLg5UbMQHhYQUdiHQHI3I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rIGnKRVHI2kjIc/PjrUXlqUCCgC5RPaEDMJf6GwYxm7tfV6z2sfqE3GCwhWZmvYeWletH7ooCAoXEE1WuRsrqFDYkm1P5RWBy4xBfKVQUFoZKOJ6YKOrC3s8x8VAMFH9RsZ2oDS7TC6yw0VYZsViWSfxYfKWhIObkLDihhPejhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jk9WV1lS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 640491F000E9;
+	Tue,  7 Jul 2026 16:08:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783440524;
-	bh=cOpEKPHlMJv4NamB+C4PklteS5eqqfez5OQkBmbYBsw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=AXrH+MGutokjDEFmsQMh9PeanDGRWP0dkDjJ6G07ADOjuCUW2bPpg/6tWyMmZDaKn
-	 kZ9qSxMUPYKlZjWGfheg7zV7119RFJfClzXiPcEBqaektOv+/CJAkSorEZ+XKBHB2x
-	 LH5QvdCNy2tBE3Ey1yLHOuLhuMoakWyg1w91rByK52l3e0JAj2v8lps9ouXLq82O6G
-	 vNIhOWs3lBUcyC+rbjL5oaI7JPFnCMC8rS9P8BNWzK3c3G8O44+M9SXM2r2WZ0DQvm
-	 3sJG2OWHg5EcI9nu+2Zryo3fkVCqUeT+8Ob1WLqnHNMA3iWbK+EBZrjirtfsVm6jU6
-	 EL41nDXaaJ0Mg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 3/4] pmdomain: mediatek: Add support for Direct CTL
- simple power sequence
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260707155535.199383-4-angelogioacchino.delregno@collabora.com>
-References: <20260707155535.199383-1-angelogioacchino.delregno@collabora.com>
- <20260707155535.199383-4-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 07 Jul 2026 16:08:43 +0000
-Message-Id: <20260707160843.EBCF81F000E9@smtp.kernel.org>
+	s=k20260515; t=1783440533;
+	bh=xtHMEG1TCejI8D4pEoh7MRQLg5UbMQHhYQUdiHQHI3I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=jk9WV1lS6vKOQaZZbkVIjbi/Ew2VREc4kAnJoUPb7NkCB85HnllzL5Ra0XyuRKQ1/
+	 CVg/6rPW0AAjyNUq17snGujS0X8Ot+xQWqhdM7f8e0AHWx/BberVp1t4ydXlXJYTCh
+	 CsBmaWELwJ18mqbcY6Wsvz7tfzhBRx3VCixAPWOANcUDJkh3n+6Kcm2Blvppq5njXR
+	 FzNoWstQnv44+lDVAUQx48fS4949T2qsc8605vQfMXTqsZscWL18Av++X1G7azR8Tv
+	 8Rc+CBVgv8I5Ra1HY5MD9fK+YtU3mKi//17qZkSXXoYzQXhPkVhtposnj8atD6lXjd
+	 eGP0NQvu7/MWA==
+Date: Tue, 7 Jul 2026 17:08:48 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, David Heidelberg <david@ixit.cz>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	oe-linux-nfc@lists.linux.dev, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: nfc: samsung,s3fwrn5:
+ add S3NRN4V and clk-req-gpios
+Message-ID: <20260707-purr-pucker-b9e8dd8dc9c0@spud>
+References: <20260705190621.128257-1-jorijnvdgraaf@catcrafts.net>
+ <20260705190621.128257-2-jorijnvdgraaf@catcrafts.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="22Mwl49F0l+F6eKI"
+Content-Disposition: inline
+In-Reply-To: <20260705190621.128257-2-jorijnvdgraaf@catcrafts.net>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-5.26 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322217-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:angelogioacchino.delregno@collabora.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:jorijnvdgraaf@catcrafts.net,m:krzk@kernel.org,m:david@ixit.cz,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:oe-linux-nfc@lists.linux.dev,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:andrew@lunn.ch,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-322218-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,spud:mid,microchip.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DEF6771DC00
+X-Rspamd-Queue-Id: E0C9271DB31
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
+--22Mwl49F0l+F6eKI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-New issues:
-- [Low] Ignoring the return value of `clk_bulk_prepare_enable` in the error=
- recovery path of `scpsys_power_off` violates its `__must_check` attribute.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Pre-existing issues:
-- [High] If `scpsys_bus_protect_enable()` fails in `scpsys_power_off()`, it=
- returns early without re-enabling `subsys_clks`, bypassing the newly added=
- clock recovery block and breaking the clock refcount.
-- [High] Error paths in `scpsys_power_off()` leave the hardware in a corrup=
-ted state (SRAM disabled, bus protection active, and buck isolated) because=
- they fail to revert these states before returning an error.
-- [High] Error paths in `scpsys_power_on()` disable clocks and regulators w=
-ithout reverting the power-on hardware sequence, leaving the domain hardwar=
-e partially ON while genpd considers it OFF.
---
+--22Mwl49F0l+F6eKI
+Content-Type: application/pgp-signature; name=signature.asc
 
---- Patch [3]: [PATCH v2 3/4] pmdomain: mediatek: Add support for Direct CT=
-L simple power sequence ---
-commit a25fe6d3db6b42f564ecc5977f0a00e29a0cfd96
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+-----BEGIN PGP SIGNATURE-----
 
-pmdomain: mediatek: Add support for Direct CTL simple power sequence
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCak0kkAAKCRB4tDGHoIJi
+0hLiAQCalXgHa4e8d6O5afFL59JI421HoDHDPn7f0Z/b2dxWGgD/XW0WuSId5uve
+i4mcqO4b3vUScmWctGMq9EeyXOODxwo=
+=gEEu
+-----END PGP SIGNATURE-----
 
-This commit adds a simplified power sequence for certain new MediaTek SoCs=
-=20
-(like MT8196 and MT6991). The new sequence avoids using RTFF hardware and=20
-certain control bits, handling power domain enablement automatically after=
-=20
-exiting reset.
-
-> diff --git a/drivers/pmdomain/mediatek/mtk-pm-domains.c b/drivers/pmdomai=
-n/mediatek/mtk-pm-domains.c
-> index db543d4b1813c..feba436279c54 100644
-> --- a/drivers/pmdomain/mediatek/mtk-pm-domains.c
-> +++ b/drivers/pmdomain/mediatek/mtk-pm-domains.c
-[ ... ]
-> @@ -682,7 +733,8 @@ static int scpsys_power_on(struct generic_pm_domain *=
-genpd)
->  err_enable_bus_protect:
->  	scpsys_bus_protect_enable(pd, 0);
->  err_disable_sram:
-> -	scpsys_sram_disable(pd);
-> +	if (!MTK_SCPD_CAPS(pd, MTK_SCPD_SIMPLE_PWRSEQ))
-> +		scpsys_sram_disable(pd);
->  err_disable_subsys_clks:
->  	if (!MTK_SCPD_CAPS(pd, MTK_SCPD_STRICT_BUS_PROTECTION))
->  		clk_bulk_disable_unprepare(pd->num_subsys_clks,
-
-[Severity: High]
-This is a pre-existing issue, but if a step fails during scpsys_power_on()
-after the initial MTCMOS power-on sequence, the function jumps to these=20
-error labels. It disables the clocks and regulators, but does this leave=20
-the domain's MTCMOS physically ON since it doesn't call a corresponding=20
-power-off sequence to revert it? Could this hardware inconsistency cause=20
-issues while the framework considers the domain OFF?
-
-> @@ -698,16 +750,17 @@ static int scpsys_power_off(struct generic_pm_domai=
-n *genpd)
->  {
->  	struct scpsys_domain *pd =3D container_of(genpd, struct scpsys_domain, =
-genpd);
->  	struct scpsys *scpsys =3D pd->scpsys;
-> -	bool tmp;
->  	int ret;
-> =20
->  	ret =3D scpsys_bus_protect_enable(pd, 0);
->  	if (ret < 0)
->  		return ret;
-> =20
-> -	ret =3D scpsys_sram_disable(pd);
-> -	if (ret < 0)
-> -		return ret;
-> +	if (!MTK_SCPD_CAPS(pd, MTK_SCPD_SIMPLE_PWRSEQ)) {
-> +		ret =3D scpsys_sram_disable(pd);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-
-[Severity: High]
-This is a pre-existing issue, but if scpsys_sram_disable() or=20
-scpsys_bus_protect_enable() fail here and return early, the framework will=
-=20
-still treat the domain as ON. Does this early return leave the hardware=20
-physically isolated, potentially causing active consumer devices to hit an=
-=20
-active bus protector or unpowered SRAM?
-
-[ ... ]
-> @@ -720,15 +773,17 @@ static int scpsys_power_off(struct generic_pm_domai=
-n *genpd)
->  		return ret;
-> =20
->  	if (MTK_SCPD_CAPS(pd, MTK_SCPD_MODEM_PWRSEQ))
-> -		scpsys_modem_pwrseq_off(pd);
-> +		ret =3D scpsys_modem_pwrseq_off(pd);
-> +	else if (MTK_SCPD_CAPS(pd, MTK_SCPD_SIMPLE_PWRSEQ))
-> +		ret =3D scpsys_simple_pwrseq_off(pd);
->  	else
-> -		scpsys_ctl_pwrseq_off(pd);
-> +		ret =3D scpsys_ctl_pwrseq_off(pd);
-> =20
-> -	/* wait until PWR_ACK =3D 0 */
-> -	ret =3D readx_poll_timeout(scpsys_domain_is_on, pd, tmp, !tmp, MTK_POLL=
-_DELAY_US,
-> -				 MTK_POLL_TIMEOUT);
-> -	if (ret < 0)
-> +	if (ret < 0) {
-> +		/* Re-enable clocks so that next power off doesn't break the refcount =
-*/
-> +		clk_bulk_prepare_enable(pd->num_subsys_clks, pd->subsys_clks);
-
-[Severity: High]
-This is a pre-existing issue, but if scpsys_bus_protect_enable() fails=20
-earlier in scpsys_power_off() when called with BUS_PROT_IGNORE_SUBCLK, it=20
-returns early. Does that early return completely bypass this newly added=20
-clock recovery block, leaving the subsystem clocks disabled while the=20
-domain is logically considered ON?
-
-[Severity: Low]
-Does this error recovery block ignore the return value of=20
-clk_bulk_prepare_enable()? Since the function is declared with=20
-__must_check in the clk API, could this cause a -Wunused-result compiler=20
-warning and break builds using -Werror?
-
->  		return ret;
-> +	}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707155535.1993=
-83-1-angelogioacchino.delregno@collabora.com?part=3D3
+--22Mwl49F0l+F6eKI--
 
