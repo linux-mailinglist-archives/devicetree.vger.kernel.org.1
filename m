@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-322110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322112-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id auuGLrAJTWr0twEAu9opvQ
-	(envelope-from <devicetree+bounces-322110-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:14:08 +0200
+	id zmZaNuwLTWqguAEAu9opvQ
+	(envelope-from <devicetree+bounces-322112-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:23:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4313471C6AC
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:14:08 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AC2271C8D4
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 16:23:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=a4LH6Y79;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=enDqMtlq;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322110-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322110-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322112-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322112-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 644513008C28
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:11:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E9A8F30473DD
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 14:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3104A341ADD;
-	Tue,  7 Jul 2026 14:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6083C3064B5;
+	Tue,  7 Jul 2026 14:11:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AC0E343883;
-	Tue,  7 Jul 2026 14:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F552346A02;
+	Tue,  7 Jul 2026 14:11:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783433499; cv=none; b=biJ76lqgjQbFX8n9ufdA05tFwrCP38r3i1tgFs20riMOHZUZkG82SkZfMqc5+KxfDOsiTxUXx5O1IvBOmtgDWIvSqPFkHUA9wIWD6IkyAPAat4J8et+lbUmmaYkZGSK1jnePfjGBGhPV5tgVDbJO0gaYa0k2tmFsMr0CguMMp5E=
+	t=1783433500; cv=none; b=eiUnko1bSPzXoDdhZgxuqrqFPrC9faGS0FTtQXFCxFgv9BrdImDO84Gfr4PywbvmVrtG0CrN4Pbx9PDcVZRBqtyhiyDCVNSW2Z2C3F5oumEnmYljuU0FWNIRB/HHSeQ+6Zaxoa8rprZ7HRGx5/PQv9/I5hpCxCRsMFSF6HFBkKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783433499; c=relaxed/simple;
-	bh=11E3cLXszqK54bdjggG6ZFRBIxhg+IbdhCdkzPrOauM=;
+	s=arc-20240116; t=1783433500; c=relaxed/simple;
+	bh=ckq5dzFJ3uvu3aiOcWFE9vWICSPlLmaKPIODkiQTrIM=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=mjqvVV/5FB5ZCYVll2QMOD6Z6cj6Pi6hDZFqvFSZGdT9rO3yZrVD0Yc35DAUmkhBlbnbd1LCyJP4LmoioJr+1HxaQvnL4mZQTIfPCSJ9xpWbWZNdODKuPG2+tKOms8Eh66JISr2wVfFSHxtIoxfiDOyMzS7TxcBFJTGlB3YUbD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a4LH6Y79; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAE031F00A3A;
-	Tue,  7 Jul 2026 14:11:36 +0000 (UTC)
+	 Message-Id; b=Mt29wAnwNmu+C/4OxgmXdPLzIP8TqTDq3NiplY5FVlAl85InenGfyoPTyBw/VJiQzd/d9KvKiD2n3pa0lYyxxMOH/hlvN8Ku/ZV9LYiIaaGuQcmJjgndvtF0foSLx20DYFoU2TY7v4yNzc//EqjFPg0do5XY8fHqRHYOrwTfFJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=enDqMtlq; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B90881F00A3D;
+	Tue,  7 Jul 2026 14:11:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783433497;
-	bh=bPmEwesHC2AS1HkjPhZDQwSfdjHZQo0VGS0dYxaRFDM=;
+	s=k20260515; t=1783433498;
+	bh=QvOkRjNNXyNBULDO3YhwROa7FJoE/Fu63a+r6ZP3gGM=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=a4LH6Y79I6wzscYgLyuUhZcE9ZYVaPMk8Wt1y6pXLaPtI+Ki+IdqYnfzUdaul+QYX
-	 K08eRdaSblR8oSa8DMpy5s6c+yM7jdDXVQO863trhbuffRq892mqHh1jwmvCJC2I5H
-	 e4B2dNEZ9FWnuwSmxPrHf2gopcFpcGRNAPaw4jtSBNO+AuCyzyymzOOZYEe7ZauyEm
-	 tWdIydxOTmsRn4h3smJGrEx0WdzY6CfMjIP/+H6NZsDx9RXKuqco7cK43ONbbHFYRu
-	 /LGRqy9O7wb/AOAYImtooFC+P/B06itTPqyJ3G6VVSaSuuwc8CvrLG+J3po0ULyYMD
-	 4RBp19Mao+NSA==
+	b=enDqMtlqswZM7ZTmdcuIHCv25Z2Hi52Wa3SWLflYMCgX9F39TJL9hMFOw3PgxYos5
+	 9wBYzqcAVkiIUIODHls/QGbZAcj8h9+wYV1uGETMT1ak2iwzx3qGXlLjZKOVm1fBL+
+	 FF8AxzWzzrcpDvHOyVqWUVTELGqYtxJPt7YoUbwG4LKOI89uc0nc4CleJ7Cq+vprFQ
+	 2NCBwp6PoKbSY6A6pDnxpgZe5mGOEOiMNdMdwS1FTk6Jsu9Q/OVAfy4z0PVBh8+07z
+	 tMHdg51Vrvm3nveYs6yDl6RERMLaI6GYPwzklR/47F9o1G7l7uvcvoE2kaQJpHpZt1
+	 GAVlpAQ8aHPPA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v12 2/7] phy: qcom: add the SGMII SerDes PHY
- driver for SCMI systems
+Subject: Re: [PATCH net-next v12 3/7] dt-bindings: net: qcom: document the
+ ethqos device for SCMI-based systems
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Bartosz Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>
-Cc: wsa+renesas@sang-engineering.com, devicetree@vger.kernel.org, robh@kernel.org, linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev, neil.armstrong@linaro.org, conor+dt@kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev
-In-Reply-To: <20260706-qcom-sa8255p-emac-v12-2-e3ab1ecf2901@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, linux-amlogic@lists.infradead.org, Frank.Li@kernel.org, neil.armstrong@linaro.org, imx@lists.linux.dev, wsa+renesas@sang-engineering.com, conor+dt@kernel.org, linux-sunxi@lists.linux.dev
+In-Reply-To: <20260706-qcom-sa8255p-emac-v12-3-e3ab1ecf2901@oss.qualcomm.com>
 References: <20260706-qcom-sa8255p-emac-v12-0-e3ab1ecf2901@oss.qualcomm.com>
- <20260706-qcom-sa8255p-emac-v12-2-e3ab1ecf2901@oss.qualcomm.com>
+ <20260706-qcom-sa8255p-emac-v12-3-e3ab1ecf2901@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 07 Jul 2026 14:11:36 +0000
-Message-Id: <20260707141136.AAE031F00A3A@smtp.kernel.org>
+Date: Tue, 07 Jul 2026 14:11:37 +0000
+Message-Id: <20260707141137.B90881F00A3D@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,18 +72,18 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322110-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-322112-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:bartosz.golaszewski@oss.qualcomm.com,m:wsa+renesas@sang-engineering.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:linux-amlogic@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:bartosz.golaszewski@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:linux-amlogic@lists.infradead.org,m:Frank.Li@kernel.org,m:neil.armstrong@linaro.org,m:imx@lists.linux.dev,m:wsa+renesas@sang-engineering.com,m:conor+dt@kernel.org,m:linux-sunxi@lists.linux.dev,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -97,122 +97,61 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4313471C6AC
+X-Rspamd-Queue-Id: 5AC2271C8D4
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] The `set_mode` callback fails to dynamically apply the new perform=
-ance state to the PM domain when the PHY is already active.
-- [High] Incorrect ordering of `dev_pm_genpd_set_performance_state()` aroun=
-d runtime PM functions causes hardware under-voltage.
+- [Medium] The device tree bindings for Nuvoton MA35D1 and Spacemit K3 DWMA=
+C were not updated to restrict `power-domains` to `maxItems: 1`, contradict=
+ing the commit message claim and inadvertently relaxing their constraints.
 --
 
-commit d60c07674fdf361d41a55e9d09fbdf040bae5797
-Author: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+commit 172a7357589e2c110ace7edfdec50dee477c4a83
+Author: Bartosz Golaszewski <brgl@kernel.org>
 
-phy: qcom: add the SGMII SerDes PHY driver for SCMI systems
+dt-bindings: net: qcom: document the ethqos device for SCMI-based systems
 
-This commit implements support for the firmware-managed SGMII/SerDes PHY
-present on Qualcomm platforms. It introduces a separate driver for the SCMI
-system variant as it shares almost no code with the HLOS-managed version.
+This patch describes the firmware-managed variant of the QCom DesignWare MA=
+C.
+It introduces the qcom,sa8255p-ethqos binding and increases the power-domai=
+ns
+maximum to 2 in the top-level snps,dwmac.yaml schema, while updating existi=
+ng
+referencing bindings to limit their power-domains maxItems back to 1.
 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-sgmii-eth-scmi.c b/drivers/phy=
-/qualcomm/phy-qcom-sgmii-eth-scmi.c
-> new file mode 100644
-> index 0000000000000..8ee62189556fe
-> --- /dev/null
-> +++ b/drivers/phy/qualcomm/phy-qcom-sgmii-eth-scmi.c
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
+mentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 2449311c6d28e..d3aff1df3070d 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
 [ ... ]
-> +static int qcom_dwmac_sgmii_phy_scmi_power_on(struct phy *phy)
-> +{
-> +	struct qcom_dwmac_sgmii_phy_scmi *priv =3D phy_get_drvdata(phy);
-> +	struct device *dev =3D phy->dev.parent;
-> +	int ret;
-> +
-> +	ret =3D pm_runtime_resume_and_get(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D dev_pm_genpd_set_performance_state(dev, priv->perf_state);
+> @@ -185,7 +186,8 @@ properties:
+>            - const: ahb
+> =20
+>    power-domains:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
 
-[Severity: High]
-Should dev_pm_genpd_set_performance_state() be called before
-pm_runtime_resume_and_get()?
+[Severity: Medium]
+The commit message states that existing bindings referencing the top-level
+snps,dwmac.yaml were updated to limit their maxItems for power-domains to 1.
+Were Nuvoton MA35D1 (nuvoton,ma35d1-dwmac.yaml) and Spacemit K3
+(spacemit,k3-dwmac.yaml) missed during this refactoring?
 
-If pm_runtime_resume_and_get() runs first, it appears the genpd runtime
-resume handler will power on the domain at its previous performance state (=
-0)
-before the driver raises it. Could this starve the hardware during power-on?
-
-> +	if (ret) {
-> +		pm_runtime_put(dev);
-> +		return ret;
-> +	}
-> +
-> +	usleep_range(5000, 10000);
-> +
-> +	return 0;
-> +}
-> +
-> +static int qcom_dwmac_sgmii_phy_scmi_power_off(struct phy *phy)
-> +{
-> +	struct device *dev =3D phy->dev.parent;
-> +
-> +	dev_pm_genpd_set_performance_state(dev, 0);
-> +	pm_runtime_put(dev);
-
-[Severity: High]
-Does dropping the performance state before putting the device cause a volta=
-ge
-drop while the hardware is still active?
-
-Since pm_runtime_put() is asynchronous, the hardware might still be actively
-powered when dev_pm_genpd_set_performance_state(dev, 0) drops the state. Co=
-uld
-this ordering violate hardware voltage requirements?
-
-> +
-> +	return 0;
-> +}
-[ ... ]
-> +static int qcom_dwmac_sgmii_phy_scmi_set_mode(struct phy *phy, enum phy_=
-mode mode,
-> +					      int submode)
-> +{
-> +	struct qcom_dwmac_sgmii_phy_scmi *priv =3D phy_get_drvdata(phy);
-> +	int ret;
-> +
-> +	ret =3D qcom_dwmac_sgmii_phy_scmi_validate(phy, mode, submode, NULL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	priv->perf_state =3D (submode =3D=3D PHY_INTERFACE_MODE_2500BASEX) ?
-> +			   SPEED_2500 : SPEED_1000;
-> +
-> +	return 0;
-> +}
-
-[Severity: High]
-Does this code need to apply the new performance state to the active PM dom=
-ain
-if the PHY is already powered on?
-
-When the MAC driver dynamically changes the link speed while the interface =
-is
-up, updating only priv->perf_state without calling
-dev_pm_genpd_set_performance_state() might leave the hardware operating at =
-an
-incorrect voltage state.
+Since both of those schemas inherit from snps,dwmac.yaml, they will now
+inadvertently inherit the relaxed maxItems: 2 constraint, allowing invalid
+configurations to pass validation.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260706-qcom-sa825=
-5p-emac-v12-0-e3ab1ecf2901@oss.qualcomm.com?part=3D2
+5p-emac-v12-0-e3ab1ecf2901@oss.qualcomm.com?part=3D3
 
