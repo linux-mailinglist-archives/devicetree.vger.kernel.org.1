@@ -1,106 +1,57 @@
-Return-Path: <devicetree+bounces-322383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322388-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /1R3FzWATWr31AEAu9opvQ
-	(envelope-from <devicetree+bounces-322383-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 00:39:49 +0200
+	id Db1fCsCBTWpp1QEAu9opvQ
+	(envelope-from <devicetree+bounces-322388-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 00:46:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD107202D4
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 00:39:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A32FB720402
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 00:46:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=ME1QU8q4;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=HanCJcmt;
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322383-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322383-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=RuUwh3xO;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322388-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322388-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2AD19307B0AF
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 22:32:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9EAF230A06F7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 22:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D88354C9563;
-	Tue,  7 Jul 2026 22:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE8747F2CA;
+	Tue,  7 Jul 2026 22:34:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4711E4C9574
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 22:30:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22591399369;
+	Tue,  7 Jul 2026 22:34:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783463424; cv=none; b=nNUNj5+elQS5mOSP4caPNgPJEs4TKZBYX19YNDKCKSoZHdOuxdZaKwuYiO4p39bqPwT8p9zp5OJoghu4E3LzvIfXy4KdhAfdhOOGGSUVUl4ud2QzNeekpaT/dScTxDvaa+HxIqqCNjLKf44co5vxPK/6sMb0tWqhh+CB4ywhJLI=
+	t=1783463681; cv=none; b=c9Xmoj3VimL1yE7NL8MCHYiUYIkGeiyff+ApDuQXYF3gQhpTTd88aXdAwLo8/ORg1erJ+6QeUYqgVbtf/2eWDaCCzwiFGFOKRaZNWHfdwRfzyGWN1Eiqjfq+l1ADa5PiVdkVltZa+ncLQ0xyJ0ea7ZD8FVaB9ZJjuHDvr8U/8Wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783463424; c=relaxed/simple;
-	bh=p/LOewU4HM57xRHatWVxjBN/11NXUxDntkVtHhHnu9c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Tw8ytjhe86yRJRnCgwpCR+HGgVC15684Sb4bf57cUFGFptMuMNa1H6e1BpB4iGlHTWQv82Ih1q6oDtujOWPIosmAWKneMZbLutrCbjmSitU1J6ZYBw+W22EFQwz+I64MCL5mQGUhFZKRDV1XRt0KRb33PEjRPn1JgfH8tat1dwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ME1QU8q4; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HanCJcmt; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 667J5DlU518084
-	for <devicetree@vger.kernel.org>; Tue, 7 Jul 2026 22:30:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	RSFYY1NUdhh/cah7gXpWItwODtYkskUZKQCjJtgwtIU=; b=ME1QU8q4eLcaessS
-	Az0OOXu96wbWYa4PGt6RBRb6sOQca7wtsZCzOqCABvWcr3oQpjAeecaKGXFp/QHo
-	QgVszdtSKWuQMFLLtunUQKGRFfFIjSsvNkDL0BAltY4Eeq3f7lWak1p1n2Cu7TcC
-	62BoJKGgXIiQYUuuvscuwcr/9J1fBSCH4Zhhe/skPgBbfdb9uidHB417DOFHhY/c
-	9DMU8M336/znVwbNWEBN/7x4Ku2pu5zJGvnbG2/sBwoITnv1gUBnN7A+D+/KxJPX
-	fHQ2gyVk93sTXxRGWdNUsGtEkBfQGi4lNC5QLyiyF2fMqLp02d34z6ZGbXJ3FK45
-	+6XRgA==
-Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4f95e5sfa1-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 22:30:22 +0000 (GMT)
-Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-738b76cfe03so28771137.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 15:30:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1783463421; x=1784068221; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=RSFYY1NUdhh/cah7gXpWItwODtYkskUZKQCjJtgwtIU=;
-        b=HanCJcmtye0/2sXDg3GITi8siZJyVXAqP7Q3l0WGZNVaxwZBYDZUpvelJ/ZSgdB4N2
-         wE45ZL6QPSB9dnN6NioxTtb3ZKhzNIHQAbcW92QanqT6avQkNeby/57dxDFs3ICjrHZn
-         DkcqNrRkT+H4SZe2vR3YiZBSWHoJuPx/IrZ90saqxvoVtaEG8a84TL7npwcVrWwaC8Em
-         P7d1GUcM5ZC1u5ZAMWldDfAfCYMiZtfprM7+lsWL0DDKVDAri6e87aBFpgxkkrhXLGbl
-         FTSbXCMX0/BxYgxHT75Py0NtDYCYOpdfrbG/s8TT6tZmflFiD8ffkE7GVak3d69bV698
-         TeIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783463421; x=1784068221;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=RSFYY1NUdhh/cah7gXpWItwODtYkskUZKQCjJtgwtIU=;
-        b=tKrQIrK9lF4E8bQT0375IfZ/EnacZqqWpcnTWGr9YyQc3P44j1zZCryACm3FBcv9sa
-         zjIvMuENUESU5cCwA4/8OawSjB2ru6Z3y675gWVNwCoFFsPALPxpsnoQuwtPowPToal3
-         jx4o9oXnMrNi0Y5XCIROCMc+xDtNSW/wMOBMv9idWX0j7FyUEe0aH1Aqrs7wG0NJywDP
-         4YONyxIqQ+yplRiWQ2sdbFr9djgbh28PWEUPFuoobLJQwSTaBwEGUIkdzPi09LqPn10E
-         GqrI+Tcg6npCX9MtRPPLqpQZtRHXoMmy+2sO6bQfVEjMm3VnGEVR/fB2zLz9D08KdxcK
-         g6ng==
-X-Forwarded-Encrypted: i=1; AHgh+RqAEqyrSWwCMzL49m3mLf9wpJHn9x0q8EMIMtnpSOdXpF37JoqK/7edgA9yRIhLHNEKtlKwd4+bfSM3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXtcc6xgl+x+sVcXVLRGwVpnKWewsNMVfI3hucAtply/lJRfpu
-	Xh3FpiVwDloIWhDZ9I5wNJlUn+hPqKq+K1jhoQJq4pxHg0rVvq8ltQxqjf9YEFYCIcki6o/Za/p
-	Wr3ijcb4eXEGKSsv8pVv2vCK1bpLb8gBnPcKiPuHnSmclte1anWb7OeA93ds4tmMh
-X-Gm-Gg: AfdE7cnYj4Z+KvZOTPEY/GFedGAuXG+m9esYJf0KDel7w9sN1LtQjCQsAyr0VLah4FV
-	biOLruaQWOjknwmRmMukp9T05XkU2CGjEvp90PdDYiYud/WW19vJSuDcO813UaaWm8VFECdkDcW
-	kEXcX2oT/WASbjBRDYTnE7js6HpkaEWfBSEqEuvU+MlU/IRwyWt3xPfzDj4Asyc8gc2KmyY/8QS
-	cdS90mTGavDu1CRxp8agN2LZ1nvqyBKMCM+Wh616/HC5m/suRo49pQgCLn+Q0m2ZjJg4XC5+S8R
-	1EgpbCBNUnwLPvBdqNt+zv6EKu12GuZVPmIQm1+HTB340Rnp0N11DBH1VDdxJz7GWEm53E/r1fS
-	9PW28vnSwyH3vRDtXyu1yq9nqPKek7u+jVyfCP2zDUhzMTHNb9VM3C99kPQuz3bBYx1bysAtIks
-	0ZNdqlDloDjah8Q2n0PUySBnUw
-X-Received: by 2002:a05:6102:914:b0:633:d7ec:153c with SMTP id ada2fe7eead31-744b7b48488mr4747025137.3.1783463421490;
-        Tue, 07 Jul 2026 15:30:21 -0700 (PDT)
-X-Received: by 2002:a05:6102:914:b0:633:d7ec:153c with SMTP id ada2fe7eead31-744b7b48488mr4747009137.3.1783463421073;
-        Tue, 07 Jul 2026 15:30:21 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-39c7312bc25sm1897231fa.40.2026.07.07.15.30.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jul 2026 15:30:18 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Wed, 08 Jul 2026 01:29:01 +0300
-Subject: [PATCH v6 18/18] media: iris: constify inst_fw_cap_sm8250_dec
+	s=arc-20240116; t=1783463681; c=relaxed/simple;
+	bh=GKek7BKxQB7/xxzN++vZHwPvtziG5YW58YNpawvGyBs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=io62iAJ8bFM4EiHPlpbAlMDtMeaRMDjiOIrUfYDnUG+VQ08cG1bXUAu13RN4Nz+LOCFvY2lwn5WOl+2dflx1viimiLCLH8KAgTvhhdtxjY6tab3pXcCLbIv9iQtnO7BLpIXTbb8tqwjdOgsu+qkLH1aa8mh7eHPOxCc20/S+kBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RuUwh3xO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B1752C2BCB8;
+	Tue,  7 Jul 2026 22:34:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1783463680;
+	bh=GKek7BKxQB7/xxzN++vZHwPvtziG5YW58YNpawvGyBs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=RuUwh3xOu3mMRBzsf3C75AiaZAfdjwhFa3tFS9nF3HJfFbiBuvKGHTuvTsv3dBRAC
+	 8MuIG5pVMf9ttkV3dt1ltjneZxZvSXPB9WvV95y9yHiXsCAlh33GofO9sMZ1Rt7aXk
+	 iiYR97UVxK4nbJ94cj8rfGoFOLUvBqOc20u6Cgf61iRV3CFX52jeFMhEawBHwpmXSD
+	 9NrjfXXcviB+VArZqxX3QGnfTyM0VFGrZcXFP67O+NJagSZsvbhkwCXeuaqTKjywT2
+	 nJ9uR+atUswtK4CNXOL0t3uGHgRLc6QlCU/Xbq3d60NE4oUOsfm/QpeTN/mjDeAXKr
+	 oXKP4Nj9VZ2WA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8CB7AC43458;
+	Tue,  7 Jul 2026 22:34:40 +0000 (UTC)
+From: Ciprian Regus via B4 Relay <devnull+ciprian.regus.analog.com@kernel.org>
+Subject: [PATCH net-next v5 00/13] net: Add ADIN1140 support
+Date: Wed, 08 Jul 2026 01:33:28 +0300
+Message-Id: <20260708-adin1140-driver-v5-0-4aca7b51a58b@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,119 +60,221 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260708-iris-ar50lt-v6-18-374f0a46c23b@oss.qualcomm.com>
-References: <20260708-iris-ar50lt-v6-0-374f0a46c23b@oss.qualcomm.com>
-In-Reply-To: <20260708-iris-ar50lt-v6-0-374f0a46c23b@oss.qualcomm.com>
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=964;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=p/LOewU4HM57xRHatWVxjBN/11NXUxDntkVtHhHnu9c=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBqTX2rTQpQBBYFFqiGAUi+BUKhPXN8E8Y1WviYU
- LLnI9gJoU2JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCak19qwAKCRCLPIo+Aiko
- 1auHB/9i7uOFW7TTC4aUhG7RzrG9W44Uj4yNxgGCLPCnkES9ZoZ3lVwkwZ7aejvxWvJH0YCPxcg
- vR9nQW4dHF+QmBRh1H1PcrPO/zOoRe6Vx96X1KBdIcFCaR9lW+h3aLyVC4cI24diOkJRSfJ96ns
- Uiy8ZNo8TML5PsD/4bVhAkPFmLm+AzgH9ynDe8QiF3v5nWQ6tN0qMbTLnG+MjwNfeMhDx66WvRj
- xzdkxCyHqIGAaCCy7N6+8mrcim8mXC9r+Zo0ZmxmVpnHKSxaRUGMmw+OpCpfMH9pk/oXXOjgksL
- 8OSz3FtRoYoWB+h7IaIEfQCmkQr/XsJRqhJD4D+Wxi3UD6s2
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-GUID: kLpaeMuCpeN9ogFOqRNbk7Lvl0in6zUf
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA3MDIyMSBTYWx0ZWRfXyft796aaQrgn
- HI0dQIQgM34+kg/gbMCcZrpPNmBfbgNA8dzaEOoQ6uPC21lpUk46kNYcANsoasEJgw0du9VbeAq
- abvH6VWMz/fyTnGrkdCVr0Hj2REKp9M=
-X-Authority-Analysis: v=2.4 cv=CNoamxrD c=1 sm=1 tr=0 ts=6a4d7dfe cx=c_pps
- a=P2rfLEam3zuxRRdjJWA2cw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=RAioF0-LDSMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=EUspDBNiAAAA:8
- a=aSZcYj2XgHFsS6ESuJkA:9 a=QEXdDO2ut3YA:10 a=ODZdjJIeia2B_SHc_B0f:22
-X-Proofpoint-ORIG-GUID: kLpaeMuCpeN9ogFOqRNbk7Lvl0in6zUf
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA3MDIyMSBTYWx0ZWRfXxcMQCK4A9JaT
- fBrVIbhMkHBT2VuB9bhVgor8Kiv2aMXstYsu07LstUyJKU0Im9L1m5o7Vfa3XvsmZLrCuofrlIB
- m+UZIomd5SoOL5KOXlARXRbFDYnXR/XEqC993C5bkl+wmIlj2B37XxVYA/20XcNyMPASKMmZNYY
- ujefmPBi2xJgDRs+kaZfNlDZe4W0tCw33eB4FgMiApG/Yk9OG054ZiFmH/l+JcARRlcxYTb8SiH
- /UpUAmFeru+HxycDqOjbvI5n1T3B9DpIgrXxjLJ8VnOil7kC1yq1EIm40ggmzCD1LAyKEwQu5nt
- jbIDudDC42E1Px0h1oaPE99DKSanOFlZnnCZ1ooG1EdV5VWWliuUU2T7m7SU76LWRhGbTndRl7t
- gXHejKMxReQGYy58tC0451qDEk1yCLZdOH06byGVPtCXpu/ZzNB1ApnddXLKLwuVCyVeSwXagof
- ynvIH9s1hYYn0xr4shA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-07_05,2026-07-06_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 adultscore=0 phishscore=0 impostorscore=0
- priorityscore=1501 lowpriorityscore=0 bulkscore=0 spamscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607070221
+X-B4-Tracking: v=1; b=H4sIALh+TWoC/2XQwY4CIQwG4FcxnJdNoSC4p30P4wFpVZJdxjATo
+ jHz7hIuari1+dOvaR9i5pJ4Fj+bhyhc05ym3Br7tRHxEvKZZaLWCw16C0bvZKCUlTIgqaTKRe4
+ wMBC6LSov2tS18CndurgXmReZ+baIQ0suaV6mcu+rqup5Vy3goFYlW01gMBJ5f4LfkMPfdP6O0
+ 3/Hqn4DtBsB3QB0bKMnwxBGAF9Au2wEsAGW+EhHVA6jGQDzDoyPqaYB4Cyy9swAn8C6rk/4PjQ
+ 8fAEAAA==
+To: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-doc@vger.kernel.org, devicetree@vger.kernel.org, 
+ Ciprian Regus <ciprian.regus@analog.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783463678; l=7828;
+ i=ciprian.regus@analog.com; s=20260330; h=from:subject:message-id;
+ bh=GKek7BKxQB7/xxzN++vZHwPvtziG5YW58YNpawvGyBs=;
+ b=Z/jUDDxu4FoUgkngr88l/D/Q7DfRrjnKeHq5WdVUuZvzZJIcjxISuATxdQnZ/F80zbyfxVhfS
+ vcOKFfqQW7TB/0x0WXA2tWx9hnajZoZ8joeMj6+K7jh8eoGIdPH5mrc
+X-Developer-Key: i=ciprian.regus@analog.com; a=ed25519;
+ pk=8WoNhI0kQcQUl8YqJO5ZevROYk9HP8lOIeIgIYgjfbc=
+X-Endpoint-Received: by B4 Relay for ciprian.regus@analog.com/20260330 with
+ auth_id=703
+X-Original-From: Ciprian Regus <ciprian.regus@analog.com>
+Reply-To: ciprian.regus@analog.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-322383-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322388-lists,devicetree=lfdr.de,ciprian.regus.analog.com];
+	FORGED_RECIPIENTS(0.00)[m:parthiban.veerasooran@microchip.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:devicetree@vger.kernel.org,m:ciprian.regus@analog.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:vikash.garodia@oss.qualcomm.com,m:abhinav.kumar@linux.dev,m:bod@kernel.org,m:mchehab@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:busanna.reddy@oss.qualcomm.com,m:linux-media@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:dikshita.agarwal@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:email,qualcomm.com:dkim,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[ciprian.regus@analog.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:replyto,analog.com:mid,analog.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EBD107202D4
+X-Rspamd-Queue-Id: A32FB720402
 
-Mark inst_fw_cap_sm8250_dec as a const array, the data is read-only.
+This series introduces support for the ADIN1140 (also called AD3306)
+10BASE-T1S single port MACPHY. The device integrates the MAC and PHY in
+the same package. The communication with the host CPU is done through an
+SPI interface, using the Open Alliance TC6 protocol for control and data
+transactions. As a result, the oa_tc6 framework is used to implement
+the communication with the device (register accesses and Ethernet frame
+RX/TX).
 
-Suggested-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-Reviewed-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+The MAC and PHY are connected internally using an MII and MDIO bus.
+
+The PHY is a half duplex 10Mbps device, which implements both the PLCA
+RS (IEEE 802.3 clause 148) and CSMA/CD methods of accessing the Ethernet
+medium. The 10BASE-T1S standard allows multiple PHY devices to be
+connected (in parallel) on the same single twisted pair network segment,
+so PLCA can be configured in order to provide a fair access scheme to
+all the nodes and reduce the jitter introduced by the unordered CSMA/CD
+transmits. The PHY's internal register map can be accessed using the
+direct MDIO mode of the OA TC6. The control, status, phy id 1 & 2 C22
+registers are mapped to the 0xFF00 - 0xFF03 range. As for C45
+addressable devices, the PHY has PCS, PMA and PLCA blocks.
+
+The oa_tc6 framework patches are changes that would make the library
+usable by the subsequent ADIN1140 MAC driver.
+
+The protected mode patch is required because the ADIN1140 only allows
+protected mode OA TC6 control transactions, which the oa_tc6 framework
+doesn't currently implement.
+
+The OA_TC6_BROKEN_PHY quirk patch is required in order to allow the MAC
+driver to have a custom implementation for the mii_bus access methods as a
+workaround for hardware issues:
+
+1. The OA TC6 standard defines the direct and indirect access modes for
+   MDIO transactions. The ADIN1140 incorrectly advertises indirect mode
+   only (supported capabilities register - 0x2, bit 9), while actually
+   implementing just the direct mode. We cannot rely on the CAP register
+   to choose an access method (which oa_tc6 does by default, even though
+   it only implements the direct mode), so the driver has to use its
+   own.
+2. The ADIN1140 cannot access the C22 register space of the internal
+   PHY, while the PHY is busy receiving frames. If that happens, the
+   CONFIG0 and CONFIG2 registers of the MAC will get corrupted and the
+   data transfer will stop. Those two registers configure settings for
+   the transfer protocol between the MAC and host, so the value for some
+   of their subfields shouldn't be changed while the netdev is up.
+   Since we know the PHY is internal, the MAC driver can implement a
+   custom mii_bus, which can intercept C22 accesses. Most of the
+   registers mapped in the 0x0 - 0x3 range (the only ones the PHY offers)
+   are read only, and their value can be read from somewhere else (e.g
+   the PHYID 1 & 2 have the same value as 0x1 in the MAC memory map).
+   C45 accesses do not cause this issue, so we can properly implement
+   them.
+
+Even though they have different driver, the MAC one cannot function
+without the PHY driver, since the PHY is not compatible with the generic
+c22 driver. As such CONFIG_ADIN1140 selects CONFIG_ADIN1140_PHY.
+
+Signed-off-by: Ciprian Regus <ciprian.regus@analog.com>
 ---
- drivers/media/platform/qcom/iris/iris_hfi_gen1.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v5:
+- Used ndo_set_rx_mode_async instead of ndo_set_rx_mode for configuring
+  the MAC filter table in the adin1140 driver.
+- Updated the MAC filter logic to allow setting individual
+  unicast/multicast entries when IFF_ALLMULTI is enabled.
+- Configured the MAC hardware to clear statistics registers on read and
+  accumulated the values in the software stats counter.
+- Removed some MAC statistics counters from the custom ethtool strings,
+  since they were already included in the standard set.
+- Link to v4: https://lore.kernel.org/r/20260609-adin1140-driver-v4-0-0753e28ee004@analog.com
 
-diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen1.c b/drivers/media/platform/qcom/iris/iris_hfi_gen1.c
-index 4e2f1804ca66..ce73e0efed50 100644
---- a/drivers/media/platform/qcom/iris/iris_hfi_gen1.c
-+++ b/drivers/media/platform/qcom/iris/iris_hfi_gen1.c
-@@ -13,7 +13,7 @@
- #define BITRATE_MAX		160000000
- #define BITRATE_STEP		100
- 
--static struct platform_inst_fw_cap inst_fw_cap_sm8250_dec[] = {
-+static const struct platform_inst_fw_cap inst_fw_cap_sm8250_dec[] = {
- 	{
- 		.cap_id = PIPE,
- 		/* .max, .min and .value are set via platform data */
+Changes in v4:
+- Renamed the dt bindings file after the adi,ad3306 compatible.
+- Renamed a few register address macros to match the OA TC6 standard and
+  the ADIN1140 reference manual.
+- Link to v3: https://lore.kernel.org/r/20260604-adin1140-driver-v3-0-5debdb3173c4@analog.com
 
+Changes in v3:
+- Added adi,ad3306 as a fallback compatible in the DT schema.
+- Keep the current spi_device and net_device parameters for
+  oa_tc6_init() and add a new struct parameter for passing the quirk
+  flags, insted of changing the function to take a single config
+  parameter.
+- Add the oa_tc6_write_register_mms() and oa_tc6_read_register_mms()
+  functions instead of defining a new macro for MMS and register address
+  formatting.
+- Split the OA TC6 register address macro exports patch into two
+  different commits (export + rename).
+- Use the devres API for mii_bus and net_device management in the
+  ADIN1140 driver.
+- Fix a bug related to the destination MAC filter mask in the ADIN1140
+  driver.
+- Link to v2: https://lore.kernel.org/r/20260527-adin1140-driver-v2-0-37e5c8d4e0a0@analog.com
+
+Changes in v2:
+- Add the OA_TC6_BROKEN_PHY quirk flag to the oa_tc6 framework in order
+  to allow ethernet drivers to manage their own mii_bus struct and PHY.
+- Move the OA TC6 standard register definitions in the oa_tc6.h header
+  so other drivers can use them. Do the same for the C45 access
+  functions
+- Add the genphy_read_mmd_c45 and genphy_write_mmd_c45 functions to
+  genphy, which allow drivers that have been discovered over C22 to make
+  direct C45 operations, without using the 0xD and 0xE register. The
+  change was implemented based on the suggestion in this thread:
+  https://lore.kernel.org/all/CY8PR02MB9249CDA8F2C560FDD0F662D883382@CY8PR02MB9249.namprd02.prod.outlook.com/
+- Link to v1: https://lore.kernel.org/r/20260503-adin1140-driver-v1-0-dd043cdd88f0@analog.com
+
+---
+Ciprian Regus (13):
+      dt-bindings: net: Add ADIN1140
+      net: ethernet: oa_tc6: Handle the OA TC6 SPI protected mode
+      net: ethernet: oa_tc6: add OA_TC6_BROKEN_PHY quirk flag
+      net: ethernet: oa_tc6: Export the C45 access functions
+      net: ethernet: oa_tc6: Export standard defined registers
+      net: ethernet: oa_tc6: Add the OA_TC6_ prefix to standard registers
+      net: ethernet: oa_tc6: Add read_mms/write_mms register access functions
+      net: ethernet: oa_tc6: Use the read_mms/write_mms functions for C45
+      net: ethernet: oa_tc6: Add new register address defines
+      net: phy: add generic helpers for direct C45 MMD access
+      net: phy: microchip-t1s: use generic C45 MMD access helpers
+      net: phy: Add support for the ADIN1140 PHY
+      net: ethernet: adi: Add a driver for the ADIN1140 MACPHY
+
+ .../devicetree/bindings/net/adi,ad3306.yaml        |  71 ++
+ Documentation/networking/oa-tc6-framework.rst      |   3 +-
+ MAINTAINERS                                        |  15 +
+ drivers/net/ethernet/adi/Kconfig                   |  12 +
+ drivers/net/ethernet/adi/Makefile                  |   1 +
+ drivers/net/ethernet/adi/adin1140.c                | 791 +++++++++++++++++++++
+ drivers/net/ethernet/microchip/lan865x/lan865x.c   |   2 +-
+ drivers/net/ethernet/oa_tc6.c                      | 263 ++++---
+ drivers/net/phy/Kconfig                            |   6 +
+ drivers/net/phy/Makefile                           |   1 +
+ drivers/net/phy/adin1140-phy.c                     |  72 ++
+ drivers/net/phy/microchip_t1s.c                    |  32 +-
+ drivers/net/phy/phy_device.c                       |  25 +
+ include/linux/oa_tc6.h                             |  73 +-
+ include/linux/phy.h                                |   3 +
+ 15 files changed, 1240 insertions(+), 130 deletions(-)
+---
+base-commit: 538d89fd914610852a6fb20b823ba70566153d46
+change-id: 20260429-adin1140-driver-93ae0d376318
+
+Best regards,
 -- 
-2.47.3
+Ciprian Regus <ciprian.regus@analog.com>
+
 
 
