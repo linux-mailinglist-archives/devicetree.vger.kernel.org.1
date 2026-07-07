@@ -1,148 +1,254 @@
-Return-Path: <devicetree+bounces-322384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322399-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1QWvINB+TWqF1AEAu9opvQ
-	(envelope-from <devicetree+bounces-322384-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 00:33:52 +0200
+	id Bs+tGaqCTWqr1QEAu9opvQ
+	(envelope-from <devicetree+bounces-322399-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 00:50:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11DE37201C5
-	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 00:33:52 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4660B72047D
+	for <lists+devicetree@lfdr.de>; Wed, 08 Jul 2026 00:50:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=n93krCgB;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="ZCdWAu/R";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322384-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-322384-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322399-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-322399-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 175393009F01
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 22:33:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AFFAD3001075
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 22:42:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3936731ED81;
-	Tue,  7 Jul 2026 22:33:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 316A334CFC7;
+	Tue,  7 Jul 2026 22:42:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B344305674;
-	Tue,  7 Jul 2026 22:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC45C305674
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 22:42:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783463628; cv=none; b=fYmRu0KlsJ1Y8wj9NXow2YeHd3Mnm/p2pB/RwXbEEx/mEH9SRObsQUpLYM6jAzrnibBGTY8DBgevHRux911AeyZRhaBaf/aC7gq2gj+xNmj/uZiqse5YDJ3O/iJd/Cpd06UgQPcmpZcttFcypi3DbU+Zy84FVET2+9uhtkU91ZE=
+	t=1783464176; cv=none; b=h0upo24g9nbs91WBgBQI9OxT4IQycpuCzFSoDORLazO7FZ1h2zkVEOOPbXw61KEdhtGxV1itSFupWXSp4lKfHdFeh3HqxFYmEc3XI9jlyY7mJgFmSSCl95jZyjdq++PxlWcAPKVDc7nxYCCOMAeF7dZMQV5Eb94NahyBS7skbpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783463628; c=relaxed/simple;
-	bh=A/cPWjlCTqppjiC3r6VqPzErIepco3ZsCNc/8MIetrc=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=qq9iLoOoJFPIWyyFSZy+n1aXfUPp4qAF+auUvzeEuDPt2moTSwbSeGObrWJCgCzfZ0j/KyxYI3HDC5B4zpNSwgXiD2QWLYDSPmz3TeOs04JHlLnK6KZ3T6Y63q0ux+hzeuf+KJfc65Yt2jEFskOeaT5fekNnKaZuP/PbTIxyzRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n93krCgB; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 890C91F000E9;
-	Tue,  7 Jul 2026 22:33:46 +0000 (UTC)
+	s=arc-20240116; t=1783464176; c=relaxed/simple;
+	bh=YQl3I/8aBCjV4r9SVofyswfOgZMJJjnMLiIBklDMLVo=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=SA+WkxI3h35/96Paewy0fFmkwu8yW87TgRbH2qtp+h4moHM5ShgIzrkjW6rDMVQhvVJd41MT2m4aBAB+c+DFUSjCImirFLLCbH3uR0PGBFEzrYjlwHarlDAB53edlIuxHTORAYyPSPIVHaspNPmDCUWyfMD88MeQXQPFkKciYUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZCdWAu/R; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B7CE1F000E9;
+	Tue,  7 Jul 2026 22:42:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783463626;
-	bh=g+LifxB+QsWGTZ7oP/yAFMI7T4DiYAnNEVFq+VdDCEc=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject;
-	b=n93krCgB88v/aBiOsZEMyU4ZGcw0wiSNi1Xv0QFB3RBrFyXe1vKRk64g1feEOYRfa
-	 F89ZkaAOyJl7k5/BaLTnUbglWyC5vxcFVyYyVUuKJnLGaP9lu28YiPPShltJgbVNAF
-	 XTnUeiISDtBtvFueySOyWCXpm/+crf1mJKyfELxVAdTRWMcs9t3QlNo2FcNBY7uez1
-	 Pv1pMH7ongRdUdYaPfgm8uE0Fi4zz6oVf621Y/4+H+suAiYhe+KvUWJnO2tuvUfeIc
-	 n99MprjDSeHcUxhSlSRewDotmrlptPFEJzdupVyTHuaRQQJn6v5YCOYGuCbr0twc1D
-	 q9cvJjJpRU3GA==
-Date: Tue, 07 Jul 2026 17:33:45 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20260515; t=1783464174;
+	bh=2t3mnt1aGTJkZ7+bmJ8MrGqKJp+Gfo4FQrvcRngkt7A=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=ZCdWAu/Rso8itN0mhGhMV2yMfhxigDIhdh0N76zdydKIP2zUXDiHr4kaEViPajV6v
+	 3ZvrQYqw4UAT+UuzIEuh2JKGt8V/qSpYhCWrgSDRPHpX8vBq8IbTUnh9JbnWce5wpS
+	 WoVxqcQJnIXamTKE0DcumZ4PghJPr2r5pEmDHMMlGA/P9aq7Ng2W3E1Pp5lkHhQubn
+	 V2ALrWfiA7vzphLcxPbNvqFxrv2zkScLa/FYAA181wl4O0hv69WpqPcMcqTDzTjP9c
+	 Yd0g5wE2hxtmpKtD3X33kwm40zKiqqjX7pLLXawFt0R9QRwvGhGh4uRhpgYjUPw0pW
+	 f9JnMJcj7oulQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 11/18] media: iris: Add framework support for
+ AR50_LITE video core
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260708-iris-ar50lt-v6-11-374f0a46c23b@oss.qualcomm.com>
+References: <20260708-iris-ar50lt-v6-0-374f0a46c23b@oss.qualcomm.com>
+ <20260708-iris-ar50lt-v6-11-374f0a46c23b@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 07 Jul 2026 22:42:53 +0000
+Message-Id: <20260707224254.4B7CE1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: dmaengine@vger.kernel.org, Frank Li <Frank.Li@kernel.org>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Peter Ujfalusi <peter.ujfalusi@gmail.com>, daniel.baluta@gmail.com, 
- goledhruva@gmail.com, linux-kernel@vger.kernel.org, simona.toaca@nxp.com, 
- m-chawdhry@ti.com, devicetree@vger.kernel.org, 
- Vinod Koul <vkoul@kernel.org>
-To: Bhargav Joshi <j.bhargav.u@gmail.com>
-In-Reply-To: <20260708-ti-dma-crossbar-v1-1-f62796428f13@gmail.com>
-References: <20260708-ti-dma-crossbar-v1-1-f62796428f13@gmail.com>
-Message-Id: <178346362587.299900.10175616533527803058.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: dma: ti,dma-crossbar: Convert to DT
- schema
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MID_CONTAINS_FROM(1.00)[];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:dmaengine@vger.kernel.org,m:Frank.Li@kernel.org,m:vigneshr@ti.com,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:peter.ujfalusi@gmail.com,m:daniel.baluta@gmail.com,m:goledhruva@gmail.com,m:linux-kernel@vger.kernel.org,m:simona.toaca@nxp.com,m:m-chawdhry@ti.com,m:devicetree@vger.kernel.org,m:vkoul@kernel.org,m:j.bhargav.u@gmail.com,m:conor@kernel.org,m:krzk@kernel.org,m:peterujfalusi@gmail.com,m:danielbaluta@gmail.com,m:jbhargavu@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322399-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-322384-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,ti.com,gmail.com,nxp.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 11DE37201C5
+X-Rspamd-Queue-Id: 4660B72047D
 
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-On Wed, 08 Jul 2026 02:59:01 +0530, Bhargav Joshi wrote:
-> Convert Texas Instruments DMA Crossbar from text to DT schema
-> 
-> Signed-off-by: Bhargav Joshi <j.bhargav.u@gmail.com>
-> ---
->  .../bindings/dma/ti,dra7-dma-crossbar.yaml         | 105 +++++++++++++++++++++
->  .../devicetree/bindings/dma/ti-dma-crossbar.txt    |  68 -------------
->  2 files changed, 105 insertions(+), 68 deletions(-)
-> 
+Pre-existing issues:
+- [High] Firmware boot errors in `iris_vpu_boot_firmware()` are silently ig=
+nored due to a premature loop break without returning an error code.
+- [High] Early returns on error in `iris_enable_power_domains()` and `iris_=
+disable_power_domains()` leak runtime PM usage counts.
+--
 
-My bot found errors running 'make dt_binding_check' on your patch:
+--- Patch [11]: [PATCH v6 11/18] media: iris: Add framework support for AR5=
+0_LITE video core ---
+commit 8407376927e1cbde94a3ada7a51a697669409b40
+Author: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
 
-yamllint warnings/errors:
+media: iris: Add framework support for AR50_LITE video core
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/dma/ti,dra7-dma-crossbar.example.dtb: /example-0/dma-controller@4a056000: failed to match any schema with compatible: ['ti,omap4430-sdma']
+Add power sequence for ar5lt core. Add register handling for ar50lt by
+hooking up vpu op with ar50lt specific implementation or reuse from
+earlier generation wherever feasible.
 
-doc reference errors (make refcheckdocs):
-Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/dma/ti-dma-crossbar.txt
-MAINTAINERS: Documentation/devicetree/bindings/dma/ti-dma-crossbar.txt
+> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_ar50lt.c b/drivers=
+/media/platform/qcom/iris/iris_vpu_ar50lt.c
+> new file mode 100644
+> index 0000000000000..e084a5b49f2e3
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/iris/iris_vpu_ar50lt.c
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260708-ti-dma-crossbar-v1-1-f62796428f13@gmail.com
+[ ... ]
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+> +static int iris_vpu_ar50lt_power_off_controller(struct iris_core *core)
+> +{
+> +	iris_disable_unprepare_clock(core, IRIS_AHB_CLK);
+> +	iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
+> +	iris_disable_unprepare_clock(core, IRIS_CTRL_CLK);
+> +	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_=
+POWER_DOMAIN]);
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+[Severity: High]
+This is a pre-existing issue, but could this leak the PM reference count if
+iris_disable_power_domains() fails internally?
 
-pip3 install dtschema --upgrade
+Looking at the implementation of iris_disable_power_domains() in=20
+iris_resources.c:
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+int iris_disable_power_domains(struct iris_core *core, struct device *pd_de=
+v)
+{
+        int ret;
 
+        ret =3D iris_opp_set_rate(core->dev, 0);
+        if (ret)
+                return ret;
+
+        pm_runtime_put_sync(pd_dev);
+
+        return 0;
+}
+
+If iris_opp_set_rate() fails, the function returns early and skips the
+required pm_runtime_put_sync(pd_dev). Will this permanently prevent the
+device and its power domain from suspending?
+
+> +
+> +	return 0;
+> +}
+
+[ ... ]
+
+> +static int iris_vpu_ar50lt_power_on_controller(struct iris_core *core)
+> +{
+> +	int ret;
+> +
+> +	ret =3D iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs[IRI=
+S_CTRL_POWER_DOMAIN]);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does calling
+iris_enable_power_domains() here leak the runtime PM usage count on
+failure?
+
+Looking at iris_enable_power_domains():
+
+int iris_enable_power_domains(struct iris_core *core, struct device *pd_dev)
+{
+        ...
+        ret =3D pm_runtime_get_sync(pd_dev);
+        if (ret < 0)
+                return ret;
+
+        return ret;
+}
+
+When pm_runtime_get_sync() fails, it increments the usage counter but the
+early return leaves it incremented without dropping the reference. Could
+pm_runtime_resume_and_get() be used instead to safely handle the failure?
+
+> +	if (ret)
+> +		return ret;
+
+[ ... ]
+
+> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.c b/drivers=
+/media/platform/qcom/iris/iris_vpu_common.c
+> index 41498f94480e8..d64e7745a63dc 100644
+> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.c
+> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.c
+> @@ -97,7 +97,8 @@ int iris_vpu_boot_firmware(struct iris_core *core)
+>  	}
+> =20
+>  	writel(HOST2XTENSA_INTR_ENABLE, core->reg_base + CPU_CS_H2XSOFTINTEN);
+> -	writel(0x0, core->reg_base + CPU_CS_X2RPMH);
+> +	if (!core->iris_platform_data->no_rpmh)
+> +		writel(0x0, core->reg_base + CPU_CS_X2RPMH);
+> =20
+>  	return 0;
+>  }
+
+[Severity: High]
+This is also a pre-existing issue, but does iris_vpu_boot_firmware()
+erroneously return success when the firmware fails to boot?
+
+Looking earlier in iris_vpu_boot_firmware():
+
+    while (!ctrl_status && count < max_tries) {
+        ctrl_status =3D readl(core->reg_base + CTRL_STATUS);
+        if ((ctrl_status & CTRL_ERROR_STATUS__M) =3D=3D 0x4) {
+            dev_err(core->dev, "invalid setting for uc_region\n");
+            break;
+        }
+        ...
+    }
+
+If this break occurs because of an invalid uc_region setting, the loop
+exits without setting an error code. Since count is still less than
+max_tries, the subsequent timeout check is bypassed, and the function
+falls through to return 0 here.
+
+Will this cause the driver to continue initialization with an unusable
+VPU, potentially leading to cascading failures?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260708-iris-ar50l=
+t-v6-0-374f0a46c23b@oss.qualcomm.com?part=3D11
 
