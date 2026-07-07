@@ -1,242 +1,249 @@
-Return-Path: <devicetree+bounces-321970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321972-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jT2WBlvjTGpTrgEAu9opvQ
-	(envelope-from <devicetree+bounces-321970-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:30:35 +0200
+	id d9YAEeDkTGqsrgEAu9opvQ
+	(envelope-from <devicetree+bounces-321972-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:37:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F27F71AF2B
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:30:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9757C71B001
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:37:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Or8PdQfo;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321970-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321970-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GcnzsePl;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321972-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-321972-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 71AEE303581F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 11:27:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2227B3101682
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 11:27:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE863F8891;
-	Tue,  7 Jul 2026 11:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD6FB3F7AAC;
+	Tue,  7 Jul 2026 11:27:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A777D3F7873
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 11:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F683EB0EE;
+	Tue,  7 Jul 2026 11:27:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783423644; cv=none; b=Zn2eG6UXYABnfK7GG7dl1UQmWlzMCuadpJcForIJ5wGcclvBQBh/I1E3DR9UdBt0jS/U44lXNYAzmCSblmdMhuiOH3Nl0xiuTMP7HLTnA+w2xMO9oN9wKmKPZH29OuquCRY0PwNljWFfudhEG/2Nk4NUWZfeMxoJuK3B/2klQ4g=
+	t=1783423649; cv=none; b=edjuz/RnWkK7dYwXl1YHMyXesI+v/YAPmdV1S9PFw6zmNj2FezxrrM1zJiCoxn1p5HPdtu43QOj71Iq7UvBfOaovItgyHN8DvOPPZEEY2PYOMJbi+gsYpH1BUurjwOfLUTyXFsjHz1ha8ABd9Y1N0e4F41apyxvotDfVQzfaerM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783423644; c=relaxed/simple;
-	bh=P+Oj7jIQQ1kjlJTfRXzJ+5BB+gvvqtYkyAyEyKsEQ64=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GVd1w1zsYPMJ5mXc2FrjcQU2+CzTeziuUPTKrjQwTQdmSApZ1ILRkyrDGfQaki8E/naV7O8yMB42hnwmfH0jhgjF4880fFnonQyO7q79lmCpMZsiITwuvnpOn32XLkYX/vTgbPGFP/ot/BHrCubYHd6jXZpnSEjbP/zZiUN72Z0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Or8PdQfo; arc=none smtp.client-ip=209.85.208.176
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-39c61ad6750so7967071fa.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 04:27:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783423639; x=1784028439; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=o6Zlhe/AiiYbwfoODBy7+1UxzTGdf8QvkuXVvPOs3kU=;
-        b=Or8PdQfo/P/dkoNpKgI1pS0giR/RYclqHPP2QKDy8zf6BTPIYWZXrYkwpH2gyoDHyw
-         N4/ftUy/jfida9VKk9rsciz4BKY/n/H7oTlvpByr3YEr6TW7VcpIe1QPy/uZ3M2BiwUV
-         2IxKt/lKr5F5bdav4Hg7lQSX6FKJrXRrOlcfcnBqTQJM1dadA4VOXIu1eeYkZ/qDITS+
-         XaQMSgm+yNcwMW/GlMJpYpU5Kkuq6ehOC9aHNyVFMj78ztVPh5PKp7k2gGsiOnmXvFXX
-         U95K2PsfcjjEqcS9PzSZ9e5NyL0HCr1f08unb1oC0U1klhrqgESkn2Xii7kc/opfF/6I
-         4OXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783423639; x=1784028439;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=o6Zlhe/AiiYbwfoODBy7+1UxzTGdf8QvkuXVvPOs3kU=;
-        b=QBiE2cbZDO6iuCcRztrJZvXBibeAfFZhOGCdmJzI5Csw4jpVPHyzq7b00kHt8tcRQq
-         3rLEb1YHjUu4kUA+CXZjH32qEs5jHYcBVnvIA4E05ZgyiEnz2azz5JCuKXY5MKh/zPNZ
-         u+aBnkast9W/svbr/eBI+aL6ci0aKhROCDM/lQ0aOzxFPpHLujpWfCE8xb/5QrwY941u
-         h9tvS005NwhJuKRI19d04vDDEY6QO+U7cNwFGaQ+XUC5KJOWS2tuvnbHIS2+Mx+nWA0B
-         u59hDWYIzIeOmY5XX3yIwhS9uaO9UySejzmjFz4EoqJA4Ed9Cpar+LksRe9oVeeo4xVN
-         wNnw==
-X-Forwarded-Encrypted: i=1; AHgh+RoDCBmAXuRL2BX0HfcA5HRQ7PlOUp3V0eYuGdzvWe8DqJabjqJ7hTay32jcdU4Dldjqf1xVVzNKbqxQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbkuXeaIERIXeA3u+gJ0IOmKB/Xs/qZTAPtIG2OqK4BA4hFTGr
-	eYCqg017IcB66IqYbxWqm21Xqmw31s3/X9nzhmSRiyaBRXWul3N1n6tL
-X-Gm-Gg: AfdE7cn0uIJFQFqm11EVonTLWldsY6lxXHd7UE75pSb2m90164zMmDV451VF/QKdhpI
-	I+QtywNDWrDNGhxYpIkbzmsmX0Bu7zAm31KBxt4HOipl+hE/2qBcIV6YCCj3ev2BJQh1c9m986G
-	fLdhtdEPi1s0LADpOTqE6nBbIu0k0IpIJSo+yoAWTSMPhGqXTUNjKbPQf2hT5vRkTwegLXjDkA+
-	TGWgzA74aRD5Vj0lnQpDarr5Crj3OJYOosAy4AzFLmGBRSmxqdSKCWvRXH7gxJ/9G6Hdsok9cOm
-	G4SASy/kUgnMicc2n5GusF0uCut6AASmmJHZyrauegDRn4R0Ies+SRuyMDAHA+b1JLrsQ+IVrkT
-	RH4VouBOdcCIWqnioOSORxw5QhojbbgAxnY/yqoMgZ6/nyEgrbbsAXNkwuTNWhOXJrIM/Efb4+5
-	VWsYGyV8YuBMs/Bp1rKj6runyVC8R3Zv+ngzfncevwbdAmFA==
-X-Received: by 2002:a2e:840b:0:b0:39b:d04:b783 with SMTP id 38308e7fff4ca-39c5ffa4569mr7787251fa.20.1783423639058;
-        Tue, 07 Jul 2026 04:27:19 -0700 (PDT)
-Received: from Shofiq.home (87-92-251-137.rev.dnainternet.fi. [87.92.251.137])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-39b4ad1890asm23602331fa.3.2026.07.07.04.27.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jul 2026 04:27:18 -0700 (PDT)
-From: Md Shofiqul Islam <shofiqtest@gmail.com>
-To: linux-iio@vger.kernel.org
-Cc: jic23@kernel.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andriy.shevchenko@intel.com,
-	u.kleine-koenig@baylibre.com,
-	joshua.crofts1@gmail.com
-Subject: [PATCH v9 1/2] dt-bindings: iio: health: add adi,max86150
-Date: Tue,  7 Jul 2026 14:27:13 +0300
-Message-ID: <20260707112714.2261727-2-shofiqtest@gmail.com>
-X-Mailer: git-send-email 2.51.1
+	s=arc-20240116; t=1783423649; c=relaxed/simple;
+	bh=4l1iXQHyZX4KWBSzqmvIdP4JZC7MUT5WaO5EHB7P7oI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=odCD50QOfJsElVdlyemxUXaXpUUvR3omfhj7BVvQN4LQl49lsJqm6MggjLEDoGjbV4C2YZj4EmDsC2927bXLCVpiEITLJfN+sLI2kzRUlOLFQOQ5IMt2sTnttA4PLT4RSLDyU9J9ajGZ8r4yH4ghEzAK1k5NYuwqXYDDf71/pFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GcnzsePl; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C559E1F00A3A;
+	Tue,  7 Jul 2026 11:27:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783423646;
+	bh=aYNExvVjE68Bssuz6Q0Uk1wNO8ENlyByAV7s1CeJs/c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=GcnzsePlke2sHPVKXFrpmfWgDPaoaXvAGDCsvjpqbfsyvtLlho3fWpXDj/uKbDk36
+	 29MbpRdO6rfO94xIsXtWVBLVNSFu0PRpK+8Q3N5xgWJ0OkZvieybMvgBUqMhb2gQ4l
+	 Ahv8XDpa/3PWbSrFZzHelbxOI04a8OSapHaj/zeLfsMzVDa3n5HsTdyC0YbOpI139d
+	 fBoWckCalPRK9vcu5ifrE9IuraW6MqY6Q5ge3UN3DrPMz67mVJTxLFQXEVChjUNePg
+	 j6GuAFSVjQX9tNj/p8+7XZT6WNDH+X3gTCGkYbSR/BFOoYlGChu7c6d+b+RUXalLPP
+	 aFzzC3Jb5OcTA==
+Date: Tue, 7 Jul 2026 12:27:13 +0100
+From: Will Deacon <will@kernel.org>
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Sowjanya Komatineni <skomatineni@nvidia.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	Yury Norov <yury.norov@gmail.com>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexander Gordeev <agordeev@linux.ibm.com>,
+	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+	Heiko Carstens <hca@linux.ibm.com>,
+	Vasily Gorbik <gor@linux.ibm.com>,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	Sven Schnelle <svens@linux.ibm.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	David Hildenbrand <david@kernel.org>,
+	Lorenzo Stoakes <ljs@kernel.org>,
+	"Liam R. Howlett" <liam@infradead.org>,
+	Vlastimil Babka <vbabka@kernel.org>,
+	Mike Rapoport <rppt@kernel.org>,
+	Suren Baghdasaryan <surenb@google.com>,
+	Michal Hocko <mhocko@suse.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Brian Starkey <Brian.Starkey@arm.com>,
+	John Stultz <jstultz@google.com>,
+	"T.J. Mercier" <tjmercier@google.com>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-s390@vger.kernel.org, linux-mm@kvack.org,
+	iommu@lists.linux.dev, linaro-mm-sig@lists.linaro.org,
+	linux-trace-kernel@vger.kernel.org,
+	Thierry Reding <treding@nvidia.com>, Chun Ng <chunn@nvidia.com>
+Subject: Re: [PATCH v3 04/11] arm64/mm: Add set_memory_device() and
+ set_memory_normal()
+Message-ID: <akzikTrmhMsvkNVY@willie-the-truck>
+References: <20260701-tegra-vpr-v3-0-d80f7b871bb4@nvidia.com>
+ <20260701-tegra-vpr-v3-4-d80f7b871bb4@nvidia.com>
+ <akYs91INHMXMTI-t@willie-the-truck>
+ <akZkuwktaXFTrASP@orome>
+ <akaSJ5D98w2cHqb6@orome>
+ <akftuw9NyRy36fXA@willie-the-truck>
+ <akuvyu1Pq0ZVMZV0@orome>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <akuvyu1Pq0ZVMZV0@orome>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321970-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321972-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER(0.00)[shofiqtest@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,intel.com,baylibre.com,gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:thierry.reding@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonathanh@nvidia.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:skomatineni@nvidia.com,m:luca.ceresoli@bootlin.com,m:mperttunen@nvidia.com,m:yury.norov@gmail.com,m:linux@rasmusvillemoes.dk,m:linux@armlinux.org.uk,m:agordeev@linux.ibm.com,m:gerald.schaefer@linux.ibm.com,m:hca@linux.ibm.com,m:gor@linux.ibm.com,m:borntraeger@linux.ibm.com,m:svens@linux.ibm.com,m:akpm@linux-foundation.org,m:david@kernel.org,m:ljs@kernel.org,m:liam@infradead.org,m:vbabka@kernel.org,m:rppt@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:m.szyprowski@samsung.com,m:robin.murphy@arm.com,m:sumit.semwal@linaro.org,m:benjamin.gaignard@collabora.com,m:Brian.Starkey@arm.com,m:jstultz@google.com,m:tjmercier@google.com,m:christian.koenig@amd.com,m:rostedt@goodmis.org,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:c
+ atalin.marinas@arm.com,m:thierry.reding@gmail.com,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-media@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-mm@kvack.org,m:iommu@lists.linux.dev,m:linaro-mm-sig@lists.linaro.org,m:linux-trace-kernel@vger.kernel.org,m:treding@nvidia.com,m:chunn@nvidia.com,m:krzk@kernel.org,m:conor@kernel.org,m:yurynorov@gmail.com,m:thierryreding@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[will@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andriy.shevchenko@intel.com,m:u.kleine-koenig@baylibre.com,m:joshua.crofts1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:joshuacrofts1@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shofiqtest@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,bootlin.com,rasmusvillemoes.dk,armlinux.org.uk,linux.ibm.com,linux-foundation.org,infradead.org,google.com,suse.com,samsung.com,arm.com,linaro.org,collabora.com,amd.com,goodmis.org,efficios.com,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,kvack.org,lists.linux.dev,lists.linaro.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url,analog.com:url]
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[56];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[will@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,vger.kernel.org:from_smtp,willie-the-truck:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8F27F71AF2B
+X-Rspamd-Queue-Id: 9757C71B001
 
-Add Device Tree binding schema for the Analog Devices MAX86150
-integrated ECG and PPG biosensor.
+On Mon, Jul 06, 2026 at 03:49:24PM +0200, Thierry Reding wrote:
+> On Fri, Jul 03, 2026 at 06:13:31PM +0100, Will Deacon wrote:
+> > On Thu, Jul 02, 2026 at 06:41:23PM +0200, Thierry Reding wrote:
+> > > On Thu, Jul 02, 2026 at 03:46:44PM +0200, Thierry Reding wrote:
+> > > > On Thu, Jul 02, 2026 at 10:18:47AM +0100, Will Deacon wrote:
+> > > > > On Wed, Jul 01, 2026 at 06:08:15PM +0200, Thierry Reding wrote:
+> > > > > > From: Chun Ng <chunn@nvidia.com>
+> > > > > > 
+> > > > > > Add helpers to swap PROT_NORMAL and PROT_DEVICE_nGnRnE protection bits
+> > > > > > on a kernel-linear-map range.
+> > > > > 
+> > > > > That sounds like a really terrible idea. Why is this necessary and how
+> > > > > does it interact with things like load_unaligned_zeropad()?
+> > > > 
+> > > > This is necessary because once the memory controller has walled off the
+> > > > new memory region the CPU must not access it under any circumstances or
+> > > > it'll cause the CPU to lock up (I think technically it'll hit an SError
+> > > > but in practice that just means it'll freeze, as far as I can tell).
+> > > > 
+> > > > Probably doesn't interact well at all with load_unaligned_zeropad().
+> > > > 
+> > > > > I think you should unmap the memory from the linear map and memremap()
+> > > > > it instead.
+> > > > 
+> > > > Given that the memory can never be accessed by the CPU after the memory
+> > > > controller locks it down, I don't think we'll even need memremap(). The
+> > > > only thing we really need is the sg_table we hand out via the DMA BUFs
+> > > > so that they can be used by device drivers to program their DMA engines
+> > > > internally.
+> > > > 
+> > > > Looking through some of the architecture code around this, shouldn't we
+> > > > simply be using set_memory_encrypted() and set_memory_decrypted() for
+> > > > this? While they might've been created for slightly other use-cases,
+> > > > they seem to be doing exactly what we want (i.e. remove the page range
+> > > > from the linear mapping and flushing it, or restoring the valid bit and
+> > > > standard permissions, respectively).
+> > > 
+> > > Ah... I guess we can't do it because we're not in a realm world and so
+> > > the early checks in __set_memory_enc_dec() would return early and turn
+> > > it into a no-op.
+> > > 
+> > > How about if I extract a common helper and provide set_memory_p() and
+> > > set_memory_np() in terms of those. Those are available on x86 and
+> > > PowerPC as well, so fairly standard. I suppose at that point we're
+> > > closer to set_memory_valid().
+> > 
+> > Why not just call set_direct_map_invalid_noflush() +
+> > flush_tlb_kernel_range() for each page? We already have APIs for this.
+> 
+> Having a "standard" helper with a fixed and documented purposed seemed
+> like a preferable approach for this particular case. We also may want to
+> make the driver that uses this buildable as a module, in which case we'd
+> need to export these rather low-level APIs. And then there's also the
+> fact that we typically call this on a rather large region of memory
+> (usually something like 512 MiB), so doing it page-by-page is rather
+> suboptimal.
+> 
+> > The big challenge I see with any linear map manipulation, however, is
+> > that it will rely on can_set_direct_map() which likely means you need to
+> > give up some performance and/or security to make this work. Does memory
+> > become inaccesible dynamically at runtime? If not, the best bet would
+> > be to describe it as a carveout in the DT and mark it as "no-map" so
+> > we avoid mapping it in the first place.
+> 
+> VPR exists in two modes: static and resizable. For static VPR we do
+> exactly that: describe it as carveout in DT with no-map and deal with it
+> accordingly in the driver. Resizable VPR is for device that have small
+> amounts of RAM. Content-protected video playback will in the worst case
+> consume around 1.8 GiB of RAM, so we want to be able to reuse for other
+> purposes when VPR is unused on those devices. In that case, the memory
+> is also described as a reserved-memory region in DT, but it is marked as
+> reusable so that it can be managed by CMA.
+> 
+> The resize operation is fairly slow to begin with because we need to
+> stall the GPU and put it into reset before the operation, then take it
+> out of reset and resume it afterwards.
+> 
+> What kind of performance impact do you expect?
 
-The device exposes two PPG channels (Red LED and IR LED) and one ECG
-channel over I2C, with a 32-entry hardware FIFO and an active-low
-interrupt.
+You'll need to measure it, but we've seen reports of double-digit
+percentage regressions in performance and power. As I said, the problem
+is that you need to split the linear map to 4k page at runtime to unmap
+the dynamic carveout, but that isn't something that can be done on most
+CPUs. Therefore you end up having to use page-granular mappings for the
+entire thing, similarly to how 'rodata_full' drives can_set_direct_map()
+and the perf/power hit affects everything.
 
-Signed-off-by: Md Shofiqul Islam <shofiqtest@gmail.com>
----
- .../bindings/iio/health/adi,max86150.yaml     | 65 +++++++++++++++++++
- MAINTAINERS                                   |  6 ++
- 2 files changed, 71 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/health/adi,max86150.yaml
+It's hard to know what to suggest... I wonder if any of the memory
+hotplug logic could help here?
 
-diff --git a/Documentation/devicetree/bindings/iio/health/adi,max86150.yaml b/Documentation/devicetree/bindings/iio/health/adi,max86150.yaml
-new file mode 100644
-index 0000000000000..b0ae7d2ecfcec
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/health/adi,max86150.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/health/adi,max86150.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices MAX86150 ECG and PPG Biosensor
-+
-+maintainers:
-+  - Md Shofiqul Islam <shofiqtest@gmail.com>
-+
-+description: |
-+  The MAX86150 is an integrated biosensor that combines two
-+  photoplethysmography (PPG) channels (Red LED and IR LED) and one
-+  electrocardiogram (ECG) channel for biopotential recording. Samples
-+  are buffered in a 32-entry hardware FIFO with a configurable
-+  almost-full interrupt.
-+
-+  Datasheet:
-+    https://www.analog.com/media/en/technical-documentation/data-sheets/MAX86150.pdf
-+
-+properties:
-+  compatible:
-+    const: adi,max86150
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Interrupt line, asserted when the FIFO almost-full threshold is
-+      reached.
-+
-+  vdd-supply:
-+    description: VDD power supply (1.8 V).
-+
-+  vled-supply:
-+    description: VLED LED anode supply (3.3 V to 5 V).
-+
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+  - vled-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        heart-rate@5e {
-+            compatible = "adi,max86150";
-+            reg = <0x5e>;
-+            interrupt-parent = <&gpio1>;
-+            interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-+            vdd-supply = <&vdd_1v8>;
-+            vled-supply = <&vdd_3v3>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3115538ce8291..e9b9fd619bd86 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15863,6 +15863,12 @@ S:	Supported
- F:	Documentation/devicetree/bindings/power/supply/maxim,max77976.yaml
- F:	drivers/power/supply/max77976_charger.c
- 
-+MAX86150 ECG AND PPG BIOSENSOR DRIVER
-+M:	Md Shofiqul Islam <shofiqtest@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/health/adi,max86150.yaml
-+
- MAXIM MUIC CHARGER DRIVERS FOR EXYNOS BASED BOARDS
- M:	Krzysztof Kozlowski <krzk@kernel.org>
- L:	linux-pm@vger.kernel.org
--- 
-2.51.1
-
+Will
 
