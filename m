@@ -1,229 +1,196 @@
-Return-Path: <devicetree+bounces-321750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321752-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id awdZIViiTGqmnQEAu9opvQ
-	(envelope-from <devicetree+bounces-321750-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 08:53:12 +0200
+	id L4txCIGjTGrlnQEAu9opvQ
+	(envelope-from <devicetree+bounces-321752-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 08:58:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C7E718284
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 08:53:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72CA371832A
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 08:58:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ew.tq-group.com header.s=default2602 header.b=YtsADyMC;
-	dmarc=pass (policy=quarantine) header.from=ew.tq-group.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321750-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321750-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321752-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321752-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 30134300B823
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 06:52:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2F03C302497C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 06:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DE53B443F;
-	Tue,  7 Jul 2026 06:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 519AC3BE642;
+	Tue,  7 Jul 2026 06:52:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3F13ACA75;
-	Tue,  7 Jul 2026 06:51:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE393B14D3
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 06:52:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783407122; cv=none; b=qUoH0R9GnIPom8zEAJfXooS46HFeutkUj8yQ1IX2XvWrzh2ABHOg7Tbn1nwQaZBTuXCzcrAbpJzyOcxJEnV7HUWOCP6KPXVKHtRSkzNpRMy/wxWbvAKSB9To3MNPOUSdC8PWKh3pKRMf1z7Lz3jGFj8d3eD1drX5Xw+BiTk3b3U=
+	t=1783407164; cv=none; b=euhJSNni8cG+WUra7lRShoovWyU6MrX2t/utLJoj2ezsOo07p9UxtKCWKQKqoYktWgPIGAlhOA3gi4O6vbsekuQ2ed6rXhx8u4Mtb0dXb3K985cjscnJa7YZLOTqoTR1xxMymZ8pPZ0G6BdUweODLLQnTDBt3qpk03lPPn9sMRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783407122; c=relaxed/simple;
-	bh=aAzyweKeuOoaopZeNjfJB1xGa86TjBGIgJ3IHYBsALg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mzcPm4Bd+mLC5sycvGgAz8i2WIaE66JuvceJMs4fbZPYvKTk2C9oSuE4nokf8NqTmOGGaj+Wk2U3LNmjbDEtmzdMc1GW3x5Qzs2h4M0rfvlzTFw5ArfPG68vBYY1eV/TapQ6UvoZ4rz5MR2idttl20g7Gii7EnaRpT6D9nVinQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=YtsADyMC; arc=none smtp.client-ip=188.40.3.216
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=Rw58FESB0zTLL3rOoRjWAP/vMtkBg8dNnr+WcNnHIeA=; b=YtsADyMCArFP0XM91epgdxd5ZD
-	vonS0+Y87m7lZIW8ofv72uoT9/yV2oYfVhj9IbeC+Sq5cGRFX6vSgLGkSD76DZSRpITHo8KhsLliG
-	ygXv/tkh294ulo9zzRylh3EoV5xNaR4psoWYy6Q/G5NCpP4ju4djJkeJfp6DJjdVEiBTL9TRoZL18
-	00f+eD6YGEr38DXkwjOeJ8jAX9XX0D2VGd+TukQqZ5zdyLbhsbvJHIoMdGxR76nM4XsoY2QEnz3hN
-	HE/BawFHK29VPOHvqI4OK3sjTcJS9rS+b5/9LQg31wCUQYB+gK/vf4bWV5RNkn+GUnuNUeV3wiHZQ
-	v02tgRyw==;
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wgzet-000Lgl-0z;
-	Tue, 07 Jul 2026 08:51:55 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wgzet-0005WX-0X;
-	Tue, 07 Jul 2026 08:51:55 +0200
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Martin Schmiedel <Martin.Schmiedel@tq-group.com>,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@ew.tq-group.com,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: [PATCH v4 3/3] arm64: dts: imx93-tqma9352-mba93xxla-mini: Add LVDS overlay
-Date: Tue,  7 Jul 2026 08:51:49 +0200
-Message-ID: <20260707065151.1079667-4-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260707065151.1079667-1-alexander.stein@ew.tq-group.com>
-References: <20260707065151.1079667-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1783407164; c=relaxed/simple;
+	bh=gD/q7SKmBrC0OtQIWUnnzJ0urKpnYBI77eKOVOV42ZU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M6pAxuuaw56G9sjmII2Bd48wnLwOdrRNs5UTqTyRCPVIP2ukfg7RW3NBKBMm1pYHcSGcVAGvI+ZAZly6bAvf6vH7f9vYo501xSKO+MgK/IzuYwU29+hAEZSwh1+tjYn4SBFat7HfwnWDID8gIr8e1ITDEdetgcq+JdJBiWvJpbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.176
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-59ebf30a91dso1159246e0c.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 23:52:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783407155; x=1784011955;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=H1oWLi+zgA/mmqPta9lQQ7n/K/VL51Ngsb+MHJRTZdo=;
+        b=psUQPMMaIZK3ku+xfMx439JobtI3kXzBccOeidW4R3gAV+0i/sztNeklHdGMGyYv67
+         V7UcRfC7z/lNA+z7zdRzNpUTdsvvPRyW33Ax0h5VZuoM6U6ZT+6GQnEWNOd150OEy4DI
+         9G34ahRNboWbi1tLq3JvX6R9IOHbQ4uBvBDeH3gZ0XtfD8R/arIcFfNcE0ytVfaMQWfq
+         soHKs5xtcwMg44a55wKJSRRthu4EYmPHRYbQqg0mbbsgO2Sx6q2jhNwrTD/STEvdipgX
+         LREE1e6BNuigwfBlKzagGtiUZXm+Y+N6ilakxugXcHyWn8CdtGJDvaqLOgwEWw3KOuRj
+         i+eg==
+X-Forwarded-Encrypted: i=1; AHgh+RotiA/hVzbyH6pHA/TOf3sSTBmZQVzWEkcgZ7O1paj37Nka7k9H3R1BmeLTWKEk6L+F1GQnxDN1TGq6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjOMXKkDiEMKfodEUVKirbPPn50inSqOnjsH8xrhE1aY3DN/HV
+	TLhEoBbzR6E2VeQMQi3rAJBxYWEPje+IHvzBs4Dea2ueoMlLy3EWkjQcrVz6EPmV
+X-Gm-Gg: AfdE7cnE3zjxnVlfoDp3Rto58WmJIVZTItXB57gdMRmrCeRBK9iPqSllPzZWYp+wCxi
+	0ZawZuoirm6hPM6Gduxv5T/Iie6NZ2+9Vn+pZzwr/PFztU50j9pM9yNnIXOFxzXEQEuamWKhOn0
+	B6o1/j9fxyh863Q08vj7pGnmVSPzPat4+0cieuIs6/8HptbySzjGrJYvGYmZgxe0H6JYCTiDRzM
+	KUqgPjxtznPI5pAeMwZj6cU9hAn6AU8ug8Ffys1rD9fAxo+EguFJvLJK+2Cnen2zcJ68lbrMxha
+	h5VdGKv8bI7WeKO6lLDj9/HyOA6wbOetbK7I7IY9D8byiKK7fsGAyRD8WuxSiOylqV6yGVNTKDJ
+	HwehlDyCatqdGKYD0LKZxavbNWQa7Ws3+Rh5mcFjlM16WTPH6k+l0HTi0ymTr04TvcEZHExpClg
+	txWNlGVfsircjiWOJ8/gai/KOh3V2/HYhMPO36bk+94rqmFn4uAQOiEAUwOnWz
+X-Received: by 2002:a05:6122:1684:b0:5bd:6a65:2822 with SMTP id 71dfb90a1353d-5be908b913fmr2180445e0c.11.1783407154959;
+        Mon, 06 Jul 2026 23:52:34 -0700 (PDT)
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-9698375705dsm6498009241.0.2026.07.06.23.52.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jul 2026 23:52:34 -0700 (PDT)
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-73be40e5c4cso1010925137.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Jul 2026 23:52:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RpADtyWwe8ajZHJmfYKmJAW4S32+Fm7sQ06WC7O1Q5fsBdEvIty+ia0zvCnqBvPuzp60g8EH9Boee8m@vger.kernel.org
+X-Received: by 2002:a05:6102:1606:b0:740:2717:a2d5 with SMTP id
+ ada2fe7eead31-744b79c1bddmr1806938137.6.1783407153869; Mon, 06 Jul 2026
+ 23:52:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: Clear (ClamAV 1.4.3/28052/Mon Jul  6 08:24:35 2026)
+References: <20260704151521.211335-1-marek.vasut+renesas@mailbox.org>
+ <20260704151521.211335-2-marek.vasut+renesas@mailbox.org> <CAMRc=MeyKGv75rTLauZuGxSfgjCPXVE_r=A7uNduRr6kAd43aA@mail.gmail.com>
+ <edc7505e-1103-42d7-b88d-013ca10753b3@mailbox.org>
+In-Reply-To: <edc7505e-1103-42d7-b88d-013ca10753b3@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 7 Jul 2026 08:52:22 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXQQWmn612R3y6qSXOZ7YMwZcfrBTrQZ9GzGekhFhtWSw@mail.gmail.com>
+X-Gm-Features: AVVi8CefYSfbwNIrN8ylhp-z_YSTf7aaF8Cz88JDJCE3fX10J7HfmxqA13tE8IY
+Message-ID: <CAMuHMdXQQWmn612R3y6qSXOZ7YMwZcfrBTrQZ9GzGekhFhtWSw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] gpio: rcar: Add R-Car X5H (R8A78000) support
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org];
-	TAGGED_FROM(0.00)[bounces-321750-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Martin.Schmiedel@tq-group.com,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux@ew.tq-group.com,m:alexander.stein@ew.tq-group.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_FROM(0.00)[bounces-321752-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_RECIPIENTS(0.00)[m:marek.vasut@mailbox.org,m:brgl@kernel.org,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,tq-group.com:email,ew.tq-group.com:from_mime,ew.tq-group.com:dkim,ew.tq-group.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,vger.kernel.org:from_smtp,mailbox.org:email,linux-m68k.org:from_mime,linux-m68k.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 72C7E718284
+X-Rspamd-Queue-Id: 72CA371832A
 
-From: Martin Schmiedel <Martin.Schmiedel@tq-group.com>
+Hi Marek,
 
-Add the overlay for the Tianma TM070JVHG33 LVDS display.
+Thanks for your patch!
 
-Signed-off-by: Martin Schmiedel <Martin.Schmiedel@tq-group.com>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |  2 +
- .../imx93-tqma9352-mba93xxla-mini.dts         | 45 +++++++++++++++++++
- 2 files changed, 47 insertions(+)
+On Mon, 6 Jul 2026 at 21:44, Marek Vasut <marek.vasut@mailbox.org> wrote:
+> On 7/6/26 11:19 AM, Bartosz Golaszewski wrote:
+> >> +static inline int gpio_rcar_remap_offset(struct gpio_rcar_priv *p, int *offs)
+> >> +{
+>
+> I am hoping to get some input on this remap function.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index bd3d35ffde975..d387a4f5ed285 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -644,10 +644,12 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtb
- imx93-tqma9352-mba93xxca-lvds-tm070jvhg33-dtbs += imx93-tqma9352-mba93xxca.dtb imx93-tqma9352-mba93xxla-lvds-tm070jvhg33.dtbo
- imx93-tqma9352-mba93xxla-lvds-tm070jvhg33-dtbs += imx93-tqma9352-mba93xxla.dtb imx93-tqma9352-mba93xxla-lvds-tm070jvhg33.dtbo
- imx93-tqma9352-mba93xxla-mini-ezurio-wlan-dtbs += imx93-tqma9352-mba93xxla-mini.dtb imx93-tqma9352-mba93xxla-mini-ezurio-wlan.dtbo
-+imx93-tqma9352-mba93xxla-mini-lvds-tm070jvhg33-dtbs += imx93-tqma9352-mba93xxla-mini.dtb imx93-tqma9352-mba93xxla-lvds-tm070jvhg33.dtbo
- 
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca-lvds-tm070jvhg33.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla-lvds-tm070jvhg33.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla-mini-ezurio-wlan.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla-mini-lvds-tm070jvhg33.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-var-dart-sonata.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93w-evk.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini.dts b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini.dts
-index 4afd6b650d9d8..0d553a8da7135 100644
---- a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini.dts
-@@ -58,6 +58,37 @@ aliases {
- 		spi5 = &lpspi6;
- 	};
- 
-+	backlight_lvds: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&tpm5 0 5000000 0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_backlight>;
-+		brightness-levels = <0 4 8 16 32 64 128 255>;
-+		default-brightness-level = <7>;
-+		power-supply = <&reg_12v0>;
-+		enable-gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>;
-+		status = "disabled";
-+	};
-+
-+	display: display {
-+		/*
-+		 * Display is not fixed, so compatible has to be added from
-+		 * DT overlay
-+		 */
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_display>;
-+		power-supply = <&reg_3v3>;
-+		enable-gpios = <&gpio2 7 GPIO_ACTIVE_HIGH>;
-+		backlight = <&backlight_lvds>;
-+		status = "disabled";
-+
-+		port {
-+			panel_in_lvds0: endpoint {
-+				remote-endpoint = <&ldb_lvds_ch0>;
-+			};
-+		};
-+	};
-+
- 	iio-hwmon {
- 		compatible = "iio-hwmon";
- 		io-channels = <&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>;
-@@ -311,6 +342,10 @@ &lpuart8 {
- 	status = "okay";
- };
- 
-+&ldb_lvds_ch0 {
-+	remote-endpoint = <&panel_in_lvds0>;
-+};
-+
- &pcf85063 {
- 	/* RTC_EVENT# from SoM is connected on mainboard */
- 	pinctrl-names = "default";
-@@ -375,6 +410,16 @@ &usdhc3 {
- };
- 
- &iomuxc {
-+	pinctrl_backlight: backlightgrp {
-+		fsl,pins = /* HYS | PD | FSEL_2 | DSE X4 */
-+			   <MX93_PAD_GPIO_IO05__GPIO2_IO05			0x011e>;
-+	};
-+
-+	pinctrl_display: displaygrp {
-+		fsl,pins = /* HYS | PD | FSEL_2 | DSE X4 */
-+			   <MX93_PAD_GPIO_IO07__GPIO2_IO07			0x011e>;
-+	};
-+
- 	pinctrl_eqos: eqosgrp {
- 		fsl,pins = /* PD | FSEL_2 | DSE X4 */
- 			   <MX93_PAD_ENET1_MDC__ENET_QOS_MDC				0x51e>,
+I haven't looked at your patch in detail yet, but the remap function
+was the first thing that struck my eyes.  This might impact performance
+of bit-banging and of the sloppy logic analyzer.
+Have you looked at the code generated by the compiler?
+Perhaps it would be better to use a table, like sci_port_params.regs[]
+in the sh-sci driver, and riic_of_data.regs in the riic driver?
+
+> >> +    /* R-Car Gen4 and older do not need any offset remap. */
+> >> +    if (!p->info.has_layout_gen5)
+> >> +            return 0;
+> >> +
+> >> +    /*
+> >> +     * R-Car Gen5 register layout is slightly different and the offsets
+> >> +     * that have to be added to or subtracted from each register offset
+> >> +     * can be divided into five groups, listed below.
+> >> +     */
+> >> +    switch (*offs) {
+> >> +    case IOINTSEL...OUTDT:
+> >> +            return 0;
+> >> +    case INDT:
+> >> +            *offs += 0x10;
+> >> +            return 0;
+> >> +    case INTDT...EDGLEVEL:
+> >> +            fallthrough;
+> >> +    case BOTHEDGE:
+> >> +            *offs += 0x70;
+> >> +            return 0;
+> >> +    case OUTDTSEL:
+> >> +            *offs -= 0x34;
+> >> +            return 0;
+> >> +    case INEN:
+> >> +            *offs -= 0x38;
+> >> +            return 0;
+> >> +    default:
+> >> +            /*
+> >> +             * This here must never be reached, if this is reached, that
+> >> +             * means there is a catastrophic failure in the driver. Skip
+> >> +             * any IO read/write to prevent further damage.
+> >> +             */
+> >> +            WARN_ON(1);
+> >> +            return -EINVAL;
+> >> +    }
+> >> +}
+> >> +
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.54.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
