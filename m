@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-321702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321703-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id runrK4GMTGpfmAEAu9opvQ
-	(envelope-from <devicetree+bounces-321702-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 07:20:01 +0200
+	id K1MQDuCMTGpvmAEAu9opvQ
+	(envelope-from <devicetree+bounces-321703-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 07:21:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D02397176C4
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 07:20:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C6D67176E0
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 07:21:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XjRq1R9o;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fF6easp1;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321702-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321702-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321703-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-321703-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3C23B302334B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 05:18:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A2E4730162B4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 05:21:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D56B236492C;
-	Tue,  7 Jul 2026 05:18:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B588381AEF;
+	Tue,  7 Jul 2026 05:21:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B91AF42087D
-	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 05:18:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561F7346E70
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 05:21:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783401501; cv=none; b=XKYPNOGtn/b4LzyItjZPaPiN1GwCYY/Lhtrv889dM8kE6YoXTIVN9TjXKOsFhKPI2zJwdwpfxzY457TEu3iTpeM6sPAVx24NoYgwGpykencBAoW5c4LFxEyAKhlSfWU2/BkuSHeEHaVfogbLHcY9LEihGpj3anq4FKFTCoQ/eaY=
+	t=1783401692; cv=none; b=J+Bc76ZiFT+qGm1YADPaqgIpAgm3pkdc7EFnhwanlN/BSxq64VIy85GSsqT447QBloGiRLUBWevOBB7u2o2B8KcO33z5IanMTINvadrfNMGl/YvP0yEXcwnjXfDR7VsIp/HZvthLStdJ1EGLs2oLM+aLIn7vznNhTaURWDW0sKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783401501; c=relaxed/simple;
-	bh=UWKqq4bnPtzKjJn/c937GUQJ8DtZMZpyzGnJC6ZfsU4=;
+	s=arc-20240116; t=1783401692; c=relaxed/simple;
+	bh=tt3io8VJ0PIlIT7IA9W2lEhLRmEsBTbaYPKtqTaOb58=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=YEeHN/KtuHHG+64UBQrbCO9jWMniFWch48auSkj+1Kk4507+0HvY60H8TMf2nweyY9/4F0afqGUrcLpHZJhk4l02bQ/EgpZRSN0KEC6gz7vTw5E8T0y3LLmzZUrbyBISIxlM/UHv3MYAFbgf+2kx+2ucMfrQNJi9fMFDK4xatc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XjRq1R9o; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DF181F000E9;
-	Tue,  7 Jul 2026 05:18:20 +0000 (UTC)
+	 Message-Id; b=c7XOPIqMAghEcnar0vJLllEDjgf++BvPUo0i60h2h3LGUHCuHllW1NutdvceV58x9aJuKOaU6drpojDubUWBhmLx8XvOidqn/cHYO8AVGQ8OHnRq70geu1YkDiD8byTCbGYspOAlEaY1cUFfRk/4e8OHM2irlIZRxvnp0FAxUnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fF6easp1; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE6E81F000E9;
+	Tue,  7 Jul 2026 05:21:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783401500;
-	bh=r4+sdoKgiTmrnjb4SgVTgXCcpoWSHat4VDO2pZEWvFM=;
+	s=k20260515; t=1783401691;
+	bh=HPlo7RPyG0D1FRDosunqNbyO5S/QLd6uRNfNX+EWT78=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=XjRq1R9ocLmSRx8rGSYCqH+BeOFid5ylkK4H4DSdUfGizaphdD7LNQfuBkq8DR7xd
-	 nVGLvcUbSlAPa36uMH5lUeGjKg3JJm2l9KT73obQbvgiO28U/qnTNvM8CwqoGVrOsu
-	 hJpMZY6HEvjwhvaSCuwr4xrdF16ZKoI8cV8P67qJYcumZtitYK0X262EgByUi+Cn36
-	 BTiXODdXQNGWl2P5S9eHxzXxaT1omdG2nU+VbMVaMajE9fR5l75NpwMXbrq4WCoI5r
-	 H59vuHQAr9qsIK5rODbJql9ZEfpJ1jv6MpwJgz432gmqGhIBSpRKk9JwLVCHPxETSc
-	 zzcHqvekbeMfA==
+	b=fF6easp1q5G1ecQCuaKp8QIU8562N11pwiczPmJNLZu0UdLx41NqcuWa6EUSDs0FN
+	 NKwOW/XDi84dqTb3PLtrUdJekc5qHjUtH5xIsR7/QAVx3a2qC/s36Rx7G1/yxzw10o
+	 9wS+eZUTS1AtzWiWzGnNV0GtqgdKlcUwWhZstF2p3eNnvQtOGPKMffDeKvmc+m3347
+	 4yleWXfyNFIp30xhYnK7slAz8I1ZeRtWdmxoB8rc3GaOKzoVvcOW2obO51hcpdRA9Q
+	 w3IKTOuAQ7OQb+wGAA9iI/B9EE8isKmRhkBg39tTaeyjqhqheXhel8kDA76XWPe3M6
+	 L3p0WdGqPiqyA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: kaanapali-qrd: Add PMIC Glink
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: kaanapali-mtp: Add PMIC Glink
  node
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Krishna Kurapati" <krishna.kurapati@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260707-kaanapali-pmic-glink-v1-2-3f7d476672d9@oss.qualcomm.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260707-kaanapali-pmic-glink-v1-1-3f7d476672d9@oss.qualcomm.com>
 References: <20260707-kaanapali-pmic-glink-v1-0-3f7d476672d9@oss.qualcomm.com>
- <20260707-kaanapali-pmic-glink-v1-2-3f7d476672d9@oss.qualcomm.com>
+ <20260707-kaanapali-pmic-glink-v1-1-3f7d476672d9@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 07 Jul 2026 05:18:19 +0000
-Message-Id: <20260707051820.1DF181F000E9@smtp.kernel.org>
+Date: Tue, 07 Jul 2026 05:21:30 +0000
+Message-Id: <20260707052130.AE6E81F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,24 +72,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-321702-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-321703-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:krishna.kurapati@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:krishna.kurapati@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -99,38 +99,45 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D02397176C4
+X-Rspamd-Queue-Id: 9C6D67176E0
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] The `&usb` node lacks the `usb-role-switch` property, causing th=
-e DWC3 controller to silently fall back to peripheral mode and breaking Typ=
-e-C dual-role functionality.
+
+New issues:
+- [High] The `usb-role-switch` property is omitted from the `&usb` DWC3 nod=
+e, which breaks Type-C role switching integration with PMIC Glink.
+
+Pre-existing issues:
+- [Medium] Missing `mode-switch` property in the `&usb_dp_qmpphy` node brea=
+ks DisplayPort Alt Mode.
 --
 
---- Patch [2]: [PATCH 2/2] arm64: dts: qcom: kaanapali-qrd: Add PMIC Glink =
+--- Patch [1]: [PATCH 1/2] arm64: dts: qcom: kaanapali-mtp: Add PMIC Glink =
 node ---
-commit 904c19a1a664815102c7af84e0fb9891b1a979d7
+commit 6286754ebf3e4661a8a09cc98412dbc73a006aac
 Author: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
 
-arm64: dts: qcom: kaanapali-qrd: Add PMIC Glink node
+arm64: dts: qcom: kaanapali-mtp: Add PMIC Glink node
 
-Add PMIC Glink node on Kaanapali QRD Platform and add remote-endpoint
+Add PMIC Glink node on Kaanapali MTP Platform and add remote-endpoint
 linkages to DWC3 controller and QMP phy respectively.
 
-> diff --git a/arch/arm64/boot/dts/qcom/kaanapali-qrd.dts b/arch/arm64/boot=
-/dts/qcom/kaanapali-qrd.dts
-> index 55d02219ef4e9..a79ae73acf0de 100644
-> --- a/arch/arm64/boot/dts/qcom/kaanapali-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/kaanapali-qrd.dts
+> diff --git a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts b/arch/arm64/boot=
+/dts/qcom/kaanapali-mtp.dts
+> index f9b5b5718b904..3e9d9fb008ebd 100644
+> --- a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+
 [ ... ]
-> @@ -823,8 +866,6 @@ &ufs_mem_phy {
+
+> @@ -1328,8 +1371,6 @@ &ufs_mem_phy {
 >  };
 > =20
 >  &usb {
@@ -139,24 +146,60 @@ linkages to DWC3 controller and QMP phy respectively.
 >  	status =3D "okay";
 >  };
 
+[Severity: High]
+The patch removes peripheral mode to enable dual-role, but without the
+usb-role-switch; property, will Type-C role switching function correctly?
+
+When a Type-C cable is inserted, the PMIC GLINK UCSI driver uses
+fwnode_connection_find_match() to find the remote role switch using the
+"usb-role-switch" property.
+
+Simultaneously, the DWC3 core driver (dwc3_drd_init()) requires this
+property to register the role switch via usb_role_switch_register().
+
+Without it, does DWC3 fall back to legacy OTG block logic, causing UCSI
+to fail to find the switch?
+
+[ ... ]
+
+> @@ -1348,3 +1389,11 @@ &usb_dp_qmpphy {
+> =20
+>  	status =3D "okay";
+>  };
+> +
+> +&usb_dp_qmpphy_out {
+> +	remote-endpoint =3D <&pmic_glink_ss_in>;
+> +};
+
 [Severity: Medium]
-Does removing dr_mode =3D "peripheral" without adding the usb-role-switch
-property cause the DWC3 controller to silently fall back to peripheral mode?
+This isn't a bug introduced by this patch, but does the base &usb_dp_qmpphy
+node in kaanapali.dtsi lack the mode-switch; property required for
+DisplayPort Alt Mode?
 
-During boot, when dwc3_get_dr_mode() initializes the DWC3 core driver,
-omitting both dr_mode and the usb-role-switch property causes the driver
-to fall back to USB_DR_MODE_PERIPHERAL and skip registering a USB role swit=
-ch
-device.
+The pmic_glink_altmode driver attempts to acquire the Type-C mux using
+fwnode_typec_mux_get(), which traverses the OF-graph and strictly searches
+the remote endpoint's parent for the "mode-switch" property:
 
-Because of this, does the PMIC GLINK Type-C driver fail to acquire the role
-switch handle via the endpoint graph, breaking the intended Type-C dual-role
-functionality?
+usb_dp_qmpphy: phy@88e8000 {
+        compatible =3D "qcom,kaanapali-qmp-usb3-dp-phy",
+                     "qcom,sm8750-qmp-usb3-dp-phy";
+        ...
+        orientation-switch;
 
-Should the usb-role-switch property be added to this node to allow the
-registration of the USB role switch?
+        status =3D "disabled";
+
+Since the usb_dp_qmpphy node lacks this property, the lookup returns NULL.
+
+Consequently, typec_mux_set() does nothing, and the QMP PHY is never
+instructed to configure its pins for DP out. Should this be added so Alt
+Mode works properly with these new endpoints?
+
+> +
+> +&usb_dwc3_hs {
+> +	remote-endpoint =3D <&pmic_glink_hs_in>;
+> +};
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260707-kaanapali-=
-pmic-glink-v1-0-3f7d476672d9@oss.qualcomm.com?part=3D2
+pmic-glink-v1-0-3f7d476672d9@oss.qualcomm.com?part=3D1
 
