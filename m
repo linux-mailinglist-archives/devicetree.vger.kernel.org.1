@@ -1,222 +1,165 @@
-Return-Path: <devicetree+bounces-322194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322195-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sLCoNAAgTWoEvgEAu9opvQ
-	(envelope-from <devicetree+bounces-322194-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 17:49:20 +0200
+	id RgoLGdohTWpzvgEAu9opvQ
+	(envelope-from <devicetree+bounces-322195-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 17:57:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B1C71D7DF
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 17:49:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEF0971D908
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 17:57:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=aq8vQbn7;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322194-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322194-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linaro.org header.s=google header.b=VoVvfp55;
+	dmarc=pass (policy=none) header.from=linaro.org;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322195-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-322195-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7E68C300F5E3
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 15:49:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1619031D98DF
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 15:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1985433BD2;
-	Tue,  7 Jul 2026 15:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9753E63A2;
+	Tue,  7 Jul 2026 15:49:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC41431E51;
-	Tue,  7 Jul 2026 15:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F60242DFEB
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 15:49:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783439330; cv=none; b=WX8feGcFq+44779Z5cZFcTnexq6RQmUj5jOpxoV98jIfxaxtiskzUysrxMtId5/2kHw12VC2k5t9x+LeReO6gswIl+pTFF47FWUhSXSYP2dw++/znx6vSPE754LGJvjFEF/Gmzj9A7FNq7SvVDc5WkzxOZkq9F/uaPzPKxLNR7k=
+	t=1783439386; cv=none; b=f3cc2L2JuP89OkQ9NkXSVSuyJZE1akynIIMJajGHoA+I9oVpIyJ/RtxFRJnyLDBlj2i+IPDUr0xFP7RLw7K43YDshL0Zrx50NCEw7Ytrat6Ueur7NCjTSt3Jd6Utl5wxpT4E2DU3z8IdayZ7CwtPk9e5zoG3fHdmxcjBm9Wi5RQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783439330; c=relaxed/simple;
-	bh=zfW9Gw4ldyX65DZJ4SArMl9kyhrWZBia8Y0jq2fer/A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AGFjUzWztBDI1N/VlVZPZoC0Qdqd/1oNvZn1i7Fz7ooorf7RtFu/P/WE9NFejE2vtsJGhJqO3C6Q9Wzw/epEFMcdgISYZ/Oj5fWm+r7jOWPxMCQyOl0MlmuFZs5N7U1gDtNp+0+ttUd8ltcGgCGh9jBDcbAxUbzavb3+QQZho9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aq8vQbn7; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783439327;
-	bh=zfW9Gw4ldyX65DZJ4SArMl9kyhrWZBia8Y0jq2fer/A=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=aq8vQbn7Z/cCcO0mY86AYoZBRzEdxTgcGOCr0lhqLhjXW0eGgGNS5XjASw4D0lgMd
-	 CEBUn62ApTH46b267dXiPAy4CSAW/Y1LVkh8G0ceuW/pVFagj/erIQGkFg4MmGFvFC
-	 scBm7an26AJslmdZMYPFFgVWZVpO2IanNl+CyiCn0yVq+WLJ0JFjgchsNNq4fWXvK9
-	 2Tz8rUJL1p9VAoUIV1h0I0//k6uLZn+LxPrTrs5aPWgBsNkE7HUToImFRAKjHO3YCa
-	 q7oCMVnX97AeCxMAZIPS/QZBwp+QLWvFL9UTL2j6GxA4DQ7y2CcQq4X29tEYxD0vCn
-	 oXL9e5asZKI7A==
-Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7475117E0EA6;
-	Tue, 07 Jul 2026 17:48:47 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-mediatek@lists.infradead.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com,
-	justin.yeh@mediatek.com
-Subject: [PATCH v2 7/7] arm64: dts: mediatek: mt8195: Add and use UART AP_DMA controller
-Date: Tue,  7 Jul 2026 17:48:41 +0200
-Message-ID: <20260707154841.198870-8-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260707154841.198870-1-angelogioacchino.delregno@collabora.com>
-References: <20260707154841.198870-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1783439386; c=relaxed/simple;
+	bh=BqX/raJZq/M+26MMxkIWhMYO1ENqNToaygyKe2/Aq0o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kPIztDeuRmZnhAxvpKFrebPqoD7Z6ZN5sXD5S4Lmn9iBnEgEWQ23xqRzb4nI8/d7FR8c0fIpYmo32n1uxHQhAdeGcxODmTurwz5BZiNAJrWWqAYvbGlumGZfO6Tci1+n3aZWhJtdG6Hwhs0UNa8Jcl6mKIivsrzCzjf6zz3mUC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VoVvfp55; arc=none smtp.client-ip=209.85.221.45
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-474303f3c72so2611846f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 08:49:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1783439383; x=1784044183; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=yoBSGIBvFJoYUlGX0ow4ClOW7y5+xBVzJYsazX/Ju4I=;
+        b=VoVvfp55/g7v1m0zkRi9e+J3LCUCLk310UH4aO6cV62pJ25Fao6IGJJUsxs8fZ+7q2
+         GYlVgl6axMQpP1DDD/sLudWX+XkqjlRfXlaIlv98ZWjUAozkmd78J70Q8Np7glbxzQ5G
+         PRwKUA2HEDAq06fQxk2mSSa4MJk5mizX/LowPJJYrOr/u5xXlWvW2WOXAQuSGvBDlDvX
+         W02TqwlDnOjFmdwRNgGfz/JTqjoO4dOloqkeisDBmG/8fumvxokdcGxN/0/B1VMIyglt
+         NNkY0is45TT3lxum5edDjz6o+vY5GtYh+pRJac16vl798e6bMBCdmjaK6AA3TaFcq/lS
+         6ihQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783439383; x=1784044183;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=yoBSGIBvFJoYUlGX0ow4ClOW7y5+xBVzJYsazX/Ju4I=;
+        b=N1Z5XVso2venAA962gp3bZzHhsn+4R/SlT/kqlj0/aeHT964wZGWR+OZxMmhAM0ed+
+         4dq/UMZfks+ye9+jgSXiJjpX+F8RmQ12E58LZ3qE/YnjMhNY7QDt7XY4VpWtYAkVKMG0
+         Yc5rUKYLVE1K4klwQUY+T9c1gvsIxca452d9GTa6bB3k1Fx3x6jTdmftKKTUzgQcNaUC
+         8hhz5bbDi1izlzOqGR18Cf++OGURvMQ4u4nWoSYwAgmXILyfRt0hK7BJA3T1yE7k2e2z
+         yYjt4gB/FXMgZEd1eaSVZ46p4RYoew7Uso3J3xEd/qtN3Ol0B82YQjcWTHjBv3+7WW5G
+         pNeA==
+X-Forwarded-Encrypted: i=1; AHgh+Rq88L7ar0QSfl4RoFsei+zAefwUMEs3nTNTmCWGiw7BavBwN9vSSVJ+bakWAe/61ZhGMrMoPcXti8Gl@vger.kernel.org
+X-Gm-Message-State: AOJu0YySAL3IUCPDjk635kttyzN7zW0Vb7w5SP5tecrbtRNr3SmAICmk
+	4LISBvzpvQzOimh8nG6X9cqsO3etXS2/KowHYiBGmpvr2bCYuOxr7+Rc3DmmSV2CTnY=
+X-Gm-Gg: AfdE7cmrHTnOI0OceG26VGGkjaL4ViqXVf77AxJG4fk6aU1n+4EbFSGQNDh/WuYxbDP
+	IGaZUrrTasjzDu4tk9DbZQ3hFjJ3tU0v3RI8gOBP85OYFiWmOuJumQ5bAymodPryqLHk6GkL0eL
+	n0kd8vHlEFHA8p7LyeE1ZOqh1+PyaHj7fNlIuX55Z1tzrpRENsE5Sa5456xYR2DFUo1GTz10HRm
+	aa8VZP2JyhJe5DqNvxfdjlKaCmPmdqm4ktBlRjtcpUNjRhc/eKYF0y/LvyTnvLnCF2hZj6oRYbf
+	VCBM3oVEdhDj20hVbECqfKmuuBN+HNsq9hwoX/lOvT0tQOmngub6cZopbawVc3YgYHc4owXgRks
+	JYu8j6b+jxsWnLVPBcUFChQNUq2DFHEeOzTSwgdq3mlpFPTSwNw0fklmIb2YBAmEVB3Qs1dg6IZ
+	vnmFZNE0eLyAprkKbZOUeInKui
+X-Received: by 2002:a5d:5089:0:b0:46f:398e:f31 with SMTP id ffacd0b85a97d-47de665b35amr5095812f8f.20.1783439382700;
+        Tue, 07 Jul 2026 08:49:42 -0700 (PDT)
+Received: from [192.168.0.101] ([109.77.92.41])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa039b0cesm35170317f8f.22.2026.07.07.08.49.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Jul 2026 08:49:42 -0700 (PDT)
+Message-ID: <85940a25-4897-4983-a328-89b328fbf1e0@linaro.org>
+Date: Tue, 7 Jul 2026 16:49:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/5] Add Qualcomm JPEG V4L2 encoder for SM8250
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Bryan O'Donoghue <bod@nxsw.ie>
+Cc: Bryan O'Donoghue <bod.linux@nxsw.ie>,
+ "Gjorgji Rosikopulos (Consultant)" <gjorgji.rosikopulos@oss.qualcomm.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Atanas Filipov <atanas.filipov@oss.qualcomm.com>,
+ linux-media@vger.kernel.org, loic.poulain@oss.qualcomm.com,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260706071113.383215-1-atanas.filipov@oss.qualcomm.com>
+ <68e59764-5a10-4abc-849c-14ea2d9ef76e@linaro.org>
+ <d74d7839-d126-427a-b151-ca895a27a83e@linaro.org>
+ <7e36238b-96ac-4269-a6e5-0a6763e437e7@oss.qualcomm.com>
+ <4a2c098f-5d46-4339-9b09-e0ace37e4052@nxsw.ie>
+ <w6imdnlo3xron3f2cw7fq5jtwcgvyijciddxjftwf46kltjjqx@inipxbghzngc>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <w6imdnlo3xron3f2cw7fq5jtwcgvyijciddxjftwf46kltjjqx@inipxbghzngc>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-322195-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-322194-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org,mediatek.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-mediatek@lists.infradead.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:kernel@collabora.com,m:justin.yeh@mediatek.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:bod@nxsw.ie,m:bod.linux@nxsw.ie,m:gjorgji.rosikopulos@oss.qualcomm.com,m:vladimir.zapolskiy@linaro.org,m:atanas.filipov@oss.qualcomm.com,m:linux-media@vger.kernel.org,m:loic.poulain@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	TO_DN_NONE(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,linaro.org:from_mime,linaro.org:dkim,linaro.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 75B1C71D7DF
+X-Rspamd-Queue-Id: AEF0971D908
 
-This SoC has a DMA controller (AP_DMA) that provides one channel
-for each data direction (transmit and receive) for all of the
-UART controllers in the SoC.
+On 07/07/2026 14:22, Dmitry Baryshkov wrote:
+>> * compat="camss-bus"
+> You can't change compat. There is no separate "camss bus". We have camss
+> block on, say, Hamoa. Or Glymur. Or CoolPlatform. This would mean
+> exactly qcom,x1e80100-camss, qcom,glymur-camss, etc.
+> 
+> Then, a part of that camss device we have all the IFE, PHY, JPEG and
+> other blocks. Each of them having a separate compat, etc.
+> 
+> But, there is no "camss-bus" (okay, there is a camnoc, but it is not
+> represented as such in DT).
 
-In order to increase the efficiency of data TX/RX over the UART
-controllers, add the UART DMA controller and assign the right
-channels to each uart controller.
+Well, perhaps we don't churn the compat, or we add a new one.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+TBD
+
 ---
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 37 ++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index c72e34c57629..3306fd8c4e44 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -877,6 +877,31 @@ systimer: timer@10017000 {
- 			clocks = <&clk13m>;
- 		};
- 
-+		apdma: dma-controller@10220880 {
-+			compatible = "mediatek,mt8195-uart-dma", "mediatek,mt6835-uart-dma";
-+			reg = <0 0x10220880 0 0x80>, <0 0x10220900 0 0x80>,
-+			      <0 0x10220980 0 0x80>, <0 0x10220a00 0 0x80>,
-+			      <0 0x10220a80 0 0x80>, <0 0x10220b00 0 0x80>,
-+			      <0 0x10220b80 0 0x80>, <0 0x10220c00 0 0x80>,
-+			      <0 0x10220c80 0 0x80>, <0 0x10220d00 0 0x80>,
-+			      <0 0x10220d80 0 0x80>, <0 0x10220e00 0 0x80>;
-+			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 179 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 182 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&infracfg_ao CLK_INFRA_AO_APDMA_B>;
-+			#dma-cells = <1>;
-+			dma-requests = <12>;
-+		};
-+
- 		pwrap: pwrap@10024000 {
- 			compatible = "mediatek,mt8195-pwrap", "syscon";
- 			reg = <0 0x10024000 0 0x1000>;
-@@ -1040,6 +1065,8 @@ uart0: serial@11001100 {
- 			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART0>;
- 			clock-names = "baud", "bus";
-+			dmas = <&apdma 0>, <&apdma 1>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -1050,6 +1077,8 @@ uart1: serial@11001200 {
- 			interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART1>;
- 			clock-names = "baud", "bus";
-+			dmas = <&apdma 2>, <&apdma 3>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -1060,6 +1089,8 @@ uart2: serial@11001300 {
- 			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART2>;
- 			clock-names = "baud", "bus";
-+			dmas = <&apdma 4>, <&apdma 5>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -1070,6 +1101,8 @@ uart3: serial@11001400 {
- 			interrupts = <GIC_SPI 723 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART3>;
- 			clock-names = "baud", "bus";
-+			dmas = <&apdma 6>, <&apdma 7>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -1080,6 +1113,8 @@ uart4: serial@11001500 {
- 			interrupts = <GIC_SPI 724 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART4>;
- 			clock-names = "baud", "bus";
-+			dmas = <&apdma 8>, <&apdma 9>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -1090,6 +1125,8 @@ uart5: serial@11001600 {
- 			interrupts = <GIC_SPI 725 IRQ_TYPE_LEVEL_HIGH 0>;
- 			clocks = <&clk26m>, <&infracfg_ao CLK_INFRA_AO_UART5>;
- 			clock-names = "baud", "bus";
-+			dmas = <&apdma 10>, <&apdma 11>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
--- 
-2.54.0
-
+bod
 
