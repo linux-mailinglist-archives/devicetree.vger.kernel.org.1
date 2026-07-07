@@ -1,58 +1,84 @@
-Return-Path: <devicetree+bounces-321983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-321987-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uZ07JHnpTGrqrwEAu9opvQ
-	(envelope-from <devicetree+bounces-321983-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:56:41 +0200
+	id BJ2qFl7qTGofsAEAu9opvQ
+	(envelope-from <devicetree+bounces-321987-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 14:00:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F9271B24E
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 13:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A66771B2A8
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 14:00:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=QkUazNn2;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321983-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321983-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=OxAaE1xC;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-321987-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-321987-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 644253001FAF
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 11:56:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 81669300139C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 12:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B08E43FDBE5;
-	Tue,  7 Jul 2026 11:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B413F65E8;
+	Tue,  7 Jul 2026 12:00:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E35E3FBB68;
-	Tue,  7 Jul 2026 11:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D77313FD123
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 12:00:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783425387; cv=none; b=AJUKnZEDlBkqMdMzvgXcqpPmT0wK2PWXfRJIcocOICkie6ZWWIbR8zy41tTsmzKM2YCZdCc8ag60BtMIWOj0bKl2qWmEY7w4/ipL2p3OKri/BHIt6OBMxyBs0mNUz7NyH19Vhw7qB5wjiIWyc/Dro5p4jdnWDZzvTfe06kJjunc=
+	t=1783425606; cv=none; b=bkdL6Q07Qyi5LZpeimKeQQehffDh6jOjNUQmMXPR5TM0TMvC72xe4Gtr4HNBv38Qwu33bTIN0lo3jScb+1aoFNGm0r1XZKdphEKzCOPuZ2vReAX/wfOaY+NFjvarZ4NkRyM+/c8miRch5/Ht/heZAxziMwLs658A4hZGqQIZBUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783425387; c=relaxed/simple;
-	bh=5La47mugR86zNwVAYVmIlynmty3b35suIyPgIrKNa6Y=;
+	s=arc-20240116; t=1783425606; c=relaxed/simple;
+	bh=qlDJ746JGiTFJNRIapHXqXoAzifdALXvediQx13XyIs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rvmvhSF/iKPUVla06rGl9RZ7Ht4rINFLk8bD7dzhrMWw2WI6MZi5jfTH0yDevHevGg29iLMIVna8sdLFNSpGkJt5vGhKZ7fvAIeBE4CZC7pnSJskNOTU5QQQ+hx9yGwBhI/6PZkvYSGHg/noNPGe9EwOyJkQFIt8cv1hPmct+08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QkUazNn2; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1783425383;
-	bh=5La47mugR86zNwVAYVmIlynmty3b35suIyPgIrKNa6Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QkUazNn2ulg5g0wRD75nGqhs3FODngy61+asFxo9b5oAqQLyrCpdMUt5imj3yszwe
-	 U6G+nKWXawpzRFongj99CeFI1GHvp4VuoOhqpNAxgcp08p7RY69xOXCu4Qf3iiT369
-	 HLJOAuArQy/SdwO50/+G2tJo/j5eWXT2q+P0KZracXexDmCDX9RJ71wYJ90B+4qzlH
-	 6SBIzevm+25I9yup2XMoL0LIp6Dl33BXPTnDnM3hLC5TNA8RZphTGZBWvlF0GgMNlV
-	 3DjP7I1b2EG2NXRaRPqMppMAnHUceu9JjIzboa+chN2nigEM+OX9BzkYXWR/wKdWu2
-	 Z8Qsis+ohYePQ==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 101AA17E013E;
-	Tue, 07 Jul 2026 13:56:22 +0200 (CEST)
-Message-ID: <16980e9f-c183-41c4-8001-ac7807cc087b@collabora.com>
-Date: Tue, 7 Jul 2026 13:56:21 +0200
+	 In-Reply-To:Content-Type; b=bq4CU3kDYzCVkF1cC3B30ZPLg9iiK9+3aU7GVG//AG4s91ZKS0wtDuhvXqz6i9sNRxOd7pLAOD4Hk4gpgEUP1A3TkY7D8hYu1gL4XZmmSYxl0PkEZKmlnMqjA200szwPvDYYV4X8BU0iZ/o3WdYdUrzK0dLi6cYeiBEHE0GAthE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OxAaE1xC; arc=none smtp.client-ip=209.85.128.46
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-493b77b150aso37363225e9.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Jul 2026 05:00:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1783425603; x=1784030403; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=qlDJ746JGiTFJNRIapHXqXoAzifdALXvediQx13XyIs=;
+        b=OxAaE1xC9empgB7Oh8znVpWuy/t/AqYZnOvpr6qkGq1FCl4Own//li1VQ3aUQ0qVIY
+         +KfWwAzw7vxBiE3uaJk/rVVnxnqCSYabZel2F9YtMP5vnAYeC2N6L5LWRA4aPEyxbxsE
+         iSHE8O5k1k2fdruGxV5+rYz4zN+HoLoA95mBJBztgdeAcPUrzO4qxSzDlA7TqRQCKxzl
+         aYjEa3r5ab4wefrofDX/2kOZZS9pfIu+EzHsfTlMWpxX5Ehl2lPN08cOwlLXo/E6QFGc
+         07vypalpD44TtQCXv+wrV0YqQ+EKR6v3hRffVt0gmCRcwcUlsb6yh9Ujqu9jclkSjtM8
+         JCdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783425603; x=1784030403;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=qlDJ746JGiTFJNRIapHXqXoAzifdALXvediQx13XyIs=;
+        b=d3hzYuZgArCu2NE5jN1kyPYor2JvA9braxCWigjKMoIY+H9PheDHOOleY33jThwf+t
+         ZNd0vN+3zmEubToxzzPdPfWi/uMR97jWUeCxt5/JLEjD4dbMeaTszoPWTHstOBK3iH6+
+         e/lFcm1NvL/mbxtHXUPzb3GAnvDd3FTsSucCvsyr6+aGDScTHE03M46zMNe1OrJumX+b
+         JLuwjYOazm7woXJKk8l8ZFBOEHXY/lOPTTZp6sH0x/1uUsGYXzw+DCdpcVVoHfAWp36z
+         sSSw4uVtBBHqdvSjUcjsXmMJrK8ZDfaoRMGZ+Y7Qp/J4A9tsSLIPxuv5TO0K7HVn7MWK
+         Hv6w==
+X-Forwarded-Encrypted: i=1; AHgh+RoUs2unaOcCrlOWpDjB3uTjWDEUPiEpjxk8yTPfV7B8at6xcxgBnltGBzXJ/YzBrDPPSwl21qyXfbH2@vger.kernel.org
+X-Gm-Message-State: AOJu0YxyMB2l1G8eriONzv0RawneHPurXnSy6Ru6joBIC1KBJ2xgKaaL
+	ltyZqubDaCyu4X7g1Q97Z06WlyLSBk8LWbMD+usqgXya/O7EX80HtzOo
+X-Gm-Gg: AfdE7cn+lVFGWeJvD8zrVENBBAlWmRQJ+ISePgwGSAOA9j4Nmj7sT+SVMx6WeERlqqr
+	5jco/x5+LF+x6xjI760AmmK7x37L87X3cUONqTAf1r3trJjoyoD1pCuXF4gdfglFTVC4uieANtU
+	/Wr6czXGA3IiqSLXhGxjKqYfr1Dfr4Wr+dnHkEvh4oh9GOQnmklGDC7LVhy2sh5IuEl4cnQoFvI
+	/43CYwQ39Y75UyYqd4Go4aJh52YmXoMbzeKcb7SHQdx/oUjs6zAZTbTSz8ocGUC6mFsCCEVqcDQ
+	9LH49biZF9AweNOkSuRyLceGy2I/9dwNuz7YWX9ioIMqPcVE8UdeI+/jqadxGm2FCPx/KJha5T7
+	EBR5bc+MnS2MEfI3ORCEpddX6JvL7kLG5EJdd2Fw5ysIOy2XwPCqqHMf13intp/k2euF2YNBU61
+	jdqvhEKzyOvX7KPyRo9ex5ScGUxpQwlTvP07eJGBovINR5h+WTS42cST/1ivSAcNiv/A==
+X-Received: by 2002:a05:600c:3b01:b0:493:a570:df7d with SMTP id 5b1f17b1804b1-493df080ce5mr49199465e9.20.1783425602811;
+        Tue, 07 Jul 2026 05:00:02 -0700 (PDT)
+Received: from [192.168.255.3] (85-11-142-46.pool.kielnet.net. [46.142.11.85])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493e0f439fesm54216335e9.8.2026.07.07.05.00.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Jul 2026 05:00:02 -0700 (PDT)
+Message-ID: <e5e61dab-5ff1-4a7c-9b74-d3ed61e6c81a@gmail.com>
+Date: Tue, 7 Jul 2026 14:00:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,326 +86,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/42] drm/mediatek: Use hashtable for components
- discovery and registration
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
- <mripard@kernel.org>, "kernel@collabora.com" <kernel@collabora.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "airlied@gmail.com" <airlied@gmail.com>,
- =?UTF-8?B?SnVzdGluIFllaCAo6JGJ6Iux6IyCKQ==?= <Justin.Yeh@mediatek.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-References: <20260701122057.19648-1-angelogioacchino.delregno@collabora.com>
- <20260701122057.19648-7-angelogioacchino.delregno@collabora.com>
- <79f44c827c78fd823300509c22058f2b6f3600b6.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH net-next v5 2/4] net: pse-pd: add Realtek/Broadcom PSE MCU
+ core
 Content-Language: en-US
-In-Reply-To: <79f44c827c78fd823300509c22058f2b6f3600b6.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+ Kory Maincent <kory.maincent@bootlin.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Daniel Golle <daniel@makrotopia.org>, =?UTF-8?Q?Bj=C3=B8rn_Mork?=
+ <bjorn@mork.no>
+References: <20260706112425.3149226-1-jelonek.jonas@gmail.com>
+ <20260706112425.3149226-3-jelonek.jonas@gmail.com>
+ <akvhq1YcUFP6eizf@monoceros>
+From: Jonas Jelonek <jelonek.jonas@gmail.com>
+In-Reply-To: <akvhq1YcUFP6eizf@monoceros>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-321983-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-321987-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ck.hu@mediatek.com,m:chunkuang.hu@kernel.org,m:robh@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:mripard@kernel.org,m:kernel@collabora.com,m:linux-mediatek@lists.infradead.org,m:maarten.lankhorst@linux.intel.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk+dt@kernel.org,m:p.zabel@pengutronix.de,m:airlied@gmail.com,m:Justin.Yeh@mediatek.com,m:matthias.bgg@gmail.com,m:linux-arm-kernel@lists.infradead.org,m:Jason-JH.Lin@mediatek.com,m:conor@kernel.org,m:krzk@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[kernel.org,suse.de,ffwll.ch,collabora.com,lists.infradead.org,linux.intel.com,lists.freedesktop.org,vger.kernel.org,pengutronix.de,gmail.com,mediatek.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[jelonekjonas@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:u.kleine-koenig@baylibre.com,m:o.rempel@pengutronix.de,m:kory.maincent@bootlin.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:bjorn@mork.no,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jelonekjonas@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim]
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 85F9271B24E
+X-Rspamd-Queue-Id: 1A66771B2A8
 
-On 7/6/26 09:02, CK Hu (胡俊光) wrote:
-> On Wed, 2026-07-01 at 14:20 +0200, AngeloGioacchino Del Regno wrote:
->> As a preparation for refactoring the concept of hardware component
->> identification, search, and final usage, remove the ddp_comp array
->> of components and replace it with a hashtable, indexed by ID.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/gpu/drm/mediatek/mtk_crtc.c     | 44 ++++++++++++++++-------
->>   drivers/gpu/drm/mediatek/mtk_ddp_comp.c | 48 ++++++++++++++++++-------
->>   drivers/gpu/drm/mediatek/mtk_ddp_comp.h | 23 +++++++++++-
->>   drivers/gpu/drm/mediatek/mtk_drm_drv.c  |  7 ++--
->>   drivers/gpu/drm/mediatek/mtk_drm_drv.h  |  2 +-
->>   5 files changed, 94 insertions(+), 30 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/mediatek/mtk_crtc.c b/drivers/gpu/drm/mediatek/mtk_crtc.c
->> index f39f197057a7..3f4d6ab1bfc2 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_crtc.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_crtc.c
->> @@ -725,8 +725,12 @@ static void mtk_crtc_update_output(struct drm_crtc *crtc,
->>   		crtc_state->connectors_changed, encoder_mask, crtc_index);
->>   
->>   	for (i = 0; i < mtk_crtc->num_conn_routes; i++) {
->> -		unsigned int comp_id = mtk_crtc->conn_routes[i].route_ddp;
->> -		struct mtk_ddp_comp *comp = &priv->ddp_comp[comp_id];
->> +		const struct mtk_drm_route *conn_route = &mtk_crtc->conn_routes[i];
->> +		struct mtk_ddp_comp *comp;
->> +
->> +		comp = mtk_ddp_comp_find_by_id(&priv->hlist, conn_route->route_ddp);
-> 
-> I don't know why you invent conn_route? Keep comp_id use it here looks the same.
-> 
+Hi Uwe,
 
-I'm not inventing conn_route, that's something that was already there as a dynamic
-replacement of the last component in a stack of possible outputs for a single
-full-fledged display pipeline.
+On 06.07.26 19:12, Uwe Kleine-König wrote:
+> Hello,
+>
+> On Mon, Jul 06, 2026 at 11:24:22AM +0000, Jonas Jelonek wrote:
+>> +#include <linux/mod_devicetable.h>
+> Please only include those <linux/device-id/*.h> that you actively need.
+> I'm working on getting rid of <linux/mod_devicetable.h>, so please don't
+> introduce new users.
 
-The change here is about changing the search/retrieval of a `route_ddp` from a
-number that comes from an enumeration, to a full component structure instead....
+I'll fix this in the next version. Thanks for the hint.
 
->> +		if (!comp)
->> +			continue;
-> 
-> In original code, it never check comp is null or not.
-> I think it base on an assumption that it would not be null.
-> If it's null here, print error message and it's not necessary to do the rest thing.
-> 
+> Best regards
+> Uwe
 
-.... and the component structure, with the new code, has to be *initialized*: this
-is because we cannot assume that a component that was not registered will actually
-be registered later (which was a broken behavior of mediatek-drm!).
-
-
-
-----> IMPORTANT PART: <-----
-Note that, at this point, "comp" is *not* pointing to a *statically* initialized
-array of components, but to a *dynamically* initialized one: while before this the
-comp pointer was guaranteed to be *always* a valid pointer to a comp structure, now
-it is *not guaranteed anymore*, because again - it's *dynamically* allocated, so
-we NEED to check for comp != NULL, or we're exposing ourselves to a possible NULL
-pointer kernel panic (or worse)!
-
-
-
-If the component is not initialized at this point, it simply means that it cannot
-be - in any way - used by mediatek-drm, so.. if !comp -> continue means effectively
-"if the component is not registered, we cannot use it, hence don't try to evaluate
-the possibility of using it".
-
-Is it clear now?
-
->>   
->>   		if (comp->encoder_index >= 0 &&
->>   		    (encoder_mask & BIT(comp->encoder_index))) {
->> @@ -1028,10 +1032,11 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
->>   {
->>   	struct mtk_drm_private *priv = drm_dev->dev_private;
->>   	struct device *dev = drm_dev->dev;
->> +	struct mtk_ddp_comp *dma_comp;
->>   	struct mtk_crtc *mtk_crtc;
->>   	unsigned int num_comp_planes = 0;
->>   	int ret;
->> -	int i;
->> +	int i, j;
->>   	bool has_ctm = false;
->>   	uint gamma_lut_size = 0;
->>   	struct drm_crtc *tmp;
->> @@ -1051,7 +1056,7 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
->>   		struct mtk_ddp_comp *comp;
->>   
->>   		node = priv->comp_node[comp_id];
->> -		comp = &priv->ddp_comp[comp_id];
->> +		comp = mtk_ddp_comp_find_by_id(&priv->hlist, comp_id);
->>   
->>   		/* Not all drm components have a DTS device node, such as ovl_adaptor,
->>   		 * which is the drm bring up sub driver
->> @@ -1063,7 +1068,7 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
->>   			return 0;
->>   		}
->>   
->> -		if (!comp->dev) {
->> +		if (!comp || !comp->dev) {
->>   			dev_err(dev, "Component %pOF not initialized\n", node);
-> 
-> I think you should print other error message and return other value for !comp.
-> 
-
-In mtk_crtc_create, at this point, the component (which always has a node, pointed
-by node = priv->comp_node[comp_id]) has to be initialized by mtk_ddp_comp.
-
-Keeping in mind that the component is actually a device, if the component itself
-was not initialized at this point, this means that there is NO DEVice associated
-with it.
-
-This is why -ENODEV.
-
-Also, we're printing %pOF (like before) because this gives hints about precisely
-which one was not registered at this point.
-
->>   			return -ENODEV;
->>   		}
->> @@ -1089,12 +1094,17 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
->>   		return ret;
->>   	}
->>   
->> -	for (i = 0; i < mtk_crtc->ddp_comp_nr; i++) {
->> +	for (i = 0, j = 0; i < mtk_crtc->ddp_comp_nr; i++, j++) {
->>   		unsigned int comp_id = path[i];
->>   		struct mtk_ddp_comp *comp;
->>   
->> -		comp = &priv->ddp_comp[comp_id];
->> -		mtk_crtc->ddp_comp[i] = comp;
->> +		comp = mtk_ddp_comp_find_by_id(&priv->hlist, comp_id);
->> +		if (!comp) {
-> 
-> In original code, it never check comp is null or not.
-> I think it base on an assumption that it would not be null.
-> If it's null here, print error message and it's not necessary to do the rest thing.
-> 
-
-The iterator here tries to still setup a display pipeline in case a component is
-missing, and this actually works in a couple of corner cases, which were not
-possible before the restructuring of mediatek-drm.
-
-In later commits, this case will be handled differently: the problem here is rather
-that the code readability is not the best at this point in time (of the series),
-but this will make a lot more sense when going forward in this exact series.
-
-The main issue here is that mediatek-drm's complexity is very, very high, and the
-maintainability suffers a lot: doing each and every change as a perfectly clean
-(and perfectly readable) diff means adding another ~4k thousand lines of changes
-that are simply addition and removal of the same lines over and over again.
-
->> +			j--;
->> +			dev_dbg(dev, "Cannot find component %d.\n", comp_id);
->> +			continue;
->> +		}
->> +		mtk_crtc->ddp_comp[j] = comp;
->>   
->>   		if (comp->funcs) {
->>   			if (comp->funcs->gamma_set && comp->funcs->gamma_get_lut_size) {
->> @@ -1131,7 +1141,14 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
->>   	 * In the case of ovl_adaptor sub driver, it needs to use the
->>   	 * dma_dev_get function to get representative dma dev.
->>   	 */
->> -	mtk_crtc->dma_dev = mtk_ddp_comp_dma_dev_get(&priv->ddp_comp[path[0]]);
->> +	dma_comp = mtk_ddp_comp_find_by_id(&priv->hlist, path[0]);
->> +	if (dma_comp == NULL) {
-> 
-> if (!dma_comp) is more simple.
-> 
-
-Yeah, I agree. If you're really worried about seeing this instead of !dma_comp I
-can change it here... but if you can ignore that, in later commits this will be
-removed and completely changed so that it becomes
-
-	ret = mtk_crtc_find_suitable_dma_dev(mtk_crtc);
-	if (ret) {
-		dev_err(dev, "Could not find appropriate DMA device!\n");
-		return -EINVAL;
-	}
-	dev_dbg(dev, "Using DMA device %pOF\n", mtk_crtc->dma_dev->of_node);
-
-Note that if I change this simple line here, I'll have to fix other patches as
-they won't apply anymore because of the changed line... so again, if we could
-ignore that it would be great...
-
->> +		dev_err(dev, "Could not find appropriate DMA device!\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	mtk_crtc->dma_dev = mtk_ddp_comp_dma_dev_get(dma_comp);
->> +	dev_dbg(dev, "Using DMA device %pOF\n", mtk_crtc->dma_dev->of_node);
->>   
->>   	ret = mtk_crtc_init(drm_dev, mtk_crtc, crtc_i);
->>   	if (ret < 0)
->> @@ -1188,17 +1205,18 @@ int mtk_crtc_create(struct drm_device *drm_dev, const unsigned int *path,
->>   		for (i = 0; i < num_conn_routes; i++) {
->>   			unsigned int comp_id = conn_routes[i].route_ddp;
->>   			struct device_node *node = priv->comp_node[comp_id];
->> -			struct mtk_ddp_comp *comp = &priv->ddp_comp[comp_id];
->> +			struct mtk_ddp_comp *comp = mtk_ddp_comp_find_by_id(&priv->hlist, comp_id);
->>   
->> -			if (!comp->dev) {
->> +			if (!comp || !comp->dev) {
-> 
-> In original code, it never check comp is null or not.
-> I think it base on an assumption that it would not be null.
-> If it's null here, print error message and it's not necessary to do the rest thing.
-> 
-
-Already explained why we need comp to be checked for NULL.
-
->>   				dev_dbg(dev, "comp_id:%d, Component %pOF not initialized\n",
->>   					comp_id, node);
->>   				/* mark encoder_index to -1, if route comp device is not enabled */
->> -				comp->encoder_index = -1;
->> +				if (comp)
->> +					comp->encoder_index = -1;
->>   				continue;
->>   			}
->>   
->> -			mtk_ddp_comp_encoder_index_set(&priv->ddp_comp[comp_id]);
->> +			mtk_ddp_comp_encoder_index_set(comp);
->>   
->>
-> 
-> [snip]
-> 
->> 		}
->>   @@ -1116,8 +1118,7 @@ static int mtk_drm_probe(struct platform_device *pdev)
->>   							    PLATFORM_DEVID_AUTO,
->>   							    (void *)private->mmsys_dev,
->>   							    sizeof(*private->mmsys_dev));
->> -		private->ddp_comp[DDP_COMPONENT_DRM_OVL_ADAPTOR].dev = &ovl_adaptor->dev;
->> -		mtk_ddp_comp_init(dev, NULL, &private->ddp_comp[DDP_COMPONENT_DRM_OVL_ADAPTOR],
->> +		mtk_ddp_comp_init(&ovl_adaptor->dev, NULL, &private->hlist,
-> 
-> mtk_ddp_comp_init(dev, NULL, &private->hlist,
-> 
-
-That was only done for readability purposes. This will be entirely moved out of
-here in a later commit.
-
-Same as before, if you really think that this needs to be (dev, NULL, ...) instead
-of (&ovl_adaptor->dev, NULL, ...) I can change that, but this means I'll have to
-fix 30 patches ahead (plus ones that I have in my tree that are not in this series)
-
-It's not a bug, nor anything critical, not breaking anything, and resolved with
-later commits changing everything so, for the sake of efficiency, if this could
-be ignored (as it's just a nit), I'd be happy.
-
-Cheers,
-Angelo
+Best regards,
+Jonas
 
