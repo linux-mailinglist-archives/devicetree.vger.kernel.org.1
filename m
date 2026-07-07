@@ -1,175 +1,242 @@
-Return-Path: <devicetree+bounces-322234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-322235-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wl3FBKAoTWrkvwEAu9opvQ
-	(envelope-from <devicetree+bounces-322234-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:26:08 +0200
+	id PNWbBNsnTWq6vwEAu9opvQ
+	(envelope-from <devicetree+bounces-322235-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:22:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F3071DD79
-	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:26:07 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 967A671DCE0
+	for <lists+devicetree@lfdr.de>; Tue, 07 Jul 2026 18:22:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YpzsMYPT;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322234-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-322234-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=JP+xEzTs;
+	dmarc=pass (policy=none) header.from=collabora.com;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-322235-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-322235-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4AEAC3037798
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 16:21:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 15A3730087DB
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jul 2026 16:22:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FD5A434E29;
-	Tue,  7 Jul 2026 16:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03BD83E4C72;
+	Tue,  7 Jul 2026 16:22:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A8AF1ABED9;
-	Tue,  7 Jul 2026 16:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 676E9430CE2
+	for <devicetree@vger.kernel.org>; Tue,  7 Jul 2026 16:22:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1783441284; cv=none; b=J+RrIIrgh7nhMsWgjtusOS7Pj4aFdbIIcdARwARGZ+WuGAP3IbMAldteOvJH8fPNtmPh1hXtg8phEZ9kLxGrTo5SBagtxYhJko2pQYoKHgrMR2OO3ApnuPaxU85lETaTFBAhSVHPzoD9udNFW8IwJ2JJs6sLhzZUK+bQi3tEFI8=
+	t=1783441368; cv=none; b=sAkQV0JXhDDX49IBZlq39m4XC2bcazQkyw5NoYlive2tNfzgm+U8avyL++0dsUsnWAdYTH/Btnn6xTq5G3qPSWXGHXuIu1PXquL7J/lBsVVl1dxc5qSd66H4J7Fgv8rEhPARzy6DYNJu31tt3rENyUx7dwp3LaXcggH/pH6hXus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1783441284; c=relaxed/simple;
-	bh=4WB975X/EqILFgAfAmL8WbFdjrvWAkY9uYUP3aRmI1E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oVz6N+r+ZAPOjBMDSo68mFRoPF88Fz5splwRjmNyrsykMLM0/MvTirKBWvnM1n5m23wiWiGN+IVJRH3LYjbRQ1rg2XPR54ZrFwVWya26V2mFc2FjCg+27xihwY7Q8vsahR2OO/+gV21oCuZK69abQvWEPcCbNVzvkG0Q40fJNnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YpzsMYPT; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B28411F000E9;
-	Tue,  7 Jul 2026 16:21:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783441283;
-	bh=vr7Ks1DCwvqtxTBrk6q4zbArTPG/BpwytD7pVNj1bjM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=YpzsMYPTcfCVr0YwD+UgvvTZmQfCzReXf3uffvar0+TyYBjqxssb/yILkLVHKtxC/
-	 SSersHNqjtHQcUcK4AfaIJ2P8AHQeO2WoU0P7a/7kwxBrQcknZU0xVsLbeIETr/9zy
-	 GR7QmrXhMteX9YoZUhgjNBKgkZRd1skTuojDeJjyeOEfi+FzmKtTGsX/63gNeqSWCH
-	 ltkCrGRI0JnWPLwtXLOhOYYaLXlBpG7oBCpXCuVRTgWgXmzSlMcB2/fhKCWHRgelvt
-	 CGTv8GffW+xg7U6QIQz0yPSNits169AKlW6rgTVMiyWvdy3QiUBlNB3rRX58YTEPIw
-	 UBDvLt1Q9z+dQ==
-Date: Tue, 7 Jul 2026 17:21:19 +0100
-From: Conor Dooley <conor@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: Wojciech Dubowik <wojciech.dubowik@mt.com>, robh@kernel.org,
-	devicetree@vger.kernel.org, conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: sn65dsi83: Add reverse lanes
- property
-Message-ID: <20260707-aching-clutch-a71a6492cde2@spud>
-References: <20260707070244.230546-1-wojciech.dubowik@mt.com>
- <20260707070244.230546-2-wojciech.dubowik@mt.com>
- <20260707074500.CAF1B1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1783441368; c=relaxed/simple;
+	bh=5NAv1WC3hjw+KYQn9YTd9mOElGthU5SS9uZDqi57Alg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LXAglV6ktEyTFvqiawPKNuq43kAaNd1bDeZtQ1ut2qhQFNyHwHZwJdPezJp7AurspHc1XZE+Cs38OV6R4wtlnU4emqgdqIKjvF9ws7zTTZHpWc4UAGymjhLnGi72mRgaum5zlMJvyc3w5oB6KoCURV82jv4oB1yApfsyeIPoExo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JP+xEzTs; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1783441365;
+	bh=5NAv1WC3hjw+KYQn9YTd9mOElGthU5SS9uZDqi57Alg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JP+xEzTsJMVppPChuN02TNKnQ3zOolRq6TsDLipoI64uLbvrsUf+L+hOzS5lYJaR2
+	 al4TTdoCujiGINgjZ8/bg8bSz/2mKemuBIZy+I1zw9KxNkaNwICTKtPr1WvjDYnXef
+	 G0RPDHLQsGyZzZ9L7pCfUj34JlJpQc6CeImglQU5KpD+RpFC7gxt13R876bcAZ+kJY
+	 dQRIYJTYEy0lHlWJ6vW9+eUYNZblM4HlD54kuqm/xhH2yfmhHHYPR7lX/4EQqbuo5q
+	 Z2LZikSK53GIlGdaOxrDz8Z7X8iGoAJJ85mHSYwQXCE3O+DPiMknrB7Q7ybFqJL5At
+	 Fks9vazK1VYDw==
+Received: from [100.64.1.21] (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8885E17E05E8;
+	Tue, 07 Jul 2026 18:22:45 +0200 (CEST)
+Message-ID: <d7fc4676-6aaf-4012-9a74-8861426cea2a@collabora.com>
+Date: Tue, 7 Jul 2026 18:22:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Ryl6ucjzQWrWKoA2"
-Content-Disposition: inline
-In-Reply-To: <20260707074500.CAF1B1F000E9@smtp.kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] pmdomain: mediatek: Add support for Direct CTL
+ simple power sequence
+To: sashiko-reviews@lists.linux.dev
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+References: <20260707155535.199383-1-angelogioacchino.delregno@collabora.com>
+ <20260707155535.199383-4-angelogioacchino.delregno@collabora.com>
+ <20260707160843.EBCF81F000E9@smtp.kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20260707160843.EBCF81F000E9@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-322235-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:wojciech.dubowik@mt.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-322234-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mt.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:from_mime,collabora.com:email,collabora.com:mid,collabora.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 65F3071DD79
+X-Rspamd-Queue-Id: 967A671DCE0
 
---Ryl6ucjzQWrWKoA2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jul 07, 2026 at 07:45:00AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issu=
-e(s) to consider:
-> - [Low] The patch introduces a custom vendor-specific boolean property `t=
-i,lvds-reverse-lanes` to indicate LVDS lane reversal. This is a device tree=
- anti-pattern because the referenced standard `video-interfaces.yaml` alrea=
-dy provides the `data-lanes` property for this exact purpose (e.g., `data-l=
-anes =3D <4 3 2 1>;`).
+On 7/7/26 18:08, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 4 potential issue(s) to consider:
+> 
+> New issues:
+> - [Low] Ignoring the return value of `clk_bulk_prepare_enable` in the error recovery path of `scpsys_power_off` violates its `__must_check` attribute.
+> 
+> Pre-existing issues:
+> - [High] If `scpsys_bus_protect_enable()` fails in `scpsys_power_off()`, it returns early without re-enabling `subsys_clks`, bypassing the newly added clock recovery block and breaking the clock refcount.
+> - [High] Error paths in `scpsys_power_off()` leave the hardware in a corrupted state (SRAM disabled, bus protection active, and buck isolated) because they fail to revert these states before returning an error.
+> - [High] Error paths in `scpsys_power_on()` disable clocks and regulators without reverting the power-on hardware sequence, leaving the domain hardware partially ON while genpd considers it OFF.
 > --
->=20
-> --- Patch [1]: [PATCH 1/2] dt-bindings: display: sn65dsi83: Add reverse l=
-anes property ---
-> commit c30eea01a74188461b7e527f71d282d68b885ec2
-> Author: Wojciech Dubowik <Wojciech.Dubowik@mt.com>
->=20
-> dt-bindings: display: sn65dsi83: Add reverse lanes property
->=20
-> This patch adds a boolean property to reverse the LVDS data lanes order f=
-or
-> endpoints.
->=20
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65ds=
-i83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.ya=
-ml
-> > --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> 
+> --- Patch [3]: [PATCH v2 3/4] pmdomain: mediatek: Add support for Direct CTL simple power sequence ---
+> commit a25fe6d3db6b42f564ecc5977f0a00e29a0cfd96
+> Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> pmdomain: mediatek: Add support for Direct CTL simple power sequence
+> 
+> This commit adds a simplified power sequence for certain new MediaTek SoCs
+> (like MT8196 and MT6991). The new sequence avoids using RTFF hardware and
+> certain control bits, handling power domain enablement automatically after
+> exiting reset.
+> 
+>> diff --git a/drivers/pmdomain/mediatek/mtk-pm-domains.c b/drivers/pmdomain/mediatek/mtk-pm-domains.c
+>> index db543d4b1813c..feba436279c54 100644
+>> --- a/drivers/pmdomain/mediatek/mtk-pm-domains.c
+>> +++ b/drivers/pmdomain/mediatek/mtk-pm-domains.c
 > [ ... ]
-> > @@ -115,6 +115,10 @@ $defs:
-> >              enum: [100, 200]
-> >              default: 200
-> > =20
-> > +          ti,lvds-reverse-lanes:
-> > +            description: Reverse the order of LVDS lanes.
-> > +            type: boolean
->=20
+>> @@ -682,7 +733,8 @@ static int scpsys_power_on(struct generic_pm_domain *genpd)
+>>   err_enable_bus_protect:
+>>   	scpsys_bus_protect_enable(pd, 0);
+>>   err_disable_sram:
+>> -	scpsys_sram_disable(pd);
+>> +	if (!MTK_SCPD_CAPS(pd, MTK_SCPD_SIMPLE_PWRSEQ))
+>> +		scpsys_sram_disable(pd);
+>>   err_disable_subsys_clks:
+>>   	if (!MTK_SCPD_CAPS(pd, MTK_SCPD_STRICT_BUS_PROTECTION))
+>>   		clk_bulk_disable_unprepare(pd->num_subsys_clks,
+> 
+> [Severity: High]
+> This is a pre-existing issue, but if a step fails during scpsys_power_on()
+> after the initial MTCMOS power-on sequence, the function jumps to these
+> error labels. It disables the clocks and regulators, but does this leave
+> the domain's MTCMOS physically ON since it doesn't call a corresponding
+> power-off sequence to revert it? Could this hardware inconsistency cause
+> issues while the framework considers the domain OFF?
+> 
+>> @@ -698,16 +750,17 @@ static int scpsys_power_off(struct generic_pm_domain *genpd)
+>>   {
+>>   	struct scpsys_domain *pd = container_of(genpd, struct scpsys_domain, genpd);
+>>   	struct scpsys *scpsys = pd->scpsys;
+>> -	bool tmp;
+>>   	int ret;
+>>   
+>>   	ret = scpsys_bus_protect_enable(pd, 0);
+>>   	if (ret < 0)
+>>   		return ret;
+>>   
+>> -	ret = scpsys_sram_disable(pd);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	if (!MTK_SCPD_CAPS(pd, MTK_SCPD_SIMPLE_PWRSEQ)) {
+>> +		ret = scpsys_sram_disable(pd);
+>> +		if (ret < 0)
+>> +			return ret;
+>> +	}
+> 
+> [Severity: High]
+> This is a pre-existing issue, but if scpsys_sram_disable() or
+> scpsys_bus_protect_enable() fail here and return early, the framework will
+> still treat the domain as ON. Does this early return leave the hardware
+> physically isolated, potentially causing active consumer devices to hit an
+> active bus protector or unpowered SRAM?
+> 
+
+The problem here is that if sram_disable() fails, sram_enable() is guaranteed to
+also fail, there's nothing that can really be done to fix the disablement failure
+if any happens.
+
+I have never encountered a single failure here during disablement, but should it
+happen, the only way to go here is to pray and hope that the next power_on() will
+fix things up.
+
+Can't do anything about it.
+
+> [ ... ]
+>> @@ -720,15 +773,17 @@ static int scpsys_power_off(struct generic_pm_domain *genpd)
+>>   		return ret;
+>>   
+>>   	if (MTK_SCPD_CAPS(pd, MTK_SCPD_MODEM_PWRSEQ))
+>> -		scpsys_modem_pwrseq_off(pd);
+>> +		ret = scpsys_modem_pwrseq_off(pd);
+>> +	else if (MTK_SCPD_CAPS(pd, MTK_SCPD_SIMPLE_PWRSEQ))
+>> +		ret = scpsys_simple_pwrseq_off(pd);
+>>   	else
+>> -		scpsys_ctl_pwrseq_off(pd);
+>> +		ret = scpsys_ctl_pwrseq_off(pd);
+>>   
+>> -	/* wait until PWR_ACK = 0 */
+>> -	ret = readx_poll_timeout(scpsys_domain_is_on, pd, tmp, !tmp, MTK_POLL_DELAY_US,
+>> -				 MTK_POLL_TIMEOUT);
+>> -	if (ret < 0)
+>> +	if (ret < 0) {
+>> +		/* Re-enable clocks so that next power off doesn't break the refcount */
+>> +		clk_bulk_prepare_enable(pd->num_subsys_clks, pd->subsys_clks);
+> 
+> [Severity: High]
+> This is a pre-existing issue, but if scpsys_bus_protect_enable() fails
+> earlier in scpsys_power_off() when called with BUS_PROT_IGNORE_SUBCLK, it
+> returns early. Does that early return completely bypass this newly added
+> clock recovery block, leaving the subsystem clocks disabled while the
+> domain is logically considered ON?
+> 
+
+No that shouldn't happen, but to really resolve that we'd need a dual-stage probe
+and/or enablement mechanism, like regulators. Can't do anything about that now,
+but a talk for plumbers may be coming........
+
 > [Severity: Low]
-> Is it necessary to introduce a custom vendor-specific boolean property
-> for this?
->=20
-> Since video-interfaces.yaml already provides the standard data-lanes prop=
-erty
-> which can be used to describe the exact lane routing, does this hardware
-> require a distinct property instead of using the standard data-lanes
-> approach with data-lanes =3D <4 3 2 1>?
+> Does this error recovery block ignore the return value of
+> clk_bulk_prepare_enable()? Since the function is declared with
+> __must_check in the clk API, could this cause a -Wunused-result compiler
+> warning and break builds using -Werror?
+> 
 
-I don't know much about display devices, but this seems like a
-reasonable thing to me. Why would it not work?
+Nah. It's fine.
 
---Ryl6ucjzQWrWKoA2
-Content-Type: application/pgp-signature; name=signature.asc
+>>   		return ret;
+>> +	}
+> 
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCak0nfwAKCRB4tDGHoIJi
-0hliAP9Za6VPiTNd2YOQPMgTQqjuqUU8tsMVvGXeI7WALz2OAwEAwTcAn6n+IeM/
-XH2gRAwYsDuEIvmpI9z38gvbUoiFywE=
-=a5FN
------END PGP SIGNATURE-----
-
---Ryl6ucjzQWrWKoA2--
 
